@@ -1,0 +1,50 @@
+{
+    "compilerOptions": {
+		"target": "es2017",
+		"module": "es2015",
+		"moduleResolution": "node",
+		"lib": [
+			"es2017",
+			"dom",
+			"dom.iterable",
+			"es2018.promise"
+		],
+		"types": [],
+		"declaration": true,
+		"sourceMap": true,
+		"inlineSources": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitReturns": true,
+		"noImplicitOverride": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"experimentalDecorators": true,
+		"stripInternal": true,
+		"forceConsistentCasingInFileNames": true,
+		// "skipLibCheck": true, // would force consumers to enable this as well
+		"strict": true,
+		"outDir": "./",
+		"baseUrl": "./",
+		"composite": true,
+		"importHelpers": true,
+		"allowSyntheticDefaultImports": true,
+		// "esModuleInterop": true // would force consumers to enable this as well
+		"importsNotUsedAsValues": "error",
+		"removeComments": true,
+		"plugins": [
+            {
+                "name": "ts-lit-plugin",
+                "strict": true,
+                "rules": {
+                "no-nullable-attribute-binding": "off",
+                "no-missing-import": "warning",
+                "no-incompatible-type-binding": "off"
+                }
+            }
+        ]
+	},
+    "include": [
+        "./src/"
+    ],
+    "exclude": []
+}
