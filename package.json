@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:typescript": "tsc -b",
     "build": "npm run build:typescript",
-    "clean:git": "npm run build:typescript",
+    "clean:git": "git clean -dfx",
     "clean": "npm run clean:git"
   },
   "repository": {
