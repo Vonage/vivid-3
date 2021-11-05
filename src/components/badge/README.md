@@ -7,6 +7,11 @@ badge is a label that holds small amounts of information. A badge can be used to
 import '@vonage/vivid/badge';
 ```
 
+## connotation
+
+- Type `'primary' | 'cta' | 'success' | 'alert' | 'warning' | 'info'`
+- Default `primary`
+
 ```html preview
 <vwc-badge text="label" connotation="primary"></vwc-badge>
 <vwc-badge text="label" connotation="cta"></vwc-badge>
@@ -16,6 +21,8 @@ import '@vonage/vivid/badge';
 <vwc-badge text="label" connotation="alert"></vwc-badge>
 ```
 
+## soft
+
 ```html preview
 <vwc-badge text="label" layout="soft" connotation="primary"></vwc-badge>
 <vwc-badge text="label" layout="soft" connotation="cta"></vwc-badge>
@@ -24,6 +31,8 @@ import '@vonage/vivid/badge';
 <vwc-badge text="label" layout="soft" connotation="warning"></vwc-badge>
 <vwc-badge text="label" layout="soft" connotation="alert"></vwc-badge>
 ```
+
+## outline
 
 ```html preview
 <vwc-badge text="label" layout="outlined" connotation="primary"></vwc-badge>
@@ -54,7 +63,7 @@ import '@vonage/vivid/badge';
 
 | Property       | Attribute      | Type                                                                                                                                         | Default  |
 | -------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| `connotation`  | `connotation`  | `Connotation.Primary \| Connotation.CTA \| Connotation.Success \| Connotation.Alert \| Connotation.Warning \| Connotation.Info \| undefined` |          |
+| `connotation`  | `connotation`  | `Primary \| CTA \| Success \| Alert \| Warning \| Info \| undefined` |          |
 | `dense`        | `dense`        | `boolean`                                                                                                                                    | false    |
 | `enlarged`     | `enlarged`     | `boolean`                                                                                                                                    | false    |
 | `icon`         | `icon`         | `string \| undefined`                                                                                                                        |          |

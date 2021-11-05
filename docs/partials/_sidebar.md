@@ -9,7 +9,9 @@
 
 * Examples
 
-  * [Application](examples/application-layout/side-drawer.md)
+  * Application
+
+    * [Side Drawer](examples/application-layout/side-drawer.md)
 
 * Components
 
