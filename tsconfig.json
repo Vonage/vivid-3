@@ -1,5 +1,5 @@
 {
-    "compilerOptions": {
+	"compilerOptions": {
 		"target": "es2017",
 		"module": "es2015",
 		"moduleResolution": "node",
@@ -24,7 +24,7 @@
 		// "skipLibCheck": true, // would force consumers to enable this as well
 		"strict": true,
 		"outDir": "./",
-		"baseUrl": "./",
+		"baseUrl": "./src",
 		"composite": true,
 		"importHelpers": true,
 		"allowSyntheticDefaultImports": true,
@@ -32,19 +32,19 @@
 		"importsNotUsedAsValues": "error",
 		"removeComments": true,
 		"plugins": [
-            {
-                "name": "ts-lit-plugin",
-                "strict": true,
-                "rules": {
-                "no-nullable-attribute-binding": "off",
-                "no-missing-import": "warning",
-                "no-incompatible-type-binding": "off"
-                }
-            }
-        ]
+			{
+				"name": "ts-lit-plugin",
+				"strict": true,
+				"rules": {
+				"no-nullable-attribute-binding": "off",
+				"no-missing-import": "warning",
+				"no-incompatible-type-binding": "off"
+				}
+			}
+		]
 	},
-    "include": [
-        "./src/"
-    ],
-    "exclude": []
+	"include": [
+		"./src/"
+	],
+	"exclude": []
 }
