@@ -1,5 +1,5 @@
 {
-  "name": "@vonage/vivid-next",
+  "name": "@vonage/vivid",
   "version": "3.0.0",
   "description": "Vonage's web UI 🎨 toolbelt",
   "main": "index.js",
@@ -26,11 +26,19 @@
     "url": "https://github.com/Vonage/vivid-next/issues"
   },
   "homepage": "https://github.com/Vonage/vivid-next#readme",
+  "exports": {
+    "./badge": "./src/components/badge/badge.js",
+    "./icon": "./src/components/icon/icon.js"
+  },
+  "type": "module",
   "dependencies": {
+    "@material/mwc-base": "^0.25.3",
     "lit": "^2.0.2",
+    "ramda": "^0.27.1",
     "tslib": "^2.3.1"
   },
   "devDependencies": {
+    "@types/ramda": "^0.27.46",
     "ts-lit-plugin": "^1.2.1",
     "typescript": "^4.4.4"
   }

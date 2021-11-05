@@ -7,17 +7,24 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="src/core/theme/light.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-demo@latest/dist/index.min.css" />
+  <script type="module">
+    import '@vonage/vivid/badge';
+  </script>
 </head>
 
 <body>
+  <vwc-badge text="badge"></vwc-badge>
+
   <div id="app"></div>
   <script>
     window.$docsify = {
       name: 'Vivid',
       basePath: 'docs',
-      loadNavbar: '_navbar.md',
-      loadSidebar: '_summary.md',
+      loadNavbar: 'partials/_navbar.md',
+      loadSidebar: 'partials/_sidebar.md',
       homepage: '../readme.md',
       markdown: {
         smartypants: true,
@@ -27,8 +34,7 @@
   </script>
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify-demo-code"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-demo@latest/dist/index.min.js"></script>
 
 </body>
 

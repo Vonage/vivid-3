@@ -1,11 +1,11 @@
 import {
 	html, LitElement, TemplateResult
 } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import { nothing } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import type { ClassInfo } from 'lit/directives/class-map.js';
-import type { Connotation, Shape, Layout } from '../../lib/foundation/enums.js';
+import type { Connotation, Shape, Layout } from '../../core/foundation/enums.js';
 
 type BadgeConnotation = Extract<
 	Connotation,

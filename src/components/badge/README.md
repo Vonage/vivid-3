@@ -3,8 +3,51 @@
 Represents a badge custom element.
 badge is a label that holds small amounts of information. A badge can be used to display unread notifications, or to label a block of text. Badges don’t work for navigation because they can't include a hyperlink.
 
+```js preview
+import '@vonage/vivid/badge';
+```
+
 ```html preview
-<div>hello</div>
+<vwc-badge text="label" connotation="primary"></vwc-badge>
+<vwc-badge text="label" connotation="cta"></vwc-badge>
+<vwc-badge text="label" connotation="info"></vwc-badge>
+<vwc-badge text="label" connotation="success"></vwc-badge>
+<vwc-badge text="label" connotation="warning"></vwc-badge>
+<vwc-badge text="label" connotation="alert"></vwc-badge>
+```
+
+```html preview
+<vwc-badge text="label" layout="soft" connotation="primary"></vwc-badge>
+<vwc-badge text="label" layout="soft" connotation="cta"></vwc-badge>
+<vwc-badge text="label" layout="soft" connotation="info"></vwc-badge>
+<vwc-badge text="label" layout="soft" connotation="success"></vwc-badge>
+<vwc-badge text="label" layout="soft" connotation="warning"></vwc-badge>
+<vwc-badge text="label" layout="soft" connotation="alert"></vwc-badge>
+```
+
+```html preview
+<vwc-badge text="label" layout="outlined" connotation="primary"></vwc-badge>
+<vwc-badge text="label" layout="outlined" connotation="cta"></vwc-badge>
+<vwc-badge text="label" layout="outlined" connotation="info"></vwc-badge>
+<vwc-badge text="label" layout="outlined" connotation="success"></vwc-badge>
+<vwc-badge text="label" layout="outlined" connotation="warning"></vwc-badge>
+<vwc-badge text="label" layout="outlined" connotation="alert"></vwc-badge>
+```
+
+```html preview
+<vwc-badge text="label" dense></vwc-badge>
+<vwc-badge text="label"></vwc-badge>
+<vwc-badge text="label" enlarged></vwc-badge>
+```
+
+```html preview
+<vwc-badge text="label" shape="rounded"></vwc-badge>
+<vwc-badge text="label" shape="pill"></vwc-badge>
+```
+
+```html preview
+<vwc-badge text="label" icon="check-line"></vwc-badge>
+<vwc-badge text="label" icontrailing="check-line"></vwc-badge>
 ```
 
 ## Properties
