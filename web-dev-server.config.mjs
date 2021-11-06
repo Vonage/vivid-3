@@ -2,7 +2,6 @@ import { esbuildPlugin } from '@web/dev-server-esbuild';
 import { importMapsPlugin } from '@web/dev-server-import-maps';
 import { importMap } from './docs/import-map.js';
 
-console.log(importMap);
 
 export default {
     open: false,
