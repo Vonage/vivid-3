@@ -53,7 +53,7 @@ export class BadgeBase extends LitElement {
 	@property({ type: String, reflect: true })
 		iconTrailing?: string;
 
-	protected renderIcon(type?: string, isTrailingIcon = false): TemplateResult | typeof nothing {
+	protected renderIcon(type: string, isTrailingIcon = false): TemplateResult | typeof nothing {
 		const classes = {
 			'icon--leading': !isTrailingIcon,
 			'icon--trailing': isTrailingIcon
@@ -76,11 +76,9 @@ export class BadgeBase extends LitElement {
 	protected override render(): TemplateResult {
 		return html`
 			<span class="badge ${classMap(this.getRenderClasses())}">
-				${this.renderIcon(this.icon)}
-				<slot>
-					${this.text || nothing}
-				</slot>
-				${this.renderIcon(this.iconTrailing, true)}
+				${this.icon ? this.renderIcon(this.icon) : ''}
+				${this.text || nothing}
+				${this.iconTrailing ? this.renderIcon(this.iconTrailing, true) : ''}
 			</span>`;
 	}
 }
