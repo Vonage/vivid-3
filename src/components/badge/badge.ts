@@ -1,4 +1,4 @@
-import '@vonage/vivid/icon';
+import '../icon/icon';
 
 import { customElement } from 'lit/decorators.js';
 

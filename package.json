@@ -28,8 +28,7 @@
   },
   "homepage": "https://github.com/Vonage/vivid-next#readme",
   "exports": {
-    "./badge": "./src/components/badge/badge.js",
-    "./icon": "./src/components/icon/icon.js"
+    "./": "./src/"
   },
   "type": "module",
   "dependencies": {
