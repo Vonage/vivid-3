@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "web-dev-server",
     "build:typescript": "tsc -b",
     "build": "npm run build:typescript",
     "clean:git": "git clean -dfx",
@@ -39,6 +40,8 @@
   },
   "devDependencies": {
     "@types/ramda": "^0.27.46",
+    "@web/dev-server": "^0.1.26",
+    "@web/dev-server-esbuild": "^0.2.15",
     "ts-lit-plugin": "^1.2.1",
     "typescript": "^4.4.4"
   }

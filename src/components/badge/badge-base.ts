@@ -7,6 +7,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import type { ClassInfo } from 'lit/directives/class-map.js';
 import type { Connotation, Shape, Layout } from '../../core/foundation/enums.js';
 
+
 type BadgeConnotation = Extract<
 	Connotation,
 	| Connotation.Primary
