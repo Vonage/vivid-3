@@ -1,6 +1,6 @@
 * Introduction
 
-  * [Something](components/something.md)
+  * [Something](something.md)
 
 * Getting Started
 
