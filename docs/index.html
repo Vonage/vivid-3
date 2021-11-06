@@ -16,15 +16,16 @@
 </head>
 
 <body>
-  <vwc-badge text="badge"></vwc-badge>
-
   <div id="app"></div>
   <script>
     window.$docsify = {
       name: 'vivid',
-      basePath: 'docs',
-      loadNavbar: 'partials/_navbar.md',
-      loadSidebar: 'partials/_sidebar.md',
+      basePath: '.',
+      executeScript: true,
+      loadSidebar: true,
+      alias: {
+        '/.*/_sidebar.md': '/_sidebar.md'
+      },
       homepage: '../readme.md',
       auto2top: true,
       markdown: {
@@ -34,7 +35,7 @@
     }
   </script>
   <!-- Docsify v4 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify@latest"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-demo@latest/dist/index.min.js"></script>
 
 </body>
