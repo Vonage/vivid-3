@@ -1,0 +1,38 @@
+/* Color palettes */
+.color-palette {
+    display: grid;
+    grid-template-columns: 250px repeat(11, 1fr);
+    gap: 1rem 0.25rem;
+    margin: 2rem 0;
+  }
+  
+  .color-palette__name {
+    font-size: 1rem;
+    font-weight: 500;
+    grid-template-columns: repeat(11, 1fr);
+  }
+  
+  .color-palette__name code {
+    background: none;
+    font-size: 0.75rem;
+  }
+  
+  .color-palette__wrapper {
+    font-size: 0.75rem;
+    text-align: center;
+  }
+  
+  .color-palette__rec {
+    height: 3rem;
+  }
+  
+  @media screen and (max-width: 1200px) {
+    .color-palette {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  
+    .color-palette__name {
+      grid-column-start: span 6;
+    }
+  }
+  
