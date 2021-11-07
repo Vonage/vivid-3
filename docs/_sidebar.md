@@ -16,3 +16,5 @@
 * Components
 
   * [Badge](components/badge.md)
+
+* [Code of Conduct](/CODE_OF_CONDUCT.md)
