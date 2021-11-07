@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "web-dev-server",
     "build:typescript": "tsc -b",
-    "build": "npm run build:typescript",
+    "build": "node ./scripts/build.js",
     "clean:git": "git clean -dfx",
     "clean": "npm run clean:git"
   },
@@ -28,16 +28,18 @@
   },
   "homepage": "https://github.com/Vonage/vivid-next#readme",
   "exports": {
-    "./": "./src/"
+    "./icon": "./dist/components/button/icon.js",
+    "./badge": "./dist/components/badge/badge.js"
   },
   "type": "module",
   "dependencies": {
+  },
+  "devDependencies": {
     "@material/mwc-base": "^0.25.3",
     "lit": "^2.0.2",
     "ramda": "^0.27.1",
-    "tslib": "^2.3.1"
-  },
-  "devDependencies": {
+    "tslib": "^2.3.1",
+    "esbuild": "^0.13.4",
     "@types/ramda": "^0.27.46",
     "@web/dev-server": "^0.1.26",
     "@web/dev-server-esbuild": "^0.2.15",
