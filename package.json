@@ -4,8 +4,8 @@
   "description": "Vonage's web UI 🎨 toolbelt",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "web-dev-server",
+    "prestart": "tsc -b",
+    "start": "tsc --watch --preserveWatchOutput & web-dev-server --watch",
     "build:typescript": "tsc -b",
     "build": "node ./scripts/build.js",
     "clean:git": "git clean -dfx",
@@ -28,12 +28,10 @@
   },
   "homepage": "https://github.com/Vonage/vivid-next#readme",
   "exports": {
-    "./icon": "./dist/components/button/icon.js",
-    "./badge": "./dist/components/badge/badge.js"
+    "./": "./src"
   },
   "type": "module",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@material/mwc-base": "^0.25.3",
     "lit": "^2.0.2",
