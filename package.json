@@ -4,12 +4,12 @@
   "description": "Vonage's web UI 🎨 toolbelt",
   "main": "index.js",
   "scripts": {
+    "prestart": "tsc -b",
+    "start": "tsc --watch --preserveWatchOutput & web-dev-server --watch",
     "test:dev": "karma start config/karma/karma.conf.dev.cjs --browsers=Chrome",
     "test:chrome": "karma start config/karma/karma.conf.prod.cjs --coverage --browsers=ChromeHeadless",
     "test:firefox": "karma start config/karma/karma.conf.prod.cjs --coverage --browsers=FirefoxHeadless",
     "test:safari": "karma start config/karma/karma.conf.prod.cjs --coverage --browsers=SafariNative",
-    "start": "web-dev-server",
-    "build:typescript": "tsc -b",
     "build": "node ./scripts/build.js",
     "clean:git": "git clean -dfx",
     "clean": "npm run clean:git"
