@@ -9,6 +9,6 @@ export default {
     // in a monorepo you need to set set the root dir to resolve modules
     rootDir: '.',
     plugins: [
-        esbuildPlugin({ ts: true, target: 'auto' }),
+        esbuildPlugin({ target: 'auto' }),
     ],
 };
