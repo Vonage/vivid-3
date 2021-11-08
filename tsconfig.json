@@ -44,7 +44,8 @@
 		]
 	},
 	"include": [
-		"./src/"
+		"./src/",
+		"node_modules/@types/jasmine/index.d.ts"
 	],
 	"exclude": []
 }
