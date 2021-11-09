@@ -1,6 +1,3 @@
-import { esbuildPlugin } from '@web/dev-server-esbuild';
-
-
 export default {
     open: false,
     watch: true,
@@ -8,7 +5,4 @@ export default {
     appIndex: 'docs/index.html',
     // in a monorepo you need to set set the root dir to resolve modules
     rootDir: '.',
-    plugins: [
-        esbuildPlugin({ target: 'auto' }),
-    ],
 };
