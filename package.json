@@ -30,6 +30,7 @@
   "exports": {
     "./": "./dist"
   },
+  "type": "module",
   "dependencies": {
     "@material/mwc-base": "^0.25.3",
     "lit": "^2.0.2",

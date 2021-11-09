@@ -2,6 +2,7 @@ import typescript from "@rollup/plugin-typescript";
 import * as fs from 'fs';
 import * as path from 'path';
 import del from "rollup-plugin-delete";
+import nodeResolve from "@rollup/plugin-node-resolve";
 
 function getFoldersInAFolder(workingFolder = './src/components') {
     const testFolders = [];
@@ -30,5 +31,5 @@ export default {
         format: 'esm',
         chunkFileNames: `components/[name]/chunks/[name]-[hash].js`
     },
-    plugins: [del({ targets: 'dist/*' }), typescript()]
+    plugins: [del({ targets: 'dist/*' }), typescript(), nodeResolve()]
 };
