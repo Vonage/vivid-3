@@ -1,5 +1,6 @@
 {
 	"compilerOptions": {
+		"rootDir": "src/",
 		"target": "es2017",
 		"module": "es2015",
 		"moduleResolution": "node",
@@ -11,6 +12,7 @@
 		],
 		"types": [],
 		"declaration": true,
+		"declarationDir": "output",
 		"sourceMap": true,
 		"inlineSources": true,
 		"noFallthroughCasesInSwitch": true,
@@ -23,8 +25,8 @@
 		"forceConsistentCasingInFileNames": true,
 		// "skipLibCheck": true, // would force consumers to enable this as well
 		"strict": true,
-		"outDir": "./dist",
-		"baseUrl": "./src",
+		"outDir": "./output",
+		"baseUrl": ".",
 		"composite": true,
 		"importHelpers": true,
 		"allowSyntheticDefaultImports": true,
