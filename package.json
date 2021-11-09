@@ -27,8 +27,12 @@
     "url": "https://github.com/Vonage/vivid-next/issues"
   },
   "homepage": "https://github.com/Vonage/vivid-next#readme",
+  "files": [
+    "dist/**/*"
+  ],
   "exports": {
-    "./": "./dist"
+    "./button": "./dist/components/button.js",
+    "./icon": "./dist/components/icon/icon.js"
   },
   "type": "module",
   "dependencies": {
