@@ -1,6 +1,7 @@
 import typescript from "@rollup/plugin-typescript";
 import * as fs from 'fs';
 import * as path from 'path';
+import del from "rollup-plugin-delete";
 
 function getFoldersInAFolder(workingFolder = './src/components') {
     const testFolders = [];
@@ -25,8 +26,9 @@ const input = components.reduce((inputObject, componentName) => {
 export default {
     input,
     output: {
-        dir: 'output',
-        format: 'esm'
+        dir: 'dist',
+        format: 'esm',
+        chunkFileNames: `components/[name]/chunks/[name]-[hash].js`
     },
-    plugins: [typescript()]
+    plugins: [del({ targets: 'dist/*' }), typescript()]
 };

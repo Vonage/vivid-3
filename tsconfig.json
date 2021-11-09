@@ -12,7 +12,7 @@
 		],
 		"types": [],
 		"declaration": true,
-		"declarationDir": "output",
+		"declarationDir": "dist",
 		"sourceMap": true,
 		"inlineSources": true,
 		"noFallthroughCasesInSwitch": true,
@@ -25,7 +25,7 @@
 		"forceConsistentCasingInFileNames": true,
 		// "skipLibCheck": true, // would force consumers to enable this as well
 		"strict": true,
-		"outDir": "./output",
+		"outDir": "./dist",
 		"baseUrl": ".",
 		"composite": true,
 		"importHelpers": true,
