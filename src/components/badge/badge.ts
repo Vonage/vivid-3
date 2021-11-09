@@ -19,3 +19,5 @@ declare global {
 		'vwc-badge': Badge;
 	}
 }
+
+console.log('Test');
