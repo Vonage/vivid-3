@@ -1,5 +1,7 @@
 # Color
 
+<link rel="stylesheet" href="docs/assets/styles/tokens/colors.css">
+
 ## There’s a science to color
 
 ##### It’s part visual chemistry and part psychology. Balancing both makes for a palette that’s a powerful tool for establishing uniqueness.

@@ -7,9 +7,9 @@
   * [Installation](getting-started/installation.md)
   * [Usage](getting-started/usage.md)
 
-* Design System
+* Design Tokens
   
-  * [Color](design-system/color.md)
+  * [Color](design-tokens/color.md)
 
 * Examples
 
