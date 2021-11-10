@@ -24,27 +24,14 @@ describe('badge', () => {
 
     describe(`text`, function () {
         function getBadgeText(actualElement) {
-            const slotElement = actualElement?.shadowRoot?.querySelector('slot');
-            let text;
-            if (slotElement.assignedNodes()[0]) {
-                text = slotElement.assignedNodes()[0].innerText || slotElement.assignedNodes()[0].data;
-            } else {
-                text = slotElement.innerText;
-            }
-
+            const badgeTextWrapper = actualElement?.shadowRoot?.querySelector('.badge');
+            const text =badgeTextWrapper.innerText;
             return text.replace(/\s/gm, "");
         }
 
         it(`should add the text using attribute`, async function () {
             const textString = 'badge';
             const badgeTemplate = `<${COMPONENT_TAG} text="${textString}"></${COMPONENT_TAG}>`;
-            const actualElement = await addHtmlTemplateToDOM(badgeTemplate);
-            expect(getBadgeText(actualElement)).toEqual(textString);
-        });
-
-        it(`should add the slotted text`, async function () {
-            const textString = 'badge';
-            const badgeTemplate = `<${COMPONENT_TAG}>${textString}</${COMPONENT_TAG}>`;
             const actualElement = await addHtmlTemplateToDOM(badgeTemplate);
             expect(getBadgeText(actualElement)).toEqual(textString);
         });

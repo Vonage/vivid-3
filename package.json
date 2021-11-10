@@ -19,7 +19,6 @@
     "type": "git",
     "url": "git+https://github.com/Vonage/vivid-next.git"
   },
-  "type": "module",
   "keywords": [
     "design system",
     "web components",
