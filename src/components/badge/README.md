@@ -21,8 +21,8 @@ There are 3 type `filled`, `soft`, `outlined`
 ```
 
 ## connotation
-The connotation gives the badge its color.<br/>
-Each color indicates a specific intention.
+Sets the badge color with its connoted perception.
+It accepts a subset of values from a globally pre-defined set.
 
 - connotation types `primary`, `cta`, `success`, `alert`, `warning`, `info`
 - Default `primary`
