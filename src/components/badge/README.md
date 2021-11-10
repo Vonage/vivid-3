@@ -27,6 +27,7 @@ Each color indicates a specific intention.
 - connotation types `primary`, `cta`, `success`, `alert`, `warning`, `info`
 - Default `primary`
 
+### Filled badge with connotation
 ```html preview
 <vwc-badge text="label" connotation="primary"></vwc-badge>
 <vwc-badge text="label" connotation="cta"></vwc-badge>
@@ -74,8 +75,8 @@ There are 2 shapes for Badge:
 - pill
 
 ```html preview
-<vwc-badge text="label" shape="rounded"></vwc-badge>
-<vwc-badge text="label" shape="pill"></vwc-badge>
+<vwc-badge text="label" shape="rounded" enlarged></vwc-badge>
+<vwc-badge text="label" shape="pill" enlarged></vwc-badge>
 ```
 
 ## Badge With Icon
@@ -89,10 +90,8 @@ Icon position options:
 ```
 
 ## Badge text
-- adding the `text` property
-- inserting text inside the component
+adding the `text` property
 
 ```html preview
-<vwc-badge text="text label inside property"></vwc-badge>
-<vwc-badge>badge text unsude component</vwc-badge>
+<vwc-badge text="text label"></vwc-badge>
 ```
