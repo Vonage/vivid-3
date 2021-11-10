@@ -1,5 +1,6 @@
 {
 	"compilerOptions": {
+		"rootDir": "src/",
 		"target": "es2017",
 		"module": "es2015",
 		"moduleResolution": "node",
@@ -11,6 +12,7 @@
 		],
 		"types": [],
 		"declaration": true,
+		"declarationDir": "dist",
 		"sourceMap": true,
 		"inlineSources": true,
 		"noFallthroughCasesInSwitch": true,
