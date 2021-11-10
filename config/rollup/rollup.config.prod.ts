@@ -1,10 +1,8 @@
-import typescript from "@rollup/plugin-typescript";
 import * as fs from 'fs';
 import * as path from 'path';
-import del from "rollup-plugin-delete";
-import nodeResolve from "@rollup/plugin-node-resolve";
+import rollupBaseConfig from './rollup.config.base.ts';
 
-function getFoldersInAFolder(workingFolder = './src/components') {
+function getFoldersInAFolder(workingFolder = '../../src/components') {
     const testFolders = [];
     const testsFolder = path.join(__dirname, workingFolder);
     fs.readdirSync(testsFolder)
@@ -18,7 +16,7 @@ function getFoldersInAFolder(workingFolder = './src/components') {
     return testFolders;
 }
 
-const components = getFoldersInAFolder('./src/components');
+const components = getFoldersInAFolder();
 const input = components.reduce((inputObject, componentName) => {
     inputObject[`components/${componentName}/${componentName}`] = path.join(process.cwd(), `src/components/${componentName}/${componentName}.ts`);
     return inputObject;
@@ -31,5 +29,5 @@ export default {
         format: 'esm',
         chunkFileNames: `components/[name]/chunks/[name]-[hash].js`
     },
-    plugins: [del({ targets: 'dist/*' }), typescript(), nodeResolve()]
+    ...rollupBaseConfig
 };
