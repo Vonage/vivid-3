@@ -6,11 +6,12 @@
   "scripts": {
     "prestart": "tsc -b",
     "start": "tsc --watch --preserveWatchOutput & web-dev-server --watch",
+	"build:typescript": "tsc -b",
+    "build": "rollup -c",
     "test:dev": "karma start config/karma/karma.conf.dev.cjs --browsers=Chrome",
     "test:chrome": "karma start config/karma/karma.conf.prod.cjs --coverage --browsers=ChromeHeadless",
     "test:firefox": "karma start config/karma/karma.conf.prod.cjs --coverage --browsers=FirefoxHeadless",
     "test:safari": "karma start config/karma/karma.conf.prod.cjs --coverage --browsers=SafariNative",
-    "build": "node ./scripts/build.js",
     "clean:git": "git clean -dfx",
     "clean": "npm run clean:git"
   },
@@ -31,19 +32,29 @@
     "url": "https://github.com/Vonage/vivid-next/issues"
   },
   "homepage": "https://github.com/Vonage/vivid-next#readme",
+  "files": [
+    "dist/**/*"
+  ],
   "exports": {
-    "./icon": "./dist/components/button/icon.js",
-    "./badge": "./dist/components/badge/badge.js"
+    "./button": "./dist/components/button/button.js",
+    "./icon": "./dist/components/icon/icon.js"
+  },
+  "type": "module",
+  "dependencies": {
+    "@material/mwc-base": "^0.25.3",
+    "lit": "^2.0.2",
+    "ramda": "^0.27.1",
+    "tslib": "^2.3.1"
   },
   "devDependencies": {
-    "@material/mwc-base": "^0.25.3",
-    "@types/jasmine": "^3.10.2",
+    "@rollup/plugin-node-resolve": "^13.0.6",
+    "@rollup/plugin-typescript": "^8.3.0",
+	"@types/jasmine": "^3.10.2",
+    "@types/node": "^16.11.7",
     "@types/ramda": "^0.27.46",
     "@web/dev-server": "^0.1.26",
-    "@web/dev-server-esbuild": "^0.2.15",
-    "@web/dev-server-import-maps": "^0.0.6",
     "esbuild": "^0.13.4",
-    "jasmine-core": "^3.10.1",
+	"jasmine-core": "^3.10.1",
     "karma": "^6.3.8",
     "karma-chrome-launcher": "^3.1.0",
     "karma-cli": "^2.0.0",
@@ -52,8 +63,8 @@
     "karma-firefox-launcher": "^2.1.2",
     "karma-jasmine": "^4.0.1",
     "karma-safarinative-launcher": "^1.1.0",
-    "lit": "^2.0.2",
-    "ramda": "^0.27.1",
+    "rollup": "^2.59.0",
+    "rollup-plugin-delete": "^2.0.0",
     "ts-lit-plugin": "^1.2.1",
     "ts-node": "^10.4.0",
     "tslib": "^2.3.1",

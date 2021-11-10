@@ -1,7 +1,5 @@
 node_modules
 /dist
-src/**/*.js
-src/**/*.js.map
-src/**/*.d.ts
+.rollup.cache
 
 **/*.tsbuildinfo*
