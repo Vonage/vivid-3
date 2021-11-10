@@ -26,7 +26,7 @@
 		// "skipLibCheck": true, // would force consumers to enable this as well
 		"strict": true,
 		"outDir": "./dist",
-		"baseUrl": ".",
+		"baseUrl": "./src",
 		"composite": true,
 		"importHelpers": true,
 		"allowSyntheticDefaultImports": true,
