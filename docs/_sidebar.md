@@ -1,11 +1,6 @@
-* Introduction
-
-  * [Something](components/something.md)
-
 * Getting Started
 
-  * [Installation](getting-started/installation.md)
-  * [Usage](getting-started/usage.md)
+  * [Quick Start](getting-started/quick-start.md)
 
 * Examples
 
