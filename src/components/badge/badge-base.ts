@@ -28,7 +28,7 @@ type BadgeShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 /**
  * @slot - This is a default/unnamed slot to assign text content. *deprecated* please use _text_ property instead
  */
-export class BadgeBase extends LitElement {
+export abstract class BadgeBase extends LitElement {
 	@property({ type: String, reflect: true })
 		connotation?: BadgeConnotation;
 
