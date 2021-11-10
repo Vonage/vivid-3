@@ -81,26 +81,22 @@ There are 2 shapes for Badge:
 
 ## Badge With Icon
 Icon position options:
-- before the text use: `icon="icon-name"`
-- after the text use: `icontrailing="icon-name"`
+- prefixed icon: `icon="icon-name"`
+- suffixed icon: `icontrailing="icon-name"`
 
 ```html preview
 <vwc-badge text="label" icon="check-line"></vwc-badge>
 <vwc-badge text="label" icontrailing="check-line"></vwc-badge>
 ```
 
-## Properties
+## Badge text
+- adding the `text` property
+- inserting text inside the component
 
-| Property       | Attribute      | Type                                                                                                                                         | Default  |
-| -------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| `connotation`  | `connotation`  | `Primary \| CTA \| Success \| Alert\|`</br>`Warning \| Info \| undefined` | `primary`         
-| `dense`        | `dense`        | `boolean`                                                                                                                                    | false    |
-| `enlarged`     | `enlarged`     | `boolean`                                                                                                                                    | false    |
-| `icon`         | `icon`         | `string \| undefined`                                                                                                                        |          |
-| `iconTrailing` | `icontrailing` | `string \| undefined`                                                                                                                        |          |
-| `layout`       | `layout`       | `filled \| outlined \| soft`                                                                                            | `filled` |
-| `shape`        | `shape`        | `rounded \| pill \| undefined`                                                                                                   |          |
-| `text`         | `text`         | `string \| undefined`                                                                                                                        |          |
+```html preview
+<vwc-badge text="text label inside property"></vwc-badge>
+<vwc-badge>badge text unsude component</vwc-badge>
+```
 
 ## Slots
 
