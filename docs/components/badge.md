@@ -1,3 +1,3 @@
-[filename](../../src/components/badge/readme.md ':include')
+[filename](../../src/components/badge/README.md ':include')
 
-<script type="module" src="../../src/components/badge/badge.ts"></script>
+<script type="module" src="../../src/components/badge/badge.js"></script>

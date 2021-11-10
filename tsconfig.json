@@ -23,8 +23,8 @@
 		"forceConsistentCasingInFileNames": true,
 		// "skipLibCheck": true, // would force consumers to enable this as well
 		"strict": true,
-		"outDir": "./",
-		"baseUrl": "./",
+		"outDir": "./dist",
+		"baseUrl": "./src",
 		"composite": true,
 		"importHelpers": true,
 		"allowSyntheticDefaultImports": true,
