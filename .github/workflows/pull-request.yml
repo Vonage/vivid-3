@@ -33,10 +33,6 @@ jobs:
           node-version: 14
           cache: 'npm'
           cache-dependency-path: '**/package-lock.json'
-      - uses: actions/cache@v2
-        with:
-          path: "**/node_modules"
-          key: ${{ hashFiles('package-lock.json') }}
       - name: 'Install dependencies'
-        run: |
-          npm install --frozen-lockfile --network-timeout 100000
+      - run: npm install
+      - run: npm test
