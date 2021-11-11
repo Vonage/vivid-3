@@ -24,10 +24,19 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ github.token }}
     steps:
+      - name: 'Checkout'
       - uses: actions/checkout@v2
       - run: printf "registry=https://npm.pkg.github.com/Vonage\n_authToken=\${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}\n//npm.pkg.github.com/:_authToken=\${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}\nalways-auth=true" > .npmrc
+      - name: 'Install Node.js'
       - uses: actions/setup-node@v2
         with:
           node-version: 14
           cache: 'npm'
           cache-dependency-path: '**/package-lock.json'
+      - uses: actions/cache@v2
+        with:
+          path: "**/node_modules"
+          key: ${{ hashFiles('package-lock.json') }}
+      - name: 'Install dependencies'
+        run: |
+          npm install --frozen-lockfile --network-timeout 100000
