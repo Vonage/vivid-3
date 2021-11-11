@@ -29,13 +29,5 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
-          cache: npm
-      - uses: actions/cache@v2
-        with:
-          path: "**/node_modules"
-          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
-      - run: tar -zcf /tmp/vivid-env.tar.gz .
-      - uses: actions/upload-artifact@v2
-        with:
-          name: workspace
-          path: /tmp/vivid-env.tar.gz
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
