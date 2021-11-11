@@ -28,7 +28,7 @@ jobs:
       - run: printf "registry=https://npm.pkg.github.com/Vonage\n_authToken=\${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}\n//npm.pkg.github.com/:_authToken=\${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}\nalways-auth=true" > .npmrc
       - uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: '14'
           cache: 'npm'
           cache-dependency-path: '**/package-lock.json'
       - name: 'Install dependencies'
