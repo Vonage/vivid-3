@@ -23,9 +23,9 @@ describe('badge', () => {
     }
 
     describe(`text`, function () {
-        function getBadgeText(actualElement) {
-            const badgeTextWrapper = actualElement?.shadowRoot?.querySelector('.badge');
-            const text =badgeTextWrapper.innerText;
+        function getBadgeText(actualElement: Badge) {
+            const badgeTextWrapper = actualElement?.shadowRoot?.querySelector('.badge') as HTMLElement;
+            const text = badgeTextWrapper.innerText;
             return text.replace(/\s/gm, "");
         }
 
@@ -40,21 +40,21 @@ describe('badge', () => {
     describe(`icons`, function () {
 
         function getLeadingIconElements(actualElement: Badge) {
-            const leadingIconElement = actualElement.shadowRoot.querySelector('.icon--leading');
+            const leadingIconElement = actualElement.shadowRoot?.querySelector('.icon--leading');
             const iconElementLeading = leadingIconElement?.querySelector('vwc-icon');
             return {leadingIconElement, vwcIconElementLeading: iconElementLeading};
         }
 
         function getTrailingIconElements(actualElement: Badge) {
-            const trailingIconElement = actualElement.shadowRoot.querySelector('.icon--trailing');
+            const trailingIconElement = actualElement.shadowRoot?.querySelector('.icon--trailing');
             const iconElementTrailing = trailingIconElement?.querySelector('vwc-icon');
             return {trailingIconElement, vwcIconElementTrailing: iconElementTrailing};
         }
 
-        function expectIconToBeValid(iconElement: Element, vwcIconElement, iconName: string) {
+        function expectIconToBeValid(iconElement: Element | null | undefined, vwcIconElement: Element | null | undefined, iconName: string) {
             expect(iconElement).toBeTruthy();
             expect(vwcIconElement).toBeTruthy();
-            expect(vwcIconElement.getAttribute('type')).toEqual(iconName);
+            expect(vwcIconElement?.getAttribute('type')).toEqual(iconName);
         }
 
         it(`should have leading icon when set`, async function () {
@@ -118,9 +118,9 @@ describe('badge', () => {
             actualElement.iconTrailing = '';
             await actualElement.updateComplete;
 
-            const {leadingIconElement, vwcIconElementLeading} = getLeadingIconElements(actualElement);
+            const {leadingIconElement} = getLeadingIconElements(actualElement);
 
-            const {trailingIconElement, vwcIconElementTrailing} = getTrailingIconElements(actualElement);
+            const {trailingIconElement} = getTrailingIconElements(actualElement);
 
             expect(leadingIconElement).toEqual(null);
             expect(trailingIconElement).toEqual(null);
@@ -134,9 +134,9 @@ describe('badge', () => {
             actualElement.removeAttribute('icontrailing');
             await actualElement.updateComplete;
 
-            const {leadingIconElement, vwcIconElementLeading} = getLeadingIconElements(actualElement);
+            const {leadingIconElement} = getLeadingIconElements(actualElement);
 
-            const {trailingIconElement, vwcIconElementTrailing} = getTrailingIconElements(actualElement);
+            const {trailingIconElement} = getTrailingIconElements(actualElement);
 
             expect(leadingIconElement).toEqual(null);
             expect(trailingIconElement).toEqual(null);
