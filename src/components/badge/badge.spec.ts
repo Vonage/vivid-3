@@ -1,4 +1,4 @@
-import Badge from "./badge";
+import {Badge} from "./badge";
 
 const COMPONENT_TAG = 'vwc-badge';
 
