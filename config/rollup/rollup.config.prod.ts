@@ -25,6 +25,7 @@ const input = components.reduce((inputObject, componentName) => {
 export default {
     input,
     output: {
+        sourcemap: "hidden",
         dir: 'dist',
         format: 'esm',
         chunkFileNames: `components/[name]/chunks/[name]-[hash].js`

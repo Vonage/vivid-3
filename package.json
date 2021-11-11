@@ -4,9 +4,7 @@
   "description": "Vonage's web UI 🎨 toolbelt",
   "main": "index.js",
   "scripts": {
-    "prestart": "tsc -b",
-    "start": "tsc --watch --preserveWatchOutput & web-dev-server --watch",
-    "build:typescript": "tsc -b",
+    "start": "yarn build --watch & web-dev-server --watch",
     "build": "rollup -c config/rollup/rollup.config.prod.ts",
     "test:dev": "karma start config/karma/karma.conf.dev.cjs --browsers=Chrome",
     "test:chrome": "karma start config/karma/karma.conf.prod.cjs --coverage --browsers=ChromeHeadless",

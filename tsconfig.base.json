@@ -3,16 +3,7 @@
 		"rootDir": "src/",
 		"target": "es2017",
 		"module": "es2015",
-		"moduleResolution": "node",
-		"lib": [
-			"es2017",
-			"dom",
-			"dom.iterable",
-			"es2018.promise"
-		],
-		"types": [],
-		"declaration": true,
-		"declarationDir": "dist",
+		"preserveWatchOutput": true,
 		"sourceMap": true,
 		"inlineSources": true,
 		"noFallthroughCasesInSwitch": true,
@@ -20,18 +11,15 @@
 		"noImplicitOverride": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
-		"experimentalDecorators": true,
-		"stripInternal": true,
 		"forceConsistentCasingInFileNames": true,
-		// "skipLibCheck": true, // would force consumers to enable this as well
+		"importsNotUsedAsValues": "error",
 		"strict": true,
-		"outDir": "./dist",
-		"baseUrl": "./src",
-		"composite": true,
+		"experimentalDecorators": true,
+		"stripInternal": true, // check if we need it
+
 		"importHelpers": true,
 		"allowSyntheticDefaultImports": true,
-		// "esModuleInterop": true // would force consumers to enable this as well
-		"importsNotUsedAsValues": "error",
+
 		"removeComments": true,
 		"plugins": [
 			{
@@ -47,9 +35,5 @@
 	},
 	"include": [
 		"./src/",
-		"node_modules/@types/jasmine/index.d.ts"
-	],
-	"exclude": [
-		"./src/**/*.spec.ts"
 	]
 }

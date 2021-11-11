@@ -3,7 +3,7 @@ import Badge from "./badge";
 const COMPONENT_TAG = 'vwc-badge';
 
 describe('badge', () => {
-    let contentWrapper;
+    let contentWrapper: HTMLElement;
 
     afterEach(() => {
         contentWrapper?.remove();
@@ -13,7 +13,7 @@ describe('badge', () => {
         expect(customElements.get(COMPONENT_TAG) instanceof Badge)
     });
 
-    async function addHtmlTemplateToDOM(badgeTemplate: string) {
+    async function addHtmlTemplateToDOM(badgeTemplate: string): Promise<Badge> {
         contentWrapper = document.createElement('div');
         contentWrapper.innerHTML = badgeTemplate;
         document.body.appendChild(contentWrapper);
@@ -32,7 +32,7 @@ describe('badge', () => {
         it(`should add the text using attribute`, async function () {
             const textString = 'badge';
             const badgeTemplate = `<${COMPONENT_TAG} text="${textString}"></${COMPONENT_TAG}>`;
-            const actualElement = await addHtmlTemplateToDOM(badgeTemplate);
+            const actualElement = await addHtmlTemplateToDOM(badgeTemplate) as Badge;
             expect(getBadgeText(actualElement)).toEqual(textString);
         });
     });
@@ -51,7 +51,7 @@ describe('badge', () => {
             return {trailingIconElement, vwcIconElementTrailing: iconElementTrailing};
         }
 
-        function expectIconToBeValid(iconElement: HTMLElement, vwcIconElement, iconName: string) {
+        function expectIconToBeValid(iconElement: Element, vwcIconElement, iconName: string) {
             expect(iconElement).toBeTruthy();
             expect(vwcIconElement).toBeTruthy();
             expect(vwcIconElement.getAttribute('type')).toEqual(iconName);
