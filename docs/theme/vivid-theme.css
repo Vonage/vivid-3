@@ -1,0 +1,23 @@
+/*Temporary style for the dark mode*/
+:root {
+    --sidebar-nav-link-color--active: rgb(36,46,51);
+    --sidebar-nav-link-border-color--active: #8728fb;
+    --sidebar-name-text-align: left;
+}
+
+.sidebar-nav li p{
+    font-weight: bold;
+}
+.sidebar-nav .active {
+    background-image: linear-gradient(to right, #fea18c,  #8728fb);
+    border-radius: 6px;
+    padding: 0 6px;
+}
+.sidebar-nav .active a {
+    color: var(--sidebar-nav-link-color--active);
+
+}
+
+.demo_preview_content, pre {
+    overflow: auto;
+}
