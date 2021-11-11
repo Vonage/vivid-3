@@ -17,7 +17,6 @@ module.exports = {
     colors: true,
     autoWatch: true,
     browsers: ['Chrome', 'ChromeHeadless', 'Firefox', 'SafariNative'],
-    singleRun: true,
     concurrency: Infinity,
     preprocessors: {
         'src/**/*.spec.ts': ["rollup"]
