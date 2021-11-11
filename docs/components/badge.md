@@ -15,5 +15,5 @@ Accessibility stuff here
 
 <!-- tabs:end -->
 
-
 <script type="module" src="../../dist/components/badge/badge.ts"></script>
+
