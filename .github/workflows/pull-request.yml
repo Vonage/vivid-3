@@ -30,9 +30,7 @@ jobs:
       - name: 'Install Node.js'
       - uses: actions/setup-node@v2
         with:
-          node-version: 14
-          cache: 'npm'
-          cache-dependency-path: '**/package-lock.json'
+          node-version: '14'
+          cache: npm
       - name: 'Install dependencies'
       - run: npm install
-      - run: npm test
