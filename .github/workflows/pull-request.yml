@@ -32,4 +32,4 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: "**/node_modules"
-          key: ${{ hashFiles('yarn.lock') }}
+          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
