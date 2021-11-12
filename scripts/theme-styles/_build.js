@@ -1,16 +1,26 @@
+'use strict';
+
 import { parse } from 'path';
 import { writeFileSync, mkdir } from 'fs';
+
 import sass from 'sass';
 const { renderSync } = sass;
-import glob from 'glob'
-const { sync } = glob;
 
 
-const renderStyles = (file, outFile) => { 
+
+
+const getOutFile = file => {
+  const { name, dir } = parse(file);
+  return `${dir.replace('src', 'dist')}/${name}.css`;
+};
+
+export const renderStyles = file => {
     const { css } = renderSync({
         file,
     });
-    
+
+    const outFile = getOutFile(file);
+  
     const { dir } = parse(outFile);
 
     mkdir(dir, { recursive: true}, function (err) {
@@ -19,11 +29,5 @@ const renderStyles = (file, outFile) => {
         writeFileSync(outFile, css);
   })
 };
-    
-const styleFiles = sync('src/core/theme/**/*.scss');
 
-styleFiles.forEach(file => { 
-    const { name, dir } = parse(file);
-    const outFile = `${dir.replace('src', 'dist')}/${name}.css`;
-    renderStyles(file, outFile);
-});
+

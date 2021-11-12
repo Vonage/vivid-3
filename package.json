@@ -4,11 +4,10 @@
   "description": "Vonage's web UI 🎨 toolbelt",
   "main": "index.js",
   "scripts": {
-    "prestart": "build:styles & build:components --watch",
-    "start": "web-dev-server --watch",
+    "start": "concurrently \"web-dev-server --watch\" \"npm run build:styles -- -w\" \"npm run build:components -- --watch\"",
     "build:components": "rollup -c config/rollup/rollup.config.prod.ts",
-    "build:styles": "node scripts/render-theme-styles.js",
-    "build": "build:styles & build:components",
+    "build:styles": "node scripts/theme-styles/script.js",
+    "build": "npm run build:styles & npm run build:components",
     "test:dev": "karma start config/karma/karma.conf.dev.cjs --browsers=Chrome",
     "test:chrome": "karma start config/karma/karma.conf.prod.cjs --coverage --browsers=ChromeHeadless",
     "test:firefox": "karma start config/karma/karma.conf.prod.cjs --coverage --browsers=FirefoxHeadless",
@@ -53,7 +52,10 @@
     "@types/node": "^16.11.7",
     "@types/ramda": "^0.27.46",
     "@types/sass": "^1.43.0",
+    "@types/yargs": "^17.0.5",
     "@web/dev-server": "^0.1.26",
+    "chokidar": "^3.5.2",
+    "concurrently": "^6.3.0",
     "esbuild": "^0.13.4",
     "glob": "^7.2.0",
     "jasmine-core": "^3.10.1",
@@ -73,6 +75,7 @@
     "ts-lit-plugin": "^1.2.1",
     "ts-node": "^10.4.0",
     "tslib": "^2.3.1",
-    "typescript": "^4.4.4"
+    "typescript": "^4.4.4",
+    "yargs": "^17.2.1"
   }
 }
