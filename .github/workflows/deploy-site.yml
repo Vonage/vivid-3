@@ -30,7 +30,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: mkdir public
-      - run: mv readme.md docs dist public
+      - run: mv README.md src docs dist public
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
