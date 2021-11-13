@@ -16,11 +16,12 @@
 		"strict": true,
 		"experimentalDecorators": true,
 		"stripInternal": true, // check if we need it
-
 		"importHelpers": true,
 		"allowSyntheticDefaultImports": true,
-
 		"removeComments": true,
+		"paths": {
+            "*" : ["src/@types/*"]
+        },
 		"plugins": [
 			{
 				"name": "ts-lit-plugin",

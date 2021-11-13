@@ -1,5 +1,4 @@
 
-// @ts-ignore
 import '../icon/icon';
 
 import { customElement } from 'lit/decorators.js';
