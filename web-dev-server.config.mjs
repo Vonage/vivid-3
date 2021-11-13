@@ -3,6 +3,6 @@ export default {
     watch: true,
     nodeResolve: true,
     appIndex: 'docs/index.html',
-    // in a monorepo you need to set set the root dir to resolve modules
+    // in a monorepo you need to set the root dir to resolve modules
     rootDir: '.',
 };
