@@ -33,7 +33,7 @@ jobs:
 
 
   test:
-    if: github.event.pull_request.draft == false
+    # if: github.event.pull_request.draft == false
     needs: build
     name: "Test Components on ${{ matrix.browser_name }}"
     runs-on: ${{ matrix.os }}
@@ -59,7 +59,7 @@ jobs:
         include:
           - browser: ChromeHeadless
             browser_name: Chrome
-            report_coverage: true
+            report_coverage: false
           - browser: FirefoxHeadless
             browser_name: Firefox
             report_coverage: false
