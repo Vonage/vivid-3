@@ -71,7 +71,7 @@ jobs:
         with:
           node-version: '16'
           cache: 'npm'
-      - run: karma start --coverage --browsers=${{ matrix.browser }}
+      - run: yarn karma start --coverage --browsers=${{ matrix.browser }}
         id: test
       - uses: coverallsapp/github-action@master
         if: ${{ matrix.report_coverage }}
