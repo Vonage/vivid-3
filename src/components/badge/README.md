@@ -1,7 +1,9 @@
 # vwc-badge
 
-Represents a badge custom element.
-badge is a label that holds small amounts of information. A badge can be used to display unread notifications, or to label a block of text. Badges don’t work for navigation because they can't include a hyperlink.
+Represents a badge custom element.<br/>
+Badge is a label that holds small amounts of information.<br/>
+A badge can be used to display unread notifications, or to label a block of text.<br/>
+Badges don’t work for navigation because they can't include a hyperlink.<br/>
 
 ```js
 <script type="module">
@@ -9,11 +11,23 @@ badge is a label that holds small amounts of information. A badge can be used to
 </script>
 ```
 
-## connotation
+## Badge layout
+There are 3 type `filled`, `soft`, `outlined`
 
-- Type `'primary' | 'cta' | 'success' | 'alert' | 'warning' | 'info'`
+```html preview
+<vwc-badge text="label" connotation="primary"></vwc-badge>
+<vwc-badge text="label" connotation="primary" layout="soft"></vwc-badge>
+<vwc-badge text="label" connotation="primary" layout="outlined"></vwc-badge>
+```
+
+## connotation
+Sets the badge color with its connoted perception.
+It accepts a subset of values from a globally pre-defined set.
+
+- connotation types `primary`, `cta`, `success`, `alert`, `warning`, `info`
 - Default `primary`
 
+### Filled badge with connotation
 ```html preview
 <vwc-badge text="label" connotation="primary"></vwc-badge>
 <vwc-badge text="label" connotation="cta"></vwc-badge>
@@ -23,8 +37,7 @@ badge is a label that holds small amounts of information. A badge can be used to
 <vwc-badge text="label" connotation="alert"></vwc-badge>
 ```
 
-## soft
-
+### Soft badge with connotation
 ```html preview
 <vwc-badge text="label" layout="soft" connotation="primary"></vwc-badge>
 <vwc-badge text="label" layout="soft" connotation="cta"></vwc-badge>
@@ -34,8 +47,7 @@ badge is a label that holds small amounts of information. A badge can be used to
 <vwc-badge text="label" layout="soft" connotation="alert"></vwc-badge>
 ```
 
-## outline
-
+### outline badge with connotation
 ```html preview
 <vwc-badge text="label" layout="outlined" connotation="primary"></vwc-badge>
 <vwc-badge text="label" layout="outlined" connotation="cta"></vwc-badge>
@@ -45,31 +57,41 @@ badge is a label that holds small amounts of information. A badge can be used to
 <vwc-badge text="label" layout="outlined" connotation="alert"></vwc-badge>
 ```
 
+## Badge Sizes
+There are 3 Badge sizes:
+- dense
+- regular (default)
+- enlarged
+
 ```html preview
 <vwc-badge text="label" dense></vwc-badge>
 <vwc-badge text="label"></vwc-badge>
 <vwc-badge text="label" enlarged></vwc-badge>
 ```
 
+## Badge Shapes
+There are 2 shapes for Badge:
+- rounded
+- pill
+
 ```html preview
-<vwc-badge text="label" shape="rounded"></vwc-badge>
-<vwc-badge text="label" shape="pill"></vwc-badge>
+<vwc-badge text="label" shape="rounded" enlarged></vwc-badge>
+<vwc-badge text="label" shape="pill" enlarged></vwc-badge>
 ```
+
+## Badge With Icon
+Icon position options:
+- prefixed icon: `icon="icon-name"`
+- suffixed icon: `icontrailing="icon-name"`
 
 ```html preview
 <vwc-badge text="label" icon="check-line"></vwc-badge>
 <vwc-badge text="label" icontrailing="check-line"></vwc-badge>
 ```
 
-## Properties
+## Badge text
+adding the `text` property
 
-| Property       | Attribute      | Type                                                                                                                                         | Default  |
-| -------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| `connotation`  | `connotation`  | `Primary \| CTA \| Success \| Alert \| Warning \| Info \| undefined` |          |
-| `dense`        | `dense`        | `boolean`                                                                                                                                    | false    |
-| `enlarged`     | `enlarged`     | `boolean`                                                                                                                                    | false    |
-| `icon`         | `icon`         | `string \| undefined`                                                                                                                        |          |
-| `iconTrailing` | `iconTrailing` | `string \| undefined`                                                                                                                        |          |
-| `layout`       | `layout`       | `Layout.Filled \| Layout.Outlined \| Layout.Soft`                                                                                            | "filled" |
-| `shape`        | `shape`        | `Shape.Rounded \| Shape.Pill \| undefined`                                                                                                   |          |
-| `text`         | `text`         | `string \| undefined`                                                                                                                        |          |
+```html preview
+<vwc-badge text="text label"></vwc-badge>
+```
