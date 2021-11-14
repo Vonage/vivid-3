@@ -1,9 +1,16 @@
+import {Config, ConfigOptions} from "karma";
+import rollupConfig from "./config/rollup/rollup.config.spec";
+
 const del = require("rollup-plugin-delete");
 const typescript = require("@rollup/plugin-typescript");
 const {nodeResolve} = require("@rollup/plugin-node-resolve");
 const istanbul = require('./scripts/rollup-plugin-istanbul.cjs');
 
-module.exports = function (config) {
+interface VividKarmaConfig extends Config {
+    coverage?: boolean;
+}
+
+module.exports = function (config: VividKarmaConfig) {
 
     config.set({
         basePath: process.cwd(),
@@ -39,19 +46,6 @@ module.exports = function (config) {
                 }
             ]
         },
-        rollupPreprocessor: {
-            plugins: [
-                del({targets: 'dist/*'}),
-                typescript({tsconfig: './config/typescript/tsconfig.spec.json'}),
-                istanbul({
-                    exclude: ['src/**/*.spec.ts', 'node_modules/**/*']
-                }),
-                nodeResolve()],
-            output: {
-                format: 'iife',
-                name: 'testFile',
-                sourcemap: 'inline',
-            },
-        },
-    });
+        rollupPreprocessor: rollupConfig
+    } as ConfigOptions);
 };

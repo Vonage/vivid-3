@@ -6,10 +6,10 @@
   "scripts": {
     "start": "yarn build --watch & web-dev-server --watch",
     "build": "rollup -c config/rollup/rollup.config.prod.ts",
-    "test:dev": "karma start config/karma/karma.conf.dev.cjs --browsers=Chrome",
-    "test:chrome": "karma start config/karma/karma.conf.prod.cjs --coverage --browsers=ChromeHeadless",
-    "test:firefox": "karma start config/karma/karma.conf.prod.cjs --coverage --browsers=FirefoxHeadless",
-    "test:safari": "karma start config/karma/karma.conf.prod.cjs --coverage --browsers=SafariNative",
+    "test:dev": "karma start config/karma/karma.conf.dev.ts --browsers=Chrome",
+    "test:chrome": "karma start config/karma/karma.conf.prod.ts --coverage --browsers=ChromeHeadless",
+    "test:firefox": "karma start config/karma/karma.conf.prod.ts --coverage --browsers=FirefoxHeadless",
+    "test:safari": "karma start config/karma/karma.conf.prod.ts --coverage --browsers=SafariNative",
     "clean:git": "git clean -dfx",
     "clean": "npm run clean:git"
   },
@@ -47,6 +47,7 @@
     "@rollup/plugin-typescript": "^8.3.0",
     "@rollup/pluginutils": "^4.1.1",
     "@types/jasmine": "^3.10.2",
+    "@types/karma": "^6.3.1",
     "@types/node": "^16.11.7",
     "@types/ramda": "^0.27.46",
     "@web/dev-server": "^0.1.26",
