@@ -1,4 +1,4 @@
-import rollupBaseConfig from "./rollup.config.base";
+import {BASE_CONFIG as rollupBaseConfig} from "./rollup.config.base";
 import typescript from "@rollup/plugin-typescript";
 import {RollupOptions} from "rollup";
 const istanbul = require('../../scripts/rollup-plugin-istanbul.cjs');

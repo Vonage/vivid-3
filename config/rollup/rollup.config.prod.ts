@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import rollupBaseConfig from './rollup.config.base.ts';
+import {BASE_CONFIG as rollupBaseConfig, scssBuild} from './rollup.config.base.ts';
 
 function getFoldersInAFolder(workingFolder = '../../src/components') {
     const testFolders = [];
@@ -22,8 +22,7 @@ const input = components.reduce((inputObject, componentName) => {
     return inputObject;
 }, {});
 
-
-export default {
+const typeScriptBuild = {
     input,
     output: {
         sourcemap: "hidden",
@@ -33,3 +32,8 @@ export default {
     },
     ...rollupBaseConfig
 };
+
+export default [
+    {...typeScriptBuild},
+    {...scssBuild}
+];
