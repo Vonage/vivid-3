@@ -22,12 +22,11 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.VNG_VVD_PAT }}
     steps:
       - uses: actions/checkout@v2
-      - run: echo "//registry=https://npm.pkg.github.com/Vonage\n_authToken=\${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}\n//npm.pkg.github.com/:_authToken=\${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}\nalways-auth=true" > ~/.npmrc
-      - run: npm publish
+      - run: printf "registry=https://npm.pkg.github.com/Vonage\n_authToken=\${{ GITHUB_TOKEN }}\n//npm.pkg.github.com/:_authToken=\${{ GITHUB_TOKEN }}\nalways-auth=true" > .npmrc
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - run: npm install
+      - run: npm i
