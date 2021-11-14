@@ -30,8 +30,7 @@ jobs:
           node-version: '16'
           cache: 'npm'
       - run: npm install
-
-
+      
   test:
     # if: github.event.pull_request.draft == false
     needs: build
@@ -67,10 +66,12 @@ jobs:
             browser_name: Safari
             report_coverage: false
     steps:
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
-      - run: yarn karma start --coverage --browsers=${{ matrix.browser }}
+          cache: 'npm'
+      - run: karma start --coverage --browsers=${{ matrix.browser }}
         id: test
       - uses: coverallsapp/github-action@master
         if: ${{ matrix.report_coverage }}
