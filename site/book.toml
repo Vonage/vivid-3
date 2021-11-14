@@ -4,3 +4,11 @@ language = "en"
 multilingual = false
 src = "src"
 title = "vivid"
+description = "The example book covers examples."
+create-missing = false
+
+[output.html]
+# additional-css = ["../dist/.css"]
+
+[output.html.search]
+limit-results = 15

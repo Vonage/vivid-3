@@ -2,9 +2,10 @@
   "name": "@vonage/vivid",
   "version": "3.0.0",
   "description": "Vonage's web UI 🎨 toolbelt",
-  "main": "index.js",
   "scripts": {
-    "start": "yarn build --watch & web-dev-server --watch",
+    "start:site": "mdbook serve site",
+    "start": "npm run start:site",
+    "build:site": "mdbook build site",
     "build": "rollup -c config/rollup/rollup.config.prod.ts",
     "test:dev": "karma start config/karma/karma.conf.dev.cjs --browsers=Chrome",
     "test:chrome": "karma start config/karma/karma.conf.prod.cjs --coverage --browsers=ChromeHeadless",

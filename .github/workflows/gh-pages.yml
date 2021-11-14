@@ -20,7 +20,7 @@ jobs:
           mdbook-version: '0.4.13'
           # mdbook-version: 'latest'
 
-      - run: mdbook build site
+      - run: npm run build:site
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
