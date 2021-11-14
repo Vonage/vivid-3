@@ -1,0 +1,6 @@
+[book]
+authors = ["yinonov"]
+language = "en"
+multilingual = false
+src = "src"
+title = "vivid"
