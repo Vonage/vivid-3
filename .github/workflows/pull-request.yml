@@ -31,7 +31,7 @@ jobs:
           cache: 'npm'
       - run: npm install
 
-      
+
   test:
     # if: github.event.pull_request.draft == false
     needs: build
@@ -70,7 +70,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
-      - run: karma start --coverage --browsers=${{ matrix.browser }}
+      - run: yarn karma start --coverage --browsers=${{ matrix.browser }}
         id: test
       - uses: coverallsapp/github-action@master
         if: ${{ matrix.report_coverage }}
