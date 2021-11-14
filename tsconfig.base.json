@@ -20,7 +20,7 @@
 		"allowSyntheticDefaultImports": true,
 		"removeComments": true,
 		"paths": {
-			"*" : ["src/@types/*"]
+			"*" : ["./src/@types/*"]
         },
 		"plugins": [
 			{
