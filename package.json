@@ -4,7 +4,8 @@
   "description": "Vonage's web UI 🎨 toolbelt",
   "main": "index.js",
   "scripts": {
-    "start": "yarn build --watch & web-dev-server --watch",
+    "prestart": "tsc -b",
+    "start": "tsc --watch --preserveWatchOutput & web-dev-server --watch",
     "build:typescript": "tsc -b",
     "build": "rollup -c",
     "clean:git": "git clean -dfx",
