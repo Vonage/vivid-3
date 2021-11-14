@@ -1,11 +1,6 @@
 import {Config, ConfigOptions} from "karma";
 import rollupConfig from "./config/rollup/rollup.config.spec";
 
-const del = require("rollup-plugin-delete");
-const typescript = require("@rollup/plugin-typescript");
-const {nodeResolve} = require("@rollup/plugin-node-resolve");
-const istanbul = require('./scripts/rollup-plugin-istanbul.cjs');
-
 interface VividKarmaConfig extends Config {
     coverage?: boolean;
 }
