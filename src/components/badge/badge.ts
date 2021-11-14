@@ -1,9 +1,12 @@
+
+// @ts-ignore
 import '../icon/icon';
 
 import { customElement } from 'lit/decorators.js';
 
 import { BadgeBase } from './badge-base.js';
-import { style } from './badge.css.js';
+
+import style from './badge.scss';
 
 /**
  * Represents a badge custom element.
