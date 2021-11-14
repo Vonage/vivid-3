@@ -6,7 +6,11 @@ const BASE_CONFIG = {
     watch: {
         clearScreen: false
     },
-    plugins: [del({ targets: 'dist/*' }), typescript({ noEmitOnError: true, tsconfig: './config/typescript/tsconfig.prod.json'}), nodeResolve()]
+    plugins: [
+        del({ targets: 'dist/*' }),
+        typescript({ noEmitOnError: true, tsconfig: './config/typescript/tsconfig.prod.json'}),
+        nodeResolve()
+    ]
 };
 
 export default BASE_CONFIG;
