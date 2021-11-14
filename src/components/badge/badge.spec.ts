@@ -1,4 +1,5 @@
 import {Badge} from "./badge";
+import type {VWCIcon} from "../icon/icon";
 
 const COMPONENT_TAG = 'vwc-badge';
 
@@ -41,17 +42,18 @@ describe('badge', () => {
 
         function getLeadingIconElements(actualElement: Badge) {
             const leadingIconElement = actualElement.shadowRoot?.querySelector('.icon--leading');
-            const iconElementLeading = leadingIconElement?.querySelector('vwc-icon');
+            const iconElementLeading = leadingIconElement?.querySelector('vwc-icon') as VWCIcon;
             return {leadingIconElement, vwcIconElementLeading: iconElementLeading};
         }
 
         function getTrailingIconElements(actualElement: Badge) {
             const trailingIconElement = actualElement.shadowRoot?.querySelector('.icon--trailing');
-            const iconElementTrailing = trailingIconElement?.querySelector('vwc-icon');
+            const iconElementTrailing = trailingIconElement?.querySelector('vwc-icon') as VWCIcon;
             return {trailingIconElement, vwcIconElementTrailing: iconElementTrailing};
         }
 
-        function expectIconToBeValid(iconElement: Element | null | undefined, vwcIconElement: Element | null | undefined, iconName: string) {
+       async function expectIconToBeValid(iconElement: Element | null | undefined, vwcIconElement: VWCIcon | null | undefined, iconName: string) {
+            await vwcIconElement?.updateComplete;
             expect(iconElement).toBeTruthy();
             expect(vwcIconElement).toBeTruthy();
             expect(vwcIconElement?.getAttribute('type')).toEqual(iconName);
@@ -63,7 +65,7 @@ describe('badge', () => {
             const actualElement = await addHtmlTemplateToDOM(template) as Badge;
             const {leadingIconElement, vwcIconElementLeading} = getLeadingIconElements(actualElement);
 
-            expectIconToBeValid(leadingIconElement, vwcIconElementLeading, iconName);
+            await expectIconToBeValid(leadingIconElement, vwcIconElementLeading, iconName);
 
         });
 
@@ -74,12 +76,12 @@ describe('badge', () => {
 
             const {trailingIconElement, vwcIconElementTrailing} = getTrailingIconElements(actualElement);
 
-            expectIconToBeValid(trailingIconElement, vwcIconElementTrailing, iconName);
+            await expectIconToBeValid(trailingIconElement, vwcIconElementTrailing, iconName);
         });
 
         it(`should set icons when set dynamically via properties`, async function () {
             const iconName = "thumbs-down-line";
-            const template = `<${COMPONENT_TAG}></${COMPONENT_TAG}>`;
+            const template = `<${COMPONENT_TAG} connotation="cta" text="Badge"></${COMPONENT_TAG}>`;
             const actualElement = await addHtmlTemplateToDOM(template) as Badge;
 
             actualElement.icon = iconName;
@@ -90,8 +92,8 @@ describe('badge', () => {
 
             const {trailingIconElement, vwcIconElementTrailing} = getTrailingIconElements(actualElement);
 
-            expectIconToBeValid(leadingIconElement, vwcIconElementLeading, iconName);
-            expectIconToBeValid(trailingIconElement, vwcIconElementTrailing, iconName);
+            await expectIconToBeValid(leadingIconElement, vwcIconElementLeading, iconName);
+            await expectIconToBeValid(trailingIconElement, vwcIconElementTrailing, iconName);
         });
 
         it(`should set icons when set dynamically via attributes`, async function () {
@@ -106,8 +108,8 @@ describe('badge', () => {
 
             const {trailingIconElement, vwcIconElementTrailing} = getTrailingIconElements(actualElement);
 
-            expectIconToBeValid(leadingIconElement, vwcIconElementLeading, iconName);
-            expectIconToBeValid(trailingIconElement, vwcIconElementTrailing, iconName);
+            await expectIconToBeValid(leadingIconElement, vwcIconElementLeading, iconName);
+            await expectIconToBeValid(trailingIconElement, vwcIconElementTrailing, iconName);
         });
 
         it(`should unset icons when properties removed dynamically`, async function () {

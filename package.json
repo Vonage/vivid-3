@@ -6,10 +6,10 @@
   "scripts": {
     "start": "yarn build --watch & web-dev-server --watch",
     "build": "rollup -c config/rollup/rollup.config.prod.ts",
-    "test:dev": "karma start config/karma/karma.conf.dev.cjs --browsers=Chrome",
-    "test:chrome": "karma start config/karma/karma.conf.prod.cjs --coverage --browsers=ChromeHeadless",
-    "test:firefox": "karma start config/karma/karma.conf.prod.cjs --coverage --browsers=FirefoxHeadless",
-    "test:safari": "karma start config/karma/karma.conf.prod.cjs --coverage --browsers=SafariNative",
+    "test:dev": "karma start config/karma/karma.conf.dev.ts --browsers=Chrome",
+    "test:chrome": "karma start config/karma/karma.conf.prod.ts --coverage --browsers=ChromeHeadless",
+    "test:firefox": "karma start config/karma/karma.conf.prod.ts --coverage --browsers=FirefoxHeadless",
+    "test:safari": "karma start config/karma/karma.conf.prod.ts --coverage --browsers=SafariNative",
     "clean:git": "git clean -dfx",
     "clean": "npm run clean:git"
   },
@@ -36,7 +36,6 @@
     "./button": "./dist/components/button/button.js",
     "./icon": "./dist/components/icon/icon.js"
   },
-  "type": "module",
   "dependencies": {
     "@material/mwc-base": "^0.25.3",
     "lit": "^2.0.2",
@@ -46,16 +45,20 @@
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^13.0.6",
     "@rollup/plugin-typescript": "^8.3.0",
+    "@rollup/pluginutils": "^4.1.1",
     "@types/jasmine": "^3.10.2",
+    "@types/karma": "^6.3.1",
     "@types/node": "^16.11.7",
     "@types/ramda": "^0.27.46",
     "@types/sass": "^1.43.0",
     "@web/dev-server": "^0.1.26",
     "esbuild": "^0.13.4",
+    "istanbul-lib-instrument": "^5.1.0",
     "jasmine-core": "^3.10.1",
     "karma": "^6.3.8",
     "karma-chrome-launcher": "^3.1.0",
     "karma-cli": "^2.0.0",
+    "karma-coverage": "^2.0.3",
     "karma-coverage-istanbul-reporter": "^3.0.3",
     "karma-esbuild": "^2.2.0",
     "karma-firefox-launcher": "^2.1.2",
