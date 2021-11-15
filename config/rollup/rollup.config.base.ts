@@ -1,27 +1,30 @@
+import { parse, join } from 'path';
+import { mkdirSync, writeFileSync } from "fs";
+import { renderSync } from 'sass';
 import typescript from "@rollup/plugin-typescript";
 import del from "rollup-plugin-delete";
 import nodeResolve from "@rollup/plugin-node-resolve";
 import litcss from 'rollup-plugin-lit-css';
-import { renderSync } from 'sass';
-import path from "path";
 import scss from "rollup-plugin-scss";
-import {mkdirSync, writeFileSync} from "fs";
+import multiInput from 'rollup-plugin-multi-input';
 
 export const scssBuild = {
-    input: [path.join(process.cwd(), `src/core/theme/light.scss`), path.join(process.cwd(), `src/core/theme/dark.scss`)],
+    input: [`src/core/theme/*.scss`],
     plugins: [
+        multiInput(),
         scss({
-                output: function (styles, styleNodes) {
-                    for (const [key, value] of Object.entries(styleNodes)) {
-                        const filePath = path.join(process.cwd(), 'dist', key.substr(key.indexOf('src/') + 4)).replace('scss', 'css');
-                        const fileName = path.basename(filePath);
-                        const folderName = filePath.replace(fileName, '');
-                        mkdirSync(folderName, { recursive: true });
-                        writeFileSync(filePath, value);
-                    }
+            output: (_, styleNodes) => {
+                for (const [file] of Object.entries(styleNodes)) { 
+                    const { name, dir } = parse(file);
+                    const [, path] = dir.split('src/');
+                    const outDir = join('dist', path);
+                    const { css } = renderSync({ file });
+
+                    mkdirSync(outDir, { recursive: true });
+                    writeFileSync(`${outDir}/${name}.css`, css);
                 }
-            }
-        )
+            },   
+        })
     ]
 };
 
