@@ -22,6 +22,7 @@ const input = components.reduce((inputObject, componentName) => {
     return inputObject;
 }, {});
 
+
 export default {
     input,
     output: {
