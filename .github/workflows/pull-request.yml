@@ -57,13 +57,13 @@ jobs:
               browser: ChromeHeadless
           include:
             - browser: ChromeHeadless
-              browser_name: Chrome
+              browser_name: chrome
               report_coverage: false
             - browser: FirefoxHeadless
-              browser_name: Firefox
+              browser_name: firefox
               report_coverage: false
             - browser: SafariNative
-              browser_name: Safari
+              browser_name: safari
               report_coverage: false
       steps:
         - uses: actions/checkout@v2
