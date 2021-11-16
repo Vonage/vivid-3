@@ -30,7 +30,7 @@ jobs:
           node-version: '16'
           cache: 'npm'
       - run: npm install
-      - run: npm run test:chrome
+      - run: npm run build
 
   test:
       # if: github.event.pull_request.draft == false
