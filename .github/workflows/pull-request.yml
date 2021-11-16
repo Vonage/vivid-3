@@ -16,24 +16,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
-    timeout-minutes: 15
-    # if: github.event.pull_request.draft == false
-    name: Build
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ github.token }}
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-          cache: 'npm'
-      - run: npm install
-
   test:
       # if: github.event.pull_request.draft == false
-      needs: build
       name: "Test Components on ${{ matrix.browser_name }}"
       runs-on: ${{ matrix.os }}
       env:
@@ -58,7 +42,7 @@ jobs:
           include:
             - browser: ChromeHeadless
               browser_name: chrome
-              report_coverage: false
+              report_coverage: true
             - browser: FirefoxHeadless
               browser_name: firefox
               report_coverage: false
