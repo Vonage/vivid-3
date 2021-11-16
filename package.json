@@ -55,7 +55,6 @@
     "@types/ramda": "^0.27.46",
     "@types/sass": "^1.43.0",
     "@web/dev-server": "^0.1.26",
-    "concurrently": "^6.4.0",
     "esbuild": "^0.13.4",
     "istanbul-lib-instrument": "^5.1.0",
     "jasmine-core": "^3.10.1",
