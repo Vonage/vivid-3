@@ -71,7 +71,7 @@ jobs:
           with:
             node-version: '16'
             cache: 'npm'
-        - run: yarn test:${{ matrix.browser_name }}
+        - run: npm run test:${{ matrix.browser_name }}
           id: test
         - uses: coverallsapp/github-action@master
           if: ${{ matrix.report_coverage }}
