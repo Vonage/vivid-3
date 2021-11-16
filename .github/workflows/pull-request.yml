@@ -71,7 +71,7 @@ jobs:
           with:
             node-version: '16'
             cache: 'npm'
-        - run: test:${{ matrix.browser }}
+        - run: test:${{ matrix.browser_name }}
           id: test
         - uses: coverallsapp/github-action@master
           if: ${{ matrix.report_coverage }}
@@ -80,6 +80,6 @@ jobs:
             parallel: false
             github-token: ${{ github.token }}
             path-to-lcov: ./coverage/report-lcov/lcov.info
-            flag-name: Tested on ${{ matrix.os }} / ${{ matrix.browser }}
+            flag-name: Tested on ${{ matrix.os }} / ${{ matrix.browser_name }}
         - run: exit 0
           if: ${{ steps.test.outcome == 'success' }}
