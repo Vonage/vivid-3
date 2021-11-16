@@ -20,3 +20,4 @@ declare global {
 		'vwc-badge': Badge;
 	}
 }
+
