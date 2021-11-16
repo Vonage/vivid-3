@@ -4,10 +4,12 @@
   "description": "Vonage's web UI 🎨 toolbelt",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm run build:tokens -- --watch\" \"npm run build -- --watch\" \"web-dev-server --watch\"",
+    "start:dev": "npm run build:tokens -- --watch & npm run build:components -- --watch & npm run build:docs -- --serve",
+    "start": "npm run build:tokens & npm run build:components & build:docs -- --serve",
+    "build:docs": "eleventy",
     "build:tokens": "sass src/core/theme:dist/core/theme",
     "build:components": "rollup -c config/rollup/rollup.config.prod.ts",
-    "build": "concurrently \"npm run build:tokens\" \"npm run build\"",
+    "build": "npm run build:tokens & npm run build & npm run build:docs",
     "test:dev": "karma start config/karma/karma.conf.dev.ts --browsers=Chrome",
     "test:chrome": "karma start config/karma/karma.conf.prod.ts --coverage --browsers=ChromeHeadless",
     "test:firefox": "karma start config/karma/karma.conf.prod.ts --coverage --browsers=FirefoxHeadless",
@@ -45,6 +47,7 @@
     "tslib": "^2.3.1"
   },
   "devDependencies": {
+    "@11ty/eleventy": "^0.12.1",
     "@rollup/plugin-node-resolve": "^13.0.6",
     "@rollup/plugin-typescript": "^8.3.0",
     "@rollup/pluginutils": "^4.1.1",
