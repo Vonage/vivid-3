@@ -71,7 +71,7 @@ jobs:
           with:
             node-version: '16'
             cache: 'npm'
-        - run: npm run test:${{ matrix.browser_name }}
+        - run: npm run karma start --coverage --browsers=${{ matrix.browser }}
           id: test
         - uses: coverallsapp/github-action@master
           if: ${{ matrix.report_coverage }}
@@ -80,6 +80,6 @@ jobs:
             parallel: false
             github-token: ${{ github.token }}
             path-to-lcov: ./coverage/report-lcov/lcov.info
-            flag-name: Tested on ${{ matrix.os }} / ${{ matrix.browser_name }}
+            flag-name: Tested on ${{ matrix.os }} / ${{ matrix.browser }}
         - run: exit 0
           if: ${{ steps.test.outcome == 'success' }}
