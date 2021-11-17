@@ -1,25 +1,16 @@
 [
     {
-        "name": "Badge",
-        "age": 2,
+        "title": "Badge",
         "markdown": "./src/components/badge/README.md",
         "modules": [
-            "assets/modules/components/badge/badge.js"
+            "/assets/modules/components/badge/badge.js"
         ]
     },
     {
-        "name": "Snugglepants",
-        "age": 5,
-        "markdown": "./src/components/badge/README.md"
-    },
-    {
-        "name": "Lord Featherbottom",
-        "age": 4,
-        "markdown": "./src/components/badge/README.md"
-    },
-    {
-        "name": "Pennywise",
-        "age": 9,
-        "markdown": "./src/components/badge/README.md"
+        "title": "Icon",
+        "markdown": "./src/components/icon/README.md",
+        "modules": [
+            "/assets/modules/components/icon/icon.js"
+        ]
     }
 ]

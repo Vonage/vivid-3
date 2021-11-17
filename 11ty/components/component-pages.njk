@@ -5,11 +5,11 @@ pagination:
     data: components
     size: 1
     alias: component
-permalink: "components/{{ component.name | slug }}/"
+permalink: "components/{{ component.title | slug }}/"
 ---
 
-{% for url in modules %}
-<script type="module" src="/assets/modules/{{ url | url }}"></script>
+{% for url in component.modules %}
+<script type="module" src="{{ url | url }}"></script>
 {% endfor %}
 
 

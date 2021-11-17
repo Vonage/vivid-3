@@ -5,4 +5,4 @@ permalink: /
 ---
 
 
-{% renderFile "./README.md" %}
+# Welcome
