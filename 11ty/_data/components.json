@@ -1,0 +1,21 @@
+[
+    {
+        "name": "Badge",
+        "age": 2,
+        "required-modules": [
+            "assets/modules/components/badge/badge.js"
+        ]
+    },
+    {
+        "name": "Snugglepants",
+        "age": 5
+    },
+    {
+        "name": "Lord Featherbottom",
+        "age": 4
+    },
+    {
+        "name": "Pennywise",
+        "age": 9
+    }
+]

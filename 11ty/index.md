@@ -1,4 +1,5 @@
 ---
+layout: base.njk
 title: yo title
 permalink: /
 ---
@@ -6,6 +7,6 @@ permalink: /
 
 <h1>Hello world</h1>
 
-{%  for component in collections.components %}
-- [{{component.data.title}}]({{component.url}})
+{%  for item in collections.components %}
+- [{{item.data.title}}]({{item.url}})
 {% endfor %}

@@ -1,0 +1,11 @@
+---
+layout: components.njk
+tags: components
+pagination:
+    data: components
+    size: 1
+    alias: component
+permalink: "components/{{ component.name | slug }}/"
+---
+
+{{ component.name }} is {{ component.age }} years old
