@@ -6,14 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
     <link rel="stylesheet" href="{{ '/assets/styles/themes/light.css' | url }}">
     <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet">
 
-    {% for url in prefetches %}
-    <link rel="prefetch" href="{{ url | url }}" crossorigin="anonymous" as="fetch">
+    {% for component in components %}
+    {% for module in component.modules %}
+    <link rel="prefetch" href="{{ module | url }}" crossorigin="anonymous" as="fetch">
+    {% endfor %}
     {% endfor %}
 
-
+    <style>
+        body {
+            display: grid;
+            grid-template-columns: 250px auto;
+        }
+    </style>
 </head>
 
 <body>

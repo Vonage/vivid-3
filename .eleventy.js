@@ -7,8 +7,10 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(EleventyRenderPlugin);
   eleventyConfig.addPlugin(syntaxHighlight);
 
-  eleventyConfig.addPassthroughCopy({ "dist/core/theme/*.css": "assets/styles/themes" });
-  eleventyConfig.addPassthroughCopy({ "dist/components": "assets/modules/components" });
+  eleventyConfig.addPassthroughCopy({
+    "dist/core/theme/*.css": "assets/styles/themes",
+    "dist/components": "assets/modules/components"
+  });
 
   // const style = {"styles": 'dist/core/theme/*.css'};
   // eleventyConfig.addPassthroughCopy(style);
