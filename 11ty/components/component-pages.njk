@@ -9,3 +9,5 @@ permalink: "components/{{ component.name | slug }}/"
 ---
 
 {{ component.name }} is {{ component.age }} years old
+
+{% renderFile component.md %}

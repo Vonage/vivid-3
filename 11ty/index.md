@@ -7,6 +7,6 @@ permalink: /
 
 <h1>Hello world</h1>
 
-{%  for item in collections.components %}
-- [{{item.data.title}}]({{item.url}})
+{%  for item in components %}
+- [{{item.name}}](components/{{item.name}})
 {% endfor %}
