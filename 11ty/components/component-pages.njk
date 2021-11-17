@@ -1,5 +1,5 @@
 ---
-layout: components.njk
+layout: base.njk
 tags: components
 pagination:
     data: components
@@ -8,6 +8,9 @@ pagination:
 permalink: "components/{{ component.name | slug }}/"
 ---
 
-{{ component.name }} is {{ component.age }} years old
+{% for url in modules %}
+<script type="module" src="/assets/modules/{{ url | url }}"></script>
+{% endfor %}
 
-{% renderFile component.md %}
+
+{% renderFile component.markdown %}

@@ -2,24 +2,24 @@
     {
         "name": "Badge",
         "age": 2,
-        "md": "./src/components/badge/README.md",
-        "required-modules": [
+        "markdown": "./src/components/badge/README.md",
+        "modules": [
             "assets/modules/components/badge/badge.js"
         ]
     },
     {
         "name": "Snugglepants",
         "age": 5,
-        "md": "./src/components/badge/README.md"
+        "markdown": "./src/components/badge/README.md"
     },
     {
         "name": "Lord Featherbottom",
         "age": 4,
-        "md": "./src/components/badge/README.md"
+        "markdown": "./src/components/badge/README.md"
     },
     {
         "name": "Pennywise",
         "age": 9,
-        "md": "./src/components/badge/README.md"
+        "markdown": "./src/components/badge/README.md"
     }
 ]
