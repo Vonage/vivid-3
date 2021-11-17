@@ -19,7 +19,7 @@ module.exports = function (eleventyConfig) {
   return {
     dir: {
       input: "./11ty",
-      output: "./dist/_site",
+      // output: "_site",
       includes: "_includes",
       layouts: "_layouts",
       // markdownTemplateEngine: ['njk', 'md']
