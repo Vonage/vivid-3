@@ -5,6 +5,7 @@
     "baseUrl": "../../src"
   },
   "exclude": [
-    "../../src/**/*.spec.ts"
+    "../../src/**/*.spec.ts",
+    "../../src/**/*.test.ts"
   ]
 }
