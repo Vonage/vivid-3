@@ -1,10 +1,11 @@
 // const { EleventyRenderPlugin } = require("@11ty/eleventy");
-const codeblockdemo = require('eleventy-plugin-code-block-demo/dist')
+const { EleventyRenderPlugin } = require("@11ty/eleventy");
+const codeblockdemo = require('eleventy-plugin-code-block-demo')
 
 
 module.exports = function (eleventyConfig) {
 
-  // eleventyConfig.addPlugin(EleventyRenderPlugin);
+  eleventyConfig.addPlugin(EleventyRenderPlugin);
 
   eleventyConfig.addPassthroughCopy({
     "dist/core/theme/*.css": "assets/styles/themes",
@@ -12,8 +13,6 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addPlugin(codeblockdemo);
-
-
 
   return {
     dir: {

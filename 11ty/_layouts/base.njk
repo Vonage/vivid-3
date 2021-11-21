@@ -11,11 +11,7 @@
     <link rel="stylesheet" href="{{ '/assets/styles/themes/dark.css' | url }}" media="(prefers-color-scheme: dark)">
     <script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
 
-    {% for component in components %}
-    {% for module in component.modules %}
-    <link rel="prefetch" href="{{ module | url }}">
-    {% endfor %}
-    {% endfor %}
+    {% include "prefetches.njk" %}
 
     <style>
         body {
