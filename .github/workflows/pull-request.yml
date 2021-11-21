@@ -83,6 +83,7 @@ jobs:
         - run: exit 0
           if: ${{ steps.test.outcome == 'success' }}
   visual-regression:
+    needs: build
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ github.token }}
