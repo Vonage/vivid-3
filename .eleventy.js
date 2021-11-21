@@ -1,4 +1,3 @@
-// const { EleventyRenderPlugin } = require("@11ty/eleventy");
 const { EleventyRenderPlugin } = require("@11ty/eleventy");
 const codeblockdemo = require('eleventy-plugin-code-block-demo')
 
