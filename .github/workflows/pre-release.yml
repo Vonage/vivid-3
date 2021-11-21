@@ -20,4 +20,4 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release -d
+        run: npx semantic-release

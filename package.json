@@ -1,6 +1,6 @@
 {
   "name": "@vonage/vivid",
-  "version": "3.0.0",
+  "version": "0.0.0-development",
   "description": "Vonage's web UI 🎨 toolbelt",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Vonage/vivid-next.git"
+    "url": "https://github.com/Vonage/vivid-3.git"
   },
   "keywords": [
     "design system",
@@ -30,9 +30,9 @@
   "author": "vonage/vivid",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/Vonage/vivid-next/issues"
+    "url": "https://github.com/Vonage/vivid-3/issues"
   },
-  "homepage": "https://github.com/Vonage/vivid-next#readme",
+  "homepage": "https://github.com/Vonage/vivid-3#readme",
   "files": [
     "dist/**/*"
   ],
@@ -78,7 +78,7 @@
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-lit-css": "^3.2.1",
     "sass": "^1.43.4",
-    "semantic-release": "^18.0.0",
+    "semantic-release": "^undefined",
     "ts-lit-plugin": "^1.2.1",
     "ts-node": "^10.4.0",
     "tslib": "^2.3.1",
