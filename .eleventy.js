@@ -15,10 +15,6 @@ module.exports = function (eleventyConfig) {
 
 
 
-  // const style = {"styles": 'dist/core/theme/*.css'};
-  // eleventyConfig.addPassthroughCopy(style);
-  // eleventyConfig.addWatchTarget(style);
-  // Return your Object options:
   return {
     dir: {
       input: "./11ty",
