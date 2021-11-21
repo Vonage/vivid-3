@@ -95,6 +95,4 @@ jobs:
           cache: 'npm'
       - run: npm install
       - run: npm run build
-      - run: |
-          alias npmenv='npm run env -- $SHELL'
-          npmenv http-server -s & npmenv playwright test
+      - run: npm run env -- http-server -s & npm run env -- playwright test
