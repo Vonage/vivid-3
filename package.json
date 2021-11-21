@@ -4,8 +4,8 @@
   "description": "Vonage's web UI 🎨 toolbelt",
   "main": "index.js",
   "scripts": {
-    "start:dev": "npm run build:components -- --watch & npm run build:tokens -- --watch & web-dev-server --watch",
-    "start": "npm run build:components && npm run build:tokens && web-dev-server",
+    "start": "npm run build:components -- --watch & npm run build:tokens -- --watch & npm run build:docs -- --serve",
+    "build:docs": "eleventy",
     "build:tokens": "sass src/core/theme:dist/core/theme",
     "build:components": "rollup -c config/rollup/rollup.config.prod.ts",
     "build": "npm run build:components && npm run build:tokens",
