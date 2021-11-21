@@ -16,7 +16,20 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'npm'
+      - run: npm install
+      - run: npm run build
   test:
+      needs: build
       if: github.event.pull_request.draft == false
       name: "Test Components on ${{ matrix.browser_name }}"
       runs-on: ${{ matrix.os }}
