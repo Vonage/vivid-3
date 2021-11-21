@@ -14,7 +14,7 @@
     "test:safari": "karma start config/karma/karma.conf.prod.ts --coverage --browsers=SafariNative",
     "clean:git": "git clean -dfx",
     "clean": "npm run clean:git",
-    "ui-tests": "playwright test"
+    "ui-tests": "http-server -s & playwright test"
   },
   "repository": {
     "type": "git",
@@ -59,6 +59,7 @@
     "@web/dev-server-rollup": "^0.3.13",
     "@web/test-runner-visual-regression": "^0.6.4",
     "esbuild": "^0.13.4",
+    "http-server": "^14.0.0",
     "istanbul-lib-instrument": "^5.1.0",
     "jasmine-core": "^3.10.1",
     "karma": "^6.3.8",
