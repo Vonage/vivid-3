@@ -4,7 +4,8 @@
   "description": "Vonage's web UI 🎨 toolbelt",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm run build:tokens -- --watch\" \"npm run build -- --watch\" \"web-dev-server --watch\"",
+    "start:dev": "npm run build:components -- --watch & npm run build:tokens -- --watch & web-dev-server --watch",
+    "start": "npm run build:components && npm run build:tokens && web-dev-server",
     "build:tokens": "sass src/core/theme:dist/core/theme",
     "build:components": "rollup -c config/rollup/rollup.config.prod.ts",
     "build": "npm run build:components && npm run build:tokens",
@@ -57,7 +58,6 @@
     "@types/sass": "^1.43.0",
     "@web/dev-server": "^0.1.26",
     "@web/dev-server-rollup": "^0.3.13",
-    "@web/test-runner-visual-regression": "^0.6.4",
     "esbuild": "^0.13.4",
     "http-server": "^14.0.0",
     "istanbul-lib-instrument": "^5.1.0",
