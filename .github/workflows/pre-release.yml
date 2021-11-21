@@ -3,7 +3,7 @@ name: Pre-Release
 on:
   push:
     branches:
-      - main
+      - 'yinonov/issue47'
 jobs:
   build:
     runs-on: ubuntu-latest
