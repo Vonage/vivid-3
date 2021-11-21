@@ -27,6 +27,7 @@ jobs:
           node-version: '16'
           cache: 'npm'
       - run: npm install
+      - run: npm run lint
       - run: npm run build
   test:
       needs: build
