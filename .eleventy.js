@@ -1,27 +1,20 @@
-const { EleventyRenderPlugin } = require("@11ty/eleventy");
-const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-const codeblocks = require('@code-blocks/eleventy-plugin')
+// const { EleventyRenderPlugin } = require("@11ty/eleventy");
+const codeblockdemo = require('eleventy-plugin-code-block-demo/dist')
 
-// some renderers
-const math = require('@code-blocks/math')
-const music = require('@code-blocks/music')
-const prism = require('@code-blocks/prism')
 
 module.exports = function (eleventyConfig) {
 
-  eleventyConfig.addPlugin(EleventyRenderPlugin);
-  eleventyConfig.addPlugin(syntaxHighlight);
+  // eleventyConfig.addPlugin(EleventyRenderPlugin);
 
   eleventyConfig.addPassthroughCopy({
     "dist/core/theme/*.css": "assets/styles/themes",
     "dist/components": "assets/modules/components"
   });
 
-  eleventyConfig.addPlugin(codeblocks([
-    math,
-    music,
-    prism
-  ]))
+  eleventyConfig.addPlugin(codeblockdemo);
+
+
+
   // const style = {"styles": 'dist/core/theme/*.css'};
   // eleventyConfig.addPassthroughCopy(style);
   // eleventyConfig.addWatchTarget(style);
