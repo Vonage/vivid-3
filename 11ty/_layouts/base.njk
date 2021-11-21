@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="{{ '/assets/styles/themes/light.css' | url }}">
-    <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet">
-    <script href="https://unpkg.com/prismjs@1.20.0/prism.js"></script>
+    <link rel="stylesheet" href="{{ '/assets/styles/themes/light.css' | url }}" media="(prefers-color-scheme: light)">
+    <link rel="stylesheet" href="{{ '/assets/styles/themes/dark.css' | url }}" media="(prefers-color-scheme: dark)">
+    <script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
 
     {% for component in components %}
     {% for module in component.modules %}
@@ -30,6 +30,7 @@
         {% include "navigation.njk" %}
     </aside>
     <main>
+        <dark-mode-toggle permanent></dark-mode-toggle>
         {{content | safe}}
     </main>
 </body>
