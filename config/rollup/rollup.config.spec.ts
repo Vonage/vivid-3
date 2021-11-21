@@ -7,7 +7,9 @@ rollupBaseConfig.plugins.push(istanbul({
     exclude: ['src/**/*.spec.ts', 'node_modules/**/*']
 }));
 
-rollupBaseConfig.plugins.splice(1,1, typescript({tsconfig: './config/typescript/tsconfig.spec.json'}),);
+export const specTypescriptConfig = {tsconfig: './config/typescript/tsconfig.spec.json'};
+
+rollupBaseConfig.plugins.splice(1,1, typescript(specTypescriptConfig));
 
 const rollupConfig: RollupOptions = {
     cache: false,
