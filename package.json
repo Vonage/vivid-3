@@ -18,7 +18,8 @@
     "test:firefox": "karma start config/karma/karma.conf.prod.ts --coverage --browsers=FirefoxHeadless",
     "test:safari": "karma start config/karma/karma.conf.prod.ts --coverage --browsers=SafariNative",
     "clean:git": "git clean -dfx",
-    "clean": "npm run clean:git"
+    "clean": "npm run clean:git",
+    "ui-tests": "http-server -s & playwright test"
   },
   "repository": {
     "type": "git",
@@ -51,6 +52,7 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^1.0.0-beta.7",
+    "@playwright/test": "^1.16.3",
     "@rollup/plugin-node-resolve": "^13.0.6",
     "@rollup/plugin-typescript": "^8.3.0",
     "@rollup/pluginutils": "^4.1.1",
@@ -61,6 +63,7 @@
     "@types/sass": "^1.43.0",
     "eleventy-plugin-code-block-demo": "^0.1.5",
     "esbuild": "^0.13.4",
+    "http-server": "^14.0.0",
     "istanbul-lib-instrument": "^5.1.0",
     "jasmine-core": "^3.10.1",
     "karma": "^6.3.8",
@@ -73,6 +76,7 @@
     "karma-jasmine": "^4.0.1",
     "karma-rollup-preprocessor": "^7.0.7",
     "karma-safarinative-launcher": "^1.1.0",
+    "playwright": "^1.16.3",
     "rollup": "^2.59.0",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-lit-css": "^3.2.1",
