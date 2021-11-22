@@ -85,6 +85,7 @@ jobs:
   visual-regression:
     needs: build
     runs-on: ubuntu-latest
+    container: mcr.microsoft.com/playwright:v1.16.3-focal
     env:
       GITHUB_TOKEN: ${{ github.token }}
     steps:
@@ -95,4 +96,4 @@ jobs:
           cache: 'npm'
       - run: npm install
       - run: npm run build
-      - run: npm run env -- http-server -s & npm run env -- playwright test
+      - run: ./scripts/visual-tests/run.tests.sh
