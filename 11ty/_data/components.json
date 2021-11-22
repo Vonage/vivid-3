@@ -1,0 +1,16 @@
+[
+    {
+        "title": "Badge",
+        "markdown": "./src/components/badge/README.md",
+        "modules": [
+            "/assets/modules/components/badge/badge.js"
+        ]
+    },
+    {
+        "title": "Icon",
+        "markdown": "./src/components/icon/README.md",
+        "modules": [
+            "/assets/modules/components/icon/icon.js"
+        ]
+    }
+]
