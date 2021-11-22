@@ -11,8 +11,6 @@
     "build:components": "rollup -c config/rollup/rollup.config.prod.ts",
     "build": "npm run build:components & npm run build:tokens",
     "dev": "eleventy --serve",
-    "start:dev": "npm run build:components -- --watch & npm run build:tokens -- --watch & npm run build:docs -- --serve",
-    "build:docs": "eleventy",
     "test:dev": "karma start config/karma/karma.conf.dev.ts --browsers=Chrome",
     "test:chrome": "karma start config/karma/karma.conf.prod.ts --coverage --browsers=ChromeHeadless",
     "test:firefox": "karma start config/karma/karma.conf.prod.ts --coverage --browsers=FirefoxHeadless",
