@@ -23,7 +23,7 @@
 <br>
 <br>
 
-> Our philosophy favors a lock-down over white labeling strategy, where utilizing high-level design tokens (add link) for UI customization while avoiding modifying components directly where possible. This guideline promotes the ergonomics of consistency enforcement across apps.
+> Our philosophy favors a lock-down over white labeling strategy, utilizing high-level design tokens (add link) for UI customization rather than permuting components directly, where possible. This guideline promotes the ergonomics of consistency enforcement across apps.
 
 
 <br>
