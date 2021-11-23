@@ -1,12 +1,78 @@
 {
-  "parser": "@typescript-eslint/parser", // Specifies the ESLint parser
+  "root": true,
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 2020,
-    "sourceType": "module"
+    "project": "./tsconfig.base.json"
   },
-  "extends": [
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "plugins": [
+    "wc",
+    "lit",
+    "lit-a11y"
   ],
-  "rules": {}
+  "extends": [
+    "airbnb-base",
+    "airbnb-typescript/base",
+    "plugin:compat/recommended",
+    "plugin:wc/recommended",
+    "plugin:wc/best-practice",
+    "plugin:lit/recommended",
+    "plugin:lit-a11y/recommended"
+  ],
+  "settings": {
+    "wc": {
+      "elementBaseClasses": [
+        "BaseElement",
+        "LitElement",
+        "FormElement"
+      ]
+    }
+  },
+  "rules": {
+    // lint
+    "indent": "off",
+    "@typescript-eslint/indent": [
+      "error",
+      "tab"
+    ],
+    "no-tabs": "off",
+    "no-mixed-spaces-and-tabs": "error",
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "no-var": "error",
+    "no-floating-decimal": "error",
+    "prefer-const": "error",
+    // functional
+    "no-shadow": "error",
+    "compat/compat": "error",
+    "import/extensions": [
+      "error",
+      "ignorePackages"
+    ],
+    "import/prefer-default-export": "off",
+    "class-methods-use-this": "off",
+    "no-new": "warn",
+    "@typescript-eslint/explicit-member-accessibility": [
+      "error",
+      {
+        "accessibility": "no-public"
+      }
+    ]
+  }
 }
