@@ -1,51 +1,37 @@
+# Contributor guidelines template
 
-# Contributing
+## What do I need to know to help?
 
-## Issues
+If you are looking to help to with a code contribution our project uses [Typescript](https://www.typescriptlang.org), [Lit](https://lit.dev) and [Sass](https://sass-lang.com). If you don't feel ready to make a code contribution yet, no problem! You can also check out the [documentation issues](https://github.com/Vonage/vivid-3/labels/Type%3A%20documentation) or the [design issues](https://github.com/Vonage/vivid-3/labels/Type%3A%20Design%20%F0%9F%8E%A8) that we have.
 
-Issues are very valuable to this project.
+If you are interested in making a code contribution and would like to learn more about the technologies that we use, check out the list below.
 
-* Ideas are a valuable source of contributions others can make
-* Problems show where this project is lacking
-* With a question you show where contributors can improve the user experience
+- [Vivid documentation](https://vonage.github.io/vivid-3)
+- [Vivid test](https://vonage.github.io/vivid-3)
 
-Thank you for creating them.
+## How do I make a contribution?
 
-## Pull Requests
+Never made an open source contribution before? Wondering how contributions work in the in our project? Here's a quick rundown!
 
-Pull requests are, a great way to get your ideas into this repository.
+1. Find an issue that you are interested in addressing or a feature that you would like to add.
+2. Fork the repository associated with the issue to your local GitHub organization. This means that you will have a copy of the repository under **your-GitHub-username/vivid**.
+3. Clone the repository to your local machine using `git clone https://github.com/Vonage/vivid-3.git` / `gh repo clone Vonage/vivid-3`.
+4. Create a new branch for your fix using `git checkout -b branch-name-here`.
+5. Make the appropriate changes for the issue you are trying to address or the feature that you want to add.
+6. Use `git add insert-paths-of-changed-files-here` to add the file contents of the changed files to the "snapshot" git uses to manage the state of the project, also known as the index.
+7. Use `git commit -m "Insert a short message of the changes made here"` to store the contents of the index with a descriptive message.
+8. Push the changes to the remote repository using `git push origin branch-name-here`.
+9. Submit a pull request to the upstream repository.
+10. Title the pull request with a short description of the changes made and the issue or bug number associated with your change. For example, you can title an issue like so "Added more log outputting to resolve #4352".
+11. In the description of the pull request, explain the changes that you made, any issues you think exist with the pull request you made, and any questions you have for the maintainer. It's OK if your pull request is not perfect (no pull request is), the reviewer will be able to help you fix any problems and improve it!
+12. Wait for the pull request to be reviewed by a maintainer.
+13. Make changes to the pull request if the reviewing maintainer recommends them.
+14. Celebrate your success after your pull request is merged!
 
-When deciding if I merge in a pull request I look at the following things:
+## Where can I go for help?
 
-### Does it state intent
+If you need help, you can ask questions on our mailing list, IRC chat, or [list any other communication platforms that your project uses].
 
-You should be clear which problem you're trying to solve with your contribution.
+## What does the Code of Conduct mean for me?
 
-For example:
-
-> Add link to code of conduct in README.md
-
-Doesn't tell me anything about why you're doing that
-
-> Add link to code of conduct in README.md because users don't always look in the CONTRIBUTING.md
-
-Tells me the problem that you have found, and the pull request shows me the action you have taken to solve it.
-
-
-### Is it of good quality
-
-* There are no spelling mistakes
-* It reads well
-* For english language contributions: Has a good score on [Grammarly](grammarly.com) or [Hemingway App](http://www.hemingwayapp.com/)
-
-### Does it move this repository closer to my vision for the repository
-
-The aim of this repository is:
-
-* To provide a README.md and assorted documents anyone can copy and paste, into their project
-* The content is usable by someone who hasn't written something like this before
-* Foster a culture of respect and gratitude in the open source community.
-
-### Does it follow the contributor covenant
-
-This repository has a [code of conduct](CODE_OF_CONDUCT.md), This repository has a code of conduct, I will remove things that do not respect it.
+Our Code of Conduct means that you are responsible for treating everyone on the project with respect and courtesy regardless of their identity. If you are the victim of any inappropriate behavior or comments as described in our Code of Conduct, we are here for you and will do the best to ensure that the abuser is reprimanded appropriately, per our code.
