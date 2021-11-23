@@ -95,5 +95,4 @@ jobs:
           node-version: '16'
           cache: 'npm'
       - run: npm install
-      - run: npm run build
-      - run: ./scripts/visual-tests/run.tests.sh
+      - run: npm run build && ./scripts/visual-tests/run.tests.sh
