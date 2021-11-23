@@ -23,7 +23,7 @@
 <br>
 <br>
 
-> Our philosophy favors a lock-down over white labeling strategy, utilizing high-level design tokens (add link) for UI customization rather than permuting components directly, where possible. This guideline promotes the ergonomics of consistency enforcement across apps.
+> Vivid philosophy favors **lock-down** over **white labeling** strategy, utilizing high-level [design tokens](docs/design-tokens.md) to customize UI systematically rather than permuting components directly (to a balanced degree). This guideline promotes keeping integration processes **ergonomic** and UI **consistent**.
 
 
 <br>
@@ -54,7 +54,7 @@ Give a ⭐️ if this project helped you!
 
 ## 📝 License
 
-This project is [Apache 2.0](.github/LICENSE) licensed.
+This project is [Apache 2.0](.github/LICENSE.md) licensed.
 
 <br>
 
