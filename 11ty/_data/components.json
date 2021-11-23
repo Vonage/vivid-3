@@ -1,13 +1,13 @@
 [
     {
-        "title": "Badge",
+        "title": "badge",
         "markdown": "./src/components/badge/README.md",
         "modules": [
             "/assets/modules/components/badge/badge.js"
         ]
     },
     {
-        "title": "Icon",
+        "title": "icon",
         "markdown": "./src/components/icon/README.md",
         "modules": [
             "/assets/modules/components/icon/icon.js"
