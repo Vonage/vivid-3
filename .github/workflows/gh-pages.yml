@@ -29,7 +29,7 @@ jobs:
 
       - run: npm ci
       - run: npm run build
-      - run: npm run docs:build
+      - run: npm run docs:build -- --pathprefix=vivid-3
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

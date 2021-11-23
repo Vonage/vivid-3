@@ -3,7 +3,7 @@
 <ul>
     {%  for item in components %}
     <li>
-        <a href="{{ '/components/' + item.title | url }}">{{ item.title }}</a>
+        <a href="{{ ('/components/' + item.title) | url }}">{{ item.title }}</a>
     </li>
     {% endfor %}
 </ul>

@@ -16,7 +16,6 @@ module.exports = function (eleventyConfig) {
   return {
     dir: {
       input: "./11ty",
-      pathPrefix: "/vivid-3/",
       includes: "_includes",
       layouts: "_layouts",
     }
