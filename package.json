@@ -50,7 +50,7 @@
     "tslib": "^2.3.1"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.0-beta.7",
+    "@11ty/eleventy": "^1.0.0-beta.8",
     "@playwright/test": "^1.16.3",
     "@rollup/plugin-node-resolve": "^13.0.6",
     "@rollup/plugin-typescript": "^8.3.0",
