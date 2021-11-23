@@ -33,81 +33,86 @@ const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 const baseUrlTemplate = (resource: string, version: string) => [BASE_URL, `v${version}`, resource].join('/');
 
 const resolveIcon = memoizeWith(identity as () => string, (iconId = '') => (iconId.trim()
-	? fetch(baseUrlTemplate([iconId, 'svg'].join('.'), ICON_SET_VERSION)).then(
-		(res) => (res.headers.get('content-type') === 'image/svg+xml' ? res.text() : ''),
-	)
+	? fetch(baseUrlTemplate([iconId, 'svg'].join('.'), ICON_SET_VERSION))
+		.then(
+			(res) => (res.headers.get('content-type') === 'image/svg+xml' ? res.text() : ''),
+		)
 	: Promise.resolve(''))) as (iconId?: string) => Promise<string>;
 
 const setSvgAttribute = (name: string, value: string) => (svgText = '') => svgText.replace(/<svg[^>]*>/, (tagText) => tagText.replace(/<svg[^>]+/, (attributesText) => attributesText
-  					.split(' ')
-  					.concat([name, value].filter(Boolean).join('='))
-  					.join(' ')));
+	.split(' ')
+	.concat([name, value].filter(Boolean)
+		.join('='))
+	.join(' ')));
 
-type IconConnotation = Extract<
-Connotation,
+type IconConnotation = Extract<Connotation,
 | Connotation.Primary
 | Connotation.CTA
 | Connotation.Announcement
 | Connotation.Success
 | Connotation.Alert
-| Connotation.Info
->;
+| Connotation.Info>;
 
 @customElement('vwc-icon')
 export class VWCIcon extends LitElement {
+	@property({
+		type: String,
+		reflect: true,
+	})
+		connotation?: IconConnotation;
+
+	@property({
+		attribute: true,
+		type: String,
+		reflect: true,
+	})
+		type?: string;
+
+	@property({
+		attribute: true,
+		type: Boolean,
+		reflect: true,
+	})
+		inline?: boolean;
+
+	@property({
+		attribute: true,
+		type: String,
+		reflect: true,
+	})
+		size?: IconSize;
+
+	@ariaProperty
+	@property({
+		attribute: 'aria-label',
+		type: String,
+	})
+	override ariaLabel = '';
+
 	static override get styles(): CSSResult {
 		return style;
 	}
 
-	@property({ type: String, reflect: true })
-  	connotation?: IconConnotation;
-
-	@property({
-  	attribute: true,
-  	type: String,
-  	reflect: true,
-	})
-  	type?: string;
-
-	@property({
-  	attribute: true,
-  	type: Boolean,
-  	reflect: true,
-	})
-  	inline?: boolean;
-
-	@property({
-  	attribute: true,
-  	type: String,
-  	reflect: true,
-	})
-  	size?: IconSize;
-
-	@ariaProperty
-	@property({
-  	attribute: 'aria-label',
-  	type: String,
-	})
-	override ariaLabel = '';
-
-	protected getRenderClasses(): ClassInfo {
-  	return {
-  		[`connotation-${this.connotation}`]: !!this.connotation,
-  	};
-	}
-
 	override render(): TemplateResult {
-  	return html`<figure
-      class="icon ${classMap(this.getRenderClasses())}"
-      aria-label="${ifDefined(this.ariaLabel)}"
-    >
-      ${until(
+		return html`
+            <figure
+                    class="icon ${classMap(this.getRenderClasses())}"
+                    aria-label="${ifDefined(this.ariaLabel)}"
+            >
+                ${until(
 		resolveIcon(this.type)
 			.then(setSvgAttribute('aria-hidden', 'true'))
 			.then(unsafeSVG),
 		delay(PLACEHOLDER_TIMEOUT),
-		delay(PLACEHOLDER_DELAY).then(always(unsafeSVG(PLACEHOLDER_ICON))),
+		delay(PLACEHOLDER_DELAY)
+			.then(always(unsafeSVG(PLACEHOLDER_ICON))),
 	)}
-    </figure>`;
+            </figure>`;
+	}
+
+	protected getRenderClasses(): ClassInfo {
+		return {
+			[`connotation-${this.connotation}`]: !!this.connotation,
+		};
 	}
 }
