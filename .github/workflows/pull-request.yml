@@ -85,7 +85,7 @@ jobs:
   visual-regression:
     needs: build
     runs-on: ubuntu-latest
-    container: mcr.microsoft.com/playwright:v1.16.3-focal
+    container: drizzt99/vonage:1.0.0
     env:
       GITHUB_TOKEN: ${{ github.token }}
     steps:
@@ -94,7 +94,6 @@ jobs:
         with:
           node-version: '16'
           cache: 'npm'
-      - run: npm install && npm install playwright -g
-      - run: playright install chrome
+      - run: npm install
       - run: npm run build
       - run: ./scripts/visual-tests/run.tests.sh
