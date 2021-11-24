@@ -8,7 +8,7 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
+[![Apache 2.0 License][license-shield]][license-url]
 
   <p align="center">
     Vonage's design system platform targeted to provide incorporated, battery-charged web components.
@@ -74,4 +74,3 @@ This project is [Apache 2.0](.github/LICENSE.md) licensed.
 [issues-url]: https://github.com/vonage/vivid-3/issues
 [license-shield]: https://img.shields.io/github/license/vonage/vivid-3.svg?style=for-the-badge
 [license-url]: .github/LICENSE.md
-[product-screenshot]: images/screenshot.png
