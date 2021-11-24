@@ -54,7 +54,7 @@ Give a ⭐️ if this project helped you!
 
 ## 📝 License
 
-This project is [Apache 2.0](.github/LICENSE.md) licensed.
+This project is [Apache 2.0][license-url] licensed.
 
 <br>
 
@@ -73,4 +73,4 @@ This project is [Apache 2.0](.github/LICENSE.md) licensed.
 [issues-shield]: https://img.shields.io/github/issues/vonage/vivid-3.svg?style=for-the-badge
 [issues-url]: https://github.com/vonage/vivid-3/issues
 [license-shield]: https://img.shields.io/github/license/vonage/vivid-3.svg?style=for-the-badge
-[license-url]: .github/LICENSE.md
+[license-url]: LICENSE.md
