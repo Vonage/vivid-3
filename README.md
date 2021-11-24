@@ -1,47 +1,77 @@
-[![Quality Status](https://github.com/Vonage/vivid/workflows/Compile%20&%20Test/badge.svg)](https://github.com/Vonage/vivid/actions?query=workflow%3A%22Compile+%26+Test%22)
-[![Coverage Status](https://coveralls.io/repos/github/Vonage/vivid/badge.svg?t=v9CrbP)](https://coveralls.io/github/Vonage/vivid)
+<div align="center">
+  <a href="https://github.com/vonage/vivid-3">
+    <img src="docs/assets/images/vivid-logo.svg" style="" alt="Vivid Logo" width="48">
+  </a>
+  <h1 align="center">Welcome to Vivid</h1>
 
-[![Compile & Test Sanity](https://github.com/Vonage/vivid/actions/workflows/compile-test-sanity.yml/badge.svg)](https://github.com/Vonage/vivid/actions/workflows/compile-test-sanity.yml)
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
 
-# Meet VIVID,
+  <p align="center">
+    Vonage's design system platform targeted to provide incorporated, battery-charged web components.
+  </p>
+  <a href="https://vonage.github.io/vivid-3"><strong>Explore the docs »</strong></a>
+  <br>
+  <a href="https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=bug_report.md&title=">Report Bug</a>
+  ·
+  <a href="https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=feature_request.md&title=">Request Feature</a>
+</div>
 
-### Vonage's design system
+<br>
+<br>
 
-###### Vivid provides components and tools to help product teams work more efficiently, deliver faster and safer, while providing end-users single Vonage unique look & feel.
-
-![Meed Vivid](docs/assets/images/meet-vivid.svg)
-
-Vivid delivers a Design System built along Vonage's branding guidelines - all this by providing a ready-to-use web components and services.
-
-Striving to stick to the best practices and most up to date standards, Vivid's goal is to provide high quality, easy to use, well-maintained and well documented UI platform for all Vonage products.
-
----
-
-### Documentation
-
-For your convenience, we've organized all our documentation under the following topics.
-
-#### Introductory
-
-- [Getting started](docs/getting-started.md)
-- [Architecture](docs/architecture.md)
-- [Roadmap](docs/roadmap.md)
-- [Contact us](docs/contact-us.md)
-
-#### Guides
-
-- [Installation](docs/installation.md)
-- [Contribution](docs/contribution.md)
-
-#### Browsers support matrix
-
-We are continuously running our tests on 3 major browsers in accordance to [browserslist](https://github.com/browserslist/browserslist) query to match Chrome, FireFox and Safari last 2 versions.
-The below matrix reflects a thorough verified browsers / versions.
-There are a good chances that any Chromium based browser is supported as well.
+> Vivid philosophy favors **lock-down** over **white labeling** strategy, utilizing high-level [design tokens](docs/design-tokens.md) to customize UI systematically rather than permuting components directly (to a balanced degree). This guideline help keep integration processes **ergonomic** and the UI **consistent**.
 
 
-| ![Chrome](https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![Edge](https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png) | ![Safari](https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png) |
-| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| 87+ ✔                                                                                               | 83+ ✔                                                                                                  | 88+ ✔                                                                                         | 14+ ✔                                                                                               |
+<br>
 
-> Attention! This is an initial matrix we've tested so far. While any greater versions are supported for sure, we are working on getting this 'waterline' even lower.
+
+## Roadmap
+
+Follow our API planning on the [Vivid project components' view](https://github.com/orgs/Vonage/projects/3/views/13)
+
+We publish a canary release on every successful merge to main, so you never need to wait for a new stable version to make use of any updates.
+
+See the [open issues](https://github.com/vonage/vivid-3/issues) for a full list of proposed features (and known issues).
+
+<br>
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!
+Feel free to check [issues page](https://github.com/Vonage/vivid-3/issues). You can also take a look at the [contributing guide](https://github.com/Vonage/vivid-3/issues).
+
+<br>
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+<br>
+
+## 📝 License
+
+This project is [Apache 2.0](.github/LICENSE.md) licensed.
+
+<br>
+
+<hr>
+
+### Built With [Typescript](https://www.typescriptlang.org), [Lit](https://lit.dev), [Sass](https://sass-lang.com) and ❤️
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/vonage/vivid-3.svg?style=for-the-badge
+[contributors-url]: https://github.com/vonage/vivid-3/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/vonage/vivid-3.svg?style=for-the-badge
+[forks-url]: https://github.com/vonage/vivid-3/network/members
+[stars-shield]: https://img.shields.io/github/stars/vonage/vivid-3.svg?style=for-the-badge
+[stars-url]: https://github.com/vonage/vivid-3/stargazers
+[issues-shield]: https://img.shields.io/github/issues/vonage/vivid-3.svg?style=for-the-badge
+[issues-url]: https://github.com/vonage/vivid-3/issues
+[license-shield]: https://img.shields.io/github/license/vonage/vivid-3.svg?style=for-the-badge
+[license-url]: .github/LICENSE.md
+[product-screenshot]: images/screenshot.png
