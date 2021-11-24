@@ -5,7 +5,7 @@ interface VividKarmaConfig extends Config {
     coverage?: boolean;
 }
 
-module.exports = function (config: VividKarmaConfig) {
+export default function (config: VividKarmaConfig) {
 
     config.set({
         basePath: process.cwd(),
