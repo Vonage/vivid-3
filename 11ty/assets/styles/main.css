@@ -1,3 +1,8 @@
+body {
+    color: var(--vvd-color-on-canvas);
+    background-color: var(--vvd-color-canvas);
+}
+
 pre[class*="language-"] {
     margin: 0;
     border-radius: 0;
