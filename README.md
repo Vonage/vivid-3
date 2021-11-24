@@ -13,7 +13,7 @@
   <p align="center">
     Vonage's design system platform targeted to provide incorporated, battery-charged web components.
   </p>
-  <a href=" https://vonage.github.io/vivid-3"><strong>Explore the docs »</strong></a>
+  <a href="https://vonage.github.io/vivid-3"><strong>Explore the docs »</strong></a>
   <br>
   <a href="https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=bug_report.md&title=">Report Bug</a>
   ·
@@ -73,5 +73,5 @@ This project is [Apache 2.0](.github/LICENSE.md) licensed.
 [issues-shield]: https://img.shields.io/github/issues/vonage/vivid-3.svg?style=for-the-badge
 [issues-url]: https://github.com/vonage/vivid-3/issues
 [license-shield]: https://img.shields.io/github/license/vonage/vivid-3.svg?style=for-the-badge
-[license-url]: .github/LICENSE
+[license-url]: .github/LICENSE.md
 [product-screenshot]: images/screenshot.png
