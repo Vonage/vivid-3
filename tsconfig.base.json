@@ -4,6 +4,7 @@
 		"target": "es2017",
 		"module": "es2015",
 		"preserveWatchOutput": true,
+		"moduleResolution": "Node",
 		"sourceMap": true,
 		"inlineSources": true,
 		"noFallthroughCasesInSwitch": true,
