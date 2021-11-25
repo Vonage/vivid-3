@@ -10,7 +10,7 @@ export enum Connotation {
 }
 
 export enum ConnotationDecorative {
-	Pacific = 'pacific'
+	Pacific = 'pacific',
 }
 
 /* eslint-disable no-shadow */
@@ -52,7 +52,7 @@ export enum Position {
 	Bottom = 'BOTTOM',
 	Start = 'START',
 	Center = 'CENTER',
-	End = 'END'
+	End = 'END',
 }
 
 export enum Role {
