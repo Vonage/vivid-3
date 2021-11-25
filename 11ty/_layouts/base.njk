@@ -7,10 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+    <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-tomorrow.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ '/assets/styles/main.css' | url }}">
+
     <link rel="stylesheet" href="{{ '/assets/styles/themes/light.css' | url }}" media="(prefers-color-scheme: light)">
     <link rel="stylesheet" href="{{ '/assets/styles/themes/dark.css' | url }}" media="(prefers-color-scheme: dark)">
     <script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
 
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    
     {% include "prefetches.njk" %}
 
     <style>
@@ -26,7 +33,18 @@
         {% include "navigation.njk" %}
     </aside>
     <main>
-        <dark-mode-toggle permanent></dark-mode-toggle>
+        <header>
+            <dark-mode-toggle permanent></dark-mode-toggle>
+            <!-- Place this tag where you want the button to render. -->
+            <a class="github-button"
+                href="https://github.com/vonage/vivid-3"
+                data-color-scheme="no-preference: light; light: light; dark: dark;"
+                data-size="large"
+                data-show-count="true"
+                aria-label="Star vonage/vivid-3 on GitHub">
+                Star
+            </a>
+        </header>
         {{content | safe}}
     </main>
 </body>
