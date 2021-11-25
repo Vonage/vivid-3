@@ -1,10 +1,13 @@
 {
     "dryRun": true,
     "branches": [
-        "yinonov/issue47",
         {
-            "name": "main",
-            "prerelease": true
+            "name": "main"
+        },
+        {
+            "name": "yinonov/issue47",
+            "channel": "pre/rc",
+            "prerelease": "rc"
         }
     ],
     "plugins": [
