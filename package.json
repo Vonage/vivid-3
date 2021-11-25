@@ -4,7 +4,7 @@
   "description": "Vonage's web UI 🎨 toolbelt",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build:tokens -- --watch & npm run build:components -- --watch & npm run docs:serve",
+    "start": "npm run build:components -- --watch & npm run build:tokens -- --watch & npm run docs:serve",
     "docs:serve": "eleventy --serve",
     "docs:build": "eleventy",
     "build:tokens": "sass src/core/theme:dist/core/theme",
