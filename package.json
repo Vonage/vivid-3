@@ -91,7 +91,7 @@
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-lit-css": "^3.2.1",
     "sass": "^1.43.4",
-    "semantic-release": "^undefined",
+    "semantic-release": "^18.0.1",
     "ts-lit-plugin": "^1.2.1",
     "ts-node": "^10.4.0",
     "tslib": "^2.3.1",
