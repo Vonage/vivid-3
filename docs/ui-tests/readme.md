@@ -39,3 +39,19 @@ This will run the tests for you.
 If you wish to update the visual snapshots (i.e. you've changed the design and want it to reflect in the saved snapshots) run:
 
 `npm run ui-tests:update`
+
+## Updating the docker image
+
+The docker image comes with the browsers and playwright ready for action.  If, for some reason, there's a need to update the playwright version, a new version should be published to the docker hub. In this case, use the following commands:
+
+1. you'd probably need to login to docker hub (`docker login`).
+2. Update the tag and push to the repository.
+```
+docker tag vivid-visual-tests-img drizzt99/vonage:1.x.x
+docker push drizzt99/vonage:1.x.x  
+```
+3. Update the relevant `yml` files that are using this image to use the new version.
+
+
+
+
