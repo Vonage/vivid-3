@@ -1,7 +1,6 @@
 name: '🧪 Pre Release'
-on:
-  push:
-    branches: yinonov-build-action
+
+on: workflow_call
 
 jobs:
   release:

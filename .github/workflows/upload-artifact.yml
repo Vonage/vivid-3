@@ -99,3 +99,5 @@ jobs:
             .eleventy.js
             11ty
           if-no-files-found: error
+  call-workflow-1:
+    uses: vonage/vivid-3/.github/workflows/pre-release.yml@yinonov-build-action
