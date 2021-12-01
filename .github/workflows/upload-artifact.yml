@@ -22,6 +22,7 @@ jobs:
           name: public-artifact
           path: |
             package.json
+            package-lock.json
             LICENSE.md
             dist
             .eleventy.js
