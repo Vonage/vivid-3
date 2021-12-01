@@ -14,6 +14,10 @@ export default function (config: VividKarmaConfig) {
             {
                 pattern: 'src/**/*.spec.ts',
                 watched: false
+            },
+            {
+                pattern: 'src/core/theme/**/*.scss',
+                watched: true
             }
         ],
         exclude: [],
@@ -25,6 +29,7 @@ export default function (config: VividKarmaConfig) {
         concurrency: Infinity,
         preprocessors: {
             'src/**/*.spec.ts': ["rollup"],
+            'src/core/theme/**/*.scss': ['scss']
         },
         coverageReporter: {
             dir: `coverage/`,
