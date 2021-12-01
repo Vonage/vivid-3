@@ -17,28 +17,24 @@ jobs:
         with:
           name: public-artifact
 
-      - name: Display structure of downloaded files
-        run: ls -R
+      - name: Setup Node.js
+        # Setup .npmrc file to publish to npm
+        uses: actions/setup-node@v2
+        with:
+          node-version: 'lts/*'
+          registry-url: 'https://npm.pkg.github.com'
+          # Defaults to the user or organization that owns the workflow file
+          scope: '@vonage'
 
+      - name: Install
+        run: npm ci
 
-#       - name: Setup Node.js
-#         # Setup .npmrc file to publish to npm
-#         uses: actions/setup-node@v2
-#         with:
-#           node-version: 'lts/*'
-#           registry-url: 'https://npm.pkg.github.com'
-#           # Defaults to the user or organization that owns the workflow file
-#           scope: '@vonage'
+      - name: Bump
+        # TODO: replace once 3rd version is stable and published
+        # run: npm version prerelease --preid=next.$(git rev-parse --short HEAD) --no-git-tag-version --no-push
+        run: npm version 3.0.0-next.$(git rev-parse --short HEAD) --no-git-tag-version --no-push
 
-#       - name: Install
-#         run: npm ci
-
-#       - name: Bump
-#         # TODO: replace once 3rd version is stable and published
-#         # run: npm version prerelease --preid=next.$(git rev-parse --short HEAD) --no-git-tag-version --no-push
-#         run: npm version 3.0.0-next.$(git rev-parse --short HEAD) --no-git-tag-version --no-push
-
-#       - name: Publish
-#         run: npm publish --access public --tag next --dry-run
+      - name: Publish
+        run: npm publish --access public --tag next --dry-run
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
