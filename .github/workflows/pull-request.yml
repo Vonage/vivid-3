@@ -29,80 +29,56 @@ jobs:
       - run: npm install
       - run: npm run lint
       - run: npm run build
-  # test:
-  #     needs: build
-  #     name: "Test Components on ${{ matrix.browser_name }}"
-  #     runs-on: ${{ matrix.os }}
-  #     env:
-  #       GITHUB_TOKEN: ${{ github.token }}
-  #     strategy:
-  #       max-parallel: 10
-  #       matrix:
-  #         os:
-  #           - ubuntu-latest
-  #           - macos-latest
-  #         browser:
-  #           - SafariNative
-  #           - ChromeHeadless
-  #           - FirefoxHeadless
-  #         exclude:
-  #           - os: ubuntu-latest
-  #             browser: SafariNative
-  #           - os: macos-latest
-  #             browser: FirefoxHeadless
-  #           - os: macos-latest
-  #             browser: ChromeHeadless
-  #         include:
-  #           - browser: ChromeHeadless
-  #             browser_name: chrome
-  #             report_coverage: true
-  #           - browser: FirefoxHeadless
-  #             browser_name: firefox
-  #             report_coverage: false
-  #           - browser: SafariNative
-  #             browser_name: safari
-  #             report_coverage: false
-  #     steps:
-  #       - uses: actions/checkout@v2
-  #       - uses: actions/setup-node@v2
-  #         with:
-  #           node-version: '16'
-  #           cache: 'npm'
-  #       - run: npm install
-  #       - run: npm run test:${{ matrix.browser_name }}
-  #         id: test
-  #       - uses: coverallsapp/github-action@master
-  #         if: ${{ matrix.report_coverage }}
-  #         continue-on-error: true
-  #         with:
-  #           parallel: false
-  #           github-token: ${{ github.token }}
-  #           path-to-lcov: ./coverage/report-lcov/lcov.info
-  #           flag-name: Tested on ${{ matrix.os }} / ${{ matrix.browser_name }}
-  #       - run: exit 0
-  #         if: ${{ steps.test.outcome == 'success' }}
-  upload:
-    needs: build  
-    name: "Upload Build Artifact"
-    runs-on: ${{ matrix.os }}
-    env:
-      GITHUB_TOKEN: ${{ github.token }}
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-          cache: 'npm'
-      - run: npm install
-      - run: npm run build
-
-      - uses: actions/upload-artifact@v2
-        if: success()
-        with:
-          name: build-artifact
-          path: |
-            path/output/bin/
-            path/output/test-results
-            !path/**/*.tmp
-          if-no-files-found: error
-
+  test:
+      needs: build
+      if: github.event.pull_request.draft == false
+      name: "Test Components on ${{ matrix.browser_name }}"
+      runs-on: ${{ matrix.os }}
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      strategy:
+        max-parallel: 10
+        matrix:
+          os:
+            - ubuntu-latest
+            - macos-latest
+          browser:
+            - SafariNative
+            - ChromeHeadless
+            - FirefoxHeadless
+          exclude:
+            - os: ubuntu-latest
+              browser: SafariNative
+            - os: macos-latest
+              browser: FirefoxHeadless
+            - os: macos-latest
+              browser: ChromeHeadless
+          include:
+            - browser: ChromeHeadless
+              browser_name: chrome
+              report_coverage: true
+            - browser: FirefoxHeadless
+              browser_name: firefox
+              report_coverage: false
+            - browser: SafariNative
+              browser_name: safari
+              report_coverage: false
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v2
+          with:
+            node-version: '16'
+            cache: 'npm'
+        - run: npm install
+        - run: npm run test:${{ matrix.browser_name }}
+          id: test
+        - uses: coverallsapp/github-action@master
+          if: ${{ matrix.report_coverage }}
+          continue-on-error: true
+          with:
+            parallel: false
+            github-token: ${{ github.token }}
+            path-to-lcov: ./coverage/report-lcov/lcov.info
+            flag-name: Tested on ${{ matrix.os }} / ${{ matrix.browser_name }}
+        - run: exit 0
+          if: ${{ steps.test.outcome == 'success' }}
