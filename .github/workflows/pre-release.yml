@@ -9,13 +9,13 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # call-unit-tests:
-  #   uses: vonage/vivid-3/.github/workflows/unit-tests.yml@yinonov-build-action
+  call-unit-tests:
+    uses: vonage/vivid-3/.github/workflows/callables/unit-tests.yml@yinonov-build-action
 
   call-upload-artifact:
-    # needs: call-unit-tests
-    uses: vonage/vivid-3/.github/workflows/upload-artifact.yml@yinonov-build-action
+    needs: call-unit-tests
+    uses: vonage/vivid-3/.github/workflows/callables/upload-artifact.yml@yinonov-build-action
 
   call-pre-release:
     needs: call-upload-artifact
-    uses: vonage/vivid-3/.github/workflows/publish-package.yml@yinonov-build-action
+    uses: vonage/vivid-3/.github/workflows/callables/publish-package.yml@yinonov-build-action
