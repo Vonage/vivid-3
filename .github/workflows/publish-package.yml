@@ -31,7 +31,7 @@ jobs:
 
       - name: Bump
         env:
-          short_head: git rev-parse --short HEAD
+          short_head: $(git rev-parse --short HEAD)
         # TODO: replace once 3rd version is stable and published
         # run: npm version prerelease --preid=next.${{ env.short_head }} --tag next --no-git-tag-version --no-push
         run: npm version 3.0.0-next.${{ env.short_head }} --tag next --no-git-tag-version --no-push
