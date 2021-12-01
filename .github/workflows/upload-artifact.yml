@@ -4,7 +4,7 @@ on:
     branches: yinonov-build-action
 
 concurrency:
-  group: ci-tests-${{ github.ref }}-1
+  group: ci-upload-artifact-${{ github.ref }}-1
   cancel-in-progress: true
 
 jobs:

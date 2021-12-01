@@ -2,10 +2,6 @@ name: 🧾 Unit Tests
 
 on: workflow_call
 
-concurrency:
-  group: ci-tests-${{ github.ref }}-1
-  cancel-in-progress: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
