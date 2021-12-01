@@ -1,7 +1,7 @@
 name: '📦 Upload Artifact'
-on: workflow_dispatch
-#   push:
-#     branches: main
+on:
+  push:
+    branches: yinonov-build-action
 
 jobs:
   build:
