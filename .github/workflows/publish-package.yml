@@ -7,8 +7,8 @@ jobs:
     name: Publish
     runs-on: ubuntu-latest
     steps:
-      # - name: Checkout
-      #   uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
       #   with:
       #     fetch-depth: 0
 
@@ -30,9 +30,11 @@ jobs:
         run: npm ci
 
       - name: Bump
+        env:
+          short_head: git rev-parse --short HEAD
         # TODO: replace once 3rd version is stable and published
-        # run: npm version prerelease --preid=next.$(git rev-parse --short HEAD) --no-git-tag-version --no-push
-        run: npm version 3.0.0-next.$(git rev-parse --short HEAD) --no-git-tag-version --no-push
+        # run: npm version prerelease --preid=next.${{ env.short_head }} --tag next --no-git-tag-version --no-push
+        run: npm version 3.0.0-next.${{ env.short_head }} --tag next --no-git-tag-version --no-push
 
       - name: Publish
         run: npm publish --access public --tag next --dry-run
