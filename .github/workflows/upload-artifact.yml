@@ -76,7 +76,7 @@ jobs:
   upload:
     needs: build  
     name: "Upload Build Artifact"
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ github.token }}
     steps:
