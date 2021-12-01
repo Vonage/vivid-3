@@ -91,9 +91,11 @@ jobs:
       - uses: actions/upload-artifact@v2
         if: success()
         with:
-          name: build-artifact
+          name: public-artifact
           path: |
             package.json
             LICENSE.md
             dist
+            .eleventy.js
+            11ty
           if-no-files-found: error
