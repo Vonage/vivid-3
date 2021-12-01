@@ -3,19 +3,21 @@ on:
   push:
     branches: yinonov-build-action
 
+concurrency:
+  group: ci-tests-${{ github.ref }}-1
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [ '12', '14', '16' ]
-    name: Node ${{ matrix.node }} sample
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v2
-      - name: Setup node
-        uses: actions/setup-node@v2
+      - uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node }}
+          node-version: '16'
+          cache: 'npm'
       - run: npm install
       - run: npm run lint
       - run: npm run build
@@ -72,4 +74,3 @@ jobs:
             flag-name: Tested on ${{ matrix.os }} / ${{ matrix.browser_name }}
         - run: exit 0
           if: ${{ steps.test.outcome == 'success' }}
-          
