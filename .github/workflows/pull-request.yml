@@ -31,6 +31,7 @@ jobs:
       - run: npm run build
   test:
       needs: build
+      # ! @YonatanKra this condition should be kept in this file and call the reusable workflow 
       if: github.event.pull_request.draft == false
       name: "Test Components on ${{ matrix.browser_name }}"
       runs-on: ${{ matrix.os }}

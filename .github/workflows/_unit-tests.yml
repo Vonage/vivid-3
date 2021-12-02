@@ -4,10 +4,10 @@ on: workflow_call
 
 jobs:
   test:
-      if: github.event.pull_request.draft == false
       name: "Test Components on ${{ matrix.browser_name }}"
       runs-on: ${{ matrix.os }}
       env:
+        # ! @YonatanKra is this needed?
         GITHUB_TOKEN: ${{ github.token }}
       strategy:
         max-parallel: 10
