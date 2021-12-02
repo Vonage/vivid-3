@@ -82,3 +82,17 @@ jobs:
             flag-name: Tested on ${{ matrix.os }} / ${{ matrix.browser_name }}
         - run: exit 0
           if: ${{ steps.test.outcome == 'success' }}
+  visual-regression:
+    needs: build
+    runs-on: ubuntu-latest
+    container: drizzt99/vonage:1.0.0
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'npm'
+      - run: npm install
+      - run: npm run build && ./scripts/visual-tests/run.tests.sh
