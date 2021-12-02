@@ -4,7 +4,6 @@ on: workflow_call
 
 jobs:
   test:
-      needs: build
       if: github.event.pull_request.draft == false
       name: "Test Components on ${{ matrix.browser_name }}"
       runs-on: ${{ matrix.os }}
