@@ -9,11 +9,11 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  call-lint-and-build:
-    uses: vonage/vivid-3/.github/workflows/_lint-and-build.yml@yinonov-build-action
+  # call-lint-and-build:
+  #   uses: vonage/vivid-3/.github/workflows/_lint-and-build.yml@yinonov-build-action
 
   call-unit-tests:
-    needs: call-lint-and-build
+    # needs: call-lint-and-build
     uses: vonage/vivid-3/.github/workflows/_unit-tests.yml@yinonov-build-action
 
   call-upload-artifact:

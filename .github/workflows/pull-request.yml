@@ -26,7 +26,7 @@ jobs:
         with:
           node-version: '16'
           cache: 'npm'
-      - run: npm install
+      - run: npm ci
       - run: npm run lint
       - run: npm run build
   test:
@@ -70,7 +70,7 @@ jobs:
           with:
             node-version: '16'
             cache: 'npm'
-        - run: npm install
+        - run: npm ci
         - run: npm run test:${{ matrix.browser_name }}
           id: test
         - uses: coverallsapp/github-action@master
@@ -95,5 +95,5 @@ jobs:
         with:
           node-version: '16'
           cache: 'npm'
-      - run: npm install
+      - run: npm ci
       - run: npm run build && ./scripts/visual-tests/run.tests.sh
