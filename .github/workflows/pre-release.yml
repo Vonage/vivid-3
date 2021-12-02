@@ -18,6 +18,7 @@ jobs:
 
   call-upload-artifact:
     # needs: call-unit-tests
+    needs: call-lint-and-build
     uses: vonage/vivid-3/.github/workflows/_upload-artifact.yml@yinonov-build-action
 
   call-pre-release:
