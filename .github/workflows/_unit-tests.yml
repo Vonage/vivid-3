@@ -6,9 +6,6 @@ jobs:
   test:
       name: "Test Components on ${{ matrix.browser_name }}"
       runs-on: ${{ matrix.os }}
-      # env:
-      #   # ! @YonatanKra is this needed?
-      #   GITHUB_TOKEN: ${{ github.token }}
       strategy:
         max-parallel: 10
         matrix:
@@ -37,12 +34,12 @@ jobs:
               browser_name: safari
               report_coverage: false
       steps:
-        # - uses: actions/checkout@v2
+        - uses: actions/checkout@v2
         - uses: actions/setup-node@v2
           with:
             node-version: '16'
             cache: 'npm'
-        - run: npm install
+        # - run: npm install
         - run: npm run test:${{ matrix.browser_name }}
           id: test
         - uses: coverallsapp/github-action@master
