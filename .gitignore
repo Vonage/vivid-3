@@ -3,4 +3,6 @@ node_modules
 .rollup.cache
 coverage
 **/*.tsbuildinfo*
-_site
++site
+test-results
+*-darwin.png
