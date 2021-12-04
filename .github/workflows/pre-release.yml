@@ -17,7 +17,7 @@ jobs:
     uses: vonage/vivid-3/.github/workflows/_unit-tests.yml
 
   call-upload-artifact:
-    needs: call-lint-and-build
+    needs: call-unit-tests
     uses: vonage/vivid-3/.github/workflows/_upload-artifact.yml
 
   call-publish-package:
