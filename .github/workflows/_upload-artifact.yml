@@ -14,6 +14,7 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
+      - run: npm run docs:build
 
       - uses: actions/upload-artifact@v2
         if: always()
@@ -24,6 +25,5 @@ jobs:
             package-lock.json
             LICENSE.md
             dist
-            .eleventy.js
-            11ty
+            _site
           if-no-files-found: error
