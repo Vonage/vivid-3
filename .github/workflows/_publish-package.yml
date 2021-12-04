@@ -20,7 +20,6 @@ jobs:
         with:
           node-version: 'lts/*'
           registry-url: 'https://npm.pkg.github.com'
-          scope: '@vonage'
 
       - name: Bump
         # TODO: replace once 3rd version is stable and published
