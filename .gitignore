@@ -4,3 +4,5 @@ node_modules
 coverage
 **/*.tsbuildinfo*
 _site
+test-results
+*-darwin.png

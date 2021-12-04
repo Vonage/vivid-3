@@ -1,42 +1,11 @@
-name: Pull Request
+name: 🧪 Unit Tests
 
-on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
-      - ready_for_review
-      - converted_to_draft
-    branches:
-      - main
-
-concurrency:
-  group: ci-tests-${{ github.ref }}-1
-  cancel-in-progress: true
+on: workflow_call
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ github.token }}
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run build
   test:
-      needs: build
-      # ! @YonatanKra this condition should be kept in this file and call the reusable workflow 
-      if: github.event.pull_request.draft == false
       name: "Test Components on ${{ matrix.browser_name }}"
       runs-on: ${{ matrix.os }}
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
       strategy:
         max-parallel: 10
         matrix:
@@ -83,17 +52,3 @@ jobs:
             flag-name: Tested on ${{ matrix.os }} / ${{ matrix.browser_name }}
         - run: exit 0
           if: ${{ steps.test.outcome == 'success' }}
-  visual-regression:
-    needs: build
-    runs-on: ubuntu-latest
-    container: drizzt99/vonage:1.0.0
-    env:
-      GITHUB_TOKEN: ${{ github.token }}
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run build && ./scripts/visual-tests/run.tests.sh
