@@ -75,7 +75,7 @@ jobs:
   pr_converted_to_draft:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request' && github.event.action == 'converted_to_draft'
-    uses: ./_sync-project@mapping-variables-workflow-level
+    uses: ./.github/workflows/_sync-project@mapping-variables-workflow-level
     with:
       status_value: "In Progress 🚧"
   pr_closed:
