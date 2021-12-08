@@ -4,11 +4,9 @@ on: workflow_call
 
 jobs:
   sync:
-    name: issue_opened_and_reopened
     runs-on: ubuntu-latest
     steps:
-      - name: 'Move Status'
-        uses: leonsteinhaeuser/project-beta-automations@v1.0.2
+      - uses: leonsteinhaeuser/project-beta-automations@v1.0.2
         with:
           gh_token: ${{ secrets.VNG_VVD_PAT }}
           organization: vonage
