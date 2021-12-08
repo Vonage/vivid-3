@@ -73,10 +73,11 @@ jobs:
           project_id: 3
           resource_node_id: ${{ github.event.pull_request.node_id }}
           status_value: "Needs Review 🔎"
+
   pr_converted_to_draft:
     uses: vonage/vivid-3/.github/workflows/_sync-project.yml@mapping-variables-workflow-level
     with:
-      condition: github.event_name == 'pull_request' && github.event.action == 'converted_to_draft'
+      condition: $(github.event_name == 'pull_request' && github.event.action == 'converted_to_draft')
       status_value: "In Progress 🚧"
 
   pr_closed:
