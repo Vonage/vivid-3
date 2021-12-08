@@ -72,11 +72,11 @@ jobs:
           project_id: 3
           resource_node_id: ${{ github.event.pull_request.node_id }}
           status_value: "Needs Review 🔎"
-  pr_converted_to_draft:
-    if: github.event_name == 'pull_request' && github.event.action == 'converted_to_draft'
-    uses: ./_sync-project@mapping-variables-workflow-level
-    with:
-      status_value: "In Progress 🚧"
+  # pr_converted_to_draft:
+  #   if: github.event_name == 'pull_request' && github.event.action == 'converted_to_draft'
+  #   uses: ./_sync-project@mapping-variables-workflow-level
+  #   with:
+  #     status_value: "In Progress 🚧"
   pr_closed:
     name: pr_closed
     runs-on: ubuntu-latest
