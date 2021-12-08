@@ -75,15 +75,19 @@ jobs:
           status_value: "Needs Review 🔎"
 
   pr_converted_to_draft:
-    uses: vonage/vivid-3/.github/workflows/_sync-project.yml@mapping-variables-workflow-level
-    with:
-      condition: ${{ github.event_name == 'pull_request' && github.event.action == 'converted_to_draft' }}
-      status_value: "In Progress 🚧"
-    secrets:
-      gh_token: ${{ secrets.VNG_VVD_PAT }}
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.action == 'converted_to_draft'
+    steps:
+      - name: 'Move PR to "In Progress 🚧"'
+        uses: leonsteinhaeuser/project-beta-automations@v1.0.2
+        with:
+          gh_token: ${{ secrets.VNG_VVD_PAT }}
+          organization: vonage
+          project_id: 3
+          resource_node_id: ${{ github.event.pull_request.node_id }}
+          status_value: "In Progress 🚧"
 
   pr_closed:
-    name: pr_closed
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     steps:
