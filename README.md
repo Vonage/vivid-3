@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://github.com/vonage/vivid-3">
-    <img src="docs/assets/images/vivid-logo.svg" style="" alt="Vivid Logo" width="48">
+    <img src="docs/assets/images/vivid-logo.svg" style="" alt="Vivid Logo" width="120">
   </a>
   <h1 align="center">Welcome to Vivid</h1>
 
@@ -8,7 +8,7 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![A License][license-shield]][license-url]
+[![Apache 2.0 License][license-shield]][license-url]
 
   <p align="center">
     Vonage's design system platform targeted to provide incorporated, battery-charged web components.
@@ -54,7 +54,7 @@ Give a ⭐️ if this project helped you!
 
 ## 📝 License
 
-This project is [Apache 2.0](.github/LICENSE.md) licensed.
+This project is [Apache 2.0][license-url] licensed.
 
 <br>
 
@@ -73,5 +73,4 @@ This project is [Apache 2.0](.github/LICENSE.md) licensed.
 [issues-shield]: https://img.shields.io/github/issues/vonage/vivid-3.svg?style=for-the-badge
 [issues-url]: https://github.com/vonage/vivid-3/issues
 [license-shield]: https://img.shields.io/github/license/vonage/vivid-3.svg?style=for-the-badge
-[license-url]: .github/LICENSE.md
-[product-screenshot]: images/screenshot.png
+[license-url]: LICENSE.md
