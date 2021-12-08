@@ -1,0 +1,17 @@
+name: Sync Project
+
+on: workflow_call
+
+jobs:
+  sync:
+    name: issue_opened_and_reopened
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Move Status'
+        uses: leonsteinhaeuser/project-beta-automations@v1.0.2
+        with:
+          gh_token: ${{ secrets.VNG_VVD_PAT }}
+          organization: vonage
+          project_id: 3
+          resource_node_id: ${{ github.event.issue.node_id }}
+          status_value: ${{ inputs.status_value }}

@@ -1,10 +1,11 @@
 name: Project automations
 
-statuses:
-  todo: "Todo 🕓"
-  done: "Done ✅"
-  in_progress: "In Progress 🚧"
-  ready_for_review: "Needs Review 🔎"
+# statuses:
+#   todo: "Todo 🕓"
+#   done: "Done ✅"
+#   in_progress: "In Progress 🚧"
+#   ready_for_review: "Needs Review 🔎"
+
 on:
   issues:
     types:
@@ -59,18 +60,14 @@ jobs:
           resource_node_id: ${{ github.event.pull_request.node_id }}
           status_value: "In Progress 🚧"
   pr_ready_for_review:
-    name: pr_ready_for_review
+  pr_converted_to_draft:
+    name: pr_converted_to_draft
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' && github.event.action == 'ready_for_review'
+    if: github.event_name == 'pull_request' && github.event.action == 'converted_to_draft'
     steps:
-      - name: 'Move PR to "Needs Review 🔎"'
-        uses: leonsteinhaeuser/project-beta-automations@v1.0.2
+      - uses: ./_sync-project@mapping-variables-workflow-level
         with:
-          gh_token: ${{ secrets.VNG_VVD_PAT }}
-          organization: vonage
-          project_id: 3
-          resource_node_id: ${{ github.event.pull_request.node_id }}
-          status_value: "Needs Review 🔎"
+          status_value: "In Progress 🚧"
   pr_closed:
     name: pr_closed
     runs-on: ubuntu-latest
