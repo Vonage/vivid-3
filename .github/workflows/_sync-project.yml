@@ -9,8 +9,8 @@ on:
       condition:
         required: true
         type: boolean
-    gh_token:
-      token:
+    secrets:
+      gh_token:
         required: true
 jobs:
   sync:
