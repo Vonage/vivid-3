@@ -1,11 +1,5 @@
 name: Project automations
 
-# statuses:
-#   todo: "Todo 🕓"
-#   done: "Done ✅"
-#   in_progress: "In Progress 🚧"
-#   ready_for_review: "Needs Review 🔎"
-
 on:
   issues:
     types:
@@ -20,6 +14,11 @@ on:
       - reopened
       - review_requested
       - closed
+
+concurrency:
+  group: ci-project-automation-${{ github.ref }}-1
+  cancel-in-progress: true
+
 jobs:
   issue_opened_and_reopened:
     name: issue_opened_and_reopened
