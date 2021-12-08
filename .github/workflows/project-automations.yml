@@ -1,4 +1,8 @@
 name: Project automations
+
+env:
+  SERVER: production
+
 on:
   issues:
     types:
@@ -18,14 +22,14 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'issues' && github.event.action == 'opened' || github.event.action == 'reopened'
     steps:
-      - name: 'Move issue to "Done ✅ ✅"'
+      - name: 'Move issue to "Todo 🕓"'
         uses: leonsteinhaeuser/project-beta-automations@v1.0.2
         with:
-          gh_token: ${{ secrets.VNG_VVD_PAT }}
+          gh_token: ${{ secrets.VNG_VIVID_PAT }}
           organization: vonage
           project_id: 3
           resource_node_id: ${{ github.event.issue.node_id }}
-          status_value: "Done ✅ ✅"
+          status_value: "Todo 🕓"
   issue_closed:
     name: issue_closed
     runs-on: ubuntu-latest
@@ -34,7 +38,7 @@ jobs:
       - name: 'Moved issue to "Done ✅"'
         uses: leonsteinhaeuser/project-beta-automations@v1.0.2
         with:
-          gh_token: ${{ secrets.VNG_VVD_PAT }}
+          gh_token: ${{ secrets.VNG_VIVID_PAT }}
           organization: vonage
           project_id: 3
           resource_node_id: ${{ github.event.issue.node_id }}
@@ -47,7 +51,7 @@ jobs:
       - name: 'Move PR to "In Progress 🚧"'
         uses: leonsteinhaeuser/project-beta-automations@v1.0.2
         with:
-          gh_token: ${{ secrets.VNG_VVD_PAT }}
+          gh_token: ${{ secrets.VNG_VIVID_PAT }}
           organization: vonage
           project_id: 3
           resource_node_id: ${{ github.event.pull_request.node_id }}
@@ -60,7 +64,7 @@ jobs:
       - name: 'Move PR to "Needs Review 🔎"'
         uses: leonsteinhaeuser/project-beta-automations@v1.0.2
         with:
-          gh_token: ${{ secrets.VNG_VVD_PAT }}
+          gh_token: ${{ secrets.VNG_VIVID_PAT }}
           organization: vonage
           project_id: 3
           resource_node_id: ${{ github.event.pull_request.node_id }}
@@ -73,7 +77,7 @@ jobs:
       - name: 'Move PR to "Done ✅"'
         uses: leonsteinhaeuser/project-beta-automations@v1.0.2
         with:
-          gh_token: ${{ secrets.VNG_VVD_PAT }}
+          gh_token: ${{ secrets.VNG_VIVID_PAT }}
           organization: vonage
           project_id: 3
           resource_node_id: ${{ github.event.pull_request.node_id }}
