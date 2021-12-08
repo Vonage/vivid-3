@@ -1,6 +1,14 @@
 name: Sync Project
 
-on: workflow_call
+on:
+  workflow_call:
+    inputs:
+      status_value:
+        required: true
+        type: string
+      condition:
+        required: true
+        type: boolean
 
 jobs:
   sync:
