@@ -5,6 +5,7 @@ on: workflow_call
 jobs:
   sync:
     runs-on: ubuntu-latest
+    if: ${{ inputs.condition }}
     steps:
       - uses: leonsteinhaeuser/project-beta-automations@v1.0.2
         with:
