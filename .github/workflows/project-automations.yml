@@ -16,6 +16,7 @@ on:
     types:
       - opened
       - ready_for_review
+      - converted_to_draft
       - reopened
       - review_requested
       - closed
