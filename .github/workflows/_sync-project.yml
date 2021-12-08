@@ -9,7 +9,9 @@ on:
       condition:
         required: true
         type: boolean
-
+    gh_token:
+      token:
+        required: true
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -17,7 +19,7 @@ jobs:
     steps:
       - uses: leonsteinhaeuser/project-beta-automations@v1.0.2
         with:
-          gh_token: ${{ secrets.VNG_VVD_PAT }}
+          gh_token: ${{ secrets.gh_token }}
           organization: vonage
           project_id: 3
           resource_node_id: ${{ github.event.issue.node_id }}

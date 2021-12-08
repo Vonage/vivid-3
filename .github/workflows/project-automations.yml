@@ -79,6 +79,8 @@ jobs:
     with:
       condition: ${{ github.event_name == 'pull_request' && github.event.action == 'converted_to_draft' }}
       status_value: "In Progress 🚧"
+    secrets:
+      gh_token: ${{ secrets.VNG_VVD_PAT }}
 
   pr_closed:
     name: pr_closed
