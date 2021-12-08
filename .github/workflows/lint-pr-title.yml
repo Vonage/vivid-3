@@ -1,0 +1,13 @@
+name: 'Lint PR Title'
+
+on:
+  pull_request:
+    types: ['opened', 'edited', 'reopened', 'synchronize']
+
+jobs:
+  lint-pr-title:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dreampulse/action-lint-pull-request-title@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
