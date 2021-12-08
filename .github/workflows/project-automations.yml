@@ -77,7 +77,7 @@ jobs:
   pr_converted_to_draft:
     uses: vonage/vivid-3/.github/workflows/_sync-project.yml@mapping-variables-workflow-level
     with:
-      condition: $(github.event_name == 'pull_request' && github.event.action == 'converted_to_draft')
+      condition: ${{ github.event_name == 'pull_request' && github.event.action == 'converted_to_draft' }}
       status_value: "In Progress 🚧"
 
   pr_closed:
