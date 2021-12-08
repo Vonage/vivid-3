@@ -1,5 +1,10 @@
 name: Project automations
 
+statuses:
+  todo: "Todo 🕓"
+  done: "Done ✅"
+  in_progress: "In Progress 🚧"
+  ready_for_review: "Needs Review 🔎"
 on:
   issues:
     types:
