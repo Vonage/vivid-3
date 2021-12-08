@@ -1,8 +1,5 @@
 name: Project automations
 
-env:
-  SERVER: production
-
 on:
   issues:
     types:
