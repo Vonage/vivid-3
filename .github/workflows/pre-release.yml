@@ -1,4 +1,4 @@
-name: '🧬 Pre Release'
+name: 🧬 Pre Release
 
 on:
   push:

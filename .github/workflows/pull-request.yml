@@ -33,8 +33,9 @@ jobs:
       needs: build
       # ! @YonatanKra this condition should be kept in this file and call the reusable workflow
       if: github.event.pull_request.draft == false
-      name: "Test Components"
-      uses: vonage/vivid-3/.github/workflows/_unit-tests.yml
+      name: Test Components
+      uses: vonage/vivid-3/.github/workflows/_unit-tests.yml@yinonov-build-action
+
   visual-regression:
     needs: build
     runs-on: ubuntu-latest
