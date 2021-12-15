@@ -54,3 +54,8 @@ jobs:
   call-publish-package:
     needs: [call-test-chrome, call-test-safari, call-test-firefox, visual-regression]
     uses: vonage/vivid-3/.github/workflows/_publish-package.yml
+
+  # ! temporary. site deployment should move to latest release
+  call-deploy-site:
+    needs: call-publish-package # do not deploy site if package is not published
+    uses: vonage/vivid-3/.github/workflows/_gh-pages.yml

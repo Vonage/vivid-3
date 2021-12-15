@@ -1,0 +1,13 @@
+name: '🏠 Deploy Site'
+
+on: workflow_call
+
+jobs:
+  deploy:
+    name: Publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
