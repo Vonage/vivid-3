@@ -29,12 +29,33 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run build
-  test:
-      needs: build
-      # ! @YonatanKra this condition should be kept in this file and call the reusable workflow
-      if: github.event.pull_request.draft == false
-      name: Test Components
-      uses: vonage/vivid-3/.github/workflows/_unit-tests.yml@yinonov-build-action
+
+  test-chrome:
+    needs: build
+    if: github.event.pull_request.draft == false
+    uses: vonage/vivid-3/.github/workflows/_unit-tests.yml@yinonov-build-action
+    with:
+      browser_name: ChromeHeadless
+      os: ubuntu-latest
+      coverage_report: true
+
+  test-safari:
+    needs: build
+    if: github.event.pull_request.draft == false
+    uses: vonage/vivid-3/.github/workflows/_unit-tests.yml@yinonov-build-action
+    with:
+      browser_name: SafariNative
+      os: macos-latest
+      coverage_report: false
+
+  test-firefox:
+    needs: build
+    if: github.event.pull_request.draft == false
+    uses: vonage/vivid-3/.github/workflows/_unit-tests.yml@yinonov-build-action
+    with:
+      browser_name: FirefoxHeadless
+      os: ubuntu-latest
+      coverage_report: false
 
   visual-regression:
     needs: build
