@@ -8,7 +8,7 @@ on:
         description: Operating System to run the workflow on
         default: 'ubuntu-latest'
         required: false
-      browser_name: # SafariNative, ChromeHeadless, FirefoxHeadless
+      browser_name: # safari, chrome, firefox
         type: string
         description: Browser to run the tests on
         required: true

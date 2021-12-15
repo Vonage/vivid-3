@@ -16,7 +16,7 @@ jobs:
     needs: call-lint-and-build
     uses: vonage/vivid-3/.github/workflows/_unit-test.yml@yinonov-build-action
     with:
-      browser_name: ChromeHeadless
+      browser_name: chrome
       os: ubuntu-latest
       report_coverage: true
 
@@ -24,7 +24,7 @@ jobs:
     needs: call-lint-and-build
     uses: vonage/vivid-3/.github/workflows/_unit-test.yml@yinonov-build-action
     with:
-      browser_name: SafariNative
+      browser_name: safari
       os: macos-latest
       report_coverage: false
 
@@ -32,7 +32,7 @@ jobs:
     needs: call-lint-and-build
     uses: vonage/vivid-3/.github/workflows/_unit-test.yml@yinonov-build-action
     with:
-      browser_name: FirefoxHeadless
+      browser_name: firefox
       os: ubuntu-latest
       report_coverage: false
 
