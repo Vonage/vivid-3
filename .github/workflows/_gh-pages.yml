@@ -6,13 +6,21 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Download
-        uses: actions/download-artifact@v2
+      - name: Checkout
+      - uses: actions/checkout@v2
+
+      - name: Install Dependencies
+      - uses: actions/setup-node@v2
         with:
-          name: built-env-artifact
+          node-version: '16'
+          cache: 'npm'
+      - run: npm ci
+
+      - name: Build
+      - run: npm run build
 
       - name: Build Site
-        run: npm run docs:build
+      - run: npm run docs:build -- --pathprefix=vivid-3
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
