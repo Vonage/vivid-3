@@ -27,7 +27,6 @@ jobs:
           with:
             node-version: '16'
             cache: 'npm'
-        - run: npm ci
         - run: npm run test:${{ inputs.browser_name }}
           id: test
         - uses: coverallsapp/github-action@master

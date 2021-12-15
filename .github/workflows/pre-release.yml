@@ -2,7 +2,7 @@ name: 🧬 Pre Release
 
 on:
   push:
-    branches: main
+    branches: reduce-workflow-steps
 
 concurrency:
   group: ci-pre-release-${{ github.ref }}-1
@@ -10,11 +10,11 @@ concurrency:
 
 jobs:
   call-lint-and-build:
-    uses: vonage/vivid-3/.github/workflows/_lint-and-build.yml@main
+    uses: vonage/vivid-3/.github/workflows/_lint-and-build.yml@reduce-workflow-steps
 
   call-test-chrome:
     needs: call-lint-and-build
-    uses: vonage/vivid-3/.github/workflows/_unit-test.yml@main
+    uses: vonage/vivid-3/.github/workflows/_unit-test.yml@reduce-workflow-steps
     with:
       browser_name: chrome
       os: ubuntu-latest
@@ -22,7 +22,7 @@ jobs:
 
   call-test-safari:
     needs: call-lint-and-build
-    uses: vonage/vivid-3/.github/workflows/_unit-test.yml@main
+    uses: vonage/vivid-3/.github/workflows/_unit-test.yml@reduce-workflow-steps
     with:
       browser_name: safari
       os: macos-latest
@@ -30,7 +30,7 @@ jobs:
 
   call-test-firefox:
     needs: call-lint-and-build
-    uses: vonage/vivid-3/.github/workflows/_unit-test.yml@main
+    uses: vonage/vivid-3/.github/workflows/_unit-test.yml@reduce-workflow-steps
     with:
       browser_name: firefox
       os: ubuntu-latest
@@ -47,9 +47,9 @@ jobs:
 
   call-publish-package:
     needs: [call-test-chrome, call-test-safari, call-test-firefox, visual-regression]
-    uses: vonage/vivid-3/.github/workflows/_publish-package.yml@main
+    uses: vonage/vivid-3/.github/workflows/_publish-package.yml@reduce-workflow-steps
 
   # ! temporary. site deployment should move to latest release
   call-deploy-site:
     needs: call-publish-package # do not deploy site if package is not published
-    uses: vonage/vivid-3/.github/workflows/_gh-pages.yml@main
+    uses: vonage/vivid-3/.github/workflows/_gh-pages.yml@reduce-workflow-steps
