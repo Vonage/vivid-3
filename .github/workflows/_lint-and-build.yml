@@ -14,3 +14,11 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run build
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: built-env-artifact
+          path: |
+            !node_modules
+          if-no-files-found: error
+
