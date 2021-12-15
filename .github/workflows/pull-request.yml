@@ -64,10 +64,4 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ github.token }}
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run build && ./scripts/visual-tests/run.tests.sh
+      - run: ./scripts/visual-tests/run.tests.sh
