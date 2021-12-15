@@ -13,7 +13,6 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        uses: actions/setup-node@v2
         run: npm ci
 
       - name: Build
