@@ -1,0 +1,17 @@
+name: 🎨 Test Visual Regression
+
+on: workflow_call
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container: drizzt99/vonage:1.0.0
+    steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v2
+          with:
+            node-version: '16'
+            cache: 'npm'
+        - run: npm ci
+        - run: npm run build
+        - run: ./scripts/visual-tests/run.tests.sh
