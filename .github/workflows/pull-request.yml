@@ -33,7 +33,7 @@ jobs:
   test-chrome:
     needs: build
     if: github.event.pull_request.draft == false
-    uses: vonage/vivid-3/.github/workflows/_unit-tests.yml@yinonov-build-action
+    uses: vonage/vivid-3/.github/workflows/_unit-test.yml@yinonov-build-action
     with:
       browser_name: ChromeHeadless
       os: ubuntu-latest
@@ -42,7 +42,7 @@ jobs:
   test-safari:
     needs: build
     if: github.event.pull_request.draft == false
-    uses: vonage/vivid-3/.github/workflows/_unit-tests.yml@yinonov-build-action
+    uses: vonage/vivid-3/.github/workflows/_unit-test.yml@yinonov-build-action
     with:
       browser_name: SafariNative
       os: macos-latest
@@ -51,7 +51,7 @@ jobs:
   test-firefox:
     needs: build
     if: github.event.pull_request.draft == false
-    uses: vonage/vivid-3/.github/workflows/_unit-tests.yml@yinonov-build-action
+    uses: vonage/vivid-3/.github/workflows/_unit-test.yml@yinonov-build-action
     with:
       browser_name: FirefoxHeadless
       os: ubuntu-latest
