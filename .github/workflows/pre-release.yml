@@ -2,7 +2,7 @@ name: 🧬 Pre Release
 
 on:
   push:
-    branches: reduce-workflow-steps
+    branches: reduce-workflow-steps 
 
 concurrency:
   group: ci-pre-release-${{ github.ref }}-1
