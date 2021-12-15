@@ -62,7 +62,7 @@ jobs:
 
   pr_ready_for_review:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' && github.event.pull_request.draft == false && github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'review_requested' || github.event.action == 'ready_for_review'
+    if: github.event_name == 'pull_request' && github.event.pull_request.draft == false && github.event.action == 'opened' || github.event.action == 'review_requested' || github.event.action == 'ready_for_review'
     steps:
       - name: 'Move PR to "Needs Review 🔎"'
         uses: leonsteinhaeuser/project-beta-automations@v1.0.2
