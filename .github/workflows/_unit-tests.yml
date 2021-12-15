@@ -5,7 +5,7 @@ on: workflow_call
 jobs:
   test-chrome:
     needs: call-lint-and-build
-    uses: vonage/vivid-3/.github/workflows/_unit-tests.yml
+    uses: vonage/vivid-3/.github/workflows/_unit-tests.yml@yinonov-build-action
     with:
       browser_name: ChromeHeadless
       os: ubuntu-latest
@@ -13,7 +13,7 @@ jobs:
 
   test-safari:
     needs: call-lint-and-build
-    uses: vonage/vivid-3/.github/workflows/_unit-tests.yml
+    uses: vonage/vivid-3/.github/workflows/_unit-tests.yml@yinonov-build-action
     with:
       browser_name: SafariNative
       os: macos-latest
@@ -21,7 +21,7 @@ jobs:
 
   test-firefox:
     needs: call-lint-and-build
-    uses: vonage/vivid-3/.github/workflows/_unit-tests.yml
+    uses: vonage/vivid-3/.github/workflows/_unit-tests.yml@yinonov-build-action
     with:
       browser_name: FirefoxHeadless
       os: ubuntu-latest
