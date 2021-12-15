@@ -1,0 +1,42 @@
+name: 🧪 Unit Test
+
+on:
+  workflow_call:
+    inputs:
+      os:
+        type: string
+        description: Operating System to run the workflow on
+        default: 'ubuntu-latest'
+        required: false
+      browser_name: # SafariNative, ChromeHeadless, FirefoxHeadless
+        type: string
+        description: Browser to run the tests on
+        required: true
+      report_coverage:
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  test:
+      name: "Test Components on ${{ inputs.browser_name }}"
+      runs-on: ${{ inputs.os }}
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v2
+          with:
+            node-version: '16'
+            cache: 'npm'
+        - run: npm ci
+        - run: npm run test:${{ inputs.browser_name }}
+          id: test
+        - uses: coverallsapp/github-action@master
+          if: ${{ inputs.report_coverage }}
+          continue-on-error: true
+          with:
+            parallel: false
+            github-token: ${{ github.token }}
+            path-to-lcov: ./coverage/report-lcov/lcov.info
+            flag-name: Tested on ${{ inputs.os }} / ${{ inputs.browser_name }}
+        - run: exit 0
+          if: ${{ steps.test.outcome == 'success' }}

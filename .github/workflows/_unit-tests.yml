@@ -3,52 +3,26 @@ name: 🧪 Unit Tests
 on: workflow_call
 
 jobs:
-  test:
-      name: "Test Components on ${{ matrix.browser_name }}"
-      runs-on: ${{ matrix.os }}
-      strategy:
-        max-parallel: 10
-        matrix:
-          os:
-            - ubuntu-latest
-            - macos-latest
-          browser:
-            - SafariNative
-            - ChromeHeadless
-            - FirefoxHeadless
-          exclude:
-            - os: ubuntu-latest
-              browser: SafariNative
-            - os: macos-latest
-              browser: FirefoxHeadless
-            - os: macos-latest
-              browser: ChromeHeadless
-          include:
-            - browser: ChromeHeadless
-              browser_name: chrome
-              report_coverage: true
-            - browser: FirefoxHeadless
-              browser_name: firefox
-              report_coverage: false
-            - browser: SafariNative
-              browser_name: safari
-              report_coverage: false
-      steps:
-        - uses: actions/checkout@v2
-        - uses: actions/setup-node@v2
-          with:
-            node-version: '16'
-            cache: 'npm'
-        - run: npm ci
-        - run: npm run test:${{ matrix.browser_name }}
-          id: test
-        - uses: coverallsapp/github-action@master
-          if: ${{ matrix.report_coverage }}
-          continue-on-error: true
-          with:
-            parallel: false
-            github-token: ${{ github.token }}
-            path-to-lcov: ./coverage/report-lcov/lcov.info
-            flag-name: Tested on ${{ matrix.os }} / ${{ matrix.browser_name }}
-        - run: exit 0
-          if: ${{ steps.test.outcome == 'success' }}
+  test-chrome:
+    needs: call-lint-and-build
+    uses: vonage/vivid-3/.github/workflows/_unit-tests.yml
+    with:
+      browser_name: ChromeHeadless
+      os: ubuntu-latest
+      coverage_report: true
+
+  test-safari:
+    needs: call-lint-and-build
+    uses: vonage/vivid-3/.github/workflows/_unit-tests.yml
+    with:
+      browser_name: SafariNative
+      os: macos-latest
+      coverage_report: false
+
+  test-firefox:
+    needs: call-lint-and-build
+    uses: vonage/vivid-3/.github/workflows/_unit-tests.yml
+    with:
+      browser_name: FirefoxHeadless
+      os: ubuntu-latest
+      coverage_report: false
