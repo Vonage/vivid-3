@@ -1,8 +1,7 @@
 {
-  "name": "@vonage/vivid",
+  "name": "vivid",
   "version": "3.0.0",
   "description": "Vonage's web UI 🎨 toolbelt",
-  "main": "index.js",
   "scripts": {
     "start": "npm run build:components -- --watch & npm run build:tokens -- --watch & npm run docs:serve",
     "docs:serve": "eleventy --serve",
@@ -10,7 +9,6 @@
     "build:tokens": "sass src/core/theme:dist/core/theme",
     "build:components": "rollup -c config/rollup/rollup.config.prod.ts",
     "build": "npm run build:components && npm run build:tokens",
-    "dev": "eleventy --serve",
     "test:dev": "karma start config/karma/karma.conf.dev.ts --browsers=Chrome",
     "test:chrome": "karma start config/karma/karma.conf.prod.ts --coverage --browsers=ChromeHeadless",
     "test:firefox": "karma start config/karma/karma.conf.prod.ts --coverage --browsers=FirefoxHeadless",
