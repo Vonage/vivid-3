@@ -10,7 +10,7 @@ concurrency:
 
 jobs:
   call-lint:
-    uses: vonage/vivid-3/.github/workflows/_lint-and-build.yml@reduce-worflow-steps
+    uses: vonage/vivid-3/.github/workflows/_lint.yml@reduce-worflow-steps
 
   call-test-chrome:
     needs: call-lint
