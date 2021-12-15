@@ -1,4 +1,6 @@
 import { test, expect, Page } from '@playwright/test';
+import * as path from 'path';
+import { extractHTMLBlocksFromReadme } from '../../../scripts/visual-tests/utils.ts';
 
 async function loadComponent({
 	page,
@@ -34,17 +36,8 @@ async function loadTemplate({
 
 const componentName = 'badge';
 test('should have all connotations', async ({ page }: { page: Page }) => {
-	const connotations = [
-		'primary',
-		'cta',
-		'success',
-		'alert',
-		'warning',
-		'info',
-		'announcement',
-	];
-
-	const template = connotations.reduce((htmlString, connotationValue) => `${htmlString}<div style="margin: 5px"><vwc-badge text="Badge" connotation="${connotationValue}"></vwc-badge></div>`, '');
+	const template = extractHTMLBlocksFromReadme(path.join(__dirname, 'README.md'))
+		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
 
 	await loadComponent({
 		page,
@@ -56,6 +49,8 @@ test('should have all connotations', async ({ page }: { page: Page }) => {
 	});
 
 	const testWrapper = await page.$('#wrapper');
+
+	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot())
 		.toMatchSnapshot(
