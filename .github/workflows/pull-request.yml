@@ -37,7 +37,7 @@ jobs:
     with:
       browser_name: ChromeHeadless
       os: ubuntu-latest
-      coverage_report: true
+      report_coverage: true
 
   test-safari:
     needs: build
@@ -46,7 +46,7 @@ jobs:
     with:
       browser_name: SafariNative
       os: macos-latest
-      coverage_report: false
+      report_coverage: false
 
   test-firefox:
     needs: build
@@ -55,7 +55,7 @@ jobs:
     with:
       browser_name: FirefoxHeadless
       os: ubuntu-latest
-      coverage_report: false
+      report_coverage: false
 
   visual-regression:
     needs: build
