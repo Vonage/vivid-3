@@ -16,23 +16,11 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ github.token }}
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run build
+  call-lint:
+    uses: vonage/vivid-3/.github/workflows/_lint.yml@main
 
   call-test-chrome:
-    needs: build
-    if: github.event.pull_request.draft == false
+    needs: call-lint
     uses: vonage/vivid-3/.github/workflows/_unit-test.yml@main
     with:
       browser_name: chrome
@@ -40,8 +28,7 @@ jobs:
       report_coverage: true
 
   call-test-safari:
-    needs: build
-    if: github.event.pull_request.draft == false
+    needs: call-lint
     uses: vonage/vivid-3/.github/workflows/_unit-test.yml@main
     with:
       browser_name: safari
@@ -49,19 +36,13 @@ jobs:
       report_coverage: false
 
   call-test-firefox:
-    needs: build
-    if: github.event.pull_request.draft == false
+    needs: call-lint
     uses: vonage/vivid-3/.github/workflows/_unit-test.yml@main
     with:
       browser_name: firefox
       os: ubuntu-latest
       report_coverage: false
 
-  visual-regression:
-    needs: build
-    runs-on: ubuntu-latest
-    container: drizzt99/vonage:1.0.0
-    env:
-      GITHUB_TOKEN: ${{ github.token }}
-    steps:
-      - run: ./scripts/visual-tests/run.tests.sh
+  call-visual-regression:
+    needs: call-lint
+    uses: vonage/vivid-3/.github/workflows/_visual-regression.yml@main

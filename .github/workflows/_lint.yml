@@ -1,9 +1,9 @@
-name: 🏗 Lint & Build
+name: ⑇ Lint
 
 on: workflow_call
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -11,6 +11,5 @@ jobs:
         with:
           node-version: '16'
           cache: 'npm'
-      - run: npm ci
+      - run: npm ci --only=dev
       - run: npm run lint
-      - run: npm run build
