@@ -1,5 +1,5 @@
 {
-  "name": "@vonage/vivid",
+  "name": "vivid",
   "version": "3.0.0",
   "description": "Vonage's web UI 🎨 toolbelt",
   "main": "index.js",
