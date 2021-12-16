@@ -17,7 +17,7 @@ on:
 
 env:
   no_status: No Status
-  in_progress: In Progress 🚧"
+  in_progress: In Progress 🚧
   needs_review: Needs Review 🔎
 
 concurrency:
