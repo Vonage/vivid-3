@@ -16,7 +16,6 @@ env:
   no_status: No Status
   in_progress: In Progress 🚧
   needs_review: Needs Review 🔎
-  gh_token: ${{ secrets.VNG_VVD_PAT }}
 
 concurrency:
   group: ci-project-automation-${{ github.ref }}-1
@@ -30,6 +29,7 @@ jobs:
       - name: Move issue to ${{ env.no_status }}
         uses: leonsteinhaeuser/project-beta-automations@v1.0.2
         with:
+          gh_token: ${{ secrets.VNG_VVD_PAT }}
           organization: vonage
           project_id: 3
           resource_node_id: ${{ github.event.issue.node_id }}
@@ -42,6 +42,7 @@ jobs:
       - name: Move PR to ${{ env.in_progress }}
         uses: leonsteinhaeuser/project-beta-automations@v1.0.2
         with:
+          gh_token: ${{ secrets.VNG_VVD_PAT }}
           organization: vonage
           project_id: 3
           resource_node_id: ${{ github.event.pull_request.node_id }}
@@ -54,6 +55,7 @@ jobs:
       - name: Move PR to ${{ env.needs_review }}
         uses: leonsteinhaeuser/project-beta-automations@v1.0.2
         with:
+          gh_token: ${{ secrets.VNG_VVD_PAT }}
           organization: vonage
           project_id: 3
           resource_node_id: ${{ github.event.pull_request.node_id }}
