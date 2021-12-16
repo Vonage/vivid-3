@@ -4,16 +4,13 @@ on:
   issues:
     types:
       - opened
-      - reopened
-      # - closed
+
   pull_request:
     types:
       - opened
-      - reopened
       - ready_for_review
       - converted_to_draft
       - review_requested
-      # - closed
 
 env:
   no_status: No Status
@@ -25,9 +22,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  issue_opened_and_reopened:
+  issue_opened:
     runs-on: ubuntu-latest
-    if: github.event_name == 'issues' && github.event.action == 'opened' || github.event.action == 'reopened'
+    if: github.event_name == 'issues' && github.event.action == 'opened'
     steps:
       - name: Move issue to ${{ env.no_status }}
         uses: leonsteinhaeuser/project-beta-automations@v1.0.2
@@ -38,9 +35,9 @@ jobs:
           resource_node_id: ${{ github.event.issue.node_id }}
           status_value: ${{ env.no_status }}
 
-  pr_opened_reopened_review_requested:
+  pr_opened_review_requested:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' && github.event.pull_request.draft == true && github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'converted_to_draft'
+    if: github.event_name == 'pull_request' && github.event.pull_request.draft == true && github.event.action == 'opened' || github.event.action == 'converted_to_draft'
     steps:
       - name: Move PR to ${{ env.in_progress }}
         uses: leonsteinhaeuser/project-beta-automations@v1.0.2
