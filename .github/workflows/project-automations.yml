@@ -15,6 +15,9 @@ on:
       - review_requested
       # - closed
 
+env:
+  no_status: No Status
+
 concurrency:
   group: ci-project-automation-${{ github.ref }}-1
   cancel-in-progress: true
@@ -24,14 +27,14 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'issues' && github.event.action == 'opened' || github.event.action == 'reopened'
     steps:
-      - name: 'Move issue to "No Status"'
+      - name: Move issue to ${{ env.no_status }}
         uses: leonsteinhaeuser/project-beta-automations@v1.0.2
         with:
           gh_token: ${{ secrets.VNG_VVD_PAT }}
           organization: vonage
           project_id: 3
           resource_node_id: ${{ github.event.issue.node_id }}
-          status_value: "No Status"
+          status_value: ${{ env.no_status }}
 
   # should be taken care of by project workflow
   # issue_closed:
