@@ -61,10 +61,6 @@
     // functional
     "no-shadow": "error",
     "compat/compat": "error",
-    "import/extensions": [
-      "error",
-      "ignorePackages"
-    ],
     "import/prefer-default-export": "off",
     "class-methods-use-this": "off",
     "no-new": "warn",

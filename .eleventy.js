@@ -12,6 +12,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({
     "dist/core/theme/*.css": "assets/styles/themes",
     "dist/components": "assets/modules/components",
+    "assets/images": "assets/images",
     "11ty/assets": "assets"
   });
 
