@@ -49,6 +49,7 @@
     "@material/mwc-base": "^0.25.3",
     "@microsoft/fast-element": "^1.6.2",
     "@microsoft/fast-foundation": "^2.27.2",
+    "@microsoft/fast-web-utilities": "^5.0.2",
     "lit": "^2.0.2",
     "ramda": "^0.27.1",
     "tslib": "^2.3.1"

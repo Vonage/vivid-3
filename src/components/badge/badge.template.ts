@@ -1,9 +1,14 @@
 import { html } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
+import { classNames } from '@microsoft/fast-web-utilities';
 import type { Badge } from './badge.base';
 
-const getConnotationClass = (x: Badge) => (x.connotation ? `connotation-${x.connotation}` : '');
+const getClasses = ({ connotation, layout }: Badge) => classNames(
+	'control',
+	[`connotation-${connotation}`, Boolean(connotation)],
+	[`layout-${layout}`, Boolean(layout)],
+);
 
 /**
  * The template for the {@link @microsoft/fast-foundation#Badge} component.
@@ -14,7 +19,7 @@ export const badgeTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Badge> = () => html`
     <template>
-        <span class="control ${getConnotationClass}">
+        <span class="${getClasses}">
 			${(x) => x.text}
 		</span>
     </template>
