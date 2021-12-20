@@ -8,25 +8,18 @@
     "browser": true,
     "node": true
   },
-  "plugins": [
-    "wc",
-    "lit",
-    "lit-a11y"
-  ],
+  "plugins": ["wc"],
   "extends": [
     "airbnb-base",
     "airbnb-typescript/base",
     "plugin:compat/recommended",
     "plugin:wc/recommended",
-    "plugin:wc/best-practice",
-    "plugin:lit/recommended",
-    "plugin:lit-a11y/recommended"
+    "plugin:wc/best-practice"
   ],
   "settings": {
     "wc": {
       "elementBaseClasses": [
         "BaseElement",
-        "LitElement",
         "FormElement"
       ]
     }
