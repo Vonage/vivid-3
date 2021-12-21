@@ -3,6 +3,10 @@ import { attr } from '@microsoft/fast-element';
 
 import type { Connotation, Shape, Layout } from '../../core/foundation/enums.js';
 
+/**
+ * Types of badge connotation.
+ * @public
+ */
 type BadgeConnotation = Extract<Connotation,
 | Connotation.Primary
 | Connotation.CTA
@@ -11,14 +15,26 @@ type BadgeConnotation = Extract<Connotation,
 | Connotation.Warning
 | Connotation.Info>;
 
+/**
+ * Types of badge layout.
+ * @public
+ */
 type BadgeLayout = Extract<Layout,
 Layout.Filled | Layout.Outlined | Layout.Soft>;
 
+/**
+ * Types of badge shape.
+ * @public
+ */
 type BadgeShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
+/**
+ * Base class for badge
+ * @public
+ */
 export class Badge extends FoundationElement {
 	/**
-     * Indicates the element's connotation color representation.
+     * The connotation the badge should have.
      *
      * @public
      * @remarks
@@ -26,14 +42,49 @@ export class Badge extends FoundationElement {
      */
 	@attr connotation?: BadgeConnotation;
 
+	/**
+     * The shape the badge should have.
+     *
+     * @public
+     * @remarks
+     * HTML Attribute: shape
+     */
 	@attr shape?: BadgeShape;
 
+	/**
+     * The layout the badge should have.
+     *
+     * @public
+     * @remarks
+     * HTML Attribute: layout
+     */
 	@attr layout?: BadgeLayout;
 
+	/**
+     * The size the badge should have.
+     *
+     * @public
+     * @remarks
+     * HTML Attribute: size
+     */
 	@attr size?: 'small' | 'medium' | 'large';
 
+	/**
+     * A decorative icon the badge should have.
+     *
+     * @public
+     * @remarks
+     * HTML Attribute: icon
+     */
 	@attr icon?: string;
 
+	/**
+     * Indicates the icon affix alignment.
+     *
+     * @public
+     * @remarks
+     * HTML Attribute: icon-trailing
+     */
 	@attr({
 		mode: 'boolean',
 		attribute: 'icon-trailing',
@@ -45,8 +96,5 @@ export class Badge extends FoundationElement {
      * @remarks
      * HTML Attribute: text
      */
-	@attr({
-		attribute: 'text',
-	})
-		text = '';
+	@attr text = '';
 }

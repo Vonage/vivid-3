@@ -1,5 +1,9 @@
 import { css } from '@microsoft/fast-element';
 
+/**
+ * Styles for badge
+ * @public
+ */
 export const styles = css`
     .control{
         font:600 ultra-condensed 12px / 16px SpeziaWebVariable;
