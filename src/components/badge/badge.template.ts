@@ -1,3 +1,4 @@
+import '../icon/icon';
 import { html } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
@@ -5,12 +6,18 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import type { Badge } from './badge.base';
 import { Icon } from '../icon/icon.base';
 
-const getClasses = ({ connotation, layout }: Badge) => classNames(
+const getClasses = ({ connotation, layout, iconTrailing }: Badge) => classNames(
 	'control',
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[`layout-${layout}`, Boolean(layout)],
+	['icon-trailing', iconTrailing],
 );
 
+const iconTemplate = (context: ElementDefinitionContext) => {
+	const iconTag = context.tagFor(Icon);
+
+	return html`<${iconTag}></${iconTag}>`;
+};
 /**
  * The template for the {@link @microsoft/fast-foundation#Badge} component.
  * @public
@@ -18,12 +25,8 @@ const getClasses = ({ connotation, layout }: Badge) => classNames(
 export const badgeTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Badge> = (context: ElementDefinitionContext) => {
-	const iconTag = context.tagFor(Icon);
-
-	return html`
+) => ViewTemplate<Badge> = (context: ElementDefinitionContext) => html`
         <span class="${getClasses}">
-			<${iconTag}></${iconTag}>
+			${(x) => (x.icon ? iconTemplate(context) : '')}
 			${(x) => x.text}
 		</span>`;
-};

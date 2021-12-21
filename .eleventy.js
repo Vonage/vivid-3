@@ -16,6 +16,9 @@ module.exports = function (eleventyConfig) {
     "11ty/assets": "assets"
   });
 
+  eleventyConfig.addWatchTarget("dist");
+  eleventyConfig.addWatchTarget("assets");
+  eleventyConfig.addWatchTarget("11ty/assets");
 
   return {
     dir: {

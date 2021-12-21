@@ -36,8 +36,8 @@ export class Badge extends FoundationElement {
 
 	@attr({
 		mode: 'boolean',
-		attribute: 'trailingicon',
-	}) trailingIcon = false;
+		attribute: 'icon-trailing',
+	}) iconTrailing = false;
 
 	/**
      * Indicates the badge's text.

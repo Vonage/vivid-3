@@ -86,7 +86,7 @@ Icon position options:
 
 ```html preview
 <vwc-badge text="label" icon="check-line"></vwc-badge>
-<vwc-badge text="label" icontrailing="check-line"></vwc-badge>
+<vwc-badge text="label" icon="check-line" icon-trailing></vwc-badge>
 ```
 
 ## Badge text

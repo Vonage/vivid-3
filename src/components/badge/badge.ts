@@ -5,7 +5,7 @@
 // import { BadgeBase } from './badge-base.js';
 
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import styles from './badge.scss';
+import { styles } from './badge.styles';
 
 // /**
 //  * Represents a badge custom element.
