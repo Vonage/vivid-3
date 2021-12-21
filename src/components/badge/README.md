@@ -11,6 +11,13 @@ Badges don’t work for navigation because they can't include a hyperlink.<br/>
 </script>
 ```
 
+## Badge text
+adding the `text` property
+
+```html preview
+<vwc-badge text="text label"></vwc-badge>
+```
+
 ## Badge layout
 There are 3 type `filled`, `soft`, `outlined`
 
@@ -64,9 +71,9 @@ There are 3 Badge sizes:
 - enlarged
 
 ```html preview
-<vwc-badge text="label" dense></vwc-badge>
+<vwc-badge text="label" size="small"></vwc-badge>
 <vwc-badge text="label"></vwc-badge>
-<vwc-badge text="label" enlarged></vwc-badge>
+<vwc-badge text="label" size="large"></vwc-badge>
 ```
 
 ## Badge Shapes
@@ -87,11 +94,4 @@ Icon position options:
 ```html preview
 <vwc-badge text="label" icon="check-line"></vwc-badge>
 <vwc-badge text="label" icon="check-line" icon-trailing></vwc-badge>
-```
-
-## Badge text
-adding the `text` property
-
-```html preview
-<vwc-badge text="text label"></vwc-badge>
 ```

@@ -6,11 +6,15 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import type { Badge } from './badge.base';
 import { Icon } from '../icon/icon.base';
 
-const getClasses = ({ connotation, layout, iconTrailing }: Badge) => classNames(
+const getClasses = ({
+	connotation, layout, shape, size, iconTrailing,
+}: Badge) => classNames(
 	'control',
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[`layout-${layout}`, Boolean(layout)],
+	[`shape-${shape}`, Boolean(shape)],
 	['icon-trailing', iconTrailing],
+	[`size-${size}`, Boolean(size)],
 );
 
 const iconTemplate = (context: ElementDefinitionContext) => {
