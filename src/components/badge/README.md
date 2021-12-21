@@ -12,6 +12,7 @@ Badges don’t work for navigation because they can't include a hyperlink.<br/>
 ```
 
 ## Badge text
+
 adding the `text` property
 
 ```html preview
@@ -19,6 +20,7 @@ adding the `text` property
 ```
 
 ## Badge layout
+
 There are 3 type `filled`, `soft`, `outlined`
 
 ```html preview
@@ -28,6 +30,7 @@ There are 3 type `filled`, `soft`, `outlined`
 ```
 
 ## connotation
+
 Sets the badge color with its connoted perception.
 It accepts a subset of values from a globally pre-defined set.
 
@@ -35,6 +38,7 @@ It accepts a subset of values from a globally pre-defined set.
 - Default `primary`
 
 ### Filled badge with connotation
+
 ```html preview
 <vwc-badge text="label" connotation="primary"></vwc-badge>
 <vwc-badge text="label" connotation="cta"></vwc-badge>
@@ -45,6 +49,7 @@ It accepts a subset of values from a globally pre-defined set.
 ```
 
 ### Soft badge with connotation
+
 ```html preview
 <vwc-badge text="label" layout="soft" connotation="primary"></vwc-badge>
 <vwc-badge text="label" layout="soft" connotation="cta"></vwc-badge>
@@ -55,6 +60,7 @@ It accepts a subset of values from a globally pre-defined set.
 ```
 
 ### outline badge with connotation
+
 ```html preview
 <vwc-badge text="label" layout="outlined" connotation="primary"></vwc-badge>
 <vwc-badge text="label" layout="outlined" connotation="cta"></vwc-badge>
@@ -65,7 +71,9 @@ It accepts a subset of values from a globally pre-defined set.
 ```
 
 ## Badge Sizes
+
 There are 3 Badge sizes:
+
 - dense
 - regular (default)
 - enlarged
@@ -77,7 +85,9 @@ There are 3 Badge sizes:
 ```
 
 ## Badge Shapes
+
 There are 2 shapes for Badge:
+
 - rounded
 - pill
 
@@ -87,7 +97,9 @@ There are 2 shapes for Badge:
 ```
 
 ## Badge With Icon
+
 Icon position options:
+
 - prefixed icon: `icon="icon-name"`
 - suffixed icon: `icontrailing="icon-name"`
 
