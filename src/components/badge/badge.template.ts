@@ -10,17 +10,17 @@ const getClasses = ({
 	connotation, layout, shape, size, iconTrailing,
 }: Badge) => classNames(
 	'control',
+	['icon-trailing', iconTrailing],
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[`layout-${layout}`, Boolean(layout)],
 	[`shape-${shape}`, Boolean(shape)],
-	['icon-trailing', iconTrailing],
 	[`size-${size}`, Boolean(size)],
 );
 
 const iconTemplate = (context: ElementDefinitionContext) => {
 	const iconTag = context.tagFor(Icon);
 
-	return html`<${iconTag}></${iconTag}>`;
+	return html`<span class="affix"><${iconTag}></${iconTag}></span>`;
 };
 /**
  * The template for the {@link @microsoft/fast-foundation#Badge} component.

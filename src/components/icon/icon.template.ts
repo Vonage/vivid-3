@@ -7,4 +7,6 @@ import type { Icon } from './icon.base';
 export const iconTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Icon> = () => html`✏️`;
+) => ViewTemplate<Icon> = () => html`
+		<figure class="control">✏️</figure>
+		`;

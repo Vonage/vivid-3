@@ -1,20 +1,16 @@
 import { css } from '@microsoft/fast-element';
-import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
-import { Icon } from '../icon/icon.base';
 
-export const styles = (context: ElementDefinitionContext) => {
-	const iconTag = context.tagFor(Icon);
-
-	return css`
+export const styles = css`
     .control{
         font:600 ultra-condensed 12px / 16px SpeziaWebVariable;
         letter-spacing:0px;
         text-decoration:none;
         text-transform:none;
         display:inline-flex;
+        align-items: center;
         column-gap: 8px;
+        vertical-align: middle;
         box-sizing:border-box;
-        align-items:center;
         border:1px solid var(--layout-color-outline);
         background-color:var(--layout-color-fill);
         color:var(--layout-color-text);
@@ -22,19 +18,16 @@ export const styles = (context: ElementDefinitionContext) => {
 
     .control:not(.size-small):not(.size-large) {
         block-size: 24px;
-        line-height: 24px;
         padding-inline: 10px;
     }
 
     .control.size-small {
         block-size: 20px;
-        line-height: 20px;
         padding-inline: 8px;
     }
 
     .control.size-large {
         block-size: 28px;
-        line-height: 28px;
         padding-inline: 12px;
     }
 
@@ -82,12 +75,7 @@ export const styles = (context: ElementDefinitionContext) => {
 
     /* Icon */
 
-    ${iconTag}{
-        block-size:12px;
-    }
-
-    .control.icon-trailing ${iconTag} {
+    .control.icon-trailing .affix {
         order: 1;
     }
-    `;
-};
+`;
