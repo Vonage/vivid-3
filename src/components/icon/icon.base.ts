@@ -1,29 +1,59 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
 import { identity, memoizeWith } from 'ramda';
+import type { Connotation, IconSize } from '../../core/foundation/enums';
 
 const BASE_URL = 'https://icon.resources.vonage.com'; // namespaced as 3f7739a0-a898-4f69-a82b-ad9d743170b6 on icons.resources.vonage.com
 const ICON_SET_VERSION = '4.0.16';
-// const PLACEHOLDER_ICON = '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><style>@keyframes rotation { from { transform: rotate(0deg) } to { transform: rotate(360deg) } } g#circle { transform-origin: center center; animation: 1s rotation 0s linear infinite; } path { fill: currentColor }</style> <g id="circle"> <path d="M7.5 2C3.91014 2 1 4.91014 1 8.5C1 12.0899 3.91014 15 7.5 15C11.0899 15 14 12.0899 14 8.5C14 8.22386 14.2239 8 14.5 8C14.7761 8 15 8.22386 15 8.5C15 12.6421 11.6421 16 7.5 16C3.35786 16 0 12.6421 0 8.5C0 4.35786 3.35786 1 7.5 1C10.3622 1 12.7088 2.78366 13.9478 5.27753C14.0706 5.52484 13.9698 5.82492 13.7225 5.94778C13.4752 6.07065 13.1751 5.96977 13.0522 5.72247C11.9472 3.49834 9.90985 2 7.5 2Z"/><path d="M13.5 0C13.7761 0 14 0.223858 14 0.5V5.5C14 5.77614 13.7761 6 13.5 6H8.5C8.22386 6 8 5.77614 8 5.5C8 5.22386 8.22386 5 8.5 5H13V0.5C13 0.223858 13.2239 0 13.5 0Z"/></g></svg>';
-const PLACEHOLDER_ICON = '<svg xmlns="http://www.w3.org/2000/svg" width="80%" height="80%" viewBox="0 0 38 38" stroke="currentColor"><g fill="none" fill-rule="evenodd"><g transform="translate(1 1)" stroke-width="2"><circle stroke-opacity=".5" cx="18" cy="18" r="18"/><path d="M36 18c0-9.94-8.06-18-18-18"><animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="1s" repeatCount="indefinite"/></path></g></g></svg>';
+const PLACEHOLDER_ICON = '<svg width="80%" height="80%" viewBox="0 0 64 64"><g><g stroke-width="6" stroke-linecap="round" fill="none"><path stroke="currentColor" d="M4,32 c0,15,12,28,28,28c8,0,16-4,21-9"></path><path d="M60,32 C60,16,47.464,4,32,4S4,16,4,32"></path><animateTransform values="0,32,32;360,32,32" attributeName="transform" type="rotate" repeatCount="indefinite" dur="750ms"></animateTransform></g></g></svg>';
+// Start displaying placeholder if waiting more than this period of time
+const PLACEHOLDER_DELAY = 500;
+// Stop displaying placeholder if exceeding this period of time
+// (will also stop one an icon is loaded)
+const PLACEHOLDER_TIMEOUT = 2000;
 
 // const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 const baseUrlTemplate = (resource: string, version: string) => [BASE_URL, `v${version}`, resource].join('/');
 
+const assertIsValidResponse = ({ ok, headers }: Response) => {
+	if (!ok || headers.get('content-type') !== 'image/svg+xml') {
+		throw new Error('Something went wrong');
+	}
+};
+
+const extractSvg = (response: Response) => {
+	assertIsValidResponse(response);
+	return response.text();
+};
+
+const loadSvg = (iconId: string) => fetch(baseUrlTemplate([iconId, 'svg'].join('.'), ICON_SET_VERSION))
+	.then(extractSvg);
+
 const resolveIcon = memoizeWith(identity as () => string, (iconId = '') => (iconId.trim()
-	? fetch(baseUrlTemplate([iconId, 'svg'].join('.'), ICON_SET_VERSION))
-		.then(
-			(res) => (res.headers.get('content-type') === 'image/svg+xml' ? res.text() : ''),
-		)
+	? loadSvg(iconId)
 	: Promise.resolve(''))) as (iconId?: string) => Promise<string>;
 
+type IconConnotation = Extract<Connotation,
+| Connotation.Primary
+| Connotation.CTA
+| Connotation.Announcement
+| Connotation.Success
+| Connotation.Alert
+| Connotation.Info>;
+
 export class Icon extends FoundationElement {
-	@observable svgReady: boolean = false;
+	@attr connotation?: IconConnotation;
+
+	@attr size?: IconSize;
+
+	@observable state: 'idle' | 'loading' | 'loaded' | 'fail' = 'idle';
 
 	@observable svg: any = null;
 
+	@observable placeholder: any = null;
+
 	/**
-     * Indicates the icon's type.
+     * Indicates which icon to resolve.
      *
      * @public
      * @remarks
@@ -31,17 +61,25 @@ export class Icon extends FoundationElement {
      */
 	@attr type?: string;
 
-	async typeChanged(oldValue: string, newValue: string) {
-		if (oldValue === newValue) { return; }
-
+	async typeChanged() {
+		this.state = 'loading';
 		this.svg = null;
-		this.svgReady = false;
+		this.placeholder = null;
 
-		this.svg = await resolveIcon(this.type);
-		this.svgReady = true;
-	}
+		let timeout = setTimeout(() => {
+			this.placeholder = PLACEHOLDER_ICON;
+			timeout = setTimeout(() => {
+				this.placeholder = null;
+			}, PLACEHOLDER_TIMEOUT);
+		}, PLACEHOLDER_DELAY);
 
-	get placeholderSvg() {
-		return PLACEHOLDER_ICON;
+		await resolveIcon(this.type)
+			.then((svg) => {
+				this.svg = svg;
+				this.state = 'loaded';
+			})
+			.catch(() => {
+				this.state = 'fail';
+			}).finally(() => { clearTimeout(timeout); });
 	}
 }

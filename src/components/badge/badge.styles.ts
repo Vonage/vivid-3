@@ -20,6 +20,8 @@ export const styles = css`
         color:var(--layout-color-text);
     }
 
+    /* Size */
+
     .control:not(.size-small):not(.size-large) {
         block-size: 24px;
         padding-inline: 10px;

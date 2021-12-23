@@ -20,7 +20,7 @@ const getClasses = ({
 const iconTemplate = (context: ElementDefinitionContext) => {
 	const iconTag = context.tagFor(Icon);
 
-	return html`<span class="affix"><${iconTag}></${iconTag}></span>`;
+	return html`<span class="affix"><${iconTag} :type="${(x) => x.icon}"></${iconTag}></span>`;
 };
 /**
  * The template for the {@link @microsoft/fast-foundation#Badge} component.
