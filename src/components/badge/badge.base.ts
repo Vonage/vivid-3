@@ -1,7 +1,9 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 
-import type { Connotation, Layout, Shape } from '../../core/foundation/enums.js';
+import type {
+	Connotation, Layout, Shape, Size,
+} from '../../core/foundation/enums.js';
 
 /**
  * Types of badge connotation.
@@ -67,7 +69,7 @@ export class Badge extends FoundationElement {
      * @remarks
      * HTML Attribute: size
      */
-	@attr size?: 'small' | 'medium' | 'large';
+	@attr size?: Size;
 
 	/**
      * A decorative icon the badge should have.
