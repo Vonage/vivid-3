@@ -14,7 +14,8 @@
     "airbnb-typescript/base",
     "plugin:compat/recommended",
     "plugin:wc/recommended",
-    "plugin:wc/best-practice"
+    "plugin:wc/best-practice",
+    "@microsoft/eslint-config-fast-dna"
   ],
   "settings": {
     "wc": {

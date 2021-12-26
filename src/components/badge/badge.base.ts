@@ -1,7 +1,7 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 
-import type { Connotation, Shape, Layout } from '../../core/foundation/enums.js';
+import type { Connotation, Layout, Shape } from '../../core/foundation/enums.js';
 
 /**
  * Types of badge connotation.

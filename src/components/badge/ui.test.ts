@@ -1,4 +1,4 @@
-import { test, expect, Page } from '@playwright/test';
+import { expect, Page, test } from '@playwright/test';
 import * as path from 'path';
 import { extractHTMLBlocksFromReadme } from '../../../scripts/visual-tests/utils';
 

@@ -29,10 +29,10 @@ import { badgeTemplate as template } from './badge.template';
 
 import { designSystem } from '../../core/design-system';
 
-export const vividBadge = Badge.compose<FoundationElementDefinition>({
+export const VIVIDBadge = Badge.compose<FoundationElementDefinition>({
 	baseName: 'badge',
 	template: template as any,
 	styles,
 });
 
-designSystem.register(vividBadge());
+designSystem.register(VIVIDBadge());
