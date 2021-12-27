@@ -1,38 +1,113 @@
-import { fixture, fixtureCleanup } from '@open-wc/testing';
+import { elementUpdated, fixture, fixtureCleanup } from '@open-wc/testing';
 import { Badge } from './badge.base';
+import { Icon } from '../icon/icon.base';
 import './badge.js';
 // import type { vividIcon } from '../icon/icon';
 
-// const COMPONENT_TAG = 'vwc-badge';
-
+const COMPONENT_TAG = 'vwc-badge';
+const ICON_SELECTOR = 'vwc-icon';
 // const correlatePropsWithAttrs = () => {
 
 // };
 describe('vwc-badge', () => {
+	let element: Badge;
+
+	beforeEach(async () => {
+		element = await fixture<Badge>(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`);
+	});
+
+	// afterEach(() => fixtureCleanup());
+
 	describe('basic', () => {
-		let element: Badge;
-
-		beforeEach(async () => {
-			element = await fixture<Badge>('<vwc-badge></vwc-badge>');
-		});
-
-		afterEach(() => {
-			fixtureCleanup();
-		});
-
-		it('initializes as an vwc-badge', () => {
+		it('initializes as a vwc-badge', async () => {
 			expect(element).toBeInstanceOf(Badge);
 			expect(element.text).toEqual('');
 			expect(element.icon).toBeUndefined();
 			expect(element.iconTrailing).toBeFalsy();
-			// expect(element.unelevated).toBeFalse();
-			// expect(element.outlined).toBeFalse();
-			// expect(element.dense).toBeFalse();
-			// expect(element.disabled).toBeFalse();
-			// expect(element.trailingIcon).toBeFalse();
-			// expect(element.fullwidth).toBeFalse();
-			// expect(element.icon).toEqual('');
-			// expect(element.label).toEqual('');
+			expect(element.connotation).toBeUndefined();
+			expect(element.shape).toBeUndefined();
+			expect(element.layout).toBeUndefined();
+			expect(element.size).toBeUndefined();
+		});
+	});
+
+	describe('icon', () => {
+		it('adds an icon to the badge', async () => {
+			element.icon = 'home';
+			await elementUpdated(element);
+
+			const icon = element.shadowRoot.querySelector(ICON_SELECTOR);
+			expect(icon).toBeInstanceOf(Icon);
+			expect(icon.type).toEqual('home');
+		});
+
+		it(
+			'setting `iconTrailing` set the order of element',
+			async () => {
+				element.icon = 'home';
+				element.iconTrailing = true;
+				await elementUpdated(element);
+
+				const trailingIcon = element.shadowRoot.querySelector(
+					`.icon-trailing ${ICON_SELECTOR}`,
+				);
+				expect(trailingIcon).toBeInstanceOf(Icon);
+			},
+		);
+	});
+
+	describe('text', () => {
+		it('set text property to node', async () => {
+			const text = 'lorem';
+			element.text = text;
+			await elementUpdated(element);
+
+			const control = element.shadowRoot.querySelector('.control');
+			expect(control.textContent.trim()).toEqual(text);
+		});
+	});
+
+	describe('connotation', () => {
+		it('sets correct internal connotation style', async () => {
+			const connotation = 'info';
+			(element as any).connotation = connotation;
+			await elementUpdated(element);
+
+			const control = element.shadowRoot.querySelector(`.control.connotation-${connotation}`);
+			expect(control).toBeInstanceOf(Element);
+		});
+	});
+
+	describe('shape', () => {
+		it('sets correct internal shape style', async () => {
+			const shape = 'pill';
+			(element as any).shape = shape;
+			await elementUpdated(element);
+
+			const control = element.shadowRoot.querySelector(`.control.shape-${shape}`);
+			expect(control).toBeInstanceOf(Element);
+		});
+	});
+
+	describe('layout', () => {
+		it('sets correct internal layout style', async () => {
+			const layout = 'soft';
+			(element as any).layout = layout;
+			await elementUpdated(element);
+
+			const control = element.shadowRoot.querySelector(`.control.layout-${layout}`);
+			expect(control).toBeInstanceOf(Element);
+		});
+	});
+
+	describe('size', () => {
+		it('sets correct internal size style', async () => {
+			const size = 'small';
+			(element as any).size = size;
+			await elementUpdated(element);
+
+			const control = element.shadowRoot.querySelector(`.control.size-${size}`);
+			expect(control).toBeInstanceOf(Element);
 		});
 	});
 });
