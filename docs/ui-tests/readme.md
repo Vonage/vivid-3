@@ -1,10 +1,16 @@
 # Visual Tests Documentation
 
 Vivid's visual tests consist of two parts:
-1. Automated snippets extraction from our documentation (visual regression) - TBD
+1. Automated snippets extraction from our documentation (visual regression)
 2. Functional tests inside each component
 
 Vivid's visual tests run on chrome, firefox and webkit (Safari).
+
+## Tests consistency
+
+In order to maintain the tests consistency and reduce flakiness, the tests are dockerized. Running the tests inside a container make sure tests don't fail for small Operating System differences like fonts and pixel interpretations. 
+
+Our docker image runs the tests on the 3 browser on the Linux OS.
 
 ## Running the tests
 
@@ -16,13 +22,15 @@ Running the tests can be done locally by running:
 
 This will start the tests locally with the local playwright and browsers versions.
 
-**Note that this might result in flaky tests because of versions mismatch**
+**Note:** that this might result in flaky tests because of versions mismatch
 
-**Note that this will result in failed tests in the first run because the snapshots for your setup do not exist** 
+**Note:** that this will result in failed tests in the first run because the snapshots for your setup do not exist
+
+**Note:** do not push new snapshots. There are only 3 snapshots used for CI purposes - and these are the checked out linux snapshots in each component. 
 
 ### Docker
 
-In order to avoid flakiness, we've setup a docker image to run the tests. This requires docker installed on your machine.
+In order to avoid flakiness, we've setup a docker image to run the tests. This requires docker installed on your machine. [Click here to learn how to install docker](https://docs.docker.com/get-docker/).
 
 After you have docker installed, run:
 
