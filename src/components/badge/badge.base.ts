@@ -9,7 +9,7 @@ import type {
  * Types of badge connotation.
  * @public
  */
-type BadgeConnotation = Pick<Connotation,
+type BadgeConnotation = Extract<Connotation,
 | Connotation.Primary
 | Connotation.CTA
 | Connotation.Success
