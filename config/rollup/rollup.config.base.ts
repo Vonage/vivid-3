@@ -15,7 +15,7 @@ const BASE_CONFIG = {
       tsconfig: "./config/typescript/tsconfig.prod.json",
     }),
     litcss({
-      specifier: "lit",
+      specifier: "@microsoft/fast-element",
       include: ["/**/*.scss"],
       transform: (data, { filePath }) =>
         renderSync({ data, file: filePath }).css.toString(),

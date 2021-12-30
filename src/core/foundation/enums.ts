@@ -20,18 +20,6 @@ export enum Shape {
 	Circled = 'circled',
 }
 
-export enum Size {
-	xxx_Small = 'xxxs',
-	xx_Small = 'xxs',
-	x_Small = 'xs',
-	Small = 'sm',
-	Medium = 'md',
-	Large = 'lg',
-	x_Large = 'xl',
-	xx_Large = 'xxl',
-	xxx_Large = 'xxxl',
-}
-
 /* eslint-disable no-shadow */
 export enum Layout {
 	Text = 'text',
@@ -41,7 +29,7 @@ export enum Layout {
 	Ghost = 'ghost',
 }
 
-export enum IconSize {
+export enum Size {
 	Small = 'small',
 	Medium = 'medium',
 	Large = 'large',

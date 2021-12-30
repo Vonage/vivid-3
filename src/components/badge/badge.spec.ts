@@ -1,193 +1,113 @@
-import { Badge } from './badge.js';
-import type { VWCIcon } from '../icon/icon';
+import { elementUpdated, fixture, fixtureCleanup } from '@open-wc/testing';
+import { Badge } from './badge.base';
+import { Icon } from '../icon/icon.base';
+import './badge.js';
+// import type { vividIcon } from '../icon/icon';
 
 const COMPONENT_TAG = 'vwc-badge';
+const ICON_SELECTOR = 'vwc-icon';
+// const correlatePropsWithAttrs = () => {
 
-describe('badge', () => {
-	let contentWrapper: HTMLElement;
+// };
+describe('vwc-badge', () => {
+	let element: Badge;
 
-	afterEach(() => {
-		contentWrapper?.remove();
+	beforeEach(async () => {
+		element = await fixture<Badge>(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`);
 	});
 
-	it('vwc-badge is defined as a custom element', async () => {
-		expect(customElements.get(COMPONENT_TAG) instanceof Badge);
+	// afterEach(() => fixtureCleanup());
+
+	describe('basic', () => {
+		it('initializes as a vwc-badge', async () => {
+			expect(element).toBeInstanceOf(Badge);
+			expect(element.text).toEqual('');
+			expect(element.icon).toBeUndefined();
+			expect(element.iconTrailing).toBeFalsy();
+			expect(element.connotation).toBeUndefined();
+			expect(element.shape).toBeUndefined();
+			expect(element.layout).toBeUndefined();
+			expect(element.size).toBeUndefined();
+		});
 	});
 
-	async function addHtmlTemplateToDOM(badgeTemplate: string): Promise<Badge> {
-		contentWrapper = document.createElement('div');
-		contentWrapper.innerHTML = badgeTemplate;
-		document.body.appendChild(contentWrapper);
-		const actualElement = contentWrapper.querySelector(COMPONENT_TAG) as Badge;
-		await actualElement.updateComplete;
-		return actualElement;
-	}
+	describe('icon', () => {
+		it('adds an icon to the badge', async () => {
+			element.icon = 'home';
+			await elementUpdated(element);
+
+			const icon = element.shadowRoot.querySelector(ICON_SELECTOR);
+			expect(icon).toBeInstanceOf(Icon);
+			expect(icon.type).toEqual('home');
+		});
+
+		it(
+			'setting `iconTrailing` set the order of element',
+			async () => {
+				element.icon = 'home';
+				element.iconTrailing = true;
+				await elementUpdated(element);
+
+				const trailingIcon = element.shadowRoot.querySelector(
+					`.icon-trailing ${ICON_SELECTOR}`,
+				);
+				expect(trailingIcon).toBeInstanceOf(Icon);
+			},
+		);
+	});
 
 	describe('text', () => {
-		function getBadgeText(actualElement: Badge) {
-			const badgeTextWrapper = actualElement?.shadowRoot?.querySelector(
-				'.badge',
-			) as HTMLElement;
-			const text = badgeTextWrapper.innerText;
-			return text.replace(/\s/gm, '');
-		}
+		it('set text property to node', async () => {
+			const text = 'lorem';
+			element.text = text;
+			await elementUpdated(element);
 
-		it('should add the text using attribute', async () => {
-			const textString = 'badge';
-			const badgeTemplate = `<${COMPONENT_TAG} text="${textString}"></${COMPONENT_TAG}>`;
-			const actualElement = (await addHtmlTemplateToDOM(
-				badgeTemplate,
-			)) as Badge;
-			expect(getBadgeText(actualElement)).toEqual(textString);
+			const control = element.shadowRoot.querySelector('.control');
+			expect(control.textContent.trim()).toEqual(text);
 		});
 	});
 
-	describe('icons', () => {
-		function getLeadingIconElements(actualElement: Badge) {
-			const leadingIconElement = actualElement.shadowRoot?.querySelector('.icon--leading');
-			const iconElementLeading = leadingIconElement?.querySelector(
-				'vwc-icon',
-			) as VWCIcon;
-			return { leadingIconElement, vwcIconElementLeading: iconElementLeading };
-		}
+	describe('connotation', () => {
+		it('sets correct internal connotation style', async () => {
+			const connotation = 'info';
+			(element as any).connotation = connotation;
+			await elementUpdated(element);
 
-		function getTrailingIconElements(actualElement: Badge) {
-			const trailingIconElement = actualElement.shadowRoot?.querySelector('.icon--trailing');
-			const iconElementTrailing = trailingIconElement?.querySelector(
-				'vwc-icon',
-			) as VWCIcon;
-			return {
-				trailingIconElement,
-				vwcIconElementTrailing: iconElementTrailing,
-			};
-		}
-
-		async function expectIconToBeValid(
-			iconElement: Element | null | undefined,
-			vwcIconElement: VWCIcon | null | undefined,
-			iconName: string,
-		) {
-			await vwcIconElement?.updateComplete;
-			expect(iconElement).toBeTruthy();
-			expect(vwcIconElement).toBeTruthy();
-			expect(vwcIconElement?.getAttribute('type')).toEqual(iconName);
-		}
-
-		it('should have leading icon when set', async () => {
-			const iconName = 'thumbs-down-line';
-			const template = `<${COMPONENT_TAG} icon="${iconName}"></${COMPONENT_TAG}>`;
-			const actualElement = (await addHtmlTemplateToDOM(template)) as Badge;
-			const { leadingIconElement, vwcIconElementLeading } = getLeadingIconElements(actualElement);
-
-			await expectIconToBeValid(
-				leadingIconElement,
-				vwcIconElementLeading,
-				iconName,
-			);
+			const control = element.shadowRoot.querySelector(`.control.connotation-${connotation}`);
+			expect(control).toBeInstanceOf(Element);
 		});
+	});
 
-		it('should have trailing icon when set', async () => {
-			const iconName = 'thumbs-down-line';
-			const template = `<${COMPONENT_TAG} icontrailing="${iconName}"></${COMPONENT_TAG}>`;
-			const actualElement = (await addHtmlTemplateToDOM(template)) as Badge;
+	describe('shape', () => {
+		it('sets correct internal shape style', async () => {
+			const shape = 'pill';
+			(element as any).shape = shape;
+			await elementUpdated(element);
 
-			const {
-				trailingIconElement,
-				vwcIconElementTrailing,
-			} = getTrailingIconElements(actualElement);
-
-			await expectIconToBeValid(
-				trailingIconElement,
-				vwcIconElementTrailing,
-				iconName,
-			);
+			const control = element.shadowRoot.querySelector(`.control.shape-${shape}`);
+			expect(control).toBeInstanceOf(Element);
 		});
+	});
 
-		it('should set icons when set dynamically via properties', async () => {
-			const iconName = 'thumbs-down-line';
-			const template = `<${COMPONENT_TAG} connotation="cta" text="Badge"></${COMPONENT_TAG}>`;
-			const actualElement = (await addHtmlTemplateToDOM(template)) as Badge;
+	describe('layout', () => {
+		it('sets correct internal layout style', async () => {
+			const layout = 'soft';
+			(element as any).layout = layout;
+			await elementUpdated(element);
 
-			actualElement.icon = iconName;
-			actualElement.iconTrailing = iconName;
-			await actualElement.updateComplete;
-
-			const { leadingIconElement, vwcIconElementLeading } = getLeadingIconElements(actualElement);
-
-			const {
-				trailingIconElement,
-				vwcIconElementTrailing,
-			} = getTrailingIconElements(actualElement);
-
-			await expectIconToBeValid(
-				leadingIconElement,
-				vwcIconElementLeading,
-				iconName,
-			);
-			await expectIconToBeValid(
-				trailingIconElement,
-				vwcIconElementTrailing,
-				iconName,
-			);
+			const control = element.shadowRoot.querySelector(`.control.layout-${layout}`);
+			expect(control).toBeInstanceOf(Element);
 		});
+	});
 
-		it('should set icons when set dynamically via attributes', async () => {
-			const iconName = 'thumbs-down-line';
-			const template = `<${COMPONENT_TAG}></${COMPONENT_TAG}>`;
-			const actualElement = (await addHtmlTemplateToDOM(template)) as Badge;
-			actualElement.setAttribute('icon', iconName);
-			actualElement.setAttribute('icontrailing', iconName);
-			await actualElement.updateComplete;
+	describe('size', () => {
+		it('sets correct internal size style', async () => {
+			const size = 'small';
+			(element as any).size = size;
+			await elementUpdated(element);
 
-			const { leadingIconElement, vwcIconElementLeading } = getLeadingIconElements(actualElement);
-
-			const {
-				trailingIconElement,
-				vwcIconElementTrailing,
-			} = getTrailingIconElements(actualElement);
-
-			await expectIconToBeValid(
-				leadingIconElement,
-				vwcIconElementLeading,
-				iconName,
-			);
-			await expectIconToBeValid(
-				trailingIconElement,
-				vwcIconElementTrailing,
-				iconName,
-			);
-		});
-
-		it('should unset icons when properties removed dynamically', async () => {
-			const iconName = 'thumbs-down-line';
-			const template = `<${COMPONENT_TAG} icon="${iconName} icontrailing="${iconName}"></${COMPONENT_TAG}>`;
-			const actualElement = (await addHtmlTemplateToDOM(template)) as Badge;
-			actualElement.icon = '';
-			actualElement.iconTrailing = '';
-			await actualElement.updateComplete;
-
-			const { leadingIconElement } = getLeadingIconElements(actualElement);
-
-			const { trailingIconElement } = getTrailingIconElements(actualElement);
-
-			expect(leadingIconElement).toEqual(null);
-			expect(trailingIconElement).toEqual(null);
-		});
-
-		it('should unset icons when properties attributes dynamically', async () => {
-			const iconName = 'thumbs-down-line';
-			const template = `<${COMPONENT_TAG} icon="${iconName} icontrailing="${iconName}"></${COMPONENT_TAG}>`;
-			const actualElement = (await addHtmlTemplateToDOM(template)) as Badge;
-			actualElement.removeAttribute('icon');
-			actualElement.removeAttribute('icontrailing');
-			await actualElement.updateComplete;
-
-			const { leadingIconElement } = getLeadingIconElements(actualElement);
-
-			const { trailingIconElement } = getTrailingIconElements(actualElement);
-
-			expect(leadingIconElement).toEqual(null);
-			expect(trailingIconElement).toEqual(null);
+			const control = element.shadowRoot.querySelector(`.control.size-${size}`);
+			expect(control).toBeInstanceOf(Element);
 		});
 	});
 });

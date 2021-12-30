@@ -1,4 +1,4 @@
 declare module '*.scss' {
-	const classes: import('lit').CSSResult;
+	const classes: import('@microsoft/fast-element').ComposableStyles;
 	export default classes;
 }

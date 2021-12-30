@@ -1,6 +1,6 @@
 import rollupBaseConfig from "./rollup.config.base";
 import typescript from "@rollup/plugin-typescript";
-import { RollupOptions } from "rollup";
+import type { RollupOptions } from "rollup";
 const istanbul = require("../../scripts/rollup-plugin-istanbul.cjs");
 
 rollupBaseConfig.plugins.push(
@@ -18,6 +18,7 @@ rollupBaseConfig.plugins.splice(1, 1, typescript(specTypescriptConfig));
 const rollupConfig: RollupOptions = {
   cache: false,
   output: {
+    manualChunks: () => 'everything.js',
     format: "iife",
     name: "vivid",
     sourcemap: "inline",
