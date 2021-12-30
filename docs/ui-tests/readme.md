@@ -28,7 +28,7 @@ This will start the tests locally with the local playwright and browsers version
 
 **Note:** do not push new snapshots. There are only 3 snapshots used for CI purposes - and these are the checked out linux snapshots in each component. 
 
-### Docker
+### Why Docker?
 
 In order to avoid flakiness, we've setup a docker image to run the tests. This requires docker installed on your machine. [Click here to learn how to install docker](https://docs.docker.com/get-docker/).
 
