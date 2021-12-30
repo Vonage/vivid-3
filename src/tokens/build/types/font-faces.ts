@@ -3,6 +3,7 @@
   Generated on Thu, 23 Dec 2021 07:54:44 GMT
 */
 
+// eslint-disable-next-line no-shadow
 export enum VVDFontFace {
 	Body1 = 'body-1',
 	Body1Bold = 'body-1-bold',
@@ -24,5 +25,5 @@ export enum VVDFontFace {
 	Subtitle1 = 'subtitle-1',
 	Subtitle2 = 'subtitle-2',
 	Title1 = 'title-1',
-	Title2 = 'title-2'
+	Title2 = 'title-2',
 }
