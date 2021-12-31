@@ -20,7 +20,8 @@
     "ui-tests:build": "./scripts/visual-tests/build.image.sh",
     "ui-tests:local": "http-server -s & playwright test",
     "lint": "eslint 'src/**/*.ts' --quiet",
-    "lint:fix": "eslint 'src/**/*.ts' --quiet --fix"
+    "lint:fix": "eslint 'src/**/*.ts' --quiet --fix",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -44,6 +45,9 @@
   "exports": {
     "./button": "./dist/components/button/button.js",
     "./icon": "./dist/components/icon/icon.js"
+  },
+  "lint-staged": {
+    "src/**/*.ts": "eslint --fix"
   },
   "dependencies": {
     "@material/mwc-base": "^0.25.3",
@@ -78,6 +82,7 @@
     "eslint-plugin-wc": "^1.3.2",
     "extract-gfm": "^0.1.0",
     "http-server": "^14.0.0",
+    "husky": "^7.0.0",
     "istanbul-lib-instrument": "^5.1.0",
     "jasmine-core": "^3.10.1",
     "karma": "^6.3.8",
@@ -90,6 +95,7 @@
     "karma-jasmine": "^4.0.1",
     "karma-rollup-preprocessor": "^7.0.7",
     "karma-safarinative-launcher": "^1.1.0",
+    "lint-staged": "^12.1.4",
     "playwright": "^1.16.3",
     "rollup": "^2.59.0",
     "rollup-plugin-delete": "^2.0.0",
