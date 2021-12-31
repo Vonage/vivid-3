@@ -1,0 +1,20 @@
+{
+  "name": "themes",
+  "version": "1.0.0",
+  "description": "TODO",
+  "main": "dist/light.css",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "sass src:dist"
+  },
+  "bugs": {
+    "url": "https://github.com/Vonage/vivid-3/issues?q=themes"
+  },
+  "homepage": "https://github.com/Vonage/vivid-3/tree/main/packages/themes#readme",
+  "devDependencies": {
+    "sass": "^1.45.2"
+  },
+  "private": "true"
+}
