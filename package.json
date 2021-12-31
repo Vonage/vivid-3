@@ -19,8 +19,9 @@
     "ui-tests:update": "npm run ui-tests -- update",
     "ui-tests:build": "./scripts/visual-tests/build.image.sh",
     "ui-tests:local": "http-server -s & playwright test",
-    "lint": "eslint 'src/**/*.ts' --quiet",
-    "lint:fix": "eslint 'src/**/*.ts' --quiet --fix"
+    "lint:es": "eslint . --ignore-path .gitignore",
+    "lint": "npm run lint:es",
+    "lint:fix": "npm run lint:es -- --fix"
   },
   "repository": {
     "type": "git",
