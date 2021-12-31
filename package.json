@@ -19,8 +19,10 @@
     "ui-tests:update": "npm run ui-tests -- update",
     "ui-tests:build": "./scripts/visual-tests/build.image.sh",
     "ui-tests:local": "http-server -s & playwright test",
-    "lint": "eslint 'src/**/*.ts' --quiet",
-    "lint:fix": "eslint 'src/**/*.ts' --quiet --fix"
+    "lint:css": "stylelint **/*.scss --ignore-path .gitignore",
+    "lint:es": "eslint 'src/**/*.ts' --quiet --ignore-path .gitignore",
+    "lint": "npm run lint:es & npm run lint:css",
+    "lint:fix": "npm run lint:es -- --fix & npm run lint:css -- --fix"
   },
   "repository": {
     "type": "git",
@@ -95,6 +97,11 @@
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-lit-css": "^3.2.1",
     "sass": "^1.43.4",
+    "stylelint": "^14.2.0",
+    "stylelint-a11y": "^1.2.3",
+    "stylelint-config-idiomatic-order": "^8.1.0",
+    "stylelint-config-sass-guidelines": "^9.0.1",
+    "stylelint-no-unsupported-browser-features": "^5.0.2",
     "ts-lit-plugin": "^1.2.1",
     "ts-node": "^10.4.0",
     "tslib": "^2.3.1",
