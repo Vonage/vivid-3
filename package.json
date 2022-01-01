@@ -19,7 +19,10 @@
     "ui-tests:update": "npm run ui-tests -- update",
     "ui-tests:build": "./scripts/visual-tests/build.image.sh",
     "ui-tests:local": "http-server -s & playwright test",
-    "lint": "eslint 'src/**/*.ts' --quiet",
+    "lint:es": "npx eslint --no-error-on-unmatched-pattern $npm_config_files --quiet",
+    "lint:diff": "npm run lint:es --files $(git diff main... --diff-filter=ACMRTUXB --name-only -- 'src/**/*.ts')",
+    "lint:staged": "npm run lint:es --files $(git diff --cached --diff-filter=ACMRTUXB --name-only -- 'src/**/*.ts')",
+    "lint": "npm run lint:es --files 'src/**/*.ts'",
     "lint:fix": "eslint 'src/**/*.ts' --quiet --fix",
     "prepare": "husky install"
   },
