@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, fixtureCleanup } from '@open-wc/testing';
+import { elementUpdated, fixture } from '@open-wc/testing';
 import { Badge } from './badge.base';
 import { Icon } from '../icon/icon.base';
 import './badge.js';
