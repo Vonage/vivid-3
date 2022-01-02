@@ -8,13 +8,14 @@
     "browser": true,
     "node": true
   },
-  "plugins": ["wc"],
+  "plugins": ["wc", "jsdoc"],
   "extends": [
     "airbnb-base",
     "airbnb-typescript/base",
     "plugin:compat/recommended",
     "plugin:wc/recommended",
     "plugin:wc/best-practice",
+    "plugin:jsdoc/recommended",
     "@microsoft/eslint-config-fast-dna"
   ],
   "settings": {
