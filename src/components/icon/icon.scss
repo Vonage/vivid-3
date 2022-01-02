@@ -50,9 +50,13 @@
 	line-height: 1;
 	vertical-align: middle;
 }
+
+/* stylelint-disable no-duplicate-selectors */
 .icon {
 	display: contents;
 }
+/* stylelint-enable no-duplicate-selectors */
+
 .icon > svg {
 	block-size: 100%;
 	fill: currentColor;

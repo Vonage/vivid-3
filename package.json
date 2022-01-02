@@ -19,7 +19,7 @@
     "ui-tests:update": "npm run ui-tests -- update",
     "ui-tests:build": "./scripts/visual-tests/build.image.sh",
     "ui-tests:local": "http-server -s & playwright test",
-    "lint:css": "stylelint **/*.scss --ignore-path .gitignore",
+    "lint:css": "stylelint **/*.scss --quiet --ignore-path .gitignore",
     "lint:es": "eslint 'src/**/*.ts' --quiet --ignore-path .gitignore",
     "lint": "npm run lint:es & npm run lint:css",
     "lint:fix": "npm run lint:es -- --fix & npm run lint:css -- --fix"
