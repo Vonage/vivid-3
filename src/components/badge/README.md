@@ -99,7 +99,7 @@ Use the `shape` attribute to change the badge's edges.
 
 ## With Icon
 
-Badges can contain icons. Icons can be placed to the left or to the right side of the text.  
+Badge text can be affixed by a decorative icon, either by its start or end. 
 Use the `icon` attribute to add an icon. Use the `icon-trailing` to place the icon to the right.
 
 ```html preview
