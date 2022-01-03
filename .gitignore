@@ -6,3 +6,4 @@ coverage
 _site
 test-results
 *-darwin.png
+/index.html
