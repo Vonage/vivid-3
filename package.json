@@ -19,7 +19,7 @@
     "ui-tests:update": "npm run ui-tests -- update",
     "ui-tests:build": "./scripts/visual-tests/build.image.sh",
     "ui-tests:local": "http-server -s & playwright test",
-    "lint:es": "eslint --no-error-on-unmatched-pattern $(git diff main... --diff-filter=ACMRTUXB --name-only -- 'src/**/*.ts') --ignore-path .gitignore --quiet",
+    "lint:es": "eslint --no-error-on-unmatched-pattern 'src/**/*.ts' --ignore-path .gitignore --quiet",
     "lint": "npm run lint:es",
     "lint:fix": "npm run lint:es -- --fix",
     "prepare": "husky install"
