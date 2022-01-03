@@ -6,7 +6,6 @@ const OUTPUT_DIR = 'dist/vvd-docs';
 
 module.exports = function (eleventyConfig) {
 
-  console.log(eleventyConfig);
   eleventyConfig.addPlugin(EleventyRenderPlugin);
   eleventyConfig.addPlugin(codeblockdemo);
   eleventyConfig.addPlugin(syntaxHighlight);
@@ -29,7 +28,7 @@ module.exports = function (eleventyConfig) {
 
   return {
     dir: {
-      input: "./11ty",
+      input: "apps/11ty",
       includes: "_includes",
       layouts: "_layouts",
       output: OUTPUT_DIR,
