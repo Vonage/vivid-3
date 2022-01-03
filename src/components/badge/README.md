@@ -18,10 +18,46 @@ Add a `text` attribute to add text to the badge.
 <vwc-badge text="I'm a default badge"></vwc-badge>
 ```
 
+## Size
+
+Use the `size` attribute to change the badge's size.
+
+- BadgeSize: `small`, `medium`, `large`.
+- Default: `medium`.
+
+
+```html preview
+<vwc-badge text="small" size="small"></vwc-badge>
+<vwc-badge text="medium" size="medium"></vwc-badge>
+<vwc-badge text="large" size="large"></vwc-badge>
+```
+
+## Shape
+
+Use the `shape` attribute to change the badge's edges.
+
+- BadgeShape: `rounded`, `pill`.
+- Default: `rounded`.
+
+```html preview
+<vwc-badge text="rounded" shape="rounded"></vwc-badge>
+<vwc-badge text="pill" shape="pill"></vwc-badge>
+```
+
+## Icon
+
+Badge text can be affixed by a decorative icon, either by its start or end. 
+Use the `icon` attribute to add an icon. Use the `icon-trailing` to place the icon to the right.
+
+```html preview
+<vwc-badge text="icon" icon="check-line"></vwc-badge>
+<vwc-badge text="icon-trailing" icon="check-line" icon-trailing></vwc-badge>
+```
+
 ## Layout
 
 Set the `layout` attribute to change the badge's layout.
-- Layouts: `filled`, `soft`, `outlined`.
+- BadgeLayout: `filled`, `soft`, `outlined`.
 - Default: `filled`.
 
 ```html preview
@@ -35,7 +71,7 @@ Set the `layout` attribute to change the badge's layout.
 Set the `connotation` attribute to change the badge's connotation.
 It accepts a subset of predefined values.
 
-- Connotations: `primary`, `cta`, `success`, `alert`, `warning`, `info`.
+- BadgeConnotation: `primary`, `cta`, `success`, `alert`, `warning`, `info`.
 - Default: `primary`.
 
 ### Filled badge with connotation
@@ -69,40 +105,4 @@ It accepts a subset of predefined values.
 <vwc-badge text="success" layout="outlined" connotation="success"></vwc-badge>
 <vwc-badge text="warning" layout="outlined" connotation="warning"></vwc-badge>
 <vwc-badge text="alert" layout="outlined" connotation="alert"></vwc-badge>
-```
-
-## Size
-
-Use the `size` attribute to change the badge's size.
-
-- Sizes: `small`, `medium`, `large`.
-- Default: `medium`.
-
-
-```html preview
-<vwc-badge text="small" size="small"></vwc-badge>
-<vwc-badge text="medium" size="medium"></vwc-badge>
-<vwc-badge text="large" size="large"></vwc-badge>
-```
-
-## Shape
-
-Use the `shape` attribute to change the badge's edges.
-
-- Shapes: `rounded`, `pill`.
-- Default: `rounded`.
-
-```html preview
-<vwc-badge text="rounded" shape="rounded"></vwc-badge>
-<vwc-badge text="pill" shape="pill"></vwc-badge>
-```
-
-## With Icon
-
-Badge text can be affixed by a decorative icon, either by its start or end. 
-Use the `icon` attribute to add an icon. Use the `icon-trailing` to place the icon to the right.
-
-```html preview
-<vwc-badge text="icon" icon="check-line"></vwc-badge>
-<vwc-badge text="icon-trailing" icon="check-line" icon-trailing></vwc-badge>
 ```
