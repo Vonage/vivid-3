@@ -4,8 +4,8 @@
   "description": "Vonage's web UI 🎨 toolbelt",
   "scripts": {
     "start": "npm run build:components -- --watch & npm run build:tokens -- --watch & npm run docs:serve",
-    "docs:serve": "eleventy --config=./apps/11ty/.eleventy.js --serve",
-    "docs:build": "eleventy --config=./apps/11ty/.eleventy.js",
+    "docs:serve": "eleventy --config=./apps/vvd-docs/.eleventy.js --serve",
+    "docs:build": "eleventy --config=./apps/vvd-docs/.eleventy.js",
     "build:tokens": "sass src/core/theme:dist/core/theme",
     "build:components": "rollup -c config/rollup/rollup.config.prod.ts",
     "build": "npm run build:components && npm run build:tokens",
