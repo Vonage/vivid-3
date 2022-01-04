@@ -8,25 +8,20 @@
     "browser": true,
     "node": true
   },
-  "plugins": [
-    "wc",
-    "lit",
-    "lit-a11y"
-  ],
+  "plugins": ["wc", "jsdoc"],
   "extends": [
     "airbnb-base",
     "airbnb-typescript/base",
     "plugin:compat/recommended",
     "plugin:wc/recommended",
     "plugin:wc/best-practice",
-    "plugin:lit/recommended",
-    "plugin:lit-a11y/recommended"
+    "plugin:jsdoc/recommended",
+    "@microsoft/eslint-config-fast-dna"
   ],
   "settings": {
     "wc": {
       "elementBaseClasses": [
         "BaseElement",
-        "LitElement",
         "FormElement"
       ]
     }
@@ -61,10 +56,6 @@
     // functional
     "no-shadow": "error",
     "compat/compat": "error",
-    "import/extensions": [
-      "error",
-      "ignorePackages"
-    ],
     "import/prefer-default-export": "off",
     "class-methods-use-this": "off",
     "no-new": "warn",

@@ -1,6 +1,6 @@
 {% block content %}
 <a href="{{ '/' | url}}">Home</a>
-<ul>
+<ul class="navigation">
     {%  for item in components %}
     <li>
         <a href="{{ ('/components/' + item.title) | url }}">{{ item.title }}</a>
