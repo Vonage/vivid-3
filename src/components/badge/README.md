@@ -12,6 +12,9 @@ Badges don’t work for navigation because they can't include a hyperlink.
 
 ## Text
 
+- Type: `String`
+- Default: `''`
+
 Add a `text` attribute to add text to the badge.
 
 ```html preview
@@ -22,8 +25,8 @@ Add a `text` attribute to add text to the badge.
 
 Use the `size` attribute to change the badge's size.
 
-- BadgeSize: `small`, `medium`, `large`.
-- Default: `medium`.
+- Type: `'small'` | `'medium'` | `'large'`
+- Default: `'medium'`
 
 
 ```html preview
@@ -36,8 +39,8 @@ Use the `size` attribute to change the badge's size.
 
 Use the `shape` attribute to change the badge's edges.
 
-- BadgeShape: `rounded`, `pill`.
-- Default: `rounded`.
+- Type: `'rounded'` | `'pill'`
+- Default: `'rounded'`
 
 ```html preview
 <vwc-badge text='rounded' shape='rounded'></vwc-badge>
@@ -57,8 +60,9 @@ Use the `icon` attribute to add an icon. Use the `icon-trailing` to place the ic
 ## Layout
 
 Set the `layout` attribute to change the badge's layout.
-- BadgeLayout: `filled`, `soft`, `outlined`.
-- Default: `filled`.
+
+- Type: `'filled'` | `'soft'` | `'outlined'`
+- Default: `'filled'`
 
 ```html preview
 <vwc-badge text='filled' layout='filled'></vwc-badge>
@@ -71,8 +75,8 @@ Set the `layout` attribute to change the badge's layout.
 Set the `connotation` attribute to change the badge's connotation.
 It accepts a subset of predefined values.
 
-- BadgeConnotation: `primary`, `cta`, `success`, `alert`, `warning`, `info`.
-- Default: `primary`.
+- Type: `'primary'` | `'cta'` | `'success'` | `'alert'` | `'warning'` | `'info'`
+- Default: `'primary'`
 
 ### Filled badge with connotation
 
