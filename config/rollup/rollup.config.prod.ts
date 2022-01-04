@@ -27,7 +27,7 @@ export default {
   input,
   output: {
     sourcemap: "hidden",
-    dir: "dist/vvd-components",
+    dir: "dist",
     format: "esm",
     chunkFileNames: `components/[name]/chunks/[name]-[hash].js`,
   },

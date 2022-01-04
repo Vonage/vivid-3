@@ -14,7 +14,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy({
     "dist/core/theme/*.css": "assets/styles/themes",
-    "dist/vvd-components/components": "assets/modules/components",
+    "dist/components": "assets/modules/components",
     "vivid-logo.svg": "assets/images/vivid-logo.svg",
     [ASSETS_DIR]: "assets"
   });
