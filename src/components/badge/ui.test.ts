@@ -20,7 +20,7 @@ async function loadComponent({
 	await page.goto('http://127.0.0.1:8080/scripts/visual-tests/index.html');
 
 	await page.addScriptTag({
-		url: `http://127.0.0.1:8080/dist/components/${componentName}/${componentName}.js`,
+		url: `http://127.0.0.1:8080/dist/vvd-components/components/${componentName}/${componentName}.js`,
 		type: 'module',
 	});
 

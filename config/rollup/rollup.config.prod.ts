@@ -3,15 +3,15 @@ import * as path from "path";
 import rollupBaseConfig from "./rollup.config.base.ts";
 
 function getFoldersInAFolder(workingFolder = "../../src/components") {
-  const testFolders = [];
+  const folders = [];
   const testsFolder = path.join(__dirname, workingFolder);
   fs.readdirSync(testsFolder).forEach((testFolder) => {
     const absolutePath = path.join(testsFolder, testFolder);
     if (fs.statSync(absolutePath).isDirectory()) {
-      testFolders.push(testFolder);
+      folders.push(testFolder);
     }
   });
-  return testFolders;
+  return folders;
 }
 
 const components = getFoldersInAFolder();
@@ -27,7 +27,7 @@ export default {
   input,
   output: {
     sourcemap: "hidden",
-    dir: "dist",
+    dir: "dist/vvd-components",
     format: "esm",
     chunkFileNames: `components/[name]/chunks/[name]-[hash].js`,
   },
