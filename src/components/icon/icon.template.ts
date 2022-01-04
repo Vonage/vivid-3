@@ -8,7 +8,7 @@ import type { Icon } from './icon.base';
 const getClasses = ({
 	connotation, size,
 }: Icon) => classNames(
-	'control',
+	'icon',
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[`size-${size}`, Boolean(size)],
 );

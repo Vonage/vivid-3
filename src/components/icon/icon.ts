@@ -1,5 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { styles } from './icon.styles';
+import styles from './icon.scss';
 
 import { Icon } from './icon.base';
 import { iconTemplate as template } from './icon.template';
