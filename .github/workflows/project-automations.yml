@@ -7,6 +7,7 @@ on:
 
   pull_request:
     types:
+      - closed
       - opened
       - ready_for_review
       - converted_to_draft
@@ -60,3 +61,29 @@ jobs:
           project_id: 3
           resource_node_id: ${{ github.event.pull_request.node_id }}
           status_value: ${{ env.needs_review }}
+
+  pr_merged:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.pull_request.merged == true
+    steps:
+      - name: Set PR to current sprint
+        uses: leonsteinhaeuser/project-beta-automations@v1.0.2
+        with:
+          gh_token: ${{ secrets.VNG_VVD_PAT }}
+          organization: vonage
+          project_id: 3
+          resource_node_id: ${{ github.event.pull_request.node_id }}
+          sprint_value: ${{ env.needs_review }}
+
+  pr_closed_not_merged:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.pull_request.merged == false
+    steps:
+      - name: Set PR to current sprint
+        uses: leonsteinhaeuser/project-beta-automations@v1.0.2
+        with:
+          gh_token: ${{ secrets.VNG_VVD_PAT }}
+          organization: vonage
+          project_id: 3
+          resource_node_id: ${{ github.event.pull_request.node_id }}
+          sprint_value: ${{ env.needs_review }}
