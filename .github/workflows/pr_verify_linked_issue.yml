@@ -11,7 +11,9 @@ on:
 jobs:
   verify_linked_issue:
     runs-on: ubuntu-latest
+    name: Ensure Pull Request has a linked issue.
     steps:
-      - uses: hattan/verify-linked-issue-action@v1.1.0
+      - name: Verify
+        uses: hattan/verify-linked-issue-action@v1.1.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
