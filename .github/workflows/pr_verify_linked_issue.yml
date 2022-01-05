@@ -11,9 +11,15 @@ on:
 jobs:
   verify_linked_issue:
     runs-on: ubuntu-latest
+    # if: github.event.pull_request.links.issue.href
     name: Ensure Pull Request has a linked issue.
     steps:
+#       if <condition> ; then
+#   echo "Game over!"
+#   exit 1
+# fi
       - name: Verify
         uses: hattan/verify-linked-issue-action@v1.1.0
+        run: echo github.event.pull_request.links.issue.href
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
