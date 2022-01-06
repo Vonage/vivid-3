@@ -8,14 +8,13 @@
     "browser": true,
     "node": true
   },
-  "plugins": ["wc", "jsdoc"],
+  "plugins": ["wc", "eslint-plugin-tsdoc"],
   "extends": [
     "airbnb-base",
     "airbnb-typescript/base",
     "plugin:compat/recommended",
     "plugin:wc/recommended",
     "plugin:wc/best-practice",
-    "plugin:jsdoc/recommended",
     "@microsoft/eslint-config-fast-dna"
   ],
   "settings": {
@@ -64,6 +63,7 @@
       {
         "accessibility": "no-public"
       }
-    ]
+    ],
+    "tsdoc/syntax": "warn"
   }
 }

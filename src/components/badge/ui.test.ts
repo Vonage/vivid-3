@@ -2,12 +2,6 @@ import { expect, Page, test } from '@playwright/test';
 import * as path from 'path';
 import { extractHTMLBlocksFromReadme } from '../../../scripts/visual-tests/utils';
 
-/**
- * @param root0
- * @param root0.page
- * @param root0.componentName
- * @param root0.styleUrl
- */
 async function loadComponent({
 	page,
 	componentName,
@@ -29,11 +23,6 @@ async function loadComponent({
 	});
 }
 
-/**
- * @param root0
- * @param root0.page
- * @param root0.template
- */
 async function loadTemplate({
 	page,
 	template,
