@@ -21,7 +21,7 @@ export enum Shape {
 }
 
 /* eslint-disable no-shadow */
-export enum Layout {
+export enum Appearance {
 	Text = 'text',
 	Filled = 'filled',
 	Outlined = 'outlined',

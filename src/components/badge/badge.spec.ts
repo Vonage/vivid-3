@@ -26,7 +26,7 @@ describe('vwc-badge', () => {
 			expect(element.iconTrailing).toBeFalsy();
 			expect(element.connotation).toBeUndefined();
 			expect(element.shape).toBeUndefined();
-			expect(element.layout).toBeUndefined();
+			expect(element.appearance).toBeUndefined();
 			expect(element.size).toBeUndefined();
 		});
 	});
@@ -89,13 +89,13 @@ describe('vwc-badge', () => {
 		});
 	});
 
-	describe('layout', () => {
-		it('sets correct internal layout style', async () => {
-			const layout = 'soft';
-			(element as any).layout = layout;
+	describe('appearance', () => {
+		it('sets correct internal appearance style', async () => {
+			const appearance = 'soft';
+			(element as any).appearance = appearance;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot.querySelector(`.control.layout-${layout}`);
+			const control = element.shadowRoot.querySelector(`.control.appearance-${appearance}`);
 			expect(control).toBeInstanceOf(Element);
 		});
 	});
