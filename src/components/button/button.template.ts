@@ -1,9 +1,25 @@
-import {
-	html, ref, slotted, type ViewTemplate,
-} from '@microsoft/fast-element';
-import {
-	Button, ButtonOptions, type ElementDefinitionContext, endSlotTemplate, startSlotTemplate,
-} from '@microsoft/fast-foundation';
+import { html, ref, type ViewTemplate } from '@microsoft/fast-element';
+import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
+import { classNames } from '@microsoft/fast-web-utilities';
+import type { Button } from './button';
+import { Icon } from '../icon/icon';
+
+const getClasses = ({
+	connotation, appearance, shape, size, iconTrailing,
+}: Button) => classNames(
+	'control',
+	['icon-trailing', iconTrailing],
+	[`connotation-${connotation}`, Boolean(connotation)],
+	[`appearance-${appearance}`, Boolean(appearance)],
+	[`shape-${shape}`, Boolean(shape)],
+	[`size-${size}`, Boolean(size)],
+);
+
+const iconTemplate = (context: ElementDefinitionContext) => {
+	const iconTag = context.tagFor(Icon);
+
+	return html`<span class="affix"><${iconTag} :type="${(x) => x.icon}"></${iconTag}></span>`;
+};
 
 /**
  * The template for the {@link @microsoft/fast-foundation#(Button:class)} component.
@@ -14,14 +30,10 @@ import {
  */
 export const buttonTemplate: (
 	context: ElementDefinitionContext,
-	definition: ButtonOptions
-) => ViewTemplate<Button> = (
-	context: ElementDefinitionContext,
-	definition: ButtonOptions,
-) => html`
+	definition: FoundationElementDefinition
+) => ViewTemplate<Button> = (context: ElementDefinitionContext) => html`
     <button
-        class="control"
-        part="control"
+        class="${getClasses}"
         ?autofocus="${(x) => x.autofocus}"
         ?disabled="${(x) => x.disabled}"
         form="${(x) => x.formId}"
@@ -56,10 +68,7 @@ export const buttonTemplate: (
         aria-roledescription="${(x) => x.ariaRoledescription}"
         ${ref('control')}
     >
-        ${startSlotTemplate(context, definition)}
-        <span class="content" part="content">
-            <slot ${slotted('defaultSlottedContent')}></slot>
-        </span>
-        ${endSlotTemplate(context, definition)}
+        ${(x) => (x.icon ? iconTemplate(context) : '')}
+        ${(x) => x.label}
     </button>
 `;
