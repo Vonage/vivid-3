@@ -14,6 +14,13 @@
         ]
     },
     {
+        "title": "split button",
+        "markdown": "./src/components/split-button/README.md",
+        "modules": [
+            "/assets/modules/components/split-button/index.js"
+        ]
+    },
+    {
         "title": "anchor",
         "markdown": "./src/components/anchor/README.md",
         "modules": [
