@@ -24,17 +24,17 @@
 /* Size */
 
 .control:not(.size-small):not(.size-large) {
-	block-size: 24px;
+	block-size: 40px;
 	padding-inline: 10px;
 }
 
 .control.size-small {
-	block-size: 20px;
+	block-size: 32px;
 	padding-inline: 8px;
 }
 
 .control.size-large {
-	block-size: 28px;
+	block-size: 48px;
 	padding-inline: 12px;
 }
 
@@ -57,7 +57,7 @@
 /* Shape */
 
 .control:not(.shape-pill) {
-	border-radius: 4px;
+	border-radius: 6px;
 }
 .control.shape-pill {
 	border-radius: 14px;
