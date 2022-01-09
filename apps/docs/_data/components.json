@@ -3,21 +3,21 @@
         "title": "badge",
         "markdown": "./src/components/badge/README.md",
         "modules": [
-            "/assets/modules/components/badge/badge.js"
+            "/assets/modules/components/badge/index.js"
         ]
     },
     {
         "title": "anchor",
         "markdown": "./src/components/anchor/README.md",
         "modules": [
-            "/assets/modules/components/anchor/anchor.js"
+            "/assets/modules/components/anchor/index.js"
         ]
     },
     {
         "title": "icon",
         "markdown": "./src/components/icon/README.md",
         "modules": [
-            "/assets/modules/components/icon/icon.js"
+            "/assets/modules/components/icon/index.js"
         ]
     }
 ]
