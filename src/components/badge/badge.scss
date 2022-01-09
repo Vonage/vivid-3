@@ -1,11 +1,11 @@
 @use '../../sass/mixins/connotation/config' with (
-    $subset: primary cta success alert warning info,
-    $shades: soft contrast,
+	$subset: primary cta success alert warning info,
+	$shades: soft contrast,
     $default: primary,
 );
 @use '../../sass/mixins/connotation' as connotation;
 
-.control{
+.control {
 	@include connotation.connotation;
 	display: inline-flex;
 	box-sizing: border-box;
