@@ -19,11 +19,11 @@ type BadgeConnotation = Extract<Connotation,
 | Connotation.Info>;
 
 /**
- * Types of badge layout.
+ * Types of badge appearance.
  *
  * @public
  */
-type BadgeLayout = Extract<Appearance,
+type BadgeAppearance = Extract<Appearance,
 Appearance.Filled | Appearance.Outlined | Appearance.Soft>;
 
 /**
@@ -58,13 +58,13 @@ export class Badge extends FoundationElement {
 	@attr shape?: BadgeShape;
 
 	/**
-	 * The layout the badge should have.
+	 * The appearance the badge should have.
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: layout
+	 * HTML Attribute: appearance
 	 */
-	@attr layout?: BadgeLayout;
+	@attr appearance?: BadgeAppearance;
 
 	/**
 	 * The size the badge should have.

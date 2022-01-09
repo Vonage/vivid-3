@@ -57,17 +57,17 @@ Use the `icon` attribute to add an icon. Use the `icon-trailing` to place the ic
 <vwc-badge text='icon-trailing' icon='check-line' icon-trailing></vwc-badge>
 ```
 
-## Layout
+## Appearance
 
-Set the `layout` attribute to change the badge's layout.
+Set the `appearance` attribute to change the badge's appearance.
 
 - Type: `'filled'` | `'soft'` | `'outlined'`
 - Default: `'filled'`
 
 ```html preview
-<vwc-badge text='filled' layout='filled'></vwc-badge>
-<vwc-badge text='soft' layout='soft'></vwc-badge>
-<vwc-badge text='outlined' layout='outlined'></vwc-badge>
+<vwc-badge text='filled' appearance='filled'></vwc-badge>
+<vwc-badge text='soft' appearance='soft'></vwc-badge>
+<vwc-badge text='outlined' appearance='outlined'></vwc-badge>
 ```
 
 ## Connotation
@@ -92,21 +92,21 @@ It accepts a subset of predefined values.
 ### Soft badge with connotation
 
 ```html preview
-<vwc-badge text='primary' layout='soft' connotation='primary'></vwc-badge>
-<vwc-badge text='cta' layout='soft' connotation='cta'></vwc-badge>
-<vwc-badge text='info' layout='soft' connotation='info'></vwc-badge>
-<vwc-badge text='success' layout='soft' connotation='success'></vwc-badge>
-<vwc-badge text='warning' layout='soft' connotation='warning'></vwc-badge>
-<vwc-badge text='alert' layout='soft' connotation='alert'></vwc-badge>
+<vwc-badge text='primary' appearance='soft' connotation='primary'></vwc-badge>
+<vwc-badge text='cta' appearance='soft' connotation='cta'></vwc-badge>
+<vwc-badge text='info' appearance='soft' connotation='info'></vwc-badge>
+<vwc-badge text='success' appearance='soft' connotation='success'></vwc-badge>
+<vwc-badge text='warning' appearance='soft' connotation='warning'></vwc-badge>
+<vwc-badge text='alert' appearance='soft' connotation='alert'></vwc-badge>
 ```
 
 ### Outlined badge with connotation
 
 ```html preview
-<vwc-badge text='primary' layout='outlined' connotation='primary'></vwc-badge>
-<vwc-badge text='cta' layout='outlined' connotation='cta'></vwc-badge>
-<vwc-badge text='info' layout='outlined' connotation='info'></vwc-badge>
-<vwc-badge text='success' layout='outlined' connotation='success'></vwc-badge>
-<vwc-badge text='warning' layout='outlined' connotation='warning'></vwc-badge>
-<vwc-badge text='alert' layout='outlined' connotation='alert'></vwc-badge>
+<vwc-badge text='primary' appearance='outlined' connotation='primary'></vwc-badge>
+<vwc-badge text='cta' appearance='outlined' connotation='cta'></vwc-badge>
+<vwc-badge text='info' appearance='outlined' connotation='info'></vwc-badge>
+<vwc-badge text='success' appearance='outlined' connotation='success'></vwc-badge>
+<vwc-badge text='warning' appearance='outlined' connotation='warning'></vwc-badge>
+<vwc-badge text='alert' appearance='outlined' connotation='alert'></vwc-badge>
 ```
