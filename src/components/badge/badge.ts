@@ -5,6 +5,7 @@
 // import { BadgeBase } from './badge-base.js';
 
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
+import { designSystem } from '../../core/design-system';
 import styles from './badge.scss';
 
 // /**
@@ -27,7 +28,6 @@ import styles from './badge.scss';
 import { Badge } from './badge.base';
 import { badgeTemplate as template } from './badge.template';
 
-import { designSystem } from '../../core/design-system';
 
 export const VIVIDBadge = Badge.compose<FoundationElementDefinition>({
 	baseName: 'badge',
