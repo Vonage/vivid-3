@@ -1,8 +1,8 @@
 import { html, ref, type ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import type { Button } from './button';
 import { Icon } from '../icon/icon';
+import type { Button } from './button';
 
 const getClasses = ({
 	connotation, appearance, shape, size, iconTrailing,
