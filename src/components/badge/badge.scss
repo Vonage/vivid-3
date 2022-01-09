@@ -1,4 +1,12 @@
+@use '../../sass/mixins/connotation/config' with (
+	$subset: primary cta success alert warning info,
+	$shades: soft contrast,
+    $default: primary,
+);
+@use '../../sass/mixins/connotation' as connotation;
+
 .control {
+	@include connotation.connotation;
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
@@ -55,48 +63,8 @@
 	border-radius: 14px;
 }
 
-/* Connotation */
-
-.control:not(.connotation-cta):not(.connotation-success):not(.connotation-alert):not(.connotation-warning):not(.connotation-info) {
-	--connotation: var(--vvd-color-primary);
-	--on-connotation: var(--vvd-color-on-primary);
-	--connotation-soft: var(--vvd-color-neutral-20);
-	--connotation-contrast: var(--vvd-color-primary);
-}
-.control.connotation-cta {
-	--connotation: var(--vvd-color-cta);
-	--on-connotation: var(--vvd-color-on-cta);
-	--connotation-soft: var(--vvd-color-cta-20);
-	--connotation-contrast: var(--vvd-color-cta-90);
-}
-.control.connotation-success {
-	--connotation: var(--vvd-color-success);
-	--on-connotation: var(--vvd-color-on-success);
-	--connotation-soft: var(--vvd-color-success-20);
-	--connotation-contrast: var(--vvd-color-success-90);
-}
-.control.connotation-alert {
-	--connotation: var(--vvd-color-alert);
-	--on-connotation: var(--vvd-color-on-alert);
-	--connotation-soft: var(--vvd-color-alert-20);
-	--connotation-contrast: var(--vvd-color-alert-90);
-}
-.control.connotation-warning {
-	--connotation: var(--vvd-color-warning);
-	--on-connotation: var(--vvd-color-on-warning);
-	--connotation-soft: var(--vvd-color-warning-20);
-	--connotation-contrast: var(--vvd-color-warning-90);
-}
-.control.connotation-info {
-	--connotation: var(--vvd-color-info);
-	--on-connotation: var(--vvd-color-on-info);
-	--connotation-soft: var(--vvd-color-info-20);
-	--connotation-contrast: var(--vvd-color-info-90);
-}
-
 /* Icon */
 
 .control.icon-trailing .affix {
 	order: 1;
 }
-
