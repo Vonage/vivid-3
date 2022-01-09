@@ -1,0 +1,29 @@
+@use 'sass:list';
+@use 'sass:map';
+
+@function pick-list($subset, $list) {
+	$new-list: ();
+	@each $item in $subset {
+		$n: list.index($list, $item);
+		@if $n != null {
+			$new-item: list.nth($list, $n);
+			$new-list: list.append($new-list, $new-item);
+		} @else {
+			@error 'ERROR: Specified item #{$item} does not exist';
+		}
+	}
+	@return $new-list;
+}
+
+@function pick-map($list, $map) {
+	$new-map: ();
+	@each $key in $list {
+		@if map.has-key($map, $key) {
+			$value: map.get($map, $key);
+			$new-map: map.merge($new-map, ($key: $value));
+		} @else {
+			@error 'ERROR: Specified index does not exist in the mapping';
+		}
+	}
+	@return $new-map;
+}
