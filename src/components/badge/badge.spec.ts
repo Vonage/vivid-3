@@ -1,7 +1,7 @@
 import { elementUpdated, fixture } from '@open-wc/testing';
 import { Badge } from './badge';
 import { Icon } from '../icon/icon';
-import './badge.js';
+import '.';
 // import type { vividIcon } from '../icon/icon';
 
 const COMPONENT_TAG = 'vwc-badge';
