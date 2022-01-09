@@ -2,7 +2,7 @@ import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 
 import type {
-	Connotation, Layout, Shape, Size,
+	Appearance, Connotation, Shape, Size,
 } from '../../core/foundation/enums.js';
 
 /**
@@ -19,12 +19,12 @@ type BadgeConnotation = Extract<Connotation,
 | Connotation.Info>;
 
 /**
- * Types of badge layout.
+ * Types of badge appearance.
  *
  * @public
  */
- type BadgeLayout = Extract<Layout,
- Layout.Filled | Layout.Outlined | Layout.Soft>;
+type BadgeAppearance = Extract<Appearance,
+Appearance.Filled | Appearance.Outlined | Appearance.Soft>;
 
 /**
  * Types of badge shape.
@@ -58,13 +58,13 @@ export class Badge extends FoundationElement {
 	@attr shape?: BadgeShape;
 
 	/**
-	 * The layout the badge should have.
+	 * The appearance the badge should have.
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: layout
+	 * HTML Attribute: appearance
 	 */
-	@attr layout?: BadgeLayout;
+	@attr appearance?: BadgeAppearance;
 
 	/**
 	 * The size the badge should have.
