@@ -1,5 +1,5 @@
-import { expect, Page, test } from '@playwright/test';
 import * as path from 'path';
+import { expect, Page, test } from '@playwright/test';
 import { extractHTMLBlocksFromReadme } from '../../../scripts/visual-tests/utils';
 
 /**

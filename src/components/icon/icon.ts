@@ -54,12 +54,12 @@ export class Icon extends FoundationElement {
 	@observable placeholder: any = null;
 
 	/**
-     * Indicates which icon to resolve.
-     *
-     * @public
-     * @remarks
-     * HTML Attribute: type
-     */
+	 * Indicates which icon to resolve.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: type
+	 */
 	@attr type?: string;
 
 	async typeChanged() {
