@@ -1,3 +1,5 @@
+import '../icon';
+
 import { Button as FastButton } from '@microsoft/fast-foundation';
 import { Button } from './button';
 import { buttonTemplate as template } from './button.template';

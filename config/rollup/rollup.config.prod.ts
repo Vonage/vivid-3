@@ -16,9 +16,9 @@ function getFoldersInAFolder(workingFolder = "../../src/components") {
 
 const components = getFoldersInAFolder();
 const input = components.reduce((inputObject, componentName) => {
-  inputObject[`components/${componentName}/${componentName}`] = path.join(
+  inputObject[`components/${componentName}/index`] = path.join(
     process.cwd(),
-    `src/components/${componentName}/${componentName}.ts`
+    `src/components/${componentName}/index.ts`
   );
   return inputObject;
 }, {});
@@ -29,7 +29,7 @@ export default {
     sourcemap: "hidden",
     dir: "dist",
     format: "esm",
-    chunkFileNames: `components/[name]/chunks/[name]-[hash].js`,
+    chunkFileNames: `components/[name]/chunks/index.js`,
   },
   ...rollupBaseConfig,
 };
