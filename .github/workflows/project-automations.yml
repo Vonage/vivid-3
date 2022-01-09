@@ -4,97 +4,59 @@ on:
   issues:
     types:
       - opened
-      - reopened
-      - closed
+
   pull_request:
     types:
       - opened
       - ready_for_review
       - converted_to_draft
-      - reopened
       - review_requested
-      - closed
+
+env:
+  no_status: No Status
+  in_progress: In Progress 🚧
+  needs_review: Needs Review 🔎
 
 concurrency:
   group: ci-project-automation-${{ github.ref }}-1
   cancel-in-progress: true
 
 jobs:
-  issue_opened_and_reopened:
-    name: issue_opened_and_reopened
+  issue_opened:
     runs-on: ubuntu-latest
-    if: github.event_name == 'issues' && github.event.action == 'opened' || github.event.action == 'reopened'
+    if: github.event_name == 'issues' && github.event.action == 'opened'
     steps:
-      - name: 'Move issue to "Todo 🕓"'
+      - name: Move issue to ${{ env.no_status }}
         uses: leonsteinhaeuser/project-beta-automations@v1.0.2
         with:
           gh_token: ${{ secrets.VNG_VVD_PAT }}
           organization: vonage
           project_id: 3
           resource_node_id: ${{ github.event.issue.node_id }}
-          status_value: "Todo 🕓"
-  issue_closed:
-    name: issue_closed
+          status_value: ${{ env.no_status }}
+
+  pr_opened_review_requested:
     runs-on: ubuntu-latest
-    if: github.event_name == 'issues' && github.event.action == 'closed'
+    if: github.event_name == 'pull_request' && github.event.pull_request.draft == true && github.event.action == 'opened' || github.event.action == 'converted_to_draft'
     steps:
-      - name: 'Moved issue to "Done ✅"'
-        uses: leonsteinhaeuser/project-beta-automations@v1.0.2
-        with:
-          gh_token: ${{ secrets.VNG_VVD_PAT }}
-          organization: vonage
-          project_id: 3
-          resource_node_id: ${{ github.event.issue.node_id }}
-          status_value: "Done ✅"
-  pr_opened_reopened_review_requested:
-    name: pr_opened_reopened_review_requested
-    runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' && github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'review_requested'
-    steps:
-      - name: 'Move PR to "In Progress 🚧"'
+      - name: Move PR to ${{ env.in_progress }}
         uses: leonsteinhaeuser/project-beta-automations@v1.0.2
         with:
           gh_token: ${{ secrets.VNG_VVD_PAT }}
           organization: vonage
           project_id: 3
           resource_node_id: ${{ github.event.pull_request.node_id }}
-          status_value: "In Progress 🚧"
+          status_value: ${{ env.needs_review }}
+
   pr_ready_for_review:
-    name: pr_ready_for_review
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' && github.event.action == 'ready_for_review'
+    if: github.event_name == 'pull_request' && github.event.pull_request.draft == false && github.event.action == 'opened' || github.event.action == 'review_requested' || github.event.action == 'ready_for_review'
     steps:
-      - name: 'Move PR to "Needs Review 🔎"'
+      - name: Move PR to ${{ env.needs_review }}
         uses: leonsteinhaeuser/project-beta-automations@v1.0.2
         with:
           gh_token: ${{ secrets.VNG_VVD_PAT }}
           organization: vonage
           project_id: 3
           resource_node_id: ${{ github.event.pull_request.node_id }}
-          status_value: "Needs Review 🔎"
-
-  pr_converted_to_draft:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' && github.event.action == 'converted_to_draft'
-    steps:
-      - name: 'Move PR to "In Progress 🚧"'
-        uses: leonsteinhaeuser/project-beta-automations@v1.0.2
-        with:
-          gh_token: ${{ secrets.VNG_VVD_PAT }}
-          organization: vonage
-          project_id: 3
-          resource_node_id: ${{ github.event.pull_request.node_id }}
-          status_value: "In Progress 🚧"
-
-  pr_closed:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
-    steps:
-      - name: 'Move PR to "Done ✅"'
-        uses: leonsteinhaeuser/project-beta-automations@v1.0.2
-        with:
-          gh_token: ${{ secrets.VNG_VVD_PAT }}
-          organization: vonage
-          project_id: 3
-          resource_node_id: ${{ github.event.pull_request.node_id }}
-          status_value: "Done ✅"
+          status_value: ${{ env.needs_review }}

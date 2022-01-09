@@ -7,62 +7,64 @@
 
 .control{
 	@include connotation.connotation;
-
-    font:600 ultra-condensed 12px / 16px SpeziaWebVariable;
-    letter-spacing:0px;
-    text-decoration:none;
-    text-transform:none;
-    display:inline-flex;
-    align-items: center;
-    column-gap: 8px;
-    vertical-align: middle;
-    box-sizing:border-box;
-    border:1px solid var(--layout-color-outline);
-    background-color:var(--layout-color-fill);
-    color:var(--layout-color-text);
+	display: inline-flex;
+	box-sizing: border-box;
+	align-items: center;
+	border: 1px solid var(--layout-color-outline);
+	background-color: var(--layout-color-fill);
+	color: var(--layout-color-text);
+	column-gap: 8px;
+	font: 600 ultra-condensed 12px / 16px SpeziaWebVariable;
+	letter-spacing: 0;
+	text-decoration: none;
+	text-transform: none;
+	vertical-align: middle;
 }
 
-    /* Size */
+/* Size */
 
-    .control:not(.size-small):not(.size-large) {
-        block-size: 24px;
-        padding-inline: 10px;
-    }
+.control:not(.size-small):not(.size-large) {
+	block-size: 24px;
+	padding-inline: 10px;
+}
 
-    .control.size-small {
-        block-size: 20px;
-        padding-inline: 8px;
-    }
+.control.size-small {
+	block-size: 20px;
+	padding-inline: 8px;
+}
 
-    .control.size-large {
-        block-size: 28px;
-        padding-inline: 12px;
-    }
+.control.size-large {
+	block-size: 28px;
+	padding-inline: 12px;
+}
 
-    /* Layout */
+/* Layout */
 
-    .control:not(.layout-outlined):not(.layout-soft){
-        --layout-color-fill:var(--connotation);--layout-color-text:var(--on-connotation)
-    }
-    .control.layout-outlined{
-        --layout-color-fill:transparent;--layout-color-outline:var(--connotation);--layout-color-text:var(--connotation-contrast)
-    }
-    .control.layout-soft{
-        --layout-color-fill:var(--connotation-soft);--layout-color-text:var(--connotation-contrast)
-    }
+.control:not(.layout-outlined):not(.layout-soft) {
+	--layout-color-fill: var(--connotation);
+	--layout-color-text: var(--on-connotation);
+}
+.control.layout-outlined {
+	--layout-color-fill: transparent;
+	--layout-color-outline: var(--connotation);
+	--layout-color-text: var(--connotation-contrast);
+}
+.control.layout-soft {
+	--layout-color-fill: var(--connotation-soft);
+	--layout-color-text: var(--connotation-contrast);
+}
 
-    /* Shape */
+/* Shape */
 
-    .control:not(.shape-pill) {
-        border-radius: 4px;
-    }
-    .control.shape-pill {
-        border-radius: 14px;
-    }
+.control:not(.shape-pill) {
+	border-radius: 4px;
+}
+.control.shape-pill {
+	border-radius: 14px;
+}
 
-    /* Icon */
+/* Icon */
 
-    .control.icon-trailing .affix {
-        order: 1;
-    }
-
+.control.icon-trailing .affix {
+	order: 1;
+}
