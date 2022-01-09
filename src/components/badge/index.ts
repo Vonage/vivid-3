@@ -1,8 +1,8 @@
 import '../icon';
 
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import styles from './badge.scss';
 import { Badge } from './badge';
+import styles from './badge.scss';
 import { badgeTemplate as template } from './badge.template';
 
 import { designSystem } from '../../core/design-system';

@@ -55,17 +55,17 @@ Use the `icon` attribute to add an icon. Use the `icon-trailing` to place the ic
 <vwc-button label='icon-trailing' icon='check-line' icon-trailing></vwc-button>
 ```
 
-## Layout
+## Appearance
 
-Set the `layout` attribute to change the button's layout.
+Set the `appearance` attribute to change the button's appearance.
 
-- Type: `'filled'` | `'soft'` | `'outlined'`
-- Default: `'filled'`
+- Type: `'ghost'` | `'filled'` | `'outlined'`
+- Default: `'ghost'`
 
 ```html preview
-<vwc-button label='filled' layout='filled'></vwc-button>
-<vwc-button label='soft' layout='soft'></vwc-button>
-<vwc-button label='outlined' layout='outlined'></vwc-button>
+<vwc-button label='ghost' appearance='ghost'></vwc-button>
+<vwc-button label='filled' appearance='filled'></vwc-button>
+<vwc-button label='outlined' appearance='outlined'></vwc-button>
 ```
 
 ## Connotation
@@ -73,38 +73,38 @@ Set the `layout` attribute to change the button's layout.
 Set the `connotation` attribute to change the button's connotation.
 It accepts a subset of predefined values.
 
-- Type: `'primary'` | `'cta'` | `'success'` | `'alert'` | `'warning'` | `'info'`
+- Type: `'primary'` | `'cta'` | `'success'` | `'alert'` | `'announcement'` | `'info'`
 - Default: `'primary'`
+
+### Ghost button with connotation
+
+```html preview
+<vwc-button appearance="ghost" label='primary' connotation='primary'></vwc-button>
+<vwc-button appearance="ghost" label='cta' connotation='cta'></vwc-button>
+<vwc-button appearance="ghost" label='success' connotation='success'></vwc-button>
+<vwc-button appearance="ghost" label='alert' connotation='alert'></vwc-button>
+<vwc-button appearance="ghost" label='announcement' connotation='announcement'></vwc-button>
+<vwc-button appearance="ghost" label='info' connotation='info'></vwc-button>
+```
 
 ### Filled button with connotation
 
 ```html preview
-<vwc-button label='primary' connotation='primary'></vwc-button>
-<vwc-button label='cta' connotation='cta'></vwc-button>
-<vwc-button label='info' connotation='info'></vwc-button>
-<vwc-button label='success' connotation='success'></vwc-button>
-<vwc-button label='warning' connotation='warning'></vwc-button>
-<vwc-button label='alert' connotation='alert'></vwc-button>
-```
-
-### Soft button with connotation
-
-```html preview
-<vwc-button label='primary' layout='soft' connotation='primary'></vwc-button>
-<vwc-button label='cta' layout='soft' connotation='cta'></vwc-button>
-<vwc-button label='info' layout='soft' connotation='info'></vwc-button>
-<vwc-button label='success' layout='soft' connotation='success'></vwc-button>
-<vwc-button label='warning' layout='soft' connotation='warning'></vwc-button>
-<vwc-button label='alert' layout='soft' connotation='alert'></vwc-button>
+<vwc-button appearance="filled" label='primary' connotation='primary'></vwc-button>
+<vwc-button appearance="filled" label='cta' connotation='cta'></vwc-button>
+<vwc-button appearance="filled" label='success' connotation='success'></vwc-button>
+<vwc-button appearance="filled" label='alert' connotation='alert'></vwc-button>
+<vwc-button appearance="filled" label='announcement' connotation='announcement'></vwc-button>
+<vwc-button appearance="filled" label='info' connotation='info'></vwc-button>
 ```
 
 ### Outlined button with connotation
 
 ```html preview
-<vwc-button label='primary' layout='outlined' connotation='primary'></vwc-button>
-<vwc-button label='cta' layout='outlined' connotation='cta'></vwc-button>
-<vwc-button label='info' layout='outlined' connotation='info'></vwc-button>
-<vwc-button label='success' layout='outlined' connotation='success'></vwc-button>
-<vwc-button label='warning' layout='outlined' connotation='warning'></vwc-button>
-<vwc-button label='alert' layout='outlined' connotation='alert'></vwc-button>
+<vwc-button appearance="outlined" label='primary' connotation='primary'></vwc-button>
+<vwc-button appearance="outlined" label='cta' connotation='cta'></vwc-button>
+<vwc-button appearance="outlined" label='success' connotation='success'></vwc-button>
+<vwc-button appearance="outlined" label='alert' connotation='alert'></vwc-button>
+<vwc-button appearance="outlined" label='announcement' connotation='announcement'></vwc-button>
+<vwc-button appearance="outlined" label='info' connotation='info'></vwc-button>
 ```
