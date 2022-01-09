@@ -7,12 +7,12 @@ import { Icon } from '../icon/icon';
 import type { Badge } from './badge';
 
 const getClasses = ({
-	connotation, layout, shape, size, iconTrailing,
+	connotation, appearance, shape, size, iconTrailing,
 }: Badge) => classNames(
 	'control',
 	['icon-trailing', iconTrailing],
 	[`connotation-${connotation}`, Boolean(connotation)],
-	[`layout-${layout}`, Boolean(layout)],
+	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	[`size-${size}`, Boolean(size)],
 );
