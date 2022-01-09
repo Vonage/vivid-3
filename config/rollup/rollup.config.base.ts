@@ -9,7 +9,7 @@ const BASE_CONFIG = {
     clearScreen: false,
   },
   plugins: [
-    del({ targets: ["dist/**/*.*", "!dist/**/*.css"], runOnce: true }),
+    del({ targets: ["dist/components/**/*.*"], runOnce: true }),
     typescript({
       noEmitOnError: true,
       tsconfig: "./config/typescript/tsconfig.prod.json",

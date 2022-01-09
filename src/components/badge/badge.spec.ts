@@ -1,6 +1,6 @@
 import { elementUpdated, fixture } from '@open-wc/testing';
-import { Badge } from './badge.base';
 import { Icon } from '../icon/icon.base';
+import { Badge } from './badge.base';
 import './badge.js';
 // import type { vividIcon } from '../icon/icon';
 
