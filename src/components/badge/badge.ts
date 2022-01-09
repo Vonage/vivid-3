@@ -1,38 +1,102 @@
-// import '../icon/icon.ts';
+import { FoundationElement } from '@microsoft/fast-foundation';
+import { attr } from '@microsoft/fast-element';
 
-// import { customElement } from 'lit/decorators.js';
+import type {
+	Connotation, Layout, Shape, Size,
+} from '../../core/foundation/enums.js';
 
-// import { BadgeBase } from './badge-base.js';
+/**
+ * Types of badge connotation.
+ * @public
+ */
+type BadgeConnotation = Extract<Connotation,
+| Connotation.Primary
+| Connotation.CTA
+| Connotation.Success
+| Connotation.Alert
+| Connotation.Warning
+| Connotation.Info>;
 
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import styles from './badge.scss';
+/**
+ * Types of badge layout.
+ * @public
+ */
+type BadgeLayout = Extract<Layout,
+Layout.Filled | Layout.Outlined | Layout.Soft>;
 
-// /**
-//  * Represents a badge custom element.
-//  * badge is a label that holds small amounts of information.
-//  * A badge can be used to display unread notifications, or to label a block of text.
-//  * Badges don’t work for navigation because they can't include a hyperlink.
-//  */
-// @customElement('vwc-badge')
-// export class Badge extends BadgeBase {
-// 	static override styles = style;
-// }
+/**
+ * Types of badge shape.
+ * @public
+ */
+type BadgeShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
-// declare global {
-// 	interface HTMLElementTagNameMap {
-// 		'vwc-badge': Badge;
-// 	}
-// }
+/**
+ * Base class for badge
+ * @public
+ */
+export class Badge extends FoundationElement {
+	/**
+     * The connotation the badge should have.
+     *
+     * @public
+     * @remarks
+     * HTML Attribute: connotation
+     */
+	@attr connotation?: BadgeConnotation;
 
-import { Badge } from './badge.base';
-import { badgeTemplate as template } from './badge.template';
+	/**
+     * The shape the badge should have.
+     *
+     * @public
+     * @remarks
+     * HTML Attribute: shape
+     */
+	@attr shape?: BadgeShape;
 
-import { designSystem } from '../../core/design-system';
+	/**
+     * The layout the badge should have.
+     *
+     * @public
+     * @remarks
+     * HTML Attribute: layout
+     */
+	@attr layout?: BadgeLayout;
 
-export const VIVIDBadge = Badge.compose<FoundationElementDefinition>({
-	baseName: 'badge',
-	template: template as any,
-	styles,
-});
+	/**
+     * The size the badge should have.
+     *
+     * @public
+     * @remarks
+     * HTML Attribute: size
+     */
+	@attr size?: Size;
 
-designSystem.register(VIVIDBadge());
+	/**
+     * A decorative icon the badge should have.
+     *
+     * @public
+     * @remarks
+     * HTML Attribute: icon
+     */
+	@attr icon?: string;
+
+	/**
+     * Indicates the icon affix alignment.
+     *
+     * @public
+     * @remarks
+     * HTML Attribute: icon-trailing
+     */
+	@attr({
+		mode: 'boolean',
+		attribute: 'icon-trailing',
+	}) iconTrailing = false;
+
+	/**
+     * Indicates the badge's text.
+     * @public
+     * @remarks
+     * HTML Attribute: text
+     */
+	@attr text = '';
+}

@@ -44,8 +44,7 @@
     "dist/**/*"
   ],
   "exports": {
-    "./button": "./dist/components/button/button.js",
-    "./icon": "./dist/components/icon/icon.js"
+    ".": "./dist/components"
   },
   "dependencies": {
     "@material/mwc-base": "^0.25.3",
