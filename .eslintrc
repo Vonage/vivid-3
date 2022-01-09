@@ -1,31 +1,18 @@
 {
-  "root": true,
-  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "./tsconfig.base.json"
   },
   "env": {
-    "browser": true,
-    "node": true
+    "browser": true
   },
-  "plugins": ["wc", "jsdoc"],
+  "plugins": ["@typescript-eslint", "import", "wc", "jsdoc"],
   "extends": [
-    "airbnb-base",
-    "airbnb-typescript/base",
-    "plugin:compat/recommended",
+    "@microsoft/eslint-config-fast-dna",
     "plugin:wc/recommended",
     "plugin:wc/best-practice",
-    "plugin:jsdoc/recommended",
-    "@microsoft/eslint-config-fast-dna"
+    "plugin:compat/recommended",
+    "plugin:jsdoc/recommended"
   ],
-  "settings": {
-    "wc": {
-      "elementBaseClasses": [
-        "BaseElement",
-        "FormElement"
-      ]
-    }
-  },
   "rules": {
     // lint
     "indent": "off",
