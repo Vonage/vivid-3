@@ -5,11 +5,9 @@
   "env": {
     "browser": true
   },
-  "plugins": ["@typescript-eslint", "import", "wc", "jsdoc"],
+  "plugins": ["@typescript-eslint", "import", "jsdoc"],
   "extends": [
     "@microsoft/eslint-config-fast-dna",
-    "plugin:wc/recommended",
-    "plugin:wc/best-practice",
     "plugin:compat/recommended",
     "plugin:jsdoc/recommended"
   ],
