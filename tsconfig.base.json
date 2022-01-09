@@ -23,18 +23,7 @@
 		"removeComments": true,
 		"paths": {
 			"*" : ["./src/@types/*"]
-        },
-		"plugins": [
-			{
-				"name": "ts-lit-plugin",
-				"strict": true,
-				"rules": {
-				"no-nullable-attribute-binding": "off",
-				"no-missing-import": "warning",
-				"no-incompatible-type-binding": "off"
-				}
-			}
-		]
+        }
 	},
 	"include": [
 		"./src/",
