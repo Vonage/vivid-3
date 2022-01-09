@@ -1,7 +1,7 @@
 @use '../../sass/mixins/connotation/config' with (
 	$subset: primary cta success alert warning info,
 	$shades: soft contrast,
-    $default: primary,
+	$default: primary,
 );
 @use '../../sass/mixins/connotation' as connotation;
 
