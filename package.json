@@ -3,7 +3,7 @@
   "version": "3.0.0",
   "description": "Vonage's web UI 🎨 toolbelt",
   "scripts": {
-    "start": "npm run build:components -- --watch & npm run build:tokens -- --watch & npm run docs:serve",
+    "watch": "npm run build:components -- --watch & npm run build:tokens -- --watch",
     "docs:serve": "eleventy --config=./dotfiles/.eleventy.js --serve",
     "docs:build": "eleventy --config=./dotfiles/.eleventy.js",
     "build:tokens": "sass src/core/theme:dist/core/theme",
