@@ -5,8 +5,16 @@
 );
 @use '../../sass/mixins/connotation' as connotation;
 
+@use '../../sass/mixins/appearance/config' as appearance-config with (
+	$subset: filled outlined soft,
+	$outline-duotone: true,
+	$default: filled,
+);
+@use '../../sass/mixins/appearance' as appearance;
+
 .control {
 	@include connotation.connotation;
+	@include appearance.appearance;
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
@@ -36,22 +44,6 @@
 .control.size-large {
 	block-size: 28px;
 	padding-inline: 12px;
-}
-
-/* Appearance */
-
-.control:not(.appearance-outlined):not(.appearance-soft) {
-	--appearance-color-fill: var(--connotation);
-	--appearance-color-text: var(--on-connotation);
-}
-.control.appearance-outlined {
-	--appearance-color-fill: transparent;
-	--appearance-color-outline: var(--connotation);
-	--appearance-color-text: var(--connotation-contrast);
-}
-.control.appearance-soft {
-	--appearance-color-fill: var(--connotation-soft);
-	--appearance-color-text: var(--connotation-contrast);
 }
 
 /* Shape */
