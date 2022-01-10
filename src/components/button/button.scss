@@ -1,3 +1,5 @@
+@use '../../sass/mixins/typography' as typography;
+
 @use '../../sass/mixins/connotation/config' with (
 	$subset: primary cta success alert announcement info,
 	$shades: soft contrast,
@@ -21,7 +23,6 @@
 	background-color: var(#{appearance.$appearance-color-fill});
 	color: var(#{appearance.$appearance-color-text});
 	column-gap: 8px;
-	font: 600 ultra-condensed 12px / 16px SpeziaWebVariable;
 	letter-spacing: 0;
 	text-decoration: none;
 	text-transform: none;
@@ -31,16 +32,19 @@
 /* Size */
 
 .control:not(.size-small):not(.size-large) {
+	@include typography.typography-cat-shorthand('button');
 	block-size: 40px;
 	padding-inline: 10px;
 }
 
 .control.size-small {
+	@include typography.typography-cat-shorthand('caption-bold');
 	block-size: 32px;
 	padding-inline: 8px;
 }
 
 .control.size-large {
+	@include typography.typography-cat-shorthand('body-1-bold');
 	block-size: 48px;
 	padding-inline: 12px;
 }

@@ -13,6 +13,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight);
 
   eleventyConfig.addPassthroughCopy({
+    "dist/core/fonts/*.css": "assets/styles/fonts",
     "dist/core/theme/*.css": "assets/styles/themes",
     "dist/components": "assets/modules/components",
     "vivid-logo.svg": "assets/images/vivid-logo.svg",
