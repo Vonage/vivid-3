@@ -47,7 +47,7 @@ Use the `shape` attribute to change the button's edges.
 
 ## Icon
 
-Badge text can be affixed by a decorative icon, either by its start or end. 
+Button text can be affixed by a decorative icon, either by its start or end. 
 Use the `icon` attribute to add an icon. Use the `icon-trailing` to place the icon to the right.
 
 ```html preview
