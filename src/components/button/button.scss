@@ -5,14 +5,21 @@
 );
 @use '../../sass/mixins/connotation' as connotation;
 
+@use '../../sass/mixins/appearance/config' as appearance-config with (
+	$subset: filled outlined ghost,
+	$default: ghost,
+);
+@use '../../sass/mixins/appearance' as appearance;
+
 .control {
 	@include connotation.connotation;
+	@include appearance.appearance;
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
-	border: 1px solid var(--layout-color-outline);
-	background-color: var(--layout-color-fill);
-	color: var(--layout-color-text);
+	border: 1px solid var(#{appearance.$appearance-color-outline});
+	background-color: var(#{appearance.$appearance-color-fill});
+	color: var(#{appearance.$layout-color-text});
 	column-gap: 8px;
 	font: 600 ultra-condensed 12px / 16px SpeziaWebVariable;
 	letter-spacing: 0;
@@ -36,22 +43,6 @@
 .control.size-large {
 	block-size: 48px;
 	padding-inline: 12px;
-}
-
-/* Layout */
-
-.control:not(.layout-outlined):not(.layout-soft) {
-	--layout-color-fill: var(--connotation);
-	--layout-color-text: var(--on-connotation);
-}
-.control.layout-outlined {
-	--layout-color-fill: transparent;
-	--layout-color-outline: var(--connotation);
-	--layout-color-text: var(--connotation-contrast);
-}
-.control.layout-soft {
-	--layout-color-fill: var(--connotation-soft);
-	--layout-color-text: var(--connotation-contrast);
 }
 
 /* Shape */
