@@ -4,215 +4,215 @@
 */
 
 $typography-category-list: (
-  'body-1': (
-    'font-family': SpeziaWebVariable,
-    'font-size': 16px,
-    'font-stretch': 50%,
-    'font-weight': 400,
-    'letter-spacing': 0px,
-    'line-height': 24px,
-    'text-decoration': none,
-    'text-transform': none
-  ),
-  'body-1-bold': (
-    'font-family': SpeziaWebVariable,
-    'font-size': 16px,
-    'font-stretch': 50%,
-    'font-weight': 600,
-    'letter-spacing': 0px,
-    'line-height': 24px,
-    'text-decoration': none,
-    'text-transform': none
-  ),
-  'body-1-code': (
-    'font-family': SpeziaMonoWebVariable,
-    'font-size': 16px,
-    'font-stretch': 50%,
-    'font-weight': 400,
-    'letter-spacing': 0px,
-    'line-height': 24px,
-    'text-decoration': none,
-    'text-transform': none
-  ),
-  'body-1-link': (
-    'font-family': SpeziaWebVariable,
-    'font-size': 16px,
-    'font-stretch': 50%,
-    'font-weight': 400,
-    'letter-spacing': 0px,
-    'line-height': 24px,
-    'text-decoration': underline,
-    'text-transform': none
-  ),
-  'body-2': (
-    'font-family': SpeziaWebVariable,
-    'font-size': 14px,
-    'font-stretch': 50%,
-    'font-weight': 400,
-    'letter-spacing': 0px,
-    'line-height': 20px,
-    'text-decoration': none,
-    'text-transform': none
-  ),
-  'body-2-bold': (
-    'font-family': SpeziaWebVariable,
-    'font-size': 14px,
-    'font-stretch': 50%,
-    'font-weight': 600,
-    'letter-spacing': 0px,
-    'line-height': 20px,
-    'text-decoration': none,
-    'text-transform': none
-  ),
-  'body-2-code': (
-    'font-family': SpeziaMonoWebVariable,
-    'font-size': 14px,
-    'font-stretch': 50%,
-    'font-weight': 400,
-    'letter-spacing': 0px,
-    'line-height': 20px,
-    'text-decoration': none,
-    'text-transform': none
-  ),
-  'body-2-link': (
-    'font-family': SpeziaWebVariable,
-    'font-size': 14px,
-    'font-stretch': 50%,
-    'font-weight': 400,
-    'letter-spacing': 0px,
-    'line-height': 20px,
-    'text-decoration': underline,
-    'text-transform': none
-  ),
-  'button': (
-    'font-family': SpeziaWebVariable,
-    'font-size': 14px,
-    'font-stretch': 50%,
-    'font-weight': 600,
-    'letter-spacing': 0px,
-    'line-height': 100%,
-    'text-decoration': none,
-    'text-transform': none
-  ),
-  'button-dense': (
-    'font-family': SpeziaWebVariable,
-    'font-size': 12px,
-    'font-stretch': 50%,
-    'font-weight': 600,
-    'letter-spacing': 0px,
-    'line-height': 100%,
-    'text-decoration': none,
-    'text-transform': none
-  ),
-  'button-enlarge': (
-    'font-family': SpeziaWebVariable,
-    'font-size': 16px,
-    'font-stretch': 50%,
-    'font-weight': 600,
-    'letter-spacing': 0px,
-    'line-height': 100%,
-    'text-decoration': none,
-    'text-transform': none
-  ),
-  'caption': (
-    'font-family': SpeziaWebVariable,
-    'font-size': 12px,
-    'font-stretch': 50%,
-    'font-weight': 400,
-    'letter-spacing': 0px,
-    'line-height': 16px,
-    'text-decoration': none,
-    'text-transform': none
-  ),
-  'caption-bold': (
-    'font-family': SpeziaWebVariable,
-    'font-size': 12px,
-    'font-stretch': 50%,
-    'font-weight': 600,
-    'letter-spacing': 0px,
-    'line-height': 16px,
-    'text-decoration': none,
-    'text-transform': none
-  ),
-  'caption-code': (
-    'font-family': SpeziaMonoWebVariable,
-    'font-size': 12px,
-    'font-stretch': 50%,
-    'font-weight': 400,
-    'letter-spacing': 0px,
-    'line-height': 16px,
-    'text-decoration': none,
-    'text-transform': none
-  ),
-  'caption-link': (
-    'font-family': SpeziaWebVariable,
-    'font-size': 12px,
-    'font-stretch': 50%,
-    'font-weight': 400,
-    'letter-spacing': 0px,
-    'line-height': 16px,
-    'text-decoration': underline,
-    'text-transform': none
-  ),
-  'headline-1': (
-    'font-family': SpeziaWebVariable,
-    'font-size': 66px,
-    'font-stretch': 75%,
-    'font-weight': 500,
-    'letter-spacing': 0px,
-    'line-height': 88px,
-    'text-decoration': none,
-    'text-transform': none
-  ),
-  'headline-2': (
-    'font-family': SpeziaWebVariable,
-    'font-size': 52px,
-    'font-stretch': 75%,
-    'font-weight': 500,
-    'letter-spacing': 0px,
-    'line-height': 68px,
-    'text-decoration': none,
-    'text-transform': none
-  ),
-  'subtitle-1': (
-    'font-family': SpeziaWebVariable,
-    'font-size': 26px,
-    'font-stretch': 75%,
-    'font-weight': 500,
-    'letter-spacing': 0px,
-    'line-height': 36px,
-    'text-decoration': none,
-    'text-transform': none
-  ),
-  'subtitle-2': (
-    'font-family': SpeziaWebVariable,
-    'font-size': 20px,
-    'font-stretch': 75%,
-    'font-weight': 500,
-    'letter-spacing': 0px,
-    'line-height': 28px,
-    'text-decoration': none,
-    'text-transform': none
-  ),
-  'title-1': (
-    'font-family': SpeziaWebVariable,
-    'font-size': 40px,
-    'font-stretch': 75%,
-    'font-weight': 500,
-    'letter-spacing': 0px,
-    'line-height': 52px,
-    'text-decoration': none,
-    'text-transform': none
-  ),
-  'title-2': (
-    'font-family': SpeziaWebVariable,
-    'font-size': 32px,
-    'font-stretch': 75%,
-    'font-weight': 500,
-    'letter-spacing': 0px,
-    'line-height': 44px,
-    'text-decoration': none,
-    'text-transform': none
-  )
+	'body-1': (
+		'font-family': SpeziaWebVariable,
+		'font-size': 16px,
+		'font-stretch': 50%,
+		'font-weight': 400,
+		'letter-spacing': 0,
+		'line-height': 24px,
+		'text-decoration': none,
+		'text-transform': none
+	),
+	'body-1-bold': (
+		'font-family': SpeziaWebVariable,
+		'font-size': 16px,
+		'font-stretch': 50%,
+		'font-weight': 600,
+		'letter-spacing': 0,
+		'line-height': 24px,
+		'text-decoration': none,
+		'text-transform': none
+	),
+	'body-1-code': (
+		'font-family': SpeziaMonoWebVariable,
+		'font-size': 16px,
+		'font-stretch': 50%,
+		'font-weight': 400,
+		'letter-spacing': 0,
+		'line-height': 24px,
+		'text-decoration': none,
+		'text-transform': none
+	),
+	'body-1-link': (
+		'font-family': SpeziaWebVariable,
+		'font-size': 16px,
+		'font-stretch': 50%,
+		'font-weight': 400,
+		'letter-spacing': 0,
+		'line-height': 24px,
+		'text-decoration': underline,
+		'text-transform': none
+	),
+	'body-2': (
+		'font-family': SpeziaWebVariable,
+		'font-size': 14px,
+		'font-stretch': 50%,
+		'font-weight': 400,
+		'letter-spacing': 0,
+		'line-height': 20px,
+		'text-decoration': none,
+		'text-transform': none
+	),
+	'body-2-bold': (
+		'font-family': SpeziaWebVariable,
+		'font-size': 14px,
+		'font-stretch': 50%,
+		'font-weight': 600,
+		'letter-spacing': 0,
+		'line-height': 20px,
+		'text-decoration': none,
+		'text-transform': none
+	),
+	'body-2-code': (
+		'font-family': SpeziaMonoWebVariable,
+		'font-size': 14px,
+		'font-stretch': 50%,
+		'font-weight': 400,
+		'letter-spacing': 0,
+		'line-height': 20px,
+		'text-decoration': none,
+		'text-transform': none
+	),
+	'body-2-link': (
+		'font-family': SpeziaWebVariable,
+		'font-size': 14px,
+		'font-stretch': 50%,
+		'font-weight': 400,
+		'letter-spacing': 0,
+		'line-height': 20px,
+		'text-decoration': underline,
+		'text-transform': none
+	),
+	'button': (
+		'font-family': SpeziaWebVariable,
+		'font-size': 14px,
+		'font-stretch': 50%,
+		'font-weight': 600,
+		'letter-spacing': 0,
+		'line-height': 100%,
+		'text-decoration': none,
+		'text-transform': none
+	),
+	'button-dense': (
+		'font-family': SpeziaWebVariable,
+		'font-size': 12px,
+		'font-stretch': 50%,
+		'font-weight': 600,
+		'letter-spacing': 0,
+		'line-height': 100%,
+		'text-decoration': none,
+		'text-transform': none
+	),
+	'button-enlarge': (
+		'font-family': SpeziaWebVariable,
+		'font-size': 16px,
+		'font-stretch': 50%,
+		'font-weight': 600,
+		'letter-spacing': 0,
+		'line-height': 100%,
+		'text-decoration': none,
+		'text-transform': none
+	),
+	'caption': (
+		'font-family': SpeziaWebVariable,
+		'font-size': 12px,
+		'font-stretch': 50%,
+		'font-weight': 400,
+		'letter-spacing': 0,
+		'line-height': 16px,
+		'text-decoration': none,
+		'text-transform': none
+	),
+	'caption-bold': (
+		'font-family': SpeziaWebVariable,
+		'font-size': 12px,
+		'font-stretch': 50%,
+		'font-weight': 600,
+		'letter-spacing': 0,
+		'line-height': 16px,
+		'text-decoration': none,
+		'text-transform': none
+	),
+	'caption-code': (
+		'font-family': SpeziaMonoWebVariable,
+		'font-size': 12px,
+		'font-stretch': 50%,
+		'font-weight': 400,
+		'letter-spacing': 0,
+		'line-height': 16px,
+		'text-decoration': none,
+		'text-transform': none
+	),
+	'caption-link': (
+		'font-family': SpeziaWebVariable,
+		'font-size': 12px,
+		'font-stretch': 50%,
+		'font-weight': 400,
+		'letter-spacing': 0,
+		'line-height': 16px,
+		'text-decoration': underline,
+		'text-transform': none
+	),
+	'headline-1': (
+		'font-family': SpeziaWebVariable,
+		'font-size': 66px,
+		'font-stretch': 75%,
+		'font-weight': 500,
+		'letter-spacing': 0,
+		'line-height': 88px,
+		'text-decoration': none,
+		'text-transform': none
+	),
+	'headline-2': (
+		'font-family': SpeziaWebVariable,
+		'font-size': 52px,
+		'font-stretch': 75%,
+		'font-weight': 500,
+		'letter-spacing': 0,
+		'line-height': 68px,
+		'text-decoration': none,
+		'text-transform': none
+	),
+	'subtitle-1': (
+		'font-family': SpeziaWebVariable,
+		'font-size': 26px,
+		'font-stretch': 75%,
+		'font-weight': 500,
+		'letter-spacing': 0,
+		'line-height': 36px,
+		'text-decoration': none,
+		'text-transform': none
+	),
+	'subtitle-2': (
+		'font-family': SpeziaWebVariable,
+		'font-size': 20px,
+		'font-stretch': 75%,
+		'font-weight': 500,
+		'letter-spacing': 0,
+		'line-height': 28px,
+		'text-decoration': none,
+		'text-transform': none
+	),
+	'title-1': (
+		'font-family': SpeziaWebVariable,
+		'font-size': 40px,
+		'font-stretch': 75%,
+		'font-weight': 500,
+		'letter-spacing': 0,
+		'line-height': 52px,
+		'text-decoration': none,
+		'text-transform': none
+	),
+	'title-2': (
+		'font-family': SpeziaWebVariable,
+		'font-size': 32px,
+		'font-stretch': 75%,
+		'font-weight': 500,
+		'letter-spacing': 0,
+		'line-height': 44px,
+		'text-decoration': none,
+		'text-transform': none
+	)
 );
 
