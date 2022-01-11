@@ -1,5 +1,5 @@
 import { Button as FoundationButton } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
+import { attr, observable } from '@microsoft/fast-element';
 
 import type {
 	Appearance, Connotation, Shape, Size,
@@ -105,4 +105,15 @@ export class Button extends FoundationButton {
 	 * HTML Attribute: label
 	 */
 	@attr label = '';
+	/**
+	 * Applies 'icon-only' class when there is no label but there is icon
+	 *
+	 * @public
+	 * @remarks
+	 */
+	labelChanged(): void {
+		this.iconOnly = !this.label && !!this.icon;
+	}
+
+	@observable iconOnly = false;
 }

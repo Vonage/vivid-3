@@ -6,7 +6,7 @@
     "watch": "npm run build:components -- --watch & npm run build:tokens -- --watch",
     "docs:serve": "eleventy --config=./apps/docs/.eleventy.js --serve",
     "docs:build": "eleventy --config=./apps/docs/.eleventy.js",
-    "build:font": "sass src/core/font:dist/core/font",
+    "build:font": "sass src/core/fonts:dist/core/font",
     "build:tokens": "sass src/core/theme:dist/core/theme",
     "build:components": "rollup -c config/rollup/rollup.config.prod.ts",
     "build": "npm run build:components && npm run build:tokens",
