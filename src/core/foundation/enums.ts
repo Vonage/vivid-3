@@ -30,9 +30,9 @@ export enum Appearance {
 }
 
 export enum Size {
-	Small = 'small',
-	Medium = 'medium',
-	Large = 'large',
+	BaseSmall = 'base-small',
+	Base = 'base',
+	BaseLarge = 'base-large',
 }
 
 export enum Position {

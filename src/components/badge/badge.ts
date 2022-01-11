@@ -34,6 +34,13 @@ Appearance.Filled | Appearance.Outlined | Appearance.Soft>;
 type BadgeShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
+ * Types of badge size.
+ *
+ * @public
+ */
+type BadgeSize = Extract<Size, Size.BaseSmall | Size.Base | Size.BaseLarge>;
+
+/**
  * Base class for badge
  *
  * @public
@@ -73,7 +80,7 @@ export class Badge extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: size
 	 */
-	@attr size?: Size;
+	@attr size?: BadgeSize;
 
 	/**
 	 * A decorative icon the badge should have.

@@ -34,11 +34,17 @@ Appearance.Filled | Appearance.Outlined | Appearance.Soft>;
 type ButtonShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
+ * Types of button size.
+ *
+ * @public
+ */
+type ButtonSize = Extract<Size, Size.BaseSmall | Size.Base | Size.BaseLarge>;
+
+/**
  * Base class for button
  *
  * @public
  */
-
 export class Button extends FoundationButton {
 	/**
 	 * The connotation the button should have.
@@ -74,7 +80,7 @@ export class Button extends FoundationButton {
 	 * @remarks
 	 * HTML Attribute: size
 	 */
-	@attr size?: Size;
+	@attr size?: ButtonSize;
 
 	/**
 	 * A decorative icon the button should have.

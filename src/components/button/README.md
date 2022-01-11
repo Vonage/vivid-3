@@ -23,14 +23,13 @@ Add a `label` attribute to add text to the button.
 
 Use the `size` attribute to change the button's size.
 
-- Type: `'small'` | `'medium'` | `'large'`
+- Type: `'base-small'` | `'base'` | `'base-large'`
 - Default: `'medium'`
 
-
 ```html preview
-<vwc-button label='small' size='small'></vwc-button>
-<vwc-button label='medium' size='medium'></vwc-button>
-<vwc-button label='large' size='large'></vwc-button>
+<vwc-button label='base-small' size='base-small'></vwc-button>
+<vwc-button label='base' size='base'></vwc-button>
+<vwc-button label='base-large' size='base-large'></vwc-button>
 ```
 
 ## Shape
@@ -51,8 +50,16 @@ Button text can be affixed by a decorative icon, either by its start or end.
 Use the `icon` attribute to add an icon. Use the `icon-trailing` to place the icon to the right.
 
 ```html preview
-<vwc-button label='icon' icon='check-line'></vwc-button>
-<vwc-button label='icon-trailing' icon='check-line' icon-trailing></vwc-button>
+<vwc-button appearance="filled" label='icon' icon='check-line'></vwc-button>
+<vwc-button appearance="filled" label='icon-trailing' icon='check-line' icon-trailing></vwc-button>
+```
+
+## Icon Only
+
+If label not applied...
+
+```html preview
+<vwc-button appearance="filled" icon='message-sent-line'></vwc-button>
 ```
 
 ## Appearance
