@@ -6,6 +6,10 @@ import { Button } from './button';
 import styles from './button.scss';
 import { buttonTemplate as template } from './button.template';
 
+/**
+ * Represents a button custom element.
+ */
+
 export const vividButton = Button.compose({
 	baseName: 'button',
 	baseClass: FastButton,

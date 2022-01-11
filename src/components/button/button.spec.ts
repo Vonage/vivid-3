@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@open-wc/testing';
+import { elementUpdated, fixture, fixtureCleanup } from '@open-wc/testing';
 import { Icon } from '../icon/icon';
 import { Button } from './button';
 import '.';
@@ -13,7 +13,7 @@ describe('vwc-button', () => {
 		element = await fixture<Button>(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`);
 	});
 
-	// afterEach(() => fixtureCleanup());
+	afterEach(() => fixtureCleanup());
 
 	describe('basic', () => {
 		it('initializes as a vwc-button', async () => {

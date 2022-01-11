@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@open-wc/testing';
+import { elementUpdated, fixture, fixtureCleanup } from '@open-wc/testing';
 import { Icon } from '../icon/icon';
 import { Badge } from './badge';
 import '.';
@@ -16,7 +16,7 @@ describe('vwc-badge', () => {
 		element = await fixture<Badge>(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`);
 	});
 
-	// afterEach(() => fixtureCleanup());
+	afterEach(() => fixtureCleanup());
 
 	describe('basic', () => {
 		it('initializes as a vwc-badge', async () => {
