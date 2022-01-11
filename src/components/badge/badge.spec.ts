@@ -39,18 +39,16 @@ describe('vwc-badge', () => {
 			expect(icon.type).toEqual('home');
 		});
 
-		it(
-			'setting `iconTrailing` set the order of element',
-			async () => {
-				element.icon = 'home';
-				element.iconTrailing = true;
-				await elementUpdated(element);
+		it('setting `iconTrailing` set the order of element', async () => {
+			element.icon = 'home';
+			element.iconTrailing = true;
+			await elementUpdated(element);
 
-				const trailingIcon = element.shadowRoot.querySelector(
-					`.icon-trailing ${ICON_SELECTOR}`,
-				);
-				expect(trailingIcon).toBeInstanceOf(Icon);
-			},
+			const trailingIcon = element.shadowRoot.querySelector(
+				`.icon-trailing ${ICON_SELECTOR}`,
+			);
+			expect(trailingIcon).toBeInstanceOf(Icon);
+		},
 		);
 	});
 

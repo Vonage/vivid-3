@@ -36,18 +36,16 @@ describe('vwc-button', () => {
 			expect(icon.type).toEqual('home');
 		});
 
-		it(
-			'setting `iconTrailing` set the order of element',
-			async () => {
-				element.icon = 'home';
-				element.iconTrailing = true;
-				await elementUpdated(element);
+		it('setting `iconTrailing` set the order of element', async () => {
+			element.icon = 'home';
+			element.iconTrailing = true;
+			await elementUpdated(element);
 
-				const trailingIcon = element.shadowRoot.querySelector(
-					`.icon-trailing ${ICON_SELECTOR}`,
-				);
-				expect(trailingIcon).toBeInstanceOf(Icon);
-			},
+			const trailingIcon = element.shadowRoot.querySelector(
+				`.icon-trailing ${ICON_SELECTOR}`,
+			);
+			expect(trailingIcon).toBeInstanceOf(Icon);
+		},
 		);
 	});
 
@@ -110,7 +108,6 @@ describe('vwc-button', () => {
 		it('sets correct internal icon-only style', async () => {
 			element.icon = 'home';
 			await elementUpdated(element);
-			debugger;
 
 			const control = element.shadowRoot.querySelector('.control.icon-only');
 			expect(control).toBeInstanceOf(Element);
