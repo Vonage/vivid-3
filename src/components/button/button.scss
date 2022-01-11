@@ -16,12 +16,12 @@
 .control {
 	@include connotation.connotation;
 	@include appearance.appearance;
-	block-size: var(--size);
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
 	border: 1px solid var(#{appearance.$appearance-color-outline});
 	background-color: var(#{appearance.$appearance-color-fill});
+	block-size: var(--size);
 	color: var(#{appearance.$appearance-color-text});
 	vertical-align: middle;
 
@@ -39,11 +39,11 @@
 /* Size */
 
 .control:not(.size-base-small):not(.size-base-large) {
-	@include typography.typography-cat-shorthand('button');
 	--size: 40px;
+	@include typography.typography-cat-shorthand('button');
 	block-size: var(--size);
 
-	&:not(.icon-only){
+	&:not(.icon-only) {
 		column-gap: 8px;
 		padding-inline: 16px;
 	}
@@ -54,10 +54,10 @@
 }
 
 .control.size-base-small {
-	@include typography.typography-cat-shorthand('caption-bold');
 	--size: 32px;
+	@include typography.typography-cat-shorthand('caption-bold');
 
-	&:not(.icon-only){
+	&:not(.icon-only) {
 		column-gap: 8px;
 		padding-inline: 12px;
 	}
@@ -68,10 +68,10 @@
 }
 
 .control.size-base-large {
-	@include typography.typography-cat-shorthand('body-1-bold');
 	--size: 48px;
+	@include typography.typography-cat-shorthand('body-1-bold');
 
-	&:not(.icon-only){
+	&:not(.icon-only) {
 		column-gap: 10px;
 		padding-inline: 20px;
 	}
