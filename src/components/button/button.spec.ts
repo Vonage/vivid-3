@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, fixtureCleanup } from '@open-wc/testing';
+import { elementUpdated, fixture } from '@open-wc/testing';
 import { Icon } from '../icon/icon';
 import { Button } from './button';
 import '.';
@@ -12,8 +12,6 @@ describe('vwc-button', () => {
 	beforeEach(async () => {
 		element = await fixture<Button>(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`);
 	});
-
-	afterEach(() => fixtureCleanup());
 
 	describe('basic', () => {
 		it('initializes as a vwc-button', async () => {
@@ -112,6 +110,7 @@ describe('vwc-button', () => {
 		it('sets correct internal icon-only style', async () => {
 			element.icon = 'home';
 			await elementUpdated(element);
+			debugger;
 
 			const control = element.shadowRoot.querySelector('.control.icon-only');
 			expect(control).toBeInstanceOf(Element);
