@@ -2,13 +2,10 @@ import { elementUpdated, fixture } from '@open-wc/testing';
 import { Icon } from '../icon/icon';
 import { Button } from './button';
 import '.';
-// import type { vividIcon } from '../icon/icon';
 
 const COMPONENT_TAG = 'vwc-button';
 const ICON_SELECTOR = 'vwc-icon';
-// const correlatePropsWithAttrs = () => {
 
-// };
 describe('vwc-button', () => {
 	let element: Button;
 
