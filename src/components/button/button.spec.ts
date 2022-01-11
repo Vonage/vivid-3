@@ -69,7 +69,7 @@ describe('vwc-button', () => {
 
 	describe('connotation', () => {
 		it('sets correct internal connotation style', async () => {
-			const connotation = 'info';
+			const connotation = 'cta';
 			(element as any).connotation = connotation;
 			await elementUpdated(element);
 
