@@ -45,7 +45,7 @@ type ButtonSize = Extract<Size, Size.BaseSmall | Size.Base | Size.BaseLarge>;
  *
  * @public
  */
-export class Button extends FoundationButton {
+export abstract class Button extends FoundationButton {
 	/**
 	 * The connotation the button should have.
 	 *

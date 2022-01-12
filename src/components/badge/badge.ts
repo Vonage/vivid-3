@@ -45,7 +45,7 @@ type BadgeSize = Extract<Size, Size.BaseSmall | Size.Base | Size.BaseLarge>;
  *
  * @public
  */
-export class Badge extends FoundationElement {
+export abstract class Badge extends FoundationElement {
 	/**
 	 * The connotation the badge should have.
 	 *
