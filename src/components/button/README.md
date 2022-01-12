@@ -120,7 +120,7 @@ It accepts a subset of predefined values.
 ## States
 ### Disabled
 ```html preview
-<vwc-button label='ghost' appearance='ghost' disabled></vwc-button>
-<vwc-button label='filled' appearance='filled' disabled></vwc-button>
-<vwc-button label='outlined' appearance='outlined' disabled></vwc-button>
+<vwc-button disabled appearance='ghost' label='ghost'></vwc-button>
+<vwc-button disabled appearance='filled' label='filled'></vwc-button>
+<vwc-button disabled appearance='outlined' label='outlined'></vwc-button>
 ```

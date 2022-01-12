@@ -24,7 +24,7 @@
 	block-size: var(--size);
 	color: var(#{appearance.$appearance-color-text});
 	vertical-align: middle;
-	&.disabled {
+	&[disabled] {
 		color: var(--vvd-color-neutral-40);
 		&.appearance-outlined {
 			border-color: var(--vvd-color-neutral-30);
