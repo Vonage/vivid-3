@@ -42,7 +42,7 @@ type IconConnotation = Extract<Connotation,
 | Connotation.Alert
 | Connotation.Info>;
 
-export abstract class Icon extends FoundationElement {
+export class Icon extends FoundationElement {
 	@attr connotation?: IconConnotation;
 
 	@attr size?: Size;
