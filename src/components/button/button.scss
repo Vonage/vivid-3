@@ -24,9 +24,20 @@
 	block-size: var(--size);
 	color: var(#{appearance.$appearance-color-text});
 	vertical-align: middle;
+	&.disabled {
+		color: var(--vvd-color-neutral-40);
+		&.appearance-outlined {
+			border-color: var(--vvd-color-neutral-30);
+		}
+		&.appearance-filled {
+			color: var(--vvd-color-neutral-50);
+			background-color: var(--vvd-color-neutral-30);
+		}
+	}
 
 	&.icon-only {
 		place-content: center;
+		padding-inline: 0;
 		@supports (aspect-ratio: 1) {
 			aspect-ratio: 1;
 		}
@@ -88,6 +99,9 @@
 }
 .control.shape-pill {
 	border-radius: 14px;
+	&.icon-only {
+		border-radius: 50%;
+	}
 }
 
 /* Icon */
@@ -97,3 +111,4 @@
 		order: 1;
 	}
 }
+
