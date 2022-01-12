@@ -59,8 +59,8 @@ Use the `icon` attribute to add an icon. Use the `icon-trailing` to place the ic
 If label not applied...
 
 ```html preview
-<vwc-button appearance="filled" icon='message-sent-line'></vwc-button>
-<vwc-button appearance="filled" shape="pill" icon='message-sent-line'></vwc-button>
+<vwc-button appearance="filled" icon='message-sent-line' size="base-small"></vwc-button>
+<vwc-button appearance="filled" shape="pill" icon='message-sent-line' size="base-small"></vwc-button>
 ```
 
 ## Appearance
@@ -115,6 +115,12 @@ It accepts a subset of predefined values.
 <vwc-button appearance="outlined" label='alert' connotation='alert'></vwc-button>
 <vwc-button appearance="outlined" label='announcement' connotation='announcement'></vwc-button>
 <vwc-button appearance="outlined" label='info' connotation='info'></vwc-button>
+```
+
+## Stacked
+```html preview
+<vwc-button appearance="filled" label='stacked' icon='compose-line' stacked></vwc-button>
+<vwc-button appearance="filled" label='stacked' icon='compose-line' icon-trailing stacked></vwc-button>
 ```
 
 ## States

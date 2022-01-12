@@ -21,9 +21,77 @@
 	align-items: center;
 	border: 1px solid var(#{appearance.$appearance-color-outline});
 	background-color: var(#{appearance.$appearance-color-fill});
-	block-size: var(--size);
+	block-size: var(--size, 40px);
 	color: var(#{appearance.$appearance-color-text});
 	vertical-align: middle;
+
+	column-gap: var(--column-gap, 8px);
+	padding-inline: var(--button-padding-inline, 16px);
+
+	/* Size */
+	&.size-base {
+		//basicly all things under basic can be removed and be used as variable default and typography can move under 'control'
+		--size: 40px;
+		--affix-font-size: 20px;
+		--button-padding-inline: 16px;
+		@include typography.typography-cat-shorthand('button');
+	}
+
+	&.size-base-small {
+		--size: 32px;
+		--affix-font-size: 16px;
+		--button-padding-inline: 12px;
+		@include typography.typography-cat-shorthand('caption-bold');
+	}
+
+	&.size-base-large {
+		--size: 48px;
+		--affix-font-size: 24px;
+		--button-padding-inline: 20px;
+		column-gap: 10px;
+		@include typography.typography-cat-shorthand('body-1-bold');
+	}
+
+	/* Shape */
+	&.shape-rounded {
+		border-radius: 6px;
+	}
+	&.shape-pill {
+		border-radius: 14px;
+		&.icon-only {
+			border-radius: 50%;
+		}
+	}
+
+	&.stacked {
+		--size: 68px;
+		flex-direction: column;
+		place-content: center;
+		line-height: normal;
+		row-gap: 8px;
+
+		&.size-base-large {
+			--size: 80px;
+		}
+
+		&.size-base-small {
+			--size: 56px;
+		}
+	}
+
+	/* Only Icon */
+	&.icon-only {
+		--button-padding-inline: 0;
+		place-content: center;
+		@supports (aspect-ratio: 1) {
+			aspect-ratio: 1;
+		}
+		@supports not (aspect-ratio: 1) {
+			inline-size: var(--size);
+		}
+	}
+
+
 	&.disabled {
 		color: var(--vvd-color-neutral-40);
 		&.appearance-outlined {
@@ -34,81 +102,11 @@
 			background-color: var(--vvd-color-neutral-30);
 		}
 	}
-
-	&.icon-only {
-		place-content: center;
-		padding-inline: 0;
-		@supports (aspect-ratio: 1) {
-			aspect-ratio: 1;
-		}
-		@supports not (aspect-ratio: 1) {
-			inline-size: var(--size);
-		}
-	}
 }
-
-/* Size */
-
-.control:not(.size-base-small):not(.size-base-large) {
-	--size: 40px;
-	@include typography.typography-cat-shorthand('button');
-	block-size: var(--size);
-
-	&:not(.icon-only) {
-		column-gap: 8px;
-		padding-inline: 16px;
-	}
-
-	.affix {
-		font-size: 20px;
-	}
-}
-
-.control.size-base-small {
-	--size: 32px;
-	@include typography.typography-cat-shorthand('caption-bold');
-
-	&:not(.icon-only) {
-		column-gap: 8px;
-		padding-inline: 12px;
-	}
-
-	.affix {
-		font-size: 16px;
-	}
-}
-
-.control.size-base-large {
-	--size: 48px;
-	@include typography.typography-cat-shorthand('body-1-bold');
-
-	&:not(.icon-only) {
-		column-gap: 10px;
-		padding-inline: 20px;
-	}
-
-	.affix {
-		font-size: 24px;
-	}
-}
-
-/* Shape */
-
-.control:not(.shape-pill) {
-	border-radius: 6px;
-}
-.control.shape-pill {
-	border-radius: 14px;
-	&.icon-only {
-		border-radius: 50%;
-	}
-}
-
-/* Icon */
 
 .affix {
-	.control.icon-trailing & {
+	font-size: var(--affix-font-size, 20px);
+	.icon-trailing & {
 		order: 1;
 	}
 }
-
