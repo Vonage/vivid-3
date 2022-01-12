@@ -53,7 +53,7 @@ export class Button extends FoundationButton {
 	 * @remarks
 	 * HTML Attribute: connotation
 	 */
-	@attr connotation?: ButtonConnotation[number] = 'primary';
+	@attr connotation?: ButtonConnotation;
 
 	/**
 	 * The shape the button should have.
@@ -62,7 +62,7 @@ export class Button extends FoundationButton {
 	 * @remarks
 	 * HTML Attribute: shape
 	 */
-	@attr shape?: ButtonShape[number] = 'rounded';
+	@attr shape?: ButtonShape;
 
 	/**
 	 * The appearance the button should have.
@@ -71,7 +71,7 @@ export class Button extends FoundationButton {
 	 * @remarks
 	 * HTML Attribute: appearance
 	 */
-	@attr appearance?: ButtonAppearance[number] = 'ghost';
+	@attr appearance?: ButtonAppearance;
 
 	/**
 	 * The size the button should have.
@@ -80,7 +80,7 @@ export class Button extends FoundationButton {
 	 * @remarks
 	 * HTML Attribute: size
 	 */
-	@attr size?: ButtonSize[number] = 'base';
+	@attr size?: ButtonSize;
 
 	/**
 	 * A decorative icon the button should have.

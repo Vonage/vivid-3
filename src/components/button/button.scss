@@ -24,18 +24,10 @@
 	block-size: var(--size, 40px);
 	color: var(#{appearance.$appearance-color-text});
 	vertical-align: middle;
-
 	column-gap: var(--column-gap, 8px);
 	padding-inline: var(--button-padding-inline, 16px);
-
-	/* Size */
-	&.size-base {
-		//basicly all things under basic can be removed and be used as variable default and typography can move under 'control'
-		--size: 40px;
-		--affix-font-size: 20px;
-		--button-padding-inline: 16px;
-		@include typography.typography-cat-shorthand('button');
-	}
+	border-radius: var(--button-border-radius, 6px);
+	@include typography.typography-cat-shorthand('button');
 
 	&.size-base-small {
 		--size: 32px;
@@ -53,13 +45,10 @@
 	}
 
 	/* Shape */
-	&.shape-rounded {
-		border-radius: 6px;
-	}
 	&.shape-pill {
-		border-radius: 14px;
+		--button-border-radius: 14px;
 		&.icon-only {
-			border-radius: 50%;
+			--button-border-radius: 50%;
 		}
 	}
 
