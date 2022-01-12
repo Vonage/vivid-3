@@ -16,7 +16,7 @@ say a few words on button
 Add a `label` attribute to add text to the button.
 
 ```html preview
-<vwc-button label='A default button'></vwc-button>
+<vwc-button appearance='filled' label='A default button'></vwc-button>
 ```
 
 ## Size
@@ -27,9 +27,9 @@ Use the `size` attribute to change the button's size.
 - Default: `'medium'`
 
 ```html preview
-<vwc-button label='base-small' size='base-small'></vwc-button>
-<vwc-button label='base' size='base'></vwc-button>
-<vwc-button label='base-large' size='base-large'></vwc-button>
+<vwc-button appearance='filled' label='base-small' size='base-small'></vwc-button>
+<vwc-button appearance='filled' label='base' size='base'></vwc-button>
+<vwc-button appearance='filled' label='base-large' size='base-large'></vwc-button>
 ```
 
 ## Shape
@@ -40,8 +40,8 @@ Use the `shape` attribute to change the button's edges.
 - Default: `'rounded'`
 
 ```html preview
-<vwc-button label='rounded' shape='rounded'></vwc-button>
-<vwc-button label='pill' shape='pill'></vwc-button>
+<vwc-button appearance='filled' label='rounded' shape='rounded'></vwc-button>
+<vwc-button appearance='filled' label='pill' shape='pill'></vwc-button>
 ```
 
 ## Icon
@@ -60,6 +60,7 @@ If label not applied...
 
 ```html preview
 <vwc-button appearance="filled" icon='message-sent-line'></vwc-button>
+<vwc-button appearance="filled" shape="pill" icon='message-sent-line'></vwc-button>
 ```
 
 ## Appearance
@@ -114,4 +115,12 @@ It accepts a subset of predefined values.
 <vwc-button appearance="outlined" label='alert' connotation='alert'></vwc-button>
 <vwc-button appearance="outlined" label='announcement' connotation='announcement'></vwc-button>
 <vwc-button appearance="outlined" label='info' connotation='info'></vwc-button>
+```
+
+## States
+### Disabled
+```html preview
+<vwc-button label='ghost' appearance='ghost' disabled></vwc-button>
+<vwc-button label='filled' appearance='filled' disabled></vwc-button>
+<vwc-button label='outlined' appearance='outlined' disabled></vwc-button>
 ```
