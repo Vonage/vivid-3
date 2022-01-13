@@ -111,4 +111,16 @@ export class Button extends FoundationButton {
 	 * HTML Attribute: label
 	 */
 	@attr label = '';
+
+	/**
+	 * Indicates if the button is stacked.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: stacked
+	 */
+	@attr({
+		mode: 'boolean',
+		attribute: 'stacked',
+	}) stackedButton = false;
 }

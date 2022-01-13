@@ -5,7 +5,7 @@ import { Icon } from '../icon/icon';
 import type { Button } from './button';
 
 const getClasses = ({
-	connotation, appearance, shape, size, iconTrailing, icon, label
+	connotation, appearance, shape, size, iconTrailing, icon, label, stackedButton
 }: Button) => classNames(
 	'control',
 	['icon-trailing', iconTrailing],
@@ -14,6 +14,7 @@ const getClasses = ({
 	[`shape-${shape}`, Boolean(shape)],
 	[`size-${size}`, Boolean(size)],
 	['icon-only', !label && !!icon],
+	['stacked', stackedButton],
 );
 
 const iconTemplate = (context: ElementDefinitionContext) => {
