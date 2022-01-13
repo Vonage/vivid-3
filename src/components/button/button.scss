@@ -2,7 +2,7 @@
 
 @use '../../sass/mixins/connotation/config' with (
 	$subset: primary cta success alert announcement info,
-	$shades: soft contrast,
+	$shades: diverse,
 	$default: primary,
 );
 @use '../../sass/mixins/connotation' as connotation;
