@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://github.com/vonage/vivid-3">
-    <img src="assets/images/vivid-logo.svg" style="" alt="Vivid Logo" width="120">
+    <img src="vivid-logo.svg" style="" alt="Vivid Logo" width="120">
   </a>
   <h1 align="center">Welcome to Vivid</h1>
 
