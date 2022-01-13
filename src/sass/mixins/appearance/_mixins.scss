@@ -23,7 +23,7 @@ $all-appearances: (
 
 %outlined {
 	#{variables.$appearance-color-fill}: transparent;
-	#{variables.$appearance-color-outline}: var(#{connotation.$vvd-color-connotation});
+	#{variables.$appearance-color-outline}: var(#{connotation.$vvd-color-connotation}-diverse);
 	@if (config.$outline-duotone) {
 		#{variables.$appearance-color-text}: var(#{connotation.$vvd-color-connotation}-contrast);
 	} @else {
@@ -39,7 +39,7 @@ $all-appearances: (
 %text,
 %ghost {
 	#{variables.$appearance-color-fill}: transparent;
-	#{variables.$appearance-color-text}: var(#{connotation.$vvd-color-connotation});
+	#{variables.$appearance-color-text}: var(#{connotation.$vvd-color-connotation}-diverse);
 }
 
 @function get-typed-selector($type) {
