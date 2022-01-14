@@ -1,0 +1,14 @@
+@use '../../tokens/build/scss/consts' as consts;
+
+
+:host {
+    border-radius: inherit;
+}
+
+.control {
+	position: absolute;
+    box-sizing: border-box;
+    border-radius: inherit;
+    inset: 0;
+    box-shadow: inset 0 0 0 2px var(#{consts.$vvd-color-on-canvas}), inset 0 0 0 3px currentColor;
+}

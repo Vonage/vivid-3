@@ -13,9 +13,14 @@
 );
 @use '../../sass/mixins/appearance' as appearance;
 
+:host {
+	outline: 0 none;
+}
+
 .control {
 	@include connotation.connotation;
 	@include appearance.appearance;
+	position: relative;
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
@@ -24,6 +29,8 @@
 	block-size: var(--size);
 	color: var(#{appearance.$appearance-color-text});
 	vertical-align: middle;
+	outline: 0 none;
+
 	&[disabled] {
 		color: var(--vvd-color-neutral-40);
 		&.appearance-outlined {
@@ -45,6 +52,13 @@
 			inline-size: var(--size);
 		}
 	}
+
+
+	&:not(:focus):not(:focus:not(:focus-visible)):not(:focus-visible) {
+		> .focus {
+			display: none;
+		}
+	}
 }
 
 /* Size */
@@ -55,7 +69,7 @@
 	block-size: var(--size);
 
 	&:not(.icon-only) {
-		column-gap: 8px;
+		// column-gap: 8px;
 		padding-inline: 16px;
 	}
 
@@ -69,7 +83,7 @@
 	@include typography.typography-cat-shorthand('caption-bold');
 
 	&:not(.icon-only) {
-		column-gap: 8px;
+		// column-gap: 8px;
 		padding-inline: 12px;
 	}
 
@@ -83,7 +97,7 @@
 	@include typography.typography-cat-shorthand('body-1-bold');
 
 	&:not(.icon-only) {
-		column-gap: 10px;
+		// column-gap: 10px;
 		padding-inline: 20px;
 	}
 

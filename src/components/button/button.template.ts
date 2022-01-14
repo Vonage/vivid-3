@@ -2,6 +2,7 @@ import { html, ref, type ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Icon } from '../icon/icon';
+import { Focus } from '../focus/focus';
 import type { Button } from './button';
 
 const getClasses = ({
@@ -15,6 +16,12 @@ const getClasses = ({
 	[`size-${size}`, Boolean(size)],
 	['icon-only', !label && !!icon],
 );
+
+const focusTemplate = (context: ElementDefinitionContext) => {
+	const focusTag = context.tagFor(Focus);
+
+	return html`<${focusTag} class="focus"></${focusTag}>`;
+};
 
 const iconTemplate = (context: ElementDefinitionContext) => {
 	const iconTag = context.tagFor(Icon);
@@ -69,6 +76,7 @@ export const buttonTemplate: (
         aria-roledescription="${(x) => x.ariaRoledescription}"
         ${ref('control')}
     >
+        ${() => focusTemplate(context)}
         ${(x) => (x.icon ? iconTemplate(context) : '')}
         ${(x) => x.label}
     </button>
