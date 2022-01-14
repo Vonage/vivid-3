@@ -1,6 +1,6 @@
 @use '../../sass/mixins/connotation/config' with (
 	$subset: primary cta success alert warning info,
-	$shades: soft contrast,
+	$shades: soft contrast diverse,
 	$default: primary,
 );
 @use '../../sass/mixins/connotation' as connotation;
@@ -18,7 +18,7 @@
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
-	border: 1px solid var(#{appearance.$appearance-color-outline});
+	box-shadow: inset 0 0 0 1px var(#{appearance.$appearance-color-outline});
 	background-color: var(#{appearance.$appearance-color-fill});
 	color: var(#{appearance.$appearance-color-text});
 	column-gap: 8px;

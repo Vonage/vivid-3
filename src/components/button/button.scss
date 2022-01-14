@@ -24,7 +24,8 @@
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
-	border: 1px solid var(#{appearance.$appearance-color-outline});
+	border: 0 none;
+	box-shadow: inset 0 0 0 1px var(#{appearance.$appearance-color-outline});
 	background-color: var(#{appearance.$appearance-color-fill});
 	block-size: var(--size);
 	color: var(#{appearance.$appearance-color-text});
