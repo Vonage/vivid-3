@@ -1,4 +1,7 @@
+@use '../../tokens/build/scss/consts' as consts;
 @use '../../sass/mixins/typography' as typography;
+@use 'partials/variables' as variables;
+@use '../focus/partials/variables' as focus-variables;
 
 @use '../../sass/mixins/connotation/config' with (
 	$subset: primary cta success alert announcement info,
@@ -13,6 +16,7 @@
 );
 @use '../../sass/mixins/appearance' as appearance;
 
+
 :host {
 	outline: 0 none;
 }
@@ -25,35 +29,41 @@
 	box-sizing: border-box;
 	align-items: center;
 	border: 0 none;
-	box-shadow: inset 0 0 0 1px var(#{appearance.$appearance-color-outline});
 	background-color: var(#{appearance.$appearance-color-fill});
-	block-size: var(--size);
+	block-size: var(#{variables.$block-size});
+	box-shadow: inset 0 0 0 1px var(#{appearance.$appearance-color-outline});
 	color: var(#{appearance.$appearance-color-text});
-	vertical-align: middle;
 	outline: 0 none;
+	vertical-align: middle;
 
 	&[disabled] {
-		color: var(--vvd-color-neutral-40);
+		color: var(#{consts.$vvd-color-neutral-40});
 		&.appearance-outlined {
-			border-color: var(--vvd-color-neutral-30);
+			border-color: var(#{consts.$vvd-color-neutral-30});
 		}
 		&.appearance-filled {
-			color: var(--vvd-color-neutral-50);
-			background-color: var(--vvd-color-neutral-30);
+			background-color: var(#{consts.$vvd-color-neutral-30});
+			color: var(#{consts.$vvd-color-neutral-50});
 		}
 	}
 
 	&.icon-only {
-		place-content: center;
 		padding-inline: 0;
+		place-content: center;
 		@supports (aspect-ratio: 1) {
 			aspect-ratio: 1;
 		}
 		@supports not (aspect-ratio: 1) {
-			inline-size: var(--size);
+			inline-size: var(#{variables.$block-size});
 		}
 	}
 
+	&.appearance-outlined,
+	&.appearance-ghost {
+		> .focus {
+			#{focus-variables.$focus-stroke-gap-color}: transparent;
+		}
+	}
 
 	&:not(:focus):not(:focus:not(:focus-visible)):not(:focus-visible) {
 		> .focus {
@@ -65,12 +75,12 @@
 /* Size */
 
 .control:not(.size-base-small):not(.size-base-large) {
-	--size: 40px;
+	#{variables.$block-size}: 40px;
 	@include typography.typography-cat-shorthand('button');
-	block-size: var(--size);
+	block-size: var(#{variables.$block-size});
 
 	&:not(.icon-only) {
-		// column-gap: 8px;
+		#{variables.$icon-gap}: 8px;
 		padding-inline: 16px;
 	}
 
@@ -80,11 +90,11 @@
 }
 
 .control.size-base-small {
-	--size: 32px;
+	#{variables.$block-size}: 32px;
 	@include typography.typography-cat-shorthand('caption-bold');
 
 	&:not(.icon-only) {
-		// column-gap: 8px;
+		#{variables.$icon-gap}: 8px;
 		padding-inline: 12px;
 	}
 
@@ -94,11 +104,11 @@
 }
 
 .control.size-base-large {
-	--size: 48px;
+	#{variables.$block-size}: 48px;
 	@include typography.typography-cat-shorthand('body-1-bold');
 
 	&:not(.icon-only) {
-		// column-gap: 10px;
+		#{variables.$icon-gap}: 10px;
 		padding-inline: 20px;
 	}
 
@@ -113,7 +123,9 @@
 	border-radius: 6px;
 }
 .control.shape-pill {
-	border-radius: 14px;
+	&:not(.icon-only) {
+		border-radius: 24px;
+	}
 	&.icon-only {
 		border-radius: 50%;
 	}
@@ -122,8 +134,13 @@
 /* Icon */
 
 .affix {
+	:not(.control.icon-trailing) & {
+		margin-inline-end: var(#{variables.$icon-gap});
+	}
+
 	.control.icon-trailing & {
 		order: 1;
+		margin-inline-start: var(#{variables.$icon-gap});
 	}
 }
 
