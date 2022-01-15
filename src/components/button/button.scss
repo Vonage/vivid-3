@@ -30,14 +30,14 @@
 			border-color: var(--vvd-color-neutral-30);
 		}
 		&.appearance-filled {
-			color: var(--vvd-color-neutral-50);
 			background-color: var(--vvd-color-neutral-30);
+			color: var(--vvd-color-neutral-50);
 		}
 	}
 
 	&.icon-only {
-		place-content: center;
 		padding-inline: 0;
+		place-content: center;
 		@supports (aspect-ratio: 1) {
 			aspect-ratio: 1;
 		}
