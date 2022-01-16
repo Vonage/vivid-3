@@ -106,11 +106,15 @@ describe('vwc-button', () => {
 
 	describe('icon-only', () => {
 		it('sets correct internal icon-only style', async () => {
+			const getControlIconOnly = () => element.shadowRoot.querySelector('.control.icon-only');
+			const controlIconOnlyBefore = getControlIconOnly();
+
 			element.icon = 'home';
 			await elementUpdated(element);
 
-			const control = element.shadowRoot.querySelector('.control.icon-only');
-			expect(control).toBeInstanceOf(Element);
+			const controlIconOnlyAfter = getControlIconOnly();
+			expect(controlIconOnlyBefore).toBeNull();
+			expect(controlIconOnlyAfter).toBeInstanceOf(Element);
 		});
 	});
 });
