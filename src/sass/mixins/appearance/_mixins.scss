@@ -1,3 +1,4 @@
+@use '../../../tokens/build/scss/consts' as consts;
 @use '../connotation' as connotation;
 @use '../../functions' as functions;
 @use 'variables' as variables;
@@ -10,6 +11,7 @@
 ////////////////////////////////////////////////////////////////////////////
 $all-appearances: (
 	filled: 'filled',
+	filled-idle: 'filled-idle',
 	outlined: 'outlined',
 	soft: 'soft',
 	text: 'text',
@@ -40,6 +42,24 @@ $all-appearances: (
 %ghost {
 	#{variables.$appearance-color-fill}: transparent;
 	#{variables.$appearance-color-text}: var(#{connotation.$vvd-color-connotation}-diverse);
+}
+
+%soft-idle,
+%filled-idle {
+	#{variables.$appearance-color-fill}: var(#{consts.$vvd-color-neutral-10});
+	#{variables.$appearance-color-text}: var(#{consts.$vvd-color-neutral-30});
+}
+
+%outlined-idle {
+	#{variables.$appearance-color-fill}: transparent;
+	#{variables.$appearance-color-outline}: var(#{consts.$vvd-color-neutral-30});
+	#{variables.$appearance-color-text}: var(#{consts.$vvd-color-neutral-30});
+}
+
+%text-idle,
+%ghost-idle {
+	#{variables.$appearance-color-fill}: transparent;
+	#{variables.$appearance-color-text}: var(#{consts.$vvd-color-neutral-30});
 }
 
 @function get-typed-selector($type) {

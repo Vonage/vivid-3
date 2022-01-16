@@ -23,7 +23,7 @@ type ButtonConnotation = Extract<Connotation,
  *
  * @public
  */
-type ButtonAppearance = Extract<Appearance,
+export type ButtonAppearance = Extract<Appearance,
 Appearance.Filled | Appearance.Outlined | Appearance.Soft>;
 
 /**

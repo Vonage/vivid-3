@@ -3,15 +3,22 @@ import type { ElementDefinitionContext, FoundationElementDefinition } from '@mic
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Icon } from '../icon/icon';
 import { Focus } from '../focus/focus';
-import type { Button } from './button';
+import type { Button, ButtonAppearance } from './button';
+
+
+const getAppearanceClassName = (appearance: ButtonAppearance, disabled: boolean) => {
+	let className = `appearance-${appearance}`;
+	disabled && (className += '-idle'); 
+	return className;
+};
 
 const getClasses = ({
-	connotation, appearance, shape, size, iconTrailing, icon, label
+	connotation, appearance, shape, size, iconTrailing, icon, label, disabled
 }: Button) => classNames(
 	'control',
 	['icon-trailing', iconTrailing],
 	[`connotation-${connotation}`, Boolean(connotation)],
-	[`appearance-${appearance}`, Boolean(appearance)],
+	[getAppearanceClassName(appearance as ButtonAppearance, disabled), Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	[`size-${size}`, Boolean(size)],
 	['icon-only', !label && !!icon],
