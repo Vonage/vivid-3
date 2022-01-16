@@ -91,8 +91,6 @@ It accepts a subset of predefined values.
 <vwc-button appearance="ghost" label='cta' connotation='cta'></vwc-button>
 <vwc-button appearance="ghost" label='success' connotation='success'></vwc-button>
 <vwc-button appearance="ghost" label='alert' connotation='alert'></vwc-button>
-<vwc-button appearance="ghost" label='announcement' connotation='announcement'></vwc-button>
-<vwc-button appearance="ghost" label='info' connotation='info'></vwc-button>
 ```
 
 ### Filled button with connotation
@@ -102,8 +100,6 @@ It accepts a subset of predefined values.
 <vwc-button appearance="filled" label='cta' connotation='cta'></vwc-button>
 <vwc-button appearance="filled" label='success' connotation='success'></vwc-button>
 <vwc-button appearance="filled" label='alert' connotation='alert'></vwc-button>
-<vwc-button appearance="filled" label='announcement' connotation='announcement'></vwc-button>
-<vwc-button appearance="filled" label='info' connotation='info'></vwc-button>
 ```
 
 ### Outlined button with connotation
@@ -113,8 +109,6 @@ It accepts a subset of predefined values.
 <vwc-button appearance="outlined" label='cta' connotation='cta'></vwc-button>
 <vwc-button appearance="outlined" label='success' connotation='success'></vwc-button>
 <vwc-button appearance="outlined" label='alert' connotation='alert'></vwc-button>
-<vwc-button appearance="outlined" label='announcement' connotation='announcement'></vwc-button>
-<vwc-button appearance="outlined" label='info' connotation='info'></vwc-button>
 ```
 
 ## States

@@ -1,7 +1,7 @@
 @use '../../sass/mixins/typography' as typography;
 
 @use '../../sass/mixins/connotation/config' with (
-	$subset: primary cta success alert announcement info,
+	$subset: primary cta success alert,
 	$shades: diverse,
 	$default: primary,
 );
