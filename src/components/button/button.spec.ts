@@ -1,22 +1,10 @@
 import { Icon } from '../icon/icon';
 import { Button } from './button';
 import '.';
+import { elementUpdated, fixture } from '../../core/test-utils';
 
 const COMPONENT_TAG = 'vwc-button';
 const ICON_SELECTOR = 'vwc-icon';
-
-const elementUpdated = async (element: any) => {
-	return new Promise(resolve => requestAnimationFrame(() => resolve(element)));
-};
-
-const fixture = (() => {
-	const fragment = document.createElement('div');
-	document.body.appendChild(fragment);
-	return (template: string) => {
-		fragment.innerHTML = template;
-		return fragment.children[0];
-	};
-})();
 
 describe('vwc-button', () => {
 	let element: Button;
@@ -57,8 +45,7 @@ describe('vwc-button', () => {
 				`.icon-trailing ${ICON_SELECTOR}`,
 			);
 			expect(trailingIcon).toBeInstanceOf(HTMLElement);
-		},
-		);
+		});
 	});
 
 	describe('label', () => {

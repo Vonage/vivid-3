@@ -1,23 +1,10 @@
+import { elementUpdated, fixture } from '../../core/test-utils';
 import {Icon} from '../icon/icon';
 import {Badge} from './badge';
 import '.';
-// import type { vividIcon } from '../icon/icon';
 
 const COMPONENT_TAG = 'vwc-badge';
 const ICON_SELECTOR = 'vwc-icon';
-
-const elementUpdated = async (element: any) => {
-	return new Promise(resolve => requestAnimationFrame(() => resolve(element)));
-};
-
-const fixture = (() => {
-	const fragment = document.createElement('div');
-	document.body.appendChild(fragment);
-	return (template: string) => {
-		fragment.innerHTML = template;
-		return fragment.children[0];
-	};
-})();
 
 describe('vwc-badge', () => {
 	let element: Badge;
