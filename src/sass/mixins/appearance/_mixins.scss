@@ -23,10 +23,11 @@ $all-appearances: (
 
 %outlined {
 	#{variables.$appearance-color-fill}: transparent;
-	#{variables.$appearance-color-outline}: var(#{connotation.$vvd-color-connotation}-diverse);
 	@if (config.$outline-duotone) {
+		#{variables.$appearance-color-outline}: var(#{connotation.$vvd-color-connotation});
 		#{variables.$appearance-color-text}: var(#{connotation.$vvd-color-connotation}-contrast);
 	} @else {
+		#{variables.$appearance-color-outline}: var(#{connotation.$vvd-color-connotation}-diverse);
 		#{variables.$appearance-color-text}: var(#{connotation.$vvd-color-connotation}-diverse);
 	}
 }
