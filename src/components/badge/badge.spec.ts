@@ -37,12 +37,12 @@ describe('vwc-badge', () => {
 	describe('icon', () => {
 		it('adds an icon to the badge', async () => {
 			element.icon = 'home';
-			await elementUpdated();
+			await elementUpdated(element);
 
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR);
+			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
 			expect(icon)
 				.toBeInstanceOf(Icon);
-			expect(icon.type)
+			expect(icon?.type)
 				.toEqual('home');
 		});
 
@@ -67,7 +67,7 @@ describe('vwc-badge', () => {
 			await elementUpdated(element);
 
 			const control = element.shadowRoot?.querySelector('.control');
-			expect(control.textContent.trim())
+			expect(control?.textContent?.trim())
 				.toEqual(text);
 		});
 	});
