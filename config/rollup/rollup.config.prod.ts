@@ -3,22 +3,22 @@ import * as path from "path";
 import rollupBaseConfig from "./rollup.config.base.ts";
 
 function getFoldersInAFolder(workingFolder = "../../src/components") {
-  const testFolders = [];
+  const folders = [];
   const testsFolder = path.join(__dirname, workingFolder);
   fs.readdirSync(testsFolder).forEach((testFolder) => {
     const absolutePath = path.join(testsFolder, testFolder);
     if (fs.statSync(absolutePath).isDirectory()) {
-      testFolders.push(testFolder);
+      folders.push(testFolder);
     }
   });
-  return testFolders;
+  return folders;
 }
 
 const components = getFoldersInAFolder();
 const input = components.reduce((inputObject, componentName) => {
-  inputObject[`components/${componentName}/${componentName}`] = path.join(
+  inputObject[`components/${componentName}/index`] = path.join(
     process.cwd(),
-    `src/components/${componentName}/${componentName}.ts`
+    `src/components/${componentName}/index.ts`
   );
   return inputObject;
 }, {});
@@ -29,7 +29,7 @@ export default {
     sourcemap: "hidden",
     dir: "dist",
     format: "esm",
-    chunkFileNames: `components/[name]/chunks/[name]-[hash].js`,
+    chunkFileNames: `components/[name]/chunks/index.js`,
   },
   ...rollupBaseConfig,
 };

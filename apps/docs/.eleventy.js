@@ -2,9 +2,9 @@ const { EleventyRenderPlugin } = require("@11ty/eleventy");
 const codeblockdemo = require('eleventy-plugin-code-block-demo')
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 
-const INPUT_DIR = 'apps/vvd-docs';
+const INPUT_DIR = 'apps/docs';
 const ASSETS_DIR = `${INPUT_DIR}/assets`;
-const OUTPUT_DIR = 'dist/vvd-docs';
+const OUTPUT_DIR = 'dist/docs';
 
 module.exports = function (eleventyConfig) {
 

@@ -3,7 +3,7 @@ import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 
 import { classNames } from '@microsoft/fast-web-utilities';
-import type { Icon } from './icon.base';
+import type { Icon } from './icon';
 
 const getClasses = ({
 	connotation, size,

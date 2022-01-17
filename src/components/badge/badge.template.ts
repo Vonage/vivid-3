@@ -1,18 +1,18 @@
-import '../icon/icon';
+import '../icon';
 import { html } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import type { Badge } from './badge.base';
-import { Icon } from '../icon/icon.base';
+import { Icon } from '../icon/icon';
+import type { Badge } from './badge';
 
 const getClasses = ({
-	connotation, layout, shape, size, iconTrailing,
+	connotation, appearance, shape, size, iconTrailing,
 }: Badge) => classNames(
 	'control',
 	['icon-trailing', iconTrailing],
 	[`connotation-${connotation}`, Boolean(connotation)],
-	[`layout-${layout}`, Boolean(layout)],
+	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	[`size-${size}`, Boolean(size)],
 );
@@ -24,6 +24,8 @@ const iconTemplate = (context: ElementDefinitionContext) => {
 };
 /**
  * The template for the {@link @microsoft/fast-foundation#Badge} component.
+ *
+ * @param context
  * @public
  */
 export const badgeTemplate: (
