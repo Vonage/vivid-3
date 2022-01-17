@@ -1,7 +1,7 @@
-import { Icon } from '../icon/icon';
+import { elementUpdated, fixture } from '../../core/test-utils';
+import type { Icon } from '../icon/icon';
 import { Button } from './button';
 import '.';
-import { elementUpdated, fixture } from '../../core/test-utils';
 
 const COMPONENT_TAG = 'vwc-button';
 const ICON_SELECTOR = 'vwc-icon';
