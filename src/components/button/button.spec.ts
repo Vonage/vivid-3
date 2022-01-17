@@ -1,4 +1,3 @@
-import { elementUpdated, fixture } from '@open-wc/testing';
 import { Icon } from '../icon/icon';
 import { Button } from './button';
 import '.';
@@ -6,11 +5,24 @@ import '.';
 const COMPONENT_TAG = 'vwc-button';
 const ICON_SELECTOR = 'vwc-icon';
 
+const elementUpdated = async (element: any) => {
+	return new Promise(resolve => requestAnimationFrame(() => resolve(element)));
+};
+
+const fixture = (() => {
+	const fragment = document.createElement('div');
+	document.body.appendChild(fragment);
+	return (template: string) => {
+		fragment.innerHTML = template;
+		return fragment.children[0];
+	};
+})();
+
 describe('vwc-button', () => {
 	let element: Button;
 
 	beforeEach(async () => {
-		element = await fixture<Button>(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`);
+		element = await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Button;
 	});
 
 	describe('basic', () => {
@@ -31,8 +43,8 @@ describe('vwc-button', () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
-			const icon = element.shadowRoot.querySelector(ICON_SELECTOR);
-			expect(icon).toBeInstanceOf(Icon);
+			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			expect(icon).toBeInstanceOf(HTMLElement);
 			expect(icon.type).toEqual('home');
 		});
 
@@ -41,10 +53,10 @@ describe('vwc-button', () => {
 			element.iconTrailing = true;
 			await elementUpdated(element);
 
-			const trailingIcon = element.shadowRoot.querySelector(
+			const trailingIcon = element.shadowRoot?.querySelector(
 				`.icon-trailing ${ICON_SELECTOR}`,
 			);
-			expect(trailingIcon).toBeInstanceOf(Icon);
+			expect(trailingIcon).toBeInstanceOf(HTMLElement);
 		},
 		);
 	});
@@ -55,8 +67,8 @@ describe('vwc-button', () => {
 			element.label = label;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot.querySelector('.control');
-			expect(control.textContent.trim()).toEqual(label);
+			const control = element.shadowRoot?.querySelector('.control');
+			expect(control?.textContent?.trim()).toEqual(label);
 		});
 	});
 
@@ -66,7 +78,7 @@ describe('vwc-button', () => {
 			(element as any).connotation = connotation;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot.querySelector(`.control.connotation-${connotation}`);
+			const control = element.shadowRoot?.querySelector(`.control.connotation-${connotation}`);
 			expect(control).toBeInstanceOf(Element);
 		});
 	});
@@ -77,7 +89,7 @@ describe('vwc-button', () => {
 			(element as any).shape = shape;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot.querySelector(`.control.shape-${shape}`);
+			const control = element.shadowRoot?.querySelector(`.control.shape-${shape}`);
 			expect(control).toBeInstanceOf(Element);
 		});
 	});
@@ -88,7 +100,7 @@ describe('vwc-button', () => {
 			(element as any).appearance = appearance;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot.querySelector(`.control.appearance-${appearance}`);
+			const control = element.shadowRoot?.querySelector(`.control.appearance-${appearance}`);
 			expect(control).toBeInstanceOf(Element);
 		});
 	});
@@ -99,7 +111,7 @@ describe('vwc-button', () => {
 			(element as any).size = size;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot.querySelector(`.control.size-${size}`);
+			const control = element.shadowRoot?.querySelector(`.control.size-${size}`);
 			expect(control).toBeInstanceOf(Element);
 		});
 	});
@@ -109,7 +121,7 @@ describe('vwc-button', () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
-			const control = element.shadowRoot.querySelector('.control.icon-only');
+			const control = element.shadowRoot?.querySelector('.control.icon-only');
 			expect(control).toBeInstanceOf(Element);
 		});
 	});
