@@ -16,7 +16,6 @@
 );
 @use '../../sass/mixins/appearance' as appearance;
 
-
 :host {
 	outline: 0 none;
 }
@@ -111,10 +110,12 @@
 .control:not(.shape-pill) {
 	border-radius: 6px;
 }
+
 .control.shape-pill {
 	&:not(.icon-only) {
 		border-radius: 24px;
 	}
+
 	&.icon-only {
 		border-radius: 50%;
 	}

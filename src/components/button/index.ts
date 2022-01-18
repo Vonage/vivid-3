@@ -1,6 +1,7 @@
 import '../icon';
 import '../focus';
 
+
 import { Button as FastButton } from '@microsoft/fast-foundation';
 import { designSystem } from '../../core/design-system';
 import { Button } from './button';
