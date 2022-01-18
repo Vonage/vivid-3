@@ -1,5 +1,5 @@
-import { elementUpdated, fixture } from '@open-wc/testing';
-import { Icon } from '../icon/icon';
+import { elementUpdated, fixture } from '../../core/test-utils';
+import type { Icon } from '../icon/icon';
 import { Button } from './button';
 import '.';
 
@@ -10,7 +10,7 @@ describe('vwc-button', () => {
 	let element: Button;
 
 	beforeEach(async () => {
-		element = await fixture<Button>(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`);
+		element = await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Button;
 	});
 
 	describe('basic', () => {
@@ -31,8 +31,8 @@ describe('vwc-button', () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
-			const icon = element.shadowRoot.querySelector(ICON_SELECTOR);
-			expect(icon).toBeInstanceOf(Icon);
+			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			expect(icon).toBeInstanceOf(HTMLElement);
 			expect(icon.type).toEqual('home');
 		});
 
@@ -41,12 +41,11 @@ describe('vwc-button', () => {
 			element.iconTrailing = true;
 			await elementUpdated(element);
 
-			const trailingIcon = element.shadowRoot.querySelector(
+			const trailingIcon = element.shadowRoot?.querySelector(
 				`.icon-trailing ${ICON_SELECTOR}`,
 			);
-			expect(trailingIcon).toBeInstanceOf(Icon);
-		},
-		);
+			expect(trailingIcon).toBeInstanceOf(HTMLElement);
+		});
 	});
 
 	describe('label', () => {
@@ -55,8 +54,8 @@ describe('vwc-button', () => {
 			element.label = label;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot.querySelector('.control');
-			expect(control.textContent.trim()).toEqual(label);
+			const control = element.shadowRoot?.querySelector('.control');
+			expect(control?.textContent?.trim()).toEqual(label);
 		});
 	});
 
@@ -66,7 +65,7 @@ describe('vwc-button', () => {
 			(element as any).connotation = connotation;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot.querySelector(`.control.connotation-${connotation}`);
+			const control = element.shadowRoot?.querySelector(`.control.connotation-${connotation}`);
 			expect(control).toBeInstanceOf(Element);
 		});
 	});
@@ -77,7 +76,7 @@ describe('vwc-button', () => {
 			(element as any).shape = shape;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot.querySelector(`.control.shape-${shape}`);
+			const control = element.shadowRoot?.querySelector(`.control.shape-${shape}`);
 			expect(control).toBeInstanceOf(Element);
 		});
 	});
@@ -88,7 +87,7 @@ describe('vwc-button', () => {
 			(element as any).appearance = appearance;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot.querySelector(`.control.appearance-${appearance}`);
+			const control = element.shadowRoot?.querySelector(`.control.appearance-${appearance}`);
 			expect(control).toBeInstanceOf(Element);
 		});
 	});
@@ -99,18 +98,22 @@ describe('vwc-button', () => {
 			(element as any).size = size;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot.querySelector(`.control.size-${size}`);
+			const control = element.shadowRoot?.querySelector(`.control.size-${size}`);
 			expect(control).toBeInstanceOf(Element);
 		});
 	});
 
 	describe('icon-only', () => {
 		it('sets correct internal icon-only style', async () => {
+			const getControlIconOnly = () => element.shadowRoot.querySelector('.control.icon-only');
+			const controlIconOnlyBefore = getControlIconOnly();
+
 			element.icon = 'home';
 			await elementUpdated(element);
 
-			const control = element.shadowRoot.querySelector('.control.icon-only');
-			expect(control).toBeInstanceOf(Element);
+			const controlIconOnlyAfter = getControlIconOnly();
+			expect(controlIconOnlyBefore).toBeNull();
+			expect(controlIconOnlyAfter).toBeInstanceOf(Element);
 		});
 	});
 });

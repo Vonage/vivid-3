@@ -14,9 +14,7 @@ type ButtonConnotation = Extract<Connotation,
 | Connotation.Primary
 | Connotation.CTA
 | Connotation.Success
-| Connotation.Alert
-| Connotation.Announcement
-| Connotation.Info>;
+| Connotation.Alert>;
 
 /**
  * Types of button appearance.

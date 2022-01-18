@@ -50,7 +50,7 @@ async function loadTemplate({
 	});
 }
 
-const componentName = 'badge';
+const componentName = 'button';
 test('should have all connotations', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(path.join(__dirname, 'README.md'))
 		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
@@ -70,6 +70,6 @@ test('should have all connotations', async ({ page }: { page: Page }) => {
 
 	expect(await testWrapper?.screenshot())
 		.toMatchSnapshot(
-			'./snapshots/badge.png',
+			'./snapshots/button.png',
 		);
 });
