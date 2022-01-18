@@ -7,6 +7,13 @@
         ]
     },
     {
+        "title": "button",
+        "markdown": "./src/components/button/README.md",
+        "modules": [
+            "/assets/modules/components/button/index.js"
+        ]
+    },
+    {
         "title": "anchor",
         "markdown": "./src/components/anchor/README.md",
         "modules": [

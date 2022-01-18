@@ -25,14 +25,14 @@ Add a `text` attribute to add text to the badge.
 
 Use the `size` attribute to change the badge's size.
 
-- Type: `'small'` | `'medium'` | `'large'`
+- Type: `'base-small'` | `'medium'` | `'base-large'`
 - Default: `'medium'`
 
 
 ```html preview
-<vwc-badge text='small' size='small'></vwc-badge>
-<vwc-badge text='medium' size='medium'></vwc-badge>
-<vwc-badge text='large' size='large'></vwc-badge>
+<vwc-badge text='base-small' size='base-small'></vwc-badge>
+<vwc-badge text='base' size='base'></vwc-badge>
+<vwc-badge text='base-large' size='base-large'></vwc-badge>
 ```
 
 ## Shape

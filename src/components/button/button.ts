@@ -1,4 +1,4 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
+import { Button as FoundationButton } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 
 import type {
@@ -6,84 +6,82 @@ import type {
 } from '../../core/foundation/enums.js';
 
 /**
- * Types of badge connotation.
+ * Types of button connotation.
  *
  * @public
  */
-type BadgeConnotation = Extract<Connotation,
+type ButtonConnotation = Extract<Connotation,
 | Connotation.Primary
 | Connotation.CTA
 | Connotation.Success
-| Connotation.Alert
-| Connotation.Warning
-| Connotation.Info>;
+| Connotation.Alert>;
 
 /**
- * Types of badge appearance.
+ * Types of button appearance.
  *
  * @public
  */
-type BadgeAppearance = Extract<Appearance,
+type ButtonAppearance = Extract<Appearance,
 Appearance.Filled | Appearance.Outlined | Appearance.Soft>;
 
 /**
- * Types of badge shape.
+ * Types of button shape.
  *
  * @public
  */
-type BadgeShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+type ButtonShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
- * Types of badge size.
+ * Types of button size.
  *
  * @public
  */
-type BadgeSize = Extract<Size, Size.BaseSmall | Size.Base | Size.BaseLarge>;
+type ButtonSize = Extract<Size, Size.BaseSmall | Size.Base | Size.BaseLarge>;
 
 /**
- * Base class for badge
+ * Base class for button
  *
  * @public
  */
-export class Badge extends FoundationElement {
+export class Button extends FoundationButton {
 	/**
-	 * The connotation the badge should have.
+	 * The connotation the button should have.
 	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: connotation
 	 */
-	@attr connotation?: BadgeConnotation;
+	@attr connotation?: ButtonConnotation;
 
 	/**
-	 * The shape the badge should have.
+	 * The shape the button should have.
 	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: shape
 	 */
-	@attr shape?: BadgeShape;
+	@attr shape?: ButtonShape;
 
 	/**
-	 * The appearance the badge should have.
+	 * The appearance the button should have.
 	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: appearance
 	 */
-	@attr appearance?: BadgeAppearance;
+	@attr appearance?: ButtonAppearance;
 
 	/**
-	 * The size the badge should have.
+	 * The size the button should have.
 	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: size
 	 */
-	@attr size?: BadgeSize;
+	@attr size?: ButtonSize;
 
 	/**
-	 * A decorative icon the badge should have.
+	 * A decorative icon the button should have.
 	 *
 	 * @public
 	 * @remarks
@@ -104,11 +102,11 @@ export class Badge extends FoundationElement {
 	}) iconTrailing = false;
 
 	/**
-	 * Indicates the badge's text.
+	 * Indicates the button's label.
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: text
+	 * HTML Attribute: label
 	 */
-	@attr text = '';
+	@attr label = '';
 }

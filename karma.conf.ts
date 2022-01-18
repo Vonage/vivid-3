@@ -17,7 +17,7 @@ export default function (config: VividKarmaConfig) {
             }
         ],
         exclude: [],
-        reporters: config.coverage ? ['coverage', 'progress'] : ['progress'],
+        reporters: config.coverage ? ['coverage', 'progress', 'kjhtml'] : ['progress', 'kjhtml'],
         port: 9876,
         colors: true,
         autoWatch: true,

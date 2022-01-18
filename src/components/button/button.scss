@@ -1,0 +1,114 @@
+@use '../../sass/mixins/typography' as typography;
+
+@use '../../sass/mixins/connotation/config' with (
+	$subset: primary cta success alert,
+	$shades: diverse,
+	$default: primary,
+);
+@use '../../sass/mixins/connotation' as connotation;
+
+@use '../../sass/mixins/appearance/config' as appearance-config with (
+	$subset: filled outlined ghost,
+	$default: ghost,
+);
+@use '../../sass/mixins/appearance' as appearance;
+
+.control {
+	@include connotation.connotation;
+	@include appearance.appearance;
+	display: inline-flex;
+	box-sizing: border-box;
+	align-items: center;
+	border: 1px solid var(#{appearance.$appearance-color-outline});
+	background-color: var(#{appearance.$appearance-color-fill});
+	block-size: var(--size);
+	color: var(#{appearance.$appearance-color-text});
+	vertical-align: middle;
+	&[disabled] {
+		color: var(--vvd-color-neutral-40);
+		&.appearance-outlined {
+			border-color: var(--vvd-color-neutral-30);
+		}
+		&.appearance-filled {
+			background-color: var(--vvd-color-neutral-30);
+			color: var(--vvd-color-neutral-50);
+		}
+	}
+
+	&.icon-only {
+		padding-inline: 0;
+		place-content: center;
+		@supports (aspect-ratio: 1) {
+			aspect-ratio: 1;
+		}
+		@supports not (aspect-ratio: 1) {
+			inline-size: var(--size);
+		}
+	}
+}
+
+/* Size */
+
+.control:not(.size-base-small):not(.size-base-large) {
+	--size: 40px;
+	@include typography.typography-cat-shorthand('button');
+	block-size: var(--size);
+
+	&:not(.icon-only) {
+		column-gap: 8px;
+		padding-inline: 16px;
+	}
+
+	.affix {
+		font-size: 20px;
+	}
+}
+
+.control.size-base-small {
+	--size: 32px;
+	@include typography.typography-cat-shorthand('caption-bold');
+
+	&:not(.icon-only) {
+		column-gap: 8px;
+		padding-inline: 12px;
+	}
+
+	.affix {
+		font-size: 16px;
+	}
+}
+
+.control.size-base-large {
+	--size: 48px;
+	@include typography.typography-cat-shorthand('body-1-bold');
+
+	&:not(.icon-only) {
+		column-gap: 10px;
+		padding-inline: 20px;
+	}
+
+	.affix {
+		font-size: 24px;
+	}
+}
+
+/* Shape */
+
+.control:not(.shape-pill) {
+	border-radius: 6px;
+}
+.control.shape-pill {
+	border-radius: 14px;
+	&.icon-only {
+		border-radius: 50%;
+	}
+}
+
+/* Icon */
+
+.affix {
+	.control.icon-trailing & {
+		order: 1;
+	}
+}
+

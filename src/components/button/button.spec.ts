@@ -1,22 +1,22 @@
 import { elementUpdated, fixture } from '../../core/test-utils';
-import {Icon} from '../icon/icon';
-import {Badge} from './badge';
+import type { Icon } from '../icon/icon';
+import { Button } from './button';
 import '.';
 
-const COMPONENT_TAG = 'vwc-badge';
+const COMPONENT_TAG = 'vwc-button';
 const ICON_SELECTOR = 'vwc-icon';
 
-describe('vwc-badge', () => {
-	let element: Badge;
+describe('vwc-button', () => {
+	let element: Button;
 
 	beforeEach(async () => {
-		element = await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Badge;
+		element = await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Button;
 	});
 
 	describe('basic', () => {
-		it('initializes as a vwc-badge', async () => {
-			expect(element).toBeInstanceOf(Badge);
-			expect(element.text).toEqual('');
+		it('initializes as a vwc-button', async () => {
+			expect(element).toBeInstanceOf(Button);
+			expect(element.label).toEqual('');
 			expect(element.icon).toBeUndefined();
 			expect(element.iconTrailing).toBeFalsy();
 			expect(element.connotation).toBeUndefined();
@@ -27,15 +27,13 @@ describe('vwc-badge', () => {
 	});
 
 	describe('icon', () => {
-		it('adds an icon to the badge', async () => {
+		it('adds an icon to the button', async () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
 			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-			expect(icon)
-				.toBeInstanceOf(Icon);
-			expect(icon?.type)
-				.toEqual('home');
+			expect(icon).toBeInstanceOf(HTMLElement);
+			expect(icon.type).toEqual('home');
 		});
 
 		it('setting `iconTrailing` set the order of element', async () => {
@@ -46,33 +44,29 @@ describe('vwc-badge', () => {
 			const trailingIcon = element.shadowRoot?.querySelector(
 				`.icon-trailing ${ICON_SELECTOR}`,
 			);
-			expect(trailingIcon)
-				.toBeInstanceOf(Icon);
-		},
-		);
+			expect(trailingIcon).toBeInstanceOf(HTMLElement);
+		});
 	});
 
-	describe('text', () => {
-		it('set text property to node', async () => {
-			const text = 'lorem';
-			element.text = text;
+	describe('label', () => {
+		it('set label property to node', async () => {
+			const label = 'lorem';
+			element.label = label;
 			await elementUpdated(element);
 
 			const control = element.shadowRoot?.querySelector('.control');
-			expect(control?.textContent?.trim())
-				.toEqual(text);
+			expect(control?.textContent?.trim()).toEqual(label);
 		});
 	});
 
 	describe('connotation', () => {
 		it('sets correct internal connotation style', async () => {
-			const connotation = 'info';
+			const connotation = 'cta';
 			(element as any).connotation = connotation;
 			await elementUpdated(element);
 
 			const control = element.shadowRoot?.querySelector(`.control.connotation-${connotation}`);
-			expect(control)
-				.toBeInstanceOf(Element);
+			expect(control).toBeInstanceOf(Element);
 		});
 	});
 
@@ -83,20 +77,18 @@ describe('vwc-badge', () => {
 			await elementUpdated(element);
 
 			const control = element.shadowRoot?.querySelector(`.control.shape-${shape}`);
-			expect(control)
-				.toBeInstanceOf(Element);
+			expect(control).toBeInstanceOf(Element);
 		});
 	});
 
 	describe('appearance', () => {
 		it('sets correct internal appearance style', async () => {
-			const appearance = 'soft';
+			const appearance = 'filled';
 			(element as any).appearance = appearance;
 			await elementUpdated(element);
 
 			const control = element.shadowRoot?.querySelector(`.control.appearance-${appearance}`);
-			expect(control)
-				.toBeInstanceOf(Element);
+			expect(control).toBeInstanceOf(Element);
 		});
 	});
 
@@ -107,8 +99,21 @@ describe('vwc-badge', () => {
 			await elementUpdated(element);
 
 			const control = element.shadowRoot?.querySelector(`.control.size-${size}`);
-			expect(control)
-				.toBeInstanceOf(Element);
+			expect(control).toBeInstanceOf(Element);
+		});
+	});
+
+	describe('icon-only', () => {
+		it('sets correct internal icon-only style', async () => {
+			const getControlIconOnly = () => element.shadowRoot.querySelector('.control.icon-only');
+			const controlIconOnlyBefore = getControlIconOnly();
+
+			element.icon = 'home';
+			await elementUpdated(element);
+
+			const controlIconOnlyAfter = getControlIconOnly();
+			expect(controlIconOnlyBefore).toBeNull();
+			expect(controlIconOnlyAfter).toBeInstanceOf(Element);
 		});
 	});
 });
