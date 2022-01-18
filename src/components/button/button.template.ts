@@ -27,7 +27,7 @@ const getClasses = ({
 const focusTemplate = (context: ElementDefinitionContext) => {
 	const focusTag = context.tagFor(Focus);
 
-	return html`<${focusTag} class="focus"></${focusTag}>`;
+	return html`<${focusTag} class="focus-indicator"></${focusTag}>`;
 };
 
 const iconTemplate = (context: ElementDefinitionContext) => {

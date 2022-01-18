@@ -46,18 +46,6 @@
 		}
 	}
 
-	&.appearance-outlined,
-	&.appearance-ghost {
-		> .focus {
-			#{focus-variables.$focus-stroke-gap-color}: transparent;
-		}
-	}
-
-	&:not(:focus):not(:focus:not(:focus-visible)):not(:focus-visible) {
-		> .focus {
-			display: none;
-		}
-	}
 }
 
 /* Size */
@@ -134,3 +122,13 @@
 	}
 }
 
+.focus-indicator {
+	:not(:focus) & {
+		display: none;
+	}
+
+	.appearance-outlined &,
+	.appearance-ghost & {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+	}
+}
