@@ -1,66 +1,37 @@
+    :host {
+        display: inline-block;
+    }
 
-.icon {
-	color: var(--connotation, currentColor);
-}
-.icon.connotation-primary {
-	--connotation: var(--vvd-color-primary);
-	--on-connotation: var(--vvd-color-on-primary);
-}
-.icon.connotation-cta {
-	--connotation: var(--vvd-color-cta);
-	--on-connotation: var(--vvd-color-on-cta);
-}
-.icon.connotation-announcement {
-	--connotation: var(--vvd-color-announcement);
-	--on-connotation: var(--vvd-color-on-announcement);
-}
-.icon.connotation-success {
-	--connotation: var(--vvd-color-success);
-	--on-connotation: var(--vvd-color-on-success);
-}
-.icon.connotation-alert {
-	--connotation: var(--vvd-color-alert);
-	--on-connotation: var(--vvd-color-on-alert);
-}
-.icon.connotation-info {
-	--connotation: var(--vvd-color-info);
-	--on-connotation: var(--vvd-color-on-info);
-}
-:host([size='small']) {
-	--vvd-icon-size: 16px;
-}
-:host,
-:host([size='medium']) {
-	--vvd-icon-size: 24px;
-}
-:host([size='large']) {
-	--vvd-icon-size: 32px;
-}
-:host([inline]) {
-	--vvd-icon-size: 1em;
-	line-height: 1;
-	vertical-align: middle;
-}
-:host {
-	display: inline-block;
-	width: var(--icon-size, var(--vvd-icon-size));
-	height: var(--icon-size, var(--vvd-icon-size));
-	block-size: var(--icon-size, var(--vvd-icon-size));
-	inline-size: var(--icon-size, var(--vvd-icon-size));
-	line-height: 1;
-	vertical-align: middle;
-}
+    .control {
+        display: flex;
+        contain: strict;
+        margin: unset;
+    }
 
-/* stylelint-disable no-duplicate-selectors */
-.icon {
-	display: contents;
-}
-/* stylelint-enable no-duplicate-selectors */
+    svg {
+        margin: auto;
+        inline-size: inherit;
+        block-size: inherit;
+    }
 
-.icon > svg {
-	block-size: 100%;
-	fill: currentColor;
-	inline-size: 100%;
-	vertical-align: super;
-}
+    /* Size */
 
+    .control:not(.size-small):not(.size-medium):not(.size-large) {
+        inline-size: 1em;
+        block-size: 1em;
+    }
+
+    .control.size-small {
+        inline-size: 16px;
+        block-size: 16px;
+    }
+
+    .control.size-medium {
+        inline-size: 24px;
+        block-size: 24px;
+    }
+
+    .control.size-large {
+        inline-size: 32px;
+        block-size: 32px;
+    }
