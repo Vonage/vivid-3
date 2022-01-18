@@ -1,37 +1,37 @@
-    :host {
-        display: inline-block;
-    }
+:host {
+	display: inline-block;
+}
 
-    .control {
-        display: flex;
-        contain: strict;
-        margin: unset;
-    }
+.control {
+	display: flex;
+	margin: unset;
+	contain: strict;
+}
 
-    svg {
-        margin: auto;
-        inline-size: inherit;
-        block-size: inherit;
-    }
+svg {
+	margin: auto;
+	block-size: inherit;
+	inline-size: inherit;
+}
 
-    /* Size */
+/* Size */
 
-    .control:not(.size-small):not(.size-medium):not(.size-large) {
-        inline-size: 1em;
-        block-size: 1em;
-    }
+.control:not(.size-small):not(.size-medium):not(.size-large) {
+	block-size: 1em;
+	inline-size: 1em;
+}
 
-    .control.size-small {
-        inline-size: 16px;
-        block-size: 16px;
-    }
+.control.size-small {
+	block-size: 16px;
+	inline-size: 16px;
+}
 
-    .control.size-medium {
-        inline-size: 24px;
-        block-size: 24px;
-    }
+.control.size-medium {
+	block-size: 24px;
+	inline-size: 24px;
+}
 
-    .control.size-large {
-        inline-size: 32px;
-        block-size: 32px;
-    }
+.control.size-large {
+	block-size: 32px;
+	inline-size: 32px;
+}
