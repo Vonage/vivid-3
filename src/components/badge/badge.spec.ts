@@ -15,22 +15,14 @@ describe('vwc-badge', () => {
 
 	describe('basic', () => {
 		it('initializes as a vwc-badge', async () => {
-			expect(element)
-				.toBeInstanceOf(Badge);
-			expect(element.text)
-				.toEqual('');
-			expect(element.icon)
-				.toBeUndefined();
-			expect(element.iconTrailing)
-				.toBeFalsy();
-			expect(element.connotation)
-				.toBeUndefined();
-			expect(element.shape)
-				.toBeUndefined();
-			expect(element.appearance)
-				.toBeUndefined();
-			expect(element.size)
-				.toBeUndefined();
+			expect(element).toBeInstanceOf(Badge);
+			expect(element.text).toEqual('');
+			expect(element.icon).toBeUndefined();
+			expect(element.iconTrailing).toBeFalsy();
+			expect(element.connotation).toBeUndefined();
+			expect(element.shape).toBeUndefined();
+			expect(element.appearance).toBeUndefined();
+			expect(element.size).toBeUndefined();
 		});
 	});
 
