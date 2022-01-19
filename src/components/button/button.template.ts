@@ -2,19 +2,33 @@ import { html, ref, type ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Icon } from '../icon/icon';
-import type { Button } from './button';
+import { Focus } from '../focus/focus';
+import type { Button, ButtonAppearance } from './button';
+
+
+const getAppearanceClassName = (appearance: ButtonAppearance, disabled: boolean) => {
+	let className = `appearance-${appearance}`;
+	disabled && (className += '-idle'); 
+	return className;
+};
 
 const getClasses = ({
-	connotation, appearance, shape, size, iconTrailing, icon, label
+	connotation, appearance, shape, size, iconTrailing, icon, label, disabled
 }: Button) => classNames(
 	'control',
 	['icon-trailing', iconTrailing],
 	[`connotation-${connotation}`, Boolean(connotation)],
-	[`appearance-${appearance}`, Boolean(appearance)],
+	[getAppearanceClassName(appearance as ButtonAppearance, disabled), Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	[`size-${size}`, Boolean(size)],
 	['icon-only', !label && !!icon],
 );
+
+const focusTemplate = (context: ElementDefinitionContext) => {
+	const focusTag = context.tagFor(Focus);
+
+	return html`<${focusTag} class="focus-indicator"></${focusTag}>`;
+};
 
 const iconTemplate = (context: ElementDefinitionContext) => {
 	const iconTag = context.tagFor(Icon);
@@ -69,6 +83,7 @@ export const buttonTemplate: (
         aria-roledescription="${(x) => x.ariaRoledescription}"
         ${ref('control')}
     >
+        ${() => focusTemplate(context)}
         ${(x) => (x.icon ? iconTemplate(context) : '')}
         ${(x) => x.label}
     </button>
