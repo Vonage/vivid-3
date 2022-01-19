@@ -1,0 +1,5 @@
+{% for component in components %}
+    {% for module in component.modules %}
+        <link rel="prefetch" href="{{ module | url }}">
+    {% endfor %}
+{% endfor %}
