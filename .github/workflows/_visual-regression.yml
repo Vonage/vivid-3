@@ -12,6 +12,6 @@ jobs:
           with:
             node-version: '16'
             cache: 'npm'
-        - run: npm ci
+        - run: npm ci --ignore-scripts --production
         - run: npm run build
         - run: ./scripts/visual-tests/run.tests.sh

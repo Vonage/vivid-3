@@ -24,7 +24,7 @@
     "lint:es": "eslint 'src/**/*.ts' --quiet --ignore-path .gitignore",
     "lint": "npm run lint:es & npm run lint:css",
     "lint:fix": "npm run lint:es -- --fix & npm run lint:css -- --fix",
-    "postinstall": "husky install"
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
