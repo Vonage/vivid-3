@@ -1,9 +1,9 @@
 import * as path from 'path';
 import { expect, Page, test } from '@playwright/test';
 import {
-  extractHTMLBlocksFromReadme,
-  loadComponent,
-  loadTemplate
+	extractHTMLBlocksFromReadme,
+	loadComponent,
+	loadTemplate
 } from '../common/test-utils/visual-tests-utils';
 
 const componentName = 'badge';

@@ -5,7 +5,7 @@
 	$new-list: ();
 	@each $item in $subset {
 		$n: list.index($list, $item);
-		@if $n != null {
+		@if $n {
 			$new-item: list.nth($list, $n);
 			$new-list: list.append($new-list, $new-item);
 		} @else {

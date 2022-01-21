@@ -24,6 +24,7 @@ $slash-char: '/';
 
 @mixin typography-cat-shorthand($category) {
 	$category-map: map-get(font-faces.$typography-category-list, $category);
+
 	font: map-get($category-map, font-weight)
 		map-get($stretch-map, #{map-get($category-map, font-stretch)})
 		map-get($category-map, font-size) #{$slash-char} map-get(

@@ -8,7 +8,7 @@
         "**/*.scss"
       ],
       "plugins": [
-        "stylelint-no-unsupported-browser-features",
+        "stylelint-no-unsupported-browser-features"
       ],
       "extends": [
         "stylelint-config-standard-scss",
@@ -31,7 +31,7 @@
         "no-duplicate-selectors": true,
         "declaration-block-no-duplicate-properties": true,
         "function-parentheses-space-inside": null,
-        "rule-empty-line-before": null,
+        "rule-empty-line-before": null
       }
     }
   ]

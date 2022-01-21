@@ -15,6 +15,7 @@
 .control {
 	@include connotation.connotation;
 	@include appearance.appearance;
+
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;

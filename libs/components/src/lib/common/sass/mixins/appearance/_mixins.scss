@@ -25,7 +25,7 @@ $all-appearances: (
 
 %outlined {
 	#{variables.$appearance-color-fill}: transparent;
-	@if (config.$outline-duotone) {
+	@if config.$outline-duotone {
 		#{variables.$appearance-color-outline}: var(#{connotation.$vvd-color-connotation});
 		#{variables.$appearance-color-text}: var(#{connotation.$vvd-color-connotation}-contrast);
 	} @else {
@@ -72,7 +72,6 @@ $all-appearances: (
 
 	@each $type in $appearance-set {
 		$typed-selector: get-typed-selector($type);
-
 		$selector: selector.unify(&, $typed-selector);
 
 		@if $type == config.$default and list.length($appearance-set) > 1 {
@@ -82,6 +81,7 @@ $all-appearances: (
 					$rule-out-typed-selector: '#{$rule-out-typed-selector}:not(#{get-typed-selector($rule-out-type)})';
 				}
 			}
+
 			$selector: selector.parse(#{$selector, $rule-out-typed-selector});
 		}
 

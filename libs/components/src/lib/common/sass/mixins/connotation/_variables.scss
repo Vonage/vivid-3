@@ -4,7 +4,6 @@
 
 $vvd-color-connotation: --connotation;
 $vvd-color-on-connotation: --on-connotation;
-
 $compound-placeholder: '[compound]'; // will be replaced by actual compound
 
 $connotation-mapping: (
@@ -45,7 +44,6 @@ $connotation-mapping: (
 		soft: consts.$vvd-color-announcement-20,
 	),
 );
-
 $connotation-mapping-decoratives: (
 	pacific: (
 		start: var(#{consts.$vvd-color-info-30}),
