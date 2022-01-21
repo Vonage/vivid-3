@@ -1,4 +1,4 @@
-npm run build
+npm run build components
 alias npmenv='npm run env -- $SHELL'
 if [ $update = "update" ]
 then

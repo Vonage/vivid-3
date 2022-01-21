@@ -4,8 +4,6 @@ const nodeResolve = require('@rollup/plugin-node-resolve').default;
 const litCss = require('rollup-plugin-lit-css').default;
 const {renderSync} = require('sass');
 
-console.log(del);
-console.log('USING VIVID CONFIG!');
 const BASE_CONFIG = {
   watch: {
     clearScreen: false,
