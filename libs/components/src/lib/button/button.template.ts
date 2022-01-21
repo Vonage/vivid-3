@@ -1,4 +1,5 @@
-import { html, ref, type ViewTemplate } from '@microsoft/fast-element';
+import type { ViewTemplate } from '@microsoft/fast-element';
+import { html, ref } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Icon } from '../icon/icon';
@@ -8,7 +9,7 @@ import type { Button, ButtonAppearance } from './button';
 
 const getAppearanceClassName = (appearance: ButtonAppearance, disabled: boolean) => {
 	let className = `appearance-${appearance}`;
-	disabled && (className += '-idle'); 
+	disabled && (className += '-idle');
 	return className;
 };
 

@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '../../core/test-utils';
+import { elementUpdated, fixture } from '../common/test-utils';
 import type { Icon } from '../icon/icon';
 import { Button } from './button';
 import '.';
@@ -105,7 +105,7 @@ describe('vwc-button', () => {
 
 	describe('icon-only', () => {
 		it('sets correct internal icon-only style', async () => {
-			const getControlIconOnly = () => element.shadowRoot.querySelector('.control.icon-only');
+			const getControlIconOnly = () => element.shadowRoot?.querySelector('.control.icon-only');
 			const controlIconOnlyBefore = getControlIconOnly();
 
 			element.icon = 'home';

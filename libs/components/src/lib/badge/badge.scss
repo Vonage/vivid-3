@@ -1,16 +1,16 @@
-@use '../../sass/mixins/connotation/config' with (
+@use '../common/sass/mixins/connotation/config' with (
 	$subset: primary cta success alert warning info,
 	$shades: soft contrast,
 	$default: primary,
 );
-@use '../../sass/mixins/connotation' as connotation;
+@use '../common/sass/mixins/connotation' as connotation;
 
-@use '../../sass/mixins/appearance/config' as appearance-config with (
+@use '../common/sass/mixins/appearance/config' as appearance-config with (
 	$subset: filled outlined soft,
 	$outline-duotone: true,
 	$default: filled,
 );
-@use '../../sass/mixins/appearance' as appearance;
+@use '../common/sass/mixins/appearance' as appearance;
 
 .control {
 	@include connotation.connotation;

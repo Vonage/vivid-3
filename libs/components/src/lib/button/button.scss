@@ -1,20 +1,20 @@
-@use '../../tokens/build/scss/consts' as consts;
-@use '../../sass/mixins/typography' as typography;
+@use '../common/tokens/build/scss/consts' as consts;
+@use '../common/sass/mixins/typography' as typography;
 @use 'partials/variables' as variables;
 @use '../focus/partials/variables' as focus-variables;
 
-@use '../../sass/mixins/connotation/config' with (
+@use '../common/sass/mixins/connotation/config' with (
 	$subset: primary cta success alert,
 	$shades: diverse,
 	$default: primary,
 );
-@use '../../sass/mixins/connotation' as connotation;
+@use '../common/sass/mixins/connotation' as connotation;
 
-@use '../../sass/mixins/appearance/config' as appearance-config with (
+@use '../common/sass/mixins/appearance/config' as appearance-config with (
 	$subset: filled filled-idle outlined outlined-idle ghost ghost-idle,
 	$default: ghost,
 );
-@use '../../sass/mixins/appearance' as appearance;
+@use '../common/sass/mixins/appearance' as appearance;
 
 :host {
 	outline: 0 none;
