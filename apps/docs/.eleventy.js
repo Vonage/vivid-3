@@ -4,7 +4,7 @@ const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 
 const INPUT_DIR = 'apps/docs';
 const ASSETS_DIR = `${INPUT_DIR}/assets`;
-const OUTPUT_DIR = 'dist/docs';
+const OUTPUT_DIR = 'dist/apps/docs';
 
 module.exports = function (eleventyConfig) {
 
@@ -16,6 +16,7 @@ module.exports = function (eleventyConfig) {
     "dist/libs/themes/theme/*.css": "assets/styles/themes",
     "dist/libs/components": "assets/modules/components",
     "vivid-logo.svg": "assets/images/vivid-logo.svg",
+    "libs/../vivid-logo.svg": "vivid-logo.svg",
     [ASSETS_DIR]: "assets"
   });
 
