@@ -18,7 +18,7 @@ Our docker image runs the tests on the 3 browser on the Linux OS.
 
 Running the tests can be done locally by running:
 
-`npm run ui-tests:local`
+`yarn http-server -s & yarn playwright test`
 
 This will start the tests locally with the local playwright and browsers versions.
 
@@ -34,19 +34,17 @@ In order to avoid flakiness, we've setup a docker image to run the tests. This r
 
 After you have docker installed, run:
 
-`npm run ui-tests:build`
+`npm run nx ui-tests components`
 
-In order to build the image. 
+If you need to rebuild the docker image run:
 
-Once the image is built, you can run:
-
-`npm run ui-tests`
+`npm run nx ui-tests components --task=build`
 
 This will run the tests for you.
 
 If you wish to update the visual snapshots (i.e. you've changed the design and want it to reflect in the saved snapshots) run:
 
-`npm run ui-tests:update`
+`npm run nx ui-tests components --task=update`
 
 ## Updating the docker image
 

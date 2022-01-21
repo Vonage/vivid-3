@@ -3,6 +3,12 @@
   "sourceRoot": "libs/components/src",
   "projectType": "library",
   "targets": {
+    "ui-tests": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "./scripts/visual-tests/run.tests.in.container.sh {args.task}"
+      }
+    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],

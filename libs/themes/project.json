@@ -21,7 +21,10 @@
     "build": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "sass libs/themes/src/lib/theme:dist/libs/themes/theme & sass libs/themes/src/lib/fonts:dist/libs/themes/fonts"
+        "commands": [
+          "sass libs/themes/src/lib/theme:dist/libs/themes/theme",
+          "sass libs/themes/src/lib/fonts:dist/libs/themes/fonts"
+        ]
       }
     },
     "serve": {
