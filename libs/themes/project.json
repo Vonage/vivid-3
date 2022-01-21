@@ -32,6 +32,13 @@
       "options": {
         "command": "sass libs/themes/src/lib/theme:dist/libs/themes/theme --watch"
       }
+    },
+    "stylelint": {
+      "executor": "nx-stylelint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/themes/**/*.css"]
+      }
     }
   },
   "tags": []
