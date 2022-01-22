@@ -3,7 +3,7 @@
   "sourceRoot": "libs/components/src",
   "projectType": "library",
   "targets": {
-    "ui-tests": {
+    "e2e": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "command": "./scripts/visual-tests/run.tests.in.container.sh {args.task}"

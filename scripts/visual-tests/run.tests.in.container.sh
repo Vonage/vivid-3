@@ -1,4 +1,3 @@
-echo $1
 if [ $1 = "build" ]
 then
   ./scripts/visual-tests/build.image.sh

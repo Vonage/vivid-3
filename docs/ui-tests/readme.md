@@ -34,17 +34,17 @@ In order to avoid flakiness, we've setup a docker image to run the tests. This r
 
 After you have docker installed, run:
 
-`npm run nx ui-tests components`
+`npm run nx e2e components`
 
 If you need to rebuild the docker image run:
 
-`npm run nx ui-tests components --task=build`
+`npm run nx e2e components --task=build`
 
 This will run the tests for you.
 
 If you wish to update the visual snapshots (i.e. you've changed the design and want it to reflect in the saved snapshots) run:
 
-`npm run nx ui-tests components --task=update`
+`npm run nx e2e components --task=update`
 
 ## Updating the docker image
 
