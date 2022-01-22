@@ -19,29 +19,12 @@ jobs:
   call-lint:
     uses: vonage/vivid-3/.github/workflows/_lint.yml@main
 
-  call-test-chrome:
+  unit-tests:
     needs: call-lint
     uses: vonage/vivid-3/.github/workflows/_unit-test.yml@main
     with:
-      browser_name: chrome
       os: ubuntu-latest
       report_coverage: true
-
-  call-test-safari:
-    needs: call-lint
-    uses: vonage/vivid-3/.github/workflows/_unit-test.yml@main
-    with:
-      browser_name: safari
-      os: macos-latest
-      report_coverage: false
-
-  call-test-firefox:
-    needs: call-lint
-    uses: vonage/vivid-3/.github/workflows/_unit-test.yml@main
-    with:
-      browser_name: firefox
-      os: ubuntu-latest
-      report_coverage: false
 
   call-visual-regression:
     needs: call-lint
