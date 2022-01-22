@@ -16,5 +16,5 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/libs/components',
   testMatch: [ "**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec).[jt]s?(x)", "!**/?(*.)+(config.spec).[jt]s?(x)" ],
-  setupFilesAfterEnv: ["<rootDir>/setupTests.js"]
+  setupFilesAfterEnv: ["<rootDir>/setupJestTests.js"]
 };

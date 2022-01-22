@@ -23,22 +23,9 @@
           }
         ]
       }
-    },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/vivid-demo/**/*.ts"]
-      }
-    },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/vivid-demo"],
-      "options": {
-        "jestConfig": "apps/vivid-demo/jest.config.js",
-        "passWithNoTests": true
-      }
     }
   },
-  "implicitDependencies": ["components"]
+  "implicitDependencies": [
+    "components"
+  ]
 }
