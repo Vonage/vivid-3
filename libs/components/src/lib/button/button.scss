@@ -51,23 +51,6 @@
 
 /* Size */
 
-.control:not(.size-base-small):not(.size-base-large) {
-	#{variables.$block-size}: 40px;
-	@include typography.typography-cat-shorthand('button');
-
-	block-size: var(#{variables.$block-size});
-
-	&:not(.icon-only) {
-		#{variables.$icon-gap}: 8px;
-
-		padding-inline: 16px;
-	}
-
-	.affix {
-		font-size: 20px;
-	}
-}
-
 .control.size-base-small {
 	#{variables.$block-size}: 32px;
 	@include typography.typography-cat-shorthand('caption-bold');
@@ -95,6 +78,23 @@
 
 	.affix {
 		font-size: 24px;
+	}
+}
+
+.control:not(.size-base-small):not(.size-base-large) {
+	#{variables.$block-size}: 40px;
+	@include typography.typography-cat-shorthand('button');
+
+	block-size: var(#{variables.$block-size});
+
+	&:not(.icon-only) {
+		#{variables.$icon-gap}: 8px;
+
+		padding-inline: 16px;
+	}
+
+	.affix {
+		font-size: 20px;
 	}
 }
 
