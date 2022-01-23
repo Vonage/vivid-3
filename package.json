@@ -6,7 +6,8 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "nx": "nx"
+    "nx": "nx",
+    "clean": "git clean -dfx"
   },
   "private": true,
   "dependencies": {
