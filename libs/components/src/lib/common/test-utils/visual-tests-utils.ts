@@ -1,8 +1,8 @@
 // @ts-ignore
 import * as fs from 'fs';
 import * as path from 'path';
-const extract = require('extract-gfm');
 import type {Page} from '@playwright/test';
+const extract = require('extract-gfm');
 
 /**
  * @param str
