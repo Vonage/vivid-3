@@ -1,4 +1,4 @@
-@use '../../../../themes/src/lib/fonts/variables' as fonts-variables;
+@use '../../../../styles/src/lib/fonts/variables' as fonts-variables;
 
 @use '../common/sass/mixins/connotation/config' with (
 	$subset: primary cta success alert warning info,
