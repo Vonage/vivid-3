@@ -1,4 +1,4 @@
-@use '../../../tokens/build/scss/consts';
+@use '../../../../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 @use 'config' as config;
 
 
@@ -9,44 +9,44 @@ $compound-placeholder: '[compound]'; // will be replaced by actual compound
 $connotation-mapping: (
 	// should map to colors e.g. purple-60
 	primary: (
-		contrast: consts.$vvd-color-primary,
-		diverse: consts.$vvd-color-primary,
-		soft: consts.$vvd-color-neutral-20,
+		contrast: theme-consts.$vvd-color-primary,
+		diverse: theme-consts.$vvd-color-primary,
+		soft: theme-consts.$vvd-color-neutral-20,
 	),
 	cta: (
-		contrast: consts.$vvd-color-cta-90,
-		diverse: consts.$vvd-color-cta-70,
-		soft: consts.$vvd-color-cta-20,
+		contrast: theme-consts.$vvd-color-cta-90,
+		diverse: theme-consts.$vvd-color-cta-70,
+		soft: theme-consts.$vvd-color-cta-20,
 	),
 	success: (
-		contrast: consts.$vvd-color-success-90,
-		diverse: consts.$vvd-color-success-70,
-		soft: consts.$vvd-color-success-20,
+		contrast: theme-consts.$vvd-color-success-90,
+		diverse: theme-consts.$vvd-color-success-70,
+		soft: theme-consts.$vvd-color-success-20,
 	),
 	alert: (
-		contrast: consts.$vvd-color-alert-90,
-		diverse: consts.$vvd-color-alert-70,
-		soft: consts.$vvd-color-alert-20,
+		contrast: theme-consts.$vvd-color-alert-90,
+		diverse: theme-consts.$vvd-color-alert-70,
+		soft: theme-consts.$vvd-color-alert-20,
 	),
 	warning: (
-		contrast: consts.$vvd-color-warning-90,
-		diverse: consts.$vvd-color-warning-70,
-		soft: consts.$vvd-color-warning-20,
+		contrast: theme-consts.$vvd-color-warning-90,
+		diverse: theme-consts.$vvd-color-warning-70,
+		soft: theme-consts.$vvd-color-warning-20,
 	),
 	info: (
-		contrast: consts.$vvd-color-info-90,
-		diverse: consts.$vvd-color-info-70,
-		soft: consts.$vvd-color-info-20,
+		contrast: theme-consts.$vvd-color-info-90,
+		diverse: theme-consts.$vvd-color-info-70,
+		soft: theme-consts.$vvd-color-info-20,
 	),
 	announcement: (
-		contrast: consts.$vvd-color-announcement-90,
-		diverse: consts.$vvd-color-announcement-70,
-		soft: consts.$vvd-color-announcement-20,
+		contrast: theme-consts.$vvd-color-announcement-90,
+		diverse: theme-consts.$vvd-color-announcement-70,
+		soft: theme-consts.$vvd-color-announcement-20,
 	),
 );
 $connotation-mapping-decoratives: (
 	pacific: (
-		start: var(#{consts.$vvd-color-info-30}),
-		end: var(#{consts.$vvd-color-cta-70})
+		start: var(#{theme-consts.$vvd-color-info-30}),
+		end: var(#{theme-consts.$vvd-color-cta-70})
 	),
 );

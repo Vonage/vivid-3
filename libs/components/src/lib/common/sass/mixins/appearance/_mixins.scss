@@ -1,4 +1,4 @@
-@use '../../../tokens/build/scss/consts' as consts;
+@use '../../../../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 @use '../connotation' as connotation;
 @use '../../functions' as functions;
 @use 'variables' as variables;
@@ -47,20 +47,20 @@ $all-appearances: (
 
 %soft-idle,
 %filled-idle {
-	#{variables.$appearance-color-fill}: var(#{consts.$vvd-color-neutral-10});
-	#{variables.$appearance-color-text}: var(#{consts.$vvd-color-neutral-30});
+	#{variables.$appearance-color-fill}: var(#{theme-consts.$vvd-color-neutral-10});
+	#{variables.$appearance-color-text}: var(#{theme-consts.$vvd-color-neutral-30});
 }
 
 %outlined-idle {
 	#{variables.$appearance-color-fill}: transparent;
-	#{variables.$appearance-color-outline}: var(#{consts.$vvd-color-neutral-30});
-	#{variables.$appearance-color-text}: var(#{consts.$vvd-color-neutral-30});
+	#{variables.$appearance-color-outline}: var(#{theme-consts.$vvd-color-neutral-30});
+	#{variables.$appearance-color-text}: var(#{theme-consts.$vvd-color-neutral-30});
 }
 
 %text-idle,
 %ghost-idle {
 	#{variables.$appearance-color-fill}: transparent;
-	#{variables.$appearance-color-text}: var(#{consts.$vvd-color-neutral-30});
+	#{variables.$appearance-color-text}: var(#{theme-consts.$vvd-color-neutral-30});
 }
 
 @function get-typed-selector($type) {
