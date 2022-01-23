@@ -14,6 +14,7 @@ $slash-char: '/';
 	$category-map: map.get(font-faces.$typography-category-list, $category);
 
 	@each $prop in $props-list {
+		// stylelint-disable-next-line custom-property-pattern
 		--vvd-typography-#{$prop}: #{map.get($category-map, $prop)};
 	}
 }

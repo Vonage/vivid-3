@@ -118,12 +118,12 @@
 
 // stylelint-disable-next-line no-descending-specificity
 .affix {
-  // stylelint-disable-next-line no-descending-specificity
+	// stylelint-disable-next-line no-descending-specificity
 	:not(.control.icon-trailing) & {
 		margin-inline-end: var(#{variables.$icon-gap});
 	}
 
-  // stylelint-disable-next-line no-descending-specificity
+	// stylelint-disable-next-line no-descending-specificity
 	.control.icon-trailing & {
 		order: 1;
 		margin-inline-start: var(#{variables.$icon-gap});
