@@ -1,20 +1,20 @@
 {
-  "root": "libs/themes",
-  "sourceRoot": "libs/themes/src",
+  "root": "libs/styles",
+  "sourceRoot": "libs/styles/src",
   "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/themes/**/*.ts"]
+        "lintFilePatterns": ["libs/styles/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/themes"],
+      "outputs": ["coverage/libs/styles"],
       "options": {
-        "jestConfig": "libs/themes/jest.config.js",
+        "jestConfig": "libs/styles/jest.config.js",
         "passWithNoTests": true
       }
     },
@@ -22,22 +22,22 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "sass libs/themes/src/lib/theme:dist/libs/themes/theme",
-          "sass libs/themes/src/lib/fonts:dist/libs/themes/fonts"
+          "sass libs/styles/src/lib/theme:dist/libs/styles/theme",
+          "sass libs/styles/src/lib/fonts:dist/libs/styles/fonts"
         ]
       }
     },
     "serve": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "sass libs/themes/src/lib/theme:dist/libs/themes/theme --watch"
+        "command": "sass libs/styles/src/lib/theme:dist/libs/styles/theme --watch"
       }
     },
     "stylelint": {
       "executor": "nx-stylelint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/themes/**/*.css"]
+        "lintFilePatterns": ["libs/styles/**/*.css"]
       }
     }
   },

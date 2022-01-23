@@ -3,6 +3,6 @@
   "projects": {
     "components": "libs/components",
     "docs": "apps/docs",
-    "themes": "libs/themes"
+    "styles": "libs/styles"
   }
 }
