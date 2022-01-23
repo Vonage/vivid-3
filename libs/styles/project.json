@@ -5,14 +5,20 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["libs/styles/**/*.ts"]
+        "lintFilePatterns": [
+          "libs/styles/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/styles"],
+      "outputs": [
+        "coverage/libs/styles"
+      ],
       "options": {
         "jestConfig": "libs/styles/jest.config.js",
         "passWithNoTests": true
@@ -22,7 +28,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "sass libs/styles/src/lib/theme:dist/libs/styles/theme",
+          "sass libs/styles/src/lib/themes:dist/libs/styles/themes",
           "sass libs/styles/src/lib/fonts:dist/libs/styles/fonts"
         ]
       }
@@ -30,14 +36,18 @@
     "serve": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "sass libs/styles/src/lib/theme:dist/libs/styles/theme --watch"
+        "command": "sass libs/styles/src/lib/themes:dist/libs/styles/themes --watch"
       }
     },
     "stylelint": {
       "executor": "nx-stylelint:lint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["libs/styles/**/*.css"]
+        "lintFilePatterns": [
+          "libs/styles/**/*.css"
+        ]
       }
     }
   },
