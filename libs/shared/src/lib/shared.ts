@@ -1,3 +1,2 @@
-export function shared(): string {
-  return 'shared';
-}
+export * from './test-utils';
+export * from './test-utils/visual-tests-utils';

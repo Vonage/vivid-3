@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '../common/test-utils';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import type { Icon } from '../icon/icon';
 import { Button } from './button';
 import '.';

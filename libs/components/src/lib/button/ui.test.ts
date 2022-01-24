@@ -4,7 +4,7 @@ import {
 	extractHTMLBlocksFromReadme,
 	loadComponent,
 	loadTemplate
-} from '../common/test-utils/visual-tests-utils';
+} from '@vivid-nx/shared';
 
 const componentName = 'button';
 test('should have all connotations', async ({ page }: { page: Page }) => {
