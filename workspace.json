@@ -3,6 +3,7 @@
   "projects": {
     "components": "libs/components",
     "docs": "apps/docs",
-    "themes": "libs/themes"
+    "shared": "libs/shared",
+    "styles": "libs/styles"
   }
 }

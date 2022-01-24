@@ -1,20 +1,19 @@
-@use '../common/tokens/build/scss/consts' as consts;
-@use '../common/sass/mixins/typography' as typography;
+@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use 'partials/variables' as variables;
 @use '../focus/partials/variables' as focus-variables;
 
-@use '../common/sass/mixins/connotation/config' with (
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$subset: primary cta success alert,
 	$shades: diverse,
 	$default: primary,
 );
-@use '../common/sass/mixins/connotation' as connotation;
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
-@use '../common/sass/mixins/appearance/config' as appearance-config with (
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
 	$subset: filled filled-idle outlined outlined-idle ghost ghost-idle,
 	$default: ghost,
 );
-@use '../common/sass/mixins/appearance' as appearance;
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
 :host {
 	outline: 0 none;
@@ -51,23 +50,6 @@
 
 /* Size */
 
-.control:not(.size-base-small):not(.size-base-large) {
-	#{variables.$block-size}: 40px;
-	@include typography.typography-cat-shorthand('button');
-
-	block-size: var(#{variables.$block-size});
-
-	&:not(.icon-only) {
-		#{variables.$icon-gap}: 8px;
-
-		padding-inline: 16px;
-	}
-
-	.affix {
-		font-size: 20px;
-	}
-}
-
 .control.size-base-small {
 	#{variables.$block-size}: 32px;
 	@include typography.typography-cat-shorthand('caption-bold');
@@ -98,8 +80,26 @@
 	}
 }
 
+.control:not(.size-base-small):not(.size-base-large) {
+	#{variables.$block-size}: 40px;
+	@include typography.typography-cat-shorthand('button');
+
+	block-size: var(#{variables.$block-size});
+
+	&:not(.icon-only) {
+		#{variables.$icon-gap}: 8px;
+
+		padding-inline: 16px;
+	}
+
+	.affix {
+		font-size: 20px;
+	}
+}
+
 /* Shape */
 
+// stylelint-disable-next-line no-descending-specificity
 .control:not(.shape-pill) {
 	border-radius: 6px;
 }
@@ -116,11 +116,14 @@
 
 /* Icon */
 
+// stylelint-disable-next-line no-descending-specificity
 .affix {
+	// stylelint-disable-next-line no-descending-specificity
 	:not(.control.icon-trailing) & {
 		margin-inline-end: var(#{variables.$icon-gap});
 	}
 
+	// stylelint-disable-next-line no-descending-specificity
 	.control.icon-trailing & {
 		order: 1;
 		margin-inline-start: var(#{variables.$icon-gap});

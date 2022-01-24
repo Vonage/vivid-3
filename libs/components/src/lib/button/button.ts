@@ -3,7 +3,7 @@ import { attr } from '@microsoft/fast-element';
 
 import type {
 	Appearance, Connotation, Shape, Size,
-} from '../common/foundation/enums.js';
+} from '../../../types/enums.js';
 
 /**
  * Types of button connotation.

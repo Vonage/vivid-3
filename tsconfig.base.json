@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@vivid-nx/themes": ["libs/themes/src/index.ts"],
+      "@vivid-nx/shared": ["libs/shared/src/index.ts"],
+      "@vivid-nx/styles": ["libs/styles/src/index.ts"],
       "@voange/vivid": ["libs/components/src/index.ts"]
     }
   },
