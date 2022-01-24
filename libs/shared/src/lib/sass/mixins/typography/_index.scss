@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use '../../../../../../../../node_modules/@vonage/vivid-tokens/dist/sass/typography/web' as font-faces;
+@use '../../../../../../../node_modules/@vonage/vivid-tokens/dist/sass/typography/web' as font-faces;
 
 
 $props-list: font-family, font-size, font-stretch, font-weight, letter-spacing,

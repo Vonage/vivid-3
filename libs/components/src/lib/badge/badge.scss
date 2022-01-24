@@ -1,18 +1,18 @@
 @use '../../../../styles/src/lib/fonts/variables' as fonts-variables;
 
-@use '../common/sass/mixins/connotation/config' with (
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$subset: primary cta success alert warning info,
 	$shades: soft contrast,
 	$default: primary,
 );
-@use '../common/sass/mixins/connotation' as connotation;
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
-@use '../common/sass/mixins/appearance/config' as appearance-config with (
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
 	$subset: filled outlined soft,
 	$outline-duotone: true,
 	$default: filled,
 );
-@use '../common/sass/mixins/appearance' as appearance;
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
 .control {
 	@include connotation.connotation;

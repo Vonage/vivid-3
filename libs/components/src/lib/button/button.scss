@@ -1,19 +1,19 @@
-@use '../common/sass/mixins/typography' as typography;
+@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use 'partials/variables' as variables;
 @use '../focus/partials/variables' as focus-variables;
 
-@use '../common/sass/mixins/connotation/config' with (
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$subset: primary cta success alert,
 	$shades: diverse,
 	$default: primary,
 );
-@use '../common/sass/mixins/connotation' as connotation;
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
-@use '../common/sass/mixins/appearance/config' as appearance-config with (
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
 	$subset: filled filled-idle outlined outlined-idle ghost ghost-idle,
 	$default: ghost,
 );
-@use '../common/sass/mixins/appearance' as appearance;
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
 :host {
 	outline: 0 none;
