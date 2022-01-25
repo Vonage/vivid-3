@@ -1,0 +1,39 @@
+name: 🎨 Test Visual Regression
+
+on: workflow_call
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container: drizzt99/vonage:1.0.0
+    steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v2
+          with:
+            node-version: '16'
+            cache: 'npm'
+        - run: npm ci
+        - run: npm run nx build compoments
+        - run: npm run nx e2e componenta
+
+name: Lighthouse
+
+on: workflow_call
+
+jobs:
+  static-dist-dir:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v2
+          with:
+            node-version: '16'
+            cache: 'npm'
+        - run: npm ci
+        - run: npm run nx build docs
+
+        # name: Run Lighthouse against a static dist dir
+        - uses: treosh/lighthouse-ci-action@v8
+          with:
+            # no urls needed, since it uses local folder to scan .html files
+            configPath: './lighthouserc.json'
