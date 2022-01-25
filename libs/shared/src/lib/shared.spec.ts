@@ -1,7 +1,7 @@
-import { shared } from './shared';
+import * as shared from './shared';
 
 describe('shared', () => {
   it('should work', () => {
-    expect(shared()).toEqual('shared');
+		expect(typeof shared).toEqual(typeof {});
   });
 });
