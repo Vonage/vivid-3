@@ -1,0 +1,38 @@
+{
+  "ignoreFiles": [
+    "**/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "**/*.scss"
+      ],
+      "plugins": [
+        "stylelint-no-unsupported-browser-features"
+      ],
+      "extends": [
+        "stylelint-config-standard-scss",
+        "stylelint-config-idiomatic-order",
+        "stylelint-config-prettier"
+      ],
+      "rules": {
+        "indentation": "tab",
+        "plugin/no-unsupported-browser-features": [
+          true,
+          {
+            "severity": "warning"
+          }
+        ],
+        "order/properties-alphabetical-order": null,
+        "selector-max-id": null,
+        "selector-class-pattern": null,
+        "max-nesting-depth": null,
+        "selector-max-compound-selectors": null,
+        "no-duplicate-selectors": true,
+        "declaration-block-no-duplicate-properties": true,
+        "function-parentheses-space-inside": null,
+        "rule-empty-line-before": null
+      }
+    }
+  ]
+}

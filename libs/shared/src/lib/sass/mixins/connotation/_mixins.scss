@@ -1,0 +1,68 @@
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:selector';
+@use '../../functions' as functions;
+@use 'config' as config;
+@use 'variables' as variables;
+
+
+@mixin connotation-base($type) {
+	#{variables.$vvd-color-connotation}: var(--vvd-color-#{$type});
+	#{variables.$vvd-color-on-connotation}: var(--vvd-color-on-#{$type});
+}
+
+@mixin connotation-shades($mapping) {
+	$shades: functions.pick-map(config.$shades, $mapping);
+	@each $name, $value in $shades {
+		#{variables.$vvd-color-connotation}-#{$name}: var(#{$value});
+	}
+}
+
+@mixin connotation-decorative($mapping) {
+	$start: map.get($mapping, start);
+	$end: map.get($mapping, end);
+	#{variables.$vvd-color-connotation}: linear-gradient(to right, $start, $end);
+}
+
+@mixin selectors($types...) {
+	@each $type in $types {
+		$selector: selector.unify(&, '.connotation-#{$type}');
+		$all-connotation-types: map.keys(
+			map.merge(
+				functions.pick-map(config.$decoratives, variables.$connotation-mapping-decoratives),
+				functions.pick-map(config.$subset, variables.$connotation-mapping)
+			)
+		);
+
+		@if $type == config.$default and list.length($all-connotation-types) > 1 {
+			$selector: &;
+
+			@each $rule-out-type in $all-connotation-types {
+				@if $rule-out-type != config.$default {
+					$selector: '#{$selector}:not(.connotation-#{$rule-out-type})';
+				}
+			}
+		}
+
+		@at-root #{$selector} {
+			@content($type);
+		}
+	}
+}
+
+@mixin connotation {
+	
+	$mapping-shades: functions.pick-map(config.$subset, variables.$connotation-mapping);
+	$mapping-decoratives: functions.pick-map(config.$decoratives, variables.$connotation-mapping-decoratives);
+	
+	$all-connotation-types: map.keys(map.merge($mapping-shades, $mapping-decoratives));
+	
+	@include selectors(map.keys($mapping-shades)...) using ($connotation-type) {
+		@include connotation-base($connotation-type);
+		@include connotation-shades(map.get($mapping-shades, $connotation-type));
+	}
+	
+	@include selectors(map.keys($mapping-decoratives)...) using ($connotation-type) {
+		@include connotation-decorative(map.get($mapping-decoratives, $connotation-type));
+	}
+}

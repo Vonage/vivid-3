@@ -1,0 +1,9 @@
+node_modules
+/dist
+.rollup.cache
+coverage
+**/*.tsbuildinfo*
+_site
+test-results
+*-darwin.png
+/index.html

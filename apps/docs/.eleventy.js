@@ -4,7 +4,7 @@ const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 
 const INPUT_DIR = 'apps/docs';
 const ASSETS_DIR = `${INPUT_DIR}/assets`;
-const OUTPUT_DIR = 'dist/docs';
+const OUTPUT_DIR = 'dist/apps/docs';
 
 module.exports = function (eleventyConfig) {
 
@@ -13,14 +13,15 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight);
 
   eleventyConfig.addPassthroughCopy({
-    "dist/core/fonts/*.css": "assets/styles/fonts",
-    "dist/core/theme/*.css": "assets/styles/themes",
-    "dist/components": "assets/modules/components",
+    "dist/libs/styles/fonts/*.css": "assets/styles/fonts",
+    "dist/libs/styles/themes/*.css": "assets/styles/themes",
+    "dist/libs/components": "assets/modules/components",
     "vivid-logo.svg": "assets/images/vivid-logo.svg",
+    "libs/../vivid-logo.svg": "vivid-logo.svg",
     [ASSETS_DIR]: "assets"
   });
 
-  eleventyConfig.addWatchTarget("dist");
+  eleventyConfig.addWatchTarget("dist/libs/components");
   eleventyConfig.addWatchTarget("assets");
   eleventyConfig.addWatchTarget(`${INPUT_DIR}/assets`);
   eleventyConfig.setBrowserSyncConfig({

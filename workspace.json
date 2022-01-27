@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "projects": {
+    "components": "libs/components",
+    "docs": "apps/docs",
+    "shared": "libs/shared",
+    "styles": "libs/styles"
+  }
+}

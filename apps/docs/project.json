@@ -1,0 +1,31 @@
+{
+  "projectType": "application",
+  "root": "apps/vivid-demo",
+  "sourceRoot": "apps/vivid-demo/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "yarn eleventy --config=./apps/docs/.eleventy.js"
+          }
+        ]
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "yarn eleventy --config=./apps/docs/.eleventy.js --serve"
+          }
+        ]
+      }
+    }
+  },
+  "implicitDependencies": [
+    "components"
+  ]
+}

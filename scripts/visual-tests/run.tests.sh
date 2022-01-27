@@ -1,9 +1,11 @@
-npm run build
+npm run build components
 alias npmenv='npm run env -- $SHELL'
-if [ $update = "update" ]
-then
-  npmenv http-server -s & npmenv playwright test --update-snapshots
+update=$([ -n "$update" ] && echo "$update" || echo "5")
+if [ "update" != $update ]; then
+    echo "Testing snapshots"
+    npx http-server -s & npx playwright test
 else
-  npmenv http-server -s & npmenv playwright test
+    echo "Updating snapshots"
+    npx http-server -s & npx playwright test --update-snapshots
 fi
 

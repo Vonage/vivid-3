@@ -8,10 +8,6 @@ on:
         description: Operating System to run the workflow on
         default: 'ubuntu-latest'
         required: false
-      browser_name: # safari, chrome, firefox
-        type: string
-        description: Browser to run the tests on
-        required: true
       report_coverage:
         required: false
         type: boolean
@@ -19,7 +15,7 @@ on:
 
 jobs:
   test:
-      name: "Test Components on ${{ inputs.browser_name }}"
+      name: "Unit Tests"
       runs-on: ${{ inputs.os }}
       steps:
         - uses: actions/checkout@v2
@@ -28,15 +24,17 @@ jobs:
             node-version: '16'
             cache: 'npm'
         - run: npm ci --only=dev
-        - run: npm run test:${{ inputs.browser_name }}
+        - run: npm run nx run-many -- --target=test --all --coverage --coverageReporters=lcov
           id: test
+        - run: node ./tools/coverageMerger.js
+          if: ${{ inputs.report_coverage }}
         - uses: coverallsapp/github-action@master
           if: ${{ inputs.report_coverage }}
           continue-on-error: true
           with:
             parallel: false
             github-token: ${{ github.token }}
-            path-to-lcov: ./coverage/report-lcov/lcov.info
+            path-to-lcov: ./coverage/lcov.info
             flag-name: Tested on ${{ inputs.os }} / ${{ inputs.browser_name }}
         - run: exit 0
           if: ${{ steps.test.outcome == 'success' }}

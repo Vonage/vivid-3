@@ -1,31 +1,24 @@
 {
-	"compilerOptions": {
-		"rootDir": "src/",
-		"target": "es2017",
-		"module": "es2015",
-		"preserveWatchOutput": true,
-		"moduleResolution": "Node",
-		"sourceMap": true,
-		"inlineSources": true,
-		"noFallthroughCasesInSwitch": true,
-		"isolatedModules": true,
-		"noImplicitReturns": true,
-		"noImplicitOverride": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"forceConsistentCasingInFileNames": true,
-		"importsNotUsedAsValues": "error",
-		"strict": true,
-		"experimentalDecorators": true,
-		"stripInternal": true, // check if we need it
-		"importHelpers": true,
-		"allowSyntheticDefaultImports": true,
-		"removeComments": true,
-		"paths": {
-			"*" : ["./src/@types/*"]
-        }
-	},
-	"include": [
-		"./src/",
-	]
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@vivid-nx/shared": ["libs/shared/src/index.ts"],
+      "@vivid-nx/styles": ["libs/styles/src/index.ts"],
+      "@voange/vivid": ["libs/components/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
 }

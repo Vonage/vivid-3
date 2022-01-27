@@ -1,0 +1,63 @@
+@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+	$subset: primary cta success alert warning info,
+	$shades: soft contrast,
+	$default: primary,
+);
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+	$subset: filled outlined soft,
+	$outline-duotone: true,
+	$default: filled,
+);
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+
+.control {
+	@include typography.typography-cat-shorthand('caption-bold');
+	@include connotation.connotation;
+	@include appearance.appearance;
+
+	display: inline-flex;
+	box-sizing: border-box;
+	align-items: center;
+	background-color: var(#{appearance.$appearance-color-fill});
+	box-shadow: inset 0 0 0 1px var(#{appearance.$appearance-color-outline});
+	color: var(#{appearance.$appearance-color-text});
+	column-gap: 8px;
+	vertical-align: middle;
+}
+
+/* Size */
+
+.control:not(.size-base-small):not(.size-base-large) {
+	block-size: 24px;
+	padding-inline: 10px;
+}
+
+.control.size-base-small {
+	block-size: 20px;
+	padding-inline: 8px;
+}
+
+.control.size-base-large {
+	block-size: 28px;
+	padding-inline: 12px;
+}
+
+/* Shape */
+
+// stylelint-disable-next-line no-descending-specificity
+.control:not(.shape-pill) {
+	border-radius: 4px;
+}
+.control.shape-pill {
+	border-radius: 14px;
+}
+
+/* Icon */
+
+.control.icon-trailing .affix {
+	order: 1;
+}

@@ -1,0 +1,66 @@
+{
+  "root": "libs/components",
+  "sourceRoot": "libs/components/src",
+  "projectType": "library",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "./scripts/visual-tests/run.tests.in.container.sh {args.task}"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/components/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/components"],
+      "options": {
+        "jestConfig": "libs/components/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "entryFile": "libs/components/src/index.ts",
+        "outputPath": "dist/libs/components",
+        "tsConfig": "libs/components/tsconfig.lib.json",
+        "project": "libs/components/package.json",
+        "rollupConfig": "libs/components/rollup.config.prod.ts",
+        "assets": [],
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "updateBuildableProjectDepsInPackageJson": true
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "entryFile": "libs/components/src/index.ts",
+        "outputPath": "dist/libs/components",
+        "tsConfig": "libs/components/tsconfig.lib.json",
+        "project": "libs/components/package.json",
+        "rollupConfig": "libs/components/rollup.config.prod.ts",
+        "watch": true,
+        "assets": [],
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "updateBuildableProjectDepsInPackageJson": true
+      }
+    },
+    "stylelint": {
+      "executor": "nx-stylelint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/components/**/*.scss"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["styles"]
+}
