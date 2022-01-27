@@ -34,7 +34,7 @@ jobs:
           with:
             parallel: false
             github-token: ${{ github.token }}
-            path-to-lcov: ./coverage/report-lcov/lcov.info
+            path-to-lcov: ./coverage/lcov.info
             flag-name: Tested on ${{ inputs.os }} / ${{ inputs.browser_name }}
         - run: exit 0
           if: ${{ steps.test.outcome == 'success' }}
