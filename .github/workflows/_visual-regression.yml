@@ -13,5 +13,5 @@ jobs:
             node-version: '16'
             cache: 'npm'
         - run: npm ci
-        - run: npm run nx build compoments
-        - run: npm run nx e2e componenta
+        - run: npm run nx build components
+        - run: npm run nx e2e components -- --task=local

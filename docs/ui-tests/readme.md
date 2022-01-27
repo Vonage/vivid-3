@@ -18,7 +18,7 @@ Our docker image runs the tests on the 3 browser on the Linux OS.
 
 Running the tests can be done locally by running:
 
-`yarn http-server -s & yarn playwright test`
+`npx http-server -s & npx playwright test`
 
 This will start the tests locally with the local playwright and browsers versions.
 

@@ -1,6 +1,6 @@
 import * as path from 'path';
 import { expect, Page, test } from '@playwright/test';
-import {extractHTMLBlocksFromReadme, loadComponent, loadTemplate} from '@vivid-nx/shared';
+import {extractHTMLBlocksFromReadme, loadComponent, loadTemplate} from '../../visual-tests/visual-tests-utils';
 
 const componentName = 'badge';
 test('should have all connotations', async ({ page }: { page: Page }) => {
