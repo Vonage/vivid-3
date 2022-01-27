@@ -17,15 +17,15 @@ concurrency:
 
 jobs:
   call-lint:
-    uses: vonage/vivid-3/.github/workflows/_lint.yml@migrate-to-nx
+    uses: vonage/vivid-3/.github/workflows/_lint.yml@main
 
   unit-tests:
     needs: call-lint
-    uses: vonage/vivid-3/.github/workflows/_unit-test.yml@migrate-to-nx
+    uses: vonage/vivid-3/.github/workflows/_unit-test.yml@main
     with:
       os: ubuntu-latest
       report_coverage: true
 
   call-visual-regression:
     needs: call-lint
-    uses: vonage/vivid-3/.github/workflows/_visual-regression.yml@migrate-to-nx
+    uses: vonage/vivid-3/.github/workflows/_visual-regression.yml@main

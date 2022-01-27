@@ -10,24 +10,24 @@ concurrency:
 
 jobs:
   call-lint:
-    uses: vonage/vivid-3/.github/workflows/_lint.yml@migrate-to-nx
+    uses: vonage/vivid-3/.github/workflows/_lint.yml@main
 
   call-unit-tests:
     needs: call-lint
-    uses: vonage/vivid-3/.github/workflows/_unit-test.yml@migrate-to-nx
+    uses: vonage/vivid-3/.github/workflows/_unit-test.yml@main
     with:
       os: ubuntu-latest
       report_coverage: true
 
   call-visual-regression:
     needs: call-lint
-    uses: vonage/vivid-3/.github/workflows/_visual-regression.yml@migrate-to-nx
+    uses: vonage/vivid-3/.github/workflows/_visual-regression.yml@main
 
   call-publish-package:
     needs: [call-unit-tests, call-visual-regression]
-    uses: vonage/vivid-3/.github/workflows/_publish-package.yml@migrate-to-nx
+    uses: vonage/vivid-3/.github/workflows/_publish-package.yml@main
 
   # ! temporary. site deployment should move to latest release
   call-deploy-site:
     needs: call-publish-package # do not deploy site if package is not published
-    uses: vonage/vivid-3/.github/workflows/_gh-pages.yml@migrate-to-nx
+    uses: vonage/vivid-3/.github/workflows/_gh-pages.yml@main
