@@ -1,5 +1,5 @@
 declare module 'extract-gfm' {
-  function extractBlocks(string):string[]
+	function extractBlocks(string): string[]
 }
 
 
