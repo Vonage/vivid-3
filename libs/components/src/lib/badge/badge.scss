@@ -1,4 +1,4 @@
-@use '../../../../styles/src/lib/fonts/variables' as fonts-variables;
+@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$subset: primary cta success alert warning info,
@@ -15,6 +15,7 @@
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
 .control {
+	@include typography.typography-cat-shorthand('caption-bold');
 	@include connotation.connotation;
 	@include appearance.appearance;
 
@@ -25,7 +26,6 @@
 	box-shadow: inset 0 0 0 1px var(#{appearance.$appearance-color-outline});
 	color: var(#{appearance.$appearance-color-text});
 	column-gap: 8px;
-	font: 600 ultra-condensed 12px / 16px fonts-variables.$font-family-spezia, Helvetica, Arial, Verdana, Tahoma, sans-serif;
 	vertical-align: middle;
 }
 
