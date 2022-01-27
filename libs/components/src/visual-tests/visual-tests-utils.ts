@@ -1,7 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import type {Page} from '@playwright/test';
-// @ts-ignore
 import * as extract from 'extract-gfm';
 
 /**
@@ -17,9 +16,11 @@ export function replaceAll(str: string, find: string, replace: string) {
  * @param pathToReadme
  */
 export function extractHTMLBlocksFromReadme(pathToReadme: string): string[] {
-	const readmeFileContents = fs.readFileSync(path.resolve(pathToReadme)).toString();
+	const readmeFileContents = fs.readFileSync(path.resolve(pathToReadme))
+		.toString();
 	const readmeFileSnippets = extract.extractBlocks(readmeFileContents);
-	return readmeFileSnippets.filter((block: any) => block.lang === 'html').map((block: any) => replaceAll(block.code.replace('preview', ''), '\n', ''));
+	return readmeFileSnippets.filter((block: any) => block.lang === 'html')
+		.map((block: any) => replaceAll(block.code.replace('preview', ''), '\n', ''));
 }
 
 const defaultStyles = [
@@ -49,7 +50,7 @@ export async function loadComponent({
 		type: 'module',
 	});
 
-	const styleTags$ = styleUrls.map(url => page.addStyleTag({ url }));
+	const styleTags$ = styleUrls.map(url => page.addStyleTag({url}));
 	await Promise.all(styleTags$);
 }
 

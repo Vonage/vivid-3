@@ -24,7 +24,7 @@ jobs:
             node-version: '16'
             cache: 'npm'
         - run: npm ci --only=dev
-        - run: npm run nx run-many --target=test --all --coverage --coverageReporters=lcov
+        - run: npm run nx run-many -- --target=test --all --coverage --coverageReporters=lcov
           id: test
         - run: node ./tools/coverageMerger.js
           if: ${{ inputs.report_coverage }}

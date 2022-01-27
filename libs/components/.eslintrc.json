@@ -52,5 +52,19 @@
         "accessibility": "no-public"
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["rollup.config.*.ts"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    },
+    {
+      "files": ["*.spec.ts", "*.test.ts"],
+      "rules": {
+        "@nrwl/nx/enforce-module-boundaries": "off"
+      }
+    }
+  ]
 }
