@@ -1,4 +1,4 @@
-export const elementUpdated = async (element: any) => {
+export const elementUpdated = async (element: Element | HTMLElement) => {
 	return new Promise(resolve => requestAnimationFrame(() => resolve(element)));
 };
 
