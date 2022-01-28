@@ -74,3 +74,4 @@ This project is [Apache 2.0][license-url] licensed.
 [issues-url]: https://github.com/vonage/vivid-3/issues
 [license-shield]: https://img.shields.io/github/license/vonage/vivid-3.svg?style=for-the-badge
 [license-url]: LICENSE.md
+[license-url]: LICENSE.md
