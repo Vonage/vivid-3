@@ -1,4 +1,21 @@
 {
   "name": "@vonage/vivid",
-  "version": "3.0.0-alpha.0"
+  "version": "3.0.0-alpha.0",
+  "description": "Vonage's UI web components",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vonage/vivid-next.git"
+  },
+  "keywords": [
+    "design system",
+    "web components",
+    "UI",
+    "a11y"
+  ],
+  "author": "vonage/vivid",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Vonage/vivid-next/issues"
+  },
+  "homepage": "https://github.com/Vonage/vivid-next#readme"
 }
