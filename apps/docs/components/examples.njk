@@ -1,0 +1,16 @@
+---
+layout: base.njk
+tags: examples
+pagination:
+    data: examples
+    size: 1
+    alias: example
+permalink: "examples/{{ example.title | slug }}/"
+---
+
+{% for url in example.modules %}
+<script type="module" src="{{ url | url }}"></script>
+{% endfor %}
+
+
+{% renderFile example.markdown %}
