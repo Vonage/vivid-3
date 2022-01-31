@@ -7,10 +7,10 @@
     "push": false
   },
   "npm": {
-    "publish": false
+    "publish": false,
+    "preRelease": "next"
   },
   "github": {
-    "release": false,
-    "preRelease": true
+    "release": false
   }
 }
