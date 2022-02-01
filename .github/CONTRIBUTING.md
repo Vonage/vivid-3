@@ -36,58 +36,14 @@ If you need help, you can ask questions on our mailing list, IRC chat, or [list 
 
 Our Code of Conduct means that you are responsible for treating everyone on the project with respect and courtesy regardless of their identity. If you are the victim of any inappropriate behavior or comments as described in our Code of Conduct, we are here for you and will do the best to ensure that the abuser is reprimanded appropriately, per our code.
 
+## Vivid criteria
 
+### Guiding principles to consider when introducing changes
 
+* Guarantee contribution does not produce WCAG violations (both in design & engineering)
 
+* Ensure user interaction with changes correspond to all types of users (e.g., keyboard, mouse, touch, assistive technology, etc.)
 
+* Refer precedent components/features of valid libraries, which are compliant with UX and a11y guidelines ([Carbon](https://www.carbondesignsystem.com/components/overview/) - IBM, [Spectrum](https://spectrum.adobe.com/) - Adobe, [Material](https://material.io/components?platform=web) - Google, [Garden](https://garden.zendesk.com/) - Zendesk, [Lightning](https://www.lightningdesignsystem.com/) - Salesforce, [BBC](https://www.bbc.co.uk/gel/guidelines/category/design-patterns), etc.)
 
-
-Vivid criterias for new features
-
-Guiding principle to consider for new components features - 
-
-* Avoid WCAG violations (both design and engineering)
-
-* Ensure all types of users are able to interact with components sharing aligned experience (e.g. keyboard, mouse, touch, assistive technology etc.)
-
-* Reference valued libraries who already based their trust and are known for being compliant with valid UX and WCAG
-
-    * [Carbon](https://www.carbondesignsystem.com/components/overview/) - IBM
-
-    * [Spectrum](https://spectrum.adobe.com/) - Adobe
-
-    * [Material](https://material.io/components?platform=web) - Google
-
-    * [Garden](https://garden.zendesk.com/) - Zendesk
-
-    * [Lightning](https://www.lightningdesignsystem.com/) - Salesforce
-
-    * [BBC](https://www.bbc.co.uk/gel/guidelines/category/design-patterns)
-
-* Get experts opinion UI design, accessibility channels, from web, quotes, discussions, github, slack workspaces
-
-* Get experts opinion UX design
-
-    * [Nielsen Norman Group](https://www.nngroup.com/)
-
-* Consider hiring 3rd party reviewers
-
-<table>
-  <tr>
-    <td>ℹ
-Design shouldn’t be shipped to engineering unless all the above criterions are met and components are available in the Vivid packages inventory for engineers to consume.
-Failing to do so can result in engineers defocusing from their product business logic and, unless done very carefully, new UI development may introduce new violations in products.</td>
-  </tr>
-</table>
-
-
-How to request new features
-
-* Requests will be handled through [Issues](https://github.com/Vonage/vivid/issues) in Vivid’s GItHub
-
-* To create a new issue you have 2 option:
-
-    * [Feature Request](https://github.com/Vonage/vivid/issues/new?assignees=&labels=Type%3A+Feature&template=feature_request.md&title=) - this form will be relevant for new component variants, missing features in developed components, new components, etc.
-
-    * [Bug Report](https://github.com/Vonage/vivid/issues/new?assignees=&labels=bug&template=bug_report.md&title=) - this form will be relevant if any component isn’t behaving as expected, technical issues, etc.
-
+* Share UI/UX design experts' research
