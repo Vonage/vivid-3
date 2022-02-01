@@ -42,7 +42,7 @@ See the [open issues](https://github.com/vonage/vivid-3/issues) for a full list 
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!
-Feel free to check [issues page](https://github.com/Vonage/vivid-3/issues). You can also take a look at the [contributing guide](https://github.com/Vonage/vivid-3/issues).
+Feel free to check [issues page](https://github.com/Vonage/vivid-3/issues). You can also take a look at the [contributing guide](.github/CONTRIBUTING.md).
 
 <br>
 
@@ -73,4 +73,5 @@ This project is [Apache 2.0][license-url] licensed.
 [issues-shield]: https://img.shields.io/github/issues/vonage/vivid-3.svg?style=for-the-badge
 [issues-url]: https://github.com/vonage/vivid-3/issues
 [license-shield]: https://img.shields.io/github/license/vonage/vivid-3.svg?style=for-the-badge
+[license-url]: LICENSE.md
 [license-url]: LICENSE.md
