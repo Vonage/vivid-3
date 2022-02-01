@@ -21,7 +21,7 @@ export class Layout extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr	gutters?: Gutters;
+	@attr gutters?: Gutters;
 
 	/**
 	 * sets the initial preferred measure of a column from predefined available options
@@ -42,5 +42,5 @@ export class Layout extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr({ attribute: 'auto-sizing' })	autoSizing?: AutoSizing;
+	@attr({ attribute: 'auto-sizing' }) autoSizing?: AutoSizing;
 }
