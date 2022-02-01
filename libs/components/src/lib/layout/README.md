@@ -7,8 +7,11 @@ Using layout, elements can be arranged easily in a variety of sizes and spaces t
     import '@vonage/vivid/layout';
 </script>
 ```
-## auto-sizing	
+
+## auto-sizing
+
 ### fit
+
 ```html preview
 <vwc-layout auto-sizing="fit">
   <img src="https://picsum.photos/351/200">
@@ -19,7 +22,9 @@ Using layout, elements can be arranged easily in a variety of sizes and spaces t
   <img src="https://picsum.photos/356/200">
 </vwc-layout>
 ```
+
 ### fill
+
 ```html preview
 <vwc-layout auto-sizing="fill">
   <img src="https://picsum.photos/351/200">
@@ -30,26 +35,33 @@ Using layout, elements can be arranged easily in a variety of sizes and spaces t
   <img src="https://picsum.photos/356/200">
 </vwc-layout>
 ```
-## column-spacing	
+
+## column-spacing
+
 ### xs
+
 ```html preview
-<vwc-layout column-spacing="xs">
+<vwc-layout column-spacing="base-small">
   <img src="https://picsum.photos/351/200">
   <img src="https://picsum.photos/352/200">
   <img src="https://picsum.photos/353/200">
 </vwc-layout>
 ```
+
 ### md
+
 ```html preview
-<vwc-layout column-spacing="md">
+<vwc-layout column-spacing="base">
   <img src="https://picsum.photos/351/200">
   <img src="https://picsum.photos/352/200">
   <img src="https://picsum.photos/353/200">
 </vwc-layout>
 ```
+
 ### xl
+
 ```html preview
-<vwc-layout column-spacing="xl">
+<vwc-layout column-spacing="base-large">
   <img src="https://picsum.photos/351/200">
   <img src="https://picsum.photos/352/200">
   <img src="https://picsum.photos/353/200">
@@ -57,31 +69,39 @@ Using layout, elements can be arranged easily in a variety of sizes and spaces t
 ```
 
 ## column-basis
+
 ### sm
+
 ```html preview
-<vwc-layout column-basis="sm">
+<vwc-layout column-basis="base-small">
   <img src="https://picsum.photos/351/200">
   <img src="https://picsum.photos/352/200">
   <img src="https://picsum.photos/353/200">
 </vwc-layout>
 ```
+
 ### md
+
 ```html preview
-<vwc-layout column-basis="md">
+<vwc-layout column-basis="base">
   <img src="https://picsum.photos/351/200">
   <img src="https://picsum.photos/352/200">
   <img src="https://picsum.photos/353/200">
 </vwc-layout>
 ```
+
 ### lg
+
 ```html preview
-<vwc-layout column-basis="lg">
+<vwc-layout column-basis="base-large">
   <img src="https://picsum.photos/351/200">
   <img src="https://picsum.photos/352/200">
   <img src="https://picsum.photos/353/200">
 </vwc-layout>
 ```
+
 ### block
+
 ```html preview
 <vwc-layout column-basis="block">
   <img src="https://picsum.photos/351/200">
@@ -89,26 +109,33 @@ Using layout, elements can be arranged easily in a variety of sizes and spaces t
   <img src="https://picsum.photos/353/200">
 </vwc-layout>
 ```
+
 ## gutters
+
 ### xs
+
 ```html preview
-<vwc-layout gutters="xs">
+<vwc-layout gutters="base-small">
   <img src="https://picsum.photos/351/200">
   <img src="https://picsum.photos/352/200">
   <img src="https://picsum.photos/353/200">
 </vwc-layout>
 ```
+
 ### md
+
 ```html preview
-<vwc-layout gutters="md">
+<vwc-layout gutters="base">
   <img src="https://picsum.photos/351/200">
   <img src="https://picsum.photos/352/200">
   <img src="https://picsum.photos/353/200">
 </vwc-layout>
 ```
+
 ### xl
+
 ```html preview
-<vwc-layout gutters="xl">
+<vwc-layout gutters="base-large">
   <img src="https://picsum.photos/351/200">
   <img src="https://picsum.photos/352/200">
   <img src="https://picsum.photos/353/200">
