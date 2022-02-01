@@ -85,7 +85,7 @@
       "options": {
         "commands": [
           {
-            "command": "npm run release-it -- --preRelease=next -c libs/components/release-it.json"
+            "command": "libs/components npm run release-it -- --ci --preRelease=next -c libs/components/release-it.json"
           }
         ]
       }
