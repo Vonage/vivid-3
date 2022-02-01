@@ -9,11 +9,11 @@
 	grid-auto-rows: min-content;
 
 	@include mixins.measurement(map.keys(variables.$bases)...) using ($basis) {
-		#{functions.get-selector-with-default(".layout-column-basis", $basis, md, map.keys(variables.$bases))} {
+		#{functions.get-selector-with-default(".column-basis", $basis, 'base', map.keys(variables.$bases))} {
 			grid-template-columns: var(
 				#{variables.$layout-grid-template-columns},
 				repeat(
-					var(#{variables.$layout-auto-sizing}),
+					var(#{variables.$auto-sizing}),
 					minmax(map.get(variables.$bases, $basis), 1fr)
 				)
 			);
@@ -21,20 +21,20 @@
 	}
 
 	@include mixins.measurement(map.keys(variables.$spaces)...) using ($space) {
-		#{functions.get-selector-with-default(".layout-column-spacing", $space, md, map.keys(variables.$spaces))} {
+		#{functions.get-selector-with-default(".column-spacing", $space, 'base', map.keys(variables.$spaces))} {
 			gap: map.get(variables.$spaces, $space);
 		}
 	}
 
 	@include mixins.measurement(map.keys(variables.$spaces)...) using ($space) {
-		&.layout-gutters-#{$space} {
+		&.gutters-#{$space} {
 			margin: map.get(variables.$spaces, $space);
 		}
 	}
 
 	@include mixins.measurement(map.keys(variables.$auto-sizes)...) using ($size) {
-		#{functions.get-selector-with-default(".layout-auto-sizing", $size, fit, map.keys(variables.$auto-sizes))} {
-			#{variables.$layout-auto-sizing}: map.get(variables.$auto-sizes, $size);
+		#{functions.get-selector-with-default(".auto-sizing", $size, fit, map.keys(variables.$auto-sizes))} {
+			#{variables.$auto-sizing}: map.get(variables.$auto-sizes, $size);
 		}
 	}
 }

@@ -4,8 +4,14 @@ import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import type { Layout } from './layout';
 
-const getClasses = () => classNames(
+const getClasses = ({
+	columnBasis, gutters, columnSpacing, autoSizing
+}: Layout) => classNames(
 	'control',
+	[`column-basis-${columnBasis}`, Boolean(columnBasis)],
+	[`gutters-${gutters}`, Boolean(gutters)],
+	[`column-spacing-${columnSpacing}`, Boolean(columnSpacing)],
+	[`auto-sizing-${autoSizing}`, Boolean(autoSizing)],
 );
 
 /**
