@@ -11,9 +11,10 @@
 
 .control {
 	@include connotation.connotation;
-	color: var(#{connotation.$vvd-color-connotation}, currentColor);	
+
 	display: flex;
 	margin: unset;
+	color: var(#{connotation.$vvd-color-connotation}, currentColor);	
 	contain: strict;
 }
 
