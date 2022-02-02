@@ -10,7 +10,7 @@
         "pathprefix": "",
         "commands": [
           {
-            "command": "yarn nx build components && yarn eleventy --config=./apps/docs/.eleventy.js"
+            "command": "npm run nx build components && npm run eleventy --config=./apps/docs/.eleventy.js"
           }
         ]
       },
