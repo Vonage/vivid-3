@@ -7,11 +7,17 @@
     "build": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
+        "pathprefix": "",
         "commands": [
           {
-            "command": "yarn eleventy --config=./apps/docs/.eleventy.js"
+            "command": "npm run nx build components && npm run eleventy --config=./apps/docs/.eleventy.js"
           }
         ]
+      },
+      "configurations": {
+        "production": {
+          "pathprefix": "vivid-3"
+        }
       }
     },
     "serve": {
@@ -24,8 +30,5 @@
         ]
       }
     }
-  },
-  "implicitDependencies": [
-    "components"
-  ]
+  }
 }
