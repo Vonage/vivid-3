@@ -1,8 +1,17 @@
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+	$subset: primary announcement cta success alert info,
+	$default: primary,
+);
+
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+
 :host {
 	display: inline-block;
 }
 
 .control {
+	@include connotation.connotation;
+	color: var(#{connotation.$vvd-color-connotation}, currentColor);	
 	display: flex;
 	margin: unset;
 	contain: strict;

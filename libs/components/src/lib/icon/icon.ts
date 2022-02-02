@@ -34,15 +34,27 @@ const resolveIcon = memoizeWith(identity as () => string, (iconId = '') => (icon
 	? loadSvg(iconId)
 	: Promise.resolve(''))) as (iconId?: string) => Promise<string>;
 
+/**
+* Types of icon connotation.
+*
+* @public
+*/
 type IconConnotation = Extract<Connotation,
-| Connotation.Primary
-| Connotation.CTA
-| Connotation.Announcement
-| Connotation.Success
-| Connotation.Alert
-| Connotation.Info>;
+	| Connotation.Primary
+	| Connotation.CTA
+	| Connotation.Announcement
+	| Connotation.Success
+	| Connotation.Alert
+	| Connotation.Info>;
 
 export class Icon extends FoundationElement {
+	/**
+	 * The connotation the icon should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: connotation
+	 */
 	@attr connotation?: IconConnotation;
 
 	@attr size?: Size;
