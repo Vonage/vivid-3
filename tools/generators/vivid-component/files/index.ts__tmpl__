@@ -1,0 +1,14 @@
+import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
+import { designSystem } from '../design-system';
+import styles from './<%= fileName %>.scss';
+
+import { <%= className %> } from './<%= fileName %>';
+import { <%= className %>Template as template } from './<%= fileName %>.template';
+
+export const vivid<%= className %> = <%= className %>.compose<FoundationElementDefinition>({
+	baseName: '<%= name %>',
+	template: template as any,
+	styles,
+});
+
+designSystem.register(vivid<%= className %>());

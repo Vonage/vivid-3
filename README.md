@@ -46,6 +46,18 @@ Feel free to check [issues page](https://github.com/Vonage/vivid-3/issues). You 
 
 <br>
 
+### Getting started
+
+#### Generator a new component 
+
+`npm run nx workspace-generator vivid-component my-component`
+
+Will generate a new component in `libs/componnts/src/lib/my-component`
+
+#### Test
+
+`npm run test components` will run unit tests for the components
+See the [ui-tests docs](docs/ui-tests/readme.md) for how to run visual tests.
 ## Show your support
 
 Give a ⭐️ if this project helped you!
