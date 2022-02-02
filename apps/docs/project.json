@@ -10,7 +10,7 @@
         "pathprefix": "",
         "commands": [
           {
-            "command": "npm run nx build components && npm run eleventy --config=./apps/docs/.eleventy.js"
+            "command": "npm run nx build components && npx eleventy --config=./apps/docs/.eleventy.js"
           }
         ]
       },
@@ -25,7 +25,7 @@
       "options": {
         "commands": [
           {
-            "command": "yarn eleventy --config=./apps/docs/.eleventy.js --serve"
+            "command": "npx eleventy --config=./apps/docs/.eleventy.js --serve"
           }
         ]
       }
