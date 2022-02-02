@@ -28,12 +28,12 @@ It accepts a subset of predefined values.
 - Default: `'primary'`
 
 ```html preview
-<vwc-icon type='heart-line' connotation='primary'></vwc-icon>
-<vwc-icon type='heart-line' connotation='announcement'></vwc-icon>
-<vwc-icon type='heart-line' connotation='cta'></vwc-icon>
-<vwc-icon type='heart-line' connotation='success'></vwc-icon>
-<vwc-icon type='heart-line' connotation='alert'></vwc-icon>
-<vwc-icon type='heart-line' connotation='info'></vwc-icon>
+<vwc-icon type='heart-solid' connotation='primary'></vwc-icon>
+<vwc-icon type='heart-solid' connotation='announcement'></vwc-icon>
+<vwc-icon type='heart-solid' connotation='cta'></vwc-icon>
+<vwc-icon type='heart-solid' connotation='success'></vwc-icon>
+<vwc-icon type='heart-solid' connotation='alert'></vwc-icon>
+<vwc-icon type='heart-solid' connotation='info'></vwc-icon>
 ```
 
 Use the `size` attribute to change the icon's size.
