@@ -35,17 +35,17 @@ const resolveIcon = memoizeWith(identity as () => string, (iconId = '') => (icon
 	: Promise.resolve(''))) as (iconId?: string) => Promise<string>;
 
 /**
-* Types of icon connotation.
-*
-* @public
-*/
+ * Types of icon connotation.
+ *
+ * @public
+ */
 type IconConnotation = Extract<Connotation,
-	| Connotation.Primary
-	| Connotation.CTA
-	| Connotation.Announcement
-	| Connotation.Success
-	| Connotation.Alert
-	| Connotation.Info>;
+| Connotation.Primary
+| Connotation.CTA
+| Connotation.Announcement
+| Connotation.Success
+| Connotation.Alert
+| Connotation.Info>;
 
 export class Icon extends FoundationElement {
 	/**
