@@ -10,16 +10,21 @@ Using layout, elements can be arranged easily in a variety of sizes and spaces t
 
 ## auto-sizing
 
+Use the `auto-sizing` attribute to set the initial preferred auto-sizing.
+
+- Type: `'fit'` | `'fill'`
+- Default: `'fit'`
+
 ### fit
 
 ```html preview
 <vwc-layout auto-sizing="fit">
-  <img src="https://picsum.photos/351/200">
-  <img src="https://picsum.photos/352/200">
-  <img src="https://picsum.photos/353/200">
-  <img src="https://picsum.photos/354/200">
-  <img src="https://picsum.photos/355/200">
-  <img src="https://picsum.photos/356/200">
+  <img src="https://picsum.photos/311/200">
+  <img src="https://picsum.photos/312/200">
+  <img src="https://picsum.photos/313/200">
+  <img src="https://picsum.photos/314/200">
+  <img src="https://picsum.photos/311/200">
+  <img src="https://picsum.photos/316/200">
 </vwc-layout>
 ```
 
@@ -27,117 +32,108 @@ Using layout, elements can be arranged easily in a variety of sizes and spaces t
 
 ```html preview
 <vwc-layout auto-sizing="fill">
-  <img src="https://picsum.photos/351/200">
-  <img src="https://picsum.photos/352/200">
-  <img src="https://picsum.photos/353/200">
-  <img src="https://picsum.photos/354/200">
-  <img src="https://picsum.photos/355/200">
-  <img src="https://picsum.photos/356/200">
+  <img src="https://picsum.photos/311/200">
+  <img src="https://picsum.photos/312/200">
+  <img src="https://picsum.photos/313/200">
+  <img src="https://picsum.photos/314/200">
+  <img src="https://picsum.photos/311/200">
+  <img src="https://picsum.photos/316/200">
 </vwc-layout>
 ```
 
-## column-spacing
+## Gutters
 
-### xs
+Use the `gutters` attribute to set the initial preferred margin.
+
+- Type: `'base-small'` | `'base'` | `'base-large'`
+- Default: `''`
+
+
+```html preview
+<vwc-layout>
+  <div style="border: 1px solid">default</div>
+  <div style="border: 1px solid">default</div>
+</vwc-layout>
+<vwc-layout gutters="base-small">
+  <div style="border: 1px solid">base-small</div>
+  <div style="border: 1px solid">base-small</div>
+</vwc-layout>
+<vwc-layout gutters="base">
+  <div style="border: 1px solid">base</div>
+  <div style="border: 1px solid">base</div>
+</vwc-layout>
+<vwc-layout gutters="base-large">
+  <div style="border: 1px solid">base-large</div>
+  <div style="border: 1px solid">base-large</div>
+</vwc-layout>
+```
+
+## Column-spacing
+
+Use the `column-spacing` attribute to set the initial preferred spacing of a column.
+
+- Type: `'base-small'` | `'base'` | `'base-large'`
+- Default: `'base'`
 
 ```html preview
 <vwc-layout column-spacing="base-small">
-  <img src="https://picsum.photos/351/200">
-  <img src="https://picsum.photos/352/200">
-  <img src="https://picsum.photos/353/200">
+  <div style="border: 1px solid">base-small</div>
+  <div style="border: 1px solid">base-small</div>
 </vwc-layout>
-```
-
-### md
-
-```html preview
 <vwc-layout column-spacing="base">
-  <img src="https://picsum.photos/351/200">
-  <img src="https://picsum.photos/352/200">
-  <img src="https://picsum.photos/353/200">
+  <div style="border: 1px solid">base</div>
+  <div style="border: 1px solid">base</div>
 </vwc-layout>
-```
-
-### xl
-
-```html preview
 <vwc-layout column-spacing="base-large">
-  <img src="https://picsum.photos/351/200">
-  <img src="https://picsum.photos/352/200">
-  <img src="https://picsum.photos/353/200">
+  <div style="border: 1px solid">base-large</div>
+  <div style="border: 1px solid">base-large</div>
 </vwc-layout>
 ```
 
-## column-basis
+## Column-basis
 
-### sm
+Use the `column-basis` attribute to set the initial preferred measure of a column.
 
+- Type: `'base-small'` | `'base'` | `'base-large'`
+- Default: `'base'`
+
+### base-small
 ```html preview
 <vwc-layout column-basis="base-small">
-  <img src="https://picsum.photos/351/200">
-  <img src="https://picsum.photos/352/200">
-  <img src="https://picsum.photos/353/200">
+  <div style="border: 1px solid">base-small</div>
+  <div style="border: 1px solid">base-small</div>
+  <div style="border: 1px solid">base-small</div>
+  <div style="border: 1px solid">base-small</div>
+  <div style="border: 1px solid">base-small</div>
 </vwc-layout>
 ```
-
-### md
-
+### base
 ```html preview
 <vwc-layout column-basis="base">
-  <img src="https://picsum.photos/351/200">
-  <img src="https://picsum.photos/352/200">
-  <img src="https://picsum.photos/353/200">
+  <div style="border: 1px solid">base</div>
+  <div style="border: 1px solid">base</div>
+  <div style="border: 1px solid">base</div>
+  <div style="border: 1px solid">base</div>
+  <div style="border: 1px solid">base</div>
 </vwc-layout>
 ```
-
-### lg
-
+### base-large
 ```html preview
 <vwc-layout column-basis="base-large">
-  <img src="https://picsum.photos/351/200">
-  <img src="https://picsum.photos/352/200">
-  <img src="https://picsum.photos/353/200">
+  <div style="border: 1px solid">base-large</div>
+  <div style="border: 1px solid">base-large</div>
+  <div style="border: 1px solid">base-large</div>
+  <div style="border: 1px solid">base-large</div>
+  <div style="border: 1px solid">base-large</div>
 </vwc-layout>
 ```
-
 ### block
-
 ```html preview
 <vwc-layout column-basis="block">
-  <img src="https://picsum.photos/351/200">
-  <img src="https://picsum.photos/352/200">
-  <img src="https://picsum.photos/353/200">
-</vwc-layout>
-```
-
-## gutters
-
-### xs
-
-```html preview
-<vwc-layout gutters="base-small">
-  <img src="https://picsum.photos/351/200">
-  <img src="https://picsum.photos/352/200">
-  <img src="https://picsum.photos/353/200">
-</vwc-layout>
-```
-
-### md
-
-```html preview
-<vwc-layout gutters="base">
-  <img src="https://picsum.photos/351/200">
-  <img src="https://picsum.photos/352/200">
-  <img src="https://picsum.photos/353/200">
-</vwc-layout>
-```
-
-### xl
-
-```html preview
-<vwc-layout gutters="base-large">
-  <img src="https://picsum.photos/351/200">
-  <img src="https://picsum.photos/352/200">
-  <img src="https://picsum.photos/353/200">
+  <div style="border: 1px solid">block</div>
+  <div style="border: 1px solid">block</div>
+  <div style="border: 1px solid">block</div>
+  <div style="border: 1px solid">block</div>
+  <div style="border: 1px solid">block</div>
 </vwc-layout>
 ```
