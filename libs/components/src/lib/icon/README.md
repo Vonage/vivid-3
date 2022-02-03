@@ -8,6 +8,10 @@ Find the icon you want to use on the [vivid icons search platform](https://icons
 </script>
 ```
 
+```html preview
+<p>I <vwc-icon type='heart-line' connotation='alert'></vwc-icon> VIVID!</p>
+```
+
 ## Type
 
 - Type: `String`
@@ -38,11 +42,11 @@ It accepts a subset of predefined values.
 
 Use the `size` attribute to change the icon's size.
 
-- Type: `'small'` | `'medium'` | `'large'`
-- Default: `'medium'`
+- Type: `'base-small'` | `'base'` | `'base-large'`
+- Default: `'base'`
 
 ```html preview
-<vwc-icon type='close-line' size='small'></vwc-icon>
-<vwc-icon type='close-line' size='medium'></vwc-icon>
-<vwc-icon type='close-line' size='large'></vwc-icon>
+<vwc-icon type='close-line' size='base-small'></vwc-icon>
+<vwc-icon type='close-line' size='base'></vwc-icon>
+<vwc-icon type='close-line' size='base-large'></vwc-icon>
 ```
