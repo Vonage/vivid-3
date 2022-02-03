@@ -1,0 +1,11 @@
+# <%= name %>
+
+```js
+<script type='module'>
+    import '@vonage/vivid/<%= name %>';
+</script>
+```
+
+```html preview
+<vwc-<%= name %>></vwc-<%= name %>>
+```
