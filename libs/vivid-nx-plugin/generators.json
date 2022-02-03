@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "vivid-nx-plugin",
+  "version": "0.0.1",
+  "generators": {
+    "vivid-nx-plugin": {
+      "factory": "./src/generators/vivid-nx-plugin/generator",
+      "schema": "./src/generators/vivid-nx-plugin/schema.json",
+      "description": "vivid-nx-plugin generator"
+    }
+  }
+}
