@@ -2,19 +2,16 @@
 
 ## What do I need to know to help?
 
-If you are looking to help to with a code contribution our project uses [Typescript](https://www.typescriptlang.org), [Lit](https://lit.dev) and [Sass](https://sass-lang.com). If you don't feel ready to make a code contribution yet, no problem! You can also check out the [documentation issues](https://github.com/Vonage/vivid-3/labels/Type%3A%20documentation) or the [design issues](https://github.com/Vonage/vivid-3/labels/Type%3A%20Design%20%F0%9F%8E%A8) that we have.
-
 If you are interested in making a code contribution and would like to learn more about the technologies that we use, check out the list below.
 
-- [Vivid documentation](https://vonage.github.io/vivid-3)
-- [Vivid test](https://vonage.github.io/vivid-3)
+- [Vivid Development Cycle](../docs/development.md)
 
 ## How do I make a contribution?
 
 Never made an open source contribution before? Wondering how contributions work in the in our project? Here's a quick rundown!
 
 1. Find an issue that you are interested in addressing or a feature that you would like to add.
-2. Fork the repository associated with the issue to your local GitHub organization. This means that you will have a copy of the repository under **your-GitHub-username/vivid**.
+2. Fork the repository. This means that you will have a copy of the repository under **your-GitHub-username/vivid**.
 3. Clone the repository to your local machine using `git clone https://github.com/Vonage/vivid-3.git` / `gh repo clone Vonage/vivid-3`.
 4. Create a new branch for your fix using `git checkout -b branch-name-here`.
 5. Make the appropriate changes for the issue you are trying to address or the feature that you want to add.
