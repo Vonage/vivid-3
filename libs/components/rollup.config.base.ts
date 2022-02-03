@@ -1,5 +1,4 @@
 const typescript = require('@rollup/plugin-typescript');
-const del = require('rollup-plugin-delete');
 const nodeResolve = require('@rollup/plugin-node-resolve').default;
 const litCss = require('rollup-plugin-lit-css').default;
 const {renderSync} = require('sass');
@@ -9,7 +8,6 @@ const BASE_CONFIG = {
 		clearScreen: false,
 	},
 	plugins: [
-		del({ targets: ['dist/libs/components/**/*.*'], runOnce: true }),
 		typescript({
 			noEmitOnError: true,
 			tsconfig: './libs/components/tsconfig.lib.json',
