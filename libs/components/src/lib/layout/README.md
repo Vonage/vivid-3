@@ -8,7 +8,17 @@ Using layout, elements can be arranged easily in a variety of sizes and spaces t
 </script>
 ```
 
-## auto-sizing
+```html preview
+<vwc-layout>
+  <img src="https://picsum.photos/311/200">
+  <img src="https://picsum.photos/312/200">
+  <img src="https://picsum.photos/313/200">
+  <img src="https://picsum.photos/314/200">
+  <img src="https://picsum.photos/315/200">
+  <img src="https://picsum.photos/316/200">
+</vwc-layout>
+```
+## Auto-sizing
 
 Use the `auto-sizing` attribute to set the initial preferred auto-sizing.
 
@@ -19,12 +29,8 @@ Use the `auto-sizing` attribute to set the initial preferred auto-sizing.
 
 ```html preview
 <vwc-layout auto-sizing="fit">
-  <img src="https://picsum.photos/311/200">
-  <img src="https://picsum.photos/312/200">
-  <img src="https://picsum.photos/313/200">
-  <img src="https://picsum.photos/314/200">
-  <img src="https://picsum.photos/311/200">
-  <img src="https://picsum.photos/316/200">
+  <div style="border: 1px solid">fit</div>
+  <div style="border: 1px solid">fit</div>
 </vwc-layout>
 ```
 
@@ -32,12 +38,8 @@ Use the `auto-sizing` attribute to set the initial preferred auto-sizing.
 
 ```html preview
 <vwc-layout auto-sizing="fill">
-  <img src="https://picsum.photos/311/200">
-  <img src="https://picsum.photos/312/200">
-  <img src="https://picsum.photos/313/200">
-  <img src="https://picsum.photos/314/200">
-  <img src="https://picsum.photos/311/200">
-  <img src="https://picsum.photos/316/200">
+  <div style="border: 1px solid">fill</div>
+  <div style="border: 1px solid">fill</div>
 </vwc-layout>
 ```
 
