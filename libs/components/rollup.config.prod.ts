@@ -28,6 +28,8 @@ const input = components.reduce((inputObject, componentName) => {
 }, {});
 
 module.exports = function setVividRollupConfig(config) {
+
+	const plugins = [...rollupBaseConfig.plugins];
 	return {
 		input,
 		output: {
@@ -36,6 +38,6 @@ module.exports = function setVividRollupConfig(config) {
 			format: 'esm',
 			chunkFileNames: 'components/[name]/chunks/index.js',
 		},
-		...rollupBaseConfig,
+		plugins
 	};
 };

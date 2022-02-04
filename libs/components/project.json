@@ -33,7 +33,23 @@
         "tsConfig": "libs/components/tsconfig.lib.json",
         "project": "libs/components/package.json",
         "rollupConfig": "libs/components/rollup.config.prod.ts",
-        "assets": [],
+        "assets": [
+          {
+            "input": "./libs/components/**",
+            "glob": "*.md",
+            "output": "."
+          },
+          {
+            "input": "./dist/libs/styles/themes/**",
+            "glob": "*.css",
+            "output": "./styles/themes"
+          },
+          {
+            "input": "./dist/libs/styles/fonts/**",
+            "glob": "*.css",
+            "output": "./styles/fonts"
+          }
+        ],
         "buildableProjectDepsInPackageJsonType": "dependencies",
         "updateBuildableProjectDepsInPackageJson": true
       }
@@ -48,7 +64,6 @@
         "project": "libs/components/package.json",
         "rollupConfig": "libs/components/rollup.config.prod.ts",
         "watch": true,
-        "assets": [],
         "buildableProjectDepsInPackageJsonType": "dependencies",
         "updateBuildableProjectDepsInPackageJson": true
       }
