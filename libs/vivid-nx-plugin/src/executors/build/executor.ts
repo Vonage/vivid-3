@@ -1,7 +1,18 @@
 import { BuildExecutorSchema } from './schema';
+import {ExecutorContext, runExecutor} from '@nrwl/devkit';
 
-export default async function runExecutor(options: BuildExecutorSchema) {
-  console.log('Executor ran for Build', options);
+export default async function multiServe(options: BuildExecutorSchema, context: ExecutorContext) {
+  const { implicitDependencies } = context.workspace.projects[context.projectName];
+
+  if (implicitDependencies) {
+    for (const implicitDep of implicitDependencies) {
+      await runExecutor({
+        project: implicitDep,
+        target: 'serve'
+      }, {}, context);
+    }
+  }
+
   return {
     success: true,
   };
