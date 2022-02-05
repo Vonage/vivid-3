@@ -35,7 +35,7 @@
         "rollupConfig": "libs/components/rollup.config.prod.ts",
         "assets": [
           {
-            "input": ".",
+            "input": "./libs/components",
             "glob": "README.md",
             "output": "."
           },
