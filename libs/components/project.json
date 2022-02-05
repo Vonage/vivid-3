@@ -67,7 +67,26 @@
         "rollupConfig": "libs/components/rollup.config.prod.ts",
         "watch": true,
         "buildableProjectDepsInPackageJsonType": "dependencies",
-        "updateBuildableProjectDepsInPackageJson": true
+        "updateBuildableProjectDepsInPackageJson": true,
+        "assets": [
+          {
+            "input": "./libs/components",
+            "glob": "README.md",
+            "output": "."
+          },
+          {
+            "input": "./dist/libs/styles/themes/**",
+            "glob": "*.css",
+            "output": "./styles/themes"
+          },
+          {
+            "input": "./dist/libs/styles/fonts/**",
+            "glob": "*.css",
+            "output": "./styles/fonts"
+          }
+        ],
+        "format": ["esm"],
+        "extractCss": false
       }
     },
     "stylelint": {
