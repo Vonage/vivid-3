@@ -51,7 +51,9 @@
           }
         ],
         "buildableProjectDepsInPackageJsonType": "dependencies",
-        "updateBuildableProjectDepsInPackageJson": true
+        "updateBuildableProjectDepsInPackageJson": true,
+        "format": ["esm"],
+        "extractCss": false
       }
     },
     "serve": {
