@@ -10,7 +10,7 @@
         "pathprefix": "",
         "commands": [
           {
-            "command": "npm run nx build components && npx eleventy --config=./apps/docs/.eleventy.js"
+            "command": "npx eleventy --config=./apps/docs/.eleventy.js"
           }
         ]
       },
@@ -30,5 +30,6 @@
         ]
       }
     }
-  }
+  },
+  "implicitDependencies": ["components"]
 }
