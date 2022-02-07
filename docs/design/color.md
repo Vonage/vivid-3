@@ -1,7 +1,22 @@
+<style>
+  .color_connotation {
+    --layout-grid-template-columns: 270px repeat(7, 100px);
+  }
+  .color_primary {
+    --layout-grid-template-columns: 270px repeat(2, 100px);
+  }
+  .color_neutral {
+    --layout-grid-template-columns: 270px repeat(11, 100px);
+  }
+  .color_wrapper {
+    font-size: 0.75rem;
+    text-align: center;
+  }
+  .color_rec {
+    height: 3rem;
+  }
+</style>
 # Color
-
-<link rel="stylesheet" href="/assets/styles/color.css"/>
-
 ## There’s a science to color
 
 ##### It’s part visual chemistry and part psychology. Balancing both makes for a palette that’s a powerful tool for establishing uniqueness.
