@@ -25,7 +25,7 @@
 
     <script type="module">
       import 'https://cdn.skypack.dev/@vonage/vwc-side-drawer';
-      import 'https://cdn.skypack.dev/@vonage/vwc-layout';
+      import '/assets/modules/components/layout/index.js';
       import 'https://cdn.skypack.dev/@vonage/vwc-top-app-bar-fixed';
     </script>
     {% include "prefetches.njk" %}
@@ -56,7 +56,7 @@
     <vwc-side-drawer open>
       {% include "navigation.njk" %}
 			<main slot="app-content">
-        <vwc-layout gutters="md" column-basis="block">
+        <vwc-layout gutters="base" column-basis="block">
           {{content | safe}}
         </vwc-layout>
       </main>
