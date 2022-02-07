@@ -1,11 +1,25 @@
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+	$subset: primary announcement cta success alert info
+);
+
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+
 :host {
 	display: inline-block;
 }
 
 .control {
+	@include connotation.connotation;
+
 	display: flex;
 	margin: unset;
+	color: currentColor;
 	contain: strict;
+}
+
+// TODO: add a :where selector to unset any connotation variant from a mixin level
+.control[class*="connotation"] {
+  color: var(#{connotation.$vvd-color-connotation});
 }
 
 svg {
@@ -16,22 +30,22 @@ svg {
 
 /* Size */
 
-.control:not(.size-small):not(.size-medium):not(.size-large) {
+.control:not(.size-base-small):not(.size-base):not(.size-base-large) {
 	block-size: 1em;
 	inline-size: 1em;
 }
 
-.control.size-small {
+.control.size-base-small {
 	block-size: 16px;
 	inline-size: 16px;
 }
 
-.control.size-medium {
+.control.size-base {
 	block-size: 24px;
 	inline-size: 24px;
 }
 
-.control.size-large {
+.control.size-base-large {
 	block-size: 32px;
 	inline-size: 32px;
 }
