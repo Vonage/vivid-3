@@ -1,6 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
-import type { Size } from '../../../types/enums.js';
+import type { Size } from '../enums.js';
 
 
 enum AUTO_SIZING { Fit = 'fit', Fill = 'fill' }

@@ -3,7 +3,7 @@ import { attr } from '@microsoft/fast-element';
 
 import type {
 	Appearance, Connotation, Shape, Size,
-} from '../../../types/enums.js';
+} from '../enums.js';
 
 /**
  * Types of badge connotation.
