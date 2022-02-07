@@ -24,15 +24,15 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 
     <script type="module">
-      import 'https://cdn.skypack.dev/@vonage/vwc-side-drawer';
       import '/assets/modules/components/layout/index.js';
-      import 'https://cdn.skypack.dev/@vonage/vwc-top-app-bar-fixed';
+      import 'https://es6.dev.vivid.vonage.com/v2.22.1/@vonage/vwc-top-app-bar-fixed/vwc-top-app-bar-fixed.js';
+      import 'https://es6.dev.vivid.vonage.com/v2.22.1/@vonage/vwc-side-drawer/vwc-side-drawer.js';
     </script>
     {% include "prefetches.njk" %}
 </head>
 
 <body>
-	<vwc-top-app-bar-fixed alternate>
+	<vwc-top-app-bar-fixed>
    <vwc-button
     slot="navigationIcon"
     icon="vonage-mono"
@@ -57,8 +57,11 @@
       {% include "navigation.njk" %}
 			<main slot="app-content">
         <vwc-layout gutters="base" column-basis="block">
-          {{content | safe}}
+          <div>
+            {{content | safe}}
+          </div>
         </vwc-layout>
+        <br>
       </main>
 		</vwc-side-drawer>
 	</vwc-top-app-bar-fixed>

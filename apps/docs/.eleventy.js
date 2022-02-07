@@ -13,6 +13,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight);
 
   eleventyConfig.addPassthroughCopy({
+    "node_modules/@vonage/vwc-top-app-bar-fixed": "assets/modules/components/top-app-bar-fixed",
     "dist/libs/components/styles/fonts/*.css": "assets/styles/fonts",
     "dist/libs/components/styles/themes/*.css": "assets/styles/themes",
     "dist/libs/components": "assets/modules/components",
