@@ -5,7 +5,7 @@ import type { Connotation, Size } from '../../../types/enums';
 import { PLACEHOLDER_ICON } from './icon.placeholder';
 
 const BASE_URL = 'https://icon.resources.vonage.com'; // namespaced as 3f7739a0-a898-4f69-a82b-ad9d743170b6 on icons.resources.vonage.com
-const ICON_SET_VERSION = '4.0.16';
+const ICON_SET_VERSION = '4.0.23';
 
 // Start displaying placeholder if waiting more than this period of time
 const PLACEHOLDER_DELAY = 500;
@@ -34,6 +34,11 @@ const resolveIcon = memoizeWith(identity as () => string, (iconId = '') => (icon
 	? loadSvg(iconId)
 	: Promise.resolve(''))) as (iconId?: string) => Promise<string>;
 
+/**
+ * Types of icon connotation.
+ *
+ * @public
+ */
 type IconConnotation = Extract<Connotation,
 | Connotation.Primary
 | Connotation.CTA
@@ -43,6 +48,13 @@ type IconConnotation = Extract<Connotation,
 | Connotation.Info>;
 
 export class Icon extends FoundationElement {
+	/**
+	 * The connotation the icon should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: connotation
+	 */
 	@attr connotation?: IconConnotation;
 
 	@attr size?: Size;
