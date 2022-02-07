@@ -1,0 +1,16 @@
+---
+layout: base.njk
+tags: designs
+pagination:
+    data: designs
+    size: 1
+    alias: design
+permalink: "designs/{{ design.title | slug }}/"
+---
+
+{% for url in design.modules %}
+<script type="module" src="{{ url | url }}"></script>
+{% endfor %}
+
+
+{% renderFile design.markdown %}
