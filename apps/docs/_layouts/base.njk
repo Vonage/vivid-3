@@ -25,6 +25,7 @@
 
     <script type="module">
       import 'https://cdn.skypack.dev/@vonage/vwc-side-drawer';
+      import 'https://cdn.skypack.dev/@vonage/vwc-layout';
       import 'https://cdn.skypack.dev/@vonage/vwc-top-app-bar-fixed';
     </script>
     {% include "prefetches.njk" %}
@@ -32,6 +33,11 @@
 
 <body>
 	<vwc-top-app-bar-fixed alternate>
+   <vwc-button
+    slot="navigationIcon"
+    icon="vonage-mono"
+    label="VONAGE"
+  ></vwc-button>
     <div class="logo" slot="actionItems">
         {# <img src="{{ '/assets/images/vivid-logo.svg' | url }}" alt="vivid logo" width="150" height="60"> #}
     </div>
@@ -47,10 +53,10 @@
         </a>
     </div>
     <dark-mode-toggle permanent slot="actionItems"></dark-mode-toggle>
-    <vwc-side-drawer open id="side-drawer">
+    <vwc-side-drawer open>
       {% include "navigation.njk" %}
 			<main slot="app-content">
-        <vwc-layout gutter="base">
+        <vwc-layout gutters="md" column-basis="block">
           {{content | safe}}
         </vwc-layout>
       </main>

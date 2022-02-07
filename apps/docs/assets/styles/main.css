@@ -1,3 +1,16 @@
 body {
   margin: 0;
 }
+
+:not(:defined) {
+  display: none;
+}
+
+pre[class*="language-"] {
+    margin: 0;
+    border-radius: 0;
+}
+
+vwc-side-drawer {
+  width: 100%;
+}
