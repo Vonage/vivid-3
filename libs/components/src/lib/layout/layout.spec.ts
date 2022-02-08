@@ -1,0 +1,77 @@
+import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { Size } from '../enums';
+import { Layout, AUTO_SIZING } from './layout';
+import '.';
+
+const COMPONENT_TAG = 'vwc-layout';
+
+describe('vwc-layout', () => {
+	let element: Layout;
+
+	beforeEach(async () => {
+		element = await fixture(`<${COMPONENT_TAG}>  
+									<div style="border: 1px solid">test</div>
+									<div style="border: 1px solid">test</div>
+								</${COMPONENT_TAG}>`) as Layout;
+	});
+
+	describe('basic', () => {
+		it('initializes as a vwc-layout', async () => {
+			expect(element).toBeInstanceOf(Layout);
+			expect(element.gutters).toBeUndefined();
+			expect(element.columnBasis).toBeUndefined();
+			expect(element.columnSpacing).toBeUndefined();
+			expect(element.autoSizing).toBeUndefined();
+		});
+	});
+
+	describe('gutters', () => {
+		it('sets correct internal gutters style', async () => {
+			const gutters = Size.BaseLarge;
+			(element as any).gutters = gutters;
+			await elementUpdated(element);
+
+			const control = element.shadowRoot?.querySelector(`.control.gutters-${gutters}`);
+			expect(control)
+				.toBeInstanceOf(Element);
+		});
+	});
+
+
+	describe('column-basis', () => {
+		it('sets correct internal column-basis style', async () => {
+			const columnBasis = Size.BaseLarge;
+			(element as any).columnBasis = columnBasis;
+			await elementUpdated(element);
+
+			const control = element.shadowRoot?.querySelector(`.control.column-basis-${columnBasis}`);
+			expect(control)
+				.toBeInstanceOf(Element);
+		});
+	});
+
+	describe('column-spacing', () => {
+		it('sets correct internal column-spacing style', async () => {
+			const columnSpacing = Size.BaseLarge;
+			(element as any).columnSpacing = columnSpacing;
+			await elementUpdated(element);
+
+			const control = element.shadowRoot?.querySelector(`.control.column-spacing-${columnSpacing}`);
+			expect(control)
+				.toBeInstanceOf(Element);
+		});
+	});
+
+
+	describe('auto-sizing', () => {
+		it('sets correct internal auto-sizing style', async () => {
+			const autoSizing = AUTO_SIZING.Fill;
+			(element as any).autoSizing = autoSizing;
+			await elementUpdated(element);
+
+			const control = element.shadowRoot?.querySelector(`.control.auto-sizing-${autoSizing}`);
+			expect(control)
+				.toBeInstanceOf(Element);
+		});
+	});
+});
