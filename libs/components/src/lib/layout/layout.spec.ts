@@ -1,6 +1,6 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { Size } from '../enums';
-import { Layout, AUTO_SIZING } from './layout';
+import { AUTO_SIZING, Layout } from './layout';
 import '.';
 
 const COMPONENT_TAG = 'vwc-layout';
@@ -9,7 +9,7 @@ describe('vwc-layout', () => {
 	let element: Layout;
 
 	beforeEach(async () => {
-		element = await fixture(`<${COMPONENT_TAG}>  
+		element = await fixture(`<${COMPONENT_TAG}>
 									<div style="border: 1px solid">test</div>
 									<div style="border: 1px solid">test</div>
 								</${COMPONENT_TAG}>`) as Layout;
@@ -26,7 +26,7 @@ describe('vwc-layout', () => {
 	});
 
 	describe('gutters', () => {
-		it('sets correct internal gutters style', async () => {
+		it('should set correct internal gutters style', async () => {
 			const gutters = Size.BaseLarge;
 			(element as any).gutters = gutters;
 			await elementUpdated(element);
@@ -39,7 +39,7 @@ describe('vwc-layout', () => {
 
 
 	describe('column-basis', () => {
-		it('sets correct internal column-basis style', async () => {
+		it('should set correct internal column-basis style', async () => {
 			const columnBasis = Size.BaseLarge;
 			(element as any).columnBasis = columnBasis;
 			await elementUpdated(element);
@@ -51,7 +51,7 @@ describe('vwc-layout', () => {
 	});
 
 	describe('column-spacing', () => {
-		it('sets correct internal column-spacing style', async () => {
+		it('should set correct internal column-spacing style', async () => {
 			const columnSpacing = Size.BaseLarge;
 			(element as any).columnSpacing = columnSpacing;
 			await elementUpdated(element);
@@ -64,7 +64,7 @@ describe('vwc-layout', () => {
 
 
 	describe('auto-sizing', () => {
-		it('sets correct internal auto-sizing style', async () => {
+		it('should set correct internal auto-sizing style', async () => {
 			const autoSizing = AUTO_SIZING.Fill;
 			(element as any).autoSizing = autoSizing;
 			await elementUpdated(element);
