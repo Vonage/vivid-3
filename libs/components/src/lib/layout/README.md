@@ -139,3 +139,9 @@ Use the `column-basis` attribute to set the initial preferred measure of a colum
   <div style="border: 1px solid">block</div>
 </vwc-layout>
 ```
+
+
+## CSS Custom Properties
+| Name                         | Description                                      | Usage                                              |
+| ---------------------------- | ------------------------------------------------ | -------------------------------------------------- |
+| layout-grid-template-columns | controls the grid-template-columns of the layout | repeat(`auto-sizing`, minmax(`column-basis`, 1fr)) |
