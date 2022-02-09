@@ -22,7 +22,7 @@ module.exports = (content, outputPath) => {
 
     headings.forEach(heading => {
       var textElement = document.createElement('vwc-text');
-      textElement.setAttribute('font-face', mapping[heading.nodeName]);
+      textElement.setAttribute('font-face', mapping[heading.nodeName.toLowerCase()]);
       heading.parentNode.insertBefore(textElement, heading);
       textElement.appendChild(heading);
     });
