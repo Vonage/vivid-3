@@ -26,7 +26,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           dist: dist/apps/docs
           teardown: 'true'
-          build: echo
+          build: echo # to override default build script
 
       - name: Get the preview_url
         run: echo "url => ${{ steps.preview_step.outputs.preview_url }}"
