@@ -65,5 +65,5 @@ docker push drizzt99/vonage:1.x.x
 
 ## Checking the tests
 
-All tests must pass. The results of failed tests can be found in the `test-results` folder (`actual.png`, `expected.png` and `diff.png`).
+All tests must pass. The results of failed tests can be found in the `test-results` folder directly under the project's root folder.  Inside you will find a folder per failed test, each with 3 files: `actual.png`, `expected.png` and `diff.png`.
 
