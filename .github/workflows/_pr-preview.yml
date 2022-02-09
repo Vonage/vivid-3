@@ -16,7 +16,7 @@ jobs:
         run: npm ci
 
       - name: Build Site
-        run: npm run nx build docs -- --prod
+        run: npm run nx build docs
 
       - name: Deploy
         uses: afc163/surge-preview@v1
