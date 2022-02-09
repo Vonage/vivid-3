@@ -45,7 +45,6 @@
     "@typescript-eslint/parser": "~5.3.0",
     "@ungap/custom-elements": "0.1.6",
     "@vonage/vivid-tokens": "^1.0.0-alpha.0",
-    "@vonage/vwc-top-app-bar-fixed": "^2.25.9",
     "cypress": "^9.1.0",
     "eleventy-plugin-code-block-demo": "^0.1.6",
     "eslint": "8.2.0",
