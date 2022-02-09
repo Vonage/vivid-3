@@ -1,4 +1,6 @@
 body {
+  color: var(--vvd-color-on-canvas);
+  background-color: var(--vvd-color-canvas);
   margin: 0;
 }
 
