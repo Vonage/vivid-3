@@ -13,8 +13,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight);
 
   eleventyConfig.addPassthroughCopy({
-    "dist/libs/components/styles/fonts/*.css": "assets/styles/fonts",
-    "dist/libs/components/styles/themes/*.css": "assets/styles/themes",
+    "dist/libs/styles/fonts/*.css": "assets/styles/fonts",
+    "dist/libs/styles/themes/*.css": "assets/styles/themes",
     "dist/libs/components": "assets/modules/components",
     "vivid-logo.svg": "assets/images/vivid-logo.svg",
     "libs/../vivid-logo.svg": "vivid-logo.svg",
@@ -22,7 +22,8 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addWatchTarget("dist/libs/components");
-  eleventyConfig.addWatchTarget("assets");
+  eleventyConfig.addWatchTarget("dist/libs/styles/themes");
+  eleventyConfig.addWatchTarget("dist/libs/styles/fonts");
   eleventyConfig.addWatchTarget(`${INPUT_DIR}/assets`);
   eleventyConfig.setBrowserSyncConfig({
     server: {
@@ -30,6 +31,7 @@ module.exports = function (eleventyConfig) {
     }
   });
 
+  eleventyConfig.setUseGitIgnore(false);
   return {
     dir: {
       input: INPUT_DIR,
