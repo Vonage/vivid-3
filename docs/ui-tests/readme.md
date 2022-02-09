@@ -16,7 +16,7 @@ Our docker image runs the tests on the 3 browser on the Linux OS.
 
 Each component folder should contain a `ui.test.ts` file.
 The file must be updated with the `componentName` and snapshot path `'./snapshots/componentName.png'`.
-
+PRO TIP: When you generate a new component using `npm run nx workspace-generator vivid-component my-component` you will get this file populated for you to get you up and running with ui-tests.
 ## Running the tests
 
 ### Local
