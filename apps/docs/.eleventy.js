@@ -1,7 +1,7 @@
 const { EleventyRenderPlugin } = require("@11ty/eleventy");
 const codeblockdemo = require('eleventy-plugin-code-block-demo')
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-const wrapTextElements = require("./apps/docs/transformers/wrap-text-elements");
+const wrapTextElements = require("./transformers/wrap-text-elements");
 
 const INPUT_DIR = 'apps/docs';
 const ASSETS_DIR = `${INPUT_DIR}/assets`;
