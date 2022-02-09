@@ -3,7 +3,7 @@ import '../focus';
 
 
 import { Button as FastButton } from '@microsoft/fast-foundation';
-import { designSystem } from '../design-system';
+import { designSystem } from '../../shared/design-system';
 import { Button } from './button';
 import styles from './button.scss';
 import { buttonTemplate as template } from './button.template';

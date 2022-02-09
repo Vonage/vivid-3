@@ -35,3 +35,15 @@ If you need help, you can ask questions on our mailing list, IRC chat, or [list 
 ## What does the Code of Conduct mean for me?
 
 Our Code of Conduct means that you are responsible for treating everyone on the project with respect and courtesy regardless of their identity. If you are the victim of any inappropriate behavior or comments as described in our Code of Conduct, we are here for you and will do the best to ensure that the abuser is reprimanded appropriately, per our code.
+
+## Vivid criteria
+
+### Guiding principles to consider when introducing changes
+
+* Guarantee contribution does not produce WCAG violations (both in design & engineering)
+
+* Ensure user interaction with changes correspond to all types of users (e.g., keyboard, mouse, touch, assistive technology, etc.)
+
+* Refer precedent components/features of valid libraries, which are compliant with UX and a11y guidelines ([Carbon](https://www.carbondesignsystem.com/components/overview/) - IBM, [Spectrum](https://spectrum.adobe.com/) - Adobe, [Material](https://material.io/components?platform=web) - Google, [Garden](https://garden.zendesk.com/) - Zendesk, [Lightning](https://www.lightningdesignsystem.com/) - Salesforce, [BBC](https://www.bbc.co.uk/gel/guidelines/category/design-patterns), etc.)
+
+* Share UI/UX design experts' research

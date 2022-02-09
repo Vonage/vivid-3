@@ -22,7 +22,8 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addWatchTarget("dist/libs/components");
-  eleventyConfig.addWatchTarget("assets");
+  eleventyConfig.addWatchTarget("dist/libs/styles/themes");
+  eleventyConfig.addWatchTarget("dist/libs/styles/fonts");
   eleventyConfig.addWatchTarget(`${INPUT_DIR}/assets`);
   eleventyConfig.setBrowserSyncConfig({
     server: {
@@ -30,6 +31,7 @@ module.exports = function (eleventyConfig) {
     }
   });
 
+  eleventyConfig.setUseGitIgnore(false);
   return {
     dir: {
       input: INPUT_DIR,
