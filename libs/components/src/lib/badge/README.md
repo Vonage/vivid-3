@@ -25,8 +25,8 @@ Add a `text` attribute to add text to the badge.
 
 Use the `size` attribute to change the badge's size.
 
-- Type: `'base-small'` | `'medium'` | `'base-large'`
-- Default: `'medium'`
+- Type: `'base-small'` | `'base'` | `'base-large'`
+- Default: `'base'`
 
 
 ```html preview

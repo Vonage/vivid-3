@@ -1,0 +1,15 @@
+@function get-default-selector($list, $prefix) {
+	$selector: '';
+	@each $item in $list {
+		$selector: $selector + ':not(#{$prefix}-#{$item})';
+	}
+	@return $selector;
+}
+
+@function get-selector-with-default($prefix, $key, $default-key, $all-keys) {
+	$selector: '&#{$prefix}-#{$key}';
+	@if $key == $default-key {
+		$selector: '&#{get-default-selector($all-keys, $prefix)}', $selector;
+	}
+	@return $selector;
+}

@@ -24,7 +24,7 @@ Add a `label` attribute to add text to the button.
 Use the `size` attribute to change the button's size.
 
 - Type: `'base-small'` | `'base'` | `'base-large'`
-- Default: `'medium'`
+- Default: `'base'`
 
 ```html preview
 <vwc-button appearance='filled' label='base-small' size='base-small'></vwc-button>
