@@ -4,3 +4,5 @@ export * from './button';
 export * from './focus';
 export * from './icon';
 export * from './layout';
+export * from './side-drawer';
+

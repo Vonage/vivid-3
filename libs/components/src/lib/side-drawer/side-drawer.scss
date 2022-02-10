@@ -1,0 +1,103 @@
+@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+//@use '../../../../shared/src/lib/sass/mixins/scrim' as scrim-mixins;
+@use 'partials/variables' as variables;
+
+$z-index-default: 6;
+$padding-default: 16px;
+$inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
+
+:host {
+  display: flex;
+  block-size: 100vh;
+}
+
+:host([position='end']) {
+  flex-direction: row-reverse;
+}
+
+.control {
+  position: fixed;
+  z-index: var(#{variables.$side-drawer-z-index}, #{$z-index-default});
+  top: auto;
+  bottom: 0;
+  display: flex;
+  overflow: auto;
+  flex-direction: column;
+  flex-shrink: 0;
+  background-color: var(#{variables.$side-drawer-background-color}, var(#{theme-consts.$vvd-color-canvas}));
+  block-size: inherit;
+  color: var(#{variables.$side-drawer-color}, var(#{theme-consts.$vvd-color-on-canvas}));
+  inline-size: #{$inline-size};
+
+  &.control.alternate {
+    background-color: var(#{theme-consts.$vvd-color-canvas});
+  }
+  &:not(.control.open) {
+    &.control.end {
+      transform: translateX(100%);
+    }
+    &:not(.control.end) {
+      transform: translateX(-100%);
+    }
+  }
+
+  &.control.open:not(.modal) {
+    + .app-content {
+      @include typography.typography-cat-shorthand(body-1);
+      margin-inline-start: #{$inline-size};
+      // TODO: when vwc-top-app-bar will be added
+      //::slotted(vwc-top-app-bar),
+      //::slotted(vwc-top-app-bar-fixed) {
+      //  --mdc-top-app-bar-width: calc(100% - #{$inline-size});
+      //}
+    }
+    &.control.end {
+      + .app-content {
+        margin-inline-end: var(--side-drawer-inline-size, 280px);
+        margin-inline-start: 0;
+      }
+    }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+.control.top-bar {
+  $gutter: var(#{variables.$side-drawer-padding-top-bar}, #{$padding-default});
+  @include typography.typography-cat-shorthand(subtitle-1);
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  block-size: 64px;
+  padding-inline-end: #{$gutter};
+  padding-inline-start: #{$gutter};
+}
+
+.control.content {
+  $gutter: var(#{variables.$side-drawer-padding-body}, #{$padding-default});
+  background-color: inherit;
+  overflow-y: auto;
+  padding-inline-end: #{$gutter};
+  padding-inline-start: #{$gutter};
+}
+
+.control.modal {
+  &:not(.control.end) {
+    inset-inline-start: 0;
+  }
+  &.control.end {
+    inset-inline-end: 0;
+  }
+}
+//
+//.control.scrim {
+//  @include scrim-mixins.scrim-variables;
+//  position: fixed;
+//  z-index: calc(#{$z-index-default} - 1);
+//  top: 0;
+//  right: 0;
+//  bottom: 0;
+//  left: 0;
+//}

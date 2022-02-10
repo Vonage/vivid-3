@@ -33,5 +33,14 @@
     "modules": [
       "/assets/modules/components/layout/index.js"
     ]
+  },
+  {
+    "title": "side-drawer",
+    "markdown": "./libs/components/src/lib/side-drawer/README.md",
+    "modules": [
+      "/assets/modules/components/icon/index.js",
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/side-drawer/index.js"
+    ]
   }
 ]
