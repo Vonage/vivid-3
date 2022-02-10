@@ -17,3 +17,37 @@ vwc-side-drawer {
   display: block;
   width: 100%;
 }
+
+.star-us {
+    margin-right: 0.5rem;
+}
+
+.aside {
+    background-color: var(--vvd-color-neutral-20);
+    padding: 1rem;
+}
+
+.content {
+    padding: 1rem 2rem;
+    max-width: 1100px;
+}
+
+
+
+/*temp style for navigation*/
+.aside a { color: var(--vvd-color-on-canvas);}
+.aside a:visited { color: var(--vvd-color-on-canvas);}
+
+.navigation {
+    list-style: none;
+    color: var(--vvd-color-on-canvas);
+    padding-inline-start: 0;
+}
+
+:not(:defined) {
+  display: none;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: unset;
+}
