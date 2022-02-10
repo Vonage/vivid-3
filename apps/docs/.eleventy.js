@@ -1,6 +1,7 @@
 const { EleventyRenderPlugin } = require("@11ty/eleventy");
 const codeblockdemo = require('eleventy-plugin-code-block-demo')
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+const wrapTextElements = require("./transformers/wrap-text-elements");
 
 const INPUT_DIR = 'apps/docs';
 const ASSETS_DIR = `${INPUT_DIR}/assets`;
@@ -31,7 +32,10 @@ module.exports = function (eleventyConfig) {
     }
   });
 
+  eleventyConfig.addTransform('wrapTextElements', wrapTextElements);
+
   eleventyConfig.setUseGitIgnore(false);
+
   return {
     dir: {
       input: INPUT_DIR,
