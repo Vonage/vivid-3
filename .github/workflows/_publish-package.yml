@@ -15,14 +15,7 @@ jobs:
           node-version: 'lts/*'
           registry-url: 'https://npm.pkg.github.com'
 
-      - name: Bump
-        # TODO: replace once 3rd version is stable and published
-        # run: npm version prerelease --preid=next.${{ env.short_head }} --tag next --no-git-tag-version --no-push
-        run: npm version 3.0.0-next.${{ env.short_head }} --tag next --no-git-tag-version --no-push
-        env:
-          short_head: $(git rev-parse --short HEAD)
-
       - name: Publish
-        run: npm publish --access public --tag next --dry-run
+        run: npx beachball publish -m "Publishing a new version" --no-git-tags --no-publish --prerelease-prefix next -t next -y
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
