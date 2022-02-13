@@ -27,5 +27,7 @@ module.exports = {
    *  [myCustomRuleName]: myCustomRule
    * }
    */
-  rules: { [noAttributeDefaultValueName]: noAttributeDefaultValue },
+  rules: {
+    [noAttributeDefaultValueName]: noAttributeDefaultValue
+  },
 };

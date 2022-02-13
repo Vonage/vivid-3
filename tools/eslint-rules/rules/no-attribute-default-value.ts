@@ -17,10 +17,10 @@
 import { ESLintUtils, TSESTree, ASTUtils } from '@typescript-eslint/experimental-utils';
 
 // NOTE: The rule will be available in ESLint configs as "@nrwl/nx/workspace/no-attribute-default-value"
-export const noAttributeDefaultValueName = 'no-attribute-default-value';
+export const RULE_NAME = 'no-attribute-default-value';
 
-export const noAttributeDefaultValue = ESLintUtils.RuleCreator(() => __filename)({
-  name: noAttributeDefaultValueName,
+export const rule = ESLintUtils.RuleCreator(() => __filename)({
+  name: RULE_NAME,
   meta: {
     type: 'problem',
     docs: {
