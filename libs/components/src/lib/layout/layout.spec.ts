@@ -26,7 +26,7 @@ describe('vwc-layout', () => {
 	});
 
 	describe('gutters', () => {
-		it('should set correct internal gutters style', async () => {
+		it('should set correct internal gutters class', async () => {
 			const gutters = Size.BaseLarge;
 			(element as any).gutters = gutters;
 			await elementUpdated(element);
