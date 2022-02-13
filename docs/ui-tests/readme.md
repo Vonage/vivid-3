@@ -12,6 +12,11 @@ In order to maintain the tests consistency and reduce flakiness, the tests are d
 
 Our docker image runs the tests on the 3 browser on the Linux OS.
 
+## Writing the tests
+
+Each component folder should contain a `ui.test.ts` file.
+The file must be updated with the `componentName` and snapshot path `'./snapshots/componentName.png'`.
+PRO TIP: When you generate a new component using `npm run nx workspace-generator vivid-component my-component` you will get this file populated for you to get you up and running with ui-tests.
 ## Running the tests
 
 ### Local
@@ -58,6 +63,7 @@ docker push drizzt99/vonage:1.x.x
 ```
 3. Update the relevant `yml` files that are using this image to use the new version.
 
+## Checking the tests
 
-
+All tests must pass. The results of failed tests can be found in the `test-results` folder directly under the project's root folder.  Inside you will find a folder per failed test, each with 3 files: `actual.png`, `expected.png` and `diff.png`.
 
