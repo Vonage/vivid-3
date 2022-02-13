@@ -15,6 +15,7 @@
  */
 
 import { ESLintUtils, TSESTree } from '@typescript-eslint/experimental-utils';
+import { ASTUtils } from '@angular-eslint/utils';
 
 // NOTE: The rule will be available in ESLint configs as "@nrwl/nx/workspace/no-attribute-default-value"
 export const RULE_NAME = 'no-attribute-default-value';
@@ -39,21 +40,23 @@ export const rule = ESLintUtils.RuleCreator(() => __filename)({
 
         const parent = node.parent as TSESTree.PropertyDefinition;
 
-        if (parent.type !== 'PropertyDefinition' || parent.value === null) return; // if is not a 'PropertyDefinition' or no value is provided, we're good
+        if (!ASTUtils.isPropertyDefinition(parent) || parent.value === null) return; // if is not a 'PropertyDefinition' or no value is provided, we're good
 
         const { expression } = node;
 
-        if (expression.type === 'CallExpression') {
+        if (ASTUtils.isCallExpression(expression)) {
 
           const { arguments: args } = expression;
 
-          const props = args.flatMap(arg => arg.type === 'ObjectExpression' && arg.properties);
+          const props = args.flatMap(arg => ASTUtils.isObjectExpression(arg) && arg.properties);
 
           const modeValues = props
             .filter(({ key, value }: TSESTree.Property) =>
-              key.type === 'Identifier'
+              // ASTUtils.isIdentifierOrMemberExpression(key)
+                key.type === 'Identifier'
+              && ASTUtils.isLiteral(value)
               && key.name === 'mode'
-              && value.type === 'Literal')
+            )
             .map(({ value }: TSESTree.Property) => (value as TSESTree.Literal).value);
 
           const someInvalid = modeValues.some(value => value !== 'fromView');

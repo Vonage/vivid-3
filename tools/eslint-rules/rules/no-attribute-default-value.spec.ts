@@ -22,16 +22,15 @@ ruleTester.run(RULE_NAME, rule, {
     }`,
   ],
   invalid: [
-    convertAnnotatedSourceToFailureCase({
-      description: 'should fail property decorated with attr is assigned by default value',
-      annotatedSource: `
-      class {
-        @attr example = 'someValue';
-                      ~~~~~~~~~~~~~
-      }
-      `,
-      messageId: 'noAttributeDefaultValue'
-    }),
+    // convertAnnotatedSourceToFailureCase({
+    //   description: 'should fail property decorated with attr is assigned by default value',
+    //   annotatedSource: `
+    //   class {
+    //     @attr example = 'someValue';
+    //   }
+    //   `,
+    //   messageId: 'noAttributeDefaultValue'
+    // }),
     // convertAnnotatedSourceToFailureCase({
     //   description: 'should fail property decorated with attr is assigned by default value',
     //   annotatedSource: `
