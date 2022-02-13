@@ -65,7 +65,7 @@ export const rule = ESLintUtils.RuleCreator(() => __filename)({
         }
 
         context.report({
-          node,
+          node: parent.value,
           messageId: "noAttributeDefaultValue"
         });
       }

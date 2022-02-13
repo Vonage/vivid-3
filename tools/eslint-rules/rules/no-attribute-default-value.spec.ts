@@ -22,37 +22,35 @@ ruleTester.run(RULE_NAME, rule, {
     }`,
   ],
   invalid: [
-    {
-      code: `
+    convertAnnotatedSourceToFailureCase({
+      description: 'should fail \'attr\' decorated property if assigned with default value',
+      annotatedSource: `
       class {
-         @attr example = 'someValue';
-       }`,
-      errors: [{ messageId: 'noAttributeDefaultValue' }],
-    }
-    // convertAnnotatedSourceToFailureCase({
-    //   description: 'should fail property decorated with attr is assigned by default value',
-    //   annotatedSource: `
-    //   class {
-    //     @attr example = 'someValue';
-    //   }
-    //   `,
-    //   messageId: 'noAttributeDefaultValue'
-    // }),
-    // convertAnnotatedSourceToFailureCase({
-    //   description: 'should fail property decorated with attr is assigned by default value',
-    //   annotatedSource: `
-    //     @attr({	mode: 'reflect' }) example = 'someValue';
-    //                                        ~~~~~~~~~~~~~
-    //   `,
-    //   messageId: 'noAttributeDefaultValue'
-    // }),
-    // convertAnnotatedSourceToFailureCase({
-    //   description: 'should fail property decorated with attr is assigned by default value',
-    //   annotatedSource: `
-    //     @attr({	mode: 'boolean' }) example = 'someValue';
-    //                                        ~~~~~~~~~~~~~
-    //   `,
-    //   messageId: 'noAttributeDefaultValue'
-    // })
+        @attr example = 'someValue';
+                        ~~~~~~~~~~~
+      }
+      `,
+      messageId: 'noAttributeDefaultValue'
+    }),
+    convertAnnotatedSourceToFailureCase({
+      description: 'should fail property decorated with attr is assigned by default value',
+      annotatedSource: `
+      class {
+        @attr({	mode: 'reflect' }) example = 'someValue';
+                                             ~~~~~~~~~~~
+      }
+      `,
+      messageId: 'noAttributeDefaultValue'
+    }),
+    convertAnnotatedSourceToFailureCase({
+      description: 'should fail property decorated with attr is assigned by default value',
+      annotatedSource: `
+      class {
+        @attr({	mode: 'boolean' }) example = 'someValue';
+                                             ~~~~~~~~~~~
+      }
+      `,
+      messageId: 'noAttributeDefaultValue'
+    })
   ],
 });
