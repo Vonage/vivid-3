@@ -1,7 +1,7 @@
 import {
   RULE_NAME as noDefaultAttributeName,
   rule as noDefaultAttribute,
-} from './rules/no-default-attribute';
+} from './rules/no-attribute-default-value';
 /**
  * Import your custom workspace rules at the top of this file.
  *

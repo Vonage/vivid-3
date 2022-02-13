@@ -1,6 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "lib": ["esnext"],
     "outDir": "../../dist/out-tsc",
     "types": ["node"]
   },
