@@ -24,7 +24,7 @@ function normalizeOptions(tree: Tree, options: VividComponentGeneratorOptions): 
 
   const { libsDir, npmScope } = getWorkspaceLayout(tree);
 
-  const projectRoot = joinPathFragments(libsDir, 'components/src/lib', projectDirectory);
+  const projectRoot = joinPathFragments(libsDir, 'components/src/components', projectDirectory);
 
   return {
     ...options,

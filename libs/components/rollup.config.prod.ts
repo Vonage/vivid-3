@@ -4,7 +4,7 @@ const path = require('path');
 /**
  * @param workingFolder
  */
-function getFoldersInAFolder(workingFolder = './src/lib/') {
+function getFoldersInAFolder(workingFolder = './src/components/') {
 	const folders = [];
 	const testsFolder = path.join(__dirname, workingFolder);
 	fs.readdirSync(testsFolder).forEach((testFolder) => {
@@ -21,7 +21,7 @@ const components = getFoldersInAFolder();
 const input = components.reduce((inputObject, componentName) => {
 	inputObject[`${componentName}/index`] = path.join(
 		process.cwd(),
-		`libs/components/src/lib/${componentName}/index.ts`
+		`libs/components/src/components/${componentName}/index.ts`
 	);
 	return inputObject;
 }, {});
@@ -37,6 +37,7 @@ module.exports = function setVividRollupConfig(config) {
 
 
 	const plugins = [...config.plugins];
+
 	return {
 		input,
 		output,

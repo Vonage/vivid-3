@@ -1,7 +1,9 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "rootDirs": ["src", "src/lib"],
+    "rootDirs": ["src",
+      "src/components"
+    ],
     "outDir": "../../dist/out-tsc",
     "declaration": true,
     "types": ["node"]

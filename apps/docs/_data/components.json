@@ -1,35 +1,35 @@
 [
   {
     "title": "badge",
-    "markdown": "./libs/components/src/lib/badge/README.md",
+    "markdown": "./libs/components/src/components/badge/README.md",
     "modules": [
       "/assets/modules/components/badge/index.js"
     ]
   },
   {
     "title": "button",
-    "markdown": "./libs/components/src/lib/button/README.md",
+    "markdown": "./libs/components/src/components/button/README.md",
     "modules": [
       "/assets/modules/components/button/index.js"
     ]
   },
   {
     "title": "anchor",
-    "markdown": "./libs/components/src/lib/anchor/README.md",
+    "markdown": "./libs/components/src/components/anchor/README.md",
     "modules": [
       "/assets/modules/components/anchor/index.js"
     ]
   },
   {
     "title": "icon",
-    "markdown": "./libs/components/src/lib/icon/README.md",
+    "markdown": "./libs/components/src/components/icon/README.md",
     "modules": [
       "/assets/modules/components/icon/index.js"
     ]
   },
   {
     "title": "layout",
-    "markdown": "./libs/components/src/lib/layout/README.md",
+    "markdown": "./libs/components/src/components/layout/README.md",
     "modules": [
       "/assets/modules/components/layout/index.js"
     ]
