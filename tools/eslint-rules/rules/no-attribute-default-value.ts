@@ -14,8 +14,7 @@
  * https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin/src/rules
  */
 
-import { ESLintUtils, TSESTree } from '@typescript-eslint/experimental-utils';
-import { ASTUtils } from '@angular-eslint/utils';
+import { ESLintUtils, TSESTree, ASTUtils } from '@typescript-eslint/experimental-utils';
 
 // NOTE: The rule will be available in ESLint configs as "@nrwl/nx/workspace/no-attribute-default-value"
 export const RULE_NAME = 'no-attribute-default-value';
@@ -40,21 +39,20 @@ export const rule = ESLintUtils.RuleCreator(() => __filename)({
 
         const parent = node.parent as TSESTree.PropertyDefinition;
 
-        if (!ASTUtils.isPropertyDefinition(parent) || parent.value === null) return; // if is not a 'PropertyDefinition' or no value is provided, we're good
+        if (parent.type !== 'PropertyDefinition' || parent.value === null) return; // if is not a 'PropertyDefinition' or no value is provided, we're good
 
         const { expression } = node;
 
-        if (ASTUtils.isCallExpression(expression)) {
+        if (ASTUtils.isOptionalCallExpression(expression)) {
 
           const { arguments: args } = expression;
 
-          const props = args.flatMap(arg => ASTUtils.isObjectExpression(arg) && arg.properties);
+          const props = args.flatMap(arg => arg.type === 'ObjectExpression' && arg.properties);
 
           const modeValues = props
             .filter(({ key, value }: TSESTree.Property) =>
-              // ASTUtils.isIdentifierOrMemberExpression(key)
-                key.type === 'Identifier'
-              && ASTUtils.isLiteral(value)
+              ASTUtils.isIdentifier(key)
+              && value.type === 'Literal'
               && key.name === 'mode'
             )
             .map(({ value }: TSESTree.Property) => (value as TSESTree.Literal).value);

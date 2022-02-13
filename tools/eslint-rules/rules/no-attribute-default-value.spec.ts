@@ -22,6 +22,13 @@ ruleTester.run(RULE_NAME, rule, {
     }`,
   ],
   invalid: [
+    {
+      code: `
+      class {
+         @attr example = 'someValue';
+       }`,
+      errors: [{ messageId: 'noAttributeDefaultValue' }],
+    }
     // convertAnnotatedSourceToFailureCase({
     //   description: 'should fail property decorated with attr is assigned by default value',
     //   annotatedSource: `
