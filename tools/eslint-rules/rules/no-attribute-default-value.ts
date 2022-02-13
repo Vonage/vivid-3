@@ -43,7 +43,7 @@ export const rule = ESLintUtils.RuleCreator(() => __filename)({
 
         const { expression } = node;
 
-        if (ASTUtils.isOptionalCallExpression(expression)) {
+        if (expression.type === 'CallExpression') {
 
           const { arguments: args } = expression;
 
@@ -68,7 +68,7 @@ export const rule = ESLintUtils.RuleCreator(() => __filename)({
           node,
           messageId: "noAttributeDefaultValue"
         });
-    }
-  };
+      }
+    };
   },
 });
