@@ -47,7 +47,10 @@ export const rule = ESLintUtils.RuleCreator(() => __filename)({
 
           const { arguments: args } = expression;
 
-          const props = args.flatMap(arg => arg.type === 'ObjectExpression' && arg.properties);
+          const props = args.flatMap(arg =>
+            arg.type === 'ObjectExpression'
+            && arg.properties
+          );
 
           const modeValues = props
             .filter(({ key, value }: TSESTree.Property) =>
@@ -59,7 +62,7 @@ export const rule = ESLintUtils.RuleCreator(() => __filename)({
 
           const someInvalid = modeValues.some(value => value !== 'fromView');
 
-          if (!someInvalid) { // if all mode values are valid, we're good
+          if (!someInvalid) { // if all 'mode' values are valid, we're good
             return;
           }
         }
