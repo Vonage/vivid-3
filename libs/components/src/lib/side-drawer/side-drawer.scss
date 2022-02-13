@@ -42,15 +42,14 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
     }
   }
 
-  &.control.open:not(.modal) {
+  &.control.open:not(.control.modal) {
     + .app-content {
       @include typography.typography-cat-shorthand(body-1);
       margin-inline-start: #{$inline-size};
-      // TODO: when vwc-top-app-bar will be added
-      //::slotted(vwc-top-app-bar),
-      //::slotted(vwc-top-app-bar-fixed) {
-      //  --mdc-top-app-bar-width: calc(100% - #{$inline-size});
-      //}
+      ::slotted(vwc-top-app-bar),
+      ::slotted(vwc-top-app-bar-fixed) {
+       --mdc-top-app-bar-width: calc(100% - #{$inline-size});
+      }
     }
     &.control.end {
       + .app-content {

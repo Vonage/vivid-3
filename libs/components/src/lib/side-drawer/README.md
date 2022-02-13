@@ -7,7 +7,7 @@
 ```
 
 ```html preview
-<vwc-side-drawer hasTopBar>
+<vwc-side-drawer id="sideDrawer" hasTopBar>
 	<div slot="top-bar">
 		<vwc-icon type="vonage-mono">VONAGE</vwc-icon>
 	</div>
@@ -20,7 +20,17 @@
 		of Lorem Ipsum.</p>
   </div>
   <div slot="app-content">
-	  <vwc-button appearance='filled' label='click here to open side drawer'><vwc-button>
+	  <vwc-button id="button" appearance='filled' label='click to open'><vwc-button>
 	</div>
 </vwc-side-drawer>
+
+<script>
+	const sideDrawer = document.getElementById('sideDrawer');
+	const toggleOpen = ({target}) => {
+		sideDrawer.open = !sideDrawer.open;
+  	};
+	const button = document.getElementById('button');
+  	button.addEventListener('click', toggleOpen);
+</script>
 ```
+
