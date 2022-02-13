@@ -8,9 +8,9 @@ const getClasses = ({
 	alternate, modal, open, position
 }: SideDrawer) => classNames(
 	'control',
-	[`alternate`, alternate],
-	[`modal`, modal],
-	[`open`, open],
+	['alternate', alternate],
+	['modal', modal],
+	['open', open],
 	[`${position}`, Boolean(position)],
 );
 
@@ -48,9 +48,9 @@ const renderTopBar = () => {
 		<header class="top-bar">
 			<slot name="top-bar"></slot>
 		</header>`;
-}
+};
 
 const renderScrim = () => {
 	return html`
 		<div class="scrim" @click="${x => x.handleScrimClick()}" @keydown="${x => x.handleScrimClick()}"></div>`;
-}
+};

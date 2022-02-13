@@ -15,11 +15,10 @@ const blockingElements =
  * @cssprop [side-drawer-padding-top-bar=16px] - Controls the padding of the side drawer's top bar
  * @cssprop [side-drawer-padding-body=16px] - Controls the padding of the side drawer's body
  * @cssprop [side-drawer-z-index=6] - Controls the z-index of the side drawer
- *
  * @public
  */
 export class SideDrawer extends FoundationElement {
-	private rootEl = document.querySelector(".side-drawer") as HTMLElement;
+	private rootEl = document.querySelector('.side-drawer') as HTMLElement;
 
 	/**
 	 * applies scheme alternate region
@@ -40,10 +39,10 @@ export class SideDrawer extends FoundationElement {
 	}) hasTopBar = false;
 
 	/**
-	* sets the side drawer's type to modal
-	*
-	* @public
-	*/
+	 * sets the side drawer's type to modal
+	 *
+	 * @public
+	 */
 	@attr({
 		mode: 'boolean',
 	}) modal = false;
@@ -66,17 +65,19 @@ export class SideDrawer extends FoundationElement {
 
 	/**
 	 * Opens the side drawer from the closed state.
+	 *
 	 * @public
 	 */
-	 public show(): void {
+	show(): void {
 		this.open = true;
 	}
 
 	/**
 	 * Closes the side drawer from the open state.
+	 *
 	 * @public
 	 */
-	public hide(): void {
+	hide(): void {
 		this.open = false;
 	}
 
@@ -85,19 +86,19 @@ export class SideDrawer extends FoundationElement {
 		this.releaseFocusTrap();
 	}
 
-	public handleScrimClick(): void {
+	handleScrimClick(): void {
 		if (this.modal && this.open) {
 			this.hide();
 		}
 	}
 
-	public handleKeydown({ key }: KeyboardEvent): void {
+	handleKeydown({ key }: KeyboardEvent): void {
 		if (this.open && key === 'Escape') {
 			this.hide();
 		}
-	};
+	}
 
-	public handleTransitionEnd(): void {
+	handleTransitionEnd(): void {
 		// when side drawer finishes open animation
 		if (this.open) {
 			this.opened();
@@ -105,7 +106,7 @@ export class SideDrawer extends FoundationElement {
 			// when side drawer finishes hide animation
 			this.closed();
 		}
-	};
+	}
 
 	private opened(): void {
 		if (this.modal) {
