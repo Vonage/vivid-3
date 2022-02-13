@@ -30,19 +30,19 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
   color: var(#{variables.$side-drawer-color}, var(#{theme-consts.$vvd-color-on-canvas}));
   inline-size: #{$inline-size};
 
-  &.control.alternate {
+  &.alternate {
     background-color: var(#{theme-consts.$vvd-color-canvas});
   }
-  &:not(.control.open) {
-    &.control.end {
+  &:not(.open) {
+    &.end {
       transform: translateX(100%);
     }
-    &:not(.control.end) {
+    &:not(.end) {
       transform: translateX(-100%);
     }
   }
 
-  &.control.open:not(.control.modal) {
+  &.control.open:not(.modal) {
     + .app-content {
       @include typography.typography-cat-shorthand(body-1);
       margin-inline-start: #{$inline-size};
@@ -51,7 +51,7 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
        --mdc-top-app-bar-width: calc(100% - #{$inline-size});
       }
     }
-    &.control.end {
+    &.end {
       + .app-content {
         margin-inline-end: var(--side-drawer-inline-size, 280px);
         margin-inline-start: 0;
@@ -63,7 +63,7 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
   }
 }
 
-.control.top-bar {
+.top-bar {
   $gutter: var(#{variables.$side-drawer-padding-top-bar}, #{$padding-default});
   @include typography.typography-cat-shorthand(subtitle-1);
   display: flex;
@@ -74,7 +74,7 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
   padding-inline-start: #{$gutter};
 }
 
-.control.content {
+.content {
   $gutter: var(#{variables.$side-drawer-padding-body}, #{$padding-default});
   background-color: inherit;
   overflow-y: auto;
@@ -82,16 +82,16 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
   padding-inline-start: #{$gutter};
 }
 
-.control.modal {
-  &:not(.control.end) {
+.modal {
+  &:not(.end) {
     inset-inline-start: 0;
   }
-  &.control.end {
+  &.end {
     inset-inline-end: 0;
   }
 }
 //
-//.control.scrim {
+//.scrim {
 //  @include scrim-mixins.scrim-variables;
 //  position: fixed;
 //  z-index: calc(#{$z-index-default} - 1);

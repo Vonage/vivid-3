@@ -7,7 +7,7 @@
 ```
 
 ```html preview
-<vwc-side-drawer id="sideDrawer" hasTopBar>
+<vwc-side-drawer id="sideDrawer" hasTopBar modal>
 	<div slot="top-bar">
 		<vwc-icon type="vonage-mono">VONAGE</vwc-icon>
 	</div>
