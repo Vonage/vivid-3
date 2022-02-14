@@ -1,7 +1,9 @@
+@use 'sass:map';
+
 @use 'partials/variables' as variables;
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
-//@use '../../../../shared/src/lib/sass/mixins/scrim' as scrim-mixins;
+@use '../../../../shared/src/lib/sass/mixins/scrim' as scrim-mixins;
 
 $z-index-default: 6;
 $padding-default: 16px;
@@ -90,13 +92,13 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
     inset-inline-end: 0;
   }
 }
-//
-//.scrim {
-//  @include scrim-mixins.scrim-variables;
-//  position: fixed;
-//  z-index: calc(#{$z-index-default} - 1);
-//  top: 0;
-//  right: 0;
-//  bottom: 0;
-//  left: 0;
-//}
+
+.scrim {
+ @include scrim-mixins.scrim-variables;
+ position: fixed;
+ z-index: calc(#{$z-index-default} - 1);
+ top: 0;
+ right: 0;
+ bottom: 0;
+ left: 0;
+}
