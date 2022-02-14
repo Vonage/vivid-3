@@ -1,0 +1,31 @@
+const { JSDOM } = require('jsdom');
+
+const mapping = {
+  p: 'body-1',
+  h1: 'headline-1',
+  h2: 'headline-2',
+  h3: 'title-1',
+  h4: 'title-2',
+  h5: 'subtitle-1',
+  h6: 'subtitle-2',
+}
+
+module.exports = (content, outputPath) => {
+    if (!outputPath.endsWith('html')) {
+      return content;
+    }
+
+    const dom = new JSDOM(content);
+    const document = dom.window.document;
+
+    const [...headings] = document.querySelectorAll(Object.keys(mapping).toString());
+
+    headings.forEach(heading => {
+      var textElement = document.createElement('vwc-text');
+      textElement.setAttribute('font-face', mapping[heading.nodeName.toLowerCase()]);
+      heading.parentNode.insertBefore(textElement, heading);
+      textElement.appendChild(heading);
+    });
+
+    return document.documentElement.outerHTML;
+  }
