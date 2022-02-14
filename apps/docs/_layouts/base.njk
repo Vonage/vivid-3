@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-vvd-context="none">
 
 <head>
     <meta charset="UTF-8">
@@ -23,35 +23,50 @@
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 
+    <script type="module" src="/assets/modules/components/layout/index.js"></script>
+    <script type="module" src="https://es6.dev.vivid.vonage.com/v2.22.1/@vonage/vwc-top-app-bar-fixed/vwc-top-app-bar-fixed.js"></script>
+    <script type="module" src="https://es6.dev.vivid.vonage.com/v2.22.1/@vonage/vwc-side-drawer/vwc-side-drawer.js"></script>
     <script type="module" src="https://cdn.skypack.dev/@vonage/vwc-text"></script>
 
     {% include "prefetches.njk" %}
 </head>
 
 <body>
-    <header class="site-header">
-     <div class="logo">
-         {# <img src="{{ '/assets/images/vivid-logo.svg' | url }}" alt="vivid logo" width="150" height="60"> #}
-     </div>
-     <div class="star-us">
-     <!-- Place this tag where you want the button to render. -->
-         <a class="github-button"
-             href="https://github.com/vonage/vivid-3"
-             data-color-scheme="no-preference: light; light: light; dark: dark;"
-             data-size="large"
-             data-show-count="true"
-             aria-label="Star vonage/vivid-3 on GitHub">
-             Star
-         </a>
-     </div>
-     <dark-mode-toggle permanent></dark-mode-toggle>
-    </header>
-    <aside class="aside">
-        {% include "navigation.njk" %}
-    </aside>
-    <main class="content">
-        {{content | safe}}
-    </main>
+	<vwc-top-app-bar-fixed>
+   <vwc-button
+    slot="navigationIcon"
+    icon="vonage-mono"
+    label="VONAGE"
+  ></vwc-button>
+    <div class="logo" slot="actionItems">
+        {# <img src="{{ '/assets/images/vivid-logo.svg' | url }}" alt="vivid logo" width="150" height="60"> #}
+    </div>
+    <div class="star-us" slot="actionItems">
+    <!-- Place this tag where you want the button to render. -->
+        <a class="github-button"
+            href="https://github.com/vonage/vivid-3"
+            data-color-scheme="no-preference: light; light: light; dark: dark;"
+            data-size="large"
+            data-show-count="true"
+            aria-label="Star vonage/vivid-3 on GitHub">
+            Star
+        </a>
+    </div>
+    <dark-mode-toggle permanent slot="actionItems"></dark-mode-toggle>
+    <vwc-side-drawer open>
+      {% include "navigation.njk" %}
+			<main slot="app-content">
+        <vwc-layout gutters="base" column-basis="block">
+          <div>
+            {{content | safe}}
+          </div>
+        </vwc-layout>
+        <br>
+      </main>
+		</vwc-side-drawer>
+	</vwc-top-app-bar-fixed>
+
+
 </body>
 
 </html>
