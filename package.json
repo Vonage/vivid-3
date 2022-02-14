@@ -63,7 +63,7 @@
     "jest": "27.2.3",
     "jest-fetch-mock": "^3.0.3",
     "jsdom": "^19.0.0",
-    "karma": "~5.0.0",
+    "karma": "~6.3.14",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~4.0.0",
