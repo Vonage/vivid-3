@@ -46,6 +46,11 @@
 		}
 	}
 
+  &.stacked {
+    flex-direction: column;
+    justify-content: center;
+  }
+
 }
 
 /* Size */
@@ -54,11 +59,17 @@
 	#{variables.$block-size}: 32px;
 	@include typography.typography-cat-shorthand('caption-bold');
 
-	&:not(.icon-only) {
-		#{variables.$icon-gap}: 8px;
+  &.stacked {
+    #{variables.$block-size}: 56px;
+  }
 
+	&:not(.icon-only) {
 		padding-inline: 12px;
 	}
+
+  &:not(.icon-only):not(.stacked) {
+    #{variables.$icon-gap}: 8px;
+  }
 
 	.affix {
 		font-size: 16px;
@@ -68,6 +79,10 @@
 .control.size-base-large {
 	#{variables.$block-size}: 48px;
 	@include typography.typography-cat-shorthand('body-1-bold');
+
+  &.stacked {
+    #{variables.$block-size}: 80px;
+  }
 
 	&:not(.icon-only) {
 		#{variables.$icon-gap}: 10px;
@@ -82,6 +97,9 @@
 
 .control:not(.size-base-small):not(.size-base-large) {
 	#{variables.$block-size}: 40px;
+  &.stacked {
+    #{variables.$block-size}: 68px;
+  }
 	@include typography.typography-cat-shorthand('button');
 
 	block-size: var(#{variables.$block-size});
@@ -95,6 +113,11 @@
 	.affix {
 		font-size: 20px;
 	}
+}
+
+/* layout - stacked */
+.control.stacked {
+  #{variables.$stacked-icon-gap}: 8px;
 }
 
 /* Shape */
@@ -119,15 +142,26 @@
 // stylelint-disable-next-line no-descending-specificity
 .affix {
 	// stylelint-disable-next-line no-descending-specificity
-	:not(.control.icon-trailing) & {
+  .control:not(.icon-trailing):not(.stacked) & {
 		margin-inline-end: var(#{variables.$icon-gap});
 	}
 
-	// stylelint-disable-next-line no-descending-specificity
-	.control.icon-trailing & {
-		order: 1;
-		margin-inline-start: var(#{variables.$icon-gap});
-	}
+  .control.stacked:not(.icon-trailing):not(.icon-only) & {
+    margin-block-end: var(#{variables.$stacked-icon-gap});
+  }
+
+  .control.icon-trailing:not(.stacked) & {
+    margin-inline-start: var(#{variables.$icon-gap});
+  }
+
+  .control.icon-trailing.stacked:not(.icon-only) & {
+    margin-block-start: var(#{variables.$stacked-icon-gap});
+  }
+
+  // stylelint-disable-next-line no-descending-specificity
+  .control.icon-trailing & {
+    order: 1;
+  }
 }
 
 .focus-indicator {

@@ -76,12 +76,22 @@ Set the `appearance` attribute to change the button's appearance.
 <vwc-button label='outlined' appearance='outlined'></vwc-button>
 ```
 
+## Stacked
+Set the `stacked` attribute to change the button's layout to stacked.
+- Default: `false`
+
+```html preview
+<vwc-button label='Stached' appearance='filled' icon='message-sent-line' stacked size='base-small'></vwc-button>
+<vwc-button label='Stached' appearance='filled' icon='message-sent-line' icon-trailing stacked size='base'></vwc-button>
+<vwc-button label='Stached' appearance='outlined' icon='message-sent-line' stacked size='base-large'></vwc-button>
+```
+
 ## Connotation
 
 Set the `connotation` attribute to change the button's connotation.
 It accepts a subset of predefined values.
 
-- Type: `'primary'` | `'cta'` | `'success'` | `'alert'` | `'announcement'` | `'info'`
+- Type: `'primary'` | `'cta'` | `'success'` | `'alert'`
 - Default: `'primary'`
 
 ### Ghost button with connotation

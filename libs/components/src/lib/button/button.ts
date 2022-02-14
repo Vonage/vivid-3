@@ -102,6 +102,18 @@ export class Button extends FoundationButton {
 	}) iconTrailing = false;
 
 	/**
+   * Indicates the icon is stacked.
+   *
+   * @public
+   * @remarks
+   * HTML Attribute: stacked
+   */
+	@attr({
+		mode: 'boolean',
+		attribute: 'stacked',
+	}) stacked = false;
+
+	/**
 	 * Indicates the button's label.
 	 *
 	 * @public
