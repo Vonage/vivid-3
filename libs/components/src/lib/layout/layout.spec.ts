@@ -28,12 +28,13 @@ describe('vwc-layout', () => {
 	describe('gutters', () => {
 		it('should set correct internal gutters class', async () => {
 			const gutters = Size.BaseLarge;
+			const control = getControlElement();
+			const classExistsWithoutGutters = control.classes.hasClass(`control.gutters-${gutters}`);
 			(element as any).gutters = gutters;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.gutters-${gutters}`);
-			expect(control)
-				.toBeInstanceOf(Element);
+			expect(classExistsWithoutGutters).toEqual(false);
+			expect(control.classes.hasClass(`control.gutters-${gutters}`)).toEqual(true);
 		});
 	});
 
