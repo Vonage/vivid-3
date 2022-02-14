@@ -29,12 +29,11 @@ describe('vwc-layout', () => {
 		it('should set correct internal gutters class', async () => {
 			const gutters = Size.BaseLarge;
 			const control = getControlElement();
-			const classExistsWithoutGutters = control.classes.hasClass(`control.gutters-${gutters}`);
-			(element as any).gutters = gutters;
-			await elementUpdated(element);
 
-			expect(classExistsWithoutGutters).toEqual(false);
-			expect(control.classes.hasClass(`control.gutters-${gutters}`)).toEqual(true);
+			expect(control.classList.toString()).toEqual(`control`);
+			element.gutters = gutters;
+			await elementUpdated(element);
+			expect(control.classList.toString()).toEqual(`control gutters-${gutters}`);
 		});
 	});
 
@@ -42,24 +41,24 @@ describe('vwc-layout', () => {
 	describe('column-basis', () => {
 		it('should set correct internal column-basis style', async () => {
 			const columnBasis = Size.BaseLarge;
-			(element as any).columnBasis = columnBasis;
-			await elementUpdated(element);
+			const control = getControlElement();
 
-			const control = element.shadowRoot?.querySelector(`.control.column-basis-${columnBasis}`);
-			expect(control)
-				.toBeInstanceOf(Element);
+			expect(control.classList.toString()).toEqual(`control`);
+			element.columnBasis = columnBasis;
+			await elementUpdated(element);
+			expect(control.classList.toString()).toEqual(`control column-basis-${columnBasis}`);
 		});
 	});
 
 	describe('column-spacing', () => {
 		it('should set correct internal column-spacing style', async () => {
 			const columnSpacing = Size.BaseLarge;
-			(element as any).columnSpacing = columnSpacing;
-			await elementUpdated(element);
+			const control = getControlElement();
 
-			const control = element.shadowRoot?.querySelector(`.control.column-spacing-${columnSpacing}`);
-			expect(control)
-				.toBeInstanceOf(Element);
+			expect(control.classList.toString()).toEqual(`control`);
+			element.columnSpacing = columnSpacing;
+			await elementUpdated(element);
+			expect(control.classList.toString()).toEqual(`control column-spacing-${columnSpacing}`);
 		});
 	});
 
@@ -67,12 +66,16 @@ describe('vwc-layout', () => {
 	describe('auto-sizing', () => {
 		it('should set correct internal auto-sizing style', async () => {
 			const autoSizing = AUTO_SIZING.Fill;
-			(element as any).autoSizing = autoSizing;
-			await elementUpdated(element);
+			const control = getControlElement();
 
-			const control = element.shadowRoot?.querySelector(`.control.auto-sizing-${autoSizing}`);
-			expect(control)
-				.toBeInstanceOf(Element);
+			expect(control.classList.toString()).toEqual(`control`);
+			element.autoSizing = autoSizing;
+			await elementUpdated(element);
+			expect(control.classList.toString()).toEqual(`control auto-sizing-${autoSizing}`);
 		});
 	});
+
+	function getControlElement():HTMLElement {
+		return element.shadowRoot?.querySelector('.control') as HTMLElement;
+	}
 });
