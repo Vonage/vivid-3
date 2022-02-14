@@ -5,7 +5,7 @@ body {
 }
 
 :not(:defined) {
-  display: none;
+  /* display: none; */
 }
 
 pre[class*="language-"] {
@@ -14,12 +14,7 @@ pre[class*="language-"] {
 }
 
 vwc-side-drawer {
-  display: block;
-  width: 100%;
-}
-
-:not(:defined) {
-  display: none;
+  --side-drawer-z-index: 3;
 }
 
 h1, h2, h3, h4, h5, h6, p {
