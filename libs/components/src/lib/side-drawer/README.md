@@ -5,7 +5,7 @@
     import '@vonage/vivid/side-drawer';
 </script>
 ```
-
+<!-- 
 ```html preview
 <vwc-side-drawer id="sideDrawer" hasTopBar modal>
 	<div slot="top-bar">
@@ -32,5 +32,5 @@
 	const button = document.getElementById('button');
   	button.addEventListener('click', toggleOpen);
 </script>
-```
+``` -->
 
