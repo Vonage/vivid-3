@@ -30,7 +30,7 @@ describe('vwc-layout', () => {
 			const gutters = Size.BaseLarge;
 			const control = getControlElement();
 
-			expect(control.classList.toString()).toEqual(`control`);
+			expect(control.classList.toString()).toEqual('control');
 			element.gutters = gutters;
 			await elementUpdated(element);
 			expect(control.classList.toString()).toEqual(`control gutters-${gutters}`);
@@ -43,7 +43,7 @@ describe('vwc-layout', () => {
 			const columnBasis = Size.BaseLarge;
 			const control = getControlElement();
 
-			expect(control.classList.toString()).toEqual(`control`);
+			expect(control.classList.toString()).toEqual('control');
 			element.columnBasis = columnBasis;
 			await elementUpdated(element);
 			expect(control.classList.toString()).toEqual(`control column-basis-${columnBasis}`);
@@ -55,7 +55,7 @@ describe('vwc-layout', () => {
 			const columnSpacing = Size.BaseLarge;
 			const control = getControlElement();
 
-			expect(control.classList.toString()).toEqual(`control`);
+			expect(control.classList.toString()).toEqual('control');
 			element.columnSpacing = columnSpacing;
 			await elementUpdated(element);
 			expect(control.classList.toString()).toEqual(`control column-spacing-${columnSpacing}`);
@@ -68,13 +68,16 @@ describe('vwc-layout', () => {
 			const autoSizing = AUTO_SIZING.Fill;
 			const control = getControlElement();
 
-			expect(control.classList.toString()).toEqual(`control`);
+			expect(control.classList.toString()).toEqual('control');
 			element.autoSizing = autoSizing;
 			await elementUpdated(element);
 			expect(control.classList.toString()).toEqual(`control auto-sizing-${autoSizing}`);
 		});
 	});
 
+	/**
+	 *
+	 */
 	function getControlElement():HTMLElement {
 		return element.shadowRoot?.querySelector('.control') as HTMLElement;
 	}
