@@ -30,7 +30,7 @@ describe('vwc-side-drawer', () => {
 			element.show();
 			await elementUpdated(element);
 			expect(element.open).toEqual(true);
-			expect(control.classList.toString()).toEqual(`control open`);
+			expect(control.classList.toString()).toEqual('control open');
 		});
 	});
 
@@ -43,7 +43,7 @@ describe('vwc-side-drawer', () => {
 			element.hide();
 			await elementUpdated(element);
 			expect(element.open).toEqual(false);
-			expect(control.classList.toString()).toEqual(`control`);
+			expect(control.classList.toString()).toEqual('control');
 		});
 	});
 
@@ -53,7 +53,7 @@ describe('vwc-side-drawer', () => {
 			expect(control.classList.toString()).toEqual('control');
 			element.modal = true;
 			await elementUpdated(element);
-			expect(control.classList.toString()).toEqual(`control modal`);
+			expect(control.classList.toString()).toEqual('control modal');
 		});
 	});
 
@@ -63,7 +63,7 @@ describe('vwc-side-drawer', () => {
 			expect(control.classList.toString()).toEqual('control');
 			element.alternate = true;
 			await elementUpdated(element);
-			expect(control.classList.toString()).toEqual(`control alternate`);
+			expect(control.classList.toString()).toEqual('control alternate');
 		});
 	});
 
@@ -73,7 +73,7 @@ describe('vwc-side-drawer', () => {
 			expect(control.classList.toString()).toEqual('control');
 			element.position = POSITION.End;
 			await elementUpdated(element);
-			expect(control.classList.toString()).toEqual(`control end`);
+			expect(control.classList.toString()).toEqual('control end');
 		});
 	});
 
@@ -89,6 +89,9 @@ describe('vwc-side-drawer', () => {
 		});
 	});
 
+	/**
+	 *
+	 */
 	function getControlElement(): HTMLElement {
 		return element.shadowRoot?.querySelector('.control') as HTMLElement;
 	}
