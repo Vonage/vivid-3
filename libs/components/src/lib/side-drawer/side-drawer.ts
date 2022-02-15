@@ -2,7 +2,7 @@ import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 import type { DocumentWithBlockingElements } from 'blocking-elements';
 
-enum POSITION { Start = 'start', End = 'end' }
+export enum POSITION { Start = 'start', End = 'end' }
 const blockingElements =
 	(document as DocumentWithBlockingElements).$blockingElements;
 
@@ -121,10 +121,10 @@ export class SideDrawer extends FoundationElement {
 	}
 
 	private trapFocus(): void {
-		blockingElements.push(this.rootEl);
+		blockingElements?.push(this.rootEl);
 	}
 
 	private releaseFocusTrap(): void {
-		blockingElements.remove(this.rootEl);
+		blockingElements?.remove(this.rootEl);
 	}
 }
