@@ -13,8 +13,9 @@ pre[class*="language-"] {
     border-radius: 0;
 }
 
-vwc-side-drawer {
+vwc-side-drawer{
   --side-drawer-z-index: 3;
+  --side-drawer-background-color: var(--vvd-color-neutral-10);
 }
 
 h1, h2, h3, h4, h5, h6, p {
