@@ -10,12 +10,12 @@ Using layout, elements can be arranged easily in a variety of sizes and spaces t
 
 ```html preview
 <vwc-layout>
-  <img src="https://picsum.photos/311/200">
-  <img src="https://picsum.photos/312/200">
-  <img src="https://picsum.photos/313/200">
-  <img src="https://picsum.photos/314/200">
-  <img src="https://picsum.photos/315/200">
-  <img src="https://picsum.photos/316/200">
+  <img src="https://picsum.photos/id/1015/300/200">
+  <img src="https://picsum.photos/id/1016/300/200">
+  <img src="https://picsum.photos/id/1018/300/200">
+  <img src="https://picsum.photos/id/1019/300/200">
+  <img src="https://picsum.photos/id/1055/300/200">
+  <img src="https://picsum.photos/id/1050/300/200">
 </vwc-layout>
 ```
 ## Auto-sizing
