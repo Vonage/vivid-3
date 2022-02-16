@@ -1,12 +1,12 @@
 {% block content %}
-    <a href="{{ '/' | url}}">Home</a>
-    <ul class="navigation">
+<a href="{{ '/' | url}}">Home</a>
+<ul class="navigation">
   <li>
     design system
     <ul>
       {%  for item in designs %}
       <li>
-          <a href="{{ ('/designs/' + item.title) | url }}">{{ item.title }}</a>
+        <a href="{{ ('/designs/' + item.title) | url }}">{{ item.title }}</a>
       </li>
       {% endfor %}
     </ul>
@@ -16,10 +16,10 @@
     <ul>
       {%  for item in components %}
       <li>
-          <a href="{{ ('/components/' + item.title) | url }}">{{ item.title }}</a>
+        <a href="{{ ('/components/' + item.title) | url }}">{{ item.title }}</a>
       </li>
       {% endfor %}
     </ul>
   </li>
-    </ul>
+</ul>
 {% endblock %}
