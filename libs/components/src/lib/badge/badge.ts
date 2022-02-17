@@ -1,6 +1,6 @@
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
-import { Affix } from '../../shared/patterns/affix';
+import { PrefixOrSuffix } from '../../shared/patterns/affix';
 
 import type {
 	Appearance, Connotation, Shape, Size,
@@ -93,5 +93,5 @@ export class Badge extends FoundationElement {
 	@attr text = '';
 }
 
-export interface Badge extends Affix {}
-applyMixins(Badge, Affix);
+export interface Badge extends PrefixOrSuffix {}
+applyMixins(Badge, PrefixOrSuffix);

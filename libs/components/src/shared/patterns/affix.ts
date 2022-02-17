@@ -26,7 +26,7 @@ export class Prefix {
  *
  * @public
  */
-export class Affix extends Prefix {
+export class PrefixOrSuffix extends Prefix {
 	/**
 	 * Indicates the icon affix alignment.
 	 *
@@ -55,20 +55,21 @@ export const prefixTemplate: (context: ElementDefinitionContext) => ViewTemplate
 
 /**
  * The template for the affixed (prefixed or suffixed) element.
- * For use with {@link Affix}
+ * For use with {@link PrefixOrSuffix}
  *
  * @param context
  * @public
  */
-export const affixTemplate: (context: ElementDefinitionContext) => ViewTemplate<Affix> = (context: ElementDefinitionContext) => {
-	const iconTag = context.tagFor(Icon);
+export const prefixOrSuffixTemplate: (context: ElementDefinitionContext) => ViewTemplate<PrefixOrSuffix> =
+  (context: ElementDefinitionContext) => {
+  	const iconTag = context.tagFor(Icon);
 
-	const classes = ({
-		iconTrailing,
-	}: Affix) => classNames(
-		'icon',
-		['icon-trailing', iconTrailing],
-	);
+  	const classes = ({
+  		iconTrailing,
+  	}: PrefixOrSuffix) => classNames(
+  		'icon',
+  		['icon-trailing', iconTrailing],
+  	);
 
-	return html`<span class="${classes}"><${iconTag} :type="${(x) => x.icon}"></${iconTag}></span>`;
-};
+  	return html`<span class="${classes}"><${iconTag} :type="${(x) => x.icon}"></${iconTag}></span>`;
+  };
