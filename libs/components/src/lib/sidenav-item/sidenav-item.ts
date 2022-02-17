@@ -1,7 +1,7 @@
 import { applyMixins } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import { Anchor } from '@microsoft/fast-foundation';
-import { Affix } from '../patterns/affix';
+import { Prefix } from '../../shared/patterns/affix';
 
 /**
  * A Sidenav Item Custom HTML Element.
@@ -20,5 +20,5 @@ export class SidenavItem extends Anchor {
 	@attr text = '';
 }
 
-export interface SidenavItem extends Affix {}
-applyMixins(SidenavItem, Affix);
+export interface SidenavItem extends Prefix {}
+applyMixins(SidenavItem, Prefix);
