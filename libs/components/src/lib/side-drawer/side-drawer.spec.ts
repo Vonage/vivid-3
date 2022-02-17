@@ -89,6 +89,18 @@ describe('vwc-side-drawer', () => {
 		});
 	});
 
+	describe('escape', () => {
+		it('should close after keydown on Escape', async () => {
+			element.modal = true;
+			element.open = true;
+			await elementUpdated(element);
+			const aside: any = element.shadowRoot?.querySelector('aside');
+			aside?.dispatchEvent(new KeyboardEvent('keydown', {'key':'Escape'} ));
+			await elementUpdated(element);
+			expect(element.open).toEqual(false);
+		});
+	});
+
 	/**
 	 *
 	 */
