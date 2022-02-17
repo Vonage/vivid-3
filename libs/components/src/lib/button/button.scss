@@ -60,7 +60,7 @@
 		padding-inline: 12px;
 	}
 
-	.affix {
+	.icon {
 		font-size: 16px;
 	}
 }
@@ -75,7 +75,7 @@
 		padding-inline: 20px;
 	}
 
-	.affix {
+	.icon {
 		font-size: 24px;
 	}
 }
@@ -92,7 +92,7 @@
 		padding-inline: 16px;
 	}
 
-	.affix {
+	.icon {
 		font-size: 20px;
 	}
 }
@@ -117,14 +117,14 @@
 /* Icon */
 
 // stylelint-disable-next-line no-descending-specificity
-.affix {
+.icon {
 	// stylelint-disable-next-line no-descending-specificity
-	:not(.control.icon-trailing) & {
+	&:not(.icon-trailing) {
 		margin-inline-end: var(#{variables.$icon-gap});
 	}
 
 	// stylelint-disable-next-line no-descending-specificity
-	.control.icon-trailing & {
+	&.icon-trailing {
 		order: 1;
 		margin-inline-start: var(#{variables.$icon-gap});
 	}
