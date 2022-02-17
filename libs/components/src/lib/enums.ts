@@ -35,14 +35,6 @@ export enum Size {
 	BaseLarge = 'base-large',
 }
 
-export enum Position {
-	Top = 'TOP',
-	Bottom = 'BOTTOM',
-	Start = 'START',
-	Center = 'CENTER',
-	End = 'END',
-}
-
 export enum Role {
 	Status = 'status',
 	Alert = 'alert',
@@ -51,4 +43,24 @@ export enum Role {
 export enum AriaLive {
 	Polite = 'polite',
 	Assertive = 'assertive',
+}
+
+export enum Position {
+	Absolute = 'absolute',
+	Fixed = 'fixed',
+}
+
+export enum Corner {
+	Top =  'top',
+	TopStart = 'top-start',
+	TopEnd = 'top-end',
+	Right= 'right',
+	RightStart = 'right-start',
+	RightEnd = 'right-end',
+	Bottom = 'bottom',
+	BottomStart = 'bottom-start',
+	BottomEnd = 'bottom-end',
+	Left = 'left',
+	LeftStart = 'left-start',
+	LeftEnd = 'left-end',
 }

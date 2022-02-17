@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@floating-ui/dom": "^0.2.0",
     "@microsoft/fast-element": "^1.6.2",
     "@microsoft/fast-foundation": "^2.29.0",
     "@microsoft/fast-web-utilities": "^5.0.2",
