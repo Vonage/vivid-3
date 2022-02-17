@@ -5,7 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { affixTemplate } from '../patterns/affix';
+import { prefixTemplate } from '../../shared/patterns/affix';
 import type { SidenavItem } from './sidenav-item';
 
 const getClasses = (_: SidenavItem) =>
@@ -55,9 +55,7 @@ export const SidenavItemTemplate: (
         aria-relevant="${x => x.ariaRelevant}"
         aria-roledescription="${x => x.ariaRoledescription}"
     >
-      ${indicator}
-      ${affixTemplate}
-      ${() => affixTemplate(context)}
+      ${() => prefixTemplate(context)}
       ${x => x.text}
       <!-- <span class="content">
           <slot ${slotted('defaultSlottedContent')}></slot>

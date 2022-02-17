@@ -1,0 +1,44 @@
+@use 'partials/variables' as variables;
+@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+	$subset: primary cta,
+	$default: primary,
+);
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+	$subset: ghost ghost-idle,
+	$default: ghost,
+);
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+
+.control {
+	@include connotation.connotation;
+	@include appearance.appearance;
+	@include typography.typography-cat-shorthand('button');
+
+	position: relative;
+	display: inline-flex;
+	box-sizing: border-box;
+	align-items: center;
+	border: 0 none;
+	background-color: var(#{appearance.$appearance-color-fill});
+	block-size: var(#{variables.$block-size});
+	box-shadow: inset 0 0 0 1px var(#{appearance.$appearance-color-outline});
+	color: var(#{appearance.$appearance-color-text});
+	outline: 0 none;
+	vertical-align: middle;
+
+	// &.icon-only {
+	// 	padding-inline: 0;
+	// 	place-content: center;
+	// 	@supports (aspect-ratio: 1) {
+	// 		aspect-ratio: 1;
+	// 	}
+	// 	@supports not (aspect-ratio: 1) {
+	// 		inline-size: var(#{variables.$block-size});
+	// 	}
+	// }
+
+}
