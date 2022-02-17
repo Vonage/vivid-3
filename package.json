@@ -11,9 +11,9 @@
   },
   "private": true,
   "dependencies": {
-    "@microsoft/fast-element": "^1.6.2",
-    "@microsoft/fast-foundation": "^2.29.0",
-    "@microsoft/fast-web-utilities": "^5.0.2",
+    "@microsoft/fast-element": "^1.7.0",
+    "@microsoft/fast-foundation": "^2.33.3",
+    "@microsoft/fast-web-utilities": "^5.1.0",
     "core-js": "^3.6.5",
     "ramda": "^0.27.1",
     "regenerator-runtime": "0.13.7",

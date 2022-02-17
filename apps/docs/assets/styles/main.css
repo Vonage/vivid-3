@@ -4,9 +4,7 @@ body {
   margin: 0;
 }
 
-:not(:defined) {
-  display: none;
-}
+
 
 pre[class*="language-"] {
     margin: 0;
@@ -18,9 +16,6 @@ vwc-side-drawer {
   width: 100%;
 }
 
-:not(:defined) {
-  display: none;
-}
 
 h1, h2, h3, h4, h5, h6, p {
   margin: unset;
