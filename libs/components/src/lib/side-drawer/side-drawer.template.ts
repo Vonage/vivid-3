@@ -25,8 +25,8 @@ export const sideDrawerTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<SideDrawer> = () => {
 	return html`
-	<aside class="${getClasses}" part="${(x) => (x.alternate ? 'vvd-scheme-alternate' : undefined)}"
-		@transitionend=${x => x.handleTransitionEnd()} @keydown=${x => x.handleKeydown}>
+	<aside class="${getClasses}" part="${(x) => (x.alternate ? 'vvd-scheme-alternate' : undefined)}" @transitionend=${x=>
+		x.handleTransitionEnd()} @keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}">
 	
 		${(x) => (x.hasTopBar ? renderTopBar() : '')}
 	
