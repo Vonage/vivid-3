@@ -3,7 +3,7 @@ import { FoundationElement } from '@microsoft/fast-foundation';
 import type { Size } from '../enums.js';
 
 
-enum AUTO_SIZING { Fit = 'fit', Fill = 'fill' }
+export enum AUTO_SIZING { Fit = 'fit', Fill = 'fill' }
 type Gutters = Extract<Size, Size.BaseSmall | Size.Base | Size.BaseLarge>;
 type ColumnSpacing = Extract<Size, Size.BaseSmall | Size.Base | Size.BaseLarge>;
 type ColumnBasis = Extract<Size, Size.BaseSmall | Size.Base | Size.BaseLarge> | 'block';
