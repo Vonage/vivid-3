@@ -1,34 +1,20 @@
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
-
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$subset: primary,
-	$default: primary,
-);
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
-
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
-	$subset: ghost ghost-idle,
-	$default: ghost,
-);
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
 .control {
   $gap: 8px;
-	@include connotation.connotation;
-	@include appearance.appearance;
 	@include typography.typography-cat-shorthand('body-2');
 
 	position: relative;
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
-	border: 0 none;
-	background-color: var(#{appearance.$appearance-color-fill});
+	outline: 0 none;
+	background-color: transparent;
 	min-block-size: 40px;
   inline-size: 100%;
-	box-shadow: inset 0 0 0 1px var(#{appearance.$appearance-color-outline});
-	color: var(#{appearance.$appearance-color-text});
-	outline: 0 none;
+	border-radius: 6px;
+	color: var(#{theme-consts.$vvd-color-on-canvas});
 	vertical-align: middle;
   hyphens: auto;
   text-decoration: none;
@@ -36,6 +22,11 @@
   gap: $gap;
   padding-inline: $gap;
   padding-block: 10px;
+
+  @at-root :host,
+  & {
+    outline: 0 none;
+  }
 
 	// &.icon-only {
 	// 	padding-inline: 0;
@@ -48,6 +39,14 @@
 	// 	}
 	// }
 
+}
+
+.control:focus {
+	background-color: var(#{theme-consts.$vvd-color-neutral-20});
+}
+
+.control:focus-visible {
+	box-shadow: inset 0 0 0 1px darkorange;
 }
 
 .icon {
