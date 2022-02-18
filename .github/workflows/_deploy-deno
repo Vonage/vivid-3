@@ -1,5 +1,6 @@
 name: Deploy Deno
-on: [push]
+
+on: workflow_call
 
 jobs:
   deploy:
