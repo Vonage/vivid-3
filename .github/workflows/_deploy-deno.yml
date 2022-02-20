@@ -1,4 +1,4 @@
-name: Deploy Deno
+name: 🏠 Deploy Deno
 
 on: workflow_call
 
