@@ -27,4 +27,5 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: "vivid"
-          entrypoint: "./dist/apps/docs"
+          root: dist/apps/docs
+          entrypoint: "./index.html"
