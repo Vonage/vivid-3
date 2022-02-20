@@ -4,6 +4,18 @@ body {
   margin: 0;
 }
 
+:not(:defined) {
+  display: none;
+}
+/*code inside text*/
+code {
+  font-size: 1rem;
+  background-color: var(--vvd-color-neutral-10);
+  color: var(--vvd-color-alert-90);
+  padding: 3px 4px;
+  border-radius: 6px;
+}
+
 pre[class*="language-"] {
     margin: 0;
     border-radius: 0;
@@ -17,3 +29,44 @@ vwc-side-drawer{
 h1, h2, h3, h4, h5, h6, p {
   margin: unset;
 }
+/*properties table*/
+table {
+  width: 100%;
+  min-width: min-content;
+  border-collapse: collapse;
+}
+table tr {
+  border-bottom: 1px solid var(--table-border-color, var(--vvd-color-on-primary));
+  block-size: 44px;
+}
+table th,
+table td {
+  padding: 12px 16px;
+  text-align: start;
+}
+table thead tr {
+  --table-border-color: var(--vvd-color-neutral-90);
+}
+table tbody tr {
+  --table-border-color: var(--vvd-color-neutral-40);
+}
+
+/*#region: side navigation (temp style - need to be removed once sidenav is done)*/
+.navigation {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+li .navigation {
+  margin-inline-start: 0.75rem;
+}
+.navigation p {
+  color: var(--vvd-color-neutral-50);
+}
+.navigation p a,
+.navigation p a:hover,
+.navigation p a:active{
+  color: var(--vvd-color-neutral-90);
+}
+/*#region END: side navigation */
+

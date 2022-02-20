@@ -1,25 +1,31 @@
 {% block content %}
-<a href="{{ '/' | url}}">Home</a>
+<nav>
 <ul class="navigation">
   <li>
-    design system
-    <ul>
-      {%  for item in designs %}
-      <li>
-        <a href="{{ ('/designs/' + item.title) | url }}">{{ item.title }}</a>
-      </li>
-      {% endfor %}
+    <p><a href="{{ '/' | url}}">Home</a></p>
+    </li>
+  <li>
+  <p>design system</p>
+    <ul class="navigation">
+        {%  for item in designs %}
+          <li>
+          <p>
+              <a href="{{ ('/designs/' + item.title) | url }}">{{ item.title }}</a>
+              </p>
+          </li>
+        {% endfor %}
     </ul>
   </li>
   <li>
-    components
-    <ul>
+   <p>components</p>
+    <ul class="navigation">
       {%  for item in components %}
       <li>
-        <a href="{{ ('/components/' + item.title) | url }}">{{ item.title }}</a>
+          <p><a href="{{ ('/components/' + item.title) | url }}">{{ item.title }}</a></p>
       </li>
       {% endfor %}
     </ul>
-  </li>
-</ul>
+  <li>
+    </ul>
+</nav>
 {% endblock %}
