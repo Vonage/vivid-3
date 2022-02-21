@@ -26,7 +26,7 @@ describe('vwc-side-drawer', () => {
 	describe('show', () => {
 		it('should set "open" to true and add "open" class', async () => {
 			const control = getControlElement(element);
-			const doesNotHaveClassOpenBeforeShow = control.classList.contains('control');
+const hasClassOpenBeforeShow = control.classList.contains('open');
 			
 			element.show();
 			await elementUpdated(element);
