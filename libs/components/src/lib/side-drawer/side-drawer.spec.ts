@@ -39,7 +39,7 @@ describe('vwc-side-drawer', () => {
 	});
 
 	describe('hide', () => {
-		it('should set "open" to false', async () => {
+		it('should set "open" to false and add "open" class', async () => {
 			element.open = true;
 			await elementUpdated(element);
 			const control = getControlElement(element);
@@ -68,7 +68,7 @@ describe('vwc-side-drawer', () => {
 	});
 
 	describe('alternate', () => {
-		it('should set "alternate" to true', async () => {
+		it('should set "alternate" to true and add "alternate" class', async () => {
 			const control = getControlElement(element);
 			const doesNotHaveClassAlternate = control.classList.contains('alternate');
 
@@ -82,7 +82,7 @@ describe('vwc-side-drawer', () => {
 	});
 
 	describe('position', () => {
-		it('should set "position" to "end"', async () => {
+		it('should set "position" to "end" and add "position" class', async () => {
 			const control = getControlElement(element);
 			const doesNotHaveClassPosition = control.classList.contains('end');
 			element.position = POSITION.End;
