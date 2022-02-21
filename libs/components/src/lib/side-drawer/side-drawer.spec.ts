@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { POSITION, SideDrawer } from './side-drawer';
 import '.';
 
@@ -25,15 +25,15 @@ describe('vwc-side-drawer', () => {
 
 	describe('show', () => {
 		it('should set "open" to true', async () => {
-			const control = getControlElement();
-			const hasClassOpenBeforeShow = control.classList.hasClass('open');
+			const control = getControlElement(element);
+			const doesNotHaveClassOpenBeforeShow = control.classList.contains('control');
 			
 			element.show();
 			await elementUpdated(element);
-			const hasClassOpenAfterShow = control.classList.hasClass('open');
+			const hasClassOpenAfterShow = control.classList.contains('open');
 			
 			expect(element.open).toEqual(true);
-			expect(hasClassOpenBeforeShow).toEqual(true);
+			expect(doesNotHaveClassOpenBeforeShow).toEqual(true);
 			expect(hasClassOpenAfterShow).toEqual(true);
 		});
 	});
@@ -42,42 +42,55 @@ describe('vwc-side-drawer', () => {
 		it('should set "open" to false', async () => {
 			element.open = true;
 			await elementUpdated(element);
-			const control = getControlElement();
-			expect(control.classList.toString()).toEqual('control open');
+			const control = getControlElement(element);
+			const hasClassOpenBeforeHide = control.classList.contains('open');
+
 			element.hide();
 			await elementUpdated(element);
-			expect(element.open).toEqual(false);
-			expect(control.classList.toString()).toEqual('control');
+			const doesNotHaveClassOpenAfterHide = control.classList.contains('open');
+
+			expect(hasClassOpenBeforeHide).toEqual(true);
+			expect(doesNotHaveClassOpenAfterHide).toEqual(false);
 		});
 	});
 
 	describe('modal', () => {
 		it('should set "modal" to true', async () => {
-			const control = getControlElement();
-			expect(control.classList.toString()).toEqual('control');
+			const control = getControlElement(element);
+			const doesNotHaveClassModal = control.classList.contains('modal');
 			element.modal = true;
 			await elementUpdated(element);
-			expect(control.classList.toString()).toEqual('control modal');
+			const hasClassModal = control.classList.contains('modal');
+
+			expect(doesNotHaveClassModal).toEqual(false);
+			expect(hasClassModal).toEqual(true);
 		});
 	});
 
 	describe('alternate', () => {
 		it('should set "alternate" to true', async () => {
-			const control = getControlElement();
-			expect(control.classList.toString()).toEqual('control');
+			const control = getControlElement(element);
+			const doesNotHaveClassAlternate = control.classList.contains('alternate');
+
 			element.alternate = true;
 			await elementUpdated(element);
-			expect(control.classList.toString()).toEqual('control alternate');
+			const hasClassAlternate = control.classList.contains('alternate');
+
+			expect(doesNotHaveClassAlternate).toEqual(false);
+			expect(hasClassAlternate).toEqual(true);
 		});
 	});
 
 	describe('position', () => {
 		it('should set "position" to "end"', async () => {
-			const control = getControlElement();
-			expect(control.classList.toString()).toEqual('control');
+			const control = getControlElement(element);
+			const doesNotHaveClassPosition = control.classList.contains('end');
 			element.position = POSITION.End;
 			await elementUpdated(element);
-			expect(control.classList.toString()).toEqual('control end');
+			const hasClassPosition = control.classList.contains('end');
+
+			expect(doesNotHaveClassPosition).toEqual(false);
+			expect(hasClassPosition).toEqual(true);
 		});
 	});
 
@@ -104,11 +117,4 @@ describe('vwc-side-drawer', () => {
 			expect(element.open).toEqual(false);
 		});
 	});
-
-	/**
-	 *
-	 */
-	function getControlElement(): HTMLElement {
-		return element.shadowRoot?.querySelector('.control') as HTMLElement;
-	}
 });
