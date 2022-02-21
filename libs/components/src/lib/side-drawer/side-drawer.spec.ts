@@ -55,9 +55,9 @@ describe('vwc-side-drawer', () => {
 	});
 
 	describe('modal', () => {
-		it('should set "modal" to true', async () => {
-			const control = getControlElement(element);
-			const doesNotHaveClassModal = control.classList.contains('modal');
+		it('should set "modal" to true and add "modal" class', async () => {
+			const control = getControlElement();
+			expect(control.classList.toString()).toEqual('control');
 			element.modal = true;
 			await elementUpdated(element);
 			const hasClassModal = control.classList.contains('modal');
