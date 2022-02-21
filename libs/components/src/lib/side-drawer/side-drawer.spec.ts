@@ -26,14 +26,14 @@ describe('vwc-side-drawer', () => {
 	describe('show', () => {
 		it('should set "open" to true and add "open" class', async () => {
 			const control = getControlElement(element);
-			const hasClassOpenBeforeShow = control.classList.contains('control');
+			const hasClassOpenBeforeShow = control.classList.contains('open');
 			
 			element.show();
 			await elementUpdated(element);
 			const hasClassOpenAfterShow = control.classList.contains('open');
 			
 			expect(element.open).toEqual(true);
-			expect(hasClassOpenBeforeShow).toEqual(true);
+			expect(hasClassOpenBeforeShow).toEqual(false);
 			expect(hasClassOpenAfterShow).toEqual(true);
 		});
 	});
