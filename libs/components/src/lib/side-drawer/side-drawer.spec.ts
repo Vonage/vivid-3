@@ -33,7 +33,7 @@ const hasClassOpenBeforeShow = control.classList.contains('open');
 			const hasClassOpenAfterShow = control.classList.contains('open');
 			
 			expect(element.open).toEqual(true);
-			expect(doesNotHaveClassOpenBeforeShow).toEqual(true);
+			expect(hasClassOpenBeforeShow).toEqual(false);
 			expect(hasClassOpenAfterShow).toEqual(true);
 		});
 	});
