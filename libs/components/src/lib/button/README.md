@@ -16,7 +16,7 @@ say a few words on button
 Add a `label` attribute to add text to the button.
 
 ```html preview
-<vwc-button appearance='filled' label='A default button'></vwc-button>
+<vwc-button appearance='filled' state="hover" label='A default button'></vwc-button>
 ```
 
 ## Size

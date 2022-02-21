@@ -12,36 +12,43 @@ $connotation-mapping: (
 		contrast: theme-consts.$vvd-color-primary,
 		diverse: theme-consts.$vvd-color-primary,
 		soft: theme-consts.$vvd-color-neutral-20,
+    light: theme-consts.$vvd-color-neutral-10,
 	),
 	cta: (
 		contrast: theme-consts.$vvd-color-cta-90,
 		diverse: theme-consts.$vvd-color-cta-70,
 		soft: theme-consts.$vvd-color-cta-20,
+    light: theme-consts.$vvd-color-cta-10,
 	),
 	success: (
 		contrast: theme-consts.$vvd-color-success-90,
 		diverse: theme-consts.$vvd-color-success-70,
 		soft: theme-consts.$vvd-color-success-20,
+    light: theme-consts.$vvd-color-success-10,
 	),
 	alert: (
 		contrast: theme-consts.$vvd-color-alert-90,
 		diverse: theme-consts.$vvd-color-alert-70,
 		soft: theme-consts.$vvd-color-alert-20,
+    light: theme-consts.$vvd-color-alert-10,
 	),
 	warning: (
 		contrast: theme-consts.$vvd-color-warning-90,
 		diverse: theme-consts.$vvd-color-warning-70,
 		soft: theme-consts.$vvd-color-warning-20,
+    light: theme-consts.$vvd-color-warning-10,
 	),
 	info: (
 		contrast: theme-consts.$vvd-color-info-90,
 		diverse: theme-consts.$vvd-color-info-70,
 		soft: theme-consts.$vvd-color-info-20,
+    light: theme-consts.$vvd-color-info-10,
 	),
 	announcement: (
 		contrast: theme-consts.$vvd-color-announcement-90,
 		diverse: theme-consts.$vvd-color-announcement-70,
 		soft: theme-consts.$vvd-color-announcement-20,
+    light: theme-consts.$vvd-color-announcement-10,
 	),
 );
 $connotation-mapping-decoratives: (

@@ -1,0 +1,70 @@
+@use '../../../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use '../connotation' as connotation;
+@use '../../functions' as functions;
+@use 'variables' as variables;
+@use 'config' as config;
+@use 'sass:selector';
+@use 'sass:list';
+
+
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+$all-states: (
+	hover: 'hover',
+  focus: 'focus',
+  active: 'active',
+
+);
+
+%hover {
+  @if config.$outline-duotone {
+    #{variables.$states-color-fill}: var(#{connotation.$vvd-color-connotation}-light);
+  } @else {
+    #{variables.$states-color-fill}: var(#{connotation.$vvd-color-connotation}-contrast);
+  }
+}
+
+%focus {
+  @if config.$outline-duotone {
+    #{variables.$states-color-fill}: var(#{connotation.$vvd-color-connotation}-soft);
+  } @else {
+    #{variables.$states-color-fill}: var(#{connotation.$vvd-color-connotation}-contrast);
+  }
+}
+
+%active {
+  @if config.$outline-duotone {
+    #{variables.$states-color-fill}: var(#{connotation.$vvd-color-connotation}-soft);
+  } @else {
+    #{variables.$states-color-fill}: var(#{connotation.$vvd-color-connotation}-contrast);
+  }
+}
+
+
+@function get-typed-selector($type) {
+	@return '.states-#{$type}';
+}
+
+@mixin states {
+	$states-set: functions.pick-list(config.$subset, config.$predefined-states);
+
+	@each $type in $states-set {
+		$typed-selector: get-typed-selector($type);
+		$selector: selector.unify(&, $typed-selector);
+
+		@if $type == config.$default and list.length($states-set) > 1 {
+			$rule-out-typed-selector: &;
+			@each $rule-out-type in $states-set {
+				@if $rule-out-type != config.$default {
+					$rule-out-typed-selector: '#{$rule-out-typed-selector}:not(#{get-typed-selector($rule-out-type)})';
+				}
+			}
+
+			$selector: selector.parse(#{$selector, $rule-out-typed-selector});
+		}
+
+		@at-root #{$selector} {
+			@extend %#{$type};
+		}
+	}
+}

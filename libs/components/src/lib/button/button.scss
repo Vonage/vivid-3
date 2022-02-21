@@ -13,7 +13,14 @@
 	$subset: filled filled-idle outlined outlined-idle ghost ghost-idle,
 	$default: ghost,
 );
+
+@use '../../../../shared/src/lib/sass/mixins/states/config' as states-config with (
+	$subset: hover focus active,
+	$default: hover,
+);
+
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../shared/src/lib/sass/mixins/states' as states;
 
 :host {
 	outline: 0 none;
@@ -22,6 +29,7 @@
 .control {
 	@include connotation.connotation;
 	@include appearance.appearance;
+  @include states.states;
 
 	position: relative;
 	display: inline-flex;
@@ -35,6 +43,10 @@
 	outline: 0 none;
 	vertical-align: middle;
 
+  &:hover {
+    //background-color: var(#{states.$states-color-fill});
+  }
+
 	&.icon-only {
 		padding-inline: 0;
 		place-content: center;
@@ -45,7 +57,6 @@
 			inline-size: var(#{variables.$block-size});
 		}
 	}
-
 }
 
 /* Size */
