@@ -61,15 +61,15 @@ export const prefixTemplate: (context: ElementDefinitionContext) => ViewTemplate
 	* @public
 	*/
 export const prefixOrSuffixTemplate: (context: ElementDefinitionContext) => ViewTemplate<PrefixOrSuffix> =
-		(context: ElementDefinitionContext) => {
-			const iconTag = context.tagFor(Icon);
+	(context: ElementDefinitionContext) => {
+		const iconTag = context.tagFor(Icon);
 
-			const classes = ({
-				iconTrailing,
-			}: PrefixOrSuffix) => classNames(
-				'icon',
-				['icon-trailing', iconTrailing],
-			);
+		const classes = ({
+			iconTrailing,
+		}: PrefixOrSuffix) => classNames(
+			'icon',
+			['icon-trailing', iconTrailing],
+		);
 
-			return html`<span class="${classes}"><${iconTag} :type="${(x) => x.icon}"></${iconTag}></span>`;
-		};
+		return html`<span class="${classes}"><${iconTag} :type="${(x) => x.icon}"></${iconTag}></span>`;
+	};
