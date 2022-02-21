@@ -26,14 +26,14 @@ describe('vwc-side-drawer', () => {
 	describe('show', () => {
 		it('should set "open" to true and add "open" class', async () => {
 			const control = getControlElement(element);
-			const doesNotHaveClassOpenBeforeShow = control.classList.contains('control');
+			const hasClassOpenBeforeShow = control.classList.contains('control');
 			
 			element.show();
 			await elementUpdated(element);
 			const hasClassOpenAfterShow = control.classList.contains('open');
 			
 			expect(element.open).toEqual(true);
-			expect(doesNotHaveClassOpenBeforeShow).toEqual(true);
+			expect(hasClassOpenBeforeShow).toEqual(true);
 			expect(hasClassOpenAfterShow).toEqual(true);
 		});
 	});
@@ -47,22 +47,22 @@ describe('vwc-side-drawer', () => {
 
 			element.hide();
 			await elementUpdated(element);
-			const doesNotHaveClassOpenAfterHide = control.classList.contains('open');
+			const hasClassOpenAfterHide = control.classList.contains('open');
 
 			expect(hasClassOpenBeforeHide).toEqual(true);
-			expect(doesNotHaveClassOpenAfterHide).toEqual(false);
+			expect(hasClassOpenAfterHide).toEqual(false);
 		});
 	});
 
 	describe('modal', () => {
 		it('should set "modal" to true and add "modal" class', async () => {
 			const control = getControlElement(element);
-			const doesNotHaveClassModal = control.classList.contains('modal');
+			let hasClassModal = control.classList.contains('modal');
 			element.modal = true;
 			await elementUpdated(element);
-			const hasClassModal = control.classList.contains('modal');
+			expect(hasClassModal).toEqual(false);
 
-			expect(doesNotHaveClassModal).toEqual(false);
+			hasClassModal = control.classList.contains('modal');
 			expect(hasClassModal).toEqual(true);
 		});
 	});
@@ -70,13 +70,12 @@ describe('vwc-side-drawer', () => {
 	describe('alternate', () => {
 		it('should set "alternate" to true and add "alternate" class', async () => {
 			const control = getControlElement(element);
-			const doesNotHaveClassAlternate = control.classList.contains('alternate');
-
+			let hasClassAlternate = control.classList.contains('alternate');
 			element.alternate = true;
 			await elementUpdated(element);
-			const hasClassAlternate = control.classList.contains('alternate');
+			expect(hasClassAlternate).toEqual(false);
 
-			expect(doesNotHaveClassAlternate).toEqual(false);
+			hasClassAlternate = control.classList.contains('alternate');
 			expect(hasClassAlternate).toEqual(true);
 		});
 	});
@@ -84,12 +83,12 @@ describe('vwc-side-drawer', () => {
 	describe('position', () => {
 		it('should set "position" to "end" and add "position" class', async () => {
 			const control = getControlElement(element);
-			const doesNotHaveClassPosition = control.classList.contains('end');
+			let hasClassPosition = control.classList.contains('end');
 			element.position = POSITION.End;
 			await elementUpdated(element);
-			const hasClassPosition = control.classList.contains('end');
+			expect(hasClassPosition).toEqual(false);
 
-			expect(doesNotHaveClassPosition).toEqual(false);
+			hasClassPosition = control.classList.contains('end');
 			expect(hasClassPosition).toEqual(true);
 		});
 	});
