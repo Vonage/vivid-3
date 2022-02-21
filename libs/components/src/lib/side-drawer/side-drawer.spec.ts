@@ -24,7 +24,7 @@ describe('vwc-side-drawer', () => {
 	});
 
 	describe('show', () => {
-		it('should set "open" to true', async () => {
+		it('should set "open" to true and add "open" class', async () => {
 			const control = getControlElement(element);
 			const doesNotHaveClassOpenBeforeShow = control.classList.contains('control');
 			
@@ -39,7 +39,7 @@ describe('vwc-side-drawer', () => {
 	});
 
 	describe('hide', () => {
-		it('should set "open" to false and add "open" class', async () => {
+		it('should set "open" to false and remove "open" class', async () => {
 			element.open = true;
 			await elementUpdated(element);
 			const control = getControlElement(element);
@@ -56,8 +56,8 @@ describe('vwc-side-drawer', () => {
 
 	describe('modal', () => {
 		it('should set "modal" to true and add "modal" class', async () => {
-			const control = getControlElement();
-			expect(control.classList.toString()).toEqual('control');
+			const control = getControlElement(element);
+			const doesNotHaveClassModal = control.classList.contains('modal');
 			element.modal = true;
 			await elementUpdated(element);
 			const hasClassModal = control.classList.contains('modal');
