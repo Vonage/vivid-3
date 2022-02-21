@@ -99,11 +99,9 @@ export class SideDrawer extends FoundationElement {
 	}
 
 	handleTransitionEnd(): void {
-		// when side drawer finishes open animation
 		if (this.open) {
 			this.opened();
 		} else {
-			// when side drawer finishes hide animation
 			this.closed();
 		}
 	}
