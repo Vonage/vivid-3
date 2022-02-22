@@ -13,7 +13,7 @@
   <p align="center">
     Vonage's design system platform targeted to provide incorporated, battery-charged web components.
   </p>
-  <a href="https://vonage.github.io/vivid-3"><strong>Explore the docs »</strong></a>
+  <a href="https://vivid.deno.dev"><strong>Explore the docs »</strong></a>
   <br>
   <a href="https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=bug_report.md&title=">Report Bug</a>
   ·
