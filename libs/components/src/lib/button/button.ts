@@ -4,7 +4,7 @@ import { attr } from '@microsoft/fast-element';
 import type {
 	Appearance, Connotation, Shape, Size,
 } from '../enums.js';
-import { PrefixOrSuffix } from '../../shared/patterns/affix.js';
+import { PrefixOrSuffix } from '../../shared/patterns/affix';
 
 /**
  * Types of button connotation.
