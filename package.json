@@ -73,7 +73,7 @@
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-lit-css": "^3.2.1",
-    "sass": "^1.49.7",
+    "sass": "^1.49.8",
     "stylelint": "^14.5.2",
     "stylelint-config-idiomatic-order": "^8.1.0",
     "stylelint-config-prettier": "^9.0.3",
