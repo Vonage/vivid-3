@@ -19,7 +19,7 @@
 
 // TODO: add a :where selector to unset any connotation variant from a mixin level
 .control[class*="connotation"] {
-  color: var(#{connotation.$vvd-color-connotation});
+	color: var(#{connotation.$vvd-color-connotation});
 }
 
 svg {
