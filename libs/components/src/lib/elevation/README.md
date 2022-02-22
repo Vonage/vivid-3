@@ -1,7 +1,7 @@
 # vwc-elevation
 
 The _elevation_ component enables a user to set perceived elevation to a certain level.  
-***Note: This component is responsible for the perceived elevation alone and not to DOM elements z-indexing.***
+**Note: This component is responsible for the perceived visual elevation alone and not to the HTML elements stacking context.**
 
 ```js
 <script type='module'>
