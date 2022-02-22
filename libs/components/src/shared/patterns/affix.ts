@@ -50,7 +50,9 @@ export class PrefixOrSuffix extends Prefix {
 export const prefixTemplate: (context: ElementDefinitionContext) => ViewTemplate<Prefix> = (context: ElementDefinitionContext) => {
 	const iconTag = context.tagFor(Icon);
 
-	return html`<span class="icon"><${iconTag} :type="${(x) => x.icon}"></${iconTag}></span>`;
+	const iconTemplate = html`<span class="icon"><${iconTag} :type="${(x) => x.icon}"></${iconTag}></span>`;
+
+	return html`${(x) => (x.icon ? iconTemplate : '')}`;
 };
 
 /**
@@ -71,5 +73,7 @@ export const prefixOrSuffixTemplate: (context: ElementDefinitionContext) => View
 			['icon-trailing', iconTrailing],
 		);
 
-		return html`<span class="${classes}"><${iconTag} :type="${(x) => x.icon}"></${iconTag}></span>`;
+		const iconTemplate = html`<span class="${classes}"><${iconTag} :type="${(x) => x.icon}"></${iconTag}></span>`;
+
+		return html`${(x) => (x.icon ? iconTemplate : '')}`;
 	};
