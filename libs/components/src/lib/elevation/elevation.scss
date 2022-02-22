@@ -26,6 +26,5 @@ $elevation-border-radius: --elevation-border-radius;
 
 .control {
 	--elevation-border-radius: 6px;
-	width: fit-content;
 	border-radius: var(#{--elevation-border-radius});
 }
