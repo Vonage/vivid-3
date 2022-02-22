@@ -74,7 +74,7 @@
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-lit-css": "^3.2.1",
     "sass": "^1.49.7",
-    "stylelint": "^14.5.1",
+    "stylelint": "^14.5.2",
     "stylelint-config-idiomatic-order": "^8.1.0",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard-scss": "^2.0.1",
