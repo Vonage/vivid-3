@@ -13,11 +13,6 @@
             "command": "npx eleventy --config=./apps/docs/.eleventy.js"
           }
         ]
-      },
-      "configurations": {
-        "production": {
-          "pathprefix": "vivid-3"
-        }
       }
     },
     "serve": {
