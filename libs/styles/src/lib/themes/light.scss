@@ -1,6 +1,7 @@
 :root,
 .vvd-scheme-main,
 ::part(vvd-scheme-main) {
+  --vvd-color-surface-0dp: rgba(255, 255, 255, 1);
   --vvd-color-surface-2dp: rgba(255, 255, 255, 1);
   --vvd-color-surface-4dp: rgba(255, 255, 255, 1);
   --vvd-color-surface-8dp: rgba(255, 255, 255, 1);
@@ -63,6 +64,10 @@
   --vvd-color-announcement-30: rgb(248, 185, 231);
   --vvd-color-announcement-70: rgb(187, 30, 137);
   --vvd-color-announcement-90: rgb(98, 2, 86);
+  --vvd-shadow-surface-0dp: drop-shadow(1px 0 0 rgba(204, 204, 204, 1)) 
+    drop-shadow(0 1px 0 rgba(204, 204, 204, 1)) 
+    drop-shadow(0 -1px 0 rgba(204, 204, 204, 1)) 
+    drop-shadow(-1px 0 0 rgba(204, 204, 204, 1));
   --vvd-shadow-surface-2dp: drop-shadow(
       0 1px 4px rgba(0, 0, 0, 0.10000000149011612)
     )
@@ -103,6 +108,12 @@
 }
 .vvd-scheme-alternate,
 ::part(vvd-scheme-alternate) {
+  --vvd-color-surface-0dp: rgba(
+    13,
+    13,
+    13,
+    1
+  );
   --vvd-color-surface-2dp: rgba(
     28.000000230968,
     28.000000230968,

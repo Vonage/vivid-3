@@ -10,7 +10,7 @@ The _elevation_ component enables a user to set perceived elevation to a certain
 ```
 
 ```html preview
-	<vwc-elevation id="elevation" dp="2">
+	<vwc-elevation id="elevation" dp="0">
 		<div class="card">
 			Hover me!
 		</div>
@@ -26,7 +26,7 @@ The _elevation_ component enables a user to set perceived elevation to a certain
     }
 
     function onMouseLeave(e) {
-      e.target.setAttribute('dp', '2');
+      e.target.setAttribute('dp', '0');
       e.target.querySelector('div').innerText = 'Hover me!';
     }
   </script>
