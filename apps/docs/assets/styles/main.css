@@ -4,9 +4,6 @@ body {
   margin: 0;
 }
 
-:not(:defined) {
-  display: none;
-}
 /*code inside text*/
 code {
   font-size: 1rem;
