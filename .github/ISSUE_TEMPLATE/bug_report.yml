@@ -40,7 +40,7 @@ body:
   - type: input
     id: version
     attributes:
-      label: Carbon Web Components version
+      label: Vivid Web Components version
       description: "What version of Vivid Web Components are you using?"
       placeholder: e.g. v2.2.8
     validations:
