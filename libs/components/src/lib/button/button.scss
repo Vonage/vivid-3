@@ -84,8 +84,6 @@
 	#{variables.$block-size}: 40px;
 	@include typography.typography-cat-shorthand('button');
 
-	block-size: var(#{variables.$block-size});
-
 	&:not(.icon-only) {
 		#{variables.$icon-gap}: 8px;
 
