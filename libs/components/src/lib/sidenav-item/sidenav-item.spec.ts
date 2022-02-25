@@ -36,6 +36,20 @@ describe('vwc-sidenav-item', () => {
 		});
 	});
 
+	describe('icon-only', () => {
+		it('should set correct internal icon-only style', async () => {
+			const getControlIconOnly = () => element.shadowRoot?.querySelector('.control.icon-only');
+			const controlIconOnlyBefore = getControlIconOnly();
+
+			element.icon = 'home';
+			await elementUpdated(element);
+
+			const controlIconOnlyAfter = getControlIconOnly();
+			expect(controlIconOnlyBefore).toBeNull();
+			expect(controlIconOnlyAfter).toBeInstanceOf(Element);
+		});
+	});
+
 	describe('text', () => {
 		it('should set text property value as text content', async () => {
 			const text = 'lorem';

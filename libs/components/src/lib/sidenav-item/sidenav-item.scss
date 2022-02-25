@@ -2,6 +2,7 @@
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
 .control {
+	$min-block-size: 40px;
 	$gap: 8px;
 	@include typography.typography-cat-shorthand('body-2');
 
@@ -15,7 +16,7 @@
 	gap: $gap;
 	hyphens: auto;
 	inline-size: 100%;
-	min-block-size: 40px;
+	min-block-size: $min-block-size;
 	outline: 0 none;
 	padding-block: 10px;
 	padding-inline: $gap;
@@ -28,16 +29,12 @@
 		outline: 0 none;
 	}
 
-	// &.icon-only {
-	// 	padding-inline: 0;
-	// 	place-content: center;
-	// 	@supports (aspect-ratio: 1) {
-	// 		aspect-ratio: 1;
-	// 	}
-	// 	@supports not (aspect-ratio: 1) {
-	// 		inline-size: var(#{variables.$block-size});
-	// 	}
-	// }
+	&.icon-only {
+    inline-size: $min-block-size;
+    block-size: $min-block-size;
+    display: flex;
+		place-content: center;
+  }
 
 }
 

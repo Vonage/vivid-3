@@ -1,4 +1,4 @@
-import { html, slotted } from '@microsoft/fast-element';
+import { html } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
@@ -8,9 +8,10 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { prefixTemplate } from '../../shared/patterns/affix';
 import type { SidenavItem } from './sidenav-item';
 
-const getClasses = (_: SidenavItem) =>
+const getClasses = ({text, icon}: SidenavItem) =>
 	classNames(
 		'control',
+		['icon-only', !text && !!icon],
 	);
 
 /**
@@ -57,7 +58,4 @@ export const SidenavItemTemplate: (
     >
       ${() => prefixTemplate(context)}
       ${x => x.text}
-      <!-- <span class="content">
-          <slot ${slotted('defaultSlottedContent')}></slot>
-      </span> -->
     </a>`;
