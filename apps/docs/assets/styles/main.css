@@ -80,3 +80,6 @@ li .navigation {
 }
 /*#region END: side navigation */
 
+article {
+  max-inline-size: 64ch;
+}
