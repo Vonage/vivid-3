@@ -2,31 +2,31 @@
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
 .control {
-  $gap: 8px;
+	$gap: 8px;
 	@include typography.typography-cat-shorthand('body-2');
 
 	position: relative;
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
-	outline: 0 none;
 	background-color: transparent;
-	min-block-size: 40px;
-  inline-size: 100%;
 	border-radius: 6px;
 	color: var(#{theme-consts.$vvd-color-on-canvas});
+	gap: $gap;
+	hyphens: auto;
+	inline-size: 100%;
+	min-block-size: 40px;
+	outline: 0 none;
+	padding-block: 10px;
+	padding-inline: $gap;
+	text-decoration: none;
 	vertical-align: middle;
-  hyphens: auto;
-  text-decoration: none;
-  word-break: break-word;
-  gap: $gap;
-  padding-inline: $gap;
-  padding-block: 10px;
+	word-break: break-word;
 
-  @at-root :host,
-  & {
-    outline: 0 none;
-  }
+	@at-root :host,
+	& {
+		outline: 0 none;
+	}
 
 	// &.icon-only {
 	// 	padding-inline: 0;
@@ -50,5 +50,5 @@
 }
 
 .icon {
-  font-size: 20px;
+	font-size: 20px;
 }

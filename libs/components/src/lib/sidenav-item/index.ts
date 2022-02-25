@@ -8,13 +8,13 @@ import { SidenavItem } from './sidenav-item';
 import { SidenavItemTemplate as template } from './sidenav-item.template';
 
 export const vividSidenavItem =
-  SidenavItem.compose<FoundationElementDefinition>({
-  	baseName: 'sidenav-item',
-  	template: template as any,
-  	styles,
-  	shadowOptions: {
-  		delegatesFocus: true,
-  	},
-  });
+	SidenavItem.compose<FoundationElementDefinition>({
+		baseName: 'sidenav-item',
+		template: template as any,
+		styles,
+		shadowOptions: {
+			delegatesFocus: true,
+		},
+	});
 
 designSystem.register(vividSidenavItem());

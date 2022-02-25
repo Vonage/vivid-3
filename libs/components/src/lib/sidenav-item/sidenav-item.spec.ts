@@ -5,15 +5,15 @@ import '.';
 const COMPONENT_TAG = 'vwc-sidenav-item';
 
 describe('vwc-sidenav-item', () => {
-  let element: SidenavItem;
+	let element: SidenavItem;
 
-  beforeEach(async () => {
-    element = (await fixture(
-      `<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-    )) as SidenavItem;
-  });
+	beforeEach(async () => {
+		element = (await fixture(
+			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+		)) as SidenavItem;
+	});
 
-  it('should be initialized as a vwc-sidenav-item', async () => {
-    expect(element).toBeInstanceOf(SidenavItem);
-  });
+	it('should be initialized as a vwc-sidenav-item', async () => {
+		expect(element).toBeInstanceOf(SidenavItem);
+	});
 });
