@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Add watch mode for components e2e",
+  "packageName": "@vonage/vivid",
+  "email": "yonatan.kra@vonage.com",
+  "dependentChangeType": "none"
+}
