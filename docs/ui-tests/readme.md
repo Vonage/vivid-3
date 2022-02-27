@@ -17,6 +17,7 @@ Our docker image runs the tests on the 3 browser on the Linux OS.
 Each component folder should contain a `ui.test.ts` file.
 The file must be updated with the `componentName` and snapshot path `'./snapshots/componentName.png'`.
 PRO TIP: When you generate a new component using `npm run nx workspace-generator vivid-component my-component` you will get this file populated for you to get you up and running with ui-tests.
+
 ## Running the tests
 
 ### Local
@@ -32,6 +33,18 @@ This will start the tests locally with the local playwright and browsers version
 **Note:** that this will result in failed tests in the first run because the snapshots for your setup do not exist
 
 **Note:** do not push new snapshots. There are only 3 snapshots used for CI purposes - and these are the checked out linux snapshots in each component. 
+
+### Dev/Watch Mode
+
+You can also run the tests locally in watch mode:
+`npx nx run components:e2e:watch`
+
+This will spin up the dev server and watch for changes in the code to restart the tests. 
+
+A useful scenario would be to develop a single component:
+1. Start the tests using `npx nx run components:e2e:watch`
+2. Setup your component's to be the only test to run: `test => test.only`
+3. Add `await page.pause();` inside the test case.
 
 ### Why Docker?
 
