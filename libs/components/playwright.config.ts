@@ -5,29 +5,29 @@ interface PlaywrightTestConfigWithRegression extends PlaywrightTestConfig {
 }
 
 const config: PlaywrightTestConfigWithRegression = {
-    testMatch: 'src/**/*.test.ts',
-    projects: [
-        {
-            name: 'Chrome Stable',
-            use: {
-                browserName: 'chromium',
-                channel: 'chrome',
-            },
-        },
-        {
-            name: 'Desktop Safari',
-            use: {
-                browserName: 'webkit',
-                viewport: { width: 1200, height: 750 },
-            }
-        },
-        {
-            name: 'Desktop Firefox',
-            use: {
-                browserName: 'firefox',
-                viewport: { width: 800, height: 600 },
-            }
-        },
-    ]
+	testMatch: 'src/**/*.test.ts',
+	projects: [
+		{
+			name: 'Chrome Stable',
+			use: {
+				browserName: 'chromium',
+				channel: 'chrome',
+			},
+		},
+		{
+			name: 'Desktop Safari',
+			use: {
+				browserName: 'webkit',
+				viewport: { width: 1200, height: 750 },
+			}
+		},
+		{
+			name: 'Desktop Firefox',
+			use: {
+				browserName: 'firefox',
+				viewport: { width: 800, height: 600 },
+			}
+		},
+	]
 };
 export default config;
