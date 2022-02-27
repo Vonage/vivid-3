@@ -1,3 +1,9 @@
+/* #region reset */
+strong {
+  font-weight: unset;
+}
+/* #endregion reset */
+
 body {
   color: var(--vvd-color-on-canvas);
   background-color: var(--vvd-color-canvas);
@@ -22,7 +28,6 @@ vwc-side-drawer {
   display: block;
   width: 100%;
 }
-
 
 h1, h2, h3, h4, h5, h6, p {
   margin: unset;
@@ -68,3 +73,6 @@ li .navigation {
 }
 /*#region END: side navigation */
 
+article {
+  max-inline-size: 64ch;
+}
