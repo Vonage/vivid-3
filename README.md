@@ -1,8 +1,8 @@
-<div align="center">
+<div>
   <a href="https://github.com/vonage/vivid-3">
     <img src="/vivid-logo.svg" style="" alt="Vivid Logo" width="120">
   </a>
-  <h1 align="center">Welcome to Vivid</h1>
+  <h1>Welcome to Vivid</h1>
 
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
@@ -10,7 +10,7 @@
 [![Issues][issues-shield]][issues-url]
 [![Apache 2.0 License][license-shield]][license-url]
 
-  <p align="center">
+  <p>
     Vonage's design system platform targeted to provide incorporated, battery-charged web components.
   </p>
   <a href="https://vivid.deno.dev"><strong>Explore the docs »</strong></a>
