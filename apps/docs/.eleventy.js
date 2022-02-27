@@ -1,5 +1,4 @@
 const { EleventyRenderPlugin } = require("@11ty/eleventy");
-const codeblockdemo = require('eleventy-plugin-code-block-demo')
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const wrapTextElements = require("./transformers/wrap-text-elements");
 
@@ -10,7 +9,6 @@ const OUTPUT_DIR = 'dist/apps/docs';
 module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPlugin(EleventyRenderPlugin);
-  eleventyConfig.addPlugin(codeblockdemo);
   eleventyConfig.addPlugin(syntaxHighlight);
 
   eleventyConfig.addPassthroughCopy({
