@@ -10,9 +10,6 @@ body {
   margin: 0;
 }
 
-:not(:defined) {
-  display: none;
-}
 /*code inside text*/
 code {
   font-size: 1rem;
@@ -30,10 +27,6 @@ pre[class*="language-"] {
 vwc-side-drawer {
   display: block;
   width: 100%;
-}
-
-:not(:defined) {
-  display: none;
 }
 
 h1, h2, h3, h4, h5, h6, p {
