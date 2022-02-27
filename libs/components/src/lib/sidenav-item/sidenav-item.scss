@@ -30,11 +30,11 @@
 	}
 
 	&.icon-only {
-    inline-size: $min-block-size;
-    block-size: $min-block-size;
-    display: flex;
+		display: flex;
+		block-size: $min-block-size;
+		inline-size: $min-block-size;
 		place-content: center;
-  }
+	}
 
 }
 
