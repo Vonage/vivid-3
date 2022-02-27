@@ -1,0 +1,30 @@
+name: Post Merge Code Coverage
+
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ci-tests-${{ github.ref }}-1
+  cancel-in-progress: true
+
+jobs:
+  submit-main-code-coverage:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'npm'
+
+      - uses: vonage/vivid-3/.github/workflows/_unit-test.yml@main
+        with:
+          os: ubuntu-latest
+          report_coverage: true
