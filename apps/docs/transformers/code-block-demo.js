@@ -1,5 +1,7 @@
 const { JSDOM } = require('jsdom');
 const { decode } = require("html-entities");
+const fs = require('fs');
+const path = require('path');
 const ELEVENTY_HTML_CODE_BLOCK_SELECTOR = 'pre > code.language-html';
 
 const CBD_BASE = 'cbd-base';
@@ -8,10 +10,10 @@ const CBD_DETAILS = 'cbd-details';
 const CBD_BUTTON_SHOW = 'cbd-button-show';
 const CBD_CODE_BLOCK = 'cbd-code-block';
 
-const generateCodeBlockDemo = function (pre, index, header) {
+const generateCodeBlockDemo = function (pre, index, header, outputPath) {
     const code = pre.querySelector('code')?.textContent;
-    const html = decode(header.outerHTML) + decode(code);
-    const dom = new JSDOM(`<body>${getHtml(html, pre.outerHTML, index)}</body>`);
+    const html = decode(header.innerHTML) + decode(code);
+    const dom = new JSDOM(`<body>${getHtml(html, pre.outerHTML, index, outputPath)}</body>`);
 
     return dom.window.document.querySelector(`.${CBD_BASE}`);
 };
@@ -26,13 +28,12 @@ module.exports = function (content, outputPath) {
     let codeBlockCount = 1;
     codeBlocks.forEach(function (codeBlock) {
         const pre = codeBlock.closest('pre');
-        pre.replaceWith(generateCodeBlockDemo(pre, codeBlockCount++, headElement));
+        pre.replaceWith(generateCodeBlockDemo(pre, codeBlockCount++, headElement, outputPath));
     });
     headElement.insertAdjacentHTML('beforeend', style);
     headElement.insertAdjacentHTML('beforeend', script);
     return document.documentElement.outerHTML;
 };
-
 
 const style = `
 <style>
@@ -58,9 +59,19 @@ const style = `
 </style>
 `;
 
-const getHtml = (demoStr, codeStr, i) => {
+const getHtml = (demoStr, codeStr, i, outputPath) => {
     const codeBlockId = `${CBD_CODE_BLOCK}-${i}`;
-    const iframeSrc = 'data:text/html;charset=utf-8,' + encodeURI(demoStr);
+
+    const saveFolder = path.join(path.dirname(outputPath), '/frames');
+    if (!fs.existsSync(saveFolder)) {
+      fs.mkdirSync(saveFolder, { recursive: true });
+    }
+    const filePath = `${saveFolder}/${codeBlockId}.html`;
+    const componentName = path.dirname(outputPath).substring(outputPath.lastIndexOf('/'));
+    console.log(componentName);
+    demoStr += `<script type="module" src="/assets/modules/components/${componentName}/index.js"></script>`;
+    fs.writeFileSync(filePath, demoStr);
+    const iframeSrc = filePath.substring(saveFolder.indexOf('docs/') + 4);
     return `
     <div class="${CBD_BASE}">
         <iframe class="${CBD_DEMO}" src="${iframeSrc}"></iframe>
