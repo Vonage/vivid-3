@@ -35,6 +35,38 @@ module.exports = function (content, outputPath) {
     return document.documentElement.outerHTML;
 };
 
+const getHtml = (demoStr, codeStr, i, outputPath) => {
+    const codeBlockId = `${CBD_CODE_BLOCK}-${i}`;
+    const iframeSrc = getIframe(demoStr, codeBlockId, outputPath);
+
+    return `
+    <div class="${CBD_BASE}">
+        <iframe class="${CBD_DEMO}" src="${iframeSrc}" onload=onloadIframe(this)></iframe>
+        <details class="${CBD_DETAILS}">
+            <summary>
+                <button class="${CBD_BUTTON_SHOW}" aria-expanded="false" aria-controls="${codeBlockId}">
+                    show code
+                </button>
+            </summary>
+            <div class="${CBD_CODE_BLOCK}" role="region" id="${codeBlockId}">
+                ${codeStr}
+            </div>
+        </details>
+    </div>`;
+}
+
+const getIframe = (demoStr, codeBlockId, outputPath) => {
+    const saveFolder = path.join(path.dirname(outputPath), '/frames');
+    if (!fs.existsSync(saveFolder)) {
+      fs.mkdirSync(saveFolder, { recursive: true });
+    }
+    const filePath = `${saveFolder}/${codeBlockId}.html`;
+    const componentName = path.dirname(outputPath).substring(outputPath.lastIndexOf('/'));
+    demoStr += `<script type="module" src="/assets/modules/components/${componentName}/index.js"></script>`;
+    fs.writeFileSync(filePath, demoStr);
+    return filePath.substring(saveFolder.indexOf('docs/') + 4);
+}
+
 const style = `
 <style>
 .${CBD_BASE} {
@@ -44,7 +76,10 @@ const style = `
 }
 .${CBD_DEMO} {
 	padding: 20px;
-    width: 100%;
+    overflow: hidden;
+    border: none;
+    height: 30px;
+    width: 97%;
 }
 .${CBD_DETAILS} > summary {
   list-style: none;
@@ -59,35 +94,6 @@ const style = `
 </style>
 `;
 
-const getHtml = (demoStr, codeStr, i, outputPath) => {
-    const codeBlockId = `${CBD_CODE_BLOCK}-${i}`;
-
-    const saveFolder = path.join(path.dirname(outputPath), '/frames');
-    if (!fs.existsSync(saveFolder)) {
-      fs.mkdirSync(saveFolder, { recursive: true });
-    }
-    const filePath = `${saveFolder}/${codeBlockId}.html`;
-    const componentName = path.dirname(outputPath).substring(outputPath.lastIndexOf('/'));
-    console.log(componentName);
-    demoStr += `<script type="module" src="/assets/modules/components/${componentName}/index.js"></script>`;
-    fs.writeFileSync(filePath, demoStr);
-    const iframeSrc = filePath.substring(saveFolder.indexOf('docs/') + 4);
-    return `
-    <div class="${CBD_BASE}">
-        <iframe class="${CBD_DEMO}" src="${iframeSrc}"></iframe>
-        <details class="${CBD_DETAILS}">
-            <summary>
-                <button class="${CBD_BUTTON_SHOW}" aria-expanded="false" aria-controls="${codeBlockId}">
-                    show code
-                </button>
-            </summary>
-            <div class="${CBD_CODE_BLOCK}" role="region" id="${codeBlockId}">
-                ${codeStr}
-            </div>
-        </details>
-    </div>`;
-}
-
 const script = `
 <script>
     const toggleCodePanel = (event) => {
@@ -101,6 +107,10 @@ const script = `
         document.querySelectorAll('.${CBD_BUTTON_SHOW}').forEach(button => {
             button.addEventListener('click', toggleCodePanel);
         });
+    };
+
+    const onloadIframe = (iFrame) => {
+        iFrame.style.height = iFrame.contentWindow.document.body.scrollHeight + 5 + "px";
     };
 
     window.addEventListener('DOMContentLoaded', initShowCodeButtons);
