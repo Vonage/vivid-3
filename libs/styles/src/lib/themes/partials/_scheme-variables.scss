@@ -1,0 +1,6 @@
+$scheme-main: vvd-scheme-main;
+$scheme-alternate: vvd-scheme-alternate;
+
+
+$scheme-main-selector: ':root, .#{$scheme-main}, ::part(#{$scheme-main})';
+$scheme-alternate-selector: '.#{$scheme-alternate}, ::part(#{$scheme-alternate})';
