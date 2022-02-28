@@ -1,9 +1,0 @@
-$scheme-main: vvd-scheme-main;
-$scheme-alternate: vvd-scheme-alternate;
-
-
-@mixin color-scheme($type) {
-	@supports (color-scheme: $type) {
-		color-scheme: $type;
-	}
-}
