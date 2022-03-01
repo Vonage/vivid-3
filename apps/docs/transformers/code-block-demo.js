@@ -64,9 +64,7 @@ const getHtml = (demoData) => {
 
 const getIframe = (demoStr, codeBlockId, outputPath) => {
     const saveFolder = verifyAndCreateSaveFolder(outputPath);
-    const filePath = `${saveFolder}/${codeBlockId}.html`;
-    demoStr += addComponentScript(outputPath);
-    fs.writeFileSync(filePath, demoStr);
+    const filePath = saveCodeAsHTMLFile(outputPath, demoStr, codeBlockId, saveFolder);
     return filePath.substring(saveFolder.indexOf('docs/') + 4);
 }
 
@@ -76,6 +74,13 @@ const verifyAndCreateSaveFolder = (outputPath) => {
       fs.mkdirSync(saveFolder, { recursive: true });
     }
     return saveFolder;
+}
+
+const saveCodeAsHTMLFile = (outputPath, codeString, codeBlockId, saveFolder) => {
+    const filePath = `${saveFolder}/${codeBlockId}.html`;
+    codeString += addComponentScript(outputPath);
+    fs.writeFileSync(filePath, codeString);
+    return filePath;
 }
 
 const addComponentScript = (outputPath) => {
