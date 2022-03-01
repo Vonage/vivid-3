@@ -41,7 +41,7 @@ const getHtml = (demoStr, codeStr, i, outputPath) => {
 
     return `
     <div class="${CBD_BASE}">
-        <iframe class="${CBD_DEMO}" src="${iframeSrc}" onload=onloadIframe(this)></iframe>
+        <iframe class="${CBD_DEMO}" src="${iframeSrc}" onload=onloadIframe(this) loading="lazy"></iframe>
         <details class="${CBD_DETAILS}">
             <summary>
                 <button class="${CBD_BUTTON_SHOW}" aria-expanded="false" aria-controls="${codeBlockId}">
