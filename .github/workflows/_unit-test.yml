@@ -27,14 +27,9 @@ jobs:
         - run: npm run nx run-many -- --target=test --all --coverage --coverageReporters=lcov
           id: test
         - run: node ./tools/coverageMerger.js
-          if: ${{ inputs.report_coverage }}
-        - uses: coverallsapp/github-action@master
-          if: ${{ inputs.report_coverage }}
-          continue-on-error: true
+        - uses: actions/upload-artifact@v2
           with:
-            parallel: false
-            github-token: ${{ github.token }}
-            path-to-lcov: ./coverage/lcov.info
-            flag-name: Tested on ${{ inputs.os }} / ${{ inputs.browser_name }}
+            name: coverage
+            path: ./coverage/lcov.info
         - run: exit 0
           if: ${{ steps.test.outcome == 'success' }}
