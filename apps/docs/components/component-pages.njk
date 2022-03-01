@@ -8,9 +8,9 @@ pagination:
 permalink: "components/{{ component.title | slug }}/"
 ---
 
-{% for url in component.modules %}
-<script type="module" src="{{ url | url }}"></script>
-{% endfor %}
 
+{% renderCodeSnippets component.modules %}
 
-{% renderFile component.markdown %}
+  {% renderFile component.markdown %}
+
+{% endrenderCodeSnippets %}

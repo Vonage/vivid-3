@@ -20,25 +20,26 @@ const generateCodeBlockDemo = function (blockData) {
 
     return dom.window.document.querySelector(`.${CBD_BASE}`);
 };
-module.exports = function (content, outputPath) {
-    if (!outputPath.endsWith('.html')) {
-        return content;
-    }
-    const blockData = {};
-    blockData.outputPath = outputPath;
-    const document = new JSDOM(content).window.document;
-    const headEl = document.documentElement.querySelector('head');
-    blockData.headEl = headEl;
-    const codeBlocks = document.querySelectorAll(ELEVENTY_HTML_CODE_BLOCK_SELECTOR);
-    codeBlocks.forEach(function (codeBlock, index) {
-        const pre = codeBlock.closest('pre');
-        blockData.pre = pre;
-        blockData.index = index ++;
-        pre.replaceWith(generateCodeBlockDemo(blockData));
-    });
-    headEl.insertAdjacentHTML('beforeend', style);
-    headEl.insertAdjacentHTML('beforeend', script);
-    return document.documentElement.outerHTML;
+module.exports = function (content, modules) {
+  console.log(modules);
+  // if (!outputPath.endsWith('.html')) {
+  //     return content;
+  // }
+  // const blockData = {};
+  // blockData.outputPath = outputPath;
+  // const document = new JSDOM(content).window.document;
+  // const headEl = document.documentElement.querySelector('head');
+  // blockData.headEl = headEl;
+  // const codeBlocks = document.querySelectorAll(ELEVENTY_HTML_CODE_BLOCK_SELECTOR);
+  // codeBlocks.forEach(function (codeBlock, index) {
+  //     const pre = codeBlock.closest('pre');
+  //     blockData.pre = pre;
+  //     blockData.index = index ++;
+  //     pre.replaceWith(generateCodeBlockDemo(blockData));
+  // });
+  // headEl.insertAdjacentHTML('beforeend', style);
+  // headEl.insertAdjacentHTML('beforeend', script);
+  // return document.documentElement.outerHTML;
 };
 
 const getHtml = (demoData) => {
