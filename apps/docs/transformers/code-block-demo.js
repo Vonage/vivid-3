@@ -10,13 +10,16 @@ const CBD_DETAILS = 'cbd-details';
 const CBD_BUTTON_SHOW = 'cbd-button-show';
 const CBD_CODE_BLOCK = 'cbd-code-block';
 const generateCodeBlockDemo = function (blockData) {
+    const demoData = {};
     const code = blockData.pre.querySelector('code')?.textContent;
-    const html = decode(blockData.headElement.innerHTML) + decode(code);
-    const dom = new JSDOM(`<body>${getHtml(html, blockData.pre.outerHTML, blockData.codeBlockCount, blockData.outputPath)}</body>`);
+    demoData.demoStr = decode(blockData.headElement.innerHTML) + decode(code);
+    demoData.codeStr = blockData.pre.outerHTML;
+    demoData.blockIndex = blockData.blockIndex;
+    demoData.outputPath = blockData.outputPath;
+    const dom = new JSDOM(`<body>${getHtml(demoData)}</body>`);
 
     return dom.window.document.querySelector(`.${CBD_BASE}`);
 };
-
 module.exports = function (content, outputPath) {
     if (!outputPath.endsWith('.html')) {
         return content;
@@ -27,11 +30,11 @@ module.exports = function (content, outputPath) {
     const headElement = document.documentElement.querySelector('head');
     blockData.headElement = headElement;
     const codeBlocks = document.querySelectorAll(ELEVENTY_HTML_CODE_BLOCK_SELECTOR);
-    let codeBlockCount = 1;
+    let blockIndex = 1;
     codeBlocks.forEach(function (codeBlock) {
         const pre = codeBlock.closest('pre');
         blockData.pre = pre;
-        blockData.codeBlockCount = codeBlockCount++;
+        blockData.blockIndex = blockIndex++;
         pre.replaceWith(generateCodeBlockDemo(blockData));
     });
     headElement.insertAdjacentHTML('beforeend', style);
@@ -39,9 +42,9 @@ module.exports = function (content, outputPath) {
     return document.documentElement.outerHTML;
 };
 
-const getHtml = (demoStr, codeStr, i, outputPath) => {
-    const codeBlockId = `${CBD_CODE_BLOCK}-${i}`;
-    const iframeSrc = getIframe(demoStr, codeBlockId, outputPath);
+const getHtml = (demoData) => {
+    const codeBlockId = `${CBD_CODE_BLOCK}-${demoData.blockIndex}`;
+    const iframeSrc = getIframe(demoData.demoStr, codeBlockId, demoData.outputPath);
 
     return `
     <div class="${CBD_BASE}">
@@ -53,7 +56,7 @@ const getHtml = (demoStr, codeStr, i, outputPath) => {
                 </button>
             </summary>
             <div class="${CBD_CODE_BLOCK}" role="region" id="${codeBlockId}">
-                ${codeStr}
+                ${demoData.codeStr}
             </div>
         </details>
     </div>`;
