@@ -65,8 +65,7 @@ const getHtml = (demoData) => {
 const getIframe = (demoStr, codeBlockId, outputPath) => {
     const saveFolder = verifyAndCreateSaveFolder(outputPath);
     const filePath = `${saveFolder}/${codeBlockId}.html`;
-    const componentName = path.dirname(outputPath).substring(outputPath.lastIndexOf('/'));
-    demoStr += `<script type="module" src="/assets/modules/components/${componentName}/index.js"></script>`;
+    demoStr += addComponentScript(outputPath);
     fs.writeFileSync(filePath, demoStr);
     return filePath.substring(saveFolder.indexOf('docs/') + 4);
 }
@@ -77,6 +76,11 @@ const verifyAndCreateSaveFolder = (outputPath) => {
       fs.mkdirSync(saveFolder, { recursive: true });
     }
     return saveFolder;
+}
+
+const addComponentScript = (outputPath) => {
+    const componentName = path.dirname(outputPath).substring(outputPath.lastIndexOf('/'));
+    return `<script type="module" src="/assets/modules/components/${componentName}/index.js"></script>`;
 }
 
 const style = `
