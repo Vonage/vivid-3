@@ -1,0 +1,6 @@
+$theme-main: vvd-theme-main;
+$theme-alternate: vvd-theme-alternate;
+
+
+$theme-main-selector: ':root, .#{$theme-main}, ::part(#{$theme-main})';
+$theme-alternate-selector: '.#{$theme-alternate}, ::part(#{$theme-alternate})';

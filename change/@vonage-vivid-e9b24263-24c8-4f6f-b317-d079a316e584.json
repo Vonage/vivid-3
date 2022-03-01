@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "Merge branch 'main' into refactor(elevation)_migrate_to_fast_element",
+  "packageName": "@vonage/vivid",
+  "email": "rina.oksman@vonage.com",
+  "dependentChangeType": "patch"
+}
