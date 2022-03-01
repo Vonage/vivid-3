@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "add new component",
-  "packageName": "@vivid-nx/styles",
-  "email": "rina.oksman@vonage.com",
-  "dependentChangeType": "patch"
-}
