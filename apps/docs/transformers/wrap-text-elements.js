@@ -1,6 +1,8 @@
 const { JSDOM } = require('jsdom');
 
 const mapping = {
+  strong: 'body-1-bold',
+  li: 'body-1',
   p: 'body-1',
   h1: 'headline-1',
   h2: 'headline-2',
