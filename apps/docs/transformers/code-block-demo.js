@@ -9,11 +9,10 @@ const CBD_DEMO = 'cbd-demo';
 const CBD_DETAILS = 'cbd-details';
 const CBD_BUTTON_SHOW = 'cbd-button-show';
 const CBD_CODE_BLOCK = 'cbd-code-block';
-
-const generateCodeBlockDemo = function (pre, index, header, outputPath) {
-    const code = pre.querySelector('code')?.textContent;
-    const html = decode(header.innerHTML) + decode(code);
-    const dom = new JSDOM(`<body>${getHtml(html, pre.outerHTML, index, outputPath)}</body>`);
+const generateCodeBlockDemo = function (blockData) {
+    const code = blockData.pre.querySelector('code')?.textContent;
+    const html = decode(blockData.headElement.innerHTML) + decode(code);
+    const dom = new JSDOM(`<body>${getHtml(html, blockData.pre.outerHTML, blockData.codeBlockCount, blockData.outputPath)}</body>`);
 
     return dom.window.document.querySelector(`.${CBD_BASE}`);
 };
@@ -22,13 +21,18 @@ module.exports = function (content, outputPath) {
     if (!outputPath.endsWith('.html')) {
         return content;
     }
+    const blockData = {};
+    blockData.outputPath = outputPath;
     const document = new JSDOM(content).window.document;
     const headElement = document.documentElement.querySelector('head');
+    blockData.headElement = headElement;
     const codeBlocks = document.querySelectorAll(ELEVENTY_HTML_CODE_BLOCK_SELECTOR);
     let codeBlockCount = 1;
     codeBlocks.forEach(function (codeBlock) {
         const pre = codeBlock.closest('pre');
-        pre.replaceWith(generateCodeBlockDemo(pre, codeBlockCount++, headElement, outputPath));
+        blockData.pre = pre;
+        blockData.codeBlockCount = codeBlockCount++;
+        pre.replaceWith(generateCodeBlockDemo(blockData));
     });
     headElement.insertAdjacentHTML('beforeend', style);
     headElement.insertAdjacentHTML('beforeend', script);
