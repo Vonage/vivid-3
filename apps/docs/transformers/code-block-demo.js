@@ -14,7 +14,7 @@ const generateCodeBlockDemo = function (blockData) {
     const code = blockData.pre.querySelector('code')?.textContent;
     demoData.demoStr = decode(blockData.headElement.innerHTML) + decode(code);
     demoData.codeStr = blockData.pre.outerHTML;
-    demoData.blockIndex = blockData.blockIndex;
+    demoData.index = blockData.index;
     demoData.outputPath = blockData.outputPath;
     const dom = new JSDOM(`<body>${getHtml(demoData)}</body>`);
 
@@ -30,11 +30,10 @@ module.exports = function (content, outputPath) {
     const headElement = document.documentElement.querySelector('head');
     blockData.headElement = headElement;
     const codeBlocks = document.querySelectorAll(ELEVENTY_HTML_CODE_BLOCK_SELECTOR);
-    let blockIndex = 1;
-    codeBlocks.forEach(function (codeBlock) {
+    codeBlocks.forEach(function (codeBlock, index) {
         const pre = codeBlock.closest('pre');
         blockData.pre = pre;
-        blockData.blockIndex = blockIndex++;
+        blockData.index = index ++;
         pre.replaceWith(generateCodeBlockDemo(blockData));
     });
     headElement.insertAdjacentHTML('beforeend', style);
@@ -43,7 +42,7 @@ module.exports = function (content, outputPath) {
 };
 
 const getHtml = (demoData) => {
-    const codeBlockId = `${CBD_CODE_BLOCK}-${demoData.blockIndex}`;
+    const codeBlockId = `${CBD_CODE_BLOCK}-${demoData.index}`;
     const iframeSrc = getIframe(demoData.demoStr, codeBlockId, demoData.outputPath);
 
     return `
