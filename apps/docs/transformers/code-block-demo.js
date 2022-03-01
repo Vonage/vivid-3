@@ -43,7 +43,11 @@ module.exports = function (content, outputPath) {
 
 const getHtml = (demoData) => {
     const codeBlockId = `${CBD_CODE_BLOCK}-${demoData.index}`;
-    const iframeSrc = getIframe(demoData.demoStr, codeBlockId, demoData.outputPath);
+    const frameData = {};
+    frameData.demoStr = demoData.demoStr;
+    frameData.codeBlockId = codeBlockId;
+    frameData.outputPath = demoData.outputPath;
+    const iframeSrc = getIframe(frameData);
 
     return `
     <div class="${CBD_BASE}">
@@ -61,9 +65,10 @@ const getHtml = (demoData) => {
     </div>`;
 }
 
-const getIframe = (demoStr, codeBlockId, outputPath) => {
-    const saveFolder = verifyAndCreateSaveFolder(outputPath);
-    const filePath = saveCodeAsHTMLFile(outputPath, demoStr, codeBlockId, saveFolder);
+const getIframe = (frameData) => {
+    const saveFolder = verifyAndCreateSaveFolder(frameData.outputPath);
+    frameData.saveFolder = saveFolder;
+    const filePath = saveCodeAsHTMLFile(frameData);
     return filePath.substring(saveFolder.indexOf('docs/') + 4);
 }
 
@@ -75,10 +80,10 @@ const verifyAndCreateSaveFolder = (outputPath) => {
     return saveFolder;
 }
 
-const saveCodeAsHTMLFile = (outputPath, codeString, codeBlockId, saveFolder) => {
-    const filePath = `${saveFolder}/${codeBlockId}.html`;
-    codeString += addComponentScript(outputPath);
-    fs.writeFileSync(filePath, codeString);
+const saveCodeAsHTMLFile = (frameData) => {
+    const filePath = `${frameData.saveFolder}/${frameData.codeBlockId}.html`;
+    frameData.demoStr += addComponentScript(frameData.outputPath);
+    fs.writeFileSync(filePath, frameData.demoStr);
     return filePath;
 }
 
