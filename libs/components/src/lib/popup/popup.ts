@@ -28,7 +28,6 @@ export class Popup extends FoundationElement {
 	 * indicates whether the popup is open
 	 *
 	 * @public
-	 * @remarks
 	 * HTML Attribute: open
 	 */
 	@attr({
@@ -39,7 +38,6 @@ export class Popup extends FoundationElement {
 	 * adds close button to the popup
 	 *
 	 * @public
-	 * @remarks
 	 * HTML Attribute: dismissible
 	 */
 	@attr({
@@ -50,7 +48,6 @@ export class Popup extends FoundationElement {
 	 * adds small triangle to indicate the trigger element
 	 *
 	 * @public
-	 * @remarks
 	 * HTML Attribute: arrow
 	 */
 	@attr({
@@ -61,7 +58,6 @@ export class Popup extends FoundationElement {
 	 * set the color-scheme to dark
 	 *
 	 * @public
-	 * @remarks
 	 * HTML Attribute: alternate
 	 */
 	@attr({
@@ -72,7 +68,6 @@ export class Popup extends FoundationElement {
 	 * the placement of the popup
 	 *
 	 * @public
-	 * @remarks
 	 * HTML Attribute: corner
 	 */
 	@attr corner: Placement = Corner.Left;
@@ -81,7 +76,6 @@ export class Popup extends FoundationElement {
 	 * strategy - the position of the popup
 	 *
 	 * @public
-	 * @remarks
 	 * HTML Attribute: strategy
 	 */
 	@attr strategy: Strategy = Position.Fixed;
@@ -90,7 +84,6 @@ export class Popup extends FoundationElement {
 	 * ID reference to element in the popup’s owner document.
 	 *
 	 * @public
-	 * @remarks
 	 * HTML Attribute: anchor
 	 */
 	@attr anchor: string = '';

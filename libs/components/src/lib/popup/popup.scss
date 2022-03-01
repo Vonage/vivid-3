@@ -1,6 +1,4 @@
 @use 'sass:map';
-
-@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 
 :host {
@@ -10,7 +8,7 @@
 .control {
 	--border-radius-size: 6px;
 	width: min-content;
-	background-color: var(#{theme-consts.$vvd-color-surface-4dp});
+	background-color: var(#{--vvd-color-surface-4dp});
 	border-radius: var(--border-radius-size);
 	contain: layout;
 	&:not(.open) {
@@ -35,7 +33,7 @@
 		z-index: -1;
 		width: 8px;
 		height: 8px;
-		background-color: var(#{theme-consts.$vvd-color-surface-4dp});
+		background-color: var(#{--vvd-color-surface--4dp});
 		transform: rotate(45deg);
 	}
 
