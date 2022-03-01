@@ -12,7 +12,7 @@ const CBD_CODE_BLOCK = 'cbd-code-block';
 const generateCodeBlockDemo = function (blockData) {
     const demoData = {};
     const code = blockData.pre.querySelector('code')?.textContent;
-    demoData.demoStr = decode(blockData.headElement.innerHTML) + decode(code);
+    demoData.demoStr = decode(blockData.headEl.innerHTML) + decode(code);
     demoData.codeStr = blockData.pre.outerHTML;
     demoData.index = blockData.index;
     demoData.outputPath = blockData.outputPath;
@@ -27,8 +27,8 @@ module.exports = function (content, outputPath) {
     const blockData = {};
     blockData.outputPath = outputPath;
     const document = new JSDOM(content).window.document;
-    const headElement = document.documentElement.querySelector('head');
-    blockData.headElement = headElement;
+    const headEl = document.documentElement.querySelector('head');
+    blockData.headEl = headEl;
     const codeBlocks = document.querySelectorAll(ELEVENTY_HTML_CODE_BLOCK_SELECTOR);
     codeBlocks.forEach(function (codeBlock, index) {
         const pre = codeBlock.closest('pre');
@@ -36,8 +36,8 @@ module.exports = function (content, outputPath) {
         blockData.index = index ++;
         pre.replaceWith(generateCodeBlockDemo(blockData));
     });
-    headElement.insertAdjacentHTML('beforeend', style);
-    headElement.insertAdjacentHTML('beforeend', script);
+    headEl.insertAdjacentHTML('beforeend', style);
+    headEl.insertAdjacentHTML('beforeend', script);
     return document.documentElement.outerHTML;
 };
 
