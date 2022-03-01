@@ -10,3 +10,7 @@ export const fixture = (() => {
 		return fragment.children[0];
 	};
 })();
+
+export const getControlElement = (element: Element) => {
+	return element.shadowRoot?.querySelector('.control') as HTMLElement;
+}

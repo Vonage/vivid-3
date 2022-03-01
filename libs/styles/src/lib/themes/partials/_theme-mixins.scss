@@ -1,0 +1,9 @@
+$theme-main: vvd-theme-main;
+$theme-alternate: vvd-theme-alternate;
+
+
+@mixin color-theme($type) {
+	@supports (color-theme: $type) {
+		color-theme: $type;
+	}
+}
