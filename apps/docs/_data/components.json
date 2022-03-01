@@ -33,5 +33,13 @@
     "modules": [
       "/assets/modules/components/layout/index.js"
     ]
+  },
+  {
+    "title": "elevation",
+    "markdown": "./libs/components/src/lib/elevation/README.md",
+    "modules": [
+      "/assets/modules/components/elevation/index.js",
+      "/assets/modules/components/layout/index.js"
+    ]
   }
 ]

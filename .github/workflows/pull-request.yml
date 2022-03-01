@@ -38,6 +38,23 @@ jobs:
       os: ubuntu-latest
       report_coverage: true
 
+  submit-code-coverage:
+    needs: [unit-tests]
+    name: "Code Coverage Submission"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: coverage
+
+      - uses: coverallsapp/github-action@master
+        continue-on-error: true
+        with:
+          parallel: false
+          github-token: ${{ github.token }}
+          path-to-lcov: ./lcov.info
+          flag-name: Tested on ubunti-latest / jsDOM
+
   call-visual-regression:
     needs: [call-lint, check-changelogs]
     uses: vonage/vivid-3/.github/workflows/_visual-regression.yml@main
