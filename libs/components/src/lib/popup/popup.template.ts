@@ -1,4 +1,4 @@
-import { html } from '@microsoft/fast-element';
+import { html, ref } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
@@ -23,7 +23,7 @@ export const popupTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Popup> = () => html`
-	<div class="wrapper">
+	<div class="wrapper" ${ref("popupEl")}>
 		<vwc-elevation dp="2">
 			<div class="${getClasses}" aria-hidden="${(x) => x.open ? 'false' : 'true'}"
 				part="${(x) => x.alternate ? 'vvd-scheme-alternate' : ''}">
@@ -41,5 +41,5 @@ const renderDismissButton = () => {
 };
 
 const renderArrow = () => {
-	return html`<div class="arrow"></div>`;
+	return html`<div class="arrow" ${ref('arrowEl')}></div>`;
 };

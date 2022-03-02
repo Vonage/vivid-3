@@ -14,8 +14,15 @@ export class Popup extends FoundationElement {
 	private get DISTANCE(): number { return 12; }
 
 	private onResizeWindow = this.updatePosition.bind(this);
-	private popupEl = document.querySelector('.wrapper') as HTMLElement;
-	private arrowEl = document.querySelector('.arrow') as HTMLElement;
+
+	/**
+     * @internal
+     */
+	public popupEl!: HTMLElement;
+	/**
+     * @internal
+     */
+	public arrowEl!: HTMLElement;
 
 	private get middleware(): Array<any> {
 		return (
@@ -132,8 +139,10 @@ export class Popup extends FoundationElement {
 			return;
 		}
 		if (!this.anchorEl) {
-			this.hide();
 			console.error('Anchor is not defined');
+			return;
+		}
+		if (!this.popupEl) {
 			return;
 		}
 		const positionData = await computePosition(this.anchorEl, this.popupEl, {

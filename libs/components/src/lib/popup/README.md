@@ -10,7 +10,7 @@ To trigger the Popup, it should be paired with an anchor (e.g., a button).
 </script>
 ```
 
-## Anchor
+<!-- ## Anchor
 
 Use the `anchor` attribute to reference the ID to element in the popup’s owner document.
 
@@ -44,7 +44,7 @@ Use the `anchor` attribute to reference the ID to element in the popup’s owner
     margin-bottom: 0.5rem;
   }
 </style>
-```
+``` -->
 
 ## Open
 
@@ -54,8 +54,9 @@ Use the `open` attribute to indicate whether the popup is open.
 - Default: `false`
 
 ```html preview
-<vwc-button id="buttonAnchor" layout="outlined" outlined aria-haspopup="true" aria-describedby="popup">Click on me</vwc-button>
-<vwc-popup id="popup" anchor="buttonAnchor">
+<vwc-button id="buttonAnchor" appearance='filled' label='Click on me!'></vwc-button>
+
+<vwc-popup id="popup" arrow anchor="buttonAnchor">
     <div class="content">
       <vwc-text font-face="body-1-bold" tight><p class="line">Popup title</p></vwc-text>
       <vwc-text font-face="body-2" tight>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</vwc-text>
@@ -69,8 +70,29 @@ Use the `open` attribute to indicate whether the popup is open.
 	  popup.open = !popup.open;
 }
 </script>
+<style>
+    .cbd-demo{
+      height: 300px;
+      width: 100%;
+      display: flex;
+			align-items: center;
+			justify-content: center;
+			background-color: var(--vvd-color-neutral-10);
+  }
+  .content {
+			width: 200px;
+			text-align: left;
+			padding: 1rem;
+		}
+  .line {
+    border-bottom: 1px solid var(--vvd-color-neutral-40);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+</style>
 ```
 
+<!--
 ## Dismissible
 
 Use the `dismissible` attribute to add close button to the popup.
@@ -154,4 +176,4 @@ Use the `strategy` attribute to set the position of the popup.
       <vwc-text font-face="body-2" tight>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</vwc-text>
     </div>
 </vwc-popup>
-```
+``` -->
