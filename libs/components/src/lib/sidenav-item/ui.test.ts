@@ -9,13 +9,8 @@ import {
 const componentName = 'sidenav-item';
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template = extractHTMLBlocksFromReadme(
-		path.join(__dirname, 'README.md')
-	).reduce(
-		(htmlString: string, block: string) =>
-			`${htmlString} <div style="margin: 5px; width: 300px">${block}</div>`,
-		''
-	);
+	const template = extractHTMLBlocksFromReadme(path.join(__dirname, 'README.md'))
+		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`,'');
 
 	await loadComponent({
 		page,
