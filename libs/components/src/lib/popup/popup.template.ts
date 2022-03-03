@@ -26,7 +26,7 @@ export const popupTemplate: (
 	<div class="wrapper" ${ref("popupEl")}>
 		<vwc-elevation dp="2">
 			<div class="${getClasses}" aria-hidden="${(x) => x.open ? 'false' : 'true'}"
-				part="${(x) => x.alternate ? 'vvd-scheme-alternate' : ''}">
+				part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}">
 				<div class="content">
 					<slot></slot>
 					${(x) => (x.dismissible ? renderDismissButton() : '')}

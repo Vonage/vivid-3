@@ -2,7 +2,7 @@
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 
 :host {
-	z-index: 7; //To overcome the 6 of the vwc-side-drawer
+	z-index: 7;
 }
 
 .control {
@@ -11,35 +11,35 @@
 	background-color: var(#{--vvd-color-surface-4dp});
 	border-radius: var(--border-radius-size);
 	contain: layout;
+
 	&:not(.open) {
 		display: none;
 	}
-
 	&.wrapper {
 		position: absolute;
 	}
+}
 
-	&.content {
-		@include typography.typography-cat-shorthand(body-1);
-		display: grid;
-		.dismissible & {
-			align-content: start;
-			grid-template-columns: 1fr auto;
-		}
-	}
-
-	&.arrow {
-		position: absolute;
-		z-index: -1;
-		width: 8px;
-		height: 8px;
-		background-color: var(#{--vvd-color-surface--4dp});
-		transform: rotate(45deg);
-	}
-
-	&.dismissible {
-		align-self: flex-start;
-		margin-block-start: 0.25rem;
-		margin-inline-end: 0.25rem;
+.content {
+	display: grid;
+	.dismissible & {
+		align-content: start;
+		grid-template-columns: 1fr auto;
 	}
 }
+
+.arrow {
+	position: absolute;
+	z-index: -1;
+	width: 8px;
+	height: 8px;
+	background-color: var(#{--vvd-color-surface-4dp});
+	transform: rotate(45deg);
+}
+
+.dismissible {
+	align-self: flex-start;
+	margin-block-start: 0.25rem;
+	margin-inline-end: 0.25rem;
+}
+

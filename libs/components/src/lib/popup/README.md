@@ -56,7 +56,7 @@ Use the `open` attribute to indicate whether the popup is open.
 ```html preview
 <vwc-button id="buttonAnchor" appearance='filled' label='Click on me!'></vwc-button>
 
-<vwc-popup id="popup" arrow anchor="buttonAnchor">
+<vwc-popup id="popup" alternate dismissible anchor="buttonAnchor">
     <div class="content">
       <vwc-text font-face="body-1-bold" tight><p class="line">Popup title</p></vwc-text>
       <vwc-text font-face="body-2" tight>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</vwc-text>

@@ -138,11 +138,10 @@ export class Popup extends FoundationElement {
 		if (!this.open) {
 			return;
 		}
-		if (!this.anchorEl) {
-			console.error('Anchor is not defined');
+		if (!this.anchorEl || this.anchorEl === undefined) {
 			return;
 		}
-		if (!this.popupEl) {
+		if (!this.popupEl || this.popupEl === undefined) {
 			return;
 		}
 		const positionData = await computePosition(this.anchorEl, this.popupEl, {
