@@ -1,6 +1,6 @@
 # Components
 
-<!-- Statuses can be GA | Alpha | WIP | backlog | deprecated -->
+<!-- Statuses can be GA | alpha | WIP | backlog | deprecated | obsolete -->
 
 | Name   | vivid | vivid@next |
 | ------ | ----- | ---------- |
