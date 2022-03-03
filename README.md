@@ -39,69 +39,7 @@ See the [open issues](https://github.com/vonage/vivid-3/issues) for a full list 
 
 <br>
 
-
-### Components roadmap
-| name                 | to do      | status      |
-| -------------------- | ---------- | ----------- |
-| button               | migrate    | done        |
-| badge                | migrate    | done        |
-| icon                 | migrate    | done        |
-| layout               | migrate    | done        |
-| elevation            | migrate    | done        |
-| side drawer          | migrate    | in progress |
-| popup                | migrate    | in progress |
-| anchor               | NEW        | in progress |
-| breadcrumbs          | NEW        |      -      |
-| surface              | deprecated |      -      |
-| checkbox             | migrate    |      -      |
-| circular progress    | migrate    |      -      |
-| dialog               | migrate    |      -      |
-| formfield            | migrate    |      -      |
-| icon button          | migrate    |      -      |
-| icon button toggle   | migrate    |      -      |
-| check list item      | migrate    |      -      |
-| linear progress      | migrate    |      -      |
-| list                 | migrate    |      -      |
-| list item            | migrate    |      -      |
-| menu                 | migrate    |      -      |
-| radio                | migrate    |      -      |
-| radio list item      | migrate    |      -      |
-| select               | migrate    |      -      |
-| slider               | migrate    |      -      |
-| fab                  | migrate    |      -      |
-| snackbar             | migrate    |      -      |
-| notched outline      | migrate    |      -      |
-| switch               | migrate    |      -      |
-| tab                  | migrate    |      -      |
-| tab bar              | migrate    |      -      |
-| textarea             | migrate    |      -      |
-| textfield            | migrate    |      -      |
-| drawer               | migrate    |      -      |
-| chip                 | migrate    |      -      |
-| shipset              | migrate    |      -      |
-| top app bar fixed    | migrate    |      -      |
-| top app bar          | migrate    |      -      |
-| file picker          | migrate    |      -      |
-| banner               | migrate    |      -      |
-| audio player         | migrate    |      -      |
-| carousel             | migrate    |      -      |
-| theme switch         | migrate    |      -      |
-| button-toggle-group  | migrate    |      -      |
-| empty state          | migrate    |      -      |
-| datagrid             | migrate    |      -      |
-| helper message       | migrate    |      -      |
-| note                 | migrate    |      -      |
-| calendar             | migrate    |      -      |
-| accordion            | migrate    |      -      |
-| card                 | migrate    |      -      |
-| list expansion panel | migrate    |      -      |
-| datepicker           | migrate    |      -      |
-| dropdown             | migrate    |      -      |
-| keypad               | migrate    |      -      |
-| pagination           | migrate    |      -      |
-| tag                  | migrate    |      -      |
-| text                 | migrate    |      -      |
-| tooltip              | migrate    |      -      |
+[view components status](https://github.com/Vonage/vivid-3/blob/main/docs/components.md)
 
 ## 🤝 Contributing
 
