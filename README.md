@@ -4,11 +4,13 @@
   </a>
   <h1>Welcome to Vivid</h1>
 
+[![codecov](https://codecov.io/gh/Vonage/vivid-3/branch/main/graph/badge.svg?token=74ALFP2OR2)](https://codecov.io/gh/Vonage/vivid-3)
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![Apache 2.0 License][license-shield]][license-url]
+
 
   <p>
     Vonage's design system platform targeted to provide incorporated, battery-charged web components.
