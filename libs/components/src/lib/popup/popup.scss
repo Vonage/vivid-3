@@ -15,9 +15,10 @@
 	&:not(.open) {
 		display: none;
 	}
-	&.wrapper {
-		position: absolute;
-	}
+}
+
+.wrapper {
+	position: absolute;
 }
 
 .content {

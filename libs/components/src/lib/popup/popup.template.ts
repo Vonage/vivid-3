@@ -24,7 +24,7 @@ export const popupTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Popup> = () => html`
 	<div class="wrapper" ${ref("popupEl")}>
-		<vwc-elevation dp="2">
+		<vwc-elevation>
 			<div class="${getClasses}" aria-hidden="${(x) => x.open ? 'false' : 'true'}"
 				part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}">
 				<div class="content">

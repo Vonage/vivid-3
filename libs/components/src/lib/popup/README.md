@@ -10,7 +10,7 @@ To trigger the Popup, it should be paired with an anchor (e.g., a button).
 </script>
 ```
 
-<!-- ## Anchor
+## Anchor
 
 Use the `anchor` attribute to reference the ID to element in the popup’s owner document.
 
@@ -18,45 +18,8 @@ Use the `anchor` attribute to reference the ID to element in the popup’s owner
 - Default: `''`
 
 ```html preview
-<vwc-icon id="anchor" type='info-line'></vwc-icon>
-<vwc-popup anchor="anchor" open>
-    <div class="content">
-      <vwc-text font-face="body-1-bold" tight><p class="line">Popup title</p></vwc-text>
-      <vwc-text font-face="body-2" tight>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</vwc-text>
-    </div>
-</vwc-popup>
-<style>
-    .cbd-demo{
-      height: 100px;
-      display: flex;
-			align-items: center;
-			justify-content: center;
-			background-color: var(--vvd-color-neutral-10);
-  }
-  .content {
-			width: 200px;
-			text-align: left;
-			padding: 1rem;
-		}
-  .line {
-    border-bottom: 1px solid var(--vvd-color-neutral-40);
-    padding-bottom: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-</style>
-``` -->
-
-## Open
-
-Use the `open` attribute to indicate whether the popup is open.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
 <vwc-button id="buttonAnchor" appearance='filled' label='Click on me!'></vwc-button>
-
-<vwc-popup id="popup" alternate dismissible anchor="buttonAnchor">
+<vwc-popup id="popup" anchor="buttonAnchor" >
     <div class="content">
       <vwc-text font-face="body-1-bold" tight><p class="line">Popup title</p></vwc-text>
       <vwc-text font-face="body-2" tight>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</vwc-text>
@@ -72,8 +35,7 @@ Use the `open` attribute to indicate whether the popup is open.
 </script>
 <style>
     .cbd-demo{
-      height: 300px;
-      width: 100%;
+      height: 200px;
       display: flex;
 			align-items: center;
 			justify-content: center;
@@ -92,7 +54,25 @@ Use the `open` attribute to indicate whether the popup is open.
 </style>
 ```
 
-<!--
+<!-- ## Open
+
+Use the `open` attribute to indicate whether the popup is open.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+
+<vwc-icon id="anchor" type='info-line'></vwc-icon>
+<vwc-popup corner="left" anchor="anchor">
+    <div class="content">
+      <vwc-text font-face="body-1-bold" tight><p class="line">Popup title</p></vwc-text>
+      <vwc-text font-face="body-2" tight>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</vwc-text>
+    </div>
+</vwc-popup>
+```
+
+
 ## Dismissible
 
 Use the `dismissible` attribute to add close button to the popup.
@@ -102,7 +82,7 @@ Use the `dismissible` attribute to add close button to the popup.
 
 ```html preview
 <vwc-icon id="dismissibleAnchor" type='info-line'></vwc-icon>
-<vwc-popup anchor="dismissibleAnchor" open dismissible>
+<vwc-popup anchor="dismissibleAnchor"  dismissible>
     <div class="content">
       <vwc-text font-face="body-1-bold" tight><p class="line">Popup title</p></vwc-text>
       <vwc-text font-face="body-2" tight>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</vwc-text>
@@ -119,7 +99,7 @@ Use the `corner` attribute to set the placement of the popup.
 
 ```html preview
 <vwc-icon id="cornerAnchor" type='info-line'></vwc-icon>
-<vwc-popup anchor="cornerAnchor" open corner="right">
+<vwc-popup anchor="cornerAnchor"  corner="right">
     <div class="content">
       <vwc-text font-face="body-1-bold" tight><p class="line">Popup title</p></vwc-text>
       <vwc-text font-face="body-2" tight>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</vwc-text>
@@ -136,7 +116,7 @@ Use the `strategy` attribute to add small triangle to indicate the trigger eleme
 
 ```html preview
 <vwc-icon id="arrowAnchor" type='info-line'></vwc-icon>
-<vwc-popup anchor="arrowAnchor" open arrow>
+<vwc-popup anchor="arrowAnchor"  arrow>
     <div class="content">
       <vwc-text font-face="body-1-bold" tight><p class="line">Popup title</p></vwc-text>
       <vwc-text font-face="body-2" tight>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</vwc-text>
@@ -153,7 +133,7 @@ Use the `alternate` attribute to set the color-scheme to dark.
 
 ```html preview
 <vwc-icon id="alternateAnchor" type='info-line'></vwc-icon>
-<vwc-popup anchor="alternateAnchor" open alternate>
+<vwc-popup anchor="alternateAnchor"  alternate>
     <div class="content">
       <vwc-text font-face="body-1-bold" tight><p class="line">Popup title</p></vwc-text>
       <vwc-text font-face="body-2" tight>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</vwc-text>
@@ -170,7 +150,7 @@ Use the `strategy` attribute to set the position of the popup.
 
 ```html preview
 <vwc-icon id="strategyAnchor" type='info-line'></vwc-icon>
-<vwc-popup anchor="strategyAnchor" open strategy="absolute">
+<vwc-popup anchor="strategyAnchor"  strategy="absolute">
     <div class="content">
       <vwc-text font-face="body-1-bold" tight><p class="line">Popup title</p></vwc-text>
       <vwc-text font-face="body-2" tight>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</vwc-text>
