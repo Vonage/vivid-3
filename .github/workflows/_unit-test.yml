@@ -19,18 +19,19 @@ jobs:
       runs-on: ${{ inputs.os }}
       steps:
         - uses: actions/checkout@v2
+
         - uses: actions/setup-node@v2
           with:
             node-version: '16'
             cache: 'npm'
+
         - run: npm ci --only=dev
+
         - run: npm run nx run-many -- --target=test --all --coverage --coverageReporters=lcov
           id: test
+
         - run: node ./tools/coverageMerger.js
-        - uses: actions/upload-artifact@v2
-          with:
-            name: coverage
-            path: ./coverage/lcov.info
+
         - name: Upload coverage to Codecov
           if: ${{ inputs.report_coverage }}
           uses: codecov/codecov-action@v2
@@ -42,5 +43,6 @@ jobs:
             flags: unittests
             name: codecov-umbrella
             verbose: true
+
         - run: exit 0
           if: ${{ steps.test.outcome == 'success' }}
