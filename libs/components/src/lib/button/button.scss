@@ -14,6 +14,7 @@
 	$default: ghost,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../shared/src/lib/sass/mixins/states' as states;
 
 :host {
 	outline: 0 none;
@@ -22,6 +23,7 @@
 .control {
 	@include connotation.connotation;
 	@include appearance.appearance;
+  @include states.state;
 
 	position: relative;
 	display: inline-flex;

@@ -1,0 +1,49 @@
+@mixin state {
+  //primary style
+  //filled
+  &:not(.connotation-cta, .connotation-success, .connotation-alert, .connotation-announcement, .connotation-info) {
+    &:hover {
+      background-color: var(--vvd-color-neutral-80);
+    }
+    &:active {
+      background-color: var(--vvd-color-neutral-70);
+    }
+
+    //ghost & outlined
+    &:not(.appearance-filled) {
+      &:hover {
+        background-color: var(--vvd-color-neutral-10);
+      }
+      &:active {
+        background-color: var(--vvd-color-neutral-20);
+      }
+    }
+  }
+  $connotation: (
+    cta,
+    success,
+    alert,
+    announcement,
+    info,
+  );
+
+  @each $key in $connotation {
+    &.connotation-#{$key} {
+      &:hover {
+        background-color: var(--vvd-color-#{$key}-70);
+      }
+      &:active {
+        background-color: var(--vvd-color-#{$key}-90);
+      }
+
+      &:not(.appearance-filled) {
+        &:hover {
+          background-color: var(--vvd-color-#{$key}-10);
+        }
+        &:active {
+          background-color: var(--vvd-color-#{$key}-20);
+        }
+      }
+    }
+  }
+}
