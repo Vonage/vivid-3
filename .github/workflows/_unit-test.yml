@@ -31,5 +31,16 @@ jobs:
           with:
             name: coverage
             path: ./coverage/lcov.info
+        - name: Upload coverage to Codecov
+          if: ${{ inputs.report_coverage }}
+          uses: codecov/codecov-action@v2
+          with:
+            token: ${{ secrets.CODECOV_TOKEN }}
+            directory: ./coverage/
+            fail_ci_if_error: true
+            files: ./coverage/lcov.info
+            flags: unittests
+            name: codecov-umbrella
+            verbose: true
         - run: exit 0
           if: ${{ steps.test.outcome == 'success' }}
