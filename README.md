@@ -4,11 +4,13 @@
   </a>
   <h1>Welcome to Vivid</h1>
 
+[![codecov][codecov-shield]][codecov-url]
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![Apache 2.0 License][license-shield]][license-url]
+
 
   <p>
     Vonage's design system platform targeted to provide incorporated, battery-charged web components.
@@ -76,6 +78,8 @@ This project is [Apache 2.0][license-url] licensed.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[codecov-shield]: https://img.shields.io/codecov/c/gh/Vonage/vivid-3?style=for-the-badge&token=74ALFP2OR2
+[codecov-url]: https://codecov.io/gh/Vonage/vivid-3
 [contributors-shield]: https://img.shields.io/github/contributors/vonage/vivid-3.svg?style=for-the-badge
 [contributors-url]: https://github.com/vonage/vivid-3/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/vonage/vivid-3.svg?style=for-the-badge
