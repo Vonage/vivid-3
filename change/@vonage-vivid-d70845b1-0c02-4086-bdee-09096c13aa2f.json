@@ -1,7 +1,7 @@
 {
   "type": "none",
-  "comment": "refactor: extract affix to patterns",
+  "comment": "Add watch mode for components e2e",
   "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
+  "email": "yonatan.kra@vonage.com",
   "dependentChangeType": "none"
 }
