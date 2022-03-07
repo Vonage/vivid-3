@@ -1,6 +1,6 @@
 {
   "type": "none",
-  "comment": "refactor: extract affix to patterns",
+  "comment": "fixed typo of css variable in docs",
   "packageName": "@vonage/vivid",
   "email": "yinon@hotmail.com",
   "dependentChangeType": "none"
