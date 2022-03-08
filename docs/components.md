@@ -4,7 +4,7 @@
 
 | Name                 | VIVID           | VIVID@next |
 | -------------------- | --------------- | ---------- |
-| button               |       GA        |     GA     |
+| button               |       GA        |     alpha     |
 | badge                |       GA        |     GA     |
 | icon                 |       GA        |     GA     |
 | layout               |      alpha      |     GA     |
