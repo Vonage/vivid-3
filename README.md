@@ -41,6 +41,8 @@ See the [open issues](https://github.com/vonage/vivid-3/issues) for a full list 
 
 <br>
 
+[view components status](https://github.com/Vonage/vivid-3/blob/main/docs/components.md)
+
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!
