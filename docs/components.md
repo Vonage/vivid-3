@@ -44,7 +44,7 @@
 | file picker          | GA       | -          |
 | banner               | GA       | -          |
 | audio player         | GA       | -          |
-| carousel             | obsolete | deprecated |
+| carousel             | obsolete | -          |
 | theme switch         | GA       | -          |
 | button-toggle-group  | GA       | -          |
 | empty state          | GA       | -          |
