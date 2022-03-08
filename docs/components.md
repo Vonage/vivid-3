@@ -37,7 +37,7 @@
 | textarea             | GA       | -          |
 | textfield            | GA       | -          |
 | drawer               | alpha    | -          |
-| chip                 | obsolete |deprecated  |
+| chip                 | obsolete | -          |
 | chipset              | obsolete |deprecated  |
 | top app bar fixed    | GA       | -          |
 | top app bar          | GA       | -          |
