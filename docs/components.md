@@ -13,7 +13,6 @@
 | popup                |      alpha      |     WIP    |
 | anchor               |      -      |     WIP     |
 | breadcrumbs          |       WIP       |     WIP    |
-| surface              |    obsolete     | deprecated |
 | checkbox             |       GA        | -          |
 | circular progress    |       GA        | -          |
 | dialog               |       GA        | -          |
