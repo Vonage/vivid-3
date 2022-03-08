@@ -11,7 +11,7 @@
 | elevation            |      alpha      |     GA     |
 | side drawer          |      alpha      |     WIP    |
 | popup                |      alpha      |     WIP    |
-| anchor               |      alpha      |     GA     |
+| anchor               |      -      |     WIP     |
 | breadcrumbs          |       WIP       |     WIP    |
 | surface              |    obsolete     | deprecated |
 | checkbox             |       GA        | -          |
