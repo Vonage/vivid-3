@@ -55,7 +55,7 @@
 | accordion            | alpha    | -          |
 | card                 | alpha    | -          |
 | list expansion panel | GA       | -          |
-| datepicker           | alpha    | deprecated |
+| datepicker           | alpha    | -          |
 | dropdown             | alpha    | -          |
 | keypad               | alpha    | -          |
 | tag                  | alpha    | -          |
