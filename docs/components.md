@@ -38,7 +38,7 @@
 | textfield            | GA       | -          |
 | drawer               | alpha    | -          |
 | chip                 | obsolete | -          |
-| chipset              | obsolete |deprecated  |
+| chipset              | obsolete | -          |
 | top app bar fixed    | GA       | -          |
 | top app bar          | GA       | -          |
 | file picker          | GA       | -          |
