@@ -1,0 +1,20 @@
+{
+  "name": "@vivid-nx/styles",
+  "entries": [
+    {
+      "date": "Fri, 04 Mar 2022 07:18:22 GMT",
+      "tag": "@vivid-nx/styles_v0.0.1",
+      "version": "0.0.1",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vivid-nx/styles",
+            "commit": "460eb6e786247c2ae08be05a644b36823a3310bb",
+            "comment": "replaced hardcoded content with auto-generated tokens"
+          }
+        ]
+      }
+    }
+  ]
+}
