@@ -13,7 +13,7 @@
 | popup                |      alpha      |     WIP    |
 | anchor               |      alpha      |     GA     |
 | breadcrumbs          |       WIP       |     WIP    |
-| surface              |    Obsolete     | Deprecated |
+| surface              |    obsolete     | deprecated |
 | checkbox             |       GA        | -          |
 | circular progress    |       GA        | -          |
 | dialog               |       GA        | -          |
@@ -45,7 +45,7 @@
 | file picker          |       GA        | -          |
 | banner               |       GA        | -          |
 | audio player         |       GA        | -          |
-| carousel             |    Obsolete     | Deprecated |
+| carousel             |    obsolete     | deprecated |
 | theme switch         |       GA        | -          |
 | button-toggle-group  |       GA        | -          |
 | empty state          |       GA        | -          |
@@ -56,7 +56,7 @@
 | accordion            |      alpha      | -          |
 | card                 |      alpha      | -          |
 | list expansion panel |       GA        | -          |
-| datepicker           |      alpha      | Deprecated |
+| datepicker           |      alpha      | deprecated |
 | dropdown             |      alpha      | -          |
 | keypad               |      alpha      | -          |
 | tag                  |      alpha      | -          |
