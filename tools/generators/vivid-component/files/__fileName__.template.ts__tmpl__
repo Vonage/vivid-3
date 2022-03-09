@@ -4,9 +4,7 @@ import type { ElementDefinitionContext, FoundationElementDefinition } from '@mic
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { <%= className %> } from './<%= fileName %>';
 
-const getClasses = ({
-	connotation, appearance, shape, size, iconTrailing,
-}: <%= className %>) =>
+const getClasses = (_: <%= className %>) =>
 	classNames(
 		'control',
 	);
