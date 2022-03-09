@@ -2,16 +2,13 @@ import { html } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import type { <%= className %> } from './<%= fileName %>.base';
+import type { <%= className %> } from './<%= fileName %>';
 
 const getClasses = ({
-	connotation, appearance, shape, size, iconTrailing,
-}: Badge) => classNames(
+	text
+}: <%= className %>) => classNames(
 	'control',
-	[`connotation-${connotation}`, Boolean(connotation)],
-	[`appearance-${appearance}`, Boolean(appearance)],
-	[`shape-${shape}`, Boolean(shape)],
-	[`size-${size}`, Boolean(size)],
+	[`text`, Boolean(text)]
 );
 
 /**
@@ -25,4 +22,5 @@ export const <%= className %>Template: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<<%= className %>> = (context: ElementDefinitionContext) => html`
         <span class="${getClasses}">
+        ${context}
 		</span>`;
