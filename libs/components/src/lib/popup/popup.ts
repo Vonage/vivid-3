@@ -1,6 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { arrow, computePosition, flip, offset, shift, hide, inline, autoUpdate } from '@floating-ui/dom';
+import { arrow, autoUpdate, computePosition, flip, hide, inline, offset, shift } from '@floating-ui/dom';
 import type { Padding, Placement, Strategy } from '@floating-ui/core';
 import { Corner, Position } from '../enums.js';
 
@@ -13,12 +13,12 @@ export class Popup extends FoundationElement {
 	private get PADDING(): Padding { return 0; }
 	private get DISTANCE(): number { return 12; }
 
-	public popupEl!: HTMLElement;
-	public arrowEl!: HTMLElement;
+	popupEl!: HTMLElement;
+	arrowEl!: HTMLElement;
 
 	private get middleware(): Array<any> {
 		const middleware = [flip(), hide(), inline(), shift({ padding: this.PADDING })];
-		if (this.arrow) { middleware.push(arrow({ element: this.arrowEl, padding: this.PADDING }), offset(this.DISTANCE)) };
+		if (this.arrow) { middleware.push(arrow({ element: this.arrowEl, padding: this.PADDING }), offset(this.DISTANCE)); }
 		return middleware;
 	}
 
