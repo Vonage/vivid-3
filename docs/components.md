@@ -3,62 +3,63 @@
 <!-- Statuses can be GA | alpha | WIP | backlog | deprecated | obsolete -->
 
 | Name                 | VIVID    | VIVID@next |
-|----------------------|----------|------------|
-| button               | GA       | alpha      |
+| -------------------- | -------- | ---------- |
+| accordion            | alpha    | \-         |
+| anchor               | \-       | WIP        |
+| audio player         | GA       | \-         |
 | badge                | GA       | GA         |
-| icon                 | GA       | GA         |
-| layout               | alpha    | GA         |
-| elevation            | alpha    | GA         |
-| side drawer          | alpha    | WIP        |
-| popup                | alpha    | WIP        |
-| anchor               | -        | WIP        |
+| banner               | GA       | \-         |
+| breadcrumb-item      | WIP      | WIP        |
 | breadcrumbs          | WIP      | WIP        |
-| checkbox             | GA       | -          |
-| circular progress    | GA       | -          |
-| dialog               | GA       | -          |
-| formfield            | GA       | -          |
-| icon button          | GA       | -          |
-| icon button toggle   | GA       | -          |
-| check list item      | GA       | -          |
-| linear progress      | GA       | -          |
-| list                 | GA       | -          |
-| list item            | GA       | -          |
-| menu                 | GA       | -          |
-| radio                | GA       | -          |
-| radio list item      | GA       | -          |
-| select               | GA       | -          |
-| slider               | GA       | -          |
-| fab                  | alpha    | -          |
-| snackbar             | GA       | -          |
-| notched outline      | GA       | -          |
-| switch               | GA       | -          |
-| tab                  | GA       | -          |
-| tab bar              | GA       | -          |
-| textarea             | GA       | -          |
-| textfield            | GA       | -          |
-| drawer               | alpha    | -          |
-| chip                 | obsolete | -          |
-| chipset              | obsolete | -          |
-| top app bar fixed    | GA       | -          |
-| top app bar          | GA       | -          |
-| file picker          | GA       | -          |
-| banner               | GA       | -          |
-| audio player         | GA       | -          |
-| carousel             | obsolete | -          |
-| theme switch         | GA       | -          |
-| button-toggle-group  | GA       | -          |
-| empty state          | GA       | -          |
-| datagrid             | GA       | -          |
-| helper message       | GA       | -          |
-| note                 | GA       | -          |
-| calendar             | GA       | -          |
-| accordion            | alpha    | -          |
-| card                 | alpha    | -          |
-| list expansion panel | GA       | -          |
-| datepicker           | alpha    | -          |
-| dropdown             | alpha    | -          |
-| keypad               | alpha    | -          |
-| tag                  | alpha    | -          |
-| text                 | alpha    | -          |
-| tooltip              | alpha    | -          |
-| pagination           | alpha    | -          |
+| button               | GA       | alpha      |
+| button-toggle-group  | GA       | \-         |
+| calendar             | GA       | \-         |
+| card                 | alpha    | \-         |
+| carousel             | obsolete | deprecated |
+| check list item      | GA       | \-         |
+| checkbox             | GA       | \-         |
+| chip                 | obsolete | deprecated |
+| chipset              | obsolete | deprecated |
+| circular progress    | GA       | \-         |
+| datagrid             | GA       | \-         |
+| datepicker           | alpha    | deprecated |
+| dialog               | GA       | \-         |
+| drawer               | alpha    | \-         |
+| dropdown             | alpha    | \-         |
+| elevation            | alpha    | GA         |
+| empty state          | GA       | \-         |
+| fab                  | alpha    | \-         |
+| file picker          | GA       | \-         |
+| formfield            | GA       | \-         |
+| helper message       | GA       | \-         |
+| icon                 | GA       | GA         |
+| icon button          | GA       | \-         |
+| icon button toggle   | GA       | \-         |
+| keypad               | alpha    | \-         |
+| layout               | alpha    | GA         |
+| linear progress      | GA       | \-         |
+| list                 | GA       | \-         |
+| list expansion panel | GA       | \-         |
+| list item            | GA       | \-         |
+| menu                 | GA       | \-         |
+| notched outline      | GA       | \-         |
+| note                 | GA       | \-         |
+| pagination           | alpha    | \-         |
+| popup                | alpha    | WIP        |
+| radio                | GA       | \-         |
+| radio list item      | GA       | \-         |
+| select               | GA       | \-         |
+| side drawer          | alpha    | WIP        |
+| slider               | GA       | \-         |
+| snackbar             | GA       | \-         |
+| switch               | GA       | \-         |
+| tab                  | GA       | \-         |
+| tab bar              | GA       | \-         |
+| tag                  | alpha    | \-         |
+| text                 | alpha    | \-         |
+| textarea             | GA       | \-         |
+| textfield            | GA       | \-         |
+| theme switch         | GA       | \-         |
+| tooltip              | alpha    | \-         |
+| top app bar          | GA       | \-         |
+| top app bar fixed    | GA       | \-         |
