@@ -1,49 +1,35 @@
+@use '../../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use './connotation' as connotation;
+
 @mixin state {
-  //primary style
-  //filled
+  $primary-hover: var(--vvd-color-neutral-80);
+  $primary-active: var(--vvd-color-neutral-70);
+
+
+  &:hover {
+    background-color: var(#{connotation.$vvd-color-connotation}-diverse);
+  }
+  &:active {
+    background-color: var(#{connotation.$vvd-color-connotation}-contrast);
+  }
+
+
   &:not(.connotation-cta, .connotation-success, .connotation-alert, .connotation-announcement, .connotation-info) {
     &:hover {
-      background-color: var(--vvd-color-neutral-80);
+      background-color: #{$primary-hover};
     }
     &:active {
-      background-color: var(--vvd-color-neutral-70);
-    }
-
-    //ghost & outlined
-    &:not(.appearance-filled) {
-      &:hover {
-        background-color: var(--vvd-color-neutral-10);
-      }
-      &:active {
-        background-color: var(--vvd-color-neutral-20);
-      }
+      background-color: #{$primary-active};
     }
   }
-  $connotation: (
-    cta,
-    success,
-    alert,
-    announcement,
-    info,
-  );
 
-  @each $key in $connotation {
-    &.connotation-#{$key} {
-      &:hover {
-        background-color: var(--vvd-color-#{$key}-70);
-      }
-      &:active {
-        background-color: var(--vvd-color-#{$key}-90);
-      }
-
-      &:not(.appearance-filled) {
-        &:hover {
-          background-color: var(--vvd-color-#{$key}-10);
-        }
-        &:active {
-          background-color: var(--vvd-color-#{$key}-20);
-        }
-      }
+  //ghost & outlined
+  &:not(.appearance-filled) {
+    &:hover {
+      background-color: var(#{connotation.$vvd-color-connotation}-softer);
+    }
+    &:active {
+      background-color: var(#{connotation.$vvd-color-connotation}-soft);
     }
   }
 }
