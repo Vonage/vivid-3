@@ -1,6 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { arrow, computePosition, flip, offset, shift, autoUpdate } from '@floating-ui/dom';
+import { arrow, computePosition, flip, offset, shift, hide, inline, autoUpdate } from '@floating-ui/dom';
 import type { Padding, Placement, Strategy } from '@floating-ui/core';
 import { Corner, Position } from '../enums.js';
 
@@ -23,10 +23,9 @@ export class Popup extends FoundationElement {
 	public arrowEl!: HTMLElement;
 
 	private get middleware(): Array<any> {
-		return (
-			this.arrow ? [flip(), shift({ padding: this.PADDING }),
-			arrow({ element: this.arrowEl, padding: this.PADDING }), offset(this.DISTANCE)]
-				: [flip(), shift({ padding: this.PADDING })]);
+		const middleware = [flip(), hide(), inline(), shift({ padding: this.PADDING })];
+		if (this.arrow) { middleware.push(arrow({ element: this.arrowEl, padding: this.PADDING }), offset(this.DISTANCE)) };
+		return middleware;
 	}
 
 	/**
@@ -130,6 +129,7 @@ export class Popup extends FoundationElement {
 		if (!this.open || !this.anchorEl) {
 			return;
 		}
+		
 		const positionData = await computePosition(this.anchorEl, this.popupEl, {
 			placement: this.corner,
 			strategy: this.strategy,
