@@ -39,7 +39,7 @@ The following will generate a `caption` styled font face even though it's wrappe
 </vwc-text>
 ```
 
-On the other hand, 'vwc-text' can nest within semantic tags instead -
+Alternatively, 'vwc-text' can, itself, nest within a semantic tag -
 
 ```html preview
 <h1>

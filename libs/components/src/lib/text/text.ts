@@ -37,7 +37,6 @@ export class Text extends FoundationElement {
 		* HTML Attribute: icon-trailing
 		*/
 	@attr({
-		mode: 'boolean',
 		attribute: 'font-face',
 	}) fontFace?: VVDFontFace;
 
