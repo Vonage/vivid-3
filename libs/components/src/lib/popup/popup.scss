@@ -1,10 +1,6 @@
 @use 'sass:map';
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 
-:host {
-	z-index: 7;
-}
-
 .control {
 	--border-radius-size: 6px;
 	width: min-content;
