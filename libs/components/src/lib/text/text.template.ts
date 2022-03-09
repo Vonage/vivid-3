@@ -7,11 +7,12 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { Text } from './text';
 
-const getClasses = ({connotation, fontFace}: Text) =>
+const getClasses = ({connotation, fontFace, tight}: Text) =>
 	classNames(
 		'control',
 		[`connotation-${connotation}`, Boolean(connotation)],
 		[`font-face-${fontFace}`, Boolean(fontFace)],
+		['tight', tight],
 
 	);
 
