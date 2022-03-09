@@ -1,6 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { arrow, computePosition, flip, offset, shift } from '@floating-ui/dom';
+import { arrow, computePosition, flip, offset, shift, autoUpdate } from '@floating-ui/dom';
 import type { Padding, Placement, Strategy } from '@floating-ui/core';
 import { Corner, Position } from '../enums.js';
 
@@ -13,21 +13,19 @@ export class Popup extends FoundationElement {
 	private get PADDING(): Padding { return 0; }
 	private get DISTANCE(): number { return 12; }
 
-	private onResizeWindow = this.updatePosition.bind(this);
-
 	/**
-     * @internal
-     */
+	 * @internal
+	 */
 	public popupEl!: HTMLElement;
 	/**
-     * @internal
-     */
+	 * @internal
+	 */
 	public arrowEl!: HTMLElement;
 
 	private get middleware(): Array<any> {
 		return (
 			this.arrow ? [flip(), shift({ padding: this.PADDING }),
-				arrow({ element: this.arrowEl, padding: this.PADDING }), offset(this.DISTANCE)]
+			arrow({ element: this.arrowEl, padding: this.PADDING }), offset(this.DISTANCE)]
 				: [flip(), shift({ padding: this.PADDING })]);
 	}
 
@@ -104,29 +102,23 @@ export class Popup extends FoundationElement {
 
 	override connectedCallback(): void {
 		super.connectedCallback();
-		window.addEventListener('scroll', this.updatePosition);
-		window.addEventListener('resize', this.onResizeWindow);
 	}
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		window.removeEventListener('scroll', this.updatePosition);
-		window.removeEventListener('resize', this.onResizeWindow);
-		// Disconnect the observer to stop from running in the background
-		this.sizeObserver?.disconnect();
 	}
 
 	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
 		super.attributeChangedCallback(name, oldValue, newValue);
 		switch (name) {
 			case 'anchor': {
-				this.sizeObserver?.disconnect();
 				this.anchorEl = this.getAnchorById();
-				if (this.anchorEl) this.sizeObserver.observe(this.anchorEl);
 				break;
 			}
 		}
-		this.updatePosition();
+		if (this.anchorEl && this.popupEl) {
+			autoUpdate(this.anchorEl, this.popupEl, () => this.updatePosition());
+		}
 	}
 
 	/**
@@ -135,13 +127,7 @@ export class Popup extends FoundationElement {
 	 * @public
 	 */
 	async updatePosition() {
-		if (!this.open) {
-			return;
-		}
-		if (!this.anchorEl || this.anchorEl === undefined) {
-			return;
-		}
-		if (!this.popupEl || this.popupEl === undefined) {
+		if (!this.open || !this.anchorEl) {
 			return;
 		}
 		const positionData = await computePosition(this.anchorEl, this.popupEl, {
@@ -197,10 +183,6 @@ export class Popup extends FoundationElement {
 			[side]: '-4px',
 		});
 	}
-
-	private sizeObserver = new ResizeObserver(() => {
-		return this.updatePosition();
-	});
 
 	/**
 	 * Gets the anchor element by id

@@ -18,13 +18,15 @@ Use the `anchor` attribute to reference the ID to element in the popup’s owner
 - Default: `''`
 
 ```html preview
-<vwc-button id="buttonAnchor" appearance='filled' label='Click on me!'></vwc-button>
-<vwc-popup id="popup" anchor="buttonAnchor" >
-    <div class="content">
-      <vwc-text font-face="body-1-bold" tight><p class="line">Popup title</p></vwc-text>
-      <vwc-text font-face="body-2" tight>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</vwc-text>
-    </div>
-</vwc-popup>
+<div class="popup-wrapper">
+  <vwc-button id="buttonAnchor" appearance='filled' label='Click on me!'></vwc-button>
+  <vwc-popup id="popup" anchor="buttonAnchor" open>
+      <div class="content">
+        <vwc-text font-face="body-1-bold" tight><p class="line">Popup title</p></vwc-text>
+        <vwc-text font-face="body-2" tight>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</vwc-text>
+      </div>
+  </vwc-popup>
+</div>
 <script>
   const popup = document.getElementById("popup");
   const button = document.getElementById("buttonAnchor");
@@ -34,22 +36,22 @@ Use the `anchor` attribute to reference the ID to element in the popup’s owner
 }
 </script>
 <style>
-    .cbd-demo{
-      height: 200px;
-      display: flex;
-			align-items: center;
-			justify-content: center;
-			background-color: var(--vvd-color-neutral-10);
-  }
   .content {
-			width: 200px;
-			text-align: left;
-			padding: 1rem;
-		}
+    width: 200px;
+    text-align: left;
+    padding: 1rem;
+	}
   .line {
     border-bottom: 1px solid var(--vvd-color-neutral-40);
     padding-bottom: 0.5rem;
     margin-bottom: 0.5rem;
+  }
+  .popup-wrapper{
+    position: relative;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 </style>
 ```
