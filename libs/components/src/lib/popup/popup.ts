@@ -13,13 +13,7 @@ export class Popup extends FoundationElement {
 	private get PADDING(): Padding { return 0; }
 	private get DISTANCE(): number { return 12; }
 
-	/**
-	 * @internal
-	 */
 	public popupEl!: HTMLElement;
-	/**
-	 * @internal
-	 */
 	public arrowEl!: HTMLElement;
 
 	private get middleware(): Array<any> {
