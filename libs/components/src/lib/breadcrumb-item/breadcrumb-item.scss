@@ -1,0 +1,16 @@
+@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+
+.control {
+  @include typography.typography-cat-shorthand('body-2');
+  display: flex;
+  align-items: center;
+  color: var(--vvd-color-neutral-70);
+}
+
+vwc-anchor {
+  color: var(--vvd-color-cta-70);
+}
+
+vwc-icon {
+  margin: 0 16px;
+}
