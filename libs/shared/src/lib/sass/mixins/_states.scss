@@ -5,16 +5,19 @@
   $primary-hover: var(--vvd-color-neutral-80);
   $primary-active: var(--vvd-color-neutral-70);
 
-
-  &:hover {
-    background-color: var(#{connotation.$vvd-color-connotation}-diverse);
+  &:not([class*=-idle]) {
+    &:hover {
+      background-color: var(#{connotation.$vvd-color-connotation}-diverse);
+    }
+    &:active {
+      background-color: var(#{connotation.$vvd-color-connotation}-contrast);
+    }
   }
-  &:active {
-    background-color: var(#{connotation.$vvd-color-connotation}-contrast);
-  }
 
 
-  &:not(.connotation-cta, .connotation-success, .connotation-alert, .connotation-announcement, .connotation-info) {
+  //only primary & default button primary no class
+  &:where(:not([class*=connotation-],[class*=-idle])),
+  &.connotation-primary {
     &:hover {
       background-color: #{$primary-hover};
     }
@@ -24,7 +27,7 @@
   }
 
   //ghost & outlined
-  &:not(.appearance-filled) {
+  &:not(.appearance-filled):not([class*=-idle]) {
     &:hover {
       background-color: var(#{connotation.$vvd-color-connotation}-softer);
     }
