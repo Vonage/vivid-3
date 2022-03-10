@@ -121,9 +121,6 @@ export class Popup extends FoundationElement {
 		if (this.anchorEl && this.popupEl) {
 			autoUpdate(this.anchorEl, this.popupEl, () => this.updatePosition());
 		}
-		else{
-			this.hide();
-		}
 	}
 
 	/**
