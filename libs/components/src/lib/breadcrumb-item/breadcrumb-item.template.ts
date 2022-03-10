@@ -21,4 +21,6 @@ const getClasses = (_: BreadcrumbItem) =>
 export const BreadcrumbItemTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<BreadcrumbItem> = () => html`<span class="${getClasses}"></span>`;
+) => ViewTemplate<BreadcrumbItem> = () => html`<span class="${getClasses}">
+  ${x => x.text}
+</span>`;
