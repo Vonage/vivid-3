@@ -29,7 +29,7 @@
   //ghost & outlined
   &:not(.appearance-filled):not([class*=-idle]) {
     &:hover {
-      background-color: var(#{connotation.$vvd-color-connotation}-softer);
+      background-color: var(#{connotation.$vvd-color-connotation}-pale);
     }
     &:active {
       background-color: var(#{connotation.$vvd-color-connotation}-soft);
