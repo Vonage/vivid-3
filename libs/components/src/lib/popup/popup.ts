@@ -5,7 +5,7 @@ import type { Corner, Position } from '../enums.js';
 
 type PopupPosition = Extract<Position, Position.Fixed | Position.Absolute>;
 type PopupCorner = Extract<Corner, Corner.Bottom | Corner.BottomEnd | Corner.BottomStart | Corner.Left | Corner.LeftEnd | Corner.LeftStart
-	| Corner.Right | Corner.RightEnd | Corner.RightStart | Corner.Top | Corner.TopEnd | Corner.TopStart>;
+| Corner.Right | Corner.RightEnd | Corner.RightStart | Corner.Top | Corner.TopEnd | Corner.TopStart>;
 
 /**
  * Base class for popup
