@@ -25,7 +25,7 @@ ViewTemplate<BreadcrumbItem>
 		html<BreadcrumbItem>`${x => x.text}`)}
 
   ${when(x => x.text && x.href && x.href.length > 0,
-		html<BreadcrumbItem>`<vwc-anchor>${x => x.text}</vwc-anchor>`)}
+		html<BreadcrumbItem>`<vwc-anchor href="${x => x.href}">${x => x.text}</vwc-anchor>`)}
 
   ${when(x => x.separator && x.href, html<BreadcrumbItem>`<vwc-icon type="chevron-right-line"></vwc-icon>`)}
 </div>`;

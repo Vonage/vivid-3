@@ -43,6 +43,7 @@ describe('vwc-breadcrumb-item', () => {
 		const iconElement = controlElement.querySelector(('vwc-icon')) as Icon;
 		const anchorElement = controlElement.querySelector(('vwc-anchor'));
 		expect(anchorElement?.textContent).toEqual(breadcrumbText);
+		expect((anchorElement as any)?.href).toEqual(element.href);
 		expect(iconElement?.type).toEqual('chevron-right-line');
 	});
 });
