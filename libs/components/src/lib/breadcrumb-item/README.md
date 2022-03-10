@@ -19,14 +19,7 @@
   text="Breadcrum" ></vwc-breadcrumb-item>
 ```
 
-## Separator
-
-```html preview
-<vwc-breadcrumb-item></vwc-breadcrumb-item>
-```
-
 ## Combined
-## Link
 
 ```html preview
 <div style="display: flex">
