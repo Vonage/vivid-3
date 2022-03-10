@@ -15,14 +15,14 @@
 | button-toggle-group  | GA       | \-         |
 | calendar             | GA       | \-         |
 | card                 | alpha    | \-         |
-| carousel             | obsolete | deprecated |
+| carousel             |deprecated| obsolete   |
 | check list item      | GA       | \-         |
 | checkbox             | GA       | \-         |
-| chip                 | obsolete | deprecated |
-| chipset              | obsolete | deprecated |
+| chip                 |deprecated| obsolete   |
+| chipset              |deprecated| obsolete   |
 | circular progress    | GA       | \-         |
 | datagrid             | GA       | \-         |
-| datepicker           | alpha    | deprecated |
+| datepicker           | alpha    | \-         |
 | dialog               | GA       | \-         |
 | drawer               | alpha    | \-         |
 | dropdown             | alpha    | \-         |
@@ -50,6 +50,7 @@
 | radio list item      | GA       | \-         |
 | select               | GA       | \-         |
 | side drawer          | alpha    | WIP        |
+| side navigation item | \-       | alpha      |
 | slider               | GA       | \-         |
 | snackbar             | GA       | \-         |
 | switch               | GA       | \-         |
