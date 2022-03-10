@@ -1,6 +1,7 @@
 import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
 import { BreadcrumbItem } from './breadcrumb-item';
 import '.';
+import type {Icon} from '../icon/icon';
 
 const COMPONENT_TAG = 'vwc-breadcrumb-item';
 
@@ -18,9 +19,11 @@ fdescribe('vwc-breadcrumb-item', () => {
 		expect(element).toBeInstanceOf(BreadcrumbItem);
 	});
 
-	it('should display nothing when no prop is set', function () {
+	it('should display separator when no prop is set', function () {
 		const controlElement = getControlElement(element);
-		expect(controlElement.innerHTML?.trim()).toEqual('');
+		const iconElement = controlElement.querySelector(('vwc-icon')) as Icon;
+
+		expect(iconElement?.type).toEqual('chevron-right-line');
 	});
 
 	it('should be set as simple text when given only text', async function () {
@@ -29,5 +32,18 @@ fdescribe('vwc-breadcrumb-item', () => {
 		await elementUpdated(element);
 		const controlElement = getControlElement(element);
 		expect(controlElement.textContent?.trim()).toEqual(breadcrumbText);
+	});
+
+	it('should set as an anchor when set with "href"', async function () {
+		const breadcrumbText = 'some text';
+		const href = 'https://google.com';
+		element.text = breadcrumbText;
+		element.href = href;
+		await elementUpdated(element);
+
+		const controlElement = getControlElement(element);
+
+		const anchorElement = controlElement.querySelector(('vwc-anchor'));
+		expect(anchorElement?.textContent).toEqual(breadcrumbText);
 	});
 });

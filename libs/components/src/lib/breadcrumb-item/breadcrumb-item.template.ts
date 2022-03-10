@@ -1,11 +1,9 @@
-import { html } from '@microsoft/fast-element';
+import {html, when} from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
+import type {FoundationElementTemplate } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { BreadcrumbItem } from './breadcrumb-item';
+import '../icon';
 
 const getClasses = (_: BreadcrumbItem) =>
 	classNames(
@@ -16,11 +14,17 @@ const getClasses = (_: BreadcrumbItem) =>
  * The template for the {@link @microsoft/fast-foundation#BreadcrumbItem} component.
  *
  * @param context
+ * @param definition
  * @public
  */
-export const BreadcrumbItemTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<BreadcrumbItem> = () => html`<span class="${getClasses}">
-  ${x => x.text}
-</span>`;
+export const BreadcrumbItemTemplate: FoundationElementTemplate<
+ViewTemplate<BreadcrumbItem>
+> = () => html`<div roll="listitem" part="listitem" class="${getClasses}">
+  ${when(x => x.text && x.href && x.href.length > 0,
+		html<BreadcrumbItem>`<vwc-anchor>${x => x.text}</vwc-anchor>`)}
+
+  ${when(x => x.text && !x.href,
+		html<BreadcrumbItem>`${x => x.text}`)}
+
+  ${when(x => x.separator, html<BreadcrumbItem>`<vwc-icon type="chevron-right-line"></vwc-icon>`)}
+</div>`;
