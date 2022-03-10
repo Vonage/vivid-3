@@ -1,10 +1,11 @@
-import {elementUpdated, fixture} from '@vivid-nx/shared';
+import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
 import { BreadcrumbItem } from './breadcrumb-item';
 import '.';
 
 const COMPONENT_TAG = 'vwc-breadcrumb-item';
 
 fdescribe('vwc-breadcrumb-item', () => {
+
 	let element: BreadcrumbItem;
 
 	beforeEach(async () => {
@@ -18,14 +19,15 @@ fdescribe('vwc-breadcrumb-item', () => {
 	});
 
 	it('should display nothing when no prop is set', function () {
-		expect(element.shadowRoot?.querySelector('.control')?.innerHTML?.trim()).toEqual('');
+		const controlElement = getControlElement(element);
+		expect(controlElement.innerHTML?.trim()).toEqual('');
 	});
 
 	it('should be set as simple text when given only text', async function () {
 		const breadcrumbText = 'some text';
 		element.text = breadcrumbText;
 		await elementUpdated(element);
-		const controlElement = element.shadowRoot?.querySelector('.control') as HTMLElement;
-		expect(controlElement?.textContent?.trim()).toEqual(breadcrumbText);
+		const controlElement = getControlElement(element);
+		expect(controlElement.textContent?.trim()).toEqual(breadcrumbText);
 	});
 });
