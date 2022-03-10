@@ -65,14 +65,6 @@ describe('vwc-popup', () => {
 
 			expect(element.open).toEqual(false);
 		});
-
-		it('should init the popup as open if anchor element does not exist', async () => {
-			element.open = true;
-			element.anchor = 'anchor';
-			await elementUpdated(element);
-
-			expect(element.open).toEqual(false);
-		});
 	});
 	/**
 	 *
