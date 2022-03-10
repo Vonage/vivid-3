@@ -1,11 +1,11 @@
 import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { arrow, autoUpdate, computePosition, flip, hide, inline, offset, shift } from '@floating-ui/dom';
+import { arrow, autoUpdate, computePosition, flip, hide, inline, offset } from '@floating-ui/dom';
 import type { Corner, Position } from '../enums.js';
 
 type PopupPosition = Extract<Position, Position.Fixed | Position.Absolute>;
 type PopupCorner = Extract<Corner, Corner.Bottom | Corner.BottomEnd | Corner.BottomStart | Corner.Left | Corner.LeftEnd | Corner.LeftStart
-| Corner.Right | Corner.RightEnd | Corner.RightStart | Corner.Top | Corner.TopEnd | Corner.TopStart>;
+	| Corner.Right | Corner.RightEnd | Corner.RightStart | Corner.Top | Corner.TopEnd | Corner.TopStart>;
 
 /**
  * Base class for popup
@@ -20,7 +20,7 @@ export class Popup extends FoundationElement {
 	arrowEl!: HTMLElement;
 
 	private get middleware(): Array<any> {
-		const middleware = [flip(), hide(), inline(), shift({ padding: this.PADDING })];
+		const middleware = [flip(), hide(), inline()];
 		if (this.arrow) { middleware.push(arrow({ element: this.arrowEl, padding: this.PADDING }), offset(this.DISTANCE)); }
 		return middleware;
 	}
@@ -96,7 +96,7 @@ export class Popup extends FoundationElement {
 	 */
 	@attr private anchorEl: Element | null | undefined;
 
-	constructor(){
+	constructor() {
 		super();
 		this.corner = 'left' as PopupCorner;
 		this.strategy = 'fixed' as PopupPosition;
@@ -168,9 +168,11 @@ export class Popup extends FoundationElement {
 
 	private assignPopupPosition(data: any): void {
 		const { x: popupX, y: popupY } = data;
+		const { referenceHidden } = data.middlewareData.hide;
 		Object.assign(this.popupEl.style, {
 			left: `${popupX}px`,
 			top: `${popupY}px`,
+			visibility: referenceHidden ? 'hidden' : 'visible',
 		});
 	}
 
