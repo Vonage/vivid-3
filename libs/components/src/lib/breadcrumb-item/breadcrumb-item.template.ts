@@ -7,12 +7,9 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { BreadcrumbItem } from './breadcrumb-item';
 
-const getClasses = ({
-	text
-}: BreadcrumbItem) =>
+const getClasses = (_: BreadcrumbItem) =>
 	classNames(
 		'control',
-		['text', Boolean(text)],
 	);
 
 /**
@@ -24,4 +21,4 @@ const getClasses = ({
 export const BreadcrumbItemTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<BreadcrumbItem> = () => html` <span class="${getClasses}"> </span>`;
+) => ViewTemplate<BreadcrumbItem> = () => html`<span class="${getClasses}"></span>`;
