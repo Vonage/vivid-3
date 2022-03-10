@@ -4,7 +4,8 @@ import { arrow, autoUpdate, computePosition, flip, hide, inline, offset, shift }
 import type { Corner, Position } from '../enums.js';
 
 type PopupPosition = Extract<Position, Position.Fixed | Position.Absolute>;
-type PopupCorner = Extract<Corner, Corner.Bottom | Corner.BottomEnd | Corner.BottomStart | Corner.Left | Corner.LeftEnd | Corner.LeftStart | Corner.Right | Corner.RightEnd | Corner.RightStart | Corner.Top | Corner.TopEnd | Corner.TopStart>;
+type PopupCorner = Extract<Corner, Corner.Bottom | Corner.BottomEnd | Corner.BottomStart | Corner.Left | Corner.LeftEnd | Corner.LeftStart
+| Corner.Right | Corner.RightEnd | Corner.RightStart | Corner.Top | Corner.TopEnd | Corner.TopStart>;
 
 /**
  * Base class for popup
@@ -97,8 +98,8 @@ export class Popup extends FoundationElement {
 
 	constructor(){
 		super();
-		this.corner = "left" as PopupCorner;
-		this.strategy = "fixed" as PopupPosition;
+		this.corner = 'left' as PopupCorner;
+		this.strategy = 'fixed' as PopupPosition;
 	}
 
 	override connectedCallback(): void {
@@ -120,6 +121,9 @@ export class Popup extends FoundationElement {
 		if (this.anchorEl && this.popupEl) {
 			autoUpdate(this.anchorEl, this.popupEl, () => this.updatePosition());
 		}
+		else{
+			this.hide();
+		}
 	}
 
 	/**
@@ -131,7 +135,7 @@ export class Popup extends FoundationElement {
 		if (!this.open || !this.anchorEl) {
 			return;
 		}
-		
+
 		const positionData = await computePosition(this.anchorEl, this.popupEl, {
 			placement: this.corner,
 			strategy: this.strategy,
