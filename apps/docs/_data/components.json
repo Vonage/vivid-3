@@ -14,13 +14,6 @@
     ]
   },
   {
-    "title": "text-anchor",
-    "markdown": "./libs/components/src/lib/text-anchor/README.md",
-    "modules": [
-      "/assets/modules/components/text-anchor/index.js"
-    ]
-  },
-  {
     "title": "icon",
     "markdown": "./libs/components/src/lib/icon/README.md",
     "modules": [
