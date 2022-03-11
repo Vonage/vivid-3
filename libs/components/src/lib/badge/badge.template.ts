@@ -6,13 +6,14 @@ import { affixIconTemplate } from '../../shared/patterns/affix';
 import type { Badge } from './badge';
 
 const getClasses = ({
-	connotation, appearance, shape, size
+	connotation, appearance, shape, size, iconTrailing
 }: Badge) => classNames(
 	'control',
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	[`size-${size}`, Boolean(size)],
+	['icon-trailing', iconTrailing],
 );
 
 /**

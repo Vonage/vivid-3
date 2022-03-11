@@ -117,11 +117,11 @@
 // stylelint-disable-next-line no-descending-specificity
 .icon {
 	// stylelint-disable-next-line no-descending-specificity
-	&:not(.icon-trailing) {
+	:not(.icon-trailing) & {
 		margin-inline-end: var(#{variables.$icon-gap});
 	}
 
-	&.icon-trailing {
+	.icon-trailing & {
 		order: 1;
 		margin-inline-start: var(#{variables.$icon-gap});
 	}
