@@ -3,7 +3,7 @@ import { html, ref } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Focus } from '../focus/focus';
-import { prefixOrSuffixTemplate } from '../../shared/patterns/affix';
+import { affixIconTemplate } from '../../shared/patterns/affix';
 import type { Button, ButtonAppearance } from './button';
 
 
@@ -78,7 +78,7 @@ export const buttonTemplate: (
         ${ref('control')}
     >
         ${() => focusTemplate(context)}
-        ${() => prefixOrSuffixTemplate(context)}
+        ${() => affixIconTemplate(context)}
         ${(x) => x.label}
     </button>
 `;

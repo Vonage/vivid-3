@@ -1,5 +1,6 @@
-import { Anchor } from '@microsoft/fast-foundation';
+import { Anchor, applyMixins } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
+import { AffixIcon } from '../../shared/patterns/affix';
 
 /**
  * Base class for text-anchor
@@ -14,5 +15,8 @@ export class TextAnchor extends Anchor {
 	 * @remarks
 	 * HTML Attribute: text
 	 */
-	@attr text = '';
+	@attr({ mode: 'fromView' }) text = '';
 }
+
+export interface TextAnchor extends AffixIcon {}
+applyMixins(TextAnchor, AffixIcon);

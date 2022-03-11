@@ -2,7 +2,7 @@ import { html } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { prefixOrSuffixTemplate } from '../../shared/patterns/affix';
+import { affixIconTemplate } from '../../shared/patterns/affix';
 import type { Badge } from './badge';
 
 const getClasses = ({
@@ -26,6 +26,6 @@ export const badgeTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Badge> = (context: ElementDefinitionContext) => html`
     <span class="${getClasses}">
-      ${() => prefixOrSuffixTemplate(context)}
+      ${() => affixIconTemplate(context)}
       ${(x) => x.text}
 		</span>`;
