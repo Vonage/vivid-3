@@ -5,7 +5,7 @@
 | Name                 | VIVID    | VIVID@next |
 | -------------------- | -------- | ---------- |
 | accordion            | alpha    | \-         |
-| anchor               | \-       | WIP        |
+| anchor               | \-       | \-         |
 | audio player         | GA       | \-         |
 | badge                | GA       | GA         |
 | banner               | GA       | \-         |
