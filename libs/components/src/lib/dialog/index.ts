@@ -1,9 +1,8 @@
-import type { PropertyValues } from 'lit';
-import { property } from 'lit/decorators.js';
+import type { PropertyValues } from 'lit-element';
+import { customElement, property } from 'lit-element';
 
 import { Dialog as MWCDialog } from '@material/mwc-dialog';
 import { styles as mwcDialogStyles } from '@material/mwc-dialog/mwc-dialog.css.js';
-import { customElement } from '@microsoft/fast-element';
 import { styles } from './dialog.styles';
 
 
