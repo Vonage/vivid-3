@@ -23,9 +23,8 @@ const getClasses = ({text, icon}: TextAnchor) => classNames(
 export const textAnchorTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<TextAnchor> = (
-	context: ElementDefinitionContext,
-) => html`<a
+) => ViewTemplate<TextAnchor> = () => html`
+    <a
         class="${getClasses}"
         download="${x => x.download}"
         href="${x => x.href}"
