@@ -9,6 +9,5 @@ TODO document for maintainers usage
 ```
 
 ```html preview
-<vwc-text-anchor>shouldn't show</vwc-text-anchor>
 <vwc-text-anchor text="show"></vwc-text-anchor>
 ```
