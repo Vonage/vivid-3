@@ -11,6 +11,7 @@
 .control {
 	@include typography.typography-cat-shorthand('body-1');
 	@include connotation.connotation;
+
 	color: var(#{connotation.$vvd-color-connotation});
 
 	@each $key, $value in typography-scale.$typography-category-list {
