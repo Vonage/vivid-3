@@ -8,7 +8,7 @@ describe( 'vwc-<%= name %>', () => {
 	let element: <%= className %>;
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) <%= className %>;
+		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as <%= className %>;
 	});
 
 	describe('basic', () => {
