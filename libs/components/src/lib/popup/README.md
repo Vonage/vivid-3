@@ -91,7 +91,7 @@ Use the `corner` attribute to set the placement of the popup.
 ```
 
 ## Arrow
-Use the `strategy` attribute to add small triangle to indicate the trigger element.
+Use the `arrow` attribute to add small triangle to indicate the trigger element.
 
 - Type: `boolean`
 - Default: `false`
