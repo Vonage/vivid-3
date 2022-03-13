@@ -1,12 +1,15 @@
+/* #region reset */
+strong {
+  font-weight: unset;
+}
+/* #endregion reset */
+
 body {
   color: var(--vvd-color-on-canvas);
   background-color: var(--vvd-color-canvas);
   margin: 0;
 }
 
-:not(:defined) {
-  display: none;
-}
 /*code inside text*/
 code {
   font-size: 1rem;
@@ -21,9 +24,9 @@ pre[class*="language-"] {
     border-radius: 0;
 }
 
-vwc-side-drawer{
-  --side-drawer-z-index: 3;
-  --side-drawer-background-color: var(--vvd-color-neutral-10);
+vwc-side-drawer {
+  display: block;
+  width: 100%;
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -70,3 +73,6 @@ li .navigation {
 }
 /*#region END: side navigation */
 
+article {
+  max-inline-size: 64ch;
+}
