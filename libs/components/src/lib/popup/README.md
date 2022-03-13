@@ -129,6 +129,8 @@ Use the `alternate` attribute to set the color-scheme to dark.
 ## Strategy
 Use the `strategy` attribute to set the position of the popup.
 
+You will want to use 'fixed' if the anchor is inside a fixed container, but the popup is not.
+
 - Type: `'fixed'` | `'absolute'`
 - Default: `'fixed'`
 
