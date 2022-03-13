@@ -24,9 +24,7 @@ iconTemplate.innerHTML = `
 // MWCDialog.styles = [ styles];
 
 
-@customElement({
-	name: 'vwc-dialog'
-})
+@customElement('vwc-dialog')
 export class Dialog extends MWCDialog {
 	static override styles = [mwcDialogStyles, styles];
 
