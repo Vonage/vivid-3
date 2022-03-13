@@ -8,11 +8,11 @@ Popup's goal is to provide additional, helpful content. To trigger the Popup, it
     import '@vonage/vivid/popup';
 </script>
 ```
-
-##### For right positioning, the popup and the anchor should be wrapped in a wrapper with position relative.
 ## Anchor
 
 Use the `anchor` attribute to reference the ID to element in the popup’s owner document.
+
+Since the popup is positioned absolutely to its anchor, it is best to wrap it with a div element and set its position `relative`.
 
 - Type: `string`
 - Default: `''`
