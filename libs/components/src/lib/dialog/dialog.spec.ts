@@ -1,5 +1,5 @@
 import { fixture } from '@vivid-nx/shared';
-import { Dialog } from './dialog';
+import { Dialog } from './';
 import '.';
 
 const COMPONENT_TAG = 'vwc-dialog';
