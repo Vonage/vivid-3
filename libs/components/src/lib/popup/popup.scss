@@ -1,8 +1,10 @@
+$popup-bg: --vvd-color-surface-4dp;
+
 .control {
 	--border-radius-size: 6px;
 
 	width: min-content;
-	background-color: var(#{--vvd-color-surface-4dp});
+	background-color: var(#{$popup-bg});
 	border-radius: var(--border-radius-size);
 	contain: layout;
 
@@ -28,7 +30,7 @@
 	z-index: -1;
 	width: 8px;
 	height: 8px;
-	background-color: var(#{--vvd-color-surface-4dp});
+	background-color: var(#{$popup-bg});
 	transform: rotate(45deg);
 }
 
