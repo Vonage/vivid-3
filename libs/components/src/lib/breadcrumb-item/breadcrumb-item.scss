@@ -1,11 +1,12 @@
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
 .breadcrumb-item {
 	@include typography.typography-cat-shorthand('body-2');
 
 	display: flex;
 	align-items: center;
-	color: var(--vvd-color-neutral-70);
+	color: var(#{theme-consts.$vvd-color-neutral-70});
 }
 
 .control a {
@@ -15,5 +16,5 @@
 
 vwc-icon {
 	margin: 0 16px;
-	color: var(--vvd-color-on-canvas);
+	color: var(#{theme-consts.$vvd-color-on-canvas});
 }
