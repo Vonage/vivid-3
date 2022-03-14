@@ -1,5 +1,5 @@
 import { BreadcrumbItem as FastBreadcrumbItem } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
+import {attr} from '@microsoft/fast-element';
 
 /**
  * Base class for breadcrumb-item
@@ -15,4 +15,10 @@ export class BreadcrumbItem extends FastBreadcrumbItem {
 	 * HTML Attribute: text
 	 */
 	@attr text = '';
+
+	@attr({ mode: 'boolean' }) override separator = false;
+
+	constructor() {
+		super();
+	}
 }

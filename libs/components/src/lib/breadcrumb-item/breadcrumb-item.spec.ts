@@ -32,17 +32,33 @@ describe('vwc-breadcrumb-item', () => {
 		expect(controlElement.textContent?.trim()).toEqual(breadcrumbText);
 	});
 
+	it('should set icon when "separator" is true', async function () {
+		const controlElement = getControlElement(element);
+		const iconElementExistsWithoutSeparator = Boolean(controlElement.querySelector(('vwc-icon')));
+		element.separator = true;
+
+		await elementUpdated(element);
+		const iconElementExistsWithSeparator = Boolean(controlElement.querySelector(('vwc-icon')));
+
+		expect(iconElementExistsWithoutSeparator)
+			.toEqual(false);
+		expect(iconElementExistsWithSeparator)
+			.toEqual(true);
+	});
+
 	it('should set as an anchor and icon when set with "href"', async function () {
 		const breadcrumbText = 'some text';
-		const href = 'https://google.com';
+		const href = 'https://google.com/';
+		element.separator = true;
 		element.text = breadcrumbText;
 		element.href = href;
 		await elementUpdated(element);
 
 		const controlElement = getControlElement(element);
 		const iconElement = controlElement.querySelector(('vwc-icon')) as Icon;
-		const anchorElement = controlElement.querySelector(('vwc-anchor'));
-		expect(anchorElement?.textContent).toEqual(breadcrumbText);
+		const anchorElement = controlElement.querySelector(('a'));
+
+		expect(anchorElement?.textContent?.trim()).toEqual(breadcrumbText);
 		expect((anchorElement as any)?.href).toEqual(element.href);
 		expect(iconElement?.type).toEqual('chevron-right-line');
 	});
