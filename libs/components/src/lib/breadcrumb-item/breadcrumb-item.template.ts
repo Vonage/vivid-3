@@ -11,7 +11,7 @@ import '../icon';
 
 const getClasses = (_: BreadcrumbItem) =>
 	classNames(
-		'control',
+		'control', 'breadcrumb-item'
 	);
 
 /**
