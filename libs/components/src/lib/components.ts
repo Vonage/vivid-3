@@ -1,4 +1,4 @@
-export * from './anchor';
+export * from './text-anchor';
 export * from './badge';
 export * from './button';
 export * from './focus';
