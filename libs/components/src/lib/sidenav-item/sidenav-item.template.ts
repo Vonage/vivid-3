@@ -1,4 +1,4 @@
-import { html, when } from '@microsoft/fast-element';
+import { html } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
@@ -20,10 +20,6 @@ export const SidenavItemTemplate: (
 ) => ViewTemplate<SidenavItem> = (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => html`
-  ${when(
-		x => x.href && x.href.length > 0,
-		html<SidenavItem>`
+) => html<SidenavItem>`
       ${textAnchorTemplate(context, definition)}
-    `
-	)}`;
+    `;
