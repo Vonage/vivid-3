@@ -25,8 +25,7 @@ export const BreadcrumbItemTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<BreadcrumbItem> =
-  (context: ElementDefinitionContext, definition: FoundationElementDefinition) => {
-  	return html`
+  (context: ElementDefinitionContext, definition: FoundationElementDefinition) => html`
       <div roll="listitem" part="listitem" class="${getClasses}">
         ${when(x => x.text && !x.href,
 		html<BreadcrumbItem>`${x => x.text}`)}
@@ -37,4 +36,3 @@ export const BreadcrumbItemTemplate: (
         ${when(x => x.separator,
 		html<BreadcrumbItem>`<vwc-icon type="chevron-right-line"></vwc-icon>`)}
       </div>`;
-  };
