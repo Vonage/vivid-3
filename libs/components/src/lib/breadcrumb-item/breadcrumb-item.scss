@@ -8,10 +8,12 @@
 	color: var(--vvd-color-neutral-70);
 }
 
-vwc-anchor {
+.control a {
 	color: var(--vvd-color-cta-70);
+  text-decoration: none;
 }
 
 vwc-icon {
 	margin: 0 16px;
+  color: var(--vvd-color-on-canvas);
 }
