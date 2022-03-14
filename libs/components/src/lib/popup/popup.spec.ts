@@ -71,34 +71,37 @@ describe('vwc-popup', () => {
 		it('should render arrow class', async () => {
 			element.arrow = true;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector(".arrow")).not.toBeNull();
+			expect(element.shadowRoot?.querySelector('.arrow')).not.toBeNull();
 		});
 
 		it('should render dismiss class', async () => {
 			element.dismissible = true;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector(".dismissible")).not.toBeNull();
+			expect(element.shadowRoot?.querySelector('.dismissible')).not.toBeNull();
 		});
 	});
 
 	describe('alternate', () => {
 		it('should set to alternate', async () => {
-			expect(getControlElement(element).getAttribute("part")).toEqual('');
+			expect(getControlElement(element).getAttribute('part')).toEqual('');
 			element.alternate = true;
 			await elementUpdated(element);
-			expect(getControlElement(element).getAttribute("part")).toEqual('vvd-theme-alternate');
+			expect(getControlElement(element).getAttribute('part')).toEqual('vvd-theme-alternate');
 		});
 	});
 
 	describe('accessibility', () => {
 		it('should set aroa-hidden', async () => {
-			expect(getControlElement(element).getAttribute("aria-hidden")).toEqual('true');
+			expect(getControlElement(element).getAttribute('aria-hidden')).toEqual('true');
 			element.open = true;
 			await elementUpdated(element);
-			expect(getControlElement(element).getAttribute("aria-hidden")).toEqual('false');
+			expect(getControlElement(element).getAttribute('aria-hidden')).toEqual('false');
 		});
 	});
 
+	/**
+	 *
+	 */
 	async function setPopupAndAnchor() {
 		const anchorEl = await fixture('<vwc-button id="anchor"></vwc-button>') as Button;
 		await elementUpdated(anchorEl);
