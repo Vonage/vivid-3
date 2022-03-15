@@ -7,19 +7,17 @@ const ELEVENTY_HTML_CODE_BLOCK_SELECTOR = 'pre > code.language-html';
 
 const CBD_BASE = 'cbd-base';
 const CBD_DEMO = 'cbd-demo';
+const CBD_THEME = 'light';
 const CBD_DETAILS = 'cbd-details';
 const CBD_BUTTON_SHOW = 'cbd-button-show';
 const CBD_CODE_BLOCK = 'cbd-code-block';
 
 const MAIN_STYLE = '<link rel="stylesheet" href="/assets/styles/main.css">';
-const LIGHT_THEME = '<link rel="stylesheet" href="/assets/styles/themes/light.css" media="all">';
-const DARK_THEME = '<link rel="stylesheet" href="/assets/styles/themes/dark.css" media="not all" disabled="">';
 
 const generateCodeBlockDemo = function (blockData) {
     const demoData = {};
     const code = blockData.pre.querySelector('code')?.textContent;
-    const style = MAIN_STYLE + LIGHT_THEME + DARK_THEME;
-    demoData.demoStr = decode(style) + decode(code);
+    demoData.demoStr = decode(MAIN_STYLE) + decode(code);
     demoData.codeStr = blockData.pre.outerHTML;
     demoData.index = blockData.index;
     demoData.outputPath = blockData.outputPath;
@@ -32,7 +30,6 @@ module.exports = function (content, outputPath) {
     if (!outputPath.endsWith('.html')) {
         return content;
     }
-
 
     const blockData = {};
     blockData.outputPath = outputPath;
@@ -60,7 +57,7 @@ const getHtml = (demoData) => {
 
     return `
     <div class="${CBD_BASE}">
-        <iframe class="${CBD_DEMO}" src="${iframeSrc}" onload=onloadIframe(this) loading="lazy"></iframe>
+        <iframe class="${CBD_DEMO} ${CBD_THEME}" src="${iframeSrc}" onload=onloadIframe(this) loading="lazy"></iframe>
         <details class="${CBD_DETAILS}">
             <summary>
                 <button class="${CBD_BUTTON_SHOW}" aria-expanded="false" aria-controls="${codeBlockId}">
@@ -126,6 +123,9 @@ const style = `
     height: 30px;
     width: 97%;
 }
+.light{
+
+}
 .${CBD_DETAILS} > summary {
   list-style: none;
 	text-align: end;
@@ -156,7 +156,22 @@ const script = `
 
     const onloadIframe = (iFrame) => {
         iFrame.style.height = iFrame.contentWindow.document.body.scrollHeight + 5 + "px";
+        toggleDarkMode(iFrame.contentWindow.document.head);
     };
+
+    const toggleDarkMode = (head) => {
+        const toggle = document.querySelector('dark-mode-toggle');
+        setCurrentTheme(toggle, head);
+
+        toggle.addEventListener('colorschemechange', () => {
+            setCurrentTheme(toggle, head);
+        });
+    };
+
+    const setCurrentTheme = (toggle, head) => {
+        const theme = toggle.mode === 'dark' ? '<link rel="stylesheet" href="/assets/styles/themes/dark.css" media="all">' : '<link rel="stylesheet" href="/assets/styles/themes/light.css" media="all">';
+        head.insertAdjacentHTML("beforeend", theme);
+    }
 
     window.addEventListener('DOMContentLoaded', initShowCodeButtons);
 </script>
