@@ -2,6 +2,7 @@ const { JSDOM } = require('jsdom');
 const { decode } = require("html-entities");
 const fs = require('fs');
 const path = require('path');
+const jsonData= require('../_data/components.json'); 
 const ELEVENTY_HTML_CODE_BLOCK_SELECTOR = 'pre > code.language-html';
 
 const CBD_BASE = 'cbd-base';
@@ -26,10 +27,13 @@ const generateCodeBlockDemo = function (blockData) {
 
     return dom.window.document.querySelector(`.${CBD_BASE}`);
 };
+
 module.exports = function (content, outputPath) {
     if (!outputPath.endsWith('.html')) {
         return content;
     }
+
+
     const blockData = {};
     blockData.outputPath = outputPath;
     const document = new JSDOM(content).window.document;
@@ -87,15 +91,25 @@ const verifyAndCreateSaveFolder = (outputPath) => {
 
 const saveCodeAsHTMLFile = (frameData) => {
     const filePath = `${frameData.saveFolder}/${frameData.codeBlockId}.html`;
-    frameData.demoStr += addComponentScript(frameData.outputPath);
+    const componentName = getComponentName(frameData.outputPath);
+    frameData.demoStr += addModules(componentName);
     fs.writeFileSync(filePath, frameData.demoStr);
     return filePath;
 }
 
-const addComponentScript = (outputPath) => {
+const getComponentName = (outputPath) => {
     const pathName = path.dirname(outputPath).substring(0, outputPath.lastIndexOf('/'));
-    const componentName = pathName.substring(pathName.lastIndexOf('/'));
-    return `<script type="module" src="/assets/modules/components${componentName}/index.js"></script>`;
+    const componentName = pathName.substring(pathName.lastIndexOf('/') + 1);
+    return componentName;
+}
+
+const addModules = (componentName) => {
+    let modulesStr = '';
+    let component = jsonData.filter(item=>item.title.includes(componentName));
+    component[0].modules.forEach(module => {
+        modulesStr += `<script type="module" src="${module}"></script>`;
+    });
+    return modulesStr;
 }
 
 const style = `
