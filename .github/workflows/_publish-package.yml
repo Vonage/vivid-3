@@ -14,7 +14,7 @@ jobs:
         with:
           node-version: '16'
           cache: 'npm'
-          registry-url: 'https://npm.pkg.github.com'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install Dependencies
         run: npm ci
@@ -23,6 +23,6 @@ jobs:
         run: npm run nx build components
 
       - name: Publish
-        run: npx beachball publish -m "Publishing a new version" --no-git-tags --prerelease-prefix next -t next -y
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
+        run: npx beachball publish -m "Publishing a new version" --no-git-tags --prerelease-prefix next -t next -y -n $NPM_TOKEN

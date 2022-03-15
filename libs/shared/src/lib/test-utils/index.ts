@@ -14,3 +14,8 @@ export const fixture = (() => {
 export const getControlElement = (element: Element) => {
 	return element.shadowRoot?.querySelector('.control') as HTMLElement;
 }
+
+export async function setAttribute(element: any, attribute: string, value: string) {
+  element[attribute] = value;
+  await elementUpdated(element);
+}
