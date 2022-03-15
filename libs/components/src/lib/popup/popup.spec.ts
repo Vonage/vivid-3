@@ -91,7 +91,7 @@ describe('vwc-popup', () => {
 	});
 
 	describe('accessibility', () => {
-		it('should set aroa-hidden', async () => {
+		it('should set aria-hidden', async () => {
 			expect(getControlElement(element).getAttribute('aria-hidden')).toEqual('true');
 			element.open = true;
 			await elementUpdated(element);
