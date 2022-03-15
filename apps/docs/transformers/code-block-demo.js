@@ -9,10 +9,16 @@ const CBD_DEMO = 'cbd-demo';
 const CBD_DETAILS = 'cbd-details';
 const CBD_BUTTON_SHOW = 'cbd-button-show';
 const CBD_CODE_BLOCK = 'cbd-code-block';
+
+const MAIN_STYLE = '<link rel="stylesheet" href="/assets/styles/main.css">';
+const LIGHT_THEME = '<link rel="stylesheet" href="/assets/styles/themes/light.css" media="all">';
+const DARL_THEME = '<link rel="stylesheet" href="/assets/styles/themes/dark.css" media="not all" disabled="">';
+
 const generateCodeBlockDemo = function (blockData) {
     const demoData = {};
     const code = blockData.pre.querySelector('code')?.textContent;
-    demoData.demoStr = decode(blockData.headEl.innerHTML) + decode(code);
+    const style = MAIN_STYLE + LIGHT_THEME + DARL_THEME;
+    demoData.demoStr = decode(style) + decode(code);
     demoData.codeStr = blockData.pre.outerHTML;
     demoData.index = blockData.index;
     demoData.outputPath = blockData.outputPath;
@@ -28,7 +34,6 @@ module.exports = function (content, outputPath) {
     blockData.outputPath = outputPath;
     const document = new JSDOM(content).window.document;
     const headEl = document.documentElement.querySelector('head');
-    blockData.headEl = headEl;
     const codeBlocks = document.querySelectorAll(ELEVENTY_HTML_CODE_BLOCK_SELECTOR);
     codeBlocks.forEach(function (codeBlock, index) {
         const pre = codeBlock.closest('pre');
@@ -88,8 +93,9 @@ const saveCodeAsHTMLFile = (frameData) => {
 }
 
 const addComponentScript = (outputPath) => {
-    const componentName = path.dirname(outputPath).substring(outputPath.lastIndexOf('/'));
-    return `<script type="module" src="/assets/modules/components/${componentName}/index.js"></script>`;
+    const pathName = path.dirname(outputPath).substring(0, outputPath.lastIndexOf('/'));
+    const componentName = pathName.substring(pathName.lastIndexOf('/'));
+    return `<script type="module" src="/assets/modules/components${componentName}/index.js"></script>`;
 }
 
 const style = `
