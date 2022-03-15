@@ -8,15 +8,15 @@
 	align-items: center;
 	color: var(#{theme-consts.$vvd-color-neutral-70});
 
-  a {
-    color: var(--vvd-color-cta-70);
-    text-decoration: none;
-  }
+	a {
+		color: var(--vvd-color-cta-70);
+		text-decoration: none;
+	}
 
-  vwc-icon {
-    margin: 0 16px;
-    color: var(#{theme-consts.$vvd-color-on-canvas});
-  }
+	vwc-icon {
+		margin: 0 16px;
+		color: var(#{theme-consts.$vvd-color-on-canvas});
+	}
 }
 
 
