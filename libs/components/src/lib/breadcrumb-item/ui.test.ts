@@ -21,6 +21,7 @@ test.only('should show the component', async ({ page }: { page: Page }) => {
 		page,
 		componentName,
 	});
+
 	await loadTemplate({
 		page,
 		template,
@@ -30,7 +31,6 @@ test.only('should show the component', async ({ page }: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
-	await page.pause();
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/breadcrumb-item.png'
 	);
