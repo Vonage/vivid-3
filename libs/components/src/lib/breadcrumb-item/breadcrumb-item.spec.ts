@@ -1,45 +1,84 @@
-import {elementUpdated, fixture, setAttribute} from '@vivid-nx/shared';
-import {TextAnchor} from './text-anchor';
+import {elementUpdated, fixture, getControlElement, setAttribute} from '@vivid-nx/shared';
+import type {Icon} from '../icon/icon';
+import { BreadcrumbItem } from './breadcrumb-item';
 import '.';
 
-const COMPONENT_TAG = 'vwc-text-anchor';
+const COMPONENT_TAG = 'vwc-breadcrumb-item';
 
-describe( 'vwc-text-anchor', () => {
-	let element: TextAnchor;
+describe('vwc-breadcrumb-item', () => {
+
+	let element: BreadcrumbItem;
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as TextAnchor;
+		element = (await fixture(
+			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+		)) as BreadcrumbItem;
 	});
 
-	describe('basic', () => {
-		it('should be initialized as a vwc-text-anchor', async () => {
-			expect(element).toBeInstanceOf(TextAnchor);
-			expect(element.text).toEqual('');
-		});
+	it('should be initialized as a vwc-breadcrumb-item', async () => {
+		expect(element).toBeInstanceOf(BreadcrumbItem);
 	});
 
-	describe('text', () => {
-		it('set text property to node', async () => {
-			const text = 'lorem';
-			element.text = text;
-			await elementUpdated(element);
-
-			const { control } = element;
-			expect(control?.textContent?.trim())
-				.toEqual(text);
-		});
+	it('should display only icon when no prop is set', function () {
+		const controlElement = getControlElement(element);
+		const iconElementExists = Boolean(controlElement.querySelector(('vwc-icon')));
+		expect(iconElementExists).toEqual(true);
 	});
 
-	/**
-	 *
-	 */
-	function getAnchorElement() {
-		const anchorElement = element.shadowRoot?.querySelector('a');
-		return anchorElement;
-	}
+	it('should be set as simple text when given only text', async function () {
+		const breadcrumbText = 'some text';
+		element.text = breadcrumbText;
+		await elementUpdated(element);
+		const controlElement = getControlElement(element);
+		expect(controlElement.textContent?.trim()).toEqual(breadcrumbText);
+	});
 
+	it('should set icon when "separator" is true', async function () {
+		const controlElement = getControlElement(element);
+		const iconElementExistsWhenSeparatorTrue = Boolean(controlElement.querySelector(('vwc-icon')));
+
+		element.separator = false;
+		await elementUpdated(element);
+		const iconElementExistsWithSeparatorFalse = Boolean(controlElement.querySelector(('vwc-icon')));
+
+		expect(iconElementExistsWithSeparatorFalse)
+			.toEqual(false);
+		expect(iconElementExistsWhenSeparatorTrue)
+			.toEqual(true);
+	});
+
+	it('should set as an anchor and icon when set with "href"', async function () {
+		const breadcrumbText = 'some text';
+		const href = 'https://google.com/';
+		element.text = breadcrumbText;
+		element.href = href;
+		await elementUpdated(element);
+
+		const controlElement = getControlElement(element);
+		const iconElement = controlElement.querySelector(('vwc-icon')) as Icon;
+		const anchorElement = controlElement.querySelector(('a'));
+
+		expect(anchorElement?.textContent?.trim()).toEqual(breadcrumbText);
+		expect((anchorElement as any)?.href).toEqual(element.href);
+		expect(iconElement?.type).toEqual('chevron-right-line');
+	});
 
 	describe('bindings', () => {
+
+		beforeEach(async function () {
+			element.href = '#';
+			element.text = 'stam';
+			await elementUpdated(element);
+		});
+
+		/**
+		 *
+		 */
+		function getAnchorElement() {
+			const anchorElement = element.shadowRoot?.querySelector('a');
+			return anchorElement;
+		}
+
 		/**
 		 * @param str
 		 */
@@ -48,6 +87,13 @@ describe( 'vwc-text-anchor', () => {
 		}
 
 		it('should set aria labels', async function () {
+
+			const ARIA_PROPS = [
+				'atomic', 'busy', 'controls', 'current', 'describedby',
+				'details', 'disabled', 'errormessage', 'expanded',
+				'flowto', 'haspopup', 'hidden', 'invalid', 'keyshortcuts',
+				'label', 'labelledby', 'live', 'owns', 'relevant', 'roledescription'
+			];
 
 			/**
 			 *
@@ -58,13 +104,6 @@ describe( 'vwc-text-anchor', () => {
 					(element as any)[ariaPropOnObject] = ariaProp;
 				});
 			}
-
-			const ARIA_PROPS = [
-				'atomic', 'busy', 'controls', 'current', 'describedby',
-				'details', 'disabled', 'errormessage', 'expanded',
-				'flowto', 'haspopup', 'hidden', 'invalid', 'keyshortcuts',
-				'label', 'labelledby', 'live', 'owns', 'relevant', 'roledescription'
-			];
 
 			const anchorElement = getAnchorElement();
 
