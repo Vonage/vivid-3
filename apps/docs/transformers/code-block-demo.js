@@ -13,12 +13,12 @@ const CBD_CODE_BLOCK = 'cbd-code-block';
 
 const MAIN_STYLE = '<link rel="stylesheet" href="/assets/styles/main.css">';
 const LIGHT_THEME = '<link rel="stylesheet" href="/assets/styles/themes/light.css" media="all">';
-const DARL_THEME = '<link rel="stylesheet" href="/assets/styles/themes/dark.css" media="not all" disabled="">';
+const DARK_THEME = '<link rel="stylesheet" href="/assets/styles/themes/dark.css" media="not all" disabled="">';
 
 const generateCodeBlockDemo = function (blockData) {
     const demoData = {};
     const code = blockData.pre.querySelector('code')?.textContent;
-    const style = MAIN_STYLE + LIGHT_THEME + DARL_THEME;
+    const style = MAIN_STYLE + LIGHT_THEME + DARK_THEME;
     demoData.demoStr = decode(style) + decode(code);
     demoData.codeStr = blockData.pre.outerHTML;
     demoData.index = blockData.index;
