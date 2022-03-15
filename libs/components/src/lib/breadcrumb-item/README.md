@@ -4,13 +4,12 @@
 <script type="module">import '@vonage/vivid/breadcrumb-item';</script>
 ```
 
-## Link with separator
+## Link
 
 ```html preview
 <vwc-breadcrumb-item 
   text="Breadcrumb" 
-  href="https://vivid.vonage.com"
-  separator></vwc-breadcrumb-item>
+  href="https://vivid.vonage.com"></vwc-breadcrumb-item>
 ```
 
 ## Text
@@ -26,17 +25,14 @@
 <div style="display: flex">
 <vwc-breadcrumb-item 
   text="Breadcrumb" 
-  href="https://vivid.vonage.com"
-  separator></vwc-breadcrumb-item>
+  href="https://vivid.vonage.com"></vwc-breadcrumb-item>
 
 <vwc-breadcrumb-item 
   text="Breadcrumb" 
-  href="https://vivid.vonage.com"
-  separator></vwc-breadcrumb-item>
+  href="https://vivid.vonage.com"></vwc-breadcrumb-item>
   
 <vwc-breadcrumb-item 
-  text="..." 
-  separator></vwc-breadcrumb-item>
+  text="..."></vwc-breadcrumb-item>
   
 <vwc-breadcrumb-item 
   text="Breadcrum" ></vwc-breadcrumb-item>

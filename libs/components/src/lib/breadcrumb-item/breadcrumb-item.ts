@@ -1,4 +1,4 @@
-import {attr} from '@microsoft/fast-element';
+import {observable} from '@microsoft/fast-element';
 import {TextAnchor} from '../text-anchor/text-anchor';
 
 /**
@@ -7,7 +7,8 @@ import {TextAnchor} from '../text-anchor/text-anchor';
  * @public
  */
 export class BreadcrumbItem extends TextAnchor {
-	@attr({ mode: 'boolean' }) separator = false;
+	@observable
+		separator: boolean = true;
 
 	constructor() {
 		super();

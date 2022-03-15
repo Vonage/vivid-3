@@ -19,9 +19,10 @@ describe('vwc-breadcrumb-item', () => {
 		expect(element).toBeInstanceOf(BreadcrumbItem);
 	});
 
-	it('should display nothing when no prop is set', function () {
+	it('should display only icon when no prop is set', function () {
 		const controlElement = getControlElement(element);
-		expect(controlElement?.innerHTML.trim()).toEqual('');
+		const iconElementExists = Boolean(controlElement.querySelector(('vwc-icon')));
+		expect(iconElementExists).toEqual(true);
 	});
 
 	it('should be set as simple text when given only text', async function () {
@@ -34,22 +35,21 @@ describe('vwc-breadcrumb-item', () => {
 
 	it('should set icon when "separator" is true', async function () {
 		const controlElement = getControlElement(element);
-		const iconElementExistsWithoutSeparator = Boolean(controlElement.querySelector(('vwc-icon')));
-		element.separator = true;
+		const iconElementExistsWhenSeparatorTrue = Boolean(controlElement.querySelector(('vwc-icon')));
 
+		element.separator = false;
 		await elementUpdated(element);
-		const iconElementExistsWithSeparator = Boolean(controlElement.querySelector(('vwc-icon')));
+		const iconElementExistsWithSeparatorFalse = Boolean(controlElement.querySelector(('vwc-icon')));
 
-		expect(iconElementExistsWithoutSeparator)
+		expect(iconElementExistsWithSeparatorFalse)
 			.toEqual(false);
-		expect(iconElementExistsWithSeparator)
+		expect(iconElementExistsWhenSeparatorTrue)
 			.toEqual(true);
 	});
 
 	it('should set as an anchor and icon when set with "href"', async function () {
 		const breadcrumbText = 'some text';
 		const href = 'https://google.com/';
-		element.separator = true;
 		element.text = breadcrumbText;
 		element.href = href;
 		await elementUpdated(element);
