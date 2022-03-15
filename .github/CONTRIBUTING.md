@@ -17,7 +17,7 @@ Never made an open source contribution before? Wondering how contributions work 
 * Run `npm install`
 
 * Building and developing the documentation:
-  * Development: `npx nx run serve docs`
+  * Development: `npx nx run docs:serve`
   * Build: `npm run build docs`
 
 * Building and developing the components:
