@@ -13,6 +13,10 @@
 		text-decoration: none;
 	}
 
+  a:hover {
+    text-decoration: underline;
+  }
+
 	vwc-icon {
 		margin: 0 16px;
 		color: var(#{theme-consts.$vvd-color-on-canvas});
