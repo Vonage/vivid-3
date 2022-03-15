@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import {elementUpdated, fixture, setAttribute} from '@vivid-nx/shared';
 import {TextAnchor} from './text-anchor';
 import '.';
 
@@ -38,14 +38,6 @@ describe( 'vwc-text-anchor', () => {
 		return anchorElement;
 	}
 
-	/**
-	 * @param attribute
-	 * @param text
-	 */
-	async function setAttribute(attribute: string, text: string) {
-		(element as any)[attribute] = text;
-		await elementUpdated(element);
-	}
 
 	describe('bindings', () => {
 		/**
@@ -90,7 +82,7 @@ describe( 'vwc-text-anchor', () => {
 			const attribute = 'href';
 			const anchorElement = getAnchorElement();
 			const text = 'stam';
-			await setAttribute(attribute, text);
+			await setAttribute(element, attribute, text);
 
 			expect(anchorElement?.getAttribute(attribute)).toEqual(text);
 		});
@@ -99,7 +91,7 @@ describe( 'vwc-text-anchor', () => {
 			const attribute = 'hreflang';
 			const anchorElement = getAnchorElement();
 			const text = 'stam';
-			await setAttribute(attribute, text);
+			await setAttribute(element, attribute, text);
 
 			expect(anchorElement?.getAttribute(attribute)).toEqual(text);
 		});
@@ -108,7 +100,7 @@ describe( 'vwc-text-anchor', () => {
 			const attribute = 'download';
 			const anchorElement = getAnchorElement();
 			const text = 'stam';
-			await setAttribute(attribute, text);
+			await setAttribute(element, attribute, text);
 
 			expect(anchorElement?.getAttribute(attribute)).toEqual(text);
 		});
@@ -117,7 +109,7 @@ describe( 'vwc-text-anchor', () => {
 			const attribute = 'ping';
 			const anchorElement = getAnchorElement();
 			const text = 'stam';
-			await setAttribute(attribute, text);
+			await setAttribute(element, attribute, text);
 
 			expect(anchorElement?.getAttribute(attribute)).toEqual(text);
 		});
@@ -126,7 +118,7 @@ describe( 'vwc-text-anchor', () => {
 			const attribute = 'referrerpolicy';
 			const anchorElement = getAnchorElement();
 			const text = 'stam';
-			await setAttribute(attribute, text);
+			await setAttribute(element, attribute, text);
 
 			expect(anchorElement?.getAttribute(attribute)).toEqual(text);
 		});
@@ -135,7 +127,7 @@ describe( 'vwc-text-anchor', () => {
 			const attribute = 'rel';
 			const anchorElement = getAnchorElement();
 			const text = 'stam';
-			await setAttribute(attribute, text);
+			await setAttribute(element, attribute, text);
 
 			expect(anchorElement?.getAttribute(attribute)).toEqual(text);
 		});
@@ -144,7 +136,7 @@ describe( 'vwc-text-anchor', () => {
 			const attribute = 'target';
 			const anchorElement = getAnchorElement();
 			const text = 'stam';
-			await setAttribute(attribute, text);
+			await setAttribute(element, attribute, text);
 
 			expect(anchorElement?.getAttribute(attribute)).toEqual(text);
 		});
@@ -153,7 +145,7 @@ describe( 'vwc-text-anchor', () => {
 			const attribute = 'type';
 			const anchorElement = getAnchorElement();
 			const text = 'stam';
-			await setAttribute(attribute, text);
+			await setAttribute(element, attribute, text);
 
 			expect(anchorElement?.getAttribute(attribute)).toEqual(text);
 		});
