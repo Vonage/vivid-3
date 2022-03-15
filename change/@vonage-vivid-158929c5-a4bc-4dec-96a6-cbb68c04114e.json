@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "add codecov.yml",
+  "packageName": "@vonage/vivid",
+  "email": "yonatan.kra@vonage.com",
+  "dependentChangeType": "none"
+}
