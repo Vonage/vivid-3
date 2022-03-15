@@ -7,14 +7,16 @@
 	display: flex;
 	align-items: center;
 	color: var(#{theme-consts.$vvd-color-neutral-70});
+
+  a {
+    color: var(--vvd-color-cta-70);
+    text-decoration: none;
+  }
+
+  vwc-icon {
+    margin: 0 16px;
+    color: var(#{theme-consts.$vvd-color-on-canvas});
+  }
 }
 
-.control a {
-	color: var(--vvd-color-cta-70);
-	text-decoration: none;
-}
 
-vwc-icon {
-	margin: 0 16px;
-	color: var(#{theme-consts.$vvd-color-on-canvas});
-}
