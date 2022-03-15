@@ -14,13 +14,6 @@
     ]
   },
   {
-    "title": "anchor",
-    "markdown": "./libs/components/src/lib/anchor/README.md",
-    "modules": [
-      "/assets/modules/components/anchor/index.js"
-    ]
-  },
-  {
     "title": "icon",
     "markdown": "./libs/components/src/lib/icon/README.md",
     "modules": [
@@ -35,11 +28,25 @@
     ]
   },
   {
+    "title": "sidenav-item",
+    "markdown": "./libs/components/src/lib/sidenav-item/README.md",
+    "modules": [
+      "/assets/modules/components/sidenav-item/index.js"
+    ]
+  },
+  {
     "title": "elevation",
     "markdown": "./libs/components/src/lib/elevation/README.md",
     "modules": [
       "/assets/modules/components/elevation/index.js",
       "/assets/modules/components/layout/index.js"
+    ]
+  },
+  {
+    "title": "breadcrumb-item",
+    "markdown": "./libs/components/src/lib/breadcrumb-item/README.md",
+    "modules": [
+      "/assets/modules/components/breadcrumb-item/index.js"
     ]
   }
 ]
