@@ -67,17 +67,25 @@ describe('vwc-popup', () => {
 		});
 	});
 
-	describe('render classes', () => {
-		it('should render arrow class', async () => {
-			element.arrow = true;
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.arrow')).not.toBeNull();
+	describe('render arrow', () => {
+		it('should render an arrow icon if arrow is true', async () => {
+			// TODO
 		});
-
-		it('should render dismiss class', async () => {
-			element.dismissible = true;
+		
+		it('should not render an arrow icon if arrow is false', async () => {
+			// TODO
+		});
+		
+		it('should remove the arrow class on the container if arrow is false', () => {
+		        const controlElement = element.shadowRoot?.querySelector('.control');
+			expect(controlElement.classList.contains('.arrow')).toEqual(false);
+		});
+		
+		it('should set the arrow class on the container if arrow is true', () => {
+		        element.arrow = true;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.dismissible')).not.toBeNull();
+			const controlElement = element.shadowRoot?.querySelector('.control');
+			expect(controlElement.classList.contains('.arrow')).toEqual(true);
 		});
 	});
 
