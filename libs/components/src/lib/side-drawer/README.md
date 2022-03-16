@@ -11,6 +11,31 @@ Use the `open` attribute to indicate whether the side drawer is open.
 
 - Type: `Boolean`
 - Default: `false`
+
+```html preview
+<vwc-side-drawer open>
+	<div slot="top-bar">
+		<vwc-icon type="vonage-mono"></vwc-icon>
+		<vwc-text font-face="body-1-bold"> VONAGE</vwc-text>
+	</div>
+	<div>
+		<vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
+        <vwc-text font-face="body-2-bold">SECTION TITLE</vwc-text>
+        <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
+        <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
+	</div>
+	<div slot="app-content">
+        <vwc-text font-face="body-1">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
+            a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+            Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
+            of Lorem Ipsum.
+        </vwc-text>
+	</div>
+</vwc-side-drawer>
+```
 ## Modal
 
 Use the `modal` attribute to set the side drawer's type to modal.
