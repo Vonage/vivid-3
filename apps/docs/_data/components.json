@@ -46,8 +46,8 @@
     "title": "breadcrumb",
     "markdown": "./libs/components/src/lib/breadcrumb/README.md",
     "modules": [
-      "/assets/modules/components/breadcrumb/index.js",
-      "/assets/modules/components/breadcrumb-item/index.js"
+      "/assets/modules/components/breadcrumb-item/index.js",
+      "/assets/modules/components/breadcrumb/index.js"
     ]
   }
 ]

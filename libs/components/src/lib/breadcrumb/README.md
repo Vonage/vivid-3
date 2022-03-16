@@ -1,8 +1,8 @@
 # breadcrumb
 
 ```js
-<script type="module">import '@vonage/vivid/breadcrumb';</script>
 <script type="module">import '@vonage/vivid/breadcrumb-item';</script>
+<script type="module">import '@vonage/vivid/breadcrumb';</script>
 ```
 
 ## Common Usage
