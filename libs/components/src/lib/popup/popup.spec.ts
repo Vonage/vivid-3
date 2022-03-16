@@ -68,20 +68,24 @@ describe('vwc-popup', () => {
 	});
 
 	describe('render arrow', () => {
-		it('should render an arrow icon if arrow is true', async () => {
+		it('should remove the arrow class on the container if arrow is false', async () => {
+			expect(element.shadowRoot?.querySelector('.arrow')).toBeNull();
+		});
+		it('should set the arrow class on the container if arrow is true', async () => {
 			element.arrow = true;
 			await elementUpdated(element);
-			expect(element.arrow).toEqual(true);
+			expect(element.shadowRoot?.querySelector('.arrow')).not.toBeNull();
 		});
-		
-		it('should remove the arrow class on the container if arrow is false', async () => {
-			expect(getControlElement(element).classList.contains('.arrow')).toEqual(false);
+	});
+
+	describe('render dismiss', () => {
+		it('should remove the dismiss class on the container if arrow is false', async () => {
+			expect(element.shadowRoot?.querySelector('.dismissible')).toBeNull();
 		});
-		
-		it('should set the arrow class on the container if arrow is true', async () => {
-		    element.arrow = true;
+		it('should set the dismiss class on the container if arrow is true', async () => {
+			element.dismissible = true;
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.contains('.arrow')).toEqual(true);
+			expect(element.shadowRoot?.querySelector('.dismissible')).not.toBeNull();
 		});
 	});
 
