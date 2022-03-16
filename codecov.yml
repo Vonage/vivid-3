@@ -1,5 +1,5 @@
 codecov:
-  require_ci_to_pass: yes
+  require_ci_to_pass: false
 
 coverage:
   precision: 2
@@ -8,11 +8,7 @@ coverage:
   status:
     project:
       default:
-        target: auto
-        threshold: 0%
-    patch:
-      default:
-        target: auto
+        target: 95%
         threshold: 0%
 
 parsers:
