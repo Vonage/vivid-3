@@ -1,5 +1,5 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
+import { Breadcrumb as FoundationElement } from '@microsoft/fast-foundation';
+import '../breadcrumb-item';
 
 /**
  * Base class for breadcrumb
@@ -7,12 +7,5 @@ import { attr } from '@microsoft/fast-element';
  * @public
  */
 export class Breadcrumb extends FoundationElement {
-  /**
-   * Indicates the text's text.
-   *
-   * @public
-   * @remarks
-   * HTML Attribute: text
-   */
-  @attr text = '';
+
 }
