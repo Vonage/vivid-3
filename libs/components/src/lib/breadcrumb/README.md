@@ -2,6 +2,7 @@
 
 ```js
 <script type="module">import '@vonage/vivid/breadcrumb';</script>
+<script type="module">import '@vonage/vivid/breadcrumb-item';</script>
 ```
 
 ## Common Usage
