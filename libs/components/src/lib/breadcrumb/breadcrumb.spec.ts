@@ -52,15 +52,39 @@ describe('vwc-breadcrumb', () => {
 		expect(itemElements[3].separator).toEqual(false);
 	});
 
-	it('should set aria-current to last node if last node is href', async function () {
-		const newItem = document.createElement('vwc-breadcrumb-item') as BreadcrumbItem;
-		newItem.href = '#';
-		newItem.text = 'breadcrumb';
+	describe('aria-current', function () {
+		function removeAElementFromBreadcrumbItem() {
+			newItem.shadowRoot?.querySelector('a')
+				?.remove();
+		}
+		let newItem: BreadcrumbItem;
 
-		element.appendChild(newItem);
-		await elementUpdated(element);
-		const ariaCurrent = newItem.shadowRoot?.querySelector('a')?.getAttribute('aria-current');
+		beforeEach(async function () {
+			newItem = document.createElement('vwc-breadcrumb-item') as BreadcrumbItem;
+			newItem.href = '#';
+			newItem.text = 'breadcrumb';
+			element.appendChild(newItem);
+			await elementUpdated(element);
+		});
 
-		expect(ariaCurrent).toEqual('page');
+		it('should set aria-current to last node internal a element if last node is href', async function () {
+			const ariaCurrent = newItem.shadowRoot?.querySelector('a')?.getAttribute('aria-current');
+			expect(ariaCurrent).toEqual('page');
+		});
+
+		it('should set aria-current to last node if last node is href and doesnt have internal a element', async function () {
+			removeAElementFromBreadcrumbItem();
+			element.slottedBreadcrumbItemsChanged();
+
+			expect(newItem.ariaCurrent).toEqual('page');
+		});
+
+		it('should not set aria-current to last node if last node is not href', async function () {
+			removeAElementFromBreadcrumbItem();
+			newItem.removeAttribute('href');
+			const ariaCurrent = newItem.getAttribute('aria-current');
+			expect(ariaCurrent).toEqual(null);
+		});
 	});
+
 });
