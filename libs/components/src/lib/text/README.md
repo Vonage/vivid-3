@@ -12,11 +12,6 @@ The component provisions the Vivid typography font faces and connotations suppor
 The following will generate a `headline-1` styled font face
 
 ```html preview
-<style>
-  vwc-text {
-    display: block;
-  }
-</style>
 <vwc-text font-face="headline-1">headline-1</vwc-text>
 <vwc-text font-face="headline-2">headline-2</vwc-text>
 <vwc-text font-face="title-1">title-1</vwc-text>
@@ -31,10 +26,10 @@ The following will generate a `headline-1` styled font face
 <vwc-text font-face="body-2-bold">body-2-bold</vwc-text>
 <vwc-text font-face="body-2-code">body-2-code</vwc-text>
 <vwc-text font-face="body-2-link">body-2-link</vwc-text>
-<vwc-text font-face="caption">caption</vwc-text>
-<vwc-text font-face="caption-bold">caption-bold</vwc-text>
-<vwc-text font-face="caption-code">caption-code</vwc-text>
-<vwc-text font-face="caption-link">caption-link</vwc-text>
+<vwc-text font-face="caption">caption</vwc-text><br>
+<vwc-text font-face="caption-bold">caption-bold</vwc-text><br>
+<vwc-text font-face="caption-code">caption-code</vwc-text><br>
+<vwc-text font-face="caption-link">caption-link</vwc-text><br>
 ```
 
 ### Semantic usage

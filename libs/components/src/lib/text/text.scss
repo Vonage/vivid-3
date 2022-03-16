@@ -37,13 +37,19 @@
 		}
 
 		&-body-1,
-		&-body-2 {
+		&-body-1-bold,
+		&-body-1-code,
+		&-body-1-link,
+		&-body-2,
+		&-body-2-bold,
+		&-body-2-code,
+		&-body-2-link {
 			--font-face-margin: 1rem 0;
 		}
 	}
 
 	&:not(.tight) {
-		&:where(.font-face-headline-1, .font-face-headline-2, .font-face-title-1, .font-face-title-2, .font-face-subtitle-1, .font-face-subtitle-2, .font-face-body-1, .font-face-body-2) {
+		&:where(.font-face-headline-1, .font-face-headline-2, .font-face-title-1, .font-face-title-2, .font-face-subtitle-1, .font-face-subtitle-2, .font-face-body-1, .font-face-body-1-bold, .font-face-body-1-code, .font-face-body-1-link, .font-face-body-2, .font-face-body-2-bold, .font-face-body-2-code, .font-face-body-2-link) {
 			display: block;
 			margin: var(--font-face-margin, 0);
 		}
