@@ -1,4 +1,5 @@
 # vwc-text
+
 Represents a text custom element.
 The component provisions the Vivid typography font faces and connotations supported by our design system.
 
@@ -11,9 +12,29 @@ The component provisions the Vivid typography font faces and connotations suppor
 The following will generate a `headline-1` styled font face
 
 ```html preview
-<vwc-text font-face="headline-1">
- lorem ipsum dolor sit amet
-</vwc-text>
+<style>
+  vwc-text {
+    display: block;
+  }
+</style>
+<vwc-text font-face="headline-1">headline-1</vwc-text>
+<vwc-text font-face="headline-2">headline-2</vwc-text>
+<vwc-text font-face="title-1">title-1</vwc-text>
+<vwc-text font-face="title-2">title-2</vwc-text>
+<vwc-text font-face="subtitle-1">subtitle-1</vwc-text>
+<vwc-text font-face="subtitle-2">subtitle-2</vwc-text>
+<vwc-text font-face="body-1">body-1</vwc-text>
+<vwc-text font-face="body-1-bold">body-1-bold</vwc-text>
+<vwc-text font-face="body-1-code">body-1-code</vwc-text>
+<vwc-text font-face="body-1-link">body-1-link</vwc-text>
+<vwc-text font-face="body-2">body-2</vwc-text>
+<vwc-text font-face="body-2-bold">body-2-bold</vwc-text>
+<vwc-text font-face="body-2-code">body-2-code</vwc-text>
+<vwc-text font-face="body-2-link">body-2-link</vwc-text>
+<vwc-text font-face="caption">caption</vwc-text>
+<vwc-text font-face="caption-bold">caption-bold</vwc-text>
+<vwc-text font-face="caption-code">caption-code</vwc-text>
+<vwc-text font-face="caption-link">caption-link</vwc-text>
 ```
 
 ### Semantic usage
