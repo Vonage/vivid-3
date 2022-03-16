@@ -1,4 +1,4 @@
-<div>
+<div class="home-page-hero vvd-theme-alternate">
   <a href="https://github.com/vonage/vivid-3">
     <img src="/vivid-logo.svg" style="" alt="Vivid Logo" width="120">
   </a>
@@ -12,14 +12,15 @@
 [![Apache 2.0 License][license-shield]][license-url]
 
 
-  <p>
-    Vonage's design system platform targeted to provide incorporated, battery-charged web components.
-  </p>
-  <a href="https://vivid.deno.dev"><strong>Explore the docs »</strong></a>
-  <br>
-  <a href="https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=bug_report.md&title=">Report Bug</a>
-  ·
-  <a href="https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=feature_request.md&title=">Request Feature</a>
+  <h6>
+    Vonage's design system platform targeted to provide </br>incorporated, battery-charged web components.
+  </h6>
+  <a class="home-page-hero-docs-btn" href="https://vivid.deno.dev"><strong>Explore the docs</strong></a>
+  <div class="home-page-hero-docs-links">
+    <a href="https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=bug_report.md&title=">Report Bug</a>
+    <span>|</span>    
+    <a href="https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=feature_request.md&title=">Request Feature</a>
+  </div>
 </div>
 
 <br>
@@ -76,7 +77,7 @@ This project is [Apache 2.0][license-url] licensed.
 
 <hr>
 
-### Built With [Typescript](https://www.typescriptlang.org), [Lit](https://lit.dev), [Sass](https://sass-lang.com) and ❤️
+##### Built With [Typescript](https://www.typescriptlang.org), [Lit](https://lit.dev), [Sass](https://sass-lang.com) and ❤️
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
