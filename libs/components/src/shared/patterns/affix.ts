@@ -1,7 +1,6 @@
 import { attr, html } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
-// import { classNames } from '@microsoft/fast-web-utilities';
 import { Icon } from '../../lib/icon/icon';
 
 /**
@@ -54,26 +53,3 @@ export const affixIconTemplate: (context: ElementDefinitionContext) => ViewTempl
 
 	return html`${(x) => (x.icon ? iconTemplate : '')}`;
 };
-
-// /**
-// 	* The template for the affixed (prefixed or suffixed) element.
-// 	* For use with {@link AffixIconWithTrailing}
-// 	*
-// 	* @param context
-// 	* @public
-// 	*/
-// export const prefixOrSuffixTemplate: (context: ElementDefinitionContext) => ViewTemplate<AffixIconWithTrailing> =
-// 	(context: ElementDefinitionContext) => {
-// 		const iconTag = context.tagFor(Icon);
-
-// 		const classes = ({
-// 			iconTrailing,
-// 		}: AffixIconWithTrailing) => classNames(
-// 			'icon',
-// 			['icon-trailing', iconTrailing],
-// 		);
-
-// 		const iconTemplate = html`<span class="${classes}"><${iconTag} :type="${(x) => x.icon}"></${iconTag}></span>`;
-
-// 		return html`${(x) => (x.icon ? iconTemplate : '')}`;
-// 	};
