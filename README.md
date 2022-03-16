@@ -1,4 +1,4 @@
-<div class="home-page-hero vvd-theme-alternate">
+<div class="home-page-hero">
   <a href="https://github.com/vonage/vivid-3">
     <img src="/vivid-logo.svg" style="" alt="Vivid Logo" width="120">
   </a>
