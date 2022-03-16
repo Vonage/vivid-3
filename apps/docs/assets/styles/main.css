@@ -88,8 +88,9 @@ li .navigation {
 dark-mode-toggle {
   display: block;
   margin-left: 0.5rem;
-  --dark-mode-toggle-dark-icon: url('../images/moon.svg');
-  --dark-mode-toggle-light-icon: url('../images/sun.svg');
+  /*in order for this to overide we need absolute links to a URL*/
+  /*--dark-mode-toggle-dark-icon: url('sun.svg');*/
+  /*--dark-mode-toggle-light-icon: url('moon.svg');*/
 }
 
 
