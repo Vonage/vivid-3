@@ -1,5 +1,4 @@
 import { Breadcrumb as FoundationElement } from '@microsoft/fast-foundation';
-import '../breadcrumb-item';
 
 /**
  * Base class for breadcrumb
