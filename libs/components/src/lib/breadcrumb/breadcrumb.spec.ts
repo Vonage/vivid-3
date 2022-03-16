@@ -6,7 +6,7 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-breadcrumb';
 
-fdescribe('vwc-breadcrumb', () => {
+describe('vwc-breadcrumb', () => {
 	const breadcrumbItemsTemplate = `
 	  <vwc-breadcrumb-item href="#" text="breadcrumb"></vwc-breadcrumb-item>
     <vwc-breadcrumb-item text="..."></vwc-breadcrumb-item>
