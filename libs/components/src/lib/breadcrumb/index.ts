@@ -3,7 +3,6 @@ import { breadcrumbTemplate as template } from '@microsoft/fast-foundation';
 import { designSystem } from '../../shared/design-system';
 import styles from './breadcrumb.scss';
 import { Breadcrumb } from './breadcrumb';
-import '../breadcrumb-item';
 
 export const vividBreadcrumb = Breadcrumb.compose<FoundationElementDefinition>({
 	baseName: 'breadcrumb',
