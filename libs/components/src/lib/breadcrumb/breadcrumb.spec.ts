@@ -6,29 +6,13 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-breadcrumb';
 
-describe('vwc-breadcrumb', () => {
-	const breadcrumbItemsData = [
-		{
-			href: '#',
-			text: 'bc1'
-		},
-		{
-			text: 'bc2'
-		},
-		{
-			href: '#',
-			text: 'bc3'
-		},
-		{
-			text: 'bc4'
-		}
-	];
-	const breadcrumbItemsTemplate = breadcrumbItemsData.reduce((htmlStr: string, breadcrumbItemData: any) => {
-		const href = breadcrumbItemData.href ? `href="${breadcrumbItemData.href}"` : '';
-		const text = `text="${breadcrumbItemData.text}"`;
-		htmlStr += `<vwc-breadcrumb-item ${href} ${text}></vwc-breadcrumb-item>`;
-		return htmlStr;
-	}, '');
+fdescribe('vwc-breadcrumb', () => {
+	const breadcrumbItemsTemplate = `
+	  <vwc-breadcrumb-item href="#" text="breadcrumb"></vwc-breadcrumb-item>
+    <vwc-breadcrumb-item text="..."></vwc-breadcrumb-item>
+    <vwc-breadcrumb-item href="#" text="breadcrumb"></vwc-breadcrumb-item>
+    <vwc-breadcrumb-item text="breadcrumb"></vwc-breadcrumb-item>
+	`;
 
 	let element: Breadcrumb;
 
