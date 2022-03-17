@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { Text } from './text';
 import '.';
 
@@ -26,9 +26,8 @@ describe('vwc-text', () => {
 			(element as any).connotation = connotation;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.connotation-${connotation}`);
-			expect(control)
-				.toBeInstanceOf(Element);
+			const control = getControlElement(element);
+			expect(control.classList.contains(`connotation-${connotation}`)).toBeTruthy();
 		});
 	});
 
@@ -38,9 +37,8 @@ describe('vwc-text', () => {
 			(element as any).fontFace = fontFace;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.font-face-${fontFace}`);
-			expect(control)
-				.toBeInstanceOf(Element);
+			const control = getControlElement(element);
+			expect(control.classList.contains(`font-face-${fontFace}`)).toBeTruthy();
 		});
 	});
 
@@ -49,9 +47,8 @@ describe('vwc-text', () => {
 			(element as any).tight = true;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector('.control.tight');
-			expect(control)
-				.toBeInstanceOf(Element);
+			const control = getControlElement(element);
+			expect(control.classList.contains('tight')).toBeTruthy();
 		});
 	});
 });
