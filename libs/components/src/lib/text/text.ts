@@ -12,7 +12,9 @@ type TextConnotation = Extract<Connotation,
 | Connotation.Primary
 | Connotation.CTA
 | Connotation.Success
-| Connotation.Alert>;
+| Connotation.Alert
+| Connotation.Announcement
+| Connotation.Info>;
 
 /**
  * Base class for text

@@ -3,13 +3,18 @@
 Represents a text custom element.
 The component provisions the Vivid typography font faces and connotations supported by our design system.
 
-##### typography scale
+```js
+<script type='module'>
+    import '@vonage/vivid/text';
+</script>
+```
 
-![typography font faces scale image](assets/images/type-ramp.jpeg)
+## Font face
 
-### Basic usage
+Use the `font-face` attribute or `fontFace` property to change the text's font face.
 
-The following will generate a `headline-1` styled font face
+- Type: `'headline-1'` | `'headline-2'` | `'title-1'` | `'title-2'` | `'subtitle-1'` | `'subtitle-2'` | `'body-1'` | `'body-1-bold'` | `'body-1-code'` | `'body-1-link'` | `'body-2'` | `'body-2-bold'` | `'body-2-code'` | `'body-2-link'` | `'caption'` | `'caption-bold'` | `'caption-code'` | `'caption-link'` | `'rounded'` | `'pill'`
+- Default: `'body-1'`
 
 ```html preview
 <vwc-text font-face="headline-1">headline-1</vwc-text>
@@ -30,6 +35,24 @@ The following will generate a `headline-1` styled font face
 <vwc-text font-face="caption-bold">caption-bold</vwc-text><br>
 <vwc-text font-face="caption-code">caption-code</vwc-text><br>
 <vwc-text font-face="caption-link">caption-link</vwc-text><br>
+```
+
+## Connotation
+
+Set the `connotation` attribute/property to change the text's connotated color.
+It accepts a subset of predefined values.
+
+- Type: `'primary'` | `'cta'` | `'success'` | `'alert'` | `'announcement'` | `'info'`
+- Default: `undefined` (inherits `currentColor`)
+
+```html preview
+<vwc-text>undefined</vwc-text>
+<vwc-text connotation='primary'>primary</vwc-text>
+<vwc-text connotation='cta'>cta</vwc-text>
+<vwc-text connotation='success'>success</vwc-text>
+<vwc-text connotation='alert'>alert</vwc-text>
+<vwc-text connotation='announcement'>announcement</vwc-text>
+<vwc-text connotation='info'>info</vwc-text>
 ```
 
 ### Semantic usage
@@ -64,16 +87,4 @@ Alternatively, 'vwc-text' can, itself, nest within a semantic tag -
 </h1>
 ```
 
-## Properties
-
-| Property   | Attribute   | Type                                                                                                                                                                                                                                                                                                                                      |
-| ---------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `fontFace` | `font-face` | `body-1` \| `body-1-bold` \| `body-1-code` \| `body-1-link` \| `body-2` \| `body-2-bold` \| `body-2-code` \| `body-2-link` \| `button` \| `button-dense` \| `button-enlarge` \| `caption` \| `caption-bold` \| `caption-code` \| `caption-link` \| `headline-1` \| `headline-2` \| `subtitle-1` \| `subtitle-2` \| `title-1` \| `title-2` |
-| `tight` | `tight` | `boolean` |
-
-<details>
-<summary>More on custom elements transparent content model</summary>
-https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-core-concepts
-</details>
-
-TODO add connotations
+More on [custom elements transparent content model](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-core-concepts)
