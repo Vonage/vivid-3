@@ -43,6 +43,14 @@
     ]
   },
   {
+    "title": "breadcrumb",
+    "markdown": "./libs/components/src/lib/breadcrumb/README.md",
+    "modules": [
+      "/assets/modules/components/breadcrumb-item/index.js",
+      "/assets/modules/components/breadcrumb/index.js"
+    ]
+  },
+  {
     "title": "text",
     "markdown": "./libs/components/src/lib/text/README.md",
     "modules": [
@@ -58,7 +66,6 @@
       "/assets/modules/components/icon/index.js",
       "/assets/modules/components/text/index.js",
       "/assets/modules/components/button/index.js"
-
     ]
   }
 ]
