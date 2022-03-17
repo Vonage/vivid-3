@@ -36,14 +36,9 @@ Use the `open` attribute to indicate whether the popup is open.
     text-align: left;
     padding: 1rem;
 	}
-  .line {
-    border-bottom: 1px solid var(--vvd-color-neutral-40);
-    padding-bottom: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
   .wrapper{
-    position: relative;
-    height: 100px;
+    width:100%;
+    height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,8 +48,7 @@ Use the `open` attribute to indicate whether the popup is open.
   <vwc-button id="anchor" appearance='filled' label='Click on me!'></vwc-button>
   <vwc-popup id="popup" anchor="anchor" open>
       <div class="content">
-        <vwc-text font-face="body-1-bold" tight><p class="line">Popup title</p></vwc-text>
-        <vwc-text font-face="body-2" tight>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</vwc-text>
+        <vwc-text tight font-face="body-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</vwc-text>
       </div>
   </vwc-popup>
 </div>
@@ -82,14 +76,9 @@ Use the `dismissible` attribute to add close button to the popup.
     text-align: left;
     padding: 1rem;
 	}
-  .line {
-    border-bottom: 1px solid var(--vvd-color-neutral-40);
-    padding-bottom: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
   .wrapper{
-    position: relative;
-    height: 100px;
+    width:100%;
+    height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -99,8 +88,7 @@ Use the `dismissible` attribute to add close button to the popup.
   <vwc-icon id="anchor" type='info-line'></vwc-icon>
   <vwc-popup anchor="anchor" open dismissible>
       <div class="content">
-        <vwc-text font-face="body-1-bold" tight><p class="line">Popup title</p></vwc-text>
-        <vwc-text font-face="body-2" tight>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</vwc-text>
+        <vwc-text tight font-face="body-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</vwc-text>
       </div>
   </vwc-popup>
 </div>
@@ -121,25 +109,19 @@ Use the `corner` attribute to set the placement of the popup.
     text-align: left;
     padding: 1rem;
 	}
-  .line {
-    border-bottom: 1px solid var(--vvd-color-neutral-40);
-    padding-bottom: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
   .wrapper{
-    position: relative;
-    height: 100px;
+    width:100%;
+    height: 150px;
     display: flex;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
   }
 </style>
 <div class="wrapper">
   <vwc-icon id="anchor" type='info-line'></vwc-icon>
   <vwc-popup anchor="anchor" open corner="right">
       <div class="content">
-        <vwc-text font-face="body-1-bold" tight><p class="line">Popup title</p></vwc-text>
-        <vwc-text font-face="body-2" tight>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</vwc-text>
+        <vwc-text tight font-face="body-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</vwc-text>
       </div>
   </vwc-popup>
 </div>
@@ -159,14 +141,9 @@ Use the `arrow` attribute to add small triangle to indicate the trigger element.
     text-align: left;
     padding: 1rem;
 	}
-  .line {
-    border-bottom: 1px solid var(--vvd-color-neutral-40);
-    padding-bottom: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
   .wrapper{
-    position: relative;
-    height: 100px;
+    width:100%;
+    height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -176,8 +153,7 @@ Use the `arrow` attribute to add small triangle to indicate the trigger element.
   <vwc-icon id="anchor" type='info-line'></vwc-icon>
   <vwc-popup anchor="anchor" open arrow>
       <div class="content">
-        <vwc-text font-face="body-1-bold" tight><p class="line">Popup title</p></vwc-text>
-        <vwc-text font-face="body-2" tight>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</vwc-text>
+        <vwc-text tight font-face="body-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</vwc-text>
       </div>
   </vwc-popup>
 </div>
@@ -196,14 +172,9 @@ Use the `alternate` attribute to set the color-scheme to dark.
     text-align: left;
     padding: 1rem;
 	}
-  .line {
-    border-bottom: 1px solid var(--vvd-color-neutral-40);
-    padding-bottom: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
   .wrapper{
-    position: relative;
-    height: 100px;
+    width:100%;
+    height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -213,8 +184,7 @@ Use the `alternate` attribute to set the color-scheme to dark.
   <vwc-icon id="anchor" type='info-line'></vwc-icon>
   <vwc-popup anchor="anchor" open alternate>
       <div class="content">
-        <vwc-text font-face="body-1-bold" tight><p class="line">Popup title</p></vwc-text>
-        <vwc-text font-face="body-2" tight>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</vwc-text>
+        <vwc-text tight font-face="body-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</vwc-text>
       </div>
   </vwc-popup>
 </div>
@@ -235,14 +205,9 @@ You will want to use 'fixed' if the anchor is inside a fixed container, but the 
     text-align: left;
     padding: 1rem;
 	}
-  .line {
-    border-bottom: 1px solid var(--vvd-color-neutral-40);
-    padding-bottom: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
   .wrapper{
-    position: relative;
-    height: 100px;
+    width:100%;
+    height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -252,8 +217,7 @@ You will want to use 'fixed' if the anchor is inside a fixed container, but the 
   <vwc-icon id="anchor" type='info-line'></vwc-icon>
   <vwc-popup anchor="anchor" open strategy="absolute">
       <div class="content">
-        <vwc-text font-face="body-1-bold" tight><p class="line">Popup title</p></vwc-text>
-        <vwc-text font-face="body-2" tight>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</vwc-text>
+        <vwc-text tight font-face="body-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</vwc-text>
       </div>
   </vwc-popup>
 </div>
