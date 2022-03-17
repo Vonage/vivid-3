@@ -33,11 +33,10 @@ Use the `open` attribute to indicate whether the popup is open.
 <style>
   .content {
     width: 200px;
-    text-align: left;
     padding: 1rem;
 	}
   .wrapper{
-    width:100%;
+    width: 100%;
     height: 120px;
     display: flex;
     align-items: center;
@@ -45,7 +44,7 @@ Use the `open` attribute to indicate whether the popup is open.
   }
 </style>
 <div class="wrapper">
-  <vwc-button id="anchor" appearance='filled' label='Click on me!'></vwc-button>
+  <vwc-button id="anchor" appearance='outlined' label='Click on me!'></vwc-button>
   <vwc-popup id="popup" anchor="anchor" open>
       <div class="content">
         <vwc-text tight font-face="body-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</vwc-text>
@@ -72,12 +71,11 @@ Use the `dismissible` attribute to add close button to the popup.
 ```html preview
 <style>
   .content {
-    width: 200px;
-    text-align: left;
+    width: 120px;
     padding: 1rem;
 	}
   .wrapper{
-    width:100%;
+    width: 100%;
     height: 120px;
     display: flex;
     align-items: center;
@@ -85,49 +83,22 @@ Use the `dismissible` attribute to add close button to the popup.
   }
 </style>
 <div class="wrapper">
-  <vwc-icon id="anchor" type='info-line'></vwc-icon>
-  <vwc-popup anchor="anchor" open dismissible>
+  <vwc-button id="anchor" appearance='outlined' label='Click on me!'></vwc-button>
+  <vwc-popup id="popup" anchor="anchor" open dismissible>
       <div class="content">
-        <vwc-text tight font-face="body-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</vwc-text>
+        <vwc-text tight font-face="body-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</vwc-text>
       </div>
   </vwc-popup>
 </div>
-
-```
-
-## Corner
-
-Use the `corner` attribute to set the placement of the popup.
-
-- Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
-- Default: `'left'`
-
-```html preview
-<style>
-  .content {
-    width: 200px;
-    text-align: left;
-    padding: 1rem;
-	}
-  .wrapper{
-    width:100%;
-    height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+<script>
+  const popup = document.getElementById("popup");
+  const button = document.getElementById("anchor");
+  button.addEventListener('click', toggleOpen);
+  function toggleOpen() {
+	  popup.open = !popup.open;
   }
-</style>
-<div class="wrapper">
-  <vwc-icon id="anchor" type='info-line'></vwc-icon>
-  <vwc-popup anchor="anchor" open corner="right">
-      <div class="content">
-        <vwc-text tight font-face="body-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</vwc-text>
-      </div>
-  </vwc-popup>
-</div>
-
+</script>
 ```
-
 ## Arrow
 Use the `arrow` attribute to add small triangle to indicate the trigger element.
 
@@ -138,11 +109,10 @@ Use the `arrow` attribute to add small triangle to indicate the trigger element.
 <style>
   .content {
     width: 200px;
-    text-align: left;
     padding: 1rem;
 	}
   .wrapper{
-    width:100%;
+    width: 100%;
     height: 120px;
     display: flex;
     align-items: center;
@@ -157,7 +127,6 @@ Use the `arrow` attribute to add small triangle to indicate the trigger element.
       </div>
   </vwc-popup>
 </div>
-
 ```
 ## Alternate
 Use the `alternate` attribute to set the color-scheme to dark.
@@ -169,11 +138,10 @@ Use the `alternate` attribute to set the color-scheme to dark.
 <style>
   .content {
     width: 200px;
-    text-align: left;
     padding: 1rem;
 	}
   .wrapper{
-    width:100%;
+    width: 100%;
     height: 120px;
     display: flex;
     align-items: center;
@@ -188,7 +156,50 @@ Use the `alternate` attribute to set the color-scheme to dark.
       </div>
   </vwc-popup>
 </div>
+```
+## Corner
 
+Use the `corner` attribute to set the placement of the popup.
+
+- Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
+- Default: `'left'`
+
+```html preview
+<style>
+  .content {
+    padding: 1rem;
+	}
+  .wrapper{
+    width: 100%;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+<div class="wrapper">
+  <vwc-button id="anchor" appearance='outlined' label='this is an anchor'></vwc-button>
+  <vwc-popup id="popup" anchor="anchor" open corner="right">
+      <div class="content">
+        <vwc-text tight font-face="body-2">right</vwc-text>
+      </div>
+  </vwc-popup>
+  <vwc-popup id="popup" anchor="anchor" open corner="left">
+      <div class="content">
+        <vwc-text tight font-face="body-2">left</vwc-text>
+      </div>
+  </vwc-popup>
+  <vwc-popup id="popup" anchor="anchor" open corner="top">
+      <div class="content">
+        <vwc-text tight font-face="body-2">top</vwc-text>
+      </div>
+  </vwc-popup>
+  <vwc-popup id="popup" anchor="anchor" open corner="bottom">
+      <div class="content">
+        <vwc-text tight font-face="body-2">bottom</vwc-text>
+      </div>
+  </vwc-popup>
+</div>
 ```
 ## Strategy
 Use the `strategy` attribute to set the position of the popup.
@@ -202,11 +213,10 @@ You will want to use 'fixed' if the anchor is inside a fixed container, but the 
 <style>
   .content {
     width: 200px;
-    text-align: left;
     padding: 1rem;
 	}
   .wrapper{
-    width:100%;
+    width: 100%;
     height: 120px;
     display: flex;
     align-items: center;
@@ -221,7 +231,6 @@ You will want to use 'fixed' if the anchor is inside a fixed container, but the 
       </div>
   </vwc-popup>
 </div>
-
 ```
 ## Top-layer
 

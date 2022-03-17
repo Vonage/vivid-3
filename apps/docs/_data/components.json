@@ -56,6 +56,7 @@
     "modules": [
       "/assets/modules/components/popup/index.js",
       "/assets/modules/components/button/index.js",
+      "/assets/modules/components/icon/index.js",
       "/assets/modules/components/text/index.js"
     ]
   }
