@@ -1,9 +1,10 @@
-import { Button as FoundationButton } from '@microsoft/fast-foundation';
+import { applyMixins, Button as FoundationButton } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 
 import type {
 	Appearance, Connotation, Shape, Size,
 } from '../enums.js';
+import { PrefixOrSuffix } from '../../shared/patterns/affix';
 
 /**
  * Types of button connotation.
@@ -81,27 +82,6 @@ export class Button extends FoundationButton {
 	@attr size?: ButtonSize;
 
 	/**
-	 * A decorative icon the button should have.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: icon
-	 */
-	@attr icon?: string;
-
-	/**
-	 * Indicates the icon affix alignment.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: icon-trailing
-	 */
-	@attr({
-		mode: 'boolean',
-		attribute: 'icon-trailing',
-	}) iconTrailing = false;
-
-	/**
 	 * Indicates the button's label.
 	 *
 	 * @public
@@ -110,3 +90,6 @@ export class Button extends FoundationButton {
 	 */
 	@attr label = '';
 }
+
+export interface Button extends PrefixOrSuffix {}
+applyMixins(Button, PrefixOrSuffix);

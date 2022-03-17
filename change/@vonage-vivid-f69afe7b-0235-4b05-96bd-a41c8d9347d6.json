@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Add the breadcrumb component",
+  "packageName": "@vonage/vivid",
+  "email": "yonatan.kra@vonage.com",
+  "dependentChangeType": "patch"
+}

@@ -10,14 +10,15 @@ Using layout, elements can be arranged easily in a variety of sizes and spaces t
 
 ```html preview
 <vwc-layout>
-  <img src="https://picsum.photos/311/200">
-  <img src="https://picsum.photos/312/200">
-  <img src="https://picsum.photos/313/200">
-  <img src="https://picsum.photos/314/200">
-  <img src="https://picsum.photos/315/200">
-  <img src="https://picsum.photos/316/200">
+  <img src="https://picsum.photos/id/1015/300/200">
+  <img src="https://picsum.photos/id/1016/300/200">
+  <img src="https://picsum.photos/id/1018/300/200">
+  <img src="https://picsum.photos/id/1019/300/200">
+  <img src="https://picsum.photos/id/1055/300/200">
+  <img src="https://picsum.photos/id/1050/300/200">
 </vwc-layout>
 ```
+
 ## Auto-sizing
 
 Use the `auto-sizing` attribute to set the initial preferred auto-sizing.
@@ -49,7 +50,6 @@ Use the `gutters` attribute to set the initial preferred margin.
 
 - Type: `'base-small'` | `'base'` | `'base-large'`
 - Default: `''`
-
 
 ```html preview
 <vwc-layout>
@@ -100,6 +100,7 @@ Use the `column-basis` attribute to set the initial preferred measure of a colum
 - Default: `'base'`
 
 ### base-small
+
 ```html preview
 <vwc-layout column-basis="base-small">
   <div style="border: 1px solid">base-small</div>
@@ -109,7 +110,9 @@ Use the `column-basis` attribute to set the initial preferred measure of a colum
   <div style="border: 1px solid">base-small</div>
 </vwc-layout>
 ```
+
 ### base
+
 ```html preview
 <vwc-layout column-basis="base">
   <div style="border: 1px solid">base</div>
@@ -119,7 +122,9 @@ Use the `column-basis` attribute to set the initial preferred measure of a colum
   <div style="border: 1px solid">base</div>
 </vwc-layout>
 ```
+
 ### base-large
+
 ```html preview
 <vwc-layout column-basis="base-large">
   <div style="border: 1px solid">base-large</div>
@@ -129,7 +134,9 @@ Use the `column-basis` attribute to set the initial preferred measure of a colum
   <div style="border: 1px solid">base-large</div>
 </vwc-layout>
 ```
+
 ### block
+
 ```html preview
 <vwc-layout column-basis="block">
   <div style="border: 1px solid">block</div>
@@ -140,8 +147,8 @@ Use the `column-basis` attribute to set the initial preferred measure of a colum
 </vwc-layout>
 ```
 
-
 ## CSS Custom Properties
+
 | Name                         | Description                                      | Usage                                              |
 | ---------------------------- | ------------------------------------------------ | -------------------------------------------------- |
-| layout-grid-template-columns | controls the grid-template-columns of the layout | repeat(`auto-sizing`, minmax(`column-basis`, 1fr)) |
+| --layout-grid-template-columns | controls the grid-template-columns of the layout | repeat(`auto-sizing`, minmax(`column-basis`, 1fr)) |

@@ -1,0 +1,34 @@
+name: 🧬 Release
+
+on:
+  push:
+    branches: main
+
+concurrency:
+  group: ci-pre-release-${{ github.ref }}-1
+  cancel-in-progress: true
+
+jobs:
+  call-lint:
+    uses: vonage/vivid-3/.github/workflows/_lint.yml@main
+
+  call-unit-tests:
+    needs: call-lint
+    uses: vonage/vivid-3/.github/workflows/_unit-test.yml@main
+    with:
+      os: ubuntu-latest
+      report_coverage: true
+
+  call-visual-regression:
+    needs: call-lint
+    uses: vonage/vivid-3/.github/workflows/_visual-regression.yml@main
+
+  #  TODO fix this
+  # call-publish-package:
+  #   needs: [call-unit-tests, call-visual-regression]
+  #   uses: vonage/vivid-3/.github/workflows/_publish-package.yml@main
+
+  call-deploy-site:
+    # needs: call-publish-package # do not deploy site if package is not published
+    needs: [call-unit-tests, call-visual-regression]
+    uses: vonage/vivid-3/.github/workflows/_deploy-deno.yml@main

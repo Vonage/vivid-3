@@ -1,15 +1,22 @@
+/* #region reset */
+strong {
+  font-weight: unset;
+}
+/* #endregion reset */
+
 body {
-    color: var(--vvd-color-on-canvas);
-    background-color: var(--vvd-color-canvas);
-    display: grid;
-    grid-template-columns: 250px auto;
-    grid-auto-rows: 64px auto;
-    grid-template-areas: "header header" "aside content";
-    margin: 0;
-    /*temporary typography until using vvid components*/
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1rem;
-    line-height: 1.4;
+  color: var(--vvd-color-on-canvas);
+  background-color: var(--vvd-color-canvas);
+  margin: 0;
+}
+
+/*code inside text*/
+code {
+  font-size: 1rem;
+  background-color: var(--vvd-color-neutral-10);
+  color: var(--vvd-color-alert-90);
+  padding: 3px 4px;
+  border-radius: 6px;
 }
 
 pre[class*="language-"] {
@@ -17,49 +24,55 @@ pre[class*="language-"] {
     border-radius: 0;
 }
 
-.site-header {
-    grid-area: header;
-    display: flex;
-    align-items: center;
-    padding: 0 2rem;
-    background-color: var(--vvd-color-on-canvas);
-    filter: var(--vvd-shadow-surface-4dp);
-}
-
-.logo {
-    margin-right: auto;
-}
-
-.star-us {
-    margin-right: 0.5rem;
-}
-
-.aside {
-    background-color: var(--vvd-color-neutral-20);
-    padding: 1rem;
-}
-
-.content {
-    padding: 1rem 2rem;
-    max-width: 1100px;
-}
-
-
-
-/*temp style for navigation*/
-.aside a { color: var(--vvd-color-on-canvas);}
-.aside a:visited { color: var(--vvd-color-on-canvas);}
-
-.navigation {
-    list-style: none;
-    color: var(--vvd-color-on-canvas);
-    padding-inline-start: 0;
-}
-
-:not(:defined) {
-  display: none;
+vwc-side-drawer {
+  display: block;
+  width: 100%;
 }
 
 h1, h2, h3, h4, h5, h6, p {
   margin: unset;
+}
+/*properties table*/
+table {
+  width: 100%;
+  min-width: min-content;
+  border-collapse: collapse;
+}
+table tr {
+  border-bottom: 1px solid var(--table-border-color, var(--vvd-color-on-primary));
+  block-size: 44px;
+}
+table th,
+table td {
+  padding: 12px 16px;
+  text-align: start;
+}
+table thead tr {
+  --table-border-color: var(--vvd-color-neutral-90);
+}
+table tbody tr {
+  --table-border-color: var(--vvd-color-neutral-40);
+}
+
+/*#region: side navigation (temp style - need to be removed once sidenav is done)*/
+.navigation {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+li .navigation {
+  margin-inline-start: 0.75rem;
+}
+.navigation p {
+  color: var(--vvd-color-neutral-50);
+}
+.navigation p a,
+.navigation p a:hover,
+.navigation p a:active{
+  color: var(--vvd-color-neutral-90);
+}
+/*#region END: side navigation */
+
+article {
+  max-inline-size: 64ch;
 }

@@ -12,17 +12,17 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 'lts/*'
-          registry-url: 'https://npm.pkg.github.com'
+          node-version: '16'
+          cache: 'npm'
+          registry-url: 'https://registry.npmjs.org'
 
-      - name: Bump
-        # TODO: replace once 3rd version is stable and published
-        # run: npm version prerelease --preid=next.${{ env.short_head }} --tag next --no-git-tag-version --no-push
-        run: npm version 3.0.0-next.${{ env.short_head }} --tag next --no-git-tag-version --no-push
-        env:
-          short_head: $(git rev-parse --short HEAD)
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Components
+        run: npm run nx build components
 
       - name: Publish
-        run: npm publish --access public --tag next --dry-run
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
+        run: npx beachball publish -m "Publishing a new version" --no-git-tags --prerelease-prefix next -t next -y --access public -n $NPM_TOKEN

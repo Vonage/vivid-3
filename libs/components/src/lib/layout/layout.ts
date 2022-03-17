@@ -3,7 +3,7 @@ import { FoundationElement } from '@microsoft/fast-foundation';
 import type { Size } from '../enums.js';
 
 
-enum AUTO_SIZING { Fit = 'fit', Fill = 'fill' }
+export enum AUTO_SIZING { Fit = 'fit', Fill = 'fill' }
 type Gutters = Extract<Size, Size.BaseSmall | Size.Base | Size.BaseLarge>;
 type ColumnSpacing = Extract<Size, Size.BaseSmall | Size.Base | Size.BaseLarge>;
 type ColumnBasis = Extract<Size, Size.BaseSmall | Size.Base | Size.BaseLarge> | 'block';
@@ -11,7 +11,7 @@ type ColumnBasis = Extract<Size, Size.BaseSmall | Size.Base | Size.BaseLarge> | 
 /**
  * Base class for layout
  *
- * @cssprop [layout-grid-template-columns=repeat([the `auto-sizing` mapped value],
+ * @cssprop [--layout-grid-template-columns=repeat([the `auto-sizing` mapped value],
  * minmax([the `column-basis` mapped value], 1fr))] - Controls the `grid-template-columns` of the layout.
  * @public
  */
