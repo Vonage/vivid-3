@@ -33,5 +33,4 @@ test.only('should show the component', async ({ page }: { page: Page }) => {
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/text.png'
 	);
-	await page.pause();
 });
