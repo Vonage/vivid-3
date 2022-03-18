@@ -4,11 +4,11 @@ codecov:
 coverage:
   precision: 2
   round: down
-  range: "95...100"
+  range: "80...100"
   status:
     project:
       default:
-        target: 95%
+        target: auto
         threshold: 0%
 
 parsers:
