@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "chore(text-anchor): feature underlying vivid anchor",
-  "packageName": "@vonage/vivid",
-  "email": "yonatan.kra@vonage.com",
-  "dependentChangeType": "patch"
-}
