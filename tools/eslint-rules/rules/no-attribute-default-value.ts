@@ -29,7 +29,7 @@ export const rule = ESLintUtils.RuleCreator(() => __filename)({
     },
     schema: [],
     messages: {
-      noAttributeDefaultValue: '\'attr\' decorator assigned with a default value (unless mode is set to \'fromView\', or, to \'boolean\' and assigned to false) will mutate the custom element in the DOM light tree.'
+      noAttributeDefaultValue: '\'attr\' decorator assigned with a default value (unless mode is set to \'fromView\', or, to \'boolean\' assigned to false) will mutate the custom element in the DOM light tree.'
     },
   },
   defaultOptions: [],
@@ -52,7 +52,7 @@ export const rule = ESLintUtils.RuleCreator(() => __filename)({
             && arg.properties
           );
 
-          const modeValues = props
+          const [modeValue] = props
             .filter(({ key, value }: TSESTree.Property) =>
               ASTUtils.isIdentifier(key)
               && value.type === 'Literal'
@@ -60,14 +60,17 @@ export const rule = ESLintUtils.RuleCreator(() => __filename)({
             )
             .map(({ value }: TSESTree.Property) => (value as TSESTree.Literal).value);
 
-          const someInvalid = modeValues.some(value =>
-            value  === 'boolean'
-            || value !== 'fromView'
-          );
-
-          if (!someInvalid) { // if all 'mode' values are valid, we're good
+          if (modeValue === 'fromView'
+            || modeValue === 'boolean' && (parent.value as TSESTree.Literal).value === false) {
             return;
           }
+          // console.log(modeValue, props);
+          // const someInvalid = modeValues.some(value => value !== 'fromView');
+
+
+          // if (!someInvalid) { // if all 'mode' values are valid, we're good
+          //   return;
+          // }
         }
 
         context.report({
