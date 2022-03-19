@@ -18,12 +18,16 @@ ruleTester.run(RULE_NAME, rule, {
     }`,
     `
     class {
+        @attr({ mode: 'boolean' }) example = false;
+    }`,
+    `
+    class {
         @someDecorator example = 'someValue';
     }`,
   ],
   invalid: [
     convertAnnotatedSourceToFailureCase({
-      description: 'should fail \'attr\' decorated property if assigned with default value',
+      description: 'should fail property decorated by \'attr\' decorator, if assignment mutates DOM tree',
       annotatedSource: `
       class {
         @attr example = 'someValue';
@@ -33,21 +37,21 @@ ruleTester.run(RULE_NAME, rule, {
       messageId: 'noAttributeDefaultValue'
     }),
     convertAnnotatedSourceToFailureCase({
-      description: 'should fail property decorated with attr is assigned by default value',
+      description: 'should fail property decorated by \'attr\' decorator, if assignment mutates DOM tree',
       annotatedSource: `
       class {
-        @attr({	mode: 'reflect' }) example = 'someValue';
+        @attr({ mode: 'reflect' }) example = 'someValue';
                                              ~~~~~~~~~~~
       }
       `,
       messageId: 'noAttributeDefaultValue'
     }),
     convertAnnotatedSourceToFailureCase({
-      description: 'should fail property decorated with attr is assigned by default value',
+      description: 'should fail property decorated by \'attr\' decorator, if assignment mutates DOM tree',
       annotatedSource: `
       class {
-        @attr({	mode: 'boolean' }) example = 'someValue';
-                                             ~~~~~~~~~~~
+        @attr({ mode: 'boolean' }) example = true;
+                                             ~~~~
       }
       `,
       messageId: 'noAttributeDefaultValue'
