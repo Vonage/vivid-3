@@ -1,5 +1,5 @@
 import { attr } from '@microsoft/fast-element';
-import { FoundationElement } from '@microsoft/fast-foundation';
+import { FoundationElement, FoundationElementDefinition, StartEndOptions } from '@microsoft/fast-foundation';
 import type { DocumentWithBlockingElements } from 'blocking-elements';
 
 const blockingElements =
@@ -16,6 +16,13 @@ const blockingElements =
  * @cssprop [side-drawer-z-index=6] - Controls the z-index of the side drawer
  * @public
  */
+
+/**
+ * Anchor configuration options
+ * @public
+ */
+ export type SideDrawerOptions = FoundationElementDefinition & StartEndOptions;
+
 export class SideDrawer extends FoundationElement {
 	private rootEl = document.querySelector('.side-drawer') as HTMLElement;
 
@@ -29,13 +36,12 @@ export class SideDrawer extends FoundationElement {
 	}) alternate = false;
 
 	/**
+     *
 	 * adds top bar to the side drawer
-	 *
-	 * @public
-	 */
-	@attr({
-		mode: 'boolean',
-	}) hasTopBar = false;
+     *
+     * @internal
+     */
+	 public hasTopBar: HTMLElement[] | undefined;
 
 	/**
 	 * sets the side drawer's type to modal

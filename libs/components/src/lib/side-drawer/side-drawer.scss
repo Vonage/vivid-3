@@ -72,7 +72,6 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
 	display: flex;
 	flex-shrink: 0;
 	align-items: center;
-	block-size: 64px;
 	padding-inline-end: #{$gutter};
 	padding-inline-start: #{$gutter};
 }

@@ -54,14 +54,15 @@ Alternatively, you can use the `show()` and `hide()` methods as well as `ESC`.
   }
 </script>
 ```
-## Modal
+## Top Bar
 
-Use the `modal` attribute to set the side drawer's type to modal.
-Click on the `scrim` or the `ESC` key to close the modal side-drawer.
+To add a top bar to the side drawer, add a slot called `top-bar`.
 
-- Type: `Boolean`
-- Default: `false`
-
+```js
+<div slot="top-bar">
+    <vwc-text>VIVID</vwc-text>
+</div>
+```
 ```html preview
 <style>
     vwc-side-drawer#sideDrawer{
@@ -69,7 +70,10 @@ Click on the `scrim` or the `ESC` key to close the modal side-drawer.
         --side-drawer-inline-size: 200px;
     }
 </style>
-<vwc-side-drawer id="sideDrawer" open modal>
+<vwc-side-drawer id="sideDrawer" open>
+	<div slot="top-bar">
+        <vwc-text font-face="subtitle-1">VIVID</vwc-text>
+    </div>
 	<div>
 		<vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
         <p><vwc-text font-face="body-2-bold">SECTION TITLE</vwc-text></p>
@@ -97,10 +101,10 @@ Click on the `scrim` or the `ESC` key to close the modal side-drawer.
   }
 </script>
 ```
+## Modal
 
-## HasTopBar
-
-Use the `hasTopBar` attribute to add top bar to the side drawer.
+Use the `modal` attribute to set the side drawer's type to modal.
+Click on the `scrim` or the `ESC` key to close the modal side-drawer.
 
 - Type: `Boolean`
 - Default: `false`
@@ -111,16 +115,8 @@ Use the `hasTopBar` attribute to add top bar to the side drawer.
         --side-drawer-background-color: var(--vvd-color-neutral-10);
         --side-drawer-inline-size: 200px;
     }
-    #top-bar{
-        display: flex; 
-        align-items: center;
-    }
 </style>
-<vwc-side-drawer id="sideDrawer" open hasTopBar>
-	<div slot="top-bar" id="top-bar">
-        <vwc-icon type="vonage-mono"></vwc-icon>
-        <vwc-text font-face="subtitle-1">IVID</vwc-text>
-    </div>
+<vwc-side-drawer id="sideDrawer" open modal>
 	<div>
 		<vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
         <p><vwc-text font-face="body-2-bold">SECTION TITLE</vwc-text></p>

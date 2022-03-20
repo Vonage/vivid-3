@@ -1,8 +1,8 @@
-import { html } from '@microsoft/fast-element';
+import { html, slotted } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { ViewTemplate } from '@microsoft/fast-element';
-import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
-import type { SideDrawer } from './side-drawer';
+import { ElementDefinitionContext, endSlotTemplate, FoundationElementTemplate, OverrideFoundationElementDefinition, startSlotTemplate } from '@microsoft/fast-foundation';
+import type { SideDrawer, SideDrawerOptions } from './side-drawer';
 
 const getClasses = ({
 	alternate, modal, open, position
@@ -20,15 +20,14 @@ const getClasses = ({
  * @returns {ViewTemplate<side-drawer>} A template capable of creating HTMLView instances or rendering directly to DOM.
  * @public
  */
-export const sideDrawerTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<SideDrawer> = () => {
-	return html`
-	<aside class="${getClasses}" part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}" @transitionend=${x=>
-	x.handleTransitionEnd()} @keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}">
+export const sideDrawerTemplate: FoundationElementTemplate<
+	ViewTemplate<SideDrawer>,
+	SideDrawerOptions
+> = (context, definition) => html`
+	<aside class="${getClasses}" part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}" @transitionend=${x =>
+				x.handleTransitionEnd()} @keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}">
 	
-		${(x) => (x.hasTopBar ? renderTopBar() : '')}
+		${renderTopBar(context, definition)}
 	
 		<div class="side-drawer-content">
 			<slot></slot>
@@ -41,13 +40,14 @@ export const sideDrawerTemplate: (
 	
 	${(x) => ((x.modal && x.open) ? renderScrim() : '')}
 `;
-};
 
-const renderTopBar = () => {
+const renderTopBar = (context: ElementDefinitionContext, definition: OverrideFoundationElementDefinition<SideDrawerOptions>) => {
 	return html`
-		<header class="side-drawer-top-bar">
-			<slot name="top-bar"></slot>
-		</header>`;
+	${startSlotTemplate(context, definition)}
+	<header class="side-drawer-top-bar" part="side-drawer-top-bar">
+		<slot name="top-bar" ${slotted("hasTopBar")}></slot>
+	</header>
+	${endSlotTemplate(context, definition)}`;
 };
 
 const renderScrim = () => {
