@@ -14,6 +14,7 @@
  * https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin/src/rules
  */
 
+import { AttributeMode } from '@microsoft/fast-element';
 import { ESLintUtils, TSESTree, ASTUtils } from '@typescript-eslint/experimental-utils';
 
 // NOTE: The rule will be available in ESLint configs as "@nrwl/nx/workspace/no-attribute-default-value"
@@ -52,25 +53,11 @@ export const rule = ESLintUtils.RuleCreator(() => __filename)({
             && arg.properties
           );
 
-          const [modeValue] = props
-            .filter(({ key, value }: TSESTree.Property) =>
-              ASTUtils.isIdentifier(key)
-              && value.type === 'Literal'
-              && key.name === 'mode'
-            )
-            .map(({ value }: TSESTree.Property) => (value as TSESTree.Literal).value);
+          const modeValue = getAttrReflectionModeValue(props);
 
-          if (modeValue === 'fromView'
-            || modeValue === 'boolean' && (parent.value as TSESTree.Literal).value === false) {
+          if (isFromView(modeValue) || isFalseBoolean(modeValue, parent)) {
             return;
           }
-          // console.log(modeValue, props);
-          // const someInvalid = modeValues.some(value => value !== 'fromView');
-
-
-          // if (!someInvalid) { // if all 'mode' values are valid, we're good
-          //   return;
-          // }
         }
 
         context.report({
@@ -81,3 +68,21 @@ export const rule = ESLintUtils.RuleCreator(() => __filename)({
     };
   },
 });
+
+function getAttrReflectionModeValue(props: TSESTree.ObjectLiteralElement[]): AttributeMode {
+  return props
+    .filter(({ key, value }: TSESTree.Property) => ASTUtils.isIdentifier(key)
+      && value.type === 'Literal'
+      && key.name === 'mode'
+    )
+    .map(({ value }: TSESTree.Property) => (value as TSESTree.Literal).value)[0] as AttributeMode;
+}
+
+function isFromView(modeValue: AttributeMode) {
+  return modeValue === 'fromView';
+}
+
+function isFalseBoolean(modeValue: AttributeMode, parent: TSESTree.PropertyDefinition): boolean {
+  return modeValue === 'boolean' && (parent.value as TSESTree.Literal).value === false;
+}
+

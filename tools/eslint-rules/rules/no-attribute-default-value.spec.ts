@@ -22,6 +22,10 @@ ruleTester.run(RULE_NAME, rule, {
     }`,
     `
     class {
+        @attr({ mode: 'boolean' }) example;
+    }`,
+    `
+    class {
         @someDecorator example = 'someValue';
     }`,
   ],
