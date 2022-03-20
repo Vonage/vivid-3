@@ -11,7 +11,7 @@ const getClasses = ({
 	['alternate', alternate],
 	['modal', modal],
 	['open', open],
-	[`${position}`, Boolean(position)],
+	['end', position === 'end'],
 );
 
 /**
