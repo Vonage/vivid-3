@@ -14,13 +14,6 @@
     ]
   },
   {
-    "title": "anchor",
-    "markdown": "./libs/components/src/lib/anchor/README.md",
-    "modules": [
-      "/assets/modules/components/anchor/index.js"
-    ]
-  },
-  {
     "title": "icon",
     "markdown": "./libs/components/src/lib/icon/README.md",
     "modules": [
@@ -47,6 +40,14 @@
     "modules": [
       "/assets/modules/components/elevation/index.js",
       "/assets/modules/components/layout/index.js"
+    ]
+  },
+  {
+    "title": "breadcrumb",
+    "markdown": "./libs/components/src/lib/breadcrumb/README.md",
+    "modules": [
+      "/assets/modules/components/breadcrumb-item/index.js",
+      "/assets/modules/components/breadcrumb/index.js"
     ]
   }
 ]
