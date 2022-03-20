@@ -2,7 +2,6 @@ import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 import type { DocumentWithBlockingElements } from 'blocking-elements';
 
-export enum POSITION { Start = 'start', End = 'end' }
 const blockingElements =
 	(document as DocumentWithBlockingElements).$blockingElements;
 
@@ -61,7 +60,7 @@ export class SideDrawer extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr position?: POSITION;
+	@attr position?: 'start' | 'end';
 
 	/**
 	 * Opens the side drawer from the closed state.

@@ -30,12 +30,12 @@ export const sideDrawerTemplate: (
 	
 		${(x) => (x.hasTopBar ? renderTopBar() : '')}
 	
-		<div class="content">
+		<div class="side-drawer-content">
 			<slot></slot>
 		</div>
 	</aside>
 	
-	<div class="app-content">
+	<div class="side-drawer-app-content">
 		<slot name="app-content"></slot>
 	</div>
 	
@@ -45,7 +45,7 @@ export const sideDrawerTemplate: (
 
 const renderTopBar = () => {
 	return html`
-		<header class="top-bar">
+		<header class="side-drawer-top-bar">
 			<slot name="top-bar"></slot>
 		</header>`;
 };
