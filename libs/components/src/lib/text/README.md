@@ -39,7 +39,7 @@ Use the `font-face` attribute or `fontFace` property to change the text's font f
 
 ## Tight
 
-By default, some font faces are styled with block margins which can be set off by enabling the `tight` attribute/property.
+By default, some font faces are styled with block margins in accordance to article related context. enabling the `tight` attribute/property will opt-out.
 
 - Type: `boolean`
 - Default: `true`
