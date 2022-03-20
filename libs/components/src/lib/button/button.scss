@@ -23,7 +23,7 @@
 .control {
 	@include connotation.connotation;
 	@include appearance.appearance;
-  @include states.state;
+	@include states.state;
 
 	position: relative;
 	display: inline-flex;
