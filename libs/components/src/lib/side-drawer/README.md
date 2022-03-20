@@ -111,11 +111,15 @@ Use the `hasTopBar` attribute to add top bar to the side drawer.
         --side-drawer-background-color: var(--vvd-color-neutral-10);
         --side-drawer-inline-size: 200px;
     }
+    #top-bar{
+        display: flex; 
+        align-items: center;
+    }
 </style>
 <vwc-side-drawer id="sideDrawer" open hasTopBar>
-	<div slot="top-bar">
+	<div slot="top-bar" id="top-bar">
         <vwc-icon type="vonage-mono"></vwc-icon>
-        <vwc-text font-face="body-1-bold">VIVID</vwc-text>
+        <vwc-text font-face="subtitle-1">IVID</vwc-text>
     </div>
 	<div>
 		<vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>

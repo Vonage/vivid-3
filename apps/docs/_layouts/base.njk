@@ -25,6 +25,7 @@
 
     <script type="module" src="{{ '/assets/modules/components/layout/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/text/index.js' | url}}"></script>
+        <script type="module" src="{{ '/assets/modules/components/icon/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/side-drawer/index.js' | url}}"></script>
     <script type="module" src="https://es6.dev.vivid.vonage.com/v2.22.1/@vonage/vwc-top-app-bar-fixed/vwc-top-app-bar-fixed.js"></script>
 
@@ -54,10 +55,10 @@
       </div>
       <dark-mode-toggle permanent slot="actionItems"></dark-mode-toggle>
       <vwc-side-drawer id="side-drawer" hasTopBar open>
-      <div slot="top-bar">
-        <vwc-icon type="vonage-mono"></vwc-icon>
-        <vwc-text font-face="body-1-bold">VIVID</vwc-text>
-      </div>
+        <div id="side-drawer-top-bar" slot="top-bar">
+          <vwc-icon type="vonage-mono"></vwc-icon>
+          <vwc-text font-face="subtitle-1">IVID</vwc-text>
+        </div>
         {% include "navigation.njk" %}
         <main slot="app-content">
           <vwc-layout gutters="base" column-basis="block">

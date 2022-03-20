@@ -49,6 +49,11 @@ table tbody tr {
   --table-border-color: var(--vvd-color-neutral-40);
 }
 
+#side-drawer-top-bar {
+    display: flex; 
+    align-items: center;
+}
+
 /*#region: side navigation (temp style - need to be removed once sidenav is done)*/
 .navigation {
   list-style: none;
