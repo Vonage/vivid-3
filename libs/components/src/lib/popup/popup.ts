@@ -1,11 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { arrow, autoUpdate, computePosition, flip, hide, inline, offset } from '@floating-ui/dom';
-import type { Corner, Position } from '../enums.js';
-
-type PopupPosition = Extract<Position, Position.Fixed | Position.Absolute>;
-type PopupCorner = Extract<Corner, Corner.Bottom | Corner.BottomEnd | Corner.BottomStart | Corner.Left | Corner.LeftEnd | Corner.LeftStart
-| Corner.Right | Corner.RightEnd | Corner.RightStart | Corner.Top | Corner.TopEnd | Corner.TopStart>;
+import { arrow, autoUpdate, computePosition, flip, hide, inline, offset, Placement, Strategy } from '@floating-ui/dom';
 
 /**
  * Base class for popup
@@ -15,6 +10,7 @@ type PopupCorner = Extract<Corner, Corner.Bottom | Corner.BottomEnd | Corner.Bot
 export class Popup extends FoundationElement {
 	private get PADDING(): number { return 0; }
 	private get DISTANCE(): number { return 12; }
+	private get STRATEGY(): Strategy { return 'fixed'; }
 
 	popupEl!: HTMLElement;
 	arrowEl!: HTMLElement;
@@ -71,15 +67,7 @@ export class Popup extends FoundationElement {
 	 * @public
 	 * HTML Attribute: corner
 	 */
-	@attr corner?: PopupCorner;
-
-	/**
-	 * strategy - the position of the popup
-	 *
-	 * @public
-	 * HTML Attribute: strategy
-	 */
-	@attr strategy?: PopupPosition;
+	@attr corner?: Placement = 'left';
 
 	/**
 	 * ID reference to element in the popup’s owner document.
@@ -98,8 +86,6 @@ export class Popup extends FoundationElement {
 
 	constructor() {
 		super();
-		this.corner = 'left' as PopupCorner;
-		this.strategy = 'fixed' as PopupPosition;
 	}
 
 	override connectedCallback(): void {
@@ -135,7 +121,7 @@ export class Popup extends FoundationElement {
 
 		const positionData = await computePosition(this.anchorEl, this.popupEl, {
 			placement: this.corner,
-			strategy: this.strategy,
+			strategy: this.STRATEGY,
 			middleware: this.middleware
 		});
 		this.assignPopupPosition(positionData);

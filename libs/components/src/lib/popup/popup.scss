@@ -13,8 +13,8 @@ $popup-bg: --vvd-color-surface-4dp;
 	}
 }
 
-.wrapper {
-	position: absolute;
+.popup-wrapper {
+	position: fixed;
 }
 
 .content {

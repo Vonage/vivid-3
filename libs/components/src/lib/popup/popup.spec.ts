@@ -1,5 +1,4 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
-import { Corner, Position } from '../enums';
 import type { Button } from '../button/button';
 import { Popup } from './popup';
 import '.';
@@ -27,8 +26,7 @@ describe('vwc-popup', () => {
 			expect(element.arrow).toBeFalsy();
 			expect(element.dismissible).toBeFalsy();
 			expect(element.anchor).toEqual('');
-			expect(element.corner).toEqual(Corner.Left);
-			expect(element.strategy).toEqual(Position.Fixed);
+			expect(element.corner).toEqual("left");
 		});
 	});
 

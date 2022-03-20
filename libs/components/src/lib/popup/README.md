@@ -201,37 +201,6 @@ Use the `corner` attribute to set the placement of the popup.
   </vwc-popup>
 </div>
 ```
-## Strategy
-Use the `strategy` attribute to set the position of the popup.
-
-You will want to use 'fixed' if the anchor is inside a fixed container, but the popup is not.
-
-- Type: `'fixed'` | `'absolute'`
-- Default: `'fixed'`
-
-```html preview
-<style>
-  .content {
-    width: 200px;
-    padding: 1rem;
-	}
-  .wrapper{
-    width: 100%;
-    height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-</style>
-<div class="wrapper">
-  <vwc-icon id="anchor" type='info-line'></vwc-icon>
-  <vwc-popup anchor="anchor" open strategy="absolute">
-      <div class="content">
-        <vwc-text tight font-face="body-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</vwc-text>
-      </div>
-  </vwc-popup>
-</div>
-```
 ## Top-layer
 
 Document elements display precedence is formed by the imaginary z-axis [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context), commonly by order of which elements are rendered and special properties (e.g. _z-index_).
