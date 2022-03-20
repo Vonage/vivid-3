@@ -65,13 +65,6 @@
     ]
   },
   {
-    "title": "text",
-    "markdown": "./libs/components/src/lib/text/README.md",
-    "modules": [
-      "/assets/modules/components/text/index.js"
-    ]
-  },
-  {
     "title": "side-drawer",
     "markdown": "./libs/components/src/lib/side-drawer/README.md",
     "modules": [
