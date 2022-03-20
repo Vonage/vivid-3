@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "Remove breadcrumb-item from the docs",
-  "packageName": "@vonage/vivid",
-  "email": "yonatan.kra@vonage.com",
-  "dependentChangeType": "none"
-}
