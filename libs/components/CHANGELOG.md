@@ -1,8 +1,23 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Fri, 04 Mar 2022 07:18:22 GMT and should not be manually modified.
+This log was last generated on Fri, 18 Mar 2022 08:18:37 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0
+
+Fri, 18 Mar 2022 08:18:37 GMT
+
+### Minor changes
+
+- Add the breadcrumb component (yonatan.kra@vonage.com)
+- add the breacdcrumbs item component (yonatan.kra@vonage.com)
+- chore(text-anchor): feature underlying vivid anchor (yonatan.kra@vonage.com)
+- new sidenav-item component. part of the sidenav component scope (yinon@hotmail.com)
+
+### Patches
+
+- update test (rina.oksman@vonage.com)
 
 ## 3.0.0-next.2
 
