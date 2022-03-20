@@ -1,6 +1,6 @@
 {
   "type": "none",
-  "comment": "rename components' ui tests intent definitions",
+  "comment": "Added text component to vivid next",
   "packageName": "@vonage/vivid",
   "email": "yinon@hotmail.com",
   "dependentChangeType": "none"
