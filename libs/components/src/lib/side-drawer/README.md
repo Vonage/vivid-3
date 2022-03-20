@@ -6,6 +6,12 @@
 </script>
 ```
 
+<style>
+    .cbd-demo{
+        padding: 0;
+    }
+</style>
+
 ## Open
 Use the `open` attribute to indicate whether the side drawer is open.
 Alternatively, you can use the `show()` and `hide()` methods as well as `ESC`.
@@ -108,8 +114,9 @@ Use the `hasTopBar` attribute to add top bar to the side drawer.
 </style>
 <vwc-side-drawer id="sideDrawer" open hasTopBar>
 	<div slot="top-bar">
-        <vwc-text font-face="subtitle-2" tight><vwc-icon type='vonage-mono'></vwc-icon> VIVID</vwc-text>
-	</div>
+        <vwc-icon type="vonage-mono"></vwc-icon>
+        <vwc-text font-face="body-1-bold">VIVID</vwc-text>
+    </div>
 	<div>
 		<vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
         <p><vwc-text font-face="body-2-bold">SECTION TITLE</vwc-text></p>

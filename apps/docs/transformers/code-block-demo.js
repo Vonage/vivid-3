@@ -121,7 +121,7 @@ const style = `
     overflow: hidden;
     border: none;
     height: 30px;
-    width: 97%;
+    width: 100%;
 }
 .light{
 

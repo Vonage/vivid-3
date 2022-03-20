@@ -54,12 +54,10 @@
       </div>
       <dark-mode-toggle permanent slot="actionItems"></dark-mode-toggle>
       <vwc-side-drawer id="side-drawer" hasTopBar open>
-        <div slot="top-bar">
-          <div slot="top-bar">
-            <vwc-text font-face="headline-2" tight>
-              <vwc-icon type='vonage-mono'></vwc-icon> VIVID</vwc-text>
-          </div>
-        </div>
+      <div slot="top-bar">
+        <vwc-icon type="vonage-mono"></vwc-icon>
+        <vwc-text font-face="body-1-bold">VIVID</vwc-text>
+      </div>
         {% include "navigation.njk" %}
         <main slot="app-content">
           <vwc-layout gutters="base" column-basis="block">
