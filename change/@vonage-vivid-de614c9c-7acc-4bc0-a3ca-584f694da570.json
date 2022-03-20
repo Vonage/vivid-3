@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "add the breacdcrumbs item component",
-  "packageName": "@vonage/vivid",
-  "email": "yonatan.kra@vonage.com",
-  "dependentChangeType": "patch"
-}

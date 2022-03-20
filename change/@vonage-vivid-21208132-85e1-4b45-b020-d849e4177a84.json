@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "new sidenav-item component. part of the sidenav component scope",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}
