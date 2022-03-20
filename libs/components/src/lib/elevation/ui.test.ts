@@ -7,7 +7,7 @@ import {
 } from '../../visual-tests/visual-tests-utils';
 
 const componentName = 'elevation';
-test('should have all connotations', async ({ page }: { page: Page }) => {
+test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(path.join(__dirname, 'README.md'))
 		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
 
