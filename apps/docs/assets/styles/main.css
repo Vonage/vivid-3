@@ -24,7 +24,7 @@ pre[class*="language-"] {
     border-radius: 0;
 }
 
-vwc-side-drawer {
+vwc-side-drawer#side-drawer {
   display: block;
   width: 100%;
 }
