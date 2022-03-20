@@ -108,8 +108,7 @@ Use the `hasTopBar` attribute to add top bar to the side drawer.
 </style>
 <vwc-side-drawer id="sideDrawer" open hasTopBar>
 	<div slot="top-bar">
-		<vwc-icon type="vonage-mono"></vwc-icon>
-		<vwc-text font-face="body-1-bold"> VONAGE</vwc-text>
+        <vwc-text font-face="subtitle-2" tight><vwc-icon type='vonage-mono'></vwc-icon> VIVID</vwc-text>
 	</div>
 	<div>
 		<vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
