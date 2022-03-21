@@ -27,7 +27,7 @@ export const popupTemplate: (
 		<vwc-elevation>
 			<div class="${getClasses}" aria-hidden="${(x) => x.open ? 'false' : 'true'}"
 				part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}">
-				<div class="content">
+				<div class="popup-content">
 					<slot></slot>
 					${(x) => (x.dismissible ? renderDismissButton() : '')}
 				</div>

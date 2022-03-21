@@ -112,9 +112,8 @@ export class Popup extends FoundationElement {
 	/**
 	 * Updates popup position, if succeeded returns - true, if not - false
 	 *
-	 * @public
 	 */
-	async updatePosition() {
+	private async updatePosition() {
 		if (!this.open || !this.anchorEl) {
 			return;
 		}
@@ -133,7 +132,7 @@ export class Popup extends FoundationElement {
 	 *
 	 * @public
 	 */
-	show(): void {
+	public show(): void {
 		if (this.anchorEl) { // only if anchor element exists
 			this.open = true;
 		}
@@ -144,11 +143,11 @@ export class Popup extends FoundationElement {
 	 *
 	 * @public
 	 */
-	hide(): void {
+	public hide(): void {
 		this.open = false;
 	}
 
-	handleDismissClick(): void {
+	public handleDismissClick(): void {
 		this.hide();
 	}
 
