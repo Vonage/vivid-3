@@ -87,6 +87,21 @@ describe('vwc-popup', () => {
 		});
 	});
 
+	describe('handle dismiss', () => {
+		it('should hide when dismiss button is clicked', async () => {
+			element.anchor = 'anchor';
+			element.dismissible = true;
+			await elementUpdated(element);
+
+			element.show();
+			await elementUpdated(element);
+			element.handleDismissClick();
+			await elementUpdated(element);
+
+			expect(element.open).toEqual(false);
+		});
+	});
+
 	describe('alternate', () => {
 		it('should set to alternate', async () => {
 			expect(getControlElement(element).getAttribute('part')).toEqual('');
