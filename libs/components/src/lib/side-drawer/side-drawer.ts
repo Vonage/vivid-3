@@ -19,9 +19,10 @@ const blockingElements =
 
 /**
  * Anchor configuration options
+ *
  * @public
  */
- export type SideDrawerOptions = FoundationElementDefinition & StartEndOptions;
+export type SideDrawerOptions = FoundationElementDefinition & StartEndOptions;
 
 export class SideDrawer extends FoundationElement {
 	private rootEl = document.querySelector('.side-drawer') as HTMLElement;
@@ -36,12 +37,12 @@ export class SideDrawer extends FoundationElement {
 	}) alternate = false;
 
 	/**
-     *
+	 *
 	 * adds top bar to the side drawer
-     *
-     * @internal
-     */
-	 public hasTopBar: HTMLElement[] | undefined;
+	 *
+	 * @internal
+	 */
+	 hasTopBar: HTMLElement[] | undefined;
 
 	/**
 	 * sets the side drawer's type to modal

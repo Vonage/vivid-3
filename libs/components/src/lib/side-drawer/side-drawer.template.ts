@@ -17,15 +17,17 @@ const getClasses = ({
 /**
  * The template for the {@link @vonage/vivid#side-drawer} component.
  *
+ * @param context
+ * @param definition
  * @returns {ViewTemplate<side-drawer>} A template capable of creating HTMLView instances or rendering directly to DOM.
  * @public
  */
 export const sideDrawerTemplate: FoundationElementTemplate<
-	ViewTemplate<SideDrawer>,
-	SideDrawerOptions
+ViewTemplate<SideDrawer>,
+SideDrawerOptions
 > = (context, definition) => html`
 	<aside class="${getClasses}" part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}" @transitionend=${x =>
-				x.handleTransitionEnd()} @keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}">
+	x.handleTransitionEnd()} @keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}">
 	
 		${renderTopBar(context, definition)}
 	
@@ -45,7 +47,7 @@ const renderTopBar = (context: ElementDefinitionContext, definition: OverrideFou
 	return html`
 	${startSlotTemplate(context, definition)}
 	<header class="side-drawer-top-bar" part="side-drawer-top-bar">
-		<slot name="top-bar" ${slotted("hasTopBar")}></slot>
+		<slot name="top-bar" ${slotted('hasTopBar')}></slot>
 	</header>
 	${endSlotTemplate(context, definition)}`;
 };

@@ -84,7 +84,7 @@ describe('vwc-side-drawer', () => {
 		it('should set "position" to "end" and add "position" class', async () => {
 			const control = getControlElement(element);
 			let hasClassPosition = control.classList.contains('end');
-			element.position = "end";
+			element.position = 'end';
 			await elementUpdated(element);
 			expect(hasClassPosition).toEqual(false);
 
