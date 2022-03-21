@@ -1,31 +1,21 @@
 {% block content %}
 <nav>
-<ul class="navigation">
-  <li>
-    <p><a href="{{ '/' | url}}">Home</a></p>
-    </li>
-  <li>
-  <p>design system</p>
-    <ul class="navigation">
-        {%  for item in designs %}
-          <li>
-          <p>
-              <a href="{{ ('/designs/' + item.title) | url }}">{{ item.title }}</a>
-              </p>
-          </li>
-        {% endfor %}
-    </ul>
-  </li>
-  <li>
-   <p>components</p>
-    <ul class="navigation">
-      {%  for item in components %}
+  <vwc-sidenav-item href="{{ '/' | url}}" text="Home"></vwc-sidenav-item>
+  <ul class="navigation">
+    <p>design system</p>
+    {%  for item in designs %}
       <li>
-          <p><a href="{{ ('/components/' + item.title) | url }}">{{ item.title }}</a></p>
+        <vwc-sidenav-item href="{{ ('/designs/' + item.title) | url }}" text="{{ item.title }}"></vwc-sidenav-item>
       </li>
-      {% endfor %}
-    </ul>
-  <li>
-    </ul>
+    {% endfor %}
+  </ul>
+  <ul class="navigation">
+    <p>components</p>
+    {%  for item in components %}
+      <li>
+        <vwc-sidenav-item href="{{ ('/components/' + item.title) | url }}" text="{{ item.title }}"></vwc-sidenav-item>
+      </li>
+    {% endfor %}
+  </ul>
 </nav>
 {% endblock %}
