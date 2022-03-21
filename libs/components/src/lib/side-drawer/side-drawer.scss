@@ -68,9 +68,9 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
 }
 
 .side-drawer-top-bar {
-	$gutter: var(#{variables.$side-drawer-padding-top-bar}, #{$padding-default});
-	
 	@include typography.typography-cat-shorthand(subtitle-1);
+
+	$gutter: var(#{variables.$side-drawer-padding-top-bar}, #{$padding-default});
 	display: flex;
 	flex-shrink: 0;
 	align-items: center;
