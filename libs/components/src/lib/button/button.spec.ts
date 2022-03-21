@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import type { Icon } from '../icon/icon';
 import { Button } from './button';
 import '.';
@@ -54,66 +54,62 @@ describe('vwc-button', () => {
 			element.label = label;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector('.control');
-			expect(control?.textContent?.trim()).toEqual(label);
+			expect(getControlElement(element).textContent?.trim()).toEqual(label);
 		});
 	});
 
 	describe('connotation', () => {
 		it('sets correct internal connotation style', async () => {
 			const connotation = 'cta';
+
+			expect(getControlElement(element).classList.toString()).toEqual('control');
 			(element as any).connotation = connotation;
 			await elementUpdated(element);
-
-			const control = element.shadowRoot?.querySelector(`.control.connotation-${connotation}`);
-			expect(control).toBeInstanceOf(Element);
+			expect(getControlElement(element).classList.toString()).toEqual(`control connotation-${connotation}`);
 		});
 	});
 
 	describe('shape', () => {
 		it('sets correct internal shape style', async () => {
 			const shape = 'pill';
+
+			expect(getControlElement(element).classList.toString()).toEqual('control');
 			(element as any).shape = shape;
 			await elementUpdated(element);
-
-			const control = element.shadowRoot?.querySelector(`.control.shape-${shape}`);
-			expect(control).toBeInstanceOf(Element);
+			expect(getControlElement(element).classList.toString()).toEqual(`control shape-${shape}`);
 		});
 	});
 
 	describe('appearance', () => {
 		it('sets correct internal appearance style', async () => {
 			const appearance = 'filled';
+
+			expect(getControlElement(element).classList.toString()).toEqual('control');
 			(element as any).appearance = appearance;
 			await elementUpdated(element);
-
-			const control = element.shadowRoot?.querySelector(`.control.appearance-${appearance}`);
-			expect(control).toBeInstanceOf(Element);
+			expect(getControlElement(element).classList.toString()).toEqual(`control appearance-${appearance}`);
 		});
 	});
 
 	describe('size', () => {
 		it('sets correct internal size style', async () => {
 			const size = 'small';
+
+			expect(getControlElement(element).classList.toString()).toEqual('control');
 			(element as any).size = size;
 			await elementUpdated(element);
-
-			const control = element.shadowRoot?.querySelector(`.control.size-${size}`);
-			expect(control).toBeInstanceOf(Element);
+			expect(getControlElement(element).classList.toString()).toEqual(`control size-${size}`);
 		});
 	});
 
 	describe('icon-only', () => {
 		it('sets correct internal icon-only style', async () => {
-			const getControlIconOnly = () => element.shadowRoot?.querySelector('.control.icon-only');
-			const controlIconOnlyBefore = getControlIconOnly();
+			const icon = 'home';
 
-			element.icon = 'home';
+			expect(getControlElement(element).classList.toString()).toEqual('control');
+			(element as any).icon = icon;
 			await elementUpdated(element);
-
-			const controlIconOnlyAfter = getControlIconOnly();
-			expect(controlIconOnlyBefore).toBeNull();
-			expect(controlIconOnlyAfter).toBeInstanceOf(Element);
+			expect(getControlElement(element).classList.toString()).toEqual(`control icon-only`);
 		});
 	});
 });
