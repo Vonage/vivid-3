@@ -45,6 +45,11 @@ By default, some font faces are styled with block margins in accordance to artic
 - Default: `true`
 
 ```html preview
+<style>
+  vwc-text[tight] {
+    display: block;
+  }
+</style>
 <vwc-text tight font-face="headline-1">headline-1</vwc-text>
 <vwc-text tight font-face="headline-2">headline-2</vwc-text>
 <vwc-text tight font-face="title-1">title-1</vwc-text>
