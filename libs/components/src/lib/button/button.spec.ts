@@ -109,7 +109,7 @@ describe('vwc-button', () => {
 			expect(getControlElement(element).classList.toString()).toEqual('control');
 			(element as any).icon = icon;
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.toString()).toEqual(`control icon-only`);
+			expect(getControlElement(element).classList.toString()).toEqual('control icon-only');
 		});
 	});
 });
