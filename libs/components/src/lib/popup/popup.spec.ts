@@ -77,10 +77,10 @@ describe('vwc-popup', () => {
 	});
 
 	describe('render dismiss', () => {
-		it('should remove the dismiss class on the container if arrow is false', async () => {
+		it('should remove the dismiss class on the container if dismissible is false', async () => {
 			expect(element.shadowRoot?.querySelector('.dismissible')).toBeNull();
 		});
-		it('should set the dismiss class on the container if arrow is true', async () => {
+		it('should set the dismiss class on the container if dismissible is true', async () => {
 			element.dismissible = true;
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.dismissible')).not.toBeNull();
