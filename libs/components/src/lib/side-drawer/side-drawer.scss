@@ -48,6 +48,7 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
 	&.control.open:not(.modal) {
 		+ .side-drawer-app-content {
 			@include typography.typography-cat-shorthand(body-1);
+			
 			margin-inline-start: #{$inline-size};
 			::slotted(vwc-top-app-bar),
 			::slotted(vwc-top-app-bar-fixed) {
@@ -68,6 +69,7 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
 
 .side-drawer-top-bar {
 	$gutter: var(#{variables.$side-drawer-padding-top-bar}, #{$padding-default});
+	
 	@include typography.typography-cat-shorthand(subtitle-1);
 	display: flex;
 	flex-shrink: 0;
@@ -78,6 +80,7 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
 
 .side-drawer-content {
 	$gutter: var(#{variables.$side-drawer-padding-body}, #{$padding-default});
+	
 	background-color: inherit;
 	overflow-y: auto;
 	padding-inline-end: #{$gutter};
@@ -95,6 +98,7 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
 
 .scrim {
 	@include scrim-mixins.scrim-variables;
+	
 	position: fixed;
 	z-index: calc(#{$z-index-default} - 1);
 	top: 0;
