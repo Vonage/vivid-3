@@ -132,7 +132,7 @@ export class Popup extends FoundationElement {
 	 *
 	 * @public
 	 */
-	public show(): void {
+	show(): void {
 		if (this.anchorEl) { // only if anchor element exists
 			this.open = true;
 		}
@@ -143,11 +143,11 @@ export class Popup extends FoundationElement {
 	 *
 	 * @public
 	 */
-	public hide(): void {
+	hide(): void {
 		this.open = false;
 	}
 
-	public handleDismissClick(): void {
+	handleDismissClick(): void {
 		this.hide();
 	}
 

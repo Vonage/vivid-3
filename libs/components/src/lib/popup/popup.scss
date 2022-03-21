@@ -19,6 +19,7 @@ $popup-bg: --vvd-color-surface-4dp;
 
 .popup-content {
 	display: grid;
+	color: var(--vvd-color-on-canvas);
 	.dismissible & {
 		align-content: start;
 		grid-template-columns: 1fr auto;
