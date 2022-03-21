@@ -1,5 +1,5 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
-import { POSITION, SideDrawer } from './side-drawer';
+import { SideDrawer } from './side-drawer';
 import '.';
 
 const COMPONENT_TAG = 'vwc-side-drawer';
@@ -84,7 +84,7 @@ describe('vwc-side-drawer', () => {
 		it('should set "position" to "end" and add "position" class', async () => {
 			const control = getControlElement(element);
 			let hasClassPosition = control.classList.contains('end');
-			element.position = POSITION.End;
+			element.position = "end";
 			await elementUpdated(element);
 			expect(hasClassPosition).toEqual(false);
 
