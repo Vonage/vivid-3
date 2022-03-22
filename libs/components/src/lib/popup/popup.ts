@@ -8,6 +8,7 @@ import { arrow, autoUpdate, computePosition, flip, hide, inline, offset, Placeme
  * @public
  */
 export class Popup extends FoundationElement {
+	private cleanup: Function | undefined; // cleans the autoupdate
 	private get PADDING(): number { return 0; }
 	private get DISTANCE(): number { return 12; }
 	private get STRATEGY(): Strategy { return 'fixed'; }
@@ -94,6 +95,7 @@ export class Popup extends FoundationElement {
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
+		if(this.cleanup) this.cleanup();
 	}
 
 	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
@@ -105,15 +107,16 @@ export class Popup extends FoundationElement {
 			}
 		}
 		if (this.anchorEl && this.popupEl) {
-			autoUpdate(this.anchorEl, this.popupEl, () => this.updatePosition());
+			this.cleanup = autoUpdate(this.anchorEl, this.popupEl, () => this.updatePosition());
 		}
 	}
 
 	/**
 	 * Updates popup position, if succeeded returns - true, if not - false
 	 *
+	 * @public
 	 */
-	private async updatePosition() {
+	async updatePosition() {
 		if (!this.open || !this.anchorEl) {
 			return;
 		}
