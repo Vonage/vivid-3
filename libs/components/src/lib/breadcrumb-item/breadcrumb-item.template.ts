@@ -7,7 +7,6 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import {textAnchorTemplate} from '../text-anchor/text-anchor.template';
 import type { BreadcrumbItem } from './breadcrumb-item';
-import '../icon';
 
 const getClasses = (_: BreadcrumbItem) =>
 	classNames(
