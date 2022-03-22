@@ -55,7 +55,6 @@ describe('vwc-popup', () => {
 
 	describe('anchor', () => {
 		it('should not set popup open if anchor element does not exist', async () => {
-			await setPopupAndAnchor();
 			element.anchor = 'anchor';
 			await elementUpdated(element);
 
