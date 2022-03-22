@@ -8,7 +8,7 @@ import {
 
 const componentName = 'text';
 
-test.only('should show the component', async ({ page }: { page: Page }) => {
+test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(
 		path.join(__dirname, 'README.md')
 	).reduce(
