@@ -71,6 +71,8 @@ describe('vwc-popup', () => {
 		});
 		it('should set the arrow class on the container if arrow is true', async () => {
 			element.arrow = true;
+			element.open = true;
+
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.arrow')).not.toBeNull();
 		});
@@ -82,6 +84,7 @@ describe('vwc-popup', () => {
 		});
 		it('should set the dismiss class on the container if dismissible is true', async () => {
 			element.dismissible = true;
+
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.dismissible')).not.toBeNull();
 		});
@@ -106,6 +109,7 @@ describe('vwc-popup', () => {
 		it('should set to alternate', async () => {
 			expect(getControlElement(element).getAttribute('part')).toEqual('');
 			element.alternate = true;
+
 			await elementUpdated(element);
 			expect(getControlElement(element).getAttribute('part')).toEqual('vvd-theme-alternate');
 		});
