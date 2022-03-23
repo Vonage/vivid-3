@@ -1,7 +1,8 @@
 import { html, slotted } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { ViewTemplate } from '@microsoft/fast-element';
-import { ElementDefinitionContext, endSlotTemplate, FoundationElementTemplate, OverrideFoundationElementDefinition, startSlotTemplate } from '@microsoft/fast-foundation';
+import { ElementDefinitionContext, endSlotTemplate, FoundationElementTemplate,
+	OverrideFoundationElementDefinition, startSlotTemplate } from '@microsoft/fast-foundation';
 import type { SideDrawer, SideDrawerOptions } from './side-drawer';
 
 const getClasses = ({
