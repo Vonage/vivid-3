@@ -17,7 +17,6 @@ describe('vwc-side-drawer', () => {
 			expect(element).toBeInstanceOf(SideDrawer);
 			expect(element.open).toBeFalsy();
 			expect(element.alternate).toBeFalsy();
-			expect(element.hasTopBar).toBeFalsy();
 			expect(element.position).toBeUndefined();
 			expect(element.modal).toBeFalsy();
 		});
