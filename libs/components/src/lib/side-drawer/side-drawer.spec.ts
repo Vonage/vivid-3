@@ -115,4 +115,18 @@ describe('vwc-side-drawer', () => {
 			expect(element.open).toEqual(false);
 		});
 	});
+
+	describe('transitionend', () => {
+		it('should handleTransitionEnd after transitionend dispatched', async () => {
+			const onTransitioned = jest.spyOn(element, 'handleTransitionEnd');
+			element.open = true;
+
+			const event = new Event('transitionend');
+			const aside = element.shadowRoot?.querySelector('aside');
+			aside?.dispatchEvent(event);
+			await elementUpdated(element);
+
+			expect(onTransitioned).toHaveBeenCalled();
+		});
+	});
 });
