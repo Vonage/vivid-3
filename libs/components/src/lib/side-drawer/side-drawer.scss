@@ -5,7 +5,7 @@
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use '../../../../shared/src/lib/sass/mixins/scrim' as scrim-mixins;
 
-$z-index-default: 6;
+$z-index-default: 3;
 $padding-default: 16px;
 $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
 
