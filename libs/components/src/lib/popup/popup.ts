@@ -8,7 +8,7 @@ import { arrow, autoUpdate, computePosition, flip, hide, inline, offset, Placeme
  * @public
  */
 export class Popup extends FoundationElement {
-	private cleanup: Function | undefined; // cleans the autoupdate
+	private cleanup: any; // cleans the autoupdate
 	private get PADDING(): number { return 0; }
 	private get DISTANCE(): number { return 12; }
 	private get STRATEGY(): Strategy { return 'fixed'; }
