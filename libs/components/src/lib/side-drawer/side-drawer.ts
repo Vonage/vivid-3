@@ -42,7 +42,7 @@ export class SideDrawer extends FoundationElement {
 	 *
 	 * @internal
 	 */
-	 hasTopBar: HTMLElement[] | undefined;
+	hasTopBar: HTMLElement[] | undefined;
 
 	/**
 	 * sets the side drawer's type to modal
