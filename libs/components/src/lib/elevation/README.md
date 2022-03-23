@@ -9,33 +9,41 @@ The _elevation_ component enables a user to set perceived elevation to a certain
 </script>
 ```
 
+<style>
+	.cbd-demo {
+		padding: 0;
+	}
+</style>
+
 ```html preview
-	<vwc-elevation id="elevation" dp="0">
-		<div class="card">
-			Hover me!
-		</div>
-	</vwc-elevation>
-  <script>
-    const elevation = document.getElementById("elevation");
-    elevation.addEventListener("mouseenter", this.onMouseEnter);
-    elevation.addEventListener("mouseleave", this.onMouseLeave);
+<style>
+	.card {
+		padding: 20px;
+		text-align: center;
+	}
+</style>
 
-    function onMouseEnter(e) {
-      e.target.setAttribute('dp', '24');
-      e.target.querySelector('div').innerText = 'Get OFF of me!';
-    }
+<vwc-elevation id="elevation" dp="0">
+	<div class="card">
+		Hover me!
+	</div>
+</vwc-elevation>
 
-    function onMouseLeave(e) {
-      e.target.setAttribute('dp', '0');
-      e.target.querySelector('div').innerText = 'Hover me!';
-    }
-  </script>
-  <style>
-    .card {
-      padding: 20px;
-      text-align: center;
-    }
-  </style>
+<script>
+	const elevation = document.getElementById("elevation");
+	elevation.addEventListener("mouseenter", this.onMouseEnter);
+	elevation.addEventListener("mouseleave", this.onMouseLeave);
+
+	function onMouseEnter(e) {
+	e.target.setAttribute('dp', '24');
+	e.target.querySelector('div').innerText = 'Get OFF of me!';
+	}
+
+	function onMouseLeave(e) {
+	e.target.setAttribute('dp', '0');
+	e.target.querySelector('div').innerText = 'Hover me!';
+	}
+</script>
 ```
 ## DP
 
@@ -45,6 +53,13 @@ Use the `dp` attribute to change the elevation's level in Density-Independent Pi
 - Default: `2`
 
 ```html preview
+<style>
+.card {
+	padding: 20px;
+	text-align: center;
+}
+</style>
+
 <vwc-layout column-basis="block">
 	<vwc-elevation dp="0">
 		<div class="card">
