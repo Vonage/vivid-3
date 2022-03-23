@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "fix md",
+  "packageName": "@vonage/vivid",
+  "email": "rina.oksman@vonage.com",
+  "dependentChangeType": "patch"
+}
