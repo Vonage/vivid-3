@@ -49,9 +49,8 @@ table tbody tr {
   --table-border-color: var(--vvd-color-neutral-40);
 }
 
-#side-drawer-top-bar {
-    display: flex; 
-    align-items: center;
+#side-drawer{
+  block-size: calc(100vh - 64px);
 }
 
 /*#region: side navigation (temp style - need to be removed once sidenav is done)*/
