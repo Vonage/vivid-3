@@ -1,6 +1,6 @@
 # vwc-button
 
-say a few words on button
+A button represents an action that the user can take. Use buttons to enable important actions.
 
 ```js
 <script type='module'>
