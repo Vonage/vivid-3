@@ -1,3 +1,7 @@
+/**
+ * @param element
+ * @param eventName
+ */
 export function createAndDispatchEvent(element: any, eventName: string) {
 	const init: CustomEventInit = {
 		bubbles: true,

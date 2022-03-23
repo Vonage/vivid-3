@@ -1,7 +1,7 @@
 import { attr } from '@microsoft/fast-element';
 import { FoundationElement, FoundationElementDefinition, StartEndOptions } from '@microsoft/fast-foundation';
-import { createAndDispatchEvent } from '@vivid-nx/shared';
 import type { DocumentWithBlockingElements } from 'blocking-elements';
+import { createAndDispatchEvent } from '../../shared/common-utils';
 
 const blockingElements =
 	(document as DocumentWithBlockingElements).$blockingElements;
