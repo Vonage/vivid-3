@@ -26,11 +26,11 @@ describe('vwc-side-drawer', () => {
 		it('should set "open" to true and add "open" class', async () => {
 			const control = getControlElement(element);
 			const hasClassOpenBeforeShow = control.classList.contains('open');
-			
+
 			element.show();
 			await elementUpdated(element);
 			const hasClassOpenAfterShow = control.classList.contains('open');
-			
+
 			expect(element.open).toEqual(true);
 			expect(hasClassOpenBeforeShow).toEqual(false);
 			expect(hasClassOpenAfterShow).toEqual(true);
@@ -110,7 +110,7 @@ describe('vwc-side-drawer', () => {
 			element.open = true;
 			await elementUpdated(element);
 			const aside: any = element.shadowRoot?.querySelector('aside');
-			aside?.dispatchEvent(new KeyboardEvent('keydown', {'key':'Escape'} ));
+			aside?.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Escape' }));
 			await elementUpdated(element);
 			expect(element.open).toEqual(false);
 		});
@@ -129,4 +129,33 @@ describe('vwc-side-drawer', () => {
 			expect(onTransitioned).toHaveBeenCalled();
 		});
 	});
+
+	describe('dispatchEvent', () => {
+		it('should dispatch event after opened', async () => {
+			const dispatchEventSpy = jest.spyOn(element, 'dispatchEvent');
+			element.open = true;
+			animateDrawer(element);
+
+			expect((dispatchEventSpy.mock.calls[0][0] as any).detail).toEqual({
+				eventName: 'side-drawer-opened',
+			});
+		});
+		it('should dispatch event after closed', async () => {
+			const dispatchEventSpy = jest.spyOn(element, 'dispatchEvent');
+			animateDrawer(element);
+
+			expect((dispatchEventSpy.mock.calls[0][0] as any).detail).toEqual({
+				eventName: 'side-drawer-closed',
+			});
+		});
+	});
+
+	/**
+	 * @param el
+	 */
+	function animateDrawer(el: SideDrawer) {
+		const event = new Event('transitionend');
+		const aside = el.shadowRoot?.querySelector('aside');
+		aside?.dispatchEvent(event);
+	}
 });

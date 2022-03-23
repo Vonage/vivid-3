@@ -1,5 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import { FoundationElement, FoundationElementDefinition, StartEndOptions } from '@microsoft/fast-foundation';
+import { createAndDispatchEvent } from '@vivid-nx/shared';
 import type { DocumentWithBlockingElements } from 'blocking-elements';
 
 const blockingElements =
@@ -89,7 +90,7 @@ export class SideDrawer extends FoundationElement {
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		this.releaseFocusTrap();
+		this.releaseFocus();
 	}
 
 	handleScrimClick(): void {
@@ -113,14 +114,16 @@ export class SideDrawer extends FoundationElement {
 	}
 
 	private opened(): void {
+		createAndDispatchEvent(this, 'side-drawer-opened');
 		if (this.modal) {
 			this.trapFocus();
 		}
 	}
 
 	private closed(): void {
+		createAndDispatchEvent(this, 'side-drawer-closed');
 		if (this.modal) {
-			this.releaseFocusTrap();
+			this.releaseFocus();
 		}
 	}
 
@@ -128,7 +131,7 @@ export class SideDrawer extends FoundationElement {
 		blockingElements?.push(this.rootEl);
 	}
 
-	private releaseFocusTrap(): void {
+	private releaseFocus(): void {
 		blockingElements?.remove(this.rootEl);
 	}
 }
