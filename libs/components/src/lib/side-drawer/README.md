@@ -34,8 +34,8 @@ Alternatively, you can use the `show()` and `hide()` methods as well as `ESC`.
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
 	</div>
 	<div slot="app-content">
-         <vwc-text font-face="body-1">
-            <vwc-button id="button" appearance='outlined' label='Click on me!'></vwc-button>
+        <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
+        <vwc-text font-face="body-1">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
             standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
             a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
@@ -79,8 +79,8 @@ To add a top bar to the side drawer, add a slot called `top-bar`.
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
 	</div>
 	<div slot="app-content">
-         <vwc-text font-face="body-1">
-            <vwc-button id="button" appearance='outlined' label='Click on me!'></vwc-button>
+        <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
+        <vwc-text font-face="body-1">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
             standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
             a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
@@ -91,8 +91,6 @@ To add a top bar to the side drawer, add a slot called `top-bar`.
 	</div>
 </vwc-side-drawer>
 <script>
-  const sideDrawer = document.getElementById("sideDrawer");
-  const button = document.getElementById("button");
   button.addEventListener('click', toggleOpen);
   function toggleOpen() {
 	  sideDrawer.open = !sideDrawer.open;
@@ -122,8 +120,8 @@ Click on the `scrim` or the `ESC` key to close the modal side-drawer.
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
 	</div>
 	<div slot="app-content">
-         <vwc-text font-face="body-1">
-            <vwc-button id="button" appearance='outlined' label='Click on me!'></vwc-button>
+        <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
+        <vwc-text font-face="body-1">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
             standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
             a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
@@ -134,8 +132,6 @@ Click on the `scrim` or the `ESC` key to close the modal side-drawer.
 	</div>
 </vwc-side-drawer>
 <script>
-  const sideDrawer = document.getElementById("sideDrawer");
-  const button = document.getElementById("button");
   button.addEventListener('click', toggleOpen);
   function toggleOpen() {
 	  sideDrawer.open = !sideDrawer.open;
@@ -164,8 +160,8 @@ Use the `alternate` attribute to apply scheme alternate region.
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
 	</div>
 	<div slot="app-content">
-         <vwc-text font-face="body-1">
-            <vwc-button id="button" appearance='outlined' label='Click on me!'></vwc-button>
+        <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
+        <vwc-text font-face="body-1">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
             standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
             a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
@@ -176,8 +172,6 @@ Use the `alternate` attribute to apply scheme alternate region.
 	</div>
 </vwc-side-drawer>
 <script>
-  const sideDrawer = document.getElementById("sideDrawer");
-  const button = document.getElementById("button");
   button.addEventListener('click', toggleOpen);
   function toggleOpen() {
 	  sideDrawer.open = !sideDrawer.open;
@@ -197,6 +191,9 @@ Use the `position` attribute to set the side of the side drawer.
         --side-drawer-background-color: var(--vvd-color-neutral-10);
         --side-drawer-inline-size: 200px;
     }
+    vwc-button#button{
+        margin-left: calc(100% - 40px);
+    }
 </style>
 <vwc-side-drawer id="sideDrawer" open position="end">
 	<div>
@@ -206,8 +203,8 @@ Use the `position` attribute to set the side of the side drawer.
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
 	</div>
 	<div slot="app-content">
-         <vwc-text font-face="body-1">
-            <vwc-button id="button" appearance='outlined' label='Click on me!'></vwc-button>
+        <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
+        <vwc-text font-face="body-1">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
             standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
             a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
@@ -218,8 +215,6 @@ Use the `position` attribute to set the side of the side drawer.
 	</div>
 </vwc-side-drawer>
 <script>
-  const sideDrawer = document.getElementById("sideDrawer");
-  const button = document.getElementById("button");
   button.addEventListener('click', toggleOpen);
   function toggleOpen() {
 	  sideDrawer.open = !sideDrawer.open;
