@@ -97,13 +97,7 @@ dark-mode-toggle {
 
 /*Main container*/
 /*--------------------------*/
-vwc-side-drawer::before {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 1px;
-  box-shadow: 0 1px 7px 0px var(--vvd-color-neutral-90);
-}
+
 .main-layout {
   display: block;
   margin-top: -1.5rem; /*to overide the vwc-layout top margin*/
