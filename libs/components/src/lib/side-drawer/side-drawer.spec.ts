@@ -133,6 +133,7 @@ describe('vwc-side-drawer', () => {
 	describe('dispatchEvent', () => {
 		it('should dispatch event after opened', async () => {
 			const dispatchEventSpy = jest.spyOn(element, 'dispatchEvent');
+			element.modal = true;
 			element.open = true;
 			animateDrawer(element);
 
@@ -142,6 +143,7 @@ describe('vwc-side-drawer', () => {
 		});
 		it('should dispatch event after closed', async () => {
 			const dispatchEventSpy = jest.spyOn(element, 'dispatchEvent');
+			element.modal = true;
 			animateDrawer(element);
 
 			expect((dispatchEventSpy.mock.calls[0][0] as any).detail).toEqual({
