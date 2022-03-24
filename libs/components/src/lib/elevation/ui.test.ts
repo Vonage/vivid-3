@@ -13,6 +13,11 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await loadComponent({
 		page,
+		componentName: 'layout',
+	});
+
+	await loadComponent({
+		page,
 		componentName,
 	});
 	await loadTemplate({

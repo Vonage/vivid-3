@@ -2,7 +2,7 @@ const { JSDOM } = require('jsdom');
 const { decode } = require("html-entities");
 const fs = require('fs');
 const path = require('path');
-const jsonData= require('../_data/components.json'); 
+const jsonData= require('../_data/components.json');
 const ELEVENTY_HTML_CODE_BLOCK_SELECTOR = 'pre > code.language-html';
 
 const CBD_BASE = 'cbd-base';
@@ -117,11 +117,9 @@ const style = `
 	overflow: hidden;
 }
 .${CBD_DEMO} {
-	padding: 20px;
-    overflow: hidden;
-    border: none;
-    height: 30px;
-    width: 100%;
+  overflow: hidden;
+  border: none;
+  width: 100%;
 }
 .light{
 

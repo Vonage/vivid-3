@@ -9,26 +9,40 @@ The _elevation_ component enables a user to set perceived elevation to a certain
 </script>
 ```
 
-<style>
- .cbd-demo {
-  padding: 0;
- }
-</style>
-
 ```html preview
 <style>
- .card {
-   width:50%;
+ #card {
   padding: 20px;
   text-align: center;
  }
 </style>
 
-<vwc-elevation id="elevation">
- <div class="card">
-  Hover me!
- </div>
+<vwc-layout
+  column-basis="sm"
+  column-spacing="xs"
+  auto-sizing="fit"
+  gutters="xs"
+  id="elevation"
+  >
+  <div id="card">
+    Hover me!
+  </div>
 </vwc-elevation>
+
+<script>
+ elevation.addEventListener("mouseenter", this.onMouseEnter);
+ elevation.addEventListener("mouseleave", this.onMouseLeave);
+
+ function onMouseEnter() {
+  elevation.setAttribute('dp', '24');
+  card.innerText = 'Get OFF of me!';
+ }
+
+ function onMouseLeave() {
+  elevation.removeAttribute('dp');
+  card.innerText = 'Hover me!';
+ }
+</script>
 
 ```
 
