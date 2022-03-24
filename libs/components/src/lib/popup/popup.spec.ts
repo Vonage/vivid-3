@@ -37,6 +37,7 @@ describe('vwc-popup', () => {
 			await elementUpdated(element);
 
 			element.show();
+			element.updatePosition();
 			await elementUpdated(element);
 
 			expect(element.open).toEqual(true);
@@ -47,6 +48,7 @@ describe('vwc-popup', () => {
 		it('should set "open" to false', async () => {
 			element.open = true;
 			element.hide();
+			element.updatePosition();
 			await elementUpdated(element);
 
 			expect(element.open).toEqual(false);
@@ -120,6 +122,7 @@ describe('vwc-popup', () => {
 		it('should set aria-hidden', async () => {
 			expect(getControlElement(element).getAttribute('aria-hidden')).toEqual('true');
 			element.open = true;
+			
 			await elementUpdated(element);
 			expect(getControlElement(element).getAttribute('aria-hidden')).toEqual('false');
 		});
