@@ -47,6 +47,7 @@ describe('vwc-popup', () => {
 	describe('hide', () => {
 		it('should set "open" to false', async () => {
 			element.open = true;
+
 			element.hide();
 			element.updatePosition();
 			await elementUpdated(element);
@@ -74,6 +75,7 @@ describe('vwc-popup', () => {
 		it('should set the arrow class on the container if arrow is true', async () => {
 			element.arrow = true;
 			element.open = true;
+			element.updatePosition();
 
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.arrow')).not.toBeNull();
