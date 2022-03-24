@@ -46,8 +46,6 @@ Alternatively, you can use the `show()` and `hide()` methods as well as `ESC`.
 	</div>
 </vwc-side-drawer>
 <script>
-  const sideDrawer = document.getElementById("sideDrawer");
-  const button = document.getElementById("button");
   button.addEventListener('click', toggleOpen);
   function toggleOpen() {
 	  sideDrawer.open = !sideDrawer.open;
