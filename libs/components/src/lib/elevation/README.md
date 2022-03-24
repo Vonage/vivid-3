@@ -17,7 +17,7 @@ The _elevation_ component enables a user to set perceived elevation to a certain
  }
 </style>
 
-<vwc-layout column-basis="base-small" column-spacing="base-large" auto-sizing="fit" gutters="base-small">
+<vwc-layout gutters="base-small">
   <vwc-elevation id="elevation">
     <div id="card">
       Hover me!
