@@ -134,13 +134,13 @@ describe('vwc-side-drawer', () => {
 		});
 	});
 
-		/**
+	/**
 	 * @param el
 	 */
-		async function animateDrawer(el: SideDrawer) {
-			const event = new Event('transitionend');
-			const aside = el.shadowRoot?.querySelector('aside');
-			aside?.dispatchEvent(event);
-			await elementUpdated(el);
-		}
+	async function animateDrawer(el: SideDrawer) {
+		const event = new Event('transitionend');
+		const aside = el.shadowRoot?.querySelector('aside');
+		aside?.dispatchEvent(event);
+		await elementUpdated(el);
+	}
 });
