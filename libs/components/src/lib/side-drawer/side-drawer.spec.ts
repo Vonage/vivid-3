@@ -119,6 +119,7 @@ describe('vwc-side-drawer', () => {
 	describe('transitionend', () => {
 		it('should handleTransitionEnd after transitionend dispatched', async () => {
 			const onTransitioned = jest.spyOn(element, 'handleTransitionEnd');
+			element.modal = true;
 			element.open = true;
 
 			const event = new Event('transitionend');
@@ -129,35 +130,4 @@ describe('vwc-side-drawer', () => {
 			expect(onTransitioned).toHaveBeenCalled();
 		});
 	});
-
-	describe('dispatchEvent', () => {
-		it('should dispatch event after opened', async () => {
-			const dispatchEventSpy = jest.spyOn(element, 'dispatchEvent');
-			element.modal = true;
-			element.open = true;
-			animateDrawer(element);
-
-			expect((dispatchEventSpy.mock.calls[0][0] as any).detail).toEqual({
-				eventName: 'side-drawer-opened',
-			});
-		});
-		it('should dispatch event after closed', async () => {
-			const dispatchEventSpy = jest.spyOn(element, 'dispatchEvent');
-			element.modal = true;
-			animateDrawer(element);
-
-			expect((dispatchEventSpy.mock.calls[0][0] as any).detail).toEqual({
-				eventName: 'side-drawer-closed',
-			});
-		});
-	});
-
-	/**
-	 * @param el
-	 */
-	function animateDrawer(el: SideDrawer) {
-		const event = new Event('transitionend');
-		const aside = el.shadowRoot?.querySelector('aside');
-		aside?.dispatchEvent(event);
-	}
 });

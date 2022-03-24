@@ -1,7 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import { FoundationElement, FoundationElementDefinition, StartEndOptions } from '@microsoft/fast-foundation';
 import type { DocumentWithBlockingElements } from 'blocking-elements';
-import { createAndDispatchEvent } from '../../shared/common-utils';
 
 const blockingElements =
 	(document as DocumentWithBlockingElements).$blockingElements;
@@ -114,14 +113,12 @@ export class SideDrawer extends FoundationElement {
 	}
 
 	private opened(): void {
-		createAndDispatchEvent(this, 'side-drawer-opened');
 		if (this.modal) {
 			this.trapFocus();
 		}
 	}
 
 	private closed(): void {
-		createAndDispatchEvent(this, 'side-drawer-closed');
 		if (this.modal) {
 			this.releaseFocus();
 		}
