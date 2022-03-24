@@ -117,10 +117,21 @@ describe('vwc-side-drawer', () => {
 	});
 
 	describe('transitionend', () => {
-		it('should handleTransitionEnd after transitionend dispatched', async () => {
+		it('should handleTransitionEnd after transitionend dispatched when open', async () => {
 			const onTransitioned = jest.spyOn(element, 'handleTransitionEnd');
 			element.modal = true;
 			element.open = true;
+
+			const event = new Event('transitionend');
+			const aside = element.shadowRoot?.querySelector('aside');
+			aside?.dispatchEvent(event);
+			await elementUpdated(element);
+
+			expect(onTransitioned).toHaveBeenCalled();
+		});
+		it('should handleTransitionEnd after transitionend dispatched when closed', async () => {
+			const onTransitioned = jest.spyOn(element, 'handleTransitionEnd');
+			element.modal = true;
 
 			const event = new Event('transitionend');
 			const aside = element.shadowRoot?.querySelector('aside');
