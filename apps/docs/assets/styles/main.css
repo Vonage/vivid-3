@@ -120,7 +120,7 @@ article {
 .home-page-hero-docs-btn {
   display: inline-block;
   border: 1px solid var(--vvd-color-on-canvas);
-  padding: 1rem 2rem;
+  padding: 0 2rem;
   border-radius: 6px;
   text-decoration: none;
   margin: 0.5rem 0 1rem 0;
