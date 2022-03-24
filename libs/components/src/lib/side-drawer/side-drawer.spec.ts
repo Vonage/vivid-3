@@ -121,6 +121,8 @@ describe('vwc-side-drawer', () => {
 			const onTransitioned = jest.spyOn(element, 'handleTransitionEnd');
 			element.modal = true;
 			element.open = true;
+			await elementUpdated(element);
+
 			animateDrawer(element);
 
 			expect(onTransitioned).toHaveBeenCalled();
@@ -128,6 +130,8 @@ describe('vwc-side-drawer', () => {
 		it('should handleTransitionEnd after transitionend dispatched when closed', async () => {
 			const onTransitioned = jest.spyOn(element, 'handleTransitionEnd');
 			element.modal = true;
+			await elementUpdated(element);
+
 			animateDrawer(element);
 
 			expect(onTransitioned).toHaveBeenCalled();
