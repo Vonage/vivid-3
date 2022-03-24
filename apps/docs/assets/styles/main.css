@@ -81,5 +81,5 @@ article > table {
 article > pre,
 article > .cbd-base {
   box-sizing: border-box;
-  max-inline-size: 120ch;
+  max-inline-size: 1200px;
 }
