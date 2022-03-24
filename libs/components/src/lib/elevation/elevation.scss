@@ -9,7 +9,9 @@ $dps: 0 2 4 8 12 16 24;
 	// border-radius: 6px;
 
 	@include utils.spreadListSelectors('.dp', $dps, $default) using ($type) {
-		background-color: var(#{--vvd-color-surface-#{$type}dp});
-		filter: var(#{--vvd-shadow-surface-#{$type}dp});
+    ::slotted(*){
+      background-color: var(#{--vvd-color-surface-#{$type}dp});
+      filter: var(#{--vvd-shadow-surface-#{$type}dp});
+    }
 	}
 }
