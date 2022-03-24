@@ -106,29 +106,21 @@ export class SideDrawer extends FoundationElement {
 
 	handleTransitionEnd(): void {
 		if (this.open) {
-			this.opened();
-		} else {
-			this.closed();
-		}
-	}
-
-	private opened(): void {
-		if (this.modal) {
 			this.trapFocus();
-		}
-	}
-
-	private closed(): void {
-		if (this.modal) {
+		} else {
 			this.releaseFocus();
 		}
 	}
 
 	private trapFocus(): void {
-		blockingElements?.push(this.rootEl);
+		if (this.modal) {
+			blockingElements?.push(this.rootEl);
+		}
 	}
 
 	private releaseFocus(): void {
-		blockingElements?.remove(this.rootEl);
+		if (this.modal) {
+			blockingElements?.remove(this.rootEl);
+		}
 	}
 }
