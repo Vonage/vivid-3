@@ -6,14 +6,7 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils';
 
-const componentName = 'breadcrumb';
-
-async function injectBreadcrumbItem(page: Page) {
-	await page.addScriptTag({
-		url: 'http://127.0.0.1:8080/dist/libs/components/breadcrumb-item/index.js',
-		type: 'module',
-	});
-}
+const components = ['breadcrumb', 'breadcrumb-item'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(
@@ -26,9 +19,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.pause();
 	await loadComponent({
 		page,
-		componentName,
+		components,
 	});
-	await injectBreadcrumbItem(page);
 	await loadTemplate({
 		page,
 		template,

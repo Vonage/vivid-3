@@ -6,7 +6,7 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils';
 
-const componentName = 'sidenav-item';
+const components = ['sidenav-item'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(path.join(__dirname, 'README.md'))
@@ -14,7 +14,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await loadComponent({
 		page,
-		componentName,
+		components,
 	});
 	await loadTemplate({
 		page,
