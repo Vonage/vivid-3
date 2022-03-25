@@ -2,7 +2,7 @@ $theme-main: vvd-theme-main;
 $theme-alternate: vvd-theme-alternate;
 
 
-@mixin color-theme($type) {
+@mixin color-scheme($type) {
 	@supports (color-scheme: $type) {
 		color-scheme: $type;
 	}
