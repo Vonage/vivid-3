@@ -1,17 +1,15 @@
 @use 'sass:list';
 @use '../../../../shared/src/lib/sass/mixins/utils' as utils;
+@use 'partials/elevation.mixin' as elevation;
 
 $dps: 0 2 4 8 12 16 24;
 
 .control {
 	$default: list.nth($dps, 2);
 
-	// border-radius: 6px;
-
 	@include utils.spread-list-selectors('.dp', $dps, $default) using ($type) {
-		::slotted(*){
-			background-color: var(#{--vvd-color-surface-#{$type}dp});
-			filter: var(#{--vvd-shadow-surface-#{$type}dp});
+		::slotted(*) {
+			@include elevation.get-elevation($type);
 		}
 	}
 }
