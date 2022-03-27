@@ -8,9 +8,6 @@ import {
 
 const componentName = 'breadcrumb';
 
-/**
- * @param page
- */
 async function injectBreadcrumbItem(page: Page) {
 	await page.addScriptTag({
 		url: 'http://127.0.0.1:8080/dist/libs/components/breadcrumb-item/index.js',
