@@ -1,6 +1,6 @@
 @use 'sass:list';
 
-@mixin spreadListSelectors($selector, $types, $default: null) {
+@mixin spread-list-selectors($selector, $types, $default: null) {
 	$excludes: ();
 
 	@each $type in $types {
