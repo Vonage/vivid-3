@@ -2,8 +2,7 @@ import { attr } from '@microsoft/fast-element';
 import { FoundationElement, FoundationElementDefinition, StartEndOptions } from '@microsoft/fast-foundation';
 import type { DocumentWithBlockingElements } from 'blocking-elements';
 
-const blockingElements =
-	(document as DocumentWithBlockingElements).$blockingElements;
+const blockingElements = (document as DocumentWithBlockingElements).$blockingElements;
 
 /**
  * Base class for side-drawer
@@ -25,8 +24,6 @@ const blockingElements =
 export type SideDrawerOptions = FoundationElementDefinition & StartEndOptions;
 
 export class SideDrawer extends FoundationElement {
-	private rootEl = document.querySelector('.side-drawer') as HTMLElement;
-
 	/**
 	 * applies scheme alternate region
 	 *
@@ -89,10 +86,10 @@ export class SideDrawer extends FoundationElement {
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		this.releaseFocus();
+		this.releaseTrapFocus();
 	}
 
-	handleScrimClick(): void {
+	public handleScrimClick = (): void => {
 		if (this.modal && this.open) {
 			this.hide();
 		}
@@ -108,19 +105,19 @@ export class SideDrawer extends FoundationElement {
 		if (this.open) {
 			this.trapFocus();
 		} else {
-			this.releaseFocus();
+			this.releaseTrapFocus();
 		}
 	}
 
 	private trapFocus(): void {
-		if (this.modal) {
-			blockingElements?.push(this.rootEl);
+		if (this.modal) {				
+			blockingElements.push(this);
 		}
 	}
 
-	private releaseFocus(): void {
-		if (this.modal) {
-			blockingElements?.remove(this.rootEl);
+	private releaseTrapFocus(): void {
+		if (this.modal) {				
+			blockingElements.remove(this);
 		}
 	}
 }
