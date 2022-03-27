@@ -9,12 +9,6 @@ The _elevation_ component enables a user to set perceived elevation to a certain
 </script>
 ```
 
-<style>
-	.cbd-demo {
-		padding: 0;
-	}
-</style>
-
 ```html preview
 <style>
 	.card {

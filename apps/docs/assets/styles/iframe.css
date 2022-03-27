@@ -1,0 +1,15 @@
+/* #region reset */
+h1, h2, h3, h4, h5, h6, p {
+  margin: unset;
+}
+
+strong {
+  font-weight: unset;
+}
+/* #endregion reset */
+
+body {
+  color: var(--vvd-color-on-canvas);
+  background-color: var(--vvd-color-canvas);
+  margin: 20px;
+}
