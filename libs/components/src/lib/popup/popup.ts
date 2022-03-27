@@ -8,7 +8,7 @@ import { arrow, autoUpdate, computePosition, flip, hide, inline, offset, Placeme
  * @public
  */
 export class Popup extends FoundationElement {
-	private cleanup: Function = new Function(); // cleans the autoupdate
+	cleanup: any;// cleans the autoupdate
 	private get PADDING(): number { return 0; }
 	private get DISTANCE(): number { return 12; }
 	private get STRATEGY(): Strategy { return 'fixed'; }
@@ -95,7 +95,7 @@ export class Popup extends FoundationElement {
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		this.cleanup();
+		if (this.cleanup) { this.cleanup(); }
 	}
 
 	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {

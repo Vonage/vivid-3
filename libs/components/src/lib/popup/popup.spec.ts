@@ -5,19 +5,18 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-popup';
 
-global.ResizeObserver = jest.fn().mockImplementation(() => ({
-	observe: jest.fn(),
-	unobserve: jest.fn(),
-	disconnect: jest.fn(),
-}));
-
-
 describe('vwc-popup', () => {
 	let element: Popup;
-
+	
 	beforeEach(async () => {
 		element = await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Popup;
 	});
+
+	global.ResizeObserver = jest.fn().mockImplementation(() => ({
+		observe: element.updatePosition,
+		unobserve: element.cleanup,
+		disconnect: element.cleanup,
+	}));
 
 	describe('basic', () => {
 		it('initializes as a vwc-popup', async () => {
@@ -37,7 +36,6 @@ describe('vwc-popup', () => {
 			await elementUpdated(element);
 
 			element.show();
-			element.updatePosition();
 			await elementUpdated(element);
 
 			expect(element.open).toEqual(true);
@@ -49,7 +47,6 @@ describe('vwc-popup', () => {
 			element.open = true;
 
 			element.hide();
-			element.updatePosition();
 			await elementUpdated(element);
 
 			expect(element.open).toEqual(false);
@@ -82,7 +79,6 @@ describe('vwc-popup', () => {
 			await elementUpdated(element);
 
 			element.arrowEl = element.shadowRoot?.querySelector('.arrow') as HTMLElement;
-			element.updatePosition();
 			await elementUpdated(element);
 			
 			expect(element.shadowRoot?.querySelector('.arrow')).not.toBeNull();
