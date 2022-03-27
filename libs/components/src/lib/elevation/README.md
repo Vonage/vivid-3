@@ -57,7 +57,7 @@ Use the `dp` attribute to change the elevation's level in Density-Independent Pi
 }
 </style>
 
-<vwc-layout column-spacing="base-large" auto-sizing="fit" gutters="base-small">
+<vwc-layout column-spacing="base-large" column-basis="block" gutters="base-small">
  <vwc-elevation dp="0">
   <div class="card">
    This is the content inside the elevation with DP 0
