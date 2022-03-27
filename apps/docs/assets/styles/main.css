@@ -1,4 +1,8 @@
 /* #region reset */
+h1, h2, h3, h4, h5, h6, p {
+  margin: unset;
+}
+
 strong {
   font-weight: unset;
 }
@@ -44,9 +48,6 @@ vwc-side-drawer {
   width: 100%;
 }
 
-h1, h2, h3, h4, h5, h6, p {
-  margin: unset;
-}
 /*properties table*/
 table {
   width: 100%;
@@ -81,7 +82,7 @@ ul.navigation p {
 }
 /*#region END: side navigation */
 
-/*Header parts*/
+/* Header parts */
 /*--------------------------*/
 .header-actions {
   display: flex;
@@ -104,9 +105,6 @@ dark-mode-toggle {
   margin-top: -1.5rem; /*to overide the vwc-layout top margin*/
 }
 
-article {
-  max-inline-size: 80ch;
-}
 /*Homepage*/
 .home-page-hero {
   text-align: center;
@@ -131,4 +129,21 @@ article {
 }
 .home-page-hero-docs-links span {
   margin: 0 0.25rem;
+}
+
+article > h1,
+article > h2,
+article > h3,
+article > h4,
+article > h5,
+article > h6,
+article > p,
+article > ul,
+article > table {
+  max-inline-size: 64ch;
+}
+article > pre,
+article > .cbd-base {
+  box-sizing: border-box;
+  max-inline-size: 1200px;
 }
