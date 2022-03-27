@@ -30,31 +30,31 @@ describe('vwc-popup', () => {
 		});
 	});
 
-	// describe('show', () => {
-	// 	it('should set "open" to true', async () => {
-	// 		await setPopupAndAnchor();
-	// 		element.anchor = 'anchor';
-	// 		await elementUpdated(element);
+	describe('show', () => {
+		it('should set "open" to true', async () => {
+			await setPopupAndAnchor();
+			element.anchor = 'anchor';
+			await elementUpdated(element);
 
-	// 		element.show();
-	// 		element.updatePosition();
-	// 		await elementUpdated(element);
+			element.show();
+			element.updatePosition();
+			await elementUpdated(element);
 
-	// 		expect(element.open).toEqual(true);
-	// 	});
-	// });
+			expect(element.open).toEqual(true);
+		});
+	});
 
-	// describe('hide', () => {
-	// 	it('should set "open" to false', async () => {
-	// 		element.open = true;
+	describe('hide', () => {
+		it('should set "open" to false', async () => {
+			element.open = true;
 
-	// 		element.hide();
-	// 		element.updatePosition();
-	// 		await elementUpdated(element);
+			element.hide();
+			element.updatePosition();
+			await elementUpdated(element);
 
-	// 		expect(element.open).toEqual(false);
-	// 	});
-	// });
+			expect(element.open).toEqual(false);
+		});
+	});
 
 	describe('anchor', () => {
 		it('should not set popup open if anchor element does not exist', async () => {
