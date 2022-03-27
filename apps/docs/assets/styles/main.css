@@ -73,6 +73,7 @@ table tbody tr {
 #side-drawer{
   --side-drawer-z-index: 3;
   block-size: calc(100vh - 64px);
+  --side-drawer-background-color: var(--vvd-color-neutral-20);
 }
 
 /*#region: side navigation (temp style - need to be removed once sidenav is done)*/

@@ -52,7 +52,7 @@
     </div>
     <dark-mode-toggle permanent></dark-mode-toggle>
     </div>
-    <vwc-side-drawer open style="--side-drawer-background-color: var(--vvd-color-neutral-20); --side-drawer-z-index: 1">
+    <vwc-side-drawer id="side-drawer" open>
       {% include "navigation.njk" %}
 			<main slot="app-content">
         <vwc-layout gutters="base" column-basis="block" class="main-layout">
