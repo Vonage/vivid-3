@@ -16,6 +16,7 @@ describe('vwc-popup', () => {
 
 	beforeEach(async () => {
 		element = await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Popup;
+		element.cleanup = cleanup;
 	});
 
 	describe('basic', () => {
@@ -83,11 +84,11 @@ describe('vwc-popup', () => {
 			element.arrowEl = element.shadowRoot?.querySelector('.arrow') as HTMLElement;
 			element.updatePosition();
 			await elementUpdated(element);
-			
+
 			expect(element.shadowRoot?.querySelector('.arrow')).not.toBeNull();
 		});
 	});
-	
+
 
 	describe('render dismiss', () => {
 		it('should remove the dismiss class on the container if dismissible is false', async () => {
@@ -131,7 +132,7 @@ describe('vwc-popup', () => {
 		it('should set aria-hidden', async () => {
 			expect(getControlElement(element).getAttribute('aria-hidden')).toEqual('true');
 			element.open = true;
-			
+
 			await elementUpdated(element);
 			expect(getControlElement(element).getAttribute('aria-hidden')).toEqual('false');
 		});
@@ -145,4 +146,9 @@ describe('vwc-popup', () => {
 		await elementUpdated(anchorEl);
 		return anchorEl;
 	}
+
+	/**
+	 *
+	 */
+	function cleanup() { };
 });

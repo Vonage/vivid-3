@@ -8,13 +8,13 @@ import { arrow, autoUpdate, computePosition, flip, hide, inline, offset, Placeme
  * @public
  */
 export class Popup extends FoundationElement {
-	cleanup: any;// cleans the autoupdate
 	private get PADDING(): number { return 0; }
 	private get DISTANCE(): number { return 12; }
 	private get STRATEGY(): Strategy { return 'fixed'; }
 
 	popupEl!: HTMLElement;
 	arrowEl!: HTMLElement;
+	cleanup: any;// cleans the autoupdate
 
 	private get middleware(): Array<any> {
 		const middleware = [flip(), hide(), inline()];
