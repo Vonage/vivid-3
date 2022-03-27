@@ -1,5 +1,3 @@
-import 'blocking-elements';
-import 'wicg-inert';
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { designSystem } from '../../shared/design-system';
 import { SideDrawer } from './side-drawer';
