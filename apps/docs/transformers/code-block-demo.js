@@ -12,9 +12,9 @@ const CBD_DETAILS = 'cbd-details';
 const CBD_BUTTON_SHOW = 'cbd-button-show';
 const CBD_CODE_BLOCK = 'cbd-code-block';
 
-const MAIN_STYLE = '<link rel="stylesheet" href="/assets/styles/main.css">';
+const MAIN_STYLE = '<link rel="stylesheet" href="/assets/styles/iframe.css">';
 
-const generateCodeBlockDemo = function (blockData) {
+const generateCodeBlockDemo = function(blockData) {
     const demoData = {};
     const code = blockData.pre.querySelector('code')?.textContent;
     demoData.demoStr = decode(MAIN_STYLE) + decode(code);
