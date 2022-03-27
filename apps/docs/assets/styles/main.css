@@ -5,15 +5,21 @@ strong {
 /* #endregion reset */
 
 body {
-  color: var(--vvd-color-on-canvas);
-  background-color: var(--vvd-color-canvas);
   margin: 0;
+  background-color: var(--vvd-color-canvas);
+  color: var(--vvd-color-on-canvas);
+}
+
+body a,
+body a:hover,
+body a:visited {
+  color: var(--vvd-color-cta);
 }
 
 /*code inside text*/
 code {
   font-size: 1rem;
-  background-color: var(--vvd-color-neutral-10);
+  background-color: var(--vvd-color-neutral-20);
   color: var(--vvd-color-alert-90);
   padding: 3px 4px;
   border-radius: 6px;
@@ -22,6 +28,15 @@ code {
 pre[class*="language-"] {
     margin: 0;
     border-radius: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  margin-right: 0.5rem;
 }
 
 vwc-side-drawer {
@@ -66,6 +81,54 @@ ul.navigation p {
 }
 /*#region END: side navigation */
 
+/*Header parts*/
+/*--------------------------*/
+.header-actions {
+  display: flex;
+}
+
+dark-mode-toggle {
+  display: block;
+  margin-left: 0.5rem;
+  /*in order for this to overide we need absolute links to a URL*/
+  /*--dark-mode-toggle-dark-icon: url('sun.svg');*/
+  /*--dark-mode-toggle-light-icon: url('moon.svg');*/
+}
+
+
+/*Main container*/
+/*--------------------------*/
+
+.main-layout {
+  display: block;
+  margin-top: -1.5rem; /*to overide the vwc-layout top margin*/
+}
+
 article {
-  max-inline-size: 64ch;
+  max-inline-size: 80ch;
+}
+/*Homepage*/
+.home-page-hero {
+  text-align: center;
+  width: calc(100vw - 312px); /*side-280 + 24 + 16 margin*/
+  margin: 0 -1.5rem; /*to overide the vwc-layout top margin*/
+  padding: 2rem 1rem;
+  border-bottom: 1px solid var(--vvd-color-neutral-20);
+}
+.home-page-hero a {
+  color: var(--vvd-color-on-canvas);
+}
+.home-page-hero-docs-btn {
+  display: inline-block;
+  border: 1px solid var(--vvd-color-on-canvas);
+  padding: 0 2rem;
+  border-radius: 6px;
+  text-decoration: none;
+  margin: 0.5rem 0 1rem 0;
+}
+.home-page-hero-docs-links {
+  color: var(--vvd-color-on-canvas);
+}
+.home-page-hero-docs-links span {
+  margin: 0 0.25rem;
 }
