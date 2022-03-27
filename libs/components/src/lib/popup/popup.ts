@@ -167,10 +167,12 @@ export class Popup extends FoundationElement {
 	private assignArrowPosition(data: any): void {
 		const { x: arrowX, y: arrowY } = data.middlewareData.arrow;
 		const staticSide: any = { top: 'bottom', right: 'left', bottom: 'top', left: 'right' };
+		const left = arrowX ? `${arrowX}px` : '';
+		const top = arrowY ? `${arrowY}px` : '';
 		const side: string = staticSide[data.placement.split('-')[0]];
 		Object.assign(this.arrowEl.style, {
-			left: arrowX != null ? `${arrowX}px` : '',
-			top: arrowY != null ? `${arrowY}px` : '',
+			left: left,
+			top: top,
 			right: '',
 			bottom: '',
 			[side]: '-4px',
