@@ -111,7 +111,7 @@ export class SideDrawer extends FoundationElement {
 
 	private trapFocus(): void {
 		if (this.modal) {				
-			blockingElements.push(this);
+			blockingElements?.push(this);
 		}
 	}
 
