@@ -2,8 +2,6 @@ import { attr } from '@microsoft/fast-element';
 import { FoundationElement, FoundationElementDefinition, StartEndOptions } from '@microsoft/fast-foundation';
 import type { DocumentWithBlockingElements } from 'blocking-elements';
 
-const blockingElements = (document as DocumentWithBlockingElements).$blockingElements;
-
 /**
  * Base class for side-drawer
  *
@@ -24,6 +22,7 @@ const blockingElements = (document as DocumentWithBlockingElements).$blockingEle
 export type SideDrawerOptions = FoundationElementDefinition & StartEndOptions;
 
 export class SideDrawer extends FoundationElement {
+	private blockingElements = (document as DocumentWithBlockingElements).$blockingElements;
 	/**
 	 * applies scheme alternate region
 	 *
@@ -111,13 +110,13 @@ export class SideDrawer extends FoundationElement {
 
 	private trapFocus(): void {
 		if (this.modal) {				
-			blockingElements?.push(this);
+			this.blockingElements.push(this);
 		}
 	}
 
 	private releaseTrapFocus(): void {
 		if (this.modal) {				
-			blockingElements?.remove(this);
+			this.blockingElements.remove(this);
 		}
 	}
 }
