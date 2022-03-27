@@ -6,12 +6,6 @@
 </script>
 ```
 
-<style>
-    .cbd-demo{
-        padding: 0;
-    }
-</style>
-
 ## Open
 Use the `open` attribute to indicate whether the side drawer is open.
 Alternatively, you can use the `show()` and `hide()` methods as well as `ESC`.
