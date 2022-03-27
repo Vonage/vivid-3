@@ -150,5 +150,5 @@ describe('vwc-popup', () => {
 	/**
 	 *
 	 */
-	function cleanup() { };
+	function cleanup() { }
 });
