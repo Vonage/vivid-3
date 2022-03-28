@@ -1,5 +1,5 @@
 {
-  "type": "minor",
+  "type": "none",
   "comment": "add popup component",
   "packageName": "@vonage/vivid",
   "email": "rina.oksman@vonage.com",
