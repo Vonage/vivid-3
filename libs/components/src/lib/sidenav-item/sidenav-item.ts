@@ -18,7 +18,7 @@ export class SidenavItem extends Anchor {
 	 * @remarks
 	 * HTML Attribute: text
 	 */
-	@attr text = '';
+	@attr({ mode: 'fromView' }) text = '';
 }
 
 export interface SidenavItem extends Prefix {}
