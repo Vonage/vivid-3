@@ -13,5 +13,5 @@ export class Elevation extends FoundationElement {
 	 * @public
 	 * HTML Attribute: dp
 	 */
-	@attr dp = 2;
+	@attr dp?: 0 | 2 | 4 | 8 | 12 | 16 | 24;
 }
