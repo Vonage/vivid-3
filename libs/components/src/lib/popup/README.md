@@ -35,7 +35,7 @@ Use the `open` attribute to indicate whether the popup is open.
     width: 200px;
     padding: 1rem;
 	}
- .wrapper{
+  .wrapper{
     width: 100%;
     height: 120px;
     display: flex;
@@ -74,7 +74,7 @@ Use the `dismissible` attribute to add close button to the popup.
     width: 120px;
     padding: 1rem;
 	}
- .wrapper{ 
+  .wrapper{ 
     width: 100%;
     height: 120px;
     display: flex;
@@ -111,7 +111,7 @@ Use the `arrow` attribute to add small triangle to indicate the trigger element.
     width: 200px;
     padding: 1rem;
 	}
- .wrapper{
+  .wrapper{
     width: 100%;
     height: 120px;
     display: flex;
@@ -140,7 +140,7 @@ Use the `alternate` attribute to set the color-scheme to dark.
     width: 200px;
     padding: 1rem;
 	}
- .wrapper{
+  .wrapper{
     width: 100%;
     height: 120px;
     display: flex;
@@ -169,7 +169,7 @@ Use the `corner` attribute to set the placement of the popup.
   .content {
     padding: 1rem;
 	}
- .wrapper{
+  .wrapper{
     width: 100%;
     height: 220px;
     display: flex;

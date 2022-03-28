@@ -68,7 +68,7 @@ export class Popup extends FoundationElement {
 	 * @public
 	 * HTML Attribute: corner
 	 */
-	@attr corner?: Placement = 'left';
+	@attr corner?: Placement;
 
 	/**
 	 * ID reference to element in the popup’s owner document.
@@ -76,7 +76,7 @@ export class Popup extends FoundationElement {
 	 * @public
 	 * HTML Attribute: anchor
 	 */
-	@attr anchor: string = '';
+	@attr anchor!: string;
 
 	/**
 	 * popup's anchor element
@@ -87,6 +87,7 @@ export class Popup extends FoundationElement {
 
 	constructor() {
 		super();
+		this.corner = 'left'; // default corner
 	}
 
 	override connectedCallback(): void {
