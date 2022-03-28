@@ -37,7 +37,7 @@ export const popupTemplate: (
 	</div>`;
 
 const renderDismissButton = () => {
-	return html`<vwc-button @click="${x => x.handleDismissClick()}"
+	return html`<vwc-button size="base-small" @click="${x => x.handleDismissClick()}"
                           class="dismissible" icon="close-small-solid" shape="pill"></vwc-button>`;
 };
 
