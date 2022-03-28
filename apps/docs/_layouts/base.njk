@@ -25,6 +25,7 @@
 
     <script type="module" src="{{ '/assets/modules/components/layout/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/text/index.js' | url}}"></script>
+    <script type="module" src="{{ '/assets/modules/components/sidenav-item/index.js' | url}}"></script>
     <script type="module" src="https://es6.dev.vivid.vonage.com/v2.22.1/@vonage/vwc-top-app-bar-fixed/vwc-top-app-bar-fixed.js"></script>
     <script type="module" src="https://es6.dev.vivid.vonage.com/v2.22.1/@vonage/vwc-side-drawer/vwc-side-drawer.js"></script>
 
@@ -33,15 +34,12 @@
 
 <body>
 	<vwc-top-app-bar-fixed>
-   <vwc-button
-    slot="navigationIcon"
-    icon="vonage-mono"
-    label="VONAGE"
-  ></vwc-button>
-    <div class="logo" slot="actionItems">
-        {# <img src="{{ '/assets/images/vivid-logo.svg' | url }}" alt="vivid logo" width="150" height="60"> #}
+    <div class="logo" slot="navigationIcon">
+    <img src="../../../vivid-logo.svg" style="" alt="Vivid Logo" width="30">
+      <h5>VIVID</h5>
     </div>
-    <div class="star-us" slot="actionItems">
+    <div class="header-actions" slot="actionItems">
+    <div class="star-us">
     <!-- Place this tag where you want the button to render. -->
         <a class="github-button"
             href="https://github.com/vonage/vivid-3"
@@ -52,11 +50,12 @@
             Star
         </a>
     </div>
-    <dark-mode-toggle permanent slot="actionItems"></dark-mode-toggle>
-    <vwc-side-drawer open>
+    <dark-mode-toggle permanent></dark-mode-toggle>
+    </div>
+    <vwc-side-drawer open style="--side-drawer-background-color: var(--vvd-color-neutral-20); --side-drawer-z-index: 1">
       {% include "navigation.njk" %}
 			<main slot="app-content">
-        <vwc-layout gutters="base" column-basis="block">
+        <vwc-layout gutters="base" column-basis="block" class="main-layout">
           <article>
             {{content | safe}}
           </article>
@@ -65,7 +64,6 @@
       </main>
 		</vwc-side-drawer>
 	</vwc-top-app-bar-fixed>
-
 
 </body>
 

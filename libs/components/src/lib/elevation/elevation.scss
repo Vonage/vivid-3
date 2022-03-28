@@ -1,31 +1,15 @@
 @use 'sass:list';
+@use '../../../../shared/src/lib/sass/mixins/utils' as utils;
+@use 'partials/elevation.mixin' as elevation;
 
 $dps: 0 2 4 8 12 16 24;
-$elevation-border-radius: var(#{--elevation-border-radius});
-
-@function get-default-selector($list, $default) {
-	@if list.length($list) == 1 {
-		@return '.dp-#{$default}';
-	}
-
-	$compound: '';
-	@each $key, $_ in $list {
-		@if $key != $default {
-			$compound: $compound + ':not(.dp-#{$key})';
-		}
-	}
-	@return '.dp-#{$default}#{$compound}';
-}
-
-@each $dp in $dps {
-	#{get-default-selector($dps, $dp)} {
-		background-color: var(#{--vvd-color-surface-#{$dp}dp});
-		filter: var(#{--vvd-shadow-surface-#{$dp}dp});
-	}
-}
 
 .control {
-	--elevation-border-radius: 6px;
-	
-	border-radius: var(#{--elevation-border-radius});
+	$default: list.nth($dps, 2);
+
+	@include utils.spread-list-selectors('.dp', $dps, $default) using ($type) {
+		::slotted(*) {
+			@include elevation.get-elevation($type);
+		}
+	}
 }

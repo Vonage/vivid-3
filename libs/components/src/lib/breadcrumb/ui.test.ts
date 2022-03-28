@@ -2,18 +2,11 @@ import * as path from 'path';
 import { expect, Page, test } from '@playwright/test';
 import {
 	extractHTMLBlocksFromReadme,
-	loadComponent,
+	loadComponents,
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils';
 
-const componentName = 'breadcrumb';
-
-async function injectBreadcrumbItem(page: Page) {
-	await page.addScriptTag({
-		url: 'http://127.0.0.1:8080/dist/libs/components/breadcrumb-item/index.js',
-		type: 'module',
-	});
-}
+const components = ['breadcrumb', 'breadcrumb-item'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(
@@ -24,11 +17,10 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		''
 	);
 	await page.pause();
-	await loadComponent({
+	await loadComponents({
 		page,
-		componentName,
+		components,
 	});
-	await injectBreadcrumbItem(page);
 	await loadTemplate({
 		page,
 		template,

@@ -14,7 +14,7 @@ describe('vwc-elevation', () => {
 	describe('basic', () => {
 		it('initializes as a vwc-elevation', async () => {
 			expect(element).toBeInstanceOf(Elevation);
-			expect(element.dp).toEqual(2);
+			expect(element.dp).toBeUndefined();
 		});
 	});
 
