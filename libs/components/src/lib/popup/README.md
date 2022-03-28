@@ -201,7 +201,7 @@ Use the `corner` attribute to set the placement of the popup.
   </vwc-popup>
 </div>
 ```
-## Top-layer
+## Caveat
 
 Document elements display precedence is formed by the imaginary z-axis [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context), commonly by order of which elements are rendered and special properties (e.g. _z-index_).
 Popup component is a low level element, unaware of its document context, but in most cases required to overlay on top of all elements.
