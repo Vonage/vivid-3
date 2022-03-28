@@ -25,7 +25,7 @@ describe('vwc-popup', () => {
 			expect(element.open).toBeFalsy();
 			expect(element.arrow).toBeFalsy();
 			expect(element.dismissible).toBeFalsy();
-			expect(element.anchor).toEqual('');
+			expect(element.anchor).toBeUndefined();
 			expect(element.corner).toEqual('left');
 		});
 	});
