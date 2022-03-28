@@ -31,12 +31,10 @@ const defaultStyles = [
 /**
  * @param root0
  * @param root0.page
- * @param root0.componentName
- * @param root0.styleUrls
- * @param root0.componentNames
  * @param root0.components
+ * @param root0.styleUrls
  */
-export async function loadComponent({
+export async function loadComponents({
 	page,
 	components,
 	styleUrls = defaultStyles,
