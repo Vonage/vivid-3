@@ -31,24 +31,28 @@ const defaultStyles = [
 /**
  * @param root0
  * @param root0.page
- * @param root0.componentName
+ * @param root0.components
  * @param root0.styleUrls
  */
-export async function loadComponent({
+export async function loadComponents({
 	page,
-	componentName,
+	components,
 	styleUrls = defaultStyles,
 }: {
 	page: Page,
-	componentName: string,
+	components: string[],
 	styleUrls?: string[]
 }) {
 	await page.goto('http://127.0.0.1:8080/scripts/visual-tests/index.html');
 
-	await page.addScriptTag({
-		url: `http://127.0.0.1:8080/dist/libs/components/${componentName}/index.js`,
-		type: 'module',
-	});
+	(async function () {
+		for (const component of components) {
+			await page.addScriptTag({
+				url: `http://127.0.0.1:8080/dist/libs/components/${component}/index.js`,
+				type: 'module',
+			});
+		}
+	})();
 
 	const styleTags$ = styleUrls.map(url => page.addStyleTag({url}));
 	await Promise.all(styleTags$);
