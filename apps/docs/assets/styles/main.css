@@ -46,6 +46,7 @@ pre[class*="language-"] {
 vwc-side-drawer {
   display: block;
   width: 100%;
+  block-size: calc(100vh - 64px);
 }
 
 /*properties table*/

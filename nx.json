@@ -12,7 +12,8 @@
       "devDependencies": "*"
     },
     ".eslintrc.json": "*",
-    ".stylelintrc.json": "*"
+    ".stylelintrc.json": "*",
+    "tools/eslint-rules/**/*": "*"
   },
   "tasksRunnerOptions": {
     "default": {
