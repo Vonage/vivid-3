@@ -51,6 +51,17 @@
     ]
   },
   {
+    "title": "side-drawer",
+    "markdown": "./libs/components/src/lib/side-drawer/README.md",
+    "modules": [
+      "/assets/modules/components/side-drawer/index.js",
+      "/assets/modules/components/sidenav-item/index.js",
+      "/assets/modules/components/icon/index.js",
+      "/assets/modules/components/text/index.js",
+      "/assets/modules/components/button/index.js"
+    ]
+  },
+  {
     "title": "sidenav-item",
     "markdown": "./libs/components/src/lib/sidenav-item/README.md",
     "modules": [
