@@ -61,6 +61,4 @@ describe('vwc-sidenav-item', () => {
 				.toEqual(text);
 		});
 	});
-
-
 });
