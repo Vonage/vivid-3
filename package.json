@@ -22,6 +22,7 @@
   "devDependencies": {
     "@11ty/eleventy": "^1.0.0",
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.2.2",
+    "@angular-eslint/utils": "^13.0.1",
     "@microsoft/eslint-config-fast-dna": "^2.0.0",
     "@nrwl/cli": "13.8.2",
     "@nrwl/cypress": "13.9.3",

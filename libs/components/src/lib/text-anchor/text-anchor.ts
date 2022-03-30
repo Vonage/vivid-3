@@ -14,5 +14,5 @@ export class TextAnchor extends Anchor {
 	 * @remarks
 	 * HTML Attribute: text
 	 */
-	@attr text = '';
+	@attr({ mode: 'fromView' }) text = '';
 }

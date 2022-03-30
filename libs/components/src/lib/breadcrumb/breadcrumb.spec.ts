@@ -38,6 +38,9 @@ describe('vwc-breadcrumb', () => {
 	});
 
 	describe('aria-current', function () {
+		/**
+		 *
+		 */
 		function removeAElementFromBreadcrumbItem() {
 			newItem.shadowRoot?.querySelector('a')
 				?.remove();

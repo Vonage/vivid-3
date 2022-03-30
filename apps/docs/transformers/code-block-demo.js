@@ -2,7 +2,7 @@ const { JSDOM } = require('jsdom');
 const { decode } = require("html-entities");
 const fs = require('fs');
 const path = require('path');
-const jsonData= require('../_data/components.json'); 
+const jsonData= require('../_data/components.json');
 const ELEVENTY_HTML_CODE_BLOCK_SELECTOR = 'pre > code.language-html';
 
 const CBD_BASE = 'cbd-base';
@@ -12,9 +12,9 @@ const CBD_DETAILS = 'cbd-details';
 const CBD_BUTTON_SHOW = 'cbd-button-show';
 const CBD_CODE_BLOCK = 'cbd-code-block';
 
-const MAIN_STYLE = '<link rel="stylesheet" href="/assets/styles/main.css">';
+const MAIN_STYLE = '<link rel="stylesheet" href="/assets/styles/iframe.css">';
 
-const generateCodeBlockDemo = function (blockData) {
+const generateCodeBlockDemo = function(blockData) {
     const demoData = {};
     const code = blockData.pre.querySelector('code')?.textContent;
     demoData.demoStr = decode(MAIN_STYLE) + decode(code);
@@ -117,11 +117,9 @@ const style = `
 	overflow: hidden;
 }
 .${CBD_DEMO} {
-	padding: 20px;
-    overflow: hidden;
-    border: none;
-    height: 30px;
-    width: 97%;
+  overflow: hidden;
+  border: none;
+  width: 100%;
 }
 .light{
 
