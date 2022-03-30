@@ -1,6 +1,6 @@
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
-import { PrefixOrSuffix } from '../../shared/patterns/affix';
+import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
 import type {
 	Appearance, Connotation, Shape, Size,
@@ -90,8 +90,8 @@ export class Badge extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: text
 	 */
-	@attr text = '';
+	@attr({ mode: 'fromView' }) text = '';
 }
 
-export interface Badge extends PrefixOrSuffix {}
-applyMixins(Badge, PrefixOrSuffix);
+export interface Badge extends AffixIconWithTrailing {}
+applyMixins(Badge, AffixIconWithTrailing);

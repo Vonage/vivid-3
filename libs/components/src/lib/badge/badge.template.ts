@@ -2,17 +2,18 @@ import { html } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { prefixOrSuffixTemplate } from '../../shared/patterns/affix';
+import { affixIconTemplate } from '../../shared/patterns/affix';
 import type { Badge } from './badge';
 
 const getClasses = ({
-	connotation, appearance, shape, size
+	connotation, appearance, shape, size, iconTrailing
 }: Badge) => classNames(
 	'control',
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	[`size-${size}`, Boolean(size)],
+	['icon-trailing', iconTrailing],
 );
 
 /**
@@ -26,6 +27,6 @@ export const badgeTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Badge> = (context: ElementDefinitionContext) => html`
     <span class="${getClasses}">
-      ${() => prefixOrSuffixTemplate(context)}
+      ${() => affixIconTemplate(context)}
       ${(x) => x.text}
 		</span>`;

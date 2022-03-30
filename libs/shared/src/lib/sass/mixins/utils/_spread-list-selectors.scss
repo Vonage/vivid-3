@@ -1,0 +1,24 @@
+@use 'sass:list';
+
+@mixin spread-list-selectors($selector, $types, $default: null) {
+	$excludes: ();
+
+	@each $type in $types {
+		$typed-selector: #{$selector}-#{$type};
+		&#{$typed-selector} {
+			@content($type);
+
+      @if $default {
+        @if $type != $default {
+          $excludes: list.append($excludes, $typed-selector, $separator: comma);
+        }
+      }
+		}
+	}
+
+  @if list.length($excludes) {
+    &:not(#{$excludes}) {
+      @content($default);
+    }
+  }
+}

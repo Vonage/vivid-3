@@ -4,7 +4,7 @@ import { attr } from '@microsoft/fast-element';
 import type {
 	Appearance, Connotation, Shape, Size,
 } from '../enums.js';
-import { PrefixOrSuffix } from '../../shared/patterns/affix';
+import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
 /**
  * Types of button connotation.
@@ -88,8 +88,8 @@ export class Button extends FoundationButton {
 	 * @remarks
 	 * HTML Attribute: label
 	 */
-	@attr label = '';
+	@attr({ mode: 'fromView' }) label = '';
 }
 
-export interface Button extends PrefixOrSuffix {}
-applyMixins(Button, PrefixOrSuffix);
+export interface Button extends AffixIconWithTrailing {}
+applyMixins(Button, AffixIconWithTrailing);
