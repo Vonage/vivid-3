@@ -106,6 +106,18 @@ fdescribe('icon', function () {
 				.toEqual('loaded');
 			expect(element.svg).toEqual(svg);
 		});
+
+		it('should show empty string when no icon is available', function () {
+			fakeFetch(100);
+			element.type = 'none';
+			jest.runAllTimers();
+			element.type = undefined;
+			jest.runAllTimers();
+			expect(element.state)
+				.toEqual('loaded');
+			expect(element.placeholder).toEqual(null);
+			expect(element.svg).toEqual('');
+		});
 	});
 
 });
