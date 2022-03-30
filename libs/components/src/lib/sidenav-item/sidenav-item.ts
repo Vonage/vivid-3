@@ -1,7 +1,6 @@
 import { applyMixins } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
-import { Anchor } from '@microsoft/fast-foundation';
-import { Prefix } from '../../shared/patterns/affix';
+import { AffixIcon } from '../../shared/patterns/affix';
+import { TextAnchor } from '../text-anchor/text-anchor';
 
 
 /**
@@ -10,16 +9,7 @@ import { Prefix } from '../../shared/patterns/affix';
  *
  * @public
  */
-export class SidenavItem extends Anchor {
-	/**
-	 * Indicates the sidenav item's text.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: text
-	 */
-	@attr({ mode: 'fromView' }) text = '';
-}
+export class SidenavItem extends TextAnchor {}
 
-export interface SidenavItem extends Prefix {}
-applyMixins(SidenavItem, Prefix);
+export interface SidenavItem extends AffixIcon {}
+applyMixins(SidenavItem, AffixIcon);
