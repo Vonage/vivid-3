@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "remove unused variables in styles",
+  "packageName": "@vivid-nx/styles",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "none"
+}
