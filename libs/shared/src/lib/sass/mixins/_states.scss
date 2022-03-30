@@ -5,7 +5,7 @@
   $primary-hover: var(--vvd-color-neutral-80);
   $primary-active: var(--vvd-color-neutral-70);
 
-  &:not([class*=-idle]) {
+  &:where(:not([class*=-idle])) {
     &:hover {
       background-color: var(#{connotation.$vvd-color-connotation}-diverse);
     }
@@ -16,8 +16,7 @@
 
 
   //only primary & default button primary no class
-  &:where(:not([class*=connotation-],[class*=-idle])),
-  &.connotation-primary {
+  &:where(.appearance-filled):not([class*=-idle], .connotation-cta, .connotation-alert, .connotation-success) {
     &:hover {
       background-color: #{$primary-hover};
     }
@@ -27,7 +26,7 @@
   }
 
   //ghost & outlined
-  &:not(.appearance-filled):not([class*=-idle]) {
+  &:where(:not(.appearance-filled):not([class*=-idle])) {
     &:hover {
       background-color: var(#{connotation.$vvd-color-connotation}-pale);
     }
