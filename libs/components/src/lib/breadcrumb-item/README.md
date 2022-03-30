@@ -16,7 +16,7 @@
 
 ```html preview
 <vwc-breadcrumb-item 
-  text="Breadcrum" ></vwc-breadcrumb-item>
+  text="Breadcrumb" ></vwc-breadcrumb-item>
 ```
 
 ## Combined
@@ -35,6 +35,6 @@
   text="..."></vwc-breadcrumb-item>
   
 <vwc-breadcrumb-item 
-  text="Breadcrum" ></vwc-breadcrumb-item>
+  text="Breadcrumb" ></vwc-breadcrumb-item>
 </div>
 ```
