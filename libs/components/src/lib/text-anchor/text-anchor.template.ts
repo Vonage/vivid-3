@@ -5,9 +5,13 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
+import { affixIconTemplate } from '../../shared/patterns/affix';
 import type { TextAnchor } from './text-anchor';
 
-const getClasses = (_: TextAnchor) => classNames('control');
+const getClasses = ({text, icon}: TextAnchor) => classNames(
+	'control',
+	['icon-only', !text && !!icon],
+);
 
 /**
  * The template for the {@link @microsoft/fast-foundation#(Anchor:class)} component.
@@ -19,8 +23,9 @@ const getClasses = (_: TextAnchor) => classNames('control');
 export const textAnchorTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<TextAnchor> = () => html`
-    <a
+) => ViewTemplate<TextAnchor> = (
+	context: ElementDefinitionContext,
+) => html`<a
         class="${getClasses}"
         download="${x => x.download}"
         href="${x => x.href}"
@@ -52,6 +57,7 @@ export const textAnchorTemplate: (
         aria-roledescription="${x => x.ariaRoledescription}"
         ${ref('control')}
     >
+      ${() => affixIconTemplate(context)}
       ${x => x.text}
     </a>
 `;
