@@ -1,7 +1,6 @@
 import { attr, html } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
-import { classNames } from '@microsoft/fast-web-utilities';
 import { Icon } from '../../lib/icon/icon';
 
 /**
@@ -10,7 +9,7 @@ import { Icon } from '../../lib/icon/icon';
 	*
 	* @public
 	*/
-export class Prefix {
+export class AffixIcon {
 	/**
 		* A decorative icon the custom element should have.
 		*
@@ -26,7 +25,7 @@ export class Prefix {
 	*
 	* @public
 	*/
-export class PrefixOrSuffix extends Prefix {
+export class AffixIconWithTrailing extends AffixIcon {
 	/**
 		* Indicates the icon affix alignment.
 		*
@@ -42,38 +41,15 @@ export class PrefixOrSuffix extends Prefix {
 
 /**
 	* The template for the prefixed element.
-	* For use with {@link Prefix}
+	* For use with {@link AffixIcon}
 	*
 	* @param context
 	* @public
 	*/
-export const prefixTemplate: (context: ElementDefinitionContext) => ViewTemplate<Prefix> = (context: ElementDefinitionContext) => {
+export const affixIconTemplate: (context: ElementDefinitionContext) => ViewTemplate<AffixIcon> = (context: ElementDefinitionContext) => {
 	const iconTag = context.tagFor(Icon);
 
 	const iconTemplate = html`<span class="icon"><${iconTag} :type="${(x) => x.icon}"></${iconTag}></span>`;
 
 	return html`${(x) => (x.icon ? iconTemplate : '')}`;
 };
-
-/**
-	* The template for the affixed (prefixed or suffixed) element.
-	* For use with {@link PrefixOrSuffix}
-	*
-	* @param context
-	* @public
-	*/
-export const prefixOrSuffixTemplate: (context: ElementDefinitionContext) => ViewTemplate<PrefixOrSuffix> =
-	(context: ElementDefinitionContext) => {
-		const iconTag = context.tagFor(Icon);
-
-		const classes = ({
-			iconTrailing,
-		}: PrefixOrSuffix) => classNames(
-			'icon',
-			['icon-trailing', iconTrailing],
-		);
-
-		const iconTemplate = html`<span class="${classes}"><${iconTag} :type="${(x) => x.icon}"></${iconTag}></span>`;
-
-		return html`${(x) => (x.icon ? iconTemplate : '')}`;
-	};
