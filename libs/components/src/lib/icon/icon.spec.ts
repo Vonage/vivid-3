@@ -57,7 +57,7 @@ fdescribe('icon', function () {
 		const originalPromise = global.Promise;
 
 		beforeEach(function () {
-			global.Promise = require('promise');
+			global.Promise = require('promise'); // needed in order for promises to work with jest fake timers
 			jest.useFakeTimers('legacy');
 		});
 
@@ -67,10 +67,33 @@ fdescribe('icon', function () {
 			global.Promise = originalPromise;
 		});
 
-		it('should enter loading state', async function () {
-			fakeFetch(4000);
+		/**
+		 *
+		 */
+		function setIconTypeAndTriggerFirstTimer() {
 			element.type = 'none';
 			jest.advanceTimersToNextTimer();
+		}
+
+		/**
+		 * @param timeInMs
+		 */
+		function setIconTypeAndAdvanceTime(timeInMs: number) {
+			element.type = 'none';
+			jest.advanceTimersByTime(timeInMs);
+		}
+
+		/**
+		 * @param iconType
+		 */
+		function setIconTypeAndRunAllTimers(iconType: string | undefined) {
+			element.type = iconType;
+			jest.runAllTimers();
+		}
+
+		it('should enter loading state', async function () {
+			fakeFetch(4000);
+			setIconTypeAndTriggerFirstTimer();
 
 			expect(element.state)
 				.toEqual('loading');
@@ -80,8 +103,7 @@ fdescribe('icon', function () {
 
 		it('should enter loading state', async function () {
 			fakeFetch(4000);
-			element.type = 'none';
-			jest.advanceTimersByTime(500);
+			setIconTypeAndAdvanceTime(500);
 			expect(element.state)
 				.toEqual('loading');
 			expect(element.placeholder).toMatchSnapshot();
@@ -90,8 +112,7 @@ fdescribe('icon', function () {
 
 		it('should exit loading state after timeout', async function () {
 			fakeFetch(4000);
-			element.type = 'none';
-			jest.advanceTimersByTime(2500);
+			setIconTypeAndAdvanceTime(2500);
 			expect(element.state)
 				.toEqual('loading');
 			expect(element.placeholder).toEqual(null);
@@ -100,8 +121,7 @@ fdescribe('icon', function () {
 
 		it('should enter loaded state after icon fetch', async function () {
 			fakeFetch(100);
-			element.type = 'none';
-			jest.runAllTimers();
+			setIconTypeAndRunAllTimers('none');
 			expect(element.state)
 				.toEqual('loaded');
 			expect(element.svg).toEqual(svg);
@@ -109,10 +129,8 @@ fdescribe('icon', function () {
 
 		it('should show empty string when no icon is available', function () {
 			fakeFetch(100);
-			element.type = 'none';
-			jest.runAllTimers();
-			element.type = undefined;
-			jest.runAllTimers();
+			setIconTypeAndRunAllTimers('none');
+			setIconTypeAndRunAllTimers(undefined);
 			expect(element.state)
 				.toEqual('loaded');
 			expect(element.placeholder).toEqual(null);
