@@ -1,6 +1,124 @@
 @use 'config';
 
+@use '../../../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use '../connotation' as connotation;
 
-$appearance-color-fill: --appearance-color-fill;
-$appearance-color-text: --appearance-color-text;
-$appearance-color-outline: --appearance-color-outline;
+
+
+
+$states-mapping: (
+  idle: (
+    filled: (
+      text: var(#{connotation.$vvd-color-on-connotation}),
+      fill: var(#{connotation.$vvd-color-connotation}),
+      outline: transaprent,
+    ),
+    outlined: (
+      text: var(#{connotation.$vvd-color-connotation}),
+      fill: transaprent,
+      outline: var(#{connotation.$vvd-color-connotation}),
+    ),
+    ghost: (
+      text: var(#{connotation.$vvd-color-connotation}),
+      fill: transaprent,
+      outline: transaprent,
+    ),
+    soft: (
+      text: var(#{connotation.$vvd-color-connotation}),
+      fill: transaprent,
+      outline: transaprent,
+    )
+  ),
+  hover: (
+    filled: (
+      text: var(#{connotation.$vvd-color-on-connotation}),
+      fill: var(#{connotation.$vvd-color-connotation}-diverse),
+      outline: transaprent,
+    ),
+    outlined: (
+      text: var(#{connotation.$vvd-color-connotation}),
+      fill: var(#{connotation.$vvd-color-connotation}-soft),
+      outline: var(#{connotation.$vvd-color-connotation}),
+    ),
+    ghost: (
+      text: var(#{connotation.$vvd-color-connotation}),
+      fill: var(#{connotation.$vvd-color-connotation}-soft),
+      outline: transaprent,
+    ),
+    soft: (
+      text: var(#{connotation.$vvd-color-connotation}),
+      fill: transaprent,
+      outline: transaprent,
+    )
+  ),
+
+  disabled: (
+    filled: (
+      text: lightgrey,
+      fill: grey,
+      outline: lightred,
+    ),
+    outlined: (
+      text: lightgrey,
+      fill: grey,
+      outline: lightred,
+    ),
+    ghost: (
+      text: lightgrey,
+      fill: grey,
+      outline: lightred,
+    ),
+    soft: (
+      text: var(#{connotation.$vvd-color-connotation}),
+      fill: transaprent,
+      outline: transaprent,
+    )
+  ),
+
+  active: (
+    filled: (
+      text: lightgrey,
+      fill: grey,
+      outline: lightred,
+    ),
+    outlined: (
+      text: lightgrey,
+      fill: grey,
+      outline: lightred,
+    ),
+    ghost: (
+      text: lightgrey,
+      fill: grey,
+      outline: lightred,
+    ),
+    soft: (
+      text: var(#{connotation.$vvd-color-connotation}),
+      fill: transaprent,
+      outline: transaprent,
+    )
+  ),
+
+  selected: (
+    filled: (
+      text: lightgrey,
+      fill: grey,
+      outline: lightred,
+    ),
+    outlined: (
+      text: lightgrey,
+      fill: grey,
+      outline: lightred,
+    ),
+    ghost: (
+      text: lightgrey,
+      fill: grey,
+      outline: lightred,
+    ),
+    soft: (
+      text: var(#{connotation.$vvd-color-connotation}),
+      fill: transaprent,
+      outline: transaprent,
+    )
+  )
+
+);

@@ -1,4 +1,7 @@
-$predefined-appearances: filled outlined soft text ghost filled-idle outlined-idle soft-idle text-idle ghost-idle;
+//$predefined-appearances: filled outlined soft ghost;
+//$predefined-states: idle disabled hover active selected;
+
 $default: false !default;
-$subset: $predefined-appearances !default;
+$appearances: ghost !default;
+$states: idle !default;
 $outline-duotone: false !default;
