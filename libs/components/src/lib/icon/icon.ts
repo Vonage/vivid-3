@@ -1,5 +1,5 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { attr, observable } from '@microsoft/fast-element';
+import { attr } from '@microsoft/fast-element';
 import { identity, memoizeWith } from 'ramda';
 import type { Connotation, Size } from '../enums';
 import { PLACEHOLDER_ICON } from './icon.placeholder';
@@ -59,11 +59,11 @@ export class Icon extends FoundationElement {
 
 	@attr size?: Size;
 
-	@observable state: 'idle' | 'loading' | 'loaded' | 'fail' = 'idle';
+	_state: 'idle' | 'loading' | 'loaded' | 'fail' = 'idle';
 
-	@observable svg: any = null;
+	_svg: any = null;
 
-	@observable placeholder: any = null;
+	_placeholder: any = null;
 
 	/**
 	 * Indicates which icon to resolve.
@@ -75,24 +75,24 @@ export class Icon extends FoundationElement {
 	@attr type?: string;
 
 	async typeChanged() {
-		this.state = 'loading';
-		this.svg = null;
-		this.placeholder = null;
+		this._state = 'loading';
+		this._svg = null;
+		this._placeholder = null;
 
 		let timeout = setTimeout(() => {
-			this.placeholder = PLACEHOLDER_ICON;
+			this._placeholder = PLACEHOLDER_ICON;
 			timeout = setTimeout(() => {
-				this.placeholder = null;
+				this._placeholder = null;
 			}, PLACEHOLDER_TIMEOUT);
 		}, PLACEHOLDER_DELAY);
 
 		await resolveIcon(this.type)
 			.then((svg) => {
-				this.svg = svg;
-				this.state = 'loaded';
+				this._svg = svg;
+				this._state = 'loaded';
 			})
 			.catch(() => {
-				this.state = 'fail';
+				this._state = 'fail';
 			}).finally(() => { clearTimeout(timeout); });
 	}
 }

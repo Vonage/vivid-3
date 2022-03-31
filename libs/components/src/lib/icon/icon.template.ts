@@ -21,6 +21,6 @@ export const iconTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Icon> = () => html`
-		${when((x) => x.state === 'loaded', (x) => svgTemplate(x.svg))}
-		${when((x) => x.state === 'loading' && x.placeholder, (x) => svgTemplate(x.placeholder))}
+		${when((x) => x._state === 'loaded', (x) => svgTemplate(x._svg))}
+		${when((x) => x._state === 'loading' && x._placeholder, (x) => svgTemplate(x._placeholder))}
 	`;
