@@ -1,0 +1,107 @@
+{
+  "name": "@vonage/vivid",
+  "entries": [
+    {
+      "date": "Fri, 18 Mar 2022 08:18:37 GMT",
+      "tag": "@vonage/vivid_v3.0.0",
+      "version": "3.0.0",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "18d0da729e0d58df6e174cec69e18bad928fa930",
+            "comment": "rename components' ui tests intent definitions"
+          },
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "6e76ede9b7208b95eb20eb4b3d9677ba094cdc65",
+            "comment": "Add watch mode for components e2e"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "afee801358fef6013bcbb2157ac6eed2a6aa5f52",
+            "comment": "fixed typo of css variable in docs"
+          },
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "a64b8e0175504b4b0ad1191190b143c655c8565c",
+            "comment": "Remove breadcrumb-item from the docs"
+          }
+        ],
+        "minor": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "5bf9f99f6dda10a5f675500b95c4d4f4cb339f16",
+            "comment": "Add the breadcrumb component"
+          },
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "4bfc8c6ee35f57bb8c783ceb4a4938e9c10494c4",
+            "comment": "add the breacdcrumbs item component"
+          },
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "8695b7561fbd745a861ee0e0acc7a29b2bd44c66",
+            "comment": "chore(text-anchor): feature underlying vivid anchor"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "c043c18d11b49a0015475e280d8d5202f6af5852",
+            "comment": "new sidenav-item component. part of the sidenav component scope"
+          }
+        ],
+        "patch": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "16c814529a0417c8bc35d183ccec5b0d99131127",
+            "comment": "update test"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 04 Mar 2022 07:18:22 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.2",
+      "version": "3.0.0-next.2",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "1630f0691c8c0ff63c9f7101a72d3721da90a06a",
+            "comment": "refactor(button): style redundant property"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "d11efcce3937c45ef55c827e1be7d9a000edddf4",
+            "comment": "refactor: extract affix to patterns"
+          },
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "29b4e3bf9fa19d24924da1bc001d5672b51f6148",
+            "comment": "Fix stylelint issues"
+          }
+        ],
+        "prerelease": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "291ffd24e3c94a6ac1f55ba7ab6c7017aa085791",
+            "comment": "Merge branch 'main' into refactor(elevation)_migrate_to_fast_element"
+          }
+        ]
+      }
+    }
+  ]
+}

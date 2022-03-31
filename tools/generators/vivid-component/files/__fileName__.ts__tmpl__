@@ -8,9 +8,8 @@ import { attr } from '@microsoft/fast-element';
  * @public
  */
 export class <%= className %> extends FoundationElement {
-
 	/**
-	 * Indicates the <%= name %>'s text.
+	 * Indicates the text's text.
 	 *
 	 * @public
 	 * @remarks

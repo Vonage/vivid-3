@@ -1,5 +1,6 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
+import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
+import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
 import type {
 	Appearance, Connotation, Shape, Size,
@@ -83,32 +84,14 @@ export class Badge extends FoundationElement {
 	@attr size?: BadgeSize;
 
 	/**
-	 * A decorative icon the badge should have.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: icon
-	 */
-	@attr icon?: string;
-
-	/**
-	 * Indicates the icon affix alignment.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: icon-trailing
-	 */
-	@attr({
-		mode: 'boolean',
-		attribute: 'icon-trailing',
-	}) iconTrailing = false;
-
-	/**
 	 * Indicates the badge's text.
 	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: text
 	 */
-	@attr text = '';
+	@attr({ mode: 'fromView' }) text = '';
 }
+
+export interface Badge extends AffixIconWithTrailing {}
+applyMixins(Badge, AffixIconWithTrailing);

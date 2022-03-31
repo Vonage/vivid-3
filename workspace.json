@@ -3,6 +3,7 @@
   "projects": {
     "components": "libs/components",
     "docs": "apps/docs",
+    "eslint-rules": "tools/eslint-rules",
     "shared": "libs/shared",
     "styles": "libs/styles"
   }

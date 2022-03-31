@@ -7,6 +7,21 @@
     ]
   },
   {
+    "title": "breadcrumb",
+    "markdown": "./libs/components/src/lib/breadcrumb/README.md",
+    "modules": [
+      "/assets/modules/components/breadcrumb-item/index.js",
+      "/assets/modules/components/breadcrumb/index.js"
+    ]
+  },
+  {
+    "title": "breadcrumb-item",
+    "markdown": "./libs/components/src/lib/breadcrumb-item/README.md",
+    "modules": [
+      "/assets/modules/components/breadcrumb-item/index.js"
+    ]
+  },
+  {
     "title": "button",
     "markdown": "./libs/components/src/lib/button/README.md",
     "modules": [
@@ -14,10 +29,11 @@
     ]
   },
   {
-    "title": "anchor",
-    "markdown": "./libs/components/src/lib/anchor/README.md",
+    "title": "elevation",
+    "markdown": "./libs/components/src/lib/elevation/README.md",
     "modules": [
-      "/assets/modules/components/anchor/index.js"
+      "/assets/modules/components/elevation/index.js",
+      "/assets/modules/components/layout/index.js"
     ]
   },
   {
@@ -32,6 +48,31 @@
     "markdown": "./libs/components/src/lib/layout/README.md",
     "modules": [
       "/assets/modules/components/layout/index.js"
+    ]
+  },
+  {
+    "title": "side-drawer",
+    "markdown": "./libs/components/src/lib/side-drawer/README.md",
+    "modules": [
+      "/assets/modules/components/side-drawer/index.js",
+      "/assets/modules/components/sidenav-item/index.js",
+      "/assets/modules/components/icon/index.js",
+      "/assets/modules/components/text/index.js",
+      "/assets/modules/components/button/index.js"
+    ]
+  },
+  {
+    "title": "sidenav-item",
+    "markdown": "./libs/components/src/lib/sidenav-item/README.md",
+    "modules": [
+      "/assets/modules/components/sidenav-item/index.js"
+    ]
+  },
+  {
+    "title": "text",
+    "markdown": "./libs/components/src/lib/text/README.md",
+    "modules": [
+      "/assets/modules/components/text/index.js"
     ]
   }
 ]

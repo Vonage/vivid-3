@@ -1,9 +1,10 @@
-import { Button as FoundationButton } from '@microsoft/fast-foundation';
+import { applyMixins, Button as FoundationButton } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 
 import type {
 	Appearance, Connotation, Shape, Size,
 } from '../enums.js';
+import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
 /**
  * Types of button connotation.
@@ -81,33 +82,12 @@ export class Button extends FoundationButton {
 	@attr size?: ButtonSize;
 
 	/**
-	 * A decorative icon the button should have.
+	 * Indicates the icon is stacked.
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: icon
+	 * HTML Attribute: stacked
 	 */
-	@attr icon?: string;
-
-	/**
-	 * Indicates the icon affix alignment.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: icon-trailing
-	 */
-	@attr({
-		mode: 'boolean',
-		attribute: 'icon-trailing',
-	}) iconTrailing = false;
-
-	/**
-   * Indicates the icon is stacked.
-   *
-   * @public
-   * @remarks
-   * HTML Attribute: stacked
-   */
 	@attr({
 		mode: 'boolean',
 		attribute: 'stacked',
@@ -120,5 +100,8 @@ export class Button extends FoundationButton {
 	 * @remarks
 	 * HTML Attribute: label
 	 */
-	@attr label = '';
+	@attr({ mode: 'fromView' }) label = '';
 }
+
+export interface Button extends AffixIconWithTrailing {}
+applyMixins(Button, AffixIconWithTrailing);

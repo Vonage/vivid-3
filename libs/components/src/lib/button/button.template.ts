@@ -2,8 +2,8 @@ import type { ViewTemplate } from '@microsoft/fast-element';
 import { html, ref } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { Icon } from '../icon/icon';
 import { Focus } from '../focus/focus';
+import { affixIconTemplate } from '../../shared/patterns/affix';
 import type { Button, ButtonAppearance } from './button';
 
 
@@ -17,12 +17,12 @@ const getClasses = ({
 	connotation, appearance, shape, size, iconTrailing, icon, label, disabled, stacked
 }: Button) => classNames(
 	'control',
-	['icon-trailing', iconTrailing],
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[getAppearanceClassName(appearance as ButtonAppearance, disabled), Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	[`size-${size}`, Boolean(size)],
 	['icon-only', !label && !!icon],
+	['icon-trailing', iconTrailing],
 	['stacked', Boolean(stacked)],
 );
 
@@ -30,12 +30,6 @@ const focusTemplate = (context: ElementDefinitionContext) => {
 	const focusTag = context.tagFor(Focus);
 
 	return html`<${focusTag} class="focus-indicator"></${focusTag}>`;
-};
-
-const iconTemplate = (context: ElementDefinitionContext) => {
-	const iconTag = context.tagFor(Icon);
-
-	return html`<span class="affix"><${iconTag} :type="${(x) => x.icon}"></${iconTag}></span>`;
 };
 
 /**
@@ -86,7 +80,7 @@ export const buttonTemplate: (
         ${ref('control')}
     >
         ${() => focusTemplate(context)}
-        ${(x) => (x.icon ? iconTemplate(context) : '')}
+        ${() => affixIconTemplate(context)}
         ${(x) => x.label}
     </button>
 `;

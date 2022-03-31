@@ -1,0 +1,27 @@
+@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+
+.breadcrumb-item {
+	@include typography.typography-cat-shorthand('body-2');
+
+	display: flex;
+	align-items: center;
+	color: var(#{theme-consts.$vvd-color-neutral-70});
+
+	a {
+		color: var(--vvd-color-cta-70);
+		font: inherit;
+		text-decoration: none;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+
+	vwc-icon {
+		margin: 0 16px;
+		color: var(#{theme-consts.$vvd-color-on-canvas});
+	}
+}
+
+

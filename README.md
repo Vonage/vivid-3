@@ -1,29 +1,32 @@
-<div align="center">
+<div class="home-page-hero">
   <a href="https://github.com/vonage/vivid-3">
     <img src="/vivid-logo.svg" style="" alt="Vivid Logo" width="120">
   </a>
-  <h1 align="center">Welcome to Vivid</h1>
+  <h1>Welcome to Vivid</h1>
 
+[![codecov][codecov-shield]][codecov-url]
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![Apache 2.0 License][license-shield]][license-url]
 
-  <p align="center">
-    Vonage's design system platform targeted to provide incorporated, battery-charged web components.
-  </p>
-  <a href="https://vivid.deno.dev"><strong>Explore the docs »</strong></a>
-  <br>
-  <a href="https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=bug_report.md&title=">Report Bug</a>
-  ·
-  <a href="https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=feature_request.md&title=">Request Feature</a>
+
+  <h6>
+    Vonage's design system platform targeted to provide </br>incorporated, battery-charged web components.
+  </h6>
+  <a class="home-page-hero-docs-btn" href="https://vivid.deno.dev"><strong>Explore the docs</strong></a>
+  <div class="home-page-hero-docs-links">
+    <a href="https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=bug_report.md&title=">Report Bug</a>
+    <span>|</span>    
+    <a href="https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=feature_request.md&title=">Request Feature</a>
+  </div>
 </div>
 
 <br>
 <br>
 
-> Vivid philosophy favors **lock-down** over **white labeling** strategy, utilizing high-level [design tokens](docs/design-tokens.md) to customize UI systematically rather than permuting components directly (to a balanced degree). This guideline help keep integration processes **ergonomic** and the UI **consistent**.
+> Vivid philosophy favors lock-down over white labeling strategy, utilizing high-level [design tokens](docs/design-tokens.md) to customize UI systematically rather than permuting components directly (to a balanced degree). This guideline help keep integration processes ergonomic and the UI consistent.
 
 
 <br>
@@ -38,6 +41,8 @@ We publish a canary release on every successful merge to main, so you never need
 See the [open issues](https://github.com/vonage/vivid-3/issues) for a full list of proposed features (and known issues).
 
 <br>
+
+[view components status](https://github.com/Vonage/vivid-3/blob/main/docs/components.md)
 
 ## 🤝 Contributing
 
@@ -72,10 +77,12 @@ This project is [Apache 2.0][license-url] licensed.
 
 <hr>
 
-### Built With [Typescript](https://www.typescriptlang.org), [Lit](https://lit.dev), [Sass](https://sass-lang.com) and ❤️
+##### Built With [Typescript](https://www.typescriptlang.org), [Lit](https://lit.dev), [Sass](https://sass-lang.com) and ❤️
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[codecov-shield]: https://img.shields.io/codecov/c/gh/Vonage/vivid-3?style=for-the-badge&token=74ALFP2OR2
+[codecov-url]: https://codecov.io/gh/Vonage/vivid-3
 [contributors-shield]: https://img.shields.io/github/contributors/vonage/vivid-3.svg?style=for-the-badge
 [contributors-url]: https://github.com/vonage/vivid-3/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/vonage/vivid-3.svg?style=for-the-badge
