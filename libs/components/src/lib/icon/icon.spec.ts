@@ -12,9 +12,9 @@ describe('icon', function () {
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as Icon;
 	});
-	  /**
-			 * @param requestTime
-			 */
+	/**
+	 * @param requestTime
+	 */
 	function fakeFetch(requestTime = 4000) {
 		(global.fetch as any) = jest.fn(() => {
 			return new Promise(res => {
