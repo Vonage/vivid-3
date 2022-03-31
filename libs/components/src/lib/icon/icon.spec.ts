@@ -4,7 +4,7 @@ import type {Icon} from './icon';
 
 const COMPONENT_TAG = 'vwc-icon';
 
-fdescribe('icon', function () {
+describe('icon', function () {
 	let element: Icon;
 
 	beforeEach(async () => {
