@@ -1,5 +1,5 @@
 import './index.ts';
-import {elementUpdated, fixture} from '@vivid-nx/shared';
+import {fixture} from '@vivid-nx/shared';
 import type {Icon} from './icon';
 
 const COMPONENT_TAG = 'vwc-icon';
@@ -12,130 +12,95 @@ fdescribe('icon', function () {
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as Icon;
 	});
-
-	it('should set placeholder on loading state', async function () {
-		element.placeholder = 'hhh';
-		element.state = 'loading';
-		await elementUpdated(element);
-
-		expect(element.shadowRoot?.querySelector('figure')?.innerHTML)
-			.toEqual(element.placeholder);
-	});
-
-	it('should set icon on loaded state', async function () {
-		element.svg = 'hhh';
-		element.state = 'loaded';
-		await elementUpdated(element);
-
-		expect(element.shadowRoot?.querySelector('figure')?.innerHTML)
-			.toEqual(element.svg);
-	});
-
-	describe('typeChanged', function () {
-		/**
-		 * @param requestTime
-		 */
-		function fakeFetch(requestTime = 4000) {
-			(global.fetch as any) = jest.fn(() => {
-				return new Promise(res => {
-					setTimeout(() => res(response), requestTime);
-				});
+	  /**
+			 * @param requestTime
+			 */
+	function fakeFetch(requestTime = 4000) {
+		(global.fetch as any) = jest.fn(() => {
+			return new Promise(res => {
+				setTimeout(() => res(response), requestTime);
 			});
-		}
-
-		const svg = 'svg';
-		const response = {
-			ok: true,
-			headers: {
-				get: () => {
-					return 'image/svg+xml';
-				}
-			},
-			text: () => svg
-		};
-		const originalFetch = global.fetch;
-		const originalPromise = global.Promise;
-
-		beforeEach(function () {
-			global.Promise = require('promise'); // needed in order for promises to work with jest fake timers
-			jest.useFakeTimers('legacy');
 		});
+	}
 
-		afterEach(function () {
-			jest.useRealTimers();
-			global.fetch = originalFetch;
-			global.Promise = originalPromise;
-		});
+	const svg = 'svg';
+	const response = {
+		ok: true,
+		headers: {
+			get: () => {
+				return 'image/svg+xml';
+			}
+		},
+		text: () => svg
+	};
+	const originalFetch = global.fetch;
+	const originalPromise = global.Promise;
 
-		/**
-		 *
-		 */
-		function setIconTypeAndTriggerFirstTimer() {
-			element.type = 'none';
-			jest.advanceTimersToNextTimer();
-		}
+	beforeEach(function () {
+		global.Promise = require('promise'); // needed in order for promises to work with jest fake timers
+		jest.useFakeTimers('legacy');
+	});
 
-		/**
-		 * @param timeInMs
-		 */
-		function setIconTypeAndAdvanceTime(timeInMs: number) {
-			element.type = 'none';
-			jest.advanceTimersByTime(timeInMs);
-		}
+	afterEach(function () {
+		jest.useRealTimers();
+		global.fetch = originalFetch;
+		global.Promise = originalPromise;
+	});
 
-		/**
-		 * @param iconType
-		 */
-		function setIconTypeAndRunAllTimers(iconType: string | undefined) {
-			element.type = iconType;
-			jest.runAllTimers();
-		}
+	/**
+	 *
+	 */
+	function setIconTypeAndTriggerFirstTimer() {
+		element.type = 'none';
+		jest.advanceTimersToNextTimer();
+	}
 
-		it('should enter loading state', async function () {
-			fakeFetch(4000);
-			setIconTypeAndTriggerFirstTimer();
+	/**
+	 * @param timeInMs
+	 */
+	function setIconTypeAndAdvanceTime(timeInMs: number) {
+		element.type = 'none';
+		jest.advanceTimersByTime(timeInMs);
+	}
 
-			expect(element.state)
-				.toEqual('loading');
-			expect(element.placeholder).toEqual(null);
-			expect(element.svg).toEqual(null);
-		});
+	/**
+	 * @param iconType
+	 */
+	function setIconTypeAndRunAllTimers(iconType: string | undefined) {
+		element.type = iconType;
+		jest.runAllTimers();
+	}
 
-		it('should enter loading state', async function () {
-			fakeFetch(4000);
-			setIconTypeAndAdvanceTime(500);
-			expect(element.state)
-				.toEqual('loading');
-			expect(element.placeholder).toMatchSnapshot();
-			expect(element.svg).toEqual(null);
-		});
+	it('should show nothing when first changing the icon', async function () {
+		fakeFetch(4000);
+		setIconTypeAndTriggerFirstTimer();
 
-		it('should exit loading state after timeout', async function () {
-			fakeFetch(4000);
-			setIconTypeAndAdvanceTime(2500);
-			expect(element.state)
-				.toEqual('loading');
-			expect(element.placeholder).toEqual(null);
-			expect(element.svg).toEqual(null);
-		});
+		expect(element.svg).toEqual(null);
+	});
 
-		it('should enter loaded state after icon fetch', async function () {
-			fakeFetch(100);
-			setIconTypeAndRunAllTimers('none');
-			expect(element.state)
-				.toEqual('loaded');
-			expect(element.svg).toEqual(svg);
-		});
+	it('should set the icon as loading after 500ms', async function () {
+		fakeFetch(4000);
+		setIconTypeAndAdvanceTime(500);
+		expect(element.svg).toMatchSnapshot();
+	});
 
-		it('should show empty string when no icon is available', function () {
-			fakeFetch(100);
-			setIconTypeAndRunAllTimers('none');
-			setIconTypeAndRunAllTimers(undefined);
-			expect(element.state)
-				.toEqual('loaded');
-			expect(element.placeholder).toEqual(null);
-			expect(element.svg).toEqual('');
-		});
+	it('should remove loading icon after 2500ms', async function () {
+		fakeFetch(4000);
+		setIconTypeAndAdvanceTime(2500);
+		expect(element.svg).toEqual(null);
+	});
+
+	it('should set icon in svg after icon fetch', async function () {
+		fakeFetch(100);
+		setIconTypeAndRunAllTimers('none');
+		expect(element.svg).toEqual(svg);
+	});
+
+	it('should show empty string when no icon is available', function () {
+		fakeFetch(100);
+		setIconTypeAndRunAllTimers('none');
+		setIconTypeAndRunAllTimers(undefined);
+		expect(element.svg).toEqual('');
 	});
 
 });

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`icon typeChanged should enter loading state 1`] = `
+exports[`icon should set the icon as loading after 500ms 1`] = `
 "<svg width=\\"80%\\" height=\\"80%\\" viewBox=\\"0 0 64 64\\">
     <g>
         <g stroke-width=\\"6\\" stroke-linecap=\\"round\\" fill=\\"none\\">
