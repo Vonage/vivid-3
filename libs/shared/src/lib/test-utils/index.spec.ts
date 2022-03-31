@@ -54,7 +54,7 @@ describe(`test-utils`, function () {
       expect(ele.getAttribute('style')).toEqual('background: black;');
     });
 
-    it(`should return the element after rAF`, function (done) {
+    it(`should resolve after rAF`, function (done) {
       const mockElement = document.createElement('div');
       const element = setAttribute(mockElement, 'style', 'mock');
       requestAnimationFrame(() => {
