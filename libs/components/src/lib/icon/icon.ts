@@ -74,7 +74,7 @@ export class Icon extends FoundationElement {
 		this.svg = null;
 
 		let timeout = setTimeout(() => {
-			this.svg ??= PLACEHOLDER_ICON;
+			this.svg = PLACEHOLDER_ICON;
 			timeout = setTimeout(() => {
 				if (this.svg === PLACEHOLDER_ICON) {
 					this.svg = null;
