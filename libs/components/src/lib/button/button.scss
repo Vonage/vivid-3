@@ -46,22 +46,24 @@
 		}
 	}
 
-  &.stacked {
-    flex-direction: column;
-    justify-content: center;
-  }
+	&.stacked {
+		#{variables.$stacked-icon-gap}: 8px;
+
+		flex-direction: column;
+		justify-content: center;
+	}
 
 }
 
 /* Size */
 
-.control.density-base-minus-1 {
+.control.density-minus-1 {
 	#{variables.$block-size}: 32px;
 	@include typography.typography-cat-shorthand('caption-bold');
 
-  &.stacked {
-    #{variables.$block-size}: 56px;
-  }
+	&.stacked {
+		#{variables.$block-size}: 56px;
+	}
 
 	&:not(.icon-only) {
 		padding-inline: 12px;
@@ -72,13 +74,16 @@
 	}
 }
 
-.control.density-base-plus-1 {
-	#{variables.$block-size}: 48px;
-	@include typography.typography-cat-shorthand('body-1-bold');
+.control.density-plus-1 {
+  @include typography.typography-cat-shorthand('body-1-bold');
 
-  &.stacked {
-    #{variables.$block-size}: 80px;
+  &:not(.stacked) {
+    #{variables.$block-size}: 48px;
   }
+
+	&.stacked {
+		#{variables.$block-size}: 80px;
+	}
 
 	&:not(.icon-only) {
 		#{variables.$icon-gap}: 10px;
@@ -91,12 +96,16 @@
 	}
 }
 
-.control:not(.density-base-minus-1):not(.density-base-plus-1) {
-	#{variables.$block-size}: 40px;
-  &.stacked {
-    #{variables.$block-size}: 68px;
-  }
+.control:not(.density-minus-1):not(.density-plus-1) {
 	@include typography.typography-cat-shorthand('button');
+
+  &:not(.stacked) {
+    #{variables.$block-size}: 40px;
+  }
+
+	&.stacked {
+		#{variables.$block-size}: 68px;
+	}
 
 	&:not(.icon-only) {
 		#{variables.$icon-gap}: 8px;
@@ -107,11 +116,6 @@
 	.icon {
 		font-size: 20px;
 	}
-}
-
-/* layout - stacked */
-.control.stacked {
-  #{variables.$stacked-icon-gap}: 8px;
 }
 
 /* Shape */
@@ -135,15 +139,30 @@
 
 // stylelint-disable-next-line no-descending-specificity
 .icon {
+
 	// stylelint-disable-next-line no-descending-specificity
-	:not(.icon-trailing) & {
+	:not(.stacked):not(.icon-trailing) & {
 		margin-inline-end: var(#{variables.$icon-gap});
+	}
+
+	// stylelint-disable-next-line no-descending-specificity
+	:not(.stacked).icon-trailing & {
+		margin-inline-start: var(#{variables.$icon-gap});
+	}
+
+	// stylelint-disable-next-line no-descending-specificity
+	.stacked:not(.icon-trailing) & {
+		margin-block-end: var(#{variables.$icon-gap});
+	}
+
+	// stylelint-disable-next-line no-descending-specificity
+	.stacked.icon-trailing & {
+		margin-block-start: var(#{variables.$icon-gap});
 	}
 
 	// stylelint-disable-next-line no-descending-specificity
 	.icon-trailing & {
 		order: 1;
-		margin-inline-start: var(#{variables.$icon-gap});
 	}
 }
 
