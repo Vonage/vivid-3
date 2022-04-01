@@ -1,8 +1,8 @@
 import { applyMixins, Button as FoundationButton } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
+import { attr, nullableNumberConverter } from '@microsoft/fast-element';
 
 import type {
-	Appearance, Connotation, Shape, Size,
+	Appearance, Connotation, Density, Shape,
 } from '../enums.js';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
@@ -37,7 +37,7 @@ type ButtonShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  *
  * @public
  */
-type ButtonSize = Extract<Size, Size.BaseSmall | Size.Base | Size.BaseLarge>;
+type ButtonDensity = Extract<Density, Density.BaseMinusOne | Density.Base | Density.BasePlusOne>;
 
 /**
  * Base class for button
@@ -73,13 +73,14 @@ export class Button extends FoundationButton {
 	@attr appearance?: ButtonAppearance;
 
 	/**
-	 * The size the button should have.
+	 * The density the button should have.
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: size
+	 * HTML Attribute: density
 	 */
-	@attr size?: ButtonSize;
+	@attr({ converter: nullableNumberConverter })
+		density?: ButtonDensity;
 
 	/**
 	 * Indicates the icon is stacked.

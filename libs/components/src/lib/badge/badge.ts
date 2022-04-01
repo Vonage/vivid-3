@@ -3,7 +3,7 @@ import { attr } from '@microsoft/fast-element';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
 import type {
-	Appearance, Connotation, Shape, Size,
+	Appearance, Connotation, Density, Shape,
 } from '../enums.js';
 
 /**
@@ -39,7 +39,7 @@ type BadgeShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  *
  * @public
  */
-type BadgeSize = Extract<Size, Size.BaseSmall | Size.Base | Size.BaseLarge>;
+type BadgeSize = Extract<Density, Density.BaseMinusOne | Density.Base | Density.BasePlusOne>;
 
 /**
  * Base class for badge

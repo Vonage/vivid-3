@@ -1,12 +1,12 @@
 import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
-import type { Size } from '../enums.js';
+import type { Density } from '../enums.js';
 
 
 export enum AUTO_SIZING { Fit = 'fit', Fill = 'fill' }
-type Gutters = Extract<Size, Size.BaseSmall | Size.Base | Size.BaseLarge>;
-type ColumnSpacing = Extract<Size, Size.BaseSmall | Size.Base | Size.BaseLarge>;
-type ColumnBasis = Extract<Size, Size.BaseSmall | Size.Base | Size.BaseLarge> | 'block';
+type Gutters = Extract<Density, Density.BaseMinusOne | Density.Base | Density.BasePlusOne>;
+type ColumnSpacing = Extract<Density, Density.BaseMinusOne | Density.Base | Density.BasePlusOne>;
+type ColumnBasis = Extract<Density, Density.BaseMinusOne | Density.Base | Density.BasePlusOne> | 'block';
 
 /**
  * Base class for layout

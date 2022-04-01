@@ -29,10 +29,10 @@ export enum Appearance {
 	Ghost = 'ghost',
 }
 
-export enum Size {
-	BaseSmall = 'base-small',
-	Base = 'base',
-	BaseLarge = 'base-large',
+export enum Density {
+	BaseMinusOne = -1,
+	Base = 0,
+	BasePlusOne = 1,
 }
 
 export enum Position {

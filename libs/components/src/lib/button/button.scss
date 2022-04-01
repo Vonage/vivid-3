@@ -55,7 +55,7 @@
 
 /* Size */
 
-.control.size-base-small {
+.control.density-base-minus-1 {
 	#{variables.$block-size}: 32px;
 	@include typography.typography-cat-shorthand('caption-bold');
 
@@ -72,7 +72,7 @@
 	}
 }
 
-.control.size-base-large {
+.control.density-base-plus-1 {
 	#{variables.$block-size}: 48px;
 	@include typography.typography-cat-shorthand('body-1-bold');
 
@@ -91,7 +91,7 @@
 	}
 }
 
-.control:not(.size-base-small):not(.size-base-large) {
+.control:not(.density-base-minus-1):not(.density-base-plus-1) {
 	#{variables.$block-size}: 40px;
   &.stacked {
     #{variables.$block-size}: 68px;

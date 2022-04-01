@@ -22,7 +22,7 @@ describe('vwc-button', () => {
 			expect(element.connotation).toBeUndefined();
 			expect(element.shape).toBeUndefined();
 			expect(element.appearance).toBeUndefined();
-			expect(element.size).toBeUndefined();
+			expect(element.density).toBeUndefined();
 		});
 	});
 
