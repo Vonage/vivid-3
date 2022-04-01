@@ -13,13 +13,11 @@ const getClasses = ({
 	[`size-${size}`, Boolean(size)],
 );
 
-const svgTemplate = (svg: string | null) => html`
-	<figure class="${getClasses}" :innerHTML="${() => svg}"></figure>
-`;
-
 export const iconTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Icon> = () => html`
-		${when((x)=> x.svg, (x) => svgTemplate(x.svg))}
+  <figure class="${getClasses}">
+		${when((x)=> x.svg, (x) => html<Icon>`${x.svg || ''}`)}
+  </figure>
 	`;
