@@ -75,11 +75,11 @@
 }
 
 .control.density-plus-1 {
-  @include typography.typography-cat-shorthand('body-1-bold');
+	@include typography.typography-cat-shorthand('body-1-bold');
 
-  &:not(.stacked) {
-    #{variables.$block-size}: 48px;
-  }
+	&:not(.stacked) {
+		#{variables.$block-size}: 48px;
+	}
 
 	&.stacked {
 		#{variables.$block-size}: 80px;
@@ -99,9 +99,9 @@
 .control:not(.density-minus-1):not(.density-plus-1) {
 	@include typography.typography-cat-shorthand('button');
 
-  &:not(.stacked) {
-    #{variables.$block-size}: 40px;
-  }
+	&:not(.stacked) {
+		#{variables.$block-size}: 40px;
+	}
 
 	&.stacked {
 		#{variables.$block-size}: 68px;
