@@ -18,6 +18,6 @@ export const iconTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Icon> = () => html`
   <figure class="${getClasses}">
-		${when((x)=> x.svg, (x) => html<Icon>`${x.svg || ''}`)}
+		${when((x)=> x.svg, (x) => html<Icon>`${x.svg}`)}
   </figure>
 	`;

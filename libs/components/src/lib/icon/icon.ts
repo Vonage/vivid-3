@@ -59,7 +59,7 @@ export class Icon extends FoundationElement {
 
 	@attr size?: Size;
 
-	@observable svg: string | null = null;
+	@observable svg = '';
 
 	/**
 	 * Indicates which icon to resolve.
@@ -71,13 +71,13 @@ export class Icon extends FoundationElement {
 	@attr type?: string;
 
 	async typeChanged() {
-		this.svg = null;
+		this.svg = '';
 
 		let timeout = setTimeout(() => {
 			this.svg = PLACEHOLDER_ICON;
 			timeout = setTimeout(() => {
 				if (this.svg === PLACEHOLDER_ICON) {
-					this.svg = null;
+					this.svg = '';
 				}
 			}, PLACEHOLDER_TIMEOUT);
 		}, PLACEHOLDER_DELAY);
