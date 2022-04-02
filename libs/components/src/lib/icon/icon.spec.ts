@@ -75,7 +75,7 @@ describe('icon', function () {
 		fakeFetch(4000);
 		setIconTypeAndTriggerFirstTimer();
 
-		expect(element.svg).toEqual(null);
+		expect(element.svg).toEqual('');
 	});
 
 	it('should set the icon as loading after 500ms', async function () {
@@ -87,7 +87,7 @@ describe('icon', function () {
 	it('should remove loading icon after 2500ms', async function () {
 		fakeFetch(4000);
 		setIconTypeAndAdvanceTime(2500);
-		expect(element.svg).toEqual(null);
+		expect(element.svg).toEqual('');
 	});
 
 	it('should set icon in svg after icon fetch', async function () {
