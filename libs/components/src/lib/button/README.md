@@ -27,9 +27,9 @@ Use the `density` attribute to change the button's block size.
 - Default: `0`
 
 ```html preview
-<vwc-button appearance='filled' label='base minus 1' density='-1'></vwc-button>
+<vwc-button appearance='filled' label='density -1' density='-1'></vwc-button>
 <vwc-button appearance='filled' label='base' density='0'></vwc-button>
-<vwc-button appearance='filled' label='base plus 1' density='1'></vwc-button>
+<vwc-button appearance='filled' label='density +1' density='1'></vwc-button>
 ```
 
 ## Shape
@@ -82,9 +82,9 @@ Set the `stacked` attribute to change the button's layout to stacked.
 - Default: `false`
 
 ```html preview
-<vwc-button label='stacked' appearance='filled' icon='message-sent-line' stacked density='-1'></vwc-button>
-<vwc-button label='stacked' appearance='filled' icon='message-sent-line' stacked density='0'></vwc-button>
-<vwc-button label='stacked' appearance='outlined' icon='message-sent-line' stacked density='1'></vwc-button>
+<vwc-button label='density -1' appearance='filled' icon='message-sent-line' stacked density='-1'></vwc-button>
+<vwc-button label='base of stacked' appearance='filled' icon='message-sent-line' stacked density='0'></vwc-button>
+<vwc-button label='density +1' appearance='outlined' icon='message-sent-line' stacked density='1'></vwc-button>
 ```
 
 ## Connotation
