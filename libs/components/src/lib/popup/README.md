@@ -12,7 +12,7 @@ Popup's goal is to provide additional, helpful content. To trigger the Popup, it
 
 Use the `anchor` attribute to reference the ID to element in the popup’s owner document.
 
-Since the popup is positioned absolutely to its anchor, it is best to wrap it with a div element and set its position `relative`.
+The popup is positioned absolutely to its anchor.  It is recommended to wrap it with a div element and set its position `relative`.
 
 - Type: `string`
 - Default: `''`
