@@ -8,7 +8,7 @@ import type { Calendar } from './calendar';
 import {
 	getFirstDateOfTheWeek,
 	getValidDateString
-} from './calendar-date-functions.js';
+} from './helpers/calendar.date-functions.js';
 
 export const TotalHours = 24;
 const daysLength = 7;
@@ -37,18 +37,16 @@ const getEmptyArr = (length: number) => Array.from({ length });
 const HoursTemplate = () => {
 	return html`
   <div class="row-headers" role="presentation">
-    <!-- ${hours.map(h => html`<span role="rowheader">
-      <time datetime="${x =>
-		new Intl.DateTimeFormat(x.locales,
-			{
-				hour: 'numeric',
-				minute: 'numeric',
-				hour12: false
-			}).format(h)}">
-						${x => new Intl.DateTimeFormat(x.locales, { hour: 'numeric', hour12: x.hour12	}).format(h)}
+    ${repeat(() => hours, html<string>`<span role="rowheader">
+      <time datetime="${(x: Date, c) =>	new Intl.DateTimeFormat(c.parent.locales, {
+		hour: 'numeric', minute: 'numeric',	hour12: false
+	}).format(x)}">
+						${(x: Date, c) => new Intl.DateTimeFormat(c.parent.locales, {
+		hour: 'numeric', hour12: c.parent.hour12
+	}).format(x)}
 					</time>
-				</span>`)} -->
-			</div>`;
+				</span>`)}
+  </div>`;
 };
 
 /**
@@ -59,7 +57,6 @@ const HoursTemplate = () => {
 const DaysTemplate = () => {
 	return html`
 			<div class="column-headers" role="row">
-        <!-- TODO - should this be using 'repeat'? -->
 				${repeat(x => getDaysArr([getFirstDateOfTheWeek(x.datetime, x.startDay)]), html<string>`
 						<div role="columnheader" tabindex="-1">
 							<h2>

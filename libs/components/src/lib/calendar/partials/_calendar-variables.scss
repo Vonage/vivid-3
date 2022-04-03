@@ -1,0 +1,16 @@
+// number of columns according to days of week
+$total-columns: 7;
+// the rows according to hours a day
+$total-rows: 24;
+
+$gap: 1px;
+
+$calendar-shape: --vvd-calendar-shape;
+
+// event variables
+$color: --vvd-calendar-event--primary-color;
+$day: --vvd-calendar-event--day;
+$start: --vvd-calendar-event--start;
+$duration: --vvd-calendar-event--duration;
+$indent: --vvd-calendar-event--indent;
+$overlap-count: --vvd-calendar-event--overlap-count;

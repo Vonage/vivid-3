@@ -1,5 +1,5 @@
-import { isCellOrHeader } from './calendar-keyboard-interactions.js';
-import { TotalHours } from './calendar.template.js';
+import { TotalHours } from '../calendar.template.js';
+import { isCellOrHeader } from './calendar.keyboard-interactions.js';
 
 
 interface CalendarEventContext {

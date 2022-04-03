@@ -1,0 +1,51 @@
+@use '../variable-names/shape-variable-names' as shape-var-names;
+@use 'sass:list';
+
+$variable-name: --shape !default;
+
+@function get-default-selector($list, $default) {
+	@if list.length($list) == 1 {
+		@return ':host';
+	}
+
+	$compound: '';
+	@each $key, $_ in $list {
+		@if $key != $default {
+			$compound: $compound + ':not(#{template($key)})';
+		}
+	}
+	@return ':host(#{$compound})';
+}
+
+@function template($key) {
+	@return '[shape="#{$key}"i]';
+}
+
+@mixin shape(
+	$shapes: (
+		rounded: var(#{shape-var-names.$shape-border-radius-md-css-variable-name}),
+		pill: var(#{shape-var-names.$shape-border-radius-lg-css-variable-name}),
+		circled: 50%,
+	),
+	$default: rounded
+) {
+	@each $key, $value in $shapes {
+		$selector: ();
+		@if ($key == $default) {
+			// if is default also add case for not assigning shape properly
+
+			$selector: join(
+				$selector,
+				get-default-selector($shapes, $default),
+				$separator: comma
+			);
+		}
+
+		// shape item selector
+		$selector: join($selector, ':host(#{template($key)})', $separator: comma);
+
+		#{$selector} {
+			#{$variable-name}: #{$value};
+		}
+	}
+}

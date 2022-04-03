@@ -8,9 +8,9 @@ import {
 	getHeaderDescendantGridCell,
 	getNextFocusableGridElement,
 	isCellOrHeader,
-} from './calendar-keyboard-interactions.js';
-import { assertIsValidDateStringRepresentation } from './calendar-date-functions.js';
-import { getEventContext } from './calendar-event-context.js';
+} from './helpers/calendar.keyboard-interactions.js';
+import { assertIsValidDateStringRepresentation } from './helpers/calendar.date-functions.js';
+import { getEventContext } from './helpers/calendar.event-context.js';
 
 
 /**
