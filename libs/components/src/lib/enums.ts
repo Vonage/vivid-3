@@ -35,6 +35,14 @@ export enum Size {
 	BaseLarge = 'base-large',
 }
 
+export enum Position {
+	Top = 'TOP',
+	Bottom = 'BOTTOM',
+	Start = 'START',
+	Center = 'CENTER',
+	End = 'END',
+}
+
 export enum Role {
 	Status = 'status',
 	Alert = 'alert',
