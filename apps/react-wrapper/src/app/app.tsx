@@ -1,22 +1,16 @@
-import { 
-  provideVividDesignSystem
-} from '@vonage/vivid/shared/design-system';
-import { 
-  vividButton
-} from '@vonage/vivid';
-import { provideReactWrapper } from '@microsoft/fast-react-wrapper';
-import React from 'react';
+import React from "react";
+import { provideReactWrapper } from "@microsoft/fast-react-wrapper";
+// import { fastButton } from "@microsoft/fast-components";
+import { vividButton } from "@vonage/vivid";
 
-const { wrap } = provideReactWrapper(
-  React, 
-  provideVividDesignSystem()
-);
+const { wrap } = provideReactWrapper(React);
 
-export const VividButton = wrap(vividButton())
+// const MyButton = wrap(fastButton());
+const MyButton = wrap(vividButton());
 
-function App() {
+export default function App() {
   return (
-    <VividButton appearance='filled' label='A default button'></VividButton>
+      /* <MyButton appearance="accent">Accent Button</MyButton> */
+      <MyButton appearance="filled" label='A default button'></MyButton>
   );
 }
-export default App;
