@@ -1,14 +1,22 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.scss';
-import NxWelcome from './nx-welcome';
+import { 
+  provideVividDesignSystem
+} from '@vonage/vivid/shared/design-system';
+import { 
+  vividButton
+} from '@vonage/vivid';
+import { provideReactWrapper } from '@microsoft/fast-react-wrapper';
+import React from 'react';
 
-export function App() {
+const { wrap } = provideReactWrapper(
+  React, 
+  provideVividDesignSystem()
+);
+
+export const VividButton = wrap(vividButton())
+
+function App() {
   return (
-    <>
-      <NxWelcome title="react-wrapper" />
-      <div />
-    </>
+    <VividButton appearance='filled' label='A default button'></VividButton>
   );
 }
-
 export default App;

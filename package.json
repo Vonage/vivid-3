@@ -14,6 +14,7 @@
     "@microsoft/fast-element": "^1.7.0",
     "@microsoft/fast-foundation": "^2.33.3",
     "@microsoft/fast-web-utilities": "^5.1.0",
+    "@vonage/vivid": "^3.0.0-next.3",
     "blocking-elements": "^0.1.1",
     "core-js": "^3.21.0",
     "ramda": "^0.27.2",
