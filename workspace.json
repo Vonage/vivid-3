@@ -4,6 +4,8 @@
     "components": "libs/components",
     "docs": "apps/docs",
     "eslint-rules": "tools/eslint-rules",
+    "react-wrapper": "apps/react-wrapper",
+    "react-wrapper-e2e": "apps/react-wrapper-e2e",
     "shared": "libs/shared",
     "styles": "libs/styles"
   }

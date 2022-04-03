@@ -1,0 +1,28 @@
+{
+  "root": "apps/react-wrapper-e2e",
+  "sourceRoot": "apps/react-wrapper-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/react-wrapper-e2e/cypress.json",
+        "devServerTarget": "react-wrapper:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "react-wrapper:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/react-wrapper-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["react-wrapper"]
+}

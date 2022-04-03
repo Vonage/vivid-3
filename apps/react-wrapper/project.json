@@ -1,0 +1,73 @@
+{
+  "root": "apps/react-wrapper",
+  "sourceRoot": "apps/react-wrapper/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/react-wrapper",
+        "index": "apps/react-wrapper/src/index.html",
+        "baseHref": "/",
+        "main": "apps/react-wrapper/src/main.tsx",
+        "polyfills": "apps/react-wrapper/src/polyfills.ts",
+        "tsConfig": "apps/react-wrapper/tsconfig.app.json",
+        "assets": [
+          "apps/react-wrapper/src/favicon.ico",
+          "apps/react-wrapper/src/assets"
+        ],
+        "styles": ["apps/react-wrapper/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/react-wrapper/src/environments/environment.ts",
+              "with": "apps/react-wrapper/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "react-wrapper:build",
+        "hmr": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "react-wrapper:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/react-wrapper/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/react-wrapper"],
+      "options": {
+        "jestConfig": "apps/react-wrapper/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
