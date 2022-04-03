@@ -1,32 +1,108 @@
-import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
-import type { Button } from '../button/button';
-import { Popup } from './popup';
+import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
+import * as floatingUI from '@floating-ui/dom';
+import type {Button} from '../button/button';
+import {Popup} from './popup';
 import '.';
+
 
 const COMPONENT_TAG = 'vwc-popup';
 
 describe('vwc-popup', () => {
 	let element: Popup;
 
-	global.ResizeObserver = jest.fn().mockImplementation(() => ({
-		observe: element.updatePosition,
-		unobserve: element.cleanup,
-		disconnect: element.cleanup,
-	}));
+	global.ResizeObserver = jest.fn()
+		.mockImplementation(() => ({
+			observe: element.updatePosition,
+			unobserve: element.cleanup,
+			disconnect: element.cleanup,
+		}));
 
 	beforeEach(async () => {
 		element = await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Popup;
 		element.cleanup = cleanup;
 	});
 
+	describe('viewport visibility transition', function () {
+
+		const computePositionResult = {
+			'x': -15,
+			'y': 0,
+			'placement': 'left',
+			'strategy': 'fixed',
+			'middlewareData': {
+				'flip': {},
+				'hide': {
+					'referenceHiddenOffsets': {
+						'top': 0,
+						'right': 0,
+						'bottom': 0,
+						'left': 0
+					},
+					'referenceHidden': true
+				},
+				'inline': {},
+				'arrow': {
+					'y': 0,
+					'centerOffset': 0
+				},
+				'offset': {
+					'x': -12,
+					'y': 0
+				}
+			}
+		};
+
+		beforeEach(function () {
+			jest.spyOn(floatingUI, 'computePosition');
+		});
+
+		afterEach(function () {
+			(floatingUI.computePosition as jest.MockedFunction<any>).mockRestore();
+		});
+
+		async function setupPopupToOpenWithAnchor() {
+			await setPopupAndAnchor();
+			element.anchor = 'anchor';
+			await elementUpdated(element);
+			element.open = true;
+		}
+
+		async function makePopupHidden(hidden = true) {
+			computePositionResult.middlewareData.hide.referenceHidden = hidden;
+			(floatingUI.computePosition as jest.MockedFunction<any>).mockReturnValue(Promise.resolve(computePositionResult));
+			await element.updatePosition();
+		}
+
+		it('should be hidden when not in viewport', async function () {
+			await setupPopupToOpenWithAnchor();
+			await makePopupHidden(true);
+
+			expect(element.popupEl.style.visibility)
+				.toEqual('hidden');
+		});
+
+		it('should be hidden when not in viewport', async function () {
+			await setupPopupToOpenWithAnchor();
+			await makePopupHidden(false);
+			expect(element.popupEl.style.visibility)
+				.toEqual('visible');
+		});
+	});
+
 	describe('basic', () => {
 		it('initializes as a vwc-popup', async () => {
-			expect(element).toBeInstanceOf(Popup);
-			expect(element.open).toBeFalsy();
-			expect(element.arrow).toBeFalsy();
-			expect(element.dismissible).toBeFalsy();
-			expect(element.anchor).toBeUndefined();
-			expect(element.corner).toEqual('left');
+			expect(element)
+				.toBeInstanceOf(Popup);
+			expect(element.open)
+				.toBeFalsy();
+			expect(element.arrow)
+				.toBeFalsy();
+			expect(element.dismissible)
+				.toBeFalsy();
+			expect(element.anchor)
+				.toBeUndefined();
+			expect(element.corner)
+				.toEqual('left');
 		});
 	});
 
@@ -40,7 +116,8 @@ describe('vwc-popup', () => {
 			element.updatePosition();
 			await elementUpdated(element);
 
-			expect(element.open).toEqual(true);
+			expect(element.open)
+				.toEqual(true);
 		});
 	});
 
@@ -52,7 +129,8 @@ describe('vwc-popup', () => {
 			element.updatePosition();
 			await elementUpdated(element);
 
-			expect(element.open).toEqual(false);
+			expect(element.open)
+				.toEqual(false);
 		});
 	});
 
@@ -64,13 +142,15 @@ describe('vwc-popup', () => {
 			element.show();
 			await elementUpdated(element);
 
-			expect(element.open).toEqual(false);
+			expect(element.open)
+				.toEqual(false);
 		});
 	});
 
 	describe('render arrow', () => {
 		it('should remove the arrow class on the container if arrow is false', async () => {
-			expect(element.shadowRoot?.querySelector('.arrow')).toBeNull();
+			expect(element.shadowRoot?.querySelector('.arrow'))
+				.toBeNull();
 		});
 		it('should set the arrow class on the container if arrow is true', async () => {
 			element.arrow = true;
@@ -85,20 +165,24 @@ describe('vwc-popup', () => {
 			element.updatePosition();
 			await elementUpdated(element);
 
-			expect(element.shadowRoot?.querySelector('.arrow')).not.toBeNull();
+			expect(element.shadowRoot?.querySelector('.arrow'))
+				.not
+				.toBeNull();
 		});
 	});
 
-
 	describe('render dismiss', () => {
 		it('should remove the dismiss class on the container if dismissible is false', async () => {
-			expect(element.shadowRoot?.querySelector('.dismissible')).toBeNull();
+			expect(element.shadowRoot?.querySelector('.dismissible'))
+				.toBeNull();
 		});
 		it('should set the dismiss class on the container if dismissible is true', async () => {
 			element.dismissible = true;
 
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.dismissible')).not.toBeNull();
+			expect(element.shadowRoot?.querySelector('.dismissible'))
+				.not
+				.toBeNull();
 		});
 	});
 
@@ -114,27 +198,36 @@ describe('vwc-popup', () => {
 			element.handleDismissClick();
 			await elementUpdated(element);
 
-			expect(element.open).toEqual(false);
+			expect(element.open)
+				.toEqual(false);
 		});
 	});
 
 	describe('alternate', () => {
 		it('should set to alternate', async () => {
-			expect(getControlElement(element).getAttribute('part')).toEqual('');
+			expect(getControlElement(element)
+				.getAttribute('part'))
+				.toEqual('');
 			element.alternate = true;
 
 			await elementUpdated(element);
-			expect(getControlElement(element).getAttribute('part')).toEqual('vvd-theme-alternate');
+			expect(getControlElement(element)
+				.getAttribute('part'))
+				.toEqual('vvd-theme-alternate');
 		});
 	});
 
 	describe('accessibility', () => {
 		it('should set aria-hidden', async () => {
-			expect(getControlElement(element).getAttribute('aria-hidden')).toEqual('true');
+			expect(getControlElement(element)
+				.getAttribute('aria-hidden'))
+				.toEqual('true');
 			element.open = true;
 
 			await elementUpdated(element);
-			expect(getControlElement(element).getAttribute('aria-hidden')).toEqual('false');
+			expect(getControlElement(element)
+				.getAttribute('aria-hidden'))
+				.toEqual('false');
 		});
 	});
 
@@ -150,7 +243,7 @@ describe('vwc-popup', () => {
 	/**
 	 *
 	 */
-	function cleanup() { 
+	function cleanup() {
 		return null;
 	}
 });
