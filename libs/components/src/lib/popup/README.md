@@ -159,7 +159,7 @@ Sets the color-scheme to dark or light (depending on current user's system setti
 ```
 ## Corner
 
-Use the `corner` attribute to set the placement of the popup.
+Sets the placement of the popup around the anchor.
 
 - Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
 - Default: `'left'`
