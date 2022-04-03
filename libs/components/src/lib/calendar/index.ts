@@ -6,9 +6,9 @@ import { Calendar } from './calendar';
 import { CalendarTemplate as template } from './calendar.template';
 
 export const vividCalendar = Calendar.compose<FoundationElementDefinition>({
-  baseName: 'calendar',
-  template: template as any,
-  styles,
+	baseName: 'calendar',
+	template: template as any,
+	styles,
 });
 
 designSystem.register(vividCalendar());

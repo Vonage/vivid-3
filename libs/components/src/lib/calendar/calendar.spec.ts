@@ -5,17 +5,21 @@ import '.';
 const COMPONENT_TAG = 'vwc-calendar';
 
 describe('vwc-calendar', () => {
-  let element: Calendar;
+	let element: Calendar;
 
-  beforeEach(async () => {
-    element = (await fixture(
-      `<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-    )) as Calendar;
-  });
+	beforeEach(async () => {
+		element = (await fixture(
+			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+		)) as Calendar;
+	});
 
-  describe('basic', () => {
-    it('should be initialized as a vwc-calendar', async () => {
-      expect(element).toBeInstanceOf(Calendar);
-    });
-  });
+	describe('basic', () => {
+		it('should be initialized as a vwc-calendar', async () => {
+			expect(element).toBeInstanceOf(Calendar);
+			expect(element.datetime).toBeUndefined();
+			expect(element.locales).toBeUndefined();
+			expect(element.hour12).toBeUndefined();
+			expect(element.stickyHeader).toBeUndefined();
+		});
+	});
 });
