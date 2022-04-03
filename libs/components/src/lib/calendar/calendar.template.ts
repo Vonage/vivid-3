@@ -60,7 +60,7 @@ const DaysTemplate = () => {
 	return html`
 			<div class="column-headers" role="row">
         <!-- TODO - should this be using 'repeat'? -->
-				${repeat(x => getDaysArr([getFirstDateOfTheWeek(x.datetime)]), html<string>`
+				${repeat(x => getDaysArr([getFirstDateOfTheWeek(x.datetime, x.startDay)]), html<string>`
 						<div role="columnheader" tabindex="-1">
 							<h2>
 								<time datetime=${(x: Date) => getValidDateString(x)} aria-readonly="true">

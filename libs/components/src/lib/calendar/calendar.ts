@@ -43,6 +43,17 @@ export class Calendar extends FoundationElement {
 		datetime?: Date;
 
 	/**
+	 * The day to show as the first within a work week.
+	 * Accepts either Sunday or Monday
+	 * Calendar will - programmatically - default to Monday if not specified
+	 *
+	 * (only applicable for views of more than a single day)
+	 *
+	 * @public
+	 */
+	@attr({ mode: 'fromView' })	startDay?: 'sunday' | 'monday';
+
+	/**
 	 * A locale string or array of locale strings that contain one or more language or locale tags.
 	 * If you include more than one locale string,
 	 * list them in descending order of priority so that the first entry is the preferred locale.

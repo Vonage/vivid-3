@@ -26,12 +26,21 @@ export function getValidDateString(date: Date): string {
 	return `${date.getFullYear()}-${twoDigit(date.getMonth() + 1)}-${twoDigit(date.getDate())}`;
 }
 
+const weekdaysMap = new Map([
+	['sunday', 0],
+	['monday', 1],
+]);
+
 /**
  * @param date
+ * @param startDay
  */
-export function getFirstDateOfTheWeek(date: Date = new Date()): Date {
+export function getFirstDateOfTheWeek(date: Date = new Date(), startDay: 'sunday' | 'monday'): Date {
 	if (typeof date === 'string') {
 		date = new Date(date);
 	}
-	return new Date(date.setDate(date.getDate() - date.getDay()));
+
+	const num = weekdaysMap.get(startDay) || 1;
+	const day = date.getDate() - date.getDay() + num;
+	return new Date(date.setDate(day));
 }
