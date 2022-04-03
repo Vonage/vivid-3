@@ -100,7 +100,7 @@ Adds a close button to the popup.
 </script>
 ```
 ## Arrow
-Use the `arrow` attribute to add small triangle to indicate the trigger element.
+Adds a small triangle to indicate the trigger element.
 
 - Type: `boolean`
 - Default: `false`
