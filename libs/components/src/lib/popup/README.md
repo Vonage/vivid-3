@@ -63,7 +63,7 @@ Use the `open` attribute to indicate whether the popup is open.
 
 ## Dismissible
 
-Use the `dismissible` attribute to add close button to the popup.
+Adds a close button to the popup.
 
 - Type: `boolean`
 - Default: `false`
