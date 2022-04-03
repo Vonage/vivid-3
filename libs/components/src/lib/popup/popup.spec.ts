@@ -1,7 +1,7 @@
-import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import * as floatingUI from '@floating-ui/dom';
-import type {Button} from '../button/button';
-import {Popup} from './popup';
+import type { Button } from '../button/button';
+import { Popup } from './popup';
 import '.';
 
 
@@ -13,13 +13,10 @@ describe('vwc-popup', () => {
 	global.ResizeObserver = jest.fn()
 		.mockImplementation(() => ({
 			observe: element.updatePosition,
-			unobserve: element.cleanup,
-			disconnect: element.cleanup,
 		}));
 
 	beforeEach(async () => {
 		element = await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Popup;
-		element.cleanup = cleanup;
 	});
 
 	describe('viewport visibility transition', function () {
@@ -60,6 +57,9 @@ describe('vwc-popup', () => {
 			(floatingUI.computePosition as jest.MockedFunction<any>).mockRestore();
 		});
 
+		/**
+		 *
+		 */
 		async function setupPopupToOpenWithAnchor() {
 			await setPopupAndAnchor();
 			element.anchor = 'anchor';
@@ -67,6 +67,9 @@ describe('vwc-popup', () => {
 			element.open = true;
 		}
 
+		/**
+		 * @param hidden
+		 */
 		async function makePopupHidden(hidden = true) {
 			computePositionResult.middlewareData.hide.referenceHidden = hidden;
 			(floatingUI.computePosition as jest.MockedFunction<any>).mockReturnValue(Promise.resolve(computePositionResult));
@@ -231,19 +234,9 @@ describe('vwc-popup', () => {
 		});
 	});
 
-	/**
-	 *
-	 */
 	async function setPopupAndAnchor() {
 		const anchorEl = await fixture('<vwc-button id="anchor"></vwc-button>') as Button;
 		await elementUpdated(anchorEl);
 		return anchorEl;
-	}
-
-	/**
-	 *
-	 */
-	function cleanup() {
-		return null;
 	}
 });

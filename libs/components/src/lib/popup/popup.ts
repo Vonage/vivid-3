@@ -14,7 +14,8 @@ export class Popup extends FoundationElement {
 
 	popupEl!: HTMLElement;
 	arrowEl!: HTMLElement;
-	cleanup: any;// cleans the autoupdate
+
+	private cleanup: any; // cleans the autoupdate
 
 	private get middleware(): Array<any> {
 		const middleware = [flip(), hide(), inline()];
