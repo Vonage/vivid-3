@@ -129,7 +129,7 @@ Use the `arrow` attribute to add small triangle to indicate the trigger element.
 </div>
 ```
 ## Alternate
-Use the `alternate` attribute to set the color-scheme to dark.
+Sets the color-scheme to dark or light (depending on current user's system settings).
 
 - Type: `boolean`
 - Default: `false`
