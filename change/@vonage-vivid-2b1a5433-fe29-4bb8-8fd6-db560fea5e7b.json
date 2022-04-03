@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "side drawer migration",
+  "packageName": "@vonage/vivid",
+  "email": "rina.oksman@vonage.com",
+  "dependentChangeType": "patch"
+}
