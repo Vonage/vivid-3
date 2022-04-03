@@ -9,7 +9,7 @@ import type { Button, ButtonAppearance } from './button';
 
 const getAppearanceClassName = (appearance: ButtonAppearance, disabled: boolean) => {
 	let className = `appearance-${appearance}`;
-	disabled && (className += '-idle');
+	disabled && (className += ' disabled');
 	return className;
 };
 
