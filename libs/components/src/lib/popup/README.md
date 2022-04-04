@@ -63,7 +63,7 @@ Use the `open` attribute to indicate whether the popup is open.
 
 ## Dismissible
 
-Adds a close button to the popup.
+Add the `dismissible` attribute to add a close button to the popup.
 
 - Type: `boolean`
 - Default: `false`
@@ -100,7 +100,7 @@ Adds a close button to the popup.
 </script>
 ```
 ## Arrow
-Adds a small triangle to indicate the trigger element.
+Add the `arrow` attribute to add a small triangle to indicate the trigger element.
 
 - Type: `boolean`
 - Default: `false`
@@ -129,7 +129,7 @@ Adds a small triangle to indicate the trigger element.
 </div>
 ```
 ## Alternate
-Sets the color-scheme to dark or light (depending on current user's system settings).
+Add the `alternate` attribute to set the color-scheme to dark or light (depending on current user's system settings).
 
 - Type: `boolean`
 - Default: `false`
@@ -159,7 +159,7 @@ Sets the color-scheme to dark or light (depending on current user's system setti
 ```
 ## Corner
 
-Sets the placement of the popup around the anchor.
+Use the `corner` attribute to set the placement of the popup around the anchor.
 
 - Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
 - Default: `'left'`
