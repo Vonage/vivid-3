@@ -73,10 +73,6 @@ export class Calendar extends FoundationElement {
 	 */
 	@attr hour12?: boolean;
 
-	@attr({
-		mode: 'boolean'
-	}) stickyHeader?: boolean;
-
 	/**
 	 * Fire an event
 	 *
