@@ -1,8 +1,8 @@
 import {
-  ADD_TEMPLATE_TO_FIXTURE,
-  elementUpdated,
-  fixture,
-  getControlElement
+	ADD_TEMPLATE_TO_FIXTURE,
+	elementUpdated,
+	fixture,
+	getControlElement
 } from '@vivid-nx/shared';
 import * as floatingUI from '@floating-ui/dom';
 import type { Button } from '../button/button';
@@ -31,7 +31,7 @@ describe('vwc-popup', () => {
 			await setPopupAndAnchor();
 			element.anchor = 'anchor';
 			await elementUpdated(element);
-      element.attributeChangedCallback('anchor', '', 'anchor');
+			element.attributeChangedCallback('anchor', '', 'anchor');
 			element.disconnectedCallback();
 			expect(true).toBeTruthy();
 		});
