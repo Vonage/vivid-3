@@ -57,6 +57,7 @@ describe('vwc-popup', () => {
 
 		afterEach(function () {
 			(floatingUI.computePosition as jest.MockedFunction<any>).mockRestore();
+			element.remove();
 		});
 
 		/**
@@ -236,9 +237,6 @@ describe('vwc-popup', () => {
 		});
 	});
 
-	/**
-	 *
-	 */
 	async function setPopupAndAnchor() {
 		const anchorEl = await fixture('<vwc-button id="anchor"></vwc-button>') as Button;
 		await elementUpdated(anchorEl);
