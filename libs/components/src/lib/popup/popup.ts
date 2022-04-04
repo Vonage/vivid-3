@@ -17,7 +17,7 @@ export class Popup extends FoundationElement {
 	popupEl!: HTMLElement;
 	arrowEl!: HTMLElement;
 
-	private cleanup: any; // cleans the autoupdate
+	private cleanup?: () => void; // cleans the autoupdate
 
 	private get middleware(): Array<any> {
 		const middleware = [flip(), hide(), inline()];
@@ -99,7 +99,7 @@ export class Popup extends FoundationElement {
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		if (this.cleanup) { this.cleanup(); }
+		this.cleanup?.();
 	}
 
 	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
