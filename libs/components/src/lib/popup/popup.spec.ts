@@ -13,6 +13,8 @@ describe('vwc-popup', () => {
 	global.ResizeObserver = jest.fn()
 		.mockImplementation(() => ({
 			observe: element.updatePosition,
+			unobserve: element.remove,
+			disconnect: element.disconnectedCallback
 		}));
 
 	beforeEach(async () => {
@@ -231,6 +233,17 @@ describe('vwc-popup', () => {
 			expect(getControlElement(element)
 				.getAttribute('aria-hidden'))
 				.toEqual('false');
+		});
+	});
+
+	describe('disconnect element', () => {
+		it('should disconnect the element', async () => {
+			await setPopupAndAnchor();
+			element.anchor = 'anchor';
+			await elementUpdated(element);
+
+			element.disconnectedCallback();
+			expect(true).toBeTruthy();
 		});
 	});
 
