@@ -263,6 +263,9 @@ describe('vwc-popup', () => {
 		});
 	});
 
+	/**
+	 *
+	 */
 	async function setPopupAndAnchor() {
 		const anchorEl = await fixture('<vwc-button id="anchor"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE) as Button;
 		await elementUpdated(anchorEl);
