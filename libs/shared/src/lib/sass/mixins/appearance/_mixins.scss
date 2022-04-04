@@ -30,13 +30,15 @@ $all-appearances: (
 
 $selectors: (
   idle: '&',
-  hover: '&.hovered',
-  disabled: '&.disabled',
+  hover: '&:hover, &.hovered',
+  disabled: '&:disabled, &.disabled',
   selected: '&.selected',
-  active: '&.active',
+  active: '&:active, &.active',
 );
 
-
+@function get-default-selector($appearance) {
+  @return '&';
+}
 
 @mixin appearance {
 
@@ -46,7 +48,10 @@ $selectors: (
       $state-mapping: map.get(variables.$states-mapping, $state);
 
       @each $appearance in config.$appearances {
-        &.appearance-#{$appearance} {
+        $selector: if($appearance == config.$default, get-default-selector($appearance) , '&.appearance-#{$appearance}');
+
+
+        #{$selector} {
           $appearance-mapping: map.get($state-mapping, $appearance);
           @each $type, $key in $appearance-mapping {
             #{get-variable($type)}: $key;
