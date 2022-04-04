@@ -99,7 +99,6 @@ export class Popup extends FoundationElement {
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		if (!this.isConnected) return;
 		this.cleanup?.();
 	}
 
