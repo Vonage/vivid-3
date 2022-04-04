@@ -23,7 +23,7 @@ $states-mapping: (
       fill: transaprent,
       outline: transaprent,
     ),
-    soft: (
+    subtle: (
       text: var(#{connotation.$vvd-color-connotation}-contrast),
       fill: var(#{connotation.$vvd-color-connotation}-soft),
       outline: transaprent,
@@ -45,7 +45,7 @@ $states-mapping: (
       fill: var(#{connotation.$vvd-color-connotation}-pale),
       outline: transaprent,
     ),
-    soft: (
+    subtle: (
       text: var(#{connotation.$vvd-color-connotation}-contrast),
       fill: var(#{connotation.$vvd-color-connotation}-soft),
       outline: transaprent,
@@ -68,7 +68,7 @@ $states-mapping: (
       fill: var(#{connotation.$vvd-color-connotation}-soft),
       outline: transaprent,
     ),
-    soft: (
+    subtle: (
       text: var(#{connotation.$vvd-color-connotation}-contrast),
       fill: var(#{connotation.$vvd-color-connotation}-soft),
       outline: transaprent,
@@ -91,7 +91,7 @@ $states-mapping: (
       fill: transaprent,
       outline: transaprent,
     ),
-    soft: (
+    subtle: (
       text: var(#{theme-consts.$vvd-color-neutral-30}),
       fill: var(#{theme-consts.$vvd-color-neutral-10}),
       outline: transaprent,
@@ -115,7 +115,7 @@ $states-mapping: (
       fill: var(#{connotation.$vvd-color-connotation}-soft),
       outline: transaprent,
     ),
-    soft: (
+    subtle: (
       text: var(#{connotation.$vvd-color-connotation}-contrast),
       fill: var(#{connotation.$vvd-color-connotation}-soft),
       outline: transaprent,

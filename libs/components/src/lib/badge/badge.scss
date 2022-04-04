@@ -8,7 +8,7 @@
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
-	$appearances: filled outlined soft,
+	$appearances: filled outlined subtle,
 	$states: idle,
 	$outline-duotone: true,
 	$default: filled,
