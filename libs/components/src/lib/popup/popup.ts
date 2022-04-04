@@ -17,8 +17,6 @@ export class Popup extends FoundationElement {
 	popupEl!: HTMLElement;
 	arrowEl!: HTMLElement;
 
-	private cleanup?: () => void; // cleans the autoupdate
-
 	private get middleware(): Array<any> {
 		const middleware = [flip(), hide(), inline()];
 		if (this.arrow) { middleware.push(arrow({ element: this.arrowEl, padding: this.PADDING }), offset(this.DISTANCE)); }
@@ -97,11 +95,6 @@ export class Popup extends FoundationElement {
 		super.connectedCallback();
 	}
 
-	override disconnectedCallback(): void {
-		super.disconnectedCallback();
-		this.cleanup?.();
-	}
-
 	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
 		super.attributeChangedCallback(name, oldValue, newValue);
 		switch (name) {
@@ -111,7 +104,7 @@ export class Popup extends FoundationElement {
 			}
 		}
 		if (this.anchorEl && this.popupEl) {
-			this.cleanup = autoUpdate(this.anchorEl, this.popupEl, () => this.updatePosition());
+			autoUpdate(this.anchorEl, this.popupEl, () => this.updatePosition());
 		}
 	}
 

@@ -13,8 +13,6 @@ describe('vwc-popup', () => {
 	global.ResizeObserver = jest.fn()
 		.mockImplementation(() => ({
 			observe: element.updatePosition,
-			unobserve: element.remove,
-			disconnect: element.disconnectedCallback
 		}));
 
 	beforeEach(async () => {
