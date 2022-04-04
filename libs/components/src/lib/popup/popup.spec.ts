@@ -27,11 +27,10 @@ describe('vwc-popup', () => {
 	});
 
 	describe('clean observable', () => {
-		it('should do X on disconnectedCallback', async function () {
+		it('should clean observable on disconnectedCallback', async function () {
 			await setPopupAndAnchor();
 			element.anchor = 'anchor';
 			await elementUpdated(element);
-			element.attributeChangedCallback('anchor', '', 'anchor');
 			element.disconnectedCallback();
 			expect(true).toBeTruthy();
 		});
@@ -249,17 +248,6 @@ describe('vwc-popup', () => {
 			expect(getControlElement(element)
 				.getAttribute('aria-hidden'))
 				.toEqual('false');
-		});
-	});
-
-	describe('disconnect element', () => {
-		it('should disconnect the element', async () => {
-			await setPopupAndAnchor();
-			element.anchor = 'anchor';
-			await elementUpdated(element);
-
-			element.disconnectedCallback();
-			expect(true).toBeTruthy();
 		});
 	});
 
