@@ -1,7 +1,7 @@
-@use '../variable-names/shape-variable-names' as shape-var-names;
+@use 'config' as config;
+@use 'variables' as variables;
 @use 'sass:list';
 
-$variable-name: --shape !default;
 
 @function get-default-selector($list, $default) {
 	@if list.length($list) == 1 {
@@ -23,8 +23,8 @@ $variable-name: --shape !default;
 
 @mixin shape(
 	$shapes: (
-		rounded: var(#{shape-var-names.$shape-border-radius-md-css-variable-name}),
-		pill: var(#{shape-var-names.$shape-border-radius-lg-css-variable-name}),
+		rounded: var(#{variables.$shape-border-radius-md-css-variable-name}),
+		pill: var(#{variables.$shape-border-radius-lg-css-variable-name}),
 		circled: 50%,
 	),
 	$default: rounded
@@ -45,7 +45,7 @@ $variable-name: --shape !default;
 		$selector: join($selector, ':host(#{template($key)})', $separator: comma);
 
 		#{$selector} {
-			#{$variable-name}: #{$value};
+			#{config.$variable-name}: #{$value};
 		}
 	}
 }

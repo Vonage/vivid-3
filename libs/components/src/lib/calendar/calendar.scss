@@ -1,12 +1,13 @@
-@use 'partials/calendar-variables' as calendar-variables;
+@use 'partials/variables' as variables;
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 
-@use '../../../../shared/src/lib/sass/mixins/shape-mixins' with (
-	$variable-name: #{calendar-variables.$calendar-shape})
-;
+@use '../../../../shared/src/lib/sass/mixins/shape/config' with (
+	$variable-name: #{variables.$calendar-shape}
+);
+@use '../../../../shared/src/lib/sass/mixins/shape' as shape;
 
-@include shape-mixins.shape(
+@include shape.shape(
 	$shapes: (
 		rounded: 6px
 	)
@@ -34,7 +35,7 @@ ol {
 .row-headers {
 	display: grid;
 	grid-area: row-headers;
-	grid-template-rows: repeat(calendar-variables.$total-rows, 1fr);
+	grid-template-rows: repeat(variables.$total-rows, 1fr);
 	margin-inline-end: 2px;
 	> [role="rowheader"i] {
 		display: flex;
@@ -53,37 +54,31 @@ ol {
 .column-headers {
 	display: grid;
 	grid-area: column-headers;
-	grid-template-columns: repeat(calendar-variables.$total-columns, 1fr);
-
-  [role="columnheader"i] {
+	grid-template-columns: repeat(variables.$total-columns, 1fr);
+	[role="columnheader"i] {
 		h2 {
-      @include typography.typography-cat-shorthand('subtitle-2');
+			@include typography.typography-cat-shorthand('subtitle-2');
+			position: relative;
 			margin: 0;
 			text-align: center;
-      position: relative;
-      >time {
-        display: block;
-        > em {
-          position: absolute;
-          font: inherit;
-          @supports (inset: 0) {
-            inset-inline-start: 0;
-          }
-          @supports not (inset: 0) {
-            left: 0;
-          }
-        }
-
-        > small {
-          @include typography.typography-cat-shorthand('caption');
-          text-transform: uppercase;
-        }
-      }
-
+			> em {
+				position: absolute;
+				font: inherit;
+				@supports (inset: 0) {
+					inset-inline-start: 0;
+				}
+				@supports not (inset: 0) {
+					left: 0;
+				}
+			}
+			> small {
+				@include typography.typography-cat-shorthand('caption');
+				text-transform: uppercase;
+			}
 		}
 	}
-
 }
+
 .calendar-row {
 	display: contents;
 }
@@ -91,15 +86,15 @@ ol {
 .calendar-grid-presentation {
 	display: grid;
 	overflow: hidden;
-	background-color: var(#{theme-consts.$vvd-color-surface-2dp});
-	border-radius: var(#{calendar-variables.$calendar-shape});
+	background-color: var(#{theme-consts.$vvd-color-canvas});
+	border-radius: var(#{variables.$calendar-shape});
+	box-shadow: 0 0 3.64752px rgba(0, 0, 0, 0.15);
 	counter-reset: listing;
-	filter: var(#{theme-consts.$vvd-shadow-surface-2dp});
-	gap: calendar-variables.$gap;
+	gap: variables.$gap;
 	grid-area: calendar;
 	grid-auto-flow: column;
-	grid-template: repeat(calendar-variables.$total-rows, 1fr) / repeat(
-		calendar-variables.$total-columns,
+	grid-template: repeat(variables.$total-rows, 1fr) / repeat(
+		variables.$total-columns,
 		1fr
 	);
 }
@@ -120,9 +115,9 @@ ol {
 			margin-block-start: -1px;
 		}
 
-		@for $i from 1 through calendar-variables.$total-rows {
+		@for $i from 1 through variables.$total-rows {
 			$current-row: $i;
-			&:nth-child(#{calendar-variables.$total-rows}n + #{$i}) {
+			&:nth-child(#{variables.$total-rows}n + #{$i}) {
 				--row: #{$current-row};
 			}
 		}
@@ -134,8 +129,12 @@ ol {
 	> [role="gridcell"i] {
 		position: relative;
 		grid-column: var(--column);
-		grid-row: 1 / #{calendar-variables.$total-rows + 1};
-
+		grid-row: 1 / #{variables.$total-rows + 1};
+		@for $i from 1 through variables.$total-columns {
+			&:nth-child(#{$i}) {
+				--column: #{$i};
+			}
+		}
 		&:not(:first-child)::after {
 			position: absolute;
 			block-size: 100%;
@@ -143,19 +142,14 @@ ol {
 			content: '';
 			margin-inline-start: -1px;
 		}
-		@for $i from 1 through calendar-variables.$total-columns {
-			&:nth-child(#{$i}) {
-				--column: #{$i};
-			}
-		}
 	}
 }
 
 [role="gridcell"i] {
 	display: grid;
-	gap: calendar-variables.$gap;
+	gap: variables.$gap;
 	grid-auto-flow: column;
-	// grid-template-rows: repeat(calendar-variables.$total-rows * calendar-variables.$fraction, 1fr);
+	// grid-template-rows: repeat(variables.$total-rows * variables.$fraction, 1fr);
 }
 
 [role="gridcell"i],

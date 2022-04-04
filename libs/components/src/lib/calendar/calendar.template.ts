@@ -59,8 +59,8 @@ const DaysTemplate = () => {
 			<div class="column-headers" role="row">
 				${repeat(x => getDaysArr([getFirstDateOfTheWeek(x.datetime, x.startDay)]), html<string>`
 						<div role="columnheader" tabindex="-1">
-							<h2>
-								<time datetime=${(x: Date) => getValidDateString(x)} aria-readonly="true">
+              <time datetime=${(x: Date) => getValidDateString(x)} aria-readonly="true">
+                <h2>
 									<!-- TODO add to column aria-labelledby or describedby to count
                   events and related day e.g. "3 events, Sunday, March 8" -->
 									<em tabindex="0" role="button" aria-label=${(x: Date, c) => new Intl.DateTimeFormat(c.parent.locales, {
@@ -71,8 +71,8 @@ const DaysTemplate = () => {
 									<small aria-hidden="true">
 										${(x: Date, c) => new Intl.DateTimeFormat(c.parent.locales, { weekday: 'short' }).format(x)}
 									</small>
-								</time>
-							</h2>
+                </h2>
+              </time>
 						</div>`)}
 			</div>`;
 };
