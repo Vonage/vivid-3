@@ -8,6 +8,8 @@ import { arrow, autoUpdate, computePosition, flip, hide, inline, offset, Placeme
  * @public
  */
 export class Popup extends FoundationElement {
+	private static ARROW_POSITION: any = { top: 'bottom', right: 'left', bottom: 'top', left: 'right' };
+
 	private get PADDING(): number { return 0; }
 	private get DISTANCE(): number { return 12; }
 	private get STRATEGY(): Strategy { return 'fixed'; }
@@ -168,8 +170,7 @@ export class Popup extends FoundationElement {
 
 	private assignArrowPosition(data: any): void {
 		const { x: arrowX, y: arrowY } = data.middlewareData.arrow;
-		const staticSide: any = { top: 'bottom', right: 'left', bottom: 'top', left: 'right' };
-		const side: string = staticSide[data.placement.split('-')[0]];
+		const side: string = Popup.ARROW_POSITION[data.placement.split('-')[0]];
 		Object.assign(this.arrowEl.style, {
 			left: `${arrowX}px`,
 			top: `${arrowY}px`,
