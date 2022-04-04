@@ -138,6 +138,6 @@ export class Calendar extends FoundationElement {
 		// after this event handler is executed,
 		// preventDefault() will be called on the event object by default.
 		// we need to return true from our handler to opt - out of this behavior.
-		return true;
+		return !isArrow;
 	}
 }
