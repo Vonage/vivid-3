@@ -1,4 +1,9 @@
-import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import {
+  ADD_TEMPLATE_TO_FIXTURE,
+  elementUpdated,
+  fixture,
+  getControlElement
+} from '@vivid-nx/shared';
 import * as floatingUI from '@floating-ui/dom';
 import type { Button } from '../button/button';
 import { Popup } from './popup';
@@ -13,12 +18,23 @@ describe('vwc-popup', () => {
 	global.ResizeObserver = jest.fn()
 		.mockImplementation(() => ({
 			observe: element.updatePosition,
-			unobserve: element.disconnectedCallback,
-			disconnect: element.disconnectedCallback
+			unobserve: jest.fn(),
+			disconnect: jest.fn()
 		}));
 
 	beforeEach(async () => {
 		element = await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Popup;
+	});
+
+	describe('clean observable', () => {
+		it('should do X on disconnectedCallback', async function () {
+			await setPopupAndAnchor();
+			element.anchor = 'anchor';
+			await elementUpdated(element);
+      element.attributeChangedCallback('anchor', '', 'anchor');
+			element.disconnectedCallback();
+			expect(true).toBeTruthy();
+		});
 	});
 
 	describe('viewport visibility transition', function () {
@@ -240,7 +256,7 @@ describe('vwc-popup', () => {
 	 *
 	 */
 	async function setPopupAndAnchor() {
-		const anchorEl = await fixture('<vwc-button id="anchor"></vwc-button>') as Button;
+		const anchorEl = await fixture('<vwc-button id="anchor"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE) as Button;
 		await elementUpdated(anchorEl);
 		return anchorEl;
 	}
