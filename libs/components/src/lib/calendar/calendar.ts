@@ -40,7 +40,7 @@ export class Calendar extends FoundationElement {
 			}
 		}
 	})
-		datetime?: Date;
+		datetime?: Date | string;
 
 	/**
 	 * The day to show as the first within a work week.
