@@ -5,17 +5,23 @@ import '.';
 const COMPONENT_TAG = 'vwc-banner';
 
 describe('vwc-banner', () => {
-  let element: Banner;
+	let element: Banner;
 
-  beforeEach(async () => {
-    element = (await fixture(
-      `<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-    )) as Banner;
-  });
+	beforeEach(async () => {
+		element = (await fixture(
+			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+		)) as Banner;
+	});
 
-  describe('basic', () => {
-    it('should be initialized as a vwc-banner', async () => {
-      expect(element).toBeInstanceOf(Banner);
+	describe('basic', () => {
+		it('should be initialized as a vwc-banner', async () => {
+			expect(element).toBeInstanceOf(Banner);
+		});
+
+    describe(`init state`, function () {
+      it(`should set dismissible as false`, function () {
+        expect(element.dismissible).toEqual(false);
+      });
     });
   });
 });

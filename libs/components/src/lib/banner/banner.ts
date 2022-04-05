@@ -7,12 +7,5 @@ import { attr } from '@microsoft/fast-element';
  * @public
  */
 export class Banner extends FoundationElement {
-  /**
-   * Indicates the text's text.
-   *
-   * @public
-   * @remarks
-   * HTML Attribute: text
-   */
-  @attr text = '';
+	@attr({mode: 'boolean'}) dismissible = false;
 }
