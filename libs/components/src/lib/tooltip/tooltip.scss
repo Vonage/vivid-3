@@ -1,0 +1,14 @@
+@use 'partials/variables' as variables;
+@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+
+.tooltip {
+	width: var(#{variables.$tooltip-inline-size}, 240px);
+
+	&-title {
+		@include typography.typography-cat-shorthand('body-2-bold');
+        
+		padding: 0.5rem 0.75rem;
+		color: var(#{theme-consts.$vvd-color-primary});
+	}
+}
