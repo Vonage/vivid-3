@@ -214,8 +214,12 @@ describe('vwc-popup', () => {
 			await elementUpdated(element);
 
 			element.show();
+			expect(element.open)
+				.toEqual(true);
+
 			await elementUpdated(element);
-			element.handleDismissClick();
+			const dismissButton = element.shadowRoot?.querySelector('vwc-button');
+			(dismissButton as HTMLElement).click();
 			await elementUpdated(element);
 
 			expect(element.open)
