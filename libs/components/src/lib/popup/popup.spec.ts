@@ -28,7 +28,7 @@ describe('vwc-popup', () => {
 
 	describe('clean observable', () => {
 		it('should clean observable on disconnectedCallback', async function () {
-			await setPopupAndAnchor();
+			await setAnchor();
 			element.anchor = 'anchor';
 			await elementUpdated(element);
 			element.disconnectedCallback();
@@ -78,7 +78,7 @@ describe('vwc-popup', () => {
 		 *
 		 */
 		async function setupPopupToOpenWithAnchor() {
-			await setPopupAndAnchor();
+			await setAnchor();
 			element.anchor = 'anchor';
 			await elementUpdated(element);
 			element.open = true;
@@ -128,7 +128,7 @@ describe('vwc-popup', () => {
 
 	describe('show', () => {
 		it('should set "open" to true', async () => {
-			await setPopupAndAnchor();
+			await setAnchor();
 			element.anchor = 'anchor';
 			await elementUpdated(element);
 
@@ -177,7 +177,7 @@ describe('vwc-popup', () => {
 			element.open = true;
 			await elementUpdated(element);
 
-			await setPopupAndAnchor();
+			await setAnchor();
 			element.anchor = 'anchor';
 			await elementUpdated(element);
 
@@ -208,7 +208,7 @@ describe('vwc-popup', () => {
 
 	describe('handle dismiss', () => {
 		it('should hide when dismiss button is clicked', async () => {
-			await setPopupAndAnchor();
+			await setAnchor();
 			element.anchor = 'anchor';
 			element.dismissible = true;
 			await elementUpdated(element);
@@ -254,7 +254,7 @@ describe('vwc-popup', () => {
 	/**
 	 *
 	 */
-	async function setPopupAndAnchor() {
+	async function setAnchor() {
 		const anchorEl = await fixture('<vwc-button id="anchor"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE) as Button;
 		await elementUpdated(anchorEl);
 		return anchorEl;
