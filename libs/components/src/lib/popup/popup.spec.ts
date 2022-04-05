@@ -28,11 +28,17 @@ describe('vwc-popup', () => {
 
 	describe('clean observable', () => {
 		it('should clean observable on disconnectedCallback', async function () {
+			jest.spyOn(element, 'updatePosition');
 			await setAnchor();
 			element.anchor = 'anchor';
 			await elementUpdated(element);
+			expect(element.updatePosition).toHaveBeenCalled();
+
+			jest.clearAllMocks();
 			element.disconnectedCallback();
-			expect(true).toBeTruthy();
+			element.anchor = '';
+			await elementUpdated(element);
+			expect(element.updatePosition).not.toHaveBeenCalled();
 		});
 	});
 
