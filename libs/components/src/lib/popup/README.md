@@ -52,9 +52,7 @@ Use the `open` attribute to indicate whether the popup is open.
   </vwc-popup>
 </div>
 <script>
-  const popup = document.getElementById("popup");
-  const button = document.getElementById("anchor1");
-  button.addEventListener('click', toggleOpen);
+  anchor1.addEventListener('click', toggleOpen);
   function toggleOpen() {
 	  popup.open = !popup.open;
   }
@@ -91,9 +89,7 @@ Add the `dismissible` attribute to add a close button to the popup.
   </vwc-popup>
 </div>
 <script>
-  const popup = document.getElementById("popup");
-  const button = document.getElementById("anchor2");
-  button.addEventListener('click', toggleOpen);
+  anchor2.addEventListener('click', toggleOpen);
   function toggleOpen() {
 	  popup.open = !popup.open;
   }
