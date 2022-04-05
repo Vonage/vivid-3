@@ -14,16 +14,17 @@ const COMPONENT_TAG = 'vwc-popup';
 
 describe('vwc-popup', () => {
 	let element: Popup;
-
-	global.ResizeObserver = jest.fn()
-		.mockImplementation(() => ({
-			observe: element.updatePosition,
-			unobserve: jest.fn(),
-			disconnect: jest.fn()
-		}));
+	let observeSpy: jest.SpyInstance;
 
 	beforeEach(async () => {
 		element = await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Popup;
+		observeSpy = jest.fn(element.updatePosition);
+		global.ResizeObserver = jest.fn()
+			.mockImplementation(() => ({
+				observe: observeSpy,
+				unobserve: jest.fn(),
+				disconnect: jest.fn()
+			}));
 	});
 
 	describe('clean observable', () => {
@@ -32,13 +33,13 @@ describe('vwc-popup', () => {
 			await setAnchor();
 			element.anchor = 'anchor';
 			await elementUpdated(element);
-			expect(element.updatePosition).toHaveBeenCalled();
+			expect(observeSpy).toHaveBeenCalled();
 
 			jest.clearAllMocks();
 			element.disconnectedCallback();
 			element.anchor = '';
 			await elementUpdated(element);
-			expect(element.updatePosition).not.toHaveBeenCalled();
+			expect(observeSpy).not.toHaveBeenCalled();
 		});
 	});
 
