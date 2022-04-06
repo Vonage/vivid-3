@@ -1,0 +1,733 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`vwc-calendar API should match snapshot of 24h timekeeping system 1`] = `
+"
+  <div role=\\"grid\\">
+    
+			<div class=\\"column-headers\\" role=\\"row\\">
+				
+						<div role=\\"columnheader\\" tabindex=\\"-1\\">
+              <time aria-readonly=\\"true\\" datetime=\\"2020-12-28\\">
+                <h2>
+									<!-- TODO add to column aria-labelledby or describedby to count
+                  events and related day e.g. \\"3 events, Sunday, March 8\\" -->
+									<em tabindex=\\"0\\" role=\\"button\\" aria-label=\\"Monday, December 28\\">
+										28
+									</em>
+									<small aria-hidden=\\"true\\">
+										Mon
+									</small>
+                </h2>
+              </time>
+						</div>
+						<div role=\\"columnheader\\" tabindex=\\"-1\\">
+              <time aria-readonly=\\"true\\" datetime=\\"2020-12-29\\">
+                <h2>
+									<!-- TODO add to column aria-labelledby or describedby to count
+                  events and related day e.g. \\"3 events, Sunday, March 8\\" -->
+									<em tabindex=\\"0\\" role=\\"button\\" aria-label=\\"Tuesday, December 29\\">
+										29
+									</em>
+									<small aria-hidden=\\"true\\">
+										Tue
+									</small>
+                </h2>
+              </time>
+						</div>
+						<div role=\\"columnheader\\" tabindex=\\"-1\\">
+              <time aria-readonly=\\"true\\" datetime=\\"2020-12-30\\">
+                <h2>
+									<!-- TODO add to column aria-labelledby or describedby to count
+                  events and related day e.g. \\"3 events, Sunday, March 8\\" -->
+									<em tabindex=\\"0\\" role=\\"button\\" aria-label=\\"Wednesday, December 30\\">
+										30
+									</em>
+									<small aria-hidden=\\"true\\">
+										Wed
+									</small>
+                </h2>
+              </time>
+						</div>
+						<div role=\\"columnheader\\" tabindex=\\"-1\\">
+              <time aria-readonly=\\"true\\" datetime=\\"2020-12-31\\">
+                <h2>
+									<!-- TODO add to column aria-labelledby or describedby to count
+                  events and related day e.g. \\"3 events, Sunday, March 8\\" -->
+									<em tabindex=\\"0\\" role=\\"button\\" aria-label=\\"Thursday, December 31\\">
+										31
+									</em>
+									<small aria-hidden=\\"true\\">
+										Thu
+									</small>
+                </h2>
+              </time>
+						</div>
+						<div role=\\"columnheader\\" tabindex=\\"-1\\">
+              <time aria-readonly=\\"true\\" datetime=\\"2021-01-01\\">
+                <h2>
+									<!-- TODO add to column aria-labelledby or describedby to count
+                  events and related day e.g. \\"3 events, Sunday, March 8\\" -->
+									<em tabindex=\\"0\\" role=\\"button\\" aria-label=\\"Friday, January 1\\">
+										01
+									</em>
+									<small aria-hidden=\\"true\\">
+										Fri
+									</small>
+                </h2>
+              </time>
+						</div>
+						<div role=\\"columnheader\\" tabindex=\\"-1\\">
+              <time aria-readonly=\\"true\\" datetime=\\"2021-01-02\\">
+                <h2>
+									<!-- TODO add to column aria-labelledby or describedby to count
+                  events and related day e.g. \\"3 events, Sunday, March 8\\" -->
+									<em tabindex=\\"0\\" role=\\"button\\" aria-label=\\"Saturday, January 2\\">
+										02
+									</em>
+									<small aria-hidden=\\"true\\">
+										Sat
+									</small>
+                </h2>
+              </time>
+						</div>
+						<div role=\\"columnheader\\" tabindex=\\"-1\\">
+              <time aria-readonly=\\"true\\" datetime=\\"2021-01-03\\">
+                <h2>
+									<!-- TODO add to column aria-labelledby or describedby to count
+                  events and related day e.g. \\"3 events, Sunday, March 8\\" -->
+									<em tabindex=\\"0\\" role=\\"button\\" aria-label=\\"Sunday, January 3\\">
+										03
+									</em>
+									<small aria-hidden=\\"true\\">
+										Sun
+									</small>
+                </h2>
+              </time>
+						</div><!--fast-uh5ird:0-->
+			</div>
+    <div role=\\"row\\" class=\\"calendar-row\\">
+      
+  <div class=\\"row-headers\\" role=\\"presentation\\">
+    <!----><span role=\\"rowheader\\">
+      <time datetime=\\"01:00\\">
+						01
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"02:00\\">
+						02
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"03:00\\">
+						03
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"04:00\\">
+						04
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"05:00\\">
+						05
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"06:00\\">
+						06
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"07:00\\">
+						07
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"08:00\\">
+						08
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"09:00\\">
+						09
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"10:00\\">
+						10
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"11:00\\">
+						11
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"12:00\\">
+						12
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"13:00\\">
+						13
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"14:00\\">
+						14
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"15:00\\">
+						15
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"16:00\\">
+						16
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"17:00\\">
+						17
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"18:00\\">
+						18
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"19:00\\">
+						19
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"20:00\\">
+						20
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"21:00\\">
+						21
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"22:00\\">
+						22
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"23:00\\">
+						23
+					</time>
+				</span><!--fast-uh5ird:0-->
+  </div>
+      <div class=\\"calendar-grid-presentation\\" role=\\"presentation\\">
+        <div class=\\"hours\\" role=\\"list\\">
+          <div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><!--fast-uh5ird:3-->
+        </div>
+        <div class=\\"columns\\" role=\\"presentation\\">
+          
+            <div role=\\"gridcell\\" tabindex=\\"-1\\">
+              <slot name=\\"day-0\\"></slot>
+            </div>
+          
+            <div role=\\"gridcell\\" tabindex=\\"-1\\">
+              <slot name=\\"day-0\\"></slot>
+            </div>
+          
+            <div role=\\"gridcell\\" tabindex=\\"-1\\">
+              <slot name=\\"day-0\\"></slot>
+            </div>
+          
+            <div role=\\"gridcell\\" tabindex=\\"-1\\">
+              <slot name=\\"day-0\\"></slot>
+            </div>
+          
+            <div role=\\"gridcell\\" tabindex=\\"-1\\">
+              <slot name=\\"day-0\\"></slot>
+            </div>
+          
+            <div role=\\"gridcell\\" tabindex=\\"-1\\">
+              <slot name=\\"day-0\\"></slot>
+            </div>
+          
+            <div role=\\"gridcell\\" tabindex=\\"-1\\">
+              <slot name=\\"day-0\\"></slot>
+            </div>
+          <!--fast-uh5ird:4-->
+        </div>
+        <slot></slot>
+      </div>
+    </div>
+  </div>
+<style class=\\"fast-style-class-2\\">default</style>"
+`;
+
+exports[`vwc-calendar API should match snapshot set by attribute 1`] = `
+"
+  <div role=\\"grid\\">
+    
+			<div class=\\"column-headers\\" role=\\"row\\">
+				
+						<div role=\\"columnheader\\" tabindex=\\"-1\\">
+              <time aria-readonly=\\"true\\" datetime=\\"2020-12-28\\">
+                <h2>
+									<!-- TODO add to column aria-labelledby or describedby to count
+                  events and related day e.g. \\"3 events, Sunday, March 8\\" -->
+									<em tabindex=\\"0\\" role=\\"button\\" aria-label=\\"Monday, December 28\\">
+										28
+									</em>
+									<small aria-hidden=\\"true\\">
+										Mon
+									</small>
+                </h2>
+              </time>
+						</div>
+						<div role=\\"columnheader\\" tabindex=\\"-1\\">
+              <time aria-readonly=\\"true\\" datetime=\\"2020-12-29\\">
+                <h2>
+									<!-- TODO add to column aria-labelledby or describedby to count
+                  events and related day e.g. \\"3 events, Sunday, March 8\\" -->
+									<em tabindex=\\"0\\" role=\\"button\\" aria-label=\\"Tuesday, December 29\\">
+										29
+									</em>
+									<small aria-hidden=\\"true\\">
+										Tue
+									</small>
+                </h2>
+              </time>
+						</div>
+						<div role=\\"columnheader\\" tabindex=\\"-1\\">
+              <time aria-readonly=\\"true\\" datetime=\\"2020-12-30\\">
+                <h2>
+									<!-- TODO add to column aria-labelledby or describedby to count
+                  events and related day e.g. \\"3 events, Sunday, March 8\\" -->
+									<em tabindex=\\"0\\" role=\\"button\\" aria-label=\\"Wednesday, December 30\\">
+										30
+									</em>
+									<small aria-hidden=\\"true\\">
+										Wed
+									</small>
+                </h2>
+              </time>
+						</div>
+						<div role=\\"columnheader\\" tabindex=\\"-1\\">
+              <time aria-readonly=\\"true\\" datetime=\\"2020-12-31\\">
+                <h2>
+									<!-- TODO add to column aria-labelledby or describedby to count
+                  events and related day e.g. \\"3 events, Sunday, March 8\\" -->
+									<em tabindex=\\"0\\" role=\\"button\\" aria-label=\\"Thursday, December 31\\">
+										31
+									</em>
+									<small aria-hidden=\\"true\\">
+										Thu
+									</small>
+                </h2>
+              </time>
+						</div>
+						<div role=\\"columnheader\\" tabindex=\\"-1\\">
+              <time aria-readonly=\\"true\\" datetime=\\"2021-01-01\\">
+                <h2>
+									<!-- TODO add to column aria-labelledby or describedby to count
+                  events and related day e.g. \\"3 events, Sunday, March 8\\" -->
+									<em tabindex=\\"0\\" role=\\"button\\" aria-label=\\"Friday, January 1\\">
+										01
+									</em>
+									<small aria-hidden=\\"true\\">
+										Fri
+									</small>
+                </h2>
+              </time>
+						</div>
+						<div role=\\"columnheader\\" tabindex=\\"-1\\">
+              <time aria-readonly=\\"true\\" datetime=\\"2021-01-02\\">
+                <h2>
+									<!-- TODO add to column aria-labelledby or describedby to count
+                  events and related day e.g. \\"3 events, Sunday, March 8\\" -->
+									<em tabindex=\\"0\\" role=\\"button\\" aria-label=\\"Saturday, January 2\\">
+										02
+									</em>
+									<small aria-hidden=\\"true\\">
+										Sat
+									</small>
+                </h2>
+              </time>
+						</div>
+						<div role=\\"columnheader\\" tabindex=\\"-1\\">
+              <time aria-readonly=\\"true\\" datetime=\\"2021-01-03\\">
+                <h2>
+									<!-- TODO add to column aria-labelledby or describedby to count
+                  events and related day e.g. \\"3 events, Sunday, March 8\\" -->
+									<em tabindex=\\"0\\" role=\\"button\\" aria-label=\\"Sunday, January 3\\">
+										03
+									</em>
+									<small aria-hidden=\\"true\\">
+										Sun
+									</small>
+                </h2>
+              </time>
+						</div><!--fast-uh5ird:0-->
+			</div>
+    <div role=\\"row\\" class=\\"calendar-row\\">
+      
+  <div class=\\"row-headers\\" role=\\"presentation\\">
+    <!----><span role=\\"rowheader\\">
+      <time datetime=\\"01:00\\">
+						1 AM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"02:00\\">
+						2 AM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"03:00\\">
+						3 AM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"04:00\\">
+						4 AM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"05:00\\">
+						5 AM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"06:00\\">
+						6 AM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"07:00\\">
+						7 AM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"08:00\\">
+						8 AM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"09:00\\">
+						9 AM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"10:00\\">
+						10 AM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"11:00\\">
+						11 AM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"12:00\\">
+						12 PM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"13:00\\">
+						1 PM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"14:00\\">
+						2 PM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"15:00\\">
+						3 PM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"16:00\\">
+						4 PM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"17:00\\">
+						5 PM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"18:00\\">
+						6 PM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"19:00\\">
+						7 PM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"20:00\\">
+						8 PM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"21:00\\">
+						9 PM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"22:00\\">
+						10 PM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"23:00\\">
+						11 PM
+					</time>
+				</span><!--fast-uh5ird:0-->
+  </div>
+      <div class=\\"calendar-grid-presentation\\" role=\\"presentation\\">
+        <div class=\\"hours\\" role=\\"list\\">
+          <div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><!--fast-uh5ird:3-->
+        </div>
+        <div class=\\"columns\\" role=\\"presentation\\">
+          
+            <div role=\\"gridcell\\" tabindex=\\"-1\\">
+              <slot name=\\"day-0\\"></slot>
+            </div>
+          
+            <div role=\\"gridcell\\" tabindex=\\"-1\\">
+              <slot name=\\"day-0\\"></slot>
+            </div>
+          
+            <div role=\\"gridcell\\" tabindex=\\"-1\\">
+              <slot name=\\"day-0\\"></slot>
+            </div>
+          
+            <div role=\\"gridcell\\" tabindex=\\"-1\\">
+              <slot name=\\"day-0\\"></slot>
+            </div>
+          
+            <div role=\\"gridcell\\" tabindex=\\"-1\\">
+              <slot name=\\"day-0\\"></slot>
+            </div>
+          
+            <div role=\\"gridcell\\" tabindex=\\"-1\\">
+              <slot name=\\"day-0\\"></slot>
+            </div>
+          
+            <div role=\\"gridcell\\" tabindex=\\"-1\\">
+              <slot name=\\"day-0\\"></slot>
+            </div>
+          <!--fast-uh5ird:4-->
+        </div>
+        <slot></slot>
+      </div>
+    </div>
+  </div>
+<style class=\\"fast-style-class-2\\">default</style>"
+`;
+
+exports[`vwc-calendar API should match snapshot set by property 1`] = `
+"
+  <div role=\\"grid\\">
+    
+			<div class=\\"column-headers\\" role=\\"row\\">
+				
+						<div role=\\"columnheader\\" tabindex=\\"-1\\">
+              <time aria-readonly=\\"true\\" datetime=\\"2020-12-28\\">
+                <h2>
+									<!-- TODO add to column aria-labelledby or describedby to count
+                  events and related day e.g. \\"3 events, Sunday, March 8\\" -->
+									<em tabindex=\\"0\\" role=\\"button\\" aria-label=\\"Monday, December 28\\">
+										28
+									</em>
+									<small aria-hidden=\\"true\\">
+										Mon
+									</small>
+                </h2>
+              </time>
+						</div>
+						<div role=\\"columnheader\\" tabindex=\\"-1\\">
+              <time aria-readonly=\\"true\\" datetime=\\"2020-12-29\\">
+                <h2>
+									<!-- TODO add to column aria-labelledby or describedby to count
+                  events and related day e.g. \\"3 events, Sunday, March 8\\" -->
+									<em tabindex=\\"0\\" role=\\"button\\" aria-label=\\"Tuesday, December 29\\">
+										29
+									</em>
+									<small aria-hidden=\\"true\\">
+										Tue
+									</small>
+                </h2>
+              </time>
+						</div>
+						<div role=\\"columnheader\\" tabindex=\\"-1\\">
+              <time aria-readonly=\\"true\\" datetime=\\"2020-12-30\\">
+                <h2>
+									<!-- TODO add to column aria-labelledby or describedby to count
+                  events and related day e.g. \\"3 events, Sunday, March 8\\" -->
+									<em tabindex=\\"0\\" role=\\"button\\" aria-label=\\"Wednesday, December 30\\">
+										30
+									</em>
+									<small aria-hidden=\\"true\\">
+										Wed
+									</small>
+                </h2>
+              </time>
+						</div>
+						<div role=\\"columnheader\\" tabindex=\\"-1\\">
+              <time aria-readonly=\\"true\\" datetime=\\"2020-12-31\\">
+                <h2>
+									<!-- TODO add to column aria-labelledby or describedby to count
+                  events and related day e.g. \\"3 events, Sunday, March 8\\" -->
+									<em tabindex=\\"0\\" role=\\"button\\" aria-label=\\"Thursday, December 31\\">
+										31
+									</em>
+									<small aria-hidden=\\"true\\">
+										Thu
+									</small>
+                </h2>
+              </time>
+						</div>
+						<div role=\\"columnheader\\" tabindex=\\"-1\\">
+              <time aria-readonly=\\"true\\" datetime=\\"2021-01-01\\">
+                <h2>
+									<!-- TODO add to column aria-labelledby or describedby to count
+                  events and related day e.g. \\"3 events, Sunday, March 8\\" -->
+									<em tabindex=\\"0\\" role=\\"button\\" aria-label=\\"Friday, January 1\\">
+										01
+									</em>
+									<small aria-hidden=\\"true\\">
+										Fri
+									</small>
+                </h2>
+              </time>
+						</div>
+						<div role=\\"columnheader\\" tabindex=\\"-1\\">
+              <time aria-readonly=\\"true\\" datetime=\\"2021-01-02\\">
+                <h2>
+									<!-- TODO add to column aria-labelledby or describedby to count
+                  events and related day e.g. \\"3 events, Sunday, March 8\\" -->
+									<em tabindex=\\"0\\" role=\\"button\\" aria-label=\\"Saturday, January 2\\">
+										02
+									</em>
+									<small aria-hidden=\\"true\\">
+										Sat
+									</small>
+                </h2>
+              </time>
+						</div>
+						<div role=\\"columnheader\\" tabindex=\\"-1\\">
+              <time aria-readonly=\\"true\\" datetime=\\"2021-01-03\\">
+                <h2>
+									<!-- TODO add to column aria-labelledby or describedby to count
+                  events and related day e.g. \\"3 events, Sunday, March 8\\" -->
+									<em tabindex=\\"0\\" role=\\"button\\" aria-label=\\"Sunday, January 3\\">
+										03
+									</em>
+									<small aria-hidden=\\"true\\">
+										Sun
+									</small>
+                </h2>
+              </time>
+						</div><!--fast-uh5ird:0-->
+			</div>
+    <div role=\\"row\\" class=\\"calendar-row\\">
+      
+  <div class=\\"row-headers\\" role=\\"presentation\\">
+    <!----><span role=\\"rowheader\\">
+      <time datetime=\\"01:00\\">
+						1 AM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"02:00\\">
+						2 AM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"03:00\\">
+						3 AM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"04:00\\">
+						4 AM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"05:00\\">
+						5 AM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"06:00\\">
+						6 AM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"07:00\\">
+						7 AM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"08:00\\">
+						8 AM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"09:00\\">
+						9 AM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"10:00\\">
+						10 AM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"11:00\\">
+						11 AM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"12:00\\">
+						12 PM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"13:00\\">
+						1 PM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"14:00\\">
+						2 PM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"15:00\\">
+						3 PM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"16:00\\">
+						4 PM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"17:00\\">
+						5 PM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"18:00\\">
+						6 PM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"19:00\\">
+						7 PM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"20:00\\">
+						8 PM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"21:00\\">
+						9 PM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"22:00\\">
+						10 PM
+					</time>
+				</span><!----><span role=\\"rowheader\\">
+      <time datetime=\\"23:00\\">
+						11 PM
+					</time>
+				</span><!--fast-uh5ird:0-->
+  </div>
+      <div class=\\"calendar-grid-presentation\\" role=\\"presentation\\">
+        <div class=\\"hours\\" role=\\"list\\">
+          <div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><div role=\\"listitem\\"></div><!--fast-uh5ird:3-->
+        </div>
+        <div class=\\"columns\\" role=\\"presentation\\">
+          
+            <div role=\\"gridcell\\" tabindex=\\"-1\\">
+              <slot name=\\"day-0\\"></slot>
+            </div>
+          
+            <div role=\\"gridcell\\" tabindex=\\"-1\\">
+              <slot name=\\"day-0\\"></slot>
+            </div>
+          
+            <div role=\\"gridcell\\" tabindex=\\"-1\\">
+              <slot name=\\"day-0\\"></slot>
+            </div>
+          
+            <div role=\\"gridcell\\" tabindex=\\"-1\\">
+              <slot name=\\"day-0\\"></slot>
+            </div>
+          
+            <div role=\\"gridcell\\" tabindex=\\"-1\\">
+              <slot name=\\"day-0\\"></slot>
+            </div>
+          
+            <div role=\\"gridcell\\" tabindex=\\"-1\\">
+              <slot name=\\"day-0\\"></slot>
+            </div>
+          
+            <div role=\\"gridcell\\" tabindex=\\"-1\\">
+              <slot name=\\"day-0\\"></slot>
+            </div>
+          <!--fast-uh5ird:4-->
+        </div>
+        <slot></slot>
+      </div>
+    </div>
+  </div>
+<style class=\\"fast-style-class-2\\">default</style>"
+`;

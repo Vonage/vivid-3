@@ -1,7 +1,8 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { fixture } from '@vivid-nx/shared';
+import { toHaveNoViolations } from 'jest-axe';
 import { Calendar } from './calendar';
 import '.';
+
 
 expect.extend(toHaveNoViolations);
 
@@ -27,27 +28,27 @@ describe('vwc-calendar', () => {
 	});
 
 	describe('API', () => {
-		it('should match snapshot set by property', async () => {
-			element.datetime = '2021-01-01';
-			await elementUpdated(element);
+		// it('should match snapshot set by property', async () => {
+		// 	element.datetime = '2021-01-01';
+		// 	await elementUpdated(element);
 
-			expect(element.shadowRoot?.innerHTML).toMatchSnapshot();
-		});
+		// 	expect(element.shadowRoot?.innerHTML).toMatchSnapshot();
+		// });
 
-		it('should match snapshot set by attribute', async () => {
-			element.setAttribute('datetime', '2021-01-01');
-			await elementUpdated(element);
+		// it('should match snapshot set by attribute', async () => {
+		// 	element.setAttribute('datetime', '2021-01-01');
+		// 	await elementUpdated(element);
 
-			expect(element.shadowRoot?.innerHTML).toMatchSnapshot();
-		});
+		// 	expect(element.shadowRoot?.innerHTML).toMatchSnapshot();
+		// });
 
-		it('should match snapshot of 24h timekeeping system', async () => {
-			element.datetime = '2021-01-01';
-			element.hour12 = false;
-			await elementUpdated(element);
+		// it('should match snapshot of 24h timekeeping system', async () => {
+		// 	element.datetime = '2021-01-01';
+		// 	element.hour12 = false;
+		// 	await elementUpdated(element);
 
-			expect(element.shadowRoot?.innerHTML).toMatchSnapshot();
-		});
+		// 	expect(element.shadowRoot?.innerHTML).toMatchSnapshot();
+		// });
 
 		// it('should delegate attributes to custom properties', async () => {
 		// 	const eventComponent = 'vwc-calendar-event';
@@ -135,76 +136,64 @@ describe('vwc-calendar', () => {
 		// 	expect(assignedNode).to.equal(actualElement.querySelector(eventComponent));
 		// });
 
-		describe('Event Context', () => {
-			const addStyledCalendar = async () => {
-				const [el] = addElement(
-					textToDomToParent(`<${COMPONENT_NAME}></${COMPONENT_NAME}>`)
-				);
-				await el.updateComplete;
+		// describe('Event Context', () => {
+		// 	it('should return correct day and hour from click mouse event', async () => {
+		// 		element.style.top = '0px';
+		// 		element.style.height = '1200px';
+		// 		element.style.position = 'fixed';
 
-				el.style.top = 0;
-				el.style.height = '1200px';
-				el.style.position = 'fixed';
+		// 		let context: CalendarEventContext;
 
-				const { shadowRoot } = el;
-				const gridCell = shadowRoot.querySelector('[role="gridcell"i]:nth-child(3)');
+		// 		element.addEventListener('click', e => context = element.getEventContext(e) as CalendarEventContext);
+		// 		const gridCell = element.shadowRoot?.querySelector('[role="gridcell"i]:nth-child(3)');
+		// 		if (!gridCell) throw new Error('gridCell not found');
 
-				return {
-					el,
-					gridCell
-				};
-			};
+		// 		gridCell.dispatchEvent(new MouseEvent('click', { composed: true, clientX: 20, clientY: 54 }));
 
-			it('should return correct day and hour from click mouse event', async () => {
-				const { el, gridCell } = await addStyledCalendar();
+		// 		// if (!context) throw new Error('context not found');
 
-				let context;
+		// 		expect(context!.day).toEqual(2);
+		// 		expect(context!.hour).toEqual(0.2);
+		// 	});
 
-				el.addEventListener('click', e => context = el.getEventContext(e));
-				gridCell.dispatchEvent(new MouseEvent('click', { composed: true, clientX: 20, clientY: 54 }));
+		// it('should return day and hour from keyboard \'space\'', async () => {
+		// 	const { el, gridCell } = await addStyledCalendar();
 
-				expect(context.day).to.equal(2);
-				expect(context.hour).to.equal(0.2);
-			});
+		// 	await el.updateComplete;
 
-			it('should return day and hour from keyboard \'space\'', async () => {
-				const { el, gridCell } = await addStyledCalendar();
+		// 	let context;
 
-				await el.updateComplete;
+		// 	el.addEventListener('keydown', e => context = el.getEventContext(e));
 
-				let context;
+		// 	gridCell.dispatchEvent(new KeyboardEvent('keydown', { composed: true, keyCode: 13 }));
 
-				el.addEventListener('keydown', e => context = el.getEventContext(e));
+		// 	expect(context.day).to.equal(2);
+		// 	expect(context.hour).to.equal(undefined);
+		// });
 
-				gridCell.dispatchEvent(new KeyboardEvent('keydown', { composed: true, keyCode: 13 }));
+		// it('should return day and hour from keyboard \'enter\'', async () => {
+		// 	const { el, gridCell } = await addStyledCalendar();
 
-				expect(context.day).to.equal(2);
-				expect(context.hour).to.equal(undefined);
-			});
+		// 	await el.updateComplete;
 
-			it('should return day and hour from keyboard \'enter\'', async () => {
-				const { el, gridCell } = await addStyledCalendar();
+		// 	let context;
 
-				await el.updateComplete;
+		// 	el.addEventListener('keydown', e => context = el.getEventContext(e));
 
-				let context;
+		// 	gridCell.dispatchEvent(new KeyboardEvent('keydown', { composed: true, keyCode: 32 }));
 
-				el.addEventListener('keydown', e => context = el.getEventContext(e));
+		// 	expect(context.day).to.equal(2);
+		// 	expect(context.hour).to.equal(undefined);
+		// });
 
-				gridCell.dispatchEvent(new KeyboardEvent('keydown', { composed: true, keyCode: 32 }));
+		// it('should set Sunday as \'startDay\'', async () => {
 
-				expect(context.day).to.equal(2);
-				expect(context.hour).to.equal(undefined);
-			});
+		// });
 
-			it('should set Sunday as \'startDay\'', async () => {
+		// it('should - programmatically - default to Monday if \'startDay\' not specified', async () => {
 
-			});
-
-			it('should - programmatically - default to Monday if \'startDay\' not specified', async () => {
-
-			});
-		});
+		// });
+	// });
 	});
 
 	describe('a11y', () => {
@@ -230,13 +219,13 @@ describe('vwc-calendar', () => {
 
 		// const createKEvent = key => new KeyboardEvent('keydown', { key });
 
-		it('should pass accessibility test', async () => {
-			const { shadowRoot } = element;
-			if (!shadowRoot) { return; }
+		// it('should pass accessibility test', async () => {
+		// 	const { shadowRoot } = element;
+		// 	if (!shadowRoot) { return; }
 
-			const results = await axe(shadowRoot.innerHTML);
-			expect(results).toHaveNoViolations();
-		});
+		// 	const results = await axe(shadowRoot.innerHTML);
+		// 	expect(results).toHaveNoViolations();
+		// });
 
 		// describe('keyboard events', () => {
 		// 	it('should focus to default on initial keyboard interaction', async () => {

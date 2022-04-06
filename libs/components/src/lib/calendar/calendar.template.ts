@@ -8,10 +8,9 @@ import type { Calendar } from './calendar';
 import {
 	getFirstDateOfTheWeek,
 	getValidDateString
-} from './helpers/calendar.date-functions.js';
+} from './helpers/calendar.date-functions';
+import { daysLength, TotalHours } from './helpers/calendar.config';
 
-export const TotalHours = 24;
-const daysLength = 7;
 
 const hours = (Array.from({ length: TotalHours - 1 }) as Date[])
 	.fill(new Date(new Date().setHours(0, 0, 0)))

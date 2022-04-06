@@ -1,4 +1,4 @@
-import type { Calendar } from '../calendar.js';
+import type { Calendar } from '../calendar';
 
 
 export const ARROW_UP = 'ArrowUp';

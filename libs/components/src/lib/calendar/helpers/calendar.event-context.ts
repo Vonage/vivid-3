@@ -1,8 +1,8 @@
-import { TotalHours } from '../calendar.template.js';
-import { isCellOrHeader } from './calendar.keyboard-interactions.js';
+import { TotalHours } from './calendar.config';
+import { isCellOrHeader } from './calendar.keyboard-interactions';
 
 
-interface CalendarEventContext {
+export interface CalendarEventContext {
 	day?: number;
 	hour?: number;
 }
@@ -60,7 +60,8 @@ function getHour(e: Event): number | undefined {
 	return Math.round((hour + Number.EPSILON) * 100) / 100;
 }
 
-const isEmptyObject = (obj: Record<string, unknown>): obj is Record<string, never> => Object.keys(obj).length === 0 && obj.constructor === Object;
+const isEmptyObject = (obj: Record<string, unknown>): obj is Record<string, never> =>
+	Object.keys(obj).length === 0 && obj.constructor === Object;
 
 /**
  * @param e
