@@ -1,6 +1,6 @@
 {
   "type": "none",
-  "comment": "update popup",
+  "comment": "migrate tooltip",
   "packageName": "@vonage/vivid",
   "email": "rina.oksman@vonage.com",
   "dependentChangeType": "none"
