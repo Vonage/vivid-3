@@ -115,7 +115,7 @@ export class Popup extends FoundationElement {
 	}
 
 	/**
-	 * Updates popup position, if succeeded returns - true, if not - false
+	 * Updates popup's position
 	 *
 	 * @public
 	 */

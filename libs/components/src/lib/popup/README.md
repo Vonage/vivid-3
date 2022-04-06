@@ -251,3 +251,11 @@ Popup component is a low level element, unaware of its document context, but in 
 A common practice used in apps / frameworks to promote a popup component to top other elements z-axis, is to utilise a service that dynamically appends a popup component to the end of the body element, when called for.
 
 This helps ensure elements don't render over top a popup undesirebly.
+
+## Methods
+
+| Method           | Type       | Description                 |
+| ---------------- | ---------- | --------------------------- |
+| `hide`           | `(): void` | Closes the popup.           |
+| `show`           | `(): void` | Opens the popup.            |
+| `updatePosition` | `(): void` | Updates popup's position.   |
