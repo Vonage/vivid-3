@@ -51,6 +51,16 @@
     ]
   },
   {
+    "title": "popup",
+    "markdown": "./libs/components/src/lib/popup/README.md",
+    "modules": [
+      "/assets/modules/components/popup/index.js",
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/icon/index.js",
+      "/assets/modules/components/text/index.js"
+    ]
+  },
+  {
     "title": "side-drawer",
     "markdown": "./libs/components/src/lib/side-drawer/README.md",
     "modules": [
