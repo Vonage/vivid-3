@@ -11,4 +11,5 @@ export class Banner extends FoundationElement {
 	@attr({mode: 'boolean'}) open = false;
 	@attr({mode: 'fromView'}) role = 'status';
 	@attr({mode: 'fromView'}) override ariaLive = 'polite';
+	@attr() message: string | undefined;
 }

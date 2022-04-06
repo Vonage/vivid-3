@@ -1,4 +1,4 @@
-import { fixture } from '@vivid-nx/shared';
+import {elementUpdated, fixture} from '@vivid-nx/shared';
 import { Banner } from './banner';
 import '.';
 
@@ -18,25 +18,52 @@ describe('vwc-banner', () => {
 			expect(element).toBeInstanceOf(Banner);
 		});
 
-		describe('init state', function () {
-			it('should set dismissible as false', function () {
-				expect(element.dismissible).toEqual(false);
+		describe('message', function () {
+			/**
+			 * @param messageText
+			 */
+			async function setMessageProperty(messageText: string | undefined) {
+				element.message = messageText;
+				await elementUpdated(element);
+			}
+
+			/**
+			 * @param messageText
+			 */
+			async function setMessageAttribute(messageText: string | undefined) {
+				element.setAttribute('message', messageText ? messageText : '');
+				await elementUpdated(element);
+			}
+
+			/**
+			 *
+			 */
+			function getMessageText() {
+				const initMessageAttrEmpty = element.shadowRoot?.querySelector('.banner--message')?.textContent;
+				return initMessageAttrEmpty;
+			}
+
+			it('should init with undefined and set as empty string in DOM', function () {
+				const initMessagePropEmpty = element.message;
+				const initMessageAttrEmpty = getMessageText();
+
+				expect(initMessagePropEmpty).toEqual(undefined);
+				expect(initMessageAttrEmpty).toEqual('');
 			});
 
-			it('should set open to false', function () {
-				expect(element.open).toEqual(false);
-			});
+			it('should reflect the message', async function () {
+				const messageText = 'Some Message';
 
-			it('should set role and aria live to status and polite', function () {
-				expect(element.role).toEqual('status');
-				expect(element.ariaLive).toEqual('polite');
+				await setMessageProperty(messageText);
+				const DOMMessageWithProperty = getMessageText();
+
+				await setMessageProperty(undefined);
+				await setMessageAttribute(messageText);
+				const propertyMessageWithAttribute = element.message;
+
+				expect(DOMMessageWithProperty).toEqual(messageText);
+				expect(propertyMessageWithAttribute).toEqual(messageText);
 			});
 		});
-
-    describe(`reflected properties`, function () {
-      it(`should reflect properties`, function () {
-        const reflectedProperties = [];
-      });
-    });
 	});
 });

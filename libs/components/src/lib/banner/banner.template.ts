@@ -18,7 +18,12 @@ const getClasses = (_: Banner) => classNames('control');
 export const BannerTemplate: (
   context: ElementDefinitionContext,
   definition: FoundationElementDefinition
-) => ViewTemplate<Banner> = (context: ElementDefinitionContext) => html` <span
-  class="${getClasses}"
->${context.name}
-</span>`;
+) => ViewTemplate<Banner> = () => html<Banner>`
+      <div class="banner ${getClasses}" tabindex="0">
+				<header class="header">
+					<span class="user-content">
+						<div class="banner--message">${x => x.message}</div>
+					</span>
+				</header>
+			</div>
+`;
