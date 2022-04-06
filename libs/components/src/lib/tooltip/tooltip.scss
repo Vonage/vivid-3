@@ -2,6 +2,10 @@
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 
+.control {
+	pointer-events: none;
+}
+
 .tooltip {
 	width: var(#{variables.$tooltip-inline-size}, 240px);
 
