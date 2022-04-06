@@ -8,4 +8,7 @@ import { attr } from '@microsoft/fast-element';
  */
 export class Banner extends FoundationElement {
 	@attr({mode: 'boolean'}) dismissible = false;
+	@attr({mode: 'boolean'}) open = false;
+	@attr({mode: 'fromView'}) role = 'status';
+	@attr({mode: 'fromView'}) override ariaLive = 'polite';
 }
