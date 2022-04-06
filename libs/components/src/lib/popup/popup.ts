@@ -93,10 +93,6 @@ export class Popup extends FoundationElement {
 		this.corner = 'left'; // default corner
 	}
 
-	override connectedCallback(): void {
-		super.connectedCallback();
-	}
-
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
 		this.cleanup?.();
@@ -112,6 +108,9 @@ export class Popup extends FoundationElement {
 		}
 		if (this.anchorEl && this.popupEl) {
 			this.cleanup = autoUpdate(this.anchorEl, this.popupEl, () => this.updatePosition());
+		}
+		else{
+			this.cleanup?.();
 		}
 	}
 

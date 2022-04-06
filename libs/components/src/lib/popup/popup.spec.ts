@@ -14,25 +14,45 @@ const COMPONENT_TAG = 'vwc-popup';
 
 describe('vwc-popup', () => {
 	let element: Popup;
-
-	global.ResizeObserver = jest.fn()
-		.mockImplementation(() => ({
-			observe: element.updatePosition,
-			unobserve: jest.fn(),
-			disconnect: jest.fn()
-		}));
+	let observeSpy: jest.SpyInstance;
 
 	beforeEach(async () => {
 		element = await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Popup;
+		observeSpy = jest.fn(element.updatePosition);
+		global.ResizeObserver = jest.fn()
+			.mockImplementation(() => ({
+				observe: observeSpy,
+				unobserve: jest.fn(),
+				disconnect: jest.fn()
+			}));
 	});
 
 	describe('clean observable', () => {
 		it('should clean observable on disconnectedCallback', async function () {
-			await setPopupAndAnchor();
+			jest.spyOn(element, 'updatePosition');
+			const anchor = await setAnchor();
 			element.anchor = 'anchor';
 			await elementUpdated(element);
+			expect(observeSpy).toHaveBeenCalled();
+
+			jest.clearAllMocks();
 			element.disconnectedCallback();
-			expect(true).toBeTruthy();
+			(anchor as HTMLElement).style.left = '100px';
+			await elementUpdated(element);
+			expect(observeSpy).not.toHaveBeenCalled();
+		});
+		it('should clean observable when anchor is undefined', async function () {
+			jest.spyOn(element, 'updatePosition');
+			const anchor = await setAnchor();
+			element.anchor = 'anchor';
+			await elementUpdated(element);
+			expect(observeSpy).toHaveBeenCalled();
+
+			jest.clearAllMocks();
+			element.anchor = '';
+			(anchor as HTMLElement).style.left = '100px';
+			await elementUpdated(element);
+			expect(observeSpy).not.toHaveBeenCalled();
 		});
 	});
 
@@ -78,7 +98,7 @@ describe('vwc-popup', () => {
 		 *
 		 */
 		async function setupPopupToOpenWithAnchor() {
-			await setPopupAndAnchor();
+			await setAnchor();
 			element.anchor = 'anchor';
 			await elementUpdated(element);
 			element.open = true;
@@ -128,7 +148,7 @@ describe('vwc-popup', () => {
 
 	describe('show', () => {
 		it('should set "open" to true', async () => {
-			await setPopupAndAnchor();
+			await setAnchor();
 			element.anchor = 'anchor';
 			await elementUpdated(element);
 
@@ -177,7 +197,7 @@ describe('vwc-popup', () => {
 			element.open = true;
 			await elementUpdated(element);
 
-			await setPopupAndAnchor();
+			await setAnchor();
 			element.anchor = 'anchor';
 			await elementUpdated(element);
 
@@ -208,14 +228,18 @@ describe('vwc-popup', () => {
 
 	describe('handle dismiss', () => {
 		it('should hide when dismiss button is clicked', async () => {
-			await setPopupAndAnchor();
+			await setAnchor();
 			element.anchor = 'anchor';
 			element.dismissible = true;
 			await elementUpdated(element);
 
 			element.show();
+			expect(element.open)
+				.toEqual(true);
+
 			await elementUpdated(element);
-			element.handleDismissClick();
+			const dismissButton = element.shadowRoot?.querySelector('vwc-button');
+			(dismissButton as HTMLElement).click();
 			await elementUpdated(element);
 
 			expect(element.open)
@@ -254,7 +278,7 @@ describe('vwc-popup', () => {
 	/**
 	 *
 	 */
-	async function setPopupAndAnchor() {
+	async function setAnchor() {
 		const anchorEl = await fixture('<vwc-button id="anchor"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE) as Button;
 		await elementUpdated(anchorEl);
 		return anchorEl;

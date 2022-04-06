@@ -52,9 +52,7 @@ Use the `open` attribute to indicate whether the popup is open.
   </vwc-popup>
 </div>
 <script>
-  const popup = document.getElementById("popup");
-  const button = document.getElementById("anchor1");
-  button.addEventListener('click', toggleOpen);
+  anchor1.addEventListener('click', toggleOpen);
   function toggleOpen() {
 	  popup.open = !popup.open;
   }
@@ -91,9 +89,7 @@ Add the `dismissible` attribute to add a close button to the popup.
   </vwc-popup>
 </div>
 <script>
-  const popup = document.getElementById("popup");
-  const button = document.getElementById("anchor2");
-  button.addEventListener('click', toggleOpen);
+  anchor2.addEventListener('click', toggleOpen);
   function toggleOpen() {
 	  popup.open = !popup.open;
   }
@@ -166,40 +162,86 @@ Use the `corner` attribute to set the placement of the popup around the anchor.
 
 ```html preview
 <style>
-  .content {
-    padding: 1rem;
-	}
-  .wrapper{
-    width: 100%;
-    height: 220px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .contentWrapper{
+    width: 70px;
+    padding: 0.25rem;
   }
-</style>
-<div class="wrapper">
-  <vwc-button id="anchor5" appearance='outlined' label='this is an anchor'></vwc-button>
-  <vwc-popup id="popup" anchor="anchor5" open corner="right">
-      <div class="content">
-        <vwc-text tight font-face="body-2">right</vwc-text>
-      </div>
-  </vwc-popup>
-  <vwc-popup id="popup" anchor="anchor5" open corner="left">
-      <div class="content">
-        <vwc-text tight font-face="body-2">left</vwc-text>
-      </div>
-  </vwc-popup>
-  <vwc-popup id="popup" anchor="anchor5" open corner="top">
-      <div class="content">
-        <vwc-text tight font-face="body-2">top</vwc-text>
-      </div>
-  </vwc-popup>
-  <vwc-popup id="popup" anchor="anchor5" open corner="bottom">
-      <div class="content">
-        <vwc-text tight font-face="body-2">bottom</vwc-text>
-      </div>
-  </vwc-popup>
-</div>
+	.square {
+		height: 150px;
+		width: 300px;
+		background-color: var(--vvd-color-neutral-10);;
+	  }
+	.wrapper{
+		width: 100%;
+		height: 250px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	  }
+	</style>
+	<div class="wrapper">
+	<div id="anchor5" class="square"></div>
+	<vwc-popup id="popup" anchor="anchor5" open corner="right-end">
+    <div class="contentWrapper">
+			<vwc-text tight font-face="body-2">right-end</vwc-text>
+    </div>
+	</vwc-popup>
+	<vwc-popup id="popup" anchor="anchor5" open corner="right">
+    <div class="contentWrapper">
+		  <vwc-text tight font-face="body-2">right</vwc-text>
+    </div>
+	</vwc-popup>
+	<vwc-popup id="popup" anchor="anchor5" open corner="right-start">
+    <div class="contentWrapper">
+		  <vwc-text tight font-face="body-2">right-start</vwc-text>
+    </div>
+	</vwc-popup>
+	<vwc-popup id="popup" anchor="anchor5" open corner="left-end">
+    <div class="contentWrapper">
+			<vwc-text tight font-face="body-2">left-end</vwc-text>
+    </div>
+	</vwc-popup>
+	<vwc-popup id="popup" anchor="anchor5" open corner="left">
+    <div class="contentWrapper">
+		  <vwc-text tight font-face="body-2">left</vwc-text>
+    </div>
+	</vwc-popup>
+	<vwc-popup id="popup" anchor="anchor5" open corner="left-start">
+    <div class="contentWrapper">
+			<vwc-text tight font-face="body-2">left-start</vwc-text>
+    </div>
+	</vwc-popup>
+	<vwc-popup id="popup" anchor="anchor5" open corner="top-end">
+    <div class="contentWrapper">
+			<vwc-text tight font-face="body-2">top-end</vwc-text>
+    </div>
+	</vwc-popup>
+	<vwc-popup id="popup" anchor="anchor5" open corner="top">
+    <div class="contentWrapper">
+		  <vwc-text tight font-face="body-2">top</vwc-text>
+    </div>
+	</vwc-popup>
+	<vwc-popup id="popup" anchor="anchor5" open corner="top-start">
+    <div class="contentWrapper">
+			<vwc-text tight font-face="body-2">top-start</vwc-text>
+    </div>
+	</vwc-popup>
+	<vwc-popup id="popup" anchor="anchor5" open corner="bottom-end">
+    <div class="contentWrapper">
+			<vwc-text tight font-face="body-2">bottom-end</vwc-text>
+    </div>
+	</vwc-popup>
+	<vwc-popup id="popup" anchor="anchor5" open corner="bottom">
+    <div class="contentWrapper">
+			<vwc-text tight font-face="body-2">bottom</vwc-text>
+    </div>
+	</vwc-popup>
+	<vwc-popup id="popup" anchor="anchor5" open corner="bottom-start">
+    <div class="contentWrapper">
+			<vwc-text tight font-face="body-2">bottom-start</vwc-text>
+    </div>
+	</vwc-popup>
+	</div>
 ```
 ## Caveat
 
