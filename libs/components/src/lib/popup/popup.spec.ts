@@ -38,6 +38,7 @@ describe('vwc-popup', () => {
 			jest.clearAllMocks();
 			element.disconnectedCallback();
 			element.anchor = '';
+			element.corner = 'left';
 			await elementUpdated(element);
 			expect(observeSpy).not.toHaveBeenCalled();
 		});
