@@ -9,50 +9,52 @@ import type { Button } from '../button/button';
 import { Popup } from './popup';
 import '.';
 
-
 const COMPONENT_TAG = 'vwc-popup';
 
 describe('vwc-popup', () => {
+	/**
+	 *
+	 */
+	async function setupPopupToOpenWithAnchor() {
+		const anchor = await setAnchor();
+		element.anchor = 'anchor';
+		await elementUpdated(element);
+		element.open = true;
+		return anchor;
+	}
+
 	let element: Popup;
-	let observeSpy: jest.SpyInstance;
 
 	beforeEach(async () => {
 		element = await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Popup;
-		observeSpy = jest.fn(element.updatePosition);
 		global.ResizeObserver = jest.fn()
 			.mockImplementation(() => ({
-				observe: observeSpy,
+				observe: jest.fn(),
 				unobserve: jest.fn(),
 				disconnect: jest.fn()
 			}));
 	});
 
+	afterEach(function () {
+		jest.clearAllMocks();
+	});
+
 	describe('clean observable', () => {
 		it('should clean observable on disconnectedCallback', async function () {
-			jest.spyOn(element, 'updatePosition');
-			const anchor = await setAnchor();
-			element.anchor = 'anchor';
-			await elementUpdated(element);
-			expect(observeSpy).toHaveBeenCalled();
-
-			jest.clearAllMocks();
+			const cleanupMock = jest.fn();
+			jest.spyOn(floatingUI, 'autoUpdate').mockReturnValue(cleanupMock);
+			await setupPopupToOpenWithAnchor();
 			element.disconnectedCallback();
-			(anchor as HTMLElement).style.left = '100px';
-			await elementUpdated(element);
-			expect(observeSpy).not.toHaveBeenCalled();
+			expect(cleanupMock).toHaveBeenCalled();
 		});
-		it('should clean observable when anchor is undefined', async function () {
-			jest.spyOn(element, 'updatePosition');
-			const anchor = await setAnchor();
-			element.anchor = 'anchor';
-			await elementUpdated(element);
-			expect(observeSpy).toHaveBeenCalled();
 
-			jest.clearAllMocks();
+		it('should clean observable when anchor is undefined', async function () {
+			const cleanupMock = jest.fn();
+			jest.spyOn(floatingUI, 'autoUpdate').mockReturnValue(cleanupMock);
+			await setupPopupToOpenWithAnchor();
 			element.anchor = '';
-			(anchor as HTMLElement).style.left = '100px';
 			await elementUpdated(element);
-			expect(observeSpy).not.toHaveBeenCalled();
+			expect(cleanupMock).toHaveBeenCalled();
 		});
 	});
 
@@ -93,16 +95,6 @@ describe('vwc-popup', () => {
 		afterEach(function () {
 			(floatingUI.computePosition as jest.MockedFunction<any>).mockRestore();
 		});
-
-		/**
-		 *
-		 */
-		async function setupPopupToOpenWithAnchor() {
-			await setAnchor();
-			element.anchor = 'anchor';
-			await elementUpdated(element);
-			element.open = true;
-		}
 
 		/**
 		 * @param hidden
