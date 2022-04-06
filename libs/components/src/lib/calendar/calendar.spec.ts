@@ -1,4 +1,4 @@
-import { fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { toHaveNoViolations } from 'jest-axe';
 import { Calendar } from './calendar';
 import '.';
@@ -22,33 +22,32 @@ describe('vwc-calendar', () => {
 			expect(element).toBeInstanceOf(Calendar);
 			expect(element.datetime).toBeUndefined();
 			expect(element.locales).toBeUndefined();
-			expect(element.hour12).toBeUndefined();
-			// expect(element.stickyHeader).toBeUndefined();
+			expect(element.hour12).toBeFalsy();
 		});
 	});
 
 	describe('API', () => {
-		// it('should match snapshot set by property', async () => {
-		// 	element.datetime = '2021-01-01';
-		// 	await elementUpdated(element);
+		fit('should match snapshot set by property', async () => {
+			element.datetime = '2021-01-01';
+			await elementUpdated(element);
 
-		// 	expect(element.shadowRoot?.innerHTML).toMatchSnapshot();
-		// });
+			expect(element.shadowRoot?.innerHTML).toMatchSnapshot();
+		});
 
-		// it('should match snapshot set by attribute', async () => {
-		// 	element.setAttribute('datetime', '2021-01-01');
-		// 	await elementUpdated(element);
+		it('should match snapshot set by attribute', async () => {
+			element.setAttribute('datetime', '2021-01-01');
+			await elementUpdated(element);
 
-		// 	expect(element.shadowRoot?.innerHTML).toMatchSnapshot();
-		// });
+			expect(element.shadowRoot?.innerHTML).toMatchSnapshot();
+		});
 
-		// it('should match snapshot of 24h timekeeping system', async () => {
-		// 	element.datetime = '2021-01-01';
-		// 	element.hour12 = false;
-		// 	await elementUpdated(element);
+		it('should match snapshot of 24h timekeeping system', async () => {
+			element.datetime = '2021-01-01';
+			element.hour12 = true;
+			await elementUpdated(element);
 
-		// 	expect(element.shadowRoot?.innerHTML).toMatchSnapshot();
-		// });
+			expect(element.shadowRoot?.innerHTML).toMatchSnapshot();
+		});
 
 		// it('should delegate attributes to custom properties', async () => {
 		// 	const eventComponent = 'vwc-calendar-event';

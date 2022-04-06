@@ -1,7 +1,7 @@
 /**
  * @param d
  */
-export function assertIsString(d: unknown): asserts d is string {
+function assertIsString(d: unknown): asserts d is string {
 	if (!(typeof d == 'string')) throw new Error(`Not a string: ${d}`);
 }
 
@@ -10,6 +10,7 @@ export function assertIsString(d: unknown): asserts d is string {
  */
 export function assertIsValidDateStringRepresentation(d: unknown): asserts d is Date {
 	assertIsString(d);
+	console.log(1, d);
 	if (Number.isNaN(Date.parse(d))) throw new Error(`Not a valid date string representation: ${d}`);
 }
 

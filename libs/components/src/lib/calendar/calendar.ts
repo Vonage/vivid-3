@@ -71,7 +71,7 @@ export class Calendar extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr hour12?: boolean;
+	@attr({ mode: 'boolean' }) hour12 = false;
 
 	/**
 	 * Fire an event
