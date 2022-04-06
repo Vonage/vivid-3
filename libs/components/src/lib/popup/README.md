@@ -258,4 +258,4 @@ This helps ensure elements don't render over top a popup undesirebly.
 | ---------------- | ---------- | --------------------------- |
 | `hide`           | `(): void` | Closes the popup.           |
 | `show`           | `(): void` | Opens the popup.            |
-| `updatePosition` | `(): void` | Updates popup's position.   | 
+| `updatePosition` | `(): void` | Updates popup's position.   |
