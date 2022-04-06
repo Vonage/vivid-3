@@ -91,7 +91,26 @@ Use the `corner` attribute to set the placement of the tooltip around the anchor
   </vwc-tooltip>
 </div>
 ```
+## Usage inside text
+```html preview
+	<div>
+    <vwc-text font-face="body-1" tight>Text with tooltip - press the question mark<vwc-button id="button3" icon="help-line" shape="pill" aria-describedby="tooltip3"></vwc-button>more text after tooltip.</vwc-text>
+		  <vwc-tooltip id="tooltip3" anchor="button3" corner="bottom-end" text="I'm the tooltip content"></vwc-tooltip>
+	</div>
+  <script>
+  button3.addEventListener('click', toggle);
+  function toggle() {
+	  tooltip3.open = !tooltip3.open;
+  }
+</script>
+```
 
+## Methods
+
+| Method | Type       | Description          |
+| ------ | ---------- | -------------------- |
+| `hide` | `(): void` | Closes the tooltip.  |
+| `show` | `(): void` | Opens the tooltip.   |
 ## CSS Custom Properties
 
 | Property                | Default | Description                |

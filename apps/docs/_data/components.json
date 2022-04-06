@@ -90,6 +90,7 @@
     "markdown": "./libs/components/src/lib/tooltip/README.md",
     "modules": [
       "/assets/modules/components/tooltip/index.js",
+      "/assets/modules/components/text/index.js",
       "/assets/modules/components/button/index.js"
     ]
   }
