@@ -109,6 +109,9 @@ export class Popup extends FoundationElement {
 		if (this.anchorEl && this.popupEl) {
 			this.cleanup = autoUpdate(this.anchorEl, this.popupEl, () => this.updatePosition());
 		}
+		else{
+			this.cleanup?.();
+		}
 	}
 
 	/**
