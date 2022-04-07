@@ -4,6 +4,14 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-banner';
 
+/**
+ * @param element
+ */
+async function openBanner(element: Banner) {
+	element.open = true;
+	await elementUpdated(element);
+}
+
 describe('vwc-banner', () => {
 	let element: Banner;
 
@@ -125,8 +133,55 @@ describe('vwc-banner', () => {
 			});
 		});
 
-    describe(`open`, function () {
-      
-    });
+		describe('open', function () {
+			it('should init to false', function () {
+				expect(element.open).toEqual(false);
+				expect(element.hasAttribute('open')).toEqual(false);
+			});
+
+			it('should toggle attribute on host', async function () {
+				await openBanner(element);
+				const openAttributeExistsWhenTrue = element.hasAttribute('open');
+
+				element.open = false;
+				await elementUpdated(element);
+				const openAttributeExistsWhenFalse = element.hasAttribute('open');
+
+				expect(openAttributeExistsWhenTrue).toEqual(true);
+				expect(openAttributeExistsWhenFalse).toEqual(false);
+			});
+
+			it('should set open property on attribute change', async function () {
+				element.toggleAttribute('open');
+				await elementUpdated(element);
+				expect(element.open).toEqual(true);
+			});
+
+			it('should fire opening event', async function () {
+				const spy = jest.fn();
+				element.addEventListener('vwc-banner:opening', spy);
+				await openBanner(element);
+				expect(spy).toHaveBeenCalled();
+			});
+
+			it('should fire opened after animation end', async function () {
+				/**
+				 *
+				 */
+				function dispatchAnimationEndEvent() {
+					const banner = element.shadowRoot?.querySelector('.banner');
+					const event = new Event('animationend');
+					banner?.dispatchEvent(event);
+				}
+
+				const spy = jest.fn();
+				element.addEventListener('vwc-banner:opened', spy);
+				await openBanner(element);
+
+				dispatchAnimationEndEvent();
+
+				expect(spy).toHaveBeenCalled();
+			});
+		});
 	});
 });
