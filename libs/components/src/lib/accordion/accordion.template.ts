@@ -19,5 +19,4 @@ export const AccordionTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Accordion> = (
-	context: ElementDefinitionContext
-) => html` <span class="${getClasses}">${context.name} </span>`;
+) => html` <div class="${getClasses}"><slot></slot></div>`;

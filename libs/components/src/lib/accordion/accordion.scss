@@ -1,0 +1,10 @@
+@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+
+:host {
+	display: flex;
+	flex-direction: column;
+}
+
+::slotted(vwc-expansion-panel:not(:only-of-type)) {
+	border-bottom: 1px solid var(#{theme-consts.$vvd-color-neutral-30});
+}
