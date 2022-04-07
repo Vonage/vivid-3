@@ -233,9 +233,3 @@ Use the `position` attribute to set the side of the side drawer.
 | `side-drawer-padding-body`     | "16px"                                      | Controls the padding of the side drawer's body    |
 | `side-drawer-padding-top-bar`  | "16px"                                      | Controls the padding of the side drawer's top bar |
 | `side-drawer-z-index`          | 6                                           | Controls the z-index of the side drawer           |
-
-<style>
-    .cbd-demo{
-        height: 300px;
-    }
-</style>
