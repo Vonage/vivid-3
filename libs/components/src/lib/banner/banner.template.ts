@@ -22,7 +22,11 @@ export const BannerTemplate: (
       <div class="banner ${getClasses}" tabindex="0">
 				<header class="header">
 					<span class="user-content">
-						<div class="banner--message">${x => x.message}</div>
+						<div class="banner--message"
+                 role="${x => x.role ? x.role : 'status'}"
+                 aria-live="${x => x.ariaLive ? x.ariaLive : 'polite'}">
+              ${x => x.message}
+            </div>
 					</span>
 				</header>
 			</div>
