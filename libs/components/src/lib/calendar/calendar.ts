@@ -9,7 +9,6 @@ import {
 	getNextFocusableGridElement,
 	isCellOrHeader,
 } from './helpers/calendar.keyboard-interactions';
-import { assertIsValidDateStringRepresentation } from './helpers/calendar.date-functions';
 import { getEventContext } from './helpers/calendar.event-context';
 
 
@@ -22,25 +21,11 @@ export class Calendar extends FoundationElement {
 
 	/**
 	 * The date within a week of choice.
-	 * Accepts any valid date string representation e.g. _2021-01-01_
+	 * Accepts any parameter acceptable by the `Date()` constructor.
 	 *
 	 * @public
 	 */
-	@attr({
-		converter: {
-			toView(v) {
-				// throw if not a valid date string representation
-				assertIsValidDateStringRepresentation(v);
-				return v;
-			},
-			fromView(v) {
-				// throw if not a valid date string representation
-				assertIsValidDateStringRepresentation(v);
-				return new Date(v);
-			}
-		}
-	})
-		datetime?: Date | string;
+	@attr	datetime?: Date | string;
 
 	/**
 	 * The day to show as the first within a work week.
@@ -51,7 +36,7 @@ export class Calendar extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr({ mode: 'fromView' })	startDay?: 'sunday' | 'monday';
+	@attr	startDay?: 'sunday' | 'monday';
 
 	/**
 	 * A locale string or array of locale strings that contain one or more language or locale tags.

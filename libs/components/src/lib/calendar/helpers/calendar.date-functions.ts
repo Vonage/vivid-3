@@ -1,20 +1,4 @@
 /**
- * @param d
- */
-function assertIsString(d: unknown): asserts d is string {
-	if (!(typeof d == 'string')) throw new Error(`Not a string: ${d}`);
-}
-
-/**
- * @param d
- */
-export function assertIsValidDateStringRepresentation(d: unknown): asserts d is Date {
-	assertIsString(d);
-	console.log(1, d);
-	if (Number.isNaN(Date.parse(d))) throw new Error(`Not a valid date string representation: ${d}`);
-}
-
-/**
  * Returns a valid date string from date object e.g. 2020-01-01
  *
  * @remarks
@@ -41,7 +25,9 @@ export function getFirstDateOfTheWeek(date: Date = new Date(), startDay: 'sunday
 		date = new Date(date);
 	}
 
-	const num = weekdaysMap.get(startDay) || 1;
+	let num = weekdaysMap.get(startDay);
+	num ??= 1;
 	const day = date.getDate() - date.getDay() + num;
+
 	return new Date(date.setDate(day));
 }
