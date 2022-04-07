@@ -29,14 +29,14 @@ Use the `auto-sizing` attribute to set the initial preferred `auto-sizing`.
 ```html preview
 <div class="box-wrapper">
   <vwc-layout auto-sizing="fit">
-    <div class="box" style="border: 1px solid">fit</div>
-    <div class="box" style="border: 1px solid">fit</div>
+    <div class="box">fit</div>
+    <div class="box">fit</div>
   </vwc-layout>
 </div>
 <div class="box-wrapper">
   <vwc-layout auto-sizing="fill">
-    <div class="box" style="border: 1px solid">fill</div>
-    <div class="box" style="border: 1px solid">fill</div>
+    <div class="box">fill</div>
+    <div class="box">fill</div>
   </vwc-layout>
 </div>
 ```
@@ -51,26 +51,26 @@ Use the `gutters` attribute to set the initial preferred `margin`.
 ```html preview
 <div class="box-wrapper">
   <vwc-layout>
-    <div class="box" style="border: 1px solid">default</div>
-    <div class="box" style="border: 1px solid">default</div>
+    <div class="box">default</div>
+    <div class="box">default</div>
   </vwc-layout>
 </div>
 <div class="box-wrapper">
   <vwc-layout gutters="base-small">
-    <div class="box" style="border: 1px solid">base-small</div>
-    <div class="box" style="border: 1px solid">base-small</div>
+    <div class="box">base-small</div>
+    <div class="box">base-small</div>
   </vwc-layout>
 </div>
 <div class="box-wrapper">
 <vwc-layout gutters="base">
-  <div class="box" style="border: 1px solid">base</div>
-  <div class="box" style="border: 1px solid">base</div>
+  <div class="box">base</div>
+  <div class="box">base</div>
 </vwc-layout>
 </div>
 <div class="box-wrapper">
 <vwc-layout gutters="base-large">
-  <div class="box" style="border: 1px solid">base-large</div>
-  <div class="box" style="border: 1px solid">base-large</div>
+  <div class="box">base-large</div>
+  <div class="box">base-large</div>
 </vwc-layout>
 </div>
 ```
@@ -85,20 +85,20 @@ Use the `column-spacing` attribute to set the initial preferred `spacing` of a c
 ```html preview
 <div class="box-wrapper">
   <vwc-layout column-spacing="base-small">
-    <div class="box" style="border: 1px solid">base-small</div>
-    <div class="box" style="border: 1px solid">base-small</div>
+    <div class="box">base-small</div>
+    <div class="box">base-small</div>
   </vwc-layout>
 </div>
 <div class="box-wrapper">
   <vwc-layout column-spacing="base">
-    <div class="box" style="border: 1px solid">base</div>
-    <div class="box" style="border: 1px solid">base</div>
+    <div class="box">base</div>
+    <div class="box">base</div>
   </vwc-layout>
 </div>
 <div class="box-wrapper">
   <vwc-layout column-spacing="base-large">
-    <div class="box" style="border: 1px solid">base-large</div>
-    <div class="box" style="border: 1px solid">base-large</div>
+    <div class="box">base-large</div>
+    <div class="box">base-large</div>
   </vwc-layout>
 </div>
 ```
@@ -113,34 +113,34 @@ Use the `column-basis` attribute to set the initial preferred `measure` of a col
 ```html preview
 <div class="box-wrapper">
   <vwc-layout column-basis="base-small">
-    <div class="box" style="border: 1px solid">base-small</div>
-    <div class="box" style="border: 1px solid">base-small</div>
-    <div class="box" style="border: 1px solid">base-small</div>
-    <div class="box" style="border: 1px solid">base-small</div>
+    <div class="box">base-small</div>
+    <div class="box">base-small</div>
+    <div class="box">base-small</div>
+    <div class="box">base-small</div>
   </vwc-layout>
 </div>
 <div class="box-wrapper">
   <vwc-layout column-basis="base">
-    <div class="box" style="border: 1px solid">base</div>
-    <div class="box" style="border: 1px solid">base</div>
-    <div class="box" style="border: 1px solid">base</div>
-    <div class="box" style="border: 1px solid">base</div>
+    <div class="box">base</div>
+    <div class="box">base</div>
+    <div class="box">base</div>
+    <div class="box">base</div>
   </vwc-layout>
 </div>
 <div class="box-wrapper">
   <vwc-layout column-basis="base-large">
-    <div class="box" style="border: 1px solid">base-large</div>
-    <div class="box" style="border: 1px solid">base-large</div>
-    <div class="box" style="border: 1px solid">base-large</div>
-    <div class="box" style="border: 1px solid">base-large</div>
+    <div class="box">base-large</div>
+    <div class="box">base-large</div>
+    <div class="box">base-large</div>
+    <div class="box">base-large</div>
   </vwc-layout>
 </div>
 <div class="box-wrapper">
   <vwc-layout column-basis="block">
-    <div class="box" style="border: 1px solid">block</div>
-    <div class="box" style="border: 1px solid">block</div>
-    <div class="box" style="border: 1px solid">block</div>
-    <div class="box" style="border: 1px solid">block</div>
+    <div class="box">block</div>
+    <div class="box">block</div>
+    <div class="box">block</div>
+    <div class="box">block</div>
   </vwc-layout>
 </div>
 ```
