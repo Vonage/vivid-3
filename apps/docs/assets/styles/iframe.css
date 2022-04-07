@@ -13,3 +13,19 @@ body {
   background-color: var(--vvd-color-canvas);
   margin: 20px;
 }
+
+.box-wrapper{
+  background-image: linear-gradient(to right, var(--vvd-color-info-30), var(--vvd-color-cta-30));
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.box-wrapper + .box-wrapper { margin-top: 2rem;}
+
+.box {    
+  border-radius: 6px;
+  background-color: var(--vvd-color-canvas);
+  color: var(--vvd-color-on-canvas);
+  padding: 1rem;
+  text-align: center;
+}
