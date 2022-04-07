@@ -8,7 +8,9 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import '../button';
 import type { Banner } from './banner';
 
-const getClasses = (_: Banner) => classNames('control');
+const getClasses = (_: Banner) => classNames(
+  'control',
+  [`${_.connotation}`, !!_.connotation]);
 
 /**
  *

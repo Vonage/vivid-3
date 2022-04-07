@@ -2,6 +2,7 @@ import {elementUpdated, fixture} from '@vivid-nx/shared';
 import {Banner} from './banner';
 import '.';
 import {Button} from '../button/button';
+import {Connotation} from '../enums';
 
 const COMPONENT_TAG = 'vwc-banner';
 
@@ -233,7 +234,7 @@ describe('vwc-banner', () => {
 			});
 		});
 
-		describe('dismiss', function () {
+		describe('dismissible', function () {
 			it('should init to false', function () {
 				expect(element.dismissible)
 					.toEqual(false);
@@ -283,5 +284,27 @@ describe('vwc-banner', () => {
 					.toEqual(null);
 			});
 		});
+
+    describe(`connotation`, function () {
+      const possibleConnotations = [Connotation.Info,
+        Connotation.Announcement,
+        Connotation.Success,
+        Connotation.Warning,
+        Connotation.Alert
+      ];
+      it(`should leave connotation class empty if not set`, async function () {
+        possibleConnotations.forEach(connotation => {
+          expect(element.shadowRoot?.querySelector('.banner')?.classList.contains(connotation)).toEqual(false);
+        });
+      });
+
+      it(`should set a connotation class`, async function () {
+        const connotation = possibleConnotations[2];
+        (element.connotation as Connotation)= connotation;
+        await elementUpdated(element);
+        expect(element.shadowRoot?.querySelector('.banner')?.classList.contains(connotation)).toEqual(true);
+      });
+    });
+
 	});
 });
