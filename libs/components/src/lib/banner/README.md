@@ -5,5 +5,5 @@
 ```
 
 ```html preview
-<vwc-banner></vwc-banner>
+<vwc-banner message="Hello Banner!"></vwc-banner>
 ```
