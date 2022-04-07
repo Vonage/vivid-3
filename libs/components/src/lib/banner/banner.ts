@@ -16,14 +16,14 @@ export class Banner extends FoundationElement {
 	override attributeChangedCallback(name: string, oldValue: string, newValue: string) {
 		super.attributeChangedCallback(name, oldValue, newValue);
 		if (name === 'open') {
-			this.$emit('vwc-banner:opening');
+			this.open ? this.$emit('vwc-banner:opening') : this.$emit('vwc-banner:closing');
 		}
 	}
 
 	override connectedCallback() {
 		super.connectedCallback();
 		this.shadowRoot?.querySelector('.banner')?.addEventListener('animationend', () => {
-			this.$emit('vwc-banner:opened');
+			this.open ? this.$emit('vwc-banner:opened') : this.$emit('vwc-banner:closed');
 		});
 	}
 }

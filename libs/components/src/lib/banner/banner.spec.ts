@@ -21,6 +21,7 @@ async function toggleDismissible(element: Banner, dismissible = true) {
 	element.dismissible = dismissible;
 	await elementUpdated(element);
 }
+
 describe('vwc-banner', () => {
 	let element: Banner;
 
@@ -144,8 +145,10 @@ describe('vwc-banner', () => {
 
 		describe('open', function () {
 			it('should init to false', function () {
-				expect(element.open).toEqual(false);
-				expect(element.hasAttribute('open')).toEqual(false);
+				expect(element.open)
+					.toEqual(false);
+				expect(element.hasAttribute('open'))
+					.toEqual(false);
 			});
 
 			it('should toggle open attribute on host', async function () {
@@ -156,21 +159,25 @@ describe('vwc-banner', () => {
 				await elementUpdated(element);
 				const openAttributeExistsWhenFalse = element.hasAttribute('open');
 
-				expect(openAttributeExistsWhenTrue).toEqual(true);
-				expect(openAttributeExistsWhenFalse).toEqual(false);
+				expect(openAttributeExistsWhenTrue)
+					.toEqual(true);
+				expect(openAttributeExistsWhenFalse)
+					.toEqual(false);
 			});
 
 			it('should set open property on attribute change', async function () {
 				element.toggleAttribute('open');
 				await elementUpdated(element);
-				expect(element.open).toEqual(true);
+				expect(element.open)
+					.toEqual(true);
 			});
 
 			it('should fire opening event', async function () {
 				const spy = jest.fn();
 				element.addEventListener('vwc-banner:opening', spy);
 				await openBanner(element);
-				expect(spy).toHaveBeenCalled();
+				expect(spy)
+					.toHaveBeenCalled();
 			});
 
 			it('should fire opened after animation end', async function () {
@@ -189,14 +196,49 @@ describe('vwc-banner', () => {
 
 				dispatchAnimationEndEvent();
 
-				expect(spy).toHaveBeenCalled();
+				expect(spy)
+					.toHaveBeenCalled();
+			});
+
+			it('should fire closing event', async function () {
+				const spy = jest.fn();
+				element.addEventListener('vwc-banner:closing', spy);
+				await openBanner(element);
+				element.open = false;
+				await elementUpdated(element);
+				expect(spy)
+					.toHaveBeenCalled();
+			});
+
+			it('should fire closed after animation end', async function () {
+				/**
+				 *
+				 */
+				function dispatchAnimationEndEvent() {
+					const banner = element.shadowRoot?.querySelector('.banner');
+					const event = new Event('animationend');
+					banner?.dispatchEvent(event);
+				}
+
+				const spy = jest.fn();
+				element.addEventListener('vwc-banner:closed', spy);
+				await openBanner(element);
+				element.open = false;
+				await elementUpdated(element);
+
+				dispatchAnimationEndEvent();
+
+				expect(spy)
+					.toHaveBeenCalled();
 			});
 		});
 
 		describe('dismiss', function () {
 			it('should init to false', function () {
-				expect(element.dismissible).toEqual(false);
-				expect(element.hasAttribute('dismissible')).toEqual(false);
+				expect(element.dismissible)
+					.toEqual(false);
+				expect(element.hasAttribute('dismissible'))
+					.toEqual(false);
 			});
 
 			it('should toggle attribute on host', async function () {
@@ -206,23 +248,28 @@ describe('vwc-banner', () => {
 				await toggleDismissible(element, false);
 				const openAttributeExistsWhenFalse = element.hasAttribute('dismissible');
 
-				expect(openAttributeExistsWhenTrue).toEqual(true);
-				expect(openAttributeExistsWhenFalse).toEqual(false);
+				expect(openAttributeExistsWhenTrue)
+					.toEqual(true);
+				expect(openAttributeExistsWhenFalse)
+					.toEqual(false);
 			});
 
 			it('should set dismissible property on attribute change', async function () {
 				element.toggleAttribute('dismissible');
 				await elementUpdated(element);
-				expect(element.dismissible).toEqual(true);
+				expect(element.dismissible)
+					.toEqual(true);
 			});
 
 			it('should not add dismiss button when dismissible is false', async function () {
-				expect(element.shadowRoot?.querySelector('.dismiss-button')).toEqual(null);
+				expect(element.shadowRoot?.querySelector('.dismiss-button'))
+					.toEqual(null);
 			});
 
 			it('should add a dismiss button', async function () {
 				await toggleDismissible(element, true);
-				expect(element.shadowRoot?.querySelector('.dismiss-button')).toBeInstanceOf(Button);
+				expect(element.shadowRoot?.querySelector('.dismiss-button'))
+					.toBeInstanceOf(Button);
 			});
 
 			it('should close banner on dismiss button click', async function () {
@@ -230,8 +277,10 @@ describe('vwc-banner', () => {
 				const dismissButton = element.shadowRoot?.querySelector('.dismiss-button') as HTMLElement;
 				dismissButton.click();
 				await elementUpdated(element);
-				expect(element.dismissible).toEqual(false);
-				expect(element.shadowRoot?.querySelector('.dismiss-button')).toEqual(null);
+				expect(element.dismissible)
+					.toEqual(false);
+				expect(element.shadowRoot?.querySelector('.dismiss-button'))
+					.toEqual(null);
 			});
 		});
 	});
