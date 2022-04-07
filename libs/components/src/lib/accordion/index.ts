@@ -6,9 +6,9 @@ import { Accordion } from './accordion';
 import { AccordionTemplate as template } from './accordion.template';
 
 export const vividAccordion = Accordion.compose<FoundationElementDefinition>({
-  baseName: 'accordion',
-  template: template as any,
-  styles,
+	baseName: 'accordion',
+	template: template as any,
+	styles,
 });
 
 designSystem.register(vividAccordion());

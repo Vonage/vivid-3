@@ -9,4 +9,6 @@ export * from './breadcrumb-item';
 export * from './breadcrumb';
 export * from './side-drawer';
 export * from './popup';
+export * from './accordion';
+
 
