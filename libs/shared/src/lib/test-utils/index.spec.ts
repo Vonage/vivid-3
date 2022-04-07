@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getControlElement, setAttribute } from '.';
+import { ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture, getControlElement, setAttribute } from '.';
 
 class DummyElement extends HTMLElement {
   connectedCallback() {
@@ -26,6 +26,11 @@ describe(`test-utils`, function () {
   describe(`fixture`, function () {
     it(`should return a dom element under div under body`, function () {
       const element = fixture('<div id="test"></div>');
+      expect(element.id).toEqual('test');
+      expect(element.parentElement?.parentElement?.tagName).toEqual('BODY');
+    });
+    it(`should return a dom element under div under body with add`, function () {
+      const element = fixture('<div id="test"></div>', ADD_TEMPLATE_TO_FIXTURE);
       expect(element.id).toEqual('test');
       expect(element.parentElement?.parentElement?.tagName).toEqual('BODY');
     });
