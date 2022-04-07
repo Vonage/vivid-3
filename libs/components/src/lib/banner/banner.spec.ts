@@ -1,6 +1,7 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
 import {Banner} from './banner';
 import '.';
+import {Button} from '../button/button';
 
 const COMPONENT_TAG = 'vwc-banner';
 
@@ -12,6 +13,14 @@ async function openBanner(element: Banner) {
 	await elementUpdated(element);
 }
 
+/**
+ * @param element
+ * @param dismissible
+ */
+async function toggleDismissible(element: Banner, dismissible = true) {
+	element.dismissible = dismissible;
+	await elementUpdated(element);
+}
 describe('vwc-banner', () => {
 	let element: Banner;
 
@@ -139,7 +148,7 @@ describe('vwc-banner', () => {
 				expect(element.hasAttribute('open')).toEqual(false);
 			});
 
-			it('should toggle attribute on host', async function () {
+			it('should toggle open attribute on host', async function () {
 				await openBanner(element);
 				const openAttributeExistsWhenTrue = element.hasAttribute('open');
 
@@ -181,6 +190,48 @@ describe('vwc-banner', () => {
 				dispatchAnimationEndEvent();
 
 				expect(spy).toHaveBeenCalled();
+			});
+		});
+
+		describe('dismiss', function () {
+			it('should init to false', function () {
+				expect(element.dismissible).toEqual(false);
+				expect(element.hasAttribute('dismissible')).toEqual(false);
+			});
+
+			it('should toggle attribute on host', async function () {
+				await toggleDismissible(element);
+				const openAttributeExistsWhenTrue = element.hasAttribute('dismissible');
+
+				await toggleDismissible(element, false);
+				const openAttributeExistsWhenFalse = element.hasAttribute('dismissible');
+
+				expect(openAttributeExistsWhenTrue).toEqual(true);
+				expect(openAttributeExistsWhenFalse).toEqual(false);
+			});
+
+			it('should set dismissible property on attribute change', async function () {
+				element.toggleAttribute('dismissible');
+				await elementUpdated(element);
+				expect(element.dismissible).toEqual(true);
+			});
+
+			it('should not add dismiss button when dismissible is false', async function () {
+				expect(element.shadowRoot?.querySelector('.dismiss-button')).toEqual(null);
+			});
+
+			it('should add a dismiss button', async function () {
+				await toggleDismissible(element, true);
+				expect(element.shadowRoot?.querySelector('.dismiss-button')).toBeInstanceOf(Button);
+			});
+
+			it('should close banner on dismiss button click', async function () {
+				await toggleDismissible(element, true);
+				const dismissButton = element.shadowRoot?.querySelector('.dismiss-button') as HTMLElement;
+				dismissButton.click();
+				await elementUpdated(element);
+				expect(element.dismissible).toEqual(false);
+				expect(element.shadowRoot?.querySelector('.dismiss-button')).toEqual(null);
 			});
 		});
 	});
