@@ -1,8 +1,10 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
+import type {Icon} from '../icon/icon';
 import {Banner} from './banner';
 import '.';
 import {Button} from '../button/button';
 import {Connotation} from '../enums';
+import {connotationIconMap} from './banner.template';
 
 const COMPONENT_TAG = 'vwc-banner';
 
@@ -285,26 +287,51 @@ describe('vwc-banner', () => {
 			});
 		});
 
-    describe(`connotation`, function () {
-      const possibleConnotations = [Connotation.Info,
-        Connotation.Announcement,
-        Connotation.Success,
-        Connotation.Warning,
-        Connotation.Alert
-      ];
-      it(`should leave connotation class empty if not set`, async function () {
-        possibleConnotations.forEach(connotation => {
-          expect(element.shadowRoot?.querySelector('.banner')?.classList.contains(connotation)).toEqual(false);
-        });
-      });
+		describe('connotation', function () {
+			const possibleConnotations = [Connotation.Info,
+				Connotation.Announcement,
+				Connotation.Success,
+				Connotation.Warning,
+				Connotation.Alert
+			];
+			it('should leave connotation class empty if not set', async function () {
+				possibleConnotations.forEach(connotation => {
+					expect(element.shadowRoot?.querySelector('.banner')?.classList.contains(connotation)).toEqual(false);
+				});
+			});
 
-      it(`should set a connotation class`, async function () {
-        const connotation = possibleConnotations[2];
-        (element.connotation as Connotation)= connotation;
-        await elementUpdated(element);
-        expect(element.shadowRoot?.querySelector('.banner')?.classList.contains(connotation)).toEqual(true);
-      });
-    });
+			it('should set a connotation class', async function () {
+				const connotation = possibleConnotations[2];
+				(element.connotation as Connotation)= connotation;
+				await elementUpdated(element);
+				expect(element.shadowRoot?.querySelector('.banner')?.classList.contains(connotation)).toEqual(true);
+			});
+		});
 
+		describe('icon', function () {
+			let icon: Icon;
+
+			beforeEach(function () {
+				icon = element.shadowRoot?.querySelector('.icon') as Icon;
+			});
+
+			it('should set the icon according to connotation info by default', function () {
+				expect(icon.type).toEqual('info-solid');
+			});
+
+			it('should set the icon according to "icon" attribute', async function () {
+				element.setAttribute('icon', 'home');
+				await elementUpdated(element);
+				expect(icon.type).toEqual('home');
+			});
+
+			it('should set the icon according to set connotation', async function () {
+				for (const [connotation, iconName] of connotationIconMap) {
+					(element.connotation as Connotation) = connotation;
+					await elementUpdated(element);
+					expect(icon.type).toEqual(iconName);
+				}
+			});
+		});
 	});
 });

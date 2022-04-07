@@ -2,7 +2,6 @@ import {FoundationElement} from '@microsoft/fast-foundation';
 import {attr} from '@microsoft/fast-element';
 import type {Connotation} from '../enums';
 
-
 type BannerConnotation =
   Connotation.Info |
   Connotation.Announcement |
@@ -21,6 +20,7 @@ export class Banner extends FoundationElement {
 	@attr() role: string | undefined;
 	@attr() message: string | undefined;
 	@attr() connotation: BannerConnotation | undefined;
+	@attr() icon: string | undefined;
 
 	override attributeChangedCallback(name: string, oldValue: string, newValue: string) {
 		super.attributeChangedCallback(name, oldValue, newValue);
