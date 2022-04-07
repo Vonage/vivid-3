@@ -34,6 +34,7 @@
 	color: var(#{appearance.$appearance-color-text});
 	outline: 0 none;
 	vertical-align: middle;
+  cursor: pointer;
 
 	&.icon-only {
 		padding-inline: 0;

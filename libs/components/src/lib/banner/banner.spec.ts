@@ -234,6 +234,11 @@ describe('vwc-banner', () => {
 				expect(spy)
 					.toHaveBeenCalled();
 			});
+
+			it('should add the open class on the banner', async function () {
+				await openBanner(element);
+				expect(element.shadowRoot?.querySelector('.banner')?.classList.contains('open')).toEqual(true);
+			});
 		});
 
 		describe('dismissible', function () {
@@ -277,13 +282,12 @@ describe('vwc-banner', () => {
 
 			it('should close banner on dismiss button click', async function () {
 				await toggleDismissible(element, true);
+				await openBanner(element);
 				const dismissButton = element.shadowRoot?.querySelector('.dismiss-button') as HTMLElement;
 				dismissButton.click();
 				await elementUpdated(element);
-				expect(element.dismissible)
+				expect(element.open)
 					.toEqual(false);
-				expect(element.shadowRoot?.querySelector('.dismiss-button'))
-					.toEqual(null);
 			});
 		});
 

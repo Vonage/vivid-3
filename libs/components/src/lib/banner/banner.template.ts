@@ -19,7 +19,9 @@ export const connotationIconMap = new Map([
 
 const getClasses = (_: Banner) => classNames(
 	'control',
-	[`${_.connotation}`, !!_.connotation]);
+	[`${_.connotation}`, !!_.connotation],
+	['open', _.open]
+);
 
 /**
  *
@@ -29,7 +31,7 @@ function renderDismissButton() {
     <vwc-button
       class="dismiss-button"
       icon="close-line"
-      @click="${x => x.dismissible = false}">
+      @click="${x => x.open = false}">
     </vwc-button>`;
 }
 

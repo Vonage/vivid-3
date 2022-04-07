@@ -1,0 +1,68 @@
+@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+	$connotations-set: success info alert announcement warning,
+	$default: info,
+);
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+	$subset: filled ghost,
+	$default: filled,
+);
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+
+$banner-transition-delay: --transition-delay;
+
+:host {
+  > .banner {
+    @include connotation.connotation;
+    @include appearance.appearance;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height var(#{$banner-transition-delay}, 200ms);
+    background-color: var(#{appearance.$appearance-color-fill});
+    color: var(#{appearance.$appearance-color-text});
+
+    > .header {
+      @include typography.typography-cat-shorthand('body-2-bold');
+      display: flex;
+      min-height: 60px;
+      align-items: center;
+      justify-content: flex-start;
+
+      > .user-content {
+        display: flex;
+        flex: 1 0;
+        align-items: center;
+        justify-content: center;
+        padding-inline: 16px;
+
+        > .icon {
+          --icon-size: 20px;
+          flex: 0 0 auto;
+          padding-inline-end: 15px;
+        }
+
+        > .action-items {
+          display: inline-block;
+          flex: 0 0 auto;
+          padding-inline-start: 15px;
+        }
+
+        > .message {
+          padding: 20px 0;
+        }
+      }
+
+      > .dismiss-button {
+        --vvd-icon-button-color: inherit;
+        flex: 0 0 auto;
+        padding-inline-end: 8px;
+      }
+    }
+  }
+}
+
+.banner.open {
+  max-height: 10rem;
+}
