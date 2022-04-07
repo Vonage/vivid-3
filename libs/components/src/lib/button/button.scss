@@ -16,126 +16,126 @@
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
 :host {
-	outline: 0 none;
+  outline: 0 none;
 }
 
 .control {
-	@include connotation.connotation;
-	@include appearance.appearance;
+  @include connotation.connotation;
+  @include appearance.appearance;
 
-	position: relative;
-	display: inline-flex;
-	box-sizing: border-box;
-	align-items: center;
-	border: 0 none;
-	background-color: var(#{appearance.$appearance-color-fill});
-	block-size: var(#{variables.$block-size});
-	box-shadow: inset 0 0 0 1px var(#{appearance.$appearance-color-outline});
-	color: var(#{appearance.$appearance-color-text});
+  position: relative;
+  display: inline-flex;
+  box-sizing: border-box;
+  align-items: center;
+  border: 0 none;
+  background-color: var(#{appearance.$appearance-color-fill});
+  block-size: var(#{variables.$block-size});
+  box-shadow: inset 0 0 0 1px var(#{appearance.$appearance-color-outline});
+  color: var(#{appearance.$appearance-color-text});
   cursor: pointer;
   outline: 0 none;
   vertical-align: middle;
 
-	&.icon-only {
-		padding-inline: 0;
-		place-content: center;
-		@supports (aspect-ratio: 1) {
-			aspect-ratio: 1;
-		}
-		@supports not (aspect-ratio: 1) {
-			inline-size: var(#{variables.$block-size});
-		}
-	}
+  &.icon-only {
+    padding-inline: 0;
+    place-content: center;
+    @supports (aspect-ratio: 1) {
+      aspect-ratio: 1;
+    }
+    @supports not (aspect-ratio: 1) {
+      inline-size: var(#{variables.$block-size});
+    }
+  }
 
 }
 
 /* Size */
 
 .control.size-base-small {
-	#{variables.$block-size}: 32px;
-	@include typography.typography-cat-shorthand('caption-bold');
+  #{variables.$block-size}: 32px;
+  @include typography.typography-cat-shorthand('caption-bold');
 
-	&:not(.icon-only) {
-		#{variables.$icon-gap}: 8px;
+  &:not(.icon-only) {
+    #{variables.$icon-gap}: 8px;
 
-		padding-inline: 12px;
-	}
+    padding-inline: 12px;
+  }
 
-	.icon {
-		font-size: 16px;
-	}
+  .icon {
+    font-size: 16px;
+  }
 }
 
 .control.size-base-large {
-	#{variables.$block-size}: 48px;
-	@include typography.typography-cat-shorthand('body-1-bold');
+  #{variables.$block-size}: 48px;
+  @include typography.typography-cat-shorthand('body-1-bold');
 
-	&:not(.icon-only) {
-		#{variables.$icon-gap}: 10px;
+  &:not(.icon-only) {
+    #{variables.$icon-gap}: 10px;
 
-		padding-inline: 20px;
-	}
+    padding-inline: 20px;
+  }
 
-	.icon {
-		font-size: 24px;
-	}
+  .icon {
+    font-size: 24px;
+  }
 }
 
 .control:not(.size-base-small):not(.size-base-large) {
-	#{variables.$block-size}: 40px;
-	@include typography.typography-cat-shorthand('button');
+  #{variables.$block-size}: 40px;
+  @include typography.typography-cat-shorthand('button');
 
-	&:not(.icon-only) {
-		#{variables.$icon-gap}: 8px;
+  &:not(.icon-only) {
+    #{variables.$icon-gap}: 8px;
 
-		padding-inline: 16px;
-	}
+    padding-inline: 16px;
+  }
 
-	.icon {
-		font-size: 20px;
-	}
+  .icon {
+    font-size: 20px;
+  }
 }
 
 /* Shape */
 
 // stylelint-disable-next-line no-descending-specificity
 .control:not(.shape-pill) {
-	border-radius: 6px;
+  border-radius: 6px;
 }
 
 .control.shape-pill {
-	&:not(.icon-only) {
-		border-radius: 24px;
-	}
+  &:not(.icon-only) {
+    border-radius: 24px;
+  }
 
-	&.icon-only {
-		border-radius: 50%;
-	}
+  &.icon-only {
+    border-radius: 50%;
+  }
 }
 
 /* Icon */
 
 // stylelint-disable-next-line no-descending-specificity
 .icon {
-	// stylelint-disable-next-line no-descending-specificity
-	:not(.icon-trailing) & {
-		margin-inline-end: var(#{variables.$icon-gap});
-	}
+  // stylelint-disable-next-line no-descending-specificity
+  :not(.icon-trailing) & {
+    margin-inline-end: var(#{variables.$icon-gap});
+  }
 
-	// stylelint-disable-next-line no-descending-specificity
-	.icon-trailing & {
-		order: 1;
-		margin-inline-start: var(#{variables.$icon-gap});
-	}
+  // stylelint-disable-next-line no-descending-specificity
+  .icon-trailing & {
+    order: 1;
+    margin-inline-start: var(#{variables.$icon-gap});
+  }
 }
 
 .focus-indicator {
-	:not(:focus) & {
-		display: none;
-	}
+  :not(:focus) & {
+    display: none;
+  }
 
-	.appearance-outlined &,
-	.appearance-ghost & {
-		#{focus-variables.$focus-stroke-gap-color}: transparent;
-	}
+  .appearance-outlined &,
+  .appearance-ghost & {
+    #{focus-variables.$focus-stroke-gap-color}: transparent;
+  }
 }
