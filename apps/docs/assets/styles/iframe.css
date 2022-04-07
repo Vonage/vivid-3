@@ -13,3 +13,7 @@ body {
   background-color: var(--vvd-color-canvas);
   margin: 20px;
 }
+
+vwc-side-drawer { 
+  margin: -20px; 
+}
