@@ -31,7 +31,8 @@ export class Banner extends FoundationElement {
 
 	override connectedCallback() {
 		super.connectedCallback();
-		this.shadowRoot?.querySelector('.banner')?.addEventListener('animationend', () => {
+		const banner = this.shadowRoot && this.shadowRoot.querySelector('.banner');
+		banner && banner.addEventListener('animationend', () => {
 			this.open ? this.$emit('vwc-banner:opened') : this.$emit('vwc-banner:closed');
 		});
 	}
