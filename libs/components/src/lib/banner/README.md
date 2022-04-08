@@ -44,11 +44,10 @@ The `message` attribute adds a message to the banner.
 
 ### Connotation
 
-The `connotation` attribute sets the colors according to the wanted connotation. Possible connotations are:
+The `connotation` attribute sets the colors according to the wanted connotation.
 
-`info | announcement | success | warning | alert;`.
-
-Default connotation is `info`.
+- Type: `'info'` | `'announcement'` | `'success'` | `'warning'` | `'alert'`
+- Default: `'info'`
 
 Note that the icon, if not specifically set, will change according to connotation.
 
