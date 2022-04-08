@@ -18,7 +18,7 @@ export class Banner extends FoundationElement {
 	@attr({mode: 'boolean'}) open = false;
 	@attr({attribute: 'aria-live'}) override ariaLive: any;
 	@attr() role: string | undefined;
-	@attr() message: string | undefined;
+	@attr() text: string | undefined;
 	@attr() connotation: BannerConnotation | undefined;
 	@attr() icon: string | undefined;
 

@@ -43,7 +43,7 @@ $banner-transition-delay: --transition-delay;
 					--icon-size: 20px;
 
 					flex: 0 0 auto;
-					inline-inline-end: 15px;
+					padding-inline-end: 15px;
 				}
 
 				> .action-items {
@@ -61,7 +61,7 @@ $banner-transition-delay: --transition-delay;
 				--vvd-icon-button-color: inherit;
 
 				flex: 0 0 auto;
-				margin-inline-end: 8px;
+				padding-inline-end: 8px;
 			}
 		}
 	}

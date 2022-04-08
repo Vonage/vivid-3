@@ -67,7 +67,7 @@ export const BannerTemplate: (
 						<div class="banner--message"
                  role="${x => x.role ? x.role : 'status'}"
                  aria-live="${x => x.ariaLive ? x.ariaLive : 'polite'}">
-              ${x => x.message}
+              ${x => x.text}
             </div>
 					</span>
             ${when(x => x.dismissible, renderDismissButton())}

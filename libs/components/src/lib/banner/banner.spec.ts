@@ -50,54 +50,54 @@ describe('vwc-banner', () => {
 
 	});
 
-	describe('message', function () {
+	describe('text', function () {
 		/**
-		 * @param messageText
+		 * @param text
 		 */
-		async function setMessageProperty(messageText: string | undefined) {
-			element.message = messageText;
+		async function setTextProperty(text: string | undefined) {
+			element.text = text;
 			await elementUpdated(element);
 		}
 
 		/**
-		 * @param messageText
+		 * @param text
 		 */
-		async function setMessageAttribute(messageText: string | undefined) {
-			element.setAttribute('message', messageText ? messageText : '');
+		async function setTextAttribute(text: string | undefined) {
+			element.setAttribute('text', text ? text : '');
 			await elementUpdated(element);
 		}
 
 		/**
 		 *
 		 */
-		function getMessageText() {
-			const initMessageAttrEmpty = element.shadowRoot?.querySelector('.banner--message')?.textContent;
-			return initMessageAttrEmpty?.trim();
+		function getText() {
+			const text = element.shadowRoot?.querySelector('.banner--message')?.textContent;
+			return text?.trim();
 		}
 
 		it('should init with undefined and set as empty string in DOM', function () {
-			const initMessagePropEmpty = element.message;
-			const initMessageAttrEmpty = getMessageText();
+			const initTextPropEmpty = element.text;
+			const initTextAttrEmpty = getText();
 
-			expect(initMessagePropEmpty)
+			expect(initTextPropEmpty)
 				.toEqual(undefined);
-			expect(initMessageAttrEmpty)
+			expect(initTextAttrEmpty)
 				.toEqual('');
 		});
 
 		it('should reflect the message', async function () {
-			const messageText = 'Some Message';
+			const messageText = 'Some Text';
 
-			await setMessageProperty(messageText);
-			const DOMMessageWithProperty = getMessageText();
+			await setTextProperty(messageText);
+			const DOMTextWithProperty = getText();
 
-			await setMessageProperty(undefined);
-			await setMessageAttribute(messageText);
-			const propertyMessageWithAttribute = element.message;
+			await setTextProperty(undefined);
+			await setTextAttribute(messageText);
+			const propertyTextWithAttribute = element.text;
 
-			expect(DOMMessageWithProperty)
+			expect(DOMTextWithProperty)
 				.toEqual(messageText);
-			expect(propertyMessageWithAttribute)
+			expect(propertyTextWithAttribute)
 				.toEqual(messageText);
 		});
 	});
