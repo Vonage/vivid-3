@@ -89,6 +89,7 @@
     "title": "banner",
     "markdown": "./libs/components/src/lib/banner/README.md",
     "modules": [
+      "/assets/modules/components/button/index.js",
       "/assets/modules/components/banner/index.js"
     ]
   }

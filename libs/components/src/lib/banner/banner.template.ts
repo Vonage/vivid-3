@@ -19,7 +19,7 @@ export const connotationIconMap = new Map([
 
 const getClasses = (_: Banner) => classNames(
 	'control',
-	[`${_.connotation}`, !!_.connotation],
+	[`connotation-${_.connotation}`, !!_.connotation],
 	['open', _.open]
 );
 
