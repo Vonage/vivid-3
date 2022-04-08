@@ -31,10 +31,10 @@ Banners are meant to be used on top of pages, outside the main content.
 The `open` attribute sets the banner to open or close. It will open using animation.
 
 ```html preview
+<vwc-button appearance="filled" connotation="cta" label="Toggle open state" onclick="document.getElementById('toggled-banner').toggleAttribute('open')"></vwc-button>
 <vwc-banner id="toggled-banner"
             text="Here's some information that you may find important!" 
             open></vwc-banner>
-<vwc-button appearance="filled" connotation="cta" label="Toggle open state" onclick="document.getElementById('toggled-banner').toggleAttribute('open')"></vwc-button>
 ```
 
 ### Text
