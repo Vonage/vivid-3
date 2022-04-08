@@ -25,6 +25,14 @@ async function toggleDismissible(element: Banner, dismissible = true) {
 	await elementUpdated(element);
 }
 
+/**
+ * @param element
+ */
+async function closeBanner(element: Banner) {
+	element.open = false;
+	await elementUpdated(element);
+}
+
 describe('vwc-banner', () => {
 	let element: Banner;
 
@@ -147,6 +155,15 @@ describe('vwc-banner', () => {
 		});
 
 		describe('open', function () {
+			/**
+			 *
+			 */
+			function dispatchAnimationEndEvent() {
+				const banner = element.shadowRoot?.querySelector('.banner');
+				const event = new Event('animationend');
+				banner?.dispatchEvent(event);
+			}
+
 			it('should init to false', function () {
 				expect(element.open)
 					.toEqual(false);
@@ -158,8 +175,7 @@ describe('vwc-banner', () => {
 				await openBanner(element);
 				const openAttributeExistsWhenTrue = element.hasAttribute('open');
 
-				element.open = false;
-				await elementUpdated(element);
+				await closeBanner(element);
 				const openAttributeExistsWhenFalse = element.hasAttribute('open');
 
 				expect(openAttributeExistsWhenTrue)
@@ -207,37 +223,43 @@ describe('vwc-banner', () => {
 				const spy = jest.fn();
 				element.addEventListener('vwc-banner:closing', spy);
 				await openBanner(element);
-				element.open = false;
-				await elementUpdated(element);
+				await closeBanner(element);
 				expect(spy)
 					.toHaveBeenCalled();
 			});
 
 			it('should fire closed after animation end', async function () {
-				/**
-				 *
-				 */
-				function dispatchAnimationEndEvent() {
-					const banner = element.shadowRoot?.querySelector('.banner');
-					const event = new Event('animationend');
-					banner?.dispatchEvent(event);
-				}
 
 				const spy = jest.fn();
 				element.addEventListener('vwc-banner:closed', spy);
 				await openBanner(element);
-				element.open = false;
-				await elementUpdated(element);
+				await closeBanner(element);
 
 				dispatchAnimationEndEvent();
 
 				expect(spy)
 					.toHaveBeenCalled();
+				expect(spy.mock.calls.length).toEqual(1);
 			});
 
 			it('should add the open class on the banner', async function () {
 				await openBanner(element);
 				expect(element.shadowRoot?.querySelector('.banner')?.classList.contains('open')).toEqual(true);
+			});
+
+			it('should disable closed and opened events after disconnected callback', async function () {
+
+				const spy = jest.fn();
+				element.addEventListener('vwc-banner:closed', spy);
+				element.addEventListener('vwc-banner:opened', spy);
+				element.disconnectedCallback();
+				await openBanner(element);
+				await closeBanner(element);
+
+				dispatchAnimationEndEvent();
+
+				expect(spy.mock.calls.length)
+					.toEqual(0);
 			});
 		});
 
