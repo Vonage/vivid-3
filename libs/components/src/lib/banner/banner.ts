@@ -32,8 +32,23 @@ export class Banner extends FoundationElement {
 	override connectedCallback() {
 		super.connectedCallback();
 		const banner = this.shadowRoot && this.shadowRoot.querySelector('.banner');
-		banner && banner.addEventListener('animationend', () => {
-			this.open ? this.$emit('vwc-banner:opened') : this.$emit('vwc-banner:closed');
-		});
+		banner && banner.addEventListener('animationend', this.#emitOnAnimationEnd);
+		this.addEventListener('keydown', this.#closeOnKeyDown);
+	}
+
+	#emitOnAnimationEnd = () => {
+		this.open ? this.$emit('vwc-banner:opened') : this.$emit('vwc-banner:closed');
+	};
+
+	#closeOnKeyDown = (e: KeyboardEvent) => {
+		if (e.key !== 'Escape' || !this.dismissible) {
+			return;
+		}
+		this.open = false;
+	};
+
+	override disconnectedCallback() {
+		super.disconnectedCallback();
+		this.removeEventListener('keydown', this.#closeOnKeyDown);
 	}
 }

@@ -100,3 +100,12 @@ For accessibility, 3 features are set:
             open 
             message="Here's some information that you may find important!"></vwc-banner>
 ```
+
+### Events
+
+| Event name           | Description                                                     |
+|----------------------|-----------------------------------------------------------------|
+| `vwc-banner:opening` | Fires whenever the the banner has started its opening animation |
+| `vwc-banner:closing` | Fires whenever the the banner has started its closing animation |
+| `vwc-banner:opened`  | Fires when the opening animation is done                        |
+| `vwc-banner:closed`  | Fires when the closing animation is done                        |

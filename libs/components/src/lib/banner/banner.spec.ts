@@ -48,7 +48,6 @@ describe('vwc-banner', () => {
 				.toBeInstanceOf(Banner);
 		});
 
-
 	});
 
 	describe('message', function () {
@@ -242,12 +241,16 @@ describe('vwc-banner', () => {
 
 			expect(spy)
 				.toHaveBeenCalled();
-			expect(spy.mock.calls.length).toEqual(1);
+			expect(spy.mock.calls.length)
+				.toEqual(1);
 		});
 
 		it('should add the open class on the banner', async function () {
 			await openBanner(element);
-			expect(element.shadowRoot?.querySelector('.banner')?.classList.contains('open')).toEqual(true);
+			expect(element.shadowRoot?.querySelector('.banner')
+				?.classList
+				.contains('open'))
+				.toEqual(true);
 		});
 
 		it('should disable closed and opened events after disconnected callback', async function () {
@@ -256,9 +259,10 @@ describe('vwc-banner', () => {
 			element.addEventListener('vwc-banner:closed', spy);
 			element.addEventListener('vwc-banner:opened', spy);
 			element.disconnectedCallback();
-			await openBanner(element);
-			await closeBanner(element);
 
+			await openBanner(element);
+			dispatchAnimationEndEvent();
+			await closeBanner(element);
 			dispatchAnimationEndEvent();
 
 			expect(spy.mock.calls.length)
@@ -326,15 +330,21 @@ describe('vwc-banner', () => {
 
 		it('should leave connotation class empty if not set', async function () {
 			possibleConnotations.forEach(connotation => {
-				expect(element.shadowRoot?.querySelector('.banner')?.classList.contains(connotation)).toEqual(false);
+				expect(element.shadowRoot?.querySelector('.banner')
+					?.classList
+					.contains(connotation))
+					.toEqual(false);
 			});
 		});
 
 		it('should set a connotation class', async function () {
 			const connotation = possibleConnotations[2];
-			(element.connotation as Connotation)= connotation;
+			(element.connotation as Connotation) = connotation;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.banner')?.classList.contains(`connotation-${connotation}`)).toEqual(true);
+			expect(element.shadowRoot?.querySelector('.banner')
+				?.classList
+				.contains(`connotation-${connotation}`))
+				.toEqual(true);
 		});
 	});
 
@@ -346,23 +356,59 @@ describe('vwc-banner', () => {
 		});
 
 		it('should set the icon according to connotation info by default', function () {
-			expect(icon.type).toEqual('info-solid');
+			expect(icon.type)
+				.toEqual('info-solid');
 		});
 
 		it('should set the icon according to "icon" attribute', async function () {
 			element.setAttribute('icon', 'home');
 			await elementUpdated(element);
-			expect(icon.type).toEqual('home');
+			expect(icon.type)
+				.toEqual('home');
 		});
 
 		it('should set the icon according to set connotation', async function () {
 			for (const [connotation, iconName] of connotationIconMap) {
 				(element.connotation as Connotation) = connotation;
 				await elementUpdated(element);
-				expect(icon.type).toEqual(iconName);
+				expect(icon.type)
+					.toEqual(iconName);
 			}
 		});
 	});
 
-	//TODO::handle key down
+	describe('close on escape key', function () {
+		it('should close the button on escape key', async function () {
+			await openBanner(element);
+			element.dismissible = true;
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+			expect(element.open).toEqual(false);
+		});
+
+		it('should close the button only on escape key', async function () {
+			await openBanner(element);
+			element.dismissible = true;
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+			expect(element.open).toEqual(true);
+		});
+
+		it('should remove keydown listener after disconnection', async function () {
+			await openBanner(element);
+			element.dismissible = true;
+			element.focus();
+			element.disconnectedCallback();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+			expect(element.open).toEqual(true);
+		});
+
+		it('should close the button only if "dismissible" is true', async function () {
+			await openBanner(element);
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+			expect(element.open).toEqual(true);
+		});
+	});
+
 });
