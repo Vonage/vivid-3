@@ -40,8 +40,7 @@ $banner-transition-delay: --transition-delay;
 				padding-inline: 16px;
 
 				> .icon {
-					--icon-size: 20px;
-
+					font-size: 20px;
 					flex: 0 0 auto;
 					padding-inline-end: 15px;
 				}

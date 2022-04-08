@@ -29,9 +29,10 @@ const getClasses = (_: Banner) => classNames(
 function renderDismissButton() {
 	return html<Banner>`
     <vwc-button
-      class="dismiss-button"
-      icon="close-line"
-      @click="${x => x.open = false}">
+				    size="base-small"
+			      class="dismiss-button"
+			      icon="close-line"
+			      @click="${x => x.open = false}">
     </vwc-button>`;
 }
 
