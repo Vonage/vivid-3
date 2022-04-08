@@ -79,7 +79,7 @@ export const buttonTemplate: (
         ${ref('control')}
     >
         ${() => focusTemplate(context)}
-        ${() => affixIconTemplate(context)}
+        ${x => affixIconTemplate(context, x.icon)}
         ${(x) => x.label}
     </button>
 `;

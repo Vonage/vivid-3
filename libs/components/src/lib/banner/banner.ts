@@ -1,6 +1,8 @@
-import {FoundationElement} from '@microsoft/fast-foundation';
-import {attr} from '@microsoft/fast-element';
-import type {Connotation} from '../enums';
+import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
+import { attr } from '@microsoft/fast-element';
+import { Connotation } from '../enums';
+import { AffixIcon } from '../../shared/patterns/affix';
+
 
 type BannerConnotation =
   Connotation.Info |
@@ -8,6 +10,19 @@ type BannerConnotation =
   Connotation.Success |
   Connotation.Warning |
   Connotation.Alert;
+
+const connotationIconMap = new Map([
+	[Connotation.Info, 'info-solid'],
+	[Connotation.Announcement, 'megaphone-solid'],
+	[Connotation.Success, 'check-circle-solid'],
+	[Connotation.Warning, 'warning-solid'],
+	[Connotation.Alert, 'error-solid']
+]);
+
+const defaultConnotation =
+  (connotation: Connotation | undefined = Connotation.Info) => connotationIconMap.get(connotation) as Connotation;
+
+
 /**
  * Base class for banner
  *
@@ -21,6 +36,10 @@ export class Banner extends FoundationElement {
 	@attr() text: string | undefined;
 	@attr() connotation: BannerConnotation | undefined;
 	@attr() icon: string | undefined;
+
+	get conditionedIcon() {
+		return this.icon ?? defaultConnotation(this.connotation);
+	}
 
 	override attributeChangedCallback(name: string, oldValue: string, newValue: string) {
 		super.attributeChangedCallback(name, oldValue, newValue);
@@ -52,3 +71,6 @@ export class Banner extends FoundationElement {
 		this.removeEventListener('keydown', this.#closeOnKeyDown);
 	}
 }
+
+applyMixins(Banner, AffixIcon);
+export interface Banner extends AffixIcon {}

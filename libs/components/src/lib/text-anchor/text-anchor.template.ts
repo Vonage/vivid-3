@@ -57,7 +57,7 @@ export const textAnchorTemplate: (
         aria-roledescription="${x => x.ariaRoledescription}"
         ${ref('control')}
     >
-      ${() => affixIconTemplate(context)}
+      ${x => affixIconTemplate(context, x.icon)}
       ${x => x.text}
     </a>
 `;

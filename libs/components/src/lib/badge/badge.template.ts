@@ -27,6 +27,6 @@ export const badgeTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Badge> = (context: ElementDefinitionContext) => html`
     <span class="${getClasses}">
-      ${() => affixIconTemplate(context)}
+      ${x => affixIconTemplate(context, x.icon)}
       ${(x) => x.text}
 		</span>`;

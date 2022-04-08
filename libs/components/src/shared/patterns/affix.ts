@@ -44,12 +44,14 @@ export class AffixIconWithTrailing extends AffixIcon {
 	* For use with {@link AffixIcon}
 	*
 	* @param context
+	* @param icon
 	* @public
 	*/
-export const affixIconTemplate: (context: ElementDefinitionContext) => ViewTemplate<AffixIcon> = (context: ElementDefinitionContext) => {
+export const affixIconTemplate: (context: ElementDefinitionContext, icon?: string) =>
+ViewTemplate<AffixIcon> = (context: ElementDefinitionContext, icon?: string) => {
 	const iconTag = context.tagFor(Icon);
 
-	const iconTemplate = html`<span class="icon"><${iconTag} :type="${(x) => x.icon}"></${iconTag}></span>`;
+	const iconTemplate = html`<span class="icon"><${iconTag} :type="${() => icon}"></${iconTag}></span>`;
 
-	return html`${(x) => (x.icon ? iconTemplate : '')}`;
+	return html`${() => (icon ? iconTemplate : '')}`;
 };
