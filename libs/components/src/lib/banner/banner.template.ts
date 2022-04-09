@@ -6,7 +6,7 @@ import type {
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import '../button';
-import { affixIconTemplate } from '../../shared/patterns/affix';
+import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { Banner } from './banner';
 
 
@@ -38,11 +38,14 @@ function renderDismissButton() {
 export const BannerTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Banner> = (context: ElementDefinitionContext) => html<Banner>`
+) => ViewTemplate<Banner> = (context: ElementDefinitionContext) => {
+	const affixIconTemplate = affixIconTemplateFactory(context);
+
+	return html<Banner>`
       <div class="banner ${getClasses}" tabindex="0">
 				<header class="header">
 					<span class="user-content">
-            ${x => affixIconTemplate(context, x.conditionedIcon)}
+            ${x => affixIconTemplate(x.conditionedIcon)}
 						<div class="banner--message"
                  role="${x => x.role ? x.role : 'status'}"
                  aria-live="${x => x.ariaLive ? x.ariaLive : 'polite'}">
@@ -53,3 +56,4 @@ export const BannerTemplate: (
         </header>
       </div>
 `;
+};

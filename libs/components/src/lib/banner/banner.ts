@@ -35,7 +35,6 @@ export class Banner extends FoundationElement {
 	@attr() role: string | undefined;
 	@attr() text: string | undefined;
 	@attr() connotation: BannerConnotation | undefined;
-	@attr() icon: string | undefined;
 
 	get conditionedIcon() {
 		return this.icon ?? defaultConnotation(this.connotation);

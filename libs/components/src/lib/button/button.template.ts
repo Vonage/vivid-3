@@ -3,7 +3,7 @@ import { html, ref } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Focus } from '../focus/focus';
-import { affixIconTemplate } from '../../shared/patterns/affix';
+import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { Button, ButtonAppearance } from './button';
 
 
@@ -41,7 +41,10 @@ const focusTemplate = (context: ElementDefinitionContext) => {
 export const buttonTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Button> = (context: ElementDefinitionContext) => html`
+) => ViewTemplate<Button> = (context: ElementDefinitionContext) => {
+	const affixIconTemplate = affixIconTemplateFactory(context);
+
+	return html`
     <button
         class="${getClasses}"
         ?autofocus="${(x) => x.autofocus}"
@@ -79,7 +82,8 @@ export const buttonTemplate: (
         ${ref('control')}
     >
         ${() => focusTemplate(context)}
-        ${x => affixIconTemplate(context, x.icon)}
+        ${x => affixIconTemplate(x.icon)}
         ${(x) => x.label}
     </button>
 `;
+};

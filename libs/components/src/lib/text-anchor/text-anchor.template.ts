@@ -5,7 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { affixIconTemplate } from '../../shared/patterns/affix';
+import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { TextAnchor } from './text-anchor';
 
 const getClasses = ({text, icon}: TextAnchor) => classNames(
@@ -25,7 +25,10 @@ export const textAnchorTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<TextAnchor> = (
 	context: ElementDefinitionContext,
-) => html`<a
+) => {
+	const affixIconTemplate = affixIconTemplateFactory(context);
+
+	return html`<a
         class="${getClasses}"
         download="${x => x.download}"
         href="${x => x.href}"
@@ -57,7 +60,7 @@ export const textAnchorTemplate: (
         aria-roledescription="${x => x.ariaRoledescription}"
         ${ref('control')}
     >
-      ${x => affixIconTemplate(context, x.icon)}
+      ${x => affixIconTemplate(x.icon)}
       ${x => x.text}
     </a>
-`;
+`;};
