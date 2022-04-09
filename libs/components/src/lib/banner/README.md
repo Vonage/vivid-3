@@ -10,15 +10,7 @@ Banners are meant to be used on top of pages, outside the main content.
 ## Demo Usage
 
 ```html preview
-<div style="margin: auto;
-    width: 40rem;
-    height: 25rem;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 3px 2px rgb(0 0 0 / 10%);
-    border: solid 1px #ccc;">
 <vwc-banner text="Here's some information that you may find important!" dismissible open></vwc-banner>
-</div>
 ```
 
 ## API
@@ -40,7 +32,7 @@ The `open` attribute sets the banner to open or close. It will open using animat
 ### Text
 
 - Type: `string`
-- Default: `'''`
+- Default: `''`
 
 The `text` attribute adds a message to the banner.
 
