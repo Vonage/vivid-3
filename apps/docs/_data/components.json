@@ -97,7 +97,8 @@
     "title": "expansion-panel",
     "markdown": "./libs/components/src/lib/expansion-panel/README.md",
     "modules": [
-      "/assets/modules/components/expansion-panel/index.js"
+      "/assets/modules/components/expansion-panel/index.js",
+      "/assets/modules/components/text/index.js"
     ]
   }
 ]

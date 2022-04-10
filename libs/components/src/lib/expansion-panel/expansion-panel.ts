@@ -1,5 +1,5 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { attr, html } from '@microsoft/fast-element';
+import { attr } from '@microsoft/fast-element';
 
 export enum ICON_SETS { Chevron = 'chevron', Binary = 'binary' }
 
@@ -9,7 +9,6 @@ export enum ICON_SETS { Chevron = 'chevron', Binary = 'binary' }
  * @public
  */
 export class ExpansionPanel extends FoundationElement {
-	safeHtml = html;
 	/**
 	 *
 	 * @public
@@ -60,7 +59,7 @@ export class ExpansionPanel extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr({ mode: 'fromView', attribute: 'heading-level' }) headingLevel = '3';
+	@attr({ mode: 'fromView' }) size = 'base';
 
 	/**
 	 * indicates whether the expansion-panel is open

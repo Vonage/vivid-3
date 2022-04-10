@@ -4,70 +4,30 @@ import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
-import { classNames } from '@microsoft/fast-web-utilities';
-import type { ExpansionPanel } from './expansion-panel';
+import { ExpansionPanel, ICON_SETS } from './expansion-panel';
 
-const getClasses = ({
-	open, heading, icon, meta, indicatorIconSet, dense, leadingToggle, headingLevel
-}: ExpansionPanel) => classNames(
-	'control',
-	['open', Boolean(open)],
-	['heading', Boolean(heading)],
-	['meta', Boolean(meta)],
-	['indicatorIconSet', Boolean(indicatorIconSet)],
-	['dense', Boolean(dense)],
-	['leadingToggle', Boolean(leadingToggle)],
-	['headingLevel', Boolean(headingLevel)],
-	['icon', Boolean(icon)]
-);
 export const ExpansionPanelTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<ExpansionPanel> = () => html`
-		${(x) => renderHeaderButton(x.heading, x.icon, x.leadingToggle, x.meta)}
-		<div class="${getClasses}" id="content" class="expansion-panel-body">
+		${renderHeaderButton()}
+		<div id="content" class="expansion-panel-body">
 			<slot></slot>
 		</div>`;
 
-const renderHeaderButton = (heading: string, icon: string, leadingToggle: boolean, meta: string) => {
-	return html`
-		<button class="expansion-panel-button" id="expansion-panel" ?aria-expanded=${open} aria-controls="content">
-			<span class="leading-icon">
-				<slot name="icon">
-					${renderIconOrToggle(icon, leadingToggle)}
-				</slot>
-			</span>
-			<span class="heading-text">${heading}</span>
-			${meta ? renderMeta() : ''}
-			<span class="trailing-icon">
-				<slot name="trailingIcon">
-					${!leadingToggle ? renderToggle() : ''}
-				</slot>
-			</span>
-		</button>
-	`;
+const renderHeaderButton = () => {
+	return html`<vwc-button class="expansion-panel-button" appearance='ghost' label='${(x) => x.heading}' size='${(x) => x.size}'
+	icon=${(x) => setIcon(x.open, x.indicatorIconSet)}
+	@click=${(x) => x.toggleOpen()}
+	?icon-trailing=${(x) => !x.leadingToggle}
+	?aria-expanded=${(x) => x.open}
+	aria-controls="content">
+</vwc-button>`;
 };
 
-const renderMeta = () => {
-	return html`<span class="meta">${(x) => x.meta}</span>`;
-};
-
-const renderIconOrToggle = (icon: string, leadingToggle: boolean) => {
-	if (leadingToggle) {
-		return renderToggle();
-	} else if (icon) {
-		return html`
-			<vwc-icon type="${(x) => x.icon}" size="medium"></vwc-icon>`;
-	} else {
-		return '';
+const setIcon = (open: boolean, indicatorIconSet: ICON_SETS) => {
+	if (open) {
+		return indicatorIconSet === ICON_SETS.Chevron ? 'chevron-up-solid' : 'minus-solid';
 	}
-};
-
-const renderToggle = () => {
-	return html`
-		<vwc-icon class="toggle-open" type="${(x) => (x.indicatorIconSet === 'chevron' ? 'chevron-down-solid' : 'plus-solid')}">
-		</vwc-icon>
-		<vwc-icon class="toggle-close" type="${(x) => (x.indicatorIconSet === 'chevron' ? 'chevron-up-solid' : 'minus-solid')}">
-		</vwc-icon>
-	`;
+	return indicatorIconSet === ICON_SETS.Chevron ? 'chevron-down-solid' : 'plus-solid';
 };
