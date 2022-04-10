@@ -21,13 +21,11 @@ const weekdaysMap = new Map([
  * @param startDay
  */
 export function getFirstDateOfTheWeek(date: Date = new Date(), startDay: 'sunday' | 'monday'): Date {
-	if (typeof date === 'string') {
-		date = new Date(date);
-	}
+	date = new Date(date);
 
 	let num = weekdaysMap.get(startDay);
 	num ??= 1;
-	const day = date.getDate() - date.getDay() + num;
+	const day = date.getDate() - ((date.getDay() + 7 - num) % 7);
 
 	return new Date(date.setDate(day));
 }

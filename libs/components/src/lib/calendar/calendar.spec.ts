@@ -28,7 +28,7 @@ describe('vwc-calendar', () => {
 	});
 
 	describe('datetime', () => {
-		it('should show first monday of this week', async () => {
+		fit('should show recent monday as first day of this week', async () => {
 			const calendarFirstDate = getCalendarFirstDate(element);
 
 			const today = getValidDateString(new Date());
@@ -37,7 +37,7 @@ describe('vwc-calendar', () => {
 			expect(calendarFirstDate).toEqual(monday);
 		});
 
-		it('should show first monday of \'2022-01-01\' week', async () => {
+		it('should show recent monday as first day of \'2022-01-01\' week', async () => {
 			const date = '2022-01-01';
 
 			element.datetime = date;
@@ -51,7 +51,7 @@ describe('vwc-calendar', () => {
 	});
 
 	describe('startDay', () => {
-		it('should show first sunday of this week', async () => {
+		it('should show recent sunday as first day of this week', async () => {
 			element.startDay = 'sunday';
 			await elementUpdated(element);
 
@@ -63,7 +63,7 @@ describe('vwc-calendar', () => {
 			expect(calendarFirstDate).toEqual(sunday);
 		});
 
-		it('should show first sunday of \'2022-01-01\' week', async () => {
+		it('should show recent sunday as first day of \'2022-01-01\' week', async () => {
 			element.startDay = 'sunday';
 			const date = '2022-01-01';
 
@@ -103,152 +103,62 @@ describe('vwc-calendar', () => {
 		});
 	});
 
+	describe('Event Context', () => {
+		// it('should return correct day and hour from click mouse event', async () => {
+		// 	element.style.height = '1200px';
+		// 	element.style.position = 'fixed';
+		// 	element.style.top = '0px';
 
-	// it('should delegate attributes to custom properties', async () => {
-	// 	const eventComponent = 'vwc-calendar-event';
-	// 	const [actualElement] = addElement(
-	// 		textToDomToParent(`<${eventComponent}
-	// 			color="rgb(43, 158, 250)"
-	// 			start="18.5"
-	// 			duration="7.5"
-	// 			overlap-count="1">
-	// 		</${eventComponent}>`)
-	// 	);
+		// 	let context: CalendarEventContext;
 
-	// 	await actualElement.updateComplete;
-	// 	const section = actualElement.shadowRoot.querySelector('section');
+		// 	element.addEventListener('click', e => context = element.getEventContext(e) as CalendarEventContext);
 
-	// 	const getValue = prop => getComputedStyle(section).getPropertyValue(`--vvd-calendar-event--${prop}`);
+		// 	const gridCell = element.shadowRoot?.querySelector('[role="gridcell"i]:nth-child(3)') as HTMLElement;
 
-	// 	expect(getValue('primary-color'), 'wrong color').to.equal('rgb(43, 158, 250)');
-	// 	expect(getValue('start'), 'wrong start').to.equal('18.5');
-	// 	expect(getValue('duration'), 'wrong duration').to.equal('7.5');
-	// 	expect(getValue('overlap-count'), 'wrong indentation').to.equal('1');
-	// });
+		// 	gridCell.dispatchEvent(new MouseEvent('click', { composed: true, clientX: 20, clientY: 54 }));
 
-	// it('should set correct styles of start & duration', async () => {
-	// 	const eventComponent = 'vwc-calendar-event';
-	// 	const start = 4;
-	// 	const duration = 5;
-	// 	const [actualElement] = addElement(
-	// 		textToDomToParent(`<${COMPONENT_NAME}>
-	// 			<${eventComponent} slot="day-3" start="${start}" duration="${duration}"></${eventComponent}>
-	// 		</${COMPONENT_NAME}>`)
-	// 	);
-	// 	await actualElement.updateComplete;
+		// 	expect(context!.day).toEqual(2);
+		// 	expect(context!.hour).toEqual(0.2);
+		// });
 
-	// 	const { shadowRoot } = actualElement;
-	// 	const column = shadowRoot.querySelector('[role=gridcell]:nth-child(4)');
-	// 	const event = actualElement.querySelector(eventComponent);
-	// 	const section = event.shadowRoot.querySelector('section');
+		// it('should return day and hour from keyboard \'space\'', async () => {
+		// 	const { el, gridCell } = await addStyledCalendar();
 
-	// 	const getHoursCalculatedBlockSize = (hours) => {
-	// 		const hourInPx = (column.offsetHeight - 23 /* 23 grid gaps */) / 24/* total hours in calendar */;
-	// 		return hourInPx * hours + (hours - 1 /* duration less 1 grid gap */);
-	// 	};
+		// 	await el.updateComplete;
 
-	// 	expect(getHoursCalculatedBlockSize(duration) - 4 /* block margins */, 'wrong duration').to.equal(section.offsetHeight);
+		// 	let context;
 
-	// 	const { y: columnY } = column.getBoundingClientRect();
-	// 	const { y: sectionY } = section.getBoundingClientRect();
+		// 	el.addEventListener('keydown', e => context = el.getEventContext(e));
 
-	// 	expect(Math.round(sectionY - columnY - 2) /* block-start margin */, 'wrong start position').to.equal(getHoursCalculatedBlockSize(start) + 1);
-	// });
+		// 	gridCell.dispatchEvent(new KeyboardEvent('keydown', { composed: true, keyCode: 13 }));
 
-	// it('should not exceed column block size', async () => {
-	// 	const eventComponent = 'vwc-calendar-event';
-	// 	const [actualElement] = addElement(
-	// 		textToDomToParent(`<${COMPONENT_NAME}>
-	// 				<${eventComponent} slot="day-3" start="6" duration="25"></${eventComponent}>
-	// 			</${COMPONENT_NAME}>`)
-	// 	);
-	// 	await actualElement.updateComplete;
+		// 	expect(context.day).to.equal(2);
+		// 	expect(context.hour).to.equal(undefined);
+		// });
 
-	// 	const { shadowRoot } = actualElement;
-	// 	const column = shadowRoot.querySelector('[role=gridcell]:nth-child(4)');
-	// 	const event = actualElement.querySelector(eventComponent);
-	// 	const section = event.shadowRoot.querySelector('section');
+		// it('should return day and hour from keyboard \'enter\'', async () => {
+		// 	const { el, gridCell } = await addStyledCalendar();
 
-	// 	const hour = (column.offsetHeight - 23 /* 23 grid gaps */) / 24;
-	// 	const maxDuration = 18;
-	// 	expect(hour * maxDuration + (maxDuration - 1) /* hours less 1 grid gap */ - 4 /* block margins */).to.equal(section.offsetHeight);
-	// });
+		// 	await el.updateComplete;
 
-	// it('should set event in correct column slot', async () => {
-	// 	const eventComponent = 'vwc-calendar-event';
-	// 	const [actualElement] = addElement(
-	// 		textToDomToParent(`<${COMPONENT_NAME}>
-	// 				<${eventComponent} slot="day-3"></${eventComponent}>
-	// 			</${COMPONENT_NAME}>`)
-	// 	);
-	// 	await actualElement.updateComplete;
+		// 	let context;
 
-	// 	const { shadowRoot } = actualElement;
-	// 	const slot = shadowRoot.querySelector('[role=gridcell]:nth-child(4) > slot');
-	// 	const [assignedNode] = Array.from(slot.assignedNodes());
+		// 	el.addEventListener('keydown', e => context = el.getEventContext(e));
 
-	// 	expect(assignedNode).to.equal(actualElement.querySelector(eventComponent));
-	// });
+		// 	gridCell.dispatchEvent(new KeyboardEvent('keydown', { composed: true, keyCode: 32 }));
 
-	// 	// describe('Event Context', () => {
-	// 	// 	it('should return correct day and hour from click mouse event', async () => {
-	// 	// 		element.style.top = '0px';
-	// 	// 		element.style.height = '1200px';
-	// 	// 		element.style.position = 'fixed';
+		// 	expect(context.day).to.equal(2);
+		// 	expect(context.hour).to.equal(undefined);
+		// });
 
-	// 	// 		let context: CalendarEventContext;
+		// it('should set Sunday as \'startDay\'', async () => {
 
-	// 	// 		element.addEventListener('click', e => context = element.getEventContext(e) as CalendarEventContext);
-	// 	// 		const gridCell = element.shadowRoot?.querySelector('[role="gridcell"i]:nth-child(3)');
-	// 	// 		if (!gridCell) throw new Error('gridCell not found');
+		// });
 
-	// 	// 		gridCell.dispatchEvent(new MouseEvent('click', { composed: true, clientX: 20, clientY: 54 }));
+		// it('should - programmatically - default to Monday if \'startDay\' not specified', async () => {
 
-	// 	// 		// if (!context) throw new Error('context not found');
-
-	// 	// 		expect(context!.day).toEqual(2);
-	// 	// 		expect(context!.hour).toEqual(0.2);
-	// 	// 	});
-
-	// 	// it('should return day and hour from keyboard \'space\'', async () => {
-	// 	// 	const { el, gridCell } = await addStyledCalendar();
-
-	// 	// 	await el.updateComplete;
-
-	// 	// 	let context;
-
-	// 	// 	el.addEventListener('keydown', e => context = el.getEventContext(e));
-
-	// 	// 	gridCell.dispatchEvent(new KeyboardEvent('keydown', { composed: true, keyCode: 13 }));
-
-	// 	// 	expect(context.day).to.equal(2);
-	// 	// 	expect(context.hour).to.equal(undefined);
-	// 	// });
-
-	// 	// it('should return day and hour from keyboard \'enter\'', async () => {
-	// 	// 	const { el, gridCell } = await addStyledCalendar();
-
-	// 	// 	await el.updateComplete;
-
-	// 	// 	let context;
-
-	// 	// 	el.addEventListener('keydown', e => context = el.getEventContext(e));
-
-	// 	// 	gridCell.dispatchEvent(new KeyboardEvent('keydown', { composed: true, keyCode: 32 }));
-
-	// 	// 	expect(context.day).to.equal(2);
-	// 	// 	expect(context.hour).to.equal(undefined);
-	// 	// });
-
-	// 	// it('should set Sunday as \'startDay\'', async () => {
-
-	// 	// });
-
-	// 	// it('should - programmatically - default to Monday if \'startDay\' not specified', async () => {
-
-	// 	// });
-	// // });
-	// });
+		// });
+	});
 
 	describe('a11y', () => {
 		// const addElement = isolatedElementsCreation();
