@@ -349,21 +349,22 @@ describe('vwc-banner', () => {
 	});
 
 	describe('icon', function () {
-		let icon: Icon;
+		let getIcon: () => Icon;
 
 		beforeEach(function () {
-			icon = element.shadowRoot?.querySelector('.icon') as Icon;
+			getIcon = () => element.shadowRoot?.querySelector('.icon > vwc-icon') as Icon;
 		});
 
 		it('should set the icon according to connotation info by default', function () {
-			expect(icon.type)
+			expect(getIcon().type)
 				.toEqual('info-solid');
 		});
 
 		it('should set the icon according to "icon" attribute', async function () {
 			element.setAttribute('icon', 'home');
 			await elementUpdated(element);
-			expect(icon.type)
+
+			expect(getIcon().type)
 				.toEqual('home');
 		});
 
@@ -381,9 +382,7 @@ describe('vwc-banner', () => {
 
 				await elementUpdated(element);
 
-				const iconEl = element.shadowRoot?.querySelector('.icon > vwc-icon') as Icon;
-
-				expect(iconEl.type).toEqual(iconName);
+				expect(getIcon().type).toEqual(iconName);
 			}
 		});
 	});
