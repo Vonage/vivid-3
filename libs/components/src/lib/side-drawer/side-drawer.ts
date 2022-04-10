@@ -81,10 +81,6 @@ export class SideDrawer extends FoundationElement {
 		this.open = false;
 	}
 
-	override disconnectedCallback(): void {
-		super.disconnectedCallback();
-	}
-
 	handleScrimClick = (): void => {
 		if (this.modal && this.open) {
 			this.hide();

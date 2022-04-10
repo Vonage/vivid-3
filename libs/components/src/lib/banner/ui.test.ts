@@ -6,7 +6,7 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils';
 
-const components = ['breadcrumb', 'breadcrumb-item'];
+const components = ['banner'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(
@@ -16,6 +16,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			`${htmlString} <div style="margin: 5px;">${block}</div>`,
 		''
 	);
+
 	await loadComponents({
 		page,
 		components,
@@ -30,6 +31,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/breadcrumb.png'
+		'./snapshots/banner.png'
 	);
 });
