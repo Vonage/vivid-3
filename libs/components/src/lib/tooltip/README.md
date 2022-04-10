@@ -26,8 +26,19 @@ The tooltip can't be placed on non-interactive elements such as paragraph or pla
 Do not target non-interactive controls as a tooltip's anchor (such as non-focusable / disabled elements). The absence of user interaction will prevent the tooltip from showing up.
 
 ```html preview
+<style>
+  .wrapper{
+    width: 100%;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+<div class="wrapper">
   <vwc-button id="anchor" icon="help-line" shape="pill" aria-describedby="tooltip"></vwc-button>
   <vwc-tooltip id="tooltip" anchor="anchor" text="I'm a tooltip" open></vwc-tooltip>
+</div>
 ```
 ## Text
 
