@@ -20,7 +20,7 @@ async function openBanner(element: Banner) {
  * @param element
  * @param removable
  */
-async function toggleDismissible(element: Banner, removable = true) {
+async function toggleRemovable(element: Banner, removable = true) {
 	element.removable = removable;
 	await elementUpdated(element);
 }
@@ -156,15 +156,16 @@ describe('vwc-banner', () => {
 		});
 	});
 
-	describe('open', function () {
-		/**
-		 *
-		 */
-		function dispatchAnimationEndEvent() {
-			const banner = element.shadowRoot?.querySelector('.banner');
-			const event = new Event('animationend');
-			banner?.dispatchEvent(event);
-		}
+	/**
+	 *
+	 */
+	function dispatchAnimationEndEvent() {
+		const banner = element.shadowRoot?.querySelector('.banner');
+		const event = new Event('animationend');
+		banner?.dispatchEvent(event);
+	}
+
+	describe('remove', function () {
 
 		it('should init to false', function () {
 			expect(element.open)
@@ -193,49 +194,19 @@ describe('vwc-banner', () => {
 				.toEqual(true);
 		});
 
-		it('should fire opening event', async function () {
+		it('should fire removing event', async function () {
 			const spy = jest.fn();
-			element.addEventListener('vwc-banner:opening', spy);
-			await openBanner(element);
+			element.addEventListener('vwc-banner:removing', spy);
+			element.remove();
 			expect(spy)
 				.toHaveBeenCalled();
 		});
 
-		it('should fire opened after animation end', async function () {
-			/**
-			 *
-			 */
-			function dispatchAnimationEndEvent() {
-				const banner = element.shadowRoot?.querySelector('.banner');
-				const event = new Event('animationend');
-				banner?.dispatchEvent(event);
-			}
+		it('should fire removed after animation end', async function () {
 
 			const spy = jest.fn();
-			element.addEventListener('vwc-banner:opened', spy);
-			await openBanner(element);
-
-			dispatchAnimationEndEvent();
-
-			expect(spy)
-				.toHaveBeenCalled();
-		});
-
-		it('should fire closing event', async function () {
-			const spy = jest.fn();
-			element.addEventListener('vwc-banner:closing', spy);
-			await openBanner(element);
-			await closeBanner(element);
-			expect(spy)
-				.toHaveBeenCalled();
-		});
-
-		it('should fire closed after animation end', async function () {
-
-			const spy = jest.fn();
-			element.addEventListener('vwc-banner:closed', spy);
-			await openBanner(element);
-			await closeBanner(element);
+			element.addEventListener('vwc-banner:removed', spy);
+			element.remove();
 
 			dispatchAnimationEndEvent();
 
@@ -253,11 +224,11 @@ describe('vwc-banner', () => {
 				.toEqual(true);
 		});
 
-		it('should disable closed and opened events after disconnected callback', async function () {
+		it('should disable removed and removing events after disconnected callback', async function () {
 
 			const spy = jest.fn();
-			element.addEventListener('vwc-banner:closed', spy);
-			element.addEventListener('vwc-banner:opened', spy);
+			element.addEventListener('vwc-banner:removed', spy);
+			element.addEventListener('vwc-banner:removing', spy);
 			element.disconnectedCallback();
 
 			await openBanner(element);
@@ -346,10 +317,10 @@ describe('vwc-banner', () => {
 		});
 
 		it('should toggle attribute on host', async function () {
-			await toggleDismissible(element);
+			await toggleRemovable(element);
 			const openAttributeExistsWhenTrue = element.hasAttribute('removable');
 
-			await toggleDismissible(element, false);
+			await toggleRemovable(element, false);
 			const openAttributeExistsWhenFalse = element.hasAttribute('removable');
 
 			expect(openAttributeExistsWhenTrue)
@@ -365,25 +336,33 @@ describe('vwc-banner', () => {
 				.toEqual(true);
 		});
 
-		it('should not add dismiss button when removable is false', async function () {
+		it('should remove the remove button when removable is false', async function () {
 			expect(element.shadowRoot?.querySelector('.dismiss-button'))
 				.toEqual(null);
 		});
 
-		it('should add a dismiss button', async function () {
-			await toggleDismissible(element, true);
+		it('should add a remove button when true', async function () {
+			await toggleRemovable(element, true);
 			expect(element.shadowRoot?.querySelector('.dismiss-button'))
 				.toBeInstanceOf(Button);
 		});
 
-		it('should close banner on dismiss button click', async function () {
-			await toggleDismissible(element, true);
+		it('should remove banner on remove button click', async function () {
+			await toggleRemovable(element, true);
 			await openBanner(element);
 			const dismissButton = element.shadowRoot?.querySelector('.dismiss-button') as HTMLElement;
 			dismissButton.click();
-			await elementUpdated(element);
-			expect(element.open)
+			dispatchAnimationEndEvent();
+			expect(document.body.contains(element))
 				.toEqual(false);
+		});
+
+		it('should add class "removing" to banner on remove button click', async function () {
+			await toggleRemovable(element, true);
+			await openBanner(element);
+			const dismissButton = element.shadowRoot?.querySelector('.dismiss-button') as HTMLElement;
+			dismissButton.click();
+			expect(element.shadowRoot?.querySelector('.banner')?.classList.contains('removing')).toEqual(true);
 		});
 	});
 

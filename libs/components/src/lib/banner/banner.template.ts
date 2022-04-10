@@ -25,7 +25,7 @@ function renderDismissButton() {
 				    size="base-small"
 			      class="dismiss-button"
 			      icon="close-line"
-			      @click="${x => x.open = false}">
+			      @click="${x => x.remove()}">
     </vwc-button>`;
 }
 

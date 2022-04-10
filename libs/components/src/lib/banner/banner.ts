@@ -40,22 +40,14 @@ export class Banner extends FoundationElement {
 		return this.icon ?? defaultConnotation(this.connotation);
 	}
 
-	override attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-		super.attributeChangedCallback(name, oldValue, newValue);
-		if (name === 'open') {
-			this.open ? this.$emit('vwc-banner:opening') : this.$emit('vwc-banner:closing');
-		}
-	}
-
 	override connectedCallback() {
 		super.connectedCallback();
-		const banner = this.shadowRoot && this.shadowRoot.querySelector('.banner');
-		banner && banner.addEventListener('animationend', this.#emitOnAnimationEnd);
 		this.addEventListener('keydown', this.#closeOnKeyDown);
 	}
 
-	#emitOnAnimationEnd = () => {
-		this.open ? this.$emit('vwc-banner:opened') : this.$emit('vwc-banner:closed');
+	#handleRemoveEnd = () => {
+		this.$emit('vwc-banner:removed');
+		this.parentElement?.removeChild(this);
 	};
 
 	#closeOnKeyDown = (e: KeyboardEvent) => {
@@ -68,6 +60,15 @@ export class Banner extends FoundationElement {
 	override disconnectedCallback() {
 		super.disconnectedCallback();
 		this.removeEventListener('keydown', this.#closeOnKeyDown);
+	}
+
+	override remove(): void {
+		this.$emit('vwc-banner:removing');
+		const banner = this.shadowRoot && this.shadowRoot.querySelector('.banner');
+		if (banner) {
+			banner.classList.add('removing');
+			banner.addEventListener('animationend', this.#handleRemoveEnd);
+		}
 	}
 }
 
