@@ -7,15 +7,11 @@ Banners are meant to be used on top of pages, outside the main content.
 <script type="module">import '@vonage/vivid/banner';</script>
 ```
 
-## Demo Usage
-
 ```html preview
 <vwc-banner text="Here's some information that you may find important!" dismissible open></vwc-banner>
 ```
 
-## API
-
-### Open
+## Open
 
 - Type: `boolean`
 - Default: `false`
@@ -29,7 +25,7 @@ The `open` attribute sets the banner to open or close. It will open using animat
             open></vwc-banner>
 ```
 
-### Text
+## Text
 
 - Type: `string`
 - Default: `''`
@@ -40,7 +36,7 @@ The `text` attribute adds a message to the banner.
 <vwc-banner text="Here's some information that you may find important!" open></vwc-banner>
 ```
 
-### Connotation
+## Connotation
 
 The `connotation` attribute sets the colors according to the wanted connotation.
 
@@ -62,7 +58,7 @@ vwc-banner {
 <vwc-banner open text="Here's some information that you may find important!" connotation="alert"></vwc-banner>
 ```
 
-### Icon
+## Icon
 
 - Type: `string`
 - Default: `'info'`
@@ -76,7 +72,7 @@ The `icon` attribute will override the icon set by connotation.
             icon="home-line"></vwc-banner>
 ```
 
-### Dismissible
+## Dismissible
 
 - Type: `boolean`
 - Default: `false`
@@ -89,7 +85,7 @@ The `dismissible` attribute sets a dismiss button. On click it will close the ba
             dismissible></vwc-banner>
 ```
 
-### Accessibility
+## Accessibility
 
 The banner defaults its role to ‘status’ with a redundant aria-live attribute set to polite (to maximize compatibility when using this role). This indicates that the screen reader should wait until the user is idle before presenting updates to the user.
 However, consumers can modify the above attributes (role and aria-live) to fit contextually. If the information is critical, by altering the banner's role to 'alert', assistive technologies will interrupt other processes and provide users with immediate notification.
@@ -105,7 +101,7 @@ However, consumers can modify the above attributes (role and aria-live) to fit c
             text="Here's some information that you may find important!"></vwc-banner>
 ```
 
-### Events
+## Events
 
 | Event name           | Description                                                     |
 |----------------------|-----------------------------------------------------------------|
