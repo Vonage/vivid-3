@@ -9,7 +9,7 @@ import {
 	getNextFocusableGridElement,
 	isCellOrHeader,
 } from './helpers/calendar.keyboard-interactions';
-import { getEventContext } from './helpers/calendar.event-context';
+import { getEventContextFactorial } from './helpers/calendar.event-context';
 
 
 /**
@@ -59,13 +59,43 @@ export class Calendar extends FoundationElement {
 	@attr({ mode: 'boolean' }) hour12 = false;
 
 	/**
+	 * @internal
+	 */
+	_hours = 24;
+	/**
+	 * @internal
+	 */
+	_days = 7;
+
+	/**
+	 * @internal
+	 */
+	hoursAsDatetime = (Array.from({ length: this._hours - 1 }) as Date[])
+		.fill(new Date(new Date().setHours(0, 0, 0)))
+		.map((d, i) => new Date(d.setHours(++i)));
+
+	/**
+	 * @param dateArr
+	 * @internal
+	 */
+	getDaysAsDatetime = (dateArr: Date[]): Date[] => {
+		if (dateArr.length == this._days) {
+			return dateArr;
+		}
+		const lastDate = new Date(dateArr[dateArr.length - 1]);
+		lastDate.setDate(lastDate.getDate() + 1);
+		const concatenatedDateArr = [...dateArr, lastDate];
+		return this.getDaysAsDatetime(concatenatedDateArr);
+	};
+
+	/**
 	 * Fire an event
 	 *
 	 * @param {string} event        - event name
 	 * @param {Object} [detail={}]  - optional event detail object
 	 * @returns {boolean}           - return true
 	 */
-	getEventContext = getEventContext.bind(this);
+	getEventContext = getEventContextFactorial(this._hours);
 
 	// !TODO: this is a temporary fix until calendar event is included in this repo
 	private get focusedCalendarEvent(): any | null {

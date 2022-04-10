@@ -9,24 +9,7 @@ import {
 	getFirstDateOfTheWeek,
 	getValidDateString
 } from './helpers/calendar.date-functions';
-import { daysLength, TotalHours } from './helpers/calendar.config';
 
-
-const hours = (Array.from({ length: TotalHours - 1 }) as Date[])
-	.fill(new Date(new Date().setHours(0, 0, 0)))
-	.map((d, i) => new Date(d.setHours(++i)));
-
-const getDaysArr = (dateArr: Date[]): Date[] => {
-	if (dateArr.length == daysLength) {
-		return dateArr;
-	}
-	const lastDate = new Date(dateArr[dateArr.length - 1]);
-	lastDate.setDate(lastDate.getDate() + 1);
-	const concatenatedDateArr = [...dateArr, lastDate];
-	return getDaysArr(concatenatedDateArr);
-};
-
-const getEmptyArr = (length: number) => Array.from({ length });
 
 /**
  * the html days markup
@@ -36,7 +19,7 @@ const getEmptyArr = (length: number) => Array.from({ length });
 const HoursTemplate = () => {
 	return html`
   <div class="row-headers" role="presentation">
-    ${repeat(() => hours, html<string>`<span role="rowheader">
+    ${repeat(x => x.hoursAsDatetime, html<string>`<span role="rowheader">
       <time datetime="${(x: Date, c) =>	new Intl.DateTimeFormat(c.parent.locales, {
 		hour: 'numeric', minute: 'numeric',	hour12: false
 	}).format(x)}">
@@ -56,7 +39,7 @@ const HoursTemplate = () => {
 const DaysTemplate = () => {
 	return html`
 			<div class="column-headers" role="row">
-				${repeat(x => getDaysArr([getFirstDateOfTheWeek(x.datetime, x.startDay)]), html<string>`
+				${repeat(x => x.getDaysAsDatetime([getFirstDateOfTheWeek(x.datetime, x.startDay)]), html<string>`
 						<div role="columnheader" tabindex="-1">
               <time datetime=${(x: Date) => getValidDateString(x)} aria-readonly="true">
                 <h2>
@@ -76,6 +59,11 @@ const DaysTemplate = () => {
 			</div>`;
 };
 
+const ColumnTemplate = html<string>`
+            <div role="gridcell" tabindex="-1">
+              <slot name="day-${(_, c) => c.index}"></slot>
+            </div>
+          `;
 /**
  * The template for the {@link @microsoft/fast-foundation#Calendar} component.
  *
@@ -92,14 +80,11 @@ export const CalendarTemplate: (
       ${HoursTemplate}
       <div class="calendar-grid-presentation" role="presentation">
         <div class="hours" role="list">
-          ${repeat(() => getEmptyArr(hours.length + 1), html<string>`<div role="listitem"></div>`)}
+          ${repeat(x => Array.from({ length: x.hoursAsDatetime.length + 1 }),	html<string>`
+            <div role="listitem"></div>`)}
         </div>
         <div class="columns" role="presentation">
-          ${repeat(() => getEmptyArr(daysLength), html<string>`
-            <div role="gridcell" tabindex="-1">
-              <slot name="day-${(_, c) => c.index}"></slot>
-            </div>
-          `)}
+          ${repeat(x => Array.from(Array(x._days)), ColumnTemplate, { positioning: true })}
         </div>
         <slot></slot>
       </div>

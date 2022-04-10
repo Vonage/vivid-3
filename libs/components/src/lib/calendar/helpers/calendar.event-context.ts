@@ -1,4 +1,3 @@
-import { TotalHours } from './calendar.config';
 import { isCellOrHeader } from './calendar.keyboard-interactions';
 
 
@@ -33,8 +32,9 @@ function getDay(e: Event): number | undefined {
 
 /**
  * @param e
+ * @param hours
  */
-function getHour(e: Event): number | undefined {
+function getHour(e: Event, hours: number): number | undefined {
 	if (!(e instanceof MouseEvent)) {
 		return undefined;
 	}
@@ -54,7 +54,7 @@ function getHour(e: Event): number | undefined {
 	}
 
 	const offsetY = e.clientY - boundingClientRect.y;
-	const hourHeight = boundingClientRect.height / TotalHours;
+	const hourHeight = boundingClientRect.height / hours;
 	const hour = offsetY / hourHeight;
 
 	return Math.round((hour + Number.EPSILON) * 100) / 100;
@@ -65,16 +65,18 @@ const isEmptyObject = (obj: Record<string, unknown>): obj is Record<string, neve
 
 /**
  * @param e
+ * @param hours
  */
-export function getEventContext(e: Event): CalendarEventContext | null {
-	const day = getDay(e);
-	const hour = getHour(e);
+export const getEventContextFactorial = (hours: number) =>
+	(e: Event): CalendarEventContext | null => {
+		const day = getDay(e);
+		const hour = getHour(e, hours);
 
 
-	const context = {
-		...(day != undefined && { day }),
-		...(hour != undefined && { hour }),
+		const context = {
+			...(day != undefined && { day }),
+			...(hour != undefined && { hour }),
+		};
+
+		return (!isEmptyObject(context) && context) || null;
 	};
-
-	return (!isEmptyObject(context) && context) || null;
-}
