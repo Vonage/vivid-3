@@ -2,8 +2,8 @@ import {elementUpdated, fixture} from '@vivid-nx/shared';
 import type {Icon} from '../icon/icon';
 import {Button} from '../button/button';
 import {Connotation} from '../enums';
-import {connotationIconMap} from './banner.template';
-import {Banner} from './banner';
+import { Banner } from './banner';
+import type { BannerConnotation } from './banner';
 import '.';
 
 const COMPONENT_TAG = 'vwc-banner';
@@ -349,30 +349,40 @@ describe('vwc-banner', () => {
 	});
 
 	describe('icon', function () {
-		let icon: Icon;
+		let getIcon: () => Icon;
 
 		beforeEach(function () {
-			icon = element.shadowRoot?.querySelector('.icon') as Icon;
+			getIcon = () => element.shadowRoot?.querySelector('.icon > vwc-icon') as Icon;
 		});
 
 		it('should set the icon according to connotation info by default', function () {
-			expect(icon.type)
+			expect(getIcon().type)
 				.toEqual('info-solid');
 		});
 
 		it('should set the icon according to "icon" attribute', async function () {
 			element.setAttribute('icon', 'home');
 			await elementUpdated(element);
-			expect(icon.type)
+
+			expect(getIcon().type)
 				.toEqual('home');
 		});
 
 		it('should set the icon according to set connotation', async function () {
+			const connotationIconMap: Map<BannerConnotation, string> = new Map([
+				[Connotation.Info, 'info-solid'],
+				[Connotation.Announcement, 'megaphone-solid'],
+				[Connotation.Success, 'check-circle-solid'],
+				[Connotation.Warning, 'warning-solid'],
+				[Connotation.Alert, 'error-solid']
+			]);
+
 			for (const [connotation, iconName] of connotationIconMap) {
-				(element.connotation as Connotation) = connotation;
+				element.connotation = connotation;
+
 				await elementUpdated(element);
-				expect(icon.type)
-					.toEqual(iconName);
+
+				expect(getIcon().type).toEqual(iconName);
 			}
 		});
 	});

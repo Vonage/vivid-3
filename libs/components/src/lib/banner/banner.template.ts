@@ -6,16 +6,9 @@ import type {
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import '../button';
-import {Connotation} from '../enums';
+import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { Banner } from './banner';
 
-export const connotationIconMap = new Map([
-	[Connotation.Info, 'info-solid'],
-	[Connotation.Announcement, 'megaphone-solid'],
-	[Connotation.Success, 'check-circle-solid'],
-	[Connotation.Warning, 'warning-solid'],
-	[Connotation.Alert, 'error-solid']
-]);
 
 const getClasses = (_: Banner) => classNames(
 	'control',
@@ -37,21 +30,6 @@ function renderDismissButton() {
 }
 
 /**
- * @param banner
- */
-function getIcon(banner: Banner) {
-	return banner.icon ? banner.icon : banner.connotation ? connotationIconMap.get(banner.connotation) : 'info-solid';
-}
-
-/**
- *
- */
-function renderIcon() {
-	return html<Banner>`
-    <vwc-icon class="icon" type="${x => getIcon(x)}"></vwc-icon>`;
-}
-
-/**
  * The template for the {@link @microsoft/fast-foundation#Banner} component.
  *
  * @param context
@@ -60,11 +38,14 @@ function renderIcon() {
 export const BannerTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Banner> = () => html<Banner>`
+) => ViewTemplate<Banner> = (context: ElementDefinitionContext) => {
+	const affixIconTemplate = affixIconTemplateFactory(context);
+
+	return html<Banner>`
       <div class="banner ${getClasses}" tabindex="0">
 				<header class="header">
 					<span class="user-content">
-            ${renderIcon()}
+            ${x => affixIconTemplate(x.conditionedIcon)}
 						<div class="banner--message"
                  role="${x => x.role ? x.role : 'status'}"
                  aria-live="${x => x.ariaLive ? x.ariaLive : 'polite'}">
@@ -75,3 +56,4 @@ export const BannerTemplate: (
         </header>
       </div>
 `;
+};
