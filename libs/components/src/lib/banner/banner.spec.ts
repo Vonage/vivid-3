@@ -18,10 +18,10 @@ async function openBanner(element: Banner) {
 
 /**
  * @param element
- * @param dismissible
+ * @param removable
  */
-async function toggleDismissible(element: Banner, dismissible = true) {
-	element.dismissible = dismissible;
+async function toggleDismissible(element: Banner, removable = true) {
+	element.removable = removable;
 	await elementUpdated(element);
 }
 
@@ -270,56 +270,6 @@ describe('vwc-banner', () => {
 		});
 	});
 
-	describe('dismissible', function () {
-		it('should init to false', function () {
-			expect(element.dismissible)
-				.toEqual(false);
-			expect(element.hasAttribute('dismissible'))
-				.toEqual(false);
-		});
-
-		it('should toggle attribute on host', async function () {
-			await toggleDismissible(element);
-			const openAttributeExistsWhenTrue = element.hasAttribute('dismissible');
-
-			await toggleDismissible(element, false);
-			const openAttributeExistsWhenFalse = element.hasAttribute('dismissible');
-
-			expect(openAttributeExistsWhenTrue)
-				.toEqual(true);
-			expect(openAttributeExistsWhenFalse)
-				.toEqual(false);
-		});
-
-		it('should set dismissible property on attribute change', async function () {
-			element.toggleAttribute('dismissible');
-			await elementUpdated(element);
-			expect(element.dismissible)
-				.toEqual(true);
-		});
-
-		it('should not add dismiss button when dismissible is false', async function () {
-			expect(element.shadowRoot?.querySelector('.dismiss-button'))
-				.toEqual(null);
-		});
-
-		it('should add a dismiss button', async function () {
-			await toggleDismissible(element, true);
-			expect(element.shadowRoot?.querySelector('.dismiss-button'))
-				.toBeInstanceOf(Button);
-		});
-
-		it('should close banner on dismiss button click', async function () {
-			await toggleDismissible(element, true);
-			await openBanner(element);
-			const dismissButton = element.shadowRoot?.querySelector('.dismiss-button') as HTMLElement;
-			dismissButton.click();
-			await elementUpdated(element);
-			expect(element.open)
-				.toEqual(false);
-		});
-	});
-
 	describe('connotation', function () {
 		const possibleConnotations = [Connotation.Info,
 			Connotation.Announcement,
@@ -387,10 +337,60 @@ describe('vwc-banner', () => {
 		});
 	});
 
+	describe('removable', function () {
+		it('should init to false', function () {
+			expect(element.removable)
+				.toEqual(false);
+			expect(element.hasAttribute('removable'))
+				.toEqual(false);
+		});
+
+		it('should toggle attribute on host', async function () {
+			await toggleDismissible(element);
+			const openAttributeExistsWhenTrue = element.hasAttribute('removable');
+
+			await toggleDismissible(element, false);
+			const openAttributeExistsWhenFalse = element.hasAttribute('removable');
+
+			expect(openAttributeExistsWhenTrue)
+				.toEqual(true);
+			expect(openAttributeExistsWhenFalse)
+				.toEqual(false);
+		});
+
+		it('should set removable property on attribute change', async function () {
+			element.toggleAttribute('removable');
+			await elementUpdated(element);
+			expect(element.removable)
+				.toEqual(true);
+		});
+
+		it('should not add dismiss button when removable is false', async function () {
+			expect(element.shadowRoot?.querySelector('.dismiss-button'))
+				.toEqual(null);
+		});
+
+		it('should add a dismiss button', async function () {
+			await toggleDismissible(element, true);
+			expect(element.shadowRoot?.querySelector('.dismiss-button'))
+				.toBeInstanceOf(Button);
+		});
+
+		it('should close banner on dismiss button click', async function () {
+			await toggleDismissible(element, true);
+			await openBanner(element);
+			const dismissButton = element.shadowRoot?.querySelector('.dismiss-button') as HTMLElement;
+			dismissButton.click();
+			await elementUpdated(element);
+			expect(element.open)
+				.toEqual(false);
+		});
+	});
+
 	describe('close on escape key', function () {
 		it('should close the button on escape key', async function () {
 			await openBanner(element);
-			element.dismissible = true;
+			element.removable = true;
 			element.focus();
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 			expect(element.open).toEqual(false);
@@ -398,7 +398,7 @@ describe('vwc-banner', () => {
 
 		it('should close the button only on escape key', async function () {
 			await openBanner(element);
-			element.dismissible = true;
+			element.removable = true;
 			element.focus();
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
 			expect(element.open).toEqual(true);
@@ -406,14 +406,14 @@ describe('vwc-banner', () => {
 
 		it('should remove keydown listener after disconnection', async function () {
 			await openBanner(element);
-			element.dismissible = true;
+			element.removable = true;
 			element.focus();
 			element.disconnectedCallback();
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 			expect(element.open).toEqual(true);
 		});
 
-		it('should close the button only if "dismissible" is true', async function () {
+		it('should close the button only if "removable" is true', async function () {
 			await openBanner(element);
 			element.focus();
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));

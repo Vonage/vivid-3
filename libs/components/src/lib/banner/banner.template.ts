@@ -52,7 +52,7 @@ export const BannerTemplate: (
               ${x => x.text}
             </div>
 					</span>
-            ${when(x => x.dismissible, renderDismissButton())}
+            ${when(x => x.removable, renderDismissButton())}
         </header>
       </div>
 `;

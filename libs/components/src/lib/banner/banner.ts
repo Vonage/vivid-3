@@ -29,7 +29,7 @@ const defaultConnotation =
  * @public
  */
 export class Banner extends FoundationElement {
-	@attr({mode: 'boolean'}) dismissible = false;
+	@attr({mode: 'boolean'}) removable = false;
 	@attr({mode: 'boolean'}) open = false;
 	@attr({attribute: 'aria-live'}) override ariaLive: any;
 	@attr() role: string | undefined;
@@ -59,7 +59,7 @@ export class Banner extends FoundationElement {
 	};
 
 	#closeOnKeyDown = (e: KeyboardEvent) => {
-		if (e.key !== 'Escape' || !this.dismissible) {
+		if (e.key !== 'Escape' || !this.removable) {
 			return;
 		}
 		this.open = false;
