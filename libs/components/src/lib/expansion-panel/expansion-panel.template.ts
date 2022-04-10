@@ -10,10 +10,20 @@ export const ExpansionPanelTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<ExpansionPanel> = () => html`
-		${renderHeaderButton()}
+		${renderPanelHeader()}
 		<div id="content" class="expansion-panel-body">
 			<slot></slot>
 		</div>`;
+
+const renderPanelHeader = () => {
+	return html`<div class="expansion-panel-header">
+	${(x) => x.icon ? renderIcon() : ''}
+	${renderHeaderButton}</div>`;
+};
+
+const renderIcon = () => {
+	return html`<vwc-icon type=${(x) => x.icon}></vwc-icon>`;
+};
 
 const renderHeaderButton = () => {
 	return html`<vwc-button class="expansion-panel-button" appearance='ghost' label='${(x) => x.heading}' size='${(x) => x.size}'
