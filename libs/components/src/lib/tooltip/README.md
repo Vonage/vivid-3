@@ -14,6 +14,9 @@ Consider avoiding the use of tooltip as it may fail to produce the same UX for A
 ```
 
 ## Anchor
+- Type: `string`
+- Default: `undefined`
+  
 The tooltip can be placed on interactive controls (things that can be clicked or focusable) such as:
 - button
 - checkbox
@@ -23,6 +26,10 @@ The tooltip can't be placed on non-interactive elements such as paragraph or pla
 Do not target non-interactive controls as a tooltip's anchor (such as non-focusable / disabled elements). The absence of user interaction will prevent the tooltip from showing up.
 
 ## Text
+
+- Type: `string`
+- Default: `''`
+  
 The tooltip is a description and therefor, the tooltip itself can not be interactive. `vwc-tooltip` contains only text.
 
 ## Accessibility
@@ -48,7 +55,7 @@ Use the `open` attribute to indicate whether the tooltip is open.
   }
 </style>
 <div class="wrapper">
-  <vwc-button id="button" icon="info-line" shape="pill" aria-describedby="tooltip" ></vwc-button>
+  <vwc-button id="button" icon="info-line" shape="pill" aria-describedby="tooltip"></vwc-button>
   <vwc-tooltip id="tooltip" anchor="button" text="Click on then icon to toggle" open></vwc-tooltip>
 </div>
 <script>
