@@ -1,4 +1,4 @@
-# banner
+# vwc-banner
 
 Banners are meant to be used on top of pages, outside the main content.
 
@@ -7,23 +7,11 @@ Banners are meant to be used on top of pages, outside the main content.
 <script type="module">import '@vonage/vivid/banner';</script>
 ```
 
-## Demo Usage
-
 ```html preview
-<div style="margin: auto;
-    width: 40rem;
-    height: 25rem;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 3px 2px rgb(0 0 0 / 10%);
-    border: solid 1px #ccc;">
 <vwc-banner text="Here's some information that you may find important!" dismissible open></vwc-banner>
-</div>
 ```
 
-## API
-
-### Open
+## Open
 
 - Type: `boolean`
 - Default: `false`
@@ -37,10 +25,10 @@ The `open` attribute sets the banner to open or close. It will open using animat
             open></vwc-banner>
 ```
 
-### Text
+## Text
 
 - Type: `string`
-- Default: `'''`
+- Default: `''`
 
 The `text` attribute adds a message to the banner.
 
@@ -48,7 +36,7 @@ The `text` attribute adds a message to the banner.
 <vwc-banner text="Here's some information that you may find important!" open></vwc-banner>
 ```
 
-### Connotation
+## Connotation
 
 The `connotation` attribute sets the colors according to the wanted connotation.
 
@@ -84,7 +72,7 @@ The `icon` attribute will override the icon set by connotation.
             icon="home-line"></vwc-banner>
 ```
 
-### dismissible
+## Dismissible
 
 - Type: `boolean`
 - Default: `false`
@@ -97,10 +85,10 @@ The `dismissible` attribute sets a dismiss button. On click it will close the ba
             dismissible></vwc-banner>
 ```
 
-### Accessibility
+## Accessibility
 
-We default the banner component role to ‘status’ with a redundant aria-live attribute set to polite (to maximize compatibility when using this role). This indicates that the screen reader should wait until the user is idle before presenting updates to the user.
-However, we can modify the above attributes (role and aria-live) to fit contextually. So if the information is critical, we could still alter the banner's role to 'alert', telling assistive technologies to interrupt other processes and provide users with immediate notification.
+The banner defaults its role to ‘status’ with a redundant aria-live attribute set to polite (to maximize compatibility when using this role). This indicates that the screen reader should wait until the user is idle before presenting updates to the user.
+However, consumers can modify the above attributes (role and aria-live) to fit contextually. If the information is critical, by altering the banner's role to 'alert', assistive technologies will interrupt other processes and provide users with immediate notification.
 
 1. The `role` attribute is set to `status` by default. This can be changed.
 2. The `aria-live` attribute is set to `polite` by default. This can be changed.
@@ -113,7 +101,7 @@ However, we can modify the above attributes (role and aria-live) to fit contextu
             text="Here's some information that you may find important!"></vwc-banner>
 ```
 
-### Events
+## Events
 
 | Event name           | Description                                                     |
 |----------------------|-----------------------------------------------------------------|

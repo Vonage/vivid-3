@@ -1,7 +1,7 @@
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations-set: success info alert announcement warning,
+	$subset: success info alert announcement warning,
 	$default: info,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
