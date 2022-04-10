@@ -3,6 +3,7 @@ import {  toHaveNoViolations } from 'jest-axe';
 import { Calendar } from './calendar';
 import '.';
 import { getValidDateString } from './helpers/calendar.date-functions';
+import type { CalendarEventContext } from './helpers/calendar.event-context';
 
 expect.extend(toHaveNoViolations);
 
@@ -104,60 +105,43 @@ describe('vwc-calendar', () => {
 	});
 
 	describe('Event Context', () => {
-		// it('should return correct day and hour from click mouse event', async () => {
-		// 	element.style.height = '1200px';
-		// 	element.style.position = 'fixed';
-		// 	element.style.top = '0px';
+		let gridCell: HTMLElement;
+		let context: CalendarEventContext;
 
-		// 	let context: CalendarEventContext;
+		beforeEach(async () => {
+			gridCell = element.shadowRoot?.querySelector('[role="gridcell"i]:nth-child(3)') as HTMLElement;
+		});
 
-		// 	element.addEventListener('click', e => context = element.getEventContext(e) as CalendarEventContext);
+		it('should return correct day and hour from mouse click event', async () => {
+			element.style.height = '1200px';
+			element.style.position = 'fixed';
+			element.style.top = '0px';
 
-		// 	const gridCell = element.shadowRoot?.querySelector('[role="gridcell"i]:nth-child(3)') as HTMLElement;
+			element.addEventListener('click', e => context = element.getEventContext(e) as CalendarEventContext);
 
-		// 	gridCell.dispatchEvent(new MouseEvent('click', { composed: true, clientX: 20, clientY: 54 }));
+			gridCell.dispatchEvent(new MouseEvent('click', { composed: true, clientX: 20, clientY: 54 }));
 
-		// 	expect(context!.day).toEqual(2);
-		// 	expect(context!.hour).toEqual(0.2);
-		// });
+			expect(context?.day).toEqual(2);
+			expect(context.hour).toEqual(0.2);
+		});
 
-		// it('should return day and hour from keyboard \'space\'', async () => {
-		// 	const { el, gridCell } = await addStyledCalendar();
+		it('should return day and hour from keydown \'space\' event', async () => {
+			element.addEventListener('keydown', e => context = element.getEventContext(e) as CalendarEventContext);
 
-		// 	await el.updateComplete;
+			gridCell.dispatchEvent(new KeyboardEvent('keydown', { composed: true, keyCode: 13 }));
 
-		// 	let context;
+			expect(context.day).toEqual(2);
+			expect(context.hour).toEqual(undefined);
+		});
 
-		// 	el.addEventListener('keydown', e => context = el.getEventContext(e));
+		it('should return day and hour from keydown \'enter\' event', async () => {
+			element.addEventListener('keydown', e => context = element.getEventContext(e) as CalendarEventContext);
 
-		// 	gridCell.dispatchEvent(new KeyboardEvent('keydown', { composed: true, keyCode: 13 }));
+			gridCell.dispatchEvent(new KeyboardEvent('keydown', { composed: true, keyCode: 32 }));
 
-		// 	expect(context.day).to.equal(2);
-		// 	expect(context.hour).to.equal(undefined);
-		// });
-
-		// it('should return day and hour from keyboard \'enter\'', async () => {
-		// 	const { el, gridCell } = await addStyledCalendar();
-
-		// 	await el.updateComplete;
-
-		// 	let context;
-
-		// 	el.addEventListener('keydown', e => context = el.getEventContext(e));
-
-		// 	gridCell.dispatchEvent(new KeyboardEvent('keydown', { composed: true, keyCode: 32 }));
-
-		// 	expect(context.day).to.equal(2);
-		// 	expect(context.hour).to.equal(undefined);
-		// });
-
-		// it('should set Sunday as \'startDay\'', async () => {
-
-		// });
-
-		// it('should - programmatically - default to Monday if \'startDay\' not specified', async () => {
-
-		// });
+			expect(context.day).toEqual(2);
+			expect(context.hour).toEqual(undefined);
+		});
 	});
 
 	describe('a11y', () => {
