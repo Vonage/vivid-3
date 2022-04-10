@@ -367,7 +367,7 @@ describe('vwc-banner', () => {
 				.toEqual('home');
 		});
 
-		fit('should set the icon according to set connotation', async function () {
+		it('should set the icon according to set connotation', async function () {
 			const connotationIconMap: Map<BannerConnotation, string> = new Map([
 				[Connotation.Info, 'info-solid'],
 				[Connotation.Announcement, 'megaphone-solid'],
