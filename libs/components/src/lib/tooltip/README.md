@@ -25,15 +25,16 @@ The tooltip can be placed on interactive controls (things that can be clicked or
 The tooltip can't be placed on non-interactive elements such as paragraph or plain div.  
 Do not target non-interactive controls as a tooltip's anchor (such as non-focusable / disabled elements). The absence of user interaction will prevent the tooltip from showing up.
 
+```html preview
+  <vwc-button id="anchor" icon="help-line" shape="pill" aria-describedby="tooltip"></vwc-button>
+  <vwc-tooltip id="tooltip" anchor="anchor" text="I'm a tooltip" open></vwc-tooltip>
+```
 ## Text
 
 - Type: `string`
 - Default: `''`
   
 The tooltip is a description and therefor, the tooltip itself can not be interactive. `vwc-tooltip` contains only text.
-
-## Accessibility
-Be sure to add `aria-describedby="the vwc-tooltip ID name"` on the tooltip trigger element for screen readers readability.
 
 ## Open
 Use the `open` attribute to indicate whether the tooltip is open.
@@ -56,7 +57,7 @@ Use the `open` attribute to indicate whether the tooltip is open.
 </style>
 <div class="wrapper">
   <vwc-button id="button" icon="info-line" shape="pill" aria-describedby="tooltip"></vwc-button>
-  <vwc-tooltip id="tooltip" anchor="button" text="Click on then icon to toggle" open></vwc-tooltip>
+  <vwc-tooltip id="tooltip" anchor="button" text="Click on the icon to toggle"></vwc-tooltip>
 </div>
 <script>
   button.addEventListener('click', toggleOpen);
@@ -111,6 +112,9 @@ Use the `corner` attribute to set the placement of the tooltip around the anchor
   }
 </script>
 ```
+
+## Accessibility
+Be sure to add `aria-describedby="the vwc-tooltip ID name"` on the tooltip trigger element for screen readers readability.
 
 ## Methods
 
