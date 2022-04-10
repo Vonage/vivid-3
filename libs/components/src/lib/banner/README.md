@@ -62,7 +62,7 @@ vwc-banner {
 <vwc-banner open text="Here's some information that you may find important!" connotation="alert"></vwc-banner>
 ```
 
-## Icon
+### Icon
 
 - Type: `string`
 - Default: `'info'`
@@ -76,7 +76,7 @@ The `icon` attribute will override the icon set by connotation.
             icon="home-line"></vwc-banner>
 ```
 
-### dismissible
+### Dismissible
 
 - Type: `boolean`
 - Default: `false`
