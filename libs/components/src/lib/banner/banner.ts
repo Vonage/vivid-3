@@ -4,7 +4,7 @@ import { Connotation } from '../enums';
 import { AffixIcon } from '../../shared/patterns/affix';
 
 
-type BannerConnotation =
+export type BannerConnotation =
   Connotation.Info |
   Connotation.Announcement |
   Connotation.Success |
