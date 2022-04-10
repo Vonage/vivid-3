@@ -10,4 +10,6 @@ export * from './breadcrumb';
 export * from './side-drawer';
 export * from './popup';
 export * from './banner';
+export * from './expansion-panel';
+
 

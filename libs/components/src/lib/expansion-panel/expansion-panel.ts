@@ -1,16 +1,15 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
+import { attr, html } from '@microsoft/fast-element';
 
 export enum ICON_SETS { Chevron = 'chevron', Binary = 'binary' }
 
 /**
- * Base class for expension-panel
+ * Base class for expansion-panel
  *
  * @public
  */
-export class ExpensionPanel extends FoundationElement {
-	private VALID_HEADER_VALUES = [2, 3, 4, 5, 6];
-
+export class ExpansionPanel extends FoundationElement {
+	safeHtml = html;
 	/**
 	 *
 	 * @public
@@ -33,7 +32,7 @@ export class ExpensionPanel extends FoundationElement {
 	 * 
 	 * HTML Attribute: meta
 	 */
-	@attr({ mode: 'fromView' }) meta? = '';
+	@attr({ mode: 'fromView' }) meta = '';
 
 	/**
 	*
@@ -64,7 +63,7 @@ export class ExpensionPanel extends FoundationElement {
 	@attr({ mode: 'fromView', attribute: 'heading-level' }) headingLevel = '3';
 
 	/**
-	 * indicates whether the expension-panel is open
+	 * indicates whether the expansion-panel is open
 	 *
 	 * @public
 	 * HTML Attribute: open
@@ -72,7 +71,7 @@ export class ExpensionPanel extends FoundationElement {
 	@attr({ mode: 'boolean' }) open = false;
 
 	/**
-	 * Opens the expension-panel from the closed state.
+	 * Opens the expansion-panel from the closed state.
 	 *
 	 * @public
 	 */
@@ -81,7 +80,7 @@ export class ExpensionPanel extends FoundationElement {
 	}
 
 	/**
-	 * Closes the expension-panel from the open state.
+	 * Closes the expansion-panel from the open state.
 	 *
 	 * @public
 	 */
@@ -89,8 +88,13 @@ export class ExpensionPanel extends FoundationElement {
 		this.open = false;
 	}
 
-	isValidHeaderValue(headerValue: string | number) {
-		return this.VALID_HEADER_VALUES.includes(Number(headerValue));
+	/**
+	 * Toggles the expansion-panel.
+	 *
+	 * @public
+	 */
+	toggleOpen(): void {
+		this.open = !this.open;
 	}
 
 	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
@@ -101,9 +105,5 @@ export class ExpensionPanel extends FoundationElement {
 				break;
 			}
 		}
-	}
-
-	protected toggleOpen(): void {
-		this.open = !this.open;
 	}
 }

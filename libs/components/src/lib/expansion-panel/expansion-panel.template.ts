@@ -5,11 +5,11 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import type { ExpensionPanel } from './expension-panel';
+import type { ExpansionPanel } from './expansion-panel';
 
 const getClasses = ({
 	open, heading, icon, meta, indicatorIconSet, dense, leadingToggle, headingLevel
-}: ExpensionPanel) => classNames(
+}: ExpansionPanel) => classNames(
 	'control',
 	['open', Boolean(open)],
 	['heading', Boolean(heading)],
@@ -20,37 +20,25 @@ const getClasses = ({
 	['headingLevel', Boolean(headingLevel)],
 	['icon', Boolean(icon)]
 );
-export const ExpensionPanelTemplate: (
+export const ExpansionPanelTemplate: (
 	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition) => ViewTemplate<ExpensionPanel> = () =>
-	html`
-		${renderPanelHeader()}
+	definition: FoundationElementDefinition
+) => ViewTemplate<ExpansionPanel> = () => html`
+		${(x) => renderHeaderButton(x.heading, x.icon, x.leadingToggle, x.meta)}
 		<div class="${getClasses}" id="content" class="expansion-panel-body">
 			<slot></slot>
 		</div>`;
 
-const renderMeta = () => {
-	return html`<span class="meta">${(x) => x.meta}</span>`;
-};
-
-const renderHeaderButton = (heading) => {
+const renderHeaderButton = (heading: string, icon: string, leadingToggle: boolean, meta: string) => {
 	return html`
-		<button class="expansion-panel-button" id="expansion-panel" @mousedown="${handleRippleActivate}"
-			@mouseenter="${handleRippleMouseEnter}" @mouseleave="${handleRippleMouseLeave}" @touchstart="${() => {
-	toggleOpen();
-	handleRippleActivate;
-}}" @touchend="${handleRippleDeactivate}" @touchcancel="${handleRippleDeactivate}" @click=${() =>
-	toggleOpen()}
-			?aria-expanded=${open}
-			aria-controls="content"
-			>
+		<button class="expansion-panel-button" id="expansion-panel" ?aria-expanded=${open} aria-controls="content">
 			<span class="leading-icon">
 				<slot name="icon">
-					${renderIconOrToggle()}
+					${renderIconOrToggle(icon, leadingToggle)}
 				</slot>
 			</span>
 			<span class="heading-text">${heading}</span>
-			${(x) => (x.meta ? renderMeta() : '')}
+			${meta ? renderMeta() : ''}
 			<span class="trailing-icon">
 				<slot name="trailingIcon">
 					${!leadingToggle ? renderToggle() : ''}
@@ -60,17 +48,16 @@ const renderHeaderButton = (heading) => {
 	`;
 };
 
-const renderPanelHeader = () => {
-	// if (!isValidHeaderValue(headingLevel)) headingLevel = '3';
-	// return eval(`safeHtml\`<h${headingLevel} class="expansion-panel-header">\${renderHeaderButton()}</h${headingLevel}>\``);
+const renderMeta = () => {
+	return html`<span class="meta">${(x) => x.meta}</span>`;
 };
 
-const renderIconOrToggle = () => {
+const renderIconOrToggle = (icon: string, leadingToggle: boolean) => {
 	if (leadingToggle) {
 		return renderToggle();
 	} else if (icon) {
 		return html`
-			<vwc-icon type="${(x) => (x.icon)}" size="medium"></vwc-icon>`;
+			<vwc-icon type="${(x) => x.icon}" size="medium"></vwc-icon>`;
 	} else {
 		return '';
 	}

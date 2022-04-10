@@ -6,7 +6,7 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils';
 
-const components = ['expension-panel'];
+const components = ['expansion-panel'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(
@@ -31,6 +31,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/expension-panel.png'
+		'./snapshots/expansion-panel.png'
 	);
 });

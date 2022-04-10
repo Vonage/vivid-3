@@ -27,7 +27,7 @@
 | dropdown             | deprecated | obsolete   |
 | elevation            | GA         | GA         |
 | empty state          | GA         | \-         |
-| expension panel      | GA         | WIP        |
+| expansion panel      | GA         | WIP        |
 | fab                  | GA         | WIP        |
 | file picker          | GA         | \-         |
 | formfield            | GA         | \-         |
