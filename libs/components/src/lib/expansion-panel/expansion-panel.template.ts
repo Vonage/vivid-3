@@ -20,11 +20,11 @@ export const ExpansionPanelTemplate: (
 
 const renderHeaderButton = () => {
 	return html<ExpansionPanel>`
-	<button class="expansion-panel-button" @click=${x=> x.toggleOpen()}
+	<button class="expansion-panel-button" @click=${x => x.toggleOpen()}
 		?aria-expanded=${x => x.open}
 		aria-controls="content"
 		>
-		<span class="leading-icon">
+		<span class="leadingIcon">
 			<slot name="icon">
 				${x => renderIconOrToggle(x.leadingToggle, x.icon)}
 			</slot>
@@ -47,11 +47,9 @@ const renderMeta = () => {
 const renderIconOrToggle = (leadingToggle: boolean, icon: string) => {
 	if (leadingToggle) {
 		return renderToggle();
-	} else if (icon) {
-		return html`
-			<vwc-icon type="${icon}" size="medium"></vwc-icon>`;
-	} else {
-		return '';
+	}
+	else {
+		return icon ? html`<vwc-icon type="${icon}"></vwc-icon>` : '';
 	}
 };
 

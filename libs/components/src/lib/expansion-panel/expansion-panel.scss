@@ -61,7 +61,7 @@
 		white-space: nowrap;
 	}
 
-	.leading-icon {
+	.leadingIcon {
 		vwc-icon,
 		slot[name="icon"i]::slotted(vwc-icon) {
 			margin-inline-end: 16px;
