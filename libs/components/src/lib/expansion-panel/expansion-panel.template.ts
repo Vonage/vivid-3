@@ -27,10 +27,10 @@ const renderPanelHeader = (headingLevel: number | string) => {
 
 const renderHeaderButton = () => {
 	return html<ExpansionPanel>`
-	<button class="expansion-panel-button" @click=${x => x.toggleOpen()}
+	<button class="expansion-panel-button" 
+		@click=${x => x.toggleOpen()}
 		?aria-expanded=${x => x.open}
-		aria-controls="content"
-		>
+		aria-controls="content">
 		<span class="leadingIcon">
 			<slot name="icon">
 				${x => renderIconOrToggle(x.leadingToggle, x.icon)}
