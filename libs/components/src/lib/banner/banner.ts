@@ -1,15 +1,14 @@
-import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
-import { Connotation } from '../enums';
-import { AffixIcon } from '../../shared/patterns/affix';
-
+import {applyMixins, FoundationElement} from '@microsoft/fast-foundation';
+import {attr} from '@microsoft/fast-element';
+import {Connotation} from '../enums';
+import {AffixIcon} from '../../shared/patterns/affix';
 
 export type BannerConnotation =
-  Connotation.Info |
-  Connotation.Announcement |
-  Connotation.Success |
-  Connotation.Warning |
-  Connotation.Alert;
+	Connotation.Info |
+	Connotation.Announcement |
+	Connotation.Success |
+	Connotation.Warning |
+	Connotation.Alert;
 
 const connotationIconMap = new Map([
 	[Connotation.Info, 'info-solid'],
@@ -20,8 +19,7 @@ const connotationIconMap = new Map([
 ]);
 
 const defaultConnotation =
-  (connotation: Connotation | undefined = Connotation.Info) => connotationIconMap.get(connotation) as Connotation;
-
+	(connotation: Connotation | undefined = Connotation.Info) => connotationIconMap.get(connotation) as Connotation;
 
 /**
  * Base class for banner
@@ -46,18 +44,6 @@ export class Banner extends FoundationElement {
 		this.addEventListener('keydown', this.#closeOnKeyDown);
 	}
 
-	#handleRemoveEnd = () => {
-		this.$emit('vwc-banner:removed');
-		this.parentElement?.removeChild(this);
-	};
-
-	#closeOnKeyDown = (e: KeyboardEvent) => {
-		if (e.key !== 'Escape' || !this.removable) {
-			return;
-		}
-		this.remove();
-	};
-
 	override disconnectedCallback() {
 		super.disconnectedCallback();
 		this.removeEventListener('keydown', this.#closeOnKeyDown);
@@ -71,7 +57,21 @@ export class Banner extends FoundationElement {
 			banner.addEventListener('animationend', this.#handleRemoveEnd);
 		}
 	}
+
+	#handleRemoveEnd = () => {
+		this.$emit('vwc-banner:removed');
+		this.parentElement && this.parentElement.removeChild(this);
+	};
+
+	#closeOnKeyDown = (e: KeyboardEvent) => {
+		if (e.key !== 'Escape' || !this.removable) {
+			return;
+		}
+		this.remove();
+	};
 }
 
 applyMixins(Banner, AffixIcon);
-export interface Banner extends AffixIcon {}
+
+export interface Banner extends AffixIcon {
+}
