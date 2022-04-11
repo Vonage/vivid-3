@@ -18,6 +18,20 @@ export class ExpansionPanel extends FoundationElement {
 	/**
 	 *
 	 * @public
+	 * HTML Attribute: heading-level
+	 */
+	@attr({ mode: 'fromView', attribute: 'heading-level' }) headingLevel: 2 | 3 | 4 | 5 | 6 = 3;
+
+	/**
+	 *
+	 * @public
+	 * HTML Attribute: leading-toggle
+	 */
+	@attr({ mode: 'boolean', attribute: 'leading-toggle' }) leadingToggle = false;
+
+	/**
+	 *
+	 * @public
 	 * 
 	 * HTML Attribute: icon
 	 */
@@ -32,35 +46,12 @@ export class ExpansionPanel extends FoundationElement {
 	@attr({ mode: 'fromView' }) meta = '';
 
 	/**
-	 *
-	 * @public
-	 * HTML Attribute: dense
-	 */
-	@attr({ mode: 'boolean' }) dense = false;
-
-	/**
-	 *
-	 * @public
-	 * HTML Attribute: leadingToggle
-	 */
-	@attr({ mode: 'boolean' }) leadingToggle = false;
-
-	/**
-	 *
-	 * @public
-	 */
-	@attr({ mode: 'fromView' }) headingLevel?: 2 | 3 | 4 | 5 | 6 = 3;
-
-	/**
 	 * indicates whether the expansion-panel is open
 	 *
 	 * @public
 	 * HTML Attribute: open
 	 */
 	@attr({ mode: 'boolean' }) open = false;
-	role: any;
-	text: any;
-	dismissible: any;
 
 	/**
 	 * Opens the expansion-panel from the closed state.
@@ -87,15 +78,5 @@ export class ExpansionPanel extends FoundationElement {
 	 */
 	toggleOpen(): void {
 		this.open = !this.open;
-	}
-
-	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
-		super.attributeChangedCallback(name, oldValue, newValue);
-		switch (name) {
-			case 'open': {
-				this.toggleAttribute('open', this.open);
-				break;
-			}
-		}
 	}
 }

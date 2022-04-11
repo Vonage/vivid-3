@@ -10,13 +10,20 @@ export const ExpansionPanelTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<ExpansionPanel> = () => html<ExpansionPanel>`
-		<header class="expansion-panel-header">
-			${renderHeaderButton()}
-		</header>
+		${x => renderPanelHeader(x.headingLevel)}
 		<div class="expansion-panel-body">
 			<slot></slot>
 		</div>
 `;
+
+const renderPanelHeader = (headingLevel: number | string) => {
+	const header: string = 'h' + headingLevel;
+	return html<ExpansionPanel>`
+	<${header} class="expansion-panel-header">
+		${renderHeaderButton()}
+	</${header}>
+	`;
+};
 
 const renderHeaderButton = () => {
 	return html<ExpansionPanel>`
