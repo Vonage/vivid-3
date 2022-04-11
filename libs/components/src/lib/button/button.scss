@@ -33,7 +33,8 @@
 	block-size: var(#{variables.$block-size});
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-variable(outline)});
 	color: var(#{appearance.get-variable(text)});
-	outline: 0 none;
+  cursor: pointer;
+  outline: 0 none;
 	vertical-align: middle;
 
 	&.icon-only {
