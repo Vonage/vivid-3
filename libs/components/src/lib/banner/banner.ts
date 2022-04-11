@@ -29,6 +29,8 @@ const defaultConnotation =
  * @public
  */
 export class Banner extends FoundationElement {
+	@attr({attribute: 'action-href'}) actionHref: string | undefined;
+	@attr({attribute: 'action-text'}) actionText: string | undefined;
 	@attr({mode: 'boolean'}) removable = false;
 	@attr({attribute: 'aria-live'}) override ariaLive: any;
 	@attr() role: string | undefined;

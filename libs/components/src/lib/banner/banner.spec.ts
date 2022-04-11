@@ -5,6 +5,7 @@ import {Connotation} from '../enums';
 import { Banner } from './banner';
 import type { BannerConnotation } from './banner';
 import '.';
+import {TextAnchor} from '../text-anchor/text-anchor';
 
 const COMPONENT_TAG = 'vwc-banner';
 
@@ -185,6 +186,13 @@ describe('vwc-banner', () => {
 			expect(spy.mock.calls.length)
 				.toEqual(0);
 		});
+
+		it('should remove the banner after dispatch', function () {
+			element.remove();
+			dispatchAnimationEndEvent();
+			expect(document.body.contains(element))
+				.toEqual(false);
+		});
 	});
 
 	describe('connotation', function () {
@@ -346,4 +354,51 @@ describe('vwc-banner', () => {
 		});
 	});
 
+	describe('action item', function () {
+		const text = 'someText';
+		const href = 'someHref';
+
+		it('should reflect "action-text" and "action-href" attributes', async function () {
+			element.actionText = text;
+			element.actionHref = href;
+			await elementUpdated(element);
+			expect(element.getAttribute('action-text')).toEqual(text);
+			expect(element.getAttribute('action-href')).toEqual(href);
+		});
+
+		it('should set properties according to attributes', async function () {
+			element.setAttribute('action-text', text);
+			element.setAttribute('action-href', href);
+			await elementUpdated(element);
+			expect(element.actionText).toEqual(text);
+			expect(element.actionHref).toEqual(href);
+		});
+
+		it('should add a button if "action-text" is set', async function() {
+			element.actionText = text;
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.action-item')).toBeInstanceOf(Button);
+			expect(element.shadowRoot?.querySelector('.action-item')?.getAttribute('label')).toEqual(text);
+		});
+
+		it('should fire "vwc-banner:action" event on click', async function() {
+			element.actionText = text;
+			await elementUpdated(element);
+			const actionItem = element.shadowRoot?.querySelector('.action-item') as HTMLElement;
+			const spy = jest.fn();
+			element.addEventListener('vwc-banner:action', spy);
+			actionItem?.click();
+			expect(spy).toHaveBeenCalled();
+
+		});
+
+		it('should add "text-anchor" if "action-href" is supplied', async function () {
+			element.actionText = text;
+			element.actionHref = href;
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.action-item')).toBeInstanceOf(TextAnchor);
+			expect(element.shadowRoot?.querySelector('.action-item')?.getAttribute('text')).toEqual(text);
+			expect(element.shadowRoot?.querySelector('.action-item')?.getAttribute('href')).toEqual(href);
+		});
+	});
 });
