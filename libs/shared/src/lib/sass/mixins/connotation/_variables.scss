@@ -9,7 +9,7 @@ $compound-placeholder: '[compound]'; // will be replaced by actual compound
 $connotation-mapping: (
   // should map to colors e.g. purple-60
   primary: (
-    contrast: theme-consts.$vvd-color-primary,
+    contrast: theme-consts.$vvd-color-neutral-90,
     diverse: theme-consts.$vvd-color-neutral-70,
     soft: theme-consts.$vvd-color-neutral-20,
     pale: theme-consts.$vvd-color-neutral-10,
