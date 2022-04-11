@@ -28,32 +28,6 @@ function renderDismissButton() {
 	  </vwc-button>`;
 }
 
-function renderActionButton() {
-	return html<Banner>`
-	  <vwc-button
-					  appearance="filled"
-					  connotation="cta"
-			  class="action-item"
-			  label="${x => x.actionText}"
-			  @click="${x => x.$emit('vwc-banner:action')}">
-	  </vwc-button>`;
-}
-
-function renderActionAnchor() {
-	return html<Banner>`
-	  <vwc-text-anchor
-			  class="action-item"
-			  href="${x => x.actionHref}"
-			  text="${x => x.actionText}">
-	  </vwc-text-anchor>`;
-}
-
-function renderActionItem() {
-	return html<Banner>`
-	  ${when(x => !x.actionHref, renderActionButton())}
-	  ${when(x => x.actionHref, renderActionAnchor())}`;
-}
-
 /**
  * The template for the {@link @microsoft/fast-foundation#Banner} component.
  *
@@ -76,7 +50,7 @@ export const BannerTemplate: (
 				 aria-live="${x => x.ariaLive ? x.ariaLive : 'polite'}">
               ${x => x.text}
             </div>
-							${when(x => x.actionText, renderActionItem())}
+						<slot class="action-items" name="actionItems"></slot>
 					</span>
 
 			  ${when(x => x.removable, renderDismissButton())}
@@ -84,3 +58,4 @@ export const BannerTemplate: (
 	  </div>
 	`;
 };
+

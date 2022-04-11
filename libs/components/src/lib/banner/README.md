@@ -31,17 +31,23 @@ The `connotation` attribute sets the colors according to the wanted connotation.
 
 Note that the icon, if not specifically set, will change according to connotation.
 
+const infoMessage = "I'm here to give you advice (Like, use the controls for options)";
+const announcementMessage = "I'm here to give you some info (Terms and Conditions changed... jk)";
+const successMessage = "I'm here to give you good news (Thanks for giving us money!)";
+const warningMessage = "I'm here to give you a warning (Your zip is down)";
+const alertMessage = "I'm here to tell you something's wrong (The horror, the horror)";
+
 ```html preview
 <style>
 vwc-banner {
     clear: both;
 }
 </style>
-<vwc-banner text="Here's some information that you may find important!" connotation="info"></vwc-banner>
+<vwc-banner text="Here's some information that you may find useful!" connotation="info"></vwc-banner>
 <vwc-banner text="Here's some information that you may find important!" connotation="announcement"></vwc-banner>
-<vwc-banner text="Here's some information that you may find important!" connotation="success"></vwc-banner>
-<vwc-banner text="Here's some information that you may find important!" connotation="warning"></vwc-banner>
-<vwc-banner text="Here's some information that you may find important!" connotation="alert"></vwc-banner>
+<vwc-banner text="Operation Successful!" connotation="success"></vwc-banner>
+<vwc-banner text="Heads up - this is a warning" connotation="warning"></vwc-banner>
+<vwc-banner text="ALERT! Something went wrong!" connotation="alert"></vwc-banner>
 ```
 
 ## Icon
@@ -69,23 +75,14 @@ The `removable` attribute sets a remove button. On click it will remove the bann
             removable></vwc-banner>
 ```
 
-## action-text
+## Action Items
 
-Adds a button with the given text when `action-text` is set.
-
-```html preview
-<vwc-banner text="A banner with an action button"
-            action-text="Call to action!"></vwc-banner>
-```
-
-## action-href
-
-Changes the button into an anchor that refers to the value of the `action-href`. Note that if `action-text` is not set, nothing will show.
+You can add action items using slotted content in a named slot `actionItems`:
 
 ```html preview
-<vwc-banner text="A banner with an action button"
-            action-text="Going to google!"
-            action-href="https://google.com"></vwc-banner>
+<vwc-banner text="A banner with an action button">
+    <vwc-button slot="actionItems" appearance="filled" connotation="cta" label="Learn More"></vwc-button>
+</vwc-banner>
 ```
 
 ## Methods
