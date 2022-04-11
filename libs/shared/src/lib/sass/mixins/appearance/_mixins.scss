@@ -22,7 +22,6 @@ $all-appearances: (
 //$states: idle disabled hover;
 
 
-
 @function get-variable($type) {
   $prefix: --_appearance-color;
   @return #{$prefix}-#{$type};
@@ -48,7 +47,7 @@ $selectors: (
       $state-mapping: map.get(variables.$states-mapping, $state);
 
       @each $appearance in config.$appearances {
-        $selector: if($appearance == config.$default, get-default-selector($appearance) , '&.appearance-#{$appearance}');
+        $selector: if($appearance == config.$default, get-default-selector($appearance), '&.appearance-#{$appearance}');
 
 
         #{$selector} {
