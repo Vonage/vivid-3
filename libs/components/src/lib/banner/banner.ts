@@ -30,7 +30,6 @@ const defaultConnotation =
  */
 export class Banner extends FoundationElement {
 	@attr({mode: 'boolean'}) removable = false;
-	@attr({mode: 'boolean'}) open = false;
 	@attr({attribute: 'aria-live'}) override ariaLive: any;
 	@attr() role: string | undefined;
 	@attr() text: string | undefined;
@@ -54,7 +53,7 @@ export class Banner extends FoundationElement {
 		if (e.key !== 'Escape' || !this.removable) {
 			return;
 		}
-		this.open = false;
+		this.remove();
 	};
 
 	override disconnectedCallback() {

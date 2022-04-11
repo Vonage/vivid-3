@@ -12,8 +12,7 @@ import type { Banner } from './banner';
 
 const getClasses = (_: Banner) => classNames(
 	'control',
-	[`connotation-${_.connotation}`, !!_.connotation],
-	['open', _.open]
+	[`connotation-${_.connotation}`, !!_.connotation]
 );
 
 /**

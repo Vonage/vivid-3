@@ -8,7 +8,7 @@ Banners are meant to be used on top of pages, outside the main content.
 ```
 
 ```html preview
-<vwc-banner text="Here's some information that you may find important!" dismissible open></vwc-banner>
+<vwc-banner text="Here's some information that you may find important!" removable open></vwc-banner>
 ```
 
 ## Open
@@ -72,17 +72,17 @@ The `icon` attribute will override the icon set by connotation.
             icon="home-line"></vwc-banner>
 ```
 
-## Dismissible
+## Removable
 
 - Type: `boolean`
 - Default: `false`
 
-The `dismissible` attribute sets a dismiss button. On click it will close the banner.
+The `removable` attribute sets a dismiss button. On click it will close the banner.
 
 ```html preview
 <vwc-banner open 
             text="Here's some information that you may find important!"
-            dismissible></vwc-banner>
+            removable></vwc-banner>
 ```
 
 ## Accessibility
@@ -105,7 +105,5 @@ However, consumers can modify the above attributes (role and aria-live) to fit c
 
 | Event name           | Description                                                     |
 |----------------------|-----------------------------------------------------------------|
-| `vwc-banner:opening` | Fires whenever the the banner has started its opening animation |
-| `vwc-banner:closing` | Fires whenever the the banner has started its closing animation |
-| `vwc-banner:opened`  | Fires when the opening animation is done                        |
-| `vwc-banner:closed`  | Fires when the closing animation is done                        |
+| `vwc-banner:removing`| Fires whenever the the banner has started its removing animation|
+| `vwc-banner:removed` | Fires when the removing animation is done                       |
