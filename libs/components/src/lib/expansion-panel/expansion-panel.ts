@@ -25,9 +25,8 @@ export class ExpansionPanel extends FoundationElement {
 	/**
 	 *
 	 * @public
-	 * HTML Attribute: leading-toggle
 	 */
-	@attr({ mode: 'boolean', attribute: 'leading-toggle' }) leadingToggle = false;
+	@attr({ mode: 'boolean' }) leadingToggle = false;
 
 	/**
 	 *

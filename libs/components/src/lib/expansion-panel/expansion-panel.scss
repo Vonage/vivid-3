@@ -42,6 +42,11 @@
 	background: transparent;
 	cursor: pointer;
 
+	.leading-icon,
+	.trailing-icon {
+		display: flex;
+	}
+	
 	.heading-text {
 		flex-grow: 1;
 		margin-inline-end: auto;
@@ -61,7 +66,7 @@
 		white-space: nowrap;
 	}
 
-	.leadingIcon {
+	.leading-icon { 
 		vwc-icon,
 		slot[name="icon"i]::slotted(vwc-icon) {
 			margin-inline-end: 16px;
@@ -92,17 +97,5 @@
 :host([leadingToggle]) {
 	.expansion-panel-body {
 		padding-right: 16px;
-	}
-}
-
-:host([dense]) {
-	.expansion-panel-button {
-		@include typography.typography-cat-shorthand('body-2-bold');
-	}
-	.meta {
-		@include typography.typography-cat-shorthand('caption-bold');
-	}
-	vwc-icon {
-		--vvd-expansion-panel-icon-size: 16px;
 	}
 }

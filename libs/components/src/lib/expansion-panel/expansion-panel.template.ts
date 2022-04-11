@@ -31,7 +31,7 @@ const renderHeaderButton = () => {
 		@click=${x => x.toggleOpen()}
 		?aria-expanded=${x => x.open}
 		aria-controls="content">
-		<span class="leadingIcon">
+		<span class="leading-icon">
 			<slot name="icon">
 				${x => renderIconOrToggle(x.leadingToggle, x.icon)}
 			</slot>
