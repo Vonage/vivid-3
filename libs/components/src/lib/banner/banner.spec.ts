@@ -2,10 +2,10 @@ import {elementUpdated, fixture} from '@vivid-nx/shared';
 import type {Icon} from '../icon/icon';
 import {Button} from '../button/button';
 import {Connotation} from '../enums';
+import {TextAnchor} from '../text-anchor/text-anchor';
 import { Banner } from './banner';
 import type { BannerConnotation } from './banner';
 import '.';
-import {TextAnchor} from '../text-anchor/text-anchor';
 
 const COMPONENT_TAG = 'vwc-banner';
 

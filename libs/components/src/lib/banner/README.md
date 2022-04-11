@@ -8,21 +8,7 @@ Banners are meant to be used on top of pages, outside the main content.
 ```
 
 ```html preview
-<vwc-banner text="Here's some information that you may find important!" removable open></vwc-banner>
-```
-
-## Open
-
-- Type: `boolean`
-- Default: `false`
-
-The `open` attribute sets the banner to open or close. It will open using animation.
-
-```html preview
-<vwc-button appearance="filled" connotation="cta" label="Toggle open state" onclick="document.getElementById('toggled-banner').toggleAttribute('open')"></vwc-button>
-<vwc-banner id="toggled-banner"
-            text="Here's some information that you may find important!" 
-            open></vwc-banner>
+<vwc-banner text="Here's some information that you may find important!" removable></vwc-banner>
 ```
 
 ## Text
@@ -33,7 +19,7 @@ The `open` attribute sets the banner to open or close. It will open using animat
 The `text` attribute adds a message to the banner.
 
 ```html preview
-<vwc-banner text="Here's some information that you may find important!" open></vwc-banner>
+<vwc-banner text="Here's some information that you may find important!"></vwc-banner>
 ```
 
 ## Connotation
@@ -51,11 +37,11 @@ vwc-banner {
     clear: both;
 }
 </style>
-<vwc-banner open text="Here's some information that you may find important!" connotation="info"></vwc-banner>
-<vwc-banner open text="Here's some information that you may find important!" connotation="announcement"></vwc-banner>
-<vwc-banner open text="Here's some information that you may find important!" connotation="success"></vwc-banner>
-<vwc-banner open text="Here's some information that you may find important!" connotation="warning"></vwc-banner>
-<vwc-banner open text="Here's some information that you may find important!" connotation="alert"></vwc-banner>
+<vwc-banner text="Here's some information that you may find important!" connotation="info"></vwc-banner>
+<vwc-banner text="Here's some information that you may find important!" connotation="announcement"></vwc-banner>
+<vwc-banner text="Here's some information that you may find important!" connotation="success"></vwc-banner>
+<vwc-banner text="Here's some information that you may find important!" connotation="warning"></vwc-banner>
+<vwc-banner text="Here's some information that you may find important!" connotation="alert"></vwc-banner>
 ```
 
 ## Icon
@@ -66,8 +52,7 @@ vwc-banner {
 The `icon` attribute will override the icon set by connotation.
 
 ```html preview
-<vwc-banner open 
-            text="Here's some information that you may find important!" 
+<vwc-banner text="Here's some information that you may find important!" 
             connotation="alert"
             icon="home-line"></vwc-banner>
 ```
@@ -77,13 +62,40 @@ The `icon` attribute will override the icon set by connotation.
 - Type: `boolean`
 - Default: `false`
 
-The `removable` attribute sets a dismiss button. On click it will close the banner.
+The `removable` attribute sets a remove button. On click it will remove the banner from the DOM.  
 
 ```html preview
-<vwc-banner open 
-            text="Here's some information that you may find important!"
+<vwc-banner text="Here's some information that you may find important!"
             removable></vwc-banner>
 ```
+
+## action-text
+
+Adds a button with the given text when `action-text` is set.
+
+```html preview
+<vwc-banner text="A banner with an action button"
+            action-text="Call to action!"></vwc-banner>
+```
+
+## action-href
+
+Changes the button into an anchor that refers to the value of the `action-href`. Note that if `action-text` is not set, nothing will show.
+
+```html preview
+<vwc-banner text="A banner with an action button"
+            action-text="Going to google!"
+            action-href="https://google.com"></vwc-banner>
+```
+
+## Methods
+
+### remove()
+
+- Type: function
+- Returns: void
+
+Removes the banner from the DOM.  Fires the `vwc-banner:removing` event and starts the remove animation.  When the animation finishes, it emits the `vwc-banner:removed` event and removes the banner from the DOM completely.  If you have a variable that refers to the banner element make sure to clear it otherwise it might cause a memory leak.
 
 ## Accessibility
 
@@ -97,7 +109,6 @@ However, consumers can modify the above attributes (role and aria-live) to fit c
 ```html preview
 <vwc-banner role="status"
             aria-live="polite"
-            open 
             text="Here's some information that you may find important!"></vwc-banner>
 ```
 
