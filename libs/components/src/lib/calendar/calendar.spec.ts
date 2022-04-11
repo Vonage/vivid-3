@@ -163,20 +163,18 @@ describe('vwc-calendar', () => {
 
 			expect(shadowRoot?.activeElement).toBe(gridCell);
 			// const getRole = (role: string, i: number) => shadowRoot?.querySelector(`[role="${role}"i]:nth-child(${i})`);
-			// const createKeyboardEvent = (key: string) => new KeyboardEvent('keydown', { key });
 
-			// const moveToElement = (key: string) => {
-			// 	element?.dispatchEvent(createKeyboardEvent(key));
-			// 	return shadowRoot?.activeElement;
-			// };
-
-			// const focusedElementAfterMovingRight = moveToElement('ArrowRight');
+			const moveToElement = (key: string) => {
+				element?.dispatchEvent(new KeyboardEvent('keydown', { key }));
+				return shadowRoot?.activeElement;
+			};
+			moveToElement('ArrowRight');
+			const focusedElementAfterMovingRight = moveToElement('ArrowRight');
 			// const focusedElementAfterMovingLeft = moveToElement('ArrowLeft');
 			// const focusedElementAfterMovingUp = moveToElement('ArrowUp');
 			// const focusedElementAfterMovingDown = moveToElement('ArrowDown');
 
-			expect(shadowRoot?.activeElement).toEqual(2);
-			// expect(focusedElementAfterMovingRight).toEqual(2);
+			expect(focusedElementAfterMovingRight).toEqual(2);
 			// expect(focusedElementAfterMovingRight).toEqual(getRole('columnheader', 4));
 			// expect(focusedElementAfterMovingLeft).toEqual(getRole('columnheader', 3));
 			// expect(focusedElementAfterMovingUp).toEqual(getRole('gridcell', 3));
