@@ -3,7 +3,6 @@
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
 :host {
-	--mdc-ripple-color: var(#{theme-consts.$vvd-color-on-canvas});
 	display: flex;
 	flex-direction: column;
 }
@@ -46,7 +45,7 @@
 	.trailing-icon {
 		display: flex;
 	}
-	
+
 	.heading-text {
 		flex-grow: 1;
 		margin-inline-end: auto;
