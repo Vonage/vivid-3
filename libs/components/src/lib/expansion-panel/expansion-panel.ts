@@ -1,8 +1,6 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 
-export enum ICON_SETS { Chevron = 'chevron', Binary = 'binary' }
-
 /**
  * Base class for expansion-panel
  *
@@ -34,14 +32,6 @@ export class ExpansionPanel extends FoundationElement {
 	@attr({ mode: 'fromView' }) meta = '';
 
 	/**
-	*
-	* @public
-	* 
-	* HTML Attribute: meta
-	*/
-	@attr({ mode: 'fromView' }) indicatorIconSet = ICON_SETS.Chevron;
-
-	/**
 	 *
 	 * @public
 	 * HTML Attribute: dense
@@ -59,7 +49,7 @@ export class ExpansionPanel extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr({ mode: 'fromView' }) size = 'base';
+	@attr({ mode: 'fromView' }) headingLevel?: 2 | 3 | 4 | 5 | 6 = 3;
 
 	/**
 	 * indicates whether the expansion-panel is open
@@ -68,6 +58,9 @@ export class ExpansionPanel extends FoundationElement {
 	 * HTML Attribute: open
 	 */
 	@attr({ mode: 'boolean' }) open = false;
+	role: any;
+	text: any;
+	dismissible: any;
 
 	/**
 	 * Opens the expansion-panel from the closed state.
