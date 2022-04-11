@@ -231,9 +231,7 @@ describe('vwc-banner', () => {
 			element.addEventListener('vwc-banner:removing', spy);
 			element.disconnectedCallback();
 
-			await openBanner(element);
-			dispatchAnimationEndEvent();
-			await closeBanner(element);
+			element.remove();
 			dispatchAnimationEndEvent();
 
 			expect(spy.mock.calls.length)

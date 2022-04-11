@@ -19,7 +19,7 @@ $banner-transition-delay: --transition-delay;
 		@include appearance.appearance;
 
 		overflow: hidden;
-		max-height: 0;
+		max-height: 10rem;
 		background-color: var(#{appearance.$appearance-color-fill});
 		color: var(#{appearance.$appearance-color-text});
 		transition: max-height var(#{$banner-transition-delay}, 200ms);
@@ -66,6 +66,6 @@ $banner-transition-delay: --transition-delay;
 	}
 }
 
-.banner.open {
-	max-height: 10rem;
+.banner.removing {
+	max-height: 0;
 }
