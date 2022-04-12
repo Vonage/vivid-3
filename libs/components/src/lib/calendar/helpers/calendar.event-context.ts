@@ -39,18 +39,18 @@ function getHour(e: PointerEvent, hours: number): number | undefined {
 	const [el] = path;
 
 	if (!(el instanceof HTMLElement)) {
-		return undefined;
+		throw new Error('No HTML element found');
 	}
 
 	const rowHeaderOrCell = el.closest('.row-headers') || el.closest('[role="gridcell"i]');
-	const boundingClientRect = rowHeaderOrCell?.getBoundingClientRect();
 
-	if (!boundingClientRect?.y) {
-		return undefined;
+	if (!rowHeaderOrCell) {
+		return;
 	}
 
-	const offsetY = e.clientY - boundingClientRect.y;
-	const hourHeight = boundingClientRect.height / hours;
+	const DOMRect = rowHeaderOrCell.getBoundingClientRect();
+	const offsetY = e.clientY - DOMRect.y;
+	const hourHeight = DOMRect.height / hours;
 	const hour = offsetY / hourHeight;
 
 	return Math.round((hour + Number.EPSILON) * 100) / 100;
