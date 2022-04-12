@@ -2,7 +2,7 @@ import * as path from 'path';
 import { expect, Page, test } from '@playwright/test';
 import {
 	extractHTMLBlocksFromReadme,
-	loadComponent,
+	loadComponents,
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils';
 
@@ -17,7 +17,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		''
 	);
 
-	await loadComponent({
+	await loadComponents({
 		page,
 		components,
 	});
