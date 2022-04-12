@@ -40,12 +40,12 @@ Add the `no-indicator` attribute to remove the indicator icon from the heading.
 - Default: `false`
 
 ```html preview
- <vwc-expansion-panel heading="With indicator">
+ <vwc-expansion-panel heading="Without indicator" no-indicator>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
   </vwc-expansion-panel>
- <vwc-expansion-panel heading="Without indicator" no-indicator>
+  <vwc-expansion-panel heading="With indicator">
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
@@ -60,6 +60,11 @@ Add the `icon` attribute to add an icon to the heading.
 
 ```html preview
  <vwc-expansion-panel heading="With Icon" icon="chat-solid">
+    <vwc-text font-face="body-1">
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    </vwc-text>
+  </vwc-expansion-panel>
+   <vwc-expansion-panel heading="With Icon and without indicator" icon="chat-solid" no-indicator>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
