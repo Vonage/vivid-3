@@ -57,6 +57,8 @@ Our Code of Conduct means that you are responsible for treating everyone on the 
 
 ### Guiding principles to consider when introducing changes
 
+* Align to Vivid design language
+
 * Guarantee contribution does not produce WCAG violations (both in design & engineering)
 
 * Ensure user interaction with changes correspond to all types of users (e.g., keyboard, mouse, touch, assistive technology, etc.)
