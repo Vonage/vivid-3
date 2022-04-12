@@ -1,4 +1,4 @@
-import { fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { ExpansionPanel } from './expansion-panel';
 import '.';
 
@@ -16,6 +16,45 @@ describe('vwc-expansion-panel', () => {
 	describe('basic', () => {
 		it('should be initialized as a vwc-expansion-panel', async () => {
 			expect(element).toBeInstanceOf(ExpansionPanel);
+			expect(element.open).toBeFalsy();
+			expect(element.dense).toBeFalsy();
+			expect(element.icon).toEqual('');
+			expect(element.iconTrailing).toBeFalsy();
+			expect(element.meta).toEqual('');
+			expect(element.noIndicator).toBeFalsy();
+			expect(element.heading).toEqual('');
+			expect(element.headingLevel).toEqual(3);
+		});
+	});
+
+	describe('show', () => {
+		it('should set "open" to true and add "open" class', async () => {
+			const control = getControlElement(element);
+			const hasClassOpenBeforeShow = control.classList.contains('open');
+
+			element.show();
+			await elementUpdated(element);
+			const hasClassOpenAfterShow = control.classList.contains('open');
+
+			expect(element.open).toEqual(true);
+			expect(hasClassOpenBeforeShow).toEqual(false);
+			expect(hasClassOpenAfterShow).toEqual(true);
+		});
+	});
+
+	describe('hide', () => {
+		it('should set "open" to false and remove "open" class', async () => {
+			element.open = true;
+			await elementUpdated(element);
+			const control = getControlElement(element);
+			const hasClassOpenBeforeHide = control.classList.contains('open');
+
+			element.hide();
+			await elementUpdated(element);
+			const hasClassOpenAfterHide = control.classList.contains('open');
+
+			expect(hasClassOpenBeforeHide).toEqual(true);
+			expect(hasClassOpenAfterHide).toEqual(false);
 		});
 	});
 });

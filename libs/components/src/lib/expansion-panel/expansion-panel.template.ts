@@ -4,15 +4,25 @@ import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
+import { classNames } from '@microsoft/fast-web-utilities';
 import type { ExpansionPanel } from './expansion-panel';
+
+const getClasses = ({
+	open
+}: ExpansionPanel) => classNames(
+	'control',
+	['open', open],
+);
 
 export const ExpansionPanelTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<ExpansionPanel> = () => html<ExpansionPanel>`
-		${x => renderPanelHeader(x.headingLevel)}
-		<div class="expansion-panel-body">
-			<slot></slot>
+		<div class="${getClasses}">
+			${x => renderPanelHeader(x.headingLevel)}
+			<div class="expansion-panel-body">
+				<slot></slot>
+			</div>
 		</div>
 `;
 
@@ -27,7 +37,7 @@ const renderPanelHeader = (headingLevel: number | string) => {
 
 const renderHeaderButton = () => {
 	return html<ExpansionPanel>`
-	<button class="expansion-panel-button" @click=${x => x.toggleOpen()}
+	<button class="expansion-panel-button" @click=${x=> x.toggleOpen()}
 		?aria-expanded=${x => x.open}
 		aria-controls="content">
 		<span class="icon">
