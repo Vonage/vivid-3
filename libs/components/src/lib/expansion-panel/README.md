@@ -113,21 +113,6 @@ Use the `headingLevel` attribute to change the expansion panel's size.
   </vwc-expansion-panel>
   ```
 
-## Outlined
-Wrap the expansion panel with an `vwc-elevation` component to get an outlined style.
-  
-```html preview
-<vwc-elevation dp="0">
-  <vwc-expansion-panel heading="Campaign Details">
-    <vwc-text font-face="body-1">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-            a type specimen book.
-     </vwc-text>
-  </vwc-expansion-panel>
-</vwc-elevation>
-```
-
   ## Methods
 
 | Method       | Type       | Description                                      |
