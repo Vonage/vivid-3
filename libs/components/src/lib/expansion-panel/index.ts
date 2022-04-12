@@ -7,10 +7,8 @@ import { ExpansionPanelTemplate as template } from './expansion-panel.template';
 import '../icon';
 
 export const vividExpansionPanel =
-  ExpansionPanel.compose<FoundationElementDefinition>({
-  	baseName: 'expansion-panel',
-  	template: template as any,
-  	styles,
-  });
+	ExpansionPanel.compose<FoundationElementDefinition>({
+		baseName: 'expansion-panel', template: template as any, styles,
+	});
 
 designSystem.register(vividExpansionPanel());
