@@ -41,7 +41,7 @@ const DaysTemplate = () => {
 			<div class="column-headers" role="row">
 				${repeat(x => x.getDaysAsDatetime([getFirstDateOfTheWeek(x.datetime, x.startDay)]), html<string>`
 						<div role="columnheader" tabindex="-1">
-              <time datetime=${(x: Date) => getValidDateString(x)} aria-readonly="true">
+              <time datetime=${(x: Date) => getValidDateString(x)}>
                 <h2>
 									<!-- TODO add to column aria-labelledby or describedby to count
                   events and related day e.g. "3 events, Sunday, March 8" -->

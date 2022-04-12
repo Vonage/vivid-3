@@ -1,5 +1,5 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
-import { toHaveNoViolations } from 'jest-axe';
+import { axe, toHaveNoViolations } from 'jest-axe';
 import { Calendar } from './calendar';
 import '.';
 import { getValidDateString } from './helpers/calendar.date-functions';
@@ -150,19 +150,32 @@ describe('vwc-calendar', () => {
 	});
 
 	describe('focus management', () => {
+		let grid: HTMLElement;
+		let shadowRoot: ShadowRoot;
+
+		beforeEach(async () => {
+			shadowRoot = element.shadowRoot as ShadowRoot;
+			grid = element.shadowRoot?.querySelector('[role="grid"i]') as HTMLElement;
+		});
+
+		it('should focus to default on initial keyboard interaction', async () => {
+			grid.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+
+			const defaultFocusElement = grid.querySelector('[role="columnheader"i]');
+
+			expect(shadowRoot.activeElement).toEqual(defaultFocusElement);
+		});
+
 		it('should change focus on keyboard arrow interactions', async () => {
-			const { shadowRoot } = element;
-			const grid = shadowRoot?.querySelector('[role="grid"i]');
 
-			const gridCell = element.shadowRoot?.querySelector('[role="columnheader"i]:nth-child(3)') as HTMLElement;
+			const gridCell = shadowRoot?.querySelector('[role="columnheader"i]:nth-child(3)') as HTMLElement;
 
-			gridCell?.focus();
-
+			gridCell.focus();
 
 			const getRole = (role: string, i: number) => grid?.querySelector(`[role="${role}"i]:nth-child(${i})`);
 
-			const moveToElement = (key: string, shiftKey?: boolean) => {
-				grid?.dispatchEvent(new KeyboardEvent('keydown', { key, shiftKey }));
+			const moveToElement = (key: string) => {
+				grid.dispatchEvent(new KeyboardEvent('keydown', { key }));
 				return shadowRoot?.activeElement;
 			};
 
@@ -176,83 +189,34 @@ describe('vwc-calendar', () => {
 			expect(focusedElementAfterMovingUp).toEqual(getRole('gridcell', 3));
 			expect(focusedElementAfterMovingDown).toEqual(getRole('columnheader', 3));
 		});
+
+		it('should move focus from column header button to gridcell of same block on \'arrowDown\'', async () => {
+			const columnHeader = shadowRoot.querySelector('[role="columnheader"i]:nth-child(3)');
+			const button = columnHeader?.querySelector('[role="button"i]') as HTMLButtonElement;
+			button.focus();
+
+			grid.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+
+			expect(shadowRoot.activeElement).toEqual(
+				grid.querySelector('[role="gridcell"i]:nth-child(3)')
+			);
+		});
 	});
 
 	describe('a11y', () => {
-		// const addElement = isolatedElementsCreation();
+		it('should pass accessibility test', async () => {
+			const { shadowRoot } = element;
+			if (!shadowRoot) { return; }
 
-		// const addCalendarElement = async (content) => {
-		// 	const [actualElement] = addElement(
-		// 		textToDomToParent(`<${COMPONENT_NAME}>${content || ''}</${COMPONENT_NAME}>`)
-		// 	);
-		// 	await actualElement.updateComplete;
+			const results = await axe(shadowRoot.innerHTML, {
+				rules: {
+					// components should not be tested as page content
+					'region': { enabled: false }
+				}
+			});
 
-		// 	return actualElement;
-		// };
-
-		// const extractCalendarElements = (actualElement) => {
-		// 	const { shadowRoot } = actualElement;
-		// 	return {
-		// 		actualElement,
-		// 		shadowRoot,
-		// 		grid: shadowRoot.querySelector('[role="grid"i]')
-		// 	};
-		// };
-
-		// const createKEvent = key => new KeyboardEvent('keydown', { key });
-
-		// it('should pass accessibility test', async () => {
-		// 	const { shadowRoot } = element;
-		// 	if (!shadowRoot) { return; }
-
-		// 	const results = await axe(shadowRoot.innerHTML);
-		// 	expect(results).toHaveNoViolations();
-		// });
-
-		// describe('keyboard events', () => {
-		// 	it('should focus to default on initial keyboard interaction', async () => {
-		// 		const { shadowRoot, grid } = extractCalendarElements(await addCalendarElement());
-
-		// 		grid.dispatchEvent(createKEvent('ArrowDown'));
-
-		// 		const defaultFocusElement = grid.querySelector('[role="columnheader"i]');
-
-		// 		expect(shadowRoot.activeElement).to.equal(defaultFocusElement);
-		// 	});
-
-
-
-		// 	it('should move focus from calendar event to containing gridcell on \'arrowUp\'', async () => {
-		// 		const eventComponent = 'vwc-calendar-event';
-
-		// 		const { actualElement, shadowRoot, grid } = extractCalendarElements(await addCalendarElement(
-		// 			`<${eventComponent} slot="day-2" start="4" duration="5"></${eventComponent}>`
-		// 		));
-
-		// 		actualElement.querySelector(eventComponent)
-		// 			.shadowRoot.querySelector('section')
-		// 			.focus();
-
-		// 		grid.dispatchEvent(createKEvent('ArrowUp'));
-
-		// 		expect(shadowRoot.activeElement).to.equal(
-		// 			grid.querySelector('[role="gridcell"i]:nth-child(3)')
-		// 		);
-		// 	});
-
-		// 	it('should move focus from column header button to gridcell of same block on \'arrowDown\'', async () => {
-		// 		const { actualElement, shadowRoot, grid } = extractCalendarElements(await addCalendarElement());
-
-		// 		const columnHeader = actualElement.shadowRoot.querySelector('[role="columnheader"i]:nth-child(3)');
-		// 		columnHeader.querySelector('[role="button"i]').focus();
-
-		// 		grid.dispatchEvent(createKEvent('ArrowDown'));
-
-		// 		expect(shadowRoot.activeElement).to.equal(
-		// 			grid.querySelector('[role="gridcell"i]:nth-child(3)')
-		// 		);
-		// 	});
-		// });
+			expect(results).toHaveNoViolations();
+		});
 	});
 });
 
