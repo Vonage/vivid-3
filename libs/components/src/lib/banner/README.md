@@ -29,7 +29,7 @@ The `connotation` attribute sets the colors according to the wanted connotation.
 - Type: `'info'` | `'announcement'` | `'success'` | `'warning'` | `'alert'`
 - Default: `'info'`
 
-Note that the icon, if not specifically set, will change according to connotation.
+Note that icon, if not specifically set, defaults to a connotation-associated icon.
 
 const infoMessage = "I'm here to give you advice (Like, use the controls for options)";
 const announcementMessage = "I'm here to give you some info (Terms and Conditions changed... jk)";
