@@ -65,6 +65,13 @@ export class ExpansionPanel extends FoundationElement {
 	@attr({ mode: 'boolean' }) open = false;
 
 	/**
+	 *
+	 * @public
+	 * HTML Attribute: dense
+	 */
+	@attr({ mode: 'boolean' }) dense = false;
+
+	/**
 	 * Opens the expansion-panel from the closed state.
 	 *
 	 * @public

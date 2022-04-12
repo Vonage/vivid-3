@@ -98,3 +98,15 @@
 		padding-right: 16px;
 	}
 }
+
+:host([dense]) {
+	.expansion-panel-button {
+		@include typography.typography-cat-shorthand('body-2-bold');
+	}
+	.meta {
+		@include typography.typography-cat-shorthand('caption-bold');
+	}
+	vwc-icon {
+		--vvd-expansion-panel-icon-size: 16px;
+	}
+}

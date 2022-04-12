@@ -85,7 +85,6 @@ Add the `icon-trailing` attribute to add an icon to the right of the heading tex
   </vwc-expansion-panel>
 ```
 
-
 ## Meta
 Add the `meta` attribute to add metadata to the heading. 
 
@@ -99,7 +98,24 @@ Add the `meta` attribute to add metadata to the heading.
     </vwc-text>
   </vwc-expansion-panel>
 ```
+## Dense
+You can turn the expansion-panel into dense mode by adding the `dense` attribute.
 
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+ <vwc-expansion-panel heading="With dense" dense>
+    <vwc-text font-face="body-1">
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    </vwc-text>
+  </vwc-expansion-panel>
+   <vwc-expansion-panel heading="Without dense">
+    <vwc-text font-face="body-1">
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    </vwc-text>
+  </vwc-expansion-panel>
+```
 ## Heading-Level
 Use the `heading-level` attribute to change the expansion panel's size.
 
