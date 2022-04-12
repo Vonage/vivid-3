@@ -8,6 +8,7 @@ import { attr } from '@microsoft/fast-element';
  */
 export class ExpansionPanel extends FoundationElement {
 	/**
+	 * 
 	 *
 	 * @public
 	 * 

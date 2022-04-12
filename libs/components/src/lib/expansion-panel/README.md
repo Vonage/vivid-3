@@ -69,6 +69,22 @@ Add the `icon` attribute to add an icon to the heading.
   </vwc-expansion-panel>
 ```
 
+## Meta
+Add the `meta` attribute to add metadata to the heading. 
+
+- Type: `string`
+- Default: `''`
+
+```html preview
+ <vwc-expansion-panel heading="This is an expansion panel" meta="meta-data">
+   <vwc-text font-face="body-1">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
+            a type specimen book.
+        </vwc-text>
+  </vwc-expansion-panel>
+```
+
 ## Heading Level
 Use the `headingLevel` attribute to change the expansion panel's size.
 
