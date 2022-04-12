@@ -43,7 +43,7 @@ export const BannerTemplate: (
 	return html<Banner>`
 	  <div class="banner ${getClasses}" tabindex="0">
 		  <header class="header">
-					<span class="user-content">
+					<div class="user-content">
             ${x => affixIconTemplate(x.conditionedIcon)}
 						<div class="banner--message"
 				 role="${x => x.role ? x.role : 'status'}"
@@ -51,7 +51,7 @@ export const BannerTemplate: (
               ${x => x.text}
             </div>
 						<slot class="action-items" name="actionItems"></slot>
-					</span>
+					</div>
 
 			  ${when(x => x.removable, renderDismissButton())}
 		  </header>
