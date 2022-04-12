@@ -190,6 +190,24 @@ describe('vwc-calendar', () => {
 			expect(focusedElementAfterMovingDown).toEqual(getRole('columnheader', 3));
 		});
 
+		// it('should move focus from calendar event to containing gridcell on \'arrowUp\'', async () => {
+		// 	const eventComponent = 'vwc-calendar-event';
+
+		// 	const { actualElement, shadowRoot, grid } = extractCalendarElements(await addCalendarElement(
+		// 		`<${eventComponent} slot="day-2" start="4" duration="5"></${eventComponent}>`
+		// 	));
+
+		// 	actualElement.querySelector(eventComponent)
+		// 		.shadowRoot.querySelector('section')
+		// 		.focus();
+
+		// 	grid.dispatchEvent(createKEvent('ArrowUp'));
+
+		// 	expect(shadowRoot.activeElement).to.equal(
+		// 		grid.querySelector('[role="gridcell"i]:nth-child(3)')
+		// 	);
+		// });
+
 		it('should move focus from column header button to gridcell of same block on \'arrowDown\'', async () => {
 			const columnHeader = shadowRoot.querySelector('[role="columnheader"i]:nth-child(3)');
 			const button = columnHeader?.querySelector('[role="button"i]') as HTMLButtonElement;

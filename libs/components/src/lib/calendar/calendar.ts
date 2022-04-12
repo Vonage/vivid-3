@@ -98,20 +98,16 @@ export class Calendar extends FoundationElement {
 	getEventContext = getEventContextFactorial(this._hours);
 
 	// !TODO: this is a temporary fix until calendar event is included in this repo
-	private get focusedCalendarEvent(): any | null {
-		return null;
-	}
 	// private get focusedCalendarEvent(): VWCCalendarEvent | null {
 	// 	return (document.activeElement?.matches('vwc-calendar-event') && document.activeElement as VWCCalendarEvent) || null;
 	// }
 
 	// !TODO: this is a temporary fix until calendar event is included in this repo
 	// private getCalendarEventContainingCell(calendarEvent: VWCCalendarEvent) {
-	private getCalendarEventContainingCell(calendarEvent: any) {
-		const daySlot = calendarEvent.getAttribute('slot');
-		const slot = this.shadowRoot?.querySelector(`slot[name="${daySlot}"i]`);
-		return slot?.parentElement;
-	}
+	// 	const daySlot = calendarEvent.getAttribute('slot');
+	// 	const slot = this.shadowRoot?.querySelector(`slot[name="${daySlot}"i]`);
+	// 	return slot?.parentElement;
+	// }
 
 	private arrowKeysInteractions(event: KeyboardEvent) {
 		const activeElement = this.shadowRoot?.activeElement;
@@ -119,9 +115,13 @@ export class Calendar extends FoundationElement {
 
 		if (isCellOrHeader(activeElement)) {
 			focusNext = getNextFocusableGridElement.call(this, event.key, activeElement);
-		} else if (this.focusedCalendarEvent) {
+		}
+		// !TODO: this is a temporary fix until calendar event is included in this repo
+
+		/*else if (this.focusedCalendarEvent) {
 			focusNext = this.getCalendarEventContainingCell(this.focusedCalendarEvent);
-		} else if (activeElement?.matches('em[role="button"i]')) {
+		}*/
+		else if (activeElement?.matches('em[role="button"i]')) {
 			focusNext = getHeaderDescendantGridCell.call(this, event.key, activeElement as HTMLElement);
 		} else {
 			// default selectable element (first header)
