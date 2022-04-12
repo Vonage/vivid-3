@@ -27,20 +27,19 @@ const renderPanelHeader = (headingLevel: number | string) => {
 
 const renderHeaderButton = () => {
 	return html<ExpansionPanel>`
-	<button class="expansion-panel-button" 
-		@click=${x => x.toggleOpen()}
+	<button class="expansion-panel-button" @click=${x => x.toggleOpen()}
 		?aria-expanded=${x => x.open}
 		aria-controls="content">
-		<span class="leading-icon">
+		<span class="icon">
 			<slot name="icon">
-				${x => renderIcon(x.icon)}
+				${when(x => x.icon && !x.iconTrailing, renderIcon())}
 			</slot>
 		</span>
 		<span class="heading-text">${x => x.heading}</span>
 		${when(x => x.meta, renderMeta())}
 		<span class="indicator">
 			<slot name="indicator">
-				${when(x => !x.noIndicator, renderIndicator())}
+				${x => renderIndicatorOrIcon(x.icon, x.iconTrailing, x.noIndicator)}
 			</slot>
 		</span>
 	</button>
@@ -51,8 +50,8 @@ const renderMeta = () => {
 	return html`<span class="meta">${x => x.meta}</span>`;
 };
 
-const renderIcon = (icon: string) => {
-	return icon ? html`<vwc-icon type="${icon}"></vwc-icon>` : '';
+const renderIcon = () => {
+	return html`<vwc-icon type="${x => x.icon}"></vwc-icon>`;
 };
 
 const renderIndicator = () => {
@@ -60,4 +59,16 @@ const renderIndicator = () => {
 		<vwc-icon class="toggle-open" type='chevron-down-solid'></vwc-icon>
 		<vwc-icon class="toggle-close" type='chevron-up-solid'></vwc-icon>
 	`;
+};
+
+const renderIndicatorOrIcon = (icon: string, iconTrailing: boolean, noIndicator: boolean) => {
+	if (icon && iconTrailing) {
+		return renderIcon();
+	}
+	else if (!noIndicator) {
+		return renderIndicator();
+	}
+	else {
+		return '';
+	}
 };

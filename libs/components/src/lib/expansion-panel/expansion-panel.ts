@@ -24,7 +24,7 @@ export class ExpansionPanel extends FoundationElement {
 	@attr({ mode: 'fromView', attribute: 'heading-level' }) headingLevel: 2 | 3 | 4 | 5 | 6 = 3;
 
 	/**
-	 * indicates whether the expansion-panel has indicator
+	 * Indicates whether the expansion-panel has indicator
 	 *
 	 * @public
 	 * HTML Attribute: no-indicator
@@ -40,6 +40,15 @@ export class ExpansionPanel extends FoundationElement {
 	@attr({ mode: 'fromView' }) icon = '';
 
 	/**
+	 * Indicates the icon affix alignment.
+	 *
+	 * @public
+	 * 
+	 * HTML Attribute: icon-trailing
+	 */
+	@attr({ mode: 'boolean', attribute: 'icon-trailing' }) iconTrailing = false;
+
+	/**
 	 *
 	 * @public
 	 * 
@@ -48,7 +57,7 @@ export class ExpansionPanel extends FoundationElement {
 	@attr({ mode: 'fromView' }) meta = '';
 
 	/**
-	 * indicates whether the expansion-panel is open
+	 * Indicates whether the expansion-panel is open
 	 *
 	 * @public
 	 * HTML Attribute: open

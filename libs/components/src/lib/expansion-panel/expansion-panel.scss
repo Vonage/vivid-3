@@ -41,7 +41,7 @@
 	background: transparent;
 	cursor: pointer;
 
-	.leading-icon,
+	.icon,
 	.indicator {
 		display: flex;
 	}
@@ -65,7 +65,7 @@
 		white-space: nowrap;
 	}
 
-	.leading-icon { 
+	.icon { 
 		vwc-icon,
 		slot[name="icon"i]::slotted(vwc-icon) {
 			margin-inline-end: 16px;
