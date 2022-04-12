@@ -16,7 +16,7 @@ Banners are meant to be used on top of pages, outside the main content.
 - Type: `string`
 - Default: `''`
 
-The `text` attribute adds a message to the banner.
+Use the `text` attribute to set the banner's text.
 
 ```html preview
 <vwc-banner text="Here's some information that you may find important!"></vwc-banner>
