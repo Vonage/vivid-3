@@ -9,11 +9,12 @@ export interface CalendarEventContext {
 /**
  * @param e
  */
-function getDay(e: Event): number | undefined {
+function getDay(e: KeyboardEvent | PointerEvent): number | void {
 	const path = e.composedPath();
 	const [el] = path;
+
 	if (!(el instanceof HTMLElement)) {
-		return undefined;
+		throw new Error('No HTML element found');
 	}
 
 	const query = {
@@ -26,18 +27,13 @@ function getDay(e: Event): number | undefined {
 		const { parentElement } = cellOrHeader;
 		return parentElement?.children && Array.from(parentElement.children).indexOf(cellOrHeader);
 	}
-
-	return undefined;
 }
 
 /**
  * @param e
  * @param hours
  */
-function getHour(e: Event, hours: number): number | undefined {
-	if (!(e instanceof MouseEvent)) {
-		return undefined;
-	}
+function getHour(e: PointerEvent, hours: number): number | undefined {
 
 	const path = e.composedPath();
 	const [el] = path;
@@ -68,10 +64,17 @@ const isEmptyObject = (obj: Record<string, unknown>): obj is Record<string, neve
  * @param hours
  */
 export const getEventContextFactorial = (hours: number) =>
-	(e: Event): CalendarEventContext | null => {
-		const day = getDay(e);
-		const hour = getHour(e, hours);
+	(e: KeyboardEvent | PointerEvent): CalendarEventContext | null => {
 
+		if (!(e instanceof KeyboardEvent) || !(e instanceof PointerEvent)) {
+			throw new Error('Invalid event. Event must be instance of KeyboardEvent or PointerEvent');
+		}
+
+		const day = getDay(e);
+		let hour;
+		if (e instanceof PointerEvent) {
+			hour = getHour(e, hours);
+		}
 
 		const context = {
 			...(day != undefined && { day }),
