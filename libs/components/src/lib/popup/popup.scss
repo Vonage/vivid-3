@@ -1,44 +1,43 @@
 $popup-bg: --vvd-color-surface-4dp;
 
 .control {
-  --border-radius-size: 6px;
+	--border-radius-size: 6px;
 
-  width: min-content;
-  background-color: var(#{$popup-bg});
-  border-radius: var(--border-radius-size);
-  contain: layout;
+	width: min-content;
+	background-color: var(#{$popup-bg});
+	border-radius: var(--border-radius-size);
+	contain: layout;
 
-  &:not(.open) {
-    display: none;
-  }
+	&:not(.open) {
+		display: none;
+	}
 }
 
 .popup-wrapper {
-  position: fixed;
+	position: fixed;
 }
 
 .popup-content {
-  display: grid;
-  color: var(--vvd-color-on-canvas);
-
-  .dismissible & {
-    align-content: start;
-    grid-template-columns: 1fr auto;
-  }
+	display: grid;
+	color: var(--vvd-color-on-canvas);
+	.dismissible & {
+		align-content: start;
+		grid-template-columns: 1fr auto;
+	}
 }
 
 .arrow {
-  position: absolute;
-  z-index: -1;
-  width: 8px;
-  height: 8px;
-  background-color: var(#{$popup-bg});
-  transform: rotate(45deg);
+	position: absolute;
+	z-index: -1;
+	width: 8px;
+	height: 8px;
+	background-color: var(#{$popup-bg});
+	transform: rotate(45deg);
 }
 
 .dismissible {
-  align-self: flex-start;
-  margin-block-start: 0.25rem;
-  margin-inline-end: 0.25rem;
+	align-self: flex-start;
+	margin-block-start: 0.25rem;
+	margin-inline-end: 0.25rem;
 }
 

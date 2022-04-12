@@ -15,50 +15,50 @@
 $banner-transition-delay: --transition-delay;
 
 :host {
-  > .banner {
-    @include connotation.connotation;
-    @include appearance.appearance;
+	> .banner {
+		@include connotation.connotation;
+		@include appearance.appearance;
 
-    overflow: hidden;
-    max-height: 0;
+		overflow: hidden;
+		max-height: 0;
     background-color: var(#{appearance.get-variable(fill)});
     color: var(#{appearance.get-variable(text)});
-    transition: max-height var(#{$banner-transition-delay}, 200ms);
+		transition: max-height var(#{$banner-transition-delay}, 200ms);
 
-    > .header {
-      @include typography.typography-cat-shorthand('body-2-bold');
+		> .header {
+			@include typography.typography-cat-shorthand('body-2-bold');
 
-      display: flex;
-      min-height: 60px;
-      align-items: center;
-      justify-content: flex-start;
+			display: flex;
+			min-height: 60px;
+			align-items: center;
+			justify-content: flex-start;
 
-      > .user-content {
-        display: flex;
-        flex: 1 0;
-        align-items: center;
-        justify-content: center;
-        padding-inline: 16px;
+			> .user-content {
+				display: flex;
+				flex: 1 0;
+				align-items: center;
+				justify-content: center;
+				padding-inline: 16px;
 
-        > .icon {
-          flex: 0 0 auto;
-          font-size: 20px;
-          margin-inline-end: 15px;
-        }
+				> .icon {
+					flex: 0 0 auto;
+					font-size: 20px;
+					margin-inline-end: 15px;
+				}
 
-        > .action-items {
-          display: inline-block;
-          flex: 0 0 auto;
-          padding-inline-start: 15px;
-        }
+				> .action-items {
+					display: inline-block;
+					flex: 0 0 auto;
+					padding-inline-start: 15px;
+				}
 
-        > .message {
-          padding: 20px 0;
-        }
-      }
+				> .message {
+					padding: 20px 0;
+				}
+			}
 
-      > .dismiss-button {
-        --vvd-icon-button-color: inherit;
+			> .dismiss-button {
+				--vvd-icon-button-color: inherit;
 
         flex: 0 0 auto;
         margin-inline-end: 8px;
