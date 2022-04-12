@@ -150,35 +150,31 @@ describe('vwc-calendar', () => {
 	});
 
 	describe('focus management', () => {
-		let gridCell: HTMLElement;
-
-		beforeEach(async () => {
-			gridCell = element.shadowRoot?.querySelector('[role="gridcell"i]:nth-child(3)') as HTMLElement;
-		});
-
 		it('should change focus on keyboard arrow interactions', async () => {
 			const { shadowRoot } = element;
-			// const grid = shadowRoot?.querySelector('[role="grid"i]');
+			const grid = shadowRoot?.querySelector('[role="grid"i]');
+
+			const gridCell = element.shadowRoot?.querySelector('[role="columnheader"i]:nth-child(3)') as HTMLElement;
+
 			gridCell?.focus();
 
-			expect(shadowRoot?.activeElement).toBe(gridCell);
-			// const getRole = (role: string, i: number) => shadowRoot?.querySelector(`[role="${role}"i]:nth-child(${i})`);
 
-			const moveToElement = (key: string) => {
-				element?.dispatchEvent(new KeyboardEvent('keydown', { key }));
+			const getRole = (role: string, i: number) => grid?.querySelector(`[role="${role}"i]:nth-child(${i})`);
+
+			const moveToElement = (key: string, shiftKey?: boolean) => {
+				grid?.dispatchEvent(new KeyboardEvent('keydown', { key, shiftKey }));
 				return shadowRoot?.activeElement;
 			};
-			moveToElement('ArrowRight');
-			const focusedElementAfterMovingRight = moveToElement('ArrowRight');
-			// const focusedElementAfterMovingLeft = moveToElement('ArrowLeft');
-			// const focusedElementAfterMovingUp = moveToElement('ArrowUp');
-			// const focusedElementAfterMovingDown = moveToElement('ArrowDown');
 
-			expect(focusedElementAfterMovingRight).toEqual(2);
-			// expect(focusedElementAfterMovingRight).toEqual(getRole('columnheader', 4));
-			// expect(focusedElementAfterMovingLeft).toEqual(getRole('columnheader', 3));
-			// expect(focusedElementAfterMovingUp).toEqual(getRole('gridcell', 3));
-			// expect(focusedElementAfterMovingDown).toEqual(getRole('columnheader', 3));
+			const focusedElementAfterMovingRight = moveToElement('ArrowRight');
+			const focusedElementAfterMovingLeft = moveToElement('ArrowLeft');
+			const focusedElementAfterMovingUp = moveToElement('ArrowUp');
+			const focusedElementAfterMovingDown = moveToElement('ArrowDown');
+
+			expect(focusedElementAfterMovingRight).toEqual(getRole('columnheader', 4));
+			expect(focusedElementAfterMovingLeft).toEqual(getRole('columnheader', 3));
+			expect(focusedElementAfterMovingUp).toEqual(getRole('gridcell', 3));
+			expect(focusedElementAfterMovingDown).toEqual(getRole('columnheader', 3));
 		});
 	});
 
