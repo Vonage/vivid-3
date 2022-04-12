@@ -27,7 +27,7 @@ Add the `heading` attribute to set the heading text.
 - Default: `''`
   
 ```html preview
-  <vwc-expansion-panel heading="Campaign Details">
+  <vwc-expansion-panel heading="Expansion panel with heading">
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
@@ -40,12 +40,12 @@ With the `no-indicator` attribute you can remove the indicator icon from the hea
 - Default: `false`
 
 ```html preview
- <vwc-expansion-panel heading="with indicator">
+ <vwc-expansion-panel heading="With indicator">
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
   </vwc-expansion-panel>
- <vwc-expansion-panel heading="without indicator" no-indicator>
+ <vwc-expansion-panel heading="Without indicator" no-indicator>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
@@ -59,7 +59,7 @@ Add the `icon` attribute to add an icon to the heading.
 - Default: `''`
 
 ```html preview
- <vwc-expansion-panel heading="This is an expansion panel" icon="chat-solid">
+ <vwc-expansion-panel heading="With Icon" icon="chat-solid">
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
@@ -73,7 +73,7 @@ Add the `icon-trailing` attribute to add an icon to the right of the heading tex
 - Default: `false`
 
 ```html preview
- <vwc-expansion-panel heading="This is an expansion panel" icon="chat-solid" icon-trailing>
+ <vwc-expansion-panel heading="With Icon-Trailing" icon="chat-solid" icon-trailing>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
@@ -88,7 +88,7 @@ Add the `meta` attribute to add metadata to the heading.
 - Default: `''`
 
 ```html preview
- <vwc-expansion-panel heading="This is an expansion panel" meta="meta-data">
+ <vwc-expansion-panel heading="With Metadata" meta="meta-data">
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
@@ -102,27 +102,27 @@ Use the `headingLevel` attribute to change the expansion panel's size.
 - Default: `3`
 
 ```html preview
- <vwc-expansion-panel heading="This is heading <h2>" headingLevel=2>
+ <vwc-expansion-panel heading="This is heading level <h2>" headingLevel=2>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
   </vwc-expansion-panel>
-  <vwc-expansion-panel heading="This is heading <h3>" headingLevel=3>
+  <vwc-expansion-panel heading="This is heading level <h3>" headingLevel=3>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
   </vwc-expansion-panel>
-  <vwc-expansion-panel heading="This is heading <h4>" headingLevel=4>
+  <vwc-expansion-panel heading="This is heading level <h4>" headingLevel=4>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
   </vwc-expansion-panel>
-  <vwc-expansion-panel heading="This is heading <h5>" headingLevel=5>
+  <vwc-expansion-panel heading="This is heading level <h5>" headingLevel=5>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
   </vwc-expansion-panel>
-  <vwc-expansion-panel heading="This is heading <h6>" headingLevel=6>
+  <vwc-expansion-panel heading="This is heading level <h6>" headingLevel=6>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
