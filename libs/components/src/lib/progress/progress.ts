@@ -1,5 +1,4 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
+import { BaseProgress as FoundationElement} from '@microsoft/fast-foundation';
 
 /**
  * Base class for progress
@@ -7,12 +6,4 @@ import { attr } from '@microsoft/fast-element';
  * @public
  */
 export class Progress extends FoundationElement {
-  /**
-   * Indicates the text's text.
-   *
-   * @public
-   * @remarks
-   * HTML Attribute: text
-   */
-  @attr text = '';
 }

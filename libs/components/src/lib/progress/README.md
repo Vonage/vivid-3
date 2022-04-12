@@ -5,5 +5,5 @@
 ```
 
 ```html preview
-<vwc-progress></vwc-progress>
+<vwc-progress min="0" max="100" value="50"></vwc-progress>
 ```

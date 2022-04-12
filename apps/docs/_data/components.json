@@ -92,5 +92,12 @@
       "/assets/modules/components/button/index.js",
       "/assets/modules/components/banner/index.js"
     ]
+  },
+  {
+    "title": "progress",
+    "markdown": "./libs/components/src/lib/progress/README.md",
+    "modules": [
+      "/assets/modules/components/progress/index.js"
+    ]
   }
 ]
