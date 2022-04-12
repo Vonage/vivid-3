@@ -33,14 +33,14 @@ const renderHeaderButton = () => {
 		aria-controls="content">
 		<span class="leading-icon">
 			<slot name="icon">
-				${x => renderIconOrToggle(x.leadingToggle, x.icon)}
+				${x => renderIcon(x.icon)}
 			</slot>
 		</span>
 		<span class="heading-text">${x => x.heading}</span>
 		${when(x => x.meta, renderMeta())}
-		<span class="trailing-icon">
-			<slot name="trailingIcon">
-				${when(x => !x.leadingToggle, renderToggle())}
+		<span class="indicator">
+			<slot name="indicator">
+				${when(x => !x.noIndicator, renderIndicator())}
 			</slot>
 		</span>
 	</button>
@@ -51,16 +51,11 @@ const renderMeta = () => {
 	return html`<span class="meta">${x => x.meta}</span>`;
 };
 
-const renderIconOrToggle = (leadingToggle: boolean, icon: string) => {
-	if (leadingToggle) {
-		return renderToggle();
-	}
-	else {
-		return icon ? html`<vwc-icon type="${icon}"></vwc-icon>` : '';
-	}
+const renderIcon = (icon: string) => {
+	return icon ? html`<vwc-icon type="${icon}"></vwc-icon>` : '';
 };
 
-const renderToggle = () => {
+const renderIndicator = () => {
 	return html`
 		<vwc-icon class="toggle-open" type='chevron-down-solid'></vwc-icon>
 		<vwc-icon class="toggle-close" type='chevron-up-solid'></vwc-icon>

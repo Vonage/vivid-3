@@ -24,10 +24,12 @@ export class ExpansionPanel extends FoundationElement {
 	@attr({ mode: 'fromView', attribute: 'heading-level' }) headingLevel: 2 | 3 | 4 | 5 | 6 = 3;
 
 	/**
+	 * indicates whether the expansion-panel has indicator
 	 *
 	 * @public
+	 * HTML Attribute: no-indicator
 	 */
-	@attr({ mode: 'boolean' }) leadingToggle = false;
+	@attr({ mode: 'boolean', attribute: 'no-indicator' }) noIndicator = false;
 
 	/**
 	 *

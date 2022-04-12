@@ -15,9 +15,7 @@ Alternatively, you can use the `show()` and `hide()` methods as well as `toggleO
 ```html preview
  <vwc-expansion-panel heading="Click to toggle expansion panel" open>
    <vwc-text font-face="body-1">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-            a type specimen book.
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
         </vwc-text>
   </vwc-expansion-panel>
 ```
@@ -31,24 +29,25 @@ Add the `heading` attribute to set the heading text.
 ```html preview
   <vwc-expansion-panel heading="Campaign Details">
    <vwc-text font-face="body-1">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-            a type specimen book.
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
         </vwc-text>
   </vwc-expansion-panel>
 ```
-## Leading toggle
-With the `leadingToggle` attribute you can choose if the toggle is placed to the left or to the right of the heading. 
+## Indicator
+With the `no-indicator` attribute you can remove the indicator icon from the heading.
 
 - Type: `boolean`
 - Default: `false`
 
 ```html preview
- <vwc-expansion-panel heading="chevron" leadingToggle>
+ <vwc-expansion-panel heading="with indicator">
    <vwc-text font-face="body-1">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-            a type specimen book.
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        </vwc-text>
+  </vwc-expansion-panel>
+ <vwc-expansion-panel heading="without indicator" no-indicator>
+   <vwc-text font-face="body-1">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
         </vwc-text>
   </vwc-expansion-panel>
 ```
@@ -62,9 +61,7 @@ Add the `icon` attribute to add an icon to the heading.
 ```html preview
  <vwc-expansion-panel heading="This is an expansion panel" icon="chat-solid">
    <vwc-text font-face="body-1">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-            a type specimen book.
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
         </vwc-text>
   </vwc-expansion-panel>
 ```
@@ -78,9 +75,7 @@ Add the `meta` attribute to add metadata to the heading.
 ```html preview
  <vwc-expansion-panel heading="This is an expansion panel" meta="meta-data">
    <vwc-text font-face="body-1">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-            a type specimen book.
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
         </vwc-text>
   </vwc-expansion-panel>
 ```
@@ -94,37 +89,27 @@ Use the `headingLevel` attribute to change the expansion panel's size.
 ```html preview
  <vwc-expansion-panel heading="This is heading <h2>" headingLevel=2>
    <vwc-text font-face="body-1">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-            a type specimen book.
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
         </vwc-text>
   </vwc-expansion-panel>
   <vwc-expansion-panel heading="This is heading <h3>" headingLevel=3>
    <vwc-text font-face="body-1">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-            a type specimen book.
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
         </vwc-text>
   </vwc-expansion-panel>
   <vwc-expansion-panel heading="This is heading <h4>" headingLevel=4>
    <vwc-text font-face="body-1">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-            a type specimen book.
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
         </vwc-text>
   </vwc-expansion-panel>
   <vwc-expansion-panel heading="This is heading <h5>" headingLevel=5>
    <vwc-text font-face="body-1">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-            a type specimen book.
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
         </vwc-text>
   </vwc-expansion-panel>
   <vwc-expansion-panel heading="This is heading <h6>" headingLevel=6>
    <vwc-text font-face="body-1">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-            a type specimen book.
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
         </vwc-text>
   </vwc-expansion-panel>
   ```
