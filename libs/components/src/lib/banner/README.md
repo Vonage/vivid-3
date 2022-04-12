@@ -81,7 +81,7 @@ You can add action items using slotted content in a named slot `actionItems`:
 
 ```html preview
 <vwc-banner text="A banner with an action button">
-    <vwc-button slot="actionItems" appearance="filled" connotation="cta" label="Learn More"></vwc-button>
+    <vwc-button slot="actionItems" appearance="filled" connotation="primary" label="Learn More"></vwc-button>
 </vwc-banner>
 ```
 
