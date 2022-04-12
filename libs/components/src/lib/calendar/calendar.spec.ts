@@ -190,6 +190,7 @@ describe('vwc-calendar', () => {
 			expect(focusedElementAfterMovingDown).toEqual(getRole('columnheader', 3));
 		});
 
+		// !TODO: this is a temporary fix until calendar event is included in this repo
 		// it('should move focus from calendar event to containing gridcell on \'arrowUp\'', async () => {
 		// 	const eventComponent = 'vwc-calendar-event';
 
