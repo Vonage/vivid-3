@@ -21,8 +21,8 @@ $banner-transition-delay: --transition-delay;
 
 		overflow: hidden;
 		max-height: 0;
-    background-color: var(#{appearance.get-variable(fill)});
-    color: var(#{appearance.get-variable(text)});
+		background-color: var(#{appearance.get-variable(fill)});
+    	color: var(#{appearance.get-variable(text)});
 		transition: max-height var(#{$banner-transition-delay}, 200ms);
 
 		> .header {
@@ -59,14 +59,13 @@ $banner-transition-delay: --transition-delay;
 
 			> .dismiss-button {
 				--vvd-icon-button-color: inherit;
-
-        flex: 0 0 auto;
-        margin-inline-end: 8px;
-      }
-    }
-  }
+				flex: 0 0 auto;
+				margin-inline-end: 8px;
+      		}
+    	}
+  	}
 }
 
 .banner.open {
-  max-height: 10rem;
+	max-height: 10rem;
 }
