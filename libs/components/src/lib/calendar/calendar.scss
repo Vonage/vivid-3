@@ -43,6 +43,7 @@ ol {
 		justify-content: flex-end;
 		> time {
 			@include typography.typography-cat-shorthand('caption');
+
 			font-size: small;
 			line-height: 1;
 			text-transform: uppercase;
@@ -51,33 +52,6 @@ ol {
 	}
 }
 
-.column-headers {
-	display: grid;
-	grid-area: column-headers;
-	grid-template-columns: repeat(variables.$total-columns, 1fr);
-	[role="columnheader"i] {
-		h2 {
-			@include typography.typography-cat-shorthand('subtitle-2');
-			position: relative;
-			margin: 0;
-			text-align: center;
-			> em {
-				position: absolute;
-				font: inherit;
-				@supports (inset: 0) {
-					inset-inline-start: 0;
-				}
-				@supports not (inset: 0) {
-					left: 0;
-				}
-			}
-			> small {
-				@include typography.typography-cat-shorthand('caption');
-				text-transform: uppercase;
-			}
-		}
-	}
-}
 
 .calendar-row {
 	display: contents;
@@ -124,31 +98,11 @@ ol {
 	}
 }
 
-.columns {
-	display: contents;
-	> [role="gridcell"i] {
-		position: relative;
-		grid-column: var(--column);
-		grid-row: 1 / #{variables.$total-rows + 1};
-		@for $i from 1 through variables.$total-columns {
-			&:nth-child(#{$i}) {
-				--column: #{$i};
-			}
-		}
-		&:not(:first-child)::after {
-			position: absolute;
-			block-size: 100%;
-			border-inline-end: var(#{theme-consts.$vvd-color-neutral-20}) 1px solid;
-			content: '';
-			margin-inline-start: -1px;
-		}
-	}
-}
-
 [role="gridcell"i] {
 	display: grid;
 	gap: variables.$gap;
 	grid-auto-flow: column;
+
 	// grid-template-rows: repeat(variables.$total-rows * variables.$fraction, 1fr);
 }
 
@@ -176,5 +130,56 @@ ol {
 	}
 	&:not(:focus)::before {
 		display: none;
+	}
+}
+
+.columns {
+	display: contents;
+	> [role="gridcell"i] {
+		position: relative;
+		grid-column: var(--column);
+		grid-row: 1 / #{variables.$total-rows + 1};
+		@for $i from 1 through variables.$total-columns {
+			&:nth-child(#{$i}) {
+				--column: #{$i};
+			}
+		}
+		&:not(:first-child)::after {
+			position: absolute;
+			block-size: 100%;
+			border-inline-end: var(#{theme-consts.$vvd-color-neutral-20}) 1px solid;
+			content: '';
+			margin-inline-start: -1px;
+		}
+	}
+}
+
+.column-headers {
+	display: grid;
+	grid-area: column-headers;
+	grid-template-columns: repeat(variables.$total-columns, 1fr);
+	[role="columnheader"i] {
+		h2 {
+			@include typography.typography-cat-shorthand('subtitle-2');
+
+			position: relative;
+			margin: 0;
+			text-align: center;
+			> em {
+				position: absolute;
+				font: inherit;
+				@supports (inset: 0) {
+					inset-inline-start: 0;
+				}
+				@supports not (inset: 0) {
+					left: 0;
+				}
+			}
+			> small {
+				@include typography.typography-cat-shorthand('caption');
+
+				text-transform: uppercase;
+			}
+		}
 	}
 }
