@@ -22,6 +22,19 @@ Use the `text` attribute to set the banner's text.
 <vwc-banner text="Here's some information that you may find important!"></vwc-banner>
 ```
 
+## Icon
+
+- Type: `string`
+- Default: `'info'`
+
+The `icon` attribute will override the icon set by connotation.
+
+```html preview
+<vwc-banner text="Here's some information that you may find important!" 
+            connotation="alert"
+            icon="home-line"></vwc-banner>
+```
+
 ## Connotation
 
 The `connotation` attribute sets the colors according to the wanted connotation.
@@ -48,19 +61,6 @@ vwc-banner {
 <vwc-banner text="Operation Successful!" connotation="success"></vwc-banner>
 <vwc-banner text="Heads up - this is a warning" connotation="warning"></vwc-banner>
 <vwc-banner text="ALERT! Something went wrong!" connotation="alert"></vwc-banner>
-```
-
-## Icon
-
-- Type: `string`
-- Default: `'info'`
-
-The `icon` attribute will override the icon set by connotation.
-
-```html preview
-<vwc-banner text="Here's some information that you may find important!" 
-            connotation="alert"
-            icon="home-line"></vwc-banner>
 ```
 
 ## Removable
