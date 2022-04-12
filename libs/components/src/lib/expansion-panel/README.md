@@ -34,7 +34,7 @@ Add the `heading` attribute to set the heading text.
   </vwc-expansion-panel>
 ```
 ## Indicator
-With the `no-indicator` attribute you can remove the indicator icon from the heading.
+Add the `no-indicator` attribute to remove the indicator icon from the heading.
 
 - Type: `boolean`
 - Default: `false`
@@ -95,34 +95,34 @@ Add the `meta` attribute to add metadata to the heading.
   </vwc-expansion-panel>
 ```
 
-## Heading Level
-Use the `headingLevel` attribute to change the expansion panel's size.
+## Heading-Level
+Use the `heading-level` attribute to change the expansion panel's size.
 
 - Type: `2` | `3` | `4` | `5` | `6`
 - Default: `3`
 
 ```html preview
- <vwc-expansion-panel heading="This is heading level <h2>" headingLevel=2>
+ <vwc-expansion-panel heading="This is heading level <h2>" heading-level=2>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
   </vwc-expansion-panel>
-  <vwc-expansion-panel heading="This is heading level <h3>" headingLevel=3>
+  <vwc-expansion-panel heading="This is heading level <h3>" heading-level=3>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
   </vwc-expansion-panel>
-  <vwc-expansion-panel heading="This is heading level <h4>" headingLevel=4>
+  <vwc-expansion-panel heading="This is heading level <h4>" heading-level=4>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
   </vwc-expansion-panel>
-  <vwc-expansion-panel heading="This is heading level <h5>" headingLevel=5>
+  <vwc-expansion-panel heading="This is heading level <h5>" heading-level=5>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
   </vwc-expansion-panel>
-  <vwc-expansion-panel heading="This is heading level <h6>" headingLevel=6>
+  <vwc-expansion-panel heading="This is heading level <h6>" heading-level=6>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
