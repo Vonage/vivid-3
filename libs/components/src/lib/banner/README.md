@@ -8,7 +8,7 @@ Banners are meant to be used on top of pages, outside the main content.
 ```
 
 ```html preview
-<vwc-banner text="Here's some information that you may find important!" removable></vwc-banner>
+<vwc-banner text="Here's some information that you may find important!"></vwc-banner>
 ```
 
 ## Text
