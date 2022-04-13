@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "fix(popup): change wrapping order",
+  "packageName": "@vonage/vivid",
+  "email": "rachel.tannenbaum@vonage.com",
+  "dependentChangeType": "none"
+}
