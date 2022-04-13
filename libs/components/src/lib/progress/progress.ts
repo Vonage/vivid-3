@@ -12,6 +12,7 @@ export type ProgressConnotation =
 
 export type ProgressShape =
 	Shape.Rounded |
+	Shape.Sharp |
 	undefined;
 /**
  * Base class for progress

@@ -78,10 +78,10 @@ Use the `reverse` attribute to set the progress from right to left.
 ```
 
 ### Shape
-Use the `shape` attribute in order to set `rounded` borders.
+Use the `shape` attribute in order to set `rounded` and `sharp` borders.
 
-- Type: `rounded` | undefined
-- Default: undefined
+- Type: `'rounded'` | `'shape'`
+- Default: `'rounded'`
 
 ```html preview
     <vwc-progress min="0" max="50" value="25" shape="rounded></vwc-progress>

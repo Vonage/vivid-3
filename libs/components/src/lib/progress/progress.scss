@@ -25,6 +25,7 @@ $rounded-border-radius: 3px;
 	overflow: hidden;
 	width: 100%;
 	height: 100%;
+	border-radius: $rounded-border-radius;
 }
 
 .progress {
@@ -43,6 +44,7 @@ $rounded-border-radius: 3px;
 .determinate {
 	background-color: var(#{connotation.$vvd-color-connotation});
 	block-size: 100%;
+	border-radius: $rounded-border-radius;
 	transition: all 0.2s ease-in-out;
 
 	.connotation-pacific & {
@@ -81,9 +83,9 @@ $rounded-border-radius: 3px;
 	}
 }
 
-.base.shape-rounded {
+.base.shape-sharp {
 	.determinate, .indeterminate {
-		border-radius: $rounded-border-radius;
+		border-radius: 0;
 	}
 }
 
