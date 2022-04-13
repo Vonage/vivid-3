@@ -80,7 +80,7 @@ Use the `reverse` attribute to set the progress from right to left.
 ### Shape
 Use the `shape` attribute in order to set `rounded` and `sharp` borders.
 
-- Type: `'rounded'` | `'shape'`
+- Type: `'rounded'` | `'sharp'`
 - Default: `'rounded'`
 
 ```html preview
