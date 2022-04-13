@@ -145,11 +145,12 @@ describe('vwc-progress', () => {
 				.toEqual(true);
 		});
 
-		it('should add class "reverse" to base div', async function() {
+		it('should add class "reverse" to base div', async function () {
 			const baseDiv = element.shadowRoot?.querySelector('.base');
 			element.reverse = true;
 			await elementUpdated(element);
-			expect(baseDiv?.classList.contains('reverse')).toEqual(true);
+			expect(baseDiv?.classList.contains('reverse'))
+				.toEqual(true);
 		});
 	});
 
@@ -161,11 +162,12 @@ describe('vwc-progress', () => {
 				.toEqual(Shape.Rounded);
 		});
 
-		it('should add class "shape" to base div', async function() {
+		it('should add class "shape" to base div', async function () {
 			const baseDiv = element.shadowRoot?.querySelector('.base');
 			element.shape = Shape.Rounded;
 			await elementUpdated(element);
-			expect(baseDiv?.classList.contains(`shape-${Shape.Rounded}`)).toEqual(true);
+			expect(baseDiv?.classList.contains(`shape-${Shape.Rounded}`))
+				.toEqual(true);
 		});
 	});
 });

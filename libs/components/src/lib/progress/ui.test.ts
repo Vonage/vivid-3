@@ -1,7 +1,5 @@
-import * as path from 'path';
 import {expect, Page, test} from '@playwright/test';
 import {
-	extractHTMLBlocksFromReadme,
 	loadComponents,
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils';
@@ -32,6 +30,21 @@ test('should show the component', async ({page}: { page: Page }) => {
     <br/>
     <br/>
     <vwc-progress min="0" max="50" value="25" reverse></vwc-progress>
+    <br/>
+    <br/>
+    <vwc-progress min="0" max="100" value="25" connotation="primary" shape="rounded"></vwc-progress>
+    <br/>
+    <br/>
+    <vwc-progress min="0" max="100" value="25" connotation="cta" shape="rounded"></vwc-progress>
+    <br/>
+    <br/>
+    <vwc-progress min="0" max="100" value="25" connotation="success" shape="rounded"></vwc-progress>
+    <br/>
+    <br/>
+    <vwc-progress min="0" max="100" value="25" connotation="alert" shape="rounded"></vwc-progress>
+    <br/>
+    <br/>
+    <vwc-progress min="0" max="100" value="25" connotation="pacific" shape="rounded"></vwc-progress>
   `;
 
 	await loadComponents({
