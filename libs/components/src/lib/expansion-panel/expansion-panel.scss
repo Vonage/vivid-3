@@ -2,25 +2,23 @@
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
-:host {
+.control {
 	display: flex;
 	flex-direction: column;
-}
 
-:host(:not([open])) {
-	.toggle-close,
-	.expansion-panel-body {
-		display: none;
+	&:not(.open) {
+		.toggle-close,
+		.expansion-panel-body {
+			display: none;
+		}
 	}
-}
-
-:host([open]) {
-	.toggle-open {
-		display: none;
-	}
-
-	.toggle-close {
-		display: initial;
+	&.open{
+		.toggle-open {
+			display: none;
+		}
+		.toggle-close {
+			display: initial;
+		}
 	}
 }
 
@@ -41,6 +39,9 @@
 	background: transparent;
 	cursor: pointer;
 
+	&:hover { //TODO: replace with state
+		background: var(#{theme-consts.$vvd-color-neutral-10});
+	}
 	.icon,
 	.indicator {
 		display: flex;
@@ -58,7 +59,7 @@
 		overflow: hidden;
 		max-width: 20%;
 		flex-shrink: 0;
-		color: var(--vvd-color-neutral-70);
+		color: var(#{theme-consts.$vvd-color-neutral-70});
 		margin-inline-start: 1rem;
 		text-align: end;
 		text-overflow: ellipsis;
@@ -84,22 +85,12 @@
 	@include typography.typography-cat-shorthand('body-2');
     
 	padding: 8px 32px 24px 16px;
-}
-
-:host(:not([icon=''])),
-:host([leadingToggle]) {
-	.expansion-panel-body {
+	.icon:not(.iconTrailing) &{
 		padding-left: 48px;
 	}
 }
 
-:host([leadingToggle]) {
-	.expansion-panel-body {
-		padding-right: 16px;
-	}
-}
-
-:host([dense]) {
+.dense {
 	.expansion-panel-button {
 		@include typography.typography-cat-shorthand('body-2-bold');
 	}

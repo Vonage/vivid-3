@@ -8,22 +8,25 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import type { ExpansionPanel } from './expansion-panel';
 
 const getClasses = ({
-	open
+	open, iconTrailing, icon, dense
 }: ExpansionPanel) => classNames(
 	'control',
 	['open', open],
+	['icon', Boolean(icon)],
+	['iconTrailing', iconTrailing],
+	['dense', dense],
 );
 
 export const ExpansionPanelTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<ExpansionPanel> = () => html<ExpansionPanel>`
-		<div class="${getClasses}">
-			${x => renderPanelHeader(x.headingLevel)}
-			<div class="expansion-panel-body">
-				<slot></slot>
-			</div>
+	<div class="${getClasses}">
+		${x => renderPanelHeader(x.headingLevel)}
+		<div class="expansion-panel-body">
+			<slot></slot>
 		</div>
+	</div>
 `;
 
 const renderPanelHeader = (headingLevel: number | string) => {
