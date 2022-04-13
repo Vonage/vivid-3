@@ -3,6 +3,7 @@
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$subset: cta primary alert success,
 	$default: primary,
+	$decoratives: (pacific),
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
@@ -35,6 +36,10 @@ $block-size: 6px;
 	height: 100%;
 	background-color: var(#{connotation.$vvd-color-connotation});
 	transition: all 0.2s ease-in-out;
+
+	.connotation-pacific & {
+		background-image: var(#{connotation.$vvd-color-connotation});
+	}
 }
 
 .indeterminate {
@@ -52,6 +57,9 @@ $block-size: 6px;
 	animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
 	background-color: var(#{theme-consts.$vvd-color-neutral-20});
 	opacity: 0;
+	.connotation-pacific & {
+		background-image: var(#{connotation.$vvd-color-connotation});
+	}
 }
 .indeterminate-indicator-2 {
 	position: absolute;
@@ -61,6 +69,9 @@ $block-size: 6px;
 	animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
 	background-color: var(#{theme-consts.$vvd-color-neutral-20});
 	opacity: 0;
+	.connotation-pacific & {
+		background-image: var(#{connotation.$vvd-color-connotation});
+	}
 }
 :host([paused]) .indeterminate-indicator-1,
 :host([paused]) .indeterminate-indicator-2 {

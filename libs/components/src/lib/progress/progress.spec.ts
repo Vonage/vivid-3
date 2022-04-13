@@ -1,6 +1,7 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
 import {Progress} from './progress';
 import '.';
+import {Connotation} from '../enums';
 
 const COMPONENT_TAG = 'vwc-progress';
 
@@ -42,18 +43,18 @@ describe('vwc-progress', () => {
 			await elementUpdated(element);
 			const connotationPropertyAfterAttributeChange = element.connotation;
 
-			element.connotation = 'success';
+			element.connotation = Connotation.Success;
 			await elementUpdated(element);
 			const connotationAttributeAfterPropertyChange = element.getAttribute('connotation');
 
 			expect(connotationPropertyAfterAttributeChange)
-				.toEqual('alert');
+				.toEqual(Connotation.Alert);
 			expect(connotationAttributeAfterPropertyChange)
-				.toEqual('success');
+				.toEqual(Connotation.Success);
 		});
 
 		it('should set connotation on the base div', async function () {
-			const connotation = 'cta';
+			const connotation = Connotation.CTA;
 			const baseDiv = element.shadowRoot?.querySelector('.base');
 			const connotationClassExistsBeforeChange = baseDiv?.classList.contains(`connotation-${connotation}`);
 			element.connotation = connotation;
