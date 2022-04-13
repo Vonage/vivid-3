@@ -1,7 +1,7 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
+import {Connotation} from '../enums';
 import {Progress} from './progress';
 import '.';
-import {Connotation} from '../enums';
 
 const COMPONENT_TAG = 'vwc-progress';
 
@@ -143,6 +143,13 @@ describe('vwc-progress', () => {
 			await elementUpdated(element);
 			expect(element.hasAttribute('reverse'))
 				.toEqual(true);
+		});
+
+		it('should add class "reverse" to base div', async function() {
+			const baseDiv = element.shadowRoot?.querySelector('.base');
+			element.reverse = true;
+			await elementUpdated(element);
+			expect(baseDiv?.classList.contains('reverse')).toEqual(true);
 		});
 	});
 });

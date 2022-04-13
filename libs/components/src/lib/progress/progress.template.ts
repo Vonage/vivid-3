@@ -9,7 +9,8 @@ import type { Progress } from './progress';
 
 const getClasses = (_: Progress) => classNames(
 	'base',
-	[`connotation-${_.connotation}`, !!_.connotation]
+	[`connotation-${_.connotation}`, !!_.connotation],
+	['reverse', _.reverse]
 );
 
 /**
@@ -58,3 +59,4 @@ export const ProgressTemplate: (
     </div>
   `;
 };
+

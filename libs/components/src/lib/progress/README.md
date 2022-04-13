@@ -29,9 +29,17 @@ Set `value` to be a non-number value (e.g. `indeterminate`) to show an indetermi
 
 ```html preview
     <vwc-progress min="0" max="100" value="25" connotation="primary"></vwc-progress>
+    <br/>
+    <br/>
     <vwc-progress min="0" max="100" value="25" connotation="cta"></vwc-progress>
+    <br/>
+    <br/>
     <vwc-progress min="0" max="100" value="25" connotation="success"></vwc-progress>
+    <br/>
+    <br/>
     <vwc-progress min="0" max="100" value="25" connotation="alert"></vwc-progress>
+    <br/>
+    <br/>
     <vwc-progress min="0" max="100" value="25" connotation="pacific"></vwc-progress>
 ```
 
@@ -41,7 +49,11 @@ Set `value` to be a non-number value (e.g. `indeterminate`) to show an indetermi
 
 Use the `paused` attribute to show a disabled state of the progress.
 ```html preview
+    <h2>Determinate</h2>
     <vwc-progress min="0" max="50" value="25" paused></vwc-progress>
+    <br/>
+    <br/>
+    <h2>Indeterminate</h2>
     <vwc-progress min="0" max="50" value="indeterminate" paused></vwc-progress>
 ```
 
@@ -56,3 +68,17 @@ Use `min`, `max` in order to determine the range of the progress.
 - Default: `undefined`
 
 Use `value` in order to set the state of the progress. String value will set the state to `indetermintate`.
+
+### Reverse
+
+- Type: `boolean`
+- Default: `false`
+
+Use the `reverse` attribute to set the progress from right to left.
+
+```html preview
+    <vwc-progress min="0" max="50" value="25" reverse></vwc-progress>
+    <br/>
+    <br/>
+    <vwc-progress min="0" max="50" value="indeterminate" reverse></vwc-progress>
+```
