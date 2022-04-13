@@ -106,30 +106,21 @@ describe('vwc-calendar', () => {
 
 	describe('Event Context', () => {
 		let gridCell: HTMLElement;
-		let context: CalendarEventContext;
+		let context: CalendarEventContext | null;
 
 		beforeEach(async () => {
 			gridCell = element.shadowRoot?.querySelector('[role="gridcell"i]:nth-child(3)') as HTMLElement;
 		});
 
 		it('should return correct day and hour from mouse click event', async () => {
-			// needed in order to test hour. see comment below
-			// const { style } = element.parentElement as HTMLElement;
-			// style.height = '1200px';
-			// style.position = 'fixed';
-			// style.top = '0px';
+			const e = new MouseEvent('click', { composed: true, clientY: 54 });
+			e.composedPath = jest.fn().mockReturnValue([gridCell]);
+			gridCell.getBoundingClientRect = jest.fn().mockReturnValue({ height: 1175, y: 28 });
 
-			element.addEventListener('click', e => {
-				e.composedPath = jest.fn().mockReturnValue({});
-				context = element.getEventContext(e) as CalendarEventContext;
-			});
+			context = element.getEventContext(e);
 
-			gridCell.dispatchEvent(new MouseEvent('click', { composed: true, clientX: 20, clientY: 14 }));
-
-			expect(context.day).toEqual(2);
-			// the following can't be tested due to JSDOM limitations.
-			// see https://github.com/jsdom/jsdom/issues/2843#issuecomment-599110255
-			// expect(context.hour).toEqual(0.2);
+			expect(context?.day).toEqual(2);
+			expect(context?.hour).toEqual(0.53);
 		});
 
 		it('should return day and hour from keydown \'space\' event', async () => {
@@ -137,8 +128,8 @@ describe('vwc-calendar', () => {
 
 			gridCell.dispatchEvent(new KeyboardEvent('keydown', { composed: true, keyCode: 13 }));
 
-			expect(context.day).toEqual(2);
-			expect(context.hour).toEqual(undefined);
+			expect(context?.day).toEqual(2);
+			expect(context?.hour).toEqual(undefined);
 		});
 
 		it('should return day and hour from keydown \'enter\' event', async () => {
@@ -146,8 +137,8 @@ describe('vwc-calendar', () => {
 
 			gridCell.dispatchEvent(new KeyboardEvent('keydown', { composed: true, keyCode: 32 }));
 
-			expect(context.day).toEqual(2);
-			expect(context.hour).toEqual(undefined);
+			expect(context?.day).toEqual(2);
+			expect(context?.hour).toEqual(undefined);
 		});
 
 		it('should throw if `event` not instance of `Keyboard` / `Pointer`', async () => {
@@ -155,8 +146,8 @@ describe('vwc-calendar', () => {
 
 			gridCell.dispatchEvent(new KeyboardEvent('keydown', { composed: true, keyCode: 32 }));
 
-			expect(context.day).toEqual(2);
-			expect(context.hour).toEqual(undefined);
+			expect(context?.day).toEqual(2);
+			expect(context?.hour).toEqual(undefined);
 		});
 	});
 
