@@ -1,11 +1,6 @@
 # vwc-tooltip
 
-A Tooltip is a page overlay that provides additional information about an interacted target. It's commonly shown on mouse hover or focus.  
-A tooltip displays non-interactive clarifying text related to a trigger element.  
-
-Note that touch screen devices do not share the same pointer input events and may fail to show anything.
-
-Consider avoiding the use of tooltip as it may fail to produce the same UX for ALL users. If must, contemplate on practices such as `aria-describedby` to add alternative experience to users who aren't able to interact with a control in the same manner sighted users do.
+A tooltip is a brief, informative message or descriptions or explanations for their paired element. Tooltips in general are less accessible so be sure to follow our accessibility recommendation in the docs.
 
 ```js
 <script type="module">
@@ -14,16 +9,12 @@ Consider avoiding the use of tooltip as it may fail to produce the same UX for A
 ```
 
 ## Anchor
+The tooltip can be placed on interactive controls (things that can be clicked or focusable) such as: button, checkbox, input text.
+The tooltip can't be placed on non-interactive elements such as paragraph or plain div.  
+Do not target non-interactive controls as a tooltip's anchor (such as non-focusable / disabled elements).
+
 - Type: `string`
 - Default: `undefined`
-  
-The tooltip can be placed on interactive controls (things that can be clicked or focusable) such as:
-- button
-- checkbox
-- input text
-
-The tooltip can't be placed on non-interactive elements such as paragraph or plain div.  
-Do not target non-interactive controls as a tooltip's anchor (such as non-focusable / disabled elements). The absence of user interaction will prevent the tooltip from showing up.
 
 ```html preview
 <style>
@@ -41,11 +32,10 @@ Do not target non-interactive controls as a tooltip's anchor (such as non-focusa
 </div>
 ```
 ## Text
+The tooltip is a description and therefor, the tooltip itself can not be interactive. `vwc-tooltip` contains only text.
 
 - Type: `string`
 - Default: `''`
-  
-The tooltip is a description and therefor, the tooltip itself can not be interactive. `vwc-tooltip` contains only text.
 
 ## Open
 Use the `open` attribute to indicate whether the tooltip is open.
@@ -125,8 +115,12 @@ Use the `corner` attribute to set the placement of the tooltip around the anchor
 ```
 
 ## Accessibility
-Be sure to add `aria-describedby="the vwc-tooltip ID name"` on the tooltip trigger element for screen readers readability.
+Be sure to add `aria-describedby="vwc-tooltip's ID"` on the tooltip trigger element for screen readers readability.
 
+```js
+<vwc-button id="anchor" aria-describedby="tooltip"></vwc-button>
+<vwc-tooltip id="tooltip" anchor="anchor"></vwc-tooltip>
+```
 ## Methods
 
 | Method | Type       | Description          |
