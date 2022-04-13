@@ -136,4 +136,13 @@ describe('vwc-progress', () => {
 				.toEqual(`${element.value}%`);
 		});
 	});
+
+	describe('reverse', function () {
+		it('should reflect reverse on host', async function () {
+			element.reverse = true;
+			await elementUpdated(element);
+			expect(element.hasAttribute('reverse'))
+				.toEqual(true);
+		});
+	});
 });

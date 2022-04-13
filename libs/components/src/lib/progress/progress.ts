@@ -16,5 +16,6 @@ export type ProgressConnotation =
  */
 export class Progress extends FoundationElement {
 	@attr() connotation: ProgressConnotation;
+	@attr({mode: 'boolean'}) reverse = false;
 }
 
