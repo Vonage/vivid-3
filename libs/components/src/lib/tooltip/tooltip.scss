@@ -13,6 +13,6 @@
 		@include typography.typography-cat-shorthand('body-2-bold');
         
 		padding: 0.5rem 0.75rem;
-		color: var(#{theme-consts.$vvd-color-primary});
+		color: var(#{theme-consts.$vvd-color-on-canvas});
 	}
 }
