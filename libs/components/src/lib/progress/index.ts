@@ -6,9 +6,9 @@ import { Progress } from './progress';
 import { ProgressTemplate as template } from './progress.template';
 
 export const vividProgress = Progress.compose<FoundationElementDefinition>({
-  baseName: 'progress',
-  template: template as any,
-  styles,
+	baseName: 'progress',
+	template: template as any,
+	styles,
 });
 
 designSystem.register(vividProgress());

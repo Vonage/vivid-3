@@ -1,19 +1,14 @@
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$subset: primary cta success alert warning info,
+	$subset: cta primary alert success,
 	$default: primary,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
-	$subset: filled ghost,
-	$default: filled,
-);
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
 $block-size: 6px;
 
-:host {
+.base {
 	@include connotation.connotation;
 
 	height: $block-size;
@@ -31,12 +26,17 @@ $block-size: 6px;
 	background-color: var(#{theme-consts.$vvd-color-neutral-20});
 }
 
+.progress.indeterminate {
+	background-color: var(#{connotation.$vvd-color-connotation});
+}
+
 .determinate {
 	display: flex;
 	height: 100%;
 	background-color: var(#{connotation.$vvd-color-connotation});
 	transition: all 0.2s ease-in-out;
 }
+
 .indeterminate {
 	position: relative;
 	display: flex;
@@ -46,11 +46,11 @@ $block-size: 6px;
 }
 .indeterminate-indicator-1 {
 	position: absolute;
-	width: 40%;
+	width: 30%;
 	height: 100%;
 	animation: indeterminate-1 2s infinite;
 	animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
-	background-color: var(#{connotation.$vvd-color-connotation});
+	background-color: var(#{theme-consts.$vvd-color-neutral-20});
 	opacity: 0;
 }
 .indeterminate-indicator-2 {
@@ -59,16 +59,16 @@ $block-size: 6px;
 	height: 100%;
 	animation: indeterminate-2 2s infinite;
 	animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
-	background-color: var(#{connotation.$vvd-color-connotation});
+	background-color: var(#{theme-consts.$vvd-color-neutral-20});
 	opacity: 0;
 }
 :host([paused]) .indeterminate-indicator-1,
 :host([paused]) .indeterminate-indicator-2 {
 	animation-play-state: paused;
-	background-color: var(#{theme-consts.$vvd-color-neutral-20});
+	background-color: var(#{connotation.$vvd-color-connotation});
 }
 :host([paused]) .determinate {
-	background-color: var(#{theme-consts.$vvd-color-neutral-20});
+	background-color: var(#{theme-consts.$vvd-color-neutral-40});
 }
 @keyframes indeterminate-1 {
 	0% {
