@@ -123,6 +123,24 @@ describe('vwc-calendar', () => {
 			expect(context?.hour).toEqual(0.53);
 		});
 
+		it('should throw on wrong event type', async () => {
+			const e = new FocusEvent('click', { composed: true });
+			e.composedPath = jest.fn().mockReturnValue([gridCell]);
+
+			const getEventContext = () => element.getEventContext(e as MouseEvent);
+
+			expect(getEventContext).toThrow('Invalid event. Event must be instance of KeyboardEvent or MouseEvent');
+		});
+
+		it('should throw if no target object', async () => {
+			const e = new MouseEvent('click', { composed: true, clientY: 54 });
+			gridCell.getBoundingClientRect = jest.fn().mockReturnValue({ height: 1175, y: 28 });
+
+			const getEventContext = () => element.getEventContext(e);
+
+			expect(getEventContext).toThrow('Invalid event. Event must contain a target object which is a direct descendant of calendar');
+		});
+
 		it('should return day and hour from keydown \'space\' event', async () => {
 			element.addEventListener('keydown', e => context = element.getEventContext(e) as CalendarEventContext);
 
