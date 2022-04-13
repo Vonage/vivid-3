@@ -9,7 +9,7 @@
 .tooltip {
 	width: var(#{variables.$tooltip-inline-size}, 240px);
 
-	&-title {
+	&-text {
 		@include typography.typography-cat-shorthand('body-2-bold');
         
 		padding: 0.5rem 0.75rem;

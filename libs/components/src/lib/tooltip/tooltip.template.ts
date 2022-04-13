@@ -24,7 +24,7 @@ corner=${(x) => x.corner} open=${(x) => x.open} anchor=${(x) => x.anchor}
   exportparts="vvd-theme-alternate">
   <div class="tooltip">
     <header part="vvd-theme-alternate" class="tooltip-header">
-      <div class="tooltip-title">${(x) => x.text}</div>
+      <div class="tooltip-text">${(x) => x.text}</div>
     </header>
   </div>
 </vwc-popup>`;
