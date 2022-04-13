@@ -119,7 +119,10 @@ describe('vwc-calendar', () => {
 			// style.position = 'fixed';
 			// style.top = '0px';
 
-			element.addEventListener('click', e => context = element.getEventContext(e) as CalendarEventContext);
+			element.addEventListener('click', e => {
+				e.composedPath = jest.fn().mockReturnValue({});
+				context = element.getEventContext(e) as CalendarEventContext;
+			});
 
 			gridCell.dispatchEvent(new MouseEvent('click', { composed: true, clientX: 20, clientY: 14 }));
 
