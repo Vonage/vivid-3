@@ -18,8 +18,8 @@ export type ProgressShape =
  * @public
  */
 export class Progress extends BaseProgress {
-	@attr() shape: ProgressShape | undefined;
-	@attr() connotation: ProgressConnotation | undefined;
+	@attr() shape?: ProgressShape;
+	@attr() connotation?: ProgressConnotation;
 	@attr({mode: 'boolean'}) reverse = false;
 }
 
