@@ -13,12 +13,13 @@ $popup-bg: --vvd-color-surface-4dp;
 
 .popup-wrapper {
 	position: fixed;
-  border-radius: 6px;
+	border-radius: 6px;
 }
 
 .popup-content {
 	display: grid;
 	color: var(--vvd-color-on-canvas);
+
 	.dismissible & {
 		align-content: start;
 		grid-template-columns: 1fr auto;
