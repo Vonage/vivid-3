@@ -7,21 +7,19 @@ export type ProgressConnotation =
 	Connotation.Success |
 	Connotation.Alert |
 	Connotation.CTA |
-	ConnotationDecorative.Pacific |
-	undefined;
+	ConnotationDecorative.Pacific;
 
 export type ProgressShape =
 	Shape.Rounded |
-	Shape.Sharp |
-	undefined;
+	Shape.Sharp;
 /**
  * Base class for progress
  *
  * @public
  */
 export class Progress extends BaseProgress {
-	@attr() shape: ProgressShape;
-	@attr() connotation: ProgressConnotation;
+	@attr() shape: ProgressShape | undefined;
+	@attr() connotation: ProgressConnotation | undefined;
 	@attr({mode: 'boolean'}) reverse = false;
 }
 

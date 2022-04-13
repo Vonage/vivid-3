@@ -6,7 +6,7 @@ import {
 
 const components = ['progress'];
 
-test.only('should show the component', async ({page}: { page: Page }) => {
+test('should show the component', async ({page}: { page: Page }) => {
 	const template = `
 		<div style="margin: 5px;">
     <vwc-progress min="0" max="100" value="25" connotation="primary"></vwc-progress>
