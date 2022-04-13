@@ -7,7 +7,8 @@ export type ProgressConnotation =
 	Connotation.Success |
 	Connotation.Alert |
 	Connotation.CTA |
-	ConnotationDecorative.Pacific;
+	ConnotationDecorative.Pacific |
+	undefined;
 
 export type ProgressShape =
 	Shape.Rounded |
