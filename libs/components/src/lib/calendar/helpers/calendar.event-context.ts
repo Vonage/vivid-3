@@ -1,3 +1,4 @@
+import type { Calendar } from '../calendar';
 import { isCellOrHeader } from './calendar.keyboard-interactions';
 
 
@@ -7,22 +8,10 @@ export interface CalendarEventContext {
 }
 
 /**
- * @param e
+ * @param el
  */
-function getDay(e: KeyboardEvent | PointerEvent): number | void {
-	const path = e.composedPath();
-	const [el] = path;
-
-	if (!(el instanceof HTMLElement)) {
-		throw new Error('No HTML element found');
-	}
-
-	const query = {
-		cell: '[role="gridcell"i]',
-		header: '[role="columnheader"i]',
-	};
-
-	const cellOrHeader = el.closest(query.cell) || el.closest(query.header);
+function getDay(el: HTMLElement): number | void {
+	const cellOrHeader = el.closest('[role="gridcell"i]') || el.closest('[role="columnheader"i]');
 	if (isCellOrHeader(cellOrHeader)) {
 		const { parentElement } = cellOrHeader;
 		return parentElement?.children && Array.from(parentElement.children).indexOf(cellOrHeader);
@@ -31,17 +20,10 @@ function getDay(e: KeyboardEvent | PointerEvent): number | void {
 
 /**
  * @param e
+ * @param el
  * @param hours
  */
-function getHour(e: PointerEvent, hours: number): number | undefined {
-
-	const path = e.composedPath();
-	const [el] = path;
-
-	if (!(el instanceof HTMLElement)) {
-		throw new Error('No HTML element found');
-	}
-
+function getHour(e: MouseEvent, el: HTMLElement, hours: number): number | undefined {
 	const rowHeaderOrCell = el.closest('.row-headers') || el.closest('[role="gridcell"i]');
 
 	if (!rowHeaderOrCell) {
@@ -60,20 +42,28 @@ const isEmptyObject = (obj: Record<string, unknown>): obj is Record<string, neve
 	Object.keys(obj).length === 0 && obj.constructor === Object;
 
 /**
- * @param e
+ * @param this
  * @param hours
  */
-export const getEventContextFactorial = (hours: number) =>
-	(e: KeyboardEvent | PointerEvent): CalendarEventContext | null => {
+export const getEventContextFactorial = (hours: number) => {
 
-		if (!(e instanceof KeyboardEvent) || !(e instanceof PointerEvent)) {
-			throw new Error('Invalid event. Event must be instance of KeyboardEvent or PointerEvent');
+	return	function (this: Calendar,e: KeyboardEvent | MouseEvent): CalendarEventContext | null {
+
+		if (!(e instanceof KeyboardEvent || e instanceof MouseEvent)) {
+			throw new Error('Invalid event. Event must be instance of KeyboardEvent or MouseEvent');
 		}
 
-		const day = getDay(e);
+		const [el] = e.composedPath();
+		debugger;
+		if (!(el && el instanceof HTMLElement && this.contains(el))) {
+			throw new Error('Invalid event. Event must have a target object which is a descendant of calendar');
+		}
+
+		const day = getDay(el);
 		let hour;
-		if (e instanceof PointerEvent) {
-			hour = getHour(e, hours);
+
+		if (e instanceof MouseEvent) {
+			hour = getHour(e, el, hours);
 		}
 
 		const context = {
@@ -83,3 +73,4 @@ export const getEventContextFactorial = (hours: number) =>
 
 		return (!isEmptyObject(context) && context) || null;
 	};
+};

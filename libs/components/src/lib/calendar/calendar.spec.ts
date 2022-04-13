@@ -120,7 +120,6 @@ describe('vwc-calendar', () => {
 			// style.top = '0px';
 
 			element.addEventListener('click', e => context = element.getEventContext(e) as CalendarEventContext);
-			gridCell = element.shadowRoot?.querySelector('[role="gridcell"i]:nth-child(3)') as HTMLElement;
 
 			gridCell.dispatchEvent(new MouseEvent('click', { composed: true, clientX: 20, clientY: 14 }));
 
@@ -140,6 +139,15 @@ describe('vwc-calendar', () => {
 		});
 
 		it('should return day and hour from keydown \'enter\' event', async () => {
+			element.addEventListener('keydown', e => context = element.getEventContext(e) as CalendarEventContext);
+
+			gridCell.dispatchEvent(new KeyboardEvent('keydown', { composed: true, keyCode: 32 }));
+
+			expect(context.day).toEqual(2);
+			expect(context.hour).toEqual(undefined);
+		});
+
+		it('should throw if `event` not instance of `Keyboard` / `Pointer`', async () => {
 			element.addEventListener('keydown', e => context = element.getEventContext(e) as CalendarEventContext);
 
 			gridCell.dispatchEvent(new KeyboardEvent('keydown', { composed: true, keyCode: 32 }));
