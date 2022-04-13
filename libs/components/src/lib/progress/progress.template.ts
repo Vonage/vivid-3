@@ -36,10 +36,9 @@ export const ProgressTemplate: (
       ${when(
 		x => typeof x.value === 'number',
 		html<BaseProgress>`
-                  <div class="progress" part="progress" slot="determinate">
+                  <div class="progress">
                       <div
                           class="determinate"
-                          part="determinate"
                           style="width: ${x => x.percentComplete}%"
                       ></div>
                   </div>
@@ -48,11 +47,11 @@ export const ProgressTemplate: (
       ${when(
 		x => typeof x.value !== 'number',
 		html<BaseProgress>`
-                  <div class="progress indeterminate" part="progress" slot="indeterminate">
-                      <slot class="indeterminate" name="indeterminate">
-                        <span class="indeterminate-indicator-1" part="indeterminate-indicator-1"></span>
-                        <span class="indeterminate-indicator-1" part="indeterminate-indicator-1"></span>
-                      </slot>
+                  <div class="progress indeterminate">
+                      <span class="indeterminate" name="indeterminate">
+                        <span class="indeterminate-indicator-1"></span>
+                        <span class="indeterminate-indicator-2"></span>
+                      </span>
                   </div>
               `
 	)}
