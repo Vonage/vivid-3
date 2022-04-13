@@ -1,14 +1,13 @@
-import { BaseProgress as FoundationElement} from '@microsoft/fast-foundation';
+import { BaseProgress } from '@microsoft/fast-foundation';
 import {attr} from '@microsoft/fast-element';
-import type {Connotation, Shape} from '../enums';
+import type {Connotation, ConnotationDecorative, Shape} from '../enums';
 
 export type ProgressConnotation =
 	Connotation.Primary |
 	Connotation.Success |
 	Connotation.Alert |
 	Connotation.CTA |
-	'pacific' |
-	undefined;
+	ConnotationDecorative.Pacific;
 
 export type ProgressShape =
 	Shape.Rounded |
@@ -18,7 +17,7 @@ export type ProgressShape =
  *
  * @public
  */
-export class Progress extends FoundationElement {
+export class Progress extends BaseProgress {
 	@attr() shape: ProgressShape;
 	@attr() connotation: ProgressConnotation;
 	@attr({mode: 'boolean'}) reverse = false;
