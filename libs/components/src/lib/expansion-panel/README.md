@@ -82,7 +82,7 @@ Add the `no-indicator` attribute to remove the indicator icon from the heading.
   }
 </style>
 <div class="wrapper">
- <vwc-expansion-panel heading="Without indicator" no-indicator>
+ <vwc-expansion-panel heading="Expansion panel without indicator" no-indicator>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
@@ -103,7 +103,7 @@ Add the `icon` attribute to add an icon to the heading.
   }
 </style>
 <div class="wrapper">
- <vwc-expansion-panel heading="With Icon" icon="chat-solid">
+ <vwc-expansion-panel heading="Expansion panel with Icon" icon="chat-solid">
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
@@ -124,7 +124,7 @@ Add the `icon-trailing` attribute to add an icon to the right of the heading tex
   }
 </style>
 <div class="wrapper">
- <vwc-expansion-panel heading="With Icon-Trailing" icon="chat-solid" icon-trailing>
+ <vwc-expansion-panel heading="Expansion panel with Icon-Trailing" icon="chat-solid" icon-trailing>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
@@ -145,7 +145,7 @@ Add the `meta` attribute to add metadata to the heading.
   }
 </style>
 <div class="wrapper">
- <vwc-expansion-panel heading="With Metadata" meta="meta-data">
+ <vwc-expansion-panel heading="Expansion panel with Metadata" meta="meta-data">
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
@@ -165,7 +165,7 @@ You can turn the expansion-panel into dense mode by adding the `dense` attribute
   }
 </style>
 <div class="wrapper">
- <vwc-expansion-panel heading="With dense" dense>
+ <vwc-expansion-panel heading="Expansion panel with dense" dense>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
