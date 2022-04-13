@@ -12,7 +12,7 @@
 	&-text {
 		@include typography.typography-cat-shorthand('body-2-bold');
         
-		padding: 0.5rem 0.75rem;
+		padding: 8px 12px;
 		color: var(#{theme-consts.$vvd-color-on-canvas});
 	}
 }
