@@ -1,5 +1,5 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
-import {Connotation} from '../enums';
+import {Connotation, Shape} from '../enums';
 import {Progress} from './progress';
 import '.';
 
@@ -150,6 +150,22 @@ describe('vwc-progress', () => {
 			element.reverse = true;
 			await elementUpdated(element);
 			expect(baseDiv?.classList.contains('reverse')).toEqual(true);
+		});
+	});
+
+	describe('shape', function () {
+		it('should reflect shape on host', async function () {
+			element.shape = Shape.Rounded;
+			await elementUpdated(element);
+			expect(element.getAttribute('shape'))
+				.toEqual(Shape.Rounded);
+		});
+
+		it('should add class "shape" to base div', async function() {
+			const baseDiv = element.shadowRoot?.querySelector('.base');
+			element.shape = Shape.Rounded;
+			await elementUpdated(element);
+			expect(baseDiv?.classList.contains(`shape-${Shape.Rounded}`)).toEqual(true);
 		});
 	});
 });

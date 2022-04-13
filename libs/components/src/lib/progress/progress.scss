@@ -8,6 +8,7 @@
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
 $block-size: 6px;
+$rounded-border-radius: 3px;
 
 .base {
 	@include connotation.connotation;
@@ -68,8 +69,6 @@ $block-size: 6px;
 	inline-size: 60%;
 }
 
-
-
 .reverse {
 	.indeterminate-indicator-1, .indeterminate-indicator-2 {
 		animation-direction: reverse;
@@ -77,6 +76,12 @@ $block-size: 6px;
 	.determinate {
 		position: absolute;
 		right: 0;
+	}
+}
+
+.base.shape-rounded {
+	.determinate, .indeterminate {
+		border-radius: $rounded-border-radius;
 	}
 }
 

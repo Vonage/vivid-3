@@ -10,6 +10,7 @@ import type { Progress } from './progress';
 const getClasses = (_: Progress) => classNames(
 	'base',
 	[`connotation-${_.connotation}`, !!_.connotation],
+	[`shape-${_.shape}`, !!_.shape],
 	['reverse', _.reverse]
 );
 
