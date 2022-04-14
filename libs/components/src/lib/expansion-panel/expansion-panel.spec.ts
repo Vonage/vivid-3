@@ -57,4 +57,26 @@ describe('vwc-expansion-panel', () => {
 			expect(hasClassOpenAfterHide).toEqual(false);
 		});
 	});
+
+	describe('toggle', () => {
+		it('should toggle when open attribute changes', async () => {
+			const control = getControlElement(element);
+			const hasClassOpenBeforeToggle = control.classList.contains('open');
+
+			element.toggleOpen();
+			await elementUpdated(element);
+			const hasClassOpenAfterToggle = control.classList.contains('open');
+
+			expect(element.open).toEqual(true);
+			expect(hasClassOpenBeforeToggle).toEqual(false);
+			expect(hasClassOpenAfterToggle).toEqual(true);
+
+			element.toggleOpen();
+			await elementUpdated(element);
+			const hasClassOpenAfterSecondToggle = control.classList.contains('open');
+
+			expect(element.open).toEqual(false);
+			expect(hasClassOpenAfterSecondToggle).toEqual(false);
+		});
+	});
 });
