@@ -8,6 +8,7 @@ import {
 	getHeaderDescendantGridCell,
 	getNextFocusableGridElement,
 	isCellOrHeader,
+	PredefindKeys,
 } from './helpers/calendar.keyboard-interactions';
 import { getEventContextFactorial } from './helpers/calendar.event-context';
 
@@ -109,12 +110,12 @@ export class Calendar extends FoundationElement {
 	// 	return slot?.parentElement;
 	// }
 
-	private arrowKeysInteractions(event: KeyboardEvent) {
+	private arrowKeysInteractions(key: PredefindKeys) {
 		const activeElement = this.shadowRoot?.activeElement;
 		let focusNext: Element | null | undefined;
 
 		if (isCellOrHeader(activeElement)) {
-			focusNext = getNextFocusableGridElement.call(this, event.key, activeElement);
+			focusNext = getNextFocusableGridElement.call(this, key, activeElement);
 		}
 		// !TODO: this is a temporary fix until calendar event is included in this repo
 
@@ -122,15 +123,13 @@ export class Calendar extends FoundationElement {
 			focusNext = this.getCalendarEventContainingCell(this.focusedCalendarEvent);
 		}*/
 		else if (activeElement?.matches('em[role="button"i]')) {
-			focusNext = getHeaderDescendantGridCell.call(this, event.key, activeElement as HTMLElement);
+			focusNext = getHeaderDescendantGridCell.call(this, key, activeElement as HTMLElement);
 		} else {
 			// default selectable element (first header)
 			focusNext = this.shadowRoot?.querySelector('[role="columnheader"i]');
 		}
 
 		this.moveTo(focusNext as HTMLElement);
-
-		event.preventDefault();
 	}
 
 	private moveTo(el: HTMLElement | null | undefined) {
@@ -142,9 +141,12 @@ export class Calendar extends FoundationElement {
 	}
 
 
-	onKeydown(event: KeyboardEvent) {
-		const isArrow = [ARROW_UP, ARROW_RIGHT, ARROW_DOWN, ARROW_LEFT].includes(event.key);
-		isArrow && this.arrowKeysInteractions(event);
+	onKeydown({ key }: KeyboardEvent) {
+		const isArrow = [ARROW_UP, ARROW_RIGHT, ARROW_DOWN, ARROW_LEFT].some(predefinedKey => predefinedKey == key);
+
+		if (isArrow) {
+			this.arrowKeysInteractions(key as PredefindKeys);
+		}
 
 		// after this event handler is executed,
 		// preventDefault() will be called on the event object by default.

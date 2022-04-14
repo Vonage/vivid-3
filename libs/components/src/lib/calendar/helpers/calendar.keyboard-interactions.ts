@@ -6,6 +6,7 @@ export const ARROW_RIGHT = 'ArrowRight';
 export const ARROW_DOWN = 'ArrowDown';
 export const ARROW_LEFT = 'ArrowLeft';
 
+export type PredefindKeys = typeof ARROW_UP | typeof ARROW_RIGHT | typeof ARROW_DOWN | typeof ARROW_LEFT;
 
 /**
  * @param el
@@ -27,7 +28,7 @@ const getCellOrHeader = (f: HTMLElement) => (f.matches('[role="columnheader"i]')
  * @param key
  * @param activeElement
  */
-export function getNextFocusableGridElement(this: Calendar, key: string, activeElement: HTMLElement): Element | null | undefined {
+export function getNextFocusableGridElement(this: Calendar, key: PredefindKeys, activeElement: HTMLElement): Element | null | undefined {
 	switch (key) {
 		case ARROW_RIGHT:
 			return activeElement.nextElementSibling || activeElement.parentNode?.firstElementChild;
@@ -39,8 +40,6 @@ export function getNextFocusableGridElement(this: Calendar, key: string, activeE
 			const i = Array.from(children).indexOf(activeElement);
 			return this.shadowRoot?.querySelector(`${getCellOrHeader(activeElement as HTMLElement)}:nth-child(${i + 1})`);
 		}
-		default:
-			return null;
 	}
 }
 
@@ -49,12 +48,12 @@ export function getNextFocusableGridElement(this: Calendar, key: string, activeE
  * @param key
  * @param activeElement
  */
-export function getHeaderDescendantGridCell(this: Calendar, key: string, activeElement: HTMLElement): Element | null | undefined {
-	if (key === ARROW_DOWN) {
-		const header = activeElement.closest('[role="columnheader"i]');
-		const columnHeaders = this.shadowRoot?.querySelectorAll('[role="columnheader"i]');
-		const i = (columnHeaders && header && Array.from(columnHeaders).indexOf(header)) || 0;
-		return this.shadowRoot?.querySelector(`[role="gridcell"i]:nth-child(${i + 1})`);
-	}
-	return undefined;
+export function getHeaderDescendantGridCell(this: Calendar, key: PredefindKeys, activeElement: HTMLElement): Element | null | undefined {
+	if (key !== ARROW_DOWN) {return;}
+
+	const header = activeElement.closest('[role="columnheader"i]');
+	const columnHeaders = this.shadowRoot?.querySelectorAll('[role="columnheader"i]');
+	const i = (columnHeaders && header && Array.from(columnHeaders).indexOf(header)) || 0;
+	return this.shadowRoot?.querySelector(`[role="gridcell"i]:nth-child(${i + 1})`);
+
 }
