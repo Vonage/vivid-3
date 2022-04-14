@@ -1,21 +1,21 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
-import { ExpansionPanel } from './expansion-panel';
+import { accordionItem } from './accordion-item';
 import '.';
 
-const COMPONENT_TAG = 'vwc-expansion-panel';
+const COMPONENT_TAG = 'vwc-accordion-item';
 
-describe('vwc-expansion-panel', () => {
-	let element: ExpansionPanel;
+describe('vwc-accordion-item', () => {
+	let element: accordionItem;
 
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as ExpansionPanel;
+		)) as accordionItem;
 	});
 
 	describe('basic', () => {
-		it('should be initialized as a vwc-expansion-panel', async () => {
-			expect(element).toBeInstanceOf(ExpansionPanel);
+		it('should be initialized as a vwc-accordion-item', async () => {
+			expect(element).toBeInstanceOf(accordionItem);
 			expect(element.open).toBeFalsy();
 			expect(element.dense).toBeFalsy();
 			expect(element.icon).toEqual('');
@@ -61,7 +61,7 @@ describe('vwc-expansion-panel', () => {
 	describe('toggle', () => {
 		it('should toggle when open attribute changes', async () => {
 			const control = getControlElement(element);
-			const button: any = element.shadowRoot?.querySelector('.expansion-panel-button');
+			const button: any = element.shadowRoot?.querySelector('.accordion-item-button');
 			const hasClassOpenBeforeToggle = control.classList.contains('open');
 
 			button.click();

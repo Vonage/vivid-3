@@ -2,7 +2,7 @@
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
-.expansion-panel-body {
+.accordion-item-body {
 	@include typography.typography-cat-shorthand('body-2');
     
 	padding: 8px 32px 24px 16px;
@@ -17,7 +17,7 @@
 
 	&:not(.open) {
 		.toggle-close,
-		.expansion-panel-body {
+		.accordion-item-body {
 			display: none;
 		}
 	}
@@ -31,12 +31,12 @@
 	}
 }
 
-.expansion-panel-header {
+.accordion-item-header {
 	padding: 0;
 	margin: 0;
 }
 
-.expansion-panel-button {
+.accordion-item-button {
 	@include typography.typography-cat-shorthand('subtitle-2');
 
 	position: relative;
@@ -91,7 +91,7 @@
 }
 
 .dense {
-	.expansion-panel-button {
+	.accordion-item-button {
 		@include typography.typography-cat-shorthand('body-2-bold');
 	}
 	.meta {
@@ -100,5 +100,5 @@
 }
 
 vwc-icon .dense{
-	--vvd-expansion-panel-icon-size: 16px;
+	--vvd-accordion-item-icon-size: 16px;
 }

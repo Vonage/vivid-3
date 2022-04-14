@@ -2,11 +2,11 @@ import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 
 /**
- * Base class for expansion-panel
+ * Base class for accordion-item
  *
  * @public
  */
-export class ExpansionPanel extends FoundationElement {
+export class accordionItem extends FoundationElement {
 	/**
 	 * 
 	 *
@@ -24,7 +24,7 @@ export class ExpansionPanel extends FoundationElement {
 	@attr({ mode: 'fromView', attribute: 'heading-level' }) headingLevel: 2 | 3 | 4 | 5 | 6 = 3;
 
 	/**
-	 * Indicates whether the expansion-panel has indicator
+	 * Indicates whether the accordion-item has indicator
 	 *
 	 * @public
 	 * HTML Attribute: no-indicator
@@ -57,7 +57,7 @@ export class ExpansionPanel extends FoundationElement {
 	@attr({ mode: 'fromView' }) meta = '';
 
 	/**
-	 * Indicates whether the expansion-panel is open
+	 * Indicates whether the accordion-item is open
 	 *
 	 * @public
 	 * HTML Attribute: open
@@ -72,7 +72,7 @@ export class ExpansionPanel extends FoundationElement {
 	@attr({ mode: 'boolean' }) dense = false;
 
 	/**
-	 * Opens the expansion-panel from the closed state.
+	 * Opens the accordion-item from the closed state.
 	 *
 	 * @public
 	 */
@@ -81,7 +81,7 @@ export class ExpansionPanel extends FoundationElement {
 	}
 
 	/**
-	 * Closes the expansion-panel from the open state.
+	 * Closes the accordion-item from the open state.
 	 *
 	 * @public
 	 */
@@ -90,7 +90,7 @@ export class ExpansionPanel extends FoundationElement {
 	}
 
 	/**
-	 * Toggles the expansion-panel.
+	 * Toggles the accordion-item.
 	 *
 	 * @public
 	 */

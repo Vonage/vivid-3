@@ -1,8 +1,8 @@
-# vwc-expansion-panel
+# vwc-accordion-item
 
 ```js
 <script type="module">
-    import '@vonage/vivid/expansion-panel';
+    import '@vonage/vivid/accordion-item';
 </script>
 ```
 ## Heading
@@ -18,39 +18,39 @@ Add the `heading` attribute to set the heading text.
   }
 </style>
 <div class="wrapper">
-  <vwc-expansion-panel heading="Expansion panel with heading">
+  <vwc-accordion-item heading="accordion item with heading">
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
-  </vwc-expansion-panel>
+  </vwc-accordion-item>
 </div>
 ```
 
 ## Heading-Level
-Use the `heading-level` attribute to change the expansion panel's size.
+Use the `heading-level` attribute to change the accordion item's size.
 
 - Type: `2` | `3` | `4` | `5` | `6`
 - Default: `3`
 
 ```js
-<h2 class="expansion-panel-header">
-	<button class="expansion-panel-button"></button>
+<h2 class="accordion-item-header">
+	<button class="accordion-item-button"></button>
 </h2>
-<h3 class="expansion-panel-header">
-	<button class="expansion-panel-button"></button>
+<h3 class="accordion-item-header">
+	<button class="accordion-item-button"></button>
 </h3>
-<h4 class="expansion-panel-header">
-	<button class="expansion-panel-button"></button>
+<h4 class="accordion-item-header">
+	<button class="accordion-item-button"></button>
 </h4>
-<h5 class="expansion-panel-header">
-	<button class="expansion-panel-button"></button>
+<h5 class="accordion-item-header">
+	<button class="accordion-item-button"></button>
 </h5>
-<h6 class="expansion-panel-header">
-	<button class="expansion-panel-button"></button>
+<h6 class="accordion-item-header">
+	<button class="accordion-item-button"></button>
 </h6>
 ```
 ## Open
-Use the `open` attribute to indicate whether the expansion panel is open.
+Use the `open` attribute to indicate whether the accordion item is open.
 Alternatively, you can use the `show()` and `hide()` methods as well as `toggleOpen()`.
 - Type: `boolean`
 - Default: `false`
@@ -62,11 +62,11 @@ Alternatively, you can use the `show()` and `hide()` methods as well as `toggleO
   }
 </style>
 <div class="wrapper">
- <vwc-expansion-panel heading="Click to toggle expansion panel" open>
+ <vwc-accordion-item heading="Click to toggle accordion item" open>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
-  </vwc-expansion-panel>
+  </vwc-accordion-item>
 </div>
 ```
 ## No-Indicator
@@ -82,11 +82,11 @@ Add the `no-indicator` attribute to remove the indicator icon from the heading.
   }
 </style>
 <div class="wrapper">
- <vwc-expansion-panel heading="Expansion panel without indicator" no-indicator>
+ <vwc-accordion-item heading="accordion item without indicator" no-indicator>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
-  </vwc-expansion-panel>
+  </vwc-accordion-item>
 </div>
 ```
 
@@ -103,11 +103,11 @@ Add the `icon` attribute to add an icon to the heading.
   }
 </style>
 <div class="wrapper">
- <vwc-expansion-panel heading="Expansion panel with Icon" icon="chat-solid">
+ <vwc-accordion-item heading="accordion item with Icon" icon="chat-solid">
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
-  </vwc-expansion-panel>
+  </vwc-accordion-item>
 </div>
 ```
 
@@ -124,11 +124,11 @@ Add the `icon-trailing` attribute to add an icon to the right of the heading tex
   }
 </style>
 <div class="wrapper">
- <vwc-expansion-panel heading="Expansion panel with Icon-Trailing" icon="chat-solid" icon-trailing>
+ <vwc-accordion-item heading="accordion item with Icon-Trailing" icon="chat-solid" icon-trailing>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
-  </vwc-expansion-panel>
+  </vwc-accordion-item>
 </div>
 ```
 
@@ -145,15 +145,15 @@ Add the `meta` attribute to add metadata to the heading.
   }
 </style>
 <div class="wrapper">
- <vwc-expansion-panel heading="Expansion panel with Metadata" meta="meta-data">
+ <vwc-accordion-item heading="accordion item with Metadata" meta="meta-data">
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
-  </vwc-expansion-panel>
+  </vwc-accordion-item>
 </div>
 ```
 ## Dense
-You can turn the expansion-panel into dense mode by adding the `dense` attribute.
+You can turn the accordion-item into dense mode by adding the `dense` attribute.
 
 - Type: `boolean`
 - Default: `false`
@@ -165,11 +165,11 @@ You can turn the expansion-panel into dense mode by adding the `dense` attribute
   }
 </style>
 <div class="wrapper">
- <vwc-expansion-panel heading="Expansion panel with dense" dense>
+ <vwc-accordion-item heading="accordion item with dense" dense>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
-  </vwc-expansion-panel>
+  </vwc-accordion-item>
 </div>
 ```
 
@@ -177,6 +177,6 @@ You can turn the expansion-panel into dense mode by adding the `dense` attribute
 
 | Method       | Type       | Description                                      |
 | ------------ | ---------- | ------------------------------------------------ |
-| `hide`       | `(): void` | Closes the expansion panel from the open state.  |
-| `show`       | `(): void` | Opens the expansion panel from the closed state. |
-| `toggleOpen` | `(): void` | Toggles the expansion panel.                     |
+| `hide`       | `(): void` | Closes the accordion item from the open state.  |
+| `show`       | `(): void` | Opens the accordion item from the closed state. |
+| `toggleOpen` | `(): void` | Toggles the accordion item.                     |

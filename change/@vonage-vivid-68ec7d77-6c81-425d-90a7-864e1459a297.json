@@ -1,6 +1,6 @@
 {
   "type": "none",
-  "comment": "migrate expansion panel",
+  "comment": "migrate accordion item",
   "packageName": "@vonage/vivid",
   "email": "rina.oksman@vonage.com",
   "dependentChangeType": "none"

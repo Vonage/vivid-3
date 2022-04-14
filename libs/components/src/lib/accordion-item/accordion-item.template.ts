@@ -5,11 +5,11 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import type { ExpansionPanel } from './expansion-panel';
+import type { accordionItem } from './accordion-item';
 
 const getClasses = ({
 	open, iconTrailing, icon, dense, noIndicator
-}: ExpansionPanel) => classNames(
+}: accordionItem) => classNames(
 	'control',
 	['open', open],
 	['icon', Boolean(icon)],
@@ -18,13 +18,13 @@ const getClasses = ({
 	['noIndicator', noIndicator],
 );
 
-export const ExpansionPanelTemplate: (
+export const accordionItemTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<ExpansionPanel> = () => html<ExpansionPanel>`
+) => ViewTemplate<accordionItem> = () => html<accordionItem>`
 	<div class="${getClasses}">
 		${x => renderPanelHeader(x.headingLevel)}
-		<div class="expansion-panel-body">
+		<div class="accordion-item-body">
 			<slot></slot>
 		</div>
 	</div>
@@ -32,16 +32,16 @@ export const ExpansionPanelTemplate: (
 
 const renderPanelHeader = (headingLevel: number | string) => {
 	const header: string = 'h' + headingLevel;
-	return html<ExpansionPanel>`
-	<${header} class="expansion-panel-header">
+	return html<accordionItem>`
+	<${header} class="accordion-item-header">
 		${renderHeaderButton()}
 	</${header}>
 	`;
 };
 
 const renderHeaderButton = () => {
-	return html<ExpansionPanel>`
-	<button class="expansion-panel-button" @click=${x=> x.toggleOpen()}
+	return html<accordionItem>`
+	<button class="accordion-item-button" @click=${x=> x.toggleOpen()}
 		?aria-expanded=${x => x.open}
 		aria-controls="content">
 		<span class="icon">
