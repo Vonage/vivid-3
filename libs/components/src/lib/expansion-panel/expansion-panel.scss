@@ -2,6 +2,15 @@
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
+.expansion-panel-body {
+	@include typography.typography-cat-shorthand('body-2');
+    
+	padding: 8px 32px 24px 16px;
+	.icon:not(.iconTrailing) &{
+		padding-left: 48px;
+	}
+}
+
 .control {
 	display: flex;
 	flex-direction: column;
@@ -39,7 +48,7 @@
 	background: transparent;
 	cursor: pointer;
 
-	&:hover { //TODO: replace with state
+	&:hover {
 		background: var(#{theme-consts.$vvd-color-neutral-10});
 	}
 	.icon,
@@ -81,15 +90,6 @@
 	}
 }
 
-.expansion-panel-body {
-	@include typography.typography-cat-shorthand('body-2');
-    
-	padding: 8px 32px 24px 16px;
-	.icon:not(.iconTrailing) &{
-		padding-left: 48px;
-	}
-}
-
 .dense {
 	.expansion-panel-button {
 		@include typography.typography-cat-shorthand('body-2-bold');
@@ -97,7 +97,8 @@
 	.meta {
 		@include typography.typography-cat-shorthand('caption-bold');
 	}
-	vwc-icon {
-		--vvd-expansion-panel-icon-size: 16px;
-	}
+}
+
+vwc-icon .dense{
+	--vvd-expansion-panel-icon-size: 16px;
 }
