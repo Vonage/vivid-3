@@ -123,6 +123,15 @@ describe('vwc-calendar', () => {
 			expect(context?.hour).toEqual(0.53);
 		});
 
+		it('should return null from mouse click event', async () => {
+			const e = new MouseEvent('click', { composed: true, clientX: -1000 });
+			e.composedPath = jest.fn().mockReturnValue([gridCell]);
+
+			context = element.getEventContext(e);
+
+			expect(context).toBeNull();
+		});
+
 		it('should throw on wrong event type', async () => {
 			const e = new FocusEvent('click', { composed: true });
 			e.composedPath = jest.fn().mockReturnValue([gridCell]);

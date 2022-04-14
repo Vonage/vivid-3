@@ -1,6 +1,6 @@
+import { isEmpty, not } from 'ramda';
 import type { Calendar } from '../calendar';
 import { isCellOrHeader } from './calendar.keyboard-interactions';
-
 
 export interface CalendarEventContext {
 	day?: number;
@@ -11,7 +11,7 @@ export interface CalendarEventContext {
  * @param el
  */
 function getDay(el: HTMLElement): number | void {
-	const cellOrHeader = el.closest('[role="gridcell"i]') || el.closest('[role="columnheader"i]');
+	const cellOrHeader = el.closest('[role="gridcell"i], [role="columnheader"i]');
 	if (isCellOrHeader(cellOrHeader)) {
 		const { parentElement } = cellOrHeader;
 		return parentElement?.children && Array.from(parentElement.children).indexOf(cellOrHeader);
@@ -24,7 +24,7 @@ function getDay(el: HTMLElement): number | void {
  * @param hours
  */
 function getHour(e: MouseEvent, el: HTMLElement, hours: number): number | undefined {
-	const rowHeaderOrCell = el.closest('.row-headers') || el.closest('[role="gridcell"i]') as HTMLElement;
+	const rowHeaderOrCell = el.closest('.row-headers, [role="gridcell"i]') as HTMLElement;
 
 	const DOMRect = rowHeaderOrCell.getBoundingClientRect();
 	const offsetY = e.clientY - DOMRect.y;
@@ -33,9 +33,6 @@ function getHour(e: MouseEvent, el: HTMLElement, hours: number): number | undefi
 
 	return Math.round((hour + Number.EPSILON) * 100) / 100;
 }
-
-const isEmptyObject = (obj: Record<string, unknown>): obj is Record<string, never> =>
-	Object.keys(obj).length === 0 && obj.constructor === Object;
 
 /**
  * @param this
@@ -68,6 +65,6 @@ export const getEventContextFactorial = (shadowRoot: ShadowRoot, hours: number) 
 			...(hour != undefined && { hour }),
 		};
 
-		return (!isEmptyObject(context) && context) || null;
+		return not(isEmpty(context)) ? context : null;
 	};
 };

@@ -111,7 +111,7 @@ export class Calendar extends FoundationElement {
 	// }
 
 	private arrowKeysInteractions(key: PredefindKeys) {
-		const activeElement = this.shadowRoot?.activeElement;
+		const activeElement = (this.shadowRoot as ShadowRoot).activeElement;
 		let focusNext: Element | null | undefined;
 
 		if (isCellOrHeader(activeElement)) {
@@ -126,14 +126,14 @@ export class Calendar extends FoundationElement {
 			focusNext = getHeaderDescendantGridCell.call(this, key, activeElement as HTMLElement);
 		} else {
 			// default selectable element (first header)
-			focusNext = this.shadowRoot?.querySelector('[role="columnheader"i]');
+			focusNext = (this.shadowRoot as ShadowRoot).querySelector('[role="columnheader"i]');
 		}
 
 		this.moveTo(focusNext as HTMLElement);
 	}
 
 	private moveTo(el: HTMLElement | null | undefined) {
-		const onBlur = ({ target }: FocusEvent) => (target as HTMLElement)?.setAttribute('tabindex', '-1');
+		const onBlur = ({ target }: FocusEvent) => (target as HTMLElement).setAttribute('tabindex', '-1');
 
 		el?.addEventListener('blur', onBlur, { once: true });
 		el?.setAttribute('tabindex', '0');

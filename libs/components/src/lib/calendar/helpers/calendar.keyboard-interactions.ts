@@ -29,16 +29,18 @@ const getCellOrHeader = (f: HTMLElement) => (f.matches('[role="columnheader"i]')
  * @param activeElement
  */
 export function getNextFocusableGridElement(this: Calendar, key: PredefindKeys, activeElement: HTMLElement): Element | null | undefined {
+	if (!(activeElement.parentNode instanceof HTMLElement)) { return; }
+
 	switch (key) {
 		case ARROW_RIGHT:
-			return activeElement.nextElementSibling || activeElement.parentNode?.firstElementChild;
+			return activeElement.nextElementSibling || activeElement.parentNode.firstElementChild;
 		case ARROW_LEFT:
-			return activeElement.previousElementSibling || activeElement.parentElement?.lastElementChild;
+			return activeElement.previousElementSibling || activeElement.parentNode.lastElementChild;
 		case ARROW_UP:
 		case ARROW_DOWN: {
-			const { children } = activeElement?.parentElement as HTMLElement;
+			const { children } = activeElement.parentNode;
 			const i = Array.from(children).indexOf(activeElement);
-			return this.shadowRoot?.querySelector(`${getCellOrHeader(activeElement as HTMLElement)}:nth-child(${i + 1})`);
+			return (this.shadowRoot as ShadowRoot).querySelector(`${getCellOrHeader(activeElement as HTMLElement)}:nth-child(${i + 1})`);
 		}
 	}
 }
@@ -52,8 +54,8 @@ export function getHeaderDescendantGridCell(this: Calendar, key: PredefindKeys, 
 	if (key !== ARROW_DOWN) {return;}
 
 	const header = activeElement.closest('[role="columnheader"i]');
-	const columnHeaders = this.shadowRoot?.querySelectorAll('[role="columnheader"i]');
+	const columnHeaders = (this.shadowRoot as ShadowRoot).querySelectorAll('[role="columnheader"i]');
 	const i = (columnHeaders && header && Array.from(columnHeaders).indexOf(header)) || 0;
-	return this.shadowRoot?.querySelector(`[role="gridcell"i]:nth-child(${i + 1})`);
+	return (this.shadowRoot as ShadowRoot).querySelector(`[role="gridcell"i]:nth-child(${i + 1})`);
 
 }
