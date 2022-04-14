@@ -8,13 +8,14 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import type { ExpansionPanel } from './expansion-panel';
 
 const getClasses = ({
-	open, iconTrailing, icon, dense
+	open, iconTrailing, icon, dense, noIndicator
 }: ExpansionPanel) => classNames(
 	'control',
 	['open', open],
 	['icon', Boolean(icon)],
 	['iconTrailing', iconTrailing],
 	['dense', dense],
+	['noIndicator', noIndicator],
 );
 
 export const ExpansionPanelTemplate: (

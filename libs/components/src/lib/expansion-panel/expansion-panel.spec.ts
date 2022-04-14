@@ -81,7 +81,6 @@ describe('vwc-expansion-panel', () => {
 		});
 	});
 
-
 	describe('icon', () => {
 		it('should set icon class', async () => {
 			expect(getControlElement(element).classList.toString()).toEqual('control');
@@ -95,6 +94,15 @@ describe('vwc-expansion-panel', () => {
 			element.iconTrailing = true;
 			await elementUpdated(element);
 			expect(getControlElement(element).classList.toString()).toEqual('control icon iconTrailing');
+		});
+	});
+
+	describe('no-indicator', () => {
+		it('should remove indicator class', async () => {
+			expect(getControlElement(element).classList.toString()).toEqual('control');
+			element.noIndicator = true;
+			await elementUpdated(element);
+			expect(getControlElement(element).classList.toString()).toEqual('control noIndicator');
 		});
 	});
 });
