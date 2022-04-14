@@ -61,9 +61,10 @@ describe('vwc-expansion-panel', () => {
 	describe('toggle', () => {
 		it('should toggle when open attribute changes', async () => {
 			const control = getControlElement(element);
+			const button: any = element.shadowRoot?.querySelector('.expansion-panel-button');
 			const hasClassOpenBeforeToggle = control.classList.contains('open');
 
-			element.toggleOpen();
+			button.click();
 			await elementUpdated(element);
 			const hasClassOpenAfterToggle = control.classList.contains('open');
 
@@ -71,12 +72,29 @@ describe('vwc-expansion-panel', () => {
 			expect(hasClassOpenBeforeToggle).toEqual(false);
 			expect(hasClassOpenAfterToggle).toEqual(true);
 
-			element.toggleOpen();
+			button.click();
 			await elementUpdated(element);
 			const hasClassOpenAfterSecondToggle = control.classList.contains('open');
 
 			expect(element.open).toEqual(false);
 			expect(hasClassOpenAfterSecondToggle).toEqual(false);
+		});
+	});
+
+
+	describe('icon', () => {
+		it('should set icon class', async () => {
+			expect(getControlElement(element).classList.toString()).toEqual('control');
+			element.icon = 'chat-solid';
+			await elementUpdated(element);
+			expect(getControlElement(element).classList.toString()).toEqual('control icon');
+		});
+		it('should set iconTrailing', async () => {
+			expect(getControlElement(element).classList.toString()).toEqual('control');
+			element.icon = 'chat-solid';
+			element.iconTrailing = true;
+			await elementUpdated(element);
+			expect(getControlElement(element).classList.toString()).toEqual('control icon iconTrailing');
 		});
 	});
 });
