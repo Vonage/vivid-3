@@ -7,6 +7,14 @@
     ]
   },
   {
+  "title": "banner",
+  "markdown": "./libs/components/src/lib/banner/README.md",
+  "modules": [
+    "/assets/modules/components/button/index.js",
+    "/assets/modules/components/banner/index.js"
+    ]
+  },  
+  {
     "title": "breadcrumb",
     "markdown": "./libs/components/src/lib/breadcrumb/README.md",
     "modules": [
@@ -86,11 +94,19 @@
     ]
   },
   {
-    "title": "banner",
-    "markdown": "./libs/components/src/lib/banner/README.md",
+    "title": "tooltip",
+    "markdown": "./libs/components/src/lib/tooltip/README.md",
     "modules": [
-      "/assets/modules/components/button/index.js",
-      "/assets/modules/components/banner/index.js"
+      "/assets/modules/components/tooltip/index.js",
+      "/assets/modules/components/text/index.js",
+      "/assets/modules/components/button/index.js"
+    ]
+  },
+  {
+    "title": "progress",
+    "markdown": "./libs/components/src/lib/progress/README.md",
+    "modules": [
+      "/assets/modules/components/progress/index.js"
     ]
   },
   {
