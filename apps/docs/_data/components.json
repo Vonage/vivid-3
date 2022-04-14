@@ -13,7 +13,7 @@
     "/assets/modules/components/button/index.js",
     "/assets/modules/components/banner/index.js"
     ]
-  },  
+  },
   {
     "title": "breadcrumb",
     "markdown": "./libs/components/src/lib/breadcrumb/README.md",
@@ -34,6 +34,13 @@
     "markdown": "./libs/components/src/lib/button/README.md",
     "modules": [
       "/assets/modules/components/button/index.js"
+    ]
+  },
+  {
+    "title": "card",
+    "markdown": "./libs/components/src/lib/card/README.md",
+    "modules": [
+      "/assets/modules/components/card/index.js"
     ]
   },
   {

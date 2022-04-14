@@ -1,0 +1,96 @@
+@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use 'partials/card-variables' as card-variables;
+
+
+
+.control {
+	display: flex;
+	overflow: hidden;
+	flex-flow: column;
+	//block-size: 100%;
+	border-radius: 6px;
+	color: var(#{theme-consts.$vvd-color-on-canvas});
+
+	.content {
+		display: flex;
+		flex-flow: column;
+		padding: 1.5rem;
+	}
+
+	.header {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.5rem;
+		inline-size: 100%;
+		&-content {
+			flex: 1;
+		}
+
+		&-title,
+		&-subtitle {
+			display: -webkit-box;
+			overflow: hidden;
+			-webkit-box-orient: vertical;
+		}
+
+		&-title {
+			@include typography.typography-cat-shorthand('subtitle-2');
+
+			-webkit-line-clamp: var(#{card-variables.$title-line-clamp});
+		}
+		&-subtitle {
+			@include typography.typography-cat-shorthand('body-2');
+
+			-webkit-line-clamp: var(#{card-variables.$subtitle-line-clamp});
+		}
+	}
+
+	.header-subtitle,
+	.text {
+		@include typography.typography-cat-shorthand('body-2');
+
+		color: var(#{theme-consts.$vvd-color-neutral-70});
+	}
+
+	.text {
+		padding-right: 8px;
+		margin-top: 12px;
+	}
+
+	.footer {
+		display: inline-flex;
+		flex-direction: column;
+		align-items: flex-end;
+		padding-bottom: 1.5rem;
+		margin-top: auto;
+		padding-inline: 1.5rem;
+	}
+}
+
+
+
+::slotted([slot="graphic"i]),
+.icon {
+	flex-shrink: 0;
+	align-self: baseline;
+	margin-block-start: 4px;
+}
+
+.icon {
+	font-size: 20px;
+}
+
+::slotted([slot="meta"i]) {
+	flex-shrink: 0;
+	align-self: flex-start;
+	margin-block-start: -0.5rem;
+	margin-inline-end: -0.5rem;
+}
+
+vwc-elevation {
+	block-size: inherit;
+	&::part(base) {
+		block-size: inherit;
+	}
+}
