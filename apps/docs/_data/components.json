@@ -13,7 +13,7 @@
     "/assets/modules/components/button/index.js",
     "/assets/modules/components/banner/index.js"
     ]
-  },  
+  },
   {
     "title": "breadcrumb",
     "markdown": "./libs/components/src/lib/breadcrumb/README.md",
@@ -107,6 +107,13 @@
     "markdown": "./libs/components/src/lib/progress/README.md",
     "modules": [
       "/assets/modules/components/progress/index.js"
+    ]
+  },
+  {
+    "title": "progress-ring",
+    "markdown": "./libs/components/src/lib/progress-ring/README.md",
+    "modules": [
+      "/assets/modules/components/progress-ring/index.js"
     ]
   }
 ]
