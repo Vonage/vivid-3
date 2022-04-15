@@ -1,15 +1,14 @@
-import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
-import { Connotation } from '../enums';
-import { AffixIcon } from '../../shared/patterns/affix';
-
+import {applyMixins, FoundationElement} from '@microsoft/fast-foundation';
+import {attr} from '@microsoft/fast-element';
+import {Connotation} from '../enums';
+import {AffixIcon} from '../../shared/patterns/affix';
 
 export type BannerConnotation =
-  Connotation.Info |
-  Connotation.Announcement |
-  Connotation.Success |
-  Connotation.Warning |
-  Connotation.Alert;
+	Connotation.Info |
+	Connotation.Announcement |
+	Connotation.Success |
+	Connotation.Warning |
+	Connotation.Alert;
 
 const connotationIconMap = new Map([
 	[Connotation.Info, 'info-solid'],
@@ -20,8 +19,7 @@ const connotationIconMap = new Map([
 ]);
 
 const defaultConnotation =
-  (connotation: Connotation | undefined = Connotation.Info) => connotationIconMap.get(connotation) as Connotation;
-
+	(connotation: Connotation | undefined = Connotation.Info) => connotationIconMap.get(connotation) as Connotation;
 
 /**
  * Base class for banner
@@ -29,8 +27,9 @@ const defaultConnotation =
  * @public
  */
 export class Banner extends FoundationElement {
-	@attr({mode: 'boolean'}) dismissible = false;
-	@attr({mode: 'boolean'}) open = false;
+	@attr({attribute: 'action-href'}) actionHref: string | undefined;
+	@attr({attribute: 'action-text'}) actionText: string | undefined;
+	@attr({mode: 'boolean'}) removable = false;
 	@attr({attribute: 'aria-live'}) override ariaLive: any;
 	@attr() role: string | undefined;
 	@attr() text: string | undefined;
@@ -40,36 +39,39 @@ export class Banner extends FoundationElement {
 		return this.icon ?? defaultConnotation(this.connotation);
 	}
 
-	override attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-		super.attributeChangedCallback(name, oldValue, newValue);
-		if (name === 'open') {
-			this.open ? this.$emit('vwc-banner:opening') : this.$emit('vwc-banner:closing');
-		}
-	}
-
 	override connectedCallback() {
 		super.connectedCallback();
-		const banner = this.shadowRoot && this.shadowRoot.querySelector('.banner');
-		banner && banner.addEventListener('animationend', this.#emitOnAnimationEnd);
 		this.addEventListener('keydown', this.#closeOnKeyDown);
 	}
-
-	#emitOnAnimationEnd = () => {
-		this.open ? this.$emit('vwc-banner:opened') : this.$emit('vwc-banner:closed');
-	};
-
-	#closeOnKeyDown = (e: KeyboardEvent) => {
-		if (e.key !== 'Escape' || !this.dismissible) {
-			return;
-		}
-		this.open = false;
-	};
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
 		this.removeEventListener('keydown', this.#closeOnKeyDown);
 	}
+
+	override remove(): void {
+		this.$emit('vwc-banner:removing');
+		const banner = this.shadowRoot && this.shadowRoot.querySelector('.banner');
+		if (banner) {
+			banner.classList.add('removing');
+			banner.addEventListener('animationend', this.#handleRemoveEnd);
+		}
+	}
+
+	#handleRemoveEnd = () => {
+		this.$emit('vwc-banner:removed');
+		this.parentElement && this.parentElement.removeChild(this);
+	};
+
+	#closeOnKeyDown = (e: KeyboardEvent) => {
+		if (e.key !== 'Escape' || !this.removable) {
+			return;
+		}
+		this.remove();
+	};
 }
 
 applyMixins(Banner, AffixIcon);
-export interface Banner extends AffixIcon {}
+
+export interface Banner extends AffixIcon {
+}
