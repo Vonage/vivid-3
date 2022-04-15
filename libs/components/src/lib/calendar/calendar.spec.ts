@@ -123,9 +123,26 @@ describe('vwc-calendar', () => {
 			expect(context?.hour).toEqual(0.53);
 		});
 
+		it('should return hour from mouse click event', async () => {
+			const rowHeader  = element.shadowRoot?.querySelector('[role="rowheader"]:nth-child(3)') as HTMLElement;
+			rowHeader.getBoundingClientRect = jest.fn().mockReturnValue({ height: 49, y: 85 });
+
+			const time = rowHeader.querySelector('time') as HTMLElement;
+
+			const e = new MouseEvent('click', { composed: true, clientX: 25, clientY: 174 });
+			e.composedPath = jest.fn().mockReturnValue([time]);
+
+			context = element.getEventContext(e);
+
+			expect(context?.day).toBeUndefined();
+			expect(context?.hour).toEqual(43.59);
+		});
+
 		it('should return null from mouse click event', async () => {
-			const e = new MouseEvent('click', { composed: true, clientX: -1000 });
-			e.composedPath = jest.fn().mockReturnValue([gridCell]);
+			const grid  = element.shadowRoot?.querySelector('[role="grid"]') as HTMLElement;
+
+			const e = new MouseEvent('click', { composed: true, clientX: 0, clientY: 0 });
+			e.composedPath = jest.fn().mockReturnValue([grid]);
 
 			context = element.getEventContext(e);
 

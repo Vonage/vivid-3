@@ -1,6 +1,6 @@
 import { isEmpty, not } from 'ramda';
 import type { Calendar } from '../calendar';
-import { isCellOrHeader } from './calendar.keyboard-interactions';
+// import { isCellOrHeader } from './calendar.keyboard-interactions';
 
 export interface CalendarEventContext {
 	day?: number;
@@ -12,7 +12,7 @@ export interface CalendarEventContext {
  */
 function getDay(el: HTMLElement): number | void {
 	const cellOrHeader = el.closest('[role="gridcell"i], [role="columnheader"i]');
-	if (isCellOrHeader(cellOrHeader)) {
+	if (cellOrHeader) {
 		const { parentElement } = cellOrHeader;
 		return parentElement?.children && Array.from(parentElement.children).indexOf(cellOrHeader);
 	}
@@ -23,15 +23,17 @@ function getDay(el: HTMLElement): number | void {
  * @param el
  * @param hours
  */
-function getHour(e: MouseEvent, el: HTMLElement, hours: number): number | undefined {
-	const rowHeaderOrCell = el.closest('.row-headers, [role="gridcell"i]') as HTMLElement;
+function getHour(e: MouseEvent, el: HTMLElement, hours: number): number | void {
+	const rowHeaderOrCell = el.closest('[role="rowheader"], [role="gridcell"i]') as HTMLElement;
 
-	const DOMRect = rowHeaderOrCell.getBoundingClientRect();
-	const offsetY = e.clientY - DOMRect.y;
-	const hourHeight = DOMRect.height / hours;
-	const hour = offsetY / hourHeight;
+	if (rowHeaderOrCell) {
+		const DOMRect = rowHeaderOrCell.getBoundingClientRect();
+		const offsetY = e.clientY - DOMRect.y;
+		const hourHeight = DOMRect.height / hours;
+		const hour = offsetY / hourHeight;
 
-	return Math.round((hour + Number.EPSILON) * 100) / 100;
+		return Math.round((hour + Number.EPSILON) * 100) / 100;
+	}
 }
 
 /**
