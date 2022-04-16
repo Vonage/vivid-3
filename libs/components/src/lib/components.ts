@@ -10,5 +10,6 @@ export * from './breadcrumb';
 export * from './side-drawer';
 export * from './calendar';
 export * from './popup';
+export * from './tooltip';
 export * from './banner';
 
