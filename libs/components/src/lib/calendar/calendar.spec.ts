@@ -249,11 +249,24 @@ describe('vwc-calendar', () => {
 			expect(moveToElement('ArrowDown')).toEqual(
 				grid.querySelector('[role="columnheader"i]:nth-child(3)')
 			);
-			expect(moveToElement('Tab')).toEqual(
-				grid.querySelector('[role="columnheader"i]:nth-child(3)')
+		});
+
+		it('should circle back focus on keyboard arrow interactions', async () => {
+
+			const gridCell = shadowRoot?.querySelector('[role="columnheader"i]:nth-child(7)') as HTMLElement;
+
+			gridCell.focus();
+
+			const moveToElement = (key: string) => {
+				grid.dispatchEvent(new KeyboardEvent('keydown', { key }));
+				return shadowRoot?.activeElement;
+			};
+
+			expect(moveToElement('ArrowRight')).toEqual(
+				grid.querySelector('[role="columnheader"i]:nth-child(1)')
 			);
-			expect(moveToElement('Tab')).toEqual(
-				grid.querySelector('[role="columnheader"i]:nth-child(3)')
+			expect(moveToElement('ArrowLeft')).toEqual(
+				grid.querySelector('[role="columnheader"i]:nth-child(7)')
 			);
 		});
 

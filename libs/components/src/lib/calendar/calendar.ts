@@ -112,7 +112,7 @@ export class Calendar extends FoundationElement {
 
 	private arrowKeysInteractions(key: PredefindKeys) {
 		const activeElement = (this.shadowRoot as ShadowRoot).activeElement;
-		let focusNext: Element | null | undefined;
+		let focusNext: Element | null | void;
 
 		if (isCellOrHeader(activeElement)) {
 			focusNext = getNextFocusableGridElement.call(this, key, activeElement);
