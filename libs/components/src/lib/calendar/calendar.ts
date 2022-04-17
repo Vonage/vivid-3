@@ -37,7 +37,7 @@ export class Calendar extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr	startDay?: 'sunday' | 'monday';
+	@attr({ attribute: 'start-day' })	startDay?: 'sunday' | 'monday';
 
 	/**
 	 * A locale string or array of locale strings that contain one or more language or locale tags.

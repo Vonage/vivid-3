@@ -23,6 +23,7 @@ describe('vwc-calendar', () => {
 		it('should be initialized as a vwc-calendar', async () => {
 			expect(element).toBeInstanceOf(Calendar);
 			expect(element.datetime).toBeUndefined();
+			expect(element.startDay).toBeUndefined();
 			expect(element.locales).toBeUndefined();
 			expect(element.hour12).toBeFalsy();
 		});

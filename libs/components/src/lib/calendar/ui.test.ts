@@ -9,13 +9,10 @@ import {
 const components = ['calendar'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template = extractHTMLBlocksFromReadme(
-		path.join(__dirname, 'README.md')
-	).reduce(
-		(htmlString: string, block: string) =>
-			`${htmlString} <div style="margin: 5px;">${block}</div>`,
-		''
-	);
+	const template =`
+    <vwc-calendar datetime="2022-01-01"></vwc-calendar>
+    <vwc-calendar hour12 locales="he-IL" start-day="sunday" style="direction: rtl"></vwc-calendar>
+	`;
 
 	await loadComponents({
 		page,
@@ -27,10 +24,10 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	});
 
 	const testWrapper = await page.$('#wrapper');
-
 	await page.waitForLoadState('networkidle');
 
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/calendar.png'
-	);
+	expect(await testWrapper?.screenshot())
+		.toMatchSnapshot(
+			'./snapshots/calendar.png',
+		);
 });
