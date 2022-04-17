@@ -18,12 +18,12 @@ describe('vwc-accordion-item', () => {
 			expect(element).toBeInstanceOf(AccordionItem);
 			expect(element.open).toBeFalsy();
 			expect(element.dense).toBeFalsy();
-			expect(element.icon).toEqual('');
+			expect(element.icon).toBeUndefined();
 			expect(element.iconTrailing).toBeFalsy();
 			expect(element.meta).toEqual('');
 			expect(element.noIndicator).toBeFalsy();
 			expect(element.heading).toEqual('');
-			expect(element.headingLevel).toEqual(3);
+			expect(element.headingLevel).toBeUndefined();
 		});
 	});
 
@@ -93,7 +93,7 @@ describe('vwc-accordion-item', () => {
 			element.icon = 'chat-solid';
 			element.iconTrailing = true;
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.toString()).toEqual('control icon iconTrailing');
+			expect(getControlElement(element).classList.toString()).toEqual('control icon icon-trailing');
 		});
 	});
 
@@ -102,7 +102,7 @@ describe('vwc-accordion-item', () => {
 			expect(getControlElement(element).classList.toString()).toEqual('control');
 			element.noIndicator = true;
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.toString()).toEqual('control noIndicator');
+			expect(getControlElement(element).classList.toString()).toEqual('control no-indicator');
 		});
 	});
 });
