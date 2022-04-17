@@ -37,7 +37,7 @@
 		&-title {
 			@include typography.typography-cat-shorthand('subtitle-2');
 
-			-webkit-line-clamp: var(#{card-variables.$title-line-clamp});
+			-webkit-line-clamp: var(#{card-variables.$heading-line-clamp});
 		}
 		&-subtitle {
 			@include typography.typography-cat-shorthand('body-2');

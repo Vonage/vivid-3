@@ -14,20 +14,20 @@ Add a `heading` attribute to add card heading title
 
 
 ```html preview
-<div style="width: 300px; height: 400px;">
+<div style="width: 300px; height: 200px;">
 <vwc-card heading="Vivid Card Component"></vwc-card>
 </div>
 ```
 
 ## Icon
-Add a `icon='icon-name''` attribute to add icon on the right of the card heading
+Add a `icon='icon-name'` attribute to add icon on the right of the card heading
 
 - Type: `String`
 - Default: `''`
 
 
 ```html preview
-<div style="width: 300px; height: 400px;">
+<div style="width: 300px; height: 200px;">
 <vwc-card heading="Vivid Card Component" subtitle="extra text to the card heading" icon="chat-line"></vwc-card>
 </div>
 ```
@@ -40,7 +40,7 @@ Add a `subtitle` attribute to add card subtitle
 
 
 ```html preview
-<div style="width: 300px; height: 400px;">
+<div style="width: 300px; height: 200px;">
 <vwc-card heading="Vivid Card Component" subtitle="extra text to the card heading"></vwc-card>
 </div>
 ```
@@ -53,18 +53,46 @@ Add a `text` attribute to add text to the card
 
 
 ```html preview
-<div style="width: 300px; height: 400px;">
+<div style="width: 300px; height: 200px;">
 <vwc-card heading="Vivid Card Component" subtitle="extra text to the card heading" icon="chat-line" text="the card can contain multiple lines of text"></vwc-card>
 </div>
 ```
 
+## dp
+the `dp` control the elevation depth
+
+- Type: `String: 0|2|4|8|12|16|24`
+- Default: `4`
+
+```html preview
+<div style="width: 300px; height: 200px;">
+<vwc-card dp="12" heading="Vivid Card Component" subtitle="extra text to the card heading" icon="chat-line" text="the card can contain multiple lines of text"></vwc-card>
+</div>
+```
+
+
+## Trim Heading & subtitle
+The card heading and the subtitle can be trimmed to your preferable number of lines.  
+The number of lines are controlled by css variable:
+- `--heading-line-clamp`
+- `--subtitle-line-clamp`
+
+- Type: `String`
+- Default: `''`
+
+
+```html preview
+<div style="width: 300px; height: 200px;">
+<vwc-card style="--heading-line-clamp: 1; --subtitle-line-clamp: 2;" heading="Vivid Card Component with long heading to trim" subtitle="extra text to the card heading that is set to be trimmed after 2 lines so the card will not be too long"></vwc-card>
+</div>
+```
 
 ## Slots
 ### Graphic 
 The graphic slot overide the icon property.
 
 ```html preview
-<div style="width: 300px; height: 400px;">
+<div style="width: 300px; height: 200px;">
 <vwc-card heading="Vivid Card Component" subtitle="extra text to the card heading">
 <vwc-icon slot="graphic" type="android-mono" style="font-size: 44px; color: var(--vvd-color-sucess)" ></vwc-icon>
 </vwc-card>
@@ -89,17 +117,18 @@ footer slot main purpose is for action button
 If the content structure is not fitting the desired content, the heading, subtitle and text can overide.
 
 ```html preview
-<div style="width: 300px; height: 500px;">
+<div style="width: 300px; height: 200px;">
 <vwc-card >
-<div style="height: 150px; width: 100%; background-color: rebeccapurple;" slot="media"></div>
-<div slot="contnen">If you need diferant structure - use this slot</div>
+<div slot="content">If you need diferant structure - use this slot</div>
 </vwc-card>
 </div>
 ```
 
-### ToDO:
-- trim title and subtitle
+
+
+
+
+### TODO:
 - maybe change heading to Title os subtitle to subheading
-- add variable to the docs + code snippet
 - in grid - ?
 - fix code - that footer with no slotted content - display: none

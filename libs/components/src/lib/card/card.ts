@@ -37,5 +37,12 @@ export class Card extends FoundationElement {
 	 * @public
 	 */
 	@attr icon?: string;
+
+	/**
+	 * card elevation dp
+	 *
+	 * @public
+	 */
+	@attr dp?: 0 | 2 | 4 | 8 | 12 | 16 | 24; // TODO: get values from design tokens
 }
 
