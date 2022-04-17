@@ -45,16 +45,12 @@ const renderHeaderButton = () => {
 		?aria-expanded=${x => x.open}
 		aria-controls="content">
 		<span class="icon">
-			<slot name="icon">
-				${when(x => x.icon && !x.iconTrailing, renderIcon())}
-			</slot>
+			${when(x => x.icon && !x.iconTrailing, renderIcon())}
 		</span>
 		<span class="heading-text">${x => x.heading}</span>
 		${when(x => x.meta, renderMeta())}
 		<span class="indicator">
-			<slot name="indicator">
-				${x => renderIndicatorOrIcon(x.icon, x.iconTrailing, x.noIndicator)}
-			</slot>
+			${x => renderIndicatorOrIcon(x.icon, x.iconTrailing, x.noIndicator)}
 		</span>
 	</button>
 `;
