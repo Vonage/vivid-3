@@ -6,7 +6,7 @@ interface PlaywrightTestConfigWithRegression extends PlaywrightTestConfig {
 
 const config: PlaywrightTestConfigWithRegression = {
 	testMatch: 'src/**/*.test.ts',
-	outputDir: 'test-results',
+	outputDir: '../../test-results',
 	projects: [
 		{
 			name: 'Chrome Stable',
