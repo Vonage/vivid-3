@@ -151,12 +151,12 @@ ol {
 	[role="columnheader"i] {
 		h2 {
 			@include typography.typography-cat-shorthand('subtitle-2');
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: baseline;
-			margin: 0;
-			> em {
 
+			display: grid;
+			align-items: baseline;
+			margin: 0;
+			grid-template-columns: 1fr auto 1fr;
+			> em {
 				font: inherit;
 				@supports (inset: 0) {
 					inset-inline-start: 0;
