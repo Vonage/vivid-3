@@ -27,7 +27,7 @@ Add the `heading` attribute to set the heading text.
 ```
 
 ## Heading-Level
-Use the `heading-level` attribute to change the accordion item's size.
+Use the `heading-level` attribute to change the accordion heading to fit the page hierarchy.```
 
 - Type: `2` | `3` | `4` | `5` | `6`
 - Default: `3`
