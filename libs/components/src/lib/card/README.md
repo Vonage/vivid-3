@@ -5,11 +5,13 @@ A “card” is a UI design pattern that groups related information in a flexibl
 <script type="module">import '@vonage/vivid/card';</script>
 ```
 
-## Card Heading
-- Type: `String`
-- Default: `'''`
+## Heading
 
 Add a `heading` attribute to add card heading title
+
+- Type: `String`
+- Default: `''`
+
 
 ```html preview
 <div style="width: 300px; height: 400px;">
@@ -17,23 +19,12 @@ Add a `heading` attribute to add card heading title
 </div>
 ```
 
-## Card Subtitle
-- Type: `String`
-- Default: `'''`
-
-Add a `subtitle` attribute to add card subtitle
-
-```html preview
-<div style="width: 300px; height: 400px;">
-<vwc-card heading="Vivid Card Component" subtitle="extra text to the card heading"></vwc-card>
-</div>
-```
-
-## Card Icon
-- Type: `String`
-- Default: `'''`
-
+## Icon
 Add a `icon='icon-name''` attribute to add icon on the right of the card heading
+
+- Type: `String`
+- Default: `''`
+
 
 ```html preview
 <div style="width: 300px; height: 400px;">
@@ -41,10 +32,35 @@ Add a `icon='icon-name''` attribute to add icon on the right of the card heading
 </div>
 ```
 
-## Graphic Slot
-- Type: `String`
-- Default: `'''`
+## Subtitle
+Add a `subtitle` attribute to add card subtitle
 
+- Type: `String`
+- Default: `''`
+
+
+```html preview
+<div style="width: 300px; height: 400px;">
+<vwc-card heading="Vivid Card Component" subtitle="extra text to the card heading"></vwc-card>
+</div>
+```
+
+## Text
+Add a `text` attribute to add text to the card
+
+- Type: `String`
+- Default: `''`
+
+
+```html preview
+<div style="width: 300px; height: 400px;">
+<vwc-card heading="Vivid Card Component" subtitle="extra text to the card heading" icon="chat-line" text="the card can contain multiple lines of text"></vwc-card>
+</div>
+```
+
+
+## Slots
+### Graphic 
 The graphic slot overide the icon property.
 
 ```html preview
@@ -55,19 +71,8 @@ The graphic slot overide the icon property.
 </div>
 ```
 
-## Card Text
-- Type: `String`
-- Default: `'''`
 
-Add a `text` attribute to add text to the card
-
-```html preview
-<div style="width: 300px; height: 400px;">
-<vwc-card heading="Vivid Card Component" subtitle="extra text to the card heading" icon="chat-line" text="the card can contain multiple lines of text"></vwc-card>
-</div>
-```
-
-## Footer Slot
+### Footer
 footer slot main purpose is for action button
 
 ```html preview
@@ -76,6 +81,18 @@ footer slot main purpose is for action button
 <div style="height: 150px; width: 100%; background-color: rebeccapurple;" slot="media"></div>
 <vwc-button slot="meta" icon="more-vertical-solid" appearance="ghost"></vwc-button>
 <vwc-button slot="footer" icon="arrow-bold-right-line" shape="pill" label="Action" appearance="outlined"></vwc-button>
+</vwc-card>
+</div>
+```
+
+### Content
+If the content structure is not fitting the desired content, the heading, subtitle and text can overide.
+
+```html preview
+<div style="width: 300px; height: 500px;">
+<vwc-card >
+<div style="height: 150px; width: 100%; background-color: rebeccapurple;" slot="media"></div>
+<div slot="contnen">If you need diferant structure - use this slot</div>
 </vwc-card>
 </div>
 ```
