@@ -51,7 +51,7 @@ Use the `heading-level` attribute to change the accordion heading to fit the pag
 ```
 ## Open
 Use the `open` attribute to indicate whether the accordion item is open.
-Alternatively, you can use the `show()` and `hide()` methods as well as `toggleOpen()`.
+Alternatively, you can use the `show()` and `hide()` methods.
 - Type: `boolean`
 - Default: `false`
 
@@ -177,4 +177,3 @@ Add the `icon-trailing` attribute to add an icon to the right of the heading tex
 | ------------ | ---------- | ------------------------------------------------ |
 | `hide`       | `(): void` | Closes the accordion item from the open state.  |
 | `show`       | `(): void` | Opens the accordion item from the closed state. |
-| `toggleOpen` | `(): void` | Toggles the accordion item.                     |

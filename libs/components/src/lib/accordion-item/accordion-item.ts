@@ -88,13 +88,4 @@ export class accordionItem extends FoundationElement {
 	hide(): void {
 		this.open = false;
 	}
-
-	/**
-	 * Toggles the accordion-item.
-	 *
-	 * @public
-	 */
-	toggleOpen(): void {
-		this.open = !this.open;
-	}
 }
