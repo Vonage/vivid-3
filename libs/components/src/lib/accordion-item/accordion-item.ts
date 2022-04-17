@@ -1,12 +1,14 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
+import { applyMixins } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
+import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
 /**
  * Base class for accordion-item
  *
  * @public
  */
-export class accordionItem extends FoundationElement {
+export class AccordionItem extends FoundationElement {
 	/**
 	 * 
 	 *
@@ -30,23 +32,6 @@ export class accordionItem extends FoundationElement {
 	 * HTML Attribute: no-indicator
 	 */
 	@attr({ mode: 'boolean', attribute: 'no-indicator' }) noIndicator = false;
-
-	/**
-	 *
-	 * @public
-	 * 
-	 * HTML Attribute: icon
-	 */
-	@attr({ mode: 'fromView' }) icon = '';
-
-	/**
-	 * Indicates the icon affix alignment.
-	 *
-	 * @public
-	 * 
-	 * HTML Attribute: icon-trailing
-	 */
-	@attr({ mode: 'boolean', attribute: 'icon-trailing' }) iconTrailing = false;
 
 	/**
 	 *
@@ -89,3 +74,6 @@ export class accordionItem extends FoundationElement {
 		this.open = false;
 	}
 }
+
+export interface AccordionItem extends AffixIconWithTrailing {}
+applyMixins(AccordionItem, AffixIconWithTrailing);

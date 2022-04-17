@@ -1,21 +1,21 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
-import { accordionItem } from './accordion-item';
+import { AccordionItem } from './accordion-item';
 import '.';
 
 const COMPONENT_TAG = 'vwc-accordion-item';
 
 describe('vwc-accordion-item', () => {
-	let element: accordionItem;
+	let element: AccordionItem;
 
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as accordionItem;
+		)) as AccordionItem;
 	});
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-accordion-item', async () => {
-			expect(element).toBeInstanceOf(accordionItem);
+			expect(element).toBeInstanceOf(AccordionItem);
 			expect(element.open).toBeFalsy();
 			expect(element.dense).toBeFalsy();
 			expect(element.icon).toEqual('');

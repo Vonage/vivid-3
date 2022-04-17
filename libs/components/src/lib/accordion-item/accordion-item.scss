@@ -6,7 +6,7 @@
 	@include typography.typography-cat-shorthand('body-2');
     
 	padding: 8px 32px 24px 16px;
-	.icon:not(.iconTrailing) &{
+	.icon:not(.icon-trailing) &{
 		padding-left: 48px;
 	}
 }
@@ -51,7 +51,6 @@
 	&:hover {
 		background: var(#{theme-consts.$vvd-color-neutral-10});
 	}
-	.icon,
 	.indicator {
 		display: flex;
 	}
@@ -76,10 +75,7 @@
 	}
 
 	.icon { 
-		vwc-icon,
-		slot[name="icon"i]::slotted(vwc-icon) {
-			margin-inline-end: 16px;
-		}
+		margin-inline-end: 16px;
 	}
 
 	.indicator {
@@ -99,6 +95,8 @@
 	}
 }
 
-vwc-icon .dense{
-	--vvd-accordion-item-icon-size: 16px;
+/* Icon */
+
+.icon-trailing .icon {
+	order: 1;
 }
