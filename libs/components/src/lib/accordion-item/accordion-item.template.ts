@@ -24,7 +24,7 @@ export const accordionItemTemplate: (
 ) => ViewTemplate<accordionItem> = () => html<accordionItem>`
 	<div class="${getClasses}">
 		${x => renderPanelHeader(x.headingLevel)}
-		<div class="accordion-item-body">
+		<div class="accordion-item-body" id="content" role="region" aria-labelledby="header">
 			<slot></slot>
 		</div>
 	</div>
