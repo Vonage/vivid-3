@@ -2,16 +2,6 @@
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 
-@use '../../../../shared/src/lib/sass/mixins/shape/config' with (
-	$variable-name: #{variables.$calendar-shape}
-);
-@use '../../../../shared/src/lib/sass/mixins/shape' as shape;
-
-@include shape.shape(
-	$shapes: (
-		rounded: 6px
-	)
-);
 
 ol {
 	padding: 0;
@@ -61,7 +51,7 @@ ol {
 	display: grid;
 	overflow: hidden;
 	background-color: var(#{theme-consts.$vvd-color-surface-2dp});
-	border-radius: var(#{variables.$calendar-shape});
+	border-radius: 6px;
 	counter-reset: listing;
 	filter: var(#{theme-consts.$vvd-shadow-surface-2dp});
 	gap: variables.$gap;
