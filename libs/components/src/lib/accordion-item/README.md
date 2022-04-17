@@ -102,7 +102,7 @@ Add the `meta` attribute to add metadata to the heading.
   }
 </style>
 <div class="wrapper">
- <vwc-accordion-item heading="accordion item with Metadata" meta="meta-data">
+ <vwc-accordion-item heading="accordion item with metadata" meta="meta-data">
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
@@ -142,7 +142,7 @@ Add the `icon` attribute to add an icon to the heading.
   }
 </style>
 <div class="wrapper">
- <vwc-accordion-item heading="accordion item with Icon" icon="chat-solid">
+ <vwc-accordion-item heading="accordion item with icon" icon="chat-solid">
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
@@ -163,7 +163,7 @@ Add the `icon-trailing` attribute to add an icon to the right of the heading tex
   }
 </style>
 <div class="wrapper">
- <vwc-accordion-item heading="accordion item with Icon-Trailing" icon="chat-solid" icon-trailing>
+ <vwc-accordion-item heading="accordion item with icon-trailing" icon="chat-solid" icon-trailing>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
