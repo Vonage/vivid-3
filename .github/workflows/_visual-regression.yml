@@ -5,8 +5,9 @@ on: workflow_call
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: drizzt99/vonage:1.0.0
+    container: drizzt99/vonage:1.1.0
     steps:
+      - run: echo "Running 1.1.0"
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
