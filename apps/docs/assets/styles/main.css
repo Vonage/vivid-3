@@ -8,6 +8,10 @@ strong {
 }
 /* #endregion reset */
 
+html {
+  scroll-padding-top: 64px;
+}
+
 body {
   margin: 0;
   background-color: var(--vvd-color-canvas);
@@ -148,4 +152,21 @@ article > pre,
 article > .cbd-base {
   box-sizing: border-box;
   max-inline-size: 1200px;
+}
+
+.heading-wrapper {
+  position: relative;
+  padding-inline-start: 20px;
+  margin-inline-start: -20px;
+}
+
+.heading-wrapper > .anchor {
+  color: var(--vvd-color-neutral-70);
+  position: absolute;
+  inset: 50% auto auto 0;
+  transform: translateY(-50%);
+}
+
+.heading-wrapper:not(:hover) > .anchor {
+  display: none;
 }
