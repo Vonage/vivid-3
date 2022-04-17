@@ -39,7 +39,8 @@ jobs:
       report_coverage: true
 
   call-visual-regression:
-    uses: vonage/vivid-3/.github/workflows/_visual-regression.yml@upgrade-playwright-to-1.21.0
+    needs: [call-lint, check-changelogs]
+    uses: vonage/vivid-3/.github/workflows/_visual-regression.yml@main
 
   call-deploy-deno-preview:
     uses: vonage/vivid-3/.github/workflows/_deploy-deno.yml@main
