@@ -41,7 +41,7 @@ const renderPanelHeader = (headingLevel: number | string | undefined) => {
 
 const renderHeaderButton = () => {
 	return html<accordionItem>`
-	<button class="accordion-item-button" @click=${x => x.open ? x.hide() : x.show()}
+	<button class="accordion-item-button" id="header" @click=${x => x.open ? x.hide() : x.show()}
 		?aria-expanded=${x => x.open}
 		aria-controls="content">
 		<span class="icon">
