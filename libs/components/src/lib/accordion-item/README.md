@@ -89,49 +89,6 @@ Add the `no-indicator` attribute to remove the indicator icon from the heading.
   </vwc-accordion-item>
 </div>
 ```
-
-## Icon
-Add the `icon` attribute to add an icon to the heading. 
-
-- Type: `string`
-- Default: `''`
-
-```html preview
-<style>
-  .wrapper{
-    width: 500px;
-  }
-</style>
-<div class="wrapper">
- <vwc-accordion-item heading="accordion item with Icon" icon="chat-solid">
-    <vwc-text font-face="body-1">
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    </vwc-text>
-  </vwc-accordion-item>
-</div>
-```
-
-## Icon-Trailing
-Add the `icon-trailing` attribute to add an icon to the right of the heading text.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<style>
-  .wrapper{
-    width: 500px;
-  }
-</style>
-<div class="wrapper">
- <vwc-accordion-item heading="accordion item with Icon-Trailing" icon="chat-solid" icon-trailing>
-    <vwc-text font-face="body-1">
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    </vwc-text>
-  </vwc-accordion-item>
-</div>
-```
-
 ## Meta
 Add the `meta` attribute to add metadata to the heading. 
 
@@ -166,6 +123,47 @@ You can turn the accordion-item into dense mode by adding the `dense` attribute.
 </style>
 <div class="wrapper">
  <vwc-accordion-item heading="accordion item with dense" dense>
+    <vwc-text font-face="body-1">
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    </vwc-text>
+  </vwc-accordion-item>
+</div>
+```
+## Icon
+Add the `icon` attribute to add an icon to the heading. 
+
+- Type: `string`
+- Default: `''`
+
+```html preview
+<style>
+  .wrapper{
+    width: 500px;
+  }
+</style>
+<div class="wrapper">
+ <vwc-accordion-item heading="accordion item with Icon" icon="chat-solid">
+    <vwc-text font-face="body-1">
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    </vwc-text>
+  </vwc-accordion-item>
+</div>
+```
+
+## Icon-Trailing
+Add the `icon-trailing` attribute to add an icon to the right of the heading text.  Mind that `icon-trailing` will overide the Indicator.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<style>
+  .wrapper{
+    width: 500px;
+  }
+</style>
+<div class="wrapper">
+ <vwc-accordion-item heading="accordion item with Icon-Trailing" icon="chat-solid" icon-trailing>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
