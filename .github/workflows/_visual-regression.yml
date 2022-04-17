@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     container: drizzt99/vonage:1.1.0
     steps:
+        - run: echo "Running 1.1.0"
         - uses: actions/checkout@v2
         - uses: actions/setup-node@v2
           with:
