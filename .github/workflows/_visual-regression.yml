@@ -7,15 +7,15 @@ jobs:
     runs-on: ubuntu-latest
     container: drizzt99/vonage:1.1.0
     steps:
-        - run: echo "Running 1.1.0"
-        - uses: actions/checkout@v2
-        - uses: actions/setup-node@v2
-          with:
-            node-version: '16'
-            cache: 'npm'
-        - run: npm ci
-        - run: npm run nx build components
-        - run: npm run nx e2e components -- --task=local
+      - run: echo "Running 1.1.0"
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run nx build components
+      - run: npm run nx e2e components -- --task=local
       - uses: actions/upload-artifact@v3
         if: always()
         with:
