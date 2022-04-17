@@ -105,4 +105,13 @@ describe('vwc-accordion-item', () => {
 			expect(getControlElement(element).classList.toString()).toEqual('control no-indicator');
 		});
 	});
+
+	describe('heading level', () => {
+		it('should update heading level', async () => {
+			expect(element.shadowRoot?.querySelector('.accordion-item-header')?.tagName).toEqual('H3');
+			element.headingLevel = 4;
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.accordion-item-header')?.tagName).toEqual('H4');
+		});
+	});
 });
