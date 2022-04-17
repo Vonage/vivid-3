@@ -6,9 +6,9 @@ import { accordionItem } from './accordion-item';
 import { accordionItemTemplate as template } from './accordion-item.template';
 import '../icon';
 
-export const vividaccordionItem =
+export const vividAccordionItem =
 	accordionItem.compose<FoundationElementDefinition>({
 		baseName: 'accordion-item', template: template as any, styles,
 	});
 
-designSystem.register(vividaccordionItem());
+designSystem.register(vividAccordionItem());
