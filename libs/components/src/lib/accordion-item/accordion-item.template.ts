@@ -30,8 +30,8 @@ export const accordionItemTemplate: (
 	</div>
 `;
 
-const renderPanelHeader = (headingLevel: number | string) => {
-	const header: string = 'h' + headingLevel;
+const renderPanelHeader = (headingLevel: number | string | undefined) => {
+	const header: string = headingLevel ? 'h' + headingLevel : 'h3';
 	return html<accordionItem>`
 	<${header} class="accordion-item-header">
 		${renderHeaderButton()}
