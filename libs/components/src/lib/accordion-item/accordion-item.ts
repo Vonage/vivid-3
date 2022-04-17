@@ -21,7 +21,7 @@ export class accordionItem extends FoundationElement {
 	 * @public
 	 * HTML Attribute: heading-level
 	 */
-	@attr({ mode: 'fromView', attribute: 'heading-level' }) headingLevel: 2 | 3 | 4 | 5 | 6 = 3;
+	@attr({ attribute: 'heading-level' }) headingLevel: 2 | 3 | 4 | 5 | 6;
 
 	/**
 	 * Indicates whether the accordion-item has indicator
