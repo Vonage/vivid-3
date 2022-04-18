@@ -27,7 +27,7 @@
 | dropdown             | deprecated | obsolete   |
 | elevation            | GA         | GA         |
 | empty state          | GA         | \-         |
-| expension panel      | GA         | WIP        |
+| accordion item      | GA         | WIP        |
 | fab                  | GA         | WIP        |
 | file picker          | GA         | \-         |
 | formfield            | GA         | \-         |
@@ -39,7 +39,7 @@
 | layout               | alpha      | GA         |
 | linear progress      | GA         | WIP        |
 | list                 | GA         | WIP        |
-| list expansion panel | GA         | obsolete   |
+| list accordion item | GA         | obsolete   |
 | list item            | GA         | \-         |
 | menu                 | GA         | \-         |
 | notched outline      | GA         | \-         |

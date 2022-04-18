@@ -1,0 +1,100 @@
+@use 'partials/variables' as variables;
+@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+
+.accordion-item-body {
+	@include typography.typography-cat-shorthand('body-2');
+    
+	padding: 8px 32px 24px 16px;
+	.icon:not(.icon-trailing) &{
+		padding-left: 48px;
+	}
+}
+
+.control {
+	display: flex;
+	flex-direction: column;
+
+	&:not(.open) {
+		.toggle-close,
+		.accordion-item-body {
+			display: none;
+		}
+	}
+	&.open{
+		.toggle-open {
+			display: none;
+		}
+		.toggle-close {
+			display: initial;
+		}
+	}
+}
+
+.accordion-item-header {
+	padding: 0;
+	margin: 0;
+}
+
+.accordion-item-button {
+	@include typography.typography-cat-shorthand('subtitle-2');
+
+	position: relative;
+	display: flex;
+	width: 100%;
+	align-items: center;
+	padding: 16px;
+	border: 0 none;
+	background: transparent;
+	cursor: pointer;
+
+	&:hover {
+		background: var(#{theme-consts.$vvd-color-neutral-10});
+	}
+
+	.heading-text {
+		flex-grow: 1;
+		margin-inline-end: auto;
+		text-align: left;
+	}
+
+	.meta {
+		@include typography.typography-cat-shorthand('body-2-bold');
+
+		overflow: hidden;
+		max-width: 20%;
+		flex-shrink: 0;
+		color: var(#{theme-consts.$vvd-color-neutral-70});
+		margin-inline-start: 1rem;
+		text-align: end;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.indicator {
+		display: flex;
+		vwc-icon,
+		slot[name="indicator"i]::slotted(vwc-icon) {
+			margin-inline-start: 16px;
+		}
+	}
+
+	.icon { 
+		margin-inline-end: 16px;
+	}
+}
+
+.dense {
+	.accordion-item-button {
+		@include typography.typography-cat-shorthand('body-2-bold');
+	}
+	.meta {
+		@include typography.typography-cat-shorthand('caption-bold');
+	}
+}
+
+/* Icon */
+
+.icon-trailing .icon {
+	order: 1;
+}

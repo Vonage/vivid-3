@@ -21,6 +21,6 @@ export const elevationTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Elevation> = () => html`
-        <div class="${getClasses}">
+        <div class="${getClasses}" part="base">
 			<slot></slot>
 		</div>`;

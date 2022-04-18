@@ -14,6 +14,14 @@
     ]
   },
   {
+  "title": "banner",
+  "markdown": "./libs/components/src/lib/banner/README.md",
+  "modules": [
+    "/assets/modules/components/button/index.js",
+    "/assets/modules/components/banner/index.js"
+    ]
+  },  
+  {
     "title": "breadcrumb",
     "markdown": "./libs/components/src/lib/breadcrumb/README.md",
     "modules": [
@@ -90,6 +98,31 @@
     "markdown": "./libs/components/src/lib/text/README.md",
     "modules": [
       "/assets/modules/components/text/index.js"
+    ]
+  },
+  {
+    "title": "tooltip",
+    "markdown": "./libs/components/src/lib/tooltip/README.md",
+    "modules": [
+      "/assets/modules/components/tooltip/index.js",
+      "/assets/modules/components/text/index.js",
+      "/assets/modules/components/button/index.js"
+    ]
+  },
+  {
+    "title": "progress",
+    "markdown": "./libs/components/src/lib/progress/README.md",
+    "modules": [
+      "/assets/modules/components/progress/index.js"
+    ]
+  },
+  {
+    "title": "accordion-item",
+    "markdown": "./libs/components/src/lib/accordion-item/README.md",
+    "modules": [
+      "/assets/modules/components/accordion-item/index.js",
+      "/assets/modules/components/text/index.js",
+      "/assets/modules/components/elevation/index.js"
     ]
   }
 ]
