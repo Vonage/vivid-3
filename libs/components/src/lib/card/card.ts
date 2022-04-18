@@ -46,6 +46,21 @@ export class Card extends FoundationElement {
 	 */
 	@attr elevation?: 0 | 2 | 4 | 8 | 12 | 16 | 24; // TODO: get values from design tokens
 
+
+	/**
+	 *
+	 * adds footer to the card
+	 *
+	 * @internal
+	 */
+	hasFooter: HTMLElement[] | undefined;
+	shouldShowFooterSlot: boolean = false;
+
+	footerSlotChanged(): void {
+		const slot = this.shadowRoot?.querySelector('slot[name="footer"]') as HTMLSlotElement;
+		this.shouldShowFooterSlot = Boolean(slot.assignedNodes().length);
+		console.log(this.shouldShowFooterSlot);
+	}
 }
 
 

@@ -1,4 +1,4 @@
-import { html, when } from '@microsoft/fast-element';
+import { html, ref, slotted, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
@@ -8,7 +8,6 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import type { Card } from './card';
 
 const getClasses = (_: Card) => classNames('control');
-
 
 /**
 header icon
@@ -62,26 +61,6 @@ function renderHeader() {
 }
 
 /**
- *
- */
-
-/**
-if no content in slot - don't render the footer
- */
-
-
-
-private shouldShowFooterSlot: boolean = false;
-const footerSlotChanged(): void {
-	context
-	const slot = this.shadowRoot?.querySelector('slot[name="footer"]') as HTMLSlotElement;
-	this.shouldShowFooterSlot = Boolean(slot.assignedNodes().length);
-}
-
-
-
-
-/**
  * The template for the {@link @microsoft/fast-foundation#Card} component.
  *
  * @param context
@@ -102,18 +81,9 @@ export const CardTemplate: (
 							${when(x => x.text, text())}
 						</slot>
 					</div>
-					${renderFooter()}
+					<div class="footer" ${ref('shouldShowFooterSlot')}>
+						<slot name="footer" ${slotted('hasFooter')} @slotchange="${x=>x.footerSlotChanged}"></slot>
+					</div>
 				</div>
 			</vwc-elevation>
 `;
-
-
-const renderFooter = () => {
-	return html`
-		<div class="footer">
-			<slot name="footer" @slotchange=footerSlotChanged()></slot>
-		</div>
-	`;
-};
-
-
