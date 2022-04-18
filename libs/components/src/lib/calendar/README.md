@@ -12,7 +12,7 @@ Represents a calendar custom element.
 
 ## Datetime
 
-Use the `datetime` attribute to set date date within a week of choice.
+Use the `datetime` attribute to set date within a week of choice.
 
 - Type: any [`Date()` constructor acceptable parameter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date#parameters)
 - Default: `undefined` (will use the current date)
