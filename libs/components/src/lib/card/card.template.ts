@@ -65,6 +65,20 @@ function renderHeader() {
  *
  */
 
+/**
+if no content in slot - don't render the footer
+ */
+
+
+
+private shouldShowFooterSlot: boolean = false;
+const footerSlotChanged(): void {
+	context
+	const slot = this.shadowRoot?.querySelector('slot[name="footer"]') as HTMLSlotElement;
+	this.shouldShowFooterSlot = Boolean(slot.assignedNodes().length);
+}
+
+
 
 
 /**
@@ -88,8 +102,18 @@ export const CardTemplate: (
 							${when(x => x.text, text())}
 						</slot>
 					</div>
-					<div class="footer">
-						<slot name="footer"></slot>
-					</div>
+					${renderFooter()}
 				</div>
-			</vwc-elevation>`;
+			</vwc-elevation>
+`;
+
+
+const renderFooter = () => {
+	return html`
+		<div class="footer">
+			<slot name="footer" @slotchange=footerSlotChanged()></slot>
+		</div>
+	`;
+};
+
+

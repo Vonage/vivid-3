@@ -7,6 +7,7 @@ import { attr } from '@microsoft/fast-element';
  * @public
  */
 export class Card extends FoundationElement {
+
 	/**
 	 * the text of the card heading
 	 * accepts string
@@ -44,5 +45,8 @@ export class Card extends FoundationElement {
 	 * @public
 	 */
 	@attr elevation?: 0 | 2 | 4 | 8 | 12 | 16 | 24; // TODO: get values from design tokens
+
 }
+
+
 
