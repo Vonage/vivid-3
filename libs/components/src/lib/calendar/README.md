@@ -12,7 +12,7 @@ Represents a calendar custom element.
 
 ## Datetime
 
-Use the `datetime` attribute to set date date within a week of choice.
+Use the `datetime` attribute to set date within a week of choice.
 
 - Type: any [`Date()` constructor acceptable parameter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date#parameters)
 - Default: `undefined` (will use the current date)
@@ -23,9 +23,8 @@ Use the `datetime` attribute to set date date within a week of choice.
 
 ## Start Day
 
-Use the `start-day` attribute (or `startDay` property) to set the day to show as the first within a work week.
+Use the `start-day` attribute (or `startDay` property) to set the first day of the week (e.g. work week starts on Monday).
 
-(only applicable for views of more than a single day. which is the only supported view at this time)
 
 - Type: `'sunday'` | `'monday'`
 - Default: `undefined` (programmatically defaults to `'monday'` if not specified)
@@ -66,7 +65,4 @@ Unless provided, choice will be set according to local time preference (e.g. US 
 
 Accepts event reference and returns an object containing _day_ & _hour_  if applicable.
 
-## Accessibility
-
-TODO - describe focus management and keyboard navigation.
 
