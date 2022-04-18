@@ -65,7 +65,4 @@ Unless provided, choice will be set according to local time preference (e.g. US 
 
 Accepts event reference and returns an object containing _day_ & _hour_  if applicable.
 
-## Accessibility
-
-TODO - describe focus management and keyboard navigation.
 
