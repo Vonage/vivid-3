@@ -151,7 +151,7 @@ Add the `icon` attribute to add an icon to the heading.
 ```
 
 ## Icon-Trailing
-Add the `icon-trailing` attribute to add an icon to the right of the heading text.  Mind that `icon-trailing` will overide the Indicator.
+Add the `icon-trailing` attribute to add an icon to the right of the heading text.  Mind that `icon-trailing` will override the Indicator.
 
 - Type: `boolean`
 - Default: `false`
