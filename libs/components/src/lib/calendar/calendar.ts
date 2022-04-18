@@ -125,7 +125,6 @@ export class Calendar extends FoundationElement {
 		else if (activeElement?.matches('em[role="button"i]')) {
 			focusNext = getHeaderDescendantGridCell.call(this, key, activeElement as HTMLElement);
 		} else {
-			// default selectable element (first header)
 			focusNext = (this.shadowRoot as ShadowRoot).querySelector('[role="columnheader"i]');
 		}
 
