@@ -77,7 +77,7 @@ export const CardTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Card> = () => html`
-	<vwc-elevation dp=${(x => x.dp ??  '4')}>
+	<vwc-elevation dp=${(x => x.elevation ??  '4')}>
 				<div class="${getClasses}">
 					<div class="vwc-card-media">
 						<slot name="media"></slot>

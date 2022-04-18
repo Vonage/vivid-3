@@ -58,15 +58,15 @@ Add a `text` attribute to add text to the card
 </div>
 ```
 
-## dp
-the `dp` control the elevation depth
+## Elevation
+the `elevation` control the elevation depth
 
 - Type: `String: 0|2|4|8|12|16|24`
 - Default: `4`
 
 ```html preview
 <div style="width: 300px; height: 200px;">
-<vwc-card dp="12" heading="Vivid Card Component" subtitle="extra text to the card heading" icon="chat-line" text="the card can contain multiple lines of text"></vwc-card>
+<vwc-card elevation="12" heading="Vivid Card Component" subtitle="extra text to the card heading" icon="chat-line" text="the card can contain multiple lines of text"></vwc-card>
 </div>
 ```
 
