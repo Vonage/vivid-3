@@ -23,7 +23,7 @@ Use the `datetime` attribute to set date date within a week of choice.
 
 ## Start Day
 
-Use the `start-day` attribute (or `startDay` property) to set the day to show as the first within a work week.
+Use the `start-day` attribute (or `startDay` property) to set the first day of the week (e.g. work week starts on Monday).
 
 (only applicable for views of more than a single day. which is the only supported view at this time)
 
