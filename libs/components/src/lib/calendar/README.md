@@ -3,7 +3,9 @@
 Represents a calendar custom element.
 
 ```js
-<script type="module">import '@vonage/vivid/calendar';</script>
+<script type="module">
+    import '@vonage/vivid/calendar';
+</script>
 ```
 
 ```html preview
