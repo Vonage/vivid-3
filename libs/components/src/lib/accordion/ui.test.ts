@@ -6,7 +6,7 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils';
 
-const components = ['accordion'];
+const components = ['accordion','accordion-item'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(

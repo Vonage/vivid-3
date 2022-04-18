@@ -3,7 +3,8 @@
     "title": "accordion",
     "markdown": "./libs/components/src/lib/accordion/README.md",
     "modules": [
-      "/assets/modules/components/accordion/index.js"
+      "/assets/modules/components/accordion/index.js",
+      "/assets/modules/components/accordion-item/index.js"
     ]
   },
   {

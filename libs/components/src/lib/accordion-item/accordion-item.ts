@@ -63,6 +63,7 @@ export class AccordionItem extends FoundationElement {
 	 */
 	show(): void {
 		this.open = true;
+		this.notifyOpen();
 	}
 
 	/**
@@ -72,6 +73,19 @@ export class AccordionItem extends FoundationElement {
 	 */
 	hide(): void {
 		this.open = false;
+		this.notifyClose();
+	}
+
+	notifyOpen(): void {
+		const init: CustomEventInit = { bubbles: true, composed: true };
+		const ev = new CustomEvent('opened', init);
+		this.dispatchEvent(ev);
+	}
+
+	notifyClose(): void {
+		const init: CustomEventInit = { bubbles: true, composed: true };
+		const ev = new CustomEvent('closed', init);
+		this.dispatchEvent(ev);
 	}
 }
 

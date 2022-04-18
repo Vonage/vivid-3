@@ -1,5 +1,6 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
+import type { AccordionItem } from '../accordion-item/accordion-item';
 
 /**
  * Base class for accordion
@@ -7,7 +8,7 @@ import { attr } from '@microsoft/fast-element';
  * @public
  */
 export class Accordion extends FoundationElement {
-	private expansionPanels: HTMLCollectionOf<VWCExpansionPanelBase> | undefined = undefined;
+	private accordionItems: HTMLCollectionOf<AccordionItem> | undefined = undefined;
 
 	/**
 	 *
@@ -25,33 +26,21 @@ export class Accordion extends FoundationElement {
 
 	override connectedCallback(): void {
 		super.connectedCallback();
-		this.expansionPanels = this.children as HTMLCollectionOf<VWCExpansionPanelBase>;
+		this.accordionItems = this.children as HTMLCollectionOf<AccordionItem>;
 	}
 
-	handleOpened(e: Event): any {
-		if (!this.multi && this.expansionPanels) {
-			for (const expansionPanel of this.expansionPanels) {
-				if (expansionPanel !== e.target) expansionPanel.close();
+	private handleOpened(e: Event): any {
+		if (!this.multi && this.accordionItems) {
+			for (let i = 0; i < this.accordionItems.length; i++) {
+				if (this.accordionItems[i] !== e.target) this.accordionItems[i].hide();
 			}
 		}
 	}
 
-	getOpened(): Array<VWCExpansionPanelBase> {
-		const opened = [];
-
-		if (this.expansionPanels) {
-			for (const expansionPanel of this.expansionPanels) {
-				if (expansionPanel.open === true) opened.push(expansionPanel);
-			}
-		}
-
-		return opened;
-	}
-
-	closeAll(): void {
-		if (this.expansionPanels) {
-			for (const expansionPanel of this.expansionPanels) {
-				expansionPanel.close();
+	hideAll(): void {
+		if (this.accordionItems) {
+			for (let i = 0; i < this.accordionItems.length; i++) {
+				this.accordionItems[i].hide();
 			}
 		}
 	}

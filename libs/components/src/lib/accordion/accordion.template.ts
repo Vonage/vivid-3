@@ -10,7 +10,6 @@ import type { Accordion } from './accordion';
 const getClasses = (_: Accordion) => classNames('control');
 
 /**
- * The template for the {@link @microsoft/fast-foundation#Accordion} component.
  *
  * @param context
  * @public
@@ -19,4 +18,6 @@ export const AccordionTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Accordion> = (
-) => html` <div class="${getClasses}"><slot></slot></div>`;
+) => html`<div class="${getClasses}">
+	<slot></slot>
+</div>`;
