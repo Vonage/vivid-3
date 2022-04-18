@@ -34,7 +34,7 @@ describe('vwc-calendar', () => {
 			const calendarFirstDate = getCalendarFirstDate(element);
 
 			const today = getValidDateString(new Date());
-			const monday = getMonday(today);
+			const monday = getMondayOfWeek(today);
 
 			expect(calendarFirstDate).toEqual(monday);
 		});
@@ -46,7 +46,7 @@ describe('vwc-calendar', () => {
 			await elementUpdated(element);
 
 			const calendarFirstDate = getCalendarFirstDate(element);
-			const monday = getMonday(date);
+			const monday = getMondayOfWeek(date);
 
 			expect(calendarFirstDate).toEqual(monday);
 		});
@@ -60,7 +60,7 @@ describe('vwc-calendar', () => {
 			const calendarFirstDate = getCalendarFirstDate(element);
 
 			const today = getValidDateString(new Date());
-			const sunday = getSunday(today);
+			const sunday = getSundayOfWeek(today);
 
 			expect(calendarFirstDate).toEqual(sunday);
 		});
@@ -73,7 +73,7 @@ describe('vwc-calendar', () => {
 			await elementUpdated(element);
 
 			const calendarFirstDate = getCalendarFirstDate(element);
-			const sunday = getSunday(date);
+			const sunday = getSundayOfWeek(date);
 
 			expect(calendarFirstDate).toEqual(sunday);
 		});
@@ -362,7 +362,7 @@ function getCalendarFirstDate(element: Calendar) {
 /**
  * @param d
  */
-function getMonday(d: Date | string) {
+function getMondayOfWeek(d: Date | string) {
 	d = new Date(d);
 	const day = d.getDay(),
 		diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
@@ -372,7 +372,7 @@ function getMonday(d: Date | string) {
 /**
  * @param d
  */
-function getSunday(d: Date | string) {
+function getSundayOfWeek(d: Date | string) {
 	d = new Date(d);
 	const day = d.getDay(),
 		diff = d.getDate() - day;
