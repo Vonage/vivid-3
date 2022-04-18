@@ -128,10 +128,10 @@ describe('vwc-calendar', () => {
 			const rowHeader  = element.shadowRoot?.querySelector('[role="rowheader"]:nth-child(3)') as HTMLElement;
 			rowHeader.getBoundingClientRect = jest.fn().mockReturnValue({ height: 49, y: 85 });
 
-			const time = rowHeader.querySelector('time') as HTMLElement;
+			const rowHeaderTimeElement = rowHeader.querySelector('time') as HTMLElement;
 
 			const e = new MouseEvent('click', { composed: true, clientX: 25, clientY: 174 });
-			e.composedPath = jest.fn().mockReturnValue([time]);
+			e.composedPath = jest.fn().mockReturnValue([rowHeaderTimeElement]);
 
 			context = element.getEventContext(e);
 
