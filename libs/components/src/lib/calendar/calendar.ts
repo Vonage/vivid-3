@@ -62,7 +62,7 @@ export class Calendar extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	#hours = 24;
+	_hours = 24;
 	/**
 	 * @internal
 	 */
@@ -71,7 +71,7 @@ export class Calendar extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	hoursAsDatetime = (Array.from({ length: this.#hours - 1 }) as Date[])
+	hoursAsDatetime = (Array.from({ length: this._hours - 1 }) as Date[])
 		.fill(new Date(new Date().setHours(0, 0, 0)))
 		.map((d, i) => new Date(d.setHours(++i)));
 

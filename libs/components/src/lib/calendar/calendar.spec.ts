@@ -285,20 +285,21 @@ describe('vwc-calendar', () => {
 			expect(moveToElement('ArrowDown')).toEqual(grid.querySelector('[role="gridcell"i]:nth-child(4)'));
 		});
 
-		it('should not change from columnheader tabindex', async () => {
+		it('should only apply arrow down on focused "em" (tabindexed) element', async () => {
 
-			const emEl = shadowRoot?.querySelector('[role="columnheader"i]:nth-child(4) em') as HTMLElement;
+			const em = shadowRoot?.querySelector('[role="columnheader"i]:nth-child(4) em') as HTMLElement;
 
-			emEl.focus();
+			em.focus();
 
 			const moveToElement = (key: string) => {
 				grid.dispatchEvent(new KeyboardEvent('keydown', { key }));
 				return shadowRoot?.activeElement;
 			};
 
-			expect(moveToElement('ArrowUp')).toEqual(emEl);
-			expect(moveToElement('ArrowRight')).toEqual(emEl);
-			expect(moveToElement('ArrowLeft')).toEqual(emEl);
+			expect(moveToElement('ArrowUp')).toEqual(em);
+			expect(moveToElement('ArrowRight')).toEqual(em);
+			expect(moveToElement('ArrowLeft')).toEqual(em);
+			expect(moveToElement('ArrowDown')).toEqual(grid.querySelector('[role="gridcell"i]:nth-child(4)'));
 		});
 
 		it('should move focus from column header button to gridcell of same block on \'arrowDown\'', async () => {

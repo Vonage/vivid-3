@@ -60,7 +60,7 @@ export const getEventContext = function(this: Calendar, e: KeyboardEvent | Mouse
 	let hour;
 
 	if (e instanceof MouseEvent) {
-		hour = getHour(e, el, this.#hours);
+		hour = getHour(e, el, this._hours);
 	}
 
 	const context = {
