@@ -33,20 +33,20 @@ Use the `heading-level` attribute to change the accordion heading to fit the pag
 - Default: `3`
 
 ```js
-<h2 class="accordion-item-header">
-	<button class="accordion-item-button"></button>
+<h2 class="header">
+	<button class="button"></button>
 </h2>
-<h3 class="accordion-item-header">
-	<button class="accordion-item-button"></button>
+<h3 class="header">
+	<button class="button"></button>
 </h3>
-<h4 class="accordion-item-header">
-	<button class="accordion-item-button"></button>
+<h4 class="header">
+	<button class="button"></button>
 </h4>
-<h5 class="accordion-item-header">
-	<button class="accordion-item-button"></button>
+<h5 class="header">
+	<button class="button"></button>
 </h5>
-<h6 class="accordion-item-header">
-	<button class="accordion-item-button"></button>
+<h6 class="header">
+	<button class="button"></button>
 </h6>
 ```
 ## Open

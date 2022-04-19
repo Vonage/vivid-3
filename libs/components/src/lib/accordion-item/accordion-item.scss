@@ -2,7 +2,7 @@
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
-.accordion-item-body {
+.body {
 	@include typography.typography-cat-shorthand('body-2');
     
 	padding: 8px 32px 24px 16px;
@@ -17,7 +17,7 @@
 
 	&:not(.open) {
 		.toggle-close,
-		.accordion-item-body {
+		.body {
 			display: none;
 		}
 	}
@@ -31,12 +31,12 @@
 	}
 }
 
-.accordion-item-header {
+.header {
 	padding: 0;
 	margin: 0;
 }
 
-.accordion-item-button {
+.button {
 	@include typography.typography-cat-shorthand('subtitle-2');
 
 	position: relative;
@@ -85,7 +85,7 @@
 }
 
 .dense {
-	.accordion-item-button {
+	.button {
 		@include typography.typography-cat-shorthand('body-2-bold');
 	}
 	.meta {

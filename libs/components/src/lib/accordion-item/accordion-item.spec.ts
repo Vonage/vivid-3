@@ -61,7 +61,7 @@ describe('vwc-accordion-item', () => {
 	describe('toggle', () => {
 		it('should toggle "open" state', async () => {
 			const control = getControlElement(element);
-			const button: any = element.shadowRoot?.querySelector('.accordion-item-button');
+			const button: any = element.shadowRoot?.querySelector('.button');
 			const hasClassOpenBeforeToggle = control.classList.contains('open');
 
 			button.click();
@@ -108,10 +108,10 @@ describe('vwc-accordion-item', () => {
 
 	describe('heading level', () => {
 		it('should update heading level', async () => {
-			expect(element.shadowRoot?.querySelector('.accordion-item-header')?.tagName).toEqual('H3');
+			expect(element.shadowRoot?.querySelector('.header')?.tagName).toEqual('H3');
 			element.headingLevel = 4;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.accordion-item-header')?.tagName).toEqual('H4');
+			expect(element.shadowRoot?.querySelector('.header')?.tagName).toEqual('H4');
 		});
 	});
 });

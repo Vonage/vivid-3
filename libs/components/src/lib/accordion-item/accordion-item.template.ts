@@ -25,7 +25,7 @@ export const AccordionItemTemplate: (
 ) => ViewTemplate<AccordionItem> = (context) => html<AccordionItem>`
 	<div class="${getClasses}">
 		${x => renderPanelHeader(context, x.headingLevel)}
-		<div class="accordion-item-body" id="content" role="region" aria-labelledby="header">
+		<div class="body" id="content" role="region" aria-labelledby="header">
 			<slot></slot>
 		</div>
 	</div>
@@ -34,7 +34,7 @@ export const AccordionItemTemplate: (
 const renderPanelHeader = (context: ElementDefinitionContext, headingLevel: number | string | undefined) => {
 	const header: string = headingLevel ? 'h' + headingLevel : 'h3';
 	return html<AccordionItem>`
-	<${header} class="accordion-item-header">
+	<${header} class="header">
 		${renderHeaderButton(context)}
 	</${header}>
 	`;
@@ -44,7 +44,7 @@ const renderHeaderButton = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html<AccordionItem>`
-	<button class="accordion-item-button" id="header" @click=${x => x.open ? x.hide() : x.show()}
+	<button class="button" id="header" @click=${x => x.open ? x.hide() : x.show()}
 		?aria-expanded=${x => x.open}
 		aria-controls="content">
 		${x => affixIconTemplate(x.icon)}
