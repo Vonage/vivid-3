@@ -186,16 +186,6 @@ describe('vwc-calendar', () => {
 			expect(context?.hour).toEqual(undefined);
 		});
 
-		it('should throw if `event` not instance of `Keyboard` / `Pointer`', async () => {
-			element.addEventListener('keydown', e => context = element.getEventContext(e) as CalendarEventContext);
-
-			gridCell.dispatchEvent(new KeyboardEvent('keydown', { composed: true, keyCode: 32 }));
-
-			expect(context?.day).toEqual(2);
-			expect(context?.hour).toEqual(undefined);
-		});
-	});
-
 	describe('focus management', () => {
 		let grid: HTMLElement;
 		let shadowRoot: ShadowRoot;
