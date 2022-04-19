@@ -174,7 +174,7 @@ describe('vwc-calendar', () => {
 			gridCell.dispatchEvent(new KeyboardEvent('keydown', { composed: true, keyCode: 13 }));
 
 			expect(context?.day).toEqual(2);
-			expect(context?.hour).toEqual(undefined);
+			expect(context?.hour).toBeUndefined();
 		});
 
 		it('should return day and hour from keydown \'enter\' event', async () => {
