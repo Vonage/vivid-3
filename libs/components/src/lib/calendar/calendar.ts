@@ -76,17 +76,19 @@ export class Calendar extends FoundationElement {
 		.map((d, i) => new Date(d.setHours(++i)));
 
 	/**
-	 * @param dateArr
+	 * @param dateArr array of dates. requires at least 1 date to be set within the array
+	 * @returns array of incremental dates from the first date in the array
 	 * @internal
 	 */
-	getDaysAsDatetime = (dateArr: Date[]): Date[] => {
+	_generateWeekDates = (dateArr: [Date, ...Date[]]): Date[] => {
 		if (dateArr.length == this._days) {
 			return dateArr;
 		}
+
 		const lastDate = new Date(dateArr[dateArr.length - 1]);
 		lastDate.setDate(lastDate.getDate() + 1);
-		const concatenatedDateArr = [...dateArr, lastDate];
-		return this.getDaysAsDatetime(concatenatedDateArr);
+
+		return this._generateWeekDates([...dateArr, lastDate]);
 	};
 
 	/**

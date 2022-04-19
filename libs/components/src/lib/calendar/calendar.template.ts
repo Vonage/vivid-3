@@ -39,7 +39,7 @@ const HoursTemplate = () => {
 const DaysTemplate = () => {
 	return html`
 			<div class="column-headers" role="row">
-				${repeat(x => x.getDaysAsDatetime([getFirstDateOfTheWeek(x.datetime, x.startDay)]), html<string>`
+				${repeat(x => x._generateWeekDates([getFirstDateOfTheWeek(x.datetime, x.startDay)]), html<string>`
 						<div role="columnheader" tabindex="-1">
               <time datetime=${(x: Date) => getValidDateString(x)}>
                 <h2>
