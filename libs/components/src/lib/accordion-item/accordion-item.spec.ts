@@ -17,7 +17,6 @@ describe('vwc-accordion-item', () => {
 		it('should be initialized as a vwc-accordion-item', async () => {
 			expect(element).toBeInstanceOf(AccordionItem);
 			expect(element.open).toBeFalsy();
-			expect(element.dense).toBeFalsy();
 			expect(element.icon).toBeUndefined();
 			expect(element.iconTrailing).toBeFalsy();
 			expect(element.meta).toEqual('');
@@ -32,7 +31,7 @@ describe('vwc-accordion-item', () => {
 			const control = getControlElement(element);
 			const hasClassOpenBeforeShow = control.classList.contains('open');
 
-			element.show();
+			element.open = true;
 			await elementUpdated(element);
 			const hasClassOpenAfterShow = control.classList.contains('open');
 
@@ -49,7 +48,7 @@ describe('vwc-accordion-item', () => {
 			const control = getControlElement(element);
 			const hasClassOpenBeforeHide = control.classList.contains('open');
 
-			element.hide();
+			element.open = false;
 			await elementUpdated(element);
 			const hasClassOpenAfterHide = control.classList.contains('open');
 
