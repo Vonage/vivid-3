@@ -262,16 +262,6 @@ describe('vwc-calendar', () => {
 			);
 		});
 
-		it('should change from columnheader tabindex', async () => {
-
-			const emEl = shadowRoot?.querySelector('[role="columnheader"i]:nth-child(4) em') as HTMLElement;
-
-			emEl.focus();
-
-			hitKey('ArrowDown');
-			expect(shadowRoot.activeElement).toEqual(grid.querySelector('[role="gridcell"i]:nth-child(4)'));
-		});
-
 		it('should only apply arrow down on focused "em" (tabindexed) element', async () => {
 
 			const em = shadowRoot?.querySelector('[role="columnheader"i]:nth-child(4) em') as HTMLElement;
