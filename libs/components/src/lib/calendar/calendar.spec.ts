@@ -31,12 +31,12 @@ describe('vwc-calendar', () => {
 
 	describe('datetime', () => {
 		it('should show recent monday as first day of this week', async () => {
-			const calendarFirstDate = getCalendarFirstDate(element);
+			const firstColumnDate = getFirstColumnDate(element);
 
 			const today = getValidDateString(new Date());
 			const monday = getMondayOfWeek(today);
 
-			expect(calendarFirstDate).toEqual(monday);
+			expect(firstColumnDate).toEqual(monday);
 		});
 
 		it('should show recent monday as first day of \'2022-01-01\' week', async () => {
@@ -45,10 +45,10 @@ describe('vwc-calendar', () => {
 			element.datetime = date;
 			await elementUpdated(element);
 
-			const calendarFirstDate = getCalendarFirstDate(element);
+			const firstColumnDate = getFirstColumnDate(element);
 			const monday = getMondayOfWeek(date);
 
-			expect(calendarFirstDate).toEqual(monday);
+			expect(firstColumnDate).toEqual(monday);
 		});
 	});
 
@@ -57,12 +57,12 @@ describe('vwc-calendar', () => {
 			element.startDay = 'sunday';
 			await elementUpdated(element);
 
-			const calendarFirstDate = getCalendarFirstDate(element);
+			const firstColumnDate = getFirstColumnDate(element);
 
 			const today = getValidDateString(new Date());
 			const sunday = getSundayOfWeek(today);
 
-			expect(calendarFirstDate).toEqual(sunday);
+			expect(firstColumnDate).toEqual(sunday);
 		});
 
 		it('should show recent sunday as first day of \'2022-01-01\' week', async () => {
@@ -72,10 +72,10 @@ describe('vwc-calendar', () => {
 			element.datetime = date;
 			await elementUpdated(element);
 
-			const calendarFirstDate = getCalendarFirstDate(element);
+			const firstColumnDate = getFirstColumnDate(element);
 			const sunday = getSundayOfWeek(date);
 
-			expect(calendarFirstDate).toEqual(sunday);
+			expect(firstColumnDate).toEqual(sunday);
 		});
 	});
 
@@ -87,9 +87,9 @@ describe('vwc-calendar', () => {
 
 			await elementUpdated(element);
 
-			const calendarFirstDate = element.shadowRoot?.querySelector('.column-headers > :first-child small') as HTMLElement;
+			const firstColumnDate = element.shadowRoot?.querySelector('.column-headers > :first-child small') as HTMLElement;
 
-			expect(calendarFirstDate.textContent?.trim()).toEqual('יום ב׳');
+			expect(firstColumnDate.textContent?.trim()).toEqual('יום ב׳');
 		});
 	});
 
@@ -353,7 +353,7 @@ describe('vwc-calendar', () => {
 /**
  * @param element
  */
-function getCalendarFirstDate(element: Calendar) {
+function getFirstColumnDate(element: Calendar) {
 	const firstColumnTimeEl = element.shadowRoot?.querySelector('.column-headers > :first-child time') as HTMLTimeElement;
 	const firstDatetime = firstColumnTimeEl?.getAttribute('datetime') as string;
 	return new Date(firstDatetime);
