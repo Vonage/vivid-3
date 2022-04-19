@@ -43,7 +43,7 @@ describe('vwc-accordion-item', () => {
 	});
 
 	describe('hide', () => {
-		it('should set "open" to false and remove "open" class', async () => {
+		it('should unset "open"', async () => {
 			element.open = true;
 			await elementUpdated(element);
 			const control = getControlElement(element);
