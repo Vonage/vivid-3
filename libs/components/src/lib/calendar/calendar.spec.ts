@@ -139,7 +139,7 @@ describe('vwc-calendar', () => {
 			expect(context?.hour).toEqual(43.59);
 		});
 
-		it('should return null from mouse click event', async () => {
+		it('should return null if mouse click outside grid managed area', async () => {
 			const grid  = element.shadowRoot?.querySelector('[role="grid"]') as HTMLElement;
 
 			const e = new MouseEvent('click', { composed: true, clientX: 0, clientY: 0 });
