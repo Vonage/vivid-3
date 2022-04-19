@@ -10,7 +10,7 @@ import {
 	isCellOrHeader,
 	PredefindKeys,
 } from './helpers/calendar.keyboard-interactions';
-import { getEventContextFactorial } from './helpers/calendar.event-context';
+import { getEventContext } from './helpers/calendar.event-context';
 
 
 /**
@@ -96,7 +96,7 @@ export class Calendar extends FoundationElement {
 	 * @param {Object} [detail={}]  - optional event detail object
 	 * @returns {boolean}           - return true
 	 */
-	getEventContext = getEventContextFactorial(this.shadowRoot as ShadowRoot, this._hours);
+	getEventContext = getEventContext.bind(this);
 
 	// !TODO: this is a temporary fix until calendar event is included in this repo
 	// private get focusedCalendarEvent(): VWCCalendarEvent | null {

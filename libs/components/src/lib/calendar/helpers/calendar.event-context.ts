@@ -42,33 +42,31 @@ function getHour(e: MouseEvent, el: HTMLElement, hours: number): number | void {
  * @param this
  * @param shadowRoot
  * @param hours
+ * @param e
  */
-export const getEventContextFactorial = (shadowRoot: ShadowRoot, hours: number) => {
+export const getEventContext = function (this: Calendar, e: KeyboardEvent | MouseEvent): CalendarEventContext | null {
 
-	return function (this: Calendar,e: KeyboardEvent | MouseEvent): CalendarEventContext | null {
+	if (!(e instanceof KeyboardEvent || e instanceof MouseEvent)) {
+		throw new Error('Invalid event. Event must be instance of KeyboardEvent or MouseEvent');
+	}
 
-		if (!(e instanceof KeyboardEvent || e instanceof MouseEvent)) {
-			throw new Error('Invalid event. Event must be instance of KeyboardEvent or MouseEvent');
-		}
+	const [el] = e.composedPath();
 
-		const [el] = e.composedPath();
+	if (!(el && el instanceof HTMLElement && this.shadowRoot?.contains(el))) {
+		throw new Error('Invalid event. Event must contain a target object which is a direct descendant of calendar');
+	}
 
-		if (!(el && el instanceof HTMLElement && shadowRoot.contains(el))) {
-			throw new Error('Invalid event. Event must contain a target object which is a direct descendant of calendar');
-		}
+	const day = getDay(el);
+	let hour;
 
-		const day = getDay(el);
-		let hour;
+	if (e instanceof MouseEvent) {
+		hour = getHour(e, el, this._hours);
+	}
 
-		if (e instanceof MouseEvent) {
-			hour = getHour(e, el, hours);
-		}
-
-		const context = {
-			...(day != undefined && { day }),
-			...(hour != undefined && { hour }),
-		};
-
-		return not(isEmpty(context)) ? context : null;
+	const context = {
+		...(day != undefined && { day }),
+		...(hour != undefined && { hour }),
 	};
+
+	return not(isEmpty(context)) ? context : null;
 };
