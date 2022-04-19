@@ -185,6 +185,7 @@ describe('vwc-calendar', () => {
 			expect(context?.day).toEqual(2);
 			expect(context?.hour).toEqual(undefined);
 		});
+	});
 
 	describe('focus management', () => {
 		let grid: HTMLElement;
@@ -237,7 +238,7 @@ describe('vwc-calendar', () => {
 			expect(shadowRoot.activeElement).toEqual(
 				grid.querySelector('[role="gridcell"i]:nth-child(3)')
 			);
-      
+
 			hitKey('ArrowDown');
 			expect(shadowRoot.activeElement).toEqual(
 				grid.querySelector('[role="columnheader"i]:nth-child(3)')
@@ -254,7 +255,7 @@ describe('vwc-calendar', () => {
 			expect(shadowRoot.activeElement).toEqual(
 				grid.querySelector('[role="columnheader"i]:nth-child(1)')
 			);
-      
+
 			hitKey('ArrowLeft');
 			expect(shadowRoot.activeElement).toEqual(
 				grid.querySelector('[role="columnheader"i]:nth-child(7)')
@@ -279,13 +280,13 @@ describe('vwc-calendar', () => {
 
 			hitKey('ArrowUp');
 			expect(shadowRoot.activeElement).toEqual(em);
-      
+
 			hitKey('ArrowRight');
 			expect(shadowRoot.activeElement).toEqual(em);
-      
+
 			hitKey('ArrowLeft');
 			expect(shadowRoot.activeElement).toEqual(em);
-      
+
 			hitKey('ArrowDown');
 			expect(shadowRoot.activeElement).toEqual(grid.querySelector('[role="gridcell"i]:nth-child(4)'));
 		});

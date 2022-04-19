@@ -52,7 +52,7 @@ export const getEventContext = function(this: Calendar, e: KeyboardEvent | Mouse
 
 	const [el] = e.composedPath();
 
-	if (!(el && el instanceof HTMLElement && this.shadowRoot?.contains(el))) {
+	if (!(el && el instanceof HTMLElement && (this.shadowRoot as ShadowRoot).contains(el))) {
 		throw new Error('Invalid event. Event must contain a target object which is a direct descendant of calendar');
 	}
 
