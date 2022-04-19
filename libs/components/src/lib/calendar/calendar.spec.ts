@@ -207,7 +207,7 @@ describe('vwc-calendar', () => {
 			expect(shadowRoot.activeElement).toEqual(defaultFocusElement);
 		});
 
-		it('should not change focus if not arrow key', async () => {
+		it('should keep focus if not arrow key event', async () => {
 
 			const gridCell = shadowRoot?.querySelector('[role="columnheader"i]:nth-child(3)') as HTMLElement;
 
