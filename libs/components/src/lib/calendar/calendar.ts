@@ -80,7 +80,7 @@ export class Calendar extends FoundationElement {
 	 * @returns array of incremental dates from the first date in the array
 	 * @internal
 	 */
-	_generateWeekDates = (dateArr: [Date, ...Date[]]): Date[] => {
+	_generateDaysArr = (dateArr: [Date, ...Date[]]): Date[] => {
 		if (dateArr.length == this._days) {
 			return dateArr;
 		}
@@ -88,7 +88,7 @@ export class Calendar extends FoundationElement {
 		const lastDate = new Date(dateArr[dateArr.length - 1]);
 		lastDate.setDate(lastDate.getDate() + 1);
 
-		return this._generateWeekDates([...dateArr, lastDate]);
+		return this._generateDaysArr([...dateArr, lastDate]);
 	};
 
 	/**
