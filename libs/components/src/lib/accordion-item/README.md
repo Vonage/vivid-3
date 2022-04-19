@@ -74,22 +74,7 @@ Add the `meta` attribute to add metadata to the heading.
     </vwc-text>
   </vwc-accordion-item>
 ```
-<!-- ## Dense
-You can turn the accordion-item into dense mode by adding the `dense` attribute.
 
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-
-
- <vwc-accordion-item heading="accordion item with dense" dense>
-    <vwc-text font-face="body-1">
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    </vwc-text>
-  </vwc-accordion-item>
-
-``` -->
 ## Icon
 Add the `icon` attribute to add an icon to the heading. 
 

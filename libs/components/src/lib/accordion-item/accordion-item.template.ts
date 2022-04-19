@@ -9,14 +9,13 @@ import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { AccordionItem } from './accordion-item';
 
 const getClasses = ({
-	open, iconTrailing, icon, noIndicator//, dense
+	open, iconTrailing, icon, noIndicator
 }: AccordionItem) => classNames(
 	'control',
 	['open', open],
 	['icon', Boolean(icon)],
 	['icon-trailing', iconTrailing],
 	['no-indicator', noIndicator],
-	// ['dense', dense],
 );
 
 export const AccordionItemTemplate: (
