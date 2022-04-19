@@ -32,7 +32,9 @@ export class Accordion extends FoundationElement {
 	private handleOpened(e: Event): any {
 		if (!this.multi && this.accordionItems) {
 			for (let i = 0; i < this.accordionItems.length; i++) {
-				if (this.accordionItems[i] !== e.target) this.accordionItems[i].hide();
+				if (this.accordionItems[i] !== e.target) {
+					this.accordionItems[i].hide();
+				}
 			}
 		}
 	}
