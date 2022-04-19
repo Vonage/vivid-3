@@ -36,7 +36,7 @@ describe('vwc-accordion-item', () => {
 			await elementUpdated(element);
 			const hasClassOpenAfterShow = control.classList.contains('open');
 
-			expect(element.open).toEqual(true);
+			expect(element.open).toBeTruthy();
 			expect(hasClassOpenBeforeShow).toBeFalsy();
 			expect(hasClassOpenAfterShow).toBeTruthy();
 		});
@@ -53,8 +53,8 @@ describe('vwc-accordion-item', () => {
 			await elementUpdated(element);
 			const hasClassOpenAfterHide = control.classList.contains('open');
 
-			expect(hasClassOpenBeforeHide).toEqual(true);
-			expect(hasClassOpenAfterHide).toEqual(false);
+			expect(hasClassOpenBeforeHide).toBeTruthy();
+			expect(hasClassOpenAfterHide).toBeFalsy();
 		});
 	});
 
@@ -68,16 +68,16 @@ describe('vwc-accordion-item', () => {
 			await elementUpdated(element);
 			const hasClassOpenAfterToggle = control.classList.contains('open');
 
-			expect(element.open).toEqual(true);
-			expect(hasClassOpenBeforeToggle).toEqual(false);
-			expect(hasClassOpenAfterToggle).toEqual(true);
+			expect(element.open).toBeTruthy();
+			expect(hasClassOpenBeforeToggle).toBeFalsy();
+			expect(hasClassOpenAfterToggle).toBeTruthy();
 
 			button.click();
 			await elementUpdated(element);
 			const hasClassOpenAfterSecondToggle = control.classList.contains('open');
 
-			expect(element.open).toEqual(false);
-			expect(hasClassOpenAfterSecondToggle).toEqual(false);
+			expect(element.open).toBeFalsy();
+			expect(hasClassOpenAfterSecondToggle).toBeFalsy();
 		});
 	});
 
