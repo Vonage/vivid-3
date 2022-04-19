@@ -50,7 +50,7 @@ Use the `heading-level` attribute to change the accordion heading to fit the pag
 </h6>
 ```
 ## Open
-Use the `open` attribute to indicate whether the accordion item is open.
+Use the `open` attribute to set the accordion-item's open state.
 Alternatively, you can use the [`show()`](#show) and [`hide()`](#hide) methods.
 - Type: `boolean`
 - Default: `false`
