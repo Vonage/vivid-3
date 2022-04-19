@@ -151,7 +151,7 @@ describe('vwc-calendar', () => {
 		});
 
 		it('should throw if unsupported event passed', async () => {
-			const e = new FocusEvent('click', { composed: true });
+			const e = new FocusEvent('focus');
 			e.composedPath = jest.fn().mockReturnValue([gridCell]);
 
 			const getEventContext = () => element.getEventContext(e as MouseEvent);
