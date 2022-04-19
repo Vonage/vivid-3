@@ -37,8 +37,8 @@ describe('vwc-accordion-item', () => {
 			const hasClassOpenAfterShow = control.classList.contains('open');
 
 			expect(element.open).toEqual(true);
-			expect(hasClassOpenBeforeShow).toEqual(false);
-			expect(hasClassOpenAfterShow).toEqual(true);
+			expect(hasClassOpenBeforeShow).toBeFalsy();
+			expect(hasClassOpenAfterShow).toBeTruthy();
 		});
 	});
 
