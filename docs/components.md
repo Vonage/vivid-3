@@ -39,7 +39,7 @@
 | layout               | alpha      | GA         |
 | linear progress      | GA         | WIP        |
 | list                 | GA         | WIP        |
-| list accordion item | GA         | obsolete   |
+| list accordion item  | GA         | obsolete   |
 | list item            | GA         | \-         |
 | menu                 | GA         | \-         |
 | notched outline      | GA         | \-         |
