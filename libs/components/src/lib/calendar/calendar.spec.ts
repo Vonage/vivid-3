@@ -139,7 +139,7 @@ describe('vwc-calendar', () => {
 			expect(context?.hour).toEqual(43.59);
 		});
 
-		it('should return null from mouse click event', async () => {
+		it('should return null if mouse click outside grid managed area', async () => {
 			const grid  = element.shadowRoot?.querySelector('[role="grid"]') as HTMLElement;
 
 			const e = new MouseEvent('click', { composed: true, clientX: 0, clientY: 0 });
@@ -159,7 +159,7 @@ describe('vwc-calendar', () => {
 			expect(getEventContext).toThrow('Invalid event. Event must be instance of KeyboardEvent or MouseEvent');
 		});
 
-		it('should throw if no target object', async () => {
+		it('should throw if event is missing a target', async () => {
 			const e = new MouseEvent('click', { composed: true, clientY: 54 });
 			gridCell.getBoundingClientRect = jest.fn().mockReturnValue({ height: 1175, y: 28 });
 
@@ -185,16 +185,6 @@ describe('vwc-calendar', () => {
 			expect(context?.day).toEqual(2);
 			expect(context?.hour).toEqual(undefined);
 		});
-
-		it('should throw if `event` not instance of `Keyboard` / `Pointer`', async () => {
-			element.addEventListener('keydown', e => context = element.getEventContext(e) as CalendarEventContext);
-
-			gridCell.dispatchEvent(new KeyboardEvent('keydown', { composed: true, keyCode: 32 }));
-
-			expect(context?.day).toEqual(2);
-			expect(context?.hour).toEqual(undefined);
-		});
-	});
 
 	describe('focus management', () => {
 		let grid: HTMLElement;
