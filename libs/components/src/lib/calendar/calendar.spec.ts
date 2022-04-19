@@ -168,7 +168,7 @@ describe('vwc-calendar', () => {
 			expect(getEventContext).toThrow('Invalid event. Event must contain a target object which is a direct descendant of calendar');
 		});
 
-		it('should return day and hour from keydown \'space\' event', async () => {
+		it('should return day from keydown \'space\' in grid cell', async () => {
 			element.addEventListener('keydown', e => context = element.getEventContext(e) as CalendarEventContext);
 
 			gridCell.dispatchEvent(new KeyboardEvent('keydown', { composed: true, keyCode: 13 }));
