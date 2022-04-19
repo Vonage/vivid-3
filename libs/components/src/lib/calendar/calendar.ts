@@ -100,17 +100,15 @@ export class Calendar extends FoundationElement {
 	 */
 	getEventContext = getEventContext.bind(this);
 
-	// !TODO: this is a temporary fix until calendar event is included in this repo
-	// private get focusedCalendarEvent(): VWCCalendarEvent | null {
-	// 	return (document.activeElement?.matches('vwc-calendar-event') && document.activeElement as VWCCalendarEvent) || null;
-	// }
+	private get focusedCalendarEvent(): VWCCalendarEvent | null {
+		return (document.activeElement?.matches('vwc-calendar-event') && document.activeElement as VWCCalendarEvent) || null;
+	}
 
-	// !TODO: this is a temporary fix until calendar event is included in this repo
-	// private getCalendarEventContainingCell(calendarEvent: VWCCalendarEvent) {
-	// 	const daySlot = calendarEvent.getAttribute('slot');
-	// 	const slot = this.shadowRoot?.querySelector(`slot[name="${daySlot}"i]`);
-	// 	return slot?.parentElement;
-	// }
+	private getCalendarEventContainingCell(calendarEvent: VWCCalendarEvent) {
+		const daySlot = calendarEvent.getAttribute('slot');
+		const slot = this.shadowRoot?.querySelector(`slot[name="${daySlot}"i]`);
+		return slot?.parentElement;
+	}
 
 	private arrowKeysInteractions(key: PredefindKeys) {
 		const activeElement = (this.shadowRoot as ShadowRoot).activeElement;
@@ -118,13 +116,9 @@ export class Calendar extends FoundationElement {
 
 		if (isCellOrHeader(activeElement)) {
 			focusNext = getNextFocusableGridElement.call(this, key, activeElement);
-		}
-		// !TODO: this is a temporary fix until calendar event is included in this repo
-
-		/*else if (this.focusedCalendarEvent) {
+		} else if (this.focusedCalendarEvent) {
 			focusNext = this.getCalendarEventContainingCell(this.focusedCalendarEvent);
-		}*/
-		else if (activeElement?.matches('em[role="button"i]')) {
+		}	else if (activeElement?.matches('em[role="button"i]')) {
 			focusNext = getHeaderDescendantGridCell.call(this, key, activeElement as HTMLElement);
 		} else {
 			focusNext = (this.shadowRoot as ShadowRoot).querySelector('[role="columnheader"i]');
