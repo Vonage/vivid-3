@@ -44,7 +44,7 @@ function getHour(e: MouseEvent, el: HTMLElement, hours: number): number | void {
  * @param hours
  * @param e
  */
-export const getEventContext = function (this: Calendar, e: KeyboardEvent | MouseEvent): CalendarEventContext | null {
+export const getEventContext = function(this: Calendar, e: KeyboardEvent | MouseEvent): CalendarEventContext | null {
 
 	if (!(e instanceof KeyboardEvent || e instanceof MouseEvent)) {
 		throw new Error('Invalid event. Event must be instance of KeyboardEvent or MouseEvent');
