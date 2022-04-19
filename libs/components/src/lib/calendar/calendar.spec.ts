@@ -113,7 +113,7 @@ describe('vwc-calendar', () => {
 			gridCell = element.shadowRoot?.querySelector('[role="gridcell"i]:nth-child(3)') as HTMLElement;
 		});
 
-		it('should return correct day and hour from mouse click event', async () => {
+		it('should return correct day and hour from mouse clicking inside one of the columns cells', async () => {
 			const e = new MouseEvent('click', { composed: true, clientY: 54 });
 			e.composedPath = jest.fn().mockReturnValue([gridCell]);
 			gridCell.getBoundingClientRect = jest.fn().mockReturnValue({ height: 1175, y: 28 });
