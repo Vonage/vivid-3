@@ -27,7 +27,7 @@
 | dropdown             | deprecated | obsolete   |
 | elevation            | GA         | GA         |
 | empty state          | GA         | \-         |
-| accordion item      | GA         | WIP        |
+| accordion item       | GA         | WIP        |
 | fab                  | GA         | WIP        |
 | file picker          | GA         | \-         |
 | formfield            | GA         | \-         |
