@@ -101,7 +101,7 @@ describe('vwc-accordion-item', () => {
 			expect(getControlElement(element).classList.toString()).toEqual('control');
 			element.noIndicator = true;
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.toString()).toEqual('control no-indicator');
+			expect(element.classList.contains('no-indicator')).toBeTruthy();
 		});
 	});
 
