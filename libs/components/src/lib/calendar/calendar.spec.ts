@@ -159,7 +159,7 @@ describe('vwc-calendar', () => {
 			expect(getEventContext).toThrow('Invalid event. Event must be instance of KeyboardEvent or MouseEvent');
 		});
 
-		it('should throw if no target object', async () => {
+		it('should throw if event is missing a target', async () => {
 			const e = new MouseEvent('click', { composed: true, clientY: 54 });
 			gridCell.getBoundingClientRect = jest.fn().mockReturnValue({ height: 1175, y: 28 });
 
