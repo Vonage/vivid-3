@@ -124,7 +124,7 @@ describe('vwc-calendar', () => {
 			expect(context?.hour).toEqual(0.53);
 		});
 
-		it('should return hour from mouse click event', async () => {
+		it('should return hour from mouse clicking on a row header', async () => {
 			const rowHeader  = element.shadowRoot?.querySelector('[role="rowheader"]:nth-child(3)') as HTMLElement;
 			rowHeader.getBoundingClientRect = jest.fn().mockReturnValue({ height: 49, y: 85 });
 
