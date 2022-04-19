@@ -49,30 +49,12 @@ export class AccordionItem extends FoundationElement {
 	 */
 	@attr({ mode: 'boolean' }) open = false;
 
-	/**
-	 *
-	 * @public
-	 * HTML Attribute: dense
-	 */
-	@attr({ mode: 'boolean' }) dense = false;
-
-	/**
-	 * Opens the accordion-item from the closed state.
-	 *
-	 * @public
-	 */
-	show(): void {
-		this.open = true;
-	}
-
-	/**
-	 * Closes the accordion-item from the open state.
-	 *
-	 * @public
-	 */
-	hide(): void {
-		this.open = false;
-	}
+	// /**
+	//  *
+	//  * @public
+	//  * HTML Attribute: dense
+	//  */
+	// @attr({ mode: 'boolean' }) dense = false;
 }
 
 export interface AccordionItem extends AffixIconWithTrailing {}

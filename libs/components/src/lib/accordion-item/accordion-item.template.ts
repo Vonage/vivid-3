@@ -9,14 +9,14 @@ import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { AccordionItem } from './accordion-item';
 
 const getClasses = ({
-	open, iconTrailing, icon, dense, noIndicator
+	open, iconTrailing, icon, noIndicator//, dense
 }: AccordionItem) => classNames(
 	'control',
 	['open', open],
 	['icon', Boolean(icon)],
 	['icon-trailing', iconTrailing],
-	['dense', dense],
 	['no-indicator', noIndicator],
+	// ['dense', dense],
 );
 
 export const AccordionItemTemplate: (
@@ -44,7 +44,7 @@ const renderHeaderButton = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html<AccordionItem>`
-	<button class="button" id="header" @click=${x => x.open ? x.hide() : x.show()}
+	<button class="button" id="header" @click=${x => x.open = !x.open}
 		?aria-expanded=${x => x.open}
 		aria-controls="content">
 		${x => affixIconTemplate(x.icon)}
