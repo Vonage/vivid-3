@@ -59,7 +59,7 @@ describe('vwc-accordion-item', () => {
 	});
 
 	describe('toggle', () => {
-		it('should toggle when open attribute changes', async () => {
+		it('should toggle "open" state', async () => {
 			const control = getControlElement(element);
 			const button: any = element.shadowRoot?.querySelector('.accordion-item-button');
 			const hasClassOpenBeforeToggle = control.classList.contains('open');
