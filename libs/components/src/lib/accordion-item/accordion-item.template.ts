@@ -8,6 +8,8 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { AccordionItem } from './accordion-item';
 
+const PANEL = 'panel';
+
 const getClasses = ({
 	open, iconTrailing, icon, noIndicator
 }: AccordionItem) => classNames(
@@ -24,7 +26,7 @@ export const AccordionItemTemplate: (
 ) => ViewTemplate<AccordionItem> = (context) => html<AccordionItem>`
 	<div class="${getClasses}">
 		${x => renderPanelHeader(context, x.headingLevel)}
-		<div class="body" id="content" role="region" aria-labelledby="header">
+		<div class="body" id="${PANEL}" role="region" aria-labelledby="header">
 			<slot></slot>
 		</div>
 	</div>
@@ -45,7 +47,7 @@ const renderHeaderButton = (context: ElementDefinitionContext) => {
 	return html<AccordionItem>`
 	<button class="button" id="header" @click=${x => x.open = !x.open}
 		?aria-expanded=${x => x.open}
-		aria-controls="content">
+		aria-controls="${PANEL}">
 		${x => affixIconTemplate(x.icon)}
 		<span class="heading-text">${x => x.heading}</span>
 		${when(x => x.meta, html`<span class="meta">${x => x.meta}</span>`)}
