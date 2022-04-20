@@ -20,21 +20,27 @@ Add the `heading` attribute to set the heading text.
 ```
 
 ## Heading-Level
-Use the `heading-level` attribute (or `headingLevel` property) to change the accordion heading to fit the page hierarchy. We should select the appropriate heading level for where the accordion will appear on the page, based on the webpage structure. It could be anything from an `<h2 />` to an `<h6 />`. You can read about it [here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements).
+
+Use the `heading-level` attribute (or `headingLevel` property) to set the accordion heading level so it fits correctly within the outline of the page. Read more on [heading elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements).
 
 - Type: `2` | `3` | `4` | `5` | `6`
 - Default: `3`
 
-In our example, we're using the `<h6 />` heading:
-```js
-<vwc-accordion-item heading="heading" heading-level="6"></vwc-accordion-item>
+The following sets the heading of the accordion-item to level 2
+```html
+<vwc-accordion-item heading="my heading" heading-level="2"></vwc-accordion-item>
 ```
-The following will be the output:
-```js
-<h6 class="header">
-	<button class="button"></button>
-</h6>
+
+which will output the shadow tree heading element to be rendered as a `<h2>` tag
+
+e.g.
+
+```html
+<h4 class="header">
+  <button>
+    <!-- ... -->
 ```
+
 ## Open
 Use the `open` attribute to set the accordion-item's open state.
 
