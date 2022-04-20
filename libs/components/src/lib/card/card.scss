@@ -5,15 +5,17 @@
 
 
 .control {
-	display: flex;
-	flex-flow: column;
+	block-size: 100%;
 	border-radius: 6px;
-	color: var(#{theme-consts.$vvd-color-on-canvas});
 }
 
 .wrapper {
+	display: flex;
 	overflow: hidden;
-	block-size: 100%;
+	flex-flow: column;
+	block-size: inherit;
+	border-radius: inherit;
+	color: var(#{theme-consts.$vvd-color-on-canvas});
 }
 
 .content {
