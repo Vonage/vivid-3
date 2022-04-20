@@ -6,11 +6,14 @@
 
 .control {
 	display: flex;
-	overflow: hidden;
 	flex-flow: column;
-	//block-size: 100%;
 	border-radius: 6px;
 	color: var(#{theme-consts.$vvd-color-on-canvas});
+}
+
+.wrapper {
+	overflow: hidden;
+	block-size: 100%;
 }
 
 .content {
@@ -30,9 +33,13 @@
 
 	&-title,
 	&-subtitle {
+		/* stylelint-disable property-no-vendor-prefix */
+		/* stylelint-disable value-no-vendor-prefix */
 		display: -webkit-box;
 		overflow: hidden;
 		-webkit-box-orient: vertical;
+		/* stylelint-enable property-no-vendor-prefix */
+		/* stylelint-enable value-no-vendor-prefix */
 	}
 
 	&-title {

@@ -75,17 +75,19 @@ export const CardTemplate: (
 ) => ViewTemplate<Card> = () => html<Card>`
 	<vwc-elevation dp=${(x => x.elevation ??  '4')}>
 				<div class="${getClasses}">
-					<div class="vwc-card-media">
-						<slot name="media"></slot>
-					</div>
-					<div class="content">
-						<slot name="content">
-							${when(x => (x.heading || x.subtitle || x.icon), renderHeader())}
-							${when(x => x.text, text())}
-						</slot>
-					</div>
-					<div class="footer">
-						<slot name="footer" ${slotted('hasFooter')}></slot>
+					<div class="wrapper">
+						<div class="vwc-card-media">
+							<slot name="media"></slot>
+						</div>
+						<div class="content">
+							<slot name="content">
+								${when(x => (x.heading || x.subtitle || x.icon), renderHeader())}
+								${when(x => x.text, text())}
+							</slot>
+						</div>
+						<div class="footer">
+							<slot name="footer" ${slotted('hasFooter')}></slot>
+						</div>
 					</div>
 				</div>
 			</vwc-elevation>
