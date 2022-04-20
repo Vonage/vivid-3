@@ -2,7 +2,9 @@
 
 A “card” is a UI design pattern that groups related information in a flexible-size container visually resembling a playing card.
 ```js
-<script type="module">import '@vonage/vivid/card';</script>
+<script type="module">
+    import '@vonage/vivid/card';
+</script>
 ```
 
 ## Heading
@@ -131,4 +133,3 @@ If the content structure is not fitting the desired content, the heading, subtit
 ### TODO:
 - maybe change heading to Title os subtitle to subheading
 - in grid - ?
-- fix code - that footer with no slotted content - display: none

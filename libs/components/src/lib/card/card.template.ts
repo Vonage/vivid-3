@@ -1,4 +1,4 @@
-import { html, ref, slotted, when } from '@microsoft/fast-element';
+import { html, slotted, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
@@ -7,7 +7,10 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { Card } from './card';
 
-const getClasses = (_: Card) => classNames('control');
+const getClasses = (_: Card) => classNames(
+	'control',
+	['hide-footer', !_.hasFooter || !_.hasFooter.length]
+);
 
 /**
 header icon
@@ -69,7 +72,7 @@ function renderHeader() {
 export const CardTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Card> = () => html`
+) => ViewTemplate<Card> = () => html<Card>`
 	<vwc-elevation dp=${(x => x.elevation ??  '4')}>
 				<div class="${getClasses}">
 					<div class="vwc-card-media">
@@ -81,8 +84,8 @@ export const CardTemplate: (
 							${when(x => x.text, text())}
 						</slot>
 					</div>
-					<div class="footer" ${ref('shouldShowFooterSlot')}>
-						<slot name="footer" ${slotted('hasFooter')} @slotchange="${x=>x.footerSlotChanged}"></slot>
+					<div class="footer">
+						<slot name="footer" ${slotted('hasFooter')}></slot>
 					</div>
 				</div>
 			</vwc-elevation>

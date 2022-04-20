@@ -1,5 +1,5 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
+import {attr, observable} from '@microsoft/fast-element';
 
 /**
  * Base class for card
@@ -53,14 +53,7 @@ export class Card extends FoundationElement {
 	 *
 	 * @internal
 	 */
-	hasFooter: HTMLElement[] | undefined;
-	shouldShowFooterSlot: boolean = false;
-
-	footerSlotChanged(): void {
-		const slot = this.shadowRoot?.querySelector('slot[name="footer"]') as HTMLSlotElement;
-		this.shouldShowFooterSlot = Boolean(slot.assignedNodes().length);
-		console.log(this.shouldShowFooterSlot);
-	}
+	@observable hasFooter: HTMLElement[] | undefined;
 }
 
 

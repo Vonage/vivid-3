@@ -11,65 +11,70 @@
 	//block-size: 100%;
 	border-radius: 6px;
 	color: var(#{theme-consts.$vvd-color-on-canvas});
+}
 
-	.content {
-		display: flex;
-		flex-flow: column;
-		padding: 1.5rem;
+.content {
+	display: flex;
+	flex-flow: column;
+	padding: 1.5rem;
+}
+
+.header {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.5rem;
+	inline-size: 100%;
+	&-content {
+		flex: 1;
 	}
 
-	.header {
-		display: flex;
-		align-items: flex-start;
-		gap: 0.5rem;
-		inline-size: 100%;
-		&-content {
-			flex: 1;
-		}
-
-		&-title,
-		&-subtitle {
-			display: -webkit-box;
-			overflow: hidden;
-			-webkit-box-orient: vertical;
-		}
-
-		&-title {
-			@include typography.typography-cat-shorthand('subtitle-2');
-
-			-webkit-line-clamp: var(#{card-variables.$heading-line-clamp});
-		}
-		&-subtitle {
-			@include typography.typography-cat-shorthand('body-2');
-
-			-webkit-line-clamp: var(#{card-variables.$subtitle-line-clamp});
-		}
+	&-title,
+	&-subtitle {
+		display: -webkit-box;
+		overflow: hidden;
+		-webkit-box-orient: vertical;
 	}
 
-	.header-subtitle,
-	.text {
+	&-title {
+		@include typography.typography-cat-shorthand('subtitle-2');
+
+		-webkit-line-clamp: var(#{card-variables.$heading-line-clamp});
+	}
+	&-subtitle {
 		@include typography.typography-cat-shorthand('body-2');
 
-		color: var(#{theme-consts.$vvd-color-neutral-70});
+		-webkit-line-clamp: var(#{card-variables.$subtitle-line-clamp});
 	}
+}
 
-	.text {
-		padding-right: 8px;
-		margin-top: 12px;
-	}
+.header-subtitle,
+.text {
+	@include typography.typography-cat-shorthand('body-2');
 
-	.footer {
-		display: inline-flex;
-		flex-direction: column;
-		align-items: flex-end;
-		padding-bottom: 1.5rem;
-		margin-top: auto;
-		padding-inline: 1.5rem;
+	color: var(#{theme-consts.$vvd-color-neutral-70});
+}
+
+.text {
+	padding-right: 8px;
+	margin-top: 12px;
+}
+
+.footer {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: flex-end;
+	padding-bottom: 1.5rem;
+	margin-top: auto;
+	padding-inline: 1.5rem;
+
+	.hide-footer & {
+		display: none;
 	}
 }
 
 
 
+// graphic slot & icon style
 ::slotted([slot="graphic"i]),
 .icon {
 	flex-shrink: 0;
