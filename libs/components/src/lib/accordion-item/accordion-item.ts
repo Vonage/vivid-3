@@ -56,13 +56,13 @@ export class AccordionItem extends FoundationElement {
 		}
 	}
 
-	notifyOpen(): void {
+	private notifyOpen(): void {
 		const init: CustomEventInit = { bubbles: true, composed: true };
 		const ev = new CustomEvent('opened', init);
 		this.dispatchEvent(ev);
 	}
 
-	notifyClose(): void {
+	private notifyClose(): void {
 		const init: CustomEventInit = { bubbles: true, composed: true };
 		const ev = new CustomEvent('closed', init);
 		this.dispatchEvent(ev);
