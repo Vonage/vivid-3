@@ -55,7 +55,7 @@ Add a `text` attribute to add text to the card
 ## Elevation
 the `elevation` control the elevation depth
 
-- Type: `String: 0|2|4|8|12|16|24`
+- Type: `0` | `2` | `4` | `8` | `12` | `16` | `24`
 - Default: `4`
 
 ```html preview
