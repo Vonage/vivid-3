@@ -245,7 +245,7 @@ describe('vwc-calendar', () => {
 			);
 		});
 
-		it('should circle back focus on keyboard arrow interactions', async () => {
+		it('should circle back focus from last column to first', async () => {
 
 			const gridCell = shadowRoot?.querySelector('[role="columnheader"i]:nth-child(7)') as HTMLElement;
 
