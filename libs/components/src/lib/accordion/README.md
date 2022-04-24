@@ -44,8 +44,12 @@ Add the `multi` attribute to the accordion to allow multiple items to be open at
     </vwc-accordion-item>
 </vwc-accordion>
 ```
-  ## Methods
 
-| Method       | Type       | Description                                      |
-| ------------ | ---------- | ------------------------------------------------ |
-| `hideAll`    | `(): void`  | Closes all the accordion items from the open state.  |
+## Methods
+
+### HideAll
+
+- Type: function
+- Returns: `void`
+
+ Closes all the accordion items from the open state.
