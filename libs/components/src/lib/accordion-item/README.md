@@ -26,9 +26,9 @@ Use the `heading-level` attribute (or `headingLevel` property) to set the accord
 - Type: `2` | `3` | `4` | `5` | `6`
 - Default: `3`
 
-The following sets the heading of the accordion-item to level 2
+The following sets the heading of accordion-item to level 2
 
-```js
+```
 <vwc-accordion-item heading="my heading" heading-level="2"></vwc-accordion-item>
 ```
 
@@ -36,12 +36,12 @@ which will output the shadow tree heading element to be rendered as a `<h2>` tag
 
 e.g.
 
-```js
-<h4 class="header">
+```
+<h2 class="header">
   <button>
     <!-- ... -->
   </button>
-</h4>
+</h2>
 ```
 
 ## Open
