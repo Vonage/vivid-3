@@ -33,7 +33,7 @@ export class Accordion extends FoundationElement {
 		if (!this.multi && this.accordionItems) {
 			for (let i = 0; i < this.accordionItems.length; i++) {
 				if (this.accordionItems[i] !== e.target) {
-					this.accordionItems[i].hide();
+					this.accordionItems[i].open = false;
 				}
 			}
 		}
@@ -42,7 +42,7 @@ export class Accordion extends FoundationElement {
 	hideAll(): void {
 		if (this.accordionItems) {
 			for (let i = 0; i < this.accordionItems.length; i++) {
-				this.accordionItems[i].hide();
+				this.accordionItems[i].open = false;
 			}
 		}
 	}
