@@ -39,7 +39,7 @@ export class Accordion extends FoundationElement {
 		}
 	}
 
-	hideAll(): void {
+	closeAll(): void {
 		if (this.accordionItems) {
 			for (let i = 0; i < this.accordionItems.length; i++) {
 				this.accordionItems[i].open = false;

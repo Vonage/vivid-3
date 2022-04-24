@@ -33,7 +33,7 @@ describe('vwc-accordion', () => {
 		});
 	});
 
-	describe('accordion visibility', () => {
+	describe('non multi', () => {
 		it('should only allow one accordion items open at a time', async () => {
 			expect(accordionItem1.open).toBeFalsy();
 			expect(accordionItem2.open).toBeFalsy();
@@ -46,6 +46,9 @@ describe('vwc-accordion', () => {
 			expect(accordionItem1.open).toBeFalsy();
 			expect(accordionItem2.open).toBeTruthy();
 		});
+	});
+
+	describe('multi', () => {
 		it('should allow all accordion items open when multi', async () => {
 			element.multi = true;
 			await elementUpdated(element);
@@ -63,6 +66,7 @@ describe('vwc-accordion', () => {
 		});
 	});
 
+
 	describe('close all', () => {
 		it('should close all accordion items', async () => {
 			element.multi = true;
@@ -76,7 +80,7 @@ describe('vwc-accordion', () => {
 			expect(accordionItem1.open).toBeTruthy();
 			expect(accordionItem2.open).toBeTruthy();
 
-			element.hideAll();
+			element.closeAll();
 			await elementUpdated(element);
 
 			expect(accordionItem1.open).toBeFalsy();
