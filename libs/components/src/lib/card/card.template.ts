@@ -9,7 +9,8 @@ import type { Card } from './card';
 
 const getClasses = (_: Card) => classNames(
 	'control',
-	['hide-footer', !_.hasFooter || !_.hasFooter.length]
+	['hide-footer', !_.hasFooter || !_.hasFooter.length],
+	['no-header', shouldHideHeader(_)]
 );
 
 /**
@@ -49,17 +50,26 @@ function text() {
 
 
 /**
+ * @param card
+ */
+function shouldHideHeader(card:Card) {
+	// eslint-disable-next-line max-len
+	return 	!card.heading  && !card.subtitle && !card.icon && (!card.hasGraphic || !card.hasGraphic.length) && (!card.hasMeta || !card.hasMeta.length);
+}
+
+/**
 header
  */
 function renderHeader() {
-	return html`
+	return html<Card>`
 		<header class="header">
-			<slot name="graphic">${when(x => x.icon, renderHeaderIcon())}</slot>
+			<slot name="graphic" ${slotted('hasGraphic')}>${when(x => x.icon, renderHeaderIcon())}</slot>
+			
 			<div class="header-content">
 				${when(x => x.heading, heading())}
-				${when(x => x.heading, subtitle())}
+				${when(x => x.subtitle, subtitle())}
 			</div>
-			<slot name="meta"></slot>
+			<slot name="meta" ${slotted('hasMeta')}></slot>
 		</header>`;
 }
 
@@ -81,7 +91,7 @@ export const CardTemplate: (
 						</div>
 						<div class="content">
 							<slot name="content">
-								${when(x => (x.heading || x.subtitle || x.icon), renderHeader())}
+								${renderHeader()}
 								${when(x => x.text, text())}
 							</slot>
 						</div>

@@ -49,11 +49,14 @@ export class Card extends FoundationElement {
 
 	/**
 	 *
-	 * adds footer to the card
+	 * Slot observer:
 	 *
 	 * @internal
 	 */
 	@observable hasFooter: HTMLElement[] | undefined;
+	@observable hasGraphic: HTMLElement[] | undefined;
+	@observable hasMeta: HTMLElement[] | undefined;
+
 }
 
 

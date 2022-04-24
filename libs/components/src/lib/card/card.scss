@@ -54,6 +54,10 @@
 
 		-webkit-line-clamp: var(#{card-variables.$subtitle-line-clamp});
 	}
+
+	.no-header & {
+		display: none;
+	}
 }
 
 .header-subtitle,

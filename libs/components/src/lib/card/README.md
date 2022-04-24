@@ -87,6 +87,16 @@ The graphic slot overide the icon property.
 </vwc-card>
 ```
 
+### Meta
+The meta slot is for action content in the card header.
+.
+
+```html preview
+<vwc-card heading="Vivid Card Component" subtitle="extra text to the card heading">
+<vwc-button slot="meta" icon="more-vertical-solid" appearance="ghost"></vwc-button>
+</vwc-card>
+```
+
 
 ### Footer
 footer slot main purpose is for action button
