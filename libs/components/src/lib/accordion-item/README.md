@@ -36,7 +36,7 @@ which will output the shadow tree heading element to be rendered as a `<h2>` tag
 
 e.g.
 
-```js
+```html
 <h4 class="header">
   <button>
     <!-- ... -->
