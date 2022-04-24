@@ -26,7 +26,7 @@ Use the `heading-level` attribute (or `headingLevel` property) to set the accord
 - Type: `2` | `3` | `4` | `5` | `6`
 - Default: `3`
 
-The following sets the heading of the accordion-item to level 2
+The following sets the heading of accordion-item to level 2
 
 ```html preview
 <vwc-accordion-item heading="my heading" heading-level="2"></vwc-accordion-item>
