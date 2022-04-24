@@ -28,16 +28,12 @@ describe('vwc-accordion-item', () => {
 
 	describe('show', () => {
 		it('should set "open" to true and add "open" class', async () => {
-			const control = getControlElement(element);
-			const hasClassOpenBeforeShow = control.classList.contains('open');
+			expect(getControlElement(element).classList.contains('open')).toBeFalsy();
 
 			element.open = true;
 			await elementUpdated(element);
-			const hasClassOpenAfterShow = control.classList.contains('open');
-
 			expect(element.open).toBeTruthy();
-			expect(hasClassOpenBeforeShow).toBeFalsy();
-			expect(hasClassOpenAfterShow).toBeTruthy();
+			expect(getControlElement(element).classList.contains('open')).toBeTruthy();
 		});
 	});
 
@@ -45,63 +41,54 @@ describe('vwc-accordion-item', () => {
 		it('should unset "open"', async () => {
 			element.open = true;
 			await elementUpdated(element);
-			const control = getControlElement(element);
-			const hasClassOpenBeforeHide = control.classList.contains('open');
+			expect(getControlElement(element).classList.contains('open')).toBeTruthy();
 
 			element.open = false;
 			await elementUpdated(element);
-			const hasClassOpenAfterHide = control.classList.contains('open');
-
-			expect(hasClassOpenBeforeHide).toBeTruthy();
-			expect(hasClassOpenAfterHide).toBeFalsy();
+			expect(element.open).toBeFalsy();
+			expect(getControlElement(element).classList.contains('open')).toBeFalsy();
 		});
 	});
 
 	describe('toggle', () => {
 		it('should toggle "open" state', async () => {
-			const control = getControlElement(element);
 			const button: any = element.shadowRoot?.querySelector('.button');
-			const hasClassOpenBeforeToggle = control.classList.contains('open');
+			expect(getControlElement(element).classList.contains('open')).toBeFalsy();
 
 			button.click();
 			await elementUpdated(element);
-			const hasClassOpenAfterToggle = control.classList.contains('open');
-
 			expect(element.open).toBeTruthy();
-			expect(hasClassOpenBeforeToggle).toBeFalsy();
-			expect(hasClassOpenAfterToggle).toBeTruthy();
+			expect(getControlElement(element).classList.contains('open')).toBeTruthy();
 
 			button.click();
 			await elementUpdated(element);
-			const hasClassOpenAfterSecondToggle = control.classList.contains('open');
-
 			expect(element.open).toBeFalsy();
-			expect(hasClassOpenAfterSecondToggle).toBeFalsy();
+			expect(getControlElement(element).classList.contains('open')).toBeFalsy();
 		});
 	});
 
 	describe('icon', () => {
 		it('should set icon class', async () => {
-			expect(getControlElement(element).classList.toString()).toEqual('control');
+			expect(getControlElement(element).classList.contains('icon')).toBeFalsy();
 			element.icon = 'chat-solid';
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.toString()).toEqual('control icon');
+			expect(getControlElement(element).classList.contains('icon')).toBeTruthy();
 		});
 		it('should set iconTrailing', async () => {
-			expect(getControlElement(element).classList.toString()).toEqual('control');
+			expect(getControlElement(element).classList.contains('icon-trailing')).toBeFalsy();
 			element.icon = 'chat-solid';
 			element.iconTrailing = true;
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.toString()).toEqual('control icon icon-trailing');
+			expect(getControlElement(element).classList.contains('icon-trailing')).toBeTruthy();
 		});
 	});
 
 	describe('no-indicator', () => {
 		it('should remove indicator class', async () => {
-			expect(getControlElement(element).classList.toString()).toEqual('control');
+			expect(getControlElement(element).classList.contains('no-indicator')).toBeFalsy();
 			element.noIndicator = true;
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.toString()).toEqual('control no-indicator');
+			expect(getControlElement(element).classList.contains('no-indicator')).toBeTruthy();
 		});
 	});
 
