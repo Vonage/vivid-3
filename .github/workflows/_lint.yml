@@ -15,7 +15,7 @@ jobs:
       - uses: github/super-linter@v4
         env:
           VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: master
+          DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # - run: npm ci --only=dev
       # - run: npm run nx run-many -- --target=stylelint --all && npm run nx run-many -- --target=lint --all
