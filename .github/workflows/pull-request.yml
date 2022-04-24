@@ -29,7 +29,7 @@ jobs:
       - run: npx beachball check
 
   call-lint:
-    uses: vonage/vivid-3/.github/workflows/_lint.yml@main
+    uses: vonage/vivid-3/.github/workflows/_lint.yml@super-linter
 
   unit-tests:
     needs: [ call-lint, check-changelogs ]
