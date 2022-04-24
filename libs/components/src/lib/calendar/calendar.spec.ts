@@ -177,7 +177,7 @@ describe('vwc-calendar', () => {
 			expect(context?.hour).toBeUndefined();
 		});
 
-		it('should return day and hour from keydown \'enter\' event', async () => {
+		it('should emit \'enter\' keydown event with day and hour when focused on grid cell', async () => {
 			element.addEventListener('keydown', e => context = element.getEventContext(e) as CalendarEventContext);
 
 			gridCell.dispatchEvent(new KeyboardEvent('keydown', { composed: true, keyCode: 32 }));
