@@ -10,7 +10,7 @@ import type { Card } from './card';
 const getClasses = (_: Card) => classNames(
 	'control',
 	['hide-footer', !_.hasFooter || !_.hasFooter.length],
-	['no-header', shouldHideHeader(_)]
+	['hide-header', shouldHideHeader(_)]
 );
 
 /**
@@ -42,6 +42,18 @@ function subtitle() {
 /**
  *
  */
+function headerContent() {
+	return html`
+		<div class="header-content">
+			${when(x => x.heading, heading())}
+			${when(x => x.subtitle, subtitle())}
+		</div>
+	`;
+}
+
+/**
+ *
+ */
 function text() {
 	return html`
 		<div class="text">${(x) => x.text}</div>
@@ -64,11 +76,7 @@ function renderHeader() {
 	return html<Card>`
 		<header class="header">
 			<slot name="graphic" ${slotted('hasGraphic')}>${when(x => x.icon, renderHeaderIcon())}</slot>
-			
-			<div class="header-content">
-				${when(x => x.heading, heading())}
-				${when(x => x.subtitle, subtitle())}
-			</div>
+			${when(x => x.heading || x.subtitle, headerContent())}
 			<slot name="meta" ${slotted('hasMeta')}></slot>
 		</header>`;
 }

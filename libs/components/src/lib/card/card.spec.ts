@@ -40,6 +40,19 @@ describe('vwc-card', () => {
 			expect(headerSubtitle?.textContent?.trim()).toEqual(subtitle);
 		});
 
+		it('should render headerContent if heading or subtitle are set', async function () {
+			element.heading = 'card title';
+			await elementUpdated(element);
+
+			const heading = element.shadowRoot?.querySelector('.header-title');
+			const headerContent = element.shadowRoot?.querySelector('.header-content');
+
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			// @ts-ignore
+			expect(heading.parentElement).toEqual(headerContent);
+
+		});
+
 		it('should add an icon to the card header', async () => {
 			element.icon = 'chat-line';
 			await elementUpdated(element);
@@ -49,13 +62,13 @@ describe('vwc-card', () => {
 			expect(icon.type).toEqual('chat-line');
 		});
 
-		it( 'should add class .no-header to .control', async () => {
+		it( 'should add class .hide-header to .control', async () => {
 			element.icon = '';
 			element.heading = '';
 			element.subtitle = '';
 			await elementUpdated(element);
 			const controlElementHasNoHeader = element.shadowRoot?.
-				querySelector('.control')?.classList.contains('no-header');
+				querySelector('.control')?.classList.contains('hide-header');
 
 			expect(controlElementHasNoHeader).toEqual(true);
 		});
@@ -71,6 +84,7 @@ describe('vwc-card', () => {
 			expect(icon.parentElement).toEqual(graphicSlotElement);
 		});
 
+
 		it('should have meta slot ', async function () {
 			const metaSlotElement = element.shadowRoot?.
 				querySelector('.header slot[name="meta"]');
@@ -78,7 +92,7 @@ describe('vwc-card', () => {
 			expect(metaSlotElement).toBeTruthy();
 		});
 
-		it('should remove no-header class from .control if graphic is slotted', async function () {
+		it('should remove hide-header class from .control if graphic is slotted', async function () {
 			const slottedElement = document.createElement('div');
 			slottedElement.slot = 'graphic';
 			slottedElement.id = 'graphic';
@@ -86,12 +100,12 @@ describe('vwc-card', () => {
 			await elementUpdated(element);
 
 			const controlElementHasNoHeader = element.shadowRoot?.
-				querySelector('.control')?.classList.contains('no-header');
+				querySelector('.control')?.classList.contains('hide-header');
 
 			expect(controlElementHasNoHeader).toEqual(false);
 		});
 
-		it('should remove no-header class from .control if meta is slotted', async function () {
+		it('should remove hide-header class from .control if meta is slotted', async function () {
 			const slottedElement = document.createElement('div');
 			slottedElement.slot = 'meta';
 			slottedElement.id = 'meta';
@@ -99,14 +113,14 @@ describe('vwc-card', () => {
 			await elementUpdated(element);
 
 			const controlElementHasNoHeader = element.shadowRoot?.
-				querySelector('.control')?.classList.contains('no-header');
+				querySelector('.control')?.classList.contains('hide-header');
 
 			expect(controlElementHasNoHeader).toEqual(false);
 		});
 
 	});
 
-	describe('card content', () => {
+	describe('card text', () => {
 		it('should set text property to .text', async () => {
 			const text = 'card text';
 			element.text = text;
@@ -114,6 +128,28 @@ describe('vwc-card', () => {
 			const textNode = element.shadowRoot?.querySelector('.text');
 			expect(textNode?.textContent?.trim()).toEqual(text);
 
+		});
+	});
+
+	describe( 'card footer', () => {
+		it('should have footer slot ', async function () {
+			const footerSlotElement = element.shadowRoot?.
+				querySelector('.footer slot[name="footer"]');
+
+			expect(footerSlotElement).toBeTruthy();
+		});
+
+		it('should remove hide-footer class from .control if footer is slotted', async function () {
+			const slottedElement = document.createElement('div');
+			slottedElement.slot = 'footer';
+			slottedElement.id = 'footer';
+			element.appendChild(slottedElement);
+			await elementUpdated(element);
+
+			const controlElementHasNoHeader = element.shadowRoot?.
+				querySelector('.control')?.classList.contains('hide-footer');
+
+			expect(controlElementHasNoHeader).toEqual(false);
 		});
 	});
 

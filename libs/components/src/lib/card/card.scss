@@ -55,7 +55,7 @@
 		-webkit-line-clamp: var(#{card-variables.$subtitle-line-clamp});
 	}
 
-	.no-header & {
+	.hide-header & {
 		display: none;
 	}
 }
