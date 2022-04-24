@@ -7,7 +7,7 @@ import {attr} from '@microsoft/fast-element';
  * @public
  */
 export class BreadcrumbItem extends FastBreadcrumbItem {
-	@attr({ mode: 'fromView' })	text: string = '';
+	@attr	text: string;
 
 	constructor() {
 		super();

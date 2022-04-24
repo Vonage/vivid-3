@@ -14,7 +14,7 @@ export class Tooltip extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr({ mode: 'fromView' }) text = '';
+	@attr text?: string;
 
 	/**
 	 * indicates whether the tooltip is open
