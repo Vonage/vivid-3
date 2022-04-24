@@ -29,8 +29,6 @@ describe('vwc-accordion', () => {
 	describe('basic', () => {
 		it('should be initialized as a vwc-accordion', async () => {
 			expect(element).toBeInstanceOf(Accordion);
-			expect(accordionItem1).toBeInstanceOf(AccordionItem);
-			expect(accordionItem2).toBeInstanceOf(AccordionItem);
 			expect(element.multi).toBeFalsy();
 		});
 	});
