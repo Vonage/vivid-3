@@ -17,7 +17,7 @@ Badges don’t work for navigation because they can't include a hyperlink.
 
 Add a `text` attribute to add text to the badge.
 
-```html preview
+```html
 <vwc-badge text='A default badge'></vwc-badge>
 ```
 

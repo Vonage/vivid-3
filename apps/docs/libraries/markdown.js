@@ -3,6 +3,7 @@ const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 // If not already added from previous tip
 const slugify = require("slugify");
+const plugin = require("./plugin");
 
 const linkAfterHeader = markdownItAnchor.permalink.linkAfterHeader({
   class: "anchor",
@@ -44,4 +45,5 @@ const markdownItAnchorOptions = {
 /* Markdown Overrides */
 module.exports = markdownIt({
   html: true,
-}).use(markdownItAnchor, markdownItAnchorOptions);
+}).use(markdownItAnchor, markdownItAnchorOptions)
+  .use(plugin);
