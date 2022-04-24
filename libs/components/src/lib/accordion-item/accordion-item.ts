@@ -59,28 +59,8 @@ export class AccordionItem extends FoundationElement {
 	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void{
 		super.attributeChangedCallback(name, oldValue, newValue);
 		if (name === 'open') {
-			newValue === null ? this.hide() : this.show();
+			newValue === null ? this.notifyClose() : this.notifyOpen();
 		}
-	}
-
-	/**
-	 * Opens the accordion-item from the closed state.
-	 *
-	 * @public
-	 */
-	show(): void {
-		this.open = true;
-		this.notifyOpen();
-	}
-
-	/**
-	 * Closes the accordion-item from the open state.
-	 *
-	 * @public
-	 */
-	hide(): void {
-		this.open = false;
-		this.notifyClose();
 	}
 
 	notifyOpen(): void {

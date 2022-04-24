@@ -45,6 +45,13 @@
     ]
   },
   {
+    "title": "calendar",
+    "markdown": "./libs/components/src/lib/calendar/README.md",
+    "modules": [
+      "/assets/modules/components/calendar/index.js"
+    ]
+  },
+  {
     "title": "elevation",
     "markdown": "./libs/components/src/lib/elevation/README.md",
     "modules": [

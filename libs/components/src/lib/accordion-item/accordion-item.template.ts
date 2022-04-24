@@ -8,14 +8,15 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { AccordionItem } from './accordion-item';
 
+const PANEL = 'panel';
+
 const getClasses = ({
-	open, iconTrailing, icon, dense, noIndicator
+	open, iconTrailing, icon, noIndicator
 }: AccordionItem) => classNames(
 	'control',
 	['open', open],
 	['icon', Boolean(icon)],
 	['icon-trailing', iconTrailing],
-	['dense', dense],
 	['no-indicator', noIndicator],
 );
 
@@ -25,7 +26,7 @@ export const AccordionItemTemplate: (
 ) => ViewTemplate<AccordionItem> = (context) => html<AccordionItem>`
 	<div class="${getClasses}">
 		${x => renderPanelHeader(context, x.headingLevel)}
-		<div class="accordion-item-body" id="content" role="region" aria-labelledby="header">
+		<div class="body" id="${PANEL}" role="region" aria-labelledby="header">
 			<slot></slot>
 		</div>
 	</div>
@@ -34,7 +35,7 @@ export const AccordionItemTemplate: (
 const renderPanelHeader = (context: ElementDefinitionContext, headingLevel: number | string | undefined) => {
 	const header: string = headingLevel ? 'h' + headingLevel : 'h3';
 	return html<AccordionItem>`
-	<${header} class="accordion-item-header">
+	<${header} class="header">
 		${renderHeaderButton(context)}
 	</${header}>
 	`;
@@ -44,9 +45,9 @@ const renderHeaderButton = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html<AccordionItem>`
-	<button class="accordion-item-button" id="header" @click=${x => x.open ? x.hide() : x.show()}
+	<button class="button" id="header" @click=${x => x.open = !x.open}
 		?aria-expanded=${x => x.open}
-		aria-controls="content">
+		aria-controls="${PANEL}">
 		${x => affixIconTemplate(x.icon)}
 		<span class="heading-text">${x => x.heading}</span>
 		${when(x => x.meta, html`<span class="meta">${x => x.meta}</span>`)}
