@@ -1,5 +1,5 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
-import { AccordionItem } from '../accordion-item/accordion-item';
+import type { AccordionItem } from '../accordion-item/accordion-item';
 import { Accordion } from './accordion';
 import '.';
 import '../accordion-item';
