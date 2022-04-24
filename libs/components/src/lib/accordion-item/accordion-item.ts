@@ -16,7 +16,7 @@ export class AccordionItem extends FoundationElement {
 	 * 
 	 * HTML Attribute: heading
 	 */
-	@attr heading = '';
+	@attr heading? = '';
 
 	/**
 	 *
@@ -39,7 +39,7 @@ export class AccordionItem extends FoundationElement {
 	 * 
 	 * HTML Attribute: meta
 	 */
-	@attr meta = '';
+	@attr meta? = '';
 
 	/**
 	 * Indicates whether the accordion-item is open
