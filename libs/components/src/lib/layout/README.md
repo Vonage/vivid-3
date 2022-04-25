@@ -23,6 +23,12 @@ Using layout, elements can be arranged easily in a variety of sizes and spaces t
 
 Use the `auto-sizing` attribute to set the initial preferred `auto-sizing`.
 
+When the [repeat()](#css-custom-properties) function is set to `fit` or `fill`, the grid container creates as many grid tracks (columns/rows) as possible without overflowing the container.
+
+With `fit`, when there are not enough grid items to fill the number of tracks created, those empty tracks are collapsed.
+
+With `fill`, everything is the same as `fit`, except empty tracks are not collapsed.
+
 - Type: `'fit'` | `'fill'`
 - Default: `'fit'`
 
@@ -149,4 +155,31 @@ Use the `column-basis` attribute to set the initial preferred `measure` of a col
 
 | Name                           | Description                                      | Usage                                              |
 | ------------------------------ | ------------------------------------------------ | -------------------------------------------------- |
-| --layout-grid-template-columns | controls the grid-template-columns of the layout | repeat(`auto-sizing`, minmax(`column-basis`, 1fr)) |
+| `--layout-grid-template-columns` | controls the grid-template-columns of the layout | repeat(`auto-sizing`, minmax(`column-basis`, 1fr)) |
+
+```html preview
+<div class="box-wrapper">
+  <vwc-layout style="--layout-grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));">
+    <div class="box">example</div>
+    <div class="box">example</div>
+    <div class="box">example</div>
+    <div class="box">example</div>
+  </vwc-layout>
+</div>
+<div class="box-wrapper">
+  <vwc-layout style="--layout-grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));">
+    <div class="box">example</div>
+    <div class="box">example</div>
+    <div class="box">example</div>
+    <div class="box">example</div>
+  </vwc-layout>
+</div>
+<div class="box-wrapper">
+  <vwc-layout style="--layout-grid-template-columns: 280px repeat(auto-fill, minmax(100px, 1fr));">
+    <div class="box">example</div>
+    <div class="box">example</div>
+    <div class="box">example</div>
+    <div class="box">example</div>
+  </vwc-layout>
+</div>
+```
