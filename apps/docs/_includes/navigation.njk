@@ -3,7 +3,7 @@
   <vwc-sidenav-item href="{{ '/' | url}}" text="Home"></vwc-sidenav-item>
   <ul class="navigation">
     <p>design system</p>
-    {%  for item in designs %}
+    {%  for item in designs | sort(false, false, 'title') %}
       <li>
         <vwc-sidenav-item href="{{ ('/designs/' + item.title) | url }}" text="{{ item.title }}"></vwc-sidenav-item>
       </li>
@@ -11,7 +11,7 @@
   </ul>
   <ul class="navigation">
     <p>components</p>
-    {%  for item in components %}
+    {%  for item in components | sort(false, false, 'title') %}
       <li>
         <vwc-sidenav-item href="{{ ('/components/' + item.title) | url }}" text="{{ item.title }}"></vwc-sidenav-item>
       </li>
