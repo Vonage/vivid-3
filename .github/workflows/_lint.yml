@@ -17,5 +17,7 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.json
+          LINTER_RULES_PATH:	.github/linters
       # - run: npm ci --only=dev
       # - run: npm run nx run-many -- --target=stylelint --all && npm run nx run-many -- --target=lint --all
