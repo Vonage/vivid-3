@@ -20,5 +20,5 @@ export const <%= className %>Template: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<<%= className %>> = (context: ElementDefinitionContext) => html` <span
   class="${getClasses}"
->
+>${context.name}
 </span>`;
