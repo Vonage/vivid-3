@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "add card component",
+  "packageName": "@vonage/vivid",
+  "email": "rachel.tannenbaum@vonage.com",
+  "dependentChangeType": "patch"
+}
