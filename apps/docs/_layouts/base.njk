@@ -26,6 +26,7 @@
     <script type="module" src="{{ '/assets/modules/components/text/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/side-drawer/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/sidenav-item/index.js' | url}}"></script>
+    <script type="module" src="{{ '/assets/modules/components/icon/index.js' | url}}"></script>
     <script type="module" src="https://es6.dev.vivid.vonage.com/v2.22.1/@vonage/vwc-top-app-bar-fixed/vwc-top-app-bar-fixed.js"></script>
 
     {% include "prefetches.njk" %}
@@ -54,7 +55,7 @@
     <vwc-side-drawer open>
       {% include "navigation.njk" %}
 			<main slot="app-content">
-        <vwc-layout gutters="base" column-basis="block" class="main-layout">
+        <vwc-layout gutters="base-large" column-basis="block" class="main-layout">
           <article>
             {{content | safe}}
           </article>

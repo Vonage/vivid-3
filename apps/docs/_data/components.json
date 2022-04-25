@@ -37,10 +37,10 @@
     ]
   },
   {
-    "title": "card",
-    "markdown": "./libs/components/src/lib/card/README.md",
+    "title": "calendar",
+    "markdown": "./libs/components/src/lib/calendar/README.md",
     "modules": [
-      "/assets/modules/components/card/index.js"
+      "/assets/modules/components/calendar/index.js"
     ]
   },
   {
@@ -114,6 +114,22 @@
     "markdown": "./libs/components/src/lib/progress/README.md",
     "modules": [
       "/assets/modules/components/progress/index.js"
+    ]
+  },
+  {
+    "title": "accordion-item",
+    "markdown": "./libs/components/src/lib/accordion-item/README.md",
+    "modules": [
+      "/assets/modules/components/accordion-item/index.js",
+      "/assets/modules/components/text/index.js",
+      "/assets/modules/components/elevation/index.js"
+    ]
+  },
+  {
+    "title": "card",
+    "markdown": "./libs/components/src/lib/card/README.md",
+    "modules": [
+      "/assets/modules/components/card/index.js"
     ]
   }
 ]
