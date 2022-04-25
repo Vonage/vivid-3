@@ -1,8 +1,8 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
+import {expect} from '@playwright/test';
 import { Icon } from '../icon/icon';
 import { Card } from './card';
 import '.';
-import {expect} from '@playwright/test';
 
 const COMPONENT_TAG = 'vwc-card';
 const ICON_SELECTOR = 'vwc-icon';
