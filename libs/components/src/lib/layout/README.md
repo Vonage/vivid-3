@@ -27,28 +27,28 @@ Use the `gutters` attribute to set the initial preferred `margin`.
 - Default: `''`
 
 ```html preview
-<div class="demo-box-wrapper">
+<div class="demo-gradient">
   <vwc-layout>
-    <div class="demo-box">default</div>
-    <div class="demo-box">default</div>
+    <vwc-card heading="default"></vwc-card>
+    <vwc-card heading="default"></vwc-card>
   </vwc-layout>
 </div>
-<div class="demo-box-wrapper">
+<div class="demo-gradient">
   <vwc-layout gutters="base-small">
-    <div class="demo-box">base-small</div>
-    <div class="demo-box">base-small</div>
+    <vwc-card heading="base-small"></vwc-card>
+    <vwc-card heading="base-small"></vwc-card>
   </vwc-layout>
 </div>
-<div class="demo-box-wrapper">
+<div class="demo-gradient">
 <vwc-layout gutters="base">
-  <div class="demo-box">base</div>
-  <div class="demo-box">base</div>
+    <vwc-card heading="base"></vwc-card>
+    <vwc-card heading="base"></vwc-card>
 </vwc-layout>
 </div>
-<div class="demo-box-wrapper">
+<div class="demo-gradient">
 <vwc-layout gutters="base-large">
-  <div class="demo-box">base-large</div>
-  <div class="demo-box">base-large</div>
+    <vwc-card heading="base-large"></vwc-card>
+    <vwc-card heading="base-large"></vwc-card>
 </vwc-layout>
 </div>
 ```
@@ -61,22 +61,22 @@ Use the `column-spacing` attribute to set the initial preferred `spacing` of a c
 - Default: `'base'`
 
 ```html preview
-<div class="demo-box-wrapper">
+<div class="demo-gradient">
   <vwc-layout column-spacing="base-small">
-    <div class="demo-box">base-small</div>
-    <div class="demo-box">base-small</div>
+    <vwc-card heading="base-small"></vwc-card>
+    <vwc-card heading="base-small"></vwc-card>
   </vwc-layout>
 </div>
-<div class="demo-box-wrapper">
+<div class="demo-gradient">
   <vwc-layout column-spacing="base">
-    <div class="demo-box">base</div>
-    <div class="demo-box">base</div>
+    <vwc-card heading="base"></vwc-card>
+    <vwc-card heading="base"></vwc-card>
   </vwc-layout>
 </div>
-<div class="demo-box-wrapper">
+<div class="demo-gradient">
   <vwc-layout column-spacing="base-large">
-    <div class="demo-box">base-large</div>
-    <div class="demo-box">base-large</div>
+    <vwc-card heading="base-large"></vwc-card>
+    <vwc-card heading="base-large"></vwc-card>
   </vwc-layout>
 </div>
 ```
@@ -90,36 +90,36 @@ Use `block` to stack elements one above the other.
 - Default: `'base'`
 
 ```html preview
-<div class="demo-box-wrapper">
+<div class="demo-gradient">
   <vwc-layout column-basis="base-small">
-    <div class="demo-box">base-small</div>
-    <div class="demo-box">base-small</div>
-    <div class="demo-box">base-small</div>
-    <div class="demo-box">base-small</div>
+    <vwc-card heading="base-small"></vwc-card>
+    <vwc-card heading="base-small"></vwc-card>
+    <vwc-card heading="base-small"></vwc-card>
+    <vwc-card heading="base-small"></vwc-card>
   </vwc-layout>
 </div>
-<div class="demo-box-wrapper">
+<div class="demo-gradient">
   <vwc-layout column-basis="base">
-    <div class="demo-box">base</div>
-    <div class="demo-box">base</div>
-    <div class="demo-box">base</div>
-    <div class="demo-box">base</div>
+    <vwc-card heading="base"></vwc-card>
+    <vwc-card heading="base"></vwc-card>
+    <vwc-card heading="base"></vwc-card>
+    <vwc-card heading="base"></vwc-card>
   </vwc-layout>
 </div>
-<div class="demo-box-wrapper">
+<div class="demo-gradient">
   <vwc-layout column-basis="base-large">
-    <div class="demo-box">base-large</div>
-    <div class="demo-box">base-large</div>
-    <div class="demo-box">base-large</div>
-    <div class="demo-box">base-large</div>
+    <vwc-card heading="base-large"></vwc-card>
+    <vwc-card heading="base-large"></vwc-card>
+    <vwc-card heading="base-large"></vwc-card>
+    <vwc-card heading="base-large"></vwc-card>
   </vwc-layout>
 </div>
-<div class="demo-box-wrapper">
+<div class="demo-gradient">
   <vwc-layout column-basis="block">
-    <div class="demo-box">block</div>
-    <div class="demo-box">block</div>
-    <div class="demo-box">block</div>
-    <div class="demo-box">block</div>
+    <vwc-card heading="block"></vwc-card>
+    <vwc-card heading="block"></vwc-card>
+    <vwc-card heading="block"></vwc-card>
+    <vwc-card heading="block"></vwc-card>
   </vwc-layout>
 </div>
 ```
@@ -138,16 +138,16 @@ With `fill`, everything is the same as `fit`, except empty tracks are not collap
 - Default: `'fit'`
 
 ```html preview
-<div class="demo-box-wrapper">
+<div class="demo-gradient">
   <vwc-layout auto-sizing="fit">
-    <div class="demo-box">fit</div>
-    <div class="demo-box">fit</div>
+    <vwc-card heading="fit"></vwc-card>
+    <vwc-card heading="fit"></vwc-card>
   </vwc-layout>
 </div>
-<div class="demo-box-wrapper">
+<div class="demo-gradient">
   <vwc-layout auto-sizing="fill">
-    <div class="demo-box">fill</div>
-    <div class="demo-box">fill</div>
+    <vwc-card heading="fill"></vwc-card>
+    <vwc-card heading="fill"></vwc-card>
   </vwc-layout>
 </div>
 ```
@@ -159,28 +159,28 @@ With `fill`, everything is the same as `fit`, except empty tracks are not collap
 | `--layout-grid-template-columns` | controls the grid-template-columns of the layout | repeat(`auto-sizing`, minmax(`column-basis`, 1fr)) |
 
 ```html preview
-<div class="demo-box-wrapper">
+<div class="demo-gradient">
   <vwc-layout style="--layout-grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));">
-    <div class="demo-box">example</div>
-    <div class="demo-box">example</div>
-    <div class="demo-box">example</div>
-    <div class="demo-box">example</div>
+    <vwc-card heading="example"></vwc-card>
+    <vwc-card heading="example"></vwc-card>
+    <vwc-card heading="example"></vwc-card>
+    <vwc-card heading="example"></vwc-card>
   </vwc-layout>
 </div>
-<div class="demo-box-wrapper">
+<div class="demo-gradient">
   <vwc-layout style="--layout-grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));">
-    <div class="demo-box">example</div>
-    <div class="demo-box">example</div>
-    <div class="demo-box">example</div>
-    <div class="demo-box">example</div>
+    <vwc-card heading="example"></vwc-card>
+    <vwc-card heading="example"></vwc-card>
+    <vwc-card heading="example"></vwc-card>
+    <vwc-card heading="example"></vwc-card>
   </vwc-layout>
 </div>
-<div class="demo-box-wrapper">
+<div class="demo-gradient">
   <vwc-layout style="--layout-grid-template-columns: 280px repeat(auto-fill, minmax(100px, 1fr));">
-    <div class="demo-box">example</div>
-    <div class="demo-box">example</div>
-    <div class="demo-box">example</div>
-    <div class="demo-box">example</div>
+    <vwc-card heading="example"></vwc-card>
+    <vwc-card heading="example"></vwc-card>
+    <vwc-card heading="example"></vwc-card>
+    <vwc-card heading="example"></vwc-card>
   </vwc-layout>
 </div>
 ```

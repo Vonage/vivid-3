@@ -14,18 +14,9 @@ body {
   margin: 20px;
 }
 
-.demo-box-wrapper{
+.demo-gradient{
   background-image: linear-gradient(to right, var(--vvd-color-info-30), var(--vvd-color-cta-30));
   padding: 1rem;
-  border-radius: 6px;
 }
 
-.demo-box-wrapper + .demo-box-wrapper { margin-top: 2rem;}
-
-.demo-box {    
-  border-radius: 6px;
-  background-color: var(--vvd-color-canvas);
-  color: var(--vvd-color-on-canvas);
-  padding: 1rem;
-  text-align: center;
-}
+.demo-gradient + .demo-gradient { margin-top: 2rem;}
