@@ -1,24 +1,18 @@
-import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom';
-
 import App from './app/app';
 
-
-// import {
-//   provideFASTDesignSystem,
-//   fastButton
-// } from "@microsoft/fast-components";
-// provideFASTDesignSystem().register(fastButton());
-
-import {
-  provideVividDesignSystem,
-  vividButton
-} from "@vonage/vivid";
+import { provideVividDesignSystem, vividButton } from "@vonage/vivid";
 provideVividDesignSystem().register(vividButton());
 
+import {
+  provideFASTDesignSystem,
+  fastButton
+} from "@microsoft/fast-components";
+provideFASTDesignSystem().register(fastButton());
+
 ReactDOM.render(
-  <StrictMode>
+  <div>
     <App />
-  </StrictMode>,
+  </div>,
   document.getElementById('root')
 );

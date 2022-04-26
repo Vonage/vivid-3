@@ -1,12 +1,14 @@
-import React from "react";
+import React from 'react';
 import { provideReactWrapper } from "@microsoft/fast-react-wrapper";
+import { vividButton } from '@vonage/vivid';
+
 const { wrap } = provideReactWrapper(React);
 
-import { vividButton } from "@vonage/vivid";
-const MyButton = wrap(vividButton());
+const VIVIDButton = wrap(vividButton());
+
 export default function App() {
   return (
-      <MyButton appearance="filled" label='A default button'></MyButton>
+      <VIVIDButton appearance='filled' label='A default button'></VIVIDButton>
   );
 }
 

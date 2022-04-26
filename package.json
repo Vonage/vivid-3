@@ -11,13 +11,14 @@
   },
   "private": true,
   "dependencies": {
-    "@microsoft/fast-components": "^2.26.0",
-    "@microsoft/fast-react-wrapper": "^0.1.46",
-    "@vonage/vivid": "^3.0.0-next.3",
     "@floating-ui/dom": "^0.4.0",
+    "@floating-ui/react-dom": "^0.6.3",
+    "@microsoft/fast-components": "^2.26.0",
     "@microsoft/fast-element": "^1.9.0",
     "@microsoft/fast-foundation": "^2.41.1",
+    "@microsoft/fast-react-wrapper": "^0.1.46",
     "@microsoft/fast-web-utilities": "^5.2.0",
+    "@vonage/vivid": "^3.0.0-next.3",
     "blocking-elements": "^0.1.1",
     "core-js": "^3.21.1",
     "ramda": "^0.27.2",
@@ -55,7 +56,7 @@
     "@types/jest-axe": "^3.5.3",
     "@types/node": "14.14.33",
     "@types/ramda": "^0.27.62",
-    "@types/react": "17.0.40",
+    "@types/react": "^18.0.7",
     "@types/react-dom": "17.0.13",
     "@typescript-eslint/eslint-plugin": "5.10.2",
     "@typescript-eslint/parser": "5.10.2",
@@ -103,6 +104,7 @@
     "stylelint-config-standard-scss": "^3.0.0",
     "stylelint-no-unsupported-browser-features": "^5.0.3",
     "ts-jest": "27.1.3",
-    "typescript": "~4.4.3"
+    "typescript": "~4.4.3",
+    "typescript-plugin-css-modules": "^3.4.0"
   }
 }
