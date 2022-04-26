@@ -28,7 +28,7 @@ jobs:
         with:
           project: vivid
           root: site
-          entrypoint: https://deno.land/std@0.134.0/http/file_server.ts
+          entrypoint: https://deno.land/std@0.135.0/http/file_server.ts
 
       # - uses: actions/upload-artifact@v3
       #   if: always()
