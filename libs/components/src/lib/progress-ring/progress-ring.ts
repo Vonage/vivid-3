@@ -11,11 +11,11 @@ type ProgressRingSize = Extract<Size, Size.BaseSmall | Size.Base | Size.BaseLarg
  */
 export class ProgressRing extends BaseProgress {
 	/**
-	 * Indicates the text's text.
+	 * Indicates the progress ring's size.
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: text
+	 * HTML Attribute: size
 	 */
 	@attr size?: ProgressRingSize;
 }

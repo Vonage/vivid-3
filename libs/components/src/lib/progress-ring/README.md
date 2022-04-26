@@ -1,18 +1,16 @@
-# progress-ring
+# vwc-progress-ring
 
 Progress-ring is used to display the length of time a process will take or to visualize percentage value (referred to as a determinate state) and to represent an unspecified wait time (referred to as an indeterminate state).
 
 ```js
-<script type="module">import '@vonage/vivid/progress-ring';</script>
+<script type="module">
+    import '@vonage/vivid/progress-ring';
+</script>
 ```
 
 ```html preview
-<vwc-progress-ring min="0" max="100" value="25"></vwc-progress-ring>
-<vwc-progress-ring min="0" max="100" value="ii"></vwc-progress-ring>
+<vwc-progress-ring></vwc-progress-ring>
 ```
-
-
-## API
 
 ### Min/Max
 Use `min`, `max` in order to determine the range of the progress.
@@ -21,17 +19,26 @@ Use `min`, `max` in order to determine the range of the progress.
 - Default: `undefined`
 
 ```html preview
-    <vwc-progress-ring min="0" max="50" value="12.5"></vwc-progress-ring>
+    <vwc-layout column-basis="block">
+        <vwc-progress-ring min="0" max="50" value="12.5"></vwc-progress-ring>
+        <vwc-progress-ring min="0" max="50" value="50"></vwc-progress-ring>
+        <vwc-progress-ring min="0" max="100" value="50"></vwc-progress-ring>
+    </vwc-layout>
 ```
 
 ### Value
-Use `value` in order to set the state of the progress. String value will set the state to `indetermintate`.
+Use `value` in order to set the state of the progress. Omitting the attribute or setting it for a non-number value will set the state to `indetermintate`.
 
 - Type: `number` | `string`
 - Default: `undefined`
 
 ```html preview
-    <vwc-progress-ring min="0" max="50" value="12.5"></vwc-progress-ring>
+    <vwc-layout column-basis="block">
+        <vwc-progress-ring value="12.5"></vwc-progress-ring>
+        <vwc-progress-ring value="45"></vwc-progress-ring>
+        <vwc-progress-ring value="73"></vwc-progress-ring>
+        <vwc-progress-ring value="100"></vwc-progress-ring>
+    </vwc-layout>
 ```
 
 ### Paused
@@ -41,12 +48,12 @@ Use the `paused` attribute to show a disabled state of the progress.
 - Default: `false`
 
 ```html preview
-    <h2>Determinate</h2>
-    <vwc-progress-ring min="0" max="50" value="25" paused></vwc-progress-ring>
-    <br/>
-    <br/>
-    <h2>Indeterminate</h2>
-    <vwc-progress-ring min="0" max="50" value="indeterminate" paused></vwc-progress-ring>
+    <vwc-layout column-basis="block">
+        <h2>Determinate</h2>
+        <vwc-progress-ring min="0" max="50" value="25" paused></vwc-progress-ring>
+        <h2>Indeterminate</h2>
+        <vwc-progress-ring min="0" max="50" paused></vwc-progress-ring>
+    </vwc-layout>
 ```
 
 ### Size
@@ -56,13 +63,15 @@ Use the `size` attribute in order to select from 3 different sizes.
 - Default: `'base'`
 
 ```html preview
-    <vwc-progress-ring min="0" max="50" value="50" size="base-small"></vwc-progress-ring>
-    <br/>
-    <br/>
-    <vwc-progress-ring min="0" max="50" value="50"></vwc-progress-ring>
-    <br/>
-    <br/>
-    <vwc-progress-ring min="0" max="50" value="50" size="base-large"></vwc-progress-ring>
+    <vwc-layout column-basis="block">
+        <vwc-progress-ring min="0" max="50" value="50" size="base-small"></vwc-progress-ring>
+        <br/>
+        <br/>
+        <vwc-progress-ring min="0" max="50" value="50"></vwc-progress-ring>
+        <br/>
+        <br/>
+        <vwc-progress-ring min="0" max="50" value="50" size="base-large"></vwc-progress-ring>
+    <vwc-layout>
 ```
 
 ## Example Usage
@@ -76,7 +85,10 @@ In the example below, we set the value to `12.5` while the range is `0` to `50`.
 ```
 
 ### Indeterminate
-Set `value` to be a non-number value (e.g. `indeterminate`) to show an indeterminate state.
+Remove `value` or set it to be a non-number value (e.g. `indeterminate`) to show an indeterminate state.
 ```html preview
-    <vwc-progress-ring min="0" max="50" value="indeterminate"></vwc-progress-ring>
+    <vwc-layout column-basis="block">
+        <vwc-progress-ring min="0" max="50"></vwc-progress-ring>
+        <vwc-progress-ring min="0" max="50" value="indeterminate"></vwc-progress-ring>
+    </vwc-layout>
 ```

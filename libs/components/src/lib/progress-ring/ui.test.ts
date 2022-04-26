@@ -1,7 +1,5 @@
-import * as path from 'path';
 import { expect, Page, test } from '@playwright/test';
 import {
-	extractHTMLBlocksFromReadme,
 	loadComponents,
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils';

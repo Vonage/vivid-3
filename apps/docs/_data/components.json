@@ -113,6 +113,7 @@
     "title": "progress-ring",
     "markdown": "./libs/components/src/lib/progress-ring/README.md",
     "modules": [
+      "/assets/modules/components/layout/index.js",
       "/assets/modules/components/progress-ring/index.js"
     ]
   }
