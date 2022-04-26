@@ -26,8 +26,7 @@ jobs:
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
-          project: "vivid"
-          entrypoint: https://deno.land/std/http/file_server.ts
+          project: vivid
           root: site
 
       # - uses: actions/upload-artifact@v3
