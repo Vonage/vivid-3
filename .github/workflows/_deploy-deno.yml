@@ -21,7 +21,7 @@ jobs:
         run: npm ci
 
       - name: Build Site
-        run: npm run nx build docs
+        run: npx nx run docs:build
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
@@ -29,3 +29,9 @@ jobs:
           project: "vivid"
           entrypoint: https://deno.land/std/http/file_server.ts
           root: site
+
+      # - uses: actions/upload-artifact@v3
+      #   if: always()
+      #   with:
+      #     name: deploy-artifact
+      #     path: dist/apps/docs
