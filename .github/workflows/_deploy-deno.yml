@@ -29,3 +29,9 @@ jobs:
           project: "vivid"
           entrypoint: https://deno.land/std@0.114.0/http/server.ts
           root: dist/apps/docs
+
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: deploy-artifact
+          path: dist/apps/docs
