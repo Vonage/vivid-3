@@ -83,7 +83,8 @@ Use the `column-spacing` attribute to set the initial preferred `spacing` of a c
 
 ## Column-basis
 
-Use the `column-basis` attribute to set the initial preferred `measure` of a column.
+Use the `column-basis` attribute to set the initial preferred `measure` of a column. 
+Use `block` to stack elements one above the other.
 
 - Type: `'base-small'` | `'base'` | `'base-large'` | `'block'`
 - Default: `'base'`
