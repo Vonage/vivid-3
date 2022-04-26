@@ -21,7 +21,7 @@ jobs:
         run: npm ci
 
       - name: Build Site
-        run: npm run nx build docs
+        run: npx nx run docs:build
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
