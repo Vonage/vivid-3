@@ -27,7 +27,7 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: "vivid"
-          entrypoint: https://deno.land/std@0.114.0/http/server.ts
+          entrypoint: https://deno.land/std@0.136.0/http/server.ts
           root: dist/apps/docs
 
       - uses: actions/upload-artifact@v3
