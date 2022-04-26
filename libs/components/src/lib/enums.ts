@@ -18,6 +18,7 @@ export enum Shape {
 	Rounded = 'rounded',
 	Pill = 'pill',
 	Circled = 'circled',
+	Sharp = 'sharp'
 }
 
 /* eslint-disable no-shadow */
