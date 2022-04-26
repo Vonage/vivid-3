@@ -19,34 +19,6 @@ Using layout, elements can be arranged easily in a variety of sizes and spaces t
 </vwc-layout>
 ```
 
-## Auto-sizing
-
-Use the `auto-sizing` attribute to set the initial preferred `auto-sizing`.
-
-When the [repeat()](#css-custom-properties) function is set to `fit` or `fill`, the grid container creates as many grid tracks (columns/rows) as possible without overflowing the container.
-
-With `fit`, when there are not enough grid items to fill the number of tracks created, those empty tracks are collapsed.
-
-With `fill`, everything is the same as `fit`, except empty tracks are not collapsed.
-
-- Type: `'fit'` | `'fill'`
-- Default: `'fit'`
-
-```html preview
-<div class="box-wrapper">
-  <vwc-layout auto-sizing="fit">
-    <div class="box">fit</div>
-    <div class="box">fit</div>
-  </vwc-layout>
-</div>
-<div class="box-wrapper">
-  <vwc-layout auto-sizing="fill">
-    <div class="box">fill</div>
-    <div class="box">fill</div>
-  </vwc-layout>
-</div>
-```
-
 ## Gutters
 
 Use the `gutters` attribute to set the initial preferred `margin`.
@@ -147,6 +119,34 @@ Use the `column-basis` attribute to set the initial preferred `measure` of a col
     <div class="box">block</div>
     <div class="box">block</div>
     <div class="box">block</div>
+  </vwc-layout>
+</div>
+```
+
+## Auto-sizing
+
+Use the `auto-sizing` attribute to set the initial preferred `auto-sizing`.
+
+When the [repeat()](#css-custom-properties) function is set to `fit` or `fill`, the grid container creates as many grid tracks (columns/rows) as possible without overflowing the container.
+
+With `fit`, when there are not enough grid items to fill the number of tracks created, those empty tracks are collapsed.
+
+With `fill`, everything is the same as `fit`, except empty tracks are not collapsed.
+
+- Type: `'fit'` | `'fill'`
+- Default: `'fit'`
+
+```html preview
+<div class="box-wrapper">
+  <vwc-layout auto-sizing="fit">
+    <div class="box">fit</div>
+    <div class="box">fit</div>
+  </vwc-layout>
+</div>
+<div class="box-wrapper">
+  <vwc-layout auto-sizing="fill">
+    <div class="box">fill</div>
+    <div class="box">fill</div>
   </vwc-layout>
 </div>
 ```
