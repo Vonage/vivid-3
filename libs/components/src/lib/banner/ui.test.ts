@@ -49,11 +49,10 @@ test('should remove the component when clicking on remove button', async ({ page
 		template,
 	});
 
+	await page.waitForLoadState('networkidle');
 
 	const removeButton = await page.$('.dismiss-button');
 	const element = await page.$('vwc-banner');
-
-	await page.waitForLoadState('networkidle');
 
 	await removeButton.click();
 
