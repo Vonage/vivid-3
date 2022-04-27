@@ -133,26 +133,6 @@ export class Popup extends FoundationElement {
 		if (this.arrow) { this.assignArrowPosition(positionData); }
 	}
 
-	/**
-	 * Opens the popup
-	 *
-	 * @public
-	 */
-	show(): void {
-		if (this.anchorEl) { // only if anchor element exists
-			this.open = true;
-		}
-	}
-
-	/**
-	 * Closes the popup
-	 *
-	 * @public
-	 */
-	hide(): void {
-		this.open = false;
-	}
-
 	handleDismissClick(): void {
 		this.hide();
 	}
@@ -184,5 +164,14 @@ export class Popup extends FoundationElement {
 	 */
 	private getAnchorById(): HTMLElement | null {
 		return document.getElementById(this.anchor);
+	}
+
+	/**
+	 * Closes the popup
+	 *
+	 * @internal
+	 */
+	 private hide(): void {
+		this.open = false;
 	}
 }
