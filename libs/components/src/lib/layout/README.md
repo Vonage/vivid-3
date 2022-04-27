@@ -153,8 +153,8 @@ With `fill`, everything is the same as `fit`, except empty tracks are not collap
 ```
 
 ## CSS Custom Properties
-### Grid-template-columns
 
+### Grid-template-columns
 Controls the grid-template-columns of the layout.
 
 - `--layout-grid-template-columns`
