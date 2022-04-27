@@ -1,4 +1,4 @@
-# vwc-text-anchor
+# text-anchor
 
 underlying component to be used as inlined text anchor element
 

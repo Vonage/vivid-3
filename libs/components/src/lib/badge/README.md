@@ -1,4 +1,4 @@
-# vwc-badge
+# badge
 
 Badge is a label that holds small amounts of information.
 A badge can be used to display unread notifications, or to label a block of text.
