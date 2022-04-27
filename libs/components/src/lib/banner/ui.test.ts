@@ -51,15 +51,13 @@ test('should remove the component when clicking on remove button', async ({ page
 
 	await page.waitForLoadState('networkidle');
 
-	const removeButton = await page.$('.dismiss-button');
-	const element = await page.$('vwc-banner');
+	const removeButton = await page.locator('.dismiss-button');
+	const element = await page.locator('vwc-banner');
 
 	await removeButton.click();
 
-	await element.waitForElementState('hidden');
+	await element.waitFor({state: 'detached'});
 
-	const elementHeight = (await element.boundingBox()).height;
-
-	expect(elementHeight).toEqual(0);
+	expect(await element.count()).toEqual(0);
 
 });
