@@ -54,7 +54,7 @@ export class Banner extends FoundationElement {
 		const banner = this.shadowRoot && this.shadowRoot.querySelector('.banner');
 		if (banner) {
 			banner.classList.add('removing');
-			banner.addEventListener('animationend', this.#handleRemoveEnd);
+			banner.addEventListener('transitionend', this.#handleRemoveEnd);
 		}
 	}
 
