@@ -171,7 +171,7 @@ export class Popup extends FoundationElement {
 	 *
 	 * @internal
 	 */
-	 private hide(): void {
+	private hide(): void {
 		this.open = false;
 	}
 }
