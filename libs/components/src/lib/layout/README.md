@@ -1,4 +1,4 @@
-# vwc-layout
+# layout
 
 Using layout, elements can be arranged easily in a variety of sizes and spaces that suit vivid design.
 

@@ -1,4 +1,4 @@
-# vwc-<%= name %>
+# <%= name %>
 
 ```js
 <script type='module'>
