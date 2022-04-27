@@ -1,5 +1,4 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
-import {Size} from '../enums';
 import {ProgressRing} from './progress-ring';
 import '.';
 
@@ -66,23 +65,6 @@ describe('vwc-progress-ring', () => {
 			const determinateDiv = element.shadowRoot?.querySelector('.determinate') as HTMLElement;
 			expect(determinateDiv?.style.strokeDasharray)
 				.toEqual(`${expectedValue}px 44px`);
-		});
-	});
-
-	describe('size', function () {
-		it('should reflect size on host', async function () {
-			element.size = Size.BaseLarge;
-			await elementUpdated(element);
-			expect(element.getAttribute('size'))
-				.toEqual(Size.BaseLarge);
-		});
-
-		it('should add class "base-small" to base div', async function () {
-			const baseDiv = element.shadowRoot?.querySelector('.base');
-			element.size = Size.BaseSmall;
-			await elementUpdated(element);
-			expect(baseDiv?.classList.contains('base-small'))
-				.toEqual(true);
 		});
 	});
 
