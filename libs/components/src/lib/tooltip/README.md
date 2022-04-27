@@ -1,4 +1,4 @@
-# vwc-tooltip
+# tooltip
 
 A tooltip is a brief, informative message or descriptions or explanations for their paired element. Tooltips in general are less accessible so be sure to follow our accessibility recommendation in the docs.
 
