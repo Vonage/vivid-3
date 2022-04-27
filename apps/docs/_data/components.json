@@ -134,15 +134,6 @@
     ]
   },
   {
-    "title": "accordion-item",
-    "markdown": "./libs/components/src/lib/accordion-item/README.md",
-    "modules": [
-      "/assets/modules/components/accordion-item/index.js",
-      "/assets/modules/components/text/index.js",
-      "/assets/modules/components/elevation/index.js"
-    ]
-  },
-  {
     "title": "progress-ring",
     "markdown": "./libs/components/src/lib/progress-ring/README.md",
     "modules": [
