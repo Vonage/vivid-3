@@ -16,7 +16,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			`${htmlString} <div style="margin: 5px;">${block}</div>`,
 		''
 	);
-	await page.pause();
 	await loadComponents({
 		page,
 		components,
@@ -30,7 +29,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
-	await page.pause();
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/breadcrumb.png'
 	);

@@ -118,13 +118,13 @@ describe('vwc-button', () => {
 	});
 
 	describe('disabled', function () {
-		it('should set idle class when disabled is true', async () => {
+		it('should set disabled class when disabled is true', async () => {
 			const appearance = 'filled';
 			(element as any).appearance = appearance;
 			element.toggleAttribute('disabled', true);
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.appearance-${appearance}-idle`);
+			const control = element.shadowRoot?.querySelector(`.control.appearance-${appearance}.disabled`);
 			expect(control).toBeInstanceOf(Element);
 		});
 	});

@@ -59,11 +59,7 @@ export class Icon extends FoundationElement {
 
 	@attr size?: Density;
 
-	@observable state: 'idle' | 'loading' | 'loaded' | 'fail' = 'idle';
-
-	@observable svg: any = null;
-
-	@observable placeholder: any = null;
+	@observable svg = '';
 
 	/**
 	 * Indicates which icon to resolve.
@@ -75,24 +71,23 @@ export class Icon extends FoundationElement {
 	@attr type?: string;
 
 	async typeChanged() {
-		this.state = 'loading';
-		this.svg = null;
-		this.placeholder = null;
+		this.svg = '';
 
 		let timeout = setTimeout(() => {
-			this.placeholder = PLACEHOLDER_ICON;
+			this.svg = PLACEHOLDER_ICON;
 			timeout = setTimeout(() => {
-				this.placeholder = null;
+				if (this.svg === PLACEHOLDER_ICON) {
+					this.svg = '';
+				}
 			}, PLACEHOLDER_TIMEOUT);
 		}, PLACEHOLDER_DELAY);
 
 		await resolveIcon(this.type)
 			.then((svg) => {
 				this.svg = svg;
-				this.state = 'loaded';
 			})
 			.catch(() => {
-				this.state = 'fail';
+				this.svg = '';
 			}).finally(() => { clearTimeout(timeout); });
 	}
 }
