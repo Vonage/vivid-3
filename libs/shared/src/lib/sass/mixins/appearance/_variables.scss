@@ -32,7 +32,7 @@ $states-mapping: (
   hover: (
     filled: (
       text: var(#{connotation.$vvd-color-on-connotation}),
-      fill: var(#{connotation.$vvd-color-connotation}-strong),
+      fill: var(#{connotation.$vvd-color-connotation}-hovered),
       outline: transaprent,
     ),
     outlined: (
@@ -55,7 +55,7 @@ $states-mapping: (
   active: (
     filled: (
       text: var(#{connotation.$vvd-color-on-connotation}),
-      fill: var(#{connotation.$vvd-color-connotation}-fierce),
+      fill: var(#{connotation.$vvd-color-connotation}-pressed),
       outline: transaprent,
     ),
     outlined: (
@@ -69,7 +69,7 @@ $states-mapping: (
       outline: transaprent,
     ),
     subtle: (
-      text: var(#{connotation.$vvd-color-connotation}-strong),
+      text: var(#{connotation.$vvd-color-connotation}-hovered),
       fill: var(#{connotation.$vvd-color-connotation}-soft),
       outline: transaprent,
     )
