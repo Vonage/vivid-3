@@ -262,37 +262,43 @@ To add content aside the side-drawer, add a slot called `app-content`.
 ## CSS Custom Properties
 
 ### Background-color
-Controls the background of the side drawer.
 - `--side-drawer-background-color`
 - Type: `String`
 - Default: Current theme's canvas (background) color
 
+Controls the background of the side drawer.
+
 ### Color
-Controls the color of the side drawer.    
 - `--side-drawer-color`
 - Type: `String`
 - Default: Current theme's on-canvas (text) color
 
+Controls the color of the side drawer.    
+
 ### Inline-size
-Controls the inline size of the side drawer.   
 - `--side-drawer-inline-size`
 - Type: `Number`
 - Default: `280px`
 
+Controls the inline size of the side drawer.   
+
 ### Padding-body
-Controls the padding of the side drawer's body.   
 - `--side-drawer-padding-body`
 - Type: `Number`
 - Default: `16px`
 
+Controls the padding of the side drawer's body.   
+
 ### Padding-top-bar
-Controls the padding of the side drawer's top bar.   
 - `--side-drawer-padding-top-bar`
 - Type: `Number`
 - Default: `16px`
 
+Controls the padding of the side drawer's top bar.   
+
 ### Z-index
-Controls the z-index of the side drawer.   
 - `--side-drawer-z-index`
 - Type: `Number`
 - Default: `6`
+
+Controls the z-index of the side drawer.   
