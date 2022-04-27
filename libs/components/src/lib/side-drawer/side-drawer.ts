@@ -63,24 +63,6 @@ export class SideDrawer extends FoundationElement {
 	 */
 	@attr position?: 'start' | 'end';
 
-	/**
-	 * Opens the side drawer from the closed state.
-	 *
-	 * @public
-	 */
-	show(): void {
-		this.open = true;
-	}
-
-	/**
-	 * Closes the side drawer from the open state.
-	 *
-	 * @public
-	 */
-	hide(): void {
-		this.open = false;
-	}
-
 	handleScrimClick = (): void => {
 		if (this.modal && this.open) {
 			this.hide();
@@ -91,5 +73,14 @@ export class SideDrawer extends FoundationElement {
 		if (this.open && key === 'Escape') {
 			this.hide();
 		}
+	}
+
+	/**
+	 * Closes the side drawer from the open state.
+	 *
+	 * @internal
+	 */
+	private hide(): void {
+		this.open = false;
 	}
 }
