@@ -1,4 +1,4 @@
-# Calendar
+# calendar
 
 Represents a calendar custom element.
 
