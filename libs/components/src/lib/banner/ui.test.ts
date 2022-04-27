@@ -34,3 +34,33 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		'./snapshots/banner.png'
 	);
 });
+
+test('should remove the component when clicking on remove button', async ({ page }: { page: Page }) => {
+	const template = `
+			<vwc-banner removable icon="home" text="ET Phone!"></vwc-banner>	
+	`;
+
+	await loadComponents({
+		page,
+		components,
+	});
+	await loadTemplate({
+		page,
+		template,
+	});
+
+
+	const removeButton = await page.$('.dismiss-button');
+	const element = await page.$('vwc-banner');
+
+	await page.waitForLoadState('networkidle');
+
+	await removeButton.click();
+
+	await element.waitForElementState('hidden');
+
+	const elementHeight = (await element.boundingBox()).height;
+
+	expect(elementHeight).toEqual(0);
+
+});
