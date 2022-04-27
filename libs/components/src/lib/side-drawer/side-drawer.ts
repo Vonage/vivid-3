@@ -65,13 +65,13 @@ export class SideDrawer extends FoundationElement {
 
 	handleScrimClick = (): void => {
 		if (this.modal && this.open) {
-			this.hide();
+			this.close();
 		}
 	};
 
 	handleKeydown({ key }: KeyboardEvent): void {
 		if (this.open && key === 'Escape') {
-			this.hide();
+			this.close();
 		}
 	}
 
@@ -80,7 +80,7 @@ export class SideDrawer extends FoundationElement {
 	 *
 	 * @internal
 	 */
-	private hide(): void {
+	private close(): void {
 		this.open = false;
 	}
 }
