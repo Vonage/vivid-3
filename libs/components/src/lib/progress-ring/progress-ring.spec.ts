@@ -1,7 +1,7 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
+import {Connotation} from '../enums';
 import {ProgressRing} from './progress-ring';
 import '.';
-import {Connotation} from '../enums';
 
 const COMPONENT_TAG = 'vwc-progress-ring';
 
