@@ -72,7 +72,7 @@ export class Popup extends FoundationElement {
 	 * @public
 	 * HTML Attribute: corner
 	 */
-	@attr corner?: Placement = 'left';
+	@attr({ mode: 'fromView' }) corner?: Placement = 'left';
 
 	/**
 	 * ID reference to element in the popup’s owner document.
