@@ -166,19 +166,6 @@ describe('vwc-popup', () => {
 		});
 	});
 
-	describe('anchor', () => {
-		it('should not set popup open if anchor element does not exist', async () => {
-			element.anchor = 'anchor';
-			await elementUpdated(element);
-
-			element.open = true;
-			await elementUpdated(element);
-
-			expect(element.open)
-				.toEqual(false);
-		});
-	});
-
 	describe('render arrow', () => {
 		it('should remove the arrow class on the container if arrow is false', async () => {
 			expect(element.shadowRoot?.querySelector('.arrow'))
