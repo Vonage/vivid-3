@@ -1,4 +1,4 @@
-# vwc-accordion-item
+# accordion-item
 
 ```js
 <script type="module">

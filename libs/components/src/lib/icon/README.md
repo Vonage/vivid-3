@@ -1,4 +1,4 @@
-# vwc-icon
+# icon
 
 Find the icon you want to use on the [vivid icons search platform](https://icons.vivid.vonage.com).
 
