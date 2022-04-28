@@ -1,0 +1,75 @@
+@use 'partials/variables' as variables;
+@use '../focus/partials/variables' as focus-variables;
+@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+	$subset: primary cta,
+	$default: primary,
+);
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+
+.control {
+	@include connotation.connotation;
+	@include typography.typography-cat-shorthand('body-1-bold');
+	
+	#{variables.$block-size}: 48px;
+
+	position: relative;
+	display: inline-flex;
+	box-sizing: border-box;
+	align-items: center;
+	border: 0 none;
+	background-color: var(#{variables.$fab-bg});
+	block-size: var(#{variables.$block-size});
+	color: var(--vvd-color-on-canvas);
+	cursor: pointer;
+	outline: 0 none;
+	vertical-align: middle;
+
+	&:hover {
+		background: var(#{theme-consts.$vvd-color-neutral-10});
+	}
+
+	.icon {
+		font-size: 24px;
+	}
+
+	&:not(.icon-only) {
+		#{variables.$icon-gap}: 10px;
+
+		border-radius: 24px;
+		padding-inline: 20px;
+	}
+
+	&.icon-only {
+		border-radius: 50%;
+		padding-inline: 0;
+		place-content: center;
+		@supports (aspect-ratio: 1) {
+			aspect-ratio: 1;
+		}
+		@supports not (aspect-ratio: 1) {
+			inline-size: var(#{variables.$block-size});
+		}
+	}
+
+}
+
+/* Icon */
+
+.icon {
+	:not(.icon-trailing) & {
+		margin-inline-end: var(#{variables.$icon-gap});
+	}
+
+	.icon-trailing & {
+		order: 1;
+		margin-inline-start: var(#{variables.$icon-gap});
+	}
+}
+
+.focus-indicator {
+	:not(:focus) & {
+		display: none;
+	}
+}

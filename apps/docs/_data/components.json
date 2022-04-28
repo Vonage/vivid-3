@@ -140,5 +140,12 @@
       "/assets/modules/components/layout/index.js",
       "/assets/modules/components/progress-ring/index.js"
     ]
+  },
+  {
+    "title": "fab",
+    "markdown": "./libs/components/src/lib/fab/README.md",
+    "modules": [
+      "/assets/modules/components/fab/index.js"
+    ]
   }
 ]
