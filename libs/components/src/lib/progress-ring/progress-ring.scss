@@ -1,7 +1,7 @@
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$subset: primary,
+	$subset: cta primary alert success,
 	$default: primary
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
@@ -35,7 +35,7 @@
 }
 .determinate {
 	fill: none;
-	stroke: var(#{theme-consts.$vvd-color-primary}, black);
+	stroke: var(#{connotation.$vvd-color-connotation});
 	stroke-linecap: round;
 	stroke-width: 2px;
 	transform: rotate(-90deg);
@@ -45,7 +45,7 @@
 .indeterminate-indicator-1 {
 	animation: spin-infinite 2s linear infinite;
 	fill: none;
-	stroke: var(#{theme-consts.$vvd-color-primary}, black);
+	stroke: var(#{connotation.$vvd-color-connotation});
 	stroke-linecap: round;
 	stroke-width: 2px;
 	transform: rotate(-90deg);
@@ -54,10 +54,10 @@
 }
 .base.paused .indeterminate-indicator-1 {
 	animation-play-state: paused;
-	stroke: var(#{theme-consts.$vvd-color-neutral}, gray);
+	stroke: var(#{theme-consts.$vvd-color-neutral});
 }
 .base.paused .determinate {
-	stroke: var(#{theme-consts.$vvd-color-neutral}, gray);
+	stroke: var(#{theme-consts.$vvd-color-neutral});
 }
 @keyframes spin-infinite {
 	0% {

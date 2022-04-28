@@ -1,6 +1,7 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
 import {ProgressRing} from './progress-ring';
 import '.';
+import {Connotation} from '../enums';
 
 const COMPONENT_TAG = 'vwc-progress-ring';
 
@@ -95,6 +96,43 @@ describe('vwc-progress-ring', () => {
 			expect(pausedClassExistsBeforeChange)
 				.toEqual(false);
 			expect(pausedClassExistsAfterChange)
+				.toEqual(true);
+		});
+	});
+
+	describe('connotation', function () {
+		it('should be undefined by default', async function () {
+			expect(element.connotation)
+				.toEqual(undefined);
+		});
+
+		it('should reflect its value to host', async function () {
+
+			element.setAttribute('connotation', 'alert');
+			await elementUpdated(element);
+			const connotationPropertyAfterAttributeChange = element.connotation;
+
+			element.connotation = Connotation.Success;
+			await elementUpdated(element);
+			const connotationAttributeAfterPropertyChange = element.getAttribute('connotation');
+
+			expect(connotationPropertyAfterAttributeChange)
+				.toEqual(Connotation.Alert);
+			expect(connotationAttributeAfterPropertyChange)
+				.toEqual(Connotation.Success);
+		});
+
+		it('should set connotation on the base div', async function () {
+			const connotation = Connotation.CTA;
+			const baseDiv = element.shadowRoot?.querySelector('.base');
+			const connotationClassExistsBeforeChange = baseDiv?.classList.contains(`connotation-${connotation}`);
+			element.connotation = connotation;
+			await elementUpdated(element);
+			const connotationClassExistsAfterChange = baseDiv?.classList.contains(`connotation-${connotation}`);
+
+			expect(connotationClassExistsBeforeChange)
+				.toEqual(false);
+			expect(connotationClassExistsAfterChange)
 				.toEqual(true);
 		});
 	});

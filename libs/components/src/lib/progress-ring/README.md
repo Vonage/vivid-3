@@ -40,6 +40,20 @@ Use `value` in order to set the state of the progress. Omitting the attribute or
         <vwc-progress-ring value="100"></vwc-progress-ring>
     </vwc-layout>
 ```
+### Connotation
+Use `connotation` in order to set the color the progress.
+
+- Type: `'primary'` | `'cta'` | `'success'` | `'alert'`
+- Default: `'primary'`
+
+```html preview
+    <vwc-layout column-basis="block">
+        <vwc-progress-ring connotation="primary"></vwc-progress-ring>
+        <vwc-progress-ring connotation="cta"></vwc-progress-ring>
+        <vwc-progress-ring connotation="success"></vwc-progress-ring>
+        <vwc-progress-ring connotation="alert"></vwc-progress-ring>
+    </vwc-layout>
+```
 
 ### Paused
 Use the `paused` attribute to show a disabled state of the progress.
