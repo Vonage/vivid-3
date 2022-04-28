@@ -24,9 +24,7 @@ const getClasses = ({
  * @returns {ViewTemplate<side-drawer>} A template capable of creating HTMLView instances or rendering directly to DOM.
  * @public
  */
-export const sideDrawerTemplate: FoundationElementTemplate<
-	ViewTemplate<SideDrawer>
-> = () => html`
+export const sideDrawerTemplate: FoundationElementTemplate<ViewTemplate<SideDrawer>> = () => html`
 	<aside class="${getClasses}" part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}"
 	 @keydown="${(x, c) => handleKeydown(x, c.event as KeyboardEvent)}">
 
@@ -50,4 +48,4 @@ const handleKeydown = (x: any, { key }: KeyboardEvent) => {
 	if (key === 'Escape') {
 		x.open = false;
 	}
-}
+};
