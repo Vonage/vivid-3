@@ -52,7 +52,7 @@ type IconConnotation = Extract<Connotation,
  *
  * @public
  */
-type IconSize = Extract<BlockSize, BlockSize.Condensed | BlockSize.Base | BlockSize.Extended>;
+type IconSize = Extract<BlockSize, BlockSize.Condensed | BlockSize.Normal | BlockSize.Extended>;
 
 export class Icon extends FoundationElement {
 	/**

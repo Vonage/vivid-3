@@ -39,7 +39,7 @@ type BadgeShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  *
  * @public
  */
-type BadgeSize = Extract<BlockSize, BlockSize.Condensed | BlockSize.Base | BlockSize.Extended>;
+type BadgeSize = Extract<BlockSize, BlockSize.Condensed | BlockSize.Normal | BlockSize.Extended>;
 
 /**
  * Base class for badge

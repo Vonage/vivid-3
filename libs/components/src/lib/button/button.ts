@@ -37,7 +37,7 @@ type ButtonShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  *
  * @public
  */
-type ButtonSize = Extract<BlockSize, BlockSize.Condensed | BlockSize.Base | BlockSize.Extended>;
+type ButtonSize = Extract<BlockSize, BlockSize.Condensed | BlockSize.Normal | BlockSize.Extended>;
 
 /**
  * Base class for button

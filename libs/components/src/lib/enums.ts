@@ -32,7 +32,7 @@ export enum Appearance {
 
 export enum BlockSize {
 	Condensed = 'condensed',
-	Base = 'base',
+	Normal = 'normal',
 	Extended = 'extended',
 }
 

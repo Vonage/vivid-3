@@ -23,12 +23,12 @@ Add a `label` attribute to add text to the button.
 
 Use the `size` attribute to set the button's to one of the predefined block size extent.
 
-- Type: `'condensed'` | `'base'` | `'extended'`
-- Default: `'base'`
+- Type: `'condensed'` | `'normal'` | `'extended'`
+- Default: `'normal'`
 
 ```html preview
 <vwc-button appearance='filled' label='condensed' size='condensed'></vwc-button>
-<vwc-button appearance='filled' label='base' size='base'></vwc-button>
+<vwc-button appearance='filled' label='normal' size='normal'></vwc-button>
 <vwc-button appearance='filled' label='extended' size='extended'></vwc-button>
 ```
 
