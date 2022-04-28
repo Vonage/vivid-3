@@ -2,70 +2,70 @@
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$subset: success info alert announcement warning,
+	$shades: diverse,
 	$default: info,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
-	$subset: filled ghost,
+	$appearances: filled,
 	$default: filled,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
 $banner-transition-delay: --transition-delay;
 
-:host {
-	> .banner {
-		@include connotation.connotation;
-		@include appearance.appearance;
+.control {
+	@include connotation.connotation;
+	@include appearance.appearance;
 
-		overflow: hidden;
+	overflow: hidden;
+	max-height: 10rem;
+	background-color: var(#{appearance.get-variable(fill)});
+	color: var(#{appearance.get-variable(text)});
+	transition: max-height var(#{$banner-transition-delay}, 200ms);
+
+	&.removing {
 		max-height: 0;
-		background-color: var(#{appearance.$appearance-color-fill});
-		color: var(#{appearance.$appearance-color-text});
-		transition: max-height var(#{$banner-transition-delay}, 200ms);
+	}
 
-		> .header {
-			@include typography.typography-cat-shorthand('body-2-bold');
+	> .header {
+		@include typography.typography-cat-shorthand('body-2-bold');
 
+		display: flex;
+		min-height: 60px;
+		align-items: center;
+		justify-content: flex-start;
+
+		> .user-content {
 			display: flex;
-			min-height: 60px;
+			flex: 1 0;
 			align-items: center;
-			justify-content: flex-start;
+			justify-content: center;
+			padding-inline: 16px;
 
-			> .user-content {
-				display: flex;
-				flex: 1 0;
-				align-items: center;
-				justify-content: center;
-				padding-inline: 16px;
-
-				> .icon {
-					flex: 0 0 auto;
-					font-size: 20px;
-					margin-inline-end: 15px;
-				}
-
-				> .action-items {
-					display: inline-block;
-					flex: 0 0 auto;
-					padding-inline-start: 15px;
-				}
-
-				> .message {
-					padding: 20px 0;
-				}
-			}
-
-			> .dismiss-button {
-				--vvd-icon-button-color: inherit;
-
+			> .icon {
 				flex: 0 0 auto;
-				margin-inline-end: 8px;
+				font-size: 20px;
+				margin-inline-end: 15px;
 			}
+
+			> .action-items {
+				display: inline-block;
+				flex: 0 0 auto;
+				padding-inline-start: 15px;
+			}
+
+			> .message {
+				padding: 20px 0;
+			}
+		}
+
+		> .dismiss-button {
+			--vvd-icon-button-color: inherit;
+
+			flex: 0 0 auto;
+			margin-inline-end: 8px;
 		}
 	}
 }
 
-.banner.open {
-	max-height: 10rem;
-}

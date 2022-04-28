@@ -10,30 +10,23 @@ const COMPONENT_TAG = 'vwc-banner';
 
 /**
  * @param element
+ * @param removable
  */
-async function openBanner(element: Banner) {
-	element.open = true;
-	await elementUpdated(element);
-}
-
-/**
- * @param element
- * @param dismissible
- */
-async function toggleDismissible(element: Banner, dismissible = true) {
-	element.dismissible = dismissible;
-	await elementUpdated(element);
-}
-
-/**
- * @param element
- */
-async function closeBanner(element: Banner) {
-	element.open = false;
+async function toggleRemovable(element: Banner, removable = true) {
+	element.removable = removable;
 	await elementUpdated(element);
 }
 
 describe('vwc-banner', () => {
+	/**
+	 *
+	 */
+	function dispatchAnimationEndEvent() {
+		const banner = element.shadowRoot?.querySelector('.banner');
+		const event = new Event('transitionend');
+		banner?.dispatchEvent(event);
+	}
+
 	let element: Banner;
 
 	beforeEach(async () => {
@@ -47,7 +40,6 @@ describe('vwc-banner', () => {
 			expect(element)
 				.toBeInstanceOf(Banner);
 		});
-
 	});
 
 	describe('text', function () {
@@ -156,86 +148,21 @@ describe('vwc-banner', () => {
 		});
 	});
 
-	describe('open', function () {
-		/**
-		 *
-		 */
-		function dispatchAnimationEndEvent() {
-			const banner = element.shadowRoot?.querySelector('.banner');
-			const event = new Event('animationend');
-			banner?.dispatchEvent(event);
-		}
+	describe('remove', function () {
 
-		it('should init to false', function () {
-			expect(element.open)
-				.toEqual(false);
-			expect(element.hasAttribute('open'))
-				.toEqual(false);
-		});
-
-		it('should toggle open attribute on host', async function () {
-			await openBanner(element);
-			const openAttributeExistsWhenTrue = element.hasAttribute('open');
-
-			await closeBanner(element);
-			const openAttributeExistsWhenFalse = element.hasAttribute('open');
-
-			expect(openAttributeExistsWhenTrue)
-				.toEqual(true);
-			expect(openAttributeExistsWhenFalse)
-				.toEqual(false);
-		});
-
-		it('should set open property on attribute change', async function () {
-			element.toggleAttribute('open');
-			await elementUpdated(element);
-			expect(element.open)
-				.toEqual(true);
-		});
-
-		it('should fire opening event', async function () {
+		it('should fire removing event', async function () {
 			const spy = jest.fn();
-			element.addEventListener('vwc-banner:opening', spy);
-			await openBanner(element);
+			element.addEventListener('vwc-banner:removing', spy);
+			element.remove();
 			expect(spy)
 				.toHaveBeenCalled();
 		});
 
-		it('should fire opened after animation end', async function () {
-			/**
-			 *
-			 */
-			function dispatchAnimationEndEvent() {
-				const banner = element.shadowRoot?.querySelector('.banner');
-				const event = new Event('animationend');
-				banner?.dispatchEvent(event);
-			}
+		it('should fire removed after animation end', async function () {
 
 			const spy = jest.fn();
-			element.addEventListener('vwc-banner:opened', spy);
-			await openBanner(element);
-
-			dispatchAnimationEndEvent();
-
-			expect(spy)
-				.toHaveBeenCalled();
-		});
-
-		it('should fire closing event', async function () {
-			const spy = jest.fn();
-			element.addEventListener('vwc-banner:closing', spy);
-			await openBanner(element);
-			await closeBanner(element);
-			expect(spy)
-				.toHaveBeenCalled();
-		});
-
-		it('should fire closed after animation end', async function () {
-
-			const spy = jest.fn();
-			element.addEventListener('vwc-banner:closed', spy);
-			await openBanner(element);
-			await closeBanner(element);
+			element.addEventListener('vwc-banner:removed', spy);
+			element.remove();
 
 			dispatchAnimationEndEvent();
 
@@ -245,77 +172,24 @@ describe('vwc-banner', () => {
 				.toEqual(1);
 		});
 
-		it('should add the open class on the banner', async function () {
-			await openBanner(element);
-			expect(element.shadowRoot?.querySelector('.banner')
-				?.classList
-				.contains('open'))
-				.toEqual(true);
-		});
-
-		it('should disable closed and opened events after disconnected callback', async function () {
+		it('should disable removed and removing events after disconnected callback', async function () {
 
 			const spy = jest.fn();
-			element.addEventListener('vwc-banner:closed', spy);
-			element.addEventListener('vwc-banner:opened', spy);
+			element.addEventListener('vwc-banner:removed', spy);
+			element.addEventListener('vwc-banner:removing', spy);
 			element.disconnectedCallback();
 
-			await openBanner(element);
-			dispatchAnimationEndEvent();
-			await closeBanner(element);
+			element.remove();
 			dispatchAnimationEndEvent();
 
 			expect(spy.mock.calls.length)
 				.toEqual(0);
 		});
-	});
 
-	describe('dismissible', function () {
-		it('should init to false', function () {
-			expect(element.dismissible)
-				.toEqual(false);
-			expect(element.hasAttribute('dismissible'))
-				.toEqual(false);
-		});
-
-		it('should toggle attribute on host', async function () {
-			await toggleDismissible(element);
-			const openAttributeExistsWhenTrue = element.hasAttribute('dismissible');
-
-			await toggleDismissible(element, false);
-			const openAttributeExistsWhenFalse = element.hasAttribute('dismissible');
-
-			expect(openAttributeExistsWhenTrue)
-				.toEqual(true);
-			expect(openAttributeExistsWhenFalse)
-				.toEqual(false);
-		});
-
-		it('should set dismissible property on attribute change', async function () {
-			element.toggleAttribute('dismissible');
-			await elementUpdated(element);
-			expect(element.dismissible)
-				.toEqual(true);
-		});
-
-		it('should not add dismiss button when dismissible is false', async function () {
-			expect(element.shadowRoot?.querySelector('.dismiss-button'))
-				.toEqual(null);
-		});
-
-		it('should add a dismiss button', async function () {
-			await toggleDismissible(element, true);
-			expect(element.shadowRoot?.querySelector('.dismiss-button'))
-				.toBeInstanceOf(Button);
-		});
-
-		it('should close banner on dismiss button click', async function () {
-			await toggleDismissible(element, true);
-			await openBanner(element);
-			const dismissButton = element.shadowRoot?.querySelector('.dismiss-button') as HTMLElement;
-			dismissButton.click();
-			await elementUpdated(element);
-			expect(element.open)
+		it('should remove the banner after dispatch', function () {
+			element.remove();
+			dispatchAnimationEndEvent();
+			expect(document.body.contains(element))
 				.toEqual(false);
 		});
 	});
@@ -387,38 +261,95 @@ describe('vwc-banner', () => {
 		});
 	});
 
-	describe('close on escape key', function () {
-		it('should close the button on escape key', async function () {
-			await openBanner(element);
-			element.dismissible = true;
-			element.focus();
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
-			expect(element.open).toEqual(false);
+	describe('removable', function () {
+		it('should init to false', function () {
+			expect(element.removable)
+				.toEqual(false);
+			expect(element.hasAttribute('removable'))
+				.toEqual(false);
 		});
 
-		it('should close the button only on escape key', async function () {
-			await openBanner(element);
-			element.dismissible = true;
-			element.focus();
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
-			expect(element.open).toEqual(true);
+		it('should toggle attribute on host', async function () {
+			await toggleRemovable(element);
+			const removeAttributeExistsWhenTrue = element.hasAttribute('removable');
+
+			await toggleRemovable(element, false);
+			const removeAttributeExistsWhenFalse = element.hasAttribute('removable');
+
+			expect(removeAttributeExistsWhenTrue)
+				.toEqual(true);
+			expect(removeAttributeExistsWhenFalse)
+				.toEqual(false);
 		});
 
-		it('should remove keydown listener after disconnection', async function () {
-			await openBanner(element);
-			element.dismissible = true;
-			element.focus();
-			element.disconnectedCallback();
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
-			expect(element.open).toEqual(true);
+		it('should set removable property on attribute change', async function () {
+			element.toggleAttribute('removable');
+			await elementUpdated(element);
+			expect(element.removable)
+				.toEqual(true);
 		});
 
-		it('should close the button only if "dismissible" is true', async function () {
-			await openBanner(element);
-			element.focus();
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
-			expect(element.open).toEqual(true);
+		it('should remove the remove button when removable is false', async function () {
+			expect(element.shadowRoot?.querySelector('.dismiss-button'))
+				.toEqual(null);
+		});
+
+		it('should add a remove button when true', async function () {
+			await toggleRemovable(element, true);
+			expect(element.shadowRoot?.querySelector('.dismiss-button'))
+				.toBeInstanceOf(Button);
+		});
+
+		it('should remove banner on remove button click', async function () {
+			await toggleRemovable(element, true);
+			const dismissButton = element.shadowRoot?.querySelector('.dismiss-button') as HTMLElement;
+			dismissButton.click();
+			dispatchAnimationEndEvent();
+			expect(document.body.contains(element))
+				.toEqual(false);
+		});
+
+		it('should add class "removing" to banner on remove button click', async function () {
+			await toggleRemovable(element, true);
+			const dismissButton = element.shadowRoot?.querySelector('.dismiss-button') as HTMLElement;
+			dismissButton.click();
+			expect(element.shadowRoot?.querySelector('.banner')?.classList.contains('removing')).toEqual(true);
 		});
 	});
 
+	describe('remove on escape key', function () {
+		it('should remove the button on escape key', async function () {
+			element.removable = true;
+			element.focus();
+			jest.spyOn(element, 'remove');
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+			expect(element.remove).toHaveBeenCalled();
+		});
+
+		it('should remove the banner only on escape key', async function () {
+			element.removable = true;
+			element.focus();
+			const spy = jest.spyOn(element, 'remove');
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+			expect((spy as any).mock.calls.length).toEqual(0);
+
+		});
+
+		it('should remove keydown listener after disconnection', async function () {
+			element.removable = true;
+			element.focus();
+			element.disconnectedCallback();
+			const spy = jest.spyOn(element, 'remove');
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+			expect((spy as any).mock.calls.length).toEqual(0);
+		});
+
+		it('should remove the banner only if "removable" is true', async function () {
+			element.removable = false;
+			element.focus();
+			const spy = jest.spyOn(element, 'remove');
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+			expect((spy as any).mock.calls.length).toEqual(0);
+		});
+	});
 });

@@ -1,2 +1,2 @@
 @forward 'variables' show $appearance-color-fill, $appearance-color-text, $appearance-color-outline;
-@forward 'mixins' show appearance;
+@forward 'mixins' show appearance, get-variable;

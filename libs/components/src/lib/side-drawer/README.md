@@ -1,4 +1,4 @@
-# vwc-side-drawer
+# side-drawer
 
 ```js
 <script type='module'>
