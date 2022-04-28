@@ -20,7 +20,7 @@ Add a `heading` attribute to add card heading title
 ```
 
 ## Icon
-Add a `icon='icon-name'` attribute to add icon on the right of the card heading
+Add an `icon` attribute to add icon to the right of the card heading. You can choose an icon from the [vivid icons search platform](https://icons.vivid.vonage.com).
 
 - Type: `String`
 - Default: `''`
