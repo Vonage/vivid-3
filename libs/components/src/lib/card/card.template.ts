@@ -52,12 +52,15 @@ function headerContent() {
 }
 
 /**
- *
+ header
  */
-function text() {
-	return html`
-		<div class="text">${(x) => x.text}</div>
-	`;
+function renderHeader() {
+
+	return html<Card>`
+		<header class="header">
+			<slot name="graphic" ${slotted('graphicSlottedContent')}>${when(x => x.icon, renderHeaderIcon())}</slot>
+			${when(x => x.heading || x.subheading, headerContent())}
+		</header>`;
 }
 
 
@@ -66,7 +69,7 @@ function text() {
  */
 function shouldHideHeader(card:Card) {
 	// eslint-disable-next-line max-len
-	return 	!card.heading  && !card.subheading && !card.icon && (!card.graphicSlottedContent || !card.graphicSlottedContent.length) && (!card.hasMetaSlottedContent || !card.hasMetaSlottedContent.length);
+	return 	!card.heading  && !card.subheading && !card.icon && (!card.graphicSlottedContent || !card.graphicSlottedContent.length);
 }
 
 /**
@@ -79,15 +82,12 @@ function renderMetaSlot() {
 }
 
 /**
-header
+ *
  */
-function renderHeader() {
-
-	return html<Card>`
-		<header class="header">
-			<slot name="graphic" ${slotted('graphicSlottedContent')}>${when(x => x.icon, renderHeaderIcon())}</slot>
-			${when(x => x.heading || x.subheading, headerContent())}
-		</header>`;
+function text() {
+	return html`
+		<div class="text">${(x) => x.text}</div>
+	`;
 }
 
 /**
@@ -108,8 +108,10 @@ export const CardTemplate: (
 						</div>
 						<div class="content">
 							<slot name="content">
-								${renderHeader()}
-								${renderMetaSlot()}
+								<div class="content-container">
+									${renderHeader()}
+									${renderMetaSlot()}
+								</div>
 								${when(x => x.text, text())}
 							</slot>
 						</div>

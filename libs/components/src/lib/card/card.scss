@@ -22,13 +22,17 @@
 	display: flex;
 	flex-flow: column;
 	padding: 1.5rem;
+	&-container {
+		display: flex;
+		gap: 0.5rem;
+	}
 }
 
 .header {
 	display: flex;
 	align-items: flex-start;
 	gap: 0.5rem;
-	inline-size: 100%;
+	flex: 1;
 	&-content {
 		flex: 1;
 	}
@@ -104,6 +108,7 @@
 	align-self: flex-start;
 	margin-block-start: -0.5rem;
 	margin-inline-end: -0.5rem;
+	margin-inline-start: auto;
 }
 
 vwc-elevation {

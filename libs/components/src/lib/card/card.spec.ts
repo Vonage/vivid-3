@@ -87,7 +87,7 @@ describe('vwc-card', () => {
 
 		it('should have meta slot ', async function () {
 			const metaSlotElement = element.shadowRoot?.
-				querySelector('.header slot[name="meta"]');
+				querySelector('.content-container slot[name="meta"]');
 
 			expect(metaSlotElement).toBeTruthy();
 		});
@@ -96,19 +96,6 @@ describe('vwc-card', () => {
 			const slottedElement = document.createElement('div');
 			slottedElement.slot = 'graphic';
 			slottedElement.id = 'graphic';
-			element.appendChild(slottedElement);
-			await elementUpdated(element);
-
-			const controlElementHasNoHeader = element.shadowRoot?.
-				querySelector('.control')?.classList.contains('hide-header');
-
-			expect(controlElementHasNoHeader).toEqual(false);
-		});
-
-		it('should remove hide-header class from .control if meta is slotted', async function () {
-			const slottedElement = document.createElement('div');
-			slottedElement.slot = 'meta';
-			slottedElement.id = 'meta';
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
