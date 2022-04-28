@@ -30,6 +30,12 @@ export enum Appearance {
 	Ghost = 'ghost',
 }
 
+export enum BlockSize {
+	Condensed = 'condensed',
+	Base = 'base',
+	Extended = 'extended',
+}
+
 export enum Density {
 	BaseMinusOne = -1,
 	Base = 0,

@@ -6,15 +6,6 @@ import { Focus } from '../focus/focus';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { Button, ButtonAppearance } from './button';
 
-const getDensityClassName = (num: number = 0) => {
-	const classMap = new Map([
-		[-1, 'density-minus-1',],
-		[0, '',],
-		[1, 'density-plus-1',]
-	]);
-	return classMap.get(num) || '';
-};
-
 
 const getAppearanceClassName = (appearance: ButtonAppearance, disabled: boolean) => {
 	let className = `appearance-${appearance}`;
@@ -23,13 +14,13 @@ const getAppearanceClassName = (appearance: ButtonAppearance, disabled: boolean)
 };
 
 const getClasses = ({
-	connotation, appearance, shape, density, iconTrailing, icon, label, disabled, stacked
+	connotation, appearance, shape, size, iconTrailing, icon, label, disabled, stacked
 }: Button) => classNames(
 	'control',
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[getAppearanceClassName(appearance as ButtonAppearance, disabled), Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
-	[getDensityClassName(density), Number.isInteger(density)],
+	[`size-${size}`, Boolean(size)],
 	['icon-only', !label && !!icon],
 	['icon-trailing', iconTrailing],
 	['stacked', Boolean(stacked)],

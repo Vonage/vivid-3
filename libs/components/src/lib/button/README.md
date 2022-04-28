@@ -19,17 +19,17 @@ Add a `label` attribute to add text to the button.
 <vwc-button appearance='filled' label='A default button'></vwc-button>
 ```
 
-## Density
+## Size
 
-Use the `density` attribute to change the button's block size.
+Use the `size` attribute to set the button's to a predefined block size extent.
 
-- Type: `-1` | `0` | `1`
-- Default: `0`
+- Type: `'condensed'` | `'base'` | `'extended'`
+- Default: `'base'`
 
 ```html preview
-<vwc-button appearance='filled' label='density -1' density='-1'></vwc-button>
-<vwc-button appearance='filled' label='base' density='0'></vwc-button>
-<vwc-button appearance='filled' label='density +1' density='1'></vwc-button>
+<vwc-button appearance='filled' label='condensed' basis='condensed'></vwc-button>
+<vwc-button appearance='filled' label='base' basis='base'></vwc-button>
+<vwc-button appearance='filled' label='extended' basis='extended'></vwc-button>
 ```
 
 ## Shape

@@ -59,7 +59,7 @@
 
 /* Size */
 
-.control.density-minus-1 {
+.control.block-size-condensed {
 	#{variables.$block-size}: 32px;
 	@include typography.typography-cat-shorthand('caption-bold');
 
@@ -76,7 +76,7 @@
 	}
 }
 
-.control.density-plus-1 {
+.control.block-size-extended {
 	@include typography.typography-cat-shorthand('body-1-bold');
 
 	&:not(.stacked) {
@@ -98,7 +98,7 @@
 	}
 }
 
-.control:not(.density-minus-1):not(.density-plus-1) {
+.control:not(.block-size-condensed):not(.block-size-extended) {
 	@include typography.typography-cat-shorthand('button');
 
 	&:not(.stacked) {
