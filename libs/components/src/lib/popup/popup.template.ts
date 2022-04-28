@@ -23,8 +23,9 @@ export const popupTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Popup> = () => html`
-	<div class="popup-wrapper" ${ref('popupEl')}>
-		<vwc-elevation>
+  <vwc-elevation>
+    <!--the popup-wrapper is needed for alternating the inside of the popup nd not its shadow-->
+	  <div class="popup-wrapper" ${ref('popupEl')}>
 			<div class="${getClasses}" aria-hidden="${(x) => x.open ? 'false' : 'true'}"
 				part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}">
 				<div class="popup-content">
@@ -33,8 +34,8 @@ export const popupTemplate: (
 				</div>
 				${(x) => (x.arrow ? renderArrow() : '')}
 			</div>
-		</vwc-elevation>
-	</div>`;
+    </div>
+  </vwc-elevation>`;
 
 const renderDismissButton = () => {
 	return html`<vwc-button size="base-small" @click="${x => x.handleDismissClick()}"
