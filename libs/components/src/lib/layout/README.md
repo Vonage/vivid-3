@@ -48,7 +48,7 @@ Use the `auto-sizing` attribute to set the initial preferred auto-sizing.
 
 Use the `gutters` attribute to set the initial preferred margin.
 
-- Type: `'base-small'` | `'base'` | `'base-large'`
+- Type: `small'` | `'medium'` | `large'`
 - Default: `''`
 
 ```html preview
@@ -56,15 +56,15 @@ Use the `gutters` attribute to set the initial preferred margin.
   <div style="border: 1px solid">default</div>
   <div style="border: 1px solid">default</div>
 </vwc-layout>
-<vwc-layout gutters="base-small">
+<vwc-layout gutters="small">
   <div style="border: 1px solid">base-small</div>
   <div style="border: 1px solid">base-small</div>
 </vwc-layout>
-<vwc-layout gutters="base">
+<vwc-layout gutters="medium">
   <div style="border: 1px solid">base</div>
   <div style="border: 1px solid">base</div>
 </vwc-layout>
-<vwc-layout gutters="base-large">
+<vwc-layout gutters="large">
   <div style="border: 1px solid">base-large</div>
   <div style="border: 1px solid">base-large</div>
 </vwc-layout>
@@ -74,19 +74,19 @@ Use the `gutters` attribute to set the initial preferred margin.
 
 Use the `column-spacing` attribute to set the initial preferred spacing of a column.
 
-- Type: `'base-small'` | `'base'` | `'base-large'`
-- Default: `'base'`
+- Type: `small'` | `'medium'` | `large'`
+- Default: `'medium'`
 
 ```html preview
-<vwc-layout column-spacing="base-small">
+<vwc-layout column-spacing="small">
   <div style="border: 1px solid">base-small</div>
   <div style="border: 1px solid">base-small</div>
 </vwc-layout>
-<vwc-layout column-spacing="base">
+<vwc-layout column-spacing="medium">
   <div style="border: 1px solid">base</div>
   <div style="border: 1px solid">base</div>
 </vwc-layout>
-<vwc-layout column-spacing="base-large">
+<vwc-layout column-spacing="large">
   <div style="border: 1px solid">base-large</div>
   <div style="border: 1px solid">base-large</div>
 </vwc-layout>
@@ -96,13 +96,13 @@ Use the `column-spacing` attribute to set the initial preferred spacing of a col
 
 Use the `column-basis` attribute to set the initial preferred measure of a column.
 
-- Type: `'base-small'` | `'base'` | `'base-large'`
-- Default: `'base'`
+- Type: `small'` | `'medium'` | `large'`
+- Default: `'medium'`
 
-### base-small
+### small
 
 ```html preview
-<vwc-layout column-basis="base-small">
+<vwc-layout column-basis="small">
   <div style="border: 1px solid">base-small</div>
   <div style="border: 1px solid">base-small</div>
   <div style="border: 1px solid">base-small</div>
@@ -114,7 +114,7 @@ Use the `column-basis` attribute to set the initial preferred measure of a colum
 ### base
 
 ```html preview
-<vwc-layout column-basis="base">
+<vwc-layout column-basis="medium">
   <div style="border: 1px solid">base</div>
   <div style="border: 1px solid">base</div>
   <div style="border: 1px solid">base</div>
@@ -123,10 +123,10 @@ Use the `column-basis` attribute to set the initial preferred measure of a colum
 </vwc-layout>
 ```
 
-### base-large
+### large
 
 ```html preview
-<vwc-layout column-basis="base-large">
+<vwc-layout column-basis="large">
   <div style="border: 1px solid">base-large</div>
   <div style="border: 1px solid">base-large</div>
   <div style="border: 1px solid">base-large</div>

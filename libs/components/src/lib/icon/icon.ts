@@ -1,7 +1,7 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
 import { identity, memoizeWith } from 'ramda';
-import type { Connotation, Density } from '../enums';
+import type { BlockSize, Connotation } from '../enums';
 import { PLACEHOLDER_ICON } from './icon.placeholder';
 
 const BASE_URL = 'https://icon.resources.vonage.com'; // namespaced as 3f7739a0-a898-4f69-a82b-ad9d743170b6 on icons.resources.vonage.com
@@ -47,6 +47,13 @@ type IconConnotation = Extract<Connotation,
 | Connotation.Alert
 | Connotation.Info>;
 
+/**
+ * Types of icon size.
+ *
+ * @public
+ */
+type IconSize = Extract<BlockSize, BlockSize.Condensed | BlockSize.Base | BlockSize.Extended>;
+
 export class Icon extends FoundationElement {
 	/**
 	 * The connotation the icon should have.
@@ -57,7 +64,7 @@ export class Icon extends FoundationElement {
 	 */
 	@attr connotation?: IconConnotation;
 
-	@attr size?: Density;
+	@attr size?: IconSize;
 
 	@observable svg = '';
 

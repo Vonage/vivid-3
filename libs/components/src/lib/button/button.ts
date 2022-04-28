@@ -37,7 +37,7 @@ type ButtonShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  *
  * @public
  */
-type ButtonBlockSize = Extract<BlockSize, BlockSize.Condensed | BlockSize.Base | BlockSize.Extended>;
+type ButtonSize = Extract<BlockSize, BlockSize.Condensed | BlockSize.Base | BlockSize.Extended>;
 
 /**
  * Base class for button
@@ -73,13 +73,13 @@ export class Button extends FoundationButton {
 	@attr appearance?: ButtonAppearance;
 
 	/**
-	 * The density the button should have.
+	 * The size the button should have.
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: density
+	 * HTML Attribute: size
 	 */
-	@attr size?: ButtonBlockSize;
+	@attr size?: ButtonSize;
 
 	/**
 	 * Indicates the icon is stacked.

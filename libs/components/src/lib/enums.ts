@@ -36,10 +36,10 @@ export enum BlockSize {
 	Extended = 'extended',
 }
 
-export enum Density {
-	BaseMinusOne = -1,
-	Base = 0,
-	BasePlusOne = 1,
+export enum InlineSize {
+	Small = 'sm',
+	Medium = 'md',
+	Large = 'lg',
 }
 
 export enum Position {

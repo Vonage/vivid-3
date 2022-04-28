@@ -60,11 +60,11 @@ It accepts a subset of predefined values.
 
 Use the `size` attribute to change the icon's size.
 
-- Type: `'base-small'` | `'base'` | `'base-large'`
+- Type: `'condensed'` | `'base'` | `'extended'`
 - Default: `'base'`
 
 ```html preview
-<vwc-icon type='close-line' size='base-small'></vwc-icon>
+<vwc-icon type='close-line' size='condensed'></vwc-icon>
 <vwc-icon type='close-line' size='base'></vwc-icon>
-<vwc-icon type='close-line' size='base-large'></vwc-icon>
+<vwc-icon type='close-line' size='extended'></vwc-icon>
 ```

@@ -38,7 +38,7 @@ export const popupTemplate: (
   </vwc-elevation>`;
 
 const renderDismissButton = () => {
-	return html`<vwc-button size="base-small" @click="${x => x.handleDismissClick()}"
+	return html`<vwc-button size="condensed" @click="${x => x.handleDismissClick()}"
                           class="dismissible" icon="close-small-solid" shape="pill"></vwc-button>`;
 };
 
