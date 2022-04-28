@@ -3,7 +3,6 @@
   "version": "3.0.0-next.4",
   "type": "module",
   "exports": {
-    "import": "./index.js",
-    "require": "./index.js"
+    "import": "./index.js"
   }
 }
