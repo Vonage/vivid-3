@@ -31,16 +31,16 @@ describe('vwc-card', () => {
 			expect(headerTitle?.textContent?.trim()).toEqual(heading);
 		});
 
-		it('should set subtitle property to .header-subtitle', async () => {
-			const subtitle = 'card subtitle';
-			element.subtitle = subtitle;
+		it('should set subheading property to .header-subheading', async () => {
+			const subheading = 'card subheading';
+			element.subheading = subheading;
 			await elementUpdated(element);
 
-			const headerSubtitle = element.shadowRoot?.querySelector('.header-subtitle');
-			expect(headerSubtitle?.textContent?.trim()).toEqual(subtitle);
+			const headerSubheading = element.shadowRoot?.querySelector('.header-subheading');
+			expect(headerSubheading?.textContent?.trim()).toEqual(subheading);
 		});
 
-		it('should render headerContent if heading or subtitle are set', async function () {
+		it('should render headerContent if heading or subheading are set', async function () {
 			element.heading = 'card title';
 			await elementUpdated(element);
 
@@ -65,7 +65,7 @@ describe('vwc-card', () => {
 		it( 'should add class .hide-header to .control', async () => {
 			element.icon = '';
 			element.heading = '';
-			element.subtitle = '';
+			element.subheading = '';
 			await elementUpdated(element);
 			const controlElementHasNoHeader = element.shadowRoot?.
 				querySelector('.control')?.classList.contains('hide-header');

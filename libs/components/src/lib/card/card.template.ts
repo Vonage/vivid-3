@@ -33,9 +33,9 @@ function heading() {
 /**
  *
  */
-function subtitle() {
+function subheading() {
 	return html`
-		<div class="header-subtitle">${(x) => x.subtitle}</div>
+		<div class="header-subheading">${(x) => x.subheading}</div>
 	`;
 }
 
@@ -46,7 +46,7 @@ function headerContent() {
 	return html`
 		<div class="header-content">
 			${when(x => x.heading, heading())}
-			${when(x => x.subtitle, subtitle())}
+			${when(x => x.subheading, subheading())}
 		</div>
 	`;
 }
@@ -66,7 +66,7 @@ function text() {
  */
 function shouldHideHeader(card:Card) {
 	// eslint-disable-next-line max-len
-	return 	!card.heading  && !card.subtitle && !card.icon && (!card.hasGraphic || !card.hasGraphic.length) && (!card.hasMeta || !card.hasMeta.length);
+	return 	!card.heading  && !card.subheading && !card.icon && (!card.hasGraphic || !card.hasGraphic.length) && (!card.hasMeta || !card.hasMeta.length);
 }
 
 /**
@@ -76,7 +76,7 @@ function renderHeader() {
 	return html<Card>`
 		<header class="header">
 			<slot name="graphic" ${slotted('hasGraphic')}>${when(x => x.icon, renderHeaderIcon())}</slot>
-			${when(x => x.heading || x.subtitle, headerContent())}
+			${when(x => x.heading || x.subheading, headerContent())}
 			<slot name="meta" ${slotted('hasMeta')}></slot>
 		</header>`;
 }

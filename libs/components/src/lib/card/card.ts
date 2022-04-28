@@ -22,7 +22,7 @@ export class Card extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr({ mode: 'fromView' }) subtitle = '';
+	@attr({ mode: 'fromView' }) subheading = '';
 
 	/**
 	 * the text of the card sub-heading

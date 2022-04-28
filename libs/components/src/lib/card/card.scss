@@ -34,7 +34,7 @@
 	}
 
 	&-title,
-	&-subtitle {
+	&-subheading {
 		/* stylelint-disable property-no-vendor-prefix */
 		/* stylelint-disable value-no-vendor-prefix */
 		display: -webkit-box;
@@ -49,10 +49,10 @@
 
 		-webkit-line-clamp: var(#{card-variables.$heading-line-clamp});
 	}
-	&-subtitle {
+	&-subheading {
 		@include typography.typography-cat-shorthand('body-2');
 
-		-webkit-line-clamp: var(#{card-variables.$subtitle-line-clamp});
+		-webkit-line-clamp: var(#{card-variables.$subheading-line-clamp});
 	}
 
 	.hide-header & {
@@ -60,7 +60,7 @@
 	}
 }
 
-.header-subtitle,
+.header-subheading,
 .text {
 	@include typography.typography-cat-shorthand('body-2');
 
