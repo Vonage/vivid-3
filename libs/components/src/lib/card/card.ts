@@ -53,9 +53,11 @@ export class Card extends FoundationElement {
 	 *
 	 * @internal
 	 */
-	@observable hasFooter: HTMLElement[] | undefined;
-	@observable hasGraphic: HTMLElement[] | undefined;
-	@observable hasMeta: HTMLElement[] | undefined;
+
+
+	@observable footerSlottedContent?: HTMLElement[];
+	@observable graphicSlottedContent?: HTMLElement[];
+	@observable hasMetaSlottedContent?: HTMLElement[];
 
 }
 

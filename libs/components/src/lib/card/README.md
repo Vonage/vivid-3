@@ -102,11 +102,13 @@ The meta slot is for action content in the card header.
 footer slot main purpose is for action button
 
 ```html preview
+<div style="block-size: 400px">
 <vwc-card heading="All Options on Deck" subheading="subheading" icon="chat-line" text="here is the card text">
 <div style="height: 150px; width: 100%; background-color: rebeccapurple;" slot="media"></div>
 <vwc-button slot="meta" icon="more-vertical-solid" appearance="ghost"></vwc-button>
 <vwc-button slot="footer" icon="arrow-bold-right-line" shape="pill" label="Action" appearance="outlined"></vwc-button>
 </vwc-card>
+</div>
 ```
 
 ### Content
@@ -123,5 +125,4 @@ If the content structure is not fitting the desired content, the heading, subhea
 
 
 ### TODO:
-- maybe change heading to Title os subheading to subheading
 - in grid - ?

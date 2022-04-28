@@ -9,7 +9,7 @@ import type { Card } from './card';
 
 const getClasses = (_: Card) => classNames(
 	'control',
-	['hide-footer', !_.hasFooter || !_.hasFooter.length],
+	['hide-footer', !_.footerSlottedContent || !_.footerSlottedContent.length],
 	['hide-header', shouldHideHeader(_)]
 );
 
@@ -66,18 +66,27 @@ function text() {
  */
 function shouldHideHeader(card:Card) {
 	// eslint-disable-next-line max-len
-	return 	!card.heading  && !card.subheading && !card.icon && (!card.hasGraphic || !card.hasGraphic.length) && (!card.hasMeta || !card.hasMeta.length);
+	return 	!card.heading  && !card.subheading && !card.icon && (!card.graphicSlottedContent || !card.graphicSlottedContent.length) && (!card.hasMetaSlottedContent || !card.hasMetaSlottedContent.length);
+}
+
+/**
+ *
+ */
+function renderMetaSlot() {
+	return html`
+		<slot name="meta" ${slotted('metaSlottedContent')}></slot>
+	`;
 }
 
 /**
 header
  */
 function renderHeader() {
+
 	return html<Card>`
 		<header class="header">
-			<slot name="graphic" ${slotted('hasGraphic')}>${when(x => x.icon, renderHeaderIcon())}</slot>
+			<slot name="graphic" ${slotted('graphicSlottedContent')}>${when(x => x.icon, renderHeaderIcon())}</slot>
 			${when(x => x.heading || x.subheading, headerContent())}
-			<slot name="meta" ${slotted('hasMeta')}></slot>
 		</header>`;
 }
 
@@ -100,11 +109,12 @@ export const CardTemplate: (
 						<div class="content">
 							<slot name="content">
 								${renderHeader()}
+								${renderMetaSlot()}
 								${when(x => x.text, text())}
 							</slot>
 						</div>
 						<div class="footer">
-							<slot name="footer" ${slotted('hasFooter')}></slot>
+							<slot name="footer" ${slotted('footerSlottedContent')}></slot>
 						</div>
 					</div>
 				</div>
