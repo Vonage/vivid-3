@@ -1,5 +1,9 @@
 {
   "name": "@vonage/vivid",
   "version": "3.0.0-next.4",
-  "exports": { "import": "./index.js" }
+  "type": "module",
+  "exports": {
+    "import": "./index.js",
+    "require": "./index.js"
+  }
 }
