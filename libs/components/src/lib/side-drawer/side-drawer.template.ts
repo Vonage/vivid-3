@@ -1,9 +1,10 @@
-import { html, slotted } from '@microsoft/fast-element';
+import { html, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { ViewTemplate } from '@microsoft/fast-element';
-import { ElementDefinitionContext, endSlotTemplate, FoundationElementTemplate,
-	OverrideFoundationElementDefinition, startSlotTemplate } from '@microsoft/fast-foundation';
-import type { SideDrawer, SideDrawerOptions } from './side-drawer';
+import type {
+	FoundationElementTemplate,
+} from '@microsoft/fast-foundation';
+import type { SideDrawer } from './side-drawer';
 
 const getClasses = ({
 	alternate, modal, open, position
@@ -23,37 +24,28 @@ const getClasses = ({
  * @returns {ViewTemplate<side-drawer>} A template capable of creating HTMLView instances or rendering directly to DOM.
  * @public
  */
-export const sideDrawerTemplate: FoundationElementTemplate<
-ViewTemplate<SideDrawer>,
-SideDrawerOptions
-> = (context, definition) => html`
+export const sideDrawerTemplate: FoundationElementTemplate<ViewTemplate<SideDrawer>> = () => html`
 	<aside class="${getClasses}" part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}"
-	 @keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}">
-	
-		${renderTopBar(context, definition)}
-	
+	 @keydown="${(x, c) => handleKeydown(x, c.event as KeyboardEvent)}">
+
+	 	<header class="side-drawer-top-bar" part="side-drawer-top-bar">
+	 		<slot name="top-bar" ${slotted('hasTopBar')}></slot>
+ 		</header>
+
 		<div class="side-drawer-content">
 			<slot></slot>
 		</div>
 	</aside>
-	
+
 	<div class="side-drawer-app-content">
 		<slot name="app-content"></slot>
 	</div>
-	
-	${(x) => ((x.modal && x.open) ? renderScrim() : '')}
+
+	${when(x => (x.modal && x.open), html`<div class="scrim" @click="${x => (x.open = false)}" @keydown="${x => (x.open = false)}"></div>`)}
 `;
 
-const renderTopBar = (context: ElementDefinitionContext, definition: OverrideFoundationElementDefinition<SideDrawerOptions>) => {
-	return html`
-	${startSlotTemplate(context, definition)}
-	<header class="side-drawer-top-bar" part="side-drawer-top-bar">
-		<slot name="top-bar" ${slotted('hasTopBar')}></slot>
-	</header>
-	${endSlotTemplate(context, definition)}`;
-};
-
-const renderScrim = () => {
-	return html`
-		<div class="scrim" @click="${x => x.handleScrimClick()}" @keydown="${x => x.handleScrimClick()}"></div>`;
+const handleKeydown = (x: any, { key }: KeyboardEvent) => {
+	if (key === 'Escape') {
+		x.open = false;
+	}
 };

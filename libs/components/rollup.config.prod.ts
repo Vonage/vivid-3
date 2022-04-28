@@ -1,5 +1,7 @@
+
 const fs = require('fs');
 const path = require('path');
+const replace = require('@rollup/plugin-replace');
 
 /**
  * @param workingFolder
@@ -36,7 +38,10 @@ module.exports = function setVividRollupConfig(config) {
 	delete output.entryFileNames;
 
 
-	const plugins = [...config.plugins];
+	const plugins = [...config.plugins,
+		replace({
+			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+		})];
 	return {
 		input,
 		output,
