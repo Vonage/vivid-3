@@ -10,8 +10,9 @@ $connotation-mapping: (
   // should map to colors e.g. purple-60
   primary: (
     contrast: theme-consts.$vvd-color-neutral-90,
-    fierce: theme-consts.$vvd-color-neutral-80,
-    strong: theme-consts.$vvd-color-neutral-90,
+    distance-from-base-2: theme-consts.$vvd-color-neutral-80,
+    distance-from-base-1: theme-consts.$vvd-color-neutral-90,
+    base: theme-consts.$vvd-color-primary, //60 - connotation
     soft: theme-consts.$vvd-color-neutral-20,
     pale: theme-consts.$vvd-color-neutral-10,
   ),
