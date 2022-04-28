@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "remove hide and open",
+  "packageName": "@vonage/vivid",
+  "email": "rina.oksman@vonage.com",
+  "dependentChangeType": "patch"
+}

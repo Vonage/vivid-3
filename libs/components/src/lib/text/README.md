@@ -1,4 +1,4 @@
-# vwc-text
+# text
 
 Represents a text custom element.
 The component provisions the Vivid typography font faces and connotations supported by our design system.
