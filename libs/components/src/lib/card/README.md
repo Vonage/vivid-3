@@ -41,6 +41,18 @@ Add a `subheading` attribute to add card subheading
 <vwc-card heading="Vivid Card Component" subheading="extra text to the card heading"></vwc-card>
 ```
 
+## Icon
+Add a `icon='icon-name'` attribute to add icon on the right of the card heading
+
+- Type: `String`
+- Default: `''`
+
+
+```html preview
+<vwc-card heading="Vivid Card Component" subheading="extra text to the card heading" icon="chat-line"></vwc-card>
+```
+
+
 ## Text
 Add a `text` attribute to add text to the card
 
@@ -49,11 +61,11 @@ Add a `text` attribute to add text to the card
 
 
 ```html preview
-<vwc-card heading="Vivid Card Component" subheading="extra text to the card heading" icon="chat-line" text="the card can contain multiple lines of text"></vwc-card>
+<vwc-card heading="Vivid Card Component" subheading="extra text to the card heading" text="the card can contain multiple lines of text"></vwc-card>
 ```
 
 ## Elevation
-the `elevation` control the elevation depth
+Control the elevation depth by adding the `elevation` attribute
 
 - Type: `0` | `2` | `4` | `8` | `12` | `16` | `24`
 - Default: `4`
@@ -63,23 +75,9 @@ the `elevation` control the elevation depth
 ```
 
 
-## Trim Heading & subheading
-The card heading and the subheading can be trimmed to your preferable number of lines.  
-The number of lines are controlled by css variable:
-- `--heading-line-clamp`
-- `--subheading-line-clamp`
-
-- Type: `String`
-- Default: `''`
-
-
-```html preview
-<vwc-card style="--heading-line-clamp: 1; --subheading-line-clamp: 2;" heading="Vivid Card Component with long heading to trim" subheading="extra text to the card heading that is set to be trimmed after 2 lines so the card will not be too long"></vwc-card>
-```
-
 ## Slots
 ### Graphic 
-The graphic slot overide the icon property.
+The graphic slot overide the icon property
 
 ```html preview
 <vwc-card heading="Vivid Card Component" subheading="extra text to the card heading">
@@ -88,7 +86,7 @@ The graphic slot overide the icon property.
 ```
 
 ### Meta
-The meta slot is for action content in the card header.
+The meta slot is for action content in the card header
 .
 
 ```html preview
@@ -112,7 +110,7 @@ footer slot main purpose is for action button
 ```
 
 ### Content
-If the content structure is not fitting the desired content, the heading, subheading and text can overide.
+If the content structure is not fitting the desired content, the heading, subheading and text can overide
 
 ```html preview
 <vwc-card >
@@ -120,6 +118,22 @@ If the content structure is not fitting the desired content, the heading, subhea
 </vwc-card>
 ```
 
+
+## CSS Custom Properties
+
+### Trim Heading & subtitle
+The card heading and the subheading can be trimmed to your preferable number of lines.   
+The number of lines are controlled by css variable:
+- `--heading-line-clamp`
+- `--subheading-line-clamp`
+
+- Type: `String`
+- Default: `''`
+
+
+```html preview
+<vwc-card style="--heading-line-clamp: 1; --subheading-line-clamp: 2;" heading="Vivid Card Component with long heading to trim" subheading="extra text to the card heading that is set to be trimmed after 2 lines so the card will not be too long"></vwc-card>
+```
 
 
 
