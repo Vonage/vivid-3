@@ -36,7 +36,7 @@ export enum BlockSize {
 	Extended = 'extended',
 }
 
-export enum InlineSize {
+export enum Size {
 	Small = 'sm',
 	Medium = 'md',
 	Large = 'lg',

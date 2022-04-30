@@ -1,5 +1,5 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
-import { InlineSize } from '../enums';
+import { Size } from '../enums';
 import { AUTO_SIZING, Layout } from './layout';
 import '.';
 
@@ -27,7 +27,7 @@ describe('vwc-layout', () => {
 
 	describe('gutters', () => {
 		it('should set correct internal gutters class', async () => {
-			const gutters = InlineSize.Large;
+			const gutters = Size.Large;
 
 			expect(getControlElement(element).classList.toString()).toEqual('control');
 			element.gutters = gutters;
@@ -39,7 +39,7 @@ describe('vwc-layout', () => {
 
 	describe('column-basis', () => {
 		it('should set correct internal column-basis style', async () => {
-			const columnBasis = InlineSize.Large;
+			const columnBasis = Size.Large;
 
 			expect(getControlElement(element).classList.toString()).toEqual('control');
 			element.columnBasis = columnBasis;
@@ -50,7 +50,7 @@ describe('vwc-layout', () => {
 
 	describe('column-spacing', () => {
 		it('should set correct internal column-spacing style', async () => {
-			const columnSpacing = InlineSize.Large;
+			const columnSpacing = Size.Large;
 
 			expect(getControlElement(element).classList.toString()).toEqual('control');
 			element.columnSpacing = columnSpacing;

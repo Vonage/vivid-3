@@ -41,6 +41,19 @@ While `type` fetches an icon from the Vivid predefined set of icons, `svg` prope
 </script>
 ```
 
+## Size
+
+Use the `size` attribute to apply a predefined size to the icon.
+
+- Type: `'sm'` | `'md'` | `'lg'`
+- Default: `'md'`
+
+```html preview
+<vwc-icon type='close-line' size='sm'></vwc-icon>
+<vwc-icon type='close-line' size='md'></vwc-icon>
+<vwc-icon type='close-line' size='lg'></vwc-icon>
+```
+
 ## Connotation
 
 Set the `connotation` attribute to change the icon's connotation.
@@ -56,15 +69,4 @@ It accepts a subset of predefined values.
 <vwc-icon type='heart-solid' connotation='success'></vwc-icon>
 <vwc-icon type='heart-solid' connotation='alert'></vwc-icon>
 <vwc-icon type='heart-solid' connotation='info'></vwc-icon>
-```
-
-Use the `size` attribute to change the icon's size.
-
-- Type: `'condensed'` | `'normal'` | `'extended'`
-- Default: `'normal'`
-
-```html preview
-<vwc-icon type='close-line' size='condensed'></vwc-icon>
-<vwc-icon type='close-line' size='normal'></vwc-icon>
-<vwc-icon type='close-line' size='extended'></vwc-icon>
 ```

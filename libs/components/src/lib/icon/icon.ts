@@ -1,7 +1,7 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
 import { identity, memoizeWith } from 'ramda';
-import type { BlockSize, Connotation } from '../enums';
+import type { Connotation, Size } from '../enums';
 import { PLACEHOLDER_ICON } from './icon.placeholder';
 
 const BASE_URL = 'https://icon.resources.vonage.com'; // namespaced as 3f7739a0-a898-4f69-a82b-ad9d743170b6 on icons.resources.vonage.com
@@ -52,7 +52,7 @@ type IconConnotation = Extract<Connotation,
  *
  * @public
  */
-type IconSize = Extract<BlockSize, BlockSize.Condensed | BlockSize.Normal | BlockSize.Extended>;
+type IconSize = Extract<Size, Size.Small | Size.Medium | Size.Large>;
 
 export class Icon extends FoundationElement {
 	/**

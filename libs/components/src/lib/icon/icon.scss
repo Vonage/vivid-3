@@ -31,22 +31,22 @@ svg {
 
 /* Size */
 
-.control:not(.size-condensed):not(.size-base):not(.size-extended) {
+.control:not(.size-sm):not(.size-md):not(.size-lg) {
 	block-size: 1em;
 	inline-size: 1em;
 }
 
-.control.size-condensed {
+.control.size-sm {
 	block-size: 16px;
 	inline-size: 16px;
 }
 
-.control.size-base {
+.control.size-md {
 	block-size: 24px;
 	inline-size: 24px;
 }
 
-.control.size-extended {
+.control.size-lg {
 	block-size: 32px;
 	inline-size: 32px;
 }
