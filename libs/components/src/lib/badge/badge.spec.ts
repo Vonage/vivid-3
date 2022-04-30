@@ -102,7 +102,7 @@ describe('vwc-badge', () => {
 
 	describe('size', () => {
 		it('sets correct internal size style', async () => {
-			const size = 'small';
+			const size = 'condensed';
 			(element as any).size = size;
 			await elementUpdated(element);
 
