@@ -14,9 +14,9 @@ $states-mapping: (
       outline: transaprent,
     ),
     outlined: (
-      text: var(#{connotation.$vvd-color-connotation}),
+      text: var(#{connotation.$vvd-color-connotation}-strong),
       fill: transaprent,
-      outline: var(#{connotation.$vvd-color-connotation}),
+      outline: var(#{connotation.$vvd-color-connotation}-strong),
     ),
     ghost: (
       text: var(#{connotation.$vvd-color-connotation}),
@@ -36,9 +36,9 @@ $states-mapping: (
       outline: transaprent,
     ),
     outlined: (
-      text: var(#{connotation.$vvd-color-connotation}),
+      text: var(#{connotation.$vvd-color-connotation}-strong),
       fill: var(#{connotation.$vvd-color-connotation}-pale),
-      outline: var(#{connotation.$vvd-color-connotation}),
+      outline: var(#{connotation.$vvd-color-connotation}-strong),
     ),
     ghost: (
       text: var(#{connotation.$vvd-color-connotation}),
@@ -59,9 +59,9 @@ $states-mapping: (
       outline: transaprent,
     ),
     outlined: (
-      text: var(#{connotation.$vvd-color-connotation}),
+      text: var(#{connotation.$vvd-color-connotation}-strong),
       fill: var(#{connotation.$vvd-color-connotation}-soft),
-      outline: var(#{connotation.$vvd-color-connotation}),
+      outline: var(#{connotation.$vvd-color-connotation}-strong),
     ),
     ghost: (
       text: var(#{connotation.$vvd-color-connotation}),
@@ -82,9 +82,9 @@ $states-mapping: (
       outline: transaprent,
     ),
     outlined: (
-      text: var(#{theme-consts.$vvd-color-neutral-30}),
+      text: var(#{theme-consts.$vvd-color-neutral-30}-strong),
       fill: transaprent,
-      outline: var(#{theme-consts.$vvd-color-neutral-30}),
+      outline: var(#{theme-consts.$vvd-color-neutral-30}-strong),
     ),
     ghost: (
       text: var(#{theme-consts.$vvd-color-neutral-30}),
@@ -106,9 +106,9 @@ $states-mapping: (
       outline: transaprent,
     ),
     outlined: (
-      text: var(#{connotation.$vvd-color-connotation}),
+      text: var(#{connotation.$vvd-color-connotation}-strong),
       fill: var(#{connotation.$vvd-color-connotation}-soft),
-      outline: var(#{connotation.$vvd-color-connotation}),
+      outline: var(#{connotation.$vvd-color-connotation}-strong),
     ),
     ghost: (
       text: var(#{connotation.$vvd-color-connotation}),
