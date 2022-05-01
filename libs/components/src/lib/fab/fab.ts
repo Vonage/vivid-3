@@ -1,6 +1,6 @@
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
-import type { Connotation } from '../enums.js';
+import type { Appearance, Connotation } from '../enums.js';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
 /**
@@ -16,6 +16,14 @@ type FabConnotation = Extract<Connotation,
 | Connotation.Alert
 | Connotation.Warning
 | Connotation.Info>;
+
+/**
+ * Types of fab appearance.
+ *
+ * @public
+ */
+ export type FabAppearance = Extract<Appearance,
+ Appearance.Filled | Appearance.Outlined | Appearance.Ghost>;
 
 /**
  * Base class for fab
@@ -40,6 +48,15 @@ export class Fab extends FoundationElement {
  * HTML Attribute: connotation
  */
   @attr connotation?: FabConnotation;
+
+  	/**
+	 * The appearance the fab should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: appearance
+	 */
+	@attr appearance?: FabAppearance;
 
   /**
    * Applies disabled mode.

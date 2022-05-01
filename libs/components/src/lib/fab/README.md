@@ -48,15 +48,17 @@ Set the `connotation` attribute to change the FAB's connotation.
 It accepts a subset of predefined values.
 
 - Type: `'primary'` | `'cta'` | `'success'`  | `'announcement'` | `'alert'` | `'warning'` | `'info'`
-- Default: `'primary'`
+- Default: `''`
 
 ```html preview
-<vwc-fab icon='plus-line' connotation='primary'></vwc-fab>
-<vwc-fab icon='plus-line' connotation='cta'></vwc-fab>
-<vwc-fab icon='plus-line' connotation='success'></vwc-fab>
-<vwc-fab icon='plus-line' connotation='announcement'></vwc-fab>
-<vwc-fab icon='plus-line' connotation='alert'></vwc-fab>
-<vwc-fab icon='plus-line' connotation='warning'></vwc-fab>
-<vwc-fab icon='plus-line' connotation='info'></vwc-fab>
-
+<vwc-layout>
+    <vwc-fab icon='plus-line'></vwc-fab>
+    <vwc-fab icon='plus-line' connotation='primary'></vwc-fab>
+    <vwc-fab icon='plus-line' connotation='cta'></vwc-fab>
+    <vwc-fab icon='plus-line' connotation='success'></vwc-fab>
+    <vwc-fab icon='plus-line' connotation='announcement'></vwc-fab>
+    <vwc-fab icon='plus-line' connotation='alert'></vwc-fab>
+    <vwc-fab icon='plus-line' connotation='warning'></vwc-fab>
+    <vwc-fab icon='plus-line' connotation='info'></vwc-fab>
+</vwc-layout>
 ```

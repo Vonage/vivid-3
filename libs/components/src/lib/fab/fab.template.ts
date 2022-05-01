@@ -5,14 +5,22 @@ import type {
   FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import type { Fab } from './fab';
+import type { Fab, FabAppearance } from './fab';
 import { Focus } from '../focus/focus';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 
+const getAppearanceClassName = (appearance: FabAppearance, disabled: boolean) => {
+	let className = `appearance-${appearance}`;
+	disabled && (className += ' disabled');
+	return className;
+};
+
 const getClasses = ({
-  connotation, icon, label, iconTrailing
-}: Fab) => classNames('control',
+  connotation, appearance, icon, label, iconTrailing, disabled
+}: Fab) => classNames(
+  'control',
   [`connotation-${connotation}`, Boolean(connotation)],
+  [getAppearanceClassName(appearance as FabAppearance, disabled), Boolean(appearance)],
   ['icon-only', !label && !!icon],
   ['icon-trailing', iconTrailing]);
 
@@ -34,7 +42,7 @@ export const FabTemplate: (
       const affixIconTemplate = affixIconTemplateFactory(context);
 
       return html`
-      <vwc-elevation>
+      <vwc-elevation dp="8">
         <button
           class="${getClasses}"
           ?disabled="${(x) => x.disabled}"

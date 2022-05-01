@@ -4,14 +4,20 @@
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$subset: primary cta success alert warning info announcement,
-	$shades: soft contrast,
-	$default: primary,
+	$shades: diverse,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+	$appearances: filled,
+	$default: filled,
+);
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+
 .control {
-	@include connotation.connotation;
 	@include typography.typography-cat-shorthand('body-1-bold');
+	@include connotation.connotation;
+	@include appearance.appearance;
 	
 	#{variables.$block-size}: 48px;
 
@@ -20,16 +26,10 @@
 	box-sizing: border-box;
 	align-items: center;
 	border: 0 none;
-	// background-color: var(#{variables.$fab-bg});
 	block-size: var(#{variables.$block-size});
-	color: var(--vvd-color-on-canvas);
 	cursor: pointer;
 	outline: 0 none;
 	vertical-align: middle;
-
-	&:hover {
-		background: var(#{theme-consts.$vvd-color-neutral-10});
-	}
 
 	.icon {
 		font-size: 24px;
@@ -56,6 +56,11 @@
 
 }
 
+.control[class*="connotation"] {
+	background-color: var(#{appearance.get-variable(fill)});
+	color: var(#{appearance.get-variable(text)});
+}
+
 /* Icon */
 
 .icon {
@@ -72,5 +77,10 @@
 .focus-indicator {
 	:not(:focus) & {
 		display: none;
+	}
+
+	.appearance-outlined &,
+	.appearance-ghost & {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
 	}
 }
