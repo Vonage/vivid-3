@@ -21,7 +21,10 @@ Never made an open source contribution before? Wondering how contributions work 
   * Build: `npm run build docs`
 
 * Building and developing the components:
-  * Unit Tests: `npm run nx test components`
+  * Unit Tests 
+    * `npx nx run components:test` to start the tests 
+    * `npx nx run components:test --watch` to start the tests in watch mode
+    * `npx nx run components:test --coverage` to start the tests with coverage report (generated in the `coverage` folder)
   * Visual tests: see the [ui-tests documentation](ui-tests/readme.md)
   * Build: `npm run build components`
 
@@ -56,6 +59,8 @@ Our Code of Conduct means that you are responsible for treating everyone on the 
 ## Vivid criteria
 
 ### Guiding principles to consider when introducing changes
+
+* Align to Vivid design language
 
 * Guarantee contribution does not produce WCAG violations (both in design & engineering)
 

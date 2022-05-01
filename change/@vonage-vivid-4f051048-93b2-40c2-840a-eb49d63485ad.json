@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "migrate calendar to vivid@next",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "none"
+}
