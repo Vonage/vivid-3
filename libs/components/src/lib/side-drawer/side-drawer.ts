@@ -1,5 +1,5 @@
 import { attr } from '@microsoft/fast-element';
-import { FoundationElement, FoundationElementDefinition, StartEndOptions } from '@microsoft/fast-foundation';
+import { FoundationElement } from '@microsoft/fast-foundation';
 
 /**
  * Base class for side-drawer
@@ -13,13 +13,6 @@ import { FoundationElement, FoundationElementDefinition, StartEndOptions } from 
  * @public
  */
 
-/**
- * Anchor configuration options
- *
- * @public
- */
-export type SideDrawerOptions = FoundationElementDefinition & StartEndOptions;
-
 export class SideDrawer extends FoundationElement {
 	/**
 	 * applies scheme alternate region
@@ -29,14 +22,6 @@ export class SideDrawer extends FoundationElement {
 	@attr({
 		mode: 'boolean',
 	}) alternate = false;
-
-	/**
-	 *
-	 * adds top bar to the side drawer
-	 *
-	 * @internal
-	 */
-	hasTopBar: HTMLElement[] | undefined;
 
 	/**
 	 * sets the side drawer's type to modal
@@ -64,32 +49,10 @@ export class SideDrawer extends FoundationElement {
 	@attr position?: 'start' | 'end';
 
 	/**
-	 * Opens the side drawer from the closed state.
+	 *
+	 * adds top bar to the side drawer
 	 *
 	 * @public
 	 */
-	show(): void {
-		this.open = true;
-	}
-
-	/**
-	 * Closes the side drawer from the open state.
-	 *
-	 * @public
-	 */
-	hide(): void {
-		this.open = false;
-	}
-
-	handleScrimClick = (): void => {
-		if (this.modal && this.open) {
-			this.hide();
-		}
-	};
-
-	handleKeydown({ key }: KeyboardEvent): void {
-		if (this.open && key === 'Escape') {
-			this.hide();
-		}
-	}
+	hasTopBar: HTMLElement[] | undefined;
 }

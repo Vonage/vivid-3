@@ -253,9 +253,9 @@ A common practice used in apps / frameworks to promote a popup component to top 
 This helps ensure elements don't render over top a popup undesirebly.
 
 ## Methods
+### updatePosition()
 
-| Method           | Type       | Description                 |
-| ---------------- | ---------- | --------------------------- |
-| `hide`           | `(): void` | Closes the popup.           |
-| `show`           | `(): void` | Opens the popup.            |
-| `updatePosition` | `(): void` | Updates popup's position.   |
+- Type: function
+- Returns: void
+
+Updates popup's position.
