@@ -101,26 +101,24 @@ export const CardTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Card> = () => html<Card>`
 	<vwc-elevation dp=${(x => x.elevation ??  '4')}>
-		<!-- there are 2 wrapper due to a safari bug failing 'filter: drop-shadow'
-			from rendering shadow on an element with 'overflow: hidden' -->
-				<div class="${getClasses}">
-					<div class="wrapper">
-						<div class="vwc-card-media">
-							<slot name="media"></slot>
-						</div>
-						<div class="content">
-							<slot name="content">
-								<div class="content-container">
-									${renderHeader()}
-									${renderMetaSlot()}
-								</div>
-								${when(x => x.text, text())}
-							</slot>
-						</div>
-						<div class="footer">
-							<slot name="footer" ${slotted('footerSlottedContent')}></slot>
-						</div>
-					</div>
+		<div class="${getClasses}">
+			<div class="wrapper">
+				<div class="vwc-card-media">
+					<slot name="media"></slot>
 				</div>
-			</vwc-elevation>
+				<div class="content">
+					<slot name="content">
+						<div class="content-container">
+							${renderHeader()}
+							${renderMetaSlot()}
+						</div>
+						${when(x => x.text, text())}
+					</slot>
+				</div>
+				<div class="footer">
+					<slot name="footer" ${slotted('footerSlottedContent')}></slot>
+				</div>
+			</div>
+		</div>
+	</vwc-elevation>
 `;

@@ -40,18 +40,23 @@ describe('vwc-card', () => {
 			expect(headerSubheading?.textContent?.trim()).toEqual(subheading);
 		});
 
-		it('should render headerContent if heading or subheading are set', async function () {
+		it('should render headerContent if heading is set', async function () {
 			element.heading = 'card title';
 			await elementUpdated(element);
 
-			const heading = element.shadowRoot?.querySelector('.header-title');
 			const headerContent = element.shadowRoot?.querySelector('.header-content');
-
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			// @ts-ignore
-			expect(heading.parentElement).toEqual(headerContent);
-
+			expect(headerContent).toBeTruthy();
 		});
+
+
+		it('should render headerContent if subheading is set', async function () {
+			element.subheading = 'card subheading';
+			await elementUpdated(element);
+
+			const subheadingContent = element.shadowRoot?.querySelector('.header-content');
+			expect(subheadingContent).toBeTruthy();
+		});
+
 
 		it('should add an icon to the card header', async () => {
 			element.icon = 'chat-line';
