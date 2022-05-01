@@ -144,7 +144,7 @@ describe('vwc-popup', () => {
 			element.anchor = 'anchor';
 			await elementUpdated(element);
 
-			element.show();
+			element.open = true;
 			element.updatePosition();
 			await elementUpdated(element);
 
@@ -157,21 +157,8 @@ describe('vwc-popup', () => {
 		it('should set "open" to false', async () => {
 			element.open = true;
 
-			element.hide();
+			element.open = false;
 			element.updatePosition();
-			await elementUpdated(element);
-
-			expect(element.open)
-				.toEqual(false);
-		});
-	});
-
-	describe('anchor', () => {
-		it('should not set popup open if anchor element does not exist', async () => {
-			element.anchor = 'anchor';
-			await elementUpdated(element);
-
-			element.show();
 			await elementUpdated(element);
 
 			expect(element.open)
@@ -225,7 +212,7 @@ describe('vwc-popup', () => {
 			element.dismissible = true;
 			await elementUpdated(element);
 
-			element.show();
+			element.open = true;
 			expect(element.open)
 				.toEqual(true);
 
