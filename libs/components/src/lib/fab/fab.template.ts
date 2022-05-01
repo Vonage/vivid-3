@@ -42,7 +42,7 @@ export const FabTemplate: (
       const affixIconTemplate = affixIconTemplateFactory(context);
 
       return html`
-      <vwc-elevation dp="8">
+      <vwc-elevation dp="24">
         <button
           class="${getClasses}"
           ?disabled="${(x) => x.disabled}"
