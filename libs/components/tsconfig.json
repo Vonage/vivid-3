@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "target": "ES2017",
-    "module": "NodeNext",
+    "module": "ES2015",
     "preserveWatchOutput": true,
     "moduleResolution": "Node",
     "sourceMap": true,
