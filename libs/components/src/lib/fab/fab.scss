@@ -10,6 +10,7 @@
 
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
 	$appearances: filled,
+	$states: idle hover disabled active,
 	$default: filled,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
@@ -30,6 +31,10 @@
 	cursor: pointer;
 	outline: 0 none;
 	vertical-align: middle;
+
+	&:hover {
+		background: var(#{theme-consts.$vvd-color-neutral-10});
+	}
 
 	.icon {
 		font-size: 24px;
@@ -77,10 +82,5 @@
 .focus-indicator {
 	:not(:focus) & {
 		display: none;
-	}
-
-	.appearance-outlined &,
-	.appearance-ghost & {
-		#{focus-variables.$focus-stroke-gap-color}: transparent;
 	}
 }

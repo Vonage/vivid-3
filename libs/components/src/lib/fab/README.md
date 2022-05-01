@@ -62,3 +62,15 @@ It accepts a subset of predefined values.
     <vwc-fab icon='plus-line' connotation='info'></vwc-fab>
 </vwc-layout>
 ```
+
+## Disabled
+
+To disable the FAB, use the `disabled` attribute.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+    <vwc-fab icon='plus-line' disabled></vwc-fab>
+    <vwc-fab icon='plus-line' connotation='primary' disabled></vwc-fab>
+```
