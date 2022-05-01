@@ -8,7 +8,8 @@
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
-	$subset: filled outlined soft,
+	$appearances: filled outlined subtle,
+	$states: idle,
 	$outline-duotone: true,
 	$default: filled,
 );
@@ -22,9 +23,9 @@
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
-	background-color: var(#{appearance.$appearance-color-fill});
-	box-shadow: inset 0 0 0 1px var(#{appearance.$appearance-color-outline});
-	color: var(#{appearance.$appearance-color-text});
+	background-color: var(#{appearance.get-variable(fill)});
+	box-shadow: inset 0 0 0 1px var(#{appearance.get-variable(outline)});
+	color: var(#{appearance.get-variable(text)});
 	column-gap: 8px;
 	vertical-align: middle;
 }

@@ -41,23 +41,4 @@ export class Tooltip extends FoundationElement {
 	 * HTML Attribute: anchor
 	 */
 	@attr anchor?: string;
-
-
-	/**
-	 * Opens the tooltip
-	 *
-	 * @public
-	 */
-	show(): void {
-		this.open = true;
-	}
-
-	/**
-	 * Closes the tooltip
-	 *
-	 * @public
-	 */
-	hide(): void {
-		this.open = false;
-	}
 }

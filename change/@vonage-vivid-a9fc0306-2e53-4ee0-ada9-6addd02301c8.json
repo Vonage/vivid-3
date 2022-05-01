@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "add progress-ring component",
+  "packageName": "@vonage/vivid",
+  "email": "yonatan.kra@vonage.com",
+  "dependentChangeType": "patch"
+}

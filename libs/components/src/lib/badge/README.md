@@ -1,4 +1,4 @@
-# vwc-badge
+# badge
 
 Badge is a label that holds small amounts of information.
 A badge can be used to display unread notifications, or to label a block of text.
@@ -61,12 +61,12 @@ Use the `icon` attribute to add an icon. Use the `icon-trailing` to place the ic
 
 Set the `appearance` attribute to change the badge's appearance.
 
-- Type: `'filled'` | `'soft'` | `'outlined'`
+- Type: `'filled'` | `'subtle'` | `'outlined'`
 - Default: `'filled'`
 
 ```html preview
 <vwc-badge text='filled' appearance='filled'></vwc-badge>
-<vwc-badge text='soft' appearance='soft'></vwc-badge>
+<vwc-badge text='subtle' appearance='subtle'></vwc-badge>
 <vwc-badge text='outlined' appearance='outlined'></vwc-badge>
 ```
 
@@ -81,23 +81,23 @@ It accepts a subset of predefined values.
 ### Filled badge with connotation
 
 ```html preview
-<vwc-badge text='primary' connotation='primary'></vwc-badge>
-<vwc-badge text='cta' connotation='cta'></vwc-badge>
-<vwc-badge text='info' connotation='info'></vwc-badge>
+<vwc-badge text='primary' connotation='primary' appearance="filled"></vwc-badge>
+<vwc-badge text='cta' connotation='cta' appearance="filled"></vwc-badge>
+<vwc-badge text='info' connotation='info' appearance="filled"></vwc-badge>
 <vwc-badge text='success' connotation='success'></vwc-badge>
 <vwc-badge text='warning' connotation='warning'></vwc-badge>
 <vwc-badge text='alert' connotation='alert'></vwc-badge>
 ```
 
-### Soft badge with connotation
+### Subtle badge with connotation
 
 ```html preview
-<vwc-badge text='primary' appearance='soft' connotation='primary'></vwc-badge>
-<vwc-badge text='cta' appearance='soft' connotation='cta'></vwc-badge>
-<vwc-badge text='info' appearance='soft' connotation='info'></vwc-badge>
-<vwc-badge text='success' appearance='soft' connotation='success'></vwc-badge>
-<vwc-badge text='warning' appearance='soft' connotation='warning'></vwc-badge>
-<vwc-badge text='alert' appearance='soft' connotation='alert'></vwc-badge>
+<vwc-badge text='primary' appearance='subtle' connotation='primary'></vwc-badge>
+<vwc-badge text='cta' appearance='subtle' connotation='cta'></vwc-badge>
+<vwc-badge text='info' appearance='subtle' connotation='info'></vwc-badge>
+<vwc-badge text='success' appearance='subtle' connotation='success'></vwc-badge>
+<vwc-badge text='warning' appearance='subtle' connotation='warning'></vwc-badge>
+<vwc-badge text='alert' appearance='subtle' connotation='alert'></vwc-badge>
 ```
 
 ### Outlined badge with connotation

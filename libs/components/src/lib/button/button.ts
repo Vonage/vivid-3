@@ -23,7 +23,7 @@ type ButtonConnotation = Extract<Connotation,
  * @public
  */
 export type ButtonAppearance = Extract<Appearance,
-Appearance.Filled | Appearance.Outlined | Appearance.Soft>;
+Appearance.Filled | Appearance.Outlined | Appearance.Ghost>;
 
 /**
  * Types of button shape.
