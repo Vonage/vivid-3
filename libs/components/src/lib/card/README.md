@@ -19,16 +19,6 @@ Add a `heading` attribute to add card heading title
 <vwc-card heading="Vivid Card Component"></vwc-card>
 ```
 
-## Icon
-Add an `icon` attribute to add icon to the right of the card heading. You can choose an icon from the [vivid icons search platform](https://icons.vivid.vonage.com).
-
-- Type: `String`
-- Default: `''`
-
-
-```html preview
-<vwc-card heading="Vivid Card Component" subheading="extra text to the card heading" icon="chat-line"></vwc-card>
-```
 
 ## Subheading
 Add a `subheading` attribute to add card subheading
@@ -40,6 +30,17 @@ Add a `subheading` attribute to add card subheading
 ```html preview
 <vwc-card heading="Vivid Card Component" subheading="extra text to the card heading"></vwc-card>
 ```
+
+## Elevation
+Control the elevation depth by adding the `elevation` attribute
+
+- Type: `0` | `2` | `4` | `8` | `12` | `16` | `24`
+- Default: `4`
+
+```html preview
+<vwc-card elevation="12" heading="Vivid Card Component" subheading="extra text to the card heading" icon="chat-line" text="the card can contain multiple lines of text"></vwc-card>
+```
+
 
 ## Icon
 Add a `icon='icon-name'` attribute to add icon on the right of the card heading
@@ -64,15 +65,6 @@ Add a `text` attribute to add text to the card
 <vwc-card heading="Vivid Card Component" subheading="extra text to the card heading" text="the card can contain multiple lines of text"></vwc-card>
 ```
 
-## Elevation
-Control the elevation depth by adding the `elevation` attribute
-
-- Type: `0` | `2` | `4` | `8` | `12` | `16` | `24`
-- Default: `4`
-
-```html preview
-<vwc-card elevation="12" heading="Vivid Card Component" subheading="extra text to the card heading" icon="chat-line" text="the card can contain multiple lines of text"></vwc-card>
-```
 
 
 ## Slots
@@ -121,7 +113,7 @@ If the content structure is not fitting the desired content, the heading, subhea
 
 ## CSS Custom Properties
 
-### Trim Heading & subtitle
+### Trim Heading & subheading
 The card heading and the subheading can be trimmed to your preferable number of lines.   
 The number of lines are controlled by css variable:
 - `--heading-line-clamp`
@@ -132,11 +124,7 @@ The number of lines are controlled by css variable:
 
 
 ```html preview
+<div style="width: 300px;">
 <vwc-card style="--heading-line-clamp: 1; --subheading-line-clamp: 2;" heading="Vivid Card Component with long heading to trim" subheading="extra text to the card heading that is set to be trimmed after 2 lines so the card will not be too long"></vwc-card>
+</div>
 ```
-
-
-
-
-### TODO:
-- in grid - ?

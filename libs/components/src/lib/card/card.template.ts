@@ -101,6 +101,8 @@ export const CardTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Card> = () => html<Card>`
 	<vwc-elevation dp=${(x => x.elevation ??  '4')}>
+		<!-- there are 2 wrapper due to a safari bug failing 'filter: drop-shadow'
+			from rendering shadow on an element with 'overflow: hidden' -->
 				<div class="${getClasses}">
 					<div class="wrapper">
 						<div class="vwc-card-media">
