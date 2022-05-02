@@ -40,6 +40,10 @@
     cursor: pointer;
   }
 
+  &:disabled {
+    cursor: not-allowed;
+  }
+
 	&.icon-only {
 		padding-inline: 0;
 		place-content: center;
