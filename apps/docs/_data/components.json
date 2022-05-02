@@ -1,9 +1,34 @@
 [
   {
+    "title": "accordion",
+    "markdown": "./libs/components/src/lib/accordion/README.md",
+    "modules": [
+      "/assets/modules/components/accordion/index.js",
+      "/assets/modules/components/accordion-item/index.js"
+    ]
+  },
+  {
+    "title": "accordion-item",
+    "markdown": "./libs/components/src/lib/accordion-item/README.md",
+    "modules": [
+      "/assets/modules/components/accordion-item/index.js",
+      "/assets/modules/components/text/index.js",
+      "/assets/modules/components/elevation/index.js"
+    ]
+  },
+  {
     "title": "badge",
     "markdown": "./libs/components/src/lib/badge/README.md",
     "modules": [
       "/assets/modules/components/badge/index.js"
+    ]
+  },
+  {
+  "title": "banner",
+  "markdown": "./libs/components/src/lib/banner/README.md",
+  "modules": [
+    "/assets/modules/components/button/index.js",
+    "/assets/modules/components/banner/index.js"
     ]
   },
   {
@@ -29,6 +54,13 @@
     ]
   },
   {
+    "title": "calendar",
+    "markdown": "./libs/components/src/lib/calendar/README.md",
+    "modules": [
+      "/assets/modules/components/calendar/index.js"
+    ]
+  },
+  {
     "title": "elevation",
     "markdown": "./libs/components/src/lib/elevation/README.md",
     "modules": [
@@ -48,6 +80,16 @@
     "markdown": "./libs/components/src/lib/layout/README.md",
     "modules": [
       "/assets/modules/components/layout/index.js"
+    ]
+  },
+  {
+    "title": "popup",
+    "markdown": "./libs/components/src/lib/popup/README.md",
+    "modules": [
+      "/assets/modules/components/popup/index.js",
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/icon/index.js",
+      "/assets/modules/components/text/index.js"
     ]
   },
   {
@@ -73,6 +115,30 @@
     "markdown": "./libs/components/src/lib/text/README.md",
     "modules": [
       "/assets/modules/components/text/index.js"
+    ]
+  },
+  {
+    "title": "tooltip",
+    "markdown": "./libs/components/src/lib/tooltip/README.md",
+    "modules": [
+      "/assets/modules/components/tooltip/index.js",
+      "/assets/modules/components/text/index.js",
+      "/assets/modules/components/button/index.js"
+    ]
+  },
+  {
+    "title": "progress",
+    "markdown": "./libs/components/src/lib/progress/README.md",
+    "modules": [
+      "/assets/modules/components/progress/index.js"
+    ]
+  },
+  {
+    "title": "progress-ring",
+    "markdown": "./libs/components/src/lib/progress-ring/README.md",
+    "modules": [
+      "/assets/modules/components/layout/index.js",
+      "/assets/modules/components/progress-ring/index.js"
     ]
   }
 ]

@@ -5,88 +5,59 @@
 @use 'config' as config;
 @use 'sass:selector';
 @use 'sass:list';
+@use 'sass:map';
 
 
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
 $all-appearances: (
-	filled: 'filled',
-	filled-idle: 'filled-idle',
-	outlined: 'outlined',
-	soft: 'soft',
-	text: 'text',
-	ghost: 'ghost',
+  filled: 'filled',
+  outlined: 'outlined',
+  subtle: 'subtle',
+  text: 'text',
+  ghost: 'ghost',
 );
 
-%filled {
-	#{variables.$appearance-color-fill}: var(#{connotation.$vvd-color-connotation});
-	#{variables.$appearance-color-text}: var(#{connotation.$vvd-color-on-connotation});
+//$appearance-set: filled ghost outlined;
+//$states: idle disabled hover;
+
+
+@function get-variable($type) {
+  $prefix: --_appearance-color;
+  @return #{$prefix}-#{$type};
 }
 
-%outlined {
-	#{variables.$appearance-color-fill}: transparent;
-	@if config.$outline-duotone {
-		#{variables.$appearance-color-outline}: var(#{connotation.$vvd-color-connotation});
-		#{variables.$appearance-color-text}: var(#{connotation.$vvd-color-connotation}-contrast);
-	} @else {
-		#{variables.$appearance-color-outline}: var(#{connotation.$vvd-color-connotation}-diverse);
-		#{variables.$appearance-color-text}: var(#{connotation.$vvd-color-connotation}-diverse);
-	}
-}
+$selectors: (
+  idle: '&',
+  hover: '&:hover:not(:disabled, .disabled), &.hovered:not(:disabled, .disabled)',
+  disabled: '&:disabled , &.disabled',
+  selected: '&.selected',
+  active: '&:active:not(:disabled, .disabled), &.active:not(:disabled, .disabled)',
+);
 
-%soft {
-	#{variables.$appearance-color-fill}: var(#{connotation.$vvd-color-connotation}-soft);
-	#{variables.$appearance-color-text}: var(#{connotation.$vvd-color-connotation}-contrast);
-}
-
-%text,
-%ghost {
-	#{variables.$appearance-color-fill}: transparent;
-	#{variables.$appearance-color-text}: var(#{connotation.$vvd-color-connotation}-diverse);
-}
-
-%soft-idle,
-%filled-idle {
-	#{variables.$appearance-color-fill}: var(#{theme-consts.$vvd-color-neutral-10});
-	#{variables.$appearance-color-text}: var(#{theme-consts.$vvd-color-neutral-30});
-}
-
-%outlined-idle {
-	#{variables.$appearance-color-fill}: transparent;
-	#{variables.$appearance-color-outline}: var(#{theme-consts.$vvd-color-neutral-30});
-	#{variables.$appearance-color-text}: var(#{theme-consts.$vvd-color-neutral-30});
-}
-
-%text-idle,
-%ghost-idle {
-	#{variables.$appearance-color-fill}: transparent;
-	#{variables.$appearance-color-text}: var(#{theme-consts.$vvd-color-neutral-30});
-}
-
-@function get-typed-selector($type) {
-	@return '.appearance-#{$type}';
+@function get-default-selector($appearance) {
+  @return '&';
 }
 
 @mixin appearance {
-	$appearance-set: functions.pick-list(config.$subset, config.$predefined-appearances);
 
-	@each $type in $appearance-set {
-		$typed-selector: get-typed-selector($type);
-		$selector: selector.unify(&, $typed-selector);
+  @each $state in config.$states {
+    #{map.get($selectors, $state)} {
 
-		@if $type == config.$default and list.length($appearance-set) > 1 {
-			$rule-out-typed-selector: &;
-			@each $rule-out-type in $appearance-set {
-				@if $rule-out-type != config.$default {
-					$rule-out-typed-selector: '#{$rule-out-typed-selector}:not(#{get-typed-selector($rule-out-type)})';
-				}
-			}
+      $state-mapping: map.get(variables.$states-mapping, $state);
 
-			$selector: selector.parse(#{$selector, $rule-out-typed-selector});
-		}
+      @each $appearance in config.$appearances {
+        $selector: if($appearance == config.$default, get-default-selector($appearance), '&.appearance-#{$appearance}');
 
-		@at-root #{$selector} {
-			@extend %#{$type};
-		}
-	}
+
+        #{$selector} {
+          $appearance-mapping: map.get($state-mapping, $appearance);
+          @each $type, $key in $appearance-mapping {
+            #{get-variable($type)}: $key;
+          }
+        }
+      }
+    }
+  }
 }
+

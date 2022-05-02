@@ -1,4 +1,4 @@
-import { PlaywrightTestConfig } from '@playwright/test';
+import type { PlaywrightTestConfig } from '@playwright/test';
 
 interface PlaywrightTestConfigWithRegression extends PlaywrightTestConfig {
 
@@ -6,6 +6,7 @@ interface PlaywrightTestConfigWithRegression extends PlaywrightTestConfig {
 
 const config: PlaywrightTestConfigWithRegression = {
 	testMatch: 'src/**/*.test.ts',
+	outputDir: '../../test-results',
 	projects: [
 		{
 			name: 'Chrome Stable',
