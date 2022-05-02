@@ -4,7 +4,7 @@
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$subset: primary cta success alert warning info announcement,
-	$shades: diverse,
+	$shades: contrast fierce strong soft pale,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
@@ -27,13 +27,17 @@
 	box-sizing: border-box;
 	align-items: center;
 	border: 0 none;
-	block-size: var(#{variables.$block-size});
-	cursor: pointer;
 	outline: 0 none;
 	vertical-align: middle;
+	block-size: var(#{variables.$block-size});
+	background-color: var(#{variables.$fab-bg});
 
-	&:hover {
-		background: var(#{theme-consts.$vvd-color-neutral-10});
+	&:not(:disabled) {
+		cursor: pointer;
+	}
+
+	&:disabled {
+		cursor: not-allowed;
 	}
 
 	.icon {
@@ -58,16 +62,20 @@
 			inline-size: var(#{variables.$block-size});
 		}
 	}
-
 }
 
 .control[class*="connotation"] {
 	background-color: var(#{appearance.get-variable(fill)});
 	color: var(#{appearance.get-variable(text)});
 }
+.control:not([class*="connotation"]) {
+	&:hover:not(:disabled) {
+		background: var(#{theme-consts.$vvd-color-neutral-10});
+	}
+}
+
 
 /* Icon */
-
 .icon {
 	:not(.icon-trailing) & {
 		margin-inline-end: var(#{variables.$icon-gap});

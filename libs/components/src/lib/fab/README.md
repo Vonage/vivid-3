@@ -71,6 +71,5 @@ To disable the FAB, use the `disabled` attribute.
 - Default: `false`
 
 ```html preview
-    <vwc-fab icon='plus-line' disabled></vwc-fab>
-    <vwc-fab icon='plus-line' connotation='primary' disabled></vwc-fab>
+    <vwc-fab icon='store-line' disabled></vwc-fab>
 ```
