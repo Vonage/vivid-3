@@ -61,10 +61,14 @@ describe('vwc-fab', () => {
 		it('should set correct connotation class', async () => {
 			const connotation = 'cta';
   
-			expect(getControlElement(element).classList.toString()).toEqual('control');
+      const expectedConnotation = `connotation-${connotation}`;
+      const hasConnotationClassBefore = getControlElement(element).classList.contains(expectedConnotation);
+      
 			(element as any).connotation = connotation;
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.toString()).toEqual(`control connotation-${connotation}`);
+			
+			expect(hasConnotationClassBefore).toEqual(false);
+			expect(getControlElement(element).classList.contains(expectedConnotation)).toEqual(true);
 		});
 	});
 
