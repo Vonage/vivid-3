@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "migrate fab",
+  "packageName": "@vonage/vivid",
+  "email": "rina.oksman@vonage.com",
+  "dependentChangeType": "patch"
+}
