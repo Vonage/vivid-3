@@ -24,11 +24,11 @@
     ]
   },
   {
-  "title": "banner",
-  "markdown": "./libs/components/src/lib/banner/README.md",
-  "modules": [
-    "/assets/modules/components/button/index.js",
-    "/assets/modules/components/banner/index.js"
+    "title": "banner",
+    "markdown": "./libs/components/src/lib/banner/README.md",
+    "modules": [
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/banner/index.js"
     ]
   },
   {
@@ -139,6 +139,14 @@
     "modules": [
       "/assets/modules/components/layout/index.js",
       "/assets/modules/components/progress-ring/index.js"
+    ]
+  },
+  {
+    "title": "toolbar",
+    "markdown": "./libs/components/src/lib/toolbar/README.md",
+    "modules": [
+      "/assets/modules/components/toolbar/index.js",
+      "/assets/modules/components/button/index.js"
     ]
   }
 ]
