@@ -27,8 +27,8 @@
 	box-sizing: border-box;
 	align-items: center;
 	border: 0 none;
-	outline: 0 none;
 	background-color: var(#{variables.$fab-bg});
+	outline: 0 none;
 	block-size: var(#{variables.$block-size});
 	vertical-align: middle;
 
