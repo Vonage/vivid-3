@@ -22,8 +22,8 @@ type FabConnotation = Extract<Connotation,
  *
  * @public
  */
- export type FabAppearance = Extract<Appearance,
- Appearance.Filled | Appearance.Outlined | Appearance.Ghost>;
+export type FabAppearance = Extract<Appearance,
+Appearance.Filled | Appearance.Outlined | Appearance.Ghost>;
 
 /**
  * Base class for fab
@@ -31,39 +31,39 @@ type FabConnotation = Extract<Connotation,
  * @public
  */
 export class Fab extends FoundationElement {
-  /**
-   * Indicates the fab's label.
-   *
-   * @public
-   * @remarks
-   * HTML Attribute: label
-   */
-  @attr({ mode: 'fromView' }) label = '';
-
-  /**
- * The connotation the fab should have.
- *
- * @public
- * @remarks
- * HTML Attribute: connotation
- */
-  @attr connotation?: FabConnotation;
-
-  	/**
-	 * The appearance the fab should have.
+	/**
+	 * Indicates the fab's label.
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: appearance
+	 * HTML Attribute: label
 	 */
+	@attr({ mode: 'fromView' }) label = '';
+
+	/**
+	 * The connotation the fab should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: connotation
+	 */
+	@attr connotation?: FabConnotation;
+
+  	/**
+    * The appearance the fab should have.
+    *
+    * @public
+    * @remarks
+    * HTML Attribute: appearance
+    */
 	@attr appearance?: FabAppearance;
 
-  /**
-   * Applies disabled mode.
-   *
-   * @public
-   */
-  @attr({ mode: 'boolean' }) disabled = false;
+	/**
+	 * Applies disabled mode.
+	 *
+	 * @public
+	 */
+	@attr({ mode: 'boolean' }) disabled = false;
 
 }
 

@@ -10,9 +10,9 @@ import { Fab } from './fab';
 import { FabTemplate as template } from './fab.template';
 
 export const vividFab = Fab.compose<FoundationElementDefinition>({
-  baseName: 'fab',
-  template: template as any,
-  styles,
+	baseName: 'fab',
+	template: template as any,
+	styles,
 });
 
 designSystem.register(vividFab());

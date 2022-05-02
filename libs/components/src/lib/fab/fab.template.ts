@@ -1,13 +1,13 @@
 import { html } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
-  ElementDefinitionContext,
-  FoundationElementDefinition,
+	ElementDefinitionContext,
+	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import type { Fab, FabAppearance } from './fab';
 import { Focus } from '../focus/focus';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
+import type { Fab, FabAppearance } from './fab';
 
 const getAppearanceClassName = (appearance: FabAppearance, disabled: boolean) => {
 	let className = `appearance-${appearance}`;
@@ -16,17 +16,17 @@ const getAppearanceClassName = (appearance: FabAppearance, disabled: boolean) =>
 };
 
 const getClasses = ({
-  connotation, appearance, icon, label, iconTrailing, disabled
+	connotation, appearance, icon, label, iconTrailing, disabled
 }: Fab) => classNames(
-  'control',
-  [`connotation-${connotation}`, Boolean(connotation)],
-  [getAppearanceClassName(appearance as FabAppearance, disabled), Boolean(appearance)],
-  ['icon-only', !label && !!icon],
-  ['icon-trailing', iconTrailing]);
+	'control',
+	[`connotation-${connotation}`, Boolean(connotation)],
+	[getAppearanceClassName(appearance as FabAppearance, disabled), Boolean(appearance)],
+	['icon-only', !label && !!icon],
+	['icon-trailing', iconTrailing]);
 
 const focusTemplate = (context: ElementDefinitionContext) => {
-  const focusTag = context.tagFor(Focus);
-  return html`<${focusTag} class="focus-indicator"></${focusTag}>`;
+	const focusTag = context.tagFor(Focus);
+	return html`<${focusTag} class="focus-indicator"></${focusTag}>`;
 };
 
 /**
@@ -36,12 +36,12 @@ const focusTemplate = (context: ElementDefinitionContext) => {
  * @public
  */
 export const FabTemplate: (
-  context: ElementDefinitionContext,
-  definition: FoundationElementDefinition
+	context: ElementDefinitionContext,
+	definition: FoundationElementDefinition
 ) => ViewTemplate<Fab> = (context: ElementDefinitionContext) => {
-      const affixIconTemplate = affixIconTemplateFactory(context);
+	const affixIconTemplate = affixIconTemplateFactory(context);
 
-      return html`
+	return html`
       <vwc-elevation dp="4">
         <button
           class="${getClasses}"
@@ -52,4 +52,4 @@ export const FabTemplate: (
           ${(x) => x.label}
         </button>
       </vwc-elevation>`;
-      };
+};
