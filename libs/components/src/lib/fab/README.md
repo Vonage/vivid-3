@@ -35,7 +35,7 @@ Use the `label` attribute to add text to the FAB.
 
 To add an icon to the right of the text, use the `icon-trailing` attribute (or `iconTrailing` property).
 
-- Type: `boolean`
+- Type: `Boolean`
 - Default: `false`
 
 ```html preview
@@ -67,7 +67,7 @@ It accepts a subset of predefined values.
 
 To disable the FAB, use the `disabled` attribute.
 
-- Type: `boolean`
+- Type: `Boolean`
 - Default: `false`
 
 ```html preview
