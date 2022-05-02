@@ -35,7 +35,7 @@ describe('vwc-fab', () => {
 			expect(icon.type).toEqual('home');
 		});
 
-		it('setting `iconTrailing` set the order of element', async () => {
+		it('should  set icon to end when `iconTrailing` is set', async () => {
 			element.icon = 'home';
 			element.iconTrailing = true;
 			await elementUpdated(element);
