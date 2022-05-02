@@ -1,3 +1,4 @@
+import { rovingIndex } from 'roving-ux';      // npm es6/common modules
 import { FoundationElement } from '@microsoft/fast-foundation';
 
 /**
@@ -5,4 +6,11 @@ import { FoundationElement } from '@microsoft/fast-foundation';
  *
  * @public
  */
-export class Toolbar extends FoundationElement {}
+export class Toolbar extends FoundationElement {
+	handleContentChange() {
+		rovingIndex({
+			element: node,     // required: the container to get roving index ux
+			target: '#foo',    // optional: a query selector for which children should be focusable
+		});
+	}
+}

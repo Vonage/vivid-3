@@ -20,5 +20,5 @@ export const ToolbarTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Toolbar> = () => html`
 <div class="${getClasses}">
-  <slot></slot>
+  <slot @slotchange="${x => x.handleContentChange()}"></slot>
 </div>`;
