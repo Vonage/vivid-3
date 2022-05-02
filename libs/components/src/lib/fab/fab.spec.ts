@@ -58,7 +58,7 @@ describe('vwc-fab', () => {
 	});
 
 	describe('connotation', () => {
-		it('sets correct internal connotation style', async () => {
+		it('should set correct connotation class', async () => {
 			const connotation = 'cta';
   
 			expect(getControlElement(element).classList.toString()).toEqual('control');
