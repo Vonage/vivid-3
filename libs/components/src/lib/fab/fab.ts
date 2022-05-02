@@ -8,22 +8,21 @@ import { AffixIconWithTrailing } from '../../shared/patterns/affix';
  *
  * @public
  */
-type FabConnotation = Extract<Connotation,
-| Connotation.Primary
-| Connotation.CTA
-| Connotation.Success
-| Connotation.Announcement
-| Connotation.Alert
-| Connotation.Warning
-| Connotation.Info>;
+export type FabConnotation = Extract<Connotation,
+	| Connotation.Primary
+	| Connotation.CTA
+	| Connotation.Success
+	| Connotation.Announcement
+	| Connotation.Alert
+	| Connotation.Warning
+	| Connotation.Info>;
 
 /**
  * Types of fab appearance.
  *
  * @public
  */
-export type FabAppearance = Extract<Appearance,
-Appearance.Filled | Appearance.Outlined | Appearance.Ghost>;
+export type FabAppearance = Extract<Appearance, Appearance.Filled>;
 
 /**
  * Base class for fab
