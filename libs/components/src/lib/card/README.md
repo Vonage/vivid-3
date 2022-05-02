@@ -77,9 +77,18 @@ The graphic slot overide the icon property
 </vwc-card>
 ```
 
+### Media
+The media slot is mainly for images or video content above the card header
+```html preview
+<div style="block-size: 400px; inline-size: 300px;">
+<vwc-card heading="Card with Media" text="here is the card text">
+ <img slot="media" src="https://doodleipsum.com/300x150/flat?bg=EB765D&amp;i=7d5ed3bc0c215d1359b2a63d03cf1540" alt="Sitting on Floor"style="width: 100%; height: 150px; object-fit: cover;"/>
+</vwc-card>
+</div>
+```
+
 ### Meta
 The meta slot is for action content in the card header
-.
 
 ```html preview
 <vwc-card heading="Vivid Card Component" subheading="extra text to the card heading">
