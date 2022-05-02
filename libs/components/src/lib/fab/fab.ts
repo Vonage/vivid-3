@@ -9,13 +9,13 @@ import { AffixIconWithTrailing } from '../../shared/patterns/affix';
  * @public
  */
 type FabConnotation = Extract<Connotation,
-| Connotation.Primary
-| Connotation.CTA
-| Connotation.Success
-| Connotation.Announcement
-| Connotation.Alert
-| Connotation.Warning
-| Connotation.Info>;
+	| Connotation.Primary
+	| Connotation.CTA
+	| Connotation.Success
+	| Connotation.Announcement
+	| Connotation.Alert
+	| Connotation.Warning
+	| Connotation.Info>;
 
 /**
  * Types of fab appearance.
@@ -23,7 +23,7 @@ type FabConnotation = Extract<Connotation,
  * @public
  */
 export type FabAppearance = Extract<Appearance,
-Appearance.Filled | Appearance.Outlined | Appearance.Ghost>;
+	Appearance.Filled | Appearance.Outlined | Appearance.Ghost>;
 
 /**
  * Base class for fab
@@ -49,13 +49,13 @@ export class Fab extends FoundationElement {
 	 */
 	@attr connotation?: FabConnotation;
 
-  	/**
-    * The appearance the fab should have.
-    *
-    * @public
-    * @remarks
-    * HTML Attribute: appearance
-    */
+	/**
+	 * The appearance the fab should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: appearance
+	 */
 	@attr appearance?: FabAppearance;
 
 	/**
