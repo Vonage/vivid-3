@@ -29,8 +29,8 @@
 	border: 0 none;
 	background-color: var(#{variables.$fab-bg});
 	block-size: var(#{variables.$block-size});
-	vertical-align: middle;
 	outline: 0 none;
+	vertical-align: middle;
 
 	&:not(:disabled) {
 		cursor: pointer;
