@@ -48,7 +48,7 @@ describe('vwc-fab', () => {
 	});
 
 	describe('label', () => {
-		it('set label property to node', async () => {
+		it('should set label property to node', async () => {
 			const label = 'lorem';
 
 			element.label = label;
