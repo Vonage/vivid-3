@@ -70,7 +70,7 @@ Use the `gutters` attribute to set the initial preferred margin.
 </vwc-layout>
 ```
 
-## Column-spacing
+## Column Spacing
 
 Use the `column-spacing` attribute to set the initial preferred spacing of a column.
 
@@ -92,11 +92,11 @@ Use the `column-spacing` attribute to set the initial preferred spacing of a col
 </vwc-layout>
 ```
 
-## Column-basis
+## Column Basis
 
 Use the `column-basis` attribute to set the initial preferred measure of a column.
 
-- Type: `'sm'` | `'md'` | `'lg'`
+- Type: `'sm'` | `'md'` | `'lg'` | `'block'`
 - Default: `'md'`
 
 ### Small
