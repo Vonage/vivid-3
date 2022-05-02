@@ -72,21 +72,6 @@ describe('vwc-fab', () => {
 		});
 	});
 
-	describe('appearance', () => {
-		it('sets correct internal appearance style', async () => {
-			const appearance = 'filled';
-
-			const expectedAppearance = `appearance-${appearance}`;
-			const hasAppearanceClassBefore = getControlElement(element).classList.contains(expectedAppearance);
-
-			element.appearance = appearance as FabAppearance;
-			await elementUpdated(element);
-
-			expect(hasAppearanceClassBefore).toEqual(false);
-			expect(getControlElement(element).classList.contains(expectedAppearance)).toEqual(true);
-		});
-	});
-
 	describe('icon-only', () => {
 		it('sets correct internal icon-only style', async () => {
 			const icon = 'home-line';

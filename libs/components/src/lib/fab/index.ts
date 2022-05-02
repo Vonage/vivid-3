@@ -1,5 +1,4 @@
-import '../icon';
-import '../focus';
+import '../button';
 import '../elevation';
 
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
