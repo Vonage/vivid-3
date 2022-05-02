@@ -76,7 +76,9 @@
     @include mixins.get-size-properties(68px, body-2-bold, 10px, 16px, 18px);
 
     &.icon-only {
-      font-size: 90px;
+      .icon {
+        font-size: 90px;
+      }
     }
   }
 }
