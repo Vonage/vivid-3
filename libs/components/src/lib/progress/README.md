@@ -84,7 +84,7 @@ Use the `shape` attribute in order to set `rounded` and `sharp` borders.
 - Default: `'rounded'`
 
 ```html preview
-    <vwc-progress min="0" max="50" value="25" shape="rounded></vwc-progress>
+    <vwc-progress min="0" max="50" value="25" shape="rounded"></vwc-progress>
     <br/>
     <br/>
     <vwc-progress min="0" max="50" value="25"></vwc-progress>

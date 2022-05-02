@@ -40,7 +40,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/components"],
       "options": {
-        "jestConfig": "libs/components/jest.config.js",
+        "jestConfig": "libs/components/jest.config.cjs",
         "passWithNoTests": true
       }
     },
