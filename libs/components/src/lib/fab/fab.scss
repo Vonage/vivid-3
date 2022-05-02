@@ -28,9 +28,9 @@
 	align-items: center;
 	border: 0 none;
 	outline: 0 none;
-	vertical-align: middle;
-	block-size: var(#{variables.$block-size});
 	background-color: var(#{variables.$fab-bg});
+	block-size: var(#{variables.$block-size});
+	vertical-align: middle;
 
 	&:not(:disabled) {
 		cursor: pointer;
@@ -38,10 +38,6 @@
 
 	&:disabled {
 		cursor: not-allowed;
-	}
-
-	.icon {
-		font-size: 24px;
 	}
 
 	&:not(.icon-only) {
@@ -75,8 +71,9 @@
 }
 
 
-/* Icon */
 .icon {
+	font-size: 24px;
+
 	:not(.icon-trailing) & {
 		margin-inline-end: var(#{variables.$icon-gap});
 	}
