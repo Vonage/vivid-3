@@ -9,13 +9,13 @@ import { AffixIconWithTrailing } from '../../shared/patterns/affix';
  * @public
  */
 export type FabConnotation = Extract<Connotation,
-	| Connotation.Primary
-	| Connotation.CTA
-	| Connotation.Success
-	| Connotation.Announcement
-	| Connotation.Alert
-	| Connotation.Warning
-	| Connotation.Info>;
+| Connotation.Primary
+| Connotation.CTA
+| Connotation.Success
+| Connotation.Announcement
+| Connotation.Alert
+| Connotation.Warning
+| Connotation.Info>;
 
 /**
  * Types of fab appearance.
