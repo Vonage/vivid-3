@@ -11,7 +11,7 @@ A floating action button (FAB) is a circled icon that floats above the user inte
 ## Icon
 
 Use the `icon` attribute to change the FAB's icon.
-You can choose an icon from the [vivid icons search platform](https://icons.vivid.vonage.com).
+You can choose an icon from the [icons gallery](https://icons.vivid.vonage.com).
 
 - Type: `String`
 - Default: `''`
