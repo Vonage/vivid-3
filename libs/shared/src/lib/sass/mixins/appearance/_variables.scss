@@ -19,7 +19,7 @@ $states-mapping: (
     duotone: (
       text: var(#{connotation.$vvd-color-connotation}-contrast),
       fill: transaprent,
-      outline: var(#{connotation.$vvd-color-connotation}),
+      outline: var(#{connotation.$vvd-color-connotation}-basis),
     ),
     ghost: (
       text: var(#{connotation.$vvd-color-connotation}),
@@ -46,7 +46,7 @@ $states-mapping: (
     duotone: (
       text: var(#{connotation.$vvd-color-connotation}-contrast),
       fill: var(#{connotation.$vvd-color-connotation}-pale),
-      outline: var(#{connotation.$vvd-color-connotation}),
+      outline: var(#{connotation.$vvd-color-connotation}-basis),
     ),
     ghost: (
       text: var(#{connotation.$vvd-color-connotation}),
@@ -59,7 +59,6 @@ $states-mapping: (
       outline: transaprent,
     )
   ),
-
   active: (
     filled: (
       text: var(#{connotation.$vvd-color-on-connotation}),
@@ -74,7 +73,7 @@ $states-mapping: (
     duotone: (
       text: var(#{connotation.$vvd-color-connotation}-contrast),
       fill: var(#{connotation.$vvd-color-connotation}-soft),
-      outline: var(#{connotation.$vvd-color-connotation}),
+      outline: var(#{connotation.$vvd-color-connotation}-basis),
     ),
     ghost: (
       text: var(#{connotation.$vvd-color-connotation}),
@@ -87,31 +86,30 @@ $states-mapping: (
       outline: transaprent,
     )
   ),
-
   disabled: (
     filled: (
-      text: var(#{theme-consts.$vvd-color-neutral-30}),
-      fill: var(#{theme-consts.$vvd-color-neutral-10}),
+      text: var(#{theme-consts.$vvd-color-neutral-50}),
+      fill: var(#{theme-consts.$vvd-color-neutral-30}),
       outline: transaprent,
     ),
     outlined: (
-      text: var(#{theme-consts.$vvd-color-neutral-30}-strong),
+      text: var(#{theme-consts.$vvd-color-neutral-50}),
       fill: transaprent,
-      outline: var(#{theme-consts.$vvd-color-neutral-30}-strong),
+      outline: var(#{theme-consts.$vvd-color-neutral-50}),
     ),
     duotone: (
-      text: var(#{theme-consts.$vvd-color-neutral-30}-contrast),
+      text: var(#{theme-consts.$vvd-color-neutral-50}),
       fill: transaprent,
-      outline: var(#{theme-consts.$vvd-color-neutral-30}),
+      outline: var(#{theme-consts.$vvd-color-neutral-50}-basis),
     ),
     ghost: (
-      text: var(#{theme-consts.$vvd-color-neutral-30}),
+      text: var(#{theme-consts.$vvd-color-neutral-50}),
       fill: transaprent,
       outline: transaprent,
     ),
     subtle: (
-      text: var(#{theme-consts.$vvd-color-neutral-30}),
-      fill: var(#{theme-consts.$vvd-color-neutral-10}),
+      text: var(#{theme-consts.$vvd-color-neutral-50}),
+      fill: var(#{theme-consts.$vvd-color-neutral-30}),
       outline: transaprent,
     )
   ),
@@ -131,7 +129,7 @@ $states-mapping: (
     duotone: (
       text: var(#{connotation.$vvd-color-connotation}-contrast),
       fill: var(#{connotation.$vvd-color-connotation}-soft),
-      outline: var(#{connotation.$vvd-color-connotation}),
+      outline: var(#{connotation.$vvd-color-connotation}-basis),
     ),
     ghost: (
       text: var(#{connotation.$vvd-color-connotation}),

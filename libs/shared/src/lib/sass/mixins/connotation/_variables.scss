@@ -9,13 +9,15 @@ $compound-placeholder: '[compound]'; // will be replaced by actual compound
 $connotation-mapping: (
   // should map to colors e.g. purple-60
   primary: (
+    basis: theme-consts.$vvd-color-neutral,
     contrast: theme-consts.$vvd-color-neutral-90,
     fierce: theme-consts.$vvd-color-neutral-80,
-    strong: theme-consts.$vvd-color-neutral-90,
+    strong: theme-consts.$vvd-color-primary,
     soft: theme-consts.$vvd-color-neutral-20,
     pale: theme-consts.$vvd-color-neutral-10,
   ),
   cta: (
+    basis: theme-consts.$vvd-color-cta,
     contrast: theme-consts.$vvd-color-cta-90,
     fierce: theme-consts.$vvd-color-cta-80,
     strong: theme-consts.$vvd-color-cta-70,
@@ -23,6 +25,7 @@ $connotation-mapping: (
     pale: theme-consts.$vvd-color-cta-10,
   ),
   success: (
+    basis: theme-consts.$vvd-color-success,
     contrast: theme-consts.$vvd-color-success-90,
     fierce: theme-consts.$vvd-color-success-80,
     strong: theme-consts.$vvd-color-success-70,
@@ -30,6 +33,7 @@ $connotation-mapping: (
     pale: theme-consts.$vvd-color-success-10,
   ),
   alert: (
+    basis: theme-consts.$vvd-color-alert,
     contrast: theme-consts.$vvd-color-alert-90,
     fierce: theme-consts.$vvd-color-alert-80,
     strong: theme-consts.$vvd-color-alert-70,
@@ -37,6 +41,7 @@ $connotation-mapping: (
     pale: theme-consts.$vvd-color-alert-10,
   ),
   warning: (
+    basis: theme-consts.$vvd-color-warning,
     contrast: theme-consts.$vvd-color-warning-90,
     fierce: theme-consts.$vvd-color-warning-80,
     strong: theme-consts.$vvd-color-warning-70,
@@ -44,6 +49,7 @@ $connotation-mapping: (
     pale: theme-consts.$vvd-color-warning-10,
   ),
   info: (
+    basis: theme-consts.$vvd-color-info,
     contrast: theme-consts.$vvd-color-info-90,
     fierce: theme-consts.$vvd-color-info-80,
     strong: theme-consts.$vvd-color-info-70,
@@ -51,6 +57,7 @@ $connotation-mapping: (
     pale: theme-consts.$vvd-color-info-10,
   ),
   announcement: (
+    basis: theme-consts.$vvd-color-announcement,
     contrast: theme-consts.$vvd-color-announcement-90,
     fierce: theme-consts.$vvd-color-announcement-80,
     strong: theme-consts.$vvd-color-announcement-70,
