@@ -1,5 +1,5 @@
-@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use 'partials/variables' as variables;
+@use 'partials/mixins' as mixins;
 @use '../focus/partials/variables' as focus-variables;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
@@ -49,8 +49,6 @@
 	}
 
 	&.stacked {
-		#{variables.$stacked-icon-gap}: 8px;
-
 		flex-direction: column;
 		justify-content: center;
 	}
@@ -59,66 +57,30 @@
 
 /* Size */
 
-.control.size-condensed {
-	#{variables.$block-size}: 32px;
-	@include typography.typography-cat-shorthand('caption-bold');
+.control {
+  &:not(.stacked) {
+    &.size-condensed {
+      @include mixins.get-size-properties(32px, caption-bold, 8px, 12px, 16px);
+    }
 
-	&.stacked {
-		#{variables.$block-size}: 56px;
-	}
+    &.size-extended {
+      @include mixins.get-size-properties(48px, body-1-bold, 10px, 20px, 24px);
+    }
 
-	&:not(.icon-only) {
-		padding-inline: 12px;
-	}
+    &:not(.size-condensed, .size-extended) {
+      @include mixins.get-size-properties(40px, button, 8px, 16px, 20px);
+    }
+  }
 
-	.icon {
-		font-size: 16px;
-	}
+  &.stacked {
+    @include mixins.get-size-properties(68px, body-2-bold, 10px, 16px, 18px);
+
+    &.icon-only {
+      font-size: 90px;
+    }
+  }
 }
 
-.control.size-extended {
-	@include typography.typography-cat-shorthand('body-1-bold');
-
-	&:not(.stacked) {
-		#{variables.$block-size}: 48px;
-	}
-
-	&.stacked {
-		#{variables.$block-size}: 80px;
-	}
-
-	&:not(.icon-only) {
-		#{variables.$icon-gap}: 10px;
-
-		padding-inline: 20px;
-	}
-
-	.icon {
-		font-size: 24px;
-	}
-}
-
-.control:not(.size-condensed):not(.size-extended) {
-	@include typography.typography-cat-shorthand('button');
-
-	&:not(.stacked) {
-		#{variables.$block-size}: 40px;
-	}
-
-	&.stacked {
-		#{variables.$block-size}: 68px;
-	}
-
-	&:not(.icon-only) {
-		#{variables.$icon-gap}: 8px;
-
-		padding-inline: 16px;
-	}
-
-	.icon {
-		font-size: 20px;
-	}
-}
 
 /* Shape */
 

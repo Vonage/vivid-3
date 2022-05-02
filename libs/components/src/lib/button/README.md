@@ -79,7 +79,7 @@ Set the `appearance` attribute to change the button's appearance.
 ## Stacked
 
 Set the `stacked` attribute to change the button's layout to stacked.
-(Note: this will override the size member and define stacked predefined size).
+(Will override the [size](#size) member by setting a predefined stacked size).
 
 - Default: `false`
 
@@ -87,6 +87,9 @@ Set the `stacked` attribute to change the button's layout to stacked.
 <vwc-button stacked appearance='filled' label='Stacked'></vwc-button>
 <vwc-button stacked appearance='filled' icon='message-sent-line' label='With Icon'></vwc-button>
 <vwc-button stacked appearance='filled' icon='message-sent-line' icon-trailing label='Icon Trailing'></vwc-button>
+<vwc-button stacked appearance='filled' icon='message-sent-line'></vwc-button>
+that's ugly
+<vwc-button stacked appearance='filled' icon='message-sent-line' shape="pill"></vwc-button>
 ```
 
 ## Connotation

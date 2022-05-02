@@ -1,0 +1,17 @@
+@use 'variables' as variables;
+@use '../../../../../shared/src/lib/sass/mixins/typography' as typography;
+
+
+@mixin get-size-properties($block-size, $font-face, $icon-gap, $padding-inline, $icon-size) {
+  #{variables.$block-size}: $block-size;
+  @include typography.typography-cat-shorthand($font-face);
+
+	&:not(.icon-only) {
+    #{variables.$icon-gap}: $icon-gap;
+		padding-inline: $padding-inline;
+	}
+
+	.icon {
+		font-size: $icon-size;
+	}
+}
