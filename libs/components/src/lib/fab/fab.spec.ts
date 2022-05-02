@@ -26,7 +26,7 @@ describe('vwc-fab', () => {
 	});
 
 	describe('icon', () => {
-		it('adds an icon to the fab', async () => {
+		it('should add an icon to the fab', async () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
