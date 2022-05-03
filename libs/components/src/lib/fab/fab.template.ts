@@ -22,7 +22,7 @@ export const FabTemplate: (
 ) => ViewTemplate<Fab> = () => {
 	return html`
 	<vwc-elevation dp='8'>
-		<div class="${getClasses}">
+		<div class="${getClasses}" exportparts="vvd-theme-alternate">
 			<vwc-button 
 				appearance='filled' 
 				label=${(x) => x.label} 
@@ -30,9 +30,9 @@ export const FabTemplate: (
 				icon=${(x) => x.icon} 
 				icon-trailing=${(x) => x.iconTrailing}
 				connotation=${(x) => x.connotation} 
-				shape="pill"
-				?disabled="${(x) => x.disabled}"
-				part="vvd-theme-alternate">
+				shape='pill'
+				?disabled=${(x) => x.disabled}
+				part="${(x) => x.disabled ? '' : 'vvd-theme-alternate'}">
 			</vwc-button>
 		</div>
 	</vwc-elevation>`;
