@@ -3,5 +3,5 @@
   "comment": "ui-tests support for multi components imports",
   "packageName": "@vonage/vivid",
   "email": "yinon@hotmail.com",
-  "dependentChangeType": "none"
+  "dependentChangeType": "prerelease"
 }

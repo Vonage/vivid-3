@@ -20,9 +20,9 @@ jobs:
         run: npm ci
 
       - name: Build Components
-        run: npm run nx build components
+        run: npx nx run components:build
 
       - name: Publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
-        run: npx beachball publish -m "Publishing a new version" --no-git-tags --prerelease-prefix next -t next -y --access public -n $NPM_TOKEN
+          run: npx beachball publish -m "Publishing a new version" --no-git-tags --prerelease-prefix next -t next -y -n $NPM_TOKEN

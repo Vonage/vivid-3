@@ -3,5 +3,5 @@
   "comment": "side effect import to run from index",
   "packageName": "@vonage/vivid",
   "email": "yinon@hotmail.com",
-  "dependentChangeType": "none"
+  "dependentChangeType": "prerelease"
 }

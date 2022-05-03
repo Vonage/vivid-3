@@ -1,7 +1,7 @@
 {
-  "type": "patch",
+  "type": "prerelease",
   "comment": "Update icon size",
   "packageName": "@vonage/vivid",
   "email": "yonatan.kra@vonage.com",
-  "dependentChangeType": "patch"
+  "dependentChangeType": "prerelease"
 }

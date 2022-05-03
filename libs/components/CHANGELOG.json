@@ -4,7 +4,7 @@
     {
       "date": "Fri, 18 Mar 2022 08:18:37 GMT",
       "tag": "@vonage/vivid_v3.0.0",
-      "version": "3.0.0",
+      "version": "3.0.0-next.3",
       "comments": {
         "none": [
           {
@@ -32,7 +32,7 @@
             "comment": "Remove breadcrumb-item from the docs"
           }
         ],
-        "minor": [
+        "prerelease": [
           {
             "author": "yonatan.kra@vonage.com",
             "package": "@vonage/vivid",
@@ -56,9 +56,7 @@
             "package": "@vonage/vivid",
             "commit": "c043c18d11b49a0015475e280d8d5202f6af5852",
             "comment": "new sidenav-item component. part of the sidenav component scope"
-          }
-        ],
-        "patch": [
+          },
           {
             "author": "rina.oksman@vonage.com",
             "package": "@vonage/vivid",
