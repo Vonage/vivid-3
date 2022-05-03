@@ -146,9 +146,15 @@ describe('vwc-card', () => {
 	});
 
 	describe('card elevation', () => {
-		it('should have vwc-elevation', async () => {
-			await elementUpdated(element);
-			expect(Boolean(element.shadowRoot?.querySelector('vwc-elevation'))).toEqual(true);
+
+		it('should have default elevation', async function () {
+			const defaultElevation = '4';
+
+			const controlElevation = element.shadowRoot?.
+				querySelector('vwc-elevation');
+
+			expect(controlElevation?.getAttribute('dp')).toEqual(defaultElevation);
+
 		});
 
 		it('should change the elevation dp when there is elevation property', async () => {
