@@ -7,8 +7,7 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { Fab } from './fab';
 
-const getClasses = ({ }: Fab) => classNames(
-	'control');
+const getClasses = (_: Fab) => classNames('control');
 
 /**
  * The template for the {@link @microsoft/fast-foundation#Fab} component.

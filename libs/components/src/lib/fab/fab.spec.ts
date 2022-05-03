@@ -28,9 +28,9 @@ describe('vwc-fab', () => {
 
 	describe('default', () => {
 		it('should set default properties', async () => {
-			expect(getControlElement(getButtonElement()).classList.contains(`appearance-filled`)).toBeTruthy();
-			expect(getControlElement(getButtonElement()).classList.contains(`shape-pill`)).toBeTruthy();
-			expect(getControlElement(getButtonElement()).classList.contains(`size-base-large`)).toBeTruthy();
+			expect(getControlElement(getButtonElement()).classList.contains('appearance-filled')).toBeTruthy();
+			expect(getControlElement(getButtonElement()).classList.contains('shape-pill')).toBeTruthy();
+			expect(getControlElement(getButtonElement()).classList.contains('size-base-large')).toBeTruthy();
 		});
 	});
 
@@ -46,20 +46,20 @@ describe('vwc-fab', () => {
 
 	describe('icon', () => {
 		it('should set icon-only property', async () => {
-			expect(getControlElement(getButtonElement()).classList.contains(`icon-only`)).toBeFalsy();
+			expect(getControlElement(getButtonElement()).classList.contains('icon-only')).toBeFalsy();
 			const icon = 'home-line';
 			element.icon = icon;
 			await elementUpdated(element);
-			expect(getControlElement(getButtonElement()).classList.contains(`icon-only`)).toBeTruthy();
+			expect(getControlElement(getButtonElement()).classList.contains('icon-only')).toBeTruthy();
 		});
 
 		it('should set icon-trailing property', async () => {
-			expect(getControlElement(getButtonElement()).classList.contains(`icon-trailing`)).toBeFalsy()
+			expect(getControlElement(getButtonElement()).classList.contains('icon-trailing')).toBeFalsy();
 			const icon = 'home-line';
 			element.icon = icon;
 			element.iconTrailing = true;
 			await elementUpdated(element);
-			expect(getControlElement(getButtonElement()).classList.contains(`icon-trailing`)).toBeTruthy()
+			expect(getControlElement(getButtonElement()).classList.contains('icon-trailing')).toBeTruthy();
 		});
 	});
 
@@ -75,10 +75,10 @@ describe('vwc-fab', () => {
 
 	describe('disabled', () => {
 		it('should set disabled property', async () => {
-			expect(getControlElement(getButtonElement()).classList.contains(`disabled`)).toBeFalsy();
+			expect(getControlElement(getButtonElement()).classList.contains('disabled')).toBeFalsy();
 			element.disabled = true;
 			await elementUpdated(element);
-			expect(getControlElement(getButtonElement()).classList.contains(`disabled`)).toBeTruthy();
+			expect(getControlElement(getButtonElement()).classList.contains('disabled')).toBeTruthy();
 		});
 	});
 });
