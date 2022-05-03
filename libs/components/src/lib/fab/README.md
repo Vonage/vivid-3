@@ -51,7 +51,7 @@ It accepts a subset of predefined values.
 - Default: `''`
 
 ```html preview
-<vwc-layout>
+<vwc-layout column-basis="base-small">
     <vwc-fab icon='plus-line' connotation='primary'></vwc-fab>
     <vwc-fab icon='plus-line' connotation='cta'></vwc-fab>
     <vwc-fab icon='plus-line' connotation='success'></vwc-fab>
