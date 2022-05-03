@@ -1,4 +1,94 @@
+@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+@use 'partials/variables' as variables;
+
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+	$subset: cta,
+	$shades: contrast fierce strong soft pale,
+);
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+	$appearances: filled,
+	$states: idle hover disabled active,
+	$default: filled,
+);
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+
 .control {
-	display: inline-block; 
+	@include typography.typography-cat-shorthand('body-1-bold');
+	@include connotation.connotation;
+	@include appearance.appearance;
+
+	#{variables.$block-size}: 48px;
+
+	position: relative;
+	display: inline-flex;
+	box-sizing: border-box;
+	align-items: center;
+	border: 0 none;
 	border-radius: 24px;
+	block-size: var(#{variables.$block-size});
+	background: var(#{theme-consts.$vvd-color-neutral});
+	background-color: var(#{theme-consts.$vvd-color-surface-4dp});
+	filter: var(#{theme-consts.$vvd-shadow-surface-4dp});
+	outline: 0 none;
+	vertical-align: middle;
+
+	&.icon-only {
+		border-radius: 50%;
+	}
+
+	&:not(:disabled) {
+		cursor: pointer;
+		&:hover{
+			background: var(#{theme-consts.$vvd-color-neutral-10});
+		}
+		&:active{
+			background: var(#{theme-consts.$vvd-color-neutral-30});
+			filter: var(#{theme-consts.$vvd-shadow-surface-8dp});
+		}
+	}
+	
+	&:disabled {
+		cursor: not-allowed;
+	}
+
+	&:not(.icon-only) {
+		#{variables.$icon-gap}: 10px;
+
+		padding-inline: 20px;
+	}
+
+	&.icon-only {
+		padding-inline: 0;
+		place-content: center;
+		@supports (aspect-ratio: 1) {
+			aspect-ratio: 1;
+		}
+		@supports not (aspect-ratio: 1) {
+			inline-size: var(#{variables.$block-size});
+		}
+	}
+
+}
+
+/* Icon */
+.icon {
+	font-size: 24px;
+
+	:not(.icon-trailing) & {
+		margin-inline-end: var(#{variables.$icon-gap});
+	}
+
+	.icon-trailing & {
+		order: 1;
+		margin-inline-start: var(#{variables.$icon-gap});
+	}
+}
+
+.focus-indicator {
+	:not(:focus) & {
+		display: none;
+	}
 }

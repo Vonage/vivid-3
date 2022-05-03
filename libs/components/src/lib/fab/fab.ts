@@ -1,33 +1,22 @@
-import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
+import { applyMixins, Button as FoundationButton } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
+
 import type { Connotation } from '../enums.js';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
 /**
- * Types of button connotation.
+ * Types of fab connotation.
  *
  * @public
  */
-export type FabConnotation = Extract<Connotation,
-| Connotation.CTA
-| Connotation.Success
-| Connotation.Alert>;
+type FabConnotation = Extract<Connotation, Connotation.CTA>;
 
 /**
  * Base class for fab
  *
  * @public
  */
-export class Fab extends FoundationElement {
-	/**
-	 * Indicates the fab's label.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: label
-	 */
-	@attr label?: string; 
-
+export class Fab extends FoundationButton {
 	/**
 	 * The connotation the fab should have.
 	 *
@@ -38,12 +27,13 @@ export class Fab extends FoundationElement {
 	@attr connotation?: FabConnotation;
 
 	/**
-	 * Applies disabled mode.
+	 * Indicates the fab's label.
 	 *
 	 * @public
+	 * @remarks
+	 * HTML Attribute: label
 	 */
-	@attr({ mode: 'boolean' }) disabled = false;
-
+	@attr label?: string;
 }
 
 export interface Fab extends AffixIconWithTrailing { }
