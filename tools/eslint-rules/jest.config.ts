@@ -1,6 +1,6 @@
 module.exports = {
   displayName: 'eslint-rules',
-  preset: '../../jest.preset.js',
+
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
@@ -14,4 +14,5 @@ module.exports = {
   moduleNameMapper: {
     '@eslint/eslintrc': '@eslint/eslintrc/dist/eslintrc-universal.cjs',
   },
+  preset: '../../jest.preset.ts',
 };

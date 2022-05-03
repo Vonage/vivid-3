@@ -1,6 +1,7 @@
 import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { arrow, autoUpdate, computePosition, flip, hide, inline, offset, Placement, Strategy } from '@floating-ui/dom';
+import { arrow, autoUpdate, computePosition, flip, hide, inline, offset, Strategy } from '@floating-ui/dom';
+import type { Placement } from '@floating-ui/dom';
 
 /**
  * Base class for popup
