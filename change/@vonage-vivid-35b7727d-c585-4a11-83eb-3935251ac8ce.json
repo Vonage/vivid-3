@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "elevation avoid default dp attribute mutating the dom",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "prerelease"
-}

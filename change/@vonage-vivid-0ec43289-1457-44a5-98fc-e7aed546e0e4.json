@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "lint rule to prevent default attribute assignment that mutates DOM",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "prerelease"
-}

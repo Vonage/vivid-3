@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "side effect import to run from index",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "prerelease"
-}

@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "remove hide and show",
-  "packageName": "@vonage/vivid",
-  "email": "rina.oksman@vonage.com",
-  "dependentChangeType": "prerelease"
-}

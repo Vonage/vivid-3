@@ -1,8 +1,27 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Fri, 18 Mar 2022 08:18:37 GMT and should not be manually modified.
+This log was last generated on Tue, 03 May 2022 20:34:28 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.7
+
+Tue, 03 May 2022 20:34:28 GMT
+
+### Changes
+
+- banner removable now works (yonatan.kra@vonage.com)
+- add the banner component (yonatan.kra@vonage.com)
+- fix(components): update color tokens & states (rachel.tannenbaum@vonage.com)
+- change banner API (yonatan.kra@vonage.com)
+- fix md (rina.oksman@vonage.com)
+- add progress-ring component (yonatan.kra@vonage.com)
+- remove hide and open (rina.oksman@vonage.com)
+- migrate accordion (rina.oksman@vonage.com)
+- remove hide and show (rina.oksman@vonage.com)
+- elevation avoid default dp attribute mutating the dom (yinon@hotmail.com)
+- add the progress component (yonatan.kra@vonage.com)
+- Update icon size (yonatan.kra@vonage.com)
 
 ## 3.0.0
 ## 3.0.0-next.3

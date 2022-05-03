@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "Update playwright version to 1.21.0",
-  "packageName": "@vonage/vivid",
-  "email": "yonatan.kra@vonage.com",
-  "dependentChangeType": "prerelease"
-}

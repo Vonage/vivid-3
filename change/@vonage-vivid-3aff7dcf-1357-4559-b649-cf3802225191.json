@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "fix(appearance): prevent active to overide disable",
-  "packageName": "@vonage/vivid",
-  "email": "rachel.tannenbaum@vonage.com",
-  "dependentChangeType": "prerelease"
-}
