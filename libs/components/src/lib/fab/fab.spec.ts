@@ -1,10 +1,8 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
-import type { Icon } from '../icon/icon';
-import { Fab, FabAppearance, FabConnotation } from './fab';
+import { Fab, FabConnotation } from './fab';
 import '.';
 
 const COMPONENT_TAG = 'vwc-fab';
-const ICON_SELECTOR = 'vwc-icon';
 
 describe('vwc-fab', () => {
 	let element: Fab;
@@ -16,86 +14,71 @@ describe('vwc-fab', () => {
 	describe('basic', () => {
 		it('should be initialized as a vwc-fab', async () => {
 			expect(element).toBeInstanceOf(Fab);
-			expect(element.label).toEqual('');
+			expect(element.label).toBeUndefined();
 			expect(element.icon).toBeUndefined();
 			expect(element.connotation).toBeUndefined();
-			expect(element.appearance).toBeUndefined();
 			expect(element.iconTrailing).toBeFalsy();
 			expect(element.disabled).toBeFalsy();
 		});
 	});
 
-	describe('icon', () => {
-		it('should add an icon to the fab', async () => {
-			element.icon = 'home';
-			await elementUpdated(element);
+	const getButtonElement = () => {
+		return getControlElement(element).querySelector('vwc-button') as HTMLElement;
+	};
 
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-			expect(icon).toBeInstanceOf(HTMLElement);
-			expect(icon.type).toEqual('home');
-		});
-
-		it('should  set icon to end when `iconTrailing` is set', async () => {
-			element.icon = 'home';
-			element.iconTrailing = true;
-			await elementUpdated(element);
-
-			const trailingIcon = element.shadowRoot?.querySelector(
-				`.icon-trailing ${ICON_SELECTOR}`,
-			);
-			expect(trailingIcon).toBeInstanceOf(HTMLElement);
+	describe('default', () => {
+		it('should set default properties', async () => {
+			expect(getControlElement(getButtonElement()).classList.contains(`appearance-filled`)).toBeTruthy();
+			expect(getControlElement(getButtonElement()).classList.contains(`shape-pill`)).toBeTruthy();
+			expect(getControlElement(getButtonElement()).classList.contains(`size-base-large`)).toBeTruthy();
 		});
 	});
 
 	describe('label', () => {
-		it('should set label property to node', async () => {
-			const label = 'lorem';
-
+		it('should set label property', async () => {
+			expect(getControlElement(getButtonElement()).textContent?.trim()).toEqual('');
+			const label = 'lala';
 			element.label = label;
 			await elementUpdated(element);
-			expect(getControlElement(element).textContent?.trim()).toEqual(label);
+			expect(getControlElement(getButtonElement()).textContent?.trim()).toEqual(label);
+		});
+	});
+
+	describe('icon', () => {
+		it('should set icon-only property', async () => {
+			expect(getControlElement(getButtonElement()).classList.contains(`icon-only`)).toBeFalsy();
+			const icon = 'home-line';
+			element.icon = icon;
+			await elementUpdated(element);
+			expect(getControlElement(getButtonElement()).classList.contains(`icon-only`)).toBeTruthy();
+		});
+
+		it('should set icon-trailing property', async () => {
+			expect(getControlElement(getButtonElement()).classList.contains(`icon-trailing`)).toBeFalsy()
+			const icon = 'home-line';
+			element.icon = icon;
+			element.iconTrailing = true;
+			await elementUpdated(element);
+			expect(getControlElement(getButtonElement()).classList.contains(`icon-trailing`)).toBeTruthy()
 		});
 	});
 
 	describe('connotation', () => {
-		it('should set correct connotation class', async () => {
-			const connotation = 'cta';
-
-			const expectedConnotation = `connotation-${connotation}`;
-			const hasConnotationClassBefore = getControlElement(element).classList.contains(expectedConnotation);
-
-			element.connotation = connotation as FabConnotation;
+		it('should set connotation property', async () => {
+			const connotation = 'cta' as FabConnotation;
+			expect(getControlElement(getButtonElement()).classList.contains(`connotation-${connotation}`)).toBeFalsy();
+			element.connotation = connotation;
 			await elementUpdated(element);
-
-			expect(hasConnotationClassBefore).toEqual(false);
-			expect(getControlElement(element).classList.contains(expectedConnotation)).toEqual(true);
+			expect(getControlElement(getButtonElement()).classList.contains(`connotation-${connotation}`)).toBeTruthy();
 		});
 	});
 
-	describe('icon-only', () => {
-		it('sets correct internal icon-only style', async () => {
-			const icon = 'home-line';
-
-			const expected = 'icon-only';
-			const hasClassBefore = getControlElement(element).classList.contains(expected);
-
-			element.icon = icon;
+	describe('disabled', () => {
+		it('should set disabled property', async () => {
+			expect(getControlElement(getButtonElement()).classList.contains(`disabled`)).toBeFalsy();
+			element.disabled = true;
 			await elementUpdated(element);
-
-			expect(hasClassBefore).toEqual(false);
-			expect(getControlElement(element).classList.contains(expected)).toEqual(true);
-		});
-	});
-
-	describe('disabled', function () {
-		it('should set disabled class when disabled is true', async () => {
-			const appearance = 'filled';
-			element.appearance = appearance as FabAppearance;
-			element.toggleAttribute('disabled', true);
-			await elementUpdated(element);
-
-			const control = element.shadowRoot?.querySelector(`.control.appearance-${appearance}.disabled`);
-			expect(control).toBeInstanceOf(Element);
+			expect(getControlElement(getButtonElement()).classList.contains(`disabled`)).toBeTruthy();
 		});
 	});
 });
