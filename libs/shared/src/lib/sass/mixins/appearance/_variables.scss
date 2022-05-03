@@ -100,7 +100,7 @@ $states-mapping: (
     duotone: (
       text: var(#{theme-consts.$vvd-color-neutral-50}),
       fill: transaprent,
-      outline: var(#{theme-consts.$vvd-color-neutral-50}-basis),
+      outline: var(#{theme-consts.$vvd-color-neutral-50}),
     ),
     ghost: (
       text: var(#{theme-consts.$vvd-color-neutral-50}),
