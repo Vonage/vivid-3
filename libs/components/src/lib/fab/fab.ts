@@ -27,7 +27,7 @@ export class Fab extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: label
 	 */
-	@attr({ mode: 'fromView' }) label = '';
+	@attr label?: string; 
 
 	/**
 	 * The connotation the fab should have.
