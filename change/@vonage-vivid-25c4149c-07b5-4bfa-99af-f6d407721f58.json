@@ -2,5 +2,5 @@
   "type": "none",
   "packageName": "@vonage/vivid",
   "email": "yinon@hotmail.com",
-  "dependentChangeType": "none"
+  "dependentChangeType": "prerelease"
 }

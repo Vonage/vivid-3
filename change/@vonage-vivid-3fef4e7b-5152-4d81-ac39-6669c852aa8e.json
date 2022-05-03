@@ -3,5 +3,5 @@
   "comment": "feat(button): add states style",
   "packageName": "@vonage/vivid",
   "email": "rachel.tannenbaum@vonage.com",
-  "dependentChangeType": "none"
+  "dependentChangeType": "prerelease"
 }

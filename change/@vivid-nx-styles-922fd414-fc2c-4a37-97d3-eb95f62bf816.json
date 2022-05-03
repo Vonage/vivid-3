@@ -3,5 +3,5 @@
   "comment": "fix typo of color scheme property",
   "packageName": "@vivid-nx/styles",
   "email": "yinon@hotmail.com",
-  "dependentChangeType": "none"
+  "dependentChangeType": "prerelease"
 }

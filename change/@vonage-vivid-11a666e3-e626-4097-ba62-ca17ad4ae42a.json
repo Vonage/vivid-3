@@ -1,7 +1,7 @@
 {
-  "type": "minor",
+  "type": "prerelease",
   "comment": "add the progress component",
   "packageName": "@vonage/vivid",
   "email": "yonatan.kra@vonage.com",
-  "dependentChangeType": "patch"
+  "dependentChangeType": "prerelease"
 }
