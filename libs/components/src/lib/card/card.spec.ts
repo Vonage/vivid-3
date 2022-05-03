@@ -1,4 +1,4 @@
-import {elementUpdated, fixture} from '@vivid-nx/shared';
+import {elementUpdated, fixture } from '@vivid-nx/shared';
 import {expect} from '@playwright/test';
 import { Icon } from '../icon/icon';
 import { Card } from './card';
@@ -145,6 +145,26 @@ describe('vwc-card', () => {
 		});
 	});
 
+	describe('card elevation', () => {
+		it('should have vwc-elevation', async () => {
+			await elementUpdated(element);
+			expect(Boolean(element.shadowRoot?.querySelector('vwc-elevation'))).toEqual(true);
+		});
+
+		it('should change the elevation dp when there is elevation property', async () => {
+			const startingDP = 4;
+			element.elevation = startingDP;
+			await elementUpdated(element);
+
+			const propertyValueBeforeChange = element.elevation;
+			element.setAttribute('elevation', '16');
+
+			expect(propertyValueBeforeChange).toEqual(startingDP);
+			expect(element.elevation).toEqual('16');
+		});
+
+
+	});
 
 });
 
