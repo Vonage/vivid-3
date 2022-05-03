@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Migrate nx to 14.0.5",
+  "packageName": "@vonage/vivid",
+  "email": "yonatan.kra@vonage.com",
+  "dependentChangeType": "none"
+}
