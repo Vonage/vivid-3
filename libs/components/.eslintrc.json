@@ -15,7 +15,7 @@
   ],
   "rules": {
     // lint
-    "@nrwl/nx/workspace/no-attribute-default-value": "off",
+    "@nrwl/nx/workspace/no-attribute-default-value": "error",
     "indent": "off",
     "@typescript-eslint/indent": [
       "error",
