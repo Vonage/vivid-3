@@ -31,7 +31,7 @@ export const FabTemplate: (
 				connotation=${(x) => x.connotation} 
 				shape='pill'
 				?disabled=${(x) => x.disabled}
-				part="${(x) => x.disabled ? '' : 'vvd-theme-alternate'}">
+				part="${(x) => x.disabled || x.connotation ? '' : 'vvd-theme-alternate'}">
 			</vwc-button>
 		</div>
 	</vwc-elevation>`;
