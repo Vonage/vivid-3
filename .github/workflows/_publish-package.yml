@@ -20,7 +20,7 @@ jobs:
         run: npm ci
 
       - name: Bump, Changelog & Push
-        run: npx beachball publish -m "Publishing a new version" --no-git-tags --prerelease-prefix test -t test --access public -y --no-publish --branch=test-release
+        run: npx beachball publish -m "Publishing a new version" --no-git-tags --prerelease-prefix test -t test --access public -y --no-publish --branch=origin/test-release
 
       - name: Build Components
         run: npx nx run components:build
