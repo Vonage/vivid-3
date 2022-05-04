@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "Migrate nx to 14.0.5",
-  "packageName": "@vivid-nx/styles",
-  "email": "yonatan.kra@vonage.com",
-  "dependentChangeType": "none"
-}

@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "banner removable now works",
-  "packageName": "@vonage/vivid",
-  "email": "yonatan.kra@vonage.com",
-  "dependentChangeType": "patch"
-}
