@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Wed, 04 May 2022 18:08:08 GMT and should not be manually modified.
+This log was last generated on Wed, 04 May 2022 18:32:51 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.9
+
+Wed, 04 May 2022 18:32:51 GMT
+
+### Changes
+
+- Target only on merge (yonatan.kra@vonage.com)
 
 ## 3.0.0-next.8
 
