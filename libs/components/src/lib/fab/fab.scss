@@ -59,6 +59,10 @@
 	}
 }
 
+.control:disabled {
+	cursor: not-allowed;
+}
+
 .control:not(:disabled) {
 	cursor: pointer;
 	&:hover {
@@ -74,10 +78,6 @@
 	&:active[class*="connotation"] {
 		background: var(#{connotation.$vvd-color-connotation}-fierce);
 	}
-}
-
-.control:disabled {
-	cursor: not-allowed;
 }
 
 /* Icon */
