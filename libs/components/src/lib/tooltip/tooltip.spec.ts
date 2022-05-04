@@ -24,14 +24,10 @@ describe('vwc-tooltip', () => {
 	describe('basic', () => {
 		it('should be initialized as a vwc-tooltip', async () => {
 			expect(element).toBeInstanceOf(Tooltip);
-			expect(element.open)
-				.toBeFalsy();
-			expect(element.anchor)
-				.toBeUndefined();
-			expect(element.corner)
-				.toBeUndefined;
-			expect(element.text)
-				.toEqual('');
+			expect(element.open).toBeFalsy();
+			expect(element.anchor).toBeUndefined();
+			expect(element.corner).toBeUndefined();
+			expect(element.text).toEqual('');
 		});
 	});
 

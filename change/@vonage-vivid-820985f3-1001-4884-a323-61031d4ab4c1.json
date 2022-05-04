@@ -1,6 +1,6 @@
 {
   "type": "prerelease",
-  "comment": "Fix the release command",
+  "comment": "Fix the release command and tooltip tests",
   "packageName": "@vonage/vivid",
   "email": "yonatan.kra@vonage.com",
   "dependentChangeType": "patch"
