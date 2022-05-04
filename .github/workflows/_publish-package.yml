@@ -33,7 +33,7 @@ jobs:
         run: npx nx run components:build
 
       - name: Publish
-        run: npm publish --dry-run --tag nouse --access public --//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
+        run: npm publish --tag nouse --access public --//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
 
