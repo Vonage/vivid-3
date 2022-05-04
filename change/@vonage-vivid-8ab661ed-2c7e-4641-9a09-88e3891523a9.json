@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "attributes default assignments removed due to DOM mutations",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}
