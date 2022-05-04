@@ -10,6 +10,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          token: ${{ secrets.VNG_VVD_PAT }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
