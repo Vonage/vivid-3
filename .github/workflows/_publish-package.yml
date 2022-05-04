@@ -20,9 +20,7 @@ jobs:
         run: npm ci
 
       - name: Bump, Changelog & Push
-        run: npx beachball publish -m "Publishing a new version" --no-git-tags --prerelease-prefix next -t next --access public -y -n $NODE_AUTH_TOKEN --no-publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.VIVID_NPM_SECRET }}
+        run: npx beachball publish -m "Publishing a new version" --no-git-tags --prerelease-prefix next -t next --access public -y --no-publish
 
       - name: Build Components
         run: npx nx run components:build
@@ -30,5 +28,5 @@ jobs:
       - name: Publish
         run: npm publish dist/libs/components --tag next --access public --//registry.npmjs.org:_authToken=$NODE_AUTH_TOKEN
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.VIVID_NPM_SECRET }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
 
