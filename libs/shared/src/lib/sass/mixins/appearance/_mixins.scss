@@ -10,18 +10,6 @@
 
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
-$all-appearances: (
-  filled: 'filled',
-  outlined: 'outlined',
-  subtle: 'subtle',
-  text: 'text',
-  ghost: 'ghost',
-);
-
-//$appearance-set: filled ghost outlined;
-//$states: idle disabled hover;
-
-
 @function get-variable($type) {
   $prefix: --_appearance-color;
   @return #{$prefix}-#{$type};
