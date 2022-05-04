@@ -31,7 +31,9 @@ jobs:
         run: npx nx run components:build
 
       - name: Publish
-        run: npm publish dist/libs/components --tag test --access public --//registry.npmjs.org:_authToken $NODE_AUTH_TOKEN
+        run: |
+          printf "always-auth=true\nregistry=https://registry.npmjs.org/\n//registry.npmjs.org/:_authToken=${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}" > .npmrc
+          npm publish dist/libs/components --tag test --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
 
