@@ -34,6 +34,13 @@
 	vertical-align: middle;
 }
 
+.control:not([class*="connotation"]) {
+	background: var(#{theme-consts.$vvd-color-surface-4dp});
+}
+.control[class*="connotation"] {
+	background: var(#{connotation.$vvd-color-connotation});
+}
+
 .control:not(:disabled) {
 	cursor: pointer;
 	&:hover {
@@ -71,13 +78,6 @@
 	@supports not (aspect-ratio: 1) {
 		inline-size: var(#{variables.$block-size});
 	}
-}
-
-.control:not([class*="connotation"]) {
-	background: var(#{theme-consts.$vvd-color-surface-4dp});
-}
-.control[class*="connotation"] {
-	background: var(#{connotation.$vvd-color-connotation});
 }
 
 /* Icon */
