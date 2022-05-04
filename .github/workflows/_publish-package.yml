@@ -32,8 +32,9 @@ jobs:
 
       - name: Publish
         run: |
+          cd dist/libs/components
           printf "always-auth=true\nregistry=https://registry.npmjs.org/\n//registry.npmjs.org/:_authToken=${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}" > .npmrc
-          npm publish dist/libs/components --tag test --access public
+          npm publish --tag test --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
 
