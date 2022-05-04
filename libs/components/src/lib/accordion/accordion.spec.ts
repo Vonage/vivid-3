@@ -65,8 +65,7 @@ describe('vwc-accordion', () => {
 			expect(accordionItem2.open).toBeTruthy();
 		});
 	});
-
-
+	
 	describe('close all', () => {
 		it('should close all accordion items', async () => {
 			element.multi = true;
