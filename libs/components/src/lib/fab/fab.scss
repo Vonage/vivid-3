@@ -27,8 +27,8 @@
 	box-sizing: border-box;
 	align-items: center;
 	border: 0 none;
-	border-radius: 24px;
 	block-size: var(#{variables.$block-size});
+	border-radius: 24px;
 	filter: var(#{theme-consts.$vvd-shadow-surface-4dp});
 	outline: 0 none;
 	vertical-align: middle;
@@ -39,6 +39,24 @@
 }
 .control[class*="connotation"] {
 	background: var(#{connotation.$vvd-color-connotation});
+}
+
+.control:not(.icon-only) {
+	#{variables.$icon-gap}: 10px;
+
+	padding-inline: 20px;
+}
+
+.control.icon-only {
+	border-radius: 50%;
+	padding-inline: 0;
+	place-content: center;
+	@supports (aspect-ratio: 1) {
+		aspect-ratio: 1;
+	}
+	@supports not (aspect-ratio: 1) {
+		inline-size: var(#{variables.$block-size});
+	}
 }
 
 .control:not(:disabled) {
@@ -60,24 +78,6 @@
 
 .control:disabled {
 	cursor: not-allowed;
-}
-
-.control:not(.icon-only) {
-	#{variables.$icon-gap}: 10px;
-
-	padding-inline: 20px;
-}
-
-.control.icon-only {
-	border-radius: 50%;
-	padding-inline: 0;
-	place-content: center;
-	@supports (aspect-ratio: 1) {
-		aspect-ratio: 1;
-	}
-	@supports not (aspect-ratio: 1) {
-		inline-size: var(#{variables.$block-size});
-	}
 }
 
 /* Icon */
