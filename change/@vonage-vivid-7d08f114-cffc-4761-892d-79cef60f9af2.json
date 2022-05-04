@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "Update test and publish",
+  "packageName": "@vonage/vivid",
+  "email": "yonatan.kra@vonage.com",
+  "dependentChangeType": "patch"
+}
