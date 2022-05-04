@@ -4,7 +4,7 @@
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$subset: primary cta success alert,
-	$shades: contrast fierce strong soft pale,
+	$shades: basis basis-increment contrast fierce firm soft pale,
 	$default: primary,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;

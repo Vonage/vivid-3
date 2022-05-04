@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "fix(components): update color tokens & states",
-  "packageName": "@vonage/vivid",
-  "email": "rachel.tannenbaum@vonage.com",
-  "dependentChangeType": "patch"
-}

@@ -2,15 +2,14 @@
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$subset: primary cta success alert warning info,
-	$shades: soft contrast,
+	$shades: basis soft contrast,
 	$default: primary,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
-	$appearances: filled outlined subtle,
+	$appearances: filled duotone subtle,
 	$states: idle,
-	$outline-duotone: true,
 	$default: filled,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;

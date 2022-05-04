@@ -25,7 +25,7 @@ type BadgeConnotation = Extract<Connotation,
  * @public
  */
 type BadgeAppearance = Extract<Appearance,
-Appearance.Filled | Appearance.Outlined | Appearance.Subtle>;
+Appearance.Filled | Appearance.Duotone | Appearance.Subtle>;
 
 /**
  * Types of badge shape.
