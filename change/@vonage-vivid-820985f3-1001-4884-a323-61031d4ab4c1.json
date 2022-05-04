@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "Fix the release command",
+  "packageName": "@vonage/vivid",
+  "email": "yonatan.kra@vonage.com",
+  "dependentChangeType": "patch"
+}
