@@ -26,6 +26,7 @@ jobs:
   call-publish-package:
     needs: [call-unit-tests, call-visual-regression]
     uses: vonage/vivid-3/.github/workflows/_publish-package.yml@main
+    secrets: inherit
 
   call-deploy-site:
     needs: call-publish-package # do not deploy site if package is not published
