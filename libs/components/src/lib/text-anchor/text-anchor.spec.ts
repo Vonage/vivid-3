@@ -14,7 +14,7 @@ describe( 'vwc-text-anchor', () => {
 	describe('basic', () => {
 		it('should be initialized as a vwc-text-anchor', async () => {
 			expect(element).toBeInstanceOf(TextAnchor);
-			expect(element.text).toEqual('');
+			expect(element.text).toEqual(undefined);
 		});
 	});
 
