@@ -7,12 +7,13 @@ import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { Fab } from './fab';
 
 const getClasses = ({
-    connotation, icon, label, iconTrailing
+    connotation, icon, label, iconTrailing, disabled
 }: Fab) => classNames(
     'control',
     [`connotation-${connotation}`, Boolean(connotation)],
     ['icon-only', !label && !!icon],
     ['icon-trailing', iconTrailing],
+    ['disabled', disabled],
 );
 
 const focusTemplate = (context: ElementDefinitionContext) => {

@@ -22,63 +22,51 @@ describe('vwc-fab', () => {
 		});
 	});
 
-	const getButtonElement = () => {
-		return getControlElement(element).querySelector('vwc-button') as HTMLElement;
-	};
-
-	describe('default', () => {
-		it('should set default properties', async () => {
-			expect(getControlElement(getButtonElement()).classList.contains('appearance-filled')).toBeTruthy();
-			expect(getControlElement(getButtonElement()).classList.contains('shape-pill')).toBeTruthy();
-			expect(getControlElement(getButtonElement()).classList.contains('size-base-large')).toBeTruthy();
-		});
-	});
-
 	describe('label', () => {
 		it('should set label property', async () => {
-			expect(getControlElement(getButtonElement()).textContent?.trim()).toEqual('');
+			expect(getControlElement(element).textContent?.trim()).toEqual('');
 			const label = 'lala';
 			element.label = label;
 			await elementUpdated(element);
-			expect(getControlElement(getButtonElement()).textContent?.trim()).toEqual(label);
+			expect(getControlElement(element).textContent?.trim()).toEqual(label);
 		});
 	});
 
 	describe('icon', () => {
 		it('should set icon-only property', async () => {
-			expect(getControlElement(getButtonElement()).classList.contains('icon-only')).toBeFalsy();
+			expect(getControlElement(element).classList.contains('icon-only')).toBeFalsy();
 			const icon = 'home-line';
 			element.icon = icon;
 			await elementUpdated(element);
-			expect(getControlElement(getButtonElement()).classList.contains('icon-only')).toBeTruthy();
+			expect(getControlElement(element).classList.contains('icon-only')).toBeTruthy();
 		});
 
 		it('should set icon-trailing property', async () => {
-			expect(getControlElement(getButtonElement()).classList.contains('icon-trailing')).toBeFalsy();
+			expect(getControlElement(element).classList.contains('icon-trailing')).toBeFalsy();
 			const icon = 'home-line';
 			element.icon = icon;
 			element.iconTrailing = true;
 			await elementUpdated(element);
-			expect(getControlElement(getButtonElement()).classList.contains('icon-trailing')).toBeTruthy();
+			expect(getControlElement(element).classList.contains('icon-trailing')).toBeTruthy();
 		});
 	});
 
 	describe('connotation', () => {
 		it('should set connotation property', async () => {
 			const connotation = 'cta' as FabConnotation;
-			expect(getControlElement(getButtonElement()).classList.contains(`connotation-${connotation}`)).toBeFalsy();
+			expect(getControlElement(element).classList.contains(`connotation-${connotation}`)).toBeFalsy();
 			element.connotation = connotation;
 			await elementUpdated(element);
-			expect(getControlElement(getButtonElement()).classList.contains(`connotation-${connotation}`)).toBeTruthy();
+			expect(getControlElement(element).classList.contains(`connotation-${connotation}`)).toBeTruthy();
 		});
 	});
 
-	describe('disabled', () => {
-		it('should set disabled property', async () => {
-			expect(getControlElement(getButtonElement()).classList.contains('disabled')).toBeFalsy();
-			element.disabled = true;
+	describe('disabled', function () {
+		it('should set disabled class when disabled is true', async () => {
+			expect(element.shadowRoot?.querySelector(`.disabled`)).toBeFalsy();
+			element.toggleAttribute('disabled', true);
 			await elementUpdated(element);
-			expect(getControlElement(getButtonElement()).classList.contains('disabled')).toBeTruthy();
+			expect(element.shadowRoot?.querySelector(`.disabled`)).toBeTruthy();
 		});
 	});
 });
