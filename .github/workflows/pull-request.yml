@@ -28,6 +28,9 @@ jobs:
           cache: 'npm'
       - run: npx beachball check
 
+  call-publish-package:
+    uses: vonage/vivid-3/.github/workflows/_publish-package.yml@fix-the-release
+
   call-lint:
     uses: vonage/vivid-3/.github/workflows/_lint.yml@main
 
