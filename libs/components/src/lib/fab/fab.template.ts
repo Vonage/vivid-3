@@ -7,19 +7,19 @@ import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { Fab } from './fab';
 
 const getClasses = ({
-    connotation, icon, label, iconTrailing, disabled
+	connotation, icon, label, iconTrailing, disabled
 }: Fab) => classNames(
-    'control',
-    [`connotation-${connotation}`, Boolean(connotation)],
-    ['icon-only', !label && !!icon],
-    ['icon-trailing', iconTrailing],
-    ['disabled', disabled],
+	'control',
+	[`connotation-${connotation}`, Boolean(connotation)],
+	['icon-only', !label && !!icon],
+	['icon-trailing', iconTrailing],
+	['disabled', disabled],
 );
 
 const focusTemplate = (context: ElementDefinitionContext) => {
-    const focusTag = context.tagFor(Focus);
+	const focusTag = context.tagFor(Focus);
 
-    return html`<${focusTag} class="focus-indicator"></${focusTag}>`;
+	return html`<${focusTag} class="focus-indicator"></${focusTag}>`;
 };
 
 /**
@@ -30,12 +30,12 @@ const focusTemplate = (context: ElementDefinitionContext) => {
  * @public
  */
 export const FabTemplate: (
-    context: ElementDefinitionContext,
-    definition: FoundationElementDefinition
+	context: ElementDefinitionContext,
+	definition: FoundationElementDefinition
 ) => ViewTemplate<Fab> = (context: ElementDefinitionContext) => {
-    const affixIconTemplate = affixIconTemplateFactory(context);
+	const affixIconTemplate = affixIconTemplateFactory(context);
 
-    return html`
+	return html`
         <button
             class="${getClasses} "
             ?autofocus="${(x) => x.autofocus}"

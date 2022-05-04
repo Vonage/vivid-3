@@ -63,10 +63,10 @@ describe('vwc-fab', () => {
 
 	describe('disabled', function () {
 		it('should set disabled class when disabled is true', async () => {
-			expect(element.shadowRoot?.querySelector(`.disabled`)).toBeFalsy();
+			expect(element.shadowRoot?.querySelector('.disabled')).toBeFalsy();
 			element.toggleAttribute('disabled', true);
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector(`.disabled`)).toBeTruthy();
+			expect(element.shadowRoot?.querySelector('.disabled')).toBeTruthy();
 		});
 	});
 });
