@@ -24,7 +24,7 @@ jobs:
           git config --global user.name "Vivid CI"
           npx beachball publish -m "Publishing a new version" --no-git-tags --prerelease-prefix next -t next --access public -y --no-publish --branch=origin/test-release
           git fetch --all
-          git checkout main
+          git checkout test-release
 
       - name: Install Dependencies
         run: npm ci
