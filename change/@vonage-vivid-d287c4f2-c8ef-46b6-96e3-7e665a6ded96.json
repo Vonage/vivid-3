@@ -1,6 +1,6 @@
 {
   "type": "none",
-  "comment": "docs style updates",
+  "comment": "fix outline tokens reference and introduce a new 'duotone' value for appearance",
   "packageName": "@vonage/vivid",
   "email": "yinon@hotmail.com",
   "dependentChangeType": "none"

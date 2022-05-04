@@ -10,18 +10,6 @@
 
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
-$all-appearances: (
-  filled: 'filled',
-  outlined: 'outlined',
-  subtle: 'subtle',
-  text: 'text',
-  ghost: 'ghost',
-);
-
-//$appearance-set: filled ghost outlined;
-//$states: idle disabled hover;
-
-
 @function get-variable($type) {
   $prefix: --_appearance-color;
   @return #{$prefix}-#{$type};
@@ -29,10 +17,10 @@ $all-appearances: (
 
 $selectors: (
   idle: '&',
-  hover: '&:hover, &.hovered',
-  disabled: '&:disabled, &.disabled',
+  hover: '&:hover:not(:disabled, .disabled), &.hovered:not(:disabled, .disabled)',
+  disabled: '&:disabled , &.disabled',
   selected: '&.selected',
-  active: '&:active, &.active',
+  active: '&:active:not(:disabled, .disabled), &.active:not(:disabled, .disabled)',
 );
 
 @function get-default-selector($appearance) {
