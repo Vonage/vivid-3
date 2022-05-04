@@ -20,8 +20,11 @@ jobs:
 
       - name: Bump, Changelog & Push
         run: |
+          git config --global user.email "info@vivid.vonage.com"
+          git config --global user.name "Vivid CI"
+          npx beachball publish -m "Publishing a new version" --no-git-tags --prerelease-prefix next -t next --access public -y --no-publish --branch=main
           git fetch --all
-          git checkout test-release
+          git checkout main
 
       - name: Install Dependencies
         run: npm ci
@@ -30,7 +33,7 @@ jobs:
         run: npx nx run components:build
 
       - name: Publish
-        run: npm publish dist/libs/components --tag nouse --access public --//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
+        run: npm publish dist/libs/components --tag next --access public --//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
 
