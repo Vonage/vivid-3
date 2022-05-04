@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "remove styles from dependency list",
-  "packageName": "@vonage/vivid",
-  "email": "yonatan.kra@vonage.com",
-  "dependentChangeType": "patch"
-}
