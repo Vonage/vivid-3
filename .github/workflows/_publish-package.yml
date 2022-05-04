@@ -20,9 +20,6 @@ jobs:
 
       - name: Bump, Changelog & Push
         run: |
-#          git config --global user.email "info@vivid.vonage.com"
-#          git config --global user.name "Vivid CI"
-#          npx beachball publish -m "Publishing a new version" --no-git-tags --prerelease-prefix nouse -t nouse --access public -y --no-publish --branch=origin/test-release
           git fetch --all
           git checkout test-release
 
