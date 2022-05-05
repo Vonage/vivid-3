@@ -24,8 +24,12 @@ jobs:
           git config --global user.email "info@vivid.vonage.com"
           git config --global user.name "Vivid CI"
           npx beachball publish -m "Publishing a new version" --no-git-tags --prerelease-prefix next -t next --access public -y --no-publish --branch=main
+
+      - name: Get us to the update version
+        run: |
           git fetch --all
           git checkout main
+          git pull
 
       - name: Install Dependencies
         run: npm ci
