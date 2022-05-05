@@ -29,7 +29,7 @@ describe('vwc-tooltip', () => {
 			expect(element.anchor)
 				.toBeUndefined();
 			expect(element.corner)
-				.toBeUndefined;
+				.toBeUndefined();
 			expect(element.text)
 				.toEqual('');
 		});
@@ -41,7 +41,7 @@ describe('vwc-tooltip', () => {
 			element.anchor = 'anchor';
 			await elementUpdated(element);
 
-			element.show();
+			element.open = true;
 			await elementUpdated(element);
 
 			expect(element.open)
@@ -51,9 +51,7 @@ describe('vwc-tooltip', () => {
 
 	describe('hide', () => {
 		it('should set "open" to false', async () => {
-			element.open = true;
-
-			element.hide();
+			element.open = false;
 			await elementUpdated(element);
 
 			expect(element.open)

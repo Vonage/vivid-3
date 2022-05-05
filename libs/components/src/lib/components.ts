@@ -12,4 +12,5 @@ export * from './calendar';
 export * from './popup';
 export * from './tooltip';
 export * from './banner';
-
+export * from './accordion-item';
+export * from './accordion';

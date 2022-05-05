@@ -26,7 +26,8 @@ export enum Appearance {
 	Text = 'text',
 	Filled = 'filled',
 	Outlined = 'outlined',
-	Soft = 'soft',
+	Duotone = 'duotone',
+	Subtle = 'subtle',
 	Ghost = 'ghost',
 }
 
