@@ -34,15 +34,15 @@
 
 ## Roadmap
 
+[view components status](https://github.com/orgs/Vonage/projects/6)
+
 Follow our API planning on the [Vivid project components' view](https://github.com/orgs/Vonage/projects/3/views/13)
 
-We publish a canary release on every successful merge to main, so you never need to wait for a new stable version to make use of any updates.
+We publish a _next_ release on every successful merge to main, so you never need to wait for a new stable version to make use of any updates.
 
 See the [open issues](https://github.com/vonage/vivid-3/issues) for a full list of proposed features (and known issues).
 
 <br>
-
-[view components status](https://github.com/Vonage/vivid-3/blob/main/docs/components.md)
 
 ## 🤝 Contributing
 
