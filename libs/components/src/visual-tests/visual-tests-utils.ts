@@ -1,8 +1,7 @@
 import * as fs from 'fs';
-import * as path from 'path';
+import type {Url} from 'url';
 import type {Page} from '@playwright/test';
 import * as extract from 'extract-gfm';
-import type {Url} from 'url';
 
 /**
  * @param str
