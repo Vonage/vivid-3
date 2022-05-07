@@ -11,7 +11,7 @@ const components = ['text'];
 
 test('should show the component', async ({page}: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(
-		path.join(new URL('.', import.meta.url).pathname, 'README.md')
+		new URL('./README.md', import.meta.url)
 	)
 		.reduce(
 			(htmlString: string, block: string) =>

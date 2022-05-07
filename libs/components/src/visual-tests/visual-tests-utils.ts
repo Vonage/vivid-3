@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import type {Page} from '@playwright/test';
 import * as extract from 'extract-gfm';
+import type {Url} from 'url';
 
 /**
  * @param str
@@ -15,8 +16,8 @@ export function replaceAll(str: string, find: string, replace: string) {
 /**
  * @param pathToReadme
  */
-export function extractHTMLBlocksFromReadme(pathToReadme: string): string[] {
-	const readmeFileContents = fs.readFileSync(path.resolve(pathToReadme))
+export function extractHTMLBlocksFromReadme(pathToReadme: Url): string[] {
+	const readmeFileContents = fs.readFileSync(pathToReadme)
 		.toString();
 	const readmeFileSnippets = extract.extractBlocks(readmeFileContents);
 	return readmeFileSnippets.filter((block: any) => block.lang === 'html')

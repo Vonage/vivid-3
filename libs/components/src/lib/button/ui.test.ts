@@ -9,7 +9,7 @@ import {
 
 const components = ['button'];
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template = extractHTMLBlocksFromReadme(path.join(new URL('.', import.meta.url).pathname, 'README.md'))
+	const template = extractHTMLBlocksFromReadme(new URL('./README.md', import.meta.url))
 		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
 
 	await loadComponents({
