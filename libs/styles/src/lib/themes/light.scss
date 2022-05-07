@@ -6,7 +6,7 @@
 
 #{variables.$theme-main-selector} {
 	@include main.variables;
-  @include color-scheme-mixins.color-scheme(dark);
+  @include color-scheme-mixins.color-scheme(light);
 }
 
 #{variables.$theme-alternate-selector} {
