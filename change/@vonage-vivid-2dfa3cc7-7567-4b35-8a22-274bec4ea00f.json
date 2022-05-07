@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Update path to readme files to work on windows machines",
+  "packageName": "@vonage/vivid",
+  "email": "yonatan.kra@vonage.com",
+  "dependentChangeType": "none"
+}
