@@ -11,5 +11,5 @@
 
 #{variables.$theme-alternate-selector} {
 	@include alternate.variables;
-  @include color-scheme-mixins.color-scheme(light);
+  @include color-scheme-mixins.color-scheme(dark);
 }
