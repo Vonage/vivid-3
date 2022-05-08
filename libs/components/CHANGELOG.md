@@ -1,8 +1,32 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Tue, 03 May 2022 20:34:28 GMT and should not be manually modified.
+This log was last generated on Wed, 04 May 2022 19:25:42 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.10
+
+Wed, 04 May 2022 19:25:42 GMT
+
+### Changes
+
+- remove styles from dependency list (yonatan.kra@vonage.com)
+
+## 3.0.0-next.9
+
+Wed, 04 May 2022 18:32:51 GMT
+
+### Changes
+
+- Target only on merge (yonatan.kra@vonage.com)
+
+## 3.0.0-next.8
+
+Wed, 04 May 2022 18:08:08 GMT
+
+### Changes
+
+- Update test and publish (yonatan.kra@vonage.com)
 
 ## 3.0.0-next.7
 
