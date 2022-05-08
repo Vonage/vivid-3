@@ -14,10 +14,10 @@ Find the icon you want to use on the [vivid icons search platform](https://icons
 
 ## Type
 
-- Type: `String`
-- Default: `''`
-
 Add a `type` attribute to add type to the icon.
+
+- Type: `String`
+- Default: `undefined`
 
 ```html preview
 <vwc-icon type='profile-line'></vwc-icon>
@@ -26,6 +26,9 @@ Add a `type` attribute to add type to the icon.
 ## SVG
 
 While `type` fetches an icon from the Vivid predefined set of icons, `svg` property can be used to set a customized valid SVG string programmatically. 
+
+- Type: `String`
+- Default: `undefined`
 
 ```html preview
 <vwc-icon id='icon'></vwc-icon>

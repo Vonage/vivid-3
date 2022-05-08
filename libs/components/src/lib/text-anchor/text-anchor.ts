@@ -15,7 +15,7 @@ export class TextAnchor extends Anchor {
 	 * @remarks
 	 * HTML Attribute: text
 	 */
-	@attr({ mode: 'fromView' }) text = '';
+	@attr text?: string;
 }
 
 export interface TextAnchor extends AffixIcon {}
