@@ -31,7 +31,7 @@ describe('vwc-tooltip', () => {
 			expect(element.corner)
 				.toBeUndefined();
 			expect(element.text)
-				.toEqual('');
+				.toEqual(undefined);
 		});
 	});
 
