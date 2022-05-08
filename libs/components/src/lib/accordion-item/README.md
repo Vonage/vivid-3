@@ -1,4 +1,4 @@
-# vwc-accordion-item
+# accordion-item
 
 ```js
 <script type="module">
@@ -9,7 +9,7 @@
 Add the `heading` attribute to set the heading text.
 
 - Type: `string`
-- Default: `''`
+- Default: `undefined`
   
 ```html preview
   <vwc-accordion-item heading="accordion item with heading">
@@ -74,7 +74,7 @@ Add the `no-indicator` attribute (or `noIndicator` property) to remove the indic
 Add the `meta` attribute to add metadata to the heading. 
 
 - Type: `string`
-- Default: `''`
+- Default: `undefined`
 
 ```html preview
  <vwc-accordion-item heading="accordion item with metadata" meta="meta-data">

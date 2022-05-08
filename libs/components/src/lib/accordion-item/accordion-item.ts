@@ -10,13 +10,13 @@ import { AffixIconWithTrailing } from '../../shared/patterns/affix';
  */
 export class AccordionItem extends FoundationElement {
 	/**
-	 * 
+	 *
 	 *
 	 * @public
-	 * 
+	 *
 	 * HTML Attribute: heading
 	 */
-	@attr({ mode: 'fromView' }) heading = '';
+	@attr heading?: string;
 
 	/**
 	 *
@@ -36,10 +36,10 @@ export class AccordionItem extends FoundationElement {
 	/**
 	 *
 	 * @public
-	 * 
+	 *
 	 * HTML Attribute: meta
 	 */
-	@attr({ mode: 'fromView' }) meta = '';
+	@attr meta?: string;
 
 	/**
 	 * Indicates whether the accordion-item is open
@@ -48,6 +48,19 @@ export class AccordionItem extends FoundationElement {
 	 * HTML Attribute: open
 	 */
 	@attr({ mode: 'boolean' }) open = false;
+
+	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void{
+		super.attributeChangedCallback(name, oldValue, newValue);
+		if (name === 'open') {
+			newValue === null ? this.emitEvent('closed') : this.emitEvent('opened');
+		}
+	}
+
+	private emitEvent(name: string): void {
+		const init: CustomEventInit = { bubbles: true, composed: true };
+		const ev = new CustomEvent(name, init);
+		this.dispatchEvent(ev);
+	}
 }
 
 export interface AccordionItem extends AffixIconWithTrailing {}

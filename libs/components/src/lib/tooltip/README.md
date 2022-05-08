@@ -1,4 +1,4 @@
-# vwc-tooltip
+# tooltip
 
 A tooltip is a brief, informative message or descriptions or explanations for their paired element. Tooltips in general are less accessible so be sure to follow our accessibility recommendation in the docs.
 
@@ -35,7 +35,7 @@ Do not target non-interactive controls as a tooltip's anchor (such as non-focusa
 The tooltip is a description and therefor, the tooltip itself can not be interactive. `vwc-tooltip` contains only text.
 
 - Type: `string`
-- Default: `''`
+- Default: `undefined`
 
 ## Open
 Use the `open` attribute to indicate whether the tooltip is open.
@@ -121,15 +121,12 @@ Be sure to add `aria-describedby="vwc-tooltip's ID"` on the tooltip trigger elem
 <vwc-button id="anchor" aria-describedby="tooltip"></vwc-button>
 <vwc-tooltip id="tooltip" anchor="anchor"></vwc-tooltip>
 ```
-## Methods
 
-| Method | Type       | Description          |
-| ------ | ---------- | -------------------- |
-| `hide` | `(): void` | Closes the tooltip.  |
-| `show` | `(): void` | Opens the tooltip.   |
 ## CSS Custom Properties
 
-| Property                | Default | Description                |
-|-------------------------|---------|----------------------------|
-| `--tooltip-inline-size` | 240px   | Controls the tooltip width |
+### Inline-size
+- `--tooltip-inline-size`
+- Type: `Number`
+- Default: `240px`
 
+Controls the tooltip width.

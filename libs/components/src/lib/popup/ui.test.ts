@@ -1,8 +1,9 @@
-import { expect, Page, test } from '@playwright/test';
+import { expect, test } from '@playwright/test'; 
+import type { Page } from '@playwright/test';
 import {
 	loadComponents,
 	loadTemplate
-} from '../../visual-tests/visual-tests-utils';
+} from '../../visual-tests/visual-tests-utils.ts';
 
 const components = ['popup', 'text', 'icon', 'button'];
 test('should show the component', async ({ page }: { page: Page }) => {

@@ -15,5 +15,5 @@ export class <%= className %> extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: text
 	 */
-	@attr text = '';
+	@attr text?: string;
 }
