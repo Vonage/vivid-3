@@ -33,5 +33,5 @@ export const BreadcrumbItemTemplate: (
 		html<BreadcrumbItem>`${textAnchorTemplate(context, definition)}`)}
 
         ${when(x => x.separator,
-		html<BreadcrumbItem>`<vwc-icon type="chevron-right-line"></vwc-icon>`)}
+		html<BreadcrumbItem>`<vwc-icon type="chevron-right-solid"></vwc-icon>`)}
       </div>`;

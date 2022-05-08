@@ -23,7 +23,7 @@ type ButtonConnotation = Extract<Connotation,
  * @public
  */
 export type ButtonAppearance = Extract<Appearance,
-Appearance.Filled | Appearance.Outlined | Appearance.Soft>;
+Appearance.Filled | Appearance.Outlined | Appearance.Ghost>;
 
 /**
  * Types of button shape.
@@ -88,7 +88,7 @@ export class Button extends FoundationButton {
 	 * @remarks
 	 * HTML Attribute: label
 	 */
-	@attr({ mode: 'fromView' }) label = '';
+	@attr label?: string;
 }
 
 export interface Button extends AffixIconWithTrailing {}

@@ -71,7 +71,7 @@ describe('vwc-accordion', () => {
 		it('should close all accordion items', async () => {
 			element.multi = true;
 			await elementUpdated(element);
-			
+
 			accordionItem1.open = true;
 			await elementUpdated(element);
 			accordionItem2.open = true;
@@ -87,5 +87,4 @@ describe('vwc-accordion', () => {
 			expect(accordionItem2.open).toBeFalsy();
 		});
 	});
-
 });

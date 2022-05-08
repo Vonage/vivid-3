@@ -25,7 +25,7 @@ type BadgeConnotation = Extract<Connotation,
  * @public
  */
 type BadgeAppearance = Extract<Appearance,
-Appearance.Filled | Appearance.Outlined | Appearance.Soft>;
+Appearance.Filled | Appearance.Duotone | Appearance.Subtle>;
 
 /**
  * Types of badge shape.
@@ -90,7 +90,7 @@ export class Badge extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: text
 	 */
-	@attr({ mode: 'fromView' }) text = '';
+	@attr text?: string;
 }
 
 export interface Badge extends AffixIconWithTrailing {}

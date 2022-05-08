@@ -10,13 +10,13 @@ import { AffixIconWithTrailing } from '../../shared/patterns/affix';
  */
 export class AccordionItem extends FoundationElement {
 	/**
-	 * 
+	 *
 	 *
 	 * @public
-	 * 
+	 *
 	 * HTML Attribute: heading
 	 */
-	@attr({ mode: 'fromView' }) heading = '';
+	@attr heading?: string;
 
 	/**
 	 *
@@ -36,10 +36,10 @@ export class AccordionItem extends FoundationElement {
 	/**
 	 *
 	 * @public
-	 * 
+	 *
 	 * HTML Attribute: meta
 	 */
-	@attr({ mode: 'fromView' }) meta = '';
+	@attr meta?: string;
 
 	/**
 	 * Indicates whether the accordion-item is open

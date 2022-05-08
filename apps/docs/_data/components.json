@@ -8,6 +8,15 @@
     ]
   },
   {
+    "title": "accordion-item",
+    "markdown": "./libs/components/src/lib/accordion-item/README.md",
+    "modules": [
+      "/assets/modules/components/accordion-item/index.js",
+      "/assets/modules/components/text/index.js",
+      "/assets/modules/components/elevation/index.js"
+    ]
+  },
+  {
     "title": "badge",
     "markdown": "./libs/components/src/lib/badge/README.md",
     "modules": [
@@ -21,7 +30,7 @@
     "/assets/modules/components/button/index.js",
     "/assets/modules/components/banner/index.js"
     ]
-  },  
+  },
   {
     "title": "breadcrumb",
     "markdown": "./libs/components/src/lib/breadcrumb/README.md",
@@ -125,12 +134,11 @@
     ]
   },
   {
-    "title": "accordion-item",
-    "markdown": "./libs/components/src/lib/accordion-item/README.md",
+    "title": "progress-ring",
+    "markdown": "./libs/components/src/lib/progress-ring/README.md",
     "modules": [
-      "/assets/modules/components/accordion-item/index.js",
-      "/assets/modules/components/text/index.js",
-      "/assets/modules/components/elevation/index.js"
+      "/assets/modules/components/layout/index.js",
+      "/assets/modules/components/progress-ring/index.js"
     ]
   }
 ]
