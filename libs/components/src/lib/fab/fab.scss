@@ -1,6 +1,7 @@
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use 'partials/variables' as variables;
+@use '../elevation/partials/elevation.mixin' as elevation;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$subset: cta,
@@ -29,17 +30,9 @@
 	border: 0 none;
 	block-size: var(#{variables.$block-size});
 	border-radius: 24px;
-	filter: var(#{theme-consts.$vvd-shadow-surface-4dp});
 	color: var(#{appearance.get-variable(text)});
 	outline: 0 none;
 	vertical-align: middle;
-}
-
-.control:not([class*="connotation"]) {
-	background: var(#{theme-consts.$vvd-color-surface-4dp});
-}
-.control[class*="connotation"] {
-	background: var(#{connotation.$vvd-color-connotation});
 }
 
 .control:not(.icon-only) {
@@ -62,21 +55,31 @@
 
 .control:disabled {
 	cursor: not-allowed;
+	background: var(#{theme-consts.$vvd-color-neutral-30});
 }
 
 .control:not(:disabled) {
+	@include elevation.get-elevation(4);
+
 	cursor: pointer;
 	&:hover {
 		background: var(#{theme-consts.$vvd-color-neutral-10});
 	}
-	&:hover[class*="connotation"] {
+	&:active{
+		@include elevation.get-elevation(8);
+
+		background: var(#{theme-consts.$vvd-color-neutral-30});
+	}
+}
+
+.control[class*="connotation"] {
+	background: var(#{connotation.$vvd-color-connotation});
+	cursor: pointer;
+
+	&:hover{
 		background: var(#{connotation.$vvd-color-connotation}-firm);
 	}
-	&:active{
-		background: var(#{theme-consts.$vvd-color-neutral-30});
-		filter: var(#{theme-consts.$vvd-shadow-surface-8dp});
-	}
-	&:active[class*="connotation"] {
+	&:active {
 		background: var(#{connotation.$vvd-color-connotation}-fierce);
 	}
 }
