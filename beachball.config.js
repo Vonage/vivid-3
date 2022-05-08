@@ -1,6 +1,6 @@
 module.exports = {
 		access: 'public',
-		branch: 'main'
+		branch: 'main',
 		prereleasePrefix: 'next',
 		publish: false,
 		tag: 'next',
