@@ -1,5 +1,5 @@
 {
-  "type": "minor",
+  "type": "prerelease",
   "comment": "Add beachball config file",
   "packageName": "@vonage/vivid",
   "email": "yonatan.kra@vonage.com",
