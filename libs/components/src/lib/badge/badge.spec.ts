@@ -16,7 +16,7 @@ describe('vwc-badge', () => {
 	describe('basic', () => {
 		it('initializes as a vwc-badge', async () => {
 			expect(element).toBeInstanceOf(Badge);
-			expect(element.text).toEqual('');
+			expect(element.text).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
 			expect(element.iconTrailing).toBeFalsy();
 			expect(element.connotation).toBeUndefined();

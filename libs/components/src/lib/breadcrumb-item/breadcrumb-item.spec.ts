@@ -60,7 +60,7 @@ describe('vwc-breadcrumb-item', () => {
 
 		expect(anchorElement?.textContent?.trim()).toEqual(breadcrumbText);
 		expect((anchorElement as any)?.href).toEqual(element.href);
-		expect(iconElement?.type).toEqual('chevron-right-line');
+		expect(iconElement?.type).toEqual('chevron-right-solid');
 	});
 
 	describe('bindings', () => {

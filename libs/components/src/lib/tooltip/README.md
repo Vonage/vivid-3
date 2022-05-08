@@ -35,7 +35,7 @@ Do not target non-interactive controls as a tooltip's anchor (such as non-focusa
 The tooltip is a description and therefor, the tooltip itself can not be interactive. `vwc-tooltip` contains only text.
 
 - Type: `string`
-- Default: `''`
+- Default: `undefined`
 
 ## Open
 Use the `open` attribute to indicate whether the tooltip is open.
