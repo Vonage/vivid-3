@@ -18,6 +18,13 @@ export const iconTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Icon> = () => html`
   <figure class="${getClasses}">
-		${when((x)=> x.svg, (x) => html<Icon>`${x.svg}`)}
+		${when((x)=> isValidString(x.svg), (x) => html<Icon>`${x.svg as string}`)}
   </figure>
 	`;
+
+/**
+ * @param value
+ */
+function isValidString(value?: string): boolean {
+	return typeof value === 'string' && value.length > 0;
+}

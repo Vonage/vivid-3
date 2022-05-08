@@ -14,9 +14,12 @@
 
 ## Text
 
+- Type: `String`
+- Default: `undefined`
+
 ```html preview
 <vwc-breadcrumb-item 
-  text="Breadcrumb" ></vwc-breadcrumb-item>
+  text="Breadcrumb"></vwc-breadcrumb-item>
 ```
 
 ## Combined
