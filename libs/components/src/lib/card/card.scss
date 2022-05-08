@@ -39,13 +39,11 @@
 
 	&-title,
 	&-subheading {
-		/* stylelint-disable property-no-vendor-prefix */
 		/* stylelint-disable value-no-vendor-prefix */
 		display: -webkit-box;
+		/* stylelint-enable value-no-vendor-prefix */
 		overflow: hidden;
 		-webkit-box-orient: vertical;
-		/* stylelint-enable property-no-vendor-prefix */
-		/* stylelint-enable value-no-vendor-prefix */
 	}
 
 	&-title {
