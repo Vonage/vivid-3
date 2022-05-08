@@ -115,7 +115,7 @@ If the content structure is not fitting the desired content, the heading, subhea
 
 ```html preview
 <vwc-card >
-<div slot="content">If you need diferant structure - use this slot</div>
+<div slot="content">If you need different structure - use this slot</div>
 </vwc-card>
 ```
 
