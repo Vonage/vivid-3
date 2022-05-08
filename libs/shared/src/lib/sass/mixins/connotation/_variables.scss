@@ -7,46 +7,74 @@ $vvd-color-on-connotation: --on-connotation;
 $compound-placeholder: '[compound]'; // will be replaced by actual compound
 
 $connotation-mapping: (
-	// should map to colors e.g. purple-60
-	primary: (
-		contrast: theme-consts.$vvd-color-primary,
-		diverse: theme-consts.$vvd-color-primary,
-		soft: theme-consts.$vvd-color-neutral-20,
-	),
-	cta: (
-		contrast: theme-consts.$vvd-color-cta-90,
-		diverse: theme-consts.$vvd-color-cta-70,
-		soft: theme-consts.$vvd-color-cta-20,
-	),
-	success: (
-		contrast: theme-consts.$vvd-color-success-90,
-		diverse: theme-consts.$vvd-color-success-70,
-		soft: theme-consts.$vvd-color-success-20,
-	),
-	alert: (
-		contrast: theme-consts.$vvd-color-alert-90,
-		diverse: theme-consts.$vvd-color-alert-70,
-		soft: theme-consts.$vvd-color-alert-20,
-	),
-	warning: (
-		contrast: theme-consts.$vvd-color-warning-90,
-		diverse: theme-consts.$vvd-color-warning-70,
-		soft: theme-consts.$vvd-color-warning-20,
-	),
-	info: (
-		contrast: theme-consts.$vvd-color-info-90,
-		diverse: theme-consts.$vvd-color-info-70,
-		soft: theme-consts.$vvd-color-info-20,
-	),
-	announcement: (
-		contrast: theme-consts.$vvd-color-announcement-90,
-		diverse: theme-consts.$vvd-color-announcement-70,
-		soft: theme-consts.$vvd-color-announcement-20,
-	),
+  // should map to colors e.g. purple-60
+  primary: (
+    basis: theme-consts.$vvd-color-neutral/*-60*/,
+    basis-increment: theme-consts.$vvd-color-neutral-90,
+    contrast: theme-consts.$vvd-color-neutral-90,
+    fierce: theme-consts.$vvd-color-neutral-80,
+    firm: theme-consts.$vvd-color-primary,
+    soft: theme-consts.$vvd-color-neutral-20,
+    pale: theme-consts.$vvd-color-neutral-10,
+  ),
+  cta: (
+    basis: theme-consts.$vvd-color-cta,
+    basis-increment: theme-consts.$vvd-color-cta-70,
+    contrast: theme-consts.$vvd-color-cta-90,
+    fierce: theme-consts.$vvd-color-cta-80,
+    firm: theme-consts.$vvd-color-cta-70,
+    soft: theme-consts.$vvd-color-cta-20,
+    pale: theme-consts.$vvd-color-cta-10,
+  ),
+  success: (
+    basis: theme-consts.$vvd-color-success,
+    basis-increment: theme-consts.$vvd-color-success-70,
+    contrast: theme-consts.$vvd-color-success-90,
+    fierce: theme-consts.$vvd-color-success-80,
+    firm: theme-consts.$vvd-color-success-70,
+    soft: theme-consts.$vvd-color-success-20,
+    pale: theme-consts.$vvd-color-success-10,
+  ),
+  alert: (
+    basis: theme-consts.$vvd-color-alert,
+    basis-increment: theme-consts.$vvd-color-alert-70,
+    contrast: theme-consts.$vvd-color-alert-90,
+    fierce: theme-consts.$vvd-color-alert-80,
+    firm: theme-consts.$vvd-color-alert-70,
+    soft: theme-consts.$vvd-color-alert-20,
+    pale: theme-consts.$vvd-color-alert-10,
+  ),
+  warning: (
+    basis: theme-consts.$vvd-color-warning,
+    basis-increment: theme-consts.$vvd-color-warning-70,
+    contrast: theme-consts.$vvd-color-warning-90,
+    fierce: theme-consts.$vvd-color-warning-80,
+    firm: theme-consts.$vvd-color-warning-70,
+    soft: theme-consts.$vvd-color-warning-20,
+    pale: theme-consts.$vvd-color-warning-10,
+  ),
+  info: (
+    basis: theme-consts.$vvd-color-info,
+    basis-increment: theme-consts.$vvd-color-info-70,
+    contrast: theme-consts.$vvd-color-info-90,
+    fierce: theme-consts.$vvd-color-info-80,
+    firm: theme-consts.$vvd-color-info-70,
+    soft: theme-consts.$vvd-color-info-20,
+    pale: theme-consts.$vvd-color-info-10,
+  ),
+  announcement: (
+    basis: theme-consts.$vvd-color-announcement,
+    basis-increment: theme-consts.$vvd-color-announcement-70,
+    contrast: theme-consts.$vvd-color-announcement-90,
+    fierce: theme-consts.$vvd-color-announcement-80,
+    firm: theme-consts.$vvd-color-announcement-70,
+    soft: theme-consts.$vvd-color-announcement-20,
+    pale: theme-consts.$vvd-color-announcement-10,
+  ),
 );
 $connotation-mapping-decoratives: (
-	pacific: (
-		start: var(#{theme-consts.$vvd-color-info-30}),
-		end: var(#{theme-consts.$vvd-color-cta-70})
-	),
+  pacific: (
+    start: var(#{theme-consts.$vvd-color-info-30}),
+    end: var(#{theme-consts.$vvd-color-cta-70})
+  ),
 );

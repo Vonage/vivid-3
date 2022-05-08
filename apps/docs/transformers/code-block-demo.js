@@ -13,11 +13,12 @@ const CBD_BUTTON_SHOW = 'cbd-button-show';
 const CBD_CODE_BLOCK = 'cbd-code-block';
 
 const MAIN_STYLE = '<link rel="stylesheet" href="/assets/styles/iframe.css">';
+const FONTS = '<link rel="stylesheet" href="/assets/styles/fonts/spezia.css">';
 
 const generateCodeBlockDemo = function(blockData) {
     const demoData = {};
     const code = blockData.pre.querySelector('code')?.textContent;
-    demoData.demoStr = decode(MAIN_STYLE) + decode(code);
+    demoData.demoStr = decode(MAIN_STYLE) + decode(FONTS) + decode(code);
     demoData.codeStr = blockData.pre.outerHTML;
     demoData.index = blockData.index;
     demoData.outputPath = blockData.outputPath;

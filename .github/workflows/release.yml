@@ -1,8 +1,10 @@
 name: 🧬 Release
 
 on:
-  push:
-    branches: main
+  pull_request:
+    types: [ closed ]
+    branches:
+      - 'main'
 
 concurrency:
   group: ci-pre-release-${{ github.ref }}-1
@@ -10,9 +12,11 @@ concurrency:
 
 jobs:
   call-lint:
+    if: github.event.pull_request.merged == true
     uses: vonage/vivid-3/.github/workflows/_lint.yml@main
 
   call-unit-tests:
+    if: github.event.pull_request.merged == true
     needs: call-lint
     uses: vonage/vivid-3/.github/workflows/_unit-test.yml@main
     with:
@@ -20,15 +24,17 @@ jobs:
       report_coverage: true
 
   call-visual-regression:
+    if: github.event.pull_request.merged == true
     needs: call-lint
     uses: vonage/vivid-3/.github/workflows/_visual-regression.yml@main
 
-  #  TODO fix this
-  # call-publish-package:
-  #   needs: [call-unit-tests, call-visual-regression]
-  #   uses: vonage/vivid-3/.github/workflows/_publish-package.yml@main
+  call-publish-package:
+    if: github.event.pull_request.merged == true
+    needs: [call-unit-tests, call-visual-regression]
+    uses: vonage/vivid-3/.github/workflows/_publish-package.yml@main
+    secrets: inherit
 
   call-deploy-site:
-    # needs: call-publish-package # do not deploy site if package is not published
-    needs: [call-unit-tests, call-visual-regression]
+    if: github.event.pull_request.merged == true
+    needs: call-publish-package # do not deploy site if package is not published
     uses: vonage/vivid-3/.github/workflows/_deploy-deno.yml@main
