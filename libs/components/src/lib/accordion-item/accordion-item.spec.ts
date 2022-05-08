@@ -19,9 +19,9 @@ describe('vwc-accordion-item', () => {
 			expect(element.open).toBeFalsy();
 			expect(element.icon).toBeUndefined();
 			expect(element.iconTrailing).toBeFalsy();
-			expect(element.meta).toEqual('');
+			expect(element.meta).toEqual(undefined);
 			expect(element.noIndicator).toBeFalsy();
-			expect(element.heading).toEqual('');
+			expect(element.heading).toEqual(undefined);
 			expect(element.headingLevel).toBeUndefined();
 		});
 	});
