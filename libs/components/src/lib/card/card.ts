@@ -14,7 +14,7 @@ export class Card extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr({ mode: 'fromView' }) heading = '';
+	@attr heading?: string;
 
 	/**
 	 * the text of the card sub-heading
@@ -22,7 +22,7 @@ export class Card extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr({ mode: 'fromView' }) subheading = '';
+	@attr subheading?: string;
 
 	/**
 	 * the text of the card sub-heading
@@ -30,7 +30,7 @@ export class Card extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr({ mode: 'fromView' }) text = '';
+	@attr text?: string;
 
 	/**
 	 * card header icon
@@ -45,6 +45,7 @@ export class Card extends FoundationElement {
 	 * @public
 	 */
 	@attr elevation?: 0 | 2 | 4 | 8 | 12 | 16 | 24;
+
 
 
 	/**

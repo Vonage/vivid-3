@@ -68,9 +68,9 @@ describe('vwc-card', () => {
 		});
 
 		it( 'should add class .hide-header to .control', async () => {
-			element.icon = '';
-			element.heading = '';
-			element.subheading = '';
+			element.icon = undefined;
+			element.heading = undefined;
+			element.subheading = undefined;
 			await elementUpdated(element);
 			const controlElementHasNoHeader = element.shadowRoot?.
 				querySelector('.control')?.classList.contains('hide-header');

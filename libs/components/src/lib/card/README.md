@@ -6,13 +6,13 @@ A “card” is a UI design pattern that groups related information in a flexibl
     import '@vonage/vivid/card';
 </script>
 ```
-
-## Heading
+## Properties
+### Heading
 
 Add a `heading` attribute to add card heading title
 
 - Type: `String`
-- Default: `''`
+- Default: `undefined`
 
 
 ```html preview
@@ -20,18 +20,18 @@ Add a `heading` attribute to add card heading title
 ```
 
 
-## Subheading
+### Subheading
 Add a `subheading` attribute to add card subheading
 
 - Type: `String`
-- Default: `''`
+- Default: `undefined`
 
 
 ```html preview
 <vwc-card heading="Vivid Card Component" subheading="extra text to the card heading"></vwc-card>
 ```
 
-## Elevation
+### Elevation
 Control the elevation depth by adding the `elevation` attribute
 
 - Type: `0` | `2` | `4` | `8` | `12` | `16` | `24`
@@ -42,11 +42,11 @@ Control the elevation depth by adding the `elevation` attribute
 ```
 
 
-## Icon
+### Icon
 Add a `icon='icon-name'` attribute to add icon on the right of the card heading
 
 - Type: `String`
-- Default: `''`
+- Default: `undefined`
 
 
 ```html preview
@@ -54,11 +54,11 @@ Add a `icon='icon-name'` attribute to add icon on the right of the card heading
 ```
 
 
-## Text
+### Text
 Add a `text` attribute to add text to the card
 
 - Type: `String`
-- Default: `''`
+- Default: `undefined`
 
 
 ```html preview
@@ -129,11 +129,11 @@ The number of lines are controlled by css variable:
 - `--subheading-line-clamp`
 
 - Type: `String`
-- Default: `''`
+- Default: `undefined`
 
 
 ```html preview
-<div style="width: 300px;">
+<div style="width: 300px; height: 250px;">
 <vwc-card style="--heading-line-clamp: 1; --subheading-line-clamp: 2;" heading="Vivid Card Component with long heading to trim" subheading="extra text to the card heading that is set to be trimmed after 2 lines so the card will not be too long"></vwc-card>
 </div>
 ```
