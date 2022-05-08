@@ -21,3 +21,4 @@ export const AccordionTemplate: (
 ) => html`<div class="${getClasses}">
 	<slot></slot>
 </div>`;
+
