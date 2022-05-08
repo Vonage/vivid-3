@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Wed, 04 May 2022 19:25:42 GMT and should not be manually modified.
+This log was last generated on Sun, 08 May 2022 08:45:31 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.11
+
+Sun, 08 May 2022 08:45:31 GMT
+
+### Changes
+
+- Breadcrumb design updates (yonatan.kra@vonage.com)
 
 ## 3.0.0-next.10
 
