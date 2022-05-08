@@ -2,6 +2,36 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Sun, 08 May 2022 09:17:37 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.11",
+      "version": "3.0.0-next.11",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "842df9708f84c9efb3fb962f9e9d3f3ff069d035",
+            "comment": "set button disabled cursor style"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 08 May 2022 08:45:31 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.11",
+      "version": "3.0.0-next.11",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "13aece3315480ed715f7fc253dfd2288619934a5",
+            "comment": "Breadcrumb design updates"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 04 May 2022 19:25:42 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.10",
       "version": "3.0.0-next.10",
