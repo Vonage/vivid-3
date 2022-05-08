@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Sun, 08 May 2022 09:32:52 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.12",
+      "version": "3.0.0-next.12",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "02283565e3899499f3def9968e9dd0b255c70187",
+            "comment": "attributes default assignments removed due to DOM mutations"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 08 May 2022 09:17:37 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.11",
       "version": "3.0.0-next.11",
