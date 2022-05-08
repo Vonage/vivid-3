@@ -23,7 +23,7 @@ describe('vwc-banner', () => {
 	 */
 	function dispatchAnimationEndEvent() {
 		const banner = element.shadowRoot?.querySelector('.banner');
-		const event = new Event('animationend');
+		const event = new Event('transitionend');
 		banner?.dispatchEvent(event);
 	}
 

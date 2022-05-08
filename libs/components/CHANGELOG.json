@@ -2,9 +2,337 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Sun, 08 May 2022 09:32:52 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.12",
+      "version": "3.0.0-next.12",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "02283565e3899499f3def9968e9dd0b255c70187",
+            "comment": "attributes default assignments removed due to DOM mutations"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 08 May 2022 09:17:37 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.11",
+      "version": "3.0.0-next.11",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "842df9708f84c9efb3fb962f9e9d3f3ff069d035",
+            "comment": "set button disabled cursor style"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 08 May 2022 08:45:31 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.11",
+      "version": "3.0.0-next.11",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "13aece3315480ed715f7fc253dfd2288619934a5",
+            "comment": "Breadcrumb design updates"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 04 May 2022 19:25:42 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.10",
+      "version": "3.0.0-next.10",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "fd508b3c551f532101e44a5d06c9504bdd94f8a5",
+            "comment": "remove styles from dependency list"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 04 May 2022 18:32:51 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.9",
+      "version": "3.0.0-next.9",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "cb532014359a8938ebb0fd82714e6d22781d952a",
+            "comment": "Target only on merge"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 04 May 2022 18:08:08 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.8",
+      "version": "3.0.0-next.8",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "289e07b35108de0af4fa8662476786d88a97292c",
+            "comment": "Update test and publish"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 03 May 2022 20:34:28 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.7",
+      "version": "3.0.0-next.7",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "2467726ef3fd7167f40112b4978adc78680a08c9",
+            "comment": "add popup component"
+          },
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "276ca4d4d11a833411038db5b5ca6edc6b206eca",
+            "comment": "fix(popup): change wrapping order"
+          },
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "8a84739c2873518590f2b5b897a6f7c5aa95e07c",
+            "comment": "Banner PR fixes"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "7826de124e6a8bab18da6a079f3a3d7701de816e",
+            "comment": "update icons set version"
+          },
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "61a87631818f2265f2927ebd49aa7f65148101fc",
+            "comment": "change the package to ES module"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "96c6e80b9ed34cd7acd2c51fcf6b9fd25a8df415",
+            "comment": "ui-tests support for multi components imports"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "943dde7f3c6e5f9b18ea5f46dca4d9ed2df01789",
+            "comment": "correlate affix patterns with anchor template"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "ad44ad07e743e4141b3d516799c210f0230d3a53",
+            "comment": "docs style updates"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "809102794a33801c475b39916e13703815ec5e71",
+            "comment": "remove redundant slots from side drawer"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "ef68d14820fc14e1954600862fac14b7611ca61a",
+            "comment": "Added text component to vivid next"
+          },
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "3d5b2e8707f4d8c5b87ae2f3d910a3298a2db3f3",
+            "comment": "migrate accordion item"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "d3fb967f0ee74cd8b7b8762f0501ad2a4c04e5f5",
+            "comment": "document tight attribute"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "dac03d5be96241b8c0a3b722e4c5128c4d714449",
+            "comment": "align banner with affix pattern"
+          },
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "21c553c597688d3dc6d7a3c2065e1bc8c3065704",
+            "comment": "Update playwright version to 1.21.0"
+          },
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "eed7821fe1eff3eb23c935c9e1e19def242cc28d",
+            "comment": "Migrate nx to 14.0.5"
+          },
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "632963523b99eea516321267611cf43b280a7ce3",
+            "comment": "Add icon tests"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "e8d026136db9b0dcafd27f71b0948479be1a7bea",
+            "comment": "migrate calendar to vivid@next"
+          },
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "b04e56803cffe2bcf4e7bf35269a4f3550e481fd",
+            "comment": "feat(button): add states style"
+          },
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "6f2ea49c82af418f4260ae5e91341d9af4e6ba2a",
+            "comment": "fix(elevation): add part"
+          },
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "ac279aeefa1b1c244ba4440252a2366319dd303f",
+            "comment": "migrate tooltip"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "90c1ae800298e79c30d4051704a53c26fce03e4f",
+            "comment": "fix anchor's font style"
+          },
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "2a985254c53abf3e3df74b15bc437a54b1b94b88",
+            "comment": "fix(appearance): prevent active to overide disable"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "c50944dfba6ecf1d1c1344bf1279af32ea1b6bf5",
+            "comment": "side effect import to run from index"
+          },
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "fcced2bc1a375b0268f7f58440ae355eec7a6a40",
+            "comment": "side drawer migration"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "b04e56803cffe2bcf4e7bf35269a4f3550e481fd"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "023631a37ca036763d9a3eb526183c4e9d093779",
+            "comment": "lint rule to prevent default attribute assignment that mutates DOM"
+          }
+        ],
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "e2a039eb25e384a20e6e64dafdc0b63c21f88400",
+            "comment": "banner removable now works"
+          },
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "839588bf1e2ebfd1b8d491bf59bef01eb760b4bf",
+            "comment": "add the banner component"
+          },
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "fd78eff4dcad0472d42379f3b57a957ec50b706c",
+            "comment": "fix(components): update color tokens & states"
+          },
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "cdc0e74aa520afcddb402f573e2b18f33c8be607",
+            "comment": "change banner API"
+          },
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "4cc572daec76c35aa07169df8391bc95ba9fae1c",
+            "comment": "fix md"
+          },
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "6830e885ababa700d55a04df67c4864a1e07fa5d",
+            "comment": "add progress-ring component"
+          },
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "5b914d88e2161f9763b06e3cc38ee0c2d78951b3",
+            "comment": "remove hide and open"
+          },
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "b0c6f5b1657651c08707ea35de9b16d72e074d03",
+            "comment": "migrate accordion"
+          },
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "09892850a9a072763d3efad87ce0e943f25add12",
+            "comment": "remove hide and show"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "6d5ec3fc44d3b187e08994019c263553a89dfc31",
+            "comment": "elevation avoid default dp attribute mutating the dom"
+          },
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "8575244ef63c2840c71dfa4c8350e32d17ca4ae1",
+            "comment": "add the progress component"
+          },
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "fd9493d718a94d474a722b83b177893a98242c27",
+            "comment": "Update icon size"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 18 Mar 2022 08:18:37 GMT",
       "tag": "@vonage/vivid_v3.0.0",
-      "version": "3.0.0",
+      "version": "3.0.0-next.3",
       "comments": {
         "none": [
           {
@@ -32,7 +360,7 @@
             "comment": "Remove breadcrumb-item from the docs"
           }
         ],
-        "minor": [
+        "prerelease": [
           {
             "author": "yonatan.kra@vonage.com",
             "package": "@vonage/vivid",
@@ -56,9 +384,7 @@
             "package": "@vonage/vivid",
             "commit": "c043c18d11b49a0015475e280d8d5202f6af5852",
             "comment": "new sidenav-item component. part of the sidenav component scope"
-          }
-        ],
-        "patch": [
+          },
           {
             "author": "rina.oksman@vonage.com",
             "package": "@vonage/vivid",

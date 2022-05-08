@@ -1,6 +1,7 @@
 import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { arrow, autoUpdate, computePosition, flip, hide, inline, offset, Strategy } from '@floating-ui/dom';
+import type { Placement } from '@floating-ui/dom';
 
 /**
  * Base class for popup
@@ -8,22 +9,23 @@ import { arrow, autoUpdate, computePosition, flip, hide, inline, offset, Strateg
  * @public
  */
 export class Popup extends FoundationElement {
-	private static ARROW_POSITION: any = { top: 'bottom', right: 'left', bottom: 'top', left: 'right' };
-
-	private get PADDING(): number { return 0; }
-	private get DISTANCE(): number { return 12; }
-	private get STRATEGY(): Strategy { return 'fixed'; }
-
-	popupEl!: HTMLElement;
-	arrowEl!: HTMLElement;
-
-	private cleanup?: () => void; // cleans the autoupdate
-
-	private get middleware(): Array<any> {
+	get #arrowPosition(): any { return { top: 'bottom', right: 'left', bottom: 'top', left: 'right' }; }
+	get #padding(): number { return 0; }
+	get #distance(): number { return 12; }
+	get #strategy(): Strategy { return 'fixed'; }
+	get #middleware(): Array<any> {
 		const middleware = [flip(), hide(), inline()];
-		if (this.arrow) { middleware.push(arrow({ element: this.arrowEl, padding: this.PADDING }), offset(this.DISTANCE)); }
+		if (this.arrow) { middleware.push(arrow({ element: this.arrowEl, padding: this.#padding }), offset(this.#distance)); }
 		return middleware;
 	}
+
+	#cleanup?: () => void; // cleans the autoupdate
+
+	#anchorEl: Element | null | undefined;
+
+	popupEl!: HTMLElement;
+
+	arrowEl!: HTMLElement;
 
 	/**
 	 * indicates whether the popup is open
@@ -65,13 +67,13 @@ export class Popup extends FoundationElement {
 		mode: 'boolean',
 	}) alternate = false;
 
-	// /**
-	//  * the placement of the popup
-	//  *
-	//  * @public
-	//  * HTML Attribute: corner
-	//  */
-	// @attr corner?: Placement;
+	/**
+	 * the placement of the popup
+	 *
+	 * @public
+	 * HTML Attribute: corner
+	 */
+	@attr({ mode: 'fromView' }) corner?: Placement = 'left';
 
 	/**
 	 * ID reference to element in the popup’s owner document.
@@ -81,36 +83,28 @@ export class Popup extends FoundationElement {
 	 */
 	@attr anchor!: string;
 
-	/**
-	 * popup's anchor element
-	 *
-	 * @private
-	 */
-	@attr private anchorEl: Element | null | undefined;
-
 	constructor() {
 		super();
-		// this.corner = 'left'; // default corner
 	}
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		this.cleanup?.();
+		this.#cleanup?.();
 	}
 
 	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
 		super.attributeChangedCallback(name, oldValue, newValue);
 		switch (name) {
 			case 'anchor': {
-				this.anchorEl = this.getAnchorById();
+				this.#anchorEl = this.#getAnchorById();
 				break;
 			}
 		}
-		if (this.anchorEl && this.popupEl) {
-			this.cleanup = autoUpdate(this.anchorEl, this.popupEl, () => this.updatePosition());
+		if (this.#anchorEl && this.popupEl) {
+			this.#cleanup = autoUpdate(this.#anchorEl, this.popupEl, () => this.updatePosition());
 		}
-		else{
-			this.cleanup?.();
+		else {
+			this.#cleanup?.();
 		}
 	}
 
@@ -120,44 +114,20 @@ export class Popup extends FoundationElement {
 	 * @public
 	 */
 	async updatePosition() {
-		if (!this.open || !this.anchorEl) {
+		if (!this.open || !this.#anchorEl) {
 			return;
 		}
 
-		const positionData = await computePosition(this.anchorEl, this.popupEl, {
-			// placement: this.corner,
-			strategy: this.STRATEGY,
-			middleware: this.middleware
+		const positionData = await computePosition(this.#anchorEl, this.popupEl, {
+			placement: this.corner,
+			strategy: this.#strategy,
+			middleware: this.#middleware
 		});
-		this.assignPopupPosition(positionData);
-		if (this.arrow) { this.assignArrowPosition(positionData); }
+		this.#assignPopupPosition(positionData);
+		if (this.arrow) { this.#assignArrowPosition(positionData); }
 	}
 
-	/**
-	 * Opens the popup
-	 *
-	 * @public
-	 */
-	show(): void {
-		if (this.anchorEl) { // only if anchor element exists
-			this.open = true;
-		}
-	}
-
-	/**
-	 * Closes the popup
-	 *
-	 * @public
-	 */
-	hide(): void {
-		this.open = false;
-	}
-
-	handleDismissClick(): void {
-		this.hide();
-	}
-
-	private assignPopupPosition(data: any): void {
+	#assignPopupPosition(data: any): void {
 		const { x: popupX, y: popupY } = data;
 		const { referenceHidden } = data.middlewareData.hide;
 		Object.assign(this.popupEl.style, {
@@ -167,9 +137,9 @@ export class Popup extends FoundationElement {
 		});
 	}
 
-	private assignArrowPosition(data: any): void {
+	#assignArrowPosition(data: any): void {
 		const { x: arrowX, y: arrowY } = data.middlewareData.arrow;
-		const side: string = Popup.ARROW_POSITION[data.placement.split('-')[0]];
+		const side: string = this.#arrowPosition[data.placement.split('-')[0]];
 		Object.assign(this.arrowEl.style, {
 			left: `${arrowX}px`,
 			top: `${arrowY}px`,
@@ -182,7 +152,7 @@ export class Popup extends FoundationElement {
 	/**
 	 * Gets the anchor element by id
 	 */
-	private getAnchorById(): HTMLElement | null {
+	#getAnchorById(): HTMLElement | null {
 		return document.getElementById(this.anchor);
 	}
 }

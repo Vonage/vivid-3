@@ -1,4 +1,4 @@
-# vwc-elevation
+# elevation
 
 The _elevation_ component enables a user to set perceived elevation to a certain level.  
 **Note: This component is responsible for the perceived visual elevation alone and not for the HTML elements stacking context.**

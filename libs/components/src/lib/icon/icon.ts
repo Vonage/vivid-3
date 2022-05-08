@@ -5,7 +5,7 @@ import type { Connotation, Size } from '../enums';
 import { PLACEHOLDER_ICON } from './icon.placeholder';
 
 const BASE_URL = 'https://icon.resources.vonage.com'; // namespaced as 3f7739a0-a898-4f69-a82b-ad9d743170b6 on icons.resources.vonage.com
-const ICON_SET_VERSION = '4.0.23';
+const ICON_SET_VERSION = '4.0.27';
 
 // Start displaying placeholder if waiting more than this period of time
 const PLACEHOLDER_DELAY = 500;
@@ -59,7 +59,7 @@ export class Icon extends FoundationElement {
 
 	@attr size?: Size;
 
-	@observable svg = '';
+	@observable svg?: string;
 
 	/**
 	 * Indicates which icon to resolve.
@@ -71,13 +71,13 @@ export class Icon extends FoundationElement {
 	@attr type?: string;
 
 	async typeChanged() {
-		this.svg = '';
+		this.svg = undefined;
 
 		let timeout = setTimeout(() => {
 			this.svg = PLACEHOLDER_ICON;
 			timeout = setTimeout(() => {
 				if (this.svg === PLACEHOLDER_ICON) {
-					this.svg = '';
+					this.svg = undefined;
 				}
 			}, PLACEHOLDER_TIMEOUT);
 		}, PLACEHOLDER_DELAY);
@@ -87,7 +87,7 @@ export class Icon extends FoundationElement {
 				this.svg = svg;
 			})
 			.catch(() => {
-				this.svg = '';
+				this.svg = undefined;
 			}).finally(() => { clearTimeout(timeout); });
 	}
 }

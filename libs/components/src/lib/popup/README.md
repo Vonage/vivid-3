@@ -1,4 +1,4 @@
-# vwc-popup
+# popup
 
 Popup are used to display a message or notification to the user and are displayed on top of all other web page elements.
 Popup's goal is to provide additional, helpful content. To trigger the Popup, it should be paired with an anchor (e.g., a button). 
@@ -253,9 +253,9 @@ A common practice used in apps / frameworks to promote a popup component to top 
 This helps ensure elements don't render over top a popup undesirebly.
 
 ## Methods
+### updatePosition()
 
-| Method           | Type       | Description                 |
-| ---------------- | ---------- | --------------------------- |
-| `hide`           | `(): void` | Closes the popup.           |
-| `show`           | `(): void` | Opens the popup.            |
-| `updatePosition` | `(): void` | Updates popup's position.   |
+- Type: function
+- Returns: void
+
+Updates popup's position.
