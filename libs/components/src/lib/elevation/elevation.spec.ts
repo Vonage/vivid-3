@@ -53,3 +53,4 @@ describe('vwc-elevation', () => {
 		expect(Boolean(element.shadowRoot?.querySelector('slot'))).toEqual(true);
 	});
 });
+
