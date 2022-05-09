@@ -1,13 +1,17 @@
-import { html } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
+import {html, ref, when} from '@microsoft/fast-element';
+import type {ViewTemplate} from '@microsoft/fast-element';
 import type {
-  ElementDefinitionContext,
-  FoundationElementDefinition,
+	ElementDefinitionContext,
+	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
-import { classNames } from '@microsoft/fast-web-utilities';
-import type { Textfield } from './textfield';
+import type {Textfield} from './textfield';
 
-const getClasses = (_: Textfield) => classNames('control');
+function renderLabel() {
+	return html<Textfield>`
+	  <label for="control">
+		  ${x => x.label}
+	  </label>`;
+}
 
 /**
  * The template for the {@link @microsoft/fast-foundation#Textfield} component.
@@ -16,8 +20,9 @@ const getClasses = (_: Textfield) => classNames('control');
  * @public
  */
 export const TextfieldTemplate: (
-  context: ElementDefinitionContext,
-  definition: FoundationElementDefinition
-) => ViewTemplate<Textfield> = (
-  context: ElementDefinitionContext
-) => html` <span class="${getClasses}">${context.name} </span>`;
+	context: ElementDefinitionContext,
+	definition: FoundationElementDefinition
+) => ViewTemplate<Textfield> = () => html<Textfield>`
+	<template>
+		${when(x => x.label, renderLabel())}
+	</template>`;
