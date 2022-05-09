@@ -1,5 +1,5 @@
 {
-  "type": "minor",
+  "type": "none",
   "comment": "migrate fab",
   "packageName": "@vonage/vivid",
   "email": "rina.oksman@vonage.com",
