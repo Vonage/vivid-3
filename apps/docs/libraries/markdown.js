@@ -3,13 +3,15 @@ const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 // If not already added from previous tip
 const slugify = require("slugify");
-const plugin = require("./plugin");
+var hljs = require('highlight.js') // https://highlightjs.org/
+
 
 const linkAfterHeader = markdownItAnchor.permalink.linkAfterHeader({
   class: "anchor",
   symbol: "<vwc-icon type=\"link-solid\"></vwc-icon>",
   style: "aria-labelledby",
 });
+
 const markdownItAnchorOptions = {
   level: [1, 2, 3],
   slugify: (str) =>
@@ -45,5 +47,29 @@ const markdownItAnchorOptions = {
 /* Markdown Overrides */
 module.exports = markdownIt({
   html: true,
-}).use(markdownItAnchor, markdownItAnchorOptions)
-  .use(plugin);
+  highlight: function (str, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return '<pre class="hljs"><code>' +
+          lang +
+          str +
+          // hljs.getLanguage(lang) +
+              //  hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +
+               '</code></pre>';
+      } catch (__) {}
+    }
+
+    return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
+  }
+})
+.use(require('./markdown-it-demo-renderer'), {
+  wrap: (demo, code) => {
+    return (
+      // Wrap demo html string with `.example-demo`
+      '<div class="example-demo">' + demo + '</div>' +
+      // Wrap code html string with `.example-code`
+      '<div class="example-code">' + code + '</div>'
+    )
+  }
+})
+.use(markdownItAnchor, markdownItAnchorOptions);

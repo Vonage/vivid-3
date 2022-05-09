@@ -8,7 +8,7 @@ function defaultWrap(demo, code) {
 }
 
 // should fork https://github.com/ktsn/markdown-it-demo-renderer
-module.exports = function plugin(md, params = {}) {
+module.exports = function(md, params = {}) {
   const defaultRenderer = md.renderer.rules.fence
   const wrap = params.wrap || defaultWrap
   const preprocessors = {
@@ -16,13 +16,7 @@ module.exports = function plugin(md, params = {}) {
     ...(params.preprocessors || {})
   }
 
-  md.renderer.rules.fence = function demoRenderer(
-    tokens,
-    idx,
-    options,
-    env,
-    self
-  ) {
+  md.renderer.rules.fence = function demoRenderer(tokens, idx, options, env, self) {
     const token = tokens[idx]
     const preprocess = preprocessors[token.info.trim()]
 

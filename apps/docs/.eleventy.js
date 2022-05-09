@@ -1,6 +1,6 @@
 const { EleventyRenderPlugin } = require("@11ty/eleventy");
-const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-const wrapTextElements = require("./transformers/wrap-text-elements");
+// const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+// const wrapTextElements = require("./transformers/wrap-text-elements");
 // const codeBlockDemo = require("./transformers/code-block-demo");
 const markdownLibrary = require("./libraries/markdown");
 
@@ -12,7 +12,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.setLibrary("md", markdownLibrary);
 
   eleventyConfig.addPlugin(EleventyRenderPlugin);
-  eleventyConfig.addPlugin(syntaxHighlight);
+  // eleventyConfig.addPlugin(syntaxHighlight);
 
   eleventyConfig.addPassthroughCopy({
     "dist/libs/styles/fonts/*.css": "assets/styles/fonts",
@@ -33,7 +33,7 @@ module.exports = function (eleventyConfig) {
     }
   });
 
-  eleventyConfig.addTransform('wrapTextElements', wrapTextElements);
+  // eleventyConfig.addTransform('wrapTextElements', wrapTextElements);
   // eleventyConfig.addTransform('codeBlockDemo', codeBlockDemo);
 
   eleventyConfig.setUseGitIgnore(false);
