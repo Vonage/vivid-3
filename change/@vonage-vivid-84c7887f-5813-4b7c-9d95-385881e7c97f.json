@@ -1,6 +1,6 @@
 {
   "type": "none",
-  "comment": "add elevation mixins",
+  "comment": "refactor elevation mixins",
   "packageName": "@vonage/vivid",
   "email": "rina.oksman@vonage.com",
   "dependentChangeType": "none"
