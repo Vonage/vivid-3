@@ -2,6 +2,36 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Mon, 09 May 2022 06:08:08 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.12",
+      "version": "3.0.0-next.12",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "175978aabe453edb3ecc9e375e53f231ca9da734",
+            "comment": "Add beachball config file"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 08 May 2022 13:14:22 GMT",
+      "tag": "@vonage/vivid_v3.0.0",
+      "version": "3.0.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "7a36c5373aa8084a0f425ce86905ee7d1202a901",
+            "comment": "add card component"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 08 May 2022 09:32:52 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.12",
       "version": "3.0.0-next.12",
