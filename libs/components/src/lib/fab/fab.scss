@@ -34,6 +34,24 @@
 	outline: 0 none;
 	vertical-align: middle;
 
+	&.icon-only {
+		border-radius: 50%;
+		padding-inline: 0;
+		place-content: center;
+		@supports (aspect-ratio: 1) {
+			aspect-ratio: 1;
+		}
+		@supports not (aspect-ratio: 1) {
+			inline-size: var(#{variables.$block-size});
+		}
+	}
+
+	&:not(.icon-only) {
+		#{variables.$icon-gap}: 10px;
+	
+		padding-inline: 20px;
+	}	
+
 	&:disabled {
 		background-color: var(#{theme-consts.$vvd-color-neutral-30});
 		cursor: not-allowed;
@@ -55,24 +73,6 @@
 			}
 		}
 	}
-
-	&.icon-only {
-		border-radius: 50%;
-		padding-inline: 0;
-		place-content: center;
-		@supports (aspect-ratio: 1) {
-			aspect-ratio: 1;
-		}
-		@supports not (aspect-ratio: 1) {
-			inline-size: var(#{variables.$block-size});
-		}
-	}
-
-	&:not(.icon-only) {
-		#{variables.$icon-gap}: 10px;
-	
-		padding-inline: 20px;
-	}	
 }
 
 .control[class*="connotation"] {
