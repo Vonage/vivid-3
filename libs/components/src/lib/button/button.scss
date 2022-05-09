@@ -4,13 +4,14 @@
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$subset: primary cta success alert,
-	$shades: diverse,
+	$shades: basis basis-increment contrast fierce firm soft pale,
 	$default: primary,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
-	$subset: filled filled-idle outlined outlined-idle ghost ghost-idle,
+	$appearances: filled outlined ghost,
+	$states: idle hover disabled active,
 	$default: ghost,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
@@ -28,13 +29,20 @@
 	box-sizing: border-box;
 	align-items: center;
 	border: 0 none;
-	background-color: var(#{appearance.$appearance-color-fill});
+	background-color: var(#{appearance.get-variable(fill)});
 	block-size: var(#{variables.$block-size});
-	box-shadow: inset 0 0 0 1px var(#{appearance.$appearance-color-outline});
-	color: var(#{appearance.$appearance-color-text});
-	cursor: pointer;
+	box-shadow: inset 0 0 0 1px var(#{appearance.get-variable(outline)});
+	color: var(#{appearance.get-variable(text)});
 	outline: 0 none;
 	vertical-align: middle;
+
+	&:not(:disabled) {
+		cursor: pointer;
+	}
+
+	&:disabled {
+		cursor: not-allowed;
+	}
 
 	&.icon-only {
 		padding-inline: 0;
@@ -46,7 +54,6 @@
 			inline-size: var(#{variables.$block-size});
 		}
 	}
-
 }
 
 /* Size */

@@ -1,4 +1,4 @@
-# vwc-progress
+# progress
 
 Progress is used to display the length of time a process will take or to visualize percentage value (referred to as a determinate state) and to represent an unspecified wait time (referred to as an indeterminate state).
 
@@ -84,7 +84,7 @@ Use the `shape` attribute in order to set `rounded` and `sharp` borders.
 - Default: `'rounded'`
 
 ```html preview
-    <vwc-progress min="0" max="50" value="25" shape="rounded></vwc-progress>
+    <vwc-progress min="0" max="50" value="25" shape="rounded"></vwc-progress>
     <br/>
     <br/>
     <vwc-progress min="0" max="50" value="25"></vwc-progress>

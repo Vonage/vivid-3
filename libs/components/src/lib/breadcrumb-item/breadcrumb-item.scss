@@ -6,7 +6,7 @@
 
 	display: flex;
 	align-items: center;
-	color: var(#{theme-consts.$vvd-color-neutral-70});
+	color: var(#{theme-consts.$vvd-color-on-canvas});
 
 	a {
 		color: var(--vvd-color-cta-70);
@@ -20,7 +20,8 @@
 
 	vwc-icon {
 		margin: 0 16px;
-		color: var(#{theme-consts.$vvd-color-on-canvas});
+		color: var(#{theme-consts.$vvd-color-neutral-70});
+		font-size: 12px;
 	}
 }
 

@@ -1,4 +1,4 @@
-import {elementUpdated, fixture} from '@vivid-nx/shared';
+import {elementUpdated, fixture } from '@vivid-nx/shared';
 import {expect} from '@playwright/test';
 import { Icon } from '../icon/icon';
 import { Card } from './card';
@@ -31,27 +31,32 @@ describe('vwc-card', () => {
 			expect(headerTitle?.textContent?.trim()).toEqual(heading);
 		});
 
-		it('should set subtitle property to .header-subtitle', async () => {
-			const subtitle = 'card subtitle';
-			element.subtitle = subtitle;
+		it('should set subheading property to .header-subheading', async () => {
+			const subheading = 'card subheading';
+			element.subheading = subheading;
 			await elementUpdated(element);
 
-			const headerSubtitle = element.shadowRoot?.querySelector('.header-subtitle');
-			expect(headerSubtitle?.textContent?.trim()).toEqual(subtitle);
+			const headerSubheading = element.shadowRoot?.querySelector('.header-subheading');
+			expect(headerSubheading?.textContent?.trim()).toEqual(subheading);
 		});
 
-		it('should render headerContent if heading or subtitle are set', async function () {
+		it('should render headerContent if heading is set', async function () {
 			element.heading = 'card title';
 			await elementUpdated(element);
 
-			const heading = element.shadowRoot?.querySelector('.header-title');
 			const headerContent = element.shadowRoot?.querySelector('.header-content');
-
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			// @ts-ignore
-			expect(heading.parentElement).toEqual(headerContent);
-
+			expect(headerContent).toBeTruthy();
 		});
+
+
+		it('should render headerContent if subheading is set', async function () {
+			element.subheading = 'card subheading';
+			await elementUpdated(element);
+
+			const subheadingContent = element.shadowRoot?.querySelector('.header-content');
+			expect(subheadingContent).toBeTruthy();
+		});
+
 
 		it('should add an icon to the card header', async () => {
 			element.icon = 'chat-line';
@@ -63,9 +68,9 @@ describe('vwc-card', () => {
 		});
 
 		it( 'should add class .hide-header to .control', async () => {
-			element.icon = '';
-			element.heading = '';
-			element.subtitle = '';
+			element.icon = undefined;
+			element.heading = undefined;
+			element.subheading = undefined;
 			await elementUpdated(element);
 			const controlElementHasNoHeader = element.shadowRoot?.
 				querySelector('.control')?.classList.contains('hide-header');
@@ -87,7 +92,7 @@ describe('vwc-card', () => {
 
 		it('should have meta slot ', async function () {
 			const metaSlotElement = element.shadowRoot?.
-				querySelector('.header slot[name="meta"]');
+				querySelector('.content-container slot[name="meta"]');
 
 			expect(metaSlotElement).toBeTruthy();
 		});
@@ -96,19 +101,6 @@ describe('vwc-card', () => {
 			const slottedElement = document.createElement('div');
 			slottedElement.slot = 'graphic';
 			slottedElement.id = 'graphic';
-			element.appendChild(slottedElement);
-			await elementUpdated(element);
-
-			const controlElementHasNoHeader = element.shadowRoot?.
-				querySelector('.control')?.classList.contains('hide-header');
-
-			expect(controlElementHasNoHeader).toEqual(false);
-		});
-
-		it('should remove hide-header class from .control if meta is slotted', async function () {
-			const slottedElement = document.createElement('div');
-			slottedElement.slot = 'meta';
-			slottedElement.id = 'meta';
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
@@ -153,6 +145,32 @@ describe('vwc-card', () => {
 		});
 	});
 
+	describe('card elevation', () => {
+
+		it('should have default elevation', async function () {
+			const defaultElevation = '4';
+
+			const controlElevation = element.shadowRoot?.
+				querySelector('vwc-elevation');
+
+			expect(controlElevation?.getAttribute('dp')).toEqual(defaultElevation);
+
+		});
+
+		it('should change the elevation dp when there is elevation property', async () => {
+			const startingDP = 4;
+			element.elevation = startingDP;
+			await elementUpdated(element);
+
+			const propertyValueBeforeChange = element.elevation;
+			element.setAttribute('elevation', '16');
+
+			expect(propertyValueBeforeChange).toEqual(startingDP);
+			expect(element.elevation).toEqual('16');
+		});
+
+
+	});
 
 });
 

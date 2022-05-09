@@ -9,7 +9,7 @@ import type { Card } from './card';
 
 const getClasses = (_: Card) => classNames(
 	'control',
-	['hide-footer', !_.hasFooter || !_.hasFooter.length],
+	['hide-footer', !_.footerSlottedContent || !_.footerSlottedContent.length],
 	['hide-header', shouldHideHeader(_)]
 );
 
@@ -33,9 +33,9 @@ function heading() {
 /**
  *
  */
-function subtitle() {
+function subheading() {
 	return html`
-		<div class="header-subtitle">${(x) => x.subtitle}</div>
+		<div class="header-subheading">${(x) => x.subheading}</div>
 	`;
 }
 
@@ -46,8 +46,38 @@ function headerContent() {
 	return html`
 		<div class="header-content">
 			${when(x => x.heading, heading())}
-			${when(x => x.subtitle, subtitle())}
+			${when(x => x.subheading, subheading())}
 		</div>
+	`;
+}
+
+/**
+ header
+ */
+function renderHeader() {
+
+	return html<Card>`
+		<header class="header">
+			<slot name="graphic" ${slotted('graphicSlottedContent')}>${when(x => x.icon, renderHeaderIcon())}</slot>
+			${when(x => x.heading || x.subheading, headerContent())}
+		</header>`;
+}
+
+
+/**
+ * @param card
+ */
+function shouldHideHeader(card:Card) {
+	// eslint-disable-next-line max-len
+	return 	!card.heading  && !card.subheading && !card.icon && (!card.graphicSlottedContent || !card.graphicSlottedContent.length);
+}
+
+/**
+ *
+ */
+function renderMetaSlot() {
+	return html`
+		<slot name="meta" ${slotted('metaSlottedContent')}></slot>
 	`;
 }
 
@@ -58,27 +88,6 @@ function text() {
 	return html`
 		<div class="text">${(x) => x.text}</div>
 	`;
-}
-
-
-/**
- * @param card
- */
-function shouldHideHeader(card:Card) {
-	// eslint-disable-next-line max-len
-	return 	!card.heading  && !card.subtitle && !card.icon && (!card.hasGraphic || !card.hasGraphic.length) && (!card.hasMeta || !card.hasMeta.length);
-}
-
-/**
-header
- */
-function renderHeader() {
-	return html<Card>`
-		<header class="header">
-			<slot name="graphic" ${slotted('hasGraphic')}>${when(x => x.icon, renderHeaderIcon())}</slot>
-			${when(x => x.heading || x.subtitle, headerContent())}
-			<slot name="meta" ${slotted('hasMeta')}></slot>
-		</header>`;
 }
 
 /**
@@ -92,21 +101,24 @@ export const CardTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Card> = () => html<Card>`
 	<vwc-elevation dp=${(x => x.elevation ??  '4')}>
-				<div class="${getClasses}">
-					<div class="wrapper">
-						<div class="vwc-card-media">
-							<slot name="media"></slot>
-						</div>
-						<div class="content">
-							<slot name="content">
-								${renderHeader()}
-								${when(x => x.text, text())}
-							</slot>
-						</div>
-						<div class="footer">
-							<slot name="footer" ${slotted('hasFooter')}></slot>
-						</div>
-					</div>
+		<div class="${getClasses}">
+			<div class="wrapper">
+				<div class="vwc-card-media">
+					<slot name="media"></slot>
 				</div>
-			</vwc-elevation>
+				<div class="content">
+					<slot name="content">
+						<div class="content-container">
+							${renderHeader()}
+							${renderMetaSlot()}
+						</div>
+						${when(x => x.text, text())}
+					</slot>
+				</div>
+				<div class="footer">
+					<slot name="footer" ${slotted('footerSlottedContent')}></slot>
+				</div>
+			</div>
+		</div>
+	</vwc-elevation>
 `;

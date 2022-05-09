@@ -1,11 +1,9 @@
 $popup-bg: --vvd-color-surface-4dp;
 
 .control {
-	--border-radius-size: 6px;
-
 	width: min-content;
 	background-color: var(#{$popup-bg});
-	border-radius: var(--border-radius-size);
+	border-radius: inherit;
 	contain: layout;
 
 	&:not(.open) {
@@ -15,11 +13,13 @@ $popup-bg: --vvd-color-surface-4dp;
 
 .popup-wrapper {
 	position: fixed;
+	border-radius: 6px;
 }
 
 .popup-content {
 	display: grid;
 	color: var(--vvd-color-on-canvas);
+
 	.dismissible & {
 		align-content: start;
 		grid-template-columns: 1fr auto;

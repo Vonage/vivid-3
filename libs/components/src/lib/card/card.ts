@@ -14,7 +14,7 @@ export class Card extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr({ mode: 'fromView' }) heading = '';
+	@attr heading?: string;
 
 	/**
 	 * the text of the card sub-heading
@@ -22,7 +22,7 @@ export class Card extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr({ mode: 'fromView' }) subtitle = '';
+	@attr subheading?: string;
 
 	/**
 	 * the text of the card sub-heading
@@ -30,7 +30,7 @@ export class Card extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr({ mode: 'fromView' }) text = '';
+	@attr text?: string;
 
 	/**
 	 * card header icon
@@ -44,7 +44,8 @@ export class Card extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr elevation?: 0 | 2 | 4 | 8 | 12 | 16 | 24; // TODO: get values from design tokens
+	@attr elevation?: 0 | 2 | 4 | 8 | 12 | 16 | 24;
+
 
 
 	/**
@@ -53,9 +54,11 @@ export class Card extends FoundationElement {
 	 *
 	 * @internal
 	 */
-	@observable hasFooter: HTMLElement[] | undefined;
-	@observable hasGraphic: HTMLElement[] | undefined;
-	@observable hasMeta: HTMLElement[] | undefined;
+
+
+	@observable footerSlottedContent?: HTMLElement[];
+	@observable graphicSlottedContent?: HTMLElement[];
+	@observable hasMetaSlottedContent?: HTMLElement[];
 
 }
 
