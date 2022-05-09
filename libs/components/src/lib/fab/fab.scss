@@ -4,7 +4,7 @@
 @use '../elevation/partials/elevation.mixin' as elevation;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$subset: cta,
+	$subset: primary cta,
 	$shades: basis basis-increment contrast fierce firm,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;

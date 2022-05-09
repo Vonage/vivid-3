@@ -47,10 +47,12 @@ To add an icon to the right of the text, use the `icon-trailing` attribute (or `
 Set the `connotation` attribute to change the FAB's connotation.
 It accepts a subset of predefined values.
 
-- Type: `'cta'`
+- Type: `'cta'`, `'primary'`
 - Default: `''`
 
 ```html preview
+<vwc-fab icon='plus-line'></vwc-fab>
+<vwc-fab icon='plus-line' connotation='primary'></vwc-fab>
 <vwc-fab icon='plus-line' connotation='cta'></vwc-fab>
 ```
 
