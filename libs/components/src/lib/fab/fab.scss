@@ -34,6 +34,11 @@
 	outline: 0 none;
 	vertical-align: middle;
 
+	&:disabled {
+		background-color: var(#{theme-consts.$vvd-color-neutral-30});
+		cursor: not-allowed;
+	}
+
 	&:not(:disabled) {
 		@include elevation.get-elevation(4);
 		cursor: pointer;
@@ -51,17 +56,6 @@
 		}
 	}
 
-	&:disabled {
-		background-color: var(#{theme-consts.$vvd-color-neutral-30});
-		cursor: not-allowed;
-	}
-
-	&:not(.icon-only) {
-		#{variables.$icon-gap}: 10px;
-	
-		padding-inline: 20px;
-	}
-
 	&.icon-only {
 		border-radius: 50%;
 		padding-inline: 0;
@@ -73,6 +67,12 @@
 			inline-size: var(#{variables.$block-size});
 		}
 	}
+
+	&:not(.icon-only) {
+		#{variables.$icon-gap}: 10px;
+	
+		padding-inline: 20px;
+	}	
 }
 
 .control[class*="connotation"] {
