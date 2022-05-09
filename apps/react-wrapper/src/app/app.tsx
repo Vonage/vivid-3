@@ -1,14 +1,19 @@
 import React from 'react';
 import { provideReactWrapper } from "@microsoft/fast-react-wrapper";
-import { vividButton } from '@vonage/vivid';
-
 const { wrap } = provideReactWrapper(React);
 
-const VIVIDButton = wrap(vividButton());
-
+import { VIVIDLayout } from '@vonage/vivid';
+const VividLayout = wrap(VIVIDLayout());
 export default function App() {
   return (
-      <VIVIDButton appearance='filled' label='A default button'></VIVIDButton>
+    <VividLayout column-basis="block">
+      <img src="https://picsum.photos/id/1015/300/200"/>
+      <img src="https://picsum.photos/id/1016/300/200"/>
+      <img src="https://picsum.photos/id/1018/300/200"/>
+      <img src="https://picsum.photos/id/1019/300/200"/>
+      <img src="https://picsum.photos/id/1055/300/200"/>
+      <img src="https://picsum.photos/id/1050/300/200"/>
+    </VividLayout>
   );
 }
 
