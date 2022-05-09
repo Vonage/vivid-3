@@ -23,11 +23,8 @@
 	@include appearance.appearance;
 
 	&:not(:disabled) {
-		@include elevation.get-elevation(2);
+		@include elevation.get-elevation(4);
 
-		&:hover {
-			@include elevation.get-elevation(4);
-		}
 		&:active {
 			@include elevation.get-elevation(8);
 		}
@@ -38,7 +35,6 @@
 	}
 
 	#{variables.$block-size}: 48px;
-	// background-color:  var(--elevation-fill);
 	filter: var(--elevation-shadow);
 	position: relative;
 	display: inline-flex;
