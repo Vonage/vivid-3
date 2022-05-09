@@ -1,7 +1,7 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
-import {Connotation, Shape} from '../enums';
-import {Progress} from './progress';
-import '.';
+import {Connotation, Shape} from '../enums.js';
+import {Progress} from './progress.js';
+import 'index.js';
 
 const COMPONENT_TAG = 'vwc-progress';
 

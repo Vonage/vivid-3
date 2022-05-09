@@ -1,10 +1,10 @@
 import {elementUpdated, fixture, setAttribute} from '@vivid-nx/shared';
-import {TextAnchor} from './text-anchor';
+import {TextAnchor} from './text-anchor.js';
 import '.';
 
-const COMPONENT_TAG = 'vwc-text-anchor';
+const COMPONENT_TAG = 'vwc-text-anchor.js';
 
-describe( 'vwc-text-anchor', () => {
+describe( 'vwc-text-anchor.js', () => {
 	let element: TextAnchor;
 
 	beforeEach(async () => {
@@ -12,7 +12,7 @@ describe( 'vwc-text-anchor', () => {
 	});
 
 	describe('basic', () => {
-		it('should be initialized as a vwc-text-anchor', async () => {
+		it('should be initialized as a vwc-text-anchor.js', async () => {
 			expect(element).toBeInstanceOf(TextAnchor);
 			expect(element.text).toEqual(undefined);
 		});

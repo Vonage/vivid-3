@@ -1,5 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem } from '../../shared/design-system/vivid-design-system.js';
 import styles from './icon.scss';
 import { Icon } from './icon';
 import { iconTemplate as template } from './icon.template';

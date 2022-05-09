@@ -3,7 +3,7 @@
 This element's attributes include the [anchor element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) attributes.
 
 ```js
-<script type="module">import '@vonage/vivid/sidenav-item';</script>
+<script type="module">import '@vonage/vivid/sidenav-item.js';</script>
 ```
 
 ## Text

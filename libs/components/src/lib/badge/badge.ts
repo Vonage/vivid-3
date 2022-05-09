@@ -1,6 +1,6 @@
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
-import { AffixIconWithTrailing } from '../../shared/patterns/affix';
+import { AffixIconWithTrailing } from '../../shared/patterns/affix.js';
 
 import type {
 	Appearance, Connotation, Shape, Size,

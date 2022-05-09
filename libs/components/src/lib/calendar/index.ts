@@ -1,7 +1,7 @@
 import '../elevation';
 
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem } from '../../shared/design-system/vivid-design-system.js';
 import styles from './calendar.scss';
 
 import { Calendar } from './calendar';

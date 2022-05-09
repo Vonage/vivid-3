@@ -1,7 +1,7 @@
 import {applyMixins, FoundationElement} from '@microsoft/fast-foundation';
 import {attr} from '@microsoft/fast-element';
 import {Connotation} from '../enums';
-import {AffixIcon} from '../../shared/patterns/affix';
+import {AffixIcon} from '../../shared/patterns/affix.js';
 
 export type BannerConnotation =
 	Connotation.Info |
