@@ -1,7 +1,7 @@
 {
   "type": "none",
-  "comment": "change the package to ES module",
+  "comment": "lint rule enforce module import extensions",
   "packageName": "@vonage/vivid",
-  "email": "yonatan.kra@vonage.com",
+  "email": "yinon.oved@vonage.com",
   "dependentChangeType": "none"
 }
