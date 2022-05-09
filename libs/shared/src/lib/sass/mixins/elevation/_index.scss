@@ -1,4 +1,2 @@
-@mixin set-elevation($type) {
-	background-color: var(#{--vvd-color-surface-#{$type}dp});
-	filter: var(#{--vvd-shadow-surface-#{$type}dp});
-}
+@forward 'variables' show $vvd-elevation-fill, $vvd-elevation-shadow;
+@forward 'mixins' show elevation;
