@@ -1,5 +1,5 @@
 {
-  "type": "minor",
+  "type": "none",
   "comment": "add card component",
   "packageName": "@vonage/vivid",
   "email": "rachel.tannenbaum@vonage.com",
