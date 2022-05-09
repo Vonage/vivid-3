@@ -1,1 +1,1 @@
-export * from './affix';
+export * from './affix.js';

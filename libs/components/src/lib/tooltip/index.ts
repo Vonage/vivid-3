@@ -1,10 +1,10 @@
-import '../popup';
+import '../popup.js';
 
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { designSystem } from '../../shared/design-system';
 import styles from './tooltip.scss';
 
-import { Tooltip } from './tooltip';
+import { Tooltip } from './tooltip.js';
 import { TooltipTemplate as template } from './tooltip.template';
 
 export const vividTooltip = Tooltip.compose<FoundationElementDefinition>({

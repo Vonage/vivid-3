@@ -1,6 +1,6 @@
 import { ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture } from '@vivid-nx/shared';
 import type { Button } from '../button/button';
-import { Tooltip } from './tooltip';
+import { Tooltip } from './tooltip.js';
 import '.';
 
 const COMPONENT_TAG = 'vwc-tooltip';

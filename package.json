@@ -56,7 +56,7 @@
     "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-compat": "^4.0.2",
     "eslint-plugin-cypress": "^2.12.1",
-    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsdoc": "^37.9.4",
     "extract-gfm": "^0.1.0",
     "glob": "^7.2.0",
