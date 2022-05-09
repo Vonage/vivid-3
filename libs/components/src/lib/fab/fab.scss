@@ -60,6 +60,7 @@
 	&:not(:disabled) {
 
 		@include elevation.get-elevation(4);
+		
 		cursor: pointer;
 	
 		&:active{
