@@ -1,6 +1,6 @@
 @use 'sass:list';
 @use '../../../../shared/src/lib/sass/mixins/utils' as utils;
-@use 'partials/elevation.mixin' as elevation;
+@use '../../../../shared/src/lib/sass/mixins/elevation' as elevation;
 
 $dps: 0 2 4 8 12 16 24;
 
@@ -9,7 +9,7 @@ $dps: 0 2 4 8 12 16 24;
 
 	@include utils.spread-list-selectors('.dp', $dps, $default) using ($type) {
 		::slotted(*) {
-			@include elevation.get-elevation($type);
+			@include elevation.set-elevation($type);
 		}
 	}
 }
