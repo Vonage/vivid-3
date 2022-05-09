@@ -4,8 +4,9 @@
 @use '../elevation/partials/elevation.mixin' as elevation;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$subset: primary cta,
+	$subset: canvas cta,
 	$shades: basis basis-increment contrast fierce firm,
+	$default: canvas,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
@@ -21,8 +22,24 @@
 	@include connotation.connotation;
 	@include appearance.appearance;
 
-	#{variables.$block-size}: 48px;
+	&:not(:disabled) {
+		@include elevation.get-elevation(4);
 
+		&:hover {
+			@include elevation.get-elevation(8);
+		}
+		&:active {
+			@include elevation.get-elevation(12);
+		}
+	}
+
+	&:disabled {
+		@include elevation.get-elevation(2);
+	}
+
+	#{variables.$block-size}: 48px;
+	// background-color:  var(--elevation-fill);
+	filter: var(--elevation-shadow);
 	position: relative;
 	display: inline-flex;
 	box-sizing: border-box;
@@ -30,9 +47,18 @@
 	border: 0 none;
 	block-size: var(#{variables.$block-size});
 	border-radius: 24px;
+	background-color: var(#{appearance.get-variable(fill)});
 	color: var(#{appearance.get-variable(text)});
 	outline: 0 none;
 	vertical-align: middle;
+
+	&:not(:disabled) {
+		cursor: pointer;
+	}
+
+	&:disabled {
+		cursor: not-allowed;
+	}
 
 	&.icon-only {
 		border-radius: 50%;
@@ -52,34 +78,11 @@
 		padding-inline: 20px;
 	}	
 
-	&:disabled {
-		background-color: var(#{theme-consts.$vvd-color-neutral-30});
-		cursor: not-allowed;
-	}
-
-	&:not(:disabled) {
-
-		@include elevation.get-elevation(4);
-		
-		cursor: pointer;
-	
-		&:active{
-			filter: var(#{--vvd-shadow-surface-8dp});
-		}
-		&:not([class*="connotation"]) {
-			&:hover {
-				background-color: var(#{theme-consts.$vvd-color-neutral-10});
-			}
-			&:active{
-				background-color: var(#{theme-consts.$vvd-color-neutral-30});
-			}
-		}
+	&[class*="connotation"] {
+		background-color: var(#{appearance.get-variable(fill)});
 	}
 }
 
-.control[class*="connotation"] {
-	background-color: var(#{appearance.get-variable(fill)});
-}
 
 /* Icon */
 .icon {

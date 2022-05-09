@@ -1,4 +1,4 @@
 @mixin get-elevation($type) {
-	background-color: var(#{--vvd-color-surface-#{$type}dp});
-	filter: var(#{--vvd-shadow-surface-#{$type}dp});
+	--elevation-fill: var(#{--vvd-color-surface-#{$type}dp});
+	--elevation-shadow: var(#{--vvd-shadow-surface-#{$type}dp});
 }
