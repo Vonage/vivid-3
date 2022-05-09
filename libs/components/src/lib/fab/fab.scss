@@ -23,18 +23,18 @@
 	@include appearance.appearance;
 
 	&:not(:disabled) {
-		@include elevation.get-elevation(4);
+		@include elevation.get-elevation(2);
 
 		&:hover {
-			@include elevation.get-elevation(8);
+			@include elevation.get-elevation(4);
 		}
 		&:active {
-			@include elevation.get-elevation(12);
+			@include elevation.get-elevation(8);
 		}
 	}
 
 	&:disabled {
-		@include elevation.get-elevation(2);
+		@include elevation.get-elevation(0);
 	}
 
 	#{variables.$block-size}: 48px;
