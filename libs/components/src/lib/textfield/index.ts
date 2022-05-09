@@ -1,0 +1,14 @@
+import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
+import { designSystem } from '../../shared/design-system';
+import styles from './textfield.scss';
+
+import { Textfield } from './textfield';
+import { TextfieldTemplate as template } from './textfield.template';
+
+export const vividTextfield = Textfield.compose<FoundationElementDefinition>({
+  baseName: 'textfield',
+  template: template as any,
+  styles,
+});
+
+designSystem.register(vividTextfield());
