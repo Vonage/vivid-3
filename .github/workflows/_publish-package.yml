@@ -7,22 +7,39 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.VNG_VVD_PAT }}
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '16'
           cache: 'npm'
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Bump, Changelog & Push
+        run: |
+          git config --global user.email "info@vivid.vonage.com"
+          git config --global user.name "Vivid CI"
+          npx beachball publish -m "Publishing a new version" -y
+
+      - name: Get us to the update version
+        run: |
+          git fetch --all
+          git checkout main
+          git pull
+
       - name: Install Dependencies
         run: npm ci
 
       - name: Build Components
-        run: npm run nx build components
+        run: npx nx run components:build
 
       - name: Publish
+        run: npm publish dist/libs/components --tag next --access public --//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
         env:
-          NPM_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
-        run: npx beachball publish -m "Publishing a new version" --no-git-tags --prerelease-prefix next -t next -y --access public -n $NPM_TOKEN
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
+
+

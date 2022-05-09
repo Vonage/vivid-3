@@ -4,7 +4,7 @@
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$subset: primary cta success alert,
-	$shades: contrast fierce strong soft pale,
+	$shades: basis basis-increment contrast fierce firm soft pale,
 	$default: primary,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
@@ -33,9 +33,16 @@
 	block-size: var(#{variables.$block-size});
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-variable(outline)});
 	color: var(#{appearance.get-variable(text)});
-	cursor: pointer;
 	outline: 0 none;
 	vertical-align: middle;
+
+	&:not(:disabled) {
+		cursor: pointer;
+	}
+
+	&:disabled {
+		cursor: not-allowed;
+	}
 
 	&.icon-only {
 		padding-inline: 0;
@@ -47,7 +54,6 @@
 			inline-size: var(#{variables.$block-size});
 		}
 	}
-
 }
 
 /* Size */
