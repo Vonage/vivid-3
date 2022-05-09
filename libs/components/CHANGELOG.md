@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 08 May 2022 13:14:22 GMT and should not be manually modified.
+This log was last generated on Mon, 09 May 2022 06:08:08 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.12
+
+Mon, 09 May 2022 06:08:08 GMT
+
+### Changes
+
+- Add beachball config file (yonatan.kra@vonage.com)
 
 ## 3.0.0
 
