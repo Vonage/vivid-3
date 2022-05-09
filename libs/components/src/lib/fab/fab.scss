@@ -89,7 +89,7 @@
 }
 .control[class*="connotation"] {
 	background: var(#{connotation.$vvd-color-connotation});
-	cursor: pointer;
+	
 
 	&:hover{
 		background: var(#{connotation.$vvd-color-connotation}-firm);
