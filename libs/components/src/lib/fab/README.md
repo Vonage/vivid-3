@@ -47,7 +47,7 @@ To add an icon to the right of the text, use the `icon-trailing` attribute (or `
 Set the `connotation` attribute to change the FAB's connotation.
 It accepts a subset of predefined values.
 
-- Type: `'cta'`, `'canvas'`
+- Type: `'canvas'`, `'cta'`
 - Default: `'canvas'`
 
 ```html preview
