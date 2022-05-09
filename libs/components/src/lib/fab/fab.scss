@@ -5,7 +5,7 @@
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$subset: cta,
-	$shades: fierce firm,
+	$shades: basis basis-increment contrast fierce firm,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
@@ -33,70 +33,50 @@
 	color: var(#{appearance.get-variable(text)});
 	outline: 0 none;
 	vertical-align: middle;
-}
 
-.control:not(.icon-only) {
-	#{variables.$icon-gap}: 10px;
-
-	padding-inline: 20px;
-}
-
-.control.icon-only {
-	border-radius: 50%;
-	padding-inline: 0;
-	place-content: center;
-	@supports (aspect-ratio: 1) {
-		aspect-ratio: 1;
-	}
-	@supports not (aspect-ratio: 1) {
-		inline-size: var(#{variables.$block-size});
-	}
-}
-
-.control:disabled {
-	background: var(#{theme-consts.$vvd-color-neutral-30});
-	cursor: not-allowed;
-}
-
-.control:not(:disabled) {
-	@include elevation.get-elevation(4);
-
-	cursor: pointer;
-	&:hover {
-		background: var(#{theme-consts.$vvd-color-neutral-10});
-	}
-	&:active{
-		@include elevation.get-elevation(8);
-
-		background: var(#{theme-consts.$vvd-color-neutral-30});
-	}
-}
-.control:not(:disabled) {
-	@include elevation.get-elevation(4);
-	cursor: pointer;
-
-	&:not([class*="connotation"]) {
-		&:hover {
-			background: var(#{theme-consts.$vvd-color-neutral-10});
-		}
-		&:active{
-			background: var(#{theme-consts.$vvd-color-neutral-30});
-		}
-	}
-	&:active{
-		@include elevation.get-elevation(8);
-	}
-}
-.control[class*="connotation"] {
-	background: var(#{connotation.$vvd-color-connotation});
+	&:not(:disabled) {
+		@include elevation.get-elevation(4);
+		cursor: pointer;
 	
+		&:active{
+			filter: var(#{--vvd-shadow-surface-8dp});
+		}
+		&:not([class*="connotation"]) {
+			&:hover {
+				background-color: var(#{theme-consts.$vvd-color-neutral-10});
+			}
+			&:active{
+				background-color: var(#{theme-consts.$vvd-color-neutral-30});
+			}
+		}
+	}
 
-	&:hover{
-		background: var(#{connotation.$vvd-color-connotation}-firm);
+	&:disabled {
+		background-color: var(#{theme-consts.$vvd-color-neutral-30});
+		cursor: not-allowed;
 	}
-	&:active {
-		background: var(#{connotation.$vvd-color-connotation}-fierce);
+
+	&:not(.icon-only) {
+		#{variables.$icon-gap}: 10px;
+	
+		padding-inline: 20px;
 	}
+
+	&.icon-only {
+		border-radius: 50%;
+		padding-inline: 0;
+		place-content: center;
+		@supports (aspect-ratio: 1) {
+			aspect-ratio: 1;
+		}
+		@supports not (aspect-ratio: 1) {
+			inline-size: var(#{variables.$block-size});
+		}
+	}
+}
+
+.control[class*="connotation"] {
+	background-color: var(#{appearance.get-variable(fill)});
 }
 
 /* Icon */
