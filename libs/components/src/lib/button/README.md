@@ -11,7 +11,7 @@ A button represents an action that the user can take. Use buttons to enable impo
 ## Label
 
 - Type: `String`
-- Default: `''`
+- Default: `undefined`
 
 Add a `label` attribute to add text to the button.
 

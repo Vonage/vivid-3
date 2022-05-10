@@ -100,7 +100,7 @@ export class Button extends FoundationButton {
 	 * @remarks
 	 * HTML Attribute: label
 	 */
-	@attr({ mode: 'fromView' }) label = '';
+	@attr label?: string;
 }
 
 export interface Button extends AffixIconWithTrailing {}

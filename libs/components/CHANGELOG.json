@@ -2,6 +2,156 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Mon, 09 May 2022 21:13:03 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.12",
+      "version": "3.0.0-next.12",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "15ae1c2575dd17c68fcd46cf8a0d7a52c1109057",
+            "comment": "refactor elevation mixins"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 09 May 2022 08:41:29 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.12",
+      "version": "3.0.0-next.12",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "6b62ffe67c26d671a93f3ae7f747c4ab0d5a0495",
+            "comment": "refine readme"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 09 May 2022 06:08:08 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.12",
+      "version": "3.0.0-next.12",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "175978aabe453edb3ecc9e375e53f231ca9da734",
+            "comment": "Add beachball config file"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 08 May 2022 13:14:22 GMT",
+      "tag": "@vonage/vivid_v3.0.0",
+      "version": "3.0.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "7a36c5373aa8084a0f425ce86905ee7d1202a901",
+            "comment": "add card component"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 08 May 2022 09:32:52 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.12",
+      "version": "3.0.0-next.12",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "02283565e3899499f3def9968e9dd0b255c70187",
+            "comment": "attributes default assignments removed due to DOM mutations"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 08 May 2022 09:17:37 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.11",
+      "version": "3.0.0-next.11",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "842df9708f84c9efb3fb962f9e9d3f3ff069d035",
+            "comment": "set button disabled cursor style"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 08 May 2022 08:45:31 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.11",
+      "version": "3.0.0-next.11",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "13aece3315480ed715f7fc253dfd2288619934a5",
+            "comment": "Breadcrumb design updates"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 04 May 2022 19:25:42 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.10",
+      "version": "3.0.0-next.10",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "fd508b3c551f532101e44a5d06c9504bdd94f8a5",
+            "comment": "remove styles from dependency list"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 04 May 2022 18:32:51 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.9",
+      "version": "3.0.0-next.9",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "cb532014359a8938ebb0fd82714e6d22781d952a",
+            "comment": "Target only on merge"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 04 May 2022 18:08:08 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.8",
+      "version": "3.0.0-next.8",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "289e07b35108de0af4fa8662476786d88a97292c",
+            "comment": "Update test and publish"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 03 May 2022 20:34:28 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.7",
       "version": "3.0.0-next.7",

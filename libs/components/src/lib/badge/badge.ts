@@ -90,7 +90,7 @@ export class Badge extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: text
 	 */
-	@attr({ mode: 'fromView' }) text = '';
+	@attr text?: string;
 }
 
 export interface Badge extends AffixIconWithTrailing {}
