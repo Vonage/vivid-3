@@ -38,6 +38,7 @@
 	vertical-align: middle;
 
 	&.icon-only {
+		contain: size;
 		padding-inline: 0;
 		place-content: center;
 		@supports (aspect-ratio: 1) {
@@ -67,24 +68,17 @@
 	&.stacked {
 		flex-direction: column;
 		justify-content: center;
-		@include mixins.get-size-properties(68px, body-2-bold, 10px, 16px, 18px);
-
-		&.icon-only {
-			.icon {
-				font-size: 90px;
-			}
-		}
+		@include mixins.get-size-properties(68px, body-2-bold, 10px, 16px, 20px);
 	}
 }
 
 /* Shape */
-
-// stylelint-disable-next-line no-descending-specificity
-.control:not(.shape-pill) {
+$pill-selector: '.shape-pill:not(.stacked)';
+.control:not(#{$pill-selector}) {
 	border-radius: 6px;
 }
 
-.control.shape-pill {
+.control#{$pill-selector} {
 	&:not(.icon-only) {
 		border-radius: 24px;
 	}
@@ -96,25 +90,19 @@
 
 /* Icon */
 
-// stylelint-disable-next-line no-descending-specificity
 .icon {
-
-	// stylelint-disable-next-line no-descending-specificity
 	:not(.stacked):not(.icon-trailing) & {
 		margin-inline-end: var(#{variables.$icon-gap});
 	}
 
-	// stylelint-disable-next-line no-descending-specificity
 	:not(.stacked).icon-trailing & {
 		margin-inline-start: var(#{variables.$icon-gap});
 	}
 
-	// stylelint-disable-next-line no-descending-specificity
 	.stacked:not(.icon-trailing) & {
 		margin-block-end: var(#{variables.$icon-gap});
 	}
 
-	// stylelint-disable-next-line no-descending-specificity
 	.stacked.icon-trailing & {
 		margin-block-start: var(#{variables.$icon-gap});
 	}
