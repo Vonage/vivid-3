@@ -50,7 +50,7 @@ Use the `open` attribute to set the accordion-item's open state.
 - Type: `boolean`
 - Default: `false`
 
-```html preview
+```html-preview
  <vwc-accordion-item heading="Click to toggle accordion item" open>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
