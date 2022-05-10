@@ -6,7 +6,7 @@ import type {
 } from '@microsoft/fast-foundation';
 import {classNames} from '@microsoft/fast-web-utilities';
 import '../button';
-import '../text-anchor.js';
+import '../text-anchor/index.js';
 import {affixIconTemplateFactory} from '../../shared/patterns/affix.js';
 import type {Banner} from './banner';
 

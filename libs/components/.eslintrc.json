@@ -44,7 +44,6 @@
     // functional
     "compat/compat": "error",
     "import/prefer-default-export": "off",
-    "import/extensions": ["error", "always"],
     "class-methods-use-this": "off",
     "no-new": "warn",
     "@typescript-eslint/explicit-member-accessibility": [
