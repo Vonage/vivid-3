@@ -5,5 +5,7 @@
 ```
 
 ```html preview
-<vwc-textfield></vwc-textfield>
+<form id="test">
+    <vwc-textfield label="My Label" placeholder="My Placeholder" name="test-field" value="5"></vwc-textfield>
+</form>
 ```
