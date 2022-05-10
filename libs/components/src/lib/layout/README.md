@@ -48,8 +48,8 @@ Use the `auto-sizing` attribute to set the initial preferred auto-sizing.
 
 Use the `gutters` attribute to set the initial preferred margin.
 
-- Type: `'small'` | `'medium'` | `lg'`
-- Default: `''`
+- Type: `'small'` | `'medium'` | `large'`
+- Default: `undefined`
 
 ```html preview
 <vwc-layout>
@@ -74,7 +74,7 @@ Use the `gutters` attribute to set the initial preferred margin.
 
 Use the `column-spacing` attribute to set the initial preferred spacing of a column.
 
-- Type: `'small'` | `'medium'` | `lg'`
+- Type: `'small'` | `'medium'` | `large'`
 - Default: `'medium'`
 
 ```html preview
