@@ -1,7 +1,7 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { applyMixins } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
-import { AffixIconWithTrailing } from '../../shared/patterns/affix';
+import { AffixIconWithTrailing } from '../../shared/patterns/affix.js';
 
 /**
  * Base class for accordion-item

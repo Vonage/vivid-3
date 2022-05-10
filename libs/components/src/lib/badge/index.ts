@@ -1,7 +1,7 @@
 import '../icon';
 
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem } from '../../shared/design-system/vivid-design-system.js';
 import { Badge } from './badge';
 import styles from './badge.scss';
 import { badgeTemplate as template } from './badge.template';

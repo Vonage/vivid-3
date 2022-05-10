@@ -2,7 +2,7 @@ import { html } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { affixIconTemplateFactory } from '../../shared/patterns/affix';
+import { affixIconTemplateFactory } from '../../shared/patterns/affix.js';
 import type { Badge } from './badge';
 
 const getClasses = ({

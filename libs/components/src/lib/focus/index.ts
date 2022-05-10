@@ -1,5 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem } from '../../shared/design-system/vivid-design-system.js';
 import { Focus } from './focus';
 import styles from './focus.scss';
 import { focusTemplate as template } from './focus.template';

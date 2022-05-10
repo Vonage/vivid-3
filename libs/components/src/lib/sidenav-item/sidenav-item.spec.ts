@@ -1,9 +1,9 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
-import { Icon } from '../icon/icon';
-import { SidenavItem } from './sidenav-item';
-import '.';
+import { Icon } from '../icon/icon.js';
+import { SidenavItem } from './sidenav-item.js';
+import 'index.js';
 
-const COMPONENT_TAG = 'vwc-sidenav-item';
+const COMPONENT_TAG = 'vwc-sidenav-item.js';
 const ICON_SELECTOR = 'vwc-icon';
 
 describe('vwc-sidenav-item', () => {

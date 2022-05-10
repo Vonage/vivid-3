@@ -5,7 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { textAnchorTemplate } from '../text-anchor/text-anchor.template';
-import type { SidenavItem } from './sidenav-item';
+import type { SidenavItem } from './sidenav-item.js';
 
 /**
  * The template for the {@link @microsoft/fast-foundation#SidenavItem} component.

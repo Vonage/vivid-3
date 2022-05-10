@@ -1,5 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem } from '../../shared/design-system/vivid-design-system.js';
 import { Elevation } from './elevation';
 import styles from './elevation.scss';
 import { elevationTemplate as template } from './elevation.template';

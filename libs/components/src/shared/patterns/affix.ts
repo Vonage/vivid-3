@@ -1,7 +1,7 @@
 import { attr, html } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
-import { Icon } from '../../lib/icon/icon';
+import { Icon } from '../../lib/icon/icon.js';
 
 /**
 	* A mixin class implementing prefix elements.

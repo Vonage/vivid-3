@@ -4,7 +4,7 @@ import { attr } from '@microsoft/fast-element';
 import type {
 	Appearance, Connotation, Shape, Size,
 } from '../enums.js';
-import { AffixIconWithTrailing } from '../../shared/patterns/affix';
+import { AffixIconWithTrailing } from '../../shared/patterns/affix.js';
 
 /**
  * Types of button connotation.

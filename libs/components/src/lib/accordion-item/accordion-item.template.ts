@@ -5,7 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { affixIconTemplateFactory } from '../../shared/patterns/affix';
+import { affixIconTemplateFactory } from '../../shared/patterns/affix.js';
 import type { AccordionItem } from './accordion-item';
 
 const PANEL = 'panel';

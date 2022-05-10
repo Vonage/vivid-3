@@ -2,7 +2,7 @@ import '../elevation';
 import '../button';
 
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem } from '../../shared/design-system/vivid-design-system.js';
 import { Popup } from './popup';
 import styles from './popup.scss';
 import { popupTemplate as template } from './popup.template';
