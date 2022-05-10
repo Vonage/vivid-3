@@ -1,7 +1,7 @@
 {
-  "type": "major",
+  "type": "prerelease",
   "comment": "redefine size interface to distingish block and inline sizing",
   "packageName": "@vonage/vivid",
   "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
+  "dependentChangeType": "none"
 }
