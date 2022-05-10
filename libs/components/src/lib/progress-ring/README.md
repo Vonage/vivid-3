@@ -69,6 +69,7 @@ Use the `paused` attribute to show a disabled state of the progress.
         <vwc-progress-ring min="0" max="50" paused></vwc-progress-ring>
     </vwc-layout>
 ```
+### Size TODO
 
 ## Example Usage
 
@@ -88,3 +89,6 @@ Remove `value` or set it to be a non-number value (e.g. `indeterminate`) to show
         <vwc-progress-ring min="0" max="50" value="indeterminate"></vwc-progress-ring>
     </vwc-layout>
 ```
+## CSS Variables
+
+### TODO sizes variable

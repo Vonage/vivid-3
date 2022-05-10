@@ -1,3 +1,5 @@
+@use 'sass:map';
+@use 'partials/variables' as variables;
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
@@ -6,22 +8,31 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
+$sizes: (
+  small: 24px,
+  medium: 36px,
+  large: 48px,
+);
+
 .base {
 	@include connotation.connotation;
 
-	width: 36px;
-	height: 36px;
+	width: var(#{variables.$vvd-progress-ring-size}, map.get($sizes, medium));
+	height: var(#{variables.$vvd-progress-ring-size}, map.get($sizes, medium));
 	align-items: center;
 	outline: none;
 }
-.base.base-large {
-	width: 48px;
-	height: 48px;
+
+.base.size-small {
+  #{variables.$vvd-progress-ring-size}: 24px;
 }
 
-.base.base-small {
-	width: 24px;
-	height: 24px;
+.base.size-medium {
+  #{variables.$vvd-progress-ring-size}: 36px;
+}
+
+.base.size-large {
+  #{variables.$vvd-progress-ring-size}: 48px;
 }
 
 .progress {
