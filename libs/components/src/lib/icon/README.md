@@ -45,13 +45,13 @@ While `type` fetches an icon from the Vivid predefined set of icons, `svg` prope
 
 Use the `size` attribute to apply a predefined size to the icon.
 
-- Type: `'sm'` | `'md'` | `'lg'`
-- Default: `'md'`
+- Type: `'small'` | `'medium'` | `'large'`
+- Default: `'medium'`
 
 ```html preview
-<vwc-icon type='close-line' size='sm'></vwc-icon>
-<vwc-icon type='close-line' size='md'></vwc-icon>
-<vwc-icon type='close-line' size='lg'></vwc-icon>
+<vwc-icon type='close-line' size='small'></vwc-icon>
+<vwc-icon type='close-line' size='medium'></vwc-icon>
+<vwc-icon type='close-line' size='large'></vwc-icon>
 ```
 
 ## Connotation

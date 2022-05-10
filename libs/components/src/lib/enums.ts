@@ -38,9 +38,9 @@ export enum BlockSize {
 }
 
 export enum Size {
-	Small = 'sm',
-	Medium = 'md',
-	Large = 'lg',
+	Small = 'small',
+	Medium = 'medium',
+	Large = 'large',
 }
 
 export enum Position {
