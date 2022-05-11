@@ -22,39 +22,20 @@
 	@include connotation.connotation;
 	@include appearance.appearance;
 
-	&:not(:disabled) {
-    @include elevation.elevation(4);
-
-		&:active {
-      @include elevation.elevation(8);
-		}
-	}
-
-	&:disabled {
-    @include elevation.elevation(0);
-	}
-
 	#{variables.$block-size}: 48px;
-  filter: var(#{elevation.$vvd-elevation-shadow});
+
 	position: relative;
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
 	border: 0 none;
+  background-color: var(#{appearance.get-variable(fill)});
 	block-size: var(#{variables.$block-size});
 	border-radius: 24px;
-  background-color: var(#{appearance.get-variable(fill)});
 	color: var(#{appearance.get-variable(text)});
+  filter: var(#{elevation.$vvd-elevation-shadow});
 	outline: 0 none;
 	vertical-align: middle;
-
-	&:not(:disabled) {
-		cursor: pointer;
-	}
-
-	&:disabled {
-		cursor: not-allowed;
-	}
 
 	&.icon-only {
 		border-radius: 50%;
@@ -73,6 +54,21 @@
 
 		padding-inline: 20px;
 	}
+
+  &:disabled {
+    @include elevation.elevation(0);
+
+    cursor: not-allowed;
+	}
+
+	&:not(:disabled) {
+    @include elevation.elevation(4);
+
+    cursor: pointer;
+		&:active {
+      @include elevation.elevation(8);
+		}
+	}
 }
 
 
@@ -80,13 +76,13 @@
 .icon {
 	font-size: 24px;
 
-	:not(.icon-trailing) & {
-		margin-inline-end: var(#{variables.$icon-gap});
-	}
-
-	.icon-trailing & {
+  .icon-trailing & {
 		order: 1;
 		margin-inline-start: var(#{variables.$icon-gap});
+	}
+
+	:not(.icon-trailing) & {
+		margin-inline-end: var(#{variables.$icon-gap});
 	}
 }
 
