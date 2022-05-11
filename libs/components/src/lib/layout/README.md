@@ -65,7 +65,7 @@ Use the `gutters` attribute to set the initial preferred `margin`.
 </div>
 ```
 
-## Column-spacing
+## Column Spacing
 
 Use the `column-spacing` attribute to set the initial preferred `spacing` of a column.
 
