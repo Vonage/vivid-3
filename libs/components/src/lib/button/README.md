@@ -21,15 +21,15 @@ Add a `label` attribute to add text to the button.
 
 ## Size
 
-Use the `size` attribute to change the button's size.
+Use the `size` attribute to set the button's to one of the predefined block size extent.
 
-- Type: `'base-small'` | `'base'` | `'base-large'`
-- Default: `'base'`
+- Type: `'condensed'` | `'normal'` | `'extended'`
+- Default: `'normal'`
 
 ```html preview
-<vwc-button appearance='filled' label='base-small' size='base-small'></vwc-button>
-<vwc-button appearance='filled' label='base' size='base'></vwc-button>
-<vwc-button appearance='filled' label='base-large' size='base-large'></vwc-button>
+<vwc-button appearance='filled' label='condensed' size='condensed'></vwc-button>
+<vwc-button appearance='filled' label='normal' size='normal'></vwc-button>
+<vwc-button appearance='filled' label='extended' size='extended'></vwc-button>
 ```
 
 ## Shape
@@ -76,12 +76,31 @@ Set the `appearance` attribute to change the button's appearance.
 <vwc-button label='outlined' appearance='outlined'></vwc-button>
 ```
 
+## Stacked
+
+Set the `stacked` attribute to change the button's layout to stacked.
+
+- Type: `boolean`
+- Default: `false`
+
+Caveats:
+
+- This is only applicable to the `'rounded'` shape.
+- This Will override any [size](#size) style to the predefined stacked size.
+
+```html preview
+<vwc-button stacked appearance='filled' label='Stacked'></vwc-button>
+<vwc-button stacked appearance='filled' icon='message-sent-line' label='With Icon'></vwc-button>
+<vwc-button stacked appearance='filled' icon='message-sent-line' icon-trailing label='Icon Trailing'></vwc-button>
+<vwc-button stacked appearance='filled' icon='message-sent-line'></vwc-button>
+```
+
 ## Connotation
 
 Set the `connotation` attribute to change the button's connotation.
 It accepts a subset of predefined values.
 
-- Type: `'primary'` | `'cta'` | `'success'` | `'alert'` | `'announcement'` | `'info'`
+- Type: `'primary'` | `'cta'` | `'success'` | `'alert'`
 - Default: `'primary'`
 
 ### Ghost button with connotation

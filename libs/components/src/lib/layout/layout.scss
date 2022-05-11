@@ -9,7 +9,7 @@
 	grid-auto-rows: min-content;
 
 	@include mixins.measurement(map.keys(variables.$bases)...) using ($basis) {
-		#{functions.get-selector-with-default(".column-basis", $basis, 'base', map.keys(variables.$bases))} {
+		#{functions.get-selector-with-default(".column-basis", $basis, 'medium', map.keys(variables.$bases))} {
 			grid-template-columns: var(
 				#{variables.$layout-grid-template-columns},
 				repeat(
@@ -21,7 +21,7 @@
 	}
 
 	@include mixins.measurement(map.keys(variables.$spaces)...) using ($space) {
-		#{functions.get-selector-with-default(".column-spacing", $space, 'base', map.keys(variables.$spaces))} {
+		#{functions.get-selector-with-default(".column-spacing", $space, 'medium', map.keys(variables.$spaces))} {
 			gap: map.get(variables.$spaces, $space);
 		}
 	}
