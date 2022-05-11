@@ -1,24 +1,24 @@
-@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
-@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
-@use 'partials/variables' as variables;
-@use '../../../../shared/src/lib/sass/mixins/elevation' as elevation;
+@use "../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts" as theme-consts;
+@use "../../../../shared/src/lib/sass/mixins/typography" as typography;
+@use "partials/variables" as variables;
+@use "../../../../shared/src/lib/sass/mixins/elevation" as elevation;
 
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$subset: canvas cta primary,
 	$shades: basis basis-increment contrast fierce firm,
-	$default: canvas,
+	$default: canvas
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: filled,
 	$states: idle hover disabled active,
-	$default: filled,
+	$default: filled
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 
 .control {
-	@include typography.typography-cat-shorthand('body-1-bold');
+	@include typography.typography-cat-shorthand("body-1-bold");
 	@include connotation.connotation;
 	@include appearance.appearance;
 
@@ -29,11 +29,11 @@
 	box-sizing: border-box;
 	align-items: center;
 	border: 0 none;
-  background-color: var(#{appearance.get-variable(fill)});
+	background-color: var(#{appearance.get-variable(fill)});
 	block-size: var(#{variables.$block-size});
 	border-radius: 24px;
 	color: var(#{appearance.get-variable(text)});
-  filter: var(#{elevation.$vvd-elevation-shadow});
+	filter: var(#{elevation.$vvd-elevation-shadow});
 	outline: 0 none;
 	vertical-align: middle;
 
@@ -55,28 +55,27 @@
 		padding-inline: 20px;
 	}
 
-  &:disabled {
-    @include elevation.elevation(0);
+	&:disabled {
+		@include elevation.elevation(0);
 
-    cursor: not-allowed;
+		cursor: not-allowed;
 	}
 
 	&:not(:disabled) {
-    @include elevation.elevation(4);
+		@include elevation.elevation(4);
 
-    cursor: pointer;
+		cursor: pointer;
 		&:active {
-      @include elevation.elevation(8);
+			@include elevation.elevation(8);
 		}
 	}
 }
-
 
 /* Icon */
 .icon {
 	font-size: 24px;
 
-  .icon-trailing & {
+	.icon-trailing & {
 		order: 1;
 		margin-inline-start: var(#{variables.$icon-gap});
 	}
