@@ -73,19 +73,19 @@ Use the `column-spacing` attribute to set the initial preferred `spacing` of a c
 - Default: `'medium'`
 
 ```html preview
-<div class="demo-gradient">
+<div class="demo-gradient tight">
   <vwc-layout column-spacing="small">
     <vwc-card elevation="2" text="small"></vwc-card>
     <vwc-card elevation="2" text="small"></vwc-card>
   </vwc-layout>
 </div>
-<div class="demo-gradient">
+<div class="demo-gradient tight">
   <vwc-layout column-spacing="medium">
     <vwc-card elevation="2" text="medium"></vwc-card>
     <vwc-card elevation="2" text="medium"></vwc-card>
   </vwc-layout>
 </div>
-<div class="demo-gradient">
+<div class="demo-gradient tight">
   <vwc-layout column-spacing="large">
     <vwc-card elevation="2" text="large"></vwc-card>
     <vwc-card elevation="2" text="large"></vwc-card>

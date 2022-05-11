@@ -17,6 +17,8 @@ body {
 .demo-gradient{
   background-image: linear-gradient(to right, var(--vvd-color-info-30), var(--vvd-color-cta-30));
   padding: 1rem;
+  margin-top: 2rem;
 }
-
-.demo-gradient + .demo-gradient { margin-top: 2rem;}
+.demo-gradient.tight{
+  padding: 0.2rem;
+}
