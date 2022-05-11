@@ -27,7 +27,7 @@ describe('vwc-layout', () => {
 
 	describe('gutters', () => {
 		it('should set correct internal gutters class', async () => {
-			const gutters = Size.BaseLarge;
+			const gutters = Size.Large;
 
 			expect(getControlElement(element).classList.toString()).toEqual('control');
 			element.gutters = gutters;
@@ -39,7 +39,7 @@ describe('vwc-layout', () => {
 
 	describe('column-basis', () => {
 		it('should set correct internal column-basis style', async () => {
-			const columnBasis = Size.BaseLarge;
+			const columnBasis = Size.Large;
 
 			expect(getControlElement(element).classList.toString()).toEqual('control');
 			element.columnBasis = columnBasis;
@@ -50,7 +50,7 @@ describe('vwc-layout', () => {
 
 	describe('column-spacing', () => {
 		it('should set correct internal column-spacing style', async () => {
-			const columnSpacing = Size.BaseLarge;
+			const columnSpacing = Size.Large;
 
 			expect(getControlElement(element).classList.toString()).toEqual('control');
 			element.columnSpacing = columnSpacing;

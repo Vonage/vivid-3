@@ -2,6 +2,36 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Wed, 11 May 2022 10:21:34 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.13",
+      "version": "3.0.0-next.13",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "811a25161e32a55135b478907ac75c2b74d1ac82",
+            "comment": "redefine size interface to distingish block and inline sizing"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 09 May 2022 21:13:03 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.12",
+      "version": "3.0.0-next.12",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "15ae1c2575dd17c68fcd46cf8a0d7a52c1109057",
+            "comment": "refactor elevation mixins"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 09 May 2022 08:41:29 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.12",
       "version": "3.0.0-next.12",

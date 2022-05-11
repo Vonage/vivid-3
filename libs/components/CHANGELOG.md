@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Mon, 09 May 2022 06:08:08 GMT and should not be manually modified.
+This log was last generated on Wed, 11 May 2022 10:21:34 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.13
+
+Wed, 11 May 2022 10:21:34 GMT
+
+### Changes
+
+- redefine size interface to distingish block and inline sizing (yinon@hotmail.com)
 
 ## 3.0.0-next.12
 
