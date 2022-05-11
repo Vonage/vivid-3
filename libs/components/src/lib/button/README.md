@@ -46,21 +46,24 @@ Use the `shape` attribute to change the button's edges.
 
 ## Icon
 
+Use the icon attribute to add an icon to the button. You can choose an icon from the [icons gallery](https://icons.vivid.vonage.com).
+
+- Type: `String`
+- Default: `undefined`
+
+```html preview
+<vwc-button appearance="filled" icon='message-sent-line'></vwc-button>
+<vwc-button appearance="filled" shape="pill" icon='message-sent-line'></vwc-button>
+```
+
+## Icon with Label
+
 Button text can be affixed by a decorative icon, either by its start or end. 
 Use the `icon` attribute to add an icon. Use the `icon-trailing` to place the icon to the right.
 
 ```html preview
 <vwc-button appearance="filled" label='icon' icon='check-line'></vwc-button>
 <vwc-button appearance="filled" label='icon-trailing' icon='check-line' icon-trailing></vwc-button>
-```
-
-## Icon Only
-
-If label not applied...
-
-```html preview
-<vwc-button appearance="filled" icon='message-sent-line'></vwc-button>
-<vwc-button appearance="filled" shape="pill" icon='message-sent-line'></vwc-button>
 ```
 
 ## Appearance
@@ -130,10 +133,9 @@ It accepts a subset of predefined values.
 <vwc-button appearance="outlined" label='alert' connotation='alert'></vwc-button>
 ```
 
-## States
-### Disabled
+## Disabled
 ```html preview
-<vwc-button disabled appearance='ghost' label='ghost'></vwc-button>
-<vwc-button disabled appearance='filled' label='filled'></vwc-button>
-<vwc-button disabled appearance='outlined' label='outlined'></vwc-button>
+<vwc-button appearance='ghost' label='ghost' disabled></vwc-button>
+<vwc-button appearance='filled' label='filled' disabled></vwc-button>
+<vwc-button appearance='outlined' label='outlined' disabled></vwc-button>
 ```
