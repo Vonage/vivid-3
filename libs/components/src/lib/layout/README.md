@@ -35,8 +35,8 @@ Using layout, elements can be arranged easily in a variety of sizes and spaces t
 
 Use the `gutters` attribute to set the initial preferred `margin`.
 
-- Type: `'base-small'` | `'base'` | `'base-large'`
-- Default: `''`
+- Type: `'small'` | `'medium'` | `'large'`
+- Default: `'medium'`
 
 ```html preview
 <div class="demo-gradient">
@@ -46,21 +46,21 @@ Use the `gutters` attribute to set the initial preferred `margin`.
   </vwc-layout>
 </div>
 <div class="demo-gradient">
-  <vwc-layout gutters="base-small">
-    <vwc-card elevation="2" text="base-small"></vwc-card>
-    <vwc-card elevation="2" text="base-small"></vwc-card>
+  <vwc-layout gutters="small">
+    <vwc-card elevation="2" text="small"></vwc-card>
+    <vwc-card elevation="2" text="small"></vwc-card>
   </vwc-layout>
 </div>
 <div class="demo-gradient">
-<vwc-layout gutters="base">
-    <vwc-card elevation="2" text="base"></vwc-card>
-    <vwc-card elevation="2" text="base"></vwc-card>
+<vwc-layout gutters="medium">
+    <vwc-card elevation="2" text="medium"></vwc-card>
+    <vwc-card elevation="2" text="medium"></vwc-card>
 </vwc-layout>
 </div>
 <div class="demo-gradient">
-<vwc-layout gutters="base-large">
-    <vwc-card elevation="2" text="base-large"></vwc-card>
-    <vwc-card elevation="2" text="base-large"></vwc-card>
+<vwc-layout gutters="large">
+    <vwc-card elevation="2" text="large"></vwc-card>
+    <vwc-card elevation="2" text="large"></vwc-card>
 </vwc-layout>
 </div>
 ```
@@ -69,26 +69,26 @@ Use the `gutters` attribute to set the initial preferred `margin`.
 
 Use the `column-spacing` attribute to set the initial preferred `spacing` of a column.
 
-- Type: `'base-small'` | `'base'` | `'base-large'`
-- Default: `'base'`
+- Type: `'small'` | `'medium'` | `'large'`
+- Default: `'medium'`
 
 ```html preview
 <div class="demo-gradient">
-  <vwc-layout column-spacing="base-small">
-    <vwc-card elevation="2" text="base-small"></vwc-card>
-    <vwc-card elevation="2" text="base-small"></vwc-card>
+  <vwc-layout column-spacing="small">
+    <vwc-card elevation="2" text="small"></vwc-card>
+    <vwc-card elevation="2" text="small"></vwc-card>
   </vwc-layout>
 </div>
 <div class="demo-gradient">
-  <vwc-layout column-spacing="base">
-    <vwc-card elevation="2" text="base"></vwc-card>
-    <vwc-card elevation="2" text="base"></vwc-card>
+  <vwc-layout column-spacing="medium">
+    <vwc-card elevation="2" text="medium"></vwc-card>
+    <vwc-card elevation="2" text="medium"></vwc-card>
   </vwc-layout>
 </div>
 <div class="demo-gradient">
-  <vwc-layout column-spacing="base-large">
-    <vwc-card elevation="2" text="base-large"></vwc-card>
-    <vwc-card elevation="2" text="base-large"></vwc-card>
+  <vwc-layout column-spacing="large">
+    <vwc-card elevation="2" text="large"></vwc-card>
+    <vwc-card elevation="2" text="large"></vwc-card>
   </vwc-layout>
 </div>
 ```
@@ -98,32 +98,32 @@ Use the `column-spacing` attribute to set the initial preferred `spacing` of a c
 Use the `column-basis` attribute to set the initial preferred `measure` of a column. 
 Use `block` to stack elements one above the other.
 
-- Type: `'base-small'` | `'base'` | `'base-large'` | `'block'`
-- Default: `'base'`
+- Type: `'small'` | `'medium'` | `'large'` | `'block'`
+- Default: `'medium'`
 
 ```html preview
 <div class="demo-gradient">
-  <vwc-layout column-basis="base-small">
-    <vwc-card elevation="2" text="base-small"></vwc-card>
-    <vwc-card elevation="2" text="base-small"></vwc-card>
-    <vwc-card elevation="2" text="base-small"></vwc-card>
-    <vwc-card elevation="2" text="base-small"></vwc-card>
+  <vwc-layout column-basis="small">
+    <vwc-card elevation="2" text="small"></vwc-card>
+    <vwc-card elevation="2" text="small"></vwc-card>
+    <vwc-card elevation="2" text="small"></vwc-card>
+    <vwc-card elevation="2" text="small"></vwc-card>
   </vwc-layout>
 </div>
 <div class="demo-gradient">
-  <vwc-layout column-basis="base">
-    <vwc-card elevation="2" text="base"></vwc-card>
-    <vwc-card elevation="2" text="base"></vwc-card>
-    <vwc-card elevation="2" text="base"></vwc-card>
-    <vwc-card elevation="2" text="base"></vwc-card>
+  <vwc-layout column-basis="medium">
+    <vwc-card elevation="2" text="medium"></vwc-card>
+    <vwc-card elevation="2" text="medium"></vwc-card>
+    <vwc-card elevation="2" text="medium"></vwc-card>
+    <vwc-card elevation="2" text="medium"></vwc-card>
   </vwc-layout>
 </div>
 <div class="demo-gradient">
-  <vwc-layout column-basis="base-large">
-    <vwc-card elevation="2" text="base-large"></vwc-card>
-    <vwc-card elevation="2" text="base-large"></vwc-card>
-    <vwc-card elevation="2" text="base-large"></vwc-card>
-    <vwc-card elevation="2" text="base-large"></vwc-card>
+  <vwc-layout column-basis="large">
+    <vwc-card elevation="2" text="large"></vwc-card>
+    <vwc-card elevation="2" text="large"></vwc-card>
+    <vwc-card elevation="2" text="large"></vwc-card>
+    <vwc-card elevation="2" text="large"></vwc-card>
   </vwc-layout>
 </div>
 <div class="demo-gradient">
