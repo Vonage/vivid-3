@@ -31,17 +31,17 @@
 
 /* Size */
 
-.control:not(.size-base-small):not(.size-base-large) {
+.control:not(.size-condensed):not(.size-extended) {
 	block-size: 24px;
 	padding-inline: 10px;
 }
 
-.control.size-base-small {
+.control.size-condensed {
 	block-size: 20px;
 	padding-inline: 8px;
 }
 
-.control.size-base-large {
+.control.size-extended {
 	block-size: 28px;
 	padding-inline: 12px;
 }

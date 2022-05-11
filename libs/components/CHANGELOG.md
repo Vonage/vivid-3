@@ -1,8 +1,32 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 08 May 2022 09:32:52 GMT and should not be manually modified.
+This log was last generated on Wed, 11 May 2022 10:21:34 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.13
+
+Wed, 11 May 2022 10:21:34 GMT
+
+### Changes
+
+- redefine size interface to distingish block and inline sizing (yinon@hotmail.com)
+
+## 3.0.0-next.12
+
+Mon, 09 May 2022 06:08:08 GMT
+
+### Changes
+
+- Add beachball config file (yonatan.kra@vonage.com)
+
+## 3.0.0
+
+Sun, 08 May 2022 13:14:22 GMT
+
+### Minor changes
+
+- add card component (rachel.tannenbaum@vonage.com)
 
 ## 3.0.0-next.12
 

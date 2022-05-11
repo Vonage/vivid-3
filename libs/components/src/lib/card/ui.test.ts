@@ -4,13 +4,19 @@ import type { Page } from '@playwright/test';
 import {
 	extractHTMLBlocksFromReadme,
 	loadComponents,
-	loadTemplate
-} from '../../visual-tests/visual-tests-utils.ts';
+	loadTemplate,
+} from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['layout', 'card'];
+const components = ['card'];
+
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template = extractHTMLBlocksFromReadme(path.join(new URL('.', import.meta.url).pathname, 'README.md'))
-		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
+	const template = extractHTMLBlocksFromReadme(
+		path.join(new URL('.', import.meta.url).pathname, 'README.md')
+	).reduce(
+		(htmlString: string, block: string) =>
+			`${htmlString} <div style="margin: 5px;">${block}</div>`,
+		''
+	);
 
 	await loadComponents({
 		page,
@@ -25,8 +31,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
-	expect(await testWrapper?.screenshot())
-		.toMatchSnapshot(
-			'./snapshots/layout.png',
-		);
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'./snapshots/card.png'
+	);
 });
