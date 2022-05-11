@@ -93,7 +93,7 @@ Use the `column-spacing` attribute to set the initial preferred `spacing` of a c
 </div>
 ```
 
-## Column-basis
+## Column Basis
 
 Use the `column-basis` attribute to set the initial preferred `measure` of a column. 
 Use `block` to stack elements one above the other.
