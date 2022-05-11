@@ -1,7 +1,7 @@
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use 'partials/variables' as variables;
-@use '../elevation/partials/elevation.mixin' as elevation;
+@use '../../../../shared/src/lib/sass/mixins/elevation' as elevation;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$subset: canvas cta,
@@ -23,19 +23,19 @@
 	@include appearance.appearance;
 
 	&:not(:disabled) {
-		@include elevation.get-elevation(4);
+    @include elevation.elevation(4);
 
 		&:active {
-			@include elevation.get-elevation(8);
+      @include elevation.elevation(8);
 		}
 	}
 
 	&:disabled {
-		@include elevation.get-elevation(0);
+    @include elevation.elevation(0);
 	}
 
 	#{variables.$block-size}: 48px;
-	filter: var(--elevation-shadow);
+  filter: var(elevation.$vvd-elevation-shadow);
 	position: relative;
 	display: inline-flex;
 	box-sizing: border-box;
@@ -43,7 +43,7 @@
 	border: 0 none;
 	block-size: var(#{variables.$block-size});
 	border-radius: 24px;
-	background-color: var(#{appearance.get-variable(fill)});
+  background-color: var(elevation.$vvd-elevation-fill);
 	color: var(#{appearance.get-variable(text)});
 	outline: 0 none;
 	vertical-align: middle;
@@ -70,12 +70,8 @@
 
 	&:not(.icon-only) {
 		#{variables.$icon-gap}: 10px;
-	
-		padding-inline: 20px;
-	}	
 
-	&[class*="connotation"] {
-		background-color: var(#{appearance.get-variable(fill)});
+		padding-inline: 20px;
 	}
 }
 
