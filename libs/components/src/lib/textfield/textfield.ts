@@ -9,6 +9,7 @@ import {attr, observable, volatile} from '@microsoft/fast-element';
 export class Textfield extends FoundationTextfield {
 	@attr label?: string;
 	@attr({attribute: 'helper-text'}) helperText?: string;
+	@attr({attribute: 'char-count', mode: 'boolean'}) charCount = false;
 	@observable _valid = true;
 
 	@volatile
