@@ -5,7 +5,7 @@ import {TextFieldType} from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG = 'vwc-textfield';
 
-fdescribe('vwc-textfield', () => {
+describe('vwc-textfield', () => {
 	let element: Textfield;
 
 	beforeEach(async () => {
@@ -40,6 +40,10 @@ fdescribe('vwc-textfield', () => {
 		});
 	});
 
+	//TODO::character count
+
+	//TODO::number type with special +/- sign
+
 	describe('readOnly', function () {
 		it('should add class readonly to host', async function () {
 			const readonlyClassWhenFalse = element.classList.contains('readonly');
@@ -49,12 +53,6 @@ fdescribe('vwc-textfield', () => {
 			expect(readonlyClassWhenFalse)
 				.toEqual(false);
 			expect(readonlyClassWhenTrue)
-				.toEqual(true);
-		});
-
-		it('should set proxy as read only', async function () {
-			element.readOnly = true;
-			expect(element.proxy.readOnly)
 				.toEqual(true);
 		});
 	});
@@ -67,15 +65,9 @@ fdescribe('vwc-textfield', () => {
 				?.hasAttribute('autofocus'))
 				.toEqual(true);
 		});
-
-		it('should set autofocus on proxy input', function () {
-			element.autofocus = true;
-			expect(element.proxy.autofocus)
-				.toEqual(true);
-		});
 	});
 
-	describe(`placeholder`, function () {
+	describe('placeholder', function () {
 		const placeholderText = 'Text';
 		it('should set placeholder attribute on the input', async function () {
 
@@ -85,17 +77,11 @@ fdescribe('vwc-textfield', () => {
 				?.getAttribute('placeholder'))
 				.toEqual(placeholderText);
 		});
-
-		it('should set placeholder on proxy input', function () {
-			element.placeholder = placeholderText;
-			expect(element.proxy.placeholder)
-				.toEqual(placeholderText);
-		});
 	});
 
-	describe(`type`, function () {
+	describe('type', function () {
 		const typeText = TextFieldType.text;
-		it('should set placeholder attribute on the input', async function () {
+		it('should set type attribute on the input', async function () {
 
 			element.type = typeText;
 			await elementUpdated(element);
@@ -103,33 +89,21 @@ fdescribe('vwc-textfield', () => {
 				?.getAttribute('type'))
 				.toEqual(typeText);
 		});
-
-		it('should set placeholder on proxy input', function () {
-			element.type = typeText;
-			expect(element.proxy.type)
-				.toEqual(typeText);
-		});
 	});
 
-	describe(`list`, function () {
+	describe('list', function () {
 		const dataListID = 'dataListId';
 
-		it('should set placeholder attribute on the input', async function () {
+		it('should set list attribute on the input', async function () {
 			element.list = dataListID;
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('input')
 				?.getAttribute('list'))
 				.toEqual(dataListID);
 		});
-
-		it('should set placeholder on proxy input', function () {
-			element.list = dataListID;
-			expect(element.proxy.getAttribute('list'))
-				.toEqual(dataListID);
-		});
 	});
 
-	describe(`maxlength`, function () {
+	describe('maxlength', function () {
 		const value = '8';
 		const propertyName = 'maxlength';
 		const proxyPropertyName = 'maxLength';
@@ -150,7 +124,7 @@ fdescribe('vwc-textfield', () => {
 		});
 	});
 
-	describe(`minlength`, function () {
+	describe('minlength', function () {
 		const value = '2';
 		const propertyName = 'minlength';
 		const proxyPropertyName = 'minLength';
@@ -171,7 +145,10 @@ fdescribe('vwc-textfield', () => {
 		});
 	});
 
-	describe(`form association`, function () {
+	describe('form association', function () {
+		/**
+		 * @param formElement
+		 */
 		function listenToSubmission(formElement: HTMLFormElement): Promise<FormData> {
 			return new Promise((res) => {
 				formElement.addEventListener('submit', () => {
@@ -181,6 +158,12 @@ fdescribe('vwc-textfield', () => {
 			});
 		}
 
+		/**
+		 * @param fieldName
+		 * @param fieldValue
+		 * @param formId
+		 * @param otherFormId
+		 */
 		function createFormHTML(fieldName: string, fieldValue: string, formId: string, otherFormId?: string) {
 			const otherForm = otherFormId
 				? `<form onsubmit="return false" id="${otherFormId}"><button></button></form>`
@@ -222,7 +205,7 @@ fdescribe('vwc-textfield', () => {
 			formWrapper.remove();
 		});
 
-		it(`should attach to closest form`, async function () {
+		it('should attach to closest form', async function () {
 			const {form: formElement} = createFormHTML(fieldName, fieldValue, formId);
 
 			const submitPromise = listenToSubmission(formElement);
@@ -236,7 +219,7 @@ fdescribe('vwc-textfield', () => {
 			});
 		});
 
-		it(`should attach to form when given form id`, async function () {
+		it('should attach to form when given form id', async function () {
 			const {otherForm} = createFormHTML(fieldName, fieldValue, formId, 'otherFormId');
 
 			const submitPromise = listenToSubmission(otherForm);
@@ -250,7 +233,7 @@ fdescribe('vwc-textfield', () => {
 			});
 		});
 
-		it(`should reset the value of the custom element to default on form reset`, async function () {
+		it('should reset the value of the custom element to default on form reset', async function () {
 			const {
 				form: formElement,
 				element
@@ -265,7 +248,7 @@ fdescribe('vwc-textfield', () => {
 		});
 	});
 
-	describe(`events`, function () {
+	describe('events', function () {
 		it('should emit an input event', async function () {
 			const inputPromise = new Promise(res => element.addEventListener('input', () => res(true)));
 			const innerInput = element.shadowRoot?.querySelector('input') as HTMLInputElement;
@@ -289,11 +272,46 @@ fdescribe('vwc-textfield', () => {
 		});
 	});
 
-	describe(`helper text`, function () {
-		it('should render the helper text when attribute is set', async function() {
-		  const helperText = 'Helper Text';
+	describe('helper text', function () {
+		it('should render the helper text when attribute is set', async function () {
+			const helperText = 'Helper Text';
 			element.helperText = helperText;
 			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.helper-text')?.textContent?.trim())
+				.toEqual(helperText);
+		});
+	});
+
+	describe('error message', function () {
+
+		function setValidity(errorMessage = 'error') {
+			element.setValidity({badInput: true}, errorMessage);
+			element.validate();
+		}
+
+		it('should render the error message when attribute is set', async function () {
+			const errorMessage = 'Error Text';
+			element.dirtyValue = true;
+			setValidity(errorMessage);
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.error-message')?.textContent?.trim())
+				.toEqual(errorMessage);
+		});
+
+		it('should replace helper text', async function () {
+			element.helperText = 'helper text';
+			element.dirtyValue = true;
+			setValidity();
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.helper-text'))
+				.toBeNull();
+		});
+
+		it(`should set error message to empty string when pristine`, async function () {
+			setValidity();
+			await elementUpdated(element);
+			expect(element.errorValidationMessage)
+				.toEqual('');
 		});
 	});
 });

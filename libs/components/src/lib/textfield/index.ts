@@ -6,9 +6,12 @@ import { Textfield } from './textfield';
 import { TextfieldTemplate as template } from './textfield.template';
 
 export const vividTextfield = Textfield.compose<FoundationElementDefinition>({
-  baseName: 'textfield',
-  template: template as any,
-  styles,
+	baseName: 'textfield',
+	template: template as any,
+	styles,
+	shadowOptions: {
+		delegatesFocus: true,
+	},
 });
 
 designSystem.register(vividTextfield());

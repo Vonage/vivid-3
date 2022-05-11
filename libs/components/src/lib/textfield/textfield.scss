@@ -1,0 +1,48 @@
+@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+
+.root {
+	height: 46px;
+	padding: 0 15px;
+	border: 1px solid #929292;
+	background: white;
+	border-radius: 6px;
+}
+
+.control {
+	@include typography.typography-cat-shorthand('body-1');
+
+	position: relative;
+	top: 16px;
+	appearance: none;
+	background: transparent;
+	outline: 0;
+
+	&:focus-visible,
+	&:focus,
+	&:hover {
+		border-color: #000;
+		outline: 0;
+	}
+}
+
+label {
+	@include typography.typography-cat-shorthand('body-1');
+
+	position: absolute;
+	margin-top: 11px;
+	color: black;
+}
+
+:host(:focus) {
+	color: red;
+
+	.control {
+		@include typography.typography-cat-shorthand('body-2');
+	}
+
+	label {
+		@include typography.typography-cat-shorthand('caption');
+
+		margin-top: 6px;
+	}
+}
