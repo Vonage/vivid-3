@@ -14,7 +14,7 @@ Use the `icon` attribute to change the FAB's icon.
 You can choose an icon from the [icons gallery](https://icons.vivid.vonage.com).
 
 - Type: `String`
-- Default: `''`
+- Default: `undefined`
 
 ```html preview
 <vwc-fab icon='plus-line'></vwc-fab>
@@ -25,7 +25,7 @@ You can choose an icon from the [icons gallery](https://icons.vivid.vonage.com).
 Use the `label` attribute to add text to the FAB.
 
 - Type: `String`
-- Default: `''`
+- Default: `undefined`
 
 ```html preview
 <vwc-fab icon='cart-line' label='Add to cart'></vwc-fab>
