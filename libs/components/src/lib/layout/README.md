@@ -136,7 +136,7 @@ Use `block` to stack elements one above the other.
 </div>
 ```
 
-## Auto-sizing
+## Auto Sizing
 
 Use the `auto-sizing` attribute to set the initial preferred `auto-sizing`.
 
