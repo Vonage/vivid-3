@@ -79,7 +79,7 @@ export class Button extends FoundationButton {
 	 * @remarks
 	 * HTML Attribute: size
 	 */
-	@attr size?: ButtonDensity;
+	@attr density?: ButtonDensity;
 
 	/**
 	 * Indicates the icon is stacked.

@@ -81,7 +81,7 @@ export class Badge extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: size
 	 */
-	@attr size?: BadgeDensity;
+	@attr density?: BadgeDensity;
 
 	/**
 	 * Indicates the badge's text.
