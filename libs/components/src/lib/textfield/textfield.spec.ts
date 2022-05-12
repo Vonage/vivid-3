@@ -331,9 +331,11 @@ describe('vwc-textfield', () => {
 
 	describe('helper text', function () {
 		it('should render the helper text when attribute is set', async function () {
+			const helperTextElementWithoutText = element.shadowRoot?.querySelector('.helper-text');
 			const helperText = 'Helper Text';
 			element.helperText = helperText;
 			await elementUpdated(element);
+			expect(helperTextElementWithoutText).toBeNull();
 			expect(element.shadowRoot?.querySelector('.helper-text')
 				?.textContent
 				?.trim())
@@ -362,10 +364,12 @@ describe('vwc-textfield', () => {
 		});
 
 		it('should render the error message when attribute is set', async function () {
+			const errorElementWithoutText = element.shadowRoot?.querySelector('.error-message');
 			const errorMessage = 'Error Text';
 			element.dirtyValue = true;
 			setValidityToError(errorMessage);
 			await elementUpdated(element);
+			expect(errorElementWithoutText).toBeNull();
 			expect(element.shadowRoot?.querySelector('.error-message')
 				?.textContent
 				?.trim())

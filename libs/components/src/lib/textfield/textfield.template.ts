@@ -45,6 +45,12 @@ function renderCharCount() {
 	`;
 }
 
+function renderErrorMessage() {
+	return html<Textfield>`
+	  <span class="error-message">${x => x.errorValidationMessage}</span>
+	`;
+}
+
 /**
  * The template for the {@link @microsoft/fast-foundation#Textfield} component.
  *
@@ -98,6 +104,6 @@ export const TextfieldTemplate: (
 					   ${ref('control')}
 				/>
 		</div>
-	  ${when(x => !x.errorValidationMessage, renderHelperText())}
-	  <span class="error-message">${x => x.errorValidationMessage}</span>
+	  ${when(x => !x.errorValidationMessage && x.helperText?.length, renderHelperText())}
+	  ${when(x => x.errorValidationMessage, renderErrorMessage())}
 	</div>`;
