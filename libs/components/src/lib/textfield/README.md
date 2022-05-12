@@ -36,8 +36,15 @@
     <vwc-textfield label="My Label" 
        placeholder="My Placeholder" 
        name="test-field" 
-       value="5"
-       helper-text="Help me!!!">
+       value="Input text"
+       helper-text="Helper text">
     </vwc-textfield>
+</form>
+```
+
+### Shape
+```html preview
+<form id="test">
+    <vwc-textfield shape="pill" label="My Label" name="test-field" </vwc-textfield>
 </form>
 ```

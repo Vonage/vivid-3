@@ -1,30 +1,33 @@
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+	$subset: primary,
+	$shades: basis basis-increment contrast fierce firm,
+	$default: primary,
+);
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+	$appearances: outlined ghost,
+	$states: idle hover disabled active,
+	$default: outlined,
+);
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+
+//$block-size: _--block-size;
 
 .root {
-	position: relative;
-	height: 46px;
-	border: 1px solid #929292;
-	background: white;
-	border-radius: 6px;
-	color: #666;
-
-	&:focus-visible,
-	&:focus,
-	&:hover {
-		border-color: #000;
-	}
-
-	&.has-value,
-	&.has-placeholder,
+	&.active,
+	&.placeholder,
 	:host(:focus) & {
 		.label {
-			transform: translateY(-10px);
-			@include typography.typography-cat-shorthand('caption');
-
+			transform: translateY(-7px);
+			@include typography.typography-cat-shorthand('caption')
 		}
 	}
 
-	&:where(:not(.has-placeholder, has-value)) {
+	&:where(:not(.placeholder, .active)) {
 		.label {
 			transform: translateY(0);
 			@include typography.typography-cat-shorthand('body-1');
@@ -32,8 +35,42 @@
 	}
 }
 
+.form-field {
+	@include connotation.connotation;
+	@include appearance.appearance;
+
+	//_--block-size: 48px;
+
+	position: relative;
+	//height: var(#{$block-size});
+	height: 48px;
+	background: var(#{theme-consts.$vvd-color-canvas});
+
+	color: #666;
+	box-sizing: border-box;
+
+	:not(.shape-pill) & {
+		border-radius: 6px;
+	}
+	.shape-pill & {
+		border-radius: 24px;
+	}
+
+	:not(.appearance-ghost) & {
+		border: 1px solid var(#{theme-consts.$vvd-color-neutral-70});
+	}
+
+
+	&:focus-visible,
+	&:focus,
+	&:hover {
+	border-color: var(#{theme-consts.$vvd-color-primary});
+	}
+}
+
+
 .control {
-	@include typography.typography-cat-shorthand('body-1');
+	@include typography.typography-cat-shorthand('body-2');
 
 	width: 100%;
 	height: 100%;
@@ -42,8 +79,9 @@
 	border: 0;
 	appearance: none;
 	background-color: transparent;
-	color: #666;
+	color: var(#{theme-consts.$vvd-color-neutral-90});
 	outline: 0;
+	border-radius: inherit;
 }
 
 .label {
@@ -52,14 +90,25 @@
 	position: absolute;
 	top: 12px;
 	padding: 0 16px;
-	color: black;
+	color: var(#{theme-consts.$vvd-color-neutral-70});
 	transform: translateY(0);
 }
 
 .helper-text {
 	@include typography.typography-cat-shorthand('caption');
 
-	padding-top: 8px;
-	padding-left: 16px;
+	color: var(#{theme-consts.$vvd-color-neutral-70});
+	display: inline-block;
+	margin-top: 4px;
+	margin-left: 16px;
+}
+
+.error-message {
+	@include typography.typography-cat-shorthand('caption');
+
+	color: var(#{theme-consts.$vvd-color-alert});
+	display: inline-block;
+	margin-top: 4px;
+	margin-left: 16px;
 }
 
