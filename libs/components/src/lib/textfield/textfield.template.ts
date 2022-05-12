@@ -50,8 +50,8 @@ export const TextfieldTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Textfield> = () => html<Textfield>`
-	<template class="${getStateClasses}">
-			<div class="root">
+	<div class="root ${getStateClasses}">
+			<div class="form-field">
 				${when(x => x.label, renderLabel())}
 				${when(x => x.charCount && x.maxlength, renderCharCount())}
 				<input class="control"
@@ -95,4 +95,4 @@ export const TextfieldTemplate: (
 		</div>
 	  ${when(x => !x.errorValidationMessage, renderHelperText())}
 	  <span class="error-message">${x => x.errorValidationMessage}</span>
-	</template>`;
+	</div>`;

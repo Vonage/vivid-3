@@ -5,6 +5,10 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-textfield';
 
+function getRootElement(element: Textfield) {
+	return element.shadowRoot?.querySelector('.root') as HTMLElement;
+}
+
 describe('vwc-textfield', () => {
 	let element: Textfield;
 
@@ -75,10 +79,10 @@ describe('vwc-textfield', () => {
 
 	describe('readOnly', function () {
 		it('should add class readonly to host', async function () {
-			const readonlyClassWhenFalse = element.classList.contains('readonly');
+			const readonlyClassWhenFalse = getRootElement(element).classList.contains('readonly');
 			element.readOnly = true;
 			await elementUpdated(element);
-			const readonlyClassWhenTrue = element.classList.contains('readonly');
+			const readonlyClassWhenTrue = getRootElement(element).classList.contains('readonly');
 			expect(readonlyClassWhenFalse)
 				.toEqual(false);
 			expect(readonlyClassWhenTrue)
@@ -325,7 +329,7 @@ describe('vwc-textfield', () => {
 			element.dirtyValue = true;
 			setValidityToError('blah');
 			await elementUpdated(element);
-			expect(element.classList.contains('error')).toEqual(true);
+			expect(getRootElement(element).classList.contains('error')).toEqual(true);
 		});
 
 		it('should render the error message when attribute is set', async function () {
@@ -356,10 +360,10 @@ describe('vwc-textfield', () => {
 
 	describe('disabled', function () {
 		it('should set disabled class when attribute is set', async function () {
-			const disabledClassWhenEnabled = element.classList.contains('disabled');
+			const disabledClassWhenEnabled = getRootElement(element).classList.contains('disabled');
 			element.disabled = true;
 			await elementUpdated(element);
-			const disabledClassWhenDisabled = element.classList.contains('disabled');
+			const disabledClassWhenDisabled = getRootElement(element).classList.contains('disabled');
 			expect(disabledClassWhenEnabled).toEqual(false);
 			expect(disabledClassWhenDisabled).toEqual(true);
 		});
@@ -367,10 +371,10 @@ describe('vwc-textfield', () => {
 
 	describe('active', function () {
 		it('should set active class when there is a value', async function () {
-			const activeClassWhenEnabled = element.classList.contains('active');
+			const activeClassWhenEnabled = getRootElement(element).classList.contains('active');
 			element.value = '5';
 			await elementUpdated(element);
-			const activeClassWhenDisabled = element.classList.contains('active');
+			const activeClassWhenDisabled = getRootElement(element).classList.contains('active');
 			expect(activeClassWhenEnabled).toEqual(false);
 			expect(activeClassWhenDisabled).toEqual(true);
 		});
