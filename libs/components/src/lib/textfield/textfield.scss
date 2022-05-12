@@ -15,9 +15,9 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
-//$block-size: _--block-size;
-
 .root {
+	color: var(#{theme-consts.$vvd-color-neutral-70});
+
 	&.active,
 	&.placeholder,
 	:host(:focus) & {
@@ -30,7 +30,7 @@
 	:host([char-count]) & {
 		padding-top: 24px;
 	}
-	
+
 	&:where(:not(.placeholder, .active)) {
 		.label {
 			transform: translateY(0);
@@ -43,15 +43,11 @@
 	@include connotation.connotation;
 	@include appearance.appearance;
 
-	//_--block-size: 48px;
-
 	position: relative;
-	//height: var(#{$block-size});
 	height: 48px;
+	box-sizing: border-box;
 	background: var(#{theme-consts.$vvd-color-canvas});
 
-	color: #666;
-	box-sizing: border-box;
 
 	:not(.shape-pill) & {
 		border-radius: 6px;
@@ -68,10 +64,9 @@
 	&:focus-visible,
 	&:focus,
 	&:hover {
-	border-color: var(#{theme-consts.$vvd-color-primary});
+		border-color: var(#{theme-consts.$vvd-color-primary});
 	}
 }
-
 
 .control {
 	@include typography.typography-cat-shorthand('body-2');
@@ -83,9 +78,9 @@
 	border: 0;
 	appearance: none;
 	background-color: transparent;
-	color: var(#{theme-consts.$vvd-color-neutral-90});
-	outline: 0;
 	border-radius: inherit;
+	color: var(#{theme-consts.$vvd-color-primary});
+	outline: 0;
 }
 
 .label {
@@ -94,14 +89,12 @@
 	position: absolute;
 	top: 12px;
 	padding: 0 16px;
-	color: var(#{theme-consts.$vvd-color-neutral-70});
 	transform: translateY(0);
 }
 
 .helper-text {
 	@include typography.typography-cat-shorthand('caption');
 
-	color: var(#{theme-consts.$vvd-color-neutral-70});
 	display: inline-block;
 	margin-top: 4px;
 	margin-left: 16px;
@@ -110,10 +103,10 @@
 .error-message {
 	@include typography.typography-cat-shorthand('caption');
 
-	color: var(#{theme-consts.$vvd-color-alert});
 	display: inline-block;
 	margin-top: 4px;
 	margin-left: 16px;
+	color: var(#{theme-consts.$vvd-color-alert});
 }
 
 .char-count {
