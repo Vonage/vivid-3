@@ -19,7 +19,7 @@ const getStateClasses = (textField: Textfield) => classNames(
  */
 function renderLabel() {
 	return html<Textfield>`
-	  <label for="control">
+	  <label for="control" class="label">
 		  ${x => x.label}
 	  </label>`;
 }
@@ -51,7 +51,7 @@ export const TextfieldTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Textfield> = () => html<Textfield>`
 	<template class="${getStateClasses}">
-			<div class="root">
+			<div class="root ${x => x.value ? 'has-value' : ''} ${x => x.placeholder ? 'has-placeholder' : ''}">
 				${when(x => x.label, renderLabel())}
 				${when(x => x.charCount && x.maxlength, renderCharCount())}
 				<input class="control"
