@@ -62,9 +62,9 @@ export const TextfieldTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Textfield> = () => html<Textfield>`
 	<div class="root ${getStateClasses}">
+	  	${when(x => x.charCount && x.maxlength, renderCharCount())}
 			<div class="form-field">
 				${when(x => x.label, renderLabel())}
-				${when(x => x.charCount && x.maxlength, renderCharCount())}
 				<input class="control"
 					   id="control"
 					   @input="${x => x.handleTextInput()}"
