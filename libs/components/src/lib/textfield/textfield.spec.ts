@@ -5,6 +5,9 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-textfield';
 
+/**
+ * @param element
+ */
 function getRootElement(element: Textfield) {
 	return element.shadowRoot?.querySelector('.root') as HTMLElement;
 }
@@ -49,14 +52,16 @@ describe('vwc-textfield', () => {
 			element.charCount = true;
 			element.maxlength = 20;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.char-count')).toBeTruthy();
+			expect(element.shadowRoot?.querySelector('.char-count'))
+				.toBeTruthy();
 		});
 
 		it('should remove char count if max-length is not set', async function () {
 			element.charCount = true;
 			element.toggleAttribute('max-length', false);
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.char-count')).toBeNull();
+			expect(element.shadowRoot?.querySelector('.char-count'))
+				.toBeNull();
 		});
 
 		it('should render count with 0 if value is not set', async function () {
@@ -64,25 +69,35 @@ describe('vwc-textfield', () => {
 			element.maxlength = 20;
 			const expectedString = '0 / 20';
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.char-count')?.textContent?.trim()).toEqual(expectedString);
+			expect(element.shadowRoot?.querySelector('.char-count')
+				?.textContent
+				?.trim())
+				.toEqual(expectedString);
 		});
 
-		it('should render count according to value and max', async function() {
+		it('should render count according to value and max', async function () {
 			element.charCount = true;
 			element.maxlength = 20;
 			element.value = '12345';
 			const expectedString = '5 / 20';
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.char-count')?.textContent?.trim()).toEqual(expectedString);
+			expect(element.shadowRoot?.querySelector('.char-count')
+				?.textContent
+				?.trim())
+				.toEqual(expectedString);
 		});
 	});
 
 	describe('readOnly', function () {
 		it('should add class readonly to host', async function () {
-			const readonlyClassWhenFalse = getRootElement(element).classList.contains('readonly');
+			const readonlyClassWhenFalse = getRootElement(element)
+				.classList
+				.contains('readonly');
 			element.readOnly = true;
 			await elementUpdated(element);
-			const readonlyClassWhenTrue = getRootElement(element).classList.contains('readonly');
+			const readonlyClassWhenTrue = getRootElement(element)
+				.classList
+				.contains('readonly');
 			expect(readonlyClassWhenFalse)
 				.toEqual(false);
 			expect(readonlyClassWhenTrue)
@@ -111,10 +126,13 @@ describe('vwc-textfield', () => {
 				.toEqual(placeholderText);
 		});
 
-		it(`should set class placeholder to root`, async function () {
+		it('should set class placeholder to root', async function () {
 			element.placeholder = placeholderText;
 			await elementUpdated(element);
-			expect(getRootElement(element).classList.contains('placeholder')).toEqual(true);
+			expect(getRootElement(element)
+				.classList
+				.contains('placeholder'))
+				.toEqual(true);
 		});
 	});
 
@@ -316,7 +334,9 @@ describe('vwc-textfield', () => {
 			const helperText = 'Helper Text';
 			element.helperText = helperText;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.helper-text')?.textContent?.trim())
+			expect(element.shadowRoot?.querySelector('.helper-text')
+				?.textContent
+				?.trim())
 				.toEqual(helperText);
 		});
 	});
@@ -335,7 +355,10 @@ describe('vwc-textfield', () => {
 			element.dirtyValue = true;
 			setValidityToError('blah');
 			await elementUpdated(element);
-			expect(getRootElement(element).classList.contains('error')).toEqual(true);
+			expect(getRootElement(element)
+				.classList
+				.contains('error'))
+				.toEqual(true);
 		});
 
 		it('should render the error message when attribute is set', async function () {
@@ -343,7 +366,9 @@ describe('vwc-textfield', () => {
 			element.dirtyValue = true;
 			setValidityToError(errorMessage);
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.error-message')?.textContent?.trim())
+			expect(element.shadowRoot?.querySelector('.error-message')
+				?.textContent
+				?.trim())
 				.toEqual(errorMessage);
 		});
 
@@ -366,23 +391,92 @@ describe('vwc-textfield', () => {
 
 	describe('disabled', function () {
 		it('should set disabled class when attribute is set', async function () {
-			const disabledClassWhenEnabled = getRootElement(element).classList.contains('disabled');
+			const disabledClassWhenEnabled = getRootElement(element)
+				.classList
+				.contains('disabled');
 			element.disabled = true;
 			await elementUpdated(element);
-			const disabledClassWhenDisabled = getRootElement(element).classList.contains('disabled');
-			expect(disabledClassWhenEnabled).toEqual(false);
-			expect(disabledClassWhenDisabled).toEqual(true);
+			const disabledClassWhenDisabled = getRootElement(element)
+				.classList
+				.contains('disabled');
+			expect(disabledClassWhenEnabled)
+				.toEqual(false);
+			expect(disabledClassWhenDisabled)
+				.toEqual(true);
 		});
 	});
 
 	describe('active', function () {
 		it('should set active class when there is a value', async function () {
-			const activeClassWhenEnabled = getRootElement(element).classList.contains('active');
+			const activeClassWhenEnabled = getRootElement(element)
+				.classList
+				.contains('active');
 			element.value = '5';
 			await elementUpdated(element);
-			const activeClassWhenDisabled = getRootElement(element).classList.contains('active');
-			expect(activeClassWhenEnabled).toEqual(false);
-			expect(activeClassWhenDisabled).toEqual(true);
+			const activeClassWhenDisabled = getRootElement(element)
+				.classList
+				.contains('active');
+			expect(activeClassWhenEnabled)
+				.toEqual(false);
+			expect(activeClassWhenDisabled)
+				.toEqual(true);
+		});
+	});
+
+	describe('density', function () {
+		it('should set the size class on the root', async function () {
+			const defaultDensityClassIsNormal = getRootElement(element)
+				.classList
+				.contains('density-normal');
+
+			const density = 'condensed';
+			element.setAttribute('density', density);
+			await elementUpdated(element);
+
+			expect(defaultDensityClassIsNormal)
+				.toEqual(true);
+			expect(getRootElement(element)
+				.classList
+				.contains('density-condensed'))
+				.toEqual(true);
+		});
+	});
+
+	describe('appearance', function () {
+		it('should set the shape class on the root', async function () {
+			const defaultAppearanceClassIsNormal = getRootElement(element)
+				.classList
+				.contains('appearance-outlined');
+
+			const appearance = 'filled';
+			element.setAttribute('appearance', appearance);
+			await elementUpdated(element);
+
+			expect(defaultAppearanceClassIsNormal)
+				.toEqual(true);
+			expect(getRootElement(element)
+				.classList
+				.contains('appearance-filled'))
+				.toEqual(true);
+		});
+	});
+
+	describe('shape', function () {
+		it('should set the shape appearance on the root', async function () {
+			const defaultShapeClassIsNormal = getRootElement(element)
+				.classList
+				.contains('shape-rounded');
+
+			const shape = 'pill';
+			element.setAttribute('shape', shape);
+			await elementUpdated(element);
+
+			expect(defaultShapeClassIsNormal)
+				.toEqual(true);
+			expect(getRootElement(element)
+				.classList
+				.contains('shape-pill'))
+				.toEqual(true);
 		});
 	});
 });

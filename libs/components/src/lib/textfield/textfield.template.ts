@@ -1,10 +1,11 @@
-import {html, ref, when} from '@microsoft/fast-element';
 import type {ViewTemplate} from '@microsoft/fast-element';
+import {html, ref, when} from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import {classNames} from '@microsoft/fast-web-utilities';
+import {Appearance, BlockSize, Shape} from '../enums';
 import type {Textfield} from './textfield';
 
 const getStateClasses = (textField: Textfield) => classNames(
@@ -12,7 +13,10 @@ const getStateClasses = (textField: Textfield) => classNames(
 	['disabled', textField.disabled],
 	['active', !!textField.value],
 	['readonly', textField.readOnly],
-	['placeholder', !!textField.placeholder]
+	['placeholder', !!textField.placeholder],
+	`density-${textField.density ?? BlockSize.Normal}`,
+	`appearance-${textField.appearance ?? Appearance.Outlined}`,
+	`shape-${textField.shape ?? Shape.Rounded}`,
 );
 
 /**
