@@ -1,10 +1,14 @@
 # textfield
 
+Textfield is meant to accept text input from the user. It supports the native attributes of `input` in addition to some enhancements.
+Not that the textfield does not support `type="number"`. For this there is the `number-field` component.
+
 ```js
 <script type="module">import '@vonage/vivid/textfield';</script>
 ```
+## Properties
 
-## Label
+### Label
 - Type: `string` | `undefined`
 - Default: `undefined`
 
@@ -14,7 +18,7 @@ Add a `label` attribute to add label to the text field.
     <vwc-textfield label="My Label" name="test-field"></vwc-textfield>
 ```
 
-## Placeholder
+### Placeholder
 - Type: `string` | `undefined`
 - Default: `undefined`
 
@@ -24,7 +28,7 @@ Add a `placeholder` attribute to add placeholder text to the text field.
     <vwc-textfield placeholder="My Placeholder"></vwc-textfield>
 ```
 
-## Value
+### Value
 - Type: `string` | `undefined`
 - Default: `undefined`
 
@@ -36,7 +40,7 @@ Set the `value` attribute to set the default value for the text field. Setting t
     </vwc-textfield>
 ```
 
-## Helper-text
+### Helper-text
 
 Add the `helper-text` to add some helper text below the text field.
 
@@ -49,7 +53,7 @@ Add the `helper-text` to add some helper text below the text field.
     </vwc-textfield>
 ```
 
-## char-count
+### char-count
 
 - Type: `boolean`
 - Default: `false`
@@ -63,7 +67,7 @@ Use the `char-count` attribute along with the `maxlength` attribute to show a ch
     </vwc-textfield>
 ```
 
-## Density
+### Density
 
 Use the `density` attribute to set the textfield's to one of the predefined block size extent.
 
@@ -77,7 +81,7 @@ Use the `density` attribute to set the textfield's to one of the predefined bloc
 </vwc-layout>
 ```
 
-## Shape
+### Shape
 
 Use the `shape` attribute to change the button's edges.
 
@@ -91,7 +95,7 @@ Use the `shape` attribute to change the button's edges.
 </vwc-layout>
 ```
 
-## Appearance
+### Appearance
 
 Set the `appearance` attribute to change the button's appearance.
 
