@@ -26,6 +26,7 @@ $block-size: --_block-size;
 	&:where(:not(.placeholder, .active)) {
 		.label {
 			transform: translateY(0);
+			transition: transform 0.2s;
 			@include typography.typography-cat-shorthand('body-1');
 		}
 	}
@@ -44,6 +45,7 @@ $block-size: --_block-size;
 	height: var(#{$block-size});
 	box-sizing: border-box;
 	background-color: var(#{theme-consts.$vvd-color-canvas});
+	transition: border-color 0.2s;
 
 
 	:not(.shape-pill) & {
