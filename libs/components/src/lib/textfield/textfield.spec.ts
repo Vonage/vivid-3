@@ -1,7 +1,7 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
+import {TextFieldType} from '@microsoft/fast-foundation';
 import {Textfield} from './textfield';
 import '.';
-import {TextFieldType} from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG = 'vwc-textfield';
 
@@ -38,32 +38,24 @@ describe('vwc-textfield', () => {
 			expect(labelElement)
 				.toBeNull();
 		});
-
-		it(`should set label class to raised if value is set`, async function () {
-			element.value = 'value';
-			element.label = 'label';
-			await elementUpdated(element);
-			const labelElement = element.shadowRoot?.querySelector('label') as HTMLLabelElement;
-			expect(labelElement.classList.contains('raised')).toBeTruthy();
-		});
 	});
 
-	describe(`char-count`, function () {
-		it(`should render char-count if attribute char-count and max-length are set`, async function () {
+	describe('char-count', function () {
+		it('should render char-count if attribute char-count and max-length are set', async function () {
 			element.charCount = true;
 			element.maxlength = 20;
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.char-count')).toBeTruthy();
 		});
 
-		it(`should remove char count if max-length is not set`, async function () {
+		it('should remove char count if max-length is not set', async function () {
 			element.charCount = true;
 			element.toggleAttribute('max-length', false);
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.char-count')).toBeNull();
 		});
 
-		it(`should render count with 0 if value is not set`, async function () {
+		it('should render count with 0 if value is not set', async function () {
 			element.charCount = true;
 			element.maxlength = 20;
 			const expectedString = '0 / 20';
@@ -324,15 +316,22 @@ describe('vwc-textfield', () => {
 		/**
 		 * @param errorMessage
 		 */
-		function setValidity(errorMessage = 'error') {
+		function setValidityToError(errorMessage = 'error') {
 			element.setValidity({badInput: true}, errorMessage);
 			element.validate();
 		}
 
+		it('should add class error to root', async function () {
+			element.dirtyValue = true;
+			setValidityToError('blah');
+			await elementUpdated(element);
+			expect(element.classList.contains('error')).toEqual(true);
+		});
+
 		it('should render the error message when attribute is set', async function () {
 			const errorMessage = 'Error Text';
 			element.dirtyValue = true;
-			setValidity(errorMessage);
+			setValidityToError(errorMessage);
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.error-message')?.textContent?.trim())
 				.toEqual(errorMessage);
@@ -341,17 +340,39 @@ describe('vwc-textfield', () => {
 		it('should replace helper text', async function () {
 			element.helperText = 'helper text';
 			element.dirtyValue = true;
-			setValidity();
+			setValidityToError();
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.helper-text'))
 				.toBeNull();
 		});
 
 		it('should set error message to empty string when pristine', async function () {
-			setValidity();
+			setValidityToError();
 			await elementUpdated(element);
 			expect(element.errorValidationMessage)
 				.toEqual('');
+		});
+	});
+
+	describe('disabled', function () {
+		it('should set disabled class when attribute is set', async function () {
+			const disabledClassWhenEnabled = element.classList.contains('disabled');
+			element.disabled = true;
+			await elementUpdated(element);
+			const disabledClassWhenDisabled = element.classList.contains('disabled');
+			expect(disabledClassWhenEnabled).toEqual(false);
+			expect(disabledClassWhenDisabled).toEqual(true);
+		});
+	});
+
+	describe('active', function () {
+		it('should set active class when there is a value', async function () {
+			const activeClassWhenEnabled = element.classList.contains('active');
+			element.value = '5';
+			await elementUpdated(element);
+			const activeClassWhenDisabled = element.classList.contains('active');
+			expect(activeClassWhenEnabled).toEqual(false);
+			expect(activeClassWhenDisabled).toEqual(true);
 		});
 	});
 });

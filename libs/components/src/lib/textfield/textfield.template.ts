@@ -7,21 +7,33 @@ import type {
 import {classNames} from '@microsoft/fast-web-utilities';
 import type {Textfield} from './textfield';
 
-const getLabelClasses = (textField: Textfield) => classNames(
-	['raised', !!textField.value]
+const getStateClasses = (textField: Textfield) => classNames(
+	['error', !!textField.errorValidationMessage],
+	['disabled', textField.disabled],
+	['active', !!textField.value],
+	['readonly', textField.readOnly]
 );
 
+/**
+ *
+ */
 function renderLabel() {
 	return html<Textfield>`
-	  <label for="control" class="${getLabelClasses}">
+	  <label for="control">
 		  ${x => x.label}
 	  </label>`;
 }
 
+/**
+ *
+ */
 function renderHelperText() {
 	return html<Textfield>`<span class="helper-text">${x => x.helperText}</span>`;
 }
 
+/**
+ *
+ */
 function renderCharCount() {
 	return html<Textfield>`
 		<span class="char-count">${x => x.value ? x.value.length : 0 } / ${ x => x.maxlength }</span>
@@ -38,7 +50,7 @@ export const TextfieldTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Textfield> = () => html<Textfield>`
-	<template class="${x => x.readOnly ? 'readonly' : ''}">
+	<template class="${getStateClasses}">
 			<div class="root">
 				${when(x => x.label, renderLabel())}
 				${when(x => x.charCount && x.maxlength, renderCharCount())}

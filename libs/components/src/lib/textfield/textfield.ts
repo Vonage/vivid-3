@@ -10,17 +10,17 @@ export class Textfield extends FoundationTextfield {
 	@attr label?: string;
 	@attr({attribute: 'helper-text'}) helperText?: string;
 	@attr({attribute: 'char-count', mode: 'boolean'}) charCount = false;
-	@observable _valid = true;
+	@observable isValid = true;
 
 	@volatile
 	get errorValidationMessage() {
-		return this._valid ? '' : this.validationMessage;
+		return this.isValid ? '' : this.validationMessage;
 	}
 
 	override validate() {
 		super.validate();
 		if (this.proxy instanceof HTMLElement) {
-			this._valid = this.dirtyValue ? !Boolean(this.validationMessage) : true;
+			this.isValid = this.dirtyValue ? !Boolean(this.validationMessage) : true;
 		}
 	}
 }
