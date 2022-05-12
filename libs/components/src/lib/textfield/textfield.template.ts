@@ -19,7 +19,7 @@ const getStateClasses = (textField: Textfield) => classNames(
  */
 function renderLabel() {
 	return html<Textfield>`
-	  <label for="control">
+	  <label for="control" class="label">
 		  ${x => x.label}
 	  </label>`;
 }
