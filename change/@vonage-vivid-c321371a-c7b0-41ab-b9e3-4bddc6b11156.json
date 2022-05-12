@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "rename size (for block size members) to density due to its being a reserved name in input element",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}
