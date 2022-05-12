@@ -110,6 +110,12 @@ describe('vwc-textfield', () => {
 				?.getAttribute('placeholder'))
 				.toEqual(placeholderText);
 		});
+
+		it(`should set class placeholder to root`, async function () {
+			element.placeholder = placeholderText;
+			await elementUpdated(element);
+			expect(getRootElement(element).classList.contains('placeholder')).toEqual(true);
+		});
 	});
 
 	describe('type', function () {

@@ -11,7 +11,8 @@ const getStateClasses = (textField: Textfield) => classNames(
 	['error', !!textField.errorValidationMessage],
 	['disabled', textField.disabled],
 	['active', !!textField.value],
-	['readonly', textField.readOnly]
+	['readonly', textField.readOnly],
+	['placeholder', !!textField.placeholder]
 );
 
 /**
