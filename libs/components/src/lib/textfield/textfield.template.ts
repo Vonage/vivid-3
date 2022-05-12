@@ -17,6 +17,7 @@ const getStateClasses = (textField: Textfield) => classNames(
 	`density-${textField.density ?? BlockSize.Normal}`,
 	`appearance-${textField.appearance ?? Appearance.Outlined}`,
 	`shape-${textField.shape ?? Shape.Rounded}`,
+	['no-label', !textField.label],
 );
 
 /**
@@ -45,9 +46,15 @@ function renderCharCount() {
 	`;
 }
 
+/**
+ *
+ */
 function renderErrorMessage() {
 	return html<Textfield>`
-	  <span class="error-message">${x => x.errorValidationMessage}</span>
+	  <span class="error-message">
+		  <vwc-icon class="error-message-icon" type="info-negative"></vwc-icon>
+		  <span>${x => x.errorValidationMessage}</span>
+	  </span>
 	`;
 }
 

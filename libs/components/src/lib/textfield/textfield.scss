@@ -8,15 +8,11 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
-	$appearances: outlined ghost,
-	$states: idle hover disabled active,
-	$default: outlined,
-);
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+$block-size: --_block-size;
 
 .root {
-	color: var(#{theme-consts.$vvd-color-neutral-70});
+	display: flex;
+	flex-direction: column;
 
 	&.active,
 	&.placeholder,
@@ -27,26 +23,27 @@
 		}
 	}
 
-	:host([char-count]) & {
-		padding-top: 24px;
-	}
-
 	&:where(:not(.placeholder, .active)) {
 		.label {
 			transform: translateY(0);
 			@include typography.typography-cat-shorthand('body-1');
 		}
 	}
+
+	&.no-label {
+		.control {
+
+		}
+	}
 }
 
 .form-field {
 	@include connotation.connotation;
-	@include appearance.appearance;
 
 	position: relative;
-	height: 48px;
+	height: var(#{$block-size});
 	box-sizing: border-box;
-	background: var(#{theme-consts.$vvd-color-canvas});
+	background-color: var(#{theme-consts.$vvd-color-canvas});
 
 
 	:not(.shape-pill) & {
@@ -57,16 +54,38 @@
 	}
 
 	:not(.appearance-ghost) & {
-		border: 1px solid var(#{theme-consts.$vvd-color-neutral-70});
+		border: 1px solid var(#{theme-consts.$vvd-color-neutral-40});
 	}
 
-
-	&:focus-visible,
-	&:focus,
-	&:hover {
-		border-color: var(#{theme-consts.$vvd-color-primary});
+	:not(.density-condensed) & {
+		--_block-size: 48px;
 	}
+
+	.density-condensed & {
+		--_block-size: 40px;
+	}
+
+.error & {
+		border: 1px solid var(#{theme-consts.$vvd-color-alert});
+		background-color: var(#{theme-consts.$vvd-color-alert-10});
+	}
+
+	:not(.error, .disabled, .readonly) & {
+		&:focus-visible,
+		&:focus,
+		&:hover {
+			border-color: var(#{theme-consts.$vvd-color-primary});
+		}
+	}
+
+	.disabled &,
+	.readonly & {
+		border: 1px solid var(#{theme-consts.$vvd-color-neutral-40});
+		background-color: var(#{theme-consts.$vvd-color-neutral-20});
+	}
+
 }
+
 
 .control {
 	@include typography.typography-cat-shorthand('body-2');
@@ -79,8 +98,17 @@
 	appearance: none;
 	background-color: transparent;
 	border-radius: inherit;
-	color: var(#{theme-consts.$vvd-color-primary});
+	color: var(#{theme-consts.$vvd-color-neutral-90});
 	outline: 0;
+
+	.no-label & {
+		padding: 8px 16px;
+		@include typography.typography-cat-shorthand('body-1');
+	}
+
+	.disabled & {
+		color: var(#{theme-consts.$vvd-color-neutral-40});
+	}
 }
 
 .label {
@@ -89,28 +117,40 @@
 	position: absolute;
 	top: 12px;
 	padding: 0 16px;
+	color: var(#{theme-consts.$vvd-color-neutral-70});
 	transform: translateY(0);
+
+	.disabled &,
+	.readonly &{
+		color: var(#{theme-consts.$vvd-color-neutral-40});
+	}
 }
 
 .helper-text {
 	@include typography.typography-cat-shorthand('caption');
-
-	display: inline-block;
 	margin-top: 4px;
 	margin-left: 16px;
+	color: var(#{theme-consts.$vvd-color-neutral-70});
+
 }
 
 .error-message {
 	@include typography.typography-cat-shorthand('caption');
-
-	display: inline-block;
+	display: flex;
+	align-items: center;
+	column-gap: 4px;
 	margin-top: 4px;
-	margin-left: 16px;
-	color: var(#{theme-consts.$vvd-color-alert});
+	color: var(#{theme-consts.$vvd-color-on-canvas});
+	&-icon {
+		@include typography.typography-cat-shorthand('body-1');
+		color: var(#{theme-consts.$vvd-color-alert});
+	}
+
 }
 
 .char-count {
-	position: absolute;
-	top: -24px;
-	right: 0;
+	@include typography.typography-cat-shorthand('body-2');
+	align-self: flex-end;
+	margin-bottom: 4px;
+	color: var(#{theme-consts.$vvd-color-neutral-70});
 }

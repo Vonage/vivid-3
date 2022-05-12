@@ -1,6 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { designSystem } from '../../shared/design-system';
 import styles from './textfield.scss';
+import '../icon';
 
 import { Textfield } from './textfield';
 import { TextfieldTemplate as template } from './textfield.template';
