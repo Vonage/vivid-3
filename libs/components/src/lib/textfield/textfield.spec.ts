@@ -406,7 +406,7 @@ describe('vwc-textfield', () => {
 		});
 	});
 
-	describe('active', function () {
+	describe('value', function () {
 		it('should set active class when there is a value', async function () {
 			const activeClassWhenEnabled = getRootElement(element)
 				.classList
