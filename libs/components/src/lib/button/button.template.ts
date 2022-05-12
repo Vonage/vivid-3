@@ -14,7 +14,7 @@ const getAppearanceClassName = (appearance: ButtonAppearance, disabled: boolean)
 };
 
 const getClasses = ({
-	connotation, appearance, shape, size, icon, label, disabled, iconTrailing
+	connotation, appearance, shape, size, iconTrailing, icon, label, disabled, stacked
 }: Button) => classNames(
 	'control',
 	[`connotation-${connotation}`, Boolean(connotation)],
@@ -23,6 +23,7 @@ const getClasses = ({
 	[`size-${size}`, Boolean(size)],
 	['icon-only', !label && !!icon],
 	['icon-trailing', iconTrailing],
+	['stacked', Boolean(stacked)],
 );
 
 const focusTemplate = (context: ElementDefinitionContext) => {
