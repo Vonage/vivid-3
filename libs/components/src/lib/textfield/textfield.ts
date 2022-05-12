@@ -3,7 +3,7 @@ import {attr, observable, volatile} from '@microsoft/fast-element';
 import type {Appearance, BlockSize, Shape} from '../enums';
 
 type TextFieldSize = Extract<BlockSize, BlockSize.Condensed | BlockSize.Normal | BlockSize.Extended>;
-type TextFieldAppearance = Extract<Appearance, Appearance.Filled | Appearance.Outlined | Appearance.Ghost>;
+type TextFieldAppearance = Extract<Appearance,  Appearance.Outlined | Appearance.Ghost>;
 type TextFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**

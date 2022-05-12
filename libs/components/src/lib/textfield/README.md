@@ -71,7 +71,7 @@ Use the `density` attribute to set the textfield's to one of the predefined bloc
 - Default: `'normal'`
 
 ```html preview
-<vwc-layout column-basis="stacked">
+<vwc-layout column-basis="block">
     <vwc-textfield label="condensed" density="condensed"></vwc-textfield>
     <vwc-textfield label="normal" density="normal"></vwc-textfield>
 </vwc-layout>
@@ -85,7 +85,7 @@ Use the `shape` attribute to change the button's edges.
 - Default: `'rounded'`
 
 ```html preview
-<vwc-layout column-basis="stacked">
+<vwc-layout column-basis="block">
     <vwc-textfield label="Pill" shape="pill"></vwc-textfield>
     <vwc-textfield label="Rounded" shape="rounded"></vwc-textfield>
 </vwc-layout>
@@ -99,7 +99,7 @@ Set the `appearance` attribute to change the button's appearance.
 - Default: `'outlined'`
 
 ```html preview
-<vwc-layout column-basis="stacked">
+<vwc-layout column-basis="block">
     <vwc-textfield label='ghost' appearance='ghost'></vwc-textfield>
     <vwc-textfield label='filled' appearance='filled'></vwc-textfield>
     <vwc-textfield label='outlined' appearance='outlined'></vwc-textfield>
