@@ -1,9 +1,10 @@
+import '../icon';
+import '../focus';
+
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { designSystem } from '../../shared/design-system';
-import styles from './textfield.scss';
-import '../icon';
-
 import { Textfield } from './textfield';
+import styles from './textfield.scss';
 import { TextfieldTemplate as template } from './textfield.template';
 
 export const vividTextfield = Textfield.compose<FoundationElementDefinition>({
