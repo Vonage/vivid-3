@@ -19,53 +19,6 @@ Add a `label` attribute to add text to the button.
 <vwc-button appearance='filled' label='A default button'></vwc-button>
 ```
 
-## Size
-
-Use the `size` attribute to set the button's to one of the predefined block size extent.
-
-- Type: `'condensed'` | `'normal'` | `'extended'`
-- Default: `'normal'`
-
-```html preview
-<vwc-button appearance='filled' label='condensed' size='condensed'></vwc-button>
-<vwc-button appearance='filled' label='normal' size='normal'></vwc-button>
-<vwc-button appearance='filled' label='extended' size='extended'></vwc-button>
-```
-
-## Shape
-
-Use the `shape` attribute to change the button's edges.
-
-- Type: `'rounded'` | `'pill'`
-- Default: `'rounded'`
-
-```html preview
-<vwc-button appearance='filled' label='rounded' shape='rounded'></vwc-button>
-<vwc-button appearance='filled' label='pill' shape='pill'></vwc-button>
-```
-
-## Icon
-
-Use the icon attribute to add an icon to the button. You can choose an icon from the [icons gallery](https://icons.vivid.vonage.com).
-
-- Type: `String`
-- Default: `undefined`
-
-```html preview
-<vwc-button appearance="filled" icon='message-sent-line'></vwc-button>
-<vwc-button appearance="filled" shape="pill" icon='message-sent-line'></vwc-button>
-```
-
-## Icon with Label
-
-Button text can be affixed by a decorative icon, either by its start or end. 
-Use the `icon` attribute to add an icon. Use the `icon-trailing` to place the icon to the right.
-
-```html preview
-<vwc-button appearance="filled" label='icon' icon='check-line'></vwc-button>
-<vwc-button appearance="filled" label='icon-trailing' icon='check-line' icon-trailing></vwc-button>
-```
-
 ## Appearance
 
 Set the `appearance` attribute to change the button's appearance.
@@ -77,6 +30,54 @@ Set the `appearance` attribute to change the button's appearance.
 <vwc-button label='ghost' appearance='ghost'></vwc-button>
 <vwc-button label='filled' appearance='filled'></vwc-button>
 <vwc-button label='outlined' appearance='outlined'></vwc-button>
+```
+
+## Icon
+
+Use the `icon` attribute/property to set an icon to the button.
+View list of available icon at the [vivid icons gallery](https://icons.vivid.vonage.com).
+
+- Type: `String`
+- Default: `undefined`
+
+```html preview
+<vwc-button appearance="filled" icon='message-sent-line'></vwc-button>
+<vwc-button appearance="filled" shape="pill" icon='message-sent-line'></vwc-button>
+```
+
+## Icon with Label
+
+Button text can be affixed by a decorative icon, either by its start or end.
+Use the `icon` attribute to add an icon. Use the `icon-trailing` to place the icon to the right.
+
+```html preview
+<vwc-button appearance="filled" label='icon' icon='check-line'></vwc-button>
+<vwc-button appearance="filled" label='icon-trailing' icon='check-line' icon-trailing></vwc-button>
+```
+
+## Shape
+
+Use the `shape` attribute to set the button's edges.
+
+- Type: `'rounded'` | `'pill'`
+- Default: `'rounded'`
+
+```html preview
+<vwc-button appearance='filled' label='rounded' shape='rounded'></vwc-button>
+<vwc-button appearance='filled' label='pill' shape='pill'></vwc-button>
+```
+
+## Size
+
+Use the `size` attribute to set the button's to one of the predefined block size extent.
+
+- Type: `'condensed'` | `'normal'` | `'extended'`
+- Default: `'normal'`
+
+```html preview
+<vwc-button appearance='filled' label='condensed' size='condensed'></vwc-button>
+<vwc-button appearance='filled' label='normal' size='normal'></vwc-button>
+<vwc-button appearance='filled' label='extended' size='extended'></vwc-button>
 ```
 
 ## Stacked
@@ -134,6 +135,7 @@ It accepts a subset of predefined values.
 ```
 
 ## Disabled
+
 ```html preview
 <vwc-button appearance='ghost' label='ghost' disabled></vwc-button>
 <vwc-button appearance='filled' label='filled' disabled></vwc-button>
