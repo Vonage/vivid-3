@@ -148,5 +148,13 @@
     "modules": [
       "/assets/modules/components/card/index.js"
     ]
+  },
+  {
+    "title": "textfield",
+    "markdown": "./libs/components/src/lib/textfield/README.md",
+    "modules": [
+      "/assets/modules/components/textfield/index.js",
+      "/assets/modules/components/layout/index.js"
+    ]
   }
 ]
