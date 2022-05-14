@@ -2,8 +2,8 @@ import type { ViewTemplate } from '@microsoft/fast-element';
 import { html, ref } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
+import { Focus } from '../focus/focus';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
-import { focusTemplateFactory } from '../../shared/patterns/focus';
 import type { Button, ButtonAppearance } from './button';
 
 
@@ -26,6 +26,12 @@ const getClasses = ({
 	['stacked', Boolean(stacked)],
 );
 
+const focusTemplate = (context: ElementDefinitionContext) => {
+	const focusTag = context.tagFor(Focus);
+
+	return html`<${focusTag} class="focus-indicator"></${focusTag}>`;
+};
+
 /**
  * The template for the {@link @microsoft/fast-foundation#(Button:class)} component.
  *
@@ -38,7 +44,6 @@ export const buttonTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Button> = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
-	const focusTemplate = focusTemplateFactory(context);
 
 	return html`
     <button
@@ -77,7 +82,7 @@ export const buttonTemplate: (
         aria-roledescription="${(x) => x.ariaRoledescription}"
         ${ref('control')}
     >
-        ${() => focusTemplate}
+        ${() => focusTemplate(context)}
         ${x => affixIconTemplate(x.icon)}
         ${(x) => x.label}
     </button>
