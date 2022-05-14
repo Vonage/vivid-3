@@ -17,15 +17,15 @@ $rounded-border-radius: 3px;
 	margin: 0;
 	outline: none;
 
-  &:not(.connotation-pacific){
-	  @include connotation.connotation;
-  }
+	&:not(.connotation-pacific){
+		@include connotation.connotation;
+	}
 
-  &.connotation-pacific {
-    $start: var(#{theme-consts.$vvd-color-info-30});
-    $end: var(#{theme-consts.$vvd-color-cta-70});
-    #{connotation.$vvd-color-connotation}: linear-gradient(to right, $start, $end);
-  }
+	&.connotation-pacific {
+		$start: var(#{theme-consts.$vvd-color-info-30});
+		$end: var(#{theme-consts.$vvd-color-cta-70});
+		#{connotation.$vvd-color-connotation}: linear-gradient(to right, $start, $end);
+	}
 }
 
 
