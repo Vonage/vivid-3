@@ -23,6 +23,8 @@
 	@include connotation.connotation;
 	@include appearance.appearance;
 
+  cursor: text;
+  display: flex;
 	position: relative;
 	background-color: var(#{appearance.get-variable(fill)});
 	block-size: 48px;
@@ -33,15 +35,17 @@
 }
 
 .control {
-	// position: absolute;
-	// inset: 0;
-	// border: 0 none;
-	// outline: 0 none;
+  padding: 0;
+  background: unset;
+  flex-grow: 1;
+	border: 0 none;
+	outline: 0 none;
 }
 
 .label {
-	position: relative;
-	z-index: 1;
+	position: absolute;
+  inset-block-start: 50%;
+  transform: translateY(-50%);
 }
 
 .focus-indicator {
