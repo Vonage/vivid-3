@@ -1,4 +1,3 @@
-$predefined-connotations: primary cta success alert warning info announcement;
 $default: false !default;
 $shades: () !default;
-$connotations: $predefined-connotations !default;
+$connotations: primary cta success alert warning info announcement !default;
