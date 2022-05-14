@@ -19,61 +19,12 @@
 	}
 }
 
-@mixin connotation-decorative($mapping) {
-	$start: map.get($mapping, start);
-	$end: map.get($mapping, end);
-	#{variables.$vvd-color-connotation}: linear-gradient(to right, $start, $end);
-}
-
-// @mixin selectors($types...) {
-// 	@each $type in $types {
-// 		$all-connotation-types: map.keys(
-// 			map.merge(
-// 				functions.pick-map(config.$decoratives, variables.$connotation-mapping-decoratives),
-// 				functions.pick-map(config.$subset, variables.$connotation-mapping)
-// 			)
-// 		);
-
-//     $selector: '';
-
-//     @if $type != config.$default {
-//       $selector: selector.unify(&, '.connotation-#{$type}');
-//     } @else if list.length($all-connotation-types) < 2 {
-// 			$selector: &;
-//     } @else {
-//       $exceptions: ();
-// 			@each $rule-out-type in $all-connotation-types {
-// 				@if $rule-out-type != config.$default {
-// 					$exceptions: $exceptions + '.connotation-#{$rule-out-type}';
-// 				}
-// 			}
-// 			$selector: '&:not(#{$exceptions})';
-// 		}
-
-// 		@at-root #{$selector} {
-// 			@content($type);
-// 		}
-// 	}
-// }
-
 @mixin connotation {
 
-	$mapping-shades: functions.pick-map(config.$subset, variables.$connotation-mapping);
-	$mapping-decoratives: functions.pick-map(config.$decoratives, variables.$connotation-mapping-decoratives);
+	$connotation-mapping: functions.pick-map(config.$connotations, variables.$connotation-mapping);
 
-	$connotations: map.keys(map.merge($mapping-shades, $mapping-decoratives));
-
-  @include utils.spread-list-selectors('.connotation', $connotations, config.$default) using ($type) {
+  @include utils.spread-list-selectors('.connotation', config.$connotations, config.$default) using ($type) {
 		@include connotation-base($type);
-		@include connotation-shades(map.get($mapping-shades, $type));
+		@include connotation-shades(map.get($connotation-mapping, $type));
 	}
-
-	// @include selectors(map.keys($mapping-shades)...) using ($connotation-type) {
-	// 	@include connotation-base($connotation-type);
-	// 	@include connotation-shades(map.get($mapping-shades, $connotation-type));
-	// }
-
-	// @include selectors(map.keys($mapping-decoratives)...) using ($connotation-type) {
-	// 	@include connotation-decorative(map.get($mapping-decoratives, $connotation-type));
-	// }
 }
