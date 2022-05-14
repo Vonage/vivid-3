@@ -10,8 +10,6 @@ $block-size: 6px;
 $rounded-border-radius: 3px;
 
 .base {
-	@include connotation.connotation;
-
 	height: $block-size;
 	align-items: center;
 	margin: 0;
