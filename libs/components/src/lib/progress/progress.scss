@@ -1,8 +1,9 @@
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: cta primary alert success,
+	$subset: cta primary alert success,
 	$default: primary,
+	$decoratives: (pacific),
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 

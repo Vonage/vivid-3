@@ -51,17 +51,17 @@
 }
 
 @mixin connotation {
-
+	
 	$mapping-shades: functions.pick-map(config.$subset, variables.$connotation-mapping);
 	$mapping-decoratives: functions.pick-map(config.$decoratives, variables.$connotation-mapping-decoratives);
-
+	
 	$all-connotation-types: map.keys(map.merge($mapping-shades, $mapping-decoratives));
-
+	
 	@include selectors(map.keys($mapping-shades)...) using ($connotation-type) {
 		@include connotation-base($connotation-type);
 		@include connotation-shades(map.get($mapping-shades, $connotation-type));
 	}
-
+	
 	@include selectors(map.keys($mapping-decoratives)...) using ($connotation-type) {
 		@include connotation-decorative(map.get($mapping-decoratives, $connotation-type));
 	}
