@@ -9,9 +9,9 @@
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
 $sizes: (
-  small: 24px,
-  medium: 36px,
-  large: 48px,
+	small: 24px,
+	medium: 36px,
+	large: 48px,
 );
 
 .base {
@@ -24,15 +24,15 @@ $sizes: (
 }
 
 .base.size-small {
-  #{variables.$vvd-progress-ring-size}: 24px;
+	#{variables.$vvd-progress-ring-size}: 24px;
 }
 
 .base.size-medium {
-  #{variables.$vvd-progress-ring-size}: 36px;
+	#{variables.$vvd-progress-ring-size}: 36px;
 }
 
 .base.size-large {
-  #{variables.$vvd-progress-ring-size}: 48px;
+	#{variables.$vvd-progress-ring-size}: 48px;
 }
 
 .progress {
