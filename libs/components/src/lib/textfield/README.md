@@ -118,7 +118,7 @@ Set the `appearance` attribute to change the button's appearance.
 
 ### Validation
 
-You can validate the textfield like any other native `input`.  Here's an example using `pattern`:
+You can validate the textfield like any other native `input`.  Here's an example using `pattern`. The value is 5, which is not of the pattern `123`.  In addition, we programatically `dirtied` the field and then called `validate` because the change was not done by a user.
 
 ```html preview
 <vwc-textfield id="invalid-textfield" label="invalid" pattern="123" value="5"></vwc-textfield>
