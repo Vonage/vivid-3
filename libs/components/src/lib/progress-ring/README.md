@@ -69,23 +69,6 @@ Use the `paused` attribute to show a disabled state of the progress.
         <vwc-progress-ring min="0" max="50" paused></vwc-progress-ring>
     </vwc-layout>
 ```
-### Size
-
-Use the `size` attribute to set the progress ring's size.
-
-- Type: `'small'` | `'medium'` | `'large'`
-- Default: `'medium'`
-
-```html preview
-    <vwc-layout column-basis="block">
-        <h2>Small</h2>
-        <vwc-progress-ring min="0" max="50" value="25" size="small"></vwc-progress-ring>
-        <h2>Medium</h2>
-        <vwc-progress-ring min="0" max="50" value="25" size="medium"></vwc-progress-ring>
-        <h2>Large</h2>
-        <vwc-progress-ring min="0" max="50" value="25" size="large"></vwc-progress-ring>
-    </vwc-layout>
-```
 
 ## Example Usage
 
@@ -105,6 +88,56 @@ Remove `value` or set it to be a non-number value (e.g. `indeterminate`) to show
         <vwc-progress-ring min="0" max="50" value="indeterminate"></vwc-progress-ring>
     </vwc-layout>
 ```
-## CSS Variables
+## CSS Custom Properties
 
-### TODO sizes variable
+### Density
+
+Use the `--vvd-progress-ring-density` css custom property to set the progress ring's size.
+
+- Type: `4` | `5` | `6` | `7` | `8` | `9` | `10` | `11` | `12`
+- Default: `9`
+
+```html preview
+<style>
+  vwc-progress-ring:nth-child(1) {
+    --vvd-progress-ring-density: 4;
+  }
+  vwc-progress-ring:nth-child(2) {
+    --vvd-progress-ring-density: 5;
+  }
+  vwc-progress-ring:nth-child(3) {
+    --vvd-progress-ring-density: 6;
+  }
+  vwc-progress-ring:nth-child(4) {
+    --vvd-progress-ring-density: 7;
+  }
+  vwc-progress-ring:nth-child(5) {
+    --vvd-progress-ring-density: 8;
+  }
+  vwc-progress-ring:nth-child(6) {
+    --vvd-progress-ring-density: 9;
+  }
+  vwc-progress-ring:nth-child(7) {
+    --vvd-progress-ring-density: 10;
+  }
+  vwc-progress-ring:nth-child(8) {
+    --vvd-progress-ring-density: 11;
+  }
+  vwc-progress-ring:nth-child(9) {
+    --vvd-progress-ring-density: 12;
+  }
+</style>
+
+<vwc-layout column-basis="block">
+  <vwc-progress-ring min="0" max="50" value="50"></vwc-progress-ring>
+  <vwc-progress-ring min="0" max="50" value="50"></vwc-progress-ring>
+  <vwc-progress-ring min="0" max="50" value="50"></vwc-progress-ring>
+  <vwc-progress-ring min="0" max="50" value="50"></vwc-progress-ring>
+  <vwc-progress-ring min="0" max="50" value="50"></vwc-progress-ring>
+  <vwc-progress-ring min="0" max="50" value="50"></vwc-progress-ring>
+  <vwc-progress-ring min="0" max="50" value="50"></vwc-progress-ring>
+  <vwc-progress-ring min="0" max="50" value="50"></vwc-progress-ring>
+</vwc-layout>
+```
+
+
