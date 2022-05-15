@@ -3,7 +3,7 @@
 @use '../focus/partials/variables' as focus-variables;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$subset: primary cta success alert,
+	$connotations: primary cta success alert,
 	$shades: basis basis-increment contrast fierce firm soft pale,
 	$default: primary,
 );
@@ -121,7 +121,7 @@ $pill-selector: '.shape-pill:not(.stacked)';
 }
 
 .focus-indicator {
-	:not(:focus) & {
+	:not(:focus) > & {
 		display: none;
 	}
 
