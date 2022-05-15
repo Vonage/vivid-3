@@ -22,9 +22,9 @@ $states-mapping: (
       outline: var(#{connotation.$vvd-color-connotation}-basis),
     ),
     fieldset: (
-      text: var(#{connotation.$vvd-color-connotation}-contrast),
+      text: var(#{theme-consts.$vvd-color-neutral-70}),
       fill: transaprent,
-      outline: var(#{connotation.$vvd-color-connotation}-blend),
+      outline: var(#{theme-consts.$vvd-color-neutral-50}),
     ),
     ghost: (
       text: var(#{connotation.$vvd-color-connotation}),
@@ -54,9 +54,9 @@ $states-mapping: (
       outline: var(#{connotation.$vvd-color-connotation}-basis),
     ),
     fieldset: (
-      text: var(#{connotation.$vvd-color-connotation}-contrast),
-      fill: var(#{connotation.$vvd-color-connotation}-pale),
-      outline: var(#{connotation.$vvd-color-connotation}-contrast),
+      text: var(#{theme-consts.$vvd-color-neutral-70}),
+      fill: transaprent,
+      outline: var(#{theme-consts.$vvd-color-on-canvas}),
     ),
     ghost: (
       text: var(#{connotation.$vvd-color-connotation}),
@@ -86,9 +86,9 @@ $states-mapping: (
       outline: var(#{connotation.$vvd-color-connotation}-basis),
     ),
     fieldset: (
-      text: var(#{connotation.$vvd-color-connotation}-contrast),
-      fill: var(#{connotation.$vvd-color-connotation}-soft),
-      outline: var(#{connotation.$vvd-color-connotation}-blend),
+      text: var(#{theme-consts.$vvd-color-neutral-70}),
+      fill: transaprent,
+      outline: var(#{theme-consts.$vvd-color-on-canvas}),
     ),
     ghost: (
       text: var(#{connotation.$vvd-color-connotation}),
@@ -119,7 +119,7 @@ $states-mapping: (
     ),
     fieldset: (
       text: var(#{theme-consts.$vvd-color-neutral-50}),
-      fill: transaprent,
+      fill: var(#{theme-consts.$vvd-color-neutral-20}),
       outline: var(#{theme-consts.$vvd-color-neutral-50}),
     ),
     ghost: (
@@ -133,7 +133,6 @@ $states-mapping: (
       outline: transaprent,
     )
   ),
-
   selected: (
     //need to be updated with design. currently its active style
     filled: (
@@ -152,9 +151,9 @@ $states-mapping: (
       outline: var(#{connotation.$vvd-color-connotation}-basis),
     ),
     fieldset: (
-      text: var(#{connotation.$vvd-color-connotation}-contrast),
-      fill: var(#{connotation.$vvd-color-connotation}-soft),
-      outline: var(#{connotation.$vvd-color-connotation}-blend),
+      text: var(#{theme-consts.$vvd-color-neutral-70}),
+      fill: transaprent,
+      outline: var(#{theme-consts.$vvd-color-on-canvas}),
     ),
     ghost: (
       text: var(#{connotation.$vvd-color-connotation}),
