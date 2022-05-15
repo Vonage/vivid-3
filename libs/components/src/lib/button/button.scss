@@ -3,7 +3,7 @@
 @use '../focus/partials/variables' as focus-variables;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$subset: primary cta success alert,
+	$connotations: primary cta success alert,
 	$shades: basis basis-increment contrast fierce firm soft pale,
 	$default: primary,
 );
@@ -59,23 +59,23 @@
 	/* Size */
 
 	&:not(.stacked) {
-		&.size-condensed {
-			@include mixins.get-size-properties(32px, caption-bold, 8px, 12px, 16px);
+		&.density-condensed {
+			@include mixins.get-density-properties(32px, caption-bold, 8px, 12px, 16px);
 		}
 
-		&.size-extended {
-			@include mixins.get-size-properties(48px, body-1-bold, 10px, 20px, 24px);
+		&.density-extended {
+			@include mixins.get-density-properties(48px, body-1-bold, 10px, 20px, 24px);
 		}
 
-		&:not(.size-condensed, .size-extended) {
-			@include mixins.get-size-properties(40px, button, 8px, 16px, 20px);
+		&:not(.density-condensed, .density-extended) {
+			@include mixins.get-density-properties(40px, button, 8px, 16px, 20px);
 		}
 	}
 
 	&.stacked {
 		flex-direction: column;
 		justify-content: center;
-		@include mixins.get-size-properties(68px, body-2-bold, 10px, 16px, 20px);
+		@include mixins.get-density-properties(68px, body-2-bold, 10px, 16px, 20px);
 	}
 }
 
@@ -121,7 +121,7 @@ $pill-selector: '.shape-pill:not(.stacked)';
 }
 
 .focus-indicator {
-	:not(:focus) & {
+	:not(:focus) > & {
 		display: none;
 	}
 

@@ -4,21 +4,26 @@
 	$excludes: ();
 
 	@each $type in $types {
-		$typed-selector: #{$selector}-#{$type};
-		&#{$typed-selector} {
-			@content($type);
+    $typed-selector: #{$selector}-#{$type};
 
-      @if $default {
-        @if $type != $default {
-          $excludes: list.append($excludes, $typed-selector, $separator: comma);
+    @if $type != $default {
+        $excludes: list.append($excludes, $typed-selector, $separator: comma);
+
+        &#{$typed-selector} {
+          @content($type);
         }
-      }
-		}
+    }
 	}
 
-  @if list.length($excludes) {
-    &:not(#{$excludes}) {
-      @content($default);
+  @if $default {
+    @if list.length($excludes) > 0 {
+      &:not(#{$excludes}) {
+        @content($default);
+      }
+    } @else {
+      & {
+          @content($default);
+      }
     }
   }
 }
