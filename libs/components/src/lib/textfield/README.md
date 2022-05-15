@@ -109,3 +109,19 @@ Set the `appearance` attribute to change the button's appearance.
     <vwc-textfield label='outlined' appearance='outlined'></vwc-textfield>
 </vwc-layout>
 ```
+
+
+## Use cases
+
+### Validation
+
+You can validate the textfield like any other native `input`.  Here's an example using `pattern`:
+
+```html preview
+<vwc-textfield id="invalid-textfield" label="invalid" pattern="123" value="5"></vwc-textfield>
+<script>
+    document.getElementById("#invalid-textfield").dirtyValue = true;
+    document.getElementById("#invalid-textfield").validate();
+</script>
+```
+### Input types
