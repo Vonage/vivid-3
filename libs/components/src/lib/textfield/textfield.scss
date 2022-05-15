@@ -34,6 +34,7 @@
 	contain: strict;
 	cursor: text;
 	padding-inline: 16px;
+	transition: color .2s, box-shadow .2s, background-color .2s;
 }
 
 // .control-wrapper {
@@ -65,8 +66,17 @@
 	}
 }
 
+/* Shape */
+
+.base:not(.shape-pill) {
+	border-radius: 6px;
+}
+.base.shape-pill {
+	border-radius: 24px;
+}
+
 .focus-indicator {
-	:not(:focus) + & {
+	.base:not(:focus-within) > & {
 		display: none;
 	}
 
@@ -76,14 +86,6 @@
 	}
 }
 
-/* Shape */
-
-.base:not(.shape-pill) {
-	border-radius: 6px;
-}
-.base.shape-pill {
-	border-radius: 24px;
-}
 
 // .root {
 // 	display: flex;
