@@ -1,5 +1,5 @@
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$subset: primary announcement cta success alert info
+	$connotations: primary announcement cta success alert info
 );
 
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;

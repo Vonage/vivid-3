@@ -72,9 +72,3 @@ $connotation-mapping: (
     pale: theme-consts.$vvd-color-announcement-10,
   ),
 );
-$connotation-mapping-decoratives: (
-  pacific: (
-    start: var(#{theme-consts.$vvd-color-info-30}),
-    end: var(#{theme-consts.$vvd-color-cta-70})
-  ),
-);

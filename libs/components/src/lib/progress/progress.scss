@@ -1,9 +1,8 @@
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$subset: cta primary alert success,
+	$connotations: cta primary alert success,
 	$default: primary,
-	$decoratives: (pacific),
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
@@ -11,12 +10,20 @@ $block-size: 6px;
 $rounded-border-radius: 3px;
 
 .base {
-	@include connotation.connotation;
-
 	height: $block-size;
 	align-items: center;
 	margin: 0;
 	outline: none;
+
+	&:not(.connotation-pacific){
+		@include connotation.connotation;
+	}
+
+	&.connotation-pacific {
+		$start: var(#{theme-consts.$vvd-color-info-30});
+		$end: var(#{theme-consts.$vvd-color-cta-70});
+		#{connotation.$vvd-color-connotation}: linear-gradient(to right, $start, $end);
+	}
 }
 
 

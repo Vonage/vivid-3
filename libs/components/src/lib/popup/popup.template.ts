@@ -31,7 +31,7 @@ export const popupTemplate: (
 				<div class="popup-content">
 					<slot></slot>
 					${when(x => x.dismissible,
-		html<Popup>`<vwc-button size="condensed" @click="${x => (x.open = false)}"
+		html<Popup>`<vwc-button density="condensed" @click="${x => (x.open = false)}"
 						class="dismissible" icon="close-small-solid" shape="pill"></vwc-button>`)}
 				</div>
 				${when(x => x.arrow,
