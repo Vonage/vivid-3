@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Sun, 15 May 2022 05:41:39 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.14",
+      "version": "3.0.0-next.14",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "6b3b525d11882854f69968244b9bf97855b226f4",
+            "comment": "rename size (for block size members) to density due to its being a reserved name in input element"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 14 May 2022 19:46:51 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.13",
       "version": "3.0.0-next.13",

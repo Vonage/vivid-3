@@ -2,7 +2,7 @@
 @use '../../../../../shared/src/lib/sass/mixins/typography' as typography;
 
 
-@mixin get-size-properties($block-size, $font-face, $icon-gap, $padding-inline, $icon-size) {
+@mixin get-density-properties($block-size, $font-face, $icon-gap, $padding-inline, $icon-size) {
 	#{variables.$block-size}: $block-size;
 	@include typography.typography-cat-shorthand($font-face);
 

@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Wed, 11 May 2022 10:21:34 GMT and should not be manually modified.
+This log was last generated on Sun, 15 May 2022 05:41:39 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.14
+
+Sun, 15 May 2022 05:41:39 GMT
+
+### Changes
+
+- rename size (for block size members) to density due to its being a reserved name in input element (yinon@hotmail.com)
 
 ## 3.0.0-next.13
 

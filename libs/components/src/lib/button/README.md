@@ -19,17 +19,17 @@ Add a `label` attribute to add text to the button.
 <vwc-button appearance='filled' label='A default button'></vwc-button>
 ```
 
-## Size
+## Density
 
-Use the `size` attribute to set the button's to one of the predefined block size extent.
+Use the `density` attribute to set the button's to one of the predefined block size extent.
 
 - Type: `'condensed'` | `'normal'` | `'extended'`
 - Default: `'normal'`
 
 ```html preview
-<vwc-button appearance='filled' label='condensed' size='condensed'></vwc-button>
-<vwc-button appearance='filled' label='normal' size='normal'></vwc-button>
-<vwc-button appearance='filled' label='extended' size='extended'></vwc-button>
+<vwc-button appearance='filled' label='condensed' density='condensed'></vwc-button>
+<vwc-button appearance='filled' label='normal' density='normal'></vwc-button>
+<vwc-button appearance='filled' label='extended' density='extended'></vwc-button>
 ```
 
 ## Shape
@@ -86,7 +86,7 @@ Set the `stacked` attribute to change the button's layout to stacked.
 Caveats:
 
 - This is only applicable to the `'rounded'` shape.
-- This Will override any [size](#size) style to the predefined stacked size.
+- This will override any applied [density](#density) style to match a predefined stacked block size.
 
 ```html preview
 <vwc-button stacked appearance='filled' label='Stacked'></vwc-button>
@@ -132,6 +132,7 @@ It accepts a subset of predefined values.
 
 ## States
 ### Disabled
+
 ```html preview
 <vwc-button disabled appearance='ghost' label='ghost'></vwc-button>
 <vwc-button disabled appearance='filled' label='filled'></vwc-button>
