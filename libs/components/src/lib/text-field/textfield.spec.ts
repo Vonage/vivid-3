@@ -1,30 +1,31 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
 import {TextFieldType} from '@microsoft/fast-foundation';
-import {Textfield} from './textfield';
+import {TextField} from './text-field';
 import '.';
+import {Icon} from '../icon/icon';
 
-const COMPONENT_TAG = 'vwc-textfield';
+const COMPONENT_TAG = 'vwc-text-field';
 
 /**
  * @param element
  */
-function getRootElement(element: Textfield) {
-	return element.shadowRoot?.querySelector('.root') as HTMLElement;
+function getRootElement(element: TextField) {
+	return element.shadowRoot?.querySelector('.base') as HTMLElement;
 }
 
-describe('vwc-textfield', () => {
-	let element: Textfield;
+describe('vwc-text-field', () => {
+	let element: TextField;
 
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Textfield;
+		)) as TextField;
 	});
 
 	describe('basic', () => {
-		it('should be initialized as a vwc-textfield', async () => {
+		it('should be initialized as a vwc-text-field', async () => {
 			expect(element)
-				.toBeInstanceOf(Textfield);
+				.toBeInstanceOf(TextField);
 		});
 	});
 
@@ -239,7 +240,7 @@ describe('vwc-textfield', () => {
 			return {
 				form: formWrapper.children[0] as HTMLFormElement,
 				otherForm: formWrapper.children[1] as HTMLFormElement,
-				element: formWrapper.querySelector(COMPONENT_TAG) as Textfield,
+				element: formWrapper.querySelector(COMPONENT_TAG) as TextField,
 				button: formWrapper.children[0]?.querySelector('button'),
 				otherFormButton: formWrapper.children[1]?.querySelector('button'),
 			};
@@ -335,7 +336,8 @@ describe('vwc-textfield', () => {
 			const helperText = 'Helper Text';
 			element.helperText = helperText;
 			await elementUpdated(element);
-			expect(helperTextElementWithoutText).toBeNull();
+			expect(helperTextElementWithoutText)
+				.toBeNull();
 			expect(element.shadowRoot?.querySelector('.helper-text')
 				?.textContent
 				?.trim())
@@ -369,7 +371,8 @@ describe('vwc-textfield', () => {
 			element.dirtyValue = true;
 			setValidityToError(errorMessage);
 			await elementUpdated(element);
-			expect(errorElementWithoutText).toBeNull();
+			expect(errorElementWithoutText)
+				.toBeNull();
 			expect(element.shadowRoot?.querySelector('.error-message')
 				?.textContent
 				?.trim())
@@ -481,6 +484,21 @@ describe('vwc-textfield', () => {
 				.classList
 				.contains('shape-pill'))
 				.toEqual(true);
+		});
+	});
+
+	describe('icon', function () {
+		it('should render the icon with type', async function () {
+			const iconExistsWithoutAttribute = element.shadowRoot?.querySelector('vwc-icon');
+			element.setAttribute('icon', 'home');
+			await elementUpdated(element);
+			const iconElement = element.shadowRoot?.querySelector('vwc-icon');
+			expect(iconExistsWithoutAttribute)
+				.toBeFalsy();
+			expect(iconElement instanceof Icon)
+				.toEqual(true);
+			expect(iconElement?.getAttribute('type'))
+				.toEqual('home');
 		});
 	});
 });
