@@ -15,7 +15,10 @@ Not that the textfield does not support `type="number"`. For this there is the `
 Add a `label` attribute to add label to the text field.
 
 ```html preview
-    <vwc-textfield label="My Label" name="test-field"></vwc-textfield>
+<form method="post" action="">
+
+    <vwc-textfield label="My Label" type="email" name="email" autocomplete="email"></vwc-textfield>
+</form>
 ```
 
 ### Placeholder
