@@ -1,9 +1,9 @@
 import {TextField as FoundationTextfield} from '@microsoft/fast-foundation';
 import {attr, observable, volatile} from '@microsoft/fast-element';
-import type {Appearance, BlockSize, Shape} from '../enums';
+import type {Appearance, Density, Shape} from '../enums';
 
-type TextFieldSize = Extract<BlockSize, BlockSize.Condensed | BlockSize.Normal | BlockSize.Extended>;
-type TextFieldAppearance = Extract<Appearance,  Appearance.Outlined | Appearance.Ghost>;
+type TextFieldSize = Extract<Density, Density.Condensed | Density.Normal | Density.Extended>;
+type TextFieldAppearance = Extract<Appearance,  Appearance.Fieldset | Appearance.Ghost>;
 type TextFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**

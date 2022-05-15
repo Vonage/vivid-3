@@ -11,9 +11,9 @@
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
-	$appearances: outlined ghost,
-	$states: idle,
-	$default: outlined,
+	$appearances: fieldset ghost,
+	$states: idle hover,
+	$default: fieldset,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 

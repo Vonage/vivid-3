@@ -102,14 +102,14 @@ Use the `shape` attribute to change the button's edges.
 
 Set the `appearance` attribute to change the button's appearance.
 
-- Type: `'ghost'` | `'filled'` | `'outlined'`
-- Default: `'outlined'`
+- Type: `'fieldset'` | `'ghost'`
+- Default: `'fieldset'`
 
 ```html preview
 <vwc-layout column-basis="block">
     <vwc-textfield label='ghost' appearance='ghost'></vwc-textfield>
     <vwc-textfield label='filled' appearance='filled'></vwc-textfield>
-    <vwc-textfield label='outlined' appearance='outlined'></vwc-textfield>
+    <vwc-textfield label='fieldset' appearance='fieldset'></vwc-textfield>
 </vwc-layout>
 ```
 

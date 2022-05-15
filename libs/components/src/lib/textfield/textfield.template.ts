@@ -6,7 +6,7 @@ import type {
 } from '@microsoft/fast-foundation';
 import {classNames} from '@microsoft/fast-web-utilities';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
-import {Appearance, BlockSize, Shape} from '../enums';
+import {Appearance, Density, Shape} from '../enums';
 import type {Textfield} from './textfield';
 
 const getStateClasses = (textField: Textfield) => classNames(
@@ -15,7 +15,7 @@ const getStateClasses = (textField: Textfield) => classNames(
 	['active', !!textField.value],
 	['readonly', textField.readOnly],
 	['placeholder', !!textField.placeholder],
-	`density-${textField.density ?? BlockSize.Normal}`,
+	`density-${textField.density ?? Density.Normal}`,
 	`appearance-${textField.appearance ?? Appearance.Outlined}`,
 	`shape-${textField.shape ?? Shape.Rounded}`,
 	['no-label', !textField.label],
@@ -73,7 +73,6 @@ export const TextfieldTemplate: (
 
 	return html<Textfield>`
 	<div class="base ${getStateClasses}">
-    🎉
     ${when(x => x.charCount && x.maxlength, renderCharCount())}
     ${when(x => x.label, renderLabel())}
     <input class="control"

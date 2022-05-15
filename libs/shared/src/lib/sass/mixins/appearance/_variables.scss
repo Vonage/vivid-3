@@ -21,6 +21,11 @@ $states-mapping: (
       fill: transaprent,
       outline: var(#{connotation.$vvd-color-connotation}-basis),
     ),
+    fieldset: (
+      text: var(#{connotation.$vvd-color-connotation}-contrast),
+      fill: transaprent,
+      outline: var(#{connotation.$vvd-color-connotation}-blend),
+    ),
     ghost: (
       text: var(#{connotation.$vvd-color-connotation}),
       fill: transaprent,
@@ -47,6 +52,11 @@ $states-mapping: (
       text: var(#{connotation.$vvd-color-connotation}-contrast),
       fill: var(#{connotation.$vvd-color-connotation}-pale),
       outline: var(#{connotation.$vvd-color-connotation}-basis),
+    ),
+    fieldset: (
+      text: var(#{connotation.$vvd-color-connotation}-contrast),
+      fill: var(#{connotation.$vvd-color-connotation}-pale),
+      outline: var(#{connotation.$vvd-color-connotation}-contrast),
     ),
     ghost: (
       text: var(#{connotation.$vvd-color-connotation}),
@@ -75,6 +85,11 @@ $states-mapping: (
       fill: var(#{connotation.$vvd-color-connotation}-soft),
       outline: var(#{connotation.$vvd-color-connotation}-basis),
     ),
+    fieldset: (
+      text: var(#{connotation.$vvd-color-connotation}-contrast),
+      fill: var(#{connotation.$vvd-color-connotation}-soft),
+      outline: var(#{connotation.$vvd-color-connotation}-blend),
+    ),
     ghost: (
       text: var(#{connotation.$vvd-color-connotation}),
       fill: var(#{connotation.$vvd-color-connotation}-soft),
@@ -98,6 +113,11 @@ $states-mapping: (
       outline: var(#{theme-consts.$vvd-color-neutral-50}),
     ),
     duotone: (
+      text: var(#{theme-consts.$vvd-color-neutral-50}),
+      fill: transaprent,
+      outline: var(#{theme-consts.$vvd-color-neutral-50}),
+    ),
+    fieldset: (
       text: var(#{theme-consts.$vvd-color-neutral-50}),
       fill: transaprent,
       outline: var(#{theme-consts.$vvd-color-neutral-50}),
@@ -130,6 +150,11 @@ $states-mapping: (
       text: var(#{connotation.$vvd-color-connotation}-contrast),
       fill: var(#{connotation.$vvd-color-connotation}-soft),
       outline: var(#{connotation.$vvd-color-connotation}-basis),
+    ),
+    fieldset: (
+      text: var(#{connotation.$vvd-color-connotation}-contrast),
+      fill: var(#{connotation.$vvd-color-connotation}-soft),
+      outline: var(#{connotation.$vvd-color-connotation}-blend),
     ),
     ghost: (
       text: var(#{connotation.$vvd-color-connotation}),
