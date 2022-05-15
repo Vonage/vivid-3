@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test'; 
+import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import {
 	loadComponents,
@@ -14,6 +14,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	  <vwc-progress-ring min="0" max="100" value="33" connotation="alert"></vwc-progress-ring>
 	  <vwc-progress-ring min="0" max="100" value="66" connotation="success"></vwc-progress-ring>
 	  <vwc-progress-ring min="0" max="100" value="77" paused></vwc-progress-ring>
+	  <vwc-progress-ring min="0" max="100" value="77" size="small" paused></vwc-progress-ring>
+	  <vwc-progress-ring min="0" max="100" value="77" size="large" paused></vwc-progress-ring>
 	`;
 
 	await loadComponents({
