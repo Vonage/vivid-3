@@ -69,7 +69,23 @@ Use the `paused` attribute to show a disabled state of the progress.
         <vwc-progress-ring min="0" max="50" paused></vwc-progress-ring>
     </vwc-layout>
 ```
-### Size TODO
+### Size
+
+Use the `size` attribute to set the progress ring's size.
+
+- Type: `'small'` | `'medium'` | `'large'`
+- Default: `'medium'`
+
+```html preview
+    <vwc-layout column-basis="block">
+        <h2>Small</h2>
+        <vwc-progress-ring min="0" max="50" value="25" size="small"></vwc-progress-ring>
+        <h2>Medium</h2>
+        <vwc-progress-ring min="0" max="50" value="25" size="medium"></vwc-progress-ring>
+        <h2>Large</h2>
+        <vwc-progress-ring min="0" max="50" value="25" size="large"></vwc-progress-ring>
+    </vwc-layout>
+```
 
 ## Example Usage
 

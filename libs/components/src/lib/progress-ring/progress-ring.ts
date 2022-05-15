@@ -1,6 +1,7 @@
 import {BaseProgress} from '@microsoft/fast-foundation';
 import {attr} from '@microsoft/fast-element';
 import type {Connotation} from '../enums';
+import type {Size} from '../enums';
 
 type ProgressRingSize = Extract<Size, Size.Small | Size.Medium | Size.Large>;
 

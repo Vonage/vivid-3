@@ -10,6 +10,7 @@ import type { ProgressRing } from './progress-ring';
 const getClasses = (_: ProgressRing) => classNames(
 	'base',
 	[`connotation-${_.connotation}`, !!_.connotation],
+	[`size-${_.size}`, !!_.size],
 );
 const progressSegments: number = 44;
 
