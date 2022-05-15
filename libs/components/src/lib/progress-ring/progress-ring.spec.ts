@@ -1,5 +1,5 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
-import {Connotation, Size} from '../enums';
+import {Connotation} from '../enums';
 import {ProgressRing} from './progress-ring';
 import '.';
 
@@ -133,23 +133,6 @@ describe('vwc-progress-ring', () => {
 			expect(connotationClassExistsBeforeChange)
 				.toEqual(false);
 			expect(connotationClassExistsAfterChange)
-				.toEqual(true);
-		});
-	});
-
-	describe('size', function () {
-		it('should reflect size on host', async function () {
-			element.size = Size.Large;
-			await elementUpdated(element);
-			expect(element.getAttribute('size'))
-				.toEqual(Size.Large);
-		});
-
-		it('should add class "base-small" to base div', async function () {
-			const baseDiv = element.shadowRoot?.querySelector('.base');
-			element.size = Size.Small;
-			await elementUpdated(element);
-			expect(baseDiv?.classList.contains('size-small'))
 				.toEqual(true);
 		});
 	});
