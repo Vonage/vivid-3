@@ -14,8 +14,10 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	  <vwc-progress-ring min="0" max="100" value="33" connotation="alert"></vwc-progress-ring>
 	  <vwc-progress-ring min="0" max="100" value="66" connotation="success"></vwc-progress-ring>
 	  <vwc-progress-ring min="0" max="100" value="77" paused></vwc-progress-ring>
-	  <vwc-progress-ring min="0" max="100" value="77" size="small" paused></vwc-progress-ring>
-	  <vwc-progress-ring min="0" max="100" value="77" size="large" paused></vwc-progress-ring>
+	  <vwc-progress-ring min="0" max="100" value="77" style="--vvd-progress-ring-density: 3" paused></vwc-progress-ring>
+	  <vwc-progress-ring min="0" max="100" value="77" style="--vvd-progress-ring-density: 5" paused></vwc-progress-ring>
+	  <vwc-progress-ring min="0" max="100" value="77" style="--vvd-progress-ring-density: 12" paused></vwc-progress-ring>
+	  <vwc-progress-ring min="0" max="100" value="77" style="--vvd-progress-ring-density: 13" paused></vwc-progress-ring>
 	`;
 
 	await loadComponents({
