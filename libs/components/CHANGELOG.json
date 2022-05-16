@@ -2,6 +2,51 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Sun, 15 May 2022 05:41:39 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.14",
+      "version": "3.0.0-next.14",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "6b3b525d11882854f69968244b9bf97855b226f4",
+            "comment": "rename size (for block size members) to density due to its being a reserved name in input element"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sat, 14 May 2022 19:46:51 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.13",
+      "version": "3.0.0-next.13",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "dc246152111d6168a3cbe0ab4cd256ac5940fdff",
+            "comment": "refactor connotation and spread-list-selectors mixins"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sat, 14 May 2022 19:31:43 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.13",
+      "version": "3.0.0-next.13",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "fb98764fe64856539bd24b7aa0cae02145e8d55c",
+            "comment": "focus component as template in patterns"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 11 May 2022 13:24:18 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.13",
       "version": "3.0.0-next.13",

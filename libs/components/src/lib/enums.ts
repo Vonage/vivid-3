@@ -32,7 +32,7 @@ export enum Appearance {
 	Ghost = 'ghost',
 }
 
-export enum BlockSize {
+export enum Density {
 	Condensed = 'condensed',
 	Normal = 'normal',
 	Extended = 'extended',

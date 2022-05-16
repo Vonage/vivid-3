@@ -1,7 +1,7 @@
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$subset: primary cta success alert warning info,
+	$connotations: primary cta success alert warning info,
 	$shades: basis soft contrast,
 	$default: primary,
 );
@@ -31,17 +31,17 @@
 
 /* Size */
 
-.control:not(.size-condensed):not(.size-extended) {
+.control:not(.density-condensed):not(.density-extended) {
 	block-size: 24px;
 	padding-inline: 10px;
 }
 
-.control.size-condensed {
+.control.density-condensed {
 	block-size: 20px;
 	padding-inline: 8px;
 }
 
-.control.size-extended {
+.control.density-extended {
 	block-size: 28px;
 	padding-inline: 12px;
 }
