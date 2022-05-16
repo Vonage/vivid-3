@@ -36,6 +36,7 @@
 	filter: var(#{elevation.$vvd-elevation-shadow});
 	outline: 0 none;
 	vertical-align: middle;
+	column-gap: var(#{variables.$icon-gap});
 
 	&.icon-only {
 		border-radius: 50%;
@@ -77,11 +78,6 @@
 
 	.icon-trailing & {
 		order: 1;
-		margin-inline-start: var(#{variables.$icon-gap});
-	}
-
-	:not(.icon-trailing) & {
-		margin-inline-end: var(#{variables.$icon-gap});
 	}
 }
 
