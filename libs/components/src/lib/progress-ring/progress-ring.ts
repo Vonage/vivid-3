@@ -16,5 +16,5 @@ export type ProgressRingConnotation =
  */
 export class ProgressRing extends BaseProgress {
 	@attr connotation?: ProgressRingConnotation;
-	@attr density?: number;
+	@attr density?: -5 | -4 | -3 | -2 | -1 | 0 | 1 | 2 | 3;
 }
