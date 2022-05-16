@@ -11,7 +11,8 @@
 
 .base {
 	@include connotation.connotation;
-  $size: calc(clamp(4, var(#{variables.$vvd-progress-ring-density}, 9), 12) * 4px);
+
+	$size: calc(clamp(4, var(#{variables.$vvd-progress-ring-density}, 9), 12) * 4px);
 
 	width: $size;
 	height: $size;
