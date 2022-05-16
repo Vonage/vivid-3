@@ -34,6 +34,7 @@
     "@nrwl/js": "14.0.5",
     "@nrwl/linter": "14.0.5",
     "@nrwl/node": "14.0.5",
+    "@nrwl/nx-plugin": "^14.1.5",
     "@nrwl/web": "14.0.5",
     "@nrwl/workspace": "14.0.5",
     "@playwright/test": "1.21.0",
