@@ -84,7 +84,7 @@ Use the `density` attribute to set the button's to one of the predefined block s
 
 Set the `stacked` attribute to change the button's layout to stacked.
 
-- Type: `boolean`
+- Type: `Boolean`
 - Default: `false`
 
 Caveats:
@@ -134,8 +134,11 @@ It accepts a subset of predefined values.
 <vwc-button appearance="outlined" label='alert' connotation='alert'></vwc-button>
 ```
 
-## States
-### Disabled
+## Disabled
+Add the `disabled` attribute to disable the button.
+
+- Type: `Boolean`
+- Default: `false`
 
 ```html preview
 <vwc-button appearance='ghost' label='ghost' disabled></vwc-button>
