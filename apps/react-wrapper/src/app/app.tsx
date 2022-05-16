@@ -6,7 +6,7 @@ import { VIVIDLayout } from '@vonage/vivid';
 const VividLayout = wrap(VIVIDLayout());
 export default function App() {
   return (
-    <VividLayout column-basis="block">
+    <VividLayout column-basis="block" auto-sizing="fill">
       <img src="https://picsum.photos/id/1015/300/200"/>
       <img src="https://picsum.photos/id/1016/300/200"/>
       <img src="https://picsum.photos/id/1018/300/200"/>

@@ -1,9 +1,9 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { designSystem } from '../../shared/design-system';
 import { Layout } from './layout';
-import styles from './layout.scss';
 import { layoutTemplate as template } from './layout.template';
 
+const styles = require('./layout.scss')[0];
 
 /**
  * Represents a layout custom element.
