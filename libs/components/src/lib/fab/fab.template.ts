@@ -28,7 +28,7 @@ export const FabTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Fab> = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
-    const focusTemplate = focusTemplateFactory(context);
+	const focusTemplate = focusTemplateFactory(context);
 
 	return html`
         <button
