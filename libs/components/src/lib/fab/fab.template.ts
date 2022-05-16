@@ -2,7 +2,7 @@ import type { ViewTemplate } from '@microsoft/fast-element';
 import { html, ref } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { Focus } from '../focus/focus';
+import { focusTemplateFactory } from '../../shared/patterns/focus';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { Fab } from './fab';
 
@@ -16,12 +16,6 @@ const getClasses = ({
 	['disabled', disabled],
 );
 
-const focusTemplate = (context: ElementDefinitionContext) => {
-	const focusTag = context.tagFor(Focus);
-
-	return html`<${focusTag} class="focus-indicator"></${focusTag}>`;
-};
-
 /**
  * The template for the {@link @microsoft/fast-foundation#(Button:class)} component.
  *
@@ -34,6 +28,7 @@ export const FabTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Fab> = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
+    const focusTemplate = focusTemplateFactory(context);
 
 	return html`
         <button
@@ -72,7 +67,7 @@ export const FabTemplate: (
             aria-roledescription="${(x) => x.ariaRoledescription}"		
             ${ref('control')}
         >
-            ${() => focusTemplate(context)}
+            ${() => focusTemplate}
             ${x => affixIconTemplate(x.icon)}
             ${(x) => x.label}
         </button>
