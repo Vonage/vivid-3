@@ -13,6 +13,10 @@ const getClasses = (_: ProgressRing) => classNames(
 );
 const progressSegments: number = 44;
 
+function getDensityValue(x: ProgressRing) {
+	return x.density && Number.isFinite(Number(x.density)) ? x.density : '9';
+}
+
 /**
  * The template for the {@link @microsoft/fast-foundation#ProgressRing} component.
  *
@@ -32,6 +36,7 @@ export const ProgressRingTemplate: (
         aria-valuenow="${x => x.value}"
         aria-valuemin="${x => x.min}"
         aria-valuemax="${x => x.max}"
+        style="--vvd-progress-ring-density: ${(getDensityValue)}"
         class="${x => (x.paused ? 'paused' : '')} ${getClasses}"
     >
         ${when(

@@ -16,7 +16,8 @@ describe('vwc-progress-ring', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-progress-ring', async () => {
-			expect(element).toBeInstanceOf(ProgressRing);
+			expect(element)
+				.toBeInstanceOf(ProgressRing);
 		});
 
 		it('should reflect min and max', async function () {
@@ -134,6 +135,35 @@ describe('vwc-progress-ring', () => {
 				.toEqual(false);
 			expect(connotationClassExistsAfterChange)
 				.toEqual(true);
+		});
+	});
+
+	describe('density', function () {
+		const DENSITY_CSS_VARIABLE_NAME = '--vvd-progress-ring-density';
+		let baseElement: Element | null | undefined;
+		beforeEach(function () {
+			baseElement = element.shadowRoot?.querySelector('.base');
+		});
+
+		it('should set density variable to 9 by default', async function () {
+			expect(baseElement?.getAttribute('style'))
+				.toEqual(`${DENSITY_CSS_VARIABLE_NAME}: 9`);
+		});
+
+		it('should set density value according to attribute', async function () {
+			element.setAttribute('density', '12');
+			await elementUpdated(element);
+			expect(baseElement?.getAttribute('style'))
+				.toEqual(`${DENSITY_CSS_VARIABLE_NAME}: 12`);
+		});
+
+		it('should set density value to default if set a non numeric value', async function () {
+			const DEFAULT_DENSITY = 9;
+			element.setAttribute('density', 'aaa');
+			await elementUpdated(element);
+			expect(baseElement?.getAttribute('style'))
+				.toEqual(`${DENSITY_CSS_VARIABLE_NAME}: ${DEFAULT_DENSITY}`);
+
 		});
 	});
 });
