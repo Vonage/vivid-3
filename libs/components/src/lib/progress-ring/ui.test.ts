@@ -14,10 +14,15 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	  <vwc-progress-ring min="0" max="100" value="33" connotation="alert"></vwc-progress-ring>
 	  <vwc-progress-ring min="0" max="100" value="66" connotation="success"></vwc-progress-ring>
 	  <vwc-progress-ring min="0" max="100" value="77" paused></vwc-progress-ring>
-	  <vwc-progress-ring min="0" max="100" value="77" density="3" paused></vwc-progress-ring>
-	  <vwc-progress-ring min="0" max="100" value="77" density="5" paused></vwc-progress-ring>
-	  <vwc-progress-ring min="0" max="100" value="77" density="12" paused></vwc-progress-ring>
-	  <vwc-progress-ring min="0" max="100" value="77" density="13" paused></vwc-progress-ring>
+		<vwc-progress-ring min="0" max="50" value="50" density="-5"></vwc-progress-ring>
+	  <vwc-progress-ring min="0" max="50" value="50" density="-4"></vwc-progress-ring>
+	  <vwc-progress-ring min="0" max="50" value="50" density="-3"></vwc-progress-ring>
+	  <vwc-progress-ring min="0" max="50" value="50" density="-2"></vwc-progress-ring>
+	  <vwc-progress-ring min="0" max="50" value="50" density="-1"></vwc-progress-ring>
+	  <vwc-progress-ring min="0" max="50" value="50" density="0"></vwc-progress-ring>
+	  <vwc-progress-ring min="0" max="50" value="50" density="1"></vwc-progress-ring>
+	  <vwc-progress-ring min="0" max="50" value="50" density="2"></vwc-progress-ring>
+	  <vwc-progress-ring min="0" max="50" value="50" density="3"></vwc-progress-ring>
 	`;
 
 	await loadComponents({

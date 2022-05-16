@@ -7,15 +7,12 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { ProgressRing } from './progress-ring';
 
-const getClasses = (_: ProgressRing) => classNames(
+const getClasses = ({connotation, density}: ProgressRing) => classNames(
 	'base',
-	[`connotation-${_.connotation}`, !!_.connotation],
+	[`connotation-${connotation}`, !!connotation],
+	[`density-${(density ? Number(density) : 0) + 9}`, !!density],
 );
 const progressSegments: number = 44;
-
-function getDensityValue(x: ProgressRing) {
-	return x.density && Number.isFinite(Number(x.density)) ? x.density : '9';
-}
 
 /**
  * The template for the {@link @microsoft/fast-foundation#ProgressRing} component.
@@ -36,7 +33,6 @@ export const ProgressRingTemplate: (
         aria-valuenow="${x => x.value}"
         aria-valuemin="${x => x.min}"
         aria-valuemax="${x => x.max}"
-        style="--vvd-progress-ring-density: ${(getDensityValue)}"
         class="${x => (x.paused ? 'paused' : '')} ${getClasses}"
     >
         ${when(

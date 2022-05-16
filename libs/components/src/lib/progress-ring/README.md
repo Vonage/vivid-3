@@ -74,20 +74,20 @@ Use the `paused` attribute to show a disabled state of the progress.
 
 Use the `density` attribute/property to set the progress ring's size.
 
-- Type: `4` | `5` | `6` | `7` | `8` | `9` | `10` | `11` | `12`
-- Default: `9`
+- Type: `-5` | `-4` | `-3` | `-2` | `-1` | `0` | `1` | `2` | `3`
+- Default: `0`
 
 ```html preview
 <vwc-layout column-basis="block">
-  <vwc-progress-ring min="0" max="50" value="50" density="4"></vwc-progress-ring>
-  <vwc-progress-ring min="0" max="50" value="50" density="5"></vwc-progress-ring>
-  <vwc-progress-ring min="0" max="50" value="50" density="6"></vwc-progress-ring>
-  <vwc-progress-ring min="0" max="50" value="50" density="7"></vwc-progress-ring>
-  <vwc-progress-ring min="0" max="50" value="50" density="8"></vwc-progress-ring>
-  <vwc-progress-ring min="0" max="50" value="50" density="9"></vwc-progress-ring>
-  <vwc-progress-ring min="0" max="50" value="50" density="10"></vwc-progress-ring>
-  <vwc-progress-ring min="0" max="50" value="50" density="11"></vwc-progress-ring>
-  <vwc-progress-ring min="0" max="50" value="50" density="12"></vwc-progress-ring>
+  <vwc-progress-ring min="0" max="50" value="50" density="-5"></vwc-progress-ring>
+  <vwc-progress-ring min="0" max="50" value="50" density="-4"></vwc-progress-ring>
+  <vwc-progress-ring min="0" max="50" value="50" density="-3"></vwc-progress-ring>
+  <vwc-progress-ring min="0" max="50" value="50" density="-2"></vwc-progress-ring>
+  <vwc-progress-ring min="0" max="50" value="50" density="-1"></vwc-progress-ring>
+  <vwc-progress-ring min="0" max="50" value="50" density="0"></vwc-progress-ring>
+  <vwc-progress-ring min="0" max="50" value="50" density="1"></vwc-progress-ring>
+  <vwc-progress-ring min="0" max="50" value="50" density="2"></vwc-progress-ring>
+  <vwc-progress-ring min="0" max="50" value="50" density="3"></vwc-progress-ring>
 </vwc-layout>
 ```
 

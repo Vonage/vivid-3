@@ -139,31 +139,26 @@ describe('vwc-progress-ring', () => {
 	});
 
 	describe('density', function () {
-		const DENSITY_CSS_VARIABLE_NAME = '--vvd-progress-ring-density';
+		const BASE_DENSITY = 9;
 		let baseElement: Element | null | undefined;
 		beforeEach(function () {
 			baseElement = element.shadowRoot?.querySelector('.base');
 		});
 
-		it('should set density variable to 9 by default', async function () {
-			expect(baseElement?.getAttribute('style'))
-				.toEqual(`${DENSITY_CSS_VARIABLE_NAME}: 9`);
+		it('should set density class only if exists', async function () {
+			const classListContainsDensity = baseElement?.className.split(' ').reduce((contains: boolean, className: string) => {
+				return contains || className.indexOf('density-') > -1;
+			}, false);
+			expect(classListContainsDensity).toEqual(false);
 		});
 
-		it('should set density value according to attribute', async function () {
-			element.setAttribute('density', '12');
+		it('should set density class according to attribute plus base density', async function () {
+			const densityValue = 12;
+			const expectedClass = `density-${densityValue + BASE_DENSITY}`;
+			element.setAttribute('density', densityValue.toString());
 			await elementUpdated(element);
-			expect(baseElement?.getAttribute('style'))
-				.toEqual(`${DENSITY_CSS_VARIABLE_NAME}: 12`);
-		});
-
-		it('should set density value to default if set a non numeric value', async function () {
-			const DEFAULT_DENSITY = 9;
-			element.setAttribute('density', 'aaa');
-			await elementUpdated(element);
-			expect(baseElement?.getAttribute('style'))
-				.toEqual(`${DENSITY_CSS_VARIABLE_NAME}: ${DEFAULT_DENSITY}`);
-
+			console.log(baseElement?.className);
+			expect(baseElement?.classList.contains(expectedClass)).toBeTruthy();
 		});
 	});
 });

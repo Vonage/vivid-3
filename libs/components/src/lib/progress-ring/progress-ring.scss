@@ -1,5 +1,6 @@
-@use 'sass:map';
+@use 'sass:list';
 @use 'partials/variables' as variables;
+@use '../../../../shared/src/lib/sass/mixins/utils' as utils;
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
@@ -8,16 +9,20 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
+$density: 4 5 6 7 8 9 10 11 12;
+$default-density: list.nth($density, 6);
 
 .base {
 	@include connotation.connotation;
 
-	$size: calc(clamp(4, var(#{variables.$vvd-progress-ring-density}, 9), 12) * 4px);
-
-	width: $size;
-	height: $size;
 	align-items: center;
+	block-size: var(#{variables.$progress-ring-density});
+	inline-size: var(#{variables.$progress-ring-density});
 	outline: none;
+
+	@include utils.spread-list-selectors('.density', $density, $default-density) using($value) {
+		#{variables.$progress-ring-density}: calc(#{$value} * 4px);
+	}
 }
 
 .progress {
