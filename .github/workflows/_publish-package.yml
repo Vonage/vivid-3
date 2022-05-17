@@ -23,7 +23,7 @@ jobs:
         run: |
           git config --global user.email "info@vivid.vonage.com"
           git config --global user.name "Vivid CI"
-          npx beachball publish -m "Publishing a new version" -y
+          npx beachball publish -m "Publishing a new version" --no-push -y
 
       - name: Get us to the update version
         run: |
@@ -42,4 +42,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
 
-
+      - name: Deploy
+        run: |
+          git tag -a deploy -m "Temporary release tag"
+          git push --tags origin main
