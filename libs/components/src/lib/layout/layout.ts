@@ -4,9 +4,9 @@ import type { Size } from '../enums.js';
 
 
 export enum AUTO_SIZING { Fit = 'fit', Fill = 'fill' }
-type Gutters = Extract<Size, Size.BaseSmall | Size.Base | Size.BaseLarge>;
-type ColumnSpacing = Extract<Size, Size.BaseSmall | Size.Base | Size.BaseLarge>;
-type ColumnBasis = Extract<Size, Size.BaseSmall | Size.Base | Size.BaseLarge> | 'block';
+type Gutters = Extract<Size, Size.Small | Size.Medium | Size.Large>;
+type ColumnSpacing = Extract<Size, Size.Small | Size.Medium | Size.Large>;
+type ColumnBasis = Extract<Size, Size.Small | Size.Medium | Size.Large> | 'block';
 
 /**
  * Base class for layout

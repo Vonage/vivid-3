@@ -1,9 +1,9 @@
-@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use 'partials/variables' as variables;
+@use 'partials/mixins' as mixins;
 @use '../focus/partials/variables' as focus-variables;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$subset: primary cta success alert,
+	$connotations: primary cta success alert,
 	$shades: basis basis-increment contrast fierce firm soft pale,
 	$default: primary,
 );
@@ -45,6 +45,7 @@
 	}
 
 	&.icon-only {
+		contain: size;
 		padding-inline: 0;
 		place-content: center;
 		@supports (aspect-ratio: 1) {
@@ -54,63 +55,37 @@
 			inline-size: var(#{variables.$block-size});
 		}
 	}
-}
 
-/* Size */
+	/* Size */
 
-.control.size-base-small {
-	#{variables.$block-size}: 32px;
-	@include typography.typography-cat-shorthand('caption-bold');
+	&:not(.stacked) {
+		&.density-condensed {
+			@include mixins.get-density-properties(32px, caption-bold, 8px, 12px, 16px);
+		}
 
-	&:not(.icon-only) {
-		#{variables.$icon-gap}: 8px;
+		&.density-extended {
+			@include mixins.get-density-properties(48px, body-1-bold, 10px, 20px, 24px);
+		}
 
-		padding-inline: 12px;
+		&:not(.density-condensed, .density-extended) {
+			@include mixins.get-density-properties(40px, button, 8px, 16px, 20px);
+		}
 	}
 
-	.icon {
-		font-size: 16px;
-	}
-}
-
-.control.size-base-large {
-	#{variables.$block-size}: 48px;
-	@include typography.typography-cat-shorthand('body-1-bold');
-
-	&:not(.icon-only) {
-		#{variables.$icon-gap}: 10px;
-
-		padding-inline: 20px;
-	}
-
-	.icon {
-		font-size: 24px;
-	}
-}
-
-.control:not(.size-base-small):not(.size-base-large) {
-	#{variables.$block-size}: 40px;
-	@include typography.typography-cat-shorthand('button');
-
-	&:not(.icon-only) {
-		#{variables.$icon-gap}: 8px;
-
-		padding-inline: 16px;
-	}
-
-	.icon {
-		font-size: 20px;
+	&.stacked {
+		flex-direction: column;
+		justify-content: center;
+		@include mixins.get-density-properties(68px, body-2-bold, 10px, 16px, 20px);
 	}
 }
 
 /* Shape */
-
-// stylelint-disable-next-line no-descending-specificity
-.control:not(.shape-pill) {
+$pill-selector: '.shape-pill:not(.stacked)';
+.control:not(#{$pill-selector}) {
 	border-radius: 6px;
 }
 
-.control.shape-pill {
+.control#{$pill-selector} {
 	&:not(.icon-only) {
 		border-radius: 24px;
 	}
@@ -122,22 +97,31 @@
 
 /* Icon */
 
-// stylelint-disable-next-line no-descending-specificity
 .icon {
-	// stylelint-disable-next-line no-descending-specificity
-	:not(.icon-trailing) & {
+	:not(.stacked):not(.icon-trailing) & {
 		margin-inline-end: var(#{variables.$icon-gap});
+	}
+
+	:not(.stacked).icon-trailing & {
+		margin-inline-start: var(#{variables.$icon-gap});
+	}
+
+	.stacked:not(.icon-trailing) & {
+		margin-block-end: var(#{variables.$icon-gap});
+	}
+
+	.stacked.icon-trailing & {
+		margin-block-start: var(#{variables.$icon-gap});
 	}
 
 	// stylelint-disable-next-line no-descending-specificity
 	.icon-trailing & {
 		order: 1;
-		margin-inline-start: var(#{variables.$icon-gap});
 	}
 }
 
 .focus-indicator {
-	:not(:focus) & {
+	:not(:focus) > & {
 		display: none;
 	}
 

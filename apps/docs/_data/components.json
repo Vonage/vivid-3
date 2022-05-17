@@ -79,7 +79,8 @@
     "title": "layout",
     "markdown": "./libs/components/src/lib/layout/README.md",
     "modules": [
-      "/assets/modules/components/layout/index.js"
+      "/assets/modules/components/layout/index.js",
+      "/assets/modules/components/card/index.js"
     ]
   },
   {
@@ -139,6 +140,13 @@
     "modules": [
       "/assets/modules/components/layout/index.js",
       "/assets/modules/components/progress-ring/index.js"
+    ]
+  },
+  {
+    "title": "card",
+    "markdown": "./libs/components/src/lib/card/README.md",
+    "modules": [
+      "/assets/modules/components/card/index.js"
     ]
   }
 ]

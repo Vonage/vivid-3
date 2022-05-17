@@ -31,10 +31,16 @@ export enum Appearance {
 	Ghost = 'ghost',
 }
 
+export enum Density {
+	Condensed = 'condensed',
+	Normal = 'normal',
+	Extended = 'extended',
+}
+
 export enum Size {
-	BaseSmall = 'base-small',
-	Base = 'base',
-	BaseLarge = 'base-large',
+	Small = 'small',
+	Medium = 'medium',
+	Large = 'large',
 }
 
 export enum Position {

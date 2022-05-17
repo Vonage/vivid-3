@@ -13,3 +13,4 @@ export const vividProgressRing =
 	});
 
 designSystem.register(vividProgressRing());
+
