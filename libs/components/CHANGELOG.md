@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 15 May 2022 05:41:39 GMT and should not be manually modified.
+This log was last generated on Tue, 17 May 2022 05:25:52 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.15
+
+Tue, 17 May 2022 05:25:52 GMT
+
+### Changes
+
+- refactor(components): progress ring size API (yonatan.kra@vonage.com)
 
 ## 3.0.0-next.14
 
