@@ -8,7 +8,7 @@ $connotation-mapping: (
   // should map to colors e.g. purple-60
   canvas: (
     basis: theme-consts.$vvd-color-surface-4dp,
-    on-basis: theme-consts.$vvd-color-on-primary,
+    on-basis: theme-consts.$vvd-color-on-canvas,
     basis-increment: theme-consts.$vvd-color-neutral-20,
     contrast: theme-consts.$vvd-color-on-canvas,
     fierce: theme-consts.$vvd-color-neutral-30,

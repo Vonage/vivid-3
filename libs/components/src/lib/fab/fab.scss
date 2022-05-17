@@ -5,7 +5,7 @@
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: canvas cta primary,
-	$shades: basis basis-increment contrast fierce firm,
+	$shades: basis on-basis basis-increment contrast fierce firm,
 	$default: canvas
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
