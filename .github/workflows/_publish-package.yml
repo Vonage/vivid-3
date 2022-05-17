@@ -48,7 +48,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
 
-      - name: Deploy
+      - name: Push & Deploy
         run: |
           git tag -a deploy -m "Temporary release tag"
           git push --tags origin main
