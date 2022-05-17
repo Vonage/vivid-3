@@ -37,7 +37,7 @@ $default-density: list.nth($density, 6);
 }
 .determinate {
 	fill: none;
-	stroke: var(#{connotation.get-connotation-token(basis)});
+	stroke: var(#{connotation.get-connotation-token(primary)});
 	stroke-linecap: round;
 	stroke-width: 2px;
 	transform: rotate(-90deg);
@@ -47,7 +47,7 @@ $default-density: list.nth($density, 6);
 .indeterminate-indicator-1 {
 	animation: spin-infinite 2s linear infinite;
 	fill: none;
-	stroke: var(#{connotation.get-connotation-token(basis)});
+	stroke: var(#{connotation.get-connotation-token(primary)});
 	stroke-linecap: round;
 	stroke-width: 2px;
 	transform: rotate(-90deg);
