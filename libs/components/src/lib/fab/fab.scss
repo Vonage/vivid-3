@@ -1,0 +1,88 @@
+@use "../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts" as theme-consts;
+@use "../../../../shared/src/lib/sass/mixins/typography" as typography;
+@use "partials/variables" as variables;
+@use "../../../../shared/src/lib/sass/mixins/elevation" as elevation;
+
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+	$connotations: canvas cta primary,
+	$shades: basis basis-increment contrast fierce firm,
+	$default: canvas
+);
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+	$appearances: filled,
+	$states: idle hover disabled active,
+	$default: filled
+);
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+
+.control {
+	@include typography.typography-cat-shorthand("body-1-bold");
+	@include connotation.connotation;
+	@include appearance.appearance;
+
+	#{variables.$block-size}: 48px;
+
+	position: relative;
+	display: inline-flex;
+	box-sizing: border-box;
+	align-items: center;
+	border: 0 none;
+	background-color: var(#{appearance.get-variable(fill)});
+	block-size: var(#{variables.$block-size});
+	border-radius: 24px;
+	color: var(#{appearance.get-variable(text)});
+	column-gap: var(#{variables.$icon-gap});
+	filter: var(#{elevation.$vvd-elevation-shadow});
+	outline: 0 none;
+	vertical-align: middle;
+
+	&.icon-only {
+		border-radius: 50%;
+		padding-inline: 0;
+		place-content: center;
+		@supports (aspect-ratio: 1) {
+			aspect-ratio: 1;
+		}
+		@supports not (aspect-ratio: 1) {
+			inline-size: var(#{variables.$block-size});
+		}
+	}
+
+	&:not(.icon-only) {
+		#{variables.$icon-gap}: 10px;
+
+		padding-inline: 20px;
+	}
+
+	&:disabled {
+		@include elevation.elevation(0);
+
+		cursor: not-allowed;
+	}
+
+	&:not(:disabled) {
+		@include elevation.elevation(4);
+
+		cursor: pointer;
+		&:active {
+			@include elevation.elevation(8);
+		}
+	}
+}
+
+/* Icon */
+.icon {
+	font-size: 24px;
+
+	.icon-trailing & {
+		order: 1;
+	}
+}
+
+.focus-indicator {
+	:not(:focus) & {
+		display: none;
+	}
+}
