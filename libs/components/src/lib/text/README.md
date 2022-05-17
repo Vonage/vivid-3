@@ -16,7 +16,8 @@ Use the `font-face` attribute or `fontFace` property to change the text's font f
 - Type: `'headline-1'` | `'headline-2'` | `'title-1'` | `'title-2'` | `'subtitle-1'` | `'subtitle-2'` | `'body-1'` | `'body-1-bold'` | `'body-1-code'` | `'body-1-link'` | `'body-2'` | `'body-2-bold'` | `'body-2-code'` | `'body-2-link'` | `'caption'` | `'caption-bold'` | `'caption-code'` | `'caption-link'` | `'rounded'` | `'pill'`
 - Default: `'body-1'`
 
-```html preview
+```html
+<!-- preview -->
 <vwc-text font-face="headline-1">headline-1</vwc-text>
 <vwc-text font-face="headline-2">headline-2</vwc-text>
 <vwc-text font-face="title-1">title-1</vwc-text>
@@ -44,7 +45,8 @@ By default, some font faces are styled with block margins in accordance to artic
 - Type: `boolean`
 - Default: `true`
 
-```html preview
+```html
+<!-- preview -->
 <style>
   vwc-text[tight] {
     display: block;
@@ -74,7 +76,8 @@ It accepts a subset of predefined values.
 - Type: `'primary'` | `'cta'` | `'success'` | `'alert'` | `'announcement'` | `'info'`
 - Default: `undefined` (inherits `currentColor`)
 
-```html preview
+```html
+<!-- preview -->
 <vwc-text>undefined</vwc-text>
 <vwc-text connotation='primary'>primary</vwc-text>
 <vwc-text connotation='cta'>cta</vwc-text>
@@ -98,7 +101,8 @@ note that web component cannot style or access any descendent greater than a dir
 
 The following will generate a `caption` styled font face even though it's wrapped by a `h1` tag -
 
-```html preview
+```html
+<!-- preview -->
 <vwc-text font-face="caption">
  <h1>
   lorem ipsum dolor sit amet, consectetur adipiscing elit
@@ -108,7 +112,8 @@ The following will generate a `caption` styled font face even though it's wrappe
 
 Alternatively, 'vwc-text' can, itself, nest within a semantic tag -
 
-```html preview
+```html
+<!-- preview -->
 <h1>
  <vwc-text font-face="caption">
   lorem ipsum dolor sit amet, consectetur adipiscing elit

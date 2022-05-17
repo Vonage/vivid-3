@@ -8,7 +8,8 @@ Using layout, elements can be arranged easily in a variety of sizes and spaces t
 </script>
 ```
 
-```html preview
+```html
+<!-- preview -->
 <vwc-layout>
   <vwc-card heading="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
     <img slot="media" src="https://picsum.photos/id/1015/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;"/>
@@ -38,7 +39,8 @@ Use the `gutters` attribute to set the initial preferred `margin`.
 - Type: `'small'` | `'medium'` | `'large'`
 - Default: `'medium'`
 
-```html preview
+```html
+<!-- preview -->
 <div class="demo-gradient">
   <vwc-layout>
     <vwc-card elevation="2" text="default"></vwc-card>
@@ -72,7 +74,8 @@ Use the `column-spacing` attribute to set the initial preferred `spacing` of a c
 - Type: `'small'` | `'medium'` | `'large'`
 - Default: `'medium'`
 
-```html preview
+```html
+<!-- preview -->
 <div class="demo-gradient tight">
   <vwc-layout column-spacing="small">
     <vwc-card elevation="2" text="small"></vwc-card>
@@ -101,7 +104,8 @@ Use `block` to stack elements one above the other.
 - Type: `'small'` | `'medium'` | `'large'` | `'block'`
 - Default: `'medium'`
 
-```html preview
+```html
+<!-- preview -->
 <div class="demo-gradient">
   <vwc-layout column-basis="small">
     <vwc-card elevation="2" text="small"></vwc-card>
@@ -149,7 +153,8 @@ With `fill`, everything is the same as `fit`, except empty tracks are not collap
 - Type: `'fit'` | `'fill'`
 - Default: `'fit'`
 
-```html preview
+```html
+<!-- preview -->
 <div class="demo-gradient">
   <vwc-layout auto-sizing="fit">
     <vwc-card elevation="2" text="fit"></vwc-card>
@@ -173,7 +178,8 @@ Controls the grid-template-columns of the layout.
 - Type: repeat(`auto-sizing`, minmax(`column-basis`, 1fr))
 - Default: auto
 
-```html preview
+```html
+<!-- preview -->
 <div class="demo-gradient">
   <vwc-layout style="--layout-grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));">
     <vwc-card elevation="2"></vwc-card>

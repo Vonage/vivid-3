@@ -8,7 +8,8 @@ Find the icon you want to use on the [vivid icons search platform](https://icons
 </script>
 ```
 
-```html preview
+```html
+<!-- preview -->
 <p>I <vwc-icon type='heart-line' connotation='alert'></vwc-icon> VIVID!</p>
 ```
 
@@ -19,7 +20,8 @@ Add a `type` attribute to add type to the icon.
 - Type: `String`
 - Default: `undefined`
 
-```html preview
+```html
+<!-- preview -->
 <vwc-icon type='profile-line'></vwc-icon>
 ```
 
@@ -30,7 +32,8 @@ While `type` fetches an icon from the Vivid predefined set of icons, `svg` prope
 - Type: `String`
 - Default: `undefined`
 
-```html preview
+```html
+<!-- preview -->
 <vwc-icon id='icon'></vwc-icon>
 
 <script>
@@ -51,7 +54,8 @@ Use the `size` attribute to apply a predefined size to the icon.
 - Type: `'small'` | `'medium'` | `'large'`
 - Default: `'medium'`
 
-```html preview
+```html
+<!-- preview -->
 <vwc-icon type='close-line' size='small'></vwc-icon>
 <vwc-icon type='close-line' size='medium'></vwc-icon>
 <vwc-icon type='close-line' size='large'></vwc-icon>
@@ -65,7 +69,8 @@ It accepts a subset of predefined values.
 - Type: `'primary'` | `'announcement'` | `'cta'` | `'success'` | `'alert'` | `'info'`
 - Default: `'primary'`
 
-```html preview
+```html
+<!-- preview -->
 <vwc-icon type='heart-solid' connotation='primary'></vwc-icon>
 <vwc-icon type='heart-solid' connotation='announcement'></vwc-icon>
 <vwc-icon type='heart-solid' connotation='cta'></vwc-icon>

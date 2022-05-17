@@ -6,6 +6,7 @@
 </script>
 ```
 
-```html preview
+```html
+<!-- preview -->
 <vwc-<%= name %>></vwc-<%= name %>>
 ```

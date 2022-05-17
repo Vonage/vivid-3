@@ -9,7 +9,8 @@ The _elevation_ component enables a user to set perceived elevation to a certain
 </script>
 ```
 
-```html preview
+```html
+<!-- preview -->
 <style>
  #card {
   padding: 20px;
@@ -50,7 +51,8 @@ Use the `dp` attribute to change the elevation's level in Density-Independent Pi
 - Type: `0`|`2`|`4`|`8`|`12`|`16`|`24`
 - Default: `2`
 
-```html preview
+```html
+<!-- preview -->
 <style>
 .card {
  padding: 20px;

@@ -8,7 +8,8 @@ Represents a calendar custom element.
 </script>
 ```
 
-```html preview
+```html
+<!-- preview -->
 <vwc-calendar></vwc-calendar>
 ```
 
@@ -19,7 +20,8 @@ Use the `datetime` attribute to set date within a week of choice.
 - Type: any [`Date()` constructor acceptable parameter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date#parameters)
 - Default: `undefined` (will use the current date)
 
-```html preview
+```html
+<!-- preview -->
 <vwc-calendar datetime="2022-01-01"></vwc-calendar>
 ```
 
@@ -31,7 +33,8 @@ Use the `start-day` attribute (or `startDay` property) to set the first day of t
 - Type: `'sunday'` | `'monday'`
 - Default: `undefined` (programmatically defaults to `'monday'` if not specified)
 
-```html preview
+```html
+<!-- preview -->
 <vwc-calendar start-day="sunday"></vwc-calendar>
 ```
 
@@ -42,7 +45,8 @@ Use `locales` to set a locale string or array of locale strings that contain one
 - Type: `String` | `String[]`
 - Default: `undefined` (will use the current locale)
 
-```html preview
+```html
+<!-- preview -->
 <vwc-calendar locales="he-IL" start-day="sunday" style="direction: rtl"></vwc-calendar>
 ```
 
@@ -54,7 +58,8 @@ Unless provided, choice will be set according to local time preference (e.g. US 
 - Type: `Boolean`
 - Default: `false`
 
-```html preview
+```html
+<!-- preview -->
 <vwc-calendar hour12></vwc-calendar>
 ```
 

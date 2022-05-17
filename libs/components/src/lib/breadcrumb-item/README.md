@@ -6,7 +6,8 @@
 
 ## Link
 
-```html preview
+```html
+<!-- preview -->
 <vwc-breadcrumb-item 
   text="Breadcrumb" 
   href="https://vivid.vonage.com"></vwc-breadcrumb-item>
@@ -17,14 +18,16 @@
 - Type: `String`
 - Default: `undefined`
 
-```html preview
+```html
+<!-- preview -->
 <vwc-breadcrumb-item 
   text="Breadcrumb"></vwc-breadcrumb-item>
 ```
 
 ## Combined
 
-```html preview
+```html
+<!-- preview -->
 <div style="display: flex">
 <vwc-breadcrumb-item 
   text="Breadcrumb" 

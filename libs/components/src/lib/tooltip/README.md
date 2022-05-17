@@ -16,7 +16,8 @@ Do not target non-interactive controls as a tooltip's anchor (such as non-focusa
 - Type: `string`
 - Default: `undefined`
 
-```html preview
+```html
+<!-- preview -->
 <style>
   .wrapper{
     width: 100%;
@@ -43,7 +44,8 @@ Use the `open` attribute to indicate whether the tooltip is open.
 - Type: `boolean`
 - Default: `false`
 
-```html preview
+```html
+<!-- preview -->
 <style>
   .wrapper{
     width: 100%;
@@ -75,7 +77,8 @@ Use the `corner` attribute to set the placement of the tooltip around the anchor
 - Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
 - Default: `'left'`
 
-```html preview
+```html
+<!-- preview -->
 <style>
   .wrapper{
     width: 100%;
@@ -101,7 +104,8 @@ Use the `corner` attribute to set the placement of the tooltip around the anchor
 </div>
 ```
 ## Usage inside text
-```html preview
+```html
+<!-- preview -->
 	<div>
     <vwc-text font-face="body-1" tight>Text with tooltip - press the question mark<vwc-button id="button3" icon="help-line" shape="pill" aria-describedby="tooltip3"></vwc-button>more text after tooltip.</vwc-text>
 		  <vwc-tooltip id="tooltip3" anchor="button3" corner="bottom-end" text="I'm the tooltip content"></vwc-tooltip>

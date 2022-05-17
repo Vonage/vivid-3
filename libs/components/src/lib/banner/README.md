@@ -7,7 +7,8 @@ Banners are meant to be used on top of pages, outside the main content.
 <script type="module">import '@vonage/vivid/banner';</script>
 ```
 
-```html preview
+```html
+<!-- preview -->
 <vwc-banner text="Here's some information that you may find important!"></vwc-banner>
 ```
 
@@ -18,7 +19,8 @@ Banners are meant to be used on top of pages, outside the main content.
 
 Use the `text` attribute to set the banner's text.
 
-```html preview
+```html
+<!-- preview -->
 <vwc-banner text="Here's some information that you may find important!"></vwc-banner>
 ```
 
@@ -29,7 +31,8 @@ Use the `text` attribute to set the banner's text.
 
 The `icon` attribute will override the icon set by connotation.
 
-```html preview
+```html
+<!-- preview -->
 <vwc-banner text="Here's some information that you may find important!" 
             connotation="alert"
             icon="home-line"></vwc-banner>
@@ -50,7 +53,8 @@ const successMessage = "I'm here to give you good news (Thanks for giving us mon
 const warningMessage = "I'm here to give you a warning (Your zip is down)";
 const alertMessage = "I'm here to tell you something's wrong (The horror, the horror)";
 
-```html preview
+```html
+<!-- preview -->
 <style>
 vwc-banner {
     clear: both;
@@ -70,7 +74,8 @@ vwc-banner {
 
 The `removable` attribute sets a remove button. On click it will remove the banner from the DOM.  
 
-```html preview
+```html
+<!-- preview -->
 <vwc-banner text="Here's some information that you may find important!"
             removable></vwc-banner>
 ```
@@ -79,7 +84,8 @@ The `removable` attribute sets a remove button. On click it will remove the bann
 
 You can add action items using slotted content in a named slot `actionItems`:
 
-```html preview
+```html
+<!-- preview -->
 <vwc-banner text="A banner with an action button">
     <vwc-button slot="actionItems" appearance="filled" connotation="primary" label="Learn More"></vwc-button>
 </vwc-banner>
@@ -103,7 +109,8 @@ However, consumers can modify the above attributes (role and aria-live) to fit c
 2. The `aria-live` attribute is set to `polite` by default. This can be changed.
 3. The banner can be dismissed by hitting the `escape` key when it is in focus.
 
-```html preview
+```html
+<!-- preview -->
 <vwc-banner role="status"
             aria-live="polite"
             text="Here's some information that you may find important!"></vwc-banner>
