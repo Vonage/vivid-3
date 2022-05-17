@@ -26,7 +26,9 @@ jobs:
 
       - name: Bump and Changelog
         id: bump
-        run: echo "::set-output name=beachball_output::$(npx beachball publish -m "Publishing a new version" --no-push -y)\n"
+        run: |
+          npx beachball publish -m "Publishing a new version" --no-push -y > tmp.txt
+          echo "::set-output name=no_version_bump::$(if grep -q "Skipping publish" "./tmp.txt"; then echo true; else echo false; fi)"
 
       - name: Get us to the update version
         run: |
@@ -41,7 +43,7 @@ jobs:
         run: npx nx run components:build
 
       - name: Publish
-        if: ${{!contains(steps.bump.outputs.beachball_output, "no version bump is required") && !contains(steps.bump.outputs.beachball_output, "Nothing to bump")}}
+        if: ${{!steps.bump.outputs.no_version_bump}}
         run: npm publish dist/libs/components --tag next --access public --//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}

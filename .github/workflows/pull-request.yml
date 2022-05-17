@@ -22,47 +22,25 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
           cache: 'npm'
-
       - run: npx beachball check
 
-      - name: Bump and Changelog
-        id: bump
-        run: |
-          npx beachball publish -m "Publishing a new version" --no-push -y > tmp.txt
-          echo "::set-output name=beachball_output::$(if grep -q "Skipping publish" "./tmp.txt"; then echo true; else echo false; fi)"
+  call-lint:
+    uses: vonage/vivid-3/.github/workflows/_lint.yml@main
 
-      - name: Test the output
-        run: |
-          echo ${{steps.bump.outputs.beachball_output}}
-          cat ./tmp.txt
-#          DUMP=$(cat ./tmp.txt)
-#          echo "PUBLISH_STATUS=$DUMP" >> $GITHUB_ENV
-#          echo ${{env.PUBLISH_STATUS}}
-#          echo ${{contains(env.PUBLISH_STATUS, 'Skipping publish')}}
-#          echo ${{!contains(env.PUBLISH_STATUS, 'Skipping publish')}}
+  unit-tests:
+    needs: [ call-lint, check-changelogs ]
+    uses: vonage/vivid-3/.github/workflows/_unit-test.yml@main
+    with:
+      os: ubuntu-latest
+      report_coverage: true
 
-      - name: Publish
-        if: ${{!contains(steps.bump.outputs.beachball_output, 'no version bump is required')}} && ${{!contains(steps.bump.outputs.beachball_output, 'Nothing to bump')}}
-        run: echo "Been Here"
+  call-visual-regression:
+    needs: [call-lint, check-changelogs]
+    uses: vonage/vivid-3/.github/workflows/_visual-regression.yml@main
 
-#  call-lint:
-#    uses: vonage/vivid-3/.github/workflows/_lint.yml@main
-#
-#  unit-tests:
-#    needs: [ call-lint, check-changelogs ]
-#    uses: vonage/vivid-3/.github/workflows/_unit-test.yml@main
-#    with:
-#      os: ubuntu-latest
-#      report_coverage: true
-#
-#  call-visual-regression:
-#    needs: [call-lint, check-changelogs]
-#    uses: vonage/vivid-3/.github/workflows/_visual-regression.yml@main
-#
-#  call-deploy-deno-preview:
-#    uses: vonage/vivid-3/.github/workflows/_deploy-deno.yml@main
+  call-deploy-deno-preview:
+    uses: vonage/vivid-3/.github/workflows/_deploy-deno.yml@main
