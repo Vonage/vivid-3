@@ -47,29 +47,23 @@ const markdownItAnchorOptions = {
 /* Markdown Overrides */
 module.exports = markdownIt({
   html: true,
-  highlight: function (str, lang) {
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return '<pre class="hljs"><code>' +
-          lang +
-          str +
-          // hljs.getLanguage(lang) +
-              //  hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +
-               '</code></pre>';
-      } catch (__) {}
-    }
-
-    return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
-  }
+  // highlight: function (str, lang) {
+  //   if (lang && hljs.getLanguage(lang)) {
+  //       try {
+  //         return '<pre class="hljs"><code>' + hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +'</code></pre>';
+  //       } catch (__) {}
+  //     }
+  //   return '<pre class="hljs"><code>' + module.exports.utils.escapeHtml(str) + '</code></pre>';
+  // }
 })
-.use(require('./markdown-it-demo-renderer'), {
-  wrap: (demo, code) => {
-    return (
+  .use(require('./markdown-it-demo-renderer'), {
+    wrap: (demo, code) => {
+      const isPreview = demo.substring(0, 16) == "<!-- preview -->";
       // Wrap demo html string with `.example-demo`
-      '<div class="example-demo">' + demo + '</div>' +
+      let render = isPreview ? '<div class="example-demo">' + demo + '</div>' : '';
       // Wrap code html string with `.example-code`
-      '<div class="example-code">' + code + '</div>'
-    )
-  }
-})
-.use(markdownItAnchor, markdownItAnchorOptions);
+      render += '<div class="example-code">' + code + '</div>';
+      return render;
+    }
+  })
+  .use(markdownItAnchor, markdownItAnchorOptions);

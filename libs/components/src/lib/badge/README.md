@@ -17,7 +17,8 @@ Add a `text` attribute to add text to the badge.
 - Type: `String`
 - Default: `undefined`
 
-```html preview
+```html
+<!-- preview -->
 <vwc-badge text='A default badge'></vwc-badge>
 ```
 
@@ -29,7 +30,8 @@ Use the `density` attribute to set the badge's to one of the predefined block si
 - Default: `'normal'`
 
 
-```html preview
+```html
+<!-- preview -->
 <vwc-badge text='condensed' density='condensed'></vwc-badge>
 <vwc-badge text='normal' density='normal'></vwc-badge>
 <vwc-badge text='extended' density='extended'></vwc-badge>
@@ -42,7 +44,8 @@ Use the `shape` attribute to change the badge's edges.
 - Type: `'rounded'` | `'pill'`
 - Default: `'rounded'`
 
-```html preview
+```html
+<!-- preview -->
 <vwc-badge text='rounded' shape='rounded'></vwc-badge>
 <vwc-badge text='pill' shape='pill'></vwc-badge>
 ```
@@ -55,7 +58,8 @@ Use the `icon` attribute to add an icon. Use the `icon-trailing` to place the ic
 - Type: `String`
 - Default: `undefined`
 
-```html preview
+```html
+<!-- preview -->
 <vwc-badge text='icon' icon='check-line'></vwc-badge>
 <vwc-badge text='icon-trailing' icon='check-line' icon-trailing></vwc-badge>
 ```
@@ -67,7 +71,8 @@ Set the `appearance` attribute to change the badge's appearance.
 - Type: `'filled'` | `'subtle'` | `'duotone'`
 - Default: `'filled'`
 
-```html preview
+```html
+<!-- preview -->
 <vwc-badge text='filled' appearance='filled'></vwc-badge>
 <vwc-badge text='subtle' appearance='subtle'></vwc-badge>
 <vwc-badge text='duotone' appearance='duotone'></vwc-badge>
@@ -83,7 +88,8 @@ It accepts a subset of predefined values.
 
 ### Filled badge with connotation
 
-```html preview
+```html
+<!-- preview -->
 <vwc-badge text='primary' connotation='primary' appearance="filled"></vwc-badge>
 <vwc-badge text='cta' connotation='cta' appearance="filled"></vwc-badge>
 <vwc-badge text='info' connotation='info' appearance="filled"></vwc-badge>
@@ -94,7 +100,8 @@ It accepts a subset of predefined values.
 
 ### Subtle badge with connotation
 
-```html preview
+```html
+<!-- preview -->
 <vwc-badge text='primary' appearance='subtle' connotation='primary'></vwc-badge>
 <vwc-badge text='cta' appearance='subtle' connotation='cta'></vwc-badge>
 <vwc-badge text='info' appearance='subtle' connotation='info'></vwc-badge>
@@ -105,7 +112,8 @@ It accepts a subset of predefined values.
 
 ### Duotone badge with connotation
 
-```html preview
+```html
+<!-- preview -->
 <vwc-badge text='primary' appearance='duotone' connotation='primary'></vwc-badge>
 <vwc-badge text='cta' appearance='duotone' connotation='cta'></vwc-badge>
 <vwc-badge text='info' appearance='duotone' connotation='info'></vwc-badge>
