@@ -32,12 +32,19 @@ jobs:
 
       - name: Bump and Changelog
         id: bump
-        run: echo "::set-output name=beachball_output::$(npx beachball publish -m "Publishing a new version" --no-push -y)\n"
+        run: |
+          npx beachball publish -m "Publishing a new version" --no-push -y > tmp.txt
+          echo "::set-output name=beachball_output::$(if grep -q "Skipping publish" "./tmp.txt"; then echo true; else echo false; fi)"
 
       - name: Test the output
         run: |
           echo ${{steps.bump.outputs.beachball_output}}
-          echo ${{contains(steps.bump.outputs.beachball_output, 'no version bump is required')}}
+          cat ./tmp.txt
+#          DUMP=$(cat ./tmp.txt)
+#          echo "PUBLISH_STATUS=$DUMP" >> $GITHUB_ENV
+#          echo ${{env.PUBLISH_STATUS}}
+#          echo ${{contains(env.PUBLISH_STATUS, 'Skipping publish')}}
+#          echo ${{!contains(env.PUBLISH_STATUS, 'Skipping publish')}}
 
       - name: Publish
         if: ${{!contains(steps.bump.outputs.beachball_output, 'no version bump is required')}} && ${{!contains(steps.bump.outputs.beachball_output, 'Nothing to bump')}}
