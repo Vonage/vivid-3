@@ -4,8 +4,8 @@
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/typography/web' as typography-scale;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: primary cta success alert announcement info,
-  $shades: basis,
+	$connotations: brand cta success alert announcement info,
+  $shades: primary,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 

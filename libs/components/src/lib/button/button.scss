@@ -3,9 +3,9 @@
 @use '../focus/partials/variables' as focus-variables;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: primary cta success alert,
-	$shades: basis on-basis basis-increment contrast fierce firm soft pale,
-	$default: primary,
+	$connotations: brand cta success alert,
+	$shades: primary on-primary primary-increment contrast fierce firm soft faint,
+	$default: brand,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 

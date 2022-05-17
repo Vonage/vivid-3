@@ -7,8 +7,8 @@
 $states-mapping: (
   idle: (
     filled: (
-      text: var(#{connotation.get-connotation-token(on-basis)}),
-      fill: var(#{connotation.get-connotation-token(basis)}),
+      text: var(#{connotation.get-connotation-token(on-primary)}),
+      fill: var(#{connotation.get-connotation-token(primary)}),
       outline: transaprent,
     ),
     outlined: (
@@ -19,10 +19,10 @@ $states-mapping: (
     duotone: (
       text: var(#{connotation.get-connotation-token(contrast)}),
       fill: transaprent,
-      outline: var(#{connotation.get-connotation-token(basis)}),
+      outline: var(#{connotation.get-connotation-token(intermediate)}),
     ),
     ghost: (
-      text: var(#{connotation.get-connotation-token(basis)}),
+      text: var(#{connotation.get-connotation-token(primary)}),
       fill: transaprent,
       outline: transaprent,
     ),
@@ -34,23 +34,23 @@ $states-mapping: (
   ),
   hover: (
     filled: (
-      text: var(#{connotation.get-connotation-token(on-basis)}),
-      fill: var(#{connotation.get-connotation-token(basis-increment)}),
+      text: var(#{connotation.get-connotation-token(on-primary)}),
+      fill: var(#{connotation.get-connotation-token(primary-increment)}),
       outline: transaprent,
     ),
     outlined: (
       text: var(#{connotation.get-connotation-token(firm)}),
-      fill: var(#{connotation.get-connotation-token(pale)}),
+      fill: var(#{connotation.get-connotation-token(faint)}),
       outline: var(#{connotation.get-connotation-token(firm)}),
     ),
     duotone: (
       text: var(#{connotation.get-connotation-token(contrast)}),
-      fill: var(#{connotation.get-connotation-token(pale)}),
-      outline: var(#{connotation.get-connotation-token(basis)}),
+      fill: var(#{connotation.get-connotation-token(faint)}),
+      outline: var(#{connotation.get-connotation-token(primary)}),
     ),
     ghost: (
-      text: var(#{connotation.get-connotation-token(basis)}),
-      fill: var(#{connotation.get-connotation-token(pale)}),
+      text: var(#{connotation.get-connotation-token(primary)}),
+      fill: var(#{connotation.get-connotation-token(faint)}),
       outline: transaprent,
     ),
     subtle: (
@@ -61,7 +61,7 @@ $states-mapping: (
   ),
   active: (
     filled: (
-      text: var(#{connotation.get-connotation-token(on-basis)}),
+      text: var(#{connotation.get-connotation-token(on-primary)}),
       fill: var(#{connotation.get-connotation-token(fierce)}),
       outline: transaprent,
     ),
@@ -73,15 +73,15 @@ $states-mapping: (
     duotone: (
       text: var(#{connotation.get-connotation-token(contrast)}),
       fill: var(#{connotation.get-connotation-token(soft)}),
-      outline: var(#{connotation.get-connotation-token(basis)}),
+      outline: var(#{connotation.get-connotation-token(primary)}),
     ),
     ghost: (
-      text: var(#{connotation.get-connotation-token(basis)}),
+      text: var(#{connotation.get-connotation-token(primary)}),
       fill: var(#{connotation.get-connotation-token(soft)}),
       outline: transaprent,
     ),
     subtle: (
-      text: var(#{connotation.get-connotation-token(basis-increment)}),
+      text: var(#{connotation.get-connotation-token(primary-increment)}),
       fill: var(#{connotation.get-connotation-token(soft)}),
       outline: transaprent,
     )
@@ -117,7 +117,7 @@ $states-mapping: (
   selected: (
     //need to be updated with design. currently its active style
     filled: (
-      text: var(#{connotation.get-connotation-token(on-basis)}),
+      text: var(#{connotation.get-connotation-token(on-primary)}),
       fill: var(#{connotation.get-connotation-token(contrast)}),
       outline: transaprent,
     ),
@@ -129,10 +129,10 @@ $states-mapping: (
     duotone: (
       text: var(#{connotation.get-connotation-token(contrast)}),
       fill: var(#{connotation.get-connotation-token(soft)}),
-      outline: var(#{connotation.get-connotation-token(basis)}),
+      outline: var(#{connotation.get-connotation-token(primary)}),
     ),
     ghost: (
-      text: var(#{connotation.get-connotation-token(basis)}),
+      text: var(#{connotation.get-connotation-token(primary)}),
       fill: var(#{connotation.get-connotation-token(soft)}),
       outline: transaprent,
     ),

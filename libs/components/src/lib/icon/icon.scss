@@ -1,6 +1,6 @@
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: primary announcement cta success alert info,
-  $shades: basis,
+	$connotations: brand announcement cta success alert info,
+  $shades: primary,
 );
 
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;

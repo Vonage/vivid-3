@@ -1,9 +1,9 @@
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: primary cta success alert warning info,
-	$shades: basis on-basis soft contrast,
-	$default: primary,
+	$connotations: brand cta success alert warning info,
+	$shades: primary on-primary intermediate soft contrast,
+	$default: brand,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 

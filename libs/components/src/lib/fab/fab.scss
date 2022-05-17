@@ -4,9 +4,9 @@
 @use "../../../../shared/src/lib/sass/mixins/elevation" as elevation;
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
-	$connotations: canvas cta primary,
-	$shades: basis on-basis basis-increment contrast fierce firm,
-	$default: canvas
+	$connotations: /*canvas*/ cta brand,
+	$shades: primary on-primary primary-increment contrast fierce firm,
+	// $default: canvas
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
