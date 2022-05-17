@@ -7,82 +7,82 @@
 $states-mapping: (
   idle: (
     filled: (
-      text: var(#{connotation.$vvd-color-on-connotation}),
-      fill: var(#{connotation.$vvd-color-connotation}),
+      text: var(#{connotation.get-connotation-token(on-basis)}),
+      fill: var(#{connotation.get-connotation-token(basis)}),
       outline: transaprent,
     ),
     outlined: (
-      text: var(#{connotation.$vvd-color-connotation}-firm),
+      text: var(#{connotation.get-connotation-token(firm)}),
       fill: transaprent,
-      outline: var(#{connotation.$vvd-color-connotation}-firm),
+      outline: var(#{connotation.get-connotation-token(firm)}),
     ),
     duotone: (
-      text: var(#{connotation.$vvd-color-connotation}-contrast),
+      text: var(#{connotation.get-connotation-token(contrast)}),
       fill: transaprent,
-      outline: var(#{connotation.$vvd-color-connotation}-basis),
+      outline: var(#{connotation.get-connotation-token(basis)}),
     ),
     ghost: (
-      text: var(#{connotation.$vvd-color-connotation}),
+      text: var(#{connotation.get-connotation-token(basis)}),
       fill: transaprent,
       outline: transaprent,
     ),
     subtle: (
-      text: var(#{connotation.$vvd-color-connotation}-contrast),
-      fill: var(#{connotation.$vvd-color-connotation}-soft),
+      text: var(#{connotation.get-connotation-token(contrast)}),
+      fill: var(#{connotation.get-connotation-token(soft)}),
       outline: transaprent,
     )
   ),
   hover: (
     filled: (
-      text: var(#{connotation.$vvd-color-on-connotation}),
-      fill: var(#{connotation.$vvd-color-connotation}-basis-increment),
+      text: var(#{connotation.get-connotation-token(on-basis)}),
+      fill: var(#{connotation.get-connotation-token(basis-increment)}),
       outline: transaprent,
     ),
     outlined: (
-      text: var(#{connotation.$vvd-color-connotation}-firm),
-      fill: var(#{connotation.$vvd-color-connotation}-pale),
-      outline: var(#{connotation.$vvd-color-connotation}-firm),
+      text: var(#{connotation.get-connotation-token(firm)}),
+      fill: var(#{connotation.get-connotation-token(pale)}),
+      outline: var(#{connotation.get-connotation-token(firm)}),
     ),
     duotone: (
-      text: var(#{connotation.$vvd-color-connotation}-contrast),
-      fill: var(#{connotation.$vvd-color-connotation}-pale),
-      outline: var(#{connotation.$vvd-color-connotation}-basis),
+      text: var(#{connotation.get-connotation-token(contrast)}),
+      fill: var(#{connotation.get-connotation-token(pale)}),
+      outline: var(#{connotation.get-connotation-token(basis)}),
     ),
     ghost: (
-      text: var(#{connotation.$vvd-color-connotation}),
-      fill: var(#{connotation.$vvd-color-connotation}-pale),
+      text: var(#{connotation.get-connotation-token(basis)}),
+      fill: var(#{connotation.get-connotation-token(pale)}),
       outline: transaprent,
     ),
     subtle: (
-      text: var(#{connotation.$vvd-color-connotation}-contrast),
-      fill: var(#{connotation.$vvd-color-connotation}-soft),
+      text: var(#{connotation.get-connotation-token(contrast)}),
+      fill: var(#{connotation.get-connotation-token(soft)}),
       outline: transaprent,
     )
   ),
   active: (
     filled: (
-      text: var(#{connotation.$vvd-color-on-connotation}),
-      fill: var(#{connotation.$vvd-color-connotation}-fierce),
+      text: var(#{connotation.get-connotation-token(on-basis)}),
+      fill: var(#{connotation.get-connotation-token(fierce)}),
       outline: transaprent,
     ),
     outlined: (
-      text: var(#{connotation.$vvd-color-connotation}-firm),
-      fill: var(#{connotation.$vvd-color-connotation}-soft),
-      outline: var(#{connotation.$vvd-color-connotation}-firm),
+      text: var(#{connotation.get-connotation-token(firm)}),
+      fill: var(#{connotation.get-connotation-token(soft)}),
+      outline: var(#{connotation.get-connotation-token(firm)}),
     ),
     duotone: (
-      text: var(#{connotation.$vvd-color-connotation}-contrast),
-      fill: var(#{connotation.$vvd-color-connotation}-soft),
-      outline: var(#{connotation.$vvd-color-connotation}-basis),
+      text: var(#{connotation.get-connotation-token(contrast)}),
+      fill: var(#{connotation.get-connotation-token(soft)}),
+      outline: var(#{connotation.get-connotation-token(basis)}),
     ),
     ghost: (
-      text: var(#{connotation.$vvd-color-connotation}),
-      fill: var(#{connotation.$vvd-color-connotation}-soft),
+      text: var(#{connotation.get-connotation-token(basis)}),
+      fill: var(#{connotation.get-connotation-token(soft)}),
       outline: transaprent,
     ),
     subtle: (
-      text: var(#{connotation.$vvd-color-connotation}-basis-increment),
-      fill: var(#{connotation.$vvd-color-connotation}-soft),
+      text: var(#{connotation.get-connotation-token(basis-increment)}),
+      fill: var(#{connotation.get-connotation-token(soft)}),
       outline: transaprent,
     )
   ),
@@ -117,28 +117,28 @@ $states-mapping: (
   selected: (
     //need to be updated with design. currently its active style
     filled: (
-      text: var(#{connotation.$vvd-color-on-connotation}),
-      fill: var(#{connotation.$vvd-color-connotation}-contrast),
+      text: var(#{connotation.get-connotation-token(on-basis)}),
+      fill: var(#{connotation.get-connotation-token(contrast)}),
       outline: transaprent,
     ),
     outlined: (
-      text: var(#{connotation.$vvd-color-connotation}-firm),
-      fill: var(#{connotation.$vvd-color-connotation}-soft),
-      outline: var(#{connotation.$vvd-color-connotation}-firm),
+      text: var(#{connotation.get-connotation-token(firm)}),
+      fill: var(#{connotation.get-connotation-token(soft)}),
+      outline: var(#{connotation.get-connotation-token(firm)}),
     ),
     duotone: (
-      text: var(#{connotation.$vvd-color-connotation}-contrast),
-      fill: var(#{connotation.$vvd-color-connotation}-soft),
-      outline: var(#{connotation.$vvd-color-connotation}-basis),
+      text: var(#{connotation.get-connotation-token(contrast)}),
+      fill: var(#{connotation.get-connotation-token(soft)}),
+      outline: var(#{connotation.get-connotation-token(basis)}),
     ),
     ghost: (
-      text: var(#{connotation.$vvd-color-connotation}),
-      fill: var(#{connotation.$vvd-color-connotation}-soft),
+      text: var(#{connotation.get-connotation-token(basis)}),
+      fill: var(#{connotation.get-connotation-token(soft)}),
       outline: transaprent,
     ),
     subtle: (
-      text: var(#{connotation.$vvd-color-connotation}-contrast),
-      fill: var(#{connotation.$vvd-color-connotation}-soft),
+      text: var(#{connotation.get-connotation-token(contrast)}),
+      fill: var(#{connotation.get-connotation-token(soft)}),
       outline: transaprent,
     )
   )

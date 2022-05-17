@@ -2,7 +2,7 @@
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: primary cta success alert warning info,
-	$shades: basis soft contrast,
+	$shades: basis on-basis soft contrast,
 	$default: primary,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;

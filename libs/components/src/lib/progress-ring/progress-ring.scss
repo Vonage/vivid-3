@@ -2,6 +2,7 @@
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: cta primary alert success,
+  $shades: basis,
 	$default: primary
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
@@ -35,7 +36,7 @@
 }
 .determinate {
 	fill: none;
-	stroke: var(#{connotation.$vvd-color-connotation});
+	stroke: var(#{connotation.get-connotation-token(basis)});
 	stroke-linecap: round;
 	stroke-width: 2px;
 	transform: rotate(-90deg);
@@ -45,7 +46,7 @@
 .indeterminate-indicator-1 {
 	animation: spin-infinite 2s linear infinite;
 	fill: none;
-	stroke: var(#{connotation.$vvd-color-connotation});
+	stroke: var(#{connotation.get-connotation-token(basis)});
 	stroke-linecap: round;
 	stroke-width: 2px;
 	transform: rotate(-90deg);

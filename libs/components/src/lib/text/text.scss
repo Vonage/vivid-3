@@ -46,7 +46,7 @@ $default-selector: get-default-selector($font-faces);
 
 	@include connotation.connotation;
 
-	color: var(#{connotation.$vvd-color-connotation});
+	color: var(#{connotation.get-connotation-token(basis)});
 
 	&.font-face-headline-1,
 	&.font-face-headline-2 {

@@ -2,14 +2,13 @@
 @use 'config' as config;
 
 
-$vvd-color-connotation: --connotation;
-$vvd-color-on-connotation: --on-connotation;
 $compound-placeholder: '[compound]'; // will be replaced by actual compound
 
 $connotation-mapping: (
   // should map to colors e.g. purple-60
   canvas: (
-    basis: theme-consts.$vvd-color-canvas/*-60*/,
+    basis: theme-consts.$vvd-color-surface-4dp,
+    on-basis: theme-consts.$vvd-color-on-primary,
     basis-increment: theme-consts.$vvd-color-neutral-20,
     contrast: theme-consts.$vvd-color-on-canvas,
     fierce: theme-consts.$vvd-color-neutral-30,
@@ -19,7 +18,8 @@ $connotation-mapping: (
     pale: theme-consts.$vvd-color-neutral-10,
   ),
   primary: (
-    basis: theme-consts.$vvd-color-neutral/*-60*/,
+    basis: theme-consts.$vvd-color-primary/*-60*/,
+    on-basis: theme-consts.$vvd-color-on-primary/*-60*/,
     basis-increment: theme-consts.$vvd-color-neutral-90,
     contrast: theme-consts.$vvd-color-neutral-90,
     fierce: theme-consts.$vvd-color-neutral-80,
@@ -29,6 +29,7 @@ $connotation-mapping: (
   ),
   cta: (
     basis: theme-consts.$vvd-color-cta,
+    on-basis: theme-consts.$vvd-color-on-cta,
     basis-increment: theme-consts.$vvd-color-cta-70,
     contrast: theme-consts.$vvd-color-cta-90,
     fierce: theme-consts.$vvd-color-cta-80,
@@ -38,6 +39,7 @@ $connotation-mapping: (
   ),
   success: (
     basis: theme-consts.$vvd-color-success,
+    on-basis: theme-consts.$vvd-color-on-success,
     basis-increment: theme-consts.$vvd-color-success-70,
     contrast: theme-consts.$vvd-color-success-90,
     fierce: theme-consts.$vvd-color-success-80,
@@ -47,6 +49,7 @@ $connotation-mapping: (
   ),
   alert: (
     basis: theme-consts.$vvd-color-alert,
+    on-basis: theme-consts.$vvd-color-on-alert,
     basis-increment: theme-consts.$vvd-color-alert-70,
     contrast: theme-consts.$vvd-color-alert-90,
     fierce: theme-consts.$vvd-color-alert-80,
@@ -56,6 +59,7 @@ $connotation-mapping: (
   ),
   warning: (
     basis: theme-consts.$vvd-color-warning,
+    on-basis: theme-consts.$vvd-color-on-warning,
     basis-increment: theme-consts.$vvd-color-warning-70,
     contrast: theme-consts.$vvd-color-warning-90,
     fierce: theme-consts.$vvd-color-warning-80,
@@ -65,6 +69,7 @@ $connotation-mapping: (
   ),
   info: (
     basis: theme-consts.$vvd-color-info,
+    on-basis: theme-consts.$vvd-color-on-info,
     basis-increment: theme-consts.$vvd-color-info-70,
     contrast: theme-consts.$vvd-color-info-90,
     fierce: theme-consts.$vvd-color-info-80,
@@ -74,6 +79,7 @@ $connotation-mapping: (
   ),
   announcement: (
     basis: theme-consts.$vvd-color-announcement,
+    on-basis: theme-consts.$vvd-color-on-announcement,
     basis-increment: theme-consts.$vvd-color-announcement-70,
     contrast: theme-consts.$vvd-color-announcement-90,
     fierce: theme-consts.$vvd-color-announcement-80,

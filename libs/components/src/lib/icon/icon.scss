@@ -1,5 +1,6 @@
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: primary announcement cta success alert info
+	$connotations: primary announcement cta success alert info,
+  $shades: basis,
 );
 
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
@@ -20,7 +21,7 @@
 
 // TODO: add a :where selector to unset any connotation variant from a mixin level
 .control[class*="connotation"] {
-	color: var(#{connotation.$vvd-color-connotation});
+	color: var(#{connotation.get-connotation-token(basis)});
 }
 
 svg {

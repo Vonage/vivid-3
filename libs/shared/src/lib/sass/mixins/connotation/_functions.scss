@@ -1,0 +1,4 @@
+@function get-connotation-token($type) {
+  $prefix: --_color-connotation;
+  @return #{$prefix}-#{$type};
+}
