@@ -33,7 +33,7 @@ jobs:
         run: echo "::set-output name=beachball_output::$(npx beachball publish -m "Publishing a new version" --no-push -y)\n"
 
       - name: Publish
-        if: ${{!contains(steps.bump.outputs.beachball_output, "no version bump is required")}} && ${{!contains(steps.bump.outputs.beachball_output, "Nothing to bump")}}
+        if: ${{!contains(steps.bump.outputs.beachball_output, 'no version bump is required')}} && ${{!contains(steps.bump.outputs.beachball_output, 'Nothing to bump')}}
         run: echo "Been Here"
 
 #  call-lint:
