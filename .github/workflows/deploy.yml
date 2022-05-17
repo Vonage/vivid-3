@@ -1,4 +1,4 @@
-name: 🧬 Release
+name: 🧬 Deploy
 
 on:
   push:
@@ -13,5 +13,4 @@ concurrency:
 
 jobs:
   call-deploy-site:
-    needs: call-publish-package
     uses: vonage/vivid-3/.github/workflows/_deploy-deno.yml@main
