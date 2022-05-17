@@ -62,7 +62,7 @@ Use the `reverse` attribute to set the progress from right to left.
 - Default: `'primary'`
 
 ```html preview
-    <vwc-progress min="0" max="100" value="25" connotation="primary"></vwc-progress>
+    <vwc-progress min="0" max="100" value="25" connotation="brand"></vwc-progress>
     <br/>
     <br/>
     <vwc-progress min="0" max="100" value="25" connotation="cta"></vwc-progress>

@@ -10,7 +10,7 @@ const components = ['progress'];
 test('should show the component', async ({page}: { page: Page }) => {
 	const template = `
 		<div style="margin: 5px;">
-    <vwc-progress min="0" max="100" value="25" connotation="primary"></vwc-progress>
+    <vwc-progress min="0" max="100" value="25" connotation="brand"></vwc-progress>
     <br/>
     <br/>
     <vwc-progress min="0" max="100" value="25" connotation="cta"></vwc-progress>
@@ -34,7 +34,7 @@ test('should show the component', async ({page}: { page: Page }) => {
     <vwc-progress min="0" max="50" value="25" reverse></vwc-progress>
     <br/>
     <br/>
-    <vwc-progress min="0" max="100" value="25" connotation="primary" shape="sharp"></vwc-progress>
+    <vwc-progress min="0" max="100" value="25" connotation="brand" shape="sharp"></vwc-progress>
     <br/>
     <br/>
     <vwc-progress min="0" max="100" value="25" connotation="cta" shape="sharp"></vwc-progress>
