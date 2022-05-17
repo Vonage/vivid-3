@@ -31,24 +31,22 @@ jobs:
           echo "::set-output name=no_version_bump::$(if grep -q "Skipping publish" "./tmp.txt"; then echo true; else echo false; fi)"
 
       - name: Get us to the update version
+        if: ${{!steps.bump.outputs.no_version_bump}}
         run: |
           git fetch --all
           git checkout main
           git pull
 
-      - name: Install Dependencies
-        run: npm ci
-
-      - name: Build Components
-        run: npx nx run components:build
-
       - name: Publish
         if: ${{!steps.bump.outputs.no_version_bump}}
-        run: npm publish dist/libs/components --tag next --access public --//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
+        run: |
+          npm ci
+          npx nx run components:build
+          npm publish dist/libs/components --tag next --access public --//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
 
       - name: Push & Deploy
         run: |
-          git tag -a deploy -m "Temporary release tag"
+          git tag -a deploy -m "Temporary deploy tag"
           git push --tags origin main
