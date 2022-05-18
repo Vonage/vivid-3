@@ -51,22 +51,24 @@ module.exports = markdownIt({
   html: true,
   highlight: function (str, lang) {
     isPreview = str.indexOf(PREVIEW) >= 0;
-    if (isPreview) str = str.replace(PREVIEW,'').substring(1);
-    if (lang && hljs.getLanguage(lang)) {
+    if (isPreview) {
+      str = str.replace(PREVIEW, '').substring(1);
+      if (lang && hljs.getLanguage(lang)) {
         try {
-          return '<pre class="hljs"><code>' + hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +'</code></pre>';
-        } catch (__) {}
+          return '<pre class="hljs"><code class="language-html">' + hljs.highlight(str, { language: lang, ignoreIllegals: true }).value + '</code></pre>';
+        } catch (__) { }
       }
+    }
     return '<pre class="hljs"><code>' + module.exports.utils.escapeHtml(str) + '</code></pre>';
   }
 })
-  .use(require('./markdown-it-demo-renderer'), {
-    wrap: (demo, code) => {
-      // Wrap demo html string with `.example-demo`
-      let render = isPreview ? '<div class="example-demo">' + demo + '</div>' : '';
-      // Wrap code html string with `.example-code`
-      render += '<div class="example-code">' + code + '</div>';
-      return render;
-    }
-  })
+  // .use(require('./markdown-it-demo-renderer'), {
+  //   wrap: (demo, code) => {
+  //     // Wrap demo html string with `.example-demo`
+  //     let render = isPreview ? '<div class="example-demo">' + demo + '</div>' : '';
+  //     // Wrap code html string with `.example-code`
+  //     render += '<div class="example-code">' + code + '</div>';
+  //     return render;
+  //   }
+  // })
   .use(markdownItAnchor, markdownItAnchorOptions);
