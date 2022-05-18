@@ -6,24 +6,7 @@
 
 #{variables.$theme-main-selector} {
 
-  --vvd-sizing-4px-scale-3xs: 8px;
-  --vvd-sizing-4px-scale-2xs: 12px;
-  --vvd-sizing-4px-scale-xs: 16px;
-  --vvd-sizing-4px-scale-sm: 20px;
-  --vvd-sizing-4px-scale-md: 24px;
-  --vvd-sizing-4px-scale-lg: 28px;
-  --vvd-sizing-4px-scale-xl: 32px;
-  --vvd-sizing-4px-scale-2xl: 36px;
-  --vvd-sizing-4px-scale-3xl: 40px;
-  --vvd-sizing-8px-scale-3xs: 8px;
-  --vvd-sizing-8px-scale-2xs: 16px;
-  --vvd-sizing-8px-scale-xs: 24px;
-  --vvd-sizing-8px-scale-sm: 32px;
-  --vvd-sizing-8px-scale-md: 40px;
-  --vvd-sizing-8px-scale-lg: 48px;
-  --vvd-sizing-8px-scale-xl: 56px;
-  --vvd-sizing-8px-scale-2xl: 64px;
-  --vvd-sizing-8px-scale-3xl: 72px;
+  --vvd-sizing-unit: 4px;
 
   --vvd-color-neutral-0: rgb(255,255,255);
   --vvd-color-neutral-10: rgb(242,242,242);

@@ -19,17 +19,15 @@
 
 $connotation-mapping: (
   // should map to colors e.g. purple-60
-  // hush: (
-  //   primary: --vvd-color-surface-4dp,
-  //   on-primary: --vvd-color-on-canvas,
-  //   primary-increment: --vvd-color-neutral-20,
-  //   contrast: --vvd-color-on-canvas,
-  //   fierce: --vvd-color-neutral-30,
-  //   // investigate the following
-  //   firm: --vvd-color-primary,
-  //   soft: --vvd-color-neutral-20,
-  //   faint: --vvd-color-neutral-10,
-  // ),
+  pristine: map.merge(
+    get-default-mapping(neutral),
+    (
+      primary: --vvd-color-surface-4dp,
+      on-primary: --vvd-color-neutral-100,
+      primary-increment: --vvd-color-neutral-10,
+      fierce: --vvd-color-neutral-20,
+    )
+  ),
   brand: map.merge(
     get-default-mapping(neutral),
     (
