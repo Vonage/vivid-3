@@ -19,7 +19,7 @@
 
 .popup-content {
 	display: grid;
-	color: var(#{utils.get-color-token(on-canvas/*neutral-100*/});
+	color: var(#{utils.get-color-token(on-canvas/*neutral-100*/)});
 
 	.dismissible & {
 		align-content: start;
