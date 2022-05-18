@@ -10,16 +10,25 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+	$appearances: filled,
+	$states: idle disabled,
+	$default: filled,
+);
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+
 $density: 4 5 6 7 8 9 10 11 12;
 $default-density: list.nth($density, 6);
 
 .base {
 	@include connotation.connotation;
+	@include appearance.appearance;
 
 	align-items: center;
 	block-size: var(#{variables.$progress-ring-density});
 	inline-size: var(#{variables.$progress-ring-density});
 	outline: none;
+  color: var(#{appearance.get-appearance-token(fill)});
 
 	@include utils.spread-list-selectors('.density', $density, $default-density) using($value) {
 		#{variables.$progress-ring-density}: calc(#{$value} * 4px);
@@ -37,7 +46,7 @@ $default-density: list.nth($density, 6);
 }
 .determinate {
 	fill: none;
-	stroke: var(#{connotation.get-connotation-token(primary)});
+	stroke: currentColor;
 	stroke-linecap: round;
 	stroke-width: 2px;
 	transform: rotate(-90deg);
@@ -47,7 +56,7 @@ $default-density: list.nth($density, 6);
 .indeterminate-indicator-1 {
 	animation: spin-infinite 2s linear infinite;
 	fill: none;
-	stroke: var(#{connotation.get-connotation-token(primary)});
+	stroke: currentColor;
 	stroke-linecap: round;
 	stroke-width: 2px;
 	transform: rotate(-90deg);
@@ -56,10 +65,6 @@ $default-density: list.nth($density, 6);
 }
 .base.paused .indeterminate-indicator-1 {
 	animation-play-state: paused;
-	stroke: var(#{theme-consts.$vvd-color-neutral});
-}
-.base.paused .determinate {
-	stroke: var(#{theme-consts.$vvd-color-neutral});
 }
 @keyframes spin-infinite {
 	0% {
