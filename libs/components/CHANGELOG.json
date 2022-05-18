@@ -2,6 +2,51 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Tue, 17 May 2022 18:14:25 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.15",
+      "version": "3.0.0-next.15",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "212f91d7a34296f03238a6433337e16a1c122c7b",
+            "comment": "migrate fab"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 17 May 2022 05:25:52 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.15",
+      "version": "3.0.0-next.15",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "6c04f3d2132f708da833a246622df1de9688358c",
+            "comment": "refactor(components): progress ring size API"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 16 May 2022 11:51:19 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.14",
+      "version": "3.0.0-next.14",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "d7f0736d676e7863b402a73e70fb7de31215aa88",
+            "comment": "update readme"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 15 May 2022 05:41:39 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.14",
       "version": "3.0.0-next.14",
