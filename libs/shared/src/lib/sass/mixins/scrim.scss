@@ -2,6 +2,6 @@
 @use '../../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
 @mixin scrim-variables {
-	background-color: var(#{theme-consts.$vvd-color-on-canvas});
+	background-color: var(#{--vvd-color-neutral-100});
 	opacity: 0.5;
 }
