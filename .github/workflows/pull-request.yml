@@ -44,3 +44,6 @@ jobs:
 
   call-deploy-deno-preview:
     uses: vonage/vivid-3/.github/workflows/_deploy-deno.yml@main
+
+  test-nx-vivid-output:
+    uses: vonage/vivid-3/.github/workflows/_vivid-nx-tests.yml@main
