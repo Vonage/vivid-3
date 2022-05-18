@@ -17,5 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: [ call-deploy-site ]
     steps:
-      - name: remove deploy tag
-        run: git push --delete origin release
+      - uses: dev-drprasad/delete-tag-and-release@v0.2.0
+        with:
+          tag_name: deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
