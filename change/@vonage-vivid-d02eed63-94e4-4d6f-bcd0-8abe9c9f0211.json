@@ -1,7 +1,7 @@
 {
   "type": "none",
-  "comment": "migrate fab",
+  "comment": "refactor sass mixins",
   "packageName": "@vonage/vivid",
-  "email": "rina.oksman@vonage.com",
+  "email": "yinon@hotmail.com",
   "dependentChangeType": "none"
 }
