@@ -1,7 +1,8 @@
 @use 'sass:map';
 @use '../../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use '../utils' as utils;
 
 @mixin scrim-variables {
-	background-color: var(#{--vvd-color-neutral-100});
+	background-color: var(#{utils.get-color-token(on-canvas/*neutral-100*/)});
 	opacity: 0.5;
 }

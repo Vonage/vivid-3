@@ -1,19 +1,20 @@
 @use 'sass:map';
 @use '../../../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 @use 'config' as config;
+@use '../../utils' as utils;
 
 @function get-default-mapping($type) {
   @return (
-    primary: --vvd-color-#{$type}-60,
-    on-primary: --vvd-color-on-#{$type}-60,
-    primary-increment: --vvd-color-#{$type}-70,
-    intermediate: --vvd-color-#{$type}-60,
-    contrast: --vvd-color-#{$type}-90,
-    soft: --vvd-color-#{$type}-20,
-    firm: --vvd-color-#{$type}-70,
-    faint: --vvd-color-#{$type}-10,
+    primary: #{utils.get-color-token($type/*-60*/)},
+    on-primary: #{utils.get-color-token(on-#{$type}/*-60*/)},
+    primary-increment: #{utils.get-color-token(#{$type}-70)},
+    intermediate: #{utils.get-color-token($type/*-60*/)},
+    contrast: #{utils.get-color-token(#{$type}-90)},
+    soft: #{utils.get-color-token(#{$type}-20)},
+    firm: #{utils.get-color-token(#{$type}-70)},
+    faint: #{utils.get-color-token(#{$type}-10)},
 
-    fierce: --vvd-color-#{$type}-80,
+    fierce: #{utils.get-color-token(#{$type}-80)},
   );
 }
 
@@ -22,19 +23,19 @@ $connotation-mapping: (
   pristine: map.merge(
     get-default-mapping(neutral),
     (
-      primary: --vvd-color-surface-4dp,
-      on-primary: --vvd-color-neutral-100,
-      primary-increment: --vvd-color-neutral-10,
-      fierce: --vvd-color-neutral-20,
+      primary: utils.get-color-token(surface-4dp),
+      on-primary: utils.get-color-token(on-canvas/*neutral-100*/),
+      primary-increment: utils.get-color-token(neutral-10),
+      fierce: utils.get-color-token(neutral-20),
     )
   ),
   brand: map.merge(
     get-default-mapping(neutral),
     (
-      primary: --vvd-color-neutral-100,
-      on-primary: --vvd-color-neutral-0,
-      primary-increment: --vvd-color-neutral-90,
-      firm: --vvd-color-neutral-100,
+      primary: utils.get-color-token(on-canvas/*neutral-100*/),
+      on-primary: utils.get-color-token(canvas/*neutral-0*/),
+      primary-increment: utils.get-color-token(neutral-90),
+      firm: utils.get-color-token(on-canvas/*neutral-100*/),
     )
   ),
   cta: get-default-mapping(cta),
