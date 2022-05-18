@@ -27,15 +27,15 @@
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.2.2",
     "@angular-eslint/utils": "^13.0.1",
     "@microsoft/eslint-config-fast-dna": "^2.0.0",
-    "@nrwl/devkit": "14.0.5",
-    "@nrwl/eslint-plugin-nx": "14.0.5",
-    "@nrwl/jest": "14.0.5",
-    "@nrwl/js": "14.0.5",
-    "@nrwl/linter": "14.0.5",
-    "@nrwl/node": "14.0.5",
-    "@nrwl/nx-plugin": "^14.1.5",
-    "@nrwl/web": "14.0.5",
-    "@nrwl/workspace": "14.0.5",
+    "@nrwl/devkit": "14.1.7",
+    "@nrwl/eslint-plugin-nx": "14.1.7",
+    "@nrwl/jest": "14.1.7",
+    "@nrwl/js": "14.1.7",
+    "@nrwl/linter": "14.1.7",
+    "@nrwl/node": "14.1.7",
+    "@nrwl/nx-plugin": "14.1.7",
+    "@nrwl/web": "14.1.7",
+    "@nrwl/workspace": "14.1.7",
     "@playwright/test": "1.21.0",
     "@rollup/plugin-node-resolve": "^13.1.3",
     "@rollup/plugin-replace": "^4.0.0",
@@ -71,7 +71,7 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
     "markdown-it-anchor": "^8.6.2",
-    "nx": "14.0.5",
+    "nx": "14.1.7",
     "nx-stylelint": "^13.1.0",
     "playwright": "1.21.0",
     "prettier": "2.5.1",
@@ -91,3 +91,4 @@
     "typescript": "^4.6.4"
   }
 }
+
