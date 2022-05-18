@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Tue, 17 May 2022 18:14:25 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.15",
+      "version": "3.0.0-next.15",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "212f91d7a34296f03238a6433337e16a1c122c7b",
+            "comment": "migrate fab"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 17 May 2022 05:25:52 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.15",
       "version": "3.0.0-next.15",
