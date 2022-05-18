@@ -2,6 +2,141 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Tue, 17 May 2022 18:14:25 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.15",
+      "version": "3.0.0-next.15",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "212f91d7a34296f03238a6433337e16a1c122c7b",
+            "comment": "migrate fab"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 17 May 2022 05:25:52 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.15",
+      "version": "3.0.0-next.15",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "6c04f3d2132f708da833a246622df1de9688358c",
+            "comment": "refactor(components): progress ring size API"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 16 May 2022 11:51:19 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.14",
+      "version": "3.0.0-next.14",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "d7f0736d676e7863b402a73e70fb7de31215aa88",
+            "comment": "update readme"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 15 May 2022 05:41:39 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.14",
+      "version": "3.0.0-next.14",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "6b3b525d11882854f69968244b9bf97855b226f4",
+            "comment": "rename size (for block size members) to density due to its being a reserved name in input element"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sat, 14 May 2022 19:46:51 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.13",
+      "version": "3.0.0-next.13",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "dc246152111d6168a3cbe0ab4cd256ac5940fdff",
+            "comment": "refactor connotation and spread-list-selectors mixins"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sat, 14 May 2022 19:31:43 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.13",
+      "version": "3.0.0-next.13",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "fb98764fe64856539bd24b7aa0cae02145e8d55c",
+            "comment": "focus component as template in patterns"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 11 May 2022 13:24:18 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.13",
+      "version": "3.0.0-next.13",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "c4462c07006a315a147476c9034687013c993550",
+            "comment": "update readme"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 11 May 2022 10:21:34 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.13",
+      "version": "3.0.0-next.13",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "811a25161e32a55135b478907ac75c2b74d1ac82",
+            "comment": "redefine size interface to distingish block and inline sizing"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 09 May 2022 21:13:03 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.12",
+      "version": "3.0.0-next.12",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "15ae1c2575dd17c68fcd46cf8a0d7a52c1109057",
+            "comment": "refactor elevation mixins"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 09 May 2022 08:41:29 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.12",
       "version": "3.0.0-next.12",

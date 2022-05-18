@@ -1,5 +1,5 @@
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$subset: primary announcement cta success alert info
+	$connotations: primary announcement cta success alert info
 );
 
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
@@ -31,22 +31,22 @@ svg {
 
 /* Size */
 
-.control:not(.size-base-small):not(.size-base):not(.size-base-large) {
+.control:not(.size-small):not(.size-medium):not(.size-large) {
 	block-size: 1em;
 	inline-size: 1em;
 }
 
-.control.size-base-small {
+.control.size-small {
 	block-size: 16px;
 	inline-size: 16px;
 }
 
-.control.size-base {
+.control.size-medium {
 	block-size: 24px;
 	inline-size: 24px;
 }
 
-.control.size-base-large {
+.control.size-large {
 	block-size: 32px;
 	inline-size: 32px;
 }

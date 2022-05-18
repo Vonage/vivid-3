@@ -47,6 +47,13 @@ type IconConnotation = Extract<Connotation,
 | Connotation.Alert
 | Connotation.Info>;
 
+/**
+ * Types of icon size.
+ *
+ * @public
+ */
+type IconSize = Extract<Size, Size.Small | Size.Medium | Size.Large>;
+
 export class Icon extends FoundationElement {
 	/**
 	 * The connotation the icon should have.
@@ -57,7 +64,7 @@ export class Icon extends FoundationElement {
 	 */
 	@attr connotation?: IconConnotation;
 
-	@attr size?: Size;
+	@attr size?: IconSize;
 
 	@observable svg?: string;
 

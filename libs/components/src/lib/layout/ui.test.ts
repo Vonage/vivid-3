@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { expect, test } from '@playwright/test'; 
+import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import {
 	extractHTMLBlocksFromReadme,
@@ -7,7 +7,7 @@ import {
 	loadTemplate
 } from '../../visual-tests/visual-tests-utils.ts';
 
-const components = ['layout'];
+const components = ['layout', 'card'];
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(path.join(new URL('.', import.meta.url).pathname, 'README.md'))
 		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
