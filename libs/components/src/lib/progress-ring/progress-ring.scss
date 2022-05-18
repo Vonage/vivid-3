@@ -1,27 +1,28 @@
+@use 'sass:list';
+@use 'partials/variables' as variables;
+@use '../../../../shared/src/lib/sass/mixins/utils' as utils;
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$subset: cta primary alert success,
+	$connotations: cta primary alert success,
 	$default: primary
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
+$density: 4 5 6 7 8 9 10 11 12;
+$default-density: list.nth($density, 6);
+
 .base {
 	@include connotation.connotation;
 
-	width: 36px;
-	height: 36px;
 	align-items: center;
+	block-size: var(#{variables.$progress-ring-density});
+	inline-size: var(#{variables.$progress-ring-density});
 	outline: none;
-}
-.base.base-large {
-	width: 48px;
-	height: 48px;
-}
 
-.base.base-small {
-	width: 24px;
-	height: 24px;
+	@include utils.spread-list-selectors('.density', $density, $default-density) using($value) {
+		#{variables.$progress-ring-density}: calc(#{$value} * 4px);
+	}
 }
 
 .progress {

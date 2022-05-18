@@ -1,0 +1,24 @@
+name: 🧬 Deploy
+
+on:
+  push:
+    tags:
+      - "deploy"
+
+concurrency:
+  group: ci-pre-release-${{ github.ref }}-1
+  cancel-in-progress: true
+
+jobs:
+  call-deploy-site:
+    uses: vonage/vivid-3/.github/workflows/_deploy-deno.yml@main
+
+  remove-deploy-tag:
+    runs-on: ubuntu-latest
+    needs: [ call-deploy-site ]
+    steps:
+      - uses: dev-drprasad/delete-tag-and-release@v0.2.0
+        with:
+          tag_name: deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

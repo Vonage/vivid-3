@@ -1,8 +1,8 @@
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$subset: success info alert announcement warning,
-	$shades: strong,
+	$connotations: success info alert announcement warning,
+	$shades: firm,
 	$default: info,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;

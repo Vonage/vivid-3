@@ -18,7 +18,7 @@ describe('vwc-sidenav-item', () => {
 	describe('basic', () => {
 		it('should be initialized as a vwc-sidenav-item', async () => {
 			expect(element).toBeInstanceOf(SidenavItem);
-			expect(element.text).toEqual('');
+			expect(element.text).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
 		});
 	});

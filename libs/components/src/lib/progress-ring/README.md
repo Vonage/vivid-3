@@ -70,6 +70,27 @@ Use the `paused` attribute to show a disabled state of the progress.
     </vwc-layout>
 ```
 
+### Density
+
+Use the `density` attribute/property to set the progress ring's size.
+
+- Type: `-5` | `-4` | `-3` | `-2` | `-1` | `0` | `1` | `2` | `3`
+- Default: `0`
+
+```html preview
+<vwc-layout column-basis="block">
+  <vwc-progress-ring min="0" max="50" value="50" density="-5"></vwc-progress-ring>
+  <vwc-progress-ring min="0" max="50" value="50" density="-4"></vwc-progress-ring>
+  <vwc-progress-ring min="0" max="50" value="50" density="-3"></vwc-progress-ring>
+  <vwc-progress-ring min="0" max="50" value="50" density="-2"></vwc-progress-ring>
+  <vwc-progress-ring min="0" max="50" value="50" density="-1"></vwc-progress-ring>
+  <vwc-progress-ring min="0" max="50" value="50" density="0"></vwc-progress-ring>
+  <vwc-progress-ring min="0" max="50" value="50" density="1"></vwc-progress-ring>
+  <vwc-progress-ring min="0" max="50" value="50" density="2"></vwc-progress-ring>
+  <vwc-progress-ring min="0" max="50" value="50" density="3"></vwc-progress-ring>
+</vwc-layout>
+```
+
 ## Example Usage
 
 ### Determinate State
@@ -88,3 +109,7 @@ Remove `value` or set it to be a non-number value (e.g. `indeterminate`) to show
         <vwc-progress-ring min="0" max="50" value="indeterminate"></vwc-progress-ring>
     </vwc-layout>
 ```
+
+
+
+

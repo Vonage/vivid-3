@@ -7,22 +7,46 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.VNG_VVD_PAT }}
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '16'
           cache: 'npm'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Install Dependencies
-        run: npm ci
+      - name: Set git username
+        run: |
+          git config --global user.email "info@vivid.vonage.com"
+          git config --global user.name "Vivid CI"
 
-      - name: Build Components
-        run: npm run nx build components
+      - name: Bump and Changelog
+        id: bump
+        run: |
+          npx beachball publish -m "Publishing a new version" --no-push -y > tmp.txt
+          echo "::set-output name=no_version_bump::$(if grep -q "Skipping publish" "./tmp.txt"; then echo true; else echo false; fi)"
+
+      - name: Get us to the update version
+        if: ${{!steps.bump.outputs.no_version_bump}}
+        run: |
+          git fetch --all
+          git checkout main
+          git pull
 
       - name: Publish
+        if: ${{!steps.bump.outputs.no_version_bump}}
+        run: |
+          npm ci
+          npx nx run components:build
+          npm publish dist/libs/components --tag next --access public --//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
         env:
-          NPM_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
-        run: npx beachball publish -m "Publishing a new version" --no-git-tags --prerelease-prefix next -t next -y --access public -n $NPM_TOKEN
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
+
+      - name: Push & Deploy
+        run: |
+          git tag -a deploy -m "Temporary deploy tag"
+          git push --tags origin main

@@ -1,5 +1,6 @@
 /* eslint-disable no-shadow */
 export enum Connotation {
+	Canvas = 'canvas',
 	Primary = 'primary',
 	CTA = 'cta',
 	Success = 'success',
@@ -26,14 +27,21 @@ export enum Appearance {
 	Text = 'text',
 	Filled = 'filled',
 	Outlined = 'outlined',
+	Duotone = 'duotone',
 	Subtle = 'subtle',
 	Ghost = 'ghost',
 }
 
+export enum Density {
+	Condensed = 'condensed',
+	Normal = 'normal',
+	Extended = 'extended',
+}
+
 export enum Size {
-	BaseSmall = 'base-small',
-	Base = 'base',
-	BaseLarge = 'base-large',
+	Small = 'small',
+	Medium = 'medium',
+	Large = 'large',
 }
 
 export enum Position {

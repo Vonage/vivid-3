@@ -29,9 +29,9 @@ describe('vwc-tooltip', () => {
 			expect(element.anchor)
 				.toBeUndefined();
 			expect(element.corner)
-				.toBeUndefined;
+				.toBeUndefined();
 			expect(element.text)
-				.toEqual('');
+				.toEqual(undefined);
 		});
 	});
 
