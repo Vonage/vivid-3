@@ -3,10 +3,10 @@
   "name": "nx-vivid",
   "version": "0.0.1",
   "generators": {
-    "nx-vivid": {
-      "factory": "./src/generators/nx-vivid/generator",
-      "schema": "./src/generators/nx-vivid/schema.json",
-      "description": "nx-vivid generator"
+    "component": {
+      "factory": "./src/generators/component/index",
+      "schema": "./src/generators/component/schema.json",
+      "description": "nx-vivid component generator"
     }
   }
 }
