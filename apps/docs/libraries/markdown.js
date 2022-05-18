@@ -3,8 +3,10 @@ const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 // If not already added from previous tip
 const slugify = require("slugify");
-var hljs = require('highlight.js') // https://highlightjs.org/
+var hljs = require('highlight.js'); // https://highlightjs.org/
+let isPreview;
 
+const PREVIEW = "<!-- preview -->";
 
 const linkAfterHeader = markdownItAnchor.permalink.linkAfterHeader({
   class: "anchor",
@@ -47,18 +49,19 @@ const markdownItAnchorOptions = {
 /* Markdown Overrides */
 module.exports = markdownIt({
   html: true,
-  // highlight: function (str, lang) {
-  //   if (lang && hljs.getLanguage(lang)) {
-  //       try {
-  //         return '<pre class="hljs"><code>' + hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +'</code></pre>';
-  //       } catch (__) {}
-  //     }
-  //   return '<pre class="hljs"><code>' + module.exports.utils.escapeHtml(str) + '</code></pre>';
-  // }
+  highlight: function (str, lang) {
+    isPreview = str.indexOf(PREVIEW) >= 0;
+    if (isPreview) str = str.replace(PREVIEW,'').substring(1);
+    if (lang && hljs.getLanguage(lang)) {
+        try {
+          return '<pre class="hljs"><code>' + hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +'</code></pre>';
+        } catch (__) {}
+      }
+    return '<pre class="hljs"><code>' + module.exports.utils.escapeHtml(str) + '</code></pre>';
+  }
 })
   .use(require('./markdown-it-demo-renderer'), {
     wrap: (demo, code) => {
-      const isPreview = demo.substring(0, 16) == "<!-- preview -->";
       // Wrap demo html string with `.example-demo`
       let render = isPreview ? '<div class="example-demo">' + demo + '</div>' : '';
       // Wrap code html string with `.example-code`
