@@ -11,9 +11,9 @@
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
-	$appearances: filled,
+	$appearances: ghost,
 	$states: idle disabled,
-	$default: filled,
+	$default: ghost,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
@@ -28,7 +28,7 @@ $default-density: list.nth($density, 6);
 	block-size: var(#{variables.$progress-ring-density});
 	inline-size: var(#{variables.$progress-ring-density});
 	outline: none;
-  color: var(#{appearance.get-appearance-token(fill)});
+  color: var(#{appearance.get-appearance-token(text)});
 
 	@include utils.spread-list-selectors('.density', $density, $default-density) using($value) {
 		#{variables.$progress-ring-density}: calc(#{$value} * 4px);

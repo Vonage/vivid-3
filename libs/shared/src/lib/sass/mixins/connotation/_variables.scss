@@ -5,7 +5,7 @@
 @function get-default-mapping($type) {
   @return (
     primary: --vvd-color-#{$type}-60,
-    on-primary: --vvd-color-neutral-0,
+    on-primary: --vvd-color-on-#{$type}-60,
     primary-increment: --vvd-color-#{$type}-70,
     intermediate: --vvd-color-#{$type}-60,
     contrast: --vvd-color-#{$type}-90,
@@ -42,10 +42,7 @@ $connotation-mapping: (
   cta: get-default-mapping(cta),
   success: get-default-mapping(success),
   alert: get-default-mapping(alert),
-  warning: map.merge(
-    get-default-mapping(warning),
-    (on-primary: --vvd-color-neutral-100,)
-  ),
+  warning: get-default-mapping(warning),
   info: get-default-mapping(info),
   announcement: get-default-mapping(announcement),
 );
