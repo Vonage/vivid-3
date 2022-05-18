@@ -1,6 +1,6 @@
 module.exports = {
   displayName: 'components',
-  preset: '../../jest.preset.ts',
+  preset: '../../jest.preset.js',
   testEnvironment: 'jsdom',
   globals: {
     'ts-jest': {
