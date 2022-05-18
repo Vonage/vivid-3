@@ -20,8 +20,8 @@ $banner-transition-delay: --transition-delay;
 
 	overflow: hidden;
 	max-height: 10rem;
-	background-color: var(#{appearance.get-variable(fill)});
-	color: var(#{appearance.get-variable(text)});
+	background-color: var(#{appearance.get-appearance-token(fill)});
+	color: var(#{appearance.get-appearance-token(text)});
 	transition: max-height var(#{$banner-transition-delay}, 200ms);
 
 	&.removing {

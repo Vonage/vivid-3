@@ -29,10 +29,10 @@
 	box-sizing: border-box;
 	align-items: center;
 	border: 0 none;
-	background-color: var(#{appearance.get-variable(fill)});
+	background-color: var(#{appearance.get-appearance-token(fill)});
 	block-size: var(#{variables.$block-size});
 	border-radius: 24px;
-	color: var(#{appearance.get-variable(text)});
+	color: var(#{appearance.get-appearance-token(text)});
 	column-gap: var(#{variables.$icon-gap});
 	filter: var(#{elevation.$vvd-elevation-shadow});
 	outline: 0 none;

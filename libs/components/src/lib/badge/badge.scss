@@ -22,9 +22,9 @@
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
-	background-color: var(#{appearance.get-variable(fill)});
-	box-shadow: inset 0 0 0 1px var(#{appearance.get-variable(outline)});
-	color: var(#{appearance.get-variable(text)});
+	background-color: var(#{appearance.get-appearance-token(fill)});
+	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+	color: var(#{appearance.get-appearance-token(text)});
 	column-gap: 8px;
 	vertical-align: middle;
 }

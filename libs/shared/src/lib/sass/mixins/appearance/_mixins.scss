@@ -1,18 +1,15 @@
-@use '../../../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
-@use 'variables' as variables;
-@use 'config' as config;
 @use 'sass:selector';
 @use 'sass:list';
 @use 'sass:map';
 
+@use '../../../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use 'functions' as functions;
+@use 'variables' as variables;
+@use 'config' as config;
+
 
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
-@function get-variable($type) {
-  $prefix: --_appearance-color;
-  @return #{$prefix}-#{$type};
-}
-
 $selectors: (
   idle: '&',
   hover: '&:hover:not(:disabled, .disabled), &.hovered:not(:disabled, .disabled)',
@@ -20,10 +17,6 @@ $selectors: (
   selected: '&.selected',
   active: '&:active:not(:disabled, .disabled), &.active:not(:disabled, .disabled)',
 );
-
-@function get-default-selector($appearance) {
-  @return '&';
-}
 
 @mixin appearance {
 
@@ -33,13 +26,13 @@ $selectors: (
       $state-mapping: map.get(variables.$states-mapping, $state);
 
       @each $appearance in config.$appearances {
-        $selector: if($appearance == config.$default, get-default-selector($appearance), '&.appearance-#{$appearance}');
+        $selector: if($appearance == config.$default, '&', '&.appearance-#{$appearance}');
 
 
         #{$selector} {
           $appearance-mapping: map.get($state-mapping, $appearance);
           @each $type, $key in $appearance-mapping {
-            #{get-variable($type)}: $key;
+            #{functions.get-appearance-token($type)}: $key;
           }
         }
       }
