@@ -11,7 +11,7 @@
 	color: var(#{theme-consts.$vvd-color-on-canvas});
 
 	a {
-		color: var(#{utils.get-color-token(surface-4dp)});
+		color: var(#{utils.get-color-token(cta-70)});
 		font: inherit;
 		text-decoration: none;
 	}
