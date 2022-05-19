@@ -10,11 +10,11 @@ import type {
 
 
 /**
- * Types of toolbar connotation.
+ * Types of action-group connotation.
  *
  * @public
  */
-type ToolbarConnotation = Extract<Connotation,
+type ActionGroupConnotation = Extract<Connotation,
 | Connotation.Primary
 | Connotation.CTA>;
 
@@ -23,7 +23,7 @@ type ToolbarConnotation = Extract<Connotation,
  *
  * @public
  */
-export type ToolbarAppearance = Extract<Appearance,
+export type ActionGroupAppearance = Extract<Appearance,
 Appearance.Filled | Appearance.Outlined | Appearance.Ghost>;
 
 /**
@@ -31,14 +31,14 @@ Appearance.Filled | Appearance.Outlined | Appearance.Ghost>;
  *
  * @public
  */
-type ToolbarShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+type ActionGroupShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
- * Base class for toolbar
+ * Base class for action-group
  *
  * @public
  */
-export class Toolbar extends FoundationElement {
+export class ActionGroup extends FoundationElement {
 	handleContentChange() {
 	// 	rovingIndex({
 	// 		element: node,     // required: the container to get roving index ux
@@ -47,35 +47,35 @@ export class Toolbar extends FoundationElement {
 		// eslint-disable-next-line no-mixed-spaces-and-tabs
 	 }
 	/**
-	 * The connotation the Toolbar should have.
+	 * The connotation the action-group should have.
 	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: connotation
 	 */
-	@attr connotation?: ToolbarConnotation;
+	@attr connotation?: ActionGroupConnotation;
 
 	/**
-	 * The shape the Toolbar should have.
+	 * The shape the ActionGroup should have.
 	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: shape
 	 */
-	@attr shape?: ToolbarShape;
+	@attr shape?: ActionGroupShape;
 
 	/**
-	 * The appearance the Toolbar should have.
+	 * The appearance the ActionGroup should have.
 	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: appearance
 	 */
-	@attr appearance?: ToolbarAppearance;
+	@attr appearance?: ActionGroupAppearance;
 
 
 	/**
-	 * The appearance the Toolbar should have.
+	 * The appearance the action-group should have.
 	 *
 	 * @public
 	 * @remarks

@@ -5,12 +5,12 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import type { Toolbar } from './toolbar';
+import type { ActionGroup } from './action-group';
 
 
 const getClasses = ({
 	connotation, appearance, shape,
-}: Toolbar) => classNames(
+}: ActionGroup) => classNames(
 	'base',
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[`appearance-${appearance}`, Boolean(appearance)],
@@ -19,16 +19,16 @@ const getClasses = ({
 );
 
 /**
- * The template for the {@link @microsoft/fast-foundation#Toolbar} component.
+ * The template for the {@link @microsoft/fast-foundation#action-group} component.
  *
  * @param context
  * @public
  */
-export const ToolbarTemplate: (
+export const ActionGroupTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 
-) => ViewTemplate<Toolbar> = () => html`
+) => ViewTemplate<ActionGroup> = () => html`
 <div class="${getClasses}" part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}">
   <slot @slotchange="${x => x.handleContentChange()}" ></slot>
 </div>`;

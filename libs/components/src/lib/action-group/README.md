@@ -1,33 +1,33 @@
-# toolbar
+# Action-group
 
 <blockquote cite="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/toolbar_role">
 The toolbar role defines the containing element as a collection of commonly used function buttons or controls represented in a compact visual form.
 </blockquote>
 
 ```js
-<script type="module">import '@vonage/vivid/toolbar';</script>
+<script type="module">import '@vonage/vivid/action-group';</script>
 ```
 
 ```html preview
-<vwc-toolbar>
+<vwc-action-group>
   <vwc-button label="submit"></vwc-button>
   <vwc-button icon="headset-line"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
-</vwc-toolbar>
+</vwc-action-group>
 ```
 
 ### Shape
 
 ```html preview
-<vwc-toolbar shape="pill">
+<vwc-action-group shape="pill">
   <vwc-button label="submit"></vwc-button>
   <vwc-button icon="headset-line"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
-</vwc-toolbar>
+</vwc-action-group>
 ```
 
 ### Appearance
@@ -35,21 +35,21 @@ The toolbar role defines the containing element as a collection of commonly used
 #### ghost
 ```html preview
 <div style="background-color: lightgray; padding: 1rem; display: flex; column-gap: 0.5rem;">
-<vwc-toolbar appearance="ghost">
+<vwc-action-group appearance="ghost">
   <vwc-button label="submit" ></vwc-button>
   <vwc-button icon="headset-line"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
-</vwc-toolbar>
+</vwc-action-group>
 
-<vwc-toolbar appearance="ghost" alternate>
+<vwc-action-group appearance="ghost" alternate>
   <vwc-button label="submit" ></vwc-button>
   <vwc-button icon="headset-line"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
-</vwc-toolbar>
+</vwc-action-group>
 </div>
 ```
 
@@ -57,20 +57,20 @@ The toolbar role defines the containing element as a collection of commonly used
 
 ```html preview
 <div style="background-color: lightgray; padding: 1rem; display: flex; column-gap: 0.5rem;">
-<vwc-toolbar appearance="outlined">
+<vwc-action-group appearance="outlined">
   <vwc-button label="submit" ></vwc-button>
   <vwc-button icon="headset-line"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
-</vwc-toolbar>
-<vwc-toolbar appearance="outlined" alternate>
+</vwc-action-group>
+<vwc-action-group appearance="outlined" alternate>
   <vwc-button label="submit" ></vwc-button>
   <vwc-button icon="headset-line"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
-</vwc-toolbar>
+</vwc-action-group>
 </div>
 ```
 
@@ -79,20 +79,20 @@ The toolbar role defines the containing element as a collection of commonly used
 
 ```html preview
 <div style="background-color: lightgray; padding: 1rem; display: flex; column-gap: 0.5rem;">
-<vwc-toolbar appearance="fieldset">
+<vwc-action-group appearance="fieldset">
   <vwc-button label="submit" ></vwc-button>
   <vwc-button icon="headset-line"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
-</vwc-toolbar>
-<vwc-toolbar appearance="fieldset" alternate>
+</vwc-action-group>
+<vwc-action-group appearance="fieldset" alternate>
   <vwc-button label="submit" ></vwc-button>
   <vwc-button icon="headset-line"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
-</vwc-toolbar>
+</vwc-action-group>
 </div>
 ```
 
@@ -100,29 +100,19 @@ The toolbar role defines the containing element as a collection of commonly used
 
 ```html preview
 <div style="background-color: lightgray; padding: 1rem; display: flex; column-gap: 0.5rem;">
-<vwc-toolbar appearance="filled">
+<vwc-action-group appearance="filled">
   <vwc-button label="submit" ></vwc-button>
   <vwc-button icon="headset-line"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
-</vwc-toolbar>
-<vwc-toolbar appearance="filled" alternate>
+</vwc-action-group>
+<vwc-action-group appearance="filled" alternate>
   <vwc-button label="submit" ></vwc-button>
   <vwc-button icon="headset-line"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
-</vwc-toolbar>
+</vwc-action-group>
 </div>
-```
-
-
-
-
-```html preview
-<vwc-toolbar>
-  <select label="submit"></select>
- <input type="text" />
-</vwc-toolbar>
 ```
