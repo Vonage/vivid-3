@@ -158,6 +158,14 @@
     ]
   },
   {
+    "title": "text-field",
+    "markdown": "./libs/components/src/lib/text-field/README.md",
+    "modules": [
+      "/assets/modules/components/text-field/index.js",
+      "/assets/modules/components/layout/index.js"
+    ]
+  },
+  {
     "title": "toolbar",
     "markdown": "./libs/components/src/lib/toolbar/README.md",
     "modules": [

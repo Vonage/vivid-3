@@ -1,0 +1,239 @@
+@use '../focus/partials/variables' as focus-variables;
+
+// @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+	$connotations: primary,
+	$default: primary,
+);
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+	$appearances: fieldset ghost,
+	$states: idle hover disabled,
+	$default: fieldset,
+);
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+
+// $block-size: --_block-size;
+
+// :autofill
+// :placeholder-shown
+.base {
+	@include connotation.connotation;
+	@include appearance.appearance;
+
+	position: relative;
+	display: flex;
+	align-items: center;
+	background-color: var(#{appearance.get-variable(fill)});
+	block-size: 48px;
+	box-shadow: inset 0 0 0 1px var(#{appearance.get-variable(outline)});
+	color: var(#{appearance.get-variable(text)});
+	contain: strict;
+	cursor: text;
+	padding-inline: 16px;
+	transition: color .2s, box-shadow .2s, background-color .2s;
+}
+
+// .control-wrapper {
+// 	position: relative;
+// 	display: flex;
+// 	flex-grow: 1;
+//   align-items: center;
+// }
+
+.control {
+	position: absolute;
+
+	// to avoid autofill style hiding other elements
+	z-index: -1;
+	padding: 0;
+	border: 0 none;
+	background: unset;
+	color: var(#{theme-consts.$vvd-color-on-canvas});
+	inset: 0;
+	outline: 0 none;
+}
+
+.label {
+	transform-origin: 0;
+	transition: transform 0.2s;
+
+	.base:where(.active, :focus-within) & {
+		transform: translateY(-8px) scale(0.7);
+	}
+}
+
+/* Shape */
+
+.base:not(.shape-pill) {
+	border-radius: 6px;
+}
+.base.shape-pill {
+	border-radius: 24px;
+}
+
+.focus-indicator {
+	.base:not(:focus-within) > & {
+		display: none;
+	}
+
+	.appearance-outlined &,
+	.appearance-ghost & {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+	}
+}
+
+
+// .root {
+// 	display: flex;
+// 	flex-direction: column;
+
+// 	&.active,
+// 	&.placeholder,
+// 	:host(:focus) & {
+// 		.label {
+// 			transform: translateY(-7px);
+// 			@include typography.typography-cat-shorthand('caption')
+// 		}
+// 	}
+
+// 	&:where(:not(.placeholder, .active)) {
+// 		.label {
+// 			transform: translateY(0);
+// 			transition: transform 0.2s;
+// 			@include typography.typography-cat-shorthand('body-1');
+// 		}
+// 	}
+
+// 	&.no-label {
+// 		.control {
+
+// 		}
+// 	}
+// }
+
+// .form-field {
+// 	@include connotation.connotation;
+
+// 	position: relative;
+// 	height: var(#{$block-size});
+// 	box-sizing: border-box;
+// 	background-color: var(#{theme-consts.$vvd-color-canvas});
+// 	transition: border-color 0.2s;
+
+
+// 	:not(.shape-pill) & {
+// 		border-radius: 6px;
+// 	}
+// 	.shape-pill & {
+// 		border-radius: 24px;
+// 	}
+
+// 	:not(.appearance-ghost) & {
+// 		// border: 1px solid var(#{theme-consts.$vvd-color-neutral-40});
+// 	}
+
+// 	:not(.density-condensed) & {
+// 		--_block-size: 48px;
+// 	}
+
+// 	.density-condensed & {
+// 		--_block-size: 40px;
+// 	}
+
+// // ! should be added to appearance
+// // .error & {
+// // 		border: 1px solid var(#{theme-consts.$vvd-color-alert});
+// // 		background-color: var(#{theme-consts.$vvd-color-alert-10});
+// // 	}
+
+// // 	:not(.error, .disabled, .readonly) & {
+// // 		&:focus-visible,
+// // 		&:focus,
+// // 		&:hover {
+// // 			border-color: var(#{theme-consts.$vvd-color-primary});
+// // 		}
+// // 	}
+
+// // 	.disabled &,
+// // 	.readonly & {
+// // 		border: 1px solid var(#{theme-consts.$vvd-color-neutral-40});
+// // 		background-color: var(#{theme-consts.$vvd-color-neutral-20});
+// // 	}
+
+// // }
+
+
+// .control {
+// 	@include typography.typography-cat-shorthand('body-2');
+// 	@include appearance.appearance;
+
+// 	width: 100%;
+// 	height: 100%;
+// 	align-self: flex-end;
+// 	padding: 16px 16px 1px;
+// 	border: 0;
+// 	appearance: none;
+//   box-shadow: inset 0 0 0 1px var(#{appearance.get-variable(outline)});
+// 	background-color: var(#{appearance.get-variable(fill)});
+// 	color: var(#{appearance.get-variable(text)});
+// 	border-radius: inherit;
+// 	color: var(#{theme-consts.$vvd-color-neutral-90});
+// 	outline: 0;
+
+// 	.no-label & {
+// 		padding: 8px 16px;
+// 		@include typography.typography-cat-shorthand('body-1');
+// 	}
+
+// 	.disabled & {
+// 		color: var(#{theme-consts.$vvd-color-neutral-40});
+// 	}
+// }
+
+// .label {
+// 	@include typography.typography-cat-shorthand('body-1');
+
+// 	position: absolute;
+// 	top: 12px;
+// 	padding: 0 16px;
+// 	color: var(#{theme-consts.$vvd-color-neutral-70});
+// 	transform: translateY(0);
+
+// 	.disabled &,
+// 	.readonly &{
+// 		color: var(#{theme-consts.$vvd-color-neutral-40});
+// 	}
+// }
+
+// .helper-text {
+// 	@include typography.typography-cat-shorthand('caption');
+// 	margin-top: 4px;
+// 	margin-left: 16px;
+// 	color: var(#{theme-consts.$vvd-color-neutral-70});
+
+// }
+
+// .error-message {
+// 	@include typography.typography-cat-shorthand('caption');
+// 	display: flex;
+// 	align-items: center;
+// 	column-gap: 4px;
+// 	margin-top: 4px;
+// 	color: var(#{theme-consts.$vvd-color-on-canvas});
+// 	&-icon {
+// 		@include typography.typography-cat-shorthand('body-1');
+// 		color: var(#{theme-consts.$vvd-color-alert});
+// 	}
+
+// }
+
+// .char-count {
+// 	@include typography.typography-cat-shorthand('body-2');
+// 	align-self: flex-end;
+// 	margin-bottom: 4px;
+// 	color: var(#{theme-consts.$vvd-color-neutral-70});
+// }
