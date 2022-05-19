@@ -1,5 +1,4 @@
 {
-  "root": "libs/styles",
   "sourceRoot": "libs/styles/src",
   "projectType": "library",
   "targets": {
