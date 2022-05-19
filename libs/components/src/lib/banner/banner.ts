@@ -52,10 +52,8 @@ export class Banner extends FoundationElement {
 	override remove(): void {
 		this.$emit('vwc-banner:removing');
 		const banner = this.shadowRoot && this.shadowRoot.querySelector('.banner');
-		if (banner) {
-			banner.classList.add('removing');
-			banner.addEventListener('transitionend', this.#handleRemoveEnd);
-		}
+		banner!.classList.add('removing');
+		banner!.addEventListener('transitionend', this.#handleRemoveEnd);
 	}
 
 	#handleRemoveEnd = () => {
