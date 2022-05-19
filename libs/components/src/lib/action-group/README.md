@@ -34,13 +34,13 @@ The toolbar role defines the containing element as a collection of commonly used
 
 #### ghost
 ```html preview
-<div style="background-color: lightgray; padding: 1rem; display: flex; column-gap: 0.5rem;">
+<div style="background-color: #f2f2f2; padding: 1rem; display: flex; column-gap: 0.5rem;">
 <vwc-action-group appearance="ghost">
   <vwc-button label="submit" ></vwc-button>
   <vwc-button icon="headset-line"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
+  <vwc-text-field placeholder="My Placeholder" style="width: 100px;"></vwc-text-field>
 </vwc-action-group>
 
 <vwc-action-group appearance="ghost" alternate>
@@ -48,7 +48,7 @@ The toolbar role defines the containing element as a collection of commonly used
   <vwc-button icon="headset-line"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
+  <vwc-text-field placeholder="My Placeholder" style="width: 100px;"></vwc-text-field>
 </vwc-action-group>
 </div>
 ```
@@ -56,20 +56,20 @@ The toolbar role defines the containing element as a collection of commonly used
 #### outlined
 
 ```html preview
-<div style="background-color: lightgray; padding: 1rem; display: flex; column-gap: 0.5rem;">
+<div style="background-color: #f2f2f2; padding: 1rem; display: flex; column-gap: 0.5rem;">
 <vwc-action-group appearance="outlined">
   <vwc-button label="submit" ></vwc-button>
   <vwc-button icon="headset-line"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
+  <vwc-text-field placeholder="My Placeholder" style="width: 100px;"></vwc-text-field>
 </vwc-action-group>
 <vwc-action-group appearance="outlined" alternate>
   <vwc-button label="submit" ></vwc-button>
   <vwc-button icon="headset-line"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
+  <vwc-text-field placeholder="My Placeholder" style="width: 100px;"></vwc-text-field>
 </vwc-action-group>
 </div>
 ```
@@ -78,20 +78,20 @@ The toolbar role defines the containing element as a collection of commonly used
 #### fieldset
 
 ```html preview
-<div style="background-color: lightgray; padding: 1rem; display: flex; column-gap: 0.5rem;">
+<div style="background-color: #f2f2f2; padding: 1rem; display: flex; column-gap: 0.5rem;">
 <vwc-action-group appearance="fieldset">
   <vwc-button label="submit" ></vwc-button>
   <vwc-button icon="headset-line"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
+  <vwc-text-field placeholder="My Placeholder" style="width: 100px;"></vwc-text-field>
 </vwc-action-group>
 <vwc-action-group appearance="fieldset" alternate>
   <vwc-button label="submit" ></vwc-button>
   <vwc-button icon="headset-line"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
+  <vwc-text-field placeholder="My Placeholder" style="width: 100px;"></vwc-text-field>
 </vwc-action-group>
 </div>
 ```
@@ -99,20 +99,20 @@ The toolbar role defines the containing element as a collection of commonly used
 #### filled
 
 ```html preview
-<div style="background-color: lightgray; padding: 1rem; display: flex; column-gap: 0.5rem;">
+<div style="background-color: #f2f2f2; padding: 1rem; display: flex; column-gap: 0.5rem;">
 <vwc-action-group appearance="filled">
   <vwc-button label="submit" ></vwc-button>
   <vwc-button icon="headset-line"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
+  <vwc-text-field placeholder="My Placeholder" style="width: 100px;"></vwc-text-field>
 </vwc-action-group>
 <vwc-action-group appearance="filled" alternate>
   <vwc-button label="submit" ></vwc-button>
   <vwc-button icon="headset-line"></vwc-button>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
+  <vwc-text-field placeholder="My Placeholder" style="width: 100px;"></vwc-text-field>
 </vwc-action-group>
 </div>
 ```
