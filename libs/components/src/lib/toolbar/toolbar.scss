@@ -1,14 +1,14 @@
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$subset: primary cta success alert warning info,
-	$shades: soft contrast,
-	$default: primary,
+	$connotations: canvas cta primary,
+	$shades: basis basis-increment contrast fierce firm soft pale,
+	$default: canvas,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
-	$appearances: filled outlined ghost,
+	$appearances: filled fieldset outlined ghost,
 	$states: idle,
-	$default: outlined,
+	$default: fieldset,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
@@ -16,7 +16,7 @@
 	@include connotation.connotation;
 	@include appearance.appearance;
 
-  display: inline-flex;
+  	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
 	background-color: var(#{appearance.get-variable(fill)});
@@ -24,6 +24,8 @@
 	color: var(#{appearance.get-variable(text)});
 	column-gap: 8px;
 	vertical-align: middle;
+	padding: 2px;
+
 }
 
 /* Shape */
@@ -33,5 +35,11 @@
 }
 
 .base.shape-pill {
-  border-radius: 24px;
+	border-radius: 24px;
+}
+
+::slotted(*) {
+	.connotation-primary & {
+		//alternate?
+	}
 }

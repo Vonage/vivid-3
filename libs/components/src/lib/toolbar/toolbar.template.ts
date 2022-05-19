@@ -7,7 +7,16 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { Toolbar } from './toolbar';
 
-const getClasses = (_: Toolbar) => classNames('base');
+
+const getClasses = ({
+	connotation, appearance, shape,
+}: Toolbar) => classNames(
+	'base',
+	[`connotation-${connotation}`, Boolean(connotation)],
+	[`appearance-${appearance}`, Boolean(appearance)],
+	[`shape-${shape}`, Boolean(shape)],
+
+);
 
 /**
  * The template for the {@link @microsoft/fast-foundation#Toolbar} component.
@@ -18,7 +27,10 @@ const getClasses = (_: Toolbar) => classNames('base');
 export const ToolbarTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
+
 ) => ViewTemplate<Toolbar> = () => html`
-<div class="${getClasses}">
-  <slot @slotchange="${x => x.handleContentChange()}"></slot>
+<div class="${getClasses}" part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}">
+  <slot @slotchange="${x => x.handleContentChange()}" ></slot>
 </div>`;
+
+// part="vvd-theme-alternate"
