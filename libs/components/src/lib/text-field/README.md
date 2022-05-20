@@ -1,4 +1,4 @@
-# textfield
+# Text Field
 
 TextField is meant to accept text input from the user. It supports the native attributes of `input` in addition to some enhancements.
 Not that the textfield does not support `type="number"`. For this there is the `number-field` component.
@@ -16,8 +16,7 @@ Add a `label` attribute to add label to the text field.
 
 ```html preview
 <form method="post" action="">
-
-    <vwc-text-field label="My Label" type="email" name="email" autocomplete="email"></vwc-text-field>
+  <vwc-text-field label="My Label" type="email" name="email" autocomplete="email"></vwc-text-field>
 </form>
 ```
 
@@ -28,7 +27,7 @@ Add a `label` attribute to add label to the text field.
 Add a `placeholder` attribute to add placeholder text to the text field.
 
 ```html preview
-    <vwc-text-field placeholder="My Placeholder"></vwc-text-field>
+<vwc-text-field placeholder="My Placeholder"></vwc-text-field>
 ```
 
 ### Value
@@ -38,12 +37,10 @@ Add a `placeholder` attribute to add placeholder text to the text field.
 Set the `value` attribute to set the default value for the text field. Setting the property on the element will not change the default value, but will change the value shown in the view as well as the submitted value in a form (imitating the native behavior).
 
 ```html preview
-    <vwc-text-field label="With default value"
-                   value="5"
-    </vwc-text-field>
+<vwc-text-field label="With default value" value="5"></vwc-text-field>
 ```
 
-### Helper-text
+### Helper text
 
 Add the `helper-text` to add some helper text below the text field.
 
@@ -51,12 +48,10 @@ Add the `helper-text` to add some helper text below the text field.
 - Default: `undefined`
 
 ```html preview
-    <vwc-text-field label="Helper text below"
-                   helper-text="Help me!!!">
-    </vwc-text-field>
+<vwc-text-field label="Helper text below" helper-text="Help me!!!"></vwc-text-field>
 ```
 
-### char-count
+### Character Count
 
 - Type: `boolean`
 - Default: `false`
@@ -64,10 +59,7 @@ Add the `helper-text` to add some helper text below the text field.
 Use the `char-count` attribute along with the `maxlength` attribute to show a character count.
 
 ```html preview
-    <vwc-text-field label="Char count example" 
-                   char-count
-                   maxlength="15">
-    </vwc-text-field>
+<vwc-text-field label="Char count example" char-count maxlength="15"></vwc-text-field>
 ```
 
 ### Density
@@ -79,8 +71,8 @@ Use the `density` attribute to set the textfield's to one of the predefined bloc
 
 ```html preview
 <vwc-layout column-basis="block">
-    <vwc-text-field label="condensed" density="condensed"></vwc-text-field>
-    <vwc-text-field label="normal" density="normal"></vwc-text-field>
+  <vwc-text-field label="condensed" density="condensed"></vwc-text-field>
+  <vwc-text-field label="normal" density="normal"></vwc-text-field>
 </vwc-layout>
 ```
 
@@ -93,8 +85,8 @@ Use the `shape` attribute to change the button's edges.
 
 ```html preview
 <vwc-layout column-basis="block">
-    <vwc-text-field label="Pill" shape="pill"></vwc-text-field>
-    <vwc-text-field label="Rounded" shape="rounded"></vwc-text-field>
+  <vwc-text-field label="Pill" shape="pill"></vwc-text-field>
+  <vwc-text-field label="Rounded" shape="rounded"></vwc-text-field>
 </vwc-layout>
 ```
 
@@ -107,8 +99,8 @@ Set the `appearance` attribute to change the button's appearance.
 
 ```html preview
 <vwc-layout column-basis="block">
-    <vwc-textfield label='ghost' appearance='ghost'></vwc-textfield>
-    <vwc-textfield label='fieldset' appearance='fieldset'></vwc-textfield>
+  <vwc-textfield label='ghost' appearance='ghost'></vwc-textfield>
+  <vwc-textfield label='fieldset' appearance='fieldset'></vwc-textfield>
 </vwc-layout>
 ```
 
@@ -122,8 +114,8 @@ You can validate the textfield like any other native `input`.  Here's an example
 ```html preview
 <vwc-text-field id="invalid-textfield" label="invalid" pattern="123" value="5"></vwc-text-field>
 <script>
-    document.getElementById("#invalid-textfield").dirtyValue = true;
-    document.getElementById("#invalid-textfield").validate();
+  document.getElementById("#invalid-textfield").dirtyValue = true;
+  document.getElementById("#invalid-textfield").validate();
 </script>
 ```
-### Input types
+### Input Types
