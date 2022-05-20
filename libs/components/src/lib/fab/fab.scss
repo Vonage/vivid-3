@@ -4,9 +4,9 @@
 @use "../../../../shared/src/lib/sass/mixins/elevation" as elevation;
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
-	$connotations: pristine cta brand,
+	$connotations: cta brand,
 	$shades: primary on-primary primary-increment contrast fierce firm,
-	$default: pristine
+	$default: brand
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
