@@ -7,9 +7,10 @@ import type {
 import {classNames} from '@microsoft/fast-web-utilities';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
 import {Appearance, Density, Shape} from '../enums';
-import type {Textfield} from './textfield';
+import '../icon/index';
+import type {TextField} from './text-field';
 
-const getStateClasses = (textField: Textfield) => classNames(
+const getStateClasses = (textField: TextField) => classNames(
 	['error', !!textField.errorValidationMessage],
 	['disabled', textField.disabled],
 	['active', !!textField.value],
@@ -25,7 +26,7 @@ const getStateClasses = (textField: Textfield) => classNames(
  *
  */
 function renderLabel() {
-	return html<Textfield>`
+	return html<TextField>`
 	  <label for="control" class="label">
 		  ${x => x.label}
 	  </label>`;
@@ -35,14 +36,14 @@ function renderLabel() {
  *
  */
 function renderHelperText() {
-	return html<Textfield>`<span class="helper-text">${x => x.helperText}</span>`;
+	return html<TextField>`<span class="helper-text">${x => x.helperText}</span>`;
 }
 
 /**
  *
  */
 function renderCharCount() {
-	return html<Textfield>`
+	return html<TextField>`
 		<span class="char-count">${x => x.value ? x.value.length : 0 } / ${ x => x.maxlength }</span>
 	`;
 }
@@ -51,7 +52,7 @@ function renderCharCount() {
  *
  */
 function renderErrorMessage() {
-	return html<Textfield>`
+	return html<TextField>`
 	  <span class="error-message">
 		  <vwc-icon class="error-message-icon" type="info-negative"></vwc-icon>
 		  <span>${x => x.errorValidationMessage}</span>
@@ -59,8 +60,14 @@ function renderErrorMessage() {
 	`;
 }
 
+function renderIcon() {
+	return html<TextField>`
+		<vwc-icon type="${x => x.icon}"></vwc-icon>"
+	`;
+}
+
 /**
- * The template for the {@link @microsoft/fast-foundation#Textfield} component.
+ * The template for the {@link @microsoft/fast-foundation#TextField} component.
  *
  * @param context
  * @public
@@ -68,11 +75,13 @@ function renderErrorMessage() {
 export const TextfieldTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Textfield> = (context: ElementDefinitionContext) => {
+) => ViewTemplate<TextField> = (context: ElementDefinitionContext) => {
 	const focusTemplate = focusTemplateFactory(context);
 
-	return html<Textfield>`
+	return html<TextField>`
 	<div class="base ${getStateClasses}">
+			
+    ${when(x => x.icon, renderIcon())}
     ${when(x => x.charCount && x.maxlength, renderCharCount())}
     ${when(x => x.label, renderLabel())}
     <input class="control"
