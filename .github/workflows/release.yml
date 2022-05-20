@@ -33,8 +33,3 @@ jobs:
     needs: [call-unit-tests, call-visual-regression]
     uses: vonage/vivid-3/.github/workflows/_publish-package.yml@main
     secrets: inherit
-
-  call-deploy-site:
-    if: github.event.pull_request.merged == true
-    needs: call-publish-package # do not deploy site if package is not published
-    uses: vonage/vivid-3/.github/workflows/_deploy-deno.yml@main

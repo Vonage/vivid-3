@@ -17,6 +17,7 @@
     "paths": {
       "@vivid-nx/shared": ["libs/shared/src/index.ts"],
       "@vivid-nx/styles": ["libs/styles/src/index.ts"],
+      "@vonage/nx-vivid": ["libs/nx-vivid/src/index.ts"],
       "@vonage/vivid": ["libs/components/src/index.ts"]
     }
   },

@@ -1,5 +1,6 @@
 /* eslint-disable no-shadow */
 export enum Connotation {
+	Canvas = 'canvas',
 	Primary = 'primary',
 	CTA = 'cta',
 	Success = 'success',

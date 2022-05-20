@@ -7,9 +7,10 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { ProgressRing } from './progress-ring';
 
-const getClasses = (_: ProgressRing) => classNames(
+const getClasses = ({connotation, density}: ProgressRing) => classNames(
 	'base',
-	[`connotation-${_.connotation}`, !!_.connotation],
+	[`connotation-${connotation}`, !!connotation],
+	[`density-${(density ? Number(density) : 0) + 9}`, !!density],
 );
 const progressSegments: number = 44;
 
