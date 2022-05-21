@@ -15,16 +15,34 @@ const CBD_CODE_BLOCK = 'cbd-code-block';
 const MAIN_STYLE = '<link rel="stylesheet" href="/assets/styles/iframe.css">';
 const FONTS = '<link rel="stylesheet" href="/assets/styles/fonts/spezia.css">';
 
-const generateCodeBlockDemo = function(blockData) {
-    const demoData = {};
-    const code = blockData.pre.querySelector('code')?.textContent;
-    demoData.demoStr = decode(MAIN_STYLE) + decode(FONTS) + decode(code);
-    demoData.codeStr = blockData.pre.outerHTML;
-    demoData.index = blockData.index;
-    demoData.outputPath = blockData.outputPath;
-    const dom = new JSDOM(`<body>${getHtml(demoData)}</body>`);
+const getComponentName = (outputPath) => {
+    const pathName = path.dirname(outputPath).substring(0, outputPath.lastIndexOf('/'));
+    const componentName = pathName.substring(pathName.lastIndexOf('/') + 1);
+    return componentName;
+}
 
-    return dom.window.document.querySelector(`.${CBD_BASE}`);
+const getComponentData = (componentName) => jsonData.find(({ title }) => title == componentName);
+
+const generateCodeBlockDemo = function(blockData) {
+  let code = blockData.pre.querySelector('code')?.textContent;
+
+  const componentName = getComponentName(blockData.outputPath);
+  const data = getComponentData(componentName);
+  if (!data?.stripLayout) {
+    code = `
+      <script type="module" src="/assets/modules/components/layout/index.js"></script>
+      <vwc-layout gutters="small">${code}</vwc-layout>
+    `;
+  }
+
+  const { pre: { outerHTML: codeStr }, index, outputPath } = blockData;
+
+  const demoStr = decode(MAIN_STYLE) + decode(FONTS) + decode(code);
+  const demoData = { demoStr, codeStr, index, outputPath };
+
+  const dom = new JSDOM(`<body>${getHtml(demoData)}</body>`);
+
+  return dom.window.document.querySelector(`.${CBD_BASE}`);
 };
 
 module.exports = function (content, outputPath) {
@@ -87,27 +105,23 @@ const verifyAndCreateSaveFolder = (outputPath) => {
     return saveFolder;
 }
 
+const addModules = (data) => {
+  let modulesStr = '';
+  data.modules.forEach(module => {
+      modulesStr += `<script type="module" src="${module}"></script>`;
+  });
+  return modulesStr;
+}
+
 const saveCodeAsHTMLFile = (frameData) => {
-    const filePath = `${frameData.saveFolder}/${frameData.codeBlockId}.html`;
-    const componentName = getComponentName(frameData.outputPath);
-    frameData.demoStr += addModules(componentName);
-    fs.writeFileSync(filePath, frameData.demoStr);
-    return filePath;
-}
+  const filePath = `${frameData.saveFolder}/${frameData.codeBlockId}.html`;
 
-const getComponentName = (outputPath) => {
-    const pathName = path.dirname(outputPath).substring(0, outputPath.lastIndexOf('/'));
-    const componentName = pathName.substring(pathName.lastIndexOf('/') + 1);
-    return componentName;
-}
+  const componentName = getComponentName(frameData.outputPath);
+  const data = getComponentData(componentName);
+  frameData.demoStr += addModules(data);
 
-const addModules = (componentName) => {
-    let modulesStr = '';
-    let component = jsonData.filter(item=>item.title.includes(componentName));
-    component[0].modules.forEach(module => {
-        modulesStr += `<script type="module" src="${module}"></script>`;
-    });
-    return modulesStr;
+  fs.writeFileSync(filePath, frameData.demoStr);
+  return filePath;
 }
 
 const style = `
@@ -175,4 +189,3 @@ const script = `
     window.addEventListener('DOMContentLoaded', initShowCodeButtons);
 </script>
 `;
-

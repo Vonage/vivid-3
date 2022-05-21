@@ -11,7 +11,7 @@ strong {
 body {
   color: var(--vvd-color-on-canvas);
   background-color: var(--vvd-color-canvas);
-  margin: 20px;
+  margin: 0;
 }
 
 .demo-gradient{
