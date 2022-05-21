@@ -106,11 +106,11 @@ Set the `appearance` attribute to change the button's appearance.
 - Type: `'fieldset'` | `'ghost'`
 - Default: `'fieldset'`
 
+(`'ghost'` is typically used within a composition such as action group / toolbar).
+
 ```html preview
-<vwc-layout column-basis="block">
-  <vwc-text-field label='ghost' appearance='ghost'></vwc-text-field>
-  <vwc-text-field label='fieldset' appearance='fieldset'></vwc-text-field>
-</vwc-layout>
+<vwc-text-field placeholder='ghost' appearance='ghost'></vwc-text-field>
+<vwc-text-field label='fieldset' appearance='fieldset'></vwc-text-field>
 ```
 
 
