@@ -1,10 +1,10 @@
 # Text Field
 
 TextField is meant to accept text input from the user. It supports the native attributes of `input` in addition to some enhancements.
-Not that the textfield does not support `type="number"`. For this there is the `number-field` component.
+Note that the text field does not support `type="number"`. For this there is the `number-field` component.
 
 ```js
-<script type="module">import '@vonage/vivid/textfield';</script>
+<script type="module">import '@vonage/vivid/text-field';</script>
 ```
 ## Properties
 
@@ -64,7 +64,7 @@ Use the `char-count` attribute along with the `maxlength` attribute to show a ch
 
 ### Density
 
-Use the `density` attribute to set the textfield's to one of the predefined block size extent.
+Use the `density` attribute to set the text field's to one of the predefined block size extent.
 
 - Type: `'condensed'` | `'normal'`
 - Default: `'normal'`
@@ -74,6 +74,15 @@ Use the `density` attribute to set the textfield's to one of the predefined bloc
   <vwc-text-field label="condensed" density="condensed"></vwc-text-field>
   <vwc-text-field label="normal" density="normal"></vwc-text-field>
 </vwc-layout>
+```
+
+## Icon
+
+Text field input can be prefixed by a decorative icon.
+Use the `icon` attribute to add an icon.
+
+```html preview
+<vwc-text-field icon="search-line" label="Search..."></vwc-text-field>
 ```
 
 ### Shape
@@ -99,8 +108,8 @@ Set the `appearance` attribute to change the button's appearance.
 
 ```html preview
 <vwc-layout column-basis="block">
-  <vwc-textfield label='ghost' appearance='ghost'></vwc-textfield>
-  <vwc-textfield label='fieldset' appearance='fieldset'></vwc-textfield>
+  <vwc-text-field label='ghost' appearance='ghost'></vwc-text-field>
+  <vwc-text-field label='fieldset' appearance='fieldset'></vwc-text-field>
 </vwc-layout>
 ```
 
@@ -109,13 +118,13 @@ Set the `appearance` attribute to change the button's appearance.
 
 ### Validation
 
-You can validate the textfield like any other native `input`.  Here's an example using `pattern`. The value is 5, which is not of the pattern `123`.  In addition, we programatically `dirtied` the field and then called `validate` because the change was not done by a user.
+You can validate the text field like any other native `input`.  Here's an example using `pattern`. The value is 5, which is not of the pattern `123`.  In addition, we programatically `dirtied` the field and then called `validate` because the change was not done by a user.
 
 ```html preview
-<vwc-text-field id="invalid-textfield" label="invalid" pattern="123" value="5"></vwc-text-field>
+<vwc-text-field id="invalid-text-field" label="invalid" pattern="123" value="5"></vwc-text-field>
 <script>
-  document.getElementById("#invalid-textfield").dirtyValue = true;
-  document.getElementById("#invalid-textfield").validate();
+  document.getElementById("#invalid-text-field").dirtyValue = true;
+  document.getElementById("#invalid-text-field").validate();
 </script>
 ```
 ### Input Types

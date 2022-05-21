@@ -153,7 +153,7 @@
     "title": "text-field",
     "markdown": "./libs/components/src/lib/text-field/README.md",
     "modules": [
-      "/assets/modules/components/textfield/index.js"
+      "/assets/modules/components/text-field/index.js"
     ]
   },
   {

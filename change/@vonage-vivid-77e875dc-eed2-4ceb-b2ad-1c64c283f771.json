@@ -1,6 +1,6 @@
 {
   "type": "prerelease",
-  "comment": "add textfield component",
+  "comment": "add text field component",
   "packageName": "@vonage/vivid",
   "email": "yonatan.kra@vonage.com",
   "dependentChangeType": "patch"
