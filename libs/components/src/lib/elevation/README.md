@@ -18,13 +18,11 @@ The _elevation_ component enables a user to set perceived elevation to a certain
  }
 </style>
 
-<vwc-layout gutters="small">
-  <vwc-elevation id="elevation">
-    <div id="card">
-      Hover me!
-    </div>
-  </vwc-elevation>
-</vwc-layout>
+<vwc-elevation id="elevation">
+  <div id="card">
+    Hover me!
+  </div>
+</vwc-elevation>
 
 <script>
  elevation.addEventListener("mouseenter", this.onMouseEnter);
@@ -59,7 +57,7 @@ Use the `dp` attribute to change the elevation's level in Density-Independent Pi
 }
 </style>
 
-<vwc-layout column-spacing="large" column-basis="block" gutters="small">
+<vwc-layout column-spacing="large" column-basis="block">
  <vwc-elevation dp="0">
   <div class="card">
    This is the content inside the elevation with DP 0
