@@ -3,7 +3,7 @@ import {attr, observable, volatile} from '@microsoft/fast-element';
 import type {Appearance, Density, Shape} from '../enums';
 import {AffixIcon} from '../../shared/patterns';
 
-type TextFieldDensity = Extract<Density, Density.Condensed | Density.Normal | Density.Extended>;
+type TextFieldDensity = Extract<Density, Density.Normal | Density.Extended>;
 type TextFieldAppearance = Extract<Appearance, Appearance.Outlined | Appearance.Ghost>;
 type TextFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 

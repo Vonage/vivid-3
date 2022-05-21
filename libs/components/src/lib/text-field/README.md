@@ -66,13 +66,13 @@ Use the `char-count` attribute along with the `maxlength` attribute to show a ch
 
 Use the `density` attribute to set the text field's to one of the predefined block size extent.
 
-- Type: `'condensed'` | `'normal'`
+- Type: `'normal'` | `'extended'`
 - Default: `'normal'`
 
 ```html preview
 <vwc-layout column-basis="block">
-  <vwc-text-field label="condensed" density="condensed"></vwc-text-field>
   <vwc-text-field label="normal" density="normal"></vwc-text-field>
+  <vwc-text-field label="extended" density="extended"></vwc-text-field>
 </vwc-layout>
 ```
 

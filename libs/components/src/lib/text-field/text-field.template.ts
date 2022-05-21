@@ -7,7 +7,6 @@ import type {
 import {classNames} from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
-import {Appearance, Density, Shape} from '../enums';
 import '../icon/index';
 import type {TextField} from './text-field';
 
@@ -23,15 +22,15 @@ const getStateClasses = ({
 	label,
 	icon
 }: TextField) => classNames(
-	['error', !!errorValidationMessage],
+	['error', Boolean(errorValidationMessage)],
 	['disabled', disabled],
-	['active', !!value],
+	['active', Boolean(value)],
 	['readonly', readOnly],
-	['placeholder', !!placeholder],
-	['icon', !!icon],
-	`density-${density ?? Density.Normal}`,
-	`appearance-${appearance ?? Appearance.Outlined}`,
-	`shape-${shape ?? Shape.Rounded}`,
+	['placeholder', Boolean(placeholder)],
+	['icon', Boolean(icon)],
+	[`density-${density}`, Boolean(density)],
+	[`appearance-${appearance}`, Boolean(appearance)],
+	[`shape-${shape}`, Boolean(shape)],
 	['no-label', !label],
 );
 
