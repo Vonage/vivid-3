@@ -22,17 +22,17 @@ export class TextField extends FoundationTextfield {
 	@attr density?: TextFieldDensity;
 	@attr appearance?: TextFieldAppearance;
 	@attr shape?: TextFieldShape;
-	@observable isValid = true;
+	@observable userValid = true;
 
 	@volatile
 	get errorValidationMessage() {
-		return this.isValid ? '' : this.validationMessage;
+		return this.userValid ? '' : this.validationMessage;
 	}
 
 	override validate() {
 		super.validate();
 		if (this.proxy instanceof HTMLElement) {
-			this.isValid = this.dirtyValue ? !Boolean(this.validationMessage) : true;
+			this.userValid = this.dirtyValue ? !Boolean(this.validationMessage) : true;
 		}
 	}
 }

@@ -21,6 +21,7 @@ $selectors: (
   disabled: '&:disabled , &.disabled',
   selected: '&.selected',
   active: '&:active:not(:disabled, .disabled), &.active:not(:disabled, .disabled)',
+  user-invalid: '&:user-invalid:not(:disabled, .disabled), &.user-invalid:not(:disabled, .disabled)',
 );
 
 @function get-default-selector($appearance) {

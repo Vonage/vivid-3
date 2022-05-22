@@ -131,6 +131,6 @@ You can validate the text field like any other native `input`.  Here's an exampl
 
 ```html preview
 <form method="post" action="">
-  <vwc-text-field label="Add email" placeholder="e.g. john@doe.dev" type="email" name="email" autocomplete="email" icon="search" maxlength="30" char-count></vwc-text-field>
+  <vwc-text-field required label="Add email" placeholder="e.g. john@doe.dev" type="email" name="email" autocomplete="email" icon="search" maxlength="30" char-count></vwc-text-field>
 </form>
 ```

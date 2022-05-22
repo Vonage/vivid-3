@@ -165,6 +165,38 @@ $states-mapping: (
       fill: var(#{connotation.$vvd-color-connotation}-soft),
       outline: transaprent,
     )
+  ),
+  invalid: (
+    //need to be updated with design. currently its active style
+    filled: (
+      text: transparent,
+      fill: transparent,
+      outline: transparent,
+    ),
+    outlined: (
+      text: transparent,
+      fill: transparent,
+      outline: transparent,
+    ),
+    duotone: (
+      text: transparent,
+      fill: transparent,
+      outline: transparent,
+    ),
+    fieldset: (
+      text: var(#{theme-consts.$vvd-color-alert}),
+      fill: var(#{theme-consts.$vvd-color-alert-20}),
+      outline: var(#{theme-consts.$vvd-color-alert}),
+    ),
+    ghost: (
+      text: transparent,
+      fill: transparent,
+      outline: transparent,
+    ),
+    subtle: (
+      text: transparent,
+      fill: transparent,
+      outline: transparent,
+    )
   )
-
 );

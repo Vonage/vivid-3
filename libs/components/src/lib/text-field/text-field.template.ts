@@ -20,6 +20,7 @@ const getStateClasses = ({
 	appearance,
 	shape,
 	label,
+	userValid
 }: TextField) => classNames(
 	['error', Boolean(errorValidationMessage)],
 	['disabled', disabled],
@@ -30,6 +31,7 @@ const getStateClasses = ({
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	['no-label', !label],
+	['user-invalid', !userValid],
 );
 
 /**
@@ -86,7 +88,6 @@ export const TextfieldTemplate: (
     ${when(x => x.charCount && x.maxlength, renderCharCount())}
     ${when(x => x.label, renderLabel())}
     <div class="fieldset">
-      ${() => focusTemplate}
       ${x => affixIconTemplate(x.icon)}
       <input class="control"
             id="control"
@@ -126,6 +127,7 @@ export const TextfieldTemplate: (
             aria-roledescription="${x => x.ariaRoledescription}"
             ${ref('control')}
       />
+      ${() => focusTemplate}
     </div>
 	  ${when(x => !x.errorValidationMessage && x.helperText?.length, renderHelperText())}
 	  ${when(x => x.errorValidationMessage, renderErrorMessage())}
