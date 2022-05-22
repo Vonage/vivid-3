@@ -11,7 +11,7 @@
 
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
 	$appearances: fieldset ghost,
-	$states: idle hover disabled invalid,
+	$states: idle hover disabled error,
 	$default: fieldset,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
