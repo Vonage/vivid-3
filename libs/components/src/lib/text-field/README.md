@@ -15,9 +15,7 @@ Note that the text field does not support `type="number"`. For this there is the
 Add a `label` attribute to add label to the text field.
 
 ```html preview
-<form method="post" action="">
-  <vwc-text-field label="My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label " type="email" name="email" autocomplete="email" icon="search" maxlength="30" char-count></vwc-text-field>
-</form>
+<vwc-text-field label="My Label"></vwc-text-field>
 ```
 
 ### Placeholder
@@ -128,3 +126,11 @@ You can validate the text field like any other native `input`.  Here's an exampl
 </script>
 ```
 ### Input Types
+
+### In Form
+
+```html preview
+<form method="post" action="">
+  <vwc-text-field label="Add email" placeholder="e.g. john@doe.dev" type="email" name="email" autocomplete="email" icon="search" maxlength="30" char-count></vwc-text-field>
+</form>
+```
