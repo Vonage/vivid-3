@@ -19,10 +19,11 @@
 
 .base {
 	@include connotation.connotation;
-  // due to the fact :user-invalid proposal isn't supported by browsers yet,
-  // we apply appearance here instead of the input element itself.
-  // input element :invalid state isn't enough as our spec awaits user interaction
-  // before showing the error.
+
+	// due to the fact :user-invalid proposal isn't supported by browsers yet,
+	// we apply appearance here instead of the input element itself.
+	// input element :invalid state isn't enough as our spec awaits user interaction
+	// before showing the error.
 	@include appearance.appearance;
 
 	display: grid;
@@ -32,6 +33,7 @@
 
 .label {
 	@include typography.typography-cat-shorthand('body-2');
+
 	color: var(#{theme-consts.$vvd-color-on-canvas});
 	grid-column: 1 / 4;
 	grid-row: 1;
@@ -51,13 +53,13 @@
 	position: relative;
 	display: flex;
 	align-items: center;
+	background-color: var(#{appearance.get-variable(fill)});
+	box-shadow: inset 0 0 0 1px var(#{appearance.get-variable(outline)});
+	color: var(#{appearance.get-variable(text)});
 	contain: strict;
 	grid-column: 1 / 4;
 	padding-inline: 16px;
 	transition: color .2s, box-shadow .2s, background-color .2s;
-  background-color: var(#{appearance.get-variable(fill)});
-	box-shadow: inset 0 0 0 1px var(#{appearance.get-variable(outline)});
-	color: var(#{appearance.get-variable(text)});
 
 	/* Size */
 	.base:not(.density-extended) > & {
@@ -85,11 +87,11 @@
 	position: absolute;
 	padding: 1px;
 	border: 0 none;
+	background-color: unset;
 	border-radius: inherit;
 	inset: 0;
 	outline: 0 none;
 	padding-inline-start: 16px;
-  background-color: unset;
 
 	&::placeholder {
 		color: var(#{theme-consts.$vvd-color-neutral-70});
@@ -108,6 +110,7 @@
 
 .helper-text {
 	@include typography.typography-cat-shorthand('caption');
+
 	color: var(#{theme-consts.$vvd-color-neutral-70});
 	grid-column: 1 / 4;
 	margin-inline-start: 16px;
@@ -116,8 +119,8 @@
 .error-message {
 	@include typography.typography-cat-shorthand('caption');
 
-	color: var(#{theme-consts.$vvd-color-on-canvas});
 	display: flex;
+	color: var(#{theme-consts.$vvd-color-on-canvas});
 	grid-column: 2 / 4;
 
 	&-icon {
@@ -129,7 +132,8 @@
 
 .focus-indicator {
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
-  pointer-events: none;
+
+	pointer-events: none;
 
 	.fieldset:not(:focus-within) > & {
 		display: none;

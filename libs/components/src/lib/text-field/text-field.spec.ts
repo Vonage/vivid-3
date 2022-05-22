@@ -1,8 +1,8 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
 import {TextFieldType} from '@microsoft/fast-foundation';
+import {Icon} from '../icon/icon';
 import {TextField} from './text-field';
 import '.';
-import {Icon} from '../icon/icon';
 
 const COMPONENT_TAG = 'vwc-text-field';
 
