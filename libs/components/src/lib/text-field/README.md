@@ -16,7 +16,7 @@ Add a `label` attribute to add label to the text field.
 
 ```html preview
 <form method="post" action="">
-  <vwc-text-field label="My Label" type="email" name="email" autocomplete="email"></vwc-text-field>
+  <vwc-text-field label="My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label My Label " type="email" name="email" autocomplete="email" icon="search" maxlength="30" char-count></vwc-text-field>
 </form>
 ```
 
@@ -48,7 +48,7 @@ Add the `helper-text` to add some helper text below the text field.
 - Default: `undefined`
 
 ```html preview
-<vwc-text-field label="Helper text below" helper-text="Help me!!!"></vwc-text-field>
+<vwc-text-field label="Helper text below" helper-text="Help text"></vwc-text-field>
 ```
 
 ### Character Count
