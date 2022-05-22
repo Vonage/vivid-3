@@ -20,7 +20,6 @@ const getStateClasses = ({
 	appearance,
 	shape,
 	label,
-	userValid
 }: TextField) => classNames(
 	['error', Boolean(errorValidationMessage)],
 	['disabled', disabled],
@@ -31,7 +30,6 @@ const getStateClasses = ({
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	['no-label', !label],
-	['user-invalid', !userValid],
 );
 
 /**

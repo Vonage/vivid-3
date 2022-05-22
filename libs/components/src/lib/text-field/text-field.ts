@@ -32,7 +32,7 @@ export class TextField extends FoundationTextfield {
 	override validate() {
 		super.validate();
 		if (this.proxy instanceof HTMLElement) {
-			this.userValid = this.dirtyValue ? !Boolean(this.validationMessage) : true;
+			this.userValid = this.dirtyValue ? !this.validationMessage : true;
 		}
 	}
 }
