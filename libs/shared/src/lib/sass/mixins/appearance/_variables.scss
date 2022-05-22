@@ -23,7 +23,7 @@ $states-mapping: (
     ),
     fieldset: (
       text: var(#{theme-consts.$vvd-color-neutral-70}),
-      fill: transaprent,
+      fill: var(#{theme-consts.$vvd-color-canvas}),
       outline: var(#{theme-consts.$vvd-color-neutral-50}),
     ),
     ghost: (
@@ -55,7 +55,7 @@ $states-mapping: (
     ),
     fieldset: (
       text: var(#{theme-consts.$vvd-color-neutral-70}),
-      fill: transaprent,
+      fill: var(#{theme-consts.$vvd-color-canvas}),
       outline: var(#{theme-consts.$vvd-color-on-canvas}),
     ),
     ghost: (
@@ -87,7 +87,7 @@ $states-mapping: (
     ),
     fieldset: (
       text: var(#{theme-consts.$vvd-color-neutral-70}),
-      fill: transaprent,
+      fill: var(#{theme-consts.$vvd-color-canvas}),
       outline: var(#{theme-consts.$vvd-color-on-canvas}),
     ),
     ghost: (
@@ -152,7 +152,7 @@ $states-mapping: (
     ),
     fieldset: (
       text: var(#{theme-consts.$vvd-color-neutral-70}),
-      fill: transaprent,
+      fill: var(#{theme-consts.$vvd-color-canvas}),
       outline: var(#{theme-consts.$vvd-color-on-canvas}),
     ),
     ghost: (

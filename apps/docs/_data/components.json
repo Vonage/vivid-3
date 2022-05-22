@@ -24,11 +24,11 @@
     ]
   },
   {
-  "title": "banner",
-  "markdown": "./libs/components/src/lib/banner/README.md",
-  "modules": [
-    "/assets/modules/components/button/index.js",
-    "/assets/modules/components/banner/index.js"
+    "title": "banner",
+    "markdown": "./libs/components/src/lib/banner/README.md",
+    "modules": [
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/banner/index.js"
     ]
   },
   {
@@ -150,18 +150,17 @@
     ]
   },
   {
-     "title": "fab",
-    "markdown": "./libs/components/src/lib/fab/README.md",
-    "modules": [
-      "/assets/modules/components/fab/index.js",
-      "/assets/modules/components/layout/index.js"
-    ]
-  },
-  {
     "title": "text-field",
     "markdown": "./libs/components/src/lib/text-field/README.md",
     "modules": [
-      "/assets/modules/components/text-field/index.js",
+      "/assets/modules/components/text-field/index.js"
+    ]
+  },
+  {
+    "title": "fab",
+    "markdown": "./libs/components/src/lib/fab/README.md",
+    "modules": [
+      "/assets/modules/components/fab/index.js",
       "/assets/modules/components/layout/index.js"
     ]
   },
