@@ -136,10 +136,10 @@ Here are rounded items inside shape-pill.
 
 ```html preview
 <vwc-action-group shape="pill">
-  <vwc-button label="submit"></vwc-button>
-  <vwc-button icon="headset-line"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
+  <vwc-button label="submit" shape="pill"></vwc-button>
+  <vwc-button icon="headset-line" shape="pill"></vwc-button>
+  <vwc-button label="submit" shape="pill"></vwc-button>
+  <vwc-button label="submit" shape="pill"></vwc-button>
+  <vwc-button label="submit" shape="pill"></vwc-button>
 </vwc-action-group>
 ```
