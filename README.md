@@ -26,7 +26,7 @@
 <br>
 <br>
 
-> Vivid philosophy favors lock-down over white labeling strategy, utilizing high-level [design tokens](docs/design-tokens.md) to customize UI systematically rather than permuting components directly (to a balanced degree). This guideline help keep integration processes ergonomic and the UI consistent.
+> Vivid philosophy favors lock-down over white labeling strategy, utilizing high-level design tokens to customize UI systematically rather than permuting components directly (to a balanced degree). This guideline help keep integration processes ergonomic and the UI consistent.
 
 
 <br>
@@ -55,7 +55,7 @@ Feel free to check [issues page](https://github.com/Vonage/vivid-3/issues). You 
 
 #### Generator a new component 
 
-`npm nx g @vonage/nx-vivid:component my-component`
+`npm run nx g @vonage/nx-vivid:component my-component`
 
 Will generate a new component in `libs/componnts/src/lib/my-component`
 
