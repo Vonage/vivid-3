@@ -1,6 +1,6 @@
 {
   "type": "none",
-  "comment": "refactor markdown to html middleware",
+  "comment": "intercept & restyle code fence",
   "packageName": "@vonage/vivid",
   "email": "yinon@hotmail.com",
   "dependentChangeType": "none"
