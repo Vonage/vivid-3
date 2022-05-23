@@ -24,20 +24,6 @@ body a:visited {
   color: var(--vvd-color-cta);
 }
 
-/*code inside text*/
-code {
-  font-size: 1rem;
-  background-color: var(--vvd-color-neutral-20);
-  color: var(--vvd-color-alert-90);
-  padding: 3px 4px;
-  border-radius: 6px;
-}
-
-pre[class*="language-"] {
-    margin: 0;
-    border-radius: 0;
-}
-
 .logo {
   display: flex;
   align-items: center;

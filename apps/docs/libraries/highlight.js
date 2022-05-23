@@ -8,11 +8,15 @@ module.exports = function (str, language, attrs) {
   if (language && hljs.getLanguage(language)) {
     try {
       const highlight = hljs.highlight(str, { language, ignoreIllegals: true }).value;
-      let html = `<pre class="hljs"><code>${highlight}</code></pre>`;
-      if (attrs == 'preview') {
-        html = str + html;
-      }
-      return html;
+
+      // if code fence is attributed by preview,
+      // we'd add a class to hook into and render
+      // the code snippet as a live preview
+      const classes = ['hljs'];
+      attrs == 'preview' && classes.push('preview');
+
+      return `<pre class="${classes.join(' ')}"><code>${highlight}</code></pre>`;
+
     } catch (__) { }
   }
 
