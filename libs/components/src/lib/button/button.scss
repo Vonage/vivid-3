@@ -29,7 +29,6 @@
 	box-sizing: border-box;
 	align-items: center;
 	border: 0 none;
-	margin: 0;
 	background-color: var(#{appearance.get-variable(fill)});
 	block-size: var(#{variables.$block-size});
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-variable(outline)});
