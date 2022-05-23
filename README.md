@@ -26,7 +26,7 @@
 <br>
 <br>
 
-> Vivid philosophy favors lock-down over white labeling strategy, utilizing high-level [design tokens](docs/design-tokens.md) to customize UI systematically rather than permuting components directly (to a balanced degree). This guideline help keep integration processes ergonomic and the UI consistent.
+> Vivid philosophy favors lock-down over white labeling strategy, utilizing high-level design tokens to customize UI systematically rather than permuting components directly (to a balanced degree). This guideline help keep integration processes ergonomic and the UI consistent.
 
 
 <br>
