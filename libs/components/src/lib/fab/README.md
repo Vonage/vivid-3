@@ -16,7 +16,7 @@ You can choose an icon from the [icons gallery](https://icons.vivid.vonage.com).
 - Type: `String`
 - Default: `undefined`
 
-```html preview preview
+```html preview
 <vwc-fab icon='plus-line'></vwc-fab>
 ```
 
@@ -27,7 +27,7 @@ Use the `label` attribute to add text to the FAB.
 - Type: `String`
 - Default: `undefined`
 
-```html preview preview
+```html preview
 <vwc-fab icon='cart-line' label='Add to cart'></vwc-fab>
 ```
 
@@ -38,7 +38,7 @@ To add an icon to the right of the text, use the `icon-trailing` attribute (or `
 - Type: `Boolean`
 - Default: `false`
 
-```html preview preview
+```html preview
 <vwc-fab icon='cart-line' label='Add to cart' icon-trailing></vwc-fab>
 ```
 
@@ -50,7 +50,7 @@ It accepts a subset of predefined values.
 - Type: `'canvas'`, `'cta'`, `'primary'`
 - Default: `'canvas'`
 
-```html preview preview
+```html preview
 <vwc-fab icon='plus-line' connotation='canvas'></vwc-fab>
 <vwc-fab icon='plus-line' connotation='cta'></vwc-fab>
 <vwc-fab icon='plus-line' connotation='primary'></vwc-fab>
@@ -63,6 +63,6 @@ To disable the FAB, use the `disabled` attribute.
 - Type: `Boolean`
 - Default: `false`
 
-```html preview preview
+```html preview
     <vwc-fab icon='store-line' disabled></vwc-fab>
 ```
