@@ -16,7 +16,6 @@ Use `min`, `max` in order to determine the range of the progress.
 - Default: `undefined`
 
 ```html
-<!-- preview -->
     <vwc-progress min="0" max="50" value="12.5"></vwc-progress>
 ```
 
@@ -27,7 +26,6 @@ Use `value` in order to set the state of the progress. String value will set the
 - Default: `undefined`
 
 ```html
-<!-- preview -->
     <vwc-progress min="0" max="50" value="12.5"></vwc-progress>
 ```
 
@@ -38,7 +36,6 @@ Use the `paused` attribute to show a disabled state of the progress.
 - Default: `false`
 
 ```html
-<!-- preview -->
     <h2>Determinate</h2>
     <vwc-progress min="0" max="50" value="25" paused></vwc-progress>
     <br/>
@@ -55,7 +52,6 @@ Use the `reverse` attribute to set the progress from right to left.
 - Default: `false`
 
 ```html
-<!-- preview -->
     <vwc-progress min="0" max="50" value="25" reverse></vwc-progress>
     <br/>
     <br/>
@@ -66,7 +62,6 @@ Use the `reverse` attribute to set the progress from right to left.
 - Default: `'primary'`
 
 ```html
-<!-- preview -->
     <vwc-progress min="0" max="100" value="25" connotation="primary"></vwc-progress>
     <br/>
     <br/>
@@ -89,7 +84,6 @@ Use the `shape` attribute in order to set `rounded` and `sharp` borders.
 - Default: `'rounded'`
 
 ```html
-<!-- preview -->
     <vwc-progress min="0" max="50" value="25" shape="rounded"></vwc-progress>
     <br/>
     <br/>
@@ -103,13 +97,11 @@ Set the `min`, `max` and `value` in order to show the determinate state.
 
 In the example below, we set the value to `12.5` while the range is `0` to `50`.  This means, 25% of the progress bar will be filled. 
 ```html
-<!-- preview -->
     <vwc-progress min="0" max="50" value="12.5"></vwc-progress>
 ```
 
 ### Indeterminate
 Set `value` to be a non-number value (e.g. `indeterminate`) to show an indeterminate state.
 ```html
-<!-- preview -->
     <vwc-progress min="0" max="50" value="indeterminate"></vwc-progress>
 ```

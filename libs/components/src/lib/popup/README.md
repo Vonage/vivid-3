@@ -30,7 +30,6 @@ Use the `open` attribute to indicate whether the popup is open.
 - Default: `false`
 
 ```html
-<!-- preview -->
 <style>
   .content {
     width: 200px;
@@ -68,7 +67,6 @@ Add the `dismissible` attribute to add a close button to the popup.
 - Default: `false`
 
 ```html
-<!-- preview -->
 <style>
   .content {
     width: 120px;
@@ -104,7 +102,6 @@ Add the `arrow` attribute to add a small triangle to indicate the trigger elemen
 - Default: `false`
 
 ```html
-<!-- preview -->
 <style>
   .content {
     width: 200px;
@@ -134,7 +131,6 @@ Add the `alternate` attribute to set the color-scheme to dark or light (dependin
 - Default: `false`
 
 ```html
-<!-- preview -->
 <style>
   .content {
     width: 200px;
@@ -165,7 +161,6 @@ Use the `corner` attribute to set the placement of the popup around the anchor.
 - Default: `'left'`
 
 ```html
-<!-- preview -->
 <style>
   .contentWrapper{
     width: 70px;

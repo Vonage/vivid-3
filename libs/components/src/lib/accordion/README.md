@@ -30,7 +30,6 @@ Add the `multi` attribute to the accordion to allow multiple items to be open at
 - Default: `false`
 
 ```html
-<!-- preview -->
 <vwc-accordion multi>
     <vwc-accordion-item heading="accordion item with heading">
         <vwc-text>content</vwc-text>

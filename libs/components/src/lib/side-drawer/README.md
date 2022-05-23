@@ -14,7 +14,6 @@ You can also close the side drawer by pressing the `ESC` key.
 - Default: `false`
 
 ```html
-<!-- preview -->
 <style>
     vwc-side-drawer#sideDrawer{
         --side-drawer-background-color: var(--vvd-color-neutral-10);
@@ -57,7 +56,6 @@ Click on the `scrim` or the `ESC` key to close the modal side-drawer.
 - Default: `false`
 
 ```html
-<!-- preview -->
 <style>
     vwc-side-drawer#sideDrawer{
         --side-drawer-background-color: var(--vvd-color-neutral-10);
@@ -98,7 +96,6 @@ Use the `alternate` attribute to apply scheme alternate region.
 - Default: `false`
 
 ```html
-<!-- preview -->
 <style>
     vwc-side-drawer#sideDrawer{
         --side-drawer-background-color: var(--vvd-color-neutral-10);
@@ -139,7 +136,6 @@ Use the `position` attribute to set the side of the side drawer.
 - Default: `"start"`
 
 ```html
-<!-- preview -->
 <style>
     vwc-side-drawer#sideDrawer{
         --side-drawer-background-color: var(--vvd-color-neutral-10);
@@ -187,7 +183,6 @@ To add a top bar to the side drawer, add a slot called `top-bar`.
 </div>
 ```
 ```html
-<!-- preview -->
 <style>
     vwc-side-drawer#sideDrawer{
         --side-drawer-background-color: var(--vvd-color-neutral-10);
@@ -236,7 +231,6 @@ To add content aside the side-drawer, add a slot called `app-content`.
 </div>
 ```
 ```html
-<!-- preview -->
 <style>
     vwc-side-drawer#sideDrawer{
         --side-drawer-background-color: var(--vvd-color-neutral-10);

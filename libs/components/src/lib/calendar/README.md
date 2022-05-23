@@ -9,7 +9,6 @@ Represents a calendar custom element.
 ```
 
 ```html
-<!-- preview -->
 <vwc-calendar></vwc-calendar>
 ```
 
@@ -21,7 +20,6 @@ Use the `datetime` attribute to set date within a week of choice.
 - Default: `undefined` (will use the current date)
 
 ```html
-<!-- preview -->
 <vwc-calendar datetime="2022-01-01"></vwc-calendar>
 ```
 
@@ -34,7 +32,6 @@ Use the `start-day` attribute (or `startDay` property) to set the first day of t
 - Default: `undefined` (programmatically defaults to `'monday'` if not specified)
 
 ```html
-<!-- preview -->
 <vwc-calendar start-day="sunday"></vwc-calendar>
 ```
 
@@ -46,7 +43,6 @@ Use `locales` to set a locale string or array of locale strings that contain one
 - Default: `undefined` (will use the current locale)
 
 ```html
-<!-- preview -->
 <vwc-calendar locales="he-IL" start-day="sunday" style="direction: rtl"></vwc-calendar>
 ```
 
@@ -59,7 +55,6 @@ Unless provided, choice will be set according to local time preference (e.g. US 
 - Default: `false`
 
 ```html
-<!-- preview -->
 <vwc-calendar hour12></vwc-calendar>
 ```
 

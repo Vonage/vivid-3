@@ -17,7 +17,6 @@ Use the `font-face` attribute or `fontFace` property to change the text's font f
 - Default: `'body-1'`
 
 ```html
-<!-- preview -->
 <vwc-text font-face="headline-1">headline-1</vwc-text>
 <vwc-text font-face="headline-2">headline-2</vwc-text>
 <vwc-text font-face="title-1">title-1</vwc-text>
@@ -46,7 +45,6 @@ By default, some font faces are styled with block margins in accordance to artic
 - Default: `true`
 
 ```html
-<!-- preview -->
 <style>
   vwc-text[tight] {
     display: block;
@@ -77,7 +75,6 @@ It accepts a subset of predefined values.
 - Default: `undefined` (inherits `currentColor`)
 
 ```html
-<!-- preview -->
 <vwc-text>undefined</vwc-text>
 <vwc-text connotation='primary'>primary</vwc-text>
 <vwc-text connotation='cta'>cta</vwc-text>
@@ -102,7 +99,6 @@ note that web component cannot style or access any descendent greater than a dir
 The following will generate a `caption` styled font face even though it's wrapped by a `h1` tag -
 
 ```html
-<!-- preview -->
 <vwc-text font-face="caption">
  <h1>
   lorem ipsum dolor sit amet, consectetur adipiscing elit
@@ -113,7 +109,6 @@ The following will generate a `caption` styled font face even though it's wrappe
 Alternatively, 'vwc-text' can, itself, nest within a semantic tag -
 
 ```html
-<!-- preview -->
 <h1>
  <vwc-text font-face="caption">
   lorem ipsum dolor sit amet, consectetur adipiscing elit

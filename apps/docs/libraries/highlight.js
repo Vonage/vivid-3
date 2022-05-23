@@ -1,8 +1,5 @@
 const hljs = require('highlight.js'); // https://highlightjs.org/
 const md = require('markdown-it')();
-// let isPreview;
-
-// const PREVIEW = "<!-- preview -->";
 
 module.exports = function (str, language, attrs) {
   if (language && hljs.getLanguage(language)) {
