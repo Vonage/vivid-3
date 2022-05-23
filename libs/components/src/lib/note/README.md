@@ -44,11 +44,11 @@ It accepts a subset of predefined values.
 - Default: `'announcement'`
 
 ```html preview
-<vwc-note connotation="alert"></vwc-note>
-<vwc-note connotation="success"></vwc-note>
-<vwc-note connotation="warning"></vwc-note>
-<vwc-note connotation="info"></vwc-note>
-<vwc-note connotation="announcement"></vwc-note>
+<vwc-note connotation="alert" header="alert note"></vwc-note>
+<vwc-note connotation="success" header="success note"></vwc-note>
+<vwc-note connotation="warning" header="warning note"></vwc-note>
+<vwc-note connotation="info" header="info note"></vwc-note>
+<vwc-note connotation="announcement" header="announcement note"></vwc-note>
 ```
 
 ## Slots
