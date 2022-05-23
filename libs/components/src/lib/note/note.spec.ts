@@ -21,11 +21,11 @@ describe('vwc-note', () => {
 
 	it('should render the header when header is set', async function() {
 		const headerText = 'header';
-		const headerElementWhenNull = element.shadowRoot?.querySelector('.header');
+		const headerElementWhenNull = element.shadowRoot?.querySelector('.note-header');
 		element.header = headerText;
 		await elementUpdated(element);
 		expect(headerElementWhenNull).toBeNull();
-		expect(element.shadowRoot?.querySelector('.header')?.textContent?.trim()).toEqual(headerText);
+		expect(element.shadowRoot?.querySelector('.note-header')?.textContent?.trim()).toEqual(headerText);
 	});
 
 	it('should render an icon when icon is set', async function () {

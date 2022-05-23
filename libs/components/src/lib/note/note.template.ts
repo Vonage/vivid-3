@@ -17,7 +17,7 @@ const getClasses = ({ connotation }: Note) => classNames(
  *
  */
 function getHeaderTemplate() {
-	return html<Note>`<div class="header">${x => x.header}</div>`;
+	return html<Note>`<div class="note-header">${x => x.header}</div>`;
 }
 
 /**
@@ -41,7 +41,7 @@ export const NoteTemplate: (
       ${when(x => x.icon, getIconTemplate())}
 			<div class="note-text">
 	        ${when(x => x.header, getHeaderTemplate())}
-			    <slot></slot>
+			    <slot class="note-message"></slot>
 			</div>
     </div>
 `;
