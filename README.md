@@ -55,7 +55,7 @@ Feel free to check [issues page](https://github.com/Vonage/vivid-3/issues). You 
 
 #### Generator a new component 
 
-`npm run nx workspace-generator vivid-component my-component`
+`npm nx g @vonage/nx-vivid:component my-component`
 
 Will generate a new component in `libs/componnts/src/lib/my-component`
 
