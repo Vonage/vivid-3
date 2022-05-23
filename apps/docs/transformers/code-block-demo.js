@@ -3,11 +3,10 @@ const { decode } = require("html-entities");
 const fs = require('fs');
 const path = require('path');
 const jsonData = require('../_data/components.json');
-const ELEVENTY_HTML_CODE_BLOCK_SELECTOR = 'pre > code.language-html';
+const ELEVENTY_HTML_CODE_BLOCK_SELECTOR = 'pre.preview > code';
 
 const CBD_BASE = 'cbd-base';
 const CBD_DEMO = 'cbd-demo';
-const CBD_THEME = 'light';
 const CBD_DETAILS = 'cbd-details';
 const CBD_BUTTON_SHOW = 'cbd-button-show';
 const CBD_CODE_BLOCK = 'cbd-code-block';
@@ -17,14 +16,14 @@ const FONTS = '<link rel="stylesheet" href="/assets/styles/fonts/spezia.css">';
 
 const generateCodeBlockDemo = function (blockData) {
     const demoData = {};
-    const code = blockData.pre.querySelector('pre.preview > code')?.textContent;
+    const code = blockData.pre.querySelector('code')?.textContent;
     demoData.demoStr = decode(MAIN_STYLE) + decode(FONTS) + decode(code);
     demoData.codeStr = blockData.pre.outerHTML;
     demoData.index = blockData.index;
     demoData.outputPath = blockData.outputPath;
     const dom = new JSDOM(`<body>${getHtml(demoData)}</body>`);
 
-    return dom.window.document.querySelector(`.${CBD_BASE}`);
+    return dom.window.document.querySelector('vwc-elevation');
 };
 
 module.exports = function (content, outputPath) {
@@ -43,7 +42,6 @@ module.exports = function (content, outputPath) {
         blockData.index = index++;
         pre.replaceWith(generateCodeBlockDemo(blockData));
     });
-    headEl.insertAdjacentHTML('beforeend', style);
     headEl.insertAdjacentHTML('beforeend', script);
     return document.documentElement.outerHTML;
 };
@@ -56,9 +54,10 @@ const getHtml = (demoData) => {
     frameData.outputPath = demoData.outputPath;
     const iframeSrc = getIframe(frameData);
 
-    return `
-    <div class="${CBD_BASE}">
-        <iframe class="${CBD_DEMO} ${CBD_THEME}" src="${iframeSrc}" onload=onloadIframe(this) loading="lazy"></iframe>
+  return `
+    <vwc-elevation dp="0">
+      <div class="${CBD_BASE}">
+        <iframe class="${CBD_DEMO}" src="${iframeSrc}" onload=onloadIframe(this) loading="lazy"></iframe>
         <details class="${CBD_DETAILS}">
             <summary>
                 <button class="${CBD_BUTTON_SHOW}" aria-expanded="false" aria-controls="${codeBlockId}">
@@ -69,7 +68,8 @@ const getHtml = (demoData) => {
                 ${demoData.codeStr}
             </div>
         </details>
-    </div>`;
+      </div>
+    </vwc-elevation>`;
 }
 
 const getIframe = (frameData) => {
@@ -132,33 +132,6 @@ const addModules = (componentName) => {
     }
 }
 
-const style = `
-<style>
-.${CBD_BASE} {
-	border: 1px solid lightgray;
-	border-radius: 6px;
-	overflow: hidden;
-}
-.${CBD_DEMO} {
-  overflow: hidden;
-  border: none;
-  width: 100%;
-}
-.light{
-
-}
-.${CBD_DETAILS} > summary {
-  list-style: none;
-	text-align: end;
-	background-color: whitesmoke;
-	padding: 10px;
-	border-top: 1px solid lightgrey;
-}
-.${CBD_CODE_BLOCK} {
-	border-top: 1px solid lightgrey;
-}
-</style>
-`;
 
 const script = `
 <script>
