@@ -27,29 +27,28 @@
 	}
 }
 
-.note-icon {
+.icon {
 	#{connotation.$vvd-color-connotation}: currentColor;
 
 	margin-inline-end: 16px;
+	align-self: flex-start;
+	font-size: 24px;
 }
 
-.note-text {
+.text {
 	display: flex;
 	min-height: 24px;
 	flex: 1;
 	flex-direction: column;
 	justify-content: center;
+	gap: 4px;
 	text-align: start;
 
-	.note-header {
+	.header {
 		@include typography.typography-cat-shorthand('body-2-bold');
-
-		margin-block-end: 4px;
 	}
 
-	.note-message {
+	.message {
 		@include typography.typography-cat-shorthand('body-2');
-
-		display: block;
 	}
 }

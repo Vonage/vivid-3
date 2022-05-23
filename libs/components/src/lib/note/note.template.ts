@@ -17,14 +17,14 @@ const getClasses = ({ connotation }: Note) => classNames(
  *
  */
 function getHeaderTemplate() {
-	return html<Note>`<div class="note-header">${x => x.header}</div>`;
+	return html<Note>`<div class="header">${x => x.header}</div>`;
 }
 
 /**
  *
  */
 function getIconTemplate() {
-	return html<Note>`<vwc-icon class="note-icon" type="${x => x.icon}"></vwc-icon>`;
+	return html<Note>`<vwc-icon class="icon" type="${x => x.icon}"></vwc-icon>`;
 }
 
 /**
@@ -39,9 +39,9 @@ export const NoteTemplate: (
 ) => ViewTemplate<Note> = () => html`
     <div class="${getClasses}">
       ${when(x => x.icon, getIconTemplate())}
-			<div class="note-text">
+			<div class="text">
 	        ${when(x => x.header, getHeaderTemplate())}
-			    <slot class="note-message"></slot>
+			    <slot class="message"></slot>
 			</div>
     </div>
 `;

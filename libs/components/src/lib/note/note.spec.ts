@@ -21,19 +21,19 @@ describe('vwc-note', () => {
 
 	it('should render the header when header is set', async function() {
 		const headerText = 'header';
-		const headerElementWhenNull = element.shadowRoot?.querySelector('.note-header');
+		const headerElementWhenNull = element.shadowRoot?.querySelector('.header');
 		element.header = headerText;
 		await elementUpdated(element);
 		expect(headerElementWhenNull).toBeNull();
-		expect(element.shadowRoot?.querySelector('.note-header')?.textContent?.trim()).toEqual(headerText);
+		expect(element.shadowRoot?.querySelector('.header')?.textContent?.trim()).toEqual(headerText);
 	});
 
 	it('should render an icon when icon is set', async function () {
 		const iconName = 'home';
-		const iconElementWhenNull = element.shadowRoot?.querySelector('.note-icon');
+		const iconElementWhenNull = element.shadowRoot?.querySelector('.icon');
 		element.icon = iconName;
 		await elementUpdated(element);
-		const iconElement = element.shadowRoot?.querySelector('.note-icon') as Icon;
+		const iconElement = element.shadowRoot?.querySelector('.icon') as Icon;
 
 		expect(iconElementWhenNull).toBeNull();
 		expect(iconElement instanceof Icon).toEqual(true);
