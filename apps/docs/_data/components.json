@@ -169,7 +169,8 @@
     "markdown": "./libs/components/src/lib/action-group/README.md",
     "modules": [
       "/assets/modules/components/action-group/index.js",
-      "/assets/modules/components/button/index.js"
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/text-field/index.js"
     ]
   }
 ]
