@@ -1,8 +1,8 @@
 const { EleventyRenderPlugin } = require("@11ty/eleventy");
-const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const wrapTextElements = require("./transformers/wrap-text-elements");
 const codeBlockDemo = require("./transformers/code-block-demo");
 const markdownLibrary = require("./libraries/markdown");
+const CleanCSS = require("clean-css");
 
 const INPUT_DIR = 'apps/docs';
 const ASSETS_DIR = `${INPUT_DIR}/assets`;
@@ -12,7 +12,6 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.setLibrary("md", markdownLibrary);
 
   eleventyConfig.addPlugin(EleventyRenderPlugin);
-  eleventyConfig.addPlugin(syntaxHighlight);
 
   eleventyConfig.addPassthroughCopy({
     "dist/libs/styles/fonts/*.css": "assets/styles/fonts",
@@ -37,6 +36,10 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addTransform('codeBlockDemo', codeBlockDemo);
 
   eleventyConfig.setUseGitIgnore(false);
+
+  eleventyConfig.addFilter("cssmin", function(code) {
+    return new CleanCSS({}).minify(code).styles;
+  });
 
   return {
     dir: {

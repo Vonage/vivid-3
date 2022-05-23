@@ -2,12 +2,11 @@ const { JSDOM } = require('jsdom');
 const { decode } = require("html-entities");
 const fs = require('fs');
 const path = require('path');
-const jsonData= require('../_data/components.json');
-const ELEVENTY_HTML_CODE_BLOCK_SELECTOR = 'pre > code.language-html';
+const jsonData = require('../_data/components.json');
+const ELEVENTY_HTML_CODE_BLOCK_SELECTOR = 'pre.preview > code';
 
 const CBD_BASE = 'cbd-base';
 const CBD_DEMO = 'cbd-demo';
-const CBD_THEME = 'light';
 const CBD_DETAILS = 'cbd-details';
 const CBD_BUTTON_SHOW = 'cbd-button-show';
 const CBD_CODE_BLOCK = 'cbd-code-block';
@@ -16,9 +15,13 @@ const MAIN_STYLE = '<link rel="stylesheet" href="/assets/styles/iframe.css">';
 const FONTS = '<link rel="stylesheet" href="/assets/styles/fonts/spezia.css">';
 
 const getComponentName = (outputPath) => {
+  try {
     const pathName = path.dirname(outputPath).substring(0, outputPath.lastIndexOf('/'));
     const componentName = pathName.substring(pathName.lastIndexOf('/') + 1);
     return componentName;
+  } catch (e) {
+    console.log("getComponentName error: ", e);
+  }
 }
 
 const getComponentData = (componentName) => jsonData.find(({ title }) => title == componentName);
@@ -58,10 +61,9 @@ module.exports = function (content, outputPath) {
     codeBlocks.forEach(function (codeBlock, index) {
         const pre = codeBlock.closest('pre');
         blockData.pre = pre;
-        blockData.index = index ++;
+        blockData.index = index++;
         pre.replaceWith(generateCodeBlockDemo(blockData));
     });
-    headEl.insertAdjacentHTML('beforeend', style);
     headEl.insertAdjacentHTML('beforeend', script);
     return document.documentElement.outerHTML;
 };
@@ -74,9 +76,10 @@ const getHtml = (demoData) => {
     frameData.outputPath = demoData.outputPath;
     const iframeSrc = getIframe(frameData);
 
-    return `
-    <div class="${CBD_BASE}">
-        <iframe class="${CBD_DEMO} ${CBD_THEME}" src="${iframeSrc}" onload=onloadIframe(this) loading="lazy"></iframe>
+  return `
+    <vwc-elevation dp="0">
+      <div class="${CBD_BASE}">
+        <iframe class="${CBD_DEMO}" src="${iframeSrc}" onload=onloadIframe(this) loading="lazy"></iframe>
         <details class="${CBD_DETAILS}">
             <summary>
                 <button class="${CBD_BUTTON_SHOW}" aria-expanded="false" aria-controls="${codeBlockId}">
@@ -87,70 +90,59 @@ const getHtml = (demoData) => {
                 ${demoData.codeStr}
             </div>
         </details>
-    </div>`;
+      </div>
+    </vwc-elevation>`;
 }
 
 const getIframe = (frameData) => {
-    const saveFolder = verifyAndCreateSaveFolder(frameData.outputPath);
-    frameData.saveFolder = saveFolder;
-    const filePath = saveCodeAsHTMLFile(frameData);
-    return filePath.substring(saveFolder.indexOf('docs/') + 4);
+    try {
+        const saveFolder = verifyAndCreateSaveFolder(frameData.outputPath);
+        frameData.saveFolder = saveFolder;
+        const filePath = saveCodeAsHTMLFile(frameData);
+        return filePath.substring(saveFolder.indexOf('docs/') + 4);
+    }
+    catch (e) {
+        console.log("getIframe error: ", e);
+    }
 }
 
 const verifyAndCreateSaveFolder = (outputPath) => {
-    const saveFolder = path.join(path.dirname(outputPath), '/frames');
-    if (!fs.existsSync(saveFolder)) {
-      fs.mkdirSync(saveFolder, { recursive: true });
+    try {
+        const saveFolder = path.join(path.dirname(outputPath), '/frames');
+        if (!fs.existsSync(saveFolder)) {
+            fs.mkdirSync(saveFolder, { recursive: true });
+        }
+        return saveFolder;
+    } catch (e) {
+        console.log("verifyAndCreateSaveFolder error: ", e);
     }
-    return saveFolder;
 }
 
 const addModules = (data) => {
-  let modulesStr = '';
-  data.modules.forEach(module => {
+  try {
+    let modulesStr = '';
+    data.modules.forEach(module => {
       modulesStr += `<script type="module" src="${module}"></script>`;
-  });
-  return modulesStr;
+    });
+    return modulesStr;
+  } catch (e) {
+    console.log("addModules error: ", e);
+  }
 }
 
 const saveCodeAsHTMLFile = (frameData) => {
-  const filePath = `${frameData.saveFolder}/${frameData.codeBlockId}.html`;
-
-  const componentName = getComponentName(frameData.outputPath);
-  const data = getComponentData(componentName);
-  frameData.demoStr += addModules(data);
-
-  fs.writeFileSync(filePath, frameData.demoStr);
-  return filePath;
+  try {
+    const filePath = `${frameData.saveFolder}/${frameData.codeBlockId}.html`;
+    const componentName = getComponentName(frameData.outputPath);
+    const data = getComponentData(componentName);
+    frameData.demoStr += addModules(data);
+    fs.writeFileSync(filePath, frameData.demoStr);
+    return filePath;
+  }
+  catch (e) {
+      console.log("saveCodeAsHTMLFile error: ", e);
+  }
 }
-
-const style = `
-<style>
-.${CBD_BASE} {
-	border: 1px solid lightgray;
-	border-radius: 6px;
-	overflow: hidden;
-}
-.${CBD_DEMO} {
-  overflow: hidden;
-  border: none;
-  width: 100%;
-}
-.light{
-
-}
-.${CBD_DETAILS} > summary {
-  list-style: none;
-	text-align: end;
-	background-color: whitesmoke;
-	padding: 10px;
-	border-top: 1px solid lightgrey;
-}
-.${CBD_CODE_BLOCK} {
-	border-top: 1px solid lightgrey;
-}
-</style>
-`;
 
 const script = `
 <script>
