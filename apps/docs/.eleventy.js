@@ -32,7 +32,7 @@ module.exports = function (eleventyConfig) {
     }
   });
 
-  // eleventyConfig.addTransform('wrapTextElements', wrapTextElements);
+  eleventyConfig.addTransform('wrapTextElements', wrapTextElements);
   eleventyConfig.addTransform('codeBlockDemo', codeBlockDemo);
 
   eleventyConfig.setUseGitIgnore(false);
