@@ -10,7 +10,7 @@ import type { Note } from './note';
 
 const getClasses = ({ connotation }: Note) => classNames(
 	'base',
-	`${connotation ? connotation : 'announcement'}`
+	`connotation-${connotation}`
 );
 
 /**
@@ -24,7 +24,7 @@ function getHeaderTemplate() {
  *
  */
 function getIconTemplate() {
-	return html<Note>`<vwc-icon type="${x => x.icon}"></vwc-icon>`;
+	return html<Note>`<vwc-icon class="note-icon" type="${x => x.icon}"></vwc-icon>`;
 }
 
 /**
