@@ -17,7 +17,7 @@ const FONTS = '<link rel="stylesheet" href="/assets/styles/fonts/spezia.css">';
 
 const generateCodeBlockDemo = function (blockData) {
     const demoData = {};
-    const code = blockData.pre.querySelector('code')?.textContent;
+    const code = blockData.pre.querySelector('pre.preview > code')?.textContent;
     demoData.demoStr = decode(MAIN_STYLE) + decode(FONTS) + decode(code);
     demoData.codeStr = blockData.pre.outerHTML;
     demoData.index = blockData.index;

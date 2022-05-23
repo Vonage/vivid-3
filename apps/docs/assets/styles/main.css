@@ -156,3 +156,39 @@ article > .cbd-base {
 .heading-wrapper:not(:hover) > .anchor {
   display: none;
 }
+
+/* highlight js */
+.hljs {
+  background-color: var(--vvd-color-neutral-10);
+  color: var(--vvd-color-neutral-50);
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.hljs-string,
+.hljs-section,
+.hljs-selector-class,
+.hljs-template-variable,
+.hljs-deletion {
+  color: var(--vvd-color-alert-80);
+}
+
+.hljs-name,
+.hljs-quote,
+.hljs-selector-pseudo,
+.hljs-selector-tag {
+  color: var(--vvd-color-success-70);
+}
+
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id,
+.hljs-variable {
+  color: var(--vvd-color-info-70);
+}
