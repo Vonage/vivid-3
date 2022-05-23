@@ -73,63 +73,41 @@ const getHtml = (demoData) => {
 }
 
 const getIframe = (frameData) => {
-    try {
-        const saveFolder = verifyAndCreateSaveFolder(frameData.outputPath);
-        frameData.saveFolder = saveFolder;
-        const filePath = saveCodeAsHTMLFile(frameData);
-        return filePath.substring(saveFolder.indexOf('docs/') + 4);
-    }
-    catch (e) {
-        console.log("getIframe error: ", e);
-    }
+  const saveFolder = verifyAndCreateSaveFolder(frameData.outputPath);
+  frameData.saveFolder = saveFolder;
+  const filePath = saveCodeAsHTMLFile(frameData);
+  return filePath.substring(saveFolder.indexOf('docs/') + 4);
 }
 
 const verifyAndCreateSaveFolder = (outputPath) => {
-    try {
-        const saveFolder = path.join(path.dirname(outputPath), '/frames');
-        if (!fs.existsSync(saveFolder)) {
-            fs.mkdirSync(saveFolder, { recursive: true });
-        }
-        return saveFolder;
-    } catch (e) {
-        console.log("verifyAndCreateSaveFolder error: ", e);
-    }
+  const saveFolder = path.join(path.dirname(outputPath), '/frames');
+  if (!fs.existsSync(saveFolder)) {
+    fs.mkdirSync(saveFolder, { recursive: true });
+  }
+  return saveFolder;
 }
 
 const saveCodeAsHTMLFile = (frameData) => {
-    try {
-        const filePath = `${frameData.saveFolder}/${frameData.codeBlockId}.html`;
-        const componentName = getComponentName(frameData.outputPath);
-        frameData.demoStr += addModules(componentName);
-        fs.writeFileSync(filePath, frameData.demoStr);
-        return filePath;
-    }
-    catch (e) {
-        console.log("saveCodeAsHTMLFile error: ", e);
-    }
+  const filePath = `${frameData.saveFolder}/${frameData.codeBlockId}.html`;
+  const componentName = getComponentName(frameData.outputPath);
+  frameData.demoStr += addModules(componentName);
+  fs.writeFileSync(filePath, frameData.demoStr);
+  return filePath;
 }
 
 const getComponentName = (outputPath) => {
-    try {
-        const pathName = path.dirname(outputPath).substring(0, outputPath.lastIndexOf('/'));
-        const componentName = pathName.substring(pathName.lastIndexOf('/') + 1);
-        return componentName;
-    } catch (e) {
-        console.log("getComponentName error: ", e);
-    }
+  const pathName = path.dirname(outputPath).substring(0, outputPath.lastIndexOf('/'));
+  const componentName = pathName.substring(pathName.lastIndexOf('/') + 1);
+  return componentName;
 }
 
 const addModules = (componentName) => {
-    try {
-        let modulesStr = '';
-        let component = jsonData.filter(item => item.title.includes(componentName));
-        component[0].modules.forEach(module => {
-            modulesStr += `<script type="module" src="${module}"></script>`;
-        });
-        return modulesStr;
-    } catch (e) {
-        console.log("addModules error: ", e);
-    }
+  let modulesStr = '';
+  let component = jsonData.filter(item => item.title.includes(componentName));
+  component[0].modules.forEach(module => {
+    modulesStr += `<script type="module" src="${module}"></script>`;
+  });
+  return modulesStr;
 }
 
 
