@@ -16,13 +16,9 @@ const MAIN_STYLE = '<link rel="stylesheet" href="/assets/styles/iframe.css">';
 const FONTS = '<link rel="stylesheet" href="/assets/styles/fonts/spezia.css">';
 
 const getComponentName = (outputPath) => {
-  try {
-    const pathName = path.dirname(outputPath).substring(0, outputPath.lastIndexOf('/'));
-    const componentName = pathName.substring(pathName.lastIndexOf('/') + 1);
-    return componentName;
-  } catch (e) {
-    console.log("getComponentName error: ", e);
-  }
+  const pathName = path.dirname(outputPath).substring(0, outputPath.lastIndexOf('/'));
+  const componentName = pathName.substring(pathName.lastIndexOf('/') + 1);
+  return componentName;
 }
 
 const getComponentData = (componentName) => jsonData.find(({ title }) => title == componentName);
@@ -65,12 +61,12 @@ module.exports = function (content, outputPath) {
 };
 
 const getHtml = (demoData) => {
-    const codeBlockId = `${CBD_CODE_BLOCK}-${demoData.index}`;
-    const frameData = {};
-    frameData.demoStr = demoData.demoStr;
-    frameData.codeBlockId = codeBlockId;
-    frameData.outputPath = demoData.outputPath;
-    const iframeSrc = getIframe(frameData);
+  const codeBlockId = `${CBD_CODE_BLOCK}-${demoData.index}`;
+  const frameData = {};
+  frameData.demoStr = demoData.demoStr;
+  frameData.codeBlockId = codeBlockId;
+  frameData.outputPath = demoData.outputPath;
+  const iframeSrc = getIframe(frameData);
 
   return `
     <vwc-elevation dp="0">
@@ -91,53 +87,35 @@ const getHtml = (demoData) => {
 }
 
 const getIframe = (frameData) => {
-    try {
-        const saveFolder = verifyAndCreateSaveFolder(frameData.outputPath);
-        frameData.saveFolder = saveFolder;
-        const filePath = saveCodeAsHTMLFile(frameData);
-        return filePath.substring(saveFolder.indexOf('docs/') + 4);
-    }
-    catch (e) {
-        console.log("getIframe error: ", e);
-    }
+  const saveFolder = verifyAndCreateSaveFolder(frameData.outputPath);
+  frameData.saveFolder = saveFolder;
+  const filePath = saveCodeAsHTMLFile(frameData);
+  return filePath.substring(saveFolder.indexOf('docs/') + 4);
 }
 
 const verifyAndCreateSaveFolder = (outputPath) => {
-    try {
-        const saveFolder = path.join(path.dirname(outputPath), '/frames');
-        if (!fs.existsSync(saveFolder)) {
-            fs.mkdirSync(saveFolder, { recursive: true });
-        }
-        return saveFolder;
-    } catch (e) {
-        console.log("verifyAndCreateSaveFolder error: ", e);
-    }
+  const saveFolder = path.join(path.dirname(outputPath), '/frames');
+  if (!fs.existsSync(saveFolder)) {
+    fs.mkdirSync(saveFolder, { recursive: true });
+  }
+  return saveFolder;
 }
 
 const addModules = (data) => {
-  try {
-    let modulesStr = '';
-    data.modules.forEach(module => {
-      modulesStr += `<script type="module" src="${module}"></script>`;
-    });
-    return modulesStr;
-  } catch (e) {
-    console.log("addModules error: ", e);
-  }
+  let modulesStr = '';
+  data.modules.forEach(module => {
+    modulesStr += `<script type="module" src="${module}"></script>`;
+  });
+  return modulesStr;
 }
 
 const saveCodeAsHTMLFile = (frameData) => {
-  try {
-    const filePath = `${frameData.saveFolder}/${frameData.codeBlockId}.html`;
-    const componentName = getComponentName(frameData.outputPath);
-    const data = getComponentData(componentName);
-    frameData.demoStr += addModules(data);
-    fs.writeFileSync(filePath, frameData.demoStr);
-    return filePath;
-  }
-  catch (e) {
-      console.log("saveCodeAsHTMLFile error: ", e);
-  }
+  const filePath = `${frameData.saveFolder}/${frameData.codeBlockId}.html`;
+  const componentName = getComponentName(frameData.outputPath);
+  const data = getComponentData(componentName);
+  frameData.demoStr += addModules(data);
+  fs.writeFileSync(filePath, frameData.demoStr);
+  return filePath;
 }
 
 const script = `
