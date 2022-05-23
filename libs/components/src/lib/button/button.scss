@@ -98,10 +98,8 @@ $pill-selector: '.shape-pill:not(.stacked)';
 }
 
 /* Icon */
-
-.icon {
-	// stylelint-disable-next-line no-descending-specificity
-	.icon-trailing & {
+.icon-trailing {
+	.icon {
 		order: 1;
 	}
 }
