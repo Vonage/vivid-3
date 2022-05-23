@@ -2,6 +2,7 @@ import {elementUpdated, fixture} from '@vivid-nx/shared';
 import { Note } from './note';
 import '.';
 import {Icon} from '../icon/icon';
+import {Connotation} from '../enums';
 
 const COMPONENT_TAG = 'vwc-note';
 
@@ -28,13 +29,30 @@ describe('vwc-note', () => {
 	});
 
 	it('should render an icon when icon is set', async function () {
-    const iconName = 'home';
-    const iconElementWhenNull = element.shadowRoot?.querySelector('vwc-icon');
-    element.icon = iconName;
-    await elementUpdated(element);
-    const iconElement = element.shadowRoot?.querySelector('vwc-icon') as Icon;
-    expect(iconElementWhenNull).toBeNull();
-    expect(iconElement instanceof Icon).toEqual(true);
-    expect(iconElement.type).toEqual(iconName);
+		const iconName = 'home';
+		const iconElementWhenNull = element.shadowRoot?.querySelector('vwc-icon');
+		element.icon = iconName;
+		await elementUpdated(element);
+		const iconElement = element.shadowRoot?.querySelector('vwc-icon') as Icon;
+
+		expect(iconElementWhenNull).toBeNull();
+		expect(iconElement instanceof Icon).toEqual(true);
+		expect(iconElement.type).toEqual(iconName);
+	});
+
+	it('should set connotation class on the base element', async function() {
+		const connotation = Connotation.Info;
+		const baseElement = element.shadowRoot?.querySelector('.base');
+		const connotationClassExistsWhenNull = baseElement?.classList?.contains(connotation);
+		element.connotation = connotation;
+		await elementUpdated(element);
+		expect(connotationClassExistsWhenNull).toEqual(false);
+		expect(baseElement?.classList?.contains(connotation)).toEqual(true);
+	});
+
+	it('should set announcement connotation by default', async function () {
+		const baseElement = element.shadowRoot?.querySelector('.base');
+		const announcementConnotationExists = baseElement?.classList?.contains(Connotation.Announcement);
+		expect(announcementConnotationExists).toEqual(true);
 	});
 });

@@ -8,7 +8,10 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import '../icon/index';
 import type { Note } from './note';
 
-const getClasses = (_: Note) => classNames('base');
+const getClasses = ({ connotation }: Note) => classNames(
+	'base',
+	`${connotation ? connotation : 'announcement'}`
+);
 
 /**
  *
@@ -17,8 +20,11 @@ function getHeaderTemplate() {
 	return html<Note>`<div class="header">${x => x.header}</div>`;
 }
 
+/**
+ *
+ */
 function getIconTemplate() {
-  return html<Note>`<vwc-icon type="${x => x.icon}"></vwc-icon>`;
+	return html<Note>`<vwc-icon type="${x => x.icon}"></vwc-icon>`;
 }
 
 /**
@@ -32,7 +38,10 @@ export const NoteTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Note> = () => html`
     <div class="${getClasses}">
-        ${when(x => x.icon, getIconTemplate())}
-        ${when(x => x.header, getHeaderTemplate())}
+      ${when(x => x.icon, getIconTemplate())}
+			<div class="note-text">
+	        ${when(x => x.header, getHeaderTemplate())}
+			    <slot></slot>
+			</div>
     </div>
 `;
