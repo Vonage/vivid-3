@@ -2,9 +2,10 @@ const { JSDOM } = require('jsdom');
 const { decode } = require("html-entities");
 const fs = require('fs');
 const path = require('path');
-const jsonData = require('../_data/components.json');
-const ELEVENTY_HTML_CODE_BLOCK_SELECTOR = 'pre.preview > code';
+const jsonData = require('../../_data/components.json');
+const wrapWithStyle = require('./helpers');
 
+const ELEVENTY_HTML_CODE_BLOCK_SELECTOR = 'pre.preview > code';
 const CBD_BASE = 'cbd-base';
 const CBD_DEMO = 'cbd-demo';
 const CBD_DETAILS = 'cbd-details';
@@ -25,19 +26,6 @@ const getComponentName = (outputPath) => {
 }
 
 const getComponentData = (componentName) => jsonData.find(({ title }) => title == componentName);
-
-const wrapWithStyle = (code, classList) => {
-  const attrs = [];
-
-  if (classList.contains('block')) {
-    attrs.push('column-basis="block"');
-  }
-
-  return `
-    <script type="module" src="/assets/modules/components/layout/index.js"></script>
-    <vwc-layout ${attrs.join(' ')}>${code}</vwc-layout>
-  `;
-}
 
 const generateCodeBlockDemo = function(blockData) {
   let code = blockData.pre.querySelector('code')?.textContent;
