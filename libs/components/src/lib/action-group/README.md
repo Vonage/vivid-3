@@ -57,7 +57,7 @@ Use the `<hr>` tag for adding separator between the action elements
 ```html preview
 <vwc-action-group appearance="fieldset">
   <vwc-button label="submit"></vwc-button>
-  <vwc-button icon="headset-line></vwc-button>
+  <vwc-button icon="headset-line"></vwc-button>
   <hr>
   <vwc-button label="submit"></vwc-button>
   <vwc-button label="submit"></vwc-button>
