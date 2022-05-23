@@ -18,7 +18,7 @@
 	background-color: var(#{appearance.get-variable(fill)});
 	box-shadow: 0 0 0 1px var(#{appearance.get-variable(outline)});
 	color: var(#{appearance.get-variable(text)});
-	column-gap: 2px;
+	column-gap: 4px;
 	vertical-align: middle;
 }
 
