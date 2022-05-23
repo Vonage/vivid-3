@@ -1,5 +1,6 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
+import {applyMixins, FoundationElement} from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
+import {AffixIcon} from '../../shared/patterns';
 
 /**
  * Base class for note
@@ -7,12 +8,17 @@ import { attr } from '@microsoft/fast-element';
  * @public
  */
 export class Note extends FoundationElement {
-  /**
-   * Indicates the text's text.
-   *
-   * @public
-   * @remarks
-   * HTML Attribute: text
-   */
-  @attr text?: string;
+	/**
+	 * Indicates the note's header text
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: header
+	 */
+	@attr header?: string;
+}
+
+applyMixins(Note, AffixIcon);
+
+export interface Note extends AffixIcon {
 }
