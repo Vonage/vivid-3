@@ -9,10 +9,9 @@ import type { ActionGroup } from './action-group';
 
 
 const getClasses = ({
-	connotation, appearance, shape,
+	appearance, shape,
 }: ActionGroup) => classNames(
 	'base',
-	[`connotation-${connotation}`, Boolean(connotation)],
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 
@@ -29,7 +28,7 @@ export const ActionGroupTemplate: (
 	definition: FoundationElementDefinition
 
 ) => ViewTemplate<ActionGroup> = () => html`
-<div class="${getClasses}" part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}">
+<div class="${getClasses}">
   <slot @slotchange="${x => x.handleContentChange()}" ></slot>
 </div>`;
 

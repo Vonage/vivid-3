@@ -5,18 +5,9 @@ import { FoundationElement } from '@microsoft/fast-foundation';
 
 import {attr} from '@microsoft/fast-element';
 import type {
-	Appearance, Connotation, Shape,
+	Appearance, Shape,
 } from '../enums.js';
 
-
-/**
- * Types of action-group connotation.
- *
- * @public
- */
-type ActionGroupConnotation = Extract<Connotation,
-| Connotation.Primary
-| Connotation.CTA>;
 
 /**
  * Types of button appearance.
@@ -46,14 +37,6 @@ export class ActionGroup extends FoundationElement {
 	// 	});
 		// eslint-disable-next-line no-mixed-spaces-and-tabs
 	 }
-	/**
-	 * The connotation the action-group should have.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: connotation
-	 */
-	@attr connotation?: ActionGroupConnotation;
 
 	/**
 	 * The shape the ActionGroup should have.
@@ -73,17 +56,6 @@ export class ActionGroup extends FoundationElement {
 	 */
 	@attr appearance?: ActionGroupAppearance;
 
-
-	/**
-	 * The appearance the action-group should have.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: appearance
-	 */
-	@attr({
-		mode: 'boolean',
-	}) alternate = false;
 }
 
 

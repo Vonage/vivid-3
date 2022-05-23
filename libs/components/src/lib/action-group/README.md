@@ -1,8 +1,6 @@
 # Action-group
 
-<blockquote cite="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/toolbar_role">
-The toolbar role defines the containing element as a collection of commonly used function buttons or controls represented in a compact visual form.
-</blockquote>
+An action group is a grouping of action buttons or form elements that are related to each other.
 
 ```js
 <script type="module">import '@vonage/vivid/action-group';</script>
@@ -13,125 +11,34 @@ The toolbar role defines the containing element as a collection of commonly used
   <vwc-button label="submit"></vwc-button>
   <vwc-button icon="headset-line"></vwc-button>
   <vwc-button label="submit"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
 </vwc-action-group>
 ```
 
+## Properties
 
 ### Appearance
+Set the `appearance` attribute to change the action-Group's appearance.
 
-- I added to each appearance both regular and alternate, so we can see all option.  
-- Don't think we want to creat mutation that one has no alternate.  
-- I am using the "canvas" connotation here as the only option.  
-- Currently, the fieldset is used also in the textfield - so it has no background. This need to be considered in textfield branch if we need or allow outline with background.
-
-
-
-#### ghost
-```html preview
-<div style="background-color: #ffd1e3; padding: 1rem; display: flex; column-gap: 0.5rem;">
-<vwc-action-group appearance="ghost">
-  <vwc-button label="submit" ></vwc-button>
-  <vwc-button icon="headset-line"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
-  <vwc-text-field placeholder="My Placeholder" style="width: 100px;"></vwc-text-field>
-</vwc-action-group>
-
-<vwc-action-group appearance="ghost" alternate>
-  <vwc-button label="submit" ></vwc-button>
-  <vwc-button icon="headset-line"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
-  <vwc-text-field placeholder="My Placeholder" style="width: 100px;"></vwc-text-field>
-</vwc-action-group>
-</div>
-```
-
-#### outlined
-maybe this option is not needed and only fieldset is needed
+- Type: `'ghost'` | `'fieldset'`
+- Default: `'fieldset'`
 
 ```html preview
-<div style="background-color: #ffd1e3; padding: 1rem; display: flex; column-gap: 0.5rem;">
-<vwc-action-group appearance="outlined">
-  <vwc-button label="submit" ></vwc-button>
-  <vwc-button icon="headset-line"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
-  <vwc-text-field placeholder="My Placeholder" style="width: 100px;"></vwc-text-field>
-</vwc-action-group>
-<vwc-action-group appearance="outlined" alternate>
-  <vwc-button label="submit" ></vwc-button>
-  <vwc-button icon="headset-line"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
-  <vwc-text-field placeholder="My Placeholder" style="width: 100px;"></vwc-text-field>
-</vwc-action-group>
-</div>
-```
-
-
-#### fieldset
-
-```html preview
-<div style="background-color: #ffd1e3; padding: 1rem; display: flex; column-gap: 0.5rem;">
 <vwc-action-group appearance="fieldset">
-  <vwc-button label="submit" ></vwc-button>
-  <vwc-button icon="headset-line"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
-  <vwc-text-field placeholder="My Placeholder" style="width: 100px;"></vwc-text-field>
+  <vwc-button label="submit" appearance="filled"></vwc-button>
+  <vwc-button icon="headset-line" appearance="filled"></vwc-button>
+  <vwc-button label="submit" appearance="filled"></vwc-button>
+  <vwc-button label="submit" appearance="filled"></vwc-button>
+  <vwc-text-field placeholder="My Placeholder" style="width: 130px;"></vwc-text-field>
 </vwc-action-group>
-<vwc-action-group appearance="fieldset" alternate>
-  <vwc-button label="submit" ></vwc-button>
-  <vwc-button icon="headset-line"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
-  <vwc-text-field placeholder="My Placeholder" style="width: 100px;"></vwc-text-field>
-</vwc-action-group>
-</div>
 ```
 
-#### filled
-
-```html preview
-<div style="background-color: #ffd1e3; padding: 1rem; display: flex; column-gap: 0.5rem;">
-<vwc-action-group appearance="filled">
-  <vwc-button label="submit" ></vwc-button>
-  <vwc-button icon="headset-line"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
-  <vwc-text-field placeholder="My Placeholder" style="width: 100px;"></vwc-text-field>
-</vwc-action-group>
-<vwc-action-group appearance="filled" alternate>
-  <vwc-button label="submit" ></vwc-button>
-  <vwc-button icon="headset-line"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
-  <vwc-text-field placeholder="My Placeholder" style="width: 100px;"></vwc-text-field>
-</vwc-action-group>
-</div>
-```
-
-##### filled with no "special" background
-looks like ghost but has a background
-
-```html preview
-<div style="padding: 2rem; display: flex; column-gap: 0.5rem;">
-<vwc-action-group appearance="filled">
-  <vwc-button label="submit" ></vwc-button>
-  <vwc-button icon="headset-line"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
-  <vwc-button label="submit"></vwc-button>
-  <vwc-text-field placeholder="My Placeholder" style="width: 100px;"></vwc-text-field>
-</vwc-action-group>
-</div>
-```
 
 ### Shape
-Are we forcing the inner elements to get the action-group shape?  
-Here are rounded items inside shape-pill.
+Use the `shape` attribute to set the action-Group's edges.  
+When using shape - pay in mind setting the slotted elements with the same shape property.
+
+- Type: `'rounded'` | `'pill'`
+- Default: `'rounded'`
 
 
 ```html preview
@@ -141,5 +48,31 @@ Here are rounded items inside shape-pill.
   <vwc-button label="submit" shape="pill"></vwc-button>
   <vwc-button label="submit" shape="pill"></vwc-button>
   <vwc-button label="submit" shape="pill"></vwc-button>
+</vwc-action-group>
+```
+
+### Separator
+Use the `<hr>` tag for adding separator between the action elements 
+
+```html preview
+<vwc-action-group appearance="fieldset">
+  <vwc-button label="submit"></vwc-button>
+  <vwc-button icon="headset-line></vwc-button>
+  <hr>
+  <vwc-button label="submit"></vwc-button>
+  <vwc-button label="submit"></vwc-button>
+  <hr>
+  <vwc-text-field placeholder="My Placeholder" style="width: 130px;" appearance="ghost"></vwc-text-field>
+</vwc-action-group>
+```
+
+
+## Use cases
+#### fieldset with button
+```html preview
+<vwc-action-group shape="pill">
+   <vwc-text-field shape="pill" placeholder="My Action" appearance="ghost" style="width: 100px;"></vwc-text-field>
+   <hr>
+   <vwc-button shape="pill" icon="chevron-down-solid"></vwc-button>
 </vwc-action-group>
 ```
