@@ -26,17 +26,25 @@ const getComponentName = (outputPath) => {
 
 const getComponentData = (componentName) => jsonData.find(({ title }) => title == componentName);
 
+const wrapWithStyle = (code, classList) => {
+  const attrs = [];
+
+  if (classList.contains('block')) {
+    attrs.push('column-basis="block"');
+  }
+
+  return `
+    <script type="module" src="/assets/modules/components/layout/index.js"></script>
+    <vwc-layout ${attrs.join(' ')}>${code}</vwc-layout>
+  `;
+}
+
 const generateCodeBlockDemo = function(blockData) {
   let code = blockData.pre.querySelector('code')?.textContent;
 
-  const componentName = getComponentName(blockData.outputPath);
-  const data = getComponentData(componentName);
-  if (!data?.stripLayout) {
-    code = `
-      <script type="module" src="/assets/modules/components/layout/index.js"></script>
-      <vwc-layout gutters="small">${code}</vwc-layout>
-    `;
-  }
+  const { classList } = blockData.pre;
+
+  code = wrapWithStyle(code, classList);
 
   const { pre: { outerHTML: codeStr }, index, outputPath } = blockData;
 
@@ -45,7 +53,7 @@ const generateCodeBlockDemo = function(blockData) {
 
   const dom = new JSDOM(`<body>${getHtml(demoData)}</body>`);
 
-  return dom.window.document.querySelector(`.${CBD_BASE}`);
+  return dom.window.document.querySelector('vwc-elevation');
 };
 
 module.exports = function (content, outputPath) {

@@ -102,8 +102,7 @@
       "/assets/modules/components/icon/index.js",
       "/assets/modules/components/text/index.js",
       "/assets/modules/components/button/index.js"
-    ],
-    "stripLayout": true
+    ]
   },
   {
     "title": "sidenav-item",
