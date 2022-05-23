@@ -29,7 +29,7 @@ Use the `open` attribute to indicate whether the popup is open.
 - Type: `boolean`
 - Default: `false`
 
-```html
+```html preview
 <style>
   .content {
     width: 200px;
@@ -66,7 +66,7 @@ Add the `dismissible` attribute to add a close button to the popup.
 - Type: `boolean`
 - Default: `false`
 
-```html
+```html preview
 <style>
   .content {
     width: 120px;
@@ -101,7 +101,7 @@ Add the `arrow` attribute to add a small triangle to indicate the trigger elemen
 - Type: `boolean`
 - Default: `false`
 
-```html
+```html preview
 <style>
   .content {
     width: 200px;
@@ -130,7 +130,7 @@ Add the `alternate` attribute to set the color-scheme to dark or light (dependin
 - Type: `boolean`
 - Default: `false`
 
-```html
+```html preview
 <style>
   .content {
     width: 200px;
@@ -160,7 +160,7 @@ Use the `corner` attribute to set the placement of the popup around the anchor.
 - Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
 - Default: `'left'`
 
-```html
+```html preview
 <style>
   .contentWrapper{
     width: 70px;

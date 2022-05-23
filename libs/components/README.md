@@ -37,7 +37,7 @@ use:
 import '@vonage/vivid/button';
 ```
 
-```html
+```html preview
 <vwc-button label="Click me"></vwc-button>
 ```
 

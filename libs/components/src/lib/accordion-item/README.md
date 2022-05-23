@@ -11,7 +11,7 @@ Add the `heading` attribute to set the heading text.
 - Type: `string`
 - Default: `undefined`
   
-```html
+```html preview
   <vwc-accordion-item heading="accordion item with heading">
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -50,7 +50,7 @@ Use the `open` attribute to set the accordion-item's open state.
 - Type: `boolean`
 - Default: `false`
 
-```html
+```html preview
  <vwc-accordion-item heading="Click to toggle accordion item" open>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -63,7 +63,7 @@ Add the `no-indicator` attribute (or `noIndicator` property) to remove the indic
 - Type: `boolean`
 - Default: `false`
 
-```html
+```html preview
  <vwc-accordion-item heading="accordion item without indicator" no-indicator>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -76,7 +76,7 @@ Add the `meta` attribute to add metadata to the heading.
 - Type: `string`
 - Default: `undefined`
 
-```html
+```html preview
  <vwc-accordion-item heading="accordion item with metadata" meta="meta-data">
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -90,7 +90,7 @@ Add the `icon` attribute to add an icon to the heading.
 - Type: `string`
 - Default: `''`
 
-```html
+```html preview
  <vwc-accordion-item heading="accordion item with icon" icon="chat-solid">
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -104,7 +104,7 @@ Add the `icon-trailing` attribute (or `iconTrailing` property) to add an icon to
 - Type: `boolean`
 - Default: `false`
 
-```html
+```html preview
  <vwc-accordion-item heading="accordion item with icon-trailing" icon="chat-solid" icon-trailing>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
