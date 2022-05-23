@@ -1,8 +1,8 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
+import {Connotation} from '../enums';
+import {Icon} from '../icon/icon';
 import { Note } from './note';
 import '.';
-import {Icon} from '../icon/icon';
-import {Connotation} from '../enums';
 
 const COMPONENT_TAG = 'vwc-note';
 
