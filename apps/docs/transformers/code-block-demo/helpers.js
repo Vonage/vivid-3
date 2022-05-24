@@ -1,12 +1,12 @@
 const layoutFactorial = (...attrs) =>
   (code) => `
     <script type="module" src="/assets/modules/components/layout/index.js"></script>
-    <vwc-layout gutters="small" ${attrs.join(' ')}>${code}</vwc-layout>
+    <vwc-layout ${attrs.join(' ')}>${code}</vwc-layout>
 `;
 
-const inline = layoutFactorial();
-const blocks = layoutFactorial('column-basis="block"');
-const columns = layoutFactorial('column-basis="small"');
+const inline = layoutFactorial('gutters="small"');
+const blocks = layoutFactorial('gutters="small"', 'column-basis="block"');
+const columns = layoutFactorial('gutters="small"', 'column-basis="medium"');
 
 
 module.exports = (code, classList) => {

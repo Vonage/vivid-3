@@ -48,7 +48,7 @@ Use the `dp` attribute to change the elevation's level in Density-Independent Pi
 - Type: `0`|`2`|`4`|`8`|`12`|`16`|`24`
 - Default: `2`
 
-```html preview blocked
+```html preview blocks
 <style>
 .card {
  padding: 20px;
