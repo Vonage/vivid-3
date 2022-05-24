@@ -44,18 +44,7 @@ The `connotation` attribute sets the colors according to the wanted connotation.
 
 Note that icon, if not specifically set, defaults to a connotation-associated icon.
 
-const infoMessage = "I'm here to give you advice (Like, use the controls for options)";
-const announcementMessage = "I'm here to give you some info (Terms and Conditions changed... jk)";
-const successMessage = "I'm here to give you good news (Thanks for giving us money!)";
-const warningMessage = "I'm here to give you a warning (Your zip is down)";
-const alertMessage = "I'm here to tell you something's wrong (The horror, the horror)";
-
-```html preview full
-<style>
-vwc-banner {
-    clear: both;
-}
-</style>
+```html preview
 <vwc-banner text="Here's some information that you may find useful!" connotation="info"></vwc-banner>
 <vwc-banner text="Here's some information that you may find important!" connotation="announcement"></vwc-banner>
 <vwc-banner text="Operation Successful!" connotation="success"></vwc-banner>
