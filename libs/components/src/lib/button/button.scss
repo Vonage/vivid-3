@@ -29,10 +29,12 @@
 	box-sizing: border-box;
 	align-items: center;
 	border: 0 none;
+	margin: 0;
 	background-color: var(#{appearance.get-variable(fill)});
 	block-size: var(#{variables.$block-size});
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-variable(outline)});
 	color: var(#{appearance.get-variable(text)});
+	gap: var(#{variables.$icon-gap});
 	outline: 0 none;
 	vertical-align: middle;
 
@@ -96,26 +98,8 @@ $pill-selector: '.shape-pill:not(.stacked)';
 }
 
 /* Icon */
-
-.icon {
-	:not(.stacked):not(.icon-trailing) & {
-		margin-inline-end: var(#{variables.$icon-gap});
-	}
-
-	:not(.stacked).icon-trailing & {
-		margin-inline-start: var(#{variables.$icon-gap});
-	}
-
-	.stacked:not(.icon-trailing) & {
-		margin-block-end: var(#{variables.$icon-gap});
-	}
-
-	.stacked.icon-trailing & {
-		margin-block-start: var(#{variables.$icon-gap});
-	}
-
-	// stylelint-disable-next-line no-descending-specificity
-	.icon-trailing & {
+.icon-trailing {
+	.icon {
 		order: 1;
 	}
 }
