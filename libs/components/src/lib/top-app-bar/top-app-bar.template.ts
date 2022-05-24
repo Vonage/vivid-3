@@ -9,8 +9,10 @@ import '../button';
 import '../text-anchor';
 import type { TopAppBar } from './top-app-bar';
 
-const getClasses = (_: TopAppBar) => classNames(
+const getClasses = ({ fixed, dense }: TopAppBar) => classNames(
   'control',
+  ['fixed', fixed],
+  ['dense', dense],
 );
 
 /**

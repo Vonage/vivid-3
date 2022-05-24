@@ -8,15 +8,6 @@ import { attr } from '@microsoft/fast-element';
  */
 export class TopAppBar extends FoundationElement {  
   /**
-   *
-   *
-   * @public
-   *
-   * HTML Attribute: heading
-   */
-  @attr heading?: string;
-
-  /**
    * sets the top-app-bar to be fixed
    *
    * @public

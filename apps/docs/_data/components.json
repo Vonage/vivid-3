@@ -161,8 +161,8 @@
     "title": "top-app-bar",
     "markdown": "./libs/components/src/lib/top-app-bar/README.md",
     "modules": [
-      "/assets/modules/components/button/index.js",
-      "/assets/modules/components/banner/index.js"
+      "/assets/modules/components/top-app-bar/index.js",
+      "/assets/modules/components/button/index.js"
       ]
     }
 ]

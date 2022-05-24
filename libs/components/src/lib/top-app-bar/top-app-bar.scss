@@ -8,12 +8,15 @@ $height: 64px;
 
 	background-color: var(#{theme-consts.$vvd-color-canvas});
     display: flex;
-    position: fixed;
     flex-direction: column;
     justify-content: space-between;
     box-sizing: border-box;
     width: 100%;
     z-index: 4;
+
+    &.fixed {
+        position: fixed;
+    }
 
     .top-app-bar__row {
         display: flex;
