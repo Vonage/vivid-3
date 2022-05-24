@@ -7,6 +7,7 @@ const layoutFactorial = (...attrs) =>
 const inline = layoutFactorial('gutters="small"');
 const blocks = layoutFactorial('gutters="small"', 'column-basis="block"');
 const columns = layoutFactorial('gutters="small"', 'column-basis="medium"');
+const center = code => `<div class="demo-center">${code}</div>`;
 
 
 module.exports = (code, classList) => {
@@ -16,6 +17,9 @@ module.exports = (code, classList) => {
     return blocks(code);
   } else if (classList.contains('columns')) {
     return columns(code);
+  } else if (classList.contains('inline')) {
+  } else if (classList.contains('center')) {
+    return center(code);
   } else if (classList.contains('inline')) {
     return inline(`<div>${code}</div>`);
   } else { // default

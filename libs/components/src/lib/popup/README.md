@@ -1,4 +1,4 @@
-# popup
+# Popup
 
 Popup are used to display a message or notification to the user and are displayed on top of all other web page elements.
 Popup's goal is to provide additional, helpful content. To trigger the Popup, it should be paired with an anchor (e.g., a button). 
@@ -17,11 +17,9 @@ The popup is positioned absolutely to its anchor.  It is recommended to wrap it 
 - Type: `string`
 - Default: `''`
 
-```js
-<div class="wrapper" style="position:relative;">
-  <vwc-button id="anchor"></vwc-button>
-  <vwc-popup anchor="anchor"></vwc-popup>
-</div>
+```html preview
+<vwc-button label="Popup anchor" appearance="outline" id="anchor"></vwc-button>
+<vwc-popup anchor="anchor" open>Content goes here</vwc-popup>
 ```
 ## Open
 Use the `open` attribute to indicate whether the popup is open.
@@ -29,33 +27,16 @@ Use the `open` attribute to indicate whether the popup is open.
 - Type: `boolean`
 - Default: `false`
 
-```html preview
-<style>
-  .content {
-    width: 200px;
-    padding: 1rem;
-	}
-  .wrapper{
-    width: 100%;
-    height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-</style>
-<div class="wrapper">
-  <vwc-button id="anchor1" appearance='outlined' label='Click on me!'></vwc-button>
-  <vwc-popup id="popup" anchor="anchor1" open>
-      <div class="content">
-        <vwc-text tight font-face="body-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</vwc-text>
-      </div>
-  </vwc-popup>
-</div>
+```html preview center
+<vwc-button id="anchor" appearance='outlined' label='Click me!'></vwc-button>
+<vwc-popup id="popup" anchor="anchor" open>
+  <vwc-layout gutters="small" class="content" style="inline-size: 200px">
+    <vwc-text tight font-face="body-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</vwc-text>
+  </vwc-layout>
+</vwc-popup>
+
 <script>
-  anchor1.addEventListener('click', toggleOpen);
-  function toggleOpen() {
-	  popup.open = !popup.open;
-  }
+  anchor.addEventListener('click', () => popup.open = !popup.open);
 </script>
 ```
 
@@ -66,33 +47,18 @@ Add the `dismissible` attribute to add a close button to the popup.
 - Type: `boolean`
 - Default: `false`
 
-```html preview
-<style>
-  .content {
-    width: 120px;
-    padding: 1rem;
-	}
-  .wrapper{ 
-    width: 100%;
-    height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-</style>
-<div class="wrapper">
-  <vwc-button id="anchor2" appearance='outlined' label='Click on me!'></vwc-button>
-  <vwc-popup id="popup" anchor="anchor2" open dismissible>
-      <div class="content">
-        <vwc-text tight font-face="body-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</vwc-text>
-      </div>
-  </vwc-popup>
-</div>
+```html preview center
+<vwc-button id="anchor" appearance='outlined' label='Click on me!'></vwc-button>
+<vwc-popup id="popup" anchor="anchor" open dismissible>
+  <vwc-layout gutters="small" style="200px">
+    <div class="content">
+      <vwc-text tight font-face="body-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</vwc-text>
+    </div>
+  </vwc-layout>
+</vwc-popup>
+
 <script>
-  anchor2.addEventListener('click', toggleOpen);
-  function toggleOpen() {
-	  popup.open = !popup.open;
-  }
+  anchor.addEventListener('click', () => popup.open = !popup.open);
 </script>
 ```
 ## Arrow
@@ -114,7 +80,7 @@ Add the `arrow` attribute to add a small triangle to indicate the trigger elemen
     align-items: center;
     justify-content: center;
   }
-</style>
+</>
 <div class="wrapper">
   <vwc-icon id="anchor3" type='info-line'></vwc-icon>
   <vwc-popup anchor="anchor3" open arrow>

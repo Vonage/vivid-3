@@ -22,3 +22,11 @@ body {
 .demo-gradient.tight{
   padding: 0.2rem;
 }
+
+.demo-center {
+  block-size: 100%;
+  inline-size: 100%;
+  display: flex;
+  place-items: center;
+  place-content: center;
+}
