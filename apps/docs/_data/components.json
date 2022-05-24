@@ -156,5 +156,13 @@
       "/assets/modules/components/fab/index.js",
       "/assets/modules/components/layout/index.js"
     ]
-  }
+  },
+  {
+    "title": "top-app-bar",
+    "markdown": "./libs/components/src/lib/top-app-bar/README.md",
+    "modules": [
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/banner/index.js"
+      ]
+    }
 ]

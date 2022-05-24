@@ -27,13 +27,13 @@
     <script type="module" src="{{ '/assets/modules/components/side-drawer/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/sidenav-item/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/icon/index.js' | url}}"></script>
-    <script type="module" src="https://es6.dev.vivid.vonage.com/v2.22.1/@vonage/vwc-top-app-bar-fixed/vwc-top-app-bar-fixed.js"></script>
+    <script type="module" src="{{ '/assets/modules/components/top-app-bar/index.js' | url}}"></script>
 
     {% include "prefetches.njk" %}
   </head>
 
 <body>
-	<vwc-top-app-bar-fixed>
+	<vwc-top-app-bar>
     <div class="logo" slot="navigationIcon">
     <img src="../../../vivid-logo.svg" style="" alt="Vivid Logo" width="30">
       <h5>VIVID</h5>
@@ -63,7 +63,7 @@
         <br>
       </main>
 		</vwc-side-drawer>
-	</vwc-top-app-bar-fixed>
+	</vwc-top-app-bar>
 
 </body>
 

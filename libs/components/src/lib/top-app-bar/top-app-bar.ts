@@ -6,13 +6,31 @@ import { attr } from '@microsoft/fast-element';
  *
  * @public
  */
-export class TopAppBar extends FoundationElement {
+export class TopAppBar extends FoundationElement {  
   /**
-   * Indicates the text's text.
+   *
    *
    * @public
-   * @remarks
-   * HTML Attribute: text
+   *
+   * HTML Attribute: heading
    */
-  @attr text?: string;
+  @attr heading?: string;
+
+  /**
+   * sets the top-app-bar to be fixed
+   *
+   * @public
+   */
+  @attr({
+    mode: 'boolean',
+  }) fixed = false;
+
+  /**
+   * sets the top-app-bar to be dense
+   *
+   * @public
+   */
+  @attr({
+    mode: 'boolean',
+  }) dense = false;
 }

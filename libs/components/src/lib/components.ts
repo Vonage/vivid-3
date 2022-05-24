@@ -15,3 +15,4 @@ export * from './banner';
 export * from './accordion-item';
 export * from './accordion';
 export * from './fab';
+export * from './top-app-bar';
