@@ -6,7 +6,7 @@
 </script>
 ```
 
-```html preview
+```html preview full
 <vwc-accordion>
   <vwc-accordion-item heading="accordion item with heading">
     <vwc-text>content</vwc-text>
@@ -28,7 +28,7 @@ Add the `multi` attribute to the accordion to allow multiple items to be open at
 - Type: `boolean`
 - Default: `false`
 
-```html preview
+```html preview full
 <vwc-accordion multi>
   <vwc-accordion-item heading="accordion item with heading">
     <vwc-text>content</vwc-text>

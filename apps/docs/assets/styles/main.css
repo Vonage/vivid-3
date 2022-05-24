@@ -173,6 +173,7 @@ article .cbd-base {
   list-style: none;
 	text-align: end;
 	background-color: var(--vvd-color-neutral-10);
+  border-top: 1px solid var(--vvd-color-neutral-20);
 	padding: 8px;
 }
 
