@@ -74,9 +74,8 @@ const getHtml = (demoData) => {
         <iframe class="${CBD_DEMO}" src="${iframeSrc}" onload=onloadIframe(this) loading="lazy"></iframe>
         <details class="${CBD_DETAILS}">
             <summary>
-                <button class="${CBD_BUTTON_SHOW}" aria-expanded="false" aria-controls="${codeBlockId}">
-                    show code
-                </button>
+                <vwc-button label="source" icon="chevron-down-line" icon-trailing class="${CBD_BUTTON_SHOW}" aria-expanded="false" aria-controls="${codeBlockId}">
+                </vwc-button>
             </summary>
             <div class="${CBD_CODE_BLOCK}" role="region" id="${codeBlockId}">
                 ${demoData.codeStr}
