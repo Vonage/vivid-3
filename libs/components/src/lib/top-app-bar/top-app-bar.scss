@@ -2,6 +2,9 @@
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
 $height: 64px;
+$padding: 8px 12px;
+$padding-left: 20px;
+$padding-right: 0px;
 
 .control {
     @include typography.typography-cat-shorthand('subtitle-2');
@@ -30,7 +33,7 @@ $height: 64px;
             flex: 1 1 auto;
             align-items: center;
             min-width: 0px;
-            padding: 8px 12px;
+            padding: $padding;
             z-index: 1;
         }
 
@@ -39,9 +42,8 @@ $height: 64px;
             order: -1;
 
             .top-app-bar__title {
-                
-                padding-left: 20px;
-                padding-right: 0px;
+                padding-left: $padding-left;
+                padding-right: $padding-right;
                 text-overflow: ellipsis;
                 white-space: nowrap;
                 overflow: hidden;
@@ -57,5 +59,22 @@ $height: 64px;
 }
 
 .top-app-bar--fixed-adjust {
-    padding-top: $height;
+    padding-top: 64px;
 }
+
+// .control.density-condensed {
+//     .top-app-bar__row {
+//         height: 48px;
+
+//         .top-app-bar__section {
+//             padding: 0px 4px;
+//         }
+
+//         .top-app-bar__section--align-start {
+//             .top-app-bar__title {
+//                 padding-left: 12px;
+//                 padding-right: 0px;
+//             }
+//         }
+//     }
+// }

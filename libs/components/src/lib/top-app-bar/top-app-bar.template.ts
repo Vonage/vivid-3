@@ -5,14 +5,12 @@ import type {
   FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import '../button';
-import '../text-anchor';
 import type { TopAppBar } from './top-app-bar';
 
-const getClasses = ({ fixed, dense }: TopAppBar) => classNames(
+const getClasses = ({ fixed, density }: TopAppBar) => classNames(
   'control',
   ['fixed', fixed],
-  ['dense', dense],
+	[`density-${density}`, Boolean(density)],
 );
 
 /**
