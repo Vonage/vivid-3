@@ -14,19 +14,12 @@ body {
   margin: 0;
 }
 
-.demo-gradient{
+.demo-gradient {
   background-image: linear-gradient(to right, var(--vvd-color-info-30), var(--vvd-color-cta-30));
   padding: 8px;
   block-size: 100%;
 }
-.demo-gradient.tight{
-  padding: 0.2rem;
-}
 
-.demo-center {
-  block-size: 100%;
-  inline-size: 100%;
-  display: flex;
-  place-items: center;
-  place-content: center;
+.demo-gradient > hr{
+  border-color: var(--vvd-color-neutral-50);
 }

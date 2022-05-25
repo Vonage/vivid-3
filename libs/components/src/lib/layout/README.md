@@ -8,7 +8,7 @@ Using layout, elements can be arranged easily in a variety of sizes and spaces t
 </script>
 ```
 
-```html preview full
+```html preview
 <vwc-layout>
   <vwc-card heading="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
     <img slot="media" src="https://picsum.photos/id/1015/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;"/>
@@ -94,31 +94,28 @@ Use `block` to stack elements one above the other.
 
 ```html preview full
 <div class="demo-gradient">
-  <vwc-layout column-basis="small">
+  <vwc-layout gutters="small" column-basis="small">
     <vwc-card elevation="2" text="small"></vwc-card>
     <vwc-card elevation="2" text="small"></vwc-card>
     <vwc-card elevation="2" text="small"></vwc-card>
     <vwc-card elevation="2" text="small"></vwc-card>
   </vwc-layout>
-</div>
-<div class="demo-gradient">
-  <vwc-layout column-basis="medium">
+  <hr>
+  <vwc-layout gutters="small" column-basis="medium">
     <vwc-card elevation="2" text="medium"></vwc-card>
     <vwc-card elevation="2" text="medium"></vwc-card>
     <vwc-card elevation="2" text="medium"></vwc-card>
     <vwc-card elevation="2" text="medium"></vwc-card>
   </vwc-layout>
-</div>
-<div class="demo-gradient">
-  <vwc-layout column-basis="large">
+  <hr>
+  <vwc-layout gutters="small" column-basis="large">
     <vwc-card elevation="2" text="large"></vwc-card>
     <vwc-card elevation="2" text="large"></vwc-card>
     <vwc-card elevation="2" text="large"></vwc-card>
     <vwc-card elevation="2" text="large"></vwc-card>
   </vwc-layout>
-</div>
-<div class="demo-gradient">
-  <vwc-layout column-basis="block">
+  <hr>
+  <vwc-layout gutters="small" column-basis="block">
     <vwc-card elevation="2" text="block"></vwc-card>
     <vwc-card elevation="2" text="block"></vwc-card>
     <vwc-card elevation="2" text="block"></vwc-card>
@@ -146,8 +143,7 @@ With `fill`, everything is the same as `fit`, except empty tracks are not collap
     <vwc-card elevation="2" text="fit"></vwc-card>
     <vwc-card elevation="2" text="fit"></vwc-card>
   </vwc-layout>
-</div>
-<div class="demo-gradient">
+  <hr>
   <vwc-layout auto-sizing="fill">
     <vwc-card elevation="2" text="fill"></vwc-card>
     <vwc-card elevation="2" text="fill"></vwc-card>
@@ -172,16 +168,14 @@ Controls the grid-template-columns of the layout.
     <vwc-card elevation="2"></vwc-card>
     <vwc-card elevation="2"></vwc-card>
   </vwc-layout>
-</div>
-<div class="demo-gradient">
+  <hr>
   <vwc-layout style="--layout-grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));">
     <vwc-card elevation="2"></vwc-card>
     <vwc-card elevation="2"></vwc-card>
     <vwc-card elevation="2"></vwc-card>
     <vwc-card elevation="2"></vwc-card>
   </vwc-layout>
-</div>
-<div class="demo-gradient">
+  <hr>
   <vwc-layout style="--layout-grid-template-columns: 280px repeat(auto-fill, minmax(100px, 1fr));">
     <vwc-card elevation="2"></vwc-card>
     <vwc-card elevation="2"></vwc-card>
