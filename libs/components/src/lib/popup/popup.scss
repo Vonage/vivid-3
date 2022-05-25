@@ -1,10 +1,10 @@
 $popup-bg: --vvd-color-surface-4dp;
 
 .control {
-	inline-size: fit-content;
 	background-color: var(#{$popup-bg});
 	border-radius: inherit;
 	contain: layout;
+	inline-size: fit-content;
 
 	&:not(.open) {
 		display: none;
