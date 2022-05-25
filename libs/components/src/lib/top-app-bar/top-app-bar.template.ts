@@ -7,10 +7,11 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { TopAppBar } from './top-app-bar';
 
-const getClasses = ({ fixed, density }: TopAppBar) => classNames(
+const getClasses = ({ fixed, density, alternate }: TopAppBar) => classNames(
   'control',
   ['fixed', fixed],
   [`density-${density}`, Boolean(density)],
+  ['alternate', alternate],
 );
 
 /**
@@ -24,7 +25,7 @@ export const TopAppBarTemplate: (
   definition: FoundationElementDefinition
 ) => ViewTemplate<TopAppBar> = () => {
   return html<TopAppBar>`
-    <header class="${getClasses}">
+    <header class="${getClasses}" part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}">
         <section class="header-content start" id="navigation">
           <slot name="meta"></slot>
           ${when(x => x.heading, html<TopAppBar>`<span class="heading">${x => x.heading}</span>`)}

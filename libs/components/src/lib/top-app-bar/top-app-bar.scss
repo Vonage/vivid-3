@@ -8,6 +8,7 @@ $height: --_top-bar-height;
     --_top-bar-height: 64px;
 
 	background-color: var(#{theme-consts.$vvd-color-canvas});
+    color: var(#{theme-consts.$vvd-color-on-canvas});
     display: flex;
     justify-content: space-between;
     box-sizing: border-box;

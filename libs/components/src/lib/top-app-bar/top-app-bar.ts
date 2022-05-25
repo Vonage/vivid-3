@@ -41,4 +41,12 @@ export class TopAppBar extends FoundationElement {
    * HTML Attribute: size
    */
   @attr density?: TopAppBarDensity;
+  /**
+   * applies scheme alternate region
+   *
+   * @public
+   */
+  @attr({
+    mode: 'boolean',
+  }) alternate = false;
 }
