@@ -1,10 +1,9 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
-
-
 import type {
   Density,
 } from '../enums.js';
+
 /**
  * Types of top-app-bar density.
  *
@@ -18,6 +17,14 @@ type TopAppBarDensity = Extract<Density, Density.Condensed | Density.Normal>;
  */
 export class TopAppBar extends FoundationElement {
   /**
+   *
+   *
+   * @public
+   *
+   * HTML Attribute: heading
+   */
+  @attr heading?: string;
+  /**
    * sets the top-app-bar to be fixed
    *
    * @public
@@ -26,12 +33,12 @@ export class TopAppBar extends FoundationElement {
     mode: 'boolean',
   }) fixed = false;
 
-	/**
-	 * The size the top-app-bar's should have.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: size
-	 */
-   @attr density?: TopAppBarDensity;
+  /**
+   * The size the top-app-bar's should have.
+   *
+   * @public
+   * @remarks
+   * HTML Attribute: size
+   */
+  @attr density?: TopAppBarDensity;
 }

@@ -1,4 +1,4 @@
-import { html } from '@microsoft/fast-element';
+import { html, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
   ElementDefinitionContext,
@@ -10,7 +10,7 @@ import type { TopAppBar } from './top-app-bar';
 const getClasses = ({ fixed, density }: TopAppBar) => classNames(
   'control',
   ['fixed', fixed],
-	[`density-${density}`, Boolean(density)],
+  [`density-${density}`, Boolean(density)],
 );
 
 /**
@@ -27,7 +27,7 @@ export const TopAppBarTemplate: (
     <header class="${getClasses}">
         <section class="header-content start" id="navigation">
           <slot name="meta"></slot>
-          <span class="heading">lalala</span>
+          ${when(x => x.heading, html<TopAppBar>`<span class="heading">${x => x.heading}</span>`)}
         </section>
         <section class="header-content end" id="actions" role="toolbar">
           <slot name="actionItems"></slot>
@@ -38,4 +38,3 @@ export const TopAppBarTemplate: (
 	  </div>
 	`;
 };
-
