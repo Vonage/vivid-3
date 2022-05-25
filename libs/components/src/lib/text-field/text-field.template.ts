@@ -20,14 +20,12 @@ const getStateClasses = ({
 	appearance,
 	shape,
 	label,
-	icon
 }: TextField) => classNames(
 	['error', Boolean(errorValidationMessage)],
 	['disabled', disabled],
 	['active', Boolean(value)],
 	['readonly', readOnly],
 	['placeholder', Boolean(placeholder)],
-	['icon', Boolean(icon)],
 	[`density-${density}`, Boolean(density)],
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
@@ -65,10 +63,8 @@ function renderCharCount() {
  */
 function renderErrorMessage() {
 	return html<TextField>`
-	  <span class="error-message">
-		  <vwc-icon class="error-message-icon" type="info-negative"></vwc-icon>
-		  <span>${x => x.errorValidationMessage}</span>
-	  </span>
+    <vwc-icon class="error-message-icon" type="info-negative"></vwc-icon>
+    <span class="error-message">${x => x.errorValidationMessage}</span>
 	`;
 }
 
@@ -87,8 +83,8 @@ export const TextfieldTemplate: (
 
 	return html<TextField>`
 	<div class="base ${getStateClasses}">
-    ${when(x => x.label, renderLabel())}
     ${when(x => x.charCount && x.maxlength, renderCharCount())}
+    ${when(x => x.label, renderLabel())}
     <div class="fieldset">
       ${x => affixIconTemplate(x.icon)}
       <input class="control"

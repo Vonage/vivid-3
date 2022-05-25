@@ -11,22 +11,43 @@
 
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
 	$appearances: fieldset ghost,
-	$states: idle hover disabled,
+	$states: idle hover disabled error,
 	$default: fieldset,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
-// $block-size: --_block-size;
+$low-ink-color: #{theme-consts.$vvd-color-neutral-70};
 
-// :autofill
-// :placeholder-shown
 .base {
 	@include connotation.connotation;
+
+	// due to the fact :user-invalid proposal isn't supported by browsers yet,
+	// we apply appearance here instead of the input element itself.
+	// input element :invalid state isn't enough as our spec awaits user interaction
+	// before showing the error.
 	@include appearance.appearance;
 
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+	display: grid;
+	gap: 4px;
+	grid-template-columns: min-content 1fr max-content;
+}
+
+.label {
+	@include typography.typography-cat-shorthand('body-2');
+
+	color: var(#{theme-consts.$vvd-color-on-canvas});
+	grid-column: 1 / 4;
+	grid-row: 1;
+}
+
+.char-count {
+	@include typography.typography-cat-shorthand('body-2');
+
+	color: var(#{$low-ink-color});
+	grid-column: 3 / 4;
+	+ .label {
+		grid-column: 1 / 3;
+	}
 }
 
 .fieldset {
@@ -37,223 +58,89 @@
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-variable(outline)});
 	color: var(#{appearance.get-variable(text)});
 	contain: strict;
-	// cursor: text;
+	grid-column: 1 / 4;
 	padding-inline: 16px;
 	transition: color .2s, box-shadow .2s, background-color .2s;
+
+	/* Size */
+	.base:not(.density-extended) > & {
+		block-size: 40px;
+	}
+
+	.base.density-extended > & {
+		block-size: 48px;
+	}
+
+	/* Shape */
+	.base:not(.shape-pill) & {
+		border-radius: 6px;
+	}
+	.base.shape-pill & {
+		border-radius: 24px;
+	}
+
 }
 
 .control {
 	@include typography.typography-cat-shorthand('body-2');
 
-  // required to stretch fully so autofill indication applies on all fieldset region
+	// required to stretch fully so autofill indication applies on all fieldset region
 	position: absolute;
-
-	// to avoid autofill style hiding other elements
-	z-index: -1;
-	padding: 0;
-	background: unset;
+	padding: 1px;
+	border: 0 none;
+	background-color: unset;
+	border-radius: inherit;
 	color: var(#{theme-consts.$vvd-color-on-canvas});
-	inset: 1px;
-  border: 0 none;
+	inset: 0;
 	outline: 0 none;
-  border-radius: inherit;
+	padding-inline-start: 16px;
 
-  .base:not(.icon) & {
-    padding-inline-start: 16px;
-  }
-  .base.icon & {
-    padding-inline-start: 44px;
-  }
-
-  &::placeholder {
-    color: var(#{theme-consts.$vvd-color-neutral-70});
-  }
+	&::placeholder {
+		color: var(#{$low-ink-color});
+	}
 }
 
-.label {
-	@include typography.typography-cat-shorthand('body-2');
-  color: var(#{theme-consts.$vvd-color-on-canvas});
+.icon {
+
+	// to avoid autofill style hiding other elements
+	position: relative;
+	z-index: 1;
+	color: var(#{$low-ink-color});
+
+	+ .control {
+		padding-inline-start: 44px;
+	}
 }
 
 .helper-text {
 	@include typography.typography-cat-shorthand('caption');
-	margin-left: 16px;
-	color: var(#{theme-consts.$vvd-color-neutral-70});
+
+	color: var(#{$low-ink-color});
+	grid-column: 1 / 4;
+	margin-inline-start: 16px;
 }
 
 .error-message {
 	@include typography.typography-cat-shorthand('caption');
-	color: var(#{theme-consts.$vvd-color-on-canvas});
-	display: flex;
-	column-gap: 4px;
 
-  &-icon {
-    font-size: 16px;
-    color: var(#{theme-consts.$vvd-color-alert});
+	display: flex;
+	color: var(#{theme-consts.$vvd-color-on-canvas});
+	grid-column: 2 / 4;
+
+	&-icon {
+		color: var(#{theme-consts.$vvd-color-alert});
+		font-size: 16px;
+		grid-column: 1 / 2;
 	}
 }
 
-/* Size */
-
-.fieldset {
-  .base:not(.density-extended) > & {
-    block-size: 40px;
-  }
-
-  .base.density-extended > & {
-    block-size: 48px;
-  }
-}
-
-/* Shape */
-
-.fieldset {
-  .base:not(.shape-pill) & {
-    border-radius: 6px;
-  }
-  .base.shape-pill & {
-    border-radius: 24px;
-  }
-}
-
 .focus-indicator {
-  #{focus-variables.$focus-stroke-gap-color}: transparent;
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+	pointer-events: none;
 
 	.fieldset:not(:focus-within) > & {
 		display: none;
 	}
 
 }
-
-
-// .root {
-// 	display: flex;
-// 	flex-direction: column;
-
-// 	&.active,
-// 	&.placeholder,
-// 	:host(:focus) & {
-// 		.label {
-// 			transform: translateY(-7px);
-// 			@include typography.typography-cat-shorthand('caption')
-// 		}
-// 	}
-
-// 	&:where(:not(.placeholder, .active)) {
-// 		.label {
-// 			transform: translateY(0);
-// 			transition: transform 0.2s;
-// 			@include typography.typography-cat-shorthand('body-1');
-// 		}
-// 	}
-
-// 	&.no-label {
-// 		.control {
-
-// 		}
-// 	}
-// }
-
-// .form-field {
-// 	@include connotation.connotation;
-
-// 	position: relative;
-// 	height: var(#{$block-size});
-// 	box-sizing: border-box;
-// 	background-color: var(#{theme-consts.$vvd-color-canvas});
-// 	transition: border-color 0.2s;
-
-
-// 	:not(.shape-pill) & {
-// 		border-radius: 6px;
-// 	}
-// 	.shape-pill & {
-// 		border-radius: 24px;
-// 	}
-
-// 	:not(.appearance-ghost) & {
-// 		// border: 1px solid var(#{theme-consts.$vvd-color-neutral-40});
-// 	}
-
-// 	:not(.density-condensed) & {
-// 		--_block-size: 48px;
-// 	}
-
-// 	.density-condensed & {
-// 		--_block-size: 40px;
-// 	}
-
-// // ! should be added to appearance
-// // .error & {
-// // 		border: 1px solid var(#{theme-consts.$vvd-color-alert});
-// // 		background-color: var(#{theme-consts.$vvd-color-alert-10});
-// // 	}
-
-// // 	:not(.error, .disabled, .readonly) & {
-// // 		&:focus-visible,
-// // 		&:focus,
-// // 		&:hover {
-// // 			border-color: var(#{theme-consts.$vvd-color-primary});
-// // 		}
-// // 	}
-
-// // 	.disabled &,
-// // 	.readonly & {
-// // 		border: 1px solid var(#{theme-consts.$vvd-color-neutral-40});
-// // 		background-color: var(#{theme-consts.$vvd-color-neutral-20});
-// // 	}
-
-// // }
-
-
-// .control {
-// 	@include typography.typography-cat-shorthand('body-2');
-// 	@include appearance.appearance;
-
-// 	width: 100%;
-// 	height: 100%;
-// 	align-self: flex-end;
-// 	padding: 16px 16px 1px;
-// 	border: 0;
-// 	appearance: none;
-//   box-shadow: inset 0 0 0 1px var(#{appearance.get-variable(outline)});
-// 	background-color: var(#{appearance.get-variable(fill)});
-// 	color: var(#{appearance.get-variable(text)});
-// 	border-radius: inherit;
-// 	color: var(#{theme-consts.$vvd-color-neutral-90});
-// 	outline: 0;
-
-// 	.no-label & {
-// 		padding: 8px 16px;
-// 		@include typography.typography-cat-shorthand('body-1');
-// 	}
-
-// 	.disabled & {
-// 		color: var(#{theme-consts.$vvd-color-neutral-40});
-// 	}
-// }
-
-// .label {
-// 	@include typography.typography-cat-shorthand('body-1');
-
-// 	position: absolute;
-// 	top: 12px;
-// 	padding: 0 16px;
-// 	color: var(#{theme-consts.$vvd-color-neutral-70});
-// 	transform: translateY(0);
-
-// 	.disabled &,
-// 	.readonly &{
-// 		color: var(#{theme-consts.$vvd-color-neutral-40});
-// 	}
-// }
-
-
-
-
-// .char-count {
-// 	@include typography.typography-cat-shorthand('body-2');
-// 	align-self: flex-end;
-// 	margin-bottom: 4px;
-// 	color: var(#{theme-consts.$vvd-color-neutral-70});
-// }
