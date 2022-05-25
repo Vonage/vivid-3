@@ -20,7 +20,7 @@ The _elevation_ component enables a user to set perceived elevation to a certain
 
 <vwc-elevation id="elevation">
     <div id="card">
-        over me!
+        Hover me!
     </div>
 </vwc-elevation>
 
