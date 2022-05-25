@@ -8,7 +8,7 @@ An action group is a grouping of action buttons or form elements that are relate
 
 ```html preview
 <vwc-action-group>
-  <vwc-button icon="reply-line" appearance="filled"></vwc-button>
+  <vwc-button icon="reply-line"></vwc-button>
   <vwc-button label="copy"></vwc-button>
   <vwc-button label="paste"></vwc-button>
   <vwc-button label="submit"></vwc-button>
