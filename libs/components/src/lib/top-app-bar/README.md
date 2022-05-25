@@ -5,8 +5,8 @@
     import '@vonage/vivid/top-app-bar';
 </script>
 ```
-
-## Heading
+## Properties
+### Heading
 Add the `heading` attribute to set the heading text.
 
 - Type: `string`
@@ -145,6 +145,15 @@ To add content aside the side-drawer, add a slot called `app-content`.
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
 </vwc-text>
 ```
+
+## CSS Custom Properties
+### z-index
+To control the top-app-bar z-index if needed.
+
+- `--top-app-bar-z-index`
+
+- Type: `String`
+- Default: `undefined`
 
 
 ## Example Usage

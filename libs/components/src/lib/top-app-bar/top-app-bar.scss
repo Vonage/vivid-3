@@ -1,57 +1,68 @@
-@use 'partials/variables' as variables;
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use 'partials/variables' as variables;
 
-$height: --_top-bar-height;
-$z-index-default: 7;
+
+:host {
+	#{variables.$top-app-bar-height}: 64px;
+	#{variables.$top-app-bar-z-index}: 4;
+}
+
 
 .control {
-    @include typography.typography-cat-shorthand('subtitle-2');
-    --_top-bar-height: 64px;
+	@include typography.typography-cat-shorthand('subtitle-2');
 
+	z-index: var(#{variables.$top-app-bar-z-index});
+	display: flex;
+	width: 100%;
+	height: var(#{variables.$top-app-bar-height});
+	box-sizing: border-box;
+	justify-content: space-between;
+	padding: 8px 12px;
 	background-color: var(#{theme-consts.$vvd-color-canvas});
-    color: var(#{theme-consts.$vvd-color-on-canvas});
-    display: flex;
-    justify-content: space-between;
-    box-sizing: border-box;
-    width: 100%;
-	z-index: var(#{variables.$top-app-bar-z-index}, #{$z-index-default});
-    height: var(#{$height});
-    padding: 8px 12px;
-    column-gap: 12px;
+	color: var(#{theme-consts.$vvd-color-on-canvas});
+	column-gap: 12px;
 
-    &.fixed {
-        position: fixed;
-    }
+	&.fixed {
+		position: fixed;
+	}
 
-    .header-content {
-        display: inline-flex;
-        flex: 1;
-        align-items: center;
-    }
+	.header-content {
+		display: inline-flex;
+		flex: 1;
+		align-items: center;
+	}
 
-    .start {
-        justify-content: flex-start;
+	.start {
+		justify-content: flex-start;
 
-        .heading {
-            padding-left: 20px;
-        }
-    }
+		.heading {
+			padding-left: 20px;
+		}
+	}
 
-    .end {
-        justify-content: flex-end;
-    }
+	.end {
+		justify-content: flex-end;
+	}
+
+	&.density-condensed {
+		#{variables.$top-app-bar-height}: 48px;
+
+		padding: 0 4px;
+
+		.heading {
+			padding-left: 12px;
+		}
+
+		~ .app-content {
+			#{variables.$top-app-bar-height}: 48px;
+		}
+	}
+
 }
+
 
 .app-content {
-    padding-top: var(#{$height});;
+	padding-top: var(#{variables.$top-app-bar-height});
 }
 
-.control.density-condensed {
-    --_top-bar-height: 48px;
-
-    padding: 0px 4px;
-    .heading {
-        padding-left: 12px;
-    }
-}
