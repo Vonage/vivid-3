@@ -1,7 +1,7 @@
 $popup-bg: --vvd-color-surface-4dp;
 
 .control {
-	width: min-content;
+	width: fit-content;
 	background-color: var(#{$popup-bg});
 	border-radius: inherit;
 	contain: layout;
