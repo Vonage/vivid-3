@@ -8,58 +8,52 @@ Using layout, elements can be arranged easily in a variety of sizes and spaces t
 </script>
 ```
 
-```html preview columns
-<vwc-card heading="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
-  <img slot="media" src="https://picsum.photos/id/1015/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;"/>
-</vwc-card>
-<vwc-card heading="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
-  <img slot="media" src="https://picsum.photos/id/1016/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;"/>
-</vwc-card>
-<vwc-card heading="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
-  <img slot="media" src="https://picsum.photos/id/1018/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;"/>
-</vwc-card>
-<vwc-card heading="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
-  <img slot="media" src="https://picsum.photos/id/1019/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;"/>
-</vwc-card>
-<vwc-card heading="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
-  <img slot="media" src="https://picsum.photos/id/1055/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;"/>
-</vwc-card>
-<vwc-card heading="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
-  <img slot="media" src="https://picsum.photos/id/1050/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;"/>
-</vwc-card>
+```html preview full
+<vwc-layout>
+  <vwc-card heading="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+    <img slot="media" src="https://picsum.photos/id/1015/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;"/>
+  </vwc-card>
+  <vwc-card heading="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+    <img slot="media" src="https://picsum.photos/id/1016/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;"/>
+  </vwc-card>
+  <vwc-card heading="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+    <img slot="media" src="https://picsum.photos/id/1018/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;"/>
+  </vwc-card>
+  <vwc-card heading="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+    <img slot="media" src="https://picsum.photos/id/1019/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;"/>
+  </vwc-card>
+  <vwc-card heading="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+    <img slot="media" src="https://picsum.photos/id/1055/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;"/>
+  </vwc-card>
+  <vwc-card heading="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+    <img slot="media" src="https://picsum.photos/id/1050/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;"/>
+  </vwc-card>
+</vwc-layout>
 ```
 
-## Gutters
+## Properties
+
+### Gutters
 
 Use the `gutters` attribute to set the initial preferred `margin`.
 
 - Type: `'small'` | `'medium'` | `'large'`
-- Default: `'medium'`
+- Default: `undefined`
 
 ```html preview full
 <div class="demo-gradient">
   <vwc-layout>
     <vwc-card elevation="2" text="default"></vwc-card>
-    <vwc-card elevation="2" text="default"></vwc-card>
   </vwc-layout>
-</div>
-<div class="demo-gradient">
   <vwc-layout gutters="small">
     <vwc-card elevation="2" text="small"></vwc-card>
-    <vwc-card elevation="2" text="small"></vwc-card>
   </vwc-layout>
-</div>
-<div class="demo-gradient">
-<vwc-layout gutters="medium">
+  <vwc-layout gutters="medium">
     <vwc-card elevation="2" text="medium"></vwc-card>
-    <vwc-card elevation="2" text="medium"></vwc-card>
-</vwc-layout>
-</div>
-<div class="demo-gradient">
-<vwc-layout gutters="large">
-    <vwc-card elevation="2" text="large"></vwc-card>
-    <vwc-card elevation="2" text="large"></vwc-card>
-</vwc-layout>
+  </vwc-layout>
+  <vwc-layout gutters="large">
+      <vwc-card elevation="2" text="large"></vwc-card>
+  </vwc-layout>
 </div>
 ```
 
@@ -72,19 +66,18 @@ Use the `column-spacing` attribute to set the initial preferred `spacing` of a c
 
 ```html preview full
 <div class="demo-gradient tight">
-  <vwc-layout column-spacing="small">
+  <vwc-layout gutters="small" column-spacing="small">
+    <vwc-card elevation="2" text="small"></vwc-card>
     <vwc-card elevation="2" text="small"></vwc-card>
     <vwc-card elevation="2" text="small"></vwc-card>
   </vwc-layout>
-</div>
-<div class="demo-gradient tight">
-  <vwc-layout column-spacing="medium">
+  <vwc-layout gutters="small" column-spacing="medium">
+    <vwc-card elevation="2" text="medium"></vwc-card>
     <vwc-card elevation="2" text="medium"></vwc-card>
     <vwc-card elevation="2" text="medium"></vwc-card>
   </vwc-layout>
-</div>
-<div class="demo-gradient tight">
-  <vwc-layout column-spacing="large">
+  <vwc-layout gutters="small" column-spacing="large">
+    <vwc-card elevation="2" text="large"></vwc-card>
     <vwc-card elevation="2" text="large"></vwc-card>
     <vwc-card elevation="2" text="large"></vwc-card>
   </vwc-layout>
