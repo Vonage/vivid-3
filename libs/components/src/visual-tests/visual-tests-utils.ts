@@ -1,7 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import type {Page} from '@playwright/test';
-import * as extract from 'extract-gfm';
+import { JSDOM } from 'jsdom';
+import * as md from '../../../../apps/docs/libraries/markdown-it.js';
+
 
 /**
  * @param str
@@ -13,12 +15,22 @@ export function replaceAll(str: string, find: string, replace: string) {
 }
 
 /**
+ * @param html
+ */
+function getReadmeFileSnippets(html) {
+	const dom = new JSDOM(html);
+	const codes = dom.window.document.querySelectorAll('pre.preview > code');
+	return Array.from(codes).map((code) => code.textContent);
+}
+
+/**
  * @param pathToReadme
  */
 export function extractHTMLBlocksFromReadme(pathToReadme: string): string[] {
 	const readmeFileContents = fs.readFileSync(path.resolve(pathToReadme))
 		.toString();
-	const readmeFileSnippets = extract.extractBlocks(readmeFileContents);
+	const html = md.render(readmeFileContents);
+	const readmeFileSnippets = getReadmeFileSnippets(html);
 	return readmeFileSnippets.filter((block: any) => block.lang === 'html')
 		.map((block: any) => replaceAll(block.code.replace('preview', ''), '\n', ''));
 }
