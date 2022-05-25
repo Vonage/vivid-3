@@ -3,6 +3,7 @@ import * as path from 'path';
 import markdownIt from 'markdown-it';
 import { JSDOM } from 'jsdom';
 import type {Page} from '@playwright/test';
+import layout from '../../../../apps/docs/transformers/code-block-demo/layout.js';
 
 const md = markdownIt({
 	html: true,
@@ -23,10 +24,9 @@ export function replaceAll(str: string, find: string, replace: string) {
 /**
  * @param html
  */
-function getReadmeFileSnippets(html) {
+function getPreElements(html): NodeListOf<HTMLPreElement> {
 	const dom = new JSDOM(html);
-	const codes = dom.window.document.querySelectorAll('pre.preview');
-	return Array.from(codes).map((code) => code.innerHTML);
+	return dom.window.document.querySelectorAll('pre.preview');
 }
 
 /**
@@ -36,7 +36,10 @@ export function extractHTMLBlocksFromReadme(pathToReadme: string): string[] {
 	const readmeFileContents = fs.readFileSync(path.resolve(pathToReadme))
 		.toString();
 	const html = md.render(readmeFileContents);
-	return getReadmeFileSnippets(html);
+	const preElements = getPreElements(html);
+	return Array.from(preElements).map(({ innerHTML, classList }) =>
+		layout(innerHTML, classList)
+	);
 }
 
 const defaultStyles = [

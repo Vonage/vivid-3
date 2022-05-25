@@ -3,7 +3,7 @@ const { decode } = require("html-entities");
 const fs = require('fs');
 const path = require('path');
 const jsonData = require('../../_data/components.json');
-const wrapWithStyle = require('./helpers');
+const layout = require('./layout');
 
 const ELEVENTY_HTML_CODE_BLOCK_SELECTOR = 'pre.preview > code';
 const CBD_BASE = 'cbd-base';
@@ -28,7 +28,7 @@ const generateCodeBlockDemo = function(blockData) {
 
   const { classList } = blockData.pre;
 
-  code = wrapWithStyle(code, classList);
+  code = layout(code, classList);
 
   const { pre: { outerHTML: codeStr }, index, outputPath } = blockData;
 
