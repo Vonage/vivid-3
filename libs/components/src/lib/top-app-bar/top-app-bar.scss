@@ -1,7 +1,9 @@
+@use 'partials/variables' as variables;
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
 $height: --_top-bar-height;
+$z-index-default: 7;
 
 .control {
     @include typography.typography-cat-shorthand('subtitle-2');
@@ -13,7 +15,7 @@ $height: --_top-bar-height;
     justify-content: space-between;
     box-sizing: border-box;
     width: 100%;
-    z-index: 4;
+	z-index: var(#{variables.$top-app-bar-z-index}, #{$z-index-default});
     height: var(#{$height});
     padding: 8px 12px;
     column-gap: 12px;

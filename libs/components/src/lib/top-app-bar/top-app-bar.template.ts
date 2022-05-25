@@ -35,7 +35,7 @@ export const TopAppBarTemplate: (
         </section>
     </header>
     <div class="app-content">
-		  <slot></slot>
+		  <slot name="app-content"></slot>
 	  </div>
 	`;
 };

@@ -162,7 +162,10 @@
     "markdown": "./libs/components/src/lib/top-app-bar/README.md",
     "modules": [
       "/assets/modules/components/top-app-bar/index.js",
-      "/assets/modules/components/button/index.js"
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/text/index.js",
+      "/assets/modules/components/side-drawer/index.js",
+      "/assets/modules/components/sidenav-item/index.js"
       ]
     }
 ]
