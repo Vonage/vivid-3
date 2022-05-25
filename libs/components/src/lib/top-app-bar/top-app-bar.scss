@@ -1,80 +1,54 @@
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
-$height: 64px;
-$padding: 8px 12px;
-$padding-left: 20px;
-$padding-right: 0px;
+$height: --_top-bar-height;
 
 .control {
     @include typography.typography-cat-shorthand('subtitle-2');
+    --_top-bar-height: 64px;
 
 	background-color: var(#{theme-consts.$vvd-color-canvas});
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
     box-sizing: border-box;
     width: 100%;
-    z-index: 4;
+    z-index: 1;
+    height: var(#{$height});
+    padding: 8px 12px;
+    column-gap: 12px;
 
     &.fixed {
         position: fixed;
     }
 
-    .top-app-bar__row {
-        display: flex;
-        position: relative;
-        box-sizing: border-box;
-        width: 100%;
-        height: $height;
+    .header-content {
+        display: inline-flex;
+        flex: 1;
+        align-items: center;
+    }
 
-        .top-app-bar__section {
-            display: inline-flex;
-            flex: 1 1 auto;
-            align-items: center;
-            min-width: 0px;
-            padding: $padding;
-            z-index: 1;
+    .start {
+        justify-content: flex-start;
+
+        .heading {
+            padding-left: 20px;
         }
+    }
 
-        .top-app-bar__section--align-start {
-            justify-content: flex-start;
-            order: -1;
-
-            .top-app-bar__title {
-                padding-left: $padding-left;
-                padding-right: $padding-right;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                overflow: hidden;
-                z-index: 1;
-            }
-        }
-
-        .top-app-bar__section--align-end {
-            justify-content: flex-end;
-            order: 1;
-        }
+    .end {
+        justify-content: flex-end;
     }
 }
 
-.top-app-bar--fixed-adjust {
-    padding-top: 64px;
+.app-content {
+    padding-top: var(#{$height});;
 }
 
-// .control.density-condensed {
-//     .top-app-bar__row {
-//         height: 48px;
+.control.density-condensed {
+    --_top-bar-height: 48px;
 
-//         .top-app-bar__section {
-//             padding: 0px 4px;
-//         }
-
-//         .top-app-bar__section--align-start {
-//             .top-app-bar__title {
-//                 padding-left: 12px;
-//                 padding-right: 0px;
-//             }
-//         }
-//     }
-// }
+    padding: 0px 4px;
+    .heading {
+        padding-left: 12px;
+    }
+}

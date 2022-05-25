@@ -8,7 +8,7 @@
 
 ```html preview
 <vwc-top-app-bar>
-    <vwc-button slot="navigationIcon" icon="menu-line"></vwc-button>
+    <vwc-button slot="meta" icon="menu-line"></vwc-button>
     <span slot="title">Top App Bar</span>
     <div slot="actionItems">
         <vwc-button icon="twitter-mono"></vwc-button>
@@ -28,7 +28,7 @@ Use the `density` attribute to set the top-app-bar's to one of the predefined bl
 
 ```html preview
 <vwc-top-app-bar density='condensed'>
-    <vwc-button slot="navigationIcon" icon="menu-line"></vwc-button>
+    <vwc-button slot="meta" icon="menu-line"></vwc-button>
     <span slot="title">Top App Bar</span>
     <div slot="actionItems">
         <vwc-button icon="twitter-mono"></vwc-button>
