@@ -100,21 +100,18 @@ Use `block` to stack elements one above the other.
     <vwc-card elevation="2" text="small"></vwc-card>
     <vwc-card elevation="2" text="small"></vwc-card>
   </vwc-layout>
-  <hr>
   <vwc-layout gutters="small" column-basis="medium">
     <vwc-card elevation="2" text="medium"></vwc-card>
     <vwc-card elevation="2" text="medium"></vwc-card>
     <vwc-card elevation="2" text="medium"></vwc-card>
     <vwc-card elevation="2" text="medium"></vwc-card>
   </vwc-layout>
-  <hr>
   <vwc-layout gutters="small" column-basis="large">
     <vwc-card elevation="2" text="large"></vwc-card>
     <vwc-card elevation="2" text="large"></vwc-card>
     <vwc-card elevation="2" text="large"></vwc-card>
     <vwc-card elevation="2" text="large"></vwc-card>
   </vwc-layout>
-  <hr>
   <vwc-layout gutters="small" column-basis="block">
     <vwc-card elevation="2" text="block"></vwc-card>
     <vwc-card elevation="2" text="block"></vwc-card>
@@ -143,7 +140,6 @@ With `fill`, everything is the same as `fit`, except empty tracks are not collap
     <vwc-card elevation="2" text="fit"></vwc-card>
     <vwc-card elevation="2" text="fit"></vwc-card>
   </vwc-layout>
-  <hr>
   <vwc-layout auto-sizing="fill">
     <vwc-card elevation="2" text="fill"></vwc-card>
     <vwc-card elevation="2" text="fill"></vwc-card>
@@ -168,14 +164,12 @@ Controls the grid-template-columns of the layout.
     <vwc-card elevation="2"></vwc-card>
     <vwc-card elevation="2"></vwc-card>
   </vwc-layout>
-  <hr>
   <vwc-layout style="--layout-grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));">
     <vwc-card elevation="2"></vwc-card>
     <vwc-card elevation="2"></vwc-card>
     <vwc-card elevation="2"></vwc-card>
     <vwc-card elevation="2"></vwc-card>
   </vwc-layout>
-  <hr>
   <vwc-layout style="--layout-grid-template-columns: 280px repeat(auto-fill, minmax(100px, 1fr));">
     <vwc-card elevation="2"></vwc-card>
     <vwc-card elevation="2"></vwc-card>

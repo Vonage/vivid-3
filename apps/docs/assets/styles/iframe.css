@@ -19,7 +19,3 @@ body {
   padding: 8px;
   block-size: 100%;
 }
-
-.demo-gradient > hr{
-  border-color: var(--vvd-color-neutral-50);
-}
