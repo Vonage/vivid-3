@@ -2,7 +2,7 @@
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: cta brand alert success,
-  $shades: primary,
+	$shades: primary,
 	$default: brand,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
@@ -23,6 +23,7 @@ $rounded-border-radius: 3px;
 	&.connotation-pacific {
 		$start: var(#{theme-consts.$vvd-color-info-30});
 		$end: var(#{theme-consts.$vvd-color-cta-70});
+
 		#{connotation.get-connotation-token(primary)}: linear-gradient(to right, $start, $end);
 	}
 }

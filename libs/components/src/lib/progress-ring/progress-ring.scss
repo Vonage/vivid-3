@@ -5,7 +5,7 @@
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: cta brand alert success,
-  $shades: primary,
+	$shades: primary,
 	$default: brand
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
@@ -26,9 +26,9 @@ $default-density: list.nth($density, 6);
 
 	align-items: center;
 	block-size: var(#{variables.$progress-ring-density});
+	color: var(#{appearance.get-appearance-token(text)});
 	inline-size: var(#{variables.$progress-ring-density});
 	outline: none;
-  color: var(#{appearance.get-appearance-token(text)});
 
 	@include utils.spread-list-selectors('.density', $density, $default-density) using($value) {
 		#{variables.$progress-ring-density}: calc(#{$value} * 4px);
