@@ -2,7 +2,7 @@
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const markdownItAnchorOptions = require("./markdown-it-anchor-options");
-const highlight = require("./highlight");
+const highlight = require("./markdown-it-highlight");
 
 /* Markdown Overrides */
 module.exports = markdownIt({
