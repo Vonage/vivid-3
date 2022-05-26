@@ -12,11 +12,11 @@ Add the `heading` attribute to set the heading text.
 - Default: `undefined`
   
 ```html preview
-  <vwc-accordion-item heading="accordion item with heading">
-    <vwc-text font-face="body-1">
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    </vwc-text>
-  </vwc-accordion-item>
+<vwc-accordion-item heading="accordion item with heading">
+  <vwc-text font-face="body-1">
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+  </vwc-text>
+</vwc-accordion-item>
 ```
 
 ## Heading-Level
