@@ -24,11 +24,11 @@
     ]
   },
   {
-  "title": "banner",
-  "markdown": "./libs/components/src/lib/banner/README.md",
-  "modules": [
-    "/assets/modules/components/button/index.js",
-    "/assets/modules/components/banner/index.js"
+    "title": "banner",
+    "markdown": "./libs/components/src/lib/banner/README.md",
+    "modules": [
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/banner/index.js"
     ]
   },
   {
@@ -90,7 +90,8 @@
       "/assets/modules/components/popup/index.js",
       "/assets/modules/components/button/index.js",
       "/assets/modules/components/icon/index.js",
-      "/assets/modules/components/text/index.js"
+      "/assets/modules/components/text/index.js",
+      "/assets/modules/components/layout/index.js"
     ]
   },
   {
@@ -150,11 +151,18 @@
     ]
   },
   {
-     "title": "fab",
+    "title": "fab",
     "markdown": "./libs/components/src/lib/fab/README.md",
     "modules": [
       "/assets/modules/components/fab/index.js",
       "/assets/modules/components/layout/index.js"
+    ]
+  },
+  {
+    "title": "note",
+    "markdown": "./libs/components/src/lib/note/README.md",
+    "modules": [
+      "/assets/modules/components/note/index.js"
     ]
   },
   {
@@ -166,6 +174,6 @@
       "/assets/modules/components/text/index.js",
       "/assets/modules/components/side-drawer/index.js",
       "/assets/modules/components/sidenav-item/index.js"
-      ]
-    }
+    ]
+  }
 ]
