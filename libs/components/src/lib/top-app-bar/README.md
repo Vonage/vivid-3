@@ -14,11 +14,10 @@ Add the `heading` attribute to set the heading text.
 - Type: `string`
 - Default: `undefined`
 
-```html preview
+```html preview full
 <style>
     body {
         background-color: var(--vvd-color-neutral-10);
-        margin:0;
     }
 </style>
 <vwc-top-app-bar heading="Top App Bar"></vwc-top-app-bar>
@@ -30,11 +29,10 @@ Add the `fixed` attribute to set the top-app-bar's position to be fixed.
 - Type: `boolean`
 - Default: `false`
 
-```html preview
+```html preview full
 <style>
     body {
         background-color: var(--vvd-color-neutral-10);
-        margin:0;
     }
 </style>
 <vwc-top-app-bar heading="Fixed Top App Bar" fixed></vwc-top-app-bar>
@@ -47,11 +45,10 @@ Add the `alternate` attribute to set the color-scheme to dark or light (dependin
 - Type: `boolean`
 - Default: `false`
 
-```html preview
+```html preview full
 <style>
     body {
         background-color: var(--vvd-color-neutral-10);
-        margin:0;
     }
 </style>
 <vwc-top-app-bar heading="Alternate Top App Bar" alternate></vwc-top-app-bar>
@@ -66,11 +63,10 @@ The `meta` slot is for action content next to the heading.
 <vwc-button slot="meta" icon="menu-line"></vwc-button>
 ```
 
-```html preview
+```html preview full
 <style>
     body {
         background-color: var(--vvd-color-neutral-10);
-        margin:0;
     }
 </style>
 
@@ -90,11 +86,10 @@ Action items are displayed at the end of the top-app bar in the `actionItems` sl
 </div>
 ```
 
-```html preview
+```html preview full
 <style>
     body {
         background-color: var(--vvd-color-neutral-10);
-        margin:0;
     }
 </style>
 
@@ -118,11 +113,11 @@ To add content aside the side-drawer, add a slot called `app-content`.
     </vwc-text>
 </div>
 ```
-```html preview
+```html preview full
 <style>
     body {
         background-color: var(--vvd-color-neutral-10);
-        margin:0;
+        max-block-size: 500px;
     }
 </style>
 <vwc-top-app-bar heading="With App-content"></vwc-top-app-bar>
@@ -156,10 +151,9 @@ Controls the height of the top-app-bar.
 
 This is an example of an `alternate`, `fixed` top-app-bar with the `meta`, `actionItems` and `app-content` slots.
 
-```html preview
+```html preview full
 <style>
     body {
-        margin:0;
     }
     vwc-side-drawer#sideDrawer{
         block-size: calc(100vh - var(--top-app-bar-height));
