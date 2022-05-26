@@ -2,10 +2,10 @@
 
 
 .control {
-	width: min-content;
 	background-color: var(#{utils.get-color-token(surface-4dp)});
 	border-radius: inherit;
 	contain: layout;
+	inline-size: fit-content;
 
 	&:not(.open) {
 		display: none;

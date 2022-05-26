@@ -133,7 +133,17 @@ The number of lines are controlled by css variable:
 
 
 ```html preview
-<div style="width: 300px; height: 250px;">
-<vwc-card style="--heading-line-clamp: 1; --subheading-line-clamp: 2;" heading="Vivid Card Component with long heading to trim" subheading="extra text to the card heading that is set to be trimmed after 2 lines so the card will not be too long"></vwc-card>
-</div>
+<style>
+  --heading-line-clamp: 1;
+  --subheading-line-clamp: 2;
+
+  display: block;
+  inline-size: 42ch;
+</style>
+
+<vwc-card
+  heading="Vivid Card Component with long heading to trim"
+  subheading="extra text to the card heading that is set to be trimmed after 2 lines so the card will not be too long"
+>
+</vwc-card>
 ```
