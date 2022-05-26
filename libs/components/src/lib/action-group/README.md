@@ -1,6 +1,7 @@
 # Action-group
 
-An action group is a grouping of action buttons or form elements that are related to each other.
+Action group is a visible boundary containing action buttons or other form elements, related to each other.
+Note: this element is purely a visual presentation and have no semantic meaning.
 
 ```js
 <script type="module">import '@vonage/vivid/action-group';</script>
