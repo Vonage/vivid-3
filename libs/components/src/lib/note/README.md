@@ -44,7 +44,7 @@ It accepts a subset of predefined values.
 - Type: `'success'` | `'alert'` | `'warning'` | `'info'` | `'announcement'`
 - Default: `'announcement'`
 
-```html preview
+```html preview blocks
 <vwc-note connotation="alert" heading="alert note"></vwc-note>
 <vwc-note connotation="success" heading="success note"></vwc-note>
 <vwc-note connotation="warning" heading="warning note"></vwc-note>
