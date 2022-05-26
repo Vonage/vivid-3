@@ -44,7 +44,7 @@
 	gap: 4px;
 	text-align: start;
 
-	.header {
+	.heading {
 		@include typography.typography-cat-shorthand('body-2-bold');
 	}
 

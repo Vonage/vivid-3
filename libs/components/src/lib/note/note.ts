@@ -16,13 +16,13 @@ export type NoteConnotation =
  */
 export class Note extends FoundationElement {
 	/**
-	 * Indicates the note's header text
+	 * Indicates the note's heading text
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: header
+	 * HTML Attribute: heading
 	 */
-	@attr header?: string;
+	@attr heading?: string;
 
 	@attr connotation?: NoteConnotation;
 }
