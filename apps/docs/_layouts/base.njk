@@ -12,8 +12,20 @@
     <link rel="preload" href="https://fonts.resources.vonage.com/fonts/v1/Spezia_Web_Complete_Upright.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="{{ '/assets/styles/fonts/spezia.css' | url }}">
 
-    <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-tomorrow.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ '/assets/styles/main.css' | url }}">
+    <!-- Load styles inline -->
+    {% set highlightCss %}
+      {% include "../../../node_modules/highlight.js/styles/github.css" %}
+    {% endset %}
+
+    {% set mainCss %}
+      {% include "../assets/styles/main.css" %}
+    {% endset %}
+
+    <style>
+      {{ highlightCss | cssmin | safe }}
+      {{ mainCss | cssmin | safe }}
+    </style>
+
     <link rel="stylesheet" href="{{ '/assets/styles/themes/light.css' | url }}" media="(prefers-color-scheme: light)">
     <link rel="stylesheet" href="{{ '/assets/styles/themes/dark.css' | url }}" media="(prefers-color-scheme: dark)">
 
@@ -27,6 +39,7 @@
     <script type="module" src="{{ '/assets/modules/components/side-drawer/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/sidenav-item/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/icon/index.js' | url}}"></script>
+    <script type="module" src="{{ '/assets/modules/components/elevation/index.js' | url}}"></script>
     <script type="module" src="https://es6.dev.vivid.vonage.com/v2.22.1/@vonage/vwc-top-app-bar-fixed/vwc-top-app-bar-fixed.js"></script>
 
     {% include "prefetches.njk" %}
