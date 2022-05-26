@@ -20,7 +20,7 @@ An action group is a grouping of action buttons or form elements that are relate
 ### Appearance
 Set the `appearance` attribute to change the action-Group's appearance.
 
-- Type: `'ghost'` | `'fieldset'`
+- Type: `'fieldset'` | `'ghost'`
 - Default: `'fieldset'`
 
 ```html preview
