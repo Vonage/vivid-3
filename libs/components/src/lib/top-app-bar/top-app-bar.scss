@@ -5,7 +5,7 @@
 
 :host {
 	#{variables.$top-app-bar-height}: 64px;
-	#{variables.$top-app-bar-z-index}: 4;
+	#{variables.$top-app-bar-z-index}: 7;
 }
 
 
@@ -44,23 +44,7 @@
 	.end {
 		justify-content: flex-end;
 	}
-
-	&.density-condensed {
-		#{variables.$top-app-bar-height}: 48px;
-
-		padding: 0 4px;
-
-		.heading {
-			padding-left: 12px;
-		}
-
-		~ .app-content {
-			#{variables.$top-app-bar-height}: 48px;
-		}
-	}
-
 }
-
 
 .app-content {
 	padding-top: var(#{variables.$top-app-bar-height});

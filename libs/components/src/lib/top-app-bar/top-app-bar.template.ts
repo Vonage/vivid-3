@@ -7,10 +7,9 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { TopAppBar } from './top-app-bar';
 
-const getClasses = ({ fixed, density, alternate }: TopAppBar) => classNames(
+const getClasses = ({ fixed, alternate }: TopAppBar) => classNames(
   'control',
   ['fixed', fixed],
-  [`density-${density}`, Boolean(density)],
   ['alternate', alternate],
 );
 

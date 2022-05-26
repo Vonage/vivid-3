@@ -5,7 +5,9 @@
     import '@vonage/vivid/top-app-bar';
 </script>
 ```
+
 ## Properties
+
 ### Heading
 Add the `heading` attribute to set the heading text.
 
@@ -22,24 +24,7 @@ Add the `heading` attribute to set the heading text.
 <vwc-top-app-bar heading="Top App Bar"></vwc-top-app-bar>
 ```
 
-## Density
-
-Use the `density` attribute to set the top-app-bar's to one of the predefined block size extent.
-
-- Type: `'condensed'` | `'normal'`
-- Default: `'normal'`
-
-```html preview
-<style>
-    body {
-        background-color: var(--vvd-color-neutral-10);
-        margin:0;
-    }
-</style>
-<vwc-top-app-bar heading="Condensed Top App Bar" density='condensed'></vwc-top-app-bar>
-```
-
-## Fixed
+### Fixed
 Add the `fixed` attribute to set the top-app-bar's position to be fixed.
 
 - Type: `boolean`
@@ -55,7 +40,7 @@ Add the `fixed` attribute to set the top-app-bar's position to be fixed.
 <vwc-top-app-bar heading="Fixed Top App Bar" fixed></vwc-top-app-bar>
 ```
 
-## Alternate
+### Alternate
 
 Add the `alternate` attribute to set the color-scheme to dark or light (depending on current user's system settings).
 
@@ -146,21 +131,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac 
 </vwc-text>
 ```
 
-## CSS Custom Properties
-### z-index
-To control the top-app-bar z-index if needed.
-
-- `--top-app-bar-z-index`
-
-- Type: `String`
-- Default: `undefined`
-
-
 ## Example Usage
 
 ### With Side-Drawer
 
-This is an example of an `alternate`, `fixed`, `condensed` top-app-bar with the `meta`, `actionItems` and `app-content` slots.
+This is an example of an `alternate`, `fixed` top-app-bar with the `meta`, `actionItems` and `app-content` slots.
 
 ```html preview
 <style>
@@ -173,7 +148,7 @@ This is an example of an `alternate`, `fixed`, `condensed` top-app-bar with the 
         --side-drawer-inline-size: 200px;
     }
 </style>
-<vwc-top-app-bar fixed alternate density='condensed' heading="Top App Bar with Side Drawer">
+<vwc-top-app-bar fixed alternate heading="Top App Bar with Side Drawer">
     <vwc-button slot="meta" icon="menu-line"></vwc-button>
     <div slot="actionItems">
         <vwc-button icon="twitter-mono"></vwc-button>
@@ -198,3 +173,12 @@ This is an example of an `alternate`, `fixed`, `condensed` top-app-bar with the 
     </vwc-side-drawer>
 </vwc-top-app-bar>
 ```
+
+## CSS Custom Properties
+
+### Z-index
+- `--top-app-bar-z-index`
+- Type: `Number`
+- Default: `7`
+
+Controls the z-index of the side drawer.   
