@@ -131,6 +131,25 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac 
 </vwc-text>
 ```
 
+## CSS Custom Properties
+
+### Z-index
+
+Controls the z-index of the top-app-bar.   
+
+- `--top-app-bar-z-index`
+- Type: `Number`
+- Default: `7`
+
+### Height
+
+Controls the height of the top-app-bar.  
+
+- `--top-app-bar-height`
+- Type: `Number`
+- Default: `64px`
+
+
 ## Example Usage
 
 ### With Side-Drawer
@@ -143,7 +162,7 @@ This is an example of an `alternate`, `fixed` top-app-bar with the `meta`, `acti
         margin:0;
     }
     vwc-side-drawer#sideDrawer{
-        block-size: calc(100vh - 48px);
+        block-size: calc(100vh - var(--top-app-bar-height));
         --side-drawer-background-color: var(--vvd-color-neutral-10);
         --side-drawer-inline-size: 200px;
     }
@@ -173,12 +192,3 @@ This is an example of an `alternate`, `fixed` top-app-bar with the `meta`, `acti
     </vwc-side-drawer>
 </vwc-top-app-bar>
 ```
-
-## CSS Custom Properties
-
-### Z-index
-- `--top-app-bar-z-index`
-- Type: `Number`
-- Default: `7`
-
-Controls the z-index of the side drawer.   
