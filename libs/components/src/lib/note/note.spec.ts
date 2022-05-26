@@ -56,7 +56,7 @@ describe('vwc-note', () => {
 
 	it('should set icon type according to connotation', async function() {
 		const iconElement = element.shadowRoot?.querySelector('.icon') as Icon;
-	  element.connotation = Connotation.Info;
+		element.connotation = Connotation.Info;
 		await elementUpdated(element);
 		expect(iconElement.type).toEqual('info-solid');
 	});
