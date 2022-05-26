@@ -8,9 +8,12 @@
 
 ```html preview
 <vwc-note connotation="success"
-          icon="check-circle"
-          heading="Pascal's theological argument">
-    Pascal argues that a rational person should live as though God exists and seek to believe in God. If God does not actually exist, such a person will have only a finite loss (some pleasures, luxury, etc.), whereas if God does exist, he stands to receive infinite gains (as represented by eternity in Heaven) and avoid infinite losses (eternity in Hell).
+		  icon="check-circle"
+		  heading="Pascal's theological argument">
+	Pascal argues that a rational person should live as though God exists and seek to believe in God. If God does not
+	actually exist, such a person will have only a finite loss (some pleasures, luxury, etc.), whereas if God does
+	exist, he stands to receive infinite gains (as represented by eternity in Heaven) and avoid infinite losses
+	(eternity in Hell).
 </vwc-note>
 ```
 
@@ -59,8 +62,8 @@ Any slotted content will appear below the heading.
 
 ```html preview
 <vwc-note icon="home"
-          heading="Note Heading"
-          connotation="info">
-          <p>This is the text that explains about something important!</p>
-          </vwc-note>
+		  heading="Note Heading"
+		  connotation="info">
+	<p>This is the text that explains about something important!</p>
+</vwc-note>
 ```
