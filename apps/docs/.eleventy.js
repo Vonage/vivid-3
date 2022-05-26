@@ -1,7 +1,7 @@
 const { EleventyRenderPlugin } = require("@11ty/eleventy");
 const wrapTextElements = require("./transformers/wrap-text-elements");
 const codeBlockDemo = require("./transformers/code-block-demo");
-const markdownLibrary = require("./libraries/markdown");
+const markdownLibrary = require("./libraries/markdown-it");
 const CleanCSS = require("clean-css");
 
 const INPUT_DIR = 'apps/docs';

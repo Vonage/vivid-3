@@ -37,7 +37,8 @@ vwc-side-drawer {
   display: block;
   width: 100%;
   block-size: calc(100vh - 64px);
-  --side-drawer-background-color: var(--vvd-color-neutral-20);
+  --side-drawer-z-index: 3;
+  --side-drawer-background-color: var(--vvd-color-neutral-10);
 }
 
 /*properties table*/
@@ -173,6 +174,7 @@ article .cbd-base {
   list-style: none;
 	text-align: end;
 	background-color: var(--vvd-color-neutral-10);
+  border-top: 1px solid var(--vvd-color-neutral-20);
 	padding: 8px;
 }
 

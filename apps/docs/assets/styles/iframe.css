@@ -11,14 +11,11 @@ strong {
 body {
   color: var(--vvd-color-on-canvas);
   background-color: var(--vvd-color-canvas);
-  margin: 20px;
+  margin: 0;
 }
 
-.demo-gradient{
+.demo-gradient {
   background-image: linear-gradient(to right, var(--vvd-color-info-30), var(--vvd-color-cta-30));
-  padding: 1rem;
-  margin-top: 2rem;
-}
-.demo-gradient.tight{
-  padding: 0.2rem;
+  padding: 8px;
+  block-size: 100%;
 }

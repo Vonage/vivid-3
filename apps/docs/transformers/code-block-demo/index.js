@@ -2,9 +2,10 @@ const { JSDOM } = require('jsdom');
 const { decode } = require("html-entities");
 const fs = require('fs');
 const path = require('path');
-const jsonData = require('../_data/components.json');
-const ELEVENTY_HTML_CODE_BLOCK_SELECTOR = 'pre.preview > code';
+const jsonData = require('../../_data/components.json');
+const layout = require('./layout');
 
+const ELEVENTY_HTML_CODE_BLOCK_SELECTOR = 'pre.preview > code';
 const CBD_BASE = 'cbd-base';
 const CBD_DEMO = 'cbd-demo';
 const CBD_DETAILS = 'cbd-details';
@@ -14,16 +15,29 @@ const CBD_CODE_BLOCK = 'cbd-code-block';
 const MAIN_STYLE = '<link rel="stylesheet" href="/assets/styles/iframe.css">';
 const FONTS = '<link rel="stylesheet" href="/assets/styles/fonts/spezia.css">';
 
-const generateCodeBlockDemo = function (blockData) {
-    const demoData = {};
-    const code = blockData.pre.querySelector('code')?.textContent;
-    demoData.demoStr = decode(MAIN_STYLE) + decode(FONTS) + decode(code);
-    demoData.codeStr = blockData.pre.outerHTML;
-    demoData.index = blockData.index;
-    demoData.outputPath = blockData.outputPath;
-    const dom = new JSDOM(`<body>${getHtml(demoData)}</body>`);
+const getComponentName = (outputPath) => {
+  const pathName = path.dirname(outputPath).substring(0, outputPath.lastIndexOf('/'));
+  const componentName = pathName.substring(pathName.lastIndexOf('/') + 1);
+  return componentName;
+}
 
-    return dom.window.document.querySelector('vwc-elevation');
+const getComponentData = (componentName) => jsonData.find(({ title }) => title == componentName);
+
+const generateCodeBlockDemo = function(blockData) {
+  let code = blockData.pre.querySelector('code')?.textContent;
+
+  const { classList } = blockData.pre;
+
+  code = layout(code, classList);
+
+  const { pre: { outerHTML: codeStr }, index, outputPath } = blockData;
+
+  const demoStr = decode(MAIN_STYLE) + decode(FONTS) + decode(code);
+  const demoData = { demoStr, codeStr, index, outputPath };
+
+  const dom = new JSDOM(`<body>${getHtml(demoData)}</body>`);
+
+  return dom.window.document.querySelector('vwc-elevation');
 };
 
 module.exports = function (content, outputPath) {
@@ -47,12 +61,12 @@ module.exports = function (content, outputPath) {
 };
 
 const getHtml = (demoData) => {
-    const codeBlockId = `${CBD_CODE_BLOCK}-${demoData.index}`;
-    const frameData = {};
-    frameData.demoStr = demoData.demoStr;
-    frameData.codeBlockId = codeBlockId;
-    frameData.outputPath = demoData.outputPath;
-    const iframeSrc = getIframe(frameData);
+  const codeBlockId = `${CBD_CODE_BLOCK}-${demoData.index}`;
+  const frameData = {};
+  frameData.demoStr = demoData.demoStr;
+  frameData.codeBlockId = codeBlockId;
+  frameData.outputPath = demoData.outputPath;
+  const iframeSrc = getIframe(frameData);
 
   return `
     <vwc-elevation dp="0">
@@ -60,9 +74,8 @@ const getHtml = (demoData) => {
         <iframe class="${CBD_DEMO}" src="${iframeSrc}" onload=onloadIframe(this) loading="lazy"></iframe>
         <details class="${CBD_DETAILS}">
             <summary>
-                <button class="${CBD_BUTTON_SHOW}" aria-expanded="false" aria-controls="${codeBlockId}">
-                    show code
-                </button>
+                <vwc-button label="source" icon="chevron-down-line" icon-trailing class="${CBD_BUTTON_SHOW}" aria-expanded="false" aria-controls="${codeBlockId}">
+                </vwc-button>
             </summary>
             <div class="${CBD_CODE_BLOCK}" role="region" id="${codeBlockId}">
                 ${demoData.codeStr}
@@ -87,29 +100,22 @@ const verifyAndCreateSaveFolder = (outputPath) => {
   return saveFolder;
 }
 
-const saveCodeAsHTMLFile = (frameData) => {
-  const filePath = `${frameData.saveFolder}/${frameData.codeBlockId}.html`;
-  const componentName = getComponentName(frameData.outputPath);
-  frameData.demoStr += addModules(componentName);
-  fs.writeFileSync(filePath, frameData.demoStr);
-  return filePath;
-}
-
-const getComponentName = (outputPath) => {
-  const pathName = path.dirname(outputPath).substring(0, outputPath.lastIndexOf('/'));
-  const componentName = pathName.substring(pathName.lastIndexOf('/') + 1);
-  return componentName;
-}
-
-const addModules = (componentName) => {
+const addModules = (data) => {
   let modulesStr = '';
-  let component = jsonData.filter(item => item.title.includes(componentName));
-  component[0].modules.forEach(module => {
+  data.modules.forEach(module => {
     modulesStr += `<script type="module" src="${module}"></script>`;
   });
   return modulesStr;
 }
 
+const saveCodeAsHTMLFile = (frameData) => {
+  const filePath = `${frameData.saveFolder}/${frameData.codeBlockId}.html`;
+  const componentName = getComponentName(frameData.outputPath);
+  const data = getComponentData(componentName);
+  frameData.demoStr += addModules(data);
+  fs.writeFileSync(filePath, frameData.demoStr);
+  return filePath;
+}
 
 const script = `
 <script>
@@ -148,4 +154,3 @@ const script = `
     window.addEventListener('DOMContentLoaded', initShowCodeButtons);
 </script>
 `;
-
