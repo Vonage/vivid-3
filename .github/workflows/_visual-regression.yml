@@ -14,7 +14,6 @@ jobs:
           node-version: '16'
           cache: 'npm'
       - run: npm ci
-#       - run: npm run nx build components
       - run: npm run nx e2e components -- --task=local
       - uses: actions/upload-artifact@v3
         if: always()
