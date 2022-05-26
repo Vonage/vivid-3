@@ -1,7 +1,7 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
 import {Connotation} from '../enums';
 import {Icon} from '../icon/icon';
-import { Note } from './note';
+import {Note} from './note';
 import '.';
 
 const COMPONENT_TAG = 'vwc-note';
@@ -28,14 +28,12 @@ describe('vwc-note', () => {
 		expect(element.shadowRoot?.querySelector('.heading')?.textContent?.trim()).toEqual(headingText);
 	});
 
-	it('should render an icon when icon is set', async function () {
+	it('should render an icon with given type', async function () {
+		const iconElement = element.shadowRoot?.querySelector('.icon') as Icon;
 		const iconName = 'home';
-		const iconElementWhenNull = element.shadowRoot?.querySelector('.icon');
 		element.icon = iconName;
 		await elementUpdated(element);
-		const iconElement = element.shadowRoot?.querySelector('.icon') as Icon;
 
-		expect(iconElementWhenNull).toBeNull();
 		expect(iconElement instanceof Icon).toEqual(true);
 		expect(iconElement.type).toEqual(iconName);
 	});
@@ -48,5 +46,18 @@ describe('vwc-note', () => {
 		await elementUpdated(element);
 		expect(connotationClassExistsWhenNull).toEqual(false);
 		expect(baseElement?.classList?.contains(`connotation-${connotation}`)).toEqual(true);
+	});
+
+	it('should return default connotation icon if no icon or connotation are set', function () {
+		const defaultConnotationIconType = 'megaphone-solid';
+		const iconElement = element.shadowRoot?.querySelector('.icon') as Icon;
+		expect(iconElement.type).toEqual(defaultConnotationIconType);
+	});
+
+	it('should set icon type according to connotation', async function() {
+		const iconElement = element.shadowRoot?.querySelector('.icon') as Icon;
+	  element.connotation = Connotation.Info;
+		await elementUpdated(element);
+		expect(iconElement.type).toEqual('info-solid');
 	});
 });

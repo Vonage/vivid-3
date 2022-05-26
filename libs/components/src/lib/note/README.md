@@ -27,7 +27,8 @@ Add the `heading` attribute in order to set a heading text.
 ```
 
 ### icon
-Add the `icon` attribute in order to set an icon in the note.
+Use the `icon` attribute to set a decorative icon.
+Note that if not set, icon will default to the connotation-associated icon type.
 
 - Type: `string`
 - Default: `undefined`
