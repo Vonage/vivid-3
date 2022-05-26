@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "Create the note component",
+  "packageName": "@vonage/vivid",
+  "email": "yonatan.kra@vonage.com",
+  "dependentChangeType": "patch"
+}
