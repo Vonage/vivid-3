@@ -17,11 +17,12 @@
 
 $selectors: (
   idle: '&',
-  hover: '&:hover:not(:disabled, .disabled), &.hovered:not(:disabled, .disabled)',
-  disabled: '&:disabled , &.disabled',
-  selected: '&.selected',
-  active: '&:active:not(:disabled, .disabled), &.active:not(:disabled, .disabled)',
-  error: '&.error:not(:disabled, .disabled)',
+  hover: '&:where(:hover, .hover):not(:disabled, .disabled)',
+  disabled: '&:where(:disabled, .disabled)',
+  readonly: '&:where(:readonly, .readonly):not(:disabled, .disabled)',
+  selected: '&:where(.selected)',
+  active: '&:where(:active, .active):not(:disabled, .disabled)',
+  error: '&:where(.error):not(:disabled, .disabled)',
 );
 
 @function get-default-selector($appearance) {

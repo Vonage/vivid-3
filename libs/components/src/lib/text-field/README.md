@@ -115,8 +115,18 @@ Add the `disabled` attribute to disable the text field.
 - Default: `false`
 
 ```html preview blocks
-<vwc-text-field disabled icon="chat-line" placeholder="disabled" label='fieldset' appearance='fieldset'></vwc-text-field>
-<vwc-text-field disabled icon="chat-line" placeholder="disabled" label='ghost' appearance='ghost'></vwc-text-field>
+<vwc-text-field disabled icon="chat-line" value="disabled" label='fieldset' appearance='fieldset'></vwc-text-field>
+```
+
+### Readonly
+
+Add the `readonly` attribute to restrict user from changing the text field's value.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview blocks
+<vwc-text-field readonly icon="chat-line" value="readonly text" label='fieldset' appearance='fieldset'></vwc-text-field>
 ```
 
 ## Use cases
