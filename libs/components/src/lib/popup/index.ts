@@ -12,10 +12,10 @@ import { popupTemplate as template } from './popup.template';
  * Represents a popup custom element.
  * popup is...
  */
-export const VIVIDPopup = Popup.compose<FoundationElementDefinition>({
+export const vividPopup = Popup.compose<FoundationElementDefinition>({
 	baseName: 'popup',
 	template: template as any,
 	styles,
 });
 
-designSystem.register(VIVIDPopup());
+designSystem.register(vividPopup());
