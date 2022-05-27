@@ -22,7 +22,9 @@
   </vwc-accordion-item>
 </vwc-accordion>
 ```
+
 ## Multi
+
 Add the `multi` attribute to the accordion to allow multiple items to be open at once.
 
 - Type: `boolean`

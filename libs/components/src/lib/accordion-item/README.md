@@ -5,7 +5,9 @@
     import '@vonage/vivid/accordion-item';
 </script>
 ```
+
 ## Heading
+
 Add the `heading` attribute to set the heading text.
 
 - Type: `string`
@@ -45,19 +47,22 @@ e.g.
 ```
 
 ## Open
+
 Use the `open` attribute to set the accordion-item's open state.
 
 - Type: `boolean`
 - Default: `false`
 
 ```html preview full
- <vwc-accordion-item heading="Click to toggle accordion item" open>
-    <vwc-text font-face="body-1">
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    </vwc-text>
-  </vwc-accordion-item>
+<vwc-accordion-item heading="Click to toggle accordion item" open>
+  <vwc-text font-face="body-1">
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+  </vwc-text>
+</vwc-accordion-item>
 ```
+
 ## No-Indicator
+
 Add the `no-indicator` attribute (or `noIndicator` property) to remove the indicator icon from the heading.
 
 - Type: `boolean`
@@ -70,8 +75,10 @@ Add the `no-indicator` attribute (or `noIndicator` property) to remove the indic
     </vwc-text>
   </vwc-accordion-item>
 ```
+
 ## Meta
-Add the `meta` attribute to add metadata to the heading. 
+
+Add the `meta` attribute to add metadata to the heading.
 
 - Type: `string`
 - Default: `undefined`
@@ -85,7 +92,8 @@ Add the `meta` attribute to add metadata to the heading.
 ```
 
 ## Icon
-Add the `icon` attribute to add an icon to the heading. 
+
+Add the `icon` attribute to add an icon to the heading.
 
 - Type: `string`
 - Default: `''`
@@ -99,6 +107,7 @@ Add the `icon` attribute to add an icon to the heading.
 ```
 
 ## Icon-Trailing
+
 Add the `icon-trailing` attribute (or `iconTrailing` property) to add an icon to the right of the heading text.  Mind that `icon-trailing` will override the Indicator.
 
 - Type: `boolean`
