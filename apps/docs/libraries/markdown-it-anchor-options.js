@@ -1,7 +1,4 @@
-// Import prior to `module.exports` within `.eleventy.js`
-const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
-// If not already added from previous tip
 const slugify = require("slugify");
 
 const linkAfterHeader = markdownItAnchor.permalink.linkAfterHeader({
@@ -9,7 +6,8 @@ const linkAfterHeader = markdownItAnchor.permalink.linkAfterHeader({
   symbol: "<vwc-icon type=\"link-solid\"></vwc-icon>",
   style: "aria-labelledby",
 });
-const markdownItAnchorOptions = {
+
+module.exports = {
   level: [1, 2, 3],
   slugify: (str) =>
     slugify(str, {
@@ -40,8 +38,3 @@ const markdownItAnchorOptions = {
     linkAfterHeader(slug, opts, state, idx + 1);
   },
 };
-
-/* Markdown Overrides */
-module.exports = markdownIt({
-  html: true,
-}).use(markdownItAnchor, markdownItAnchorOptions);
