@@ -31,13 +31,13 @@ $low-ink-color: --_low-ink-color;
 	gap: 4px;
 	grid-template-columns: min-content 1fr max-content;
 
-  &:not(.disabled) {
-    #{$low-ink-color}: var(#{theme-consts.$vvd-color-neutral-70});
-  }
+	&:not(.disabled) {
+		#{$low-ink-color}: var(#{theme-consts.$vvd-color-neutral-70});
+	}
 
-  &.disabled {
-    #{$low-ink-color}: var(#{theme-consts.$vvd-color-neutral-50});
-  }
+	&.disabled {
+		#{$low-ink-color}: var(#{theme-consts.$vvd-color-neutral-50});
+	}
 }
 
 .label {
@@ -46,13 +46,17 @@ $low-ink-color: --_low-ink-color;
 	grid-column: 1 / 4;
 	grid-row: 1;
 
-  .base:not(.disabled) & {
-    color: var(#{theme-consts.$vvd-color-on-canvas});
-  }
+	.char-count	+ & {
+		grid-column: 1 / 3;
+	}
 
-  .base.disabled & {
-    color: var(#{theme-consts.$vvd-color-neutral-50});
-  }
+	.base:not(.disabled) & {
+		color: var(#{theme-consts.$vvd-color-on-canvas});
+	}
+
+	.base.disabled & {
+		color: var(#{theme-consts.$vvd-color-neutral-50});
+	}
 }
 
 .char-count {
@@ -60,9 +64,6 @@ $low-ink-color: --_low-ink-color;
 
 	color: var(#{$low-ink-color});
 	grid-column: 3 / 4;
-	+ .label {
-		grid-column: 1 / 3;
-	}
 }
 
 .fieldset {
@@ -116,7 +117,6 @@ $low-ink-color: --_low-ink-color;
 }
 
 .icon {
-
 	// to avoid autofill style hiding other elements
 	position: relative;
 	z-index: 1;

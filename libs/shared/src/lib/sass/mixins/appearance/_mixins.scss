@@ -15,14 +15,21 @@
   @return #{$prefix}-#{$type};
 }
 
+$hover: ':hover, .hover';
+$disabled: ':disabled, .disabled';
+$readonly: ':readonly, .readonly';
+$selected: '.selected';
+$active: ':active, .active';
+$error: '.error';
+
 $selectors: (
   idle: '&',
-  hover: '&:where(:hover, .hover):not(:disabled, .disabled)',
-  disabled: '&:where(:disabled, .disabled)',
-  readonly: '&:where(:readonly, .readonly):not(:disabled, .disabled)',
-  selected: '&:where(.selected)',
-  active: '&:where(:active, .active):not(:disabled, .disabled)',
-  error: '&:where(.error):not(:disabled, .disabled)',
+  hover: '&:where(#{$hover}):where(:not(#{$disabled}))',
+  disabled: '&:where(#{$disabled})',
+  readonly: '&:where(#{$readonly}):where(:not(#{$disabled}, #{$hover}, #{$active}))',
+  selected: '&:where(#{$selected}):where(:not(#{$disabled}))',
+  active: '&:where(#{$active}):where(:not(#{$disabled}))',
+  error: '&:where(#{$error}):where(:not(#{$disabled}))',
 );
 
 @function get-default-selector($appearance) {
