@@ -16,7 +16,7 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
-$low-ink-color: #{theme-consts.$vvd-color-neutral-70};
+$low-ink-color: --_low-ink-color;
 
 .base {
 	@include connotation.connotation;
@@ -30,14 +30,29 @@ $low-ink-color: #{theme-consts.$vvd-color-neutral-70};
 	display: grid;
 	gap: 4px;
 	grid-template-columns: min-content 1fr max-content;
+
+  &:not(.disabled) {
+    #{$low-ink-color}: var(#{theme-consts.$vvd-color-neutral-70});
+  }
+
+  &.disabled {
+    #{$low-ink-color}: var(#{theme-consts.$vvd-color-neutral-50});
+  }
 }
 
 .label {
 	@include typography.typography-cat-shorthand('body-2');
 
-	color: var(#{theme-consts.$vvd-color-on-canvas});
 	grid-column: 1 / 4;
 	grid-row: 1;
+
+  .base:not(.disabled) & {
+    color: var(#{theme-consts.$vvd-color-on-canvas});
+  }
+
+  .base.disabled & {
+    color: var(#{theme-consts.$vvd-color-neutral-50});
+  }
 }
 
 .char-count {
@@ -90,7 +105,7 @@ $low-ink-color: #{theme-consts.$vvd-color-neutral-70};
 	border: 0 none;
 	background-color: unset;
 	border-radius: inherit;
-	color: var(#{theme-consts.$vvd-color-on-canvas});
+	color: inherit;
 	inset: 0;
 	outline: 0 none;
 	padding-inline-start: 16px;
