@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "formatted documentation pages",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}
