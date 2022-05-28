@@ -1,6 +1,6 @@
 {
   "comment": "Add to package.json export in generator",
-  "type": "minor",
+  "type": "none",
   "packageName": "@vonage/nx-vivid",
   "email": "yonatan.kra@vonage.com",
   "dependentChangeType": "none"
