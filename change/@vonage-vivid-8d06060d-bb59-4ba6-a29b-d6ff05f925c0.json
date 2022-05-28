@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "align components variable prefix",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}
