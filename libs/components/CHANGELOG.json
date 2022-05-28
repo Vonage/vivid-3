@@ -2,6 +2,98 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Sat, 28 May 2022 17:55:16 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.16",
+      "version": "3.0.0-next.16",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "d802fac858a91ff0bb4401d52386d101e0f622d0",
+            "comment": "formatted documentation pages"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "8fe1a5d658ff26017731c13b29df51c2317a9683",
+            "comment": "align components variable prefix"
+          },
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "8f5c2de32a1089ba7f223875629c7ce391a7ebd3",
+            "comment": "Create the note component"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "6eba1901633cb53da26bd9418546f3ad0205709d",
+            "comment": "popup inline-size changed to fit-content "
+          }
+        ],
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "cb59f037c4c4aac6d5b19cea1211f48cb34dff84",
+            "comment": "intercept & restyle code fence"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "95df74b6284f28cbf4a31279db28d2a40fbc151e",
+            "comment": "feature code block predefined layouts"
+          },
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "89d8b65a07153a447ee18026051fa5a9fc2575b0",
+            "comment": "fix docs"
+          },
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "975c10c39782715299c1bac627113a7adcda0ead",
+            "comment": {
+              "title": "",
+              "value": ""
+            }
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "b99cce057799a89c0b5e7db7b737487c6a94303b",
+            "comment": "added language annotation to code blocks"
+          },
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "60364302b632f9e3193f67a0d4c4e86ec4a3c86f",
+            "comment": "update safari png"
+          },
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "23124a1d2ba6db6bebcc886485c6b9faee0460f6",
+            "comment": "Convert component generator to plugin"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "a5e9eece171b83b9fbc52e791d17de9917e3f082",
+            "comment": "chore(components): update icon set to 4.0.28"
+          },
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "de7a7d891472993193d046f5d8d8598ea9ff99dc",
+            "comment": "Prevent publishing if not version bump was detected"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 17 May 2022 18:14:25 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.15",
       "version": "3.0.0-next.15",

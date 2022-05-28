@@ -12,10 +12,10 @@ import { focusTemplate as template } from './focus.template';
  * Focuss don’t work for navigation because they can't include a hyperlink.
  */
 
-export const VIVIDFocus = Focus.compose<FoundationElementDefinition>({
+export const vividFocus = Focus.compose<FoundationElementDefinition>({
 	baseName: 'focus',
 	template: template as any,
 	styles,
 });
 
-designSystem.register(VIVIDFocus());
+designSystem.register(vividFocus());

@@ -27,7 +27,6 @@ Use the `datetime` attribute to set date within a week of choice.
 
 Use the `start-day` attribute (or `startDay` property) to set the first day of the week (e.g. work week starts on Monday).
 
-
 - Type: `'sunday'` | `'monday'`
 - Default: `undefined` (programmatically defaults to `'monday'` if not specified)
 
@@ -66,5 +65,3 @@ Unless provided, choice will be set according to local time preference (e.g. US 
 - Returns: `{ day: number, hour: number }` | `null`
 
 Accepts event reference and returns an object containing _day_ & _hour_  if applicable.
-
-
