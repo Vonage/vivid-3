@@ -135,6 +135,7 @@ It accepts a subset of predefined values.
 ```
 
 ## Disabled
+
 Add the `disabled` attribute to disable the button.
 
 - Type: `Boolean`

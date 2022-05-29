@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "popup inline-size changed to fit-content ",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}
