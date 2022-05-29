@@ -8,10 +8,10 @@ import { elevationTemplate as template } from './elevation.template';
 /**
  * Represents an elevation custom element.
  */
-export const VIVIDElevation = Elevation.compose<FoundationElementDefinition>({
+export const vividElevation = Elevation.compose<FoundationElementDefinition>({
 	baseName: 'elevation',
 	template: template as any,
 	styles,
 });
 
-designSystem.register(VIVIDElevation());
+designSystem.register(vividElevation());

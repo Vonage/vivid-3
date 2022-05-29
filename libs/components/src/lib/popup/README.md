@@ -1,13 +1,14 @@
 # Popup
 
 Popup are used to display a message or notification to the user and are displayed on top of all other web page elements.
-Popup's goal is to provide additional, helpful content. To trigger the Popup, it should be paired with an anchor (e.g., a button). 
+Popup's goal is to provide additional, helpful content. To trigger the Popup, it should be paired with an anchor (e.g., a button).
 
 ```js
 <script type='module'>
     import '@vonage/vivid/popup';
 </script>
 ```
+
 ## Anchor
 
 Use the `anchor` attribute to reference the ID to element in the popup’s owner document.
@@ -27,7 +28,9 @@ The popup is positioned in a fixed manner to its anchor.
   </vwc-text>
 </vwc-popup>
 ```
+
 ## Open
+
 Use the `open` attribute to indicate whether the popup is open.
 
 - Type: `boolean`
@@ -65,7 +68,9 @@ Add the `dismissible` attribute to add a close button to the popup.
   anchor.addEventListener('click', () => popup.open = !popup.open);
 </script>
 ```
+
 ## Arrow
+
 Add the `arrow` attribute to add a small triangle to indicate the trigger element.
 
 - Type: `boolean`
@@ -79,7 +84,9 @@ Add the `arrow` attribute to add a small triangle to indicate the trigger elemen
   </vwc-layout>
 </vwc-popup>
 ```
+
 ## Alternate
+
 Add the `alternate` attribute to set the color-scheme to dark or light (depending on current user's system settings).
 
 - Type: `boolean`
@@ -93,6 +100,7 @@ Add the `alternate` attribute to set the color-scheme to dark or light (dependin
   </vwc-layout>
 </vwc-popup>
 ```
+
 ## Corner
 
 Use the `corner` attribute to set the placement of the popup around the anchor.
@@ -176,6 +184,7 @@ Use the `corner` attribute to set the placement of the popup around the anchor.
   </vwc-text>
 </vwc-popup>
 ```
+
 ## Caveat
 
 Document elements display precedence is formed by the imaginary z-axis [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context), commonly by order of which elements are rendered and special properties (e.g. _z-index_).
@@ -186,6 +195,7 @@ A common practice used in apps / frameworks to promote a popup component to top 
 This helps ensure elements don't render over top a popup undesirebly.
 
 ## Methods
+
 ### updatePosition()
 
 - Type: function

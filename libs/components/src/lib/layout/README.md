@@ -86,7 +86,7 @@ Use the `column-spacing` attribute to set the initial preferred `spacing` of a c
 
 ## Column Basis
 
-Use the `column-basis` attribute to set the initial preferred `measure` of a column. 
+Use the `column-basis` attribute to set the initial preferred `measure` of a column.
 Use `block` to stack elements one above the other.
 
 - Type: `'small'` | `'medium'` | `'large'` | `'block'`
@@ -150,6 +150,7 @@ With `fill`, everything is the same as `fit`, except empty tracks are not collap
 ## CSS Custom Properties
 
 ### Grid-template-columns
+
 Controls the grid-template-columns of the layout.
 
 - `--layout-grid-template-columns`

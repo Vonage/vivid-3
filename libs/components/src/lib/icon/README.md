@@ -25,7 +25,7 @@ Add a `type` attribute to add type to the icon.
 
 ## SVG
 
-While `type` fetches an icon from the Vivid predefined set of icons, `svg` property can be used to set a customized valid SVG string programmatically. 
+While `type` fetches an icon from the Vivid predefined set of icons, `svg` property can be used to set a customized valid SVG string programmatically.
 
 - Type: `String`
 - Default: `undefined`
