@@ -90,7 +90,8 @@
       "/assets/modules/components/popup/index.js",
       "/assets/modules/components/button/index.js",
       "/assets/modules/components/icon/index.js",
-      "/assets/modules/components/text/index.js"
+      "/assets/modules/components/text/index.js",
+      "/assets/modules/components/layout/index.js"
     ]
   },
   {
@@ -171,6 +172,13 @@
       "/assets/modules/components/action-group/index.js",
       "/assets/modules/components/button/index.js",
       "/assets/modules/components/text-field/index.js"
+    ]
+  },
+  {
+    "title": "note",
+    "markdown": "./libs/components/src/lib/note/README.md",
+    "modules": [
+      "/assets/modules/components/note/index.js"
     ]
   }
 ]

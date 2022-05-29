@@ -31,37 +31,29 @@ Using layout, elements can be arranged easily in a variety of sizes and spaces t
 </vwc-layout>
 ```
 
-## Gutters
+## Properties
+
+### Gutters
 
 Use the `gutters` attribute to set the initial preferred `margin`.
 
 - Type: `'small'` | `'medium'` | `'large'`
-- Default: `'medium'`
+- Default: `undefined`
 
-```html preview
+```html preview full
 <div class="demo-gradient">
   <vwc-layout>
     <vwc-card elevation="2" text="default"></vwc-card>
-    <vwc-card elevation="2" text="default"></vwc-card>
   </vwc-layout>
-</div>
-<div class="demo-gradient">
   <vwc-layout gutters="small">
     <vwc-card elevation="2" text="small"></vwc-card>
-    <vwc-card elevation="2" text="small"></vwc-card>
   </vwc-layout>
-</div>
-<div class="demo-gradient">
-<vwc-layout gutters="medium">
+  <vwc-layout gutters="medium">
     <vwc-card elevation="2" text="medium"></vwc-card>
-    <vwc-card elevation="2" text="medium"></vwc-card>
-</vwc-layout>
-</div>
-<div class="demo-gradient">
-<vwc-layout gutters="large">
-    <vwc-card elevation="2" text="large"></vwc-card>
-    <vwc-card elevation="2" text="large"></vwc-card>
-</vwc-layout>
+  </vwc-layout>
+  <vwc-layout gutters="large">
+      <vwc-card elevation="2" text="large"></vwc-card>
+  </vwc-layout>
 </div>
 ```
 
@@ -72,21 +64,20 @@ Use the `column-spacing` attribute to set the initial preferred `spacing` of a c
 - Type: `'small'` | `'medium'` | `'large'`
 - Default: `'medium'`
 
-```html preview
+```html preview full
 <div class="demo-gradient tight">
-  <vwc-layout column-spacing="small">
+  <vwc-layout gutters="small" column-spacing="small">
+    <vwc-card elevation="2" text="small"></vwc-card>
     <vwc-card elevation="2" text="small"></vwc-card>
     <vwc-card elevation="2" text="small"></vwc-card>
   </vwc-layout>
-</div>
-<div class="demo-gradient tight">
-  <vwc-layout column-spacing="medium">
+  <vwc-layout gutters="small" column-spacing="medium">
+    <vwc-card elevation="2" text="medium"></vwc-card>
     <vwc-card elevation="2" text="medium"></vwc-card>
     <vwc-card elevation="2" text="medium"></vwc-card>
   </vwc-layout>
-</div>
-<div class="demo-gradient tight">
-  <vwc-layout column-spacing="large">
+  <vwc-layout gutters="small" column-spacing="large">
+    <vwc-card elevation="2" text="large"></vwc-card>
     <vwc-card elevation="2" text="large"></vwc-card>
     <vwc-card elevation="2" text="large"></vwc-card>
   </vwc-layout>
@@ -95,39 +86,33 @@ Use the `column-spacing` attribute to set the initial preferred `spacing` of a c
 
 ## Column Basis
 
-Use the `column-basis` attribute to set the initial preferred `measure` of a column. 
+Use the `column-basis` attribute to set the initial preferred `measure` of a column.
 Use `block` to stack elements one above the other.
 
 - Type: `'small'` | `'medium'` | `'large'` | `'block'`
 - Default: `'medium'`
 
-```html preview
+```html preview full
 <div class="demo-gradient">
-  <vwc-layout column-basis="small">
+  <vwc-layout gutters="small" column-basis="small">
     <vwc-card elevation="2" text="small"></vwc-card>
     <vwc-card elevation="2" text="small"></vwc-card>
     <vwc-card elevation="2" text="small"></vwc-card>
     <vwc-card elevation="2" text="small"></vwc-card>
   </vwc-layout>
-</div>
-<div class="demo-gradient">
-  <vwc-layout column-basis="medium">
+  <vwc-layout gutters="small" column-basis="medium">
     <vwc-card elevation="2" text="medium"></vwc-card>
     <vwc-card elevation="2" text="medium"></vwc-card>
     <vwc-card elevation="2" text="medium"></vwc-card>
     <vwc-card elevation="2" text="medium"></vwc-card>
   </vwc-layout>
-</div>
-<div class="demo-gradient">
-  <vwc-layout column-basis="large">
+  <vwc-layout gutters="small" column-basis="large">
     <vwc-card elevation="2" text="large"></vwc-card>
     <vwc-card elevation="2" text="large"></vwc-card>
     <vwc-card elevation="2" text="large"></vwc-card>
     <vwc-card elevation="2" text="large"></vwc-card>
   </vwc-layout>
-</div>
-<div class="demo-gradient">
-  <vwc-layout column-basis="block">
+  <vwc-layout gutters="small" column-basis="block">
     <vwc-card elevation="2" text="block"></vwc-card>
     <vwc-card elevation="2" text="block"></vwc-card>
     <vwc-card elevation="2" text="block"></vwc-card>
@@ -149,14 +134,12 @@ With `fill`, everything is the same as `fit`, except empty tracks are not collap
 - Type: `'fit'` | `'fill'`
 - Default: `'fit'`
 
-```html preview
+```html preview full
 <div class="demo-gradient">
   <vwc-layout auto-sizing="fit">
     <vwc-card elevation="2" text="fit"></vwc-card>
     <vwc-card elevation="2" text="fit"></vwc-card>
   </vwc-layout>
-</div>
-<div class="demo-gradient">
   <vwc-layout auto-sizing="fill">
     <vwc-card elevation="2" text="fill"></vwc-card>
     <vwc-card elevation="2" text="fill"></vwc-card>
@@ -167,13 +150,14 @@ With `fill`, everything is the same as `fit`, except empty tracks are not collap
 ## CSS Custom Properties
 
 ### Grid-template-columns
+
 Controls the grid-template-columns of the layout.
 
 - `--layout-grid-template-columns`
 - Type: repeat(`auto-sizing`, minmax(`column-basis`, 1fr))
 - Default: auto
 
-```html preview
+```html preview full
 <div class="demo-gradient">
   <vwc-layout style="--layout-grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));">
     <vwc-card elevation="2"></vwc-card>
@@ -181,16 +165,12 @@ Controls the grid-template-columns of the layout.
     <vwc-card elevation="2"></vwc-card>
     <vwc-card elevation="2"></vwc-card>
   </vwc-layout>
-</div>
-<div class="demo-gradient">
   <vwc-layout style="--layout-grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));">
     <vwc-card elevation="2"></vwc-card>
     <vwc-card elevation="2"></vwc-card>
     <vwc-card elevation="2"></vwc-card>
     <vwc-card elevation="2"></vwc-card>
   </vwc-layout>
-</div>
-<div class="demo-gradient">
   <vwc-layout style="--layout-grid-template-columns: 280px repeat(auto-fill, minmax(100px, 1fr));">
     <vwc-card elevation="2"></vwc-card>
     <vwc-card elevation="2"></vwc-card>

@@ -7,13 +7,14 @@
 ```
 
 ## Open
+
 Use the `open` attribute to indicate whether the side drawer is open.
 You can also close the side drawer by pressing the `ESC` key.
 
 - Type: `Boolean`
 - Default: `false`
 
-```html preview
+```html preview full
 <style>
     vwc-side-drawer#sideDrawer{
         --side-drawer-background-color: var(--vvd-color-neutral-10);
@@ -21,13 +22,13 @@ You can also close the side drawer by pressing the `ESC` key.
     }
 </style>
 <vwc-side-drawer id="sideDrawer" open>
-	<div>
-		<vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
+ <div>
+  <vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
         <p><vwc-text font-face="body-2-bold">SECTION TITLE</vwc-text></p>
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
-	</div>
-	<div slot="app-content">
+ </div>
+ <div slot="app-content">
         <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
         <vwc-text font-face="body-1">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
@@ -37,12 +38,12 @@ You can also close the side drawer by pressing the `ESC` key.
             Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
             of Lorem Ipsum.
         </vwc-text>
-	</div>
+ </div>
 </vwc-side-drawer>
 <script>
   button.addEventListener('click', toggleOpen);
   function toggleOpen() {
-	  sideDrawer.open = !sideDrawer.open;
+   sideDrawer.open = !sideDrawer.open;
   }
 </script>
 ```
@@ -55,7 +56,7 @@ Click on the `scrim` or the `ESC` key to close the modal side-drawer.
 - Type: `Boolean`
 - Default: `false`
 
-```html preview
+```html preview full
 <style>
     vwc-side-drawer#sideDrawer{
         --side-drawer-background-color: var(--vvd-color-neutral-10);
@@ -63,13 +64,13 @@ Click on the `scrim` or the `ESC` key to close the modal side-drawer.
     }
 </style>
 <vwc-side-drawer id="sideDrawer" open modal>
-	<div>
-		<vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
+ <div>
+  <vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
         <p><vwc-text font-face="body-2-bold">SECTION TITLE</vwc-text></p>
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
-	</div>
-	<div slot="app-content">
+ </div>
+ <div slot="app-content">
         <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
         <vwc-text font-face="body-1">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
@@ -79,15 +80,16 @@ Click on the `scrim` or the `ESC` key to close the modal side-drawer.
             Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
             of Lorem Ipsum.
         </vwc-text>
-	</div>
+ </div>
 </vwc-side-drawer>
 <script>
   button.addEventListener('click', toggleOpen);
   function toggleOpen() {
-	  sideDrawer.open = !sideDrawer.open;
+   sideDrawer.open = !sideDrawer.open;
   }
 </script>
 ```
+
 ## Alternate
 
 Use the `alternate` attribute to apply scheme alternate region.
@@ -95,7 +97,7 @@ Use the `alternate` attribute to apply scheme alternate region.
 - Type: `Boolean`
 - Default: `false`
 
-```html preview
+```html preview full
 <style>
     vwc-side-drawer#sideDrawer{
         --side-drawer-background-color: var(--vvd-color-neutral-10);
@@ -103,13 +105,13 @@ Use the `alternate` attribute to apply scheme alternate region.
     }
 </style>
 <vwc-side-drawer id="sideDrawer" open alternate>
-	<div>
-		<vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
+ <div>
+  <vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
         <p><vwc-text font-face="body-2-bold">SECTION TITLE</vwc-text></p>
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
-	</div>
-	<div slot="app-content">
+ </div>
+ <div slot="app-content">
         <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
         <vwc-text font-face="body-1">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
@@ -119,15 +121,16 @@ Use the `alternate` attribute to apply scheme alternate region.
             Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
             of Lorem Ipsum.
         </vwc-text>
-	</div>
+ </div>
 </vwc-side-drawer>
 <script>
   button.addEventListener('click', toggleOpen);
   function toggleOpen() {
-	  sideDrawer.open = !sideDrawer.open;
+   sideDrawer.open = !sideDrawer.open;
   }
 </script>
 ```
+
 ## Position
 
 Use the `position` attribute to set the side of the side drawer.
@@ -135,7 +138,7 @@ Use the `position` attribute to set the side of the side drawer.
 - Type: `"start" | "end"`
 - Default: `"start"`
 
-```html preview
+```html preview full
 <style>
     vwc-side-drawer#sideDrawer{
         --side-drawer-background-color: var(--vvd-color-neutral-10);
@@ -146,13 +149,13 @@ Use the `position` attribute to set the side of the side drawer.
     }
 </style>
 <vwc-side-drawer id="sideDrawer" open position="end">
-	<div>
-		<vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
+ <div>
+  <vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
         <p><vwc-text font-face="body-2-bold">SECTION TITLE</vwc-text></p>
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
-	</div>
-	<div slot="app-content">
+ </div>
+ <div slot="app-content">
         <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
         <vwc-text font-face="body-1">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
@@ -162,15 +165,16 @@ Use the `position` attribute to set the side of the side drawer.
             Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
             of Lorem Ipsum.
         </vwc-text>
-	</div>
+ </div>
 </vwc-side-drawer>
 <script>
   button.addEventListener('click', toggleOpen);
   function toggleOpen() {
-	  sideDrawer.open = !sideDrawer.open;
+   sideDrawer.open = !sideDrawer.open;
   }
 </script>
 ```
+
 ## Slots
 
 ### Top Bar
@@ -182,7 +186,8 @@ To add a top bar to the side drawer, add a slot called `top-bar`.
     <vwc-text>VIVID</vwc-text>
 </div>
 ```
-```html preview
+
+```html preview full
 <style>
     vwc-side-drawer#sideDrawer{
         --side-drawer-background-color: var(--vvd-color-neutral-10);
@@ -190,16 +195,16 @@ To add a top bar to the side drawer, add a slot called `top-bar`.
     }
 </style>
 <vwc-side-drawer id="sideDrawer" open>
-	<div slot="top-bar">
+ <div slot="top-bar">
         <vwc-text font-face="subtitle-1">VIVID</vwc-text>
     </div>
-	<div>
-		<vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
+ <div>
+  <vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
         <p><vwc-text font-face="body-2-bold">SECTION TITLE</vwc-text></p>
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
-	</div>
-	<div slot="app-content">
+ </div>
+ <div slot="app-content">
         <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
         <vwc-text font-face="body-1">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
@@ -209,12 +214,12 @@ To add a top bar to the side drawer, add a slot called `top-bar`.
             Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
             of Lorem Ipsum.
         </vwc-text>
-	</div>
+ </div>
 </vwc-side-drawer>
 <script>
   button.addEventListener('click', toggleOpen);
   function toggleOpen() {
-	  sideDrawer.open = !sideDrawer.open;
+   sideDrawer.open = !sideDrawer.open;
   }
 </script>
 ```
@@ -230,7 +235,8 @@ To add content aside the side-drawer, add a slot called `app-content`.
     </vwc-text>
 </div>
 ```
-```html preview
+
+```html preview full
 <style>
     vwc-side-drawer#sideDrawer{
         --side-drawer-background-color: var(--vvd-color-neutral-10);
@@ -238,23 +244,23 @@ To add content aside the side-drawer, add a slot called `app-content`.
     }
 </style>
 <vwc-side-drawer id="sideDrawer" open>
-	<div>
-		<vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
+ <div>
+  <vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
         <p><vwc-text font-face="body-2-bold">SECTION TITLE</vwc-text></p>
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
-	</div>
-	<div slot="app-content">
+ </div>
+ <div slot="app-content">
         <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
         <vwc-text font-face="body-1">
           This is the app-content slot!!!!
         </vwc-text>
-	</div>
+ </div>
 </vwc-side-drawer>
 <script>
   button.addEventListener('click', toggleOpen);
   function toggleOpen() {
-	  sideDrawer.open = !sideDrawer.open;
+   sideDrawer.open = !sideDrawer.open;
   }
 </script>
 ```
@@ -262,6 +268,7 @@ To add content aside the side-drawer, add a slot called `app-content`.
 ## CSS Custom Properties
 
 ### Background-color
+
 - `--side-drawer-background-color`
 - Type: `String`
 - Default: Current theme's canvas (background) color
@@ -269,36 +276,41 @@ To add content aside the side-drawer, add a slot called `app-content`.
 Controls the background of the side drawer.
 
 ### Color
+
 - `--side-drawer-color`
 - Type: `String`
 - Default: Current theme's on-canvas (text) color
 
-Controls the color of the side drawer.    
+Controls the color of the side drawer.
 
 ### Inline-size
+
 - `--side-drawer-inline-size`
 - Type: `Number`
 - Default: `280px`
 
-Controls the inline size of the side drawer.   
+Controls the inline size of the side drawer.
 
 ### Padding-body
+
 - `--side-drawer-padding-body`
 - Type: `Number`
 - Default: `16px`
 
-Controls the padding of the side drawer's body.   
+Controls the padding of the side drawer's body.
 
 ### Padding-top-bar
+
 - `--side-drawer-padding-top-bar`
 - Type: `Number`
 - Default: `16px`
 
-Controls the padding of the side drawer's top bar.   
+Controls the padding of the side drawer's top bar.
 
 ### Z-index
+
 - `--side-drawer-z-index`
 - Type: `Number`
 - Default: `6`
 
-Controls the z-index of the side drawer.   
+Controls the z-index of the side drawer.

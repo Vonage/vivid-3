@@ -6,6 +6,7 @@
 ```
 
 ## Common Usage
+
 ```html preview
 <vwc-breadcrumb>
   <vwc-breadcrumb-item href="#" text="breadcrumb"></vwc-breadcrumb-item>
@@ -16,6 +17,7 @@
 ```
 
 ## Multiple hidden crumbs
+
 ```html preview
 <vwc-breadcrumb>
   <vwc-breadcrumb-item href="#" text="breadcrumb"></vwc-breadcrumb-item>

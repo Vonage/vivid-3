@@ -1,12 +1,15 @@
 # card
 
 A “card” is a UI design pattern that groups related information in a flexible-size container visually resembling a playing card.
+
 ```js
 <script type="module">
     import '@vonage/vivid/card';
 </script>
 ```
+
 ## Properties
+
 ### Heading
 
 Add a `heading` attribute to add card heading title
@@ -14,24 +17,23 @@ Add a `heading` attribute to add card heading title
 - Type: `String`
 - Default: `undefined`
 
-
 ```html preview
 <vwc-card heading="Vivid Card Component"></vwc-card>
 ```
 
-
 ### Subheading
+
 Add a `subheading` attribute to add card subheading
 
 - Type: `String`
 - Default: `undefined`
-
 
 ```html preview
 <vwc-card heading="Vivid Card Component" subheading="extra text to the card heading"></vwc-card>
 ```
 
 ### Elevation
+
 Control the elevation depth by adding the `elevation` attribute
 
 - Type: `0` | `2` | `4` | `8` | `12` | `16` | `24`
@@ -41,34 +43,32 @@ Control the elevation depth by adding the `elevation` attribute
 <vwc-card elevation="12" heading="Vivid Card Component" subheading="extra text to the card heading" icon="chat-line" text="the card can contain multiple lines of text"></vwc-card>
 ```
 
-
 ### Icon
+
 Add a `icon='icon-name'` attribute to add icon on the right of the card heading
 
 - Type: `String`
 - Default: `undefined`
 
-
 ```html preview
 <vwc-card heading="Vivid Card Component" subheading="extra text to the card heading" icon="chat-line"></vwc-card>
 ```
 
-
 ### Text
+
 Add a `text` attribute to add text to the card
 
 - Type: `String`
 - Default: `undefined`
 
-
 ```html preview
 <vwc-card heading="Vivid Card Component" subheading="extra text to the card heading" text="the card can contain multiple lines of text"></vwc-card>
 ```
 
-
-
 ## Slots
-### Graphic 
+
+### Graphic
+
 The graphic slot overide the icon property
 
 ```html preview
@@ -78,7 +78,9 @@ The graphic slot overide the icon property
 ```
 
 ### Media
+
 The media slot is mainly for images or video content above the card header
+
 ```html preview
 <div style="block-size: 400px; inline-size: 300px;">
 <vwc-card heading="Card with Media" text="here is the card text">
@@ -88,6 +90,7 @@ The media slot is mainly for images or video content above the card header
 ```
 
 ### Meta
+
 The meta slot is for action content in the card header
 
 ```html preview
@@ -96,8 +99,8 @@ The meta slot is for action content in the card header
 </vwc-card>
 ```
 
-
 ### Footer
+
 footer slot main purpose is for action button
 
 ```html preview
@@ -111,6 +114,7 @@ footer slot main purpose is for action button
 ```
 
 ### Content
+
 If the content structure is not fitting the desired content, the heading, subheading and text can overide
 
 ```html preview
@@ -119,21 +123,31 @@ If the content structure is not fitting the desired content, the heading, subhea
 </vwc-card>
 ```
 
-
 ## CSS Custom Properties
 
 ### Trim Heading & subheading
-The card heading and the subheading can be trimmed to your preferable number of lines.   
+
+The card heading and the subheading can be trimmed to your preferable number of lines.
 The number of lines are controlled by css variable:
+
 - `--heading-line-clamp`
 - `--subheading-line-clamp`
 
 - Type: `String`
 - Default: `undefined`
 
-
 ```html preview
-<div style="width: 300px; height: 250px;">
-<vwc-card style="--heading-line-clamp: 1; --subheading-line-clamp: 2;" heading="Vivid Card Component with long heading to trim" subheading="extra text to the card heading that is set to be trimmed after 2 lines so the card will not be too long"></vwc-card>
-</div>
+<style>
+  --heading-line-clamp: 1;
+  --subheading-line-clamp: 2;
+
+  display: block;
+  inline-size: 42ch;
+</style>
+
+<vwc-card
+  heading="Vivid Card Component with long heading to trim"
+  subheading="extra text to the card heading that is set to be trimmed after 2 lines so the card will not be too long"
+>
+</vwc-card>
 ```
