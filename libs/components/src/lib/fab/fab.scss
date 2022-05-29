@@ -35,7 +35,7 @@
 	color: var(#{appearance.get-variable(text)});
 	column-gap: var(#{variables.$icon-gap});
 	filter: var(#{elevation.$vvd-elevation-shadow});
-	outline: 0 none;
+	outline: transparent;
 	vertical-align: middle;
 
 	&.icon-only {

@@ -17,7 +17,7 @@
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
 :host {
-	outline: 0 none;
+	outline: transparent;
 }
 
 .control {
@@ -35,7 +35,7 @@
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-variable(outline)});
 	color: var(#{appearance.get-variable(text)});
 	gap: var(#{variables.$icon-gap});
-	outline: 0 none;
+	outline: transparent;
 	vertical-align: middle;
 
 	&:not(:disabled) {
