@@ -76,7 +76,7 @@ Use a `<span>` tag with `role="separator"` for adding separator between the acti
 
 ## Use cases
 
-#### semi-split button
+### semi-split button
 
 ```html preview
 <vwc-action-group shape="pill">
@@ -86,7 +86,7 @@ Use a `<span>` tag with `role="separator"` for adding separator between the acti
 </vwc-action-group>
 ```
 
-#### complex search
+### complex search
 
 ```html preview
 <vwc-action-group shape="pill">
