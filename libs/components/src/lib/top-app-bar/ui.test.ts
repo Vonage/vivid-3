@@ -7,7 +7,7 @@ import {
   loadTemplate,
 } from '../../visual-tests/visual-tests-utils.ts';
 
-const components = ['top-app-bar'];
+const components = ['top-app-bar', 'button', 'text', 'side-drawer', 'sidenav-item' ];
 
 test('should show the component', async ({ page }: { page: Page }) => {
   const template = extractHTMLBlocksFromReadme(
