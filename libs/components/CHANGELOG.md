@@ -1,8 +1,19 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Tue, 17 May 2022 05:25:52 GMT and should not be manually modified.
+This log was last generated on Sat, 28 May 2022 17:55:16 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.16
+
+Sat, 28 May 2022 17:55:16 GMT
+
+### Changes
+
+- formatted documentation pages (yinon@hotmail.com)
+- align components variable prefix (yinon@hotmail.com)
+- Create the note component (yonatan.kra@vonage.com)
+- popup inline-size changed to fit-content  (yinon@hotmail.com)
 
 ## 3.0.0-next.15
 

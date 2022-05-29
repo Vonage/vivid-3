@@ -28,7 +28,6 @@ Use the `density` attribute to set the badge's to one of the predefined block si
 - Type: `'condensed'` | `'normal'` | `'extended'`
 - Default: `'normal'`
 
-
 ```html preview
 <vwc-badge text='condensed' density='condensed'></vwc-badge>
 <vwc-badge text='normal' density='normal'></vwc-badge>
@@ -49,7 +48,7 @@ Use the `shape` attribute to change the badge's edges.
 
 ## Icon
 
-Badge text can be affixed by a decorative icon, either by its start or end. 
+Badge text can be affixed by a decorative icon, either by its start or end.
 Use the `icon` attribute to add an icon. Use the `icon-trailing` to place the icon to the right.
 
 - Type: `String`

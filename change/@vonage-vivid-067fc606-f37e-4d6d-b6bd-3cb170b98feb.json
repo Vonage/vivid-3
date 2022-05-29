@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "Prevent publishing if not version bump was detected",
-  "packageName": "@vonage/vivid",
-  "email": "yonatan.kra@vonage.com",
-  "dependentChangeType": "none"
-}

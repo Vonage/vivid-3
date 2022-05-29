@@ -2,7 +2,6 @@
 
 Banners are meant to be used on top of pages, outside the main content.
 
-
 ```js
 <script type="module">import '@vonage/vivid/banner';</script>
 ```
