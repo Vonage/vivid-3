@@ -9,6 +9,7 @@
 ## Properties
 
 ### Heading
+
 Add the `heading` attribute to set the heading text.
 
 - Type: `string`
@@ -24,6 +25,7 @@ Add the `heading` attribute to set the heading text.
 ```
 
 ### Fixed
+
 Add the `fixed` attribute to set the top-app-bar's position to be fixed.
 
 - Type: `boolean`
@@ -57,6 +59,7 @@ Add the `alternate` attribute to set the color-scheme to dark or light (dependin
 ## Slots
 
 ### Meta
+
 The `meta` slot is for action content next to the heading.
 
 ```js
@@ -76,6 +79,7 @@ The `meta` slot is for action content next to the heading.
 ```
 
 ### Action Items
+
 Action items are displayed at the end of the top-app bar in the `actionItems` slot.
 
 ```js
@@ -108,29 +112,50 @@ To add content aside the side-drawer, add a slot called `app-content`.
 
 ```js
 <div slot="app-content">
-    <vwc-text font-face="body-1">
-        This is the app-content slot!!!!
-    </vwc-text>
+  <vwc-text font-face="body-1">
+    This is the app-content slot!!!!
+  </vwc-text>
 </div>
 ```
+
 ```html preview full
 <style>
-    body {
-        background-color: var(--vvd-color-neutral-10);
-        max-block-size: 500px;
-    }
+  :root {
+    block-size: 200px;
+  }
+
+  body {
+    background-color: var(--vvd-color-neutral-10);
+  }
 </style>
-<vwc-top-app-bar heading="With App-content"></vwc-top-app-bar>
-<vwc-text font-face="body-1" slot="app-content">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-</vwc-text>
+<vwc-top-app-bar heading="With App Content">
+  <vwc-layout slot="app-content">
+    <vwc-text font-face="headline-1">
+      <h1>
+        Scroll to see the effect.
+      </h1>
+    </vwc-text>
+
+    <vwc-text font-face="body-1">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+      </p>
+    </vwc-text>
+
+    <vwc-text font-face="body-1">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+      </p>
+    </vwc-text>
+  </vwc-layout>
+</vwc-top-app-bar>
 ```
 
 ## CSS Custom Properties
 
 ### Z-index
 
-Controls the z-index of the top-app-bar.   
+Controls the z-index of the top-app-bar.
 
 - `--top-app-bar-z-index`
 - Type: `Number`
@@ -143,7 +168,6 @@ Controls the height of the top-app-bar.
 - `--top-app-bar-height`
 - Type: `Number`
 - Default: `64px`
-
 
 ## Example Usage
 
