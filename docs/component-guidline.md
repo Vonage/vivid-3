@@ -5,9 +5,9 @@ For better and unify components documentation
 
 ### Do:
 
-- use `.base` for the first element in the component
-- Use `.control` for form control such as input, buttons ect.
-- Use kebab case and if containing more than one word should use hyphen.
+- Use `.base` for the first element in the component.
+- Use `.control` for the main form control such as input, buttons etc.'.
+- Use kebab case.
 
 ### Dont:
 
@@ -22,14 +22,14 @@ For better and unify components documentation
 
 
 ### Slots Name
-Use kebab case for slots name and if containing more than one word should use hyphen.
+Use kebab case for slots name.
 
-- `Graphic`
-- `Media` - for slot that are recommended to contain either images or video.
+- `Graphic` :for slots that are recommended for decorative element such as custom icon or image
+- `Media` :for slot that are recommended to contain either images or video.
 - `Meta`
 - `Footer`
-- `Content` - should we chang to default?
-- 
+- `Content` 
+- `App-content` :for slots in components that categorized as templating components (such as side-drawer, top-app-bar)
 
 <hr> 
 
@@ -38,7 +38,7 @@ Use kebab case for slots name and if containing more than one word should use hy
 
 ```
 # Component Name
-One summery line
+One summary line
 
 - Code import sample
 - Code example preview 
