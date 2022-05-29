@@ -7,10 +7,11 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { TopAppBar } from './top-app-bar';
 
-const getClasses = ({ fixed, alternate }: TopAppBar) => classNames(
+const getClasses = ({ fixed, alternate, shadow }: TopAppBar) => classNames(
   'control',
   ['fixed', fixed],
   ['alternate', alternate],
+  ['shadow', shadow],
 );
 
 /**
@@ -38,3 +39,4 @@ export const TopAppBarTemplate: (
 	  </div>
 	`;
 };
+

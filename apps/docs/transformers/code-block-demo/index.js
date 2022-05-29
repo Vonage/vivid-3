@@ -24,7 +24,7 @@ const getComponentName = (outputPath) => {
 const getComponentData = (componentName) => jsonData.find(({ title }) => title == componentName);
 
 const generateCodeBlockDemo = function(blockData) {
-  let code = blockData.pre.querySelector('code')?.textContent;
+  let code = blockData.pre.querySelector('code').textContent;
 
   const { classList } = blockData.pre;
 
