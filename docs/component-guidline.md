@@ -1,18 +1,17 @@
 # Documentation Conventions
 For better and unify components documentation
 
-## Class Names
+## Template guide
+Use the new component generator to create a new component:  
+`npm run nx g @vonage/nx-vivid:component my-component`
 
-### Do:
+
+### CSS class-names:
 
 - Use `.base` for the first element in the component.
 - Use `.control` for the main form control such as input, buttons etc.'.
 - Use kebab case.
-
-### Dont:
-
-- no need for adding vwc to the component name or the css class
-- no need for the component name in the classes
+- Our template is encapsulated, no need for the component name in the nested elements class-name (like `card-header`).
 
 ## Properties name
 
@@ -24,12 +23,13 @@ For better and unify components documentation
 ### Slots Name
 Use kebab case for slots name.
 
-- `Graphic` :for slots that are recommended for decorative element such as custom icon or image
-- `Media` :for slot that are recommended to contain either images or video.
+- `Graphic` - for slots that are recommended for decorative element such as custom icon or image
+- `Media` - for slot that are recommended to contain either images or video.
 - `Meta`
-- `Footer`
+- `Footer / Actions`
+- `Action-ites / Action-items` - ?
 - `Content` 
-- `App-content` :for slots in components that categorized as templating components (such as side-drawer, top-app-bar)
+- `App-content` - Maybe change it to `app-main` for slots in components that categorized as templating components (such as side-drawer, top-app-bar). 
 
 <hr> 
 
