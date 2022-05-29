@@ -100,14 +100,14 @@ export const CardTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Card> = () => html<Card>`
-	<vwc-elevation dp=${(x => x.elevation ??  '4')}>
+	<vwc-elevation dp=${(x => x.elevation ?? '4')}>
 		<div class="${getClasses}">
 			<div class="wrapper">
 				<div class="vwc-card-media">
 					<slot name="media"></slot>
 				</div>
 				<div class="content">
-					<slot name="content">
+					<slot name="default">
 						<div class="content-container">
 							${renderHeader()}
 							${renderMetaSlot()}
