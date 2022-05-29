@@ -19,6 +19,7 @@ Note: this element is purely a visual presentation and have no semantic meaning.
 ## Properties
 
 ### Appearance
+
 Set the `appearance` attribute to change the action-Group's appearance.
 
 - Type: `'fieldset'` | `'ghost'`
@@ -39,14 +40,13 @@ Set the `appearance` attribute to change the action-Group's appearance.
 </vwc-action-group>
 ```
 
-
 ### Shape
+
 Use the `shape` attribute to set the action-Group's edges.  
 When using shape - pay in mind setting the slotted elements with the same shape property.
 
 - Type: `'rounded'` | `'pill'`
 - Default: `'rounded'`
-
 
 ```html preview
 <vwc-action-group shape="pill">
@@ -58,7 +58,8 @@ When using shape - pay in mind setting the slotted elements with the same shape 
 ```
 
 ### Separator
-Use a `<span>` tag with `role="separator"` for adding separator between the action elements 
+
+Use a `<span>` tag with `role="separator"` for adding separator between the action elements
 
 ```html preview
 <vwc-action-group appearance="fieldset">
@@ -73,23 +74,24 @@ Use a `<span>` tag with `role="separator"` for adding separator between the acti
 </vwc-action-group>
 ```
 
-
 ## Use cases
+
 #### semi-split button
+
 ```html preview
 <vwc-action-group shape="pill">
-<vwc-button label='My Action' appearance='ghost' shape="pill"></vwc-button>
-   <span role="separator"></span>
-   <vwc-button shape="pill" icon="chevron-down-solid"></vwc-button>
+  <vwc-button label='My Action' appearance='ghost' shape="pill"></vwc-button>
+    <span role="separator"></span>
+  <vwc-button shape="pill" icon="chevron-down-solid"></vwc-button>
 </vwc-action-group>
 ```
 
 #### complex search
+
 ```html preview
 <vwc-action-group shape="pill">
-    <vwc-button label='Action' appearance='ghost' icon="chevron-down-solid" icon-trailing shape="pill"></vwc-button>
-   <span role="separator"></span>
-   <vwc-text-field icon="search-line" placeholder="Search..." appearance='ghost' shape="pill"  style="min-width: 160px;"></vwc-text-field>
+  <vwc-button label='Action' appearance='ghost' icon="chevron-down-solid" icon-trailing shape="pill"></vwc-button>
+  <span role="separator"></span>
+  <vwc-text-field icon="search-line" placeholder="Search..." appearance='ghost' shape="pill"  style="min-width: 160px;"></vwc-text-field>
 </vwc-action-group>
 ```
-
