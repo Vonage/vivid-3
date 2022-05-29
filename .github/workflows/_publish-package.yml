@@ -31,14 +31,12 @@ jobs:
           echo "::set-output name=no_version_bump::$(if grep -q "Skipping publish" "./tmp.txt"; then echo true; else echo false; fi)"
 
       - name: Get us to the update version
-        if: ${{!steps.bump.outputs.no_version_bump}}
         run: |
           git fetch --all
           git checkout main
           git pull
 
       - name: Publish
-        if: ${{!steps.bump.outputs.no_version_bump}}
         run: |
           npm ci
           npx nx run components:build
@@ -47,6 +45,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
 
       - name: Push & Deploy
+        if: always()
         run: |
           git tag -a deploy -m "Temporary deploy tag"
           git push --tags origin main
