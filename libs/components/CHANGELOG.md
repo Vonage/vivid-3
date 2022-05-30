@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Mon, 30 May 2022 12:17:41 GMT and should not be manually modified.
+This log was last generated on Mon, 30 May 2022 12:41:42 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.18
+
+Mon, 30 May 2022 12:41:42 GMT
+
+### Changes
+
+- package export text field (yinon@hotmail.com)
 
 ## 3.0.0-next.17
 
