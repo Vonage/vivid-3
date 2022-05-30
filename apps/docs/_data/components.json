@@ -151,6 +151,13 @@
     ]
   },
   {
+    "title": "text-field",
+    "markdown": "./libs/components/src/lib/text-field/README.md",
+    "modules": [
+      "/assets/modules/components/text-field/index.js"
+    ]
+  },
+  {
     "title": "fab",
     "markdown": "./libs/components/src/lib/fab/README.md",
     "modules": [
