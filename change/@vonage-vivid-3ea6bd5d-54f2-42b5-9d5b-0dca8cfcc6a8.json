@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "package export text field",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}
