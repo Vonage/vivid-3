@@ -141,7 +141,7 @@ To add content below the top-app-bar, add a slot called `app-content`.
 
 ### Fixed Top App Bar With Side-Drawer
 
-This is an example of an `alternate`, `fixed` top-app-bar with the `meta`, `actionItems` and `app-content` slots.
+This is an example of a `fixed` top-app-bar with the `meta`, `actionItems` and `app-content` slots.
 
 ```html preview full
 <style>
@@ -153,7 +153,7 @@ This is an example of an `alternate`, `fixed` top-app-bar with the `meta`, `acti
         --side-drawer-inline-size: 200px;
     }
 </style>
-<vwc-top-app-bar fixed alternate heading="Top App Bar with Side Drawer">
+<vwc-top-app-bar fixed heading="Top App Bar with Side Drawer">
     <vwc-button id="button" slot="meta" icon="menu-line"></vwc-button>
     <div slot="actionItems">
         <vwc-button icon="twitter-mono"></vwc-button>
@@ -197,7 +197,7 @@ This is an example of an `alternate`, `fixed` top-app-bar with the `meta`, `acti
 
 ### Top App Bar With Side-Drawer
 
-This is an example of an `alternate`, top-app-bar with the `meta`, `actionItems` and `app-content` slots.
+This is an example of a top-app-bar with the `meta`, `actionItems` and `app-content` slots.
 
 ```html preview full
 <style>
@@ -209,7 +209,7 @@ This is an example of an `alternate`, top-app-bar with the `meta`, `actionItems`
         --side-drawer-inline-size: 200px;
     }
 </style>
-<vwc-top-app-bar alternate heading="Top App Bar with Side Drawer">
+<vwc-top-app-bar heading="Top App Bar with Side Drawer">
     <vwc-button id="button" slot="meta" icon="menu-line"></vwc-button>
     <div slot="actionItems">
         <vwc-button icon="twitter-mono"></vwc-button>

@@ -24,7 +24,7 @@
 	color: var(#{theme-consts.$vvd-color-on-canvas});
 	column-gap: 12px;
 
-	&.shadow {
+	&.elevated {
 		transition: all 0.15s linear;
 		box-shadow: 0 0 10px rgba(0,0,0,0.4);
 	}

@@ -6,7 +6,7 @@ import { attr } from '@microsoft/fast-element';
  *
  * @public
  */
-export class TopAppBar extends FoundationElement {
+export class TopAppBar extends FoundationElement {  
   /**
    *
    *
@@ -34,34 +34,27 @@ export class TopAppBar extends FoundationElement {
     mode: 'boolean',
   }) alternate = false;
 
-
-  /**
-   * elevates the top-app-bar
-   *
-   * @public
-   */
-  @attr({
-    mode: 'boolean',
-  }) elevated = false;
+  #headerEl?: HTMLElement | undefined | null;
 
   override connectedCallback(): void {
     super.connectedCallback();
-    window.addEventListener("scroll", this.scrollShadow);
+    this.#headerEl = this.shadowRoot?.querySelector('header');
+    window.addEventListener("scroll", () => this.#addElevation());
   }
 
   override disconnectedCallback(): void {
     super.disconnectedCallback();
-    window.removeEventListener("scroll", this.scrollShadow);
+    window.removeEventListener("scroll", () => this.#addElevation());
   }
 
   /**
-   * Add scroll class
+   * Add elevated class
    */
-  scrollShadow(): void {
+  #addElevation(): void {
     if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
-      this.elevated = true;
+      this.#headerEl?.classList.add('elevated');
     } else {
-      this.elevated = false;
+      this.#headerEl?.classList.remove('elevated');
     }
   }
 }

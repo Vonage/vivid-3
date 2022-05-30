@@ -5,25 +5,24 @@ import '.';
 const COMPONENT_TAG = 'vwc-top-app-bar';
 
 describe('vwc-top-app-bar', () => {
-  let element: TopAppBar;
+	let element: TopAppBar;
 
-  beforeEach(async () => {
-    element = (await fixture(
-      `<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-    )) as TopAppBar;
-  });
+	beforeEach(async () => {
+		element = (await fixture(
+			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+		)) as TopAppBar;
+	});
 
-  describe('basic', () => {
-    it('should be initialized as a vwc-top-app-bar', async () => {
-      expect(element).toBeInstanceOf(TopAppBar);
+	describe('basic', () => {
+		it('should be initialized as a vwc-top-app-bar', async () => {
+			expect(element).toBeInstanceOf(TopAppBar);
 			expect(element.alternate).toBeFalsy();
-      expect(element.elevated).toBeFalsy();
 			expect(element.fixed).toBeFalsy();
-      expect(element.heading).toBeUndefined();
-    });
-  });
+			expect(element.heading).toBeUndefined();
+		});
+	});
 
-  describe('fixed', () => {
+	describe('fixed', () => {
 		it('should set "fixed" to true and add "fixed" class', async () => {
 			const control = getControlElement(element);
 			let hasClassFixed = control.classList.contains('fixed');
@@ -49,24 +48,11 @@ describe('vwc-top-app-bar', () => {
 		});
 	});
 
-	describe('elevated', () => {
-		it('should set "elevated" to true and add "elevated" class', async () => {
-			const control = getControlElement(element);
-			let hasClassElevated = control.classList.contains('elevated');
-			element.elevated = true;
-			await elementUpdated(element);
-			expect(hasClassElevated).toEqual(false);
-
-			hasClassElevated = control.classList.contains('elevated');
-			expect(hasClassElevated).toEqual(true);
-		});
-	});
-
 	it('should render heading if heading is set', async function () {
-    element.heading = 'top app bar';
-    await elementUpdated(element);
+		element.heading = 'top app bar';
+		await elementUpdated(element);
 
-    const headerContent = element.shadowRoot?.querySelector('.header-content');
-    expect(headerContent).toBeTruthy();
-  });
+		const headerContent = element.shadowRoot?.querySelector('.header-content');
+		expect(headerContent).toBeTruthy();
+	});
 });
