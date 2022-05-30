@@ -414,15 +414,15 @@ describe('vwc-text-field', () => {
 	});
 
 	describe('value', function () {
-		it('should set active class when there is a value', async function () {
+		it('should set \'has-value\' class when there is a value', async function () {
 			const activeClassWhenEnabled = getRootElement(element)
 				.classList
-				.contains('active');
+				.contains('has-value');
 			element.value = '5';
 			await elementUpdated(element);
 			const activeClassWhenDisabled = getRootElement(element)
 				.classList
-				.contains('active');
+				.contains('has-value');
 			expect(activeClassWhenEnabled)
 				.toEqual(false);
 			expect(activeClassWhenDisabled)
@@ -432,35 +432,23 @@ describe('vwc-text-field', () => {
 
 	describe('density', function () {
 		it('should set the size class on the root', async function () {
-			const defaultDensityClassIsNormal = getRootElement(element)
-				.classList
-				.contains('density-normal');
-
-			const density = 'condensed';
+			const density = 'extended';
 			element.setAttribute('density', density);
 			await elementUpdated(element);
 
-			expect(defaultDensityClassIsNormal)
-				.toEqual(true);
 			expect(getRootElement(element)
 				.classList
-				.contains('density-condensed'))
+				.contains('density-extended'))
 				.toEqual(true);
 		});
 	});
 
 	describe('appearance', function () {
 		it('should set the shape class on the root', async function () {
-			const defaultAppearanceClassIsNormal = getRootElement(element)
-				.classList
-				.contains('appearance-outlined');
-
 			const appearance = 'filled';
 			element.setAttribute('appearance', appearance);
 			await elementUpdated(element);
 
-			expect(defaultAppearanceClassIsNormal)
-				.toEqual(true);
 			expect(getRootElement(element)
 				.classList
 				.contains('appearance-filled'))
@@ -469,17 +457,11 @@ describe('vwc-text-field', () => {
 	});
 
 	describe('shape', function () {
-		it('should set the shape appearance on the root', async function () {
-			const defaultShapeClassIsNormal = getRootElement(element)
-				.classList
-				.contains('shape-rounded');
-
+		it('should set the shape appearance class on the base', async function () {
 			const shape = 'pill';
 			element.setAttribute('shape', shape);
 			await elementUpdated(element);
 
-			expect(defaultShapeClassIsNormal)
-				.toEqual(true);
 			expect(getRootElement(element)
 				.classList
 				.contains('shape-pill'))

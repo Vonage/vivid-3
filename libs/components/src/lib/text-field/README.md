@@ -67,14 +67,12 @@ Use the `density` attribute to set the text field's to one of the predefined blo
 - Type: `'normal'` | `'extended'`
 - Default: `'normal'`
 
-```html preview
-<vwc-layout column-basis="block">
-  <vwc-text-field label="normal" density="normal"></vwc-text-field>
-  <vwc-text-field label="extended" density="extended"></vwc-text-field>
-</vwc-layout>
+```html preview blocks
+<vwc-text-field label="normal" density="normal"></vwc-text-field>
+<vwc-text-field label="extended" density="extended"></vwc-text-field>
 ```
 
-## Icon
+### Icon
 
 Text field input can be prefixed by a decorative icon.
 Use the `icon` attribute to add an icon.
@@ -90,11 +88,9 @@ Use the `shape` attribute to change the button's edges.
 - Type: `'rounded'` | `'pill'`
 - Default: `'rounded'`
 
-```html preview
-<vwc-layout column-basis="block">
-  <vwc-text-field label="Pill" shape="pill"></vwc-text-field>
-  <vwc-text-field label="Rounded" shape="rounded"></vwc-text-field>
-</vwc-layout>
+```html preview blocks
+<vwc-text-field label="Pill" shape="pill"></vwc-text-field>
+<vwc-text-field label="Rounded" shape="rounded"></vwc-text-field>
 ```
 
 ### Appearance
@@ -106,11 +102,32 @@ Set the `appearance` attribute to change the button's appearance.
 
 (`'ghost'` is typically used within a composition such as action group / toolbar).
 
-```html preview
-<vwc-text-field placeholder='ghost' appearance='ghost'></vwc-text-field>
-<vwc-text-field label='fieldset' appearance='fieldset'></vwc-text-field>
+```html preview blocks
+<vwc-text-field placeholder="appearance" label='fieldset' appearance='fieldset'></vwc-text-field>
+<vwc-text-field placeholder="appearance" label='ghost' appearance='ghost'></vwc-text-field>
 ```
 
+### Disabled
+
+Add the `disabled` attribute to disable the text field.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview blocks
+<vwc-text-field disabled icon="chat-line" value="disabled" label='fieldset' appearance='fieldset'></vwc-text-field>
+```
+
+### Readonly
+
+Add the `readonly` attribute to restrict user from changing the text field's value.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview blocks
+<vwc-text-field readonly icon="chat-line" value="readonly text" label='fieldset' appearance='fieldset'></vwc-text-field>
+```
 
 ## Use cases
 
@@ -120,6 +137,7 @@ You can validate the text field like any other native `input`.  Here's an exampl
 
 ```html preview
 <vwc-text-field id="invalid-text-field" label="invalid" pattern="123" value="5"></vwc-text-field>
+
 <script>
   document.getElementById("#invalid-text-field").dirtyValue = true;
   document.getElementById("#invalid-text-field").validate();

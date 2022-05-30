@@ -23,7 +23,7 @@ const getStateClasses = ({
 }: TextField) => classNames(
 	['error', Boolean(errorValidationMessage)],
 	['disabled', disabled],
-	['active', Boolean(value)],
+	['has-value', Boolean(value)],
 	['readonly', readOnly],
 	['placeholder', Boolean(placeholder)],
 	[`density-${density}`, Boolean(density)],
