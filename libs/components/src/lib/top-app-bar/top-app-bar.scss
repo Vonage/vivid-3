@@ -12,7 +12,7 @@
 .control {
 	@include typography.typography-cat-shorthand('subtitle-2');
 
-  position: fixed;
+	position: fixed;
 	z-index: var(#{variables.$top-app-bar-z-index});
 	display: flex;
 	width: 100%;
@@ -25,8 +25,8 @@
 	column-gap: 12px;
 
 	&.elevated {
+		box-shadow: 0 0 10px rgb(0 0 0 / 40%);
 		transition: all 0.15s linear;
-		box-shadow: 0 0 10px rgba(0,0,0,0.4);
 	}
 
 	&.fixed {
