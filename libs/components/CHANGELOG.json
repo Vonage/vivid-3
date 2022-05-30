@@ -2,6 +2,44 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Mon, 30 May 2022 12:41:42 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.18",
+      "version": "3.0.0-next.18",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "543325ca2ff24b281386f1cd9232d365b97b7af3",
+            "comment": "package export text field"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 30 May 2022 12:17:41 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.17",
+      "version": "3.0.0-next.17",
+      "comments": {
+        "none": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "2e17b0e727319ad1fb6b3eac20fcda2346f0a1fe",
+            "comment": "restore full style"
+          }
+        ],
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "ffbd4e5c1ccabb0a2cab95fe018914f92eb08b9d",
+            "comment": "add text field component"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 28 May 2022 17:55:16 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.16",
       "version": "3.0.0-next.16",

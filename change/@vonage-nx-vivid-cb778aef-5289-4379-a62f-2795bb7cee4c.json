@@ -1,7 +1,0 @@
-{
-  "comment": "Convert the component generator to plugin",
-  "type": "none",
-  "packageName": "@vonage/nx-vivid",
-  "email": "yonatan.kra@vonage.com",
-  "dependentChangeType": "none"
-}
