@@ -49,16 +49,16 @@ describe('vwc-top-app-bar', () => {
 		});
 	});
 
-	describe('shadow', () => {
-		it('should set "shadow" to true and add "shadow" class', async () => {
+	describe('elevated', () => {
+		it('should set "elevated" to true and add "elevated" class', async () => {
 			const control = getControlElement(element);
-			let hasClassShadow = control.classList.contains('shadow');
-			element.shadow = true;
+			let hasClassElevated = control.classList.contains('elevated');
+			element.elevated = true;
 			await elementUpdated(element);
-			expect(hasClassShadow).toEqual(false);
+			expect(hasClassElevated).toEqual(false);
 
-			hasClassShadow = control.classList.contains('shadow');
-			expect(hasClassShadow).toEqual(true);
+			hasClassElevated = control.classList.contains('elevated');
+			expect(hasClassElevated).toEqual(true);
 		});
 	});
 

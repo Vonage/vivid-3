@@ -34,9 +34,15 @@ export class TopAppBar extends FoundationElement {
     mode: 'boolean',
   }) alternate = false;
 
+
+  /**
+   * elevates the top-app-bar
+   *
+   * @public
+   */
   @attr({
     mode: 'boolean',
-  }) shadow = false;
+  }) elevated = false;
 
   override connectedCallback(): void {
     super.connectedCallback();
@@ -53,9 +59,9 @@ export class TopAppBar extends FoundationElement {
    */
   scrollShadow(): void {
     if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
-      this.shadow = true;
+      this.elevated = true;
     } else {
-      this.shadow = false;
+      this.elevated = false;
     }
   }
 }
