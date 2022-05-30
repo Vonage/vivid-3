@@ -6,9 +6,9 @@ import { TopAppBar } from './top-app-bar';
 import { TopAppBarTemplate as template } from './top-app-bar.template';
 
 export const vividTopAppBar = TopAppBar.compose<FoundationElementDefinition>({
-  baseName: 'top-app-bar',
-  template: template as any,
-  styles,
+	baseName: 'top-app-bar',
+	template: template as any,
+	styles,
 });
 
 designSystem.register(vividTopAppBar());

@@ -1,16 +1,16 @@
 import { html, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
-  ElementDefinitionContext,
-  FoundationElementDefinition,
+	ElementDefinitionContext,
+	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { TopAppBar } from './top-app-bar';
 
 const getClasses = ({ fixed, alternate }: TopAppBar) => classNames(
-  'control',
-  ['fixed', fixed],
-  ['alternate', alternate],
+	'control',
+	['fixed', fixed],
+	['alternate', alternate],
 );
 
 /**
@@ -20,10 +20,10 @@ const getClasses = ({ fixed, alternate }: TopAppBar) => classNames(
  * @public
  */
 export const TopAppBarTemplate: (
-  context: ElementDefinitionContext,
-  definition: FoundationElementDefinition
+	context: ElementDefinitionContext,
+	definition: FoundationElementDefinition
 ) => ViewTemplate<TopAppBar> = () => {
-  return html<TopAppBar>`
+	return html<TopAppBar>`
     <header class="${getClasses}" part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}">
         <section class="header-content start" id="navigation">
           <slot name="meta"></slot>
