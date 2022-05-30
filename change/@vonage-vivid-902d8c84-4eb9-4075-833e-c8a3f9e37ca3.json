@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "migrate top app bar to fast element",
+  "packageName": "@vonage/vivid",
+  "email": "rina.oksman@vonage.com",
+  "dependentChangeType": "none"
+}
