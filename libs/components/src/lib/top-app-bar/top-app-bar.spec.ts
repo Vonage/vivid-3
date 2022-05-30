@@ -17,7 +17,7 @@ describe('vwc-top-app-bar', () => {
     it('should be initialized as a vwc-top-app-bar', async () => {
       expect(element).toBeInstanceOf(TopAppBar);
 			expect(element.alternate).toBeFalsy();
-      expect(element.shadow).toBeFalsy();
+      expect(element.elevated).toBeFalsy();
 			expect(element.fixed).toBeFalsy();
       expect(element.heading).toBeUndefined();
     });
