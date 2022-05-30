@@ -1,6 +1,6 @@
 # top-app-bar
 
-```js
+```html
 <script type="module">
     import '@vonage/vivid/top-app-bar';
 </script>
@@ -62,7 +62,7 @@ Add the `alternate` attribute to set the color-scheme to dark or light (dependin
 
 The `meta` slot is for action content next to the heading.
 
-```js
+```html
 <vwc-button slot="meta" icon="menu-line"></vwc-button>
 ```
 
@@ -82,7 +82,7 @@ The `meta` slot is for action content next to the heading.
 
 Action items are displayed at the end of the top-app bar in the `actionItems` slot.
 
-```js
+```html
 <div slot="actionItems">
     <vwc-button icon="twitter-mono"></vwc-button>
     <vwc-button icon="facebook-mono"></vwc-button>
@@ -108,9 +108,9 @@ Action items are displayed at the end of the top-app bar in the `actionItems` sl
 
 ### App-content
 
-To add content aside the side-drawer, add a slot called `app-content`.
+To add content below the top-app-bar, add a slot called `app-content`.
 
-```js
+```html
 <div slot="app-content">
   <vwc-text font-face="body-1">
     This is the app-content slot!!!!
@@ -129,26 +129,126 @@ To add content aside the side-drawer, add a slot called `app-content`.
   }
 </style>
 <vwc-top-app-bar heading="With App Content">
-  <vwc-layout slot="app-content">
-    <vwc-text font-face="headline-1">
-      <h1>
-        Scroll to see the effect.
-      </h1>
-    </vwc-text>
-
+  <div slot="app-content">
     <vwc-text font-face="body-1">
-      <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-      </p>
     </vwc-text>
-
-    <vwc-text font-face="body-1">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-      </p>
-    </vwc-text>
-  </vwc-layout>
+  </div>
 </vwc-top-app-bar>
+```
+
+## Example Usage
+
+### Fixed Top App Bar With Side-Drawer
+
+This is an example of an `alternate`, `fixed` top-app-bar with the `meta`, `actionItems` and `app-content` slots.
+
+```html preview full
+<style>
+    body {
+    }
+    vwc-side-drawer#sideDrawer{
+        block-size: calc(100vh - var(--top-app-bar-height));
+        --side-drawer-background-color: var(--vvd-color-neutral-10);
+        --side-drawer-inline-size: 200px;
+    }
+</style>
+<vwc-top-app-bar fixed alternate heading="Top App Bar with Side Drawer">
+    <vwc-button id="button" slot="meta" icon="menu-line"></vwc-button>
+    <div slot="actionItems">
+        <vwc-button icon="twitter-mono"></vwc-button>
+        <vwc-button icon="facebook-mono"></vwc-button>
+        <vwc-button icon="heart-solid"></vwc-button>
+    </div>
+    <vwc-side-drawer id="sideDrawer" open slot="app-content">
+        <div>
+            <vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
+            <p><vwc-text font-face="body-2-bold">SECTION TITLE</vwc-text></p>
+            <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
+            <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
+        </div>
+         <vwc-layout slot="app-content">
+          <vwc-text font-face="headline-1">
+            <h1>
+              Scroll to see the effect.
+            </h1>
+          </vwc-text>
+
+          <vwc-text font-face="body-1">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+            </p>
+          </vwc-text>
+
+          <vwc-text font-face="body-1">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+            </p>
+          </vwc-text>
+        </vwc-layout>
+    </vwc-side-drawer>
+</vwc-top-app-bar>
+<script>
+  button.addEventListener('click', function() {
+    sideDrawer.open = !sideDrawer.open;
+  });
+</script>
+```
+
+### Top App Bar With Side-Drawer
+
+This is an example of an `alternate`, top-app-bar with the `meta`, `actionItems` and `app-content` slots.
+
+```html preview full
+<style>
+    body {
+    }
+    vwc-side-drawer#sideDrawer{
+        block-size: calc(100vh - var(--top-app-bar-height));
+        --side-drawer-background-color: var(--vvd-color-neutral-10);
+        --side-drawer-inline-size: 200px;
+    }
+</style>
+<vwc-top-app-bar alternate heading="Top App Bar with Side Drawer">
+    <vwc-button id="button" slot="meta" icon="menu-line"></vwc-button>
+    <div slot="actionItems">
+        <vwc-button icon="twitter-mono"></vwc-button>
+        <vwc-button icon="facebook-mono"></vwc-button>
+        <vwc-button icon="heart-solid"></vwc-button>
+    </div>
+    <vwc-side-drawer id="sideDrawer" open slot="app-content">
+        <div>
+            <vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
+            <p><vwc-text font-face="body-2-bold">SECTION TITLE</vwc-text></p>
+            <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
+            <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
+        </div>
+         <vwc-layout slot="app-content">
+          <vwc-text font-face="headline-1">
+            <h1>
+              Scroll to see the effect.
+            </h1>
+          </vwc-text>
+
+          <vwc-text font-face="body-1">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+            </p>
+          </vwc-text>
+
+          <vwc-text font-face="body-1">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+            </p>
+          </vwc-text>
+        </vwc-layout>
+    </vwc-side-drawer>
+</vwc-top-app-bar>
+<script>
+  button.addEventListener('click', function() {
+    sideDrawer.open = !sideDrawer.open;
+  });
+</script>
 ```
 
 ## CSS Custom Properties
@@ -168,45 +268,3 @@ Controls the height of the top-app-bar.
 - `--top-app-bar-height`
 - Type: `Number`
 - Default: `64px`
-
-## Example Usage
-
-### With Side-Drawer
-
-This is an example of an `alternate`, `fixed` top-app-bar with the `meta`, `actionItems` and `app-content` slots.
-
-```html preview full
-<style>
-    body {
-    }
-    vwc-side-drawer#sideDrawer{
-        block-size: calc(100vh - var(--top-app-bar-height));
-        --side-drawer-background-color: var(--vvd-color-neutral-10);
-        --side-drawer-inline-size: 200px;
-    }
-</style>
-<vwc-top-app-bar fixed alternate heading="Top App Bar with Side Drawer">
-    <vwc-button slot="meta" icon="menu-line"></vwc-button>
-    <div slot="actionItems">
-        <vwc-button icon="twitter-mono"></vwc-button>
-        <vwc-button icon="facebook-mono"></vwc-button>
-        <vwc-button icon="heart-solid"></vwc-button>
-    </div>
-    <vwc-side-drawer id="sideDrawer" open slot="app-content">
-        <div>
-            <vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
-            <p><vwc-text font-face="body-2-bold">SECTION TITLE</vwc-text></p>
-            <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
-            <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
-        </div>
-        <div slot="app-content">
-            <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
-            <vwc-text font-face="body-1">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-
-                Sed in aliquet neque. Nam luctus dolor ut risus feugiat, ut vehicula dui rhoncus. Integer sit amet mi vel urna varius porttitor in nec metus. Phasellus et turpis et odio rhoncus volutpat. Morbi magna dui, ultricies venenatis velit nec, varius ultrices tellus. In hac habitasse platea dictumst. Donec posuere est vitae turpis dapibus, eu luctus nunc gravida. Duis orci felis, rhoncus eu sollicitudin quis, venenatis quis ex. Aliquam malesuada, ante ut tempus placerat, lectus est molestie mi, non egestas dui quam vitae massa. Sed pharetra, turpis eget dapibus lobortis, purus neque consectetur orci, id efficitur tellus ante non odio. Mauris porttitor vitae justo dapibus convallis. Sed mattis vel diam nec convallis.
-            </vwc-text>
-        </div>
-    </vwc-side-drawer>
-</vwc-top-app-bar>
-```
