@@ -30,14 +30,6 @@ type ActionGroupShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  * @public
  */
 export class ActionGroup extends FoundationElement {
-	handleContentChange() {
-	// 	rovingIndex({
-	// 		element: node,     // required: the container to get roving index ux
-	// 		target: '#foo',    // optional: a query selector for which children should be focusable
-	// 	});
-		// eslint-disable-next-line no-mixed-spaces-and-tabs
-	 }
-
 	/**
 	 * The shape the ActionGroup should have.
 	 *

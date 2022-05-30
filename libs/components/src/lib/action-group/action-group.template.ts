@@ -29,7 +29,5 @@ export const ActionGroupTemplate: (
 
 ) => ViewTemplate<ActionGroup> = () => html`
 <div class="${getClasses}">
-  <slot @slotchange="${x => x.handleContentChange()}" ></slot>
+  <slot></slot>
 </div>`;
-
-// part="vvd-theme-alternate"
