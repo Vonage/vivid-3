@@ -24,10 +24,10 @@ export enum Shape {
 
 /* eslint-disable no-shadow */
 export enum Appearance {
-	Text = 'text',
 	Filled = 'filled',
 	Outlined = 'outlined',
 	Duotone = 'duotone',
+	Fieldset = 'fieldset',
 	Subtle = 'subtle',
 	Ghost = 'ghost',
 }
