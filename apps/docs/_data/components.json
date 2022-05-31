@@ -148,7 +148,9 @@
     "markdown": "./libs/components/src/lib/card/README.md",
     "modules": [
       "/assets/modules/components/card/index.js",
-      "/assets/modules/components/button/index.js"
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/text/index.js",
+      "/assets/modules/components/layout/index.js"
     ]
   },
   {

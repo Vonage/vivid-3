@@ -116,7 +116,11 @@ default slot is for overriding the content structure of the whole card.
 
 ```html preview
 <vwc-card >
-<div slot="default">If you need different structure - use this slot</div>
+  <vwc-layout>
+    <vwc-text>
+      If you need different structure - use this slot
+    </vwc-text>
+  </vwc-layout>
 </vwc-card>
 ```
 

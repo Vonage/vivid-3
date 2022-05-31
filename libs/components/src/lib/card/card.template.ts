@@ -101,10 +101,10 @@ export const CardTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Card> = () => html<Card>`
 	<vwc-elevation dp=${(x => x.elevation ?? '4')}>
-		
+
 		<div class="${getClasses}">
 			<div class="wrapper">
-				<slot name="default">
+				<slot>
 				<div class="vwc-card-media">
 					<slot name="media"></slot>
 				</div>
@@ -121,6 +121,6 @@ export const CardTemplate: (
 				</slot>
 			</div>
 		</div>
-		
+
 	</vwc-elevation>
 `;
