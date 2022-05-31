@@ -6,7 +6,7 @@
 :host {
 	display: block;
 
-  @supports (block-size: fit-content) and (inline-size: fit-content) {
+	@supports (block-size: fit-content) and (inline-size: fit-content) {
 		block-size: fit-content;
 		inline-size: fit-content;
 	}
