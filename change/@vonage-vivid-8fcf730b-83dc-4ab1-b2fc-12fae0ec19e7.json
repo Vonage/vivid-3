@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "export text field & action group from package",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}

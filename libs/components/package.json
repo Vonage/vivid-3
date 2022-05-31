@@ -7,6 +7,7 @@
   "exports": {
     "./accordion": "./accordion",
     "./accordion-item": "./accordion-item",
+    "./action-group": "./action-group",
     "./badge": "./badge",
     "./banner": "./banner",
     "./breadcrumb": "./breadcrumb",
