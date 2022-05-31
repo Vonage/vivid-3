@@ -9,7 +9,7 @@ const components = ['progress-ring'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
-	  <vwc-progress-ring min="0" max="100" value="50" connotation="brand"></vwc-progress-ring>
+	  <vwc-progress-ring min="0" max="100" value="50" connotation="accent"></vwc-progress-ring>
 	  <vwc-progress-ring min="0" max="100" value="50" connotation="cta"></vwc-progress-ring>
 	  <vwc-progress-ring min="0" max="100" value="33" connotation="alert"></vwc-progress-ring>
 	  <vwc-progress-ring min="0" max="100" value="66" connotation="success"></vwc-progress-ring>

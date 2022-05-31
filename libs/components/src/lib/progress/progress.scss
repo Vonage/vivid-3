@@ -1,9 +1,9 @@
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: cta brand alert success,
+	$connotations: cta accent alert success,
 	$shades: primary,
-	$default: brand,
+	$default: accent,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 

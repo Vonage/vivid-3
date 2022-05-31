@@ -29,7 +29,7 @@ $connotation-mapping: (
   //     fierce: utils.get-color-token(neutral-20),
   //   )
   // ),
-  brand: map.merge(
+  accent: map.merge(
     get-default-mapping(neutral),
     (
       primary: utils.get-color-token(on-canvas/*neutral-100*/),
