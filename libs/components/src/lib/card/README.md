@@ -85,7 +85,6 @@ The media slot is mainly for images or video content above the card header
 <vwc-card heading="Card with Media" text="here is the card text">
   <img slot="media" src="https://doodleipsum.com/300x150/flat?bg=EB765D&amp;i=7d5ed3bc0c215d1359b2a63d03cf1540" alt="Sitting on Floor"style="width: 100%; height: 150px; object-fit: cover;"/>
 </vwc-card>
-</div>
 ```
 
 ### Meta
@@ -104,7 +103,7 @@ footer slot main purpose is for action button
 
 ```html preview
 <vwc-card heading="All Options on Deck" subheading="subheading" icon="chat-line" text="here is the card text">
-  <div style="height: 150px; width: 100%; background-color: rebeccapurple;" slot="media"></div>
+  <div slot="media" style="height: 150px; width: 100%; background-color: rebeccapurple;"></div>
   <vwc-button slot="meta" icon="more-vertical-solid" appearance="ghost"></vwc-button>
   <vwc-button slot="footer" icon="arrow-bold-right-line" shape="pill" label="Action" appearance="outlined"></vwc-button>
 </vwc-card>
