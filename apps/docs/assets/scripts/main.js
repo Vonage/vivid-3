@@ -26,6 +26,11 @@ const initShowCodeButtons = () => {
   });
 };
 
+const onloadIframe = (iFrame) => {
+  const { clientHeight } = iFrame.contentDocument.scrollingElement
+  iFrame.style.height = clientHeight + 4 + "px";
+};
+
 const initIframe = (toggle, iFrame) => {
   setIframeHeight(iFrame);
   setCurrentIframeTheme(toggle, iFrame);
