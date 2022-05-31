@@ -10,31 +10,34 @@ const toggleCodePanel = (event) => {
 };
 
 const initShowCodeButtons = () => {
+    const toggle = document.querySelector('dark-mode-toggle');
+
     document.querySelectorAll("." + CBD_BUTTON_SHOW).forEach(button => {
         button.addEventListener('click', toggleCodePanel);
     });
-    document.querySelectorAll("." + CBD_DEMO).forEach(iframe => {
-        onloadIframe(iframe);
+    document.querySelectorAll("." + CBD_DEMO).forEach(iFrame => {
+        initIframe(toggle, iFrame);
     });
-};
-
-const onloadIframe = (iFrame) => {
-    iFrame.style.height = iFrame.contentWindow.document.body.scrollHeight + 5 + "px";
-    toggleDarkMode(iFrame.contentWindow.document.head);
-};
-
-const toggleDarkMode = (head) => {
-    const toggle = document.querySelector('dark-mode-toggle');
-    setCurrentTheme(toggle, head);
 
     toggle.addEventListener('colorschemechange', () => {
-        setCurrentTheme(toggle, head);
+        document.querySelectorAll("." + CBD_DEMO).forEach(iFrame => {
+            setCurrentIframeTheme(toggle, iFrame);
+        });
     });
 };
 
-const setCurrentTheme = (toggle, head) => {
+const initIframe = (toggle, iFrame) => {
+    setIframeHeight(iFrame);
+    setCurrentIframeTheme(toggle, iFrame);
+}
+
+const setIframeHeight = (iFrame) => {
+    iFrame.style.height = iFrame.contentWindow.document.body.scrollHeight + 5 + "px";
+};
+
+const setCurrentIframeTheme = (toggle, iFrame) => {
     const theme = toggle.mode === 'dark' ? '<link rel="stylesheet" href="/assets/styles/themes/dark.css" media="all">' : '<link rel="stylesheet" href="/assets/styles/themes/light.css" media="all">';
-    head.insertAdjacentHTML("beforeend", theme);
+    iFrame.contentWindow.document.head.insertAdjacentHTML("beforeend", theme);
 }
 
 window.addEventListener('DOMContentLoaded', initShowCodeButtons);
