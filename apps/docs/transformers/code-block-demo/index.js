@@ -7,7 +7,7 @@ const layout = require('./layout');
 const ELEVENTY_HTML_CODE_BLOCK_SELECTOR = 'pre.preview > code';
 
 const IFRAME_STYLE = '<link rel="stylesheet" href="/assets/styles/iframe.css">';
-const IFRAME_SCRIPT = '<script src="/assets/scripts/iframe.js"><script>';
+// const MAIN_SCRIPT = '<script src="/assets/scripts/main.js"><script>';
 const FONTS = '<link rel="stylesheet" href="/assets/styles/fonts/spezia.css">';
 
 const CBD_BASE = 'cbd-base';
@@ -49,7 +49,7 @@ module.exports = function (content, outputPath) {
   const blockData = {};
   blockData.outputPath = outputPath;
   const document = new JSDOM(content).window.document;
-  const headEl = document.documentElement.querySelector('head');
+  // const headEl = document.documentElement.querySelector('head');
   const codeBlocks = document.querySelectorAll(ELEVENTY_HTML_CODE_BLOCK_SELECTOR);
   codeBlocks.forEach(function (codeBlock, index) {
       const pre = codeBlock.closest('pre');
@@ -57,7 +57,7 @@ module.exports = function (content, outputPath) {
       blockData.index = index++;
       pre.replaceWith(generateCodeBlockDemo(blockData));
   });
-  headEl.insertAdjacentHTML('beforeend', IFRAME_SCRIPT);
+  // headEl.insertAdjacentHTML('beforeend', MAIN_SCRIPT);
   return document.documentElement.outerHTML;
 };
 
@@ -72,7 +72,7 @@ const getHtml = (demoData) => {
   return `
     <vwc-elevation dp="0">
       <div class="${CBD_BASE}">
-      <iframe class="${CBD_DEMO}" src="${iframeSrc}" onload=onloadIframe(this) loading="lazy"></iframe>
+      <iframe class="${CBD_DEMO}" src="${iframeSrc}" loading="lazy"></iframe>
         <details class="${CBD_DETAILS}">
             <summary>
                 <vwc-button label="source" icon="chevron-down-line" icon-trailing class="${CBD_BUTTON_SHOW}" aria-expanded="false" aria-controls="${codeBlockId}">

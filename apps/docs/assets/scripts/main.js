@@ -1,5 +1,6 @@
 const CBD_DETAILS = 'cbd-details';
 const CBD_BUTTON_SHOW = 'cbd-button-show';
+const CBD_DEMO = 'cbd-demo';
 
 const toggleCodePanel = (event) => {
     const button = event.target;
@@ -11,6 +12,9 @@ const toggleCodePanel = (event) => {
 const initShowCodeButtons = () => {
     document.querySelectorAll("." + CBD_BUTTON_SHOW).forEach(button => {
         button.addEventListener('click', toggleCodePanel);
+    });
+    document.querySelectorAll("." + CBD_DEMO).forEach(iframe => {
+        onloadIframe(iframe);
     });
 };
 
