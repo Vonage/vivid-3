@@ -32,7 +32,7 @@ const initIframe = (toggle, iFrame) => {
 }
 
 const setIframeHeight = (iFrame) => {
-    iFrame.style.height = iFrame.contentWindow.document.body.scrollHeight + 5 + "px";
+    iFrame.style.height = iFrame.contentWindow.document.documentElement.clientHeight;
 };
 
 const setCurrentIframeTheme = (toggle, iFrame) => {
