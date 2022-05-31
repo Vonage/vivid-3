@@ -51,7 +51,7 @@ export class TopAppBar extends FoundationElement {
 	 * Add elevated class
 	 */
 	#addElevation(): void {
-		if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
+		if (window.pageYOffset > 0) {
 			this.#headerEl?.classList.add('elevated');
 		} else {
 			this.#headerEl?.classList.remove('elevated');

@@ -48,11 +48,27 @@ describe('vwc-top-app-bar', () => {
 		});
 	});
 
-	it('should render heading if heading is set', async function () {
-		element.heading = 'top app bar';
-		await elementUpdated(element);
+	describe('heading', () => {
+		it('should render heading if heading is set', async function () {
+			element.heading = 'top app bar';
+			await elementUpdated(element);
 
-		const headerContent = element.shadowRoot?.querySelector('.header-content');
-		expect(headerContent).toBeTruthy();
+			const headerContent = element.shadowRoot?.querySelector('.header-content');
+			expect(headerContent).toBeTruthy();
+		});
 	});
+
+// 	describe('elevated', () => {
+// 		it('should add "elevated" class when scroll', async () => {
+// 			const control = getControlElement(element);
+// 			let hasClassElevated = control.classList.contains('elevated');
+// 			window.scrollTo(0, 100);
+// 			await elementUpdated(element);
+// 			expect(hasClassElevated).toEqual(false);
+			
+// 			hasClassElevated = control.classList.contains('elevated');
+// 			expect(hasClassElevated).toEqual(true);
+// 		});
+// 	});
+
 });
