@@ -1,18 +1,15 @@
-@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
-@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
-@use 'partials/variables' as variables;
-
+@use "../../../../shared/src/lib/sass/mixins/typography" as typography;
+@use "../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts" as theme-consts;
+@use "partials/variables" as variables;
 
 :host {
 	#{variables.$top-app-bar-height}: 64px;
 	#{variables.$top-app-bar-z-index}: 7;
 }
 
-
 .control {
-	@include typography.typography-cat-shorthand('subtitle-2');
+	@include typography.typography-cat-shorthand("subtitle-2");
 
-	position: fixed;
 	z-index: var(#{variables.$top-app-bar-z-index});
 	display: flex;
 	width: 100%;
@@ -55,4 +52,3 @@
 .app-content {
 	padding-top: var(#{variables.$top-app-bar-height});
 }
-
