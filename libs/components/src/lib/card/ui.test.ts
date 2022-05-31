@@ -14,7 +14,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		path.join(new URL('.', import.meta.url).pathname, 'README.md')
 	).reduce(
 		(htmlString: string, block: string) =>
-			`${htmlString} <div style="margin: 5px; width: 250px; height: 200px">${block}</div>`,
+			`${htmlString} <div style="margin: 5px;">${block}</div>`,
 		''
 	);
 
