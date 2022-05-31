@@ -16,7 +16,7 @@ const initShowCodeButtons = () => {
     button.addEventListener('click', toggleCodePanel);
   });
   document.querySelectorAll("." + CBD_DEMO).forEach(iFrame => {
-    initIframe(toggle, iFrame);
+    setCurrentIframeTheme(toggle, iFrame);
   });
 
   toggle.addEventListener('colorschemechange', () => {
@@ -27,17 +27,7 @@ const initShowCodeButtons = () => {
 };
 
 const onloadIframe = (iFrame) => {
-  const { clientHeight } = iFrame.contentDocument.scrollingElement
-  iFrame.style.height = clientHeight + 4 + "px";
-};
-
-const initIframe = (toggle, iFrame) => {
-  setIframeHeight(iFrame);
-  setCurrentIframeTheme(toggle, iFrame);
-}
-
-const setIframeHeight = (iFrame) => {
-  iFrame.style.height = iFrame.contentWindow.document.documentElement.clientHeight;
+  iFrame.style.height = iFrame.contentWindow.document.documentElement.clientHeight + 4 + "px";
 };
 
 const setCurrentIframeTheme = (toggle, iFrame) => {
