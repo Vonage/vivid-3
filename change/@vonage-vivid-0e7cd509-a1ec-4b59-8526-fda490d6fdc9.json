@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "card improved css flow display properties",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}
