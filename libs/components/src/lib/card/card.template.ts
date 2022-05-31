@@ -107,7 +107,7 @@ export const CardTemplate: (
 					<slot name="media"></slot>
 				</div>
 				<div class="content">
-					<slot name="default">
+					<slot>
 						<div class="content-container">
 							${renderHeader()}
 							${renderMetaSlot()}
