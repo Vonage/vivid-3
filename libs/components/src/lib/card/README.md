@@ -112,7 +112,7 @@ footer slot main purpose is for action button
 
 ### Default
 
-If the content structure is not fitting the desired content, the heading, subheading and text can overide
+default slot is for overriding the content structure of the whole card.
 
 ```html preview
 <vwc-card >
