@@ -101,24 +101,26 @@ export const CardTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Card> = () => html<Card>`
 	<vwc-elevation dp=${(x => x.elevation ?? '4')}>
+		
 		<div class="${getClasses}">
 			<div class="wrapper">
+				<slot name="default">
 				<div class="vwc-card-media">
 					<slot name="media"></slot>
 				</div>
 				<div class="content">
-					<slot>
 						<div class="content-container">
 							${renderHeader()}
 							${renderMetaSlot()}
 						</div>
 						${when(x => x.text, text())}
-					</slot>
 				</div>
 				<div class="footer">
 					<slot name="footer" ${slotted('footerSlottedContent')}></slot>
 				</div>
+				</slot>
 			</div>
 		</div>
+		
 	</vwc-elevation>
 `;

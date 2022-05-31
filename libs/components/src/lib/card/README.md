@@ -110,13 +110,13 @@ footer slot main purpose is for action button
 </vwc-card>
 ```
 
-### Content
+### Default
 
 If the content structure is not fitting the desired content, the heading, subheading and text can overide
 
 ```html preview
 <vwc-card >
-<div>If you need different structure - use this slot</div>
+<div slot="default">If you need different structure - use this slot</div>
 </vwc-card>
 ```
 
