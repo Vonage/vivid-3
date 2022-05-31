@@ -10,11 +10,6 @@
 		block-size: fit-content;
 		inline-size: fit-content;
 	}
-
-  @supports (block-size: -moz-fit-content) and (inline-size: -moz-fit-content) {
-		block-size: -moz-fit-content;
-		inline-size: -moz-fit-content;
-	}
 }
 
 .control {
