@@ -82,11 +82,9 @@ The graphic slot overide the icon property
 The media slot is mainly for images or video content above the card header
 
 ```html preview
-<div style="block-size: 400px; inline-size: 300px;">
 <vwc-card heading="Card with Media" text="here is the card text">
- <img slot="media" src="https://doodleipsum.com/300x150/flat?bg=EB765D&amp;i=7d5ed3bc0c215d1359b2a63d03cf1540" alt="Sitting on Floor"style="width: 100%; height: 150px; object-fit: cover;"/>
+  <img slot="media" src="https://doodleipsum.com/300x150/flat?bg=EB765D&amp;i=7d5ed3bc0c215d1359b2a63d03cf1540" alt="Sitting on Floor"style="width: 100%; height: 150px; object-fit: cover;"/>
 </vwc-card>
-</div>
 ```
 
 ### Meta
@@ -104,13 +102,11 @@ The meta slot is for action content in the card header
 footer slot main purpose is for action button
 
 ```html preview
-<div style="block-size: 400px">
 <vwc-card heading="All Options on Deck" subheading="subheading" icon="chat-line" text="here is the card text">
-<div style="height: 150px; width: 100%; background-color: rebeccapurple;" slot="media"></div>
-<vwc-button slot="meta" icon="more-vertical-solid" appearance="ghost"></vwc-button>
-<vwc-button slot="footer" icon="arrow-bold-right-line" shape="pill" label="Action" appearance="outlined"></vwc-button>
+  <div style="height: 150px; width: 100%; background-color: rebeccapurple;" slot="media"></div>
+  <vwc-button slot="meta" icon="more-vertical-solid" appearance="ghost"></vwc-button>
+  <vwc-button slot="footer" icon="arrow-bold-right-line" shape="pill" label="Action" appearance="outlined"></vwc-button>
 </vwc-card>
-</div>
 ```
 
 ### Content
@@ -119,7 +115,7 @@ If the content structure is not fitting the desired content, the heading, subhea
 
 ```html preview
 <vwc-card >
-<div slot="content">If you need different structure - use this slot</div>
+  <div slot="content">If you need different structure - use this slot</div>
 </vwc-card>
 ```
 
@@ -138,11 +134,13 @@ The number of lines are controlled by css variable:
 
 ```html preview
 <style>
-  --heading-line-clamp: 1;
-  --subheading-line-clamp: 2;
+  vwc-card {
+    --heading-line-clamp: 1;
+    --subheading-line-clamp: 2;
 
-  display: block;
-  inline-size: 42ch;
+    display: block;
+    max-inline-size: 42ch;
+  }
 </style>
 
 <vwc-card
