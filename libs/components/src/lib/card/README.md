@@ -73,7 +73,7 @@ The graphic slot overide the icon property
 
 ```html preview
 <vwc-card heading="Vivid Card Component" subheading="extra text to the card heading">
-<vwc-icon slot="graphic" type="android-mono" style="font-size: 44px; color: var(--vvd-color-sucess)" ></vwc-icon>
+  <vwc-icon slot="graphic" type="android-mono" style="font-size: 44px; color: var(--vvd-color-sucess)" ></vwc-icon>
 </vwc-card>
 ```
 
