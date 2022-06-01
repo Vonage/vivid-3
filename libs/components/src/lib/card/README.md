@@ -109,13 +109,13 @@ footer slot main purpose is for action button
 </vwc-card>
 ```
 
-### Default
+### Main
 
-default slot is for overriding the content structure of the whole card.
+main slot is for overriding the content structure of the main card area.
 
 ```html preview
-<vwc-card >
-  <vwc-layout>
+<vwc-card>
+  <vwc-layout slot="main">
     <vwc-text>
       If you need different structure - use this slot
     </vwc-text>

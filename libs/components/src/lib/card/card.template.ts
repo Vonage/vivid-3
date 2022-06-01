@@ -104,21 +104,21 @@ export const CardTemplate: (
 
 		<div class="${getClasses}">
 			<div class="wrapper">
-				<slot>
 				<div class="vwc-card-media">
 					<slot name="media"></slot>
 				</div>
-				<div class="content">
-						<div class="content-container">
+				<slot name="main">
+					<div class="main-content">
+						<div class="header-wrapper">
 							${renderHeader()}
 							${renderMetaSlot()}
 						</div>
 						${when(x => x.text, text())}
-				</div>
+					</div>
+				</slot>
 				<div class="footer">
 					<slot name="footer" ${slotted('footerSlottedContent')}></slot>
 				</div>
-				</slot>
 			</div>
 		</div>
 

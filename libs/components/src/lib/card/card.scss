@@ -26,14 +26,10 @@
 	color: var(#{theme-consts.$vvd-color-on-canvas});
 }
 
-.content {
+.main-content {
 	display: flex;
 	flex-flow: column;
 	padding: 1.5rem;
-	&-container {
-		display: flex;
-		gap: 0.5rem;
-	}
 }
 
 .header {
@@ -43,6 +39,11 @@
 	gap: 0.5rem;
 	&-content {
 		flex: 1;
+	}
+
+	&-wrapper {
+		display: flex;
+		gap: 0.5rem;
 	}
 
 	&-title,
