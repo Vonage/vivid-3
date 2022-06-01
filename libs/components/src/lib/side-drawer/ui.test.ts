@@ -26,12 +26,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	<div slot="app-content">
         <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
         <vwc-text font-face="body-1">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-            a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-            Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
-            of Lorem Ipsum.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nec urna congue, ultricies massa id, elementum ex. Praesent ut aliquam nisl. Pellentesque iaculis arcu quis mauris viverra finibus. Morbi dictum enim quis libero fringilla, sit amet euismod arcu interdum. Pellentesque lacinia magna a orci vestibulum, et vehicula tellus malesuada. Etiam id eros mauris. Nullam vitae ex cursus, malesuada mi tincidunt, vestibulum nunc. Fusce cursus, ante ac faucibus commodo, ante erat tempus eros, a tristique sapien urna a arcu. Nam eu nisl et nibh pellentesque dictum.
         </vwc-text>
 	</div>
 </vwc-side-drawer>`;
@@ -72,12 +67,7 @@ test('should show the component 2', async ({ page }: { page: Page }) => {
 	<div slot="app-content">
         <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
         <vwc-text font-face="body-1">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-            a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-            Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
-            of Lorem Ipsum.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nec urna congue, ultricies massa id, elementum ex. Praesent ut aliquam nisl. Pellentesque iaculis arcu quis mauris viverra finibus. Morbi dictum enim quis libero fringilla, sit amet euismod arcu interdum. Pellentesque lacinia magna a orci vestibulum, et vehicula tellus malesuada. Etiam id eros mauris. Nullam vitae ex cursus, malesuada mi tincidunt, vestibulum nunc. Fusce cursus, ante ac faucibus commodo, ante erat tempus eros, a tristique sapien urna a arcu. Nam eu nisl et nibh pellentesque dictum.
         </vwc-text>
 	</div>
 </vwc-side-drawer>`;
