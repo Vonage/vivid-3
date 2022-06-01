@@ -2,6 +2,15 @@
   "sourceRoot": "libs/components/src",
   "projectType": "library",
   "targets": {
+    "doc": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "cem analyze"
+        ],
+        "parallel": false
+      }
+    },
     "e2e": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
