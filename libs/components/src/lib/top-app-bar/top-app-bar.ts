@@ -38,8 +38,10 @@ export class TopAppBar extends FoundationElement {
 
 	override connectedCallback(): void {
 		super.connectedCallback();
-		this.#headerEl = this.shadowRoot?.querySelector('header');
-		window.addEventListener('scroll', () => this.#addElevation());
+		if(this.fixed){
+			this.#headerEl = this.shadowRoot?.querySelector('header');
+			window.addEventListener('scroll', () => this.#addElevation());
+		}
 	}
 
 	override disconnectedCallback(): void {

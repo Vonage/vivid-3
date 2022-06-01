@@ -21,13 +21,12 @@
 	color: var(#{theme-consts.$vvd-color-on-canvas});
 	column-gap: 12px;
 
-	&.elevated {
-		box-shadow: 0 0 10px rgb(0 0 0 / 40%);
-		transition: all 0.15s linear;
-	}
-
 	&.fixed {
 		position: fixed;
+		&.elevated {
+			box-shadow: 0 0 10px rgb(0 0 0 / 40%);
+			transition: all 0.15s linear;
+		}
 	}
 
 	.header-content {
