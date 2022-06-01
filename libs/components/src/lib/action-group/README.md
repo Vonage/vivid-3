@@ -74,6 +74,21 @@ Use a `<span>` tag with `role="separator"` for adding separator between the acti
 </vwc-action-group>
 ```
 
+## Tight
+
+By default, action group is styled in a spacious manner which visually extend the baseline row size. enabling the `tight` member will remove it's padding and align to the normal baseline size.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-button label="baselined button"></vwc-button>
+<vwc-action-group appearance="fieldset" tight>
+  <vwc-button label="Update branch"></vwc-button>
+  <vwc-button icon="chevron-down-solid"></vwc-button>
+</vwc-action-group>
+```
+
 ## Use cases
 
 ### semi-split button

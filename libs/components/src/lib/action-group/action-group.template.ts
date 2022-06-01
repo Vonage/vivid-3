@@ -9,11 +9,12 @@ import type { ActionGroup } from './action-group';
 
 
 const getClasses = ({
-	appearance, shape,
+	appearance, shape, tight
 }: ActionGroup) => classNames(
 	'base',
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
+	['tight', tight],
 
 );
 
