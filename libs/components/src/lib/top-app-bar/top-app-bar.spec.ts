@@ -27,6 +27,7 @@ describe('vwc-top-app-bar', () => {
 			const control = getControlElement(element);
 			let hasClassFixed = control.classList.contains('fixed');
 			element.fixed = true;
+			element.connectedCallback();
 			await elementUpdated(element);
 			expect(hasClassFixed).toEqual(false);
 
