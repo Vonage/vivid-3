@@ -15,20 +15,21 @@ Use the new component generator to create a new component:
 
 ## Properties name
 
-- `Heading` for the head or main text in the component.
-- `Sub-Heading`
+- `heading` for the head or main text in the component.
+- `sub-heading`
 - `text`
+- `label`
 
 
 ### Slots Name
 Use kebab case for slots name.
 
-- `Graphic` - for slots that are recommended for decorative element such as custom icon or image
-- `Media` - for slot that are recommended to contain either images or video.
-- `Meta`
-- `Footer / Actions`
-- `Action-ites / Action-items` - ?
-- `Content` 
+- `graphic` - for slots that are recommended for decorative element such as custom icon or image
+- `media` - for slot that are recommended to contain either images or video.
+- `meta`
+- `footer / actions`
+- `action-ites / action-items` - ?
+- `content` 
 - `App-content` - Maybe change it to `app-main` for slots in components that categorized as templating components (such as side-drawer, top-app-bar). 
 
 <hr> 
@@ -58,48 +59,59 @@ lorem ipsum
 
 ## CSS variables
 
-## Methods - ? (found in Accordion)
-
 ## Accessibility
 
-## Events - ? (found in banner)
-
 ## Use Cases
+### Events - ? (found in banner)
+### Methods - ? (found in Accordion)
 ```
 ## Common repeating description
+
+### icon
+The icon property should come after text or label property
+
+#### Common version:
+Text can be decorated by an icon of choice. Use the icon member to set the icon type.
+###### View [list of available icons](https://icons.vivid.vonage.com)
+#### short version (when there's only icon):
+Use the icon member to set the icon type.
+###### View [list of available icons](https://icons.vivid.vonage.com)
+
+### Icon Trailing
+Toggle icon-trailing member to set the icon’s placement at the beginning or end.
 
 For each member need to specify (if there are):
 - Type: `'member one'` | `'member two'` ...
 - Default: `'default member'`
 
 ### Appearance
-Set the `appearance` attribute to change the component's appearance.
+Set the `appearance` member to change the component's appearance.
 
-### Shape
-Use the `shape` attribute to set the component's edges.
+### Connotation
+Set the connotation member to change the component's connotation. It accepts a subset of predefined values.
 
 ### Density
-Use the `density` attribute to set the component's to one of the predefined block size extent.
+Use the `density` member to set the component's to one of the predefined block size extent.
 
-### icon
-we need to decide :)
-these are some variations:
-- Use the icon attribute/property to set an icon to the button. View list of available icon at the [vivid icons gallery](https://icons.vivid.vonage.com/).
-
-- Text field input can be prefixed by a decorative icon.
-
-- Use the `icon` attribute to add an icon.
-  Add icon='icon-name' attribute to add icon on the right of the card heading
-
-- Badge text can be affixed by a decorative icon, either by its start or end. Use the icon attribute to add an icon. Use the icon-trailing to place the icon to the right.
-- To add an icon to the right of the text, use the icon-trailing attribute (or iconTrailing property).
+### Shape
+Use the `shape` member to set the component's edges.
 
 
 
+<hr>
 
-## Code-Preview style
-### use of one of these options:
+## Documentation style (Code-Preview style)
+### Code preview options
+```html preview blocks
+code snipet
+```
+#### use of one of these options:
 - full
 - center
-- ...
+- blocks
+
+### Styling wrapper div:
+- `.cover-fill`
+- `.cover-full`
+- `.demo-gradient`
 
