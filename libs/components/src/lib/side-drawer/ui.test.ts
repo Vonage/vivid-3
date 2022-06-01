@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test'; 
+import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import {
 	loadComponents,
@@ -26,7 +26,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	<div slot="app-content">
         <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
         <vwc-text font-face="body-1">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nec urna congue, ultricies massa id, elementum ex. Praesent ut aliquam nisl. Pellentesque iaculis arcu quis mauris viverra finibus. Morbi dictum enim quis libero fringilla, sit amet euismod arcu interdum. Pellentesque lacinia magna a orci vestibulum, et vehicula tellus malesuada. Etiam id eros mauris. Nullam vitae ex cursus, malesuada mi tincidunt, vestibulum nunc. Fusce cursus, ante ac faucibus commodo, ante erat tempus eros, a tristique sapien urna a arcu. Nam eu nisl et nibh pellentesque dictum.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nec urna congue, ultricies massa id, elementum ex. Praesent ut aliquam nisl. 
+			Pellentesque iaculis arcu quis mauris viverra finibus. Morbi dictum enim quis libero fringilla, sit amet euismod arcu interdum. Pellentesque lacinia magna a orci vestibulum, et vehicula tellus malesuada. 
+			Etiam id eros mauris. Nullam vitae ex cursus, malesuada mi tincidunt, vestibulum nunc. Fusce cursus, ante ac faucibus commodo, ante erat tempus eros, a tristique sapien urna a arcu. Nam eu nisl et nibh pellentesque dictum.
         </vwc-text>
 	</div>
 </vwc-side-drawer>`;
@@ -67,7 +69,9 @@ test('should show the component 2', async ({ page }: { page: Page }) => {
 	<div slot="app-content">
         <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
         <vwc-text font-face="body-1">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nec urna congue, ultricies massa id, elementum ex. Praesent ut aliquam nisl. Pellentesque iaculis arcu quis mauris viverra finibus. Morbi dictum enim quis libero fringilla, sit amet euismod arcu interdum. Pellentesque lacinia magna a orci vestibulum, et vehicula tellus malesuada. Etiam id eros mauris. Nullam vitae ex cursus, malesuada mi tincidunt, vestibulum nunc. Fusce cursus, ante ac faucibus commodo, ante erat tempus eros, a tristique sapien urna a arcu. Nam eu nisl et nibh pellentesque dictum.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nec urna congue, ultricies massa id, elementum ex. Praesent ut aliquam nisl. Pellentesque iaculis arcu quis mauris viverra finibus.
+			Morbi dictum enim quis libero fringilla, sit amet euismod arcu interdum. Pellentesque lacinia magna a orci vestibulum, et vehicula tellus malesuada. Etiam id eros mauris. 
+			Nullam vitae ex cursus, malesuada mi tincidunt, vestibulum nunc. Fusce cursus, ante ac faucibus commodo, ante erat tempus eros, a tristique sapien urna a arcu. Nam eu nisl et nibh pellentesque dictum.
         </vwc-text>
 	</div>
 </vwc-side-drawer>`;
