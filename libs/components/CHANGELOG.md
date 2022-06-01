@@ -1,8 +1,17 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Mon, 30 May 2022 12:41:42 GMT and should not be manually modified.
+This log was last generated on Tue, 31 May 2022 17:06:10 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.19
+
+Tue, 31 May 2022 17:06:10 GMT
+
+### Changes
+
+- export text field & action group from package (yinon@hotmail.com)
+- card improved css flow display properties (yinon@hotmail.com)
 
 ## 3.0.0-next.18
 
