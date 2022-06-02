@@ -61,15 +61,41 @@ describe('vwc-top-app-bar', () => {
 
 	describe('elevated', () => {
 		it('should set "elevated" to true and add "elevated" class', async () => {
+			element.fixed = true;
+			window['pageYOffset'] = 50;
 			const control = getControlElement(element);
 			let hasClassElevated = control.classList.contains('elevated');
-			window.dispatchEvent(new CustomEvent('scroll'))
+			window.dispatchEvent(new CustomEvent('scroll'));
 
 			await elementUpdated(element);
 			expect(hasClassElevated).toEqual(false);
 
 			hasClassElevated = control.classList.contains('elevated');
 			expect(hasClassElevated).toEqual(true);
+		});
+
+		it(`should remove elevated state when not fixed`, async function () {
+			element.fixed = false;
+			window['pageYOffset'] = 50;
+			const control = getControlElement(element);
+			window.dispatchEvent(new CustomEvent('scroll'));
+
+			await elementUpdated(element);
+			const hasClassElevated = control.classList.contains('elevated');
+
+			expect(hasClassElevated).toEqual(false);
+		});
+
+		it(`should remove elevated state when offset is 0`, async function () {
+			element.fixed = true;
+			window['pageYOffset'] = 0;
+			const control = getControlElement(element);
+			window.dispatchEvent(new CustomEvent('scroll'));
+
+			await elementUpdated(element);
+			const hasClassElevated = control.classList.contains('elevated');
+
+			expect(hasClassElevated).toEqual(false);
 		});
 	});
 

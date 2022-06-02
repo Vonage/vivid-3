@@ -1,12 +1,12 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
+import {attr, observable, volatile} from '@microsoft/fast-element';
 
 /**
  * Base class for top-app-bar
  *
  * @public
  */
-export class TopAppBar extends FoundationElement {  
+export class TopAppBar extends FoundationElement {
 	/**
 	 *
 	 *
@@ -34,29 +34,14 @@ export class TopAppBar extends FoundationElement {
 		mode: 'boolean',
 	}) alternate = false;
 
-	#headerEl?: HTMLElement | undefined | null;
+	@observable _elevated = false;
 
-	override connectedCallback(): void {
-		super.connectedCallback();
-		if(this.fixed){
-			this.#headerEl = this.shadowRoot?.querySelector('header');
-			window.addEventListener('scroll', () => this.#addElevation());
-		}
-	}
-
-	override disconnectedCallback(): void {
-		super.disconnectedCallback();
-		window.removeEventListener('scroll', () => this.#addElevation());
-	}
-
-	/**
-	 * Add elevated class
-	 */
-	#addElevation(): void {
-		if (window.pageYOffset > 0) {
-			this.#headerEl?.classList.add('elevated');
+	@volatile
+	get elevated() {
+		if (this.fixed && window.pageYOffset > 0) {
+			return this._elevated = true;
 		} else {
-			this.#headerEl?.classList.remove('elevated');
+			return this._elevated = false;
 		}
 	}
 }
