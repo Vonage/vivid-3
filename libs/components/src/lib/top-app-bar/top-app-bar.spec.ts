@@ -58,4 +58,19 @@ describe('vwc-top-app-bar', () => {
 			expect(headerContent).toBeTruthy();
 		});
 	});
+
+	describe('elevated', () => {
+		it('should set "elevated" to true and add "elevated" class', async () => {
+			const control = getControlElement(element);
+			let hasClassElevated = control.classList.contains('elevated');
+			window.dispatchEvent(new CustomEvent('scroll'))
+
+			await elementUpdated(element);
+			expect(hasClassElevated).toEqual(false);
+
+			hasClassElevated = control.classList.contains('elevated');
+			expect(hasClassElevated).toEqual(true);
+		});
+	});
+
 });
