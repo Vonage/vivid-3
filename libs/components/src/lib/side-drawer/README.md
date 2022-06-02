@@ -33,12 +33,20 @@ You can also close the side drawer by pressing the `ESC` key.
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
  </div>
- <div slot="app-content">
-        <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
-        <vwc-text font-face="body-1">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nec urna congue, ultricies massa id, elementum ex. Praesent ut aliquam nisl. Pellentesque iaculis arcu quis mauris viverra finibus. Morbi dictum enim quis libero fringilla, sit amet euismod arcu interdum. Pellentesque lacinia magna a orci vestibulum, et vehicula tellus malesuada. Etiam id eros mauris. Nullam vitae ex cursus, malesuada mi tincidunt, vestibulum nunc. Fusce cursus, ante ac faucibus commodo, ante erat tempus eros, a tristique sapien urna a arcu. Nam eu nisl et nibh pellentesque dictum.
-        </vwc-text>
- </div>
+  <vwc-layout slot="app-content" column-basis="block" gutters="medium">
+    <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
+    <vwc-text font-face="body-1">
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+    </p>
+    </vwc-text>
+
+    <vwc-text font-face="body-1">
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+    </p>
+    </vwc-text>
+ </vwc-layout>
 </vwc-side-drawer>
 <script>
   button.addEventListener('click', toggleOpen);
@@ -73,12 +81,20 @@ Click on the `scrim` or the `ESC` key to close the modal side-drawer.
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
  </div>
- <div slot="app-content">
-        <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
-        <vwc-text font-face="body-1">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nec urna congue, ultricies massa id, elementum ex. Praesent ut aliquam nisl. Pellentesque iaculis arcu quis mauris viverra finibus. Morbi dictum enim quis libero fringilla, sit amet euismod arcu interdum. Pellentesque lacinia magna a orci vestibulum, et vehicula tellus malesuada. Etiam id eros mauris. Nullam vitae ex cursus, malesuada mi tincidunt, vestibulum nunc. Fusce cursus, ante ac faucibus commodo, ante erat tempus eros, a tristique sapien urna a arcu. Nam eu nisl et nibh pellentesque dictum.
-        </vwc-text>
- </div>
+ <vwc-layout slot="app-content" column-basis="block" gutters="medium">
+    <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
+    <vwc-text font-face="body-1">
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+    </p>
+    </vwc-text>
+
+    <vwc-text font-face="body-1">
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+    </p>
+    </vwc-text>
+ </vwc-layout>
 </vwc-side-drawer>
 <script>
   button.addEventListener('click', toggleOpen);
@@ -112,12 +128,20 @@ Use the `alternate` attribute to apply scheme alternate region.
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
  </div>
- <div slot="app-content">
-        <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
-        <vwc-text font-face="body-1">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nec urna congue, ultricies massa id, elementum ex. Praesent ut aliquam nisl. Pellentesque iaculis arcu quis mauris viverra finibus. Morbi dictum enim quis libero fringilla, sit amet euismod arcu interdum. Pellentesque lacinia magna a orci vestibulum, et vehicula tellus malesuada. Etiam id eros mauris. Nullam vitae ex cursus, malesuada mi tincidunt, vestibulum nunc. Fusce cursus, ante ac faucibus commodo, ante erat tempus eros, a tristique sapien urna a arcu. Nam eu nisl et nibh pellentesque dictum.
-        </vwc-text>
- </div>
+  <vwc-layout slot="app-content" column-basis="block" gutters="medium">
+    <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
+    <vwc-text font-face="body-1">
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+    </p>
+    </vwc-text>
+
+    <vwc-text font-face="body-1">
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+    </p>
+    </vwc-text>
+ </vwc-layout>
 </vwc-side-drawer>
 <script>
   button.addEventListener('click', toggleOpen);
@@ -154,12 +178,20 @@ Use the `position` attribute to set the side of the side drawer.
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
  </div>
- <div slot="app-content">
-        <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
-        <vwc-text font-face="body-1">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nec urna congue, ultricies massa id, elementum ex. Praesent ut aliquam nisl. Pellentesque iaculis arcu quis mauris viverra finibus. Morbi dictum enim quis libero fringilla, sit amet euismod arcu interdum. Pellentesque lacinia magna a orci vestibulum, et vehicula tellus malesuada. Etiam id eros mauris. Nullam vitae ex cursus, malesuada mi tincidunt, vestibulum nunc. Fusce cursus, ante ac faucibus commodo, ante erat tempus eros, a tristique sapien urna a arcu. Nam eu nisl et nibh pellentesque dictum.
-        </vwc-text>
- </div>
+  <vwc-layout slot="app-content" column-basis="block" gutters="medium">
+    <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
+    <vwc-text font-face="body-1">
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+    </p>
+    </vwc-text>
+
+    <vwc-text font-face="body-1">
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+    </p>
+    </vwc-text>
+ </vwc-layout>
 </vwc-side-drawer>
 <script>
   button.addEventListener('click', toggleOpen);
@@ -201,12 +233,20 @@ To add a top bar to the side drawer, add a slot called `top-bar`.
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
  </div>
- <div slot="app-content">
-        <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
-        <vwc-text font-face="body-1">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nec urna congue, ultricies massa id, elementum ex. Praesent ut aliquam nisl. Pellentesque iaculis arcu quis mauris viverra finibus. Morbi dictum enim quis libero fringilla, sit amet euismod arcu interdum. Pellentesque lacinia magna a orci vestibulum, et vehicula tellus malesuada. Etiam id eros mauris. Nullam vitae ex cursus, malesuada mi tincidunt, vestibulum nunc. Fusce cursus, ante ac faucibus commodo, ante erat tempus eros, a tristique sapien urna a arcu. Nam eu nisl et nibh pellentesque dictum.
-        </vwc-text>
- </div>
+  <vwc-layout slot="app-content" column-basis="block" gutters="medium">
+    <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
+    <vwc-text font-face="body-1">
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+    </p>
+    </vwc-text>
+
+    <vwc-text font-face="body-1">
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+    </p>
+    </vwc-text>
+ </vwc-layout>
 </vwc-side-drawer>
 <script>
   button.addEventListener('click', toggleOpen);
@@ -245,12 +285,20 @@ To add content aside the side-drawer, add a slot called `app-content`.
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
  </div>
- <div slot="app-content">
-        <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
-        <vwc-text font-face="body-1">
-          This is the app-content slot!!!!
-        </vwc-text>
- </div>
+  <vwc-layout slot="app-content" column-basis="block" gutters="medium">
+    <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
+    <vwc-text font-face="body-1">
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+    </p>
+    </vwc-text>
+
+    <vwc-text font-face="body-1">
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+    </p>
+    </vwc-text>
+ </vwc-layout>
 </vwc-side-drawer>
 <script>
   button.addEventListener('click', toggleOpen);
