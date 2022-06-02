@@ -15,7 +15,6 @@ const getClasses = ({
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	['tight', tight],
-
 );
 
 /**
