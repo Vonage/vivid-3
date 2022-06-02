@@ -92,7 +92,7 @@
 }
 
 .focus-indicator {
-	:not(:focus-visible) & {
+	.button:not(:focus-visible) > & {
 		display: none;
 	}
 }

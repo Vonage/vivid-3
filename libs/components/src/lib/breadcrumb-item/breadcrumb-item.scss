@@ -31,7 +31,7 @@ position: relative;
 }
 
 .focus-indicator {
-	.control:not(:focus-visible) & {
+	.control:not(:focus-visible) > & {
 		display: none;
 	}
 }
