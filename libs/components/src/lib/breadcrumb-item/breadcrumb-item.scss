@@ -25,4 +25,13 @@
 	}
 }
 
+.control {
+position: relative;
+	outline: 0 none;
+}
 
+.focus-indicator {
+	.control:not(:focus-visible) & {
+		display: none;
+	}
+}

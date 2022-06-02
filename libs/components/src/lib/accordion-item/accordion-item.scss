@@ -4,7 +4,7 @@
 
 .body {
 	@include typography.typography-cat-shorthand('body-2');
-    
+
 	padding: 8px 32px 24px 16px;
 	.icon:not(.icon-trailing) &{
 		padding-left: 48px;
@@ -47,6 +47,7 @@
 	border: 0 none;
 	background: transparent;
 	cursor: pointer;
+	outline: 0 none;
 
 	&:hover {
 		background: var(#{theme-consts.$vvd-color-neutral-10});
@@ -79,7 +80,7 @@
 		}
 	}
 
-	.icon { 
+	.icon {
 		margin-inline-end: 16px;
 	}
 }
@@ -88,4 +89,10 @@
 
 .icon-trailing .icon {
 	order: 1;
+}
+
+.focus-indicator {
+	:not(:focus-visible) & {
+		display: none;
+	}
 }

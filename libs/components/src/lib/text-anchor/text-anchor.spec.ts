@@ -1,10 +1,10 @@
 import {elementUpdated, fixture, setAttribute} from '@vivid-nx/shared';
 import {TextAnchor} from './text-anchor';
-import '.';
+// import '.';
 
 const COMPONENT_TAG = 'vwc-text-anchor';
 
-describe( 'vwc-text-anchor', () => {
+describe('vwc-text-anchor', () => {
 	let element: TextAnchor;
 
 	beforeEach(async () => {
