@@ -73,7 +73,7 @@ describe('vwc-top-app-bar', () => {
 			element.fixed = true;
 		});
 
-		it(`should default to no elevation with no scrolling`, async function () {
+		it('should default to no elevation with no scrolling', async function () {
 			await elementUpdated(element);
 			const control = getControlElement(element);
 			expect(element.elevated).toEqual(false);
