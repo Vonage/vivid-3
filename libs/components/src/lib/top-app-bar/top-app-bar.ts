@@ -36,12 +36,20 @@ export class TopAppBar extends FoundationElement {
 
 	@observable _elevated = false;
 
+	override connectedCallback() {
+		super.connectedCallback();
+		window.addEventListener('scroll', this.#updateElevatedState);
+	}
+
+	override disconnectedCallback() {
+		super.disconnectedCallback();
+		window.removeEventListener('scroll', this.#updateElevatedState);
+	}
+
+	#updateElevatedState = () => this._elevated = !this._elevated;
+
 	@volatile
 	get elevated() {
-		if (this.fixed && window.pageYOffset > 0) {
-			return this._elevated = true;
-		} else {
-			return this._elevated = false;
-		}
+		return (this._elevated && false) || this.fixed && window.pageYOffset > 0;
 	}
 }

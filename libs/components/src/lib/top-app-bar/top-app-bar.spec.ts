@@ -60,42 +60,61 @@ describe('vwc-top-app-bar', () => {
 	});
 
 	describe('elevated', () => {
-		it('should set "elevated" to true and add "elevated" class', async () => {
+		/**
+		 * @param scrollDist
+		 */
+		async function emulateScroll(scrollDist = 50) {
+			window['pageYOffset'] = scrollDist;
+			window.dispatchEvent(new CustomEvent('scroll'));
+			await elementUpdated(element);
+		}
+
+		beforeEach(function () {
 			element.fixed = true;
-			window['pageYOffset'] = 50;
+		});
+
+		it(`should default to no elevation with no scrolling`, async function () {
+			await elementUpdated(element);
+			const control = getControlElement(element);
+			expect(element.elevated).toEqual(false);
+			expect(control.classList.contains('elevated')).toEqual(false);
+		});
+
+		it('should set "elevated" to true and add "elevated" class', async () => {
 			const control = getControlElement(element);
 			let hasClassElevated = control.classList.contains('elevated');
-			window.dispatchEvent(new CustomEvent('scroll'));
-
-			await elementUpdated(element);
+			await emulateScroll();
 			expect(hasClassElevated).toEqual(false);
 
 			hasClassElevated = control.classList.contains('elevated');
+			expect(element.elevated).toEqual(true);
 			expect(hasClassElevated).toEqual(true);
 		});
 
-		it(`should remove elevated state when not fixed`, async function () {
+		it('should remove elevated state when not fixed', async function () {
 			element.fixed = false;
-			window['pageYOffset'] = 50;
 			const control = getControlElement(element);
-			window.dispatchEvent(new CustomEvent('scroll'));
-
-			await elementUpdated(element);
+			await emulateScroll();
 			const hasClassElevated = control.classList.contains('elevated');
 
 			expect(hasClassElevated).toEqual(false);
 		});
 
-		it(`should remove elevated state when offset is 0`, async function () {
-			element.fixed = true;
-			window['pageYOffset'] = 0;
+		it('should remove elevated state when offset is 0', async function () {
 			const control = getControlElement(element);
-			window.dispatchEvent(new CustomEvent('scroll'));
+			await emulateScroll();
 
-			await elementUpdated(element);
+			await emulateScroll(0);
 			const hasClassElevated = control.classList.contains('elevated');
 
 			expect(hasClassElevated).toEqual(false);
+		});
+
+		it('should remove scroll listener after diconnection', async function () {
+			const originalElevationState = element._elevated;
+			element.disconnectedCallback();
+			await emulateScroll();
+			expect(element._elevated).toEqual(originalElevationState);
 		});
 	});
 

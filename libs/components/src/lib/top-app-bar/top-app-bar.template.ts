@@ -11,7 +11,7 @@ const getClasses = ({ fixed, alternate, elevated }: TopAppBar) => classNames(
 	'control',
 	['fixed', fixed],
 	['alternate', alternate],
-	['elevated', !!elevated],
+	['elevated', elevated],
 );
 
 /**
