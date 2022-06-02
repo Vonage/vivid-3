@@ -81,11 +81,18 @@ By default, action group is styled in a spacious manner which visually extend th
 - Type: `boolean`
 - Default: `false`
 
-```html preview
-<vwc-button label="baselined button"></vwc-button>
+```html preview blocks
+<style>
+  body {
+    max-inline-size: 35ch;
+  }
+</style>
+
+<vwc-text-field aria-label="Name" placeholder="Name"></vwc-text-field>
+
 <vwc-action-group appearance="fieldset" tight>
-  <vwc-button label="Update branch"></vwc-button>
-  <vwc-button icon="chevron-down-solid"></vwc-button>
+  <vwc-button icon="flag-uruguay"></vwc-button>
+  <vwc-text-field appearance="ghost" aria-label="Phone number" placeholder="Phone number" name="phone" autocomplete=""></vwc-text-field>
 </vwc-action-group>
 ```
 
