@@ -111,7 +111,8 @@ footer slot main purpose is for action button
 
 ### Main
 
-main slot is for overriding the content structure of the main card area.
+We offer our opinionated structure for the card.  
+Assign nodes to `main` slot to fully override a card's main template.
 
 ```html preview
 <vwc-card>
