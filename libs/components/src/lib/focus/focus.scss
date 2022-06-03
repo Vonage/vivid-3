@@ -10,8 +10,8 @@
 .control {
 	$outline-width: 2px;
 
-  z-index: 1;
 	position: absolute;
+	z-index: 1;
 	box-sizing: border-box;
 	border-radius: inherit;
 	box-shadow: inset 0 0 0 3px var(#{variables.$focus-stroke-gap-color}, currentColor);

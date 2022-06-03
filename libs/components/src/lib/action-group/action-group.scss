@@ -17,7 +17,6 @@
 	align-items: center;
 	background-color: var(#{appearance.get-variable(fill)});
 	color: var(#{appearance.get-variable(text)});
-	column-gap: 4px;
 	vertical-align: middle;
 
 	&::before {
@@ -30,8 +29,9 @@
 		pointer-events: none;
 	}
 
-	&:not(.tight){
+	&:not(.tight) {
 		padding: 4px;
+		column-gap: 4px;
 	}
 
 }
