@@ -1,37 +1,38 @@
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
-.breadcrumb-item {
-	@include typography.typography-cat-shorthand('body-2');
+.base {
+  @include typography.typography-cat-shorthand('body-2');
 
-	display: flex;
-	align-items: center;
-	color: var(#{theme-consts.$vvd-color-on-canvas});
+  display: flex;
+  align-items: center;
+  color: var(#{theme-consts.$vvd-color-on-canvas});
 
-	a {
-		color: var(--vvd-color-cta-70);
-		font: inherit;
-		text-decoration: none;
-	}
-
-	a:hover {
-		text-decoration: underline;
-	}
-
-	vwc-icon {
-		margin: 0 16px;
-		color: var(#{theme-consts.$vvd-color-neutral-70});
-		font-size: 12px;
-	}
+  vwc-icon {
+    margin: 0 16px;
+    color: var(#{theme-consts.$vvd-color-neutral-70});
+    font-size: 12px;
+  }
 }
 
 .control {
-	position: relative;
-	outline: 0 none;
+  position: relative;
+  outline: 0 none;
+  font: inherit;
+
+  &:any-link {
+    color: var(#{theme-consts.$vvd-color-cta-70});
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
 }
 
 .focus-indicator {
-	.control:not(:focus-visible) > & {
-		display: none;
-	}
+  .control:not(:focus-visible)>& {
+    display: none;
+  }
 }
