@@ -1,6 +1,6 @@
 import { Anchor, applyMixins } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
-import { AffixIcon } from '../../shared/patterns/affix';
+import { AffixIcon } from '../affix';
 
 /**
  * Base class for text-anchor

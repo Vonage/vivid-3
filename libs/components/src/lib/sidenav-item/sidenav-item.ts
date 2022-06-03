@@ -1,6 +1,6 @@
 import { applyMixins } from '@microsoft/fast-foundation';
 import { AffixIcon } from '../../shared/patterns/affix';
-import { TextAnchor } from '../text-anchor/text-anchor';
+import { TextAnchor } from '../../shared/patterns/text-anchor/text-anchor';
 
 
 /**

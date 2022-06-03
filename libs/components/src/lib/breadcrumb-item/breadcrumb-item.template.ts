@@ -5,7 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import {textAnchorTemplate} from '../text-anchor/text-anchor.template';
+import {textAnchorTemplate} from '../../shared/patterns/text-anchor/text-anchor.template';
 import type { BreadcrumbItem } from './breadcrumb-item';
 
 const getClasses = (_: BreadcrumbItem) =>
