@@ -91,6 +91,10 @@ export class Calendar extends FoundationElement {
 		return this._generateDaysArr([...dateArr, lastDate]);
 	};
 
+	get #focusedCalendarEvent(): VWCCalendarEvent | null {
+		return (document.activeElement?.matches('vwc-calendar-event') && document.activeElement as VWCCalendarEvent) || null;
+	}
+
 	/**
 	 * Fire an event
 	 *
@@ -106,8 +110,8 @@ export class Calendar extends FoundationElement {
 
 		if (isCellOrHeader(activeElement)) {
 			focusNext = getNextFocusableGridElement.call(this, key, activeElement);
-		} else if (this.focusedCalendarEvent) {
-			focusNext = this.getCalendarEventContainingCell(this.focusedCalendarEvent);
+		} else if (this.#focusedCalendarEvent) {
+			focusNext = this.getCalendarEventContainingCell(this.#focusedCalendarEvent);
 		}	else if (activeElement?.matches('em[role="button"i]')) {
 			focusNext = getHeaderDescendantGridCell.call(this, key, activeElement as HTMLElement);
 		} else {
