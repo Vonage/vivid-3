@@ -2,34 +2,29 @@ import type { ViewTemplate } from '@microsoft/fast-element';
 import { html, ref } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { Focus } from '../focus/focus';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
+import { focusTemplateFactory } from '../../shared/patterns/focus';
 import type { Button, ButtonAppearance } from './button';
 
 
 const getAppearanceClassName = (appearance: ButtonAppearance, disabled: boolean) => {
 	let className = `appearance-${appearance}`;
-	disabled && (className += '-idle');
+	disabled && (className += ' disabled');
 	return className;
 };
 
 const getClasses = ({
-	connotation, appearance, shape, size, icon, label, disabled, iconTrailing
+	connotation, appearance, shape, density, iconTrailing, icon, label, disabled, stacked
 }: Button) => classNames(
 	'control',
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[getAppearanceClassName(appearance as ButtonAppearance, disabled), Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
-	[`size-${size}`, Boolean(size)],
+	[`density-${density}`, Boolean(density)],
 	['icon-only', !label && !!icon],
 	['icon-trailing', iconTrailing],
+	['stacked', Boolean(stacked)],
 );
-
-const focusTemplate = (context: ElementDefinitionContext) => {
-	const focusTag = context.tagFor(Focus);
-
-	return html`<${focusTag} class="focus-indicator"></${focusTag}>`;
-};
 
 /**
  * The template for the {@link @microsoft/fast-foundation#(Button:class)} component.
@@ -43,6 +38,7 @@ export const buttonTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Button> = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
+	const focusTemplate = focusTemplateFactory(context);
 
 	return html`
     <button
@@ -81,7 +77,7 @@ export const buttonTemplate: (
         aria-roledescription="${(x) => x.ariaRoledescription}"
         ${ref('control')}
     >
-        ${() => focusTemplate(context)}
+        ${() => focusTemplate}
         ${x => affixIconTemplate(x.icon)}
         ${(x) => x.label}
     </button>

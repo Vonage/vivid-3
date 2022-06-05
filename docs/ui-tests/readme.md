@@ -16,7 +16,7 @@ Our docker image runs the tests on the 3 browser on the Linux OS.
 
 Each component folder should contain a `ui.test.ts` file.
 The file must be updated with the `componentName` and snapshot path `'./snapshots/componentName.png'`.
-PRO TIP: utilizing the _component_ generator (`npm run nx workspace-generator vivid-component my-component`) will populate basic `ui.test.ts` to get you up and running with ui-tests.
+PRO TIP: utilizing the _component_ generator (`npm nx g @vonage/nx-vivid:component my-component`) will populate basic `ui.test.ts` to get you up and running with ui-tests.
 
 ## Running the tests
 
@@ -56,13 +56,13 @@ After you have docker installed, run:
 
 If you need to rebuild the docker image run:
 
-`npm run nx e2e components --task=build`
+`npx nx run components:e2e --task=build`
 
 This will run the tests for you.
 
 If you wish to update the visual snapshots (i.e. you've changed the design and want it to reflect in the saved snapshots) run:
 
-`npm run nx e2e components --task=update`
+`npx nx run components:e2e --task=update`
 
 ## Updating the docker image
 

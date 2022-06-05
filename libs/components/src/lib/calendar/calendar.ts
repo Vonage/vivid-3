@@ -98,20 +98,10 @@ export class Calendar extends FoundationElement {
 	 * @param {Object} [detail={}]  - optional event detail object
 	 * @returns {boolean}           - return true
 	 */
-	getEventContext = getEventContext.bind(this);
-
-	private get focusedCalendarEvent(): VWCCalendarEvent | null {
-		return (document.activeElement?.matches('vwc-calendar-event') && document.activeElement as VWCCalendarEvent) || null;
-	}
-
-	private getCalendarEventContainingCell(calendarEvent: VWCCalendarEvent) {
-		const daySlot = calendarEvent.getAttribute('slot');
-		const slot = this.shadowRoot?.querySelector(`slot[name="${daySlot}"i]`);
-		return slot?.parentElement;
-	}
+	getEventContext = getEventContext;
 
 	private arrowKeysInteractions(key: PredefindKeys) {
-		const activeElement = (this.shadowRoot as ShadowRoot).activeElement;
+		const { activeElement } = (this.shadowRoot as ShadowRoot);
 		let focusNext: Element | null | void;
 
 		if (isCellOrHeader(activeElement)) {

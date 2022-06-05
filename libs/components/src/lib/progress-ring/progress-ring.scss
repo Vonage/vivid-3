@@ -1,0 +1,76 @@
+@use 'sass:list';
+@use 'partials/variables' as variables;
+@use '../../../../shared/src/lib/sass/mixins/utils' as utils;
+@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+	$connotations: cta primary alert success,
+	$default: primary
+);
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+
+$density: 4 5 6 7 8 9 10 11 12;
+$default-density: list.nth($density, 6);
+
+.base {
+	@include connotation.connotation;
+
+	align-items: center;
+	block-size: var(#{variables.$progress-ring-density});
+	inline-size: var(#{variables.$progress-ring-density});
+	outline: none;
+
+	@include utils.spread-list-selectors('.density', $density, $default-density) using($value) {
+		#{variables.$progress-ring-density}: calc(#{$value} * 4px);
+	}
+}
+
+.progress {
+	width: 100%;
+	height: 100%;
+}
+.background {
+	fill: none;
+	stroke: transparent;
+	stroke-width: 2px;
+}
+.determinate {
+	fill: none;
+	stroke: var(#{connotation.$vvd-color-connotation});
+	stroke-linecap: round;
+	stroke-width: 2px;
+	transform: rotate(-90deg);
+	transform-origin: 50% 50%;
+	transition: all 0.2s ease-in-out;
+}
+.indeterminate-indicator-1 {
+	animation: spin-infinite 2s linear infinite;
+	fill: none;
+	stroke: var(#{connotation.$vvd-color-connotation});
+	stroke-linecap: round;
+	stroke-width: 2px;
+	transform: rotate(-90deg);
+	transform-origin: 50% 50%;
+	transition: all 0.2s ease-in-out;
+}
+.base.paused .indeterminate-indicator-1 {
+	animation-play-state: paused;
+	stroke: var(#{theme-consts.$vvd-color-neutral});
+}
+.base.paused .determinate {
+	stroke: var(#{theme-consts.$vvd-color-neutral});
+}
+@keyframes spin-infinite {
+	0% {
+		stroke-dasharray: 0.01px 43.97px;
+		transform: rotate(0deg);
+	}
+	50% {
+		stroke-dasharray: 21.99px 21.99px;
+		transform: rotate(450deg);
+	}
+	100% {
+		stroke-dasharray: 0.01px 43.97px;
+		transform: rotate(1080deg);
+	}
+}
