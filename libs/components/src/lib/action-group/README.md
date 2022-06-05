@@ -74,7 +74,7 @@ Use a `<span>` tag with `role="separator"` for adding separator between the acti
 </vwc-action-group>
 ```
 
-## Tight
+### Tight
 
 By default, action group is styled in a spacious manner which visually extends the baseline row size and inline gapping.
 enabling the `tight` member will result in a dense style that fits the "normal" baseline.
