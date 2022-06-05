@@ -1,19 +1,27 @@
-import {elementUpdated, setAttribute} from '@vivid-nx/shared';
-import {TextAnchor} from './text-anchor';
+import {elementUpdated, fixture, setAttribute} from '@vivid-nx/shared';
+import { textAnchorTemplate as template, TextAnchor } from './index.js';
 
-const COMPONENT_TAG = 'vwc-text-anchor';
+const baseName = 'vwc-text-anchor';
+
+const vividTextAnchor = TextAnchor.compose({
+	baseName,
+	template: template as any,
+});
 
 describe('vwc-text-anchor', () => {
-	let instance: TextAnchor;
+	vividTextAnchor();
+	let element: TextAnchor;
 
 	beforeEach(async () => {
-		instance = new TextAnchor();
+		element = (await fixture(
+			`<${baseName}></${baseName}>`
+		)) as TextAnchor;
 	});
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-text-anchor', async () => {
-			expect(instance).toBeInstanceOf(TextAnchor);
-			expect(instance.text).toEqual(undefined);
+			expect(element).toBeInstanceOf(TextAnchor);
+			expect(element.text).toEqual(undefined);
 		});
 	});
 
