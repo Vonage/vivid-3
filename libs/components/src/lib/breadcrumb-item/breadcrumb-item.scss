@@ -2,37 +2,37 @@
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
 .base {
-  @include typography.typography-cat-shorthand('body-2');
+	@include typography.typography-cat-shorthand('body-2');
 
-  display: flex;
-  align-items: center;
-  color: var(#{theme-consts.$vvd-color-on-canvas});
+	display: flex;
+	align-items: center;
+	color: var(#{theme-consts.$vvd-color-on-canvas});
 
-  vwc-icon {
-    margin: 0 16px;
-    color: var(#{theme-consts.$vvd-color-neutral-70});
-    font-size: 12px;
-  }
+	vwc-icon {
+		margin: 0 16px;
+		color: var(#{theme-consts.$vvd-color-neutral-70});
+		font-size: 12px;
+	}
 }
 
 .control {
-  position: relative;
-  outline: 0 none;
-  font: inherit;
+	position: relative;
+	font: inherit;
+	outline: 0 none;
 
-  &:any-link {
-    color: var(#{theme-consts.$vvd-color-cta-70});
-    text-decoration: none;
+	&:any-link {
+		color: var(#{theme-consts.$vvd-color-cta-70});
+		text-decoration: none;
 
-    &:hover {
-      text-decoration: underline;
-    }
-  }
+		&:hover {
+			text-decoration: underline;
+		}
+	}
 
 }
 
 .focus-indicator {
-  .control:not(:focus-visible)>& {
-    display: none;
-  }
+	.control:not(:focus-visible)>& {
+		display: none;
+	}
 }
