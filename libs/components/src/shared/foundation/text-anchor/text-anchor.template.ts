@@ -5,8 +5,8 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { affixIconTemplateFactory } from '../affix';
-import { focusTemplateFactory } from '../focus';
+import { affixIconTemplateFactory } from '../../patterns/affix';
+import { focusTemplateFactory } from '../../patterns/focus';
 import type { TextAnchor } from './text-anchor';
 
 const getClasses = ({text, icon}: TextAnchor) => classNames(

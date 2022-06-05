@@ -4,7 +4,7 @@ import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
-import { textAnchorTemplate } from '../../shared/patterns/text-anchor/text-anchor.template';
+import { textAnchorTemplate } from '../../shared/foundation/text-anchor/text-anchor.template';
 import type { SidenavItem } from './sidenav-item';
 
 /**
