@@ -1,63 +1,71 @@
-// @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
-// @use '@vonage/vvd-design-tokens/build/scss/semantic-variables/scheme-variables';
-// @use 'partials/vwc-calendar-variables' as calendar-variables;
+@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use 'partials/variables' as variables;
+@use '../calendar/partials/variables' as calendar-variables;
 
-// :host {
-//   display: contents;
-// }
+:host {
+  display: contents;
+}
 
-// section {
-//   $margin-block: 2px;
-//   $gutter: 4px;
-//   $unit-indent: 8px;
+section {
+  $margin-block: 2px;
+  $gutter: 4px;
+  $unit-indent: 8px;
 
-//   $indent-calc: min(var(#{calendar-variables.$indent}), #{$unit-indent * 4}
-//     /* 4 as the indentation limit*/
-//   );
-//   $dividers-block-size: calc(#{calendar-variables.$gap}
-//     /* per cell divider */
-//     * (var(#{calendar-variables.$duration}) - 1));
-//   $dividers-top-size: calc(#{calendar-variables.$gap}
-//     /* per cell divider */
-//     * var(#{calendar-variables.$start}));
-//   $top: calc(var(#{calendar-variables.$start}) * (100% - #{calendar-variables.$total-rows - 1}px) / #{calendar-variables.$total-rows} + #{$dividers-top-size});
-//   $hour-block-size: calc((100% - #{calendar-variables.$total-rows - 1}px) / #{calendar-variables.$total-rows});
+  $indent-calc: min(var(#{variables.$indent}), #{$unit-indent * 4}
+    /* 4 as the indentation limit*/
+  );
+  $dividers-block-size: calc(#{variables.$gap}
+    /* per cell divider */
+    * (var(#{variables.$duration}, 1) - 1));
+  $dividers-top-size: calc(#{variables.$gap}
+    /* per cell divider */
+    * var(#{variables.$start}, 0));
+  $top: calc(var(#{variables.$start}, 0) * (100% - #{calendar-variables.$total-rows - 1}px) / #{calendar-variables.$total-rows} + #{$dividers-top-size});
+  $hour-block-size: calc((100% - #{calendar-variables.$total-rows - 1}px) / #{calendar-variables.$total-rows});
 
-//   #{calendar-variables.$indent}: calc(0px + var(#{calendar-variables.$overlap-count}, 0) * #{$unit-indent});
-//   position: absolute;
-//   z-index: var(#{calendar-variables.$overlap-count});
-//   top: $top;
-//   overflow: hidden;
-//   box-sizing: border-box;
-//   padding: $gutter $gutter*2;
-//   background-color: var(#{calendar-variables.$color}, var(#{scheme-variables.$vvd-color-neutral-40}));
-//   block-size: calc(var(#{calendar-variables.$duration}) * #{$hour-block-size} + #{$dividers-block-size} - #{$margin-block * 2});
-//   border-radius: var(#{calendar-variables.$calendar-shape});
-//   color: var(#{scheme-variables.$vvd-color-on-primary});
-//   contain: strict;
-//   inline-size: calc(100% - #{$unit-indent} - #{$indent-calc});
-//   margin-block-start: #{$margin-block};
-//   margin-inline-end: #{$unit-indent};
-//   margin-inline-start: #{$indent-calc};
-//   max-block-size: calc(100% - #{$top} - #{$margin-block * 2});
+  #{variables.$indent}: calc(0px + var(#{variables.$overlap-count}, 0) * #{$unit-indent});
+  position: absolute;
+  z-index: var(#{variables.$overlap-count});
+  top: $top;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: $gutter $gutter*2;
+  background-color: var(#{variables.$color}, var(#{theme-consts.$vvd-color-neutral-40}));
+  block-size: calc(var(#{variables.$duration}, 1) * #{$hour-block-size} + #{$dividers-block-size} - #{$margin-block * 2});
+  border-radius: 6px;
+  color: var(#{theme-consts.$vvd-color-on-primary});
+  inline-size: calc(100% - #{$unit-indent} - #{$indent-calc});
+  margin-block-start: #{$margin-block};
+  margin-inline-end: #{$unit-indent};
+  margin-inline-start: #{$indent-calc};
+  max-block-size: calc(100% - #{$top} - #{$margin-block * 2});
 
-//   &:focus {
-//     z-index: 2000;
-//     filter: var(#{scheme-variables.$vvd-shadow-surface-8dp});
-//     outline: none;
-//   }
-// }
+  @supports(contain: content) {
+    contain: strict;
+  }
 
-// h2 {
-//   @include typography.typography-cat-shorthand('caption-bold');
-//   margin: 0;
+  @supports not (contain: content) {
+    overflow: hidden;
+  }
 
-//   >strong {
-//     font: inherit;
-//   }
-// }
+  &:focus {
+    z-index: 2000;
+    filter: var(#{theme-consts.$vvd-shadow-surface-8dp});
+    outline: none;
+  }
+}
 
-// p {
-//   @include typography.typography-cat-shorthand('caption');
-//   margin: 0;
-// }
+h2 {
+  @include typography.typography-cat-shorthand('caption-bold');
+  margin: 0;
+
+  >strong {
+    font: inherit;
+  }
+}
+
+p {
+  @include typography.typography-cat-shorthand('caption');
+  margin: 0;
+}
