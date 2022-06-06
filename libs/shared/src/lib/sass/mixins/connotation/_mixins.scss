@@ -7,11 +7,6 @@
 @use '../../utils' as utils;
 
 
-// @mixin connotation-base($type) {
-// 	#{variables.$vvd-color-connotation}: var(--vvd-color-#{$type});
-// 	#{variables.$vvd-color-on-connotation}: var(--vvd-color-on-#{$type});
-// }
-
 @mixin connotation-shades($mapping) {
 	$shades: utils.pick-map(config.$shades, $mapping);
 	@each $name, $value in $shades {
@@ -24,7 +19,6 @@
 	$connotation-mapping: utils.pick-map(config.$connotations, variables.$connotation-mapping);
 
   @include utils.spread-list-selectors('.connotation', config.$connotations, config.$default) using ($type) {
-		// @include connotation-base($type);
 		@include connotation-shades(map.get($connotation-mapping, $type));
 	}
 }

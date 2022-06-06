@@ -19,16 +19,6 @@
 }
 
 $connotation-mapping: (
-  // should map to colors e.g. purple-60
-  // pristine: map.merge(
-  //   get-default-mapping(neutral),
-  //   (
-  //     primary: utils.get-color-token(surface-4dp),
-  //     on-primary: utils.get-color-token(on-canvas/*neutral-100*/),
-  //     primary-increment: utils.get-color-token(neutral-10),
-  //     fierce: utils.get-color-token(neutral-20),
-  //   )
-  // ),
   accent: map.merge(
     get-default-mapping(neutral),
     (

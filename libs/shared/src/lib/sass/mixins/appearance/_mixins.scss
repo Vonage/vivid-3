@@ -10,6 +10,13 @@
 
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
+$hover: ':hover, .hover';
+$disabled: ':disabled, .disabled';
+$readonly: ':readonly, .readonly';
+$selected: '.selected';
+$active: ':active, .active';
+$error: '.error';
+
 $selectors: (
   idle: '&',
   hover: '&:where(#{$hover}):where(:not(#{$disabled}))',
