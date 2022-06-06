@@ -7,7 +7,7 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { CalendarEvent } from './calendar-event';
 
-const getClasses = (_: CalendarEvent) => classNames('base');
+const getClasses = (_: CalendarEvent) => classNames('control');
 
 /**
  * The template for the {@link @microsoft/fast-foundation#CalendarEvent} component.
@@ -20,14 +20,4 @@ export const CalendarEventTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<CalendarEvent> = (
 	context: ElementDefinitionContext
-) => html`<span class="${getClasses}">${context.name} </span>
-<section
-  role="button"
-  tabindex="0"
-
-			>
-  <h2><strong>${x => x.heading}</strong></h2>
-  <p>${x => x.description}</p>
-</section>
-
-`;
+) => html` <span class="${getClasses}">${context.name} </span>`;

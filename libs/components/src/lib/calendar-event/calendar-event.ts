@@ -1,6 +1,5 @@
-import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { nullableNumberConverter } from '@microsoft/fast-element';
+import { attr, nullableNumberConverter } from '@microsoft/fast-element';
 
 /**
  * Base class for calendar-event
