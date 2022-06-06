@@ -12,8 +12,17 @@ section {
 	$gutter: 4px;
 	$unit-indent: 8px;
 	$indent-calc: min(var(#{variables.$indent}), #{$unit-indent * 4});
+
+	/* 4 as the indentation limit */
+
 	$dividers-block-size: calc(#{variables.$gap} * (var(#{variables	ration}, 1) - 1));
-	$dividers-top-size: calc(#{variables.$gap} * var(#{variables.	rt}, 0));
+
+	/* per cell divider */
+
+	$dividers-top-size: calc(#{variables.$gap} * var(#{variables.start}, 0));
+
+	/* per cell divider */
+
 	$top: calc(var(#{variables.$start}, 0) * (100% - #{calendar-variables.$total-rows - 1}px) / #{calendar-variables.$total-rows} + #{$dividers-top-size});
 	$hour-block-size: calc((100% - #{calendar-variables.$total-rows - 1}px) / #{calendar-variables.$total-rows});
 
