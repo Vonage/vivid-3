@@ -2,11 +2,11 @@ import { FoundationElement } from '@microsoft/fast-foundation';
 import {attr, observable, volatile} from '@microsoft/fast-element';
 
 /**
- * Base class for top-app-bar
+ * Base class for header
  *
  * @public
  */
-export class TopAppBar extends FoundationElement {
+export class header extends FoundationElement {
 	/**
 	 *
 	 *
@@ -17,7 +17,7 @@ export class TopAppBar extends FoundationElement {
 	@attr heading?: string;
 
 	/**
-	 * sets the top-app-bar to be fixed
+	 * sets the header to be fixed
 	 *
 	 * @public
 	 */

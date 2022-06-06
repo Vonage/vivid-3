@@ -182,10 +182,10 @@
     ]
   },
   {
-    "title": "top-app-bar",
-    "markdown": "./libs/components/src/lib/top-app-bar/README.md",
+    "title": "header",
+    "markdown": "./libs/components/src/lib/header/README.md",
     "modules": [
-      "/assets/modules/components/top-app-bar/index.js",
+      "/assets/modules/components/header/index.js",
       "/assets/modules/components/button/index.js",
       "/assets/modules/components/text/index.js",
       "/assets/modules/components/side-drawer/index.js",

@@ -3,17 +3,17 @@
 @use "partials/variables" as variables;
 
 :host {
-	#{variables.$top-app-bar-height}: 64px;
-	#{variables.$top-app-bar-z-index}: 7;
+	#{variables.$header-height}: 64px;
+	#{variables.$header-z-index}: 7;
 }
 
 .control {
 	@include typography.typography-cat-shorthand("subtitle-2");
 
-	z-index: var(#{variables.$top-app-bar-z-index});
+	z-index: var(#{variables.$header-z-index});
 	display: flex;
 	width: 100%;
-	height: var(#{variables.$top-app-bar-height});
+	height: var(#{variables.$header-height});
 	box-sizing: border-box;
 	justify-content: space-between;
 	padding: 8px 12px;
@@ -49,5 +49,5 @@
 }
 
 .control.fixed + .app-content {
-	padding-top: var(#{variables.$top-app-bar-height});
+	padding-top: var(#{variables.$header-height});
 }

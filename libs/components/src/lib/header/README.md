@@ -1,8 +1,8 @@
-# top-app-bar
+# header
 
 ```html
 <script type="module">
-    import '@vonage/vivid/top-app-bar';
+    import '@vonage/vivid/header';
 </script>
 ```
 
@@ -21,7 +21,7 @@ Add the `heading` attribute to set the heading text.
       block-size: 200px; 
     }
 </style>
-<vwc-top-app-bar heading="Top App Bar">
+<vwc-header heading="header">
   <vwc-layout slot="app-content" column-basis="block" gutters="medium">
     <vwc-text tight font-face="headline-2">
       <h2>
@@ -41,12 +41,12 @@ Add the `heading` attribute to set the heading text.
       </p>
     </vwc-text>
   </vwc-layout>
-</vwc-top-app-bar>
+</vwc-header>
 ```
 
 ### Fixed
 
-Add the `fixed` attribute to set the top-app-bar's position to be fixed.
+Add the `fixed` attribute to set the header's position to be fixed.
 
 - Type: `boolean`
 - Default: `false`
@@ -57,7 +57,7 @@ Add the `fixed` attribute to set the top-app-bar's position to be fixed.
       block-size: 200px; 
     }
 </style>
-<vwc-top-app-bar heading="Fixed Top App Bar" fixed>
+<vwc-header heading="Fixed header" fixed>
   <vwc-layout slot="app-content" column-basis="block" gutters="medium">
     <vwc-text tight font-face="headline-2">
       <h2>
@@ -77,7 +77,7 @@ Add the `fixed` attribute to set the top-app-bar's position to be fixed.
       </p>
     </vwc-text>
   </vwc-layout>
-</vwc-top-app-bar>
+</vwc-header>
 ```
 
 ### Alternate
@@ -88,7 +88,7 @@ Add the `alternate` attribute to set the color-scheme to dark or light (dependin
 - Default: `false`
 
 ```html preview full
-<vwc-top-app-bar heading="Alternate Top App Bar" alternate></vwc-top-app-bar>
+<vwc-header heading="Alternate header" alternate></vwc-header>
 ```
 
 ## Slots
@@ -98,44 +98,44 @@ Add the `alternate` attribute to set the color-scheme to dark or light (dependin
 The `meta` slot is for action content next to the heading.
 
 ```html preview full
-<vwc-top-app-bar heading="With Meta">
+<vwc-header heading="With Meta">
     <vwc-button slot="meta" icon="menu-line"></vwc-button>
-</vwc-top-app-bar>
+</vwc-header>
 ```
 
 ### Action Items
 
-Action items are displayed at the end of the top-app bar in the `actionItems` slot.
+Action items are displayed at the end of the header in the `actionItems` slot.
 
 ```html preview full
-<vwc-top-app-bar heading="With Action Items">
+<vwc-header heading="With Action Items">
     <div slot="actionItems">
         <vwc-button icon="twitter-mono"></vwc-button>
         <vwc-button icon="facebook-mono"></vwc-button>
         <vwc-button icon="heart-solid"></vwc-button>
     </div>
-</vwc-top-app-bar>
+</vwc-header>
 ```
 
 ### App-content
 
-To add content below the top-app-bar, add a slot called `app-content`.
+To add content below the header, add a slot called `app-content`.
 
 ```html preview full
-<vwc-top-app-bar heading="With App Content">
+<vwc-header heading="With App Content">
   <div slot="app-content">
     <vwc-text tight font-face="body-1">
         This is the app-content slot!!!!
     </vwc-text>
   </div>
-</vwc-top-app-bar>
+</vwc-header>
 ```
 
 ## Example Usage
 
-### Fixed Top App Bar With Side-Drawer
+### Fixed header With Side-Drawer
 
-This is an example of a `fixed` top-app-bar with the `meta`, `actionItems` and `app-content` slots.
+This is an example of a `fixed` header with the `meta`, `actionItems` and `app-content` slots.
 
 ```html preview full
 <style>
@@ -143,12 +143,12 @@ This is an example of a `fixed` top-app-bar with the `meta`, `actionItems` and `
       block-size: 300px; 
     }
     vwc-side-drawer#sideDrawer{
-        block-size: calc(100vh - var(--top-app-bar-height));
+        block-size: calc(100vh - var(--header-height));
         --side-drawer-background-color: var(--vvd-color-neutral-10);
         --side-drawer-inline-size: 200px;
     }
 </style>
-<vwc-top-app-bar fixed heading="Top App Bar with Side Drawer">
+<vwc-header fixed heading="header with Side Drawer">
   <vwc-button id="button" slot="meta" icon="menu-line"></vwc-button>
   <div slot="actionItems">
       <vwc-button icon="twitter-mono"></vwc-button>
@@ -182,7 +182,7 @@ This is an example of a `fixed` top-app-bar with the `meta`, `actionItems` and `
       </vwc-text>
     </vwc-layout>
   </vwc-side-drawer>
-</vwc-top-app-bar>
+</vwc-header>
 <script>
   button.addEventListener('click', function() {
     sideDrawer.open = !sideDrawer.open;
@@ -194,16 +194,16 @@ This is an example of a `fixed` top-app-bar with the `meta`, `actionItems` and `
 
 ### Z-index
 
-Controls the z-index of the top-app-bar.
+Controls the z-index of the header.
 
-- `--top-app-bar-z-index`
+- `--header-z-index`
 - Type: `Number`
 - Default: `7`
 
 ### Height
 
-Controls the height of the top-app-bar.  
+Controls the height of the header.  
 
-- `--top-app-bar-height`
+- `--header-height`
 - Type: `Number`
 - Default: `64px`

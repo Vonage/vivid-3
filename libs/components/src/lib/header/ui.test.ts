@@ -7,7 +7,7 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.ts';
 
-const components = ['top-app-bar', 'button', 'text', 'side-drawer', 'sidenav-item', 'layout' ];
+const components = ['header', 'button', 'text', 'side-drawer', 'sidenav-item', 'layout' ];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(
@@ -32,6 +32,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/top-app-bar.png'
+		'./snapshots/header.png'
 	);
 });

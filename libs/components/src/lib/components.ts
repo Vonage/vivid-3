@@ -23,4 +23,4 @@ export * from './text';
 export * from './text-field';
 // export * from './text-anchor';
 export * from './tooltip';
-export * from './top-app-bar';
+export * from './header';

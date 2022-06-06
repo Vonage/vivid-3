@@ -1,21 +1,21 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
-import { TopAppBar } from './top-app-bar';
+import { header } from './header';
 import '.';
 
-const COMPONENT_TAG = 'vwc-top-app-bar';
+const COMPONENT_TAG = 'vwc-header';
 
-describe('vwc-top-app-bar', () => {
-	let element: TopAppBar;
+describe('vwc-header', () => {
+	let element: header;
 
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as TopAppBar;
+		)) as header;
 	});
 
 	describe('basic', () => {
-		it('should be initialized as a vwc-top-app-bar', async () => {
-			expect(element).toBeInstanceOf(TopAppBar);
+		it('should be initialized as a vwc-header', async () => {
+			expect(element).toBeInstanceOf(header);
 			expect(element.alternate).toBeFalsy();
 			expect(element.fixed).toBeFalsy();
 			expect(element.heading).toBeUndefined();
@@ -51,7 +51,7 @@ describe('vwc-top-app-bar', () => {
 
 	describe('heading', () => {
 		it('should render heading if heading is set', async function () {
-			element.heading = 'top app bar';
+			element.heading = 'header';
 			await elementUpdated(element);
 
 			const headerContent = element.shadowRoot?.querySelector('.header-content');

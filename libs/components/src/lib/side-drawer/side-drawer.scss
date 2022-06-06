@@ -53,8 +53,8 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
 
 			// TODO: check
 			// @rinaok - this is a hack to get the drawer to be the same width as the app
-			// ::slotted(vwc-top-app-bar) {
-			// 	--mdc-top-app-bar-width: calc(100% - #{$inline-size});
+			// ::slotted(vwc-header) {
+			// 	--mdc-header-width: calc(100% - #{$inline-size});
 			// }
 		}
 		&.end {

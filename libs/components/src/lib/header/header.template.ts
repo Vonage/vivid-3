@@ -5,9 +5,9 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import type { TopAppBar } from './top-app-bar';
+import type { header } from './header';
 
-const getClasses = ({ fixed, alternate, elevated }: TopAppBar) => classNames(
+const getClasses = ({ fixed, alternate, elevated }: header) => classNames(
 	'control',
 	['fixed', fixed],
 	['alternate', alternate],
@@ -15,20 +15,20 @@ const getClasses = ({ fixed, alternate, elevated }: TopAppBar) => classNames(
 );
 
 /**
- * The template for the {@link @microsoft/fast-foundation#TopAppBar} component.
+ * The template for the {@link @microsoft/fast-foundation#header} component.
  *
  * @param context
  * @public
  */
-export const TopAppBarTemplate: (
+export const headerTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<TopAppBar> = () => {
-	return html<TopAppBar>`
+) => ViewTemplate<header> = () => {
+	return html<header>`
     <header class="${getClasses}" part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}">
         <section class="header-content start" id="navigation">
           <slot name="meta"></slot>
-          ${when(x => x.heading, html<TopAppBar>`<span class="heading">${x => x.heading}</span>`)}
+          ${when(x => x.heading, html<header>`<span class="heading">${x => x.heading}</span>`)}
         </section>
         <section class="header-content end" id="actions" role="toolbar">
           <slot name="actionItems"></slot>

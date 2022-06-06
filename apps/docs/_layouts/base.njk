@@ -43,13 +43,13 @@
     <script type="module" src="{{ '/assets/modules/components/button/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/icon/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/elevation/index.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/modules/components/top-app-bar/index.js' | url}}"></script>
+    <script type="module" src="{{ '/assets/modules/components/header/index.js' | url}}"></script>
 
     {% include "prefetches.njk" %}
   </head>
 
 <body>
-	<vwc-top-app-bar fixed>
+	<vwc-header fixed>
     <div class="logo" slot="meta">
     <img src="../../../vivid-logo.svg" style="" alt="Vivid Logo" width="30">
       <h5>VIVID</h5>
@@ -79,7 +79,7 @@
         <br>
       </main>
 		</vwc-side-drawer>
-	</vwc-top-app-bar>
+	</vwc-header>
 
 </body>
 
