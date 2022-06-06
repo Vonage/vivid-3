@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "npx nx run docs:serve",
-    "build": "npx nx build docs && npx nx build components",
+    "build": "npx nx build components && npx nx build docs",
     "test": "npx nx run components:test",
     "ui-test": "npx nx run components:e2e",
     "lint": "npm run nx run-many -- --target=stylelint --all & npm run nx run-many -- --target=lint --all --fix",
