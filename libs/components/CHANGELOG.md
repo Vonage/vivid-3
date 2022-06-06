@@ -1,8 +1,44 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Tue, 17 May 2022 05:25:52 GMT and should not be manually modified.
+This log was last generated on Tue, 31 May 2022 17:06:10 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.19
+
+Tue, 31 May 2022 17:06:10 GMT
+
+### Changes
+
+- export text field & action group from package (yinon@hotmail.com)
+- card improved css flow display properties (yinon@hotmail.com)
+
+## 3.0.0-next.18
+
+Mon, 30 May 2022 12:41:42 GMT
+
+### Changes
+
+- package export text field (yinon@hotmail.com)
+
+## 3.0.0-next.17
+
+Mon, 30 May 2022 12:17:41 GMT
+
+### Changes
+
+- add text field component (yonatan.kra@vonage.com)
+
+## 3.0.0-next.16
+
+Sat, 28 May 2022 17:55:16 GMT
+
+### Changes
+
+- formatted documentation pages (yinon@hotmail.com)
+- align components variable prefix (yinon@hotmail.com)
+- Create the note component (yonatan.kra@vonage.com)
+- popup inline-size changed to fit-content  (yinon@hotmail.com)
 
 ## 3.0.0-next.15
 

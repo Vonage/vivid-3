@@ -21,6 +21,11 @@ $states-mapping: (
       fill: transaprent,
       outline: var(#{connotation.$vvd-color-connotation}-basis),
     ),
+    fieldset: (
+      text: var(#{theme-consts.$vvd-color-on-canvas}),
+      fill: var(#{theme-consts.$vvd-color-canvas}),
+      outline: var(#{theme-consts.$vvd-color-neutral-50}),
+    ),
     ghost: (
       text: var(#{connotation.$vvd-color-connotation}),
       fill: transaprent,
@@ -47,6 +52,11 @@ $states-mapping: (
       text: var(#{connotation.$vvd-color-connotation}-contrast),
       fill: var(#{connotation.$vvd-color-connotation}-pale),
       outline: var(#{connotation.$vvd-color-connotation}-basis),
+    ),
+    fieldset: (
+      text: var(#{theme-consts.$vvd-color-on-canvas}),
+      fill: var(#{theme-consts.$vvd-color-canvas}),
+      outline: var(#{theme-consts.$vvd-color-on-canvas}),
     ),
     ghost: (
       text: var(#{connotation.$vvd-color-connotation}),
@@ -75,6 +85,11 @@ $states-mapping: (
       fill: var(#{connotation.$vvd-color-connotation}-soft),
       outline: var(#{connotation.$vvd-color-connotation}-basis),
     ),
+    fieldset: (
+      text: var(#{theme-consts.$vvd-color-on-canvas}),
+      fill: var(#{theme-consts.$vvd-color-canvas}),
+      outline: var(#{theme-consts.$vvd-color-on-canvas}),
+    ),
     ghost: (
       text: var(#{connotation.$vvd-color-connotation}),
       fill: var(#{connotation.$vvd-color-connotation}-soft),
@@ -102,6 +117,11 @@ $states-mapping: (
       fill: transaprent,
       outline: var(#{theme-consts.$vvd-color-neutral-50}),
     ),
+    fieldset: (
+      text: var(#{theme-consts.$vvd-color-neutral-50}),
+      fill: var(#{theme-consts.$vvd-color-neutral-20}),
+      outline: var(#{theme-consts.$vvd-color-neutral-50}),
+    ),
     ghost: (
       text: var(#{theme-consts.$vvd-color-neutral-50}),
       fill: transaprent,
@@ -113,7 +133,38 @@ $states-mapping: (
       outline: transaprent,
     )
   ),
-
+  readonly: (
+    filled: (
+      text: var(#{theme-consts.$vvd-color-on-canvas}),
+      fill: var(#{theme-consts.$vvd-color-neutral-30}),
+      outline: transaprent,
+    ),
+    outlined: (
+      text: var(#{theme-consts.$vvd-color-neutral-50}),
+      fill: transaprent,
+      outline: var(#{theme-consts.$vvd-color-neutral-50}),
+    ),
+    duotone: (
+      text: var(#{theme-consts.$vvd-color-neutral-50}),
+      fill: transaprent,
+      outline: var(#{theme-consts.$vvd-color-neutral-50}),
+    ),
+    fieldset: (
+      text: var(#{theme-consts.$vvd-color-on-canvas}),
+      fill: var(#{theme-consts.$vvd-color-neutral-20}),
+      outline: var(#{theme-consts.$vvd-color-neutral-50}),
+    ),
+    ghost: (
+      text: var(#{theme-consts.$vvd-color-neutral-50}),
+      fill: transaprent,
+      outline: transaprent,
+    ),
+    subtle: (
+      text: var(#{theme-consts.$vvd-color-neutral-50}),
+      fill: var(#{theme-consts.$vvd-color-neutral-30}),
+      outline: transaprent,
+    )
+  ),
   selected: (
     //need to be updated with design. currently its active style
     filled: (
@@ -131,6 +182,11 @@ $states-mapping: (
       fill: var(#{connotation.$vvd-color-connotation}-soft),
       outline: var(#{connotation.$vvd-color-connotation}-basis),
     ),
+    fieldset: (
+      text: var(#{theme-consts.$vvd-color-neutral-70}),
+      fill: var(#{theme-consts.$vvd-color-canvas}),
+      outline: var(#{theme-consts.$vvd-color-on-canvas}),
+    ),
     ghost: (
       text: var(#{connotation.$vvd-color-connotation}),
       fill: var(#{connotation.$vvd-color-connotation}-soft),
@@ -141,6 +197,37 @@ $states-mapping: (
       fill: var(#{connotation.$vvd-color-connotation}-soft),
       outline: transaprent,
     )
+  ),
+  error: (
+    filled: (
+      text: transparent,
+      fill: transparent,
+      outline: transparent,
+    ),
+    outlined: (
+      text: transparent,
+      fill: transparent,
+      outline: transparent,
+    ),
+    duotone: (
+      text: transparent,
+      fill: transparent,
+      outline: transparent,
+    ),
+    fieldset: (
+      text: var(#{theme-consts.$vvd-color-alert}),
+      fill: var(#{theme-consts.$vvd-color-alert-20}),
+      outline: var(#{theme-consts.$vvd-color-alert}),
+    ),
+    ghost: (
+      text: transparent,
+      fill: transparent,
+      outline: transparent,
+    ),
+    subtle: (
+      text: transparent,
+      fill: transparent,
+      outline: transparent,
+    )
   )
-
 );

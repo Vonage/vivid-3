@@ -151,11 +151,27 @@
     ]
   },
   {
+    "title": "text-field",
+    "markdown": "./libs/components/src/lib/text-field/README.md",
+    "modules": [
+      "/assets/modules/components/text-field/index.js"
+    ]
+  },
+  {
     "title": "fab",
     "markdown": "./libs/components/src/lib/fab/README.md",
     "modules": [
       "/assets/modules/components/fab/index.js",
       "/assets/modules/components/layout/index.js"
+    ]
+  },
+  {
+    "title": "action-group",
+    "markdown": "./libs/components/src/lib/action-group/README.md",
+    "modules": [
+      "/assets/modules/components/action-group/index.js",
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/text-field/index.js"
     ]
   },
   {

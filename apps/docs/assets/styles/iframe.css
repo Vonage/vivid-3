@@ -19,3 +19,10 @@ body {
   padding: 8px;
   block-size: 100%;
 }
+
+.demo-center {
+  display: flex;
+  place-items: center;
+  place-content: center;
+  block-size: 100%;
+}

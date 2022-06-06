@@ -51,8 +51,24 @@ function createFiles(tree: Tree, options: NormalizedSchema) {
   });
 }
 
+function updatePackageJsonExports(tree: Tree, options: NormalizedSchema) {
+  const packageJsonPath = `libs/components/package.json`;
+  if (options.exportComponent && tree.exists(packageJsonPath)) {
+    const packageJson = JSON.parse(tree.read(packageJsonPath)
+      .toString());
+    if (!packageJson.exports) {
+      packageJson.exports = {};
+    }
+    const exportsValue = `./${names(options.name).fileName}`;
+    packageJson.exports[exportsValue] = exportsValue;
+    tree.write(packageJsonPath, JSON.stringify(packageJson));
+  }
+}
+
 export default async function vividComponentGenerator(tree: Tree, schema: VividComponentGeneratorOptions) {
   const options = normalizeOptions(tree, schema);
   createFiles(tree, options);
+  updatePackageJsonExports(tree, options);
+
   await formatFiles(tree);
 }
