@@ -33,8 +33,8 @@ export class CalendarEvent extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr({ attribute: 'overlap-count' })
-		overlapCount?: string;
+	@attr({ converter: nullableNumberConverter, attribute: 'overlap-count' })
+		overlapCount?: number;
 
 	/**
 	 * time of day event starts
