@@ -48,6 +48,6 @@
 	}
 }
 
-.app-content {
+.control.fixed + .app-content {
 	padding-top: var(#{variables.$top-app-bar-height});
 }
