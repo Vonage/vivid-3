@@ -2,12 +2,19 @@
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 @use 'partials/variables' as variables;
 @use '../calendar/partials/variables' as calendar-variables;
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with ($connotations: accent cta success alert warning info announcement,
+  $shades: primary on-primary,
+  $default: accent,
+);
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
 :host {
   display: contents;
 }
 
-section {
+.base {
+  @include connotation.connotation;
+
   $margin-block: 2px;
   $gutter: 4px;
   $unit-indent: 8px;
@@ -34,10 +41,10 @@ section {
   overflow: hidden;
   box-sizing: border-box;
   padding: $gutter $gutter * 2;
-  background-color: var(#{variables.$color}, var(#{theme-consts.$vvd-color-neutral-40}));
+  background-color: var(#{connotation.get-connotation-token(primary)});
+  color: var(#{connotation.get-connotation-token(on-primary)});
   block-size: calc(var(#{variables.$duration}, 1) * #{$hour-block-size} + #{$dividers-block-size} - #{$margin-block * 2});
   border-radius: 6px;
-  color: var(#{theme-consts.$vvd-color-on-primary});
   inline-size: calc(100% - #{$unit-indent} - #{$indent-calc});
   margin-block-start: #{$margin-block};
   margin-inline-end: #{$unit-indent};
