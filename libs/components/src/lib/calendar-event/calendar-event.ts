@@ -22,7 +22,7 @@ export class CalendarEvent extends FoundationElement {
 	@attr description?: string;
 
 	/**
-	 * color - color of event card
+	 * color of event card
 	 *
 	 * @public
 	 */

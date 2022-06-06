@@ -1,20 +1,74 @@
 # Calendar Event
 
+Represents a calendar event custom element.
+
 ```js
 <script type="module">
   import '@vonage/vivid/calendar-event';
 </script>
 ```
 
+## Members
+
+### Heading
+
+Set the heading of the event.
+
+- Type: `string`
+- Default: `undefined`
+
 ```html preview
 <vwc-calendar>
-  <vwc-calendar-event slot="day-0" start="0" duration="1" color="rgb(43, 158, 250)" heading="Pool party" description="2pm"></vwc-calendar-event>
-  <vwc-calendar-event slot="day-0" start="14" duration="2.25" heading="Summer time" description="All Day"></vwc-calendar-event>
-  <vwc-calendar-event slot="day-2" start="4" duration="4" color="rgb(214, 33, 156)" heading="Team meeting" description="11am - 13pm"></vwc-calendar-event>
-  <vwc-calendar-event slot="day-3" start="16" duration="8" color="rgb(50, 175, 76)" heading="Main event" description="12:30pm" overlap-count="2"></vwc-calendar-event>
-  <vwc-calendar-event slot="day-3" start="17" duration="7" color="rgb(43, 158, 250)" heading="Roadmap discussion" description="All Day"></vwc-calendar-event>
-  <vwc-calendar-event slot="day-3" start="18.5" duration="7.5" heading="Summer time" description="15:30pm" overlap-count="1"></vwc-calendar-event>
-  <vwc-calendar-event slot="day-6" start="12" duration="4" color="rgb(183, 126, 249)" heading="Team social" description="14pm"></vwc-calendar-event>
-  <vwc-calendar-event slot="day-6" start="20" duration="5" color="rgb(50, 175, 76)" heading="Summer time" description="18pm"></vwc-calendar-event>
+  <vwc-calendar-event slot="day-0" heading="Summer pool party">
+  </vwc-calendar-event>
 </vwc-calendar>
 ```
+
+### Description
+
+Sets the description of the event.
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-calendar>
+  <vwc-calendar-event slot="day-0" description="A party in which guests swim in a swimming pool">
+  </vwc-calendar-event>
+</vwc-calendar>
+```
+
+### Color
+
+Sets the color of the event.
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-calendar>
+  <vwc-calendar-event slot="day-0" color="var(--vvd-color-cta-80)">
+  </vwc-calendar-event>
+</vwc-calendar>
+```
+
+### Overlap Count
+
+Sets an event display stacking context precendence and indentation where multiple events overlap.
+
+- Type: `string`
+- Default: `undefined`
+
+### Start
+
+Sets the time of day in which the event starts.
+
+- Type: `string`
+- Default: `undefined`
+
+### Duration
+
+Set the duration of the event in hours.
+
+- Type: `string`
+- Default: `undefined`
