@@ -4,68 +4,64 @@
 @use '../calendar/partials/variables' as calendar-variables;
 
 :host {
-  display: contents;
+	display: contents;
 }
 
 section {
-  $margin-block: 2px;
-  $gutter: 4px;
-  $unit-indent: 8px;
+	$margin-block: 2px;
+	$gutter: 4px;
+	$unit-indent: 8px;
+	$indent-calc: min(var(#{variables.$indent}), #{$unit-indent * 4});
+	$dividers-block-size: calc(#{variables.$gap} * (var(#{variables	ration}, 1) - 1));
+	$dividers-top-size: calc(#{variables.$gap} * var(#{variables.	rt}, 0));
+	$top: calc(var(#{variables.$start}, 0) * (100% - #{calendar-variables.$total-rows - 1}px) / #{calendar-variables.$total-rows} + #{$dividers-top-size});
+	$hour-block-size: calc((100% - #{calendar-variables.$total-rows - 1}px) / #{calendar-variables.$total-rows});
 
-  $indent-calc: min(var(#{variables.$indent}), #{$unit-indent * 4}
-    /* 4 as the indentation limit*/
-  );
-  $dividers-block-size: calc(#{variables.$gap}
-    /* per cell divider */
-    * (var(#{variables.$duration}, 1) - 1));
-  $dividers-top-size: calc(#{variables.$gap}
-    /* per cell divider */
-    * var(#{variables.$start}, 0));
-  $top: calc(var(#{variables.$start}, 0) * (100% - #{calendar-variables.$total-rows - 1}px) / #{calendar-variables.$total-rows} + #{$dividers-top-size});
-  $hour-block-size: calc((100% - #{calendar-variables.$total-rows - 1}px) / #{calendar-variables.$total-rows});
+	#{variables.$indent}: calc(0px + var(#{variables.$overlap-count}, 0) * #{$unit-indent});
 
-  #{variables.$indent}: calc(0px + var(#{variables.$overlap-count}, 0) * #{$unit-indent});
-  position: absolute;
-  z-index: var(#{variables.$overlap-count});
-  top: $top;
-  overflow: hidden;
-  box-sizing: border-box;
-  padding: $gutter $gutter*2;
-  background-color: var(#{variables.$color}, var(#{theme-consts.$vvd-color-neutral-40}));
-  block-size: calc(var(#{variables.$duration}, 1) * #{$hour-block-size} + #{$dividers-block-size} - #{$margin-block * 2});
-  border-radius: 6px;
-  color: var(#{theme-consts.$vvd-color-on-primary});
-  inline-size: calc(100% - #{$unit-indent} - #{$indent-calc});
-  margin-block-start: #{$margin-block};
-  margin-inline-end: #{$unit-indent};
-  margin-inline-start: #{$indent-calc};
-  max-block-size: calc(100% - #{$top} - #{$margin-block * 2});
+	position: absolute;
+	z-index: var(#{variables.$overlap-count});
+	top: $top;
+	overflow: hidden;
+	box-sizing: border-box;
+	padding: $gutter $gutter * 2;
+	background-color: var(#{variables.$color}, var(#{theme-consts.$vvd-color-neutral-40}));
+	block-size: calc(var(#{variables.$duration}, 1) * #{$hour-block-size} + #{$dividers-block-size} - #{$margin-block * 2});
+	border-radius: 6px;
+	color: var(#{theme-consts.$vvd-color-on-primary});
+	inline-size: calc(100% - #{$unit-indent} - #{$indent-calc});
+	margin-block-start: #{$margin-block};
+	margin-inline-end: #{$unit-indent};
+	margin-inline-start: #{$indent-calc};
+	max-block-size: calc(100% - #{$top} - #{$margin-block * 2});
 
-  @supports(contain: content) {
-    contain: strict;
-  }
+	@supports(contain: content) {
+		contain: strict;
+	}
 
-  @supports not (contain: content) {
-    overflow: hidden;
-  }
+	@supports not (contain: content) {
+		overflow: hidden;
+	}
 
-  &:focus {
-    z-index: 2000;
-    filter: var(#{theme-consts.$vvd-shadow-surface-8dp});
-    outline: none;
-  }
+	&:focus {
+		z-index: 2000;
+		filter: var(#{theme-consts.$vvd-shadow-surface-8dp});
+		outline: none;
+	}
 }
 
 h2 {
-  @include typography.typography-cat-shorthand('caption-bold');
-  margin: 0;
+	@include typography.typography-cat-shorthand('caption-bold');
 
-  >strong {
-    font: inherit;
-  }
+	margin: 0;
+
+	>strong {
+		font: inherit;
+	}
 }
 
 p {
-  @include typography.typography-cat-shorthand('caption');
-  margin: 0;
+	@include typography.typography-cat-shorthand('caption');
+
+	margin: 0;
 }
