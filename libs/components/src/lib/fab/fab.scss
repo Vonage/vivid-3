@@ -4,9 +4,9 @@
 @use "../../../../shared/src/lib/sass/mixins/elevation" as elevation;
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
-	$connotations: canvas cta primary,
-	$shades: basis basis-increment contrast fierce firm,
-	$default: canvas
+	$connotations: cta accent,
+	$shades: primary on-primary primary-increment contrast fierce firm,
+	$default: accent
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
@@ -29,10 +29,10 @@
 	box-sizing: border-box;
 	align-items: center;
 	border: 0 none;
-	background-color: var(#{appearance.get-variable(fill)});
+	background-color: var(#{appearance.get-appearance-token(fill)});
 	block-size: var(#{variables.$block-size});
 	border-radius: 24px;
-	color: var(#{appearance.get-variable(text)});
+	color: var(#{appearance.get-appearance-token(text)});
 	column-gap: var(#{variables.$icon-gap});
 	filter: var(#{elevation.$vvd-elevation-shadow});
 	outline: 0 none;
