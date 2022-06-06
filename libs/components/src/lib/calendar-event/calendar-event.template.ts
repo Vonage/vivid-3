@@ -20,4 +20,14 @@ export const CalendarEventTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<CalendarEvent> = (
 	context: ElementDefinitionContext
-) => html` <span class="${getClasses}">${context.name} </span>`;
+) => html`<span class="${getClasses}">${context.name} </span>
+<section
+  role="button"
+  tabindex="0"
+
+			>
+  <h2><strong>${x => x.heading}</strong></h2>
+  <p>${x => x.description}</p>
+</section>
+
+`;

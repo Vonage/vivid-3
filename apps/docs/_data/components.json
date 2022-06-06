@@ -61,6 +61,14 @@
     ]
   },
   {
+    "title": "calendar-event",
+    "markdown": "./libs/components/src/lib/calendar-event/README.md",
+    "modules": [
+      "/assets/modules/components/calendar-event/index.js",
+      "/assets/modules/components/calendar/index.js"
+    ]
+  },
+  {
     "title": "elevation",
     "markdown": "./libs/components/src/lib/elevation/README.md",
     "modules": [
