@@ -22,7 +22,7 @@ Add the `heading` attribute to set the heading text.
     }
 </style>
 <vwc-top-app-bar heading="Top App Bar">
-  <vwc-layout slot="app-content">
+  <vwc-layout slot="app-content" column-basis="block" gutters="medium">
     <vwc-text tight font-face="headline-2">
       <h2>
         Scroll to see the effect.
@@ -58,7 +58,7 @@ Add the `fixed` attribute to set the top-app-bar's position to be fixed.
     }
 </style>
 <vwc-top-app-bar heading="Fixed Top App Bar" fixed>
-  <vwc-layout slot="app-content">
+  <vwc-layout slot="app-content" column-basis="block" gutters="medium">
     <vwc-text tight font-face="headline-2">
       <h2>
         Scroll to see the effect.
@@ -162,7 +162,7 @@ This is an example of a `fixed` top-app-bar with the `meta`, `actionItems` and `
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
     </div>
-    <vwc-layout slot="app-content">
+    <vwc-layout slot="app-content" column-basis="block" gutters="medium">
       <vwc-text tight font-face="headline-2">
         <h2>
           Scroll to see the effect.
