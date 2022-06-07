@@ -203,9 +203,9 @@ Use the `position` attribute to set the side of the side drawer.
 
 ## Slots
 
-### Top Bar
+### Top-Bar
 
-To add a top bar to the side drawer, add a slot called `top-bar`.
+To add a top-bar to the side drawer, add a slot called `top-bar`.
 
 ```html
 <div slot="top-bar">
