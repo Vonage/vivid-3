@@ -41,6 +41,14 @@ Use the `gutters` attribute to set the initial preferred `margin`.
 - Default: `undefined`
 
 ```html preview full
+<style>
+  vwc-card {
+    width: 100%;
+  }
+  html { 
+    block-size: 400px; 
+  }
+</style>
 <div class="demo-gradient">
   <vwc-layout>
     <vwc-card elevation="2" text="default"></vwc-card>
@@ -65,6 +73,14 @@ Use the `column-spacing` attribute to set the initial preferred `spacing` of a c
 - Default: `'medium'`
 
 ```html preview full
+<style>
+  vwc-card {
+    width: 100%;
+  }
+  html { 
+    block-size: 300px; 
+  }
+</style>
 <div class="demo-gradient tight">
   <vwc-layout gutters="small" column-spacing="small">
     <vwc-card elevation="2" text="small"></vwc-card>
@@ -93,6 +109,14 @@ Use `block` to stack elements one above the other.
 - Default: `'medium'`
 
 ```html preview full
+<style>
+  vwc-card {
+    width: 100%;
+  }
+  html { 
+    block-size: 1000px; 
+  }
+</style>
 <div class="demo-gradient">
   <vwc-layout gutters="small" column-basis="small">
     <vwc-card elevation="2" text="small"></vwc-card>
@@ -135,6 +159,17 @@ With `fill`, everything is the same as `fit`, except empty tracks are not collap
 - Default: `'fit'`
 
 ```html preview full
+<style>
+  vwc-card {
+    width: 100%;
+  }
+  html { 
+    block-size: 200px; 
+  }
+  .demo-gradient {
+    display: grid;
+  }
+</style>
 <div class="demo-gradient">
   <vwc-layout auto-sizing="fit">
     <vwc-card elevation="2" text="fit"></vwc-card>
@@ -158,6 +193,17 @@ Controls the grid-template-columns of the layout.
 - Default: auto
 
 ```html preview full
+<style>
+  vwc-card {
+    width: 100%;
+  }
+  html { 
+    block-size: 200px; 
+  }
+  .demo-gradient {
+    display: grid;
+  }
+</style>
 <div class="demo-gradient">
   <vwc-layout style="--layout-grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));">
     <vwc-card elevation="2"></vwc-card>
