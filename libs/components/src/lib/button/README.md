@@ -104,13 +104,13 @@ Caveats:
 Set the `connotation` attribute to change the button's connotation.
 It accepts a subset of predefined values.
 
-- Type: `'primary'` | `'cta'` | `'success'` | `'alert'`
-- Default: `'primary'`
+- Type: `'accent'` | `'cta'` | `'success'` | `'alert'`
+- Default: `'accent'`
 
 ### Ghost button with connotation
 
 ```html preview
-<vwc-button appearance="ghost" label='primary' connotation='primary'></vwc-button>
+<vwc-button appearance="ghost" label='accent' connotation='accent'></vwc-button>
 <vwc-button appearance="ghost" label='cta' connotation='cta'></vwc-button>
 <vwc-button appearance="ghost" label='success' connotation='success'></vwc-button>
 <vwc-button appearance="ghost" label='alert' connotation='alert'></vwc-button>
@@ -119,7 +119,7 @@ It accepts a subset of predefined values.
 ### Filled button with connotation
 
 ```html preview
-<vwc-button appearance="filled" label='primary' connotation='primary'></vwc-button>
+<vwc-button appearance="filled" label='accent' connotation='accent'></vwc-button>
 <vwc-button appearance="filled" label='cta' connotation='cta'></vwc-button>
 <vwc-button appearance="filled" label='success' connotation='success'></vwc-button>
 <vwc-button appearance="filled" label='alert' connotation='alert'></vwc-button>
@@ -128,7 +128,7 @@ It accepts a subset of predefined values.
 ### Outlined button with connotation
 
 ```html preview
-<vwc-button appearance="outlined" label='primary' connotation='primary'></vwc-button>
+<vwc-button appearance="outlined" label='accent' connotation='accent'></vwc-button>
 <vwc-button appearance="outlined" label='cta' connotation='cta'></vwc-button>
 <vwc-button appearance="outlined" label='success' connotation='success'></vwc-button>
 <vwc-button appearance="outlined" label='alert' connotation='alert'></vwc-button>

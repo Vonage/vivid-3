@@ -2,6 +2,7 @@
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: success info alert announcement warning,
+	$shades: primary,
 	$default: announcement,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
@@ -12,24 +13,24 @@
 	display: flex;
 	align-items: stretch;
 	padding: 20px;
-	border-left: 8px solid var(#{connotation.$vvd-color-connotation});
+	border-left: 8px solid var(#{connotation.get-connotation-token(primary)});
 	background-color: var(#{theme-consts.$vvd-color-canvas});
 	border-radius: 6px;
 	box-shadow: inset 0 1px 0 0 var(#{theme-consts.$vvd-color-neutral-40}),
 		inset -1px 0 0 0 var(#{theme-consts.$vvd-color-neutral-40}),
 		inset 0 -1px 0 0 var(#{theme-consts.$vvd-color-neutral-40});
 	color: var(#{theme-consts.$vvd-color-on-canvas});
+
 	@supports(contain: content) {
 		contain: content;
 	}
+
 	@supports not (contain: content) {
 		overflow: hidden;
 	}
 }
 
 .icon {
-	#{connotation.$vvd-color-connotation}: currentColor;
-
 	align-self: flex-start;
 	font-size: 24px;
 	margin-inline-end: 16px;
