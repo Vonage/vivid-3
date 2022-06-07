@@ -1,7 +1,7 @@
 {
-  "type": "none",
-  "comment": "fix(card): default slot",
+  "type": "prerelease",
+  "comment": "card - rename default slot to 'main'",
   "packageName": "@vonage/vivid",
   "email": "rachel.tannenbaum@vonage.com",
-  "dependentChangeType": "none"
+  "dependentChangeType": "patch"
 }
