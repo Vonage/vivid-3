@@ -7,8 +7,11 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { CalendarEvent } from './calendar-event';
 
-const getClasses = ({ connotation }: CalendarEvent) => classNames('base',
+const getClasses = ({
+	connotation, appearance
+}: CalendarEvent) => classNames('base',
 	[`connotation-${connotation}`, Boolean(connotation)],
+	[`appearance-${appearance}`, Boolean(appearance)],
 );
 
 const getStyles = ({ start, duration, overlapCount }: CalendarEvent) => {

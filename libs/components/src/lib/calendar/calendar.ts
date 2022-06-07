@@ -1,5 +1,6 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
+import type { CalendarEvent } from '../calendar-event/calendar-event';
 import {
 	ARROW_DOWN,
 	ARROW_LEFT,
@@ -91,8 +92,8 @@ export class Calendar extends FoundationElement {
 		return this._generateDaysArr([...dateArr, lastDate]);
 	};
 
-	get #focusedCalendarEvent(): VWCCalendarEvent | null {
-		return (document.activeElement?.matches('vwc-calendar-event') && document.activeElement as VWCCalendarEvent) || null;
+	get #focusedCalendarEvent(): CalendarEvent | null {
+		return (document.activeElement?.matches('vwc-calendar-event') && document.activeElement as CalendarEvent) || null;
 	}
 
 	/**
@@ -111,7 +112,7 @@ export class Calendar extends FoundationElement {
 		if (isCellOrHeader(activeElement)) {
 			focusNext = getNextFocusableGridElement.call(this, key, activeElement);
 		} else if (this.#focusedCalendarEvent) {
-			focusNext = this.getCalendarEventContainingCell(this.#focusedCalendarEvent);
+			// focusNext = this.getCalendarEventContainingCell(this.#focusedCalendarEvent);
 		}	else if (activeElement?.matches('em[role="button"i]')) {
 			focusNext = getHeaderDescendantGridCell.call(this, key, activeElement as HTMLElement);
 		} else {

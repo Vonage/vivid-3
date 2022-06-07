@@ -19,8 +19,7 @@ Set the heading of the event.
 
 ```html preview
 <vwc-calendar>
-  <vwc-calendar-event slot="day-0" heading="Summer pool party">
-  </vwc-calendar-event>
+  <vwc-calendar-event heading="Summer pool party" slot="day-0"></vwc-calendar-event>
 </vwc-calendar>
 ```
 
@@ -33,8 +32,7 @@ Sets the description of the event.
 
 ```html preview
 <vwc-calendar>
-  <vwc-calendar-event slot="day-0" description="A party in which guests swim in a swimming pool">
-  </vwc-calendar-event>
+  <vwc-calendar-event description="A party in which guests swim in a swimming pool" slot="day-0"></vwc-calendar-event>
 </vwc-calendar>
 ```
 
@@ -59,22 +57,52 @@ Set the duration of the event in hours.
 - Type: `string`
 - Default: `undefined`
 
-## Connotation
+### Appearance
+
+Set the `appearance` attribute to change the calendar event's appearance.
+
+- Type: `'filled'` | `'subtle'`
+- Default: `'filled'`
+
+```html preview
+<vwc-calendar>
+  <vwc-calendar-event appearance="filled" heading="filled" slot="day-0"></vwc-calendar-event>
+  <vwc-calendar-event appearance="subtle" heading="subtle" slot="day-1"></vwc-calendar-event>
+</vwc-calendar>
+```
+
+### Connotation
 
 Set the `connotation` attribute to change the calendar event's connotation.
 It accepts a subset of predefined values.
 
 - Type: `'accent'` | `'cta'` | `'success'` | `'alert'` | `'warning'` | `'info'` | `'announcement'`
-- Default: `'accent'`
+- Default: `'info'`
+
+#### Filled calendar event with connotation
 
 ```html preview
 <vwc-calendar>
-  <vwc-calendar-event slot="day-0" heading="accent" connotation="accent"> </vwc-calendar-event>
-  <vwc-calendar-event slot="day-1" heading="cta" connotation="cta"> </vwc-calendar-event>
-  <vwc-calendar-event slot="day-2" heading="success" connotation="success"> </vwc-calendar-event>
-  <vwc-calendar-event slot="day-3" heading="alert" connotation="alert"> </vwc-calendar-event>
-  <vwc-calendar-event slot="day-4" heading="warning" connotation="warning"> </vwc-calendar-event>
-  <vwc-calendar-event slot="day-5" heading="info" connotation="info"> </vwc-calendar-event>
-  <vwc-calendar-event slot="day-6" heading="announcement" connotation="announcement"> </vwc-calendar-event>
+  <vwc-calendar-event connotation="accent" appearance="filled" heading="accent" slot="day-0"></vwc-calendar-event>
+  <vwc-calendar-event connotation="cta" appearance="filled" heading="cta" slot="day-1"></vwc-calendar-event>
+  <vwc-calendar-event connotation="success" appearance="filled" heading="success" slot="day-2"></vwc-calendar-event>
+  <vwc-calendar-event connotation="alert" appearance="filled" heading="alert" slot="day-3"></vwc-calendar-event>
+  <vwc-calendar-event connotation="warning" appearance="filled" heading="warning" slot="day-4"></vwc-calendar-event>
+  <vwc-calendar-event connotation="info" appearance="filled" heading="info" slot="day-5"></vwc-calendar-event>
+  <vwc-calendar-event connotation="announcement" appearance="filled" heading="announcement" slot="day-6"></vwc-calendar-event>
+</vwc-calendar>
+```
+
+#### Subtle calendar event with connotation
+
+```html preview
+<vwc-calendar>
+  <vwc-calendar-event connotation="accent" appearance="subtle" heading="accent" slot="day-0"></vwc-calendar-event>
+  <vwc-calendar-event connotation="cta" appearance="subtle" heading="cta" slot="day-1"></vwc-calendar-event>
+  <vwc-calendar-event connotation="success" appearance="subtle" heading="success" slot="day-2"></vwc-calendar-event>
+  <vwc-calendar-event connotation="alert" appearance="subtle" heading="alert" slot="day-3"></vwc-calendar-event>
+  <vwc-calendar-event connotation="warning" appearance="subtle" heading="warning" slot="day-4"></vwc-calendar-event>
+  <vwc-calendar-event connotation="info" appearance="subtle" heading="info" slot="day-5"></vwc-calendar-event>
+  <vwc-calendar-event connotation="announcement" appearance="subtle" heading="announcement" slot="day-6"></vwc-calendar-event>
 </vwc-calendar>
 ```
