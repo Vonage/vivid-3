@@ -4,7 +4,7 @@
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
 	$appearances: fieldset ghost,
-  $states: idle hover disabled readonly error,
+	$states: idle hover disabled readonly error,
   $default: fieldset,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;

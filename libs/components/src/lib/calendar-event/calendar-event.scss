@@ -5,7 +5,7 @@
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent cta success alert warning info announcement,
 	$shades: primary on-primary,
-  $default: accent,
+	$default: accent,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 

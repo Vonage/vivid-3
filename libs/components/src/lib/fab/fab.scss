@@ -4,14 +4,14 @@
 @use "../../../../shared/src/lib/sass/mixins/elevation" as elevation;
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
-  $connotations: accent cta,
+	$connotations: accent cta,
   $shades: primary on-primary primary-increment contrast fierce firm,
   $default: accent
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
-  $appearances: filled,
+	$appearances: filled,
   $states: idle hover disabled active,
   $default: filled
 );
