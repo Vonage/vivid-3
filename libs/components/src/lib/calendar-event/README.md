@@ -71,5 +71,10 @@ It accepts a subset of predefined values.
 <vwc-calendar>
   <vwc-calendar-event slot="day-0" heading="accent" connotation="accent"> </vwc-calendar-event>
   <vwc-calendar-event slot="day-1" heading="cta" connotation="cta"> </vwc-calendar-event>
+  <vwc-calendar-event slot="day-2" heading="success" connotation="success"> </vwc-calendar-event>
+  <vwc-calendar-event slot="day-3" heading="alert" connotation="alert"> </vwc-calendar-event>
+  <vwc-calendar-event slot="day-4" heading="warning" connotation="warning"> </vwc-calendar-event>
+  <vwc-calendar-event slot="day-5" heading="info" connotation="info"> </vwc-calendar-event>
+  <vwc-calendar-event slot="day-6" heading="announcement" connotation="announcement"> </vwc-calendar-event>
 </vwc-calendar>
 ```
