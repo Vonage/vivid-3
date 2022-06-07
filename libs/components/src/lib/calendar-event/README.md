@@ -38,20 +38,6 @@ Sets the description of the event.
 </vwc-calendar>
 ```
 
-### Color
-
-Sets the color of the event.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<vwc-calendar>
-  <vwc-calendar-event slot="day-0" color="var(--vvd-color-cta-80)">
-  </vwc-calendar-event>
-</vwc-calendar>
-```
-
 ### Overlap Count
 
 Sets an event display stacking context precendence and indentation where multiple events overlap.
@@ -72,3 +58,18 @@ Set the duration of the event in hours.
 
 - Type: `string`
 - Default: `undefined`
+
+## Connotation
+
+Set the `connotation` attribute to change the calendar event's connotation.
+It accepts a subset of predefined values.
+
+- Type: `'accent'` | `'cta'` | `'success'` | `'alert'` | `'warning'` | `'info'` | `'announcement'`
+- Default: `'accent'`
+
+```html preview
+<vwc-calendar>
+  <vwc-calendar-event slot="day-0" heading="accent" connotation="accent"> </vwc-calendar-event>
+  <vwc-calendar-event slot="day-1" heading="cta" connotation="cta"> </vwc-calendar-event>
+</vwc-calendar>
+```
