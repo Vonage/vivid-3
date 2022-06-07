@@ -1,8 +1,9 @@
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: cta primary alert success,
-	$default: primary,
+	$connotations: cta accent alert success,
+	$shades: primary,
+	$default: accent,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
@@ -22,7 +23,8 @@ $rounded-border-radius: 3px;
 	&.connotation-pacific {
 		$start: var(#{theme-consts.$vvd-color-info-30});
 		$end: var(#{theme-consts.$vvd-color-cta-70});
-		#{connotation.$vvd-color-connotation}: linear-gradient(to right, $start, $end);
+
+		#{connotation.get-connotation-token(primary)}: linear-gradient(to right, $start, $end);
 	}
 }
 
@@ -44,18 +46,18 @@ $rounded-border-radius: 3px;
 	inline-size: 100%;
 
 	& .indeterminate {
-		background-color: var(#{connotation.$vvd-color-connotation});
+		background-color: var(#{connotation.get-connotation-token(primary)});
 	}
 }
 
 .determinate {
-	background-color: var(#{connotation.$vvd-color-connotation});
+	background-color: var(#{connotation.get-connotation-token(primary)});
 	block-size: 100%;
 	border-radius: $rounded-border-radius;
 	transition: all 0.2s ease-in-out;
 
 	.connotation-pacific & {
-		background-image: var(#{connotation.$vvd-color-connotation});
+		background-image: var(#{connotation.get-connotation-token(primary)});
 	}
 }
 
@@ -76,7 +78,7 @@ $rounded-border-radius: 3px;
 
 .connotation-pacific {
 	.indeterminate-indicator-1, .indeterminate-indicator-2 {
-		background-image: var(#{connotation.$vvd-color-connotation});
+		background-image: var(#{connotation.get-connotation-token(primary)});
 	}
 }
 
@@ -99,7 +101,7 @@ $rounded-border-radius: 3px;
 .base.paused .indeterminate-indicator-1,
 .base.paused .indeterminate-indicator-2 {
 	animation-play-state: paused;
-	background-color: var(#{connotation.$vvd-color-connotation});
+	background-color: var(#{connotation.get-connotation-token(primary)});
 }
 .base.paused .determinate {
 	background-color: var(#{theme-consts.$vvd-color-neutral-40});
