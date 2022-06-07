@@ -1,6 +1,6 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
-import type { CalendarEvent } from '../calendar-event/calendar-event';
+import { CalendarEvent } from './../calendar-event/calendar-event';
 import {
 	ARROW_DOWN,
 	ARROW_LEFT,
@@ -93,7 +93,8 @@ export class Calendar extends FoundationElement {
 	};
 
 	get #focusedCalendarEvent(): CalendarEvent | null {
-		return (document.activeElement?.matches('vwc-calendar-event') && document.activeElement as CalendarEvent) || null;
+		const { activeElement } = document;
+		return activeElement instanceof CalendarEvent ? activeElement : null;
 	}
 
 	/**
@@ -105,6 +106,12 @@ export class Calendar extends FoundationElement {
 	 */
 	getEventContext = getEventContext;
 
+	private getCalendarEventContainingCell(calendarEvent: CalendarEvent) {
+		const slotName = calendarEvent.getAttribute('slot') as string;
+		const gridCell = (this.shadowRoot as ShadowRoot).querySelector(`[role="gridcell"i]:has(>slot[name="${slotName}"i])`);
+		return gridCell as HTMLDivElement;
+	}
+
 	private arrowKeysInteractions(key: PredefindKeys) {
 		const { activeElement } = (this.shadowRoot as ShadowRoot);
 		let focusNext: Element | null | void;
@@ -112,7 +119,7 @@ export class Calendar extends FoundationElement {
 		if (isCellOrHeader(activeElement)) {
 			focusNext = getNextFocusableGridElement.call(this, key, activeElement);
 		} else if (this.#focusedCalendarEvent) {
-			// focusNext = this.getCalendarEventContainingCell(this.#focusedCalendarEvent);
+			focusNext = this.getCalendarEventContainingCell(this.#focusedCalendarEvent);
 		}	else if (activeElement?.matches('em[role="button"i]')) {
 			focusNext = getHeaderDescendantGridCell.call(this, key, activeElement as HTMLElement);
 		} else {
