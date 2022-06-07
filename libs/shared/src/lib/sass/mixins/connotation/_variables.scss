@@ -1,84 +1,37 @@
+@use 'sass:map';
 @use '../../../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 @use 'config' as config;
+@use '../../utils' as utils;
 
+@function get-default-mapping($type) {
+  @return (
+    primary: #{utils.get-color-token($type/*-60*/)},
+    on-primary: #{utils.get-color-token(on-#{$type}/*-60*/)},
+    primary-increment: #{utils.get-color-token(#{$type}-70)},
+    intermediate: #{utils.get-color-token($type/*-60*/)},
+    contrast: #{utils.get-color-token(#{$type}-90)},
+    soft: #{utils.get-color-token(#{$type}-20)},
+    firm: #{utils.get-color-token(#{$type}-70)},
+    faint: #{utils.get-color-token(#{$type}-10)},
 
-$vvd-color-connotation: --connotation;
-$vvd-color-on-connotation: --on-connotation;
-$compound-placeholder: '[compound]'; // will be replaced by actual compound
+    fierce: #{utils.get-color-token(#{$type}-80)},
+  );
+}
 
 $connotation-mapping: (
-  // should map to colors e.g. purple-60
-  canvas: (
-    basis: theme-consts.$vvd-color-canvas/*-60*/,
-    basis-increment: theme-consts.$vvd-color-neutral-20,
-    contrast: theme-consts.$vvd-color-on-canvas,
-    fierce: theme-consts.$vvd-color-neutral-30,
-    // investigate the followings
-    firm: theme-consts.$vvd-color-primary,
-    soft: theme-consts.$vvd-color-neutral-20,
-    pale: theme-consts.$vvd-color-neutral-10,
+  accent: map.merge(
+    get-default-mapping(neutral),
+    (
+      primary: utils.get-color-token(on-canvas/*neutral-100*/),
+      on-primary: utils.get-color-token(canvas/*neutral-0*/),
+      primary-increment: utils.get-color-token(neutral-90),
+      firm: utils.get-color-token(on-canvas/*neutral-100*/),
+    )
   ),
-  primary: (
-    basis: theme-consts.$vvd-color-neutral/*-60*/,
-    basis-increment: theme-consts.$vvd-color-neutral-90,
-    contrast: theme-consts.$vvd-color-neutral-90,
-    fierce: theme-consts.$vvd-color-neutral-80,
-    firm: theme-consts.$vvd-color-primary,
-    soft: theme-consts.$vvd-color-neutral-20,
-    pale: theme-consts.$vvd-color-neutral-10,
-  ),
-  cta: (
-    basis: theme-consts.$vvd-color-cta,
-    basis-increment: theme-consts.$vvd-color-cta-70,
-    contrast: theme-consts.$vvd-color-cta-90,
-    fierce: theme-consts.$vvd-color-cta-80,
-    firm: theme-consts.$vvd-color-cta-70,
-    soft: theme-consts.$vvd-color-cta-20,
-    pale: theme-consts.$vvd-color-cta-10,
-  ),
-  success: (
-    basis: theme-consts.$vvd-color-success,
-    basis-increment: theme-consts.$vvd-color-success-70,
-    contrast: theme-consts.$vvd-color-success-90,
-    fierce: theme-consts.$vvd-color-success-80,
-    firm: theme-consts.$vvd-color-success-70,
-    soft: theme-consts.$vvd-color-success-20,
-    pale: theme-consts.$vvd-color-success-10,
-  ),
-  alert: (
-    basis: theme-consts.$vvd-color-alert,
-    basis-increment: theme-consts.$vvd-color-alert-70,
-    contrast: theme-consts.$vvd-color-alert-90,
-    fierce: theme-consts.$vvd-color-alert-80,
-    firm: theme-consts.$vvd-color-alert-70,
-    soft: theme-consts.$vvd-color-alert-20,
-    pale: theme-consts.$vvd-color-alert-10,
-  ),
-  warning: (
-    basis: theme-consts.$vvd-color-warning,
-    basis-increment: theme-consts.$vvd-color-warning-70,
-    contrast: theme-consts.$vvd-color-warning-90,
-    fierce: theme-consts.$vvd-color-warning-80,
-    firm: theme-consts.$vvd-color-warning-70,
-    soft: theme-consts.$vvd-color-warning-20,
-    pale: theme-consts.$vvd-color-warning-10,
-  ),
-  info: (
-    basis: theme-consts.$vvd-color-info,
-    basis-increment: theme-consts.$vvd-color-info-70,
-    contrast: theme-consts.$vvd-color-info-90,
-    fierce: theme-consts.$vvd-color-info-80,
-    firm: theme-consts.$vvd-color-info-70,
-    soft: theme-consts.$vvd-color-info-20,
-    pale: theme-consts.$vvd-color-info-10,
-  ),
-  announcement: (
-    basis: theme-consts.$vvd-color-announcement,
-    basis-increment: theme-consts.$vvd-color-announcement-70,
-    contrast: theme-consts.$vvd-color-announcement-90,
-    fierce: theme-consts.$vvd-color-announcement-80,
-    firm: theme-consts.$vvd-color-announcement-70,
-    soft: theme-consts.$vvd-color-announcement-20,
-    pale: theme-consts.$vvd-color-announcement-10,
-  ),
+  cta: get-default-mapping(cta),
+  success: get-default-mapping(success),
+  alert: get-default-mapping(alert),
+  warning: get-default-mapping(warning),
+  info: get-default-mapping(info),
+  announcement: get-default-mapping(announcement),
 );

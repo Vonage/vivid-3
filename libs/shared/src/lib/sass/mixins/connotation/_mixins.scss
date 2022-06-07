@@ -1,30 +1,24 @@
 @use 'sass:map';
 @use 'sass:list';
 @use 'sass:selector';
-@use '../../functions' as functions;
 @use 'config' as config;
 @use 'variables' as variables;
-@use '../utils' as utils;
+@use 'functions' as functions;
+@use '../../utils' as utils;
 
-
-@mixin connotation-base($type) {
-	#{variables.$vvd-color-connotation}: var(--vvd-color-#{$type});
-	#{variables.$vvd-color-on-connotation}: var(--vvd-color-on-#{$type});
-}
 
 @mixin connotation-shades($mapping) {
-	$shades: functions.pick-map(config.$shades, $mapping);
+	$shades: utils.pick-map(config.$shades, $mapping);
 	@each $name, $value in $shades {
-		#{variables.$vvd-color-connotation}-#{$name}: var(#{$value});
+		#{functions.get-connotation-token($name)}: var(#{$value});
 	}
 }
 
 @mixin connotation {
 
-	$connotation-mapping: functions.pick-map(config.$connotations, variables.$connotation-mapping);
+	$connotation-mapping: utils.pick-map(config.$connotations, variables.$connotation-mapping);
 
   @include utils.spread-list-selectors('.connotation', config.$connotations, config.$default) using ($type) {
-		@include connotation-base($type);
 		@include connotation-shades(map.get($connotation-mapping, $type));
 	}
 }

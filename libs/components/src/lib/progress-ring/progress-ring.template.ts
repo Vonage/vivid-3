@@ -7,8 +7,9 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { ProgressRing } from './progress-ring';
 
-const getClasses = ({connotation, density}: ProgressRing) => classNames(
+const getClasses = ({connotation, density, paused}: ProgressRing) => classNames(
 	'base',
+	['disabled', !!paused],
 	[`connotation-${connotation}`, !!connotation],
 	[`density-${(density ? Number(density) : 0) + 9}`, !!density],
 );
