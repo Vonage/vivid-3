@@ -25,7 +25,7 @@ describe('vwc-calendar-event', () => {
 			expect(element).toBeInstanceOf(CalendarEvent);
 			expect(element.heading).toBeUndefined();
 			expect(element.description).toBeUndefined();
-			expect(element.color).toBeUndefined();
+			expect(element.connotation).toBeUndefined();
 			expect(element.overlapCount).toBeUndefined();
 			expect(element.start).toBeUndefined();
 			expect(element.duration).toBeUndefined();
@@ -52,14 +52,6 @@ describe('vwc-calendar-event', () => {
 			expect(el?.textContent?.trim()).toEqual(description);
 		});
 
-		it('should delegate "color" to custom property', async () => {
-			const color = 'rgb(43, 158, 250)';
-			element.color = color;
-			await elementUpdated(element);
-
-			expect(getCssPropertyValue('primary-color')).toEqual(color);
-		});
-
 		it('should delegate "start" to custom property', async () => {
 			const start = 18.5;
 			element.start = start;
@@ -82,6 +74,15 @@ describe('vwc-calendar-event', () => {
 			await elementUpdated(element);
 
 			expect(getCssPropertyValue('overlap-count')).toEqual(String(overlapCount));
+		});
+
+		it('should set correct internal connotation style', async () => {
+			const connotation = 'info';
+			(element as any).connotation = connotation;
+			await elementUpdated(element);
+
+			const base = element.shadowRoot?.querySelector(`.base.connotation-${connotation}`);
+			expect(base).toBeInstanceOf(Element);
 		});
 	});
 });
