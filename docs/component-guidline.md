@@ -25,8 +25,8 @@ Use the new component generator to create a new component:
 
 Use kebab case for slots name.
 
-- `graphic` - for slots that are recommended for decorative element such as custom icon or image
-- `media` - for slot that are recommended to contain either images or video.
+- `graphic` - for a slot bound to contain a decorative figure; such as a custom icon or image
+- `media` - for a slot bound to contain visual elements; such as an illustration, video etc'.
 - `meta`
 - `footer / actions`
 - `action-ites / action-items` - ?
@@ -46,9 +46,14 @@ One summary line
 - Code import sample
 - Code example preview 
 
-## properties
+## Members (properties / attributes)
 
 ### member 1
+
+`{{ description }}`
+
+- type: `{{ type }}`
+- default: `{{ default }}`
 lorem ipsum
 
 ### member 2
@@ -128,7 +133,7 @@ code snipet
 - columns
 - inline (default)
 - center
-
+e.g.
 ### Styling wrapper div
 
 - `.cover-fill`
