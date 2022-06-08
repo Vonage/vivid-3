@@ -30,7 +30,7 @@ Use kebab case for slots name.
 - `meta`
 - `footer / actions`
 - `action-ites / action-items` - ?
-- `content`
+- `main`
 - `App-content` - Maybe change it to `app-main` for slots in components that categorized as templating components (such as side-drawer, top-app-bar).
 
 <hr>
@@ -54,10 +54,11 @@ One summary line
 
 - type: `{{ type }}`
 - default: `{{ default }}`
-lorem ipsum
+
+code sumple
 
 ### member 2
-lorem ipsum
+...
 
 ## slots
 
@@ -118,6 +119,8 @@ Use the `shape` member to set the component's rectangle shape.
 
 <hr>
 
+//TODO: take out this part to a separate documentation 
+
 ## Documentation style (Code-Preview style)
 
 ### Code preview options
@@ -125,7 +128,6 @@ Use the `shape` member to set the component's rectangle shape.
 ```html preview blocks
 code snipet
 ```
-
 #### use of one of these options
 
 - full
