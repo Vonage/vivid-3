@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "migrate calendar event to fast element",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}

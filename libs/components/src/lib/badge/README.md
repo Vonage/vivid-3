@@ -77,13 +77,13 @@ Set the `appearance` attribute to change the badge's appearance.
 Set the `connotation` attribute to change the badge's connotation.
 It accepts a subset of predefined values.
 
-- Type: `'primary'` | `'cta'` | `'success'` | `'alert'` | `'warning'` | `'info'`
-- Default: `'primary'`
+- Type: `'accent'` | `'cta'` | `'success'` | `'alert'` | `'warning'` | `'info'`
+- Default: `'accent'`
 
 ### Filled badge with connotation
 
 ```html preview
-<vwc-badge text='primary' connotation='primary' appearance="filled"></vwc-badge>
+<vwc-badge text='accent' connotation='accent' appearance="filled"></vwc-badge>
 <vwc-badge text='cta' connotation='cta' appearance="filled"></vwc-badge>
 <vwc-badge text='info' connotation='info' appearance="filled"></vwc-badge>
 <vwc-badge text='success' connotation='success'></vwc-badge>
@@ -94,7 +94,7 @@ It accepts a subset of predefined values.
 ### Subtle badge with connotation
 
 ```html preview
-<vwc-badge text='primary' appearance='subtle' connotation='primary'></vwc-badge>
+<vwc-badge text='accent' appearance='subtle' connotation='accent'></vwc-badge>
 <vwc-badge text='cta' appearance='subtle' connotation='cta'></vwc-badge>
 <vwc-badge text='info' appearance='subtle' connotation='info'></vwc-badge>
 <vwc-badge text='success' appearance='subtle' connotation='success'></vwc-badge>
@@ -105,7 +105,7 @@ It accepts a subset of predefined values.
 ### Duotone badge with connotation
 
 ```html preview
-<vwc-badge text='primary' appearance='duotone' connotation='primary'></vwc-badge>
+<vwc-badge text='accent' appearance='duotone' connotation='accent'></vwc-badge>
 <vwc-badge text='cta' appearance='duotone' connotation='cta'></vwc-badge>
 <vwc-badge text='info' appearance='duotone' connotation='info'></vwc-badge>
 <vwc-badge text='success' appearance='duotone' connotation='success'></vwc-badge>

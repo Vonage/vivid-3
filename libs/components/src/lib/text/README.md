@@ -71,12 +71,12 @@ By default, some font faces are styled with block margins in accordance to artic
 Set the `connotation` attribute/property to change the text's connotated color.
 It accepts a subset of predefined values.
 
-- Type: `'primary'` | `'cta'` | `'success'` | `'alert'` | `'announcement'` | `'info'`
+- Type: `'accent'` | `'cta'` | `'success'` | `'alert'` | `'announcement'` | `'info'`
 - Default: `undefined` (inherits `currentColor`)
 
 ```html preview
 <vwc-text>undefined</vwc-text>
-<vwc-text connotation='primary'>primary</vwc-text>
+<vwc-text connotation='accent'>accent</vwc-text>
 <vwc-text connotation='cta'>cta</vwc-text>
 <vwc-text connotation='success'>success</vwc-text>
 <vwc-text connotation='alert'>alert</vwc-text>
