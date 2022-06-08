@@ -129,7 +129,6 @@ code snipet
 - inline (default)
 - center
 
-https://github.com/Vonage/vivid-3/blob/95df74b6284f28cbf4a31279db28d2a40fbc151e/apps/docs/transformers/code-block-demo/layout.js#L7-L11
 ### Styling wrapper div
 
 - `.cover-fill`
