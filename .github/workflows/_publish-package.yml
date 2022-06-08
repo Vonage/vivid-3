@@ -27,10 +27,11 @@ jobs:
       - name: Bump and Changelog
         id: bump
         run: |
-          npx beachball bump -m "Publishing a new version" --push -y > tmp.txt
+          npx beachball bump -m "Publishing a new version" --no-push -y > tmp.txt
           echo "::set-output name=version_bumped::$(if grep -q "\- @vonage-vivid-" "./tmp.txt"; then echo true; else echo false; fi)"
           cat tmp.txt
           cat libs/components/package.json
+          git push
 
       - name: Get us to the update version
         run: |
