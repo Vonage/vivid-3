@@ -1,0 +1,38 @@
+@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+	$appearances: fieldset ghost,
+	$states: idle,
+	$default: fieldset,
+);
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+
+
+.base {
+	@include appearance.appearance;
+
+	display: inline-flex;
+	box-sizing: border-box;
+	align-items: center;
+	padding: 4px;
+	background-color: var(#{appearance.get-appearance-token(fill)});
+	box-shadow: 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+	color: var(#{appearance.get-appearance-token(text)});
+	column-gap: 4px;
+	vertical-align: middle;
+}
+
+/* Shape */
+.base:not(.shape-pill) {
+	border-radius: 6px;
+}
+
+.base.shape-pill {
+	border-radius: 24px;
+}
+
+::slotted([role="separator"]) {
+	width: 1px;
+	align-self: stretch;
+	background-color: var(#{theme-consts.$vvd-color-neutral-30});
+	margin-block: 4px;
+}

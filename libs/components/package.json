@@ -1,18 +1,20 @@
 {
   "name": "@vonage/vivid",
-  "version": "3.0.0-next.16",
+  "version": "3.0.0-next.20",
   "type": "module",
   "module": "./index.js",
   "main": "./index.js",
   "exports": {
     "./accordion": "./accordion",
     "./accordion-item": "./accordion-item",
+    "./action-group": "./action-group",
     "./badge": "./badge",
     "./banner": "./banner",
     "./breadcrumb": "./breadcrumb",
     "./breadcrumb-item": "./breadcrumb-item",
     "./button": "./button",
     "./calendar": "./calendar",
+    "./calendar-event": "./calendar-event",
     "./card": "./card",
     "./elevation": "./elevation",
     "./fab": "./fab",
@@ -25,6 +27,7 @@
     "./side-drawer": "./side-drawer",
     "./sidenav-item": "./sidenav-item",
     "./text": "./text",
+    "./text-field": "./text-field",
     "./tooltip": "./tooltip"
   }
 }

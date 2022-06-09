@@ -3,9 +3,9 @@
 @use '../focus/partials/variables' as focus-variables;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: primary cta success alert,
-	$shades: basis basis-increment contrast fierce firm soft pale,
-	$default: primary,
+	$connotations: accent cta success alert,
+	$shades: primary on-primary primary-increment contrast fierce firm soft faint,
+	$default: accent,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
@@ -30,10 +30,10 @@
 	align-items: center;
 	border: 0 none;
 	margin: 0;
-	background-color: var(#{appearance.get-variable(fill)});
+	background-color: var(#{appearance.get-appearance-token(fill)});
 	block-size: var(#{variables.$block-size});
-	box-shadow: inset 0 0 0 1px var(#{appearance.get-variable(outline)});
-	color: var(#{appearance.get-variable(text)});
+	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+	color: var(#{appearance.get-appearance-token(text)});
 	gap: var(#{variables.$icon-gap});
 	outline: transparent;
 	vertical-align: middle;

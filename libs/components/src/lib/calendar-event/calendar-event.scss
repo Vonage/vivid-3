@@ -1,0 +1,84 @@
+@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use 'partials/variables' as variables;
+@use '../calendar/partials/variables' as calendar-variables;
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+	$connotations: accent cta success alert warning info announcement,
+	$shades: primary on-primary,
+	$default: accent,
+);
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+
+:host {
+	display: contents;
+}
+
+.base {
+	@include connotation.connotation;
+
+	$margin-block: 2px;
+	$gutter: 4px;
+	$unit-indent: 8px;
+	$indent-calc: min(var(#{variables.$indent}), #{$unit-indent * 4});
+
+	/* 4 as the indentation limit */
+
+	$dividers-block-size: calc(#{variables.$gap} * (var(#{variables.$duration}, 1) - 1));
+
+	/* per cell divider */
+
+	$dividers-top-size: calc(#{variables.$gap} * var(#{variables.$start}, 0));
+
+	/* per cell divider */
+
+	$top: calc(var(#{variables.$start}, 0) * (100% - #{calendar-variables.$total-rows - 1}px) / #{calendar-variables.$total-rows} + #{$dividers-top-size});
+	$hour-block-size: calc((100% - #{calendar-variables.$total-rows - 1}px) / #{calendar-variables.$total-rows});
+
+	#{variables.$indent}: calc(0px + var(#{variables.$overlap-count}, 0) * #{$unit-indent});
+
+	position: absolute;
+	z-index: var(#{variables.$overlap-count});
+	top: $top;
+	overflow: hidden;
+	box-sizing: border-box;
+	padding: $gutter $gutter * 2;
+	background-color: var(#{connotation.get-connotation-token(primary)});
+	block-size: calc(var(#{variables.$duration}, 1) * #{$hour-block-size} + #{$dividers-block-size} - #{$margin-block * 2});
+	border-radius: 6px;
+	color: var(#{connotation.get-connotation-token(on-primary)});
+	inline-size: calc(100% - #{$unit-indent} - #{$indent-calc});
+	margin-block-start: #{$margin-block};
+	margin-inline-end: #{$unit-indent};
+	margin-inline-start: #{$indent-calc};
+	max-block-size: calc(100% - #{$top} - #{$margin-block * 2});
+
+	@supports(contain: content) {
+		contain: strict;
+	}
+
+	@supports not (contain: content) {
+		overflow: hidden;
+	}
+
+	&:focus {
+		z-index: 2000;
+		filter: var(#{theme-consts.$vvd-shadow-surface-8dp});
+		outline: none;
+	}
+}
+
+h2 {
+	@include typography.typography-cat-shorthand('caption-bold');
+
+	margin: 0;
+
+	>strong {
+		font: inherit;
+	}
+}
+
+p {
+	@include typography.typography-cat-shorthand('caption');
+
+	margin: 0;
+}
