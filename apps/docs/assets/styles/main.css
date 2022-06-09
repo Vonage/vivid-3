@@ -69,6 +69,7 @@ ul.navigation {
   padding: 0;
   margin: 0;
   margin-inline-start: 0.75rem;
+  text-transform: capitalize;
 }
 ul.navigation p {
   color: var(--vvd-color-neutral-50);
