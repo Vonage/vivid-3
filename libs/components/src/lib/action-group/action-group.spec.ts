@@ -22,27 +22,26 @@ describe('vwc-action-group', () => {
 	});
 
 	describe('appearance', function () {
-		it('should set the fieldset class on the base', async function () {
+		it('should set the appearance-fieldset or ghost class on the base', async function () {
+			const control = element.shadowRoot?.querySelector('.base');
 			const appearance = 'fieldset';
 			(element as any).appearance = appearance;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.base.appearance-${appearance}`);
-			expect(control)
-				.toBeInstanceOf(Element);
+			expect(control?.classList.contains(`appearance-${appearance}`))
+				.toBeTruthy();
 		});
 	});
 
 	describe('shape', function () {
 		it('should set the shape class on the base', async function () {
+			const control = element.shadowRoot?.querySelector('.base');
 			const shape = 'pill';
 			(element as any).shape = shape;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.base.shape-${shape}`);
-			expect(control)
-				.toBeInstanceOf(Element);
+			expect(control?.classList.contains(`shape-${shape}`))
+				.toBeTruthy();
 		});
 	});
-
 });
