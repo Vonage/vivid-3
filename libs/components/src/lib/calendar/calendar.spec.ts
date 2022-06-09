@@ -177,16 +177,7 @@ describe('vwc-calendar', () => {
 			expect(context?.hour).toBeUndefined();
 		});
 
-		it('should return day and hour from keydown \'enter\' event', async () => {
-			element.addEventListener('keydown', e => context = element.getEventContext(e) as CalendarEventContext);
-
-			gridCell.dispatchEvent(new KeyboardEvent('keydown', { composed: true, keyCode: 32 }));
-
-			expect(context?.day).toEqual(2);
-			expect(context?.hour).toEqual(undefined);
-		});
-
-		it('should throw if `event` not instance of `Keyboard` / `Pointer`', async () => {
+		it('should emit \'enter\' keydown event with day and hour when focused on grid cell', async () => {
 			element.addEventListener('keydown', e => context = element.getEventContext(e) as CalendarEventContext);
 
 			gridCell.dispatchEvent(new KeyboardEvent('keydown', { composed: true, keyCode: 32 }));
@@ -199,6 +190,10 @@ describe('vwc-calendar', () => {
 	describe('focus management', () => {
 		let grid: HTMLElement;
 		let shadowRoot: ShadowRoot;
+
+		const hitKey = (key: string) => {
+			grid.dispatchEvent(new KeyboardEvent('keydown', { key }));
+		};
 
 		beforeEach(async () => {
 			shadowRoot = element.shadowRoot as ShadowRoot;
@@ -213,18 +208,14 @@ describe('vwc-calendar', () => {
 			expect(shadowRoot.activeElement).toEqual(defaultFocusElement);
 		});
 
-		it('should not change focus if not arrow key', async () => {
+		it('should keep focus if not arrow key event', async () => {
 
 			const gridCell = shadowRoot?.querySelector('[role="columnheader"i]:nth-child(3)') as HTMLElement;
 
 			gridCell.focus();
 
-			const moveToElement = (key: string) => {
-				grid.dispatchEvent(new KeyboardEvent('keydown', { key }));
-				return shadowRoot?.activeElement;
-			};
-
-			expect(moveToElement('Home')).toEqual(gridCell);
+			hitKey('Home');
+			expect(shadowRoot.activeElement).toEqual(gridCell);
 		});
 
 		it('should change focus on keyboard arrow interactions', async () => {
@@ -233,90 +224,61 @@ describe('vwc-calendar', () => {
 
 			gridCell.focus();
 
-			const moveToElement = (key: string) => {
-				grid.dispatchEvent(new KeyboardEvent('keydown', { key }));
-				return shadowRoot?.activeElement;
-			};
-
-			expect(moveToElement('ArrowRight')).toEqual(
+			hitKey('ArrowRight');
+			expect(shadowRoot.activeElement).toEqual(
 				grid.querySelector('[role="columnheader"i]:nth-child(4)')
 			);
-			expect(moveToElement('ArrowLeft')).toEqual(
+
+			hitKey('ArrowLeft');
+			expect(shadowRoot.activeElement).toEqual(
 				grid.querySelector('[role="columnheader"i]:nth-child(3)')
 			);
-			expect(moveToElement('ArrowUp')).toEqual(
+
+			hitKey('ArrowUp');
+			expect(shadowRoot.activeElement).toEqual(
 				grid.querySelector('[role="gridcell"i]:nth-child(3)')
 			);
-			expect(moveToElement('ArrowDown')).toEqual(
+
+			hitKey('ArrowDown');
+			expect(shadowRoot.activeElement).toEqual(
 				grid.querySelector('[role="columnheader"i]:nth-child(3)')
 			);
 		});
 
-		it('should circle back focus on keyboard arrow interactions', async () => {
+		it('should circle back focus from last column to first', async () => {
 
 			const gridCell = shadowRoot?.querySelector('[role="columnheader"i]:nth-child(7)') as HTMLElement;
 
 			gridCell.focus();
 
-			const moveToElement = (key: string) => {
-				grid.dispatchEvent(new KeyboardEvent('keydown', { key }));
-				return shadowRoot?.activeElement;
-			};
-
-			expect(moveToElement('ArrowRight')).toEqual(
+			hitKey('ArrowRight');
+			expect(shadowRoot.activeElement).toEqual(
 				grid.querySelector('[role="columnheader"i]:nth-child(1)')
 			);
-			expect(moveToElement('ArrowLeft')).toEqual(
+
+			hitKey('ArrowLeft');
+			expect(shadowRoot.activeElement).toEqual(
 				grid.querySelector('[role="columnheader"i]:nth-child(7)')
 			);
 		});
 
-		it('should change from columnheader tabindex', async () => {
+		it('should only apply arrow down on focused "em" (tabindexed) element', async () => {
 
-			const emEl = shadowRoot?.querySelector('[role="columnheader"i]:nth-child(4) em') as HTMLElement;
+			const em = shadowRoot?.querySelector('[role="columnheader"i]:nth-child(4) em') as HTMLElement;
 
-			emEl.focus();
+			em.focus();
 
-			const moveToElement = (key: string) => {
-				grid.dispatchEvent(new KeyboardEvent('keydown', { key }));
-				return shadowRoot?.activeElement;
-			};
+			hitKey('ArrowUp');
+			expect(shadowRoot.activeElement).toEqual(em);
 
-			expect(moveToElement('ArrowDown')).toEqual(grid.querySelector('[role="gridcell"i]:nth-child(4)'));
-		});
+			hitKey('ArrowRight');
+			expect(shadowRoot.activeElement).toEqual(em);
 
-		it('should not change from columnheader tabindex', async () => {
+			hitKey('ArrowLeft');
+			expect(shadowRoot.activeElement).toEqual(em);
 
-			const emEl = shadowRoot?.querySelector('[role="columnheader"i]:nth-child(4) em') as HTMLElement;
-
-			emEl.focus();
-
-			const moveToElement = (key: string) => {
-				grid.dispatchEvent(new KeyboardEvent('keydown', { key }));
-				return shadowRoot?.activeElement;
-			};
-
-			expect(moveToElement('ArrowUp')).toEqual(emEl);
-			expect(moveToElement('ArrowRight')).toEqual(emEl);
-			expect(moveToElement('ArrowLeft')).toEqual(emEl);
-		});
-
-		it('should move focus from calendar event to containing gridcell on \'arrowUp\'', async () => {
-			const eventComponent = 'vwc-calendar-event';
-
-			const { actualElement, shadowRoot, grid } = extractCalendarElements(await addCalendarElement(
-				`<${eventComponent} slot="day-2" start="4" duration="5"></${eventComponent}>`
-			));
-
-			actualElement.querySelector(eventComponent)
-				.shadowRoot.querySelector('section')
-				.focus();
-
-			grid.dispatchEvent(createKEvent('ArrowUp'));
-
-			expect(shadowRoot.activeElement).to.equal(
-				grid.querySelector('[role="gridcell"i]:nth-child(3)')
-			);
+			hitKey('ArrowDown');
+			expect(shadowRoot.activeElement).toEqual(grid.querySelector('[role="gridcell"i]:nth-child(4)'));
 		});
 
 		it('should move focus from column header button to gridcell of same block on \'arrowDown\'', async () => {
