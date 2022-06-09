@@ -2,18 +2,18 @@
 <nav>
   <vwc-sidenav-item href="{{ '/' | url}}" text="Home"></vwc-sidenav-item>
   <ul class="navigation">
-    <p>design system</p>
+    <p>Design System</p>
     {%  for item in designs | sort(false, false, 'title') %}
       <li>
-        <vwc-sidenav-item href="{{ ('/designs/' + item.title) | url }}" text="{{ item.title | replace("-", " ") }}"></vwc-sidenav-item>
+        <vwc-sidenav-item href="{{ ('/designs/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-sidenav-item>
       </li>
     {% endfor %}
   </ul>
   <ul class="navigation">
-    <p>components</p>
+    <p>Components</p>
     {%  for item in components | sort(false, false, 'title') %}
       <li>
-        <vwc-sidenav-item href="{{ ('/components/' + item.title) | url }}" text="{{ item.title | replace("-", " ") }}"></vwc-sidenav-item>
+        <vwc-sidenav-item href="{{ ('/components/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-sidenav-item>
       </li>
     {% endfor %}
   </ul>
