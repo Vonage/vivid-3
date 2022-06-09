@@ -3,7 +3,6 @@
 @use "partials/variables" as variables;
 
 :host {
-	#{variables.$header-height}: 64px;
 	#{variables.$header-z-index}: 7;
 }
 
@@ -13,7 +12,7 @@
 	z-index: var(#{variables.$header-z-index});
 	display: flex;
 	width: 100%;
-	height: var(#{variables.$header-height});
+	height: 64px;
 	box-sizing: border-box;
 	justify-content: space-between;
 	padding: 8px 12px;
@@ -49,5 +48,8 @@
 }
 
 .control.fixed + .app-content {
-	padding-top: var(#{variables.$header-height});
+	padding-top: 64px;
+	::slotted(vwc-side-drawer) {
+		block-size: calc(100vh - 64px);
+	}
 }

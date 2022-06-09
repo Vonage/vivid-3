@@ -1,4 +1,4 @@
-# header
+# Header
 
 ```html
 <script type="module">
@@ -143,7 +143,6 @@ This is an example of a `fixed` Header with the default, `actionItems` and `app-
       block-size: 300px; 
     }
     vwc-side-drawer#sideDrawer{
-        block-size: calc(100vh - var(--header-height));
         --side-drawer-background-color: var(--vvd-color-neutral-10);
         --side-drawer-inline-size: 200px;
     }
@@ -199,11 +198,3 @@ Controls the z-index of the header.
 - `--header-z-index`
 - Type: `Number`
 - Default: `7`
-
-### Height
-
-Controls the height of the header.  
-
-- `--header-height`
-- Type: `Number`
-- Default: `64px`
