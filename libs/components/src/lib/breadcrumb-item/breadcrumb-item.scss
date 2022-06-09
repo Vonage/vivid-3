@@ -1,4 +1,5 @@
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+@use '../../../../shared/src/lib/sass/utils' as utils;
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
 .base {

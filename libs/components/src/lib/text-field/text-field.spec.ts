@@ -483,4 +483,24 @@ describe('vwc-text-field', () => {
 				.toEqual('home');
 		});
 	});
+
+	describe('autocomplete', function () {
+		it('should set autocomplete on the internal input', async function () {
+			const internalInput = element.shadowRoot?.querySelector('input') as HTMLElement;
+			const autoCompleteDefault = internalInput.getAttribute('autocomplete');
+
+			element.autoComplete = 'off';
+			await elementUpdated(element);
+			expect(autoCompleteDefault).toBeNull();
+			expect(internalInput.getAttribute('autocomplete')).toEqual('off');
+
+		});
+
+		it('should reflect the name on the internal input', async function () {
+			const internalInput = element.shadowRoot?.querySelector('input') as HTMLElement;
+			element.name = 'off';
+			await elementUpdated(element);
+			expect(internalInput.getAttribute('name')).toEqual('off');
+		});
+	});
 });

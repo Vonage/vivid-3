@@ -57,6 +57,13 @@ Unless provided, choice will be set according to local time preference (e.g. US 
 <vwc-calendar hour12></vwc-calendar>
 ```
 
+## Slots
+
+### Day
+
+Day slot is created for each day of the week.
+Assign elements to a day column using `'day-0'` | `'day-1'` | `'day-2'` | `'day-3'` | `'day-4'` | `'day-5'` | `'day-6'`
+
 ## Methods
 
 ### Event Context

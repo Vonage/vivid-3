@@ -45,11 +45,11 @@ Use `value` in order to set the state of the progress. Omitting the attribute or
 
 Use `connotation` in order to set the color the progress.
 
-- Type: `'primary'` | `'cta'` | `'success'` | `'alert'`
-- Default: `'primary'`
+- Type: `'accent'` | `'cta'` | `'success'` | `'alert'`
+- Default: `'accent'`
 
 ```html preview blocks
-<vwc-progress-ring connotation="primary"></vwc-progress-ring>
+<vwc-progress-ring connotation="accent"></vwc-progress-ring>
 <vwc-progress-ring connotation="cta"></vwc-progress-ring>
 <vwc-progress-ring connotation="success"></vwc-progress-ring>
 <vwc-progress-ring connotation="alert"></vwc-progress-ring>
