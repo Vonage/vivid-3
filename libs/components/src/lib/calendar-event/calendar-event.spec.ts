@@ -1,9 +1,12 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
+// import { axe, toHaveNoViolations } from 'jest-axe';
 import { CalendarEvent } from './calendar-event';
 import '.';
 
-const COMPONENT_TAG = 'vwc-calendar-event';
+// expect.extend(toHaveNoViolations);
 
+
+const COMPONENT_TAG = 'vwc-calendar-event';
 
 describe('vwc-calendar-event', () => {
 	let element: CalendarEvent;
@@ -85,4 +88,21 @@ describe('vwc-calendar-event', () => {
 			expect(base).toBeInstanceOf(Element);
 		});
 	});
+
+	// describe('a11y', () => {
+	// 	it('should pass accessibility test', async () => {
+	// 		element.heading = 'heading';
+	// 		const { shadowRoot } = element;
+	// 		if (!shadowRoot) { return; }
+
+	// 		const results = await axe(shadowRoot.innerHTML, {
+	// 			rules: {
+	// 				// components should not be tested as page content
+	// 				'region': { enabled: false }
+	// 			}
+	// 		});
+
+	// 		expect(results).toHaveNoViolations();
+	// 	});
+	// });
 });

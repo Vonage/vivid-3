@@ -10,6 +10,9 @@ export const vividCalendarEvent =
 		baseName: 'calendar-event',
 		template: template as any,
 		styles,
+		shadowOptions: {
+			delegatesFocus: true
+		}
 	});
 
 designSystem.register(vividCalendarEvent());
