@@ -1,5 +1,7 @@
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+@use '../../../../shared/src/lib/sass/utils' as utils;
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+
 
 .breadcrumb-item {
 	@include typography.typography-cat-shorthand('body-2');
@@ -9,7 +11,7 @@
 	color: var(#{theme-consts.$vvd-color-on-canvas});
 
 	a {
-		color: var(--vvd-color-cta-70);
+		color: var(#{utils.get-color-token(cta-70)});
 		font: inherit;
 		text-decoration: none;
 	}
