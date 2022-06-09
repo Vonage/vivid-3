@@ -1,4 +1,4 @@
-import { html, slotted, when } from '@microsoft/fast-element';
+import { html, ref, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
@@ -26,7 +26,7 @@ const getClasses = ({
  */
 export const sideDrawerTemplate: FoundationElementTemplate<ViewTemplate<SideDrawer>> = () => html`
 	<aside class="${getClasses}" part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}"
-	 @keydown="${(x, c) => handleKeydown(x, c.event as KeyboardEvent)}">
+	 @keydown="${(x, c) => handleKeydown(x, c.event as KeyboardEvent)}" ${ref('asideEl')}>
 
 	 	<header class="side-drawer-top-bar" part="side-drawer-top-bar">
 	 		<slot name="top-bar" ${slotted('hasTopBar')}></slot>

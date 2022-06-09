@@ -15,6 +15,7 @@
     "@microsoft/fast-element": "^1.10.2",
     "@microsoft/fast-foundation": "^2.46.9",
     "@microsoft/fast-web-utilities": "^5.4.1",
+    "babel-polyfill": "^6.26.0",
     "blocking-elements": "^0.1.1",
     "core-js": "^3.22.8",
     "ramda": "^0.27.2",
