@@ -24,16 +24,25 @@ export class TextField extends FoundationTextfield {
 	@attr shape?: TextFieldShape;
 	@observable userValid = true;
 	@attr autoComplete?: string;
+	#blurred = false;
 
 	@volatile
 	get errorValidationMessage() {
 		return this.userValid ? '' : this.validationMessage;
 	}
 
-	override validate() {
+	constructor() {
+		super();
+		this.addEventListener('blur', () => {
+			this.#blurred = true;
+			this.validate();
+		});
+	}
+
+	override validate = () => {
 		super.validate();
 		if (this.proxy instanceof HTMLElement) {
-			this.userValid = this.dirtyValue ? !this.validationMessage : true;
+			this.userValid = (this.#blurred && this.dirtyValue) ? !this.validationMessage : true;
 		}
 	}
 }

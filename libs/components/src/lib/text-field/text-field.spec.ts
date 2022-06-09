@@ -346,6 +346,12 @@ describe('vwc-text-field', () => {
 	});
 
 	describe('error message', function () {
+		/**
+		 *
+		 */
+		function setToBlurred() {
+			element.dispatchEvent(new Event('blur'));
+		}
 
 		/**
 		 * @param errorMessage
@@ -357,6 +363,7 @@ describe('vwc-text-field', () => {
 
 		it('should add class error to root', async function () {
 			element.dirtyValue = true;
+			setToBlurred();
 			setValidityToError('blah');
 			await elementUpdated(element);
 			expect(getRootElement(element)
@@ -369,6 +376,7 @@ describe('vwc-text-field', () => {
 			const errorElementWithoutText = element.shadowRoot?.querySelector('.error-message');
 			const errorMessage = 'Error Text';
 			element.dirtyValue = true;
+			setToBlurred();
 			setValidityToError(errorMessage);
 			await elementUpdated(element);
 			expect(errorElementWithoutText)
@@ -379,9 +387,18 @@ describe('vwc-text-field', () => {
 				.toEqual(errorMessage);
 		});
 
+		it('should render the error message only after a blur', async function() {
+			const errorMessage = 'Error Text';
+			element.dirtyValue = true;
+			setValidityToError(errorMessage);
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.error-message')).toBeNull();
+		});
+
 		it('should replace helper text', async function () {
 			element.helperText = 'helper text';
 			element.dirtyValue = true;
+			setToBlurred();
 			setValidityToError();
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.helper-text'))
@@ -393,6 +410,16 @@ describe('vwc-text-field', () => {
 			await elementUpdated(element);
 			expect(element.errorValidationMessage)
 				.toEqual('');
+		});
+
+		it('should validate after a blur', async function () {
+			const errorMessage = 'Error Text';
+			element.dirtyValue = true;
+			setValidityToError(errorMessage);
+			setToBlurred();
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.error-message')?.
+				textContent?.trim()).toEqual(errorMessage);
 		});
 	});
 
