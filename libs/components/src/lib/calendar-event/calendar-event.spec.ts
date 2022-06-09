@@ -1,9 +1,9 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
-// import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe, toHaveNoViolations } from 'jest-axe';
 import { CalendarEvent } from './calendar-event';
 import '.';
 
-// expect.extend(toHaveNoViolations);
+expect.extend(toHaveNoViolations);
 
 
 const COMPONENT_TAG = 'vwc-calendar-event';
@@ -89,20 +89,22 @@ describe('vwc-calendar-event', () => {
 		});
 	});
 
-	// describe('a11y', () => {
-	// 	it('should pass accessibility test', async () => {
-	// 		element.heading = 'heading';
-	// 		const { shadowRoot } = element;
-	// 		if (!shadowRoot) { return; }
+	describe('a11y', () => {
+		it('should pass accessibility test', async () => {
+			element.heading = 'heading';
+			await elementUpdated(element);
 
-	// 		const results = await axe(shadowRoot.innerHTML, {
-	// 			rules: {
-	// 				// components should not be tested as page content
-	// 				'region': { enabled: false }
-	// 			}
-	// 		});
+			const { shadowRoot } = element;
+			if (!shadowRoot) { return; }
 
-	// 		expect(results).toHaveNoViolations();
-	// 	});
-	// });
+			const results = await axe(shadowRoot.innerHTML, {
+				rules: {
+					// components should not be tested as page content
+					'region': { enabled: false }
+				}
+			});
+
+			expect(results).toHaveNoViolations();
+		});
+	});
 });

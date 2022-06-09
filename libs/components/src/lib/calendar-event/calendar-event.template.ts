@@ -37,7 +37,7 @@ export const CalendarEventTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<CalendarEvent> = () => html`
-<section
+<div
   style="${getStyles}"
   class="${getClasses}"
   role="button"
@@ -45,4 +45,4 @@ export const CalendarEventTemplate: (
 >
   <h2><strong>${x => x.heading}</strong></h2>
   <p>${x => x.description}</p>
-</section>`;
+</div>`;
