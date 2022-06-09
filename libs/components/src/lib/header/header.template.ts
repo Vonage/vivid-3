@@ -27,7 +27,7 @@ export const headerTemplate: (
 	return html<header>`
     <header class="${getClasses}" part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}">
         <section class="header-content start" id="navigation">
-          <slot name="meta"></slot>
+          <slot></slot>
           ${when(x => x.heading, html<header>`<span class="heading">${x => x.heading}</span>`)}
         </section>
         <section class="header-content end" id="actions" role="toolbar">
@@ -35,7 +35,7 @@ export const headerTemplate: (
         </section>
     </header>
     <div class="app-content">
-		  <slot name="app-content"></slot>
-	  </div>
+		<slot name="app-content"></slot>
+	</div>
 	`;
 };

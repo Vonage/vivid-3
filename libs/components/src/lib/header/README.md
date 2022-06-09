@@ -21,7 +21,7 @@ Add the `heading` attribute to set the heading text.
       block-size: 200px; 
     }
 </style>
-<vwc-header heading="header">
+<vwc-header heading="Header">
   <vwc-layout slot="app-content" column-basis="block" gutters="medium">
     <vwc-text tight font-face="headline-2">
       <h2>
@@ -57,7 +57,7 @@ Add the `fixed` attribute to set the header's position to be fixed.
       block-size: 200px; 
     }
 </style>
-<vwc-header heading="Fixed header" fixed>
+<vwc-header heading="Fixed Header" fixed>
   <vwc-layout slot="app-content" column-basis="block" gutters="medium">
     <vwc-text tight font-face="headline-2">
       <h2>
@@ -88,18 +88,18 @@ Add the `alternate` attribute to set the color-scheme to dark or light (dependin
 - Default: `false`
 
 ```html preview full
-<vwc-header heading="Alternate header" alternate></vwc-header>
+<vwc-header heading="Alternate Header" alternate></vwc-header>
 ```
 
 ## Slots
 
-### Meta
+### Default
 
-The `meta` slot is for action content next to the heading.
+The default slot is for action content next to the heading.
 
 ```html preview full
-<vwc-header heading="With Meta">
-    <vwc-button slot="meta" icon="menu-line"></vwc-button>
+<vwc-header heading="With Default Slot">
+    <vwc-button icon="menu-line"></vwc-button>
 </vwc-header>
 ```
 
@@ -108,7 +108,7 @@ The `meta` slot is for action content next to the heading.
 Action items are displayed at the end of the header in the `actionItems` slot.
 
 ```html preview full
-<vwc-header heading="With Action Items">
+<vwc-header heading="With Action Items Slot">
     <div slot="actionItems">
         <vwc-button icon="twitter-mono"></vwc-button>
         <vwc-button icon="facebook-mono"></vwc-button>
@@ -122,7 +122,7 @@ Action items are displayed at the end of the header in the `actionItems` slot.
 To add content below the header, add a slot called `app-content`.
 
 ```html preview full
-<vwc-header heading="With App Content">
+<vwc-header heading="With App Content Slot">
   <div slot="app-content">
     <vwc-text tight font-face="body-1">
         This is the app-content slot!!!!
@@ -133,9 +133,9 @@ To add content below the header, add a slot called `app-content`.
 
 ## Example Usage
 
-### Fixed header With Side-Drawer
+### Fixed Header With Side-Drawer
 
-This is an example of a `fixed` header with the `meta`, `actionItems` and `app-content` slots.
+This is an example of a `fixed` Header with the default, `actionItems` and `app-content` slots.
 
 ```html preview full
 <style>
@@ -148,8 +148,8 @@ This is an example of a `fixed` header with the `meta`, `actionItems` and `app-c
         --side-drawer-inline-size: 200px;
     }
 </style>
-<vwc-header fixed heading="header with Side Drawer">
-  <vwc-button id="button" slot="meta" icon="menu-line"></vwc-button>
+<vwc-header fixed heading="Header with Side Drawer">
+  <vwc-button id="button" icon="menu-line"></vwc-button>
   <div slot="actionItems">
       <vwc-button icon="twitter-mono"></vwc-button>
       <vwc-button icon="facebook-mono"></vwc-button>
