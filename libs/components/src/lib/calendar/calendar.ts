@@ -92,7 +92,7 @@ export class Calendar extends FoundationElement {
 		return this._generateDaysArr([...dateArr, lastDate]);
 	};
 
-	get #focusedCalendarEvent(): CalendarEvent | null {
+	get #activeCalendarEvent(): CalendarEvent | null {
 		const { activeElement } = document;
 		return activeElement instanceof CalendarEvent ? activeElement : null;
 	}
@@ -108,8 +108,8 @@ export class Calendar extends FoundationElement {
 
 	private getCalendarEventContainingCell(calendarEvent: CalendarEvent) {
 		const slotName = calendarEvent.getAttribute('slot') as string;
-		const gridCell = (this.shadowRoot as ShadowRoot).querySelector(`[role="gridcell"i]:has(>slot[name="${slotName}"i])`);
-		return gridCell as HTMLDivElement;
+		const gridCell = (this.shadowRoot as ShadowRoot).querySelector(`slot[name="${slotName}"i]`) as HTMLDivElement;
+		return gridCell.parentElement as HTMLDivElement;
 	}
 
 	private arrowKeysInteractions(key: PredefindKeys) {
@@ -118,18 +118,18 @@ export class Calendar extends FoundationElement {
 
 		if (isCellOrHeader(activeElement)) {
 			focusNext = getNextFocusableGridElement.call(this, key, activeElement);
-		} else if (this.#focusedCalendarEvent) {
-			focusNext = this.getCalendarEventContainingCell(this.#focusedCalendarEvent);
+		} else if (this.#activeCalendarEvent) {
+			focusNext = this.getCalendarEventContainingCell(this.#activeCalendarEvent);
 		}	else if (activeElement?.matches('em[role="button"i]')) {
 			focusNext = getHeaderDescendantGridCell.call(this, key, activeElement as HTMLElement);
 		} else {
 			focusNext = (this.shadowRoot as ShadowRoot).querySelector('[role="columnheader"i]');
 		}
 
-		this.moveTo(focusNext as HTMLElement);
+		this.activateElement(focusNext as HTMLElement);
 	}
 
-	private moveTo(el: HTMLElement | null | undefined) {
+	private activateElement(el: HTMLElement | null | undefined) {
 		const onBlur = ({ target }: FocusEvent) => (target as HTMLElement).setAttribute('tabindex', '-1');
 
 		el?.addEventListener('blur', onBlur, { once: true });

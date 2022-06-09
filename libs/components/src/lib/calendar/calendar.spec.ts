@@ -2,6 +2,7 @@ import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import { Calendar } from './calendar';
 import '.';
+import '../calendar-event';
 import { getValidDateString } from './helpers/calendar.date-functions';
 import type { CalendarEventContext } from './helpers/calendar.event-context';
 
@@ -192,7 +193,7 @@ describe('vwc-calendar', () => {
 		let shadowRoot: ShadowRoot;
 
 		const hitKey = (key: string) => {
-			grid.dispatchEvent(new KeyboardEvent('keydown', { key }));
+			grid.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true, composed: true }));
 		};
 
 		beforeEach(async () => {
@@ -290,6 +291,20 @@ describe('vwc-calendar', () => {
 
 			expect(shadowRoot.activeElement).toEqual(
 				grid.querySelector('[role="gridcell"i]:nth-child(3)')
+			);
+		});
+
+		it('should move focus from calendar event to its containing gridcell on \'arrowDown\'', async () => {
+			const calendarEvent = document.createElement('vwc-calendar-event');
+			calendarEvent.slot = 'day-5';
+			element.appendChild(calendarEvent);
+			const calendarEventBase = calendarEvent.shadowRoot?.querySelector('.base') as HTMLDivElement;
+			calendarEventBase.focus();
+
+			hitKey('ArrowDown');
+
+			expect(shadowRoot.activeElement).toEqual(
+				shadowRoot.querySelector('[role="gridcell"i]:nth-child(6)')
 			);
 		});
 	});
