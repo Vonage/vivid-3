@@ -38,7 +38,7 @@ test('should show the component', async ({page}: { page: Page }) => {
 		);
 });
 
-test('should invalidate the component', async ({page, browserName}: { page: Page, browserName: string }) => {
+test.only('should invalidate the component', async ({page, browserName}: { page: Page, browserName: string }) => {
 	const selector = browserName === 'chromium' ? 'input[name="invalid-text-field"]' : '#invalid-text-field';
 
 	const template = `<vwc-text-field id="invalid-text-field" 
@@ -58,13 +58,13 @@ test('should invalidate the component', async ({page, browserName}: { page: Page
 
 	const testWrapper = await page.$('#wrapper');
 
-	await page.waitForLoadState('networkidle');
-
 	const invalidTextField = await page.locator(selector);
 	await invalidTextField.type('55');
 	await invalidTextField.evaluate(e => {
 		e.blur();
 	});
+
+	await page.waitForLoadState('networkidle');
 	expect(await testWrapper?.screenshot())
 		.toMatchSnapshot(
 			'./snapshots/text-field-invalidation.png'
