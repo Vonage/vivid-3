@@ -37,14 +37,18 @@ export class TextField extends FoundationTextfield {
 			this.#blurred = true;
 			this.validate();
 		});
+		this.addEventListener('focus', () => {
+			this.#blurred = false;
+		});
 	}
 
 	override validate = () => {
 		super.validate();
+		this.userValid = !this.userValid;
 		if (this.proxy instanceof HTMLElement) {
 			this.userValid = (this.#blurred && this.dirtyValue) ? !this.validationMessage : true;
 		}
-	}
+	};
 }
 
 export interface TextField extends AffixIcon {}

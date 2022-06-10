@@ -353,6 +353,10 @@ describe('vwc-text-field', () => {
 			element.dispatchEvent(new Event('blur'));
 		}
 
+		function setToFocused() {
+			element.dispatchEvent(new Event('focus'));
+		}
+
 		/**
 		 * @param errorMessage
 		 */
@@ -420,6 +424,32 @@ describe('vwc-text-field', () => {
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.error-message')?.
 				textContent?.trim()).toEqual(errorMessage);
+		});
+
+		it('should update error message', async function() {
+			setToBlurred();
+			const errorMessage = 'Error Text';
+			const errorMessageTwo = 'Error Text 2';
+			element.dirtyValue = true;
+			setValidityToError(errorMessage);
+			await elementUpdated(element);
+
+			setValidityToError(errorMessageTwo);
+			await elementUpdated(element);
+
+			expect(element.shadowRoot?.querySelector('.error-message')?.
+				textContent?.trim()).toEqual(errorMessageTwo);
+		});
+
+		it('should change the error message only when already invalid', async function() {
+			setToBlurred();
+			setToFocused();
+			const errorMessage = 'Error Text';
+			element.dirtyValue = true;
+			setValidityToError(errorMessage);
+			await elementUpdated(element);
+
+			expect(element.shadowRoot?.querySelector('.error-message')).toBeNull();
 		});
 	});
 
