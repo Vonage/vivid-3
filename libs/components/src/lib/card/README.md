@@ -116,7 +116,7 @@ Assign nodes to `main` slot to fully override a card's main template.
 
 ```html preview
 <vwc-card>
-  <vwc-layout slot="main">
+  <vwc-layout gutters="small" slot="main">
     <vwc-text>
       If you need different structure - use this slot
     </vwc-text>
