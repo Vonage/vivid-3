@@ -4,7 +4,7 @@
 
 .body {
 	@include typography.typography-cat-shorthand('body-2');
-    
+
 	padding: 8px 32px 24px 16px;
 	.icon:not(.icon-trailing) &{
 		padding-left: 48px;
@@ -65,7 +65,7 @@
 		max-width: 20%;
 		flex-shrink: 0;
 		color: var(#{theme-consts.$vvd-color-neutral-70});
-		margin-inline-start: 1rem;
+		margin-inline-start: 16px;
 		text-align: end;
 		text-overflow: ellipsis;
 		white-space: nowrap;
@@ -79,7 +79,7 @@
 		}
 	}
 
-	.icon { 
+	.icon {
 		margin-inline-end: 16px;
 	}
 }
