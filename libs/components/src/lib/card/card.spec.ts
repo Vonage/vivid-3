@@ -92,7 +92,7 @@ describe('vwc-card', () => {
 
 		it('should have meta slot ', async function () {
 			const metaSlotElement = element.shadowRoot?.
-				querySelector('.content-container slot[name="meta"]');
+				querySelector('.header-wrapper slot[name="meta"]');
 
 			expect(metaSlotElement).toBeTruthy();
 		});
