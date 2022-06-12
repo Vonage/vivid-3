@@ -365,7 +365,7 @@ describe('vwc-text-field', () => {
 			element.validate();
 		}
 
-		it('should add class error to root', async function () {
+		it('should add class error to base', async function () {
 			element.dirtyValue = true;
 			setToBlurred();
 			setValidityToError('blah');
