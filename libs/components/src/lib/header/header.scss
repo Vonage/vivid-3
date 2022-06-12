@@ -28,6 +28,10 @@
 		}
 	}
 
+	&.scrolled {
+		position: fixed;
+	}
+
 	.header-content {
 		display: inline-flex;
 		flex: 1;
@@ -52,4 +56,8 @@
 	::slotted(vwc-side-drawer) {
 		block-size: calc(100vh - 64px);
 	}
+}
+
+.control.scrolled + .app-content {
+	padding-top: 64px;
 }

@@ -1,4 +1,4 @@
-import { html, when } from '@microsoft/fast-element';
+import { html, ref, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
@@ -7,11 +7,12 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { header } from './header';
 
-const getClasses = ({ fixed, alternate, elevated }: header) => classNames(
+const getClasses = ({ fixed, alternate, elevated, scrolled }: header) => classNames(
 	'control',
 	['fixed', fixed],
 	['alternate', alternate],
 	['elevated', elevated],
+	['scrolled', scrolled],
 );
 
 /**
@@ -25,7 +26,7 @@ export const headerTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<header> = () => {
 	return html<header>`
-    <header class="${getClasses}" part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}">
+    <header ${ref("headerEl")} class="${getClasses}" part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}">
         <section class="header-content start" id="navigation">
           <slot></slot>
           ${when(x => x.heading, html<header>`<span class="heading">${x => x.heading}</span>`)}
