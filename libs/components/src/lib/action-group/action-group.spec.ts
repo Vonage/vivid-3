@@ -22,7 +22,7 @@ describe('vwc-action-group', () => {
 	});
 
 	describe('appearance', function () {
-		it('should set the appearance-fieldset or ghost class on the base', async function () {
+		it('should set the appearance class on the base', async function () {
 			const control = element.shadowRoot?.querySelector('.base');
 			const appearance = 'fieldset';
 			(element as any).appearance = appearance;
