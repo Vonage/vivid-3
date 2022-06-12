@@ -1,0 +1,58 @@
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+	$appearances: fieldset,
+	$states: idle hover disabled readonly,
+	$default: fieldset,
+);
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+
+$size: 24px;
+$gutter: 4px;
+
+.control {
+	@include appearance.appearance;
+
+	position: relative;
+	display: block;
+	width: $size;
+	height: $size;
+	background-color: var(#{appearance.get-appearance-token(fill)});
+	border-radius: 6px;
+	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+	color: var(#{appearance.get-appearance-token(text)});
+	cursor: pointer;
+}
+
+.indicator {
+  $indicator-size: calc($size - $gutter * 2);
+
+	position: absolute;
+	inset: $gutter;
+  /* stylelint-disable vendor-prefix */
+	-webkit-user-select: none;
+  /* stylelint-enable vendor-prefix */
+	user-select: none;
+
+	&.checkmark {
+		width: $indicator-size;
+		height: $indicator-size;
+        transition: opacity 180ms cubic-bezier(0, 0, 0.2, 1) 0ms, transform 180ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+    opacity: 1;
+
+          @at-root .control.indeterminate > & {
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: opacity 90ms cubic-bezier(0.4, 0, 0.6, 1) 0ms, transform 90ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+			}
+
+		> path {
+			stroke: currentColor;
+			stroke-dasharray: 29.7833;
+			stroke-dashoffset: 29.7833;
+			stroke-width: 3.12px;
+			transition: stroke-dashoffset 180ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+			@at-root .control:where(.indeterminate, .checked) & {
+				stroke-dashoffset: 0;
+			}
+		}
+	}
+}

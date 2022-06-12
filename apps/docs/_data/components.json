@@ -188,5 +188,12 @@
     "modules": [
       "/assets/modules/components/note/index.js"
     ]
+  },
+  {
+    "title": "checkbox",
+    "markdown": "./libs/components/src/lib/checkbox/README.md",
+    "modules": [
+      "/assets/modules/components/checkbox/index.js"
+    ]
   }
 ]

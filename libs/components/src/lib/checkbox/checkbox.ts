@@ -1,12 +1,13 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
+import { Checkbox as FastCheckbox } from '@microsoft/fast-foundation';
+
 
 /**
  * Base class for checkbox
  *
  * @public
  */
-export class Checkbox extends FoundationElement {
+export class Checkbox extends FastCheckbox {
 	/**
 	 * Indicates the text's text.
 	 *
