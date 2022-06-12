@@ -1,7 +1,7 @@
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: cta accent alert success,
+	$connotations: accent cta alert success,
 	$shades: primary,
 	$default: accent,
 );
