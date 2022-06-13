@@ -10,7 +10,12 @@
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
 $low-ink-color: --_low-ink-color;
+$textfield-inline-size: #{var(--_textfield-inline-size, 20ch)};
 
+:host {
+	display: block;
+	inline-size: $textfield-inline-size;
+}
 .base {
 	// due to the fact :user-invalid proposal isn't supported by browsers yet,
 	// we apply appearance here instead of the input element itself.

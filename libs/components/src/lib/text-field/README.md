@@ -93,6 +93,17 @@ Use the `shape` attribute to change the button's edges.
 <vwc-text-field label="Rounded" shape="rounded"></vwc-text-field>
 ```
 
+### Size
+
+Use the `size` attribute to change the inline-size.
+
+- Type: `string`
+- Default: `'20'`
+
+```html preview blocks
+<vwc-text-field label="Pill" shape="pill" size="40"></vwc-text-field>
+```
+
 ### Appearance
 
 Set the `appearance` attribute to change the button's appearance.
