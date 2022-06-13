@@ -365,24 +365,27 @@ describe('vwc-text-field', () => {
 			element.validate();
 		}
 
-		it('should add class error to base', async function () {
+		it('should add class error to base if invalid', async function () {
 			element.dirtyValue = true;
 			setToBlurred();
 			setValidityToError('blah');
 			await elementUpdated(element);
+
 			expect(getRootElement(element)
 				.classList
 				.contains('error'))
 				.toEqual(true);
 		});
 
-		it('should render the error message when attribute is set', async function () {
+		it('should render the error message when invalid', async function () {
 			const errorElementWithoutText = element.shadowRoot?.querySelector('.error-message');
 			const errorMessage = 'Error Text';
+
 			element.dirtyValue = true;
 			setToBlurred();
 			setValidityToError(errorMessage);
 			await elementUpdated(element);
+
 			expect(errorElementWithoutText)
 				.toBeNull();
 			expect(element.shadowRoot?.querySelector('.error-message')
@@ -426,7 +429,7 @@ describe('vwc-text-field', () => {
 				textContent?.trim()).toEqual(errorMessage);
 		});
 
-		it('should update error message', async function() {
+		it('should update error message when blurred', async function() {
 			setToBlurred();
 			const errorMessage = 'Error Text';
 			const errorMessageTwo = 'Error Text 2';
