@@ -56,11 +56,11 @@ export class header extends FoundationElement {
 	#scrolledWindow = () => {
 		this.#updateElevatedState();
 		this.#updateScrolledState();
-	}
+	};
 
 	#updateElevatedState = () => {
 		this._elevated = !this._elevated;
-	}
+	};
 
 	#updateScrolledState = () => {
 		if (!this.fixed) {
@@ -75,10 +75,10 @@ export class header extends FoundationElement {
 				this.top --;
 				this.top <= -HEIGHT ? this.top = -HEIGHT : none;
 			}
-			this.headerEl.style.top = this.top.toString() + "px" ;
+			this.headerEl.style.top = this.top.toString() + 'px';
 		}
 		this.prevScroll = window.scrollY;
-	}
+	};
 
 	@volatile
 	get elevated() {

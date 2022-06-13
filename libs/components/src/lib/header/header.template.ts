@@ -26,7 +26,7 @@ export const headerTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<header> = () => {
 	return html<header>`
-    <header ${ref("headerEl")} class="${getClasses}" part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}">
+    <header ${ref('headerEl')} class="${getClasses}" part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}">
         <section class="header-content start" id="navigation">
           <slot></slot>
           ${when(x => x.heading, html<header>`<span class="heading">${x => x.heading}</span>`)}
