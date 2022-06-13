@@ -57,7 +57,7 @@ Add the `helper-text` to add some helper text below the text field.
 Use the `char-count` attribute along with the `maxlength` attribute to show a character count.
 
 ```html preview
-<vwc-text-field label="Char count example" char-count maxlength="15"></vwc-text-field>
+<vwc-text-field label="Char count example" char-count maxlength="15" style="width: 200px;"></vwc-text-field>
 ```
 
 ### Density
@@ -91,17 +91,6 @@ Use the `shape` attribute to change the button's edges.
 ```html preview blocks
 <vwc-text-field label="Pill" shape="pill"></vwc-text-field>
 <vwc-text-field label="Rounded" shape="rounded"></vwc-text-field>
-```
-
-### Size
-
-Use the `size` attribute to change the inline-size.
-
-- Type: `string`
-- Default: `'20'`
-
-```html preview blocks
-<vwc-text-field label="Pill" shape="pill" size="40"></vwc-text-field>
 ```
 
 ### Appearance
@@ -160,6 +149,6 @@ You can validate the text field like any other native `input`.  Here's an exampl
 
 ```html preview
 <form method="post" action="">
-  <vwc-text-field required label="Add email" placeholder="e.g. john@doe.dev" type="email" name="email" autocomplete="email" icon="search" maxlength="30" char-count></vwc-text-field>
+  <vwc-text-field required label="Add email" placeholder="e.g. john@doe.dev" type="email" name="email" autocomplete="email" icon="search" maxlength="30" char-count  style="width: 250px;"></vwc-text-field>
 </form>
 ```

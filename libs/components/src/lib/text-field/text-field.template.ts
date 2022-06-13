@@ -68,14 +68,6 @@ function renderErrorMessage() {
 	`;
 }
 
-/**
- *
- */
-function renderSize() {
-	return html<TextField>`
-		--_textfield-inline-size: ${x => x.size + 'ch'};
-	`;
-}
 
 /**
  * The template for the {@link @microsoft/fast-foundation#TextField} component.
@@ -91,7 +83,6 @@ export const TextfieldTemplate: (
 	const focusTemplate = focusTemplateFactory(context);
 
 	return html<TextField>`
-	<style>${when(x => x.size, renderSize)}</style>
 	<div class="base ${getStateClasses}">
     ${when(x => x.charCount && x.maxlength, renderCharCount())}
     ${when(x => x.label, renderLabel())}
