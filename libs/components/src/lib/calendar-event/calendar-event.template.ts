@@ -1,4 +1,4 @@
-import { html } from '@microsoft/fast-element';
+import { html, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
@@ -43,6 +43,6 @@ export const CalendarEventTemplate: (
   role="button"
   tabindex="0"
 >
-  <h2><strong>${x => x.heading}</strong></h2>
-  <p>${x => x.description}</p>
+  ${when(x => x.heading, html`<h2><strong>${x => x.heading}</strong></h2>`)}
+  ${when(x => x.description, html`<p>${x => x.description}</p>`)}
 </div>`;
