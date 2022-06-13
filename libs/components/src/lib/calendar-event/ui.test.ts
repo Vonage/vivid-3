@@ -9,7 +9,7 @@ const components = ['calendar', 'calendar-event'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
-    <vwc-calendar>
+    <vwc-calendar datetime="2022-01-01">
       <vwc-calendar-event slot="day-0" start="0" duration="1" heading="Pool party" description="2pm">
       </vwc-calendar-event>
       <vwc-calendar-event slot="day-0" start="14" duration="2.25" heading="Summer time" description="All Day" connotation="cta">
