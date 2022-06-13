@@ -7,7 +7,7 @@ import {
 
 const components = ['calendar', 'calendar-event'];
 
-test ('should show the component', async ({ page }: { page: Page }) => {
+test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
     <vwc-calendar>
       <vwc-calendar-event slot="day-0" start="0" duration="1" color="rgb(43, 158, 250)" heading="Pool party" description="2pm">
