@@ -1,6 +1,8 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr, observable, volatile } from '@microsoft/fast-element';
+import { none } from 'ramda';
 
+const HEIGHT = 64;
 /**
  * Base class for header
  *
@@ -36,6 +38,7 @@ export class header extends FoundationElement {
 	}) alternate = false;
 
 	prevScroll: number = 0;
+	top: number = 0;
 
 	@observable _elevated = false;
 	@observable _scrolled = false;
@@ -64,12 +67,15 @@ export class header extends FoundationElement {
 			// if scroll up
 			if (this.prevScroll > window.scrollY) {
 				this._scrolled = true;
-				this.headerEl.scrollTo({ top: 0, behavior: 'smooth' });
+				this.top ++;
+				this.top >= 0 ? this.top = 0 : none;
 			}
 			else {
 				this._scrolled = false;
-				this.headerEl.scrollTo({ top: -60, behavior: 'smooth' });
+				this.top --;
+				this.top <= -HEIGHT ? this.top = -HEIGHT : none;
 			}
+			this.headerEl.style.top = this.top.toString() + "px" ;
 		}
 		this.prevScroll = window.scrollY;
 	}
