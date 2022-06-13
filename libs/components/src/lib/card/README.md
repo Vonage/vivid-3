@@ -73,7 +73,7 @@ The graphic slot overide the icon property
 
 ```html preview
 <vwc-card heading="Vivid Card Component" subheading="extra text to the card heading">
-<vwc-icon slot="graphic" type="android-mono" style="font-size: 44px; color: var(--vvd-color-sucess)" ></vwc-icon>
+  <vwc-icon slot="graphic" type="android-mono" style="font-size: 44px; color: var(--vvd-color-sucess)" ></vwc-icon>
 </vwc-card>
 ```
 
@@ -103,19 +103,24 @@ footer slot main purpose is for action button
 
 ```html preview
 <vwc-card heading="All Options on Deck" subheading="subheading" icon="chat-line" text="here is the card text">
-  <div style="height: 150px; width: 100%; background-color: rebeccapurple;" slot="media"></div>
+  <div slot="media" style="height: 150px; width: 100%; background-color: rebeccapurple;"></div>
   <vwc-button slot="meta" icon="more-vertical-solid" appearance="ghost"></vwc-button>
   <vwc-button slot="footer" icon="arrow-bold-right-line" shape="pill" label="Action" appearance="outlined"></vwc-button>
 </vwc-card>
 ```
 
-### Content
+### Main
 
-If the content structure is not fitting the desired content, the heading, subheading and text can overide
+We offer our opinionated structure for the card.  
+Assign nodes to `main` slot to fully override a card's main template.
 
 ```html preview
-<vwc-card >
-  <div slot="content">If you need different structure - use this slot</div>
+<vwc-card>
+  <vwc-layout gutters="small" slot="main">
+    <vwc-text>
+      If you need different structure - use this slot
+    </vwc-text>
+  </vwc-layout>
 </vwc-card>
 ```
 
