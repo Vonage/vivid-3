@@ -294,7 +294,7 @@ describe('vwc-calendar', () => {
 			);
 		});
 
-		it(`should move focus from calendar event to its containing gridcell on 'ArrowDown'`, async () => {
+		it('should move focus from calendar event to its containing gridcell on \'ArrowDown\'', async () => {
 			const calendarEvent = document.createElement('vwc-calendar-event');
 			calendarEvent.slot = 'day-5';
 			element.appendChild(calendarEvent);
