@@ -32,7 +32,7 @@ const onloadIframe = (iFrame) => {
 
 const setCurrentIframeTheme = (toggle, iFrame) => {
   const theme = toggle.mode === 'dark' ? '<link rel="stylesheet" href="/assets/styles/themes/dark.css" media="all">' : '<link rel="stylesheet" href="/assets/styles/themes/light.css" media="all">';
-  iFrame.contentWindow.document.head.insertAdjacentHTML("beforeend", theme);
+  iFrame.contentWindow.document.head?.insertAdjacentHTML("beforeend", theme);
 }
 
 window.addEventListener('DOMContentLoaded', initShowCodeButtons);
