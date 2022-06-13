@@ -43,8 +43,7 @@ CheckboxOptions
       <path fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
     </svg>
 
-    <span class="indicator minus">
-      ⍻
-    </span>
+    <span class="indicator minus"></span>
+
     ${when(x => x.label, html<Checkbox>`<label>${x => x.label}</label>`)}
   </span>`;
