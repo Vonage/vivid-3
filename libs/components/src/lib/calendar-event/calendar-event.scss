@@ -4,10 +4,17 @@
 @use '../calendar/partials/variables' as calendar-variables;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent cta success alert warning info announcement,
-	$shades: primary on-primary,
-	$default: accent,
+	$shades: primary on-primary contrast soft,
+	$default: info,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+	$appearances: filled subtle,
+	$states: idle,
+	$default: filled,
+);
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
 :host {
 	display: contents;
@@ -15,6 +22,7 @@
 
 .base {
 	@include connotation.connotation;
+	@include appearance.appearance;
 
 	$margin-block: 2px;
 	$gutter: 4px;
@@ -42,10 +50,11 @@
 	overflow: hidden;
 	box-sizing: border-box;
 	padding: $gutter $gutter * 2;
-	background-color: var(#{connotation.get-connotation-token(primary)});
+	background-color: var(#{appearance.get-appearance-token(fill)});
 	block-size: calc(var(#{variables.$duration}, 1) * #{$hour-block-size} + #{$dividers-block-size} - #{$margin-block * 2});
 	border-radius: 6px;
-	color: var(#{connotation.get-connotation-token(on-primary)});
+	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+	color: var(#{appearance.get-appearance-token(text)});
 	inline-size: calc(100% - #{$unit-indent} - #{$indent-calc});
 	margin-block-start: #{$margin-block};
 	margin-inline-end: #{$unit-indent};
