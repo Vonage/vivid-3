@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "migrate calendar to vivid@next",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}

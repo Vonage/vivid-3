@@ -2,24 +2,16 @@
 
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
-
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: accent,
-	$default: accent,
-);
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
-
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with ($appearances: fieldset ghost,
-$states: idle hover disabled readonly error,
-$default: fieldset,
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+	$appearances: fieldset ghost,
+	$states: idle hover disabled readonly error,
+	$default: fieldset,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
 $low-ink-color: --_low-ink-color;
 
 .base {
-	@include connotation.connotation;
-
 	// due to the fact :user-invalid proposal isn't supported by browsers yet,
 	// we apply appearance here instead of the input element itself.
 	// input element :invalid state isn't enough as our spec awaits user interaction
@@ -105,6 +97,7 @@ $low-ink-color: --_low-ink-color;
 	padding: 1px;
 	border: 0 none;
 	background-color: unset;
+	block-size: 100%;
 	border-radius: inherit;
 	color: inherit;
 	inset: 0;
