@@ -1,5 +1,6 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
+import { CalendarEvent } from './../calendar-event/calendar-event';
 import {
 	ARROW_DOWN,
 	ARROW_LEFT,
@@ -91,6 +92,11 @@ export class Calendar extends FoundationElement {
 		return this._generateDaysArr([...dateArr, lastDate]);
 	};
 
+	get #activeCalendarEvent(): CalendarEvent | null {
+		const { activeElement } = document;
+		return activeElement instanceof CalendarEvent ? activeElement : null;
+	}
+
 	/**
 	 * Fire an event
 	 *
@@ -100,22 +106,30 @@ export class Calendar extends FoundationElement {
 	 */
 	getEventContext = getEventContext;
 
+	private getCalendarEventContainingCell(calendarEvent: CalendarEvent) {
+		const slotName = calendarEvent.getAttribute('slot') as string;
+		const gridCell = (this.shadowRoot as ShadowRoot).querySelector(`slot[name="${slotName}"i]`) as HTMLDivElement;
+		return gridCell.parentElement as HTMLDivElement;
+	}
+
 	private arrowKeysInteractions(key: PredefindKeys) {
-		const activeElement = (this.shadowRoot as ShadowRoot).activeElement;
+		const { activeElement } = (this.shadowRoot as ShadowRoot);
 		let focusNext: Element | null | void;
 
 		if (isCellOrHeader(activeElement)) {
 			focusNext = getNextFocusableGridElement.call(this, key, activeElement);
+		} else if (this.#activeCalendarEvent) {
+			focusNext = this.getCalendarEventContainingCell(this.#activeCalendarEvent);
 		}	else if (activeElement?.matches('em[role="button"i]')) {
 			focusNext = getHeaderDescendantGridCell.call(this, key, activeElement as HTMLElement);
 		} else {
 			focusNext = (this.shadowRoot as ShadowRoot).querySelector('[role="columnheader"i]');
 		}
 
-		this.moveTo(focusNext as HTMLElement);
+		this.activateElement(focusNext as HTMLElement);
 	}
 
-	private moveTo(el: HTMLElement | null | undefined) {
+	private activateElement(el: HTMLElement | null | undefined) {
 		const onBlur = ({ target }: FocusEvent) => (target as HTMLElement).setAttribute('tabindex', '-1');
 
 		el?.addEventListener('blur', onBlur, { once: true });
