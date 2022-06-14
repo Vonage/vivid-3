@@ -9,7 +9,7 @@ import { AffixIconWithTrailing } from '../../shared/patterns/affix';
  *
  * @public
  */
-export type FabConnotation = Extract<Connotation, Connotation.Canvas | Connotation.CTA | Connotation.Primary>;
+export type FabConnotation = Extract<Connotation, Connotation.CTA | Connotation.Accent>;
 
 /**
  * Base class for fab

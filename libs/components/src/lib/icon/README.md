@@ -62,11 +62,11 @@ Use the `size` attribute to apply a predefined size to the icon.
 Set the `connotation` attribute to change the icon's connotation.
 It accepts a subset of predefined values.
 
-- Type: `'primary'` | `'announcement'` | `'cta'` | `'success'` | `'alert'` | `'info'`
-- Default: `'primary'`
+- Type: `'accent'` | `'announcement'` | `'cta'` | `'success'` | `'alert'` | `'info'`
+- Default: `'accent'`
 
 ```html preview
-<vwc-icon type='heart-solid' connotation='primary'></vwc-icon>
+<vwc-icon type='heart-solid' connotation='accent'></vwc-icon>
 <vwc-icon type='heart-solid' connotation='announcement'></vwc-icon>
 <vwc-icon type='heart-solid' connotation='cta'></vwc-icon>
 <vwc-icon type='heart-solid' connotation='success'></vwc-icon>
