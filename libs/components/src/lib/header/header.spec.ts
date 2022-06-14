@@ -59,16 +59,16 @@ describe('vwc-header', () => {
 		});
 	});
 
-	/**
-	 * @param scrollDist
-	 */
-	async function emulateScroll(scrollDist = 50) {
-		window['pageYOffset'] = scrollDist;
-		window.dispatchEvent(new CustomEvent('scroll'));
-		await elementUpdated(element);
-	};
-
 	describe('elevated', () => {
+		/**
+		 * @param scrollDist
+		 */
+		async function emulateScroll(scrollDist = 50) {
+			window['pageYOffset'] = scrollDist;
+			window.dispatchEvent(new CustomEvent('scroll'));
+			await elementUpdated(element);
+		}
+
 		beforeEach(function () {
 			element.fixed = true;
 		});
