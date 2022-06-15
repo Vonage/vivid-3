@@ -16,6 +16,13 @@ const getClasses = ({
 	['end', position === 'end'],
 );
 
+const getScrimClasses = ({
+	open
+}: SideDrawer) => classNames(
+	'scrim',
+	['open', open],
+);
+
 /**
  * The template for the {@link @vonage/vivid#side-drawer} component.
  *
@@ -41,7 +48,7 @@ export const sideDrawerTemplate: FoundationElementTemplate<ViewTemplate<SideDraw
 		<slot name="app-content"></slot>
 	</div>
 
-	${when(x => (x.modal && x.open), html`<div class="scrim" @click="${x => (x.open = false)}" @keydown="${x => (x.open = false)}"></div>`)}
+	${when(x => x.modal, html<SideDrawer>`<div class="${getScrimClasses}" ${ref('scrimEl')} @click="${x => (x.open = false)}" @keydown="${x => (x.open = false)}"></div>`)}
 `;
 
 const handleKeydown = (x: any, { key }: KeyboardEvent) => {

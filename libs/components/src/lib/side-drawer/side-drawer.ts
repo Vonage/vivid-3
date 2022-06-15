@@ -1,5 +1,5 @@
 import 'blocking-elements';
-import 'wicg-inert';
+import "wicg-inert";
 import 'babel-polyfill';
 import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
@@ -19,6 +19,7 @@ import type { DocumentWithBlockingElements } from 'blocking-elements';
 
 export class SideDrawer extends FoundationElement {
 	asideEl!: HTMLElement;
+	scrimEl!: any;
 
 	/**
 	 * applies scheme alternate region
@@ -62,24 +63,21 @@ export class SideDrawer extends FoundationElement {
 	 */
 	hasTopBar: HTMLElement[] | undefined;
 
-	blockingElements = (document as DocumentWithBlockingElements).$blockingElements;
-
+	#blockingElements = (document as DocumentWithBlockingElements).$blockingElements;
 
 	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
 		super.attributeChangedCallback(name, oldValue, newValue);
-		if(name === "open") {
-			(this.modal && this.open) ? this.trapFocus() : this.releaseFocusTrap();
+		if (name === "open" && this.modal) {
+			this.open ? this.#trapFocus() : this.#releaseFocusTrap();
 		}
 	}
 
-	trapFocus(): void {
-		console.log("trap", this.blockingElements.toString());
-		this.blockingElements.push(this.asideEl);
-		this.blockingElements.pop();
+	#trapFocus(): void {
+		this.#blockingElements.push(this.asideEl);
+		this.scrimEl.inert = false;
 	}
 
-	releaseFocusTrap(): void {
-		console.log("release", this.blockingElements.toString());
-		this.blockingElements.remove(this.asideEl);
+	#releaseFocusTrap(): void {
+		this.#blockingElements.remove(this.asideEl);
 	}
 }

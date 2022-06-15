@@ -106,4 +106,7 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
 	right: 0;
 	bottom: 0;
 	left: 0;
+	&:not(.open) {
+		display: none;
+	}
 }
