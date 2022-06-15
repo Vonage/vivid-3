@@ -48,7 +48,7 @@ export const sideDrawerTemplate: FoundationElementTemplate<ViewTemplate<SideDraw
 		<slot name="app-content"></slot>
 	</div>
 
-	${when(x => x.modal, html<SideDrawer>`<div class="${getScrimClasses}" ${ref('scrimEl')} @click="${x => (x.open = false)}" @keydown="${x => (x.open = false)}"></div>`)}
+	${when(x => x.modal, html<SideDrawer>`<div class="${getScrimClasses}" ${ref('scrimEl')} @click="${x => (x.open = false)}"></div>`)}
 `;
 
 const handleKeydown = (x: any, { key }: KeyboardEvent) => {
