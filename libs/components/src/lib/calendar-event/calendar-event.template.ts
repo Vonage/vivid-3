@@ -1,4 +1,4 @@
-import { html } from '@microsoft/fast-element';
+import { html, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
@@ -7,8 +7,11 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { CalendarEvent } from './calendar-event';
 
-const getClasses = ({ connotation }: CalendarEvent) => classNames('base',
+const getClasses = ({
+	connotation, appearance
+}: CalendarEvent) => classNames('base',
 	[`connotation-${connotation}`, Boolean(connotation)],
+	[`appearance-${appearance}`, Boolean(appearance)],
 );
 
 const getStyles = ({ start, duration, overlapCount }: CalendarEvent) => {
@@ -34,12 +37,12 @@ export const CalendarEventTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<CalendarEvent> = () => html`
-<section
+<div
   style="${getStyles}"
   class="${getClasses}"
   role="button"
   tabindex="0"
 >
-  <h2><strong>${x => x.heading}</strong></h2>
-  <p>${x => x.description}</p>
-</section>`;
+  ${when(x => x.heading, html`<h2><strong>${x => x.heading}</strong></h2>`)}
+  ${when(x => x.description, html`<p>${x => x.description}</p>`)}
+</div>`;
