@@ -55,4 +55,5 @@ const handleKeydown = (x: any, { key }: KeyboardEvent) => {
 	if (key === 'Escape') {
 		x.open = false;
 	}
+	return true;
 };
