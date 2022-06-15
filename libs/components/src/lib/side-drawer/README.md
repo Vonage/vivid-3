@@ -1,4 +1,4 @@
-# side-drawer
+# Side-Drawer
 
 ```js
 <script type='module'>
@@ -203,15 +203,9 @@ Use the `position` attribute to set the side of the side drawer.
 
 ## Slots
 
-### Top-Bar
+### Header
 
-To add a top-bar to the side drawer, add a slot called `top-bar`.
-
-```html
-<div slot="top-bar">
-    <vwc-text>VIVID</vwc-text>
-</div>
-```
+To add a header to the side drawer, add a slot called `header`.
 
 ```html preview full
 <style>
@@ -224,8 +218,8 @@ To add a top-bar to the side drawer, add a slot called `top-bar`.
     }
 </style>
 <vwc-side-drawer id="sideDrawer" open>
- <div slot="top-bar">
-        <vwc-text font-face="subtitle-1">VIVID</vwc-text>
+ <div slot="header">
+        <vwc-text tight font-face="subtitle-1">VIVID</vwc-text>
     </div>
  <div>
   <vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
@@ -259,14 +253,6 @@ To add a top-bar to the side drawer, add a slot called `top-bar`.
 ### App-content
 
 To add content aside the side-drawer, add a slot called `app-content`.
-
-```html
-<div slot="app-content">
-    <vwc-text font-face="body-1">
-        This is the app-content slot!!!!
-    </vwc-text>
-</div>
-```
 
 ```html preview full
 <style>
@@ -342,9 +328,9 @@ Controls the inline size of the side drawer.
 
 Controls the padding of the side drawer's body.
 
-### Padding-top-bar
+### Padding-header
 
-- `--side-drawer-padding-top-bar`
+- `--side-drawer-padding-header`
 - Type: `Number`
 - Default: `16px`
 
