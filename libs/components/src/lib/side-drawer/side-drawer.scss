@@ -72,8 +72,8 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
 
 	$gutter: var(#{variables.$side-drawer-padding-header}, #{$padding-default});
 	
-	height: 64px;
 	display: flex;
+	height: 64px;
 	flex-shrink: 0;
 	align-items: center;
 	padding-inline-end: #{$gutter};
@@ -87,9 +87,9 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
 .side-drawer-content {
 	$gutter: var(#{variables.$side-drawer-padding-body}, #{$padding-default});
 	
-	margin-block: 12px;
 	background-color: inherit;
 	overflow-y: auto;
+	margin-block: 12px;
 	padding-inline-end: #{$gutter};
 	padding-inline-start: #{$gutter};
 }
