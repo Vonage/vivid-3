@@ -11,7 +11,8 @@ const getClasses = (_: Progress) => classNames(
 	'base',
 	[`connotation-${_.connotation}`, !!_.connotation],
 	[`shape-${_.shape}`, !!_.shape],
-	['reverse', _.reverse]
+	['reverse', _.reverse],
+	['paused', _.paused]
 );
 
 /**
@@ -32,16 +33,16 @@ export const ProgressTemplate: (
       aria-valuenow="${x => x.value}"
       aria-valuemin="${x => x.min}"
       aria-valuemax="${x => x.max}"
-      class="${x => (x.paused ? 'paused' : '')} ${getClasses}"
+      class="${getClasses}"
     >
       ${when(
 		x => typeof x.value === 'number',
 		html<BaseProgress>`
                   <div class="progress">
-                      <div
+                      <span
                           class="determinate"
                           style="width: ${x => x.percentComplete}%"
-                      ></div>
+                      ></span>
                   </div>
               `
 	)}

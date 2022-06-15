@@ -26,15 +26,7 @@ $rounded-border-radius: 3px;
 
 		#{connotation.get-connotation-token(primary)}: linear-gradient(to right, $start, $end);
 	}
-}
 
-
-.indeterminate {
-	display: flex;
-	overflow: hidden;
-	width: 100%;
-	height: 100%;
-	border-radius: $rounded-border-radius;
 }
 
 .progress {
@@ -45,15 +37,27 @@ $rounded-border-radius: 3px;
 	block-size: 100%;
 	inline-size: 100%;
 
-	& .indeterminate {
-		background-color: var(#{connotation.get-connotation-token(primary)});
+	/* Shape */
+	.base:not(.shape-sharp) & {
+		border-radius: $rounded-border-radius;
 	}
 }
+
+
+.indeterminate {
+	display: flex;
+	overflow: hidden;
+	background-color: var(#{connotation.get-connotation-token(primary)});
+	block-size: 100%;
+	border-radius: inherit;
+	inline-size: 100%;
+}
+
 
 .determinate {
 	background-color: var(#{connotation.get-connotation-token(primary)});
 	block-size: 100%;
-	border-radius: $rounded-border-radius;
+	border-radius: inherit;
 	transition: all 0.2s ease-in-out;
 
 	.connotation-pacific & {
@@ -61,7 +65,8 @@ $rounded-border-radius: 3px;
 	}
 }
 
-.indeterminate-indicator-1, .indeterminate-indicator-2 {
+.indeterminate-indicator-1,
+.indeterminate-indicator-2 {
 	position: absolute;
 	animation: indeterminate-1 2s infinite;
 	animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
@@ -69,17 +74,20 @@ $rounded-border-radius: 3px;
 	block-size: 100%;
 	inline-size: 30%;
 	opacity: 0;
+
+	.connotation-pacific & {
+		background-image: var(#{connotation.get-connotation-token(primary)});
+	}
+
+	.base.paused & {
+		animation-play-state: paused;
+		background-color: var(#{connotation.get-connotation-token(primary)});
+	}
 }
 
 .indeterminate-indicator-2 {
 	animation: indeterminate-2 2s infinite;
 	inline-size: 60%;
-}
-
-.connotation-pacific {
-	.indeterminate-indicator-1, .indeterminate-indicator-2 {
-		background-image: var(#{connotation.get-connotation-token(primary)});
-	}
 }
 
 .reverse {
@@ -92,20 +100,12 @@ $rounded-border-radius: 3px;
 	}
 }
 
-.base.shape-sharp {
-	.determinate, .indeterminate {
-		border-radius: 0;
-	}
-}
-
-.base.paused .indeterminate-indicator-1,
-.base.paused .indeterminate-indicator-2 {
-	animation-play-state: paused;
-	background-color: var(#{connotation.get-connotation-token(primary)});
-}
 .base.paused .determinate {
 	background-color: var(#{theme-consts.$vvd-color-neutral-40});
 }
+
+
+
 @keyframes indeterminate-1 {
 	0% {
 		opacity: 1;
