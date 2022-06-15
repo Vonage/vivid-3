@@ -105,7 +105,7 @@ $pill-selector: '.shape-pill:not(.stacked)';
 }
 
 .focus-indicator {
-	:not(:focus) > & {
+	:not(:focus-visible) > & {
 		display: none;
 	}
 

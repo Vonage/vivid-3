@@ -1,4 +1,4 @@
-import {elementUpdated, fixture, getControlElement, setAttribute} from '@vivid-nx/shared';
+import {elementUpdated, fixture, getBaseElement, setAttribute} from '@vivid-nx/shared';
 import type {Icon} from '../icon/icon';
 import { BreadcrumbItem } from './breadcrumb-item';
 import '.';
@@ -20,7 +20,7 @@ describe('vwc-breadcrumb-item', () => {
 	});
 
 	it('should display only icon when no prop is set', function () {
-		const controlElement = getControlElement(element);
+		const controlElement = getBaseElement(element);
 		const iconElementExists = Boolean(controlElement.querySelector(('vwc-icon')));
 		expect(iconElementExists).toEqual(true);
 	});
@@ -29,12 +29,12 @@ describe('vwc-breadcrumb-item', () => {
 		const breadcrumbText = 'some text';
 		element.text = breadcrumbText;
 		await elementUpdated(element);
-		const controlElement = getControlElement(element);
+		const controlElement = getBaseElement(element);
 		expect(controlElement.textContent?.trim()).toEqual(breadcrumbText);
 	});
 
 	it('should set icon when "separator" is true', async function () {
-		const controlElement = getControlElement(element);
+		const controlElement = getBaseElement(element);
 		const iconElementExistsWhenSeparatorTrue = Boolean(controlElement.querySelector(('vwc-icon')));
 
 		element.separator = false;
@@ -54,7 +54,7 @@ describe('vwc-breadcrumb-item', () => {
 		element.href = href;
 		await elementUpdated(element);
 
-		const controlElement = getControlElement(element);
+		const controlElement = getBaseElement(element);
 		const iconElement = controlElement.querySelector(('vwc-icon')) as Icon;
 		const anchorElement = controlElement.querySelector(('a'));
 
