@@ -14,7 +14,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
     }
 </style>
 <vwc-side-drawer id="sideDrawer" open>
-	<div slot="top-bar">
+	<div slot="header">
         <vwc-text font-face="subtitle-1">VIVID</vwc-text>
     </div>
 	<div>

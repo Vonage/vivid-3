@@ -61,7 +61,7 @@ export class SideDrawer extends FoundationElement {
 	 *
 	 * @public
 	 */
-	hasTopBar: HTMLElement[] | undefined;
+	headerSlottedContent: HTMLElement[] | undefined;
 
 	#blockingElements = (document as DocumentWithBlockingElements).$blockingElements;
 

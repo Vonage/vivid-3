@@ -35,8 +35,8 @@ export const sideDrawerTemplate: FoundationElementTemplate<ViewTemplate<SideDraw
 	<aside class="${getClasses}" part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}"
 	 @keydown="${(x, c) => handleKeydown(x, c.event as KeyboardEvent)}" ${ref('asideEl')}>
 
-	 	<header class="side-drawer-top-bar" part="side-drawer-top-bar">
-	 		<slot name="top-bar" ${slotted('hasTopBar')}></slot>
+	 	<header class="side-drawer-header" part="side-drawer-header">
+	 		<slot name="header" ${slotted('headerSlottedContent')}></slot>
  		</header>
 
 		<div class="side-drawer-content">

@@ -67,11 +67,12 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
 	}
 }
 
-.side-drawer-top-bar {
+.side-drawer-header {
 	@include typography.typography-cat-shorthand(subtitle-1);
 
-	$gutter: var(#{variables.$side-drawer-padding-top-bar}, #{$padding-default});
+	$gutter: var(#{variables.$side-drawer-padding-header}, #{$padding-default});
 	
+	height: 64px;
 	display: flex;
 	flex-shrink: 0;
 	align-items: center;
@@ -82,6 +83,7 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
 .side-drawer-content {
 	$gutter: var(#{variables.$side-drawer-padding-body}, #{$padding-default});
 	
+	margin-block: 12px;
 	background-color: inherit;
 	overflow-y: auto;
 	padding-inline-end: #{$gutter};
