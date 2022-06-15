@@ -10,12 +10,13 @@ import { Icon } from '../icon/icon';
 import type { Checkbox } from './checkbox';
 
 const getClasses = ({
-	readOnly, checked, indeterminate
+	readOnly, checked, disabled, indeterminate
 }: Checkbox) =>
 	classNames(
-		'control',
+		'base',
 		['readOnly', Boolean(readOnly)],
 		['checked', Boolean(checked)],
+		['disabled', Boolean(disabled)],
 		['indeterminate', Boolean(indeterminate)],
 	);
 
@@ -46,12 +47,13 @@ CheckboxOptions
   @click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
   class="${getClasses}"
   >
-    <${iconTag} class="indicator checkmark" type="check-solid"></${iconTag}>
-
-    <${iconTag} class="indicator minus" type="minus-solid"></${iconTag}>
+    <div class="control">
+      <${iconTag} class="indicator checkmark" type="check-solid"></${iconTag}>
+      <${iconTag} class="indicator minus" type="minus-solid"></${iconTag}>
+      ${() => focusTemplate}
+    </div>
 
     ${when(x => x.label, html<Checkbox>`<label>${x => x.label}</label>`)}
 
-    ${() => focusTemplate}
   </span>`;
 };

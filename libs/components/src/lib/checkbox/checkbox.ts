@@ -9,11 +9,11 @@ import { Checkbox as FastCheckbox } from '@microsoft/fast-foundation';
  */
 export class Checkbox extends FastCheckbox {
 	/**
-	 * Indicates the text's text.
+	 * Indicates the checkbox's label.
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: text
+	 * HTML Attribute: label
 	 */
 	@attr label?: string;
 }

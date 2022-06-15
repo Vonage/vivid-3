@@ -1,4 +1,6 @@
 @use '../focus/partials/variables' as focus-variables;
+@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent,
@@ -9,7 +11,7 @@
 
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
 	$appearances: fieldset,
-	$states: idle hover checked disabled readonly,
+	$states: idle hover checked disabled readonly indeterminate,
 	$default: fieldset,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
@@ -17,11 +19,21 @@
 $size: 24px;
 $gutter: 4px;
 
-.control {
-	@include connotation.connotation;
-	@include appearance.appearance;
+.base {
+  @include connotation.connotation;
+  @include appearance.appearance;
 
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
 	outline: 0 none;
+
+  @supports (user-select: none) {
+    user-select: none;
+  }
+}
+
+.control {
   position: relative;
 	display: inline-flex;
   justify-content: center;
@@ -38,17 +50,23 @@ $gutter: 4px;
 .indicator {
   font-size: calc($size - $gutter * 2);
 
-  @at-root .control:not(.checked) > #{&}.checkmark {
+  @at-root .base:not(.checked) #{&}.checkmark {
     display: none;
   }
 
   &.minus {
     @at-root
-    .control:not(.indeterminate) > &,
-    .control.checked > & {
+    .base:not(.indeterminate) &,
+    .base.checked & {
       display: none;
     }
   }
+}
+
+label {
+	@include typography.typography-cat-shorthand(body-2);
+	color: var(#{theme-consts.$vvd-color-on-canvas});
+  cursor: pointer;
 }
 
 .focus-indicator {
@@ -56,7 +74,7 @@ $gutter: 4px;
   #{focus-variables.$focus-stroke-gap-color}: transparent;
   border-radius: 6px;
 
-	:not(:focus-visible) & {
+	.base:not(:focus-visible) & {
 		display: none;
 	}
 }
