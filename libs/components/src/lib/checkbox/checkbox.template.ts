@@ -14,7 +14,7 @@ const getClasses = ({
 }: Checkbox) =>
 	classNames(
 		'base',
-		['readOnly', Boolean(readOnly)],
+		['readonly', Boolean(readOnly)],
 		['checked', Boolean(checked)],
 		['disabled', Boolean(disabled)],
 		['indeterminate', Boolean(indeterminate)],
