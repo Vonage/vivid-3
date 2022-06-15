@@ -18,11 +18,11 @@
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 
 .control {
-	@include typography.typography-cat-shorthand("body-1-bold");
+	@include typography.typography-cat-shorthand("body-2-bold");
 	@include connotation.connotation;
 	@include appearance.appearance;
 
-	#{variables.$block-size}: 48px;
+	#{variables.$block-size}: 40px;
 
 	position: relative;
 	display: inline-flex;
@@ -77,7 +77,7 @@
 
 /* Icon */
 .icon {
-	font-size: 24px;
+	font-size: 20px;
 
 	.icon-trailing & {
 		order: 1;
@@ -85,7 +85,7 @@
 }
 
 .focus-indicator {
-	:not(:focus) & {
+	:not(:focus-visible) & {
 		display: none;
 	}
 }
