@@ -78,6 +78,10 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
 	align-items: center;
 	padding-inline-end: #{$gutter};
 	padding-inline-start: #{$gutter};
+
+	:not(.withHeader) &{
+		display: none;
+	}
 }
 
 .side-drawer-content {

@@ -7,13 +7,14 @@ import type {
 import type { SideDrawer } from './side-drawer';
 
 const getClasses = ({
-	alternate, modal, open, position
+	alternate, modal, open, position, headerSlottedContent
 }: SideDrawer) => classNames(
 	'control',
 	['alternate', alternate],
 	['modal', modal],
 	['open', open],
 	['end', position === 'end'],
+	['withHeader', Boolean(headerSlottedContent?.length)],
 );
 
 const getScrimClasses = ({
@@ -51,9 +52,13 @@ export const sideDrawerTemplate: FoundationElementTemplate<ViewTemplate<SideDraw
 	${when(x => x.modal, html<SideDrawer>`<div class="${getScrimClasses}" ${ref('scrimEl')} @click="${x => (x.open = false)}"></div>`)}
 `;
 
-const handleKeydown = (x: any, { key }: KeyboardEvent) => {
+const handleKeydown = (x: any, { key }: KeyboardEvent): boolean | void => {
 	if (key === 'Escape') {
 		x.open = false;
+	} else {
+		// after this event handler is executed,
+		// preventDefault() will be called on the event object by default.
+		// we need to return true from our handler to opt - out of this behavior.
+		return true;
 	}
-	return true;
 };
