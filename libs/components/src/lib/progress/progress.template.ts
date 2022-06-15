@@ -23,6 +23,27 @@ const getClasses = (_: Progress) => classNames(
  * @param definition
  * @public
  */
+
+
+/**
+ determinate
+ */
+function determinate() {
+	return html<BaseProgress>`
+		<span class="determinate" style="width: ${x => x.percentComplete}%"></span>`;
+}
+
+/**
+ indeterminate
+ */
+function indeterminate() {
+	return html<BaseProgress>`
+		<span class="indeterminate" name="indeterminate">
+			<span class="indicator-1"></span>
+			<span class="indicator-2"></span>
+		 </span>`;
+}
+
 export const ProgressTemplate: (
 	context: ElementDefinitionContext,
 	definition: ProgressOptions
@@ -35,29 +56,11 @@ export const ProgressTemplate: (
       aria-valuemax="${x => x.max}"
       class="${getClasses}"
     >
-      ${when(
-		x => typeof x.value === 'number',
-		html<BaseProgress>`
-                  <div class="progress">
-                      <span
-                          class="determinate"
-                          style="width: ${x => x.percentComplete}%"
-                      ></span>
-                  </div>
-              `
-	)}
-      ${when(
-		x => typeof x.value !== 'number',
-		html<BaseProgress>`
-                  <div class="progress indeterminate">
-                      <span class="indeterminate" name="indeterminate">
-                        <span class="indeterminate-indicator-1"></span>
-                        <span class="indeterminate-indicator-2"></span>
-                      </span>
-                  </div>
-              `
-	)}
-    </div>
+		<div class="progress">
+		  ${when(x => typeof x.value === 'number', determinate())}
+		  ${when(x => typeof x.value !== 'number', indeterminate())}
+    	</div>
+	</div>
   `;
 };
 

@@ -32,6 +32,7 @@ $rounded-border-radius: 3px;
 .progress {
 	position: relative;
 	display: flex;
+	overflow: hidden;
 	align-items: center;
 	background-color: var(#{theme-consts.$vvd-color-neutral-20});
 	block-size: 100%;
@@ -46,13 +47,12 @@ $rounded-border-radius: 3px;
 
 .indeterminate {
 	display: flex;
-	overflow: hidden;
 	background-color: var(#{connotation.get-connotation-token(primary)});
 	block-size: 100%;
 	border-radius: inherit;
 	inline-size: 100%;
-}
 
+}
 
 .determinate {
 	background-color: var(#{connotation.get-connotation-token(primary)});
@@ -63,47 +63,49 @@ $rounded-border-radius: 3px;
 	.connotation-pacific & {
 		background-image: var(#{connotation.get-connotation-token(primary)});
 	}
+
+	.reverse & {
+		position: absolute;
+		right: 0;
+	}
+
+	.paused & {
+		background-color: var(#{theme-consts.$vvd-color-neutral-40});
+	}
+
 }
 
-.indeterminate-indicator-1,
-.indeterminate-indicator-2 {
-	position: absolute;
+.indicator-1 {
 	animation: indeterminate-1 2s infinite;
+	inline-size: 30%;
+}
+
+.indicator-2 {
+	animation: indeterminate-2 2s infinite;
+	inline-size: 60%;
+}
+
+.indicator-1,
+.indicator-2 {
+	position: absolute;
 	animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
 	background-color: var(#{theme-consts.$vvd-color-neutral-20});
 	block-size: 100%;
-	inline-size: 30%;
 	opacity: 0;
 
 	.connotation-pacific & {
 		background-image: var(#{connotation.get-connotation-token(primary)});
 	}
 
-	.base.paused & {
+	.paused & {
 		animation-play-state: paused;
 		background-color: var(#{connotation.get-connotation-token(primary)});
 	}
-}
 
-.indeterminate-indicator-2 {
-	animation: indeterminate-2 2s infinite;
-	inline-size: 60%;
-}
-
-.reverse {
-	.indeterminate-indicator-1, .indeterminate-indicator-2 {
+	.reverse & {
 		animation-direction: reverse;
 	}
-	.determinate {
-		position: absolute;
-		right: 0;
-	}
 }
-
-.base.paused .determinate {
-	background-color: var(#{theme-consts.$vvd-color-neutral-40});
-}
-
 
 
 @keyframes indeterminate-1 {
