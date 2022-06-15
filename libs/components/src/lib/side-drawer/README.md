@@ -1,4 +1,4 @@
-# side-drawer
+# Side-Drawer
 
 ```js
 <script type='module'>
