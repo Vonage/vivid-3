@@ -74,7 +74,9 @@ export class SideDrawer extends FoundationElement {
 
 	#trapFocus(): void {
 		this.#blockingElements.push(this.asideEl);
-		this.scrimEl.inert = false;
+		if (this.scrimEl) {
+			this.scrimEl.inert = false;
+		}
 	}
 
 	#releaseFocusTrap(): void {
