@@ -79,4 +79,26 @@ describe('vwc-checkbox', () => {
 			expect(base).toBeInstanceOf(Element);
 		});
 	});
+
+	it('should set off `indeterminate` on `checked` change by user click', async () => {
+
+		element.indeterminate = true;
+
+		const base = element.shadowRoot?.querySelector('.base') as HTMLElement;
+
+		base.click();
+
+		expect(element.indeterminate).toBeFalsy();
+	});
+
+	it('should set off `indeterminate` on `checked` change by user keypress', async () => {
+
+		element.indeterminate = true;
+
+		const base = element.shadowRoot?.querySelector('.base') as HTMLElement;
+
+		base.dispatchEvent(new KeyboardEvent('keypress', { key: ' ' }));
+
+		expect(element.indeterminate).toBeFalsy();
+	});
 });
