@@ -1,7 +1,7 @@
 import {applyMixins, FoundationElement} from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import type {Connotation} from '../enums';
-import {AffixIcon} from '../../shared/patterns';
+import {AffixIcon} from '../../shared/patterns/affix';
 
 export type NoteConnotation =
 	Connotation.Info |

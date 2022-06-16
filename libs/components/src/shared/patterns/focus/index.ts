@@ -2,7 +2,7 @@
 import { html } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
-import { Focus } from '../../lib/focus/focus';
+import { Focus } from '../../../lib/focus/focus';
 
 
 /**
