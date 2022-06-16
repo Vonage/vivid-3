@@ -63,11 +63,11 @@ Use the `reverse` attribute to set the progress from right to left.
 
 ### Connotation
 
-- Type: `'primary'` | `'cta'` | `'success'` | `'alert'` | `'pacific'`
-- Default: `'primary'`
+- Type: `'accent'` | `'cta'` | `'success'` | `'alert'` | `'pacific'`
+- Default: `'accent'`
 
 ```html preview blocks
-<vwc-progress min="0" max="100" value="25" connotation="primary"></vwc-progress>
+<vwc-progress min="0" max="100" value="25" connotation="accent"></vwc-progress>
 <vwc-progress min="0" max="100" value="25" connotation="cta"></vwc-progress>
 <vwc-progress min="0" max="100" value="25" connotation="success"></vwc-progress>
 <vwc-progress min="0" max="100" value="25" connotation="alert"></vwc-progress>

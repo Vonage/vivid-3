@@ -12,7 +12,7 @@ import type {
  * @public
  */
 type BadgeConnotation = Extract<Connotation,
-| Connotation.Primary
+| Connotation.Accent
 | Connotation.CTA
 | Connotation.Success
 | Connotation.Alert

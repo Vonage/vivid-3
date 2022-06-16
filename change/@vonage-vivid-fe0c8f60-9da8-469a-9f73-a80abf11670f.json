@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "fix(action-group): refine tests",
+  "packageName": "@vonage/vivid",
+  "email": "rachel.tannenbaum@vonage.com",
+  "dependentChangeType": "none"
+}

@@ -23,6 +23,7 @@ export class TextField extends FoundationTextfield {
 	@attr appearance?: TextFieldAppearance;
 	@attr shape?: TextFieldShape;
 	@observable userValid = true;
+	@attr autoComplete?: string;
 
 	@volatile
 	get errorValidationMessage() {
@@ -39,3 +40,4 @@ export class TextField extends FoundationTextfield {
 
 export interface TextField extends AffixIcon {}
 applyMixins(TextField, AffixIcon);
+

@@ -7,7 +7,6 @@
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
 
-
 .base {
 	@include appearance.appearance;
 
@@ -15,9 +14,9 @@
 	box-sizing: border-box;
 	align-items: center;
 	padding: 4px;
-	background-color: var(#{appearance.get-variable(fill)});
-	box-shadow: 0 0 0 1px var(#{appearance.get-variable(outline)});
-	color: var(#{appearance.get-variable(text)});
+	background-color: var(#{appearance.get-appearance-token(fill)});
+	box-shadow: 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+	color: var(#{appearance.get-appearance-token(text)});
 	column-gap: 4px;
 	vertical-align: middle;
 }
