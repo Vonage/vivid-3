@@ -17,6 +17,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			`${htmlString} <div style="margin: 5px;">${block}</div>`,
 		''
 	);
+  
+	page.setViewportSize({ width: 500, height: 800 });
+
 
 	await loadComponents({
 		page,

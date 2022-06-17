@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { expect, test } from '@playwright/test'; 
+import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import {
 	extractHTMLBlocksFromReadme,
@@ -17,6 +17,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			`${htmlString} <div style="margin: 5px;">${block}</div>`,
 		''
 	);
+
+	page.setViewportSize({ width: 470, height: 800 });
 
 	await loadComponents({
 		page,
@@ -38,7 +40,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 test('should remove the component when clicking on remove button', async ({ page }: { page: Page }) => {
 	const template = `
-			<vwc-banner removable icon="home" text="ET Phone!"></vwc-banner>	
+			<vwc-banner removable icon="home" text="ET Phone!"></vwc-banner>
 	`;
 
 	await loadComponents({
