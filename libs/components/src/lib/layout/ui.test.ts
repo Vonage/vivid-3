@@ -5,7 +5,7 @@ import {
 	extractHTMLBlocksFromReadme,
 	loadComponents,
 	loadTemplate
-} from '../../visual-tests/visual-tests-utils.ts';
+} from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['layout', 'card'];
 test('should show the component', async ({ page }: { page: Page }) => {

@@ -3,7 +3,7 @@ import type { Page } from '@playwright/test';
 import {
 	loadComponents,
 	loadTemplate,
-} from '../../visual-tests/visual-tests-utils.ts';
+} from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['calendar'];
 
