@@ -1,4 +1,4 @@
-# vwc-layout
+# layout
 
 Using layout, elements can be arranged easily in a variety of sizes and spaces that suit vivid design.
 
@@ -10,138 +10,172 @@ Using layout, elements can be arranged easily in a variety of sizes and spaces t
 
 ```html preview
 <vwc-layout>
-  <img src="https://picsum.photos/311/200">
-  <img src="https://picsum.photos/312/200">
-  <img src="https://picsum.photos/313/200">
-  <img src="https://picsum.photos/314/200">
-  <img src="https://picsum.photos/315/200">
-  <img src="https://picsum.photos/316/200">
+  <vwc-card heading="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+    <img slot="media" src="https://picsum.photos/id/1015/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;"/>
+  </vwc-card>
+  <vwc-card heading="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+    <img slot="media" src="https://picsum.photos/id/1016/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;"/>
+  </vwc-card>
+  <vwc-card heading="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+    <img slot="media" src="https://picsum.photos/id/1018/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;"/>
+  </vwc-card>
+  <vwc-card heading="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+    <img slot="media" src="https://picsum.photos/id/1019/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;"/>
+  </vwc-card>
+  <vwc-card heading="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+    <img slot="media" src="https://picsum.photos/id/1055/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;"/>
+  </vwc-card>
+  <vwc-card heading="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+    <img slot="media" src="https://picsum.photos/id/1050/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;"/>
+  </vwc-card>
 </vwc-layout>
 ```
-## Auto-sizing
 
-Use the `auto-sizing` attribute to set the initial preferred auto-sizing.
+## Properties
+
+### Gutters
+
+Use the `gutters` attribute to set the initial preferred `margin`.
+
+- Type: `'small'` | `'medium'` | `'large'`
+- Default: `undefined`
+
+```html preview full
+<div class="demo-gradient">
+  <vwc-layout>
+    <vwc-card elevation="2" text="default"></vwc-card>
+  </vwc-layout>
+  <vwc-layout gutters="small">
+    <vwc-card elevation="2" text="small"></vwc-card>
+  </vwc-layout>
+  <vwc-layout gutters="medium">
+    <vwc-card elevation="2" text="medium"></vwc-card>
+  </vwc-layout>
+  <vwc-layout gutters="large">
+      <vwc-card elevation="2" text="large"></vwc-card>
+  </vwc-layout>
+</div>
+```
+
+## Column Spacing
+
+Use the `column-spacing` attribute to set the initial preferred `spacing` of a column.
+
+- Type: `'small'` | `'medium'` | `'large'`
+- Default: `'medium'`
+
+```html preview full
+<div class="demo-gradient tight">
+  <vwc-layout gutters="small" column-spacing="small">
+    <vwc-card elevation="2" text="small"></vwc-card>
+    <vwc-card elevation="2" text="small"></vwc-card>
+    <vwc-card elevation="2" text="small"></vwc-card>
+  </vwc-layout>
+  <vwc-layout gutters="small" column-spacing="medium">
+    <vwc-card elevation="2" text="medium"></vwc-card>
+    <vwc-card elevation="2" text="medium"></vwc-card>
+    <vwc-card elevation="2" text="medium"></vwc-card>
+  </vwc-layout>
+  <vwc-layout gutters="small" column-spacing="large">
+    <vwc-card elevation="2" text="large"></vwc-card>
+    <vwc-card elevation="2" text="large"></vwc-card>
+    <vwc-card elevation="2" text="large"></vwc-card>
+  </vwc-layout>
+</div>
+```
+
+## Column Basis
+
+Use the `column-basis` attribute to set the initial preferred `measure` of a column.
+Use `block` to stack elements one above the other.
+
+- Type: `'small'` | `'medium'` | `'large'` | `'block'`
+- Default: `'medium'`
+
+```html preview full
+<div class="demo-gradient">
+  <vwc-layout gutters="small" column-basis="small">
+    <vwc-card elevation="2" text="small"></vwc-card>
+    <vwc-card elevation="2" text="small"></vwc-card>
+    <vwc-card elevation="2" text="small"></vwc-card>
+    <vwc-card elevation="2" text="small"></vwc-card>
+  </vwc-layout>
+  <vwc-layout gutters="small" column-basis="medium">
+    <vwc-card elevation="2" text="medium"></vwc-card>
+    <vwc-card elevation="2" text="medium"></vwc-card>
+    <vwc-card elevation="2" text="medium"></vwc-card>
+    <vwc-card elevation="2" text="medium"></vwc-card>
+  </vwc-layout>
+  <vwc-layout gutters="small" column-basis="large">
+    <vwc-card elevation="2" text="large"></vwc-card>
+    <vwc-card elevation="2" text="large"></vwc-card>
+    <vwc-card elevation="2" text="large"></vwc-card>
+    <vwc-card elevation="2" text="large"></vwc-card>
+  </vwc-layout>
+  <vwc-layout gutters="small" column-basis="block">
+    <vwc-card elevation="2" text="block"></vwc-card>
+    <vwc-card elevation="2" text="block"></vwc-card>
+    <vwc-card elevation="2" text="block"></vwc-card>
+    <vwc-card elevation="2" text="block"></vwc-card>
+  </vwc-layout>
+</div>
+```
+
+## Auto Sizing
+
+Use the `auto-sizing` attribute to set the initial preferred `auto-sizing`.
+
+When the [repeat()](#css-custom-properties) function is set to `fit` or `fill`, the grid container creates as many grid tracks (columns/rows) as possible without overflowing the container.
+
+With `fit`, when there are not enough grid items to fill the number of tracks created, those empty tracks are collapsed.
+
+With `fill`, everything is the same as `fit`, except empty tracks are not collapsed.
 
 - Type: `'fit'` | `'fill'`
 - Default: `'fit'`
 
-### fit
-
-```html preview
-<vwc-layout auto-sizing="fit">
-  <div style="border: 1px solid">fit</div>
-  <div style="border: 1px solid">fit</div>
-</vwc-layout>
+```html preview full
+<div class="demo-gradient">
+  <vwc-layout auto-sizing="fit">
+    <vwc-card elevation="2" text="fit"></vwc-card>
+    <vwc-card elevation="2" text="fit"></vwc-card>
+  </vwc-layout>
+  <vwc-layout auto-sizing="fill">
+    <vwc-card elevation="2" text="fill"></vwc-card>
+    <vwc-card elevation="2" text="fill"></vwc-card>
+  </vwc-layout>
+</div>
 ```
-
-### fill
-
-```html preview
-<vwc-layout auto-sizing="fill">
-  <div style="border: 1px solid">fill</div>
-  <div style="border: 1px solid">fill</div>
-</vwc-layout>
-```
-
-## Gutters
-
-Use the `gutters` attribute to set the initial preferred margin.
-
-- Type: `'base-small'` | `'base'` | `'base-large'`
-- Default: `''`
-
-
-```html preview
-<vwc-layout>
-  <div style="border: 1px solid">default</div>
-  <div style="border: 1px solid">default</div>
-</vwc-layout>
-<vwc-layout gutters="base-small">
-  <div style="border: 1px solid">base-small</div>
-  <div style="border: 1px solid">base-small</div>
-</vwc-layout>
-<vwc-layout gutters="base">
-  <div style="border: 1px solid">base</div>
-  <div style="border: 1px solid">base</div>
-</vwc-layout>
-<vwc-layout gutters="base-large">
-  <div style="border: 1px solid">base-large</div>
-  <div style="border: 1px solid">base-large</div>
-</vwc-layout>
-```
-
-## Column-spacing
-
-Use the `column-spacing` attribute to set the initial preferred spacing of a column.
-
-- Type: `'base-small'` | `'base'` | `'base-large'`
-- Default: `'base'`
-
-```html preview
-<vwc-layout column-spacing="base-small">
-  <div style="border: 1px solid">base-small</div>
-  <div style="border: 1px solid">base-small</div>
-</vwc-layout>
-<vwc-layout column-spacing="base">
-  <div style="border: 1px solid">base</div>
-  <div style="border: 1px solid">base</div>
-</vwc-layout>
-<vwc-layout column-spacing="base-large">
-  <div style="border: 1px solid">base-large</div>
-  <div style="border: 1px solid">base-large</div>
-</vwc-layout>
-```
-
-## Column-basis
-
-Use the `column-basis` attribute to set the initial preferred measure of a column.
-
-- Type: `'base-small'` | `'base'` | `'base-large'`
-- Default: `'base'`
-
-### base-small
-```html preview
-<vwc-layout column-basis="base-small">
-  <div style="border: 1px solid">base-small</div>
-  <div style="border: 1px solid">base-small</div>
-  <div style="border: 1px solid">base-small</div>
-  <div style="border: 1px solid">base-small</div>
-  <div style="border: 1px solid">base-small</div>
-</vwc-layout>
-```
-### base
-```html preview
-<vwc-layout column-basis="base">
-  <div style="border: 1px solid">base</div>
-  <div style="border: 1px solid">base</div>
-  <div style="border: 1px solid">base</div>
-  <div style="border: 1px solid">base</div>
-  <div style="border: 1px solid">base</div>
-</vwc-layout>
-```
-### base-large
-```html preview
-<vwc-layout column-basis="base-large">
-  <div style="border: 1px solid">base-large</div>
-  <div style="border: 1px solid">base-large</div>
-  <div style="border: 1px solid">base-large</div>
-  <div style="border: 1px solid">base-large</div>
-  <div style="border: 1px solid">base-large</div>
-</vwc-layout>
-```
-### block
-```html preview
-<vwc-layout column-basis="block">
-  <div style="border: 1px solid">block</div>
-  <div style="border: 1px solid">block</div>
-  <div style="border: 1px solid">block</div>
-  <div style="border: 1px solid">block</div>
-  <div style="border: 1px solid">block</div>
-</vwc-layout>
-```
-
 
 ## CSS Custom Properties
-| Name                         | Description                                      | Usage                                              |
-| ---------------------------- | ------------------------------------------------ | -------------------------------------------------- |
-| layout-grid-template-columns | controls the grid-template-columns of the layout | repeat(`auto-sizing`, minmax(`column-basis`, 1fr)) |
+
+### Grid-template-columns
+
+Controls the grid-template-columns of the layout.
+
+- `--layout-grid-template-columns`
+- Type: repeat(`auto-sizing`, minmax(`column-basis`, 1fr))
+- Default: auto
+
+```html preview full
+<div class="demo-gradient">
+  <vwc-layout style="--layout-grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));">
+    <vwc-card elevation="2"></vwc-card>
+    <vwc-card elevation="2"></vwc-card>
+    <vwc-card elevation="2"></vwc-card>
+    <vwc-card elevation="2"></vwc-card>
+  </vwc-layout>
+  <vwc-layout style="--layout-grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));">
+    <vwc-card elevation="2"></vwc-card>
+    <vwc-card elevation="2"></vwc-card>
+    <vwc-card elevation="2"></vwc-card>
+    <vwc-card elevation="2"></vwc-card>
+  </vwc-layout>
+  <vwc-layout style="--layout-grid-template-columns: 280px repeat(auto-fill, minmax(100px, 1fr));">
+    <vwc-card elevation="2"></vwc-card>
+    <vwc-card elevation="2"></vwc-card>
+    <vwc-card elevation="2"></vwc-card>
+    <vwc-card elevation="2"></vwc-card>
+  </vwc-layout>
+</div>
+```

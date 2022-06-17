@@ -1,0 +1,28 @@
+/* #region reset */
+h1, h2, h3, h4, h5, h6, p {
+  margin: unset;
+}
+
+strong {
+  font-weight: unset;
+}
+/* #endregion reset */
+
+body {
+  color: var(--vvd-color-on-canvas);
+  background-color: var(--vvd-color-canvas);
+  margin: 0;
+}
+
+.demo-gradient {
+  background-image: linear-gradient(to right, var(--vvd-color-info-30), var(--vvd-color-cta-30));
+  padding: 8px;
+  block-size: 100%;
+}
+
+.demo-center {
+  display: flex;
+  place-items: center;
+  place-content: center;
+  block-size: 100%;
+}

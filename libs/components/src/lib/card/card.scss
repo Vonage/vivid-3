@@ -1,0 +1,126 @@
+@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use 'partials/card-variables' as card-variables;
+
+
+:host {
+	display: block;
+
+	@supports (block-size: fit-content) and (inline-size: fit-content) {
+		block-size: fit-content;
+		inline-size: fit-content;
+	}
+}
+
+.control {
+	block-size: 100%;
+	border-radius: 6px;
+}
+
+.wrapper {
+	display: flex;
+	overflow: hidden;
+	flex-flow: column;
+	block-size: inherit;
+	border-radius: inherit;
+	color: var(#{theme-consts.$vvd-color-on-canvas});
+}
+
+.main-content {
+	display: flex;
+	flex-flow: column;
+	padding: 24px;
+}
+
+.header {
+	display: flex;
+	flex: 1;
+	align-items: flex-start;
+	gap: 8px;
+	&-content {
+		flex: 1;
+	}
+
+	&-wrapper {
+		display: flex;
+		gap: 8px;
+	}
+
+	&-title,
+	&-subheading {
+		/* stylelint-disable value-no-vendor-prefix */
+		display: -webkit-box;
+		/* stylelint-enable value-no-vendor-prefix */
+		overflow: hidden;
+		-webkit-box-orient: vertical;
+	}
+
+	&-title {
+		@include typography.typography-cat-shorthand('subtitle-2');
+
+		-webkit-line-clamp: var(#{card-variables.$heading-line-clamp});
+	}
+	&-subheading {
+		@include typography.typography-cat-shorthand('body-2');
+
+		-webkit-line-clamp: var(#{card-variables.$subheading-line-clamp});
+	}
+
+	.hide-header & {
+		display: none;
+	}
+}
+
+.header-subheading,
+.text {
+	@include typography.typography-cat-shorthand('body-2');
+
+	color: var(#{theme-consts.$vvd-color-neutral-70});
+}
+
+.text {
+	padding-right: 8px;
+	margin-top: 12px;
+}
+
+.footer {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: flex-end;
+	padding-bottom: 24px;
+	margin-top: auto;
+	padding-inline: 24px;
+
+	.hide-footer & {
+		display: none;
+	}
+}
+
+
+
+// graphic slot & icon style
+::slotted([slot="graphic"i]),
+.icon {
+	flex-shrink: 0;
+	align-self: baseline;
+	margin-block-start: 4px;
+}
+
+.icon {
+	font-size: 20px;
+}
+
+::slotted([slot="meta"i]) {
+	flex-shrink: 0;
+	align-self: flex-start;
+	margin-block-start: -8px;
+	margin-inline-end: -8px;
+	margin-inline-start: auto;
+}
+
+vwc-elevation {
+	block-size: inherit;
+	&::part(base) {
+		block-size: inherit;
+	}
+}

@@ -1,12 +1,33 @@
 {
-  "root": "libs/components",
   "sourceRoot": "libs/components/src",
   "projectType": "library",
   "targets": {
     "e2e": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "./scripts/visual-tests/run.tests.in.container.sh {args.task}"
+        "commands": [
+          "./scripts/visual-tests/run.tests.in.container.sh {args.task}"
+        ],
+        "parallel": false
+      },
+      "configurations": {
+        "watch": {
+          "commands": [
+            {
+              "command": "npx nx run components:build --watch"
+            },
+            {
+              "command": "npx nx run styles:serve"
+            },
+            {
+              "command": "npx http-server -s"
+            },
+            {
+              "command": "npx -y nodemon --watch dist/libs/components/ --watch dist/libs/styles/ --watch 'libs/components/**/*.test.ts' -e js,css,ts --signal SIGHUP --exec 'npx playwright test -c ./libs/components/playwright.config.dev.ts'"
+            }
+          ],
+          "parallel": true
+        }
       }
     },
     "lint": {
@@ -20,7 +41,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/components"],
       "options": {
-        "jestConfig": "libs/components/jest.config.js",
+        "jestConfig": "libs/components/jest.config.cjs",
         "passWithNoTests": true
       }
     },

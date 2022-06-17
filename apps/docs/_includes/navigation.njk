@@ -1,35 +1,21 @@
 {% block content %}
-<a href="{{ '/' | url}}">Home</a>
-<ul class="navigation">
-  <li>
-    design system
-    <ul>
-      {%  for item in designs %}
+<nav>
+  <vwc-sidenav-item href="{{ '/' | url}}" text="Home"></vwc-sidenav-item>
+  <ul class="navigation">
+    <p>Design System</p>
+    {%  for item in designs | sort(false, false, 'title') %}
       <li>
-          <a href="{{ ('/designs/' + item.title) | url }}">{{ item.title }}</a>
+        <vwc-sidenav-item href="{{ ('/designs/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-sidenav-item>
       </li>
-      {% endfor %}
-    </ul>
-  </li>
-  <li>
-    components
-    <ul>
-      {%  for item in components %}
+    {% endfor %}
+  </ul>
+  <ul class="navigation">
+    <p>Components</p>
+    {%  for item in components | sort(false, false, 'title') %}
       <li>
-          <a href="{{ ('/components/' + item.title) | url }}">{{ item.title }}</a>
+        <vwc-sidenav-item href="{{ ('/components/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-sidenav-item>
       </li>
-      {% endfor %}
-    </ul>
-  <li>
-  <li>
-    usage examples
-    <ul>
-      {%  for item in examples %}
-      <li>
-          <a href="{{ ('/examples/' + item.title) | url }}">{{ item.title }}</a>
-      </li>
-      {% endfor %}
-    </ul>
-  </li>
-</ul>
+    {% endfor %}
+  </ul>
+</nav>
 {% endblock %}

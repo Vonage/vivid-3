@@ -1,9 +1,10 @@
-import { Button as FoundationButton } from '@microsoft/fast-foundation';
+import { applyMixins, Button as FoundationButton } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 
 import type {
-	Appearance, Connotation, Shape, Size,
+	Appearance, Connotation, Density, Shape,
 } from '../enums.js';
+import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
 /**
  * Types of button connotation.
@@ -11,7 +12,7 @@ import type {
  * @public
  */
 type ButtonConnotation = Extract<Connotation,
-| Connotation.Primary
+| Connotation.Accent
 | Connotation.CTA
 | Connotation.Success
 | Connotation.Alert>;
@@ -22,7 +23,7 @@ type ButtonConnotation = Extract<Connotation,
  * @public
  */
 export type ButtonAppearance = Extract<Appearance,
-Appearance.Filled | Appearance.Outlined | Appearance.Soft>;
+Appearance.Filled | Appearance.Outlined | Appearance.Ghost>;
 
 /**
  * Types of button shape.
@@ -36,7 +37,7 @@ type ButtonShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  *
  * @public
  */
-type ButtonSize = Extract<Size, Size.BaseSmall | Size.Base | Size.BaseLarge>;
+type ButtonDensity = Extract<Density, Density.Condensed | Density.Normal | Density.Extended>;
 
 /**
  * Base class for button
@@ -78,28 +79,19 @@ export class Button extends FoundationButton {
 	 * @remarks
 	 * HTML Attribute: size
 	 */
-	@attr size?: ButtonSize;
+	@attr density?: ButtonDensity;
 
 	/**
-	 * A decorative icon the button should have.
+	 * Indicates the icon is stacked.
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: icon
-	 */
-	@attr icon?: string;
-
-	/**
-	 * Indicates the icon affix alignment.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: icon-trailing
+	 * HTML Attribute: stacked
 	 */
 	@attr({
 		mode: 'boolean',
-		attribute: 'icon-trailing',
-	}) iconTrailing = false;
+		attribute: 'stacked',
+	}) stacked = false;
 
 	/**
 	 * Indicates the button's label.
@@ -108,5 +100,8 @@ export class Button extends FoundationButton {
 	 * @remarks
 	 * HTML Attribute: label
 	 */
-	@attr label = '';
+	@attr label?: string;
 }
+
+export interface Button extends AffixIconWithTrailing {}
+applyMixins(Button, AffixIconWithTrailing);

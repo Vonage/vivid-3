@@ -1,0 +1,35 @@
+name: 🧬 Release
+
+on:
+  pull_request:
+    types: [ closed ]
+    branches:
+      - 'main'
+
+concurrency:
+  group: ci-pre-release-${{ github.ref }}-1
+  cancel-in-progress: true
+
+jobs:
+  call-lint:
+    if: github.event.pull_request.merged == true
+    uses: vonage/vivid-3/.github/workflows/_lint.yml@main
+
+  call-unit-tests:
+    if: github.event.pull_request.merged == true
+    needs: call-lint
+    uses: vonage/vivid-3/.github/workflows/_unit-test.yml@main
+    with:
+      os: ubuntu-latest
+      report_coverage: true
+
+  call-visual-regression:
+    if: github.event.pull_request.merged == true
+    needs: call-lint
+    uses: vonage/vivid-3/.github/workflows/_visual-regression.yml@main
+
+  call-publish-package:
+    if: github.event.pull_request.merged == true
+    needs: [call-unit-tests, call-visual-regression]
+    uses: vonage/vivid-3/.github/workflows/_publish-package.yml@main
+    secrets: inherit

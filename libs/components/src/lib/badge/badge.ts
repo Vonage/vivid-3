@@ -1,8 +1,9 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
+import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
+import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
 import type {
-	Appearance, Connotation, Shape, Size,
+	Appearance, Connotation, Density, Shape,
 } from '../enums.js';
 
 /**
@@ -11,7 +12,7 @@ import type {
  * @public
  */
 type BadgeConnotation = Extract<Connotation,
-| Connotation.Primary
+| Connotation.Accent
 | Connotation.CTA
 | Connotation.Success
 | Connotation.Alert
@@ -24,7 +25,7 @@ type BadgeConnotation = Extract<Connotation,
  * @public
  */
 type BadgeAppearance = Extract<Appearance,
-Appearance.Filled | Appearance.Outlined | Appearance.Soft>;
+Appearance.Filled | Appearance.Duotone | Appearance.Subtle>;
 
 /**
  * Types of badge shape.
@@ -34,11 +35,11 @@ Appearance.Filled | Appearance.Outlined | Appearance.Soft>;
 type BadgeShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
- * Types of badge size.
+ * Types of badge density.
  *
  * @public
  */
-type BadgeSize = Extract<Size, Size.BaseSmall | Size.Base | Size.BaseLarge>;
+type BadgeDensity = Extract<Density, Density.Condensed | Density.Normal | Density.Extended>;
 
 /**
  * Base class for badge
@@ -80,28 +81,7 @@ export class Badge extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: size
 	 */
-	@attr size?: BadgeSize;
-
-	/**
-	 * A decorative icon the badge should have.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: icon
-	 */
-	@attr icon?: string;
-
-	/**
-	 * Indicates the icon affix alignment.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: icon-trailing
-	 */
-	@attr({
-		mode: 'boolean',
-		attribute: 'icon-trailing',
-	}) iconTrailing = false;
+	@attr density?: BadgeDensity;
 
 	/**
 	 * Indicates the badge's text.
@@ -110,5 +90,8 @@ export class Badge extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: text
 	 */
-	@attr text = '';
+	@attr text?: string;
 }
+
+export interface Badge extends AffixIconWithTrailing {}
+applyMixins(Badge, AffixIconWithTrailing);

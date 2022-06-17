@@ -13,14 +13,18 @@ const getClasses = ({
 	[`size-${size}`, Boolean(size)],
 );
 
-const svgTemplate = (svg: string) => html`
-	<figure class="${getClasses}" :innerHTML="${() => svg}"></figure>
-`;
-
 export const iconTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Icon> = () => html`
-		${when((x) => x.state === 'loaded', (x) => svgTemplate(x.svg))}
-		${when((x) => x.state === 'loading' && x.placeholder, (x) => svgTemplate(x.placeholder))}
+  <figure class="${getClasses}">
+		${when((x)=> isValidString(x.svg), (x) => html<Icon>`${x.svg as string}`)}
+  </figure>
 	`;
+
+/**
+ * @param value
+ */
+function isValidString(value?: string): boolean {
+	return typeof value === 'string' && value.length > 0;
+}

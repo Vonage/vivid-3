@@ -1,0 +1,53 @@
+@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+
+.control {
+	$min-block-size: 40px;
+	$gap: 8px;
+	@include typography.typography-cat-shorthand('body-2');
+
+	position: relative;
+	display: inline-flex;
+	box-sizing: border-box;
+	align-items: center;
+	background-color: transparent;
+	border-radius: 6px;
+	color: var(#{theme-consts.$vvd-color-on-canvas});
+	gap: $gap;
+	hyphens: auto;
+	inline-size: 100%;
+	min-block-size: $min-block-size;
+	outline: 0 none;
+	padding-block: 10px;
+	padding-inline: $gap;
+	text-decoration: none;
+	vertical-align: middle;
+	word-break: break-word;
+
+	@at-root :host,
+	& {
+		outline: 0 none;
+	}
+
+	&.icon-only {
+		display: flex;
+		block-size: $min-block-size;
+		inline-size: $min-block-size;
+		place-content: center;
+	}
+
+}
+
+.control:focus {
+	background-color: var(#{theme-consts.$vvd-color-neutral-20});
+}
+
+.focus-indicator {
+	.control:not(:focus-visible) & {
+		display: none;
+	}
+}
+
+.icon {
+	font-size: 20px;
+}

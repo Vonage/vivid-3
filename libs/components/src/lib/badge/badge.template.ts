@@ -2,25 +2,20 @@ import { html } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { Icon } from '../icon/icon';
+import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { Badge } from './badge';
 
 const getClasses = ({
-	connotation, appearance, shape, size, iconTrailing,
+	connotation, appearance, shape, density, iconTrailing
 }: Badge) => classNames(
 	'control',
-	['icon-trailing', iconTrailing],
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
-	[`size-${size}`, Boolean(size)],
+	[`density-${density}`, Boolean(density)],
+	['icon-trailing', iconTrailing],
 );
 
-const iconTemplate = (context: ElementDefinitionContext) => {
-	const iconTag = context.tagFor(Icon);
-
-	return html`<span class="affix"><${iconTag} :type="${(x) => x.icon}"></${iconTag}></span>`;
-};
 /**
  * The template for the {@link @microsoft/fast-foundation#Badge} component.
  *
@@ -30,8 +25,12 @@ const iconTemplate = (context: ElementDefinitionContext) => {
 export const badgeTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Badge> = (context: ElementDefinitionContext) => html`
-        <span class="${getClasses}">
-			${(x) => (x.icon ? iconTemplate(context) : '')}
-			${(x) => x.text}
+) => ViewTemplate<Badge> = (context: ElementDefinitionContext) => {
+	const affixIconTemplate = affixIconTemplateFactory(context);
+
+	return html`
+    <span class="${getClasses}">
+      ${x => affixIconTemplate(x.icon)}
+      ${(x) => x.text}
 		</span>`;
+};

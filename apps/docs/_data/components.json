@@ -1,9 +1,49 @@
 [
   {
+    "title": "accordion",
+    "markdown": "./libs/components/src/lib/accordion/README.md",
+    "modules": [
+      "/assets/modules/components/accordion/index.js",
+      "/assets/modules/components/accordion-item/index.js"
+    ]
+  },
+  {
+    "title": "accordion-item",
+    "markdown": "./libs/components/src/lib/accordion-item/README.md",
+    "modules": [
+      "/assets/modules/components/accordion-item/index.js",
+      "/assets/modules/components/text/index.js",
+      "/assets/modules/components/elevation/index.js"
+    ]
+  },
+  {
     "title": "badge",
     "markdown": "./libs/components/src/lib/badge/README.md",
     "modules": [
       "/assets/modules/components/badge/index.js"
+    ]
+  },
+  {
+    "title": "banner",
+    "markdown": "./libs/components/src/lib/banner/README.md",
+    "modules": [
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/banner/index.js"
+    ]
+  },
+  {
+    "title": "breadcrumb",
+    "markdown": "./libs/components/src/lib/breadcrumb/README.md",
+    "modules": [
+      "/assets/modules/components/breadcrumb-item/index.js",
+      "/assets/modules/components/breadcrumb/index.js"
+    ]
+  },
+  {
+    "title": "breadcrumb-item",
+    "markdown": "./libs/components/src/lib/breadcrumb-item/README.md",
+    "modules": [
+      "/assets/modules/components/breadcrumb-item/index.js"
     ]
   },
   {
@@ -14,10 +54,26 @@
     ]
   },
   {
-    "title": "anchor",
-    "markdown": "./libs/components/src/lib/anchor/README.md",
+    "title": "calendar",
+    "markdown": "./libs/components/src/lib/calendar/README.md",
     "modules": [
-      "/assets/modules/components/anchor/index.js"
+      "/assets/modules/components/calendar/index.js"
+    ]
+  },
+  {
+    "title": "calendar-event",
+    "markdown": "./libs/components/src/lib/calendar-event/README.md",
+    "modules": [
+      "/assets/modules/components/calendar-event/index.js",
+      "/assets/modules/components/calendar/index.js"
+    ]
+  },
+  {
+    "title": "elevation",
+    "markdown": "./libs/components/src/lib/elevation/README.md",
+    "modules": [
+      "/assets/modules/components/elevation/index.js",
+      "/assets/modules/components/layout/index.js"
     ]
   },
   {
@@ -31,7 +87,109 @@
     "title": "layout",
     "markdown": "./libs/components/src/lib/layout/README.md",
     "modules": [
+      "/assets/modules/components/layout/index.js",
+      "/assets/modules/components/card/index.js"
+    ]
+  },
+  {
+    "title": "popup",
+    "markdown": "./libs/components/src/lib/popup/README.md",
+    "modules": [
+      "/assets/modules/components/popup/index.js",
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/icon/index.js",
+      "/assets/modules/components/text/index.js",
       "/assets/modules/components/layout/index.js"
+    ]
+  },
+  {
+    "title": "side-drawer",
+    "markdown": "./libs/components/src/lib/side-drawer/README.md",
+    "modules": [
+      "/assets/modules/components/side-drawer/index.js",
+      "/assets/modules/components/sidenav-item/index.js",
+      "/assets/modules/components/text/index.js",
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/layout/index.js"
+    ]
+  },
+  {
+    "title": "sidenav-item",
+    "markdown": "./libs/components/src/lib/sidenav-item/README.md",
+    "modules": [
+      "/assets/modules/components/sidenav-item/index.js"
+    ]
+  },
+  {
+    "title": "text",
+    "markdown": "./libs/components/src/lib/text/README.md",
+    "modules": [
+      "/assets/modules/components/text/index.js"
+    ]
+  },
+  {
+    "title": "tooltip",
+    "markdown": "./libs/components/src/lib/tooltip/README.md",
+    "modules": [
+      "/assets/modules/components/tooltip/index.js",
+      "/assets/modules/components/text/index.js",
+      "/assets/modules/components/button/index.js"
+    ]
+  },
+  {
+    "title": "progress",
+    "markdown": "./libs/components/src/lib/progress/README.md",
+    "modules": [
+      "/assets/modules/components/progress/index.js"
+    ]
+  },
+  {
+    "title": "progress-ring",
+    "markdown": "./libs/components/src/lib/progress-ring/README.md",
+    "modules": [
+      "/assets/modules/components/layout/index.js",
+      "/assets/modules/components/progress-ring/index.js"
+    ]
+  },
+  {
+    "title": "card",
+    "markdown": "./libs/components/src/lib/card/README.md",
+    "modules": [
+      "/assets/modules/components/card/index.js",
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/text/index.js",
+      "/assets/modules/components/layout/index.js"
+    ]
+  },
+  {
+    "title": "text-field",
+    "markdown": "./libs/components/src/lib/text-field/README.md",
+    "modules": [
+      "/assets/modules/components/text-field/index.js"
+    ]
+  },
+  {
+    "title": "fab",
+    "markdown": "./libs/components/src/lib/fab/README.md",
+    "modules": [
+      "/assets/modules/components/fab/index.js",
+      "/assets/modules/components/layout/index.js"
+    ]
+  },
+  {
+    "title": "action-group",
+    "markdown": "./libs/components/src/lib/action-group/README.md",
+    "modules": [
+      "/assets/modules/components/action-group/index.js",
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/text-field/index.js"
+    ]
+  },
+  {
+    "title": "note",
+    "markdown": "./libs/components/src/lib/note/README.md",
+    "modules": [
+      "/assets/modules/components/note/index.js"
     ]
   }
 ]

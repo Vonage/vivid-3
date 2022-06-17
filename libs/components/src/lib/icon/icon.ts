@@ -5,7 +5,7 @@ import type { Connotation, Size } from '../enums';
 import { PLACEHOLDER_ICON } from './icon.placeholder';
 
 const BASE_URL = 'https://icon.resources.vonage.com'; // namespaced as 3f7739a0-a898-4f69-a82b-ad9d743170b6 on icons.resources.vonage.com
-const ICON_SET_VERSION = '4.0.23';
+const ICON_SET_VERSION = '4.0.28';
 
 // Start displaying placeholder if waiting more than this period of time
 const PLACEHOLDER_DELAY = 500;
@@ -40,12 +40,19 @@ const resolveIcon = memoizeWith(identity as () => string, (iconId = '') => (icon
  * @public
  */
 type IconConnotation = Extract<Connotation,
-| Connotation.Primary
+| Connotation.Accent
 | Connotation.CTA
 | Connotation.Announcement
 | Connotation.Success
 | Connotation.Alert
 | Connotation.Info>;
+
+/**
+ * Types of icon size.
+ *
+ * @public
+ */
+type IconSize = Extract<Size, Size.Small | Size.Medium | Size.Large>;
 
 export class Icon extends FoundationElement {
 	/**
@@ -57,13 +64,9 @@ export class Icon extends FoundationElement {
 	 */
 	@attr connotation?: IconConnotation;
 
-	@attr size?: Size;
+	@attr size?: IconSize;
 
-	@observable state: 'idle' | 'loading' | 'loaded' | 'fail' = 'idle';
-
-	@observable svg: any = null;
-
-	@observable placeholder: any = null;
+	@observable svg?: string;
 
 	/**
 	 * Indicates which icon to resolve.
@@ -75,24 +78,23 @@ export class Icon extends FoundationElement {
 	@attr type?: string;
 
 	async typeChanged() {
-		this.state = 'loading';
-		this.svg = null;
-		this.placeholder = null;
+		this.svg = undefined;
 
 		let timeout = setTimeout(() => {
-			this.placeholder = PLACEHOLDER_ICON;
+			this.svg = PLACEHOLDER_ICON;
 			timeout = setTimeout(() => {
-				this.placeholder = null;
+				if (this.svg === PLACEHOLDER_ICON) {
+					this.svg = undefined;
+				}
 			}, PLACEHOLDER_TIMEOUT);
 		}, PLACEHOLDER_DELAY);
 
 		await resolveIcon(this.type)
 			.then((svg) => {
 				this.svg = svg;
-				this.state = 'loaded';
 			})
 			.catch(() => {
-				this.state = 'fail';
+				this.svg = undefined;
 			}).finally(() => { clearTimeout(timeout); });
 	}
 }

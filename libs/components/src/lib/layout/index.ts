@@ -9,10 +9,10 @@ import { layoutTemplate as template } from './layout.template';
  * Represents a layout custom element.
  * layout is...
  */
-export const VIVIDLayout = Layout.compose<FoundationElementDefinition>({
+export const vividLayout = Layout.compose<FoundationElementDefinition>({
 	baseName: 'layout',
 	template: template as any,
 	styles,
 });
 
-designSystem.register(VIVIDLayout());
+designSystem.register(vividLayout());
