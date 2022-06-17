@@ -13,6 +13,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(path.join(new URL('.', import.meta.url).pathname, 'README.md'))
 		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`,'');
 
+	page.setViewportSize({ width: 200, height: 720 });
+
 	await loadComponents({
 		page,
 		components,
