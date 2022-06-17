@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { expect, test } from '@playwright/test'; 
+import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import {
 	extractHTMLBlocksFromReadme,
@@ -17,8 +17,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			`${htmlString} <div style="margin: 5px;">${block}</div>`,
 		''
 	);
-  
-	page.setViewportSize({ width: 500, height: 800 });
+
+	page.setViewportSize({ width: 500, height: 720 });
 
 
 	await loadComponents({

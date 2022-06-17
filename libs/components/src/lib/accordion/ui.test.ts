@@ -5,7 +5,7 @@ import {
 	extractHTMLBlocksFromReadme,
 	loadComponents,
 	loadTemplate,
-} from '../../visual-tests/visual-tests-utils.ts';
+} from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['accordion','accordion-item'];
 
@@ -18,7 +18,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		''
 	);
 
-	page.setViewportSize({ width: 380, height: 800 });
+	page.setViewportSize({ width: 380, height: 720 });
 
 	await loadComponents({
 		page,
