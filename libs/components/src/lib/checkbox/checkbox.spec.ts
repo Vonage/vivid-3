@@ -104,31 +104,31 @@ describe('vwc-checkbox', () => {
 			const base = element.shadowRoot?.querySelector('.base.indeterminate');
 			expect(base).toBeInstanceOf(Element);
 		});
+
+		it('should set off `indeterminate` on `checked` change by user click', async () => {
+
+			element.indeterminate = true;
+
+			const base = element.shadowRoot?.querySelector('.base') as HTMLElement;
+
+			base.click();
+
+			expect(element.indeterminate).toBeFalsy();
+		});
+
+		it('should set off `indeterminate` on `checked` change by user keypress', async () => {
+
+			element.indeterminate = true;
+
+			const base = element.shadowRoot?.querySelector('.base') as HTMLElement;
+
+			base.dispatchEvent(new KeyboardEvent('keypress', { key: ' ' }));
+
+			expect(element.indeterminate).toBeFalsy();
+		});
 	});
 
-	it('should set off `indeterminate` on `checked` change by user click', async () => {
-
-		element.indeterminate = true;
-
-		const base = element.shadowRoot?.querySelector('.base') as HTMLElement;
-
-		base.click();
-
-		expect(element.indeterminate).toBeFalsy();
-	});
-
-	it('should set off `indeterminate` on `checked` change by user keypress', async () => {
-
-		element.indeterminate = true;
-
-		const base = element.shadowRoot?.querySelector('.base') as HTMLElement;
-
-		base.dispatchEvent(new KeyboardEvent('keypress', { key: ' ' }));
-
-		expect(element.indeterminate).toBeFalsy();
-	});
-
-		describe('form association', function () {
+	describe('form association', function () {
 		it('should attach to closest form', async function () {
 			const formWrapper = document.createElement('div');
 			const formId = 'testFormId';
@@ -151,8 +151,6 @@ describe('vwc-checkbox', () => {
 				expect(formDataValue)
 					.toEqual(checked);
 			});
-
 		});
 	});
-
 });
