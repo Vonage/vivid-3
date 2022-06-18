@@ -1,4 +1,4 @@
-import {createFormHTML, fixture, listenToFormSubmission} from '@vivid-nx/shared';
+import {createFormHTML, elementUpdated, fixture, listenToFormSubmission} from '@vivid-nx/shared';
 import { Checkbox } from './checkbox';
 import '.';
 
