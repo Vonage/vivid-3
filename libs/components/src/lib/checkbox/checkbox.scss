@@ -20,26 +20,26 @@ $size: 24px;
 $gutter: 4px;
 
 .base {
-  @include connotation.connotation;
-  @include appearance.appearance;
+	@include connotation.connotation;
+	@include appearance.appearance;
 
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
+	display: inline-flex;
+	align-items: center;
+	gap: 12px;
 	outline: 0 none;
 
-  @supports (user-select: none) {
-    user-select: none;
-  }
+	@supports (user-select: none) {
+		user-select: none;
+	}
 }
 
 .control {
-  position: relative;
+	position: relative;
 	display: inline-flex;
-  justify-content: center;
-  align-items: center;
 	width: $size;
 	height: $size;
+	align-items: center;
+	justify-content: center;
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	border-radius: 3px;
 	box-shadow: inset 0 0 0 2px var(#{appearance.get-appearance-token(outline)});
@@ -48,31 +48,33 @@ $gutter: 4px;
 }
 
 .indicator {
-  font-size: calc($size - $gutter * 2);
+	font-size: calc($size - $gutter * 2);
 
-  @at-root .base:not(.checked) #{&}.checkmark {
-    display: none;
-  }
+	@at-root .base:not(.checked) #{&}.checkmark {
+		display: none;
+	}
 
-  &.minus {
-    @at-root
-    .base:not(.indeterminate) &,
-    .base.checked & {
-      display: none;
-    }
-  }
+	&.minus {
+		@at-root
+		.base:not(.indeterminate) &,
+		.base.checked & {
+			display: none;
+		}
+	}
 }
 
 label {
 	@include typography.typography-cat-shorthand(body-2);
+
 	color: var(#{theme-consts.$vvd-color-on-canvas});
-  cursor: pointer;
+	cursor: pointer;
 }
 
 .focus-indicator {
-  #{focus-variables.$focus-inset}: -3px;
-  #{focus-variables.$focus-stroke-gap-color}: transparent;
-  border-radius: 6px;
+	#{focus-variables.$focus-inset}: -3px;
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+	border-radius: 6px;
 
 	.base:not(:focus-visible) & {
 		display: none;

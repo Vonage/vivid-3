@@ -14,8 +14,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
     }
 </style>
 <vwc-side-drawer id="sideDrawer" open>
-	<div slot="top-bar">
-        <vwc-text font-face="subtitle-1">VIVID</vwc-text>
+	<div slot="header">
+        <vwc-text tight font-face="subtitle-1">VIVID</vwc-text>
     </div>
 	<div>
 		<vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>

@@ -14,7 +14,7 @@ const getClasses = ({
 }: Checkbox) =>
 	classNames(
 		'base',
-		['readOnly', Boolean(readOnly)],
+		['readonly', Boolean(readOnly)],
 		['checked', Boolean(checked)],
 		['disabled', Boolean(disabled)],
 		['indeterminate', Boolean(indeterminate)],
@@ -44,7 +44,7 @@ CheckboxOptions
   aria-readonly="${x => x.readOnly}"
   tabindex="${x => (x.disabled ? null : 0)}"
   @keypress="${(x, c) => x.keypressHandler(c.event as KeyboardEvent)}"
-  @click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
+  @click="${(x) => x.clickHandler()}"
   class="${getClasses}"
   >
     <div class="control">
