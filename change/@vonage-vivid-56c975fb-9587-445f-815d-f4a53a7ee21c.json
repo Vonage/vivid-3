@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "improve visual regression tests performance by setting size to viewport",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}

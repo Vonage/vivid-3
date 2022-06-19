@@ -1,5 +1,9 @@
-import { attr } from '@microsoft/fast-element';
+import 'blocking-elements';
+import 'wicg-inert';
+import 'babel-polyfill';
+import { attr, observable } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
+import type { DocumentWithBlockingElements } from 'blocking-elements';
 
 /**
  * Base class for side-drawer
@@ -14,6 +18,9 @@ import { FoundationElement } from '@microsoft/fast-foundation';
  */
 
 export class SideDrawer extends FoundationElement {
+	asideEl!: HTMLElement;
+	scrimEl!: any;
+
 	/**
 	 * applies scheme alternate region
 	 *
@@ -54,5 +61,26 @@ export class SideDrawer extends FoundationElement {
 	 *
 	 * @public
 	 */
-	hasTopBar: HTMLElement[] | undefined;
+	@observable headerSlottedContent?: HTMLElement[];
+
+	#blockingElements = (document as DocumentWithBlockingElements).$blockingElements;
+
+	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
+		super.attributeChangedCallback(name, oldValue, newValue);
+		if (name === 'open' && this.modal) {
+			this.open ? this.#trapFocus() : this.#releaseFocusTrap();
+		}
+		console.log(this.headerSlottedContent);
+	}
+
+	#trapFocus(): void {
+		this.#blockingElements.push(this.asideEl);
+		if (this.scrimEl) {
+			this.scrimEl.inert = false;
+		}
+	}
+
+	#releaseFocusTrap(): void {
+		this.#blockingElements.remove(this.asideEl);
+	}
 }

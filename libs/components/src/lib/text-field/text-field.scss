@@ -147,8 +147,7 @@ $low-ink-color: --_low-ink-color;
 
 	pointer-events: none;
 
-	.fieldset:not(:focus-within)>& {
+	.fieldset:not(:focus-visible, :focus-within) > & {
 		display: none;
 	}
-
 }
