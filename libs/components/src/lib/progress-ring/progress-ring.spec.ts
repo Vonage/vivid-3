@@ -157,7 +157,6 @@ describe('vwc-progress-ring', () => {
 			const expectedClass = `density-${densityValue + BASE_DENSITY}`;
 			element.setAttribute('density', densityValue.toString());
 			await elementUpdated(element);
-			console.log(baseElement?.className);
 			expect(baseElement?.classList.contains(expectedClass)).toBeTruthy();
 		});
 	});
