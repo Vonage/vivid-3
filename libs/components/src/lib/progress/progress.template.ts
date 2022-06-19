@@ -7,12 +7,15 @@ import {classNames} from '@microsoft/fast-web-utilities';
 import type {BaseProgress, ProgressOptions} from '@microsoft/fast-foundation';
 import type { Progress } from './progress';
 
-const getClasses = (_: Progress) => classNames(
+
+const getClasses = ({
+	connotation, shape, reverse, paused
+}: Progress) => classNames(
 	'base',
-	[`connotation-${_.connotation}`, !!_.connotation],
-	[`shape-${_.shape}`, !!_.shape],
-	['reverse', _.reverse],
-	['paused', _.paused]
+	[`connotation-${connotation}`, Boolean(connotation)],
+	[`shape-${shape}`, Boolean(shape)],
+	['reverse', Boolean(reverse)],
+	['paused', Boolean(paused)],
 );
 
 /**
