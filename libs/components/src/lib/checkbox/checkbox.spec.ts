@@ -24,32 +24,6 @@ describe('vwc-checkbox', () => {
 		});
 	});
 
-	describe('form association', function () {
-		it('should attach to closest form', async function () {
-			const formWrapper = document.createElement('div');
-			const formId = 'testFormId';
-			const fieldName = 'testFieldName';
-			const checked = 'on';
-			const {form: formElement} = createFormHTML<Checkbox>({
-				fieldName,
-				formId,
-				formWrapper,
-				checked,
-				componentTagName: COMPONENT_TAG
-			});
-			document.body.append(formWrapper);
-
-			const submitPromise = listenToFormSubmission(formElement);
-			formElement.requestSubmit();
-			(await submitPromise).forEach((formDataValue: any, formDataKey: string) => {
-				expect(formDataKey)
-					.toEqual(fieldName);
-				expect(formDataValue)
-					.toEqual(checked);
-			});
-
-		});
-	});
 	describe('label', () => {
 		it('set label property to node', async () => {
 			const label = 'lorem';
