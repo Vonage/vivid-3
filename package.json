@@ -3,10 +3,12 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve",
-    "build": "nx build",
-    "test": "nx test",
+    "start": "npx nx run docs:serve",
+    "lint": "npm run nx run-many -- --target=stylelint --all & npm run nx run-many -- --target=lint --all --fix",
+    "change": "npx beachball change",
     "nx": "nx",
+    "test": "npx nx run components:test",
+    "test:ui": "npx nx run components:e2e",
     "test:tools": "jest --projects tools"
   },
   "private": true,
@@ -15,12 +17,13 @@
     "@microsoft/fast-element": "^1.10.2",
     "@microsoft/fast-foundation": "^2.46.9",
     "@microsoft/fast-web-utilities": "^5.4.1",
+    "babel-polyfill": "^6.26.0",
     "blocking-elements": "^0.1.1",
     "core-js": "^3.22.8",
     "ramda": "^0.27.2",
     "regenerator-runtime": "^0.13.9",
     "tslib": "^2.4.0",
-    "wicg-inert": "^3.1.1"
+    "wicg-inert": "^3.1.2"
   },
   "devDependencies": {
     "@11ty/eleventy": "^1.0.1",
@@ -58,7 +61,7 @@
     "glob": "^7.2.0",
     "highlight.js": "^11.5.1",
     "http-server": "^14.1.0",
-    "jasmine-core": "~3.6.0",
+    "jasmine-core": "4.1.1",
     "jasmine-spec-reporter": "~5.0.0",
     "jest": "27.5.1",
     "jest-axe": "^6.0.0",

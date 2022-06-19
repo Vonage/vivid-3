@@ -1,4 +1,4 @@
-import { ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture, getControlElement, setAttribute } from '.';
+import { ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture, getBaseElement, getControlElement, setAttribute } from '.';
 
 class DummyElement extends HTMLElement {
   connectedCallback() {
@@ -33,6 +33,22 @@ describe(`test-utils`, function () {
       const element = fixture('<div id="test"></div>', ADD_TEMPLATE_TO_FIXTURE);
       expect(element.id).toEqual('test');
       expect(element.parentElement?.parentElement?.tagName).toEqual('BODY');
+    });
+  });
+
+  describe(`getBaseElement`, function () {
+    it(`should return undefined if no shadow dom exists`, function () {
+      const lightElement = document.createElement('div');
+      expect(getBaseElement(lightElement)).toEqual(undefined);
+    });
+
+    it(`should return the base element inside shadowDOM`, function () {
+      const baseElement = document.createElement('div');
+      baseElement.classList.add('base');
+      const shadowedElement = document.createElement('dummy-element');
+      document.body.appendChild(shadowedElement);
+      shadowedElement.shadowRoot ? shadowedElement.shadowRoot.appendChild(baseElement) : '';
+      expect(getBaseElement(shadowedElement)).toEqual(baseElement);
     });
   });
 

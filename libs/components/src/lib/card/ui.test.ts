@@ -7,7 +7,7 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['card'];
+const components = ['card', 'button', 'layout'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(
@@ -17,6 +17,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			`${htmlString} <div style="margin: 5px;">${block}</div>`,
 		''
 	);
+
+	page.setViewportSize({ width: 360, height: 720 });
 
 	await loadComponents({
 		page,

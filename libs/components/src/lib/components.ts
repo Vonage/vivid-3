@@ -7,6 +7,7 @@ export * from './breadcrumb';
 export * from './breadcrumb-item';
 export * from './button';
 export * from './calendar';
+export * from './calendar-event';
 export * from './card';
 export * from './elevation';
 export * from './fab';

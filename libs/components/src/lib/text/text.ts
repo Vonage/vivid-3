@@ -9,7 +9,7 @@ import type { VVDFontFace } from '../../../../../node_modules/@vonage/vivid-toke
  * @public
  */
 type TextConnotation = Extract<Connotation,
-| Connotation.Primary
+| Connotation.Accent
 | Connotation.CTA
 | Connotation.Success
 | Connotation.Alert

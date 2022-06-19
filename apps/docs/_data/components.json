@@ -12,8 +12,7 @@
     "markdown": "./libs/components/src/lib/accordion-item/README.md",
     "modules": [
       "/assets/modules/components/accordion-item/index.js",
-      "/assets/modules/components/text/index.js",
-      "/assets/modules/components/elevation/index.js"
+      "/assets/modules/components/text/index.js"
     ]
   },
   {
@@ -61,11 +60,11 @@
     ]
   },
   {
-    "title": "elevation",
-    "markdown": "./libs/components/src/lib/elevation/README.md",
+    "title": "calendar-event",
+    "markdown": "./libs/components/src/lib/calendar-event/README.md",
     "modules": [
-      "/assets/modules/components/elevation/index.js",
-      "/assets/modules/components/layout/index.js"
+      "/assets/modules/components/calendar-event/index.js",
+      "/assets/modules/components/calendar/index.js"
     ]
   },
   {
@@ -100,9 +99,9 @@
     "modules": [
       "/assets/modules/components/side-drawer/index.js",
       "/assets/modules/components/sidenav-item/index.js",
-      "/assets/modules/components/icon/index.js",
       "/assets/modules/components/text/index.js",
-      "/assets/modules/components/button/index.js"
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/layout/index.js"
     ]
   },
   {
@@ -147,7 +146,10 @@
     "title": "card",
     "markdown": "./libs/components/src/lib/card/README.md",
     "modules": [
-      "/assets/modules/components/card/index.js"
+      "/assets/modules/components/card/index.js",
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/text/index.js",
+      "/assets/modules/components/layout/index.js"
     ]
   },
   {
