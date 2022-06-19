@@ -6,7 +6,7 @@ Progress is used to display the length of time a process will take or to visuali
 <script type="module">import '@vonage/vivid/progress';</script>
 ```
 
-## Properties
+## Members
 
 ### Min/Max
 
