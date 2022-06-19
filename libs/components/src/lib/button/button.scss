@@ -24,6 +24,7 @@
 	@include connotation.connotation;
 	@include appearance.appearance;
 
+  white-space: nowrap;
 	position: relative;
 	display: inline-flex;
 	box-sizing: border-box;
