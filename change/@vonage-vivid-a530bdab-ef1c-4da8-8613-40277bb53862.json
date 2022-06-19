@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "omit elevation from docs, as is redundant considering card",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}
