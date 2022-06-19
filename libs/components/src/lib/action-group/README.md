@@ -83,15 +83,22 @@ enabling the `tight` member will result in a dense style that fits the "normal" 
 - Default: `false`
 
 ```html preview
-<vwc-layout column-basis="block" style="display: block; max-inline-size: 35ch">
+<style>
+  vwc-text-field {
+    inline-size: initial;
+  }
 
-  <vwc-text-field aria-label="Name" placeholder="Name"></vwc-text-field>
+  vwc-action-group {
+    flex-grow: 1;
+  }
+</style>
 
+<vwc-layout column-basis="block" column-spacing="small" style="display: block; max-inline-size: 35ch">
+  <vwc-text-field name="username" aria-label="Username" placeholder="Username"></vwc-text-field>
   <vwc-action-group appearance="fieldset" tight>
     <vwc-button icon="flag-uruguay"></vwc-button>
     <vwc-text-field appearance="ghost" aria-label="Phone number" placeholder="Phone number" name="phone" autocomplete=""></vwc-text-field>
   </vwc-action-group>
-
 </vwc-layout>
 ```
 
