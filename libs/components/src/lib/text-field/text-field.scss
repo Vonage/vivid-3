@@ -37,9 +37,9 @@ $low-ink-color: --_low-ink-color;
 .label {
 	@include typography.typography-cat-shorthand('body-2');
 
+	contain: inline-size;
 	grid-column: 1 / 4;
 	grid-row: 1;
-  contain: size;
 
 	.char-count+& {
 		grid-column: 1 / 3;
@@ -138,9 +138,10 @@ $low-ink-color: --_low-ink-color;
 
 .error-message {
 	@include typography.typography-cat-shorthand('caption');
-contain: size;
+
 	display: flex;
 	color: var(#{theme-consts.$vvd-color-on-canvas});
+	contain: inline-size;
 	grid-column: 2 / 4;
 
 	&-icon {
