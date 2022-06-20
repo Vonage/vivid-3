@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "action group tight member removes padding",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}

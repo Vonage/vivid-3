@@ -32,6 +32,7 @@ Set the `appearance` attribute to change the action-Group's appearance.
   <vwc-button label="paste"></vwc-button>
   <vwc-button label="submit"></vwc-button>
 </vwc-action-group>
+
 <vwc-action-group appearance="ghost">
   <vwc-button label="edit" appearance="filled"></vwc-button>
   <vwc-button label="copy" appearance="filled"></vwc-button>
@@ -74,6 +75,34 @@ Use a `<span>` tag with `role="separator"` for adding separator between the acti
 </vwc-action-group>
 ```
 
+### Tight
+
+By default, action group is styled in a spacious manner which visually extends the baseline row size and inline gapping.
+enabling the `tight` member will result in a dense style that fits the "normal" baseline.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<style>
+  vwc-layout {
+    --layout-grid-template-columns: 35ch;
+  }
+
+  vwc-action-group > vwc-text-field {
+    flex-grow: 1;
+  }
+</style>
+
+<vwc-layout column-basis="block" column-spacing="small">
+  <vwc-text-field name="username" aria-label="Username" placeholder="Username"></vwc-text-field>
+  <vwc-action-group appearance="fieldset" tight>
+    <vwc-button icon="flag-uruguay"></vwc-button>
+    <vwc-text-field appearance="ghost" aria-label="Phone number" placeholder="Phone number" name="phone" autocomplete=""></vwc-text-field>
+  </vwc-action-group>
+</vwc-layout>
+```
+
 ## Use cases
 
 ### semi-split button
@@ -82,6 +111,11 @@ Use a `<span>` tag with `role="separator"` for adding separator between the acti
 <vwc-action-group shape="pill">
   <vwc-button label='My Action' appearance='ghost' shape="pill"></vwc-button>
     <span role="separator"></span>
+  <vwc-button shape="pill" icon="chevron-down-solid"></vwc-button>
+</vwc-action-group>
+
+<vwc-action-group shape="pill" tight>
+  <vwc-button label='My Action' appearance='ghost' shape="pill"></vwc-button>
   <vwc-button shape="pill" icon="chevron-down-solid"></vwc-button>
 </vwc-action-group>
 ```

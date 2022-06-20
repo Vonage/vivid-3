@@ -11,6 +11,10 @@
 
 $low-ink-color: --_low-ink-color;
 
+:host {
+	display: inline-block;
+}
+
 .base {
 	// due to the fact :user-invalid proposal isn't supported by browsers yet,
 	// we apply appearance here instead of the input element itself.
@@ -19,11 +23,13 @@ $low-ink-color: --_low-ink-color;
 	@include appearance.appearance;
 
 	display: inline-grid;
-	width: inherit;
-	min-width: inherit;
-	max-width: inherit;
+	width: 100%;
 	gap: 4px;
 	grid-template-columns: min-content 1fr max-content;
+
+	@supports(user-select: none) {
+		user-select: none;
+	}
 
 	&:not(.disabled) {
 		#{$low-ink-color}: var(#{theme-consts.$vvd-color-neutral-70});
@@ -64,9 +70,6 @@ $low-ink-color: --_low-ink-color;
 .fieldset {
 	position: relative;
 	display: flex;
-	width: inherit;
-	min-width: inherit;
-	max-width: inherit;
 	align-items: center;
 	color: var(#{appearance.get-appearance-token(text)});
 	grid-column: 1 / 4;
@@ -97,9 +100,7 @@ $low-ink-color: --_low-ink-color;
 	// ! autofill indication applies on all fieldset area
 	@include typography.typography-cat-shorthand('body-2');
 
-	width: inherit;
-	min-width: inherit;
-	max-width: inherit;
+	width: 100%;
 	border: 0 none;
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	block-size: 100%;
