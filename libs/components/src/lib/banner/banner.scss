@@ -2,7 +2,7 @@
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: success info alert announcement warning,
-	$shades: firm,
+	$shades: primary on-primary,
 	$default: info,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
@@ -19,9 +19,9 @@ $banner-transition-delay: --transition-delay;
 	@include appearance.appearance;
 
 	overflow: hidden;
-	max-height: 10rem;
-	background-color: var(#{appearance.get-variable(fill)});
-	color: var(#{appearance.get-variable(text)});
+	max-height: 160px;
+	background-color: var(#{appearance.get-appearance-token(fill)});
+	color: var(#{appearance.get-appearance-token(text)});
 	transition: max-height var(#{$banner-transition-delay}, 200ms);
 
 	&.removing {

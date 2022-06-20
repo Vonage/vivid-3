@@ -1,7 +1,6 @@
 /* eslint-disable no-shadow */
 export enum Connotation {
-	Canvas = 'canvas',
-	Primary = 'primary',
+	Accent = 'accent',
 	CTA = 'cta',
 	Success = 'success',
 	Alert = 'alert',
@@ -24,10 +23,10 @@ export enum Shape {
 
 /* eslint-disable no-shadow */
 export enum Appearance {
-	Text = 'text',
 	Filled = 'filled',
 	Outlined = 'outlined',
 	Duotone = 'duotone',
+	Fieldset = 'fieldset',
 	Subtle = 'subtle',
 	Ghost = 'ghost',
 }

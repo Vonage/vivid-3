@@ -1,8 +1,49 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sat, 28 May 2022 17:55:16 GMT and should not be manually modified.
+This log was last generated on Sun, 19 Jun 2022 14:36:21 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.21
+
+Sun, 19 Jun 2022 14:36:21 GMT
+
+### Changes
+
+- improve visual regression tests performance by setting size to viewport (yinon@hotmail.com)
+- omit elevation from docs, as is redundant considering card (yinon@hotmail.com)
+- migrate calendar to vivid@next (yinon@hotmail.com)
+- migrate calendar event to fast element (yinon@hotmail.com)
+- display focus ring on keyboard focus only (yinon@hotmail.com)
+- text field support autocomplete and name (yonatan.kra@vonage.com)
+- rename primary to accent (yinon@hotmail.com)
+- refactor FAB size to normal (40px) (yinon@hotmail.com)
+- card - rename default slot to 'main' (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.19
+
+Tue, 31 May 2022 17:06:10 GMT
+
+### Changes
+
+- export text field & action group from package (yinon@hotmail.com)
+- card improved css flow display properties (yinon@hotmail.com)
+
+## 3.0.0-next.18
+
+Mon, 30 May 2022 12:41:42 GMT
+
+### Changes
+
+- package export text field (yinon@hotmail.com)
+
+## 3.0.0-next.17
+
+Mon, 30 May 2022 12:17:41 GMT
+
+### Changes
+
+- add text field component (yonatan.kra@vonage.com)
 
 ## 3.0.0-next.16
 

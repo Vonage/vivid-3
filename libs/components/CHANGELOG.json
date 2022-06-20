@@ -2,6 +2,192 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Sun, 19 Jun 2022 14:36:21 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.21",
+      "version": "3.0.0-next.21",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "f3fc6c025c8a4f227fc5c30ae5684ed129fdf8ed",
+            "comment": "clean up console logs"
+          },
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "4df81e36e68adbe74895891b3eb7c208464e6657",
+            "comment": "fix(text-field): input height in FF"
+          },
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "f136f8afaa4b56aa676ea875af1778c93da6a7d6",
+            "comment": "fix(action-group): refine tests"
+          },
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "dd850ea4cea4548e042d3b3882badd1c513b203b",
+            "comment": "fix(style): change rem to px"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "f88726265f17224177ab99fc03dafcfa485b48b1",
+            "comment": "refactor sass mixins"
+          },
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "24a48a974c0536169fe712fcba5e39bee3e39391",
+            "comment": "add blocking elements to side drawer"
+          },
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "4c548a9bef93103e1078e3182f326e57450efc28",
+            "comment": "test(components): remove 'only' method from test"
+          },
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "324fcb2a45a35c17586756efe3a7f8a4f61135b4",
+            "comment": "Update to current version"
+          },
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "c861133284aa87c6cac2b9b0dfb9bcddf217b17f",
+            "comment": "update readme"
+          }
+        ],
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "0e5abeec10b36954e07823f8cfa1681a29d81cee",
+            "comment": "improve visual regression tests performance by setting size to viewport"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "a4c738f5c1fbe4a5285af63364d361ebbecc3e1d",
+            "comment": "omit elevation from docs, as is redundant considering card"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "2422ecd643bce34929c16ef02e5e80a8cf73c1a2",
+            "comment": "migrate calendar to vivid@next"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "4a3b0f9b5722330cbece0f33d3b232c5189fcf0b",
+            "comment": "migrate calendar event to fast element"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "da77ccf390e6e1bb50643a0533d17994f345a9a8",
+            "comment": "display focus ring on keyboard focus only"
+          },
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "ee858ad1a515481bd39c2321386cba888f276ecb",
+            "comment": "text field support autocomplete and name"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "7489f37381daca9b913a23f88413b7d48d90a52a",
+            "comment": "rename primary to accent"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "c232faa0c5633cd273143e063108aff7b5184d92",
+            "comment": "refactor FAB size to normal (40px)"
+          },
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "65c3de17a8a1da30b03b67329bfe283540769fc8",
+            "comment": "card - rename default slot to 'main'"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 31 May 2022 17:06:10 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.19",
+      "version": "3.0.0-next.19",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "8e27bbea6962906d8d692f50f48531c7fccb8aba",
+            "comment": "export text field & action group from package"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "8a5d9264b5ce1cc5b5eb5f64e320e83b26555167",
+            "comment": "card improved css flow display properties"
+          }
+        ],
+        "none": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "4f457fe3901e8a60dae2e89897919a36a135ecb0",
+            "comment": "action-group component"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 30 May 2022 12:41:42 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.18",
+      "version": "3.0.0-next.18",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "543325ca2ff24b281386f1cd9232d365b97b7af3",
+            "comment": "package export text field"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 30 May 2022 12:17:41 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.17",
+      "version": "3.0.0-next.17",
+      "comments": {
+        "none": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "2e17b0e727319ad1fb6b3eac20fcda2346f0a1fe",
+            "comment": "restore full style"
+          }
+        ],
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "ffbd4e5c1ccabb0a2cab95fe018914f92eb08b9d",
+            "comment": "add text field component"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 28 May 2022 17:55:16 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.16",
       "version": "3.0.0-next.16",
