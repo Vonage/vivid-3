@@ -7,6 +7,8 @@ For better and unify components documentation
 Use the new component generator to create a new component:  
 `npm run nx g @vonage/nx-vivid:component my-component`
 
+## Terminology 
+
 ### CSS Class Names
 
 - Use `.base` for the first element in the component.
@@ -29,9 +31,8 @@ Use kebab case for slots name.
 - `media` - for a slot bound to contain visual elements; such as an illustration, video etc'.
 - `meta`
 - `footer / actions`
-- `action-ites / action-items` - ?
+- `action-item / action-items` singular or plural - need to ne decided
 - `main`
-- `App-content` - Maybe change it to `app-main` for slots in components that categorized as templating components (such as side-drawer, top-app-bar).
 
 <hr>
 
