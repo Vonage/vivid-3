@@ -84,11 +84,11 @@ enabling the `tight` member will result in a dense style that fits the "normal" 
 
 ```html preview
 <style>
-  vwc-text-field {
+  vwc-action-group {
     inline-size: initial;
   }
 
-  vwc-action-group {
+  vwc-text-field {
     flex-grow: 1;
   }
 </style>
