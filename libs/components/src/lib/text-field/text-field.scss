@@ -39,6 +39,7 @@ $low-ink-color: --_low-ink-color;
 
 	grid-column: 1 / 4;
 	grid-row: 1;
+  contain: size;
 
 	.char-count+& {
 		grid-column: 1 / 3;
@@ -69,7 +70,7 @@ $low-ink-color: --_low-ink-color;
 	align-items: center;
 	color: var(#{appearance.get-appearance-token(text)});
 	grid-column: 1 / 4;
-	transition: color .2s, box-shadow .2s, background-color .2s;
+	transition: color .2s;
 
 	/* Size */
 	.base:not(.density-extended)>& {
@@ -108,6 +109,7 @@ $low-ink-color: --_low-ink-color;
 	outline: 0 none;
 	padding-inline-end: 16px;
 	padding-inline-start: 16px;
+	transition: box-shadow .2s, background-color .2s;
 
 	&::placeholder {
 		color: var(#{$low-ink-color});
@@ -136,7 +138,7 @@ $low-ink-color: --_low-ink-color;
 
 .error-message {
 	@include typography.typography-cat-shorthand('caption');
-
+contain: size;
 	display: flex;
 	color: var(#{theme-consts.$vvd-color-on-canvas});
 	grid-column: 2 / 4;
