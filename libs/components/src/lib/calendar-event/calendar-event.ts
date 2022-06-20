@@ -1,6 +1,6 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr, nullableNumberConverter } from '@microsoft/fast-element';
-import type { Connotation } from '../enums';
+import type { Appearance, Connotation } from '../enums';
 
 /**
  * Types of calendar event connotation.
@@ -15,6 +15,14 @@ type CalendarEventConnotation = Extract<Connotation,
 | Connotation.Warning
 | Connotation.Info
 | Connotation.Announcement>;
+
+/**
+ * Types of calendar event appearance.
+ *
+ * @public
+ */
+type CalendarEventAppearance = Extract<Appearance,
+Appearance.Filled | Appearance.Duotone | Appearance.Subtle>;
 
 /**
  * Base class for calendar-event
@@ -44,6 +52,15 @@ export class CalendarEvent extends FoundationElement {
 	 * HTML Attribute: connotation
 	 */
 	@attr connotation?: CalendarEventConnotation;
+
+	/**
+	 * The appearance the calendar event should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: appearance
+	 */
+	@attr appearance?: CalendarEventAppearance;
 
 	/**
 	 * sets card display precendence and indentation

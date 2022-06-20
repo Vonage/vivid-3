@@ -20,6 +20,10 @@ export const fixture = (() => {
 	};
 })();
 
+export const getBaseElement = (element: Element) => {
+	return element.shadowRoot?.querySelector('.base') as HTMLElement;
+}
+
 export const getControlElement = (element: Element) => {
 	return element.shadowRoot?.querySelector('.control') as HTMLElement;
 }

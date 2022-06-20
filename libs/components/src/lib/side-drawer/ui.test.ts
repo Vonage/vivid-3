@@ -3,7 +3,7 @@ import type { Page } from '@playwright/test';
 import {
 	loadComponents,
 	loadTemplate
-} from '../../visual-tests/visual-tests-utils.ts';
+} from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['side-drawer', 'text', 'button', 'sidenav-item', 'layout'];
 test('should show the component', async ({ page }: { page: Page }) => {
@@ -14,8 +14,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
     }
 </style>
 <vwc-side-drawer id="sideDrawer" open>
-	<div slot="top-bar">
-        <vwc-text font-face="subtitle-1">VIVID</vwc-text>
+	<div slot="header">
+        <vwc-text tight font-face="subtitle-1">VIVID</vwc-text>
     </div>
 	<div>
 		<vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
@@ -48,6 +48,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		</vwc-text>
 	</vwc-layout>
 </vwc-side-drawer>`;
+
+	page.setViewportSize({ width: 1200, height: 720 });
 
 	await loadComponents({
 		page,

@@ -3,7 +3,7 @@ import type { Page } from '@playwright/test';
 import {
 	loadComponents,
 	loadTemplate,
-} from '../../visual-tests/visual-tests-utils.ts';
+} from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['progress-ring'];
 
@@ -24,6 +24,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	  <vwc-progress-ring min="0" max="50" value="50" density="2"></vwc-progress-ring>
 	  <vwc-progress-ring min="0" max="50" value="50" density="3"></vwc-progress-ring>
 	`;
+
+	page.setViewportSize({ width: 80, height: 720 });
 
 	await loadComponents({
 		page,

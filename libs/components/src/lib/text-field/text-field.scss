@@ -101,6 +101,7 @@ $low-ink-color: --_low-ink-color;
 	padding: 1px;
 	border: 0 none;
 	background-color: unset;
+	block-size: 100%;
 	border-radius: inherit;
 	color: inherit;
 	inset: 0;
@@ -150,8 +151,7 @@ $low-ink-color: --_low-ink-color;
 
 	pointer-events: none;
 
-	.fieldset:not(:focus-within)>& {
+	.fieldset:not(:focus-visible, :focus-within) > & {
 		display: none;
 	}
-
 }
