@@ -48,7 +48,7 @@ const renderHeaderButton = (context: ElementDefinitionContext) => {
 
 	return html<AccordionItem>`
 	<button class="button" id="header" @click=${x => x.open = !x.open}
-		?aria-expanded=${x => x.open}
+		aria-expanded=${x => x.open}
 		aria-controls="${PANEL}">
     ${() => focusTemplate}
 		${x => affixIconTemplate(x.icon)}
