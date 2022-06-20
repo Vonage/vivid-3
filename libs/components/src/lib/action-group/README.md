@@ -32,6 +32,7 @@ Set the `appearance` attribute to change the action-Group's appearance.
   <vwc-button label="paste"></vwc-button>
   <vwc-button label="submit"></vwc-button>
 </vwc-action-group>
+
 <vwc-action-group appearance="ghost">
   <vwc-button label="edit" appearance="filled"></vwc-button>
   <vwc-button label="copy" appearance="filled"></vwc-button>
@@ -84,16 +85,16 @@ enabling the `tight` member will result in a dense style that fits the "normal" 
 
 ```html preview
 <style>
-  vwc-action-group {
-    inline-size: initial;
+  vwc-layout {
+    --layout-grid-template-columns: 35ch;
   }
 
-  vwc-text-field {
+  vwc-action-group > vwc-text-field {
     flex-grow: 1;
   }
 </style>
 
-<vwc-layout column-basis="block" column-spacing="small" style="display: block; max-inline-size: 35ch">
+<vwc-layout column-basis="block" column-spacing="small">
   <vwc-text-field name="username" aria-label="Username" placeholder="Username"></vwc-text-field>
   <vwc-action-group appearance="fieldset" tight>
     <vwc-button icon="flag-uruguay"></vwc-button>
