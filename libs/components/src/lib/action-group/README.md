@@ -112,6 +112,11 @@ enabling the `tight` member will result in a dense style that fits the "normal" 
     <span role="separator"></span>
   <vwc-button shape="pill" icon="chevron-down-solid"></vwc-button>
 </vwc-action-group>
+
+<vwc-action-group shape="pill" tight>
+  <vwc-button label='My Action' appearance='ghost' shape="pill"></vwc-button>
+  <vwc-button shape="pill" icon="chevron-down-solid"></vwc-button>
+</vwc-action-group>
 ```
 
 ### complex search

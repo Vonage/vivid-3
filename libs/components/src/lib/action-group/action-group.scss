@@ -8,19 +8,20 @@
 
 
 :host {
-  inline-size: min-content;
+	display: inline-block;
+	inline-size: min-content;
 }
 
 .base {
 	@include appearance.appearance;
 
-  inline-size: inherit;
 	position: relative;
 	display: flex;
 	box-sizing: border-box;
 	align-items: center;
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	color: var(#{appearance.get-appearance-token(text)});
+	inline-size: inherit;
 	vertical-align: middle;
 
 	&::before {

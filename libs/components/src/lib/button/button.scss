@@ -24,7 +24,6 @@
 	@include connotation.connotation;
 	@include appearance.appearance;
 
-  white-space: nowrap;
 	position: relative;
 	display: inline-flex;
 	box-sizing: border-box;
@@ -38,6 +37,7 @@
 	gap: var(#{variables.$icon-gap});
 	outline: 0 none;
 	vertical-align: middle;
+	white-space: nowrap;
 
 	&:not(:disabled) {
 		cursor: pointer;
