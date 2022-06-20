@@ -5,9 +5,9 @@ import {
 	extractHTMLBlocksFromReadme,
 	loadComponents,
 	loadTemplate,
-} from '../../visual-tests/visual-tests-utils.ts';
+} from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['action-group', 'button', 'text-field'];
+const components = ['action-group', 'button', 'text-field', 'layout'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(
@@ -17,6 +17,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			`${htmlString} <div style="margin: 5px;">${block}</div>`,
 		''
 	);
+
+	page.setViewportSize({ width: 380, height: 720 });
 
 	await loadComponents({
 		page,

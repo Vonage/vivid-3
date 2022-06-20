@@ -70,7 +70,6 @@ export class SideDrawer extends FoundationElement {
 		if (name === 'open' && this.modal) {
 			this.open ? this.#trapFocus() : this.#releaseFocusTrap();
 		}
-		console.log(this.headerSlottedContent);
 	}
 
 	#trapFocus(): void {

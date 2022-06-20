@@ -1,6 +1,6 @@
 {
   "type": "prerelease",
-  "comment": "refactor FAB size to normal (40px)",
+  "comment": "fixes the size property and inline size css on text field",
   "packageName": "@vonage/vivid",
   "email": "yinon@hotmail.com",
   "dependentChangeType": "patch"

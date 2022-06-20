@@ -12,8 +12,7 @@
     "markdown": "./libs/components/src/lib/accordion-item/README.md",
     "modules": [
       "/assets/modules/components/accordion-item/index.js",
-      "/assets/modules/components/text/index.js",
-      "/assets/modules/components/elevation/index.js"
+      "/assets/modules/components/text/index.js"
     ]
   },
   {
@@ -66,14 +65,6 @@
     "modules": [
       "/assets/modules/components/calendar-event/index.js",
       "/assets/modules/components/calendar/index.js"
-    ]
-  },
-  {
-    "title": "elevation",
-    "markdown": "./libs/components/src/lib/elevation/README.md",
-    "modules": [
-      "/assets/modules/components/elevation/index.js",
-      "/assets/modules/components/layout/index.js"
     ]
   },
   {
@@ -182,7 +173,8 @@
     "modules": [
       "/assets/modules/components/action-group/index.js",
       "/assets/modules/components/button/index.js",
-      "/assets/modules/components/text-field/index.js"
+      "/assets/modules/components/text-field/index.js",
+      "/assets/modules/components/layout/index.js"
     ]
   },
   {

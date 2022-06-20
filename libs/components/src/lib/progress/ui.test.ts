@@ -3,7 +3,7 @@ import type {Page} from '@playwright/test';
 import {
 	loadComponents,
 	loadTemplate,
-} from '../../visual-tests/visual-tests-utils.ts';
+} from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['progress'];
 
@@ -49,6 +49,8 @@ test('should show the component', async ({page}: { page: Page }) => {
     <vwc-progress min="0" max="100" value="25" connotation="pacific" shape="sharp"></vwc-progress>
     </div>
   `;
+
+	page.setViewportSize({ width: 200, height: 720 });
 
 	await loadComponents({
 		page,
