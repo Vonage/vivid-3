@@ -12,7 +12,7 @@
 $low-ink-color: --_low-ink-color;
 
 :host {
-  display: inline-block;
+	display: inline-block;
 }
 
 .base {
@@ -24,11 +24,12 @@ $low-ink-color: --_low-ink-color;
 
 	display: inline-grid;
 	width: 100%;
-  @supports(user-select: none) {
-    user-select: none;
-  }
 	gap: 4px;
 	grid-template-columns: min-content 1fr max-content;
+
+	@supports(user-select: none) {
+		user-select: none;
+	}
 
 	&:not(.disabled) {
 		#{$low-ink-color}: var(#{theme-consts.$vvd-color-neutral-70});
