@@ -129,16 +129,22 @@ Use the `shape` member to set the component's rectangle shape.
 ```html preview blocks
 code snipet
 ```
-#### use of one of these options
+#### use one of these options
+
+setting the preview with various options:
 
 - full
 - blocks
 - columns
 - inline (default)
 - center
-e.g.
-### Styling wrapper div
 
-- `.cover-fill`
-- `.cover-full`
-- `.demo-gradient`
+
+[//]: # (### Styling wrapper div)
+
+[//]: # ()
+[//]: # (- `.cover-fill`)
+
+[//]: # (- `.cover-full`)
+
+[//]: # (- `.demo-gradient`)
