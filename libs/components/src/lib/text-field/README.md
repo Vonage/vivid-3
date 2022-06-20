@@ -147,7 +147,7 @@ In addition, we programatically *"dirtied"* the field and then called `validate`
 <script>
   const textField = document.querySelector('vwc-text-field');
   textField.value = 5;
-  textField.dirtied = true;
+  textField.dirtyValue = true;
   textField.validate();
 </script>
 ```
