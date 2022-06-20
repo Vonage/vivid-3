@@ -1,27 +1,38 @@
+@use 'sass:list';
+@use 'partials/variables' as variables;
+@use '../../../../shared/src/lib/sass/utils' as utils;
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$subset: cta primary alert success,
-	$default: primary
+	$connotations: accent cta alert success,
+	$shades: primary,
+	$default: accent
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+	$appearances: ghost,
+	$states: idle disabled,
+	$default: ghost,
+);
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+
+$density: 4 5 6 7 8 9 10 11 12;
+$default-density: list.nth($density, 6);
+
 .base {
 	@include connotation.connotation;
+	@include appearance.appearance;
 
-	width: 36px;
-	height: 36px;
 	align-items: center;
+	block-size: var(#{variables.$progress-ring-density});
+	color: var(#{appearance.get-appearance-token(text)});
+	inline-size: var(#{variables.$progress-ring-density});
 	outline: none;
-}
-.base.base-large {
-	width: 48px;
-	height: 48px;
-}
 
-.base.base-small {
-	width: 24px;
-	height: 24px;
+	@include utils.spread-list-selectors('.density', $density, $default-density) using($value) {
+		#{variables.$progress-ring-density}: calc(#{$value} * 4px);
+	}
 }
 
 .progress {
@@ -35,7 +46,7 @@
 }
 .determinate {
 	fill: none;
-	stroke: var(#{connotation.$vvd-color-connotation});
+	stroke: currentColor;
 	stroke-linecap: round;
 	stroke-width: 2px;
 	transform: rotate(-90deg);
@@ -45,7 +56,7 @@
 .indeterminate-indicator-1 {
 	animation: spin-infinite 2s linear infinite;
 	fill: none;
-	stroke: var(#{connotation.$vvd-color-connotation});
+	stroke: currentColor;
 	stroke-linecap: round;
 	stroke-width: 2px;
 	transform: rotate(-90deg);
@@ -54,10 +65,6 @@
 }
 .base.paused .indeterminate-indicator-1 {
 	animation-play-state: paused;
-	stroke: var(#{theme-consts.$vvd-color-neutral});
-}
-.base.paused .determinate {
-	stroke: var(#{theme-consts.$vvd-color-neutral});
 }
 @keyframes spin-infinite {
 	0% {

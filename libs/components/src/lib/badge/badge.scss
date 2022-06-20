@@ -1,9 +1,9 @@
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$subset: primary cta success alert warning info,
-	$shades: basis soft contrast,
-	$default: primary,
+	$connotations: accent cta success alert warning info,
+	$shades: primary on-primary intermediate soft contrast,
+	$default: accent,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
@@ -22,26 +22,26 @@
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
-	background-color: var(#{appearance.get-variable(fill)});
-	box-shadow: inset 0 0 0 1px var(#{appearance.get-variable(outline)});
-	color: var(#{appearance.get-variable(text)});
+	background-color: var(#{appearance.get-appearance-token(fill)});
+	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+	color: var(#{appearance.get-appearance-token(text)});
 	column-gap: 8px;
 	vertical-align: middle;
 }
 
 /* Size */
 
-.control:not(.size-base-small):not(.size-base-large) {
+.control:not(.density-condensed):not(.density-extended) {
 	block-size: 24px;
 	padding-inline: 10px;
 }
 
-.control.size-base-small {
+.control.density-condensed {
 	block-size: 20px;
 	padding-inline: 8px;
 }
 
-.control.size-base-large {
+.control.density-extended {
 	block-size: 28px;
 	padding-inline: 12px;
 }

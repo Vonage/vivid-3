@@ -1,10 +1,11 @@
-$popup-bg: --vvd-color-surface-4dp;
+@use '../../../../shared/src/lib/sass/utils' as utils;
+
 
 .control {
-	width: min-content;
-	background-color: var(#{$popup-bg});
+	background-color: var(#{utils.get-color-token(surface-4dp)});
 	border-radius: inherit;
 	contain: layout;
+	inline-size: fit-content;
 
 	&:not(.open) {
 		display: none;
@@ -18,7 +19,8 @@ $popup-bg: --vvd-color-surface-4dp;
 
 .popup-content {
 	display: grid;
-	color: var(--vvd-color-on-canvas);
+	color: var(#{utils.get-color-token(on-canvas)});/* neutral-100 */
+
 
 	.dismissible & {
 		align-content: start;
@@ -31,13 +33,13 @@ $popup-bg: --vvd-color-surface-4dp;
 	z-index: -1;
 	width: 8px;
 	height: 8px;
-	background-color: var(#{$popup-bg});
+	background-color: var(#{utils.get-color-token(surface-4dp)});
 	transform: rotate(45deg);
 }
 
-.dismissible {
+.dismissible-button {
 	align-self: flex-start;
-	margin-block-start: 0.25rem;
-	margin-inline-end: 0.25rem;
+	margin-block-start: 4px;
+	margin-inline-end: 4px;
 }
 

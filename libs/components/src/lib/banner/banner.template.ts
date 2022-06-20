@@ -5,8 +5,6 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import {classNames} from '@microsoft/fast-web-utilities';
-import '../button';
-import '../text-anchor';
 import {affixIconTemplateFactory} from '../../shared/patterns/affix';
 import type {Banner} from './banner';
 
@@ -21,7 +19,7 @@ const getClasses = (_: Banner) => classNames(
 function renderDismissButton() {
 	return html<Banner>`
 	  <vwc-button
-			  size="base-small"
+			  density="condensed"
 			  class="dismiss-button"
 			  icon="close-line"
 			  @click="${x => x.remove()}">

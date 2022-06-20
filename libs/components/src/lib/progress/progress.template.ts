@@ -7,11 +7,15 @@ import {classNames} from '@microsoft/fast-web-utilities';
 import type {BaseProgress, ProgressOptions} from '@microsoft/fast-foundation';
 import type { Progress } from './progress';
 
-const getClasses = (_: Progress) => classNames(
+
+const getClasses = ({
+	connotation, shape, reverse, paused
+}: Progress) => classNames(
 	'base',
-	[`connotation-${_.connotation}`, !!_.connotation],
-	[`shape-${_.shape}`, !!_.shape],
-	['reverse', _.reverse]
+	[`connotation-${connotation}`, Boolean(connotation)],
+	[`shape-${shape}`, Boolean(shape)],
+	['reverse', Boolean(reverse)],
+	['paused', Boolean(paused)],
 );
 
 /**
@@ -22,6 +26,27 @@ const getClasses = (_: Progress) => classNames(
  * @param definition
  * @public
  */
+
+
+/**
+ determinate
+ */
+function determinate() {
+	return html<BaseProgress>`
+		<span class="determinate" style="width: ${x => x.percentComplete}%"></span>`;
+}
+
+/**
+ indeterminate
+ */
+function indeterminate() {
+	return html<BaseProgress>`
+		<span class="indeterminate" name="indeterminate">
+			<span class="indicator-1"></span>
+			<span class="indicator-2"></span>
+		 </span>`;
+}
+
 export const ProgressTemplate: (
 	context: ElementDefinitionContext,
 	definition: ProgressOptions
@@ -32,31 +57,13 @@ export const ProgressTemplate: (
       aria-valuenow="${x => x.value}"
       aria-valuemin="${x => x.min}"
       aria-valuemax="${x => x.max}"
-      class="${x => (x.paused ? 'paused' : '')} ${getClasses}"
+      class="${getClasses}"
     >
-      ${when(
-		x => typeof x.value === 'number',
-		html<BaseProgress>`
-                  <div class="progress">
-                      <div
-                          class="determinate"
-                          style="width: ${x => x.percentComplete}%"
-                      ></div>
-                  </div>
-              `
-	)}
-      ${when(
-		x => typeof x.value !== 'number',
-		html<BaseProgress>`
-                  <div class="progress indeterminate">
-                      <span class="indeterminate" name="indeterminate">
-                        <span class="indeterminate-indicator-1"></span>
-                        <span class="indeterminate-indicator-2"></span>
-                      </span>
-                  </div>
-              `
-	)}
-    </div>
+		<div class="progress">
+		  ${when(x => typeof x.value === 'number', determinate())}
+		  ${when(x => typeof x.value !== 'number', indeterminate())}
+    	</div>
+	</div>
   `;
 };
 

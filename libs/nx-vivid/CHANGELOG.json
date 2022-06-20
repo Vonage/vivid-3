@@ -1,0 +1,41 @@
+{
+  "name": "@vonage/nx-vivid",
+  "entries": [
+    {
+      "date": "Sun, 19 Jun 2022 14:36:22 GMT",
+      "tag": "@vonage/nx-vivid_v0.0.1",
+      "version": "0.0.1",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/nx-vivid",
+            "commit": "0e5abeec10b36954e07823f8cfa1681a29d81cee",
+            "comment": "fix to correct import extention"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 30 May 2022 12:17:41 GMT",
+      "tag": "@vonage/nx-vivid_v0.0.1",
+      "version": "0.0.1",
+      "comments": {
+        "none": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/nx-vivid",
+            "commit": "8fe1a5d658ff26017731c13b29df51c2317a9683",
+            "comment": "Add to package.json export in generator"
+          },
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/nx-vivid",
+            "commit": "23124a1d2ba6db6bebcc886485c6b9faee0460f6",
+            "comment": "Convert the component generator to plugin"
+          }
+        ]
+      }
+    }
+  ]
+}

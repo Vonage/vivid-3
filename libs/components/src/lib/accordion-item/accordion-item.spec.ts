@@ -19,9 +19,9 @@ describe('vwc-accordion-item', () => {
 			expect(element.open).toBeFalsy();
 			expect(element.icon).toBeUndefined();
 			expect(element.iconTrailing).toBeFalsy();
-			expect(element.meta).toEqual('');
+			expect(element.meta).toEqual(undefined);
 			expect(element.noIndicator).toBeFalsy();
-			expect(element.heading).toEqual('');
+			expect(element.heading).toEqual(undefined);
 			expect(element.headingLevel).toBeUndefined();
 		});
 	});
@@ -98,6 +98,13 @@ describe('vwc-accordion-item', () => {
 			element.headingLevel = 4;
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.header')?.tagName).toEqual('H4');
+		});
+	});
+
+	describe('aria expanded', () => {
+		it('should set aria expanded to significant false', async () => {
+			const button = element.shadowRoot?.querySelector('.button');
+			expect(button?.getAttribute('aria-expanded')).toEqual('false');
 		});
 	});
 });

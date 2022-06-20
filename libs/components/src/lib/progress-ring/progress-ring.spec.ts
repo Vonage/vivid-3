@@ -16,7 +16,8 @@ describe('vwc-progress-ring', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-progress-ring', async () => {
-			expect(element).toBeInstanceOf(ProgressRing);
+			expect(element)
+				.toBeInstanceOf(ProgressRing);
 		});
 
 		it('should reflect min and max', async function () {
@@ -134,6 +135,29 @@ describe('vwc-progress-ring', () => {
 				.toEqual(false);
 			expect(connotationClassExistsAfterChange)
 				.toEqual(true);
+		});
+	});
+
+	describe('density', function () {
+		const BASE_DENSITY = 9;
+		let baseElement: Element | null | undefined;
+		beforeEach(function () {
+			baseElement = element.shadowRoot?.querySelector('.base');
+		});
+
+		it('should set density class only if exists', async function () {
+			const classListContainsDensity = baseElement?.className.split(' ').reduce((contains: boolean, className: string) => {
+				return contains || className.indexOf('density-') > -1;
+			}, false);
+			expect(classListContainsDensity).toEqual(false);
+		});
+
+		it('should set density class according to attribute plus base density', async function () {
+			const densityValue = 12;
+			const expectedClass = `density-${densityValue + BASE_DENSITY}`;
+			element.setAttribute('density', densityValue.toString());
+			await elementUpdated(element);
+			expect(baseElement?.classList.contains(expectedClass)).toBeTruthy();
 		});
 	});
 });
