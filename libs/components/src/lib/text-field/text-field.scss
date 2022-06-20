@@ -18,7 +18,10 @@ $low-ink-color: --_low-ink-color;
 	// before showing the error.
 	@include appearance.appearance;
 
-	display: grid;
+	display: inline-grid;
+	width: inherit;
+	min-width: inherit;
+	max-width: inherit;
 	gap: 4px;
 	grid-template-columns: min-content 1fr max-content;
 
@@ -60,13 +63,14 @@ $low-ink-color: --_low-ink-color;
 .fieldset {
 	position: relative;
 	display: flex;
+	width: inherit;
+	min-width: inherit;
+	max-width: inherit;
 	align-items: center;
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
-	contain: strict;
 	grid-column: 1 / 4;
-	padding-inline: 16px;
 	transition: color .2s, box-shadow .2s, background-color .2s;
 
 	/* Size */
@@ -90,18 +94,20 @@ $low-ink-color: --_low-ink-color;
 }
 
 .control {
+	// ! note: control is required to stretch fully so that
+	// ! autofill indication applies on all fieldset area
 	@include typography.typography-cat-shorthand('body-2');
 
-	// required to stretch fully so autofill indication applies on all fieldset region
-	position: absolute;
-	padding: 1px;
+	width: inherit;
+	min-width: inherit;
+	max-width: inherit;
 	border: 0 none;
 	background-color: unset;
 	block-size: 100%;
 	border-radius: inherit;
 	color: inherit;
-	inset: 0;
 	outline: 0 none;
+	padding-inline-end: 16px;
 	padding-inline-start: 16px;
 
 	&::placeholder {
@@ -111,9 +117,10 @@ $low-ink-color: --_low-ink-color;
 
 .icon {
 	// to avoid autofill style hiding other elements
-	position: relative;
+	position: absolute;
 	z-index: 1;
 	color: var(#{$low-ink-color});
+	inset-inline-start: 16px;
 
 	+.control {
 		padding-inline-start: 44px;
