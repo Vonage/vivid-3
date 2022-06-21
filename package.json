@@ -79,7 +79,6 @@
     "prettier": "^2.5.1",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-delete": "^2.0.0",
-    "rollup-plugin-lit-css": "^3.2.1",
     "sass": "^1.52.2",
     "slugify": "^1.6.5",
     "stylelint": "^14.8.5",
