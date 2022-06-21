@@ -1,28 +1,14 @@
 {% block content %}
-<nav>
-  <vwc-sidenav-item href="{{ '/' | url}}" text="Home"></vwc-sidenav-item>
-  <ul role="group">
-    <h2>Design System</h2>
-    <li role="menuitem">Inbox</li>
-    <li role="menuitem">Archive</li>
-    <li role="menuitem">Trash</li>
-  </ul>
-  <ul class="navigation">
-    <h2>Design System</h2>
-
-    {%  for item in designs | sort(false, false, 'title') %}
-      <li>
-        <vwc-sidenav-item href="{{ ('/designs/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-sidenav-item>
-      </li>
-    {% endfor %}
-  </ul>
-  <ul class="navigation">
-    <p>Components</p>
-    {%  for item in components | sort(false, false, 'title') %}
-      <li>
-        <vwc-sidenav-item href="{{ ('/components/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-sidenav-item>
-      </li>
-    {% endfor %}
-  </ul>
+<nav class="navigation">
+  <p role="heading" aria-level="2">Design System</p>
+  {%  for item in designs | sort(false, false, 'title') %}
+  <vwc-sidenav-item href="{{ ('/designs/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-sidenav-item>
+  {% endfor %}
+</nav>
+<nav class="navigation">
+  <p role="heading" aria-level="2">Components</p>
+  {%  for item in components | sort(false, false, 'title') %}
+  <vwc-sidenav-item href="{{ ('/components/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-sidenav-item>
+  {% endfor %}
 </nav>
 {% endblock %}

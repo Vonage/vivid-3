@@ -64,14 +64,8 @@ table tbody tr {
 }
 
 /*#region: side navigation (temp style - need to be removed once sidenav is done)*/
-ul.navigation {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  margin-inline-start: 0.75rem;
-}
-ul.navigation p {
-  color: var(--vvd-color-neutral-50);
+nav.navigation [role="heading"][aria-level="2"] {
+  color: var(--vvd-color-neutral-70);
 }
 /*#region END: side navigation */
 
