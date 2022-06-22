@@ -26,7 +26,7 @@ export class header extends FoundationElement {
 	}) fixed = false;
 
 	/**
-	 * applies scheme alternate region
+	 * applies scheme alternate to header region
 	 *
 	 * @public
 	 */

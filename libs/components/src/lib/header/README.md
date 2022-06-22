@@ -231,6 +231,5 @@ This is an example of a `fixed` Header with a Banner. Banners are placed at the 
 
 Use the `--header-z-index` to control the z-index of the header.
 
-- `--header-z-index`
 - Type: `Number`
 - Default: `7`
