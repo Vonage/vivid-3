@@ -27,7 +27,6 @@ describe('vwc-header', () => {
 			const control = getControlElement(element);
 			let hasClassFixed = control.classList.contains('fixed');
 			element.fixed = true;
-			element.connectedCallback();
 			await elementUpdated(element);
 			expect(hasClassFixed).toEqual(false);
 
