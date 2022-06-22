@@ -164,12 +164,13 @@ article .cbd-base {
   width: 100%;
 }
 
+.cbd-fab {
+  position: absolute;
+  inset: auto 8px 8px auto;
+}
+
 .cbd-details > summary {
-  list-style: none;
-	text-align: end;
-	background-color: var(--vvd-color-neutral-10);
-  border-top: 1px solid var(--vvd-color-neutral-20);
-	padding: 8px;
+  display: none;
 }
 
 .cbd-code-block {

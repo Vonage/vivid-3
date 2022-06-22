@@ -1,5 +1,4 @@
 const CBD_DETAILS = 'cbd-details';
-const CBD_BUTTON_SHOW = 'cbd-button-show';
 
 const toggleCodePanel = (event) => {
   const button = event.target;
@@ -8,10 +7,18 @@ const toggleCodePanel = (event) => {
   button.setAttribute('aria-expanded', details.open.toString());
 };
 
-const initShowCodeButtons = () => {
-  document.querySelectorAll("." + CBD_BUTTON_SHOW).forEach(button => {
-    button.addEventListener('click', toggleCodePanel);
-  });
+const codeBlockButtonClick = () => {
+  console.log(this)
+  // document.querySelectorAll("." + CBD_BUTTON_SHOW).forEach(button => {
+  //   button.addEventListener('click', toggleCodePanel);
+  // });
+};
+
+const detailsToggle = () => {
+  console.log(this)
+  // document.querySelectorAll("." + CBD_BUTTON_SHOW).forEach(button => {
+  //   button.addEventListener('click', toggleCodePanel);
+  // });
 };
 
 const onloadIframe = (iFrame) => {
@@ -28,5 +35,3 @@ const setCurrentIframeTheme = (toggle, iFrame) => {
   const theme = toggle.mode === 'dark' ? '<link rel="stylesheet" href="/assets/styles/themes/dark.css" media="all">' : '<link rel="stylesheet" href="/assets/styles/themes/light.css" media="all">';
   iFrame.contentWindow.document.head?.insertAdjacentHTML("beforeend", theme);
 }
-
-window.addEventListener('DOMContentLoaded', initShowCodeButtons);
