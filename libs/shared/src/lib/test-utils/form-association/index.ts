@@ -48,7 +48,7 @@ export function createFormHTML<T>({fieldName, fieldValue, formId, otherFormId, c
 		form: formWrapper.children[0] as HTMLFormElement,
 		otherForm: formWrapper.children[1] as HTMLFormElement,
 		element: formWrapper.querySelector(componentTagName) as unknown as T,
-		button: formWrapper.children[0] ? formWrapper.children[0].querySelector('button') : undefined,
+		button: (formWrapper.children[0] as HTMLFormElement).querySelector('button'),
 		otherFormButton: formWrapper.children[1]?.querySelector('button'),
 	};
 }
