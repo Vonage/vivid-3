@@ -1,14 +1,13 @@
-const CBD_DETAILS = 'cbd-details';
-
 const toggleCodePanel = (event) => {
   const button = event.target;
-  const details = button.closest("." + CBD_DETAILS);
+  const details = button.closest(".cbd-details");
   details.open = !details.open;
   button.setAttribute('aria-expanded', details.open.toString());
 };
 
-const codeBlockButtonClick = () => {
-  console.log(this)
+const codeBlockButtonClick = (button) => {
+  const details = button.closest('.iframe-container').nextElementSibling;
+  details.open = !details.open;
   // document.querySelectorAll("." + CBD_BUTTON_SHOW).forEach(button => {
   //   button.addEventListener('click', toggleCodePanel);
   // });
