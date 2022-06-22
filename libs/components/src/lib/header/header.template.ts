@@ -9,9 +9,9 @@ import type { header } from './header';
 
 const getClasses = ({ fixed, alternate, elevated }: header) => classNames(
 	'control',
-	['fixed', fixed],
-	['alternate', alternate],
-	['elevated', elevated],
+	['fixed', Boolean(fixed)],
+	['alternate', Boolean(alternate)],
+	['elevated', Boolean(elevated)],
 );
 
 /**
