@@ -133,12 +133,6 @@ enabling the `tight` member will result in a dense style that fits the "normal" 
 ### More Actions
 
 ```html preview center
-<div>
-  <vwc-text>
-    Click the button to see more actions
-  </vwc-text>
-</div>
-
 <vwc-button id="anchor" icon="more-horizontal-solid" aria-label="open actions menu"></vwc-button>
 
 <vwc-popup id="popup" anchor="anchor" arrow open corner="top">
