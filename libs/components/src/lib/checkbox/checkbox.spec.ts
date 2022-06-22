@@ -1,4 +1,4 @@
-import {createFormHTML, elementUpdated, fixture, listenToFormSubmission} from '@vivid-nx/shared';
+import {createFormHTML, elementUpdated, fixture, getBaseElement, listenToFormSubmission} from '@vivid-nx/shared';
 import { Checkbox } from './checkbox';
 import '.';
 
@@ -42,8 +42,7 @@ describe('vwc-checkbox', () => {
 			element.toggleAttribute('checked', true);
 			await elementUpdated(element);
 
-			const base = element.shadowRoot?.querySelector('.base.checked');
-			expect(base).toBeInstanceOf(Element);
+			expect(getBaseElement(element).classList.contains('checked')).toBeTruthy();
 		});
 	});
 
