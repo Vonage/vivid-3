@@ -100,4 +100,11 @@ describe('vwc-accordion-item', () => {
 			expect(element.shadowRoot?.querySelector('.header')?.tagName).toEqual('H4');
 		});
 	});
+
+	describe('aria expanded', () => {
+		it('should set aria expanded to significant false', async () => {
+			const button = element.shadowRoot?.querySelector('.button');
+			expect(button?.getAttribute('aria-expanded')).toEqual('false');
+		});
+	});
 });

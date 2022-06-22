@@ -6,7 +6,7 @@ Progress is used to display the length of time a process will take or to visuali
 <script type="module">import '@vonage/vivid/progress';</script>
 ```
 
-## API
+## Members
 
 ### Min/Max
 
@@ -83,7 +83,7 @@ Use the `shape` attribute in order to set `rounded` and `sharp` borders.
 
 ```html preview blocks
 <vwc-progress min="0" max="50" value="25" shape="rounded"></vwc-progress>
-<vwc-progress min="0" max="50" value="25"></vwc-progress>
+<vwc-progress min="0" max="50" value="25" shape="sharp"></vwc-progress>
 ```
 
 ## Example Usage

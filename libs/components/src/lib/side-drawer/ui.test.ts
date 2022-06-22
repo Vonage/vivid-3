@@ -3,7 +3,7 @@ import type { Page } from '@playwright/test';
 import {
 	loadComponents,
 	loadTemplate
-} from '../../visual-tests/visual-tests-utils.ts';
+} from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['side-drawer', 'text', 'button', 'sidenav-item', 'layout'];
 test('should show the component', async ({ page }: { page: Page }) => {
@@ -48,6 +48,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		</vwc-text>
 	</vwc-layout>
 </vwc-side-drawer>`;
+
+	page.setViewportSize({ width: 1200, height: 720 });
 
 	await loadComponents({
 		page,
