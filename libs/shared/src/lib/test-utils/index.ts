@@ -33,7 +33,7 @@ export async function setAttribute(element: any, attribute: string, value: strin
   await elementUpdated(element);
 }
 
-export function listenToFormSubmission(formElement: HTMLFormElement) {
+export function listenToFormSubmission(formElement: HTMLFormElement): Promise<FormData> {
 	return new Promise((res) => {
 		formElement.addEventListener('submit', () => {
 			const formData = new FormData(formElement);
