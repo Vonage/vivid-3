@@ -7,7 +7,7 @@ For better and unify components documentation
 Use the new component generator to create a new component:  
 `npm run nx g @vonage/nx-vivid:component my-component`
 
-## Terminology 
+## Terminology
 
 ### CSS Class Names
 
@@ -18,8 +18,11 @@ Use the new component generator to create a new component:
 
 ## Property Names
 
-- `heading` for the head or main text in the component.
-- `sub-heading`
+- `title` / `headline` (title is a reserved attribute in html)
+<!-- The newspaper headline read “House burns down on Elm Street” with the subheading “Arson suspected.” -->
+- `subheading`
+- `subtitle`
+- `heading` represent a level of section headings
 - `text`
 - `label`
 
@@ -120,7 +123,7 @@ Use the `shape` member to set the component's rectangle shape.
 
 <hr>
 
-//TODO: take out this part to a separate documentation 
+//TODO: take out this part to a separate documentation
 
 ## Documentation style (Code-Preview style)
 
@@ -129,6 +132,7 @@ Use the `shape` member to set the component's rectangle shape.
 ```html preview blocks
 code snipet
 ```
+
 #### use one of these options
 
 setting the preview with various options:
@@ -138,7 +142,6 @@ setting the preview with various options:
 - columns
 - inline (default)
 - center
-
 
 [//]: # (### Styling wrapper div)
 

@@ -26,9 +26,12 @@ const getClasses = ({ connotation }: Note) => classNames(
  *
  */
 function getHeaderTemplate() {
-	return html<Note>`<div class="heading">${x => x.heading}</div>`;
+	return html<Note>`<div class="headline">${x => x.headline}</div>`;
 }
 
+/**
+ * @param note
+ */
 function getIconType(note: Note) {
 	return note.icon ? note.icon : note.connotation ? connotationIconMap.get(note.connotation) : 'megaphone-solid';
 }
@@ -53,7 +56,7 @@ export const NoteTemplate: (
     <div class="${getClasses}">
       ${getIconTemplate()}
 			<div class="text">
-	        ${when(x => x.heading, getHeaderTemplate())}
+	        ${when(x => x.headline, getHeaderTemplate())}
 			    <slot class="message"></slot>
 			</div>
     </div>
