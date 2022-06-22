@@ -1,6 +1,6 @@
 {
   "type": "none",
-  "comment": "fix(text-field): input height in FF",
+  "comment": "progress component - support rounded shape",
   "packageName": "@vonage/vivid",
   "email": "rachel.tannenbaum@vonage.com",
   "dependentChangeType": "none"

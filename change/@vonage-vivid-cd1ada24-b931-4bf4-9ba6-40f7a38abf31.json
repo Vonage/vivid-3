@@ -1,7 +1,7 @@
 {
   "type": "prerelease",
-  "comment": "text field support autocomplete and name",
+  "comment": "action group tight member removes padding",
   "packageName": "@vonage/vivid",
-  "email": "yonatan.kra@vonage.com",
+  "email": "yinon@hotmail.com",
   "dependentChangeType": "patch"
 }

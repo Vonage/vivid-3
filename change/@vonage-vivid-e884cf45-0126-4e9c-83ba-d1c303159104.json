@@ -1,6 +1,6 @@
 {
   "type": "none",
-  "comment": "refactor sass mixins",
+  "comment": "chore(components): accordion item expanded state indication",
   "packageName": "@vonage/vivid",
   "email": "yinon@hotmail.com",
   "dependentChangeType": "none"
