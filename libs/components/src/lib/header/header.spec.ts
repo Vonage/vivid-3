@@ -1,21 +1,21 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
-import { header } from './header';
+import { Header } from './header';
 import '.';
 
 const COMPONENT_TAG = 'vwc-header';
 
 describe('vwc-header', () => {
-	let element: header;
+	let element: Header;
 
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as header;
+		)) as Header;
 	});
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-header', async () => {
-			expect(element).toBeInstanceOf(header);
+			expect(element).toBeInstanceOf(Header);
 			expect(element.alternate).toBeFalsy();
 			expect(element.fixed).toBeFalsy();
 			expect(element.heading).toBeUndefined();

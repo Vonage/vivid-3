@@ -5,9 +5,9 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import type { header } from './header';
+import type { Header } from './header';
 
-const getClasses = ({ fixed, alternate, elevated }: header) => classNames(
+const getClasses = ({ fixed, alternate, elevated }: Header) => classNames(
 	'control',
 	['fixed', Boolean(fixed)],
 	['alternate', Boolean(alternate)],
@@ -23,12 +23,12 @@ const getClasses = ({ fixed, alternate, elevated }: header) => classNames(
 export const headerTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<header> = () => {
-	return html<header>`
+) => ViewTemplate<Header> = () => {
+	return html<Header>`
     <header class="${getClasses}" part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}">
         <section class="header-content start" id="navigation">
           <slot></slot>
-          ${when(x => x.heading, html<header>`<span class="heading">${x => x.heading}</span>`)}
+          ${when(x => x.heading, html<Header>`<span class="heading">${x => x.heading}</span>`)}
         </section>
         <section class="header-content end" id="actions" role="toolbar">
           <slot name="actionItems"></slot>
