@@ -23,20 +23,20 @@ describe('vwc-header', () => {
 	});
 
 	describe('fixed', () => {
-		it('should set "fixed" to true and add "fixed" class', async () => {
+		it('should add "fixed" class to control and attribute to host when fixed is true', async () => {
 			const control = getControlElement(element);
-			let hasClassFixed = control.classList.contains('fixed');
+			let hasClassFixedOnInit = control.classList.contains('fixed');
 			element.fixed = true;
 			await elementUpdated(element);
-			expect(hasClassFixed).toEqual(false);
+			expect(hasClassFixedOnInit).toEqual(false);
 
-			hasClassFixed = control.classList.contains('fixed');
+			let hasClassFixed = control.classList.contains('fixed');
 			expect(hasClassFixed).toEqual(true);
 		});
 	});
 
 	describe('alternate', () => {
-		it('should set "alternate" to true and add "alternate" class', async () => {
+		it('should add "alternate" class to control and attribute to host when alternate is true', async () => {
 			const control = getControlElement(element);
 			let hasClassAlternate = control.classList.contains('alternate');
 			element.alternate = true;
