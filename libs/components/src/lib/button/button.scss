@@ -37,6 +37,7 @@
 	gap: var(#{variables.$icon-gap});
 	outline: 0 none;
 	vertical-align: middle;
+	white-space: nowrap;
 
 	&:not(:disabled) {
 		cursor: pointer;
@@ -105,7 +106,7 @@ $pill-selector: '.shape-pill:not(.stacked)';
 }
 
 .focus-indicator {
-	:not(:focus) > & {
+	:not(:focus-visible) > & {
 		display: none;
 	}
 

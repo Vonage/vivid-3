@@ -118,7 +118,7 @@ ol {
 	&:focus {
 		outline: none;
 	}
-	&:not(:focus)::before {
+	&:not(:focus-visible)::before {
 		display: none;
 	}
 }

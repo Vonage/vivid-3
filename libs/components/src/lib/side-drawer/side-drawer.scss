@@ -48,7 +48,7 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
 	&.control.open:not(.modal) {
 		+ .side-drawer-app-content {
 			@include typography.typography-cat-shorthand(body-1);
-			
+
 			margin-inline-start: #{$inline-size};
 			::slotted(vwc-top-app-bar),
 			::slotted(vwc-top-app-bar-fixed) {
@@ -67,22 +67,28 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
 	}
 }
 
-.side-drawer-top-bar {
+.side-drawer-header {
 	@include typography.typography-cat-shorthand(subtitle-1);
 
-	$gutter: var(#{variables.$side-drawer-padding-top-bar}, #{$padding-default});
-	
+	$gutter: var(#{variables.$side-drawer-padding-header}, #{$padding-default});
+
 	display: flex;
+	height: 64px;
 	flex-shrink: 0;
 	align-items: center;
 	padding-inline-end: #{$gutter};
 	padding-inline-start: #{$gutter};
+
+	:not(.withHeader) &{
+		display: none;
+	}
 }
 
 .side-drawer-content {
 	$gutter: var(#{variables.$side-drawer-padding-body}, #{$padding-default});
-	
+
 	background-color: inherit;
+	margin-block: 12px;
 	overflow-y: auto;
 	padding-inline-end: #{$gutter};
 	padding-inline-start: #{$gutter};
@@ -99,11 +105,14 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
 
 .scrim {
 	@include scrim-mixins.scrim-variables;
-	
+
 	position: fixed;
-	z-index: calc(#{$z-index-default} - 1);
+	z-index: calc(#{variables.$side-drawer-z-index} - 1);
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
+	&:not(.open) {
+		display: none;
+	}
 }

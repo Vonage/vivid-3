@@ -11,6 +11,10 @@
 
 $low-ink-color: --_low-ink-color;
 
+:host {
+	display: inline-block;
+}
+
 .base {
 	// due to the fact :user-invalid proposal isn't supported by browsers yet,
 	// we apply appearance here instead of the input element itself.
@@ -18,9 +22,14 @@ $low-ink-color: --_low-ink-color;
 	// before showing the error.
 	@include appearance.appearance;
 
-	display: grid;
+	display: inline-grid;
+	width: 100%;
 	gap: 4px;
 	grid-template-columns: min-content 1fr max-content;
+
+	@supports(user-select: none) {
+		user-select: none;
+	}
 
 	&:not(.disabled) {
 		#{$low-ink-color}: var(#{theme-consts.$vvd-color-neutral-70});
@@ -34,6 +43,7 @@ $low-ink-color: --_low-ink-color;
 .label {
 	@include typography.typography-cat-shorthand('body-2');
 
+	contain: inline-size;
 	grid-column: 1 / 4;
 	grid-row: 1;
 
@@ -61,13 +71,9 @@ $low-ink-color: --_low-ink-color;
 	position: relative;
 	display: flex;
 	align-items: center;
-	background-color: var(#{appearance.get-appearance-token(fill)});
-	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
-	contain: strict;
 	grid-column: 1 / 4;
-	padding-inline: 16px;
-	transition: color .2s, box-shadow .2s, background-color .2s;
+	transition: color .2s;
 
 	/* Size */
 	.base:not(.density-extended)>& {
@@ -90,19 +96,21 @@ $low-ink-color: --_low-ink-color;
 }
 
 .control {
+	// ! note: control is required to stretch fully so that
+	// ! autofill indication applies on all fieldset area
 	@include typography.typography-cat-shorthand('body-2');
 
-	// required to stretch fully so autofill indication applies on all fieldset region
-	position: absolute;
-	padding: 1px;
+	width: 100%;
 	border: 0 none;
-	background-color: unset;
+	background-color: var(#{appearance.get-appearance-token(fill)});
 	block-size: 100%;
 	border-radius: inherit;
+	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: inherit;
-	inset: 0;
 	outline: 0 none;
+	padding-inline-end: 16px;
 	padding-inline-start: 16px;
+	transition: box-shadow .2s, background-color .2s;
 
 	&::placeholder {
 		color: var(#{$low-ink-color});
@@ -111,9 +119,10 @@ $low-ink-color: --_low-ink-color;
 
 .icon {
 	// to avoid autofill style hiding other elements
-	position: relative;
+	position: absolute;
 	z-index: 1;
 	color: var(#{$low-ink-color});
+	inset-inline-start: 16px;
 
 	+.control {
 		padding-inline-start: 44px;
@@ -133,6 +142,7 @@ $low-ink-color: --_low-ink-color;
 
 	display: flex;
 	color: var(#{theme-consts.$vvd-color-on-canvas});
+	contain: inline-size;
 	grid-column: 2 / 4;
 
 	&-icon {
@@ -147,8 +157,7 @@ $low-ink-color: --_low-ink-color;
 
 	pointer-events: none;
 
-	.fieldset:not(:focus-within)>& {
+	.fieldset:not(:focus-visible, :focus-within) > & {
 		display: none;
 	}
-
 }

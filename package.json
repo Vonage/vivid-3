@@ -17,12 +17,13 @@
     "@microsoft/fast-element": "^1.10.2",
     "@microsoft/fast-foundation": "^2.46.9",
     "@microsoft/fast-web-utilities": "^5.4.1",
+    "babel-polyfill": "^6.26.0",
     "blocking-elements": "^0.1.1",
     "core-js": "^3.22.8",
     "ramda": "^0.27.2",
     "regenerator-runtime": "^0.13.9",
     "tslib": "^2.4.0",
-    "wicg-inert": "^3.1.1"
+    "wicg-inert": "^3.1.2"
   },
   "devDependencies": {
     "@11ty/eleventy": "^1.0.1",
@@ -78,7 +79,6 @@
     "prettier": "^2.5.1",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-delete": "^2.0.0",
-    "rollup-plugin-lit-css": "^3.2.1",
     "sass": "^1.52.2",
     "slugify": "^1.6.5",
     "stylelint": "^14.8.5",
@@ -91,4 +91,3 @@
     "typescript": "^4.7.2"
   }
 }
-
