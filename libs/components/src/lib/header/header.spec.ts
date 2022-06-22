@@ -72,14 +72,14 @@ describe('vwc-header', () => {
 			element.fixed = true;
 		});
 
-		it('should default to no elevation with no scrolling', async function () {
+		it('should default to no elevation', async function () {
 			await elementUpdated(element);
 			const control = getControlElement(element);
 			expect(element.elevated).toEqual(false);
 			expect(control.classList.contains('elevated')).toEqual(false);
 		});
 
-		it('should set "elevated" to true and add "elevated" class', async () => {
+		it('should set "elevated" to true and add "elevated" class when scrolled', async () => {
 			const control = getControlElement(element);
 			let hasClassElevated = control.classList.contains('elevated');
 			await emulateScroll();
@@ -99,7 +99,7 @@ describe('vwc-header', () => {
 			expect(hasClassElevated).toEqual(false);
 		});
 
-		it('should remove elevated state when offset is 0', async function () {
+		it('should remove elevated state when scroll offset is 0', async function () {
 			const control = getControlElement(element);
 			await emulateScroll();
 
