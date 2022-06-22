@@ -120,7 +120,7 @@ enabling the `tight` member will result in a dense style that fits the "normal" 
 </vwc-action-group>
 ```
 
-### complex search
+### Composed Search
 
 ```html preview
 <vwc-action-group shape="pill">
@@ -128,4 +128,33 @@ enabling the `tight` member will result in a dense style that fits the "normal" 
   <span role="separator"></span>
   <vwc-text-field icon="search-line" placeholder="Search..." appearance='ghost' shape="pill"  style="min-width: 160px;"></vwc-text-field>
 </vwc-action-group>
+```
+
+### More Actions
+
+```html preview center
+<div>
+  <vwc-text>
+    Click the button to see more actions
+  </vwc-text>
+</div>
+
+<vwc-button id="anchor" icon="more-horizontal-solid" aria-label="open actions menu"></vwc-button>
+
+<vwc-popup id="popup" anchor="anchor" arrow open corner="top">
+  <vwc-action-group appearance="ghost">
+    <vwc-button icon="reply-line"></vwc-button>
+    <vwc-button icon="transfer-line"></vwc-button>
+    <span role="separator"></span>
+    <vwc-button icon="compose-line"></vwc-button>
+    <vwc-button icon="crop-line"></vwc-button>
+    <span role="separator"></span>
+    <vwc-button icon="copy-2-line"></vwc-button>
+    <vwc-button icon="save-line"></vwc-button>
+  </vwc-action-group>
+</vwc-popup>
+
+<script>
+  anchor.addEventListener('click', () => popup.open = !popup.open);
+</script>
 ```
