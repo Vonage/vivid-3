@@ -70,7 +70,7 @@ const getHtml = (demoData) => {
   <vwc-elevation dp="0">
     <div class="${CBD_BASE}">
       <div class="iframe-container">
-        <iframe class="${CBD_DEMO}" src="${iframeSrc}" onload=onloadIframe(this) loading="lazy" aria-label="code block preview iframe" role="presentation"></iframe>
+        <iframe class="${CBD_DEMO}" src="${iframeSrc}" onload=onloadIframe(this) loading="lazy" aria-label="code block preview iframe"></iframe>
         <vwc-fab class="${CBD_FAB}" aria-label="Show source code" icon="curly-brackets-line" aria-expanded="false" aria-controls="${codeBlockId}" onclick="codeBlockButtonClick(this)"></vwc-fab>
       </div>
       <details class="${CBD_DETAILS}" ontoggle="detailsToggle()">

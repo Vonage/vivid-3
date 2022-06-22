@@ -13,21 +13,22 @@ const mapping = {
 }
 
 module.exports = (content, outputPath) => {
-    if (!outputPath.endsWith('html')) {
-      return content;
-    }
-
-    const dom = new JSDOM(content);
-    const document = dom.window.document;
-
-    const [...headings] = document.querySelectorAll(Object.keys(mapping).toString());
-
-    headings.forEach(heading => {
-      var textElement = document.createElement('vwc-text');
-      textElement.setAttribute('font-face', mapping[heading.nodeName.toLowerCase()]);
-      heading.parentNode.insertBefore(textElement, heading);
-      textElement.appendChild(heading);
-    });
-
-    return document.documentElement.outerHTML;
+  if (!outputPath.endsWith('html')) {
+    return content;
   }
+
+  const dom = new JSDOM(content);
+  const document = dom.window.document;
+
+  const [...tags] = document.querySelectorAll(Object.keys(mapping).toString());
+
+  tags.forEach(heading => {
+    const textElement = document.createElement('vwc-text');
+    textElement.setAttribute('role', 'none');
+    textElement.setAttribute('font-face', mapping[heading.nodeName.toLowerCase()]);
+    heading.parentNode.insertBefore(textElement, heading);
+    textElement.appendChild(heading);
+  });
+
+  return document.documentElement.outerHTML;
+}
