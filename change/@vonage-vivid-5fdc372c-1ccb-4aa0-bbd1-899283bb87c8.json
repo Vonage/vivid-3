@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "refactor(components): default aria label for icon only action",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}
