@@ -69,4 +69,13 @@ describe('vwc-fab', () => {
 			expect(element.shadowRoot?.querySelector('.disabled')).toBeTruthy();
 		});
 	});
+
+	describe('aria label', function () {
+		it('should default aria label to icon name if icon only and no aria label provided by author', async () => {
+			const icon = 'home-line';
+			element.icon = icon;
+			await elementUpdated(element);
+			expect(getControlElement(element).ariaLabel).toEqual(icon);
+		});
+	});
 });
