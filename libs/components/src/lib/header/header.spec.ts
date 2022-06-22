@@ -100,7 +100,7 @@ describe('vwc-header', () => {
 			expect(hasClassElevated).toEqual(false);
 		});
 
-		it('should remove elevated state when offset is 0', async function () {
+		it('should remove elevated state when scroll offset is 0', async function () {
 			const control = getControlElement(element);
 			await emulateScroll();
 
