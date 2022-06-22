@@ -80,7 +80,7 @@ describe('vwc-header', () => {
 			expect(control.classList.contains('elevated')).toEqual(false);
 		});
 
-		it('should set "elevated" to true and add "elevated" class', async () => {
+		it('should set "elevated" to true and add "elevated" class when scrolled', async () => {
 			const control = getControlElement(element);
 			let hasClassElevated = control.classList.contains('elevated');
 			await emulateScroll();
