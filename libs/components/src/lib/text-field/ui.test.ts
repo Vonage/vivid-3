@@ -19,7 +19,7 @@ test('should show the component', async ({page}: { page: Page }) => {
 			''
 		);
 
-	page.setViewportSize({ width: 300, height: 720 });
+	await page.setViewportSize({ width: 300, height: 720 });
 
 	await loadComponents({
 		page,
@@ -40,7 +40,7 @@ test('should show the component', async ({page}: { page: Page }) => {
 		);
 });
 
-test('should invalidate the component', async ({page, browserName}: { page: Page, browserName: string }) => {
+test.only('should invalidate the component', async ({page, browserName}: { page: Page, browserName: string }) => {
 	const selector = browserName === 'chromium' ? 'input[name="invalid-text-field"]' : '#invalid-text-field';
 
 	const template = `<vwc-text-field id="invalid-text-field" 
