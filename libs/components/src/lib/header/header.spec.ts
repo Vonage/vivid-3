@@ -29,7 +29,7 @@ describe('vwc-header', () => {
 			element.fixed = true;
 			element.connectedCallback();
 			await elementUpdated(element);
-			expect(hasClassFixed).toEqual(false);
+			expect(hasClassFixedOnInit).toEqual(false);
 
 			hasClassFixed = control.classList.contains('fixed');
 			expect(hasClassFixed).toEqual(true);
