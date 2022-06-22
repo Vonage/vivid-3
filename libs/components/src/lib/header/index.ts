@@ -5,7 +5,7 @@ import styles from './header.scss';
 import { header } from './header';
 import { headerTemplate as template } from './header.template';
 
-export const vividheader = header.compose<FoundationElementDefinition>({
+export const vividHeader = Header.compose<FoundationElementDefinition>({
 	baseName: 'header',
 	template: template as any,
 	styles,
