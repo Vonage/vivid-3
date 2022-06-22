@@ -23,7 +23,7 @@ describe('vwc-header', () => {
 	});
 
 	describe('fixed', () => {
-		it('should set "fixed" to true and add "fixed" class', async () => {
+		it('should add "fixed" class to control and attribute to host when fixed is true', async () => {
 			const control = getControlElement(element);
 			let hasClassFixedOnInit = control.classList.contains('fixed');
 			element.fixed = true;
