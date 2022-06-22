@@ -101,11 +101,16 @@ dark-mode-toggle {
 /*Homepage*/
 .home-page-hero {
   text-align: center;
-  width: calc(100vw - 312px); /*side-280 + 24 + 16 margin*/
   margin: 0 -1.5rem; /*to overide the vwc-layout top margin*/
   padding: 2rem 1rem;
   border-bottom: 1px solid var(--vvd-color-neutral-20);
 }
+@media (min-width: 960px){
+  .home-page-hero {
+    width: calc(100vw - 312px); /*side-280 + 24 + 16 margin*/
+  }
+}
+
 .home-page-hero a {
   color: var(--vvd-color-on-canvas);
 }
@@ -135,10 +140,18 @@ article > ul,
 article > table {
   max-inline-size: 64ch;
 }
+
 article > pre,
 article .cbd-base {
   box-sizing: border-box;
-  max-inline-size: 1200px;
+  max-inline-size: calc(100vw - 64px);
+}
+
+@media  (min-width: 960px) {
+  article > pre,
+  article .cbd-base {
+    max-inline-size: 1200px;
+  }
 }
 
 .heading-wrapper {
@@ -162,6 +175,7 @@ article .cbd-base {
 .cbd-base {
   border-radius: 6px;
   contain: paint;
+  border: 1px solid var(--vvd-color-neutral-10);
 }
 
 .cbd-demo {
@@ -176,6 +190,10 @@ article .cbd-base {
 	background-color: var(--vvd-color-neutral-10);
   border-top: 1px solid var(--vvd-color-neutral-20);
 	padding: 8px;
+}
+
+summary::-webkit-details-marker {
+  display: none; /*hide the triangle in safari*/
 }
 
 .cbd-code-block {
@@ -193,8 +211,12 @@ article .cbd-base {
   color: var(--vvd-color-neutral-50);
   padding: 8px;
   border-radius: 6px;
+  font-size: 1rem;
 }
 
+.hljs.preview {
+  overflow-x: auto;
+}
 .hljs-string,
 .hljs-section,
 .hljs-selector-class,
