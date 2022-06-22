@@ -1,5 +1,5 @@
 import { applyMixins, Button as FoundationButton } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
+import { attr, volatile } from '@microsoft/fast-element';
 
 import type { Connotation } from '../enums.js';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
@@ -34,6 +34,11 @@ export class Fab extends FoundationButton {
 	 * HTML Attribute: label
 	 */
 	@attr label?: string;
+
+	@volatile
+	get isIconOnly() {
+		return !this.label && !!this.icon;
+	}
 }
 
 export interface Fab extends AffixIconWithTrailing { }

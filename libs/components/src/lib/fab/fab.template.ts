@@ -7,11 +7,11 @@ import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { Fab } from './fab';
 
 const getClasses = ({
-	connotation, icon, label, iconTrailing, disabled
+	connotation, isIconOnly, iconTrailing, disabled
 }: Fab) => classNames(
 	'control',
 	[`connotation-${connotation}`, Boolean(connotation)],
-	['icon-only', !label && !!icon],
+	['icon-only', isIconOnly],
 	['icon-trailing', iconTrailing],
 	['disabled', disabled],
 );
@@ -58,13 +58,13 @@ export const FabTemplate: (
             aria-hidden="${(x) => x.ariaHidden}"
             aria-invalid="${(x) => x.ariaInvalid}"
             aria-keyshortcuts="${(x) => x.ariaKeyshortcuts}"
-            aria-label="${(x) => x.ariaLabel}"
+            aria-label="${(x) => x.ariaLabel || x.isIconOnly ? x.icon : null}"
             aria-labelledby="${(x) => x.ariaLabelledby}"
             aria-live="${(x) => x.ariaLive}"
             aria-owns="${(x) => x.ariaOwns}"
             aria-pressed="${(x) => x.ariaPressed}"
             aria-relevant="${(x) => x.ariaRelevant}"
-            aria-roledescription="${(x) => x.ariaRoledescription}"		
+            aria-roledescription="${(x) => x.ariaRoledescription}"
             ${ref('control')}
         >
             ${() => focusTemplate}
