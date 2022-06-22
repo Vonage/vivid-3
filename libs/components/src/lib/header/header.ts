@@ -6,7 +6,7 @@ import { attr, observable, volatile } from '@microsoft/fast-element';
  *
  * @public
  */
-export class header extends FoundationElement {
+export class Header extends FoundationElement {
 	/**
 	 *
 	 *headerEl

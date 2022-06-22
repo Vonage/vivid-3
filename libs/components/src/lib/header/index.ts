@@ -2,7 +2,7 @@ import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { designSystem } from '../../shared/design-system';
 import styles from './header.scss';
 
-import { header } from './header';
+import { Header } from './header';
 import { headerTemplate as template } from './header.template';
 
 export const vividHeader = Header.compose<FoundationElementDefinition>({
@@ -11,4 +11,4 @@ export const vividHeader = Header.compose<FoundationElementDefinition>({
 	styles,
 });
 
-designSystem.register(vividheader());
+designSystem.register(vividHeader());
