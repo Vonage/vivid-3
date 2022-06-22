@@ -365,7 +365,7 @@ describe('vwc-text-field', () => {
 			element.validate();
 		}
 
-		it('should add class error to base if invalid', async function () {
+		it('should add class error to base if not valid', async function () {
 			element.dirtyValue = true;
 			setToBlurred();
 			setValidityToError('blah');
@@ -377,7 +377,7 @@ describe('vwc-text-field', () => {
 				.toEqual(true);
 		});
 
-		it('should render the error message when invalid', async function () {
+		it('should render the error message when not valid', async function () {
 			const errorElementWithoutText = element.shadowRoot?.querySelector('.error-message');
 			const errorMessage = 'Error Text';
 
@@ -444,7 +444,7 @@ describe('vwc-text-field', () => {
 				textContent?.trim()).toEqual(errorMessageTwo);
 		});
 
-		it('should change the error message only when already invalid', async function() {
+		it('should change the error message only when already not valid', async function() {
 			setToBlurred();
 			setToFocused();
 			const errorMessage = 'Error Text';
