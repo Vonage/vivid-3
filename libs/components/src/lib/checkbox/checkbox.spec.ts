@@ -78,7 +78,7 @@ describe('vwc-checkbox', () => {
 			expect(base).toBeInstanceOf(Element);
 		});
 
-		it('should set off `indeterminate` on `checked` change by user click', async () => {
+		it('should set `indeterminate` to false when `checked` by click', async () => {
 
 			element.indeterminate = true;
 
