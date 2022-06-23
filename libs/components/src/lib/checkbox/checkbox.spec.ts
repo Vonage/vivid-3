@@ -89,7 +89,7 @@ describe('vwc-checkbox', () => {
 			expect(element.indeterminate).toBeFalsy();
 		});
 
-		it('should set off `indeterminate` on `checked` change by user keypress', async () => {
+		it('should set `indeterminate` to false when `checked` by keypress', async () => {
 
 			element.indeterminate = true;
 
