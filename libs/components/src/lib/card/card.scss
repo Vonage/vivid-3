@@ -4,10 +4,11 @@
 
 
 :host {
-	display: block;
+	display: flex;
 }
 
 .base {
+  inline-size: 100%;
 	border-radius: 6px;
 }
 
