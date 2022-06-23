@@ -1,10 +1,10 @@
-import {elementUpdated, fixture} from '@vivid-nx/shared';
+import {createFormHTML, elementUpdated, fixture, listenToFormSubmission} from '@vivid-nx/shared';
 import {TextFieldType} from '@microsoft/fast-foundation';
 import {Icon} from '../icon/icon';
 import {TextField} from './text-field';
 import '.';
 
-const COMPONENT_TAG = 'vwc-text-field';
+const COMPONENT_TAG_NAME = 'vwc-text-field';
 
 /**
  * @param element
@@ -18,7 +18,7 @@ describe('vwc-text-field', () => {
 
 	beforeEach(async () => {
 		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+			`<${COMPONENT_TAG_NAME}></${COMPONENT_TAG_NAME}>`
 		)) as TextField;
 	});
 
@@ -204,48 +204,6 @@ describe('vwc-text-field', () => {
 	});
 
 	describe('form association', function () {
-		/**
-		 * @param formElement
-		 */
-		function listenToSubmission(formElement: HTMLFormElement): Promise<FormData> {
-			return new Promise((res) => {
-				formElement.addEventListener('submit', () => {
-					const formData = new FormData(formElement);
-					res(formData);
-				});
-			});
-		}
-
-		/**
-		 * @param fieldName
-		 * @param fieldValue
-		 * @param formId
-		 * @param otherFormId
-		 */
-		function createFormHTML(fieldName: string, fieldValue: string, formId: string, otherFormId?: string) {
-			const otherForm = otherFormId
-				? `<form onsubmit="return false" id="${otherFormId}"><button></button></form>`
-				: '';
-			formWrapper.innerHTML = `
-				<form onsubmit="return false" name="testForm" id="${formId}">
-					<${COMPONENT_TAG} name="${fieldName}"
-						value="${fieldValue}"
-						${otherFormId ? `form="${otherFormId}"` : `form="${formId}"`}>
-					</${COMPONENT_TAG}>
-					<button></button>
-				</form>
-				${otherForm}
-			`;
-
-			return {
-				form: formWrapper.children[0] as HTMLFormElement,
-				otherForm: formWrapper.children[1] as HTMLFormElement,
-				element: formWrapper.querySelector(COMPONENT_TAG) as TextField,
-				button: formWrapper.children[0]?.querySelector('button'),
-				otherFormButton: formWrapper.children[1]?.querySelector('button'),
-			};
-		}
-
 		let fieldValue: string,
 			formId: string,
 			fieldName: string,
@@ -264,9 +222,15 @@ describe('vwc-text-field', () => {
 		});
 
 		it('should attach to closest form', async function () {
-			const {form: formElement} = createFormHTML(fieldName, fieldValue, formId);
+			const {form: formElement} = createFormHTML<TextField>({
+				componentTagName: COMPONENT_TAG_NAME,
+				fieldName,
+				fieldValue,
+				formId,
+				formWrapper
+			});
 
-			const submitPromise = listenToSubmission(formElement);
+			const submitPromise = listenToFormSubmission(formElement);
 			formElement.requestSubmit();
 
 			(await submitPromise).forEach((formDataValue, formDataKey) => {
@@ -278,9 +242,12 @@ describe('vwc-text-field', () => {
 		});
 
 		it('should attach to form when given form id', async function () {
-			const {otherForm} = createFormHTML(fieldName, fieldValue, formId, 'otherFormId');
+			const {otherForm} = createFormHTML<TextField>(
+				{
+					fieldName, fieldValue, formId, otherFormId: 'otherFormId', componentTagName: COMPONENT_TAG_NAME, formWrapper
+				});
 
-			const submitPromise = listenToSubmission(otherForm);
+			const submitPromise = listenToFormSubmission(otherForm);
 			otherForm.requestSubmit();
 
 			(await submitPromise).forEach((formDataValue, formDataKey) => {
@@ -295,7 +262,13 @@ describe('vwc-text-field', () => {
 			const {
 				form: formElement,
 				element
-			} = createFormHTML(fieldName, fieldValue, formId);
+			} = createFormHTML<TextField>({
+				fieldName,
+				fieldValue,
+				formId,
+				componentTagName: COMPONENT_TAG_NAME,
+				formWrapper
+			});
 
 			element.value = '5';
 			formElement.reset();

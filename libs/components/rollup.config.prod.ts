@@ -37,7 +37,6 @@ module.exports = function setVividRollupConfig(config) {
 	delete output.name;
 	delete output.entryFileNames;
 
-
 	const plugins = [...config.plugins,
 		replace({
 			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
