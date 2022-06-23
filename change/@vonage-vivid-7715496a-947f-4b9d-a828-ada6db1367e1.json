@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "chore(components): refactor card to block flow",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}
