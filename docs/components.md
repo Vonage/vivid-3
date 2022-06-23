@@ -65,5 +65,5 @@
 | textfield            | GA         | \-         |
 | theme switch         | GA         | obsolete   |
 | tooltip              | alpha      | WIP        |
-| top app bar          | GA         | WIP        |
-| top app bar fixed    | GA         | WIP        |
+| header          | GA         | WIP        |
+| header fixed    | GA         | WIP        |
