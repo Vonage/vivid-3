@@ -136,7 +136,7 @@ article > table {
 }
 article > pre,
 article > .cbd-container {
-  margin: 12px 0;
+  margin-block: 12px;
   box-sizing: border-box;
   max-inline-size: 1200px;
 }
