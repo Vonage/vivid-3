@@ -84,10 +84,10 @@ test('should add elevation to fixed header when scrolled', async ({ page }: { pa
 	});
 
 	await page.waitForLoadState('networkidle');
-	
+
 	const element = await page.locator('vwc-header');
 
-	await page.mouse.wheel(0, 50)
+	await page.mouse.wheel(0, 50);
 	expect(await element.locator('.elevated')).toBeDefined();
 
 });
