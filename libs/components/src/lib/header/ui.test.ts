@@ -28,7 +28,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	});
 
 	const testWrapper = await page.$('#wrapper');
-
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
@@ -82,7 +81,6 @@ test('should add elevation to fixed header when scrolled', async ({ page }: { pa
 	});
 
 	await page.waitForLoadState('networkidle');
-
 	const element = await page.locator('vwc-header');
 
 	await page.mouse.wheel(0, 50)
