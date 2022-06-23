@@ -183,5 +183,25 @@
     "modules": [
       "/assets/modules/components/note/index.js"
     ]
+  },
+  {
+    "title": "checkbox",
+    "markdown": "./libs/components/src/lib/checkbox/README.md",
+    "modules": [
+      "/assets/modules/components/checkbox/index.js"
+    ]
+  },
+  {
+    "title": "header",
+    "markdown": "./libs/components/src/lib/header/README.md",
+    "modules": [
+      "/assets/modules/components/header/index.js",
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/text/index.js",
+      "/assets/modules/components/side-drawer/index.js",
+      "/assets/modules/components/sidenav-item/index.js",
+      "/assets/modules/components/layout/index.js",
+      "/assets/modules/components/banner/index.js"
+    ]
   }
 ]

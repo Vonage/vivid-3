@@ -50,10 +50,6 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
 			@include typography.typography-cat-shorthand(body-1);
 
 			margin-inline-start: #{$inline-size};
-			::slotted(vwc-top-app-bar),
-			::slotted(vwc-top-app-bar-fixed) {
-				--mdc-top-app-bar-width: calc(100% - #{$inline-size});
-			}
 		}
 		&.end {
 			+ .side-drawer-app-content {

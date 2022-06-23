@@ -43,14 +43,15 @@
     <script type="module" src="{{ '/assets/modules/components/button/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/icon/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/card/index.js' | url}}"></script>
-    <script type="module" src="https://es6.dev.vivid.vonage.com/v2.22.1/@vonage/vwc-top-app-bar-fixed/vwc-top-app-bar-fixed.js"></script>
+    <script type="module" src="{{ '/assets/modules/components/elevation/index.js' | url}}"></script>
+    <script type="module" src="{{ '/assets/modules/components/header/index.js' | url}}"></script>
 
     {% include "prefetches.njk" %}
   </head>
 
 <body>
-	<vwc-top-app-bar-fixed>
-    <div class="logo" slot="navigationIcon">
+	<vwc-header fixed>
+    <div class="logo">
     <img src="../../../vivid-logo.svg" style="" alt="Vivid Logo" width="30">
       <h5>VIVID</h5>
     </div>
@@ -68,7 +69,7 @@
     </div>
     <dark-mode-toggle permanent></dark-mode-toggle>
     </div>
-    <vwc-side-drawer open>
+    <vwc-side-drawer open slot="app-content">
       {% include "navigation.njk" %}
 			<main slot="app-content">
         <vwc-layout gutters="large" column-basis="block" class="main-layout">
@@ -79,7 +80,7 @@
         <br>
       </main>
 		</vwc-side-drawer>
-	</vwc-top-app-bar-fixed>
+	</vwc-header>
 
 </body>
 
