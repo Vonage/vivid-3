@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "update code block rendering style in docs ",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}

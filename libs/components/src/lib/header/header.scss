@@ -1,0 +1,55 @@
+@use "../../../../shared/src/lib/sass/mixins/typography" as typography;
+@use "../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts" as theme-consts;
+@use "partials/variables" as variables;
+
+:host {
+	#{variables.$header-z-index}: 7;
+}
+
+.control {
+	@include typography.typography-cat-shorthand("subtitle-2");
+
+	z-index: var(#{variables.$header-z-index});
+	display: flex;
+	width: 100%;
+	height: 64px;
+	box-sizing: border-box;
+	justify-content: space-between;
+	padding: 8px 12px;
+	background-color: var(#{theme-consts.$vvd-color-canvas});
+	color: var(#{theme-consts.$vvd-color-on-canvas});
+	column-gap: 12px;
+
+	&.fixed {
+		position: fixed;
+		&.elevated {
+			box-shadow: 0 0 10px rgb(0 0 0 / 40%);
+			transition: all 0.15s linear;
+		}
+	}
+	
+	.header-content {
+		display: inline-flex;
+		flex: 1;
+		align-items: center;
+	}
+
+	.start {
+		justify-content: flex-start;
+
+		.heading {
+			padding-left: 20px;
+		}
+	}
+
+	.end {
+		justify-content: flex-end;
+	}
+}
+
+.control.fixed + .app-content {
+	padding-top: 64px;
+	::slotted(vwc-side-drawer) {
+		block-size: calc(100vh - 64px);
+	}
+}
