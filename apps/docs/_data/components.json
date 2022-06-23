@@ -185,6 +185,13 @@
     ]
   },
   {
+    "title": "checkbox",
+    "markdown": "./libs/components/src/lib/checkbox/README.md",
+    "modules": [
+      "/assets/modules/components/checkbox/index.js"
+    ]
+  },
+  {
     "title": "header",
     "markdown": "./libs/components/src/lib/header/README.md",
     "modules": [

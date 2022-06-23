@@ -82,7 +82,7 @@ The graphic slot overide the icon property
 The media slot is mainly for images or video content above the card header
 
 ```html preview
-<vwc-card heading="Card with Media" text="here is the card text">
+<vwc-card heading="Card with Media" text="here is the card text" style="max-inline-size: 300px">
   <img slot="media" src="https://doodleipsum.com/300x150/flat?bg=EB765D&amp;i=7d5ed3bc0c215d1359b2a63d03cf1540" alt="Sitting on Floor"style="width: 100%; height: 150px; object-fit: cover;"/>
 </vwc-card>
 ```
@@ -111,14 +111,14 @@ footer slot main purpose is for action button
 
 ### Main
 
-We offer our opinionated structure for the card.  
-Assign nodes to `main` slot to fully override a card's main template.
+Card is battery charged with opinionated template.  
+Assign nodes to `main` slot to fully override a card's predefined flow and style with your own.
 
 ```html preview
 <vwc-card>
   <vwc-layout gutters="small" slot="main">
     <vwc-text>
-      If you need different structure - use this slot
+      assign custom template using "main" slot
     </vwc-text>
   </vwc-layout>
 </vwc-card>
@@ -143,7 +143,6 @@ The number of lines are controlled by css variable:
     --heading-line-clamp: 1;
     --subheading-line-clamp: 2;
 
-    display: block;
     max-inline-size: 42ch;
   }
 </style>
