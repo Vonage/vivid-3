@@ -25,3 +25,4 @@ export * from './text-field';
 // export * from './text-anchor';
 export * from './tooltip';
 export * from './checkbox';
+export * from './header';

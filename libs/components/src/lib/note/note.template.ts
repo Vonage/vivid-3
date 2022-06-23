@@ -29,6 +29,9 @@ function getHeaderTemplate() {
 	return html<Note>`<div class="heading">${x => x.heading}</div>`;
 }
 
+/**
+ * @param note
+ */
 function getIconType(note: Note) {
 	return note.icon ? note.icon : note.connotation ? connotationIconMap.get(note.connotation) : 'megaphone-solid';
 }
