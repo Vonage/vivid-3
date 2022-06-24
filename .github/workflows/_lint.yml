@@ -19,6 +19,6 @@ jobs:
           LINTER_RULES_PATH:	.github/linters
           # TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.json
           VALIDATE_CSS: true
-          CSS_FILE_NAME: .stylelintrc.json
+          # CSS_FILE_NAME: .stylelintrc.json
       # - run: npm ci --only=dev
       # - run: npm run nx run-many -- --target=stylelint --all && npm run nx run-many -- --target=lint --all
