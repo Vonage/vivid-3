@@ -5,6 +5,8 @@ interface PlaywrightTestConfigWithRegression extends PlaywrightTestConfig {
 }
 
 const config: PlaywrightTestConfigWithRegression = {
+	fullyParallel: true,
+	maxFailures: 1,
 	testMatch: 'src/**/*.test.ts',
 	outputDir: '../../test-results',
 	projects: [
