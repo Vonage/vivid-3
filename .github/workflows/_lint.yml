@@ -1,4 +1,4 @@
-name: ⑇ Lint
+name: Lint Code Base
 
 on: workflow_call
 
@@ -14,10 +14,11 @@ jobs:
 
       - uses: github/super-linter/slim@v4
         env:
-          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_CSS: true
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.json
+          CSS_FILE_NAME: .stylelintrc.json
           LINTER_RULES_PATH:	.github/linters
       # - run: npm ci --only=dev
       # - run: npm run nx run-many -- --target=stylelint --all && npm run nx run-many -- --target=lint --all

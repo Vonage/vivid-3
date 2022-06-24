@@ -11,14 +11,13 @@
 [![Issues][issues-shield]][issues-url]
 [![Apache 2.0 License][license-shield]][license-url]
 
-
   <h6>
     Vonage's design system platform targeted to provide </br>incorporated, battery-charged web components.
   </h6>
   <a class="home-page-hero-docs-btn" href="https://vivid.deno.dev"><strong>Explore the docs</strong></a>
   <div class="home-page-hero-docs-links">
     <a href="https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=bug_report.md&title=">Report Bug</a>
-    <span>|</span>    
+    <span>|</span>
     <a href="https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=feature_request.md&title=">Request Feature</a>
   </div>
 </div>
@@ -28,9 +27,7 @@
 
 > Vivid philosophy favors lock-down over white labeling strategy, utilizing high-level design tokens to customize UI systematically rather than permuting components directly (to a balanced degree). This guideline help keep integration processes ergonomic and the UI consistent.
 
-
 <br>
-
 
 ## Roadmap
 
@@ -53,7 +50,7 @@ Feel free to check [issues page](https://github.com/Vonage/vivid-3/issues). You 
 
 ### Getting started
 
-#### Generator a new component 
+#### Generator a new component
 
 `npm run nx g @vonage/nx-vivid:component my-component`
 
@@ -63,6 +60,7 @@ Will generate a new component in `libs/componnts/src/lib/my-component`
 
 `npm run test components` will run unit tests for the components
 See the [ui-tests docs](docs/ui-tests/readme.md) for how to run visual tests.
+
 ## Show your support
 
 Give a ⭐️ if this project helped you!
@@ -94,3 +92,4 @@ This project is [Apache 2.0][license-url] licensed.
 [license-shield]: https://img.shields.io/github/license/vonage/vivid-3.svg?style=for-the-badge
 [license-url]: LICENSE.md
 [license-url]: LICENSE.md
+[![GitHub Super-Linter](https://github.com/<OWNER>/<REPOSITORY>/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
