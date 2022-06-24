@@ -14,11 +14,11 @@ jobs:
 
       - uses: github/super-linter/slim@v4
         env:
-          VALIDATE_CSS: true
-          DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.json
-          CSS_FILE_NAME: .stylelintrc.json
+          DEFAULT_BRANCH: main
           LINTER_RULES_PATH:	.github/linters
+          # TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.json
+          VALIDATE_CSS: true
+          CSS_FILE_NAME: .stylelintrc.json
       # - run: npm ci --only=dev
       # - run: npm run nx run-many -- --target=stylelint --all && npm run nx run-many -- --target=lint --all
