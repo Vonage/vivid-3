@@ -24,7 +24,6 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           site-dir: ${{ github.workspace }}/dist/apps/docs
-          max-urls: 10
 
       - name: Upload report artifact
         uses: actions/upload-artifact@v2
