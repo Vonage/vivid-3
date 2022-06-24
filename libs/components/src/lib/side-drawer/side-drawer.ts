@@ -1,5 +1,9 @@
-import { attr } from '@microsoft/fast-element';
-import { FoundationElement, FoundationElementDefinition, StartEndOptions } from '@microsoft/fast-foundation';
+import 'blocking-elements';
+import 'wicg-inert';
+import 'babel-polyfill';
+import { attr, observable } from '@microsoft/fast-element';
+import { FoundationElement } from '@microsoft/fast-foundation';
+import type { DocumentWithBlockingElements } from 'blocking-elements';
 
 /**
  * Base class for side-drawer
@@ -13,14 +17,10 @@ import { FoundationElement, FoundationElementDefinition, StartEndOptions } from 
  * @public
  */
 
-/**
- * Anchor configuration options
- *
- * @public
- */
-export type SideDrawerOptions = FoundationElementDefinition & StartEndOptions;
-
 export class SideDrawer extends FoundationElement {
+	asideEl!: HTMLElement;
+	scrimEl!: any;
+
 	/**
 	 * applies scheme alternate region
 	 *
@@ -29,14 +29,6 @@ export class SideDrawer extends FoundationElement {
 	@attr({
 		mode: 'boolean',
 	}) alternate = false;
-
-	/**
-	 *
-	 * adds top bar to the side drawer
-	 *
-	 * @internal
-	 */
-	hasTopBar: HTMLElement[] | undefined;
 
 	/**
 	 * sets the side drawer's type to modal
@@ -64,32 +56,30 @@ export class SideDrawer extends FoundationElement {
 	@attr position?: 'start' | 'end';
 
 	/**
-	 * Opens the side drawer from the closed state.
+	 *
+	 * adds top bar to the side drawer
 	 *
 	 * @public
 	 */
-	show(): void {
-		this.open = true;
+	@observable headerSlottedContent?: HTMLElement[];
+
+	#blockingElements = (document as DocumentWithBlockingElements).$blockingElements;
+
+	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
+		super.attributeChangedCallback(name, oldValue, newValue);
+		if (name === 'open' && this.modal) {
+			this.open ? this.#trapFocus() : this.#releaseFocusTrap();
+		}
 	}
 
-	/**
-	 * Closes the side drawer from the open state.
-	 *
-	 * @public
-	 */
-	hide(): void {
-		this.open = false;
+	#trapFocus(): void {
+		this.#blockingElements.push(this.asideEl);
+		if (this.scrimEl) {
+			this.scrimEl.inert = false;
+		}
 	}
 
-	handleScrimClick = (): void => {
-		if (this.modal && this.open) {
-			this.hide();
-		}
-	};
-
-	handleKeydown({ key }: KeyboardEvent): void {
-		if (this.open && key === 'Escape') {
-			this.hide();
-		}
+	#releaseFocusTrap(): void {
+		this.#blockingElements.remove(this.asideEl);
 	}
 }

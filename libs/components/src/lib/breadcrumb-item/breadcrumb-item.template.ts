@@ -9,9 +9,7 @@ import {textAnchorTemplate} from '../text-anchor/text-anchor.template';
 import type { BreadcrumbItem } from './breadcrumb-item';
 
 const getClasses = (_: BreadcrumbItem) =>
-	classNames(
-		'control', 'breadcrumb-item'
-	);
+	classNames('base');
 
 /**
  * The template for the {@link @microsoft/fast-foundation#BreadcrumbItem} component.
@@ -33,5 +31,5 @@ export const BreadcrumbItemTemplate: (
 		html<BreadcrumbItem>`${textAnchorTemplate(context, definition)}`)}
 
         ${when(x => x.separator,
-		html<BreadcrumbItem>`<vwc-icon type="chevron-right-line"></vwc-icon>`)}
+		html<BreadcrumbItem>`<vwc-icon type="chevron-right-solid"></vwc-icon>`)}
       </div>`;

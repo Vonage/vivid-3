@@ -26,7 +26,7 @@
 <br>
 <br>
 
-> Vivid philosophy favors lock-down over white labeling strategy, utilizing high-level [design tokens](docs/design-tokens.md) to customize UI systematically rather than permuting components directly (to a balanced degree). This guideline help keep integration processes ergonomic and the UI consistent.
+> Vivid philosophy favors lock-down over white labeling strategy, utilizing high-level design tokens to customize UI systematically rather than permuting components directly (to a balanced degree). This guideline help keep integration processes ergonomic and the UI consistent.
 
 
 <br>
@@ -34,15 +34,15 @@
 
 ## Roadmap
 
+[view components status](https://github.com/orgs/Vonage/projects/6)
+
 Follow our API planning on the [Vivid project components' view](https://github.com/orgs/Vonage/projects/3/views/13)
 
-We publish a canary release on every successful merge to main, so you never need to wait for a new stable version to make use of any updates.
+Tagged (_next_) release is published on every successful merge to main, so you never need to wait for a new stable version to make use of any updates.
 
 See the [open issues](https://github.com/vonage/vivid-3/issues) for a full list of proposed features (and known issues).
 
 <br>
-
-[view components status](https://github.com/Vonage/vivid-3/blob/main/docs/components.md)
 
 ## 🤝 Contributing
 
@@ -55,7 +55,7 @@ Feel free to check [issues page](https://github.com/Vonage/vivid-3/issues). You 
 
 #### Generator a new component 
 
-`npm run nx workspace-generator vivid-component my-component`
+`npm run nx g @vonage/nx-vivid:component my-component`
 
 Will generate a new component in `libs/componnts/src/lib/my-component`
 

@@ -20,6 +20,10 @@ export const fixture = (() => {
 	};
 })();
 
+export const getBaseElement = (element: Element) => {
+	return element.shadowRoot?.querySelector('.base') as HTMLElement;
+}
+
 export const getControlElement = (element: Element) => {
 	return element.shadowRoot?.querySelector('.control') as HTMLElement;
 }
@@ -28,3 +32,5 @@ export async function setAttribute(element: any, attribute: string, value: strin
   element[attribute] = value;
   await elementUpdated(element);
 }
+
+export * from './form-association';

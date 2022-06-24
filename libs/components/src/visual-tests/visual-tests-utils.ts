@@ -1,7 +1,16 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import markdownIt from 'markdown-it';
+import { JSDOM } from 'jsdom';
 import type {Page} from '@playwright/test';
-import * as extract from 'extract-gfm';
+import layout from '../../../../apps/docs/transformers/code-block-demo/layout.js';
+
+const md = markdownIt({
+	html: true,
+	highlight: function (str, _, attrs) {
+		return `<pre class="${attrs}">${str}</pre>`;
+	}
+});
 
 /**
  * @param str
@@ -13,14 +22,24 @@ export function replaceAll(str: string, find: string, replace: string) {
 }
 
 /**
+ * @param html
+ */
+function getPreElements(html): NodeListOf<HTMLPreElement> {
+	const dom = new JSDOM(html);
+	return dom.window.document.querySelectorAll('pre.preview');
+}
+
+/**
  * @param pathToReadme
  */
 export function extractHTMLBlocksFromReadme(pathToReadme: string): string[] {
 	const readmeFileContents = fs.readFileSync(path.resolve(pathToReadme))
 		.toString();
-	const readmeFileSnippets = extract.extractBlocks(readmeFileContents);
-	return readmeFileSnippets.filter((block: any) => block.lang === 'html')
-		.map((block: any) => replaceAll(block.code.replace('preview', ''), '\n', ''));
+	const html = md.render(readmeFileContents);
+	const preElements = getPreElements(html);
+	return Array.from(preElements).map(({ innerHTML, classList }) =>
+		layout(innerHTML, classList)
+	);
 }
 
 const defaultStyles = [

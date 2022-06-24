@@ -16,13 +16,13 @@ describe('vwc-badge', () => {
 	describe('basic', () => {
 		it('initializes as a vwc-badge', async () => {
 			expect(element).toBeInstanceOf(Badge);
-			expect(element.text).toEqual('');
+			expect(element.text).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
 			expect(element.iconTrailing).toBeFalsy();
 			expect(element.connotation).toBeUndefined();
 			expect(element.shape).toBeUndefined();
 			expect(element.appearance).toBeUndefined();
-			expect(element.size).toBeUndefined();
+			expect(element.density).toBeUndefined();
 		});
 	});
 
@@ -100,13 +100,13 @@ describe('vwc-badge', () => {
 		});
 	});
 
-	describe('size', () => {
-		it('sets correct internal size style', async () => {
-			const size = 'small';
-			(element as any).size = size;
+	describe('density', () => {
+		it('sets correct internal density style', async () => {
+			const density = 'condensed';
+			(element as any).density = density;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.size-${size}`);
+			const control = element.shadowRoot?.querySelector(`.control.density-${density}`);
 			expect(control)
 				.toBeInstanceOf(Element);
 		});

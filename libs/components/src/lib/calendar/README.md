@@ -27,7 +27,6 @@ Use the `datetime` attribute to set date within a week of choice.
 
 Use the `start-day` attribute (or `startDay` property) to set the first day of the week (e.g. work week starts on Monday).
 
-
 - Type: `'sunday'` | `'monday'`
 - Default: `undefined` (programmatically defaults to `'monday'` if not specified)
 
@@ -58,6 +57,13 @@ Unless provided, choice will be set according to local time preference (e.g. US 
 <vwc-calendar hour12></vwc-calendar>
 ```
 
+## Slots
+
+### Day
+
+Day slot is created for each day of the week.
+Assign elements to a day column using `'day-0'` | `'day-1'` | `'day-2'` | `'day-3'` | `'day-4'` | `'day-5'` | `'day-6'`
+
 ## Methods
 
 ### Event Context
@@ -66,5 +72,3 @@ Unless provided, choice will be set according to local time preference (e.g. US 
 - Returns: `{ day: number, hour: number }` | `null`
 
 Accepts event reference and returns an object containing _day_ & _hour_  if applicable.
-
-

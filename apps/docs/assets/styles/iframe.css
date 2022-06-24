@@ -10,6 +10,24 @@ strong {
 
 body {
   color: var(--vvd-color-on-canvas);
+  margin: 0;
+}
+
+body::before {
+  position: absolute;
+  inset: 0;
+  content: '';
   background-color: var(--vvd-color-canvas);
-  margin: 20px;
+  background-image: linear-gradient(45deg, var(--vvd-color-neutral-10) 25%,transparent 25%),linear-gradient(135deg, var(--vvd-color-neutral-10) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--vvd-color-neutral-10) 75%), linear-gradient(135deg, transparent 75%, var(--vvd-color-neutral-10) 75%);
+  background-size: 20px 20px;
+  background-position: 0px 0px, 10px 0px, 10px -10px, 0px 10px;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.center {
+  display: flex;
+  place-items: center;
+  place-content: center;
+  block-size: 100%;
 }

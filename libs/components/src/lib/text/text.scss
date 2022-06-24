@@ -4,7 +4,8 @@
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/typography/web' as typography-scale;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$subset: primary cta success alert announcement info
+	$connotations: accent cta success alert announcement info,
+	$shades: primary,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
@@ -46,7 +47,7 @@ $default-selector: get-default-selector($font-faces);
 
 	@include connotation.connotation;
 
-	color: var(#{connotation.$vvd-color-connotation});
+	color: var(#{connotation.get-connotation-token(primary)});
 
 	&.font-face-headline-1,
 	&.font-face-headline-2 {

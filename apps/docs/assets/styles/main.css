@@ -24,20 +24,6 @@ body a:visited {
   color: var(--vvd-color-cta);
 }
 
-/*code inside text*/
-code {
-  font-size: 1rem;
-  background-color: var(--vvd-color-neutral-20);
-  color: var(--vvd-color-alert-90);
-  padding: 3px 4px;
-  border-radius: 6px;
-}
-
-pre[class*="language-"] {
-    margin: 0;
-    border-radius: 0;
-}
-
 .logo {
   display: flex;
   align-items: center;
@@ -50,8 +36,8 @@ pre[class*="language-"] {
 vwc-side-drawer {
   display: block;
   width: 100%;
-  block-size: calc(100vh - 64px);
-  --side-drawer-background-color: var(--vvd-color-neutral-20);
+  --side-drawer-z-index: 3;
+  --side-drawer-background-color: var(--vvd-color-neutral-10);
 }
 
 /*properties table*/
@@ -149,7 +135,7 @@ article > table {
   max-inline-size: 64ch;
 }
 article > pre,
-article > .cbd-base {
+article .cbd-base {
   box-sizing: border-box;
   max-inline-size: 1200px;
 }
@@ -169,4 +155,80 @@ article > .cbd-base {
 
 .heading-wrapper:not(:hover) > .anchor {
   display: none;
+}
+
+/* code fence demo */
+.cbd-base {
+  border-radius: 6px;
+  contain: paint;
+}
+
+.cbd-demo {
+  overflow: hidden;
+  border: none;
+  width: 100%;
+}
+
+.cbd-details > summary {
+  list-style: none;
+	text-align: end;
+	background-color: var(--vvd-color-neutral-10);
+  border-top: 1px solid var(--vvd-color-neutral-20);
+	padding: 8px;
+}
+
+.cbd-code-block {
+	border-top: 1px solid var(--vvd-color-neutral-20);
+}
+
+.cbd-code-block > pre {
+	margin: 0;
+  border-radius: 0;
+}
+
+/* highlight js */
+.hljs {
+  background-color: var(--vvd-color-neutral-10);
+  color: var(--vvd-color-neutral-50);
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.hljs-string,
+.hljs-section,
+.hljs-selector-class,
+.hljs-template-variable,
+.hljs-deletion {
+  color: var(--vvd-color-alert);
+}
+
+.hljs-name,
+.hljs-quote,
+.hljs-selector-pseudo,
+.hljs-selector-tag {
+  color: var(--vvd-color-success-70);
+}
+
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id,
+.hljs-variable {
+  color: var(--vvd-color-info-70);
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta
+.hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  color: var(--vvd-color-alert-80);
 }

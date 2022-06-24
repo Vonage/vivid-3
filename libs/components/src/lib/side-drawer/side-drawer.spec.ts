@@ -27,7 +27,7 @@ describe('vwc-side-drawer', () => {
 			const control = getControlElement(element);
 			const hasClassOpenBeforeShow = control.classList.contains('open');
 
-			element.show();
+			element.open = true;
 			await elementUpdated(element);
 			const hasClassOpenAfterShow = control.classList.contains('open');
 
@@ -44,7 +44,7 @@ describe('vwc-side-drawer', () => {
 			const control = getControlElement(element);
 			const hasClassOpenBeforeHide = control.classList.contains('open');
 
-			element.hide();
+			element.open = false;
 			await elementUpdated(element);
 			const hasClassOpenAfterHide = control.classList.contains('open');
 
@@ -104,7 +104,7 @@ describe('vwc-side-drawer', () => {
 		});
 	});
 
-	describe('escape', () => {
+	describe('keydown', () => {
 		it('should close after keydown on Escape', async () => {
 			element.modal = true;
 			element.open = true;
@@ -113,6 +113,16 @@ describe('vwc-side-drawer', () => {
 			aside?.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Escape' }));
 			await elementUpdated(element);
 			expect(element.open).toEqual(false);
+		});
+
+		it('should not close after keydown that is not Escape', async () => {
+			element.modal = true;
+			element.open = true;
+			await elementUpdated(element);
+			const aside: any = element.shadowRoot?.querySelector('aside');
+			aside?.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Enter' }));
+			await elementUpdated(element);
+			expect(element.open).toEqual(true);
 		});
 	});
 });
