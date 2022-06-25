@@ -1,4 +1,4 @@
-name: ⑇ Lint
+name: Lint Code Base
 
 on: workflow_call
 
@@ -11,5 +11,15 @@ jobs:
         with:
           node-version: '16'
           cache: 'npm'
-      - run: npm ci --only=dev
-      - run: npm run nx run-many -- --target=stylelint --all && npm run nx run-many -- --target=lint --all
+
+      - uses: github/super-linter/slim@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BRANCH: main
+          LINTER_RULES_PATH:	.github/linters
+          VALIDATE_TYPESCRIPT_ES: true
+          TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.json
+          # VALIDATE_CSS: true
+          # CSS_FILE_NAME: .stylelintrc.json
+      # - run: npm ci --only=dev
+      # - run: npm run nx run-many -- --target=stylelint --all && npm run nx run-many -- --target=lint --all
