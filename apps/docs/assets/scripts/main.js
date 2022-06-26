@@ -6,18 +6,9 @@ const toggleCodePanel = (event) => {
 };
 
 const codeBlockButtonClick = (button) => {
-  const details = button.closest('.iframe-container').nextElementSibling;
+  const details = button.closest('.cbd-iframe-container').nextElementSibling;
   details.open = !details.open;
-  // document.querySelectorAll("." + CBD_BUTTON_SHOW).forEach(button => {
-  //   button.addEventListener('click', toggleCodePanel);
-  // });
-};
-
-const detailsToggle = () => {
-  console.log(this)
-  // document.querySelectorAll("." + CBD_BUTTON_SHOW).forEach(button => {
-  //   button.addEventListener('click', toggleCodePanel);
-  // });
+  button.ariaExpanded = details.open;
 };
 
 const onloadIframe = (iFrame) => {
