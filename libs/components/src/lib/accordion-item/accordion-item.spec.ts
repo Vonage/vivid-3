@@ -107,4 +107,15 @@ describe('vwc-accordion-item', () => {
 			expect(button?.getAttribute('aria-expanded')).toEqual('false');
 		});
 	});
+
+	describe('meta', function () {
+		it('should render meta', async function() {
+			const metaText = 'Some meta text';
+			element.meta = metaText;
+			await elementUpdated(element);
+			const metaWrapper = element.shadowRoot?.querySelector('.meta');
+			const actualMetaText = metaWrapper?.textContent?.trim();
+			expect(actualMetaText).toEqual(metaText);
+		});
+	});
 });

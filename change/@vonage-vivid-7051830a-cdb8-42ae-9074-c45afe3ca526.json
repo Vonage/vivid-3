@@ -1,6 +1,6 @@
 {
   "type": "prerelease",
-  "comment": "chore(components): refactor card to block flow",
+  "comment": "docs(components): action group popup usage example",
   "packageName": "@vonage/vivid",
   "email": "yinon@hotmail.com",
   "dependentChangeType": "patch"
