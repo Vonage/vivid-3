@@ -36,6 +36,18 @@
 	outline: 0 none;
 	vertical-align: middle;
 
+	/* Size */
+
+	&.density-extended {
+		#{variables.$border-radius}: 30px;
+		#{variables.$block-size}: 56px;
+	}
+
+	&:not(.density-extended) {
+		#{variables.$border-radius}: 24px;
+		#{variables.$block-size}: 40px;
+	}
+
 	&.icon-only {
 		border-radius: 50%;
 		padding-inline: 0;
@@ -71,18 +83,6 @@
 			@include elevation.elevation(8);
 		}
 	}
-
-  /* Size */
-
-  &.density-extended {
-    #{variables.$border-radius}: 30px;
-    #{variables.$block-size}: 56px;
-  }
-
-  &:not(.density-extended) {
-    #{variables.$border-radius}: 24px;
-    #{variables.$block-size}: 40px;
-  }
 }
 
 /* Icon */
