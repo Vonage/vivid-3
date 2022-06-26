@@ -135,7 +135,8 @@ article > table {
   max-inline-size: 64ch;
 }
 article > pre,
-article .cbd-base {
+article > .cbd-container {
+  margin-block: 12px;
   box-sizing: border-box;
   max-inline-size: 1200px;
 }
@@ -158,11 +159,6 @@ article .cbd-base {
 }
 
 /* code fence demo */
-.cbd-base {
-  border-radius: 6px;
-  contain: paint;
-}
-
 .cbd-demo {
   overflow: hidden;
   border: none;
