@@ -2,6 +2,89 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Sun, 26 Jun 2022 08:53:00 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.24",
+      "version": "3.0.0-next.24",
+      "comments": {
+        "none": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "3b329a2f6cdcde33a0f830a51440b4bb2f5df4d7",
+            "comment": "Add missing meta test"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "3f4acd67d52da4b9d1592df85a942205ae9235cd",
+            "comment": "chore(components): accordion item expanded state indication"
+          },
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "5442e97b1fd78089d3fb54ac7c17e84233d19d9c",
+            "comment": "Push changes to main after bump"
+          },
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "6661b5639a9aa553758c1359fce94b531442056b",
+            "comment": "migrate header to fast element"
+          },
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "4946f87d4d6f5b4b570b80c9e955f304dba0dbf0",
+            "comment": "chore(accordion-item): remove button margin"
+          },
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "97af71b8e166908d5f330305fbc44c24c96af6ee",
+            "comment": "progress component - support rounded shape"
+          }
+        ],
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "26a07cdd3f6961791c3577c6ec63550327e375e2",
+            "comment": "fixes the size property and inline size css on text field"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "1ee6089ee9bc18f3f0e80a908df411b914a89dbe",
+            "comment": "chore(components): fix side drawer scrim z-index calc"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "9ed4871128ef70ef22763ba6309ca5a7f2e6f9a2",
+            "comment": "migrate checkbox to fast foundation"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "d411e3363c233187f29a21cb5bc0b7e3e7323f8f",
+            "comment": "chore(components): refactor card to block flow"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "7fbcc21af2f498103ecda4dd4191a96861dd3ab6",
+            "comment": "update code block rendering style in docs "
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "a57dbf7da87b9924b91dd1a6a91b06927be59939",
+            "comment": "action group tight member removes padding"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 19 Jun 2022 14:36:21 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.21",
       "version": "3.0.0-next.21",
