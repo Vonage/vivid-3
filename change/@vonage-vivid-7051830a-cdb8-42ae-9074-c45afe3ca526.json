@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "docs(components): action group popup usage example",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}

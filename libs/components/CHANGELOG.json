@@ -2,6 +2,27 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Sun, 26 Jun 2022 20:34:06 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.25",
+      "version": "3.0.0-next.25",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "c4221e8d8ac1972e9715f7decfebcedf434b0a35",
+            "comment": "FAB support for extended size"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "ff72f2d257c690c7399e54e0c8e4e3d0cd245fb2",
+            "comment": "docs(components): action group popup usage example"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 26 Jun 2022 08:53:00 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.24",
       "version": "3.0.0-next.24",
