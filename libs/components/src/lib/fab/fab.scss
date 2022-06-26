@@ -22,8 +22,6 @@
 	@include connotation.connotation;
 	@include appearance.appearance;
 
-	#{variables.$block-size}: 40px;
-
 	position: relative;
 	display: inline-flex;
 	box-sizing: border-box;
@@ -31,7 +29,7 @@
 	border: 0 none;
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	block-size: var(#{variables.$block-size});
-	border-radius: 24px;
+	border-radius: var(#{variables.$border-radius});
 	color: var(#{appearance.get-appearance-token(text)});
 	column-gap: var(#{variables.$icon-gap});
 	filter: var(#{elevation.$vvd-elevation-shadow});
@@ -73,6 +71,18 @@
 			@include elevation.elevation(8);
 		}
 	}
+
+  /* Size */
+
+  &.density-extended {
+    #{variables.$border-radius}: 30px;
+    #{variables.$block-size}: 56px;
+  }
+
+  &:not(.density-extended) {
+    #{variables.$border-radius}: 24px;
+    #{variables.$block-size}: 40px;
+  }
 }
 
 /* Icon */
