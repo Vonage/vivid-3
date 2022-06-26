@@ -10,10 +10,8 @@ const IFRAME_STYLE = '<link rel="stylesheet" href="/assets/styles/iframe.css">';
 const FONTS = '<link rel="stylesheet" href="/assets/styles/fonts/spezia.css">';
 
 const CBD_CONTAINER = 'cbd-container';
-const CBD_IFRAME_CONTAINER = 'cbd-iframe-container';
 const CBD_DEMO = 'cbd-demo';
 const CBD_DETAILS = 'cbd-details';
-const CBD_FAB = 'cbd-fab';
 const CBD_CODE_BLOCK = 'cbd-code-block';
 
 const getComponentName = (outputPath) => {
@@ -69,10 +67,10 @@ const getHtml = (demoData) => {
 
   return `
     <vwc-card elevation="0" class="${CBD_CONTAINER}">
-      <div class="${CBD_IFRAME_CONTAINER}" slot="main">
-        <iframe class="${CBD_DEMO}" src="${iframeSrc}" onload=onloadIframe(this) loading="lazy" aria-label="code block preview iframe"></iframe>
-        <vwc-fab class="${CBD_FAB}" aria-label="Show source code" icon="curly-brackets-line" aria-expanded="false" aria-controls="${codeBlockId}" onclick="codeBlockButtonClick(this)"></vwc-fab>
-      </div>
+      <iframe class="${CBD_DEMO}" src="${iframeSrc}" onload=onloadIframe(this) loading="lazy" aria-label="code block preview iframe" slot="main"></iframe>
+      <vwc-action-group appearance="ghost" style="direction: rtl;" slot="main">
+        <vwc-button aria-label="Show source code" icon="code-line" aria-expanded="false" aria-controls="${codeBlockId}" onclick="codeBlockButtonClick(this)"></vwc-button>
+      </vwc-action-group>
       <details class="${CBD_DETAILS}" slot="main">
         <summary></summary>
         <div class="${CBD_CODE_BLOCK}" role="region" id="${codeBlockId}">

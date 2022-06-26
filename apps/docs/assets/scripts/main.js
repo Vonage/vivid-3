@@ -6,7 +6,7 @@ const toggleCodePanel = (event) => {
 };
 
 const codeBlockButtonClick = (button) => {
-  const details = button.closest('.cbd-iframe-container').nextElementSibling;
+  const details = button.closest('vwc-action-group').nextElementSibling;
   details.open = !details.open;
   button.ariaExpanded = details.open;
 };

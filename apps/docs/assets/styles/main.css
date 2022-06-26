@@ -164,11 +164,6 @@ article > .cbd-container {
   width: 100%;
 }
 
-.cbd-fab {
-  position: absolute;
-  inset: auto 8px 8px auto;
-}
-
 .cbd-details > summary {
   display: none;
 }
