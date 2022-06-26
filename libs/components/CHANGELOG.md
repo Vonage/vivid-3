@@ -1,8 +1,17 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 26 Jun 2022 08:53:00 GMT and should not be manually modified.
+This log was last generated on Sun, 26 Jun 2022 20:34:06 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.25
+
+Sun, 26 Jun 2022 20:34:06 GMT
+
+### Changes
+
+- FAB support for extended size (yinon@hotmail.com)
+- docs(components): action group popup usage example (yinon@hotmail.com)
 
 ## 3.0.0-next.24
 

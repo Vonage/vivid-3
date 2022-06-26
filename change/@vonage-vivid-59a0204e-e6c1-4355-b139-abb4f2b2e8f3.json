@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "FAB support for extended size",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}
