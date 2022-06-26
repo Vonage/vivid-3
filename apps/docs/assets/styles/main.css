@@ -158,10 +158,6 @@ article > .cbd-container {
   position: relative;
 }
 
-.cbd-base > .iframe-container {
-  position: relative;
-}
-
 .cbd-demo {
   overflow: hidden;
   border: none;
