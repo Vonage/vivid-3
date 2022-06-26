@@ -1,0 +1,30 @@
+Checking for changes against "origin/main"
+fetching latest from remotes "origin/main"
+Validating no private package among package dependencies OK!
+Updating package-lock.json after bumping packages
+
+up to date, audited 1678 packages in 5s
+
+181 packages are looking for funding
+  run `npm fund` for details
+
+4 high severity vulnerabilities
+
+To address all issues, run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+Removing change files:
+- @vonage-vivid-ce70801a-4c2a-4a54-a930-50c1179522f4.json
+- @vonage-vivid-e884cf45-0126-4e9c-83ba-d1c303159104.json
+- @vonage-vivid-fe4d9e0d-d6be-4c95-a26f-c2a3001f7925.json
+- @vonage-vivid-049a70ba-e802-4e74-b915-cc5f1000643e.json
+- @vonage-vivid-47ac7530-b418-42bc-9ded-72ca1ababe13.json
+- @vonage-vivid-6b5925c8-ef4c-425b-8155-1df415e71cab.json
+- @vonage-vivid-7715496a-947f-4b9d-a828-ada6db1367e1.json
+- @vonage-vivid-902d8c84-4eb9-4075-833e-c8a3f9e37ca3.json
+- @vonage-vivid-a20c9371-7f2d-4a9f-b160-5538c69cc225.json
+- @vonage-vivid-b45cb4d4-e6fa-4764-8883-0d2d83b13f76.json
+- @vonage-vivid-c24d1238-5180-4d2c-b42a-243a9e6b4442.json
+- @vonage-vivid-cd1ada24-b931-4bf4-9ba6-40f7a38abf31.json
+Removing change path
