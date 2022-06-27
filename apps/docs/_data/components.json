@@ -108,7 +108,8 @@
     "title": "sidenav-item",
     "markdown": "./libs/components/src/lib/sidenav-item/README.md",
     "modules": [
-      "/assets/modules/components/sidenav-item/index.js"
+      "/assets/modules/components/sidenav-item/index.js",
+      "/assets/modules/components/text/index.js"
     ]
   },
   {
@@ -202,6 +203,14 @@
       "/assets/modules/components/sidenav-item/index.js",
       "/assets/modules/components/layout/index.js",
       "/assets/modules/components/banner/index.js"
+    ]
+  },
+  {
+    "title": "sidenav",
+    "markdown": "./libs/components/src/lib/sidenav/README.md",
+    "modules": [
+      "/assets/modules/components/sidenav/index.js",
+      "/assets/modules/components/sidenav-item/index.js"
     ]
   }
 ]
