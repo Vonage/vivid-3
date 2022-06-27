@@ -84,10 +84,14 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
 	$gutter: var(#{variables.$side-drawer-padding-body}, #{$padding-default});
 
 	background-color: inherit;
-	margin-block: 12px;
+	padding-block: 12px;
 	overflow-y: auto;
 	padding-inline-end: #{$gutter};
 	padding-inline-start: #{$gutter};
+
+  @supports(overscroll-behavior: contain) {
+    overscroll-behavior: contain;
+  }
 }
 
 .modal {
