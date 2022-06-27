@@ -133,9 +133,9 @@ To add content below the header, add a slot called `app-content`.
 
 ## Example Usage
 
-### Fixed Header With Side-Drawer
+### Header wrapping a [Side-Drawer](../side-drawer/README.md)
 
-This is an example of a `fixed` Header with the default, `actionItems` and `app-content` slots.
+[An example of a Side-drawer wrapping a Header can be found here.](../side-drawer/README.md#side-drawer-wrapping-a-headerheaderreadmemd)
 
 ```html preview full
 <style>
@@ -189,9 +189,9 @@ This is an example of a `fixed` Header with the default, `actionItems` and `app-
 </script>
 ```
 
-### Header with Banner
+### Header with [Banner](../banner/README.md)
 
-This is an example of a `fixed` Header with a Banner. Banners are placed at the top of the screen below the Header.
+Banners are placed at the top of the screen below the Header.
 
 ```html preview full
 <style>

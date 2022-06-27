@@ -294,6 +294,54 @@ To add content aside the side-drawer, add a slot called `app-content`.
 </script>
 ```
 
+## Example Usage
+
+### Side-Drawer wrapping a [Header](../header/README.md)
+
+[An example of a Header wrapping a Side-drawer can be found here.](../header/README.md#header-wrapping-a-side-drawerside-drawerreadmemd)
+
+```html preview full
+<style>
+    html { 
+        block-size: 200px; 
+    }
+    vwc-side-drawer#sideDrawer{
+        --side-drawer-background-color: var(--vvd-color-neutral-10);
+        --side-drawer-inline-size: 200px;
+    }
+</style>
+<vwc-side-drawer id="sideDrawer" open>
+ <div>
+    <vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
+    <p><vwc-text font-face="body-2-bold">SECTION TITLE</vwc-text></p>
+    <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
+    <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
+ </div>
+  <vwc-header heading="With Fixed Header" slot="app-content" alternate fixed>
+    <vwc-button id="button" icon="menu-line"></vwc-button>
+    <vwc-layout slot="app-content" column-basis="block" gutters="medium">
+    <vwc-text font-face="body-1">
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+    </p>
+    </vwc-text>
+
+    <vwc-text font-face="body-1">
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+    </p>
+    </vwc-text>
+ </vwc-layout>
+</vwc-header>
+</vwc-side-drawer>
+<script>
+  button.addEventListener('click', toggleOpen);
+  function toggleOpen() {
+   sideDrawer.open = !sideDrawer.open;
+  }
+</script>
+```
+
 ## CSS Custom Properties
 
 ### Background-color
