@@ -19,7 +19,7 @@ import type { DocumentWithBlockingElements } from 'blocking-elements';
 
 export class SideDrawer extends FoundationElement {
 	asideEl!: HTMLElement;
-	scrimEl!: any;
+	scrimEl!: HTMLElement;
 
 	/**
 	 * applies scheme alternate region
@@ -67,19 +67,23 @@ export class SideDrawer extends FoundationElement {
 
 	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
 		super.attributeChangedCallback(name, oldValue, newValue);
-		if (name === 'open' && this.modal) {
-			this.open ? this.#trapFocus() : this.#releaseFocusTrap();
+
+		if (['open', 'modal'].includes(name)) {
+			this.open && this.modal ? this.#trapFocus() : this.#releaseFocusTrap();
 		}
 	}
 
 	#trapFocus(): void {
 		this.#blockingElements.push(this.asideEl);
 		if (this.scrimEl) {
-			this.scrimEl.inert = false;
+			this.#blockingElements.push(this.scrimEl);
 		}
 	}
 
 	#releaseFocusTrap(): void {
 		this.#blockingElements.remove(this.asideEl);
+		if (this.scrimEl) {
+			this.#blockingElements.remove(this.scrimEl);
+		}
 	}
 }
