@@ -296,9 +296,9 @@ To add content aside the side-drawer, add a slot called `app-content`.
 
 ## Example Usage
 
-### Side-drawer wrapping a [Header](./header)
+### Side-drawer wrapping a [Header](../../components/header)
 
-[An example of a Header wrapping a Side-drawer can be found here.](./header/#header-wrapping-a-side-drawer)
+[An example of a Header wrapping a Side-drawer can be found here.](../../components/header/#header-wrapping-a-side-drawer)
 
 ```html preview full
 <style>
