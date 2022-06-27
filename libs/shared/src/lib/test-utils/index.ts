@@ -32,3 +32,5 @@ export async function setAttribute(element: any, attribute: string, value: strin
   element[attribute] = value;
   await elementUpdated(element);
 }
+
+export * from './form-association';

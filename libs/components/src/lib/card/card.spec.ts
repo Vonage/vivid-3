@@ -67,15 +67,15 @@ describe('vwc-card', () => {
 			expect(icon.type).toEqual('chat-line');
 		});
 
-		it( 'should add class .hide-header to .control', async () => {
+		it( 'should add class .hide-header to .base', async () => {
 			element.icon = undefined;
 			element.heading = undefined;
 			element.subheading = undefined;
 			await elementUpdated(element);
-			const controlElementHasNoHeader = element.shadowRoot?.
-				querySelector('.control')?.classList.contains('hide-header');
+			const baseElementHasNoHeader = element.shadowRoot?.
+				querySelector('.base')?.classList.contains('hide-header');
 
-			expect(controlElementHasNoHeader).toEqual(true);
+			expect(baseElementHasNoHeader).toEqual(true);
 		});
 
 		it('should have slot name graphic with icon default', async() => {
@@ -97,17 +97,17 @@ describe('vwc-card', () => {
 			expect(metaSlotElement).toBeTruthy();
 		});
 
-		it('should remove hide-header class from .control if graphic is slotted', async function () {
+		it('should remove hide-header class from .base if graphic is slotted', async function () {
 			const slottedElement = document.createElement('div');
 			slottedElement.slot = 'graphic';
 			slottedElement.id = 'graphic';
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
-			const controlElementHasNoHeader = element.shadowRoot?.
-				querySelector('.control')?.classList.contains('hide-header');
+			const baseElementHasNoHeader = element.shadowRoot?.
+				querySelector('.base')?.classList.contains('hide-header');
 
-			expect(controlElementHasNoHeader).toEqual(false);
+			expect(baseElementHasNoHeader).toEqual(false);
 		});
 
 	});
@@ -131,17 +131,17 @@ describe('vwc-card', () => {
 			expect(footerSlotElement).toBeTruthy();
 		});
 
-		it('should remove hide-footer class from .control if footer is slotted', async function () {
+		it('should remove hide-footer class from .base if footer is slotted', async function () {
 			const slottedElement = document.createElement('div');
 			slottedElement.slot = 'footer';
 			slottedElement.id = 'footer';
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
-			const controlElementHasNoHeader = element.shadowRoot?.
-				querySelector('.control')?.classList.contains('hide-footer');
+			const baseElementHasNoHeader = element.shadowRoot?.
+				querySelector('.base')?.classList.contains('hide-footer');
 
-			expect(controlElementHasNoHeader).toEqual(false);
+			expect(baseElementHasNoHeader).toEqual(false);
 		});
 	});
 
@@ -150,10 +150,10 @@ describe('vwc-card', () => {
 		it('should have default elevation', async function () {
 			const defaultElevation = '4';
 
-			const controlElevation = element.shadowRoot?.
+			const baseElevation = element.shadowRoot?.
 				querySelector('vwc-elevation');
 
-			expect(controlElevation?.getAttribute('dp')).toEqual(defaultElevation);
+			expect(baseElevation?.getAttribute('dp')).toEqual(defaultElevation);
 
 		});
 
@@ -168,10 +168,5 @@ describe('vwc-card', () => {
 			expect(propertyValueBeforeChange).toEqual(startingDP);
 			expect(element.elevation).toEqual('16');
 		});
-
-
 	});
-
 });
-
-

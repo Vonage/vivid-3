@@ -13,6 +13,8 @@
 $hover: ':hover, .hover';
 $disabled: ':disabled, .disabled';
 $readonly: ':readonly, .readonly';
+$checked: ':checked, .checked';
+$indeterminate: ':indeterminate, .indeterminate';
 $selected: '.selected';
 $active: ':active, .active';
 $error: '.error';
@@ -23,6 +25,8 @@ $selectors: (
   disabled: '&:where(#{$disabled})',
   readonly: '&:where(#{$readonly}):where(:not(#{$disabled}, #{$hover}, #{$active}))',
   selected: '&:where(#{$selected}):where(:not(#{$disabled}))',
+  checked: '&:where(#{$checked}):where(:not(#{$disabled}))',
+  indeterminate: '&:where(#{$indeterminate}):where(:not(#{$disabled}))',
   active: '&:where(#{$active}):where(:not(#{$disabled}))',
   error: '&:where(#{$error}):where(:not(#{$disabled}))',
 );

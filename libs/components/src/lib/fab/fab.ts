@@ -1,7 +1,7 @@
 import { applyMixins, Button as FoundationButton } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 
-import type { Connotation } from '../enums.js';
+import type { Connotation, Density } from '../enums.js';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
 /**
@@ -10,6 +10,13 @@ import { AffixIconWithTrailing } from '../../shared/patterns/affix';
  * @public
  */
 export type FabConnotation = Extract<Connotation, Connotation.CTA | Connotation.Accent>;
+
+/**
+ * Types of FAB size.
+ *
+ * @public
+ */
+type FABDensity = Extract<Density, Density.Normal | Density.Extended>;
 
 /**
  * Base class for fab
@@ -25,6 +32,15 @@ export class Fab extends FoundationButton {
 	 * HTML Attribute: connotation
 	 */
 	@attr connotation?: FabConnotation;
+
+	/**
+	 * The size the FAB should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: size
+	 */
+	@attr density?: FABDensity;
 
 	/**
 	 * Indicates the fab's label.
