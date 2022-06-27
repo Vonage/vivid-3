@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "contain overscroll behavior in side drawer",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}
