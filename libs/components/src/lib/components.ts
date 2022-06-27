@@ -19,6 +19,7 @@ export * from './popup';
 export * from './progress';
 export * from './progress-ring';
 export * from './side-drawer';
+export * from './sidenav';
 export * from './sidenav-item';
 export * from './text';
 export * from './text-field';
