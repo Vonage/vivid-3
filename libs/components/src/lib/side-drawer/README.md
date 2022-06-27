@@ -1,4 +1,4 @@
-# Side-Drawer
+# Side-drawer
 
 ```js
 <script type='module'>
@@ -296,9 +296,9 @@ To add content aside the side-drawer, add a slot called `app-content`.
 
 ## Example Usage
 
-### Side-Drawer wrapping a [Header](../header/README.md)
+### Side-drawer wrapping a [Header](../header)
 
-[An example of a Header wrapping a Side-drawer can be found here.](../header/README.md#header-wrapping-a-side-drawerside-drawerreadmemd)
+[An example of a Header wrapping a Side-drawer can be found here.](../header/#header-wrapping-a-side-drawer)
 
 ```html preview full
 <style>

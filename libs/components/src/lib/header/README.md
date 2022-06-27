@@ -133,9 +133,9 @@ To add content below the header, add a slot called `app-content`.
 
 ## Example Usage
 
-### Header wrapping a [Side-Drawer](../side-drawer/README.md)
+### Header wrapping a [Side-drawer](../side-drawer)
 
-[An example of a Side-drawer wrapping a Header can be found here.](../side-drawer/README.md#side-drawer-wrapping-a-headerheaderreadmemd)
+[An example of a Side-drawer wrapping a Header can be found here.](../side-drawer/#side-drawer-wrapping-a-header)
 
 ```html preview full
 <style>
@@ -189,7 +189,7 @@ To add content below the header, add a slot called `app-content`.
 </script>
 ```
 
-### Header with [Banner](../banner/README.md)
+### Header with [Banner](../banner)
 
 Banners are placed at the top of the screen below the Header.
 
