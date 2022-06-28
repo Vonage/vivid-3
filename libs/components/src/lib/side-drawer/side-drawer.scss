@@ -90,7 +90,7 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
 	padding-inline-start: #{$gutter};
 
   @supports(overscroll-behavior: contain) {
-    overscroll-behavior: contain;
+    overscroll-behavior: none;
   }
 }
 
