@@ -33,8 +33,13 @@
 	color: var(#{appearance.get-appearance-token(text)});
 	column-gap: var(#{variables.$icon-gap});
 	filter: var(#{elevation.$vvd-elevation-shadow});
-	outline: 0 none;
+
 	vertical-align: middle;
+  @supports selector(:focus-visible) {
+    &:focus {
+      outline: none;
+    }
+  }
 
 	/* Size */
 

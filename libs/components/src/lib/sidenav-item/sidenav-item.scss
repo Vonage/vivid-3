@@ -17,17 +17,17 @@
 	hyphens: auto;
 	inline-size: 100%;
 	min-block-size: $min-block-size;
-	outline: 0 none;
 	padding-block: 10px;
 	padding-inline: $gap;
 	text-decoration: none;
 	vertical-align: middle;
 	word-break: break-word;
 
-	@at-root :host,
-	& {
-		outline: 0 none;
-	}
+  @supports selector(:focus-visible) {
+    &:focus {
+      outline: none;
+    }
+  }
 
 	&.icon-only {
 		display: flex;

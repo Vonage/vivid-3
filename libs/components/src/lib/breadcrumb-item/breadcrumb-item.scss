@@ -19,7 +19,11 @@
 .control {
 	position: relative;
 	font: inherit;
-	outline: 0 none;
+  @supports selector(:focus-visible) {
+    &:focus {
+      outline: none;
+    }
+  }
 
 	&:any-link {
 		color: var(#{theme-consts.$vvd-color-cta-70});
