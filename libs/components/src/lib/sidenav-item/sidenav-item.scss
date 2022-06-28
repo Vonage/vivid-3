@@ -23,11 +23,11 @@
 	vertical-align: middle;
 	word-break: break-word;
 
-  @supports selector(:focus-visible) {
-    &:focus {
-      outline: none;
-    }
-  }
+	@supports selector(:focus-visible) {
+		&:focus {
+			outline: none;
+		}
+	}
 
 	&.icon-only {
 		display: flex;

@@ -35,11 +35,11 @@
 	vertical-align: middle;
 	white-space: nowrap;
 
-  @supports selector(:focus-visible) {
-    &:focus {
-      outline: none;
-    }
-  }
+	@supports selector(:focus-visible) {
+		&:focus {
+			outline: none;
+		}
+	}
 
 	&:not(:disabled) {
 		cursor: pointer;

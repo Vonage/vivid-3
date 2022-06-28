@@ -111,11 +111,11 @@ $low-ink-color: --_low-ink-color;
 	padding-inline-start: 16px;
 	transition: box-shadow .2s, background-color .2s;
 
-    @supports selector(:focus-visible) {
-    &:focus {
-      outline: none;
-    }
-  }
+	@supports selector(:focus-visible) {
+		&:focus {
+			outline: none;
+		}
+	}
 
 	&::placeholder {
 		color: var(#{$low-ink-color});
