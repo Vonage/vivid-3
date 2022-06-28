@@ -177,10 +177,6 @@ article > .cbd-container {
   display: none;
 }
 
-summary::-webkit-details-marker {
-  display: none; /*hide the triangle in safari*/
-}
-
 .cbd-code-block {
 	border-top: 1px solid var(--vvd-color-neutral-20);
 }
