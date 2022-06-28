@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "start validating only after a blur",
+  "packageName": "@vonage/vivid",
+  "email": "yonatan.kra@vonage.com",
+  "dependentChangeType": "patch"
+}
