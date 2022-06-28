@@ -1,0 +1,16 @@
+Checking for changes against "origin/main"
+fetching latest from remotes "origin/main"
+Validating no private package among package dependencies OK!
+Updating package-lock.json after bumping packages
+
+up to date, audited 1678 packages in 5s
+
+181 packages are looking for funding
+  run `npm fund` for details
+
+4 high severity vulnerabilities
+
+To address all issues, run:
+  npm audit fix --force
+
+Run `npm audit` for details.

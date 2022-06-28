@@ -9,10 +9,9 @@ const ELEVENTY_HTML_CODE_BLOCK_SELECTOR = 'pre.preview > code';
 const IFRAME_STYLE = '<link rel="stylesheet" href="/assets/styles/iframe.css">';
 const FONTS = '<link rel="stylesheet" href="/assets/styles/fonts/spezia.css">';
 
-const CBD_BASE = 'cbd-base';
+const CBD_CONTAINER = 'cbd-container';
 const CBD_DEMO = 'cbd-demo';
 const CBD_DETAILS = 'cbd-details';
-const CBD_BUTTON_SHOW = 'cbd-button-show';
 const CBD_CODE_BLOCK = 'cbd-code-block';
 
 const getComponentName = (outputPath) => {
@@ -37,7 +36,7 @@ const generateCodeBlockDemo = function (blockData) {
 
   const dom = new JSDOM(`<body>${getHtml(demoData)}</body>`);
 
-  return dom.window.document.querySelector('vwc-elevation');
+  return dom.window.document.querySelector(`.${CBD_CONTAINER}`);
 };
 
 module.exports = function (content, outputPath) {
@@ -67,20 +66,18 @@ const getHtml = (demoData) => {
   const iframeSrc = getIframe(frameData);
 
   return `
-    <vwc-elevation dp="0">
-      <div class="${CBD_BASE}">
-      <iframe class="${CBD_DEMO}" src="${iframeSrc}" onload=onloadIframe(this) loading="lazy"></iframe>
-        <details class="${CBD_DETAILS}">
-            <summary>
-                <vwc-button label="source" icon="chevron-down-line" icon-trailing class="${CBD_BUTTON_SHOW}" aria-expanded="false" aria-controls="${codeBlockId}">
-                </vwc-button>
-            </summary>
-            <div class="${CBD_CODE_BLOCK}" role="region" id="${codeBlockId}">
-                ${demoData.codeStr}
-            </div>
-        </details>
-      </div>
-    </vwc-elevation>`;
+    <vwc-card elevation="0" class="${CBD_CONTAINER}">
+      <iframe class="${CBD_DEMO}" src="${iframeSrc}" onload=onloadIframe(this) loading="lazy" aria-label="code block preview iframe" slot="main"></iframe>
+      <vwc-action-group appearance="ghost" style="direction: rtl;" slot="main">
+        <vwc-button aria-label="Show source code" icon="code-line" aria-expanded="false" aria-controls="${codeBlockId}" onclick="codeBlockButtonClick(this)"></vwc-button>
+      </vwc-action-group>
+      <details class="${CBD_DETAILS}" slot="main">
+        <summary></summary>
+        <div class="${CBD_CODE_BLOCK}" role="region" id="${codeBlockId}">
+          ${demoData.codeStr}
+        </div>
+      </details>
+    </vwc-card>`;
 }
 
 const getIframe = (frameData) => {
