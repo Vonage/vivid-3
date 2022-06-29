@@ -1,7 +1,7 @@
 {
   "type": "prerelease",
-  "comment": "action group tight member removes padding",
+  "comment": "start validating only after a blur",
   "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
+  "email": "yonatan.kra@vonage.com",
   "dependentChangeType": "patch"
 }

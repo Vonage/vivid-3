@@ -4,17 +4,12 @@
 
 
 :host {
-	display: block;
-
-	@supports (block-size: fit-content) and (inline-size: fit-content) {
-		block-size: fit-content;
-		inline-size: fit-content;
-	}
+	display: flex;
 }
 
-.control {
-	block-size: 100%;
+.base {
 	border-radius: 6px;
+	inline-size: 100%;
 }
 
 .wrapper {
@@ -116,11 +111,4 @@
 	margin-block-start: -8px;
 	margin-inline-end: -8px;
 	margin-inline-start: auto;
-}
-
-vwc-elevation {
-	block-size: inherit;
-	&::part(base) {
-		block-size: inherit;
-	}
 }
