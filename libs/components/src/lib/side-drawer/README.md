@@ -343,3 +343,11 @@ Controls the padding of the side drawer's top bar.
 - Default: `6`
 
 Controls the z-index of the side drawer.
+
+## CSS Parts
+
+### Base
+
+### Header
+
+### Body

@@ -1,5 +1,6 @@
 @use 'sass:map';
 
+@use 'partials/variables' as variables;
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use '../../../../shared/src/lib/sass/mixins/scrim' as scrim-mixins;
@@ -21,6 +22,7 @@ $inline-size: 280px;
 	background-color: var(#{theme-consts.$vvd-color-canvas});
 	color: var(#{theme-consts.$vvd-color-on-canvas});
 	inline-size: $inline-size;
+  z-index: 1;
 
 	&.alternate {
 		background-color: var(#{theme-consts.$vvd-color-canvas});
@@ -34,18 +36,17 @@ $inline-size: 280px;
 		}
 	}
 
-	&.control.open:not(.modal) {
-		+ .side-drawer-app-content {
-			@include typography.typography-cat-shorthand(body-1);
-
-			margin-inline-start: $inline-size;
-		}
-		&.end {
-			+ .side-drawer-app-content {
-				margin-inline-end: $inline-size;
-				margin-inline-start: 0;
-			}
-		}
+	&.open:not(.modal) {
+    &.position-end + {
+      .side-drawer-app-content {
+        margin-inline-end: var(#{variables.$side-drawer-app-content-offset}, $inline-size);
+      }
+    }
+    &:not(.position-end) + {
+      .side-drawer-app-content {
+        margin-inline-start: var(#{variables.$side-drawer-app-content-offset}, $inline-size);
+      }
+    }
 	}
 
 	@media (prefers-reduced-motion: no-preference) {
@@ -70,7 +71,7 @@ $gutter: 16px;
 	}
 }
 
-.side-drawer-content {
+.side-drawer-body {
 	background-color: inherit;
 	padding-block: 12px;
 	overflow-y: auto;

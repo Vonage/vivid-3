@@ -13,7 +13,7 @@ const getClasses = ({
 	['alternate', alternate],
 	['modal', modal],
 	['open', open],
-	['end', position === 'end'],
+	[`position-${position}`, Boolean(position)],
 	['withHeader', Boolean(headerSlottedContent?.length)],
 );
 
@@ -36,11 +36,11 @@ export const sideDrawerTemplate: FoundationElementTemplate<ViewTemplate<SideDraw
 	<aside class="${getClasses}" part="base ${(x) => x.alternate ? 'vvd-theme-alternate' : ''}"
 	 @keydown="${(x, c) => handleKeydown(x, c.event as KeyboardEvent)}" ${ref('asideEl')}>
 
-	 	<header class="side-drawer-header" part="side-drawer-header">
+	 	<header class="side-drawer-header" part="header">
 	 		<slot name="header" ${slotted('headerSlottedContent')}></slot>
  		</header>
 
-		<div class="side-drawer-content">
+		<div class="side-drawer-body" part="body">
 			<slot></slot>
 		</div>
 	</aside>

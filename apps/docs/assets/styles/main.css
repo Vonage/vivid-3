@@ -40,6 +40,12 @@ vwc-side-drawer::part(base) {
   top: auto;
 }
 
+@supports (overscroll-behavior: none) {
+  vwc-side-drawer::part(body) {
+    overscroll-behavior: none;
+  }
+}
+
 /*properties table*/
 table {
   width: 100%;
