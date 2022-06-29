@@ -17,6 +17,6 @@ export const SidenavTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Sidenav> = (
-) => html<Sidenav>`
+	) => html<Sidenav>`
 		<nav><slot></slot></nav>
     `;

@@ -24,10 +24,10 @@ export const SidenavDisclosureTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Disclosure> = (
 	context: ElementDefinitionContext,
-) => {
-	const affixIconTemplate = affixIconTemplateFactory(context);
+	) => {
+		const affixIconTemplate = affixIconTemplateFactory(context);
 
-	return html`<details class="disclosure" ${ref('details')}>
+		return html`<details class="disclosure" ${ref('details')}>
         <summary class="${getClasses}"
             class="invoker"
             role="button"
@@ -44,4 +44,4 @@ export const SidenavDisclosureTemplate: (
         <div class="control" id="disclosure-content"><slot></slot></div>
     </details>
 	`;
-};
+	};

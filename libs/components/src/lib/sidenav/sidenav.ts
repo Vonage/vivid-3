@@ -6,4 +6,4 @@ import { FoundationElement } from '@microsoft/fast-foundation';
  *
  * @public
  */
-export class Sidenav extends FoundationElement {}
+export class Sidenav extends FoundationElement { }

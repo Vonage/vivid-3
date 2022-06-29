@@ -10,13 +10,13 @@ import { AffixIcon } from '../../shared/patterns/affix';
  * @public
  */
 export class Disclosure extends FoundationDisclosure {
-	/**
-	 *
-	 * @public
-	 * HTML Attribute: label
-	 */
-	@attr label?: string;
+    /**
+     *
+     * @public
+     * HTML Attribute: label
+     */
+    @attr label?: string;
 }
 
-export interface Disclosure extends AffixIcon {}
+export interface Disclosure extends AffixIcon { }
 applyMixins(Disclosure, AffixIcon);

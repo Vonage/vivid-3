@@ -6,6 +6,7 @@
 	$gap: 8px;
 	@include typography.typography-cat-shorthand("body-2");
 
+	cursor: pointer;
 	position: relative;
 	display: inline-flex;
 	box-sizing: border-box;
@@ -23,11 +24,10 @@
 	text-decoration: none;
 	vertical-align: middle;
 	word-break: break-word;
-	cursor: pointer;
 	list-style: none;
 
 	@at-root :host,
-		& {
+	& {
 		outline: 0 none;
 	}
 
@@ -40,8 +40,8 @@
 }
 
 .control {
-	margin-inline-start: 32px;
 	border-inline-start: 1px solid var(#{theme-consts.$vvd-color-neutral-30});
+	margin-inline-start: 32px;
 }
 
 .base:focus {

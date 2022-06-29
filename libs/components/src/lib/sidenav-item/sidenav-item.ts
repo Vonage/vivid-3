@@ -9,7 +9,7 @@ import { TextAnchor } from '../text-anchor/text-anchor';
  *
  * @public
  */
-export class SidenavItem extends TextAnchor {}
+export class SidenavItem extends TextAnchor { }
 
-export interface SidenavItem extends AffixIcon {}
+export interface SidenavItem extends AffixIcon { }
 applyMixins(SidenavItem, AffixIcon);
