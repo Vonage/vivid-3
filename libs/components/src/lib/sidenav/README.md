@@ -22,7 +22,7 @@ In order to create a hierarchy of navigation elements, add the `vwc-sidenav-item
 <vwc-sidenav>
 ```
 
-### Side Navigation Group
+### Side Navigation Disclosure
 
 In order to create a hierarchy of navigation elements, add the `vwc-sidenav-item` elements to the `vwc-sidenav-disclosure`.
 
