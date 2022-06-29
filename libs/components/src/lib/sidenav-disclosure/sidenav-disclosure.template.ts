@@ -36,7 +36,7 @@ export const SidenavDisclosureTemplate: (
         >
             <slot name="start">${x => affixIconTemplate(x.icon)}</slot>
             <slot name="summary">${x => x.label}</slot>
-            <slot name="end" class="indicator">
+            <slot name="end">
 				${when(x => x.expanded, html`<vwc-icon type='chevron-up-solid'></vwc-icon>`)}
 				${when(x => !x.expanded, html`<vwc-icon type='chevron-down-solid'></vwc-icon>`)}
 			</slot>
