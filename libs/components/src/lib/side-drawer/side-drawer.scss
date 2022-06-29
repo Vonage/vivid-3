@@ -1,19 +1,11 @@
 @use 'sass:map';
 
-@use 'partials/variables' as variables;
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use '../../../../shared/src/lib/sass/mixins/scrim' as scrim-mixins;
 
-$z-index-default: 6;
-$padding-default: 16px;
-$inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
 
-
-:host {
-	display: flex;
-	block-size: 100vh;
-}
+$inline-size: 280px;
 
 :host([position='end']) {
 	flex-direction: row-reverse;
@@ -21,17 +13,14 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
 
 .control {
 	position: fixed;
-	z-index: var(#{variables.$side-drawer-z-index}, #{$z-index-default});
-	top: auto;
-	bottom: 0;
+  block-size: 100vh;
+  inset-block: 0;
 	display: flex;
 	overflow: auto;
 	flex-direction: column;
-	flex-shrink: 0;
-	background-color: var(#{variables.$side-drawer-background-color}, var(#{theme-consts.$vvd-color-canvas}));
-	block-size: inherit;
-	color: var(#{variables.$side-drawer-color}, var(#{theme-consts.$vvd-color-on-canvas}));
-	inline-size: #{$inline-size};
+	background-color: var(#{theme-consts.$vvd-color-canvas});
+	color: var(#{theme-consts.$vvd-color-on-canvas});
+	inline-size: $inline-size;
 
 	&.alternate {
 		background-color: var(#{theme-consts.$vvd-color-canvas});
@@ -49,24 +38,25 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
 		+ .side-drawer-app-content {
 			@include typography.typography-cat-shorthand(body-1);
 
-			margin-inline-start: #{$inline-size};
+			margin-inline-start: $inline-size;
 		}
 		&.end {
 			+ .side-drawer-app-content {
-				margin-inline-end: var(--side-drawer-inline-size, 280px);
+				margin-inline-end: $inline-size;
 				margin-inline-start: 0;
 			}
 		}
 	}
+
 	@media (prefers-reduced-motion: no-preference) {
 		transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 	}
 }
 
+$gutter: 16px;
+
 .side-drawer-header {
 	@include typography.typography-cat-shorthand(subtitle-1);
-
-	$gutter: var(#{variables.$side-drawer-padding-header}, #{$padding-default});
 
 	display: flex;
 	height: 64px;
@@ -81,10 +71,8 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
 }
 
 .side-drawer-content {
-	$gutter: var(#{variables.$side-drawer-padding-body}, #{$padding-default});
-
 	background-color: inherit;
-	margin-block: 12px;
+	padding-block: 12px;
 	overflow-y: auto;
 	padding-inline-end: #{$gutter};
 	padding-inline-start: #{$gutter};
@@ -103,7 +91,6 @@ $inline-size: var(#{variables.$side-drawer-inline-size}, 280px);
 	@include scrim-mixins.scrim-variables;
 
 	position: fixed;
-	z-index: calc(#{variables.$side-drawer-z-index} - 1);
 	top: 0;
 	right: 0;
 	bottom: 0;

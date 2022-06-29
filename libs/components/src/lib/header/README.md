@@ -22,61 +22,6 @@ Add the `heading` attribute to set the heading text.
     }
 </style>
 <vwc-header heading="Header">
-  <vwc-layout slot="app-content" column-basis="block" gutters="medium">
-    <vwc-text tight font-face="headline-2">
-      <h2>
-        Scroll to see the effect.
-      </h2>
-    </vwc-text>
-
-    <vwc-text font-face="body-1">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-      </p>
-    </vwc-text>
-
-    <vwc-text font-face="body-1">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-      </p>
-    </vwc-text>
-  </vwc-layout>
-</vwc-header>
-```
-
-### Fixed
-
-Add the `fixed` attribute to set the header's position to be fixed.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview full
-<style>
-    html { 
-      block-size: 200px; 
-    }
-</style>
-<vwc-header heading="Fixed Header" fixed>
-  <vwc-layout slot="app-content" column-basis="block" gutters="medium">
-    <vwc-text tight font-face="headline-2">
-      <h2>
-        Scroll to see the effect.
-      </h2>
-    </vwc-text>
-
-    <vwc-text font-face="body-1">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-      </p>
-    </vwc-text>
-
-    <vwc-text font-face="body-1">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-      </p>
-    </vwc-text>
-  </vwc-layout>
 </vwc-header>
 ```
 
@@ -99,7 +44,7 @@ The default slot is for action content next to the heading.
 
 ```html preview full
 <vwc-header heading="With Default Slot">
-    <vwc-button icon="menu-line"></vwc-button>
+  <vwc-button icon="menu-line"></vwc-button>
 </vwc-header>
 ```
 
@@ -122,13 +67,7 @@ Action items are displayed at the end of the header in the `actionItems` slot.
 To add content below the header, add a slot called `app-content`.
 
 ```html preview full
-<vwc-header heading="With App Content Slot">
-  <div slot="app-content">
-    <vwc-text tight font-face="body-1">
-        This is the app-content slot!!!!
-    </vwc-text>
-  </div>
-</vwc-header>
+<vwc-header heading="With App Content Slot"></vwc-header>
 ```
 
 ## Example Usage

@@ -2,32 +2,32 @@
 @use "../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts" as theme-consts;
 @use "partials/variables" as variables;
 
-:host {
-	#{variables.$header-z-index}: 7;
-}
 
-.control {
-	@include typography.typography-cat-shorthand("subtitle-2");
+.base {
+  @include typography.typography-cat-shorthand("subtitle-2");
+  #{variables.$header-block-size}: 64px;
 
-	z-index: var(#{variables.$header-z-index});
 	display: flex;
 	width: 100%;
-	height: 64px;
+	height: var(#{variables.$header-block-size});
 	box-sizing: border-box;
 	justify-content: space-between;
 	padding: 8px 12px;
 	background-color: var(#{theme-consts.$vvd-color-canvas});
 	color: var(#{theme-consts.$vvd-color-on-canvas});
 	column-gap: 12px;
+  z-index: 1;
 
 	&.fixed {
 		position: fixed;
+    inset-block-start: 0;
+
 		&.elevated {
 			box-shadow: 0 0 10px rgb(0 0 0 / 40%);
 			transition: all 0.15s linear;
 		}
 	}
-	
+
 	.header-content {
 		display: inline-flex;
 		flex: 1;
@@ -47,9 +47,16 @@
 	}
 }
 
-.control.fixed + .app-content {
-	padding-top: 64px;
-	::slotted(vwc-side-drawer) {
-		block-size: calc(100vh - 64px);
-	}
+.app-content {
+  #{variables.$header-block-size}: 64px;
+  .base.fixed + .app-content {
+    padding-top: var(#{variables.$header-block-size});
+  }
 }
+
+
+
+
+// header can contain the app content in its slot but that's not a rule. it's a convenience for the developer.
+// the benefit is that you can it assigns a css variable which is can be used within the app content. note that the css  variable cannot be set as API but can be used in nodes assigned to app-content slot
+// fixed header will be fixed to the top of the screen. and will be elevated when the user scrolls.

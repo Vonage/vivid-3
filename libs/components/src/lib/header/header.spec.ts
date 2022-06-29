@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Header } from './header';
 import '.';
 
@@ -23,27 +23,27 @@ describe('vwc-header', () => {
 	});
 
 	describe('fixed', () => {
-		it('should add "fixed" class to control and attribute to host when fixed is true', async () => {
-			const control = getControlElement(element);
-			const hasClassFixedOnInit = control.classList.contains('fixed');
+		it('should add "fixed" class to base and attribute to host when fixed is true', async () => {
+			const base = getBaseElement(element);
+			const hasClassFixedOnInit = base.classList.contains('fixed');
 			element.fixed = true;
 			await elementUpdated(element);
 			expect(hasClassFixedOnInit).toEqual(false);
 
-			const hasClassFixed = control.classList.contains('fixed');
+			const hasClassFixed = base.classList.contains('fixed');
 			expect(hasClassFixed).toEqual(true);
 		});
 	});
 
 	describe('alternate', () => {
-		it('should add "alternate" class to control and attribute to host when alternate is true', async () => {
-			const control = getControlElement(element);
-			let hasClassAlternate = control.classList.contains('alternate');
+		it('should add "alternate" class to base and attribute to host when alternate is true', async () => {
+			const base = getBaseElement(element);
+			let hasClassAlternate = base.classList.contains('alternate');
 			element.alternate = true;
 			await elementUpdated(element);
 			expect(hasClassAlternate).toEqual(false);
 
-			hasClassAlternate = control.classList.contains('alternate');
+			hasClassAlternate = base.classList.contains('alternate');
 			expect(hasClassAlternate).toEqual(true);
 		});
 	});
@@ -74,37 +74,37 @@ describe('vwc-header', () => {
 
 		it('should default to no elevation', async function () {
 			await elementUpdated(element);
-			const control = getControlElement(element);
+			const base = getBaseElement(element);
 			expect(element.elevated).toEqual(false);
-			expect(control.classList.contains('elevated')).toEqual(false);
+			expect(base.classList.contains('elevated')).toEqual(false);
 		});
 
 		it('should set "elevated" to true and add "elevated" class when scrolled', async () => {
-			const control = getControlElement(element);
-			let hasClassElevated = control.classList.contains('elevated');
+			const base = getBaseElement(element);
+			let hasClassElevated = base.classList.contains('elevated');
 			await emulateScroll();
 			expect(hasClassElevated).toEqual(false);
 
-			hasClassElevated = control.classList.contains('elevated');
+			hasClassElevated = base.classList.contains('elevated');
 			expect(element.elevated).toEqual(true);
 			expect(hasClassElevated).toEqual(true);
 		});
 
 		it('should remove elevated state when not fixed', async function () {
 			element.fixed = false;
-			const control = getControlElement(element);
+			const base = getBaseElement(element);
 			await emulateScroll();
-			const hasClassElevated = control.classList.contains('elevated');
+			const hasClassElevated = base.classList.contains('elevated');
 
 			expect(hasClassElevated).toEqual(false);
 		});
 
 		it('should remove elevated state when scroll offset is 0', async function () {
-			const control = getControlElement(element);
+			const base = getBaseElement(element);
 			await emulateScroll();
 
 			await emulateScroll(0);
-			const hasClassElevated = control.classList.contains('elevated');
+			const hasClassElevated = base.classList.contains('elevated');
 
 			expect(hasClassElevated).toEqual(false);
 		});

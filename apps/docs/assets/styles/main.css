@@ -33,11 +33,11 @@ body a:visited {
   margin-right: 0.5rem;
 }
 
-vwc-side-drawer {
-  display: block;
-  width: 100%;
-  --side-drawer-z-index: 3;
-  --side-drawer-background-color: var(--vvd-color-neutral-10);
+vwc-side-drawer::part(base) {
+  block-size: calc(100vh - var(--_header-block-size));
+  background-color: var(--vvd-color-neutral-10);
+  bottom: 0;
+  top: auto;
 }
 
 /*properties table*/

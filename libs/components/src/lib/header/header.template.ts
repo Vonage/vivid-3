@@ -8,7 +8,7 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import type { Header } from './header';
 
 const getClasses = ({ fixed, alternate, elevated }: Header) => classNames(
-	'control',
+	'base',
 	['fixed', Boolean(fixed)],
 	['alternate', Boolean(alternate)],
 	['elevated', Boolean(elevated)],
@@ -35,7 +35,7 @@ export const headerTemplate: (
         </section>
     </header>
     <div class="app-content">
-		<slot name="app-content"></slot>
-	</div>
+      <slot name="app-content"></slot>
+    </div>
 	`;
 };
