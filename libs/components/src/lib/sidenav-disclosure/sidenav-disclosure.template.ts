@@ -1,4 +1,4 @@
-import { html, ref } from '@microsoft/fast-element';
+import { html, ref, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
@@ -8,11 +8,8 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { Disclosure } from './sidenav-disclosure';
 
-const getClasses = ({
-	expanded
-}: Disclosure) => classNames(
+const getClasses = (_: Disclosure) => classNames(
 	'base',
-	['expanded', expanded]
 );
 
 /**
@@ -40,8 +37,8 @@ export const SidenavDisclosureTemplate: (
             <slot name="start">${x => affixIconTemplate(x.icon)}</slot>
             <slot name="summary">${x => x.label}</slot>
             <slot name="end" class="indicator">
-				<vwc-icon class="toggle-open" type='chevron-down-solid'></vwc-icon>
-				<vwc-icon class="toggle-close" type='chevron-up-solid'></vwc-icon>
+				${when(x => x.expanded, html`<vwc-icon type='chevron-up-solid'></vwc-icon>`)}
+				${when(x => !x.expanded, html`<vwc-icon type='chevron-down-solid'></vwc-icon>`)}
 			</slot>
         </summary>
         <div class="control" id="disclosure-content"><slot></slot></div>
