@@ -9,12 +9,11 @@ import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { Disclosure } from './sidenav-disclosure';
 
 const getClasses = ({
-	iconTrailing
+	expanded
 }: Disclosure) => classNames(
 	'base',
-	['icon-trailing', iconTrailing],
+	['expanded', expanded]
 );
-
 
 /**
  * The template for the {@link @microsoft/fast-foundation#Sidenav} component.
@@ -40,7 +39,10 @@ export const SidenavDisclosureTemplate: (
         >
             <slot name="start">${x => affixIconTemplate(x.icon)}</slot>
             <slot name="summary">${x => x.label}</slot>
-            <slot name="end"></slot>
+            <slot name="end" class="indicator">
+				<vwc-icon class="toggle-open" type='chevron-down-solid'></vwc-icon>
+				<vwc-icon class="toggle-close" type='chevron-up-solid'></vwc-icon>
+			</slot>
         </summary>
         <div class="control" id="disclosure-content"><slot></slot></div>
     </details>

@@ -1,7 +1,7 @@
 import { Disclosure as FoundationDisclosure } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import { applyMixins } from '@microsoft/fast-foundation';
-import { AffixIconWithTrailing } from '../../shared/patterns/affix';
+import { AffixIcon } from '../../shared/patterns/affix';
 
 /**
  * A Sidenav Item Custom HTML Element.
@@ -18,5 +18,5 @@ export class Disclosure extends FoundationDisclosure {
 	@attr label?: string;
 }
 
-export interface Disclosure extends AffixIconWithTrailing { }
-applyMixins(Disclosure, AffixIconWithTrailing);
+export interface Disclosure extends AffixIcon {}
+applyMixins(Disclosure, AffixIcon);

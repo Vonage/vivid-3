@@ -41,6 +41,23 @@
 		inline-size: $min-block-size;
 		place-content: center;
 	}
+
+	&:not(.expanded) {
+		.toggle-open {
+			display: initial;
+		}
+		.toggle-close {
+			display: none;
+		}
+	}
+	&.expanded {
+		.toggle-open {
+			display: none;
+		}
+		.toggle-close {
+			display: initial;
+		}
+	}
 }
 
 .base:focus {
