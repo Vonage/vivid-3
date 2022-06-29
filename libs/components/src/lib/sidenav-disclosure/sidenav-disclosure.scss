@@ -1,10 +1,6 @@
 @use "../../../../shared/src/lib/sass/mixins/typography" as typography;
 @use "../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts" as theme-consts;
 
-.control {
-	margin-inline-start: 32px;
-}
-
 .base {
 	$min-block-size: 40px;
 	$gap: 8px;
@@ -41,6 +37,11 @@
 		inline-size: $min-block-size;
 		place-content: center;
 	}
+}
+
+.control {
+	margin-inline-start: 32px;
+	border-inline-start: 1px solid var(#{theme-consts.$vvd-color-neutral-30});
 }
 
 .base:focus {
