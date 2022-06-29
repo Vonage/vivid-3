@@ -22,26 +22,26 @@ describe('vwc-card', () => {
 	});
 
 	describe( 'header', () => {
-		it('should set heading property to header-title', async () => {
-			const heading = 'card heading';
-			element.heading = heading;
+		it('should set headline property to header-title', async () => {
+			const headline = 'card headline';
+			element.headline = headline;
 			await elementUpdated(element);
 
-			const headerTitle = element.shadowRoot?.querySelector('.header-title');
-			expect(headerTitle?.textContent?.trim()).toEqual(heading);
+			const headerTitle = element.shadowRoot?.querySelector('.header-headline');
+			expect(headerTitle?.textContent?.trim()).toEqual(headline);
 		});
 
-		it('should set subheading property to .header-subheading', async () => {
-			const subheading = 'card subheading';
-			element.subheading = subheading;
+		it('should set subtitle property to .header-subtitle', async () => {
+			const subtitle = 'card subtitle';
+			element.subtitle = subtitle;
 			await elementUpdated(element);
 
-			const headerSubheading = element.shadowRoot?.querySelector('.header-subheading');
-			expect(headerSubheading?.textContent?.trim()).toEqual(subheading);
+			const headerSubtitle = element.shadowRoot?.querySelector('.header-subtitle');
+			expect(headerSubtitle?.textContent?.trim()).toEqual(subtitle);
 		});
 
-		it('should render headerContent if heading is set', async function () {
-			element.heading = 'card title';
+		it('should render headerContent if headline is set', async function () {
+			element.headline = 'card title';
 			await elementUpdated(element);
 
 			const headerContent = element.shadowRoot?.querySelector('.header-content');
@@ -49,12 +49,12 @@ describe('vwc-card', () => {
 		});
 
 
-		it('should render headerContent if subheading is set', async function () {
-			element.subheading = 'card subheading';
+		it('should render headerContent if subtitle is set', async function () {
+			element.subtitle = 'card subtitle';
 			await elementUpdated(element);
 
-			const subheadingContent = element.shadowRoot?.querySelector('.header-content');
-			expect(subheadingContent).toBeTruthy();
+			const subtitleContent = element.shadowRoot?.querySelector('.header-content');
+			expect(subtitleContent).toBeTruthy();
 		});
 
 
@@ -69,8 +69,8 @@ describe('vwc-card', () => {
 
 		it( 'should add class .hide-header to .base', async () => {
 			element.icon = undefined;
-			element.heading = undefined;
-			element.subheading = undefined;
+			element.headline = undefined;
+			element.subtitle = undefined;
 			await elementUpdated(element);
 			const baseElementHasNoHeader = element.shadowRoot?.
 				querySelector('.base')?.classList.contains('hide-header');

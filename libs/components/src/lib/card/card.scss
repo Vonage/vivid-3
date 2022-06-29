@@ -41,8 +41,8 @@
 		gap: 8px;
 	}
 
-	&-title,
-	&-subheading {
+	&-headline,
+	&-subtitle {
 		/* stylelint-disable value-no-vendor-prefix */
 		display: -webkit-box;
 		/* stylelint-enable value-no-vendor-prefix */
@@ -50,15 +50,15 @@
 		-webkit-box-orient: vertical;
 	}
 
-	&-title {
+	&-headline {
 		@include typography.typography-cat-shorthand('subtitle-2');
 
-		-webkit-line-clamp: var(#{card-variables.$heading-line-clamp});
+		-webkit-line-clamp: var(#{card-variables.$headline-line-clamp});
 	}
-	&-subheading {
+	&-subtitle {
 		@include typography.typography-cat-shorthand('body-2');
 
-		-webkit-line-clamp: var(#{card-variables.$subheading-line-clamp});
+		-webkit-line-clamp: var(#{card-variables.$subtitle-line-clamp});
 	}
 
 	.hide-header & {
@@ -66,7 +66,7 @@
 	}
 }
 
-.header-subheading,
+.header-subtitle,
 .text {
 	@include typography.typography-cat-shorthand('body-2');
 

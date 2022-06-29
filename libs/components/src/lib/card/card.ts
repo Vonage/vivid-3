@@ -14,7 +14,7 @@ export class Card extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr heading?: string;
+	@attr headline?: string;
 
 	/**
 	 * the text of the card sub-heading
@@ -22,7 +22,7 @@ export class Card extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr subheading?: string;
+	@attr subtitle?: string;
 
 	/**
 	 * the text of the card sub-heading
