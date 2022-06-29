@@ -319,6 +319,16 @@ describe('vwc-text-field', () => {
 	});
 
 	describe('error message', function () {
+		/**
+		 *
+		 */
+		function setToBlurred() {
+			element.dispatchEvent(new Event('blur'));
+		}
+
+		function setToFocused() {
+			element.dispatchEvent(new Event('focus'));
+		}
 
 		/**
 		 * @param errorMessage
@@ -328,22 +338,27 @@ describe('vwc-text-field', () => {
 			element.validate();
 		}
 
-		it('should add class error to root', async function () {
+		it('should add class error to base if not valid', async function () {
 			element.dirtyValue = true;
+			setToBlurred();
 			setValidityToError('blah');
 			await elementUpdated(element);
+
 			expect(getRootElement(element)
 				.classList
 				.contains('error'))
 				.toEqual(true);
 		});
 
-		it('should render the error message when attribute is set', async function () {
+		it('should render the error message when not valid', async function () {
 			const errorElementWithoutText = element.shadowRoot?.querySelector('.error-message');
 			const errorMessage = 'Error Text';
+
 			element.dirtyValue = true;
+			setToBlurred();
 			setValidityToError(errorMessage);
 			await elementUpdated(element);
+
 			expect(errorElementWithoutText)
 				.toBeNull();
 			expect(element.shadowRoot?.querySelector('.error-message')
@@ -352,9 +367,18 @@ describe('vwc-text-field', () => {
 				.toEqual(errorMessage);
 		});
 
+		it('should render the error message only after a blur', async function() {
+			const errorMessage = 'Error Text';
+			element.dirtyValue = true;
+			setValidityToError(errorMessage);
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.error-message')).toBeNull();
+		});
+
 		it('should replace helper text', async function () {
 			element.helperText = 'helper text';
 			element.dirtyValue = true;
+			setToBlurred();
 			setValidityToError();
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.helper-text'))
@@ -366,6 +390,42 @@ describe('vwc-text-field', () => {
 			await elementUpdated(element);
 			expect(element.errorValidationMessage)
 				.toEqual('');
+		});
+
+		it('should validate after a blur', async function () {
+			const errorMessage = 'Error Text';
+			element.dirtyValue = true;
+			setValidityToError(errorMessage);
+			setToBlurred();
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.error-message')?.
+				textContent?.trim()).toEqual(errorMessage);
+		});
+
+		it('should update error message when blurred', async function() {
+			setToBlurred();
+			const errorMessage = 'Error Text';
+			const errorMessageTwo = 'Error Text 2';
+			element.dirtyValue = true;
+			setValidityToError(errorMessage);
+			await elementUpdated(element);
+
+			setValidityToError(errorMessageTwo);
+			await elementUpdated(element);
+
+			expect(element.shadowRoot?.querySelector('.error-message')?.
+				textContent?.trim()).toEqual(errorMessageTwo);
+		});
+
+		it('should change the error message only when already not valid', async function() {
+			setToBlurred();
+			setToFocused();
+			const errorMessage = 'Error Text';
+			element.dirtyValue = true;
+			setValidityToError(errorMessage);
+			await elementUpdated(element);
+
+			expect(element.shadowRoot?.querySelector('.error-message')).toBeNull();
 		});
 	});
 
