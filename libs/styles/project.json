@@ -4,7 +4,9 @@
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/styles"],
+      "outputs": [
+        "coverage/libs/styles"
+      ],
       "options": {
         "jestConfig": "libs/styles/jest.config.ts",
         "passWithNoTests": true
@@ -15,6 +17,7 @@
       "options": {
         "commands": [
           "sass libs/styles/src/lib/themes:dist/libs/styles/themes",
+          "sass libs/styles/src/lib/typography:dist/libs/styles/typography",
           "sass libs/styles/src/lib/fonts:dist/libs/styles/fonts"
         ]
       }
@@ -27,9 +30,13 @@
     },
     "stylelint": {
       "executor": "nx-stylelint:lint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["libs/styles/**/*.css"]
+        "lintFilePatterns": [
+          "libs/styles/**/*.css"
+        ]
       }
     }
   },

@@ -1,0 +1,158 @@
+
+// @use 'sass:list';
+@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+// @use '~@vonage/vivid-tokens/dist/sass/typography/web' as typography-scale;
+
+body {
+  @include typography.typography-cat-shorthand(body-1);
+}
+
+h1 {
+  @include typography.typography-cat-shorthand(headline-1);
+  margin-block: 2.5rem;
+}
+
+h2 {
+  @include typography.typography-cat-shorthand(headline-2);
+  margin-block: 2.5rem;
+}
+
+h3 {
+  @include typography.typography-cat-shorthand(subtitle-1);
+  margin-block: 1.5rem;
+}
+
+h4 {
+  @include typography.typography-cat-shorthand(subtitle-2);
+  margin-block: 1.5rem;
+}
+
+h5 {
+  @include typography.typography-cat-shorthand(title-1);
+  margin-block: 2rem;
+}
+
+h6 {
+  @include typography.typography-cat-shorthand(title-2);
+  margin-block: 2rem;
+}
+
+code {
+  @include typography.typography-cat-shorthand(body-1-code);
+}
+
+p {
+  margin-block: 1rem;
+}
+
+	// Body1 = 'body-1',
+	// Body1Bold = 'body-1-bold',
+	// Body1Code = 'body-1-code',
+	// Body1Link = 'body-1-link',
+	// Body2 = 'body-2',
+	// Body2Bold = 'body-2-bold',
+	// Body2Code = 'body-2-code',
+	// Body2Link = 'body-2-link',
+	// Button = 'button',
+	// ButtonDense = 'button-dense',
+	// ButtonEnlarge = 'button-enlarge',
+	// Caption = 'caption',
+	// CaptionBold = 'caption-bold',
+	// CaptionCode = 'caption-code',
+	// CaptionLink = 'caption-link',
+	// Headline1 = 'headline-1',
+	// Headline2 = 'headline-2',
+	// Subtitle1 = 'subtitle-1',
+	// Subtitle2 = 'subtitle-2',
+	// Title1 = 'title-1',
+	// Title2 = 'title-2'
+
+
+// @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+// 	$connotations: accent cta success alert announcement info,
+// 	$shades: primary,
+// );
+// @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+
+// $font-faces: ();
+
+// @each $key, $value in typography-scale.$typography-category-list {
+// 	$font-faces: list.join($font-faces, $key, $separator: comma)
+// }
+
+// @function get-default-selector($font-faces){
+// 	$classes: ();
+
+// 	@each $font-face in $font-faces {
+// 		$classes: list.join($classes, '.font-face-#{$font-face}', $separator: comma)
+// 	}
+
+// 	@return '&:not(#{$classes})';
+// }
+
+// $default-selector: get-default-selector($font-faces);
+
+// %not-tight {
+// 	&:not(.tight) {
+// 		display: block;
+// 		margin: var(--font-face-margin, 0);
+// 	}
+// }
+
+// .control {
+// 	@each $font-face in $font-faces {
+// 		&.font-face-#{$font-face} {
+// 			@include typography.typography-cat-shorthand(#{$font-face});
+// 		}
+// 	}
+
+// 	#{$default-selector} {
+// 		@include typography.typography-cat-shorthand('body-1');
+// 	}
+
+// 	@include connotation.connotation;
+
+// 	color: var(#{connotation.get-connotation-token(primary)});
+
+// 	&.font-face-headline-1,
+// 	&.font-face-headline-2 {
+// 		--font-face-margin: 2.5rem 0;
+// 		@extend %not-tight;
+// 	}
+
+// 	&.font-face-title-1,
+// 	&.font-face-title-2 {
+// 		--font-face-margin: 2rem 0;
+// 		@extend %not-tight;
+// 	}
+
+// 	&.font-face-subtitle-1,
+// 	&.font-face-subtitle-2 {
+// 		--font-face-margin: 1.5rem 0;
+// 		@extend %not-tight;
+// 	}
+
+// 	#{$default-selector},
+// 	&.font-face-body-1,
+// 	&.font-face-body-1-bold,
+// 	&.font-face-body-1-code,
+// 	&.font-face-body-1-link,
+// 	&.font-face-body-2,
+// 	&.font-face-body-2-bold,
+// 	&.font-face-body-2-code,
+// 	&.font-face-body-2-link {
+// 		--font-face-margin: 1rem 0;
+// 		@extend %not-tight;
+// 	}
+// }
+
+// ::slotted(:where(h1, h2, h3, h4, h5, h6, p)) {
+// 	margin: initial;
+// }
+
+
+// ::slotted(*) {
+// 	color: inherit;
+// 	font: inherit;
+// }
+
