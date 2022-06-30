@@ -33,8 +33,8 @@
 	column-gap: var(#{variables.$icon-gap});
 	filter: var(#{elevation.$vvd-elevation-shadow});
 	outline: 0 none;
+	transition: background-color 0.15s linear, filter 0.15s linear;
 	vertical-align: middle;
-  transition: background-color 0.15s linear, filter 0.15s linear;
 
 	/* Size */
 
