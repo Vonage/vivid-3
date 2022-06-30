@@ -14,15 +14,15 @@ $inline-size: 280px;
 
 .control {
 	position: fixed;
-  block-size: 100vh;
-  inset-block: 0;
+	z-index: 1;
 	display: flex;
 	overflow: auto;
 	flex-direction: column;
 	background-color: var(#{theme-consts.$vvd-color-canvas});
+	block-size: 100vh;
 	color: var(#{theme-consts.$vvd-color-on-canvas});
 	inline-size: $inline-size;
-  z-index: 1;
+	inset-block: 0;
 
 	&.alternate {
 		background-color: var(#{theme-consts.$vvd-color-canvas});
@@ -37,16 +37,16 @@ $inline-size: 280px;
 	}
 
 	&.open:not(.modal) {
-    &.position-end + {
-      .side-drawer-app-content {
-        margin-inline-end: var(#{variables.$side-drawer-app-content-offset}, $inline-size);
-      }
-    }
-    &:not(.position-end) + {
-      .side-drawer-app-content {
-        margin-inline-start: var(#{variables.$side-drawer-app-content-offset}, $inline-size);
-      }
-    }
+		&.position-end + {
+			.side-drawer-app-content {
+				margin-inline-end: var(#{variables.$side-drawer-app-content-offset}, $inline-size);
+			}
+		}
+		&:not(.position-end) + {
+			.side-drawer-app-content {
+				margin-inline-start: var(#{variables.$side-drawer-app-content-offset}, $inline-size);
+			}
+		}
 	}
 
 	@media (prefers-reduced-motion: no-preference) {
@@ -72,8 +72,8 @@ $gutter: 16px;
 }
 
 .side-drawer-body {
-	padding-block: 12px;
 	overflow-y: auto;
+	padding-block: 12px;
 	padding-inline-end: #{$gutter};
 	padding-inline-start: #{$gutter};
 }
