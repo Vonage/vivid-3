@@ -6,7 +6,6 @@
 	$gap: 8px;
 	@include typography.typography-cat-shorthand("body-2");
 
-	cursor: pointer;
 	position: relative;
 	display: inline-flex;
 	box-sizing: border-box;
@@ -18,16 +17,17 @@
 	hyphens: auto;
 	inline-size: 100%;
 	min-block-size: $min-block-size;
+	cursor: pointer;
 	outline: 0 none;
 	padding-block: 10px;
 	padding-inline: $gap;
 	text-decoration: none;
 	vertical-align: middle;
-	word-break: break-word;
 	list-style: none;
+	word-break: break-word;
 
 	@at-root :host,
-		& {
+	& {
 		outline: 0 none;
 	}
 }
