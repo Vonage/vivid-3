@@ -1,6 +1,10 @@
 # Side Navigation Disclosure
 
-Represents a sidenav-disclosure custom element.
+By using the sidenav-disclosure, you can either collapse (hide) or expand (show) the content.  
+It has two elements: a disclosure button and a section of content whose visibility is controlled by the button.  
+The arrow points down when the controlled content is hidden, indicating that pressing the button will reveal additional content.  
+The arrow points up when the content is visible.
+
 
 ```js
 <script type="module">
@@ -100,3 +104,18 @@ If label is not applied.
     <vwc-sidenav-item href="#" text="2nd level item"></vwc-sidenav-item>
 </vwc-sidenav-disclosure>
 ```
+
+## Accessibility
+
+The sidenav-disclosure has a `role` button.  
+Sidenav-disclosure has `aria-expanded` set to true when the content is visible. Otherwise, it is set to false.  
+Sidenav-disclosure has a value specified for `aria-controls` that refers to the content.
+
+## Keyboard Interaction
+
+When the sidenav-disclosure has focus:
+
+`Enter`: activates the sidenav-disclosure and toggles the visibility of the content.  
+`Space`: activates the sidenav-disclosure and toggles the visibility of the content.  
+`Tab`: moves focus to the next element in the tab order.  
+`Shift` + `Tab`: moves focus to the previous element in the tab order.  
