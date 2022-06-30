@@ -7,12 +7,16 @@ import { attr } from '@microsoft/fast-element';
  * @public
  */
 export class Dialog extends FoundationElement {
-  /**
-   * Indicates the text's text.
-   *
-   * @public
-   * @remarks
-   * HTML Attribute: text
-   */
-  @attr text?: string;
+	/**
+	 * Indicates dialog's state
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: open
+	 */
+	@attr({mode: 'boolean'}) open = false;
+	@attr({mode: 'boolean'}) stacked = false;
+	@attr({attribute: 'return-value'}) returnValue?: string;
+	@attr icon?: string;
+	@attr content?: string;
 }
