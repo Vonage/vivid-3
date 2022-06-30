@@ -5,5 +5,5 @@
 ```
 
 ```html preview
-<vwc-dialog></vwc-dialog>
+<vwc-dialog icon="info" heading="Heading" content="Content" open>This is the content!</vwc-dialog>
 ```
