@@ -1,4 +1,7 @@
-# accordion
+# Accordion
+
+Use accordion when you want to toggle between hiding and showing large amounts of content.  
+The vwc-accordion accepts [vwc-accordion-item](../../components/accordion-item) elements as children.
 
 ```js
 <script type="module">
@@ -23,11 +26,13 @@
 </vwc-accordion>
 ```
 
-## Multi
+## Properties
+
+### Multi
 
 Add the `multi` attribute to the accordion to allow multiple items to be open at once.
 
-- Type: `boolean`
+- Type: `Boolean`
 - Default: `false`
 
 ```html preview full
