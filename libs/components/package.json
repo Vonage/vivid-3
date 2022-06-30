@@ -29,6 +29,7 @@
     "./text": "./text",
     "./text-field": "./text-field",
     "./tooltip": "./tooltip",
-    "./checkbox": "./checkbox"
+    "./checkbox": "./checkbox",
+    "./divider": "./divider"
   }
 }

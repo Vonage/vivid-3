@@ -49,8 +49,13 @@
 }
 
 ::slotted([role="separator"]) {
-	width: 1px;
+	//width: 1px;
+	//align-self: stretch;
+	//background-color: var(#{theme-consts.$vvd-color-neutral-30});
+	//margin-block: 4px;
+}
+
+vwc-divider {
 	align-self: stretch;
-	background-color: var(#{theme-consts.$vvd-color-neutral-30});
 	margin-block: 4px;
 }

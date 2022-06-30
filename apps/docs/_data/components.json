@@ -204,5 +204,14 @@
       "/assets/modules/components/layout/index.js",
       "/assets/modules/components/banner/index.js"
     ]
+  },
+  {
+    "title": "divider",
+    "markdown": "./libs/components/src/lib/divider/README.md",
+    "modules": [
+      "/assets/modules/components/divider/index.js",
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/action-group/index.js"
+    ]
   }
 ]
