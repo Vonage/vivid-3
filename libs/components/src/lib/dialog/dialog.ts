@@ -19,4 +19,17 @@ export class Dialog extends FoundationElement {
 	@attr({attribute: 'return-value'}) returnValue?: string;
 	@attr icon?: string;
 	@attr content?: string;
+	@attr heading?: string;
+
+	close() {
+		if (!this.open) {
+			return;
+		}
+		this.open = false;
+		this.dispatchEvent(new CustomEvent('close', {bubbles: true, composed: true, detail: this.returnValue}));
+	}
+
+	show() {
+		this.open = true;
+	}
 }
