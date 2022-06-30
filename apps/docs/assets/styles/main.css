@@ -8,6 +8,7 @@ strong {
 }
 /* #endregion reset */
 
+/* #region document */
 html {
   scroll-padding-top: 64px;
 }
@@ -24,13 +25,13 @@ body a:visited {
   color: var(--vvd-color-cta);
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-}
+/* #endregion document */
 
-.logo img {
-  margin-right: 0.5rem;
+/* #region layout */
+vwc-header::part(base) {
+  position: fixed;
+  top: 0;
+  z-index: 2;
 }
 
 vwc-side-drawer::part(base) {
@@ -44,6 +45,20 @@ vwc-side-drawer::part(base) {
   vwc-side-drawer::part(body) {
     overscroll-behavior: none;
   }
+}
+
+vwc-side-drawer > main {
+  padding-block-start: var(--_header-block-size);
+}
+/* #endregion layout */
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  margin-right: 0.5rem;
 }
 
 /*properties table*/
@@ -91,11 +106,6 @@ dark-mode-toggle {
 
 /*Main container*/
 /*--------------------------*/
-
-.main-layout {
-  display: block;
-  margin-top: -1.5rem; /*to overide the vwc-layout top margin*/
-}
 
 /*Homepage*/
 .home-page-hero {
