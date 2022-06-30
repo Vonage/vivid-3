@@ -13,13 +13,13 @@
 	background-color: transparent;
 	border-radius: 6px;
 	color: var(#{theme-consts.$vvd-color-on-canvas});
-	gap: $gap;
 	cursor: pointer;
+	gap: $gap;
 	hyphens: auto;
+	list-style: none;
 	inline-size: 100%;
 	min-block-size: $min-block-size;
 	outline: 0 none;
-	list-style: none;
 	padding-block: 10px;
 	padding-inline: $gap;
 	text-decoration: none;
