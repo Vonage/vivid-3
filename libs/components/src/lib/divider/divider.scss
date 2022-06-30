@@ -6,16 +6,16 @@
 
 }
 .base {
-  background-color: var(#{theme-consts.$vvd-color-neutral-30});
-  display: block;
+	display: block;
+	background-color: var(#{theme-consts.$vvd-color-neutral-30});
 
-  &:not(.vertical) {
-    width: 100%;
-    height: 1px;
-  }
+	&:not(.vertical) {
+		width: 100%;
+		height: 1px;
+	}
 
-  &.vertical {
-    width: 1px;
-    height: 100%;
-  }
+	&.vertical {
+		width: 1px;
+		height: 100%;
+	}
 }
