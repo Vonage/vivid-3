@@ -56,6 +56,49 @@ Add a `label` attribute to add label to the sidenav disclosure.
 </vwc-sidenav-disclosure>
 ```
 
+### Expanded
+
+- Type: `Boolean`
+- Default: `false`
+
+You can toggle the sidenav-disclosure by using the `expanded` attribute.
+
+```html preview
+<vwc-sidenav-item href="#" text="1st level item"></vwc-sidenav-item>
+<vwc-sidenav-disclosure label="1st level item" expanded>
+    <vwc-sidenav-item href="#" text="2nd level item"></vwc-sidenav-item>
+    <vwc-sidenav-item href="#" text="2nd level item"></vwc-sidenav-item>
+    <vwc-sidenav-item href="#" text="2nd level item"></vwc-sidenav-item>
+</vwc-sidenav-disclosure>
+<vwc-sidenav-disclosure label="1st level item" expanded>
+    <vwc-sidenav-disclosure label="2nd level item" expanded>
+        <vwc-sidenav-item href="#" text="3rd level item"></vwc-sidenav-item>
+        <vwc-sidenav-item href="#" text="3rd level item"></vwc-sidenav-item>
+        <vwc-sidenav-item href="#" text="3rd level item"></vwc-sidenav-item>
+    </vwc-sidenav-disclosure>
+    <vwc-sidenav-disclosure label="2nd level item" expanded>
+        <vwc-sidenav-item href="#" text="3rd level item"></vwc-sidenav-item>
+        <vwc-sidenav-item href="#" text="3rd level item"></vwc-sidenav-item>
+        <vwc-sidenav-item href="#" text="3rd level item"></vwc-sidenav-item>
+    </vwc-sidenav-disclosure>
+    <vwc-sidenav-disclosure label="2nd level item" expanded>
+        <vwc-sidenav-item href="#" text="3rd level item"></vwc-sidenav-item>
+        <vwc-sidenav-item href="#" text="3rd level item"></vwc-sidenav-item>
+        <vwc-sidenav-item href="#" text="3rd level item"></vwc-sidenav-item>
+    </vwc-sidenav-disclosure>
+</vwc-sidenav-disclosure>
+<vwc-sidenav-item href="#" text="1st level item"></vwc-sidenav-item>
+<vwc-sidenav-disclosure label="1st level item" expanded>
+    <vwc-sidenav-item href="#" text="2nd level item"></vwc-sidenav-item>
+    <vwc-sidenav-item href="#" text="2nd level item"></vwc-sidenav-item>
+    <vwc-sidenav-disclosure label="2nd level item" expanded>
+        <vwc-sidenav-item href="#" text="3rd level item"></vwc-sidenav-item>
+        <vwc-sidenav-item href="#" text="3rd level item"></vwc-sidenav-item>
+        <vwc-sidenav-item href="#" text="3rd level item"></vwc-sidenav-item>
+    </vwc-sidenav-disclosure>
+</vwc-sidenav-disclosure>
+```
+
 ### Icon
 
 - Type: `String`

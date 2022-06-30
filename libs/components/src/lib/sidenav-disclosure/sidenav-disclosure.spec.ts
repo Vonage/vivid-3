@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
 import { Disclosure } from './sidenav-disclosure';
 import '.';
@@ -37,13 +37,12 @@ describe('vwc-sidenav-disclosure', () => {
 	});
 
 	describe('label', () => {
-		it('should set text property value as text content', async () => {
+		it('should set label property value as text content', async () => {
 			const label = 'lorem';
 			element.label = label;
 			await elementUpdated(element);
-
-			const control = element.shadowRoot?.querySelector('.base');
-			expect(control?.textContent?.trim())
+			
+			expect(getBaseElement(element).textContent?.trim())
 				.toEqual(label);
 		});
 	});
