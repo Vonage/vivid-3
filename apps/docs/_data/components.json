@@ -112,6 +112,14 @@
     ]
   },
   {
+    "title": "sidenav-disclosure",
+    "markdown": "./libs/components/src/lib/sidenav-disclosure/README.md",
+    "modules": [
+      "/assets/modules/components/sidenav-disclosure/index.js",
+      "/assets/modules/components/sidenav-item/index.js"
+    ]
+  },
+  {
     "title": "text",
     "markdown": "./libs/components/src/lib/text/README.md",
     "modules": [
