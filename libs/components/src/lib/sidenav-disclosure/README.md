@@ -5,7 +5,6 @@ It has two elements: a disclosure button and a section of content whose visibili
 The arrow points down when the controlled content is hidden, indicating that pressing the button will reveal additional content.  
 The arrow points up when the content is visible.
 
-
 ```js
 <script type="module">
     import '@vonage/vivid/sidenav-disclosure';
