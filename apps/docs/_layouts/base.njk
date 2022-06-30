@@ -55,20 +55,21 @@
       <img src="../../../vivid-logo.svg" style="" alt="Vivid Logo" width="30">
       <vwc-text font-face="subtitle-1" tight>VIVID</vwc-text>
     </div>
-    <div class="header-actions" slot="actionItems">
-    <div class="star-us">
+
+    <div class="star-us" slot="actionItems">
     <!-- Place this tag where you want the button to render. -->
-        <a class="github-button"
-            href="https://github.com/vonage/vivid-3"
-            data-color-scheme="no-preference: light; light: light; dark: dark;"
-            data-size="large"
-            data-show-count="true"
-            aria-label="Star vonage/vivid-3 on GitHub">
-            Star
-        </a>
+      <a class="github-button"
+        href="https://github.com/vonage/vivid-3"
+        data-color-scheme="no-preference: light; light: light; dark: dark;"
+        data-size="large"
+        data-show-count="true"
+        aria-label="Star vonage/vivid-3 on GitHub">
+        Star
+      </a>
     </div>
-    <dark-mode-toggle permanent></dark-mode-toggle>
-    </div>
+
+    <dark-mode-toggle permanent slot="actionItems"></dark-mode-toggle>
+
     <vwc-side-drawer open slot="app-content">
       {% include "navigation.njk" %}
       <main slot="app-content">

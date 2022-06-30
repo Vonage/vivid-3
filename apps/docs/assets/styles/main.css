@@ -88,20 +88,6 @@ nav.navigation [role="heading"][aria-level="2"] {
 }
 /*#region END: side navigation */
 
-/* Header parts */
-/*--------------------------*/
-.header-actions {
-  display: flex;
-}
-
-dark-mode-toggle {
-  display: block;
-  margin-left: 0.5rem;
-  /*in order for this to overide we need absolute links to a URL*/
-  /*--dark-mode-toggle-dark-icon: url('sun.svg');*/
-  /*--dark-mode-toggle-light-icon: url('moon.svg');*/
-}
-
 
 /*Main container*/
 /*--------------------------*/
