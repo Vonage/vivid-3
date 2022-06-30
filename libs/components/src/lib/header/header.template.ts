@@ -26,7 +26,7 @@ export const headerTemplate: (
 	const elevationTag = context.tagFor(Elevation);
 
 	return html<Header>`
-    <${elevationTag} dp=${(x => x.elevation)}>
+    <${elevationTag} dp="4" ?no-shadow=${x => !x.elevationShadow}>
       <header class="${getClasses}" part="base ${(x) => x.alternate ? 'vvd-theme-alternate' : ''}">
         <section class="header-content start" id="navigation">
           <slot></slot>

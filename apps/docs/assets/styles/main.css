@@ -36,7 +36,6 @@ vwc-header::part(base) {
 
 vwc-side-drawer::part(base) {
   block-size: calc(100vh - var(--_header-block-size));
-  background-color: var(--vvd-color-neutral-10);
   bottom: 0;
   top: auto;
 }

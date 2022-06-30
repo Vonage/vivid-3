@@ -18,11 +18,11 @@ export class Header extends FoundationElement {
 	@attr heading?: string;
 
 	/**
-	 * card elevation dp
+	 * header elevation shadow
 	 *
 	 * @public
 	 */
-	@attr elevation?: 0 | 2 | 4 | 8 | 12 | 16 | 24;
+	@attr({ attribute: 'elevation-shadow', mode: 'boolean' }) elevationShadow?: boolean;
 
 	/**
 	 * applies scheme alternate to header region

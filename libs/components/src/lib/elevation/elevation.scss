@@ -16,8 +16,15 @@ $dps: 0 2 4 8 12 16 24;
 	@include utils.spread-list-selectors('.dp', $dps, $default) using ($type) {
 		@include elevation.elevation($type);
 	}
+
 	::slotted(*) {
 		background-color: var(elevation.$vvd-elevation-fill);
 		filter: var(elevation.$vvd-elevation-shadow);
+    transition: background-color 0.15s linear, filter 0.15s linear;
 	}
+  &.no-shadow {
+    ::slotted(*) {
+      filter: none;
+    }
+  }
 }
