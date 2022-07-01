@@ -33,9 +33,14 @@
 	color: var(#{appearance.get-appearance-token(text)}, var(theme-constants.$vvd-color-on-canvas));
 	column-gap: var(#{variables.$icon-gap});
 	filter: var(#{elevation.$vvd-elevation-shadow});
-	outline: 0 none;
 	transition: background-color 0.15s linear, filter 0.15s linear;
 	vertical-align: middle;
+
+	@supports selector(:focus-visible) {
+		&:focus {
+			outline: none;
+		}
+	}
 
 	/* Size */
 
