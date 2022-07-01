@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Fri, 01 Jul 2022 14:50:40 GMT and should not be manually modified.
+This log was last generated on Fri, 01 Jul 2022 20:53:00 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.27
+
+Fri, 01 Jul 2022 20:53:00 GMT
+
+### Changes
+
+- refactor(components): outline removal condition (yinon@hotmail.com)
 
 ## 3.0.0-next.26
 
