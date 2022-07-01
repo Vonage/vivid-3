@@ -1,3 +1,4 @@
+@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-constants;
 @use "../../../../shared/src/lib/sass/mixins/typography" as typography;
 @use "partials/variables" as variables;
 @use "../../../../shared/src/lib/sass/mixins/elevation" as elevation;
@@ -29,7 +30,7 @@
 	background-color: var(#{appearance.get-appearance-token(fill)}, var(elevation.$vvd-elevation-fill));
 	block-size: var(#{variables.$block-size});
 	border-radius: var(#{variables.$border-radius});
-	color: var(#{appearance.get-appearance-token(text)});
+	color: var(#{appearance.get-appearance-token(text)}, var(theme-constants.$vvd-color-on-canvas));
 	column-gap: var(#{variables.$icon-gap});
 	filter: var(#{elevation.$vvd-elevation-shadow});
 	outline: 0 none;
