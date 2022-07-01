@@ -35,6 +35,7 @@
 	filter: var(#{elevation.$vvd-elevation-shadow});
 	transition: background-color 0.15s linear, filter 0.15s linear;
 	vertical-align: middle;
+
 	@supports selector(:focus-visible) {
 		&:focus {
 			outline: none;
