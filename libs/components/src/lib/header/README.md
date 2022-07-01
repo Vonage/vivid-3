@@ -1,28 +1,31 @@
 # Header
 
+represents the top header of a page.
+
 ```html
 <script type="module">
     import '@vonage/vivid/header';
 </script>
 ```
 
-## Properties
+```html preview full
+<vwc-header>
+  Vonage
+</vwc-header>
+```
 
-### Heading
+## Members
 
-Add the `heading` attribute to set the heading text.
+### Elevation Shadow
 
-- Type: `string`
-- Default: `undefined`
+Header is an elevated element and applies elevation surface background color (more noticeable in **dark** themes) but leaves out elevation shadow (more noticeable in **light** themes) for author's to opt-in.
+Set `elevationShadow` on header to apply the elevation shadow corresponding with its surface background color.
+
+- Type: `boolean`
+- Default: `false`
 
 ```html preview full
-<style>
-    html { 
-      block-size: 200px; 
-    }
-</style>
-<vwc-header heading="Header">
-</vwc-header>
+<vwc-header heading="Header with shadow" elevation-shadow></vwc-header>
 ```
 
 ### Alternate

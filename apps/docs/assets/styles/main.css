@@ -51,14 +51,6 @@ vwc-side-drawer > main {
 }
 /* #endregion layout */
 
-.logo {
-  display: flex;
-  align-items: center;
-}
-
-.logo img {
-  margin-right: 0.5rem;
-}
 
 /*properties table*/
 table {

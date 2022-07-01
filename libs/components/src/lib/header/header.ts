@@ -8,16 +8,6 @@ import { attr } from '@microsoft/fast-element';
  */
 export class Header extends FoundationElement {
 	/**
-	 *
-	 *headerEl
-	 *
-	 * @public
-	 *
-	 * HTML Attribute: heading
-	 */
-	@attr heading?: string;
-
-	/**
 	 * header elevation shadow
 	 *
 	 * @public

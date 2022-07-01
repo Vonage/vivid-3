@@ -1,4 +1,4 @@
-import { html, when } from '@microsoft/fast-element';
+import { html } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
@@ -8,9 +8,9 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
 import type { Header } from './header';
 
-const getClasses = ({ alternate }: Header) => classNames(
+const getParts = ({ alternate }: Header) => classNames(
 	'base',
-	['alternate', Boolean(alternate)],
+	['vvd-theme-alternate', Boolean(alternate)],
 );
 
 /**
@@ -27,15 +27,16 @@ export const headerTemplate: (
 
 	return html<Header>`
     <${elevationTag} dp="4" ?no-shadow=${x => !x.elevationShadow}>
-      <header class="${getClasses}" part="base ${(x) => x.alternate ? 'vvd-theme-alternate' : ''}">
-        <section class="header-content start" id="navigation">
+    <div class="just to contain shadow">
+      <header class="base" part="${getParts}">
+        <section class="header-content start">
           <slot></slot>
-          ${when(x => x.heading, html<Header>`<span class="heading">${x => x.heading}</span>`)}
         </section>
         <section class="header-content end" id="actions" role="toolbar">
           <slot name="actionItems"></slot>
         </section>
       </header>
+    </div>
     </${elevationTag}>
     <div class="app-content">
       <slot name="app-content"></slot>
