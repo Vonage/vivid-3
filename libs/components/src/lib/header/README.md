@@ -25,18 +25,22 @@ Set `elevationShadow` on header to apply the elevation shadow corresponding with
 - Default: `false`
 
 ```html preview full
-<vwc-header heading="Header with shadow" elevation-shadow></vwc-header>
+<vwc-header elevation-shadow>
+  Header with shadow
+</vwc-header>
 ```
 
 ### Alternate
 
-Add the `alternate` attribute to set the color-scheme to dark or light (depending on current user's system settings).
+Use `alternate` to apply a color-scheme in contrast with the current global theme.
 
 - Type: `boolean`
 - Default: `false`
 
 ```html preview full
-<vwc-header heading="Alternate Header" alternate></vwc-header>
+<vwc-header alternate>
+  Header with alternate color scheme
+</vwc-header>
 ```
 
 ## Slots
