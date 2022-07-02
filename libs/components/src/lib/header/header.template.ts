@@ -8,8 +8,7 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
 import type { Header } from './header';
 
-const getParts = ({ alternate }: Header) => classNames(
-	'base',
+const getPartAlternate = ({ alternate }: Header) => classNames(
 	['vvd-theme-alternate', Boolean(alternate)],
 );
 
@@ -27,16 +26,18 @@ export const headerTemplate: (
 
 	return html<Header>`
     <${elevationTag} dp="4" ?no-shadow=${x => !x.elevationShadow}>
-    <div class="just to contain shadow">
-      <header class="base" part="${getParts}">
-        <section class="header-content start">
-          <slot></slot>
-        </section>
-        <section class="header-content end" id="actions" role="toolbar">
-          <slot name="actionItems"></slot>
-        </section>
+      <header class="base" part="base">
+        <!-- a container is needed to distinguish the surface background color of the
+        element from its shadow when applying elevation with alternate -->
+        <div class="container" part="${getPartAlternate}">
+          <section class="header-content start">
+            <slot></slot>
+          </section>
+          <section class="header-content end" id="actions" role="toolbar">
+            <slot name="actionItems"></slot>
+          </section>
+        </div>
       </header>
-    </div>
     </${elevationTag}>
     <div class="app-content">
       <slot name="app-content"></slot>
