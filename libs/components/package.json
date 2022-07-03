@@ -27,7 +27,6 @@
     "./side-drawer": "./side-drawer",
     "./sidenav": "./sidenav",
     "./sidenav-item": "./sidenav-item",
-    "./sidenav-disclosure": "./sidenav-disclosure",
     "./text": "./text",
     "./text-field": "./text-field",
     "./tooltip": "./tooltip",

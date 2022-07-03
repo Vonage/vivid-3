@@ -1,6 +1,6 @@
 {
   "type": "none",
-  "comment": "sidenav and sidenav-disclosure",
+  "comment": "sidenav",
   "packageName": "@vonage/vivid",
   "email": "rina.oksman@vonage.com",
   "dependentChangeType": "none"
