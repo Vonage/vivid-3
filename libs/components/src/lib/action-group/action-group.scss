@@ -48,11 +48,12 @@
 	border-radius: 24px;
 }
 
+// Remove this after divider is merged and action-group is updated
 ::slotted([role="separator"]) {
-	//width: 1px;
-	//align-self: stretch;
-	//background-color: var(#{theme-consts.$vvd-color-neutral-30});
-	//margin-block: 4px;
+	width: 1px;
+	align-self: stretch;
+	background-color: var(#{theme-consts.$vvd-color-neutral-30});
+	margin-block: 4px;
 }
 
 vwc-divider {
