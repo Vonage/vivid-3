@@ -16,7 +16,7 @@ Add the `heading` attribute to set the heading text.
 - Default: `undefined`
   
 ```html preview full
-<vwc-accordion-item heading="accordion item with heading">
+<vwc-accordion-item heading="Accordion item with heading">
   <vwc-text font-face="body-1">
     Lorem Ipsum is simply dummy text of the printing and typesetting industry.
   </vwc-text>
@@ -71,7 +71,7 @@ Add the `no-indicator` attribute (or `noIndicator` property) to remove the indic
 - Default: `false`
 
 ```html preview full
- <vwc-accordion-item heading="accordion item without indicator" no-indicator>
+ <vwc-accordion-item heading="Accordion item without indicator" no-indicator>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
@@ -86,7 +86,7 @@ Add the `meta` attribute to add metadata to the heading.
 - Default: `undefined`
 
 ```html preview full
- <vwc-accordion-item heading="accordion item with metadata" meta="meta-data">
+ <vwc-accordion-item heading="Accordion item with metadata" meta="meta-data">
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
@@ -101,7 +101,7 @@ Add the `icon` attribute to add an icon to the heading.
 - Default: `''`
 
 ```html preview full
- <vwc-accordion-item heading="accordion item with icon" icon="chat-solid">
+ <vwc-accordion-item heading="Accordion item with icon" icon="chat-solid">
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
@@ -116,7 +116,7 @@ Add the `icon-trailing` attribute (or `iconTrailing` property) to add an icon to
 - Default: `false`
 
 ```html preview full
- <vwc-accordion-item heading="accordion item with icon-trailing" icon="chat-solid" icon-trailing>
+ <vwc-accordion-item heading="Accordion item with icon-trailing" icon="chat-solid" icon-trailing>
     <vwc-text font-face="body-1">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </vwc-text>
