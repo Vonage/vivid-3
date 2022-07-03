@@ -14,3 +14,6 @@ To address all issues, run:
   npm audit fix --force
 
 Run `npm audit` for details.
+Removing change files:
+- @vonage-vivid-75fedc38-94cf-4a97-9ada-6a5b99438d57.json
+Removing change path
