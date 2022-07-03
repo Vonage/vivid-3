@@ -18,7 +18,6 @@ describe('vwc-dialog', () => {
 			expect(element).toBeInstanceOf(Dialog);
 			expect(element.open).toEqual(false);
 			expect(element.returnValue).toEqual(undefined);
-			expect(element.stacked).toEqual(false);
 			expect(element.icon).toEqual(undefined);
 			expect(element.content).toEqual(undefined);
 			expect(element.heading).toEqual(undefined);
@@ -86,12 +85,6 @@ describe('vwc-dialog', () => {
 		expect(detail).toEqual(returnValue);
 	});
 
-	it('should add class "stacked" to base when stacked is true', async function () {
-		element.stacked = true;
-		await elementUpdated(element);
-		expect(getBaseElement(element).classList.contains('stacked')).toEqual(true);
-	});
-
 	it('should render the icon when icon is set', async function() {
 		const iconElementWhenUndefined = getBaseElement(element).querySelector('.icon');
 		  element.icon = 'home';
@@ -116,11 +109,15 @@ describe('vwc-dialog', () => {
 	it('should render the content area when content is set', async function() {
 		const headingElementWhenUndefined = getBaseElement(element).querySelector('.heading');
 		const content = 'This is the header!';
+
 		element.heading = content;
 		await elementUpdated(element);
 		const headingElement = getBaseElement(element).querySelector('.heading');
+
 		expect(headingElementWhenUndefined).toBeNull();
 		expect(headingElement).toBeTruthy();
 		expect(headingElement?.textContent?.trim()).toEqual(content);
 	});
+
+
 });

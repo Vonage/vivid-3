@@ -7,29 +7,28 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { Dialog } from './dialog';
 
-const getClasses = ({stacked}: Dialog) => classNames(
-	'base',
-	['stacked', stacked]);
+const getClasses = (_: Dialog) => classNames(
+	'base');
 
 function icon() {
 	return html<Dialog>`
-		<vwc-icon class="icon" type="${x => x.icon}"></vwc-icon>
+		<slot name="graphics"><vwc-icon class="icon" type="${x => x.icon}"></vwc-icon></slot>
 	`;
 }
 
 function heading() {
 	return html<Dialog>`
-		<vwc-text font-face="subtitle-2" class="heading">
+		<div class="heading">
 				${x => x.heading}
-		</vwc-text>
+		</div>
 	`;
 }
 
 function content() {
 	return html<Dialog>`
-		<vwc-text font-face="body-2" class="content">
+		<div class="content">
 				${x => x.content}
-		</vwc-text>
+		</div>
 	`;
 }
 
@@ -46,7 +45,10 @@ export const DialogTemplate: (
   <dialog class="${getClasses}"
           ?open="${x => x.open }"
           returnValue="${ x => x.returnValue }">
-	  ${when(x => x.icon, icon())}
-	  ${when(x => x.heading, heading())}
-	  ${when(x => x.content, content())}
+		  <slot name="main">
+			  ${when(x => x.icon, icon())}
+			  ${when(x => x.heading, heading())}
+			  ${when(x => x.content, content())}
+				  <slot name="footer"></slot>
+		  </slot>
 </dialog>`;

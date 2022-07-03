@@ -1,3 +1,15 @@
+@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+
 .base {
   padding: 24px;
+}
+
+.heading {
+  @include typography.typography-cat-shorthand('subtitle-2');
+  margin-top: 26px;
+  margin-bottom: 8px;
+}
+
+.content {
+  @include typography.typography-cat-shorthand('body-2');
 }

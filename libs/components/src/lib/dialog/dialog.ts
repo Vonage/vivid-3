@@ -15,7 +15,6 @@ export class Dialog extends FoundationElement {
 	 * HTML Attribute: open
 	 */
 	@attr({mode: 'boolean'}) open = false;
-	@attr({mode: 'boolean'}) stacked = false;
 	@attr({attribute: 'return-value'}) returnValue?: string;
 	@attr icon?: string;
 	@attr content?: string;
