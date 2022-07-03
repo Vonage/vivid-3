@@ -2,6 +2,42 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Fri, 01 Jul 2022 20:53:00 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.27",
+      "version": "3.0.0-next.27",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "b8aea048d89bdddc228253224cc15aae5e75059e",
+            "comment": "refactor(components): outline removal condition"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 01 Jul 2022 14:50:40 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.26",
+      "version": "3.0.0-next.26",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "3735609b0a07f5f9d6841fc78e295db0d8fc6a60",
+            "comment": "start validating only after a blur"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "33dfe53b57362ebb6b2e6d1393c097a88333635d",
+            "comment": "fab support for default surface "
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 26 Jun 2022 20:34:06 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.25",
       "version": "3.0.0-next.25",
