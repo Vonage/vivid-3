@@ -125,7 +125,7 @@ This property isn't customizable by authors but does pierce in and can be set to
 
 ### Base
 
-The component's internal header element.
+The component's internal *header* element.
 
 ```html preview full
 <style>

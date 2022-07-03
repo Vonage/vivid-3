@@ -295,6 +295,18 @@ Additionally, as aside element (which represents the actual side-drawer), is sty
 
 ### Base
 
-### Header
+The component's internal *aside* element.
 
-### Body
+```html preview full
+<style>
+  vwc-side-drawer::part(base) {
+    background-color: var(--vvd-color-neutral-10);
+  }
+</style>
+
+<vwc-side-drawer open>
+  <vwc-text>
+    Customised base part
+  </vwc-text>
+</vwc-side-drawer>
+```

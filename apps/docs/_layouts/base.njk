@@ -54,19 +54,12 @@
     <img src="../../../vivid-logo.svg" alt="image of Vivid Logo" style="width: 30px">
     <vwc-text font-face="subtitle-1" tight>Vivid Web Components</vwc-text>
 
-    <div slot="actionItems" class="star-us">
-    <!-- Place this tag where you want the button to render. -->
-      <a class="github-button"
-        href="https://github.com/vonage/vivid-3"
-        data-color-scheme="no-preference: light; light: light; dark: dark;"
-        data-size="large"
-        data-show-count="true"
-        aria-label="Star vonage/vivid-3 on GitHub">
-        Star
-      </a>
-    </div>
-
     <vwc-button slot="actionItems" label="View on GitHub" icon="github-mono" icon-trailing href="https://github.com/vonage/vivid-3"></vwc-button>
+
+    <!-- Place this tag where you want the button to render. -->
+    <span slot="actionItems">
+      <a class="github-button" href="https://github.com/vonage/vivid-3" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true" aria-label="Star vonage/vivid-3 on GitHub">Star</a>
+    </span>
 
     <dark-mode-toggle slot="actionItems" permanent></dark-mode-toggle>
 

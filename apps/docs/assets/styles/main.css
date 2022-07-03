@@ -51,29 +51,6 @@ vwc-side-drawer > main {
 }
 /* #endregion layout */
 
-
-/*properties table*/
-table {
-  width: 100%;
-  min-width: min-content;
-  border-collapse: collapse;
-}
-table tr {
-  border-bottom: 1px solid var(--table-border-color, var(--vvd-color-on-primary));
-  block-size: 44px;
-}
-table th,
-table td {
-  padding: 12px 16px;
-  text-align: start;
-}
-table thead tr {
-  --table-border-color: var(--vvd-color-neutral-90);
-}
-table tbody tr {
-  --table-border-color: var(--vvd-color-neutral-40);
-}
-
 /*#region: side navigation (temp style - need to be removed once sidenav is done)*/
 nav.navigation [role="heading"][aria-level="2"] {
   color: var(--vvd-color-neutral-70);

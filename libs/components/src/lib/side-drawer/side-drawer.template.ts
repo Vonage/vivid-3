@@ -14,7 +14,7 @@ const getClasses = ({
 	['modal', modal],
 	['open', open],
 	[`position-${position}`, Boolean(position)],
-	['withHeader', Boolean(headerSlottedContent?.length)],
+	['with-header', Boolean(headerSlottedContent?.length)],
 );
 
 const getScrimClasses = ({
@@ -36,11 +36,11 @@ export const sideDrawerTemplate: FoundationElementTemplate<ViewTemplate<SideDraw
 	<aside class="${getClasses}" part="base ${(x) => x.alternate ? 'vvd-theme-alternate' : ''}"
 	 @keydown="${(x, c) => handleKeydown(x, c.event as KeyboardEvent)}" ${ref('asideEl')}>
 
-	 	<header class="side-drawer-header" part="header">
+	 	<header class="side-drawer-header">
 	 		<slot name="header" ${slotted('headerSlottedContent')}></slot>
  		</header>
 
-		<div class="side-drawer-body" part="body">
+		<div class="side-drawer-body">
 			<slot></slot>
 		</div>
 	</aside>
