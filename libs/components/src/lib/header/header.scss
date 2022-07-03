@@ -8,7 +8,6 @@
 
   inline-size: 100%;
 	block-size: var(#{variables.$header-block-size});
-	color: var(#{theme-consts.$vvd-color-on-canvas});
 
 	.header-content {
 		display: inline-flex;
@@ -22,8 +21,9 @@
 	box-sizing: border-box;
 	justify-content: space-between;
 	padding: 8px 12px;
-	column-gap: 12px; // ! are we sure there's difference between main columns and inner elements?
+	column-gap: 12px;
 	block-size: inherit;
+	color: var(#{theme-consts.$vvd-color-on-canvas});
 
   &[part~="vvd-theme-alternate"] {
     background-color: var(#{theme-consts.$vvd-color-canvas});
