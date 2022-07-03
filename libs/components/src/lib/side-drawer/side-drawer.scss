@@ -23,6 +23,11 @@ $inline-size: 280px;
 	&.alternate {
 		background-color: var(#{theme-consts.$vvd-color-canvas});
 	}
+
+	&.position-end {
+		inset-inline-end: 0;
+	}
+
 	&:not(.open) {
 		&.position-end {
 			transform: translateX(100%);
@@ -32,16 +37,13 @@ $inline-size: 280px;
 		}
 	}
 
-	&.position-end {
-		inset-inline-end: 0;
-	}
-
 	&.open:not(.modal) {
 		&.position-end + {
 			.side-drawer-app-content {
 				margin-inline-end: var(#{variables.$side-drawer-app-content-offset}, $inline-size);
 			}
 		}
+
 		&:not(.position-end) + {
 			.side-drawer-app-content {
 				margin-inline-start: var(#{variables.$side-drawer-app-content-offset}, $inline-size);
