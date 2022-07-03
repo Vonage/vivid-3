@@ -48,7 +48,7 @@
 	border-radius: 24px;
 }
 
-// Remove this after divider is merged and action-group is updated
+// Remove this after divider is merged and action-group is updated(https://github.com/Vonage/vivid-3/issues/508)
 ::slotted([role="separator"]) {
 	width: 1px;
 	align-self: stretch;
