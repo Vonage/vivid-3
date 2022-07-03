@@ -55,7 +55,7 @@ The default slot sets assigned nodes to the start of the header.
 Nodes assigned to `actionItems` slot will be set at the end of the header.
 
 ```html preview full
-<vwc-header heading="With Action Items Slot">
+<vwc-header>
   <vwc-button slot="actionItems" icon="twitter-mono"></vwc-button>
   <vwc-button slot="actionItems" icon="facebook-mono"></vwc-button>
   <vwc-button slot="actionItems" icon="heart-solid"></vwc-button>
