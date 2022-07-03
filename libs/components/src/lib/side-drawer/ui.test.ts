@@ -32,7 +32,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
     </vwc-side-drawer>
   `;
 
-	page.setViewportSize({ width: 1200, height: 720 });
+	page.setViewportSize({ width: 900, height: 720 });
 
 	await loadComponents({
 		page,
@@ -79,10 +79,13 @@ test('should show the component modal', async ({ page }: { page: Page }) => {
     </vwc-side-drawer>
   `;
 
+	page.setViewportSize({ width: 900, height: 720 });
+
 	await loadComponents({
 		page,
 		components,
 	});
+
 	await loadTemplate({
 		page,
 		template,
