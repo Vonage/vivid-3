@@ -76,13 +76,18 @@ Sets or returns the dialog's return value when closing
 <vwc-dialog open
             heading="Returning Dialog">
 </vwc-dialog>
+<vwc-button label="Close Dialog"
+            onclick="closeDialog()"></vwc-button>
 <script>
-    (function() {
+    function closeDialog() {
         const dialog = document.querySelector('vwc-dialog');
         dialog.returnValue = 'Value';
+        dialog.close();
+    }
+    (function() {
+        const dialog = document.querySelector('vwc-dialog');
         dialog.addEventListener('close', (e) => console.log(e.detail));
-        dialog.close(); // will log the returnValue
-        })();
+    })();
 </script>
 ```
 ### icon
@@ -98,3 +103,22 @@ Sets or returns the dialog's return value when closing
 
 ## A11y
 // TODO
+
+## Dialog Form
+```html preview
+<vwc-dialog heading="Open Dialog">
+    <form slot="main" method="dialog">
+                <button type="submit">Close</button>
+            </form>
+</vwc-dialog>
+<vwc-button label="Open Modal Dialog"
+            onclick="openDialog()">
+            
+            </vwc-button>
+<script>
+    function openDialog() {
+        const dialog = document.querySelector('vwc-dialog');
+        dialog.showModal();
+    }
+</script>
+```

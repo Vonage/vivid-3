@@ -72,7 +72,7 @@ describe('vwc-dialog', () => {
 		});
 	});
 
-	describe(`showModal`, function () {
+	describe('showModal', function () {
 		it('should add the open attribute', async function() {
 			element.showModal();
 			await elementUpdated(element);
@@ -87,11 +87,111 @@ describe('vwc-dialog', () => {
 		});
 	});
 
+	describe('scrimClick', function () {
+		let dialogElement: HTMLDialogElement | null;
+		const dialogClientRect: DOMRect = {
+			bottom: 50,
+			height: 100,
+			left: 50,
+			right: 50,
+			top: 50,
+			width: 100,
+			x: 50,
+			y: 50,
+			toJSON(): any {
+			}
+		};
+		beforeEach(async function () {
+			element.heading = 'Heading';
+			element.showModal();
+			await elementUpdated(element);
+			dialogElement = getBaseElement(element) as HTMLDialogElement;
+			jest.spyOn(dialogElement, 'getBoundingClientRect').mockImplementation(() => dialogClientRect);
+		});
+
+		it('should close the dialog when scrim is clicked', async function () {
+			const event = new MouseEvent('click', {
+				'bubbles': true,
+				'cancelable': true,
+				'composed': true,
+				'screenX': 25,
+				'screenY': 25
+			});
+			dialogElement?.dispatchEvent(event);
+			await elementUpdated(element);
+			expect(element.open).toEqual(false);
+		});
+
+		it('should leave dialog open when anything but the scrim is clicked', async function () {
+			const event = new MouseEvent('click', {
+				'bubbles': true,
+				'cancelable': true,
+				'composed': true,
+				clientY: 75,
+				clientX: 75
+			});
+			dialogElement?.dispatchEvent(event);
+			await elementUpdated(element);
+			expect(element.open).toEqual(true);
+		});
+
+		it('should close the dialog when form is submitted', async function () {
+			const formElement = document.createElement('form');
+			formElement.setAttribute('method', 'dialog');
+			formElement.setAttribute('slot', 'main');
+			element.appendChild(formElement);
+
+			formElement.requestSubmit();
+			await elementUpdated(element);
+
+			expect(element.open).toEqual(false);
+		});
+
+		it('should leave the dialog open when submit a non dialog form', async function() {
+			const formElement = document.createElement('form');
+			formElement.setAttribute('slot', 'main');
+			element.appendChild(formElement);
+
+			formElement.requestSubmit();
+			await elementUpdated(element);
+
+			expect(element.open).toEqual(true);
+		});
+
+		it('should remove submit listener on disconnected callback', async function () {
+			const formElement = document.createElement('form');
+			formElement.setAttribute('method', 'dialog');
+			formElement.setAttribute('slot', 'main');
+			element.appendChild(formElement);
+
+			element.disconnectedCallback();
+			formElement.requestSubmit();
+			await elementUpdated(element);
+
+			expect(element.open).toEqual(true);
+		});
+
+		it('should remove click listener on disconnected callback', async function () {
+			const event = new MouseEvent('click', {
+				'bubbles': true,
+				'cancelable': true,
+				'composed': true,
+				'screenX': 25,
+				'screenY': 25
+			});
+			element.disconnectedCallback();
+			dialogElement?.dispatchEvent(event);
+			await elementUpdated(element);
+			expect(element.open).toEqual(true);
+		});
+	});
+
 	it('should fire close event with returnValue', async function() {
 		let detail;
 		const returnValue = 'returnValue';
 		element.open = true;
 		element.returnValue = returnValue;
+		await elementUpdated(element);
 		const spy = jest.fn().mockImplementation((e) => detail = e.detail);
 		element.addEventListener('close', spy);
 
@@ -146,6 +246,5 @@ describe('vwc-dialog', () => {
 		expect(element.open).toEqual(false);
 		expect(spy).toHaveBeenCalledTimes(1);
 	});
-
 
 });

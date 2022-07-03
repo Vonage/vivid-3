@@ -41,6 +41,7 @@ function renderDismissButton() {
 			  @click="${x => x.close()}">
 	  </vwc-button>`;
 }
+
 /**
  * The template for the {@link @microsoft/fast-foundation#Dialog} component.
  *
