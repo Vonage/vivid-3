@@ -32,7 +32,7 @@ The vwc-accordion accepts [vwc-accordion-item](../../components/accordion-item) 
 
 Add the `multi` attribute to the accordion to allow multiple items to be open at once.
 
-- Type: `Boolean`
+- Type: `boolean`
 - Default: `false`
 
 ```html preview full
