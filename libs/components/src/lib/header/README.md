@@ -132,8 +132,7 @@ The component's internal header element.
 ```html preview full
 <style>
   vwc-header::part(base) {
-    position: fixed;
-    top: 0;
+    background-color: var(--vvd-color-neutral-20);
   }
 </style>
 
