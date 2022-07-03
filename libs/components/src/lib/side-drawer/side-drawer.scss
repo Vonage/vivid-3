@@ -32,9 +32,9 @@ $inline-size: 280px;
 		}
 	}
 
-  &.position-end {
-    inset-inline-end: 0;
-  }
+	&.position-end {
+		inset-inline-end: 0;
+	}
 
 	&.open:not(.modal) {
 		&.position-end + {

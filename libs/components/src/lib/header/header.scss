@@ -6,8 +6,8 @@
 	@include typography.typography-cat-shorthand("subtitle-2");
 	#{variables.$header-block-size}: 64px;
 
-  inline-size: 100%;
 	block-size: var(#{variables.$header-block-size});
+	inline-size: 100%;
 
 	.header-content {
 		display: inline-flex;
@@ -21,13 +21,13 @@
 	box-sizing: border-box;
 	justify-content: space-between;
 	padding: 8px 12px;
-	column-gap: 12px;
 	block-size: inherit;
 	color: var(#{theme-consts.$vvd-color-on-canvas});
+	column-gap: 12px;
 
-  &[part~="vvd-theme-alternate"] {
-    background-color: var(#{theme-consts.$vvd-color-canvas});
-  }
+	&[part~="vvd-theme-alternate"] {
+		background-color: var(#{theme-consts.$vvd-color-canvas});
+	}
 }
 
 .app-content {
