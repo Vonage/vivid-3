@@ -33,10 +33,3 @@
 .app-content {
 	#{variables.$header-block-size}: 64px;
 }
-
-
-
-
-// header can contain the app content in its slot but that's not a rule. it's a convenience for the developer.
-// the benefit is that you can it assigns a css variable which is can be used within the app content. note that the css  variable cannot be set as API but can be used in nodes assigned to app-content slot
-// fixed header will be fixed to the top of the screen. and will be elevated when the user scrolls.

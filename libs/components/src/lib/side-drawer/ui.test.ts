@@ -5,7 +5,7 @@ import {
 	loadTemplate
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['side-drawer', 'text', 'button', 'sidenav-item', 'layout'];
+const components = ['side-drawer', 'text', 'fab', 'sidenav-item', 'layout'];
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `<style>
     vwc-side-drawer#sideDrawer{

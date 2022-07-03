@@ -296,53 +296,47 @@ To add content aside the side-drawer, add a slot called `app-content`.
 
 ## CSS Custom Properties
 
-### Background-color
+### Application Content Offset
 
-- `--side-drawer-background-color`
-- Type: `String`
-- Default: Current theme's canvas (background) color
+`--side-drawer-app-content-offset` controls the offset of the side drawer's app-content from the window's edge.
+some designs may choose side-drawer to overlap the app-content, so the app-content should be offset by the side-drawer's width.
+Additionally, as aside element (which represents the actual side-drawer), is styled with `position: fixed`, customizing its inline size directly will not affect the application content offset interchangeably. Hence, using this CSS custom property is mandatory to account for side-drawer inline size altercations.
 
-Controls the background of the side drawer.
-
-### Color
-
-- `--side-drawer-color`
-- Type: `String`
-- Default: Current theme's on-canvas (text) color
-
-Controls the color of the side drawer.
-
-### Inline-size
-
-- `--side-drawer-inline-size`
-- Type: `Number`
+- Type: `css-unit`
 - Default: `280px`
 
-Controls the inline size of the side drawer.
+```html preview full
+<style>
+  vwc-side-drawer {
+    --side-drawer-app-content-offset: 280px;
+  }
 
-### Padding-body
+  vwc-fab { 
+    position: absolute;
+    inset: 8px 8px auto auto; 
+  }
+</style>
 
-- `--side-drawer-padding-body`
-- Type: `Number`
-- Default: `16px`
+<vwc-side-drawer id="sideDrawer" open>
+  <span slot="header">
+    Side Drawer
+  </span>
 
-Controls the padding of the side drawer's body.
+  <vwc-fab slot="app-content" id="button" shape="pill" icon='menu-solid'></vwc-fab>
+  <vwc-layout slot="app-content" column-basis="block" gutters="medium">
+    <vwc-text>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+    </vwc-text>
+ </vwc-layout>
+</vwc-side-drawer>
+<script>
+  function toggleOpen() {
+   sideDrawer.open = !sideDrawer.open;
+  }
 
-### Padding-header
-
-- `--side-drawer-padding-header`
-- Type: `Number`
-- Default: `16px`
-
-Controls the padding of the side drawer's top bar.
-
-### Z-index
-
-- `--side-drawer-z-index`
-- Type: `Number`
-- Default: `6`
-
-Controls the z-index of the side drawer.
+  button.addEventListener('click', toggleOpen);
+</script>
+```
 
 ## CSS Parts
 

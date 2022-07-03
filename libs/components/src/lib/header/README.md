@@ -90,6 +90,10 @@ Often, it is needed to use the block size value of a header in accordance with o
 `--_header-block-size` is a private custom property holding the block size value and is applied to header style internally.
 This property isn't customizable by authors but does pierce in and can be set to apply style on assigned content.
 
+- Type: `css-unit`
+- Accessibility: `read-only`
+- Value: `64px`
+
 ```html preview full
 <style>
   vwc-header::part(base) {
