@@ -12,7 +12,10 @@ export class Header extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr({ attribute: 'elevation-shadow', mode: 'boolean' }) elevationShadow?: boolean;
+	@attr({
+		attribute: 'elevation-shadow',
+		mode: 'boolean'
+	}) elevationShadow = false;
 
 	/**
 	 * applies scheme alternate to header region
