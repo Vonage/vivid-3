@@ -8,12 +8,6 @@ represents the top header of a page.
 </script>
 ```
 
-```html preview full
-<vwc-header>
-  Header
-</vwc-header>
-```
-
 ## Members
 
 ### Elevation Shadow
