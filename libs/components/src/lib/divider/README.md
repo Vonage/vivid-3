@@ -14,7 +14,9 @@
 - Default: `horizontal`
 
 ```html preview
-<vwc-divider orientation="vertical"></vwc-divider>
+<div style="block-size: 40px;">
+    <vwc-divider orientation="vertical"></vwc-divider>
+</div>
 ```
 
 ### roll
