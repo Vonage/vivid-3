@@ -18,13 +18,9 @@ You can also close the side drawer by pressing the `ESC` key.
 
 ```html preview full
 <style>
-    html { 
-        block-size: 200px; 
-    }
-    vwc-side-drawer#sideDrawer{
-        --side-drawer-background-color: var(--vvd-color-neutral-10);
-        --side-drawer-inline-size: 200px;
-    }
+  html { 
+      block-size: 200px; 
+  }
 </style>
 <vwc-side-drawer id="sideDrawer" open>
  <div>
@@ -66,13 +62,9 @@ Click on the `scrim` or the `ESC` key to close the modal side-drawer.
 
 ```html preview full
 <style>
-    html { 
-        block-size: 200px; 
-    }
-    vwc-side-drawer#sideDrawer{
-        --side-drawer-background-color: var(--vvd-color-neutral-10);
-        --side-drawer-inline-size: 200px;
-    }
+  html { 
+    block-size: 200px; 
+  }
 </style>
 <vwc-side-drawer id="sideDrawer" open modal>
  <div>
@@ -113,13 +105,9 @@ Use the `alternate` attribute to apply scheme alternate region.
 
 ```html preview full
 <style>
-    html { 
-        block-size: 200px; 
-    }
-    vwc-side-drawer#sideDrawer{
-        --side-drawer-background-color: var(--vvd-color-neutral-10);
-        --side-drawer-inline-size: 200px;
-    }
+  html { 
+    block-size: 200px; 
+  }
 </style>
 <vwc-side-drawer id="sideDrawer" open alternate>
  <div>
@@ -155,50 +143,29 @@ Use the `alternate` attribute to apply scheme alternate region.
 
 Use the `position` attribute to set the side of the side drawer.
 
-- Type: `"start" | "end"`
-- Default: `"start"`
+- Type: `'start'` | `'end'`
+- Default: `'start'`
 
 ```html preview full
 <style>
-    html { 
-        block-size: 200px; 
-    }
-    vwc-side-drawer#sideDrawer{
-        --side-drawer-background-color: var(--vvd-color-neutral-10);
-        --side-drawer-inline-size: 200px;
-    }
-    vwc-button#button{
-        margin-left: calc(100% - 40px);
-    }
+  html { 
+    block-size: 200px; 
+  }
 </style>
-<vwc-side-drawer id="sideDrawer" open position="end">
- <div>
-  <vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
-        <p><vwc-text font-face="body-2-bold">SECTION TITLE</vwc-text></p>
-        <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
-        <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
- </div>
-  <vwc-layout slot="app-content" column-basis="block" gutters="medium">
-    <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
-    <vwc-text font-face="body-1">
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-    </p>
-    </vwc-text>
 
-    <vwc-text font-face="body-1">
-    <p>
+<vwc-side-drawer open position="end">
+  <span slot="header">
+    Header
+  </span>
+
+  <vwc-layout slot="app-content" gutters="small">
+    <vwc-text>
+      <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-    </p>
+      </p>
     </vwc-text>
  </vwc-layout>
 </vwc-side-drawer>
-<script>
-  button.addEventListener('click', toggleOpen);
-  function toggleOpen() {
-   sideDrawer.open = !sideDrawer.open;
-  }
-</script>
 ```
 
 ## Slots
@@ -209,13 +176,9 @@ To add a header to the side drawer, add a slot called `header`.
 
 ```html preview full
 <style>
-    html { 
-        block-size: 200px; 
-    }
-    vwc-side-drawer#sideDrawer{
-        --side-drawer-background-color: var(--vvd-color-neutral-10);
-        --side-drawer-inline-size: 200px;
-    }
+  html { 
+      block-size: 200px; 
+  }
 </style>
 <vwc-side-drawer id="sideDrawer" open>
  <div slot="header">
@@ -250,19 +213,15 @@ To add a header to the side drawer, add a slot called `header`.
 </script>
 ```
 
-### App-content
+### App Content
 
 To add content aside the side-drawer, add a slot called `app-content`.
 
 ```html preview full
 <style>
-    html { 
-        block-size: 200px; 
-    }
-    vwc-side-drawer#sideDrawer{
-        --side-drawer-background-color: var(--vvd-color-neutral-10);
-        --side-drawer-inline-size: 200px;
-    }
+  html { 
+      block-size: 200px; 
+  }
 </style>
 <vwc-side-drawer id="sideDrawer" open>
  <div>
@@ -331,7 +290,7 @@ Additionally, as aside element (which represents the actual side-drawer), is sty
 </vwc-side-drawer>
 <script>
   function toggleOpen() {
-   sideDrawer.open = !sideDrawer.open;
+     sideDrawer.open = !sideDrawer.open;
   }
 
   button.addEventListener('click', toggleOpen);
