@@ -6,7 +6,7 @@
 </script>
 ```
 
-## Properties
+## Members
 
 ### Heading
 
