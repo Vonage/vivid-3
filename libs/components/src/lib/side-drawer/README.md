@@ -147,12 +147,6 @@ Use the `position` attribute to set the side of the side drawer.
 - Default: `'start'`
 
 ```html preview full
-<style>
-  html { 
-    block-size: 200px; 
-  }
-</style>
-
 <vwc-side-drawer open position="end">
   <span slot="header">
     Header
