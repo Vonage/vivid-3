@@ -45,7 +45,7 @@ describe('vwc-dialog', () => {
 		it('should fire the "close" event only when closing', async function() {
 			element.open = false;
 			const spy = jest.fn();
-		  element.addEventListener('close', spy);
+			element.addEventListener('close', spy);
 
 			element.close();
 			const callsWhenTryingToCloseAClosedDialog = spy.mock.calls.length;
@@ -66,7 +66,22 @@ describe('vwc-dialog', () => {
 		});
 
 		it('should add open to base element', async function () {
-			element.open = true;
+			element.show();
+			await elementUpdated(element);
+			expect(getBaseElement(element).hasAttribute('open')).toEqual(true);
+		});
+	});
+
+	describe(`showModal`, function () {
+		it('should add the open attribute', async function() {
+			element.showModal();
+			await elementUpdated(element);
+			expect(element.open).toEqual(true);
+			expect(element.hasAttribute('open')).toEqual(true);
+		});
+
+		it('should add open to base element', async function () {
+			element.showModal();
 			await elementUpdated(element);
 			expect(getBaseElement(element).hasAttribute('open')).toEqual(true);
 		});
@@ -87,7 +102,7 @@ describe('vwc-dialog', () => {
 
 	it('should render the icon when icon is set', async function() {
 		const iconElementWhenUndefined = getBaseElement(element).querySelector('.icon');
-		  element.icon = 'home';
+		element.icon = 'home';
 		await elementUpdated(element);
 		const iconElement = getBaseElement(element).querySelector('.icon');
 		expect(iconElementWhenUndefined).toBeNull();
@@ -117,6 +132,19 @@ describe('vwc-dialog', () => {
 		expect(headingElementWhenUndefined).toBeNull();
 		expect(headingElement).toBeTruthy();
 		expect(headingElement?.textContent?.trim()).toEqual(content);
+	});
+
+	it('should close the dialog when dismiss button is clicked', async function() {
+		const spy = jest.fn();
+		element.addEventListener('close', spy);
+		element.show();
+		await elementUpdated(element);
+
+		const dismissButton = getBaseElement(element).querySelector('.dismiss-button') as HTMLElement;
+		dismissButton.click();
+
+		expect(element.open).toEqual(false);
+		expect(spy).toHaveBeenCalledTimes(1);
 	});
 
 

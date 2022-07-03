@@ -32,6 +32,15 @@ function content() {
 	`;
 }
 
+function renderDismissButton() {
+	return html<Dialog>`
+	  <vwc-button
+			  density="condensed"
+			  class="dismiss-button"
+			  icon="close-line"
+			  @click="${x => x.close()}">
+	  </vwc-button>`;
+}
 /**
  * The template for the {@link @microsoft/fast-foundation#Dialog} component.
  *
@@ -47,6 +56,7 @@ export const DialogTemplate: (
           returnValue="${ x => x.returnValue }">
 		  <slot name="main">
 			  ${when(x => x.icon, icon())}
+				  ${renderDismissButton()}
 			  ${when(x => x.heading, heading())}
 			  ${when(x => x.content, content())}
 				  <slot name="footer"></slot>

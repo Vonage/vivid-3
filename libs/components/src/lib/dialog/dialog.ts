@@ -1,6 +1,16 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 
+// Make sure we support Safari 14
+let dialogPolyfill: any;
+(async () => {
+	if (!HTMLDialogElement || !HTMLDialogElement.prototype.showModal) {
+		// @ts-ignore
+		delete window.HTMLDialogElement;
+		dialogPolyfill = await import('dialog-polyfill');
+	}
+})();
+
 /**
  * Base class for dialog
  *
@@ -15,7 +25,7 @@ export class Dialog extends FoundationElement {
 	 * HTML Attribute: open
 	 */
 	@attr({mode: 'boolean'}) open = false;
-	@attr({attribute: 'return-value'}) returnValue?: string;
+	@attr({mode: 'fromView'}) returnValue?: string;
 	@attr icon?: string;
 	@attr content?: string;
 	@attr heading?: string;
@@ -29,6 +39,23 @@ export class Dialog extends FoundationElement {
 	}
 
 	show() {
+		this.open = true;
+	}
+
+	#dialogElement?: HTMLDialogElement;
+
+	get #dialog() {
+		if (!this.#dialogElement) {
+			this.#dialogElement = this.shadowRoot?.querySelector('dialog') as HTMLDialogElement;
+			if (dialogPolyfill) {
+				dialogPolyfill.registerDialog(this.#dialogElement);
+			}
+		}
+		return this.#dialogElement;
+	}
+
+	showModal() {
+		this.#dialog.showModal();
 		this.open = true;
 	}
 }

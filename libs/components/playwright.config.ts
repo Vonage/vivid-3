@@ -1,10 +1,6 @@
 import type { PlaywrightTestConfig } from '@playwright/test';
 
-interface PlaywrightTestConfigWithRegression extends PlaywrightTestConfig {
-
-}
-
-const config: PlaywrightTestConfigWithRegression = {
+const config: PlaywrightTestConfig = {
 	testMatch: 'src/**/*.test.ts',
 	outputDir: '../../test-results',
 	projects: [
@@ -31,4 +27,5 @@ const config: PlaywrightTestConfigWithRegression = {
 		},
 	]
 };
+
 export default config;
