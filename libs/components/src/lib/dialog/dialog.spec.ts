@@ -322,6 +322,13 @@ describe('vwc-dialog', () => {
 			expect(getBaseElement(element).getAttribute('aria-labelledby')).toEqual(labelId);
 		});
 
+		it('should set "aria-labelledby" on base if set on host', async function () {
+			const labelId = 'label';
+			element.setAttribute('aria-describedby', labelId);
+			await elementUpdated(element);
+			expect(getBaseElement(element).getAttribute('aria-describedby')).toEqual(labelId);
+		});
+
 		it('should set "aria-label" on base if set on host', async function () {
 			const labelId = 'label';
 			element.setAttribute('aria-label', labelId);

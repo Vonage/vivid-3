@@ -79,6 +79,7 @@ export const DialogTemplate: (
           returnValue="${ x => x.returnValue }"
   				aria-labelledby="${ x => x.ariaLabelledBy }"
   				aria-label="${ x => x.ariaLabel }"
+  				aria-describedby="${ x => x.ariaDescribedBy }"
   >
 		  <slot name="main">
 			  ${when(x => x.icon, icon())}

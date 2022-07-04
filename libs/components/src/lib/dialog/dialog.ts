@@ -32,6 +32,7 @@ export class Dialog extends FoundationElement {
 	@attr heading?: string;
 	@attr({attribute: 'aria-labelledby'}) ariaLabelledBy: string | null = null;
 	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
+	@attr({attribute: 'aria-describedby'}) ariaDescribedBy: string | null = null;
 
 	#modal = false;
 
