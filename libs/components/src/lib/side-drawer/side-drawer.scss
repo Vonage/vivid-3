@@ -11,6 +11,7 @@ $inline-size: 280px;
 .control {
 	position: fixed;
 	background-color: var(#{theme-consts.$vvd-color-canvas});
+
 	// block-size: 100vh;
 	color: var(#{theme-consts.$vvd-color-on-canvas});
 	inline-size: $inline-size;
