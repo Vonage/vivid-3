@@ -5,7 +5,6 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { Elevation } from '../elevation/elevation';
 import type { Header } from './header';
 
 const getPartAlternate = ({ alternate }: Header) => classNames(
@@ -21,11 +20,10 @@ const getPartAlternate = ({ alternate }: Header) => classNames(
 export const headerTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Header> = (context) => {
-	const elevationTag = context.tagFor(Elevation);
+) => ViewTemplate<Header> = () => {
+
 
 	return html<Header>`
-    <${elevationTag} dp="4" ?no-shadow=${x => !x.elevationShadow}>
       <header class="base" part="base">
         <!-- a container is needed to distinguish the surface background color of the
         element from its shadow when applying elevation with alternate -->
@@ -38,7 +36,6 @@ export const headerTemplate: (
           </section>
         </div>
       </header>
-    </${elevationTag}>
     <div class="app-content">
       <slot name="app-content"></slot>
     </div>

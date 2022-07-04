@@ -6,14 +6,39 @@
 	@include typography.typography-cat-shorthand("subtitle-2");
 	#{variables.$header-block-size}: 64px;
 
-	block-size: var(#{variables.$header-block-size});
+	//block-size: var(#{variables.$header-block-size});
+	height: 80px;
 	inline-size: 100%;
+	position: sticky;
+	top: -16px;
+	z-index: 2;
+
 
 	.header-content {
 		display: inline-flex;
 		align-items: center;
 		column-gap: 4px;
 	}
+	&::before,
+	&::after {
+		content: '';
+		display: block;
+		height: 16px;
+		position: sticky;
+	}
+	&::before {
+		top: 48px; /* shadow is at bottom of element, so at 48 + 16 = 64px */
+		box-shadow: 0px 2px 5px rgba(0,0,0,0.5);
+	}
+	&::after {
+		/* linear gradient from background color to transparent acts as
+           a transition effect so the shadow appears gradually */
+		background: linear-gradient(white 10%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.4) 70%, transparent);
+		top: 0;
+		/* cover should fall over shadow */
+		z-index: 3;
+	}
+
 }
 
 .container {
@@ -24,6 +49,13 @@
 	block-size: inherit;
 	color: var(#{theme-consts.$vvd-color-on-canvas});
 	column-gap: 12px;
+	background-color: #fff;
+	z-index: 4;
+	position: sticky;
+	top: 0;
+	margin-top: -16px;
+	height: 64px;
+
 
 	&[part~="vvd-theme-alternate"] {
 		background-color: var(#{theme-consts.$vvd-color-canvas});

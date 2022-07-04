@@ -8,16 +8,6 @@ import { attr } from '@microsoft/fast-element';
  */
 export class Header extends FoundationElement {
 	/**
-	 * header elevation shadow
-	 *
-	 * @public
-	 */
-	@attr({
-		attribute: 'elevation-shadow',
-		mode: 'boolean'
-	}) elevationShadow = false;
-
-	/**
 	 * applies scheme alternate to header region
 	 *
 	 * @public

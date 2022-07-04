@@ -28,10 +28,13 @@ body a:visited {
 /* #endregion document */
 
 /* #region layout */
+vwc-header {
+  display: block;
+}
 vwc-header::part(base) {
-  position: fixed;
-  top: 0;
-  z-index: 2;
+  /*position: sticky;*/
+  /*top: -16px;*/
+  /*z-index: 2;*/
 }
 
 vwc-side-drawer::part(base) {
