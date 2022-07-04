@@ -10,6 +10,7 @@ describe('vwc-side-drawer', () => {
 	beforeEach(async () => {
 		element = await fixture(`<${COMPONENT_TAG}>
 								</${COMPONENT_TAG}>`) as SideDrawer;
+		await elementUpdated(element);
 	});
 
 	describe('basic', () => {
@@ -115,13 +116,12 @@ describe('vwc-side-drawer', () => {
 			expect(element.open).toEqual(false);
 		});
 
-		it('should not close after keydown that is not Escape', async () => {
+		it('should leave open after keydown that is not Escape', async () => {
 			element.modal = true;
 			element.open = true;
-			await elementUpdated(element);
-			const aside: any = element.shadowRoot?.querySelector('aside');
-			aside?.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Enter' }));
-			await elementUpdated(element);
+			// await elementUpdated(element);
+			const aside = element.shadowRoot?.querySelector('aside') as HTMLElement;
+			aside.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Enter' }));
 			expect(element.open).toEqual(true);
 		});
 	});

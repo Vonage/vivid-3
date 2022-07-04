@@ -36,6 +36,7 @@ describe('vwc-dialog', () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as Dialog;
+		await elementUpdated(element);
 	});
 
 	describe('open', function () {
@@ -53,6 +54,7 @@ describe('vwc-dialog', () => {
 			expect(getBaseElement(openElement).hasAttribute('open')).toEqual(true);
 		});
 	});
+
 	describe('basic', () => {
 		it('should be initialized as a vwc-dialog', async () => {
 			expect(element).toBeInstanceOf(Dialog);
