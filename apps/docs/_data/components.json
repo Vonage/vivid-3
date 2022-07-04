@@ -109,7 +109,6 @@
     "markdown": "./libs/components/src/lib/sidenav-item/README.md",
     "modules": [
       "/assets/modules/components/sidenav-item/index.js",
-      "/assets/modules/components/text/index.js"
     ]
   },
   {

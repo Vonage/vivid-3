@@ -1,7 +1,7 @@
 {
   "type": "none",
-  "comment": "sidenav",
+  "comment": "create new sidenav component",
   "packageName": "@vonage/vivid",
   "email": "rina.oksman@vonage.com",
-  "dependentChangeType": "none"
+  "dependentChangeType": "prerelease"
 }
