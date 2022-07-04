@@ -50,30 +50,39 @@
   </head>
 
 <body>
-	<vwc-header>
-    <img src="../../../vivid-logo.svg" alt="image of Vivid Logo" style="width: 30px">
-    <vwc-text font-face="subtitle-1" tight>Vivid Web Components</vwc-text>
+  <vwc-side-drawer open slot="app-content">
 
-    <vwc-button slot="actionItems" label="View on GitHub" icon="github-mono" icon-trailing href="https://github.com/vonage/vivid-3"></vwc-button>
+    <vwc-header id="header-aside">
+      <div style="display: flex; flex-direction: column; align-items: end;">
+        <img src="{{ '/assets/images/vvd-logo-full.svg' | url }}" alt="image of Vivid Logo" style="width: 154px">
+        <vwc-text font-face="body-2" tight>Web Components</vwc-text>
+      </div>
+    </vwc-header>
 
-    <!-- Place this tag where you want the button to render. -->
-    <span slot="actionItems">
-      <a class="github-button" href="https://github.com/vonage/vivid-3" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true" aria-label="Star vonage/vivid-3 on GitHub">Star</a>
-    </span>
-
-    <dark-mode-toggle slot="actionItems" permanent></dark-mode-toggle>
-
-    <vwc-side-drawer open slot="app-content">
+    <vwc-layout gutters="small" column-basis="block">
       {% include "navigation.njk" %}
-      <main slot="app-content">
-        <vwc-layout gutters="large" column-basis="block" class="main-layout">
-          <article>
-            {{content | safe}}
-          </article>
-        </vwc-layout>
-      </main>
-    </vwc-side-drawer>
-	</vwc-header>
+    </vwc-layout>
+
+    <vwc-header id="header-main" slot="app-content">
+      <vwc-button slot="actionItems" label="View on GitHub" icon="github-mono" icon-trailing href="https://github.com/vonage/vivid-3"></vwc-button>
+
+      <!-- Place this tag where you want the button to render. -->
+      <span slot="actionItems">
+        <a class="github-button" href="https://github.com/vonage/vivid-3" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true" aria-label="Star vonage/vivid-3 on GitHub">Star</a>
+      </span>
+
+      <dark-mode-toggle slot="actionItems" permanent></dark-mode-toggle>
+    </vwc-header>
+
+    <main slot="app-content">
+      <vwc-layout gutters="large" column-basis="block" class="main-layout">
+        <article>
+          {{content | safe}}
+        </article>
+      </vwc-layout>
+    </main>
+
+  </vwc-side-drawer>
 
 </body>
 

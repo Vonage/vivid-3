@@ -1,4 +1,4 @@
-import { html, ref, slotted, when } from '@microsoft/fast-element';
+import { html, ref, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
@@ -7,14 +7,13 @@ import type {
 import type { SideDrawer } from './side-drawer';
 
 const getClasses = ({
-	alternate, modal, open, position, headerSlottedContent
+	alternate, modal, open, position
 }: SideDrawer) => classNames(
 	'control',
 	['alternate', alternate],
 	['modal', modal],
 	['open', open],
 	[`position-${position}`, Boolean(position)],
-	['with-header', Boolean(headerSlottedContent?.length)],
 );
 
 const getScrimClasses = ({
@@ -36,13 +35,8 @@ export const sideDrawerTemplate: FoundationElementTemplate<ViewTemplate<SideDraw
 	<aside class="${getClasses}" part="base ${(x) => x.alternate ? 'vvd-theme-alternate' : ''}"
 	 @keydown="${(x, c) => handleKeydown(x, c.event as KeyboardEvent)}" ${ref('asideEl')}>
 
-	 	<header class="side-drawer-header">
-	 		<slot name="header" ${slotted('headerSlottedContent')}></slot>
- 		</header>
+    <slot></slot>
 
-		<div class="side-drawer-body">
-			<slot></slot>
-		</div>
 	</aside>
 
 	<div class="side-drawer-app-content">

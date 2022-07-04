@@ -148,10 +148,6 @@ Use the `position` attribute to set the side of the side drawer.
 
 ```html preview full
 <vwc-side-drawer open position="end">
-  <span slot="header">
-    Header
-  </span>
-
   <vwc-layout slot="app-content" gutters="small">
     <vwc-text>
       <p>
@@ -163,49 +159,6 @@ Use the `position` attribute to set the side of the side drawer.
 ```
 
 ## Slots
-
-### Header
-
-To add a header to the side drawer, add a slot called `header`.
-
-```html preview full
-<style>
-  html { 
-      block-size: 200px; 
-  }
-</style>
-<vwc-side-drawer id="sideDrawer" open>
- <div slot="header">
-        <vwc-text tight font-face="subtitle-1">VIVID</vwc-text>
-    </div>
- <div>
-  <vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
-        <p><vwc-text font-face="body-2-bold">SECTION TITLE</vwc-text></p>
-        <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
-        <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
- </div>
-  <vwc-layout slot="app-content" column-basis="block" gutters="medium">
-    <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
-    <vwc-text font-face="body-1">
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-    </p>
-    </vwc-text>
-
-    <vwc-text font-face="body-1">
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-    </p>
-    </vwc-text>
- </vwc-layout>
-</vwc-side-drawer>
-<script>
-  button.addEventListener('click', toggleOpen);
-  function toggleOpen() {
-   sideDrawer.open = !sideDrawer.open;
-  }
-</script>
-```
 
 ### App Content
 
@@ -271,10 +224,6 @@ Additionally, as aside element (which represents the actual side-drawer), is sty
 </style>
 
 <vwc-side-drawer id="sideDrawer" open>
-  <span slot="header">
-    Side Drawer
-  </span>
-
   <vwc-fab slot="app-content" id="button" shape="pill" icon='menu-solid'></vwc-fab>
   <vwc-layout slot="app-content" column-basis="block" gutters="medium">
     <vwc-text>

@@ -4,8 +4,7 @@
   {%  for item in designs | sort(false, false, 'title') %}
   <vwc-sidenav-item href="{{ ('/designs/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-sidenav-item>
   {% endfor %}
-</nav>
-<nav class="navigation">
+
   <p role="heading" aria-level="2">Components</p>
   {%  for item in components | sort(false, false, 'title') %}
   <vwc-sidenav-item href="{{ ('/components/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-sidenav-item>

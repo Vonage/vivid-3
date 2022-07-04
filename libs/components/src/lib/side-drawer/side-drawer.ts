@@ -1,7 +1,7 @@
 import 'blocking-elements';
 import 'wicg-inert';
 import 'babel-polyfill';
-import { attr, observable } from '@microsoft/fast-element';
+import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 import type { DocumentWithBlockingElements } from 'blocking-elements';
 
@@ -54,14 +54,6 @@ export class SideDrawer extends FoundationElement {
 	 * @public
 	 */
 	@attr position?: 'start' | 'end';
-
-	/**
-	 *
-	 * adds top bar to the side drawer
-	 *
-	 * @public
-	 */
-	@observable headerSlottedContent?: HTMLElement[];
 
 	#blockingElements = (document as DocumentWithBlockingElements).$blockingElements;
 

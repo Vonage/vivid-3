@@ -28,26 +28,28 @@ body a:visited {
 /* #endregion document */
 
 /* #region layout */
-vwc-header::part(base) {
-  position: fixed;
+vwc-header#header-main::part(base) {
+  position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 1;
+}
+
+vwc-header#header-aside::part(base) {
+  position: sticky;
+  top: 0;
+  background-color: var(--vvd-color-neutral-10);
+  z-index: 1;
 }
 
 vwc-side-drawer::part(base) {
-  block-size: calc(100vh - var(--_header-block-size));
-  bottom: 0;
-  top: auto;
+  z-index: 2;
+  background-color: var(--vvd-color-neutral-10);
 }
 
 @supports (overscroll-behavior: none) {
-  vwc-side-drawer::part(body) {
+  vwc-side-drawer::part(base) {
     overscroll-behavior: none;
   }
-}
-
-vwc-side-drawer > main {
-  padding-block-start: var(--_header-block-size);
 }
 /* #endregion layout */
 

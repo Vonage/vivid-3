@@ -173,9 +173,6 @@ A *fixed* Header with the *default*, `actionItems` and `app-content` slots.
 
   <!-- drawer assigned to header 'app-content' -->
   <vwc-side-drawer id="sideDrawer" open slot="app-content">
-    <span slot="header">
-      Header...
-    </span>
     <!-- main assigned to side-drawer 'app-content' -->
     <main slot="app-content">
       <vwc-layout column-basis="block" gutters="medium">

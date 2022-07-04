@@ -9,10 +9,6 @@ const components = ['side-drawer', 'text', 'layout'];
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
     <vwc-side-drawer open>
-      <div slot="header">
-        Header
-      </div>
-
       <vwc-text>
         Body
       </vwc-text>
@@ -56,10 +52,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 test('should show the component modal', async ({ page }: { page: Page }) => {
 	const template = `
     <vwc-side-drawer open modal alternate>
-      <div slot="header">
-        Header
-      </div>
-
       <vwc-text>
         Body
       </vwc-text>

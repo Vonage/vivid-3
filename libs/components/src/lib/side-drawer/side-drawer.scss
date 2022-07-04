@@ -10,15 +10,12 @@ $inline-size: 280px;
 
 .control {
 	position: fixed;
-	z-index: 1;
-	display: flex;
-	overflow: auto;
-	flex-direction: column;
 	background-color: var(#{theme-consts.$vvd-color-canvas});
-	block-size: 100vh;
+	// block-size: 100vh;
 	color: var(#{theme-consts.$vvd-color-on-canvas});
 	inline-size: $inline-size;
 	inset-block: 0;
+	overflow-y: auto;
 
 	&.alternate {
 		background-color: var(#{theme-consts.$vvd-color-canvas});
@@ -54,30 +51,6 @@ $inline-size: 280px;
 	@media (prefers-reduced-motion: no-preference) {
 		transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 	}
-}
-
-$gutter: 16px;
-
-.side-drawer-header {
-	@include typography.typography-cat-shorthand(subtitle-1);
-
-	display: flex;
-	height: 64px;
-	flex-shrink: 0;
-	align-items: center;
-	padding-inline-end: #{$gutter};
-	padding-inline-start: #{$gutter};
-
-	.control:not(.with-header) &{
-		display: none;
-	}
-}
-
-.side-drawer-body {
-	overflow-y: auto;
-	padding-block: 12px;
-	padding-inline-end: #{$gutter};
-	padding-inline-start: #{$gutter};
 }
 
 .scrim {

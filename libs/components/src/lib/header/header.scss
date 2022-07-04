@@ -20,7 +20,8 @@
 	display: flex;
 	box-sizing: border-box;
 	justify-content: space-between;
-	padding: 8px 12px;
+  padding-inline: 16px;
+	padding-block: 8px;
 	block-size: inherit;
 	color: var(#{theme-consts.$vvd-color-on-canvas});
 	column-gap: 12px;
