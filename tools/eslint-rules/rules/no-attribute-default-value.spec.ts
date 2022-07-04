@@ -26,6 +26,14 @@ ruleTester.run(RULE_NAME, rule, {
     }`,
     `
     class {
+        @attr nullExample = null;
+    }`,
+    `
+    class {
+        @attr({ attribute: null-example}) nullExample = null;
+    }`,
+    `
+    class {
         @someDecorator example = 'someValue';
     }`,
   ],

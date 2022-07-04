@@ -1,10 +1,11 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
+import {attr} from '@microsoft/fast-element';
 
 // Make sure we support Safari 14
 let dialogPolyfill: any;
 (async () => {
 	if (!HTMLDialogElement || !HTMLDialogElement.prototype.showModal) {
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore
 		delete window.HTMLDialogElement;
 		dialogPolyfill = await import('dialog-polyfill');
@@ -29,9 +30,28 @@ export class Dialog extends FoundationElement {
 	@attr icon?: string;
 	@attr content?: string;
 	@attr heading?: string;
+	@attr({attribute: 'aria-labelledby'}) ariaLabelledBy: string | null = null;
+	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
+
+	#modal = false;
 
 	get modal() {
 		return this.#modal;
+	}
+
+	#dialogElement?: HTMLDialogElement;
+
+	get #dialog() {
+		if (!this.#dialogElement) {
+			this.#dialogElement = this.shadowRoot!.querySelector('dialog') as HTMLDialogElement;
+			if (this.#dialogElement) {
+				this.#dialogElement.open = this.open;
+				if (dialogPolyfill) {
+					dialogPolyfill.registerDialog(this.#dialogElement);
+				}
+			}
+		}
+		return this.#dialogElement as HTMLDialogElement;
 	}
 
 	openChanged(oldValue: boolean, newValue: boolean) {
@@ -45,23 +65,6 @@ export class Dialog extends FoundationElement {
 				this.#dialog.open = true;
 			}
 		}
-	}
-
-	#modal = false;
-
-	#dialogElement?: HTMLDialogElement;
-
-	get #dialog() {
-		if (!this.#dialogElement) {
-			this.#dialogElement = this.shadowRoot?.querySelector('dialog') as HTMLDialogElement;
-			if (this.#dialogElement) {
-				this.#dialogElement.open = this.open;
-				if (dialogPolyfill) {
-					dialogPolyfill.registerDialog(this.#dialogElement);
-				}
-			}
-		}
-		return this.#dialogElement as HTMLDialogElement;
 	}
 
 	#handleScrimClick = (event: MouseEvent) => {
@@ -96,6 +99,7 @@ export class Dialog extends FoundationElement {
 
 		this.open = false;
 		this.#modal = false;
+		this.#dialog.toggleAttribute('aria-modal', false);
 	}
 
 	show() {
@@ -107,6 +111,7 @@ export class Dialog extends FoundationElement {
 		this.#dialog.showModal();
 		this.open = true;
 		this.#modal = true;
+		this.#dialog.toggleAttribute('aria-modal', true);
 	}
 
 	override connectedCallback() {

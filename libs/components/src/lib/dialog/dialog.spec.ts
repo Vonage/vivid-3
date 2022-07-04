@@ -6,16 +6,25 @@ const COMPONENT_TAG = 'vwc-dialog';
 
 describe('vwc-dialog', () => {
 
+	/**
+	 *
+	 */
 	async function closeDialog() {
 		element.close();
 		await elementUpdated(element);
 	}
 
+	/**
+	 *
+	 */
 	async function showDialog() {
 		element.show();
 		await elementUpdated(element);
 	}
 
+	/**
+	 *
+	 */
 	async function showModalDialog() {
 		element.showModal();
 		await elementUpdated(element);
@@ -29,17 +38,17 @@ describe('vwc-dialog', () => {
 		)) as Dialog;
 	});
 
-	describe(`open`, function () {
-		it(`should open the dialog when set to true`, async function () {
+	describe('open', function () {
+		it('should open the dialog when set to true', async function () {
 			element.open = true;
 			await elementUpdated(element);
 			expect(getBaseElement(element).hasAttribute('open')).toEqual(true);
 		});
 
 		it('should be opened when initiated with open attribute', async function() {
-		  const openElement = (await fixture(
-			  `<${COMPONENT_TAG} open></${COMPONENT_TAG}>`
-		  )) as Dialog;
+			const openElement = await fixture(
+				`<${COMPONENT_TAG} open></${COMPONENT_TAG}>`
+			) as Dialog;
 
 			expect(getBaseElement(openElement).hasAttribute('open')).toEqual(true);
 		});
@@ -168,7 +177,6 @@ describe('vwc-dialog', () => {
 
 			formElement.requestSubmit();
 			await elementUpdated(element);
-
 			expect(element.open).toEqual(false);
 		});
 
@@ -176,7 +184,7 @@ describe('vwc-dialog', () => {
 			const formElement = document.createElement('form');
 			formElement.setAttribute('slot', 'main');
 			element.appendChild(formElement);
-
+			formElement.onsubmit = _ => false;
 			formElement.requestSubmit();
 			await elementUpdated(element);
 
@@ -300,9 +308,23 @@ describe('vwc-dialog', () => {
 			expect(getBaseElement(element).getAttribute('role')).toEqual('dialog');
 		});
 
-		// it('should set "aria-modal" when used as modal', async function() {
-		// 	await showModalDialog();
-		// 	expect(getBaseElement(element).hasAttribute('ariaModal')).toEqual(true);
-		// });
+		it('should set "aria-modal" when used as modal', async function() {
+			await showModalDialog();
+			expect(getBaseElement(element).hasAttribute('aria-modal')).toEqual(true);
+		});
+
+		it('should set "aria-labelledby" on base if set on host', async function () {
+			const labelId = 'label';
+			element.setAttribute('aria-labelledby', labelId);
+			await elementUpdated(element);
+			expect(getBaseElement(element).getAttribute('aria-labelledby')).toEqual(labelId);
+		});
+
+		it('should set "aria-label" on base if set on host', async function () {
+			const labelId = 'label';
+			element.setAttribute('aria-label', labelId);
+			await elementUpdated(element);
+			expect(getBaseElement(element).getAttribute('aria-label')).toEqual(labelId);
+		});
 	});
 });

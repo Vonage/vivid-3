@@ -10,12 +10,18 @@ import type { Dialog } from './dialog';
 const getClasses = (_: Dialog) => classNames(
 	'base');
 
+/**
+ *
+ */
 function icon() {
 	return html<Dialog>`
 		<slot name="graphics"><vwc-icon class="icon" type="${x => x.icon}"></vwc-icon></slot>
 	`;
 }
 
+/**
+ *
+ */
 function heading() {
 	return html<Dialog>`
 		<div class="heading">
@@ -24,6 +30,9 @@ function heading() {
 	`;
 }
 
+/**
+ *
+ */
 function content() {
 	return html<Dialog>`
 		<div class="content">
@@ -32,16 +41,23 @@ function content() {
 	`;
 }
 
+/**
+ *
+ */
 function renderDismissButton() {
 	return html<Dialog>`
 	  <vwc-button
 			  density="condensed"
 			  class="dismiss-button"
 			  icon="close-line"
-			  @click="${x => {x.open = false}}">
+			  @click="${x => {x.open = false;}}">
 	  </vwc-button>`;
 }
 
+/**
+ * @param dialog
+ * @param event
+ */
 function handleEscapeKey(dialog: Dialog, event: Event) {
 	if ((event as KeyboardEvent).key === 'Escape' && dialog.modal) {
 		dialog.open = false;
@@ -60,7 +76,10 @@ export const DialogTemplate: (
 ) => ViewTemplate<Dialog> = () => html<Dialog>` 
   <dialog class="${getClasses}"
           @keydown="${(x, c) => handleEscapeKey(x, c.event)}"
-          returnValue="${ x => x.returnValue }">
+          returnValue="${ x => x.returnValue }"
+  				aria-labelledby="${ x => x.ariaLabelledBy }"
+  				aria-label="${ x => x.ariaLabel }"
+  >
 		  <slot name="main">
 			  ${when(x => x.icon, icon())}
 				  ${renderDismissButton()}
