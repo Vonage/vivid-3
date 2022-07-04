@@ -14,7 +14,7 @@ const PANEL = 'panel';
 const getClasses = ({
 	open, iconTrailing, icon, noIndicator
 }: AccordionItem) => classNames(
-	'control',
+	'base',
 	['open', open],
 	['icon', Boolean(icon)],
 	['icon-trailing', iconTrailing],
@@ -56,8 +56,8 @@ const renderHeaderButton = (context: ElementDefinitionContext) => {
 		${when(x => x.meta, html`<span class="meta">${x => x.meta}</span>`)}
 		<span class="indicator">
 			${when(x => !x.noIndicator && !x.iconTrailing, html`
-			<vwc-icon class="toggle-open" type='chevron-down-solid'></vwc-icon>
-			<vwc-icon class="toggle-close" type='chevron-up-solid'></vwc-icon>
+				${when(x => !x.open, html`<vwc-icon type='chevron-down-solid'></vwc-icon>`)}
+				${when(x => x.open, html`<vwc-icon type='chevron-up-solid'></vwc-icon>`)}	
 			`)}
 		</span>
 	</button>
