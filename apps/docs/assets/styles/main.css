@@ -28,28 +28,37 @@ body a:visited {
 /* #endregion document */
 
 /* #region layout */
-vwc-header#header-main::part(base) {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
-
-vwc-header#header-aside::part(base) {
-  position: sticky;
-  top: 0;
-  background-color: var(--vvd-color-neutral-10);
-  z-index: 1;
+vwc-side-drawer {
+  --side-drawer-app-content-offset: 280px;
 }
 
 vwc-side-drawer::part(base) {
   z-index: 2;
-  background-color: var(--vvd-color-neutral-10);
+  background-color: var(--vvd-color-canvas);
+  inline-size: 280px;
+  border-right: 1px solid var(--vvd-color-neutral-20);
+  box-sizing: border-box;
 }
 
 @supports (overscroll-behavior: none) {
   vwc-side-drawer::part(base) {
     overscroll-behavior: none;
   }
+}
+
+vwc-header#header-main::part(base) {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  inline-size: auto;
+  inset-inline: var(--side-drawer-app-content-offset) 0;
+}
+
+vwc-header#header-aside::part(base) {
+  position: sticky;
+  top: 0;
+  background-color: var(--vvd-color-canvas);
+  z-index: 1;
 }
 /* #endregion layout */
 
