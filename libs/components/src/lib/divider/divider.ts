@@ -14,5 +14,5 @@ export class Divider extends FoundationDivider {
 	 * @remarks
 	 * HTML Attribute: text
 	 */
-	@attr dividerOrientation?: string;
+	@attr orientation?: string;
 }
