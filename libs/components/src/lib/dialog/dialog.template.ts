@@ -38,13 +38,13 @@ function renderDismissButton() {
 			  density="condensed"
 			  class="dismiss-button"
 			  icon="close-line"
-			  @click="${x => x.close()}">
+			  @click="${x => {x.open = false}}">
 	  </vwc-button>`;
 }
 
 function handleEscapeKey(dialog: Dialog, event: Event) {
 	if ((event as KeyboardEvent).key === 'Escape' && dialog.modal) {
-		dialog.close();
+		dialog.open = false;
 	}
 }
 
@@ -60,7 +60,6 @@ export const DialogTemplate: (
 ) => ViewTemplate<Dialog> = () => html<Dialog>` 
   <dialog class="${getClasses}"
           @keydown="${(x, c) => handleEscapeKey(x, c.event)}"
-          ?open="${x => x.open }"
           returnValue="${ x => x.returnValue }">
 		  <slot name="main">
 			  ${when(x => x.icon, icon())}

@@ -34,7 +34,35 @@ export class Dialog extends FoundationElement {
 		return this.#modal;
 	}
 
+	openChanged(oldValue: boolean, newValue: boolean) {
+		if (oldValue === undefined) {
+			return;
+		}
+		if (!newValue) {
+			this.close();
+		} else {
+			if (this.#dialog) {
+				this.#dialog.open = true;
+			}
+		}
+	}
+
 	#modal = false;
+
+	#dialogElement?: HTMLDialogElement;
+
+	get #dialog() {
+		if (!this.#dialogElement) {
+			this.#dialogElement = this.shadowRoot?.querySelector('dialog') as HTMLDialogElement;
+			if (this.#dialogElement) {
+				this.#dialogElement.open = this.open;
+				if (dialogPolyfill) {
+					dialogPolyfill.registerDialog(this.#dialogElement);
+				}
+			}
+		}
+		return this.#dialogElement as HTMLDialogElement;
+	}
 
 	#handleScrimClick = (event: MouseEvent) => {
 		if (event.target !== this.#dialog) {
@@ -49,9 +77,7 @@ export class Dialog extends FoundationElement {
 			event.clientX <= rect.left + rect.width
 		);
 
-		if (clickedInDialog === false){
-			this.close();
-		}
+		this.open = clickedInDialog;
 	};
 
 	#handleInternalFormSubmit = (event: SubmitEvent) => {
@@ -59,35 +85,22 @@ export class Dialog extends FoundationElement {
 			return;
 		}
 
-		this.close();
+		this.open = false;
 	};
 
 	close() {
-		if (!this.open) {
-			return;
+		if (this.#dialog.open) {
+			this.#dialog.close();
+			this.dispatchEvent(new CustomEvent('close', {bubbles: true, composed: true, detail: this.returnValue}));
 		}
-
-		this.#dialog.close();
-		this.dispatchEvent(new CustomEvent('close', {bubbles: true, composed: true, detail: this.returnValue}));
 
 		this.open = false;
 		this.#modal = false;
 	}
 
 	show() {
+		this.#dialog.show();
 		this.open = true;
-	}
-
-	#dialogElement?: HTMLDialogElement;
-
-	get #dialog() {
-		if (!this.#dialogElement) {
-			this.#dialogElement = this.shadowRoot?.querySelector('dialog') as HTMLDialogElement;
-			if (dialogPolyfill) {
-				dialogPolyfill.registerDialog(this.#dialogElement);
-			}
-		}
-		return this.#dialogElement as HTMLDialogElement;
 	}
 
 	showModal() {

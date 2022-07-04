@@ -5,6 +5,22 @@ import '.';
 const COMPONENT_TAG = 'vwc-dialog';
 
 describe('vwc-dialog', () => {
+
+	async function closeDialog() {
+		element.close();
+		await elementUpdated(element);
+	}
+
+	async function showDialog() {
+		element.show();
+		await elementUpdated(element);
+	}
+
+	async function showModalDialog() {
+		element.showModal();
+		await elementUpdated(element);
+	}
+
 	let element: Dialog;
 
 	beforeEach(async () => {
@@ -13,6 +29,21 @@ describe('vwc-dialog', () => {
 		)) as Dialog;
 	});
 
+	describe(`open`, function () {
+		it(`should open the dialog when set to true`, async function () {
+			element.open = true;
+			await elementUpdated(element);
+			expect(getBaseElement(element).hasAttribute('open')).toEqual(true);
+		});
+
+		it('should be opened when initiated with open attribute', async function() {
+		  const openElement = (await fixture(
+			  `<${COMPONENT_TAG} open></${COMPONENT_TAG}>`
+		  )) as Dialog;
+
+			expect(getBaseElement(openElement).hasAttribute('open')).toEqual(true);
+		});
+	});
 	describe('basic', () => {
 		it('should be initialized as a vwc-dialog', async () => {
 			expect(element).toBeInstanceOf(Dialog);
@@ -26,12 +57,11 @@ describe('vwc-dialog', () => {
 
 	describe('close', function () {
 		beforeEach(async function () {
-			element.open = true;
-			await elementUpdated(element);
+			await showDialog();
 		});
+
 		it('should remove the open attribute', async function () {
-			element.close();
-			await elementUpdated(element);
+			await closeDialog();
 			expect(element.open).toEqual(false);
 			expect(element.hasAttribute('open')).toEqual(false);
 		});
@@ -43,14 +73,14 @@ describe('vwc-dialog', () => {
 		});
 
 		it('should fire the "close" event only when closing', async function() {
-			element.open = false;
+			await closeDialog();
 			const spy = jest.fn();
 			element.addEventListener('close', spy);
 
-			element.close();
+			await closeDialog();
 			const callsWhenTryingToCloseAClosedDialog = spy.mock.calls.length;
-			element.open = true;
-			element.close();
+			await showDialog();
+			await closeDialog();
 
 			expect(callsWhenTryingToCloseAClosedDialog).toEqual(0);
 			expect(spy.mock.calls.length).toEqual(1);
@@ -59,30 +89,26 @@ describe('vwc-dialog', () => {
 
 	describe('show', function () {
 		it('should add the open attribute', async function() {
-			element.show();
-			await elementUpdated(element);
+			await showDialog();
 			expect(element.open).toEqual(true);
 			expect(element.hasAttribute('open')).toEqual(true);
 		});
 
 		it('should add open to base element', async function () {
-			element.show();
-			await elementUpdated(element);
+			await showDialog();
 			expect(getBaseElement(element).hasAttribute('open')).toEqual(true);
 		});
 	});
 
 	describe('showModal', function () {
 		it('should add the open attribute', async function() {
-			element.showModal();
-			await elementUpdated(element);
+			await showModalDialog();
 			expect(element.open).toEqual(true);
 			expect(element.hasAttribute('open')).toEqual(true);
 		});
 
 		it('should add open to base element', async function () {
-			element.showModal();
-			await elementUpdated(element);
+			await showModalDialog();
 			expect(getBaseElement(element).hasAttribute('open')).toEqual(true);
 		});
 	});
@@ -103,8 +129,7 @@ describe('vwc-dialog', () => {
 		};
 		beforeEach(async function () {
 			element.heading = 'Heading';
-			element.showModal();
-			await elementUpdated(element);
+			await showModalDialog();
 			dialogElement = getBaseElement(element) as HTMLDialogElement;
 			jest.spyOn(dialogElement, 'getBoundingClientRect').mockImplementation(() => dialogClientRect);
 		});
@@ -189,13 +214,12 @@ describe('vwc-dialog', () => {
 	it('should fire close event with returnValue', async function() {
 		let detail;
 		const returnValue = 'returnValue';
-		element.open = true;
 		element.returnValue = returnValue;
-		await elementUpdated(element);
+		await showDialog();
 		const spy = jest.fn().mockImplementation((e) => detail = e.detail);
 		element.addEventListener('close', spy);
 
-		element.close();
+		await closeDialog();
 
 		expect(detail).toEqual(returnValue);
 	});
@@ -237,8 +261,7 @@ describe('vwc-dialog', () => {
 	it('should close the dialog when dismiss button is clicked', async function() {
 		const spy = jest.fn();
 		element.addEventListener('close', spy);
-		element.show();
-		await elementUpdated(element);
+		await showDialog();
 
 		const dismissButton = getBaseElement(element).querySelector('.dismiss-button') as HTMLElement;
 		dismissButton.click();
@@ -248,6 +271,9 @@ describe('vwc-dialog', () => {
 	});
 
 	describe('a11y', function () {
+		/**
+		 *
+		 */
 		async function triggerEscapeKey() {
 			getBaseElement(element)
 				.dispatchEvent(new KeyboardEvent('keydown', {
@@ -259,19 +285,24 @@ describe('vwc-dialog', () => {
 		}
 
 		it('should close on escape key press', async function () {
-			element.showModal();
-			await elementUpdated(element);
+			await showModalDialog();
 			await triggerEscapeKey();
 			expect(element.open).toEqual(false);
 		});
 
 		it('should remain open on escape key when not modal', async function () {
-			element.show();
-			await elementUpdated(element);
+			await showDialog();
 			await triggerEscapeKey();
 			expect(element.open).toEqual(true);
 		});
 
+		it('should set role "dialog" on the base element', function () {
+			expect(getBaseElement(element).getAttribute('role')).toEqual('dialog');
+		});
 
+		// it('should set "aria-modal" when used as modal', async function() {
+		// 	await showModalDialog();
+		// 	expect(getBaseElement(element).hasAttribute('ariaModal')).toEqual(true);
+		// });
 	});
 });
