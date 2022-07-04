@@ -20,9 +20,10 @@ Use the new component generator to create a new component, and it will also gene
 
 You should use kebab case for attribute names. Alternatively, you can use one of the following:
 
-- `heading` - for the head or main ext with HTML heading tag
-- `headline` - for the head or main text in the component.
-- `sub-title` - for the sub text in the component.
+- `headline` - for the headline or main text in the component.
+- `subheading` - for the subheading in the component.
+- `subtitle` - for the subtitle in the component.
+- `heading` represent a level of section headings
 - `text` - for the text in the component.
 - `label` - for the label in the component.
 
