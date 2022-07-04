@@ -21,6 +21,14 @@ const getClasses = ({
 	['no-indicator', noIndicator],
 );
 
+
+const getButtonClasses = ({
+	appearance
+}: AccordionItem) => classNames(
+	'button',
+	[`appearance-${appearance}`, Boolean(appearance)],
+);
+
 export const AccordionItemTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
@@ -47,7 +55,7 @@ const renderHeaderButton = (context: ElementDefinitionContext) => {
 	const focusTemplate = focusTemplateFactory(context);
 
 	return html<AccordionItem>`
-	<button class="button" id="header" @click=${x => x.open = !x.open}
+	<button class="${getButtonClasses}" id="header" @click=${x => x.open = !x.open}
 		aria-expanded=${x => x.open}
 		aria-controls="${PANEL}">
     ${() => focusTemplate}

@@ -2,6 +2,14 @@
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+	$appearances: filled outlined ghost,
+	$states: idle hover active,
+	$default: ghost,
+);
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+
+
 .body {
 	@include typography.typography-cat-shorthand('body-2');
 
@@ -29,6 +37,7 @@
 
 .button {
 	@include typography.typography-cat-shorthand('subtitle-2');
+	@include appearance.appearance;
 
 	position: relative;
 	display: flex;
@@ -37,16 +46,14 @@
 	padding: 16px;
 	border: 0 none;
 	margin: 0;
-	background: transparent;
+	background-color: var(#{appearance.get-appearance-token(fill)});
+	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+	color: var(#{appearance.get-appearance-token(text)});
 	cursor: pointer;
 	@supports selector(:focus-visible) {
 		&:focus {
 			outline: none;
 		}
-	}
-
-	&:hover {
-		background: var(#{theme-consts.$vvd-color-neutral-10});
 	}
 
 	.heading-text {
