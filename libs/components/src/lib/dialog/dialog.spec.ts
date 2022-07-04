@@ -247,4 +247,31 @@ describe('vwc-dialog', () => {
 		expect(spy).toHaveBeenCalledTimes(1);
 	});
 
+	describe('a11y', function () {
+		async function triggerEscapeKey() {
+			getBaseElement(element)
+				.dispatchEvent(new KeyboardEvent('keydown', {
+					'key': 'Escape',
+					bubbles: true,
+					composed: true
+				}));
+			await elementUpdated(element);
+		}
+
+		it('should close on escape key press', async function () {
+			element.showModal();
+			await elementUpdated(element);
+			await triggerEscapeKey();
+			expect(element.open).toEqual(false);
+		});
+
+		it('should remain open on escape key when not modal', async function () {
+			element.show();
+			await elementUpdated(element);
+			await triggerEscapeKey();
+			expect(element.open).toEqual(true);
+		});
+
+
+	});
 });

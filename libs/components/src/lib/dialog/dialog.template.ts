@@ -42,6 +42,12 @@ function renderDismissButton() {
 	  </vwc-button>`;
 }
 
+function handleEscapeKey(dialog: Dialog, event: Event) {
+	if ((event as KeyboardEvent).key === 'Escape' && dialog.modal) {
+		dialog.close();
+	}
+}
+
 /**
  * The template for the {@link @microsoft/fast-foundation#Dialog} component.
  *
@@ -53,6 +59,7 @@ export const DialogTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Dialog> = () => html<Dialog>` 
   <dialog class="${getClasses}"
+          @keydown="${(x, c) => handleEscapeKey(x, c.event)}"
           ?open="${x => x.open }"
           returnValue="${ x => x.returnValue }">
 		  <slot name="main">

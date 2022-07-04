@@ -30,6 +30,12 @@ export class Dialog extends FoundationElement {
 	@attr content?: string;
 	@attr heading?: string;
 
+	get modal() {
+		return this.#modal;
+	}
+
+	#modal = false;
+
 	#handleScrimClick = (event: MouseEvent) => {
 		if (event.target !== this.#dialog) {
 			return;
@@ -47,6 +53,7 @@ export class Dialog extends FoundationElement {
 			this.close();
 		}
 	};
+
 	#handleInternalFormSubmit = (event: SubmitEvent) => {
 		if ((event.target as HTMLFormElement).method !== 'dialog') {
 			return;
@@ -59,9 +66,12 @@ export class Dialog extends FoundationElement {
 		if (!this.open) {
 			return;
 		}
+
 		this.#dialog.close();
-		this.open = false;
 		this.dispatchEvent(new CustomEvent('close', {bubbles: true, composed: true, detail: this.returnValue}));
+
+		this.open = false;
+		this.#modal = false;
 	}
 
 	show() {
@@ -83,6 +93,7 @@ export class Dialog extends FoundationElement {
 	showModal() {
 		this.#dialog.showModal();
 		this.open = true;
+		this.#modal = true;
 	}
 
 	override connectedCallback() {
