@@ -2,8 +2,24 @@
 
 .base {
 	padding: 24px;
+	border: none;
 }
 
+.header {
+	display: flex;
+	align-items: flex-start;
+	flex-direction: row;
+}
+
+.dismiss-button {
+	display: flex;
+}
+
+.heading-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
 .heading {
 	@include typography.typography-cat-shorthand('subtitle-2');
 

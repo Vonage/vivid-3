@@ -4,8 +4,8 @@ import dialogPolyfillStyles from 'dialog-polyfill/dist/dialog-polyfill.css';
 import { designSystem } from '../../shared/design-system';
 import styles from './dialog.scss';
 import '../icon';
-import '../text';
 import '../button';
+import '../elevation';
 
 import { Dialog } from './dialog';
 import { DialogTemplate as template } from './dialog.template';

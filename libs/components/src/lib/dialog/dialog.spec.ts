@@ -31,12 +31,17 @@ describe('vwc-dialog', () => {
 	}
 
 	let element: Dialog;
+	let warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => true);
 
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as Dialog;
 		await elementUpdated(element);
+	});
+
+	afterAll(() => {
+		warnSpy.mockRestore();
 	});
 
 	describe('open', function () {
