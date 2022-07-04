@@ -10,6 +10,7 @@ export class Header extends FoundationElement {
 	/**
 	 *
 	 *headerEl
+	 *
 	 * @public
 	 *
 	 * HTML Attribute: heading
