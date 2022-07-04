@@ -36,15 +36,35 @@ Use kebab case for slot names. Or use one of the following:
 - `action-items` - for action items that can be performed on the component.
 - `main` - for main content of the component.
 
-## Documentation style (Code-Preview style)
+## Documentation Structure
 
-### Code preview options
+The documentation file should have the following structure:
+
+- `# Component Name` - name and description and code preview of the component.
+
+- `## Members` - all the attributes and properties of the component with code previews for each.
+
+- `## Slots` - all the slots of the component.
+
+- `## CSS Variables` - all the CSS variables of the component.
+
+- `## Events` - all the dispatched events of the component.
+
+- `## Methods` - all the methods of the component.
+
+- `## Accessibility` - explanation about aria attributes and roles.
+
+- `## Use Cases` - usage examples with more vivid components.
+
+## Code Preview
+
+### Code Preview Style
 
 ```html preview blocks
 code snipet
 ```
 
-### Use one of these options
+### Use One of These Options
 
 Use one of these options to style the code preview:
 
