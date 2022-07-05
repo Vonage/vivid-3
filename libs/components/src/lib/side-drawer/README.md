@@ -151,7 +151,7 @@ To add content aside the side-drawer, add a slot called `app-content`.
 
 ### Application Content Offset
 
-`--side-drawer-app-content-offset` controls the offset of the side drawer's app-content from the window's edge.
+When side drawer is opened, `--side-drawer-app-content-offset` controls the offset of the side drawer's application content from the window's edge.
 some designs may choose side-drawer to overlap the app-content, so the app-content should be offset by the side-drawer's width.
 Additionally, as aside element (which represents the actual side-drawer), is styled with `position: fixed`, customizing its inline size directly will not affect the application content offset interchangeably. Hence, using this CSS custom property is mandatory to account for side-drawer inline size altercations.
 
