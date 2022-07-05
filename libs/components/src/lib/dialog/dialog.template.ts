@@ -16,7 +16,7 @@ const getClasses = (_: Dialog) => classNames(
 function icon() {
 	return html<Dialog>`
 	  <slot name="graphics">
-		  <vwc-icon class="icon" size="large" type="${x => x.icon}"></vwc-icon>
+			<vwc-icon class="icon" size="large" type="${x => x.icon}"></vwc-icon>
 	  </slot>
 	`;
 }
@@ -89,7 +89,9 @@ export const DialogTemplate: (
 			<slot name="main">
 					<div class="header">
 						<div class="headline-wrapper">
-							${when(x => x.icon, icon())}	
+								<slot name="graphics">
+									${when(x => x.icon, icon())}
+								</slot>
 							${when(x => x.headline, headline())}
 						</div>
 			  		${renderDismissButton()}
