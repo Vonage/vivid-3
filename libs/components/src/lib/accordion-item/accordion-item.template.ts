@@ -23,10 +23,11 @@ const getClasses = ({
 
 
 const getButtonClasses = ({
-	appearance
+	appearance, connotation
 }: AccordionItem) => classNames(
 	'button',
-	[`appearance-${appearance}`, Boolean(appearance)],
+  [`connotation-${connotation}`, Boolean(connotation)],
+  [`appearance-${appearance}`, Boolean(appearance)],
 );
 
 export const AccordionItemTemplate: (
@@ -65,7 +66,7 @@ const renderHeaderButton = (context: ElementDefinitionContext) => {
 		<span class="indicator">
 			${when(x => !x.noIndicator && !x.iconTrailing, html`
 				${when(x => !x.open, html`<vwc-icon type='chevron-down-solid'></vwc-icon>`)}
-				${when(x => x.open, html`<vwc-icon type='chevron-up-solid'></vwc-icon>`)}	
+				${when(x => x.open, html`<vwc-icon type='chevron-up-solid'></vwc-icon>`)}
 			`)}
 		</span>
 	</button>
