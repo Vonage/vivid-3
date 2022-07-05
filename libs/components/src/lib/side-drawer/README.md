@@ -244,7 +244,7 @@ Additionally, as aside element (which represents the actual side-drawer), is sty
 
 ### Base
 
-The component's internal *aside* element.
+Select `base` part to access the component's internal *aside* element.
 
 ```html preview full
 <style>
