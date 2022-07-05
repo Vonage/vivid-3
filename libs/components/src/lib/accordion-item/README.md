@@ -16,7 +16,7 @@ Add the `heading` attribute to set the heading text.
 - Default: `undefined`
   
 ```html preview full
-<vwc-accordion-item heading="Accordion item with heading" appearance="ghost">
+<vwc-accordion-item heading="Accordion item with heading">
   <vwc-text font-face="body-1">
     Lorem Ipsum is simply dummy text of the printing and typesetting industry.
   </vwc-text>
