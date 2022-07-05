@@ -1,8 +1,10 @@
 import {elementUpdated, fixture, getBaseElement, setAttribute} from '@vivid-nx/shared';
+import {axe, toHaveNoViolations} from 'jest-axe';
 import type {Icon} from '../icon/icon';
 import { BreadcrumbItem } from './breadcrumb-item';
 import '.';
 
+expect.extend(toHaveNoViolations);
 const COMPONENT_TAG = 'vwc-breadcrumb-item';
 
 describe('vwc-breadcrumb-item', () => {
@@ -187,6 +189,22 @@ describe('vwc-breadcrumb-item', () => {
 			await setAttribute(element, attribute, text);
 
 			expect(anchorElement?.getAttribute(attribute)).toEqual(text);
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass accessibility test', async () => {
+			const { shadowRoot } = element;
+			if (!shadowRoot) { return; }
+
+			const results = await axe(shadowRoot.innerHTML, {
+				rules: {
+					// components should not be tested as page content
+					'region': { enabled: false }
+				}
+			});
+
+			expect(results).toHaveNoViolations();
 		});
 	});
 });
