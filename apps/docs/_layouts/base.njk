@@ -41,6 +41,7 @@
     <script type="module" src="{{ '/assets/modules/components/side-drawer/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/sidenav-item/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/button/index.js' | url}}"></script>
+    <script type="module" src="{{ '/assets/modules/components/fab/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/icon/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/card/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/header/index.js' | url}}"></script>
@@ -50,7 +51,7 @@
   </head>
 
 <body>
-  <vwc-side-drawer open slot="app-content">
+  <vwc-side-drawer id="sidedrawer" open slot="app-content">
 
     <vwc-header id="header-aside">
       <div style="display: flex; flex-direction: column; align-items: end;">
@@ -115,17 +116,20 @@
       </span>
 
       <dark-mode-toggle slot="actionItems" permanent></dark-mode-toggle>
+
+      <main slot="app-content">
+        <vwc-layout gutters="large" column-basis="block" class="main-layout">
+          <article>
+            {{content | safe}}
+          </article>
+        </vwc-layout>
+      </main>
+
     </vwc-header>
 
-    <main slot="app-content">
-      <vwc-layout gutters="large" column-basis="block" class="main-layout">
-        <article>
-          {{content | safe}}
-        </article>
-      </vwc-layout>
-    </main>
-
   </vwc-side-drawer>
+
+  <vwc-fab icon='menu-solid' id="menu-button" slot="app-content" onclick="sidedrawer.open = !sidedrawer.open"></vwc-fab>
 
 </body>
 

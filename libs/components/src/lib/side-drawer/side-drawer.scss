@@ -2,7 +2,6 @@
 
 @use 'partials/variables' as variables;
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
-@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use '../../../../shared/src/lib/sass/mixins/scrim' as scrim-mixins;
 
 
@@ -17,6 +16,7 @@ $inline-size: 280px;
 	inline-size: $inline-size;
 	inset-block: 0;
 	overflow-y: auto;
+  z-index: 1;
 
 	&.alternate {
 		background-color: var(#{theme-consts.$vvd-color-canvas});

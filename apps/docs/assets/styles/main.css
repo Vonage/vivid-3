@@ -28,8 +28,22 @@ body a:visited {
 /* #endregion document */
 
 /* #region layout */
+#menu-button {
+  position: fixed;
+  inset: auto auto 8px 8px;
+  z-index: 2;
+}
+
 vwc-side-drawer {
   --side-drawer-app-content-offset: 280px;
+}
+
+vwc-side-drawer[open] {
+  --header-inset-inline-start: var(--side-drawer-app-content-offset);
+}
+
+vwc-side-drawer:not([open]) {
+  --header-inset-inline-start: 0;
 }
 
 vwc-side-drawer::part(base) {
@@ -51,7 +65,11 @@ vwc-header#header-main::part(base) {
   top: 0;
   z-index: 1;
   inline-size: auto;
-  inset-inline: var(--side-drawer-app-content-offset) 0;
+  inset-inline: var(--header-inset-inline-start) 0;
+}
+
+vwc-header#header-main > main {
+  margin-top: var(--_header-block-size);
 }
 
 vwc-header#header-aside::part(base) {

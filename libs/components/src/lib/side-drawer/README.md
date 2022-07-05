@@ -17,39 +17,20 @@ You can also close the side drawer by pressing the `ESC` key.
 - Default: `false`
 
 ```html preview full
-<style>
-  html { 
-      block-size: 200px; 
-  }
-</style>
-<vwc-side-drawer id="sideDrawer" open>
- <div>
-  <vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
-        <p><vwc-text font-face="body-2-bold">SECTION TITLE</vwc-text></p>
-        <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
-        <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
- </div>
-  <vwc-layout slot="app-content" column-basis="block" gutters="medium">
-    <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
-    <vwc-text font-face="body-1">
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-    </p>
-    </vwc-text>
+<vwc-side-drawer open>
 
-    <vwc-text font-face="body-1">
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-    </p>
+  <vwc-layout gutters="small">
+    <vwc-text>
+      Side Drawer
+    </vwc-text>
+  </vwc-layout>
+
+  <vwc-layout gutters="small" slot="app-content">
+    <vwc-text>
+        Application Content
     </vwc-text>
  </vwc-layout>
 </vwc-side-drawer>
-<script>
-  button.addEventListener('click', toggleOpen);
-  function toggleOpen() {
-   sideDrawer.open = !sideDrawer.open;
-  }
-</script>
 ```
 
 ### Modal
@@ -74,7 +55,6 @@ Click on the `scrim` or the `ESC` key to close the modal side-drawer.
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
  </div>
  <vwc-layout slot="app-content" column-basis="block" gutters="medium">
-    <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
     <vwc-text font-face="body-1">
     <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
@@ -88,12 +68,6 @@ Click on the `scrim` or the `ESC` key to close the modal side-drawer.
     </vwc-text>
  </vwc-layout>
 </vwc-side-drawer>
-<script>
-  button.addEventListener('click', toggleOpen);
-  function toggleOpen() {
-   sideDrawer.open = !sideDrawer.open;
-  }
-</script>
 ```
 
 ### Alternate
@@ -117,7 +91,6 @@ Use the `alternate` attribute to apply scheme alternate region.
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
  </div>
   <vwc-layout slot="app-content" column-basis="block" gutters="medium">
-    <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
     <vwc-text font-face="body-1">
     <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
@@ -131,12 +104,6 @@ Use the `alternate` attribute to apply scheme alternate region.
     </vwc-text>
  </vwc-layout>
 </vwc-side-drawer>
-<script>
-  button.addEventListener('click', toggleOpen);
-  function toggleOpen() {
-   sideDrawer.open = !sideDrawer.open;
-  }
-</script>
 ```
 
 ### Position
@@ -178,7 +145,6 @@ To add content aside the side-drawer, add a slot called `app-content`.
         <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
  </div>
   <vwc-layout slot="app-content" column-basis="block" gutters="medium">
-    <vwc-button id="button" shape="pill" icon='menu-solid'></vwc-button>
     <vwc-text font-face="body-1">
     <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
@@ -192,12 +158,6 @@ To add content aside the side-drawer, add a slot called `app-content`.
     </vwc-text>
  </vwc-layout>
 </vwc-side-drawer>
-<script>
-  button.addEventListener('click', toggleOpen);
-  function toggleOpen() {
-   sideDrawer.open = !sideDrawer.open;
-  }
-</script>
 ```
 
 ## CSS Custom Properties
@@ -214,30 +174,26 @@ Additionally, as aside element (which represents the actual side-drawer), is sty
 ```html preview full
 <style>
   vwc-side-drawer {
-    --side-drawer-app-content-offset: 280px;
+    --side-drawer-app-content-offset: 230px;
   }
 
   vwc-fab { 
-    position: absolute;
-    inset: 8px 8px auto auto; 
+    position: fixed;
+    inset: auto auto 8px 8px;
+    z-index: 2;
   }
 </style>
 
-<vwc-side-drawer id="sideDrawer" open>
-  <vwc-fab slot="app-content" id="button" shape="pill" icon='menu-solid'></vwc-fab>
+<vwc-side-drawer id="sidedrawer">
+  <vwc-fab icon='menu-solid' slot="app-content" onclick="sidedrawer.open = !sidedrawer.open"></vwc-fab>
   <vwc-layout slot="app-content" column-basis="block" gutters="medium">
     <vwc-text>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+      Toggle the side drawer by clicking the FAB.
+      <br>
+      Notice that the side drawer overlaps the application content.
     </vwc-text>
  </vwc-layout>
 </vwc-side-drawer>
-<script>
-  function toggleOpen() {
-     sideDrawer.open = !sideDrawer.open;
-  }
-
-  button.addEventListener('click', toggleOpen);
-</script>
 ```
 
 ## CSS Parts
