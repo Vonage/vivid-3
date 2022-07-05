@@ -36,7 +36,7 @@ Use the `icon` attribute to add an icon.
 
 ### Icon Only
 
-If text is not applied...
+If text is not applied.
 
 ```html preview
 <vwc-sidenav-item href="#" icon="profile"></vwc-sidenav-item>

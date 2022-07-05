@@ -108,7 +108,7 @@
     "title": "sidenav-item",
     "markdown": "./libs/components/src/lib/sidenav-item/README.md",
     "modules": [
-      "/assets/modules/components/sidenav-item/index.js",
+      "/assets/modules/components/sidenav-item/index.js"
     ]
   },
   {
@@ -210,8 +210,7 @@
     "markdown": "./libs/components/src/lib/sidenav/README.md",
     "modules": [
       "/assets/modules/components/sidenav/index.js",
-      "/assets/modules/components/sidenav-item/index.js",
-      "/assets/modules/components/text/index.js"
+      "/assets/modules/components/sidenav-item/index.js"
     ]
   }
 ]

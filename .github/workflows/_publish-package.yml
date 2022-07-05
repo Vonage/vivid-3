@@ -48,9 +48,3 @@ jobs:
           npm publish dist/libs/components --tag next --access public --//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
-
-      - name: Push & Deploy
-        if: always()
-        run: |
-          git tag -a deploy -m "Temporary deploy tag"
-          git push --tags origin main
