@@ -5,6 +5,11 @@
 ```
 
 ```html preview
+<style>
+  html { 
+    block-size: 200px; 
+  }
+</style>
 <vwc-dialog icon="info" heading="Heading" content="Content" open>This is the content!</vwc-dialog>
 ```
 
