@@ -31,7 +31,7 @@ describe('vwc-dialog', () => {
 	}
 
 	let element: Dialog;
-	let warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => true);
+	const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => true);
 
 	beforeEach(async () => {
 		element = (await fixture(
@@ -67,7 +67,7 @@ describe('vwc-dialog', () => {
 			expect(element.returnValue).toEqual(undefined);
 			expect(element.icon).toEqual(undefined);
 			expect(element.content).toEqual(undefined);
-			expect(element.heading).toEqual(undefined);
+			expect(element.headline).toEqual(undefined);
 		});
 	});
 
@@ -144,7 +144,7 @@ describe('vwc-dialog', () => {
 			}
 		};
 		beforeEach(async function () {
-			element.heading = 'Heading';
+			element.headline = 'headline';
 			await showModalDialog();
 			dialogElement = getBaseElement(element) as HTMLDialogElement;
 			jest.spyOn(dialogElement, 'getBoundingClientRect').mockImplementation(() => dialogClientRect);
@@ -261,16 +261,16 @@ describe('vwc-dialog', () => {
 	});
 
 	it('should render the content area when content is set', async function() {
-		const headingElementWhenUndefined = getBaseElement(element).querySelector('.heading');
+		const headlineElementWhenUndefined = getBaseElement(element).querySelector('.headline');
 		const content = 'This is the header!';
 
-		element.heading = content;
+		element.headline = content;
 		await elementUpdated(element);
-		const headingElement = getBaseElement(element).querySelector('.heading');
+		const headlineElement = getBaseElement(element).querySelector('.headline');
 
-		expect(headingElementWhenUndefined).toBeNull();
-		expect(headingElement).toBeTruthy();
-		expect(headingElement?.textContent?.trim()).toEqual(content);
+		expect(headlineElementWhenUndefined).toBeNull();
+		expect(headlineElement).toBeTruthy();
+		expect(headlineElement?.textContent?.trim()).toEqual(content);
 	});
 
 	it('should close the dialog when dismiss button is clicked', async function() {

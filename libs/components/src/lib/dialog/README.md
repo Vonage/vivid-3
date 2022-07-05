@@ -10,46 +10,24 @@
     block-size: 200px; 
   }
 </style>
-<vwc-dialog icon="info" heading="Heading" content="Content" open>This is the content!</vwc-dialog>
+<vwc-dialog icon="info" headline="headline" content="Content" open>This is the content!</vwc-dialog>
 ```
 
 
 ## Members
 
-### open
-Sets or returns whether a dialog should be open or not
-- Type: `boolean`
-- Default: `false`
+### headline
+Use the `headline` attribute to set the dialog's title.
 
-```html preview
-<vwc-dialog open
-            heading="Open Dialog">
-</vwc-dialog>
-```
-
-### returnValue
-Sets or returns the dialog's return value when closing
 - Type: `string` | `undefined`
 - Default: `undefined`
 
 ```html preview
 <vwc-dialog open
-            heading="Returning Dialog">
+            headline="This is the title">app
 </vwc-dialog>
-<vwc-button label="Close Dialog"
-            onclick="closeDialog()"></vwc-button>
-<script>
-    function closeDialog() {
-        const dialog = document.querySelector('vwc-dialog');
-        dialog.returnValue = 'Value';
-        dialog.close();
-    }
-    (function() {
-        const dialog = document.querySelector('vwc-dialog');
-        dialog.addEventListener('close', (e) => console.log(e.detail));
-    })();
-</script>
 ```
+
 ### icon
 Use the `icon` attribute to set the dialog's icon.
 
@@ -74,23 +52,48 @@ Use the `content` attribute to set the dialog's text.
 </vwc-dialog>
 ```
 
-### heading
-Use the `heading` attribute to set the dialog's title.
 
+### open
+Sets or returns whether a dialog should be open or not
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-dialog open
+            headline="Open Dialog">
+</vwc-dialog>
+```
+
+### returnValue
+Sets or returns the dialog's return value when closing
 - Type: `string` | `undefined`
 - Default: `undefined`
 
 ```html preview
 <vwc-dialog open
-            heading="This is the title">
+            headline="Returning Dialog">
 </vwc-dialog>
+<vwc-button label="Close Dialog"
+            onclick="closeDialog()"></vwc-button>
+<script>
+    function closeDialog() {
+        const dialog = document.querySelector('vwc-dialog');
+        dialog.returnValue = 'Value';
+        dialog.close();
+    }
+    (function() {
+        const dialog = document.querySelector('vwc-dialog');
+        dialog.addEventListener('close', (e) => console.log(e.detail));
+    })();
+</script>
 ```
+
 
 ## Methods
 ### show
 Shows the dialog.
 ```html preview
-<vwc-dialog heading="Open Dialog">
+<vwc-dialog headline="Open Dialog">
 </vwc-dialog>
 <vwc-button label="Open Dialog"
             onclick="openDialog()"></vwc-button>
@@ -105,7 +108,7 @@ Shows the dialog.
 ### showModal
 Shows the dialog and makes it the top-most modal dialog.
 ```html preview
-<vwc-dialog heading="Open Dialog">
+<vwc-dialog headline="Open Dialog">
 </vwc-dialog>
 <vwc-button label="Open Modal Dialog"
             onclick="openDialog()"></vwc-button>
@@ -121,7 +124,7 @@ Closes the dialog.
 
 ```html preview
 <vwc-dialog open
-            heading="Open Dialog">
+            headline="Open Dialog">
 </vwc-dialog>
 <vwc-button label="Close Dialog"
             onclick="closeDialog()"></vwc-button>
@@ -134,13 +137,54 @@ Closes the dialog.
 ```
 
 ## Slots
-### footer
-Use the footer `slot` in order to add action buttons to the bottom of the dialog.
 ### graphics
 Use the `graphics` slot in order to replace the icon.
+```html preview
+<vwc-dialog open
+            headline="Open Dialog">
+            <img slot="graphics" src="https://doodleipsum.com/40x40/hand-drawn?bg=7463D9&amp;i=af462b28146d2ac91599602e083ddee5">
+</vwc-dialog>
+```
+
+### footer
+Use the footer `slot` in order to add action buttons to the bottom of the dialog.
+```html preview
+<style>
+.demo-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+}
+.demo-footer  vwc-button {
+    margin-left: 8px;
+}
+</style>
+<vwc-dialog open 
+    headline="Dialog with footer"
+    content="To quote Michael Carini, although we should never apologize for being ourselves, we should apologize for the times that we are not.">
+    <div slot="footer" class="demo-footer">
+        <vwc-button appearance="outlined" label="Cancel"></vwc-button>
+        <vwc-button appearance="filled" label="Action"></vwc-button>
+    </div>
+</vwc-dialog>
+```
+
 ### main
 Dialog is battery charged with an opinionated template.
 Assign nodes to the main slot to fully override a dialog’s predefined flow and style with your own.
+
+## CSS Custom Properties
+### Set dialog custom width
+
+Dialog has a default `width: 50vw` in desktop and `90vw` in mobile.  
+If needed can be set to a different size.
+
+`--dialog-inline-size`
+
+- Type: `String`
+- Default: `undefined`
+
+
 
 ## Events
 
@@ -149,7 +193,7 @@ The `close` event fires when the dialog closes (either via user interaction or v
 It returns the return value inside the event's details property.
 ```html preview
 <vwc-dialog open
-            heading="Returning Dialog">
+            headline="Returning Dialog">
 </vwc-dialog>
 <vwc-button label="Close Dialog"
             onclick="closeDialog()"></vwc-button>
@@ -171,11 +215,10 @@ The dialog's role is `dialog`.  When opened as a modal (via showModal) it adds `
 It is consumer's concern to add `aria-label` to the dialog element.
 `aria-labelledby` and `aria-describedby` can also be used.
 
-```html preview
-<vwc-dialog heading="Open Dialog" open aria-label="An opened dialog">
-    <form slot="main" method="dialog">
-                <button type="submit">Close</button>
-            </form>
+```html 
+<vwc-dialog aria-label="An opened dialog" 
+            headline="Open Dialog" 
+            open>
 </vwc-dialog>
 ```
 
@@ -183,7 +226,7 @@ It is consumer's concern to add `aria-label` to the dialog element.
 
 ### Dialog Form
 ```html preview
-<vwc-dialog heading="Open Dialog">
+<vwc-dialog headline="Open Dialog">
     <form slot="main" method="dialog">
                 <button type="submit">Close</button>
             </form>

@@ -24,10 +24,10 @@ function icon() {
 /**
  *
  */
-function heading() {
+function headline() {
 	return html<Dialog>`
-	  <div class="heading">
-		  ${x => x.heading}
+	  <div class="headline">
+		  ${x => x.headline}
 	  </div>
 	`;
 }
@@ -88,9 +88,9 @@ export const DialogTemplate: (
 		>
 			<slot name="main">
 					<div class="header">
-						<div class="heading-wrapper">
+						<div class="headline-wrapper">
 							${when(x => x.icon, icon())}	
-							${when(x => x.heading, heading())}
+							${when(x => x.headline, headline())}
 						</div>
 			  		${renderDismissButton()}
 					</div>

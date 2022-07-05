@@ -17,7 +17,6 @@
 	@media only screen and (min-width: 769px) {
 		#{variables.$dialog-inline-size}:50vw;
 	}
-
 }
 
 .header {
@@ -33,7 +32,7 @@
 	margin-right: -8px;
 }
 
-.heading {
+.headline {
 	@include typography.typography-cat-shorthand('subtitle-2');
 
 	&-wrapper {
@@ -49,3 +48,4 @@
 
 	margin-top: 8px;
 }
+

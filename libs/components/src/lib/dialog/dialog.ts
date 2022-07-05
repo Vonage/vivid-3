@@ -29,7 +29,7 @@ export class Dialog extends FoundationElement {
 	@attr({mode: 'fromView'}) returnValue?: string;
 	@attr icon?: string;
 	@attr content?: string;
-	@attr heading?: string;
+	@attr headline?: string;
 	@attr({attribute: 'aria-labelledby'}) ariaLabelledBy: string | null = null;
 	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
 	@attr({attribute: 'aria-describedby'}) ariaDescribedBy: string | null = null;
