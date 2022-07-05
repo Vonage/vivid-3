@@ -1,4 +1,4 @@
-# dialog
+# Dialog
 
 ```js
 <script type="module">import '@vonage/vivid/dialog';</script>
@@ -8,53 +8,8 @@
 <vwc-dialog icon="info" heading="Heading" content="Content" open>This is the content!</vwc-dialog>
 ```
 
-## Methods
-### show
-Shows the dialog.
-```html preview
-<vwc-dialog heading="Open Dialog">
-</vwc-dialog>
-<vwc-button label="Open Dialog"
-            onclick="openDialog()"></vwc-button>
-<script>
-    function openDialog() {
-        const dialog = document.querySelector('vwc-dialog');
-        dialog.show();
-    }
-</script>
-```
 
-### showModal
-Shows the dialog and makes it the top-most modal dialog.
-```html preview
-<vwc-dialog heading="Open Dialog">
-</vwc-dialog>
-<vwc-button label="Open Modal Dialog"
-            onclick="openDialog()"></vwc-button>
-<script>
-    function openDialog() {
-        const dialog = document.querySelector('vwc-dialog');
-        dialog.showModal();
-    }
-</script>
-```
-### close
-Closes the dialog.
-
-```html preview
-<vwc-dialog open
-            heading="Open Dialog">
-</vwc-dialog>
-<vwc-button label="Close Dialog"
-            onclick="closeDialog()"></vwc-button>
-<script>
-    function closeDialog() {
-        const dialog = document.querySelector('vwc-dialog');
-        dialog.close();
-    }
-</script>
-```
-## Properties/Attributes
+## Members
 
 ### open
 Sets or returns whether a dialog should be open or not
@@ -126,6 +81,53 @@ Use the `heading` attribute to set the dialog's title.
 </vwc-dialog>
 ```
 
+## Methods
+### show
+Shows the dialog.
+```html preview
+<vwc-dialog heading="Open Dialog">
+</vwc-dialog>
+<vwc-button label="Open Dialog"
+            onclick="openDialog()"></vwc-button>
+<script>
+    function openDialog() {
+        const dialog = document.querySelector('vwc-dialog');
+        dialog.show();
+    }
+</script>
+```
+
+### showModal
+Shows the dialog and makes it the top-most modal dialog.
+```html preview
+<vwc-dialog heading="Open Dialog">
+</vwc-dialog>
+<vwc-button label="Open Modal Dialog"
+            onclick="openDialog()"></vwc-button>
+<script>
+    function openDialog() {
+        const dialog = document.querySelector('vwc-dialog');
+        dialog.showModal();
+    }
+</script>
+```
+### close
+Closes the dialog.
+
+```html preview
+<vwc-dialog open
+            heading="Open Dialog">
+</vwc-dialog>
+<vwc-button label="Close Dialog"
+            onclick="closeDialog()"></vwc-button>
+<script>
+    function closeDialog() {
+        const dialog = document.querySelector('vwc-dialog');
+        dialog.close();
+    }
+</script>
+```
+
 ## Slots
 ### footer
 Use the footer `slot` in order to add action buttons to the bottom of the dialog.
@@ -172,7 +174,9 @@ It is consumer's concern to add `aria-label` to the dialog element.
 </vwc-dialog>
 ```
 
-## Dialog Form
+## Usage Examples
+
+### Dialog Form
 ```html preview
 <vwc-dialog heading="Open Dialog">
     <form slot="main" method="dialog">

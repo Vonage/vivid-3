@@ -1,6 +1,6 @@
 {
   "type": "prerelease",
-  "comment": "Add the dialog component",
+  "comment": "Migrate dialog component to fast",
   "packageName": "@vonage/vivid",
   "email": "yonatan.kra@vonage.com",
   "dependentChangeType": "patch"
