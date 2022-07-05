@@ -1,6 +1,6 @@
 # Side Navigation
 
-Represents a sidenav custom element.
+Represents a side navigation custom element.
 
 ```js
 <script type="module">
