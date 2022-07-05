@@ -32,7 +32,7 @@ jobs:
           cat tmp.txt
           cat libs/components/package.json
           git add .
-          git commit -m "Changes"
+          git commit -m "Version Bump"
           git push
 
       - name: Get us to the update version
