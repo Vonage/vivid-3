@@ -13,7 +13,7 @@
 Use the `open` attribute to indicate whether the side drawer is open.
 You can also close the side drawer by pressing the `ESC` key.
 
-- Type: `Boolean`
+- Type: `boolean`
 - Default: `false`
 
 ```html preview full
@@ -21,52 +21,42 @@ You can also close the side drawer by pressing the `ESC` key.
 
   <vwc-layout gutters="small">
     <vwc-text>
-      Side Drawer
+      Side Drawer content
     </vwc-text>
   </vwc-layout>
 
   <vwc-layout gutters="small" slot="app-content">
     <vwc-text>
-        Application Content
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </vwc-text>
  </vwc-layout>
+
 </vwc-side-drawer>
 ```
 
 ### Modal
 
 Use the `modal` attribute to set the side drawer's type to modal.
-Click on the `scrim` or the `ESC` key to close the modal side-drawer.
+Click on the `scrim` or press the `ESC` key (while drawer is focused) to close the modal side-drawer.
 
-- Type: `Boolean`
+- Type: `boolean`
 - Default: `false`
 
 ```html preview full
-<style>
-  html { 
-    block-size: 200px; 
-  }
-</style>
-<vwc-side-drawer id="sideDrawer" open modal>
- <div>
-  <vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
-        <p><vwc-text font-face="body-2-bold">SECTION TITLE</vwc-text></p>
-        <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
-        <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
- </div>
- <vwc-layout slot="app-content" column-basis="block" gutters="medium">
-    <vwc-text font-face="body-1">
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-    </p>
-    </vwc-text>
+<vwc-side-drawer modal open>
 
-    <vwc-text font-face="body-1">
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-    </p>
+  <vwc-layout gutters="small">
+    <vwc-text>
+      Side Drawer content
+    </vwc-text>
+  </vwc-layout>
+
+  <vwc-layout gutters="small" slot="app-content">
+    <vwc-text>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </vwc-text>
  </vwc-layout>
+
 </vwc-side-drawer>
 ```
 
@@ -74,35 +64,24 @@ Click on the `scrim` or the `ESC` key to close the modal side-drawer.
 
 Use the `alternate` attribute to apply scheme alternate region.
 
-- Type: `Boolean`
+- Type: `boolean`
 - Default: `false`
 
 ```html preview full
-<style>
-  html { 
-    block-size: 200px; 
-  }
-</style>
-<vwc-side-drawer id="sideDrawer" open alternate>
- <div>
-  <vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
-        <p><vwc-text font-face="body-2-bold">SECTION TITLE</vwc-text></p>
-        <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
-        <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
- </div>
-  <vwc-layout slot="app-content" column-basis="block" gutters="medium">
-    <vwc-text font-face="body-1">
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-    </p>
-    </vwc-text>
+<vwc-side-drawer alternate open>
 
-    <vwc-text font-face="body-1">
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-    </p>
+  <vwc-layout gutters="small">
+    <vwc-text>
+      Side Drawer content
+    </vwc-text>
+  </vwc-layout>
+
+  <vwc-layout gutters="small" slot="app-content">
+    <vwc-text>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </vwc-text>
  </vwc-layout>
+
 </vwc-side-drawer>
 ```
 
@@ -114,18 +93,26 @@ Use the `position` attribute to set the side of the side drawer.
 - Default: `'start'`
 
 ```html preview full
-<vwc-side-drawer open position="end">
-  <vwc-layout slot="app-content" gutters="small">
+<vwc-side-drawer position="end" open>
+
+  <vwc-layout gutters="small">
     <vwc-text>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-      </p>
+      Side Drawer content
+    </vwc-text>
+  </vwc-layout>
+
+  <vwc-layout gutters="small" slot="app-content">
+    <vwc-text>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </vwc-text>
  </vwc-layout>
+
 </vwc-side-drawer>
 ```
 
 ## Slots
+
+### Default
 
 ### App Content
 
