@@ -7,7 +7,7 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { Accordion } from './accordion';
 
-const getClasses = (_: Accordion) => classNames('control');
+const getClasses = (_: Accordion) => classNames('base');
 
 /**
  *
