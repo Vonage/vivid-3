@@ -11,6 +11,12 @@ const codeBlockButtonClick = (button) => {
   button.ariaExpanded = details.open;
 };
 
+const codeCopyButtonClick = (button) => {
+  const details = button.closest('vwc-action-group').nextElementSibling;
+  const { textContent } = details;
+	navigator.clipboard.writeText(textContent.trim());
+};
+
 const onloadIframe = (iFrame) => {
   const toggle = document.querySelector('dark-mode-toggle');
 
@@ -25,3 +31,19 @@ const setCurrentIframeTheme = (toggle, iFrame) => {
   const theme = toggle.mode === 'dark' ? '<link rel="stylesheet" href="/assets/styles/themes/dark.css" media="all">' : '<link rel="stylesheet" href="/assets/styles/themes/light.css" media="all">';
   iFrame.contentWindow.document.head?.insertAdjacentHTML("beforeend", theme);
 }
+
+// #region header - set elevation on scroll
+const updateHeaderElevationShadow = (isShadowed) => {
+  const sideHeader = document.querySelector('vwc-header#header-main');
+  sideHeader.elevationShadow = isShadowed;
+}
+
+const onWindowScroll = () => {
+  updateHeaderElevationShadow(window.scrollY > 0);
+}
+
+(() => {
+  // hook window scroll
+  window.addEventListener('scroll', onWindowScroll);
+})();
+// #endregion
