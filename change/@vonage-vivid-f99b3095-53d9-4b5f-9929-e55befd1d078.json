@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "Change template to nav and add axe test",
+  "packageName": "@vonage/vivid",
+  "email": "yonatan.kra@vonage.com",
+  "dependentChangeType": "patch"
+}
