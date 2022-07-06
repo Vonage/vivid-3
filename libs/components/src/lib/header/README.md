@@ -20,7 +20,7 @@ Set `elevationShadow` on header to apply the elevation shadow corresponding with
 
 ```html preview full
 <vwc-header elevation-shadow>
-  Header with elevation shadow
+  Header content
 </vwc-header>
 ```
 
@@ -33,7 +33,7 @@ Use `alternate` to apply an alternate color-scheme, which is in contrast with th
 
 ```html preview full
 <vwc-header alternate>
-  Header with alternate color scheme
+  Header content
 </vwc-header>
 ```
 
@@ -45,7 +45,7 @@ The default slot sets assigned nodes to the start of the header.
 
 ```html preview full
 <vwc-header>
-   Default Slot
+   Header content
 </vwc-header>
 ```
 
@@ -67,13 +67,11 @@ An optional approach to using header in application is to assign application con
 
 ```html preview full
 <vwc-header>
-  Header & App Content
+  Header content
   <main slot="app-content">
     <vwc-layout gutters="small">
       <vwc-text>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+        Application content
       </vwc-text>
     </vwc-layout>
   </main>
@@ -106,7 +104,7 @@ This property isn't customizable by authors but does pierce in and can be set to
 </style>
 
 <vwc-header>
-  Fixed Header with Side Drawer
+  Header content
 
   <main slot="app-content">
     <vwc-layout column-basis="block" gutters="medium">
@@ -134,7 +132,7 @@ The component's internal *header* element.
 </style>
 
 <vwc-header>
-  Customized header element style
+  Header content
 </vwc-header>
 ```
 
@@ -270,7 +268,7 @@ The Banner in this example is set to stick in to top of the window.
     position: sticky;
     top: 0;
   }
-</>
+</style>
 
 <vwc-header>
   Header with Banner
