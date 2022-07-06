@@ -173,6 +173,19 @@ Use the footer `slot` in order to add action buttons to the bottom of the dialog
 Dialog is battery charged with an opinionated template.
 Assign nodes to the main slot to fully override a dialog’s predefined flow and style with your own.
 
+```html preview
+<style>
+.demo-main {
+    padding: 8px;
+}
+</style>
+<vwc-dialog open>
+    <div slot="main" class="demo-main">
+       <vwc-text font-face="body-1-bold">Use main slot for your own layout and content</vwc-text>
+    </div>
+</vwc-dialog>
+```
+
 ## CSS Custom Properties
 ### Set dialog custom width
 

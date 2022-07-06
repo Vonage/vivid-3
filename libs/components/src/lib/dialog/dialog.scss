@@ -5,7 +5,7 @@
 
 .base {
 	box-sizing: border-box;
-	padding: 24px;
+	padding: 0;
 	border: none;
 	border-radius: 6px;
 	color: var(#{theme-consts.$vvd-color-on-canvas});
@@ -17,6 +17,10 @@
 	@media only screen and (min-width: 769px) {
 		#{variables.$dialog-inline-size}:50vw;
 	}
+}
+
+.main-wrapper {
+	padding: 24px;
 }
 
 .header {
@@ -48,4 +52,3 @@
 
 	margin-top: 8px;
 }
-

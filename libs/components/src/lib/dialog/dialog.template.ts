@@ -15,9 +15,7 @@ const getClasses = (_: Dialog) => classNames(
  */
 function icon() {
 	return html<Dialog>`
-	  <slot name="graphics">
-			<vwc-icon class="icon" size="large" type="${x => x.icon}"></vwc-icon>
-	  </slot>
+		<vwc-icon class="icon" size="large" type="${x => x.icon}"></vwc-icon>
 	`;
 }
 
@@ -87,17 +85,19 @@ export const DialogTemplate: (
 				aria-describedby="${x => x.ariaDescribedBy}"
 		>
 			<slot name="main">
+				<div class="main-wrapper">
 					<div class="header">
 						<div class="headline-wrapper">
-								<slot name="graphics">
-									${when(x => x.icon, icon())}
-								</slot>
+							<slot name="graphics">
+								${when(x => x.icon, icon())}
+							</slot>
 							${when(x => x.headline, headline())}
 						</div>
 			  		${renderDismissButton()}
 					</div>
-				${when(x => x.content, content())}
-				<slot name="footer"></slot>
+					${when(x => x.content, content())}
+					<slot name="footer"></slot>
+				</div>
 			</slot>
 		</dialog>
 	</vwc-elevation>`;
