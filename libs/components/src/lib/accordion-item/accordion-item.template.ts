@@ -26,8 +26,8 @@ const getButtonClasses = ({
 	appearance, connotation
 }: AccordionItem) => classNames(
 	'button',
-  [`connotation-${connotation}`, Boolean(connotation)],
-  [`appearance-${appearance}`, Boolean(appearance)],
+	[`connotation-${connotation}`, Boolean(connotation)],
+	[`appearance-${appearance}`, Boolean(appearance)],
 );
 
 export const AccordionItemTemplate: (

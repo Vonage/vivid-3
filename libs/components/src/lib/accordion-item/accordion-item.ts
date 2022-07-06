@@ -34,13 +34,13 @@ export class AccordionItem extends FoundationElement {
 	 */
 	@attr appearance?: AccordionItemAppearance;
 
-  /**
+	/**
    * The connotation the accordion-item should have.
    *
    * @public
    * HTML Attribute: connotation
    */
-  @attr connotation?: AccordionItemConnotation;
+	@attr connotation?: AccordionItemConnotation;
 
 	/**
 	 *
