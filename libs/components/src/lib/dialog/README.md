@@ -178,6 +178,9 @@ Assign nodes to the main slot to fully override a dialog’s predefined flow and
 .demo-main {
     padding: 8px;
 }
+vwc-text {
+    text-align: center;
+}
 </style>
 <vwc-dialog open>
     <div slot="main" class="demo-main">
