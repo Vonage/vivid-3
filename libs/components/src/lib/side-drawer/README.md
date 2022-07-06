@@ -117,7 +117,7 @@ Use the `position` attribute to set the side of the drawer.
 The default slot sets assigned nodes to the side drawer itself.
 
 ```html preview full
-<vwc-side-drawer position="end" open>
+<vwc-side-drawer open>
 
   <vwc-layout gutters="small">
     <vwc-text>
@@ -133,7 +133,7 @@ The default slot sets assigned nodes to the side drawer itself.
 The `app-content` slot sets assigned nodes to the main application content, the side drawer is opened next to.
 
 ```html preview full
-<vwc-side-drawer position="end" open>
+<vwc-side-drawer open>
 
   <vwc-layout gutters="small" slot="app-content">
     <vwc-text>
@@ -170,7 +170,6 @@ Additionally, as aside element (which represents the actual side-drawer), is sty
 
 <vwc-side-drawer id="sidedrawer">
 
-  <vwc-fab icon='menu-solid' slot="app-content" onclick="sidedrawer.open = !sidedrawer.open"></vwc-fab>
   <vwc-layout slot="app-content" gutters="medium">
     <vwc-text>
       Toggle the side drawer by clicking the FAB.
@@ -178,6 +177,8 @@ Additionally, as aside element (which represents the actual side-drawer), is sty
       Notice that the side drawer overlaps the application content.
     </vwc-text>
  </vwc-layout>
+
+<vwc-fab icon='menu-solid' slot="app-content" onclick="sidedrawer.open = !sidedrawer.open"></vwc-fab>
 
 </vwc-side-drawer>
 ```
@@ -196,8 +197,12 @@ Select `base` part to access the component's internal *aside* element.
 </style>
 
 <vwc-side-drawer open>
-  <vwc-text>
-    Customised base part
-  </vwc-text>
+
+  <vwc-layout gutters="small">
+    <vwc-text>
+      Side Drawer content
+    </vwc-text>
+  </vwc-layout>
+
 </vwc-side-drawer>
 ```
