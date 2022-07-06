@@ -23,7 +23,7 @@ export const BreadcrumbItemTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<BreadcrumbItem> =
   (context: ElementDefinitionContext, definition: FoundationElementDefinition) => html`
-      <div part="listitem" class="${getClasses}">
+      <div role="listitem" class="${getClasses}">
         ${when(x => x.text && !x.href,
 		html<BreadcrumbItem>`${x => x.text}`)}
 

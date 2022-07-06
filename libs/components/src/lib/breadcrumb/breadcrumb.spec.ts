@@ -4,6 +4,7 @@ import type {BreadcrumbItem} from '../breadcrumb-item/breadcrumb-item';
 import { Breadcrumb } from './breadcrumb';
 import '../breadcrumb-item';
 import '.';
+
 expect.extend(toHaveNoViolations);
 const COMPONENT_TAG = 'vwc-breadcrumb';
 
@@ -78,13 +79,11 @@ describe('vwc-breadcrumb', () => {
 
 	describe('a11y', () => {
 		it('should pass accessibility test', async () => {
-			const { shadowRoot } = element;
-			if (!shadowRoot) { return; }
+			const children = Array.from(element.children)
+				.map(({ shadowRoot }) => shadowRoot?.innerHTML).join('');
 
-			const children = Array.from(element.children).map((child) => child?.shadowRoot?.innerHTML).join('');
-			const fullShadowExposure =  shadowRoot.innerHTML.replace('<slot></slot>', children);
-
-			const results = await axe(fullShadowExposure, {
+			const exposedHtmlString =  element.shadowRoot?.innerHTML.replace('<slot></slot>', children) as string;
+			const results = await axe(exposedHtmlString, {
 				rules: {
 					// components should not be tested as page content
 					'region': { enabled: false }

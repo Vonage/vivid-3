@@ -11,12 +11,14 @@ import type {Breadcrumb} from './breadcrumb';
  * @public
  */
 export const breadcrumbTemplate: FoundationElementTemplate<ViewTemplate<Breadcrumb>> = () => html`
-	<nav aria-label="breadcrumbs" class="base list" part="list">
-		<slot
-				${slotted({
+	<nav aria-label="breadcrumbs" class="base">
+    <div role="list" class="list">
+      <slot
+        ${slotted({
 		property: 'slottedBreadcrumbItems',
 		filter: elements()
 	})}
-		></slot>
+      ></slot>
+    </div>
 	</nav>
 `;
