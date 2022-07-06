@@ -9,7 +9,6 @@ $inline-size: 280px;
 
 .control {
 	position: fixed;
-	z-index: 1;
 	background-color: var(#{theme-consts.$vvd-color-canvas});
 
 	// block-size: 100vh;
@@ -17,6 +16,10 @@ $inline-size: 280px;
 	inline-size: $inline-size;
 	inset-block: 0;
 	overflow-y: auto;
+
+	&.modal {
+		z-index: 1;
+	}
 
 	&.alternate {
 		background-color: var(#{theme-consts.$vvd-color-canvas});
