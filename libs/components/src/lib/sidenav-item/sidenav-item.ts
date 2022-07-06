@@ -11,5 +11,6 @@ import { TextAnchor } from '../text-anchor/text-anchor';
  */
 export class SidenavItem extends TextAnchor {}
 
+
 export interface SidenavItem extends AffixIcon {}
 applyMixins(SidenavItem, AffixIcon);

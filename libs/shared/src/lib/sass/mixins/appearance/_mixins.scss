@@ -15,7 +15,7 @@ $disabled: ':disabled, .disabled';
 $readonly: ':readonly, .readonly';
 $checked: ':checked, .checked';
 $indeterminate: ':indeterminate, .indeterminate';
-$selected: '.selected';
+$selected: '.selected, [aria-current]';
 $active: ':active, .active';
 $error: '.error';
 

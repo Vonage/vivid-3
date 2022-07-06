@@ -7,6 +7,7 @@ import type {
 import { textAnchorTemplate } from '../text-anchor/text-anchor.template';
 import type { SidenavItem } from './sidenav-item';
 
+
 /**
  * The template for the {@link @microsoft/fast-foundation#SidenavItem} component.
  *

@@ -1,18 +1,34 @@
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+   $connotations: accent,
+   $shades: primary faint soft,
+   $default: accent,
+);
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+	$appearances: ghost,
+	$states: idle hover active selected,
+	$default: ghost,
+);
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+
+
 .control {
 	$min-block-size: 40px;
 	$gap: 8px;
+
 	@include typography.typography-cat-shorthand('body-2');
+	@include appearance.appearance;
+  @include connotation.connotation;
 
 	position: relative;
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
-	background-color: transparent;
 	border-radius: 6px;
-	color: var(#{theme-consts.$vvd-color-on-canvas});
 	gap: $gap;
 	hyphens: auto;
 	inline-size: 100%;
@@ -22,6 +38,9 @@
 	text-decoration: none;
 	vertical-align: middle;
 	word-break: break-word;
+	background-color: var(#{appearance.get-appearance-token(fill)});
+	color: var(#{appearance.get-appearance-token(text)});
+	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 
 	@supports selector(:focus-visible) {
 		&:focus {
@@ -36,10 +55,6 @@
 		place-content: center;
 	}
 
-}
-
-.control:focus {
-	background-color: var(#{theme-consts.$vvd-color-neutral-20});
 }
 
 .focus-indicator {

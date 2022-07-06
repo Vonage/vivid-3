@@ -4,15 +4,15 @@ This element's attributes include the [anchor element](https://developer.mozilla
 
 ```js
 <script type="module">
-    import '@vonage/vivid/sidenav-item';
+  import '@vonage/vivid/sidenav-item';
 </script>
 ```
 
-## Properties
+## Members
 
 ### Text
 
-- Type: `String`
+- Type: `string`
 - Default: `''`
 
 Add a `text` attribute to add text to the sidenav item.
@@ -20,6 +20,19 @@ Add a `text` attribute to add text to the sidenav item.
 ```html preview
 <vwc-sidenav-item href="#" text="Profile"></vwc-sidenav-item>
 <vwc-sidenav-item href="#" text="GitHub"></vwc-sidenav-item>
+<vwc-sidenav-item href="#" text="lorem ipsum"></vwc-sidenav-item>
+```
+
+### Aria Current
+
+- Type: `boolean`
+- Default: `false`
+
+Set `ariaCurrent` to *page* within a set of pagination links, to indicate the currently active link.
+
+```html preview
+<vwc-sidenav-item href="#" text="Profile"></vwc-sidenav-item>
+<vwc-sidenav-item href="#" text="GitHub" aria-current="page"></vwc-sidenav-item>
 <vwc-sidenav-item href="#" text="lorem ipsum"></vwc-sidenav-item>
 ```
 
