@@ -1,6 +1,6 @@
 {
   "type": "none",
-  "comment": "add appearance",
+  "comment": "add appearance to sidenav-item and accordion-item",
   "packageName": "@vonage/vivid",
   "email": "rina.oksman@vonage.com",
   "dependentChangeType": "none"
