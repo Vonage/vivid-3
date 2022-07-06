@@ -26,7 +26,7 @@ Set `elevationShadow` on header to apply the elevation shadow corresponding with
 
 ### Alternate
 
-Use `alternate` to apply an alternate color-scheme, which is in contrast with the current global theme.
+Use `alternate` to apply an alternate color-scheme, which is in contrast with the current global theme and applies on all assigned vivid components.
 
 - Type: `boolean`
 - Default: `false`

@@ -62,7 +62,7 @@ Click on the `scrim` or press the `ESC` key (while drawer is focused) to close t
 
 ### Alternate
 
-Use the `alternate` attribute to apply scheme alternate region.
+Use `alternate` to apply an alternate color-scheme, which is in contrast with the current global theme and applies on all assigned vivid components.
 
 - Type: `boolean`
 - Default: `false`
@@ -87,7 +87,7 @@ Use the `alternate` attribute to apply scheme alternate region.
 
 ### Position
 
-Use the `position` attribute to set the side of the side drawer.
+Use the `position` attribute to set the side of the drawer.
 
 - Type: `'start'` | `'end'`
 - Default: `'start'`
@@ -114,36 +114,33 @@ Use the `position` attribute to set the side of the side drawer.
 
 ### Default
 
-### App Content
-
-To add content aside the side-drawer, add a slot called `app-content`.
+The default slot sets assigned nodes to the side drawer itself.
 
 ```html preview full
-<style>
-  html { 
-      block-size: 200px; 
-  }
-</style>
-<vwc-side-drawer id="sideDrawer" open>
- <div>
-  <vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
-        <p><vwc-text font-face="body-2-bold">SECTION TITLE</vwc-text></p>
-        <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
-        <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
- </div>
-  <vwc-layout slot="app-content" column-basis="block" gutters="medium">
-    <vwc-text font-face="body-1">
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-    </p>
-    </vwc-text>
+<vwc-side-drawer position="end" open>
 
-    <vwc-text font-face="body-1">
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-    </p>
+  <vwc-layout gutters="small">
+    <vwc-text>
+      Side Drawer content
+    </vwc-text>
+  </vwc-layout>
+
+</vwc-side-drawer>
+```
+
+### App Content
+
+The `app-content` slot sets assigned nodes to the main application content, the side drawer is opened next to.
+
+```html preview full
+<vwc-side-drawer position="end" open>
+
+  <vwc-layout gutters="small" slot="app-content">
+    <vwc-text>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </vwc-text>
  </vwc-layout>
+
 </vwc-side-drawer>
 ```
 
@@ -172,14 +169,16 @@ Additionally, as aside element (which represents the actual side-drawer), is sty
 </style>
 
 <vwc-side-drawer id="sidedrawer">
+
   <vwc-fab icon='menu-solid' slot="app-content" onclick="sidedrawer.open = !sidedrawer.open"></vwc-fab>
-  <vwc-layout slot="app-content" column-basis="block" gutters="medium">
+  <vwc-layout slot="app-content" gutters="medium">
     <vwc-text>
       Toggle the side drawer by clicking the FAB.
       <br>
       Notice that the side drawer overlaps the application content.
     </vwc-text>
  </vwc-layout>
+
 </vwc-side-drawer>
 ```
 
