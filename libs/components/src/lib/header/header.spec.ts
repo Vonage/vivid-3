@@ -27,7 +27,7 @@ describe('vwc-header', () => {
 		it('should default elevation to no-shadow', async () => {
 			const elevation = element.shadowRoot?.querySelector(ELEVATION_SELECTOR) as Elevation;
 
-			expect(elevation.noShadow).toBeTruthy();
+			expect(elevation.noShadow).toEqual(true);
 		});
 
 		it('should set elevation with shadow ', async () => {
