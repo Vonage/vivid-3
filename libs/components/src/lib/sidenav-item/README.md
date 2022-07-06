@@ -28,7 +28,7 @@ Add a `text` attribute to add text to the sidenav item.
 - Type: `boolean`
 - Default: `false`
 
-Set `ariaCurrent` to *page* within a set of pagination links, to indicate the currently active link.
+Within a set of pagination links, set a sidenav item `ariaCurrent` value to *page* to indicate the currently active link.
 
 ```html preview
 <vwc-sidenav-item href="#" text="Profile"></vwc-sidenav-item>
