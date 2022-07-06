@@ -45,7 +45,6 @@ The default slot sets assigned nodes to the start of the header.
 
 ```html preview full
 <vwc-header>
-  <vwc-button icon="menu-line"></vwc-button>
    Default Slot
 </vwc-header>
 ```
@@ -141,9 +140,9 @@ The component's internal *header* element.
 
 ## Usage Examples
 
-### Fixed Header With Side-Drawer
+### Fixed Header with Side Drawer
 
-A *fixed* Header with the *default*, `actionItems` and `app-content` slots.
+A *fixed* Header as primary element containing a Side Drawer containing application content.
 
 ```html preview full
 <style>
@@ -169,13 +168,20 @@ A *fixed* Header with the *default*, `actionItems` and `app-content` slots.
 </style>
 
 <vwc-header>
-  Fixed Header with Side Drawer
+  Header content
 
-  <!-- drawer assigned to header 'app-content' -->
-  <vwc-side-drawer id="sideDrawer" open slot="app-content">
-    <!-- main assigned to side-drawer 'app-content' -->
+  <!-- side drawer custom element assigned to header's 'app-content' slot -->
+  <vwc-side-drawer open slot="app-content">
+
+    <vwc-layout gutters="small">
+      <vwc-text>
+        Side Drawer content
+      </vwc-text>
+    </vwc-layout>
+
+    <!-- main element assigned to side-drawer's 'app-content' slot -->
     <main slot="app-content">
-      <vwc-layout column-basis="block" gutters="medium">
+      <vwc-layout gutters="small" column-basis="block">
         <vwc-text tight font-face="headline-2">
           <h2>
             Scroll this window
@@ -199,6 +205,56 @@ A *fixed* Header with the *default*, `actionItems` and `app-content` slots.
 </vwc-header>
 ```
 
+### Side Drawer with Header
+
+A Side Drawer as primary element containing a Header containing application content.
+
+```html preview full
+<style>
+  vwc-side-drawer::part(base) {
+    border-right: 1px solid var(--vvd-color-neutral-20);
+  }
+</style>
+
+<vwc-side-drawer open>
+
+  <vwc-layout gutters="small">
+    <vwc-text>
+      Side Drawer content
+    </vwc-text>
+  </vwc-layout>
+
+  <!-- header custom element assigned to side drawer's 'app-content' slot -->
+  <vwc-header slot="app-content">
+
+    <vwc-layout gutters="small">
+      <vwc-text>
+        Header content
+      </vwc-text>
+    </vwc-layout>
+
+    <!-- main element assigned to header's 'app-content' slot -->
+    <main slot="app-content">
+      <vwc-layout gutters="small" column-basis="block">
+
+        <vwc-text>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+          </p>
+        </vwc-text>
+
+        <vwc-text>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+          </p>
+        </vwc-text>
+      </vwc-layout>
+    </main>
+  </vwc-header>
+
+</vwc-side-drawer>
+```
+
 ### Header with Banner
 
 Banners are placed at the top of the screen below the Header.
@@ -214,7 +270,7 @@ The Banner in this example is set to stick in to top of the window.
     position: sticky;
     top: 0;
   }
-</style>
+</>
 
 <vwc-header>
   Header with Banner
