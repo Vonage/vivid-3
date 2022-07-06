@@ -3,9 +3,9 @@
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-   $connotations: accent,
-   $shades: primary faint soft,
-   $default: accent,
+	$connotations: accent,
+	$shades: primary faint soft,
+	$default: accent,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
@@ -45,7 +45,7 @@
 .button {
 	@include typography.typography-cat-shorthand('subtitle-2');
 	@include appearance.appearance;
-  @include connotation.connotation;
+	@include connotation.connotation;
 
 	position: relative;
 	display: flex;
