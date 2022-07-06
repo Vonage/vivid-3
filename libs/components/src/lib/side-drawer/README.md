@@ -178,7 +178,7 @@ Additionally, as aside element (which represents the actual side-drawer), is sty
     </vwc-text>
  </vwc-layout>
 
-<vwc-fab icon='menu-solid' slot="app-content" onclick="sidedrawer.open = !sidedrawer.open"></vwc-fab>
+<vwc-fab connotation="accent" icon='menu-solid' slot="app-content" onclick="sidedrawer.open = !sidedrawer.open"></vwc-fab>
 
 </vwc-side-drawer>
 ```
