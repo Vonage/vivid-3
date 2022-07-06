@@ -77,8 +77,7 @@ describe('vwc-breadcrumb-item', () => {
 		 *
 		 */
 		function getAnchorElement() {
-			const anchorElement = element.shadowRoot?.querySelector('a');
-			return anchorElement;
+			return element.shadowRoot?.querySelector('a');
 		}
 
 		/**
@@ -194,17 +193,20 @@ describe('vwc-breadcrumb-item', () => {
 
 	describe('a11y', () => {
 		it('should pass accessibility test', async () => {
-			const { shadowRoot } = element;
-			if (!shadowRoot) { return; }
+			const {shadowRoot} = element;
+			if (!shadowRoot) {
+				return;
+			}
 
 			const results = await axe(shadowRoot.innerHTML, {
 				rules: {
 					// components should not be tested as page content
-					'region': { enabled: false }
+					'region': {enabled: false}
 				}
 			});
 
-			expect(results).toHaveNoViolations();
+			expect(results)
+				.toHaveNoViolations();
 		});
 	});
 });

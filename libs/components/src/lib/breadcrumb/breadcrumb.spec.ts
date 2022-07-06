@@ -81,7 +81,10 @@ describe('vwc-breadcrumb', () => {
 			const { shadowRoot } = element;
 			if (!shadowRoot) { return; }
 
-			const results = await axe(shadowRoot.innerHTML, {
+			const children = Array.from(element.children).map((child) => child?.shadowRoot?.innerHTML).join('');
+			const fullShadowExposure =  shadowRoot.innerHTML.replace('<slot></slot>', children);
+
+			const results = await axe(fullShadowExposure, {
 				rules: {
 					// components should not be tested as page content
 					'region': { enabled: false }
