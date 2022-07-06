@@ -32,7 +32,7 @@ Within a set of pagination links, set a sidenav item `aria-current` value to *pa
 
 ```html preview
 <vwc-sidenav-item href="#" text="Profile"></vwc-sidenav-item>
-<vwc-sidenav-item href="#" text="GitHub" ariaCurrent="page"></vwc-sidenav-item>
+<vwc-sidenav-item href="#" text="GitHub" aria-current="page"></vwc-sidenav-item>
 <vwc-sidenav-item href="#" text="lorem ipsum"></vwc-sidenav-item>
 ```
 
