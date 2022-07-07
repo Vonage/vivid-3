@@ -30,7 +30,7 @@ export const headerTemplate: (
         <!-- a container is needed to distinguish the surface background color of the
         element from its shadow when applying elevation with alternate -->
         <div class="container" part="${getPartAlternate}">
-          <section class="header-content start">
+          <section class="header-content">
             <slot></slot>
           </section>
           <section class="header-content" id="actions" role="toolbar">
