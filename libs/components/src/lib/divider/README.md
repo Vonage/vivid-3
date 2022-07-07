@@ -5,7 +5,7 @@
 ```
 
 ```html preview
-<vwc-divider orientation="horizontal"></vwc-divider>
+<vwc-divider></vwc-divider>
 ```
 ## Members
 ### orientation
@@ -21,7 +21,8 @@
 
 ### role
 The divider should default to having a role of separator, just as a typical horizontal rule would.  
-A role of `presentation` implies that the divider is a visual treatment only so the contrast requirement does not apply in that case.
+A role of `presentation` implies that the divider is a visual treatment only so the contrast requirement does not apply in that case.  
+[for further reading about divider role & accessibility](https://github.com/microsoft/fast/blob/master/packages/web-components/fast-foundation/src/divider/divider.spec.md#accessibility)
 
 - Type: `'presentation'` | `'separator'`
 - Default: `separator`
