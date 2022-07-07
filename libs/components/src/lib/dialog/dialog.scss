@@ -8,6 +8,9 @@
 	padding: 0;
 	border: none;
 	border-radius: 6px;
+	//needed because native dialog override the slotted style
+
+	background-color: var(--_elevation-fill);
 	color: var(#{theme-consts.$vvd-color-on-canvas});
 	inline-size: var(#{variables.$dialog-inline-size});
 
@@ -16,6 +19,10 @@
 	}
 	@media only screen and (min-width: 769px) {
 		#{variables.$dialog-inline-size}:50vw;
+	}
+
+	&:not(.modal) {
+		z-index: var(--dialog-z-index, 1);
 	}
 }
 
