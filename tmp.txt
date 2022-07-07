@@ -3,7 +3,7 @@ fetching latest from remotes "origin/main"
 Validating no private package among package dependencies OK!
 Updating package-lock.json after bumping packages
 
-up to date, audited 1678 packages in 6s
+up to date, audited 1678 packages in 5s
 
 181 packages are looking for funding
   run `npm fund` for details
@@ -18,5 +18,5 @@ To address all issues, run:
 
 Run `npm audit` for details.
 Removing change files:
-- @vonage-vivid-f99b3095-53d9-4b5f-9929-e55befd1d078.json
+- @vonage-vivid-7e3b6f07-bf5f-4d9e-91d6-58eb0aa180c1.json
 Removing change path
