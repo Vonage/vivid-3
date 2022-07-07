@@ -5,10 +5,11 @@ import type { ElementDefinitionContext, FoundationElementDefinition } from '@mic
 import type { Elevation } from './elevation';
 
 const getClasses = ({
-	dp
+	dp, noShadow
 }: Elevation) => classNames(
 	'control',
 	[`dp-${dp}`, Boolean(dp)],
+	['no-shadow', Boolean(noShadow)],
 );
 
 /**
