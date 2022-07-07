@@ -197,7 +197,8 @@
     "markdown": "./libs/components/src/lib/dialog/README.md",
     "modules": [
       "/assets/modules/components/dialog/index.js",
-      "/assets/modules/components/button/index.js"
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/text/index.js"
     ]
   },
   {
