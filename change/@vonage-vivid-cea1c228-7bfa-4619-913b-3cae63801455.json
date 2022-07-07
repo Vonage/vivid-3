@@ -3,5 +3,5 @@
   "comment": "divider component",
   "packageName": "@vonage/vivid",
   "email": "rachel.tannenbaum@vonage.com",
-  "dependentChangeType": "none"
+  "dependentChangeType": "patch"
 }
