@@ -8,19 +8,9 @@ A floating action button (FAB) is a circled icon that floats above the user inte
 </script>
 ```
 
-## Icon
+## Members
 
-Use the `icon` attribute to change the FAB's icon.
-You can choose an icon from the [icons gallery](https://icons.vivid.vonage.com).
-
-- Type: `String`
-- Default: `undefined`
-
-```html preview
-<vwc-fab icon='plus-line'></vwc-fab>
-```
-
-## Label
+### Label
 
 Use the `label` attribute to add text to the FAB.
 
@@ -31,18 +21,31 @@ Use the `label` attribute to add text to the FAB.
 <vwc-fab icon='cart-line' label='Add to cart'></vwc-fab>
 ```
 
-## Icon-Trailing
+### Icon
 
-To add an icon to the right of the text, use the `icon-trailing` attribute (or `iconTrailing` property).
+Use `icon` to set an icon to the FAB.
+View list of available icon at the [vivid icons gallery](https://icons.vivid.vonage.com).
 
-- Type: `Boolean`
-- Default: `false`
+Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the FAB's purpose.
+
+- Type: `string`
+- Default: `undefined`
 
 ```html preview
-<vwc-fab icon='cart-line' label='Add to cart' icon-trailing></vwc-fab>
+<vwc-fab icon='cart-line' aria-label="Shopping Cart"></vwc-fab>
 ```
 
-## Connotation
+### Icon with Label
+
+FAB text can be affixed by a decorative icon, either by its start or end.
+Toggle `icon-trailing` to set the icon's horizontal alignment.
+
+```html preview
+<vwc-fab icon='check-line' label='icon'></vwc-fab>
+<vwc-fab icon='check-line' label='icon-trailing' icon-trailing></vwc-fab>
+```
+
+### Connotation
 
 Set the `connotation` attribute to change the FAB's connotation.
 It accepts a subset of predefined values.
@@ -55,7 +58,7 @@ It accepts a subset of predefined values.
 <vwc-fab icon='plus-line' connotation='cta'></vwc-fab>
 ```
 
-## Disabled
+### Disabled
 
 To disable the FAB, use the `disabled` attribute.
 

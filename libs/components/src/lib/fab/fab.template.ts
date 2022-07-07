@@ -7,11 +7,10 @@ import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { Fab } from './fab';
 
 const getClasses = ({
-	connotation, isIconOnly, iconTrailing, disabled
+	connotation, iconTrailing, disabled
 }: Fab) => classNames(
 	'control',
 	[`connotation-${connotation}`, Boolean(connotation)],
-	['icon-only', isIconOnly],
 	['icon-trailing', iconTrailing],
 	['disabled', disabled],
 );
@@ -58,7 +57,7 @@ export const FabTemplate: (
             aria-hidden="${(x) => x.ariaHidden}"
             aria-invalid="${(x) => x.ariaInvalid}"
             aria-keyshortcuts="${(x) => x.ariaKeyshortcuts}"
-            aria-label="${(x) => x.ariaLabel || x.isIconOnly ? x.icon : null}"
+            aria-label="${(x) => x.ariaLabel}"
             aria-labelledby="${(x) => x.ariaLabelledby}"
             aria-live="${(x) => x.ariaLive}"
             aria-owns="${(x) => x.ariaOwns}"
