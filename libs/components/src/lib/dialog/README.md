@@ -278,7 +278,7 @@ It is consumer's concern to add `aria-label` to the dialog element.
 ```html preview
 <vwc-dialog headline="Open Dialog">
  <form slot="main" method="dialog">
-  <button type="submit">Submit</button>
+  <vwc-button type="submit" label="Submit"></vwc-button>
  </form>
 </vwc-dialog>
 
