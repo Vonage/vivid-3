@@ -53,7 +53,7 @@ Use the `content` attribute to set the dialog's text.
 ```
 
 
-### open
+### Open
 Sets or returns whether a dialog should be open or not
 - Type: `boolean`
 - Default: `false`
