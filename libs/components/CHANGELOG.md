@@ -1,8 +1,63 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 19 Jun 2022 14:36:21 GMT and should not be manually modified.
+This log was last generated on Thu, 07 Jul 2022 09:15:29 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.29
+
+Thu, 07 Jul 2022 09:15:29 GMT
+
+### Changes
+
+- changes to layout components (header & side drawer) to allow more freedom when integrated within unknown app scenarios (yinon@hotmail.com)
+
+## 3.0.0-next.28
+
+Wed, 06 Jul 2022 14:29:33 GMT
+
+### Changes
+
+- Change template to nav and add axe test (yonatan.kra@vonage.com)
+
+## 3.0.0-next.27
+
+Fri, 01 Jul 2022 20:53:00 GMT
+
+### Changes
+
+- refactor(components): outline removal condition (yinon@hotmail.com)
+
+## 3.0.0-next.26
+
+Fri, 01 Jul 2022 14:50:40 GMT
+
+### Changes
+
+- start validating only after a blur (yonatan.kra@vonage.com)
+- fab support for default surface  (yinon@hotmail.com)
+
+## 3.0.0-next.25
+
+Sun, 26 Jun 2022 20:34:06 GMT
+
+### Changes
+
+- FAB support for extended size (yinon@hotmail.com)
+- docs(components): action group popup usage example (yinon@hotmail.com)
+
+## 3.0.0-next.24
+
+Sun, 26 Jun 2022 08:53:00 GMT
+
+### Changes
+
+- fixes the size property and inline size css on text field (yinon@hotmail.com)
+- chore(components): fix side drawer scrim z-index calc (yinon@hotmail.com)
+- migrate checkbox to fast foundation (yinon@hotmail.com)
+- chore(components): refactor card to block flow (yinon@hotmail.com)
+- update code block rendering style in docs  (yinon@hotmail.com)
+- action group tight member removes padding (yinon@hotmail.com)
 
 ## 3.0.0-next.21
 

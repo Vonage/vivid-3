@@ -7,10 +7,12 @@ import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { Fab } from './fab';
 
 const getClasses = ({
-	connotation, iconTrailing, disabled
+	connotation, density, icon, label, iconTrailing, disabled
 }: Fab) => classNames(
 	'control',
 	[`connotation-${connotation}`, Boolean(connotation)],
+	[`density-${density}`, Boolean(density)],
+	['icon-only', !label && !!icon],
 	['icon-trailing', iconTrailing],
 	['disabled', disabled],
 );

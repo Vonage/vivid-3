@@ -58,6 +58,18 @@ It accepts a subset of predefined values.
 <vwc-fab icon='plus-line' connotation='cta'></vwc-fab>
 ```
 
+### Density
+
+Use the `density` attribute to set the FAB's to one of the predefined block size extent.
+
+- Type: `'normal'` | `'extended'`
+- Default: `'normal'`
+
+```html preview
+<vwc-fab icon="thumbs-up-line" label='normal' density='normal'></vwc-fab>
+<vwc-fab icon="thumbs-up-line" label='extended' density='extended'></vwc-fab>
+```
+
 ### Disabled
 
 To disable the FAB, use the `disabled` attribute.
@@ -66,5 +78,5 @@ To disable the FAB, use the `disabled` attribute.
 - Default: `false`
 
 ```html preview
-    <vwc-fab icon='store-line' disabled></vwc-fab>
+<vwc-fab icon='store-line' disabled></vwc-fab>
 ```

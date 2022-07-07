@@ -107,10 +107,15 @@ $low-ink-color: --_low-ink-color;
 	border-radius: inherit;
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: inherit;
-	outline: 0 none;
 	padding-inline-end: 16px;
 	padding-inline-start: 16px;
 	transition: box-shadow .2s, background-color .2s;
+
+	@supports selector(:focus-visible) {
+		&:focus {
+			outline: none;
+		}
+	}
 
 	&::placeholder {
 		color: var(#{$low-ink-color});

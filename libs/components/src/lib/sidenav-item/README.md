@@ -1,16 +1,18 @@
-# sidenav-item
+# Side Navigation Item
 
 This element's attributes include the [anchor element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) attributes.
 
 ```js
-<script type="module">import '@vonage/vivid/sidenav-item';</script>
+<script type="module">
+  import '@vonage/vivid/sidenav-item';
+</script>
 ```
 
 ## Members
 
 ### Text
 
-- Type: `String`
+- Type: `string`
 - Default: `''`
 
 Add a `text` attribute to add text to the sidenav item.
@@ -41,12 +43,15 @@ Sidenav item text can be prefixed by a decorative icon.
 <vwc-sidenav-item href="#" icon="profile" text="Account"></vwc-sidenav-item>
 ```
 
-### Icon Only
+### Aria-Current
 
-If text is not applied...
+- Type: `boolean`
+- Default: `false`
+
+Within a set of pagination links, set a sidenav item `aria-current` value to *page* to indicate the currently active link.
 
 ```html preview
-<vwc-sidenav-item href="#" icon="profile"></vwc-sidenav-item>
-<vwc-sidenav-item href="#" icon="github-mono"></vwc-sidenav-item>
-<vwc-sidenav-item href="#" icon="delete-line"></vwc-sidenav-item>
+<vwc-sidenav-item href="#" text="Profile"></vwc-sidenav-item>
+<vwc-sidenav-item href="#" text="GitHub" aria-current="page"></vwc-sidenav-item>
+<vwc-sidenav-item href="#" text="lorem ipsum"></vwc-sidenav-item>
 ```
