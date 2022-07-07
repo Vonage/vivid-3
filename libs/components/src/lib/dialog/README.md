@@ -263,9 +263,11 @@ It is consumer's concern to add `aria-label` to the dialog element.
 `aria-labelledby` and `aria-describedby` can also be used.
 
 ```html
-<vwc-dialog aria-label="An opened dialog" 
-            headline="Open Dialog" 
-            open>
+<vwc-dialog
+ aria-label="An opened dialog" 
+ headline="Open Dialog" 
+ open
+>
 </vwc-dialog>
 ```
 
@@ -275,18 +277,18 @@ It is consumer's concern to add `aria-label` to the dialog element.
 
 ```html preview
 <vwc-dialog headline="Open Dialog">
-    <form slot="main" method="dialog">
-                <button type="submit">Close</button>
-            </form>
+ <form slot="main" method="dialog">
+  <button type="submit">Submit</button>
+ </form>
 </vwc-dialog>
-<vwc-button label="Open Modal Dialog"
-            onclick="openDialog()">
-            
-            </vwc-button>
+
+<vwc-button label="Open Modal Dialog" onclick="openDialog()">
+</vwc-button>
+
 <script>
-    function openDialog() {
-        const dialog = document.querySelector('vwc-dialog');
-        dialog.showModal();
-    }
+ function openDialog() {
+  const dialog = document.querySelector('vwc-dialog');
+  dialog.showModal();
+ }
 </script>
 ```
