@@ -106,7 +106,7 @@ Shows the dialog.
 </script>
 ```
 
-### showModal
+### Show Modal
 Shows the dialog and makes it the top-most modal dialog.
 ```html preview
 <vwc-dialog headline="Open Dialog">
