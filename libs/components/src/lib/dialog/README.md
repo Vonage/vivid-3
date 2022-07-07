@@ -150,14 +150,17 @@ Use the `graphics` slot in order to replace the icon.
 Use the footer `slot` in order to add action buttons to the bottom of the dialog.
 ```html preview
 <style>
-.demo-footer {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 16px;
-}
-.demo-footer  vwc-button {
-    margin-left: 8px;
-}
+    html { 
+        block-size: 200px; 
+    }
+    .demo-footer {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 16px;
+    }
+    .demo-footer  vwc-button {
+        margin-left: 8px;
+    }
 </style>
 <vwc-dialog open 
     headline="Dialog with footer"
