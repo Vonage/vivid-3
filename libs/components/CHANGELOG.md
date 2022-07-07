@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Fri, 01 Jul 2022 20:53:00 GMT and should not be manually modified.
+This log was last generated on Wed, 06 Jul 2022 14:29:33 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.28
+
+Wed, 06 Jul 2022 14:29:33 GMT
+
+### Changes
+
+- Change template to nav and add axe test (yonatan.kra@vonage.com)
 
 ## 3.0.0-next.27
 
