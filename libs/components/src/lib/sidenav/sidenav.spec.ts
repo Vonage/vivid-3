@@ -1,7 +1,7 @@
 import { fixture } from '@vivid-nx/shared';
+import { axe, toHaveNoViolations } from 'jest-axe';
 import { Sidenav } from './sidenav';
 import '.';
-import { axe, toHaveNoViolations } from 'jest-axe';
 
 expect.extend(toHaveNoViolations);
 const COMPONENT_TAG = 'vwc-sidenav';
