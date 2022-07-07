@@ -2,14 +2,12 @@
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
-
 .base {
 	box-sizing: border-box;
 	padding: 0;
 	border: none;
+	background-color: var(#{variables.$dialog-elevation-fill});
 	border-radius: 6px;
-
-	background-color: var(--_elevation-fill);
 	color: var(#{theme-consts.$vvd-color-on-canvas});
 	inline-size: var(#{variables.$dialog-inline-size});
 
