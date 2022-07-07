@@ -26,7 +26,11 @@ $gutter: 4px;
 	display: inline-flex;
 	align-items: center;
 	gap: 12px;
-	outline: 0 none;
+	@supports selector(:focus-visible) {
+		&:focus {
+			outline: none;
+		}
+	}
 
 	@supports (user-select: none) {
 		user-select: none;

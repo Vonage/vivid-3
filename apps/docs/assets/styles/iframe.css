@@ -14,7 +14,7 @@ body {
 }
 
 body::before {
-  position: absolute;
+  position: fixed;
   inset: 0;
   content: '';
   background-color: var(--vvd-color-canvas);

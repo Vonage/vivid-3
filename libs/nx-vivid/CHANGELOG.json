@@ -2,6 +2,21 @@
   "name": "@vonage/nx-vivid",
   "entries": [
     {
+      "date": "Mon, 27 Jun 2022 11:14:29 GMT",
+      "tag": "@vonage/nx-vivid_v0.0.1",
+      "version": "0.0.1",
+      "comments": {
+        "none": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/nx-vivid",
+            "commit": "971ff78f2e5da21d5f875dc3358de4410bc7456c",
+            "comment": "Add \"no conosle\" rule"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 19 Jun 2022 14:36:22 GMT",
       "tag": "@vonage/nx-vivid_v0.0.1",
       "version": "0.0.1",
