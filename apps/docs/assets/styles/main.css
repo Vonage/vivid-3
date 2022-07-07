@@ -116,19 +116,19 @@ nav.navigation [role="heading"][aria-level="2"] {
   margin: 0 0.25rem;
 }
 
-article > h1,
-article > h2,
-article > h3,
-article > h4,
-article > h5,
-article > h6,
-article > p,
-article > ul,
-article > table {
+article h1,
+article h2,
+article h3,
+article h4,
+article h5,
+article h6,
+article p,
+article ul,
+article table {
   max-inline-size: 64ch;
 }
-article > pre,
-article > .cbd-container {
+article pre,
+article .cbd-container {
   margin-block: 12px;
   box-sizing: border-box;
   max-inline-size: 1200px;
