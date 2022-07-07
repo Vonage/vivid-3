@@ -90,7 +90,8 @@ Sets or returns the dialog's return value when closing
 
 
 ## Methods
-### show
+
+### Show
 Shows the dialog.
 ```html preview
 <vwc-dialog headline="Open Dialog">
