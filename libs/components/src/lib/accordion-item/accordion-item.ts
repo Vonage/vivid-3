@@ -2,22 +2,6 @@ import { FoundationElement } from '@microsoft/fast-foundation';
 import { applyMixins } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
-import type {
-	Appearance, Connotation
-} from '../enums.js';
-/**
- * Types of button appearance.
- *
- * @public
- */
-export type AccordionItemAppearance = Extract<Appearance,| Appearance.Ghost>;
-
-/**
- * Types of button connotation.
- *
- * @public
- */
-type AccordionItemConnotation = Extract<Connotation,| Connotation.Accent>;
 
 /**
  * Base class for accordion-item
@@ -25,23 +9,6 @@ type AccordionItemConnotation = Extract<Connotation,| Connotation.Accent>;
  * @public
  */
 export class AccordionItem extends FoundationElement {
-
-	/**
-	 * The appearance the accordion-item should have.
-	 *
-	 * @public
-	 * HTML Attribute: appearance
-	 */
-	@attr appearance?: AccordionItemAppearance;
-
-	/**
-   * The connotation the accordion-item should have.
-   *
-   * @public
-   * HTML Attribute: connotation
-   */
-	@attr connotation?: AccordionItemConnotation;
-
 	/**
 	 *
 	 *
