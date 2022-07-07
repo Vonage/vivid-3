@@ -11,22 +11,13 @@
 	}
 }
 
-.control {
+.base {
 	display: flex;
 	flex-direction: column;
 
 	&:not(.open) {
-		.toggle-close,
 		.body {
 			display: none;
-		}
-	}
-	&.open{
-		.toggle-open {
-			display: none;
-		}
-		.toggle-close {
-			display: initial;
 		}
 	}
 }
@@ -48,7 +39,11 @@
 	margin: 0;
 	background: transparent;
 	cursor: pointer;
-	outline: 0 none;
+	@supports selector(:focus-visible) {
+		&:focus {
+			outline: none;
+		}
+	}
 
 	&:hover {
 		background: var(#{theme-consts.$vvd-color-neutral-10});

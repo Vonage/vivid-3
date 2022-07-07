@@ -13,6 +13,9 @@ export const vividSidenavItem =
 		baseName: 'sidenav-item',
 		template: template as any,
 		styles,
+		shadowOptions: {
+			delegatesFocus: true,
+		},
 	});
 
 designSystem.register(vividSidenavItem());
