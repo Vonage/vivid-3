@@ -64,7 +64,7 @@ Sets or returns whether a dialog should be open or not
 </vwc-dialog>
 ```
 
-### returnValue
+### Return Value
 Sets or returns the dialog's return value when closing
 - Type: `string` | `undefined`
 - Default: `undefined`
