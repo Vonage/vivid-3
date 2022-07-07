@@ -6,25 +6,16 @@ const COMPONENT_TAG = 'vwc-dialog';
 
 describe('vwc-dialog', () => {
 
-	/**
-	 *
-	 */
 	async function closeDialog() {
 		element.close();
 		await elementUpdated(element);
 	}
 
-	/**
-	 *
-	 */
 	async function showDialog() {
 		element.show();
 		await elementUpdated(element);
 	}
 
-	/**
-	 *
-	 */
 	async function showModalDialog() {
 		element.showModal();
 		await elementUpdated(element);
@@ -126,6 +117,11 @@ describe('vwc-dialog', () => {
 		it('should add open to base element', async function () {
 			await showModalDialog();
 			expect(getBaseElement(element).hasAttribute('open')).toEqual(true);
+		});
+
+		it('should add class "modal" to base element', async function () {
+			await showModalDialog();
+			expect(getBaseElement(element).classList.contains('modal')).toEqual(true);
 		});
 	});
 

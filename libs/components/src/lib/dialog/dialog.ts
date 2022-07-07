@@ -99,10 +99,14 @@ export class Dialog extends FoundationElement {
 		}
 
 		this.open = false;
-		this.#modal = false;
-		this.#dialog.toggleAttribute('aria-modal', false);
+		this.#handleModal(false);
 	}
 
+	#handleModal(show: boolean) {
+		this.#modal = show;
+		this.#dialog.toggleAttribute('aria-modal', show);
+		this.#dialog.classList.toggle('modal', show);
+	}
 	show() {
 		this.#dialog.show();
 		this.open = true;
@@ -111,8 +115,7 @@ export class Dialog extends FoundationElement {
 	showModal() {
 		this.#dialog.showModal();
 		this.open = true;
-		this.#modal = true;
-		this.#dialog.toggleAttribute('aria-modal', true);
+		this.#handleModal(true);
 	}
 
 	override connectedCallback() {

@@ -8,7 +8,6 @@
 	padding: 0;
 	border: none;
 	border-radius: 6px;
-	//needed because native dialog override the slotted style
 
 	background-color: var(--_elevation-fill);
 	color: var(#{theme-consts.$vvd-color-on-canvas});
