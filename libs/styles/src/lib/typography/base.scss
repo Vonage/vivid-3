@@ -2,47 +2,51 @@
 // @use 'sass:list';
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 // @use '~@vonage/vivid-tokens/dist/sass/typography/web' as typography-scale;
+:root.vivid-typography {
+	font-size: 62.5%;
 
-body {
-  @include typography.typography-cat-shorthand(body-1);
-}
+	body {
+		@include typography.typography-cat-shorthand(body-1);
+	}
 
-h1 {
-  @include typography.typography-cat-shorthand(headline-1);
-  margin-block: 2.5rem;
-}
+	h1, .headline-1 {
+		@include typography.typography-cat-shorthand(headline-1);
+		margin-block: 2.5rem; //! can be em as is a threshold of its font-size
+	}
 
-h2 {
-  @include typography.typography-cat-shorthand(headline-2);
-  margin-block: 2.5rem;
-}
+	h2, .headline-2 {
+		@include typography.typography-cat-shorthand(headline-2);
+		margin-block: 2.5rem;
+	}
 
-h3 {
-  @include typography.typography-cat-shorthand(subtitle-1);
-  margin-block: 1.5rem;
-}
+	h3, .subtitle-1 {
+		@include typography.typography-cat-shorthand(subtitle-1);
+		margin-block: 1.5rem;
+	}
 
-h4 {
-  @include typography.typography-cat-shorthand(subtitle-2);
-  margin-block: 1.5rem;
-}
+	h4, .subtitle-2 {
+		@include typography.typography-cat-shorthand(subtitle-2);
+		margin-block: 1.5rem;
+	}
 
-h5 {
-  @include typography.typography-cat-shorthand(title-1);
-  margin-block: 2rem;
-}
+	h5, .title-1 {
+		@include typography.typography-cat-shorthand(title-1);
+		margin-block: 2rem;
+	}
 
-h6 {
-  @include typography.typography-cat-shorthand(title-2);
-  margin-block: 2rem;
-}
+	h6, .title-2 {
+		@include typography.typography-cat-shorthand(title-2);
+		margin-block: 2rem;
+	}
 
-code {
-  @include typography.typography-cat-shorthand(body-1-code);
-}
+	code {
+		@include typography.typography-cat-shorthand(body-1-code);
+	}
 
-p {
-  margin-block: 1rem;
+	p {
+		margin-block: 1rem;
+	}
+
 }
 
 	// Body1 = 'body-1',
@@ -60,12 +64,12 @@ p {
 	// CaptionBold = 'caption-bold',
 	// CaptionCode = 'caption-code',
 	// CaptionLink = 'caption-link',
-	// Headline1 = 'headline-1',
-	// Headline2 = 'headline-2',
-	// Subtitle1 = 'subtitle-1',
-	// Subtitle2 = 'subtitle-2',
-	// Title1 = 'title-1',
-	// Title2 = 'title-2'
+	//// Headline1 = 'headline-1',
+	//// Headline2 = 'headline-2',
+	//// Subtitle1 = 'subtitle-1',
+	//// Subtitle2 = 'subtitle-2',
+	//// Title1 = 'title-1',
+	//// Title2 = 'title-2'
 
 
 // @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
