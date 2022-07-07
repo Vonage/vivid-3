@@ -13,10 +13,10 @@
 <vwc-dialog icon="info" headline="headline" content="Content" open>This is the content!</vwc-dialog>
 ```
 
-
 ## Members
 
-### headline
+### Headline
+
 Use the `headline` attribute to set the dialog's title.
 
 - Type: `string` | `undefined`
@@ -28,7 +28,8 @@ Use the `headline` attribute to set the dialog's title.
 </vwc-dialog>
 ```
 
-### icon
+### Icon
+
 Use the `icon` attribute to set the dialog's icon.
 
 - Type: `string` | `undefined`
@@ -40,7 +41,8 @@ Use the `icon` attribute to set the dialog's icon.
 </vwc-dialog>
 ```
 
-### content
+### Content
+
 Use the `content` attribute to set the dialog's text.
 
 - Type: `string` | `undefined`
@@ -52,9 +54,10 @@ Use the `content` attribute to set the dialog's text.
 </vwc-dialog>
 ```
 
-
 ### Open
+
 Sets or returns whether a dialog should be open or not
+
 - Type: `boolean`
 - Default: `false`
 
@@ -65,7 +68,9 @@ Sets or returns whether a dialog should be open or not
 ```
 
 ### Return Value
+
 Sets or returns the dialog's return value when closing
+
 - Type: `string` | `undefined`
 - Default: `undefined`
 
@@ -88,11 +93,12 @@ Sets or returns the dialog's return value when closing
 </script>
 ```
 
-
 ## Methods
 
 ### Show
+
 Shows the dialog.
+
 ```html preview
 <vwc-dialog headline="Open Dialog">
 </vwc-dialog>
@@ -107,7 +113,9 @@ Shows the dialog.
 ```
 
 ### Show Modal
+
 Shows the dialog and makes it the top-most modal dialog.
+
 ```html preview
 <vwc-dialog headline="Open Dialog">
 </vwc-dialog>
@@ -120,7 +128,9 @@ Shows the dialog and makes it the top-most modal dialog.
     }
 </script>
 ```
-### close
+
+### Close
+
 Closes the dialog.
 
 ```html preview
@@ -138,8 +148,11 @@ Closes the dialog.
 ```
 
 ## Slots
-### graphics
+
+### Graphics
+
 Use the `graphics` slot in order to replace the icon.
+
 ```html preview
 <vwc-dialog open
             headline="Open Dialog">
@@ -147,8 +160,10 @@ Use the `graphics` slot in order to replace the icon.
 </vwc-dialog>
 ```
 
-### footer
+### Footer
+
 Use the footer `slot` in order to add action buttons to the bottom of the dialog.
+
 ```html preview
 <style>
     html { 
@@ -173,7 +188,8 @@ Use the footer `slot` in order to add action buttons to the bottom of the dialog
 </vwc-dialog>
 ```
 
-### main
+### Main
+
 Dialog is battery charged with an opinionated template.
 Assign nodes to the main slot to fully override a dialog’s predefined flow and style with your own.
 
@@ -194,7 +210,8 @@ vwc-text {
 ```
 
 ## CSS Custom Properties
-### dialog-inline-size
+
+### Inline-size
 
 Dialog has a default `width: 50vw` in desktop and `90vw` in mobile.  
 If needed can be set to a different size.
@@ -204,7 +221,7 @@ If needed can be set to a different size.
 - Type: `String`
 - Default: `undefined`
 
-### dialog z-index
+### Z-index
 
 When the dialog is not set as `modal` its initial z-index can be changed if needed.
 
@@ -215,9 +232,11 @@ When the dialog is not set as `modal` its initial z-index can be changed if need
 
 ## Events
 
-### close
+### Close
+
 The `close` event fires when the dialog closes (either via user interaction or via the API).
 It returns the return value inside the event's details property.
+
 ```html preview
 <vwc-dialog open
             headline="Returning Dialog">
@@ -238,11 +257,12 @@ It returns the return value inside the event's details property.
 ```
 
 ## A11y
+
 The dialog's role is `dialog`.  When opened as a modal (via showModal) it adds `aria-modal` to the dialog.
 It is consumer's concern to add `aria-label` to the dialog element.
 `aria-labelledby` and `aria-describedby` can also be used.
 
-```html 
+```html
 <vwc-dialog aria-label="An opened dialog" 
             headline="Open Dialog" 
             open>
@@ -252,6 +272,7 @@ It is consumer's concern to add `aria-label` to the dialog element.
 ## Usage Examples
 
 ### Dialog Form
+
 ```html preview
 <vwc-dialog headline="Open Dialog">
     <form slot="main" method="dialog">
