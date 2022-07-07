@@ -1,5 +1,5 @@
 {% block content %}
-<nav class="navigation">
+<vwc-sidenav>
   <p role="heading" aria-level="2">Design System</p>
   {%  for item in designs | sort(false, false, 'title') %}
   <vwc-sidenav-item href="{{ ('/designs/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-sidenav-item>
@@ -9,5 +9,5 @@
   {%  for item in components | sort(false, false, 'title') %}
   <vwc-sidenav-item href="{{ ('/components/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-sidenav-item>
   {% endfor %}
-</nav>
+</vwc-sidenav>
 {% endblock %}
