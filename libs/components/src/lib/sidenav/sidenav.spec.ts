@@ -1,7 +1,9 @@
 import { fixture } from '@vivid-nx/shared';
 import { Sidenav } from './sidenav';
 import '.';
+import {axe, toHaveNoViolations} from 'jest-axe';
 
+expect.extend(toHaveNoViolations);
 const COMPONENT_TAG = 'vwc-sidenav';
 
 describe('vwc-sidenav', () => {
@@ -16,6 +18,23 @@ describe('vwc-sidenav', () => {
 	describe('basic', () => {
 		it('should be initialized as a vwc-sidenav', async () => {
 			expect(element).toBeInstanceOf(Sidenav);
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass accessibility test', async () => {
+			const children = Array.from(element.children)
+				.map(({ shadowRoot }) => shadowRoot?.innerHTML).join('');
+
+			const exposedHtmlString =  element.shadowRoot?.innerHTML.replace('<slot></slot>', children) as string;
+			const results = await axe(exposedHtmlString, {
+				rules: {
+					// components should not be tested as page content
+					'region': { enabled: false }
+				}
+			});
+
+			expect(results).toHaveNoViolations();
 		});
 	});
 });
