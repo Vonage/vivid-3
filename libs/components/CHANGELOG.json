@@ -2,6 +2,36 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Thu, 07 Jul 2022 09:15:29 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.29",
+      "version": "3.0.0-next.29",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "b3f1d83b71f743c948d543b020522937083c55fc",
+            "comment": "changes to layout components (header & side drawer) to allow more freedom when integrated within unknown app scenarios"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 06 Jul 2022 14:29:33 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.28",
+      "version": "3.0.0-next.28",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "31200e62d4e8d4648cd2d7fecde62fc56c7b09d3",
+            "comment": "Change template to nav and add axe test"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 04 Jul 2022 12:41:12 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.27",
       "version": "3.0.0-next.27",
