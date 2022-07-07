@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Thu, 07 Jul 2022 21:37:21 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.29",
+      "version": "3.0.0-next.29",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "97b35378dfbba9162a0ed4215c74c40c0f5ba221",
+            "comment": "create new sidenav component"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 07 Jul 2022 10:13:19 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.29",
       "version": "3.0.0-next.29",
