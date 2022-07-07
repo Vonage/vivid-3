@@ -1,5 +1,4 @@
 const { EleventyRenderPlugin } = require("@11ty/eleventy");
-const wrapTextElements = require("./transformers/wrap-text-elements");
 const codeBlockDemo = require("./transformers/code-block-demo");
 const markdownLibrary = require("./libraries/markdown-it");
 const CleanCSS = require("clean-css");
@@ -14,8 +13,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(EleventyRenderPlugin);
 
   eleventyConfig.addPassthroughCopy({
-    "dist/libs/styles/fonts/*.css": "assets/styles/fonts",
-    "dist/libs/styles/themes/*.css": "assets/styles/themes",
+    "dist/libs/styles/": "assets/styles/",
     "dist/libs/components": "assets/modules/components",
     "vivid-logo.svg": "assets/images/vivid-logo.svg",
     "libs/../vivid-logo.svg": "vivid-logo.svg",
@@ -23,8 +21,7 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addWatchTarget("dist/libs/components");
-  eleventyConfig.addWatchTarget("dist/libs/styles/themes");
-  eleventyConfig.addWatchTarget("dist/libs/styles/fonts");
+  eleventyConfig.addWatchTarget("dist/libs/styles");
   eleventyConfig.addWatchTarget(`${INPUT_DIR}/assets`);
   eleventyConfig.setBrowserSyncConfig({
     server: {
@@ -32,12 +29,11 @@ module.exports = function (eleventyConfig) {
     }
   });
 
-  eleventyConfig.addTransform('wrapTextElements', wrapTextElements);
   eleventyConfig.addTransform('codeBlockDemo', codeBlockDemo);
 
   eleventyConfig.setUseGitIgnore(false);
 
-  eleventyConfig.addFilter("cssmin", function(code) {
+  eleventyConfig.addFilter("cssmin", function (code) {
     return new CleanCSS({}).minify(code).styles;
   });
 
