@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "changes to layout components (header & side drawer) to allow more freedom when integrated within unknown app scenarios",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}
