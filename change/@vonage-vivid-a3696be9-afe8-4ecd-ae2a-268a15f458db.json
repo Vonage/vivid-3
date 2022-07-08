@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "workspace nx migrate to latest version",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "none"
+}
