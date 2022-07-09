@@ -18,12 +18,10 @@ jobs:
         uses: microsoft/accessibility-insights-action@v3
         with:
           static-site-dir: ${{ github.workspace }}/dist/apps/docs
-          # Provide either static-site-dir or url
-          # static-site-dir: ${{ github.workspace }}/path-to-built-website
-          # url: your-website-url
-
-          # Provide any additional inputs here
-          # fail-on-accessibility-error: false
+          static-site-port: 12345
+          # due to action fail to pierce in shadowed links,
+          # all links must be explicitly specified
+          input-urls: http://localhost:12345/components/accordion http://localhost:12345/components/accordion-item
 
       - name: Upload report artifact
         if: success() || failure()
