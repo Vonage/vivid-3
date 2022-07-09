@@ -7,8 +7,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: '16'
           cache: 'npm'
@@ -19,10 +19,12 @@ jobs:
       - name: Build Site
         run: npm run nx build docs
 
-      - name: Scan for accessibility issues
+      - name: Scan for accessibility issues (with static-site-dir)
         uses: microsoft/accessibility-insights-action@v3
         with:
-          static-site-dir: ${{ github.workspace }}/dist/apps/docs
+            static-site-dir: ${{ github.workspace }}/dist/apps/docs
+            static-site-port: 12345
+            input-urls: http://localhost:12345/components/sidenav
 
       - name: Upload report artifact
         uses: actions/upload-artifact@v2
