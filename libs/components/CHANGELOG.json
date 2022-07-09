@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Sat, 09 Jul 2022 07:05:44 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.29",
+      "version": "3.0.0-next.29",
+      "comments": {
+        "none": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "de556a19b7a921c3af2e8b36a44ac0720d7ae5f0",
+            "comment": "Prevent skip tests"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 07 Jul 2022 21:37:21 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.29",
       "version": "3.0.0-next.29",
