@@ -20,7 +20,7 @@ jobs:
         run: npm run nx build docs
 
       - name: Scan for accessibility issues
-        uses: microsoft/accessibility-insights-action@v2
+        uses: microsoft/accessibility-insights-action@v3
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           site-dir: ${{ github.workspace }}/dist/apps/docs
