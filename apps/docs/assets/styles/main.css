@@ -81,7 +81,7 @@ vwc-header#header-aside::part(base) {
 /* #endregion layout */
 
 /*#region: side navigation (temp style - need to be removed once sidenav is done)*/
-nav.navigation [role="heading"][aria-level="2"] {
+vwc-sidenav [role="heading"][aria-level="2"] {
   color: var(--vvd-color-neutral-70);
 }
 /*#region END: side navigation */
