@@ -17,6 +17,7 @@ jobs:
       - name: Scan for accessibility issues
         uses: microsoft/accessibility-insights-action@v3
         with:
+          static-site-dir: ${{ github.workspace }}/dist/apps/docs
           # Provide either static-site-dir or url
           # static-site-dir: ${{ github.workspace }}/path-to-built-website
           # url: your-website-url
