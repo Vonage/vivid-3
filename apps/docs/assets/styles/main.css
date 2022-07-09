@@ -78,6 +78,10 @@ vwc-header#header-aside::part(base) {
   background-color: var(--vvd-color-canvas);
   z-index: 1;
 }
+
+dark-mode-toggle::part(form) {
+	margin: 0;
+}
 /* #endregion layout */
 
 /*#region: side navigation (temp style - need to be removed once sidenav is done)*/
