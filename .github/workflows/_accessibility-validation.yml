@@ -11,8 +11,13 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+          cache: npm
 
-      # Insert any jobs here required to build your website files
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Site
+        run: npm run nx build docs
 
       - name: Scan for accessibility issues
         uses: microsoft/accessibility-insights-action@v3
