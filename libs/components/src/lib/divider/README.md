@@ -4,7 +4,7 @@
 <script type="module">
    import '@vonage/vivid/divider';
 </script>
-
+```
 ```html preview
 <vwc-divider></vwc-divider>
 ```
