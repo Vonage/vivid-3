@@ -10,7 +10,8 @@
     block-size: 200px; 
   }
 </style>
-<vwc-dialog icon="info" headline="headline" text="Content" open>This is the content!</vwc-dialog>
+
+<vwc-dialog icon="info" headline="Headline" text="Text content" open></vwc-dialog>
 ```
 
 ## Members
@@ -19,39 +20,33 @@
 
 Use the `headline` attribute to set the dialog's headline.
 
-- Type: `string` | `undefined`
+- Type: `string`
 - Default: `undefined`
 
 ```html preview
-<vwc-dialog open
-            headline="This is the title">app
-</vwc-dialog>
+<vwc-dialog headline="Headline" open></vwc-dialog>
 ```
 
 ### Icon
 
 Use the `icon` attribute to set the dialog's icon.
 
-- Type: `string` | `undefined`
+- Type: `string`
 - Default: `undefined`
 
 ```html preview
-<vwc-dialog open
-            icon="info">
-</vwc-dialog>
+<vwc-dialog icon="info" open></vwc-dialog>
 ```
 
-### Content
+### Text
 
 Use the `text` attribute to set the dialog's text.
 
-- Type: `string` | `undefined`
+- Type: `string`
 - Default: `undefined`
 
 ```html preview
-<vwc-dialog open
-            text="This is the content">
-</vwc-dialog>
+<vwc-dialog text="Text content" open></vwc-dialog>
 ```
 
 ### Open
@@ -62,16 +57,16 @@ Sets or returns whether a dialog should be open or not
 - Default: `false`
 
 ```html preview
-<vwc-dialog open
-            headline="Open Dialog">
-</vwc-dialog>
+<vwc-dialog id="dialog" text="Text content"></vwc-dialog>
+
+<vwc-button label="Toggle Dialog Open" onclick="dialog.open = !dialog.open"></vwc-button>
 ```
 
 ### Return Value
 
 Sets or returns the dialog's return value when closing
 
-- Type: `string` | `undefined`
+- Type: `string`
 - Default: `undefined`
 
 ```html preview
@@ -198,16 +193,17 @@ Note that all styles will be overridden including the dialog's padding. See the 
 ```html preview
 <style>
 .demo-main {
-    padding: 8px;
+  padding: 8px;
 }
 vwc-text {
-    text-align: center;
+  text-align: center;
 }
 </style>
+
 <vwc-dialog open>
-    <div slot="main" class="demo-main">
-       <vwc-text font-face="body-1-bold">Use main slot for your own layout and content</vwc-text>
-    </div>
+  <div slot="main" class="demo-main">
+    <vwc-text font-face="body-1-bold">Use main slot for your own layout and content</vwc-text>
+  </div>
 </vwc-dialog>
 ```
 
