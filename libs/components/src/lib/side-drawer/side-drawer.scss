@@ -9,15 +9,12 @@ $inline-size: 280px;
 
 .control {
 	position: fixed;
+	z-index: 1;
 	background-color: var(#{theme-consts.$vvd-color-canvas});
 	color: var(#{theme-consts.$vvd-color-on-canvas});
 	inline-size: $inline-size;
 	inset-block: 0;
 	overflow-y: auto;
-
-	&.modal {
-		z-index: 1;
-	}
 
 	&.alternate {
 		background-color: var(#{theme-consts.$vvd-color-canvas});
@@ -59,10 +56,8 @@ $inline-size: 280px;
 	@include scrim-mixins.scrim-variables;
 
 	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
+	inset: 0;
+
 	&:not(.open) {
 		display: none;
 	}

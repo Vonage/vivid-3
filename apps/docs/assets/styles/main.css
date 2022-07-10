@@ -47,7 +47,6 @@ vwc-side-drawer:not([open]) {
 }
 
 vwc-side-drawer::part(base) {
-  z-index: 2;
   background-color: var(--vvd-color-canvas);
   inline-size: 280px;
   border-right: 1px solid var(--vvd-color-neutral-20);
@@ -60,10 +59,14 @@ vwc-side-drawer::part(base) {
   }
 }
 
+vwc-header#header-main {
+	z-index: 0;
+	position: relative;
+}
+
 vwc-header#header-main::part(base) {
   position: fixed;
   top: 0;
-  z-index: 1;
   inline-size: auto;
   inset-inline: var(--header-inset-inline-start) 0;
 }
