@@ -27,8 +27,8 @@
 
 run:
 
-```
-npm install codemirror
+```bash
+npm install @vonage/vivid
 ```
 
 use:

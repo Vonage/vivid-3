@@ -1,7 +1,7 @@
 import 'blocking-elements';
 import 'wicg-inert';
 import 'babel-polyfill';
-import { attr, observable } from '@microsoft/fast-element';
+import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 import type { DocumentWithBlockingElements } from 'blocking-elements';
 
@@ -55,14 +55,6 @@ export class SideDrawer extends FoundationElement {
 	 */
 	@attr position?: 'start' | 'end';
 
-	/**
-	 *
-	 * adds top bar to the side drawer
-	 *
-	 * @public
-	 */
-	@observable headerSlottedContent?: HTMLElement[];
-
 	#blockingElements = (document as DocumentWithBlockingElements).$blockingElements;
 
 	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
@@ -70,7 +62,6 @@ export class SideDrawer extends FoundationElement {
 		if (name === 'open' && this.modal) {
 			this.open ? this.#trapFocus() : this.#releaseFocusTrap();
 		}
-		console.log(this.headerSlottedContent);
 	}
 
 	#trapFocus(): void {

@@ -3,7 +3,7 @@ import type { Page } from '@playwright/test';
 import {
 	loadComponents,
 	loadTemplate,
-} from '../../visual-tests/visual-tests-utils.ts';
+} from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['tooltip','button'];
 
@@ -33,6 +33,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
   </vwc-tooltip>
 </div>
 	`;
+
+	page.setViewportSize({ width: 600, height: 720 });
 
 	await loadComponents({
 		page,

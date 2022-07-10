@@ -1,17 +1,20 @@
-const CBD_DETAILS = 'cbd-details';
-const CBD_BUTTON_SHOW = 'cbd-button-show';
-
 const toggleCodePanel = (event) => {
   const button = event.target;
-  const details = button.closest("." + CBD_DETAILS);
+  const details = button.closest(".cbd-details");
   details.open = !details.open;
   button.setAttribute('aria-expanded', details.open.toString());
 };
 
-const initShowCodeButtons = () => {
-  document.querySelectorAll("." + CBD_BUTTON_SHOW).forEach(button => {
-    button.addEventListener('click', toggleCodePanel);
-  });
+const codeBlockButtonClick = (button) => {
+  const details = button.closest('vwc-action-group').nextElementSibling;
+  details.open = !details.open;
+  button.ariaExpanded = details.open;
+};
+
+const codeCopyButtonClick = (button) => {
+  const details = button.closest('vwc-action-group').nextElementSibling;
+  const { textContent } = details;
+	navigator.clipboard.writeText(textContent.trim());
 };
 
 const onloadIframe = (iFrame) => {
@@ -29,4 +32,18 @@ const setCurrentIframeTheme = (toggle, iFrame) => {
   iFrame.contentWindow.document.head?.insertAdjacentHTML("beforeend", theme);
 }
 
-window.addEventListener('DOMContentLoaded', initShowCodeButtons);
+// #region header - set elevation on scroll
+const updateHeaderElevationShadow = (isShadowed) => {
+  const sideHeader = document.querySelector('vwc-header#header-main');
+  sideHeader.elevationShadow = isShadowed;
+}
+
+const onWindowScroll = () => {
+  updateHeaderElevationShadow(window.scrollY > 0);
+}
+
+(() => {
+  // hook window scroll
+  window.addEventListener('scroll', onWindowScroll);
+})();
+// #endregion

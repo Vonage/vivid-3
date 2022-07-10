@@ -229,5 +229,19 @@ $states-mapping: (
       fill: transparent,
       outline: transparent,
     )
+  ),
+  checked: (
+    fieldset: (
+      text: var(#{connotation.get-connotation-token(on-primary)}),
+      fill: var(#{connotation.get-connotation-token(primary)}),
+      outline: var(#{connotation.get-connotation-token(primary)}),
+    )
+  ),
+  indeterminate: (
+    fieldset: (
+      text: var(#{connotation.get-connotation-token(on-primary)}),
+      fill: var(#{connotation.get-connotation-token(primary)}),
+      outline: var(#{connotation.get-connotation-token(primary)}),
+    )
   )
 );

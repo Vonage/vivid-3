@@ -1,4 +1,13 @@
-import { ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture, getBaseElement, getControlElement, setAttribute } from '.';
+import {
+  ADD_TEMPLATE_TO_FIXTURE,
+  createFormHTML,
+  elementUpdated,
+  fixture,
+  getBaseElement,
+  getControlElement,
+  listenToFormSubmission,
+  setAttribute
+} from '.';
 
 class DummyElement extends HTMLElement {
   connectedCallback() {
@@ -20,6 +29,64 @@ describe(`test-utils`, function () {
           done();
         });
       });
+    });
+  });
+
+  describe(`listenToFormSubmission`, function () {
+    it('should return a promise that resolves on form submit', async function() {
+      const spy = jest.fn();
+      const form = document.createElement('form');
+      form.onsubmit = () => false;
+      const submissionPromise = listenToFormSubmission(form);
+      submissionPromise.then(spy);
+
+      form.requestSubmit();
+      await submissionPromise;
+
+      expect(spy).toHaveBeenCalled();
+    });
+  });
+
+  describe(`createFormHTML`, function () {
+    it(`should return the form with given ID`, function () {
+      const {form} = createFormHTML({
+        formId: 'test', componentTagName: 'vwc-test', fieldName: 'tested-component'
+      });
+      expect(form.id).toEqual('test');
+      expect(form instanceof HTMLFormElement).toEqual(true);
+    });
+
+    it(`should set the component inside the form with name and value`, function () {
+      const {element} = createFormHTML<HTMLElement>({
+        formId: 'test', componentTagName: 'vwc-test', fieldName: 'tested-component', fieldValue: 'someValue'
+      });
+      expect(element.getAttribute('name')).toEqual('tested-component');
+      expect(element.getAttribute('value')).toEqual('someValue');
+    });
+
+    it(`should set the component inside the form with name and status checked`, function () {
+      const {element} = createFormHTML<HTMLElement>({
+        formId: 'test', componentTagName: 'vwc-test', fieldName: 'tested-component', checked: 'on'
+      });
+      expect(element.getAttribute('name')).toEqual('tested-component');
+      expect(element.hasAttribute('checked')).toEqual(true);
+    });
+
+    it(`should render a form and set the element with form attribute`, function () {
+      const {element, otherForm} = createFormHTML<HTMLElement>({
+        formId: 'test', componentTagName: 'vwc-test', fieldName: 'tested-component', otherFormId: 'someId'
+      });
+
+      expect(otherForm.id).toEqual('someId');
+      expect(element.getAttribute('form')).toEqual('someId');
+    });
+
+    it(`should set a button inside the form`, function () {
+      const {form, button} = createFormHTML({
+        formId: 'test', componentTagName: 'vwc-test', fieldName: 'tested-component'
+      });
+
+      expect(button).toEqual(form.querySelector('button'));
     });
   });
 

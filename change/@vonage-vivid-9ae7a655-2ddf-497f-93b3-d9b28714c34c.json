@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "display focus ring on keyboard focus only",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}
