@@ -213,16 +213,6 @@ vwc-text {
 
 ## CSS Custom Properties
 
-### Inline-size
-
-Dialog has a default `width: 50vw` in desktop and `90vw` in mobile.  
-If needed can be set to a different size.
-
-`--dialog-inline-size`
-
-- Type: `String`
-- Default: `undefined`
-
 ### Z-index
 
 When the dialog is not set as `modal` its initial z-index can be changed if needed.

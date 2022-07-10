@@ -9,14 +9,6 @@
 	background-color: var(#{variables.$dialog-elevation-fill});
 	border-radius: 6px;
 	color: var(#{theme-consts.$vvd-color-on-canvas});
-	inline-size: var(#{variables.$dialog-inline-size});
-
-	@media only screen and (max-width: 768px) {
-		#{variables.$dialog-inline-size}:90vw;
-	}
-	@media only screen and (min-width: 769px) {
-		#{variables.$dialog-inline-size}:50vw;
-	}
 
 	&:not(.modal) {
 		z-index: var(--dialog-z-index, 1);
