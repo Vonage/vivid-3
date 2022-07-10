@@ -165,14 +165,14 @@ Closes the dialog.
 
 ## Slots
 
-### Graphics
+### Graphic
 
-Use the `graphics` slot in order to replace the icon.
+Use the `graphic` slot in order to replace the icon.
 
 ```html preview
 <vwc-dialog open
             headline="Open Dialog">
-            <img slot="graphics" src="https://doodleipsum.com/40x40/hand-drawn?bg=7463D9&amp;i=af462b28146d2ac91599602e083ddee5">
+            <img slot="graphic" src="https://doodleipsum.com/40x40/hand-drawn?bg=7463D9&amp;i=af462b28146d2ac91599602e083ddee5">
 </vwc-dialog>
 ```
 
