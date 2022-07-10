@@ -99,7 +99,7 @@ export class Popup extends FoundationElement {
 			case 'anchor': {
 				this.#anchorEl = this.#getAnchorById();
 				// close the popup if pressed escape
-				this.#anchorEl?.addEventListener("keydown", (e) => this.#handleKeydown(e as KeyboardEvent));
+				this.#anchorEl?.addEventListener('keydown', (e) => this.#handleKeydown(e as KeyboardEvent));
 				break;
 			}
 		}
@@ -163,5 +163,5 @@ export class Popup extends FoundationElement {
 		if (event.key === keyEscape) {
 			this.open = false;
 		}
-	};
+	}
 }
