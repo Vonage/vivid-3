@@ -21,28 +21,6 @@
 	&:not(.modal) {
 		z-index: var(--dialog-z-index, 1);
 	}
-
-	$top-position: --_top-position;
-	:host([top-position='small']) &,
-	:host([top-position='medium']) &,
-	:host([top-position*='large']) &,
-	:host([top-position*='xlarge']) & {
-		top: var(#{$top-position});
-		height: auto;
-	}
-
-	:host([top-position='small']) & {
-		#{$top-position}: 40px;
-	}
-	:host([top-position='medium']) & {
-		#{$top-position}: 80px;
-	}
-	:host([top-position='large']) & {
-		#{$top-position}: 120px;
-	}
-	:host([top-position='xlarge']) & {
-		#{$top-position}: 160px;
-	}
 }
 
 .main-wrapper {

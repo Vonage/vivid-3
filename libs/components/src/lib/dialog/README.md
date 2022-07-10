@@ -67,19 +67,6 @@ Sets or returns whether a dialog should be open or not
 </vwc-dialog>
 ```
 
-### Top Position
-Use the `top-oposition` attribute or the `topPosition` property to override the dialog centering to the screen and allow setting a unique top. 
-
-- Type: `small` | `medium` | `large` | `xlarge`
-- Default: undefined
-
-```html preview
-<vwc-dialog top-position="small"
-            open
-            headline="Open Dialog">
-</vwc-dialog>
-```
-
 ### Return Value
 
 Sets or returns the dialog's return value when closing
