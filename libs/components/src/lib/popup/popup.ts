@@ -2,6 +2,7 @@ import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { arrow, autoUpdate, computePosition, flip, hide, inline, offset, Strategy } from '@floating-ui/dom';
 import type { Placement } from '@floating-ui/dom';
+import { keyEscape } from '@microsoft/fast-web-utilities';
 
 /**
  * Base class for popup
@@ -97,6 +98,8 @@ export class Popup extends FoundationElement {
 		switch (name) {
 			case 'anchor': {
 				this.#anchorEl = this.#getAnchorById();
+				// close the popup if pressed escape
+				this.#anchorEl?.addEventListener("keydown", (e) => this.#handleKeydown(e as KeyboardEvent));
 				break;
 			}
 		}
@@ -155,4 +158,10 @@ export class Popup extends FoundationElement {
 	#getAnchorById(): HTMLElement | null {
 		return document.getElementById(this.anchor);
 	}
+
+	#handleKeydown(event: KeyboardEvent): void {
+		if (event.key === keyEscape) {
+			this.open = false;
+		}
+	};
 }
