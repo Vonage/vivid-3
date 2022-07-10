@@ -37,7 +37,6 @@ export class Dialog extends FoundationElement {
 
 	#modal = false;
 
-
 	get modal() {
 		return this.#modal;
 	}
@@ -109,6 +108,7 @@ export class Dialog extends FoundationElement {
 		this.#dialog.toggleAttribute('aria-modal', show);
 		this.#dialog.classList.toggle('modal', show);
 	}
+
 	show() {
 		this.#dialog.show();
 		this.open = true;

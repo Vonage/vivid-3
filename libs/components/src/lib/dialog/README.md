@@ -91,17 +91,18 @@ Sets or returns the dialog's return value when closing
 <vwc-dialog open
             headline="Returning Dialog">
 </vwc-dialog>
-<vwc-button label="Close Dialog"
-            onclick="closeDialog()"></vwc-button>
+<div>Returned Value: <span id="dialog-output"></span></div>
 <script>
-    function closeDialog() {
+    setTimeout(() => {
         const dialog = document.querySelector('vwc-dialog');
         dialog.returnValue = 'Value';
-        dialog.close();
-    }
+    }, 100);
+
     (function() {
         const dialog = document.querySelector('vwc-dialog');
-        dialog.addEventListener('close', (e) => console.log(e.detail));
+        const dialogOutput = document.querySelector('#dialog-output');
+        console.log(dialogOutput);
+        dialog.addEventListener('close', (e) => dialogOutput.innerText = e.detail);
     })();
 </script>
 ```
@@ -110,7 +111,7 @@ Sets or returns the dialog's return value when closing
 
 ### Show
 
-Shows the dialog.
+Shows the dialog. Positioned in a top position by default.
 
 ```html preview
 <vwc-dialog headline="Open Dialog">
@@ -127,7 +128,9 @@ Shows the dialog.
 
 ### Show Modal
 
-Shows the dialog and makes it the top-most modal dialog.
+Shows the dialog and makes it the top-most modal dialog. Positioned in a center position by default.
+Interaction outside the dialog is blocked and the content outside it is rendered inert.
+For more information, see the native [Dialog.showModal](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal).
 
 ```html preview
 <vwc-dialog headline="Open Dialog">
