@@ -17,7 +17,7 @@
 
 ### Headline
 
-Use the `headline` attribute to set the dialog's title.
+Use the `headline` attribute to set the dialog's headline.
 
 - Type: `string` | `undefined`
 - Default: `undefined`
