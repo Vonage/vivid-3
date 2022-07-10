@@ -25,6 +25,7 @@
     "./progress": "./progress",
     "./progress-ring": "./progress-ring",
     "./side-drawer": "./side-drawer",
+    "./sidenav": "./sidenav",
     "./sidenav-item": "./sidenav-item",
     "./text": "./text",
     "./text-field": "./text-field",

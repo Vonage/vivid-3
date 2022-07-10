@@ -205,6 +205,14 @@
     ]
   },
   {
+    "title": "sidenav",
+    "markdown": "./libs/components/src/lib/sidenav/README.md",
+    "modules": [
+      "/assets/modules/components/sidenav/index.js",
+      "/assets/modules/components/sidenav-item/index.js"
+    ]
+  },
+  {
     "title": "divider",
     "markdown": "./libs/components/src/lib/divider/README.md",
     "modules": [
