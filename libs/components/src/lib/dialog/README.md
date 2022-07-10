@@ -67,6 +67,23 @@ Sets or returns whether a dialog should be open or not
 </vwc-dialog>
 ```
 
+### Top Position
+Use the `top-oposition` attribute or the `topPosition` property to override the dialog centering to the screen and allow setting a unique top. 
+
+- Type: `string`
+- Default: `small` | `medium` | `large` | `xlarge`
+  Sets or returns whether a dialog should be open or not
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-dialog top-position="small"
+            open
+            headline="Open Dialog">
+</vwc-dialog>
+```
+
 ### Return Value
 
 Sets or returns the dialog's return value when closing
@@ -192,6 +209,7 @@ Use the footer `slot` in order to add action buttons to the bottom of the dialog
 
 Dialog is battery charged with an opinionated template.
 Assign nodes to the main slot to fully override a dialog’s predefined flow and style with your own.
+Note that all styles will be overridden including the dialog's padding. See the example below on how to set padding to a dialog using the `main` slot.
 
 ```html preview
 <style>

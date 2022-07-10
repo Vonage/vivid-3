@@ -59,9 +59,17 @@ describe('vwc-dialog', () => {
 			expect(element.icon).toEqual(undefined);
 			expect(element.content).toEqual(undefined);
 			expect(element.headline).toEqual(undefined);
+			expect(element.topPosition).toEqual(undefined);
 		});
 	});
 
+	describe('topPosition', function () {
+		it('should add class topPosition to base', async function () {
+			element.setAttribute('top-position', 'small');
+			await elementUpdated(element);
+			expect(element.topPosition).toEqual('small');
+		});
+	});
 	describe('close', function () {
 		beforeEach(async function () {
 			await showDialog();
