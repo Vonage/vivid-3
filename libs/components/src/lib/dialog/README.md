@@ -174,10 +174,9 @@ Use the footer `slot` in order to add action buttons to the bottom of the dialog
     .demo-footer {
         display: flex;
         justify-content: flex-end;
+        column-gap: 8px;
         margin-top: 16px;
-    }
-    .demo-footer  vwc-button {
-        margin-left: 8px;
+
     }
 </style>
 <vwc-dialog open 
