@@ -2,54 +2,35 @@
 @use "../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts" as theme-consts;
 @use "partials/variables" as variables;
 
-:host {
-	#{variables.$header-z-index}: 7;
-}
-
-.control {
+.base {
 	@include typography.typography-cat-shorthand("subtitle-2");
+	#{variables.$header-block-size}: 64px;
 
-	z-index: var(#{variables.$header-z-index});
-	display: flex;
-	width: 100%;
-	height: 64px;
-	box-sizing: border-box;
-	justify-content: space-between;
-	padding: 8px 12px;
-	background-color: var(#{theme-consts.$vvd-color-canvas});
-	color: var(#{theme-consts.$vvd-color-on-canvas});
-	column-gap: 12px;
+	block-size: var(#{variables.$header-block-size});
+	inline-size: 100%;
 
-	&.fixed {
-		position: fixed;
-		&.elevated {
-			box-shadow: 0 0 10px rgb(0 0 0 / 40%);
-			transition: all 0.15s linear;
-		}
-	}
-	
 	.header-content {
 		display: inline-flex;
-		flex: 1;
 		align-items: center;
-	}
-
-	.start {
-		justify-content: flex-start;
-
-		.heading {
-			padding-left: 20px;
-		}
-	}
-
-	.end {
-		justify-content: flex-end;
+		column-gap: 4px;
 	}
 }
 
-.control.fixed + .app-content {
-	padding-top: 64px;
-	::slotted(vwc-side-drawer) {
-		block-size: calc(100vh - 64px);
+.container {
+	display: flex;
+	box-sizing: border-box;
+	justify-content: space-between;
+	block-size: inherit;
+	color: var(#{theme-consts.$vvd-color-on-canvas});
+	column-gap: 12px;
+	padding-block: 8px;
+	padding-inline: 16px;
+
+	&[part~="vvd-theme-alternate"] {
+		background-color: var(#{theme-consts.$vvd-color-canvas});
 	}
+}
+
+.app-content {
+	#{variables.$header-block-size}: 64px;
 }
