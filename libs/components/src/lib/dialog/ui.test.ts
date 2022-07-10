@@ -27,27 +27,27 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-dialog id="top-dialog"
 								icon="info" 
 								headline="Headline"
-								content="This is the content that I want to show and I will show it!!!"
+								text="This is the content that I want to show and I will show it!!!"
 								open>
 								<div slot="main">This is the main content now - replacing EVERYTHING!</div>
 								</vwc-dialog>
 		<vwc-dialog id="modal"
 								icon="info" 
 								headline="Headline"
-								content="This is the content that I want to show and I will show it!!!"
+								text="This is the content that I want to show and I will show it!!!"
 								>					
 								</vwc-dialog>
 		<vwc-dialog id="bottom-left-dialog"
 								icon="info" 
 								headline="Dialog with overridden graphic slot"
-								content="This is the content that I want to show and I will show it!!!"
+								text="This is the content that I want to show and I will show it!!!"
 								open>
 								<vwc-icon type="home" slot="graphic"></vwc-icon>
 								</vwc-dialog>
 		<vwc-dialog id="bottom-right-dialog"
 								icon="info" 
 								headline="Dialog with footer"
-								content="This is the content that I want to show and I will show it!!!"
+								text="This is the content that I want to show and I will show it!!!"
 								open>
 								<div slot="footer" class="demo-footer">
 						        <vwc-button appearance="outlined" label="Cancel"></vwc-button>
