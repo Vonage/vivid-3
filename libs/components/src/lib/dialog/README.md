@@ -64,7 +64,7 @@ Sets or returns whether a dialog should be open or not
 
 ### Return Value
 
-Sets or returns the dialog's return value when closing
+Use `returnValue` to get or set the return value. Often used to indicate which button the user pressed to close it.
 
 - Type: `string`
 - Default: `undefined`
