@@ -11,6 +11,12 @@ const codeBlockButtonClick = (button) => {
   button.ariaExpanded = details.open;
 };
 
+const codeCopyButtonClick = (button) => {
+  const details = button.closest('vwc-action-group').nextElementSibling;
+  const { textContent } = details;
+	navigator.clipboard.writeText(textContent.trim());
+};
+
 const onloadIframe = (iFrame) => {
   const toggle = document.querySelector('dark-mode-toggle');
 
