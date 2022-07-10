@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "remove inert and blocking elements polyfills from side drawer as browsers support increased",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}
