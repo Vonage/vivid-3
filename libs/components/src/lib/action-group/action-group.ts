@@ -48,6 +48,17 @@ export class ActionGroup extends FoundationElement {
 	 */
 	@attr appearance?: ActionGroupAppearance;
 
+	/**
+	 * Indicates whether action group should have padding.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: tight
+	 */
+	@attr({
+		mode: 'boolean',
+	}) tight = false;
+
 }
 
 

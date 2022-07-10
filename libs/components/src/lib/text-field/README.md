@@ -6,9 +6,11 @@ Note that the text field does not support `type="number"`. For this there is the
 ```js
 <script type="module">import '@vonage/vivid/text-field';</script>
 ```
+
 ## Properties
 
 ### Label
+
 - Type: `string` | `undefined`
 - Default: `undefined`
 
@@ -19,6 +21,7 @@ Add a `label` attribute to add label to the text field.
 ```
 
 ### Placeholder
+
 - Type: `string` | `undefined`
 - Default: `undefined`
 
@@ -29,6 +32,7 @@ Add a `placeholder` attribute to add placeholder text to the text field.
 ```
 
 ### Value
+
 - Type: `string` | `undefined`
 - Default: `undefined`
 
@@ -133,16 +137,21 @@ Add the `readonly` attribute to restrict user from changing the text field's val
 
 ### Validation
 
-You can validate the text field like any other native `input`.  Here's an example using `pattern`. The value is 5, which is not of the pattern `123`.  In addition, we programatically `dirtied` the field and then called `validate` because the change was not done by a user.
+You can validate the text field like any other native `input`.
+Here's an example using `pattern`; its required pattern is `123` but we set its value to `5`, which is not of that pattern.
+In addition, we programatically *"dirtied"* the field and then called `validate` because the change was not done by a user.
 
 ```html preview
-<vwc-text-field id="invalid-text-field" label="invalid" pattern="123" value="5"></vwc-text-field>
+<vwc-text-field pattern="123"></vwc-text-field>
 
 <script>
-  document.getElementById("#invalid-text-field").dirtyValue = true;
-  document.getElementById("#invalid-text-field").validate();
+  const textField = document.querySelector('vwc-text-field');
+  textField.value = 5;
+  textField.dirtyValue = true;
+  textField.validate();
 </script>
 ```
+
 ### Input Types
 
 ### In Form

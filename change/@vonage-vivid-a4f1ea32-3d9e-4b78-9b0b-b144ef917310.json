@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "text field support autocomplete and name",
-  "packageName": "@vonage/vivid",
-  "email": "yonatan.kra@vonage.com",
-  "dependentChangeType": "patch"
-}

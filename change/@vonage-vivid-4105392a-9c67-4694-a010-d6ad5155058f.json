@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "refactor FAB size to normal (40px)",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}

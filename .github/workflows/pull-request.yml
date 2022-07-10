@@ -19,10 +19,10 @@ jobs:
   check-changelogs:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: '16'
           cache: 'npm'
@@ -44,3 +44,6 @@ jobs:
 
   call-deploy-deno-preview:
     uses: vonage/vivid-3/.github/workflows/_deploy-deno.yml@main
+
+  call-accessibility-validation:
+    uses: vonage/vivid-3/.github/workflows/_accessibility-validation.yml@main

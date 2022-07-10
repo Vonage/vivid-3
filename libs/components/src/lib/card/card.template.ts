@@ -8,7 +8,7 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import type { Card } from './card';
 
 const getClasses = (_: Card) => classNames(
-	'control',
+	'base',
 	['hide-footer', !_.footerSlottedContent || !_.footerSlottedContent.length],
 	['hide-header', shouldHideHeader(_)]
 );

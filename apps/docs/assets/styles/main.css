@@ -8,6 +8,7 @@ strong {
 }
 /* #endregion reset */
 
+/* #region document */
 html {
   scroll-padding-top: 64px;
 }
@@ -24,79 +25,92 @@ body a:visited {
   color: var(--vvd-color-cta);
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-}
+/* #endregion document */
 
-.logo img {
-  margin-right: 0.5rem;
+/* #region layout */
+#menu-button {
+  position: fixed;
+  inset: auto auto 8px 8px;
+  z-index: 2;
 }
 
 vwc-side-drawer {
-  display: block;
-  width: 100%;
-  block-size: calc(100vh - 64px);
-  --side-drawer-z-index: 3;
-  --side-drawer-background-color: var(--vvd-color-neutral-10);
+  --side-drawer-app-content-offset: 280px;
 }
 
-/*properties table*/
-table {
-  width: 100%;
-  min-width: min-content;
-  border-collapse: collapse;
+vwc-side-drawer[open] {
+  --header-inset-inline-start: var(--side-drawer-app-content-offset);
 }
-table tr {
-  border-bottom: 1px solid var(--table-border-color, var(--vvd-color-on-primary));
-  block-size: 44px;
+
+vwc-side-drawer:not([open]) {
+  --header-inset-inline-start: 0;
 }
-table th,
-table td {
-  padding: 12px 16px;
-  text-align: start;
+
+vwc-side-drawer::part(base) {
+  background-color: var(--vvd-color-canvas);
+  inline-size: 280px;
+  border-right: 1px solid var(--vvd-color-neutral-20);
+  box-sizing: border-box;
 }
-table thead tr {
-  --table-border-color: var(--vvd-color-neutral-90);
+
+@supports (overscroll-behavior: none) {
+  vwc-side-drawer::part(base) {
+    overscroll-behavior: none;
+  }
 }
-table tbody tr {
-  --table-border-color: var(--vvd-color-neutral-40);
+
+vwc-header#header-main {
+	z-index: 0;
+	position: relative;
 }
+
+vwc-header#header-main::part(base) {
+  position: fixed;
+  top: 0;
+  inline-size: auto;
+  inset-inline: var(--header-inset-inline-start) 0;
+}
+
+vwc-header#header-main > main {
+  margin-top: var(--_header-block-size);
+}
+
+vwc-header#header-aside::part(base) {
+  position: sticky;
+  top: 0;
+  background-color: var(--vvd-color-canvas);
+  z-index: 1;
+}
+
+dark-mode-toggle::part(toggleLabel)::before {
+	background-image: none;
+	background-color: currentColor;
+}
+
+dark-mode-toggle[mode="light"]::part(toggleLabel)::before {
+  -webkit-mask: url(https://icon.resources.vonage.com/v4.0.28/dark-mode-solid.svg) no-repeat center;
+  mask: url(https://icon.resources.vonage.com/v4.0.28/dark-mode-solid.svg) no-repeat center;
+}
+
+dark-mode-toggle[mode="dark"]::part(toggleLabel)::before {
+  -webkit-mask: url(https://icon.resources.vonage.com/v4.0.28/light-mode-solid.svg) no-repeat center;
+  mask: url(https://icon.resources.vonage.com/v4.0.28/light-mode-solid.svg) no-repeat center;
+}
+
+dark-mode-toggle::part(form) {
+	margin: 0;
+}
+/* #endregion layout */
 
 /*#region: side navigation (temp style - need to be removed once sidenav is done)*/
-ul.navigation {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  margin-inline-start: 0.75rem;
-}
-ul.navigation p {
-  color: var(--vvd-color-neutral-50);
+vwc-sidenav [role="heading"][aria-level="2"] {
+  color: var(--vvd-color-neutral-70);
 }
 /*#region END: side navigation */
-
-/* Header parts */
-/*--------------------------*/
-.header-actions {
-  display: flex;
-}
-
-dark-mode-toggle {
-  display: block;
-  margin-left: 0.5rem;
-  /*in order for this to overide we need absolute links to a URL*/
-  /*--dark-mode-toggle-dark-icon: url('sun.svg');*/
-  /*--dark-mode-toggle-light-icon: url('moon.svg');*/
-}
 
 
 /*Main container*/
 /*--------------------------*/
-
-.main-layout {
-  display: block;
-  margin-top: -1.5rem; /*to overide the vwc-layout top margin*/
-}
 
 /*Homepage*/
 .home-page-hero {
@@ -124,19 +138,20 @@ dark-mode-toggle {
   margin: 0 0.25rem;
 }
 
-article > h1,
-article > h2,
-article > h3,
-article > h4,
-article > h5,
-article > h6,
-article > p,
-article > ul,
-article > table {
+article h1,
+article h2,
+article h3,
+article h4,
+article h5,
+article h6,
+article p,
+article ul,
+article table {
   max-inline-size: 64ch;
 }
-article > pre,
-article .cbd-base {
+article pre,
+article .cbd-container {
+  margin-block: 12px;
   box-sizing: border-box;
   max-inline-size: 1200px;
 }
@@ -159,9 +174,9 @@ article .cbd-base {
 }
 
 /* code fence demo */
-.cbd-base {
-  border-radius: 6px;
-  contain: paint;
+
+.cbd-iframe-container {
+  position: relative;
 }
 
 .cbd-demo {
@@ -171,11 +186,7 @@ article .cbd-base {
 }
 
 .cbd-details > summary {
-  list-style: none;
-	text-align: end;
-	background-color: var(--vvd-color-neutral-10);
-  border-top: 1px solid var(--vvd-color-neutral-20);
-	padding: 8px;
+  display: none;
 }
 
 .cbd-code-block {

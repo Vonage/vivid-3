@@ -12,8 +12,7 @@
     "markdown": "./libs/components/src/lib/accordion-item/README.md",
     "modules": [
       "/assets/modules/components/accordion-item/index.js",
-      "/assets/modules/components/text/index.js",
-      "/assets/modules/components/elevation/index.js"
+      "/assets/modules/components/text/index.js"
     ]
   },
   {
@@ -69,14 +68,6 @@
     ]
   },
   {
-    "title": "elevation",
-    "markdown": "./libs/components/src/lib/elevation/README.md",
-    "modules": [
-      "/assets/modules/components/elevation/index.js",
-      "/assets/modules/components/layout/index.js"
-    ]
-  },
-  {
     "title": "icon",
     "markdown": "./libs/components/src/lib/icon/README.md",
     "modules": [
@@ -109,7 +100,7 @@
       "/assets/modules/components/side-drawer/index.js",
       "/assets/modules/components/sidenav-item/index.js",
       "/assets/modules/components/text/index.js",
-      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/fab/index.js",
       "/assets/modules/components/layout/index.js"
     ]
   },
@@ -182,7 +173,9 @@
     "modules": [
       "/assets/modules/components/action-group/index.js",
       "/assets/modules/components/button/index.js",
-      "/assets/modules/components/text-field/index.js"
+      "/assets/modules/components/text-field/index.js",
+      "/assets/modules/components/layout/index.js",
+      "/assets/modules/components/popup/index.js"
     ]
   },
   {
@@ -190,6 +183,33 @@
     "markdown": "./libs/components/src/lib/note/README.md",
     "modules": [
       "/assets/modules/components/note/index.js"
+    ]
+  },
+  {
+    "title": "checkbox",
+    "markdown": "./libs/components/src/lib/checkbox/README.md",
+    "modules": [
+      "/assets/modules/components/checkbox/index.js"
+    ]
+  },
+  {
+    "title": "header",
+    "markdown": "./libs/components/src/lib/header/README.md",
+    "modules": [
+      "/assets/modules/components/header/index.js",
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/text/index.js",
+      "/assets/modules/components/side-drawer/index.js",
+      "/assets/modules/components/layout/index.js",
+      "/assets/modules/components/banner/index.js"
+    ]
+  },
+  {
+    "title": "sidenav",
+    "markdown": "./libs/components/src/lib/sidenav/README.md",
+    "modules": [
+      "/assets/modules/components/sidenav/index.js",
+      "/assets/modules/components/sidenav-item/index.js"
     ]
   }
 ]

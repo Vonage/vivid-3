@@ -1,7 +1,7 @@
-# elevation
+# Elevation
 
-The _elevation_ component enables a user to set perceived elevation to a certain level.  
-**Note: This component is responsible for the perceived visual elevation alone and not for the HTML elements stacking context.**
+Represents underlying _elevation_ custom element.
+Applies a perceived visual elevation to a direct child element.
 
 ```js
 <script type='module'>
