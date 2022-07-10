@@ -1,14 +1,15 @@
-# divider
+# Divider
 
 ```js
-<script type="module">import '@vonage/vivid/divider';</script>
-```
+<script type="module">
+   import '@vonage/vivid/divider';
+</script>
 
 ```html preview
 <vwc-divider></vwc-divider>
 ```
 ## Members
-### orientation
+### Orientation
 
 - Type: `'horizontal'` | `'vertical'` 
 - Default: `horizontal`
@@ -19,16 +20,16 @@
 </div>
 ```
 
-### role
+### Role
 The divider should default to having a role of separator, just as a typical horizontal rule would.  
 A role of `presentation` implies that the divider is a visual treatment only so the contrast requirement does not apply in that case.  
 [for further reading about divider foundational role & accessibility](https://github.com/microsoft/fast/blob/master/packages/web-components/fast-foundation/src/divider/divider.spec.md#accessibility)
 
 - Type: `'presentation'` | `'separator'`
-- Default: `separator`
+- Default: `'separator'`
 
 
-## Usage examples
+## Usage Examples
 ```html preview
 <vwc-action-group appearance="fieldset">
   <vwc-button icon="reply-line"></vwc-button>
