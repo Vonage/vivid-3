@@ -10,7 +10,7 @@
     block-size: 200px; 
   }
 </style>
-<vwc-dialog icon="info" headline="headline" content="Content" open>This is the content!</vwc-dialog>
+<vwc-dialog icon="info" headline="headline" text="Content" open>This is the content!</vwc-dialog>
 ```
 
 ## Members
@@ -43,14 +43,14 @@ Use the `icon` attribute to set the dialog's icon.
 
 ### Content
 
-Use the `content` attribute to set the dialog's text.
+Use the `text` attribute to set the dialog's text.
 
 - Type: `string` | `undefined`
 - Default: `undefined`
 
 ```html preview
 <vwc-dialog open
-            content="This is the content">
+            text="This is the content">
 </vwc-dialog>
 ```
 
@@ -193,7 +193,7 @@ Use the footer `slot` in order to add action buttons to the bottom of the dialog
 </style>
 <vwc-dialog open 
     headline="Dialog with footer"
-    content="To quote Michael Carini, although we should never apologize for being ourselves, we should apologize for the times that we are not.">
+    text="To quote Michael Carini, although we should never apologize for being ourselves, we should apologize for the times that we are not.">
     <div slot="footer" class="demo-footer">
         <vwc-button appearance="outlined" label="Cancel"></vwc-button>
         <vwc-button appearance="filled" label="Action"></vwc-button>
