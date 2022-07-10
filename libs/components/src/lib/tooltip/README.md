@@ -12,7 +12,7 @@ A tooltip is a brief, informative message or descriptions or explanations for th
 
 ### Anchor
 
-The tooltip can be placed on interactive controls (things that can be clicked or focusable) such as: button, checkbox, input text.
+The tooltip can be placed on interactive controls (things that can be hovered or focusable) such as: button, checkbox, input text.  
 The tooltip can't be placed on non-interactive elements such as paragraph or plain div.  
 Do not target non-interactive controls as a tooltip's anchor (such as non-focusable / disabled elements).
 
@@ -26,7 +26,7 @@ Do not target non-interactive controls as a tooltip's anchor (such as non-focusa
 
 ### Text
 
-The tooltip is a description and therefor, the tooltip itself can not be interactive. `vwc-tooltip` contains only text.
+The tooltip is a description and therefor, the tooltip itself can not be interactive and contains only text.
 
 - Type: `string`
 - Default: `undefined`
@@ -40,10 +40,14 @@ Use the `open` attribute to indicate whether the tooltip is open.
 
 ```html preview
 <vwc-button id="button" icon="info-line" shape="pill" aria-describedby="tooltip"></vwc-button>
-<vwc-tooltip id="tooltip" anchor="button" text="Click on the icon to toggle"></vwc-tooltip>
+<vwc-tooltip id="tooltip" anchor="button" text="Focus or hover to open."></vwc-tooltip>
 
 <script>
-  button.addEventListener('click', () => tooltip.open = !tooltip.open);
+  button.addEventListener('mouseover', ()=> tooltip.open = true);
+  button.addEventListener('mouseout', ()=> tooltip.open = false);
+
+  button.addEventListener('focusin', ()=> tooltip.open = true);
+  button.addEventListener('focusout', ()=> tooltip.open = false);
 </script>
 ```
 
@@ -91,11 +95,11 @@ Use the `--tooltip-inline-size` variable to set the tooltip's inline size.
 
 - Tooltip has a `role` tooltip.
 - Be sure to add `aria-describedby= "tooltip's id"` on the tooltip trigger element for screen readers readability.
-- The trigger of the Tooltip must be focusable and interactive.
-- Tooltip should show on mouse hover and keyboard focus.
+- The trigger of the tooltip must be focusable and interactive.
 - A tooltip cannot contain interactive or focusable content.
-- Tabbing to the element displays the tooltip.
-- Escape hides the tooltip.
+- Tooltip should show on mouse hover and keyboard focus.
+- Tabbing to the element should display the tooltip.
+- Escape should hide the tooltip.
 
 ## Usage Examples
 
@@ -108,9 +112,13 @@ Use the `--tooltip-inline-size` variable to set the tooltip's inline size.
   more text after tooltip.
 </vwc-text>
 
-<vwc-tooltip open id="tooltip" anchor="button" corner="bottom-end" text="I'm the tooltip content"></vwc-tooltip>
+<vwc-tooltip id="tooltip" anchor="button" corner="bottom-end" text="I'm the tooltip content"></vwc-tooltip>
 
 <script>
-  button.addEventListener('click', () => tooltip.open = !tooltip.open);
+  button.addEventListener('mouseover', ()=> tooltip.open = true);
+  button.addEventListener('mouseout', ()=> tooltip.open = false);
+
+  button.addEventListener('focusin', ()=> tooltip.open = true);
+  button.addEventListener('focusout', ()=> tooltip.open = false);
 </script>
 ```
