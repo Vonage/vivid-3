@@ -39,6 +39,7 @@
     <script type="module" src="{{ '/assets/modules/components/layout/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/text/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/side-drawer/index.js' | url}}"></script>
+    <script type="module" src="{{ '/assets/modules/components/sidenav/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/sidenav-item/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/button/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/fab/index.js' | url}}"></script>
@@ -129,7 +130,7 @@
 
   </vwc-side-drawer>
 
-  <vwc-fab connotation="accent" icon='menu-solid' id="menu-button" slot="app-content" onclick="sidedrawer.open = !sidedrawer.open"></vwc-fab>
+  <vwc-fab connotation="accent" icon='menu-solid' id="menu-button" aria-label="Menu" slot="app-content" onclick="sidedrawer.open = !sidedrawer.open"></vwc-fab>
 
 </body>
 
