@@ -70,12 +70,8 @@ Sets or returns whether a dialog should be open or not
 ### Top Position
 Use the `top-oposition` attribute or the `topPosition` property to override the dialog centering to the screen and allow setting a unique top. 
 
-- Type: `string`
-- Default: `small` | `medium` | `large` | `xlarge`
-  Sets or returns whether a dialog should be open or not
-
-- Type: `boolean`
-- Default: `false`
+- Type: `small` | `medium` | `large` | `xlarge`
+- Default: undefined
 
 ```html preview
 <vwc-dialog top-position="small"
