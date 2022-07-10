@@ -1,9 +1,0 @@
-[
-  {
-    "title": "toggle-button",
-    "markdown": "./docs/usage-examples/toggle-button.md",
-    "modules": [
-      "/assets/modules/components/button/index.js"
-    ]
-  }
-]
