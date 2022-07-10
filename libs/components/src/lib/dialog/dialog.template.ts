@@ -63,7 +63,7 @@ function handleEscapeKey(dialog: Dialog, event: Event) {
 function content() {
 	return html<Dialog>`
 	  <div class="content">
-		  ${x => x.content}
+		  ${x => x.text}
 	  </div>
 	`;
 }
@@ -96,7 +96,7 @@ export const DialogTemplate: (
 						</div>
 			  		${renderDismissButton()}
 					</div>
-					${when(x => x.content, content())}
+					${when(x => x.text, content())}
 					<slot name="footer"></slot>
 				</div>
 			</slot>

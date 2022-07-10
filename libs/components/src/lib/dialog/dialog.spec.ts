@@ -57,7 +57,7 @@ describe('vwc-dialog', () => {
 			expect(element.open).toEqual(false);
 			expect(element.returnValue).toEqual(undefined);
 			expect(element.icon).toEqual(undefined);
-			expect(element.content).toEqual(undefined);
+			expect(element.text).toEqual(undefined);
 			expect(element.headline).toEqual(undefined);
 			expect(element.topPosition).toEqual(undefined);
 		});
@@ -256,7 +256,7 @@ describe('vwc-dialog', () => {
 	it('should render the content area when content is set', async function() {
 		const contentElementWhenUndefined = getBaseElement(element).querySelector('.content');
 		const content = 'This is the content!';
-		element.content = content;
+		element.text = content;
 		await elementUpdated(element);
 		const contentElement = getBaseElement(element).querySelector('.content');
 		expect(contentElementWhenUndefined).toBeNull();

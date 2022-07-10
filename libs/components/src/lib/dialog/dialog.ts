@@ -28,7 +28,7 @@ export class Dialog extends FoundationElement {
 	@attr({mode: 'boolean'}) open = false;
 	@attr({mode: 'fromView'}) returnValue?: string;
 	@attr icon?: string;
-	@attr content?: string;
+	@attr text?: string;
 	@attr headline?: string;
 	@attr({attribute: 'aria-labelledby'}) ariaLabelledBy: string | null = null;
 	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
