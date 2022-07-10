@@ -97,9 +97,9 @@ Use the `--tooltip-inline-size` variable to set the tooltip's inline size.
 - Be sure to add `aria-describedby= "tooltip's id"` on the tooltip trigger element for screen readers readability.
 - The trigger of the tooltip must be focusable and interactive.
 - A tooltip cannot contain interactive or focusable content.
+- The escape key hides the tooltip when the anchor is focused.
 - Tooltip should show on mouse hover and keyboard focus.
 - Tabbing to the element should display the tooltip.
-- Escape should hide the tooltip.
 
 ## Usage Examples
 
