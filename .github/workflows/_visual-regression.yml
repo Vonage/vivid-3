@@ -16,7 +16,7 @@ jobs:
           node-version: '16'
           cache: 'npm'
 
-      - run: apk add --no-cache tar
+      - run: apt-get install tar -y
 
       - uses: actions/cache@v3
         id: cache

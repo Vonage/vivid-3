@@ -62,7 +62,7 @@ jobs:
       report_coverage: true
 
   call-visual-regression:
-    needs: [call-lint, check-changelogs]
+#    needs: [call-lint, check-changelogs]
     uses: vonage/vivid-3/.github/workflows/_visual-regression.yml@optimize-ci
 
   call-deploy-deno-preview:
