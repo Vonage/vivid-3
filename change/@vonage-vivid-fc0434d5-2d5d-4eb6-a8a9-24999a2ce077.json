@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "refactor(components): breadcrumb item disable focus delegation",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}
