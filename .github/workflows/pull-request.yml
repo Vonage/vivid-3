@@ -26,6 +26,17 @@ jobs:
         with:
           node-version: '16'
           cache: 'npm'
+
+      - uses: actions/cache@v3
+        id: cache
+        with:
+          path: node_modules/
+          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
+
       - run: npx beachball check
 
   call-lint:

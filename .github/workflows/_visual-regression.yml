@@ -13,7 +13,16 @@ jobs:
         with:
           node-version: '16'
           cache: 'npm'
-      - run: npm ci --ignore-scripts
+      - uses: actions/cache@v3
+        id: cache
+        with:
+          path: node_modules/
+          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
+
       - run: npm run nx e2e components -- --task=local
       - uses: actions/upload-artifact@v3
         if: always()

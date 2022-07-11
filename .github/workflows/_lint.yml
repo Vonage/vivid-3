@@ -11,5 +11,14 @@ jobs:
         with:
           node-version: '16'
           cache: 'npm'
-      - run: npm ci --only=dev --ignore-scripts
+      - uses: actions/cache@v3
+        id: cache
+        with:
+          path: node_modules/
+          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci --only=dev
+
       - run: npm run nx run-many -- --target=stylelint --all && npm run nx run-many -- --target=lint --all
