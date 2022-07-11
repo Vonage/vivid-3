@@ -11,5 +11,5 @@ jobs:
         with:
           node-version: '16'
           cache: 'npm'
-      - run: npm ci --only=dev
+      - run: npm ci --only=dev --ignore-scripts
       - run: npm run nx run-many -- --target=stylelint --all && npm run nx run-many -- --target=lint --all

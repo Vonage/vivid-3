@@ -25,7 +25,7 @@ jobs:
             node-version: '16'
             cache: 'npm'
 
-        - run: npm ci --only=dev
+        - run: npm ci --only=dev --ignore-scripts
 
         - run: npm run nx run-many -- --target=test --all --coverage --coverageReporters=lcov
           id: test
