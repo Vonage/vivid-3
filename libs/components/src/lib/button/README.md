@@ -149,41 +149,21 @@ Add the `disabled` attribute to disable the button.
 
 ## Usage Examples
 
-### Toggle Button - Labeled
+### Toggle Button
 
 ```html preview
 <vwc-button
-  id="button"
+  id='button'
   connotation='cta'
-   appearance='filled'
   shape='pill'
-  label='Not pressed'>
-</vwc-button>
-
-<script>
-  button.addEventListener('click', () => {
-    button.ariaPressed = !button.ariaPressed;
-    button.label = button.ariaPressed ? 'Pressed' : 'Not pressed';
-  });
-</script>
-```
-
-### Toggle Button - Icon
-
-```html preview
-<vwc-button
-  id="button"
-  connotation='cta'
-  appearance='filled'
-  shape='pill'
-  icon='microphone-line'
+  icon='microphone-solid'
   aria-label="Mute">
 </vwc-button>
 
 <script>
   button.addEventListener('click', () => {
     button.ariaPressed = !button.ariaPressed;
-    button.icon = button.ariaPressed ? 'mic-mute-line' : 'microphone-line';
+    button.icon = button.ariaPressed ? 'mic-mute-solid' : 'microphone-solid';
     button.ariaLabel = button.ariaPressed ? 'Unmute' : 'Mute';
   });
 </script>
