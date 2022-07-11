@@ -23,7 +23,7 @@ export class AccordionItem extends FoundationElement {
 	 * @public
 	 * HTML Attribute: heading-level
 	 */
-	@attr({ attribute: 'heading-level'}) headingLevel?: 2 | 3 | 4 | 5 | 6;
+	@attr({ attribute: 'heading-level' }) headingLevel?: 2 | 3 | 4 | 5 | 6;
 
 	/**
 	 * Indicates whether the accordion-item has indicator
@@ -49,7 +49,7 @@ export class AccordionItem extends FoundationElement {
 	 */
 	@attr({ mode: 'boolean' }) open = false;
 
-	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void{
+	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
 		super.attributeChangedCallback(name, oldValue, newValue);
 		if (name === 'open') {
 			newValue === null ? this.emitEvent('closed') : this.emitEvent('opened');
@@ -63,5 +63,5 @@ export class AccordionItem extends FoundationElement {
 	}
 }
 
-export interface AccordionItem extends AffixIconWithTrailing {}
+export interface AccordionItem extends AffixIconWithTrailing { }
 applyMixins(AccordionItem, AffixIconWithTrailing);
