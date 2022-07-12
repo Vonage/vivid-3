@@ -1,6 +1,16 @@
 name: 🏠 Deploy Deno
 
-on: workflow_call
+on:
+  workflow_call:
+    inputs:
+      useCache:
+        required: false
+        type: boolean
+        default: true
+      cacheKey:
+        required: false
+        type: string
+        default: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
 jobs:
   deploy:
@@ -19,9 +29,10 @@ jobs:
 
       - uses: actions/cache@v3
         id: cache
+        if: inputs.useCache == true
         with:
           path: node_modules/
-          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          key: ${{ inputs.cacheKey != '' && 'master' || runner.os-hashFiles('package-lock.json')  }}
 
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
