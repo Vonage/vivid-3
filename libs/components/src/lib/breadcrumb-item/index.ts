@@ -12,9 +12,6 @@ export const vividBreadcrumbItem = BreadcrumbItem.compose<FoundationElementDefin
 	baseName: 'breadcrumb-item',
 	template: template as any,
 	styles,
-	shadowOptions: {
-		delegatesFocus: true,
-	},
 });
 
 designSystem.register(vividBreadcrumbItem());

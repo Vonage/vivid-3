@@ -2,6 +2,27 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Mon, 11 Jul 2022 12:53:41 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.30",
+      "version": "3.0.0-next.30",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "2afa131b8f2a682e6d2efe34c023c1402f2d1730",
+            "comment": "remove inert and blocking elements polyfills from side drawer as browsers support increased"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "7b6d6d409d993366e94d07d59109675d10be3a7e",
+            "comment": "refactor(components): breadcrumb item disable focus delegation"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 09 Jul 2022 07:05:44 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.29",
       "version": "3.0.0-next.29",
