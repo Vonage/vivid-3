@@ -16,8 +16,26 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  get-cache-key:
+    if: '' != ''
+    runs-on: ubuntu-20.04
+    env:
+      SLACK_COLOR: "good"
+    steps:
+      run: echo "CACHE_KEY=${{ SLACK_COLOR }}" >> $GITHUB_ENV
+
+  get-default-cache-key:
+    if: '' == ''
+    runs-on: ubuntu-20.04
+    env:
+      SLACK_COLOR: "bad"
+    steps:
+      run: echo "CACHE_KEY=${{ SLACK_COLOR }}" >> $GITHUB_ENV
+
   check-string:
-    run: echo ${{ inputs.cacheKey != '' && 'master' || runner.os-hashFiles('package-lock.json')  }}
+    runs-on: ubuntu-20.04
+    steps:
+      run: echo ${{ env.CACHE_KEY  }}
 #  deps-cache:
 #    runs-on: ubuntu-20.04
 #    steps:
