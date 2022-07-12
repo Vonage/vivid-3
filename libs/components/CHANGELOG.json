@@ -2,6 +2,153 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Mon, 11 Jul 2022 12:53:41 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.30",
+      "version": "3.0.0-next.30",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "2afa131b8f2a682e6d2efe34c023c1402f2d1730",
+            "comment": "remove inert and blocking elements polyfills from side drawer as browsers support increased"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "7b6d6d409d993366e94d07d59109675d10be3a7e",
+            "comment": "refactor(components): breadcrumb item disable focus delegation"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sat, 09 Jul 2022 07:05:44 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.29",
+      "version": "3.0.0-next.29",
+      "comments": {
+        "none": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "de556a19b7a921c3af2e8b36a44ac0720d7ae5f0",
+            "comment": "Prevent skip tests"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 07 Jul 2022 21:37:21 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.29",
+      "version": "3.0.0-next.29",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "97b35378dfbba9162a0ed4215c74c40c0f5ba221",
+            "comment": "create new sidenav component"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 07 Jul 2022 10:13:19 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.29",
+      "version": "3.0.0-next.29",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "02a1141c646a1f85b77f6e0e7529562680116149",
+            "comment": "add appearance to sidenav-item and accordion-item"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 07 Jul 2022 09:15:29 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.29",
+      "version": "3.0.0-next.29",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "b3f1d83b71f743c948d543b020522937083c55fc",
+            "comment": "changes to layout components (header & side drawer) to allow more freedom when integrated within unknown app scenarios"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 06 Jul 2022 14:29:33 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.28",
+      "version": "3.0.0-next.28",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "31200e62d4e8d4648cd2d7fecde62fc56c7b09d3",
+            "comment": "Change template to nav and add axe test"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 04 Jul 2022 12:41:12 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.27",
+      "version": "3.0.0-next.27",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "1617f75458e5bcc53f8a3996dd03243ab755a7d3",
+            "comment": "update docs"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 01 Jul 2022 20:53:00 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.27",
+      "version": "3.0.0-next.27",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "b8aea048d89bdddc228253224cc15aae5e75059e",
+            "comment": "refactor(components): outline removal condition"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 01 Jul 2022 14:50:40 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.26",
+      "version": "3.0.0-next.26",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "3735609b0a07f5f9d6841fc78e295db0d8fc6a60",
+            "comment": "start validating only after a blur"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "33dfe53b57362ebb6b2e6d1393c097a88333635d",
+            "comment": "fab support for default surface "
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 26 Jun 2022 20:34:06 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.25",
       "version": "3.0.0-next.25",

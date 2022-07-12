@@ -1,8 +1,50 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 26 Jun 2022 20:34:06 GMT and should not be manually modified.
+This log was last generated on Mon, 11 Jul 2022 12:53:41 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.30
+
+Mon, 11 Jul 2022 12:53:41 GMT
+
+### Changes
+
+- remove inert and blocking elements polyfills from side drawer as browsers support increased (yinon@hotmail.com)
+- refactor(components): breadcrumb item disable focus delegation (yinon@hotmail.com)
+
+## 3.0.0-next.29
+
+Thu, 07 Jul 2022 09:15:29 GMT
+
+### Changes
+
+- changes to layout components (header & side drawer) to allow more freedom when integrated within unknown app scenarios (yinon@hotmail.com)
+
+## 3.0.0-next.28
+
+Wed, 06 Jul 2022 14:29:33 GMT
+
+### Changes
+
+- Change template to nav and add axe test (yonatan.kra@vonage.com)
+
+## 3.0.0-next.27
+
+Fri, 01 Jul 2022 20:53:00 GMT
+
+### Changes
+
+- refactor(components): outline removal condition (yinon@hotmail.com)
+
+## 3.0.0-next.26
+
+Fri, 01 Jul 2022 14:50:40 GMT
+
+### Changes
+
+- start validating only after a blur (yonatan.kra@vonage.com)
+- fab support for default surface  (yinon@hotmail.com)
 
 ## 3.0.0-next.25
 
