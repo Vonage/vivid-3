@@ -90,6 +90,7 @@ export class Popup extends FoundationElement {
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
+		this.#anchorEl?.removeEventListener('keydown', (e) => this.#handleKeydown(e as KeyboardEvent));
 		this.#cleanup?.();
 	}
 
