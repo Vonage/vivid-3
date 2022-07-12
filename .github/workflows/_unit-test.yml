@@ -25,7 +25,15 @@ jobs:
             node-version: '16'
             cache: 'npm'
 
-        - run: npm ci --only=dev
+        - uses: actions/cache@v3
+          id: cache
+          with:
+            path: node_modules/
+            key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+        - name: Install Dependencies
+          if: steps.cache.outputs.cache-hit != 'true'
+          run: npm ci --only=dev
 
         - run: npm run nx run-many -- --target=test --all --coverage --coverageReporters=lcov
           id: test
