@@ -70,22 +70,52 @@ Use `returnValue` to get or set the return value. Often used to indicate which b
 - Default: `undefined`
 
 ```html preview
+<style>
+    html { 
+        block-size: 200px; 
+    }
+    .demo-footer {
+        display: flex;
+        justify-content: flex-end;
+        column-gap: 8px;
+        margin-top: 16px;
+
+    }
+</style>
 <vwc-dialog open
             headline="Returning Dialog">
+                <div slot="footer" class="demo-footer">
+        <vwc-button appearance="outlined" label="Cancel"></vwc-button>
+        <vwc-button appearance="filled" label="Action"></vwc-button>
+    </div>
 </vwc-dialog>
 <div>Returned Value: <span id="dialog-output"></span></div>
+<vwc-button label="Open Dialog"
+            onclick="openDialog()"></vwc-button>
 <script>
-    setTimeout(() => {
-        const dialog = document.querySelector('vwc-dialog');
-        dialog.returnValue = 'Value';
-    }, 100);
-
-    (function() {
+    (function handleReturnValue() {
+        function handleClick(e) {
+            const buttonType = e.target.label;
+            console.log(buttonType);
+            dialog.returnValue = buttonType;
+            dialog.close();
+        }
+        
+        const cancelButton = document.querySelector('[label="Cancel"]');
+        const actionButton = document.querySelector('[label="Action"]');
         const dialog = document.querySelector('vwc-dialog');
         const dialogOutput = document.querySelector('#dialog-output');
-        console.log(dialogOutput);
-        dialog.addEventListener('close', (e) => dialogOutput.innerText = e.detail);
+        
+        cancelButton.onclick = actionButton.onclick = handleClick;
+        dialog.addEventListener('close', (e) => dialogOutput.innerText = dialog.returnValue);
+        window.handleClick = handleClick;
     })();
+</script>
+<script>
+    function openDialog() {
+        const dialog = document.querySelector('vwc-dialog');
+        dialog.show();
+    }
 </script>
 ```
 
