@@ -11,7 +11,7 @@ The arrow points up when the content is visible.
 </script>
 ```
 
-## Properties
+## Members
 
 ### Label
 
