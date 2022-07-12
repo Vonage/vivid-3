@@ -172,25 +172,25 @@
 			"value": "{alias.color.90.announcement.value}"
 		},
 		"surface-0dp": {
-			"value": "rgba(13, 13, 13, 1)"
+			"value": "{alias.color.surface-0dp.value}"
 		},
 		"surface-2dp": {
-			"value": "rgba(28, 28, 28, 1)"
+			"value": "{alias.color.surface-2dp.value}"
 		},
 		"surface-4dp": {
-			"value": "rgba(32, 32, 32, 1)"
+			"value": "{alias.color.surface-4dp.value}"
 		},
 		"surface-8dp": {
-			"value": "rgba(37, 37, 37, 1)"
+			"value": "{alias.color.surface-8dp.value}"
 		},
 		"surface-12dp": {
-			"value": "rgba(42, 42, 42, 1)"
+			"value": "{alias.color.surface-12dp.value}"
 		},
 		"surface-16dp": {
-			"value": "rgba(47, 47, 47, 1)"
+			"value": "{alias.color.surface-16dp.value}"
 		},
 		"surface-24dp": {
-			"value": "rgba(52, 52, 52, 1)"
+			"value": "{alias.color.surface-24dp.value}"
 		}
 	}
 }

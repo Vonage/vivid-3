@@ -1,0 +1,48 @@
+{
+	"color": {
+		"surface-0dp": {
+			"value": "{alias.color.surface-0dp.value}"
+		},
+		"surface-2dp": {
+			"value": "{alias.color.surface-2dp.value}"
+		},
+		"surface-4dp": {
+			"value": "{alias.color.surface-4dp.value}"
+		},
+		"surface-8dp": {
+			"value": "{alias.color.surface-8dp.value}"
+		},
+		"surface-12dp": {
+			"value": "{alias.color.surface-12dp.value}"
+		},
+		"surface-16dp": {
+			"value": "{alias.color.surface-16dp.value}"
+		},
+		"surface-24dp": {
+			"value": "{alias.color.surface-24dp.value}"
+		}
+	},
+	"shadow": {
+		"shadow-elevation-0dp": {
+			"value": "{alias.shadow.shadow-elevation-0dp.value}"
+		},
+		"shadow-elevation-2dp": {
+			"value": "{alias.shadow.shadow-elevation-2dp.value}"
+		},
+		"shadow-elevation-4dp": {
+			"value": "{alias.shadow.shadow-elevation-4dp.value}"
+		},
+		"shadow-elevation-8dp": {
+			"value": "{alias.shadow.shadow-elevation-8dp.value}"
+		},
+		"shadow-elevation-12dp": {
+			"value": "{alias.shadow.shadow-elevation-12dp.value}"
+		},
+		"shadow-elevation-16dp": {
+			"value": "{alias.shadow.shadow-elevation-16dp.value}"
+		},
+		"shadow-elevation-24dp": {
+			"value": "{alias.shadow.shadow-elevation-24dp.value}"
+		}
+	}
+}
