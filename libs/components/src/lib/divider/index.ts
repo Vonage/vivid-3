@@ -6,9 +6,9 @@ import { Divider } from './divider';
 import { DividerTemplate as template } from './divider.template';
 
 export const vividDivider = Divider.compose<FoundationElementDefinition>({
-  baseName: 'divider',
-  template: template as any,
-  styles,
+	baseName: 'divider',
+	template: template as any,
+	styles,
 });
 
 designSystem.register(vividDivider());
