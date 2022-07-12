@@ -24,12 +24,12 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Input key
-        if: '' != ''
-        run: echo "CACHE_KEY=${{ SLACK_BOLOR }}" >> $GITHUB_ENV
+        if: ${{'' != ''}}
+        run: echo "CACHE_KEY=${{ env.SLACK_BOLOR }}" >> $GITHUB_ENV
 
       - name: Default key
-        if: '' == ''
-        run: echo "CACHE_KEY=${{ SLACK_COLOR }}" >> $GITHUB_ENV
+        if: ${{ '' == '' }}
+        run: echo "CACHE_KEY=${{ env.SLACK_COLOR }}" >> $GITHUB_ENV
 
       - run: echo ${{ env.CACHE_KEY  }}
 #  deps-cache:
