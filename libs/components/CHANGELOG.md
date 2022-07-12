@@ -1,8 +1,17 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Thu, 07 Jul 2022 09:15:29 GMT and should not be manually modified.
+This log was last generated on Mon, 11 Jul 2022 12:53:41 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.30
+
+Mon, 11 Jul 2022 12:53:41 GMT
+
+### Changes
+
+- remove inert and blocking elements polyfills from side drawer as browsers support increased (yinon@hotmail.com)
+- refactor(components): breadcrumb item disable focus delegation (yinon@hotmail.com)
 
 ## 3.0.0-next.29
 
