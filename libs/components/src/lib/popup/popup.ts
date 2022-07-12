@@ -159,7 +159,7 @@ export class Popup extends FoundationElement {
 		return document.getElementById(this.anchor);
 	}
 
-	#handleKeydown(event: KeyboardEvent): void {
+	#handleKeydown(({ key }): KeyboardEvent): void {
 		if (event.key === keyEscape) {
 			this.open = false;
 		}
