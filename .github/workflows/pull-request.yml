@@ -11,31 +11,27 @@ on:
     branches:
       - main
 
+env:
+  SLACK_COLOR: "bad"
+  SLACK_BOLOR: "good"
+
 concurrency:
   group: ci-tests-${{ github.ref }}-1
   cancel-in-progress: true
 
 jobs:
-  get-cache-key:
-    if: '' != ''
-    runs-on: ubuntu-20.04
-    env:
-      SLACK_COLOR: "good"
-    steps:
-      run: echo "CACHE_KEY=${{ SLACK_COLOR }}" >> $GITHUB_ENV
-
-  get-default-cache-key:
-    if: '' == ''
-    runs-on: ubuntu-20.04
-    env:
-      SLACK_COLOR: "bad"
-    steps:
-      run: echo "CACHE_KEY=${{ SLACK_COLOR }}" >> $GITHUB_ENV
-
   check-string:
     runs-on: ubuntu-20.04
     steps:
-      run: echo ${{ env.CACHE_KEY  }}
+      - name: Input key
+        if: '' != ''
+        run: echo "CACHE_KEY=${{ SLACK_BOLOR }}" >> $GITHUB_ENV
+
+      - name: Default key
+        if: '' == ''
+        run: echo "CACHE_KEY=${{ SLACK_COLOR }}" >> $GITHUB_ENV
+
+      - run: echo ${{ env.CACHE_KEY  }}
 #  deps-cache:
 #    runs-on: ubuntu-20.04
 #    steps:
