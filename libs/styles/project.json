@@ -1,15 +1,12 @@
 {
-  "root": "libs/styles",
   "sourceRoot": "libs/styles/src",
   "projectType": "library",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/styles"
-      ],
+      "outputs": ["coverage/libs/styles"],
       "options": {
-        "jestConfig": "libs/styles/jest.config.js",
+        "jestConfig": "libs/styles/jest.config.ts",
         "passWithNoTests": true
       }
     },
@@ -30,13 +27,9 @@
     },
     "stylelint": {
       "executor": "nx-stylelint:lint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/styles/**/*.css"
-        ]
+        "lintFilePatterns": ["libs/styles/**/*.css"]
       }
     }
   },

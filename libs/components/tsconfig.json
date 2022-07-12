@@ -20,13 +20,14 @@
     "stripInternal": true, // check if we need it
     "importHelpers": true,
     "allowSyntheticDefaultImports": true,
-    "removeComments": true
+    "removeComments": true,
+    "composite": true
   },
   "files": [],
   "include": [],
   "references": [
     {
-      "path": "./tsconfig.lib.json"
+      "path": "./tsconfig.lib.json",
     },
     {
       "path": "./tsconfig.spec.json"

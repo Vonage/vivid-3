@@ -1,0 +1,9 @@
+[
+  {
+    "title": "color",
+    "markdown": "./docs/design/color.md",
+    "modules": [
+      "/assets/modules/components/layout/index.js"
+    ]
+  }
+]

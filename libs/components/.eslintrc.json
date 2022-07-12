@@ -15,6 +15,7 @@
   ],
   "rules": {
     // lint
+    "@nrwl/nx/workspace/no-attribute-default-value": "error",
     "indent": "off",
     "@typescript-eslint/indent": [
       "error",
@@ -41,7 +42,6 @@
     "no-floating-decimal": "error",
     "prefer-const": "error",
     // functional
-    "no-shadow": "error",
     "compat/compat": "error",
     "import/prefer-default-export": "off",
     "class-methods-use-this": "off",

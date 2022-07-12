@@ -1,0 +1,18 @@
+name: 🧬 Deploy
+
+on:
+  push:
+    branches:
+      - 'main'
+
+concurrency:
+  group: ci-pre-release-${{ github.ref }}-1
+  cancel-in-progress: true
+
+jobs:
+  call-deploy-site:
+    if: github.event.head_commit.message == 'Version Bump'
+    uses: vonage/vivid-3/.github/workflows/_deploy-deno.yml@main
+
+
+

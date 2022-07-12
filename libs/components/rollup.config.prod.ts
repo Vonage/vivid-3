@@ -1,6 +1,7 @@
+
 const fs = require('fs');
 const path = require('path');
-const rollupBaseConfig = require('./rollup.config.base.ts');
+const replace = require('@rollup/plugin-replace');
 
 /**
  * @param workingFolder
@@ -20,7 +21,7 @@ function getFoldersInAFolder(workingFolder = './src/lib/') {
 
 const components = getFoldersInAFolder();
 const input = components.reduce((inputObject, componentName) => {
-	inputObject[`components/${componentName}/index`] = path.join(
+	inputObject[`${componentName}/index`] = path.join(
 		process.cwd(),
 		`libs/components/src/lib/${componentName}/index.ts`
 	);
@@ -28,14 +29,21 @@ const input = components.reduce((inputObject, componentName) => {
 }, {});
 
 module.exports = function setVividRollupConfig(config) {
+
+	input.index = config.input;
+
+	const output = config.output;
+	output.chunkFileNames = 'shared/[name].js';
+	delete output.name;
+	delete output.entryFileNames;
+
+	const plugins = [...config.plugins,
+		replace({
+			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+		})];
 	return {
 		input,
-		output: {
-			sourcemap: 'hidden',
-			dir: 'dist/libs',
-			format: 'esm',
-			chunkFileNames: 'components/[name]/chunks/index.js',
-		},
-		...rollupBaseConfig,
+		output,
+		plugins
 	};
 };

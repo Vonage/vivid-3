@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "vivid-component",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Component name",
+      "x-prompt": "Component name",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      }
+    },
+    "exportComponent": {
+      "type": "boolean",
+      "description": "Add export in package.json?",
+      "x-prompt": "Add export in package.json?",
+      "default": true
+    }
+  },
+  "required": ["name"]
+}

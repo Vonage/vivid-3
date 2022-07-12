@@ -7,9 +7,10 @@
     "build": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
+        "pathprefix": "",
         "commands": [
           {
-            "command": "yarn eleventy --config=./apps/docs/.eleventy.js"
+            "command": "npx eleventy --config=./apps/docs/.eleventy.js"
           }
         ]
       }
@@ -17,11 +18,7 @@
     "serve": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "commands": [
-          {
-            "command": "yarn eleventy --config=./apps/docs/.eleventy.js --serve"
-          }
-        ]
+        "command": "npx eleventy --config=./apps/docs/.eleventy.js --serve & npx nx serve styles & npx nx build components --watch"
       }
     }
   },

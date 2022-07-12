@@ -3,6 +3,9 @@
   "projects": {
     "components": "libs/components",
     "docs": "apps/docs",
+    "eslint-rules": "tools/eslint-rules",
+    "nx-vivid": "libs/nx-vivid",
+    "nx-vivid-e2e": "apps/nx-vivid-e2e",
     "shared": "libs/shared",
     "styles": "libs/styles"
   }

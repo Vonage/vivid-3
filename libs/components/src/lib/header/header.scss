@@ -1,0 +1,37 @@
+@use "../../../../shared/src/lib/sass/mixins/typography" as typography;
+@use "../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts" as theme-consts;
+@use "partials/variables" as variables;
+
+.base {
+	@include typography.typography-cat-shorthand("subtitle-2");
+	#{variables.$header-block-size}: 64px;
+
+	z-index: 1;
+	block-size: var(#{variables.$header-block-size});
+	inline-size: 100%;
+
+	.header-content {
+		display: inline-flex;
+		align-items: center;
+		column-gap: 4px;
+	}
+}
+
+.container {
+	display: flex;
+	box-sizing: border-box;
+	justify-content: space-between;
+	block-size: inherit;
+	color: var(#{theme-consts.$vvd-color-on-canvas});
+	column-gap: 12px;
+	padding-block: 8px;
+	padding-inline: 16px;
+
+	&[part~="vvd-theme-alternate"] {
+		background-color: var(#{theme-consts.$vvd-color-canvas});
+	}
+}
+
+.app-content {
+	#{variables.$header-block-size}: 64px;
+}

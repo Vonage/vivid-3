@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/playwright:v1.16.3-focal
+FROM mcr.microsoft.com/playwright:v1.21.0-focal
 ENV update false
 WORKDIR /usr/src/app
 COPY . .

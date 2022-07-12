@@ -1,0 +1,6 @@
+@use 'variables' as variables;
+
+@mixin elevation($type) {
+	#{variables.$vvd-elevation-fill}: var(--vvd-color-surface-#{$type}dp);
+	#{variables.$vvd-elevation-shadow}: var(--vvd-shadow-surface-#{$type}dp);
+}

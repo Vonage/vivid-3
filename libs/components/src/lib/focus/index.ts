@@ -1,5 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../design-system';
+import { designSystem } from '../../shared/design-system';
 import { Focus } from './focus';
 import styles from './focus.scss';
 import { focusTemplate as template } from './focus.template';
@@ -12,10 +12,10 @@ import { focusTemplate as template } from './focus.template';
  * Focuss don’t work for navigation because they can't include a hyperlink.
  */
 
-export const VIVIDFocus = Focus.compose<FoundationElementDefinition>({
+export const vividFocus = Focus.compose<FoundationElementDefinition>({
 	baseName: 'focus',
 	template: template as any,
 	styles,
 });
 
-designSystem.register(VIVIDFocus());
+designSystem.register(vividFocus());
