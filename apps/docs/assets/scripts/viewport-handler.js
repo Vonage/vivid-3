@@ -1,3 +1,4 @@
+const mobileWidth = 880;
 let pendingUpdate = false;
 
 function viewportHandler({ target: { width } }) {
@@ -8,7 +9,7 @@ function viewportHandler({ target: { width } }) {
 		pendingUpdate = false;
 
 		const sideDrawer = document.querySelector('vwc-side-drawer');
-		sideDrawer.modal = width < 880;
+		sideDrawer.modal = width < mobileWidth;
 	});
 
 }
