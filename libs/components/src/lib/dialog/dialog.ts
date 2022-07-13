@@ -26,7 +26,6 @@ export class Dialog extends FoundationElement {
 	 * HTML Attribute: open
 	 */
 	@attr({mode: 'boolean'}) open = false;
-	@attr({mode: 'fromView'}) returnValue?: string;
 	@attr icon?: string;
 	@attr text?: string;
 	@attr headline?: string;
@@ -35,6 +34,14 @@ export class Dialog extends FoundationElement {
 	@attr({attribute: 'aria-describedby'}) ariaDescribedBy: string | null = null;
 
 	#modal = false;
+
+	set returnValue(value) {
+		this.#dialog.returnValue = value;
+	}
+
+	get returnValue(): string {
+		return this.#dialog?.returnValue;
+	}
 
 	get modal() {
 		return this.#modal;

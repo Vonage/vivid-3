@@ -55,7 +55,7 @@ describe('vwc-dialog', () => {
 		it('should be initialized as a vwc-dialog', async () => {
 			expect(element).toBeInstanceOf(Dialog);
 			expect(element.open).toEqual(false);
-			expect(element.returnValue).toEqual(undefined);
+			expect(element.returnValue).toEqual("");
 			expect(element.icon).toEqual(undefined);
 			expect(element.text).toEqual(undefined);
 			expect(element.headline).toEqual(undefined);
