@@ -47,7 +47,6 @@ vwc-side-drawer:not([open]) {
 }
 
 vwc-side-drawer::part(base) {
-  z-index: 2;
   background-color: var(--vvd-color-canvas);
   inline-size: 280px;
   border-right: 1px solid var(--vvd-color-neutral-20);
@@ -60,10 +59,14 @@ vwc-side-drawer::part(base) {
   }
 }
 
+vwc-header#header-main {
+	z-index: 0;
+	position: relative;
+}
+
 vwc-header#header-main::part(base) {
   position: fixed;
   top: 0;
-  z-index: 1;
   inline-size: auto;
   inset-inline: var(--header-inset-inline-start) 0;
 }
@@ -78,10 +81,29 @@ vwc-header#header-aside::part(base) {
   background-color: var(--vvd-color-canvas);
   z-index: 1;
 }
+
+dark-mode-toggle::part(toggleLabel)::before {
+	background-image: none;
+	background-color: currentColor;
+}
+
+dark-mode-toggle[mode="light"]::part(toggleLabel)::before {
+  -webkit-mask: url(https://icon.resources.vonage.com/v4.0.28/dark-mode-solid.svg) no-repeat center;
+  mask: url(https://icon.resources.vonage.com/v4.0.28/dark-mode-solid.svg) no-repeat center;
+}
+
+dark-mode-toggle[mode="dark"]::part(toggleLabel)::before {
+  -webkit-mask: url(https://icon.resources.vonage.com/v4.0.28/light-mode-solid.svg) no-repeat center;
+  mask: url(https://icon.resources.vonage.com/v4.0.28/light-mode-solid.svg) no-repeat center;
+}
+
+dark-mode-toggle::part(form) {
+	margin: 0;
+}
 /* #endregion layout */
 
 /*#region: side navigation (temp style - need to be removed once sidenav is done)*/
-nav.navigation [role="heading"][aria-level="2"] {
+vwc-sidenav [role="heading"][aria-level="2"] {
   color: var(--vvd-color-neutral-70);
 }
 /*#region END: side navigation */
@@ -121,18 +143,17 @@ nav.navigation [role="heading"][aria-level="2"] {
   margin: 0 0.25rem;
 }
 
-article > h1,
-article > h2,
-article > h3,
-article > h4,
-article > h5,
-article > h6,
-article > p,
-article > ul,
-article > table {
+article h1,
+article h2,
+article h3,
+article h4,
+article h5,
+article h6,
+article p,
+article ul,
+article table {
   max-inline-size: 64ch;
 }
-
 article > pre,
 article > .cbd-container {
   margin-block: 12px;
@@ -165,6 +186,10 @@ article > .cbd-container {
 }
 
 /* code fence demo */
+
+.cbd-iframe-container {
+  position: relative;
+}
 
 .cbd-demo {
   overflow: hidden;

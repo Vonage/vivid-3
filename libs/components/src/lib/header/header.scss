@@ -6,6 +6,7 @@
 	@include typography.typography-cat-shorthand("subtitle-2");
 	#{variables.$header-block-size}: 64px;
 
+	z-index: 1;
 	block-size: var(#{variables.$header-block-size});
 	inline-size: 100%;
 
