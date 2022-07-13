@@ -18,12 +18,10 @@ import type { SidenavDisclosure } from './sidenav-disclosure';
 export const SidenavDisclosureTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<SidenavDisclosure> = (
-	context: ElementDefinitionContext,
-	) => {
-		const affixIconTemplate = affixIconTemplateFactory(context);
-		const focusTemplate = focusTemplateFactory(context);
-		return html`<details class="base" ?open="${(x) => x.open}">
+) => ViewTemplate<SidenavDisclosure> = (context: ElementDefinitionContext) => {
+	const affixIconTemplate = affixIconTemplateFactory(context);
+	const focusTemplate = focusTemplateFactory(context);
+	return html`<details class="base" ?open="${(x) => x.open}">
         <summary class="control"
             role="button"
             aria-controls="disclosure-content"
@@ -38,6 +36,6 @@ export const SidenavDisclosureTemplate: (
         <div class="content" id="disclosure-content"><slot></slot></div>
     </details>
 	`;
-	};
+};
 
 
