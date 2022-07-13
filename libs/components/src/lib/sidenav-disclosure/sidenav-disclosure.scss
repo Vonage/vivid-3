@@ -1,26 +1,25 @@
-@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
-@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use "../../../../shared/src/lib/sass/mixins/typography" as typography;
+@use "../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts" as theme-consts;
 
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent,
 	$shades: primary faint soft,
-	$default: accent,
+	$default: accent
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: ghost,
 	$states: idle hover active selected,
-	$default: ghost,
+	$default: ghost
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
-
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 
 .control {
 	$min-block-size: 40px;
 	$gap: 8px;
 
-	@include typography.typography-cat-shorthand('body-2');
+	@include typography.typography-cat-shorthand("body-2");
 	@include appearance.appearance;
 	@include connotation.connotation;
 
@@ -36,7 +35,6 @@
 	gap: $gap;
 	hyphens: auto;
 	inline-size: 100%;
-	list-style: none;
 	min-block-size: $min-block-size;
 	padding-block: 10px;
 	padding-inline: $gap;
@@ -76,4 +74,12 @@
 .content {
 	border-inline-start: 1px solid var(#{theme-consts.$vvd-color-neutral-30});
 	margin-inline-start: 32px;
+}
+
+details > summary {
+	list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+	display: none;
 }
