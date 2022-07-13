@@ -56,7 +56,7 @@
 	margin-block: 4px;
 }
 
-vwc-divider {
+::slotted([vwc-divider]) {
 	align-self: stretch;
 	margin-block: 4px;
 }

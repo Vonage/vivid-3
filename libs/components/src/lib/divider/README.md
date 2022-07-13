@@ -70,14 +70,15 @@ vwc-card {
 .demo-wrapper {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
+    align-items: center;
 }
 .demo-h2 {
-  padding: 0 16px;
+  padding: 0 32px;
 }
 </style>
 <div class="demo-wrapper">
   <vwc-divider role="presentation"></vwc-divider>
-  <h2 class="demo-h2">More Info</h2>
+  <vwc-text class="demo-h2">More Info</vwc-text>
   <vwc-divider role="presentation"></vwc-divider>
 </div>
    
