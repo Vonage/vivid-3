@@ -14,13 +14,11 @@
 - Type: `'horizontal'` | `'vertical'` 
 - Default: `horizontal`
 
-```html preview
-<vwc-layout column-basis="block" column-spacing="small" gutters="small">
+```html preview blocks
   <vwc-divider orientation="horizontal"></vwc-divider>
   <div style="block-size: 40px;">
     <vwc-divider orientation="vertical"></vwc-divider>
   </div>
-</vwc-layout>
 ```
 
 ## Accessibility
@@ -34,14 +32,9 @@ When using `<vwc-divider>` as a decorative element the role should be set as `'p
 ### Vertical Divider
 ```html preview
 <vwc-action-group appearance="fieldset">
-  <vwc-button icon="reply-line"></vwc-button>
   <vwc-button icon="transfer-line"></vwc-button>
   <vwc-divider orientation="vertical"></vwc-divider>
   <vwc-button icon="compose-line"></vwc-button>
-  <vwc-button icon="crop-line"></vwc-button>
-  <vwc-divider orientation="vertical"></vwc-divider>
-  <vwc-button icon="copy-2-line"></vwc-button>
-  <vwc-button icon="save-line"></vwc-button>
 </vwc-action-group>
 ```
 ### Horizontal Divider
@@ -68,8 +61,4 @@ vwc-card {
    </div>
   </vwc-layout>
 </vwc-card>
-
- 
- 
-  
 ```
