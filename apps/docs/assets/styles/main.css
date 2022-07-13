@@ -155,7 +155,8 @@ article table {
   max-inline-size: 64ch;
 }
 article > pre,
-article > .cbd-container {
+article > .cbd-container,
+.cbd-details {
   margin-block: 12px;
   box-sizing: border-box;
   max-inline-size: calc(100vw - 64px);
@@ -163,7 +164,8 @@ article > .cbd-container {
 
 @media  (min-width: 960px) {
   article > pre,
-  article .cbd-base {
+  article .cbd-base,
+  .cbd-details {
     max-inline-size: 1200px;
   }
 }
