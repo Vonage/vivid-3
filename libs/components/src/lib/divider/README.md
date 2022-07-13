@@ -27,7 +27,7 @@
 A `<vwc-divider>` element is by default rendered with a role of `'separator'`.  
 When using `<vwc-divider>` as a decorative element the role should be set as `'presentation'`.
 
-[for further reading about divider foundational role & accessibility](https://github.com/microsoft/fast/blob/master/packages/web-components/fast-foundation/src/divider/divider.spec.md#accessibility)
+[For further reading about divider foundational role & accessibility](https://github.com/microsoft/fast/blob/master/packages/web-components/fast-foundation/src/divider/divider.spec.md#accessibility)
 
 
 ## Usage Examples
