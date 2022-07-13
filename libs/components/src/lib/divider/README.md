@@ -25,7 +25,7 @@
 A `<vwc-divider>` element is by default rendered with a role of `'separator'`.  
 When using `<vwc-divider>` as a decorative element the role should be set as `'presentation'`.
 
-[For further reading about divider foundational role & accessibility](https://github.com/microsoft/fast/blob/master/packages/web-components/fast-foundation/src/divider/divider.spec.md#accessibility)
+[For further reading about divider foundational role & accessibility](https://w3c.github.io/aria/#separator)
 
 
 ## Usage Examples
@@ -61,4 +61,24 @@ vwc-card {
    </div>
   </vwc-layout>
 </vwc-card>
+```
+
+### Divider as decorative element
+
+```html preview
+<style>
+.demo-wrapper {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+}
+.demo-h2 {
+  padding: 0 16px;
+}
+</style>
+<div class="demo-wrapper">
+  <vwc-divider role="presentation"></vwc-divider>
+  <h2 class="demo-h2">More Info</h2>
+  <vwc-divider role="presentation"></vwc-divider>
+</div>
+   
 ```
