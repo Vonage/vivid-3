@@ -31,7 +31,6 @@ Read more about [vwc-sidenav-disclosure](../../components/sidenav-disclosure).
 <vwc-sidenav>
     <vwc-sidenav-disclosure label="1st level item" open>
         <vwc-sidenav-item href="#" text="2nd level item"></vwc-sidenav-item>
-        <vwc-sidenav-item href="#" text="2nd level item"></vwc-sidenav-item>
         <vwc-sidenav-disclosure label="2nd level item" open>
             <vwc-sidenav-item href="#" text="3rd level item"></vwc-sidenav-item>
             <vwc-sidenav-item href="#" text="3rd level item"></vwc-sidenav-item>

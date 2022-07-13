@@ -66,7 +66,7 @@ If label is not applied.
 ```html preview
 <vwc-sidenav>
     <vwc-sidenav-disclosure icon="profile">
-        <vwc-sidenav-item icon="github-mono"></vwc-sidenav-item>
+        <vwc-sidenav-item href="#" text="2nd level item"></vwc-sidenav-item>
     </vwc-sidenav-disclosure>
 <vwc-sidenav>
 ```
