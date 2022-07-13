@@ -1,0 +1,48 @@
+{
+	"alias": {
+		"color": {
+			"type": "color",
+			"description": "Vivid's color palette",
+			"neutral": {
+				"000": {
+					"value": "#ffffff"
+				}
+			},
+			"purple": {
+				"050": {
+					"value": "#f5f0fd"
+				},
+				"100": {
+					"value": "#ece2fa"
+				},
+				"200": {
+					"value": "#dcc1fc"
+				},
+				"300": {
+					"value": "#cba1fa"
+				},
+				"400": {
+					"value": "#b27bf2"
+				},
+				"500": {
+					"value": "#9941ff"
+				},
+				"600": {
+					"value": "#871eff"
+				},
+				"700": {
+					"value": "#6405d1"
+				},
+				"800": {
+					"value": "#440291"
+				},
+				"900": {
+					"value": "#26044d"
+				},
+				"950": {
+					"value": "#140623"
+				}
+			}
+		}
+	}
+}

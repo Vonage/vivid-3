@@ -79,6 +79,7 @@
     "rollup-plugin-delete": "^2.0.0",
     "sass": "^1.52.2",
     "slugify": "^1.6.5",
+    "style-dictionary": "^3.7.1",
     "stylelint": "^14.8.5",
     "stylelint-config-idiomatic-order": "^8.1.0",
     "stylelint-config-prettier": "^9.0.3",

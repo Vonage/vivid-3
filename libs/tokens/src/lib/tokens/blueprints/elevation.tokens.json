@@ -1,0 +1,21 @@
+{
+	"color": {
+		"surface": {
+			"0dp": {
+				"value": "{alias.color.surface.0dp.value}"
+			}
+		}
+	},
+	"shadow": {
+		"0dp": {
+			"type": "shadow",
+			"value": {
+				"color": "#000000",
+				"offsetX": "4px",
+				"offsetY": "4px",
+				"blur": "4px",
+				"spread": "4px"
+			}
+		}
+	}
+}

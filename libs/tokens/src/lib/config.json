@@ -1,0 +1,23 @@
+{
+	"source": [
+		"tokens/**/*.tokens.json"
+	],
+	"platforms": {
+		"scss": {
+			"transformGroup": "scss",
+			"prefix": "vvd",
+			"buildPath": "build/scss/",
+			"files": [
+				{
+					"destination": "_variables.scss",
+					"format": "scss/variables",
+					"filter": {
+						"attributes": {
+							"category": "shadow"
+						}
+					}
+				}
+			]
+		}
+	}
+}

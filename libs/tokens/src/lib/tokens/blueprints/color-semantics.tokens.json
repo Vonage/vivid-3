@@ -1,0 +1,27 @@
+{
+	"color": {
+		"cta": {
+			"050": {
+				"value": "{alias.color.cta.050}"
+			},
+			"100": {
+				"value": "{alias.color.cta.100}"
+			},
+			"200": {
+				"value": "{alias.color.cta.200}"
+			},
+			"500": {
+				"value": "{alias.color.cta.500}"
+			},
+			"600": {
+				"value": "{alias.color.cta.600}"
+			},
+			"700": {
+				"value": "{alias.color.cta.700}"
+			},
+			"800": {
+				"value": "{alias.color.cta.800}"
+			}
+		}
+	}
+}
