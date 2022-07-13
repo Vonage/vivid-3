@@ -25,7 +25,7 @@
 A `<vwc-divider>` element is by default rendered with a role of `'separator'`.  
 When using `<vwc-divider>` as a decorative element the role should be set as `'presentation'`.
 
-[For further reading about divider foundational role & accessibility](https://w3c.github.io/aria/#separator)
+[For further reading about divider foundational role & accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/separator_role)
 
 
 ## Usage Examples
