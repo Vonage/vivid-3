@@ -1,25 +1,36 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
-import { Disclosure } from './sidenav-disclosure';
+import { SidenavDisclosure } from './sidenav-disclosure';
 import '.';
 
 const COMPONENT_TAG = 'vwc-sidenav-disclosure';
 const ICON_SELECTOR = 'vwc-icon';
 
 describe('vwc-sidenav-disclosure', () => {
-	let element: Disclosure;
+	let element: SidenavDisclosure;
 
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Disclosure;
+		)) as SidenavDisclosure;
 	});
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-sidenav-disclosure', async () => {
-			expect(element).toBeInstanceOf(Disclosure);
+			expect(element).toBeInstanceOf(SidenavDisclosure);
 			expect(element.label).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
+			expect(element.open).toBeFalsy();
+		});
+	});
+
+	describe('open', () => {
+		it('should open the sidenav disclosure', async () => {
+			expect(getBaseElement(element).attributes.getNamedItem('open')).toBeFalsy();
+
+			element.open = true;
+			await elementUpdated(element);
+			expect(getBaseElement(element).attributes.getNamedItem('open')).toBeTruthy();
 		});
 	});
 

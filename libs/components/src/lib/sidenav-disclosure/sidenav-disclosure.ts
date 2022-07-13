@@ -1,6 +1,5 @@
-import { Disclosure as FoundationDisclosure } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
-import { applyMixins } from '@microsoft/fast-foundation';
+import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { AffixIcon } from '../../shared/patterns/affix';
 
 /**
@@ -9,14 +8,23 @@ import { AffixIcon } from '../../shared/patterns/affix';
  *
  * @public
  */
-export class Disclosure extends FoundationDisclosure {
+export class SidenavDisclosure extends FoundationElement {
 	/**
 	 *
 	 * @public
 	 * HTML Attribute: label
 	 */
 	@attr label?: string;
+
+	/**
+	 * Indicates whether the sidenav-disclosure is open
+	 *
+	 * @public
+	 * HTML Attribute: open
+	 */
+	@attr({ mode: 'boolean' }) open = false;
+
 }
 
-export interface Disclosure extends AffixIcon { }
-applyMixins(Disclosure, AffixIcon);
+export interface SidenavDisclosure extends AffixIcon { }
+applyMixins(SidenavDisclosure, AffixIcon);

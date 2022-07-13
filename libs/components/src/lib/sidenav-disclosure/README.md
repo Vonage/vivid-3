@@ -28,16 +28,16 @@ Add a `label` attribute to add label to the sidenav disclosure.
 <vwc-sidenav>
 ```
 
-### Expanded
+### Open
 
 - Type: `Boolean`
 - Default: `false`
 
-You can toggle the sidenav-disclosure by using the `expanded` attribute.
+You can toggle the sidenav-disclosure by using the `open` attribute.
 
 ```html preview
 <vwc-sidenav>
-    <vwc-sidenav-disclosure label="1st level item" expanded>
+    <vwc-sidenav-disclosure label="1st level item" open>
         <vwc-sidenav-item href="#" text="2nd level item"></vwc-sidenav-item>
     </vwc-sidenav-disclosure>
 <vwc-sidenav>
