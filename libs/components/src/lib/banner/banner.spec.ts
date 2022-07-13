@@ -138,7 +138,7 @@ describe('vwc-banner', () => {
 				.toEqual('assertive');
 		});
 
-		it('should change aria-live to ariaLive text', async function () {
+		it('should change reflect aria-live inside the message', async function () {
 			element.setAttribute('aria-live', 'assertive');
 			await elementUpdated(element);
 			const ariaLive = element.shadowRoot?.querySelector('.banner--message')
