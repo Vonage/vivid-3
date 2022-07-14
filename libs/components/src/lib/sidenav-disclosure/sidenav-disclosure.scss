@@ -48,12 +48,6 @@
 		}
 	}
 
-	&.icon-only {
-		display: flex;
-		block-size: $min-block-size;
-		inline-size: $min-block-size;
-		place-content: center;
-	}
 
 	.toggleIcon {
 		position: absolute;
