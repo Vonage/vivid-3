@@ -16,9 +16,7 @@
 
 ```html preview blocks
   <vwc-divider orientation="horizontal"></vwc-divider>
-  <div style="block-size: 40px;">
-    <vwc-divider orientation="vertical"></vwc-divider>
-  </div>
+  <vwc-divider orientation="vertical" style="block-size: 40px;"></vwc-divider>
 ```
 
 ## Accessibility
