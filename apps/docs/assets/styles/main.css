@@ -136,6 +136,11 @@ vwc-sidenav [role="heading"][aria-level="2"] {
   text-decoration: none;
   margin: 0.5rem 0 1rem 0;
 }
+.home-page-hero p,
+.home-page-hero h6 {
+  margin: 0 auto;
+}
+
 .home-page-hero-docs-links {
   color: var(--vvd-color-on-canvas);
 }
