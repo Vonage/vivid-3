@@ -32,20 +32,14 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/components/**/*.ts"
-        ]
+        "lintFilePatterns": ["libs/components/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/components"
-      ],
+      "outputs": ["coverage/libs/components"],
       "options": {
         "jestConfig": "libs/components/jest.config.cjs",
         "passWithNoTests": true
@@ -53,9 +47,7 @@
     },
     "build": {
       "executor": "@nrwl/web:rollup",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "entryFile": "libs/components/src/index.ts",
         "outputPath": "dist/libs/components",
@@ -81,17 +73,13 @@
         ],
         "buildableProjectDepsInPackageJsonType": "dependencies",
         "updateBuildableProjectDepsInPackageJson": true,
-        "format": [
-          "esm"
-        ],
+        "format": ["esm"],
         "extractCss": false
       }
     },
     "serve": {
       "executor": "@nrwl/web:rollup",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "entryFile": "libs/components/src/index.ts",
         "outputPath": "dist/libs/components",
@@ -118,27 +106,18 @@
             "output": "./styles/fonts"
           }
         ],
-        "format": [
-          "esm"
-        ],
+        "format": ["esm"],
         "extractCss": false
       }
     },
     "stylelint": {
       "executor": "nx-stylelint:lint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/components/**/*.scss"
-        ]
+        "lintFilePatterns": ["libs/components/**/*.scss"]
       }
     }
   },
   "tags": [],
-  "implicitDependencies": [
-    "styles",
-    "tokens"
-  ]
+  "implicitDependencies": ["styles", "tokens"]
 }

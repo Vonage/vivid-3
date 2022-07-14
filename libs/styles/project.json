@@ -29,13 +29,9 @@
     },
     "stylelint": {
       "executor": "nx-stylelint:lint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/styles/**/*.css"
-        ]
+        "lintFilePatterns": ["libs/styles/**/*.css"]
       }
     }
   },
