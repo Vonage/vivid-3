@@ -4,9 +4,7 @@
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/styles"
-      ],
+      "outputs": ["coverage/libs/styles"],
       "options": {
         "jestConfig": "libs/styles/jest.config.ts",
         "passWithNoTests": true
@@ -35,8 +33,5 @@
       }
     }
   },
-  "tags": [],
-  "implicitDependencies": [
-    "tokens"
-  ]
+  "tags": []
 }
