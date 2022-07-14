@@ -226,6 +226,25 @@ describe('vwc-popup', () => {
 		});
 	});
 
+	describe('handle keydown', () => {
+		it('should hide on escape key', async () => {
+			const anchor = await setAnchor();
+			element.anchor = 'anchor';
+			await elementUpdated(element);
+
+			element.open = true;
+			expect(element.open)
+				.toEqual(true);
+
+			await elementUpdated(element);
+			anchor.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+			await elementUpdated(element);
+
+			expect(element.open)
+				.toEqual(false);
+		});
+	});
+
 	describe('alternate', () => {
 		it('should set to alternate', async () => {
 			expect(getControlElement(element)

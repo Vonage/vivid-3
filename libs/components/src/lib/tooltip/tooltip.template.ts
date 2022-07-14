@@ -19,9 +19,9 @@ export const TooltipTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Tooltip> = () => html`
-<vwc-popup class="${getClasses}" arrow alternate="true" 
+<vwc-popup class="${getClasses}" arrow alternate
 corner=${(x) => x.corner} open=${(x) => x.open} anchor=${(x) => x.anchor}
-  exportparts="vvd-theme-alternate">
+  exportparts="vvd-theme-alternate" role="tooltip">
   <div class="tooltip">
     <header part="vvd-theme-alternate" class="tooltip-header">
       <div class="tooltip-text">${(x) => x.text}</div>
