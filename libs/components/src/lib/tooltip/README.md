@@ -122,3 +122,12 @@ Use the `--tooltip-inline-size` variable to set the tooltip's inline size.
   button.addEventListener('focusout', ()=> tooltip.open = false);
 </script>
 ```
+
+## Caveat
+
+Document elements display precedence is formed by the imaginary z-axis [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context), commonly by order of which elements are rendered and special properties (e.g. _z-index_).
+Tooltip component is a low level element, unaware of its document context, but is, in most cases, required to overlay on top of all elements.
+
+A common practice used in apps / frameworks to promote a tooltip component to top other elements z-axis, is to utilise a service that dynamically appends a tooltip component to the end of the body element, when called for.
+
+This helps ensure elements don't render over top a tooltip undesirebly.
