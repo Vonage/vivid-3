@@ -119,5 +119,5 @@
     }
   },
   "tags": [],
-  "implicitDependencies": ["styles"]
+  "implicitDependencies": ["tokens"]
 }
