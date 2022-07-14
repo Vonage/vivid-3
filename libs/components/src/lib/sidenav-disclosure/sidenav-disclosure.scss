@@ -23,7 +23,7 @@
 	@include appearance.appearance;
 	@include connotation.connotation;
 
-	display: inline-flex;
+	display: flex;
 	box-sizing: border-box;
 	align-items: center;
 	background-color: var(#{appearance.get-appearance-token(fill)});
