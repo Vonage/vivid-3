@@ -65,19 +65,20 @@ vwc-card {
 
 ```html preview
 <style>
-.demo-wrapper {
+.decorative-divider {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
 }
-.demo-h2 {
+
+vwc-text {
   padding: 0 32px;
 }
 </style>
-<div class="demo-wrapper">
+
+<div class="decorative-divider">
   <vwc-divider role="presentation"></vwc-divider>
-  <vwc-text class="demo-h2">More Info</vwc-text>
+  <vwc-text>More Info</vwc-text>
   <vwc-divider role="presentation"></vwc-divider>
 </div>
-   
 ```
