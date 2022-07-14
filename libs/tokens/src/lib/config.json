@@ -6,7 +6,7 @@
 		"scss": {
 			"transformGroup": "scss",
 			"prefix": "vvd",
-			"buildPath": "build/scss/",
+			"buildPath": "../../../../dist/libs/tokens/scss/",
 			"files": [
 				{
 					"destination": "_variables.scss",
