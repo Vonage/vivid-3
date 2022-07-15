@@ -1,38 +1,7 @@
 {
-	"include": [
-		"blueprints/**/*.tokens.json"
-	],
+	"include": [],
 	"source": [
+		"blueprints/**/*.tokens.json",
 		"tokens-from-figma/globals/**/*.tokens.json"
-	],
-	"platforms": {
-		"scss": {
-			"transformGroup": "scss",
-			"prefix": "vvd",
-			"buildPath": "dist/libs/tokens/scss/",
-			"files": [
-				{
-					"destination": "_variables.scss",
-					"format": "scss/variables",
-					"filter": "isNotAlias"
-				}
-			]
-		},
-		"javascript": {
-			"transformGroup": "js",
-			"buildPath": "dist/libs/tokens/js/",
-			"files": [
-				{
-					"format": "javascript/es6",
-					"destination": "lib/tokens.js",
-					"filter": "isNotAlias"
-				},
-				{
-					"format": "typescript/es6-declarations",
-					"destination": "lib/tokens.d.ts",
-					"filter": "isNotAlias"
-				}
-			]
-		}
-	}
+	]
 }
