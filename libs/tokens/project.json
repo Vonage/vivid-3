@@ -28,8 +28,9 @@
 			"executor": "@nrwl/workspace:run-commands",
 			"options": {
 				"commands": [
-					"ts-node libs/tokens/src/lib/build.ts"
-				]
+					"ts-node build.ts"
+				],
+				"cwd": "libs/tokens/src/lib"
 			}
 		}
 	},

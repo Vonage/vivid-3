@@ -1,9 +1,9 @@
 {
 	"include": [
-		"libs/tokens/src/lib/blueprints/**/*.tokens.json"
+		"blueprints/**/*.tokens.json"
 	],
 	"source": [
-		"libs/tokens/src/lib/tokens-from-figma/globals/**/*.tokens.json"
+		"tokens-from-figma/globals/**/*.tokens.json"
 	],
 	"platforms": {
 		"scss": {
