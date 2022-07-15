@@ -28,9 +28,8 @@
 			"executor": "@nrwl/workspace:run-commands",
 			"options": {
 				"commands": [
-					"style-dictionary build libs/tokens/src/lib/build.ts"
-				],
-				"cwd": "libs/tokens/src/lib/"
+					"ts-node libs/tokens/src/lib/build.ts"
+				]
 			}
 		}
 	},
