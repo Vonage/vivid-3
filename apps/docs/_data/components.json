@@ -211,5 +211,16 @@
       "/assets/modules/components/sidenav/index.js",
       "/assets/modules/components/sidenav-item/index.js"
     ]
+  },
+  {
+    "title": "divider",
+    "markdown": "./libs/components/src/lib/divider/README.md",
+    "modules": [
+      "/assets/modules/components/divider/index.js",
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/action-group/index.js",
+      "/assets/modules/components/card/index.js",
+      "/assets/modules/components/text/index.js"
+    ]
   }
 ]
