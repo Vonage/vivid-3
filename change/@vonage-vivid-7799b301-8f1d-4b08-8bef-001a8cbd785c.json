@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "add new component sidenav-disclosure",
-  "packageName": "@vonage/vivid",
-  "email": "rina.oksman@vonage.com",
-  "dependentChangeType": "add sidenav-disclosure"
-}
