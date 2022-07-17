@@ -76,10 +76,6 @@ vwc-layout {
  --layout-grid-template-columns: 1fr auto 1fr;
 }
 
-vwc-text {
-  padding: 0 32px;
-}
-
  vwc-divider {
   display: flex;
   align-items: center;
