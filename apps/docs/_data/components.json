@@ -5,14 +5,16 @@
     "modules": [
       "/assets/modules/components/accordion/index.js",
       "/assets/modules/components/accordion-item/index.js"
-    ]
-  },
-  {
-    "title": "accordion-item",
-    "markdown": "./libs/components/src/lib/accordion-item/README.md",
-    "modules": [
-      "/assets/modules/components/accordion-item/index.js",
-      "/assets/modules/components/text/index.js"
+    ],
+    "children": [
+      {
+        "title": "accordion-item",
+        "markdown": "./libs/components/src/lib/accordion-item/README.md",
+        "modules": [
+          "/assets/modules/components/accordion-item/index.js",
+          "/assets/modules/components/text/index.js"
+        ]
+      }
     ]
   },
   {
@@ -36,13 +38,15 @@
     "modules": [
       "/assets/modules/components/breadcrumb-item/index.js",
       "/assets/modules/components/breadcrumb/index.js"
-    ]
-  },
-  {
-    "title": "breadcrumb-item",
-    "markdown": "./libs/components/src/lib/breadcrumb-item/README.md",
-    "modules": [
-      "/assets/modules/components/breadcrumb-item/index.js"
+    ],
+    "children": [
+      {
+        "title": "breadcrumb-item",
+        "markdown": "./libs/components/src/lib/breadcrumb-item/README.md",
+        "modules": [
+          "/assets/modules/components/breadcrumb-item/index.js"
+        ]
+      }
     ]
   },
   {
@@ -57,14 +61,16 @@
     "markdown": "./libs/components/src/lib/calendar/README.md",
     "modules": [
       "/assets/modules/components/calendar/index.js"
-    ]
-  },
-  {
-    "title": "calendar-event",
-    "markdown": "./libs/components/src/lib/calendar-event/README.md",
-    "modules": [
-      "/assets/modules/components/calendar-event/index.js",
-      "/assets/modules/components/calendar/index.js"
+    ],
+    "children": [
+      {
+        "title": "calendar-event",
+        "markdown": "./libs/components/src/lib/calendar-event/README.md",
+        "modules": [
+          "/assets/modules/components/calendar-event/index.js",
+          "/assets/modules/components/calendar/index.js"
+        ]
+      }
     ]
   },
   {
@@ -102,23 +108,6 @@
       "/assets/modules/components/text/index.js",
       "/assets/modules/components/fab/index.js",
       "/assets/modules/components/layout/index.js"
-    ]
-  },
-  {
-    "title": "sidenav-item",
-    "markdown": "./libs/components/src/lib/sidenav-item/README.md",
-    "modules": [
-      "/assets/modules/components/sidenav/index.js",
-      "/assets/modules/components/sidenav-item/index.js"
-    ]
-  },
-  {
-    "title": "sidenav-disclosure",
-    "markdown": "./libs/components/src/lib/sidenav-disclosure/README.md",
-    "modules": [
-      "/assets/modules/components/sidenav/index.js",
-      "/assets/modules/components/sidenav-disclosure/index.js",
-      "/assets/modules/components/sidenav-item/index.js"
     ]
   },
   {
@@ -230,6 +219,25 @@
       "/assets/modules/components/sidenav/index.js",
       "/assets/modules/components/sidenav-item/index.js",
       "/assets/modules/components/sidenav-disclosure/index.js"
+    ],
+    "children": [
+      {
+        "title": "sidenav-item",
+        "markdown": "./libs/components/src/lib/sidenav-item/README.md",
+        "modules": [
+          "/assets/modules/components/sidenav/index.js",
+          "/assets/modules/components/sidenav-item/index.js"
+        ]
+      },
+      {
+        "title": "sidenav-disclosure",
+        "markdown": "./libs/components/src/lib/sidenav-disclosure/README.md",
+        "modules": [
+          "/assets/modules/components/sidenav/index.js",
+          "/assets/modules/components/sidenav-disclosure/index.js",
+          "/assets/modules/components/sidenav-item/index.js"
+        ]
+      }
     ]
   },
   {

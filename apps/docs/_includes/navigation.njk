@@ -6,8 +6,21 @@
   {% endfor %}
 
   <p role="heading" aria-level="2">Components</p>
+
   {%  for item in components | sort(false, false, 'title') %}
-  <vwc-sidenav-item href="{{ ('/components/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-sidenav-item>
+
+    {% if item.children %}
+      <vwc-sidenav-disclosure href="{{ ('/components/' + item.title) | url }}" label="{{ item.title | replace("-", " ") | capitalize }}">
+      {%  for childItem in item.children | sort(false, false, 'title') %}
+        <vwc-sidenav-item href="{{ ('/components/' + childItem.title) | url }}" text="{{ childItem.title | replace("-", " ") | capitalize }}"></vwc-sidenav-item>
+      {% endfor %}
+      </vwc-sidenav-disclosure>
+
+    {% else %}
+    <vwc-sidenav-item href="{{ ('/components/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-sidenav-item>
+
+    {% endif %}
   {% endfor %}
+
 </vwc-sidenav>
 {% endblock %}
