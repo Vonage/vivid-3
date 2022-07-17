@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Mon, 11 Jul 2022 12:53:41 GMT and should not be manually modified.
+This log was last generated on Sun, 17 Jul 2022 08:57:35 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.31
+
+Sun, 17 Jul 2022 08:57:35 GMT
+
+### Changes
+
+- divider component (rachel.tannenbaum@vonage.com)
 
 ## 3.0.0-next.30
 
