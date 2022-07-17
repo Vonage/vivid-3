@@ -26,11 +26,11 @@ describe('vwc-sidenav-disclosure', () => {
 
 	describe('open', () => {
 		it('should open the sidenav disclosure', async () => {
-			expect(getBaseElement(element).attributes.getNamedItem('open')).toBeFalsy();
+			expect(getBaseElement(element).hasAttribute('open')).toBeFalsy();
 
 			element.open = true;
 			await elementUpdated(element);
-			expect(getBaseElement(element).attributes.getNamedItem('open')).toBeTruthy();
+			expect(getBaseElement(element).hasAttribute('open')).toBeTruthy();
 		});
 	});
 
