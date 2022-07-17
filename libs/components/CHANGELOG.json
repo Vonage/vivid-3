@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Sun, 17 Jul 2022 12:13:48 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.33",
+      "version": "3.0.0-next.33",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "88ffa0cf25a3d3b87b63812fd011039600422b1a",
+            "comment": "add sidenav disclosure component"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 17 Jul 2022 10:27:51 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.32",
       "version": "3.0.0-next.32",

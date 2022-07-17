@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 17 Jul 2022 10:27:51 GMT and should not be manually modified.
+This log was last generated on Sun, 17 Jul 2022 12:13:48 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.33
+
+Sun, 17 Jul 2022 12:13:48 GMT
+
+### Changes
+
+- add sidenav disclosure component (rina.oksman@vonage.com)
 
 ## 3.0.0-next.32
 
