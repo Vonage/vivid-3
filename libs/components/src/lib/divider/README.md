@@ -72,9 +72,13 @@ vwc-card {
 
 ```html preview
 <style>
- vwc-layout {
-  --layout-grid-template-columns: 1fr auto 1fr;
- }
+vwc-layout {
+ --layout-grid-template-columns: 1fr auto 1fr;
+}
+
+vwc-text {
+  padding: 0 32px;
+}
 
  vwc-divider {
   display: flex;
