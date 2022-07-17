@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "chore(action-group): use divider",
+  "packageName": "@vonage/vivid",
+  "email": "rachel.tannenbaum@vonage.com",
+  "dependentChangeType": "none"
+}
