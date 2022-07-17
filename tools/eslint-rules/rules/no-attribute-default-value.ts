@@ -44,6 +44,10 @@ export const rule = ESLintUtils.RuleCreator(() => __filename)({
 
         const { expression } = node;
 
+        if (isNullish(parent)) {
+          return;
+        }
+
         if (expression.type === 'CallExpression') {
 
           const { arguments: args } = expression;
@@ -55,7 +59,7 @@ export const rule = ESLintUtils.RuleCreator(() => __filename)({
 
           const modeValue = getAttrReflectionModeValue(props);
 
-          if (isFromView(modeValue) || isFalseBoolean(modeValue, parent)) {
+          if (isFromView(modeValue) || isFalseBoolean(modeValue, parent) || isNullish(parent)) {
             return;
           }
         }
@@ -84,5 +88,9 @@ function isFromView(modeValue: AttributeMode) {
 
 function isFalseBoolean(modeValue: AttributeMode, parent: TSESTree.PropertyDefinition): boolean {
   return modeValue === 'boolean' && (parent.value as TSESTree.Literal).value === false;
+}
+
+function isNullish(parent: TSESTree.PropertyDefinition): boolean {
+  return (parent.value as TSESTree.Literal).value === null;
 }
 

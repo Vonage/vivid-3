@@ -31,6 +31,7 @@
     "./text-field": "./text-field",
     "./tooltip": "./tooltip",
     "./checkbox": "./checkbox",
-    "./divider": "./divider"
+    "./dialog": "./dialog",
+	"./divider": "./divider"
   }
 }
