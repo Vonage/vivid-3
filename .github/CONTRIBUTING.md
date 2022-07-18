@@ -60,7 +60,7 @@ Our Code of Conduct means that you are responsible for treating everyone on the 
 
 - Align to Vivid design language
 
-- Guarantee contribution does not produce WCAG violations (both in design & engineering)
+- Make sure (as much as you can) contribution does not produce WCAG violations (both in design & engineering)
 
 - Ensure user interaction with changes correspond to all types of users (e.g., keyboard, mouse, touch, assistive technology, etc.)
 
