@@ -39,7 +39,7 @@ export class SideDrawer extends FoundationElement {
 	 *
 	 * @public
 	 */
-	 @attr({
+	@attr({
 		mode: 'boolean',
 	}) trailing = false;
 }
