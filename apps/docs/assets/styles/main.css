@@ -60,7 +60,7 @@ vwc-side-drawer::part(base) {
 }
 
 vwc-header#header-main {
-	z-index: 0;
+	z-index: 1;
 	position: relative;
 }
 
@@ -79,7 +79,7 @@ vwc-header#header-aside::part(base) {
   position: sticky;
   top: 0;
   background-color: var(--vvd-color-canvas);
-  z-index: 1;
+  z-index: 2;
 }
 
 dark-mode-toggle::part(toggleLabel)::before {
