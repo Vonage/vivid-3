@@ -16,7 +16,10 @@
 }
 
 .main-wrapper {
+	display: flex;
+	flex-direction: column;
 	padding: 24px;
+	gap: 8px;
 }
 
 .header {
@@ -46,6 +49,4 @@
 
 .content {
 	@include typography.typography-cat-shorthand('body-2');
-
-	margin-top: 8px;
 }
