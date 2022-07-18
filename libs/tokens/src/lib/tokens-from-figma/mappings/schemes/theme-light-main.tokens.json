@@ -2,31 +2,31 @@
 	"alias": {
 		"color": {
 			"cta": {
-				"050": {
-					"value": "{alias.color.purple.050}"
+				"50": {
+					"value": "{color.purple.50}"
 				},
 				"100": {
-					"value": "{alias.color.purple.100}"
+					"value": "{color.purple.100}"
 				},
 				"200": {
-					"value": "{alias.color.purple.200}"
+					"value": "{color.purple.200}"
 				},
 				"500": {
-					"value": "{alias.color.purple.500}"
+					"value": "{color.purple.500}"
 				},
 				"600": {
-					"value": "{alias.color.purple.600}"
+					"value": "{color.purple.600}"
 				},
 				"700": {
-					"value": "{alias.color.purple.700}"
+					"value": "{color.purple.700}"
 				},
 				"800": {
-					"value": "{alias.color.purple.800}"
+					"value": "{color.purple.800}"
 				}
 			},
 			"surface": {
 				"0dp": {
-					"value": "{alias.color.neutral.000}"
+					"value": "{color.neutral.000}"
 				}
 			}
 		}

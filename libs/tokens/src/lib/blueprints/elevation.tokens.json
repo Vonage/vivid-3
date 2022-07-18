@@ -8,14 +8,20 @@
 	},
 	"shadow": {
 		"0dp": {
-			"type": "shadow",
-			"value": {
-				"color": "#000000",
-				"offsetX": "4px",
-				"offsetY": "4px",
-				"blur": "4px",
-				"spread": "4px"
-			}
+			"value": [
+				{
+					"color": "000000",
+					"offsetX": "4",
+					"offsetY": "4",
+					"spread": "4"
+				},
+				{
+					"color": "000000",
+					"offsetX": "4",
+					"offsetY": "4",
+					"spread": "4"
+				}
+			]
 		}
 	}
 }

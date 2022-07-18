@@ -1,8 +1,8 @@
 {
 	"color": {
 		"cta": {
-			"050": {
-				"value": "{alias.color.cta.050}"
+			"50": {
+				"value": "{alias.color.cta.50}"
 			},
 			"100": {
 				"value": "{alias.color.cta.100}"
