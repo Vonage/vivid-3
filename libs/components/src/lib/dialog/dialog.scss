@@ -1,0 +1,51 @@
+@use 'partials/variables' as variables;
+@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+
+.base {
+	box-sizing: border-box;
+	padding: 0;
+	border: none;
+	background-color: var(#{variables.$dialog-elevation-fill});
+	border-radius: 6px;
+	color: var(#{theme-consts.$vvd-color-on-canvas});
+
+	&:not(.modal) {
+		z-index: var(--dialog-z-index, 1);
+	}
+}
+
+.main-wrapper {
+	padding: 24px;
+}
+
+.header {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 4px;
+	inline-size: 100%;
+}
+
+.dismiss-button {
+	flex-shrink: 0;
+	margin-top: -8px;
+	margin-right: -8px;
+}
+
+.headline {
+	@include typography.typography-cat-shorthand('subtitle-2');
+
+	&-wrapper {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		row-gap: 24px;
+	}
+}
+
+.content {
+	@include typography.typography-cat-shorthand('body-2');
+
+	margin-top: 8px;
+}

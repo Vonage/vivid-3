@@ -1,8 +1,57 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Fri, 01 Jul 2022 20:53:00 GMT and should not be manually modified.
+This log was last generated on Sun, 17 Jul 2022 12:13:48 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.33
+
+Sun, 17 Jul 2022 12:13:48 GMT
+
+### Changes
+
+- add sidenav disclosure component (rina.oksman@vonage.com)
+
+## 3.0.0-next.32
+
+Sun, 17 Jul 2022 10:27:51 GMT
+
+### Changes
+
+- Migrate dialog component to fast (yonatan.kra@vonage.com)
+
+## 3.0.0-next.31
+
+Sun, 17 Jul 2022 08:57:35 GMT
+
+### Changes
+
+- divider component (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.30
+
+Mon, 11 Jul 2022 12:53:41 GMT
+
+### Changes
+
+- remove inert and blocking elements polyfills from side drawer as browsers support increased (yinon@hotmail.com)
+- refactor(components): breadcrumb item disable focus delegation (yinon@hotmail.com)
+
+## 3.0.0-next.29
+
+Thu, 07 Jul 2022 09:15:29 GMT
+
+### Changes
+
+- changes to layout components (header & side drawer) to allow more freedom when integrated within unknown app scenarios (yinon@hotmail.com)
+
+## 3.0.0-next.28
+
+Wed, 06 Jul 2022 14:29:33 GMT
+
+### Changes
+
+- Change template to nav and add axe test (yonatan.kra@vonage.com)
 
 ## 3.0.0-next.27
 

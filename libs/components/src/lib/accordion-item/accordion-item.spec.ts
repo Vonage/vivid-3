@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { AccordionItem } from './accordion-item';
 import '.';
 
@@ -28,12 +28,12 @@ describe('vwc-accordion-item', () => {
 
 	describe('show', () => {
 		it('should set "open" to true and add "open" class', async () => {
-			expect(getControlElement(element).classList.contains('open')).toBeFalsy();
+			expect(getBaseElement(element).classList.contains('open')).toBeFalsy();
 
 			element.open = true;
 			await elementUpdated(element);
 			expect(element.open).toBeTruthy();
-			expect(getControlElement(element).classList.contains('open')).toBeTruthy();
+			expect(getBaseElement(element).classList.contains('open')).toBeTruthy();
 		});
 	});
 
@@ -41,54 +41,54 @@ describe('vwc-accordion-item', () => {
 		it('should unset "open"', async () => {
 			element.open = true;
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.contains('open')).toBeTruthy();
+			expect(getBaseElement(element).classList.contains('open')).toBeTruthy();
 
 			element.open = false;
 			await elementUpdated(element);
 			expect(element.open).toBeFalsy();
-			expect(getControlElement(element).classList.contains('open')).toBeFalsy();
+			expect(getBaseElement(element).classList.contains('open')).toBeFalsy();
 		});
 	});
 
 	describe('toggle', () => {
 		it('should toggle "open" state', async () => {
 			const button: any = element.shadowRoot?.querySelector('.button');
-			expect(getControlElement(element).classList.contains('open')).toBeFalsy();
+			expect(getBaseElement(element).classList.contains('open')).toBeFalsy();
 
 			button.click();
 			await elementUpdated(element);
 			expect(element.open).toBeTruthy();
-			expect(getControlElement(element).classList.contains('open')).toBeTruthy();
+			expect(getBaseElement(element).classList.contains('open')).toBeTruthy();
 
 			button.click();
 			await elementUpdated(element);
 			expect(element.open).toBeFalsy();
-			expect(getControlElement(element).classList.contains('open')).toBeFalsy();
+			expect(getBaseElement(element).classList.contains('open')).toBeFalsy();
 		});
 	});
 
 	describe('icon', () => {
 		it('should set icon class', async () => {
-			expect(getControlElement(element).classList.contains('icon')).toBeFalsy();
+			expect(getBaseElement(element).classList.contains('icon')).toBeFalsy();
 			element.icon = 'chat-solid';
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.contains('icon')).toBeTruthy();
+			expect(getBaseElement(element).classList.contains('icon')).toBeTruthy();
 		});
 		it('should set iconTrailing', async () => {
-			expect(getControlElement(element).classList.contains('icon-trailing')).toBeFalsy();
+			expect(getBaseElement(element).classList.contains('icon-trailing')).toBeFalsy();
 			element.icon = 'chat-solid';
 			element.iconTrailing = true;
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.contains('icon-trailing')).toBeTruthy();
+			expect(getBaseElement(element).classList.contains('icon-trailing')).toBeTruthy();
 		});
 	});
 
 	describe('no-indicator', () => {
 		it('should remove indicator class', async () => {
-			expect(getControlElement(element).classList.contains('no-indicator')).toBeFalsy();
+			expect(getBaseElement(element).classList.contains('no-indicator')).toBeFalsy();
 			element.noIndicator = true;
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.contains('no-indicator')).toBeTruthy();
+			expect(getBaseElement(element).classList.contains('no-indicator')).toBeTruthy();
 		});
 	});
 
