@@ -26,7 +26,7 @@ Never made an open source contribution before? Wondering how contributions work 
   - Visual tests: see the [ui-tests documentation](../docs/ui-tests/readme.md)
   - Build: `npx nx run build components`
 
-- Once you are done developing the change commit your changes with a meaningful commit message
+- Once you are done developing the change, commit your changes with a meaningful commit message
 
 - We are using `beachball` in order to document changes:
   - run: `npx beachball change` or `npm run change` . This will generate and commit change files. It will prompt you for some answers.
