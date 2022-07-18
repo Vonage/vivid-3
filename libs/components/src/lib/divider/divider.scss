@@ -1,0 +1,19 @@
+@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+
+:host{
+	display: block;
+}
+.base {
+	display: block;
+	background-color: var(#{theme-consts.$vvd-color-neutral-30});
+
+	&:not(.vertical) {
+		block-size: 1px;
+		inline-size: 100%;
+	}
+
+	&.vertical {
+		block-size: 100%;
+		inline-size: 1px;
+	}
+}
