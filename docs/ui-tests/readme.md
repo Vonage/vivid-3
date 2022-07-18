@@ -9,7 +9,7 @@ Vivid's visual tests run on chrome, firefox and webkit (Safari).
 
 ## Tests consistency
 
-In order to maintain the tests consistency and reduce flakiness, the tests are dockerized. Running the tests inside a container make sure tests don't fail for small Operating System differences like fonts and pixel interpretations.
+In order to maintain the tests' consistency and reduce flakiness, the tests are dockerized. Running the tests inside a container makes sure tests don't fail for small Operating System differences like fonts and pixel interpretations.
 
 Our docker image runs the tests on the 3 browser on the Linux OS.
 
