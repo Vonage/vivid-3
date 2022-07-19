@@ -1,5 +1,5 @@
 {
-  "type": "prerelease",
+  "type": "none",
   "comment": "update docs and closing event name",
   "packageName": "@vonage/vivid",
   "email": "rina.oksman@vonage.com",
