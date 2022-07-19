@@ -8,10 +8,6 @@ Banners are meant to be used on top of pages, outside the main content.
 </script>
 ```
 
-```html preview full
-<vwc-banner text="Here's some information that you may find important!"></vwc-banner>
-```
-
 ## Members
 
 ### Text
@@ -33,9 +29,7 @@ Use the `text` attribute to set the banner's text.
 The `icon` attribute will override the icon set by connotation.
 
 ```html preview full
-<vwc-banner text="Here's some information that you may find important!" 
-            connotation="alert"
-            icon="home-line"></vwc-banner>
+<vwc-banner text="Here's some information that you may find important!" icon="home-line"></vwc-banner>
 ```
 
 ### Connotation
@@ -63,8 +57,7 @@ Note that icon, if not specifically set, defaults to a connotation-associated ic
 The `removable` attribute sets a remove button. On click it will remove the banner from the DOM.  
 
 ```html preview full
-<vwc-banner text="Here's some information that you may find important!"
-            removable></vwc-banner>
+<vwc-banner text="Here's some information that you may find important!" removable></vwc-banner>
 ```
 
 ## Slots
@@ -79,15 +72,6 @@ You can add action items using slotted content in a named slot `action-items`:
 </vwc-banner>
 ```
 
-## Methods
-
-### remove()
-
-- Type: function
-- Returns: void
-
-Removes the banner from the DOM.  Fires the `vwc-banner:removing` event and starts the remove animation.  When the animation finishes, it emits the `vwc-banner:removed` event and removes the banner from the DOM completely.  If you have a variable that refers to the banner element make sure to clear it otherwise it might cause a memory leak.
-
 ## Events
 
 ### vwc-banner:removing
@@ -97,6 +81,15 @@ Fires whenever the the banner has started its removing animation.
 ### vwc-banner:removed
 
 Fires when the removing animation is done.
+
+## Methods
+
+### remove()
+
+- Type: function
+- Returns: void
+
+Removes the banner from the DOM.  Fires the `vwc-banner:removing` event and starts the remove animation.  When the animation finishes, it emits the `vwc-banner:removed` event and removes the banner from the DOM completely.  If you have a variable that refers to the banner element make sure to clear it otherwise it might cause a memory leak.
 
 ## Accessibility
 
