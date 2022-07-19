@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "update docs and change action-items slot",
-  "packageName": "@vonage/vivid",
-  "email": "rina.oksman@vonage.com",
-  "dependentChangeType": "patch"
-}
