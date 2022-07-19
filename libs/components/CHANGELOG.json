@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Tue, 19 Jul 2022 10:25:25 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.36",
+      "version": "3.0.0-next.36",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "38e953b50f74b5cbc0e649a0f6ff8a3b44e7434c",
+            "comment": "update docs and change action-items slot"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 19 Jul 2022 10:09:52 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.35",
       "version": "3.0.0-next.35",
