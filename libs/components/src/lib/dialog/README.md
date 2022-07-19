@@ -196,9 +196,9 @@ When the dialog is not set as `modal` its initial z-index can be changed if need
 
 ## Events
 
-### vwc-dialog:closing
+### Close
 
-The `vwc-dialog:closing` event fires when the dialog closes (either via user interaction or via the API).
+The `close` event fires when the dialog closes (either via user interaction or via the API).
 It returns the return value inside the event's details property.
 
 ```html preview
@@ -215,7 +215,7 @@ It returns the return value inside the event's details property.
     }
     (function() {
         const dialog = document.querySelector('vwc-dialog');
-        dialog.addEventListener('vwc-dialog:closing', (e) => console.log(e.detail));
+        dialog.addEventListener('close', (e) => console.log(e.detail));
     })();
 </script>
 ```
