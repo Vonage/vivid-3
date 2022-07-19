@@ -326,6 +326,9 @@ describe('vwc-text-field', () => {
 			element.dispatchEvent(new Event('blur'));
 		}
 
+		/**
+		 *
+		 */
 		function setToFocused() {
 			element.dispatchEvent(new Event('focus'));
 		}
