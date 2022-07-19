@@ -18,7 +18,7 @@ describe('vwc-side-drawer', () => {
 			expect(element).toBeInstanceOf(SideDrawer);
 			expect(element.open).toBeFalsy();
 			expect(element.alternate).toBeFalsy();
-			expect(element.position).toBeUndefined();
+			expect(element.trailing).toBeFalsy();
 			expect(element.modal).toBeFalsy();
 		});
 	});
@@ -80,12 +80,16 @@ describe('vwc-side-drawer', () => {
 		});
 	});
 
-	describe('position', () => {
-		it('should set "position" to "end" and add "position" class', async () => {
-			element.position = 'end';
+	describe('trailing', () => {
+		it('should change the side and add "trailing" class', async () => {
+			const control = getControlElement(element);
+			let hasClassTrailing = control.classList.contains('trailing');
+			element.trailing = true;
 			await elementUpdated(element);
+			expect(hasClassTrailing).toEqual(false);
 
-			expect(getControlElement(element).classList.contains('position-end')).toBeTruthy();
+			hasClassTrailing = control.classList.contains('trailing');
+			expect(hasClassTrailing).toEqual(true);
 		});
 	});
 

@@ -34,7 +34,7 @@ export const headerTemplate: (
             <slot></slot>
           </section>
           <section class="header-content" role="toolbar">
-            <slot name="actionItems"></slot>
+            <slot name="action-items"></slot>
           </section>
         </div>
       </header>
