@@ -1,16 +1,20 @@
-# banner
+# Banner
 
 Banners are meant to be used on top of pages, outside the main content.
 
 ```js
-<script type="module">import '@vonage/vivid/banner';</script>
+<script type="module">
+    import '@vonage/vivid/banner';
+</script>
 ```
 
 ```html preview full
 <vwc-banner text="Here's some information that you may find important!"></vwc-banner>
 ```
 
-## Text
+## Members
+
+### Text
 
 - Type: `string`
 - Default: `''`
@@ -21,7 +25,7 @@ Use the `text` attribute to set the banner's text.
 <vwc-banner text="Here's some information that you may find important!"></vwc-banner>
 ```
 
-## Icon
+### Icon
 
 - Type: `string`
 - Default: `'info'`
@@ -34,7 +38,7 @@ The `icon` attribute will override the icon set by connotation.
             icon="home-line"></vwc-banner>
 ```
 
-## Connotation
+### Connotation
 
 The `connotation` attribute sets the colors according to the wanted connotation.
 
@@ -51,7 +55,7 @@ Note that icon, if not specifically set, defaults to a connotation-associated ic
 <vwc-banner text="ALERT! Something went wrong!" connotation="alert"></vwc-banner>
 ```
 
-## Removable
+### Removable
 
 - Type: `boolean`
 - Default: `false`
@@ -63,13 +67,15 @@ The `removable` attribute sets a remove button. On click it will remove the bann
             removable></vwc-banner>
 ```
 
-## Action Items
+## Slots
 
-You can add action items using slotted content in a named slot `actionItems`:
+### Action Items
+
+You can add action items using slotted content in a named slot `action-items`:
 
 ```html preview full
 <vwc-banner text="A banner with an action button">
-    <vwc-button slot="actionItems" appearance="filled" connotation="accent" label="Learn More"></vwc-button>
+    <vwc-button slot="action-items" appearance="filled" connotation="accent" label="Learn More"></vwc-button>
 </vwc-banner>
 ```
 
@@ -82,24 +88,27 @@ You can add action items using slotted content in a named slot `actionItems`:
 
 Removes the banner from the DOM.  Fires the `vwc-banner:removing` event and starts the remove animation.  When the animation finishes, it emits the `vwc-banner:removed` event and removes the banner from the DOM completely.  If you have a variable that refers to the banner element make sure to clear it otherwise it might cause a memory leak.
 
+## Events
+
+### vwc-banner:removing
+
+Fires whenever the the banner has started its removing animation.
+
+### vwc-banner:removed
+
+Fires when the removing animation is done.
+
 ## Accessibility
 
 The banner defaults its role to ‘status’ with a redundant aria-live attribute set to polite (to maximize compatibility when using this role). This indicates that the screen reader should wait until the user is idle before presenting updates to the user.
 However, consumers can modify the above attributes (role and aria-live) to fit contextually. If the information is critical, by altering the banner's role to 'alert', assistive technologies will interrupt other processes and provide users with immediate notification.
 
-1. The `role` attribute is set to `status` by default. This can be changed.
-2. The `aria-live` attribute is set to `polite` by default. This can be changed.
-3. The banner can be dismissed by hitting the `escape` key when it is in focus.
+- The `role` attribute is set to `status` by default. This can be changed.
+- The `aria-live` attribute is set to `polite` by default. This can be changed.
+- The banner can be dismissed by hitting the `escape` key when it is in focus.
 
-```html preview full
+```js
 <vwc-banner role="status"
             aria-live="polite"
             text="Here's some information that you may find important!"></vwc-banner>
 ```
-
-## Events
-
-| Event name           | Description                                                     |
-|----------------------|-----------------------------------------------------------------|
-| `vwc-banner:removing`| Fires whenever the the banner has started its removing animation|
-| `vwc-banner:removed` | Fires when the removing animation is done                       |

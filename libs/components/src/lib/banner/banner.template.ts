@@ -48,7 +48,7 @@ export const BannerTemplate: (
 				 aria-live="${x => x.ariaLive ? x.ariaLive : 'polite'}">
               ${x => x.text}
             </div>
-						<slot class="action-items" name="actionItems"></slot>
+						<slot class="action-items"></slot>
 					</div>
 
 			  ${when(x => x.removable, renderDismissButton())}
