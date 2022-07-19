@@ -74,13 +74,13 @@ You can add action items using slotted content in a named slot `action-items`:
 
 ## Events
 
-### vwc-banner:removing
+### Removing
 
-Fires whenever the the banner has started its removing animation.
+Fires `removing` whenever the the banner has started its removing animation.
 
-### vwc-banner:removed
+### Removed
 
-Fires when the removing animation is done.
+Fires `removed` when the removing animation is done.
 
 ## Methods
 
@@ -89,7 +89,7 @@ Fires when the removing animation is done.
 - Type: function
 - Returns: void
 
-Removes the banner from the DOM.  Fires the `vwc-banner:removing` event and starts the remove animation.  When the animation finishes, it emits the `vwc-banner:removed` event and removes the banner from the DOM completely.  If you have a variable that refers to the banner element make sure to clear it otherwise it might cause a memory leak.
+Removes the banner from the DOM.  Fires the `removing` event and starts the remove animation.  When the animation finishes, it emits the `removed` event and removes the banner from the DOM completely.  If you have a variable that refers to the banner element make sure to clear it otherwise it might cause a memory leak.
 
 ## Accessibility
 
