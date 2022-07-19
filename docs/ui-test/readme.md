@@ -1,6 +1,7 @@
 # Visual Tests Documentation
 
 Vivid's visual tests consist of two parts:
+
 1. Automated snippets extraction from our documentation (visual regression)
 2. Functional tests inside each component
 
@@ -8,7 +9,7 @@ Vivid's visual tests run on chrome, firefox and webkit (Safari).
 
 ## Tests consistency
 
-In order to maintain the tests consistency and reduce flakiness, the tests are dockerized. Running the tests inside a container make sure tests don't fail for small Operating System differences like fonts and pixel interpretations.
+In order to maintain the tests' consistency and reduce flakiness, the tests are dockerized. Running the tests inside a container makes sure tests don't fail for small Operating System differences like fonts and pixel interpretations.
 
 Our docker image runs the tests on the 3 browser on the Linux OS.
 
@@ -42,6 +43,7 @@ You can also run the tests locally in watch mode:
 This will spin up the dev server and watch for changes in the code to restart the tests.
 
 A useful scenario would be to develop a single component:
+
 1. Start the tests using `npx nx run components:e2e:watch`
 2. Setup your component's to be the only test to run: `test => test.only`
 3. Add `await page.pause();` inside the test case.
@@ -70,10 +72,12 @@ The docker image comes with the browsers and playwright ready for action.  If, f
 
 1. you'd probably need to login to docker hub (`docker login`).
 2. Update the tag and push to the repository.
+
 ```
 docker tag vivid-visual-tests-img drizzt99/vonage:1.x.x
 docker push drizzt99/vonage:1.x.x  
 ```
+
 3. Update the relevant `yml` files that are using this image to use the new version.
 
 ## Checking the tests

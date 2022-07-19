@@ -65,6 +65,10 @@
 		}
 	}
 
+	@supports(user-select: none) {
+		user-select: none;
+	}
+
 	.heading-text {
 		flex-grow: 1;
 		margin-inline-end: auto;

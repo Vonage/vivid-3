@@ -14,16 +14,15 @@ Use the new component generator to create a new component, and it will also gene
 - Use `.base` for the first element in the component.
 - Use `.control` for the main form control such as input, buttons etc.
 - Use kebab case.
-- Our template is encapsulated, no need for the component name in the nested elements class-name (like `card-header`).
+- Our template is encapsulated within the shadow DOM. There is no need to prefix class names. Instead of a class `card-header` just write `header`.
 
 ### Attribute Names
 
 You should use kebab case for attribute names. Alternatively, you can use one of the following:
 
-- `headline` - for the headline or main text in the component.
-- `subheading` - for the subheading in the component.
-- `subtitle` - for the subtitle in the component.
-- `heading` represent a level of section headings
+- `heading` - for the head or main ext with HTML heading tag
+- `headline` - for the head or main text in the component.
+- `sub-title` - for the sub text in the component.
 - `text` - for the text in the component.
 - `label` - for the label in the component.
 
