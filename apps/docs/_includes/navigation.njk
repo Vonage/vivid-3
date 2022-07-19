@@ -9,10 +9,11 @@
 
   {%  for item in components | sort(false, false, 'title') %}
 
-    {% if item.children %}
+    {% if item.components %}
       <vwc-sidenav-disclosure href="{{ ('/components/' + item.title) | url }}" label="{{ item.title | replace("-", " ") | capitalize }}">
-      {%  for childItem in item.children | sort(false, false, 'title') %}
-        <vwc-sidenav-item href="{{ ('/components/' + childItem.title) | url }}" text="{{ childItem.title | replace("-", " ") | capitalize }}"></vwc-sidenav-item>
+        <vwc-sidenav-item href="{{ ('/components/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-sidenav-item>
+      {%  for childItem in item.components | sort(false, false, 'title') %}
+          <vwc-sidenav-item href="{{ ('/components/' + childItem.title) | url }}" text="{{ childItem.title | replace("-", " ") | capitalize }}"></vwc-sidenav-item>
       {% endfor %}
       </vwc-sidenav-disclosure>
 

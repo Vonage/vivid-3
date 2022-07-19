@@ -6,7 +6,7 @@
       "/assets/modules/components/accordion/index.js",
       "/assets/modules/components/accordion-item/index.js"
     ],
-    "children": [
+    "components": [
       {
         "title": "accordion-item",
         "markdown": "./libs/components/src/lib/accordion-item/README.md",
@@ -39,7 +39,7 @@
       "/assets/modules/components/breadcrumb-item/index.js",
       "/assets/modules/components/breadcrumb/index.js"
     ],
-    "children": [
+    "components": [
       {
         "title": "breadcrumb-item",
         "markdown": "./libs/components/src/lib/breadcrumb-item/README.md",
@@ -62,7 +62,7 @@
     "modules": [
       "/assets/modules/components/calendar/index.js"
     ],
-    "children": [
+    "components": [
       {
         "title": "calendar-event",
         "markdown": "./libs/components/src/lib/calendar-event/README.md",
@@ -220,7 +220,7 @@
       "/assets/modules/components/sidenav-item/index.js",
       "/assets/modules/components/sidenav-disclosure/index.js"
     ],
-    "children": [
+    "components": [
       {
         "title": "sidenav-item",
         "markdown": "./libs/components/src/lib/sidenav-item/README.md",
