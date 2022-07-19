@@ -2,6 +2,36 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Tue, 19 Jul 2022 07:10:55 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.33",
+      "version": "3.0.0-next.33",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "cf820b34c051b30ec99a08aa8aa0a77cf68d7dcc",
+            "comment": "add user-select: none;"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 18 Jul 2022 11:52:25 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.33",
+      "version": "3.0.0-next.33",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "bd6bdc1732013b68f433b1cdbd705b5c3de26592",
+            "comment": "usage example of toggle button"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 17 Jul 2022 12:13:48 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.33",
       "version": "3.0.0-next.33",

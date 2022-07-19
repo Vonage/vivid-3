@@ -47,6 +47,9 @@
 		}
 	}
 
+	@supports(user-select: none) {
+		user-select: none;
+	}
 
 	.toggleIcon {
 		margin-inline-start: auto;
