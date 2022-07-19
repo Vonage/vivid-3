@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Tue, 19 Jul 2022 09:24:45 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.34",
+      "version": "3.0.0-next.34",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "2ae18dc78120b35bb4b0c58de9a496b8b5a81d70",
+            "comment": "refactor(components): rename text hierarchy terminology"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 19 Jul 2022 07:10:55 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.33",
       "version": "3.0.0-next.33",
