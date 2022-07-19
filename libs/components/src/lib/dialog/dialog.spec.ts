@@ -228,7 +228,7 @@ describe('vwc-dialog', () => {
 		element.returnValue = returnValue;
 		await showDialog();
 		const spy = jest.fn().mockImplementation((e) => detail = e.detail);
-		element.addEventListener('close', spy);
+		element.addEventListener('vwc-dialog:closing', spy);
 
 		await closeDialog();
 
@@ -271,7 +271,7 @@ describe('vwc-dialog', () => {
 
 	it('should close the dialog when dismiss button is clicked', async function() {
 		const spy = jest.fn();
-		element.addEventListener('close', spy);
+		element.addEventListener('vwc-dialog:closing', spy);
 		await showDialog();
 
 		const dismissButton = getBaseElement(element).querySelector('.dismiss-button') as HTMLElement;
