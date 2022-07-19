@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "refactor(components): rename text hierarchy terminology",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}
