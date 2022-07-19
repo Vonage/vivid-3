@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Tue, 19 Jul 2022 09:24:45 GMT and should not be manually modified.
+This log was last generated on Tue, 19 Jul 2022 10:09:52 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.35
+
+Tue, 19 Jul 2022 10:09:52 GMT
+
+### Changes
+
+- change position end to trailing (rina.oksman@vonage.com)
 
 ## 3.0.0-next.34
 
