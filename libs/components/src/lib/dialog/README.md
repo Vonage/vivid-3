@@ -1,7 +1,9 @@
 # Dialog
 
 ```js
-<script type="module">import '@vonage/vivid/dialog';</script>
+<script type="module">
+    import '@vonage/vivid/dialog';
+</script>
 ```
 
 ```html preview
@@ -119,62 +121,6 @@ Use `returnValue` to get or set the return value. Often used to indicate which b
 </script>
 ```
 
-## Methods
-
-### Show
-
-Shows the dialog. Positioned in a top position by default.
-
-```html preview
-<vwc-dialog headline="Open Dialog">
-</vwc-dialog>
-<vwc-button label="Open Dialog"
-            onclick="openDialog()"></vwc-button>
-<script>
-    function openDialog() {
-        const dialog = document.querySelector('vwc-dialog');
-        dialog.show();
-    }
-</script>
-```
-
-### Show Modal
-
-Shows the dialog and makes it the top-most modal dialog. Positioned in a center position by default.
-Interaction outside the dialog is blocked and the content outside it is rendered inert.
-For more information, see the native [Dialog.showModal](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal).
-
-```html preview
-<vwc-dialog headline="Open Dialog">
-</vwc-dialog>
-<vwc-button label="Open Modal Dialog"
-            onclick="openDialog()"></vwc-button>
-<script>
-    function openDialog() {
-        const dialog = document.querySelector('vwc-dialog');
-        dialog.showModal();
-    }
-</script>
-```
-
-### Close
-
-Closes the dialog.
-
-```html preview
-<vwc-dialog open
-            headline="Open Dialog">
-</vwc-dialog>
-<vwc-button label="Close Dialog"
-            onclick="closeDialog()"></vwc-button>
-<script>
-    function closeDialog() {
-        const dialog = document.querySelector('vwc-dialog');
-        dialog.close();
-    }
-</script>
-```
-
 ## Slots
 
 ### Graphic
@@ -250,9 +196,9 @@ When the dialog is not set as `modal` its initial z-index can be changed if need
 
 ## Events
 
-### Close
+### vwc-dialog:closing
 
-The `close` event fires when the dialog closes (either via user interaction or via the API).
+The `vwc-dialog:closing` event fires when the dialog closes (either via user interaction or via the API).
 It returns the return value inside the event's details property.
 
 ```html preview
@@ -269,25 +215,72 @@ It returns the return value inside the event's details property.
     }
     (function() {
         const dialog = document.querySelector('vwc-dialog');
-        dialog.addEventListener('close', (e) => console.log(e.detail));
+        dialog.addEventListener('vwc-dialog:closing', (e) => console.log(e.detail));
     })();
 </script>
 ```
 
-## A11y
+## Methods
 
-The dialog's role is `dialog`.  When opened as a modal (via showModal) it adds `aria-modal` to the dialog.
-It is consumer's concern to add `aria-label` to the dialog element.
-`aria-labelledby` and `aria-describedby` can also be used.
+### show()
 
-```html
-<vwc-dialog
- aria-label="An opened dialog" 
- headline="Open Dialog" 
- open
->
+Shows the dialog. Positioned in a top position by default.
+
+```html preview
+<vwc-dialog headline="Open Dialog">
 </vwc-dialog>
+<vwc-button label="Open Dialog"
+            onclick="openDialog()"></vwc-button>
+<script>
+    function openDialog() {
+        const dialog = document.querySelector('vwc-dialog');
+        dialog.show();
+    }
+</script>
 ```
+
+### showModal()
+
+Shows the dialog and makes it the top-most modal dialog. Positioned in a center position by default.
+Interaction outside the dialog is blocked and the content outside it is rendered inert.
+For more information, see the native [Dialog.showModal](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal).
+
+```html preview
+<vwc-dialog headline="Open Dialog">
+</vwc-dialog>
+<vwc-button label="Open Modal Dialog"
+            onclick="openDialog()"></vwc-button>
+<script>
+    function openDialog() {
+        const dialog = document.querySelector('vwc-dialog');
+        dialog.showModal();
+    }
+</script>
+```
+
+### close()
+
+Closes the dialog.
+
+```html preview
+<vwc-dialog open
+            headline="Open Dialog">
+</vwc-dialog>
+<vwc-button label="Close Dialog"
+            onclick="closeDialog()"></vwc-button>
+<script>
+    function closeDialog() {
+        const dialog = document.querySelector('vwc-dialog');
+        dialog.close();
+    }
+</script>
+```
+
+## Accessibility
+
+- The dialog's role is `dialog`.  When opened as a modal (via showModal) it adds `aria-modal` to the dialog.
+- It is consumer's concern to add `aria-label` to the dialog element.
+- `aria-labelledby` and `aria-describedby` can also be used.
 
 ## Usage Examples
 

@@ -79,10 +79,10 @@ describe('vwc-dialog', () => {
 			expect(getBaseElement(element).hasAttribute('open')).toEqual(false);
 		});
 
-		it('should fire the "close" event only when closing', async function() {
+		it('should fire the "vwc-dialog:closing" event only when closing', async function() {
 			await closeDialog();
 			const spy = jest.fn();
-			element.addEventListener('close', spy);
+			element.addEventListener('vwc-dialog:closing', spy);
 
 			await closeDialog();
 			const callsWhenTryingToCloseAClosedDialog = spy.mock.calls.length;
