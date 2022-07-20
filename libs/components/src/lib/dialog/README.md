@@ -6,7 +6,7 @@
 
 ```html preview
 <style>
-  html { 
+  html { /* for demo purposes */ 
     block-size: 230px; 
   }
 </style>
@@ -274,7 +274,7 @@ When setting a new value for `min-inline-size` and `max-inline-size` take in con
 
 ```html preview
 <style>
-  html { 
+  html { /* for demo purposes */
     block-size: 230px; 
   }
 vwc-dialog {
@@ -297,7 +297,7 @@ The Dialog has default `max-block-size`, if content is larger - there will be sc
 
 ```html preview
 <style>
-  html { 
+  html { /* for demo purposes */
     block-size: 250px; 
   }
 vwc-dialog {
