@@ -19,13 +19,13 @@ describe('vwc-note', () => {
 		});
 	});
 
-	it('should render the heading when heading is set', async function() {
-		const headingText = 'heading';
-		const headingElementWhenNull = element.shadowRoot?.querySelector('.heading');
-		element.heading = headingText;
+	it('should render the headline when headline is set', async function() {
+		const headlineText = 'headline';
+		const headlineElementWhenNull = element.shadowRoot?.querySelector('.headline');
+		element.headline = headlineText;
 		await elementUpdated(element);
-		expect(headingElementWhenNull).toBeNull();
-		expect(element.shadowRoot?.querySelector('.heading')?.textContent?.trim()).toEqual(headingText);
+		expect(headlineElementWhenNull).toBeNull();
+		expect(element.shadowRoot?.querySelector('.headline')?.textContent?.trim()).toEqual(headlineText);
 	});
 
 	it('should render an icon with given type', async function () {

@@ -1,8 +1,32 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 17 Jul 2022 12:13:48 GMT and should not be manually modified.
+This log was last generated on Tue, 19 Jul 2022 10:25:25 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.36
+
+Tue, 19 Jul 2022 10:25:25 GMT
+
+### Changes
+
+- update docs and change action-items slot (rina.oksman@vonage.com)
+
+## 3.0.0-next.35
+
+Tue, 19 Jul 2022 10:09:52 GMT
+
+### Changes
+
+- change position end to trailing (rina.oksman@vonage.com)
+
+## 3.0.0-next.34
+
+Tue, 19 Jul 2022 09:24:45 GMT
+
+### Changes
+
+- refactor(components): rename text hierarchy terminology (yinon@hotmail.com)
 
 ## 3.0.0-next.33
 
