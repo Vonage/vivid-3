@@ -53,38 +53,45 @@ vwc-side-drawer::part(base) {
   box-sizing: border-box;
 }
 
+vwc-side-drawer::part(base) {
+  block-size: calc(100vh - var(--_header-block-size));
+  bottom: 0;
+  top: auto;
+}
+
 @supports (overscroll-behavior: none) {
   vwc-side-drawer::part(base) {
     overscroll-behavior: none;
   }
 }
 
-vwc-header#header-main {
-	z-index: 0;
-	position: relative;
-}
-
 vwc-header#header-main::part(base) {
-  position: fixed;
-  top: 0;
-  inline-size: auto;
-  inset-inline: var(--header-inset-inline-start) 0;
-}
-
-vwc-header#header-main > main {
-  margin-top: var(--_header-block-size);
-}
-
-vwc-header#header-aside::part(base) {
   position: sticky;
   top: 0;
   background-color: var(--vvd-color-canvas);
-  z-index: 1;
+  z-index: 2;
 }
 
 dark-mode-toggle::part(toggleLabel)::before {
 	background-image: none;
 	background-color: currentColor;
+}
+.logo-wrapper{
+  display: flex;
+  align-items: flex-end;
+  color: var(--vvd-color-neutral-90);
+  text-decoration: none;
+}
+
+.logo-wrapper:hover,
+.logo-wrapper:focus {
+  color: var(--vvd-color-neutral-90);
+}
+
+.logo-wrapper svg {
+  margin-bottom: 7px;
+  margin-inline-end: 8px;
+  color: inherit;
 }
 
 dark-mode-toggle[mode="light"]::part(toggleLabel)::before {
@@ -115,10 +122,9 @@ vwc-sidenav [role="heading"][aria-level="2"] {
 /*Homepage*/
 .home-page-hero {
   text-align: center;
-  width: calc(100vw - 312px); /*side-280 + 24 + 16 margin*/
-  margin: 0 -1.5rem; /*to overide the vwc-layout top margin*/
+  margin: 0 -32px; /*to overide article inline-padding*/
   padding: 2rem 1rem;
-  border-bottom: 1px solid var(--vvd-color-neutral-20);
+  background-color: var(--vvd-color-neutral-20);
 }
 .home-page-hero a {
   color: var(--vvd-color-on-canvas);
@@ -160,6 +166,18 @@ article .cbd-container {
   position: relative;
   padding-inline-start: 20px;
   margin-inline-start: -20px;
+
+}
+.heading-wrapper.h1 {
+  padding: 20px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-inline: -32px;
+  margin-block-end: 32px;
+  /*background-color: var(--vvd-color-neutral-20);*/
+  background-color: var(--vvd-color-cta);
+  color: var(--vvd-color-on-cta);
 }
 
 .heading-wrapper > .anchor {
@@ -171,6 +189,10 @@ article .cbd-container {
 
 .heading-wrapper:not(:hover) > .anchor {
   display: none;
+}
+
+.article {
+  padding-inline: 32px;
 }
 
 /* code fence demo */

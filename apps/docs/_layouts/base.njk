@@ -49,10 +49,10 @@
   </head>
 
 <body>
-  <vwc-side-drawer id="sidedrawer" open slot="app-content">
 
-    <vwc-header id="header-aside">
-      <div style="display: flex; flex-direction: column; align-items: end;">
+
+     <vwc-header id="header-main" slot="app-content">
+      <a class="logo-wrapper" href="/" alt="Vivid Web Components">
         <svg width="154" viewBox="0 0 562 107" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M238.183 102.506C236.192 102.506 234.544 102.197 233.239 101.579C232.003 100.961 230.973 100.069 230.149 98.9011L184.824 34.8288C184.275 33.936 184 33.1463 184 32.4595C184 31.7041 184.24 31.0174 184.721 30.3993C185.202 29.7126 185.82 29.1289 186.575 28.6482C187.399 28.0988 188.258 27.6867 189.151 27.412C190.112 27.1373 191.039 27 191.932 27C192.825 27 193.717 27.1717 194.61 27.515C195.571 27.8584 196.327 28.4078 196.876 29.1632L238.492 89.0121L279.696 29.1632C280.589 27.7211 282.1 27 284.229 27C285.122 27 286.014 27.1373 286.907 27.412C287.8 27.6867 288.624 28.0988 289.379 28.6482C290.135 29.1289 290.753 29.7126 291.234 30.3993C291.714 31.0174 291.955 31.7385 291.955 32.5625C291.955 33.3866 291.68 34.142 291.131 34.8288L246.321 98.9011C245.497 100.069 244.433 100.961 243.128 101.579C241.823 102.197 240.175 102.506 238.183 102.506Z" fill="currentcolor"/>
           <path d="M314.85 97.6649C314.85 99.6565 314.266 100.961 313.099 101.579C311.932 102.197 310.215 102.506 307.949 102.506C305.751 102.506 304.068 102.197 302.901 101.579C301.734 100.961 301.15 99.6565 301.15 97.6649V31.8415C301.15 29.8499 301.734 28.5452 302.901 27.9271C304.068 27.309 305.751 27 307.949 27C310.215 27 311.932 27.309 313.099 27.9271C314.266 28.5452 314.85 29.8499 314.85 31.8415V97.6649Z" fill="currentcolor"/>
@@ -97,30 +97,30 @@
           </defs>
         </svg>
 
-        <vwc-text font-face="body-2" tight>Web Components</vwc-text>
-      </div>
-    </vwc-header>
+        <vwc-text font-face="subtitle-1" tight>Web Components</vwc-text>
+      </a>
+      			<dark-mode-toggle	slot="action-items" permanent appearance="toggle"></dark-mode-toggle>
 
+            <vwc-button slot="action-items" aria-label="View on GitHub" icon="github-mono" icon-trailing href="https://github.com/vonage/vivid-3"></vwc-button>
+
+  <vwc-side-drawer id="sidedrawer" open slot="app-content">
     <vwc-layout gutters="small" column-basis="block">
       {% include "navigation.njk" %}
     </vwc-layout>
 
-    <vwc-header id="header-main" slot="app-content">
-			<dark-mode-toggle	slot="action-items" permanent appearance="toggle"></dark-mode-toggle>
-
-      <vwc-button slot="action-items" aria-label="View on GitHub" icon="github-mono" icon-trailing href="https://github.com/vonage/vivid-3"></vwc-button>
 
       <main slot="app-content">
-        <vwc-layout gutters="large" column-basis="block" class="main-layout">
-          <article>
+        <vwc-layout column-basis="block" class="main-layout">
+          <article class="article">
             {{content | safe}}
           </article>
         </vwc-layout>
       </main>
 
-    </vwc-header>
+
 
   </vwc-side-drawer>
+      </vwc-header>
 
   <vwc-fab connotation="accent" icon='menu-solid' id="menu-button" aria-label="Menu" slot="app-content" onclick="sidedrawer.open = !sidedrawer.open"></vwc-fab>
 
