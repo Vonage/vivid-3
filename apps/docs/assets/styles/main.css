@@ -88,10 +88,8 @@ dark-mode-toggle::part(toggleLabel)::before {
   color: var(--vvd-color-neutral-90);
 }
 
-.logo-wrapper svg {
-  margin-bottom: 7px;
+.logo-wrapper img {
   margin-inline-end: 8px;
-  color: inherit;
 }
 
 dark-mode-toggle[mode="light"]::part(toggleLabel)::before {
