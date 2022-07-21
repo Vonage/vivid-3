@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Tue, 19 Jul 2022 10:25:25 GMT and should not be manually modified.
+This log was last generated on Thu, 21 Jul 2022 07:53:29 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.37
+
+Thu, 21 Jul 2022 07:53:29 GMT
+
+### Changes
+
+- dialog sizes (rachel.tannenbaum@vonage.com)
 
 ## 3.0.0-next.36
 
