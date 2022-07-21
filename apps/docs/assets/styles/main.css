@@ -79,6 +79,7 @@ dark-mode-toggle::part(toggleLabel)::before {
 .logo-wrapper{
   display: flex;
   align-items: flex-end;
+  column-gap: 8px;
   color: var(--vvd-color-neutral-90);
   text-decoration: none;
 }
@@ -86,10 +87,6 @@ dark-mode-toggle::part(toggleLabel)::before {
 .logo-wrapper:hover,
 .logo-wrapper:focus {
   color: var(--vvd-color-neutral-90);
-}
-
-.logo-wrapper img {
-  margin-inline-end: 8px;
 }
 
 dark-mode-toggle[mode="light"]::part(toggleLabel)::before {
