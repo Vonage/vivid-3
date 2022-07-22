@@ -24,8 +24,8 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
-          node-version: "16"
-          cache: "npm"
+          node-version: '16'
+          cache: 'npm'
 
       - uses: actions/cache@v3
         id: cache
@@ -33,42 +33,42 @@ jobs:
           path: node_modules/
           key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
-      # - name: Install Dependencies
-      #   if: steps.cache.outputs.cache-hit != 'true'
-      #   run: npm ci
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
 
-  # check-changelogs:
-  #   runs-on: ubuntu-20.04
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         fetch-depth: 0
-  #     - uses: actions/setup-node@v3
-  #       with:
-  #         node-version: '16'
-  #         cache: 'npm'
+  check-changelogs:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
 
-  #     - run: npx beachball check
+      - run: npx beachball check
 
-  # call-lint:
-  #   needs: [deps-cache]
-  #   uses: vonage/vivid-3/.github/workflows/_lint.yml@main
+  call-lint:
+    needs: [deps-cache]
+    uses: vonage/vivid-3/.github/workflows/_lint.yml@main
 
-  # unit-tests:
-  #   needs: [ call-lint, check-changelogs ]
-  #   uses: vonage/vivid-3/.github/workflows/_unit-test.yml@main
-  #   with:
-  #     os: ubuntu-latest
-  #     report_coverage: true
+  unit-tests:
+    needs: [ call-lint, check-changelogs ]
+    uses: vonage/vivid-3/.github/workflows/_unit-test.yml@main
+    with:
+      os: ubuntu-latest
+      report_coverage: true
 
-  # call-visual-regression:
-  #   needs: [call-lint, check-changelogs]
-  #   uses: vonage/vivid-3/.github/workflows/_visual-regression.yml@main
+  call-visual-regression:
+    needs: [call-lint, check-changelogs]
+    uses: vonage/vivid-3/.github/workflows/_visual-regression.yml@main
 
-  # call-deploy-deno-preview:
-  #   needs: [deps-cache]
-  #   uses: vonage/vivid-3/.github/workflows/_deploy-deno.yml@main
+  call-deploy-deno-preview:
+    needs: [deps-cache]
+    uses: vonage/vivid-3/.github/workflows/_deploy-deno.yml@main
 
   call-accessibility-validation:
-    # needs: [deps-cache]
-    uses: vonage/vivid-3/.github/workflows/_accessibility-validation.yml@accessibility-insights-action-v3
+    needs: [deps-cache]
+    uses: vonage/vivid-3/.github/workflows/_accessibility-validation.yml@main
