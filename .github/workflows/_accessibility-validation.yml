@@ -32,8 +32,8 @@ jobs:
           static-site-dir: ${{ github.workspace }}/dist/apps/docs
           static-site-port: 12345
           # due to action fail to pierce in shadowed links,
-          # all links must be explicitly specified
-          input-urls: http://localhost:12345/components/accordion http://localhost:12345/components/accordion-item
+          # all links must be explicitly specified, seperated by space
+          input-urls: http://localhost:12345/
 
       - name: Upload report artifact
         if: success() || failure()
