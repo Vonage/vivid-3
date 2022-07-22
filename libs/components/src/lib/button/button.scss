@@ -41,6 +41,10 @@
 		}
 	}
 
+	@supports(user-select: none) {
+		user-select: none;
+	}
+
 	&:not(:disabled) {
 		cursor: pointer;
 	}

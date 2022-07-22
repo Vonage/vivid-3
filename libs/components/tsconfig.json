@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "target": "ES2017",
-    "module": "ES2015",
+    "module": "ESNext",
     "preserveWatchOutput": true,
     "moduleResolution": "Node",
     "sourceMap": true,
@@ -17,7 +17,7 @@
     "importsNotUsedAsValues": "error",
     "strict": true,
     "experimentalDecorators": true,
-    "stripInternal": true, // check if we need it
+    "stripInternal": true,
     "importHelpers": true,
     "allowSyntheticDefaultImports": true,
     "removeComments": true,
