@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "docs(components): point out a11y caveats with icon only actions",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}
