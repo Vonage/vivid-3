@@ -23,9 +23,7 @@ const getStyleDictionaryConfig = (theme: typeof THEMES[number], scope: typeof SC
 				format: "css/variables",
 				filter: "sourceOnly",
 				options: {
-					selector: scope == 'main'
-						? ":root, .vvd-theme-main, ::part(vvd-theme-main)"
-						: ".vvd-theme-alternate, ::part(vvd-theme-alternate)",
+					selector: "@mixin variables"
 				}
 			}]
 		}
