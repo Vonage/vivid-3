@@ -209,7 +209,7 @@ Use the content `slot` in order to add custom HTML to the dialog while enjoying 
     }
 </style>
 <vwc-dialog open 
-    headline="Dialog with footer">
+    headline="Dialog Content">
     <div slot="content">        
             <form>
                 <vwc-layout column-basis="block">
