@@ -20,7 +20,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		#bottom-right-dialog {
 			position: relative;
 			top: 500px;
-			left: 600px;
+			left: 300px;
 		}
 	</style>
 	<div style="height: 800px">
@@ -80,6 +80,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		return modal;
 	});
 
+	await page.pause();
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/dialog.png'
 	);
