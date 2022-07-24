@@ -1,7 +1,8 @@
 {
-	"include": [],
+	"include": [
+		"tokens-from-figma/platforms/web/**/*.tokens.json"
+	],
 	"source": [
-		"blueprints/**/*.tokens.json",
-		"tokens-from-figma/globals/**/*.tokens.json"
+		"globals/**/*.tokens.json"
 	]
 }

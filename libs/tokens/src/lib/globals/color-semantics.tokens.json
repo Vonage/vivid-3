@@ -1,0 +1,27 @@
+{
+	"color": {
+		"cta": {
+			"50": {
+				"value": "{color.scheme.cta.50.value}"
+			},
+			"100": {
+				"value": "{color.scheme.cta.100.value}"
+			},
+			"200": {
+				"value": "{color.scheme.cta.200.value}"
+			},
+			"500": {
+				"value": "{color.scheme.cta.500.value}"
+			},
+			"600": {
+				"value": "{color.scheme.cta.600.value}"
+			},
+			"700": {
+				"value": "{color.scheme.cta.700.value}"
+			},
+			"800": {
+				"value": "{color.scheme.cta.800.value}"
+			}
+		}
+	}
+}

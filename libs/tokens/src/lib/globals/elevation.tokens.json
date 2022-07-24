@@ -2,7 +2,7 @@
 	"color": {
 		"surface": {
 			"0dp": {
-				"value": "{alias.color.surface.0dp.value}"
+				"value": "{color.scheme.surface.0dp.value}"
 			}
 		}
 	},

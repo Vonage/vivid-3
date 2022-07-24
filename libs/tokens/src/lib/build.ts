@@ -1,7 +1,7 @@
-const notAliasFilter = require('./filters/not-alias');
+const sourceOnly = require('./filters/source-only');
 const StyleDictionary = require('style-dictionary')
 
-	.registerFilter(notAliasFilter)
+	.registerFilter(sourceOnly)
 	.extend('config.json');
 
 const { transform } = StyleDictionary;
@@ -23,8 +23,8 @@ StyleDictionary.registerTransform({
 
 	})
 const getStyleDictionaryConfig = (theme: string): any => ({
-	source: [
-		`tokens-from-figma/mappings/schemes/theme-${theme}-main.tokens.json`
+	include: [
+		`tokens-from-figma/schemes/${theme}/color-main.tokens.json`,
 	],
 	platforms: {
 		web: {
@@ -34,7 +34,7 @@ const getStyleDictionaryConfig = (theme: string): any => ({
 			files: [{
 				destination: "_main.scss",
 				format: "css/variables",
-				filter: "isNotAlias"
+				filter: "sourceOnly"
 			}]
 		}
 	}
