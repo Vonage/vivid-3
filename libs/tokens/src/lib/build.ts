@@ -5,9 +5,13 @@ const StyleDictionary = require('style-dictionary')
 	.registerFilter(sourceOnly)
 	.extend('config.json');
 
-const getStyleDictionaryConfig = (theme: string): any => ({
+const THEMES = ['light', 'dark'] as const;
+const SCOPES = ['main', 'alternate'] as const;
+
+const getStyleDictionaryConfig = (theme: typeof THEMES[number], scope: typeof SCOPES[number]) => ({
 	include: [
-		`tokens-from-figma/themes/${theme}/**/*.tokens.json`,
+		`tokens-from-figma/themes/${theme}/color-${scope}.tokens.json`,
+		`tokens-from-figma/themes/${theme}/shadow-${scope}.tokens.json`,
 	],
 	platforms: {
 		web: {
@@ -15,15 +19,22 @@ const getStyleDictionaryConfig = (theme: string): any => ({
 			prefix: "vvd",
 			buildPath: `../../../../dist/libs/tokens/scss/themes/${theme}/`,
 			files: [{
-				destination: "_main.scss",
+				destination: `_${scope}.scss`,
 				format: "css/variables",
-				filter: "sourceOnly"
+				filter: "sourceOnly",
+				options: {
+					selector: scope == 'main'
+						? ":root, .vvd-theme-main, ::part(vvd-theme-main)"
+						: ".vvd-theme-alternate, ::part(vvd-theme-alternate)",
+				}
 			}]
 		}
 	}
 });
 
-['light', 'dark'].forEach(theme => {
-	StyleDictionary.extend(getStyleDictionaryConfig(theme)).buildAllPlatforms();
+THEMES.forEach(theme => {
+	SCOPES.forEach(scope => {
+		StyleDictionary.extend(getStyleDictionaryConfig(theme, scope)).buildAllPlatforms();
+	});
 });
 
