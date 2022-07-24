@@ -42,6 +42,10 @@
 		}
 	}
 
+	@supports(user-select: none) {
+		user-select: none;
+	}
+
 	/* Size */
 
 	&.density-extended {
