@@ -215,7 +215,7 @@ Use the content `slot` in order to add custom HTML to the dialog while enjoying 
                 <vwc-layout column-basis="block">
                 <vwc-text-field label="Name"></vwc-text-field>
                 <vwc-text-field label="Password" type="password"></vwc-text-field>
-                <vwc-button label="Login"></vwc-button>
+                <vwc-button label="Login" appearance="filled"></vwc-button>
                 </vwc-layout>
             </form>
     </div>
