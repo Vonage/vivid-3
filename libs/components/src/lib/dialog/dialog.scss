@@ -9,14 +9,31 @@
 	background-color: var(#{variables.$dialog-elevation-fill});
 	border-radius: 6px;
 	color: var(#{theme-consts.$vvd-color-on-canvas});
+	max-block-size: var(#{variables.$dialog-max-block-size}, calc(100vh - 64px));
+	max-inline-size: var(#{variables.$dialog-max-inline-size});
+	min-inline-size: var(#{variables.$dialog-min-inline-size}, 280px);
+	overflow-x: hidden;
+	overflow-y: auto;
+
+
+	@media not all and (min-width: 600px) {
+		#{variables.$dialog-max-inline-size}: 90vw;
+	}
+
+	@media (min-width: 600px) {
+		#{variables.$dialog-max-inline-size}: 560px;
+	}
 
 	&:not(.modal) {
-		z-index: var(--dialog-z-index, 1);
+		z-index: var(#{variables.$dialog-z-index}, 1);
 	}
 }
 
 .main-wrapper {
+	display: flex;
+	flex-direction: column;
 	padding: 24px;
+	gap: 8px;
 }
 
 .header {
@@ -46,6 +63,4 @@
 
 .content {
 	@include typography.typography-cat-shorthand('body-2');
-
-	margin-top: 8px;
 }
