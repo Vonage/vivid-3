@@ -7,7 +7,7 @@ const StyleDictionary = require('style-dictionary')
 
 const getStyleDictionaryConfig = (theme: string): any => ({
 	include: [
-		`tokens-from-figma/schemes/${theme}/**/*.tokens.json`,
+		`tokens-from-figma/themes/${theme}/**/*.tokens.json`,
 	],
 	platforms: {
 		web: {
