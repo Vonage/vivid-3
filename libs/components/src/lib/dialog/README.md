@@ -204,7 +204,7 @@ Use the content `slot` in order to add custom HTML to the dialog while enjoying 
 ```html preview
 <style>
     html { /* for demo purposes */
-        block-size: 320px; 
+        block-size: 350px; 
         --dialog-max-block-size: 320px;
     }
 </style>
