@@ -208,8 +208,7 @@ Use the content `slot` in order to add custom HTML to the dialog while enjoying 
         --dialog-max-block-size: 320px;
     }
 </style>
-<vwc-dialog open 
-    headline="Dialog Content">
+<vwc-dialog open headline="Dialog Content">
     <div slot="content">        
             <form>
                 <vwc-layout column-basis="block">
