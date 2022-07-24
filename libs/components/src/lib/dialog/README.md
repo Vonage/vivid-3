@@ -197,6 +197,30 @@ Use the `graphic` slot in order to replace the icon.
 </vwc-dialog>
 ```
 
+### Content
+
+Use the content `slot` in order to add custom HTML to the dialog while enjoying the vivid dialog styling. Note that vivid styling comes with opinionated CSS like padding and margin.
+
+```html preview
+<style>
+    html { /* for demo purposes */
+        block-size: 350px; 
+        --dialog-max-block-size: 320px;
+    }
+</style>
+<vwc-dialog open headline="Dialog Content">
+    <div slot="content">        
+            <form>
+                <vwc-layout column-basis="block">
+                <vwc-text-field label="Name"></vwc-text-field>
+                <vwc-text-field label="Password" type="password"></vwc-text-field>
+                <vwc-button label="Login" appearance="filled"></vwc-button>
+                </vwc-layout>
+            </form>
+    </div>
+</vwc-dialog>
+```
+
 ### Footer
 
 Use the footer `slot` in order to add action buttons to the bottom of the dialog.

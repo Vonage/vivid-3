@@ -20,7 +20,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		#bottom-right-dialog {
 			position: relative;
 			top: 500px;
-			left: 600px;
+			left: 300px;
 		}
 	</style>
 	<div style="height: 800px">
@@ -47,8 +47,11 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-dialog id="bottom-right-dialog"
 								icon="info" 
 								headline="Dialog with footer"
-								text="This is the content that I want to show and I will show it!!!"
+								text="This is the content that I want to show and I will show it!!"
 								open>
+								<div slot="content">
+									This text should appear instead of the text property value
+								</div>
 								<div slot="footer" class="demo-footer">
 						        <vwc-button appearance="outlined" label="Cancel"></vwc-button>
 						        <vwc-button appearance="filled" label="Action"></vwc-button>
@@ -77,6 +80,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		return modal;
 	});
 
+	await page.pause();
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/dialog.png'
 	);
