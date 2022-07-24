@@ -1,30 +1,13 @@
 const sourceOnly = require('./filters/source-only');
+const shadowShorthand = require('./transforms/shadow-shorthand');
 const StyleDictionary = require('style-dictionary')
-
+	.registerTransform(shadowShorthand)
 	.registerFilter(sourceOnly)
 	.extend('config.json');
 
-const { transform } = StyleDictionary;
-const { transformer: colorToRGB } = transform['color/rgb'];
-const { transformer: sizeToPx } = transform['size/px'];
-
-StyleDictionary.registerTransform({
-		type: `value`,
-		transitive: true,
-		name: `shadow/shorthand`,
-		matcher: ({ attributes: { category }}) => category == 'shadow',
-		transformer: ({ value }) =>
-			value.map((
-				{ color, offsetX, offsetY, spread }
-			) => `drop-shadow(${colorToRGB(color)} ${sizeToPx({value:offsetX})})`, '').join(' ')
-			// const { color, offsetX, offsetY, spread } = value;
-			// token.value will be resolved and transformed at this point
-			// return 'yoy1o'
-
-	})
 const getStyleDictionaryConfig = (theme: string): any => ({
 	include: [
-		`tokens-from-figma/schemes/${theme}/color-main.tokens.json`,
+		`tokens-from-figma/schemes/${theme}/**/*.tokens.json`,
 	],
 	platforms: {
 		web: {

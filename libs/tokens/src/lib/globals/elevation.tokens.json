@@ -1,27 +1,12 @@
 {
 	"color": {
-		"surface": {
-			"0dp": {
-				"value": "{color.scheme.surface.0dp.value}"
-			}
+		"surface-04dp": {
+			"value": "{color.scheme.surface-04dp.value}"
 		}
 	},
 	"shadow": {
-		"0dp": {
-			"value": [
-				{
-					"color": "000000",
-					"offsetX": "4",
-					"offsetY": "4",
-					"spread": "4"
-				},
-				{
-					"color": "000000",
-					"offsetX": "4",
-					"offsetY": "4",
-					"spread": "4"
-				}
-			]
+		"elevation-04dp": {
+			"value": "{shadow.scheme.elevation-04dp.value}"
 		}
 	}
 }

@@ -1,34 +1,30 @@
 {
 	"color": {
 		"scheme": {
-			"cta": {
-				"50": {
-					"value": "{color.purple.50.value}"
-				},
-				"100": {
-					"value": "{color.purple.100.value}"
-				},
-				"200": {
-					"value": "{color.purple.200.value}"
-				},
-				"500": {
-					"value": "{color.purple.500.value}"
-				},
-				"600": {
-					"value": "{color.purple.600.value}"
-				},
-				"700": {
-					"value": "{color.purple.700.value}"
-				},
-				"800": {
-					"value": "{color.purple.800.value}"
-				}
+			"cta-050": {
+				"value": "{color.purple-050.value}"
 			},
-			"surface": {
-				"0dp": {
-					"value": "{color.neutral.000.value}"
-				}
+			"cta-100": {
+				"value": "{color.purple-100.value}"
+			},
+			"cta-200": {
+				"value": "{color.purple-200.value}"
+			},
+			"cta-500": {
+				"value": "{color.purple-500.value}"
+			},
+			"cta-600": {
+				"value": "{color.purple-600.value}"
+			},
+			"cta-700": {
+				"value": "{color.purple-700.value}"
+			},
+			"cta-800": {
+				"value": "{color.purple-800.value}"
 			}
+		},
+		"surface-04dp": {
+			"value": "{color.neutral-000.value}"
 		}
 	}
 }

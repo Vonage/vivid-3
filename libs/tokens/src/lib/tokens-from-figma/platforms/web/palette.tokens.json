@@ -1,45 +1,41 @@
 {
 	"color": {
 		"comment": "Vivid's color palette",
-		"neutral": {
-			"000": {
-				"value": "ffffff"
-			}
+		"neutral-000": {
+			"value": "ffffff"
 		},
-		"purple": {
-			"50": {
-				"value": "f5f0fd"
-			},
-			"100": {
-				"value": "ece2fa"
-			},
-			"200": {
-				"value": "dcc1fc"
-			},
-			"300": {
-				"value": "cba1fa"
-			},
-			"400": {
-				"value": "b27bf2"
-			},
-			"500": {
-				"value": "9941ff"
-			},
-			"600": {
-				"value": "871eff"
-			},
-			"700": {
-				"value": "6405d1"
-			},
-			"800": {
-				"value": "440291"
-			},
-			"900": {
-				"value": "26044d"
-			},
-			"950": {
-				"value": "140623"
-			}
+		"purple-050": {
+			"value": "f5f0fd"
+		},
+		"purple-100": {
+			"value": "ece2fa"
+		},
+		"purple-200": {
+			"value": "dcc1fc"
+		},
+		"purple-300": {
+			"value": "cba1fa"
+		},
+		"purple-400": {
+			"value": "b27bf2"
+		},
+		"purple-500": {
+			"value": "9941ff"
+		},
+		"purple-600": {
+			"value": "871eff"
+		},
+		"purple-700": {
+			"value": "6405d1"
+		},
+		"purple-800": {
+			"value": "440291"
+		},
+		"purple-900": {
+			"value": "26044d"
+		},
+		"purple-950": {
+			"value": "140623"
 		}
 	}
 }
