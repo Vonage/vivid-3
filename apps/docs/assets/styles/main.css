@@ -242,6 +242,7 @@ article > .cbd-container,
   padding: 8px;
   border-radius: 6px;
   font-size: 1rem;
+  overflow-x: auto;
 }
 
 .hljs.preview {
