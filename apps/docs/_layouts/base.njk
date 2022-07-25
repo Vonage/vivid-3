@@ -26,12 +26,26 @@
       {{ mainCss | cssmin | safe }}
     </style>
 
+    {% set mainJs %}
+      {% include "../assets/scripts/main.js" %}
+    {% endset %}
+
+    <script type="module">
+      {{ mainJs | safe }}
+    </script>
+
+    {% set viewportHandler %}
+      {% include "../assets/scripts/viewport-handler.js" %}
+    {% endset %}
+
+    <script type="module">
+      {{ viewportHandler | safe }}
+    </script>
+
     <link rel="stylesheet" href="{{ '/assets/styles/themes/light.css' | url }}" media="(prefers-color-scheme: light)">
     <link rel="stylesheet" href="{{ '/assets/styles/themes/dark.css' | url }}" media="(prefers-color-scheme: dark)">
 
 		<script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
-
-    <script src="{{ '/assets/scripts/main.js' | url }}"></script>
 
     <script type="module" src="{{ '/assets/modules/components/layout/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/text/index.js' | url}}"></script>
@@ -106,9 +120,9 @@
     </vwc-layout>
 
     <vwc-header id="header-main" slot="app-content">
-			<dark-mode-toggle	slot="actionItems" permanent appearance="toggle"></dark-mode-toggle>
+			<dark-mode-toggle	slot="action-items" permanent appearance="toggle"></dark-mode-toggle>
 
-      <vwc-button slot="actionItems" aria-label="View on GitHub" icon="github-mono" icon-trailing href="https://github.com/vonage/vivid-3"></vwc-button>
+      <vwc-button slot="action-items" aria-label="View on GitHub" icon="github-mono" icon-trailing href="https://github.com/vonage/vivid-3"></vwc-button>
 
       <main slot="app-content">
         <vwc-layout gutters="large" column-basis="block" class="main-layout">

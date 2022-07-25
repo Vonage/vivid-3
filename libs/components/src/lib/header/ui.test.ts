@@ -23,9 +23,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
       </vwc-header>
 
       <vwc-header>
-        <vwc-button slot="actionItems" icon="twitter-mono"></vwc-button>
-        <vwc-button slot="actionItems" icon="facebook-mono"></vwc-button>
-        <vwc-button slot="actionItems" icon="heart-solid"></vwc-button>
+        <vwc-button slot="action-items" icon="twitter-mono"></vwc-button>
+        <vwc-button slot="action-items" icon="facebook-mono"></vwc-button>
+        <vwc-button slot="action-items" icon="heart-solid"></vwc-button>
       </vwc-header>
 
       <vwc-header>

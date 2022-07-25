@@ -1,8 +1,80 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Mon, 11 Jul 2022 12:53:41 GMT and should not be manually modified.
+This log was last generated on Sun, 24 Jul 2022 12:28:54 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.39
+
+Sun, 24 Jul 2022 12:28:54 GMT
+
+### Changes
+
+- Added dialog content slot (yonatan.kra@vonage.com)
+
+## 3.0.0-next.38
+
+Fri, 22 Jul 2022 15:03:10 GMT
+
+### Changes
+
+- docs(components): point out a11y caveats with icon only actions (yinon@hotmail.com)
+
+## 3.0.0-next.37
+
+Thu, 21 Jul 2022 07:53:29 GMT
+
+### Changes
+
+- dialog sizes (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.36
+
+Tue, 19 Jul 2022 10:25:25 GMT
+
+### Changes
+
+- update docs and change action-items slot (rina.oksman@vonage.com)
+
+## 3.0.0-next.35
+
+Tue, 19 Jul 2022 10:09:52 GMT
+
+### Changes
+
+- change position end to trailing (rina.oksman@vonage.com)
+
+## 3.0.0-next.34
+
+Tue, 19 Jul 2022 09:24:45 GMT
+
+### Changes
+
+- refactor(components): rename text hierarchy terminology (yinon@hotmail.com)
+
+## 3.0.0-next.33
+
+Sun, 17 Jul 2022 12:13:48 GMT
+
+### Changes
+
+- add sidenav disclosure component (rina.oksman@vonage.com)
+
+## 3.0.0-next.32
+
+Sun, 17 Jul 2022 10:27:51 GMT
+
+### Changes
+
+- Migrate dialog component to fast (yonatan.kra@vonage.com)
+
+## 3.0.0-next.31
+
+Sun, 17 Jul 2022 08:57:35 GMT
+
+### Changes
+
+- divider component (rachel.tannenbaum@vonage.com)
 
 ## 3.0.0-next.30
 
