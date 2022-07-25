@@ -6,8 +6,8 @@
 
 ```html preview
 <style>
-  html { 
-    block-size: 200px; 
+  html { /* for demo purposes */ 
+    block-size: 230px; 
   }
 </style>
 
@@ -46,6 +46,11 @@ Use the `text` attribute to set the dialog's text.
 - Default: `undefined`
 
 ```html preview
+<style>
+    html { /* for demo purposes */
+    block-size: 230px; 
+    }
+</style>
 <vwc-dialog text="Text content" open></vwc-dialog>
 ```
 
@@ -57,6 +62,11 @@ Sets or returns whether a dialog should be open or not
 - Default: `false`
 
 ```html preview
+<style>
+    html { /* for demo purposes */
+    block-size: 230px; 
+    }
+</style>
 <vwc-dialog id="dialog" text="Text content"></vwc-dialog>
 
 <vwc-button label="Toggle Dialog Open" onclick="dialog.open = !dialog.open"></vwc-button>
@@ -71,15 +81,15 @@ Use `returnValue` to get or set the return value. Often used to indicate which b
 
 ```html preview
 <style>
-    html { 
-        block-size: 200px; 
+    html { /* for demo purposes */
+    block-size: 250px; 
     }
     .demo-footer {
         display: flex;
         justify-content: flex-end;
         column-gap: 8px;
-        margin-top: 16px;
-
+        margin-top: 8px;
+    
     }
 </style>
 <vwc-dialog open
@@ -187,14 +197,38 @@ Use the `graphic` slot in order to replace the icon.
 </vwc-dialog>
 ```
 
+### Content
+
+Use the content `slot` in order to add custom HTML to the dialog while enjoying the vivid dialog styling. Note that vivid styling comes with opinionated CSS like padding and margin.
+
+```html preview
+<style>
+    html { /* for demo purposes */
+        block-size: 350px; 
+        --dialog-max-block-size: 320px;
+    }
+</style>
+<vwc-dialog open headline="Dialog Content">
+    <div slot="content">        
+            <form>
+                <vwc-layout column-basis="block">
+                <vwc-text-field label="Name"></vwc-text-field>
+                <vwc-text-field label="Password" type="password"></vwc-text-field>
+                <vwc-button label="Login" appearance="filled"></vwc-button>
+                </vwc-layout>
+            </form>
+    </div>
+</vwc-dialog>
+```
+
 ### Footer
 
 Use the footer `slot` in order to add action buttons to the bottom of the dialog.
 
 ```html preview
 <style>
-    html { 
-        block-size: 200px; 
+    html { /* for demo purposes */
+        block-size: 250px; 
     }
     .demo-footer {
         display: flex;
@@ -248,6 +282,57 @@ When the dialog is not set as `modal` its initial z-index can be changed if need
 - Type: `String`
 - Default: `undefined`
 
+
+### Inline min & Max size
+
+The Dialog has default `min-inline-size` and `max-inline-size`. This can be changed with setting a new value.   
+setting the same value for `min-inline-size` and `max-inline-size` will set a definitive width to the dialog.  
+When setting a new value for `min-inline-size` and `max-inline-size` take in consideration if defendant value are needed for mobile.
+
+`--dialog-min-inline-size`  
+`--dialog-max-inline-size`
+
+- Type: `String`
+- Default: `undefined`
+
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px; 
+  }
+vwc-dialog {
+    --dialog-min-inline-size: 560px;
+}  
+</style>
+
+<vwc-dialog icon="info" headline="Headline" text="Text content" open></vwc-dialog>
+```
+
+
+### Block-Size
+The Dialog has default `max-block-size`, if content is larger - there will be scroll.  
+
+`--dialog-max-block-size`
+
+- Type: `String`
+- Default: `undefined`
+
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 250px; 
+  }
+vwc-dialog {
+    --dialog-max-block-size: 100px;
+}  
+</style>
+
+<vwc-dialog icon="info" headline="Headline" text="Text content" open></vwc-dialog>
+```
+
+
 ## Events
 
 ### Close
@@ -274,7 +359,7 @@ It returns the return value inside the event's details property.
 </script>
 ```
 
-## A11y
+## Accessibility
 
 The dialog's role is `dialog`.  When opened as a modal (via showModal) it adds `aria-modal` to the dialog.
 It is consumer's concern to add `aria-label` to the dialog element.

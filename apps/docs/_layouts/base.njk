@@ -26,12 +26,26 @@
       {{ mainCss | cssmin | safe }}
     </style>
 
+    {% set mainJs %}
+      {% include "../assets/scripts/main.js" %}
+    {% endset %}
+
+    <script type="module">
+      {{ mainJs | safe }}
+    </script>
+
+    {% set viewportHandler %}
+      {% include "../assets/scripts/viewport-handler.js" %}
+    {% endset %}
+
+    <script type="module">
+      {{ viewportHandler | safe }}
+    </script>
+
     <link rel="stylesheet" href="{{ '/assets/styles/themes/light.css' | url }}" media="(prefers-color-scheme: light)">
     <link rel="stylesheet" href="{{ '/assets/styles/themes/dark.css' | url }}" media="(prefers-color-scheme: dark)">
 
 		<script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
-
-    <script src="{{ '/assets/scripts/main.js' | url }}"></script>
 
     <script type="module" src="{{ '/assets/modules/components/layout/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/text/index.js' | url}}"></script>
