@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 24 Jul 2022 12:28:54 GMT and should not be manually modified.
+This log was last generated on Mon, 25 Jul 2022 12:18:19 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.40
+
+Mon, 25 Jul 2022 12:18:19 GMT
+
+### Changes
+
+- fix banner docs and slots (rina.oksman@vonage.com)
 
 ## 3.0.0-next.39
 
