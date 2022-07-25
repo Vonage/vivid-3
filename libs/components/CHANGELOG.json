@@ -2,6 +2,36 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Sun, 24 Jul 2022 12:28:54 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.39",
+      "version": "3.0.0-next.39",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "e7ad639a567b05ba3facf639ea04c4bf12d59d9b",
+            "comment": "Added dialog content slot"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 22 Jul 2022 15:03:10 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.38",
+      "version": "3.0.0-next.38",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "c4564cfe18b7e611eeed0beb5ab5384fc55e9aab",
+            "comment": "docs(components): point out a11y caveats with icon only actions"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 21 Jul 2022 07:53:29 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.37",
       "version": "3.0.0-next.37",

@@ -1,8 +1,24 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Thu, 21 Jul 2022 07:53:29 GMT and should not be manually modified.
+This log was last generated on Sun, 24 Jul 2022 12:28:54 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.39
+
+Sun, 24 Jul 2022 12:28:54 GMT
+
+### Changes
+
+- Added dialog content slot (yonatan.kra@vonage.com)
+
+## 3.0.0-next.38
+
+Fri, 22 Jul 2022 15:03:10 GMT
+
+### Changes
+
+- docs(components): point out a11y caveats with icon only actions (yinon@hotmail.com)
 
 ## 3.0.0-next.37
 
