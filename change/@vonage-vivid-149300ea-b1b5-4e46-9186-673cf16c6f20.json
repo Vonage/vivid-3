@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "fix banner docs and slots",
-  "packageName": "@vonage/vivid",
-  "email": "rina.oksman@vonage.com",
-  "dependentChangeType": "patch"
-}
