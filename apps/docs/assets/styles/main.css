@@ -78,7 +78,7 @@ dark-mode-toggle::part(toggleLabel)::before {
 }
 .logo-wrapper{
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   column-gap: 8px;
   color: var(--vvd-color-neutral-90);
   text-decoration: none;
