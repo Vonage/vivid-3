@@ -5,6 +5,7 @@ on: workflow_call
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -33,8 +34,8 @@ jobs:
           # (will aply to version 3)
           # due to action fail to pierce in shadowed links,
           # all links must be explicitly specified, seperated by space
-          input-urls: http://localhost:12345
-          # http://localhost:12345/components/accordion http://localhost:12345/components/accordion-item http://localhost:12345/components/badge http://localhost:12345/components/banner http://localhost:12345/components/breadcrumb http://localhost:12345/components/breadcrumb-item http://localhost:12345/components/button http://localhost:12345/components/calendar http://localhost:12345/components/calendar-event http://localhost:12345/components/icon http://localhost:12345/components/layout http://localhost:12345/components/popup http://localhost:12345/components/side-drawer http://localhost:12345/components/sidenav-item http://localhost:12345/components/sidenav-disclosure http://localhost:12345/components/text http://localhost:12345/components/tooltip http://localhost:12345/components/progress http://localhost:12345/components/progress-ring http://localhost:12345/components/card http://localhost:12345/components/text-field http://localhost:12345/components/fab http://localhost:12345/components/action-group http://localhost:12345/components/note http://localhost:12345/components/checkbox http://localhost:12345/components/dialog http://localhost:12345/components/header http://localhost:12345/components/sidenav http://localhost:12345/components/divider
+          input-urls: http://localhost:12345 http://localhost:12345/components/accordion
+          # http://localhost:12345/components/accordion-item http://localhost:12345/components/badge http://localhost:12345/components/banner http://localhost:12345/components/breadcrumb http://localhost:12345/components/breadcrumb-item http://localhost:12345/components/button http://localhost:12345/components/calendar http://localhost:12345/components/calendar-event http://localhost:12345/components/icon http://localhost:12345/components/layout http://localhost:12345/components/popup http://localhost:12345/components/side-drawer http://localhost:12345/components/sidenav-item http://localhost:12345/components/sidenav-disclosure http://localhost:12345/components/text http://localhost:12345/components/tooltip http://localhost:12345/components/progress http://localhost:12345/components/progress-ring http://localhost:12345/components/card http://localhost:12345/components/text-field http://localhost:12345/components/fab http://localhost:12345/components/action-group http://localhost:12345/components/note http://localhost:12345/components/checkbox http://localhost:12345/components/dialog http://localhost:12345/components/header http://localhost:12345/components/sidenav http://localhost:12345/components/divider
 
       - name: Upload report artifact
         if: success() || failure()
