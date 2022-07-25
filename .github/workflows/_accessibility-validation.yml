@@ -27,8 +27,8 @@ jobs:
       - name: Scan for accessibility issues
         uses: microsoft/accessibility-insights-action@v3
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          site-dir: ${{ github.workspace }}/dist/apps/docs
+          static-site-dir: ${{ github.workspace }}/dist/apps/docs
+          static-site-port: 12345
           # (will aply to version 3)
           # due to action fail to pierce in shadowed links,
           # all links must be explicitly specified, seperated by space
