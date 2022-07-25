@@ -190,8 +190,10 @@ article > .cbd-container,
   justify-content: center;
   margin-inline: -32px;
   margin-block-end: 32px;
-  /*background-color: var(--vvd-color-neutral-20);*/
   background-color: var(--vvd-color-cta);
+  background-image: url("/pattern.svg");
+  background-position: right top;
+  background-size: auto 100%;
   color: var(--vvd-color-on-cta);
 }
 

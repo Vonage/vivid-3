@@ -1,0 +1,53 @@
+<svg width="421" height="316" viewBox="0 0 421 316" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g opacity="0.8" clip-path="url(#clip0_2011_38352)">
+<line x1="210.5" x2="210.5" y2="320" stroke="#B27BF2"/>
+<line x1="245.5" x2="245.5" y2="320" stroke="#B27BF2"/>
+<line x1="280.5" x2="280.5" y2="320" stroke="#B27BF2"/>
+<line x1="315.5" x2="315.5" y2="320" stroke="#B27BF2"/>
+<line x1="350.5" x2="350.5" y2="320" stroke="#B27BF2"/>
+<line x1="385.5" x2="385.5" y2="320" stroke="#B27BF2"/>
+<line x1="420.5" x2="420.5" y2="320" stroke="#B27BF2"/>
+<line x1="210" y1="0.5" x2="530" y2="0.5" stroke="#B27BF2"/>
+<line x1="210" y1="35.5" x2="530" y2="35.5" stroke="#B27BF2"/>
+<line x1="210" y1="70.5" x2="530" y2="70.5" stroke="#B27BF2"/>
+<line x1="210" y1="105.5" x2="530" y2="105.5" stroke="#B27BF2"/>
+<line x1="210" y1="140.5" x2="530" y2="140.5" stroke="#B27BF2"/>
+<line x1="210" y1="175.5" x2="530" y2="175.5" stroke="#B27BF2"/>
+<line x1="210" y1="210.5" x2="530" y2="210.5" stroke="#B27BF2"/>
+<line x1="210" y1="245.5" x2="530" y2="245.5" stroke="#B27BF2"/>
+<line x1="210" y1="280.5" x2="530" y2="280.5" stroke="#B27BF2"/>
+<line x1="210" y1="315.5" x2="530" y2="315.5" stroke="#B27BF2"/>
+</g>
+<g opacity="0.8" clip-path="url(#clip1_2011_38352)">
+<line x1="105.5" y1="-105" x2="105.5" y2="215" stroke="#B27BF2"/>
+<line x1="140.5" y1="-105" x2="140.5" y2="215" stroke="#B27BF2"/>
+<line x1="175.5" y1="-105" x2="175.5" y2="215" stroke="#B27BF2"/>
+<line x1="105" y1="0.5" x2="425" y2="0.5" stroke="#B27BF2"/>
+<line x1="105" y1="35.5" x2="425" y2="35.5" stroke="#B27BF2"/>
+<line x1="105" y1="70.5" x2="425" y2="70.5" stroke="#B27BF2"/>
+<line x1="105" y1="105.5" x2="425" y2="105.5" stroke="#B27BF2"/>
+<line x1="105" y1="140.5" x2="425" y2="140.5" stroke="#B27BF2"/>
+<line x1="105" y1="175.5" x2="425" y2="175.5" stroke="#B27BF2"/>
+<line x1="105" y1="210.5" x2="425" y2="210.5" stroke="#B27BF2"/>
+</g>
+<g opacity="0.8" clip-path="url(#clip2_2011_38352)">
+<line x1="0.5" y1="-210" x2="0.5" y2="110" stroke="#B27BF2"/>
+<line x1="35.5" y1="-210" x2="35.5" y2="110" stroke="#B27BF2"/>
+<line x1="70.5" y1="-210" x2="70.5" y2="110" stroke="#B27BF2"/>
+<line y1="0.5" x2="320" y2="0.5" stroke="#B27BF2"/>
+<line y1="35.5" x2="320" y2="35.5" stroke="#B27BF2"/>
+<line y1="70.5" x2="320" y2="70.5" stroke="#B27BF2"/>
+<line y1="105.5" x2="320" y2="105.5" stroke="#B27BF2"/>
+</g>
+<defs>
+<clipPath id="clip0_2011_38352">
+<rect width="211" height="316" fill="white" transform="translate(210)"/>
+</clipPath>
+<clipPath id="clip1_2011_38352">
+<rect width="105" height="211" fill="white" transform="translate(105)"/>
+</clipPath>
+<clipPath id="clip2_2011_38352">
+<rect width="105" height="106" fill="white"/>
+</clipPath>
+</defs>
+</svg>
