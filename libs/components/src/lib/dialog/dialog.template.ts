@@ -96,9 +96,12 @@ export const DialogTemplate: (
 						</div>
 			  		${renderDismissButton()}
 					</div>
-					${when(x => x.text, content())}
+					<slot name="content">
+						${when(x => x.text, content())}
+					</slot>
 					<slot name="footer"></slot>
 				</div>
 			</slot>
 		</dialog>
 	</vwc-elevation>`;
+
