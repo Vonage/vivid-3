@@ -152,7 +152,7 @@ describe('vwc-banner', () => {
 
 		it('should fire removing event', async function () {
 			const spy = jest.fn();
-			element.addEventListener('vwc-banner:removing', spy);
+			element.addEventListener('removing', spy);
 			element.remove();
 			expect(spy)
 				.toHaveBeenCalled();
@@ -161,7 +161,7 @@ describe('vwc-banner', () => {
 		it('should fire removed after animation end', async function () {
 
 			const spy = jest.fn();
-			element.addEventListener('vwc-banner:removed', spy);
+			element.addEventListener('removed', spy);
 			element.remove();
 
 			dispatchAnimationEndEvent();
@@ -175,8 +175,8 @@ describe('vwc-banner', () => {
 		it('should disable removed and removing events after disconnected callback', async function () {
 
 			const spy = jest.fn();
-			element.addEventListener('vwc-banner:removed', spy);
-			element.addEventListener('vwc-banner:removing', spy);
+			element.addEventListener('removed', spy);
+			element.addEventListener('removing', spy);
 			element.disconnectedCallback();
 
 			element.remove();
