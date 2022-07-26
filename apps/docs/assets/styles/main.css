@@ -19,9 +19,9 @@ body {
   color: var(--vvd-color-on-canvas);
 }
 
-body a,
-body a:hover,
-body a:visited {
+a,
+a:hover,
+a:visited {
   color: var(--vvd-color-cta);
 }
 
@@ -87,12 +87,10 @@ dark-mode-toggle::part(toggleLabel)::before {
   display: flex;
   align-items: center;
   column-gap: 8px;
-  color: var(--vvd-color-neutral-90);
   text-decoration: none;
 }
 
-.logo-wrapper:hover,
-.logo-wrapper:focus {
+.logo-wrapper:any-link {
   color: var(--vvd-color-neutral-90);
 }
 
@@ -198,9 +196,6 @@ article > .cbd-container,
   margin-inline: -16px;
   margin-block-end: 32px;
   background-color: var(--vvd-color-cta);
-  background-image: url("/pattern.svg");
-  background-position: right top;
-  background-size: auto 100%;
   color: var(--vvd-color-on-cta);
 }
 
