@@ -188,7 +188,7 @@ article > .cbd-container,
   margin-inline-start: -20px;
 
 }
-.heading-wrapper.h1 {
+.component-heading {
   padding: 20px 16px;
   display: flex;
   flex-direction: column;
