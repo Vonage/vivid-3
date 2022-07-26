@@ -16,7 +16,7 @@ Badges don’t work for navigation because they can't include a hyperlink.
 
 Add a `text` attribute to add text to the badge.
 
-- Type: `String`
+- Type: `string`
 - Default: `undefined`
 
 ```html preview
@@ -53,7 +53,7 @@ Use the `shape` attribute to change the badge's edges.
 Badge text can be affixed by a decorative icon, either by its start or end.
 Use the `icon` attribute to add an icon. Use the `icon-trailing` to place the icon to the right.
 
-- Type: `String`
+- Type: `string`
 - Default: `undefined`
 
 ```html preview

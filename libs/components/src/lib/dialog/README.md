@@ -225,7 +225,7 @@ When the dialog is not set as `modal` its initial z-index can be changed if need
 
 `--dialog-z-index`
 
-- Type: `String`
+- Type: `string`
 - Default: `undefined`
 
 
@@ -238,7 +238,7 @@ When setting a new value for `min-inline-size` and `max-inline-size` take in con
 `--dialog-min-inline-size`  
 `--dialog-max-inline-size`
 
-- Type: `String`
+- Type: `string`
 - Default: `undefined`
 
 
@@ -261,7 +261,7 @@ The Dialog has default `max-block-size`, if content is larger - there will be sc
 
 `--dialog-max-block-size`
 
-- Type: `String`
+- Type: `string`
 - Default: `undefined`
 
 

@@ -18,7 +18,7 @@ Find the icon you want to use on the [vivid icons search platform](https://icons
 
 Add a `type` attribute to add type to the icon.
 
-- Type: `String`
+- Type: `string`
 - Default: `undefined`
 
 ```html preview
@@ -29,7 +29,7 @@ Add a `type` attribute to add type to the icon.
 
 While `type` fetches an icon from the Vivid predefined set of icons, `svg` property can be used to set a customized valid SVG string programmatically.
 
-- Type: `String`
+- Type: `string`
 - Default: `undefined`
 
 ```html preview

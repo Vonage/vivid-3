@@ -18,7 +18,7 @@
 
 ### Text
 
-- Type: `String`
+- Type: `string`
 - Default: `undefined`
 
 ```html preview
