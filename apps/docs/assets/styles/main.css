@@ -30,7 +30,7 @@ body a:visited {
 /* #region layout */
 #menu-button {
   position: fixed;
-  inset: auto auto 8px 8px;
+  inset: auto auto 8px 4px;
   z-index: 2;
 }
 
