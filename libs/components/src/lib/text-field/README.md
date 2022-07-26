@@ -4,10 +4,12 @@ TextField is meant to accept text input from the user. It supports the native at
 Note that the text field does not support `type="number"`. For this there is the `number-field` component.
 
 ```js
-<script type="module">import '@vonage/vivid/text-field';</script>
+<script type="module">
+  import '@vonage/vivid/text-field';
+</script>
 ```
 
-## Properties
+## Members
 
 ### Label
 
@@ -133,7 +135,7 @@ Add the `readonly` attribute to restrict user from changing the text field's val
 <vwc-text-field readonly icon="chat-line" value="readonly text" label='fieldset' appearance='fieldset'></vwc-text-field>
 ```
 
-## Use cases
+## Use Cases
 
 ### Validation
 
@@ -151,8 +153,6 @@ In addition, we programatically *"dirtied"* the field and then called `validate`
   textField.validate();
 </script>
 ```
-
-### Input Types
 
 ### In Form
 

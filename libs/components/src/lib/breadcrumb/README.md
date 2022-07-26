@@ -1,11 +1,14 @@
-# breadcrumb
+# Breadcrumb
 
 ```js
-<script type="module">import '@vonage/vivid/breadcrumb-item';</script>
-<script type="module">import '@vonage/vivid/breadcrumb';</script>
+<script type="module">
+  import '@vonage/vivid/breadcrumb';
+</script>
 ```
 
-## Common Usage
+## Usage Examples
+
+### Common Usage
 
 ```html preview
 <vwc-breadcrumb>
@@ -16,7 +19,7 @@
 </vwc-breadcrumb>
 ```
 
-## Multiple hidden crumbs
+### Multiple hidden crumbs
 
 ```html preview
 <vwc-breadcrumb>

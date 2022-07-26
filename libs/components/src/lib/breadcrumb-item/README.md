@@ -1,10 +1,14 @@
-# breadcrumb-item
+# Breadcrumb Item
 
 ```js
-<script type="module">import '@vonage/vivid/breadcrumb-item';</script>
+<script type="module">
+  import '@vonage/vivid/breadcrumb-item';
+</script>
 ```
 
-## Link
+## Members
+
+### Link
 
 ```html preview
 <vwc-breadcrumb-item 
@@ -12,7 +16,7 @@
   href="https://vivid.vonage.com"></vwc-breadcrumb-item>
 ```
 
-## Text
+### Text
 
 - Type: `String`
 - Default: `undefined`
@@ -22,7 +26,7 @@
   text="Breadcrumb"></vwc-breadcrumb-item>
 ```
 
-## Combined
+### Combined
 
 ```html preview
 <div style="display: flex">

@@ -1,10 +1,10 @@
-# card
+# Card
 
 A “card” is a UI design pattern that groups related information in a flexible-size container visually resembling a playing card.
 
 ```js
 <script type="module">
-    import '@vonage/vivid/card';
+  import '@vonage/vivid/card';
 </script>
 ```
 
@@ -124,7 +124,7 @@ Assign nodes to `main` slot to fully override a card's predefined flow and style
 </vwc-card>
 ```
 
-## CSS Custom Properties
+## CSS Variables
 
 ### Trim headline & subtitle
 

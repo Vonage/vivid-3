@@ -2,7 +2,7 @@
 
 ```js
 <script type="module">
-    import '@vonage/vivid/dialog';
+  import '@vonage/vivid/dialog';
 </script>
 ```
 
@@ -217,7 +217,7 @@ vwc-text {
 </vwc-dialog>
 ```
 
-## CSS Custom Properties
+## CSS Variables
 
 ### Z-index
 

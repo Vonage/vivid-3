@@ -7,7 +7,7 @@ The arrow points up when the content is visible.
 
 ```js
 <script type="module">
-    import '@vonage/vivid/sidenav-disclosure';
+  import '@vonage/vivid/sidenav-disclosure';
 </script>
 ```
 

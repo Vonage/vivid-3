@@ -4,7 +4,9 @@ Action group is a visible boundary containing action buttons or other form eleme
 Note: this element is purely a visual presentation and have no semantic meaning.
 
 ```js
-<script type="module">import '@vonage/vivid/action-group';</script>
+<script type="module">
+  import '@vonage/vivid/action-group';
+</script>
 ```
 
 ```html preview
@@ -16,7 +18,7 @@ Note: this element is purely a visual presentation and have no semantic meaning.
 </vwc-action-group>
 ```
 
-## Properties
+## Members
 
 ### Appearance
 
@@ -103,9 +105,9 @@ enabling the `tight` member will result in a dense style that fits the "normal" 
 </vwc-layout>
 ```
 
-## Use cases
+## Use Cases
 
-### semi-split button
+### Semi-Split Button
 
 ```html preview
 <vwc-action-group shape="pill">
