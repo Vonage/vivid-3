@@ -6,20 +6,20 @@ const StyleDictionary = require('style-dictionary')
 	.extend('config.json');
 
 const THEMES = ['light', 'dark'] as const;
-const SCOPES = ['main', 'alternate'] as const;
 
-const getStyleDictionaryConfig = (theme: typeof THEMES[number], scope: typeof SCOPES[number]) => ({
+const getStyleDictionaryConfig = (theme: typeof THEMES[number]) => ({
 	include: [
-		`tokens-from-figma/themes/${theme}/color-${scope}.tokens.json`,
-		`tokens-from-figma/themes/${theme}/shadow-${scope}.tokens.json`,
+		`../../../../node_modules/@vonage/vivid-figma-tokens/data/${theme}/color-semantics.tokens.json`
+		// `tokens-from-figma/themes/${theme}/color-${scope}.tokens.json`,
+		// `tokens-from-figma/themes/${theme}/shadow-${scope}.tokens.json`,
 	],
 	platforms: {
 		web: {
 			transforms: ["attribute/cti", "name/cti/kebab", "size/px", "color/rgb", "shadow/shorthand"],
 			prefix: "vvd",
-			buildPath: `../../../../dist/libs/tokens/scss/themes/${theme}/`,
+			buildPath: `../../../../dist/libs/tokens/scss/themes/`,
 			files: [{
-				destination: `_${scope}.scss`,
+				destination: `_${theme}.mixins.scss`,
 				format: "css/variables",
 				filter: "sourceOnly",
 				options: {
@@ -31,8 +31,6 @@ const getStyleDictionaryConfig = (theme: typeof THEMES[number], scope: typeof SC
 });
 
 THEMES.forEach(theme => {
-	SCOPES.forEach(scope => {
-		StyleDictionary.extend(getStyleDictionaryConfig(theme, scope)).buildAllPlatforms();
-	});
+	StyleDictionary.extend(getStyleDictionaryConfig(theme)).buildAllPlatforms();
 });
 

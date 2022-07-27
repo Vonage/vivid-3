@@ -1,0 +1,7 @@
+{
+	"color": {
+		"cta-50": {
+			"value": "{color.theme.cta.50.value}"
+		}
+	}
+}

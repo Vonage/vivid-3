@@ -1,8 +1,8 @@
 {
 	"include": [
-		"tokens-from-figma/platforms/web/**/*.tokens.json"
+		"../../../../node_modules/@vonage/vivid-figma-tokens/data/palette.tokens.json"
 	],
 	"source": [
-		"globals/**/*.tokens.json"
+		"blueprints/**/*.tokens.json"
 	]
 }

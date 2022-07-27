@@ -4,37 +4,37 @@
 		"neutral-000": {
 			"value": "ffffff"
 		},
-		"purple-050": {
+		"purple.050": {
 			"value": "f5f0fd"
 		},
-		"purple-100": {
+		"purple.100": {
 			"value": "ece2fa"
 		},
-		"purple-200": {
+		"purple.200": {
 			"value": "dcc1fc"
 		},
-		"purple-300": {
+		"purple.300": {
 			"value": "cba1fa"
 		},
-		"purple-400": {
+		"purple.400": {
 			"value": "b27bf2"
 		},
-		"purple-500": {
+		"purple.500": {
 			"value": "9941ff"
 		},
-		"purple-600": {
+		"purple.600": {
 			"value": "871eff"
 		},
-		"purple-700": {
+		"purple.700": {
 			"value": "6405d1"
 		},
-		"purple-800": {
+		"purple.800": {
 			"value": "440291"
 		},
-		"purple-900": {
+		"purple.900": {
 			"value": "26044d"
 		},
-		"purple-950": {
+		"purple.950": {
 			"value": "140623"
 		}
 	}

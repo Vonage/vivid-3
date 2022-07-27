@@ -1,30 +1,27 @@
 {
 	"color": {
 		"scheme": {
-			"cta-050": {
-				"value": "{color.purple-050.value}"
+			"cta-50": {
+				"value": "{color.purple.50.value}"
 			},
 			"cta-100": {
-				"value": "{color.purple-100.value}"
+				"value": "{color.purple.100.value}"
 			},
 			"cta-200": {
-				"value": "{color.purple-200.value}"
+				"value": "{color.purple.200.value}"
 			},
 			"cta-500": {
-				"value": "{color.purple-500.value}"
+				"value": "{color.purple.500.value}"
 			},
 			"cta-600": {
-				"value": "{color.purple-600.value}"
+				"value": "{color.purple.600.value}"
 			},
 			"cta-700": {
-				"value": "{color.purple-700.value}"
+				"value": "{color.purple.700.value}"
 			},
 			"cta-800": {
-				"value": "{color.purple-800.value}"
+				"value": "{color.purple.800.value}"
 			}
-		},
-		"surface-04dp": {
-			"value": "{color.neutral-000.value}"
 		}
 	}
 }
