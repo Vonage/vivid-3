@@ -1,4 +1,4 @@
-# layout
+# Layout
 
 Using layout, elements can be arranged easily in a variety of sizes and spaces that suit vivid design.
 
@@ -31,7 +31,7 @@ Using layout, elements can be arranged easily in a variety of sizes and spaces t
 </vwc-layout>
 ```
 
-## Properties
+## Members
 
 ### Gutters
 
@@ -139,7 +139,7 @@ With `fill`, everything is the same as `fit`, except empty tracks are not collap
 </vwc-layout>
 ```
 
-## CSS Custom Properties
+## CSS Variables
 
 ### Grid-template-columns
 

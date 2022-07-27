@@ -2,7 +2,7 @@
 
 ```js
 <script type="module">
-    import '@vonage/vivid/accordion-item';
+  import '@vonage/vivid/accordion-item';
 </script>
 ```
 

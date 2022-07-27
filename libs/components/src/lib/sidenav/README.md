@@ -5,7 +5,7 @@ The vwc-sidenav accepts [vwc-sidenav-item](../../components/sidenav-item) and [v
 
 ```js
 <script type="module">
-    import '@vonage/vivid/sidenav';
+  import '@vonage/vivid/sidenav';
 </script>
 ```
 
