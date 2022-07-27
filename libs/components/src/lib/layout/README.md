@@ -55,11 +55,31 @@ Use the `gutters` attribute to set the initial preferred `margin`.
 </vwc-layout>
 <vwc-divider></vwc-divider>
 <vwc-layout gutters="large">
-    <vwc-card elevation="2" text="large"></vwc-card>
+  <vwc-card elevation="2" text="large"></vwc-card>
+</vwc-layout>
+```
+
+```html preview full
+<vwc-layout gutters="small-inline">
+  <vwc-card elevation="2" text="small-inline"></vwc-card>
+</vwc-layout>
+<vwc-divider></vwc-divider>
+<vwc-layout gutters="medium-inline">
+  <vwc-card elevation="2" text="medium-inline"></vwc-card>
 </vwc-layout>
 <vwc-divider></vwc-divider>
 <vwc-layout gutters="large-inline">
   <vwc-card elevation="2" text="large-inline"></vwc-card>
+</vwc-layout>
+```
+
+```html preview full
+<vwc-layout gutters="small-block">
+  <vwc-card elevation="2" text="small-block"></vwc-card>
+</vwc-layout>
+<vwc-divider></vwc-divider>
+<vwc-layout gutters="medium-block">
+  <vwc-card elevation="2" text="medium-block"></vwc-card>
 </vwc-layout>
 <vwc-divider></vwc-divider>
 <vwc-layout gutters="large-block">
