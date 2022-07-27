@@ -1,8 +1,5 @@
 {
-	"include": [
-		"../../../../node_modules/@vonage/vivid-figma-tokens/data/palette.tokens.json"
-	],
 	"source": [
-		"blueprints/**/*.tokens.json"
+		"blueprint.tokens/**/*.tokens.json"
 	]
 }
