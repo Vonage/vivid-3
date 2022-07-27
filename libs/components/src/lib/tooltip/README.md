@@ -4,7 +4,7 @@ A tooltip is a brief, informative message or descriptions or explanations for th
 
 ```js
 <script type="module">
-    import '@vonage/vivid/tooltip';
+  import '@vonage/vivid/tooltip';
 </script>
 ```
 
@@ -71,7 +71,7 @@ Use the `corner` attribute to set the placement of the tooltip around the anchor
 <vwc-tooltip anchor="anchor" open text="bottom" corner="bottom"></vwc-tooltip>
 ```
 
-## CSS Custom Properties
+## CSS Variables
 
 ### Inline Size
 
