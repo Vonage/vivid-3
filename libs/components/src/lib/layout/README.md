@@ -42,9 +42,6 @@ Use the `gutters` attribute to set the initial preferred `margin`.
 - Default: `none`
 
 ```html preview full
-<style>
-vwc-divider {margin-block-start: 0px;}
-</style>
 <vwc-layout>
   <vwc-card elevation="2" text="none"></vwc-card>
 </vwc-layout>
