@@ -1,4 +1,4 @@
-# badge
+# Badge
 
 Badge is a label that holds small amounts of information.
 A badge can be used to display unread notifications, or to label a block of text.
@@ -10,18 +10,20 @@ Badges don’t work for navigation because they can't include a hyperlink.
 </script>
 ```
 
-## Text
+## Members
+
+### Text
 
 Add a `text` attribute to add text to the badge.
 
-- Type: `String`
+- Type: `string`
 - Default: `undefined`
 
 ```html preview
 <vwc-badge text='A default badge'></vwc-badge>
 ```
 
-## Density
+### Density
 
 Use the `density` attribute to set the badge's to one of the predefined block size extent.
 
@@ -34,7 +36,7 @@ Use the `density` attribute to set the badge's to one of the predefined block si
 <vwc-badge text='extended' density='extended'></vwc-badge>
 ```
 
-## Shape
+### Shape
 
 Use the `shape` attribute to change the badge's edges.
 
@@ -46,12 +48,12 @@ Use the `shape` attribute to change the badge's edges.
 <vwc-badge text='pill' shape='pill'></vwc-badge>
 ```
 
-## Icon
+### Icon
 
 Badge text can be affixed by a decorative icon, either by its start or end.
 Use the `icon` attribute to add an icon. Use the `icon-trailing` to place the icon to the right.
 
-- Type: `String`
+- Type: `string`
 - Default: `undefined`
 
 ```html preview
@@ -59,7 +61,7 @@ Use the `icon` attribute to add an icon. Use the `icon-trailing` to place the ic
 <vwc-badge text='icon-trailing' icon='check-line' icon-trailing></vwc-badge>
 ```
 
-## Appearance
+### Appearance
 
 Set the `appearance` attribute to change the badge's appearance.
 
@@ -72,7 +74,7 @@ Set the `appearance` attribute to change the badge's appearance.
 <vwc-badge text='duotone' appearance='duotone'></vwc-badge>
 ```
 
-## Connotation
+### Connotation
 
 Set the `connotation` attribute to change the badge's connotation.
 It accepts a subset of predefined values.
@@ -80,7 +82,7 @@ It accepts a subset of predefined values.
 - Type: `'accent'` | `'cta'` | `'success'` | `'alert'` | `'warning'` | `'info'`
 - Default: `'accent'`
 
-### Filled badge with connotation
+#### Filled badge with connotation
 
 ```html preview
 <vwc-badge text='accent' connotation='accent' appearance="filled"></vwc-badge>
@@ -91,7 +93,7 @@ It accepts a subset of predefined values.
 <vwc-badge text='alert' connotation='alert'></vwc-badge>
 ```
 
-### Subtle badge with connotation
+#### Subtle badge with connotation
 
 ```html preview
 <vwc-badge text='accent' appearance='subtle' connotation='accent'></vwc-badge>
@@ -102,7 +104,7 @@ It accepts a subset of predefined values.
 <vwc-badge text='alert' appearance='subtle' connotation='alert'></vwc-badge>
 ```
 
-### Duotone badge with connotation
+#### Duotone badge with connotation
 
 ```html preview
 <vwc-badge text='accent' appearance='duotone' connotation='accent'></vwc-badge>

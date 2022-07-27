@@ -1,4 +1,4 @@
-# Side-Drawer
+# Side Drawer
 
 ```js
 <script type='module'>
@@ -144,7 +144,7 @@ The `app-content` slot sets assigned nodes to the main application content, the 
 </vwc-side-drawer>
 ```
 
-## CSS Custom Properties
+## CSS Variables
 
 ### Application Content Offset
 
