@@ -171,7 +171,7 @@ article > .cbd-container,
 .cbd-details {
   margin-block: 12px;
   box-sizing: border-box;
-  max-inline-size: calc(100vw - 64px);
+  max-inline-size: calc(100vw - 32px);
 }
 
 @media  (min-width: 960px) {
@@ -200,7 +200,7 @@ article > .cbd-container,
 }
 
 @media (min-width: 960px) {
-  .heading-wrapper.h1 {
+  .component-heading {
     margin-inline: -32px;
     padding-inline: 32px;
   }
