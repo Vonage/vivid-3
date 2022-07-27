@@ -37,7 +37,8 @@ Using layout, elements can be arranged easily in a variety of sizes and spaces t
 
 Use the `gutters` attribute to set the initial preferred `margin`.
 
-- Type: `'small'` | `'medium'` | `'large'`
+- Type: `'small'` | `'small-inline'` | `'small-block'` | `'medium'` | `'medium-inline'` | `'medium-block'` | `'large'` | `'large-inline'` | `'large-block'` 
+
 - Default: `undefined`
 
 ```html preview full
@@ -47,11 +48,17 @@ Use the `gutters` attribute to set the initial preferred `margin`.
 <vwc-layout gutters="small">
   <vwc-card elevation="2" text="small"></vwc-card>
 </vwc-layout>
+<vwc-layout gutters="small-block">
+  <vwc-card elevation="2" text="small-block"></vwc-card>
+</vwc-layout>
 <vwc-layout gutters="medium">
   <vwc-card elevation="2" text="medium"></vwc-card>
 </vwc-layout>
 <vwc-layout gutters="large">
     <vwc-card elevation="2" text="large"></vwc-card>
+</vwc-layout>
+<vwc-layout gutters="large-inline">
+    <vwc-card elevation="2" text="large-inline"></vwc-card>
 </vwc-layout>
 ```
 
