@@ -1,10 +1,10 @@
-# card
+# Card
 
 A “card” is a UI design pattern that groups related information in a flexible-size container visually resembling a playing card.
 
 ```js
 <script type="module">
-    import '@vonage/vivid/card';
+  import '@vonage/vivid/card';
 </script>
 ```
 
@@ -14,7 +14,7 @@ A “card” is a UI design pattern that groups related information in a flexibl
 
 Add a `headline` attribute to add card headline title
 
-- Type: `String`
+- Type: `string`
 - Default: `undefined`
 
 ```html preview
@@ -25,7 +25,7 @@ Add a `headline` attribute to add card headline title
 
 Add a `subtitle` attribute to add card subtitle
 
-- Type: `String`
+- Type: `string`
 - Default: `undefined`
 
 ```html preview
@@ -47,7 +47,7 @@ Control the elevation depth by adding the `elevation` attribute
 
 Add a `icon='icon-name'` attribute to add icon on the right of the card headline
 
-- Type: `String`
+- Type: `string`
 - Default: `undefined`
 
 ```html preview
@@ -58,7 +58,7 @@ Add a `icon='icon-name'` attribute to add icon on the right of the card headline
 
 Add a `text` attribute to add text to the card
 
-- Type: `String`
+- Type: `string`
 - Default: `undefined`
 
 ```html preview
@@ -124,7 +124,7 @@ Assign nodes to `main` slot to fully override a card's predefined flow and style
 </vwc-card>
 ```
 
-## CSS Custom Properties
+## CSS Variables
 
 ### Trim headline & subtitle
 
@@ -134,7 +134,7 @@ The number of lines are controlled by css variable:
 - `--headline-line-clamp`
 - `--subtitle-line-clamp`
 
-- Type: `String`
+- Type: `string`
 - Default: `undefined`
 
 ```html preview

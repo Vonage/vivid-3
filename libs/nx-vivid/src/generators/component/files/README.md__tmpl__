@@ -4,7 +4,7 @@ Represents a <%= name %> custom element.
 
 ```js
 <script type='module'>
-    import '@vonage/vivid/<%= name %>';
+  import '@vonage/vivid/<%= name %>';
 </script>
 ```
 

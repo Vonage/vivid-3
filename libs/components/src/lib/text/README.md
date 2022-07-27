@@ -1,4 +1,4 @@
-# text
+# Text
 
 Represents a text custom element.
 The component provisions the Vivid typography font faces and connotations supported by our design system.
@@ -9,7 +9,9 @@ The component provisions the Vivid typography font faces and connotations suppor
 </script>
 ```
 
-## Font face
+## Members
+
+### Font Face
 
 Use the `font-face` attribute or `fontFace` property to change the text's font face.
 
@@ -37,7 +39,7 @@ Use the `font-face` attribute or `fontFace` property to change the text's font f
 <vwc-text font-face="caption-link">caption-link</vwc-text><br>
 ```
 
-## Tight
+### Tight
 
 By default, some font faces are styled with block margins in accordance to article related context. enabling the `tight` attribute/property will opt-out.
 
@@ -66,7 +68,7 @@ By default, some font faces are styled with block margins in accordance to artic
 <vwc-text tight font-face="body-2-link">body-2-link</vwc-text>
 ```
 
-## Connotation
+### Connotation
 
 Set the `connotation` attribute/property to change the text's connotated color.
 It accepts a subset of predefined values.
@@ -84,7 +86,7 @@ It accepts a subset of predefined values.
 <vwc-text connotation='info'>info</vwc-text>
 ```
 
-### Semantic usage
+#### Semantic Usage
 
 HTML semantics indicates authoring intent and is important for accessibility, search engine optimizations and clear code.
 Therefore, you'd probably need to nest html tags that apply different styling and may affect the font face appearance provided by the `vwc-text` element.

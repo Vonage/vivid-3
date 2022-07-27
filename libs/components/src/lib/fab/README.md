@@ -14,7 +14,7 @@ A floating action button (FAB) is a circled icon that floats above the user inte
 
 Use the `label` attribute to add text to the FAB.
 
-- Type: `String`
+- Type: `string`
 - Default: `undefined`
 
 ```html preview
@@ -74,7 +74,7 @@ Use the `density` attribute to set the FAB's to one of the predefined block size
 
 To disable the FAB, use the `disabled` attribute.
 
-- Type: `Boolean`
+- Type: `boolean`
 - Default: `false`
 
 ```html preview

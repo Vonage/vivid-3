@@ -1,9 +1,11 @@
-# note
+# Note
 
 `vwc-note` component is designated to layout connotated notification content.
 
 ```js
-<script type="module">import '@vonage/vivid/note';</script>
+<script type="module">
+  import '@vonage/vivid/note';
+</script>
 ```
 
 ```html preview
@@ -12,7 +14,7 @@
 </vwc-note>
 ```
 
-## Properties
+## Members
 
 ### Headline
 
@@ -25,7 +27,7 @@ Add the `headline` attribute in order to set a headline text.
 <vwc-note headline="Headline Text"></vwc-note>
 ```
 
-### icon
+### Icon
 
 Use the `icon` attribute to set a decorative icon.
 Note that if not set, icon will default to the connotation-associated icon type.
@@ -37,7 +39,7 @@ Note that if not set, icon will default to the connotation-associated icon type.
 <vwc-note icon="home"></vwc-note>
 ```
 
-### connotation
+### Connotation
 
 Set the `connotation` attribute to change the note's connotation.
 It accepts a subset of predefined values.

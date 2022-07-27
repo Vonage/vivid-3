@@ -2,7 +2,7 @@
 
 Represents the top header of a page.
 
-```html
+```js
 <script type="module">
   import '@vonage/vivid/header';
 </script>
@@ -78,7 +78,7 @@ It is also possible to assign application context directly to the header's `app-
 </vwc-header>
 ```
 
-## CSS Custom Properties
+## CSS Variables
 
 ### Block Size
 

@@ -55,7 +55,7 @@ Add the `multi` attribute to the accordion to allow multiple items to be open at
 
 ## Methods
 
-### CloseAll
+### closeAll()
 
 - Type: function
 - Returns: `void`
