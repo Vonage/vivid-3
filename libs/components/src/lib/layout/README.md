@@ -39,26 +39,34 @@ Use the `gutters` attribute to set the initial preferred `margin`.
 
 - Type: `'small'` | `'small-inline'` | `'small-block'` | `'medium'` | `'medium-inline'` | `'medium-block'` | `'large'` | `'large-inline'` | `'large-block'` 
 
-- Default: `undefined`
+- Default: `none`
 
 ```html preview full
+<style>
+vwc-divider {margin-block-start: 0px;}
+</style>
 <vwc-layout>
-  <vwc-card elevation="2" text="default"></vwc-card>
+  <vwc-card elevation="2" text="none"></vwc-card>
 </vwc-layout>
+<vwc-divider></vwc-divider>
 <vwc-layout gutters="small">
   <vwc-card elevation="2" text="small"></vwc-card>
 </vwc-layout>
-<vwc-layout gutters="small-block">
-  <vwc-card elevation="2" text="small-block"></vwc-card>
-</vwc-layout>
+<vwc-divider></vwc-divider>
 <vwc-layout gutters="medium">
   <vwc-card elevation="2" text="medium"></vwc-card>
 </vwc-layout>
+<vwc-divider></vwc-divider>
 <vwc-layout gutters="large">
     <vwc-card elevation="2" text="large"></vwc-card>
 </vwc-layout>
+<vwc-divider></vwc-divider>
 <vwc-layout gutters="large-inline">
-    <vwc-card elevation="2" text="large-inline"></vwc-card>
+  <vwc-card elevation="2" text="large-inline"></vwc-card>
+</vwc-layout>
+<vwc-divider></vwc-divider>
+<vwc-layout gutters="large-block">
+  <vwc-card elevation="2" text="large-block"></vwc-card>
 </vwc-layout>
 ```
 
