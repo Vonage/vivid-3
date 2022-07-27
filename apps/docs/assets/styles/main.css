@@ -167,17 +167,15 @@ article table {
   max-inline-size: 64ch;
 }
 article > pre,
-article > .cbd-container,
-.cbd-details {
+article > .cbd-container {
   margin-block: 12px;
   box-sizing: border-box;
   max-inline-size: calc(100vw - 32px);
 }
 
-@media  (min-width: 960px) {
+@media (min-width: 960px) {
   article > pre,
-  article .cbd-base,
-  .cbd-details {
+  article > .cbd-container {
     max-inline-size: 1200px;
   }
 }
