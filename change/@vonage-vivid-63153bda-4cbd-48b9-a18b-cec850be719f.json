@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "document the use of vivid divider instead of native `hr`",
+  "packageName": "@vonage/vivid",
+  "email": "rachel.tannenbaum@vonage.com",
+  "dependentChangeType": "none"
+}
