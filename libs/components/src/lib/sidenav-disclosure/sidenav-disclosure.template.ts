@@ -1,4 +1,4 @@
-import { html, when, ref } from '@microsoft/fast-element';
+import { html, ref, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
@@ -21,7 +21,7 @@ export const SidenavDisclosureTemplate: (
 ) => ViewTemplate<SidenavDisclosure> = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const focusTemplate = focusTemplateFactory(context);
-	return html`<details class="base" ${ref("details")}>
+	return html`<details class="base" ${ref('details')}>
         <summary class="control"
             role="button"
             aria-controls="disclosure-content"

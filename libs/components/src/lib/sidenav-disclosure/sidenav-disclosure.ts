@@ -9,7 +9,7 @@ import { AffixIcon } from '../../shared/patterns/affix';
  * @public
  */
 export class SidenavDisclosure extends FoundationElement {
-	public details!: HTMLDetailsElement;
+	details!: HTMLDetailsElement;
 
 	/**
 	 *
@@ -29,11 +29,11 @@ export class SidenavDisclosure extends FoundationElement {
 	/**
 	* @internal
 	*/
-	public override connectedCallback(): void {
+	override connectedCallback(): void {
 		super.connectedCallback();
 		this.onToggle = this.onToggle.bind(this);
-		this.details.addEventListener("toggle", this.onToggle);
-		if(this.open){
+		this.details.addEventListener('toggle', this.onToggle);
+		if (this.open) {
 			this.details.open = true;
 		}
 	}
@@ -41,9 +41,9 @@ export class SidenavDisclosure extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	public override disconnectedCallback(): void {
+	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		this.details.removeEventListener("toggle", this.onToggle);
+		this.details.removeEventListener('toggle', this.onToggle);
 	}
 
 	/**
@@ -51,7 +51,7 @@ export class SidenavDisclosure extends FoundationElement {
 	 */
 	protected onToggle() {
 		this.open = this.details.open;
-		this.$emit("toggle");
+		this.$emit('toggle');
 	}
 }
 
