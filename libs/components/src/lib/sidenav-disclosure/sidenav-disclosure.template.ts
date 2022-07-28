@@ -21,20 +21,19 @@ export const SidenavDisclosureTemplate: (
 ) => ViewTemplate<SidenavDisclosure> = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const focusTemplate = focusTemplateFactory(context);
-	return html<SidenavDisclosure>`
-		<details class="base" ?open="${(x) => x.open}">
-			<summary class="control"
-				role="button"
-				aria-controls="disclosure-content"
-				aria-expanded="${x => x.open}"
-			>
-				${x => affixIconTemplate(x.icon)}
-				${x => x.label}
-				${when(x => x.open, html`<vwc-icon class="toggleIcon" type='chevron-up-solid'></vwc-icon>`)}
-				${when(x => !x.open, html`<vwc-icon class="toggleIcon" type='chevron-down-solid'></vwc-icon>`)}
-				${() => focusTemplate}
-			</summary>
-        	<div class="content" id="disclosure-content"><slot></slot></div>
+	return html`<details class="base" ?open="${(x) => x.open}">
+        <summary class="control"
+            role="button"
+            aria-controls="disclosure-content"
+			aria-expanded="${x => x.open}"
+        >
+            ${x => affixIconTemplate(x.icon)}
+            ${x => x.label}
+			${when(x => x.open, html`<vwc-icon class="toggleIcon" type='chevron-up-solid'></vwc-icon>`)}
+			${when(x => !x.open, html`<vwc-icon class="toggleIcon" type='chevron-down-solid'></vwc-icon>`)}
+			${() => focusTemplate}
+        </summary>
+        <div class="content" id="disclosure-content"><slot></slot></div>
     </details>
 	`;
 };
