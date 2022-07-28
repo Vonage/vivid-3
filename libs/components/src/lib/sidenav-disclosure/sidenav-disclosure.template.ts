@@ -21,7 +21,7 @@ export const SidenavDisclosureTemplate: (
 ) => ViewTemplate<SidenavDisclosure> = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const focusTemplate = focusTemplateFactory(context);
-	return html`<details class="base" ${ref('details')}>
+	return html`<details class="base" ${ref('details')} ?open=${x => x.open}>
         <summary class="control"
             role="button"
             aria-controls="disclosure-content"
