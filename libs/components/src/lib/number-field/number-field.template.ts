@@ -8,6 +8,9 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
 import type { NumberField } from './number-field';
 
+const ADD = 1;
+const SUBTRACT = -1;
+
 const getStateClasses = ({
 	errorValidationMessage,
 	disabled,
@@ -57,11 +60,15 @@ function renderErrorMessage() {
 	`;
 }
 
+function adjustValueByStep(numberField: NumberField, direction = ADD) {
+	numberField.value = (Number(numberField.value) + direction * (numberField.step ? numberField.step : 1)).toString();
+}
+
 function numberControlButtons() {
 	return html<NumberField>`
 			<div class="control-buttons">
-		    <vwc-button id="subtract" label="-"></vwc-button>
-		    <vwc-button id="add" label="+"></vwc-button>
+		    <vwc-button id="subtract" label="-" @click="${x => adjustValueByStep(x, SUBTRACT)}"></vwc-button>
+		    <vwc-button id="add" label="+" @click="${x => adjustValueByStep(x)}"></vwc-button>
 		  </div>
 	`;
 }

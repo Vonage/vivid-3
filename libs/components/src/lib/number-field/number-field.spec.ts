@@ -10,6 +10,9 @@ import '.';
 
 const COMPONENT_TAG_NAME = 'vwc-number-field';
 
+/**
+ * @param element
+ */
 function getRootElement(element: NumberField) {
 	return element.shadowRoot?.querySelector('.base') as HTMLElement;
 }
@@ -109,7 +112,7 @@ describe('vwc-number-field', () => {
 		});
 	});
 
-	describe(`step`, function () {
+	describe('step', function () {
 		const value = '8';
 		const propertyName = 'step';
 		it('should set step attribute on the input', async function () {
@@ -363,7 +366,7 @@ describe('vwc-number-field', () => {
 			setToBlurred();
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.error-message')?.
-			textContent?.trim()).toEqual(errorMessage);
+				textContent?.trim()).toEqual(errorMessage);
 		});
 
 		it('should update error message when blurred', async function() {
@@ -378,7 +381,7 @@ describe('vwc-number-field', () => {
 			await elementUpdated(element);
 
 			expect(element.shadowRoot?.querySelector('.error-message')?.
-			textContent?.trim()).toEqual(errorMessageTwo);
+				textContent?.trim()).toEqual(errorMessageTwo);
 		});
 
 		it('should change the error message only when already not valid', async function() {
@@ -483,6 +486,26 @@ describe('vwc-number-field', () => {
 			element.name = 'off';
 			await elementUpdated(element);
 			expect(internalInput.getAttribute('name')).toEqual('off');
+		});
+	});
+
+	describe('number buttons', function () {
+		it('should add by step when clicking the add button', async function() {
+			const addButton = getRootElement(element).querySelector('#add') as HTMLButtonElement;
+			element.value = '10';
+			element.step = 5;
+			addButton?.click();
+			await elementUpdated(element);
+			expect((getControlElement(element) as HTMLInputElement).value).toEqual('15');
+		});
+
+		it('should subtract by step when clicking the add button', async function() {
+			const addButton = getRootElement(element).querySelector('#subtract') as HTMLButtonElement;
+			element.value = '10';
+			element.step = 5;
+			addButton?.click();
+			await elementUpdated(element);
+			expect((getControlElement(element) as HTMLInputElement).value).toEqual('5');
 		});
 	});
 });
