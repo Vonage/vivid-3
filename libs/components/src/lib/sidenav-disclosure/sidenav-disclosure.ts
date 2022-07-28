@@ -33,9 +33,7 @@ export class SidenavDisclosure extends FoundationElement {
 		super.connectedCallback();
 		this.onToggle = this.onToggle.bind(this);
 		this.details.addEventListener('toggle', this.onToggle);
-		if (this.open) {
-			this.details.open = true;
-		}
+		this.details.open = this.open;
 	}
 
 	/**
