@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement, getControlElement } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
 import { SidenavDisclosure } from './sidenav-disclosure';
 import '.';
@@ -25,12 +25,12 @@ describe('vwc-sidenav-disclosure', () => {
 	});
 
 	describe('open', () => {
-		it('should open the sidenav disclosure', async () => {
-			expect(getBaseElement(element).hasAttribute('open')).toBeFalsy();
+		it('should update aria-expanded when toggle open', async () => {
+			expect(getControlElement(element).getAttribute('aria-expanded')).toEqual('false');
 
 			element.open = true;
 			await elementUpdated(element);
-			expect(getBaseElement(element).hasAttribute('open')).toBeTruthy();
+			expect(getControlElement(element).getAttribute('aria-expanded')).toEqual('true');
 		});
 	});
 
