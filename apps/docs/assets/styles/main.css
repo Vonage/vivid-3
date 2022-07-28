@@ -186,19 +186,22 @@ article > .cbd-container {
   margin-inline-start: -20px;
 
 }
-.component-heading {
-  padding: 20px 16px;
+article > vwc-text[font-face="headline-1"] {
+  padding-inline: 16px;
+  padding-block-start: 40px;
+  padding-block-end: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-inline: -16px;
+  margin-block-start: -40px;
   margin-block-end: 32px;
   background-color: var(--vvd-color-cta-70);
   color: var(--vvd-color-on-cta);
 }
 
 @media (min-width: 960px) {
-  .component-heading {
+  article > vwc-text[font-face="headline-1"]  {
     margin-inline: -32px;
     padding-inline: 32px;
   }
