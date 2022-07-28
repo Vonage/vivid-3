@@ -1,11 +1,7 @@
 Valid "repository" key not found in "/home/runner/work/vivid-3/vivid-3/package.json". Consider adding this info for more accurate git remote detection.
 Checking for changes against "origin/main"
 fetching latest from remotes "origin/main"
-"@vonage/nx-vivid" has a "none" change type, no version bump is required.
-"@vonage/vivid" has a "none" change type, no version bump is required.
 Validating no private package among package dependencies OK!
-"@vonage/nx-vivid" has a "none" change type, no version bump is required.
-"@vonage/vivid" has a "none" change type, no version bump is required.
 Updating package-lock.json after bumping packages
 
 up to date, audited 1674 packages in 6s
@@ -23,6 +19,5 @@ To address all issues, run:
 
 Run `npm audit` for details.
 Removing change files:
-- @vonage-nx-vivid-91f4ec04-baf4-4665-be39-1c815b0116b4.json
-- @vonage-vivid-10c91609-cac6-471e-a5a2-c72e3b697eae.json
+- @vonage-vivid-e52a7595-8021-4217-a65d-5b73df54115f.json
 Removing change path

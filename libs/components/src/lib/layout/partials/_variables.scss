@@ -18,6 +18,12 @@ $bases: (
 /* #region SPACES */
 $spaces: (
 	small: 16px,
+	small-inline: 0 16px,
+	small-block: 16px 0,
 	medium: 24px,
+	medium-inline: 0 24px,
+	medium-block: 24px 0,
 	large: 32px,
+	large-inline: 0 32px,
+	large-block: 32px 0,
 );
