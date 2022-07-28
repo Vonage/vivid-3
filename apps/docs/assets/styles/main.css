@@ -193,7 +193,7 @@ article > .cbd-container {
   justify-content: center;
   margin-inline: -16px;
   margin-block-end: 32px;
-  background-color: var(--vvd-color-cta);
+  background-color: var(--vvd-color-cta-70);
   color: var(--vvd-color-on-cta);
 }
 
