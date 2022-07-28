@@ -48,15 +48,9 @@
 	border-radius: 24px;
 }
 
-// Remove this after divider is merged and action-group is updated(https://github.com/Vonage/vivid-3/issues/508)
-::slotted([role="separator"]) {
-	width: 1px;
+/* Separator */
+::slotted(vwc-divider) {
 	align-self: stretch;
-	background-color: var(#{theme-consts.$vvd-color-neutral-30});
 	margin-block: 4px;
 }
 
-::slotted([vwc-divider]) {
-	align-self: stretch;
-	margin-block: 4px;
-}
