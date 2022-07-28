@@ -11,7 +11,7 @@ describe('vwc-sidenav-disclosure', () => {
 
 	beforeEach(async () => {
 		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+			`<${COMPONENT_TAG} open></${COMPONENT_TAG}>`
 		)) as SidenavDisclosure;
 	});
 
@@ -20,17 +20,17 @@ describe('vwc-sidenav-disclosure', () => {
 			expect(element).toBeInstanceOf(SidenavDisclosure);
 			expect(element.label).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
-			expect(element.open).toBeFalsy();
+			expect(element.open).toBeTruthy();
 		});
 	});
 
-	describe('open', () => {
+	describe('aria-expanded', () => {
 		it('should update aria-expanded when toggle open', async () => {
-			expect(getControlElement(element).getAttribute('aria-expanded')).toEqual('false');
-
-			element.open = true;
-			await elementUpdated(element);
 			expect(getControlElement(element).getAttribute('aria-expanded')).toEqual('true');
+
+			element.open = false;
+			await elementUpdated(element);
+			expect(getControlElement(element).getAttribute('aria-expanded')).toEqual('false');
 		});
 	});
 
