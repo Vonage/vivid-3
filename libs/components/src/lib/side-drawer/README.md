@@ -1,4 +1,4 @@
-# Side-Drawer
+# Side Drawer
 
 ```js
 <script type='module'>
@@ -85,15 +85,15 @@ Use `alternate` to apply an alternate color-scheme, which is in contrast with th
 </vwc-side-drawer>
 ```
 
-### Position
+### Trailing
 
-Use the `position` attribute to set the side of the drawer.
+Use the `trailing` attribute to set the side of the drawer.
 
-- Type: `'start'` | `'end'`
-- Default: `'start'`
+- Type: `boolean`
+- Default: `false`
 
 ```html preview full
-<vwc-side-drawer position="end" open>
+<vwc-side-drawer trailing open>
 
   <vwc-layout gutters="small">
     <vwc-text>
@@ -144,7 +144,7 @@ The `app-content` slot sets assigned nodes to the main application content, the 
 </vwc-side-drawer>
 ```
 
-## CSS Custom Properties
+## CSS Variables
 
 ### Application Content Offset
 

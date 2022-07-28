@@ -5,7 +5,7 @@ Note: this element is purely a visual presentation and have no semantic meaning.
 
 ```js
 <script type="module">
-    import '@vonage/vivid/action-group';
+  import '@vonage/vivid/action-group';
 </script>
 ```
 
@@ -88,7 +88,7 @@ enabling the `tight` member will result in a dense style that fits the "normal" 
 </vwc-layout>
 ```
 
-## Use cases
+## Use Cases
 
 ### Separator
 

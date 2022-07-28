@@ -1,4 +1,4 @@
-# button
+# Button
 
 A button represents an action that the user can take. Use buttons to enable important actions.
 
@@ -8,9 +8,11 @@ A button represents an action that the user can take. Use buttons to enable impo
 </script>
 ```
 
-## Label
+## Members
 
-- Type: `String`
+### Label
+
+- Type: `string`
 - Default: `undefined`
 
 Add a `label` attribute to add text to the button.
@@ -19,7 +21,7 @@ Add a `label` attribute to add text to the button.
 <vwc-button appearance='filled' label='A default button'></vwc-button>
 ```
 
-## Appearance
+### Appearance
 
 Set the `appearance` attribute to change the button's appearance.
 
@@ -32,30 +34,32 @@ Set the `appearance` attribute to change the button's appearance.
 <vwc-button label='outlined' appearance='outlined'></vwc-button>
 ```
 
-## Icon
+### Icon
 
-Use the `icon` attribute/property to set an icon to the button.
+Use `icon` to set an icon to the button.
 View list of available icon at the [vivid icons gallery](https://icons.vivid.vonage.com).
 
-- Type: `String`
+Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the button's purpose.
+
+- Type: `string`
 - Default: `undefined`
 
 ```html preview
-<vwc-button appearance="filled" icon='message-sent-line'></vwc-button>
-<vwc-button appearance="filled" shape="pill" icon='message-sent-line'></vwc-button>
+<vwc-button appearance="filled" icon='message-sent-line' aria-label="Send Message"></vwc-button>
+<vwc-button appearance="filled" icon='message-sent-line' aria-label="Send Message" shape="pill"></vwc-button>
 ```
 
-## Icon with Label
+### Icon with Label
 
 Button text can be affixed by a decorative icon, either by its start or end.
-Use the `icon` attribute to add an icon. Use the `icon-trailing` to place the icon to the right.
+Toggle `icon-trailing` to set the icon's horizontal alignment.
 
 ```html preview
 <vwc-button appearance="filled" label='icon' icon='check-line'></vwc-button>
 <vwc-button appearance="filled" label='icon-trailing' icon='check-line' icon-trailing></vwc-button>
 ```
 
-## Shape
+### Shape
 
 Use the `shape` attribute to set the button's edges.
 
@@ -67,7 +71,7 @@ Use the `shape` attribute to set the button's edges.
 <vwc-button appearance='filled' label='pill' shape='pill'></vwc-button>
 ```
 
-## Density
+### Density
 
 Use the `density` attribute to set the button's to one of the predefined block size extent.
 
@@ -80,11 +84,11 @@ Use the `density` attribute to set the button's to one of the predefined block s
 <vwc-button appearance='filled' label='extended' density='extended'></vwc-button>
 ```
 
-## Stacked
+### Stacked
 
 Set the `stacked` attribute to change the button's layout to stacked.
 
-- Type: `Boolean`
+- Type: `boolean`
 - Default: `false`
 
 Caveats:
@@ -99,7 +103,7 @@ Caveats:
 <vwc-button stacked appearance='filled' icon='message-sent-line'></vwc-button>
 ```
 
-## Connotation
+### Connotation
 
 Set the `connotation` attribute to change the button's connotation.
 It accepts a subset of predefined values.
@@ -107,7 +111,7 @@ It accepts a subset of predefined values.
 - Type: `'accent'` | `'cta'` | `'success'` | `'alert'`
 - Default: `'accent'`
 
-### Ghost button with connotation
+#### Ghost button with connotation
 
 ```html preview
 <vwc-button appearance="ghost" label='accent' connotation='accent'></vwc-button>
@@ -116,7 +120,7 @@ It accepts a subset of predefined values.
 <vwc-button appearance="ghost" label='alert' connotation='alert'></vwc-button>
 ```
 
-### Filled button with connotation
+#### Filled button with connotation
 
 ```html preview
 <vwc-button appearance="filled" label='accent' connotation='accent'></vwc-button>
@@ -125,7 +129,7 @@ It accepts a subset of predefined values.
 <vwc-button appearance="filled" label='alert' connotation='alert'></vwc-button>
 ```
 
-### Outlined button with connotation
+#### Outlined button with connotation
 
 ```html preview
 <vwc-button appearance="outlined" label='accent' connotation='accent'></vwc-button>
@@ -134,15 +138,37 @@ It accepts a subset of predefined values.
 <vwc-button appearance="outlined" label='alert' connotation='alert'></vwc-button>
 ```
 
-## Disabled
+### Disabled
 
 Add the `disabled` attribute to disable the button.
 
-- Type: `Boolean`
+- Type: `boolean`
 - Default: `false`
 
 ```html preview
 <vwc-button appearance='ghost' label='ghost' disabled></vwc-button>
 <vwc-button appearance='filled' label='filled' disabled></vwc-button>
 <vwc-button appearance='outlined' label='outlined' disabled></vwc-button>
+```
+
+## Usage Examples
+
+### Toggle Button
+
+```html preview
+<vwc-button
+  id='button'
+  connotation='cta'
+  shape='pill'
+  icon='microphone-solid'
+  aria-label="Mute">
+</vwc-button>
+
+<script>
+  button.addEventListener('click', () => {
+    button.ariaPressed = !button.ariaPressed;
+    button.icon = button.ariaPressed ? 'mic-mute-solid' : 'microphone-solid';
+    button.ariaLabel = button.ariaPressed ? 'Unmute' : 'Mute';
+  });
+</script>
 ```

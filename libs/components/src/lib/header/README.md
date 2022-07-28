@@ -1,8 +1,8 @@
 # Header
 
-represents the top header of a page.
+Represents the top header of a page.
 
-```html
+```js
 <script type="module">
   import '@vonage/vivid/header';
 </script>
@@ -12,8 +12,8 @@ represents the top header of a page.
 
 ### Elevation Shadow
 
-Header is an elevated element and applies elevation surface background color (more noticeable in **dark** themes) but leaves out elevation shadow (more noticeable in **light** themes) for author's to opt-in.
-Set `elevationShadow` on header to apply the elevation shadow corresponding with its surface background color.
+As an elevated element, the Header applies an elevation surface background color (more noticeable in dark themes) but leaves out elevation shadow (more noticeable in light themes) for author's to opt-in.
+Set `elevation-shadow` on header to apply the elevation shadow corresponding with its surface background color.
 
 - Type: `boolean`
 - Default: `false`
@@ -51,19 +51,19 @@ The default slot sets assigned nodes to the start of the header.
 
 ### Action Items
 
-Nodes assigned to `actionItems` slot will be set at the end of the header.
+Nodes assigned to `action-items` slot will be set at the end of the header.
 
 ```html preview full
 <vwc-header>
-  <vwc-button slot="actionItems" icon="twitter-mono"></vwc-button>
-  <vwc-button slot="actionItems" icon="facebook-mono"></vwc-button>
-  <vwc-button slot="actionItems" icon="heart-solid"></vwc-button>
+  <vwc-button slot="action-items" icon="twitter-mono"></vwc-button>
+  <vwc-button slot="action-items" icon="facebook-mono"></vwc-button>
+  <vwc-button slot="action-items" icon="heart-solid"></vwc-button>
 </vwc-header>
 ```
 
 ### App Content
 
-An optional approach to using header in application is to assign application context directly to the header's `app-content` slot, which will set content to follow, vertically, the header itself.
+It is also possible to assign application context directly to the header's `app-content` slot, which will allow content to follow, vertically, the header.
 
 ```html preview full
 <vwc-header>
@@ -78,14 +78,11 @@ An optional approach to using header in application is to assign application con
 </vwc-header>
 ```
 
-## CSS Custom Properties
+## CSS Variables
 
 ### Block Size
 
-Header block size is set definitively.
-Often, it is needed to use the block size value of a header in accordance with other elements in the application.
-`--_header-block-size` is a private custom property holding the block size value and is applied to header style internally.
-This property isn't customizable by authors but does pierce in and can be set to apply style on assigned content.
+The size of the header block is set definitively. A header's block size value is often used in conjunction with other elements in the application. The `--_header-block-size` private custom property is applied internally to header styles and holds the block size value. This property isn't customizable by authors but does pierce in and can be set to apply style to assigned content.
 
 - Type: `css-unit`
 - Accessibility: `read-only`
@@ -255,8 +252,8 @@ A Side Drawer as primary element containing a Header containing application cont
 
 ### Header with Banner
 
-Banners are placed at the top of the screen below the Header.
-The Banner in this example is set to stick in to top of the window.
+Banners are placed at the top of the screen below the Header.  
+In this example, the banner sticks to the top of the window.
 
 ```html preview full
 <style>

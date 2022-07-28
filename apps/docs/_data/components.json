@@ -79,7 +79,8 @@
     "markdown": "./libs/components/src/lib/layout/README.md",
     "modules": [
       "/assets/modules/components/layout/index.js",
-      "/assets/modules/components/card/index.js"
+      "/assets/modules/components/card/index.js",
+      "/assets/modules/components/divider/index.js"
     ]
   },
   {
@@ -108,6 +109,16 @@
     "title": "sidenav-item",
     "markdown": "./libs/components/src/lib/sidenav-item/README.md",
     "modules": [
+      "/assets/modules/components/sidenav/index.js",
+      "/assets/modules/components/sidenav-item/index.js"
+    ]
+  },
+  {
+    "title": "sidenav-disclosure",
+    "markdown": "./libs/components/src/lib/sidenav-disclosure/README.md",
+    "modules": [
+      "/assets/modules/components/sidenav/index.js",
+      "/assets/modules/components/sidenav-disclosure/index.js",
       "/assets/modules/components/sidenav-item/index.js"
     ]
   },
@@ -199,6 +210,7 @@
     "modules": [
       "/assets/modules/components/dialog/index.js",
       "/assets/modules/components/button/index.js",
+      "/assets/modules/components/text-field/index.js",
       "/assets/modules/components/text/index.js"
     ]
   },
@@ -219,7 +231,8 @@
     "markdown": "./libs/components/src/lib/sidenav/README.md",
     "modules": [
       "/assets/modules/components/sidenav/index.js",
-      "/assets/modules/components/sidenav-item/index.js"
+      "/assets/modules/components/sidenav-item/index.js",
+      "/assets/modules/components/sidenav-disclosure/index.js"
     ]
   },
   {

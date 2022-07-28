@@ -7,11 +7,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: '16'
-          cache: 'npm'
+          node-version: 16
+          cache: npm
 
       - uses: actions/cache@v3
         id: cache
@@ -27,13 +27,17 @@ jobs:
         run: npm run nx build docs
 
       - name: Scan for accessibility issues
-        uses: microsoft/accessibility-insights-action@v2
+        uses: microsoft/accessibility-insights-action@v3
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          site-dir: ${{ github.workspace }}/dist/apps/docs
+          static-site-dir: ${{ github.workspace }}/dist/apps/docs
+          static-site-port: 12345
+          # due to action fail to pierce in shadowed links,
+          # all links must be explicitly specified, seperated by space
+          input-urls: http://localhost:12345/
 
       - name: Upload report artifact
-        uses: actions/upload-artifact@v2
+        if: success() || failure()
+        uses: actions/upload-artifact@v3
         with:
           name: accessibility-reports
           path: ${{ github.workspace }}/_accessibility-reports
