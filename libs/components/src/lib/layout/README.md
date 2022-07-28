@@ -33,29 +33,7 @@ Using layout, elements can be arranged easily in a variety of sizes and spaces t
 
 ## Members
 
-### Gutters
-
-Use the `gutters` attribute to set the initial preferred `margin`.
-
-- Type: `'small'` | `'medium'` | `'large'`
-- Default: `undefined`
-
-```html preview full
-<vwc-layout>
-  <vwc-card elevation="2" text="default"></vwc-card>
-</vwc-layout>
-<vwc-layout gutters="small">
-  <vwc-card elevation="2" text="small"></vwc-card>
-</vwc-layout>
-<vwc-layout gutters="medium">
-  <vwc-card elevation="2" text="medium"></vwc-card>
-</vwc-layout>
-<vwc-layout gutters="large">
-    <vwc-card elevation="2" text="large"></vwc-card>
-</vwc-layout>
-```
-
-## Column Spacing
+### Column Spacing
 
 Use the `column-spacing` attribute to set the initial preferred `spacing` of a column.
 
@@ -80,7 +58,7 @@ Use the `column-spacing` attribute to set the initial preferred `spacing` of a c
 </vwc-layout>
 ```
 
-## Column Basis
+### Column Basis
 
 Use the `column-basis` attribute to set the initial preferred `measure` of a column.
 Use `block` to stack elements one above the other.
@@ -115,7 +93,8 @@ Use `block` to stack elements one above the other.
 </vwc-layout>
 ```
 
-## Auto Sizing
+
+### Auto Sizing
 
 Use the `auto-sizing` attribute to set the initial preferred `auto-sizing`.
 
@@ -136,6 +115,60 @@ With `fill`, everything is the same as `fit`, except empty tracks are not collap
 <vwc-layout auto-sizing="fill">
   <vwc-card elevation="2" text="fill"></vwc-card>
   <vwc-card elevation="2" text="fill"></vwc-card>
+</vwc-layout>
+```
+
+### Gutters
+
+Use the `gutters` attribute to set the initial preferred `margin`.
+
+- Type: `'small'` | `'small-inline'` | `'small-block'` | `'medium'` | `'medium-inline'` | `'medium-block'` | `'large'` | `'large-inline'` | `'large-block'`
+
+- Default: `none`
+
+```html preview full
+<vwc-layout>
+  <vwc-card elevation="2" text="none"></vwc-card>
+</vwc-layout>
+<vwc-divider></vwc-divider>
+<vwc-layout gutters="small">
+  <vwc-card elevation="2" text="small"></vwc-card>
+</vwc-layout>
+<vwc-divider></vwc-divider>
+<vwc-layout gutters="medium">
+  <vwc-card elevation="2" text="medium"></vwc-card>
+</vwc-layout>
+<vwc-divider></vwc-divider>
+<vwc-layout gutters="large">
+  <vwc-card elevation="2" text="large"></vwc-card>
+</vwc-layout>
+```
+
+```html preview full
+<vwc-layout gutters="small-inline">
+  <vwc-card elevation="2" text="small-inline"></vwc-card>
+</vwc-layout>
+<vwc-divider></vwc-divider>
+<vwc-layout gutters="medium-inline">
+  <vwc-card elevation="2" text="medium-inline"></vwc-card>
+</vwc-layout>
+<vwc-divider></vwc-divider>
+<vwc-layout gutters="large-inline">
+  <vwc-card elevation="2" text="large-inline"></vwc-card>
+</vwc-layout>
+```
+
+```html preview full
+<vwc-layout gutters="small-block">
+  <vwc-card elevation="2" text="small-block"></vwc-card>
+</vwc-layout>
+<vwc-divider></vwc-divider>
+<vwc-layout gutters="medium-block">
+  <vwc-card elevation="2" text="medium-block"></vwc-card>
+</vwc-layout>
+<vwc-divider></vwc-divider>
+<vwc-layout gutters="large-block">
+  <vwc-card elevation="2" text="large-block"></vwc-card>
 </vwc-layout>
 ```
 

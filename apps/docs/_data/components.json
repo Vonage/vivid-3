@@ -79,7 +79,8 @@
     "markdown": "./libs/components/src/lib/layout/README.md",
     "modules": [
       "/assets/modules/components/layout/index.js",
-      "/assets/modules/components/card/index.js"
+      "/assets/modules/components/card/index.js",
+      "/assets/modules/components/divider/index.js"
     ]
   },
   {
