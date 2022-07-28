@@ -244,5 +244,12 @@
       "/assets/modules/components/card/index.js",
       "/assets/modules/components/text/index.js"
     ]
+  },
+  {
+    "title": "number-field",
+    "markdown": "./libs/components/src/lib/number-field/README.md",
+    "modules": [
+      "/assets/modules/components/number-field/index.js"
+    ]
   }
 ]
