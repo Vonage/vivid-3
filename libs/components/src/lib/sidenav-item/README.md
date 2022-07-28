@@ -58,8 +58,16 @@ Within a set of pagination links, set a sidenav item `aria-current` value to *pa
 
 ```html preview
 <vwc-sidenav>
- <vwc-sidenav-item href="#" text="Account"></vwc-sidenav-item>
- <vwc-sidenav-item href="#" text="Shop" aria-current="page"></vwc-sidenav-item>
- <vwc-sidenav-item href="#" text="My Cart"></vwc-sidenav-item>
+ <vwc-sidenav-item href="#" text="Account" onclick="onClick(event)"></vwc-sidenav-item>
+ <vwc-sidenav-item href="#" text="Shop" onclick="onClick(event)" aria-current="page"></vwc-sidenav-item>
+ <vwc-sidenav-item href="#" text="My Cart" onclick="onClick(event)"></vwc-sidenav-item>
 </vwc-sidenav>
+
+<script>
+  function onClick(event) {  
+    const currentSidenavItem = document.querySelector('vwc-sidenav-item[aria-current="page"]');
+    currentSidenavItem?.removeAttribute('aria-current');
+    event.currentTarget.setAttribute('aria-current', 'page');
+  }
+</script>
 ```
