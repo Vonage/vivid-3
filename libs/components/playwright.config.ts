@@ -1,6 +1,10 @@
 import type { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
+	shard: {
+		total: process.env.TOTAL_SHARDS ? Number(process.env.TOTAL_SHARDS) : 1,
+		current: process.env.CURRENT_SHARD ? Number(process.env.CURRENT_SHARD) : 1,
+	},
 	testMatch: 'src/**/*.test.ts',
 	outputDir: '../../test-results',
 	projects: [
