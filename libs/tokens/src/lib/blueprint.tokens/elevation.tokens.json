@@ -1,0 +1,41 @@
+{
+	"color": {
+		"surface": {
+			"0dp": {
+				"value": "{color.theme.surface.0dp}",
+				"type": "color"
+			},
+			"2dp": {
+				"value": "{color.theme.surface.2dp}",
+				"type": "color"
+			},
+			"4dp": {
+				"value": "{color.theme.surface.4dp}",
+				"type": "color"
+			},
+			"8dp": {
+				"value": "{color.theme.surface.8dp}",
+				"type": "color"
+			},
+			"12dp": {
+				"value": "{color.theme.surface.12dp}",
+				"type": "color"
+			},
+			"16dp": {
+				"value": "{color.theme.surface.16dp}",
+				"type": "color"
+			},
+			"24dp": {
+				"value": "{color.theme.surface.24dp}",
+				"type": "color"
+			}
+		}
+	},
+	"shadow": {
+		"elevation": {
+			"2dp": {
+				"value": "{shadow.theme.elevation.2dp.value}"
+			}
+		}
+	}
+}

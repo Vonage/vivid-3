@@ -17,7 +17,8 @@ const buildPath = '../../../../dist/libs/tokens/scss/themes/';
 const getStyleDictionaryConfig = (theme: string) => ({
 	include: [
 		'../../../../node_modules/@vonage/vivid-figma-tokens/data/palette.tokens.json',
-		`../../../../node_modules/@vonage/vivid-figma-tokens/data/${theme}/color-semantics.tokens.json`
+		`../../../../node_modules/@vonage/vivid-figma-tokens/data/${theme}/color-semantics.tokens.json`,
+		`../../../../node_modules/@vonage/vivid-figma-tokens/data/${theme}/elevation.tokens.json`
 	],
 	platforms: {
 		web: {
