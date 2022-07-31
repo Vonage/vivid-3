@@ -249,7 +249,8 @@
     "title": "number-field",
     "markdown": "./libs/components/src/lib/number-field/README.md",
     "modules": [
-      "/assets/modules/components/number-field/index.js"
+      "/assets/modules/components/number-field/index.js",
+      "/assets/modules/components/divider/index.js"
     ]
   }
 ]

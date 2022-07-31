@@ -3,7 +3,9 @@
 Represents a number-field custom element.
 
 ```js
-<script type="module">import '@vonage/vivid/number-field';</script>
+<script type="module">
+    import '@vonage/vivid/number-field';
+</script>
 ```
 
 ```html preview
@@ -12,14 +14,109 @@ Represents a number-field custom element.
 
 ## Members
 
-## Slots
+### Label
 
-## CSS Variables
+- Type: `string` | `undefined`
+- Default: `undefined`
 
-## Events
+Add a `label` attribute to add label to the number field.
 
-## Methods
+```html preview
+<vwc-number-field label="My Label"></vwc-number-field>
+```
+### Placeholder
 
-## Accessibility
+- Type: `string` | `undefined`
+- Default: `undefined`
+
+Add a `placeholder` attribute to add placeholder text to the number field.
+
+```html preview
+<vwc-number-field placeholder="My Placeholder"></vwc-number-field>
+```
+
+### Value
+
+- Type: `string` | `undefined`
+- Default: `undefined`
+
+Set the `value` attribute to set the default value for the number field. Setting the property on the element will not change the default value, but will change the value shown in the view as well as the submitted value in a form (imitating the native behavior).
+
+```html preview
+<vwc-number-field label="With default value" value="5"></vwc-number-field>
+```
+
+
+### Helper text
+
+Add the `helper-text` to add some helper text below the number field.
+
+- Type: `string` | `undefined`
+- Default: `undefined`
+
+```html preview
+<vwc-number-field label="Helper text below" helper-text="Help text"></vwc-number-field>
+```
+
+### Density
+
+Use the `density` attribute to set the number field's to one of the predefined block size extent.
+
+- Type: `'normal'` | `'extended'`
+- Default: `'normal'`
+
+```html preview blocks
+<vwc-number-field label="normal" density="normal"></vwc-number-field>
+<vwc-number-field label="extended" density="extended"></vwc-number-field>
+```
+
+### Shape
+
+Use the `shape` attribute to change the number field's edges.
+
+- Type: `'rounded'` | `'pill'`
+- Default: `'rounded'`
+
+```html preview blocks
+<vwc-number-field label="Pill" shape="pill"></vwc-number-field>
+<vwc-number-field label="Rounded" shape="rounded"></vwc-number-field>
+```
+
+### Appearance
+
+Set the `appearance` attribute to change the number filed's appearance.
+
+- Type: `'fieldset'` | `'ghost'`
+- Default: `'fieldset'`
+
+(`'ghost'` is typically used within a composition such as action group / toolbar).
+
+```html preview blocks
+<vwc-number-field placeholder="appearance" label='fieldset' appearance='fieldset'></vwc-number-field>
+<vwc-number-field placeholder="appearance" label='ghost' appearance='ghost'></vwc-number-field>
+```
+
+### Disabled
+
+Add the `disabled` attribute to disable the number field.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview blocks
+<vwc-number-field disabled icon="chat-line" value="disabled" label='fieldset' appearance='fieldset'></vwc-number-field>
+```
+
+### Readonly
+
+Add the `readonly` attribute to restrict user from changing the number field's value.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview blocks
+<vwc-number-field readonly icon="chat-line" value="readonly text" label='fieldset' appearance='fieldset'></vwc-number-field>
+```
 
 ## Use Cases
+### Validation

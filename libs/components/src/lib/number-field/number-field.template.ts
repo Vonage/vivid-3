@@ -67,9 +67,10 @@ function adjustValueByStep(numberField: NumberField, direction = ADD) {
 function numberControlButtons() {
 	return html<NumberField>`
 			<div class="control-buttons">
-		    <vwc-button id="subtract" label="-" @click="${x => adjustValueByStep(x, SUBTRACT)}"></vwc-button>
-		    <vwc-button id="add" label="+" @click="${x => adjustValueByStep(x)}"></vwc-button>
-		  </div>
+				<vwc-button density='condensed' id="subtract" icon="minus-line" @click="${x => adjustValueByStep(x, SUBTRACT)}"></vwc-button>
+				<vwc-divider class="divider" orientation="vertical"></vwc-divider>
+				<vwc-button density='condensed' id="add" icon="plus-line" @click="${x => adjustValueByStep(x)}"></vwc-button>
+		    </div>
 	`;
 }
 

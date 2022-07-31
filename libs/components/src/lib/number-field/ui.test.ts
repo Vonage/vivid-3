@@ -7,7 +7,7 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['number-field'];
+const components = ['number-field', 'divider'];
 
 test.only('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
