@@ -32,9 +32,10 @@
 		}
 	},
 	"shadow": {
-		"elevation": {
+		"surface": {
 			"2dp": {
-				"value": "{shadow.theme.elevation.2dp.value}"
+				"value": "{shadow.theme.surface.2dp.value}",
+				"type": "boxShadow"
 			}
 		}
 	}
