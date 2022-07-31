@@ -33,7 +33,9 @@ export const SidenavDisclosureTemplate: (
 			${when(x => !x.open, html`<vwc-icon class="toggleIcon" type='chevron-down-solid'></vwc-icon>`)}
 			${() => focusTemplate}
         </summary>
-        <div class="content" id="disclosure-content"><slot></slot></div>
+        <div class="content" id="disclosure-content">
+			<slot></slot>
+		</div>
     </details>
 	`;
 };
