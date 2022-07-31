@@ -2,7 +2,7 @@
 
 ```js
 <script type="module">
- import '@vonage/vivid/divider';
+  import '@vonage/vivid/divider';
 </script>
 ```
 

@@ -1,9 +1,11 @@
-# progress
+# Progress
 
 Progress is used to display the length of time a process will take or to visualize percentage value (referred to as a determinate state) and to represent an unspecified wait time (referred to as an indeterminate state).
 
 ```js
-<script type="module">import '@vonage/vivid/progress';</script>
+<script type="module">
+  import '@vonage/vivid/progress';
+</script>
 ```
 
 ## Members
@@ -86,7 +88,7 @@ Use the `shape` attribute in order to set `rounded` and `sharp` borders.
 <vwc-progress min="0" max="50" value="25" shape="sharp"></vwc-progress>
 ```
 
-## Example Usage
+## Use Cases
 
 ### Determinate State
 

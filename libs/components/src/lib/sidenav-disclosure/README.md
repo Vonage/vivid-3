@@ -7,7 +7,7 @@ The arrow points up when the content is visible.
 
 ```js
 <script type="module">
-    import '@vonage/vivid/sidenav-disclosure';
+  import '@vonage/vivid/sidenav-disclosure';
 </script>
 ```
 
@@ -15,7 +15,7 @@ The arrow points up when the content is visible.
 
 ### Label
 
-- Type: `String`
+- Type: `string`
 - Default: `''`
 
 Add a `label` attribute to add label to the sidenav disclosure.
@@ -30,7 +30,7 @@ Add a `label` attribute to add label to the sidenav disclosure.
 
 ### Open
 
-- Type: `Boolean`
+- Type: `boolean`
 - Default: `false`
 
 You can toggle the sidenav-disclosure by using the `open` attribute.
@@ -45,7 +45,7 @@ You can toggle the sidenav-disclosure by using the `open` attribute.
 
 ### Icon
 
-- Type: `String`
+- Type: `string`
 - Default: `''`
 
 Sidenav disclosure label can be prefixed by a decorative icon.

@@ -2,6 +2,93 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Sun, 31 Jul 2022 09:02:59 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.41",
+      "version": "3.0.0-next.41",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "d450525c05ff5dc1e49ad0e0e912fec25a27c401",
+            "comment": "add aria-current example"
+          },
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "21ca46da9beea1c72ca28154675274a42e7cd1f2",
+            "comment": "document the use of vivid divider instead of native `hr`"
+          },
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "10035863724c0d91709c1bda8a1ab655f8c670f7",
+            "comment": "chore(sidenav): adjust spacing"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 28 Jul 2022 11:25:13 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.41",
+      "version": "3.0.0-next.41",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "c2bf18f750df850afbbe065c8f36a740e6c5acf6",
+            "comment": "fix(layout): inline & block gutters"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 27 Jul 2022 07:23:04 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.40",
+      "version": "3.0.0-next.40",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "2391502ad52717cd4528808b501a6222522000bc",
+            "comment": "update docs with the new conventions"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 25 Jul 2022 13:36:09 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.40",
+      "version": "3.0.0-next.40",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "6dc8af732f47a269ffff6a4829667b02d61334b3",
+            "comment": "update docs and closing event name"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 25 Jul 2022 12:18:19 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.40",
+      "version": "3.0.0-next.40",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "5a68e28fc9067fb3e17868ac701dbbbf939f8b77",
+            "comment": "fix banner docs and slots"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 24 Jul 2022 12:28:54 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.39",
       "version": "3.0.0-next.39",

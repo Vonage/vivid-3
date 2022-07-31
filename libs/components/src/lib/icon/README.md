@@ -1,4 +1,4 @@
-# icon
+# Icon
 
 Find the icon you want to use on the [vivid icons search platform](https://icons.vivid.vonage.com).
 
@@ -12,22 +12,24 @@ Find the icon you want to use on the [vivid icons search platform](https://icons
 <p>I <vwc-icon type='heart-line' connotation='alert'></vwc-icon> VIVID!</p>
 ```
 
-## Type
+## Members
+
+### Type
 
 Add a `type` attribute to add type to the icon.
 
-- Type: `String`
+- Type: `string`
 - Default: `undefined`
 
 ```html preview
 <vwc-icon type='profile-line'></vwc-icon>
 ```
 
-## SVG
+### SVG
 
 While `type` fetches an icon from the Vivid predefined set of icons, `svg` property can be used to set a customized valid SVG string programmatically.
 
-- Type: `String`
+- Type: `string`
 - Default: `undefined`
 
 ```html preview
@@ -44,7 +46,7 @@ While `type` fetches an icon from the Vivid predefined set of icons, `svg` prope
 </script>
 ```
 
-## Size
+### Size
 
 Use the `size` attribute to apply a predefined size to the icon.
 
@@ -57,7 +59,7 @@ Use the `size` attribute to apply a predefined size to the icon.
 <vwc-icon type='close-line' size='large'></vwc-icon>
 ```
 
-## Connotation
+### Connotation
 
 Set the `connotation` attribute to change the icon's connotation.
 It accepts a subset of predefined values.
