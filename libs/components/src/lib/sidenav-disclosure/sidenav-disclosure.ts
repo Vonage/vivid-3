@@ -31,7 +31,7 @@ export class SidenavDisclosure extends FoundationElement {
 	*/
 	override connectedCallback(): void {
 		super.connectedCallback();
-		this.details.addEventListener('toggle', () => this.onToggle(this));
+		this.details.addEventListener('toggle', () => this.onToggle());
 		this.details.open = this.open;
 	}
 
@@ -40,15 +40,15 @@ export class SidenavDisclosure extends FoundationElement {
 	 */
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		this.details.removeEventListener('toggle',  () => this.onToggle(this));
+		this.details.removeEventListener('toggle',  () => this.onToggle());
 	}
 
 	/**
 	 * Update the aria attr and fire `toggle` event
 	 */
-	protected onToggle(element: SidenavDisclosure): void {
-		element.open = element.details.open;
-		element.$emit('toggle');
+	protected onToggle(): void {
+		this.open = this.details.open;
+		this.$emit('toggle');
 	}
 }
 
