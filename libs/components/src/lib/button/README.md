@@ -151,7 +151,7 @@ Add the `disabled` attribute to disable the button.
 <vwc-button appearance='outlined' label='outlined' disabled></vwc-button>
 ```
 
-## Usage Examples
+## Use Cases
 
 ### Toggle Button
 

@@ -367,7 +367,7 @@ Closes the dialog.
 - It is consumer's concern to add `aria-label` to the dialog element.
 - `aria-labelledby` and `aria-describedby` can also be used.
 
-## Usage Examples
+## Use Cases
 
 ### Dialog Form
 
