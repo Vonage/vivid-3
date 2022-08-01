@@ -1,6 +1,6 @@
 # number-field
 
-Represents a number-field custom element.
+Represents a number-field custom element. Follows the [`HTMLInput` of `type=number` specifications](https://www.w3schools.com/tags/att_input_type_number.asp).
 
 ```js
 <script type="module">
@@ -104,7 +104,7 @@ Add the `disabled` attribute to disable the number field.
 - Default: `false`
 
 ```html preview blocks
-<vwc-number-field disabled icon="chat-line" value="disabled" label='fieldset' appearance='fieldset'></vwc-number-field>
+<vwc-number-field disabled value="disabled" label='fieldset' appearance='fieldset'></vwc-number-field>
 ```
 
 ### Readonly
@@ -115,8 +115,15 @@ Add the `readonly` attribute to restrict user from changing the number field's v
 - Default: `false`
 
 ```html preview blocks
-<vwc-number-field readonly icon="chat-line" value="readonly text" label='fieldset' appearance='fieldset'></vwc-number-field>
+<vwc-number-field readonly value="readonly text" label='fieldset' appearance='fieldset'></vwc-number-field>
 ```
 
 ## Use Cases
+
 ### Validation
+
+The following number field accepts only integers (`pattern="\d*"`). Try to add a non-integer value (e.g. -4)
+
+```html preview blocks
+    <vwc-number-field  pattern="\d*" name="test-field" id="number-field"></vwc-number-field>
+```
