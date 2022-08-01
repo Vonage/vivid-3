@@ -16,6 +16,6 @@ module.exports = {
 	type: `value`,
 	name: `shadow/shorthand`,
 	transitive: true,
-	matcher: ({ type, attibutes: { category }}) => category == 'shadow' && type == 'boxShadow',
+	matcher: ({ type, attributes: { category }}) => category == 'shadow' && type == 'boxShadow',
 	transformer: parseShadowEffects
 };
