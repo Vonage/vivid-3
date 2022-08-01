@@ -9,12 +9,14 @@ import {
 
 const components = ['number-field', 'divider'];
 
-test.only('should show the component', async ({ page }: { page: Page }) => {
-	const template = `
-		<div style="margin: 5px;">
-			<vwc-number label="Number of Units"></vwc-number>
-		</div>
-	`;
+test('should show the component', async ({ page }: { page: Page }) => {
+	const template = extractHTMLBlocksFromReadme(
+		path.join(new URL('.', import.meta.url).pathname, 'README.md')
+	).reduce(
+		(htmlString: string, block: string) =>
+			`${htmlString} <div style="margin: 5px;">${block}</div>`,
+		''
+	);
 
 	await loadComponents({
 		page,
