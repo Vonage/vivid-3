@@ -1,12 +1,13 @@
+import type {ViewTemplate} from '@microsoft/fast-element';
 import {html, ref, when} from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
-import { classNames } from '@microsoft/fast-web-utilities';
-import { focusTemplateFactory } from '../../shared/patterns/focus';
-import type { NumberField } from './number-field';
+import {classNames} from '@microsoft/fast-web-utilities';
+import {focusTemplateFactory} from '../../shared/patterns/focus';
+import type {NumberField} from './number-field';
+import {Density, Shape} from '../enums';
 
 const ADD = 1;
 const SUBTRACT = -1;
@@ -64,12 +65,20 @@ function adjustValueByStep(numberField: NumberField, direction = ADD) {
 	numberField.value = (Number(numberField.value) + direction * (numberField.step ? numberField.step : 1)).toString();
 }
 
+function setControlButtonShape(numberField: NumberField) {
+	return numberField.shape === Shape.Pill ? Shape.Pill : null;
+}
+
+function setControlButtonDensity(numberField: NumberField) {
+	return numberField.density === Density.Extended ? Density.Normal : Density.Condensed;
+}
+
 function numberControlButtons() {
 	return html<NumberField>`
 			<div class="control-buttons">
-				<vwc-button density='condensed' id="subtract" icon="minus-line" @click="${x => adjustValueByStep(x, SUBTRACT)}"></vwc-button>
+				<vwc-button shape="${ setControlButtonShape }" density="${ setControlButtonDensity }" id="subtract" icon="minus-line" @click="${x => adjustValueByStep(x, SUBTRACT)}"></vwc-button>
 				<vwc-divider class="divider" orientation="vertical"></vwc-divider>
-				<vwc-button density='condensed' id="add" icon="plus-line" @click="${x => adjustValueByStep(x)}"></vwc-button>
+				<vwc-button shape="${ setControlButtonShape }" density="${ setControlButtonDensity }" id="add" icon="plus-line" @click="${x => adjustValueByStep(x)}"></vwc-button>
 		    </div>
 	`;
 }

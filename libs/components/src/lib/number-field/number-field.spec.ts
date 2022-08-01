@@ -7,6 +7,7 @@ import {
 } from '@vivid-nx/shared';
 import { NumberField } from './number-field';
 import '.';
+import {Density, Shape} from '../enums';
 
 const COMPONENT_TAG_NAME = 'vwc-number-field';
 
@@ -500,12 +501,38 @@ describe('vwc-number-field', () => {
 		});
 
 		it('should subtract by step when clicking the add button', async function() {
-			const addButton = getRootElement(element).querySelector('#subtract') as HTMLButtonElement;
+			const subtractButton = getRootElement(element).querySelector('#subtract') as HTMLButtonElement;
 			element.value = '10';
 			element.step = 5;
-			addButton?.click();
+			subtractButton?.click();
 			await elementUpdated(element);
 			expect((getControlElement(element) as HTMLInputElement).value).toEqual('5');
+		});
+
+		it('should have pill shape when textfield is pilled', async function() {
+			const addButton = getRootElement(element).querySelector('#add') as HTMLButtonElement;
+			const subtractButton = getRootElement(element).querySelector('#subtract') as HTMLButtonElement;
+		  element.shape = Shape.Pill;
+			await elementUpdated(element);
+			expect(addButton.getAttribute('shape')).toEqual(Shape.Pill);
+			expect(subtractButton.getAttribute('shape')).toEqual(Shape.Pill);
+		});
+
+		it('should have density normal when field is extended', async function() {
+			const addButton = getRootElement(element).querySelector('#add') as HTMLButtonElement;
+			const subtractButton = getRootElement(element).querySelector('#subtract') as HTMLButtonElement;
+			element.density = Density.Extended;
+			await elementUpdated(element);
+			expect(addButton.getAttribute('density')).toEqual(Density.Normal);
+			expect(subtractButton.getAttribute('density')).toEqual(Density.Normal);
+		});
+
+		it('should have density condensed when field is not extended', async function() {
+			const addButton = getRootElement(element).querySelector('#add') as HTMLButtonElement;
+			const subtractButton = getRootElement(element).querySelector('#subtract') as HTMLButtonElement;
+			await elementUpdated(element);
+			expect(addButton.getAttribute('density')).toEqual(Density.Condensed);
+			expect(subtractButton.getAttribute('density')).toEqual(Density.Condensed);
 		});
 	});
 });
