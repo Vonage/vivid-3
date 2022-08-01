@@ -6,7 +6,7 @@ Validating no private package among package dependencies OK!
 "@vonage/vivid" has a "none" change type, no version bump is required.
 Updating package-lock.json after bumping packages
 
-up to date, audited 1674 packages in 5s
+up to date, audited 1674 packages in 6s
 
 181 packages are looking for funding
   run `npm fund` for details
@@ -21,7 +21,5 @@ To address all issues, run:
 
 Run `npm audit` for details.
 Removing change files:
-- @vonage-vivid-036f30b5-bf1c-4f02-8930-3898123d5823.json
-- @vonage-vivid-63153bda-4cbd-48b9-a18b-cec850be719f.json
-- @vonage-vivid-aeab7b24-05de-4a5c-8c90-170f78fd30ab.json
+- @vonage-vivid-9678fe5c-cf66-4c74-b856-58387b972c86.json
 Removing change path
