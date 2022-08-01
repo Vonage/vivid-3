@@ -101,7 +101,7 @@ Use the `--tooltip-inline-size` variable to set the tooltip's inline size.
 - Tooltip should show on mouse hover and keyboard focus.
 - Tabbing to the element should display the tooltip.
 
-## Usage Examples
+## Use Cases
 
 ### Usage inside text
 
