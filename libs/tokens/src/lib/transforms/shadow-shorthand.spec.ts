@@ -1,3 +1,4 @@
+export {}
 const { transformer, matcher } = require('./shadow-shorthand');
 
 
