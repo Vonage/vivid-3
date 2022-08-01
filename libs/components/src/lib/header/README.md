@@ -133,7 +133,7 @@ The component's internal *header* element.
 </vwc-header>
 ```
 
-## Usage Examples
+## Use Cases
 
 ### Fixed Header with Side Drawer
 
