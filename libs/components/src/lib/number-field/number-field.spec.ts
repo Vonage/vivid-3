@@ -491,8 +491,13 @@ describe('vwc-number-field', () => {
 	});
 
 	describe('number buttons', function () {
+		let addButton: HTMLButtonElement, subtractButton: HTMLButtonElement;
+
+		beforeEach(function () {
+			addButton = getRootElement(element).querySelector('#add') as HTMLButtonElement;
+			subtractButton = getRootElement(element).querySelector('#subtract') as HTMLButtonElement;
+		});
 		it('should add by step when clicking the add button', async function() {
-			const addButton = getRootElement(element).querySelector('#add') as HTMLButtonElement;
 			element.value = '10';
 			element.step = 5;
 			addButton?.click();
@@ -501,7 +506,6 @@ describe('vwc-number-field', () => {
 		});
 
 		it('should subtract by step when clicking the add button', async function() {
-			const subtractButton = getRootElement(element).querySelector('#subtract') as HTMLButtonElement;
 			element.value = '10';
 			element.step = 5;
 			subtractButton?.click();
@@ -510,17 +514,13 @@ describe('vwc-number-field', () => {
 		});
 
 		it('should have pill shape when textfield is pilled', async function() {
-			const addButton = getRootElement(element).querySelector('#add') as HTMLButtonElement;
-			const subtractButton = getRootElement(element).querySelector('#subtract') as HTMLButtonElement;
-		  element.shape = Shape.Pill;
+			element.shape = Shape.Pill;
 			await elementUpdated(element);
 			expect(addButton.getAttribute('shape')).toEqual(Shape.Pill);
 			expect(subtractButton.getAttribute('shape')).toEqual(Shape.Pill);
 		});
 
 		it('should have density normal when field is extended', async function() {
-			const addButton = getRootElement(element).querySelector('#add') as HTMLButtonElement;
-			const subtractButton = getRootElement(element).querySelector('#subtract') as HTMLButtonElement;
 			element.density = Density.Extended;
 			await elementUpdated(element);
 			expect(addButton.getAttribute('density')).toEqual(Density.Normal);
