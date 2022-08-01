@@ -4,6 +4,15 @@
 .control {
 	padding-inline-end: 70px;
 
+	&::-webkit-outer-spin-button,
+	&::-webkit-inner-spin-button {
+		appearance: none;
+	}
+
+	&[type="number"] {
+		-moz-appearance: textfield;
+	}
+
 	&-buttons {
 		position: absolute;
 		z-index: 1;
