@@ -6,7 +6,7 @@
 </script>
 ```
 
-## Usage Examples
+## Use Cases
 
 ### Common Usage
 
