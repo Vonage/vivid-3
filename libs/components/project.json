@@ -6,11 +6,17 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
+          "npx nx run components:build",
           "./scripts/visual-tests/run.tests.in.container.sh {args.task}"
         ],
         "parallel": false
       },
       "configurations": {
+        "no-build": {
+          "commands": [
+            "./scripts/visual-tests/run.tests.in.container.sh {args.task}"
+          ]
+        },
         "watch": {
           "commands": [
             {

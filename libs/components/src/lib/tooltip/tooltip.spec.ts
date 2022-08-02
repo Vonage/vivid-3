@@ -28,7 +28,7 @@ describe('vwc-tooltip', () => {
 				.toBeFalsy();
 			expect(element.anchor)
 				.toBeUndefined();
-			expect(element.corner)
+			expect(element.placement)
 				.toBeUndefined();
 			expect(element.text)
 				.toEqual(undefined);
