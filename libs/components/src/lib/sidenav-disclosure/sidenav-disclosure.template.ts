@@ -1,4 +1,4 @@
-import { html, ref, when } from '@microsoft/fast-element';
+import { html, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
@@ -21,7 +21,7 @@ export const SidenavDisclosureTemplate: (
 ) => ViewTemplate<SidenavDisclosure> = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const focusTemplate = focusTemplateFactory(context);
-	return html`<details class="base" ${ref('details')} ?open=${x => x.open}>
+	return html`<details class="base" ?open="${(x) => x.open}">
         <summary class="control"
             role="button"
             aria-controls="disclosure-content"
@@ -29,8 +29,8 @@ export const SidenavDisclosureTemplate: (
         >
             ${x => affixIconTemplate(x.icon)}
             ${x => x.label}
-			${when(x => x.open, html<SidenavDisclosure>`<vwc-icon class="toggleIcon" type='chevron-up-solid'></vwc-icon>`)}
-			${when(x => !x.open, html<SidenavDisclosure>`<vwc-icon class="toggleIcon" type='chevron-down-solid'></vwc-icon>`)}
+			${when(x => x.open, html`<vwc-icon class="toggleIcon" type='chevron-up-solid'></vwc-icon>`)}
+			${when(x => !x.open, html`<vwc-icon class="toggleIcon" type='chevron-down-solid'></vwc-icon>`)}
 			${() => focusTemplate}
         </summary>
         <div class="content" id="disclosure-content">
