@@ -243,6 +243,18 @@ describe('vwc-popup', () => {
 			expect(element.open)
 				.toEqual(false);
 		});
+
+		it('should remove keydown listener after disconnection', async function() {
+			const spy = jest.fn();
+			element.addEventListener('keydown', spy);
+	
+			element.disconnectedCallback();
+			element.connectedCallback();
+	
+			element.dispatchEvent(new Event('keydown'));
+	
+			expect((spy as any).mock.calls.length).toEqual(1);
+		});
 	});
 
 	describe('alternate', () => {
