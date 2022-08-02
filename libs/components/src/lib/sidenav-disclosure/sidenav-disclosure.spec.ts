@@ -67,9 +67,21 @@ describe('vwc-sidenav-disclosure', () => {
 			const label = 'lorem';
 			element.label = label;
 			await elementUpdated(element);
-			
+
 			expect(getBaseElement(element).textContent?.trim())
 				.toEqual(label);
 		});
+	});
+
+	it('should remove toggle listener after disconnection', async function() {
+		const spy = jest.fn();
+		element.addEventListener('toggle', spy);
+
+		element.disconnectedCallback();
+		element.connectedCallback();
+
+		element.details.dispatchEvent(new Event('toggle'));
+
+		expect((spy as any).mock.calls.length).toEqual(1);
 	});
 });

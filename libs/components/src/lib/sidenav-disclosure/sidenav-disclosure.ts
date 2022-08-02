@@ -31,7 +31,7 @@ export class SidenavDisclosure extends FoundationElement {
 	*/
 	override connectedCallback(): void {
 		super.connectedCallback();
-		this.details.addEventListener('toggle', () => this.onToggle());
+		this.details.addEventListener('toggle', this.#onToggle);
 		this.details.open = this.open;
 	}
 
@@ -40,16 +40,13 @@ export class SidenavDisclosure extends FoundationElement {
 	 */
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		this.details.removeEventListener('toggle',  () => this.onToggle());
+		this.details.removeEventListener('toggle',  this.#onToggle);
 	}
 
-	/**
-	 * Update the aria attr and fire `toggle` event
-	 */
-	protected onToggle(): void {
+	#onToggle = () => {
 		this.open = this.details.open;
 		this.$emit('toggle');
-	}
+	};
 }
 
 export interface SidenavDisclosure extends AffixIcon { }
