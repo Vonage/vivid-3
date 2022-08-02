@@ -1,0 +1,16 @@
+---
+layout: base.njk
+tags: guides
+pagination:
+    data: guides
+    size: 1
+    alias: guide
+permalink: "guides/{{ guide.title | slug }}/"
+---
+
+{% for url in guide.modules %}
+<script type="module" src="{{ url | url }}"></script>
+{% endfor %}
+
+
+{% renderFile guide.markdown %}
