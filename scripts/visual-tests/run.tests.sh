@@ -1,4 +1,3 @@
-npx nx run components:build
 alias npmenv='npm run env -- $SHELL'
 arg=$([ -n "$task" ] && echo "$task" || echo "5")
 echo $arg
