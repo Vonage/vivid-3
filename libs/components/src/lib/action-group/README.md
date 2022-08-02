@@ -132,7 +132,7 @@ Use `<vwc-divider>` for adding separator between the action elements
 ```html preview center
 <vwc-button id="anchor" icon="more-horizontal-solid" aria-label="open actions menu"></vwc-button>
 
-<vwc-popup id="popup" anchor="anchor" arrow open corner="top">
+<vwc-popup id="popup" anchor="anchor" arrow open placement="top">
   <vwc-action-group appearance="ghost">
     <vwc-button icon="reply-line"></vwc-button>
     <vwc-button icon="transfer-line"></vwc-button>
