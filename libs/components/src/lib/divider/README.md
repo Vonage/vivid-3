@@ -29,7 +29,7 @@ When using `<vwc-divider>` as a decorative element the role should be set as `'p
 
 [For further reading about divider foundational role & accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/separator_role)
 
-## Usage Examples
+## Use Cases
 
 ### Vertical Divider
 

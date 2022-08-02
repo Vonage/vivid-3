@@ -55,7 +55,7 @@ The documentation file should have the following structure:
 
 - `## Accessibility` - explanation about aria attributes and roles.
 
-- `## Use Cases` - usage examples with more vivid components.
+- `## Use Cases` - User examples with more vivid components.
 
 ## Code Preview
 
