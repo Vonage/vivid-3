@@ -165,5 +165,5 @@ export class Popup extends FoundationElement {
 		if ((event as KeyboardEvent).key === keyEscape) {
 			this.open = false;
 		}
-	}
+	};
 }
