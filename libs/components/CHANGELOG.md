@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Thu, 28 Jul 2022 11:25:13 GMT and should not be manually modified.
+This log was last generated on Tue, 02 Aug 2022 13:37:38 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.42
+
+Tue, 02 Aug 2022 13:37:38 GMT
+
+### Changes
+
+- update popup and tooltip corner to placement (rina.oksman@vonage.com)
 
 ## 3.0.0-next.41
 
