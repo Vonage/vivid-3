@@ -9,6 +9,8 @@ import { AffixIcon } from '../../shared/patterns/affix';
  * @public
  */
 export class SidenavDisclosure extends FoundationElement {
+	details!: HTMLDetailsElement;
+
 	/**
 	 *
 	 * @public
@@ -24,6 +26,27 @@ export class SidenavDisclosure extends FoundationElement {
 	 */
 	@attr({ mode: 'boolean' }) open = false;
 
+	/**
+	* @internal
+	*/
+	override connectedCallback(): void {
+		super.connectedCallback();
+		this.details.addEventListener('toggle', this.#onToggle);
+		this.details.open = this.open;
+	}
+
+	/**
+	 * @internal
+	 */
+	override disconnectedCallback(): void {
+		super.disconnectedCallback();
+		this.details.removeEventListener('toggle',  this.#onToggle);
+	}
+
+	#onToggle = () => {
+		this.open = this.details.open;
+		this.$emit('toggle');
+	};
 }
 
 export interface SidenavDisclosure extends AffixIcon { }
