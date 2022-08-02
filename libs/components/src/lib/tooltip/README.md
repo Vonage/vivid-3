@@ -51,9 +51,9 @@ Use the `open` attribute to indicate whether the tooltip is open.
 </script>
 ```
 
-### Corner
+### Placement
 
-Use the `corner` attribute to set the placement of the tooltip around the anchor.
+Use the `placement` attribute to set the placement of the tooltip around the anchor.
 
 - Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
 - Default: `'left'`
@@ -65,10 +65,10 @@ Use the `corner` attribute to set the placement of the tooltip around the anchor
   }
 </style>
 <vwc-button id="anchor" appearance='outlined' label='This is an anchor'></vwc-button>
-<vwc-tooltip anchor="anchor" open text="right" corner="right"></vwc-tooltip>
-<vwc-tooltip anchor="anchor" open text="left" corner="left"></vwc-tooltip>
-<vwc-tooltip anchor="anchor" open text="top" corner="top"></vwc-tooltip>
-<vwc-tooltip anchor="anchor" open text="bottom" corner="bottom"></vwc-tooltip>
+<vwc-tooltip anchor="anchor" open text="right" placement="right"></vwc-tooltip>
+<vwc-tooltip anchor="anchor" open text="left" placement="left"></vwc-tooltip>
+<vwc-tooltip anchor="anchor" open text="top" placement="top"></vwc-tooltip>
+<vwc-tooltip anchor="anchor" open text="bottom" placement="bottom"></vwc-tooltip>
 ```
 
 ## CSS Variables
@@ -101,7 +101,7 @@ Use the `--tooltip-inline-size` variable to set the tooltip's inline size.
 - Tooltip should show on mouse hover and keyboard focus.
 - Tabbing to the element should display the tooltip.
 
-## Usage Examples
+## Use Cases
 
 ### Usage inside text
 
@@ -112,7 +112,7 @@ Use the `--tooltip-inline-size` variable to set the tooltip's inline size.
   more text after tooltip.
 </vwc-text>
 
-<vwc-tooltip id="tooltip" anchor="button" corner="bottom-end" text="I'm the tooltip content"></vwc-tooltip>
+<vwc-tooltip id="tooltip" anchor="button" placement="bottom-end" text="I'm the tooltip content"></vwc-tooltip>
 
 <script>
   button.addEventListener('mouseover', ()=> tooltip.open = true);

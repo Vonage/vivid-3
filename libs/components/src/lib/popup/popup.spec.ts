@@ -133,7 +133,7 @@ describe('vwc-popup', () => {
 				.toBeFalsy();
 			expect(element.anchor)
 				.toBeUndefined();
-			expect(element.corner)
+			expect(element.placement)
 				.toEqual('left');
 		});
 	});

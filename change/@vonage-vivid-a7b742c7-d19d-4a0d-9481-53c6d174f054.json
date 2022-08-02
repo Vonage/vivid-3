@@ -1,6 +1,6 @@
 {
   "type": "none",
-  "comment": "add aria-current example",
+  "comment": "fix chevrons",
   "packageName": "@vonage/vivid",
   "email": "rina.oksman@vonage.com",
   "dependentChangeType": "none"

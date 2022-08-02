@@ -68,7 +68,8 @@
 
 .content {
 	border-inline-start: 1px solid var(#{theme-consts.$vvd-color-neutral-30});
-	margin-inline-start: 32px;
+	margin-inline-start: 20px;
+	padding-inline-start: 12px;
 }
 
 details > summary {

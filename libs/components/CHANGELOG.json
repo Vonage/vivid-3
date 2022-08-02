@@ -2,6 +2,48 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Mon, 01 Aug 2022 13:53:47 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.41",
+      "version": "3.0.0-next.41",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "752d4540c627cf34c77f9c9c7ff8571957d59e82",
+            "comment": "update docs"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 31 Jul 2022 09:02:59 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.41",
+      "version": "3.0.0-next.41",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "d450525c05ff5dc1e49ad0e0e912fec25a27c401",
+            "comment": "add aria-current example"
+          },
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "21ca46da9beea1c72ca28154675274a42e7cd1f2",
+            "comment": "document the use of vivid divider instead of native `hr`"
+          },
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "10035863724c0d91709c1bda8a1ab655f8c670f7",
+            "comment": "chore(sidenav): adjust spacing"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 28 Jul 2022 11:25:13 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.41",
       "version": "3.0.0-next.41",
