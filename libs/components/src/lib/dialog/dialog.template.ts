@@ -78,30 +78,32 @@ export const DialogTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Dialog> = () => html<Dialog>`
 	<vwc-elevation dp="12">
-		<dialog class="${getClasses}"
-				@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
-				returnValue="${x => x.returnValue}"
-				aria-labelledby="${x => x.ariaLabelledBy}"
-				aria-label="${x => x.ariaLabel}"
-				aria-describedby="${x => x.ariaDescribedBy}"
-		>
-			<slot name="main">
-				<div class="main-wrapper">
-					<div class="header">
-						<div class="headline-wrapper">
-							<slot name="graphic">
-								${when(x => x.icon, icon())}
-							</slot>
-							${when(x => x.headline, headline())}
+		<div>
+			<dialog class="${getClasses}"
+					@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
+					returnValue="${x => x.returnValue}"
+					aria-labelledby="${x => x.ariaLabelledBy}"
+					aria-label="${x => x.ariaLabel}"
+					aria-describedby="${x => x.ariaDescribedBy}"
+			>
+				<slot name="main">
+					<div class="main-wrapper">
+						<div class="header">
+							<div class="headline-wrapper">
+								<slot name="graphic">
+									${when(x => x.icon, icon())}
+								</slot>
+								${when(x => x.headline, headline())}
+							</div>
+						${renderDismissButton()}
 						</div>
-			  		${renderDismissButton()}
+						<slot name="content">
+							${when(x => x.text, content())}
+						</slot>
+						<slot name="footer"></slot>
 					</div>
-					<slot name="content">
-						${when(x => x.text, content())}
-					</slot>
-					<slot name="footer"></slot>
-				</div>
-			</slot>
-		</dialog>
+				</slot>
+			</dialog>
+		</div>
 	</vwc-elevation>`;
 

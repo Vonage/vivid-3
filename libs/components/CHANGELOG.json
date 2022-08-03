@@ -2,6 +2,73 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Wed, 03 Aug 2022 13:44:03 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.43",
+      "version": "3.0.0-next.43",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "03f23924ab6e93aca736c978bd5f4a4e7d11d3fe",
+            "comment": "add remove keydown listener test"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 03 Aug 2022 13:04:51 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.43",
+      "version": "3.0.0-next.43",
+      "comments": {
+        "none": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "1a8bb94e722293bba4e7c26759b1851558ff7040",
+            "comment": "add wrapper div to dialog to solve elevation shadow containment issue in Safari"
+          }
+        ],
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "756c384b4da5a746cd590bb475129b65b3ca1fc6",
+            "comment": "align progress ring default size to baseline"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 02 Aug 2022 13:37:38 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.42",
+      "version": "3.0.0-next.42",
+      "comments": {
+        "none": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "c0c10479fa3cecde161b68ba2aaa5796340ab407",
+            "comment": "Exempt issues with labels from being stale"
+          },
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "17b97667c183048ae031a8d743a3fabc98e2dd16",
+            "comment": "fix chevrons"
+          }
+        ],
+        "prerelease": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "152d52fe1d8f48cf0317413983b9fdbe39e65b66",
+            "comment": "update popup and tooltip corner to placement"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 01 Aug 2022 13:53:47 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.41",
       "version": "3.0.0-next.41",

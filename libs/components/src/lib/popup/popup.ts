@@ -72,9 +72,9 @@ export class Popup extends FoundationElement {
 	 * the placement of the popup
 	 *
 	 * @public
-	 * HTML Attribute: corner
+	 * HTML Attribute: placement
 	 */
-	@attr({ mode: 'fromView' }) corner?: Placement = 'left';
+	@attr({ mode: 'fromView' }) placement?: Placement = 'left';
 
 	/**
 	 * ID reference to element in the popup’s owner document.
@@ -90,7 +90,7 @@ export class Popup extends FoundationElement {
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		this.#anchorEl?.removeEventListener('keydown', (e) => this.#handleKeydown(e as KeyboardEvent));
+		this.#anchorEl?.removeEventListener('keydown', this.#handleKeydown);
 		this.#cleanup?.();
 	}
 
@@ -98,9 +98,10 @@ export class Popup extends FoundationElement {
 		super.attributeChangedCallback(name, oldValue, newValue);
 		switch (name) {
 			case 'anchor': {
+				this.#anchorEl?.removeEventListener('keydown', this.#handleKeydown);
 				this.#anchorEl = this.#getAnchorById();
 				// close the popup if pressed escape
-				this.#anchorEl?.addEventListener('keydown', (e) => this.#handleKeydown(e as KeyboardEvent));
+				this.#anchorEl?.addEventListener('keydown', this.#handleKeydown);
 				break;
 			}
 		}
@@ -123,7 +124,7 @@ export class Popup extends FoundationElement {
 		}
 
 		const positionData = await computePosition(this.#anchorEl, this.popupEl, {
-			placement: this.corner,
+			placement: this.placement,
 			strategy: this.#strategy,
 			middleware: this.#middleware
 		});
@@ -160,9 +161,9 @@ export class Popup extends FoundationElement {
 		return document.getElementById(this.anchor);
 	}
 
-	#handleKeydown({ key }: KeyboardEvent): void {
-		if (key === keyEscape) {
+	#handleKeydown = (event: Event) => {
+		if ((event as KeyboardEvent).key === keyEscape) {
 			this.open = false;
 		}
-	}
+	};
 }
