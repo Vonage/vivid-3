@@ -242,14 +242,15 @@ describe('vwc-popup', () => {
 
 		it('should remove keydown listener after disconnection', async function() {
 			const anchor = await setupPopupToOpenWithAnchor();
-			expect(element.open)
-				.toEqual(true);
+			const openStateBeforeEsc = element.open;
 
 			await elementUpdated(element);
 			element.disconnectedCallback();
 			await elementUpdated(element);
 			anchor.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 
+      expect(openStateBeforeEsc)
+				.toEqual(true);
 			expect(element.open)
 				.toEqual(true);
 		});
