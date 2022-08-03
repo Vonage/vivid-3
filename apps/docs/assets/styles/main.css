@@ -221,6 +221,7 @@ article > vwc-text[font-face="headline-1"] {
 
 .article {
   padding-inline: 16px;
+  display: none;
 }
 
 @media (min-width: 960px) {
