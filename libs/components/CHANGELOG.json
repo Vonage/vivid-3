@@ -2,6 +2,50 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Tue, 02 Aug 2022 13:37:38 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.42",
+      "version": "3.0.0-next.42",
+      "comments": {
+        "none": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "c0c10479fa3cecde161b68ba2aaa5796340ab407",
+            "comment": "Exempt issues with labels from being stale"
+          },
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "17b97667c183048ae031a8d743a3fabc98e2dd16",
+            "comment": "fix chevrons"
+          }
+        ],
+        "prerelease": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "152d52fe1d8f48cf0317413983b9fdbe39e65b66",
+            "comment": "update popup and tooltip corner to placement"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 01 Aug 2022 13:53:47 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.41",
+      "version": "3.0.0-next.41",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "752d4540c627cf34c77f9c9c7ff8571957d59e82",
+            "comment": "update docs"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 31 Jul 2022 09:02:59 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.41",
       "version": "3.0.0-next.41",

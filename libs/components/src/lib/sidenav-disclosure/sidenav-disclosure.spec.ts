@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement, getControlElement } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
 import { SidenavDisclosure } from './sidenav-disclosure';
 import '.';
@@ -24,13 +24,28 @@ describe('vwc-sidenav-disclosure', () => {
 		});
 	});
 
-	describe('open', () => {
-		it('should open the sidenav disclosure', async () => {
-			expect(getBaseElement(element).hasAttribute('open')).toBeFalsy();
+	describe('aria-expanded', () => {
+		it('should update aria-expanded when toggle open', async () => {
+			expect(getControlElement(element).getAttribute('aria-expanded')).toEqual('false');
 
 			element.open = true;
 			await elementUpdated(element);
-			expect(getBaseElement(element).hasAttribute('open')).toBeTruthy();
+			expect(getControlElement(element).getAttribute('aria-expanded')).toEqual('true');
+		});
+	});
+
+	describe('open', () => {
+		it('should have open attribute when open', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} open></${COMPONENT_TAG}>`
+			)) as SidenavDisclosure;
+
+			await elementUpdated(element);
+			expect(getBaseElement(element).hasAttribute('open')).toEqual(true);
+
+			element.open = false;
+			await elementUpdated(element);
+			expect(getBaseElement(element).hasAttribute('open')).toEqual(false);
 		});
 	});
 
@@ -52,9 +67,21 @@ describe('vwc-sidenav-disclosure', () => {
 			const label = 'lorem';
 			element.label = label;
 			await elementUpdated(element);
-			
+
 			expect(getBaseElement(element).textContent?.trim())
 				.toEqual(label);
 		});
+	});
+
+	it('should remove toggle listener after disconnection', async function() {
+		const spy = jest.fn();
+		element.addEventListener('toggle', spy);
+
+		element.disconnectedCallback();
+		element.connectedCallback();
+
+		element.details.dispatchEvent(new Event('toggle'));
+
+		expect((spy as any).mock.calls.length).toEqual(1);
 	});
 });

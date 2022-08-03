@@ -72,9 +72,9 @@ export class Popup extends FoundationElement {
 	 * the placement of the popup
 	 *
 	 * @public
-	 * HTML Attribute: corner
+	 * HTML Attribute: placement
 	 */
-	@attr({ mode: 'fromView' }) corner?: Placement = 'left';
+	@attr({ mode: 'fromView' }) placement?: Placement = 'left';
 
 	/**
 	 * ID reference to element in the popup’s owner document.
@@ -123,7 +123,7 @@ export class Popup extends FoundationElement {
 		}
 
 		const positionData = await computePosition(this.#anchorEl, this.popupEl, {
-			placement: this.corner,
+			placement: this.placement,
 			strategy: this.#strategy,
 			middleware: this.#middleware
 		});

@@ -103,9 +103,9 @@ Add the `alternate` attribute to set the color-scheme to dark or light (dependin
 </vwc-popup>
 ```
 
-### Corner
+### Placement
 
-Use the `corner` attribute to set the placement of the popup around the anchor.
+Use the `placement` attribute to set the placement of the popup around the anchor.
 
 - Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
 - Default: `'left'`
@@ -125,62 +125,62 @@ Use the `corner` attribute to set the placement of the popup around the anchor.
 
 <div id="anchor" class="square"></div>
 
-<vwc-popup id="popup" anchor="anchor" open corner="right-end">
+<vwc-popup id="popup" anchor="anchor" open placement="right-end">
   <vwc-text tight font-face="body-2">
     right-end
   </vwc-text>
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open corner="right">
+<vwc-popup id="popup" anchor="anchor" open placement="right">
   <vwc-text tight font-face="body-2">
     right
   </vwc-text>
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open corner="right-start">
+<vwc-popup id="popup" anchor="anchor" open placement="right-start">
   <vwc-text tight font-face="body-2">
     right-start
   </vwc-text>
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open corner="left-end">
+<vwc-popup id="popup" anchor="anchor" open placement="left-end">
   <vwc-text tight font-face="body-2">
     left-end
   </vwc-text>
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open corner="left">
+<vwc-popup id="popup" anchor="anchor" open placement="left">
   <vwc-text tight font-face="body-2">
     left
   </vwc-text>
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open corner="left-start">
+<vwc-popup id="popup" anchor="anchor" open placement="left-start">
   <vwc-text tight font-face="body-2">
     left-start
   </vwc-text>
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open corner="top-end">
+<vwc-popup id="popup" anchor="anchor" open placement="top-end">
   <vwc-text tight font-face="body-2">
     top-end
   </vwc-text>
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open corner="top">
+<vwc-popup id="popup" anchor="anchor" open placement="top">
   <vwc-text tight font-face="body-2">
     top
   </vwc-text>
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open corner="top-start">
+<vwc-popup id="popup" anchor="anchor" open placement="top-start">
   <vwc-text tight font-face="body-2">
     top-start
   </vwc-text>
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open corner="bottom-end">
+<vwc-popup id="popup" anchor="anchor" open placement="bottom-end">
   <vwc-text tight font-face="body-2">
     bottom-end
   </vwc-text>
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open corner="bottom">
+<vwc-popup id="popup" anchor="anchor" open placement="bottom">
   <vwc-text tight font-face="body-2">
     bottom
   </vwc-text>
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open corner="bottom-start">
+<vwc-popup id="popup" anchor="anchor" open placement="bottom-start">
   <vwc-text tight font-face="body-2">
     bottom-start
   </vwc-text>

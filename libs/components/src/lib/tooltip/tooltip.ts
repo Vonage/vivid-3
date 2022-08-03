@@ -30,9 +30,9 @@ export class Tooltip extends FoundationElement {
 	 * the placement of the tooltip
 	 *
 	 * @public
-	 * HTML Attribute: corner
+	 * HTML Attribute: placement
 	 */
-	@attr corner?: Placement;
+	@attr placement?: Placement;
 
 	/**
 	 * ID reference to element in the tooltip's owner document.
