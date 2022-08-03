@@ -78,7 +78,6 @@ export const DialogTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Dialog> = () => html<Dialog>`
 	<vwc-elevation dp="12">
-		<!--adding a wrapper div to solve Safari issue with filter and overflow-->
 		<div>
 			<dialog class="${getClasses}"
 					@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
