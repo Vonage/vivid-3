@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "update popup and tooltip corner to placement",
-  "packageName": "@vonage/vivid",
-  "email": "rina.oksman@vonage.com",
-  "dependentChangeType": "patch"
-}
