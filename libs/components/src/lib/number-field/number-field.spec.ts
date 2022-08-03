@@ -5,9 +5,9 @@ import {
 	getControlElement,
 	listenToFormSubmission
 } from '@vivid-nx/shared';
+import {Density, Shape} from '../enums';
 import { NumberField } from './number-field';
 import '.';
-import {Density, Shape} from '../enums';
 
 const COMPONENT_TAG_NAME = 'vwc-number-field';
 

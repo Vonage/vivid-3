@@ -4,8 +4,8 @@ import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
-import {Density, Shape} from '../enums';
 import {classNames} from '@microsoft/fast-web-utilities';
+import {Density, Shape} from '../enums';
 import {focusTemplateFactory} from '../../shared/patterns/focus';
 import type {NumberField} from './number-field';
 
