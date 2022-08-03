@@ -246,14 +246,13 @@ describe('vwc-popup', () => {
 
 		it('should remove keydown listener after disconnection', async function() {
 			const spy = jest.fn();
-			element.addEventListener('keydown', spy);
+			anchor.addEventListener('keydown', spy);
 	
 			element.disconnectedCallback();
-			element.connectedCallback();
 	
-			element.dispatchEvent(new Event('keydown'));
+			anchor.dispatchEvent(new Event('keydown'));
 	
-			expect((spy as any).mock.calls.length).toEqual(1);
+			expect((spy as any).mock.calls.length).toEqual(0);
 		});
 	});
 
