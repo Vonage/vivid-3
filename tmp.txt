@@ -1,0 +1,20 @@
+Valid "repository" key not found in "/home/runner/work/vivid-3/vivid-3/package.json". Consider adding this info for more accurate git remote detection.
+Checking for changes against "origin/main"
+fetching latest from remotes "origin/main"
+Validating no private package among package dependencies OK!
+Updating package-lock.json after bumping packages
+
+up to date, audited 1674 packages in 8s
+
+181 packages are looking for funding
+  run `npm fund` for details
+
+10 high severity vulnerabilities
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues, run:
+  npm audit fix --force
+
+Run `npm audit` for details.
