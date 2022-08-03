@@ -23,6 +23,22 @@
   </div>
 </div>
 
+### CDN
+You can import vivid components from CDN.
+- https://unpkg.com/@vonage/vivid@next
+- https://cdn.jsdelivr.net/npm/@vonage/vivid@next
+
+Note that in addition to importing the JS files, you also need to add the CSS.
+
+Example:
+```
+<script type="module" src="https://unpkg.com/@vonage/vivid@next"></script>
+<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/themes/light.css">
+<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/fonts/spezia.css">
+```
+
+ES Example: [Open Codepen](https://codepen.io/yonatankra/pen/yLKyaPG)
+
 ### Installation
 
 run:
