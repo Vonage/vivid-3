@@ -1,6 +1,6 @@
 {
   "type": "none",
-  "comment": "fix(dialog): add wrapper div to dialog to solve elevation shadow issue in Safari",
+  "comment": "add wrapper div to dialog to solve elevation shadow containment issue in Safari",
   "packageName": "@vonage/vivid",
   "email": "rachel.tannenbaum@vonage.com",
   "dependentChangeType": "none"
