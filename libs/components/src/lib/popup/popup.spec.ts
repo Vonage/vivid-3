@@ -228,11 +228,7 @@ describe('vwc-popup', () => {
 
 	describe('handle keydown', () => {
 		it('should hide on escape key', async () => {
-			const anchor = await setAnchor();
-			element.anchor = 'anchor';
-			await elementUpdated(element);
-
-			element.open = true;
+			const anchor = await setupPopupToOpenWithAnchor();
 			expect(element.open)
 				.toEqual(true);
 
@@ -245,14 +241,31 @@ describe('vwc-popup', () => {
 		});
 
 		it('should remove keydown listener after disconnection', async function() {
-			const spy = jest.fn();
-			anchor.addEventListener('keydown', spy);
-	
+			const anchor = await setupPopupToOpenWithAnchor();
+			expect(element.open)
+				.toEqual(true);
+
+			await elementUpdated(element);
 			element.disconnectedCallback();
-	
-			anchor.dispatchEvent(new Event('keydown'));
-	
-			expect((spy as any).mock.calls.length).toEqual(0);
+			await elementUpdated(element);
+			anchor.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+
+			expect(element.open)
+				.toEqual(true);
+		});
+
+		it('should remove keydown listener after changing anchor', async function() {
+			const anchor = await setupPopupToOpenWithAnchor();
+			expect(element.open)
+				.toEqual(true);
+
+			await elementUpdated(element);
+			element.anchor = 'new-anchor';
+			await elementUpdated(element);
+			anchor.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+
+			expect(element.open)
+				.toEqual(true);
 		});
 	});
 
