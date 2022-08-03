@@ -497,6 +497,13 @@ describe('vwc-number-field', () => {
 			addButton = getRootElement(element).querySelector('#add') as HTMLButtonElement;
 			subtractButton = getRootElement(element).querySelector('#subtract') as HTMLButtonElement;
 		});
+		it('should advance value by 1 as default', async function () {
+			element.value = '10';
+			addButton?.click();
+			await elementUpdated(element);
+			expect((getControlElement(element) as HTMLInputElement).value).toEqual('11');
+		});
+
 		it('should add by step when clicking the add button', async function() {
 			element.value = '10';
 			element.step = 5;
