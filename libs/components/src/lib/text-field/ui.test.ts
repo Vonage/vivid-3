@@ -60,8 +60,6 @@ test('should invalidate the component', async ({page, browserName}: { page: Page
 
 	const testWrapper = await page.$('#wrapper');
 
-	await page.waitForLoadState('networkidle');
-
 	const invalidTextField = await page.locator(selector);
 	await invalidTextField.type('55');
 	await invalidTextField.evaluate(e => {
@@ -69,6 +67,8 @@ test('should invalidate the component', async ({page, browserName}: { page: Page
 	});
 
 	await page.waitForTimeout(50);
+	await page.waitForLoadState('networkidle');
+
 	expect(await testWrapper?.screenshot())
 		.toMatchSnapshot(
 			'./snapshots/text-field-invalidation.png'
