@@ -10,7 +10,9 @@
 	}
 
 	&[type="number"] {
+		/* stylelint-disable property-no-vendor-prefix */
 		-moz-appearance: textfield;
+		/* stylelint-enable property-no-vendor-prefix */
 	}
 
 	&-buttons {
