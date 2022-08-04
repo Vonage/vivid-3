@@ -4,9 +4,11 @@ How do I get started?
 Where can I get more help, if I need it?
 how you handle contributions, what the goals of the project are, and information about licenses and attribution
 
-# Project Title
+![the Vivid logo](/vivid-logo.svg)
 
-One Paragraph of project description goes here
+# Vivid Web Components
+
+Vonage's UI essentials for building modern web applications, bound to provide a **safe**, **simple** and **intuitive** interface.
 
 ## Getting Started
 
@@ -14,7 +16,27 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+#### Styles
+
+The Vivid components library rely on a set of core styles to be present in the DOM, be shared across all components, apply common design identities (such as colors, typography, spacing etc'), and ensure the components look as intended.
+
+As the task of loading css is not trivial, and may vary from project to project, this library does not provide any way to load the css. It is up to the author to load the css in the most appropriate manner for their project.
+
+##### Usage
+
+To include the styles, css files must be loaded into the project from the `node_modules/@vonage/vivid/styles` folder.
+
+Folder contains the following files:
+
+- Fonts
+
+  - `fonts/spezia.css` - Specifies the Spezia variable font resource and its font face definition. Spezia is Vonage's branded font and is required by most Vivid components
+
+- Themes
+
+  - `themes/light.css` - Light theme css (only one theme can apply at a time. thus, only one is required to be loaded)
+
+  - `themes/dark.css` - Dark theme css
 
 ```
 Give examples
@@ -64,9 +86,9 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+- [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+- [Maven](https://maven.apache.org/) - Dependency Management
+- [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
 ## Contributing
 
@@ -78,7 +100,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+- **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
@@ -88,9 +110,9 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+- Hat tip to anyone whose code was used
+- Inspiration
+- etc
 
 "Cherry picking" interface
 
