@@ -12,7 +12,7 @@ const getClasses = ({appearance, connotation, shape, density}: Avatar) => classN
 	[`connotation-${connotation}`, !!connotation],
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
-	[`density-${(density ? Number(density) : 0) + 5}`, !!density],
+	[`density-${(density ? Number(density) : 0) + 9}`, !!density],
 );
 
 /**
@@ -27,7 +27,7 @@ export const AvatarTemplate: (
 ) => ViewTemplate<Avatar> = () => html` 
 	<span class="${getClasses}">
 		<slot>
-			${when(x => x.text, html`<span class="initials">${x => x.text}</span>`)}
-			${when(x => !x.text, html`<span class="icon"><vwc-icon type='user-line'></vwc-icon></span>`)}
+			${when(x => x.name, html`<span class="initials">${x => x.name}</span>`)}
+			${when(x => !x.name, html`<span class="icon"><vwc-icon type="${(x) => x.icon? `${x.icon}` : 'user-line'}"></vwc-icon></span>`)}
 		</slot>
 </span>`;

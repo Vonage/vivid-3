@@ -20,7 +20,7 @@ type AvatarConnotation = Extract<Connotation,
  * @public
  */
 export type AvatarAppearance = Extract<Appearance,
-Appearance.Filled | Appearance.Outlined | Appearance.Ghost>;
+Appearance.Filled | Appearance.Outlined>;
 
 /**
  * Types of avatar shape.
@@ -33,6 +33,8 @@ type AvatarShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  *
  * @public
  */
+
+
 export class Avatar extends FoundationElement {
 	/*/**
 	 * The connotation the avatar should have.
@@ -69,6 +71,12 @@ export class Avatar extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: text
 	 */
-	@attr text?: string;
+	@attr name?: string;
+	/**
+	 * avatar header icon
+	 *
+	 * @public
+	 */
+	@attr icon?: string;
 
 }
