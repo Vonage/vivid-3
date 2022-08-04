@@ -33,8 +33,8 @@
 You can import vivid components from a CDN. 
 
 Vivid is using [unpkg](https://unpkg.com) and [jsdeliver](https://jsdeliver) to serve the package.
-- https://unpkg.com/@vonage/vivid@next
-- https://cdn.jsdelivr.net/npm/@vonage/vivid@next
+- [https://unpkg.com/@vonage/vivid@next](https://unpkg.com/@vonage/vivid@next)
+- [https://cdn.jsdelivr.net/npm/@vonage/vivid@next](https://cdn.jsdelivr.net/npm/@vonage/vivid@next)
 
 Note that in addition to importing the JS files, you also need to add the CSS.
 
