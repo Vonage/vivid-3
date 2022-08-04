@@ -213,14 +213,15 @@ describe('vwc-popup', () => {
 			await elementUpdated(element);
 
 			element.open = true;
-			expect(element.open)
-				.toEqual(true);
+			const openStateBeforeEsc = element.open;
 
 			await elementUpdated(element);
 			const dismissButton = element.shadowRoot?.querySelector('vwc-button');
 			(dismissButton as HTMLElement).click();
 			await elementUpdated(element);
 
+			expect(openStateBeforeEsc)
+				.toEqual(true);
 			expect(element.open)
 				.toEqual(false);
 		});
@@ -228,20 +229,47 @@ describe('vwc-popup', () => {
 
 	describe('handle keydown', () => {
 		it('should hide on escape key', async () => {
-			const anchor = await setAnchor();
-			element.anchor = 'anchor';
-			await elementUpdated(element);
-
-			element.open = true;
-			expect(element.open)
-				.toEqual(true);
+			const anchor = await setupPopupToOpenWithAnchor();
+			const openStateBeforeEsc = element.open;
 
 			await elementUpdated(element);
 			anchor.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 			await elementUpdated(element);
 
+			expect(openStateBeforeEsc)
+				.toEqual(true);
 			expect(element.open)
 				.toEqual(false);
+		});
+
+		it('should remove keydown listener after disconnection', async function () {
+			const anchor = await setupPopupToOpenWithAnchor();
+			const openStateBeforeEsc = element.open;
+
+			await elementUpdated(element);
+			element.disconnectedCallback();
+			await elementUpdated(element);
+			anchor.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+
+			expect(openStateBeforeEsc)
+				.toEqual(true);
+			expect(element.open)
+				.toEqual(true);
+		});
+
+		it('should remove keydown listener after changing anchor', async function () {
+			const anchor = await setupPopupToOpenWithAnchor();
+			const openStateBeforeEsc = element.open;
+
+			await elementUpdated(element);
+			element.anchor = 'new-anchor';
+			await elementUpdated(element);
+			anchor.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+
+			expect(openStateBeforeEsc)
+				.toEqual(true);
+			expect(element.open)
+				.toEqual(true);
 		});
 	});
 
