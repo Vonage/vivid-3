@@ -102,7 +102,7 @@ Will generate a new component in `libs/componnts/src/lib/my-component`
 
 #### Test
 
-`npx nx run components:test` will run unit tests for the components.
+`npx nx run components:test` or `npm test` will run unit tests for the components.
 
 Use the `--watch` flag to develop with the tests refreshing on every change.
 
