@@ -3,9 +3,8 @@
 
 Essential UI **web components** for building modern web applications, bound to provide a **safe**, **simple** and **intuitive** interface.
 
+<!-- ! TODO add visual - GIF or image reflecting an easy integration of vivid in code and page result -->
 ![the Vivid logo](/vivid-logo.svg)
-
--- TODO add visual - GIF or image reflecting an easy integration of vivid in code and page result
 
 ## Installation
 
@@ -29,7 +28,7 @@ And include in HTML:
 <vwc-button label="Click me"></vwc-button>
 ```
 
-[Explore the complete list of components docs](https://vivid.deno.dev/components/accordion/) 📚.
+For a full list of components, explore the [components docs](https://vivid.deno.dev/components/accordion/) 📚.
 
 ### Prerequisites
 
@@ -50,6 +49,13 @@ The folder contains the following files:
   - `themes/light.css` - Light theme css (only one theme can apply at a time. thus, only one is required to be loaded)
 
   - `themes/dark.css` - Dark theme css
+
+Note: Scss users can simply forward the styles to their scss project:
+
+```scss
+@foward '@vonage/vivid/styles/fonts/spezia';
+@foward '@vonage/vivid/styles/themes/light';
+```
 
 ## Support
 
