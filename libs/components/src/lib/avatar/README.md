@@ -86,7 +86,7 @@ TODO: fit or block size
 <vwc-avatar density="2" shape="pill"></vwc-avatar>
 <vwc-avatar density="3" shape="pill"></vwc-avatar>
 <vwc-avatar density="5" shape="pill"></vwc-avatar>
-<vwc-avatar density="5" shape="pill"></vwc-avatar>
+<vwc-avatar density="6" shape="pill"></vwc-avatar>
 
 <hr>
 <vwc-avatar density="-2" name="rt" shape="pill"></vwc-avatar>
@@ -105,7 +105,10 @@ When using an image set `appearance` to `filled`
 
 
 ```html preview
-<vwc-avatar shape="pill"  appearance="ghost" density="3">
+<vwc-avatar shape="pill" appearance="filled" density="3">
 <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="woman"/>
+</vwc-avatar>
+<vwc-avatar shape="pill" appearance="filled" density="3">
+<vwc-icon type="user-line"></vwc-icon>
 </vwc-avatar>
 ```
