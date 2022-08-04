@@ -1,3 +1,9 @@
+What does this project do?
+Why is this project useful?
+How do I get started?
+Where can I get more help, if I need it?
+how you handle contributions, what the goals of the project are, and information about licenses and attribution
+
 # Project Title
 
 One Paragraph of project description goes here
