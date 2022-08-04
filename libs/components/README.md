@@ -1,9 +1,9 @@
 
 # Vivid UI
 
-![the Vivid logo](/vivid-logo.svg)
+Essential UI **web components** for building modern web applications, bound to provide a **safe**, **simple** and **intuitive** interface.
 
-essential UI **web components** for building modern web applications, bound to provide a **safe**, **simple** and **intuitive** interface.
+![the Vivid logo](/vivid-logo.svg)
 
 -- TODO add visual - GIF or image reflecting an easy integration of vivid in code and page result
 
