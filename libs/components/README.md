@@ -32,7 +32,15 @@ For a full list of components, explore the [components docs](https://vivid.deno.
 
 ### Prerequisites
 
-The Vivid components library rely on a set of **core styles** to be present in the DOM, be shared across all components, apply common design identities (such as colors, typography, spacing etc'), and ensure the components look as intended.
+The Vivid components library rely on a set of **core styles** to:
+
+- Be present in the DOM
+
+- Be shared across all components
+
+- Apply common design identities (such as colors, typography, spacing etc')
+
+- Ensure the components look as intended.
 
 As the task of loading css is not trivial, and may vary from project to project, this library does not provide any way to load the css. It is up to the author to load the css in the most appropriate manner for their project.
 
