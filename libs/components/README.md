@@ -53,17 +53,15 @@ The folder contains the following files:
 Note: scss users can simply forward the styles to their scss project:
 
 ```css
-@forward '@vonage/vivid/styles/fonts/spezia';
-@forward '@vonage/vivid/styles/themes/light';
+@forward 'node_modules/@vonage/vivid/styles/fonts/spezia';
+@forward 'node_modules/@vonage/vivid/styles/themes/light';
 ```
 
 ## Support
 
-This library is open source, is developed and maintained mostly by the [Vonage Vivid team](Vonage/vivid).
+This library is open source, developed and maintained by the [Vonage Vivid team](Vonage/vivid).
 
-If, for any reason, you need help with the library, please [contact the team](Vonage/vivid).
-
-For any questions, please [open an issue](Vonage/vivid/issues), [bug report](https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=bug_report.md&title=) or [feature request](https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=feature_request.md&title=).
+For any questions, please open a [bug report](https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=bug_report.md&title=) or [feature request](https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=feature_request.md&title=).
 
 ## Roadmap
 
