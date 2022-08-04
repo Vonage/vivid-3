@@ -12,7 +12,25 @@ Vonage's UI essentials for building modern web applications, bound to provide a 
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+To integrate Vivid into your project, run:
+
+```bash
+npm install @vonage/vivid # or yarn add @vonage/vivid
+```
+
+Then, you can import the components in your project:
+
+use:
+
+```js
+import '@vonage/vivid/button';
+```
+
+```html
+<vwc-button label="Click me"></vwc-button>
+```
+
+For a complete list of components, [explore the docs](https://vivid.deno.dev).
 
 ### Prerequisites
 
