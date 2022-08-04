@@ -75,7 +75,9 @@ import '@vonage/vivid/button';
 
 ## Roadmap
 
-[view components status](https://github.com/orgs/Vonage/projects/3)
+[view components status](https://github.com/orgs/Vonage/projects/6)
+
+[view development issues planning](https://github.com/orgs/Vonage/projects/3)
 
 We publish a _next_ release on every successful merge to main, so you never need to wait for a new stable version to make use of any updates.
 
@@ -86,7 +88,7 @@ See the [open issues](https://github.com/vonage/vivid-3/issues) for a full list 
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!
-Feel free to check [issues page](https://github.com/Vonage/vivid-3/issues). You can also take a look at the [contributing guide](.github/CONTRIBUTING.md).
+Feel free to check [issues page](https://github.com/Vonage/vivid-3/issues). You can also take a look at the [contributing guide](../../.github/CONTRIBUTING.md).
 
 <br>
 
