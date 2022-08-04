@@ -30,7 +30,9 @@
 ## Quickstart
 
 ### CDN
-You can import vivid components from CDN.
+You can import vivid components from a CDN. 
+
+Vivid is using [unpkg](https://unpkg.com) and [jsdeliver](https://jsdeliver) to serve the package.
 - https://unpkg.com/@vonage/vivid@next
 - https://cdn.jsdelivr.net/npm/@vonage/vivid@next
 
@@ -43,6 +45,14 @@ Example:
 <link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/fonts/spezia.css">
 ```
 
+You can also import a specific component:
+
+Example of importing only the button:
+```
+<script type="module" src="https://unpkg.com/@vonage/vivid@next/button"></script>
+<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/themes/light.css">
+<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/fonts/spezia.css">
+```
 ES Example: [Open Codepen](https://codepen.io/yonatankra/pen/yLKyaPG)
 
 ### Installation
@@ -113,6 +123,14 @@ This project is [Apache 2.0][license-url] licensed.
 <br>
 
 <hr>
+
+## Credits
+
+Vivid is powered by a lot of open source libraries and tools. The main tools and libraries we use are:
+* [fast.design](https://fast.design)
+* [Deno Deploy](https://deno.com/deploy)
+* [unpkg](https://unpkg.com)
+* [jsdeliver](https://jsdeliver)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
