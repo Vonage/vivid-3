@@ -80,10 +80,6 @@ vwc-header:not(:defined) {
   display: none;
 }
 
-vwc-header:defined {
-  display: block;
-}
-
 vwc-header#header-main::part(base) {
   position: fixed;
   top: 0;
@@ -203,6 +199,7 @@ article > .cbd-container {
   margin-inline-start: -20px;
 
 }
+
 article > vwc-text[font-face="headline-1"] {
   padding-inline: 16px;
   padding-block-start: 40px;
