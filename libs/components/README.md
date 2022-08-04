@@ -88,27 +88,7 @@ See the [open issues](https://github.com/vonage/vivid-3/issues) for a full list 
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!
-Feel free to check [issues page](https://github.com/Vonage/vivid-3/issues). You can also take a look at the [contributing guide](https://github.com/Vonage/vivid-3/.github/CONTRIBUTING.md).
-
-<br>
-
-### Getting started
-
-#### Generate a new component
-
-`npx run nx g @vonage/nx-vivid:component my-component`
-
-Will generate a new component in `libs/componnts/src/lib/my-component`
-
-#### Test
-
-`npx nx run components:test` or `npm test` will run unit tests for the components.
-
-Use the `--watch` flag to develop with the tests refreshing on every change.
-
-Use the `--coverage` flag to generate test coverage for the components.
-
-See the [ui-tests docs](https://github.com/Vonage/vivid-3/docs/ui-test/readme.md) for how to run visual tests.
+Check vivid's [issues page](https://github.com/Vonage/vivid-3/issues). You can also take a look at the [contributing guide](https://github.com/Vonage/vivid-3/blob/main/.github/CONTRIBUTING.md).
 
 ## Show your support
 

@@ -14,41 +14,56 @@ Never made an open source contribution before? Wondering how contributions work 
 
 - Run `npm install`
 
-- Building and developing the documentation:
+### Generate a new component
+
+`npx run nx g @vonage/nx-vivid:component my-component`
+
+Will generate a new component in `libs/componnts/src/lib/my-component`
+
+### Building and developing the documentation:
+
   - Development: `npx nx run docs:serve` or `npm start`
-  - Build: `npx run build docs`
+  - Build: `npx run docs:build`
 
-- Building and developing the components:
-  - Unit Tests
-    - `npx nx run components:test` to start the tests or `npm test`
-    - `npx nx run components:test --watch` to start the tests in watch mode
-    - `npx nx run components:test --coverage` to start the tests with coverage report (generated in the `coverage` folder)
-  - Visual tests: see the [ui-tests documentation](../docs/ui-tests/readme.md)
-  - Build: `npx nx run build components`
+### Building and developing the components:
 
-- Once you are done developing the change, commit your changes with a meaningful commit message
+####  Unit Tests
 
-- We are using `beachball` in order to document changes:
-  - run: `npx beachball change` or `npm run change` . You will be prompted to describe your change. Once you do, change files will be generated and commited.
-  - Note that during CI a check is made to make sure this rule is followed
+- `npx nx run components:test` to start the tests or `npm test`
+- `npx nx run components:test --watch` to start the tests in watch mode
+- `npx nx run components:test --coverage` to start the tests with coverage report (generated in the `coverage` folder)
 
-- Push the changes to the remote repository using `git push origin branch-name-here`.
+#### Visual tests
+  see the [ui-tests documentation](https://github.com/Vonage/vivid-3/blob/main/docs/ui-test/readme.md)
 
-- Submit a pull request to the upstream repository.
+### Build 
+`npx nx run components:build`
 
-- Title the pull request with a short description of the changes made and the issue or bug number associated with your change. For example, you can title an issue like so "Added more log outputting to resolve #4352".
+### Pushing your changes
 
-- In the description of the pull request, explain the changes that you made, any issues you think exist with the pull request you made, and any questions you have for the maintainer. It's OK if your pull request is not perfect (no pull request is), the reviewer will be able to help you fix any problems and improve it!
+Once you are done developing the change, commit your changes with a meaningful commit message
 
-- Wait for the pull request to be reviewed by a maintainer.
+  - We are using `beachball` in order to document changes:
+    - run: `npx beachball change` or `npm run change` . You will be prompted to describe your change. Once you do, change files will be generated and commited.
+    - Note that during CI a check is made to make sure this rule is followed
 
-- Make changes to the pull request if the reviewing maintainer recommends them.
+  - Push the changes to the remote repository using `git push origin branch-name-here`.
 
-- Celebrate your success after your pull request is merged!
+  - Submit a pull request to the upstream repository.
+
+  - Title the pull request with a short description of the changes made and the issue or bug number associated with your change. For example, you can title an issue like so "Added more log outputting to resolve #4352".
+
+  - In the description of the pull request, explain the changes that you made, any issues you think exist with the pull request you made, and any questions you have for the maintainer. It's OK if your pull request is not perfect (no pull request is), the reviewer will be able to help you fix any problems and improve it!
+
+  - Wait for the pull request to be reviewed by a maintainer.
+
+  - Make changes to the pull request if the reviewing maintainer recommends them.
+
+  - Celebrate your success after your pull request is merged!
 
 ## Where can I go for help?
 
-If you need help, you can ask questions on our mailing list, IRC chat, or [list any other communication platforms that your project uses].
+You can always raise an issue or comment in a pull request.
 
 ## What does the Code of Conduct mean for me?
 
