@@ -1,12 +1,7 @@
-What does this project do?
-Why is this project useful?
-How do I get started?
-Where can I get more help, if I need it?
-how you handle contributions, what the goals of the project are, and information about licenses and attribution
-
-![the Vivid logo](/vivid-logo.svg)
 
 # Vivid UI
+
+![the Vivid logo](/vivid-logo.svg)
 
 essential UI **web components** for building modern web applications, bound to provide a **safe**, **simple** and **intuitive** interface.
 
@@ -66,13 +61,13 @@ For any questions, please [open an issue](Vonage/vivid/issues), [bug report](htt
 
 ## Roadmap
 
-[Components status](https://github.com/orgs/Vonage/projects/6)
+- View [components status](https://github.com/orgs/Vonage/projects/6)
 
-[What's on our plate](https://github.com/orgs/Vonage/projects/3/views/7)
+- [What's on our plate](https://github.com/orgs/Vonage/projects/3/views/7)
+
+- See the [open issues](https://github.com/vonage/vivid-3/issues) for a full list of proposed features (and known issues).
 
 We publish a *next* release on every successful merge to main, so you never need to wait for a new stable version to make use of any updates.
-
-See the [open issues](https://github.com/vonage/vivid-3/issues) for a full list of proposed features (and known issues).
 
 ## Contributing
 
@@ -80,7 +75,7 @@ Please read [CONTRIBUTING.md](.github/CONTRIBUTING.md) for details on our code o
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [npm page](https://www.npmjs.com/package/@vonage/vivid).
 
 ## Authors
 
@@ -88,13 +83,13 @@ See also the list of [contributors](https://github.com/your/project/contributors
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the Apache 2.0 License - see the [LICENSE.md](LICENSE.md) file for details
 
-## Acknowledgments
+<!-- ## Acknowledgments
 
 - Hat tip to anyone whose code was used
 - Inspiration
-- etc
+- etc -->
 
 ## Built With
 
