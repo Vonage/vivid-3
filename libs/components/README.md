@@ -131,7 +131,7 @@ Vivid is powered by a lot of open source libraries and tools. The main tools and
 * [Deno Deploy](https://deno.com/deploy)
 * [unpkg](https://unpkg.com)
 * [jsdeliver](https://jsdeliver)
-
+* [floating-ui](https://floating-ui.com/)
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [codecov-shield]: https://img.shields.io/codecov/c/gh/Vonage/vivid-3?style=for-the-badge&token=74ALFP2OR2
