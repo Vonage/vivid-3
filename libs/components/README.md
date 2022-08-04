@@ -50,11 +50,11 @@ The folder contains the following files:
 
   - `themes/dark.css` - Dark theme css
 
-Note: Scss users can simply forward the styles to their scss project:
+Note: scss users can simply forward the styles to their scss project:
 
-```scss
-@foward '@vonage/vivid/styles/fonts/spezia';
-@foward '@vonage/vivid/styles/themes/light';
+```css
+@forward '@vonage/vivid/styles/fonts/spezia';
+@forward '@vonage/vivid/styles/themes/light';
 ```
 
 ## Support
