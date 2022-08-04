@@ -75,9 +75,7 @@ import '@vonage/vivid/button';
 
 ## Roadmap
 
-[view components status](https://github.com/orgs/Vonage/projects/6)
-
-Follow our API planning on the [Vivid project components' view](https://github.com/orgs/Vonage/projects/3/views/13)
+[view components status](https://github.com/orgs/Vonage/projects/3)
 
 We publish a _next_ release on every successful merge to main, so you never need to wait for a new stable version to make use of any updates.
 
@@ -108,11 +106,11 @@ Use the `--watch` flag to develop with the tests refreshing on every change.
 
 Use the `--coverage` flag to generate test coverage for the components.
 
-See the [ui-tests docs](docs/ui-tests/readme.md) for how to run visual tests.
+See the [ui-tests docs](../../docs/ui-test/readme.md) for how to run visual tests.
 
 ## Show your support
 
-Give a ⭐️ if this project helped you!
+Give a [⭐️](https://github.com/Vonage/vivid-3/stargazers)️ if this project helped you!
 
 <br>
 
