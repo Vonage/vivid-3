@@ -8,23 +8,25 @@ how you handle contributions, what the goals of the project are, and information
 
 # Vivid Web Components
 
-Vonage's UI essentials for building modern web applications, bound to provide a **safe**, **simple** and **intuitive** interface.
+Vonage's modern web applications essential UI elements, bound to provide a **safe**, **simple** and **intuitive** interface.
+
+-- TODO add visual - GIF or image reflecting an easy integration of vivid in code and page result
 
 ## Getting Started
 
-To integrate Vivid into your project, run:
+To integrate Vivid components into your project, run:
 
 ```bash
 npm install @vonage/vivid # or yarn add @vonage/vivid
 ```
 
-Then, you can import the components in your project:
-
-use:
+Then, import components in your project:
 
 ```js
 import '@vonage/vivid/button';
 ```
+
+And include in HTML:
 
 ```html
 <vwc-button label="Click me"></vwc-button>
@@ -34,15 +36,11 @@ For a complete list of components, [explore the docs](https://vivid.deno.dev).
 
 ### Prerequisites
 
-#### Styles
-
-The Vivid components library rely on a set of core styles to be present in the DOM, be shared across all components, apply common design identities (such as colors, typography, spacing etc'), and ensure the components look as intended.
+The Vivid components library rely on a set of **core styles** to be present in the DOM, be shared across all components, apply common design identities (such as colors, typography, spacing etc'), and ensure the components look as intended.
 
 As the task of loading css is not trivial, and may vary from project to project, this library does not provide any way to load the css. It is up to the author to load the css in the most appropriate manner for their project.
 
-##### Usage
-
-To include the styles, css files must be loaded into the project from the `node_modules/@vonage/vivid/styles` folder.
+To **include the styles**, css files must be loaded into the project from the `node_modules/@vonage/vivid/styles` folder.
 
 Folder contains the following files:
 
@@ -56,59 +54,11 @@ Folder contains the following files:
 
   - `themes/dark.css` - Dark theme css
 
-```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
 ## Built With
 
-- [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-- [Maven](https://maven.apache.org/) - Dependency Management
-- [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
+- [Fast](https://www.fast.design) - to extend element classes and compile code to native web components
+- [Typescript](https://www.typescriptlang.org) - for ergonomic and type-safe code
+- [Sass](https://sass-lang.com) - for styles authoring extensibility and consistency
 
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
