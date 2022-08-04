@@ -2,7 +2,7 @@
 <vwc-sidenav>
   <vwc-sidenav-disclosure label="Design System" open>
     {%  for item in designs | sort(false, false, 'title') %}
-    <vwc-sidenav-item href="{{ ('/designs/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-sidenav-item>
+    <vwc-sidenav-item href="{{ ('/designs/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}" id="nav-{{ item.title }}"></vwc-sidenav-item>
     {% endfor %}
   </vwc-sidenav-disclosure>
 
