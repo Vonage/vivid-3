@@ -11,6 +11,7 @@ strong {
 /* #region document */
 html {
   scroll-padding-top: 64px;
+	direction:rtl;
 }
 
 body {
