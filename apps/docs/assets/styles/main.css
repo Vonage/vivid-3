@@ -11,13 +11,13 @@ strong {
 /* #region document */
 html {
   scroll-padding-top: 64px;
-	direction: ltr;
 }
 
 body {
-  margin: 0;
+	margin: 0;
   background-color: var(--vvd-color-canvas);
   color: var(--vvd-color-on-canvas);
+	direction: ltr;
 }
 
 a,
@@ -29,25 +29,23 @@ a:visited {
 /* #endregion document */
 
 /* #region layout */
-#menu-button:not(:defined) {
-  display: none;
-}
-
-#menu-button:defined {
-  display: block;
-  position: fixed;
-  inset: auto auto 8px 8px;
+#menu-button {
+	position: fixed;
+  inset: auto auto calc(env(safe-area-inset-bottom) + 8px) calc(env(safe-area-inset-left) + 8px);
   z-index: 2;
 }
 
-vwc-side-drawer:not(:defined) {
-  display: none;
+#menu-button:not(:defined) {
+	display: none;
 }
 
-vwc-side-drawer:defined {
-  --side-drawer-app-content-offset: 280px;
-  display: block;
+vwc-side-drawer {
+	--side-drawer-app-content-offset: 280px;
   margin-block-start: var(--_header-block-size);
+}
+
+vwc-side-drawer:not(:defined) {
+	display: none;
 }
 
 vwc-side-drawer[open] {
