@@ -65,7 +65,7 @@ vwc-side-drawer::part(base) {
 
 vwc-side-drawer::part(base) {
   block-size: calc(100vh - var(--_header-block-size));
-  bottom: env(safe-area-inset-bottom);
+  bottom: 0;
   top: var(--_header-block-size);
 	padding-block-end: calc(40px + env(safe-area-inset-bottom));
 }
