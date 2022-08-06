@@ -2,7 +2,7 @@
 
 ```js
 <script type="module">
-    import '@vonage/vivid/accordion-item';
+  import '@vonage/vivid/accordion-item';
 </script>
 ```
 
@@ -128,12 +128,3 @@ Add the `icon-trailing` attribute (or `iconTrailing` property) to add an icon to
 The accordion-item has a `role` button.  
 Accordion-item has `aria-expanded` set to true when the content is visible. Otherwise, it is set to false.  
 Accordion-item has a value specified for `aria-controls` that refers to the content.
-
-## Keyboard Interaction
-
-When the accordion-item has focus:
-
-`Enter`: activates the accordion-item and toggles the visibility of the content.  
-`Space`: activates the accordion-item and toggles the visibility of the content.  
-`Tab`: moves focus to the next element in the tab order.  
-`Shift` + `Tab`: moves focus to the previous element in the tab order.  

@@ -1,16 +1,18 @@
 # Tooltip
 
-A tooltip is a brief, informative message or descriptions or explanations for their paired element. Tooltips in general are less accessible so be sure to follow our accessibility recommendation in the docs.
+A tooltip is a brief, informative message or descriptions or explanations for their paired element. Tooltips in general are less accessible so be sure to follow our [accessibility recommendation](#accessibility) in the docs.
 
 ```js
 <script type="module">
-    import '@vonage/vivid/tooltip';
+  import '@vonage/vivid/tooltip';
 </script>
 ```
 
-## Anchor
+## Members
 
-The tooltip can be placed on interactive controls (things that can be clicked or focusable) such as: button, checkbox, input text.
+### Anchor
+
+The tooltip can be placed on interactive controls (things that can be hovered or focusable) such as: button, checkbox, input text.  
 The tooltip can't be placed on non-interactive elements such as paragraph or plain div.  
 Do not target non-interactive controls as a tooltip's anchor (such as non-focusable / disabled elements).
 
@@ -22,14 +24,14 @@ Do not target non-interactive controls as a tooltip's anchor (such as non-focusa
 <vwc-tooltip id="tooltip" anchor="anchor" text="I'm a tooltip" open></vwc-tooltip>
 ```
 
-## Text
+### Text
 
-The tooltip is a description and therefor, the tooltip itself can not be interactive. `vwc-tooltip` contains only text.
+The tooltip is a description and therefor, the tooltip itself can not be interactive and contains only text.
 
 - Type: `string`
 - Default: `undefined`
 
-## Open
+### Open
 
 Use the `open` attribute to indicate whether the tooltip is open.
 
@@ -38,16 +40,20 @@ Use the `open` attribute to indicate whether the tooltip is open.
 
 ```html preview
 <vwc-button id="button" icon="info-line" shape="pill" aria-describedby="tooltip"></vwc-button>
-<vwc-tooltip id="tooltip" anchor="button" text="Click on the icon to toggle"></vwc-tooltip>
+<vwc-tooltip id="tooltip" anchor="button" text="Focus or hover to open."></vwc-tooltip>
 
 <script>
-  button.addEventListener('click', () => tooltip.open = !tooltip.open);
+  button.addEventListener('mouseover', ()=> tooltip.open = true);
+  button.addEventListener('mouseout', ()=> tooltip.open = false);
+
+  button.addEventListener('focusin', ()=> tooltip.open = true);
+  button.addEventListener('focusout', ()=> tooltip.open = false);
 </script>
 ```
 
-## Corner
+### Placement
 
-Use the `corner` attribute to set the placement of the tooltip around the anchor.
+Use the `placement` attribute to set the placement of the tooltip around the anchor.
 
 - Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
 - Default: `'left'`
@@ -59,38 +65,13 @@ Use the `corner` attribute to set the placement of the tooltip around the anchor
   }
 </style>
 <vwc-button id="anchor" appearance='outlined' label='This is an anchor'></vwc-button>
-<vwc-tooltip anchor="anchor" open text="right" corner="right"></vwc-tooltip>
-<vwc-tooltip anchor="anchor" open text="left" corner="left"></vwc-tooltip>
-<vwc-tooltip anchor="anchor" open text="top" corner="top"></vwc-tooltip>
-<vwc-tooltip anchor="anchor" open text="bottom" corner="bottom"></vwc-tooltip>
+<vwc-tooltip anchor="anchor" open text="right" placement="right"></vwc-tooltip>
+<vwc-tooltip anchor="anchor" open text="left" placement="left"></vwc-tooltip>
+<vwc-tooltip anchor="anchor" open text="top" placement="top"></vwc-tooltip>
+<vwc-tooltip anchor="anchor" open text="bottom" placement="bottom"></vwc-tooltip>
 ```
 
-## Usage inside text
-
-```html preview
-<vwc-text font-face="body-1" tight>
-  Text with tooltip - press the question mark
-  <vwc-button id="button" icon="help-line" shape="pill" aria-describedby="tooltip"></vwc-button>
-  more text after tooltip.
-</vwc-text>
-
-<vwc-tooltip open id="tooltip" anchor="button" corner="bottom-end" text="I'm the tooltip content"></vwc-tooltip>
-
-<script>
-  button.addEventListener('click', () => tooltip.open = !tooltip.open);
-</script>
-```
-
-## Accessibility
-
-Be sure to add `aria-describedby="vwc-tooltip's ID"` on the tooltip trigger element for screen readers readability.
-
-```js
-<vwc-button id="anchor" aria-describedby="tooltip"></vwc-button>
-<vwc-tooltip id="tooltip" anchor="anchor"></vwc-tooltip>
-```
-
-## CSS Custom Properties
+## CSS Variables
 
 ### Inline Size
 
@@ -109,3 +90,44 @@ Use the `--tooltip-inline-size` variable to set the tooltip's inline size.
 <vwc-button id="button" icon="info-line" shape="pill" aria-describedby="tooltip"></vwc-button>
 <vwc-tooltip open id="tooltip" anchor="button" text="My inline size is 200px"></vwc-tooltip>
 ```
+
+## Accessibility
+
+- Tooltip has a `role` tooltip.
+- Be sure to add `aria-describedby= "tooltip's id"` on the tooltip trigger element for screen readers readability.
+- The trigger of the tooltip must be focusable and interactive.
+- A tooltip cannot contain interactive or focusable content.
+- The escape key hides the tooltip when the anchor is focused.
+- Tooltip should show on mouse hover and keyboard focus.
+- Tabbing to the element should display the tooltip.
+
+## Use Cases
+
+### Usage inside text
+
+```html preview
+<vwc-text font-face="body-1" tight>
+  Text with tooltip - press the question mark
+  <vwc-button id="button" icon="help-line" shape="pill" aria-describedby="tooltip"></vwc-button>
+  more text after tooltip.
+</vwc-text>
+
+<vwc-tooltip id="tooltip" anchor="button" placement="bottom-end" text="I'm the tooltip content"></vwc-tooltip>
+
+<script>
+  button.addEventListener('mouseover', ()=> tooltip.open = true);
+  button.addEventListener('mouseout', ()=> tooltip.open = false);
+
+  button.addEventListener('focusin', ()=> tooltip.open = true);
+  button.addEventListener('focusout', ()=> tooltip.open = false);
+</script>
+```
+
+## Caveat
+
+Document elements display precedence is formed by the imaginary z-axis [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context), commonly by order of which elements are rendered and special properties (e.g. _z-index_).
+Tooltip component is a low level element, unaware of its document context, but is, in most cases, required to overlay on top of all elements.
+
+A common practice used in apps / frameworks to promote a tooltip component to top other elements z-axis, is to utilise a service that dynamically appends a tooltip component to the end of the body element, when called for.
+
+This helps ensure elements don't render over top a tooltip undesirebly.

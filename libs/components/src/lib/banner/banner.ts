@@ -50,7 +50,7 @@ export class Banner extends FoundationElement {
 	}
 
 	override remove(): void {
-		this.$emit('vwc-banner:removing');
+		this.$emit('removing');
 		const banner = this.shadowRoot && this.shadowRoot.querySelector('.banner');
 		if (banner) {
 			banner.classList.add('removing');
@@ -59,7 +59,7 @@ export class Banner extends FoundationElement {
 	}
 
 	#handleRemoveEnd = () => {
-		this.$emit('vwc-banner:removed');
+		this.$emit('removed');
 		this.parentElement && this.parentElement.removeChild(this);
 	};
 

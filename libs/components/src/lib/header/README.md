@@ -1,235 +1,296 @@
 # Header
 
-```html
+Represents the top header of a page.
+
+```js
 <script type="module">
-    import '@vonage/vivid/header';
+  import '@vonage/vivid/header';
 </script>
 ```
 
-## Properties
+## Members
 
-### Heading
+### Elevation Shadow
 
-Add the `heading` attribute to set the heading text.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview full
-<style>
-    html { 
-      block-size: 200px; 
-    }
-</style>
-<vwc-header heading="Header">
-  <vwc-layout slot="app-content" column-basis="block" gutters="medium">
-    <vwc-text tight font-face="headline-2">
-      <h2>
-        Scroll to see the effect.
-      </h2>
-    </vwc-text>
-
-    <vwc-text font-face="body-1">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-      </p>
-    </vwc-text>
-
-    <vwc-text font-face="body-1">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-      </p>
-    </vwc-text>
-  </vwc-layout>
-</vwc-header>
-```
-
-### Fixed
-
-Add the `fixed` attribute to set the header's position to be fixed.
+As an elevated element, the Header applies an elevation surface background color (more noticeable in dark themes) but leaves out elevation shadow (more noticeable in light themes) for author's to opt-in.
+Set `elevation-shadow` on header to apply the elevation shadow corresponding with its surface background color.
 
 - Type: `boolean`
 - Default: `false`
 
 ```html preview full
-<style>
-    html { 
-      block-size: 200px; 
-    }
-</style>
-<vwc-header heading="Fixed Header" fixed>
-  <vwc-layout slot="app-content" column-basis="block" gutters="medium">
-    <vwc-text tight font-face="headline-2">
-      <h2>
-        Scroll to see the effect.
-      </h2>
-    </vwc-text>
-
-    <vwc-text font-face="body-1">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-      </p>
-    </vwc-text>
-
-    <vwc-text font-face="body-1">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-      </p>
-    </vwc-text>
-  </vwc-layout>
+<vwc-header elevation-shadow>
+  Header content
 </vwc-header>
 ```
 
 ### Alternate
 
-Add the `alternate` attribute to set the color-scheme to dark or light (depending on current user's system settings).
+Use `alternate` to apply an alternate color-scheme, which is in contrast with the current global theme and applies on all assigned vivid components.
 
 - Type: `boolean`
 - Default: `false`
 
 ```html preview full
-<vwc-header heading="Alternate Header" alternate></vwc-header>
+<vwc-header alternate>
+  Header content
+</vwc-header>
 ```
 
 ## Slots
 
 ### Default
 
-The default slot is for action content next to the heading.
+The default slot sets assigned nodes to the start of the header.
 
 ```html preview full
-<vwc-header heading="With Default Slot">
-    <vwc-button icon="menu-line"></vwc-button>
+<vwc-header>
+   Header content
 </vwc-header>
 ```
 
 ### Action Items
 
-Action items are displayed at the end of the header in the `actionItems` slot.
+Nodes assigned to `action-items` slot will be set at the end of the header.
 
 ```html preview full
-<vwc-header heading="With Action Items Slot">
-    <div slot="actionItems">
-        <vwc-button icon="twitter-mono"></vwc-button>
-        <vwc-button icon="facebook-mono"></vwc-button>
-        <vwc-button icon="heart-solid"></vwc-button>
-    </div>
+<vwc-header>
+  <vwc-button slot="action-items" icon="twitter-mono"></vwc-button>
+  <vwc-button slot="action-items" icon="facebook-mono"></vwc-button>
+  <vwc-button slot="action-items" icon="heart-solid"></vwc-button>
 </vwc-header>
 ```
 
-### App-content
+### App Content
 
-To add content below the header, add a slot called `app-content`.
+It is also possible to assign application context directly to the header's `app-content` slot, which will allow content to follow, vertically, the header.
 
 ```html preview full
-<vwc-header heading="With App Content Slot">
-  <div slot="app-content">
-    <vwc-text tight font-face="body-1">
-        This is the app-content slot!!!!
-    </vwc-text>
-  </div>
+<vwc-header>
+  Header content
+  <main slot="app-content">
+    <vwc-layout gutters="small">
+      <vwc-text>
+        Application content
+      </vwc-text>
+    </vwc-layout>
+  </main>
 </vwc-header>
 ```
 
-## Example Usage
+## CSS Variables
 
-### Fixed Header With Side-Drawer
+### Block Size
 
-This is an example of a `fixed` Header with the default, `actionItems` and `app-content` slots.
+The size of the header block is set definitively. A header's block size value is often used in conjunction with other elements in the application. The `--_header-block-size` private custom property is applied internally to header styles and holds the block size value. This property isn't customizable by authors but does pierce in and can be set to apply style to assigned content.
+
+- Type: `css-unit`
+- Accessibility: `read-only`
+- Value: `64px`
 
 ```html preview full
 <style>
-   html { 
-      block-size: 300px; 
-    }
-    vwc-side-drawer#sideDrawer{
-        --side-drawer-background-color: var(--vvd-color-neutral-10);
-        --side-drawer-inline-size: 200px;
-    }
+  vwc-header::part(base) {
+    position: fixed;
+    top: 0;
+  }
+
+  main {
+    padding-block-start: var(--_header-block-size);
+  }
 </style>
-<vwc-header fixed heading="Header with Side Drawer">
-  <vwc-button id="button" icon="menu-line"></vwc-button>
-  <div slot="actionItems">
-      <vwc-button icon="twitter-mono"></vwc-button>
-      <vwc-button icon="facebook-mono"></vwc-button>
-      <vwc-button icon="heart-solid"></vwc-button>
-  </div>
-  <vwc-side-drawer id="sideDrawer" open slot="app-content">
-    <div>
-        <vwc-sidenav-item href="#" text="1st level item" icon="home-line"></vwc-sidenav-item>
-        <p><vwc-text font-face="body-2-bold">SECTION TITLE</vwc-text></p>
-        <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
-        <vwc-sidenav-item href="#" text="1st level item" icon="chat-line"></vwc-sidenav-item>
-    </div>
-    <vwc-layout slot="app-content" column-basis="block" gutters="medium">
-      <vwc-text tight font-face="headline-2">
-        <h2>
-          Scroll to see the effect.
-        </h2>
-      </vwc-text>
 
-      <vwc-text font-face="body-1">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-        </p>
-      </vwc-text>
+<vwc-header>
+  Header content
 
-      <vwc-text font-face="body-1">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-        </p>
+  <main slot="app-content">
+    <vwc-layout column-basis="block" gutters="medium">
+      <vwc-text tight font-face="headline-1">
+        <h1>
+          Application content
+        </h1>
       </vwc-text>
     </vwc-layout>
+  </main>
+</vwc-header>
+```
+
+## CSS Parts
+
+### Base
+
+The component's internal *header* element.
+
+```html preview full
+<style>
+  vwc-header::part(base) {
+    background-color: var(--vvd-color-neutral-20);
+  }
+</style>
+
+<vwc-header>
+  Header content
+</vwc-header>
+```
+
+## Use Cases
+
+### Fixed Header with Side Drawer
+
+A *fixed* Header as primary element containing a Side Drawer containing application content.
+
+```html preview full
+<style>
+  html { /* for demo purposes */
+    block-size: 300px; 
+  }
+
+  vwc-header::part(base) {
+    position: fixed;
+    top: 0;
+    z-index: 2;
+  }
+
+  vwc-side-drawer::part(base) {
+    block-size: calc(100vh - var(--_header-block-size));
+    bottom: 0;
+    top: auto;
+  }
+
+  vwc-side-drawer > main {
+    padding-block-start: var(--_header-block-size);
+  }
+</style>
+
+<vwc-header>
+  Header content
+
+  <!-- side drawer custom element assigned to header's 'app-content' slot -->
+  <vwc-side-drawer open slot="app-content">
+
+    <vwc-layout gutters="small">
+      <vwc-text>
+        Side Drawer content
+      </vwc-text>
+    </vwc-layout>
+
+    <!-- main element assigned to side-drawer's 'app-content' slot -->
+    <main slot="app-content">
+      <vwc-layout gutters="small" column-basis="block">
+        <vwc-text tight font-face="headline-2">
+          <h2>
+            Scroll this window
+          </h2>
+        </vwc-text>
+
+        <vwc-text>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+          </p>
+        </vwc-text>
+
+        <vwc-text>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+          </p>
+        </vwc-text>
+      </vwc-layout>
+    </main>
   </vwc-side-drawer>
 </vwc-header>
-<script>
-  button.addEventListener('click', function() {
-    sideDrawer.open = !sideDrawer.open;
-  });
-</script>
+```
+
+### Side Drawer with Header
+
+A Side Drawer as primary element containing a Header containing application content.
+
+```html preview full
+<style>
+  vwc-side-drawer::part(base) {
+    border-right: 1px solid var(--vvd-color-neutral-20);
+  }
+</style>
+
+<vwc-side-drawer open>
+
+  <vwc-layout gutters="small">
+    <vwc-text>
+      Side Drawer content
+    </vwc-text>
+  </vwc-layout>
+
+  <!-- header custom element assigned to side drawer's 'app-content' slot -->
+  <vwc-header slot="app-content">
+
+    <vwc-layout gutters="small">
+      <vwc-text>
+        Header content
+      </vwc-text>
+    </vwc-layout>
+
+    <!-- main element assigned to header's 'app-content' slot -->
+    <main slot="app-content">
+      <vwc-layout gutters="small" column-basis="block">
+
+        <vwc-text>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+          </p>
+        </vwc-text>
+
+        <vwc-text>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+          </p>
+        </vwc-text>
+      </vwc-layout>
+    </main>
+  </vwc-header>
+
+</vwc-side-drawer>
 ```
 
 ### Header with Banner
 
-This is an example of a `fixed` Header with a Banner. Banners are placed at the top of the screen below the Header.
+Banners are placed at the top of the screen below the Header.  
+In this example, the banner sticks to the top of the window.
 
 ```html preview full
 <style>
   html { 
     block-size: 200px; 
   }
+
+  vwc-banner {
+    position: sticky;
+    top: 0;
+  }
 </style>
-<vwc-header heading="With Banner" fixed>
-  <div slot="app-content">
-    <vwc-banner text="Here's some information that you may find important!"></vwc-banner>
-    <vwc-layout column-basis="block" gutters="medium">
-      <vwc-text tight font-face="headline-2">
-        <h2>
-          Scroll to see the effect.
-        </h2>
-      </vwc-text>
 
-      <vwc-text font-face="body-1">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-        </p>
-      </vwc-text>
+<vwc-header>
+  Header with Banner
 
-      <vwc-text font-face="body-1">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-        </p>
-      </vwc-text>
-    </vwc-layout>
-  </div>
+  <vwc-banner slot="app-content" text="Here's some information that you may find important!"></vwc-banner>
+
+  <vwc-layout slot="app-content" column-basis="block" gutters="medium">
+    <vwc-text tight font-face="headline-1">
+      <h1>
+        Page Header
+      </h1>
+    </vwc-text>
+
+    <vwc-text>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+      </p>
+    </vwc-text>
+
+    <vwc-text>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+      </p>
+    </vwc-text>
+  </vwc-layout>
+
 </vwc-header>
 ```
-
-## CSS Custom Properties
-
-### Z-index
-
-Use the `--header-z-index` to control the z-index of the header.
-
-- Type: `Number`
-- Default: `7`

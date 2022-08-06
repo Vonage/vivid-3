@@ -1,0 +1,43 @@
+name: ♿️ Accessibility Validation
+
+on: workflow_call
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: npm
+
+      - uses: actions/cache@v3
+        id: cache
+        with:
+          path: node_modules/
+          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Build Site
+        run: npm run nx build docs
+
+      - name: Scan for accessibility issues
+        uses: microsoft/accessibility-insights-action@v3
+        with:
+          static-site-dir: ${{ github.workspace }}/dist/apps/docs
+          static-site-port: 12345
+          # due to action fail to pierce in shadowed links,
+          # all links must be explicitly specified, seperated by space
+          input-urls: http://localhost:12345/
+
+      - name: Upload report artifact
+        if: success() || failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: accessibility-reports
+          path: ${{ github.workspace }}/_accessibility-reports

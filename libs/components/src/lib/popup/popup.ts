@@ -2,6 +2,7 @@ import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { arrow, autoUpdate, computePosition, flip, hide, inline, offset, Strategy } from '@floating-ui/dom';
 import type { Placement } from '@floating-ui/dom';
+import { keyEscape } from '@microsoft/fast-web-utilities';
 
 /**
  * Base class for popup
@@ -71,9 +72,9 @@ export class Popup extends FoundationElement {
 	 * the placement of the popup
 	 *
 	 * @public
-	 * HTML Attribute: corner
+	 * HTML Attribute: placement
 	 */
-	@attr({ mode: 'fromView' }) corner?: Placement = 'left';
+	@attr({ mode: 'fromView' }) placement?: Placement = 'left';
 
 	/**
 	 * ID reference to element in the popup’s owner document.
@@ -89,6 +90,7 @@ export class Popup extends FoundationElement {
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
+		this.#anchorEl?.removeEventListener('keydown', this.#handleKeydown);
 		this.#cleanup?.();
 	}
 
@@ -96,7 +98,10 @@ export class Popup extends FoundationElement {
 		super.attributeChangedCallback(name, oldValue, newValue);
 		switch (name) {
 			case 'anchor': {
+				this.#anchorEl?.removeEventListener('keydown', this.#handleKeydown);
 				this.#anchorEl = this.#getAnchorById();
+				// close the popup if pressed escape
+				this.#anchorEl?.addEventListener('keydown', this.#handleKeydown);
 				break;
 			}
 		}
@@ -119,7 +124,7 @@ export class Popup extends FoundationElement {
 		}
 
 		const positionData = await computePosition(this.#anchorEl, this.popupEl, {
-			placement: this.corner,
+			placement: this.placement,
 			strategy: this.#strategy,
 			middleware: this.#middleware
 		});
@@ -155,4 +160,10 @@ export class Popup extends FoundationElement {
 	#getAnchorById(): HTMLElement | null {
 		return document.getElementById(this.anchor);
 	}
+
+	#handleKeydown = (event: Event) => {
+		if ((event as KeyboardEvent).key === keyEscape) {
+			this.open = false;
+		}
+	};
 }

@@ -41,7 +41,9 @@ Applies a perceived visual elevation to a direct child element.
 
 ```
 
-## DP
+## Members
+
+### DP
 
 Use the `dp` attribute to change the elevation's level in Density-Independent Pixels (DP).
 

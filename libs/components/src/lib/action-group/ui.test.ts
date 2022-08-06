@@ -7,7 +7,7 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['action-group', 'button', 'text-field', 'layout', 'popup'];
+const components = ['action-group', 'button', 'text-field', 'layout', 'popup', 'divider'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(
@@ -18,7 +18,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		''
 	);
 
-	page.setViewportSize({ width: 380, height: 720 });
+	await page.setViewportSize({ width: 380, height: 720 });
 
 	await loadComponents({
 		page,

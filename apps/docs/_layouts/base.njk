@@ -31,20 +31,16 @@
     <link rel="stylesheet" href="{{ '/assets/styles/themes/light.css' | url }}" media="(prefers-color-scheme: light)">
     <link rel="stylesheet" href="{{ '/assets/styles/themes/dark.css' | url }}" media="(prefers-color-scheme: dark)">
 
-    <link rel="stylesheet" href="{{ '/assets/styles/typography/base.css' | url }}">
-
-    <script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
-
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-
-    <script src="{{ '/assets/scripts/main.js' | url }}"></script>
+		<script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
 
     <script type="module" src="{{ '/assets/modules/components/layout/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/text/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/side-drawer/index.js' | url}}"></script>
+    <script type="module" src="{{ '/assets/modules/components/sidenav/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/sidenav-item/index.js' | url}}"></script>
+    <script type="module" src="{{ '/assets/modules/components/sidenav-disclosure/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/button/index.js' | url}}"></script>
+    <script type="module" src="{{ '/assets/modules/components/fab/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/icon/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/card/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/header/index.js' | url}}"></script>
@@ -57,7 +53,7 @@
 	<vwc-header fixed>
     <div class="logo">
     <img src="../../../vivid-logo.svg" style="" alt="Vivid Logo" width="30">
-      <h5>Vivid</h5>
+      <h5>VIVID</h5>
     </div>
     <div class="header-actions" slot="actionItems">
     <div class="star-us">
@@ -75,16 +71,23 @@
     </div>
     <vwc-side-drawer open slot="app-content">
       {% include "navigation.njk" %}
-			<main slot="app-content">
-        <vwc-layout gutters="large" column-basis="block" class="main-layout">
-          <article>
+    </vwc-layout>
+
+
+      <main slot="app-content">
+        <vwc-layout column-basis="block" class="main-layout">
+          <article class="article">
             {{content | safe}}
           </article>
         </vwc-layout>
-        <br>
       </main>
-		</vwc-side-drawer>
-	</vwc-header>
+
+
+
+  </vwc-side-drawer>
+      </vwc-header>
+
+  <vwc-fab connotation="accent" icon='menu-solid' id="menu-button" aria-label="Menu" slot="app-content" onclick="sidedrawer.open = !sidedrawer.open"></vwc-fab>
 
 </body>
 
