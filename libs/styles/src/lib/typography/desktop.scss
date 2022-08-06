@@ -2,9 +2,7 @@
 // @use 'sass:list';
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 // @use '~@vonage/vivid-tokens/dist/sass/typography/web' as typography-scale;
-:root.vivid-typography {
-	font-size: 62.5%;
-
+.vvd-typography {
 	body {
 		@include typography.typography-cat-shorthand(body-1);
 	}

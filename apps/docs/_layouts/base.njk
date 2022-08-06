@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-vvd-context="none">
-
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,6 +30,8 @@
     <link rel="stylesheet" href="{{ '/assets/styles/themes/light.css' | url }}" media="(prefers-color-scheme: light)">
     <link rel="stylesheet" href="{{ '/assets/styles/themes/dark.css' | url }}" media="(prefers-color-scheme: dark)">
 
+    <link rel="stylesheet" href="{{ '/assets/styles/typography/desktop.css' | url }}" media="(prefers-color-scheme: dark)">
+
 		<script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
 
     <script type="module" src="{{ '/assets/modules/components/layout/index.js' | url}}"></script>
@@ -49,7 +50,7 @@
     {% include "prefetches.njk" %}
   </head>
 
-<body>
+<body class="vvd-typography">
 	<vwc-header fixed>
     <div class="logo">
     <img src="../../../vivid-logo.svg" style="" alt="Vivid Logo" width="30">
