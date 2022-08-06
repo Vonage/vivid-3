@@ -27,6 +27,21 @@
       {{ mainCss | cssmin | safe }}
     </style>
 
+    {% set mainJs %}
+      {% include "../assets/scripts/main.js" %}
+    {% endset %}
+
+    <script>
+      {{ mainJs | safe }}
+    </script>
+
+    {% set viewportHandler %}
+      {% include "../assets/scripts/viewport-handler.js" %}
+    {% endset %}
+
+    <script type="module">
+      {{ viewportHandler | safe }}
+    </script>
     <link rel="stylesheet" href="{{ '/assets/styles/themes/light.css' | url }}" media="(prefers-color-scheme: light)">
     <link rel="stylesheet" href="{{ '/assets/styles/themes/dark.css' | url }}" media="(prefers-color-scheme: dark)">
 
@@ -50,27 +65,21 @@
     {% include "prefetches.njk" %}
   </head>
 
-<body class="vvd-typography">
-	<vwc-header fixed>
-    <div class="logo">
-    <img src="../../../vivid-logo.svg" style="" alt="Vivid Logo" width="30">
-      <h5>VIVID</h5>
-    </div>
-    <div class="header-actions" slot="actionItems">
-    <div class="star-us">
-    <!-- Place this tag where you want the button to render. -->
-        <a class="github-button"
-            href="https://github.com/vonage/vivid-3"
-            data-color-scheme="no-preference: light; light: light; dark: dark;"
-            data-size="large"
-            data-show-count="true"
-            aria-label="Star vonage/vivid-3 on GitHub">
-            Star
-        </a>
-    </div>
-    <dark-mode-toggle permanent></dark-mode-toggle>
-    </div>
-    <vwc-side-drawer open slot="app-content">
+<body>
+
+
+     <vwc-header id="header-main" slot="app-content">
+      <a class="logo-wrapper" href="/" alt="Vivid Web Components">
+       <img src="/vivid-logo.svg" style="" alt="Vivid Logo" width="32">
+
+        <vwc-text font-face="body-1-bold" tight>VIVID Web Components</vwc-text>
+      </a>
+      			<dark-mode-toggle	slot="action-items" appearance="toggle"></dark-mode-toggle>
+
+            <vwc-button slot="action-items" aria-label="View on GitHub" icon="github-mono" icon-trailing href="https://github.com/vonage/vivid-3"></vwc-button>
+
+  <vwc-side-drawer id="sidedrawer" open slot="app-content">
+    <vwc-layout gutters="small" column-basis="block">
       {% include "navigation.njk" %}
     </vwc-layout>
 
