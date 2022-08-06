@@ -2,7 +2,7 @@
 // @use 'sass:list';
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 // @use '~@vonage/vivid-tokens/dist/sass/typography/web' as typography-scale;
-.vvd-typography {
+:root.vvd-typography {
 	body {
 		@include typography.typography-cat-shorthand(body-1);
 	}
@@ -44,7 +44,6 @@
 	p {
 		margin-block: 1rem;
 	}
-
 }
 
 	// Body1 = 'body-1',
