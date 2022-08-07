@@ -49,26 +49,44 @@ $default-density: list.nth($density, 6);
 		border-radius: 50%;
 	}
 
-	&:not(.density-5, .density-6, .density-7, .density-8, .density-9) {
-		@include typography.typography-cat-shorthand('subtitle-2');
-	}
-
-	&:where(.density-5, .density-6, .density-7, .density-8, .density-9) {
-		@include typography.typography-cat-shorthand('body-2-bold');
-	}
-
-
 	.initials {
 		text-transform: uppercase;
 	}
 
-	.icon {
-		font-size: 1em;
+	&:where(.density-5, .density-6, .density-7, .density-8) {
+		@include typography.typography-cat-shorthand('caption');
 	}
 
-	::slotted(img) {
-		width: 100%;
-		height: 100%;
+	&:where( .density-9, .density-10, .density-11) {
+		@include typography.typography-cat-shorthand('body-1-bold');
+		.initials {
+			@include typography.typography-cat-shorthand('body-1-bold');
+		}
+		.icon {
+			@include typography.typography-cat-shorthand('subtitle-2');
+		}
+	}
+
+	&:where(.density-12, .density-13, .density-block) {
+		@include typography.typography-cat-shorthand('subtitle-2');
+		.icon {
+			@include typography.typography-cat-shorthand('subtitle-1');
+		}
+	}
+
+	// TODO: fix class name
+	&:where(.density-block, .density-NaN) {
+		@include typography.typography-cat-shorthand('subtitle-2');
+
+		aspect-ratio: 1;
+		block-size: auto;
+		inline-size: 100%;
+	}
+
+
+	::slotted(*) {
+		block-size: 100%;
+		inline-size: 100%;
 		object-fit: cover;
 	}
 }

@@ -62,7 +62,7 @@ export class Avatar extends FoundationElement {
 	 * HTML Attribute: appearance
 	 */
 	@attr appearance?: AvatarAppearance;
-	@attr density?:  -2 | -1 | 0 | 1 | 2 | 3;
+	@attr density?:  -2 | -1 | 0 | 1 | 2 | 3 | 'block';
 
 	/**
 	 * Indicates the avatar's initials.

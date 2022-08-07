@@ -12,7 +12,7 @@ const getClasses = ({appearance, connotation, shape, density}: Avatar) => classN
 	[`connotation-${connotation}`, !!connotation],
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
-	[`density-${(density ? Number(density) : 0) + 9}`, !!density],
+	[`density-${(density ? Number(density) : 0) + 10}`, !!density],
 );
 
 /**
