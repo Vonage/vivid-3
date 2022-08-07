@@ -1,129 +1,110 @@
-<div class="home-page-hero">
-  <a href="https://github.com/vonage/vivid-3">
-    <img src="/vivid-logo.svg" style="" alt="Vivid Logo" width="120">
-  </a>
-  <h1>Welcome to Vivid</h1>
 
-[![codecov][codecov-shield]][codecov-url]
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![Apache 2.0 License][license-shield]][license-url]
+# Vivid UI
 
-  <h6>
-    Vonage's design system platform targeted to provide </br>incorporated, battery-charged web components.
-  </h6>
-  <a class="home-page-hero-docs-btn" href="https://vivid.deno.dev"><strong>Explore the docs</strong></a>
-  <div class="home-page-hero-docs-links">
-    <a href="https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=bug_report.md&title=">Report Bug</a>
-    <span>|</span>
-    <a href="https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=feature_request.md&title=">Request Feature</a>
-  </div>
-</div>
+Essential UI **web components** for building modern web applications, bound to provide a **safe**, **simple** and **intuitive** interface.
 
-<br>
-<br>
+<!-- ! TODO add visual - GIF or image reflecting an easy integration of vivid in code and page result -->
+![the Vivid logo](/assets/images/vivid-cover-wide.avif)
 
-> Vivid philosophy favors lock-down over white labeling strategy, utilizing high-level design tokens to customize UI systematically rather than permuting components directly (to a balanced degree). This guideline help keep integration processes ergonomic and the UI consistent.
+## Installation
 
-## Quickstart
-
-### CDN
-You can import vivid components from a CDN. 
-
-Vivid is using [unpkg](https://unpkg.com) and [jsdeliver](https://jsdeliver) to serve the package.
-- [https://unpkg.com/@vonage/vivid@next](https://unpkg.com/@vonage/vivid@next)
-- [https://cdn.jsdelivr.net/npm/@vonage/vivid@next](https://cdn.jsdelivr.net/npm/@vonage/vivid@next)
-
-Note that in addition to importing the JS files, you also need to add the CSS.
-
-Example:
-```
-<script type="module" src="https://unpkg.com/@vonage/vivid@next"></script>
-<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/themes/light.css">
-<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/fonts/spezia.css">
-```
-
-You can also import a specific component:
-
-Example of importing only the button:
-```
-<script type="module" src="https://unpkg.com/@vonage/vivid@next/button"></script>
-<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/themes/light.css">
-<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/fonts/spezia.css">
-```
-ES Example: [Open Codepen](https://codepen.io/yonatankra/pen/yLKyaPG)
-
-### Installation
-
-run:
+To integrate Vivid components into your project, run:
 
 ```bash
-npm install @vonage/vivid
+npm install @vonage/vivid # or yarn add @vonage/vivid
 ```
 
-use:
+## Usage
+
+Import components in your project via [side effect imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_a_module_for_its_side_effects_only):
 
 ```js
 import '@vonage/vivid/button';
 ```
 
+And include in HTML:
+
 ```html
 <vwc-button label="Click me"></vwc-button>
 ```
 
+For a full list of components and API, explore the [components docs](https://vivid.deno.dev/components/accordion/) 📚.
+
+### Prerequisites
+
+The Vivid components library rely on a set of **core styles** to:
+
+- Be present in the DOM
+
+- Be shared across all components
+
+- Apply common design identities (such as colors, typography, spacing etc')
+
+- Ensure the components look as intended.
+
+As the task of loading css is not trivial, and may vary from project to project, this library does not provide any way to load the css. It is up to the author to load the css in the most appropriate manner for their project.
+
+To **include the styles**, css files must be loaded into the project from the `node_modules/@vonage/vivid/styles` folder.
+
+The folder contains the following files:
+
+- Fonts
+
+  - `fonts/spezia.css` - Loads the *Spezia* variable font and specifies its font face definition. *Spezia* is Vonage's branded font and is required by most Vivid components
+
+- Themes - only one theme can apply at a time. thus, only one is required to be loaded
+
+  - `themes/light.css` - Light theme
+
+  - `themes/dark.css` - Dark theme
+
+Note: scss users can simply [forward](https://sass-lang.com/documentation/at-rules/forward) the styles to their scss project:
+
+```css
+@forward 'node_modules/@vonage/vivid/styles/fonts/spezia';
+@forward 'node_modules/@vonage/vivid/styles/themes/light';
+```
+
+## Support
+
+This library is open source, developed and maintained by the [Vonage Vivid team](Vonage/vivid).
+
+For any questions, please open a [bug report](https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=bug_report.md&title=) or [feature request](https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=feature_request.md&title=).
+
 ## Roadmap
 
-[view components status](https://github.com/orgs/Vonage/projects/6)
+- View [components status](https://github.com/orgs/Vonage/projects/6)
 
-[view development issues planning](https://github.com/orgs/Vonage/projects/3)
+- [What's on our plate](https://github.com/orgs/Vonage/projects/3/views/7)
 
-We publish a _next_ release on every successful merge to main, so you never need to wait for a new stable version to make use of any updates.
+- See the [open issues](https://github.com/vonage/vivid-3/issues) for a full list of proposed features (and known issues).
 
-See the [open issues](https://github.com/vonage/vivid-3/issues) for a full list of proposed features (and known issues).
+We publish a *next* release on every successful merge to main, so you never need to wait for a new stable version to make use of any updates.
 
-<br>
+## Contributing
 
-## 🤝 Contributing
+Please read [CONTRIBUTING.md](.github/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
-Contributions, issues and feature requests are welcome!
-Check vivid's [issues page](https://github.com/Vonage/vivid-3/issues). You can also take a look at the [contributing guide](https://github.com/Vonage/vivid-3/blob/main/.github/CONTRIBUTING.md).
+## Versioning
 
-## Show your support
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [npm page](https://www.npmjs.com/package/@vonage/vivid).
 
-Give a [⭐️](https://github.com/Vonage/vivid-3/stargazers)️ if this project helped you!
+## Authors
 
-<br>
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
-## 📝 License
+## License
 
-This project is [Apache 2.0][license-url] licensed.
+This project is licensed under the Apache 2.0 License - see the [LICENSE.md](LICENSE.md) file for details
 
-<br>
+<!-- ## Acknowledgments
 
-<hr>
+- Hat tip to anyone whose code was used
+- Inspiration
+- etc -->
 
-## Credits
+## Built With
 
-Vivid is powered by a lot of open source libraries and tools. The main tools and libraries we use are:
-* [fast.design](https://fast.design)
-* [Deno Deploy](https://deno.com/deploy)
-* [unpkg](https://unpkg.com)
-* [jsdeliver](https://jsdeliver)
-* [floating-ui](https://floating-ui.com/)
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[codecov-shield]: https://img.shields.io/codecov/c/gh/Vonage/vivid-3?style=for-the-badge&token=74ALFP2OR2
-[codecov-url]: https://codecov.io/gh/Vonage/vivid-3
-[contributors-shield]: https://img.shields.io/github/contributors/vonage/vivid-3.svg?style=for-the-badge
-[contributors-url]: https://github.com/vonage/vivid-3/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/vonage/vivid-3.svg?style=for-the-badge
-[forks-url]: https://github.com/vonage/vivid-3/network/members
-[stars-shield]: https://img.shields.io/github/stars/vonage/vivid-3.svg?style=for-the-badge
-[stars-url]: https://github.com/vonage/vivid-3/stargazers
-[issues-shield]: https://img.shields.io/github/issues/vonage/vivid-3.svg?style=for-the-badge
-[issues-url]: https://github.com/vonage/vivid-3/issues
-[license-shield]: https://img.shields.io/github/license/vonage/vivid-3.svg?style=for-the-badge
-[license-url]: LICENSE.md
-[license-url]: LICENSE.md
+- [Fast](https://www.fast.design) - to extend element classes and compile code to native web components
+- [Typescript](https://www.typescriptlang.org) - for ergonomic and type-safe code
+- [Sass](https://sass-lang.com) - for styles authoring extensibility and consistency

@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Wed, 03 Aug 2022 13:04:51 GMT and should not be manually modified.
+This log was last generated on Sun, 07 Aug 2022 06:26:56 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.44
+
+Sun, 07 Aug 2022 06:26:56 GMT
+
+### Changes
+
+- fix progress ring density mapping (yinon@hotmail.com)
 
 ## 3.0.0-next.43
 

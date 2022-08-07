@@ -2,6 +2,36 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Sun, 07 Aug 2022 11:43:17 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.44",
+      "version": "3.0.0-next.44",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "75667ec9ee20443778e118591bfb82186a7e5876",
+            "comment": "internal rendering engine for design tokens"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 07 Aug 2022 06:26:56 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.44",
+      "version": "3.0.0-next.44",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "a772b3d2ecc46f09e927a427603e11a1c8307f81",
+            "comment": "fix progress ring density mapping"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 03 Aug 2022 13:44:03 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.43",
       "version": "3.0.0-next.43",
