@@ -18,7 +18,6 @@ module.exports = function (eleventyConfig) {
     "dist/libs/styles/themes/*.css": "assets/styles/themes",
     "dist/libs/components": "assets/modules/components",
     "assets/images/vivid-logo.svg": "assets/images/vivid-logo.svg",
-    "assets/images/vivid-cover-wide.avif": "assets/images/vivid-cover-wide.avif",
     [ASSETS_DIR]: "assets"
   });
 
@@ -37,7 +36,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.setUseGitIgnore(false);
 
-  eleventyConfig.addFilter("cssmin", function (code) {
+  eleventyConfig.addFilter("cssmin", function(code) {
     return new CleanCSS({}).minify(code).styles;
   });
 
