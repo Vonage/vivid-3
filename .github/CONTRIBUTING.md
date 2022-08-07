@@ -14,36 +14,19 @@ Never made an open source contribution before? Wondering how contributions work 
 
 - Run `npm install`
 
-### Generate a new component
+- Building and developing the documentation:
+  - Development: `npx nx run docs:serve` or `npm start`
+  - Build: `npx run build docs`
 
-`npx run nx g @vonage/nx-vivid:component my-component`
+- Building and developing the components:
+  - Unit Tests
+    - `npx nx run components:test` to start the tests or `npm test`
+    - `npx nx run components:test --watch` to start the tests in watch mode
+    - `npx nx run components:test --coverage` to start the tests with coverage report (generated in the `coverage` folder)
+  - Visual tests: see the [ui-tests documentation](../docs/ui-tests/readme.md)
+  - Build: `npx nx run build components`
 
-Will generate a new component in `libs/componnts/src/lib/my-component`
-
-### Building and developing the documentation
-
-- Development: `npx nx run docs:serve` or `npm start`
-- Build: `npx run docs:build`
-
-### Building and developing the components
-
-#### Unit Tests
-
-- `npx nx run components:test` to start the tests or `npm test`
-- `npx nx run components:test --watch` to start the tests in watch mode
-- `npx nx run components:test --coverage` to start the tests with coverage report (generated in the `coverage` folder)
-
-#### Visual tests
-
-  see the [ui-tests documentation](https://github.com/Vonage/vivid-3/blob/main/docs/ui-test/readme.md)
-
-### Build
-
-`npx nx run components:build`
-
-### Pushing your changes
-
-Once you are done developing the change, commit your changes with a meaningful commit message
+- Once you are done developing the change, commit your changes with a meaningful commit message
 
 - We are using `beachball` in order to document changes:
   - run: `npx beachball change` or `npm run change` . You will be prompted to describe your change. Once you do, change files will be generated and commited.
@@ -65,7 +48,7 @@ Once you are done developing the change, commit your changes with a meaningful c
 
 ## Where can I go for help?
 
-You can always raise an issue or comment in a pull request.
+If you need help, you can ask questions on our mailing list, IRC chat, or [list any other communication platforms that your project uses].
 
 ## What does the Code of Conduct mean for me?
 
