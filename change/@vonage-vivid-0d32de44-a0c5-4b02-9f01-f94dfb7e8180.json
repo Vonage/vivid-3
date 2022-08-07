@@ -1,5 +1,5 @@
 {
-  "type": "prerelease",
+  "type": "none",
   "comment": "refine components readme",
   "packageName": "@vonage/vivid",
   "email": "yinon@hotmail.com",
