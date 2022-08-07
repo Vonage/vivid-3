@@ -108,3 +108,61 @@ This project is licensed under the Apache 2.0 License - see the [LICENSE.md](LIC
 - [Fast](https://www.fast.design) - to extend element classes and compile code to native web components
 - [Typescript](https://www.typescriptlang.org) - for ergonomic and type-safe code
 - [Sass](https://sass-lang.com) - for styles authoring extensibility and consistency
+
+## Quickstart
+
+### CDN
+
+You can import vivid components from a CDN.
+
+Vivid is using [unpkg](https://unpkg.com) and [jsdeliver](https://jsdeliver) to serve the package.
+
+- [https://unpkg.com/@vonage/vivid@next](https://unpkg.com/@vonage/vivid@next)
+- [https://cdn.jsdelivr.net/npm/@vonage/vivid@next](https://cdn.jsdelivr.net/npm/@vonage/vivid@next)
+
+Note that in addition to importing the JS files, you also need to add the CSS.
+
+Example:
+
+```
+<script type="module" src="https://unpkg.com/@vonage/vivid@next"></script>
+<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/themes/light.css">
+<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/fonts/spezia.css">
+```
+
+You can also import a specific component:
+
+Example of importing only the button:
+
+```
+<script type="module" src="https://unpkg.com/@vonage/vivid@next/button"></script>
+<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/themes/light.css">
+<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/fonts/spezia.css">
+```
+
+ES Example: [Open Codepen](https://codepen.io/yonatankra/pen/yLKyaPG)
+
+## Credits
+
+Vivid is powered by a lot of open source libraries and tools. The main tools and libraries we use are:
+
+- [fast.design](https://fast.design)
+- [Deno Deploy](https://deno.com/deploy)
+- [unpkg](https://unpkg.com)
+- [jsdeliver](https://jsdeliver)
+- [floating-ui](https://floating-ui.com/)
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[codecov-shield]: https://img.shields.io/codecov/c/gh/Vonage/vivid-3?style=for-the-badge&token=74ALFP2OR2
+[codecov-url]: https://codecov.io/gh/Vonage/vivid-3
+[contributors-shield]: https://img.shields.io/github/contributors/vonage/vivid-3.svg?style=for-the-badge
+[contributors-url]: https://github.com/vonage/vivid-3/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/vonage/vivid-3.svg?style=for-the-badge
+[forks-url]: https://github.com/vonage/vivid-3/network/members
+[stars-shield]: https://img.shields.io/github/stars/vonage/vivid-3.svg?style=for-the-badge
+[stars-url]: https://github.com/vonage/vivid-3/stargazers
+[issues-shield]: https://img.shields.io/github/issues/vonage/vivid-3.svg?style=for-the-badge
+[issues-url]: https://github.com/vonage/vivid-3/issues
+[license-shield]: https://img.shields.io/github/license/vonage/vivid-3.svg?style=for-the-badge
+[license-url]: LICENSE.md
+[license-url]: LICENSE.md
