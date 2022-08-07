@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "internal rendering engine for design tokens",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "none"
-}
