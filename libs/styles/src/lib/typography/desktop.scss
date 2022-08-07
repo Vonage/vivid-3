@@ -1,7 +1,6 @@
 
-// @use 'sass:list';
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
-// @use '~@vonage/vivid-tokens/dist/sass/typography/web' as typography-scale;
+
 :root.vvd-typography {
 	h1, .headline-1 {
 		@include typography.typography-cat-shorthand(headline-1);
@@ -37,63 +36,63 @@
 		@include typography.typography-cat-shorthand(body-1-code);
 	}
 
-	body, p, .body-1 {
+	body, p {
 		@include typography.typography-cat-shorthand(body-1);
 	}
 
-	strong, .body-1-bold {
+	strong {
 			@include typography.typography-cat-shorthand(body-1-bold);
 	}
 
-	code, .body-1-code {
+	code {
 			@include typography.typography-cat-shorthand(body-1-code);
 	}
 
-	a:any-link, .body-1-link {
-			@include typography.typography-cat-shorthand(body-1-link);
+	a:any-link {
+			text-decoration: underline;
 	}
 
-	.body-2 {
-			@include typography.typography-cat-shorthand(body-2);
-	}
+	// .body-2 {
+	// 		@include typography.typography-cat-shorthand(body-2);
+	// }
 
-	.body-2-bold {
-			@include typography.typography-cat-shorthand(body-2-bold);
-	}
+	// .body-2-bold {
+	// 		@include typography.typography-cat-shorthand(body-2-bold);
+	// }
 
-	.body-2-code {
-			@include typography.typography-cat-shorthand(body-2-code);
-	}
+	// .body-2-code {
+	// 		@include typography.typography-cat-shorthand(body-2-code);
+	// }
 
-	.body-2-link {
-			@include typography.typography-cat-shorthand(body-2-link);
-	}
+	// .body-2-link {
+	// 		@include typography.typography-cat-shorthand(body-2-link);
+	// }
 
-	.button {
-			@include typography.typography-cat-shorthand(button);
-	}
+	// .button {
+	// 		@include typography.typography-cat-shorthand(button);
+	// }
 
-	.button-dense {
-			@include typography.typography-cat-shorthand(button-dense);
-	}
+	// .button-dense {
+	// 		@include typography.typography-cat-shorthand(button-dense);
+	// }
 
-	.button-enlarge {
-			@include typography.typography-cat-shorthand(button-enlarge);
-	}
+	// .button-enlarge {
+	// 		@include typography.typography-cat-shorthand(button-enlarge);
+	// }
 
-	.caption {
-			@include typography.typography-cat-shorthand(caption);
-	}
+	// .caption {
+	// 		@include typography.typography-cat-shorthand(caption);
+	// }
 
-	.caption-bold {
-			@include typography.typography-cat-shorthand(caption-bold);
-	}
+	// .caption-bold {
+	// 		@include typography.typography-cat-shorthand(caption-bold);
+	// }
 
-	.caption-code {
-			@include typography.typography-cat-shorthand(caption-code);
-	}
+	// .caption-code {
+	// 		@include typography.typography-cat-shorthand(caption-code);
+	// }
 
-	.caption-link {
-			@include typography.typography-cat-shorthand(caption-link);
-	}
+	// .caption-link {
+	// 		@include typography.typography-cat-shorthand(caption-link);
+	// }
 }
