@@ -9,44 +9,44 @@ const ASSETS_DIR = `${INPUT_DIR}/assets`;
 const OUTPUT_DIR = 'dist/apps/docs';
 
 module.exports = function (eleventyConfig) {
-	eleventyConfig.setLibrary("md", markdownLibrary);
+  eleventyConfig.setLibrary("md", markdownLibrary);
 
-	eleventyConfig.addPlugin(EleventyRenderPlugin);
+  eleventyConfig.addPlugin(EleventyRenderPlugin);
 
-	eleventyConfig.addPassthroughCopy({
-		"dist/libs/styles/fonts/*.css": "assets/styles/fonts",
-		"dist/libs/styles/themes/*.css": "assets/styles/themes",
-		"dist/libs/components": "assets/modules/components",
-		"assets/images/vivid-logo.svg": "assets/images/vivid-logo.svg",
-		"assets/images/vivid-cover-wide.avif": "assets/images/vivid-cover-wide.avif",
-		[ASSETS_DIR]: "assets"
-	});
+  eleventyConfig.addPassthroughCopy({
+    "dist/libs/styles/fonts/*.css": "assets/styles/fonts",
+    "dist/libs/styles/themes/*.css": "assets/styles/themes",
+    "dist/libs/components": "assets/modules/components",
+    "assets/images/vivid-logo.svg": "assets/images/vivid-logo.svg",
+    "assets/images/vivid-cover-wide.avif": "assets/images/vivid-cover-wide.avif",
+    [ASSETS_DIR]: "assets"
+  });
 
-	eleventyConfig.addWatchTarget("dist/libs/components");
-	eleventyConfig.addWatchTarget("dist/libs/styles/themes");
-	eleventyConfig.addWatchTarget("dist/libs/styles/fonts");
-	eleventyConfig.addWatchTarget(`${INPUT_DIR}/assets`);
-	eleventyConfig.setBrowserSyncConfig({
-		server: {
-			baseDir: OUTPUT_DIR
-		}
-	});
+  eleventyConfig.addWatchTarget("dist/libs/components");
+  eleventyConfig.addWatchTarget("dist/libs/styles/themes");
+  eleventyConfig.addWatchTarget("dist/libs/styles/fonts");
+  eleventyConfig.addWatchTarget(`${INPUT_DIR}/assets`);
+  eleventyConfig.setBrowserSyncConfig({
+    server: {
+      baseDir: OUTPUT_DIR
+    }
+  });
 
-	eleventyConfig.addTransform('wrapTextElements', wrapTextElements);
-	eleventyConfig.addTransform('codeBlockDemo', codeBlockDemo);
+  eleventyConfig.addTransform('wrapTextElements', wrapTextElements);
+  eleventyConfig.addTransform('codeBlockDemo', codeBlockDemo);
 
-	eleventyConfig.setUseGitIgnore(false);
+  eleventyConfig.setUseGitIgnore(false);
 
-	eleventyConfig.addFilter("cssmin", function (code) {
-		return new CleanCSS({}).minify(code).styles;
-	});
+  eleventyConfig.addFilter("cssmin", function (code) {
+    return new CleanCSS({}).minify(code).styles;
+  });
 
-	return {
-		dir: {
-			input: INPUT_DIR,
-			includes: "_includes",
-			layouts: "_layouts",
-			output: OUTPUT_DIR,
-		}
-	}
+  return {
+    dir: {
+      input: INPUT_DIR,
+      includes: "_includes",
+      layouts: "_layouts",
+      output: OUTPUT_DIR,
+    }
+  }
 };
