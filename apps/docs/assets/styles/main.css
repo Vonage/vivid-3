@@ -131,43 +131,6 @@ vwc-sidenav [role="heading"][aria-level="2"] {
 
 /*Main container*/
 /*--------------------------*/
-
-/*Homepage*/
-.home-page-hero {
-  text-align: center;
-  margin-inline: -16px; /*to overide article inline-padding*/
-  padding: 2rem 1rem;
-  background-color: var(--vvd-color-neutral-20);
-}
-@media (min-width: 960px) {
-  .home-page-hero  {
-    margin-inline: -32px; /*to overide article inline-padding*/
-  }
-}
-
-.home-page-hero a {
-  color: var(--vvd-color-on-canvas);
-}
-.home-page-hero-docs-btn {
-  display: inline-block;
-  border: 1px solid var(--vvd-color-on-canvas);
-  padding: 0 2rem;
-  border-radius: 6px;
-  text-decoration: none;
-  margin: 0.5rem 0 1rem 0;
-}
-.home-page-hero p,
-.home-page-hero h6 {
-  margin: 0 auto;
-}
-
-.home-page-hero-docs-links {
-  color: var(--vvd-color-on-canvas);
-}
-.home-page-hero-docs-links span {
-  margin: 0 0.25rem;
-}
-
 article h1,
 article h2,
 article h3,
