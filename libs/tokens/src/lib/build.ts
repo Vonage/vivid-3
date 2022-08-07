@@ -13,7 +13,6 @@ const THEMES = require('../../../../node_modules/@vonage/vivid-figma-tokens/data
 const prefix = 'vvd';
 const buildPath = '../../../../dist/libs/tokens/scss/themes/';
 
-
 const getStyleDictionaryConfig = (theme: string) => ({
 	include: [
 		'../../../../node_modules/@vonage/vivid-figma-tokens/data/palette.tokens.json',
