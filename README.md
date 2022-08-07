@@ -50,7 +50,7 @@ Feel free to check [issues page](https://github.com/Vonage/vivid-3/issues). You 
 
 ### Getting started
 
-#### Generate a new component
+#### Generator a new component
 
 `npx run nx g @vonage/nx-vivid:component my-component`
 
