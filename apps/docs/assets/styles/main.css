@@ -282,3 +282,9 @@ article > vwc-text[font-face="headline-1"] {
 .hljs-variable.language_ {
   color: var(--vvd-color-alert-80);
 }
+
+.hljs-code,
+.hljs-comment,
+.hljs-formula {
+	color: var(--vvd-color-neutral-30);
+}
