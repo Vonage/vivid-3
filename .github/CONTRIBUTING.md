@@ -20,46 +20,48 @@ Never made an open source contribution before? Wondering how contributions work 
 
 Will generate a new component in `libs/componnts/src/lib/my-component`
 
-### Building and developing the documentation:
+### Building and developing the documentation
 
-  - Development: `npx nx run docs:serve` or `npm start`
-  - Build: `npx run docs:build`
+- Development: `npx nx run docs:serve` or `npm start`
+- Build: `npx run docs:build`
 
-### Building and developing the components:
+### Building and developing the components
 
-####  Unit Tests
+#### Unit Tests
 
 - `npx nx run components:test` to start the tests or `npm test`
 - `npx nx run components:test --watch` to start the tests in watch mode
 - `npx nx run components:test --coverage` to start the tests with coverage report (generated in the `coverage` folder)
 
 #### Visual tests
+
   see the [ui-tests documentation](https://github.com/Vonage/vivid-3/blob/main/docs/ui-test/readme.md)
 
-### Build 
+### Build
+
 `npx nx run components:build`
 
 ### Pushing your changes
 
 Once you are done developing the change, commit your changes with a meaningful commit message
 
-  - We are using `beachball` in order to document changes:
-    - run: `npx beachball change` or `npm run change` . You will be prompted to describe your change. Once you do, change files will be generated and commited.
-    - Note that during CI a check is made to make sure this rule is followed
+- We are using `beachball` in order to document changes:
+  - run: `npx beachball change` or `npm run change` . You will be prompted to describe your change. Once you do, change files will be generated and commited.
+  - Note that during CI a check is made to make sure this rule is followed
 
-  - Push the changes to the remote repository using `git push origin branch-name-here`.
+- Push the changes to the remote repository using `git push origin branch-name-here`.
 
-  - Submit a pull request to the upstream repository.
+- Submit a pull request to the upstream repository.
 
-  - Title the pull request with a short description of the changes made and the issue or bug number associated with your change. For example, you can title an issue like so "Added more log outputting to resolve #4352".
+- Title the pull request with a short description of the changes made and the issue or bug number associated with your change. For example, you can title an issue like so "Added more log outputting to resolve #4352".
 
-  - In the description of the pull request, explain the changes that you made, any issues you think exist with the pull request you made, and any questions you have for the maintainer. It's OK if your pull request is not perfect (no pull request is), the reviewer will be able to help you fix any problems and improve it!
+- In the description of the pull request, explain the changes that you made, any issues you think exist with the pull request you made, and any questions you have for the maintainer. It's OK if your pull request is not perfect (no pull request is), the reviewer will be able to help you fix any problems and improve it!
 
-  - Wait for the pull request to be reviewed by a maintainer.
+- Wait for the pull request to be reviewed by a maintainer.
 
-  - Make changes to the pull request if the reviewing maintainer recommends them.
+- Make changes to the pull request if the reviewing maintainer recommends them.
 
-  - Celebrate your success after your pull request is merged!
+- Celebrate your success after your pull request is merged!
 
 ## Where can I go for help?
 
