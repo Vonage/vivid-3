@@ -189,7 +189,7 @@ Feel free to check [issues page](https://github.com/Vonage/vivid-3/issues). You 
 
 ### Getting started
 
-#### Generator a new component
+#### Generate a new component
 
 `npx run nx g @vonage/nx-vivid:component my-component`
 
