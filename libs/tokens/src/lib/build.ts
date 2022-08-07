@@ -32,7 +32,7 @@ const getStyleDictionaryConfig = (theme: string) => ({
 				}
 			}]
 		},
-		dev: {
+		constants: {
 			transforms: ["name/cti/kebab"],
 			prefix,
 			buildPath,
@@ -48,7 +48,7 @@ const getStyleDictionaryConfig = (theme: string) => ({
 StyleDictionary
 	.extend(
 		getStyleDictionaryConfig(THEMES[0].name)
-	).buildPlatform('dev');
+	).buildPlatform('constants');
 
 THEMES.forEach(({ name }) =>
 	StyleDictionary
