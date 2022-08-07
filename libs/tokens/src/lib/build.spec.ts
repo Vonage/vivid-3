@@ -3,20 +3,7 @@ const mockfs = require('mock-fs');
 const fs = require('fs');
 const {resolve} = require('path');
 
-const libsToImport = [
-	'style-dictionary',
-	'chalk',
-	'supports-color',
-	'ansi-styles',
-	'mock-fs',
-	'has-flag',
-	'tinycolor2',
-	'change-case',
-'tslib'];
-const importLibs = () => libsToImport.reduce((acc, lib) => {
-	acc[lib] = mockfs.load(resolve(`./node_modules/${lib}`));
-	return acc;
-}, {});
+
 describe(`Tokens Build Script`, function () {
 	beforeEach(function () {
 		mockfs({
