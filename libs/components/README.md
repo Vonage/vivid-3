@@ -4,7 +4,7 @@
 Essential UI **web components** for building modern web applications, bound to provide a **safe**, **simple** and **intuitive** interface.
 
 <!-- ! TODO add visual - GIF or image reflecting an easy integration of vivid in code and page result -->
-![the Vivid logo](/vivid-cover-wide.avif)
+![the Vivid logo](/assets/images/vivid-cover-wide.avif)
 
 ## Installation
 
