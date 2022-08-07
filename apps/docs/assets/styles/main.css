@@ -122,8 +122,8 @@ dark-mode-toggle::part(form) {
 }
 /* #endregion layout */
 
-/*#region: side navigation (temp style - need to be removed once sidenav is done)*/
-vwc-sidenav [role="heading"][aria-level="2"] {
+/*#region: side navigation (temp style - need to be removed once nav is done)*/
+vwc-nav [role="heading"][aria-level="2"] {
   color: var(--vvd-color-neutral-70);
 }
 /*#region END: side navigation */

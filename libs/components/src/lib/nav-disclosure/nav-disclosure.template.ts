@@ -6,7 +6,7 @@ import type {
 } from '@microsoft/fast-foundation';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
-import type { SidenavDisclosure } from './sidenav-disclosure';
+import type { SidenavDisclosure } from './nav-disclosure';
 
 /**
  * The template for the {@link @microsoft/fast-foundation#Sidenav} component.

@@ -19,7 +19,7 @@ export class SidenavDisclosure extends FoundationElement {
 	@attr label?: string;
 
 	/**
-	 * Indicates whether the sidenav-disclosure is open
+	 * Indicates whether the nav-disclosure is open
 	 *
 	 * @public
 	 * HTML Attribute: open
@@ -27,8 +27,8 @@ export class SidenavDisclosure extends FoundationElement {
 	@attr({ mode: 'boolean' }) open = false;
 
 	/**
-	* @internal
-	*/
+	 * @internal
+	 */
 	override connectedCallback(): void {
 		super.connectedCallback();
 		this.details.addEventListener('toggle', this.#onToggle);

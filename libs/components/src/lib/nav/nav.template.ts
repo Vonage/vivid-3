@@ -4,7 +4,7 @@ import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
-import type { Sidenav } from './sidenav';
+import type { Sidenav } from './nav';
 
 /**
  * The template for the {@link @microsoft/fast-foundation#Sidenav} component.

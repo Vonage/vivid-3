@@ -3,14 +3,14 @@ import '../focus';
 
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { designSystem } from '../../shared/design-system';
-import styles from './sidenav-item.scss';
+import styles from './nav-item.scss';
 
-import { SidenavItem } from './sidenav-item';
-import { SidenavItemTemplate as template } from './sidenav-item.template';
+import { SidenavItem } from './nav-item';
+import { SidenavItemTemplate as template } from './nav-item.template';
 
 export const vividSidenavItem =
 	SidenavItem.compose<FoundationElementDefinition>({
-		baseName: 'sidenav-item',
+		baseName: 'nav-item',
 		template: template as any,
 		styles,
 	});

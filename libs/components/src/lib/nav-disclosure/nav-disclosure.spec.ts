@@ -1,12 +1,12 @@
 import { elementUpdated, fixture, getBaseElement, getControlElement } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
-import { SidenavDisclosure } from './sidenav-disclosure';
+import { SidenavDisclosure } from './nav-disclosure';
 import '.';
 
-const COMPONENT_TAG = 'vwc-sidenav-disclosure';
+const COMPONENT_TAG = 'vwc-nav-disclosure';
 const ICON_SELECTOR = 'vwc-icon';
 
-describe('vwc-sidenav-disclosure', () => {
+describe('vwc-nav-disclosure', () => {
 	let element: SidenavDisclosure;
 
 	beforeEach(async () => {
@@ -16,7 +16,7 @@ describe('vwc-sidenav-disclosure', () => {
 	});
 
 	describe('basic', () => {
-		it('should be initialized as a vwc-sidenav-disclosure', async () => {
+		it('should be initialized as a vwc-nav-disclosure', async () => {
 			expect(element).toBeInstanceOf(SidenavDisclosure);
 			expect(element.label).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
@@ -50,7 +50,7 @@ describe('vwc-sidenav-disclosure', () => {
 	});
 
 	describe('icon', () => {
-		it('should add an icon to the sidenav disclosure', async () => {
+		it('should add an icon to the nav disclosure', async () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 

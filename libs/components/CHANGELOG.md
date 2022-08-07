@@ -98,7 +98,7 @@ Sun, 17 Jul 2022 12:13:48 GMT
 
 ### Changes
 
-- add sidenav disclosure component (rina.oksman@vonage.com)
+- add nav disclosure component (rina.oksman@vonage.com)
 
 ## 3.0.0-next.32
 
@@ -332,6 +332,7 @@ Tue, 03 May 2022 20:34:28 GMT
 - Update icon size (yonatan.kra@vonage.com)
 
 ## 3.0.0
+
 ## 3.0.0-next.3
 
 Fri, 18 Mar 2022 08:18:37 GMT
@@ -341,7 +342,7 @@ Fri, 18 Mar 2022 08:18:37 GMT
 - Add the breadcrumb component (yonatan.kra@vonage.com)
 - add the breacdcrumbs item component (yonatan.kra@vonage.com)
 - chore(text-anchor): feature underlying vivid anchor (yonatan.kra@vonage.com)
-- new sidenav-item component. part of the sidenav component scope (yinon@hotmail.com)
+- new nav-item component. part of the nav component scope (yinon@hotmail.com)
 - update test (rina.oksman@vonage.com)
 
 ## 3.0.0-next.2
