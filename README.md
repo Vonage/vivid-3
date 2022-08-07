@@ -92,3 +92,28 @@ This project is [Apache 2.0][license-url] licensed.
 [license-shield]: https://img.shields.io/github/license/vonage/vivid-3.svg?style=for-the-badge
 [license-url]: LICENSE.md
 [license-url]: LICENSE.md
+
+## Credits
+
+Vivid is powered by a lot of open source libraries and tools. The main tools and libraries we use are:
+
+- [fast.design](https://fast.design)
+- [Deno Deploy](https://deno.com/deploy)
+- [unpkg](https://unpkg.com)
+- [jsdeliver](https://jsdeliver)
+- [floating-ui](https://floating-ui.com/)
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[codecov-shield]: https://img.shields.io/codecov/c/gh/Vonage/vivid-3?style=for-the-badge&token=74ALFP2OR2
+[codecov-url]: https://codecov.io/gh/Vonage/vivid-3
+[contributors-shield]: https://img.shields.io/github/contributors/vonage/vivid-3.svg?style=for-the-badge
+[contributors-url]: https://github.com/vonage/vivid-3/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/vonage/vivid-3.svg?style=for-the-badge
+[forks-url]: https://github.com/vonage/vivid-3/network/members
+[stars-shield]: https://img.shields.io/github/stars/vonage/vivid-3.svg?style=for-the-badge
+[stars-url]: https://github.com/vonage/vivid-3/stargazers
+[issues-shield]: https://img.shields.io/github/issues/vonage/vivid-3.svg?style=for-the-badge
+[issues-url]: https://github.com/vonage/vivid-3/issues
+[license-shield]: https://img.shields.io/github/license/vonage/vivid-3.svg?style=for-the-badge
+[license-url]: LICENSE.md
+[license-url]: LICENSE.md
