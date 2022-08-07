@@ -16,7 +16,7 @@ npm install @vonage/vivid # or yarn add @vonage/vivid
 
 ## Usage
 
-Import components in your project:
+Import components in your project via [side effect imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_a_module_for_its_side_effects_only):
 
 ```js
 import '@vonage/vivid/button';
@@ -28,7 +28,7 @@ And include in HTML:
 <vwc-button label="Click me"></vwc-button>
 ```
 
-For a full list of components, explore the [components docs](https://vivid.deno.dev/components/accordion/) 📚.
+For a full list of components and API, explore the [components docs](https://vivid.deno.dev/components/accordion/) 📚.
 
 ### Prerequisites
 
