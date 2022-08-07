@@ -27,7 +27,12 @@ describe(`Tokens Build Script`, function () {
 		mockfs.restore();
 	});
 
-	it(`should not fail`, async function () {
+	// it(`should not fail`, async function () {
+	// 	jest.spyOn(process, 'cwd').mockImplementation(() => resolve(__dirname, './'));
+	// 	require('./build');
+	// });
+
+	it(`should match built tokens`, async function () {
 		jest.spyOn(process, 'cwd').mockImplementation(() => resolve(__dirname, './'));
 		require('./build');
 	});
