@@ -1,6 +1,8 @@
-import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
-import { Avatar, AvatarConnotation } from './avatar';
+import {elementUpdated, fixture } from '@vivid-nx/shared';
+import {Connotation} from '../enums';
+import { Avatar } from './avatar';
 import '.';
+
 
 const COMPONENT_TAG = 'vwc-avatar';
 
@@ -45,11 +47,17 @@ describe('vwc-avatar', () => {
 
 	describe('avatar connotation', function () {
 		it('should set the connotation class on base', async function () {
-			const connotation = 'cta' as AvatarConnotation;
-			expect(getControlElement(element).classList.contains(`connotation-${connotation}`)).toBeFalsy();
+			const connotation = Connotation.CTA;
+			const baseDiv = element.shadowRoot?.querySelector('.base');
+			const connotationClassExistsBeforeTheChange = baseDiv?.classList.contains(`connotation-${connotation}`);
 			element.connotation = connotation;
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.contains(`connotation-${connotation}`)).toBeTruthy();
+			const connotationClassExistsAfterChange = baseDiv?.classList.contains(`connotation-${connotation}`);
+
+			expect(connotationClassExistsBeforeTheChange)
+				.toEqual(false);
+			expect(connotationClassExistsAfterChange)
+				.toEqual(true);
 		});
 	});
 });
