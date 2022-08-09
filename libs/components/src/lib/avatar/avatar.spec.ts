@@ -1,5 +1,5 @@
-import {elementUpdated, fixture} from '@vivid-nx/shared';
-import { Avatar } from './avatar';
+import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
+import { Avatar, AvatarConnotation } from './avatar';
 import '.';
 
 const COMPONENT_TAG = 'vwc-avatar';
@@ -45,7 +45,11 @@ describe('vwc-avatar', () => {
 
 	describe('avatar connotation', function () {
 		it('should set the connotation class on base', async function () {
-
+			const connotation = 'cta' as AvatarConnotation;
+			expect(getControlElement(element).classList.contains(`connotation-${connotation}`)).toBeFalsy();
+			element.connotation = connotation;
+			await elementUpdated(element);
+			expect(getControlElement(element).classList.contains(`connotation-${connotation}`)).toBeTruthy();
 		});
 	});
 });

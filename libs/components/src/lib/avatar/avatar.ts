@@ -10,7 +10,7 @@ import type {
  *
  * @public
  */
-type AvatarConnotation = Extract<Connotation,
+export type AvatarConnotation = Extract<Connotation,
 | Connotation.Accent
 | Connotation.CTA>;
 
