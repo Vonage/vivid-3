@@ -50,27 +50,6 @@ $default-density: list.nth($density, 6);
 		border-radius: 50%;
 	}
 
-	&:where(.density-5, .density-6, .density-7, .density-8) {
-		@include typography.typography-cat-shorthand('caption');
-	}
-
-	&:where( .density-9, .density-10, .density-11) {
-		.initials {
-			@include typography.typography-cat-shorthand('body-1-bold');
-		}
-		.icon {
-			@include typography.typography-cat-shorthand('subtitle-2');
-		}
-	}
-
-	&:where(.density-12, .density-13, .density-block) {
-		.initials {
-			@include typography.typography-cat-shorthand('subtitle-2');
-		}
-		.icon {
-			@include typography.typography-cat-shorthand('subtitle-1');
-		}
-	}
 
 	&:where(.density-block) {
 		@include typography.typography-cat-shorthand('subtitle-2');
@@ -80,10 +59,6 @@ $default-density: list.nth($density, 6);
 		inline-size: 100%;
 	}
 
-	.initials {
-		text-transform: uppercase;
-	}
-
 	::slotted(*) {
 		block-size: 100%;
 		inline-size: 100%;
@@ -91,3 +66,27 @@ $default-density: list.nth($density, 6);
 	}
 }
 
+.initials {
+	:where(.density-5, .density-6, .density-7, .density-8) & {
+		@include typography.typography-cat-shorthand('caption');
+	}
+	:where( .density-9, .density-10, .density-11) & {
+		@include typography.typography-cat-shorthand('body-1-bold');
+	}
+	:where(.density-12, .density-13, .density-block) & {
+		@include typography.typography-cat-shorthand('subtitle-2');
+	}
+}
+
+
+.icon {
+	:where(.density-5, .density-6, .density-7, .density-8) & {
+		@include typography.typography-cat-shorthand('caption');
+	}
+	:where( .density-9, .density-10, .density-11) & {
+		@include typography.typography-cat-shorthand('subtitle-2');
+	}
+	:where(.density-12, .density-13, .density-block) & {
+		@include typography.typography-cat-shorthand('subtitle-1');
+	}
+}
