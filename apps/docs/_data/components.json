@@ -245,5 +245,13 @@
       "/assets/modules/components/card/index.js",
       "/assets/modules/components/text/index.js"
     ]
+  },
+  {
+    "title": "list-item",
+    "markdown": "./libs/components/src/lib/list-item/README.md",
+    "modules": [
+      "/assets/modules/components/list-item/index.js",
+      "/assets/modules/components/button/index.js"
+    ]
   }
 ]
