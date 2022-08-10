@@ -29,6 +29,6 @@ export const ListItemTemplate: (
 			${when(x => x.text, html`<div class="text">${x => x.text}</div>`)}
 			${when(x => x.subtext, html`<div class="subtext">${x => x.subtext}</div>`)}
 		</div>
-		${when(x => x.meta, html`<vwc-icon class="meta" type="${x => x.meta}"></vwc-icon>`)}
+		<slot name="meta"></slot>
 	</li>`;
 };

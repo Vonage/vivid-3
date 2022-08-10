@@ -24,13 +24,6 @@ export class ListItem extends FoundationElement {
 	 * HTML Attribute: subtext
 	 */
 	@attr subtext?: string;
-	/**
-	 *
-	 * @public
-	 *
-	 * HTML Attribute: meta
-	 */
-	@attr meta?: string;
 }
 
 export interface ListItem extends AffixIconWithTrailing { }

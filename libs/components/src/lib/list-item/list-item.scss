@@ -54,19 +54,14 @@
 	.subtext {
 		@include typography.typography-cat-shorthand('caption');
 	}
-
-	.meta {
-		overflow: hidden;
-		max-width: 20%;
-		flex-shrink: 0;
-		color: var(#{theme-consts.$vvd-color-neutral-70});
-		margin-inline-start: auto;
-		text-align: end;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-	}
 }
 
 .icon {
 	font-size: 20px;
+}
+
+::slotted([slot="meta"i]) {
+	flex-shrink: 0;
+	align-self: flex-start;
+	margin-inline-start: auto;
 }
