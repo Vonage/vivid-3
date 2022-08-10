@@ -1,8 +1,13 @@
-const toggleSideDrawerButton = (button) => {
+const toggleSideDrawerButton = () => {
   const sideDrawer = document.querySelector('vwc-side-drawer#sidedrawer');
 
   sideDrawer.open = !sideDrawer.open;
-  button.icon = sideDrawer.open ? 'collapse-solid' : 'menu-solid';
+  toggleSideDrawerButtonIcon(sideDrawer.open);
+};
+
+const toggleSideDrawerButtonIcon = (open) => {
+  const buttonToggle =  document.querySelector('vwc-button#hamburger-button');
+  buttonToggle.icon = open ? 'collapse-solid' : 'menu-solid';
 };
 
 const codeBlockButtonClick = (button) => {
