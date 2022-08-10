@@ -16,6 +16,14 @@ export class ListItem extends FoundationElement {
 	 * HTML Attribute: text
 	 */
 	@attr text?: string;
+
+	/**
+	 *
+	 * @public
+	 *
+	 * HTML Attribute: subtext
+	 */
+	@attr subtext?: string;
 	/**
 	 *
 	 * @public

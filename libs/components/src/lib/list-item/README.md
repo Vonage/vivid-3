@@ -21,7 +21,7 @@ Check out the [vivid icons gallery](https://icons.vivid.vonage.com) to see what 
 - Default: `''`
 
 ```html preview
-<vwc-list-item text="List Item" icon="chat-line"></vwc-list-item>
+<vwc-list-item text="List item" icon="chat-line"></vwc-list-item>
 ```
 
 ### Meta
@@ -33,5 +33,16 @@ Check out the [vivid icons gallery](https://icons.vivid.vonage.com) to see what 
 - Default: `undefined`
 
 ```html preview
-<vwc-list-item text="List Item" meta="more-vertical-solid"></vwc-list-item>
+<vwc-list-item text="List item" meta="more-vertical-solid"></vwc-list-item>
+```
+
+### Subtext
+
+Add the `subtext` attribute to add subtext to the list-item.
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-list-item text="List item" subtext="Subtext of the list item"></vwc-list-item>
 ```

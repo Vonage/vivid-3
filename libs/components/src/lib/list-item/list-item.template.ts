@@ -25,7 +25,10 @@ export const ListItemTemplate: (
 	return html`
     <li class="${getClasses}">
 		${x => affixIconTemplate(x.icon)}
-		${x => x.text}
+		<div class="text-content">
+			${when(x => x.text, html`<div class="text">${x => x.text}</div>`)}
+			${when(x => x.subtext, html`<div class="subtext">${x => x.subtext}</div>`)}
+		</div>
 		${when(x => x.meta, html`<vwc-icon class="meta" type="${x => x.meta}"></vwc-icon>`)}
 	</li>`;
 };

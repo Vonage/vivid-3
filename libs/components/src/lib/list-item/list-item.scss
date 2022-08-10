@@ -20,7 +20,6 @@
 	$min-block-size: 40px;
 	$gap: 8px;
 
-	@include typography.typography-cat-shorthand('body-2');
 	@include appearance.appearance;
 	@include connotation.connotation;
 
@@ -47,6 +46,13 @@
 		&:focus {
 			outline: none;
 		}
+	}
+
+	.text {
+		@include typography.typography-cat-shorthand('body-2');
+	}
+	.subtext {
+		@include typography.typography-cat-shorthand('caption');
 	}
 
 	.meta {
