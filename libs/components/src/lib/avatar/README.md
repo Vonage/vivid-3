@@ -27,7 +27,7 @@ the `name` attribute is set for 2 initials letters.
 TODO: create a component for presenting only the initials.
 
 ```html preview
-<vwc-avatar name="rt"></vwc-avatar>
+<vwc-avatar name="RT"></vwc-avatar>
 ```
 
 ### Appearance
@@ -88,15 +88,15 @@ TODO: fit or block size
 <vwc-avatar density="3" shape="pill"></vwc-avatar>
 
 <hr>
-<vwc-avatar density="-5"  name="rt" shape="pill"></vwc-avatar>
-<vwc-avatar density="-4"  name="rt" shape="pill"></vwc-avatar>
-<vwc-avatar density="-3"  name="rt" shape="pill"></vwc-avatar>
-<vwc-avatar density="-2" name="rt" shape="pill"></vwc-avatar>
-<vwc-avatar density="-1" name="rt" shape="pill"></vwc-avatar>
-<vwc-avatar density="0"  name="rt" shape="pill"></vwc-avatar>
-<vwc-avatar density="1"  name="rt" shape="pill"></vwc-avatar>
-<vwc-avatar density="2"  name="rt" shape="pill"></vwc-avatar>
-<vwc-avatar density="3"  name="rt" shape="pill"></vwc-avatar>
+<vwc-avatar density="-5"  name="RT" shape="pill"></vwc-avatar>
+<vwc-avatar density="-4"  name="RT" shape="pill"></vwc-avatar>
+<vwc-avatar density="-3"  name="RT" shape="pill"></vwc-avatar>
+<vwc-avatar density="-2" name="RT" shape="pill"></vwc-avatar>
+<vwc-avatar density="-1" name="RT" shape="pill"></vwc-avatar>
+<vwc-avatar density="0"  name="RT" shape="pill"></vwc-avatar>
+<vwc-avatar density="1"  name="RT" shape="pill"></vwc-avatar>
+<vwc-avatar density="2"  name="RT" shape="pill"></vwc-avatar>
+<vwc-avatar density="3"  name="RT" shape="pill"></vwc-avatar>
 
 <hr>
 <div style="inline-size: 64px;">
@@ -104,7 +104,7 @@ TODO: fit or block size
 <div>
 
 <div style="inline-size: 64px;">
-  <vwc-avatar density="block"  name="rt" shape="pill"></vwc-avatar>
+  <vwc-avatar density="block" name="RT" shape="pill"></vwc-avatar>
 </div>
 ```
 
