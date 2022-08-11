@@ -7,11 +7,11 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['sidenav', 'sidenav-item'];
+const components = ['nav', 'nav-item'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(path.join(new URL('.', import.meta.url).pathname, 'README.md'))
-		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
+		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`,'');
 
 	page.setViewportSize({ width: 200, height: 720 });
 
@@ -29,6 +29,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/sidenav.png'
+		'./snapshots/nav-item.png'
 	);
 });

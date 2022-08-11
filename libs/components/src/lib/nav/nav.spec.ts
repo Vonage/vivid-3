@@ -1,29 +1,29 @@
 import { fixture } from '@vivid-nx/shared';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { Sidenav } from './sidenav';
+import { Nav } from './nav';
 import '.';
 
 expect.extend(toHaveNoViolations);
-const COMPONENT_TAG = 'vwc-sidenav';
+const COMPONENT_TAG = 'vwc-nav';
 
-describe('vwc-sidenav', () => {
-	const sidenavItemsTemplate = `
-	<vwc-sidenav-item href="#" text="Profile"></vwc-sidenav-item>
-	<vwc-sidenav-item href="#" text="GitHub" aria-current="page"></vwc-sidenav-item>
-	<vwc-sidenav-item href="#" text="lorem ipsum"></vwc-sidenav-item>
+describe('vwc-nav', () => {
+	const navItemsTemplate = `
+	<vwc-nav-item href="#" text="Profile"></vwc-nav-item>
+	<vwc-nav-item href="#" text="GitHub" aria-current="page"></vwc-nav-item>
+	<vwc-nav-item href="#" text="lorem ipsum"></vwc-nav-item>
 	`;
 
-	let element: Sidenav;
+	let element: Nav;
 
 	beforeEach(async () => {
 		element = (await fixture(
-			`<${COMPONENT_TAG}>${sidenavItemsTemplate}</${COMPONENT_TAG}>`
-		)) as Sidenav;
+			`<${COMPONENT_TAG}>${navItemsTemplate}</${COMPONENT_TAG}>`
+		)) as Nav;
 	});
 
 	describe('basic', () => {
-		it('should be initialized as a vwc-sidenav', async () => {
-			expect(element).toBeInstanceOf(Sidenav);
+		it('should be initialized as a vwc-nav', async () => {
+			expect(element).toBeInstanceOf(Nav);
 		});
 	});
 

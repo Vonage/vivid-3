@@ -4,12 +4,12 @@ import { TextAnchor } from '../text-anchor/text-anchor';
 
 
 /**
- * A Sidenav Item Custom HTML Element.
+ * A Nav Item Custom HTML Element.
  * Based largely on the {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element }.
  *
  * @public
  */
-export class SidenavItem extends TextAnchor {}
+export class NavItem extends TextAnchor {}
 
-export interface SidenavItem extends AffixIcon {}
-applyMixins(SidenavItem, AffixIcon);
+export interface NavItem extends AffixIcon {}
+applyMixins(NavItem, AffixIcon);

@@ -99,27 +99,27 @@
     "markdown": "./libs/components/src/lib/side-drawer/README.md",
     "modules": [
       "/assets/modules/components/side-drawer/index.js",
-      "/assets/modules/components/sidenav-item/index.js",
+      "/assets/modules/components/nav-item/index.js",
       "/assets/modules/components/text/index.js",
       "/assets/modules/components/fab/index.js",
       "/assets/modules/components/layout/index.js"
     ]
   },
   {
-    "title": "sidenav-item",
-    "markdown": "./libs/components/src/lib/sidenav-item/README.md",
+    "title": "nav-item",
+    "markdown": "./libs/components/src/lib/nav-item/README.md",
     "modules": [
-      "/assets/modules/components/sidenav/index.js",
-      "/assets/modules/components/sidenav-item/index.js"
+      "/assets/modules/components/nav/index.js",
+      "/assets/modules/components/nav-item/index.js"
     ]
   },
   {
-    "title": "sidenav-disclosure",
-    "markdown": "./libs/components/src/lib/sidenav-disclosure/README.md",
+    "title": "nav-disclosure",
+    "markdown": "./libs/components/src/lib/nav-disclosure/README.md",
     "modules": [
-      "/assets/modules/components/sidenav/index.js",
-      "/assets/modules/components/sidenav-disclosure/index.js",
-      "/assets/modules/components/sidenav-item/index.js"
+      "/assets/modules/components/nav/index.js",
+      "/assets/modules/components/nav-disclosure/index.js",
+      "/assets/modules/components/nav-item/index.js"
     ]
   },
   {
@@ -227,12 +227,12 @@
     ]
   },
   {
-    "title": "sidenav",
-    "markdown": "./libs/components/src/lib/sidenav/README.md",
+    "title": "nav",
+    "markdown": "./libs/components/src/lib/nav/README.md",
     "modules": [
-      "/assets/modules/components/sidenav/index.js",
-      "/assets/modules/components/sidenav-item/index.js",
-      "/assets/modules/components/sidenav-disclosure/index.js"
+      "/assets/modules/components/nav/index.js",
+      "/assets/modules/components/nav-item/index.js",
+      "/assets/modules/components/nav-disclosure/index.js"
     ]
   },
   {
