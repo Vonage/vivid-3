@@ -1,9 +1,3 @@
-const toggleCodePanel = (event) => {
-  const button = event.target;
-  const details = button.closest(".cbd-details");
-  details.open = !details.open;
-  button.setAttribute('aria-expanded', details.open.toString());
-};
 
 const codeBlockButtonClick = (button) => {
   const details = button.closest('vwc-action-group').nextElementSibling;
@@ -14,7 +8,7 @@ const codeBlockButtonClick = (button) => {
 const codeCopyButtonClick = (button) => {
   const details = button.closest('vwc-action-group').nextElementSibling;
   const { textContent } = details;
-  navigator.clipboard.writeText(textContent.trim());
+	navigator.clipboard.writeText(textContent.trim());
 };
 
 const onloadIframe = (iFrame) => {
