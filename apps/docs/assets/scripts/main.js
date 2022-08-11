@@ -1,4 +1,3 @@
-
 const codeBlockButtonClick = (button) => {
   const details = button.closest('vwc-action-group').nextElementSibling;
   details.open = !details.open;
