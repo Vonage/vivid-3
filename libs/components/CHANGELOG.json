@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Thu, 11 Aug 2022 09:45:13 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.45",
+      "version": "3.0.0-next.45",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "0b84e9790448208c989bea154ed5703e62c64066",
+            "comment": "rename sidenav to nav"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 07 Aug 2022 11:50:34 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.44",
       "version": "3.0.0-next.44",
@@ -150,7 +165,7 @@
             "author": "rachel.tannenbaum@vonage.com",
             "package": "@vonage/vivid",
             "commit": "10035863724c0d91709c1bda8a1ab655f8c670f7",
-            "comment": "chore(sidenav): adjust spacing"
+            "comment": "chore(nav): adjust spacing"
           }
         ]
       }
@@ -345,7 +360,7 @@
             "author": "rina.oksman@vonage.com",
             "package": "@vonage/vivid",
             "commit": "88ffa0cf25a3d3b87b63812fd011039600422b1a",
-            "comment": "add sidenav disclosure component"
+            "comment": "add nav disclosure component"
           }
         ]
       }
@@ -441,7 +456,7 @@
             "author": "rina.oksman@vonage.com",
             "package": "@vonage/vivid",
             "commit": "97b35378dfbba9162a0ed4215c74c40c0f5ba221",
-            "comment": "create new sidenav component"
+            "comment": "create new nav component"
           }
         ]
       }
@@ -456,7 +471,7 @@
             "author": "rina.oksman@vonage.com",
             "package": "@vonage/vivid",
             "commit": "02a1141c646a1f85b77f6e0e7529562680116149",
-            "comment": "add appearance to sidenav-item and accordion-item"
+            "comment": "add appearance to nav-item and accordion-item"
           }
         ]
       }
@@ -1486,7 +1501,7 @@
             "author": "yinon@hotmail.com",
             "package": "@vonage/vivid",
             "commit": "c043c18d11b49a0015475e280d8d5202f6af5852",
-            "comment": "new sidenav-item component. part of the sidenav component scope"
+            "comment": "new nav-item component. part of the nav component scope"
           },
           {
             "author": "rina.oksman@vonage.com",
