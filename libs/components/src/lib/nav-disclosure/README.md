@@ -1,4 +1,4 @@
-# Side Navigation Disclosure
+# Navigation Disclosure
 
 By using the nav-disclosure, you can either collapse (hide) or expand (show) the content.
 It has two elements: a disclosure button and a section of content whose visibility is controlled by the button.

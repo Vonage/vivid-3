@@ -1,6 +1,6 @@
-# Side Navigation
+# Navigation
 
-A side navigation component makes it easy for users to navigate through your application.
+A navigation component makes it easy for users to navigate through your application.
 The vwc-nav accepts [vwc-nav-item](../../components/nav-item) and [vwc-nav-disclosure](../../components/nav-disclosure) elements as children.
 
 ```js
@@ -11,7 +11,7 @@ The vwc-nav accepts [vwc-nav-item](../../components/nav-item) and [vwc-nav-discl
 
 ## Slots
 
-### Side Navigation Item
+### Navigation Item
 
 Read more about [vwc-nav-item](../../components/nav-item).
 
@@ -31,7 +31,7 @@ Read more about [vwc-nav-item](../../components/nav-item).
 </script>
 ```
 
-### Side Navigation Disclosure
+### Navigation Disclosure
 
 Read more about [vwc-nav-disclosure](../../components/nav-disclosure).
 

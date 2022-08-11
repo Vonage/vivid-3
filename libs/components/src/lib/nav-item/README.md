@@ -1,4 +1,4 @@
-# Side Navigation Item
+# Navigation Item
 
 This element's attributes include the [anchor element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) attributes.
 
