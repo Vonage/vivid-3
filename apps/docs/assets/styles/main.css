@@ -27,14 +27,11 @@ a:visited {
 
 /* #endregion document */
 
-/* #region layout */
-#menu-button {
-  position: fixed;
-  inset: auto auto 8px 4px;
-  z-index: 2;
+vwc-side-drawer:not(:defined) {
+  display: none;
 }
 
-vwc-side-drawer {
+vwc-side-drawer:defined {
   --side-drawer-app-content-offset: 280px;
   display: block;
   margin-block-start: var(--_header-block-size);
@@ -65,6 +62,21 @@ vwc-side-drawer::part(base) {
   vwc-side-drawer::part(base) {
     overscroll-behavior: none;
   }
+}
+
+vwc-header:not(:defined) {
+  display: none;
+}
+
+.header-content-wrapper {
+  display: flex;
+  align-items: center;
+}
+.header-content-wrapper > * {
+  flex-shrink: 0;
+}
+.menu-button {
+  margin-inline-end: 8px;
 }
 
 vwc-header#header-main::part(base) {
@@ -186,6 +198,7 @@ article > .cbd-container {
   margin-inline-start: -20px;
 
 }
+
 article > vwc-text[font-face="headline-1"] {
   padding-inline: 16px;
   padding-block-start: 40px;
@@ -304,4 +317,10 @@ article > vwc-text[font-face="headline-1"] {
 .hljs-type,
 .hljs-variable.language_ {
   color: var(--vvd-color-alert-80);
+}
+
+.hljs-code,
+.hljs-comment,
+.hljs-formula {
+	color: var(--vvd-color-neutral-30);
 }

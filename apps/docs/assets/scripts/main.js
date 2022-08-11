@@ -1,8 +1,8 @@
-const toggleCodePanel = (event) => {
-  const button = event.target;
-  const details = button.closest(".cbd-details");
-  details.open = !details.open;
-  button.setAttribute('aria-expanded', details.open.toString());
+const toggleSideDrawerButton = (button) => {
+  const sideDrawer = document.querySelector('vwc-side-drawer#sidedrawer');
+
+  sideDrawer.open = !sideDrawer.open;
+  button.icon = sideDrawer.open ? 'collapse-solid' : 'menu-solid';
 };
 
 const codeBlockButtonClick = (button) => {
@@ -47,3 +47,6 @@ const onWindowScroll = () => {
   window.addEventListener('scroll', onWindowScroll);
 })();
 // #endregion
+
+
+

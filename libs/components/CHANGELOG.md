@@ -1,8 +1,24 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Tue, 02 Aug 2022 13:37:38 GMT and should not be manually modified.
+This log was last generated on Sun, 07 Aug 2022 06:26:56 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.44
+
+Sun, 07 Aug 2022 06:26:56 GMT
+
+### Changes
+
+- fix progress ring density mapping (yinon@hotmail.com)
+
+## 3.0.0-next.43
+
+Wed, 03 Aug 2022 13:04:51 GMT
+
+### Changes
+
+- align progress ring default size to baseline (yinon@hotmail.com)
 
 ## 3.0.0-next.42
 
