@@ -1,15 +1,15 @@
 {% block content %}
-<vwc-sidenav>
-  <vwc-sidenav-disclosure label="Design System" open>
+<vwc-nav>
+  <vwc-nav-disclosure label="Design System" open>
     {%  for item in designs | sort(false, false, 'title') %}
-    <vwc-sidenav-item href="{{ ('/designs/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-sidenav-item>
+    <vwc-nav-item href="{{ ('/designs/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-nav-item>
     {% endfor %}
-  </vwc-sidenav-disclosure>
+  </vwc-nav-disclosure>
 
-  <vwc-sidenav-disclosure label="Components" open>
+  <vwc-nav-disclosure label="Components" open>
     {%  for item in components | sort(false, false, 'title') %}
-    <vwc-sidenav-item href="{{ ('/components/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-sidenav-item>
+    <vwc-nav-item href="{{ ('/components/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-nav-item>
     {% endfor %}
-  </vwc-sidenav-disclosure>
-</vwc-sidenav>
+  </vwc-nav-disclosure>
+</vwc-nav>
 {% endblock %}

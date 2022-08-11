@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "rename sidenav to nav",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}

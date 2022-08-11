@@ -28,21 +28,6 @@ a:visited {
 
 /* #endregion document */
 
-/* #region layout */
-#menu-button {
-	position: fixed;
-  inset: auto auto calc(env(safe-area-inset-bottom) + 8px) calc(env(safe-area-inset-left) + 8px);
-  z-index: 2;
-}
-
-#menu-button:not(:defined) {
-	display: none;
-}
-
-vwc-side-drawer {
-	--side-drawer-app-content-offset: 280px;
-}
-
 vwc-side-drawer:not(:defined) {
 	display: none;
 }
@@ -83,6 +68,17 @@ vwc-header:not(:defined) {
   display: none;
 }
 
+.header-content-wrapper {
+  display: flex;
+  align-items: center;
+}
+.header-content-wrapper > * {
+  flex-shrink: 0;
+}
+.menu-button {
+  margin-inline-end: 8px;
+}
+
 vwc-header#header-main::part(base) {
   position: fixed;
   top: 0;
@@ -121,11 +117,11 @@ dark-mode-toggle::part(form) {
 }
 /* #endregion layout */
 
-/*#region: side navigation (temp style - need to be removed once sidenav is done)*/
-vwc-sidenav [role="heading"][aria-level="2"] {
+/*#region: navigation (temp style - need to be removed once nav is done)*/
+vwc-nav [role="heading"][aria-level="2"] {
   color: var(--vvd-color-neutral-70);
 }
-/*#region END: side navigation */
+/*#region END: navigation */
 
 
 /*Main container*/
@@ -317,4 +313,10 @@ article > vwc-text[font-face="headline-1"] {
 .hljs-type,
 .hljs-variable.language_ {
   color: var(--vvd-color-alert-80);
+}
+
+.hljs-code,
+.hljs-comment,
+.hljs-formula {
+	color: var(--vvd-color-neutral-30);
 }

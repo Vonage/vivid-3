@@ -23,6 +23,7 @@
     }
   },
   "implicitDependencies": [
-    "components"
+    "components",
+		"styles"
   ]
 }
