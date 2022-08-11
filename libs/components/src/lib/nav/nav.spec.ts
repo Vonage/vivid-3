@@ -1,6 +1,6 @@
 import { fixture } from '@vivid-nx/shared';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { Sidenav } from './nav';
+import { Nav } from './nav';
 import '.';
 
 expect.extend(toHaveNoViolations);
@@ -13,17 +13,17 @@ describe('vwc-nav', () => {
 	<vwc-nav-item href="#" text="lorem ipsum"></vwc-nav-item>
 	`;
 
-	let element: Sidenav;
+	let element: Nav;
 
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}>${navItemsTemplate}</${COMPONENT_TAG}>`
-		)) as Sidenav;
+		)) as Nav;
 	});
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-nav', async () => {
-			expect(element).toBeInstanceOf(Sidenav);
+			expect(element).toBeInstanceOf(Nav);
 		});
 	});
 

@@ -5,21 +5,21 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { textAnchorTemplate } from '../text-anchor/text-anchor.template';
-import type { SidenavItem } from './nav-item';
+import type { NavItem } from './nav-item';
 
 /**
- * The template for the {@link @microsoft/fast-foundation#SidenavItem} component.
+ * The template for the {@link @microsoft/fast-foundation#NavItem} component.
  *
  * @param context
  * @param definition
  * @public
  */
-export const SidenavItemTemplate: (
+export const NavItemTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<SidenavItem> = (
+) => ViewTemplate<NavItem> = (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => html<SidenavItem>`
+) => html<NavItem>`
       ${textAnchorTemplate(context, definition)}
     `;

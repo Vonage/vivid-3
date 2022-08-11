@@ -24,8 +24,8 @@ Read more about [vwc-nav-item](../../components/nav-item).
 
 <script>
   function onClick(event) {  
-    const currentSidenavItem = document.querySelector('vwc-nav-item[aria-current="page"]');
-    currentSidenavItem?.removeAttribute('aria-current');
+    const currentNavItem = document.querySelector('vwc-nav-item[aria-current="page"]');
+    currentNavItem?.removeAttribute('aria-current');
     event.currentTarget.setAttribute('aria-current', 'page');
   }
 </script>
@@ -48,8 +48,8 @@ Read more about [vwc-nav-disclosure](../../components/nav-disclosure).
 
 <script>
   function onClick(event) {  
-    const currentSidenavItem = document.querySelector('vwc-nav-item[aria-current="page"]');
-    currentSidenavItem?.removeAttribute('aria-current');
+    const currentNavItem = document.querySelector('vwc-nav-item[aria-current="page"]');
+    currentNavItem?.removeAttribute('aria-current');
     event.currentTarget.setAttribute('aria-current', 'page');
   }
 </script>

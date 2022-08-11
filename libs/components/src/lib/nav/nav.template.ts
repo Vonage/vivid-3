@@ -4,19 +4,19 @@ import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
-import type { Sidenav } from './nav';
+import type { Nav } from './nav';
 
 /**
- * The template for the {@link @microsoft/fast-foundation#Sidenav} component.
+ * The template for the {@link @microsoft/fast-foundation#Nav} component.
  *
  * @param context
  * @param definition
  * @public
  */
-export const SidenavTemplate: (
+export const NavTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Sidenav> = (
-) => html<Sidenav>`
+) => ViewTemplate<Nav> = (
+) => html<Nav>`
 		<nav><slot></slot></nav>
     `;

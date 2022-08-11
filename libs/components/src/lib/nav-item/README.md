@@ -41,7 +41,7 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 
 ### Icon with Text
 
-Sidenav item text can be prefixed by a decorative icon.
+Nav item text can be prefixed by a decorative icon.
 
 ```html preview
 <vwc-nav>
@@ -65,8 +65,8 @@ Within a set of pagination links, set a nav item `aria-current` value to *page* 
 
 <script>
   function onClick(event) {  
-    const currentSidenavItem = document.querySelector('vwc-nav-item[aria-current="page"]');
-    currentSidenavItem?.removeAttribute('aria-current');
+    const currentNavItem = document.querySelector('vwc-nav-item[aria-current="page"]');
+    currentNavItem?.removeAttribute('aria-current');
     event.currentTarget.setAttribute('aria-current', 'page');
   }
 </script>

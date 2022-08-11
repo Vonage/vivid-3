@@ -1,23 +1,23 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
-import { SidenavItem } from './nav-item';
+import { NavItem } from './nav-item';
 import '.';
 
 const COMPONENT_TAG = 'vwc-nav-item';
 const ICON_SELECTOR = 'vwc-icon';
 
 describe('vwc-nav-item', () => {
-	let element: SidenavItem;
+	let element: NavItem;
 
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as SidenavItem;
+		)) as NavItem;
 	});
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-nav-item', async () => {
-			expect(element).toBeInstanceOf(SidenavItem);
+			expect(element).toBeInstanceOf(NavItem);
 			expect(element.text).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
 		});

@@ -1,23 +1,23 @@
 import { elementUpdated, fixture, getBaseElement, getControlElement } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
-import { SidenavDisclosure } from './nav-disclosure';
+import { NavDisclosure } from './nav-disclosure';
 import '.';
 
 const COMPONENT_TAG = 'vwc-nav-disclosure';
 const ICON_SELECTOR = 'vwc-icon';
 
 describe('vwc-nav-disclosure', () => {
-	let element: SidenavDisclosure;
+	let element: NavDisclosure;
 
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as SidenavDisclosure;
+		)) as NavDisclosure;
 	});
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-nav-disclosure', async () => {
-			expect(element).toBeInstanceOf(SidenavDisclosure);
+			expect(element).toBeInstanceOf(NavDisclosure);
 			expect(element.label).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
 			expect(element.open).toBeFalsy();
@@ -38,7 +38,7 @@ describe('vwc-nav-disclosure', () => {
 		it('should have open attribute when open', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} open></${COMPONENT_TAG}>`
-			)) as SidenavDisclosure;
+			)) as NavDisclosure;
 
 			await elementUpdated(element);
 			expect(getBaseElement(element).hasAttribute('open')).toEqual(true);

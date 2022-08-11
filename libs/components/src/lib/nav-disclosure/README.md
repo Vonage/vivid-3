@@ -48,7 +48,7 @@ You can toggle the nav-disclosure by using the `open` attribute.
 - Type: `string`
 - Default: `''`
 
-Sidenav disclosure label can be prefixed by a decorative icon.
+Nav disclosure label can be prefixed by a decorative icon.
 Use the `icon` attribute to add an icon.
 
 ```html preview
@@ -74,5 +74,5 @@ If label is not applied.
 ## Accessibility
 
 The nav-disclosure has a `role` button.  
-Sidenav-disclosure has `aria-expanded` set to true when the content is visible. Otherwise, it is set to false.  
-Sidenav-disclosure has a value specified for `aria-controls` that refers to the content.
+Nav-disclosure has `aria-expanded` set to true when the content is visible. Otherwise, it is set to false.  
+Nav-disclosure has a value specified for `aria-controls` that refers to the content.

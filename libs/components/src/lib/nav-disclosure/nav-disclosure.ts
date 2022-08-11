@@ -3,12 +3,12 @@ import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { AffixIcon } from '../../shared/patterns/affix';
 
 /**
- * A Sidenav Item Custom HTML Element.
+ * A Nav Item Custom HTML Element.
  * Based largely on the {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element }.
  *
  * @public
  */
-export class SidenavDisclosure extends FoundationElement {
+export class NavDisclosure extends FoundationElement {
 	details!: HTMLDetailsElement;
 
 	/**
@@ -49,5 +49,5 @@ export class SidenavDisclosure extends FoundationElement {
 	};
 }
 
-export interface SidenavDisclosure extends AffixIcon { }
-applyMixins(SidenavDisclosure, AffixIcon);
+export interface NavDisclosure extends AffixIcon { }
+applyMixins(NavDisclosure, AffixIcon);
