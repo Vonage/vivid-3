@@ -1,7 +1,9 @@
 Valid "repository" key not found in "/home/runner/work/vivid-3/vivid-3/package.json". Consider adding this info for more accurate git remote detection.
 Checking for changes against "origin/main"
 fetching latest from remotes "origin/main"
-Validating no private package among package dependencies OK!
+Validating no private package among package dependencies
+ OK!
+
 Updating package-lock.json after bumping packages
 
 up to date, audited 1695 packages in 5s
@@ -18,3 +20,6 @@ To address all issues, run:
   npm audit fix --force
 
 Run `npm audit` for details.
+Removing change files:
+- @vonage-vivid-b008e95f-6850-49d3-ba8f-6585b9a4a678.json
+Removing change path

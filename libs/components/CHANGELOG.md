@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 07 Aug 2022 06:26:56 GMT and should not be manually modified.
+This log was last generated on Thu, 11 Aug 2022 09:45:13 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.45
+
+Thu, 11 Aug 2022 09:45:13 GMT
+
+### Changes
+
+- rename sidenav to nav (yinon@hotmail.com)
 
 ## 3.0.0-next.44
 
