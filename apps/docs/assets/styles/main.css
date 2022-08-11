@@ -27,18 +27,6 @@ a:visited {
 
 /* #endregion document */
 
-/* #region layout */
-#menu-button:not(:defined) {
-  display: none;
-}
-
-#menu-button:defined {
-  display: block;
-  position: fixed;
-  inset: auto auto 8px 8px;
-  z-index: 2;
-}
-
 vwc-side-drawer:not(:defined) {
   display: none;
 }
@@ -78,6 +66,17 @@ vwc-side-drawer::part(base) {
 
 vwc-header:not(:defined) {
   display: none;
+}
+
+.header-content-wrapper {
+  display: flex;
+  align-items: center;
+}
+.header-content-wrapper > * {
+  flex-shrink: 0;
+}
+.menu-button {
+  margin-inline-end: 8px;
 }
 
 vwc-header#header-main::part(base) {
