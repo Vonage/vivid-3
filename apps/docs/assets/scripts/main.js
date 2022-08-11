@@ -1,3 +1,10 @@
+const toggleSideDrawerButton = (button) => {
+  const sideDrawer = document.querySelector('vwc-side-drawer#sidedrawer');
+
+  sideDrawer.open = !sideDrawer.open;
+  button.icon = sideDrawer.open ? 'collapse-solid' : 'menu-solid';
+};
+
 const codeBlockButtonClick = (button) => {
   const details = button.closest('vwc-action-group').nextElementSibling;
   details.open = !details.open;
