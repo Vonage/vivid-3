@@ -41,8 +41,8 @@ vwc-side-drawer:not([open]) {
 
 vwc-side-drawer::part(base) {
 	inline-size: 280px;
-	block-size: calc(100vh - env(safe-area-inset-bottom) - var(--_header-block-size) - 100px);
-	inset-block-start: unset;
+	/* block-size: calc(100vh - var(--_header-block-size) - env(safe-area-inset-bottom)); */
+	inset-block-start: calc(var(--_header-block-size) + env(safe-area-inset-top));
 	inset-block-end: env(safe-area-inset-bottom);
   background-color: var(--vvd-color-canvas);
   border-right: 1px solid var(--vvd-color-neutral-20);
