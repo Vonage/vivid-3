@@ -1,4 +1,4 @@
-import {elementUpdated, fixture } from '@vivid-nx/shared';
+import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
 import {Connotation} from '../enums';
 import { Avatar } from './avatar';
 import '.';
@@ -87,20 +87,26 @@ describe('vwc-avatar', () => {
 
 	describe('avatar icon', () => {
 		it('should have the default icon', async () => {
-			//whe adding an avatar - the avatar default is with the `user-line` icon
-
+			const iconElement = getBaseElement(element).querySelector('vwc-icon');
+			expect(iconElement?.getAttribute('type')).toEqual('user-line');
 		});
-		it('should have the icon name in the property icon', async () => {
-			// if one added icon="icon-name" this should override the default icon
+		it('should set the icon according to the icon property', async () => {
+			const icon = 'user-line';
+			element.setAttribute('icon', icon);
+			await elementUpdated(element);
+			const iconElement = getBaseElement(element).querySelector('vwc-icon');
+			expect(iconElement?.getAttribute('type')).toEqual(icon);
+			expect(element.icon).toEqual(icon);
 		});
 
 	});
 
 	describe('avatar name', () => {
-		it('should have the default icon', async () => {
-			//the initials are supposed to be at the end a separate component (so no need to check letters etc.)
-			// but one thing can be checked regardless:
-			//if initials are set - that the icon is not presented.
+		it('should not show the icon if name is set', async () => {
+			element.name = 'John Doe';
+			await elementUpdated(element);
+			const iconElement = getBaseElement(element).querySelector('vwc-icon');
+			expect(iconElement).toBeNull();
 		});
 	});
 });
