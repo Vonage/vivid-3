@@ -111,7 +111,7 @@ This project is licensed under the Apache 2.0 License - see the [LICENSE.md](LIC
 
 ## Quickstart
 
-Global content delivery networks can help with fast integration within a html pages, fetching content from an URL, skipping local builds entirely.
+Global content delivery networks can help quickly integrate content within html pages, fetching content from an URL, skipping local builds entirely.
 Such practice is often used when working on POCs or reproduction environments.
 Tools like [UNPKG](https://unpkg.com), [jsDeliver](https://www.jsdelivr.com), [Skypack](https://www.skypack.dev) etc' are bound to deliver any content registered in the npm registry.
 
