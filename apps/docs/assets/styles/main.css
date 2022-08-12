@@ -28,13 +28,7 @@ a:visited {
 /* #endregion document */
 
 vwc-side-drawer:not(:defined) {
-  display: none;
-}
-
-vwc-side-drawer:defined {
-  --side-drawer-app-content-offset: 280px;
-  display: block;
-  margin-block-start: var(--_header-block-size);
+	display: none;
 }
 
 vwc-side-drawer[open] {
@@ -46,22 +40,22 @@ vwc-side-drawer:not([open]) {
 }
 
 vwc-side-drawer::part(base) {
+	inline-size: 280px;
+	inset-block-start: calc(var(--_header-block-size) + env(safe-area-inset-top));
+	inset-block-end: env(safe-area-inset-bottom);
   background-color: var(--vvd-color-canvas);
-  inline-size: 280px;
   border-right: 1px solid var(--vvd-color-neutral-20);
   box-sizing: border-box;
-}
-
-vwc-side-drawer::part(base) {
-  block-size: calc(100vh - var(--_header-block-size));
-  bottom: 0;
-  top: var(--_header-block-size);
 }
 
 @supports (overscroll-behavior: none) {
   vwc-side-drawer::part(base) {
     overscroll-behavior: none;
   }
+}
+
+vwc-side-drawer#sidedrawer > main {
+  margin-top: var(--_header-block-size);
 }
 
 vwc-header:not(:defined) {
@@ -85,10 +79,6 @@ vwc-header#header-main::part(base) {
   inline-size: 100%;
   inset-inline: var(--header-inset-inline-start) 0;
   z-index: 2;
-}
-
-vwc-header#header-main > main {
-  margin-top: var(--_header-block-size);
 }
 
 dark-mode-toggle::part(toggleLabel)::before {
