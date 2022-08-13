@@ -35,6 +35,7 @@ export function formElements<T extends { new (...args: any[]): Record<string, an
 		}
 
 		validate = () => {
+			super.validate();
 			this.userValid = !this.userValid;
 			if (this.proxy instanceof HTMLElement) {
 				this.userValid = (this.#blurred && this.dirtyValue) ? !this.validationMessage : true;
