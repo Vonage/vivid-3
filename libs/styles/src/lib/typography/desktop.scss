@@ -1,51 +1,71 @@
 
 @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+@use '../fonts/variables' as fonts-variables;
+
 
 :root.vvd-typography {
+	body {
+		font-size: 62.5%;
+		font-feature-settings: 'kern';       /* turns on kerning */
+		text-rendering: optimizeLegibility;  /* emphasise on legibility when rendering, turns on ligatures and kerning */
+		-webkit-font-smoothing: antialiased; /* apply font anti-aliasing for Webkit on OSX */
+		-moz-osx-font-smoothing: grayscale;  /* apply font anti-aliasing for Firefox on OSX */
+	}
+
 	h1, .headline-1 {
 		@include typography.typography-cat-shorthand(headline-1);
+		font-family: var(#{fonts-variables.$font-family-upright});
 		margin-block: 2.5rem; //! can be em as is a threshold of its font-size
 	}
 
 	h2, .headline-2 {
 		@include typography.typography-cat-shorthand(headline-2);
+		font-family: var(#{fonts-variables.$font-family-upright});
 		margin-block: 2.5rem;
 	}
 
 	h3, .subtitle-1 {
 		@include typography.typography-cat-shorthand(subtitle-1);
+		font-family: var(#{fonts-variables.$font-family-upright});
 		margin-block: 1.5rem;
 	}
 
 	h4, .subtitle-2 {
 		@include typography.typography-cat-shorthand(subtitle-2);
+		font-family: var(#{fonts-variables.$font-family-upright});
 		margin-block: 1.5rem;
 	}
 
 	h5, .title-1 {
 		@include typography.typography-cat-shorthand(title-1);
+		font-family: var(#{fonts-variables.$font-family-upright});
 		margin-block: 2rem;
 	}
 
 	h6, .title-2 {
 		@include typography.typography-cat-shorthand(title-2);
+		font-family: var(#{fonts-variables.$font-family-upright});
 		margin-block: 2rem;
 	}
 
 	code {
 		@include typography.typography-cat-shorthand(body-1-code);
+		font-family: var(#{fonts-variables.$font-family-upright});
 	}
 
 	body, p {
 		@include typography.typography-cat-shorthand(body-1);
+		font-family: var(#{fonts-variables.$font-family-upright});
 	}
 
 	strong {
-			@include typography.typography-cat-shorthand(body-1-bold);
+		@include typography.typography-cat-shorthand(body-1-bold);
+		font-family: var(#{fonts-variables.$font-family-upright});
 	}
 
 	code {
-			@include typography.typography-cat-shorthand(body-1-code);
+		@include typography.typography-cat-shorthand(body-1-code);
+		font-family: var(#{fonts-variables.$font-family-monospace});
 	}
 
 	// a:any-link {
