@@ -115,7 +115,7 @@ Global content delivery networks can help quickly integrate content within html 
 Such practice is often used when working on POCs or reproduction environments.
 Tools like [UNPKG](https://unpkg.com), [jsDeliver](https://www.jsdelivr.com), [Skypack](https://www.skypack.dev) etc' are bound to deliver any content registered in the npm registry.
 
-The following example will output a fully rendered Vivid button component
+The following snippet fully renders a Vivid button component
 
 ```html
 <!-- import spezia font -->
