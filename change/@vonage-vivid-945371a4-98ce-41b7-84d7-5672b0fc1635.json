@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "replace text component with plain ol styles",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}

@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Sun, 14 Aug 2022 09:29:57 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.45",
+      "version": "3.0.0-next.45",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "6bc5c1d273a2f319302172ead4579a5642a27cdb",
+            "comment": "replace text component with plain ol styles"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 12 Aug 2022 07:32:05 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.45",
       "version": "3.0.0-next.45",
