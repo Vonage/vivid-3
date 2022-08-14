@@ -14,6 +14,7 @@ export * from './fab';
 // export * from './focus';
 export * from './icon';
 export * from './layout';
+export * from './menu';
 export * from './note';
 export * from './popup';
 export * from './progress';

@@ -1,5 +1,8 @@
-import { html } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
+import {
+	type ElementViewTemplate,
+	html,
+	slotted
+} from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
@@ -16,7 +19,7 @@ import type { Menu } from './menu';
 export const MenuTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Menu> = () => html<FASTMenu>`
+) => ElementViewTemplate = () => html<Menu>`
         <template
             slot="${x => (x.slot ? x.slot : x.isNestedMenu() ? 'submenu' : void 0)}"
             role="menu"
