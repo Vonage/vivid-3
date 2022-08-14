@@ -4,10 +4,8 @@ import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
-import { classNames } from '@microsoft/fast-web-utilities';
 import type { Menu } from './menu';
 
-const getClasses = (_: Menu) => classNames('control');
 
 /**
  * The template for the {@link @microsoft/fast-foundation#Menu} component.
@@ -18,7 +16,13 @@ const getClasses = (_: Menu) => classNames('control');
 export const MenuTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Menu> = (context: ElementDefinitionContext) => html` <span
-	class="${getClasses}"
-	>${context.name}
-</span>`;
+) => ViewTemplate<Menu> = () => html<FASTMenu>`
+        <template
+            slot="${x => (x.slot ? x.slot : x.isNestedMenu() ? 'submenu' : void 0)}"
+            role="menu"
+            @keydown="${(x, c) => x.handleMenuKeyDown(c.event as KeyboardEvent)}"
+            @focusout="${(x, c) => x.handleFocusOut(c.event as FocusEvent)}"
+        >
+            <slot ${slotted('items')}></slot>
+        </template>
+    `;
