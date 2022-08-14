@@ -1,14 +1,6 @@
-@use 'variables' as variables;
-
 $SpeziaComplete-Upright: SpeziaComplete-Upright;
 $SpeziaComplete-Italic: SpeziaComplete-Italic;
 $SpeziaComplete-Monospace: SpeziaComplete-Monospace;
-
-:root {
-  #{variables.$font-family-upright}: $SpeziaComplete-Upright;
-  #{variables.$font-family-italic}: $SpeziaComplete-Italic;
-  #{variables.$font-family-monospace}: $SpeziaComplete-Monospace;
-}
 
 @font-face {
 font-family: #{$SpeziaComplete-Upright};
