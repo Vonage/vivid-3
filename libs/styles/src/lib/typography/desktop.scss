@@ -48,9 +48,9 @@
 			@include typography.typography-cat-shorthand(body-1-code);
 	}
 
-	a:any-link {
-			text-decoration: underline;
-	}
+	// a:any-link {
+	//		text-decoration: underline;
+	// }
 
 	// .body-2 {
 	// 		@include typography.typography-cat-shorthand(body-2);
