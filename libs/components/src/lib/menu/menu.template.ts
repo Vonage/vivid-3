@@ -20,12 +20,14 @@ export const MenuTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ElementViewTemplate = () => html<Menu>`
-        <template
-            slot="${x => (x.slot ? x.slot : x.isNestedMenu() ? 'submenu' : void 0)}"
-            role="menu"
-            @keydown="${(x, c) => x.handleMenuKeyDown(c.event as KeyboardEvent)}"
-            @focusout="${(x, c) => x.handleFocusOut(c.event as FocusEvent)}"
-        >
-            <slot ${slotted('items')}></slot>
-        </template>
-    `;
+	<template
+		slot="${x => (x.slot ? x.slot : x.isNestedMenu() ? 'submenu' : void 0)}"
+	>
+		<div
+			role="menu"
+			@keydown="${(x, c) => x.handleMenuKeyDown(c.event as KeyboardEvent)}"
+			@focusout="${(x, c) => x.handleFocusOut(c.event as FocusEvent)}"
+		>
+			<slot ${slotted('items')}></slot>
+		</div>
+	</template>`;

@@ -2,31 +2,31 @@
 	"color": {
 		"surface": {
 			"0dp": {
-				"value": "{color.theme.surface.0dp}",
+				"value": "{color.alias.surface.0dp}",
 				"type": "color"
 			},
 			"2dp": {
-				"value": "{color.theme.surface.2dp}",
+				"value": "{color.alias.surface.2dp}",
 				"type": "color"
 			},
 			"4dp": {
-				"value": "{color.theme.surface.4dp}",
+				"value": "{color.alias.surface.4dp}",
 				"type": "color"
 			},
 			"8dp": {
-				"value": "{color.theme.surface.8dp}",
+				"value": "{color.alias.surface.8dp}",
 				"type": "color"
 			},
 			"12dp": {
-				"value": "{color.theme.surface.12dp}",
+				"value": "{color.alias.surface.12dp}",
 				"type": "color"
 			},
 			"16dp": {
-				"value": "{color.theme.surface.16dp}",
+				"value": "{color.alias.surface.16dp}",
 				"type": "color"
 			},
 			"24dp": {
-				"value": "{color.theme.surface.24dp}",
+				"value": "{color.alias.surface.24dp}",
 				"type": "color"
 			}
 		}
@@ -34,7 +34,7 @@
 	"shadow": {
 		"surface": {
 			"2dp": {
-				"value": "{shadow.theme.surface.2dp.value}",
+				"value": "{shadow.alias.surface.2dp.value}",
 				"type": "boxShadow"
 			}
 		}

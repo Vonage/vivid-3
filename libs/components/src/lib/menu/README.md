@@ -7,7 +7,7 @@ Represents a menu custom element.
 ```
 
 ```html preview
-<vwc-menu></vwc-menu>
+<vwc-menu>yo</vwc-menu>
 ```
 
 ## Members
