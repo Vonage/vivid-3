@@ -250,7 +250,8 @@
 		"title": "menu",
 		"markdown": "./libs/components/src/lib/menu/README.md",
 		"modules": [
-			"/assets/modules/components/menu/index.js"
+			"/assets/modules/components/menu/index.js",
+			"/assets/modules/components/button/index.js"
 		]
 	}
 ]

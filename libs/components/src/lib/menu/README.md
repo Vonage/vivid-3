@@ -18,6 +18,12 @@ Menu, commonly known as a "context menu", is an element that is displayed upon u
 
 Proxies the [`open` property to the underlying popup element](../popup#open).
 
+```html preview center
+<vwc-button id="button" label="open" onclick="menu.open = !menu.open"></vwc-button>
+
+<vwc-menu id="menu" anchor="button" text="Focus or hover to open."></vwc-menu>
+```
+
 ### Anchor
 
 Proxies the [`anchor` property to the underlying popup element](../popup#anchor).
