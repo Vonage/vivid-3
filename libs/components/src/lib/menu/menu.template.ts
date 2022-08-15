@@ -7,6 +7,7 @@ import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
+import { Popup } from '../popup/popup';
 import type { Menu } from './menu';
 
 
@@ -19,15 +20,23 @@ import type { Menu } from './menu';
 export const MenuTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ElementViewTemplate = () => html<Menu>`
-	<template
-		slot="${x => (x.slot ? x.slot : x.isNestedMenu() ? 'submenu' : void 0)}"
-	>
-		<div
-			role="menu"
-			@keydown="${(x, c) => x.handleMenuKeyDown(c.event as KeyboardEvent)}"
-			@focusout="${(x, c) => x.handleFocusOut(c.event as FocusEvent)}"
-		>
-			<slot ${slotted('items')}></slot>
-		</div>
-	</template>`;
+) => ElementViewTemplate = (context: ElementDefinitionContext) => {
+	const popupTag = context.tagFor(Popup);
+
+	return html<Menu>`
+		<${popupTag}
+			placement=${(x) => x.placement}
+			open=${(x) => x.open}
+			anchor=${(x) => x.anchor}
+		 >
+			<div
+				class="base"
+				role="menu"
+				slot="${x => (x.isNestedMenu() ? 'submenu' : void 0)}"
+				@keydown="${(x, c) => x.handleMenuKeyDown(c.event as KeyboardEvent)}"
+				@focusout="${(x, c) => x.handleFocusOut(c.event as FocusEvent)}"
+			>
+				<slot ${slotted('items')}></slot>
+			</div>
+	</${popupTag}>`;
+};

@@ -1,3 +1,5 @@
+import '../popup';
+
 import { designSystem } from '../../shared/design-system';
 import styles from './menu.scss';
 import { Menu } from './menu';

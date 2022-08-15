@@ -7,10 +7,14 @@ Represents a menu custom element.
 ```
 
 ```html preview
-<vwc-menu>yo</vwc-menu>
+<vwc-menu open>yo</vwc-menu>
 ```
 
 ## Members
+
+### Placement
+
+Proxies the [`placement` property to the underlying popup element](../popup#placement).
 
 ## Slots
 
