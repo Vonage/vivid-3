@@ -9,10 +9,13 @@ import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { ListItem } from './list-item';
 
 const getClasses = ({
-	iconTrailing, icon
+	iconTrailing, icon, checked, disabled, selected
 }: ListItem) => classNames(
 	'base',
 	['icon', Boolean(icon)],
+	['checked', Boolean(checked)],
+	['disabled', Boolean(disabled)],
+	['selected', Boolean(selected)],
 	['icon-trailing', iconTrailing],
 );
 
@@ -23,11 +26,17 @@ export const ListItemTemplate: (
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html`
-    <li class="${getClasses}">
+	<li class="${getClasses}"
+		aria-checked="${x => x.ariaChecked}"
+		aria-disabled="${x => x.ariaDisabled}"
+		aria-posinset="${x => x.ariaPosInSet}"
+		aria-selected="${x => x.ariaSelected}"
+		aria-setsize="${x => x.ariaSetSize}"
+		role="option">
 		${x => affixIconTemplate(x.icon)}
 		<div class="text-content">
-			${when(x => x.text, html`<div class="text">${x => x.text}</div>`)}
-			${when(x => x.subtext, html`<div class="subtext">${x => x.subtext}</div>`)}
+			${when(x => x.textPrimary, html`<div class="text-primary">${x => x.textPrimary}</div>`)}
+			${when(x => x.textSecondary, html`<div class="text-secondary">${x => x.textSecondary}</div>`)}
 		</div>
 		<slot name="meta"></slot>
 	</li>`;

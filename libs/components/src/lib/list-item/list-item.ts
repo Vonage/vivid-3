@@ -1,5 +1,4 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
-import { applyMixins } from '@microsoft/fast-foundation';
+import { applyMixins, ListboxOption as FastListboxOption } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
@@ -8,22 +7,26 @@ import { AffixIconWithTrailing } from '../../shared/patterns/affix';
  *
  * @public
  */
-export class ListItem extends FoundationElement {
+export class ListItem extends FastListboxOption {
 	/**
 	 *
 	 * @public
 	 *
-	 * HTML Attribute: text
+	 * HTML Attribute: textPrimary
 	 */
-	@attr text?: string;
+	@attr({
+		attribute: 'text-primary',
+	}) textPrimary?: string;
 
 	/**
 	 *
 	 * @public
 	 *
-	 * HTML Attribute: subtext
+	 * HTML Attribute: textSecondary
 	 */
-	@attr subtext?: string;
+	@attr({
+		attribute: 'text-secondary',
+	}) textSecondary?: string;
 }
 
 export interface ListItem extends AffixIconWithTrailing { }

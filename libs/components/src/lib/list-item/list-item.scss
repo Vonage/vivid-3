@@ -48,10 +48,10 @@
 		}
 	}
 
-	.text {
+	.text-primary {
 		@include typography.typography-cat-shorthand('body-2');
 	}
-	.subtext {
+	.text-secondary {
 		@include typography.typography-cat-shorthand('caption');
 	}
 }
