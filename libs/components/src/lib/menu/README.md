@@ -18,28 +18,60 @@ Menu, commonly known as a "context menu", is an element that is displayed upon u
 
 Proxies the [`open` property to the underlying popup element](../popup#open).
 
-```html preview center
-<vwc-button id="button" label="open" onclick="menu.open = !menu.open"></vwc-button>
+```html preview
+<vwc-button label="open" onclick="menu.open = !menu.open"></vwc-button>
 
-<vwc-menu id="menu" anchor="button" text="Focus or hover to open."></vwc-menu>
+<vwc-menu id="menu" text="Focus or hover to open." open>Yo</vwc-menu>
 ```
 
 ### Anchor
 
 Proxies the [`anchor` property to the underlying popup element](../popup#anchor).
 
+```html preview center
+<div style="position: relative">
+  <vwc-button id="button" label="open" onclick="menu.open = !menu.open"></vwc-button>
+
+  <vwc-menu id="menu" anchor="button" text="Focus or hover to open." open>Yo</vwc-menu>
+</div>
+```
+
 ### Placement
 
 Proxies the [`placement` property to the underlying popup element](../popup#placement).
 
+```html preview center
+<div style="position: relative">
+  <vwc-button id="button" label="open" onclick="menu.open = !menu.open"></vwc-button>
+
+  <vwc-menu id="menu" anchor="button" text="Focus or hover to open." placement="top-end" open>Yo</vwc-menu>
+</div>
+```
+
 ## Slots
 
-## CSS Variables
+### Default
 
-## Events
+The default slot for the menu items.
+
+While any DOM content is permissible as a child of the menu, only `vwc-menu-item`'s and slotted content with a role of menu`item`, `menuitemcheckbox`, or `menuitemradio` will receive keyboard support.
+
+```html preview full
+<vwc-menu open>
+Yo
+</vwc-menu>
+```
 
 ## Methods
 
-## Accessibility
+### focus
 
-## Use Cases
+- Returns: void
+
+Focuses the first item in the menu.
+
+### collapseExpandedItem
+
+- Returns: void
+
+Collapses any expanded menu items.
