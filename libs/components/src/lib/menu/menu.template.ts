@@ -25,13 +25,7 @@ export const MenuTemplate: (
 
 	return html<Menu>`
 		<template
-			slot="${x => (
-		x.slot
-			? x.slot
-			: x.isNestedMenu()
-				? 'submenu'
-				: void 0
-	)}"
+			slot="${x => (x.slot || x.isNestedMenu() ? 'submenu' : void 0)}"
 		>
 			<${popupTag}
 				placement=${(x) => x.placement}
