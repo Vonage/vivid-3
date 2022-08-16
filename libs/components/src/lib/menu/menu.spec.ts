@@ -2,6 +2,7 @@ import { ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture } from '@vivid-nx/shar
 import type { Button } from '@microsoft/fast-foundation';
 import { Menu } from './menu';
 import '.';
+import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
 
 const COMPONENT_TAG = 'vwc-menu';
 
@@ -52,7 +53,7 @@ describe('vwc-menu', () => {
 		});
 	});
 
-	describe('focus', () => {
+	describe('focus management', () => {
 		it('should focus the first menuitem in the menu', async () => {
 			const div = document.createElement('div');
 			div.setAttribute('role', 'menuitem');
@@ -88,7 +89,66 @@ describe('vwc-menu', () => {
 
 			expect(document.activeElement).toEqual(div);
 		});
+
+		it('should handle menu key down events', async () => {
+
+			element.innerHTML = `
+				<button role="menuitem" id="id1">Menu Item 1</button>
+				<button role="menuitem" id="id2">Menu Item 1</button>
+				<button role="menuitem" id="id3">Menu Item 1</button>
+			`;
+
+			await elementUpdated(element);
+
+			element.focus();
+
+			document.activeElement?.dispatchEvent(arrowDownEvent);
+			expect(document.activeElement?.id).toEqual('id2');
+
+			document.activeElement?.dispatchEvent(arrowDownEvent);
+			expect(document.activeElement?.id).toEqual('id3');
+
+			document.activeElement?.dispatchEvent(arrowUpEvent);
+			expect(document.activeElement?.id).toEqual('id2');
+
+			document.activeElement?.dispatchEvent(arrowUpEvent);
+			expect(document.activeElement?.id).toEqual('id1');
+		});
+
+		it('should handle focus out event', async () => {
+
+			element.innerHTML = `
+				<div role="menuitem" id="id1">Menu Item 1</div>
+				<div role="menuitem" id="id2">Menu Item 1</div>
+			`;
+
+			await elementUpdated(element);
+
+			element.focus();
+
+			document.activeElement?.dispatchEvent(arrowDownEvent);
+
+			const menuFocusedElement = () => element.querySelector('[tabindex="0"]') as HTMLElement;
+			expect(menuFocusedElement().id).toEqual('id2');
+
+			const focusOutEvent = new FocusEvent('focusout');
+			const { shadowRoot } = element;
+
+			shadowRoot?.querySelector('.base')?.dispatchEvent(focusOutEvent);
+
+			expect(menuFocusedElement().id).toEqual('id1');
+		});
 	});
+
+	const arrowUpEvent = new KeyboardEvent('keydown', {
+		key: keyArrowUp,
+		bubbles: true,
+	} as KeyboardEventInit);
+
+	const arrowDownEvent = new KeyboardEvent('keydown', {
+		key: keyArrowDown,
+		bubbles: true,
+	} as KeyboardEventInit);
 
 	/**
 	 *
