@@ -9,7 +9,6 @@ import type { Placement } from '@floating-ui/dom';
  * @public
  */
 export class Menu extends FastMenu {
-
 	/**
 	 * indicates whether the menu is open
 	 *
