@@ -20,15 +20,15 @@ You can also close the side drawer by pressing the `ESC` key.
 <vwc-side-drawer open>
 
   <vwc-layout gutters="small">
-    <vwc-text>
+    <p>
       Side Drawer content
-    </vwc-text>
+    </p>
   </vwc-layout>
 
   <vwc-layout gutters="small" slot="app-content">
-    <vwc-text>
+    <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </vwc-text>
+    </p>
  </vwc-layout>
 
 </vwc-side-drawer>
