@@ -55,7 +55,7 @@ describe('vwc-menu', () => {
 
 	describe('submenu', () => {
 		it('should not be assigned to an explicit slot', async () => {
-			expect(element.slot).toBeUndefined();
+			expect(element.slot).toBeFalsy();
 		});
 
 		it('should be assigned to a custom slot', async () => {
