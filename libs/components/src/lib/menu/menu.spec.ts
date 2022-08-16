@@ -52,6 +52,44 @@ describe('vwc-menu', () => {
 		});
 	});
 
+	describe('focus', () => {
+		it('should focus the first menuitem in the menu', async () => {
+			const div = document.createElement('div');
+			div.setAttribute('role', 'menuitem');
+			element.appendChild(div);
+
+			await elementUpdated(element);
+
+			element.focus();
+
+			expect(document.activeElement).toEqual(div);
+		});
+
+		it('should focus the first menuitemcheckbox in the menu', async () => {
+			const div = document.createElement('div');
+			div.setAttribute('role', 'menuitemcheckbox');
+			element.appendChild(div);
+
+			await elementUpdated(element);
+
+			element.focus();
+
+			expect(document.activeElement).toEqual(div);
+		});
+
+		it('should focus the first menuitemradio in the menu', async () => {
+			const div = document.createElement('div');
+			div.setAttribute('role', 'menuitemradio');
+			element.appendChild(div);
+
+			await elementUpdated(element);
+
+			element.focus();
+
+			expect(document.activeElement).toEqual(div);
+		});
+	});
+
 	/**
 	 *
 	 */
