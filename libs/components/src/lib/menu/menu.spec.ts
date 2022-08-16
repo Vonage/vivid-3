@@ -1,8 +1,8 @@
 import { ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture } from '@vivid-nx/shared';
 import type { Button } from '@microsoft/fast-foundation';
+import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
 import { Menu } from './menu';
 import '.';
-import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
 
 const COMPONENT_TAG = 'vwc-menu';
 
