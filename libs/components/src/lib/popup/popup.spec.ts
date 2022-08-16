@@ -134,7 +134,7 @@ describe('vwc-popup', () => {
 			expect(element.anchor)
 				.toBeUndefined();
 			expect(element.placement)
-				.toEqual('left');
+				.toBeUndefined();
 		});
 	});
 
