@@ -24,19 +24,22 @@ export const MenuTemplate: (
 	const popupTag = context.tagFor(Popup);
 
 	return html<Menu>`
-		<${popupTag}
-			placement=${(x) => x.placement}
-			open=${(x) => x.open}
-			anchor=${(x) => x.anchor}
-		 >
-			<div
-				class="base"
-				role="menu"
-				slot="${x => (x.isNestedMenu() ? 'submenu' : void 0)}"
-				@keydown="${(x, c) => x.handleMenuKeyDown(c.event as KeyboardEvent)}"
-				@focusout="${(x, c) => x.handleFocusOut(c.event as FocusEvent)}"
+		<template
+			slot="${x => (x.slot ? x.slot : x.isNestedMenu() ? 'submenu' : void 0)}"
+		>
+			<${popupTag}
+				placement=${(x) => x.placement}
+				open=${(x) => x.open}
+				anchor=${(x) => x.anchor}
 			>
-				<slot ${slotted('items')}></slot>
-			</div>
-	</${popupTag}>`;
+				<div
+					class="base"
+					role="menu"
+					@keydown="${(x, c) => x.handleMenuKeyDown(c.event as KeyboardEvent)}"
+					@focusout="${(x, c) => x.handleFocusOut(c.event as FocusEvent)}"
+				>
+					<slot ${slotted('items')}></slot>
+				</div>
+		</${popupTag}>
+	</template>`;
 };

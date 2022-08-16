@@ -53,6 +53,22 @@ describe('vwc-menu', () => {
 		});
 	});
 
+	describe('submenu', () => {
+		it('should be assigned to submenu slot', async () => {
+			const div = document.createElement('div');
+			div.setAttribute('role', 'menuitem');
+			await elementUpdated(element);
+
+			element.parentNode?.appendChild(div);
+			await elementUpdated(element);
+
+			div.appendChild(element);
+			await elementUpdated(element);
+
+			expect(element.slot).toEqual('submenu');
+		});
+	});
+
 	describe('focus management', () => {
 		it('should focus the first menuitem in the menu', async () => {
 			const div = document.createElement('div');
