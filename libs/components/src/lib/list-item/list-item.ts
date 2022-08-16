@@ -7,6 +7,8 @@ import { AffixIconWithTrailing } from '../../shared/patterns/affix';
  *
  * @public
  */
+
+
 export class ListItem extends FastListboxOption {
 	/**
 	 *
@@ -15,8 +17,8 @@ export class ListItem extends FastListboxOption {
 	 * HTML Attribute: textPrimary
 	 */
 	@attr({
-		attribute: 'text-primary',
-	}) textPrimary?: string;
+		attribute: 'text',
+	}) textPrimary?: string; // TODO: This should be named text
 
 	/**
 	 *

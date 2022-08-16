@@ -40,7 +40,18 @@
 	text-decoration: none;
 	vertical-align: middle;
 	word-break: break-word;
-	cursor: pointer;
+	
+	@supports(user-select: none) {
+		user-select: none;
+	}
+
+	&:not(:disabled) {
+		cursor: pointer;
+	}
+
+	&:disabled {
+		cursor: not-allowed;
+	}
 
 	@supports selector(:focus-visible) {
 		&:focus {
@@ -61,7 +72,5 @@
 }
 
 ::slotted([slot="meta"i]) {
-	flex-shrink: 0;
-	align-self: flex-start;
 	margin-inline-start: auto;
 }
