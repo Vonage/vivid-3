@@ -10,7 +10,7 @@
 
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
 	$appearances: ghost,
-	$states: idle hover active selected,
+	$states: idle hover disabled active selected,
 	$default: ghost,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
@@ -20,8 +20,8 @@
 	$min-block-size: 40px;
 	$gap: 8px;
 
-	@include appearance.appearance;
 	@include connotation.connotation;
+	@include appearance.appearance;
 
 	position: relative;
 	display: inline-flex;
@@ -45,11 +45,11 @@
 		user-select: none;
 	}
 
-	&:not(:disabled) {
+	&:not(.disabled) {
 		cursor: pointer;
 	}
 
-	&:disabled {
+	&.disabled {
 		cursor: not-allowed;
 	}
 
