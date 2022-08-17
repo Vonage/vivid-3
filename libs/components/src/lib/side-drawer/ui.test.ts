@@ -5,7 +5,7 @@ import {
 	loadTemplate
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['side-drawer', 'text', 'layout'];
+const components = ['side-drawer', 'layout'];
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
     <vwc-side-drawer open>

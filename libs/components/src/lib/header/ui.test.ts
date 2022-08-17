@@ -5,7 +5,7 @@ import {
 	loadTemplate
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['header', 'button', 'text', 'layout'];
+const components = ['header', 'button', 'layout'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template =`
