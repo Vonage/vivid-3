@@ -74,7 +74,7 @@ export class Popup extends FoundationElement {
 	 * @public
 	 * HTML Attribute: placement
 	 */
-	@attr({ mode: 'fromView' }) placement?: Placement = 'left';
+	@attr({ mode: 'fromView' }) placement?: Placement;
 
 	/**
 	 * ID reference to element in the popup’s owner document.

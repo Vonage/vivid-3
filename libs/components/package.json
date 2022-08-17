@@ -43,6 +43,7 @@
     "./tooltip": "./tooltip",
     "./checkbox": "./checkbox",
     "./dialog": "./dialog",
-    "./divider": "./divider"
+    "./divider": "./divider",
+    "./menu": "./menu"
   }
 }
