@@ -75,3 +75,12 @@ Focuses the first item in the menu.
 - Returns: void
 
 Collapses any expanded menu items.
+
+## Caveat
+
+Document elements display precedence is formed by the imaginary z-axis [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context), commonly by order of which elements are rendered and special properties (e.g. _z-index_).
+Menu component is a low level element, unaware of its document context, but is, in most cases, required to overlay on top of all elements.
+
+A common practice used in apps / frameworks to promote a Menu component to top other elements z-axis, is to utilise a service that dynamically appends a Menu component to the end of the body element, when called for.
+
+This helps ensure elements don't render over top a Menu undesirebly.
