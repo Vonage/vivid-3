@@ -3,13 +3,13 @@ import { attr } from '@microsoft/fast-element';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
 /**
- * Base class for list-item
+ * Base class for listbox-option
  *
  * @public
  */
 
 
-export class ListItem extends FastListboxOption {
+export class ListboxOption extends FastListboxOption {
 	/**
 	 *
 	 * @public
@@ -31,5 +31,5 @@ export class ListItem extends FastListboxOption {
 	}) textSecondary?: string;
 }
 
-export interface ListItem extends AffixIconWithTrailing { }
-applyMixins(ListItem, AffixIconWithTrailing);
+export interface ListboxOption extends AffixIconWithTrailing { }
+applyMixins(ListboxOption, AffixIconWithTrailing);

@@ -44,6 +44,6 @@
     "./checkbox": "./checkbox",
     "./dialog": "./dialog",
     "./divider": "./divider",
-    "./list-item": "./list-item"
+    "./listbox-option": "./listbox-option"
   }
 }

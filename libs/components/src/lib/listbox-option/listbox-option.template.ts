@@ -6,20 +6,20 @@ import type {
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
-import type { ListItem } from './list-item';
+import type { ListboxOption } from './listbox-option';
 
 const getClasses = ({
 	iconTrailing, icon
-}: ListItem) => classNames(
+}: ListboxOption) => classNames(
 	'base',
 	['icon', Boolean(icon)],
 	['icon-trailing', iconTrailing],
 );
 
-export const ListItemTemplate: (
+export const ListboxOptionTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<ListItem> = (context: ElementDefinitionContext) => {
+) => ViewTemplate<ListboxOption> = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html`
