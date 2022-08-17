@@ -62,8 +62,11 @@
 	.text-primary {
 		@include typography.typography-cat-shorthand('body-2');
 	}
+
 	.text-secondary {
 		@include typography.typography-cat-shorthand('caption');
+
+		margin-top: 4px;
 	}
 }
 
