@@ -6,6 +6,12 @@ h1, h2, h3, h4, h5, h6, p {
 strong {
   font-weight: unset;
 }
+
+img {
+  inline-size: auto;
+  max-inline-size: 100%;
+  block-size: auto;
+}
 /* #endregion reset */
 
 /* #region document */
@@ -27,26 +33,8 @@ a:visited {
 
 /* #endregion document */
 
-/* #region layout */
-#menu-button:not(:defined) {
-  display: none;
-}
-
-#menu-button:defined {
-  display: block;
-  position: fixed;
-  inset: auto auto 8px 8px;
-  z-index: 2;
-}
-
 vwc-side-drawer:not(:defined) {
-  display: none;
-}
-
-vwc-side-drawer:defined {
-  --side-drawer-app-content-offset: 280px;
-  display: block;
-  margin-block-start: var(--_header-block-size);
+	display: none;
 }
 
 vwc-side-drawer[open] {
@@ -58,16 +46,12 @@ vwc-side-drawer:not([open]) {
 }
 
 vwc-side-drawer::part(base) {
+	inline-size: 280px;
+	inset-block-start: calc(var(--_header-block-size) + env(safe-area-inset-top));
+	inset-block-end: env(safe-area-inset-bottom);
   background-color: var(--vvd-color-canvas);
-  inline-size: 280px;
   border-right: 1px solid var(--vvd-color-neutral-20);
   box-sizing: border-box;
-}
-
-vwc-side-drawer::part(base) {
-  block-size: calc(100vh - var(--_header-block-size));
-  bottom: 0;
-  top: var(--_header-block-size);
 }
 
 @supports (overscroll-behavior: none) {
@@ -76,8 +60,23 @@ vwc-side-drawer::part(base) {
   }
 }
 
+vwc-side-drawer#sidedrawer > main {
+  margin-top: var(--_header-block-size);
+}
+
 vwc-header:not(:defined) {
   display: none;
+}
+
+.header-content-wrapper {
+  display: flex;
+  align-items: center;
+}
+.header-content-wrapper > * {
+  flex-shrink: 0;
+}
+.menu-button {
+  margin-inline-end: 8px;
 }
 
 vwc-header#header-main::part(base) {
@@ -86,10 +85,6 @@ vwc-header#header-main::part(base) {
   inline-size: 100%;
   inset-inline: var(--header-inset-inline-start) 0;
   z-index: 2;
-}
-
-vwc-header#header-main > main {
-  margin-top: var(--_header-block-size);
 }
 
 dark-mode-toggle::part(toggleLabel)::before {
@@ -122,52 +117,15 @@ dark-mode-toggle::part(form) {
 }
 /* #endregion layout */
 
-/*#region: side navigation (temp style - need to be removed once sidenav is done)*/
-vwc-sidenav [role="heading"][aria-level="2"] {
+/*#region: navigation (temp style - need to be removed once nav is done)*/
+vwc-nav [role="heading"][aria-level="2"] {
   color: var(--vvd-color-neutral-70);
 }
-/*#region END: side navigation */
+/*#region END: navigation */
 
 
 /*Main container*/
 /*--------------------------*/
-
-/*Homepage*/
-.home-page-hero {
-  text-align: center;
-  margin-inline: -16px; /*to overide article inline-padding*/
-  padding: 2rem 1rem;
-  background-color: var(--vvd-color-neutral-20);
-}
-@media (min-width: 960px) {
-  .home-page-hero  {
-    margin-inline: -32px; /*to overide article inline-padding*/
-  }
-}
-
-.home-page-hero a {
-  color: var(--vvd-color-on-canvas);
-}
-.home-page-hero-docs-btn {
-  display: inline-block;
-  border: 1px solid var(--vvd-color-on-canvas);
-  padding: 0 2rem;
-  border-radius: 6px;
-  text-decoration: none;
-  margin: 0.5rem 0 1rem 0;
-}
-.home-page-hero p,
-.home-page-hero h6 {
-  margin: 0 auto;
-}
-
-.home-page-hero-docs-links {
-  color: var(--vvd-color-on-canvas);
-}
-.home-page-hero-docs-links span {
-  margin: 0 0.25rem;
-}
-
 article h1,
 article h2,
 article h3,

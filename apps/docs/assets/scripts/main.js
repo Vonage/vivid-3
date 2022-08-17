@@ -1,8 +1,13 @@
-const toggleCodePanel = (event) => {
-  const button = event.target;
-  const details = button.closest(".cbd-details");
-  details.open = !details.open;
-  button.setAttribute('aria-expanded', details.open.toString());
+const toggleSideDrawerButton = () => {
+  const sideDrawer = document.querySelector('vwc-side-drawer#sidedrawer');
+
+  sideDrawer.open = !sideDrawer.open;
+  toggleSideDrawerButtonIcon(sideDrawer.open);
+};
+
+const toggleSideDrawerButtonIcon = (open) => {
+	const buttonToggle = document.querySelector('vwc-button#hamburger-button');
+  buttonToggle.icon = open ? 'collapse-solid' : 'menu-solid';
 };
 
 const codeBlockButtonClick = (button) => {
@@ -14,7 +19,7 @@ const codeBlockButtonClick = (button) => {
 const codeCopyButtonClick = (button) => {
   const details = button.closest('vwc-action-group').nextElementSibling;
   const { textContent } = details;
-	navigator.clipboard.writeText(textContent.trim());
+  navigator.clipboard.writeText(textContent.trim());
 };
 
 const onloadIframe = (iFrame) => {
@@ -31,19 +36,3 @@ const setCurrentIframeTheme = (toggle, iFrame) => {
   const theme = toggle.mode === 'dark' ? '<link rel="stylesheet" href="/assets/styles/themes/dark.css" media="all">' : '<link rel="stylesheet" href="/assets/styles/themes/light.css" media="all">';
   iFrame.contentWindow.document.head?.insertAdjacentHTML("beforeend", theme);
 }
-
-// #region header - set elevation on scroll
-const updateHeaderElevationShadow = (isShadowed) => {
-  const sideHeader = document.querySelector('vwc-header#header-main');
-  sideHeader.elevationShadow = isShadowed;
-}
-
-const onWindowScroll = () => {
-  updateHeaderElevationShadow(window.scrollY > 0);
-}
-
-(() => {
-  // hook window scroll
-  window.addEventListener('scroll', onWindowScroll);
-})();
-// #endregion
