@@ -230,5 +230,13 @@
       "/assets/modules/components/action-group/index.js",
       "/assets/modules/components/card/index.js"
     ]
+  },
+  {
+    "title": "menu",
+    "markdown": "./libs/components/src/lib/menu/README.md",
+    "modules": [
+      "/assets/modules/components/menu/index.js",
+      "/assets/modules/components/button/index.js"
+    ]
   }
 ]
