@@ -86,7 +86,7 @@ export async function loadTemplate({
 	page,
 	template,
 }: { page: Page, template: string }) {
-	const wrappedTemplate = `<div id="wrapper">${template}</div>`;
+	const wrappedTemplate = `<html class="vvd-typography"><div id="wrapper">${template}</div></html>`;
 	await page.addScriptTag({
 		content: `
             document.body.innerHTML = \`${wrappedTemplate}\`;
