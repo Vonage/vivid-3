@@ -31,9 +31,9 @@ Check out the [vivid icons gallery](https://icons.vivid.vonage.com) to see what 
 <vwc-listbox-option text="Listbox Option" icon="chat-line"></vwc-listbox-option>
 ```
 
-### text-secondary
+### Text Secondary
 
-Add the `text-secondary` attribute or `textSecondary` property to add text-secondary to the Listbox Option.
+Add the `text-secondary` attribute or `textSecondary` property to add secondary text to the listbox-option.
 
 - Type: `string`
 - Default: `undefined`
