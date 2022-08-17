@@ -59,6 +59,10 @@
 		}
 	}
 
+	&.secondary{
+		border-bottom: 1px solid var(#{theme-consts.$vvd-color-neutral-30});
+	}
+
 	.text-primary {
 		@include typography.typography-cat-shorthand('body-2');
 	}
@@ -66,6 +70,7 @@
 	.text-secondary {
 		@include typography.typography-cat-shorthand('caption');
 
+		color: var(#{theme-consts.$vvd-color-neutral-70});
 		margin-top: 4px;
 	}
 }

@@ -9,12 +9,13 @@ import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { ListboxOption } from './listbox-option';
 
 const getClasses = ({
-	iconTrailing, icon, disabled, selected
+	iconTrailing, icon, disabled, selected, textSecondary
 }: ListboxOption) => classNames(
 	'base',
 	['disabled', disabled],
 	['selected', selected],
 	['icon', Boolean(icon)],
+	['secondary', Boolean(textSecondary)],
 	['icon-trailing', iconTrailing],
 );
 
