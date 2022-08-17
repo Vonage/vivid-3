@@ -42,6 +42,17 @@ Add the `text-secondary` attribute or `textSecondary` property to add text-secon
 <vwc-listbox-option text="Listbox Option" text-secondary="Secondary text of the Listbox Option"></vwc-listbox-option>
 ```
 
+### Selected
+
+Add the `selected` attribute to select the listbox-option.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-listbox-option text="Listbox Option" selected></vwc-listbox-option>
+```
+
 ### Disabled
 
 Add the `disabled` attribute to disable the listbox-option.
