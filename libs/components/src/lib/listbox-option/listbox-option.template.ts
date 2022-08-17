@@ -33,11 +33,11 @@ export const ListboxOptionTemplate: (
 		aria-selected="${x => x.ariaSelected}"
 		aria-setsize="${x => x.ariaSetSize}"
 		role="option">
-		<slot name="start">${x => affixIconTemplate(x.icon)}</slot>
+		${x => affixIconTemplate(x.icon)}
 		<div class="text-content">
 			${when(x => x.textPrimary, html`<div class="text-primary">${x => x.textPrimary}</div>`)}
 			${when(x => x.textSecondary, html`<div class="text-secondary">${x => x.textSecondary}</div>`)}
 		</div>
-		<slot name="end"><slot name="meta"></slot></slot>
+		<slot name="meta"></slot>
 	</li>`;
 };
