@@ -87,11 +87,12 @@ export async function loadTemplate({
 	page,
 	template,
 }: { page: Page, template: string }) {
-	const wrappedTemplate = `<div id="wrapper">${template}</div>`;
-	await page.addScriptTag({
-		content: `
-						document.documentElement.classList.add('vvd-typography');
-            document.body.innerHTML = \`${wrappedTemplate}\`;
-        `,
-	});
+
+	await page.$('html').then(html => html?.evaluate((html, template) => {
+		html.classList.add('vvd-typography');
+	}, template));
+
+	await page.$('body').then(body => body?.evaluate((body, template) => {
+		body.innerHTML = `<div id="wrapper">${template}</div>`;
+	}, template));
 }
