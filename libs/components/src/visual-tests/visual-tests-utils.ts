@@ -44,7 +44,8 @@ export function extractHTMLBlocksFromReadme(pathToReadme: string): string[] {
 
 const defaultStyles = [
 	'http://127.0.0.1:8080/dist/libs/styles/fonts/spezia.css',
-	'http://127.0.0.1:8080/dist/libs/styles/themes/light.css'
+	'http://127.0.0.1:8080/dist/libs/styles/themes/light.css',
+	'http://127.0.0.1:8080/dist/libs/styles/typography/desktop.css'
 ];
 
 /**
@@ -86,10 +87,12 @@ export async function loadTemplate({
 	page,
 	template,
 }: { page: Page, template: string }) {
-	const wrappedTemplate = `<div id="wrapper">${template}</div>`;
-	await page.addScriptTag({
-		content: `
-            document.body.innerHTML = \`${wrappedTemplate}\`;
-        `,
-	});
+
+	await page.$('html').then(html => html?.evaluate((html, template) => {
+		html.classList.add('vvd-typography');
+	}, template));
+
+	await page.$('body').then(body => body?.evaluate((body, template) => {
+		body.innerHTML = `<div id="wrapper">${template}</div>`;
+	}, template));
 }
