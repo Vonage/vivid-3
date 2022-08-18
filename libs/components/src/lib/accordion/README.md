@@ -13,16 +13,16 @@ The vwc-accordion accepts [vwc-accordion-item](../../components/accordion-item) 
 ```html preview full
 <vwc-accordion>
   <vwc-accordion-item heading="Accordion item 1" open>
-    <vwc-text>This is the first item's accordion body.</vwc-text>
+    This is the first item's accordion body.
   </vwc-accordion-item>
   <vwc-accordion-item heading="Accordion item 2">
-    <vwc-text>This is the second item's accordion body.</vwc-text>
+    This is the second item's accordion body.
   </vwc-accordion-item>
   <vwc-accordion-item heading="Accordion item 3">
-    <vwc-text>This is the third item's accordion body.</vwc-text>
+    This is the third item's accordion body.
   </vwc-accordion-item>
   <vwc-accordion-item heading="Accordion item 4">
-    <vwc-text>This is the fourth item's accordion body.</vwc-text>
+    This is the fourth item's accordion body.
   </vwc-accordion-item>
 </vwc-accordion>
 ```
@@ -39,16 +39,16 @@ Add the `multi` attribute to the accordion to allow multiple items to be open at
 ```html preview full
 <vwc-accordion multi>
   <vwc-accordion-item heading="Accordion item 1" open>
-    <vwc-text>This is the first item's accordion body.</vwc-text>
+    This is the first item's accordion body.
   </vwc-accordion-item>
   <vwc-accordion-item heading="Accordion item 2">
-    <vwc-text>This is the second item's accordion body.</vwc-text>
+    This is the second item's accordion body.
   </vwc-accordion-item>
   <vwc-accordion-item heading="Accordion item 3">
-    <vwc-text>This is the third item's accordion body.</vwc-text>
+    This is the third item's accordion body.
   </vwc-accordion-item>
   <vwc-accordion-item heading="Accordion item 4">
-    <vwc-text>This is the fourth item's accordion body.</vwc-text>
+    This is the fourth item's accordion body.
   </vwc-accordion-item>
 </vwc-accordion>
 ```

@@ -38,7 +38,6 @@
     "./nav": "./nav",
     "./nav-item": "./nav-item",
     "./nav-disclosure": "./nav-disclosure",
-    "./text": "./text",
     "./text-field": "./text-field",
     "./tooltip": "./tooltip",
     "./checkbox": "./checkbox",

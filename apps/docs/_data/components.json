@@ -11,8 +11,7 @@
     "title": "accordion-item",
     "markdown": "./libs/components/src/lib/accordion-item/README.md",
     "modules": [
-      "/assets/modules/components/accordion-item/index.js",
-      "/assets/modules/components/text/index.js"
+      "/assets/modules/components/accordion-item/index.js"
     ]
   },
   {
@@ -90,7 +89,6 @@
       "/assets/modules/components/popup/index.js",
       "/assets/modules/components/button/index.js",
       "/assets/modules/components/icon/index.js",
-      "/assets/modules/components/text/index.js",
       "/assets/modules/components/layout/index.js"
     ]
   },
@@ -100,7 +98,6 @@
     "modules": [
       "/assets/modules/components/side-drawer/index.js",
       "/assets/modules/components/nav-item/index.js",
-      "/assets/modules/components/text/index.js",
       "/assets/modules/components/fab/index.js",
       "/assets/modules/components/layout/index.js"
     ]
@@ -123,18 +120,10 @@
     ]
   },
   {
-    "title": "text",
-    "markdown": "./libs/components/src/lib/text/README.md",
-    "modules": [
-      "/assets/modules/components/text/index.js"
-    ]
-  },
-  {
     "title": "tooltip",
     "markdown": "./libs/components/src/lib/tooltip/README.md",
     "modules": [
       "/assets/modules/components/tooltip/index.js",
-      "/assets/modules/components/text/index.js",
       "/assets/modules/components/button/index.js"
     ]
   },
@@ -159,7 +148,6 @@
     "modules": [
       "/assets/modules/components/card/index.js",
       "/assets/modules/components/button/index.js",
-      "/assets/modules/components/text/index.js",
       "/assets/modules/components/layout/index.js"
     ]
   },
@@ -210,8 +198,7 @@
     "modules": [
       "/assets/modules/components/dialog/index.js",
       "/assets/modules/components/button/index.js",
-      "/assets/modules/components/text-field/index.js",
-      "/assets/modules/components/text/index.js"
+      "/assets/modules/components/text-field/index.js"
     ]
   },
   {
@@ -220,7 +207,6 @@
     "modules": [
       "/assets/modules/components/header/index.js",
       "/assets/modules/components/button/index.js",
-      "/assets/modules/components/text/index.js",
       "/assets/modules/components/side-drawer/index.js",
       "/assets/modules/components/layout/index.js",
       "/assets/modules/components/banner/index.js"
@@ -242,8 +228,7 @@
       "/assets/modules/components/divider/index.js",
       "/assets/modules/components/button/index.js",
       "/assets/modules/components/action-group/index.js",
-      "/assets/modules/components/card/index.js",
-      "/assets/modules/components/text/index.js"
+      "/assets/modules/components/card/index.js"
     ]
   },
   {

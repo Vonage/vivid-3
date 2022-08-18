@@ -23,7 +23,6 @@ export * from './side-drawer';
 export * from './nav';
 export * from './nav-item';
 export * from './nav-disclosure';
-export * from './text';
 export * from './text-field';
 // export * from './text-anchor';
 export * from './tooltip';
