@@ -76,7 +76,7 @@ You can add action items using slotted content in a named slot `action-items`:
 
 ### Removing
 
-Fires `removing` whenever the the banner has started its removing animation.
+Fires `removing` whenever the banner has started its removing animation.
 
 ### Removed
 
