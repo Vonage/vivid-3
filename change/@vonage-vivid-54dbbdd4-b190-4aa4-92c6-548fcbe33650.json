@@ -1,0 +1,10 @@
+{
+  "type": "prerelease",
+  "comment": {
+    "title": "",
+    "value": ""
+  },
+  "packageName": "@vonage/vivid",
+  "email": "rina.oksman@vonage.com",
+  "dependentChangeType": "patch"
+}
