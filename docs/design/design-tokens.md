@@ -22,9 +22,9 @@ Using design tokens allows us to manage and maintain our design system as Vonage
      look like a table]
     
 
-| **Identities**  |  **Properties** |
+| **Identities** |  **Properties** |
 | Typography     | Typeface            |
-| -------------- |  Font sizes         |
+|                |  Font sizes         |
 | -------------- |  Font weights         |
 | -------------- |  Font decoration         |
 | -------------- |  Line Height        |
