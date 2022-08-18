@@ -36,6 +36,15 @@ describe('vwc-side-drawer', () => {
 			expect(hasClassOpenBeforeShow).toEqual(false);
 			expect(hasClassOpenAfterShow).toEqual(true);
 		});
+
+		it('should fire opened event', async function () {
+			const spy = jest.fn();
+			element.addEventListener('opened', spy);
+			element.open = true;
+			await elementUpdated(element);
+			expect(spy)
+				.toHaveBeenCalled();
+		});
 	});
 
 	describe('hide', () => {
@@ -51,6 +60,19 @@ describe('vwc-side-drawer', () => {
 
 			expect(hasClassOpenBeforeHide).toEqual(true);
 			expect(hasClassOpenAfterHide).toEqual(false);
+		});
+
+		it('should fire closed event', async function () {
+			element.open = true;
+			await elementUpdated(element);
+
+			const spy = jest.fn();
+			element.addEventListener('closed', spy);
+			element.open = false;
+			await elementUpdated(element);
+
+			expect(spy)
+				.toHaveBeenCalled();
 		});
 	});
 
@@ -125,4 +147,6 @@ describe('vwc-side-drawer', () => {
 			expect(element.open).toEqual(true);
 		});
 	});
+
+	
 });

@@ -42,4 +42,21 @@ export class SideDrawer extends FoundationElement {
 	@attr({
 		mode: 'boolean',
 	}) trailing = false;
+
+	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
+		super.attributeChangedCallback(name, oldValue, newValue);
+		switch (name) {
+			case 'open': {
+				this.open ? this.#opened() : this.#closed();
+			}
+		}
+	}
+
+	#closed(): void {
+		this.$emit('closed');
+	}
+
+	#opened(): void {
+		this.$emit('opened');
+	}
 }
