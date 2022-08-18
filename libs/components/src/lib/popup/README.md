@@ -106,7 +106,7 @@ Add the `alternate` attribute to set the color-scheme to dark or light (dependin
 Use the `placement` attribute to set the placement of the popup around the anchor.
 
 - Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
-- Default: `'left'`
+- Default: `''`
 
 ```html preview center
 <style>

@@ -52,6 +52,10 @@ The folder contains the following files:
 
   - `fonts/spezia.css` - Loads the *Spezia* variable font and specifies its font face definition. *Spezia* is Vonage's branded font and is required by most Vivid components
 
+- Typography
+
+	- `typography/desktop.css` - Defines the typography for desktop devices
+
 - Themes - only one theme can apply at a time. thus, only one is required to be loaded
 
   - `themes/light.css` - Light theme
@@ -61,8 +65,9 @@ The folder contains the following files:
 Note: scss users can simply [forward](https://sass-lang.com/documentation/at-rules/forward) the styles to their scss project:
 
 ```css
-@forward 'node_modules/@vonage/vivid/styles/fonts/spezia';
-@forward 'node_modules/@vonage/vivid/styles/themes/light';
+@forward 'node_modules/@vonage/vivid/styles/fonts/spezia.css';
+@forward 'node_modules/@vonage/vivid/styles/typography/desktop.css';
+@forward 'node_modules/@vonage/vivid/styles/themes/light.css';
 ```
 
 ## Support
