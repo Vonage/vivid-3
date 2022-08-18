@@ -64,13 +64,13 @@ Should contain menu items
 
 ## Methods
 
-### focus
+### focus()
 
 - Returns: void
 
 Focuses the first item in the menu.
 
-### collapseExpandedItem
+### collapseExpandedItem()
 
 - Returns: void
 
