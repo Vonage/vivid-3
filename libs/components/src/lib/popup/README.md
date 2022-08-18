@@ -25,9 +25,7 @@ The popup is positioned in a fixed manner to its anchor.
   ⚓️
 </span>
 <vwc-popup anchor="anchor" open>
-  <vwc-text>
-    This is a popup.
-  </vwc-text>
+  This is a popup.
 </vwc-popup>
 ```
 
@@ -42,7 +40,7 @@ Use the `open` attribute to indicate whether the popup is open.
 <vwc-button id="anchor" appearance='outlined' label='Click me!'></vwc-button>
 <vwc-popup id="popup" anchor="anchor" open>
   <vwc-layout gutters="small">
-    <vwc-text tight font-face="body-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</vwc-text>
+   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   </vwc-layout>
 </vwc-popup>
 
@@ -62,7 +60,7 @@ Add the `dismissible` attribute to add a close button to the popup.
 <vwc-button id="anchor" appearance='outlined' label='Click on me!'></vwc-button>
 <vwc-popup id="popup" anchor="anchor" open dismissible>
   <vwc-layout gutters="small">
-    <vwc-text tight font-face="body-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</vwc-text>
+   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   </vwc-layout>
 </vwc-popup>
 
@@ -82,7 +80,7 @@ Add the `arrow` attribute to add a small triangle to indicate the trigger elemen
 <vwc-icon id="anchor" type='info-line'></vwc-icon>
 <vwc-popup anchor="anchor" open arrow>
   <vwc-layout gutters="small" style="200px">
-    <vwc-text tight font-face="body-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</vwc-text>
+   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   </vwc-layout>
 </vwc-popup>
 ```
@@ -98,7 +96,7 @@ Add the `alternate` attribute to set the color-scheme to dark or light (dependin
 <vwc-icon id="anchor" type='info-line'></vwc-icon>
 <vwc-popup anchor="anchor" open alternate>
   <vwc-layout gutters="small" style="200px">
-    <vwc-text tight font-face="body-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</vwc-text>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   </vwc-layout>
 </vwc-popup>
 ```
@@ -108,7 +106,7 @@ Add the `alternate` attribute to set the color-scheme to dark or light (dependin
 Use the `placement` attribute to set the placement of the popup around the anchor.
 
 - Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
-- Default: `'left'`
+- Default: `''`
 
 ```html preview center
 <style>
@@ -126,64 +124,40 @@ Use the `placement` attribute to set the placement of the popup around the ancho
 <div id="anchor" class="square"></div>
 
 <vwc-popup id="popup" anchor="anchor" open placement="right-end">
-  <vwc-text tight font-face="body-2">
-    right-end
-  </vwc-text>
+ right-end
 </vwc-popup>
 <vwc-popup id="popup" anchor="anchor" open placement="right">
-  <vwc-text tight font-face="body-2">
-    right
-  </vwc-text>
+ right
 </vwc-popup>
 <vwc-popup id="popup" anchor="anchor" open placement="right-start">
-  <vwc-text tight font-face="body-2">
-    right-start
-  </vwc-text>
+ right-start
 </vwc-popup>
 <vwc-popup id="popup" anchor="anchor" open placement="left-end">
-  <vwc-text tight font-face="body-2">
-    left-end
-  </vwc-text>
+ left-end
 </vwc-popup>
 <vwc-popup id="popup" anchor="anchor" open placement="left">
-  <vwc-text tight font-face="body-2">
-    left
-  </vwc-text>
+ left
 </vwc-popup>
 <vwc-popup id="popup" anchor="anchor" open placement="left-start">
-  <vwc-text tight font-face="body-2">
-    left-start
-  </vwc-text>
+ left-start
 </vwc-popup>
 <vwc-popup id="popup" anchor="anchor" open placement="top-end">
-  <vwc-text tight font-face="body-2">
-    top-end
-  </vwc-text>
+ top-end
 </vwc-popup>
 <vwc-popup id="popup" anchor="anchor" open placement="top">
-  <vwc-text tight font-face="body-2">
-    top
-  </vwc-text>
+ top
 </vwc-popup>
 <vwc-popup id="popup" anchor="anchor" open placement="top-start">
-  <vwc-text tight font-face="body-2">
-    top-start
-  </vwc-text>
+ top-start
 </vwc-popup>
 <vwc-popup id="popup" anchor="anchor" open placement="bottom-end">
-  <vwc-text tight font-face="body-2">
-    bottom-end
-  </vwc-text>
+ bottom-end
 </vwc-popup>
 <vwc-popup id="popup" anchor="anchor" open placement="bottom">
-  <vwc-text tight font-face="body-2">
-    bottom
-  </vwc-text>
+ bottom
 </vwc-popup>
 <vwc-popup id="popup" anchor="anchor" open placement="bottom-start">
-  <vwc-text tight font-face="body-2">
-    bottom-start
-  </vwc-text>
+ bottom-start
 </vwc-popup>
 ```
 

@@ -1,8 +1,40 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Wed, 03 Aug 2022 13:04:51 GMT and should not be manually modified.
+This log was last generated on Thu, 18 Aug 2022 07:38:07 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.47
+
+Thu, 18 Aug 2022 07:38:07 GMT
+
+### Changes
+
+- text component obsoletion (yinon@hotmail.com)
+
+## 3.0.0-next.46
+
+Wed, 17 Aug 2022 20:28:05 GMT
+
+### Changes
+
+- menu migration to fast (yinon@hotmail.com)
+
+## 3.0.0-next.45
+
+Thu, 11 Aug 2022 09:45:13 GMT
+
+### Changes
+
+- rename sidenav to nav (yinon@hotmail.com)
+
+## 3.0.0-next.44
+
+Sun, 07 Aug 2022 06:26:56 GMT
+
+### Changes
+
+- fix progress ring density mapping (yinon@hotmail.com)
 
 ## 3.0.0-next.43
 
@@ -90,7 +122,7 @@ Sun, 17 Jul 2022 12:13:48 GMT
 
 ### Changes
 
-- add sidenav disclosure component (rina.oksman@vonage.com)
+- add nav disclosure component (rina.oksman@vonage.com)
 
 ## 3.0.0-next.32
 
@@ -324,6 +356,7 @@ Tue, 03 May 2022 20:34:28 GMT
 - Update icon size (yonatan.kra@vonage.com)
 
 ## 3.0.0
+
 ## 3.0.0-next.3
 
 Fri, 18 Mar 2022 08:18:37 GMT
@@ -333,7 +366,7 @@ Fri, 18 Mar 2022 08:18:37 GMT
 - Add the breadcrumb component (yonatan.kra@vonage.com)
 - add the breacdcrumbs item component (yonatan.kra@vonage.com)
 - chore(text-anchor): feature underlying vivid anchor (yonatan.kra@vonage.com)
-- new sidenav-item component. part of the sidenav component scope (yinon@hotmail.com)
+- new nav-item component. part of the nav component scope (yinon@hotmail.com)
 - update test (rina.oksman@vonage.com)
 
 ## 3.0.0-next.2

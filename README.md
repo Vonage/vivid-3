@@ -1,6 +1,6 @@
 <div class="home-page-hero">
   <a href="https://github.com/vonage/vivid-3">
-    <img src="/vivid-logo.svg" style="" alt="Vivid Logo" width="120">
+    <img src="/assets/images/vivid-logo.svg" style="" alt="Vivid Logo" width="120">
   </a>
   <h1>Welcome to Vivid</h1>
 
@@ -52,7 +52,7 @@ Feel free to check [issues page](https://github.com/Vonage/vivid-3/issues). You 
 
 #### Generator a new component
 
-`npx run nx g @vonage/nx-vivid:component my-component`
+`npx nx g @vonage/nx-vivid:component my-component`
 
 Will generate a new component in `libs/componnts/src/lib/my-component`
 
