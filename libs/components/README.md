@@ -54,7 +54,9 @@ The folder contains the following files:
 
 - Typography
 
-	- `typography/desktop.css` - Defines the typography for desktop devices
+  - `typography/desktop.css` - Defines the typography for desktop devices viewport
+
+  - `typography/mobile.css` - Defines the typography for mobile devices viewport (resolves to a system font)
 
 - Themes - only one theme can apply at a time. thus, only one is required to be loaded
 

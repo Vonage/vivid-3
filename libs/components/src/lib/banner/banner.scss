@@ -1,5 +1,5 @@
-@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
-@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use '../../../../../dist/libs/tokens/scss/typography/desktop.mixin' as typography;
+
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: success info alert announcement warning,
 	$shades: primary on-primary,

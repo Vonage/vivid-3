@@ -4,7 +4,7 @@
 			"value": "{color.alias.canvas}",
 			"type": "color"
 		},
-		"canvas-text": {
+		"canvasText": {
 			"value": "{color.alias.canvas-text}",
 			"type": "color"
 		},

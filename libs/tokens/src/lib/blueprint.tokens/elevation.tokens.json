@@ -33,8 +33,32 @@
 	},
 	"shadow": {
 		"surface": {
+			"0dp": {
+				"value": "{shadow.alias.surface.0dp.value}",
+				"type": "boxShadow"
+			},
 			"2dp": {
 				"value": "{shadow.alias.surface.2dp.value}",
+				"type": "boxShadow"
+			},
+			"4dp": {
+				"value": "{shadow.alias.surface.4dp.value}",
+				"type": "boxShadow"
+			},
+			"8dp": {
+				"value": "{shadow.alias.surface.8dp.value}",
+				"type": "boxShadow"
+			},
+			"12dp": {
+				"value": "{shadow.alias.surface.12dp.value}",
+				"type": "boxShadow"
+			},
+			"16dp": {
+				"value": "{shadow.alias.surface.16dp.value}",
+				"type": "boxShadow"
+			},
+			"24dp": {
+				"value": "{shadow.alias.surface.24dp.value}",
 				"type": "boxShadow"
 			}
 		}

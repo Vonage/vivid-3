@@ -1,0 +1,8 @@
+{
+	"font": {
+		"body-1": {
+			"value": "{font.alias.body-1}",
+			"type": "typography"
+		}
+	}
+}
