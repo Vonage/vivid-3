@@ -27,7 +27,7 @@ THEMES.forEach(({ name }) =>
 		).buildPlatform('web')
 );
 
-['desktop', 'mobile'].forEach(viewport =>
+['desktop'/*, 'mobile'*/].forEach(viewport =>
 	StyleDictionary
 		.extend(
 			require('./configurations/typography')(viewport)
