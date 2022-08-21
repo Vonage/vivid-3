@@ -71,7 +71,7 @@
 
 	&:focus {
 		z-index: 2000;
-		filter: var(#{theme-consts.$vvd-shadow-surface-8dp});
+		filter: var(#{constants.$vvd-shadow-surface-8dp});
 		outline: none;
 	}
 }

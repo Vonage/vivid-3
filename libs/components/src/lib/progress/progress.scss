@@ -1,4 +1,4 @@
-@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use '../../../../../dist/libs/tokens/scss/constants' as constants;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent cta alert success,
@@ -21,8 +21,8 @@ $rounded-border-radius: 3px;
 	}
 
 	&.connotation-pacific {
-		$start: var(#{theme-consts.$vvd-color-info-30});
-		$end: var(#{theme-consts.$vvd-color-cta-70});
+		$start: var(#{constants.$vvd-color-information-200});
+		$end: var(#{constants.$vvd-color-cta-600});
 
 		#{connotation.get-connotation-token(primary)}: linear-gradient(to right, $start, $end);
 	}
@@ -34,7 +34,7 @@ $rounded-border-radius: 3px;
 	display: flex;
 	overflow: hidden;
 	align-items: center;
-	background-color: var(#{theme-consts.$vvd-color-neutral-20});
+	background-color: var(#{constants.$vvd-color-neutral-20});
 	block-size: 100%;
 	inline-size: 100%;
 
@@ -69,7 +69,7 @@ $rounded-border-radius: 3px;
 	}
 
 	.paused & {
-		background-color: var(#{theme-consts.$vvd-color-neutral-40});
+		background-color: var(#{constants.$vvd-color-neutral-40});
 	}
 }
 
@@ -87,7 +87,7 @@ $rounded-border-radius: 3px;
 .indicator-2 {
 	position: absolute;
 	animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
-	background-color: var(#{theme-consts.$vvd-color-neutral-20});
+	background-color: var(#{constants.$vvd-color-neutral-20});
 	block-size: 100%;
 	opacity: 0;
 

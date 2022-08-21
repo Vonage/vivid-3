@@ -1,6 +1,6 @@
 @use 'partials/variables' as variables;
-@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
-@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use '../../../../../dist/libs/tokens/scss/constants' as constants;
+
 
 .base {
 	box-sizing: border-box;
@@ -8,7 +8,7 @@
 	border: none;
 	background-color: var(#{variables.$dialog-elevation-fill});
 	border-radius: 6px;
-	color: var(#{theme-consts.$vvd-color-on-canvas});
+	color: var(#{constants.$vvd-color-canvas-text});
 	max-block-size: var(#{variables.$dialog-max-block-size}, calc(100vh - 64px));
 	max-inline-size: var(#{variables.$dialog-max-inline-size});
 	min-inline-size: var(#{variables.$dialog-min-inline-size}, 280px);
@@ -51,7 +51,7 @@
 }
 
 .headline {
-	@include typography.typography-cat-shorthand('subtitle-2');
+	font: var(#{constants.$vvd-font-subtitle-2});
 
 	&-wrapper {
 		display: flex;
@@ -62,5 +62,5 @@
 }
 
 .content {
-	@include typography.typography-cat-shorthand('body-2');
+	font: var(#{constants.$vvd-font-body-2});
 }

@@ -67,11 +67,11 @@
 	}
 
 	/* Size */
-.orange-box {
-	inline-size: 40px;
-	aspect-ratio: 1;
-	background: linear-gradient(rgba(255, 0, 0, 0.5), rgba(255, 0, 0, 0.5)), yellow;
-}
+	.orange-box {
+		aspect-ratio: 1;
+		background: linear-gradient(rgb(255 0 0 / 50%), rgb(255 0 0 / 50%)), yellow;
+		inline-size: 40px;
+	}
 	&:not(.stacked) {
 		&.density-condensed {
 			@include mixins.get-density-properties(32px, #{constants.$vvd-font-caption-bold}, 8px, 12px, 16px);
