@@ -21,9 +21,9 @@ $states-mapping: (
       outline: var(#{connotation.get-connotation-token(intermediate)}),
     ),
     fieldset: (
-      text: var(#{constants.$vvd-color-on-canvas}),
+      text: var(#{constants.$vvd-color-canvas-text}),
       fill: var(#{constants.$vvd-color-canvas}),
-      outline: var(#{constants.$vvd-color-neutral-50}),
+      outline: var(#{constants.$vvd-color-neutral-400}),
     ),
     ghost: (
       text: var(#{connotation.get-connotation-token(primary)}),
@@ -53,9 +53,9 @@ $states-mapping: (
       outline: var(#{connotation.get-connotation-token(primary)}),
     ),
     fieldset: (
-      text: var(#{constants.$vvd-color-on-canvas}),
+      text: var(#{constants.$vvd-color-canvas-text}),
       fill: var(#{constants.$vvd-color-canvas}),
-      outline: var(#{constants.$vvd-color-on-canvas}),
+      outline: var(#{constants.$vvd-color-canvas-text}),
     ),
     ghost: (
       text: var(#{connotation.get-connotation-token(primary)}),
@@ -85,9 +85,9 @@ $states-mapping: (
       outline: var(#{connotation.get-connotation-token(primary)}),
     ),
     fieldset: (
-      text: var(#{constants.$vvd-color-on-canvas}),
+      text: var(#{constants.$vvd-color-canvas-text}),
       fill: var(#{constants.$vvd-color-canvas}),
-      outline: var(#{constants.$vvd-color-on-canvas}),
+      outline: var(#{constants.$vvd-color-canvas-text}),
     ),
     ghost: (
       text: var(#{connotation.get-connotation-token(primary)}),
@@ -102,65 +102,65 @@ $states-mapping: (
   ),
   disabled: (
     filled: (
-      text: var(#{constants.$vvd-color-neutral-50}),
-      fill: var(#{constants.$vvd-color-neutral-30}),
+      text: var(#{constants.$vvd-color-neutral-400}),
+      fill: var(#{constants.$vvd-color-neutral-200}),
       outline: transaprent,
     ),
     outlined: (
-      text: var(#{constants.$vvd-color-neutral-50}),
+      text: var(#{constants.$vvd-color-neutral-400}),
       fill: transaprent,
-      outline: var(#{constants.$vvd-color-neutral-50}),
+      outline: var(#{constants.$vvd-color-neutral-400}),
     ),
     duotone: (
-      text: var(#{constants.$vvd-color-neutral-50}),
+      text: var(#{constants.$vvd-color-neutral-400}),
       fill: transaprent,
-      outline: var(#{constants.$vvd-color-neutral-50}),
+      outline: var(#{constants.$vvd-color-neutral-400}),
     ),
     fieldset: (
-      text: var(#{constants.$vvd-color-neutral-50}),
-      fill: var(#{constants.$vvd-color-neutral-20}),
-      outline: var(#{constants.$vvd-color-neutral-50}),
+      text: var(#{constants.$vvd-color-neutral-400}),
+      fill: var(#{constants.$vvd-color-neutral-100}),
+      outline: var(#{constants.$vvd-color-neutral-400}),
     ),
     ghost: (
-      text: var(#{constants.$vvd-color-neutral-50}),
+      text: var(#{constants.$vvd-color-neutral-400}),
       fill: transaprent,
       outline: transaprent,
     ),
     subtle: (
-      text: var(#{constants.$vvd-color-neutral-50}),
-      fill: var(#{constants.$vvd-color-neutral-30}),
+      text: var(#{constants.$vvd-color-neutral-400}),
+      fill: var(#{constants.$vvd-color-neutral-200}),
       outline: transaprent,
     )
   ),
   readonly: (
     filled: (
-      text: var(#{constants.$vvd-color-on-canvas}),
-      fill: var(#{constants.$vvd-color-neutral-30}),
+      text: var(#{constants.$vvd-color-canvas-text}),
+      fill: var(#{constants.$vvd-color-neutral-200}),
       outline: transaprent,
     ),
     outlined: (
-      text: var(#{constants.$vvd-color-neutral-50}),
+      text: var(#{constants.$vvd-color-neutral-400}),
       fill: transaprent,
-      outline: var(#{constants.$vvd-color-neutral-50}),
+      outline: var(#{constants.$vvd-color-neutral-400}),
     ),
     duotone: (
-      text: var(#{constants.$vvd-color-neutral-50}),
+      text: var(#{constants.$vvd-color-neutral-400}),
       fill: transaprent,
-      outline: var(#{constants.$vvd-color-neutral-50}),
+      outline: var(#{constants.$vvd-color-neutral-400}),
     ),
     fieldset: (
-      text: var(#{constants.$vvd-color-on-canvas}),
-      fill: var(#{constants.$vvd-color-neutral-20}),
-      outline: var(#{constants.$vvd-color-neutral-50}),
+      text: var(#{constants.$vvd-color-canvas-text}),
+      fill: var(#{constants.$vvd-color-neutral-100}),
+      outline: var(#{constants.$vvd-color-neutral-400}),
     ),
     ghost: (
-      text: var(#{constants.$vvd-color-neutral-50}),
+      text: var(#{constants.$vvd-color-neutral-400}),
       fill: transaprent,
       outline: transaprent,
     ),
     subtle: (
-      text: var(#{constants.$vvd-color-neutral-50}),
-      fill: var(#{constants.$vvd-color-neutral-30}),
+      text: var(#{constants.$vvd-color-neutral-400}),
+      fill: var(#{constants.$vvd-color-neutral-200}),
       outline: transaprent,
     )
   ),
@@ -182,9 +182,9 @@ $states-mapping: (
       outline: var(#{connotation.get-connotation-token(primary)}),
     ),
     fieldset: (
-      text: var(#{constants.$vvd-color-neutral-70}),
+      text: var(#{constants.$vvd-color-neutral-600}),
       fill: var(#{constants.$vvd-color-canvas}),
-      outline: var(#{constants.$vvd-color-on-canvas}),
+      outline: var(#{constants.$vvd-color-canvas-text}),
     ),
     ghost: (
       text: var(#{connotation.get-connotation-token(primary)}),
@@ -214,9 +214,9 @@ $states-mapping: (
       outline: transparent,
     ),
     fieldset: (
-      text: var(#{constants.$vvd-color-alert}),
-      fill: var(#{constants.$vvd-color-alert-20}),
-      outline: var(#{constants.$vvd-color-alert}),
+      text: var(#{constants.$vvd-color-alert-500}),
+      fill: var(#{constants.$vvd-color-alert-100}),
+      outline: var(#{constants.$vvd-color-alert-500}),
     ),
     ghost: (
       text: transparent,

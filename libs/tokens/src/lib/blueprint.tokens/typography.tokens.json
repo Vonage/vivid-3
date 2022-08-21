@@ -1,7 +1,63 @@
 {
 	"font": {
+		"headline": {
+			"value": "{font.alias.headline}",
+			"type": "typography"
+		},
+		"headline-2": {
+			"value": "{font.alias.headline-2}",
+			"type": "typography"
+		},
+		"title": {
+			"value": "{font.alias.title}",
+			"type": "typography"
+		},
+		"title-2": {
+			"value": "{font.alias.title-2}",
+			"type": "typography"
+		},
+		"subtitle": {
+			"value": "{font.alias.subtitle}",
+			"type": "typography"
+		},
+		"subtitle-2": {
+			"value": "{font.alias.subtitle-2}",
+			"type": "typography"
+		},
 		"body-1": {
 			"value": "{font.alias.body-1}",
+			"type": "typography"
+		},
+		"body-1-bold": {
+			"value": "{font.alias.body-1-bold}",
+			"type": "typography"
+		},
+		"body-1-code": {
+			"value": "{font.alias.body-1-code}",
+			"type": "typography"
+		},
+		"body-2": {
+			"value": "{font.alias.body-2}",
+			"type": "typography"
+		},
+		"body-2-bold": {
+			"value": "{font.alias.body-2-bold}",
+			"type": "typography"
+		},
+		"body-2-code": {
+			"value": "{font.alias.body-2-code}",
+			"type": "typography"
+		},
+		"caption": {
+			"value": "{font.alias.caption}",
+			"type": "typography"
+		},
+		"caption-bold": {
+			"value": "{font.alias.caption-bold}",
+			"type": "typography"
+		},
+		"caption-code": {
+			"value": "{font.alias.caption-code}",
 			"type": "typography"
 		}
 	}
