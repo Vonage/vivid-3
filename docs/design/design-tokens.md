@@ -44,6 +44,13 @@ Using design tokens allows us to manage and maintain our design system as Vonage
 | Shape  ------   | Border Style     |
 | -------------- |  Border Radius      |
 
+
+| **Identities**| **Properties**| 
+| ------------- |:-------------:|
+| Typography    | Font sizes    | 
+|               | Font weights  |  
+| zebra stripes | are neat      |   
+
 <hr>
 
 ### Design token types
