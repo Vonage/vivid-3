@@ -34,7 +34,7 @@ $rounded-border-radius: 3px;
 	display: flex;
 	overflow: hidden;
 	align-items: center;
-	background-color: var(#{constants.$vvd-color-neutral-20});
+	background-color: var(#{constants.$vvd-color-neutral-100});
 	block-size: 100%;
 	inline-size: 100%;
 
@@ -69,7 +69,7 @@ $rounded-border-radius: 3px;
 	}
 
 	.paused & {
-		background-color: var(#{constants.$vvd-color-neutral-40});
+		background-color: var(#{constants.$vvd-color-neutral-300});
 	}
 }
 
@@ -87,7 +87,7 @@ $rounded-border-radius: 3px;
 .indicator-2 {
 	position: absolute;
 	animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
-	background-color: var(#{constants.$vvd-color-neutral-20});
+	background-color: var(#{constants.$vvd-color-neutral-100});
 	block-size: 100%;
 	opacity: 0;
 

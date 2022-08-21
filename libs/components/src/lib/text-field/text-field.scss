@@ -1,7 +1,6 @@
 @use '../focus/partials/variables' as focus-variables;
 
-@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
-@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use '../../../../../dist/libs/tokens/scss/constants' as constants;
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
 	$appearances: fieldset ghost,
 	$states: idle hover disabled readonly error,
@@ -32,18 +31,17 @@ $low-ink-color: --_low-ink-color;
 	}
 
 	&:not(.disabled) {
-		#{$low-ink-color}: var(#{theme-consts.$vvd-color-neutral-70});
+		#{$low-ink-color}: var(#{constants.$vvd-color-neutral-600});
 	}
 
 	&.disabled {
-		#{$low-ink-color}: var(#{theme-consts.$vvd-color-neutral-50});
+		#{$low-ink-color}: var(#{constants.$vvd-color-neutral-400});
 	}
 }
 
 .label {
-	@include typography.typography-cat-shorthand('body-2');
-
 	contain: inline-size;
+	font: var(#{constants.$vvd-font-body-2});
 	grid-column: 1 / 4;
 	grid-row: 1;
 
@@ -52,18 +50,17 @@ $low-ink-color: --_low-ink-color;
 	}
 
 	.base:not(.disabled) & {
-		color: var(#{theme-consts.$vvd-color-on-canvas});
+		color: var(#{constants.$vvd-color-canvas-text});
 	}
 
 	.base.disabled & {
-		color: var(#{theme-consts.$vvd-color-neutral-50});
+		color: var(#{constants.$vvd-color-neutral-400});
 	}
 }
 
 .char-count {
-	@include typography.typography-cat-shorthand('body-2');
-
 	color: var(#{$low-ink-color});
+	font: var(#{constants.$vvd-font-body-2});
 	grid-column: 3 / 4;
 }
 
@@ -96,10 +93,6 @@ $low-ink-color: --_low-ink-color;
 }
 
 .control {
-	// ! note: control is required to stretch fully so that
-	// ! autofill indication applies on all fieldset area
-	@include typography.typography-cat-shorthand('body-2');
-
 	width: 100%;
 	border: 0 none;
 	background-color: var(#{appearance.get-appearance-token(fill)});
@@ -107,6 +100,11 @@ $low-ink-color: --_low-ink-color;
 	border-radius: inherit;
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: inherit;
+
+	// ! note: control is required to stretch fully so that
+	// ! autofill indication applies on all fieldset area
+
+	font: var(#{constants.$vvd-font-body-2});
 	padding-inline-end: 16px;
 	padding-inline-start: 16px;
 	transition: box-shadow .2s, background-color .2s;
@@ -135,23 +133,21 @@ $low-ink-color: --_low-ink-color;
 }
 
 .helper-text {
-	@include typography.typography-cat-shorthand('caption');
-
 	color: var(#{$low-ink-color});
+	font: var(#{constants.$vvd-font-caption});
 	grid-column: 1 / 4;
 	margin-inline-start: 16px;
 }
 
 .error-message {
-	@include typography.typography-cat-shorthand('caption');
-
 	display: flex;
-	color: var(#{theme-consts.$vvd-color-on-canvas});
+	color: var(#{constants.$vvd-color-canvas-text});
 	contain: inline-size;
+	font: var(#{constants.$vvd-font-caption});
 	grid-column: 2 / 4;
 
 	&-icon {
-		color: var(#{theme-consts.$vvd-color-alert});
+		color: var(#{constants.$vvd-color-alert-500});
 		font-size: 16px;
 		grid-column: 1 / 2;
 	}
