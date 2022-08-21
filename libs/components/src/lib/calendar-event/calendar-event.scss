@@ -1,5 +1,5 @@
-@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
-@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use '../../../../../dist/libs/tokens/scss/constants' as constants;
+
 @use 'partials/variables' as variables;
 @use '../calendar/partials/variables' as calendar-variables;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
@@ -77,9 +77,8 @@
 }
 
 h2 {
-	@include typography.typography-cat-shorthand('caption-bold');
-
 	margin: 0;
+	font: var(#{constants.$vvd-font-caption-bold});
 
 	>strong {
 		font: inherit;
@@ -87,7 +86,6 @@ h2 {
 }
 
 p {
-	@include typography.typography-cat-shorthand('caption');
-
 	margin: 0;
+	font: var(#{constants.$vvd-font-caption});
 }

@@ -50,13 +50,11 @@
 	}
 
 	&-headline {
-		@include typography.typography-cat-shorthand('subtitle-2');
-
+		font: var(#{constants.$vvd-font-subtitle-2});
 		-webkit-line-clamp: var(#{card-variables.$headline-line-clamp});
 	}
 	&-subtitle {
-		@include typography.typography-cat-shorthand('body-2');
-
+		font: var(#{constants.$vvd-font-body-2});
 		-webkit-line-clamp: var(#{card-variables.$subtitle-line-clamp});
 	}
 

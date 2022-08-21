@@ -48,10 +48,10 @@ ol {
 .calendar-grid-presentation {
 	display: grid;
 	overflow: hidden;
-	background-color: var(#{theme-consts.$vvd-color-surface-2dp});
+	background-color: var(#{constants.$vvd-color-surface-2dp});
 	border-radius: 6px;
 	counter-reset: listing;
-	filter: var(#{theme-consts.$vvd-shadow-surface-2dp});
+	filter: var(#{constants.$vvd-shadow-surface-2dp});
 	gap: variables.$gap;
 	grid-area: calendar;
 	grid-auto-flow: column;
@@ -71,7 +71,7 @@ ol {
 		pointer-events: none;
 		&:not(:first-child)::after {
 			position: absolute;
-			border-block-end: var(#{theme-consts.$vvd-color-neutral-20}) 1px solid;
+			border-block-end: var(#{constants.$vvd-color-neutral-100}) 1px solid;
 			content: '';
 			inline-size: 100%;
 			margin-block-start: -1px;
@@ -101,7 +101,7 @@ ol {
 	&::before {
 		position: absolute;
 		z-index: -1;
-		background-color: var(#{theme-consts.$vvd-color-info-10});
+		background-color: var(#{constants.$vvd-color-info-10});
 		content: '';
 		@supports (inset: 0) {
 			inset: 0;
@@ -135,7 +135,7 @@ ol {
 		&:not(:first-child)::after {
 			position: absolute;
 			block-size: 100%;
-			border-inline-end: var(#{theme-consts.$vvd-color-neutral-20}) 1px solid;
+			border-inline-end: var(#{constants.$vvd-color-neutral-20}) 1px solid;
 			content: '';
 			margin-inline-start: -1px;
 		}
