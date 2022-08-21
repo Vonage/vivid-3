@@ -15,41 +15,30 @@ Using design tokens allows us to manage and maintain our design system as Vonage
 
 <hr>
 
-### Design token Identities
+### Design token Identities 
 
-    [dashed line represents empty space 
-     and was put only to make the content 
-     look like a table]
-    
-
-| **Identities**  |  **Properties** |
-| Typography     | Typeface            |
-| ___ |  Font sizes         |
-| -------------- |  Font weights         |
-| -------------- |  Font decoration         |
-| -------------- |  Line Height        |
-
-| Color  -------   | Color Palette            |
-| -------------- |  Connotation colors        |
-
-| Scheme  ----   | Dark mode         |
-| -------------- |  Light mode        |
-
-| Elevation  ---   | Drop Shadow      |
-| -------------- |  Opacity      |
-
-| Sizing  ------   | Spacing     |
-| -------------- |  Dense      |
-
-| Shape  ------   | Border Style     |
-| -------------- |  Border Radius      |
-
-
-| **Identities**| **Properties**| 
-| ------------- |:-------------:|
-| Typography    | Font sizes    | 
-|               | Font weights  |  
-| zebra stripes | are neat      |   
+| **Identities**   | **Properties**    | 
+| ---------------- |:-----------------:|
+| Typography       | Font sizes        | 
+|                  | Font weights      |  
+|                  | Font decoration   |   
+|                  | Line Height.      | 
+| ---------------- |:-----------------:|
+| Color            | Color Palette     | 
+|                  | Connotation colors| 
+| ---------------- |:-----------------:|
+| Scheme           | Dark mode         | 
+|                  | Light mode        | 
+| ---------------- |:-----------------:|
+| Elevation        | Drop Shadow       | 
+|                  | Opacity           | 
+| ---------------- |:-----------------:|
+| Sizing           | Spacing           | 
+|                  | Dense             | 
+| ---------------- |:-----------------:|
+| Shape            | Border Style      | 
+|                  | Border Radius     |
+| ---------------- |:-----------------:|
 
 <hr>
 
