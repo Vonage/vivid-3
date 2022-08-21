@@ -1,3 +1,4 @@
+@use '../../../../../dist/libs/tokens/scss/constants' as constants;
 @use 'partials/variables' as variables;
 @use 'partials/mixins' as mixins;
 @use '../focus/partials/variables' as focus-variables;
@@ -66,25 +67,29 @@
 	}
 
 	/* Size */
-
+.orange-box {
+	inline-size: 40px;
+	aspect-ratio: 1;
+	background: linear-gradient(rgba(255, 0, 0, 0.5), rgba(255, 0, 0, 0.5)), yellow;
+}
 	&:not(.stacked) {
 		&.density-condensed {
-			@include mixins.get-density-properties(32px, caption-bold, 8px, 12px, 16px);
+			@include mixins.get-density-properties(32px, #{constants.$vvd-font-caption-bold}, 8px, 12px, 16px);
 		}
 
 		&.density-extended {
-			@include mixins.get-density-properties(48px, body-1-bold, 10px, 20px, 24px);
+			@include mixins.get-density-properties(48px, #{constants.$vvd-font-body-1-bold}, 10px, 20px, 24px);
 		}
 
 		&:not(.density-condensed, .density-extended) {
-			@include mixins.get-density-properties(40px, button, 8px, 16px, 20px);
+			@include mixins.get-density-properties(40px, #{constants.$vvd-font-body-2-bold}, 8px, 16px, 20px);
 		}
 	}
 
 	&.stacked {
 		flex-direction: column;
 		justify-content: center;
-		@include mixins.get-density-properties(68px, body-2-bold, 10px, 16px, 20px);
+		@include mixins.get-density-properties(68px, #{constants.$vvd-font-body-2-bold}, 10px, 16px, 20px);
 	}
 }
 
