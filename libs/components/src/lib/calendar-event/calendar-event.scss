@@ -3,9 +3,9 @@
 @use 'partials/variables' as variables;
 @use '../calendar/partials/variables' as calendar-variables;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: accent cta success alert warning info announcement,
-	$shades: primary on-primary contrast soft,
-	$default: info,
+	$connotations: accent cta success alert warning information announcement,
+	$shades: primary primary-text contrast soft,
+	$default: information,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 

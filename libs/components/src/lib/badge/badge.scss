@@ -1,8 +1,8 @@
 @use '../../../../../dist/libs/tokens/scss/constants' as constants;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: accent cta success alert warning info,
-	$shades: primary on-primary intermediate soft contrast,
+	$connotations: accent cta success alert warning information,
+	$shades: primary primary-text intermediate soft contrast,
 	$default: accent,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;

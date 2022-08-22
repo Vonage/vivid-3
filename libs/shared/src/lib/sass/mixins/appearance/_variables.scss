@@ -6,7 +6,7 @@
 $states-mapping: (
   idle: (
     filled: (
-      text: var(#{connotation.get-connotation-token(on-primary)}),
+      text: var(#{connotation.get-connotation-token(primary-text)}),
       fill: var(#{connotation.get-connotation-token(primary)}),
       outline: transaprent,
     ),
@@ -38,7 +38,7 @@ $states-mapping: (
   ),
   hover: (
     filled: (
-      text: var(#{connotation.get-connotation-token(on-primary)}),
+      text: var(#{connotation.get-connotation-token(primary-text)}),
       fill: var(#{connotation.get-connotation-token(primary-increment)}),
       outline: transaprent,
     ),
@@ -70,7 +70,7 @@ $states-mapping: (
   ),
   active: (
     filled: (
-      text: var(#{connotation.get-connotation-token(on-primary)}),
+      text: var(#{connotation.get-connotation-token(primary-text)}),
       fill: var(#{connotation.get-connotation-token(fierce)}),
       outline: transaprent,
     ),
@@ -167,7 +167,7 @@ $states-mapping: (
   selected: (
     //need to be updated with design. currently its active style
     filled: (
-      text: var(#{connotation.get-connotation-token(on-primary)}),
+      text: var(#{connotation.get-connotation-token(primary-text)}),
       fill: var(#{connotation.get-connotation-token(contrast)}),
       outline: transaprent,
     ),
@@ -231,14 +231,14 @@ $states-mapping: (
   ),
   checked: (
     fieldset: (
-      text: var(#{connotation.get-connotation-token(on-primary)}),
+      text: var(#{connotation.get-connotation-token(primary-text)}),
       fill: var(#{connotation.get-connotation-token(primary)}),
       outline: var(#{connotation.get-connotation-token(primary)}),
     )
   ),
   indeterminate: (
     fieldset: (
-      text: var(#{connotation.get-connotation-token(on-primary)}),
+      text: var(#{connotation.get-connotation-token(primary-text)}),
       fill: var(#{connotation.get-connotation-token(primary)}),
       outline: var(#{connotation.get-connotation-token(primary)}),
     )

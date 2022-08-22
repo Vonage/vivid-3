@@ -1,4 +1,4 @@
-Valid "repository" key not found in "/home/runner/work/vivid-3/vivid-3/package.json". Consider adding this info for more accurate git remote detection.
+Valid "repository" key not found in "/home/runner/work/vivid-3/vivid-3/package.json". Consider adding this information for more accurate git remote detection.
 Checking for changes against "origin/main"
 fetching latest from remotes "origin/main"
 "@vonage/vivid" has a "none" change type, no version bump is required.

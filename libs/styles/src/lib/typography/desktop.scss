@@ -1,6 +1,6 @@
 
 @use '../../../../../dist/libs/tokens/scss/typography/desktop.mixin' as typography;
-@use '../../../../../dist/libs/tokens/scss/constants' as constants;
+@use '../../../../..//dist/libs/tokens/scss/constants' as constants;
 // @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 // @use '../../../../../dist/libs/tokens/scss/themes/constants' as constants;
 
@@ -10,11 +10,51 @@
 }
 
 body {
-	font: var(#{constants.$vvd-font-body-1});
 	font-feature-settings: 'kern';       /* turns on kerning */
 	text-rendering: optimizeLegibility;  /* emphasise on legibility when rendering, turns on ligatures and kerning */
 	-webkit-font-smoothing: antialiased; /* apply font anti-aliasing for Webkit on OSX */
 	-moz-osx-font-smoothing: grayscale;  /* apply font anti-aliasing for Firefox on OSX */
+	font: var(#{constants.$vvd-font-body-1});
+}
+
+h1, .headline {
+	font: var(#{constants.$vvd-font-headline});
+}
+
+h2, .headline-2 {
+	font: var(#{constants.$vvd-font-headline-2});
+}
+
+h3, .subtitle {
+	font: var(#{constants.$vvd-font-subtitle});
+}
+
+h4, .subtitle-2 {
+	font: var(#{constants.$vvd-font-subtitle-2});
+}
+
+h5, .title {
+	font: var(#{constants.$vvd-font-title});
+}
+
+h6, .title-2 {
+	font: var(#{constants.$vvd-font-title-2});
+}
+
+code {
+	font: var(#{constants.$vvd-font-body-1-code});
+}
+
+p {
+
+}
+
+strong {
+	font: var(#{constants.$vvd-font-body-1-bold});
+}
+
+code {
+	font: var(#{constants.$vvd-font-body-1-code});
 }
 
 // :root.vvd-typography {

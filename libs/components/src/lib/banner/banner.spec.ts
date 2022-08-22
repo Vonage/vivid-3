@@ -229,7 +229,7 @@ describe('vwc-banner', () => {
 			getIcon = () => element.shadowRoot?.querySelector('.icon > vwc-icon') as Icon;
 		});
 
-		it('should set the icon according to connotation info by default', function () {
+		it('should set the icon according to connotation information by default', function () {
 			expect(getIcon().type)
 				.toEqual('info-solid');
 		});

@@ -13,7 +13,7 @@
   }
 </style>
 
-<vwc-dialog icon="info" headline="Headline" text="Text content" open></vwc-dialog>
+<vwc-dialog icon="information" headline="Headline" text="Text content" open></vwc-dialog>
 ```
 
 ## Members
@@ -37,7 +37,7 @@ Use the `icon` attribute to set the dialog's icon.
 - Default: `undefined`
 
 ```html preview
-<vwc-dialog icon="info" open></vwc-dialog>
+<vwc-dialog icon="information" open></vwc-dialog>
 ```
 
 ### Text
@@ -250,7 +250,7 @@ vwc-dialog {
 }  
 </style>
 
-<vwc-dialog icon="info" headline="Headline" text="Text content" open></vwc-dialog>
+<vwc-dialog icon="information" headline="Headline" text="Text content" open></vwc-dialog>
 ```
 
 ### Block-Size
@@ -272,7 +272,7 @@ vwc-dialog {
 }  
 </style>
 
-<vwc-dialog icon="info" headline="Headline" text="Text content" open></vwc-dialog>
+<vwc-dialog icon="information" headline="Headline" text="Text content" open></vwc-dialog>
 ```
 
 ## Events

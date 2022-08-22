@@ -242,7 +242,7 @@ article > .cbd-container {
 .hljs-selector-class,
 .hljs-selector-id,
 .hljs-variable {
-  color: var(--vvd-color-info-600);
+  color: var(--vvd-color-information-600);
 }
 
 .hljs-doctag,
