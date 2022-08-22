@@ -1,6 +1,6 @@
-﻿# Design System
-Foundations of the Design System
-**Design Tokens**
+﻿
+# Design Tokens
+
 <hr>
 
 ## What are design tokens?
@@ -47,6 +47,4 @@ The following types of design tokens are the building blocks and design decision
 **Alias tokens** - alias tokens relate to a specific context or abstraction. Aliases help communicate the intended purpose of a token, and are effective when a value with a single intent will appear in multiple places.
 
 ![alias-tokens-explainer](https://user-images.githubusercontent.com/106529909/185866411-98c26728-8bec-4836-a440-a76469edd25d.png)
-   
-   <hr>
 
