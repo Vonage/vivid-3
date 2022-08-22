@@ -18,27 +18,21 @@ Using design tokens allows us to manage and maintain our design system as Vonage
 ### Design token Identities 
 
 | **Identities**   | **Properties**    | 
-| ---------------- |:-----------------:|
-| Typography       | Font sizes        | 
+| :--------------  |:----------------- |
+| **Typography**   | Font sizes        | 
 |                  | Font weights      |  
 |                  | Font decoration   |   
 |                  | Line Height.      | 
-| ---------------- |:-----------------:|
-| Color            | Color Palette     | 
+| **Color**        | Color Palette     | 
 |                  | Connotation colors| 
-| ---------------- |:-----------------:|
-| Scheme           | Dark mode         | 
+| **Scheme**       | Dark mode         | 
 |                  | Light mode        | 
-| ---------------- |:-----------------:|
-| Elevation        | Drop Shadow       | 
+| **Elevation**    | Drop Shadow       | 
 |                  | Opacity           | 
-| ---------------- |:-----------------:|
-| Sizing           | Spacing           | 
+| **Sizing**       | Spacing           | 
 |                  | Dense             | 
-| ---------------- |:-----------------:|
-| Shape            | Border Style      | 
+| **Shape**        | Border Style      | 
 |                  | Border Radius     |
-| ---------------- |:-----------------:|
 
 <hr>
 
@@ -47,6 +41,8 @@ Using design tokens allows us to manage and maintain our design system as Vonage
 The following types of design tokens are the building blocks and design decisions that make up the Vivid design language:
 
 **Global tokens** - global tokens are the primitive values in our design language, represented by context-agnostic names. Our color palette, typography, and elevation values are all recorded as global tokens. These can be directly used, and are inherited by all other token types.
+
+![alt text](http://url/to/img.png)
 
     [Here appears an image with example]
 
