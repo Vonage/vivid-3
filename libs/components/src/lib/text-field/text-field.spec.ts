@@ -353,6 +353,22 @@ describe('vwc-text-field', () => {
 				.toEqual(true);
 		});
 
+		it('should set required message if submitted', async function () {
+
+			element.required = true;
+			await elementUpdated(element);
+			element.dispatchEvent(new Event('invalid'))
+			await elementUpdated(element);
+			const errorElement = element.shadowRoot?.querySelector('.error-message');
+
+			expect(getRootElement(element)
+				.classList
+				.contains('error'))
+				.toEqual(true);
+
+			expect(errorElement !== null).toBeTruthy();
+		});
+
 		it('should render the error message when not valid', async function () {
 			const errorElementWithoutText = element.shadowRoot?.querySelector('.error-message');
 			const errorMessage = 'Error Text';

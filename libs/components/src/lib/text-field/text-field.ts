@@ -24,3 +24,4 @@ export class TextField extends FoundationTextfield {
 export interface TextField extends AffixIcon, FormElement{}
 applyMixins(TextField, AffixIcon);
 
+

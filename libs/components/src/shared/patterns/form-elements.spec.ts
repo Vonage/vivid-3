@@ -3,6 +3,9 @@ import {FormElement, formElements} from './form-elements';
 describe('formElements mixin', function () {
 	@formElements
 	class TestClass {
+		shadowRoot = {
+			appendChild: () => 5
+		};
 		addEventListener() {
 			const nooper = this.userValid;
 			this.userValid = nooper;

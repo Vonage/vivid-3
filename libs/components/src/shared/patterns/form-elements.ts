@@ -32,10 +32,19 @@ export function formElements<T extends { new (...args: any[]): Record<string, an
 			(this as unknown as HTMLElement).addEventListener('focus', () => {
 				this.#blurred = false;
 			});
+			(this as unknown as HTMLElement).addEventListener('invalid', () => {
+				if (this.#blurred && this.dirtyValue) return;
+				this.#blurred = true;
+				this.dirtyValue = true;
+				this.validate();
+			});
+			this.shadowRoot.appendChild(this.proxy);
 		}
 
 		validate = () => {
-			super.validate();
+			if (this.proxy instanceof HTMLElement) {
+				this.setValidity((this.proxy as any).validity, (this.proxy as any).validationMessage, this.proxy);
+			}
 			this.userValid = !this.userValid;
 			if (this.proxy instanceof HTMLElement) {
 				this.userValid = (this.#blurred && this.dirtyValue) ? !this.validationMessage : true;
