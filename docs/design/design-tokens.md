@@ -42,11 +42,11 @@ The following types of design tokens are the building blocks and design decision
 
 **Global tokens** - global tokens are the primitive values in our design language, represented by context-agnostic names. Our color palette, typography, and elevation values are all recorded as global tokens. These can be directly used, and are inherited by all other token types.
 
-![Global tokens explanation img](https://user-images.githubusercontent.com/106529909/185862975-d1c42c9f-ac9d-4558-ba67-e3606c407d10.jpg)
+![Global-tokens-explainer](https://user-images.githubusercontent.com/106529909/185866434-34566931-4f35-49cc-a535-5690414ea5a2.png)
 
 **Alias tokens** - alias tokens relate to a specific context or abstraction. Aliases help communicate the intended purpose of a token, and are effective when a value with a single intent will appear in multiple places.
 
-    [Here appears an image with example]
+![alias-tokens-explainer](https://user-images.githubusercontent.com/106529909/185866411-98c26728-8bec-4836-a440-a76469edd25d.png)
    
    <hr>
 
