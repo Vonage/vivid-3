@@ -19,7 +19,7 @@ const connotationIconMap = new Map([
 ]);
 
 const defaultConnotation =
-	(connotation: Connotation | undefined = Connotation.Info) => connotationIconMap.get(connotation) as Connotation;
+	(connotation: Connotation | undefined = Connotation.Information) => connotationIconMap.get(connotation) as Connotation;
 
 /**
  * Base class for banner
