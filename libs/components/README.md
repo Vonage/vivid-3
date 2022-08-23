@@ -52,6 +52,10 @@ The folder contains the following files:
 
   - `fonts/spezia.css` - Loads the *Spezia* variable font and specifies its font face definition. *Spezia* is Vonage's branded font and is required by most Vivid components
 
+- Typography
+
+	- `typography/desktop.css` - Defines the typography for desktop devices
+
 - Themes - only one theme can apply at a time. thus, only one is required to be loaded
 
   - `themes/light.css` - Light theme
@@ -61,8 +65,9 @@ The folder contains the following files:
 Note: scss users can simply [forward](https://sass-lang.com/documentation/at-rules/forward) the styles to their scss project:
 
 ```css
-@forward 'node_modules/@vonage/vivid/styles/fonts/spezia';
-@forward 'node_modules/@vonage/vivid/styles/themes/light';
+@forward 'node_modules/@vonage/vivid/styles/fonts/spezia.css';
+@forward 'node_modules/@vonage/vivid/styles/typography/desktop.css';
+@forward 'node_modules/@vonage/vivid/styles/themes/light.css';
 ```
 
 ## Support
@@ -115,7 +120,7 @@ Global content delivery networks can help quickly integrate content within html 
 Such practice is often used when working on POCs or reproduction environments.
 Tools like [UNPKG](https://unpkg.com), [jsDeliver](https://www.jsdelivr.com), [Skypack](https://www.skypack.dev) etc' are bound to deliver any content registered in the npm registry.
 
-The following example will output a fully rendered Vivid button component
+The following snippet fully renders a Vivid button component
 
 ```html
 <!-- import spezia font -->

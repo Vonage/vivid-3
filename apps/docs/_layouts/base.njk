@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-vvd-context="none">
-
+<html lang="en" class="vvd-typography">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +9,8 @@
 
     <!-- Load fonts -->
     <link rel="preload" href="https://fonts.resources.vonage.com/fonts/v1/Spezia_Web_Complete_Upright.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.resources.vonage.com/fonts/v1/Spezia_Web_Monospace_Complete.woff2" as="font" type="font/woff2" crossorigin>
+
     <link rel="stylesheet" href="{{ '/assets/styles/fonts/spezia.css' | url }}">
 
     <!-- Load styles inline -->
@@ -53,6 +54,8 @@
     <link rel="stylesheet" href="{{ '/assets/styles/themes/light.css' | url }}" media="(prefers-color-scheme: light)">
     <link rel="stylesheet" href="{{ '/assets/styles/themes/dark.css' | url }}" media="(prefers-color-scheme: dark)">
 
+    <link rel="stylesheet" href="{{ '/assets/styles/typography/desktop.css' | url }}">
+
 		<script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
 
     <script type="module" src="{{ '/assets/modules/components/layout/index.js' | url}}"></script>
@@ -76,9 +79,8 @@
      <div class="header-content-wrapper">
           <vwc-button id="hamburger-button" connotation="accent" icon='collapse-solid' density='condensed' shape="pill" id="menu-button" aria-label="Menu" onclick="toggleSideDrawerButton()" class="menu-button"></vwc-button>
           <a class="logo-wrapper" href="/" alt="Vivid Web Components">
-           <img src="/assets/images/vivid-logo.svg" style="" alt="Vivid Logo" width="32">
-
-            <vwc-text font-face="body-1-bold" tight>VIVID Web Components</vwc-text>
+           <img src="/assets/images/vivid-logo.svg" alt="Vivid Logo" style="width: 32px">
+            <strong>VIVID Web Components</strong>
           </a>
     </div>
     <dark-mode-toggle	slot="action-items" appearance="toggle"></dark-mode-toggle>

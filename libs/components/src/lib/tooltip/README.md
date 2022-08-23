@@ -106,11 +106,11 @@ Use the `--tooltip-inline-size` variable to set the tooltip's inline size.
 ### Usage inside text
 
 ```html preview
-<vwc-text font-face="body-1" tight>
+<p>
   Text with tooltip - press the question mark
   <vwc-button id="button" icon="help-line" shape="pill" aria-describedby="tooltip"></vwc-button>
   more text after tooltip.
-</vwc-text>
+</p>
 
 <vwc-tooltip id="tooltip" anchor="button" placement="bottom-end" text="I'm the tooltip content"></vwc-tooltip>
 
