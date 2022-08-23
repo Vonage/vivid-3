@@ -73,7 +73,7 @@
           },
           {
             "input": "./dist/libs/styles/fonts/**",
-            "glob": "*.css",
+						"glob": "*.{css,woff,woff2}",
             "output": "./styles/fonts"
           },
           {
