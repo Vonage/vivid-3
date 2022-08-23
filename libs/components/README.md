@@ -50,7 +50,7 @@ The folder contains the following files:
 
 - Fonts
 
-  - `fonts/spezia.css` - Loads the *Spezia* variable font and specifies its font face definition. *Spezia* is Vonage's branded font and is required by most Vivid components
+  - `fonts/spezia.css` - Loads the *Spezia* variable font and specifies its font face definition. *Spezia* is Vonage's branded font and is required by most Vivid components. folder also contains the font files.
 
 - Typography
 

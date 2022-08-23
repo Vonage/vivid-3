@@ -16,7 +16,8 @@
         "commands": [
           "sass libs/styles/src/lib/themes:dist/libs/styles/themes",
           "sass libs/styles/src/lib/typography:dist/libs/styles/typography",
-          "sass libs/styles/src/lib/fonts:dist/libs/styles/fonts"
+          "sass libs/styles/src/lib/fonts:dist/libs/styles/fonts",
+          "cp libs/styles/src/lib/fonts/*.{woff,woff2} dist/libs/styles/fonts"
         ]
       }
     },

@@ -15,7 +15,6 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy({
 		"dist/libs/styles/": "assets/styles/",
 		"dist/libs/components": "assets/modules/components",
-		"libs/styles/src/lib/fonts/**/*.{woff,woff2}": "assets/styles/fonts",
 		"assets/images/vivid-logo.svg": "assets/images/vivid-logo.svg",
 		"assets/images/vivid-cover-wide.avif": "assets/images/vivid-cover-wide.avif",
 		[ASSETS_DIR]: "assets"
