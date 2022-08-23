@@ -1,8 +1,19 @@
 
 @use '../../../../../dist/libs/tokens/scss/typography/desktop.mixin' as typography;
 @use '../../../../..//dist/libs/tokens/scss/constants' as constants;
-// @use '../../../../shared/src/lib/sass/mixins/typography' as typography;
-// @use '../../../../../dist/libs/tokens/scss/themes/constants' as constants;
+
+// $selector: '.vvd-typography' !default; // alternatively set to :root
+
+// #{$selector} {
+// 	// our root
+// 	font-feature-settings: 'kern';       /* turns on kerning */
+// 	text-rendering: optimizeLegibility;  /* emphasise on legibility when rendering, turns on ligatures and kerning */
+// 	-webkit-font-smoothing: antialiased; /* apply font anti-aliasing for Webkit on OSX */
+// 	-moz-osx-font-smoothing: grayscale;  /* apply font anti-aliasing for Firefox on OSX */
+// 	font: var(#{constants.$vvd-font-base});
+// 	@include typography.variables;
+// 	font-size: 62.5%;
+// }
 
 :root {
 	@include typography.variables;
@@ -27,26 +38,32 @@ code {
 
 .headline {
 	font: var(#{constants.$vvd-font-headline});
+	margin-block: 40px;
 }
 
 .subtitle {
 	font: var(#{constants.$vvd-font-subtitle});
+	margin-block: 40px;
 }
 
 h1, .heading1 {
 	font: var(#{constants.$vvd-font-heading1});
+	margin-block: 32px;
 }
 
 h2, .heading2 {
 	font: var(#{constants.$vvd-font-heading2});
+	margin-block: 32px;
 }
 
 h2, .heading3 {
 	font: var(#{constants.$vvd-font-heading3});
+	margin-block: 24px;
 }
 
 h4, .heading4 {
 	font: var(#{constants.$vvd-font-heading4});
+	margin-block: 24px;
 }
 
 code {
@@ -54,7 +71,7 @@ code {
 }
 
 p {
-
+	margin-block: 16px;
 }
 
 small, figcaption {

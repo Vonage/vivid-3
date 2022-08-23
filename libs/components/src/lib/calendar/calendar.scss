@@ -151,7 +151,7 @@ ol {
 			display: grid;
 			align-items: baseline;
 			margin: 0;
-			font: var(#{constants.$vvd-font-subtitle-2});
+			font: var(#{constants.$vvd-font-heading3});
 			grid-template-columns: 1fr auto 1fr;
 			> em {
 				font: inherit;
