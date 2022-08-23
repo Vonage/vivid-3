@@ -357,7 +357,7 @@ describe('vwc-text-field', () => {
 
 			element.required = true;
 			await elementUpdated(element);
-			element.dispatchEvent(new Event('invalid'))
+			element.dispatchEvent(new Event('invalid'));
 			await elementUpdated(element);
 			const errorElement = element.shadowRoot?.querySelector('.error-message');
 
