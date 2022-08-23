@@ -14,31 +14,39 @@ body {
 	text-rendering: optimizeLegibility;  /* emphasise on legibility when rendering, turns on ligatures and kerning */
 	-webkit-font-smoothing: antialiased; /* apply font anti-aliasing for Webkit on OSX */
 	-moz-osx-font-smoothing: grayscale;  /* apply font anti-aliasing for Firefox on OSX */
-	font: var(#{constants.$vvd-font-base-extended});
+	font: var(#{constants.$vvd-font-base});
 }
 
-h1, .headline {
+strong {
+	font: var(#{constants.$vvd-font-base-bold});
+}
+
+code {
+	font: var(#{constants.$vvd-font-base-code});
+}
+
+.headline {
 	font: var(#{constants.$vvd-font-headline});
 }
 
-h2, .headline-2 {
-	font: var(#{constants.$vvd-font-headline-2});
-}
-
-h3, .subtitle {
+.subtitle {
 	font: var(#{constants.$vvd-font-subtitle});
 }
 
-h4, .subtitle-2 {
-	font: var(#{constants.$vvd-font-subtitle-2});
+h1, .heading1 {
+	font: var(#{constants.$vvd-font-heading1});
 }
 
-h5, .title {
-	font: var(#{constants.$vvd-font-title});
+h2, .heading2 {
+	font: var(#{constants.$vvd-font-heading2});
 }
 
-h6, .title-2 {
-	font: var(#{constants.$vvd-font-title-2});
+h2, .heading3 {
+	font: var(#{constants.$vvd-font-heading3});
+}
+
+h4, .heading4 {
+	font: var(#{constants.$vvd-font-heading4});
 }
 
 code {
@@ -49,12 +57,12 @@ p {
 
 }
 
-strong {
-	font: var(#{constants.$vvd-font-base-extended-bold});
-}
+small, figcaption {
+	font: var(#{constants.$vvd-font-base-condensed});
 
-code {
-	font: var(#{constants.$vvd-font-base-extended-code});
+	strong {
+		font: var(#{constants.$vvd-font-base-condensed-bold});
+	}
 }
 
 // :root.vvd-typography {
