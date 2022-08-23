@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "fix missing typography in components styles",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}
