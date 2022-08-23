@@ -25,7 +25,7 @@
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	column-gap: 8px;
-	font: var(#{constants.$vvd-font-caption-bold});
+	font: var(#{constants.$vvd-font-base-condensed-bold});
 	vertical-align: middle;
 }
 

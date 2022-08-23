@@ -33,7 +33,7 @@ $banner-transition-delay: --transition-delay;
 		min-height: 60px;
 		align-items: center;
 		justify-content: flex-start;
-		font: var(#{constants.$vvd-font-body-2-bold});
+		font: var(#{constants.$vvd-font-base-bold});
 
 		> .user-content {
 			display: flex;

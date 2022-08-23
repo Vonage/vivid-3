@@ -78,7 +78,7 @@
 
 h2 {
 	margin: 0;
-	font: var(#{constants.$vvd-font-caption-bold});
+	font: var(#{constants.$vvd-font-base-condensed-bold});
 
 	>strong {
 		font: inherit;
@@ -87,5 +87,5 @@ h2 {
 
 p {
 	margin: 0;
-	font: var(#{constants.$vvd-font-caption});
+	font: var(#{constants.$vvd-font-base-condensed});
 }

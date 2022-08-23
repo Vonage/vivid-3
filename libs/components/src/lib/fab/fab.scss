@@ -29,7 +29,7 @@
 	color: var(#{appearance.get-appearance-token(text)}, var(constants.$vvd-color-canvas-text));
 	column-gap: var(#{variables.$icon-gap});
 	filter: var(#{elevation.$vvd-elevation-shadow});
-	font: var(#{constants.$vvd-font-body-2-bold});
+	font: var(#{constants.$vvd-font-base-bold});
 	transition: background-color 0.15s linear, filter 0.15s linear;
 	vertical-align: middle;
 	@include connotation.connotation;

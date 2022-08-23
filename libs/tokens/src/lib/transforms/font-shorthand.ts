@@ -5,7 +5,7 @@
 
 const isObject = (value) => typeof value === 'object' && !Array.isArray(value) && value !== null;
 
-const parseFontProps = ({ fontFamily, fontWeight, lineHeight, fontSize, letterSpacing, fontStretch, paragraphSpacing }) =>
+const parseFontProps = ({ fontFamily, fontWeight, lineHeight, fontSize, fontStretch }) =>
 	`${fontWeight} ${fontStretch} ${fontSize}/${lineHeight} ${fontFamily}`;
 
 module.exports = {

@@ -31,7 +31,7 @@ ol {
 		align-items: flex-end;
 		justify-content: flex-end;
 		> time {
-			font: var(#{constants.$vvd-font-caption});
+			font: var(#{constants.$vvd-font-base-condensed});
 			font-size: small;
 			line-height: 1;
 			text-transform: uppercase;
@@ -164,7 +164,7 @@ ol {
 				}
 			}
 			> small {
-				font: var(#{constants.$vvd-font-caption});
+				font: var(#{constants.$vvd-font-base-condensed});
 				text-transform: uppercase;
 			}
 		}

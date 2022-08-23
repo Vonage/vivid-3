@@ -14,7 +14,7 @@ body {
 	text-rendering: optimizeLegibility;  /* emphasise on legibility when rendering, turns on ligatures and kerning */
 	-webkit-font-smoothing: antialiased; /* apply font anti-aliasing for Webkit on OSX */
 	-moz-osx-font-smoothing: grayscale;  /* apply font anti-aliasing for Firefox on OSX */
-	font: var(#{constants.$vvd-font-body-1});
+	font: var(#{constants.$vvd-font-base-extended});
 }
 
 h1, .headline {
@@ -42,7 +42,7 @@ h6, .title-2 {
 }
 
 code {
-	font: var(#{constants.$vvd-font-body-1-code});
+	font: var(#{constants.$vvd-font-base-extended-code});
 }
 
 p {
@@ -50,11 +50,11 @@ p {
 }
 
 strong {
-	font: var(#{constants.$vvd-font-body-1-bold});
+	font: var(#{constants.$vvd-font-base-extended-bold});
 }
 
 code {
-	font: var(#{constants.$vvd-font-body-1-code});
+	font: var(#{constants.$vvd-font-base-extended-code});
 }
 
 // :root.vvd-typography {
@@ -96,22 +96,22 @@ code {
 	// }
 
 	// code {
-	// 	@include typography.typography-cat-shorthand(body-1-code);
+	// 	@include typography.typography-cat-shorthand(base-extended-code);
 	// 	font-family: var(#{constants.$vvd-font-family-upright});
 	// }
 
 	// body, p {
-	// 	@include typography.typography-cat-shorthand(body-1);
+	// 	@include typography.typography-cat-shorthand(base-extended);
 	// 	font-family: var(#{constants.$vvd-font-family-upright});
 	// }
 
 	// strong {
-	// 	@include typography.typography-cat-shorthand(body-1-bold);
+	// 	@include typography.typography-cat-shorthand(base-extended-bold);
 	// 	font-family: var(#{constants.$vvd-font-family-upright});
 	// }
 
 	// code {
-	// 	@include typography.typography-cat-shorthand(body-1-code);
+	// 	@include typography.typography-cat-shorthand(base-extended-code);
 	// 	font-family: var(#{constants.$vvd-font-family-monospace});
 	// }
 
@@ -119,20 +119,20 @@ code {
 	//		text-decoration: underline;
 	// }
 
-	// .body-2 {
-	// 		@include typography.typography-cat-shorthand(body-2);
+	// .base {
+	// 		@include typography.typography-cat-shorthand(base);
 	// }
 
-	// .body-2-bold {
-	// 		@include typography.typography-cat-shorthand(body-2-bold);
+	// .base-bold {
+	// 		@include typography.typography-cat-shorthand(base-bold);
 	// }
 
-	// .body-2-code {
-	// 		@include typography.typography-cat-shorthand(body-2-code);
+	// .base-code {
+	// 		@include typography.typography-cat-shorthand(base-code);
 	// }
 
-	// .body-2-link {
-	// 		@include typography.typography-cat-shorthand(body-2-link);
+	// .base-link {
+	// 		@include typography.typography-cat-shorthand(base-link);
 	// }
 
 	// .button {
@@ -147,19 +147,19 @@ code {
 	// 		@include typography.typography-cat-shorthand(button-enlarge);
 	// }
 
-	// .caption {
-	// 		@include typography.typography-cat-shorthand(caption);
+	// .base-condensed {
+	// 		@include typography.typography-cat-shorthand(base-condensed);
 	// }
 
-	// .caption-bold {
-	// 		@include typography.typography-cat-shorthand(caption-bold);
+	// .base-condensed-bold {
+	// 		@include typography.typography-cat-shorthand(base-condensed-bold);
 	// }
 
-	// .caption-code {
-	// 		@include typography.typography-cat-shorthand(caption-code);
+	// .base-condensed-code {
+	// 		@include typography.typography-cat-shorthand(base-condensed-code);
 	// }
 
-	// .caption-link {
-	// 		@include typography.typography-cat-shorthand(caption-link);
+	// .base-condensed-link {
+	// 		@include typography.typography-cat-shorthand(base-condensed-link);
 	// }
 // }

@@ -17,7 +17,7 @@
 
 .body {
 	padding: 8px 32px 24px 16px;
-	font: var(#{constants.$vvd-font-body-2});
+	font: var(#{constants.$vvd-font-base});
 	.icon:not(.icon-trailing) &{
 		padding-left: 48px;
 	}
@@ -77,7 +77,7 @@
 		max-width: 20%;
 		flex-shrink: 0;
 		color: var(#{constants.$vvd-color-neutral-600});
-		font: var(#{constants.$vvd-font-body-2-bold});
+		font: var(#{constants.$vvd-font-base-bold});
 		margin-inline-start: 16px;
 		text-align: end;
 		text-overflow: ellipsis;

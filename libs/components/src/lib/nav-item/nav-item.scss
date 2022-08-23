@@ -27,7 +27,7 @@
 	border-radius: 6px;
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
-	font: var(#{constants.$vvd-font-body-2});
+	font: var(#{constants.$vvd-font-base});
 	gap: $gap;
 	hyphens: auto;
 	inline-size: 100%;

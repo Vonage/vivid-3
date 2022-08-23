@@ -41,7 +41,7 @@ $low-ink-color: --_low-ink-color;
 
 .label {
 	contain: inline-size;
-	font: var(#{constants.$vvd-font-body-2});
+	font: var(#{constants.$vvd-font-base});
 	grid-column: 1 / 4;
 	grid-row: 1;
 
@@ -60,7 +60,7 @@ $low-ink-color: --_low-ink-color;
 
 .char-count {
 	color: var(#{$low-ink-color});
-	font: var(#{constants.$vvd-font-body-2});
+	font: var(#{constants.$vvd-font-base});
 	grid-column: 3 / 4;
 }
 
@@ -104,7 +104,7 @@ $low-ink-color: --_low-ink-color;
 	// ! note: control is required to stretch fully so that
 	// ! autofill indication applies on all fieldset area
 
-	font: var(#{constants.$vvd-font-body-2});
+	font: var(#{constants.$vvd-font-base});
 	padding-inline-end: 16px;
 	padding-inline-start: 16px;
 	transition: box-shadow .2s, background-color .2s;
@@ -134,7 +134,7 @@ $low-ink-color: --_low-ink-color;
 
 .helper-text {
 	color: var(#{$low-ink-color});
-	font: var(#{constants.$vvd-font-caption});
+	font: var(#{constants.$vvd-font-base-condensed});
 	grid-column: 1 / 4;
 	margin-inline-start: 16px;
 }
@@ -143,7 +143,7 @@ $low-ink-color: --_low-ink-color;
 	display: flex;
 	color: var(#{constants.$vvd-color-canvas-text});
 	contain: inline-size;
-	font: var(#{constants.$vvd-font-caption});
+	font: var(#{constants.$vvd-font-base-condensed});
 	grid-column: 2 / 4;
 
 	&-icon {

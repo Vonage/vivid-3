@@ -4,60 +4,60 @@
 			"value": "{font.alias.headline}",
 			"type": "typography"
 		},
-		"headline-2": {
-			"value": "{font.alias.headline-2}",
-			"type": "typography"
-		},
-		"title": {
-			"value": "{font.alias.title}",
-			"type": "typography"
-		},
-		"title-2": {
-			"value": "{font.alias.title-2}",
-			"type": "typography"
-		},
 		"subtitle": {
 			"value": "{font.alias.subtitle}",
 			"type": "typography"
 		},
-		"subtitle-2": {
-			"value": "{font.alias.subtitle-2}",
+		"heading1": {
+			"value": "{font.alias.heading1}",
 			"type": "typography"
 		},
-		"body-1": {
-			"value": "{font.alias.body-1}",
+		"heading2": {
+			"value": "{font.alias.heading2}",
 			"type": "typography"
 		},
-		"body-1-bold": {
-			"value": "{font.alias.body-1-bold}",
+		"heading3": {
+			"value": "{font.alias.heading3}",
 			"type": "typography"
 		},
-		"body-1-code": {
-			"value": "{font.alias.body-1-code}",
+		"heading4": {
+			"value": "{font.alias.heading4}",
 			"type": "typography"
 		},
-		"body-2": {
-			"value": "{font.alias.body-2}",
+		"base": {
+			"value": "{font.alias.base}",
 			"type": "typography"
 		},
-		"body-2-bold": {
-			"value": "{font.alias.body-2-bold}",
+		"baseBold": {
+			"value": "{font.alias.baseBold}",
 			"type": "typography"
 		},
-		"body-2-code": {
-			"value": "{font.alias.body-2-code}",
+		"baseCode": {
+			"value": "{font.alias.baseCode}",
 			"type": "typography"
 		},
-		"caption": {
-			"value": "{font.alias.caption}",
+		"baseExtended": {
+			"value": "{font.alias.baseExtended}",
 			"type": "typography"
 		},
-		"caption-bold": {
-			"value": "{font.alias.caption-bold}",
+		"baseExtendedBold": {
+			"value": "{font.alias.baseExtendedBold}",
 			"type": "typography"
 		},
-		"caption-code": {
-			"value": "{font.alias.caption-code}",
+		"baseExtendedCode": {
+			"value": "{font.alias.baseExtendedCode}",
+			"type": "typography"
+		},
+		"baseCondensed": {
+			"value": "{font.alias.baseCondensed}",
+			"type": "typography"
+		},
+		"baseCondensedBold": {
+			"value": "{font.alias.baseCondensedBold}",
+			"type": "typography"
+		},
+		"baseCondensedCode": {
+			"value": "{font.alias.baseCondensedCode}",
 			"type": "typography"
 		}
 	}

@@ -69,7 +69,7 @@ $gutter: 4px;
 label {
 	color: var(#{constants.$vvd-color-canvas-text});
 	cursor: pointer;
-	font: var(#{constants.$vvd-font-body-2});
+	font: var(#{constants.$vvd-font-base});
 }
 
 .focus-indicator {

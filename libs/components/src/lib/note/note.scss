@@ -46,10 +46,10 @@
 	text-align: start;
 
 	.headline {
-		font: var(#{constants.$vvd-font-body-2-bold});
+		font: var(#{constants.$vvd-font-base-bold});
 	}
 
 	.message {
-		font: var(#{constants.$vvd-font-body-2});
+		font: var(#{constants.$vvd-font-base});
 	}
 }
