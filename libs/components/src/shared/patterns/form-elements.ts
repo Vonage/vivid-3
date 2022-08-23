@@ -1,11 +1,15 @@
 import {attr, observable, volatile} from '@microsoft/fast-element';
 
+const ElementInternalsKey = 'ElementInternals';
+const supportsElementInternals = () => ElementInternalsKey in window && 'setFormValue' in window[ElementInternalsKey].prototype;
+
 export interface FormElement {
 	charCount: boolean;
 	errorValidationMessage: boolean;
 	helperText: string;
 	label: string;
 	userValid: boolean;
+	dirtyValue: boolean;
 }
 export function formElements<T extends { new (...args: any[]): Record<string, any> }>(constructor: T) {
 	class Decorated extends constructor {
@@ -38,12 +42,13 @@ export function formElements<T extends { new (...args: any[]): Record<string, an
 				this.dirtyValue = true;
 				this.validate();
 			});
-			this.shadowRoot.appendChild(this.proxy);
 		}
 
 		validate = () => {
-			if (this.proxy instanceof HTMLElement) {
-				this.setValidity((this.proxy as any).validity, (this.proxy as any).validationMessage, this.proxy);
+			if (supportsElementInternals() && this.proxy instanceof HTMLElement) {
+				this.setValidity((this.proxy as any).validity, (this.proxy as any).validationMessage, this.control);
+			} else {
+				super.validate();
 			}
 			this.userValid = !this.userValid;
 			if (this.proxy instanceof HTMLElement) {
