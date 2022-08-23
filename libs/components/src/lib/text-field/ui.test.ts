@@ -54,7 +54,7 @@ test('should invalidate the component', async ({page, browserName}: { page: Page
 																					 type="submit" 
 																					 label="Submit"/>
 		</form>`;
-	await page.pause();
+
 	await loadComponents({
 		page,
 		components,
@@ -70,8 +70,9 @@ test('should invalidate the component', async ({page, browserName}: { page: Page
 	await page.waitForLoadState('networkidle');
 
 	await submitButton.click();
+	await page.waitForLoadState('networkidle');
+	await page.waitForTimeout(50);
 
-	await page.pause();
 	expect(await testWrapper?.screenshot())
 		.toMatchSnapshot(
 			'./snapshots/text-field-invalidation.png'
