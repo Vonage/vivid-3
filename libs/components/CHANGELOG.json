@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Wed, 24 Aug 2022 08:06:12 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.48",
+      "version": "3.0.0-next.48",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "57116dff0a1ff48d5571a603a4da33bb58015f1f",
+            "comment": "fix tooltip readme"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 23 Aug 2022 12:15:37 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.48",
       "version": "3.0.0-next.48",

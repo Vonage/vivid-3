@@ -19,7 +19,7 @@ Do not target non-interactive controls as a tooltip's anchor (such as non-focusa
 - Type: `string`
 - Default: `undefined`
 
-```html preview
+```html preview center
 <vwc-button id="anchor" icon="help-line" shape="pill" aria-describedby="tooltip"></vwc-button>
 <vwc-tooltip id="tooltip" anchor="anchor" text="I'm a tooltip" open></vwc-tooltip>
 ```
@@ -38,7 +38,7 @@ Use the `open` attribute to indicate whether the tooltip is open.
 - Type: `boolean`
 - Default: `false`
 
-```html preview
+```html preview center
 <vwc-button id="button" icon="info-line" shape="pill" aria-describedby="tooltip"></vwc-button>
 <vwc-tooltip id="tooltip" anchor="button" text="Focus or hover to open."></vwc-tooltip>
 
@@ -80,7 +80,7 @@ Use the `--tooltip-inline-size` variable to set the tooltip's inline size.
 - Type: `Number`
 - Default: `240px`
 
-```html preview
+```html preview center
 <style>
   #tooltip {
     --tooltip-inline-size: 200px;
