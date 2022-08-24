@@ -73,7 +73,7 @@ test('should invalidate the component', async ({page, browserName}: { page: Page
 	await page.waitForLoadState('networkidle');
 	await page.waitForTimeout(50);
 
-	expect(await testWrapper?.screenshot())
+	expect(await testWrapper?.screenshot({animations: 'disabled'}))
 		.toMatchSnapshot(
 			'./snapshots/text-field-invalidation.png'
 		);
