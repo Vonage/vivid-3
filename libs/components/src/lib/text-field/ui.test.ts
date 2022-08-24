@@ -75,7 +75,10 @@ test('should invalidate the component', async ({page, browserName}: { page: Page
 
 	expect(await testWrapper?.screenshot({animations: 'disabled'}))
 		.toMatchSnapshot(
-			'./snapshots/text-field-invalidation.png'
+			'./snapshots/text-field-invalidation.png',
+			{
+				maxDiffPixelRatio: 0.05
+			}
 		);
 });
 
