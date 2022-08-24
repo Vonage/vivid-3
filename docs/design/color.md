@@ -133,7 +133,7 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
     <code>--vvd-color-canvas-<em>{n}</em></code>
   </div>
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-canvas);"></div></div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-on-canvas);"></div>on</div>
+  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-canvas-text);"></div>on</div>
 </vwc-layout>
 
 <vwc-layout class="color_layout" column-basis="small" column-spacing="small">
