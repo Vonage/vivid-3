@@ -101,7 +101,13 @@
 
 /* Icon */
 .icon {
-	font-size: 20px;
+	.density-extended & {
+			font-size: 24px;
+	}
+
+	&:not(.density-extended) &{
+			font-size: 20px;
+	}
 
 	.icon-trailing & {
 		order: 1;
