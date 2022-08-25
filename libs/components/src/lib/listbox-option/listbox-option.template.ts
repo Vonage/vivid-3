@@ -39,6 +39,9 @@ export const ListboxOptionTemplate: (
 			${when(x => x.textPrimary, html`<div class="text-primary">${x => x.textPrimary}</div>`)}
 			${when(x => x.textSecondary, html`<div class="text-secondary">${x => x.textSecondary}</div>`)}
 		</div>
+	</li>
+	<div class="meta">
 		<slot name="meta"></slot>
-	</li>`;
+	</div>
+	`;
 };

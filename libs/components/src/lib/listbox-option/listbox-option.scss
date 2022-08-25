@@ -1,20 +1,19 @@
-@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
-@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use "../../../../shared/src/lib/sass/mixins/typography" as typography;
+@use "../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts" as theme-consts;
 
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent,
 	$shades: primary faint soft,
-	$default: accent,
+	$default: accent
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: ghost,
 	$states: idle hover disabled active selected,
-	$default: ghost,
+	$default: ghost
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
-
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 
 .base {
 	$min-block-size: 40px;
@@ -40,8 +39,8 @@
 	text-decoration: none;
 	vertical-align: middle;
 	word-break: break-word;
-	
-	@supports(user-select: none) {
+
+	@supports (user-select: none) {
 		user-select: none;
 	}
 
@@ -59,16 +58,16 @@
 		}
 	}
 
-	&.secondary{
+	&.secondary {
 		border-bottom: 1px solid var(#{theme-consts.$vvd-color-neutral-30});
 	}
 
 	.text-primary {
-		@include typography.typography-cat-shorthand('body-2');
+		@include typography.typography-cat-shorthand("body-2");
 	}
 
 	.text-secondary {
-		@include typography.typography-cat-shorthand('caption');
+		@include typography.typography-cat-shorthand("caption");
 
 		color: var(#{theme-consts.$vvd-color-neutral-70});
 		margin-top: 4px;
@@ -79,6 +78,8 @@
 	font-size: 20px;
 }
 
-::slotted([slot="meta"i]) {
-	margin-inline-start: auto;
+.meta{
+	position: absolute;
+	top: 16px;
+	right: 16px;
 }
