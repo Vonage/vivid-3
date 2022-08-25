@@ -1,8 +1,32 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Thu, 11 Aug 2022 09:45:13 GMT and should not be manually modified.
+This log was last generated on Tue, 23 Aug 2022 12:15:37 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.48
+
+Tue, 23 Aug 2022 12:15:37 GMT
+
+### Changes
+
+- fix missing typography in components styles (yinon@hotmail.com)
+
+## 3.0.0-next.47
+
+Thu, 18 Aug 2022 07:38:07 GMT
+
+### Changes
+
+- text component obsoletion (yinon@hotmail.com)
+
+## 3.0.0-next.46
+
+Wed, 17 Aug 2022 20:28:05 GMT
+
+### Changes
+
+- menu migration to fast (yinon@hotmail.com)
 
 ## 3.0.0-next.45
 

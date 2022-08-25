@@ -2,6 +2,74 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Wed, 24 Aug 2022 08:06:12 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.48",
+      "version": "3.0.0-next.48",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "57116dff0a1ff48d5571a603a4da33bb58015f1f",
+            "comment": "fix tooltip readme"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 23 Aug 2022 12:15:37 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.48",
+      "version": "3.0.0-next.48",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "66ecbff59ded729d09f5ab38a03387e3b79e8d06",
+            "comment": "fix missing typography in components styles"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 18 Aug 2022 07:38:07 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.47",
+      "version": "3.0.0-next.47",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "f190bde789bb756b5ba1cf6c933bdbeeef984418",
+            "comment": "text component obsoletion"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 17 Aug 2022 20:28:05 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.46",
+      "version": "3.0.0-next.46",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "729ccd986ff6753767aa2450dfab9dbcc8d2ab24",
+            "comment": "menu migration to fast"
+          }
+        ],
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "68d688e06e67e7364e2276e07d037bfcef2a4ee8",
+            "comment": "update icon set to 4.0.29"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 14 Aug 2022 09:29:57 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.45",
       "version": "3.0.0-next.45",
