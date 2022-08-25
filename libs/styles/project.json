@@ -22,7 +22,7 @@
 			"configurations": {
 				"assets": {
 					"commands": [
-						"cp libs/styles/src/lib/fonts/*.{woff,woff2} dist/libs/styles/fonts"
+						"cp libs/styles/src/lib/fonts/*.woff libs/styles/src/lib/fonts/*.woff2 dist/libs/styles/fonts"
 					]
 				},
 				"scss": {
