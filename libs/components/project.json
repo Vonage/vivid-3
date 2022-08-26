@@ -131,7 +131,7 @@
   },
   "tags": [],
   "implicitDependencies": [
-    "styles",
-    "tokens"
-  ]
+		"styles",
+		"tokens"
+	]
 }
