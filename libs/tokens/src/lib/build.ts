@@ -1,13 +1,11 @@
 const sourceOnly = require('./filters/source-only');
 const shadowShorthand = require('./transforms/shadow-shorthand');
 const fontShorthand = require('./transforms/font-shorthand');
-const colorAlpha = require('./transforms/color-alpha');
 const constants = require('./formatters/constants');
 
 const StyleDictionary = require('style-dictionary')
 .registerTransform(shadowShorthand)
 .registerTransform(fontShorthand)
-.registerTransform(colorAlpha)
 .registerFilter(sourceOnly)
 .registerFormat(constants)
 
