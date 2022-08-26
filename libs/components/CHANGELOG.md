@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Fri, 26 Aug 2022 15:17:22 GMT and should not be manually modified.
+This log was last generated on Fri, 26 Aug 2022 16:38:16 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.50
+
+Fri, 26 Aug 2022 16:38:16 GMT
+
+### Changes
+
+- font assets coupled with their css (yinon@hotmail.com)
 
 ## 3.0.0-next.49
 
