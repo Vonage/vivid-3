@@ -101,16 +101,16 @@
 
 /* Icon */
 .icon {
+	.icon-trailing & {
+		order: 1;
+	}
+
 	.density-extended & {
-			font-size: 24px;
+		font-size: 24px;
 	}
 
 	&:not(.density-extended) &{
-			font-size: 20px;
-	}
-
-	.icon-trailing & {
-		order: 1;
+		font-size: 20px;
 	}
 }
 
