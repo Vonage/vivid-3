@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "fix icon size in fab extended density",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}
