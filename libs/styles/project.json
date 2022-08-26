@@ -1,61 +1,55 @@
 {
-	"sourceRoot": "libs/styles/src",
-	"projectType": "library",
-	"targets": {
-		"test": {
-			"executor": "@nrwl/jest:jest",
-			"outputs": [
-				"coverage/libs/styles"
-			],
-			"options": {
-				"jestConfig": "libs/styles/jest.config.ts",
-				"passWithNoTests": true
-			}
-		},
-		"build": {
-			"executor": "@nrwl/workspace:run-commands",
-			"options": {
-				"commands": [
-					"npx nx run styles:build:scss",
-					"npx nx run styles:build:assets"
-				],
-				"parallel": false
-			},
-			"configurations": {
-				"assets": {
-					"commands": [
-						"cp libs/styles/src/lib/fonts/*.woff libs/styles/src/lib/fonts/*.woff2 dist/libs/styles/fonts"
-					]
-				},
-				"scss": {
-					"commands": [
-						"sass libs/styles/src/lib/themes:dist/libs/styles/themes",
-						"sass libs/styles/src/lib/typography:dist/libs/styles/typography",
-						"sass libs/styles/src/lib/fonts:dist/libs/styles/fonts"
-					]
-				}
-			}
-		},
-		"serve": {
-			"executor": "@nrwl/workspace:run-commands",
-			"options": {
-				"command": "sass libs/styles/src/lib/themes:dist/libs/styles/themes --watch"
-			}
-		},
-		"stylelint": {
-			"executor": "nx-stylelint:lint",
-			"outputs": [
-				"{options.outputFile}"
-			],
-			"options": {
-				"lintFilePatterns": [
-					"libs/styles/**/*.css"
-				]
-			}
-		}
-	},
-	"tags": [],
-	"implicitDependencies": [
-		"tokens"
-	]
+  "sourceRoot": "libs/styles/src",
+  "projectType": "library",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/styles"],
+      "options": {
+        "jestConfig": "libs/styles/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "npx nx run styles:build:scss",
+          "npx nx run styles:build:assets"
+        ],
+        "parallel": false
+      },
+      "configurations": {
+        "assets": {
+          "commands": [
+            "cp libs/styles/src/lib/fonts/*.woff libs/styles/src/lib/fonts/*.woff2 dist/libs/styles/fonts"
+          ]
+        },
+        "scss": {
+          "commands": [
+            "sass libs/styles/src/lib/themes:dist/libs/styles/themes",
+            "sass libs/styles/src/lib/typography:dist/libs/styles/typography",
+            "sass libs/styles/src/lib/fonts:dist/libs/styles/fonts"
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "sass libs/styles/src/lib/themes:dist/libs/styles/themes --watch"
+      }
+    },
+    "stylelint": {
+      "executor": "nx-stylelint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/styles/**/*.css"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": [
+    "tokens"
+  ]
 }
