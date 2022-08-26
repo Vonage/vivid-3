@@ -1,15 +1,17 @@
 {
-  "sourceRoot": "libs/styles/src",
-  "projectType": "library",
-  "targets": {
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/styles"],
-      "options": {
-        "jestConfig": "libs/styles/jest.config.ts",
-        "passWithNoTests": true
-      }
-    },
+	"sourceRoot": "libs/styles/src",
+	"projectType": "library",
+	"targets": {
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": [
+				"coverage/libs/styles"
+			],
+			"options": {
+				"jestConfig": "libs/styles/jest.config.ts",
+				"passWithNoTests": true
+			}
+		},
 		"build": {
 			"executor": "@nrwl/workspace:run-commands",
 			"options": {
@@ -34,21 +36,25 @@
 				}
 			}
 		},
-    "serve": {
-      "executor": "@nrwl/workspace:run-commands",
-      "options": {
-        "command": "sass libs/styles/src/lib/themes:dist/libs/styles/themes --watch"
-      }
-    },
-    "stylelint": {
-      "executor": "nx-stylelint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["libs/styles/**/*.css"]
-      }
-    }
-  },
-  "tags": [],
+		"serve": {
+			"executor": "@nrwl/workspace:run-commands",
+			"options": {
+				"command": "sass libs/styles/src/lib/themes:dist/libs/styles/themes --watch"
+			}
+		},
+		"stylelint": {
+			"executor": "nx-stylelint:lint",
+			"outputs": [
+				"{options.outputFile}"
+			],
+			"options": {
+				"lintFilePatterns": [
+					"libs/styles/**/*.css"
+				]
+			}
+		}
+	},
+	"tags": [],
 	"implicitDependencies": [
 		"tokens"
 	]
