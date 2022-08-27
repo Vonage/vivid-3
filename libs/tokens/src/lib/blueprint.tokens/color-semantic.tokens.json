@@ -180,6 +180,48 @@
 				"type": "color"
 			}
 		},
+		"announcement": {
+			"50": {
+				"value": "{color.alias.announcement.50}",
+				"type": "color"
+			},
+			"100": {
+				"value": "{color.alias.announcement.100}",
+				"type": "color"
+			},
+			"200": {
+				"value": "{color.alias.announcement.200}",
+				"type": "color"
+			},
+			"300": {
+				"value": "{color.alias.announcement.300}",
+				"type": "color"
+			},
+			"400": {
+				"value": "{color.alias.announcement.400}",
+				"type": "color"
+			},
+			"500": {
+				"value": "{color.alias.announcement.500}",
+				"type": "color"
+			},
+			"600": {
+				"value": "{color.alias.announcement.600}",
+				"type": "color"
+			},
+			"700": {
+				"value": "{color.alias.announcement.700}",
+				"type": "color"
+			},
+			"800": {
+				"value": "{color.alias.announcement.800}",
+				"type": "color"
+			},
+			"900": {
+				"value": "{color.alias.announcement.900}",
+				"type": "color"
+			}
+		},
 		"alert": {
 			"50": {
 				"value": "{color.alias.alert.50}",
