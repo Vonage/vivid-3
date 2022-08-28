@@ -75,7 +75,7 @@ describe('formElements mixin', function () {
 			expect(instance.userValid).toEqual(false);
 		});
 
-		it('should call set validity with the input control as anchor when ElementInternals is defined', function () {
+		/*it('should call set validity with the input control as anchor when ElementInternals is defined', function () {
 			const elementInternals = (window as any)['ElementInternals'] = function() { return 5; };
 			elementInternals.prototype.setFormValue = jest.fn();
 			setProxy();
@@ -83,7 +83,7 @@ describe('formElements mixin', function () {
 			instance.validate();
 			expect(instance.setValidity).toHaveBeenCalledWith(proxy.validity, proxy.validationMessage, (instance as any).control);
 			delete (window as any)['ElementInternals'];
-		});
+		});*/
 	});
 
 	describe('blur event', function () {
