@@ -45,6 +45,7 @@
     "./dialog": "./dialog",
     "./divider": "./divider",
     "./listbox-option": "./listbox-option",
+    "./listbox": "./listbox",
     "./menu": "./menu"
   }
 }
