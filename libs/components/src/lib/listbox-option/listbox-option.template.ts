@@ -26,20 +26,22 @@ export const ListboxOptionTemplate: (
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html`
-	<li class="${getClasses}"
-		?selected="${(x) => x.selected}"
-		?disabled="${(x) => x.disabled}"
-		aria-disabled="${x => x.ariaDisabled}"
-		aria-posinset="${x => x.ariaPosInSet}"
-		aria-selected="${x => x.ariaSelected}"
-		aria-setsize="${x => x.ariaSetSize}"
-		role="option">
-		${x => affixIconTemplate(x.icon)}
-		<div class="text-content">
-			${when(x => x.textPrimary, html`<div class="text-primary">${x => x.textPrimary}</div>`)}
-			${when(x => x.textSecondary, html`<div class="text-secondary">${x => x.textSecondary}</div>`)}
+	<div class="${getClasses}">
+		<div
+			?selected="${(x) => x.selected}"
+			?disabled="${(x) => x.disabled}"
+			aria-disabled="${x => x.ariaDisabled}"
+			aria-posinset="${x => x.ariaPosInSet}"
+			aria-selected="${x => x.ariaSelected}"
+			aria-setsize="${x => x.ariaSetSize}"
+			role="option">
+			${x => affixIconTemplate(x.icon)}
+			<div class="text-content">
+				${when(x => x.textPrimary, html`<div class="text-primary">${x => x.textPrimary}</div>`)}
+				${when(x => x.textSecondary, html`<div class="text-secondary">${x => x.textSecondary}</div>`)}
+			</div>
 		</div>
-	</li>
-	<slot name="meta"></slot>
+		<slot name="meta"></slot>
+	</div>
 	`;
 };
