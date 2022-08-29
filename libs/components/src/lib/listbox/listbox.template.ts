@@ -19,7 +19,7 @@ export const ListboxTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Listbox> = () => {
 	return html`
-	<ul class="${getClasses}"
+	<div class="${getClasses}"
 		aria-activedescendant="${x => x.ariaActiveDescendant}"
 		aria-multiselectable="${x => x.ariaMultiSelectable}"
 		role="listbox"
@@ -29,6 +29,6 @@ export const ListboxTemplate: (
 		@keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
 		@mousedown="${(x, c) => x.mousedownHandler(c.event as MouseEvent)}">
 		<slot></slot>
-	</ul>
+	</div>
 	`;
 };
