@@ -32,8 +32,7 @@ export const ListboxOptionTemplate: (
 		aria-disabled="${x => x.ariaDisabled}"
 		aria-posinset="${x => x.ariaPosInSet}"
 		aria-selected="${x => x.ariaSelected}"
-		aria-setsize="${x => x.ariaSetSize}"
-		role="option">
+		aria-setsize="${x => x.ariaSetSize}">
 		${x => affixIconTemplate(x.icon)}
 		<div class="text-content">
 			${when(x => x.textPrimary, html`<div class="text-primary">${x => x.textPrimary}</div>`)}
