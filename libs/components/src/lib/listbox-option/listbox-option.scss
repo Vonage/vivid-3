@@ -36,7 +36,7 @@
 	word-break: break-word;
 
 	.option-wrapper {
-		display: inline-flex;
+		display: flex;
 		align-items: center;
 		gap: $gap;
 		inline-size: 100%;
