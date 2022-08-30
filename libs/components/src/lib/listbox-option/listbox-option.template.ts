@@ -26,8 +26,8 @@ export const ListboxOptionTemplate: (
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html`
-	<div>
-		<div class="${getClasses}"
+	<div class="${getClasses}">
+		<div class="option-wrapper"
 			?selected="${(x) => x.selected}"
 			?disabled="${(x) => x.disabled}"
 			aria-disabled="${x => x.ariaDisabled}"
