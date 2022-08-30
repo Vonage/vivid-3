@@ -1,5 +1,8 @@
 import {attr, observable, volatile} from '@microsoft/fast-element';
 
+const ElementInternalsKey = 'ElementInternals';
+const supportsElementInternals = () => ElementInternalsKey in window && 'setFormValue' in window[ElementInternalsKey].prototype;
+
 export interface FormElement {
 	charCount: boolean;
 	errorValidationMessage: boolean;
@@ -42,8 +45,11 @@ export function formElements<T extends { new (...args: any[]): Record<string, an
 		}
 
 		validate = () => {
-			super.validate();
-
+			if (supportsElementInternals() && this.proxy instanceof HTMLElement) {
+				this.setValidity((this.proxy as any).validity, (this.proxy as any).validationMessage, this.control);
+			} else {
+				super.validate();
+			}
 			this.userValid = !this.userValid;
 			if (this.proxy instanceof HTMLElement) {
 				this.userValid = (this.#blurred && this.dirtyValue) ? !this.validationMessage : true;
