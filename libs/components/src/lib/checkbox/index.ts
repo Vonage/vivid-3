@@ -11,10 +11,7 @@ import { CheckboxTemplate as template } from './checkbox.template';
 export const vividCheckbox = Checkbox.compose<CheckboxOptions>({
 	baseName: 'checkbox',
 	template: template as any,
-	styles,
-	shadowOptions: {
-		delegatesFocus: true,
-	}
+	styles
 });
 
 designSystem.register(vividCheckbox());
