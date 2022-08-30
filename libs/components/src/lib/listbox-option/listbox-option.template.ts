@@ -27,7 +27,7 @@ export const ListboxOptionTemplate: (
 
 	return html`
 	<div class="${getClasses}">
-		<div
+		<div class="option-wrapper"
 			?selected="${(x) => x.selected}"
 			?disabled="${(x) => x.disabled}"
 			aria-disabled="${x => x.ariaDisabled}"
