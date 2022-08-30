@@ -2,6 +2,36 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Tue, 30 Aug 2022 07:11:12 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.50",
+      "version": "3.0.0-next.50",
+      "comments": {
+        "none": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "ecde36065e4024a73633e593d48a3a3dd04ff621",
+            "comment": "Set the form field pattern"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 26 Aug 2022 16:38:16 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.50",
+      "version": "3.0.0-next.50",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "a8a0820b28c7772ee47bcef2f39f8ef9228052d1",
+            "comment": "font assets coupled with their css"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 26 Aug 2022 15:17:22 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.49",
       "version": "3.0.0-next.49",
