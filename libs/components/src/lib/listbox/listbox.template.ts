@@ -30,10 +30,10 @@ export const ListboxTemplate: (
 		@keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
 		@mousedown="${(x, c) => x.mousedownHandler(c.event as MouseEvent)}">
 		<slot ${slotted({
-		filter: Listbox.slottedOptionFilter,
-		flatten: true,
-		property: "slottedOptions",
-	})}></slot>
+			filter: Listbox.slottedOptionFilter,
+			flatten: true,
+			property: "slottedOptions",
+		})}></slot>
 		${() => focusTemplate}
 	</div>
 	`;
