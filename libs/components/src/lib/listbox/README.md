@@ -17,9 +17,9 @@ Add the `multiple` attribute to select the listbox.
 
 ```html preview
 <vwc-listbox multiple>
-  <vwc-listbox-option text="Listbox Option"></vwc-listbox-option>
-  <vwc-listbox-option text="Listbox Option"></vwc-listbox-option>
-  <vwc-listbox-option text="Listbox Option"></vwc-listbox-option>
+  <vwc-listbox-option value="1" text="Listbox Option" role="option"></vwc-listbox-option>
+  <vwc-listbox-option value="2" text="Listbox Option" role="option"></vwc-listbox-option>
+  <vwc-listbox-option value="3" text="Listbox Option" role="option"></vwc-listbox-option>
 </vwc-listbox>
 ```
 
@@ -32,8 +32,8 @@ Add the `disabled` attribute to disable the listbox.
 
 ```html preview
 <vwc-listbox disabled>
-  <vwc-listbox-option text="Listbox Option"></vwc-listbox-option>
-  <vwc-listbox-option text="Listbox Option"></vwc-listbox-option>
-  <vwc-listbox-option text="Listbox Option"></vwc-listbox-option>
+  <vwc-listbox-option value="1" text="Listbox Option" role="option"></vwc-listbox-option>
+  <vwc-listbox-option value="2" text="Listbox Option" role="option"></vwc-listbox-option>
+  <vwc-listbox-option value="3" text="Listbox Option" role="option"></vwc-listbox-option>
 </vwc-listbox>
 ```

@@ -1,11 +1,12 @@
-import { html } from '@microsoft/fast-element';
+import { html, slotted } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import type { Listbox } from './listbox';
+import { Listbox } from "./listbox";
+import { focusTemplateFactory } from '../../shared/patterns';
 
 const getClasses = ({
 	disabled
@@ -17,7 +18,9 @@ const getClasses = ({
 export const ListboxTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Listbox> = () => {
+) => ViewTemplate<Listbox> = (context: ElementDefinitionContext) => {
+	const focusTemplate = focusTemplateFactory(context);
+
 	return html`
 	<div class="${getClasses}"
 		aria-activedescendant="${x => x.ariaActiveDescendant}"
@@ -28,7 +31,12 @@ export const ListboxTemplate: (
 		@focusin="${(x, c) => x.focusinHandler(c.event as FocusEvent)}"
 		@keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
 		@mousedown="${(x, c) => x.mousedownHandler(c.event as MouseEvent)}">
-		<slot></slot>
+		<slot ${slotted({
+			filter: Listbox.slottedOptionFilter,
+			flatten: true,
+			property: "slottedOptions",
+		})}></slot>
+		${() => focusTemplate}
 	</div>
 	`;
 };

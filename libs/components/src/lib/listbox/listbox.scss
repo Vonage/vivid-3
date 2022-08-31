@@ -1,0 +1,13 @@
+.base {
+	@supports selector(:focus-visible) {
+		&:focus {
+			outline: none;
+		}
+	}
+}
+
+.focus-indicator {
+	:not(:focus-visible) & {
+		display: none;
+	}
+}
