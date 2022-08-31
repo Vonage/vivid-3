@@ -22,7 +22,6 @@ export const ListboxTemplate: (
 	return html`
 	<div class="${getClasses}"
 		aria-activedescendant="${x => x.ariaActiveDescendant}"
-		aria-multiselectable="${x => x.ariaMultiSelectable}"
 		role="listbox"
 		tabindex="${x => (!x.disabled ? "0" : null)}"
 		@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
