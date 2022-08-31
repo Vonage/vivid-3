@@ -6,6 +6,14 @@
 </script>
 ```
 
+```html preview
+<vwc-listbox>
+  <vwc-listbox-option value="1" text="Listbox Option" role="option"></vwc-listbox-option>
+  <vwc-listbox-option value="2" text="Listbox Option" role="option"></vwc-listbox-option>
+  <vwc-listbox-option value="3" text="Listbox Option" role="option"></vwc-listbox-option>
+</vwc-listbox>
+```
+
 ## Members
 
 ### Multiple
