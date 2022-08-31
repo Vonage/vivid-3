@@ -6,6 +6,12 @@
 </script>
 ```
 
+## Slots
+
+### Listbox Option
+
+Read more about [vwc-listbox-option](../../components/listbox-option).
+
 ```html preview
 <vwc-listbox>
   <vwc-listbox-option value="1" text="Listbox Option" role="option"></vwc-listbox-option>
