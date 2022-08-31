@@ -26,15 +26,15 @@ export const ListboxOptionTemplate: (
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html`
-	<div class="${getClasses}">
-		<div class="option-wrapper"
-			?selected="${(x) => x.selected}"
-			?disabled="${(x) => x.disabled}"
-			aria-disabled="${x => x.ariaDisabled}"
-			aria-posinset="${x => x.ariaPosInSet}"
-			aria-selected="${x => x.ariaSelected}"
-			aria-setsize="${x => x.ariaSetSize}"
-			role="option">
+	<div class="${getClasses}"
+		?selected="${(x) => x.selected}"
+		?disabled="${(x) => x.disabled}"
+		aria-disabled="${x => x.ariaDisabled}"
+		aria-posinset="${x => x.ariaPosInSet}"
+		aria-selected="${x => x.ariaSelected}"
+		aria-setsize="${x => x.ariaSetSize}"
+		role="option">
+		<div class="option-wrapper">
 			${x => affixIconTemplate(x.icon)}
 			<div class="text-content">
 				${when(x => x.textPrimary, html`<div class="text-primary">${x => x.textPrimary}</div>`)}
