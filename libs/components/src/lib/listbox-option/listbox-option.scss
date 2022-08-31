@@ -54,12 +54,6 @@
 		cursor: not-allowed;
 	}
 
-	@supports selector(:focus-visible) {
-		&:focus {
-			outline: none;
-		}
-	}
-
 	&.secondary {
 		border-bottom: 1px solid var(#{theme-consts.$vvd-color-neutral-30});
 	}
