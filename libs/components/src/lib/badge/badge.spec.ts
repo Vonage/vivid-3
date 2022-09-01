@@ -66,7 +66,7 @@ describe('vwc-badge', () => {
 
 	describe('connotation', () => {
 		it('sets correct internal connotation style', async () => {
-			const connotation = 'info';
+			const connotation = 'information';
 			(element as any).connotation = connotation;
 			await elementUpdated(element);
 

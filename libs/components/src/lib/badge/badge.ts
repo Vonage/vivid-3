@@ -17,7 +17,7 @@ type BadgeConnotation = Extract<Connotation,
 | Connotation.Success
 | Connotation.Alert
 | Connotation.Warning
-| Connotation.Info>;
+| Connotation.Information>;
 
 /**
  * Types of badge appearance.

@@ -45,7 +45,7 @@ type IconConnotation = Extract<Connotation,
 | Connotation.Announcement
 | Connotation.Success
 | Connotation.Alert
-| Connotation.Info>;
+| Connotation.Information>;
 
 /**
  * Types of icon size.
