@@ -14,21 +14,11 @@ export class ListboxOption extends FastListboxOption {
 	 *
 	 * @public
 	 *
-	 * HTML Attribute: textPrimary
+	 * HTML Attribute: optionText
 	 */
 	@attr({
 		attribute: 'text',
-	}) textPrimary?: string; // TODO: This should be named text
-
-	/**
-	 *
-	 * @public
-	 *
-	 * HTML Attribute: textSecondary
-	 */
-	@attr({
-		attribute: 'text-secondary',
-	}) textSecondary?: string;
+	}) optionText?: string; // TODO: This should be named text
 }
 
 export interface ListboxOption extends AffixIconWithTrailing { }

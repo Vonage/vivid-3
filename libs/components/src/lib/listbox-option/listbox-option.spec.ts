@@ -18,8 +18,7 @@ describe('vwc-listbox-option', () => {
 	describe('basic', () => {
 		it('should be initialized as a vwc-listbox-option', async () => {
 			expect(element).toBeInstanceOf(ListboxOption);
-			expect(element.textPrimary).toBeUndefined();
-			expect(element.textSecondary).toBeUndefined();
+			expect(element.optionText).toBeUndefined();
 			expect(element.icon).toBeUndefined();
 			expect(element.selected).toBeFalsy();
 			expect(element.disabled).toBeFalsy();
@@ -42,16 +41,12 @@ describe('vwc-listbox-option', () => {
 	describe('text', () => {
 		it('should set text property value as text content', async () => {
 			const text = 'lorem';
-			const textSecondary = 'ipsum';
 
-			element.textPrimary = text;
-			element.textSecondary = textSecondary;
-
+			element.optionText = text;
 			await elementUpdated(element);
 
 			const base = element.shadowRoot?.querySelector('.base');
-			expect(base?.textContent?.trim().replace(/\s/g, ''))
-				.toEqual(text + textSecondary);
+			expect(base?.textContent).toEqual(text);
 		});
 	});
 
