@@ -1,8 +1,3 @@
-// const { transform } = require('style-dictionary');
-
-// const { transformer: colorToRGB } = transform['color/rgb'];
-// const { transformer: sizeToPx } = transform['size/px'];
-
 const isObject = (value) => typeof value === 'object' && !Array.isArray(value) && value !== null;
 
 const parseFontProps = ({ fontFamily, fontWeight, lineHeight, fontSize, fontStretch }) =>
