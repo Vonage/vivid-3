@@ -9,11 +9,12 @@ import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { ListboxOption } from './listbox-option';
 
 const getClasses = ({
-	icon, disabled, selected
+	icon, disabled, selected, checked
 }: ListboxOption) => classNames(
 	'base',
 	['disabled', disabled],
 	['selected', selected],
+	['checked', Boolean(checked)],
 	['icon', Boolean(icon)],
 );
 
@@ -27,9 +28,11 @@ export const ListboxOptionTemplate: (
 	<div class="${getClasses}"
 		?selected="${(x) => x.selected}"
 		?disabled="${(x) => x.disabled}"
+		?checked="${(x) => x.checked}"
 		aria-disabled="${x => x.ariaDisabled}"
 		aria-posinset="${x => x.ariaPosInSet}"
 		aria-selected="${x => x.ariaSelected}"
+		aria-checked="${x => x.ariaChecked}"
 		aria-setsize="${x => x.ariaSetSize}"
 		role="option">
 		${x => affixIconTemplate(x.icon)}
