@@ -1,0 +1,13 @@
+@use 'variables' as variables;
+@use '../../../../../shared/src/lib/sass/mixins/typography' as typography;
+
+
+@mixin get-density-properties($block-size, $font-face) {
+	#{variables.$avatar-density}: $block-size;
+	@include typography.typography-cat-shorthand($font-face);
+
+	.icon {
+		font-size: calc(#{$block-size} / 2);
+
+	}
+}

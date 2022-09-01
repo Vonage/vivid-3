@@ -70,42 +70,20 @@ Use the `shape` attribute to change the avatar's edges.
 
 ### Density
 
-Use the `density` attribute/property to set avatar's size.  
-TODO: fit or block size
+Use the `density` attribute/property to set the avatar's to one of the predefined block size extent.
 
-- Type: `-5` | `-4` | `-3` | `-2` | `-1` | `0` | `1` | `2` | `3` | `block`
-- Default: `0`
+- Type: `'condensed'` | `'normal'` | `'extended'`
+- Default: `'normal'`
 
 ```html preview
-<vwc-avatar density="-5" shape="pill"></vwc-avatar>
-<vwc-avatar density="-4" shape="pill"></vwc-avatar>
-<vwc-avatar density="-3" shape="pill"></vwc-avatar>
-<vwc-avatar density="-2" shape="pill"></vwc-avatar>
-<vwc-avatar density="-1" shape="pill"></vwc-avatar>
-<vwc-avatar density="0" shape="pill"></vwc-avatar>
-<vwc-avatar density="1" shape="pill"></vwc-avatar>
-<vwc-avatar density="2" shape="pill"></vwc-avatar>
-<vwc-avatar density="3" shape="pill"></vwc-avatar>
+<vwc-avatar density='condensed' shape="pill"></vwc-avatar>
+<vwc-avatar density='normal' shape="pill"></vwc-avatar>
+<vwc-avatar density='extended' shape="pill"></vwc-avatar>
 
 <hr>
-<vwc-avatar density="-5"  name="RT" shape="pill"></vwc-avatar>
-<vwc-avatar density="-4"  name="RT" shape="pill"></vwc-avatar>
-<vwc-avatar density="-3"  name="RT" shape="pill"></vwc-avatar>
-<vwc-avatar density="-2" name="RT" shape="pill"></vwc-avatar>
-<vwc-avatar density="-1" name="RT" shape="pill"></vwc-avatar>
-<vwc-avatar density="0"  name="RT" shape="pill"></vwc-avatar>
-<vwc-avatar density="1"  name="RT" shape="pill"></vwc-avatar>
-<vwc-avatar density="2"  name="RT" shape="pill"></vwc-avatar>
-<vwc-avatar density="3"  name="RT" shape="pill"></vwc-avatar>
-
-<hr>
-<div style="inline-size: 64px;">
-  <vwc-avatar density="block" shape="pill"></vwc-avatar>
-<div>
-
-<div style="inline-size: 64px;">
-  <vwc-avatar density="block" name="RT" shape="pill"></vwc-avatar>
-</div>
+<vwc-avatar density='condensed' name="RT" shape="pill"></vwc-avatar>
+<vwc-avatar density='normal' name="RT" shape="pill"></vwc-avatar>
+<vwc-avatar density='extended' name="RT" shape="pill"></vwc-avatar>
 ```
 
 

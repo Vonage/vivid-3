@@ -64,21 +64,13 @@ describe('vwc-avatar', () => {
 	});
 
 	describe('avatar density', function () {
-		const BASE_DENSITY = 10;
-
-		it('should set the density class only if exists', async function () {
-			const classListContainsDensity = baseElement?.className.split(' ').reduce((contains: boolean, className: string) => {
-				return contains || className.indexOf('density-') > -1;
-			}, false);
-			expect(classListContainsDensity).toEqual(false);
-		});
-
-		it('should set density class according to attribute plus base density', async function () {
-			const densityValue = 12;
-			const expectedClass = `density-${densityValue + BASE_DENSITY}`;
-			element.setAttribute('density', densityValue.toString());
+		it('sets correct internal density style', async () => {
+			const density = 'condensed';
+			(element as any).density = density;
 			await elementUpdated(element);
-			expect(baseElement.classList.contains(expectedClass)).toBeTruthy();
+
+			const control = element.shadowRoot?.querySelector(`.base.density-${density}`);
+			expect(control).toBeInstanceOf(Element);
 		});
 	});
 
@@ -99,12 +91,12 @@ describe('vwc-avatar', () => {
 
 	});
 
-	describe('avatar name', () => {
-		it('should not show the icon if name is set', async () => {
-			element.name = 'John Doe';
-			await elementUpdated(element);
-			const iconElement = baseElement.querySelector('vwc-icon');
-			expect(iconElement).toBeNull();
-		});
-	});
+	// describe('avatar name', () => {
+	// 	it('should not show the icon if name is set', async () => {
+	// 		element.name = 'John Doe';
+	// 		await elementUpdated(element);
+	// 		const iconElement = baseElement.querySelector('vwc-icon');
+	// 		expect(iconElement).toBeNull();
+	// 	});
+	// });
 });

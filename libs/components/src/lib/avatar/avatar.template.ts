@@ -9,11 +9,11 @@ import type { Avatar } from './avatar';
 
 const getClasses = ({appearance, connotation, shape, density}: Avatar) => classNames(
 	'base',
-	[`connotation-${connotation}`, !!connotation],
+	[`connotation-${connotation}`, Boolean(connotation)],
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
-	[`density-${(density ? Number(density) : 0) + 10}`, !!density],
-	['density-block', !!Boolean(density == 'block')],
+	[`density-${density}`, Boolean(density)],
+	// ['density-block', !!Boolean(density == 'block')],
 );
 
 /**
