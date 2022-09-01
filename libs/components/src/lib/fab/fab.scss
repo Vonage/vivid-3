@@ -23,7 +23,7 @@
 	box-sizing: border-box;
 	align-items: center;
 	border: 0 none;
-	background-color: var(#{appearance.get-appearance-token(fill)}, var(elevation.$vvd-elevation-fill));
+	background: var(#{appearance.get-appearance-token(fill)}, var(elevation.$vvd-elevation-fill));
 	block-size: var(#{variables.$block-size});
 	border-radius: var(#{variables.$border-radius});
 	color: var(#{appearance.get-appearance-token(text)}, var(constants.$vvd-color-canvas-text));
