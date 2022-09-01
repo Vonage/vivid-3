@@ -22,13 +22,9 @@ Default: 'user-line'
 ```
 
 
-### Name
-the `name` attribute is set for 2 initials letters.  
-TODO: create a component for presenting only the initials.
+### Acronym
+still in progress
 
-```html preview
-<vwc-avatar name="RT"></vwc-avatar>
-```
 
 ### Appearance
 Set the `appearance` attribute to change the avatar's appearance.
@@ -79,11 +75,6 @@ Use the `density` attribute/property to set the avatar's to one of the predefine
 <vwc-avatar density='condensed' shape="pill"></vwc-avatar>
 <vwc-avatar density='normal' shape="pill"></vwc-avatar>
 <vwc-avatar density='extended' shape="pill"></vwc-avatar>
-
-<hr>
-<vwc-avatar density='condensed' name="RT" shape="pill"></vwc-avatar>
-<vwc-avatar density='normal' name="RT" shape="pill"></vwc-avatar>
-<vwc-avatar density='extended' name="RT" shape="pill"></vwc-avatar>
 ```
 
 

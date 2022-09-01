@@ -44,7 +44,7 @@ type AvatarDensity = Extract<Density, Density.Condensed | Density.Normal | Densi
 
 
 export class Avatar extends FoundationElement {
-	/*/**
+	/**
 	 * The connotation the avatar should have.
 	 *
 	 * @public
@@ -83,18 +83,9 @@ export class Avatar extends FoundationElement {
 
 
 	/**
-	 * Indicates the avatar's initials.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: text
-	 */
-	@attr name?: string;
-	/**
 	 * avatar header icon
 	 *
 	 * @public
 	 */
 	@attr icon?: string;
-
 }

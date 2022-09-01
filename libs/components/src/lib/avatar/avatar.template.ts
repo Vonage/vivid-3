@@ -1,4 +1,4 @@
-import { html, when } from '@microsoft/fast-element';
+import { html } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
@@ -13,7 +13,6 @@ const getClasses = ({appearance, connotation, shape, density}: Avatar) => classN
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	[`density-${density}`, Boolean(density)],
-	// ['density-block', !!Boolean(density == 'block')],
 );
 
 /**
@@ -28,7 +27,8 @@ export const AvatarTemplate: (
 ) => ViewTemplate<Avatar> = () => html` 
 	<span class="${getClasses}">
 		<slot>
-			${when(x => x.name, html`<span class="initials">${x => x.name}</span>`)}
-			${when(x => !x.name, html`<span class="icon"><vwc-icon type="${(x) => x.icon? `${x.icon}` : 'user-line'}"></vwc-icon></span>`)}
+			<span class="icon">
+				<vwc-icon type="${(x) => x.icon? `${x.icon}` : 'user-line'}"></vwc-icon>
+			</span>
 		</slot>
 </span>`;
