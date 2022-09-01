@@ -1,4 +1,4 @@
-# avatar
+# Avatar
 
 Represents a avatar custom element.
 
