@@ -88,16 +88,16 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
 <vwc-layout class="color_layout" column-basis="small" column-spacing="small">
   <div>
     Info<br>
-    <code>--vvd-color-info-<em>{n}</em></code>
+    <code>--vvd-color-information-<em>{n}</em></code>
   </div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-info);"></div></div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-on-info);"></div>on</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-info-10);"></div>10</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-info-20);"></div>20</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-info-30);"></div>30</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-info-70);"></div>70</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-info-80);"></div>80</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-info-90);"></div>90</div>
+  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-information);"></div></div>
+  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-on-information);"></div>on</div>
+  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-information-10);"></div>10</div>
+  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-information-20);"></div>20</div>
+  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-information-30);"></div>30</div>
+  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-information-70);"></div>70</div>
+  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-information-80);"></div>80</div>
+  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-information-90);"></div>90</div>
   </vwc-layout>
   <vwc-layout class="color_layout" column-basis="small" column-spacing="small">
   <div>
@@ -133,7 +133,7 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
     <code>--vvd-color-canvas-<em>{n}</em></code>
   </div>
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-canvas);"></div></div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-on-canvas);"></div>on</div>
+  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-canvas-text);"></div>on</div>
 </vwc-layout>
 
 <vwc-layout class="color_layout" column-basis="small" column-spacing="small">
@@ -142,7 +142,7 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
     <code>--vvd-color-primary-<em>{n}</em></code>
   </div>
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-primary);"></div></div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-on-primary);"></div>on</div>
+  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-primary-text);"></div>on</div>
 </vwc-layout>
 
 <vwc-layout class="color_layout" column-basis="small" column-spacing="small">
