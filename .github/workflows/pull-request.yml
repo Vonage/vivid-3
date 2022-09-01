@@ -63,7 +63,7 @@ jobs:
 
   call-visual-regression:
     needs: [call-lint, check-changelogs]
-    uses: vonage/vivid-3/.github/workflows/_visual-regression.yml@main
+    uses: vonage/vivid-3/.github/workflows/_visual-regression.yml@stabilize-ui-tests
 
   call-deploy-deno-preview:
     needs: [deps-cache]
