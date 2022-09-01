@@ -80,6 +80,17 @@ docker push drizzt99/vonage:1.x.x
 
 3. Update the relevant `yml` files that are using this image to use the new version.
 
+## Updating playwright version
+
+1. Change the version in package.json
+2. Change the version in the dockerfile
+3. Install locally: npm i && npx playwright install
+4. Rebuild the image: `npx nx run components:e2e --task=build`
+5. Bump the tag: `docker tag vivid-visual-tests-img drizzt99/vonage:1.x.x`
+6. Push to the repository: `docker push drizzt99/vonage:1.x.x`
+7. Run the tests: `npx nx run components:e2e` to ensure everything works fine
+8. Update the relevant `yml` files that are using this image to use the new version.
+
 ## Checking the tests
 
 All tests must pass. The results of failed tests can be found in the `test-results` folder directly under the project's root folder.  Inside you will find a folder per failed test, each with 3 files: `actual.png`, `expected.png` and `diff.png`.
