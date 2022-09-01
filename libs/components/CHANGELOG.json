@@ -2,6 +2,36 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Thu, 01 Sep 2022 06:17:32 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.50",
+      "version": "3.0.0-next.50",
+      "comments": {
+        "none": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "27a29a6aca74ce6839dd76156e3c897ebdc03bbb",
+            "comment": "Stabilize breadcrumbs test"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 30 Aug 2022 07:11:12 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.50",
+      "version": "3.0.0-next.50",
+      "comments": {
+        "none": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "ecde36065e4024a73633e593d48a3a3dd04ff621",
+            "comment": "Set the form field pattern"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 26 Aug 2022 16:38:16 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.50",
       "version": "3.0.0-next.50",
