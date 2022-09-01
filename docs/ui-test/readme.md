@@ -88,7 +88,7 @@ docker push drizzt99/vonage:1.x.x
 4. Rebuild the image: `npx nx run components:e2e --task=build`
 5. Bump the tag: `docker tag vivid-visual-tests-img drizzt99/vonage:1.x.x`
 6. Push to the repository: `docker push drizzt99/vonage:1.x.x`
-7. Run the tests: `npx nx run components:e2e` to make sure everything works fine
+7. Run the tests: `npx nx run components:e2e` to ensure everything works fine
 8. Update the relevant `yml` files that are using this image to use the new version.
 
 ## Checking the tests
