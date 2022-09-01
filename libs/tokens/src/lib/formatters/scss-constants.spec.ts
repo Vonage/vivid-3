@@ -1,5 +1,5 @@
 export {}
-const { formatter } = require('./constants');
+const { formatter } = require('./scss-constants');
 
 
 describe('basic', () => {
