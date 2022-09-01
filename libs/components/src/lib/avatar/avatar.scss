@@ -1,12 +1,10 @@
-@use 'sass:list';
+@use '../../../../../dist/libs/tokens/scss/constants' as constants;
 @use 'partials/variables' as variables;
 @use 'partials/mixins' as mixins;
-@use '../../../../shared/src/lib/sass/utils' as utils;
-@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent cta,
-	$shades: primary on-primary firm,
+	$shades: primary primary-text firm,
 	$default: accent,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
@@ -34,15 +32,15 @@
 	vertical-align: middle;
 
 	&.density-condensed {
-		@include mixins.get-density-properties(32px, caption-bold);
+		@include mixins.get-density-properties(32px, #{constants.$vvd-font-base-condensed-bold});
 	}
 
 	&.density-extended {
-		@include mixins.get-density-properties(48px, subtitle-2);
+		@include mixins.get-density-properties(48px, #{constants.$vvd-font-heading4});
 	}
 
 	&:not(.density-condensed, .density-extended) {
-		@include mixins.get-density-properties(40px, body-2-bold);
+		@include mixins.get-density-properties(40px, #{constants.$vvd-font-base-extended-bold});
 	}
 
 	&:not(.shape-pill) {

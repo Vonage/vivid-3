@@ -1,5 +1,4 @@
 @use 'variables' as variables;
-@use '../../../../../shared/src/lib/sass/mixins/typography' as typography;
 
 
 @mixin get-density-properties($block-size, $font-face) {
