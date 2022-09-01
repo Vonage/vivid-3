@@ -57,13 +57,12 @@ Add the `disabled` attribute to disable the listbox-option.
 ### Common Usage
 
 ```html preview
-  <vwc-listbox-option text="1st Listbox Option" text-secondary="Secondary text of the 1st Listbox Option" icon="chat-line">
-    <vwc-button slot="meta" icon="more-vertical-solid" appearance="ghost"></vwc-button>
+<vwc-listbox>
+  <vwc-listbox-option text="1st Listbox Option" text-secondary="Secondary text of the 1st Listbox Option" icon="chat-line" role="option" value="1">
   </vwc-listbox-option>
   <vwc-listbox-option text="2nd Listbox Option" text-secondary="Secondary text of the 2nd Listbox Option" icon="chat-line" role="option" value="2">
-    <vwc-button slot="meta" icon="more-vertical-solid" appearance="ghost"></vwc-button>
   </vwc-listbox-option>
   <vwc-listbox-option text="3rd Listbox Option" text-secondary="Secondary text of the 3rd Listbox Option" icon="chat-line">
-    <vwc-button slot="meta" icon="more-vertical-solid" appearance="ghost"></vwc-button>
-  </vwc-listbox-option>
+  </vwc-listbox-option role="option" value="3">
+</vwc-listbox>
 ```
