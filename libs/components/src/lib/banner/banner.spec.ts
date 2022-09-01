@@ -195,7 +195,7 @@ describe('vwc-banner', () => {
 	});
 
 	describe('connotation', function () {
-		const possibleConnotations = [Connotation.Info,
+		const possibleConnotations = [Connotation.Information,
 			Connotation.Announcement,
 			Connotation.Success,
 			Connotation.Warning,
@@ -229,7 +229,7 @@ describe('vwc-banner', () => {
 			getIcon = () => element.shadowRoot?.querySelector('.icon > vwc-icon') as Icon;
 		});
 
-		it('should set the icon according to connotation info by default', function () {
+		it('should set the icon according to connotation information by default', function () {
 			expect(getIcon().type)
 				.toEqual('info-solid');
 		});
@@ -244,7 +244,7 @@ describe('vwc-banner', () => {
 
 		it('should set the icon according to set connotation', async function () {
 			const connotationIconMap: Map<BannerConnotation, string> = new Map([
-				[Connotation.Info, 'info-solid'],
+				[Connotation.Information, 'info-solid'],
 				[Connotation.Announcement, 'megaphone-solid'],
 				[Connotation.Success, 'check-circle-solid'],
 				[Connotation.Warning, 'warning-solid'],
