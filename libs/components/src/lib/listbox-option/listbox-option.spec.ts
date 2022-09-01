@@ -21,6 +21,7 @@ describe('vwc-listbox-option', () => {
 			expect(element.optionText).toBeUndefined();
 			expect(element.icon).toBeUndefined();
 			expect(element.selected).toBeFalsy();
+			expect(element.checked).toBeFalsy();
 			expect(element.disabled).toBeFalsy();
 		});
 	});
@@ -52,11 +53,20 @@ describe('vwc-listbox-option', () => {
 
 
 	describe('selected', function () {
-		it('should set selected class when disabled is true', async () => {
+		it('should set selected class when selected is true', async () => {
 			expect(element.shadowRoot?.querySelector('.selected')).toBeFalsy();
 			element.toggleAttribute('selected', true);
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.selected')).toBeTruthy();
+		});
+	});
+
+	describe('checked', function () {
+		it('should set checked class when checked is true', async () => {
+			expect(element.shadowRoot?.querySelector('.checked')).toBeFalsy();
+			element.toggleAttribute('checked', true);
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.checked')).toBeTruthy();
 		});
 	});
 
