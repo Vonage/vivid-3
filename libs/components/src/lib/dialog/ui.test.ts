@@ -1,7 +1,6 @@
 import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import {
-	extractHTMLBlocksFromReadme,
 	loadComponents,
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
@@ -25,27 +24,27 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	</style>
 	<div style="height: 800px">
 		<vwc-dialog id="top-dialog"
-								icon="info" 
+								icon="info"
 								headline="Headline"
 								text="This is the content that I want to show and I will show it!!!"
 								open>
 								<div slot="main">This is the main content now - replacing EVERYTHING!</div>
 								</vwc-dialog>
 		<vwc-dialog id="modal"
-								icon="info" 
+								icon="info"
 								headline="Headline"
 								text="This is the content that I want to show and I will show it!!!"
-								>					
+								>
 								</vwc-dialog>
 		<vwc-dialog id="bottom-left-dialog"
-								icon="info" 
+								icon="info"
 								headline="Dialog with overridden graphic slot"
 								text="This is the content that I want to show and I will show it!!!"
 								open>
 								<vwc-icon type="home" slot="graphic"></vwc-icon>
 								</vwc-dialog>
 		<vwc-dialog id="bottom-right-dialog"
-								icon="info" 
+								icon="info"
 								headline="Dialog with footer"
 								text="This is the content that I want to show and I will show it!!"
 								open>
@@ -80,7 +79,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		return modal;
 	});
 
-	await page.pause();
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/dialog.png'
 	);

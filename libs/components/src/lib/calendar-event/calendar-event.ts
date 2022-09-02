@@ -13,7 +13,7 @@ type CalendarEventConnotation = Extract<Connotation,
 | Connotation.Success
 | Connotation.Alert
 | Connotation.Warning
-| Connotation.Info
+| Connotation.Information
 | Connotation.Announcement>;
 
 /**
