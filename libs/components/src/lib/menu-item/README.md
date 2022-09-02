@@ -9,7 +9,13 @@ Represents a menu-item custom element.
 ```
 
 ```html preview
-<vwc-menu-item></vwc-menu-item>
+<vwc-menu open>
+ <vwc-menu-item text="Menu item 1">
+ <em>all I wanna do 🥳</em>
+ </vwc-menu-item>
+ <vwc-menu-item>Menu item 2</vwc-menu-item>
+ <vwc-menu-item>Menu item 3</vwc-menu-item>
+</vwc-menu>
 ```
 
 ## Members

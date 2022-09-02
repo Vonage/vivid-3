@@ -1,4 +1,4 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
+import { Menu as FastMenuItem } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 
 /**
@@ -6,7 +6,7 @@ import { attr } from '@microsoft/fast-element';
  *
  * @public
  */
-export class MenuItem extends FoundationElement {
+export class MenuItem extends FastMenuItem {
 	/**
 	 * Indicates the text's text.
 	 *
