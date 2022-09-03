@@ -1,5 +1,5 @@
-import { Menu as FastMenuItem } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
+import { MenuItem as FastMenuItem, MenuItemRole } from '@microsoft/fast-foundation';
 
 /**
  * Base class for menu-item
@@ -8,11 +8,12 @@ import { attr } from '@microsoft/fast-element';
  */
 export class MenuItem extends FastMenuItem {
 	/**
-	 * Indicates the text's text.
+	 * The role of the element.
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: text
+	 * HTML Attribute: role
 	 */
-	@attr text?: string;
+	@attr({ mode: 'fromView' })
+	override role: MenuItemRole = MenuItemRole.menuitem;
 }

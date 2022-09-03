@@ -15,7 +15,6 @@ export function MenuItemTemplate<T extends MenuItem>(
 	// const anchoredRegionTag = tagFor(options.anchoredRegion);
 	return html<T>`
     <template
-        role="${x => x.role}"
         aria-haspopup="${x => (x.hasSubmenu ? 'menu' : void 0)}"
         aria-checked="${x => (x.role !== MenuItemRole.menuitem ? x.checked : void 0)}"
         aria-disabled="${x => x.disabled}"
@@ -53,7 +52,7 @@ export function MenuItemTemplate<T extends MenuItem>(
 	)}
         </div>
         <span class="content" part="content">
-            ${x => x.textContent}
+            <slot></slot>
         </span>
         ${when(
 		x => x.hasSubmenu,

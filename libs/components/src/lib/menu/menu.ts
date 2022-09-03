@@ -1,7 +1,7 @@
 import { attr } from '@microsoft/fast-element';
 import { Menu as FastMenu } from '@microsoft/fast-foundation';
 import type { Placement } from '@floating-ui/dom';
-
+// import { isHTMLElement } from '@microsoft/fast-web-utilities';
 
 /**
  * Base class for menu
@@ -9,6 +9,17 @@ import type { Placement } from '@floating-ui/dom';
  * @public
  */
 export class Menu extends FastMenu {
+
+	// constructor() {
+	// 	super();
+	// 	this['isMenuItemElement'] = (el: Element): el is HTMLElement =>  (
+	// 		isHTMLElement(el) &&
+	// 		roleForMenuItem.hasOwnProperty(
+	// 			el.shadowRoot?.firstElementChild?.getAttribute('role') as string
+	// 		)
+	// 	);
+	// }
+
 	/**
 	 * indicates whether the menu is open
 	 *
