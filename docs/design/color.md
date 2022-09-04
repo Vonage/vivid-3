@@ -18,7 +18,7 @@
 
 ### It’s part visual chemistry and part psychology. Balancing both makes for a palette that’s a powerful tool for establishing uniqueness
 
-________________________________________________________________________
+<hr>
 
 ## Color palette
 

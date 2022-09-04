@@ -1,15 +1,13 @@
-﻿# Design System
-**Foundations of the Design System**
-Design Tokens
+﻿
+# Foundations
+
 <hr>
 
-## Foundations of the Design System
-The core guidelines are driven by the ‘Vonage Brand Toolkit’ and are the foundations on which we built our design system. Specifically, these elements are the subatomic elements of all our components.
-
-[Vonage Brand Toolkit](https://drive.google.com/file/d/1zPE5qIJys_KyjpWNAfsW9tmHc3iXEOMl/view)
+The core guidelines are driven by the [Vonage Brand Toolkit](https://drive.google.com/file/d/1zPE5qIJys_KyjpWNAfsW9tmHc3iXEOMl/view) and are the foundations on which we built our design system. Specifically, these elements are the subatomic elements of all our components.
 
 ### Core Variables
 Our core variables are represented as design tokens which are design decisions based on our brand’s design foundations. These include color palette, typography and elevation scale, schemes, platform scale, iconography, etc.
+
 <hr>
 
 ### Atomic Design
@@ -36,4 +34,3 @@ VVC (vivid-components) are used for creating user interfaces and include a built
 Web Components is a suite of different technologies allowing you to create reusable custom elements — with their functionality encapsulated away from the rest of your code — and utilize them in your web apps.  
   
 Vivid Web Components (VWC) are a collection of Web Components maintained by Vivid team.
-<hr>
