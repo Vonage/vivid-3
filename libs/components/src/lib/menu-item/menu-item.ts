@@ -1,5 +1,4 @@
-import { attr } from '@microsoft/fast-element';
-import { MenuItem as FastMenuItem, MenuItemRole } from '@microsoft/fast-foundation';
+import { MenuItem as FastMenuItem } from '@microsoft/fast-foundation';
 
 /**
  * Base class for menu-item
@@ -7,13 +6,13 @@ import { MenuItem as FastMenuItem, MenuItemRole } from '@microsoft/fast-foundati
  * @public
  */
 export class MenuItem extends FastMenuItem {
-	/**
-	 * The role of the element.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: role
-	 */
-	@attr({ mode: 'fromView' })
-	override role: MenuItemRole = MenuItemRole.menuitem;
+	// @observable roleState?: MenuItemRole = this.role;
+
+	// override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
+	// 	super.attributeChangedCallback(name, oldValue, newValue);
+	// 	if (name === 'role' && roleForMenuItem.hasOwnProperty(newValue)) {
+	// 		this.roleState = newValue as MenuItemRole;
+	// 		this.removeAttribute('role');
+	// 	}
+	// }
 }
