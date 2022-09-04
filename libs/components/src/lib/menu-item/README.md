@@ -11,7 +11,7 @@ Represents a menu-item custom element.
 ```html preview
 <style>
  html { 
-  block-size: 300px; 
+  block-size: 400px; 
  }
 </style>
 

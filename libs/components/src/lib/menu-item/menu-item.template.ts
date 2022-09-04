@@ -1,7 +1,8 @@
-import { html, when } from '@microsoft/fast-element';
-import { MenuItemRole } from '@microsoft/fast-foundation';
+import { html, ViewTemplate, when } from '@microsoft/fast-element';
+import { ElementDefinitionContext, MenuItemRole } from '@microsoft/fast-foundation';
 import type { MenuItemOptions } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
+import { Icon } from '../icon/icon';
 import type { MenuItem } from './menu-item';
 
 const getClasses = ({
@@ -19,13 +20,20 @@ const getClasses = ({
  * the provided prefix.
  *
  * @param options
+ * @param context
+ * @param definition
  * @public
  */
-export function MenuItemTemplate<T extends MenuItem>(
-	options: MenuItemOptions
-) {
+export const MenuItemTemplate:  (
+	context: ElementDefinitionContext,
+	definition: MenuItemOptions
+) => ViewTemplate<MenuItem> = (
+	context: ElementDefinitionContext,
+	definition: MenuItemOptions
+) => {
+	const iconTag = context.tagFor(Icon);
 	// const anchoredRegionTag = tagFor(options.anchoredRegion);
-	return html<T>`
+	return html<MenuItem>`
 	<template
 		aria-haspopup="${x => (x.hasSubmenu ? 'menu' : void 0)}"
 		aria-checked="${x => (x.role !== MenuItemRole.menuitem ? x.checked : void 0)}"
@@ -37,29 +45,25 @@ export function MenuItemTemplate<T extends MenuItem>(
 		@mouseout="${(x, c) => x.handleMouseOut(c.event as MouseEvent)}"
 	>
 		<div class="${getClasses}">
-						${when(
-		x => x.role === MenuItemRole.menuitemcheckbox,
-		html<MenuItem>`
-										<div part="input-container" class="input-container">
-												<span part="checkbox" class="checkbox">
-														<slot name="checkbox-indicator">
-																${options.checkboxIndicator ?? ''}
-														</slot>
-												</span>
-										</div>
-								`
-	)}
+
+						${when(x => x.role === MenuItemRole.menuitemcheckbox,
+		html<MenuItem>`<${iconTag}
+		size="medium"
+							class="indicator"
+		type="${x => x.checked
+		? 'checkbox-checked-solid'
+		: 'checkbox-unchecked-solid'
+}"></${iconTag}>`)}
+
 						${when(
 		x => x.role === MenuItemRole.menuitemradio,
-		html<MenuItem>`
-										<div part="input-container" class="input-container">
-												<span part="radio" class="radio">
-														<slot name="radio-indicator">
-																${options.radioIndicator ?? ''}
-														</slot>
-												</span>
-										</div>
-								`
+		html<MenuItem>`<${iconTag}
+		size="medium"
+							class="indicator"
+		type="${x => x.checked
+		? 'radio-checked-solid'
+		: 'radio-unchecked-solid'
+}"></${iconTag}>`
 	)}
 
 				<span class="content" part="content">
@@ -67,14 +71,14 @@ export function MenuItemTemplate<T extends MenuItem>(
 				</span>
 				${when(
 		x => x.hasSubmenu,
-		html<T>`
+		html<MenuItem>`
 								<div
 										part="expand-collapse-glyph-container"
 										class="expand-collapse-glyph-container"
 								>
 										<span part="expand-collapse" class="expand-collapse">
 												<slot name="expand-collapse-indicator">
-														${options.expandCollapseGlyph ?? ''}
+														${definition.expandCollapseGlyph ?? ''}
 												</slot>
 										</span>
 								</div>
@@ -83,4 +87,4 @@ export function MenuItemTemplate<T extends MenuItem>(
 		</div>
 	</template>
 	`;
-}
+};

@@ -1,3 +1,5 @@
+import '../../checkbox';
+
 import type { MenuItemOptions } from '@microsoft/fast-foundation';
 import { designSystem } from '../../shared/design-system';
 import styles from './menu-item.scss';
@@ -11,8 +13,4 @@ export const vividMenuItem = MenuItem.compose<MenuItemOptions>({
 	styles,
 });
 
-designSystem.register(vividMenuItem({
-	expandCollapseGlyph: '...your expand/collapse glyph...',
-	checkboxIndicator: '...your checkbox indicator...',
-	radioIndicator: '...your radio indicator...',
-}));
+designSystem.register(vividMenuItem());
