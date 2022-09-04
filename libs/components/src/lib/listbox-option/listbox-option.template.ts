@@ -25,18 +25,20 @@ export const ListboxOptionTemplate: (
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html`
-	<div class="${getClasses}"
-		?selected="${(x) => x.selected}"
-		?disabled="${(x) => x.disabled}"
-		?checked="${(x) => x.checked}"
-		aria-disabled="${x => x.ariaDisabled}"
-		aria-posinset="${x => x.ariaPosInSet}"
-		aria-selected="${x => x.ariaSelected}"
-		aria-checked="${x => x.ariaChecked}"
-		aria-setsize="${x => x.ariaSetSize}"
-		role="option">
-		${x => affixIconTemplate(x.icon)}
-		${when(x => x.optionText, html`<div class="text">${x => x.optionText}</div>`)}
-	</div>
+	<template
+			?selected="${(x) => x.selected}"
+			?disabled="${(x) => x.disabled}"
+			?checked="${(x) => x.checked}"
+			aria-disabled="${x => x.ariaDisabled}"
+			aria-posinset="${x => x.ariaPosInSet}"
+			aria-selected="${x => x.ariaSelected}"
+			aria-checked="${x => x.ariaChecked}"
+			aria-setsize="${x => x.ariaSetSize}"
+			role="option">
+		<div class="${getClasses}">
+			${x => affixIconTemplate(x.icon)}
+			${when(x => x.optionText, html`<div class="text">${x => x.optionText}</div>`)}
+		</div>
+	</template>
 	`;
 };
