@@ -1,7 +1,7 @@
 [
   {
-    "title": "color",
-    "markdown": "./docs/design/color.md",
+    "title": "color-palette",
+    "markdown": "./docs/design/color-palette.md",
     "modules": [
       "/assets/modules/components/layout/index.js"
     ]
