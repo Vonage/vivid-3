@@ -5,13 +5,13 @@ import {
 	loadTemplate
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['popup', 'icon', 'button'];
+const components = ['popup'];
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template =`
 	<style>
   .contentWrapper{
     width: 70px;
-    padding: 0.25rem;
+    padding: 4px;
   }
 	.square {
 		height: 150px;
