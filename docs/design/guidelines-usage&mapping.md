@@ -1,7 +1,9 @@
-﻿# Color Palette
-**Guidelines - Usage & mapping**
-How to work with UI Kit colors
+# Color Palette
+
+**Guidelines - Usage & mapping**<br>
+How to work with UI Kit colors<br>
 Guidelines - Accessibility
+
 <hr>
 
 ## Guidelines - Usage & mapping
@@ -14,12 +16,12 @@ Application of the color palette brings a unified and recognizable consistency t
 ### Brand colors
 Vivid’s default theme is derived from the Vonage Brand Identity color palette. Black is our Primary color and the core Purple family serves as the main action color across all Vonage products and experiences. The Neutral Gray family is dominant in our default theme, making use of subtle shifts in value and lightness to help organize content into distinct sections.
 
-    [Here will be color scale image]
+![color palette](https://user-images.githubusercontent.com/106529909/188305811-6f80d634-cc3d-4dc4-84ab-51949fbdc5dc.png)
 
 #### Additional brand colors
 Although we value an aesthetically pleasing use of color, we place a higher value on clear communication. Our use of color should be rational and should serve to support the purpose of the content. The additional brand colors should be used sparingly and purposefully throughout Vonage’s interfaces and applications, and mainly just for decoartive purposes.
 
-    [Here will be color scale image]
+![brand colors](https://user-images.githubusercontent.com/106529909/188305830-ab6f12ac-60c5-4844-890c-a7954165c701.png)
 
 <hr>
 
@@ -29,7 +31,7 @@ A design token that’s specific to color usage. This provides a way of referenc
 
 For example, Purple-500 represents the sixth color in the list of tints and shades of purple.
 
-    [Here will be a token explanation image]
+![color token](https://user-images.githubusercontent.com/106529909/187898660-61384e46-0843-403b-bff8-431bcd4f7a47.png)
    
    <hr>
 
@@ -55,11 +57,12 @@ Gradients should only be used for decorative and illustrative purposes, never to
 
 #### 2-tone gradients
 
-    [Here will be an image with 2-tone gradients]
+![2-tone gradients](https://user-images.githubusercontent.com/106529909/188305849-ca5c783a-a983-45f0-840f-ef89c229989f.png)
 
 #### 3-tone gradients
 
-    [Here will be an image with 3-tone gradients]
+![3-tone gradients](https://user-images.githubusercontent.com/106529909/188305853-ebe7477f-e43b-4423-a0fe-485851c6bf18.png)
+
 To learn more about the usage of 2-tone and 3-tone gradients please review -
 [Vonage’s Brand Identity Toolkit manual.](https://drive.google.com/file/d/1zPE5qIJys_KyjpWNAfsW9tmHc3iXEOMl/view)
 
