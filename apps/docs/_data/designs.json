@@ -8,14 +8,10 @@
   },
   {
     "title": "design-tokens",
-    "markdown": "./docs/design/design-tokens.md",
-    "modules": [
-    ]
+    "markdown": "./docs/design/design-tokens.md"
   },
   {
     "title": "foundations",
-    "markdown": "./docs/design/foundations.md",
-    "modules": [
-    ]
+    "markdown": "./docs/design/foundations.md"
   }
 ]
