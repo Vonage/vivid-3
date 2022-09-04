@@ -1,15 +1,15 @@
-@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/dark/main.scss' as main;
-@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/dark/alternate.scss' as alternate;
+@use '../../../../../dist/libs/tokens/scss/themes/dark.mixin' as dark-mixin;
+@use '../../../../../dist/libs/tokens/scss/themes/light.mixin' as light-mixin;
 @use 'partials/color-scheme-mixins' as color-scheme-mixins;
 @use 'partials/theme-variables' as variables;
 
 
 #{variables.$theme-main-selector} {
-	@include main.variables;
+	@include dark-mixin.variables;
 	@include color-scheme-mixins.color-scheme(dark);
 }
 
 #{variables.$theme-alternate-selector} {
-	@include alternate.variables;
+	@include light-mixin.variables;
 	@include color-scheme-mixins.color-scheme(light);
 }

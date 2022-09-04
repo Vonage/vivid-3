@@ -39,7 +39,7 @@ describe('vwc-note', () => {
 	});
 
 	it('should set connotation class on the base element', async function() {
-		const connotation = Connotation.Info;
+		const connotation = Connotation.Information;
 		const baseElement = element.shadowRoot?.querySelector('.base');
 		const connotationClassExistsWhenNull = baseElement?.classList?.contains(`connotation-${connotation}`);
 		element.connotation = connotation;
@@ -56,7 +56,7 @@ describe('vwc-note', () => {
 
 	it('should set icon type according to connotation', async function() {
 		const iconElement = element.shadowRoot?.querySelector('.icon') as Icon;
-		element.connotation = Connotation.Info;
+		element.connotation = Connotation.Information;
 		await elementUpdated(element);
 		expect(iconElement.type).toEqual('info-solid');
 	});
