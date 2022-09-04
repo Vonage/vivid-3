@@ -2,6 +2,194 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Thu, 01 Sep 2022 13:29:47 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.51",
+      "version": "3.0.0-next.51",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "93dad593954a8e88025631f2c438b2a3a21a9063",
+            "comment": "design tokens renamed"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 01 Sep 2022 06:17:32 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.50",
+      "version": "3.0.0-next.50",
+      "comments": {
+        "none": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "27a29a6aca74ce6839dd76156e3c897ebdc03bbb",
+            "comment": "Stabilize breadcrumbs test"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 30 Aug 2022 07:11:12 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.50",
+      "version": "3.0.0-next.50",
+      "comments": {
+        "none": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "ecde36065e4024a73633e593d48a3a3dd04ff621",
+            "comment": "Set the form field pattern"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 26 Aug 2022 16:38:16 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.50",
+      "version": "3.0.0-next.50",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "a8a0820b28c7772ee47bcef2f39f8ef9228052d1",
+            "comment": "font assets coupled with their css"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 26 Aug 2022 15:17:22 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.49",
+      "version": "3.0.0-next.49",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "bb914cc7cc6c96fdf2b454de97d83f34827227e6",
+            "comment": "fix icon size in fab extended density"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 24 Aug 2022 08:06:12 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.48",
+      "version": "3.0.0-next.48",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "57116dff0a1ff48d5571a603a4da33bb58015f1f",
+            "comment": "fix tooltip readme"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 23 Aug 2022 12:15:37 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.48",
+      "version": "3.0.0-next.48",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "66ecbff59ded729d09f5ab38a03387e3b79e8d06",
+            "comment": "fix missing typography in components styles"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 18 Aug 2022 07:38:07 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.47",
+      "version": "3.0.0-next.47",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "f190bde789bb756b5ba1cf6c933bdbeeef984418",
+            "comment": "text component obsoletion"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 17 Aug 2022 20:28:05 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.46",
+      "version": "3.0.0-next.46",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "729ccd986ff6753767aa2450dfab9dbcc8d2ab24",
+            "comment": "menu migration to fast"
+          }
+        ],
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "68d688e06e67e7364e2276e07d037bfcef2a4ee8",
+            "comment": "update icon set to 4.0.29"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 14 Aug 2022 09:29:57 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.45",
+      "version": "3.0.0-next.45",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "6bc5c1d273a2f319302172ead4579a5642a27cdb",
+            "comment": "replace text component with plain ol styles"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 12 Aug 2022 07:32:05 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.45",
+      "version": "3.0.0-next.45",
+      "comments": {
+        "none": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "6580c9478334c86bb0f4316810897d31bb91fc73",
+            "comment": "Update docs with the CDN links"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 11 Aug 2022 09:45:13 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.45",
+      "version": "3.0.0-next.45",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "0b84e9790448208c989bea154ed5703e62c64066",
+            "comment": "rename sidenav to nav"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 07 Aug 2022 11:50:34 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.44",
       "version": "3.0.0-next.44",
@@ -150,7 +338,7 @@
             "author": "rachel.tannenbaum@vonage.com",
             "package": "@vonage/vivid",
             "commit": "10035863724c0d91709c1bda8a1ab655f8c670f7",
-            "comment": "chore(sidenav): adjust spacing"
+            "comment": "chore(nav): adjust spacing"
           }
         ]
       }
@@ -345,7 +533,7 @@
             "author": "rina.oksman@vonage.com",
             "package": "@vonage/vivid",
             "commit": "88ffa0cf25a3d3b87b63812fd011039600422b1a",
-            "comment": "add sidenav disclosure component"
+            "comment": "add nav disclosure component"
           }
         ]
       }
@@ -441,7 +629,7 @@
             "author": "rina.oksman@vonage.com",
             "package": "@vonage/vivid",
             "commit": "97b35378dfbba9162a0ed4215c74c40c0f5ba221",
-            "comment": "create new sidenav component"
+            "comment": "create new nav component"
           }
         ]
       }
@@ -456,7 +644,7 @@
             "author": "rina.oksman@vonage.com",
             "package": "@vonage/vivid",
             "commit": "02a1141c646a1f85b77f6e0e7529562680116149",
-            "comment": "add appearance to sidenav-item and accordion-item"
+            "comment": "add appearance to nav-item and accordion-item"
           }
         ]
       }
@@ -1486,7 +1674,7 @@
             "author": "yinon@hotmail.com",
             "package": "@vonage/vivid",
             "commit": "c043c18d11b49a0015475e280d8d5202f6af5852",
-            "comment": "new sidenav-item component. part of the sidenav component scope"
+            "comment": "new nav-item component. part of the nav component scope"
           },
           {
             "author": "rina.oksman@vonage.com",

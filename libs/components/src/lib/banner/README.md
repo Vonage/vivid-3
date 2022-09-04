@@ -24,7 +24,7 @@ Use the `text` attribute to set the banner's text.
 ### Icon
 
 - Type: `string`
-- Default: `'info'`
+- Default: `'information'`
 
 The `icon` attribute will override the icon set by connotation.
 
@@ -36,13 +36,13 @@ The `icon` attribute will override the icon set by connotation.
 
 The `connotation` attribute sets the colors according to the wanted connotation.
 
-- Type: `'info'` | `'announcement'` | `'success'` | `'warning'` | `'alert'`
-- Default: `'info'`
+- Type: `'information'` | `'announcement'` | `'success'` | `'warning'` | `'alert'`
+- Default: `'information'`
 
 Note that icon, if not specifically set, defaults to a connotation-associated icon.
 
 ```html preview
-<vwc-banner text="Here's some information that you may find useful!" connotation="info"></vwc-banner>
+<vwc-banner text="Here's some information that you may find useful!" connotation="information"></vwc-banner>
 <vwc-banner text="Here's some information that you may find important!" connotation="announcement"></vwc-banner>
 <vwc-banner text="Operation Successful!" connotation="success"></vwc-banner>
 <vwc-banner text="Heads up - this is a warning" connotation="warning"></vwc-banner>
@@ -76,7 +76,7 @@ You can add action items using slotted content in a named slot `action-items`:
 
 ### Removing
 
-Fires `removing` whenever the the banner has started its removing animation.
+Fires `removing` whenever the banner has started its removing animation.
 
 ### Removed
 

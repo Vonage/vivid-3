@@ -73,8 +73,13 @@
           },
           {
             "input": "./dist/libs/styles/fonts/**",
-            "glob": "*.css",
+            "glob": "*.{css,woff,woff2}",
             "output": "./styles/fonts"
+          },
+          {
+            "input": "./dist/libs/styles/typography/**",
+            "glob": "*.css",
+            "output": "./styles/typography"
           }
         ],
         "buildableProjectDepsInPackageJsonType": "dependencies",

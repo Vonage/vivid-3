@@ -14,9 +14,24 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "sass libs/styles/src/lib/themes:dist/libs/styles/themes",
-          "sass libs/styles/src/lib/fonts:dist/libs/styles/fonts"
-        ]
+          "npx nx run styles:build:scss",
+          "npx nx run styles:build:assets"
+        ],
+        "parallel": false
+      },
+      "configurations": {
+        "assets": {
+          "commands": [
+            "cp libs/styles/src/lib/fonts/*.woff libs/styles/src/lib/fonts/*.woff2 dist/libs/styles/fonts"
+          ]
+        },
+        "scss": {
+          "commands": [
+            "sass libs/styles/src/lib/themes:dist/libs/styles/themes",
+            "sass libs/styles/src/lib/typography:dist/libs/styles/typography",
+            "sass libs/styles/src/lib/fonts:dist/libs/styles/fonts"
+          ]
+        }
       }
     },
     "serve": {
@@ -34,7 +49,7 @@
     }
   },
   "tags": [],
-	"implicitDependencies": [
-		"tokens"
-	]
+  "implicitDependencies": [
+    "tokens"
+  ]
 }

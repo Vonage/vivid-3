@@ -50,7 +50,13 @@ The folder contains the following files:
 
 - Fonts
 
-  - `fonts/spezia.css` - Loads the *Spezia* variable font and specifies its font face definition. *Spezia* is Vonage's branded font and is required by most Vivid components
+  - `fonts/spezia.css` - Loads the *Spezia* variable font and specifies its font face definition. *Spezia* is Vonage's branded font and is required by most Vivid components. folder also contains the font files
+
+- Typography
+
+  - `typography/desktop.css` - Defines the typography for desktop devices viewport
+
+  - `typography/mobile.css` - Defines the typography for mobile devices viewport (resolves to a system font)
 
 - Themes - only one theme can apply at a time. thus, only one is required to be loaded
 
@@ -61,8 +67,9 @@ The folder contains the following files:
 Note: scss users can simply [forward](https://sass-lang.com/documentation/at-rules/forward) the styles to their scss project:
 
 ```css
-@forward 'node_modules/@vonage/vivid/styles/fonts/spezia';
-@forward 'node_modules/@vonage/vivid/styles/themes/light';
+@forward 'node_modules/@vonage/vivid/styles/fonts/spezia.css';
+@forward 'node_modules/@vonage/vivid/styles/typography/desktop.css';
+@forward 'node_modules/@vonage/vivid/styles/themes/light.css';
 ```
 
 ## Support
@@ -108,3 +115,24 @@ This project is licensed under the Apache 2.0 License - see the [LICENSE.md](LIC
 - [Fast](https://www.fast.design) - to extend element classes and compile code to native web components
 - [Typescript](https://www.typescriptlang.org) - for ergonomic and type-safe code
 - [Sass](https://sass-lang.com) - for styles authoring extensibility and consistency
+
+## Quickstart
+
+Global content delivery networks can help quickly integrate content within html pages, fetching content from an URL, skipping local builds entirely.
+Such practice is often used when working on POCs or reproduction environments.
+Tools like [UNPKG](https://unpkg.com), [jsDeliver](https://www.jsdelivr.com), [Skypack](https://www.skypack.dev) etc' are bound to deliver any content registered in the npm registry.
+
+The following snippet fully renders a Vivid button component
+
+```html
+<!-- import spezia font -->
+<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/fonts/spezia.css">
+
+<!-- import light theme style tokens -->
+<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/themes/light.css">
+
+<!-- import Vivid button component -->
+<script type="module" src="https://unpkg.com/@vonage/vivid@next/button/index.js"></script>
+
+<vwc-button label="Click me" appearance="filled" connotation="cta"></vwc-button>
+```

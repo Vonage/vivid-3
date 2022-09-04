@@ -155,15 +155,15 @@ Use the content `slot` in order to add custom HTML to the dialog while enjoying 
     }
 </style>
 <vwc-dialog open headline="Dialog Content">
-    <div slot="content">        
-            <form>
-                <vwc-layout column-basis="block">
-                <vwc-text-field label="Name"></vwc-text-field>
-                <vwc-text-field label="Password" type="password"></vwc-text-field>
-                <vwc-button label="Login" appearance="filled"></vwc-button>
-                </vwc-layout>
-            </form>
-    </div>
+  <div slot="content">        
+    <form>
+      <vwc-layout column-basis="block">
+        <vwc-text-field label="Name"></vwc-text-field>
+        <vwc-text-field label="Password" type="password"></vwc-text-field>
+        <vwc-button label="Login" appearance="filled"></vwc-button>
+      </vwc-layout>
+    </form>
+  </div>
 </vwc-dialog>
 ```
 
@@ -212,7 +212,7 @@ vwc-text {
 
 <vwc-dialog open>
   <div slot="main" class="demo-main">
-    <vwc-text font-face="body-1-bold">Use main slot for your own layout and content</vwc-text>
+    <vwc-text font-face="base-extended-bold">Use main slot for your own layout and content</vwc-text>
   </div>
 </vwc-dialog>
 ```
@@ -228,10 +228,9 @@ When the dialog is not set as `modal` its initial z-index can be changed if need
 - Type: `string`
 - Default: `undefined`
 
-
 ### Inline min & Max size
 
-The Dialog has default `min-inline-size` and `max-inline-size`. This can be changed with setting a new value.   
+The Dialog has default `min-inline-size` and `max-inline-size`. This can be changed with setting a new value.
 setting the same value for `min-inline-size` and `max-inline-size` will set a definitive width to the dialog.  
 When setting a new value for `min-inline-size` and `max-inline-size` take in consideration if defendant value are needed for mobile.
 
@@ -240,7 +239,6 @@ When setting a new value for `min-inline-size` and `max-inline-size` take in con
 
 - Type: `string`
 - Default: `undefined`
-
 
 ```html preview
 <style>
@@ -255,15 +253,14 @@ vwc-dialog {
 <vwc-dialog icon="info" headline="Headline" text="Text content" open></vwc-dialog>
 ```
 
-
 ### Block-Size
+
 The Dialog has default `max-block-size`, if content is larger - there will be scroll.  
 
 `--dialog-max-block-size`
 
 - Type: `string`
 - Default: `undefined`
-
 
 ```html preview
 <style>
@@ -277,7 +274,6 @@ vwc-dialog {
 
 <vwc-dialog icon="info" headline="Headline" text="Text content" open></vwc-dialog>
 ```
-
 
 ## Events
 
