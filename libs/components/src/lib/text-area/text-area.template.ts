@@ -18,7 +18,8 @@ const getClasses = (_: TextArea) => classNames('control');
 export const TextAreaTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<TextArea> = (context: ElementDefinitionContext) => html` <span
-	class="${getClasses}"
-	>${context.name}
-</span>`;
+) => ViewTemplate<TextArea> = (_: ElementDefinitionContext) => html` 
+		<div class="${getClasses}">
+			<label>${x => x.label}</label>		
+		</div>
+`;
