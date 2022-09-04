@@ -39,5 +39,12 @@ describe('vwc-text-area', () => {
 			expect(labelElement?.textContent?.trim())
 				.toEqual(labelText);
 		});
+
+		it('should show label only if label is set', async function () {
+			const labelElement = element.shadowRoot?.querySelector('label');
+			expect(labelElement)
+				.toBeNull();
+		});
+
 	});
 });
