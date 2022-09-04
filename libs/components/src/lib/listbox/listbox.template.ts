@@ -22,6 +22,8 @@ export const ListboxTemplate: (
 	return html`
 	<div class="${getClasses}"
 		aria-activedescendant="${x => x.ariaActiveDescendant}"
+		aria-multiselectable="${x => x.ariaMultiSelectable}"
+		multiple="${x => x.multiple}"
 		role="listbox"
 		tabindex="${x => (!x.disabled ? "0" : null)}"
 		@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
@@ -29,10 +31,10 @@ export const ListboxTemplate: (
 		@keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
 		@mousedown="${(x, c) => x.mousedownHandler(c.event as MouseEvent)}">
 		<slot ${slotted({
-			filter: Listbox.slottedOptionFilter,
-			flatten: true,
-			property: "slottedOptions",
-		})}></slot>
+		filter: Listbox.slottedOptionFilter,
+		flatten: true,
+		property: "slottedOptions",
+	})}></slot>
 		${() => focusTemplate}
 	</div>
 	`;

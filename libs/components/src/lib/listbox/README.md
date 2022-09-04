@@ -29,7 +29,7 @@ Add the `multiple` attribute to select multiple options.
 - Default: `false`
 
 ```html preview
-<vwc-listbox multiple>
+<vwc-listbox multiple role="listbox">
   <vwc-listbox-option value="1" text="Listbox Option" role="option"></vwc-listbox-option>
   <vwc-listbox-option value="2" text="Listbox Option" role="option"></vwc-listbox-option>
   <vwc-listbox-option value="3" text="Listbox Option" role="option"></vwc-listbox-option>
