@@ -11,5 +11,11 @@
     "markdown": "./docs/design/design-tokens.md",
     "modules": [
     ]
+  },
+  {
+    "title": "foundations",
+    "markdown": "./docs/design/foundations.md",
+    "modules": [
+    ]
   }
 ]
