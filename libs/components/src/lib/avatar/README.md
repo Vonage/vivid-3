@@ -1,6 +1,6 @@
 # Avatar
 
-Represents a avatar custom element.
+Represents an avatar custom element.
 
 ```js
 <script type="module">
