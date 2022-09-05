@@ -47,12 +47,12 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
 
  .scale {
   --layout-grid-template-columns: repeat(11, 1fr);
-  max-width: 500px;
+  max-width: 950px;
   display: block;
  }
 
  .scale>div {
-  --box-size: 30px;
+  --box-size: 70px;
   margin-block-start: var(--box-size);
   position: relative;
   display: flex;
@@ -68,7 +68,7 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
   inset: 0;
   border-radius: 50%;
   content: '';
-  transform: translateY(calc(-4px - var(--box-size)));
+  transform: translateY(calc(0px - var(--box-size)));
  }
 </style>
 
