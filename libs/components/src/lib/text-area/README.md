@@ -7,7 +7,7 @@ Represents a text-area custom element.
 ```
 
 ```html preview
-<vwc-text-area></vwc-text-area>
+<vwc-text-area label="Label" value="This is the text we want to see!"></vwc-text-area>
 ```
 
 ## Members

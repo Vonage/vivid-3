@@ -7,13 +7,14 @@ import type {
 import {classNames} from '@microsoft/fast-web-utilities';
 import type {TextArea} from './text-area';
 
-const getClasses = ({errorValidationMessage, density, disabled, placeholder, readOnly}: TextArea) => classNames(
+const getClasses = ({value, errorValidationMessage, density, disabled, placeholder, readOnly}: TextArea) => classNames(
 	'base',
 	['readonly', readOnly],
 	['placeholder', Boolean(placeholder)],
 	['disabled', disabled],
 	[`density-${density}`, Boolean(density)],
 	['error', Boolean(errorValidationMessage)],
+	['has-text', Boolean(value)],
 );
 
 function renderLabel() {

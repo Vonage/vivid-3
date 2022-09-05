@@ -1,0 +1,162 @@
+@use '../focus/partials/variables' as focus-variables;
+
+@use '../../../../../dist/libs/tokens/scss/constants' as constants;
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+	$appearances: fieldset ghost,
+	$states: idle hover disabled readonly error,
+	$default: fieldset,
+);
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+
+$low-ink-color: --_low-ink-color;
+
+:host {
+  display: inline-block;
+}
+
+.base {
+  // due to the fact :user-invalid proposal isn't supported by browsers yet,
+  // we apply appearance here instead of the input element itself.
+  // input element :invalid state isn't enough as our spec awaits user interaction
+  // before showing the error.
+  @include appearance.appearance;
+
+  display: inline-grid;
+  width: 100%;
+  gap: 4px;
+  grid-template-columns: min-content 1fr max-content;
+
+  @supports(user-select: none) {
+    user-select: none;
+  }
+
+  &:not(.disabled) {
+    #{$low-ink-color}: var(#{constants.$vvd-color-neutral-600});
+  }
+
+  &.disabled {
+    #{$low-ink-color}: var(#{constants.$vvd-color-neutral-400});
+  }
+}
+
+.label {
+  contain: inline-size;
+  font: var(#{constants.$vvd-font-base});
+  grid-column: 1 / 4;
+  grid-row: 1;
+  margin-top: 12px;
+  position: absolute;
+  margin-left: 16px;
+  z-index: 9;
+  line-height: 20px;
+
+  .base:not(.disabled) & {
+    color: var(#{constants.$vvd-color-canvas-text});
+  }
+
+  .base.disabled & {
+    color: var(#{constants.$vvd-color-neutral-400});
+  }
+
+  .has-text & {
+    font-size: 12px;
+    line-height: 100%;
+  }
+}
+
+.fieldset {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: var(#{appearance.get-appearance-token(text)});
+  grid-column: 1 / 4;
+  transition: color .2s;
+  background-color: var(#{appearance.get-appearance-token(fill)});
+  box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+  transition: box-shadow .2s, background-color .2s;
+  padding-top: 36px;
+
+  .has-text & {
+    padding-top: 16px;
+  }
+
+  .base & {
+    height: auto;
+  }
+
+  /* Size */
+  .base:not(.density-extended)>& {
+    block-size: 40px;
+  }
+
+  .base.density-extended>& {
+    block-size: 48px;
+  }
+
+}
+
+.control {
+  width: 100%;
+  border: 0 none;
+  background-color: transparent;
+  block-size: 100%;
+  border-radius: inherit;
+  color: inherit;
+
+  font: var(#{constants.$vvd-font-base});
+  padding-inline-end: 16px;
+  padding-inline-start: 16px;
+
+  @supports selector(:focus-visible) {
+  &:focus {
+    outline: none;
+  }
+}
+
+  &::placeholder {
+    color: var(#{$low-ink-color});
+  }
+}
+
+.icon {
+  // to avoid autofill style hiding other elements
+  position: absolute;
+  z-index: 1;
+  color: var(#{$low-ink-color});
+  inset-inline-start: 16px;
+
+  +.control {
+    padding-inline-start: 44px;
+  }
+}
+
+.helper-text {
+  color: var(#{$low-ink-color});
+  font: var(#{constants.$vvd-font-base-condensed});
+  grid-column: 1 / 4;
+  margin-inline-start: 16px;
+}
+
+.error-message {
+  display: flex;
+  color: var(#{constants.$vvd-color-canvas-text});
+  contain: inline-size;
+  font: var(#{constants.$vvd-font-base-condensed});
+  grid-column: 2 / 4;
+
+  &-icon {
+    color: var(#{constants.$vvd-color-alert-500});
+    font-size: 16px;
+    grid-column: 1 / 2;
+  }
+}
+
+.focus-indicator {
+  #{focus-variables.$focus-stroke-gap-color}: transparent;
+
+  pointer-events: none;
+
+  .fieldset:not(:focus-visible, :focus-within) > & {
+    display: none;
+  }
+}
