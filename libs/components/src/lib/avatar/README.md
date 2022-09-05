@@ -15,15 +15,22 @@ Represents a avatar custom element.
 ## Members
 
 ### Icon
-Use the `icon` to set any icon for the avatar.  
-Default: 'user-line'
+Use `icon` to set an icon to the avatar.
+View list of available icon at the [vivid icons gallery](https://icons.vivid.vonage.com).
+
+Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the avatar.
+
+- Type: `string`
+- Default: `user-line`
+
 ```html preview
-<vwc-avatar icon="user-solid"></vwc-avatar>
+<vwc-avatar icon="user-admin-solid"></vwc-avatar>
 ```
 
-
+<!-- 
 ### Acronym
 still in progress
+-->
 
 
 ### Appearance
@@ -39,7 +46,7 @@ Set the `appearance` attribute to change the avatar's appearance.
 
 
 ### Connotation
-The `connotation` attribute sets the colors according to the wanted connotation.
+Use the `connotation` attribute to set the avatar's color.
 
 Type: `'accent'` | `'cta'`
 - Default: `'accent'`
@@ -80,15 +87,14 @@ Use the `density` attribute/property to set the avatar's to one of the predefine
 
 ## Slots
 ### Default
-Use the `default` slot to have an image avatar.  
-When using an image make sure `appearance` is not `outlined`
+set a graphic media of any kind (e.g. image, illustration etc.'.)
 
 
 ```html preview
-<vwc-avatar shape="pill" density="3">
+<vwc-avatar shape="pill">
 <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="woman"/>
 </vwc-avatar>
-<vwc-avatar shape="pill" connotation="cta" density="3">
+<vwc-avatar shape="pill" connotation="cta">
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" width="349.66" height="349.66" fill="none" version="1.1" viewBox="0 0 349.66 349.66">
  <metadata>
   <rdf:RDF>
