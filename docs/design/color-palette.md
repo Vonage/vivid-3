@@ -1,7 +1,7 @@
 
 <style>
   .color_layout {
-    --layout-grid-template-columns: 280px repeat(12, 1fr);
+    --layout-grid-template-columns: 280px repeat(11, 1fr);
   }
   .color_wrapper {
     font-size: 0.75rem;
@@ -70,9 +70,9 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
    <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-cta-400);"></div>400</div>
    <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-cta-500);"></div>500</div>
    <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-cta-600);"></div>600</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-700);"></div>700</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-800);"></div>800</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-900);"></div>900</div>
+  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-cta-700);"></div>700</div>
+  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-cta-800);"></div>800</div>
+  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-cta-900);"></div>900</div>
 </vwc-layout>
 <vwc-layout class="color_layout" column-basis="small" column-spacing="small">
   <div>
@@ -167,7 +167,6 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-500);"></div>500</div>
    <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-600);"></div>600</div>
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-700);"></div>700</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-800);"></div>800</div>
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-800);"></div>800</div>
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-900);"></div>900</div>
    <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-950);"></div>950</div>
