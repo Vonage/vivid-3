@@ -45,6 +45,7 @@ export const TextAreaTemplate: (
 ) => ViewTemplate<TextArea> = (_: ElementDefinitionContext) => html`
 	<div class="${getClasses}">
 		${when(x => x.label, renderLabel())}
+			<div class="fieldset">
 			<textarea class="control"
 								?autofocus="${x => x.autofocus}"
 								placeholder="${x => x.placeholder ? x.placeholder : null}"
@@ -78,10 +79,10 @@ export const TextAreaTemplate: (
                 aria-roledescription="${x => x.ariaRoledescription}"
                 @input="${(x) => x.handleTextInput()}"
                 @change="${x => x.handleChange()}"
-								${ref("control")}
+								${ref('control')}
 			>
-					
 			</textarea>
+	  </div>
 	  ${when(x => !x.errorValidationMessage && x.helperText?.length, renderHelperText())}
 	  ${when(x => x.errorValidationMessage, renderErrorMessage())}
 	</div>
