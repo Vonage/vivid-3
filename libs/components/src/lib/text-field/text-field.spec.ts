@@ -547,7 +547,9 @@ describe('vwc-text-field', () => {
 			expect(internalInput.getAttribute('autocomplete')).toEqual('off');
 
 		});
+	});
 
+	describe('name', function () {
 		it('should reflect the name on the internal input', async function () {
 			const internalInput = element.shadowRoot?.querySelector('input') as HTMLElement;
 			element.name = 'off';
