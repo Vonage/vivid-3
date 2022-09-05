@@ -154,8 +154,6 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-warning-800);"></div>800</div>
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-warning-900);"></div>900</div>
 </vwc-layout>
-
-
 <vwc-layout class="color_layout" column-basis="small" column-spacing="small">
   <div>
     Neutral<br>
