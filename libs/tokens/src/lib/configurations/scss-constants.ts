@@ -6,7 +6,7 @@ module.exports = {
 		'../../../../node_modules/@vonage/vivid-figma-tokens/data/**/*.tokens.json'
 	],
 	platforms: {
-		constants: {
+		scssConstants: {
 			transforms: ["name/cti/kebab"],
 			prefix: process.env.prefix,
 			buildPath: process.env.buildPath,
