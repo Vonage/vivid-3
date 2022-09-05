@@ -1,7 +1,5 @@
-
 @use 'sass:map';
 
-@use '../../../../../dist/libs/tokens/scss/typography/desktop.mixin' as typography;
 @use '../../../../..//dist/libs/tokens/scss/constants' as constants;
 
 
@@ -11,7 +9,6 @@ $selectors: (
 );
 
 :root {
-	@include typography.variables;
 	font-size: 62.5%;
 }
 
