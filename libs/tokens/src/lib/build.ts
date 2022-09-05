@@ -1,13 +1,13 @@
 const sourceOnly = require('./filters/source-only');
 const shadowShorthand = require('./transforms/shadow-shorthand');
 const fontShorthand = require('./transforms/font-shorthand');
-const constants = require('./formatters/constants');
+const scssConstants = require('./formatters/scss-constants');
 
 const StyleDictionary = require('style-dictionary')
 .registerTransform(shadowShorthand)
 .registerTransform(fontShorthand)
 .registerFilter(sourceOnly)
-.registerFormat(constants)
+.registerFormat(scssConstants)
 
 const THEMES = require('../../../../node_modules/@vonage/vivid-figma-tokens/data/$themes.json');
 
@@ -17,8 +17,8 @@ process.env.buildPath = '../../../../dist/libs/tokens/scss/';
 
 StyleDictionary
 	.extend(
-		require('./configurations/constants')
-	).buildPlatform('constants');
+		require('./configurations/scss-constants')
+	).buildPlatform('scssConstants');
 
 THEMES.forEach(({ name }) =>
 	StyleDictionary
