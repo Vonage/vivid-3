@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "bug fix for icon connotation and setup its ui-test",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}
