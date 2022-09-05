@@ -1,0 +1,20 @@
+[
+  {
+    "title": "guidelines-usage-and-mapping",
+    "markdown": "./docs/design/typography/guidelines-usage-and-mapping.md",
+    "modules": [
+    ]
+  },
+  {
+    "title": "how-to-work-with-ui-kit-typography",
+    "markdown": "./docs/design/typography/how-to-work-with-ui-kit-typography.md",
+    "modules": [
+    ]
+  },
+  {
+    "title": "guidelines-typography-accessibility",
+    "markdown": "./docs/design/typography/guidelines-accessibility.md",
+    "modules": [
+    ]
+  }
+]

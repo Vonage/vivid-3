@@ -1,5 +1,5 @@
 ﻿
-# Foundations
+# Foundations of the Design System
 
 <hr>
 

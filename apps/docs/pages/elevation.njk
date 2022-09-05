@@ -1,0 +1,16 @@
+---
+layout: base.njk
+tags: elevation
+pagination:
+    data: elevation
+    size: 1
+    alias: elevation
+permalink: "elevation/{{ elevation.title | slug }}/"
+---
+
+{% for url in elevation.modules %}
+<script type="module" src="{{ url | url }}"></script>
+{% endfor %}
+
+
+{% renderFile elevation.markdown %}

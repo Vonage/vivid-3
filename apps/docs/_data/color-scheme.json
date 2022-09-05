@@ -1,0 +1,20 @@
+[
+  {
+    "title": "guidelines-usage",
+    "markdown": "./docs/design/color-scheme/guidelines-usage.md",
+    "modules": [
+    ]
+  },
+  {
+    "title": "how-to-work-with-ui-kit-color-scheme",
+    "markdown": "./docs/design/color-scheme/how-to-work-with-ui-kit-colors.md",
+    "modules": [
+    ]
+  },
+  {
+    "title": "guidelines-color-scheme-accessibility",
+    "markdown": "./docs/design/color-scheme/guidelines-accessibility.md",
+    "modules": [
+    ]
+  }
+]

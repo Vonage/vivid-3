@@ -1,0 +1,16 @@
+---
+layout: base.njk
+tags: palette
+pagination:
+    data: palette
+    size: 1
+    alias: palette
+permalink: "palette/{{ palette.title | slug }}/"
+---
+
+{% for url in palette.modules %}
+<script type="module" src="{{ url | url }}"></script>
+{% endfor %}
+
+
+{% renderFile palette.markdown %}

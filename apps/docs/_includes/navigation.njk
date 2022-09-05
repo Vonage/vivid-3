@@ -1,8 +1,14 @@
 {% block content %}
 <vwc-nav>
-  <vwc-nav-disclosure label="Design System" open>
-    {%  for item in designs | sort(false, false, 'title') %}
-    <vwc-nav-item href="{{ ('/designs/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-nav-item>
+  <vwc-nav-disclosure label="Elevation">
+    {%  for item in elevation | sort(false, false, 'title') %}
+    <vwc-nav-item href="{{ ('/elevation/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-nav-item>
+    {% endfor %}
+  </vwc-nav-disclosure>
+
+  <vwc-nav-disclosure label="Appearances">
+    {%  for item in appearances | sort(false, false, 'title') %}
+    <vwc-nav-item href="{{ ('/appearances/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-nav-item>
     {% endfor %}
   </vwc-nav-disclosure>
 

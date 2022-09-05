@@ -1,0 +1,20 @@
+[
+  {
+    "title": "icon-guidelines-asset-library",
+    "markdown": "./docs/design/icons/icon-guidelines-asset-library.md",
+    "modules": [
+    ]
+  },
+  {
+    "title": "how-to-work-with-ui-kit-icons",
+    "markdown": "./docs/design/icons/how-to-work-with-ui-kit-icons.md",
+    "modules": [
+    ]
+  },
+  {
+    "title": "icon-sizes-and-density",
+    "markdown": "./docs/design/icons/icon-sizes-and-density.md",
+    "modules": [
+    ]
+  }
+]
