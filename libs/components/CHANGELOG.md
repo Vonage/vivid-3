@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Thu, 01 Sep 2022 13:29:47 GMT and should not be manually modified.
+This log was last generated on Mon, 05 Sep 2022 17:51:29 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.52
+
+Mon, 05 Sep 2022 17:51:29 GMT
+
+### Changes
+
+- bug fix for icon connotation and setup its ui-test (yinon@hotmail.com)
 
 ## 3.0.0-next.51
 
