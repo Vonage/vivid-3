@@ -47,17 +47,6 @@ describe('vwc-text-area', () => {
 			expect(labelElement)
 				.toBeNull();
 		});
-
-		it('should set class "has-label" when label is set', async () => {
-			const classExistsWithoutLabel = getBaseElement(element).classList.contains('has-label');
-			const labelText = 'label';
-			element.label = labelText;
-			await elementUpdated(element);
-			const classExistsWithLabel = getBaseElement(element).classList.contains('has-label');
-
-			expect(classExistsWithoutLabel).toEqual(false);
-			expect(classExistsWithLabel).toEqual(true);
-		});
 	});
 
 	describe('readOnly', function () {

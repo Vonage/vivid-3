@@ -42,7 +42,7 @@ Add a `placeholder` attribute to add placeholder text to the text field.
 Set the `value` attribute to set the default value for the text field. Setting the property on the element will not change the default value, but will change the value shown in the view as well as the submitted value in a form (imitating the native behavior).
 
 ```html preview
-<vwc-text-area label="With default value" value="5"></vwc-text-area>
+<vwc-text-area value="Default Value"></vwc-text-area>
 ```
 
 ### Helper text
@@ -64,7 +64,7 @@ Add the `disabled` attribute to disable the text field.
 - Default: `false`
 
 ```html preview blocks
-<vwc-text-area disabled icon="chat-line" value="disabled" label='fieldset' appearance='fieldset'></vwc-text-area>
+<vwc-text-area disabled value="disabled" label='fieldset'></vwc-text-area>
 ```
 
 ### Readonly
@@ -75,7 +75,18 @@ Add the `readonly` attribute to restrict user from changing the text field's val
 - Default: `false`
 
 ```html preview blocks
-<vwc-text-area readonly icon="chat-line" value="readonly text" label='fieldset' appearance='fieldset'></vwc-text-area>
+<vwc-text-area readonly value="readonly text" label='fieldset'></vwc-text-area>
+```
+
+### Rows
+
+Add the `rows` attribute to set the number of rows in the text field.
+
+- Type: `number`
+- Default: `undefined`
+
+```html preview blocks
+<vwc-text-area value="20 rows" label='20 rows' rows='20'></vwc-text-area>
 ```
 
 

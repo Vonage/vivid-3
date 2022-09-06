@@ -15,7 +15,6 @@ const getClasses = ({label, value, errorValidationMessage, density, disabled, pl
 	[`density-${density}`, Boolean(density)],
 	['error', Boolean(errorValidationMessage)],
 	['has-value', Boolean(value)],
-	['has-label', Boolean(label)],
 );
 
 function renderLabel() {
