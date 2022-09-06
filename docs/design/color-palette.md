@@ -1,18 +1,4 @@
 
-<style>
-  .color_layout {
-    --layout-grid-template-columns: 280px repeat(11, 1fr);
-  }
-  .color_wrapper {
-    font-size: 0.75rem;
-    text-align: center;
-  }
-  .color_rec {
-    height: 3rem;
-    border: 1px solid var(--vvd-color-neutral-100);
-  }
-</style>
-
 # Color Palette
 
 ## Guidelines - Usage & mapping
@@ -45,133 +31,213 @@ For example, Purple-500 represents the sixth color in the list of tints and shad
 
 Colors have assigned meanings and are used consistently throughout Vivid to set expectations of meaning for users. Color is used sparingly and intentionally to reinforce hierarchies and to create clear modes of communication.
 
- - Black - Accent
- - Purple - CTA
- - Green - Success
- - Red - Alert
- - Blue - Information
- - Magenta - Announcement
- - Yellow - Warning
+- Black - Accent
+- Purple - CTA
+- Magenta - Announcement
+- Blue - Information
+- Red - Alert
+- Green - Success
+- Yellow - Warning
 
-<vwc-layout class="color_layout" column-basis="small" column-spacing="small">
-  <div>
-    Cta<br>
-    <code>--vvd-color-cta-<em>{n}</em></code>
-  </div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-cta-50);"></div>50</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-cta-100);"></div>100</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-cta-200);"></div>200</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-cta-300);"></div>300</div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-cta-400);"></div>400</div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-cta-500);"></div>500</div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-cta-600);"></div>600</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-cta-700);"></div>700</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-cta-800);"></div>800</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-cta-900);"></div>900</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-cta-950);"></div>950</div>
-</vwc-layout>
-<vwc-layout class="color_layout" column-basis="small" column-spacing="small">
-  <div>
-    Success<br>
-    <code>--vvd-color-success-<em>{n}</em></code>
-  </div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-success-50);"></div>50</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-success-100);"></div>100</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-success-200);"></div>200</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-success-300);"></div>300</div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-success-400);"></div>400</div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-success-500);"></div>500</div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-success-600);"></div>600</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-success-700);"></div>700</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-success-800);"></div>800</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-success-900);"></div>900</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-success-950);"></div>950</div>
-</vwc-layout>
-<vwc-layout class="color_layout" column-basis="small" column-spacing="small">
-  <div>
-    Alert<br>
-    <code>--vvd-color-alert-<em>{n}</em></code>
-  </div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-alert-50);"></div>50</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-alert-100);"></div>100</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-alert-200);"></div>200</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-alert-300);"></div>300</div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-alert-400);"></div>400</div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-alert-500);"></div>500</div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-alert-600);"></div>600</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-alert-700);"></div>700</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-alert-800);"></div>800</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-alert-900);"></div>900</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-alert-950);"></div>950</div>
-</vwc-layout>
-<vwc-layout class="color_layout" column-basis="small" column-spacing="small">
-  <div>
-    Information<br>
-    <code>--vvd-color-information-<em>{n}</em></code>
-  </div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-information-50);"></div>50</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-information-100);"></div>100</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-information-200);"></div>200</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-information-300);"></div>300</div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-information-400);"></div>400</div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-information-500);"></div>500</div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-information-600);"></div>600</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-information-700);"></div>700</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-information-800);"></div>800</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-information-900);"></div>900</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-information-950);"></div>950</div>
-  </vwc-layout>
-  <vwc-layout class="color_layout" column-basis="small" column-spacing="small">
-  <div>
-    Announcement<br>
-    <code>--vvd-color-announcement-<em>{n}</em></code>
-  </div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-announcement-50);"></div>50</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-announcement-100);"></div>100</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-announcement-200);"></div>200</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-announcement-300);"></div>300</div>
-    <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-announcement-400);"></div>400</div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-announcement-500);"></div>500</div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-announcement-600);"></div>600</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-announcement-700);"></div>700</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-announcement-800);"></div>800</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-announcement-900);"></div>900</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-announcement-950);"></div>950</div>
-</vwc-layout>
-<vwc-layout class="color_layout" column-basis="small" column-spacing="small">
-  <div>
-    Warning<br>
-    <code>--vvd-color-warning-<em>{n}</em></code>
-  </div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-warning-50);"></div>50</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-warning-100);"></div>100</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-warning-200);"></div>200</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-warning-300);"></div>300</div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-warning-400);"></div>400</div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-warning-500);"></div>500</div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-warning-600);"></div>600</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-warning-700);"></div>700</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-warning-800);"></div>800</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-warning-900);"></div>900</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-warning-950);"></div>950</div>
-</vwc-layout>
-<vwc-layout class="color_layout" column-basis="small" column-spacing="small">
-  <div>
-    Neutral<br>
-    <code>--vvd-color-neutral-<em>{n}</em></code>
-  </div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-50);"></div>50</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-100);"></div>100</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-200);"></div>200</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-300);"></div>300</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-400);"></div>400</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-500);"></div>500</div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-600);"></div>600</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-700);"></div>700</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-800);"></div>800</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-900);"></div>900</div>
-   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-950);"></div>950</div>
-</vwc-layout>
+```html preview
+<style>
+ dl,
+ dd {
+  margin: 0;
+ }
+
+ .scale {
+  --layout-grid-template-columns: repeat(11, 1fr);
+  max-width: 950px;
+  display: block;
+ }
+
+ .scale>div {
+  --box-size: 70px;
+  margin-block-start: var(--box-size);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--box-size);
+ }
+
+ .scale>div::before {
+  aspect-ratio: 1;
+  background-color: var(--color);
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  content: '';
+  transform: translateY(calc(0px - var(--box-size)));
+ }
+</style>
+
+<dl>
+
+ <vwc-layout column-basis="block" column-spacing="small" gutters="small">
+  <dt>
+   <strong>Canvas:</strong> <samp>--vvd-color-<var>{n}</var></samp>
+  </dt>
+
+  <dd>
+   <vwc-layout class="scale" column-spacing="small">
+    <div style="--color: var(--vvd-color-canvas)"><small>canvas</small></div>
+    <div style="--color: var(--vvd-color-canvas-text)"><small>canvas-text</small></div>
+   </vwc-layout>
+  </dd>
+ </vwc-layout>
+
+ <vwc-layout column-basis="block" column-spacing="small" gutters="small">
+  <dt>
+   <strong>Neutral:</strong> <samp>--vvd-color-neutral-<var>{n}</var></samp>
+  </dt>
+
+  <dd>
+   <vwc-layout class="scale" column-spacing="small">
+    <div style="--color: var(--vvd-color-neutral-50)"><small>50</small></div>
+    <div style="--color: var(--vvd-color-neutral-100)"><small>100</small></div>
+    <div style="--color: var(--vvd-color-neutral-200)"><small>200</small></div>
+    <div style="--color: var(--vvd-color-neutral-300)"><small>300</small></div>
+    <div style="--color: var(--vvd-color-neutral-400)"><small>400</small></div>
+    <div style="--color: var(--vvd-color-neutral-500)"><small>500</small></div>
+    <div style="--color: var(--vvd-color-neutral-600)"><small>600</small></div>
+    <div style="--color: var(--vvd-color-neutral-700)"><small>700</small></div>
+    <div style="--color: var(--vvd-color-neutral-800)"><small>800</small></div>
+    <div style="--color: var(--vvd-color-neutral-900)"><small>900</small></div>
+    <div style="--color: var(--vvd-color-neutral-950)"><small>950</small></div>
+   </vwc-layout>
+  </dd>
+ </vwc-layout>
+
+ <vwc-layout column-basis="block" column-spacing="small" gutters="small">
+  <dt>
+   <strong>CTA:</strong> <samp>--vvd-color-cta-<var>{n}</var></samp>
+  </dt>
+
+  <dd>
+   <vwc-layout class="scale" column-spacing="small">
+    <div style="--color: var(--vvd-color-cta-50)"><small>50</small></div>
+    <div style="--color: var(--vvd-color-cta-100)"><small>100</small></div>
+    <div style="--color: var(--vvd-color-cta-200)"><small>200</small></div>
+    <div style="--color: var(--vvd-color-cta-300)"><small>300</small></div>
+    <div style="--color: var(--vvd-color-cta-400)"><small>400</small></div>
+    <div style="--color: var(--vvd-color-cta-500)"><small>500</small></div>
+    <div style="--color: var(--vvd-color-cta-600)"><small>600</small></div>
+    <div style="--color: var(--vvd-color-cta-700)"><small>700</small></div>
+    <div style="--color: var(--vvd-color-cta-800)"><small>800</small></div>
+    <div style="--color: var(--vvd-color-cta-900)"><small>900</small></div>
+   </vwc-layout>
+  </dd>
+ </vwc-layout>
+
+ <vwc-layout column-basis="block" column-spacing="small" gutters="small">
+  <dt>
+   <strong>Success:</strong> <samp>--vvd-color-success-<var>{n}</var></samp>
+  </dt>
+
+  <dd>
+   <vwc-layout class="scale" column-spacing="small">
+    <div style="--color: var(--vvd-color-success-50)"><small>50</small></div>
+    <div style="--color: var(--vvd-color-success-100)"><small>100</small></div>
+    <div style="--color: var(--vvd-color-success-200)"><small>200</small></div>
+    <div style="--color: var(--vvd-color-success-300)"><small>300</small></div>
+    <div style="--color: var(--vvd-color-success-400)"><small>400</small></div>
+    <div style="--color: var(--vvd-color-success-500)"><small>500</small></div>
+    <div style="--color: var(--vvd-color-success-600)"><small>600</small></div>
+    <div style="--color: var(--vvd-color-success-700)"><small>700</small></div>
+    <div style="--color: var(--vvd-color-success-800)"><small>800</small></div>
+    <div style="--color: var(--vvd-color-success-900)"><small>900</small></div>
+   </vwc-layout>
+  </dd>
+ </vwc-layout>
+
+ <vwc-layout column-basis="block" column-spacing="small" gutters="small">
+  <dt>
+   <strong>Alert:</strong> <samp>--vvd-color-alert-<var>{n}</var></samp>
+  </dt>
+
+  <dd>
+   <vwc-layout class="scale" column-spacing="small">
+    <div style="--color: var(--vvd-color-alert-50)"><small>50</small></div>
+    <div style="--color: var(--vvd-color-alert-100)"><small>100</small></div>
+    <div style="--color: var(--vvd-color-alert-200)"><small>200</small></div>
+    <div style="--color: var(--vvd-color-alert-300)"><small>300</small></div>
+    <div style="--color: var(--vvd-color-alert-400)"><small>400</small></div>
+    <div style="--color: var(--vvd-color-alert-500)"><small>500</small></div>
+    <div style="--color: var(--vvd-color-alert-600)"><small>600</small></div>
+    <div style="--color: var(--vvd-color-alert-700)"><small>700</small></div>
+    <div style="--color: var(--vvd-color-alert-800)"><small>800</small></div>
+    <div style="--color: var(--vvd-color-alert-900)"><small>900</small></div>
+   </vwc-layout>
+  </dd>
+ </vwc-layout>
+
+ <vwc-layout column-basis="block" column-spacing="small" gutters="small">
+  <dt>
+   <strong>Information:</strong> <samp>--vvd-color-information-<var>{n}</var></samp>
+  </dt>
+
+  <dd>
+   <vwc-layout class="scale" column-spacing="small">
+    <div style="--color: var(--vvd-color-information-50)"><small>50</small></div>
+    <div style="--color: var(--vvd-color-information-100)"><small>100</small></div>
+    <div style="--color: var(--vvd-color-information-200)"><small>200</small></div>
+    <div style="--color: var(--vvd-color-information-300)"><small>300</small></div>
+    <div style="--color: var(--vvd-color-information-400)"><small>400</small></div>
+    <div style="--color: var(--vvd-color-information-500)"><small>500</small></div>
+    <div style="--color: var(--vvd-color-information-600)"><small>600</small></div>
+    <div style="--color: var(--vvd-color-information-700)"><small>700</small></div>
+    <div style="--color: var(--vvd-color-information-800)"><small>800</small></div>
+    <div style="--color: var(--vvd-color-information-900)"><small>900</small></div>
+   </vwc-layout>
+  </dd>
+ </vwc-layout>
+
+ <vwc-layout column-basis="block" column-spacing="small" gutters="small">
+  <dt>
+   <strong>Announcement:</strong> <samp>--vvd-color-announcement-<var>{n}</var></samp>
+  </dt>
+
+  <dd>
+   <vwc-layout class="scale" column-spacing="small">
+    <div style="--color: var(--vvd-color-announcement-50)"><small>50</small></div>
+    <div style="--color: var(--vvd-color-announcement-100)"><small>100</small></div>
+    <div style="--color: var(--vvd-color-announcement-200)"><small>200</small></div>
+    <div style="--color: var(--vvd-color-announcement-300)"><small>300</small></div>
+    <div style="--color: var(--vvd-color-announcement-400)"><small>400</small></div>
+    <div style="--color: var(--vvd-color-announcement-500)"><small>500</small></div>
+    <div style="--color: var(--vvd-color-announcement-600)"><small>600</small></div>
+    <div style="--color: var(--vvd-color-announcement-700)"><small>700</small></div>
+    <div style="--color: var(--vvd-color-announcement-800)"><small>800</small></div>
+    <div style="--color: var(--vvd-color-announcement-900)"><small>900</small></div>
+   </vwc-layout>
+  </dd>
+ </vwc-layout>
+
+ <vwc-layout column-basis="block" column-spacing="small" gutters="small">
+  <dt>
+   <strong>Warning:</strong> <samp>--vvd-color-warning-<var>{n}</var></samp>
+  </dt>
+
+  <dd>
+   <vwc-layout class="scale" column-spacing="small">
+    <div style="--color: var(--vvd-color-warning-50)"><small>50</small></div>
+    <div style="--color: var(--vvd-color-warning-100)"><small>100</small></div>
+    <div style="--color: var(--vvd-color-warning-200)"><small>200</small></div>
+    <div style="--color: var(--vvd-color-warning-300)"><small>300</small></div>
+    <div style="--color: var(--vvd-color-warning-400)"><small>400</small></div>
+    <div style="--color: var(--vvd-color-warning-500)"><small>500</small></div>
+    <div style="--color: var(--vvd-color-warning-600)"><small>600</small></div>
+    <div style="--color: var(--vvd-color-warning-700)"><small>700</small></div>
+    <div style="--color: var(--vvd-color-warning-800)"><small>800</small></div>
+    <div style="--color: var(--vvd-color-warning-900)"><small>900</small></div>
+   </vwc-layout>
+  </dd>
+ </vwc-layout>
+
+</dl>
+```
 
 #### Usage
 
