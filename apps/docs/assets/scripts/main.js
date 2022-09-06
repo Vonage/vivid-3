@@ -6,7 +6,7 @@ const toggleSideDrawerButton = () => {
 };
 
 const toggleSideDrawerButtonIcon = (open) => {
-  const buttonToggle = document.querySelector('vwc-button#hamburger-button');
+	const buttonToggle = document.querySelector('vwc-button#hamburger-button');
   buttonToggle.icon = open ? 'collapse-solid' : 'menu-solid';
 };
 
