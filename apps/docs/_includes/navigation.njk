@@ -1,12 +1,12 @@
 {% block content %}
 <vwc-nav>
-  <vwc-nav-disclosure label="Design System" open>
+  <vwc-nav-disclosure label="Design System" {% if 'designs' in page.url %}open="true"{% endif %}>
     {%  for item in designs | sort(false, false, 'title') %}
     <vwc-nav-item href="{{ ('/designs/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}" {% if ('/designs/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
     {% endfor %}
   </vwc-nav-disclosure>
 
-  <vwc-nav-disclosure label="Components" open>
+  <vwc-nav-disclosure label="Components" {% if 'components' in page.url %}open="true"{% endif %}>
     {%  for item in components | sort(false, false, 'title') %}
     <vwc-nav-item href="{{ ('/components/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}" {% if ('/components/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
     {% endfor %}
