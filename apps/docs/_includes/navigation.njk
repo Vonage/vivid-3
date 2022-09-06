@@ -43,8 +43,8 @@
   </vwc-nav-disclosure>
 
   <vwc-nav-disclosure label="Icons">
-    {%  for item in icons | sort(false, false, 'title') %}
-    <vwc-nav-item href="{{ ('/icons/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-nav-item>
+    {%  for item in icon | sort(false, false, 'title') %}
+    <vwc-nav-item href="{{ ('/icon/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-nav-item>
     {% endfor %}
   </vwc-nav-disclosure>
 
