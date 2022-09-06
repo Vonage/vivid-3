@@ -1,7 +1,9 @@
+import '../focus';
+
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { designSystem } from '../../shared/design-system';
-import styles from './text-area.scss';
 
+import styles from './text-area.scss';
 import { TextArea } from './text-area';
 import { TextAreaTemplate as template } from './text-area.template';
 
