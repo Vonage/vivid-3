@@ -1,5 +1,11 @@
 {% block content %}
 <vwc-nav>
+ <vwc-nav-disclosure label="Getting Started">
+    {%  for item in start | sort(false, false, 'title') %}
+    <vwc-nav-item href="{{ ('/start/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-nav-item>
+    {% endfor %}
+  </vwc-nav-disclosure>
+
  <vwc-nav-disclosure label="Design System">
     {%  for item in design | sort(false, false, 'title') %}
     <vwc-nav-item href="{{ ('/design/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-nav-item>
