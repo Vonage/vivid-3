@@ -21,8 +21,6 @@ html {
 
 body {
   margin: 0;
-  background-color: var(--vvd-color-canvas);
-  color: var(--vvd-color-canvas-text);
 }
 
 a,

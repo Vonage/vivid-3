@@ -1,5 +1,0 @@
-@use '../../../../../dist/libs/tokens/scss/typography/desktop.mixin' as typography;
-
-:root {
-	@include typography.variables;
-}

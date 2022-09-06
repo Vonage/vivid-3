@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="vvd-typography">
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,8 +8,9 @@
     <link rel="icon" href="{{ '/assets/images/vivid-logo.svg' | url }}" type="image/svg+xml">
 
     <!-- Load fonts -->
-    <link rel="preload" href="https://fonts.resources.vonage.com/fonts/v1/Spezia_Web_Complete_Upright.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="https://fonts.resources.vonage.com/fonts/v1/Spezia_Web_Monospace_Complete.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/styles/fonts/SpeziaCompleteVariableItalicWeb.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/styles/fonts/SpeziaCompleteVariableUprightWeb.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/styles/fonts/SpeziaMonoCompleteVariableWeb.woff2" as="font" type="font/woff2" crossorigin>
 
     <link rel="stylesheet" href="{{ '/assets/styles/fonts/spezia.css' | url }}">
 
@@ -51,10 +52,10 @@
       {{ scrollHandler | safe }}
     </script>
 
-    <link rel="stylesheet" href="{{ '/assets/styles/themes/light.css' | url }}" media="(prefers-color-scheme: light)">
-    <link rel="stylesheet" href="{{ '/assets/styles/themes/dark.css' | url }}" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" href="{{ '/assets/styles/tokens/theme-light.css' | url }}" media="(prefers-color-scheme: light)">
+    <link rel="stylesheet" href="{{ '/assets/styles/tokens/theme-dark.css' | url }}" media="(prefers-color-scheme: dark)">
 
-    <link rel="stylesheet" href="{{ '/assets/styles/typography/desktop.css' | url }}">
+    <link rel="stylesheet" href="{{ '/assets/styles/core/all.css' | url }}">
 
 		<script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
 
@@ -73,7 +74,7 @@
     {% include "prefetches.njk" %}
   </head>
 
-<body>
+<body class="vvd-root">
 <vwc-header id="header-main" slot="app-content">
      <div class="header-content-wrapper">
           <vwc-button id="hamburger-button" connotation="accent" icon='collapse-solid' density='condensed' shape="pill" id="menu-button" aria-label="Menu" onclick="toggleSideDrawerButton()" class="menu-button"></vwc-button>

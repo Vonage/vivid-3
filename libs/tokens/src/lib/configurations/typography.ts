@@ -16,7 +16,7 @@ module.exports = (viewport: string) => ({
 				format: "css/variables",
 				filter: "sourceOnly",
 				options: {
-					selector: "@mixin variables"
+					selector: '@mixin variables'
 				}
 			}]
 		}
