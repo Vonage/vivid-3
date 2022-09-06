@@ -14,7 +14,3 @@ permalink: "components/{{ component.title | slug }}/"
 
 
 {% renderFile component.markdown %}
-
-<script> 
-    document.getElementById("nav-" + {{ component.title | dump | safe }}).ariaCurrent = "page";
-</script>

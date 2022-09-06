@@ -14,7 +14,3 @@ permalink: "designs/{{ design.title | slug }}/"
 
 
 {% renderFile design.markdown %}
-
-<script> 
-    document.getElementById("nav-" + {{ design.title | dump | safe }}).ariaCurrent = "page";
-</script>
