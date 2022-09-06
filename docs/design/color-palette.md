@@ -1,7 +1,7 @@
 
 <style>
   .color_layout {
-    --layout-grid-template-columns: 280px repeat(12, 1fr);
+    --layout-grid-template-columns: 280px repeat(11, 1fr);
   }
   .color_wrapper {
     font-size: 0.75rem;
@@ -15,26 +15,23 @@
 
 # Color Palette
 
-<hr>
-
 ## Guidelines - Usage & mapping
 
 There’s a science to color. It’s part visual chemistry and part psychology. Balancing both makes for a palette that’s a powerful tool for establishing uniqueness. Our colors help to structure information and conveys the spirit of our brand.  
   
 Application of the color palette brings a unified and recognizable consistency to Vonage’s vast array of digital products and interfaces. This consistency is grounded by a set of well-defined rules on how to work with the Vivid component library in the context of dark and light themes.
-<hr>
 
 ### Brand colors
+
 Vivid’s default theme is derived from the Vonage Brand Identity color palette. Black is our Primary color and the core Purple family serves as the main action color across all Vonage products and experiences. The Neutral Gray family is dominant in our default theme, making use of subtle shifts in value and lightness to help organize content into distinct sections.
 
 ![color palette](https://user-images.githubusercontent.com/106529909/188305811-6f80d634-cc3d-4dc4-84ab-51949fbdc5dc.png)
 
 #### Additional brand colors
+
 Although we value an aesthetically pleasing use of color, we place a higher value on clear communication. Our use of color should be rational and should serve to support the purpose of the content. The additional brand colors should be used sparingly and purposefully throughout Vonage’s interfaces and applications, and mainly just for decoartive purposes.
 
 ![brand colors](https://user-images.githubusercontent.com/106529909/188305830-ab6f12ac-60c5-4844-890c-a7954165c701.png)
-
-<hr>
 
 ### Color token
 
@@ -43,20 +40,18 @@ A design token that’s specific to color usage. This provides a way of referenc
 For example, Purple-500 represents the sixth color in the list of tints and shades of purple.
 
 ![color token](https://user-images.githubusercontent.com/106529909/187898660-61384e46-0843-403b-bff8-431bcd4f7a47.png)
-   
-   <hr>
 
 ### Connotation colors
 
 Colors have assigned meanings and are used consistently throughout Vivid to set expectations of meaning for users. Color is used sparingly and intentionally to reinforce hierarchies and to create clear modes of communication.
 
+ - Black - Accent
  - Purple - CTA
  - Green - Success
  - Red - Alert
  - Blue - Information
  - Magenta - Announcement
  - Yellow - Warning
- - Black - Neutral
 
 <vwc-layout class="color_layout" column-basis="small" column-spacing="small">
   <div>
@@ -70,9 +65,10 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
    <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-cta-400);"></div>400</div>
    <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-cta-500);"></div>500</div>
    <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-cta-600);"></div>600</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-700);"></div>700</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-800);"></div>800</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-900);"></div>900</div>
+  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-cta-700);"></div>700</div>
+  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-cta-800);"></div>800</div>
+  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-cta-900);"></div>900</div>
+  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-cta-950);"></div>950</div>
 </vwc-layout>
 <vwc-layout class="color_layout" column-basis="small" column-spacing="small">
   <div>
@@ -89,6 +85,7 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-success-700);"></div>700</div>
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-success-800);"></div>800</div>
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-success-900);"></div>900</div>
+  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-success-950);"></div>950</div>
 </vwc-layout>
 <vwc-layout class="color_layout" column-basis="small" column-spacing="small">
   <div>
@@ -105,6 +102,7 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-alert-700);"></div>700</div>
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-alert-800);"></div>800</div>
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-alert-900);"></div>900</div>
+  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-alert-950);"></div>950</div>
 </vwc-layout>
 <vwc-layout class="color_layout" column-basis="small" column-spacing="small">
   <div>
@@ -121,6 +119,7 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-information-700);"></div>700</div>
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-information-800);"></div>800</div>
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-information-900);"></div>900</div>
+  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-information-950);"></div>950</div>
   </vwc-layout>
   <vwc-layout class="color_layout" column-basis="small" column-spacing="small">
   <div>
@@ -137,6 +136,7 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-announcement-700);"></div>700</div>
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-announcement-800);"></div>800</div>
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-announcement-900);"></div>900</div>
+  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-announcement-950);"></div>950</div>
 </vwc-layout>
 <vwc-layout class="color_layout" column-basis="small" column-spacing="small">
   <div>
@@ -153,6 +153,7 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-warning-700);"></div>700</div>
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-warning-800);"></div>800</div>
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-warning-900);"></div>900</div>
+  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-warning-950);"></div>950</div>
 </vwc-layout>
 <vwc-layout class="color_layout" column-basis="small" column-spacing="small">
   <div>
@@ -168,7 +169,6 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
    <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-600);"></div>600</div>
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-700);"></div>700</div>
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-800);"></div>800</div>
-  <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-800);"></div>800</div>
   <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-900);"></div>900</div>
    <div class="color_wrapper"><div class="color_rec" style="background-color: var(--vvd-color-neutral-950);"></div>950</div>
 </vwc-layout>
@@ -182,8 +182,6 @@ The color tokens are referenced using the `--vvd-color-{name}-{n}`.
   --side-drawer-background-color: var(--vvd-color-neutral-100);
 }
 ```
-
-<hr>
 
 ### Gradients
 
