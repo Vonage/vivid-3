@@ -1,6 +1,12 @@
 
 # Color Palette
 
+### Guidelines - Usage & mapping
+### [How to work with UI Kit colors](../how-to-work-with-ui-kit-colors)
+### [Guidelines - Accessibility](../guidelines-accessibility)
+
+</hr>
+
 ## Guidelines - Usage & mapping
 
 There’s a science to color. It’s part visual chemistry and part psychology. Balancing both makes for a palette that’s a powerful tool for establishing uniqueness. Our colors help to structure information and conveys the spirit of our brand.  
