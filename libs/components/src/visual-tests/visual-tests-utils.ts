@@ -44,8 +44,8 @@ export function extractHTMLBlocksFromReadme(pathToReadme: string): string[] {
 
 const defaultStyles = [
 	'http://127.0.0.1:8080/dist/libs/components/styles/fonts/spezia.css',
-	'http://127.0.0.1:8080/dist/libs/components/styles/themes/light.css',
-	'http://127.0.0.1:8080/dist/libs/components/styles/typography/desktop.css'
+	'http://127.0.0.1:8080/dist/libs/components/styles/tokens/theme-light.css',
+	'http://127.0.0.1:8080/dist/libs/components/styles/core/all.css'
 ];
 
 /**
