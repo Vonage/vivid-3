@@ -1,0 +1,14 @@
+[
+  {
+    "title": "foundations-of-the-design-system",
+    "markdown": "./docs/design/design/foundations-of-the-design-system.md",
+    "modules": [
+    ]
+  },
+  {
+    "title": "design-tokens",
+    "markdown": "./docs/design/design/design-tokens.md",
+    "modules": [
+    ]
+  }
+]

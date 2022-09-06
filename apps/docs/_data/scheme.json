@@ -1,0 +1,20 @@
+[
+  {
+    "title": "guidelines-usage",
+    "markdown": "./docs/design/scheme/guidelines-usage.md",
+    "modules": [
+    ]
+  },
+  {
+    "title": "how-to-work-with-ui-kit-scheme",
+    "markdown": "./docs/design/scheme/how-to-work-with-ui-kit-colors.md",
+    "modules": [
+    ]
+  },
+  {
+    "title": "guidelines-scheme-accessibility",
+    "markdown": "./docs/design/scheme/guidelines-accessibility.md",
+    "modules": [
+    ]
+  }
+]
