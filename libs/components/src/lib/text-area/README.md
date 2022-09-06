@@ -1,6 +1,6 @@
 # text-area
 
-Represents a text-area custom element.
+Represents a text-area custom element. It supports all native attributes of `textarea` in addition to some enhancements.
 
 ```js
 <script type="module">import '@vonage/vivid/text-area';</script>
@@ -77,27 +77,3 @@ Add the `readonly` attribute to restrict user from changing the text field's val
 ```html preview blocks
 <vwc-text-area readonly value="readonly text" label='fieldset'></vwc-text-area>
 ```
-
-### Rows
-
-Add the `rows` attribute to set the number of rows in the text field.
-
-- Type: `number`
-- Default: `undefined`
-
-```html preview blocks
-<vwc-text-area value="20 rows" label='20 rows' rows='20'></vwc-text-area>
-```
-
-
-## Slots
-
-## CSS Variables
-
-## Events
-
-## Methods
-
-## Accessibility
-
-## Use Cases
