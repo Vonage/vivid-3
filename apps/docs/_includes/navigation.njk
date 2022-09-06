@@ -1,48 +1,48 @@
 {% block content %}
 <vwc-nav>
- <vwc-nav-disclosure label="Design System" open>
+ <vwc-nav-disclosure label="Design System">
     {%  for item in design | sort(false, false, 'title') %}
     <vwc-nav-item href="{{ ('/design/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-nav-item>
     {% endfor %}
   </vwc-nav-disclosure>
 
- <vwc-nav-disclosure label="Color Palette" open>
+ <vwc-nav-disclosure label="Color Palette">
     {%  for item in palette | sort(false, false, 'title') %}
     <vwc-nav-item href="{{ ('/palette/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-nav-item>
     {% endfor %}
   </vwc-nav-disclosure>
 
-  <vwc-nav-disclosure label="Color Scheme" open>
+  <vwc-nav-disclosure label="Color Scheme">
     {%  for item in scheme | sort(false, false, 'title') %}
     <vwc-nav-item href="{{ ('/scheme/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-nav-item>
     {% endfor %}
   </vwc-nav-disclosure>
 
-  <vwc-nav-disclosure label="Typography" open>
+  <vwc-nav-disclosure label="Typography">
     {%  for item in typography | sort(false, false, 'title') %}
     <vwc-nav-item href="{{ ('/typography/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-nav-item>
     {% endfor %}
   </vwc-nav-disclosure>
 
-  <vwc-nav-disclosure label="Elevation" open>
+  <vwc-nav-disclosure label="Elevation">
     {%  for item in elevation | sort(false, false, 'title') %}
     <vwc-nav-item href="{{ ('/elevation/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-nav-item>
     {% endfor %}
   </vwc-nav-disclosure>
 
-  <vwc-nav-disclosure label="States" open>
+  <vwc-nav-disclosure label="States">
     {%  for item in states | sort(false, false, 'title') %}
     <vwc-nav-item href="{{ ('/states/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-nav-item>
     {% endfor %}
   </vwc-nav-disclosure>
 
-  <vwc-nav-disclosure label="Appearances" open>
+  <vwc-nav-disclosure label="Appearances">
     {%  for item in appearances | sort(false, false, 'title') %}
     <vwc-nav-item href="{{ ('/appearances/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-nav-item>
     {% endfor %}
   </vwc-nav-disclosure>
 
-  <vwc-nav-disclosure label="Icons" open>
+  <vwc-nav-disclosure label="Icons">
     {%  for item in icons | sort(false, false, 'title') %}
     <vwc-nav-item href="{{ ('/icons/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-nav-item>
     {% endfor %}
