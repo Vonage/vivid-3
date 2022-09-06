@@ -147,10 +147,14 @@ In addition, we programatically *"dirtied"* the field and then called `validate`
 <vwc-text-field pattern="123"></vwc-text-field>
 
 <script>
-  const textField = document.querySelector('vwc-text-field');
-  textField.value = 5;
-  textField.dirtyValue = true;
-  textField.validate();
+    const textField = document.querySelector('vwc-text-field');
+    const interval = setInterval(() => {
+        if (!textField.checkValidity) return;  
+        textField.value = 5;
+        textField.dirtyValue = true;
+        textField.checkValidity();
+        clearInterval(interval);
+    }, 50);
 </script>
 ```
 
@@ -159,5 +163,6 @@ In addition, we programatically *"dirtied"* the field and then called `validate`
 ```html preview
 <form method="post" action="">
   <vwc-text-field required label="Add email" placeholder="e.g. john@doe.dev" type="email" name="email" autocomplete="email" icon="search" maxlength="30" char-count></vwc-text-field>
+  <vwc-button label="Submit" type="submit"></vwc-button>
 </form>
 ```

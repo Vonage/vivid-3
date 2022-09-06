@@ -50,11 +50,13 @@ The folder contains the following files:
 
 - Fonts
 
-  - `fonts/spezia.css` - Loads the *Spezia* variable font and specifies its font face definition. *Spezia* is Vonage's branded font and is required by most Vivid components
+  - `fonts/spezia.css` - Loads the *Spezia* variable font and specifies its font face definition. *Spezia* is Vonage's branded font and is required by most Vivid components. folder also contains the font files
 
 - Typography
 
-	- `typography/desktop.css` - Defines the typography for desktop devices
+  - `typography/desktop.css` - Defines the typography for desktop devices viewport
+
+  - `typography/mobile.css` - Defines the typography for mobile devices viewport (resolves to a system font)
 
 - Themes - only one theme can apply at a time. thus, only one is required to be loaded
 
@@ -128,6 +130,9 @@ The following snippet fully renders a Vivid button component
 
 <!-- import light theme style tokens -->
 <link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/themes/light.css">
+
+<!-- import typography for desktop -->
+<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/typography/desktop.css">
 
 <!-- import Vivid button component -->
 <script type="module" src="https://unpkg.com/@vonage/vivid@next/button/index.js"></script>

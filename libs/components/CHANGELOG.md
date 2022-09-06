@@ -1,8 +1,40 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Tue, 23 Aug 2022 12:15:37 GMT and should not be manually modified.
+This log was last generated on Mon, 05 Sep 2022 17:51:29 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.52
+
+Mon, 05 Sep 2022 17:51:29 GMT
+
+### Changes
+
+- bug fix for icon connotation and setup its ui-test (yinon@hotmail.com)
+
+## 3.0.0-next.51
+
+Thu, 01 Sep 2022 13:29:47 GMT
+
+### Changes
+
+- design tokens renamed (yinon@hotmail.com)
+
+## 3.0.0-next.50
+
+Fri, 26 Aug 2022 16:38:16 GMT
+
+### Changes
+
+- font assets coupled with their css (yinon@hotmail.com)
+
+## 3.0.0-next.49
+
+Fri, 26 Aug 2022 15:17:22 GMT
+
+### Changes
+
+- fix icon size in fab extended density (yinon@hotmail.com)
 
 ## 3.0.0-next.48
 

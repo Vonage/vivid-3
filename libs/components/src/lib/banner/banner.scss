@@ -1,9 +1,9 @@
-@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
-@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use '../../../../../dist/libs/tokens/scss/constants' as constants;
+
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: success info alert announcement warning,
-	$shades: primary on-primary,
-	$default: info,
+	$connotations: success information alert announcement warning,
+	$shades: primary primary-text,
+	$default: information,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
@@ -29,12 +29,11 @@ $banner-transition-delay: --transition-delay;
 	}
 
 	> .header {
-		@include typography.typography-cat-shorthand('body-2-bold');
-
 		display: flex;
 		min-height: 60px;
 		align-items: center;
 		justify-content: flex-start;
+		font: var(#{constants.$vvd-font-base-bold});
 
 		> .user-content {
 			display: flex;
