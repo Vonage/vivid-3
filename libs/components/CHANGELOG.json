@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Tue, 06 Sep 2022 11:06:17 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.52",
+      "version": "3.0.0-next.52",
+      "comments": {
+        "none": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "7a73325c2d68a4660ca5aeed83afde9b55f19f24",
+            "comment": "Update new typography import"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 05 Sep 2022 17:51:29 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.52",
       "version": "3.0.0-next.52",
