@@ -1,4 +1,4 @@
-# text-area
+# Text-area
 
 Represents a text-area custom element. It supports all native attributes of `textarea` in addition to some enhancements.
 
@@ -7,7 +7,7 @@ Represents a text-area custom element. It supports all native attributes of `tex
 ```
 
 ```html preview
-<vwc-text-area label="Label" value="This is the text we want to see!"></vwc-text-area>
+<vwc-text-area label="Label" rows="2" value="This is the text we want to see!"></vwc-text-area>
 ```
 
 ## Members
@@ -17,7 +17,7 @@ Represents a text-area custom element. It supports all native attributes of `tex
 - Type: `string` | `undefined`
 - Default: `undefined`
 
-Add a `label` attribute to add label to the text field.
+Add a `label` attribute to add label to the text area.
 
 ```html preview
 <vwc-text-area label="My Label"></vwc-text-area>
@@ -28,7 +28,7 @@ Add a `label` attribute to add label to the text field.
 - Type: `string` | `undefined`
 - Default: `undefined`
 
-Add a `placeholder` attribute to add placeholder text to the text field.
+Add a `placeholder` attribute to add placeholder text to the text area.
 
 ```html preview
 <vwc-text-area placeholder="My Placeholder"></vwc-text-area>
@@ -39,7 +39,7 @@ Add a `placeholder` attribute to add placeholder text to the text field.
 - Type: `string` | `undefined`
 - Default: `undefined`
 
-Set the `value` attribute to set the default value for the text field. Setting the property on the element will not change the default value, but will change the value shown in the view as well as the submitted value in a form (imitating the native behavior).
+Set the `value` attribute to set the default value for the text area. Setting the property on the element will not change the default value, but will change the value shown in the view as well as the submitted value in a form (imitating the native behavior).
 
 ```html preview
 <vwc-text-area value="Default Value"></vwc-text-area>
@@ -47,7 +47,7 @@ Set the `value` attribute to set the default value for the text field. Setting t
 
 ### Helper text
 
-Add the `helper-text` to add some helper text below the text field.
+Add the `helper-text` to add some helper text below the text area.
 
 - Type: `string` | `undefined`
 - Default: `undefined`
@@ -58,7 +58,7 @@ Add the `helper-text` to add some helper text below the text field.
 
 ### Disabled
 
-Add the `disabled` attribute to disable the text field.
+Add the `disabled` attribute to disable the text area.
 
 - Type: `boolean`
 - Default: `false`
@@ -69,7 +69,7 @@ Add the `disabled` attribute to disable the text field.
 
 ### Readonly
 
-Add the `readonly` attribute to restrict user from changing the text field's value.
+Add the `readonly` attribute to restrict user from changing the text area's value.
 
 - Type: `boolean`
 - Default: `false`
@@ -77,3 +77,15 @@ Add the `readonly` attribute to restrict user from changing the text field's val
 ```html preview blocks
 <vwc-text-area readonly value="readonly text" label='fieldset'></vwc-text-area>
 ```
+
+### Rows
+
+Use the `rows` attribute to set the number of rows in the text area.
+
+Note that the text area has padding-top of 8 pixels and minimum height of 40 pixles. That means that:
+- rows="1" will have a height of 40 pixels (which is the minimum height)
+- rows="2" will have a height of 48 pixels
+- rows 3 and on will add 20 pixels each (lineheight)
+
+- Type: `number`
+- Default: `2`
