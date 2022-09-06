@@ -3,7 +3,6 @@
     "title": "guidelines-usage-and-mapping",
     "markdown": "./docs/design/palette/guidelines-usage-and-mapping.md",
     "modules": [
-      "/assets/modules/components/layout/index.js"
     ]
   },
   {
