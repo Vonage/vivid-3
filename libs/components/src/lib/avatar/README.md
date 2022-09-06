@@ -24,7 +24,7 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 - Default: `user-line`
 
 ```html preview
-<vwc-avatar icon="user-admin-solid"></vwc-avatar>
+<vwc-avatar icon="group-2-solid"></vwc-avatar>
 ```
 
 <!-- 
@@ -91,8 +91,8 @@ set a graphic media of any kind (e.g. image, illustration etc.'.)
 
 
 ```html preview
-<vwc-avatar shape="pill">
-<img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="woman"/>
+<vwc-avatar shape="pill" connotation="cta">
+<img src="https://images.pexels.com/photos/762080/pexels-photo-762080.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="woman"/>
 </vwc-avatar>
 <vwc-avatar shape="pill" connotation="cta">
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" width="349.66" height="349.66" fill="none" version="1.1" viewBox="0 0 349.66 349.66">
