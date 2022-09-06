@@ -19,4 +19,3 @@ export class TextArea extends FoundationElement {
 }
 
 export interface TextArea extends FormElement{}
-

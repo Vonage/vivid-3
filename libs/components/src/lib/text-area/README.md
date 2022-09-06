@@ -12,6 +12,73 @@ Represents a text-area custom element.
 
 ## Members
 
+### Label
+
+- Type: `string` | `undefined`
+- Default: `undefined`
+
+Add a `label` attribute to add label to the text field.
+
+```html preview
+<vwc-text-area label="My Label"></vwc-text-area>
+```
+
+### Placeholder
+
+- Type: `string` | `undefined`
+- Default: `undefined`
+
+Add a `placeholder` attribute to add placeholder text to the text field.
+
+```html preview
+<vwc-text-area placeholder="My Placeholder"></vwc-text-area>
+```
+
+### Value
+
+- Type: `string` | `undefined`
+- Default: `undefined`
+
+Set the `value` attribute to set the default value for the text field. Setting the property on the element will not change the default value, but will change the value shown in the view as well as the submitted value in a form (imitating the native behavior).
+
+```html preview
+<vwc-text-area label="With default value" value="5"></vwc-text-area>
+```
+
+### Helper text
+
+Add the `helper-text` to add some helper text below the text field.
+
+- Type: `string` | `undefined`
+- Default: `undefined`
+
+```html preview
+<vwc-text-area label="Helper text below" helper-text="Help text"></vwc-text-area>
+```
+
+### Disabled
+
+Add the `disabled` attribute to disable the text field.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview blocks
+<vwc-text-area disabled icon="chat-line" value="disabled" label='fieldset' appearance='fieldset'></vwc-text-area>
+```
+
+### Readonly
+
+Add the `readonly` attribute to restrict user from changing the text field's value.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview blocks
+<vwc-text-area readonly icon="chat-line" value="readonly text" label='fieldset' appearance='fieldset'></vwc-text-area>
+```
+
+
 ## Slots
 
 ## CSS Variables

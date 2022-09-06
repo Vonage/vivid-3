@@ -36,6 +36,7 @@ $low-ink-color: --_low-ink-color;
 
   &.disabled {
     #{$low-ink-color}: var(#{constants.$vvd-color-neutral-400});
+    pointer-events: none;
   }
 }
 
@@ -58,7 +59,7 @@ $low-ink-color: --_low-ink-color;
     color: var(#{constants.$vvd-color-neutral-400});
   }
 
-  .has-text & {
+  .has-value & {
     font-size: 12px;
     line-height: 100%;
   }
@@ -75,24 +76,12 @@ $low-ink-color: --_low-ink-color;
   box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
   transition: box-shadow .2s, background-color .2s;
   padding-top: 36px;
+  border-radius: 6px;
+  min-block-size: 40px;
 
-  .has-text & {
-    padding-top: 16px;
+  .has-value & {
+    padding-top: 26px;
   }
-
-  .base & {
-    height: auto;
-  }
-
-  /* Size */
-  .base:not(.density-extended)>& {
-    block-size: 40px;
-  }
-
-  .base.density-extended>& {
-    block-size: 48px;
-  }
-
 }
 
 .control {

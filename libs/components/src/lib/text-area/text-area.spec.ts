@@ -47,6 +47,17 @@ describe('vwc-text-area', () => {
 			expect(labelElement)
 				.toBeNull();
 		});
+
+		it('should set class "has-label" when label is set', async () => {
+			const classExistsWithoutLabel = getBaseElement(element).classList.contains('has-label');
+			const labelText = 'label';
+			element.label = labelText;
+			await elementUpdated(element);
+			const classExistsWithLabel = getBaseElement(element).classList.contains('has-label');
+
+			expect(classExistsWithoutLabel).toEqual(false);
+			expect(classExistsWithLabel).toEqual(true);
+		});
 	});
 
 	describe('readOnly', function () {
@@ -252,19 +263,6 @@ describe('vwc-text-area', () => {
 		});
 	});
 
-	describe('density', function () {
-		it('should set the size class on the root', async function () {
-			const density = 'extended';
-			element.setAttribute('density', density);
-			await elementUpdated(element);
-
-			expect(getBaseElement(element)
-				.classList
-				.contains('density-extended'))
-				.toEqual(true);
-		});
-	});
-
 	describe('helper text', function () {
 		it('should render the helper text when attribute is set', async function () {
 			const helperTextElementWithoutText = element.shadowRoot?.querySelector('.helper-text');
@@ -412,7 +410,7 @@ describe('vwc-text-area', () => {
 	});
 
 	describe('rows, cols and wrap', function () {
-		it(`should reflect rows cols and wrap on the control`, async function () {
+		it('should reflect rows cols and wrap on the control', async function () {
 			const control = getControlElement(element);
 			const rows = 5;
 			const cols = 10;
@@ -424,6 +422,23 @@ describe('vwc-text-area', () => {
 			expect(control.getAttribute('rows')).toEqual(rows.toString());
 			expect(control.getAttribute('cols')).toEqual(cols.toString());
 			expect(control.getAttribute('wrap')).toEqual(wrap);
+		});
+	});
+
+	describe('value', function () {
+		it('should set \'has-value\' class when there is a value', async function () {
+			const activeClassWhenEnabled = getBaseElement(element)
+				.classList
+				.contains('has-value');
+			element.value = '5';
+			await elementUpdated(element);
+			const activeClassWhenDisabled = getBaseElement(element)
+				.classList
+				.contains('has-value');
+			expect(activeClassWhenEnabled)
+				.toEqual(false);
+			expect(activeClassWhenDisabled)
+				.toEqual(true);
 		});
 	});
 });
