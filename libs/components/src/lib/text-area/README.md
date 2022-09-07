@@ -82,7 +82,7 @@ Add the `readonly` attribute to restrict user from changing the text area's valu
 
 Use the `rows` attribute to set the number of rows in the text area.
 
-Note that the text area has padding-top of 8 pixels and minimum height of 40 pixles. That means that:
+Note that the text area has padding-block of 4 pixels and minimum height of 40 pixels. That means that:
 - rows="1" will have a height of 40 pixels (which is the minimum height)
 - rows="2" will have a height of 48 pixels
 - rows 3 and on will add 20 pixels each (lineheight)
