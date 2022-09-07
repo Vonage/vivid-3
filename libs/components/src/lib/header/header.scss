@@ -27,9 +27,9 @@
 	padding-inline: 16px;
 
 	&[part~="vvd-theme-alternate"] {
-		color-scheme: var(#{constants.$vvd-color-scheme});
 		background-color: var(#{constants.$vvd-color-canvas});
 		color: var(#{constants.$vvd-color-canvas-text});
+		color-scheme: var(#{constants.$vvd-color-scheme});
 	}
 }
 
