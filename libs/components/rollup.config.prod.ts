@@ -34,7 +34,7 @@ module.exports = function setVividRollupConfig(config) {
 		inject: false,
 		extract: false,
 		autoModules: true,
-		plugins: [autoprefixer],
+		plugins: [],
 		use: {
 			less: {
 				javascriptEnabled: true,
