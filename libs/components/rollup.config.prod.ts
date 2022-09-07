@@ -2,11 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const replace = require('@rollup/plugin-replace');
 const postcss = require('rollup-plugin-postcss');
-const autoprefixer = require('autoprefixer');
 
-/**
- * @param workingFolder
- */
 function getFoldersInAFolder(workingFolder = './src/lib/') {
 	const folders = [];
 	const testsFolder = path.join(__dirname, workingFolder);
