@@ -1,9 +1,6 @@
 
 # Color Palette
 
-### [Guidelines - Usage & mapping](../guidelines-usage-and-mapping)
-### How to work with UI Kit colors
-
 <hr>
 
 ## How to work with UI Kit colors

@@ -1,10 +1,6 @@
 ﻿
 # Design System
 
-### Foundations of the Design System
-### [Design Tokens](../design-tokens)
-
-
 <hr>
 
 ## Foundations of the Design System
