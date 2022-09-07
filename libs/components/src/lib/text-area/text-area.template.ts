@@ -8,7 +8,7 @@ import {classNames} from '@microsoft/fast-web-utilities';
 import {focusTemplateFactory} from '../../shared/patterns';
 import type {TextArea} from './text-area';
 
-const getClasses = ({value, errorValidationMessage, density, disabled, placeholder, readOnly}: TextArea) => classNames(
+const getClasses = ({value, errorValidationMessage, disabled, placeholder, readOnly}: TextArea) => classNames(
 	'base',
 	['readonly', readOnly],
 	['placeholder', Boolean(placeholder)],
