@@ -3,6 +3,8 @@
 
 ### Here are a few things you’ll want to keep in mind before venturing into the rest of the components & guides.
 
+![image](https://user-images.githubusercontent.com/10883919/188925846-e88a470f-2162-44a6-84df-607495033f45.png)
+
 ## Introduction
 
 This UI Kit is designed to be the Vonage Human Interface source of truth for designers and front-end engineers. Vivid Web Components (VWC) are libraries that developers use to implement your Vonage Design mockups. Vivid (VVD) includes components, tokens, themes and behaviors.
