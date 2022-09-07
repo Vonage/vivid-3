@@ -5,7 +5,7 @@ Please read the following conventions guidelines before starting to work on a ne
 ## Template Guide
 
 Use the new component generator to create a new component, and it will also generate the proper documentation structure:
-`npx run nx g @vonage/nx-vivid:component my-component`
+`npx nx g @vonage/nx-vivid:component`
 
 ## Components Terminology
 
