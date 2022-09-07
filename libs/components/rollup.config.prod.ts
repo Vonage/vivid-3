@@ -1,7 +1,8 @@
-
 const fs = require('fs');
 const path = require('path');
 const replace = require('@rollup/plugin-replace');
+const postcss = require('rollup-plugin-postcss');
+const autoprefixer = require('autoprefixer');
 
 /**
  * @param workingFolder
@@ -29,13 +30,26 @@ const input = components.reduce((inputObject, componentName) => {
 }, {});
 
 module.exports = function setVividRollupConfig(config) {
-
+	const postcssPlugin = postcss({
+		inject: false,
+		extract: false,
+		autoModules: true,
+		plugins: [autoprefixer],
+		use: {
+			less: {
+				javascriptEnabled: true,
+			},
+		},
+	});
 	input.index = config.input;
 
 	const output = config.output;
 	output.chunkFileNames = 'shared/[name].js';
 	delete output.name;
 	delete output.entryFileNames;
+
+	const postcssIndex = config.plugins.indexOf(plugin => plugin.name === 'postcss');
+	config.plugins[postcssIndex] = postcssPlugin;
 
 	const plugins = [...config.plugins,
 		replace({
