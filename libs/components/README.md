@@ -30,46 +30,44 @@ And include in HTML:
 
 For a full list of components and API, explore the [components docs](https://vivid.deno.dev/components/accordion/) 📚.
 
-### Prerequisites
+### Tokens (Prerequisite)
 
-The Vivid components library rely on a set of **core styles** to:
+The Vivid components library rely on a set of **design tokens** (in the form of css custom properties).
 
-- Be present in the DOM
-
-- Be shared across all components
-
-- Apply common design identities (such as colors, typography, spacing etc')
-
-- Ensure the components look as intended.
+Tokens should not affect the look of the application rather just provide a common set of identities (such as colors, typography, spacing etc') to be used by the components to look as intended.
 
 As the task of loading css is not trivial, and may vary from project to project, this library does not provide any way to load the css. It is up to the author to load the css in the most appropriate manner for their project.
 
-To **include the styles**, css files must be loaded into the project from the `node_modules/@vonage/vivid/styles` folder.
+To **include the styles**, css files must be loaded into the project from the `node_modules/@vonage/vivid/styles/tokens` folder and require a `vivid-root` class selector to be present on the wrapping element (commonly `body`).
 
-The folder contains the following files:
+Folder contains the following files:
 
-- Fonts
+- `theme-light.css` - Light theme
 
-  - `fonts/spezia.css` - Loads the *Spezia* variable font and specifies its font face definition. *Spezia* is Vonage's branded font and is required by most Vivid components. folder also contains the font files
+- `theme-dark.css` - Dark theme
 
-- Typography
+Only one theme is required to be loaded.
 
-  - `typography/desktop.css` - Defines the typography for desktop devices viewport
+### Fonts (Prerequisite)
 
-  - `typography/mobile.css` - Defines the typography for mobile devices viewport (resolves to a system font)
+- `node_modules/@vonage/vivid/styles/fonts/spezia.css` - Loads the *Spezia* variable font and defines its font face values. *Spezia* is Vonage's branded font and is required by most Vivid components. folder also contains the font files.
 
-- Themes - only one theme can apply at a time. thus, only one is required to be loaded
+### Styles (Optional)
 
-  - `themes/light.css` - Light theme
+In Addition to the tokens and fonts, the components library also provides a set of styles that can be used to align the application with the Vivid design system.
 
-  - `themes/dark.css` - Dark theme
+These styles are not required by vivid components directly but rely on the tokens and fonts 👆 to be loaded.
+
+- `node_modules/@vonage/vivid/styles/core/theme.css` - Sets theme related styles
+
+- `node_modules/@vonage/vivid/styles/core/typography.css` - Sets typography related styles
+
+- `node_modules/@vonage/vivid/styles/core/all.css` - Set all the above styles
 
 Note: scss users can simply [forward](https://sass-lang.com/documentation/at-rules/forward) the styles to their scss project:
 
 ```css
-@forward 'node_modules/@vonage/vivid/styles/fonts/spezia.css';
-@forward 'node_modules/@vonage/vivid/styles/typography/desktop.css';
-@forward 'node_modules/@vonage/vivid/styles/themes/light.css';
+@forward 'node_modules/@vonage/vivid/styles/[path to file].css';
 ```
 
 ## Support
