@@ -11,6 +11,9 @@ export interface FormElement {
 	userValid: boolean;
 	dirtyValue: boolean;
 }
+/**
+ * @param constructor
+ */
 export function formElements<T extends { new (...args: any[]): Record<string, any> }>(constructor: T) {
 	class Decorated extends constructor {
 		@attr label?: string;
