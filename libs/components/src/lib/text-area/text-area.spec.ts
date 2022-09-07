@@ -412,6 +412,13 @@ describe('vwc-text-area', () => {
 			expect(control.getAttribute('cols')).toEqual(cols.toString());
 			expect(control.getAttribute('wrap')).toEqual(wrap);
 		});
+
+		it(`should remove cols attribute if cols is falsy`, async function () {
+			const control = getControlElement(element);
+			(element.cols as any) = undefined;
+			await elementUpdated(element);
+			expect(control.hasAttribute('cols')).toEqual(false);
+		});
 	});
 
 	describe('value', function () {
