@@ -1,0 +1,13 @@
+@use 'variables' as variables;
+
+
+@mixin get-density-properties($block-size, $font-face) {
+	#{variables.$avatar-density}: $block-size;
+
+	// the font is for acronym:
+	// @include typography.typography-cat-shorthand($font-face);
+
+	.icon {
+		font-size: calc(#{$block-size} / 2);
+	}
+}
