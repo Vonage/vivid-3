@@ -89,3 +89,9 @@ Note that the text area has padding-block of 4 pixels and minimum height of 40 p
 
 - Type: `number`
 - Default: `2`
+
+```html preview blocks
+<vwc-text-area rows="1" value="1 row text area"></vwc-text-area>
+<vwc-text-area rows="2" value="2 rows text area"></vwc-text-area>
+<vwc-text-area rows="3" value="3 rows text area"></vwc-text-area>
+```
