@@ -1,8 +1,8 @@
 ﻿
 # Foundations of the Design System
 
-### [Design Tokens](../design-tokens)
 ### Foundations of the Design System
+### [Design Tokens](../design-tokens)
 
 <hr>
 
