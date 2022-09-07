@@ -9,7 +9,6 @@ $selectors: (
 );
 
 .vvd-root {
-	margin: 0;
 	font-feature-settings: 'kern';       /* turns on kerning */
 	text-rendering: optimizeLegibility;  /* emphasise on legibility when rendering, turns on ligatures and kerning */
 	-webkit-font-smoothing: antialiased; /* apply font anti-aliasing for Webkit on OSX */
@@ -49,7 +48,7 @@ $selectors: (
 		margin-block: 32px;
 	}
 
-	h2, .heading3 {
+	h3, .heading3 {
 		font: var(#{constants.$vvd-font-heading3});
 		margin-block: 24px;
 	}
