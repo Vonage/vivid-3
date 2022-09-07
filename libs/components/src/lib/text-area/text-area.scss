@@ -56,6 +56,7 @@ $low-ink-color: --_low-ink-color;
 	position: relative;
 	display: flex;
 	align-items: center;
+	border-radius: 6px;
 	grid-column: 1 / 4;
 }
 
@@ -64,8 +65,8 @@ $low-ink-color: --_low-ink-color;
 	padding: 4px 16px;
 	border: 0 none;
 	background-color: var(#{appearance.get-appearance-token(fill)});
-	border-radius: 6px;
-	box-shadow: 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+	border-radius: inherit;
+	box-shadow: inser 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-font-base});
 	min-block-size: 40px;

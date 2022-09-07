@@ -3,8 +3,6 @@ import {attr} from '@microsoft/fast-element';
 import {FormElement, formElements} from '../../shared/patterns/form-elements';
 import type {Density} from '../enums';
 
-type TextAreaDensity = Extract<Density, Density.Normal | Density.Extended>;
-
 type TextAreaWrap = 'hard' | 'soft' | 'off';
 
 /**
@@ -14,7 +12,6 @@ type TextAreaWrap = 'hard' | 'soft' | 'off';
  */
 @formElements
 export class TextArea extends FoundationElement {
-	@attr density?: TextAreaDensity;
 	@attr wrap?: TextAreaWrap;
 }
 

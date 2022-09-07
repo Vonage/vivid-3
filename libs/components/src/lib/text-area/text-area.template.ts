@@ -13,7 +13,6 @@ const getClasses = ({value, errorValidationMessage, density, disabled, placehold
 	['readonly', readOnly],
 	['placeholder', Boolean(placeholder)],
 	['disabled', disabled],
-	[`density-${density}`, Boolean(density)],
 	['error', Boolean(errorValidationMessage)],
 	['has-value', Boolean(value)],
 );
