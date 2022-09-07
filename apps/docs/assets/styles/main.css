@@ -1,12 +1,4 @@
 /* #region reset */
-h1, h2, h3, h4, h5, h6, p {
-  margin: unset;
-}
-
-strong {
-  font-weight: unset;
-}
-
 img {
   inline-size: auto;
   max-inline-size: 100%;
@@ -159,14 +151,6 @@ article > .cbd-container {
 }
 
 /* #region reset */
-h1, h2, h3, h4, h5, h6, p {
-  margin: unset;
-}
-
-strong {
-  font-weight: unset;
-}
-
 img {
   inline-size: auto;
   max-inline-size: 100%;
@@ -320,23 +304,15 @@ article > .cbd-container {
 
 article > h1 {
   padding-inline: 16px;
-  padding-block-start: 40px;
-  padding-block-end: 20px;
+  padding-block: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-inline: -16px;
-  margin-block-start: -40px;
+  border-radius: 6px;
+  margin-block-start: 0;
   margin-block-end: 32px;
-  background-color: var(--vvd-color-cta-70);
-  color: var(--vvd-color-on-cta);
-}
-
-@media (min-width: 960px) {
-  article > h1  {
-    margin-inline: -32px;
-    padding-inline: 32px;
-  }
+  background-color: var(--vvd-color-cta-600);
+  color: var(--vvd-color-canvas);
 }
 
 .heading-wrapper > .anchor {
