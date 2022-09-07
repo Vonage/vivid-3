@@ -48,7 +48,7 @@ module.exports = function setVividRollupConfig(config) {
 	delete output.name;
 	delete output.entryFileNames;
 
-	const postcssIndex = config.plugins.indexOf(plugin => plugin.name === 'postcss');
+	const postcssIndex = config.plugins.findIndex(plugin => plugin.name === 'postcss');
 	config.plugins[postcssIndex] = postcssPlugin;
 
 	const plugins = [...config.plugins,
