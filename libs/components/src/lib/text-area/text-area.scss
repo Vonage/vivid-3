@@ -56,22 +56,20 @@ $low-ink-color: --_low-ink-color;
 	position: relative;
 	display: flex;
 	align-items: center;
-	background-color: var(#{appearance.get-appearance-token(fill)});
-	border-radius: 6px;
-	box-shadow: 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-	color: var(#{appearance.get-appearance-token(text)});
 	grid-column: 1 / 4;
-	transition: box-shadow .2s, background-color .2s, color .2s;
 }
 
 .control {
 	width: 100%;
 	padding: 4px 16px;
 	border: 0 none;
-	background-color: transparent;
-	color: inherit;
+	background-color: var(#{appearance.get-appearance-token(fill)});
+	border-radius: 6px;
+	box-shadow: 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-font-base});
 	min-block-size: 40px;
+	transition: box-shadow .2s, background-color .2s, color .2s;
 	@supports selector(:focus-visible) {
 		&:focus {
 			outline: none;

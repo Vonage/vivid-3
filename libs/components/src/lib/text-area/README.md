@@ -95,25 +95,3 @@ Note that the text area has padding-block of 4 pixels and minimum height of 40 p
 <vwc-text-area rows="2" value="2 rows text area"></vwc-text-area>
 <vwc-text-area rows="3" value="3 rows text area"></vwc-text-area>
 ```
-
-## Use cases
-
-### In a grid
-
-```html preview
-<style>
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 1rem;
-  }
-  
-  .grid vwc-text-area {
-	justify-self: flex-start;
-  }
-</style>
-<div class="grid">
-    <vwc-text-area label="Label" rows="2" value="This is the text we want to see!"></vwc-text-area>
-    <vwc-text-area label="Label" rows="2" value="This is the text we want to see!"></vwc-text-area>
-</div>
-```

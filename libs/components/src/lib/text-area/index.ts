@@ -11,9 +11,6 @@ export const vividTextArea = TextArea.compose<FoundationElementDefinition>({
 	baseName: 'text-area',
 	template: template as any,
 	styles,
-	shadowOptions: {
-		delegatesFocus: true,
-	}
 });
 
 designSystem.register(vividTextArea());
