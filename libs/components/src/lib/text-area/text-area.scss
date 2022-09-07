@@ -61,7 +61,6 @@ $low-ink-color: --_low-ink-color;
   transition: color .2s;
   border-radius: 6px;
   box-shadow: 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-  padding-block-start: 8px;
   transition: box-shadow .2s, background-color .2s;
   background-color: var(#{appearance.get-appearance-token(fill)});
 }
@@ -73,7 +72,7 @@ $low-ink-color: --_low-ink-color;
   color: inherit;
   background-color: transparent;
   font: var(#{constants.$vvd-font-base});
-  min-block-size: 32px;
+  min-block-size: 40px;
   @supports selector(:focus-visible) {
   &:focus {
     outline: none;
