@@ -184,7 +184,7 @@ Select `base` part to access the component's internal *aside* element.
 ```html preview full
 <style>
   vwc-side-drawer::part(base) {
-    background-color: var(--vvd-color-neutral-10);
+    background-color: var(--vvd-color-neutral-50);
   }
 </style>
 

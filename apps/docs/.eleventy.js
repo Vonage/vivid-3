@@ -13,7 +13,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(EleventyRenderPlugin);
 
   eleventyConfig.addPassthroughCopy({
-    "dist/libs/styles/": "assets/styles/",
+    "dist/libs/styles": "assets/styles",
     "dist/libs/components": "assets/modules/components",
     "assets/images/vivid-logo.svg": "assets/images/vivid-logo.svg",
     "assets/images/vivid-cover-wide.avif": "assets/images/vivid-cover-wide.avif",

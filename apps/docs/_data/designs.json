@@ -1,7 +1,7 @@
 [
   {
-    "title": "color",
-    "markdown": "./docs/design/color.md",
+    "title": "color-palette",
+    "markdown": "./docs/design/color-palette.md",
     "modules": [
       "/assets/modules/components/layout/index.js"
     ]
@@ -10,7 +10,12 @@
     "title": "design-tokens",
     "markdown": "./docs/design/design-tokens.md",
     "modules": [
-      "/assets/modules/components/layout/index.js"
+    ]
+  },
+  {
+    "title": "foundations",
+    "markdown": "./docs/design/foundations.md",
+    "modules": [
     ]
   }
 ]
