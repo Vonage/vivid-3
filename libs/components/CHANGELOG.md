@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Mon, 05 Sep 2022 17:51:29 GMT and should not be manually modified.
+This log was last generated on Wed, 07 Sep 2022 15:12:01 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.53
+
+Wed, 07 Sep 2022 15:12:01 GMT
+
+### Changes
+
+- Prevent styles injection to the DOM (yonatan.kra@vonage.com)
 
 ## 3.0.0-next.52
 
