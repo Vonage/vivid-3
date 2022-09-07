@@ -14,9 +14,3 @@ permalink: "components/{{ component.title | slug }}/"
 
 
 {% renderFile component.markdown %}
-
-<script> 
-    setTimeout(() => {
-        document.getElementById("nav-" + {{ component.title | dump | safe }}).scrollIntoView();
-    }, 100);
-</script>

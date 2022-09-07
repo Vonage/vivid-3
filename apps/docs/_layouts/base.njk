@@ -51,6 +51,14 @@
       {{ scrollHandler | safe }}
     </script>
 
+    {% set navigationHandler %}
+      {% include "../assets/scripts/navigation-handler.js" %}
+    {% endset %}
+
+    <script type="module">
+      {{ navigationHandler | safe }}
+    </script>
+
     <link rel="stylesheet" href="{{ '/assets/styles/themes/light.css' | url }}" media="(prefers-color-scheme: light)">
     <link rel="stylesheet" href="{{ '/assets/styles/themes/dark.css' | url }}" media="(prefers-color-scheme: dark)">
 

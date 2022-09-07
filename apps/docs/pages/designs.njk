@@ -14,9 +14,3 @@ permalink: "designs/{{ design.title | slug }}/"
 
 
 {% renderFile design.markdown %}
-
-<script> 
-    setTimeout(() => {
-        document.getElementById("nav-" + {{ design.title | dump | safe }}).scrollIntoView();
-    }, 100);
-</script>
