@@ -241,6 +241,14 @@
     ]
   },
   {
+    "title": "avatar",
+    "markdown": "./libs/components/src/lib/avatar/README.md",
+    "modules": [
+      "/assets/modules/components/avatar/index.js",
+      "/assets/modules/components/icon/index.js"
+    ]
+  },
+  {
     "title": "text-area",
     "markdown": "./libs/components/src/lib/text-area/README.md",
     "modules": [
