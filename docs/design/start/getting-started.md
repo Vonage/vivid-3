@@ -9,7 +9,7 @@ This UI Kit is designed to be the Vonage Human Interface source of truth for des
 
 [vivid.deno.dev](https://vivid.deno.dev/)
 
-</hr>
+<hr>
 
 ## What does this UI Kit Supports
 
@@ -19,7 +19,7 @@ This UI Kit is designed to be the Vonage Human Interface source of truth for des
 - Icon wrapper: Allows you to keep color overrides.
 - Scheme - Light/Dark mode support
 
-</hr>
+<hr>
 
 ## UI Kit File structure
 
@@ -30,4 +30,4 @@ This UI Kit is designed to be the Vonage Human Interface source of truth for des
 <p><vwc-icon type='app-store-line'></vwc-icon> <b>Components</b> - our UI component library. All components are categorized by UX purpose.</p>
 <p><vwc-icon type='block-line'></vwc-icon> <b>Deprecated</b> - Old versions of components, usually these elements will have a new and imporoved component.</p>
 
-</hr>
+<hr>

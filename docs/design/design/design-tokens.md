@@ -1,12 +1,15 @@
 ﻿
-# Design Tokens
+# Design System
 
 ### [Foundations of the Design System](../foundations-of-the-design-system)
 ### Design Tokens
 
+
 <hr>
 
 ## What are design tokens?
+
+<hr>
 
 Design tokens are all the values needed to construct and maintain a design system — color, typography, spacing, object styles, sizing, etc. — represented as data.  
   
