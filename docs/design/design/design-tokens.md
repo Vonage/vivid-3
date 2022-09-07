@@ -17,7 +17,7 @@ These can represent anything defined by design: font size in pixel, a color as a
   
 Design tokens are directly integrated into our component libraries and UI kits. They cover the various options of platform scales, color themes, component states, and more.  
   
-Using design tokens allows us to manage and maintain our design system as Vonage’s design Single source of truth.
+Using design tokens allows us to manage and maintain our design system as Vonage’s design **Single source of truth.**
 
 <hr>
 

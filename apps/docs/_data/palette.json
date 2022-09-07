@@ -9,12 +9,7 @@
     "title": "how-to-work-with-ui-kit-colors",
     "markdown": "./docs/design/palette/how-to-work-with-ui-kit-colors.md",
     "modules": [
-    ]
-  },
-  {
-    "title": "guidelines-accessibility",
-    "markdown": "./docs/design/palette/guidelines-accessibility.md",
-    "modules": [
+      "/assets/modules/components/layout/index.js"
     ]
   }
 ]

@@ -3,15 +3,18 @@
 
 ### Guidelines - Usage & mapping
 ### [How to work with UI Kit colors](../how-to-work-with-ui-kit-colors)
-### [Guidelines - Accessibility](../guidelines-accessibility)
 
 <hr>
 
 ## Guidelines - Usage & mapping
 
+<hr>
+
 There’s a science to color. It’s part visual chemistry and part psychology. Balancing both makes for a palette that’s a powerful tool for establishing uniqueness. Our colors help to structure information and conveys the spirit of our brand.  
   
 Application of the color palette brings a unified and recognizable consistency to Vonage’s vast array of digital products and interfaces. This consistency is grounded by a set of well-defined rules on how to work with the Vivid component library in the context of dark and light themes.
+
+<hr>
 
 ### Brand colors
 
@@ -25,6 +28,8 @@ Although we value an aesthetically pleasing use of color, we place a higher valu
 
 ![brand colors](https://user-images.githubusercontent.com/106529909/188305830-ab6f12ac-60c5-4844-890c-a7954165c701.png)
 
+<hr>
+
 ### Color token
 
 A design token that’s specific to color usage. This provides a way of referencing a variable color value (a color value that changes based on color theme). Color tokens are named by the color and a number representing an index in the list of tints and shades.
@@ -32,6 +37,8 @@ A design token that’s specific to color usage. This provides a way of referenc
 For example, Purple-500 represents the sixth color in the list of tints and shades of purple.
 
 ![color token](https://user-images.githubusercontent.com/106529909/187898660-61384e46-0843-403b-bff8-431bcd4f7a47.png)
+
+<hr> 
 
 ### Connotation colors
 
@@ -44,6 +51,8 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
 - Red - Alert
 - Green - Success
 - Yellow - Warning
+
+<hr>
 
 ### Gradients
 

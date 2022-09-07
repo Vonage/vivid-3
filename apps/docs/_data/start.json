@@ -5,17 +5,5 @@
     "modules": [
       "/assets/modules/components/icon/index.js"
     ]
-  },
-  {
-    "title": "component-info",
-    "markdown": "./docs/design/start/component-info.md",
-    "modules": [
-    ]
-  },
-  {
-    "title": "variant-components",
-    "markdown": "./docs/design/start/variant-components.md",
-    "modules": [
-    ]
   }
 ]
