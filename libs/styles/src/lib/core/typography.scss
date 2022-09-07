@@ -14,8 +14,7 @@ $selectors: (
 	text-rendering: optimizeLegibility;  /* emphasise on legibility when rendering, turns on ligatures and kerning */
 	-webkit-font-smoothing: antialiased; /* apply font anti-aliasing for Webkit on OSX */
 	-moz-osx-font-smoothing: grayscale;  /* apply font anti-aliasing for Firefox on OSX */
-	//! revert back to base
-	font: var(#{constants.$vvd-font-base-extended});
+	font: var(#{constants.$vvd-font-base});
 
 	p {
 		font: var(#{constants.$vvd-font-base});
