@@ -1,12 +1,12 @@
-import {html, when, ref} from '@microsoft/fast-element';
+import {html, ref, when} from '@microsoft/fast-element';
 import type {ViewTemplate} from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import {classNames} from '@microsoft/fast-web-utilities';
-import type {TextArea} from './text-area';
 import {focusTemplateFactory} from '../../shared/patterns';
+import type {TextArea} from './text-area';
 
 const getClasses = ({value, errorValidationMessage, density, disabled, placeholder, readOnly}: TextArea) => classNames(
 	'base',
@@ -92,4 +92,4 @@ export const TextAreaTemplate: (
 		  ${when(x => x.errorValidationMessage, renderErrorMessage())}
 	  </div>
 	`;
-}
+};
