@@ -125,7 +125,7 @@ $low-ink-color: --_low-ink-color;
 	position: absolute;
 	z-index: 1;
 	color: var(#{$low-ink-color});
-  font-size: 20px;
+	font-size: 20px;
 	inset-inline-start: 16px;
 
 	+.control {
