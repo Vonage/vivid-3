@@ -13,8 +13,7 @@ const getClasses = ({
 }: ListboxOption) => classNames(
 	'base',
 	['disabled', disabled],
-	['selected', selected],
-	['checked', Boolean(checked)],
+	['selected', selected || Boolean(checked)],
 	['icon', Boolean(icon)],
 );
 
