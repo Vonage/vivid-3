@@ -32,7 +32,7 @@ export const ListboxTemplate: (
 		@mousedown="${(x, c) => x.mousedownHandler(c.event as MouseEvent)}">
 		<div class="${getClasses}">
 			<slot ${slotted({
-			filter: Listbox.slottedOptionFilter,
+			filter: Listbox.slottedOptionFilter as any,
 			flatten: true,
 			property: "slottedOptions",
 		})}></slot>
