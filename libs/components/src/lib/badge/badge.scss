@@ -1,8 +1,8 @@
-@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+@use '../../../../../dist/libs/tokens/scss/constants' as constants;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: accent cta success alert warning info,
-	$shades: primary on-primary intermediate soft contrast,
+	$connotations: accent cta success alert warning information,
+	$shades: primary primary-text intermediate soft contrast,
 	$default: accent,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
@@ -15,7 +15,6 @@
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
 .control {
-	@include typography.typography-cat-shorthand('caption-bold');
 	@include connotation.connotation;
 	@include appearance.appearance;
 
@@ -26,6 +25,7 @@
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	column-gap: 8px;
+	font: var(#{constants.$vvd-font-base-condensed-bold});
 	vertical-align: middle;
 }
 

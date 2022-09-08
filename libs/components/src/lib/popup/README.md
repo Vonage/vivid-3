@@ -113,7 +113,7 @@ Use the `placement` attribute to set the placement of the popup around the ancho
   .square {
     inline-size: 270px;
     block-size: 100px;
-    background-color: var(--vvd-color-neutral-10);
+    background-color: var(--vvd-color-neutral-50);
   }
 
   vwc-text {

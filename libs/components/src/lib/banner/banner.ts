@@ -4,14 +4,14 @@ import {Connotation} from '../enums';
 import {AffixIcon} from '../../shared/patterns/affix';
 
 export type BannerConnotation =
-	Connotation.Info |
+	Connotation.Information |
 	Connotation.Announcement |
 	Connotation.Success |
 	Connotation.Warning |
 	Connotation.Alert;
 
 const connotationIconMap = new Map([
-	[Connotation.Info, 'info-solid'],
+	[Connotation.Information, 'info-solid'],
 	[Connotation.Announcement, 'megaphone-solid'],
 	[Connotation.Success, 'check-circle-solid'],
 	[Connotation.Warning, 'warning-solid'],
@@ -19,7 +19,7 @@ const connotationIconMap = new Map([
 ]);
 
 const defaultConnotation =
-	(connotation: Connotation | undefined = Connotation.Info) => connotationIconMap.get(connotation) as Connotation;
+	(connotation: Connotation | undefined = Connotation.Information) => connotationIconMap.get(connotation) as Connotation;
 
 /**
  * Base class for banner

@@ -1,14 +1,13 @@
-@use "../../../../shared/src/lib/sass/mixins/typography" as typography;
-@use "../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts" as theme-consts;
+@use '../../../../../dist/libs/tokens/scss/constants' as constants;
 @use "partials/variables" as variables;
 
-.base {
-	@include typography.typography-cat-shorthand("subtitle-2");
-	#{variables.$header-block-size}: 64px;
 
+.base {
 	z-index: 1;
 	block-size: var(#{variables.$header-block-size});
+	font: var(#{constants.$vvd-font-heading4});
 	inline-size: 100%;
+	#{variables.$header-block-size}: 64px;
 
 	.header-content {
 		display: inline-flex;
@@ -22,13 +21,13 @@
 	box-sizing: border-box;
 	justify-content: space-between;
 	block-size: inherit;
-	color: var(#{theme-consts.$vvd-color-on-canvas});
+	color: var(#{constants.$vvd-color-canvas-text});
 	column-gap: 12px;
 	padding-block: 8px;
 	padding-inline: 16px;
 
 	&[part~="vvd-theme-alternate"] {
-		background-color: var(#{theme-consts.$vvd-color-canvas});
+		background-color: var(#{constants.$vvd-color-canvas});
 	}
 }
 

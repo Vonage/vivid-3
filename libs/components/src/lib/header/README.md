@@ -120,7 +120,7 @@ The component's internal *header* element.
 ```html preview full
 <style>
   vwc-header::part(base) {
-    background-color: var(--vvd-color-neutral-20);
+    background-color: var(--vvd-color-neutral-100);
   }
 </style>
 
@@ -195,7 +195,7 @@ A Side Drawer as primary element containing a Header containing application cont
 ```html preview full
 <style>
   vwc-side-drawer::part(base) {
-    border-right: 1px solid var(--vvd-color-neutral-20);
+    border-right: 1px solid var(--vvd-color-neutral-100);
   }
 </style>
 

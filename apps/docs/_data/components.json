@@ -155,7 +155,8 @@
     "title": "text-field",
     "markdown": "./libs/components/src/lib/text-field/README.md",
     "modules": [
-      "/assets/modules/components/text-field/index.js"
+      "/assets/modules/components/text-field/index.js",
+      "/assets/modules/components/button/index.js"
     ]
   },
   {
@@ -237,6 +238,14 @@
     "modules": [
       "/assets/modules/components/menu/index.js",
       "/assets/modules/components/button/index.js"
+    ]
+  },
+  {
+    "title": "avatar",
+    "markdown": "./libs/components/src/lib/avatar/README.md",
+    "modules": [
+      "/assets/modules/components/avatar/index.js",
+      "/assets/modules/components/icon/index.js"
     ]
   },
   {

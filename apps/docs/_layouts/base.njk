@@ -59,7 +59,6 @@
 		<script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
 
     <script type="module" src="{{ '/assets/modules/components/layout/index.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/modules/components/text/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/side-drawer/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/nav/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/nav-item/index.js' | url}}"></script>
@@ -84,7 +83,7 @@
           </a>
     </div>
     <dark-mode-toggle	slot="action-items" appearance="toggle"></dark-mode-toggle>
-    <vwc-button slot="action-items" aria-label="View on GitHub" icon="github-mono" icon-trailing href="https://github.com/vonage/vivid-3"></vwc-button>
+    <vwc-nav-item slot="action-items" icon="github-mono" href="https://github.com/vonage/vivid-3" aria-label="View on GitHub" role="navigation"></vwc-nav-item>
 
   <vwc-side-drawer id="sidedrawer" open slot="app-content">
     <vwc-layout gutters="small" column-basis="block">

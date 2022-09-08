@@ -1,4 +1,4 @@
-@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use '../../../../../dist/libs/tokens/scss/constants' as constants;
 
 .base {
 	display: flex;
@@ -6,5 +6,5 @@
 }
 
 ::slotted(vwc-accordion-item:not(:only-of-type)) {
-	border-bottom: 1px solid var(#{theme-consts.$vvd-color-neutral-30});
+	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-200});
 }
