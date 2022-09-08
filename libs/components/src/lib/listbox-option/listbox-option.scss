@@ -1,5 +1,4 @@
-@use "../../../../shared/src/lib/sass/mixins/typography" as typography;
-@use "../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts" as theme-consts;
+@use '../../../../../dist/libs/tokens/scss/constants' as constants;
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent,
@@ -52,7 +51,7 @@
 	}
 
 	.text {
-		@include typography.typography-cat-shorthand("body-2");
+		font: var(#{constants.$vvd-font-base});
 	}
 }
 
