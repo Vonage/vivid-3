@@ -17,7 +17,7 @@ module.exports = (theme: string) => ({
 				format: "css/variables",
 				filter: "sourceOnly",
 				options: {
-					selector: '@mixin variables'
+					selector: "@mixin variables"
 				}
 			}]
 		}
