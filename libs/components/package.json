@@ -46,6 +46,6 @@
     "./divider": "./divider",
     "./menu": "./menu",
     "./avatar": "./avatar",
-    "./listbox-option": "./listbox-option",
+    "./listbox-option": "./listbox-option"
   }
 }
