@@ -1,8 +1,32 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Fri, 26 Aug 2022 16:38:16 GMT and should not be manually modified.
+This log was last generated on Wed, 07 Sep 2022 15:12:01 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.53
+
+Wed, 07 Sep 2022 15:12:01 GMT
+
+### Changes
+
+- Prevent styles injection to the DOM (yonatan.kra@vonage.com)
+
+## 3.0.0-next.52
+
+Mon, 05 Sep 2022 17:51:29 GMT
+
+### Changes
+
+- bug fix for icon connotation and setup its ui-test (yinon@hotmail.com)
+
+## 3.0.0-next.51
+
+Thu, 01 Sep 2022 13:29:47 GMT
+
+### Changes
+
+- design tokens renamed (yinon@hotmail.com)
 
 ## 3.0.0-next.50
 

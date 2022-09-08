@@ -241,7 +241,15 @@
     ]
   },
   {
-    "title": "listbox-option",
+    "title": "avatar",
+    "markdown": "./libs/components/src/lib/avatar/README.md",
+    "modules": [
+      "/assets/modules/components/avatar/index.js",
+      "/assets/modules/components/icon/index.js"
+    ]
+  },
+  {
+  "title": "listbox-option",
     "markdown": "./libs/components/src/lib/listbox-option/README.md",
     "modules": [
       "/assets/modules/components/listbox-option/index.js",
