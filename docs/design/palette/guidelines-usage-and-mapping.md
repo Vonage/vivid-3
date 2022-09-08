@@ -49,6 +49,8 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
 - Green - Success
 - Yellow - Warning
 
+![image](https://user-images.githubusercontent.com/10883919/189075360-c40bc1ba-2311-41ec-9c71-ba7602440f14.png)
+
 <hr>
 
 ### Gradients
