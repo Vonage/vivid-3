@@ -68,15 +68,12 @@ describe('vwc-side-drawer', () => {
 	});
 
 	describe('alternate', () => {
-		it('should set "alternate" to true and add "alternate" class', async () => {
-			const control = getControlElement(element);
-			let hasClassAlternate = control.classList.contains('alternate');
+		it('should set "alternate" on part', async () => {
 			element.alternate = true;
 			await elementUpdated(element);
-			expect(hasClassAlternate).toEqual(false);
 
-			hasClassAlternate = control.classList.contains('alternate');
-			expect(hasClassAlternate).toEqual(true);
+			const controlWithPartAlternate = element.shadowRoot?.querySelector('[part~=vvd-theme-alternate]');
+			expect(controlWithPartAlternate).toBeInstanceOf(HTMLElement);
 		});
 	});
 
