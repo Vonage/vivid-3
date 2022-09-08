@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "modify typography styles for desktop",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}
