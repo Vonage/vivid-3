@@ -33,7 +33,6 @@ export class Listbox extends FastListbox {
     }
 
     #disableSlottedChildren(): void {
-        debugger;
         this.options.forEach(optionElement => {
             optionElement.disabled = this.disabled;
         });
