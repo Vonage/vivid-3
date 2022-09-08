@@ -1,4 +1,3 @@
-import { attr } from '@microsoft/fast-element';
 import { Listbox as FastListbox } from '@microsoft/fast-foundation';
 
 /**
@@ -9,14 +8,7 @@ import { Listbox as FastListbox } from '@microsoft/fast-foundation';
 
 
 export class Listbox extends FastListbox {
-    /**
-	 *
-	 * @public
-	 */
-	@attr({
-		mode: 'boolean',
-	}) multiple = false;
-    
+
 	override slottedOptionsChanged(prev: Element[] | undefined, next: Element[]) {
         super.slottedOptionsChanged(prev, next);
         this.#disableSlottedChildren();
