@@ -2,6 +2,7 @@
   "name": "vivid-nx",
   "version": "0.0.0",
   "license": "MIT",
+  "repository": "github:Vonage/vivid-3",
   "scripts": {
     "start": "npx nx run docs:serve",
     "lint": "npm run nx run-many -- --target=stylelint --all & npm run nx run-many -- --target=lint --all --fix",
