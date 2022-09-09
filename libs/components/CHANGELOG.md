@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Wed, 07 Sep 2022 15:12:01 GMT and should not be manually modified.
+This log was last generated on Thu, 08 Sep 2022 11:03:56 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.54
+
+Thu, 08 Sep 2022 11:03:56 GMT
+
+### Changes
+
+- modify typography styles for desktop (yinon@hotmail.com)
 
 ## 3.0.0-next.53
 
