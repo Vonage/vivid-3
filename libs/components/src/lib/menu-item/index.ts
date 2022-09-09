@@ -11,6 +11,9 @@ export const vividMenuItem = MenuItem.compose<MenuItemOptions>({
 	baseName: 'menu-item',
 	template: template as any,
 	styles,
+	shadowOptions: {
+		delegatesFocus: true,
+	},
 });
 
 designSystem.register(vividMenuItem());
