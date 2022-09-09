@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "deterministic layout size in action group doc",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}

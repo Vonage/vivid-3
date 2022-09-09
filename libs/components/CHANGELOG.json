@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Fri, 09 Sep 2022 16:43:16 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.56",
+      "version": "3.0.0-next.56",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "202fa36889738afee2dce0be9b185bcb16b98155",
+            "comment": "deterministic layout size in action group doc"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 09 Sep 2022 10:25:02 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.55",
       "version": "3.0.0-next.55",
