@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Fri, 09 Sep 2022 03:24:23 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.54",
+      "version": "3.0.0-next.54",
+      "comments": {
+        "none": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "c38736e8130be1025ebaadd47185dd9fc41118a9",
+            "comment": "Stabilize action-group"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 08 Sep 2022 11:03:56 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.54",
       "version": "3.0.0-next.54",
