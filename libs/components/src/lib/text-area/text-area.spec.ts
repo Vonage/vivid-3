@@ -3,28 +3,51 @@ import {
 	elementUpdated,
 	fixture,
 	getBaseElement,
-	listenToFormSubmission
+	getControlElement, listenToFormSubmission
 } from '@vivid-nx/shared';
-import {TextFieldType} from '@microsoft/fast-foundation';
-import {Icon} from '../icon/icon';
-import {TextField} from './text-field';
+import { TextArea } from './text-area';
 import '.';
 
-const COMPONENT_TAG_NAME = 'vwc-text-field';
+const COMPONENT_TAG_NAME = 'vwc-text-area';
 
-describe('vwc-text-field', () => {
-	let element: TextField;
+function getTextareaElement(element: TextArea) {
+	return element.shadowRoot?.querySelector('textarea') as HTMLTextAreaElement;
+}
+
+describe('vwc-text-area', () => {
+	let element: TextArea;
 
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG_NAME}></${COMPONENT_TAG_NAME}>`
-		)) as TextField;
+		)) as TextArea;
 	});
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-text-field', async () => {
+			const elmProps = {
+				charCount: false,
+				cols: 20,
+				dirtyValue: false,
+				disabled: false,
+				errorValidationMessage: '',
+				helperText: undefined,
+				label: undefined,
+				maxlength: undefined,
+				minlength: undefined,
+				name: undefined,
+				placeholder: undefined,
+				readOnly: undefined,
+				required: false,
+				rows: undefined,
+				userValid: true,
+				value: '',
+			};
+			Object.keys(elmProps).forEach((key) => {
+				expect((element as any)[key]).toEqual((elmProps as any)[key]);
+			});
 			expect(element)
-				.toBeInstanceOf(TextField);
+				.toBeInstanceOf(TextArea);
 		});
 	});
 
@@ -44,47 +67,6 @@ describe('vwc-text-field', () => {
 			const labelElement = element.shadowRoot?.querySelector('label');
 			expect(labelElement)
 				.toBeNull();
-		});
-	});
-
-	describe('char-count', function () {
-		it('should render char-count if attribute char-count and max-length are set', async function () {
-			element.charCount = true;
-			element.maxlength = 20;
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.char-count'))
-				.toBeTruthy();
-		});
-
-		it('should remove char count if max-length is not set', async function () {
-			element.charCount = true;
-			element.toggleAttribute('max-length', false);
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.char-count'))
-				.toBeNull();
-		});
-
-		it('should render count with 0 if value is not set', async function () {
-			element.charCount = true;
-			element.maxlength = 20;
-			const expectedString = '0 / 20';
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.char-count')
-				?.textContent
-				?.trim())
-				.toEqual(expectedString);
-		});
-
-		it('should render count according to value and max', async function () {
-			element.charCount = true;
-			element.maxlength = 20;
-			element.value = '12345';
-			const expectedString = '5 / 20';
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.char-count')
-				?.textContent
-				?.trim())
-				.toEqual(expectedString);
 		});
 	});
 
@@ -109,7 +91,7 @@ describe('vwc-text-field', () => {
 		it('should set autofocus on the input element', async function () {
 			element.autofocus = true;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('input')
+			expect(getControlElement(element)
 				?.hasAttribute('autofocus'))
 				.toEqual(true);
 		});
@@ -121,12 +103,12 @@ describe('vwc-text-field', () => {
 
 			element.placeholder = placeholderText;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('input')
+			expect(getTextareaElement(element)
 				?.getAttribute('placeholder'))
 				.toEqual(placeholderText);
 		});
 
-		it('should set class placeholder to root', async function () {
+		it('should set class placeholder to base', async function () {
 			element.placeholder = placeholderText;
 			await elementUpdated(element);
 			expect(getBaseElement(element)
@@ -134,29 +116,13 @@ describe('vwc-text-field', () => {
 				.contains('placeholder'))
 				.toEqual(true);
 		});
-	});
 
-	describe('type', function () {
-		const typeText = TextFieldType.text;
-		it('should set type attribute on the input', async function () {
-
-			element.type = typeText;
+		it('should have no placeholder if placeholder is not set as string', async function () {
+			element.placeholder = '';
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('input')
-				?.getAttribute('type'))
-				.toEqual(typeText);
-		});
-	});
-
-	describe('list', function () {
-		const dataListID = 'dataListId';
-
-		it('should set list attribute on the input', async function () {
-			element.list = dataListID;
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('input')
-				?.getAttribute('list'))
-				.toEqual(dataListID);
+			expect(getTextareaElement(element)
+				?.getAttribute('placeholder'))
+				.toBeNull();
 		});
 	});
 
@@ -169,33 +135,12 @@ describe('vwc-text-field', () => {
 
 			(element as any)[propertyName] = value;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('input')
+			expect(getTextareaElement(element)
 				?.getAttribute(propertyName))
 				.toEqual(value);
 		});
 
 		it('should set maxLength on proxy input', function () {
-			(element as any)[propertyName] = value;
-			expect((element.proxy as any)[proxyPropertyName])
-				.toEqual(Number(value));
-		});
-	});
-
-	describe('minlength', function () {
-		const value = '2';
-		const propertyName = 'minlength';
-		const proxyPropertyName = 'minLength';
-
-		it('should set minlength attribute on the input', async function () {
-
-			(element as any)[propertyName] = value;
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('input')
-				?.getAttribute(propertyName))
-				.toEqual(value);
-		});
-
-		it('should set minLength on proxy input', function () {
 			(element as any)[propertyName] = value;
 			expect((element.proxy as any)[proxyPropertyName])
 				.toEqual(Number(value));
@@ -221,7 +166,7 @@ describe('vwc-text-field', () => {
 		});
 
 		it('should attach to closest form', async function () {
-			const {form: formElement} = createFormHTML<TextField>({
+			const {form: formElement} = createFormHTML<TextArea>({
 				componentTagName: COMPONENT_TAG_NAME,
 				fieldName,
 				fieldValue,
@@ -241,7 +186,7 @@ describe('vwc-text-field', () => {
 		});
 
 		it('should attach to form when given form id', async function () {
-			const {otherForm} = createFormHTML<TextField>(
+			const {otherForm} = createFormHTML<TextArea>(
 				{
 					fieldName, fieldValue, formId, otherFormId: 'otherFormId', componentTagName: COMPONENT_TAG_NAME, formWrapper
 				});
@@ -261,7 +206,7 @@ describe('vwc-text-field', () => {
 			const {
 				form: formElement,
 				element
-			} = createFormHTML<TextField>({
+			} = createFormHTML<TextArea>({
 				fieldName,
 				fieldValue,
 				formId,
@@ -281,7 +226,7 @@ describe('vwc-text-field', () => {
 	describe('events', function () {
 		it('should emit an input event', async function () {
 			const inputPromise = new Promise(res => element.addEventListener('input', () => res(true)));
-			const innerInput = element.shadowRoot?.querySelector('input') as HTMLInputElement;
+			const innerInput = getTextareaElement(element);
 			innerInput.dispatchEvent(new InputEvent('input', {
 				bubbles: true,
 				composed: true
@@ -292,13 +237,39 @@ describe('vwc-text-field', () => {
 
 		it('should emit a change event', async function () {
 			const inputPromise = new Promise(res => element.addEventListener('change', () => res(true)));
-			const innerInput = element.shadowRoot?.querySelector('input') as HTMLInputElement;
+			const innerInput = getTextareaElement(element);
 			innerInput.dispatchEvent(new InputEvent('change', {
 				bubbles: true,
 				composed: true
 			}));
 			expect(await inputPromise)
 				.toEqual(true);
+		});
+
+		describe('disabled', function () {
+			it('should set disabled class when attribute is set', async function () {
+				const disabledClassWhenEnabled = getBaseElement(element)
+					.classList
+					.contains('disabled');
+				element.disabled = true;
+				await elementUpdated(element);
+				const disabledClassWhenDisabled = getBaseElement(element)
+					.classList
+					.contains('disabled');
+				expect(disabledClassWhenEnabled)
+					.toEqual(false);
+				expect(disabledClassWhenDisabled)
+					.toEqual(true);
+			});
+		});
+	});
+
+	describe('name', function () {
+		it('should reflect the name on the internal input', async function () {
+			const internalInput = getTextareaElement(element);
+			element.name = 'text area name';
+			await elementUpdated(element);
+			expect(internalInput.getAttribute('name')).toEqual('text area name');
 		});
 	});
 
@@ -445,22 +416,29 @@ describe('vwc-text-field', () => {
 
 			expect(element.shadowRoot?.querySelector('.error-message')).toBeNull();
 		});
+
 	});
 
-	describe('disabled', function () {
-		it('should set disabled class when attribute is set', async function () {
-			const disabledClassWhenEnabled = getBaseElement(element)
-				.classList
-				.contains('disabled');
-			element.disabled = true;
+	describe('rows, cols and wrap', function () {
+		it('should reflect rows cols and wrap on the control', async function () {
+			const control = getControlElement(element);
+			const rows = 5;
+			const cols = 10;
+			const wrap = 'hard';
+			element.rows = rows;
+			element.cols = cols;
+			element.wrap = wrap;
 			await elementUpdated(element);
-			const disabledClassWhenDisabled = getBaseElement(element)
-				.classList
-				.contains('disabled');
-			expect(disabledClassWhenEnabled)
-				.toEqual(false);
-			expect(disabledClassWhenDisabled)
-				.toEqual(true);
+			expect(control.getAttribute('rows')).toEqual(rows.toString());
+			expect(control.getAttribute('cols')).toEqual(cols.toString());
+			expect(control.getAttribute('wrap')).toEqual(wrap);
+		});
+
+		it('should remove cols attribute if cols is falsy', async function () {
+			const control = getControlElement(element);
+			(element.cols as any) = undefined;
+			await elementUpdated(element);
+			expect(control.hasAttribute('cols')).toEqual(false);
 		});
 	});
 
@@ -480,80 +458,5 @@ describe('vwc-text-field', () => {
 				.toEqual(true);
 		});
 	});
-
-	describe('density', function () {
-		it('should set the size class on the root', async function () {
-			const density = 'extended';
-			element.setAttribute('density', density);
-			await elementUpdated(element);
-
-			expect(getBaseElement(element)
-				.classList
-				.contains('density-extended'))
-				.toEqual(true);
-		});
-	});
-
-	describe('appearance', function () {
-		it('should set the shape class on the root', async function () {
-			const appearance = 'filled';
-			element.setAttribute('appearance', appearance);
-			await elementUpdated(element);
-
-			expect(getBaseElement(element)
-				.classList
-				.contains('appearance-filled'))
-				.toEqual(true);
-		});
-	});
-
-	describe('shape', function () {
-		it('should set the shape appearance class on the base', async function () {
-			const shape = 'pill';
-			element.setAttribute('shape', shape);
-			await elementUpdated(element);
-
-			expect(getBaseElement(element)
-				.classList
-				.contains('shape-pill'))
-				.toEqual(true);
-		});
-	});
-
-	describe('icon', function () {
-		it('should render the icon with type', async function () {
-			const iconExistsWithoutAttribute = element.shadowRoot?.querySelector('vwc-icon');
-			element.setAttribute('icon', 'home');
-			await elementUpdated(element);
-			const iconElement = element.shadowRoot?.querySelector('vwc-icon');
-			expect(iconExistsWithoutAttribute)
-				.toBeFalsy();
-			expect(iconElement instanceof Icon)
-				.toEqual(true);
-			expect(iconElement?.getAttribute('type'))
-				.toEqual('home');
-		});
-	});
-
-	describe('autocomplete', function () {
-		it('should set autocomplete on the internal input', async function () {
-			const internalInput = element.shadowRoot?.querySelector('input') as HTMLElement;
-			const autoCompleteDefault = internalInput.getAttribute('autocomplete');
-
-			element.autoComplete = 'off';
-			await elementUpdated(element);
-			expect(autoCompleteDefault).toBeNull();
-			expect(internalInput.getAttribute('autocomplete')).toEqual('off');
-
-		});
-	});
-
-	describe('name', function () {
-		it('should reflect the name on the internal input', async function () {
-			const internalInput = element.shadowRoot?.querySelector('input') as HTMLElement;
-			element.name = 'off';
-			await elementUpdated(element);
-			expect(internalInput.getAttribute('name')).toEqual('off');
-		});
-	});
 });
+

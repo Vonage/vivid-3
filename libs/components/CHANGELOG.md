@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Thu, 08 Sep 2022 11:03:56 GMT and should not be manually modified.
+This log was last generated on Fri, 09 Sep 2022 10:25:02 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.55
+
+Fri, 09 Sep 2022 10:25:02 GMT
+
+### Changes
+
+- Add the text-area component (yonatan.kra@vonage.com)
 
 ## 3.0.0-next.54
 
