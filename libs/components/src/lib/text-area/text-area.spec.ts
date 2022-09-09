@@ -25,6 +25,27 @@ describe('vwc-text-area', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-text-field', async () => {
+			const elmProps = {
+				charCount: false,
+				cols: 20,
+				dirtyValue: false,
+				disabled: false,
+				errorValidationMessage: '',
+				helperText: undefined,
+				label: undefined,
+				maxlength: undefined,
+				minlength: undefined,
+				name: undefined,
+				placeholder: undefined,
+				readOnly: undefined,
+				required: false,
+				rows: undefined,
+				userValid: true,
+				value: '',
+			};
+			Object.keys(elmProps).forEach((key) => {
+				expect((element as any)[key]).toEqual((elmProps as any)[key]);
+			});
 			expect(element)
 				.toBeInstanceOf(TextArea);
 		});
