@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "Add the text-area component",
-  "packageName": "@vonage/vivid",
-  "email": "yonatan.kra@vonage.com",
-  "dependentChangeType": "patch"
-}
