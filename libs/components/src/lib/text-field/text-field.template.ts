@@ -42,16 +42,10 @@ function renderLabel() {
 	  </label>`;
 }
 
-/**
- *
- */
 function renderHelperText() {
 	return html<TextField>`<span class="helper-text">${x => x.helperText}</span>`;
 }
 
-/**
- *
- */
 function renderCharCount() {
 	return html<TextField>`
 		<span class="char-count">${x => x.value ? x.value.length : 0 } / ${ x => x.maxlength }</span>

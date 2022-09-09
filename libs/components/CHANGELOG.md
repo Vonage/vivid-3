@@ -1,8 +1,40 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Thu, 01 Sep 2022 13:29:47 GMT and should not be manually modified.
+This log was last generated on Fri, 09 Sep 2022 10:25:02 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.55
+
+Fri, 09 Sep 2022 10:25:02 GMT
+
+### Changes
+
+- Add the text-area component (yonatan.kra@vonage.com)
+
+## 3.0.0-next.54
+
+Thu, 08 Sep 2022 11:03:56 GMT
+
+### Changes
+
+- modify typography styles for desktop (yinon@hotmail.com)
+
+## 3.0.0-next.53
+
+Wed, 07 Sep 2022 15:12:01 GMT
+
+### Changes
+
+- Prevent styles injection to the DOM (yonatan.kra@vonage.com)
+
+## 3.0.0-next.52
+
+Mon, 05 Sep 2022 17:51:29 GMT
+
+### Changes
+
+- bug fix for icon connotation and setup its ui-test (yinon@hotmail.com)
 
 ## 3.0.0-next.51
 
