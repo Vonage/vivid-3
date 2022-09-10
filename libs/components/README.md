@@ -54,15 +54,15 @@ Only one theme is required to be loaded.
 
 ### Styles (Optional)
 
-In Addition to the tokens and fonts, the components library also provides a set of styles that can be used to align the application with the Vivid design system.
+In Addition, this library provides a set of styles (combined with the tokens and fonts) that can be used to embody the Vivid design system into an application.
 
-These styles are not required by vivid components directly but rely on the tokens and fonts 👆 to be loaded.
+These styles are not required by vivid components directly. however, they do rely on the tokens and fonts 👆 to be loaded as components do.
 
 - `node_modules/@vonage/vivid/styles/core/theme.css` - Sets theme related styles
 
 - `node_modules/@vonage/vivid/styles/core/typography.css` - Sets typography related styles
 
-- `node_modules/@vonage/vivid/styles/core/all.css` - Set all the above styles
+- `node_modules/@vonage/vivid/styles/core/all.css` - Sets all the above styles
 
 Note: scss users can simply [forward](https://sass-lang.com/documentation/at-rules/forward) the styles to their scss project:
 
