@@ -38,7 +38,7 @@ Tokens should not affect the look of the application rather just provide a commo
 
 As the task of loading css is not trivial, and may vary from project to project, this library does not provide any way to load the css. It is up to the author to load the css in the most appropriate manner for their project.
 
-To **include the styles**, css files must be loaded into the project from the `node_modules/@vonage/vivid/styles/tokens` folder and require a `vivid-root` class selector to be present on the wrapping element (commonly `body`).
+To **include the styles**, css files must be loaded into the project from the `node_modules/@vonage/vivid/styles/tokens` folder and *require a `vvd-root` class* selector to be present on the wrapping element (advisably `:root`).
 
 Folder contains the following files:
 

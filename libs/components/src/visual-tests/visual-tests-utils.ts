@@ -118,8 +118,8 @@ export async function loadTemplate({
 	template,
 }: { page: Page, template: string }) {
 
-	await page.$('body').then(body => body?.evaluate((body) => {
-		body.classList.add('vvd-root');
+	await page.$('html').then(html => html?.evaluate((html) => {
+		html.classList.add('vvd-root');
 	}, template));
 
 	await page.$('body').then(body => body?.evaluate((body, template) => {
