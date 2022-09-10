@@ -3,7 +3,37 @@ import * as path from 'path';
 import markdownIt from 'markdown-it';
 import { JSDOM } from 'jsdom';
 import type {Page} from '@playwright/test';
-import layout from '../../../../apps/docs/transformers/code-block-demo/layout.js';
+
+const layout = (function() {
+	const layoutFactorial = (...attrs) =>
+		(code) => `
+    <script type="module" src="/assets/modules/components/layout/index.js"></script>
+    <vwc-layout ${attrs.join(' ')}>${code}</vwc-layout>
+`;
+
+	const inline = layoutFactorial('gutters="small"');
+	const blocks = layoutFactorial('gutters="small"', 'column-basis="block"');
+	const columns = layoutFactorial('gutters="small"', 'column-basis="medium"');
+	const center = code => `<div class="center">${code}</div>`;
+
+	const layoutFun = (code, classList) => {
+		if (classList.contains('full')) {
+			return code;
+		} else if (classList.contains('blocks')) {
+			return blocks(code);
+		} else if (classList.contains('columns')) {
+			return columns(code);
+		} else if (classList.contains('center')) {
+			return center(code);
+		} else if (classList.contains('inline')) {
+			return inline(`<div>${code}</div>`);
+		} else { // default
+			return inline(`<div>${code}</div>`);
+		}
+	};
+	return layoutFun;
+
+})();
 
 const md = markdownIt({
 	html: true,
