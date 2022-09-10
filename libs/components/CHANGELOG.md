@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Fri, 09 Sep 2022 10:25:02 GMT and should not be manually modified.
+This log was last generated on Fri, 09 Sep 2022 16:43:16 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.56
+
+Fri, 09 Sep 2022 16:43:16 GMT
+
+### Changes
+
+- deterministic layout size in action group doc (yinon@hotmail.com)
 
 ## 3.0.0-next.55
 
