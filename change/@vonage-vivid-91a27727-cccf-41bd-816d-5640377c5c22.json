@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "refactor styles to separate concerns from styles to tokens",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}
