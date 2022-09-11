@@ -1,4 +1,4 @@
-# menu-item
+# Menu Item
 
 Represents a menu-item custom element.
 
@@ -9,16 +9,9 @@ Represents a menu-item custom element.
 ```
 
 ```html preview
-<style>
- html { 
-  block-size: 400px; 
- }
-</style>
 
 <vwc-menu open>
- <vwc-menu-item>Menu item 1</vwc-menu-item>
- <vwc-menu-item>Menu item 2</vwc-menu-item>
- <vwc-menu-item>Menu item 3</vwc-menu-item>
+ <vwc-menu-item>Menu item</vwc-menu-item>
 </vwc-menu>
 ```
 
@@ -26,23 +19,21 @@ Represents a menu-item custom element.
 
 ### Role
 
-set `role` to change the role of the menu item.
+set `role` to change the role of the menu item
 
 - Type: `'menuitem'` | `'menuitemcheckbox'` | `'menuitemradio'`
 - Default: `'menuitem'`
--
-- menuitemradio
 
 ```html preview
 <style>
  html { 
-  block-size: 400px; 
+  block-size: 360px; 
  }
 </style>
 
 <vwc-menu open>
- <vwc-menu-item>Menu item 1</vwc-menu-item>
- <vwc-menu-item>Menu item 2</vwc-menu-item>
+ <vwc-menu-item role="menuitem">Menu item 1</vwc-menu-item>
+ <vwc-menu-item role="menuitem">Menu item 2</vwc-menu-item>
  <vwc-divider></vwc-divider>
  <vwc-menu-item role="menuitemcheckbox">Checkbox 1</vwc-menu-item>
  <vwc-menu-item role="menuitemcheckbox">Checkbox 2</vwc-menu-item>
@@ -55,21 +46,64 @@ set `role` to change the role of the menu item.
 </vwc-menu>
 ```
 
-disabled public boolean  The disabled state of the element.
-expanded public boolean  The expanded state of the element.
-role public MenuItemRole  The role of the element.
-checked public boolean  The checked value of the element.
+### checked
 
-## Slots
+The checked value of the element.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-menu open>
+ <vwc-menu-item>Menu item</vwc-menu-item>
+ <vwc-menu-item checked>Checked Menu item</vwc-menu-item>
+</vwc-menu>
+```
+
+### Disabled
+
+The disabled state of the element
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-menu open>
+ <vwc-menu-item>Menu item</vwc-menu-item>
+ <vwc-menu-item disabled>Disabled Menu item</vwc-menu-item>
+</vwc-menu>
+```
+
+<!-- ### Expanded
+
+The expanded state of the element
+
+- Type: `boolean`
+- Default: `false` -->
 
 ## Methods
 
-expandedChanged protected  oldValue: boolean void
-checkedChanged protected  oldValue: boolean, newValue: boolean void
+### expandedChanged
 
-expanded-change  Fires a custom 'expanded-change' event when the expanded state changes
-change  Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `menuitemradio`, or `menuitem` is invoked
+- Parameters:
+  - oldValue: `boolean`
+- Returns: `void`
 
-## Accessibility
+### checkedChanged
 
-## Use Cases
+- Parameters:
+  - oldValue: `boolean`
+  - newValue: `boolean`
+- Returns: `void`
+
+oldValue: boolean, newValue: boolean void
+
+## Events
+
+### Expanded Change
+
+Fires a custom 'expanded-change' event when the expanded state changes
+
+### Change
+
+Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `menuitemradio`, or `menuitem` is invoked
