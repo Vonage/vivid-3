@@ -1,6 +1,6 @@
 {
   "name": "@vonage/vivid",
-  "version": "3.0.0-next.51",
+  "version": "3.0.0-next.57",
   "type": "module",
   "module": "./index.js",
   "main": "./index.js",
@@ -39,11 +39,13 @@
     "./nav-item": "./nav-item",
     "./nav-disclosure": "./nav-disclosure",
     "./text-field": "./text-field",
+    "./text-field": "./text-area",
     "./tooltip": "./tooltip",
     "./checkbox": "./checkbox",
     "./dialog": "./dialog",
     "./divider": "./divider",
     "./menu": "./menu",
-    "./menu-item": "./menu-item"
+    "./menu-item": "./menu-item",
+    "./avatar": "./avatar"
   }
 }
