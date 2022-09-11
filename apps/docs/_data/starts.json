@@ -1,9 +1,0 @@
-[
-  {
-    "title": "getting-started",
-    "markdown": "./docs/design/starts/getting-started.md",
-    "modules": [
-      "/assets/modules/components/icon/index.js"
-    ]
-  }
-]
