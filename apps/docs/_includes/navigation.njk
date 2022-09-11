@@ -2,25 +2,25 @@
 <vwc-nav>
  <vwc-nav-disclosure label="Getting Started">
     {%  for item in start | sort(false, false, 'title') %}
-    <vwc-nav-item href="{{ ('/start/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-nav-item>
+    <vwc-nav-item href="{{ ('/start/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}" {% if ('/start/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
     {% endfor %}
   </vwc-nav-disclosure>
 
  <vwc-nav-disclosure label="Design System">
     {%  for item in design | sort(false, false, 'title') %}
-    <vwc-nav-item href="{{ ('/design/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-nav-item>
+    <vwc-nav-item href="{{ ('/design/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}" {% if ('/design/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
     {% endfor %}
   </vwc-nav-disclosure>
 
  <vwc-nav-disclosure label="Color Palette">
     {%  for item in palette | sort(false, false, 'title') %}
-    <vwc-nav-item href="{{ ('/palette/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-nav-item>
+    <vwc-nav-item href="{{ ('/palette/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}" {% if ('/palette/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
     {% endfor %}
   </vwc-nav-disclosure>
 
   <vwc-nav-disclosure label="Components" open>
     {%  for item in components | sort(false, false, 'title') %}
-    <vwc-nav-item href="{{ ('/components/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}"></vwc-nav-item>
+    <vwc-nav-item href="{{ ('/components/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}" {% if ('/components/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
     {% endfor %}
   </vwc-nav-disclosure>
 </vwc-nav>

@@ -1,23 +1,17 @@
 
+@use 'sass:map';
+
 @use '../../../../../dist/libs/tokens/scss/typography/desktop.mixin' as typography;
 @use '../../../../..//dist/libs/tokens/scss/constants' as constants;
 
-// $selector: '.vvd-typography' !default; // alternatively set to :root
 
-// #{$selector} {
-// 	// our root
-// 	font-feature-settings: 'kern';       /* turns on kerning */
-// 	text-rendering: optimizeLegibility;  /* emphasise on legibility when rendering, turns on ligatures and kerning */
-// 	-webkit-font-smoothing: antialiased; /* apply font anti-aliasing for Webkit on OSX */
-// 	-moz-osx-font-smoothing: grayscale;  /* apply font anti-aliasing for Firefox on OSX */
-// 	font: var(#{constants.$vvd-font-base});
-// 	@include typography.variables;
-// 	font-size: 62.5%;
-// }
+$selectors: (
+	bold: 'b, strong',
+	code: 'pre, var, code, kbd, samp',
+);
 
 :root {
 	@include typography.variables;
-	font-size: 62.5%;
 }
 
 body {
@@ -25,15 +19,19 @@ body {
 	text-rendering: optimizeLegibility;  /* emphasise on legibility when rendering, turns on ligatures and kerning */
 	-webkit-font-smoothing: antialiased; /* apply font anti-aliasing for Webkit on OSX */
 	-moz-osx-font-smoothing: grayscale;  /* apply font anti-aliasing for Firefox on OSX */
-	// ! revert to $vvd-font-base after #617 is merged
-	font: var(#{constants.$vvd-font-base-extended});
+	font: var(#{constants.$vvd-font-base});
 }
 
-strong {
+p {
+	font: var(#{constants.$vvd-font-base});
+	margin-block: 16px;
+}
+
+#{map.get($selectors, 'bold')} {
 	font: var(#{constants.$vvd-font-base-bold});
 }
 
-code {
+#{map.get($selectors, 'code')} {
 	font: var(#{constants.$vvd-font-base-code});
 }
 
@@ -67,125 +65,30 @@ h4, .heading4 {
 	margin-block: 24px;
 }
 
-code {
-	font: var(#{constants.$vvd-font-base-code});
-}
-
-p {
-	margin-block: 16px;
-}
-
 small, figcaption {
 	font: var(#{constants.$vvd-font-base-condensed});
 
-	strong {
+	#{map.get($selectors, 'bold')} {
 		font: var(#{constants.$vvd-font-base-condensed-bold});
+	}
+
+	#{map.get($selectors, 'code')} {
+		font: var(#{constants.$vvd-font-base-condensed-code});
 	}
 }
 
-// :root.vvd-typography {
+sub,
+sup {
+	font: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
 
-	// h1, .headline-1 {
-	// 	@include typography.typography-cat-shorthand(headline-1);
-	// 	font-family: var(#{constants.$vvd-font-family-upright});
-	// 	margin-block: 2.5rem; //! can be em as is a threshold of its font-size
-	// }
+sub {
+  bottom: -0.25em;
+}
 
-	// h2, .headline-2 {
-	// 	@include typography.typography-cat-shorthand(headline-2);
-	// 	font-family: var(#{constants.$vvd-font-family-upright});
-	// 	margin-block: 2.5rem;
-	// }
-
-	// h3, .subtitle-1 {
-	// 	@include typography.typography-cat-shorthand(subtitle-1);
-	// 	font-family: var(#{constants.$vvd-font-family-upright});
-	// 	margin-block: 1.5rem;
-	// }
-
-	// h4, .subtitle-2 {
-	// 	@include typography.typography-cat-shorthand(subtitle-2);
-	// 	font-family: var(#{constants.$vvd-font-family-upright});
-	// 	margin-block: 1.5rem;
-	// }
-
-	// h5, .title-1 {
-	// 	@include typography.typography-cat-shorthand(title-1);
-	// 	font-family: var(#{constants.$vvd-font-family-upright});
-	// 	margin-block: 2rem;
-	// }
-
-	// h6, .title-2 {
-	// 	@include typography.typography-cat-shorthand(title-2);
-	// 	font-family: var(#{constants.$vvd-font-family-upright});
-	// 	margin-block: 2rem;
-	// }
-
-	// code {
-	// 	@include typography.typography-cat-shorthand(base-extended-code);
-	// 	font-family: var(#{constants.$vvd-font-family-upright});
-	// }
-
-	// body, p {
-	// 	@include typography.typography-cat-shorthand(base-extended);
-	// 	font-family: var(#{constants.$vvd-font-family-upright});
-	// }
-
-	// strong {
-	// 	@include typography.typography-cat-shorthand(base-extended-bold);
-	// 	font-family: var(#{constants.$vvd-font-family-upright});
-	// }
-
-	// code {
-	// 	@include typography.typography-cat-shorthand(base-extended-code);
-	// 	font-family: var(#{constants.$vvd-font-family-monospace});
-	// }
-
-	// a:any-link {
-	//		text-decoration: underline;
-	// }
-
-	// .base {
-	// 		@include typography.typography-cat-shorthand(base);
-	// }
-
-	// .base-bold {
-	// 		@include typography.typography-cat-shorthand(base-bold);
-	// }
-
-	// .base-code {
-	// 		@include typography.typography-cat-shorthand(base-code);
-	// }
-
-	// .base-link {
-	// 		@include typography.typography-cat-shorthand(base-link);
-	// }
-
-	// .button {
-	// 		@include typography.typography-cat-shorthand(button);
-	// }
-
-	// .button-dense {
-	// 		@include typography.typography-cat-shorthand(button-dense);
-	// }
-
-	// .button-enlarge {
-	// 		@include typography.typography-cat-shorthand(button-enlarge);
-	// }
-
-	// .base-condensed {
-	// 		@include typography.typography-cat-shorthand(base-condensed);
-	// }
-
-	// .base-condensed-bold {
-	// 		@include typography.typography-cat-shorthand(base-condensed-bold);
-	// }
-
-	// .base-condensed-code {
-	// 		@include typography.typography-cat-shorthand(base-condensed-code);
-	// }
-
-	// .base-condensed-link {
-	// 		@include typography.typography-cat-shorthand(base-condensed-link);
-	// }
-// }
+sup {
+  top: -0.5em;
+}
