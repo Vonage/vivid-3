@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Sun, 11 Sep 2022 12:51:47 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.58",
+      "version": "3.0.0-next.58",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "2f464cac13e2110e468026ec5a7a2eb0954bf1e0",
+            "comment": "refactor styles to separate concerns from styles to tokens"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 11 Sep 2022 12:07:31 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.57",
       "version": "3.0.0-next.57",
