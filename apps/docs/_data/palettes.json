@@ -1,13 +1,14 @@
 [
   {
     "title": "guidelines-usage-and-mapping",
-    "markdown": "./docs/design/palette/guidelines-usage-and-mapping.md",
+    "markdown": "./docs/design/palettes/guidelines-usage-and-mapping.md",
     "modules": [
+      "/assets/modules/components/layout/index.js"
     ]
   },
   {
     "title": "how-to-work-with-ui-kit-colors",
-    "markdown": "./docs/design/palette/how-to-work-with-ui-kit-colors.md",
+    "markdown": "./docs/design/palettes/how-to-work-with-ui-kit-colors.md",
     "modules": [
       "/assets/modules/components/layout/index.js"
     ]

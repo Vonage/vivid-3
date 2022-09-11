@@ -1,20 +1,20 @@
 {% block content %}
 <vwc-nav>
- <vwc-nav-disclosure label="Getting Started">
-    {%  for item in start | sort(false, false, 'title') %}
-    <vwc-nav-item href="{{ ('/start/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}" {% if ('/start/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
+ <vwc-nav-disclosure label="Getting Started" open>
+    {%  for item in starts | sort(false, false, 'title') %}
+    <vwc-nav-item href="{{ ('/starts/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}" {% if ('/starts/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
     {% endfor %}
   </vwc-nav-disclosure>
 
- <vwc-nav-disclosure label="Design System">
-    {%  for item in design | sort(false, false, 'title') %}
-    <vwc-nav-item href="{{ ('/design/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}" {% if ('/design/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
+ <vwc-nav-disclosure label="Design System" open>
+    {%  for item in designs | sort(false, false, 'title') %}
+    <vwc-nav-item href="{{ ('/designs/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}" {% if ('/designs/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
     {% endfor %}
   </vwc-nav-disclosure>
 
- <vwc-nav-disclosure label="Color Palette">
-    {%  for item in palette | sort(false, false, 'title') %}
-    <vwc-nav-item href="{{ ('/palette/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}" {% if ('/palette/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
+ <vwc-nav-disclosure label="Color Palette" open>
+    {%  for item in palettes | sort(false, false, 'title') %}
+    <vwc-nav-item href="{{ ('/palettes/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}" {% if ('/palettes/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
     {% endfor %}
   </vwc-nav-disclosure>
 
