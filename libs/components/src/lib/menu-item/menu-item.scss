@@ -14,8 +14,13 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
+@supports selector(:focus-visible) {
+:host(:focus) {
+		outline: none;
+	}
+}
 
-.control {
+.base {
 	$min-block-size: 40px;
 	$gap: 8px;
 
@@ -42,12 +47,6 @@
 		user-select: none;
 	}
 
-	@supports selector(:focus-visible) {
-		&:focus {
-			outline: none;
-		}
-	}
-
 	&.icon-only {
 		display: flex;
 		block-size: $min-block-size;
@@ -58,7 +57,8 @@
 }
 
 .focus-indicator {
-	.control:not(:focus-visible) & {
+	border-radius: 6px;
+	:host(:not(:focus-visible)) & {
 		display: none;
 	}
 }

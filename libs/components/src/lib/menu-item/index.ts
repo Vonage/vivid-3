@@ -10,10 +10,7 @@ import { MenuItemTemplate as template } from './menu-item.template';
 export const vividMenuItem = MenuItem.compose<MenuItemOptions>({
 	baseName: 'menu-item',
 	template: template as any,
-	styles,
-	shadowOptions: {
-		delegatesFocus: true,
-	},
+	styles
 });
 
 designSystem.register(vividMenuItem());

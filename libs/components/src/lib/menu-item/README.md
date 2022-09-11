@@ -46,7 +46,7 @@ set `role` to change the role of the menu item
 </vwc-menu>
 ```
 
-### checked
+### Checked
 
 The checked value of the element.
 

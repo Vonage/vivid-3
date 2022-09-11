@@ -1,7 +1,8 @@
 import { attr } from '@microsoft/fast-element';
 import { Menu as FastMenu } from '@microsoft/fast-foundation';
 import type { Placement } from '@floating-ui/dom';
-// import { isHTMLElement } from '@microsoft/fast-web-utilities';
+import type { Popup } from '../popup/popup';
+
 
 /**
  * Base class for menu
@@ -9,16 +10,7 @@ import type { Placement } from '@floating-ui/dom';
  * @public
  */
 export class Menu extends FastMenu {
-
-	// constructor() {
-	// 	super();
-	// 	this['isMenuItemElement'] = (el: Element): el is HTMLElement =>  (
-	// 		isHTMLElement(el) &&
-	// 		roleForMenuItem.hasOwnProperty(
-	// 			el.shadowRoot?.firstElementChild?.getAttribute('role') as string
-	// 		)
-	// 	);
-	// }
+	_popup?: Popup;
 
 	/**
 	 * indicates whether the menu is open
@@ -28,7 +20,7 @@ export class Menu extends FastMenu {
 	 */
 	@attr({
 		mode: 'boolean',
-	}) open = false;
+	}) open? = false;
 
 	/**
 	 * the placement of the menu
@@ -45,4 +37,15 @@ export class Menu extends FastMenu {
 	 * HTML Attribute: anchor
 	 */
 	@attr anchor?: string;
+
+	override connectedCallback() {
+		super.connectedCallback();
+		this._popup?.addEventListener('open-changed', this.handlePopupOpenChanged);
+	}
+
+	handlePopupOpenChanged = () => {
+		if (this._popup?.open && this._popup.open != this.open) {
+			this.open = this._popup.open;
+		}
+	};
 }

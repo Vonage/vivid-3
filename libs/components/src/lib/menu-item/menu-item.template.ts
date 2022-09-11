@@ -4,11 +4,13 @@ import type { MenuItemOptions } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Icon } from '../icon/icon';
 import type { MenuItem } from './menu-item';
+import { focusTemplateFactory } from './../../shared/patterns/focus';
+
 
 const getClasses = ({
 	disabled, checked, expanded, startColumnCount
 }: MenuItem) =>	classNames(
-	'control',
+	'base',
 	`indent-${startColumnCount}`,
 	['disabled', Boolean(disabled)],
 	['selected', Boolean(checked)],
@@ -32,6 +34,8 @@ export const MenuItemTemplate:  (
 	definition: MenuItemOptions
 ) => {
 	const iconTag = context.tagFor(Icon);
+	const focusTemplate = focusTemplateFactory(context);
+
 	// const anchoredRegionTag = tagFor(options.anchoredRegion);
 	return html<MenuItem>`
 	<template
@@ -51,8 +55,8 @@ export const MenuItemTemplate:  (
 		size="medium"
 							class="indicator"
 		type="${x => x.checked
-		? 'checkbox-checked-solid'
-		: 'checkbox-unchecked-solid'
+		? 'checkbox-checked-line'
+		: 'checkbox-unchecked-line'
 }"></${iconTag}>`)}
 
 						${when(
@@ -61,8 +65,8 @@ export const MenuItemTemplate:  (
 		size="medium"
 							class="indicator"
 		type="${x => x.checked
-		? 'radio-checked-solid'
-		: 'radio-unchecked-solid'
+		? 'radio-checked-line'
+		: 'radio-unchecked-line'
 }"></${iconTag}>`
 	)}
 
@@ -84,6 +88,7 @@ export const MenuItemTemplate:  (
 								</div>
 						`
 	)}
+		${() => focusTemplate}
 		</div>
 	</template>
 	`;
