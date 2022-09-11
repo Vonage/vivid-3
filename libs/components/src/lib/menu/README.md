@@ -9,7 +9,11 @@ Menu, commonly known as a "context menu", is an element that is displayed upon u
 ```
 
 ```html preview
-<vwc-menu open>Should contain menu items</vwc-menu>
+<vwc-menu open>
+ <vwc-menu-item>Menu item 1</vwc-menu-item>
+ <vwc-menu-item>Menu item 2</vwc-menu-item>
+ <vwc-menu-item>Menu item 3</vwc-menu-item>
+</vwc-menu>
 ```
 
 ## Members
@@ -21,7 +25,11 @@ Proxies the [`open` property to the underlying popup element](../popup#open).
 ```html preview
 <vwc-button label="open" onclick="menu.open = !menu.open"></vwc-button>
 
-<vwc-menu id="menu" text="Focus or hover to open." open>Should contain menu items</vwc-menu>
+<vwc-menu id="menu" text="Focus or hover to open." open>
+ <vwc-menu-item>Menu item 1</vwc-menu-item>
+ <vwc-menu-item>Menu item 2</vwc-menu-item>
+ <vwc-menu-item>Menu item 3</vwc-menu-item>
+</vwc-menu>
 ```
 
 ### Anchor
@@ -32,7 +40,11 @@ Proxies the [`anchor` property to the underlying popup element](../popup#anchor)
 <div style="position: relative">
   <vwc-button id="button" label="open" onclick="menu.open = !menu.open"></vwc-button>
 
-  <vwc-menu id="menu" anchor="button" text="Focus or hover to open." open>Should contain menu items</vwc-menu>
+  <vwc-menu id="menu" anchor="button" text="Focus or hover to open." open>
+   <vwc-menu-item>Menu item 1</vwc-menu-item>
+   <vwc-menu-item>Menu item 2</vwc-menu-item>
+   <vwc-menu-item>Menu item 3</vwc-menu-item>
+ </vwc-menu>
 </div>
 ```
 
@@ -44,7 +56,11 @@ Proxies the [`placement` property to the underlying popup element](../popup#plac
 <div style="position: relative">
   <vwc-button id="button" label="open" onclick="menu.open = !menu.open"></vwc-button>
 
-  <vwc-menu id="menu" anchor="button" text="Focus or hover to open." placement="top-start" open>Should contain menu items</vwc-menu>
+ <vwc-menu id="menu" anchor="button" text="Focus or hover to open." placement="top-start" open>
+   <vwc-menu-item>Menu item 1</vwc-menu-item>
+   <vwc-menu-item>Menu item 2</vwc-menu-item>
+   <vwc-menu-item>Menu item 3</vwc-menu-item>
+ </vwc-menu>
 </div>
 ```
 
@@ -58,7 +74,9 @@ While any DOM content is permissible as a child of the menu, only `vwc-menu-item
 
 ```html preview full
 <vwc-menu open>
-Should contain menu items
+ <vwc-menu-item>Menu item 1</vwc-menu-item>
+ <vwc-menu-item>Menu item 2</vwc-menu-item>
+ <vwc-menu-item>Menu item 3</vwc-menu-item>
 </vwc-menu>
 ```
 
