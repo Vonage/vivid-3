@@ -32,7 +32,7 @@ export const MenuTemplate: (
 				:placement=${(x) => x.placement}
 				:open=${(x) => x.open}
 				:anchor=${(x) => x.anchor}
-				 ${ref('_popup')}
+				${ref('_popup')}
 			>
 				<div
 					class="base"

@@ -54,7 +54,7 @@ Proxies the [`placement` property to the underlying popup element](../popup#plac
 
 ```html preview center
 <div style="position: relative">
-  <vwc-button id="button" label="open" onclick="menu.open = !menu.open"></vwc-button>
+  <vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open"></vwc-button>
 
  <vwc-menu id="menu" anchor="button" text="Focus or hover to open." placement="top-start" open>
    <vwc-menu-item>Menu item 1</vwc-menu-item>

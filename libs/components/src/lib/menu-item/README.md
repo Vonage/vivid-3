@@ -46,6 +46,24 @@ set `role` to change the role of the menu item
 </vwc-menu>
 ```
 
+### Icon
+
+Use `icon` to set an icon to the nav item.
+View list of available icon at the [vivid icons gallery](https://icons.vivid.vonage.com).
+
+Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the nav item's purpose.
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-menu open>
+ <vwc-menu-item icon="file-pdf-line">Export to PDF</vwc-menu-item>
+ <vwc-menu-item icon="file-csv-line">Export to CSV</vwc-menu-item>
+ <vwc-menu-item icon="file-jpg-line">Export to JPG</vwc-menu-item>
+</vwc-menu>
+```
+
 ### Checked
 
 The checked value of the element.

@@ -15,7 +15,7 @@
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
 @supports selector(:focus-visible) {
-:host(:focus) {
+	:host(:focus) {
 		outline: none;
 	}
 }
@@ -53,7 +53,6 @@
 		inline-size: $min-block-size;
 		place-content: center;
 	}
-
 }
 
 .focus-indicator {
@@ -65,5 +64,9 @@
 
 .icon {
 	font-size: 20px;
+
+	.base:not(.item-checkbox, .item-radio) & {
+		color: var(#{constants.$vvd-color-neutral-600});
+	}
 }
 

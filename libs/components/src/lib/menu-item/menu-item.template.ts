@@ -2,19 +2,22 @@ import { html, ViewTemplate, when } from '@microsoft/fast-element';
 import { ElementDefinitionContext, MenuItemRole } from '@microsoft/fast-foundation';
 import type { MenuItemOptions } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { Icon } from '../icon/icon';
+// import { Icon } from '../icon/icon';
+import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { MenuItem } from './menu-item';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
 
 
 const getClasses = ({
-	disabled, checked, expanded, startColumnCount
+	disabled, checked, expanded, startColumnCount, role
 }: MenuItem) =>	classNames(
 	'base',
 	`indent-${startColumnCount}`,
 	['disabled', Boolean(disabled)],
 	['selected', Boolean(checked)],
-	['expanded', Boolean(expanded)]
+	['expanded', Boolean(expanded)],
+	['item-checkbox', role === MenuItemRole.menuitemcheckbox],
+	['item-radio', role === MenuItemRole.menuitemradio]
 );
 
 /**
@@ -33,7 +36,8 @@ export const MenuItemTemplate:  (
 	context: ElementDefinitionContext,
 	definition: MenuItemOptions
 ) => {
-	const iconTag = context.tagFor(Icon);
+	// const iconTag = context.tagFor(Icon);
+	const affixIconTemplate = affixIconTemplateFactory(context);
 	const focusTemplate = focusTemplateFactory(context);
 
 	// const anchoredRegionTag = tagFor(options.anchoredRegion);
@@ -50,37 +54,13 @@ export const MenuItemTemplate:  (
 	>
 		<div class="${getClasses}">
 
-						${when(x => x.role === MenuItemRole.menuitemcheckbox,
-		html<MenuItem>`<${iconTag}
-		size="medium"
-							class="indicator"
-		type="${x => x.checked
-		? 'checkbox-checked-line'
-		: 'checkbox-unchecked-line'
-}"></${iconTag}>`)}
-
-						${when(
-		x => x.role === MenuItemRole.menuitemradio,
-		html<MenuItem>`<${iconTag}
-		size="medium"
-							class="indicator"
-		type="${x => x.checked
-		? 'radio-checked-line'
-		: 'radio-unchecked-line'
-}"></${iconTag}>`
-	)}
-
-				<span class="content" part="content">
-						${x => x.textContent}
-				</span>
 				${when(
 		x => x.hasSubmenu,
 		html<MenuItem>`
 								<div
-										part="expand-collapse-glyph-container"
 										class="expand-collapse-glyph-container"
 								>
-										<span part="expand-collapse" class="expand-collapse">
+										<span class="expand-collapse">
 												<slot name="expand-collapse-indicator">
 														${definition.expandCollapseGlyph ?? ''}
 												</slot>
@@ -88,7 +68,18 @@ export const MenuItemTemplate:  (
 								</div>
 						`
 	)}
-		${() => focusTemplate}
+			${() => focusTemplate}
+
+			${when(x => x.role === MenuItemRole.menuitemcheckbox,
+		html`${x => affixIconTemplate(x.checked ? 'checkbox-checked-line' : 'checkbox-unchecked-line')}`)}
+
+			${when(x => x.role === MenuItemRole.menuitemradio,
+		html`${x => affixIconTemplate(x.checked ? 'radio-checked-line' : 'radio-unchecked-line')}`)}
+
+			${when(x => x.role === MenuItemRole.menuitem && x.icon,
+		html`${x => affixIconTemplate(x.icon)}`)}
+
+			${x => x.textContent}
 		</div>
 	</template>
 	`;

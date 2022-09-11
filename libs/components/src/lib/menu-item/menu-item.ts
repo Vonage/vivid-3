@@ -1,4 +1,5 @@
-import { MenuItem as FastMenuItem } from '@microsoft/fast-foundation';
+import { applyMixins, MenuItem as FastMenuItem } from '@microsoft/fast-foundation';
+import { AffixIcon } from '../../shared/patterns/affix';
 
 /**
  * Base class for menu-item
@@ -16,3 +17,7 @@ export class MenuItem extends FastMenuItem {
 	// 	}
 	// }
 }
+
+export interface MenuItem extends AffixIcon {}
+
+applyMixins(MenuItem, AffixIcon);

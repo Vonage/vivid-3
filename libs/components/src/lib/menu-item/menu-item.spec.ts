@@ -18,4 +18,6 @@ describe('vwc-menu-item', () => {
 			expect(element).toBeInstanceOf(MenuItem);
 		});
 	});
+
+
 });

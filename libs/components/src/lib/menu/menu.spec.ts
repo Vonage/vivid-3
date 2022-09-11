@@ -2,6 +2,7 @@ import { ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture } from '@vivid-nx/shar
 import type { Button } from '@microsoft/fast-foundation';
 import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
 import { Menu } from './menu';
+import '../menu-item';
 import '.';
 
 const COMPONENT_TAG = 'vwc-menu';
@@ -86,6 +87,18 @@ describe('vwc-menu', () => {
 			element.focus();
 
 			expect(document.activeElement).toEqual(div);
+		});
+
+		it('should set menu item tabindex to 0', async () => {
+			const menuItem = document.createElement('vwc-menu-item');
+
+			element.appendChild(menuItem);
+
+			await elementUpdated(element);
+
+			element.focus();
+
+			expect(menuItem.tabIndex).toEqual(0);
 		});
 
 		it('should focus the first menuitemcheckbox in the menu', async () => {
