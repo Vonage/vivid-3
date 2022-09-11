@@ -1,4 +1,4 @@
-import { html, ref, when } from '@microsoft/fast-element';
+import { html, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
@@ -7,13 +7,12 @@ import type {
 import type { SideDrawer } from './side-drawer';
 
 const getClasses = ({
-	alternate, modal, open, position
+	modal, open, trailing
 }: SideDrawer) => classNames(
 	'control',
-	['alternate', alternate],
 	['modal', modal],
 	['open', open],
-	[`position-${position}`, Boolean(position)],
+	['trailing', trailing],
 );
 
 const getScrimClasses = ({
@@ -33,17 +32,16 @@ const getScrimClasses = ({
  */
 export const sideDrawerTemplate: FoundationElementTemplate<ViewTemplate<SideDrawer>> = () => html`
 	<aside class="${getClasses}" part="base ${(x) => x.alternate ? 'vvd-theme-alternate' : ''}"
-	 @keydown="${(x, c) => handleKeydown(x, c.event as KeyboardEvent)}" ${ref('asideEl')}>
-
+	 @keydown="${(x, c) => handleKeydown(x, c.event as KeyboardEvent)}">
     <slot></slot>
-
 	</aside>
 
-	<div class="side-drawer-app-content">
+	<div class="side-drawer-app-content" ?inert="${x => x.open && x.modal}">
 		<slot name="app-content"></slot>
 	</div>
 
-	${when(x => x.modal, html<SideDrawer>`<div class="${getScrimClasses}" ${ref('scrimEl')} @click="${x => (x.open = false)}"></div>`)}
+	${when(x => x.modal,
+		html<SideDrawer>`<div class="${getScrimClasses}" @click="${x => (x.open = false)}"></div>`)}
 `;
 
 const handleKeydown = (x: any, { key }: KeyboardEvent): boolean | void => {

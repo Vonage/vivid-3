@@ -1,8 +1,8 @@
 # Header
 
-represents the top header of a page.
+Represents the top header of a page.
 
-```html
+```js
 <script type="module">
   import '@vonage/vivid/header';
 </script>
@@ -12,8 +12,8 @@ represents the top header of a page.
 
 ### Elevation Shadow
 
-Header is an elevated element and applies elevation surface background color (more noticeable in **dark** themes) but leaves out elevation shadow (more noticeable in **light** themes) for author's to opt-in.
-Set `elevationShadow` on header to apply the elevation shadow corresponding with its surface background color.
+As an elevated element, the Header applies an elevation surface background color (more noticeable in dark themes) but leaves out elevation shadow (more noticeable in light themes) for author's to opt-in.
+Set `elevation-shadow` on header to apply the elevation shadow corresponding with its surface background color.
 
 - Type: `boolean`
 - Default: `false`
@@ -51,41 +51,36 @@ The default slot sets assigned nodes to the start of the header.
 
 ### Action Items
 
-Nodes assigned to `actionItems` slot will be set at the end of the header.
+Nodes assigned to `action-items` slot will be set at the end of the header.
 
 ```html preview full
 <vwc-header>
-  <vwc-button slot="actionItems" icon="twitter-mono"></vwc-button>
-  <vwc-button slot="actionItems" icon="facebook-mono"></vwc-button>
-  <vwc-button slot="actionItems" icon="heart-solid"></vwc-button>
+  <vwc-button slot="action-items" icon="twitter-mono"></vwc-button>
+  <vwc-button slot="action-items" icon="facebook-mono"></vwc-button>
+  <vwc-button slot="action-items" icon="heart-solid"></vwc-button>
 </vwc-header>
 ```
 
 ### App Content
 
-An optional approach to using header in application is to assign application context directly to the header's `app-content` slot, which will set content to follow, vertically, the header itself.
+It is also possible to assign application context directly to the header's `app-content` slot, which will allow content to follow, vertically, the header.
 
 ```html preview full
 <vwc-header>
   Header content
   <main slot="app-content">
     <vwc-layout gutters="small">
-      <vwc-text>
-        Application content
-      </vwc-text>
+      Application content
     </vwc-layout>
   </main>
 </vwc-header>
 ```
 
-## CSS Custom Properties
+## CSS Variables
 
 ### Block Size
 
-Header block size is set definitively.
-Often, it is needed to use the block size value of a header in accordance with other elements in the application.
-`--_header-block-size` is a private custom property holding the block size value and is applied to header style internally.
-This property isn't customizable by authors but does pierce in and can be set to apply style on assigned content.
+The size of the header block is set definitively. A header's block size value is often used in conjunction with other elements in the application. The `--_header-block-size` private custom property is applied internally to header styles and holds the block size value. This property isn't customizable by authors but does pierce in and can be set to apply style to assigned content.
 
 - Type: `css-unit`
 - Accessibility: `read-only`
@@ -108,11 +103,9 @@ This property isn't customizable by authors but does pierce in and can be set to
 
   <main slot="app-content">
     <vwc-layout column-basis="block" gutters="medium">
-      <vwc-text tight font-face="headline-1">
-        <h1>
-          Application content
-        </h1>
-      </vwc-text>
+      <h1>
+        Application content
+      </h1>
     </vwc-layout>
   </main>
 </vwc-header>
@@ -127,7 +120,7 @@ The component's internal *header* element.
 ```html preview full
 <style>
   vwc-header::part(base) {
-    background-color: var(--vvd-color-neutral-20);
+    background-color: var(--vvd-color-neutral-100);
   }
 </style>
 
@@ -136,7 +129,7 @@ The component's internal *header* element.
 </vwc-header>
 ```
 
-## Usage Examples
+## Use Cases
 
 ### Fixed Header with Side Drawer
 
@@ -172,31 +165,23 @@ A *fixed* Header as primary element containing a Side Drawer containing applicat
   <vwc-side-drawer open slot="app-content">
 
     <vwc-layout gutters="small">
-      <vwc-text>
-        Side Drawer content
-      </vwc-text>
+      Side Drawer content
     </vwc-layout>
 
     <!-- main element assigned to side-drawer's 'app-content' slot -->
     <main slot="app-content">
       <vwc-layout gutters="small" column-basis="block">
-        <vwc-text tight font-face="headline-2">
-          <h2>
-            Scroll this window
-          </h2>
-        </vwc-text>
+        <h2>
+          Scroll this window
+        </h2>
 
-        <vwc-text>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-          </p>
-        </vwc-text>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+        </p>
 
-        <vwc-text>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-          </p>
-        </vwc-text>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+        </p>
       </vwc-layout>
     </main>
   </vwc-side-drawer>
@@ -210,42 +195,33 @@ A Side Drawer as primary element containing a Header containing application cont
 ```html preview full
 <style>
   vwc-side-drawer::part(base) {
-    border-right: 1px solid var(--vvd-color-neutral-20);
+    border-right: 1px solid var(--vvd-color-neutral-100);
   }
 </style>
 
 <vwc-side-drawer open>
 
   <vwc-layout gutters="small">
-    <vwc-text>
-      Side Drawer content
-    </vwc-text>
+    Side Drawer content
   </vwc-layout>
 
   <!-- header custom element assigned to side drawer's 'app-content' slot -->
   <vwc-header slot="app-content">
 
     <vwc-layout gutters="small">
-      <vwc-text>
-        Header content
-      </vwc-text>
+      Header content
     </vwc-layout>
 
     <!-- main element assigned to header's 'app-content' slot -->
     <main slot="app-content">
       <vwc-layout gutters="small" column-basis="block">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+        </p>
 
-        <vwc-text>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-          </p>
-        </vwc-text>
-
-        <vwc-text>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-          </p>
-        </vwc-text>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+        </p>
       </vwc-layout>
     </main>
   </vwc-header>
@@ -255,8 +231,8 @@ A Side Drawer as primary element containing a Header containing application cont
 
 ### Header with Banner
 
-Banners are placed at the top of the screen below the Header.
-The Banner in this example is set to stick in to top of the window.
+Banners are placed at the top of the screen below the Header.  
+In this example, the banner sticks to the top of the window.
 
 ```html preview full
 <style>
@@ -276,23 +252,17 @@ The Banner in this example is set to stick in to top of the window.
   <vwc-banner slot="app-content" text="Here's some information that you may find important!"></vwc-banner>
 
   <vwc-layout slot="app-content" column-basis="block" gutters="medium">
-    <vwc-text tight font-face="headline-1">
-      <h1>
-        Page Header
-      </h1>
-    </vwc-text>
+    <h1>
+      Page Header
+    </h1>
 
-    <vwc-text>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-      </p>
-    </vwc-text>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+    </p>
 
-    <vwc-text>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-      </p>
-    </vwc-text>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+    </p>
   </vwc-layout>
 
 </vwc-header>

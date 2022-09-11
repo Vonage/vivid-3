@@ -1,17 +1,16 @@
-import {createFormHTML, elementUpdated, fixture, listenToFormSubmission} from '@vivid-nx/shared';
+import {
+	createFormHTML,
+	elementUpdated,
+	fixture,
+	getBaseElement,
+	listenToFormSubmission
+} from '@vivid-nx/shared';
 import {TextFieldType} from '@microsoft/fast-foundation';
 import {Icon} from '../icon/icon';
 import {TextField} from './text-field';
 import '.';
 
 const COMPONENT_TAG_NAME = 'vwc-text-field';
-
-/**
- * @param element
- */
-function getRootElement(element: TextField) {
-	return element.shadowRoot?.querySelector('.base') as HTMLElement;
-}
 
 describe('vwc-text-field', () => {
 	let element: TextField;
@@ -91,12 +90,12 @@ describe('vwc-text-field', () => {
 
 	describe('readOnly', function () {
 		it('should add class readonly to host', async function () {
-			const readonlyClassWhenFalse = getRootElement(element)
+			const readonlyClassWhenFalse = getBaseElement(element)
 				.classList
 				.contains('readonly');
 			element.readOnly = true;
 			await elementUpdated(element);
-			const readonlyClassWhenTrue = getRootElement(element)
+			const readonlyClassWhenTrue = getBaseElement(element)
 				.classList
 				.contains('readonly');
 			expect(readonlyClassWhenFalse)
@@ -130,7 +129,7 @@ describe('vwc-text-field', () => {
 		it('should set class placeholder to root', async function () {
 			element.placeholder = placeholderText;
 			await elementUpdated(element);
-			expect(getRootElement(element)
+			expect(getBaseElement(element)
 				.classList
 				.contains('placeholder'))
 				.toEqual(true);
@@ -326,6 +325,9 @@ describe('vwc-text-field', () => {
 			element.dispatchEvent(new Event('blur'));
 		}
 
+		/**
+		 *
+		 */
 		function setToFocused() {
 			element.dispatchEvent(new Event('focus'));
 		}
@@ -344,10 +346,26 @@ describe('vwc-text-field', () => {
 			setValidityToError('blah');
 			await elementUpdated(element);
 
-			expect(getRootElement(element)
+			expect(getBaseElement(element)
 				.classList
 				.contains('error'))
 				.toEqual(true);
+		});
+
+		it('should set required message if submitted', async function () {
+
+			element.required = true;
+			await elementUpdated(element);
+			element.dispatchEvent(new Event('invalid'));
+			await elementUpdated(element);
+			const errorElement = element.shadowRoot?.querySelector('.error-message');
+
+			expect(getBaseElement(element)
+				.classList
+				.contains('error'))
+				.toEqual(true);
+
+			expect(errorElement !== null).toBeTruthy();
 		});
 
 		it('should render the error message when not valid', async function () {
@@ -431,12 +449,12 @@ describe('vwc-text-field', () => {
 
 	describe('disabled', function () {
 		it('should set disabled class when attribute is set', async function () {
-			const disabledClassWhenEnabled = getRootElement(element)
+			const disabledClassWhenEnabled = getBaseElement(element)
 				.classList
 				.contains('disabled');
 			element.disabled = true;
 			await elementUpdated(element);
-			const disabledClassWhenDisabled = getRootElement(element)
+			const disabledClassWhenDisabled = getBaseElement(element)
 				.classList
 				.contains('disabled');
 			expect(disabledClassWhenEnabled)
@@ -448,12 +466,12 @@ describe('vwc-text-field', () => {
 
 	describe('value', function () {
 		it('should set \'has-value\' class when there is a value', async function () {
-			const activeClassWhenEnabled = getRootElement(element)
+			const activeClassWhenEnabled = getBaseElement(element)
 				.classList
 				.contains('has-value');
 			element.value = '5';
 			await elementUpdated(element);
-			const activeClassWhenDisabled = getRootElement(element)
+			const activeClassWhenDisabled = getBaseElement(element)
 				.classList
 				.contains('has-value');
 			expect(activeClassWhenEnabled)
@@ -469,7 +487,7 @@ describe('vwc-text-field', () => {
 			element.setAttribute('density', density);
 			await elementUpdated(element);
 
-			expect(getRootElement(element)
+			expect(getBaseElement(element)
 				.classList
 				.contains('density-extended'))
 				.toEqual(true);
@@ -482,7 +500,7 @@ describe('vwc-text-field', () => {
 			element.setAttribute('appearance', appearance);
 			await elementUpdated(element);
 
-			expect(getRootElement(element)
+			expect(getBaseElement(element)
 				.classList
 				.contains('appearance-filled'))
 				.toEqual(true);
@@ -495,7 +513,7 @@ describe('vwc-text-field', () => {
 			element.setAttribute('shape', shape);
 			await elementUpdated(element);
 
-			expect(getRootElement(element)
+			expect(getBaseElement(element)
 				.classList
 				.contains('shape-pill'))
 				.toEqual(true);
@@ -528,7 +546,9 @@ describe('vwc-text-field', () => {
 			expect(internalInput.getAttribute('autocomplete')).toEqual('off');
 
 		});
+	});
 
+	describe('name', function () {
 		it('should reflect the name on the internal input', async function () {
 			const internalInput = element.shadowRoot?.querySelector('input') as HTMLElement;
 			element.name = 'off';

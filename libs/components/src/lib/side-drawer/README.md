@@ -1,4 +1,4 @@
-# Side-Drawer
+# Side Drawer
 
 ```js
 <script type='module'>
@@ -20,15 +20,15 @@ You can also close the side drawer by pressing the `ESC` key.
 <vwc-side-drawer open>
 
   <vwc-layout gutters="small">
-    <vwc-text>
+    <p>
       Side Drawer content
-    </vwc-text>
+    </p>
   </vwc-layout>
 
   <vwc-layout gutters="small" slot="app-content">
-    <vwc-text>
+    <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </vwc-text>
+    </p>
  </vwc-layout>
 
 </vwc-side-drawer>
@@ -46,16 +46,12 @@ Click on the `scrim` or press the `ESC` key (while drawer is focused) to close t
 <vwc-side-drawer modal open>
 
   <vwc-layout gutters="small">
-    <vwc-text>
-      Side Drawer content
-    </vwc-text>
+    Side Drawer content
   </vwc-layout>
 
   <vwc-layout gutters="small" slot="app-content">
-    <vwc-text>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </vwc-text>
- </vwc-layout>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </vwc-layout>
 
 </vwc-side-drawer>
 ```
@@ -71,41 +67,33 @@ Use `alternate` to apply an alternate color-scheme, which is in contrast with th
 <vwc-side-drawer alternate open>
 
   <vwc-layout gutters="small">
-    <vwc-text>
-      Side Drawer content
-    </vwc-text>
+   Side Drawer content
   </vwc-layout>
 
   <vwc-layout gutters="small" slot="app-content">
-    <vwc-text>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </vwc-text>
- </vwc-layout>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+   </vwc-layout>
 
 </vwc-side-drawer>
 ```
 
-### Position
+### Trailing
 
-Use the `position` attribute to set the side of the drawer.
+Use the `trailing` attribute to set the side of the drawer.
 
-- Type: `'start'` | `'end'`
-- Default: `'start'`
+- Type: `boolean`
+- Default: `false`
 
 ```html preview full
-<vwc-side-drawer position="end" open>
+<vwc-side-drawer trailing open>
 
   <vwc-layout gutters="small">
-    <vwc-text>
-      Side Drawer content
-    </vwc-text>
+    Side Drawer content
   </vwc-layout>
 
   <vwc-layout gutters="small" slot="app-content">
-    <vwc-text>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </vwc-text>
- </vwc-layout>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </vwc-layout>
 
 </vwc-side-drawer>
 ```
@@ -120,9 +108,7 @@ The default slot sets assigned nodes to the side drawer itself.
 <vwc-side-drawer open>
 
   <vwc-layout gutters="small">
-    <vwc-text>
-      Side Drawer content
-    </vwc-text>
+  Side Drawer content
   </vwc-layout>
 
 </vwc-side-drawer>
@@ -136,15 +122,13 @@ The `app-content` slot sets assigned nodes to the main application content, the 
 <vwc-side-drawer open>
 
   <vwc-layout gutters="small" slot="app-content">
-    <vwc-text>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </vwc-text>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
  </vwc-layout>
 
 </vwc-side-drawer>
 ```
 
-## CSS Custom Properties
+## CSS Variables
 
 ### Application Content Offset
 
@@ -171,11 +155,9 @@ Additionally, as aside element (which represents the actual side-drawer), is sty
 <vwc-side-drawer id="sidedrawer">
 
   <vwc-layout slot="app-content" gutters="medium">
-    <vwc-text>
-      Toggle the side drawer by clicking the FAB.
-      <br>
-      Notice that the side drawer overlaps the application content.
-    </vwc-text>
+    Toggle the side drawer by clicking the FAB.
+    <br>
+    Notice that the side drawer overlaps the application content.
  </vwc-layout>
 
 <vwc-fab connotation="accent" icon='menu-solid' slot="app-content" onclick="sidedrawer.open = !sidedrawer.open"></vwc-fab>
@@ -192,16 +174,14 @@ Select `base` part to access the component's internal *aside* element.
 ```html preview full
 <style>
   vwc-side-drawer::part(base) {
-    background-color: var(--vvd-color-neutral-10);
+    background-color: var(--vvd-color-neutral-50);
   }
 </style>
 
 <vwc-side-drawer open>
 
   <vwc-layout gutters="small">
-    <vwc-text>
-      Side Drawer content
-    </vwc-text>
+   Side Drawer content
   </vwc-layout>
 
 </vwc-side-drawer>

@@ -1,7 +1,7 @@
 @use 'sass:map';
 
 @use 'partials/variables' as variables;
-@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use '../../../../../dist/libs/tokens/scss/constants' as constants;
 @use '../../../../shared/src/lib/sass/mixins/scrim' as scrim-mixins;
 
 
@@ -9,41 +9,40 @@ $inline-size: 280px;
 
 .control {
 	position: fixed;
-	background-color: var(#{theme-consts.$vvd-color-canvas});
-	color: var(#{theme-consts.$vvd-color-on-canvas});
+	z-index: 1;
+	background-color: var(#{constants.$vvd-color-canvas});
+	color: var(#{constants.$vvd-color-canvas-text});
 	inline-size: $inline-size;
 	inset-block: 0;
 	overflow-y: auto;
 
-	&.modal {
-		z-index: 1;
+	&[part~="vvd-theme-alternate"] {
+		background-color: var(#{constants.$vvd-color-canvas});
+		color: var(#{constants.$vvd-color-canvas-text});
+		color-scheme: var(#{constants.$vvd-color-scheme});
 	}
 
-	&.alternate {
-		background-color: var(#{theme-consts.$vvd-color-canvas});
-	}
-
-	&.position-end {
+	&.trailing {
 		inset-inline-end: 0;
 	}
 
 	&:not(.open) {
-		&.position-end {
+		&.trailing {
 			transform: translateX(100%);
 		}
-		&:not(.position-end) {
+		&:not(.trailing) {
 			transform: translateX(-100%);
 		}
 	}
 
 	&.open:not(.modal) {
-		&.position-end + {
+		&.trailing + {
 			.side-drawer-app-content {
 				margin-inline-end: var(#{variables.$side-drawer-app-content-offset}, $inline-size);
 			}
 		}
 
-		&:not(.position-end) + {
+		&:not(.trailing) + {
 			.side-drawer-app-content {
 				margin-inline-start: var(#{variables.$side-drawer-app-content-offset}, $inline-size);
 			}
@@ -59,10 +58,8 @@ $inline-size: 280px;
 	@include scrim-mixins.scrim-variables;
 
 	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
+	inset: 0;
+
 	&:not(.open) {
 		display: none;
 	}

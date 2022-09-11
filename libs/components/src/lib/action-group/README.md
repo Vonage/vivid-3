@@ -4,7 +4,9 @@ Action group is a visible boundary containing action buttons or other form eleme
 Note: this element is purely a visual presentation and have no semantic meaning.
 
 ```js
-<script type="module">import '@vonage/vivid/action-group';</script>
+<script type="module">
+  import '@vonage/vivid/action-group';
+</script>
 ```
 
 ```html preview
@@ -16,7 +18,7 @@ Note: this element is purely a visual presentation and have no semantic meaning.
 </vwc-action-group>
 ```
 
-## Properties
+## Members
 
 ### Appearance
 
@@ -58,23 +60,6 @@ When using shape - pay in mind setting the slotted elements with the same shape 
 </vwc-action-group>
 ```
 
-### Separator
-
-Use a `<span>` tag with `role="separator"` for adding separator between the action elements
-
-```html preview
-<vwc-action-group appearance="fieldset">
-  <vwc-button icon="reply-line"></vwc-button>
-  <vwc-button icon="transfer-line"></vwc-button>
-  <span role="separator"></span>
-  <vwc-button icon="compose-line"></vwc-button>
-  <vwc-button icon="crop-line"></vwc-button>
-  <span role="separator"></span>
-  <vwc-button icon="copy-2-line"></vwc-button>
-  <vwc-button icon="save-line"></vwc-button>
-</vwc-action-group>
-```
-
 ### Tight
 
 By default, action group is styled in a spacious manner which visually extends the baseline row size and inline gapping.
@@ -86,7 +71,7 @@ enabling the `tight` member will result in a dense style that fits the "normal" 
 ```html preview
 <style>
   vwc-layout {
-    --layout-grid-template-columns: 35ch;
+    --layout-grid-template-columns: 250px;
   }
 
   vwc-action-group > vwc-text-field {
@@ -103,14 +88,26 @@ enabling the `tight` member will result in a dense style that fits the "normal" 
 </vwc-layout>
 ```
 
-## Use cases
+## Use Cases
+
+### Separator
+
+Use `<vwc-divider>` for adding separator between the action elements
+
+```html preview
+<vwc-action-group appearance="fieldset">
+  <vwc-button icon="reply-line"></vwc-button>
+  <vwc-divider orientation="vertical"></vwc-divider>
+  <vwc-button icon="compose-line"></vwc-button>
+</vwc-action-group>
+```
 
 ### semi-split button
 
 ```html preview
 <vwc-action-group shape="pill">
   <vwc-button label='My Action' appearance='ghost' shape="pill"></vwc-button>
-    <span role="separator"></span>
+    <vwc-divider orientation="vertical"></vwc-divider>
   <vwc-button shape="pill" icon="chevron-down-solid"></vwc-button>
 </vwc-action-group>
 
@@ -125,7 +122,7 @@ enabling the `tight` member will result in a dense style that fits the "normal" 
 ```html preview
 <vwc-action-group shape="pill">
   <vwc-button label='Action' appearance='ghost' icon="chevron-down-solid" icon-trailing shape="pill"></vwc-button>
-  <span role="separator"></span>
+  <vwc-divider orientation="vertical"></vwc-divider>
   <vwc-text-field icon="search-line" placeholder="Search..." appearance='ghost' shape="pill"  style="min-width: 160px;"></vwc-text-field>
 </vwc-action-group>
 ```
@@ -135,14 +132,14 @@ enabling the `tight` member will result in a dense style that fits the "normal" 
 ```html preview center
 <vwc-button id="anchor" icon="more-horizontal-solid" aria-label="open actions menu"></vwc-button>
 
-<vwc-popup id="popup" anchor="anchor" arrow open corner="top">
+<vwc-popup id="popup" anchor="anchor" arrow open placement="top">
   <vwc-action-group appearance="ghost">
     <vwc-button icon="reply-line"></vwc-button>
     <vwc-button icon="transfer-line"></vwc-button>
-    <span role="separator"></span>
+    <vwc-divider orientation="vertical"></vwc-divider>
     <vwc-button icon="compose-line"></vwc-button>
     <vwc-button icon="crop-line"></vwc-button>
-    <span role="separator"></span>
+    <vwc-divider orientation="vertical"></vwc-divider>
     <vwc-button icon="copy-2-line"></vwc-button>
     <vwc-button icon="save-line"></vwc-button>
   </vwc-action-group>

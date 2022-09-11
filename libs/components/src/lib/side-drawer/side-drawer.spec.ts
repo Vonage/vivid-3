@@ -10,6 +10,7 @@ describe('vwc-side-drawer', () => {
 	beforeEach(async () => {
 		element = await fixture(`<${COMPONENT_TAG}>
 								</${COMPONENT_TAG}>`) as SideDrawer;
+		await elementUpdated(element);
 	});
 
 	describe('basic', () => {
@@ -17,7 +18,7 @@ describe('vwc-side-drawer', () => {
 			expect(element).toBeInstanceOf(SideDrawer);
 			expect(element.open).toBeFalsy();
 			expect(element.alternate).toBeFalsy();
-			expect(element.position).toBeUndefined();
+			expect(element.trailing).toBeFalsy();
 			expect(element.modal).toBeFalsy();
 		});
 	});
@@ -67,24 +68,25 @@ describe('vwc-side-drawer', () => {
 	});
 
 	describe('alternate', () => {
-		it('should set "alternate" to true and add "alternate" class', async () => {
-			const control = getControlElement(element);
-			let hasClassAlternate = control.classList.contains('alternate');
+		it('should set "alternate" on part', async () => {
 			element.alternate = true;
 			await elementUpdated(element);
-			expect(hasClassAlternate).toEqual(false);
 
-			hasClassAlternate = control.classList.contains('alternate');
-			expect(hasClassAlternate).toEqual(true);
+			const controlWithPartAlternate = element.shadowRoot?.querySelector('[part~=vvd-theme-alternate]');
+			expect(controlWithPartAlternate).toBeInstanceOf(HTMLElement);
 		});
 	});
 
-	describe('position', () => {
-		it('should set "position" to "end" and add "position" class', async () => {
-			element.position = 'end';
+	describe('trailing', () => {
+		it('should change the side and add "trailing" class', async () => {
+			const control = getControlElement(element);
+			let hasClassTrailing = control.classList.contains('trailing');
+			element.trailing = true;
 			await elementUpdated(element);
+			expect(hasClassTrailing).toEqual(false);
 
-			expect(getControlElement(element).classList.contains('position-end')).toBeTruthy();
+			hasClassTrailing = control.classList.contains('trailing');
+			expect(hasClassTrailing).toEqual(true);
 		});
 	});
 
@@ -111,13 +113,12 @@ describe('vwc-side-drawer', () => {
 			expect(element.open).toEqual(false);
 		});
 
-		it('should not close after keydown that is not Escape', async () => {
+		it('should leave open after keydown that is not Escape', async () => {
 			element.modal = true;
 			element.open = true;
-			await elementUpdated(element);
-			const aside: any = element.shadowRoot?.querySelector('aside');
-			aside?.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Enter' }));
-			await elementUpdated(element);
+			// await elementUpdated(element);
+			const aside = element.shadowRoot?.querySelector('aside') as HTMLElement;
+			aside.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Enter' }));
 			expect(element.open).toEqual(true);
 		});
 	});
