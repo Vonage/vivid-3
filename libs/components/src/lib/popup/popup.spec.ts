@@ -231,17 +231,16 @@ describe('vwc-popup', () => {
 
 	describe('handle light dismiss', () => {
 		it('should hide when clicked outside of the popup', async () => {
-			await setAnchor();
-			element.anchor = 'anchor';
-			element.dismissible = true;
+			const element = await fixture('<vwc-popup light-dismiss open></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
 			await elementUpdated(element);
 
-			element.open = true;
+			const buttonEl = await fixture('<vwc-button id="button"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE) as Button;
+			await elementUpdated(buttonEl);
+			
 			const openStateBeforeEsc = element.open;
 
-			await elementUpdated(element);
-			const dismissButton = element.shadowRoot?.querySelector('vwc-button');
-			(dismissButton?.parentElement as HTMLElement).click();
+			const button = document.querySelector('vwc-button');
+			(button as HTMLElement).click();
 			await elementUpdated(element);
 
 			expect(openStateBeforeEsc)
