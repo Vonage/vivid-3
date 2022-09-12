@@ -48,6 +48,6 @@
     "./avatar": "./avatar",
     "./text-area": "./text-area",
     "./listbox-option": "./listbox-option",
-    "./listbox": "./listbox",
+    "./listbox": "./listbox"
   }
 }
