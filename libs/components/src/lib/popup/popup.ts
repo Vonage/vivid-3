@@ -202,5 +202,5 @@ export class Popup extends FoundationElement {
 			return;
 		}
 		this.#close();
-	}
+	};
 }
