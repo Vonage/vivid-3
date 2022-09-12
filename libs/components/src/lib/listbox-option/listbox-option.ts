@@ -1,4 +1,4 @@
-import { applyMixins, ListboxOption as FastListboxOption } from '@microsoft/fast-foundation';
+import { applyMixins, ListboxOption as FoundationListboxOption } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
@@ -9,7 +9,7 @@ import { AffixIconWithTrailing } from '../../shared/patterns/affix';
  */
 
 
-export class ListboxOption extends FastListboxOption {
+export class ListboxOption extends FoundationListboxOption {
 	/**
 	 *
 	 * @public
