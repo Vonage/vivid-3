@@ -47,15 +47,15 @@ module.exports = function (content, outputPath) {
 
 	const blockData = {};
 	blockData.outputPath = outputPath;
-	const document = new JSDOM(content).window.document;
-	const codeBlocks = document.querySelectorAll(ELEVENTY_HTML_CODE_BLOCK_SELECTOR);
+	const jsdomObj = new JSDOM(content);
+	const codeBlocks = jsdomObj.window.document.querySelectorAll(ELEVENTY_HTML_CODE_BLOCK_SELECTOR);
 	codeBlocks.forEach(function (codeBlock, index) {
 		const pre = codeBlock.closest('pre');
 		blockData.pre = pre;
 		blockData.index = index++;
 		pre.replaceWith(generateCodeBlockDemo(blockData));
 	});
-	return document.documentElement.outerHTML;
+	return jsdomObj.serialize();
 };
 
 const getHtml = (demoData) => {
