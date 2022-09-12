@@ -1,15 +1,21 @@
-import { Listbox as FastListbox } from '@microsoft/fast-foundation';
+import { attr } from '@microsoft/fast-element';
+import { Listbox as FoundationListbox } from '@microsoft/fast-foundation';
 
 /**
  * Base class for listbox
  *
  * @public
  */
+export class Listbox extends FoundationListbox {
+    /**
+     *
+     * @public
+     */
+    @attr({
+        mode: 'boolean'
+    }) multiple = false;
 
-
-export class Listbox extends FastListbox {
-
-	override slottedOptionsChanged(prev: Element[] | undefined, next: Element[]) {
+    override slottedOptionsChanged(prev: Element[] | undefined, next: Element[]) {
         super.slottedOptionsChanged(prev, next);
         this.#disableSlottedChildren();
     }
