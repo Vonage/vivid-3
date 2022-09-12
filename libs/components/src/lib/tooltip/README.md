@@ -10,20 +10,6 @@ A tooltip is a brief, informative message or descriptions or explanations for th
 
 ## Members
 
-### Anchor
-
-The tooltip can be placed on interactive controls (things that can be hovered or focusable) such as: button, checkbox, input text.  
-The tooltip can't be placed on non-interactive elements such as paragraph or plain div.  
-Do not target non-interactive controls as a tooltip's anchor (such as non-focusable / disabled elements).
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview center
-<vwc-button id="anchor" icon="help-line" shape="pill" aria-describedby="tooltip"></vwc-button>
-<vwc-tooltip id="tooltip" anchor="anchor" text="I'm a tooltip" open></vwc-tooltip>
-```
-
 ### Text
 
 The tooltip is a description and therefor, the tooltip itself can not be interactive and contains only text.
@@ -33,10 +19,7 @@ The tooltip is a description and therefor, the tooltip itself can not be interac
 
 ### Open
 
-Use the `open` attribute to indicate whether the tooltip is open.
-
-- Type: `boolean`
-- Default: `false`
+Proxies the [`open` property to the underlying popup element](../popup#open).
 
 ```html preview center
 <vwc-button id="button" icon="info-line" shape="pill" aria-describedby="tooltip"></vwc-button>
@@ -51,12 +34,22 @@ Use the `open` attribute to indicate whether the tooltip is open.
 </script>
 ```
 
+### Anchor
+
+The tooltip can be placed on interactive controls (things that can be hovered or focusable) such as: button, checkbox, input text.  
+The tooltip can't be placed on non-interactive elements such as paragraph or plain div.  
+Do not target non-interactive controls as a tooltip's anchor (such as non-focusable / disabled elements).
+
+Proxies the [`anchor` property to the underlying popup element](../popup#anchor).
+
+```html preview center
+<vwc-button id="anchor" icon="help-line" shape="pill" aria-describedby="tooltip"></vwc-button>
+<vwc-tooltip id="tooltip" anchor="anchor" text="I'm a tooltip" open></vwc-tooltip>
+```
+
 ### Placement
 
-Use the `placement` attribute to set the placement of the tooltip around the anchor.
-
-- Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
-- Default: `'left'`
+Proxies the [`placement` property to the underlying popup element](../popup#placement).
 
 ```html preview center
 <style>
