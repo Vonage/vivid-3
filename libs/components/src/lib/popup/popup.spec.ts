@@ -312,9 +312,9 @@ describe('vwc-popup', () => {
 			await elementUpdated(element);
 
 			expect(openStateBeforeLightDismiss)
-				.toEqual(true);
+				.toEqual(false);
 			expect(element.open)
-				.toEqual(true);
+				.toEqual(false);
 		});
 	});
 
