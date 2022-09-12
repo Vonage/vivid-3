@@ -190,7 +190,7 @@ export class Popup extends FoundationElement {
 	};
 
 	#dismiss = (event: Event) => {
-		if (!this.open) {
+		if (!this.open || !this.#anchorEl) {
 			return;
 		}
 		// if clicked on popup
@@ -198,7 +198,7 @@ export class Popup extends FoundationElement {
 			return;
 		}
 		// if clicked on anchor
-		if (this.#anchorEl?.contains(event.target as Element)) {
+		if (this.#anchorEl.contains(event.target as Element)) {
 			return;
 		}
 		this.#close();
