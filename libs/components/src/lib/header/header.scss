@@ -28,6 +28,8 @@
 
 	&[part~="vvd-theme-alternate"] {
 		background-color: var(#{constants.$vvd-color-canvas});
+		color: var(#{constants.$vvd-color-canvas-text});
+		color-scheme: var(#{constants.$vvd-color-scheme});
 	}
 }
 
