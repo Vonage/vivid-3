@@ -8,7 +8,7 @@ const ELEVENTY_HTML_CODE_BLOCK_SELECTOR = 'pre.preview > code';
 
 const IFRAME_STYLE = '<link rel="stylesheet" href="/assets/styles/iframe.css">';
 const FONTS = '<link rel="stylesheet" href="/assets/styles/fonts/spezia.css">';
-const TYPOGRAPHY = '<link rel="stylesheet" href="/assets/styles/typography/desktop.css">';
+const TYPOGRAPHY = '<link rel="stylesheet" href="/assets/styles/core/all.css">';
 
 const CBD_CONTAINER = 'cbd-container';
 const CBD_DEMO = 'cbd-demo';
@@ -110,7 +110,7 @@ const saveCodeAsHTMLFile = (frameData) => {
 	const componentName = getComponentName(frameData.outputPath);
 	const data = getComponentData(componentName);
 	frameData.demoStr += addModules(data);
-	const document = `<html class="vvd-typography">${frameData.demoStr}</html>`;
+	const document = `<html class="vvd-root">${frameData.demoStr}</html>`;
 	fs.writeFileSync(filePath, document);
 	return filePath;
 }
