@@ -19,7 +19,7 @@ The tooltip is a description and therefor, the tooltip itself can not be interac
 
 ### Open
 
-Proxies the [`open` property to the underlying popup element](../popup#open).
+Proxies the [`open` property to the underlying popup element](../../components/popup#open).
 
 ```html preview center
 <vwc-button id="button" icon="info-line" shape="pill" aria-describedby="tooltip"></vwc-button>
@@ -40,7 +40,7 @@ The tooltip can be placed on interactive controls (things that can be hovered or
 The tooltip can't be placed on non-interactive elements such as paragraph or plain div.  
 Do not target non-interactive controls as a tooltip's anchor (such as non-focusable / disabled elements).
 
-Proxies the [`anchor` property to the underlying popup element](../popup#anchor).
+Proxies the [`anchor` property to the underlying popup element](../../components/popup#anchor).
 
 ```html preview center
 <vwc-button id="anchor" icon="help-line" shape="pill" aria-describedby="tooltip"></vwc-button>
@@ -49,7 +49,7 @@ Proxies the [`anchor` property to the underlying popup element](../popup#anchor)
 
 ### Placement
 
-Proxies the [`placement` property to the underlying popup element](../popup#placement).
+Proxies the [`placement` property to the underlying popup element](../../components/popup#placement).
 
 ```html preview center
 <style>
