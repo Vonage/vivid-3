@@ -131,6 +131,8 @@ describe('vwc-popup', () => {
 				.toBeFalsy();
 			expect(element.dismissible)
 				.toBeFalsy();
+			expect(element.lightDismiss)
+				.toBeFalsy();
 			expect(element.anchor)
 				.toBeUndefined();
 			expect(element.placement)
@@ -218,6 +220,28 @@ describe('vwc-popup', () => {
 			await elementUpdated(element);
 			const dismissButton = element.shadowRoot?.querySelector('vwc-button');
 			(dismissButton as HTMLElement).click();
+			await elementUpdated(element);
+
+			expect(openStateBeforeEsc)
+				.toEqual(true);
+			expect(element.open)
+				.toEqual(false);
+		});
+	});
+
+	describe('handle light dismiss', () => {
+		it('should hide when clicked outside of the popup', async () => {
+			await setAnchor();
+			element.anchor = 'anchor';
+			element.dismissible = true;
+			await elementUpdated(element);
+
+			element.open = true;
+			const openStateBeforeEsc = element.open;
+
+			await elementUpdated(element);
+			const dismissButton = element.shadowRoot?.querySelector('vwc-button');
+			(dismissButton?.parentElement as HTMLElement).click();
 			await elementUpdated(element);
 
 			expect(openStateBeforeEsc)
