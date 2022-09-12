@@ -90,6 +90,7 @@ export class Popup extends FoundationElement {
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
+		window.removeEventListener('click', this.#dismiss);
 		this.#anchorEl?.removeEventListener('keydown', this.#handleKeydown);
 		this.#cleanup?.();
 	}
@@ -99,9 +100,11 @@ export class Popup extends FoundationElement {
 		switch (name) {
 			case 'anchor': {
 				this.#anchorEl?.removeEventListener('keydown', this.#handleKeydown);
+				window.removeEventListener('click', this.#dismiss);
 				this.#anchorEl = this.#getAnchorById();
 				// close the popup if pressed escape
 				this.#anchorEl?.addEventListener('keydown', this.#handleKeydown);
+				window.addEventListener('click', this.#dismiss);
 				break;
 			}
 		}
@@ -154,6 +157,10 @@ export class Popup extends FoundationElement {
 		});
 	}
 
+	#close(): void {
+		this.open = false;
+	}
+
 	/**
 	 * Gets the anchor element by id
 	 */
@@ -163,7 +170,22 @@ export class Popup extends FoundationElement {
 
 	#handleKeydown = (event: Event) => {
 		if ((event as KeyboardEvent).key === keyEscape) {
-			this.open = false;
+			this.#close();
 		}
 	};
+
+	#dismiss = (event: Event) => {
+		if (!this.open) {
+			return;
+		}
+		// if clicked on popup
+		if (this.contains(event.target as Element)) {
+			return;
+		}
+		// if clicked on anchor
+		if (this.#anchorEl?.contains(event.target as Element)) {
+			return;
+		}
+		this.#close();
+	}
 }
