@@ -16,8 +16,10 @@ $inline-size: 280px;
 	inset-block: 0;
 	overflow-y: auto;
 
-	&.alternate {
+	&[part~="vvd-theme-alternate"] {
 		background-color: var(#{constants.$vvd-color-canvas});
+		color: var(#{constants.$vvd-color-canvas-text});
+		color-scheme: var(#{constants.$vvd-color-scheme});
 	}
 
 	&.trailing {
