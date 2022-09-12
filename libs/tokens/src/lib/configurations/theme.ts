@@ -1,7 +1,6 @@
 module.exports = (theme: string) => ({
 	source: [
-		"blueprint.tokens/color-semantic.tokens.json",
-		"blueprint.tokens/elevation.tokens.json",
+		"blueprint.tokens/theme.tokens.json",
 	],
 	include: [
 		'../../../../node_modules/@vonage/vivid-figma-tokens/data/alphahex.tokens.json',
