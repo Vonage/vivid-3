@@ -2,6 +2,111 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Sun, 11 Sep 2022 12:51:47 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.58",
+      "version": "3.0.0-next.58",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "2f464cac13e2110e468026ec5a7a2eb0954bf1e0",
+            "comment": "refactor styles to separate concerns from styles to tokens"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 11 Sep 2022 12:07:31 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.57",
+      "version": "3.0.0-next.57",
+      "comments": {
+        "none": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "2efc9e0038106ed594516754999c6ea03c8c55a4",
+            "comment": "text field docs use-case small fix"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sat, 10 Sep 2022 18:25:22 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.57",
+      "version": "3.0.0-next.57",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "199469de197c0617e59f1407e91e27633d3d5228",
+            "comment": "define icon size in text field"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 09 Sep 2022 16:43:16 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.56",
+      "version": "3.0.0-next.56",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "202fa36889738afee2dce0be9b185bcb16b98155",
+            "comment": "deterministic layout size in action group doc"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 09 Sep 2022 10:25:02 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.55",
+      "version": "3.0.0-next.55",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "0250c8044fd47496148746d785dc87e679d30b6e",
+            "comment": "Add the text-area component"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 09 Sep 2022 03:24:23 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.54",
+      "version": "3.0.0-next.54",
+      "comments": {
+        "none": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "c38736e8130be1025ebaadd47185dd9fc41118a9",
+            "comment": "Stabilize action-group"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Sep 2022 11:03:56 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.54",
+      "version": "3.0.0-next.54",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "5268d5ded2bd853df21ef551977f409eafe92a5c",
+            "comment": "modify typography styles for desktop"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 07 Sep 2022 15:12:01 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.53",
       "version": "3.0.0-next.53",

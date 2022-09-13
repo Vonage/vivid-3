@@ -71,7 +71,7 @@ enabling the `tight` member will result in a dense style that fits the "normal" 
 ```html preview
 <style>
   vwc-layout {
-    --layout-grid-template-columns: 35ch;
+    --layout-grid-template-columns: 250px;
   }
 
   vwc-action-group > vwc-text-field {
