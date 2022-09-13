@@ -1,4 +1,25 @@
+@use '../focus/partials/variables' as focus-variables;
+
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+	$connotations: accent,
+	$shades: primary primary-text primary-increment contrast fierce firm soft faint,
+	$default: accent,
+);
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+	$appearances: outlined ghost,
+	$states: idle disabled,
+	$default: outlined,
+);
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+
 .base {
+	@include connotation.connotation;
+	@include appearance.appearance;
+
+	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+	
 	@supports selector(:focus-visible) {
 		&:focus {
 			outline: none;
@@ -7,7 +28,12 @@
 }
 
 .focus-indicator {
-	:not(:focus-visible) & {
+	:not(:focus-visible) > & {
 		display: none;
+	}
+
+	.appearance-outlined &,
+	.appearance-ghost & {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
 	}
 }

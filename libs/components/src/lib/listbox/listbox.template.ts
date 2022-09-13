@@ -8,9 +8,11 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { Listbox } from "./listbox";
 import { focusTemplateFactory } from '../../shared/patterns';
 
-const getClasses = ({
+const getClasses = ({ appearance, disabled
 }: Listbox) => classNames(
 	'base',
+	['disabled', disabled],
+	[`appearance-${appearance}`, Boolean(appearance)],
 );
 
 export const ListboxTemplate: (
