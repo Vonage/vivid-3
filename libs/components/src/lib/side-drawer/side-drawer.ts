@@ -57,6 +57,6 @@ export class SideDrawer extends FoundationElement {
 	}
 
 	#opened(): void {
-		this.$emit('opened');
+		this.$emit('open');
 	}
 }
