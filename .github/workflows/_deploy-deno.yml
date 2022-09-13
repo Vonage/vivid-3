@@ -14,10 +14,17 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: "16"
-          cache: "npm"
+          node-version: '16'
+          cache: 'npm'
+
+      # - uses: actions/cache@v3
+      #   id: cache
+      #   with:
+      #     path: node_modules/
+      #     key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
       - name: Install Dependencies
+        # if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
       - name: Build Site
@@ -27,5 +34,5 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: vivid
+					entrypoint: https://deno.land/std/http/file_server.ts
           root: dist/apps/docs
-          entrypoint: https://deno.land/std@0.135.0/http/file_server.ts
