@@ -86,7 +86,7 @@ const getIframe = (frameData) => {
 	const saveFolder = verifyAndCreateSaveFolder(frameData.outputPath);
 	frameData.saveFolder = saveFolder;
 	const filePath = saveCodeAsHTMLFile(frameData);
-	return filePath.substring(saveFolder.indexOf('docs/') + 4);
+	return filePath.substring(saveFolder.indexOf('docs' + path.sep) + 4);
 }
 
 const verifyAndCreateSaveFolder = (outputPath) => {
