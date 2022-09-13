@@ -1,6 +1,7 @@
-# Text Field
+789# Text Field
 
-TextField is meant to accept text input from the user. It supports the native attributes of `input` in addition to some enhancements.
+TextField is meant to accept text input from the user.  
+All native `input` attributes of the text-field are supported as well as some enhancements.  
 Note that the text field does not support `type="number"`. For this there is the `number-field` component.
 
 ```js
