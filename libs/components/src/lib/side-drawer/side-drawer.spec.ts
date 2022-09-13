@@ -37,9 +37,9 @@ describe('vwc-side-drawer', () => {
 			expect(hasClassOpenAfterShow).toEqual(true);
 		});
 
-		it('should fire opened event', async function () {
+		it('should fire open event', async function () {
 			const spy = jest.fn();
-			element.addEventListener('opened', spy);
+			element.addEventListener('open', spy);
 			element.open = true;
 			await elementUpdated(element);
 			expect(spy)
@@ -62,12 +62,12 @@ describe('vwc-side-drawer', () => {
 			expect(hasClassOpenAfterHide).toEqual(false);
 		});
 
-		it('should fire closed event', async function () {
+		it('should fire close event', async function () {
 			element.open = true;
 			await elementUpdated(element);
 
 			const spy = jest.fn();
-			element.addEventListener('closed', spy);
+			element.addEventListener('close', spy);
 			element.open = false;
 			await elementUpdated(element);
 

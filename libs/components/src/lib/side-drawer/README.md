@@ -130,13 +130,13 @@ The `app-content` slot sets assigned nodes to the main application content, the 
 
 ## Events
 
-### Opened
+### Open
 
-Fires `opened` when the side drawer is opened.
+Fires `open` when the side drawer is open.
 
-### Closed
+### Close
 
-Fires `closed` when the side drawer is closed.
+Fires `close` when the side drawer is close.
 
 ## CSS Variables
 

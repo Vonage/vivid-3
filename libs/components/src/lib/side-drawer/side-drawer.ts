@@ -47,16 +47,16 @@ export class SideDrawer extends FoundationElement {
 		super.attributeChangedCallback(name, oldValue, newValue);
 		switch (name) {
 			case 'open': {
-				this.open ? this.#opened() : this.#closed();
+				this.open ? this.#open() : this.#close();
 			}
 		}
 	}
 
-	#closed(): void {
+	#close(): void {
 		this.$emit('close');
 	}
 
-	#opened(): void {
+	#open(): void {
 		this.$emit('open');
 	}
 }
