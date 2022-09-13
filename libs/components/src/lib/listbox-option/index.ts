@@ -1,4 +1,3 @@
-import '../focus';
 import '../icon';
 
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
