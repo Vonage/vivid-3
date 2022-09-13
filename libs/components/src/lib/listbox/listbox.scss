@@ -1,4 +1,8 @@
 .base {
+	position: relative;
+	border-radius: 6px;
+	contain: paint;
+
 	@supports selector(:focus-visible) {
 		&:focus {
 			outline: none;
