@@ -1,3 +1,4 @@
+@use '../focus/partials/variables' as focus-variables;
 @use '../../../../../dist/libs/tokens/scss/constants' as constants;
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
@@ -13,6 +14,7 @@
 	$default: ghost
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+
 
 .base {
 	$min-block-size: 40px;
@@ -37,6 +39,7 @@
 	text-decoration: none;
 	vertical-align: middle;
 	word-break: break-word;
+	border-radius: 6px;
 
 	@supports (user-select: none) {
 		user-select: none;
@@ -57,4 +60,13 @@
 
 .icon {
 	font-size: 20px;
+}
+
+.focus-indicator {
+	#{focus-variables.$focus-stroke-color}: var(#{constants.$vvd-color-neutral-500});
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+	:host(:not([aria-selected="false"][aria-checked="true"], [aria-selected="true"][aria-checked="true"])) & {
+		display: none;
+	}
 }

@@ -6,6 +6,7 @@ import type {
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
+import { focusTemplateFactory } from '../../shared/patterns';
 import type { ListboxOption } from './listbox-option';
 
 const getClasses = ({
@@ -23,6 +24,7 @@ export const ListboxOptionTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<ListboxOption> = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
+	const focusTemplate = focusTemplateFactory(context);
 
 	return html`
 	<template
@@ -33,6 +35,7 @@ export const ListboxOptionTemplate: (
 		aria-setsize="${x => x.ariaSetSize}"
 		role="option">
 		<div class="${getClasses}">
+			${() => focusTemplate}
 			${x => affixIconTemplate(x.icon)}
 			${when(x => x.optionText, html`<div class="text">${x => x.optionText}</div>`)}
 		</div>

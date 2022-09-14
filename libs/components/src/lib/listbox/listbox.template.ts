@@ -36,14 +36,16 @@ export const ListboxTemplate: (
 		@mousedown="${(x, c) => x.mousedownHandler(c.event as MouseEvent)}"
 		class="${getClasses}"
 		>
-			<slot
+
+		${() => focusTemplate}
+
+		<slot
 			${slotted({
 		filter: FASTListboxElement.slottedOptionFilter as any,
 		flatten: true,
 		property: 'slottedOptions'
 	})}
-			></slot>
-			${() => focusTemplate}
+		></slot>
 	</div>
 </template>
 	`;
