@@ -132,7 +132,7 @@ The `app-content` slot sets assigned nodes to the main application content, the 
 
 ### Open
 
-Fires `open` when the side drawer is open.
+Fires `open` when the side drawer is opening.
 
 ### Close
 
