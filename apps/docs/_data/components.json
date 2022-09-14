@@ -255,5 +255,12 @@
       "/assets/modules/components/text-area/index.js",
       "/assets/modules/components/button/index.js"
     ]
-  }
+  },
+	{
+		"title": "initials",
+		"markdown": "./libs/components/src/lib/initials/README.md",
+		"modules": [
+			"/assets/modules/components/initials/index.js"
+		]
+	}
 ]
