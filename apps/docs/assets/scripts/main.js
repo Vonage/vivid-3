@@ -4,8 +4,8 @@ window.onload = () => {
 
 const addSideDrawerListeners = () => {
   const sideDrawer = document.querySelector('vwc-side-drawer#sidedrawer');
-  sideDrawer.addEventListener('closed', () => { toggleSideDrawerButtonIcon(false); });
-  sideDrawer.addEventListener('opened', () => { toggleSideDrawerButtonIcon(true); });
+  sideDrawer.addEventListener('close', () => { toggleSideDrawerButtonIcon(false); });
+  sideDrawer.addEventListener('open', () => { toggleSideDrawerButtonIcon(true); });
 }
 
 const toggleSideDrawerButton = () => {
