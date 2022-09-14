@@ -1,4 +1,4 @@
-789# Text Field
+# Text Field
 
 TextField is meant to accept text input from the user.  
 All native `input` attributes of the text-field are supported as well as some enhancements.  
