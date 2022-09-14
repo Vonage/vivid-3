@@ -1,6 +1,6 @@
 # Dialog
 Represents a part of an application that a user interacts with to perform a task
-All native attributes of `checkbox` are supported as well as some enhancements.
+All native attributes of `dialog` are supported as well as some enhancements.
 
 
 ```js
