@@ -240,11 +240,14 @@ describe('vwc-popup', () => {
 
 			const buttonEl = await fixture('<vwc-button id="button"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE) as Button;
 			await elementUpdated(buttonEl);
-			
+
 			const openStateBeforeLightDismiss = element.open;
 
 			const button = document.querySelector('vwc-button#button');
-			(button as HTMLElement).click();
+			(button as HTMLElement).dispatchEvent(new MouseEvent('mousedown', {
+					bubbles: true,
+					composed: true
+				}));
 			await elementUpdated(element);
 
 			expect(openStateBeforeLightDismiss)
@@ -280,12 +283,12 @@ describe('vwc-popup', () => {
 			await setAnchor();
 			element.anchor = 'anchor';
 			await elementUpdated(element);
-			
+
 			const openStateBeforeLightDismiss = element.open;
 
 			const dismissButton = document.querySelector('vwc-button#anchor');
 			(dismissButton as HTMLElement).click();
-			
+
 			await elementUpdated(element);
 
 			expect(openStateBeforeLightDismiss)
@@ -304,7 +307,7 @@ describe('vwc-popup', () => {
 
 			const buttonEl = await fixture('<vwc-button id="button"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE) as Button;
 			await elementUpdated(buttonEl);
-			
+
 			const openStateBeforeLightDismiss = element.open;
 
 			const button = document.querySelector('vwc-button#button');
