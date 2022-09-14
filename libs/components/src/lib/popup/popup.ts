@@ -101,13 +101,13 @@ export class Popup extends FoundationElement {
 	override connectedCallback(): void {
 		super.connectedCallback();
 		if(this.lightDismiss){
-			window.addEventListener('click', this.#dismiss);
+			window.addEventListener('mousedown', this.#dismiss);
 		}
 	}
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		window.removeEventListener('click', this.#dismiss);
+		window.removeEventListener('mousedown', this.#dismiss);
 		this.#anchorEl?.removeEventListener('keydown', this.#handleKeydown);
 		this.#cleanup?.();
 	}
