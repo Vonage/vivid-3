@@ -136,7 +136,7 @@ Fires `open` when the side drawer is opening.
 
 ### Close
 
-Fires `close` when the side drawer is close.
+Fires `close` when the side drawer is closing.
 
 ## CSS Variables
 
