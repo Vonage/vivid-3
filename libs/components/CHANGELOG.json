@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Thu, 15 Sep 2022 08:34:27 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.59",
+      "version": "3.0.0-next.59",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "32d0d3b34bd5b1441861803b2946b01be09ff44f",
+            "comment": "fix text area vertical padding"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 11 Sep 2022 12:51:47 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.58",
       "version": "3.0.0-next.58",
