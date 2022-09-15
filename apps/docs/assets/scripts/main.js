@@ -1,12 +1,20 @@
+window.onload = () => {
+  addSideDrawerListeners();
+};
+
+const addSideDrawerListeners = () => {
+  const sideDrawer = document.querySelector('vwc-side-drawer#sidedrawer');
+  sideDrawer.addEventListener('close', () => { toggleSideDrawerButtonIcon(false); });
+  sideDrawer.addEventListener('open', () => { toggleSideDrawerButtonIcon(true); });
+}
+
 const toggleSideDrawerButton = () => {
   const sideDrawer = document.querySelector('vwc-side-drawer#sidedrawer');
-
   sideDrawer.open = !sideDrawer.open;
-  toggleSideDrawerButtonIcon(sideDrawer.open);
 };
 
 const toggleSideDrawerButtonIcon = (open) => {
-	const buttonToggle = document.querySelector('vwc-button#hamburger-button');
+  const buttonToggle = document.querySelector('vwc-button#hamburger-button');
   buttonToggle.icon = open ? 'collapse-solid' : 'menu-solid';
 };
 
