@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 11 Sep 2022 12:51:47 GMT and should not be manually modified.
+This log was last generated on Thu, 15 Sep 2022 08:34:27 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.59
+
+Thu, 15 Sep 2022 08:34:27 GMT
+
+### Changes
+
+- fix text area vertical padding (yinon@hotmail.com)
 
 ## 3.0.0-next.58
 
