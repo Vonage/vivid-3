@@ -14,5 +14,5 @@ export class Initials extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: text
 	 */
-	@attr text?: string;
+	@attr text?: '';
 }

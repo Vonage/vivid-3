@@ -1,12 +1,33 @@
 # initials
+This is in the docs only for now.  
+Will be removed after development.
 
-Represents a initials custom element.
 
-```js
-<script type="module">import '@vonage/vivid/initials';</script>
-```
+## Members
+### Text
+
+#### longer text
+- If more than 2 words - only the 2 words initials will appear.
 
 ```html preview
-<vwc-initials text="rachel bratt tannenbaum"></vwc-initials>
+<vwc-initials text="john doe vivid avatar"></vwc-initials>
 ```
 
+#### one word
+- Should present one letter if only one word (not working yet...)
+
+```html preview
+<vwc-initials text="avatar"></vwc-initials>
+```
+
+#### no text inserted
+- if no text is added - no initials are set.  
+- What about the title? Is it OK to leave it empty?
+- 
+```html preview
+<vwc-initials text=""></vwc-initials>
+```
+#### dashed text
+```html preview
+<vwc-initials text="john-doe avatar"></vwc-initials>
+```
