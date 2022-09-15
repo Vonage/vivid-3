@@ -162,7 +162,9 @@ In addition, we programatically *"dirtied"* the field and then called `validate`
 
 ```html preview
 <form method="post" action="">
-  <vwc-text-field required label="Add email" placeholder="e.g. john@doe.dev" type="email" name="email" autocomplete="email" icon="search" maxlength="30" char-count></vwc-text-field>
-  <vwc-button label="Submit" type="submit"></vwc-button>
+<vwc-layout column-spacing="small" column-basis="block">
+  <vwc-text-field required label="Add email" placeholder="e.g. john@doe.dev" type="email" name="email" autocomplete="email" icon="search" maxlength="30" char-count style="justify-self: flex-start;"></vwc-text-field>
+  <vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>
+</vwc-layout>
 </form>
 ```
