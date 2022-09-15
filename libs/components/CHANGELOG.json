@@ -2,6 +2,36 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Thu, 15 Sep 2022 09:42:43 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.60",
+      "version": "3.0.0-next.60",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "5e936725b0d09bb7c129958a692e03a84ea45b5a",
+            "comment": "add dispatch events to side drawer"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 15 Sep 2022 08:34:27 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.59",
+      "version": "3.0.0-next.59",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "32d0d3b34bd5b1441861803b2946b01be09ff44f",
+            "comment": "fix text area vertical padding"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 11 Sep 2022 12:51:47 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.58",
       "version": "3.0.0-next.58",
