@@ -12,7 +12,6 @@ Menu, commonly known as a "context menu", is an element that is displayed upon u
 <vwc-menu open>
  <vwc-menu-item>Menu item 1</vwc-menu-item>
  <vwc-menu-item>Menu item 2</vwc-menu-item>
- <vwc-menu-item>Menu item 3</vwc-menu-item>
 </vwc-menu>
 ```
 
@@ -23,12 +22,9 @@ Menu, commonly known as a "context menu", is an element that is displayed upon u
 Proxies the [`open` property to the underlying popup element](../popup#open).
 
 ```html preview
-<vwc-button label="open" onclick="menu.open = !menu.open"></vwc-button>
-
-<vwc-menu id="menu" text="Focus or hover to open." open>
+<vwc-menu open>
  <vwc-menu-item>Menu item 1</vwc-menu-item>
  <vwc-menu-item>Menu item 2</vwc-menu-item>
- <vwc-menu-item>Menu item 3</vwc-menu-item>
 </vwc-menu>
 ```
 
@@ -38,12 +34,11 @@ Proxies the [`anchor` property to the underlying popup element](../popup#anchor)
 
 ```html preview center
 <div style="position: relative">
-  <vwc-button id="button" label="open" onclick="menu.open = !menu.open"></vwc-button>
+  <vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open"></vwc-button>
 
-  <vwc-menu id="menu" anchor="button" text="Focus or hover to open." open>
+  <vwc-menu id="menu" anchor="button" open>
    <vwc-menu-item>Menu item 1</vwc-menu-item>
    <vwc-menu-item>Menu item 2</vwc-menu-item>
-   <vwc-menu-item>Menu item 3</vwc-menu-item>
  </vwc-menu>
 </div>
 ```
@@ -52,14 +47,13 @@ Proxies the [`anchor` property to the underlying popup element](../popup#anchor)
 
 Proxies the [`placement` property to the underlying popup element](../popup#placement).
 
-```html preview center
+```html preview
 <div style="position: relative">
   <vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open"></vwc-button>
 
- <vwc-menu id="menu" anchor="button" text="Focus or hover to open." placement="top-start" open>
+ <vwc-menu id="menu" anchor="button" placement="right-start" open>
    <vwc-menu-item>Menu item 1</vwc-menu-item>
    <vwc-menu-item>Menu item 2</vwc-menu-item>
-   <vwc-menu-item>Menu item 3</vwc-menu-item>
  </vwc-menu>
 </div>
 ```
@@ -72,11 +66,10 @@ The default slot for the menu items.
 
 While any DOM content is permissible as a child of the menu, only `vwc-menu-item`'s and slotted content with a role of menu`item`, `menuitemcheckbox`, or `menuitemradio` will receive keyboard support.
 
-```html preview full
+```html preview
 <vwc-menu open>
  <vwc-menu-item>Menu item 1</vwc-menu-item>
  <vwc-menu-item>Menu item 2</vwc-menu-item>
- <vwc-menu-item>Menu item 3</vwc-menu-item>
 </vwc-menu>
 ```
 
