@@ -1,8 +1,32 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sat, 10 Sep 2022 18:25:22 GMT and should not be manually modified.
+This log was last generated on Thu, 15 Sep 2022 09:42:43 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.60
+
+Thu, 15 Sep 2022 09:42:43 GMT
+
+### Changes
+
+- add dispatch events to side drawer (rina.oksman@vonage.com)
+
+## 3.0.0-next.59
+
+Thu, 15 Sep 2022 08:34:27 GMT
+
+### Changes
+
+- fix text area vertical padding (yinon@hotmail.com)
+
+## 3.0.0-next.58
+
+Sun, 11 Sep 2022 12:51:47 GMT
+
+### Changes
+
+- refactor styles to separate concerns from styles to tokens (yinon@hotmail.com)
 
 ## 3.0.0-next.57
 
