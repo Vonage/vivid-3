@@ -16,7 +16,11 @@ Menu, commonly known as a "context menu", is an element that is displayed upon u
 
 ### Open
 
-Proxies the [`open` property to the underlying popup element](../popup#open).
+`vwc-enu` internally uses `vwc-popup` to display an element and its descendants above the rest of the document.
+
+Open property from `vwc-popup` propagate through `vwc-menu`.
+
+<https://github.com/Vonage/vivid-3/blob/3c6daf88ab35108016467a79c8324ce92786cbe8/libs/components/src/lib/popup/README.md#L34-L38>
 
 ```html preview
 <vwc-button label="open" onclick="menu.open = !menu.open"></vwc-button>
