@@ -16,7 +16,7 @@ Menu, commonly known as a "context menu", is an element that is displayed upon u
 
 ### Open
 
-`vwc-enu` internally uses `vwc-popup` to display an element and its descendants above the rest of the document.
+`vwc-menu` internally uses `vwc-popup` to display an element and its descendants above the rest of the document.
 
 Open property from `vwc-popup` propagate through `vwc-menu`.
 
