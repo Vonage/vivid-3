@@ -1,7 +1,7 @@
 {
   "type": "prerelease",
-  "comment": "add light dismiss to popup",
+  "comment": "popup fire open & close events",
   "packageName": "@vonage/vivid",
-  "email": "rina.oksman@vonage.com",
+  "email": "yinon@hotmail.com",
   "dependentChangeType": "patch"
 }
