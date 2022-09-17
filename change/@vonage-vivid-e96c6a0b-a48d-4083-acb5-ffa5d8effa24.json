@@ -1,6 +1,6 @@
 {
   "type": "prerelease",
-  "comment": "popup fire popen & close events",
+  "comment": "popup fire open & close events",
   "packageName": "@vonage/vivid",
   "email": "yinon@hotmail.com",
   "dependentChangeType": "patch"
