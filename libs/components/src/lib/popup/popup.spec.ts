@@ -245,9 +245,9 @@ describe('vwc-popup', () => {
 
 			const button = document.querySelector('vwc-button#button');
 			(button as HTMLElement).dispatchEvent(new MouseEvent('mousedown', {
-					bubbles: true,
-					composed: true
-				}));
+				bubbles: true,
+				composed: true
+			}));
 			await elementUpdated(element);
 
 			expect(openStateBeforeLightDismiss)
