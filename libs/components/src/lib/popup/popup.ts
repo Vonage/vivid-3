@@ -39,9 +39,6 @@ export class Popup extends FoundationElement {
 	}) open = false;
 
 	openChanged(_: boolean, newValue: boolean): void {
-		// should we add indication on how popup was closed in this generic popup?
-		// such detail on closing exist in native dialog
-		// popup closing alternatives: click outside, click on close button, click on anchor, click on escape
 		newValue ? this.$emit('open') : this.$emit('close');
 	}
 
