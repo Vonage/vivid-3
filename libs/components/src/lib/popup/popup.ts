@@ -49,6 +49,16 @@ export class Popup extends FoundationElement {
 	}) dismissible = false;
 
 	/**
+	 * determines if popup can be light dismissed
+	 *
+	 * @public
+	 * HTML Attribute: light-dismiss
+	 */
+	@attr({
+		mode: 'boolean', attribute: 'light-dismiss'
+	}) lightDismiss = false;
+
+	/**
 	 * adds small triangle to indicate the trigger element
 	 *
 	 * @public
@@ -88,8 +98,16 @@ export class Popup extends FoundationElement {
 		super();
 	}
 
+	override connectedCallback(): void {
+		super.connectedCallback();
+		if(this.lightDismiss){
+			window.addEventListener('mousedown', this.#dismiss);
+		}
+	}
+
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
+		window.removeEventListener('mousedown', this.#dismiss);
 		this.#anchorEl?.removeEventListener('keydown', this.#handleKeydown);
 		this.#cleanup?.();
 	}
@@ -154,6 +172,10 @@ export class Popup extends FoundationElement {
 		});
 	}
 
+	#close(): void {
+		this.open = false;
+	}
+
 	/**
 	 * Gets the anchor element by id
 	 */
@@ -163,7 +185,22 @@ export class Popup extends FoundationElement {
 
 	#handleKeydown = (event: Event) => {
 		if ((event as KeyboardEvent).key === keyEscape) {
-			this.open = false;
+			this.#close();
 		}
+	};
+
+	#dismiss = (event: Event) => {
+		if (!this.open || !this.#anchorEl) {
+			return;
+		}
+		// if clicked on popup
+		if (this.contains(event.target as Element)) {
+			return;
+		}
+		// if clicked on anchor
+		if (this.#anchorEl.contains(event.target as Element)) {
+			return;
+		}
+		this.#close();
 	};
 }

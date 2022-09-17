@@ -11,3 +11,6 @@ up to date, audited 1637 packages in 2s
   run `npm fund` for details
 
 found 0 vulnerabilities
+Removing change files:
+- @vonage-vivid-aa24aca2-101f-4d56-bca8-75c41193d17a.json
+Removing change path
