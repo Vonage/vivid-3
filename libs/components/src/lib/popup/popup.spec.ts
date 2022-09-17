@@ -153,6 +153,23 @@ describe('vwc-popup', () => {
 			expect(element.open)
 				.toEqual(true);
 		});
+
+		it('should fire open & close events', async function () {
+			const spyOpen = jest.fn();
+			const spyClose = jest.fn();
+
+			element.addEventListener('open', spyOpen);
+			element.addEventListener('close', spyClose);
+
+			element.open = true;
+			await elementUpdated(element);
+
+			element.open = false;
+			await elementUpdated(element);
+
+			expect(spyOpen).toHaveBeenCalled();
+			expect(spyClose).toHaveBeenCalled();
+		});
 	});
 
 	describe('hide', () => {
