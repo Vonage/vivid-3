@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "revert accidental popup light dismiss merge",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}
