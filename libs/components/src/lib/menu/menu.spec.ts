@@ -177,6 +177,27 @@ describe('vwc-menu', () => {
 		});
 	});
 
+	describe('events', () => {
+		it('should fire an event on popup open', async () => {
+			let openTriggered: boolean = false;
+			(element._popup as Popup).addEventListener('open', () => {
+				openTriggered = true;
+			});
+			(element._popup as Popup).open = true;
+			expect(openTriggered).toEqual(true);
+		});
+
+		it('should fire an event on popup close', async () => {
+			let closeTriggered: boolean = false;
+			(element._popup as Popup).open = true;
+			(element._popup as Popup).addEventListener('close', () => {
+				closeTriggered = true;
+			});
+			(element._popup as Popup).open = false;
+			expect(closeTriggered).toEqual(true);
+		});
+	});
+
 	const arrowUpEvent = new KeyboardEvent('keydown', {
 		key: keyArrowUp,
 		bubbles: true,
