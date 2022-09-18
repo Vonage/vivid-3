@@ -17,5 +17,5 @@ To address all issues, run:
 
 Run `npm audit` for details.
 Removing change files:
-- @vonage-vivid-e6b97b7f-e9a8-417e-b77f-3d64fbbded12.json
+- @vonage-vivid-e96c6a0b-a48d-4083-acb5-ffa5d8effa24.json
 Removing change path
