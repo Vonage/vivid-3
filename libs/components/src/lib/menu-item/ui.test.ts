@@ -1,8 +1,6 @@
-import * as path from 'path';
 import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import {
-	extractHTMLBlocksFromReadme,
 	loadComponents,
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
@@ -10,13 +8,22 @@ import {
 const components = ['menu-item', 'menu', 'divider'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template = extractHTMLBlocksFromReadme(
-		path.join(new URL('.', import.meta.url).pathname, 'README.md')
-	).reduce(
-		(htmlString: string, block: string) =>
-			`${htmlString} <div style="margin: 5px;">${block}</div>`,
-		''
-	);
+	const template =`
+		<vwc-menu open>
+		<vwc-menu-item role="menuitem">Menu item 1</vwc-menu-item>
+		<vwc-menu-item role="menuitem">Menu item 2</vwc-menu-item>
+		<vwc-divider></vwc-divider>
+		<vwc-menu-item role="menuitemcheckbox" checked>Checkbox 1</vwc-menu-item>
+		<vwc-menu-item role="menuitemcheckbox">Checkbox 2</vwc-menu-item>
+		<vwc-divider></vwc-divider>
+		<vwc-menu-item role="menuitemradio">Radio 1.1</vwc-menu-item>
+		<vwc-menu-item role="menuitemradio">Radio 1.2</vwc-menu-item>
+		<vwc-divider></vwc-divider>
+		<vwc-menu-item role="menuitemradio" checked>Radio 2.1</vwc-menu-item>
+		<vwc-menu-item role="menuitemradio">Radio 2.2</vwc-menu-item>
+		</vwc-menu>`;
+
+	page.setViewportSize({ width: 900, height: 720 });
 
 	await loadComponents({
 		page,
