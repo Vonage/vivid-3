@@ -32,6 +32,8 @@ export const MenuTemplate: (
 				:placement=${(x) => x.placement}
 				:open=${(x) => x.open}
 				:anchor=${(x) => x.anchor}
+				@open="${x => x.popupOpenChanged()}"
+				@close="${x => x.popupOpenChanged()}"
 				${ref('_popup')}
 			>
 				<div

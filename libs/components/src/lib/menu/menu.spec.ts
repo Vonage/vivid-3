@@ -1,6 +1,7 @@
 import { ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture } from '@vivid-nx/shared';
 import type { Button } from '@microsoft/fast-foundation';
 import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
+import { Popup } from '../popup/popup';
 import { Menu } from './menu';
 import '../menu-item';
 import '.';
@@ -27,6 +28,7 @@ describe('vwc-menu', () => {
 			expect(element.open).toEqual(false);
 			expect(element.anchor).toBeUndefined();
 			expect(element.placement).toBeUndefined();
+			expect(element._popup).toBeInstanceOf(Popup);
 		});
 	});
 

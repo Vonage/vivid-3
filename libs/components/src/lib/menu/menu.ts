@@ -38,14 +38,7 @@ export class Menu extends FastMenu {
 	 */
 	@attr anchor?: string;
 
-	override connectedCallback() {
-		super.connectedCallback();
-		this._popup?.addEventListener('open-changed', this.handlePopupOpenChanged);
-	}
-
-	handlePopupOpenChanged = () => {
-		if (this._popup?.open && this._popup.open != this.open) {
-			this.open = this._popup.open;
-		}
+	popupOpenChanged = () => {
+		this.open = (this._popup as Popup).open;
 	};
 }

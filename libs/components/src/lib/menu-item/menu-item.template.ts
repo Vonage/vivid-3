@@ -14,7 +14,7 @@ const getClasses = ({
 	'base',
 	`indent-${startColumnCount}`,
 	['disabled', Boolean(disabled)],
-	['selected', Boolean(checked)],
+	['selected', role === MenuItemRole.menuitemcheckbox && Boolean(checked)],
 	['expanded', Boolean(expanded)],
 	['item-checkbox', role === MenuItemRole.menuitemcheckbox],
 	['item-radio', role === MenuItemRole.menuitemradio]

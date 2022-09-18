@@ -59,21 +59,18 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 ```html preview
 <vwc-menu open>
  <vwc-menu-item icon="file-pdf-line">Export to PDF</vwc-menu-item>
- <vwc-menu-item icon="file-csv-line">Export to CSV</vwc-menu-item>
- <vwc-menu-item icon="file-jpg-line">Export to JPG</vwc-menu-item>
 </vwc-menu>
 ```
 
 ### Checked
 
-The checked value of the element.
+The checked value of the element (if role is set to `'menuitemcheckbox'`).
 
 - Type: `boolean`
 - Default: `false`
 
 ```html preview
 <vwc-menu open>
- <vwc-menu-item>Menu item</vwc-menu-item>
  <vwc-menu-item checked>Checked Menu item</vwc-menu-item>
 </vwc-menu>
 ```
@@ -87,7 +84,6 @@ The disabled state of the element
 
 ```html preview
 <vwc-menu open>
- <vwc-menu-item>Menu item</vwc-menu-item>
  <vwc-menu-item disabled>Disabled Menu item</vwc-menu-item>
 </vwc-menu>
 ```
@@ -98,23 +94,6 @@ The expanded state of the element
 
 - Type: `boolean`
 - Default: `false` -->
-
-## Methods
-
-### expandedChanged
-
-- Parameters:
-  - oldValue: `boolean`
-- Returns: `void`
-
-### checkedChanged
-
-- Parameters:
-  - oldValue: `boolean`
-  - newValue: `boolean`
-- Returns: `void`
-
-oldValue: boolean, newValue: boolean void
 
 ## Events
 
