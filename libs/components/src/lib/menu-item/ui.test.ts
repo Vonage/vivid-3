@@ -5,25 +5,35 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['menu-item', 'menu', 'divider'];
+const components = ['menu', 'menu-item', 'divider'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template =`
-		<vwc-menu open>
-		<vwc-menu-item role="menuitem">Menu item 1</vwc-menu-item>
-		<vwc-menu-item role="menuitem">Menu item 2</vwc-menu-item>
-		<vwc-divider></vwc-divider>
-		<vwc-menu-item role="menuitemcheckbox" checked>Checkbox 1</vwc-menu-item>
-		<vwc-menu-item role="menuitemcheckbox">Checkbox 2</vwc-menu-item>
-		<vwc-divider></vwc-divider>
-		<vwc-menu-item role="menuitemradio">Radio 1.1</vwc-menu-item>
-		<vwc-menu-item role="menuitemradio">Radio 1.2</vwc-menu-item>
-		<vwc-divider></vwc-divider>
-		<vwc-menu-item role="menuitemradio" checked>Radio 2.1</vwc-menu-item>
-		<vwc-menu-item role="menuitemradio">Radio 2.2</vwc-menu-item>
-		</vwc-menu>`;
+		<style>
+			div {
+				width: 100%;
+				height: 360px;
+				position: relative
+			}
+		</style>
 
-	page.setViewportSize({ width: 900, height: 720 });
+		<div>
+			<vwc-menu open>
+				<vwc-menu-item role="menuitem">Menu item 1</vwc-menu-item>
+				<vwc-menu-item role="menuitem">Menu item 2</vwc-menu-item>
+				<vwc-divider></vwc-divider>
+				<vwc-menu-item role="menuitemcheckbox">Checkbox 1</vwc-menu-item>
+				<vwc-menu-item role="menuitemcheckbox">Checkbox 2</vwc-menu-item>
+				<vwc-divider></vwc-divider>
+				<vwc-menu-item role="menuitemradio">Radio 1.1</vwc-menu-item>
+				<vwc-menu-item role="menuitemradio">Radio 1.2</vwc-menu-item>
+				<vwc-divider></vwc-divider>
+				<vwc-menu-item role="menuitemradio">Radio 2.1</vwc-menu-item>
+				<vwc-menu-item role="menuitemradio">Radio 2.2</vwc-menu-item>
+			</vwc-menu>
+		</div>`;
+
+	page.setViewportSize({ width: 160, height: 360 });
 
 	await loadComponents({
 		page,
