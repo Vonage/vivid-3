@@ -19,7 +19,12 @@ Menu, commonly known as a "context menu", is an element that is displayed upon u
 
 ### Open
 
-Proxies the [`open` property to the underlying popup element](../popup#open).
+_Menu_ internally uses _popup_ to display an element and its descendants above the rest of the document.
+
+`open` property from _popup_ propagate through _menu_ and sets its open state.
+
+- Type: `boolean`
+- Default: `false`
 
 ```html preview
 <vwc-menu open>
@@ -30,11 +35,16 @@ Proxies the [`open` property to the underlying popup element](../popup#open).
 
 ### Anchor
 
-Proxies the [`anchor` property to the underlying popup element](../popup#anchor).
+_Menu_ internally uses _popup_ to display an element and its descendants above the rest of the document.
+
+`anchor` property from _popup_ propagate through _menu_ and sets its anchor reference.
+
+- Type: `string`
+- Default: `''`
 
 ```html preview center
 <div style="position: relative">
-  <vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open"></vwc-button>
+  <vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open" appearance="outlined"></vwc-button>
 
   <vwc-menu id="menu" anchor="button" open>
    <vwc-menu-item>Menu item 1</vwc-menu-item>
@@ -45,11 +55,16 @@ Proxies the [`anchor` property to the underlying popup element](../popup#anchor)
 
 ### Placement
 
-Proxies the [`placement` property to the underlying popup element](../popup#placement).
+_Menu_ internally uses _popup_ to display an element and its descendants above the rest of the document.
+
+`placement` property from _popup_ propagate through _menu_ and sets its position in accordance to its anchor.
+
+- Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
+- Default: `''`
 
 ```html preview
 <div style="position: relative">
-  <vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open"></vwc-button>
+  <vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open" appearance="outlined"></vwc-button>
 
  <vwc-menu id="menu" anchor="button" placement="right-start" open>
    <vwc-menu-item>Menu item 1</vwc-menu-item>

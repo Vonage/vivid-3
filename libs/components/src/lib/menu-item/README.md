@@ -71,7 +71,7 @@ The checked value of the element (if role is set to `'menuitemcheckbox'`).
 
 ```html preview
 <vwc-menu open>
- <vwc-menu-item checked>Checked Menu item</vwc-menu-item>
+ <vwc-menu-item role="menuitemcheckbox" checked>Checked Menu item</vwc-menu-item>
 </vwc-menu>
 ```
 
