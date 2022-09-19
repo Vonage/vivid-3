@@ -257,10 +257,10 @@
     ]
   },
 	{
-		"title": "initials",
-		"markdown": "./libs/components/src/lib/initials/README.md",
+		"title": "avatar-initials",
+		"markdown": "./libs/components/src/lib/avatar-initials/README.md",
 		"modules": [
-			"/assets/modules/components/initials/index.js"
+			"/assets/modules/components/avatar-initials/index.js"
 		]
 	}
 ]

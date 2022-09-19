@@ -2,11 +2,11 @@ import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 
 /**
- * Base class for initials
+ * Base class for avatar-initials
  *
  * @public
  */
-export class Initials extends FoundationElement {
+export class avatarInitials extends FoundationElement {
 	/**
 	 * Indicates the text's text.
 	 *

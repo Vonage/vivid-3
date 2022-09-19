@@ -29,5 +29,5 @@ export * from './tooltip';
 export * from './checkbox';
 export * from './header';
 export * from './avatar';
-//export * from './initials';
+//export * from './avatar-initials';
 

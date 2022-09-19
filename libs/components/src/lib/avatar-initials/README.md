@@ -1,4 +1,4 @@
-# initials
+# avatar-initials
 This is in the docs only for now.  
 Will be removed after development.
 
@@ -7,17 +7,17 @@ Will be removed after development.
 ### Text
 
 #### longer text
-- If more than 2 words - only the 2 words initials will appear.
+- If more than 2 words - only the 2 words avatar-initials will appear.
 
 ```html preview
-<vwc-initials text="john doe vivid avatar"></vwc-initials>
+<vwc-avatar-initials text="john doe vivid avatar"></vwc-avatar-initials>
 ```
 
 #### one word
 - Should present one letter if only one word (not working yet...)
 
 ```html preview
-<vwc-initials text="avatar"></vwc-initials>
+<vwc-avatar-initials text="avatar"></vwc-avatar-initials>
 ```
 
 #### no text inserted
@@ -25,9 +25,9 @@ Will be removed after development.
 - What about the title? Is it OK to leave it empty?
 - 
 ```html preview
-<vwc-initials text=""></vwc-initials>
+<vwc-avatar-initials text=""></vwc-avatar-initials>
 ```
 #### dashed text
 ```html preview
-<vwc-initials text="john-doe avatar"></vwc-initials>
+<vwc-avatar-initials text="john-doe avatar"></vwc-avatar-initials>
 ```
