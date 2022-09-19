@@ -41,10 +41,6 @@ describe('vwc-menu-item', () => {
 		const mouseoverEvent = new MouseEvent('mouseover');
 		const mouseoutEvent = new MouseEvent('mouseout');
 
-		element.handleMouseOver(mouseoverEvent);
-
-		await elementUpdated(element);
-
 		expect(element.expanded).toEqual(undefined);
 
 		element.hasSubmenu = true;
@@ -54,16 +50,6 @@ describe('vwc-menu-item', () => {
 		await elementUpdated(element);
 
 		expect(element.expanded).toEqual(true);
-
-		element.hasSubmenu = false;
-
-		element.handleMouseOut(mouseoutEvent);
-
-		await elementUpdated(element);
-
-		expect(element.expanded).toEqual(false);
-
-		element.hasSubmenu = true;
 
 		element.handleMouseOut(mouseoutEvent);
 

@@ -9,10 +9,9 @@ import { focusTemplateFactory } from './../../shared/patterns/focus';
 
 
 const getClasses = ({
-	disabled, checked, expanded, startColumnCount, role
+	disabled, checked, expanded, role
 }: MenuItem) =>	classNames(
 	'base',
-	`indent-${startColumnCount}`,
 	['disabled', Boolean(disabled)],
 	['selected', role !== MenuItemRole.menuitem && Boolean(checked)],
 	['expanded', Boolean(expanded)],
