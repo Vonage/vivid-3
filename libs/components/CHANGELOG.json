@@ -2,6 +2,36 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Sat, 17 Sep 2022 18:35:47 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.62",
+      "version": "3.0.0-next.62",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "7b034aac286185aa183c7f72b53fff1e079b97ba",
+            "comment": "popup fire open & close events"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sat, 17 Sep 2022 18:16:46 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.61",
+      "version": "3.0.0-next.61",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "914cc0109fd1467659a1c70f4231303930530a67",
+            "comment": "revert accidental popup light dismiss merge"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 15 Sep 2022 09:42:43 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.60",
       "version": "3.0.0-next.60",

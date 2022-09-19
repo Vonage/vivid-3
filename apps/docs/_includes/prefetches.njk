@@ -1,5 +1,3 @@
 {% for component in components %}
-    {% for module in component.modules %}
-        <link rel="prefetch" href="{{ module | url }}">
-    {% endfor %}
+	<link rel="prefetch" href="{{ './libs/components/src/lib/' + component.title + '/index.js' | url }}">
 {% endfor %}
