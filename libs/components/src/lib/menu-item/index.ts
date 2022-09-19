@@ -1,3 +1,5 @@
+import '../icon';
+
 import type { MenuItemOptions } from '@microsoft/fast-foundation';
 import { designSystem } from '../../shared/design-system';
 import styles from './menu-item.scss';

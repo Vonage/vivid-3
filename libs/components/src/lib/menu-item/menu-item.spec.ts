@@ -27,13 +27,49 @@ describe('vwc-menu-item', () => {
 		});
 	});
 
-	it('adds an icon to the button', async () => {
-		element.icon = 'home';
+	it('should set a leading icon', async () => {
+		const iconName = 'file-pdf-line';
+		element.icon = iconName;
 		await elementUpdated(element);
 
 		const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
 		expect(icon).toBeInstanceOf(HTMLElement);
-		expect(icon.type).toEqual('home');
+		expect(icon.type).toEqual(iconName);
+	});
+
+	it('should toggle "expanded" on mouse over and mouse out', async () => {
+		const mouseoverEvent = new MouseEvent('mouseover');
+		const mouseoutEvent = new MouseEvent('mouseout');
+
+		element.handleMouseOver(mouseoverEvent);
+
+		await elementUpdated(element);
+
+		expect(element.expanded).toEqual(undefined);
+
+		element.hasSubmenu = true;
+
+		element.handleMouseOver(mouseoverEvent);
+
+		await elementUpdated(element);
+
+		expect(element.expanded).toEqual(true);
+
+		element.hasSubmenu = false;
+
+		element.handleMouseOut(mouseoutEvent);
+
+		await elementUpdated(element);
+
+		expect(element.expanded).toEqual(false);
+
+		element.hasSubmenu = true;
+
+		element.handleMouseOut(mouseoutEvent);
+
+		await elementUpdated(element);
+
+		expect(element.expanded).toEqual(false);
 	});
 
 	it('should include a role of menuitem when `menuitem` role is provided', async () => {
