@@ -131,8 +131,6 @@ describe('vwc-popup', () => {
 				.toBeFalsy();
 			expect(element.dismissible)
 				.toBeFalsy();
-			expect(element.lightDismiss)
-				.toEqual(false);
 			expect(element.anchor)
 				.toBeUndefined();
 			expect(element.placement)
@@ -152,6 +150,23 @@ describe('vwc-popup', () => {
 
 			expect(element.open)
 				.toEqual(true);
+		});
+
+		it('should fire open & close events', async function () {
+			const spyOpen = jest.fn();
+			const spyClose = jest.fn();
+
+			element.addEventListener('open', spyOpen);
+			element.addEventListener('close', spyClose);
+
+			element.open = true;
+			await elementUpdated(element);
+
+			element.open = false;
+			await elementUpdated(element);
+
+			expect(spyOpen).toHaveBeenCalled();
+			expect(spyClose).toHaveBeenCalled();
 		});
 	});
 
@@ -224,98 +239,6 @@ describe('vwc-popup', () => {
 
 			expect(openStateBeforeEsc)
 				.toEqual(true);
-			expect(element.open)
-				.toEqual(false);
-		});
-	});
-
-	describe('handle light dismiss', () => {
-		it('should hide when clicked outside of the popup', async () => {
-			const element = await fixture('<vwc-popup light-dismiss open></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
-			await elementUpdated(element);
-
-			await setAnchor();
-			element.anchor = 'anchor';
-			await elementUpdated(element);
-
-			const buttonEl = await fixture('<vwc-button id="button"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE) as Button;
-			await elementUpdated(buttonEl);
-
-			const openStateBeforeLightDismiss = element.open;
-
-			const button = document.querySelector('vwc-button#button');
-			(button as HTMLElement).dispatchEvent(new MouseEvent('mousedown', {
-					bubbles: true,
-					composed: true
-				}));
-			await elementUpdated(element);
-
-			expect(openStateBeforeLightDismiss)
-				.toEqual(true);
-			expect(element.open)
-				.toEqual(false);
-		});
-
-		it('should not hide when clicked on the popup', async () => {
-			const element = await fixture('<vwc-popup light-dismiss></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
-			await elementUpdated(element);
-
-			await setAnchor();
-			element.anchor = 'anchor';
-			await elementUpdated(element);
-
-			element.open = true;
-			const openStateBeforeLightDismiss = element.open;
-
-			(element as HTMLElement).click();
-			await elementUpdated(element);
-
-			expect(openStateBeforeLightDismiss)
-				.toEqual(true);
-			expect(element.open)
-				.toEqual(true);
-		});
-
-		it('should not hide when clicked on the anchor', async () => {
-			const element = await fixture('<vwc-popup light-dismiss open></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
-			await elementUpdated(element);
-
-			await setAnchor();
-			element.anchor = 'anchor';
-			await elementUpdated(element);
-
-			const openStateBeforeLightDismiss = element.open;
-
-			const dismissButton = document.querySelector('vwc-button#anchor');
-			(dismissButton as HTMLElement).click();
-
-			await elementUpdated(element);
-
-			expect(openStateBeforeLightDismiss)
-				.toEqual(true);
-			expect(element.open)
-				.toEqual(true);
-		});
-
-		it('should stay closed when clicked outside of the popup', async () => {
-			const element = await fixture('<vwc-popup light-dismiss></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
-			await elementUpdated(element);
-
-			await setAnchor();
-			element.anchor = 'anchor';
-			await elementUpdated(element);
-
-			const buttonEl = await fixture('<vwc-button id="button"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE) as Button;
-			await elementUpdated(buttonEl);
-
-			const openStateBeforeLightDismiss = element.open;
-
-			const button = document.querySelector('vwc-button#button');
-			(button as HTMLElement).click();
-			await elementUpdated(element);
-
-			expect(openStateBeforeLightDismiss)
-				.toEqual(false);
 			expect(element.open)
 				.toEqual(false);
 		});

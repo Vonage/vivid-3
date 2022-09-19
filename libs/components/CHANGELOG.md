@@ -1,8 +1,24 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Thu, 15 Sep 2022 09:42:43 GMT and should not be manually modified.
+This log was last generated on Sat, 17 Sep 2022 18:35:47 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.62
+
+Sat, 17 Sep 2022 18:35:47 GMT
+
+### Changes
+
+- popup fire open & close events (yinon@hotmail.com)
+
+## 3.0.0-next.61
+
+Sat, 17 Sep 2022 18:16:46 GMT
+
+### Changes
+
+- revert accidental popup light dismiss merge (yinon@hotmail.com)
 
 ## 3.0.0-next.60
 
