@@ -2,9 +2,11 @@ import { elementUpdated, fixture } from '@vivid-nx/shared';
 import '.';
 import { MenuItemRole } from '@microsoft/fast-foundation';
 import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
+import type { Icon } from '../icon/icon';
 import { MenuItem } from './menu-item';
 
 const COMPONENT_TAG = 'vwc-menu-item';
+const ICON_SELECTOR = 'vwc-icon';
 
 describe('vwc-menu-item', () => {
 	let element: MenuItem;
@@ -23,6 +25,15 @@ describe('vwc-menu-item', () => {
 			expect(element.checked).toBeUndefined();
 			expect(element.disabled).toBeUndefined();
 		});
+	});
+
+	it('adds an icon to the button', async () => {
+		element.icon = 'home';
+		await elementUpdated(element);
+
+		const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+		expect(icon).toBeInstanceOf(HTMLElement);
+		expect(icon.type).toEqual('home');
 	});
 
 	it('should include a role of menuitem when `menuitem` role is provided', async () => {
