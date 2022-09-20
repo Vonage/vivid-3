@@ -7,7 +7,7 @@ import { NavTemplate as template } from './nav.template';
 export const vividNav =
 	Nav.compose<FoundationElementDefinition>({
 		baseName: 'nav',
-		template: template as any
+		template: template as any,
 	});
 
 designSystem.register(vividNav());
