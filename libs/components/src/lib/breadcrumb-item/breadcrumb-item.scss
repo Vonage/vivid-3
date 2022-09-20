@@ -36,6 +36,7 @@
 
 .focus-indicator {
 	--focus-inset: -4px -8px;
+
 	border-radius: 6px;
 	.control:not(:focus-visible)>& {
 		display: none;
