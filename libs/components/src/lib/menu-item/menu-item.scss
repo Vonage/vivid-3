@@ -46,13 +46,6 @@
 		user-select: none;
 	}
 
-	&.icon-only {
-		display: flex;
-		block-size: $min-block-size;
-		inline-size: $min-block-size;
-		place-content: center;
-	}
-
 	&:not(.disabled) {
 		cursor: pointer;
 	}

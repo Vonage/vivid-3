@@ -1,3 +1,4 @@
+import { attr } from '@microsoft/fast-element';
 import { applyMixins, MenuItem as FastMenuItem } from '@microsoft/fast-foundation';
 import { AffixIcon } from '../../shared/patterns/affix';
 
@@ -7,15 +8,14 @@ import { AffixIcon } from '../../shared/patterns/affix';
  * @public
  */
 export class MenuItem extends FastMenuItem {
-	// @observable roleState?: MenuItemRole = this.role;
-
-	// override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
-	// 	super.attributeChangedCallback(name, oldValue, newValue);
-	// 	if (name === 'role' && roleForMenuItem.hasOwnProperty(newValue)) {
-	// 		this.roleState = newValue as MenuItemRole;
-	// 		this.removeAttribute('role');
-	// 	}
-	// }
+	/**
+	 * Indicates the menu item's text.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: text
+	 */
+	@attr text?: string;
 }
 
 export interface MenuItem extends AffixIcon {}

@@ -32,17 +32,17 @@ set `role` to change the role of the menu item
 </style>
 
 <vwc-menu open>
- <vwc-menu-item role="menuitem">Menu item 1</vwc-menu-item>
- <vwc-menu-item role="menuitem">Menu item 2</vwc-menu-item>
+ <vwc-menu-item role="menuitem" text="Menu item 1"></vwc-menu-item>
+ <vwc-menu-item role="menuitem" text="Menu item 2"></vwc-menu-item>
  <vwc-divider></vwc-divider>
- <vwc-menu-item role="menuitemcheckbox">Checkbox 1</vwc-menu-item>
- <vwc-menu-item role="menuitemcheckbox">Checkbox 2</vwc-menu-item>
+ <vwc-menu-item role="menuitemcheckbox" text="Checkbox 1"></vwc-menu-item>
+ <vwc-menu-item role="menuitemcheckbox" text="Checkbox 2"></vwc-menu-item>
  <vwc-divider></vwc-divider>
- <vwc-menu-item role="menuitemradio">Radio 1.1</vwc-menu-item>
- <vwc-menu-item role="menuitemradio">Radio 1.2</vwc-menu-item>
+ <vwc-menu-item role="menuitemradio" text="Radio 1.1"></vwc-menu-item>
+ <vwc-menu-item role="menuitemradio" text="Radio 1.2"></vwc-menu-item>
  <vwc-divider></vwc-divider>
- <vwc-menu-item role="menuitemradio">Radio 2.1</vwc-menu-item>
- <vwc-menu-item role="menuitemradio">Radio 2.2</vwc-menu-item>
+ <vwc-menu-item role="menuitemradio" text="Radio 2.1"></vwc-menu-item>
+ <vwc-menu-item role="menuitemradio" text="Radio 2.2"></vwc-menu-item>
 </vwc-menu>
 ```
 
@@ -58,7 +58,7 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 
 ```html preview
 <vwc-menu open>
- <vwc-menu-item icon="file-pdf-line">Export to PDF</vwc-menu-item>
+ <vwc-menu-item icon="file-pdf-line" text="Export to PDF"></vwc-menu-item>
 </vwc-menu>
 ```
 
@@ -71,7 +71,7 @@ The checked value of the element (if role is set to `'menuitemcheckbox'`).
 
 ```html preview
 <vwc-menu open>
- <vwc-menu-item role="menuitemcheckbox" checked>Checked Menu item</vwc-menu-item>
+ <vwc-menu-item role="menuitemcheckbox" checked text="Checked Menu item"></vwc-menu-item>
 </vwc-menu>
 ```
 
@@ -84,7 +84,7 @@ The disabled state of the element
 
 ```html preview
 <vwc-menu open>
- <vwc-menu-item disabled>Disabled Menu item</vwc-menu-item>
+ <vwc-menu-item disabled text="Disabled Menu item"></vwc-menu-item>
 </vwc-menu>
 ```
 
