@@ -17,3 +17,4 @@ export const vividTextfield = TextField.compose<FoundationElementDefinition>({
 });
 
 designSystem.register(vividTextfield());
+

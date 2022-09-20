@@ -11,8 +11,7 @@
     "title": "accordion-item",
     "markdown": "./libs/components/src/lib/accordion-item/README.md",
     "modules": [
-      "/assets/modules/components/accordion-item/index.js",
-      "/assets/modules/components/text/index.js"
+      "/assets/modules/components/accordion-item/index.js"
     ]
   },
   {
@@ -79,7 +78,8 @@
     "markdown": "./libs/components/src/lib/layout/README.md",
     "modules": [
       "/assets/modules/components/layout/index.js",
-      "/assets/modules/components/card/index.js"
+      "/assets/modules/components/card/index.js",
+      "/assets/modules/components/divider/index.js"
     ]
   },
   {
@@ -89,7 +89,6 @@
       "/assets/modules/components/popup/index.js",
       "/assets/modules/components/button/index.js",
       "/assets/modules/components/icon/index.js",
-      "/assets/modules/components/text/index.js",
       "/assets/modules/components/layout/index.js"
     ]
   },
@@ -98,24 +97,26 @@
     "markdown": "./libs/components/src/lib/side-drawer/README.md",
     "modules": [
       "/assets/modules/components/side-drawer/index.js",
-      "/assets/modules/components/sidenav-item/index.js",
-      "/assets/modules/components/text/index.js",
+      "/assets/modules/components/nav-item/index.js",
       "/assets/modules/components/fab/index.js",
       "/assets/modules/components/layout/index.js"
     ]
   },
   {
-    "title": "sidenav-item",
-    "markdown": "./libs/components/src/lib/sidenav-item/README.md",
+    "title": "nav-item",
+    "markdown": "./libs/components/src/lib/nav-item/README.md",
     "modules": [
-      "/assets/modules/components/sidenav-item/index.js"
+      "/assets/modules/components/nav/index.js",
+      "/assets/modules/components/nav-item/index.js"
     ]
   },
   {
-    "title": "text",
-    "markdown": "./libs/components/src/lib/text/README.md",
+    "title": "nav-disclosure",
+    "markdown": "./libs/components/src/lib/nav-disclosure/README.md",
     "modules": [
-      "/assets/modules/components/text/index.js"
+      "/assets/modules/components/nav/index.js",
+      "/assets/modules/components/nav-disclosure/index.js",
+      "/assets/modules/components/nav-item/index.js"
     ]
   },
   {
@@ -123,7 +124,6 @@
     "markdown": "./libs/components/src/lib/tooltip/README.md",
     "modules": [
       "/assets/modules/components/tooltip/index.js",
-      "/assets/modules/components/text/index.js",
       "/assets/modules/components/button/index.js"
     ]
   },
@@ -148,7 +148,6 @@
     "modules": [
       "/assets/modules/components/card/index.js",
       "/assets/modules/components/button/index.js",
-      "/assets/modules/components/text/index.js",
       "/assets/modules/components/layout/index.js"
     ]
   },
@@ -156,7 +155,8 @@
     "title": "text-field",
     "markdown": "./libs/components/src/lib/text-field/README.md",
     "modules": [
-      "/assets/modules/components/text-field/index.js"
+      "/assets/modules/components/text-field/index.js",
+      "/assets/modules/components/button/index.js"
     ]
   },
   {
@@ -175,7 +175,8 @@
       "/assets/modules/components/button/index.js",
       "/assets/modules/components/text-field/index.js",
       "/assets/modules/components/layout/index.js",
-      "/assets/modules/components/popup/index.js"
+      "/assets/modules/components/popup/index.js",
+      "/assets/modules/components/divider/index.js"
     ]
   },
   {
@@ -193,23 +194,66 @@
     ]
   },
   {
+    "title": "dialog",
+    "markdown": "./libs/components/src/lib/dialog/README.md",
+    "modules": [
+      "/assets/modules/components/dialog/index.js",
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/text-field/index.js"
+    ]
+  },
+  {
     "title": "header",
     "markdown": "./libs/components/src/lib/header/README.md",
     "modules": [
       "/assets/modules/components/header/index.js",
       "/assets/modules/components/button/index.js",
-      "/assets/modules/components/text/index.js",
       "/assets/modules/components/side-drawer/index.js",
       "/assets/modules/components/layout/index.js",
       "/assets/modules/components/banner/index.js"
     ]
   },
   {
-    "title": "sidenav",
-    "markdown": "./libs/components/src/lib/sidenav/README.md",
+    "title": "nav",
+    "markdown": "./libs/components/src/lib/nav/README.md",
     "modules": [
-      "/assets/modules/components/sidenav/index.js",
-      "/assets/modules/components/sidenav-item/index.js"
+      "/assets/modules/components/nav/index.js",
+      "/assets/modules/components/nav-item/index.js",
+      "/assets/modules/components/nav-disclosure/index.js"
+    ]
+  },
+  {
+    "title": "divider",
+    "markdown": "./libs/components/src/lib/divider/README.md",
+    "modules": [
+      "/assets/modules/components/divider/index.js",
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/action-group/index.js",
+      "/assets/modules/components/card/index.js"
+    ]
+  },
+  {
+    "title": "menu",
+    "markdown": "./libs/components/src/lib/menu/README.md",
+    "modules": [
+      "/assets/modules/components/menu/index.js",
+      "/assets/modules/components/button/index.js"
+    ]
+  },
+  {
+    "title": "avatar",
+    "markdown": "./libs/components/src/lib/avatar/README.md",
+    "modules": [
+      "/assets/modules/components/avatar/index.js",
+      "/assets/modules/components/icon/index.js"
+    ]
+  },
+  {
+    "title": "text-area",
+    "markdown": "./libs/components/src/lib/text-area/README.md",
+    "modules": [
+      "/assets/modules/components/text-area/index.js",
+      "/assets/modules/components/button/index.js"
     ]
   }
 ]

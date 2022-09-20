@@ -7,13 +7,12 @@ import type {
 import type { SideDrawer } from './side-drawer';
 
 const getClasses = ({
-	alternate, modal, open, position
+	modal, open, trailing
 }: SideDrawer) => classNames(
 	'control',
-	['alternate', alternate],
 	['modal', modal],
 	['open', open],
-	[`position-${position}`, Boolean(position)],
+	['trailing', trailing],
 );
 
 const getScrimClasses = ({

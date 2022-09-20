@@ -5,7 +5,7 @@ import {
 	loadTemplate
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['header', 'button', 'text', 'layout'];
+const components = ['header', 'button', 'layout'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template =`
@@ -23,23 +23,22 @@ test('should show the component', async ({ page }: { page: Page }) => {
       </vwc-header>
 
       <vwc-header>
-        <vwc-button slot="actionItems" icon="twitter-mono"></vwc-button>
-        <vwc-button slot="actionItems" icon="facebook-mono"></vwc-button>
-        <vwc-button slot="actionItems" icon="heart-solid"></vwc-button>
+        <vwc-button slot="action-items" icon="twitter-mono"></vwc-button>
+        <vwc-button slot="action-items" icon="facebook-mono"></vwc-button>
+        <vwc-button slot="action-items" icon="heart-solid"></vwc-button>
       </vwc-header>
 
       <vwc-header>
         Header & App Content
         <main slot="app-content">
           <vwc-layout gutters="small">
-            <vwc-text>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-            </vwc-text>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+							sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+							Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+						</p>
           </vwc-layout>
         </main>
       </vwc-header>

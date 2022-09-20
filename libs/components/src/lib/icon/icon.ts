@@ -5,7 +5,7 @@ import type { Connotation, Size } from '../enums';
 import { PLACEHOLDER_ICON } from './icon.placeholder';
 
 const BASE_URL = 'https://icon.resources.vonage.com'; // namespaced as 3f7739a0-a898-4f69-a82b-ad9d743170b6 on icons.resources.vonage.com
-const ICON_SET_VERSION = '4.0.28';
+const ICON_SET_VERSION = '4.0.30';
 
 // Start displaying placeholder if waiting more than this period of time
 const PLACEHOLDER_DELAY = 500;
@@ -45,7 +45,7 @@ type IconConnotation = Extract<Connotation,
 | Connotation.Announcement
 | Connotation.Success
 | Connotation.Alert
-| Connotation.Info>;
+| Connotation.Information>;
 
 /**
  * Types of icon size.

@@ -80,7 +80,7 @@ describe('vwc-calendar-event', () => {
 		});
 
 		it('should set correct internal connotation style', async () => {
-			const connotation = 'info';
+			const connotation = 'information';
 			(element as any).connotation = connotation;
 			await elementUpdated(element);
 
