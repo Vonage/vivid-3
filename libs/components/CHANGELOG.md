@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sat, 17 Sep 2022 18:35:47 GMT and should not be manually modified.
+This log was last generated on Tue, 20 Sep 2022 01:19:01 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.63
+
+Tue, 20 Sep 2022 01:19:01 GMT
+
+### Changes
+
+- update icon set to 4.0.30 (yinon@hotmail.com)
 
 ## 3.0.0-next.62
 
