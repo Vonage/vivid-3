@@ -130,9 +130,9 @@ describe('vwc-menu', () => {
 		it('should handle menu key down events', async () => {
 
 			element.innerHTML = `
-				<button role="menuitem" id="id1">Menu Item 1</button>
-				<button role="menuitem" id="id2">Menu Item 1</button>
-				<button role="menuitem" id="id3">Menu Item 1</button>
+				<button role="menuitem" id="id1" text="Menu Item 1"></button>
+				<button role="menuitem" id="id2" text="Menu Item 2"></button>
+				<button role="menuitem" id="id3" text="Menu Item 3"></button>
 			`;
 
 			await elementUpdated(element);
@@ -155,8 +155,8 @@ describe('vwc-menu', () => {
 		it('should handle focus out event', async () => {
 
 			element.innerHTML = `
-				<div role="menuitem" id="id1">Menu Item 1</div>
-				<div role="menuitem" id="id2">Menu Item 1</div>
+				<div role="menuitem" id="id1" text="Menu Item 1"></div>
+				<div role="menuitem" id="id2" text="Menu Item 2"></div>
 			`;
 
 			await elementUpdated(element);

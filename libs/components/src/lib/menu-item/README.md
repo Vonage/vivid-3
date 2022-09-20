@@ -11,7 +11,7 @@ Represents a menu-item custom element.
 ```html preview
 
 <vwc-menu open>
- <vwc-menu-item>Menu item</vwc-menu-item>
+ <vwc-menu-item text="Menu item"></vwc-menu-item>
 </vwc-menu>
 ```
 
