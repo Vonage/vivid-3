@@ -21,8 +21,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			<vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open" appearance="outlined"></vwc-button>
 
 			<vwc-menu id="menu" anchor="button" placement="right-start" open>
-				<vwc-menu-item>Menu item 1</vwc-menu-item>
-				<vwc-menu-item>Menu item 2</vwc-menu-item>
+				<vwc-menu-item text="Menu item 1"></vwc-menu-item>
+				<vwc-menu-item text="Menu item 2"></vwc-menu-item>
 			</vwc-menu>
 		</div>`;
 
