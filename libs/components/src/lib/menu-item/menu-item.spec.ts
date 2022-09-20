@@ -20,11 +20,22 @@ describe('vwc-menu-item', () => {
 	describe('basic', () => {
 		it('should be initialized as a vwc-menu-item', async () => {
 			expect(element).toBeInstanceOf(MenuItem);
+			expect(element.text).toEqual(undefined);
 			expect(element.role).toEqual('menuitem');
 			expect(element.icon).toBeUndefined();
 			expect(element.checked).toBeUndefined();
 			expect(element.disabled).toBeUndefined();
 		});
+	});
+
+	it('set text property to node', async () => {
+		const text = 'lorem';
+		element.text = text;
+		await elementUpdated(element);
+
+		const control = element.shadowRoot?.querySelector('.control');
+		expect(control?.textContent?.trim())
+			.toEqual(text);
 	});
 
 	it('should set a leading icon', async () => {
