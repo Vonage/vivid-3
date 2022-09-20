@@ -216,6 +216,7 @@ article > h1 {
   overflow: hidden;
   border: none;
   width: 100%;
+	border-radius: 6px;
 }
 
 .cbd-details > summary {
