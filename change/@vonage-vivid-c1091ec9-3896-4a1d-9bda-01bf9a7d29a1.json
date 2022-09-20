@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "update icon set to 4.0.30",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}
