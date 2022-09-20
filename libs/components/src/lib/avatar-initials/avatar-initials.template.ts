@@ -4,10 +4,12 @@ import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
+import initials from 'initials';
 import { classNames } from '@microsoft/fast-web-utilities';
-import type { avatarInitials } from './avatar-initials';
+import type { AvatarInitials } from './avatar-initials';
 
-const getClasses = (_: avatarInitials) => classNames('base');
+
+const getClasses = (_: AvatarInitials) => classNames('base');
 
 /**
  * The template for the {@link @microsoft/fast-foundation#Initials} component.
@@ -16,20 +18,16 @@ const getClasses = (_: avatarInitials) => classNames('base');
  * @param root0.text
  */
 
-
-
 const InitialTrim = ({
-	text}: avatarInitials) => {
-	if (text === undefined) return '';
+	text}: AvatarInitials) => {
 	const theName = text;
-	const letterTrimming = theName.split(' ')[0].charAt(0).toUpperCase() + theName.split(' ')[1].charAt(0).toUpperCase();
-	return letterTrimming.toString();
+	return initials(`${theName}`);
 };
 
 export const avatarInitialsTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<avatarInitials> = () => html`
+) => ViewTemplate<AvatarInitials> = () => html`
 	<abbr class="${getClasses}" title="${(x) => x.text}">${InitialTrim}</abbr>
 `;
 

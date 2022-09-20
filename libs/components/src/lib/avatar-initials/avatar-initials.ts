@@ -6,7 +6,7 @@ import { attr } from '@microsoft/fast-element';
  *
  * @public
  */
-export class avatarInitials extends FoundationElement {
+export class AvatarInitials extends FoundationElement {
 	/**
 	 * Indicates the text's text.
 	 *
