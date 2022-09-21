@@ -37,10 +37,8 @@
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-font-base});
 	gap: $gap;
-	hyphens: auto;
 	inline-size: 100%;
 	padding-inline: $gap;
-	word-break: break-word;
 
 	@supports(user-select: none) {
 		user-select: none;
@@ -70,3 +68,8 @@
 	}
 }
 
+.text {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

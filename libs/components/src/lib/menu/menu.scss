@@ -1,3 +1,7 @@
+@use 'partials/variables' as variables;
+
+
 .base {
 	padding-block: 8px;
+	inline-size: var(#{variables.$menu-inline-size});
 }

@@ -78,7 +78,9 @@ export const MenuItemTemplate:  (
 			${when(x => x.role === MenuItemRole.menuitem && x.icon,
 		html`${x => affixIconTemplate(x.icon)}`)}
 
-			${x => x.text}
+			<span class="text">
+				${x => x.text}
+			</span>
 		</div>
 	</template>
 	`;

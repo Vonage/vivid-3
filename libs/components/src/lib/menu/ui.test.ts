@@ -15,12 +15,17 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				height: 160px;
 				position: relative
 			}
+
+			vwc-menu {
+				--menu-inline-size: 300px;
+			}
 		</style>
 
 		<div>
 			<vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open" appearance="outlined"></vwc-button>
 
 			<vwc-menu id="menu" anchor="button" placement="right-start" open>
+				<vwc-menu-item text="Lorem ipsum dolor sit amet, consectetur adipisicing elit"></vwc-menu-item>
 				<vwc-menu-item text="Menu item 1"></vwc-menu-item>
 				<vwc-menu-item text="Menu item 2"></vwc-menu-item>
 			</vwc-menu>

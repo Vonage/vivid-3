@@ -42,7 +42,7 @@ _Menu_ internally uses _popup_ to display an element and its descendants above t
 - Type: `string`
 - Default: `''`
 
-```html preview center
+```html preview
 <div style="position: relative">
   <vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open" appearance="outlined"></vwc-button>
 
@@ -85,6 +85,27 @@ While any DOM content is permissible as a child of the menu, only `vwc-menu-item
 <vwc-menu open>
  <vwc-menu-item text="Menu item 1"></vwc-menu-item>
  <vwc-menu-item text="Menu item 2"></vwc-menu-item>
+</vwc-menu>
+```
+
+## CSS Variables
+
+### Inline Size
+
+Use the `--menu-inline-size` variable to set the menu's inline size.
+
+- Type: [`<length>`](https://developer.mozilla.org/en-US/docs/Web/CSS/length)
+- Default: `auto`
+
+```html preview
+<style>
+  vwc-menu {
+    --menu-inline-size: 300px;
+  }
+</style>
+
+<vwc-menu open>
+ <vwc-menu-item text="Lorem ipsum dolor sit amet, consectetur adipisicing elit"></vwc-menu-item>
 </vwc-menu>
 ```
 
