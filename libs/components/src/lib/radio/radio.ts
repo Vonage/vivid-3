@@ -1,18 +1,18 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
+import { Radio as FastRadio } from '@microsoft/fast-foundation';
 
 /**
  * Base class for radio
  *
  * @public
  */
-export class Radio extends FoundationElement {
+export class Radio extends FastRadio {
 	/**
-	 * Indicates the text's text.
+	 * Indicates the radio's label.
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: text
+	 * HTML Attribute: label
 	 */
-	@attr text?: string;
+	@attr label?: string;
 }

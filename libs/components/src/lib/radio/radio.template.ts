@@ -1,13 +1,18 @@
-import { html } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
+import { html, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
+import type { ViewTemplate } from '@microsoft/fast-element';
+import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
+
+import { focusTemplateFactory } from '../../shared/patterns/focus';
 import type { Radio } from './radio';
 
-const getClasses = (_: Radio) => classNames('control');
+
+const getClasses = ({ readOnly, checked, disabled }: Radio) => classNames(
+	'base',
+	['readonly', Boolean(readOnly)],
+	['checked', Boolean(checked)],
+	['disabled', Boolean(disabled)]
+);
 
 /**
  * The template for the {@link @microsoft/fast-foundation#Radio} component.
@@ -15,10 +20,23 @@ const getClasses = (_: Radio) => classNames('control');
  * @param context
  * @public
  */
-export const RadioTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<Radio> = (context: ElementDefinitionContext) => html` <span
-	class="${getClasses}"
-	>${context.name}
-</span>`;
+export const RadioTemplate: (context: ElementDefinitionContext) => ViewTemplate<Radio> = (context: ElementDefinitionContext) => {
+	const focusTemplate = focusTemplateFactory(context);
+
+	return html<Radio>`
+	<span class="${getClasses}"
+		role="radio"
+		aria-checked="${x => x.checked}"
+		aria-required="${x => x.required}"
+		aria-disabled="${x => x.disabled}"
+		aria-readonly="${x => x.readOnly}"
+		@keypress="${(x, c) => x.keypressHandler(c.event as KeyboardEvent)}"
+		@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
+	>
+		<div class="control">
+			${() => focusTemplate}
+		</div>
+		${when(x => x.label, html<Radio>`<label class="label">${x => x.label}</label>`)}
+	</span>
+	`;
+};
