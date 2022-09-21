@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Tue, 20 Sep 2022 01:19:01 GMT and should not be manually modified.
+This log was last generated on Wed, 21 Sep 2022 09:22:43 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.64
+
+Wed, 21 Sep 2022 09:22:43 GMT
+
+### Changes
+
+- improve breadcrumb item focus indication style (yinon@hotmail.com)
 
 ## 3.0.0-next.63
 
