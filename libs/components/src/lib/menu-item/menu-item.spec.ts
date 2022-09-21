@@ -28,12 +28,12 @@ describe('vwc-menu-item', () => {
 		});
 	});
 
-	it('set text property to node', async () => {
+	it('should set text property to node', async () => {
 		const text = 'lorem';
 		element.text = text;
 		await elementUpdated(element);
 
-		const control = element.shadowRoot?.querySelector('.control');
+		const control = element.shadowRoot?.querySelector('.base');
 		expect(control?.textContent?.trim())
 			.toEqual(text);
 	});
