@@ -3,6 +3,6 @@
 
 .base {
 	padding-block: 8px;
-	inline-size: var(#{variables.$menu-inline-size});
-	max-inline-size: 100%;
+	max-inline-size: var(#{variables.$menu-max-inline-size}, 100%);
+	min-inline-size: var(#{variables.$menu-min-inline-size});
 }

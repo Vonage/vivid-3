@@ -17,7 +17,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			}
 
 			vwc-menu {
-				--menu-inline-size: 300px;
+				--menu-max-inline-size: 300px;
 			}
 		</style>
 
