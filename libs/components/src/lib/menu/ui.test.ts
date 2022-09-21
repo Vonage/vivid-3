@@ -31,7 +31,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			</vwc-menu>
 		</div>`;
 
-	page.setViewportSize({ width: 260, height: 160 });
+	page.setViewportSize({ width: 560, height: 160 });
 
 	await loadComponents({
 		page,
