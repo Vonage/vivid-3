@@ -2,7 +2,7 @@
 
 
 .base {
-	padding-block: 8px;
 	max-inline-size: var(#{variables.$menu-max-inline-size}, 100%);
 	min-inline-size: var(#{variables.$menu-min-inline-size});
+	padding-block: 8px;
 }
