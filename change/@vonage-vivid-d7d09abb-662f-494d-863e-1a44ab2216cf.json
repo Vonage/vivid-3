@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "improve breadcrumb item focus indication style",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}
