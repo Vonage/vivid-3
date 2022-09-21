@@ -35,6 +35,10 @@
 }
 
 .focus-indicator {
+	--focus-inset: -4px -8px;
+	--focus-stroke-gap-color: transparent;
+
+	border-radius: 6px;
 	.control:not(:focus-visible)>& {
 		display: none;
 	}
