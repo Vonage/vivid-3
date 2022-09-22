@@ -6,7 +6,7 @@ import type { TabPanel } from './tab-panel.js';
  *
  * @public
  */
-export function tabPanelTemplate<T extends TabPanel>() {
+export function TabPanelTemplate<T extends TabPanel>() {
 	return html<T>`
         <template slot="tabpanel" role="tabpanel">
             <slot></slot>
