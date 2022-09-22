@@ -2,8 +2,10 @@ import { elementUpdated, fixture } from '@vivid-nx/shared';
 import '.';
 import { MenuItemRole } from '@microsoft/fast-foundation';
 import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
+import { fireEvent } from '@testing-library/dom';
 import type { Icon } from '../icon/icon';
 import { MenuItem } from './menu-item';
+
 
 const COMPONENT_TAG = 'vwc-menu-item';
 const ICON_SELECTOR = 'vwc-icon';
@@ -49,22 +51,15 @@ describe('vwc-menu-item', () => {
 	});
 
 	it('should toggle "expanded" on mouse over and mouse out', async () => {
-		const mouseoverEvent = new MouseEvent('mouseover');
-		const mouseoutEvent = new MouseEvent('mouseout');
-
 		expect(element.expanded).toEqual(undefined);
 
 		element.hasSubmenu = true;
 
-		element.handleMouseOver(mouseoverEvent);
-
-		await elementUpdated(element);
+		fireEvent(element, new MouseEvent('mouseover'));
 
 		expect(element.expanded).toEqual(true);
 
-		element.handleMouseOut(mouseoutEvent);
-
-		await elementUpdated(element);
+		fireEvent(element, new MouseEvent('mouseout'));
 
 		expect(element.expanded).toEqual(false);
 	});
