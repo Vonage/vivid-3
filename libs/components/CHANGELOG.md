@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Wed, 21 Sep 2022 09:22:43 GMT and should not be manually modified.
+This log was last generated on Thu, 22 Sep 2022 09:22:38 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.65
+
+Thu, 22 Sep 2022 09:22:38 GMT
+
+### Changes
+
+- add focus delegation to interactive elements (yinon@hotmail.com)
 
 ## 3.0.0-next.64
 
