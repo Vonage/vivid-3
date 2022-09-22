@@ -15,8 +15,8 @@
   "private": true,
   "dependencies": {
     "@floating-ui/dom": "^0.5.2",
-    "@microsoft/fast-element": "^1.10.2",
-    "@microsoft/fast-foundation": "^2.46.9",
+    "@microsoft/fast-element": "^1.10.5",
+    "@microsoft/fast-foundation": "^2.46.14",
     "@microsoft/fast-web-utilities": "^5.4.1",
     "core-js": "^3.22.8",
     "dialog-polyfill": "^0.5.6",
