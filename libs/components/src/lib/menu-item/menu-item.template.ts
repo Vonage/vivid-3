@@ -42,6 +42,7 @@ export const MenuItemTemplate:  (
 	// const anchoredRegionTag = tagFor(options.anchoredRegion);
 	return html<MenuItem>`
 	<template
+		aria-haspopup="${x => (x.hasSubmenu ? 'menu' : void 0)}"
 		aria-checked="${x => (x.role !== MenuItemRole.menuitem ? x.checked : void 0)}"
 		aria-disabled="${x => x.disabled}"
 		aria-expanded="${x => x.expanded}"
