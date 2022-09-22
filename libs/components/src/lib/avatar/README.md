@@ -9,7 +9,16 @@ Represents an avatar custom element.
 ```
 
 ```html preview
-<vwc-avatar></vwc-avatar>
+
+
+<ul>
+  <li><vwc-avatar></vwc-avatar></li>
+  <li><vwc-avatar aria-label="no link aria"></vwc-avatar></li>
+  <li><a href="https://example.com"><vwc-avatar></vwc-avatar></a></li>
+  <li><a href="https://example.com"><vwc-avatar aria-label="initials inside a aria"></vwc-avatar></a></li>
+  <li><a href="https://example.com" aria-label="href aria"><vwc-avatar></a></li>
+</ul>
+
 ```
 
 ## Members

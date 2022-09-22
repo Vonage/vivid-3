@@ -24,11 +24,9 @@ const getClasses = ({appearance, connotation, shape, density}: Avatar) => classN
 export const AvatarTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Avatar> = () => html` 
+) => ViewTemplate<Avatar> = () => html`
 	<span class="${getClasses}">
 		<slot>
-			<span class="icon">
-				<vwc-icon type="${(x) => x.icon? `${x.icon}` : 'user-line'}"></vwc-icon>
-			</span>
+				<abbr class="icon" title="Vivid Team" aria-label="initials aria">VT</abbr>
 		</slot>
 </span>`;
