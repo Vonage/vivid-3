@@ -38,6 +38,10 @@ export class Popup extends FoundationElement {
 		mode: 'boolean',
 	}) open = false;
 
+	openChanged(_: boolean, newValue: boolean): void {
+		newValue ? this.$emit('open') : this.$emit('close');
+	}
+
 	/**
 	 * adds close button to the popup
 	 *

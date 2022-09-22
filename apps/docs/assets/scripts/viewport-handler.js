@@ -19,8 +19,6 @@ function viewportHandler() {
 	viewportHandler();
 	const { visualViewport: { width } } = window;
 	sideDrawer.open = width >= mobileWidth;
-	toggleSideDrawerButtonIcon(sideDrawer.open);
-
 })();
 
 window.visualViewport.addEventListener('resize', viewportHandler);

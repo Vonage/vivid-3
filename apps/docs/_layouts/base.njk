@@ -1,15 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" class="vvd-typography">
+<html lang="en" class="vvd-root">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <!--  Essential META Tags -->
+    <meta property="og:title" content="Vivid Web Components">
+    <meta property="og:type" content="Documentation" />
+    <meta property="og:image" content="https://github.com/Vonage/vivid-3/blob/3ed7695e719b94bd87621983eba29c4d2df496e6/assets/images/vivid-logo.jpeg">
+    <meta property="og:url" content="https://vivid.deno.dev">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!--  Non-Essential, But Recommended -->
+    <meta property="og:description" content="Vonage's design system platform targeted to provide incorporated, battery-charged web components.">
+    <meta property="og:site_name" content="Vivid Web Components">
+    <meta name="twitter:image:alt" content="Vivid logo">
+
     <title>Vivid</title>
     <link rel="icon" href="{{ '/assets/images/vivid-logo.svg' | url }}" type="image/svg+xml">
 
     <!-- Load fonts -->
-    <link rel="preload" href="https://fonts.resources.vonage.com/fonts/v1/Spezia_Web_Complete_Upright.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="https://fonts.resources.vonage.com/fonts/v1/Spezia_Web_Monospace_Complete.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/styles/fonts/SpeziaCompleteVariableItalicWeb.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/styles/fonts/SpeziaCompleteVariableUprightWeb.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/styles/fonts/SpeziaMonoCompleteVariableWeb.woff2" as="font" type="font/woff2" crossorigin>
 
     <link rel="stylesheet" href="{{ '/assets/styles/fonts/spezia.css' | url }}">
 
@@ -51,10 +65,10 @@
       {{ scrollHandler | safe }}
     </script>
 
-    <link rel="stylesheet" href="{{ '/assets/styles/themes/light.css' | url }}" media="(prefers-color-scheme: light)">
-    <link rel="stylesheet" href="{{ '/assets/styles/themes/dark.css' | url }}" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" href="{{ '/assets/styles/tokens/theme-light.css' | url }}" media="(prefers-color-scheme: light)">
+    <link rel="stylesheet" href="{{ '/assets/styles/tokens/theme-dark.css' | url }}" media="(prefers-color-scheme: dark)">
 
-    <link rel="stylesheet" href="{{ '/assets/styles/typography/desktop.css' | url }}">
+    <link rel="stylesheet" href="{{ '/assets/styles/core/all.css' | url }}">
 
 		<script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
 
@@ -82,7 +96,7 @@
             <strong>VIVID Web Components</strong>
           </a>
     </div>
-    <dark-mode-toggle	slot="action-items" appearance="toggle"></dark-mode-toggle>
+    <dark-mode-toggle	slot="action-items" appearance="toggle" permanent></dark-mode-toggle>
     <vwc-nav-item slot="action-items" icon="github-mono" href="https://github.com/vonage/vivid-3" aria-label="View on GitHub" role="navigation"></vwc-nav-item>
 
   <vwc-side-drawer id="sidedrawer" open slot="app-content">

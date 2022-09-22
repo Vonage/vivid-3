@@ -2,6 +2,186 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Wed, 21 Sep 2022 09:22:43 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.64",
+      "version": "3.0.0-next.64",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "9bb6312b838c90a2a64011068a70bd8b8977017f",
+            "comment": "improve breadcrumb item focus indication style"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 20 Sep 2022 01:19:01 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.63",
+      "version": "3.0.0-next.63",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "3f1cde8a2c21ded49d5707b31eab76d7fd9893cd",
+            "comment": "update icon set to 4.0.30"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 19 Sep 2022 07:43:11 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.62",
+      "version": "3.0.0-next.62",
+      "comments": {
+        "none": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "693d72a9e1291c52a9f9201c1d221d6a8ae33698",
+            "comment": "components description"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sat, 17 Sep 2022 18:35:47 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.62",
+      "version": "3.0.0-next.62",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "7b034aac286185aa183c7f72b53fff1e079b97ba",
+            "comment": "popup fire open & close events"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sat, 17 Sep 2022 18:16:46 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.61",
+      "version": "3.0.0-next.61",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "914cc0109fd1467659a1c70f4231303930530a67",
+            "comment": "revert accidental popup light dismiss merge"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 15 Sep 2022 09:42:43 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.60",
+      "version": "3.0.0-next.60",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "5e936725b0d09bb7c129958a692e03a84ea45b5a",
+            "comment": "add dispatch events to side drawer"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 15 Sep 2022 08:34:27 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.59",
+      "version": "3.0.0-next.59",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "32d0d3b34bd5b1441861803b2946b01be09ff44f",
+            "comment": "fix text area vertical padding"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 11 Sep 2022 12:51:47 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.58",
+      "version": "3.0.0-next.58",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "2f464cac13e2110e468026ec5a7a2eb0954bf1e0",
+            "comment": "refactor styles to separate concerns from styles to tokens"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 11 Sep 2022 12:07:31 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.57",
+      "version": "3.0.0-next.57",
+      "comments": {
+        "none": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "2efc9e0038106ed594516754999c6ea03c8c55a4",
+            "comment": "text field docs use-case small fix"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sat, 10 Sep 2022 18:25:22 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.57",
+      "version": "3.0.0-next.57",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "199469de197c0617e59f1407e91e27633d3d5228",
+            "comment": "define icon size in text field"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 09 Sep 2022 16:43:16 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.56",
+      "version": "3.0.0-next.56",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "202fa36889738afee2dce0be9b185bcb16b98155",
+            "comment": "deterministic layout size in action group doc"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 09 Sep 2022 10:25:02 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.55",
+      "version": "3.0.0-next.55",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "0250c8044fd47496148746d785dc87e679d30b6e",
+            "comment": "Add the text-area component"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 09 Sep 2022 03:24:23 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.54",
       "version": "3.0.0-next.54",

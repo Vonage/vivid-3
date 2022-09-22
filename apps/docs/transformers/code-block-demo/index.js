@@ -8,7 +8,7 @@ const ELEVENTY_HTML_CODE_BLOCK_SELECTOR = 'pre.preview > code';
 
 const IFRAME_STYLE = '<link rel="stylesheet" href="/assets/styles/iframe.css">';
 const FONTS = '<link rel="stylesheet" href="/assets/styles/fonts/spezia.css">';
-const TYPOGRAPHY = '<link rel="stylesheet" href="/assets/styles/typography/desktop.css">';
+const TYPOGRAPHY = '<link rel="stylesheet" href="/assets/styles/core/all.css">';
 
 const CBD_CONTAINER = 'cbd-container';
 const CBD_DEMO = 'cbd-demo';
@@ -47,15 +47,15 @@ module.exports = function (content, outputPath) {
 
 	const blockData = {};
 	blockData.outputPath = outputPath;
-	const document = new JSDOM(content).window.document;
-	const codeBlocks = document.querySelectorAll(ELEVENTY_HTML_CODE_BLOCK_SELECTOR);
+	const jsdomObj = new JSDOM(content);
+	const codeBlocks = jsdomObj.window.document.querySelectorAll(ELEVENTY_HTML_CODE_BLOCK_SELECTOR);
 	codeBlocks.forEach(function (codeBlock, index) {
 		const pre = codeBlock.closest('pre');
 		blockData.pre = pre;
 		blockData.index = index++;
 		pre.replaceWith(generateCodeBlockDemo(blockData));
 	});
-	return document.documentElement.outerHTML;
+	return jsdomObj.serialize();
 };
 
 const getHtml = (demoData) => {
@@ -86,7 +86,7 @@ const getIframe = (frameData) => {
 	const saveFolder = verifyAndCreateSaveFolder(frameData.outputPath);
 	frameData.saveFolder = saveFolder;
 	const filePath = saveCodeAsHTMLFile(frameData);
-	return filePath.substring(saveFolder.indexOf('docs/') + 4);
+	return filePath.substring(saveFolder.indexOf('docs' + path.sep) + 4);
 }
 
 const verifyAndCreateSaveFolder = (outputPath) => {
@@ -110,7 +110,7 @@ const saveCodeAsHTMLFile = (frameData) => {
 	const componentName = getComponentName(frameData.outputPath);
 	const data = getComponentData(componentName);
 	frameData.demoStr += addModules(data);
-	const document = `<html class="vvd-typography">${frameData.demoStr}</html>`;
+	const document = `<html class="vvd-root">${frameData.demoStr}</html>`;
 	fs.writeFileSync(filePath, document);
 	return filePath;
 }
