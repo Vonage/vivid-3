@@ -15,9 +15,10 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
-$size: 20px;
-$border: 2px;
-$size-indicator: 10px;
+$control-size: 20px;
+$control-border: 2px;
+$selected-size: $control-size - 2 * $control-border;
+$selected-border: ($selected-size - 10px) * 0.5;
 
 .base {
 	@include connotation.connotation;
@@ -40,24 +41,23 @@ $size-indicator: 10px;
 .control {
 	position: relative;
 	display: inline-flex;
-	width: $size;
-	height: $size;
+	width: $control-size;
+	height: $control-size;
 	align-items: center;
 	justify-content: center;
-    box-sizing: border-box;
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	border-radius: 50%;
-	border: $border solid var(#{appearance.get-appearance-token(outline)});
+	box-shadow: inset 0 0 0 $control-border var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	cursor: pointer;
 
     &::after {
         content: '';
         display: none;
-        border: calc(($size - $size-indicator) / 2 - $border) solid var(#{appearance.get-appearance-token(text)});
+		box-shadow: inset 0 0 0 $selected-border var(#{appearance.get-appearance-token(text)});
         border-radius: 50%;
-        width: $size-indicator;
-        height: $size-indicator;
+        width: $selected-size;
+        height: $selected-size;
     }
 
     .base.checked &::after {
@@ -72,7 +72,7 @@ label {
 }
 
 .focus-indicator {
-	#{focus-variables.$focus-inset}: -6px;
+	#{focus-variables.$focus-inset}: -3px;
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
 
 	border-radius: 50%;

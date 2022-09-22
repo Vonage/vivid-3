@@ -28,3 +28,4 @@ export * from './text-field';
 export * from './tooltip';
 export * from './checkbox';
 export * from './header';
+export * from './radio';
