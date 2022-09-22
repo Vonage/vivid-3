@@ -8,7 +8,7 @@ import type { Tabs } from './tabs.js';
  * @param options
  * @public
  */
-export function tabsTemplate<T extends Tabs>() {
+export function TabsTemplate<T extends Tabs>() {
 	return html<T>`
         <template class="${x => x.orientation}">
             <div class="tablist" part="tablist" role="tablist">

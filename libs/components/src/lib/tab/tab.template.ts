@@ -7,7 +7,7 @@ import type { Tab } from './tab.js';
  * @param options
  * @public
  */
-export function tabTemplate<T extends Tab>() {
+export function TabTemplate<T extends Tab>() {
 	return html<T>`
         <template slot="tab" role="tab" aria-disabled="${x => x.disabled}">
             <slot></slot>
