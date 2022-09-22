@@ -27,6 +27,6 @@ export const AvatarTemplate: (
 ) => ViewTemplate<Avatar> = () => html`
 	<span class="${getClasses}">
 		<slot>
-				<abbr class="icon" title="Vivid Team" aria-label="initials aria">VT</abbr>
+				<abbr class="icon" title="Vivid Team">VT</abbr>
 		</slot>
 </span>`;
