@@ -30,3 +30,6 @@ export * from './side-drawer';
 export * from './text-field';
 export * from './text-area';
 export * from './tooltip';
+export * from './tabs';
+export * from './tab';
+export * from './tab-panel';

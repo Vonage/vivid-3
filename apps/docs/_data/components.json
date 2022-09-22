@@ -265,5 +265,14 @@
 			"/assets/modules/components/text-area/index.js",
 			"/assets/modules/components/button/index.js"
 		]
+	},
+	{
+		"title": "tabs",
+		"markdown": "./libs/components/src/lib/tabs/README.md",
+		"modules": [
+			"/assets/modules/components/tabs/index.js",
+			"/assets/modules/components/tab-panel/index.js",
+			"/assets/modules/components/tab/index.js"
+		]
 	}
 ]
