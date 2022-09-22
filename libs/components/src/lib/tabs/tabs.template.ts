@@ -13,16 +13,13 @@ export function TabsTemplate<T extends Tabs>() {
         <template class="${x => x.orientation}">
             <div class="tablist" part="tablist" role="tablist">
                 <slot name="tab" ${slotted('tabs')}></slot>
-                ${when(
-		x => x.showActiveIndicator,
-		html<T>`
+                ${when(x => x.showActiveIndicator, html<T>`
                         <div
                             ${ref('activeIndicatorRef')}
                             class="active-indicator"
                             part="active-indicator"
                         ></div>
-                    `
-	)}
+                    `)}
             </div>
             <div class="tabpanel">
                 <slot name="tabpanel" ${slotted('tabpanels')}></slot>

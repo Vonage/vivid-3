@@ -6,40 +6,75 @@ Represents a tabs custom element.
 <script type="module">import '@vonage/vivid/tabs';</script>
 ```
 
-```html preview
+```html preview full
 <vwc-tabs activeid="entrees">
     <vwc-tab id="apps">Appetizers</vwc-tab>
     <vwc-tab id="entrees">Entrees</vwc-tab>
     <vwc-tab id="desserts">Desserts</vwc-tab>
     <vwc-tab-panel id="appsPanel">
         <ol>
-            <li><vwc-anchor href="#" appearance="hypertext">Stuffed artichokes</vwc-anchor></li>
-            <li><vwc-anchor href="#" appearance="hypertext">Bruschetta</vwc-anchor></li>
-            <li><vwc-anchor href="#" appearance="hypertext">Oven-baked polenta</vwc-anchor></li>
-            <li><vwc-anchor href="#" appearance="hypertext">Salami and Fig Crostini with Ricotta</vwc-anchor></li>
-            <li><vwc-anchor href="#" appearance="hypertext">Rosemary-Potato Focaccia with Goat Cheese</vwc-anchor></li>
+            <li>Stuffed artichokes</li>
+            <li>Bruschetta</li>
+            <li>Oven-baked polenta</li>
+            <li>Salami and Fig Crostini with Ricotta</li>
+            <li>Rosemary-Potato Focaccia with Goat Cheese</li>
         </ol>
-    </fast-tab-panel>
+    </vwc-tab-panel>
     <vwc-tab-panel id="entreesPanel">
         <ol>
-            <li><vwc-anchor href="#" appearance="hypertext">Mushroom-Sausage Ragù</vwc-anchor></li>
-            <li><vwc-anchor href="#" appearance="hypertext">Tomato Bread Soup with Steamed Mussels</vwc-anchor></li>
-            <li><vwc-anchor href="#" appearance="hypertext">Grilled Fish with Artichoke Caponata</vwc-anchor></li>
-            <li><vwc-anchor href="#" appearance="hypertext">Celery Root and Mushroom Lasagna</vwc-anchor></li>
-            <li><vwc-anchor href="#" appearance="hypertext">Osso Buco with Citrus Gremolata</vwc-anchor></li>
+            <li>Mushroom-Sausage Ragù</li>
+            <li>Tomato Bread Soup with Steamed Mussels</li>
+            <li>Grilled Fish with Artichoke Caponata</li>
+            <li>Celery Root and Mushroom Lasagna</li>
+            <li>Osso Buco with Citrus Gremolata</li>
         </ol>
-    </fast-tab-panel>
+    </vwc-tab-panel>
     <vwc-tab-panel id="dessertsPanel">
         <ol>
-            <li><vwc-anchor href="#" appearance="hypertext">Tiramisu</vwc-anchor></li>
-            <li><vwc-anchor href="#" appearance="hypertext">Spumoni</vwc-anchor></li>
-            <li><vwc-anchor href="#" appearance="hypertext">Limoncello and Ice Cream with Biscotti</vwc-anchor></li>
+            <li>Tiramisu</li>
+            <li>Spumoni</li>
+            <li>Limoncello and Ice Cream with Biscotti</li>
         </ol>
-    </fast-tab-panel>
-</fast-tabs>
+    </vwc-tab-panel>
+</vwc-tabs>
 ```
 
 ## Members
+
+### Orientation
+
+```html preview full
+<vwc-tabs activeid="entrees" orientation="vertical">
+    <vwc-tab id="apps">Appetizers</vwc-tab>
+    <vwc-tab id="entrees">Entrees</vwc-tab>
+    <vwc-tab id="desserts">Desserts</vwc-tab>
+    <vwc-tab-panel id="appsPanel">
+        <ol>
+            <li>Stuffed artichokes</li>
+            <li>Bruschetta</li>
+            <li>Oven-baked polenta</li>
+            <li>Salami and Fig Crostini with Ricotta</li>
+            <li>Rosemary-Potato Focaccia with Goat Cheese</li>
+        </ol>
+    </vwc-tab-panel>
+    <vwc-tab-panel id="entreesPanel">
+        <ol>
+            <li>Mushroom-Sausage Ragù</li>
+            <li>Tomato Bread Soup with Steamed Mussels</li>
+            <li>Grilled Fish with Artichoke Caponata</li>
+            <li>Celery Root and Mushroom Lasagna</li>
+            <li>Osso Buco with Citrus Gremolata</li>
+        </ol>
+    </vwc-tab-panel>
+    <vwc-tab-panel id="dessertsPanel">
+        <ol>
+            <li>Tiramisu</li>
+            <li>Spumoni</li>
+            <li>Limoncello and Ice Cream with Biscotti</li>
+        </ol>
+    </vwc-tab-panel>
+</vwc-tabs>
+```
 
 ## Slots
 

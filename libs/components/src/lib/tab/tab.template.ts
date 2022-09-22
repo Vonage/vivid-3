@@ -9,8 +9,10 @@ import type { Tab } from './tab.js';
  */
 export function TabTemplate<T extends Tab>() {
 	return html<T>`
-        <template slot="tab" role="tab" aria-disabled="${x => x.disabled}">
+        <template slot="tab">
+					<div class="control" role="tab" aria-disabled="${x => x.disabled}">
             <slot></slot>
+					</div>
         </template>
     `;
 }
