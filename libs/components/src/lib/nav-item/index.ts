@@ -13,6 +13,9 @@ export const vividNavItem =
 		baseName: 'nav-item',
 		template: template as any,
 		styles,
+		shadowOptions: {
+			delegatesFocus: true,
+		},
 	});
 
 designSystem.register(vividNavItem());

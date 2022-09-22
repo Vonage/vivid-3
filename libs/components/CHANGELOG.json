@@ -2,6 +2,36 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Thu, 22 Sep 2022 09:22:38 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.65",
+      "version": "3.0.0-next.65",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "448d51f8b69cb1e85e7a0600fe2ef631196ad924",
+            "comment": "add focus delegation to interactive elements"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 21 Sep 2022 09:22:43 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.64",
+      "version": "3.0.0-next.64",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "9bb6312b838c90a2a64011068a70bd8b8977017f",
+            "comment": "improve breadcrumb item focus indication style"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 20 Sep 2022 01:19:01 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.63",
       "version": "3.0.0-next.63",
