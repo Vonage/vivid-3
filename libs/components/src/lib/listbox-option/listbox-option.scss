@@ -66,7 +66,7 @@
 	#{focus-variables.$focus-stroke-color}: var(#{constants.$vvd-color-neutral-500});
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
 
-	:host(:not([aria-selected="true"][aria-checked="true"])) & {
+	:host(:not([aria-checked="true"])) & {
 		display: none;
 	}
 }
