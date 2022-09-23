@@ -2,6 +2,126 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Thu, 22 Sep 2022 09:22:38 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.65",
+      "version": "3.0.0-next.65",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "448d51f8b69cb1e85e7a0600fe2ef631196ad924",
+            "comment": "add focus delegation to interactive elements"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 21 Sep 2022 09:22:43 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.64",
+      "version": "3.0.0-next.64",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "9bb6312b838c90a2a64011068a70bd8b8977017f",
+            "comment": "improve breadcrumb item focus indication style"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 20 Sep 2022 01:19:01 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.63",
+      "version": "3.0.0-next.63",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "3f1cde8a2c21ded49d5707b31eab76d7fd9893cd",
+            "comment": "update icon set to 4.0.30"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 19 Sep 2022 07:43:11 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.62",
+      "version": "3.0.0-next.62",
+      "comments": {
+        "none": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "693d72a9e1291c52a9f9201c1d221d6a8ae33698",
+            "comment": "components description"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sat, 17 Sep 2022 18:35:47 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.62",
+      "version": "3.0.0-next.62",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "7b034aac286185aa183c7f72b53fff1e079b97ba",
+            "comment": "popup fire open & close events"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sat, 17 Sep 2022 18:16:46 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.61",
+      "version": "3.0.0-next.61",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "914cc0109fd1467659a1c70f4231303930530a67",
+            "comment": "revert accidental popup light dismiss merge"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 15 Sep 2022 09:42:43 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.60",
+      "version": "3.0.0-next.60",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "5e936725b0d09bb7c129958a692e03a84ea45b5a",
+            "comment": "add dispatch events to side drawer"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 15 Sep 2022 08:34:27 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.59",
+      "version": "3.0.0-next.59",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "32d0d3b34bd5b1441861803b2946b01be09ff44f",
+            "comment": "fix text area vertical padding"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 11 Sep 2022 12:51:47 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.58",
       "version": "3.0.0-next.58",

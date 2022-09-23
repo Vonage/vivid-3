@@ -1,6 +1,8 @@
 # Checkbox
 
-Represents a checkbox custom element.
+Represents a checkbox custom element.  
+All native attributes of `checkbox` are supported as well as some enhancements.
+
 
 ```js
 <script type="module">

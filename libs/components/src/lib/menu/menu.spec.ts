@@ -1,7 +1,9 @@
 import { ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture } from '@vivid-nx/shared';
 import type { Button } from '@microsoft/fast-foundation';
 import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
+import { Popup } from '../popup/popup';
 import { Menu } from './menu';
+import '../menu-item';
 import '.';
 
 const COMPONENT_TAG = 'vwc-menu';
@@ -26,6 +28,7 @@ describe('vwc-menu', () => {
 			expect(element.open).toEqual(false);
 			expect(element.anchor).toBeUndefined();
 			expect(element.placement).toBeUndefined();
+			expect(element._popup).toBeInstanceOf(Popup);
 		});
 	});
 
@@ -88,6 +91,18 @@ describe('vwc-menu', () => {
 			expect(document.activeElement).toEqual(div);
 		});
 
+		it('should set menu item tabindex to 0', async () => {
+			const menuItem = document.createElement('vwc-menu-item');
+
+			element.appendChild(menuItem);
+
+			await elementUpdated(element);
+
+			element.focus();
+
+			expect(menuItem.tabIndex).toEqual(0);
+		});
+
 		it('should focus the first menuitemcheckbox in the menu', async () => {
 			const div = document.createElement('div');
 			div.setAttribute('role', 'menuitemcheckbox');
@@ -115,9 +130,9 @@ describe('vwc-menu', () => {
 		it('should handle menu key down events', async () => {
 
 			element.innerHTML = `
-				<button role="menuitem" id="id1">Menu Item 1</button>
-				<button role="menuitem" id="id2">Menu Item 1</button>
-				<button role="menuitem" id="id3">Menu Item 1</button>
+				<button role="menuitem" id="id1" text="Menu Item 1"></button>
+				<button role="menuitem" id="id2" text="Menu Item 2"></button>
+				<button role="menuitem" id="id3" text="Menu Item 3"></button>
 			`;
 
 			await elementUpdated(element);
@@ -140,8 +155,8 @@ describe('vwc-menu', () => {
 		it('should handle focus out event', async () => {
 
 			element.innerHTML = `
-				<div role="menuitem" id="id1">Menu Item 1</div>
-				<div role="menuitem" id="id2">Menu Item 1</div>
+				<div role="menuitem" id="id1" text="Menu Item 1"></div>
+				<div role="menuitem" id="id2" text="Menu Item 2"></div>
 			`;
 
 			await elementUpdated(element);
@@ -159,6 +174,27 @@ describe('vwc-menu', () => {
 			shadowRoot?.querySelector('.base')?.dispatchEvent(focusOutEvent);
 
 			expect(menuFocusedElement().id).toEqual('id1');
+		});
+	});
+
+	describe('events', () => {
+		it('should fire an event on popup open', async () => {
+			let openTriggered: boolean = false;
+			(element._popup as Popup).addEventListener('open', () => {
+				openTriggered = true;
+			});
+			(element._popup as Popup).open = true;
+			expect(openTriggered).toEqual(true);
+		});
+
+		it('should fire an event on popup close', async () => {
+			let closeTriggered: boolean = false;
+			(element._popup as Popup).open = true;
+			(element._popup as Popup).addEventListener('close', () => {
+				closeTriggered = true;
+			});
+			(element._popup as Popup).open = false;
+			expect(closeTriggered).toEqual(true);
 		});
 	});
 

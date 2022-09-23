@@ -1,8 +1,64 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 11 Sep 2022 12:51:47 GMT and should not be manually modified.
+This log was last generated on Thu, 22 Sep 2022 09:22:38 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.65
+
+Thu, 22 Sep 2022 09:22:38 GMT
+
+### Changes
+
+- add focus delegation to interactive elements (yinon@hotmail.com)
+
+## 3.0.0-next.64
+
+Wed, 21 Sep 2022 09:22:43 GMT
+
+### Changes
+
+- improve breadcrumb item focus indication style (yinon@hotmail.com)
+
+## 3.0.0-next.63
+
+Tue, 20 Sep 2022 01:19:01 GMT
+
+### Changes
+
+- update icon set to 4.0.30 (yinon@hotmail.com)
+
+## 3.0.0-next.62
+
+Sat, 17 Sep 2022 18:35:47 GMT
+
+### Changes
+
+- popup fire open & close events (yinon@hotmail.com)
+
+## 3.0.0-next.61
+
+Sat, 17 Sep 2022 18:16:46 GMT
+
+### Changes
+
+- revert accidental popup light dismiss merge (yinon@hotmail.com)
+
+## 3.0.0-next.60
+
+Thu, 15 Sep 2022 09:42:43 GMT
+
+### Changes
+
+- add dispatch events to side drawer (rina.oksman@vonage.com)
+
+## 3.0.0-next.59
+
+Thu, 15 Sep 2022 08:34:27 GMT
+
+### Changes
+
+- fix text area vertical padding (yinon@hotmail.com)
 
 ## 3.0.0-next.58
 

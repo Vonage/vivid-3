@@ -1,6 +1,7 @@
 import { attr } from '@microsoft/fast-element';
 import { Menu as FastMenu } from '@microsoft/fast-foundation';
 import type { Placement } from '@floating-ui/dom';
+import type { Popup } from '../popup/popup';
 
 
 /**
@@ -9,6 +10,8 @@ import type { Placement } from '@floating-ui/dom';
  * @public
  */
 export class Menu extends FastMenu {
+	_popup?: Popup;
+
 	/**
 	 * indicates whether the menu is open
 	 *
@@ -17,7 +20,7 @@ export class Menu extends FastMenu {
 	 */
 	@attr({
 		mode: 'boolean',
-	}) open = false;
+	}) open? = false;
 
 	/**
 	 * the placement of the menu
@@ -34,4 +37,8 @@ export class Menu extends FastMenu {
 	 * HTML Attribute: anchor
 	 */
 	@attr anchor?: string;
+
+	popupOpenChanged = () => {
+		this.open = (this._popup as Popup).open;
+	};
 }

@@ -128,6 +128,16 @@ The `app-content` slot sets assigned nodes to the main application content, the 
 </vwc-side-drawer>
 ```
 
+## Events
+
+### Open
+
+Fires `open` when the side drawer is opening.
+
+### Close
+
+Fires `close` when the side drawer is closing.
+
 ## CSS Variables
 
 ### Application Content Offset
