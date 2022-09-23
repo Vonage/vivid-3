@@ -7,42 +7,38 @@
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
-	$appearances: outlined ghost,
+	$appearances: fieldset ghost,
 	$states: idle disabled,
-	$default: outlined,
+	$default: fieldset,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+
+:host {
+	display: inline-flex;
+}
 
 .base {
 	@include connotation.connotation;
 	@include appearance.appearance;
 
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+	background-color: var(#{appearance.get-appearance-token(fill)});
 	padding: 4px;
 	position: relative;
 	border-radius: 6px;
 	contain: paint;
 	gap: 4px;
 
-	@supports selector(:focus-visible) {
-		&:focus {
-			outline: none;
-		}
+	&:focus {
+		outline: none;
 	}
 }
 
 .focus-indicator {
 
-	:not(:focus-visible) > & {
-		display: none;
-	}
-
 	pointer-events: none;
 
-	// .appearance-outlined & {
-	// 	#{focus-variables.$focus-inset}: -1px;
-	// }
-	// .appearance-ghost & {
-	// 	#{focus-variables.$focus-stroke-gap-color}: transparent;
-	// }
+	:host(:not(:focus-within)) & {
+		display: none;
+	}
 }
