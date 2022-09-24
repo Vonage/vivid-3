@@ -17,6 +17,10 @@
 	display: inline-flex;
 }
 
+:host(:focus-within) {
+	outline: none;
+}
+
 .base {
 	@include connotation.connotation;
 	@include appearance.appearance;
@@ -28,10 +32,6 @@
 	border-radius: 6px;
 	contain: paint;
 	gap: 4px;
-
-	&:focus {
-		outline: none;
-	}
 }
 
 .focus-indicator {
