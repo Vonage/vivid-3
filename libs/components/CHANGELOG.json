@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Sun, 25 Sep 2022 05:00:21 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.66",
+      "version": "3.0.0-next.66",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "84288bdbbda622dd601650c5bb11a327a9e6391e",
+            "comment": "menu migration to fast"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 22 Sep 2022 09:22:38 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.65",
       "version": "3.0.0-next.65",
