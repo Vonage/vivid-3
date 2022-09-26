@@ -51,18 +51,18 @@ $selected-border: ($selected-size - 10px) * 0.5;
 	color: var(#{appearance.get-appearance-token(text)});
 	cursor: pointer;
 
-    &::after {
-        content: '';
-        display: none;
+	&::after {
+		display: none;
+		width: $selected-size;
+		height: $selected-size;
+		content: '';
+		border-radius: 50%;
 		box-shadow: inset 0 0 0 $selected-border var(#{appearance.get-appearance-token(text)});
-        border-radius: 50%;
-        width: $selected-size;
-        height: $selected-size;
-    }
+	}
 
-    .base.checked &::after {
-        display: inline-block;
-    }
+	.base.checked &::after {
+		display: inline-block;
+	}
 }
 
 label {
