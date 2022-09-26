@@ -2,7 +2,8 @@
 
 Represents a radio custom element.
 
-Radio components on their own do not make sense. They should always be used inside `radio-group` containers.
+Radio components are designed to represent a single value in a set of related ones.
+As such, they do not make sense on their own and should always be used inside `radio-group` containers (see [here](https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/) for details).
 
 ```js
 <script type="module">import '@vonage/vivid/radio';</script>
