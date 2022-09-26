@@ -44,6 +44,7 @@
     "./progress": "./progress",
     "./progress-ring": "./progress-ring",
     "./radio": "./radio",
+    "./radio-group": "./radio-group",
     "./side-drawer": "./side-drawer",
     "./text-field": "./text-field",
     "./text-area": "./text-area",

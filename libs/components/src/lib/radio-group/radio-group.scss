@@ -1,0 +1,27 @@
+@use '../../../../../dist/libs/tokens/scss/constants' as constants;
+
+.control {
+    display: inline-flex;
+    flex-flow: column wrap;
+    row-gap: 3px;
+
+    & .positioning-region {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 10px;
+        row-gap: 3px;        
+    }
+
+    & .horizontal {
+        flex-direction: row;
+    }
+
+    & .vertical {
+        flex-direction: column;
+    }
+}
+
+label {
+	color: var(#{constants.$vvd-color-canvas-text});
+	font: var(#{constants.$vvd-font-base});
+}
