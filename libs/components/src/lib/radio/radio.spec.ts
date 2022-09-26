@@ -1,4 +1,4 @@
-import { fixture, elementUpdated, getBaseElement, createFormHTML, listenToFormSubmission } from '@vivid-nx/shared';
+import { createFormHTML, elementUpdated, fixture, getBaseElement, listenToFormSubmission } from '@vivid-nx/shared';
 import { Radio } from './radio';
 import '.';
 
@@ -78,8 +78,6 @@ describe('vwc-radio', () => {
 			const submitPromise = listenToFormSubmission(formElement);
 			formElement.requestSubmit();
 			(await submitPromise).forEach((formDataValue: any, formDataKey: string) => {
-				console.log(formDataKey, formDataValue);
-				
 				expect(formDataKey)
 					.toEqual(fieldName);
 				expect(formDataValue)

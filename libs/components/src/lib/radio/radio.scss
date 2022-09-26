@@ -55,9 +55,9 @@ $selected-border: ($selected-size - 10px) * 0.5;
 		display: none;
 		width: $selected-size;
 		height: $selected-size;
-		content: '';
 		border-radius: 50%;
 		box-shadow: inset 0 0 0 $selected-border var(#{appearance.get-appearance-token(text)});
+		content: '';
 	}
 
 	.base.checked &::after {
