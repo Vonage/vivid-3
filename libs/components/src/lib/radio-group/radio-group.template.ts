@@ -1,7 +1,6 @@
 import { elements, html, slotted, when } from '@microsoft/fast-element';
 import { classNames, Orientation } from '@microsoft/fast-web-utilities';
 import type { ViewTemplate } from '@microsoft/fast-element';
-import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 
 import type { RadioGroup } from './radio-group';
 
@@ -13,7 +12,7 @@ const getClasses = (_: RadioGroup) => classNames('control');
  * @param context
  * @public
  */
-export const RadioGroupTemplate: (context: ElementDefinitionContext, definition: FoundationElementDefinition) => ViewTemplate<RadioGroup> = () => {
+export const RadioGroupTemplate: () => ViewTemplate<RadioGroup> = () => {
 	return html<RadioGroup>`
 		<span
 			class="${getClasses}"
@@ -25,9 +24,9 @@ export const RadioGroupTemplate: (context: ElementDefinitionContext, definition:
 			@focusout="${(x, c) => x.focusOutHandler(c.event as FocusEvent)}"
 		>
 			${when(x => x.label, html<RadioGroup>`<label class="label">${x => x.label}</label>`)}
-			<div class="positioning-region ${x => x.orientation === Orientation.horizontal ? "horizontal" : "vertical"}">
-				<slot ${slotted({ property: "slottedRadioButtons", filter: elements("[role=radio]") })}></slot>
+			<div class="positioning-region ${x => x.orientation === Orientation.horizontal ? 'horizontal' : 'vertical'}">
+			<slot ${slotted({ property: 'slottedRadioButtons', filter: elements('vwc-radio') })}></slot>
 			</div>
 		</span>
 	`;
-}
+};
