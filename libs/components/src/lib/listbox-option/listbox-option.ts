@@ -2,13 +2,12 @@ import { applyMixins, ListboxOption as FoundationListboxOption } from '@microsof
 import { attr } from '@microsoft/fast-element';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
+
 /**
  * Base class for listbox-option
  *
  * @public
  */
-
-
 export class ListboxOption extends FoundationListboxOption {
 	/**
 	 *
