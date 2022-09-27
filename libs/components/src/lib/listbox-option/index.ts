@@ -7,7 +7,7 @@ import { ListboxOptionTemplate as template } from './listbox-option.template';
 import styles from './listbox-option.scss';
 
 export const vividListboxOption = ListboxOption.compose<FoundationElementDefinition>({
-	baseName: 'listbox-option',
+	baseName: 'option',
 	template: template as any,
 	styles
 });

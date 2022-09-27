@@ -2,7 +2,7 @@
 
 ```js
 <script type='module'>
-    import '@vonage/vivid/listbox-option';
+    import '@vonage/vivid/option';
 </script>
 ```
 
@@ -16,7 +16,7 @@ Add the `text` attribute to add text to the Listbox Option.
 - Default: `''`
 
 ```html preview
-  <vwc-listbox-option text="Listbox Option"></vwc-listbox-option>
+  <vwc-option text="Listbox Option"></vwc-option>
 ```
 
 ### Icon
@@ -28,38 +28,39 @@ Check out the [vivid icons gallery](https://icons.vivid.vonage.com) to see what 
 - Default: `''`
 
 ```html preview
-<vwc-listbox-option text="Listbox Option" icon="chat-line"></vwc-listbox-option>
+<vwc-option text="Listbox Option" icon="chat-line"></vwc-option>
 ```
 
 ### Selected
 
-Add the `selected` attribute to select the listbox-option.
+Add the `selected` attribute to select the option.
 
 - Type: `boolean`
 - Default: `false`
 
 ```html preview
-<vwc-listbox-option text="Listbox Option" selected></vwc-listbox-option>
+<vwc-option text="Listbox Option" selected></vwc-option>
 ```
 
 ### Disabled
 
-Add the `disabled` attribute to disable the listbox-option.
+Add the `disabled` attribute to disable the option.
 
 - Type: `boolean`
 - Default: `false`
 
 ```html preview
-<vwc-listbox-option text="Listbox Option" disabled></vwc-listbox-option>
+<vwc-option text="Listbox Option" disabled></vwc-option>
 ```
 
 ## Use Cases
+
 ### Common Usage
 
 ```html preview
 <vwc-listbox>
-  <vwc-listbox-option value="1" text="Listbox Option" role="option"></vwc-listbox-option>
-  <vwc-listbox-option value="2" text="Listbox Option" role="option"></vwc-listbox-option>
-  <vwc-listbox-option value="3" text="Listbox Option" role="option"></vwc-listbox-option>
+  <vwc-option value="1" text="Listbox Option" role="option"></vwc-option>
+  <vwc-option value="2" text="Listbox Option" role="option"></vwc-option>
+  <vwc-option value="3" text="Listbox Option" role="option"></vwc-option>
 </vwc-listbox>
 ```

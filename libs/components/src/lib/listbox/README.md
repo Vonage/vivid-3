@@ -10,17 +10,18 @@
 
 ### Listbox Option
 
-Read more about [vwc-listbox-option](../../components/listbox-option).
+Read more about [vwc-option](../../components/option).
 
 ```html preview
 <vwc-listbox>
-  <vwc-listbox-option value="1" text="Listbox Option" role="option"></vwc-listbox-option>
-  <vwc-listbox-option value="2" text="Listbox Option" role="option"></vwc-listbox-option>
-  <vwc-listbox-option value="3" text="Listbox Option" role="option"></vwc-listbox-option>
+  <vwc-option value="1" text="Listbox Option" role="option"></vwc-option>
+  <vwc-option value="2" text="Listbox Option" role="option"></vwc-option>
+  <vwc-option value="3" text="Listbox Option" role="option"></vwc-option>
 </vwc-listbox>
 ```
 
 ## Members
+
 ### Multiple
 
 Add the `multiple` attribute to select multiple options.
@@ -30,13 +31,14 @@ Add the `multiple` attribute to select multiple options.
 
 ```html preview
 <vwc-listbox multiple>
-  <vwc-listbox-option value="1" text="Listbox Option" role="option"></vwc-listbox-option>
-  <vwc-listbox-option value="2" text="Listbox Option" role="option"></vwc-listbox-option>
-  <vwc-listbox-option value="3" text="Listbox Option" role="option"></vwc-listbox-option>
+  <vwc-option value="1" text="Listbox Option" role="option"></vwc-option>
+  <vwc-option value="2" text="Listbox Option" role="option"></vwc-option>
+  <vwc-option value="3" text="Listbox Option" role="option"></vwc-option>
 </vwc-listbox>
 ```
 
 ### Appearance
+
 Set the `appearance` attribute to change the listbox's appearance.
 
 - Type: `'ghost'` | `'outlined'`
@@ -44,11 +46,12 @@ Set the `appearance` attribute to change the listbox's appearance.
 
 ```html preview
 <vwc-listbox appearance="ghost">
-  <vwc-listbox-option value="1" text="Listbox Option" role="option"></vwc-listbox-option>
-  <vwc-listbox-option value="2" text="Listbox Option" role="option"></vwc-listbox-option>
-  <vwc-listbox-option value="3" text="Listbox Option" role="option"></vwc-listbox-option>
+  <vwc-option value="1" text="Listbox Option" role="option"></vwc-option>
+  <vwc-option value="2" text="Listbox Option" role="option"></vwc-option>
+  <vwc-option value="3" text="Listbox Option" role="option"></vwc-option>
 </vwc-listbox>
 ```
+
 ### Disabled
 
 Add the `disabled` attribute to disable the listbox.
@@ -58,8 +61,8 @@ Add the `disabled` attribute to disable the listbox.
 
 ```html preview
 <vwc-listbox disabled>
-  <vwc-listbox-option value="1" text="Listbox Option" role="option"></vwc-listbox-option>
-  <vwc-listbox-option value="2" text="Listbox Option" role="option"></vwc-listbox-option>
-  <vwc-listbox-option value="3" text="Listbox Option" role="option"></vwc-listbox-option>
+  <vwc-option value="1" text="Listbox Option" role="option"></vwc-option>
+  <vwc-option value="2" text="Listbox Option" role="option"></vwc-option>
+  <vwc-option value="3" text="Listbox Option" role="option"></vwc-option>
 </vwc-listbox>
 ```
