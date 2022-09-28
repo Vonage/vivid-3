@@ -22,9 +22,11 @@ $gutter: 4px;
 	@include connotation.connotation;
 	@include appearance.appearance;
 
+	vertical-align: middle;
 	display: inline-flex;
 	align-items: center;
 	gap: 12px;
+
 	@supports selector(:focus-visible) {
 		&:focus {
 			outline: none;
@@ -34,11 +36,15 @@ $gutter: 4px;
 	@supports (user-select: none) {
 		user-select: none;
 	}
+
+	&:disabled {
+		cursor: not-allowed;
+	}
 }
 
 .control {
 	position: relative;
-	display: inline-flex;
+	display: flex;
 	width: $size;
 	height: $size;
 	align-items: center;
