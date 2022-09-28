@@ -26,7 +26,6 @@ $control-border: 2px;
 	display: inline-flex;
 	align-items: center;
 	gap: 10px;
-	cursor: pointer;
 
 	@supports selector(:focus-visible) {
 		&:focus {
@@ -38,7 +37,11 @@ $control-border: 2px;
 		user-select: none;
 	}
 
-	&:disabled {
+	&:not(.disabled) {
+		cursor: pointer;
+	}
+
+	&.disabled {
 		cursor: not-allowed;
 	}
 }
