@@ -17,8 +17,6 @@
 
 $control-size: 20px;
 $control-border: 2px;
-$selected-size: $control-size - 2 * $control-border;
-$selected-border: ($selected-size - 10px) * 0.5;
 
 .base {
 	@include connotation.connotation;
@@ -40,34 +38,23 @@ $selected-border: ($selected-size - 10px) * 0.5;
 
 .control {
 	position: relative;
-	display: inline-flex;
 	width: $control-size;
 	height: $control-size;
-	align-items: center;
-	justify-content: center;
-	background-color: var(#{appearance.get-appearance-token(fill)});
 	border-radius: 50%;
 	box-shadow: inset 0 0 0 $control-border var(#{appearance.get-appearance-token(outline)});
 	cursor: pointer;
 
 	&::after {
-		display: none;
-		width: $selected-size;
-		height: $selected-size;
-		background-color: var(#{appearance.get-appearance-token(outline)});
+		position: absolute;
+		background-color: var(#{appearance.get-appearance-token(fill)});
 		border-radius: 50%;
-		box-shadow: inset 0 0 0 $selected-border var(#{appearance.get-appearance-token(text)});
 		content: '';
+		inset: $control-border;
+
+		.base:where(:checked, .checked) & {
+			inset: 4px;
+		}
 	}	
-
-	.base:where(:checked, .checked) &::after {
-		display: inline-block;
-	}
-
-	.base:where(:checked, .checked):where(:disabled, .disabled) &::after,
-	.base:where(.readonly):where(:not(:disabled, .disabled, :hover, .hover, :active, .active)) &::after {
-		box-shadow: inset 0 0 0 $selected-border var(#{appearance.get-appearance-token(fill)});
-	}
 }
 
 label {
