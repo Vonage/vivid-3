@@ -1,17 +1,15 @@
-@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
 @use '../../../../shared/src/lib/sass/utils' as utils;
-@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use '../../../../../dist/libs/tokens/scss/constants' as constants;
 
 .base {
-	@include typography.typography-cat-shorthand('body-2');
-
 	display: flex;
 	align-items: center;
-	color: var(#{theme-consts.$vvd-color-on-canvas});
+	color: var(#{constants.$vvd-color-canvas-text});
+	font: var(#{constants.$vvd-font-base});
 
 	vwc-icon {
 		margin: 0 16px;
-		color: var(#{theme-consts.$vvd-color-neutral-70});
+		color: var(#{constants.$vvd-color-neutral-600});
 		font-size: 12px;
 	}
 }
@@ -26,7 +24,7 @@
 	}
 
 	&:any-link {
-		color: var(#{theme-consts.$vvd-color-cta-70});
+		color: var(#{constants.$vvd-color-cta-600});
 		text-decoration: none;
 
 		&:hover {
@@ -37,6 +35,10 @@
 }
 
 .focus-indicator {
+	--focus-inset: -4px -8px;
+	--focus-stroke-gap-color: transparent;
+
+	border-radius: 6px;
 	.control:not(:focus-visible)>& {
 		display: none;
 	}

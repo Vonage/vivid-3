@@ -139,7 +139,7 @@ describe('vwc-progress-ring', () => {
 	});
 
 	describe('density', function () {
-		const BASE_DENSITY = 9;
+		const BASE_DENSITY = 10;
 		let baseElement: Element | null | undefined;
 		beforeEach(function () {
 			baseElement = element.shadowRoot?.querySelector('.base');

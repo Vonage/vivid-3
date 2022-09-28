@@ -14,7 +14,7 @@ export const vividCheckbox = Checkbox.compose<CheckboxOptions>({
 	styles,
 	shadowOptions: {
 		delegatesFocus: true,
-	}
+	},
 });
 
 designSystem.register(vividCheckbox());
