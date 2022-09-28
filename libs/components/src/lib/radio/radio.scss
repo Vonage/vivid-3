@@ -60,13 +60,13 @@ $selected-border: ($selected-size - 10px) * 0.5;
 		content: '';
 	}	
 
+	.base:where(:checked, .checked) &::after {
+		display: inline-block;
+	}
+
 	.base:where(:checked, .checked):where(:disabled, .disabled) &::after,
 	.base:where(.readonly):where(:not(:disabled, .disabled, :hover, .hover, :active, .active)) &::after {
 		box-shadow: inset 0 0 0 $selected-border var(#{appearance.get-appearance-token(fill)});
-	}
-
-	.base.checked &::after {
-		display: inline-block;
 	}
 }
 
