@@ -22,10 +22,10 @@ $gutter: 4px;
 	@include connotation.connotation;
 	@include appearance.appearance;
 
-	vertical-align: middle;
 	display: inline-flex;
 	align-items: center;
 	gap: 12px;
+	vertical-align: middle;
 
 	@supports selector(:focus-visible) {
 		&:focus {
