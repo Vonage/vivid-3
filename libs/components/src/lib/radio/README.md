@@ -30,7 +30,7 @@ Use the `checked` to set the radio's `on`/`off` state.
 - Default: `false`
 
 ```html preview
-<vwc-radio checked label="A checked radio"></vwc-radio>
+<vwc-radio checked></vwc-radio>
 ```
 
 ### Disabled
@@ -41,7 +41,8 @@ Toggle the `disabled` member to disable/enable the radio.
 - Default: `false`
 
 ```html preview
-<vwc-radio disabled label="A disabled radio"></vwc-radio>
+<vwc-radio disabled></vwc-radio>
+<vwc-radio disabled checked></vwc-radio>
 ```
 
 ### Readonly
@@ -53,5 +54,6 @@ A read-only radio cannot be modified but can be focused and tabbed into.
 - Default: `false`
 
 ```html preview
-<vwc-radio readonly label="A readonly radio"></vwc-radio>
+<vwc-radio readonly></vwc-radio>
+<vwc-radio readonly checked></vwc-radio>
 ```
