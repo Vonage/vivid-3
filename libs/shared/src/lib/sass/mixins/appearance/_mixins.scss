@@ -20,11 +20,11 @@ $error: '.error';
 
 $selectors: (
   idle: '&',
-  hover: '&:where(#{$hover}):where(:not(#{$disabled}))',
+  hover: '&:where(#{$hover}):where(:not(#{$disabled}, #{$readonly}))',
   disabled: '&:where(#{$disabled})',
-  readonly: '&:where(#{$readonly}):where(:not(#{$disabled}, #{$hover}, #{$active}))',
-  selected: '&:where(#{$selected}):where(:not(#{$disabled}))',
-  checked: '&:where(#{$checked}):where(:not(#{$disabled}))',
+  readonly: '&:where(#{$readonly}):where(:not(#{$disabled}))',
+  selected: '&:where(#{$selected}):where(:not(#{$disabled}, #{$readonly}))',
+  checked: '&:where(#{$checked}):where(:not(#{$disabled}, #{$readonly}))',
   indeterminate: '&:where(#{$indeterminate}):where(:not(#{$disabled}))',
   active: '&:where(#{$active}):where(:not(#{$disabled}))',
   error: '&:where(#{$error}):where(:not(#{$disabled}))',
