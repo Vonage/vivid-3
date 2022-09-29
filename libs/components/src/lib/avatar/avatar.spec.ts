@@ -104,6 +104,13 @@ describe('vwc-avatar', () => {
 			await elementUpdated(element);
 			expect(baseElement.querySelector('.initials')?.textContent).toEqual('jd');
 		});
+
+		it('should show the initials', async () => {
+			element.name = 'John Mor Doe ';
+			await elementUpdated(element);
+			expect(baseElement.querySelector('.initials')?.textContent).toEqual('jm');
+		});
+
 	});
 
 });

@@ -32,16 +32,9 @@ function renderIcon() {
 /**
  avatar initials
  */
-
-const yonatan = (x:Avatar) => {
-	console.log("initials");
-	return initials(`${x.name}`)?.substring(0, 2);
-}
-
 function renderInitials() {
-
 	return html<Avatar>`
-		<span class="initials">${yonatan}</span>
+		<span class="initials">${ (x) => initials(`${x.name}`)?.substring(0, 2) }</span>
 	`;
 }
 
