@@ -17,6 +17,9 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
+:host {
+	display: inline-block;
+}
 
 .control {
 	@include connotation.connotation;
@@ -67,11 +70,6 @@
 	}
 
 	/* Size */
-	.orange-box {
-		aspect-ratio: 1;
-		background: linear-gradient(rgb(255 0 0 / 50%), rgb(255 0 0 / 50%)), yellow;
-		inline-size: 40px;
-	}
 	&:not(.stacked) {
 		&.density-condensed {
 			@include mixins.get-density-properties(32px, #{constants.$vvd-font-base-condensed-bold}, 8px, 12px, 16px);
