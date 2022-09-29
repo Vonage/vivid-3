@@ -25,6 +25,7 @@ $control-border: 2px;
 
 	display: inline-flex;
 	align-items: center;
+	cursor: pointer;
 	gap: 10px;
 
 	@supports selector(:focus-visible) {
@@ -37,10 +38,6 @@ $control-border: 2px;
 		user-select: none;
 	}
 
-	&:not(.disabled) {
-		cursor: pointer;
-	}
-
 	&.disabled {
 		cursor: not-allowed;
 	}
@@ -50,17 +47,16 @@ $control-border: 2px;
 	position: relative;
 	width: $control-size;
 	height: $control-size;
+	background-color: var(#{utils.get-color-token(canvas)});
 	border-radius: 50%;
 	box-shadow: inset 0 0 0 $control-border var(#{appearance.get-appearance-token(outline)});
-	background-color: var(#{utils.get-color-token(canvas)});
-	cursor: pointer;
 
 	&::after {
 		position: absolute;
 		background-color: var(#{appearance.get-appearance-token(outline)});
 		border-radius: inherit;
 		content: '';
-		inset: $control-border * 2;
+		inset: 5px;
 
 		.base:not(.checked) & {
 			display: none;
