@@ -6,11 +6,17 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
+          "npx nx run components:build",
           "./scripts/visual-tests/run.tests.in.container.sh {args.task}"
         ],
         "parallel": false
       },
       "configurations": {
+        "no-build": {
+          "commands": [
+            "./scripts/visual-tests/run.tests.in.container.sh {args.task}"
+          ]
+        },
         "watch": {
           "commands": [
             {
@@ -61,14 +67,19 @@
             "output": "."
           },
           {
-            "input": "./dist/libs/styles/themes/**",
+            "input": "./dist/libs/styles/tokens/**",
             "glob": "*.css",
-            "output": "./styles/themes"
+            "output": "./styles/tokens"
           },
           {
             "input": "./dist/libs/styles/fonts/**",
-            "glob": "*.css",
+            "glob": "*.{css,woff,woff2}",
             "output": "./styles/fonts"
+          },
+          {
+            "input": "./dist/libs/styles/core/**",
+            "glob": "*.css",
+            "output": "./styles/core"
           }
         ],
         "buildableProjectDepsInPackageJsonType": "dependencies",
@@ -119,5 +130,8 @@
     }
   },
   "tags": [],
-  "implicitDependencies": ["styles"]
+  "implicitDependencies": [
+		"styles",
+		"tokens"
+	]
 }

@@ -1,32 +1,35 @@
-@use 'partials/variables' as variables;
-@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
-@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use '../../../../../dist/libs/tokens/scss/constants' as constants;
+
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+	$connotations: accent,
+	$shades: primary faint soft,
+	$default: accent,
+);
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+	$appearances: ghost,
+	$states: idle hover active,
+	$default: ghost,
+);
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+
 
 .body {
-	@include typography.typography-cat-shorthand('body-2');
-
 	padding: 8px 32px 24px 16px;
+	font: var(#{constants.$vvd-font-base});
 	.icon:not(.icon-trailing) &{
 		padding-left: 48px;
 	}
 }
 
-.control {
+.base {
 	display: flex;
 	flex-direction: column;
 
 	&:not(.open) {
-		.toggle-close,
 		.body {
 			display: none;
-		}
-	}
-	&.open{
-		.toggle-open {
-			display: none;
-		}
-		.toggle-close {
-			display: initial;
 		}
 	}
 }
@@ -37,8 +40,6 @@
 }
 
 .button {
-	@include typography.typography-cat-shorthand('subtitle-2');
-
 	position: relative;
 	display: flex;
 	width: 100%;
@@ -46,12 +47,23 @@
 	padding: 16px;
 	border: 0 none;
 	margin: 0;
-	background: transparent;
+	background-color: var(#{appearance.get-appearance-token(fill)});
+	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+	color: var(#{appearance.get-appearance-token(text)});
 	cursor: pointer;
-	outline: 0 none;
+	font: var(#{constants.$vvd-font-heading4});
 
-	&:hover {
-		background: var(#{theme-consts.$vvd-color-neutral-10});
+	@include appearance.appearance;
+	@include connotation.connotation;
+
+	@supports selector(:focus-visible) {
+		&:focus {
+			outline: none;
+		}
+	}
+
+	@supports(user-select: none) {
+		user-select: none;
 	}
 
 	.heading-text {
@@ -61,12 +73,11 @@
 	}
 
 	.meta {
-		@include typography.typography-cat-shorthand('body-2-bold');
-
 		overflow: hidden;
 		max-width: 20%;
 		flex-shrink: 0;
-		color: var(#{theme-consts.$vvd-color-neutral-70});
+		color: var(#{constants.$vvd-color-neutral-600});
+		font: var(#{constants.$vvd-font-base-bold});
 		margin-inline-start: 16px;
 		text-align: end;
 		text-overflow: ellipsis;

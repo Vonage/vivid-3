@@ -1,6 +1,6 @@
 import * as path from 'path';
-import { expect, test } from '@playwright/test';
-import type { Page } from '@playwright/test';
+import {expect, test} from '@playwright/test';
+import type {Page} from '@playwright/test';
 import {
 	extractHTMLBlocksFromReadme,
 	loadComponents,
@@ -9,16 +9,17 @@ import {
 
 const components = ['text-field'];
 
-test('should show the component', async ({ page }: { page: Page }) => {
+test('should show the component', async ({page}: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(
 		path.join(new URL('.', import.meta.url).pathname, 'README.md')
-	).reduce(
-		(htmlString: string, block: string) =>
-			`${htmlString} <div style="margin: 5px;">${block}</div>`,
-		''
-	);
+	)
+		.reduce(
+			(htmlString: string, block: string) =>
+				`${htmlString} <div style="margin: 5px;">${block}</div>`,
+			''
+		);
 
-	page.setViewportSize({ width: 300, height: 720 });
+	await page.setViewportSize({ width: 300, height: 720 });
 
 	await loadComponents({
 		page,
@@ -33,7 +34,51 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/text-field.png'
-	);
+	expect(await testWrapper?.screenshot())
+		.toMatchSnapshot(
+			'./snapshots/text-field.png'
+		);
 });
+
+test('should invalidate the component', async ({page, browserName}: { page: Page, browserName: string }) => {
+	const selector = browserName === 'chromium' ? 'input[name="submit-button"]' : '#submit-button';
+
+	const template = `
+		<form onsubmit="return false">
+			<vwc-text-field id="invalid-text-field" 
+																		label="invalid" 
+																		required
+																		name="invalid-text-field"></vwc-text-field>
+																		<input id="submit-button"  
+																					 name="submit-button" 
+																					 type="submit" 
+																					 label="Submit"/>
+		</form>`;
+
+	await loadComponents({
+		page,
+		components,
+	});
+	await loadTemplate({
+		page,
+		template,
+	});
+
+	const testWrapper = await page.$('#wrapper');
+
+	const submitButton = await page.locator(selector);
+	await page.waitForLoadState('networkidle');
+
+	await submitButton.click();
+	await page.waitForLoadState('networkidle');
+	await page.waitForTimeout(50);
+
+	expect(await testWrapper?.screenshot({animations: 'disabled'}))
+		.toMatchSnapshot(
+			'./snapshots/text-field-invalidation.png',
+			{
+				maxDiffPixelRatio: 0.05
+			}
+		);
+});
+

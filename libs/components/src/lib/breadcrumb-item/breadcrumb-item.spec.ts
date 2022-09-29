@@ -75,8 +75,7 @@ describe('vwc-breadcrumb-item', () => {
 		 *
 		 */
 		function getAnchorElement() {
-			const anchorElement = element.shadowRoot?.querySelector('a');
-			return anchorElement;
+			return element.shadowRoot?.querySelector('a');
 		}
 
 		/**

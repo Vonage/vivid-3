@@ -10,7 +10,7 @@ import {Connotation} from '../enums';
 import type { Note } from './note';
 
 const connotationIconMap = new Map([
-	[Connotation.Info, 'info-solid'],
+	[Connotation.Information, 'info-solid'],
 	[Connotation.Announcement, 'megaphone-solid'],
 	[Connotation.Success, 'check-circle-solid'],
 	[Connotation.Warning, 'warning-solid'],
@@ -26,7 +26,7 @@ const getClasses = ({ connotation }: Note) => classNames(
  *
  */
 function getHeaderTemplate() {
-	return html<Note>`<div class="heading">${x => x.heading}</div>`;
+	return html<Note>`<div class="headline">${x => x.headline}</div>`;
 }
 
 /**
@@ -56,7 +56,7 @@ export const NoteTemplate: (
     <div class="${getClasses}">
       ${getIconTemplate()}
 			<div class="text">
-	        ${when(x => x.heading, getHeaderTemplate())}
+	        ${when(x => x.headline, getHeaderTemplate())}
 			    <slot class="message"></slot>
 			</div>
     </div>

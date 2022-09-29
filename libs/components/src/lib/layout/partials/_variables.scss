@@ -9,15 +9,21 @@ $auto-sizes: (
 
 /* #region BASES */
 $bases: (
-	small: 10rem,
-	medium: 20rem,
-	large: 30rem,
+	small: 160px,
+	medium: 320px,
+	large: 380px,
 	block: 1fr
 );
 
 /* #region SPACES */
 $spaces: (
 	small: 16px,
+	small-inline: 0 16px,
+	small-block: 16px 0,
 	medium: 24px,
+	medium-inline: 0 24px,
+	medium-block: 24px 0,
 	large: 32px,
+	large-inline: 0 32px,
+	large-block: 32px 0,
 );

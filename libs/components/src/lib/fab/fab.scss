@@ -1,12 +1,11 @@
-@use "../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts" as theme-consts;
-@use "../../../../shared/src/lib/sass/mixins/typography" as typography;
+@use '../../../../../dist/libs/tokens/scss/constants' as constants;
+
 @use "partials/variables" as variables;
 @use "../../../../shared/src/lib/sass/mixins/elevation" as elevation;
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta,
-	$shades: primary on-primary primary-increment contrast fierce firm,
-	$default: accent
+	$shades: primary primary-text primary-increment contrast fierce firm,
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
@@ -17,26 +16,46 @@
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 
+
 .control {
-	@include typography.typography-cat-shorthand("body-2-bold");
-	@include connotation.connotation;
-	@include appearance.appearance;
-
-	#{variables.$block-size}: 40px;
-
 	position: relative;
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
 	border: 0 none;
-	background-color: var(#{appearance.get-appearance-token(fill)});
+	background: var(#{appearance.get-appearance-token(fill)}, var(elevation.$vvd-elevation-fill));
 	block-size: var(#{variables.$block-size});
-	border-radius: 24px;
-	color: var(#{appearance.get-appearance-token(text)});
+	border-radius: var(#{variables.$border-radius});
+	color: var(#{appearance.get-appearance-token(text)}, var(constants.$vvd-color-canvas-text));
 	column-gap: var(#{variables.$icon-gap});
 	filter: var(#{elevation.$vvd-elevation-shadow});
-	outline: 0 none;
+	font: var(#{constants.$vvd-font-base-bold});
+	transition: background-color 0.15s linear, filter 0.15s linear;
 	vertical-align: middle;
+	@include connotation.connotation;
+	@include appearance.appearance;
+
+	@supports selector(:focus-visible) {
+		&:focus {
+			outline: none;
+		}
+	}
+
+	@supports(user-select: none) {
+		user-select: none;
+	}
+
+	/* Size */
+
+	&.density-extended {
+		#{variables.$border-radius}: 30px;
+		#{variables.$block-size}: 56px;
+	}
+
+	&:not(.density-extended) {
+		#{variables.$border-radius}: 24px;
+		#{variables.$block-size}: 40px;
+	}
 
 	&.icon-only {
 		border-radius: 50%;
@@ -69,18 +88,28 @@
 
 		cursor: pointer;
 
+		&:hover {
+			@include elevation.elevation(12);
+		}
+
 		&:active {
-			@include elevation.elevation(8);
+			@include elevation.elevation(24);
 		}
 	}
 }
 
 /* Icon */
 .icon {
-	font-size: 20px;
-
 	.icon-trailing & {
 		order: 1;
+	}
+
+	.density-extended & {
+		font-size: 24px;
+	}
+
+	&:not(.density-extended) &{
+		font-size: 20px;
 	}
 }
 

@@ -9,7 +9,9 @@ Popup's goal is to provide additional, helpful content. To trigger the Popup, it
 </script>
 ```
 
-## Anchor
+## Members
+
+### Anchor
 
 Use the `anchor` attribute to reference the ID to element in the popup’s owner document.
 
@@ -23,13 +25,11 @@ The popup is positioned in a fixed manner to its anchor.
   ⚓️
 </span>
 <vwc-popup anchor="anchor" open>
-  <vwc-text>
-    This is a popup.
-  </vwc-text>
+  This is a popup.
 </vwc-popup>
 ```
 
-## Open
+### Open
 
 Use the `open` attribute to indicate whether the popup is open.
 
@@ -40,7 +40,7 @@ Use the `open` attribute to indicate whether the popup is open.
 <vwc-button id="anchor" appearance='outlined' label='Click me!'></vwc-button>
 <vwc-popup id="popup" anchor="anchor" open>
   <vwc-layout gutters="small">
-    <vwc-text tight font-face="body-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</vwc-text>
+   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   </vwc-layout>
 </vwc-popup>
 
@@ -49,7 +49,7 @@ Use the `open` attribute to indicate whether the popup is open.
 </script>
 ```
 
-## Dismissible
+### Dismissible
 
 Add the `dismissible` attribute to add a close button to the popup.
 
@@ -60,7 +60,7 @@ Add the `dismissible` attribute to add a close button to the popup.
 <vwc-button id="anchor" appearance='outlined' label='Click on me!'></vwc-button>
 <vwc-popup id="popup" anchor="anchor" open dismissible>
   <vwc-layout gutters="small">
-    <vwc-text tight font-face="body-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</vwc-text>
+   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   </vwc-layout>
 </vwc-popup>
 
@@ -69,7 +69,7 @@ Add the `dismissible` attribute to add a close button to the popup.
 </script>
 ```
 
-## Arrow
+### Arrow
 
 Add the `arrow` attribute to add a small triangle to indicate the trigger element.
 
@@ -80,12 +80,12 @@ Add the `arrow` attribute to add a small triangle to indicate the trigger elemen
 <vwc-icon id="anchor" type='info-line'></vwc-icon>
 <vwc-popup anchor="anchor" open arrow>
   <vwc-layout gutters="small" style="200px">
-    <vwc-text tight font-face="body-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</vwc-text>
+   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   </vwc-layout>
 </vwc-popup>
 ```
 
-## Alternate
+### Alternate
 
 Add the `alternate` attribute to set the color-scheme to dark or light (depending on current user's system settings).
 
@@ -96,24 +96,24 @@ Add the `alternate` attribute to set the color-scheme to dark or light (dependin
 <vwc-icon id="anchor" type='info-line'></vwc-icon>
 <vwc-popup anchor="anchor" open alternate>
   <vwc-layout gutters="small" style="200px">
-    <vwc-text tight font-face="body-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</vwc-text>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   </vwc-layout>
 </vwc-popup>
 ```
 
-## Corner
+### Placement
 
-Use the `corner` attribute to set the placement of the popup around the anchor.
+Use the `placement` attribute to set the placement of the popup around the anchor.
 
 - Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
-- Default: `'left'`
+- Default: `''`
 
 ```html preview center
 <style>
   .square {
     inline-size: 270px;
     block-size: 100px;
-    background-color: var(--vvd-color-neutral-10);
+    background-color: var(--vvd-color-neutral-50);
   }
 
   vwc-text {
@@ -123,82 +123,58 @@ Use the `corner` attribute to set the placement of the popup around the anchor.
 
 <div id="anchor" class="square"></div>
 
-<vwc-popup id="popup" anchor="anchor" open corner="right-end">
-  <vwc-text tight font-face="body-2">
-    right-end
-  </vwc-text>
+<vwc-popup id="popup" anchor="anchor" open placement="right-end">
+ right-end
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open corner="right">
-  <vwc-text tight font-face="body-2">
-    right
-  </vwc-text>
+<vwc-popup id="popup" anchor="anchor" open placement="right">
+ right
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open corner="right-start">
-  <vwc-text tight font-face="body-2">
-    right-start
-  </vwc-text>
+<vwc-popup id="popup" anchor="anchor" open placement="right-start">
+ right-start
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open corner="left-end">
-  <vwc-text tight font-face="body-2">
-    left-end
-  </vwc-text>
+<vwc-popup id="popup" anchor="anchor" open placement="left-end">
+ left-end
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open corner="left">
-  <vwc-text tight font-face="body-2">
-    left
-  </vwc-text>
+<vwc-popup id="popup" anchor="anchor" open placement="left">
+ left
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open corner="left-start">
-  <vwc-text tight font-face="body-2">
-    left-start
-  </vwc-text>
+<vwc-popup id="popup" anchor="anchor" open placement="left-start">
+ left-start
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open corner="top-end">
-  <vwc-text tight font-face="body-2">
-    top-end
-  </vwc-text>
+<vwc-popup id="popup" anchor="anchor" open placement="top-end">
+ top-end
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open corner="top">
-  <vwc-text tight font-face="body-2">
-    top
-  </vwc-text>
+<vwc-popup id="popup" anchor="anchor" open placement="top">
+ top
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open corner="top-start">
-  <vwc-text tight font-face="body-2">
-    top-start
-  </vwc-text>
+<vwc-popup id="popup" anchor="anchor" open placement="top-start">
+ top-start
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open corner="bottom-end">
-  <vwc-text tight font-face="body-2">
-    bottom-end
-  </vwc-text>
+<vwc-popup id="popup" anchor="anchor" open placement="bottom-end">
+ bottom-end
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open corner="bottom">
-  <vwc-text tight font-face="body-2">
-    bottom
-  </vwc-text>
+<vwc-popup id="popup" anchor="anchor" open placement="bottom">
+ bottom
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open corner="bottom-start">
-  <vwc-text tight font-face="body-2">
-    bottom-start
-  </vwc-text>
+<vwc-popup id="popup" anchor="anchor" open placement="bottom-start">
+ bottom-start
 </vwc-popup>
 ```
-
-## Caveat
-
-Document elements display precedence is formed by the imaginary z-axis [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context), commonly by order of which elements are rendered and special properties (e.g. _z-index_).
-Popup component is a low level element, unaware of its document context, but in most cases required to overlay on top of all elements.
-
-A common practice used in apps / frameworks to promote a popup component to top other elements z-axis, is to utilise a service that dynamically appends a popup component to the end of the body element, when called for.
-
-This helps ensure elements don't render over top a popup undesirebly.
 
 ## Methods
 
 ### updatePosition()
 
-- Type: function
-- Returns: void
+- Type: `function`
+- Returns: `void`
 
 Updates popup's position.
+
+## Caveat
+
+Document elements display precedence is formed by the imaginary z-axis [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context), commonly by order of which elements are rendered and special properties (e.g. _z-index_).
+Popup component is a low level element, unaware of its document context, but is, in most cases, required to overlay on top of all elements.
+
+A common practice used in apps / frameworks to promote a popup component to top other elements z-axis, is to utilise a service that dynamically appends a popup component to the end of the body element, when called for.
+
+This helps ensure elements don't render over top a popup undesirebly.

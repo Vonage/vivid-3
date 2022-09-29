@@ -5,15 +5,29 @@ on: workflow_call
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: drizzt99/vonage:1.1.0
+    container: drizzt99/vonage:1.2.0
     steps:
-      - run: echo "Running 1.1.0"
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - run: echo "Running 1.2.0"
+
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
         with:
           node-version: '16'
           cache: 'npm'
-      - run: npm ci
+
+      - run: apt-get install tar -y
+
+      - uses: actions/cache@v3
+        id: cache
+        with:
+          path: node_modules/
+          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
+
       - run: npm run nx e2e components -- --task=local
       - uses: actions/upload-artifact@v3
         if: always()

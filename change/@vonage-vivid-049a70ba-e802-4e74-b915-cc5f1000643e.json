@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "chore(components): fix side drawer scrim z-index calc",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}

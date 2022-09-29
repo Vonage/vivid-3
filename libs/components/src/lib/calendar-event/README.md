@@ -76,8 +76,8 @@ Set the `appearance` attribute to change the calendar event's appearance.
 Set the `connotation` attribute to change the calendar event's connotation.
 It accepts a subset of predefined values.
 
-- Type: `'accent'` | `'cta'` | `'success'` | `'alert'` | `'warning'` | `'info'` | `'announcement'`
-- Default: `'info'`
+- Type: `'accent'` | `'cta'` | `'success'` | `'alert'` | `'warning'` | `'information'` | `'announcement'`
+- Default: `'information'`
 
 #### Filled calendar event with connotation
 
@@ -88,7 +88,7 @@ It accepts a subset of predefined values.
   <vwc-calendar-event connotation="success" appearance="filled" heading="success" slot="day-2"></vwc-calendar-event>
   <vwc-calendar-event connotation="alert" appearance="filled" heading="alert" slot="day-3"></vwc-calendar-event>
   <vwc-calendar-event connotation="warning" appearance="filled" heading="warning" slot="day-4"></vwc-calendar-event>
-  <vwc-calendar-event connotation="info" appearance="filled" heading="info" slot="day-5"></vwc-calendar-event>
+  <vwc-calendar-event connotation="information" appearance="filled" heading="information" slot="day-5"></vwc-calendar-event>
   <vwc-calendar-event connotation="announcement" appearance="filled" heading="announcement" slot="day-6"></vwc-calendar-event>
 </vwc-calendar>
 ```
@@ -102,7 +102,7 @@ It accepts a subset of predefined values.
   <vwc-calendar-event connotation="success" appearance="subtle" heading="success" slot="day-2"></vwc-calendar-event>
   <vwc-calendar-event connotation="alert" appearance="subtle" heading="alert" slot="day-3"></vwc-calendar-event>
   <vwc-calendar-event connotation="warning" appearance="subtle" heading="warning" slot="day-4"></vwc-calendar-event>
-  <vwc-calendar-event connotation="info" appearance="subtle" heading="info" slot="day-5"></vwc-calendar-event>
+  <vwc-calendar-event connotation="information" appearance="subtle" heading="information" slot="day-5"></vwc-calendar-event>
   <vwc-calendar-event connotation="announcement" appearance="subtle" heading="announcement" slot="day-6"></vwc-calendar-event>
 </vwc-calendar>
 ```

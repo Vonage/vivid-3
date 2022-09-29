@@ -2,7 +2,6 @@
 @use 'sass:list';
 @use 'sass:map';
 
-@use '../../../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
 @use 'functions' as functions;
 @use 'variables' as variables;
 @use 'config' as config;
@@ -15,7 +14,7 @@ $disabled: ':disabled, .disabled';
 $readonly: ':readonly, .readonly';
 $checked: ':checked, .checked';
 $indeterminate: ':indeterminate, .indeterminate';
-$selected: '.selected';
+$selected: '.selected, [aria-current]';
 $active: ':active, .active';
 $error: '.error';
 

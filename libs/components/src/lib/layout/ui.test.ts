@@ -7,28 +7,39 @@ import {
 	loadTemplate
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['layout', 'card'];
-test('should show the component', async ({ page }: { page: Page }) => {
-	const template = extractHTMLBlocksFromReadme(path.join(new URL('.', import.meta.url).pathname, 'README.md'))
-		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
+const components = ['layout', 'card', 'divider'];
 
-	page.setViewportSize({ width: 1100, height: 720 });
+function runLayoutUiTest() {
+	return async ({page}: { page: Page }) => {
+		const template = extractHTMLBlocksFromReadme(path.join(new URL('.', import.meta.url).pathname, 'README.md'))
+			.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
 
-	await loadComponents({
-		page,
-		components,
-	});
-	await loadTemplate({
-		page,
-		template,
-	});
+		page.setViewportSize({
+			width: 1100,
+			height: 720
+		});
 
-	const testWrapper = await page.$('#wrapper');
+		await loadComponents({
+			page,
+			components,
+		});
+		await loadTemplate({
+			page,
+			template,
+		});
 
-	await page.waitForLoadState('networkidle');
+		const testWrapper = await page.$('#wrapper');
 
-	expect(await testWrapper?.screenshot())
-		.toMatchSnapshot(
-			'./snapshots/layout.png',
-		);
-});
+		await page.waitForLoadState('networkidle');
+
+		expect(await testWrapper?.screenshot())
+			.toMatchSnapshot(
+				'./snapshots/layout.png',
+				{
+					maxDiffPixelRatio: 0.02
+				}
+			);
+	};
+}
+
+test('should show the component', runLayoutUiTest());
