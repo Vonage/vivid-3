@@ -26,7 +26,7 @@ $control-border: 2px;
 	display: inline-flex;
 	align-items: center;
 	cursor: pointer;
-	gap: 10px;
+	gap: 8px;
 
 	@supports selector(:focus-visible) {
 		&:focus {
@@ -65,9 +65,13 @@ $control-border: 2px;
 }
 
 label {
-	color: var(#{constants.$vvd-color-canvas-text});
+	color: var(#{appearance.get-appearance-token(text)});
 	cursor: pointer;
 	font: var(#{constants.$vvd-font-base});
+
+	.base.disabled & {
+		cursor: not-allowed;
+	}
 }
 
 .focus-indicator {
