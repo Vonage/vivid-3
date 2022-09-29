@@ -27,11 +27,16 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 <vwc-avatar icon="group-2-solid"></vwc-avatar>
 ```
 
-<!-- 
-### Acronym
-still in progress
--->
 
+### Name
+Set the `name` attribute to set avatar's initials.
+
+- Type: `string`
+- Default: `none`
+
+```html preview
+<vwc-avatar name="vivid avatar"></vwc-avatar>
+```
 
 ### Appearance
 Set the `appearance` attribute to change the avatar's appearance.
@@ -82,6 +87,10 @@ Use the `density` attribute/property to set the avatar's to one of the predefine
 <vwc-avatar density='condensed' shape="pill"></vwc-avatar>
 <vwc-avatar density='normal' shape="pill"></vwc-avatar>
 <vwc-avatar density='extended' shape="pill"></vwc-avatar>
+<hr>
+<vwc-avatar density='condensed' shape="pill" name="john doe"></vwc-avatar>
+<vwc-avatar density='normal' shape="pill" name="john doe"></vwc-avatar>
+<vwc-avatar density='extended' shape="pill" name="john doe"></vwc-avatar>
 ```
 
 

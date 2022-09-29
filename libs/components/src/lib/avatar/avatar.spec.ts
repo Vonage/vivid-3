@@ -91,4 +91,13 @@ describe('vwc-avatar', () => {
 
 	});
 
+	describe('avatar name', () => {
+		it('should not show the icon if name is set', async () => {
+			element.name = 'John Doe';
+			await elementUpdated(element);
+			const iconElement = baseElement.querySelector('vwc-icon');
+			expect(iconElement).toBeNull();
+		});
+	});
+
 });
