@@ -98,6 +98,12 @@ describe('vwc-avatar', () => {
 			const iconElement = baseElement.querySelector('vwc-icon');
 			expect(iconElement).toBeNull();
 		});
+
+		it('should show the initials', async () => {
+			element.name = 'John Doe';
+			await elementUpdated(element);
+			expect(baseElement.querySelector('.initials')?.textContent).toEqual('jd');
+		});
 	});
 
 });

@@ -96,7 +96,4 @@ export class Avatar extends FoundationElement {
 	 */
 	@attr name?: string;
 
-	// @observable avatarInitials(){
-	// 	return getInitials(this.name);
-	// }
 }
