@@ -24,9 +24,7 @@ $gutter: 2px;
 
 	display: inline-flex;
 	align-items: center;
-	cursor: pointer;
 	gap: 8px;
-
 	@supports selector(:focus-visible) {
 		&:focus {
 			outline: none;
@@ -35,10 +33,6 @@ $gutter: 2px;
 
 	@supports (user-select: none) {
 		user-select: none;
-	}
-
-	&.disabled {
-		cursor: not-allowed;
 	}
 }
 
@@ -53,6 +47,7 @@ $gutter: 2px;
 	border-radius: 3px;
 	box-shadow: inset 0 0 0 2px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
+	cursor: pointer;
 }
 
 .indicator {
@@ -72,13 +67,9 @@ $gutter: 2px;
 }
 
 label {
-	color: var(#{appearance.get-appearance-token(text)});
+	color: var(#{constants.$vvd-color-canvas-text});
 	cursor: pointer;
 	font: var(#{constants.$vvd-font-base});
-
-	.base.disabled & {
-		cursor: not-allowed;
-	}
 }
 
 .focus-indicator {
