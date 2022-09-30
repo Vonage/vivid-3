@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Thu, 22 Sep 2022 09:22:38 GMT and should not be manually modified.
+This log was last generated on Sun, 25 Sep 2022 05:00:21 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.66
+
+Sun, 25 Sep 2022 05:00:21 GMT
+
+### Changes
+
+- menu migration to fast (yinon@hotmail.com)
 
 ## 3.0.0-next.65
 
