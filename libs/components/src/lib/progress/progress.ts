@@ -3,7 +3,7 @@ import {attr} from '@microsoft/fast-element';
 import type {Connotation, ConnotationDecorative, Shape} from '../enums';
 
 export type ProgressConnotation =
-	Connotation.Primary |
+	Connotation.Accent |
 	Connotation.Success |
 	Connotation.Alert |
 	Connotation.CTA |

@@ -1,4 +1,4 @@
-import { html, slotted, when } from '@microsoft/fast-element';
+import { html, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
@@ -7,13 +7,19 @@ import type {
 import type { SideDrawer } from './side-drawer';
 
 const getClasses = ({
-	alternate, modal, open, position
+	modal, open, trailing
 }: SideDrawer) => classNames(
 	'control',
-	['alternate', alternate],
 	['modal', modal],
 	['open', open],
-	['end', position === 'end'],
+	['trailing', trailing],
+);
+
+const getScrimClasses = ({
+	open
+}: SideDrawer) => classNames(
+	'scrim',
+	['open', open],
 );
 
 /**
@@ -25,27 +31,26 @@ const getClasses = ({
  * @public
  */
 export const sideDrawerTemplate: FoundationElementTemplate<ViewTemplate<SideDrawer>> = () => html`
-	<aside class="${getClasses}" part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}"
+	<aside class="${getClasses}" part="base ${(x) => x.alternate ? 'vvd-theme-alternate' : ''}"
 	 @keydown="${(x, c) => handleKeydown(x, c.event as KeyboardEvent)}">
-
-	 	<header class="side-drawer-top-bar" part="side-drawer-top-bar">
-	 		<slot name="top-bar" ${slotted('hasTopBar')}></slot>
- 		</header>
-
-		<div class="side-drawer-content">
-			<slot></slot>
-		</div>
+    <slot></slot>
 	</aside>
 
-	<div class="side-drawer-app-content">
+	<div class="side-drawer-app-content" ?inert="${x => x.open && x.modal}">
 		<slot name="app-content"></slot>
 	</div>
 
-	${when(x => (x.modal && x.open), html`<div class="scrim" @click="${x => (x.open = false)}" @keydown="${x => (x.open = false)}"></div>`)}
+	${when(x => x.modal,
+		html<SideDrawer>`<div class="${getScrimClasses}" @click="${x => (x.open = false)}"></div>`)}
 `;
 
-const handleKeydown = (x: any, { key }: KeyboardEvent) => {
+const handleKeydown = (x: any, { key }: KeyboardEvent): boolean | void => {
 	if (key === 'Escape') {
 		x.open = false;
+	} else {
+		// after this event handler is executed,
+		// preventDefault() will be called on the event object by default.
+		// we need to return true from our handler to opt - out of this behavior.
+		return true;
 	}
 };

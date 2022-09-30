@@ -3,7 +3,7 @@ import type { Page } from '@playwright/test';
 import {
 	loadComponents,
 	loadTemplate,
-} from '../../visual-tests/visual-tests-utils.ts';
+} from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['tooltip','button'];
 
@@ -23,16 +23,18 @@ test('should show the component', async ({ page }: { page: Page }) => {
 </style>
 <div class="wrapper">
   <vwc-button id="anchor" aria-describedby="tooltip" appearance='outlined' label='This is an anchor'></vwc-button>
-  <vwc-tooltip id="tooltip" anchor="anchor" open text="right" corner="right">
+  <vwc-tooltip id="tooltip" anchor="anchor" open text="right" placement="right">
   </vwc-tooltip>
-  <vwc-tooltip id="tooltip" anchor="anchor" open text="left" corner="left">
+  <vwc-tooltip id="tooltip" anchor="anchor" open text="left" placement="left">
   </vwc-tooltip>
-  <vwc-tooltip id="tooltip" anchor="anchor" open text="top" corner="top">
+  <vwc-tooltip id="tooltip" anchor="anchor" open text="top" placement="top">
   </vwc-tooltip>
-  <vwc-tooltip id="tooltip" anchor="anchor" open text="bottom" corner="bottom">
+  <vwc-tooltip id="tooltip" anchor="anchor" open text="bottom" placement="bottom">
   </vwc-tooltip>
 </div>
 	`;
+
+	page.setViewportSize({ width: 600, height: 720 });
 
 	await loadComponents({
 		page,

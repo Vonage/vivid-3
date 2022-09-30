@@ -1,17 +1,17 @@
-import { expect, test } from '@playwright/test'; 
+import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import {
 	loadComponents,
 	loadTemplate
-} from '../../visual-tests/visual-tests-utils.ts';
+} from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['popup', 'text', 'icon', 'button'];
+const components = ['popup'];
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template =`
 	<style>
   .contentWrapper{
     width: 70px;
-    padding: 0.25rem;
+    padding: 4px;
   }
 	.square {
 		height: 150px;
@@ -29,68 +29,70 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	</style>
 	<div class="wrapper">
 	<div id="anchor5" class="square"></div>
-	<vwc-popup id="popup" anchor="anchor5" open corner="right-end" alternate>
+	<vwc-popup id="popup" anchor="anchor5" open placement="right-end" alternate>
     <div class="contentWrapper">
-			<vwc-text tight font-face="body-2">right-end</vwc-text>
+			right-end
     </div>
 	</vwc-popup>
-	<vwc-popup id="popup" anchor="anchor5" open corner="right" arrow>
+	<vwc-popup id="popup" anchor="anchor5" open placement="right" arrow>
     <div class="contentWrapper">
-		  <vwc-text tight font-face="body-2">right</vwc-text>
+		  right
     </div>
 	</vwc-popup>
-	<vwc-popup id="popup" anchor="anchor5" open corner="right-start" dismissible>
+	<vwc-popup id="popup" anchor="anchor5" open placement="right-start" dismissible>
     <div class="contentWrapper">
-		  <vwc-text tight font-face="body-2">right-start</vwc-text>
+		  right-start
     </div>
 	</vwc-popup>
-	<vwc-popup id="popup" anchor="anchor5" open corner="left-end" alternate>
+	<vwc-popup id="popup" anchor="anchor5" open placement="left-end" alternate>
     <div class="contentWrapper">
-			<vwc-text tight font-face="body-2">left-end</vwc-text>
+			left-end
     </div>
 	</vwc-popup>
-	<vwc-popup id="popup" anchor="anchor5" open corner="left" arrow>
+	<vwc-popup id="popup" anchor="anchor5" open placement="left" arrow>
     <div class="contentWrapper">
-		  <vwc-text tight font-face="body-2">left</vwc-text>
+		  left
     </div>
 	</vwc-popup>
-	<vwc-popup id="popup" anchor="anchor5" open corner="left-start" dismissible>
+	<vwc-popup id="popup" anchor="anchor5" open placement="left-start" dismissible>
     <div class="contentWrapper">
-			<vwc-text tight font-face="body-2">left-start</vwc-text>
+			left-start
     </div>
 	</vwc-popup>
-	<vwc-popup id="popup" anchor="anchor5" open corner="top-end" alternate>
+	<vwc-popup id="popup" anchor="anchor5" open placement="top-end" alternate>
     <div class="contentWrapper">
-			<vwc-text tight font-face="body-2">top-end</vwc-text>
+			top-end
     </div>
 	</vwc-popup>
-	<vwc-popup id="popup" anchor="anchor5" open corner="top" arrow>
+	<vwc-popup id="popup" anchor="anchor5" open placement="top" arrow>
     <div class="contentWrapper">
-		  <vwc-text tight font-face="body-2">top</vwc-text>
+		  top
     </div>
 	</vwc-popup>
-	<vwc-popup id="popup" anchor="anchor5" open corner="top-start" dismissible>
+	<vwc-popup id="popup" anchor="anchor5" open placement="top-start" dismissible>
     <div class="contentWrapper">
-			<vwc-text tight font-face="body-2">top-start</vwc-text>
+			top-start
     </div>
 	</vwc-popup>
-	<vwc-popup id="popup" anchor="anchor5" open corner="bottom-end" alternate>
+	<vwc-popup id="popup" anchor="anchor5" open placement="bottom-end" alternate>
     <div class="contentWrapper">
-			<vwc-text tight font-face="body-2">bottom-end</vwc-text>
+			bottom-end
     </div>
 	</vwc-popup>
-	<vwc-popup id="popup" anchor="anchor5" open corner="bottom" arrow>
+	<vwc-popup id="popup" anchor="anchor5" open placement="bottom" arrow>
     <div class="contentWrapper">
-			<vwc-text tight font-face="body-2">bottom</vwc-text>
+			bottom
     </div>
 	</vwc-popup>
-	<vwc-popup id="popup" anchor="anchor5" open corner="bottom-start" dismissible>
+	<vwc-popup id="popup" anchor="anchor5" open placement="bottom-start" dismissible>
     <div class="contentWrapper">
-			<vwc-text tight font-face="body-2">bottom-start</vwc-text>
+			bottom-start
     </div>
 	</vwc-popup>
 	</div>
 	`;
+
+	page.setViewportSize({ width: 800, height: 720 });
 
 	await loadComponents({
 		page,

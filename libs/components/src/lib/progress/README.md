@@ -1,12 +1,14 @@
-# progress
+# Progress
 
 Progress is used to display the length of time a process will take or to visualize percentage value (referred to as a determinate state) and to represent an unspecified wait time (referred to as an indeterminate state).
 
 ```js
-<script type="module">import '@vonage/vivid/progress';</script>
+<script type="module">
+  import '@vonage/vivid/progress';
+</script>
 ```
 
-## API
+## Members
 
 ### Min/Max
 
@@ -63,11 +65,11 @@ Use the `reverse` attribute to set the progress from right to left.
 
 ### Connotation
 
-- Type: `'primary'` | `'cta'` | `'success'` | `'alert'` | `'pacific'`
-- Default: `'primary'`
+- Type: `'accent'` | `'cta'` | `'success'` | `'alert'` | `'pacific'`
+- Default: `'accent'`
 
 ```html preview blocks
-<vwc-progress min="0" max="100" value="25" connotation="primary"></vwc-progress>
+<vwc-progress min="0" max="100" value="25" connotation="accent"></vwc-progress>
 <vwc-progress min="0" max="100" value="25" connotation="cta"></vwc-progress>
 <vwc-progress min="0" max="100" value="25" connotation="success"></vwc-progress>
 <vwc-progress min="0" max="100" value="25" connotation="alert"></vwc-progress>
@@ -83,10 +85,10 @@ Use the `shape` attribute in order to set `rounded` and `sharp` borders.
 
 ```html preview blocks
 <vwc-progress min="0" max="50" value="25" shape="rounded"></vwc-progress>
-<vwc-progress min="0" max="50" value="25"></vwc-progress>
+<vwc-progress min="0" max="50" value="25" shape="sharp"></vwc-progress>
 ```
 
-## Example Usage
+## Use Cases
 
 ### Determinate State
 

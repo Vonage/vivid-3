@@ -8,7 +8,7 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import type { Card } from './card';
 
 const getClasses = (_: Card) => classNames(
-	'control',
+	'base',
 	['hide-footer', !_.footerSlottedContent || !_.footerSlottedContent.length],
 	['hide-header', shouldHideHeader(_)]
 );
@@ -24,18 +24,18 @@ function renderHeaderIcon() {
 /**
  *
  */
-function heading() {
+function Headline() {
 	return html`
-		<div class="header-title">${(x) => x.heading}</div>
+		<div class="header-headline">${(x) => x.headline}</div>
 	`;
 }
 
 /**
  *
  */
-function subheading() {
+function Subtitle() {
 	return html`
-		<div class="header-subheading">${(x) => x.subheading}</div>
+		<div class="header-subtitle">${(x) => x.subtitle}</div>
 	`;
 }
 
@@ -45,8 +45,8 @@ function subheading() {
 function headerContent() {
 	return html`
 		<div class="header-content">
-			${when(x => x.heading, heading())}
-			${when(x => x.subheading, subheading())}
+			${when(x => x.headline, Headline())}
+			${when(x => x.subtitle, Subtitle())}
 		</div>
 	`;
 }
@@ -59,7 +59,7 @@ function renderHeader() {
 	return html<Card>`
 		<header class="header">
 			<slot name="graphic" ${slotted('graphicSlottedContent')}>${when(x => x.icon, renderHeaderIcon())}</slot>
-			${when(x => x.heading || x.subheading, headerContent())}
+			${when(x => x.headline || x.subtitle, headerContent())}
 		</header>`;
 }
 
@@ -69,7 +69,7 @@ function renderHeader() {
  */
 function shouldHideHeader(card:Card) {
 	// eslint-disable-next-line max-len
-	return 	!card.heading  && !card.subheading && !card.icon && (!card.graphicSlottedContent || !card.graphicSlottedContent.length);
+	return 	!card.headline  && !card.subtitle && !card.icon && (!card.graphicSlottedContent || !card.graphicSlottedContent.length);
 }
 
 /**
@@ -100,25 +100,27 @@ export const CardTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Card> = () => html<Card>`
-	<vwc-elevation dp=${(x => x.elevation ??  '4')}>
+	<vwc-elevation dp=${(x => x.elevation ?? '4')}>
+
 		<div class="${getClasses}">
 			<div class="wrapper">
 				<div class="vwc-card-media">
 					<slot name="media"></slot>
 				</div>
-				<div class="content">
-					<slot name="content">
-						<div class="content-container">
+				<slot name="main">
+					<div class="main-content">
+						<div class="header-wrapper">
 							${renderHeader()}
 							${renderMetaSlot()}
 						</div>
 						${when(x => x.text, text())}
-					</slot>
-				</div>
+					</div>
+				</slot>
 				<div class="footer">
 					<slot name="footer" ${slotted('footerSlottedContent')}></slot>
 				</div>
 			</div>
 		</div>
+
 	</vwc-elevation>
 `;

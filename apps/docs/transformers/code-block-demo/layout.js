@@ -7,7 +7,7 @@ const layoutFactorial = (...attrs) =>
 const inline = layoutFactorial('gutters="small"');
 const blocks = layoutFactorial('gutters="small"', 'column-basis="block"');
 const columns = layoutFactorial('gutters="small"', 'column-basis="medium"');
-const center = code => `<div class="demo-center">${code}</div>`;
+const center = code => `<div class="center">${code}</div>`;
 
 
 module.exports = (code, classList) => {

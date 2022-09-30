@@ -12,7 +12,7 @@ import { AffixIconWithTrailing } from '../../shared/patterns/affix';
  * @public
  */
 type ButtonConnotation = Extract<Connotation,
-| Connotation.Primary
+| Connotation.Accent
 | Connotation.CTA
 | Connotation.Success
 | Connotation.Alert>;

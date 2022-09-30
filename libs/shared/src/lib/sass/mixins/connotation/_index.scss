@@ -1,2 +1,2 @@
-@forward 'variables' show $vvd-color-connotation, $vvd-color-on-connotation;
+@forward 'functions' show get-connotation-token;
 @forward 'mixins' show connotation;

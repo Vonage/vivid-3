@@ -1,4 +1,5 @@
 import '../icon';
+import '../focus';
 
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import {designSystem} from '../../shared/design-system';
@@ -11,6 +12,9 @@ export const vividBreadcrumbItem = BreadcrumbItem.compose<FoundationElementDefin
 	baseName: 'breadcrumb-item',
 	template: template as any,
 	styles,
+	shadowOptions: {
+		delegatesFocus: true,
+	},
 });
 
 designSystem.register(vividBreadcrumbItem());

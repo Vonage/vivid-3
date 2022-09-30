@@ -12,6 +12,9 @@ export const vividFab = Fab.compose<FoundationElementDefinition>({
 	baseName: 'fab',
 	template: template as any,
 	styles,
+	shadowOptions: {
+		delegatesFocus: true,
+	},
 });
 
 designSystem.register(vividFab());

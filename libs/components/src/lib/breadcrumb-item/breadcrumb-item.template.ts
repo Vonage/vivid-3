@@ -9,9 +9,7 @@ import {textAnchorTemplate} from '../text-anchor/text-anchor.template';
 import type { BreadcrumbItem } from './breadcrumb-item';
 
 const getClasses = (_: BreadcrumbItem) =>
-	classNames(
-		'control', 'breadcrumb-item'
-	);
+	classNames('base');
 
 /**
  * The template for the {@link @microsoft/fast-foundation#BreadcrumbItem} component.
@@ -25,7 +23,7 @@ export const BreadcrumbItemTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<BreadcrumbItem> =
   (context: ElementDefinitionContext, definition: FoundationElementDefinition) => html`
-      <div roll="listitem" part="listitem" class="${getClasses}">
+      <div role="listitem" class="${getClasses}">
         ${when(x => x.text && !x.href,
 		html<BreadcrumbItem>`${x => x.text}`)}
 

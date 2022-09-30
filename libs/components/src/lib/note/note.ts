@@ -4,7 +4,7 @@ import type {Connotation} from '../enums';
 import {AffixIcon} from '../../shared/patterns';
 
 export type NoteConnotation =
-	Connotation.Info |
+	Connotation.Information |
 	Connotation.Announcement |
 	Connotation.Success |
 	Connotation.Warning |
@@ -16,13 +16,13 @@ export type NoteConnotation =
  */
 export class Note extends FoundationElement {
 	/**
-	 * Indicates the note's heading text
+	 * Indicates the note's headline text
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: heading
+	 * HTML Attribute: headline
 	 */
-	@attr heading?: string;
+	@attr headline?: string;
 
 	@attr connotation?: NoteConnotation;
 }

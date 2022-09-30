@@ -4,7 +4,7 @@ import type {Connotation} from '../enums';
 
 
 export type ProgressRingConnotation =
-	Connotation.Primary |
+	Connotation.Accent |
 	Connotation.Success |
 	Connotation.Alert |
 	Connotation.CTA;

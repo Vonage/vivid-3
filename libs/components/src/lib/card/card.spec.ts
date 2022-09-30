@@ -22,26 +22,26 @@ describe('vwc-card', () => {
 	});
 
 	describe( 'header', () => {
-		it('should set heading property to header-title', async () => {
-			const heading = 'card heading';
-			element.heading = heading;
+		it('should set headline property to header-title', async () => {
+			const headline = 'card headline';
+			element.headline = headline;
 			await elementUpdated(element);
 
-			const headerTitle = element.shadowRoot?.querySelector('.header-title');
-			expect(headerTitle?.textContent?.trim()).toEqual(heading);
+			const headerTitle = element.shadowRoot?.querySelector('.header-headline');
+			expect(headerTitle?.textContent?.trim()).toEqual(headline);
 		});
 
-		it('should set subheading property to .header-subheading', async () => {
-			const subheading = 'card subheading';
-			element.subheading = subheading;
+		it('should set subtitle property to .header-subtitle', async () => {
+			const subtitle = 'card subtitle';
+			element.subtitle = subtitle;
 			await elementUpdated(element);
 
-			const headerSubheading = element.shadowRoot?.querySelector('.header-subheading');
-			expect(headerSubheading?.textContent?.trim()).toEqual(subheading);
+			const headerSubtitle = element.shadowRoot?.querySelector('.header-subtitle');
+			expect(headerSubtitle?.textContent?.trim()).toEqual(subtitle);
 		});
 
-		it('should render headerContent if heading is set', async function () {
-			element.heading = 'card title';
+		it('should render headerContent if headline is set', async function () {
+			element.headline = 'card title';
 			await elementUpdated(element);
 
 			const headerContent = element.shadowRoot?.querySelector('.header-content');
@@ -49,12 +49,12 @@ describe('vwc-card', () => {
 		});
 
 
-		it('should render headerContent if subheading is set', async function () {
-			element.subheading = 'card subheading';
+		it('should render headerContent if subtitle is set', async function () {
+			element.subtitle = 'card subtitle';
 			await elementUpdated(element);
 
-			const subheadingContent = element.shadowRoot?.querySelector('.header-content');
-			expect(subheadingContent).toBeTruthy();
+			const subtitleContent = element.shadowRoot?.querySelector('.header-content');
+			expect(subtitleContent).toBeTruthy();
 		});
 
 
@@ -67,15 +67,15 @@ describe('vwc-card', () => {
 			expect(icon.type).toEqual('chat-line');
 		});
 
-		it( 'should add class .hide-header to .control', async () => {
+		it( 'should add class .hide-header to .base', async () => {
 			element.icon = undefined;
-			element.heading = undefined;
-			element.subheading = undefined;
+			element.headline = undefined;
+			element.subtitle = undefined;
 			await elementUpdated(element);
-			const controlElementHasNoHeader = element.shadowRoot?.
-				querySelector('.control')?.classList.contains('hide-header');
+			const baseElementHasNoHeader = element.shadowRoot?.
+				querySelector('.base')?.classList.contains('hide-header');
 
-			expect(controlElementHasNoHeader).toEqual(true);
+			expect(baseElementHasNoHeader).toEqual(true);
 		});
 
 		it('should have slot name graphic with icon default', async() => {
@@ -92,22 +92,22 @@ describe('vwc-card', () => {
 
 		it('should have meta slot ', async function () {
 			const metaSlotElement = element.shadowRoot?.
-				querySelector('.content-container slot[name="meta"]');
+				querySelector('.header-wrapper slot[name="meta"]');
 
 			expect(metaSlotElement).toBeTruthy();
 		});
 
-		it('should remove hide-header class from .control if graphic is slotted', async function () {
+		it('should remove hide-header class from .base if graphic is slotted', async function () {
 			const slottedElement = document.createElement('div');
 			slottedElement.slot = 'graphic';
 			slottedElement.id = 'graphic';
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
-			const controlElementHasNoHeader = element.shadowRoot?.
-				querySelector('.control')?.classList.contains('hide-header');
+			const baseElementHasNoHeader = element.shadowRoot?.
+				querySelector('.base')?.classList.contains('hide-header');
 
-			expect(controlElementHasNoHeader).toEqual(false);
+			expect(baseElementHasNoHeader).toEqual(false);
 		});
 
 	});
@@ -131,17 +131,17 @@ describe('vwc-card', () => {
 			expect(footerSlotElement).toBeTruthy();
 		});
 
-		it('should remove hide-footer class from .control if footer is slotted', async function () {
+		it('should remove hide-footer class from .base if footer is slotted', async function () {
 			const slottedElement = document.createElement('div');
 			slottedElement.slot = 'footer';
 			slottedElement.id = 'footer';
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
-			const controlElementHasNoHeader = element.shadowRoot?.
-				querySelector('.control')?.classList.contains('hide-footer');
+			const baseElementHasNoHeader = element.shadowRoot?.
+				querySelector('.base')?.classList.contains('hide-footer');
 
-			expect(controlElementHasNoHeader).toEqual(false);
+			expect(baseElementHasNoHeader).toEqual(false);
 		});
 	});
 
@@ -150,10 +150,10 @@ describe('vwc-card', () => {
 		it('should have default elevation', async function () {
 			const defaultElevation = '4';
 
-			const controlElevation = element.shadowRoot?.
+			const baseElevation = element.shadowRoot?.
 				querySelector('vwc-elevation');
 
-			expect(controlElevation?.getAttribute('dp')).toEqual(defaultElevation);
+			expect(baseElevation?.getAttribute('dp')).toEqual(defaultElevation);
 
 		});
 
@@ -168,10 +168,5 @@ describe('vwc-card', () => {
 			expect(propertyValueBeforeChange).toEqual(startingDP);
 			expect(element.elevation).toEqual('16');
 		});
-
-
 	});
-
 });
-
-

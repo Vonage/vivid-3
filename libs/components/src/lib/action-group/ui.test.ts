@@ -5,33 +5,48 @@ import {
 	extractHTMLBlocksFromReadme,
 	loadComponents,
 	loadTemplate,
-} from '../../visual-tests/visual-tests-utils.ts';
+} from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['action-group', 'button', 'text-field'];
+const components = ['action-group', 'button', 'text-field', 'layout', 'popup', 'divider'];
 
-test('should show the component', async ({ page }: { page: Page }) => {
-	const template = extractHTMLBlocksFromReadme(
-		path.join(new URL('.', import.meta.url).pathname, 'README.md')
-	).reduce(
-		(htmlString: string, block: string) =>
-			`${htmlString} <div style="margin: 5px;">${block}</div>`,
-		''
-	);
+function runActionGroupTest() {
+	return async ({page}: { page: Page }) => {
+		const template = extractHTMLBlocksFromReadme(
+			path.join(new URL('.', import.meta.url).pathname, 'README.md')
+		)
+			.reduce(
+				(htmlString: string, block: string) =>
+					`${htmlString} <div style="margin: 5px;">${block}</div>`,
+				''
+			) + '<style> .center { text-align: center; } </style>';
 
-	await loadComponents({
-		page,
-		components,
-	});
-	await loadTemplate({
-		page,
-		template,
-	});
+		await page.setViewportSize({
+			width: 380,
+			height: 720
+		});
 
-	const testWrapper = await page.$('#wrapper');
+		await loadComponents({
+			page,
+			components,
+		});
+		await loadTemplate({
+			page,
+			template,
+		});
 
-	await page.waitForLoadState('networkidle');
+		const testWrapper = await page.$('#wrapper');
 
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/action-group.png'
-	);
-});
+		await page.waitForLoadState('networkidle');
+
+		expect(await testWrapper?.screenshot({animations: 'disabled'}))
+			.toMatchSnapshot(
+				'./snapshots/action-group.png',
+				{
+					maxDiffPixelRatio: 0.02
+				}
+			);
+	};
+}
+
+test('should show the component', runActionGroupTest());
+

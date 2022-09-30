@@ -1,20 +1,14 @@
-@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
-@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use '../../../../../dist/libs/tokens/scss/constants' as constants;
 @use 'partials/card-variables' as card-variables;
 
 
 :host {
-	display: block;
-
-	@supports (block-size: fit-content) and (inline-size: fit-content) {
-		block-size: fit-content;
-		inline-size: fit-content;
-	}
+	display: flex;
 }
 
-.control {
-	block-size: 100%;
+.base {
 	border-radius: 6px;
+	inline-size: 100%;
 }
 
 .wrapper {
@@ -23,30 +17,31 @@
 	flex-flow: column;
 	block-size: inherit;
 	border-radius: inherit;
-	color: var(#{theme-consts.$vvd-color-on-canvas});
+	color: var(#{constants.$vvd-color-canvas-text});
 }
 
-.content {
+.main-content {
 	display: flex;
 	flex-flow: column;
-	padding: 1.5rem;
-	&-container {
-		display: flex;
-		gap: 0.5rem;
-	}
+	padding: 24px;
 }
 
 .header {
 	display: flex;
 	flex: 1;
 	align-items: flex-start;
-	gap: 0.5rem;
+	gap: 8px;
 	&-content {
 		flex: 1;
 	}
 
-	&-title,
-	&-subheading {
+	&-wrapper {
+		display: flex;
+		gap: 8px;
+	}
+
+	&-headline,
+	&-subtitle {
 		/* stylelint-disable value-no-vendor-prefix */
 		display: -webkit-box;
 		/* stylelint-enable value-no-vendor-prefix */
@@ -54,15 +49,13 @@
 		-webkit-box-orient: vertical;
 	}
 
-	&-title {
-		@include typography.typography-cat-shorthand('subtitle-2');
-
-		-webkit-line-clamp: var(#{card-variables.$heading-line-clamp});
+	&-headline {
+		font: var(#{constants.$vvd-font-heading4});
+		-webkit-line-clamp: var(#{card-variables.$headline-line-clamp});
 	}
-	&-subheading {
-		@include typography.typography-cat-shorthand('body-2');
-
-		-webkit-line-clamp: var(#{card-variables.$subheading-line-clamp});
+	&-subtitle {
+		font: var(#{constants.$vvd-font-base});
+		-webkit-line-clamp: var(#{card-variables.$subtitle-line-clamp});
 	}
 
 	.hide-header & {
@@ -70,11 +63,10 @@
 	}
 }
 
-.header-subheading,
+.header-subtitle,
 .text {
-	@include typography.typography-cat-shorthand('body-2');
-
-	color: var(#{theme-consts.$vvd-color-neutral-70});
+	color: var(#{constants.$vvd-color-neutral-600});
+	font: var(#{constants.$vvd-font-base});
 }
 
 .text {
@@ -86,9 +78,9 @@
 	display: inline-flex;
 	flex-direction: column;
 	align-items: flex-end;
-	padding-bottom: 1.5rem;
+	padding-bottom: 24px;
 	margin-top: auto;
-	padding-inline: 1.5rem;
+	padding-inline: 24px;
 
 	.hide-footer & {
 		display: none;
@@ -112,14 +104,7 @@
 ::slotted([slot="meta"i]) {
 	flex-shrink: 0;
 	align-self: flex-start;
-	margin-block-start: -0.5rem;
-	margin-inline-end: -0.5rem;
+	margin-block-start: -8px;
+	margin-inline-end: -8px;
 	margin-inline-start: auto;
-}
-
-vwc-elevation {
-	block-size: inherit;
-	&::part(base) {
-		block-size: inherit;
-	}
 }

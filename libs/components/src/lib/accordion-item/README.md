@@ -1,12 +1,14 @@
-# accordion-item
+# Accordion Item
 
 ```js
 <script type="module">
-    import '@vonage/vivid/accordion-item';
+  import '@vonage/vivid/accordion-item';
 </script>
 ```
 
-## Heading
+## Members
+
+### Heading
 
 Add the `heading` attribute to set the heading text.
 
@@ -14,14 +16,12 @@ Add the `heading` attribute to set the heading text.
 - Default: `undefined`
   
 ```html preview full
-<vwc-accordion-item heading="accordion item with heading">
-  <vwc-text font-face="body-1">
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-  </vwc-text>
+<vwc-accordion-item heading="Accordion item with heading">
+  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 </vwc-accordion-item>
 ```
 
-## Heading-Level
+### Heading-Level
 
 Use the `heading-level` attribute (or `headingLevel` property) to set the accordion heading level so it fits correctly within the outline of the page. Read more on [heading elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements).
 
@@ -46,7 +46,7 @@ e.g.
 </h2>
 ```
 
-## Open
+### Open
 
 Use the `open` attribute to set the accordion-item's open state.
 
@@ -55,13 +55,11 @@ Use the `open` attribute to set the accordion-item's open state.
 
 ```html preview full
 <vwc-accordion-item heading="Click to toggle accordion item" open>
-  <vwc-text font-face="body-1">
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-  </vwc-text>
+  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 </vwc-accordion-item>
 ```
 
-## No-Indicator
+### No-Indicator
 
 Add the `no-indicator` attribute (or `noIndicator` property) to remove the indicator icon from the heading.
 
@@ -69,14 +67,12 @@ Add the `no-indicator` attribute (or `noIndicator` property) to remove the indic
 - Default: `false`
 
 ```html preview full
- <vwc-accordion-item heading="accordion item without indicator" no-indicator>
-    <vwc-text font-face="body-1">
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    </vwc-text>
-  </vwc-accordion-item>
+<vwc-accordion-item heading="Accordion item without indicator" no-indicator>
+ Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+</vwc-accordion-item>
 ```
 
-## Meta
+### Meta
 
 Add the `meta` attribute to add metadata to the heading.
 
@@ -84,14 +80,12 @@ Add the `meta` attribute to add metadata to the heading.
 - Default: `undefined`
 
 ```html preview full
- <vwc-accordion-item heading="accordion item with metadata" meta="meta-data">
-    <vwc-text font-face="body-1">
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    </vwc-text>
-  </vwc-accordion-item>
+<vwc-accordion-item heading="Accordion item with metadata" meta="meta-data">
+ Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+</vwc-accordion-item>
 ```
 
-## Icon
+### Icon
 
 Add the `icon` attribute to add an icon to the heading.
 
@@ -99,14 +93,12 @@ Add the `icon` attribute to add an icon to the heading.
 - Default: `''`
 
 ```html preview full
- <vwc-accordion-item heading="accordion item with icon" icon="chat-solid">
-    <vwc-text font-face="body-1">
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    </vwc-text>
-  </vwc-accordion-item>
+<vwc-accordion-item heading="Accordion item with icon" icon="chat-solid">
+ Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+</vwc-accordion-item>
 ```
 
-## Icon-Trailing
+### Icon-Trailing
 
 Add the `icon-trailing` attribute (or `iconTrailing` property) to add an icon to the right of the heading text.  Mind that `icon-trailing` will override the Indicator.
 
@@ -114,9 +106,13 @@ Add the `icon-trailing` attribute (or `iconTrailing` property) to add an icon to
 - Default: `false`
 
 ```html preview full
- <vwc-accordion-item heading="accordion item with icon-trailing" icon="chat-solid" icon-trailing>
-    <vwc-text font-face="body-1">
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    </vwc-text>
-  </vwc-accordion-item>
+<vwc-accordion-item heading="Accordion item with icon-trailing" icon="chat-solid" icon-trailing>
+ Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+</vwc-accordion-item>
 ```
+
+## Accessibility
+
+The accordion-item has a `role` button.  
+Accordion-item has `aria-expanded` set to true when the content is visible. Otherwise, it is set to false.  
+Accordion-item has a value specified for `aria-controls` that refers to the content.

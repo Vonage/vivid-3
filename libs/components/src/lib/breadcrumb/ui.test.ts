@@ -1,36 +1,61 @@
-import * as path from 'path';
-import { expect, test } from '@playwright/test'; 
+import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import {
-	extractHTMLBlocksFromReadme,
 	loadComponents,
 	loadTemplate,
-} from '../../visual-tests/visual-tests-utils.ts';
+} from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['breadcrumb', 'breadcrumb-item'];
 
-test('should show the component', async ({ page }: { page: Page }) => {
-	const template = extractHTMLBlocksFromReadme(
-		path.join(new URL('.', import.meta.url).pathname, 'README.md')
-	).reduce(
-		(htmlString: string, block: string) =>
-			`${htmlString} <div style="margin: 5px;">${block}</div>`,
-		''
-	);
-	await loadComponents({
-		page,
-		components,
-	});
-	await loadTemplate({
-		page,
-		template,
-	});
+function runBreadcrumbsTest() {
+	return async ({page}: { page: Page }) => {
+		const template = [
+			`<vwc-breadcrumb>
+  <vwc-breadcrumb-item href="#" text="breadcrumb"></vwc-breadcrumb-item>
+  <vwc-breadcrumb-item href="#" text="breadcrumb"></vwc-breadcrumb-item>
+  <vwc-breadcrumb-item href="#" text="breadcrumb"></vwc-breadcrumb-item>
+  <vwc-breadcrumb-item text="breadcrumb"></vwc-breadcrumb-item>
+</vwc-breadcrumb>`,
+			`<vwc-breadcrumb>
+  <vwc-breadcrumb-item href="#" text="breadcrumb"></vwc-breadcrumb-item>
+  <vwc-breadcrumb-item text="..."></vwc-breadcrumb-item>
+  <vwc-breadcrumb-item href="#" text="breadcrumb"></vwc-breadcrumb-item>
+</vwc-breadcrumb>`
+		].reduce(
+			(htmlString: string, block: string) =>
+				`${htmlString} <div style="margin: 5px;">${block}</div>`,
+			''
+		);
 
-	const testWrapper = await page.$('#wrapper');
+		page.setViewportSize({
+			width: 500,
+			height: 720
+		});
 
-	await page.waitForLoadState('networkidle');
+		await loadComponents({
+			page,
+			components,
+		});
+		await loadTemplate({
+			page,
+			template,
+		});
 
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/breadcrumb.png'
-	);
-});
+		const testWrapper = await page.$('#wrapper');
+
+		await page.waitForLoadState('networkidle');
+
+		await page.waitForSelector('vwc-breadcrumb-item:last-child');
+		await page.waitForSelector('div:nth-child(2) vwc-breadcrumb-item:last-child');
+
+		await page.evaluate(() => document.querySelector('vwc-breadcrumb-item:last-child').separator = false);
+		await page.evaluate(() => document.querySelector('div:nth-child(2) vwc-breadcrumb-item:last-child').separator = false);
+
+		expect(await testWrapper?.screenshot())
+			.toMatchSnapshot(
+				'./snapshots/breadcrumb.png'
+			);
+	};
+}
+
+test('should show the component', runBreadcrumbsTest());

@@ -1,12 +1,11 @@
 /* eslint-disable no-shadow */
 export enum Connotation {
-	Canvas = 'canvas',
-	Primary = 'primary',
+	Accent = 'accent',
 	CTA = 'cta',
 	Success = 'success',
 	Alert = 'alert',
 	Warning = 'warning',
-	Info = 'info',
+	Information = 'information',
 	Announcement = 'announcement',
 }
 

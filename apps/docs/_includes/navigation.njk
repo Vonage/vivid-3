@@ -1,21 +1,15 @@
 {% block content %}
-<nav>
-  <vwc-sidenav-item href="{{ '/' | url}}" text="Home"></vwc-sidenav-item>
-  <ul class="navigation">
-    <p>design system</p>
+<vwc-nav>
+  <vwc-nav-disclosure label="Design System" open>
     {%  for item in designs | sort(false, false, 'title') %}
-      <li>
-        <vwc-sidenav-item href="{{ ('/designs/' + item.title) | url }}" text="{{ item.title }}"></vwc-sidenav-item>
-      </li>
+    <vwc-nav-item href="{{ ('/designs/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}" {% if ('/designs/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
     {% endfor %}
-  </ul>
-  <ul class="navigation">
-    <p>components</p>
+  </vwc-nav-disclosure>
+
+  <vwc-nav-disclosure label="Components" open>
     {%  for item in components | sort(false, false, 'title') %}
-      <li>
-        <vwc-sidenav-item href="{{ ('/components/' + item.title) | url }}" text="{{ item.title }}"></vwc-sidenav-item>
-      </li>
+    <vwc-nav-item href="{{ ('/components/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}" {% if ('/components/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
     {% endfor %}
-  </ul>
-</nav>
+  </vwc-nav-disclosure>
+</vwc-nav>
 {% endblock %}

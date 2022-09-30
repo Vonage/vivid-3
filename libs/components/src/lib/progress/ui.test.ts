@@ -3,14 +3,14 @@ import type {Page} from '@playwright/test';
 import {
 	loadComponents,
 	loadTemplate,
-} from '../../visual-tests/visual-tests-utils.ts';
+} from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['progress'];
 
 test('should show the component', async ({page}: { page: Page }) => {
 	const template = `
 		<div style="margin: 5px;">
-    <vwc-progress min="0" max="100" value="25" connotation="primary"></vwc-progress>
+    <vwc-progress min="0" max="100" value="25" connotation="accent"></vwc-progress>
     <br/>
     <br/>
     <vwc-progress min="0" max="100" value="25" connotation="cta"></vwc-progress>
@@ -34,7 +34,7 @@ test('should show the component', async ({page}: { page: Page }) => {
     <vwc-progress min="0" max="50" value="25" reverse></vwc-progress>
     <br/>
     <br/>
-    <vwc-progress min="0" max="100" value="25" connotation="primary" shape="sharp"></vwc-progress>
+    <vwc-progress min="0" max="100" value="25" connotation="accent" shape="sharp"></vwc-progress>
     <br/>
     <br/>
     <vwc-progress min="0" max="100" value="25" connotation="cta" shape="sharp"></vwc-progress>
@@ -49,6 +49,8 @@ test('should show the component', async ({page}: { page: Page }) => {
     <vwc-progress min="0" max="100" value="25" connotation="pacific" shape="sharp"></vwc-progress>
     </div>
   `;
+
+	page.setViewportSize({ width: 200, height: 720 });
 
 	await loadComponents({
 		page,

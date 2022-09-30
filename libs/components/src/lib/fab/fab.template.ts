@@ -7,10 +7,11 @@ import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { Fab } from './fab';
 
 const getClasses = ({
-	connotation, icon, label, iconTrailing, disabled
+	connotation, density, icon, label, iconTrailing, disabled
 }: Fab) => classNames(
 	'control',
 	[`connotation-${connotation}`, Boolean(connotation)],
+	[`density-${density}`, Boolean(density)],
 	['icon-only', !label && !!icon],
 	['icon-trailing', iconTrailing],
 	['disabled', disabled],
@@ -64,7 +65,7 @@ export const FabTemplate: (
             aria-owns="${(x) => x.ariaOwns}"
             aria-pressed="${(x) => x.ariaPressed}"
             aria-relevant="${(x) => x.ariaRelevant}"
-            aria-roledescription="${(x) => x.ariaRoledescription}"		
+            aria-roledescription="${(x) => x.ariaRoledescription}"
             ${ref('control')}
         >
             ${() => focusTemplate}

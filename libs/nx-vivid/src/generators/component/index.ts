@@ -22,7 +22,7 @@ function normalizeOptions(tree: Tree, options: VividComponentGeneratorOptions): 
   const name = projectDirectory.replace(new RegExp('/', 'g'), '-');
   const fileName = names(projectDirectory).fileName;
 
-  const { libsDir, npmScope } = getWorkspaceLayout(tree);
+  const { libsDir } = getWorkspaceLayout(tree);
 
   const projectRoot = joinPathFragments(libsDir, 'components/src/lib', projectDirectory);
 

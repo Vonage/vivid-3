@@ -4,15 +4,8 @@ import { FoundationElement } from '@microsoft/fast-foundation';
 /**
  * Base class for side-drawer
  *
- * @cssprop [side-drawer-background-color=Current theme's canvas (background) color] - Controls the background of the side drawer
- * @cssprop [side-drawer-color=Current theme's on-canvas (text) color] - Controls the color of the side drawer
- * @cssprop [side-drawer-inline-size=280px] - Controls the inline size of the side drawer
- * @cssprop [side-drawer-padding-top-bar=16px] - Controls the padding of the side drawer's top bar
- * @cssprop [side-drawer-padding-body=16px] - Controls the padding of the side drawer's body
- * @cssprop [side-drawer-z-index=6] - Controls the z-index of the side drawer
  * @public
  */
-
 export class SideDrawer extends FoundationElement {
 	/**
 	 * applies scheme alternate region
@@ -46,13 +39,24 @@ export class SideDrawer extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr position?: 'start' | 'end';
+	@attr({
+		mode: 'boolean',
+	}) trailing = false;
 
-	/**
-	 *
-	 * adds top bar to the side drawer
-	 *
-	 * @public
-	 */
-	hasTopBar: HTMLElement[] | undefined;
+	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
+		super.attributeChangedCallback(name, oldValue, newValue);
+		switch (name) {
+			case 'open': {
+				this.open ? this.#open() : this.#close();
+			}
+		}
+	}
+
+	#close(): void {
+		this.$emit('close');
+	}
+
+	#open(): void {
+		this.$emit('open');
+	}
 }

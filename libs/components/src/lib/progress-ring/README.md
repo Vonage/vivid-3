@@ -1,10 +1,10 @@
-# progress-ring
+# Progress Ring
 
 Progress-ring is used to display the length of time a process will take or to visualize percentage value (referred to as a determinate state) and to represent an unspecified wait time (referred to as an indeterminate state).
 
 ```js
 <script type="module">
-    import '@vonage/vivid/progress-ring';
+  import '@vonage/vivid/progress-ring';
 </script>
 ```
 
@@ -12,7 +12,7 @@ Progress-ring is used to display the length of time a process will take or to vi
 <vwc-progress-ring></vwc-progress-ring>
 ```
 
-## Properties
+## Members
 
 ### Min/Max
 
@@ -45,11 +45,11 @@ Use `value` in order to set the state of the progress. Omitting the attribute or
 
 Use `connotation` in order to set the color the progress.
 
-- Type: `'primary'` | `'cta'` | `'success'` | `'alert'`
-- Default: `'primary'`
+- Type: `'accent'` | `'cta'` | `'success'` | `'alert'`
+- Default: `'accent'`
 
 ```html preview blocks
-<vwc-progress-ring connotation="primary"></vwc-progress-ring>
+<vwc-progress-ring connotation="accent"></vwc-progress-ring>
 <vwc-progress-ring connotation="cta"></vwc-progress-ring>
 <vwc-progress-ring connotation="success"></vwc-progress-ring>
 <vwc-progress-ring connotation="alert"></vwc-progress-ring>
@@ -88,7 +88,7 @@ Use the `density` attribute/property to set the progress ring's size.
 <vwc-progress-ring min="0" max="50" value="50" density="3"></vwc-progress-ring>
 ```
 
-## Example Usage
+## Use Cases
 
 ### Determinate State
 

@@ -1,0 +1,8 @@
+@function get-token-prefix() {
+  $prefix: --vvd;
+  @return #{$prefix};
+}
+
+@function get-color-token($type) {
+  @return #{get-token-prefix()}-color-#{$type};
+}

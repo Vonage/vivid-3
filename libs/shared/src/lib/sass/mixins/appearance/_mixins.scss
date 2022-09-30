@@ -1,24 +1,20 @@
-@use '../../../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
-@use '../connotation' as connotation;
-@use '../../functions' as functions;
-@use 'variables' as variables;
-@use 'config' as config;
 @use 'sass:selector';
 @use 'sass:list';
 @use 'sass:map';
 
+@use 'functions' as functions;
+@use 'variables' as variables;
+@use 'config' as config;
+
 
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
-@function get-variable($type) {
-  $prefix: --_appearance-color;
-  @return #{$prefix}-#{$type};
-}
-
 $hover: ':hover, .hover';
 $disabled: ':disabled, .disabled';
 $readonly: ':readonly, .readonly';
-$selected: '.selected';
+$checked: ':checked, .checked';
+$indeterminate: ':indeterminate, .indeterminate';
+$selected: '.selected, [aria-current]';
 $active: ':active, .active';
 $error: '.error';
 
@@ -28,13 +24,11 @@ $selectors: (
   disabled: '&:where(#{$disabled})',
   readonly: '&:where(#{$readonly}):where(:not(#{$disabled}, #{$hover}, #{$active}))',
   selected: '&:where(#{$selected}):where(:not(#{$disabled}))',
+  checked: '&:where(#{$checked}):where(:not(#{$disabled}))',
+  indeterminate: '&:where(#{$indeterminate}):where(:not(#{$disabled}))',
   active: '&:where(#{$active}):where(:not(#{$disabled}))',
   error: '&:where(#{$error}):where(:not(#{$disabled}))',
 );
-
-@function get-default-selector($appearance) {
-  @return '&';
-}
 
 @mixin appearance {
 
@@ -44,13 +38,13 @@ $selectors: (
       $state-mapping: map.get(variables.$states-mapping, $state);
 
       @each $appearance in config.$appearances {
-        $selector: if($appearance == config.$default, get-default-selector($appearance), '&.appearance-#{$appearance}');
+        $selector: if($appearance == config.$default, '&', '&.appearance-#{$appearance}');
 
 
         #{$selector} {
           $appearance-mapping: map.get($state-mapping, $appearance);
           @each $type, $key in $appearance-mapping {
-            #{get-variable($type)}: $key;
+            #{functions.get-appearance-token($type)}: $key;
           }
         }
       }

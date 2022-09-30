@@ -1,14 +1,19 @@
 # Text Field
 
-TextField is meant to accept text input from the user. It supports the native attributes of `input` in addition to some enhancements.
+TextField is meant to accept text input from the user.  
+All native `input` attributes of the text-field are supported as well as some enhancements.  
 Note that the text field does not support `type="number"`. For this there is the `number-field` component.
 
 ```js
-<script type="module">import '@vonage/vivid/text-field';</script>
+<script type="module">
+  import '@vonage/vivid/text-field';
+</script>
 ```
-## Properties
+
+## Members
 
 ### Label
+
 - Type: `string` | `undefined`
 - Default: `undefined`
 
@@ -19,6 +24,7 @@ Add a `label` attribute to add label to the text field.
 ```
 
 ### Placeholder
+
 - Type: `string` | `undefined`
 - Default: `undefined`
 
@@ -29,6 +35,7 @@ Add a `placeholder` attribute to add placeholder text to the text field.
 ```
 
 ### Value
+
 - Type: `string` | `undefined`
 - Default: `undefined`
 
@@ -129,26 +136,36 @@ Add the `readonly` attribute to restrict user from changing the text field's val
 <vwc-text-field readonly icon="chat-line" value="readonly text" label='fieldset' appearance='fieldset'></vwc-text-field>
 ```
 
-## Use cases
+## Use Cases
 
 ### Validation
 
-You can validate the text field like any other native `input`.  Here's an example using `pattern`. The value is 5, which is not of the pattern `123`.  In addition, we programatically `dirtied` the field and then called `validate` because the change was not done by a user.
+You can validate the text field like any other native `input`.
+Here's an example using `pattern`; its required pattern is `123` but we set its value to `5`, which is not of that pattern.
+In addition, we programatically *"dirtied"* the field and then called `validate` because the change was not done by a user.
 
 ```html preview
-<vwc-text-field id="invalid-text-field" label="invalid" pattern="123" value="5"></vwc-text-field>
+<vwc-text-field pattern="123"></vwc-text-field>
 
 <script>
-  document.getElementById("#invalid-text-field").dirtyValue = true;
-  document.getElementById("#invalid-text-field").validate();
+    const textField = document.querySelector('vwc-text-field');
+    const interval = setInterval(() => {
+        if (!textField.checkValidity) return;  
+        textField.value = 5;
+        textField.dirtyValue = true;
+        textField.checkValidity();
+        clearInterval(interval);
+    }, 50);
 </script>
 ```
-### Input Types
 
 ### In Form
 
 ```html preview
 <form method="post" action="">
-  <vwc-text-field required label="Add email" placeholder="e.g. john@doe.dev" type="email" name="email" autocomplete="email" icon="search" maxlength="30" char-count></vwc-text-field>
+<vwc-layout column-spacing="small" column-basis="block">
+  <vwc-text-field required label="Add email" placeholder="e.g. john@doe.dev" type="email" name="email" autocomplete="email" icon="search" maxlength="30" char-count style="justify-self: flex-start;"></vwc-text-field>
+  <vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>
+</vwc-layout>
 </form>
 ```
