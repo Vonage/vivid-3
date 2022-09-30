@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 25 Sep 2022 05:00:21 GMT and should not be manually modified.
+This log was last generated on Fri, 30 Sep 2022 16:34:19 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.67
+
+Fri, 30 Sep 2022 16:34:19 GMT
+
+### Changes
+
+- checkbox size consistency (olaf-k@users.noreply.github.com)
 
 ## 3.0.0-next.66
 
