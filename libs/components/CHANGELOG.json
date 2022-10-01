@@ -2,6 +2,36 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Fri, 30 Sep 2022 16:34:19 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.67",
+      "version": "3.0.0-next.67",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "olaf-k@users.noreply.github.com",
+            "package": "@vonage/vivid",
+            "commit": "9494a69ff80efd83d43836cdc56b1818ac13f720",
+            "comment": "checkbox size consistency"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 29 Sep 2022 18:55:03 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.66",
+      "version": "3.0.0-next.66",
+      "comments": {
+        "none": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "bc10d25744c47110eb46fdb935f2b75bafdf2379",
+            "comment": "add dispaly on button host"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 25 Sep 2022 05:00:21 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.66",
       "version": "3.0.0-next.66",

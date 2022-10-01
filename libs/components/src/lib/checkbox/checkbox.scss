@@ -15,8 +15,8 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
-$size: 24px;
-$gutter: 4px;
+$size: 20px;
+$gutter: 2px;
 
 .base {
 	@include connotation.connotation;
@@ -24,7 +24,7 @@ $gutter: 4px;
 
 	display: inline-flex;
 	align-items: center;
-	gap: 12px;
+	gap: 8px;
 	vertical-align: middle;
 
 	@supports selector(:focus-visible) {
