@@ -11,7 +11,7 @@ export interface CreateFormHTMLConfig {
 	fieldName: string,
 	formId: string,
 	otherFormId?: string,
-	fieldValue?: string,
+	fieldValue?: string | number,
 	checked?: string | boolean,
 	formWrapper?: HTMLElement
 }

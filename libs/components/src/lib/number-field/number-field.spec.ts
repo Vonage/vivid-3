@@ -30,7 +30,7 @@ describe('vwc-number-field', () => {
 	describe('basic', () => {
 		it('should be initialized as a vwc-number-field', async () => {
 			expect(element).toBeInstanceOf(NumberField);
-			expect(getControlElement(element).getAttribute('type')).toEqual('number');
+			expect(getControlElement(element).getAttribute('type')).toEqual('text');
 		});
 	});
 
@@ -126,33 +126,36 @@ describe('vwc-number-field', () => {
 		});
 	});
 
-	describe('maxlength', function () {
-		const value = '8';
-		const propertyName = 'maxlength';
-		const proxyPropertyName = 'maxLength';
+	describe('max', function () {
+		const value = 8;
+		const propertyName = 'max';
+		const proxyPropertyName = 'max';
 
-		it('should set maxlength attribute on the input', async function () {
+		it('should set max attribute on the input', async function () {
 
 			(element as any)[propertyName] = value;
 			await elementUpdated(element);
 			expect(getControlElement(element)
 				?.getAttribute(propertyName))
-				.toEqual(value);
+				.toEqual(value.toString());
 		});
 
-		it('should set maxLength on proxy input', function () {
+		it('should set value to max if set to larger value', async function () {
 			(element as any)[propertyName] = value;
-			expect((element.proxy as any)[proxyPropertyName])
-				.toEqual(Number(value));
+			element.value = (value + 1).toString();
+			await elementUpdated(element);
+			const controlElement = getControlElement(element) as HTMLInputElement;
+			expect(controlElement[proxyPropertyName])
+				.toEqual(value.toString());
 		});
 	});
 
-	describe('minlength', function () {
+	describe('min', function () {
 		const value = '2';
-		const propertyName = 'minlength';
-		const proxyPropertyName = 'minLength';
+		const propertyName = 'min';
+		const proxyPropertyName = 'min';
 
-		it('should set minlength attribute on the input', async function () {
+		it('should set min attribute on the input', async function () {
 
 			(element as any)[propertyName] = value;
 			await elementUpdated(element);
@@ -161,21 +164,24 @@ describe('vwc-number-field', () => {
 				.toEqual(value);
 		});
 
-		it('should set minLength on proxy input', function () {
+		it('should set value to min if set to lower value', async function () {
 			(element as any)[propertyName] = value;
-			expect((element.proxy as any)[proxyPropertyName])
-				.toEqual(Number(value));
+			element.value = (Number(value) - 1).toString();
+			await elementUpdated(element);
+			const controlElement = getControlElement(element) as HTMLInputElement;
+			expect(controlElement[proxyPropertyName])
+				.toEqual(value);
 		});
 	});
 
 	describe('form association', function () {
-		let fieldValue: string,
+		let fieldValue: number,
 			formId: string,
 			fieldName: string,
 			formWrapper: HTMLElement;
 
 		beforeEach(function () {
-			fieldValue = 'field-value';
+			fieldValue = 5;
 			fieldName = 'test-field';
 			formId = 'test-form-id';
 			formWrapper = document.createElement('div');
@@ -202,7 +208,7 @@ describe('vwc-number-field', () => {
 				expect(formDataKey)
 					.toEqual(fieldName);
 				expect(formDataValue)
-					.toEqual(fieldValue);
+					.toEqual(fieldValue.toString());
 			});
 		});
 
@@ -240,7 +246,7 @@ describe('vwc-number-field', () => {
 			await elementUpdated(element);
 
 			expect(element.value)
-				.toEqual(fieldValue);
+				.toEqual(fieldValue.toString());
 		});
 	});
 
@@ -520,7 +526,7 @@ describe('vwc-number-field', () => {
 			expect((getControlElement(element) as HTMLInputElement).value).toEqual('5');
 		});
 
-		it('should have pill shape when textfield is pilled', async function() {
+		it('should have pill shape when numberField is pilled', async function() {
 			element.shape = Shape.Pill;
 			await elementUpdated(element);
 			expect(addButton.getAttribute('shape')).toEqual(Shape.Pill);
@@ -540,6 +546,16 @@ describe('vwc-number-field', () => {
 			await elementUpdated(element);
 			expect(addButton.getAttribute('density')).toEqual(Density.Condensed);
 			expect(subtractButton.getAttribute('density')).toEqual(Density.Condensed);
+		});
+	});
+
+	describe('minlength and maxlength', function () {
+		it('should revert to last valid length', async function() {
+			element.maxlength = 5;
+			element.minlength = 2;
+			await elementUpdated(element);
+			expect(getControlElement(element).getAttribute('maxlength')).toEqual('5');
+			expect(getControlElement(element).getAttribute('minlength')).toEqual('2');
 		});
 	});
 });

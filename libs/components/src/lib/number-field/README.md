@@ -1,6 +1,6 @@
 # number-field
 
-Represents a number-field custom element. Follows the [`HTMLInput` of `type=number` specifications](https://www.w3schools.com/tags/att_input_type_number.asp).
+Represents a number-field custom element. Follows the [`HTMLInput` of `type=text` specifications](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/text).
 
 ```js
 <script type="module">
@@ -9,7 +9,7 @@ Represents a number-field custom element. Follows the [`HTMLInput` of `type=numb
 ```
 
 ```html preview
-<vwc-number-field></vwc-number-field>
+<vwc-number-field maxlength="4" minlength="2"></vwc-number-field>
 ```
 
 ## Members
@@ -24,6 +24,7 @@ Add a `label` attribute to add label to the number field.
 ```html preview
 <vwc-number-field label="My Label"></vwc-number-field>
 ```
+
 ### Placeholder
 
 - Type: `string` | `undefined`
@@ -45,7 +46,6 @@ Set the `value` attribute to set the default value for the number field. Setting
 ```html preview
 <vwc-number-field label="With default value" value="5"></vwc-number-field>
 ```
-
 
 ### Helper text
 
@@ -116,14 +116,4 @@ Add the `readonly` attribute to restrict user from changing the number field's v
 
 ```html preview blocks
 <vwc-number-field readonly value="readonly text" label='fieldset' appearance='fieldset'></vwc-number-field>
-```
-
-## Use Cases
-
-### Validation
-
-The following number field accepts only integers (`pattern="\d*"`). Try to add a non-integer value (e.g. -4)
-
-```html preview blocks
-    <vwc-number-field  pattern="\d*" name="test-field" id="number-field"></vwc-number-field>
 ```
