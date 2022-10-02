@@ -59,11 +59,3 @@ The disabled state of the element
  <vwc-tab disabled label="Disabled Tab"></vwc-tab>
 </vwc-tabs>
 ```
-
-## Events
-
-## Methods
-
-## Accessibility
-
-## Use Cases
