@@ -1,3 +1,6 @@
+@use '../tabs/partials/variables' as variables;
+
+
 .base {
 	display: grid;
 	box-sizing: border-box;
@@ -14,7 +17,7 @@
 }
 
 .tablist {
-	#{$tabs-active-indicator-stroke-width}: 2px;
+	#{variables.$tabs-active-indicator-stroke-width}: 2px;
 	position: relative;
 	display: grid;
 	box-sizing: border-box;
@@ -42,13 +45,13 @@
 		align-self: center;
 		block-size: 100%;
 		grid-area: 1 / 1 / auto / auto;
-		inline-size: var(#{$tabs-active-indicator-stroke-width});
-		margin-inline-end: -var(#{$tabs-active-indicator-stroke-width});
+		inline-size: var(#{variables.$tabs-active-indicator-stroke-width});
+		margin-inline-end: calc(var(#{variables.$tabs-active-indicator-stroke-width}) * -1);
 	}
 
 	.base:not(.orientation-vertical) & {
-		margin-block-start: -var(#{$tabs-active-indicator-stroke-width});
-		block-size: var(#{$tabs-active-indicator-stroke-width});
+		margin-block-start: calc(var(#{variables.$tabs-active-indicator-stroke-width}) * -1);
+		block-size: var(#{variables.$tabs-active-indicator-stroke-width});
 		grid-area: 2 / 1 / auto / auto;
 		inline-size: 100%;
 		justify-self: center;
