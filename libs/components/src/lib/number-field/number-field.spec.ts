@@ -547,6 +547,15 @@ describe('vwc-number-field', () => {
 			expect(addButton.getAttribute('density')).toEqual(Density.Condensed);
 			expect(subtractButton.getAttribute('density')).toEqual(Density.Condensed);
 		});
+
+		it('should set step as 1 when step is null', async function () {
+			(element as any)['step'] = null;
+			element.value = '8';
+			await elementUpdated(element);
+			addButton.click();
+			expect(element.value)
+				.toEqual('9');
+		});
 	});
 
 	describe('minlength and maxlength', function () {
@@ -559,3 +568,4 @@ describe('vwc-number-field', () => {
 		});
 	});
 });
+
