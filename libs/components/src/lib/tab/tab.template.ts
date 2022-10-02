@@ -1,18 +1,35 @@
 import { html } from '@microsoft/fast-element';
+import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
+import { classNames } from '@microsoft/fast-web-utilities';
+import { affixIconTemplateFactory } from '../../shared/patterns/affix.js';
+import { focusTemplateFactory } from '../../shared/patterns/focus.js';
 import type { Tab } from './tab.js';
+
+const getClasses = ({
+	disabled, ariaSelected
+}: Tab) =>	classNames(
+	'base',
+	['disabled', Boolean(disabled)],
+	['selected', ariaSelected === 'true'],
+);
 
 /**
  * The template for the {@link @vonage/vivid#(Tab:class)} component.
  *
  * @param options
+ * @param context
  * @public
  */
-export function TabTemplate<T extends Tab>() {
+export function TabTemplate<T extends Tab>(context: ElementDefinitionContext) {
+	const affixIconTemplate = affixIconTemplateFactory(context);
+	const focusTemplate = focusTemplateFactory(context);
+
 	return html<T>`
-        <template slot="tab">
-					<div class="control" role="tab" aria-disabled="${x => x.disabled}">
-            <slot></slot>
-					</div>
-        </template>
-    `;
+	<template slot="tab" role="tab" aria-disabled="${x => x.disabled}">
+		<div class="${getClasses}">
+      ${() => focusTemplate}
+      ${x => affixIconTemplate(x.icon)}
+      ${x => x.label}
+		</div>
+	</template>`;
 }

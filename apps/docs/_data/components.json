@@ -267,6 +267,14 @@
 		]
 	},
 	{
+		"title": "tab",
+		"markdown": "./libs/components/src/lib/tab/README.md",
+		"modules": [
+			"/assets/modules/components/tabs/index.js",
+			"/assets/modules/components/tab/index.js"
+		]
+	},
+	{
 		"title": "tabs",
 		"markdown": "./libs/components/src/lib/tabs/README.md",
 		"modules": [

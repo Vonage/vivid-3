@@ -8,9 +8,9 @@ Represents a tabs custom element.
 
 ```html preview full
 <vwc-tabs activeid="entrees">
-    <vwc-tab id="apps">Appetizers</vwc-tab>
-    <vwc-tab id="entrees">Entrees</vwc-tab>
-    <vwc-tab id="desserts">Desserts</vwc-tab>
+    <vwc-tab label="Appetizers" id="apps"></vwc-tab>
+    <vwc-tab label="Entrees" id="entrees"></vwc-tab>
+    <vwc-tab label="Desserts" id="desserts"></vwc-tab>
     <vwc-tab-panel id="appsPanel">
         <ol>
             <li>Stuffed artichokes</li>
@@ -45,9 +45,9 @@ Represents a tabs custom element.
 
 ```html preview full
 <vwc-tabs activeid="entrees" orientation="vertical">
-    <vwc-tab id="apps">Appetizers</vwc-tab>
-    <vwc-tab id="entrees">Entrees</vwc-tab>
-    <vwc-tab id="desserts">Desserts</vwc-tab>
+    <vwc-tab label="Appetizers" id="apps"></vwc-tab>
+    <vwc-tab label="Entrees" id="entrees"></vwc-tab>
+    <vwc-tab label="Desserts" id="desserts"></vwc-tab>
     <vwc-tab-panel id="appsPanel">
         <ol>
             <li>Stuffed artichokes</li>

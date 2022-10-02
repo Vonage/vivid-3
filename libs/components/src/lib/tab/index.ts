@@ -1,3 +1,6 @@
+import '../icon';
+import '../focus';
+
 import { designSystem } from '../../shared/design-system';
 import styles from './tab.scss';
 

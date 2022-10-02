@@ -9,7 +9,7 @@
 
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
 	$appearances: ghost,
-	$states: idle hover active selected disabled,
+	$states: idle hover selected disabled,
 	$default: ghost,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
