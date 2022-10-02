@@ -28,7 +28,8 @@
 
 .base {
 	$min-block-size: 48px;
-	$gap: 8px;
+	$gap: 12px;
+	$gutter: 16px;
 
 	@include appearance.appearance;
 	@include connotation.connotation;
@@ -46,7 +47,7 @@
 	gap: $gap;
 	inline-size: 100%;
 	min-block-size: $min-block-size;
-	padding-inline: $gap;
+	padding-inline: $gutter;
 	vertical-align: middle;
 	white-space: nowrap;
 
@@ -70,12 +71,12 @@
 	}
 
 	:host(.vertical) & {
-		padding-inline-start: var(#{tabs-variables.$tabs-active-indicator-stroke-width});
+		padding-inline-start: calc(var(#{tabs-variables.$tabs-active-indicator-stroke-width}) + $gutter);
 	}
 
-	:host(:not(.vertical)) & {
-		padding-block-end: var(#{tabs-variables.$tabs-active-indicator-stroke-width});
-	}
+	// :host(:not(.vertical)) & {
+	// 	padding-block-end: var(#{tabs-variables.$tabs-active-indicator-stroke-width});
+	// }
 }
 
 .focus-indicator {

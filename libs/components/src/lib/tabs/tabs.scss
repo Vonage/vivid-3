@@ -50,7 +50,7 @@
 	}
 
 	.base:not(.orientation-vertical) & {
-		margin-block-start: calc(var(#{variables.$tabs-active-indicator-stroke-width}) * -1);
+		// margin-block-start: calc(var(#{variables.$tabs-active-indicator-stroke-width}) * -1);
 		block-size: var(#{variables.$tabs-active-indicator-stroke-width});
 		grid-area: 2 / 1 / auto / auto;
 		inline-size: 100%;

@@ -16,8 +16,8 @@ Represents a tab custom element.
 Add a `label` attribute to add label to the tab.
 
 ```html preview
-<vwc-tabs>
-  <vwc-tab label="Account"></vwc-tab>
+<vwc-tabs activeid="apps">
+ <vwc-tab label="Appetizers" id="apps"></vwc-tab>
 </vwc-tabs>
 ```
 
@@ -32,8 +32,8 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 - Default: `undefined`
 
 ```html preview
-<vwc-tabs>
- <vwc-tab icon="profile" aria-label="Account"></vwc-tab>
+<vwc-tabs activeid="tab">
+ <vwc-tab icon="profile" aria-label="Account" id="tab"></vwc-tab>
 </vwc-tabs>
 ```
 
@@ -42,8 +42,8 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 Tab label can be prefixed by a decorative icon.
 
 ```html preview
-<vwc-tabs>
- <vwc-tab icon="profile" label="Account"></vwc-tab>
+<vwc-tabs activeid="tab">
+ <vwc-tab icon="profile" label="Account" id="tab"></vwc-tab>
 </vwc-tabs>
 ```
 
@@ -55,7 +55,7 @@ The disabled state of the element
 - Default: `false`
 
 ```html preview
-<vwc-tabs>
- <vwc-tab disabled label="Disabled Tab"></vwc-tab>
+<vwc-tabs activeid="tab">
+ <vwc-tab disabled label="Disabled Tab" id="tab"></vwc-tab>
 </vwc-tabs>
 ```
