@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "menu migration to fast",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}
