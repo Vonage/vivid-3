@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "refine checkbox component style",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}
