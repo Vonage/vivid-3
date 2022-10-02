@@ -1,4 +1,4 @@
-# tabs
+# Tabs
 
 Represents a tabs custom element.
 

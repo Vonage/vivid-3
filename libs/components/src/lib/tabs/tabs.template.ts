@@ -1,6 +1,14 @@
 
 import { html, ref, slotted, when } from '@microsoft/fast-element';
+import { classNames } from '@microsoft/fast-web-utilities';
 import type { Tabs } from './tabs.js';
+
+const getClasses = ({
+	orientation
+}: Tabs) => classNames(
+	'base',
+	[`orientation-${orientation}`, Boolean(orientation)],
+);
 
 /**
  * The template for the {@link @vonage/vivid#(Tabs:class)} component.
@@ -10,20 +18,18 @@ import type { Tabs } from './tabs.js';
  */
 export function TabsTemplate<T extends Tabs>() {
 	return html<T>`
-        <template class="${x => x.orientation}">
-            <div class="tablist" part="tablist" role="tablist">
-                <slot name="tab" ${slotted('tabs')}></slot>
-                ${when(x => x.showActiveIndicator, html<T>`
-                        <div
-                            ${ref('activeIndicatorRef')}
-                            class="active-indicator"
-                            part="active-indicator"
-                        ></div>
-                    `)}
-            </div>
-            <div class="tabpanel">
-                <slot name="tabpanel" ${slotted('tabpanels')}></slot>
-            </div>
-        </template>
+	<template role="tablist">
+		<div class="${getClasses}">
+			<div class="tablist">
+				<slot name="tab" ${slotted('tabs')}></slot>
+				${when(x => x.showActiveIndicator, html<T>`
+					<div ${ref('activeIndicatorRef')} class="active-indicator"></div>
+				`)}
+			</div>
+			<div class="tabpanel">
+				<slot name="tabpanel" ${slotted('tabpanels')}></slot>
+			</div>
+		</div>
+	</template>
     `;
 }
