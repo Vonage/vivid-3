@@ -53,8 +53,11 @@ vwc-side-drawer::part(base) {
 	inset-block-start: calc(var(--_header-block-size) + env(safe-area-inset-top));
 	inset-block-end: env(safe-area-inset-bottom);
   background-color: var(--vvd-color-canvas);
-  border-right: 1px solid var(--vvd-color-neutral-100);
   box-sizing: border-box;
+}
+
+vwc-header[elevation-shadow] vwc-side-drawer::part(base) {
+	border-right: 1px solid var(--vvd-color-neutral-100);
 }
 
 @supports (overscroll-behavior: none) {
@@ -216,7 +219,7 @@ article > h1 {
   overflow: hidden;
   border: none;
   width: 100%;
-	border-radius: 6px;
+	border-radius: 6px 6px 0 0;
 }
 
 .cbd-details > summary {
