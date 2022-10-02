@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "describe fonts as assets author responsibility",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}
