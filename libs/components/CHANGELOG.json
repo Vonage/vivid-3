@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Sun, 02 Oct 2022 09:05:08 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.69",
+      "version": "3.0.0-next.69",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "0509445d24b164f5f31bd62299eb31d3e167698b",
+            "comment": "describe fonts as assets author responsibility"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 02 Oct 2022 06:55:00 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.68",
       "version": "3.0.0-next.68",
