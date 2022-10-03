@@ -7,12 +7,12 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { Avatar } from './avatar';
 
-const getClasses = ({appearance, connotation, shape, density}: Avatar) => classNames(
+const getClasses = ({appearance, connotation, shape, size}: Avatar) => classNames(
 	'base',
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
-	[`density-${density}`, Boolean(density)],
+	[`size-${size}`, Boolean(size)],
 );
 
 /**
@@ -24,7 +24,7 @@ const getClasses = ({appearance, connotation, shape, density}: Avatar) => classN
 export const AvatarTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Avatar> = () => html` 
+) => ViewTemplate<Avatar> = () => html`
 	<span class="${getClasses}">
 		<slot>
 			<span class="icon">

@@ -30,6 +30,12 @@ export enum Appearance {
 	Subtle = 'subtle',
 	Ghost = 'ghost',
 }
+//need to be removed after remove in text-field
+export enum Density {
+	Condensed = 'condensed',
+	Normal = 'normal',
+	Extended = 'extended',
+}
 
 export enum Size {
 	UltraCondensed = 'ultraCondensed',
@@ -44,6 +50,13 @@ export enum Size {
 	SuperExpanded = 'superExpanded',
 	UltraExpanded = 'ultraExpanded',
 }
+
+export enum LayoutSize {
+	Small = 'small',
+	Medium = 'medium',
+	Large = 'large',
+}
+
 
 export enum Position {
 	Top = 'TOP',

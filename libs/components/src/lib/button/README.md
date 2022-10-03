@@ -77,7 +77,7 @@ Use the `shape` attribute to set the button's edges.
 
 Use the `size` attribute to set the button's to one of the predefined block size extent.
 
-- Type: `'condensed'` | `'normal'` | `'extended'`
+- Type: `'condensed'` | `'normal'` | `'expanded'`
 - Default: `'normal'`
 
 ```html preview

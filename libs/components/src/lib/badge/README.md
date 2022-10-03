@@ -23,17 +23,17 @@ Add a `text` attribute to add text to the badge.
 <vwc-badge text='A default badge'></vwc-badge>
 ```
 
-### Density
+### size
 
-Use the `density` attribute to set the badge's to one of the predefined block size extent.
+Use the `size` attribute to set the badge's to one of the predefined block size extent.
 
-- Type: `'condensed'` | `'normal'` | `'extended'`
+- Type: `'condensed'` | `'normal'` | `'expanded'`
 - Default: `'normal'`
 
 ```html preview
-<vwc-badge text='condensed' density='condensed'></vwc-badge>
-<vwc-badge text='normal' density='normal'></vwc-badge>
-<vwc-badge text='extended' density='extended'></vwc-badge>
+<vwc-badge text='condensed' size='condensed'></vwc-badge>
+<vwc-badge text='normal' size='normal'></vwc-badge>
+<vwc-badge text='expanded' size='expanded'></vwc-badge>
 ```
 
 ### Shape

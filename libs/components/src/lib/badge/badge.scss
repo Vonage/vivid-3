@@ -31,17 +31,17 @@
 
 /* Size */
 
-.control:not(.density-condensed):not(.density-extended) {
+.control:not(.size-condensed):not(.size-expanded) {
 	block-size: 24px;
 	padding-inline: 10px;
 }
 
-.control.density-condensed {
+.control.size-condensed {
 	block-size: 20px;
 	padding-inline: 8px;
 }
 
-.control.density-extended {
+.control.size-expanded {
 	block-size: 28px;
 	padding-inline: 12px;
 }

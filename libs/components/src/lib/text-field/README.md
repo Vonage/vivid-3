@@ -71,7 +71,7 @@ Use the `char-count` attribute along with the `maxlength` attribute to show a ch
 
 Use the `density` attribute to set the text field's to one of the predefined block size extent.
 
-- Type: `'normal'` | `'extended'`
+- Type: `'normal'` | `'expanded'`
 - Default: `'normal'`
 
 ```html preview blocks

@@ -71,17 +71,17 @@ Use the `shape` attribute to change the avatar's edges.
 <vwc-avatar shape="pill"></vwc-avatar>
 ```
 
-### Density
+### Size
 
-Use the `density` attribute/property to set the avatar's to one of the predefined block size extent.
+Use the `size` attribute/property to set the avatar's to one of the predefined block size extent.
 
-- Type: `'condensed'` | `'normal'` | `'extended'`
+- Type: `'condensed'` | `'normal'` | `'expanded'`
 - Default: `'normal'`
 
 ```html preview
-<vwc-avatar density='condensed' shape="pill"></vwc-avatar>
-<vwc-avatar density='normal' shape="pill"></vwc-avatar>
-<vwc-avatar density='extended' shape="pill"></vwc-avatar>
+<vwc-avatar size='condensed' shape="pill"></vwc-avatar>
+<vwc-avatar size='normal' shape="pill"></vwc-avatar>
+<vwc-avatar size='expanded' shape="pill"></vwc-avatar>
 ```
 
 

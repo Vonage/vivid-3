@@ -215,7 +215,7 @@ vwc-text {
 
 <vwc-dialog open>
   <div slot="main" class="demo-main">
-    <vwc-text font-face="base-extended-bold">Use main slot for your own layout and content</vwc-text>
+    <vwc-text font-face="base-expanded-bold">Use main slot for your own layout and content</vwc-text>
   </div>
 </vwc-dialog>
 ```

@@ -32,22 +32,22 @@ svg {
 
 /* Size */
 
-.control:not(.size-small):not(.size-medium):not(.size-large) {
+.control:not(.size-condensed):not(.size-normal):not(.size-expanded) {
 	block-size: 1em;
 	inline-size: 1em;
 }
 
-.control.size-small {
+.control.size-condensed {
 	block-size: 16px;
 	inline-size: 16px;
 }
 
-.control.size-medium {
+.control.size-normal {
 	block-size: 24px;
 	inline-size: 24px;
 }
 
-.control.size-large {
+.control.size-expanded {
 	block-size: 32px;
 	inline-size: 32px;
 }

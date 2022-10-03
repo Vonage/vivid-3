@@ -19,7 +19,7 @@ const getClasses = (_: Banner) => classNames(
 function renderDismissButton() {
 	return html<Banner>`
 	  <vwc-button
-			  density="condensed"
+			  size="condensed"
 			  class="dismiss-button"
 			  icon="close-line"
 			  @click="${x => x.remove()}">
