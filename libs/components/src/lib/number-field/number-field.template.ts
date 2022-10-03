@@ -8,6 +8,9 @@ import {classNames} from '@microsoft/fast-web-utilities';
 import {Density, Shape} from '../enums';
 import {focusTemplateFactory} from '../../shared/patterns/focus';
 import type {NumberField} from './number-field';
+import {Icon} from '../icon/icon';
+import {Button} from '../button/button';
+import {Divider} from '../divider/divider';
 
 const ADD = 1;
 const SUBTRACT = -1;
@@ -54,9 +57,10 @@ function renderHelperText() {
 /**
  *
  */
-function renderErrorMessage() {
+function renderErrorMessage(context: ElementDefinitionContext) {
+	const iconTag = context.tagFor(Icon);
 	return html<NumberField>`
-    <vwc-icon class="error-message-icon" type="info-negative"></vwc-icon>
+    <${iconTag} class="error-message-icon" type="info-negative"></${iconTag}>
     <span class="error-message">${x => x.errorValidationMessage}</span>
 	`;
 }
@@ -74,18 +78,20 @@ function setControlButtonDensity(numberField: NumberField) {
 }
 
 
-function numberControlButtons() {
+function numberControlButtons(context: ElementDefinitionContext) {
+	const buttonTag = context.tagFor(Button);
+	const dividerTag = context.tagFor(Divider);
 	return html<NumberField>`
 			<div class="control-buttons">
-				<vwc-button id="subtract" icon="minus-line" 
+				<${buttonTag} id="subtract" icon="minus-line" 
 				            shape="${ setControlButtonShape }"
 				            density="${ setControlButtonDensity }" 
-				            @click="${x => adjustValueByStep(x, SUBTRACT)}"></vwc-button>
-				<vwc-divider class="divider" orientation="vertical"></vwc-divider>
-				<vwc-button id="add" icon="plus-line" 
+				            @click="${x => adjustValueByStep(x, SUBTRACT)}"></${buttonTag}>
+				<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
+				<${buttonTag} id="add" icon="plus-line" 
 				            shape="${ setControlButtonShape }" 
 				            density="${ setControlButtonDensity }"
-				            @click="${x => adjustValueByStep(x)}"></vwc-button>
+				            @click="${x => adjustValueByStep(x)}"></${buttonTag}>
 		    </div>
 	`;
 }
@@ -149,10 +155,10 @@ export const NumberFieldTemplate: (
              ${ref('control')}
       />
       ${() => focusTemplate}
-      ${() => numberControlButtons()}
+      ${() => numberControlButtons(context)}
     </div>
 	  ${when(x => !x.errorValidationMessage && x.helperText?.length, renderHelperText())}
-	  ${when(x => x.errorValidationMessage, renderErrorMessage())}
+	  ${when(x => x.errorValidationMessage, renderErrorMessage(context))}
 	</div>
 `;
 };
