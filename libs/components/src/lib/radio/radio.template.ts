@@ -24,7 +24,7 @@ export const RadioTemplate: (context: ElementDefinitionContext) => ViewTemplate<
 	const focusTemplate = focusTemplateFactory(context);
 
 	return html<Radio>`
-	<span class="${getClasses}"
+	<template
 		role="radio"
 		aria-checked="${x => x.checked}"
 		aria-required="${x => x.required}"
@@ -33,10 +33,12 @@ export const RadioTemplate: (context: ElementDefinitionContext) => ViewTemplate<
 		@keypress="${(x, c) => x.keypressHandler(c.event as KeyboardEvent)}"
 		@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
 	>
-		<div class="control">
-			${() => focusTemplate}
+		<div class="${getClasses}">
+			<div class="control">
+				${() => focusTemplate}
+			</div>
+			${when(x => x.label, html<Radio>`<label>${x => x.label}</label>`)}
 		</div>
-		${when(x => x.label, html<Radio>`<label class="label">${x => x.label}</label>`)}
-	</span>
+	</template>
 	`;
 };

@@ -1,23 +1,28 @@
 @use '../../../../../dist/libs/tokens/scss/constants' as constants;
 
-.control {
-	display: inline-flex;
-	flex-flow: column wrap;
-	row-gap: 3px;
+// .control {
+// 	display: inline-flex;
+// 	flex-flow: column wrap;
+// 	row-gap: 8px;
 
-	& .positioning-region {
-		display: flex;
-		flex-wrap: wrap;
-		column-gap: 10px;
-		row-gap: 3px;
-	}
-
-	& .horizontal {
+// }
+.positioning-region {
+	display: flex;
+	flex-wrap: wrap;
+	// column-gap: 10px;
+	// row-gap: 3px;
+	&.horizontal {
 		flex-direction: row;
+		column-gap: 16px;
 	}
 
-	& .vertical {
+	&.vertical {
 		flex-direction: column;
+		row-gap: 16px;
+	}
+
+	label + & {
+		margin-block-start: 8px;
 	}
 }
 

@@ -20,18 +20,19 @@ $control-border: 2px;
 $selected-size: $control-size - 2 * $control-border;
 $selected-border: ($selected-size - 10px) * 0.5;
 
+@supports selector(:focus-visible) {
+	:host(:focus) {
+		outline: none;
+	}
+}
+
 .base {
 	@include connotation.connotation;
 	@include appearance.appearance;
 
 	display: inline-flex;
 	align-items: center;
-	gap: 10px;
-	@supports selector(:focus-visible) {
-		&:focus {
-			outline: none;
-		}
-	}
+	gap: 8px;
 
 	@supports (user-select: none) {
 		user-select: none;
@@ -82,7 +83,7 @@ label {
 
 	border-radius: 50%;
 
-	.base:not(:focus-visible) & {
+	:host(:not(:focus-visible)) & {
 		display: none;
 	}
 }
