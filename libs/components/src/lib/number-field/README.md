@@ -1,6 +1,7 @@
 # number-field
 
 Represents a number-field custom element. Follows the [`HTMLInput` of `type=text` specifications](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/text).
+If you'd like to know why we follow the `text` field type, you can read more about it [here](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/).
 
 ```js
 <script type="module">
