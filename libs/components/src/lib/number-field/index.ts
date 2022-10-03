@@ -12,6 +12,9 @@ export const vividNumberField =
 		baseName: 'number-field',
 		template: template as any,
 		styles,
+		shadowOptions: {
+			delegatesFocus: true,
+		},
 	});
 
 designSystem.register(vividNumberField());
