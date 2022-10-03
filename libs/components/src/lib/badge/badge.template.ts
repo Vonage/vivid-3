@@ -14,7 +14,7 @@ const getClasses = ({
 	[`shape-${shape}`, Boolean(shape)],
 	[`density-${density}`, Boolean(density)],
 	['icon-trailing', iconTrailing],
-	['icon-only', !text && !!icon],
+	['icon-only', !text && Boolean(icon)],
 );
 
 /**

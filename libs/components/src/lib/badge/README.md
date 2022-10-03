@@ -53,7 +53,7 @@ Use the `shape` attribute to change the badge's edges.
 Use `icon` to set an icon to the badge.
 View list of available icon at the [vivid icons gallery](https://icons.vivid.vonage.com).
 
-Note: Icon, by its own, doesn't make a discernible text. I
+Note: Icon, by its own, doesn't make a discernible text. If badge
 
 - Type: `string`
 - Default: `undefined`
@@ -63,17 +63,17 @@ Note: Icon, by its own, doesn't make a discernible text. I
 <vwc-badge appearance="filled" icon='message-sent-line' shape="pill"></vwc-badge>
 ```
 
-### Icon with Label
+### Icon with Text
 
-Button text can be affixed by a decorative icon, either by its start or end.
+Badge text can be affixed by a decorative icon, either by its start or end.
 Toggle `icon-trailing` to set the icon's horizontal alignment.
 
 - Type: `boolean`
 - Default: `undefined`
 
 ```html preview
-<vwc-badge appearance="filled" label='icon' icon='check-line'></vwc-badge>
-<vwc-badge appearance="filled" label='icon-trailing' icon='check-line' icon-trailing></vwc-badge>
+<vwc-badge appearance="filled" text='icon' icon='check-line'></vwc-badge>
+<vwc-badge appearance="filled" text='icon-trailing' icon='check-line' icon-trailing></vwc-badge>
 ```
 
 ### Appearance
