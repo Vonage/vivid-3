@@ -65,13 +65,18 @@ $control-border: 2px;
 }
 
 label {
-	color: var(#{appearance.get-appearance-token(text)});
+	color: var(#{constants.$vvd-color-canvas-text});
 	cursor: pointer;
 	font: var(#{constants.$vvd-font-base});
 
 	.base.disabled & {
+		color: var(#{constants.$vvd-color-neutral-400});
 		cursor: not-allowed;
 	}
+
+	.base.readonly:not(:hover) & {
+		color: var(#{constants.$vvd-color-neutral-400});
+	}	
 }
 
 .focus-indicator {
