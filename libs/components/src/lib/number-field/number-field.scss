@@ -1,6 +1,5 @@
 @use '../text-field/text-field.scss';
 
-
 .control {
 	padding-inline-end: 70px;
 
@@ -9,18 +8,15 @@
 		appearance: none;
 	}
 
-	&[type="number"] {
-		/* stylelint-disable property-no-vendor-prefix */
-		-moz-appearance: textfield;
-		/* stylelint-enable property-no-vendor-prefix */
-	}
-
 	&-buttons {
 		position: absolute;
 		z-index: 1;
 		right: 3px;
 		display: flex;
 
+		.readonly &, .disabled & {
+			pointer-events: none;
+		}
 		.divider {
 			margin-block: 8px;
 		}
