@@ -23,12 +23,12 @@
 	box-sizing: border-box;
 	align-items: center;
 	background-color: var(#{appearance.get-appearance-token(fill)});
+	block-size: var(#{variables.$badge-block-size});
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	column-gap: 8px;
 	font: var(#{constants.$vvd-font-base-condensed-bold});
 	vertical-align: middle;
-	block-size: var(#{variables.$badge-block-size});
 
 	&.icon-only {
 		contain: size;
@@ -49,16 +49,19 @@
 
 .base:not(.density-condensed):not(.density-extended) {
 	#{variables.$badge-block-size}: 24px;
+
 	padding-inline: 10px;
 }
 
 .base.density-condensed {
 	#{variables.$badge-block-size}: 20px;
+
 	padding-inline: 8px;
 }
 
 .base.density-extended {
 	#{variables.$badge-block-size}: 28px;
+
 	padding-inline: 12px;
 }
 
