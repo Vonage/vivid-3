@@ -7,10 +7,10 @@ import type {
 import {classNames} from '@microsoft/fast-web-utilities';
 import {Density, Shape} from '../enums';
 import {focusTemplateFactory} from '../../shared/patterns/focus';
-import type {NumberField} from './number-field';
 import {Icon} from '../icon/icon';
 import {Button} from '../button/button';
 import {Divider} from '../divider/divider';
+import type {NumberField} from './number-field';
 
 const ADD = 1;
 const SUBTRACT = -1;
@@ -51,7 +51,7 @@ function renderLabel() {
  *
  */
 function renderHelperText() {
-	return html<NumberField>`<span class="helper-text">${x => x.helperText}</span>`;
+	return html<NumberField>`<span id="helper-text" class="helper-text">${x => x.helperText}</span>`;
 }
 
 /**
