@@ -14,7 +14,7 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
-.control {
+.base {
 	@include connotation.connotation;
 	@include appearance.appearance;
 
@@ -27,21 +27,33 @@
 	column-gap: 8px;
 	font: var(#{constants.$vvd-font-base-condensed-bold});
 	vertical-align: middle;
+
+	&.icon-only {
+		contain: size;
+		padding-inline: 0;
+		place-content: center;
+		@supports (aspect-ratio: 1) {
+			aspect-ratio: 1;
+		}
+		@supports not (aspect-ratio: 1) {
+			inline-size: var(#{variables.$block-size});
+		}
+	}
 }
 
 /* Size */
 
-.control:not(.density-condensed):not(.density-extended) {
+.base:not(.density-condensed):not(.density-extended) {
 	block-size: 24px;
 	padding-inline: 10px;
 }
 
-.control.density-condensed {
+.base.density-condensed {
 	block-size: 20px;
 	padding-inline: 8px;
 }
 
-.control.density-extended {
+.base.density-extended {
 	block-size: 28px;
 	padding-inline: 12px;
 }
@@ -49,10 +61,10 @@
 /* Shape */
 
 // stylelint-disable-next-line no-descending-specificity
-.control:not(.shape-pill) {
+.base:not(.shape-pill) {
 	border-radius: 4px;
 }
-.control.shape-pill {
+.base.shape-pill {
 	border-radius: 14px;
 }
 
