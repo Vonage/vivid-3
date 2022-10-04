@@ -16,21 +16,21 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
-$density: 5 6 7 8 9 10 11 12 13;
-$default-density: list.nth($density, 6);
+$size: 5 6 7 8 9 10 11 12 13;
+$default-size: list.nth($size, 6);
 
 .base {
 	@include connotation.connotation;
 	@include appearance.appearance;
 
 	align-items: center;
-	block-size: var(#{variables.$progress-ring-density});
+	block-size: var(#{variables.$progress-ring-size});
 	color: var(#{appearance.get-appearance-token(text)});
-	inline-size: var(#{variables.$progress-ring-density});
+	inline-size: var(#{variables.$progress-ring-size});
 	outline: none;
 
-	@include utils.spread-list-selectors('.density', $density, $default-density) using($value) {
-		#{variables.$progress-ring-density}: calc(#{$value} * 4px);
+	@include utils.spread-list-selectors('.size', $size, $default-size) using($value) {
+		#{variables.$progress-ring-size}: calc(#{$value} * 4px);
 	}
 }
 

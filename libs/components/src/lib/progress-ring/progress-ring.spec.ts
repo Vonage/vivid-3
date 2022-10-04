@@ -138,24 +138,24 @@ describe('vwc-progress-ring', () => {
 		});
 	});
 
-	describe('density', function () {
-		const BASE_DENSITY = 10;
+	describe('size', function () {
+		const BASE_size = 10;
 		let baseElement: Element | null | undefined;
 		beforeEach(function () {
 			baseElement = element.shadowRoot?.querySelector('.base');
 		});
 
-		it('should set density class only if exists', async function () {
-			const classListContainsDensity = baseElement?.className.split(' ').reduce((contains: boolean, className: string) => {
-				return contains || className.indexOf('density-') > -1;
+		it('should set size class only if exists', async function () {
+			const classListContainssize = baseElement?.className.split(' ').reduce((contains: boolean, className: string) => {
+				return contains || className.indexOf('size-') > -1;
 			}, false);
-			expect(classListContainsDensity).toEqual(false);
+			expect(classListContainssize).toEqual(false);
 		});
 
-		it('should set density class according to attribute plus base density', async function () {
-			const densityValue = 12;
-			const expectedClass = `density-${densityValue + BASE_DENSITY}`;
-			element.setAttribute('density', densityValue.toString());
+		it('should set size class according to attribute plus base size', async function () {
+			const sizeValue = 12;
+			const expectedClass = `size-${sizeValue + BASE_size}`;
+			element.setAttribute('size', sizeValue.toString());
 			await elementUpdated(element);
 			expect(baseElement?.classList.contains(expectedClass)).toBeTruthy();
 		});
