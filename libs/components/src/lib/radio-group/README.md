@@ -19,8 +19,8 @@ Use the `label` member to set the group's label.
 
 ```html preview
 <vwc-radio-group label="Some radio group" name="formname">
-    <vwc-radio label="one" value="one">One</vwc-radio>
-    <vwc-radio label="two" value="two">Two</vwc-radio>
-    <vwc-radio label="three" value="three">Three</vwc-radio>
+    <vwc-radio label="one" value="one"></vwc-radio>
+    <vwc-radio label="ONE IN UPPERCASE" value="one"></vwc-radio>
+    <vwc-radio label="also 1" value="one"></vwc-radio>
 </vwc-radio-group>
 ```
