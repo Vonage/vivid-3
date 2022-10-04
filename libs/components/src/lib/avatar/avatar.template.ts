@@ -4,10 +4,11 @@ import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
-import initials from 'initials';
+import * as initialsDefault from 'initials';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { Avatar } from './avatar';
 
+const initials = initialsDefault as any;
 
 const getClasses = ({appearance, connotation, shape, density}: Avatar) => classNames(
 	'base',

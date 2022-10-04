@@ -3,7 +3,6 @@ import {Connotation} from '../enums';
 import { Avatar } from './avatar';
 import '.';
 
-
 const COMPONENT_TAG = 'vwc-avatar';
 
 describe('vwc-avatar', () => {
@@ -99,6 +98,11 @@ describe('vwc-avatar', () => {
 			expect(iconElement).toBeNull();
 		});
 
+		it('should not show the icon if name is set', async () => {
+			element.name = 'John Doe';
+			await elementUpdated(element);
+			const text = baseElement.textContent?.trim();
+			expect(text).toEqual('JD');
+		});
 	});
-
 });
