@@ -87,7 +87,6 @@ Use the `density` attribute/property to set the avatar's to one of the predefine
 <vwc-avatar density='condensed' shape="pill"></vwc-avatar>
 <vwc-avatar density='normal' shape="pill"></vwc-avatar>
 <vwc-avatar density='extended' shape="pill"></vwc-avatar>
-<hr>
 <vwc-avatar density='condensed' shape="pill" name="john doe"></vwc-avatar>
 <vwc-avatar density='normal' shape="pill" name="john doe"></vwc-avatar>
 <vwc-avatar density='extended' shape="pill" name="john doe"></vwc-avatar>
