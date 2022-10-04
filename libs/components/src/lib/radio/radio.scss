@@ -1,5 +1,6 @@
 @use '../focus/partials/variables' as focus-variables;
 @use '../../../../../dist/libs/tokens/scss/constants' as constants;
+@use '../../../../shared/src/lib/sass/utils' as utils;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent,
@@ -17,14 +18,6 @@
 
 $control-size: 20px;
 $control-border: 2px;
-$selected-size: $control-size - 2 * $control-border;
-$selected-border: ($selected-size - 10px) * 0.5;
-
-@supports selector(:focus-visible) {
-	:host(:focus) {
-		outline: none;
-	}
-}
 
 .base {
 	@include connotation.connotation;
@@ -32,42 +25,42 @@ $selected-border: ($selected-size - 10px) * 0.5;
 
 	display: inline-flex;
 	align-items: center;
+	cursor: pointer;
 	gap: 8px;
+
+	@supports selector(:focus-visible) {
+		&:focus {
+			outline: none;
+		}
+	}
 
 	@supports (user-select: none) {
 		user-select: none;
+	}
+
+	&.disabled {
+		cursor: not-allowed;
 	}
 }
 
 .control {
 	position: relative;
-	display: inline-flex;
 	width: $control-size;
 	height: $control-size;
-	align-items: center;
-	justify-content: center;
-	background-color: var(#{appearance.get-appearance-token(fill)});
+	background-color: var(#{utils.get-color-token(canvas)});
 	border-radius: 50%;
 	box-shadow: inset 0 0 0 $control-border var(#{appearance.get-appearance-token(outline)});
-	cursor: pointer;
 
 	&::after {
-		display: none;
-		width: $selected-size;
-		height: $selected-size;
-		background-color: var(#{appearance.get-appearance-token(fill)});
-		border-radius: 50%;
-		box-shadow: inset 0 0 0 $selected-border var(#{appearance.get-appearance-token(text)});
+		position: absolute;
+		background-color: var(#{appearance.get-appearance-token(outline)});
+		border-radius: inherit;
 		content: '';
-	}
+		inset: 5px;
 
-	.base.disabled &::after {
-		background-color: var(#{appearance.get-appearance-token(text)});
-		box-shadow: inset 0 0 0 $selected-border var(#{appearance.get-appearance-token(fill)});
-	}
-
-	.base.checked &::after {
-		display: inline-block;
+		.base:not(.checked) & {
+			display: none;
+		}
 	}
 }
 
@@ -75,6 +68,15 @@ label {
 	color: var(#{constants.$vvd-color-canvas-text});
 	cursor: pointer;
 	font: var(#{constants.$vvd-font-base});
+
+	.base.disabled & {
+		color: var(#{constants.$vvd-color-neutral-400});
+		cursor: not-allowed;
+	}
+
+	.base.readonly:not(:hover) & {
+		color: var(#{constants.$vvd-color-neutral-400});
+	}	
 }
 
 .focus-indicator {

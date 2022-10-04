@@ -40,10 +40,33 @@ describe('vwc-radio', () => {
 	});
 
 	describe('checked', () => {
-		it('should set checked class when checked is true', async () => {
+		let base: HTMLElement;
+		beforeEach(() => base = getBaseElement(element));
+		
+		it('should set the element property and the base class when the attribute is set', async () => {
 			const classes = await setBoolAttributeOn(element, 'checked');
+			expect(element.checked).toBeTruthy();
 			expect(classes.contains('checked')).toBeTruthy();
 		});
+
+		it('should set the element attribute and the base class when the property is set', async () => {
+			element.checked = true;
+			await elementUpdated(element);
+			expect(base.classList.contains('checked')).toBeTruthy();
+			expect(element.checked).toBeTruthy();
+		});
+
+		const sendEventAndVerifyChecked = async (e: Event) => {
+			base.dispatchEvent(e);
+			await elementUpdated(element);
+			expect(element.checked).toBeTruthy();
+		};
+
+		it('should switch to checked when clicked',
+			async () => await sendEventAndVerifyChecked(new MouseEvent('click')));
+
+		it('should switch to checked when space is pressed',
+			async () => await sendEventAndVerifyChecked(new KeyboardEvent('keypress', { key: ' ' })));
 	});
 
 	describe('disabled', () => {
@@ -59,7 +82,7 @@ describe('vwc-radio', () => {
 			expect(classes.contains('readonly')).toBeTruthy();
 		});
 	});
-
+	
 	describe('form association', function () {
 		it('should attach to closest form', async function () {
 			const formWrapper = document.createElement('div');

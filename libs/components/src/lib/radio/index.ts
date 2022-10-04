@@ -10,7 +10,10 @@ import { RadioTemplate as template } from './radio.template';
 export const vividRadio = Radio.compose<RadioOptions>({
 	baseName: 'radio',
 	template: template as any,
-	styles
+	styles,
+	shadowOptions: {
+		delegatesFocus: true,
+	},	
 });
 
 designSystem.register(vividRadio());
