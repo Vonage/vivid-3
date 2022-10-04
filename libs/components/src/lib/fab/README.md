@@ -58,7 +58,7 @@ It accepts a subset of predefined values.
 <vwc-fab icon='plus-line' connotation='cta'></vwc-fab>
 ```
 
-### size
+### Size
 
 Use the `size` attribute to set the FAB's to one of the predefined block size extent.
 

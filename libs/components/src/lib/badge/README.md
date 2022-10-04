@@ -23,7 +23,7 @@ Add a `text` attribute to add text to the badge.
 <vwc-badge text='A default badge'></vwc-badge>
 ```
 
-### size
+### Size
 
 Use the `size` attribute to set the badge's to one of the predefined block size extent.
 
