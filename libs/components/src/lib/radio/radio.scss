@@ -85,7 +85,7 @@ label {
 
 	border-radius: 50%;
 
-	:host(:not(:focus-visible)) & {
+	.base:not(:focus-visible) & {
 		display: none;
 	}
 }
