@@ -128,7 +128,7 @@ The following snippet fully renders a Vivid button component
 <link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/fonts/spezia.css">
 
 <!-- import light theme style tokens -->
-<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/themes/light.css">
+<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/tokens/theme-light.css">
 
 <!-- import typography for desktop -->
 <link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/typography/desktop.css">
