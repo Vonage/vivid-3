@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "stabilize anchored menu visual regresstion test",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}
