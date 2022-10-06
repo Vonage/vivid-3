@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 02 Oct 2022 09:05:08 GMT and should not be manually modified.
+This log was last generated on Thu, 06 Oct 2022 13:50:21 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.70
+
+Thu, 06 Oct 2022 13:50:21 GMT
+
+### Changes
+
+- stabilize anchored menu visual regresstion test (yinon@hotmail.com)
 
 ## 3.0.0-next.69
 
