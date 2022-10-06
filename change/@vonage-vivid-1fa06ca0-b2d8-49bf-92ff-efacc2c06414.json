@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "remove role toolbar from header component part",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}
