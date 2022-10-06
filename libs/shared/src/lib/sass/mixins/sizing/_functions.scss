@@ -1,0 +1,4 @@
+@function get-sizing-token($type) {
+  $prefix: --_vivid-sizing;
+  @return #{$prefix}-#{$type};
+}

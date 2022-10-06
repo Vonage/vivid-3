@@ -6,3 +6,7 @@
 @function get-color-token($type) {
   @return #{get-token-prefix()}-color-#{$type};
 }
+
+@function get-sizing-token($type) {
+	@return #{get-token-prefix()}-size-#{$type};
+}

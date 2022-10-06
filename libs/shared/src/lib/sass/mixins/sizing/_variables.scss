@@ -1,0 +1,23 @@
+@use 'sass:map';
+@use 'config' as config;
+@use '../../utils' as utils;
+
+@function get-default-mapping($type) {
+  @return (
+		ultra-condensed: #{utils.get-sizing-token(#{$type})},
+  );
+}
+
+$sizing-mapping: (
+	ultra-condensed: get-default-mapping(ultra-condensed),
+	super-condensed: get-default-mapping(super-condensed),
+	extra-condensed: get-default-mapping(extra-condensed),
+	condensed: get-default-mapping(condensed),
+	semi-condensed: get-default-mapping(semi-condensed),
+	normal: get-default-mapping(normal),
+	semi-expanded: get-default-mapping(semi-expanded),
+	expanded: get-default-mapping(expanded),
+	extra-expanded: get-default-mapping(extra-expanded),
+	super-expanded: get-default-mapping(super-expanded),
+	ultra-expanded: get-default-mapping(ultra-expanded),
+);

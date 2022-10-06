@@ -1,0 +1,21 @@
+@use 'sass:selector';
+@use 'sass:list';
+@use 'sass:map';
+@use 'config' as config;
+@use 'variables' as variables;
+@use 'functions' as functions;
+@use '../../utils' as utils;
+
+
+@mixin sizing {
+	@each $sizing in config.$sizing {
+		$selector: if($sizing == config.$default, '&', '&.size-#{$sizing}');
+
+
+		#{$selector} {
+			$size-mapping: map.get($state-mapping, $sizing);
+			#{functions.get-sizing-token($type)}: $key;
+		}
+	}
+}
+
