@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Thu, 06 Oct 2022 13:50:21 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.70",
+      "version": "3.0.0-next.70",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "9cd752b65e34b06d79db6969cd7e329f17c655d5",
+            "comment": "stabilize anchored menu visual regresstion test"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 02 Oct 2022 09:05:08 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.69",
       "version": "3.0.0-next.69",
