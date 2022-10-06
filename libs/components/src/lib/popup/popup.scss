@@ -5,6 +5,7 @@
 	background: var(#{utils.get-color-token(surface-4dp)});
 	border-radius: inherit;
 	contain: layout;
+	box-sizing: border-box;
 	inline-size: fit-content;
 
 	&:not(.open) {
