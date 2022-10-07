@@ -3,15 +3,10 @@
 .positioning-region {
 	display: flex;
 	flex-wrap: wrap;
-
-	&.horizontal {
-		flex-direction: row;
-		column-gap: 16px;
-	}
+	gap: 8px;
 
 	&.vertical {
 		flex-direction: column;
-		row-gap: 16px;
 	}
 
 	label + & {

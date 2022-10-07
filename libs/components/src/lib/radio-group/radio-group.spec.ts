@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, listenToFormSubmission } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement, listenToFormSubmission } from '@vivid-nx/shared';
 import type { Radio } from '../radio/radio';
 import { RadioGroup } from './radio-group';
 import '../radio';
@@ -8,7 +8,7 @@ const COMPONENT_TAG = 'vwc-radio-group';
 
 describe('vwc-radio-group', () => {
 	let element: RadioGroup;
-	let children: Radio[];
+	let radios: Radio[];
 
 	beforeEach(async () => {
 		element = fixture(`
@@ -19,7 +19,7 @@ describe('vwc-radio-group', () => {
 			</${COMPONENT_TAG}>
 		`) as RadioGroup;
 		await elementUpdated(element);
-		children = Array.from(element.children) as Radio[];
+		radios = Array.from(element.children) as Radio[];
 	});
 
 	describe('basic', () => {
@@ -29,6 +29,16 @@ describe('vwc-radio-group', () => {
 			expect(element.disabled).toBeFalsy();
 			expect(element.label).toBeUndefined();
 			expect(element.orientation).toEqual('horizontal');
+		});
+	});
+
+	describe('label', () => {
+		it('should display a label when given one', async () => {
+			element.label = 'testlabel';
+			await elementUpdated(element);
+			const label = element.shadowRoot?.querySelector('label');
+			expect(label).not.toBeNull();
+			expect(label?.textContent).toBe(element.label);
 		});
 	});
 
@@ -46,7 +56,7 @@ describe('vwc-radio-group', () => {
 		it('should disable all radio buttons it contains when set to disabled', async () => {
 			element.setAttribute('disabled', '');
 			await elementUpdated(element);
-			expect(children.every(r => r.getAttribute('disabled') === '')).toBeTruthy();
+			expect(radios.every(r => r.getAttribute('disabled') === '')).toBeTruthy();
 		});
 	});
 
@@ -54,10 +64,66 @@ describe('vwc-radio-group', () => {
 		it('should select the radio button with the same value', async () => {
 			element.setAttribute('value', '1');
 			await elementUpdated(element);
-			expect(children[1].checked && !children[0].checked && !children[2].checked).toBeTruthy();
-			expect(children[0].getAttribute('tabindex')).toBe('-1');
-			expect(children[1].getAttribute('tabindex')).toBe('0');
-			expect(children[2].getAttribute('tabindex')).toBe('-1');
+			expect(radios[1].checked && !radios[0].checked && !radios[2].checked).toBeTruthy();
+			expect(radios[0].getAttribute('tabindex')).toBe('-1');
+			expect(radios[1].getAttribute('tabindex')).toBe('0');
+			expect(radios[2].getAttribute('tabindex')).toBe('-1');
+		});
+
+		it('should receive the value of the radio that was clicked', async () => {
+			expect(element.getAttribute('value')).toBeNull();
+			expect(radios.every(r => r.checked)).toBeFalsy();
+			getBaseElement(radios[1]).dispatchEvent(new MouseEvent('click'));
+			await elementUpdated(element);
+			expect(element.getAttribute('value')).toEqual('1');
+		});
+	});
+	
+	describe('click', () => {
+		it('should update when a radio is clicked', async () => {
+			expect(radios[2].getAttribute('tabindex')).toBe('-1');
+			getBaseElement(radios[2]).click();
+			await elementUpdated(element);
+			expect(radios[2].getAttribute('tabindex')).toBe('0');
+			expect(element.value).toBe('2');
+		});
+	});
+
+	describe('keyboard', () => {
+		async function keyboardCheck(radioToCheck: number, key: string) {
+			expect(radios[radioToCheck].checked).toBeFalsy();
+			expect(element.value).toBeUndefined();
+			radios[0].focus();
+			radios[0].dispatchEvent(new KeyboardEvent('keydown', { key: key, bubbles: true }));
+			await elementUpdated(element);
+			expect(radios[radioToCheck].checked).toBeTruthy();
+			expect(element.value).toBe(radioToCheck.toString());
+		}
+
+		it('should update when arrows are used', async () => {
+			await keyboardCheck(1, 'ArrowRight');
+		});
+
+		it('should update when Enter is pressed', async () => {
+			await keyboardCheck(0, 'Enter');
+		});
+
+		it('should loop', async () => {
+			getBaseElement(radios[2]).click();
+			expect(element.value).toBe('2');
+			radios[2].dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+			await elementUpdated(element);
+			expect(radios[0].checked).toBeTruthy();
+			expect(element.value).toBe('0');
+		});
+	});
+
+	describe('focus', () => {
+		it('should move focus outside the group when a radio is blurred', async () => {
+			radios[0].focus();
+			expect(document.activeElement).toBe(radios[0]);
+			radios[0].blur();
+			expect(document.activeElement).toBe(document.body);
 		});
 	});
 
@@ -65,16 +131,17 @@ describe('vwc-radio-group', () => {
 		it('should behave as a radio group in a form', async () => {
 			const form = document.createElement('form');
 			form.onsubmit = () => false;
-			element.name = 'chosenValue';
-			children[1].checked = true;
 			form.appendChild(element);
-			document.body.append(form);
+			document.body.replaceChildren(form);
+			
+			element.name = 'chosenValue';
+			radios[2].checked = true;
 
 			const submitPromise = listenToFormSubmission(form);
 			form.requestSubmit();
 			const result = await submitPromise;
 			
-			expect(result.get(element.name)).toEqual('1');
+			expect(result.get(element.name)).toEqual('2');
 		});
 	});
 });

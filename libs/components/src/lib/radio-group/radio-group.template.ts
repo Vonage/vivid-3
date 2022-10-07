@@ -14,7 +14,7 @@ import type { RadioGroup } from './radio-group';
  */
 export const RadioGroupTemplate: (context: ElementDefinitionContext) => ViewTemplate<RadioGroup> = (context: ElementDefinitionContext) => {
 	return html<RadioGroup>`
-		<span
+		<div
 			role="radiogroup"
 			aria-disabled="${x => x.disabled}"
 			aria-readonly="${x => x.readOnly}"
@@ -28,6 +28,6 @@ export const RadioGroupTemplate: (context: ElementDefinitionContext) => ViewTemp
 			<div class="positioning-region ${x => x.orientation === Orientation.horizontal ? 'horizontal' : 'vertical'}">
 				<slot ${slotted({ property: 'slottedRadioButtons', filter: elements(context.tagFor(Radio)) })}></slot>
 			</div>
-		</span>
+		</div>
 	`;
 };
