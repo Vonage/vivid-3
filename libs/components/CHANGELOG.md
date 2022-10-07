@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Thu, 06 Oct 2022 14:03:22 GMT and should not be manually modified.
+This log was last generated on Fri, 07 Oct 2022 08:59:54 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.72
+
+Fri, 07 Oct 2022 08:59:54 GMT
+
+### Changes
+
+- add icon-only support for badge (yinon@hotmail.com)
 
 ## 3.0.0-next.71
 
