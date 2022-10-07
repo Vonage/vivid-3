@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "add icon-only support for badge",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}
