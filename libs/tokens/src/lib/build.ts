@@ -1,11 +1,13 @@
 const sourceOnly = require('./filters/source-only');
 const shadowShorthand = require('./transforms/shadow-shorthand');
 const fontShorthand = require('./transforms/font-shorthand');
+const mathPx = require('./transforms/math-px');
 const scssConstants = require('./formatters/scss-constants');
 
 const StyleDictionary = require('style-dictionary')
 .registerTransform(shadowShorthand)
 .registerTransform(fontShorthand)
+.registerTransform(mathPx)
 .registerFilter(sourceOnly)
 .registerFormat(scssConstants)
 
@@ -33,4 +35,9 @@ THEMES.forEach(({ name }) =>
 			require('./configurations/typography')(viewport)
 		).buildPlatform('web')
 );
+
+StyleDictionary
+	.extend(
+		require('./configurations/size')
+	).buildPlatform('web')
 

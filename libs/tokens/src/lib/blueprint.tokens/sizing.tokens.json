@@ -1,0 +1,8 @@
+{
+	"size": {
+		"base": {
+			"value": "{size.alias.base}",
+			"type": "sizing"
+		}
+	}
+}
