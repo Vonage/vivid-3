@@ -3,7 +3,7 @@ module.exports = {
 		"blueprint.tokens/sizing.tokens.json"
 	],
 	include: [
-		`../../../../node_modules/@vonage/vivid-figma-tokens/data/sizing/scale.tokens.json`
+		`../../../../node_modules/@vonage/vivid-figma-tokens/data/sizing/desktop.tokens.json`
 	],
 	platforms: {
 		web: {
@@ -11,7 +11,7 @@ module.exports = {
 			prefix: process.env.prefix,
 			buildPath: process.env.buildPath,
 			files: [{
-				destination: `sizing/_scale.mixin.scss`,
+				destination: `sizing/_desktop.mixin.scss`,
 				format: "css/variables",
 				filter: "sourceOnly",
 				options: {
