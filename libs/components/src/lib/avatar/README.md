@@ -15,6 +15,7 @@ Represents an avatar custom element.
 ## Members
 
 ### Icon
+
 Use `icon` to set an icon to the avatar.
 View list of available icon at the [vivid icons gallery](https://icons.vivid.vonage.com).
 
@@ -27,8 +28,8 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 <vwc-avatar icon="group-2-solid"></vwc-avatar>
 ```
 
-
 ### Name
+
 Set the `name` attribute to set avatar's initials.
 
 - Type: `string`
@@ -39,6 +40,7 @@ Set the `name` attribute to set avatar's initials.
 ```
 
 ### Appearance
+
 Set the `appearance` attribute to change the avatar's appearance.
 
 - Type: `'filled'` | `'outlined'`
@@ -49,11 +51,12 @@ Set the `appearance` attribute to change the avatar's appearance.
 <vwc-avatar appearance="outlined"></vwc-avatar>
 ```
 
-
 ### Connotation
+
 Use the `connotation` attribute to set the avatar's color.
 
 Type: `'accent'` | `'cta'`
+
 - Default: `'accent'`
 
 ```html preview
@@ -62,7 +65,6 @@ Type: `'accent'` | `'cta'`
 <vwc-avatar connotation="accent" appearance="outlined"></vwc-avatar>
 <vwc-avatar connotation="cta" appearance="outlined"></vwc-avatar>
 ```
-
 
 ### Shape
 
@@ -92,11 +94,11 @@ Use the `density` attribute/property to set the avatar's to one of the predefine
 <vwc-avatar density='extended' shape="pill" name="john doe"></vwc-avatar>
 ```
 
-
 ## Slots
-### Default
-set a graphic media of any kind (e.g. image, illustration etc.'.)
 
+### Default
+
+set a graphic media of any kind (e.g. image, illustration etc.'.)
 
 ```html preview
 <vwc-avatar shape="pill" connotation="cta">

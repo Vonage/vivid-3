@@ -4,11 +4,11 @@ import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
-import * as initialsDefault from 'initials';
+// import * as initialsDefault from 'initials';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { Avatar } from './avatar';
 
-const initials = initialsDefault as any;
+// const initials = initialsDefault as any;
 
 const getClasses = ({appearance, connotation, shape, density}: Avatar) => classNames(
 	'base',
@@ -35,7 +35,7 @@ function renderIcon() {
  */
 function renderInitials() {
 	return html<Avatar>`
-		<span class="initials">${ (x) => initials(`${x.name}`)?.substring(0, 2) }</span>
+		<span class="initials">${ ({ name }) => name?.substring(0, 2) }</span>
 	`;
 }
 
