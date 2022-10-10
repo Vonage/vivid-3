@@ -50,6 +50,7 @@ $gutter: 2px;
 	position: relative;
 	display: flex;
 	width: $size;
+	min-width: $size;
 	height: $size;
 	align-items: center;
 	justify-content: center;
