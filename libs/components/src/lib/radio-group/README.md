@@ -61,7 +61,7 @@ A read-only radio-group cannot be modified but can be focused and tabbed into.
 
 Set the `orientation` member to set the orientation (`horizontal` or `vertical`) of the radio-group.
 
-- Type: `string`
+- Type: `horizontal` | `vertical`
 - Default: `horizontal`
 
 ```html preview
