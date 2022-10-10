@@ -18,6 +18,15 @@ module.exports = {
 					selector: "@mixin variables"
 				}
 			}]
+		},
+		scss: {
+			transforms: ["attribute/cti", "name/cti/kebab", "math/px"],
+			prefix: process.env.prefix,
+			buildPath: process.env.buildPath,
+			files: [{
+				destination: `sizing/_variables.scss`,
+				format: "scss/variables"
+			}]
 		}
 	}
 };

@@ -39,5 +39,4 @@ THEMES.forEach(({ name }) =>
 StyleDictionary
 	.extend(
 		require('./configurations/size')
-	).buildPlatform('web')
-
+	).buildAllPlatforms();

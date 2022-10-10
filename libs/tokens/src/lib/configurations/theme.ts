@@ -3,9 +3,9 @@ module.exports = (theme: string) => ({
 		"blueprint.tokens/theme.tokens.json",
 	],
 	include: [
-		'../../../../node_modules/@vonage/vivid-figma-tokens/data/alphahex.tokens.json',
-		'../../../../node_modules/@vonage/vivid-figma-tokens/data/palette.tokens.json',
-		`../../../../node_modules/@vonage/vivid-figma-tokens/data/${theme}/**/*.tokens.json`
+		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/alphahex.tokens.json',
+		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/palette.tokens.json',
+		`../../../../node_modules/@vonage/vivid-figma-tokens/data/themes/${theme}/**/*.tokens.json`
 	],
 	platforms: {
 		web: {
