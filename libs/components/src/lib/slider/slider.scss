@@ -1,0 +1,116 @@
+.control {
+	display: inline-grid;
+	--thumb-size: 16;
+	--thumb-translate: calc(var(--thumb-size) * -0.5 + var(--track-width) / 2);
+	--track-overhang: -2;
+	--track-width: 4;
+	--fast-slider-height: calc(var(--thumb-size) * 10);
+	align-items: center;
+	margin: 4px 0;
+	user-select: none;
+	box-sizing: border-box;
+	border-radius: 4px;
+	outline: none;
+	cursor: pointer;
+
+}
+
+.control[aria-orientation="horizontal"] {
+	touch-action: pan-y;
+	min-width: calc(var(--thumb-size) * 1px);
+	width: 100%;
+}
+
+.control[aria-orientation="vertical"] {
+	height: calc(var(--thumb-size) * 10 * 1px);
+	min-height: calc(var(--thumb-size) * 1px);
+	touch-action: pan-x;
+}
+
+.control .positioning-region {
+	position: relative;
+	margin: 0 8px;
+	display: grid;
+}
+
+.control[aria-orientation="horizontal"] .positioning-region {
+	grid-template-rows: calc(var(--thumb-size) * 1px) 1fr;
+}
+
+.control[aria-orientation="vertical"] .positioning-region {
+	height: 100%;
+	grid-template-columns: calc(var(--thumb-size) * 1px) 1fr;
+}
+
+.track {
+	background: #7b7b7b;
+	position: absolute;
+	border-radius: 4px;
+}
+
+.control[aria-orientation="horizontal"] .track {
+	right: calc(var(--track-overhang) * 1px);
+	left: calc(var(--track-overhang) * 1px);
+	align-self: start;
+	height: calc(var(--track-width) * 1px);
+}
+
+.control[aria-orientation="vertical"] .track {
+	top: calc(var(--track-overhang) * 1px);
+	bottom: calc(var(--track-overhang) * 1px);
+	width: calc(var(--track-width) * 1px);
+	height: 100%;
+}
+
+.track-start {
+	background: red;
+	position: absolute;
+	height: 100%;
+	left: 0;
+	border-radius: 4px;
+}
+
+.control[aria-orientation="vertical"] .track-start {
+	height: auto;
+	width: 100%;
+	top: 0;
+}
+
+.thumb-container {
+	position: absolute;
+	height: calc(var(--thumb-size) * 1px);
+	width: calc(var(--thumb-size) * 1px);
+	transition: all 0.2s ease;
+	color: white;
+	fill: currentcolor;
+}
+
+.control[aria-orientation="horizontal"] .thumb-container {
+	transform: translateX(calc(var(--thumb-size) * 0.5px))
+		translateY(calc(var(--thumb-translate) * 1px));
+}
+
+.control[aria-orientation="vertical"] .thumb-container {
+	transform: translateX(calc(var(--thumb-translate) * 1px))
+		translateY(calc(var(--thumb-size) * 0.5px));
+}
+
+.thumb-cursor {
+	border: none;
+	width: calc(var(--thumb-size) * 1px);
+	height: calc(var(--thumb-size) * 1px);
+	background: white;
+	border-radius: calc(var(--thumb-size) * 0.5 * 1px);
+}
+
+.thumb-cursor:hover {
+	background: white;
+	border-color: #a2a2a2;
+}
+.thumb-cursor:active {
+	background: white;
+}
+
+// .control(:focus-visible) .thumb-cursor {
+// 	box-shadow: 0 0 0 2px var(--fill-color), 0 0 0 4px var(--focus-stroke-outer);
+// }

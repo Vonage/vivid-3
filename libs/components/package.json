@@ -48,6 +48,7 @@
     "./text-field": "./text-field",
     "./text-area": "./text-area",
     "./tooltip": "./tooltip",
-    "./number-field": "./number-field"
+    "./number-field": "./number-field",
+    "./slider": "./slider"
   }
 }

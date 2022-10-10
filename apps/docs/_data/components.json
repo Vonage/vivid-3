@@ -280,5 +280,12 @@
 		"modules": [
 			"/assets/modules/components/radio/index.js"
 		]
+	},
+	{
+		"title": "slider",
+		"markdown": "./libs/components/src/lib/slider/README.md",
+		"modules": [
+			"/assets/modules/components/slider/index.js"
+		]
 	}
 ]
