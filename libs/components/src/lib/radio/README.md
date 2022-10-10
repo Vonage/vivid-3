@@ -48,13 +48,4 @@ Toggle the `disabled` member to disable/enable the radio.
 
 ### Readonly
 
-Set the `readonly` member to specify that the radio is read-only.
-A read-only radio cannot be modified but can be focused and tabbed into.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<vwc-radio readonly></vwc-radio>
-<vwc-radio readonly checked></vwc-radio>
-```
+The `readonly` member should not be used directly on the `radio` component but on its parent `radio-group` instead.
