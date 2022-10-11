@@ -1,27 +1,18 @@
 const sourceOnly = require('./filters/source-only');
 const shadowShorthand = require('./transforms/shadow-shorthand');
 const fontShorthand = require('./transforms/font-shorthand');
-const mathPx = require('./transforms/math-px');
+const resolveMath = require('./transforms/resolve-math');
 const scssConstants = require('./formatters/scss-constants');
-const sizingVariables = require('./formatters/sizing-variables');
+const sizingScssVariables = require('./formatters/sizing-scss-variables');
 
 
 const StyleDictionary = require('style-dictionary')
 .registerTransform(shadowShorthand)
 .registerTransform(fontShorthand)
-.registerTransform(mathPx)
+.registerTransform(resolveMath)
 .registerFilter(sourceOnly)
 .registerFormat(scssConstants)
-.registerFormat(sizingVariables)
-
-.registerTransform({
-  name: "size/px",
-  type: "value",
-  transitive: true,
-  matcher: (token) =>
-    ["fontSizes", "dimension", "borderRadius", "spacing", "sizing"].includes(token.type),
-  transformer: (token) => transformDimension(token.value),
-})
+.registerFormat(sizingScssVariables)
 
 .registerTransform({
   name: "referenceSizingBase",
@@ -35,15 +26,6 @@ const THEMES = require('../../../../node_modules/@vonage/vivid-figma-tokens/data
 
 process.env.prefix = 'vvd';
 process.env.buildPath = '../../../../dist/libs/tokens/scss/';
-
-function transformDimension(value) {
-  if (value.endsWith("px")) {
-    return value;
-  }
-  return value + "px";
-}
-
-
 
 StyleDictionary
 	.extend(

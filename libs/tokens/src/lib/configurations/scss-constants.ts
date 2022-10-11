@@ -11,7 +11,7 @@ module.exports = {
 			prefix: process.env.prefix,
 			buildPath: process.env.buildPath,
 			files: [{
-				destination: `_constants.scss`,
+				destination: '_constants.scss',
 				format: "scss/constants",
 				filter: "sourceOnly"
 			}]

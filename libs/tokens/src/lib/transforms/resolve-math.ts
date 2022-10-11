@@ -19,7 +19,7 @@ function checkAndEvaluateMath(expr) {
  * Transform to resolve math across all tokens
  */
 module.exports = {
-  name: "math/px",
+  name: "resolveMath",
   type: "value",
   transitive: true,
   matcher: (token) => token,
