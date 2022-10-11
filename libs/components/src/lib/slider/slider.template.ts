@@ -36,9 +36,7 @@ export const SliderTemplate: (
                 <div ${ref("track")} class="track">
                     <div class="track-start" style="${x => x.position}"></div>
                 </div>
-                <div ${ref("thumb")} class="thumb-container" style="${x => x.position}">
-                    <div class="thumb-cursor"></div>
-                </div>
+                <div ${ref("thumb")} class="thumb-container" style="${x => x.position}"></div>
             </div>
 		</div>
 	`;

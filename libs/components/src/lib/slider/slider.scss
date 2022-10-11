@@ -1,116 +1,131 @@
-.control {
-	display: inline-grid;
-	--thumb-size: 16;
-	--thumb-translate: calc(var(--thumb-size) * -0.5 + var(--track-width) / 2);
-	--track-overhang: -2;
-	--track-width: 4;
-	--fast-slider-height: calc(var(--thumb-size) * 10);
-	align-items: center;
-	margin: 4px 0;
-	user-select: none;
-	box-sizing: border-box;
-	border-radius: 4px;
-	outline: none;
-	cursor: pointer;
+@use '../../../../../dist/libs/tokens/scss/constants' as constants;
+// @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
-}
+// @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+// 	$appearances: fieldset,
+// 	$states: idle hover disabled readonly,
+// 	$default: fieldset,
+// );
+// @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
-.control[aria-orientation="horizontal"] {
-	touch-action: pan-y;
-	min-width: calc(var(--thumb-size) * 1px);
+$thumb-size: 18px;
+$ring-size: 44px;
+$track-thickness: 4px;
+
+:host {
+	display: inline-block;
 	width: 100%;
 }
 
-.control[aria-orientation="vertical"] {
-	height: calc(var(--thumb-size) * 10 * 1px);
-	min-height: calc(var(--thumb-size) * 1px);
-	touch-action: pan-x;
+:host([orientation="vertical"]) {
+	height: $thumb-size * 10;
 }
 
-.control .positioning-region {
-	position: relative;
-	margin: 0 8px;
-	display: grid;
-}
+.control {
+	// @include connotation.connotation;
+	// @include appearance.appearance;
 
-.control[aria-orientation="horizontal"] .positioning-region {
-	grid-template-rows: calc(var(--thumb-size) * 1px) 1fr;
-}
+	user-select: none;
+	outline: none;
+	cursor: pointer;
+	height: $thumb-size * 2;
 
-.control[aria-orientation="vertical"] .positioning-region {
-	height: 100%;
-	grid-template-columns: calc(var(--thumb-size) * 1px) 1fr;
-}
+	&[aria-orientation="horizontal"] {
+		touch-action: pan-y;
+		min-width: $thumb-size;
+		width: 100%;
+		
+		& .track {
+			right: 0;
+			left: 0;
+			top: calc($thumb-size - $track-thickness / 2);
+			height: $track-thickness;
+		}
+
+		& .thumb-container {
+			transform: translateX(calc($thumb-size / 2))
+				translateY(calc($thumb-size / 2));
+		}
+	}
+
+	&[aria-orientation="vertical"] {
+		touch-action: pan-x;
+		min-height: $thumb-size;
+		height: 100%;
+		
+		& .positioning-region {
+			height: 100%;
+		}
+
+		& .track {
+			width: $track-thickness;
+			left: calc($thumb-size - $track-thickness / 2);
+			height: 100%;
+		}
+
+		& .track-start {
+			height: auto;
+			width: 100%;
+			top: 0;
+		}
+
+		& .thumb-container {
+			transform: translateX(calc($thumb-size / 2))
+				translateY(calc($thumb-size / 2));
+		}
+	}
+	
+	& .positioning-region {
+		position: relative;
+	}
+}	
 
 .track {
-	background: #7b7b7b;
+	background: var(#{constants.$vvd-color-neutral-300});
 	position: absolute;
 	border-radius: 4px;
 }
 
-.control[aria-orientation="horizontal"] .track {
-	right: calc(var(--track-overhang) * 1px);
-	left: calc(var(--track-overhang) * 1px);
-	align-self: start;
-	height: calc(var(--track-width) * 1px);
-}
-
-.control[aria-orientation="vertical"] .track {
-	top: calc(var(--track-overhang) * 1px);
-	bottom: calc(var(--track-overhang) * 1px);
-	width: calc(var(--track-width) * 1px);
-	height: 100%;
-}
-
 .track-start {
-	background: red;
+	background: var(#{constants.$vvd-color-canvas-text});
 	position: absolute;
 	height: 100%;
 	left: 0;
 	border-radius: 4px;
 }
 
-.control[aria-orientation="vertical"] .track-start {
-	height: auto;
-	width: 100%;
-	top: 0;
-}
+.focus-ring {
+	width: 44px;
+	height: 44px;
+	background-color: var(#{constants.$vvd-color-neutral-100});
+	border-radius: 50%;
+	position: absolute;
+	transform: translateX(22px) translateY(-2px);
+	z-index: -1;
+	display: none;
+
+	&:hover {
+		display: block;
+	}
+}	
 
 .thumb-container {
 	position: absolute;
-	height: calc(var(--thumb-size) * 1px);
-	width: calc(var(--thumb-size) * 1px);
-	transition: all 0.2s ease;
-	color: white;
-	fill: currentcolor;
-}
+	height: $thumb-size;
+	width: $thumb-size;
+	background: var(#{constants.$vvd-color-canvas-text});
+	border-radius: calc($thumb-size / 2);
 
-.control[aria-orientation="horizontal"] .thumb-container {
-	transform: translateX(calc(var(--thumb-size) * 0.5px))
-		translateY(calc(var(--thumb-translate) * 1px));
+	&:hover::after {
+		width: $ring-size;
+		height: $ring-size;
+		background-color: var(#{constants.$vvd-color-canvas-text});
+		opacity: 0.12;
+		border-radius: 50%;
+		display: block;
+		position: relative;
+		left: calc(($ring-size - $thumb-size) / -2);
+		top: calc(($ring-size - $thumb-size) / -2);
+		content: '';
+	}	
 }
-
-.control[aria-orientation="vertical"] .thumb-container {
-	transform: translateX(calc(var(--thumb-translate) * 1px))
-		translateY(calc(var(--thumb-size) * 0.5px));
-}
-
-.thumb-cursor {
-	border: none;
-	width: calc(var(--thumb-size) * 1px);
-	height: calc(var(--thumb-size) * 1px);
-	background: white;
-	border-radius: calc(var(--thumb-size) * 0.5 * 1px);
-}
-
-.thumb-cursor:hover {
-	background: white;
-	border-color: #a2a2a2;
-}
-.thumb-cursor:active {
-	background: white;
-}
-
-// .control(:focus-visible) .thumb-cursor {
-// 	box-shadow: 0 0 0 2px var(--fill-color), 0 0 0 4px var(--focus-stroke-outer);
-// }
