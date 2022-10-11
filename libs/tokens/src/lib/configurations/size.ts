@@ -1,32 +1,34 @@
 module.exports = {
 	source: [
-		"blueprint.tokens/sizing.tokens.json"
-	],
-	include: [
+		`../../../../node_modules/@vonage/vivid-figma-tokens/data/sizing/base.tokens.json`,
 		`../../../../node_modules/@vonage/vivid-figma-tokens/data/sizing/desktop.tokens.json`
 	],
 	platforms: {
-		web: {
-			transforms: ["attribute/cti", "name/cti/kebab", "math/px"],
+		css: {
+			transforms: ["attribute/cti", "name/cti/kebab", "math/px", "size/px"],
 			prefix: process.env.prefix,
 			buildPath: process.env.buildPath,
 			files: [{
-				destination: `sizing/_desktop.mixin.scss`,
+				destination: `sizing/_base.mixin.scss`,
 				format: "css/variables",
-				filter: "sourceOnly",
 				options: {
 					selector: "@mixin variables"
-				}
+				},
+				filter: (token) => token.attributes.type === "base",
 			}]
 		},
 		scss: {
-			transforms: ["attribute/cti", "name/cti/kebab", "math/px"],
+			transforms: ["attribute/cti", "name/cti/kebab", "referenceSizingBase", "math/px"],
 			prefix: process.env.prefix,
 			buildPath: process.env.buildPath,
+			options: {
+				outputReferences: true
+			},
 			files: [{
-				destination: `sizing/_variables.scss`,
-				format: "scss/variables"
-			}]
+				destination: 'sizing/_variables.scss',
+				format: "sizingVariables",
+				filter: (token) => !["base", "unit", "unitMultiplier"].includes(token.attributes.type),
+			}],
 		}
 	}
 };

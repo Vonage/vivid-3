@@ -8,8 +8,8 @@ const parser = new Parser();
 function checkAndEvaluateMath(expr) {
 	try {
 		parser.evaluate(expr);
-		const result = +parser.evaluate(expr).toFixed();
-		return expr == result && !expr.endsWith('px') ? result : result + 'px';
+		return +parser.evaluate(expr).toFixed();
+		// return expr == result && !expr.endsWith('px') ? result : result + 'px';
 	} catch (ex) {
     return expr;
   }
