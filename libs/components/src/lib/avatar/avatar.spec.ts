@@ -102,18 +102,11 @@ describe('vwc-avatar', () => {
 			element.name = 'John Doe';
 			await elementUpdated(element);
 			const text = baseElement.textContent?.trim();
-			expect(text).toEqual('JD');
+			expect(text).toEqual('Jo');
 		});
 
-		it('should show only 2 letters if more than 2 words', async () => {
+		it('should show only 2 letters', async () => {
 			element.name = 'John Doe the vague man';
-			await elementUpdated(element);
-			const text = baseElement.textContent?.trim();
-			expect(text).toEqual('JD');
-		});
-
-		it('should show only 2 letters from single word', async () => {
-			element.name = 'John';
 			await elementUpdated(element);
 			const text = baseElement.textContent?.trim();
 			expect(text).toEqual('Jo');
