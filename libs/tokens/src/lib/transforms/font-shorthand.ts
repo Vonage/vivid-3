@@ -12,7 +12,7 @@ const fontWeightMap = new Map([
 ]);
 
 const parseFontProps = ({ fontFamily, fontWeight, lineHeight, fontSize }) =>
-	`${fontWeightMap.get(fontWeight)} ${eval(fontSize)}/${eval(lineHeight)} ${fontFamily}`;
+	`${fontWeightMap.get(fontWeight)} calc(${fontSize})/calc(${lineHeight}) ${fontFamily}`;
 
 export const fontShorthand = {
 	type: `value`,
