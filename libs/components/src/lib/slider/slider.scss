@@ -1,12 +1,4 @@
 @use '../../../../../dist/libs/tokens/scss/constants' as constants;
-// @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
-
-// @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
-// 	$appearances: fieldset,
-// 	$states: idle hover disabled readonly,
-// 	$default: fieldset,
-// );
-// @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
 $thumb-size: 18px;
 $ring-size: 44px;
@@ -22,36 +14,34 @@ $track-thickness: 4px;
 }
 
 .control {
-	// @include connotation.connotation;
-	// @include appearance.appearance;
-
 	user-select: none;
 	outline: none;
 	cursor: pointer;
-	height: $thumb-size * 2;
+	height: $ring-size;
 
 	&[aria-orientation="horizontal"] {
 		touch-action: pan-y;
 		min-width: $thumb-size;
-		width: 100%;
+		width: calc(100% - $thumb-size);
+		margin-left: $thumb-size / 2;
 		
 		& .track {
 			right: 0;
 			left: 0;
-			top: calc($thumb-size - $track-thickness / 2);
+			top: calc(($ring-size - $track-thickness) / 2);
 			height: $track-thickness;
 		}
 
 		& .thumb-container {
-			transform: translateX(calc($thumb-size / 2))
-				translateY(calc($thumb-size / 2));
+			transform: translateX(calc($ring-size / 2));
 		}
 	}
 
 	&[aria-orientation="vertical"] {
 		touch-action: pan-x;
 		min-height: $thumb-size;
-		height: 100%;
+		height: calc(100% - $thumb-size);
+		margin-top: $thumb-size / 2;
 		
 		& .positioning-region {
 			height: 100%;
@@ -59,7 +49,7 @@ $track-thickness: 4px;
 
 		& .track {
 			width: $track-thickness;
-			left: calc($thumb-size - $track-thickness / 2);
+			left: calc(($ring-size - $track-thickness) / 2);
 			height: 100%;
 		}
 
@@ -70,8 +60,7 @@ $track-thickness: 4px;
 		}
 
 		& .thumb-container {
-			transform: translateX(calc($thumb-size / 2))
-				translateY(calc($thumb-size / 2));
+			transform: translateY(calc($ring-size / 2));
 		}
 	}
 	
@@ -111,21 +100,34 @@ $track-thickness: 4px;
 
 .thumb-container {
 	position: absolute;
-	height: $thumb-size;
-	width: $thumb-size;
-	background: var(#{constants.$vvd-color-canvas-text});
-	border-radius: calc($thumb-size / 2);
+	height: $ring-size;
+	width: $ring-size;
 
-	&:hover::after {
-		width: $ring-size;
+	&::before {
 		height: $ring-size;
+		width: $ring-size;
 		background-color: var(#{constants.$vvd-color-canvas-text});
-		opacity: 0.12;
+		opacity: 0;
+		transition: opacity 0.4s ease-out 0s;
 		border-radius: 50%;
-		display: block;
-		position: relative;
-		left: calc(($ring-size - $thumb-size) / -2);
-		top: calc(($ring-size - $thumb-size) / -2);
+		position: absolute;
 		content: '';
-	}	
+		display: block;
+	}
+
+	&:hover::before {
+		opacity: 0.12;
+	}
+
+	&::after {
+		width: $thumb-size;
+		height: $thumb-size;
+		background-color: var(#{constants.$vvd-color-canvas-text});
+		border-radius: 50%;
+		position: absolute;
+		left: calc(($ring-size - $thumb-size) / 2);
+		top: calc(($ring-size - $thumb-size) / 2);
+		content: '';
+		display: block;
+	}
 }
