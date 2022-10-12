@@ -8,7 +8,7 @@ module.exports = (viewport: string) => ({
 	],
 	platforms: {
 		web: {
-			transforms: ["attribute/cti", "name/cti/kebab", "size/px", "font/shorthand"],
+			transforms: ["attribute/cti", "name/cti/kebab", "font/shorthand", "resolveMath",],
 			prefix: process.env.prefix,
 			buildPath: process.env.buildPath,
 			files: [{

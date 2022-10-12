@@ -1,3 +1,7 @@
+export {}
+
+// const parser = new Parser();
+
 const isObject = (value) => typeof value === 'object' && !Array.isArray(value) && value !== null;
 
 // due to figma api typography limitations,
@@ -11,7 +15,7 @@ const fontWeightMap = new Map([
 ]);
 
 const parseFontProps = ({ fontFamily, fontWeight, lineHeight, fontSize }) =>
-	`${fontWeightMap.get(fontWeight)} ${fontSize}/${lineHeight} ${fontFamily}`;
+	`${fontWeightMap.get(fontWeight)} ${+parser.evaluate(fontSize).toFixed()}/${lineHeight} ${fontFamily}`;
 
 module.exports = {
 	type: `value`,
