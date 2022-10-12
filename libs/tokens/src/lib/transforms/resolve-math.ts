@@ -9,7 +9,6 @@ function checkAndEvaluateMath(expr) {
 	try {
 		parser.evaluate(expr);
 		return +parser.evaluate(expr).toFixed();
-		// return expr == result && !expr.endsWith('px') ? result : result + 'px';
 	} catch (ex) {
     return expr;
   }
@@ -23,6 +22,5 @@ module.exports = {
   type: "value",
   transitive: true,
   matcher: (token) => token,
-  // Putting this in strings seems to be required
   transformer: (token) => `${checkAndEvaluateMath(token.value)}`
 };

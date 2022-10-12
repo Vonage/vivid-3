@@ -4,6 +4,7 @@ const fontShorthand = require('./transforms/font-shorthand');
 const resolveMath = require('./transforms/resolve-math');
 const scssConstants = require('./formatters/scss-constants');
 const sizingScssVariables = require('./formatters/sizing-scss-variables');
+const suffixPxCssVariables = require('./formatters/suffix-px-css-variables');
 
 
 const StyleDictionary = require('style-dictionary')
@@ -13,6 +14,8 @@ const StyleDictionary = require('style-dictionary')
 .registerFilter(sourceOnly)
 .registerFormat(scssConstants)
 .registerFormat(sizingScssVariables)
+.registerFormat(suffixPxCssVariables)
+
 
 .registerTransform({
   name: "referenceSizingBase",

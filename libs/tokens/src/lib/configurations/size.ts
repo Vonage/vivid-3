@@ -10,13 +10,13 @@ module.exports = {
 			buildPath: process.env.buildPath,
 			files: [{
 				destination: `sizing/_base.mixin.scss`,
-				format: "css/variables",
+				format: "suffixPxCssVariables",
 				options: {
 					selector: "@mixin variables"
 				},
 				filter: token => token.attributes.type === "base",
 			}]
-		},
+		/* },
 		scss: {
 			transforms: ["attribute/cti", "name/cti/kebab", "referenceSizingBase", "resolveMath"],
 			prefix: process.env.prefix,
@@ -25,7 +25,7 @@ module.exports = {
 				destination: 'sizing/_variables.scss',
 				format: "sizingScssVariables",
 				filter: token => !["base", "unit", "unitMultiplier"].includes(token.attributes.type),
-			}],
+			}], */
 		}
 	}
 };
