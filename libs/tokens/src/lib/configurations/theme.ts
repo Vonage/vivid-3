@@ -1,4 +1,6 @@
-module.exports = (theme: string) => ({
+import { prefix, buildPath } from './common/config';
+
+export const getThemeConfig = (theme: string) => ({
 	source: [
 		"blueprint.tokens/theme.tokens.json",
 	],
@@ -10,8 +12,8 @@ module.exports = (theme: string) => ({
 	platforms: {
 		web: {
 			transforms: ["attribute/cti", "name/cti/kebab", "shadow/shorthand"],
-			prefix: process.env.prefix,
-			buildPath: process.env.buildPath,
+			prefix,
+			buildPath,
 			files: [{
 				destination: `themes/_${theme}.mixin.scss`,
 				format: "css/variables",
