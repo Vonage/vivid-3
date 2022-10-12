@@ -45,7 +45,3 @@ Toggle the `disabled` member to disable/enable the radio.
 <vwc-radio disabled></vwc-radio>
 <vwc-radio disabled checked></vwc-radio>
 ```
-
-### Readonly
-
-The `readonly` member should not be used directly on the `radio` component but on its parent `radio-group` instead.

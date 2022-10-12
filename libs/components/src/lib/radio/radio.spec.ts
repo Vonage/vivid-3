@@ -21,7 +21,6 @@ describe('vwc-radio', () => {
 		it('should be initialized as a vwc-radio', async () => {
 			expect(element).toBeInstanceOf(Radio);
 			expect(element.checked).toBeFalsy();
-			expect(element.readOnly).toBeFalsy();
 			expect(element.disabled).toBeFalsy();
 			expect(element.label).toBeUndefined();
 		});
@@ -76,13 +75,6 @@ describe('vwc-radio', () => {
 		});
 	});
 
-	describe('readonly', () => {
-		it('should set read only class when readonly is true', async () => {
-			const classes = await setBoolAttributeOn(element, 'readonly');
-			expect(classes.contains('readonly')).toBeTruthy();
-		});
-	});
-	
 	describe('form association', function () {
 		it('should attach to closest form', async function () {
 			const formWrapper = document.createElement('div');

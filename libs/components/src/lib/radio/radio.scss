@@ -11,7 +11,7 @@
 
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
 	$appearances: fieldset,
-	$states: idle hover checked disabled readonly,
+	$states: idle hover checked disabled,
 	$default: fieldset,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
@@ -73,10 +73,6 @@ label {
 		color: var(#{constants.$vvd-color-neutral-400});
 		cursor: not-allowed;
 	}
-
-	.base.readonly:not(:hover) & {
-		color: var(#{constants.$vvd-color-neutral-400});
-	}	
 }
 
 .focus-indicator {
