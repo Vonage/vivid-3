@@ -1,4 +1,3 @@
-export {}
 const { formatter } = require('./scss-constants');
 
 

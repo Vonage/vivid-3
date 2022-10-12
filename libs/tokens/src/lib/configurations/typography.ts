@@ -1,4 +1,6 @@
-module.exports = (viewport: string) => ({
+import { prefix, buildPath } from './common/config';
+
+export const getTypographyConfig = (viewport: string) => ({
 	source: [
 		"blueprint.tokens/typography.tokens.json"
 	],
@@ -8,9 +10,9 @@ module.exports = (viewport: string) => ({
 	],
 	platforms: {
 		web: {
-			transforms: ["attribute/cti", "name/cti/kebab", "size/px", "font/shorthand"],
-			prefix: process.env.prefix,
-			buildPath: process.env.buildPath,
+			transforms: ["attribute/cti", "name/cti/kebab", "font/shorthand", "resolveMath",],
+			prefix,
+			buildPath,
 			files: [{
 				destination: `typography/_${viewport}.mixin.scss`,
 				format: "css/variables",

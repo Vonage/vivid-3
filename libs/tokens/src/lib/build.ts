@@ -1,36 +1,36 @@
-const sourceOnly = require('./filters/source-only');
-const shadowShorthand = require('./transforms/shadow-shorthand');
-const fontShorthand = require('./transforms/font-shorthand');
-const scssConstants = require('./formatters/scss-constants');
+import StyleDictionary from 'style-dictionary';
+import { sourceOnly } from './filters/source-only';
+import { shadowShorthand } from './transforms/shadow-shorthand';
+import { resolveMath } from './transforms/resolve-math';
+import { fontShorthand } from './transforms/font-shorthand';
+import { scssConstants } from './formatters/scss-constants';
+import { scssConstantsConfig } from './configurations/scss-constants';
+import { getThemeConfig } from './configurations/theme';
+import { getTypographyConfig } from './configurations/typography';
 
-const StyleDictionary = require('style-dictionary')
+import themes from '@vonage/vivid-figma-tokens/data/$themes.json';
+
+StyleDictionary
 .registerTransform(shadowShorthand)
 .registerTransform(fontShorthand)
+.registerTransform(resolveMath)
 .registerFilter(sourceOnly)
 .registerFormat(scssConstants)
 
-const THEMES = require('../../../../node_modules/@vonage/vivid-figma-tokens/data/$themes.json');
 
-process.env.prefix = 'vvd';
-process.env.buildPath = '../../../../dist/libs/tokens/scss/';
+
 
 
 StyleDictionary
-	.extend(
-		require('./configurations/scss-constants')
-	).buildPlatform('scssConstants');
+	.extend(scssConstantsConfig	).buildPlatform('scssConstants');
 
-THEMES.forEach(({ name }) =>
+themes.forEach(({ name }) =>
 	StyleDictionary
-		.extend(
-			require('./configurations/theme')(name)
-		).buildPlatform('web')
+		.extend(getThemeConfig(name)).buildPlatform('web')
 );
 
 ['desktop'/*, 'mobile'*/].forEach(viewport =>
 	StyleDictionary
-		.extend(
-			require('./configurations/typography')(viewport)
-		).buildPlatform('web')
+		.extend(getTypographyConfig(viewport)).buildPlatform('web')
 );
 
