@@ -1,6 +1,3 @@
-export {}
-
-// const parser = new Parser();
 
 const isObject = (value) => typeof value === 'object' && !Array.isArray(value) && value !== null;
 
@@ -15,9 +12,9 @@ const fontWeightMap = new Map([
 ]);
 
 const parseFontProps = ({ fontFamily, fontWeight, lineHeight, fontSize }) =>
-	`${fontWeightMap.get(fontWeight)} ${+parser.evaluate(fontSize).toFixed()}/${lineHeight} ${fontFamily}`;
+	`${fontWeightMap.get(fontWeight)} ${fontSize}/${lineHeight} ${fontFamily}`;
 
-module.exports = {
+export const fontShorthand = {
 	type: `value`,
 	name: `font/shorthand`,
 	transitive: true,
@@ -26,4 +23,4 @@ module.exports = {
 	isObject(value)
 		? parseFontProps(value)
 		: value
-};
+} as any;

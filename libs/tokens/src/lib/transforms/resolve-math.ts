@@ -1,4 +1,4 @@
-const { Parser } = require("expr-eval");
+import { Parser } from "expr-eval";
 
 /**
  * Helper: Transforms math like Figma Tokens
@@ -17,10 +17,10 @@ function checkAndEvaluateMath(expr) {
 /**
  * Transform to resolve math across all tokens
  */
-module.exports = {
+export const resolveMath = {
   name: "resolveMath",
   type: "value",
   transitive: true,
   matcher: (token) => token,
   transformer: (token) => `${checkAndEvaluateMath(token.value)}`
-};
+} as any;
