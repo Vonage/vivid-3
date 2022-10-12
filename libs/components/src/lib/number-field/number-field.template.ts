@@ -77,22 +77,29 @@ function setControlButtonDensity(numberField: NumberField) {
 	return numberField.density === Density.Extended ? Density.Normal : Density.Condensed;
 }
 
+function getTabIndex(numberField: NumberField) {
+	return (numberField.disabled || numberField.readOnly) ? '-1' : null;
+}
 
 function numberControlButtons(context: ElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
 	const dividerTag = context.tagFor(Divider);
+
 	return html<NumberField>`
-			<div class="control-buttons">
+			<div class="control-buttons" 
+			     ?inert="${x => x.disabled || x.readOnly}">
 				<${buttonTag} id="subtract" icon="minus-line"
 					  					aria-controls="control"
 					            shape="${ setControlButtonShape }"
-					            density="${ setControlButtonDensity }" 
+					            density="${ setControlButtonDensity }"
+					  					tabindex="${getTabIndex}"
 					            @click="${x => adjustValueByStep(x, SUBTRACT)}"></${buttonTag}>
 				<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 				<${buttonTag} id="add" icon="plus-line"
 					  					aria-controls="control"
 					            shape="${ setControlButtonShape }" 
 					            density="${ setControlButtonDensity }"
+					  					tabindex="${getTabIndex}"
 					            @click="${x => adjustValueByStep(x)}"></${buttonTag}>
 		    </div>
 	`;
@@ -111,7 +118,7 @@ export const NumberFieldTemplate: (
 	const focusTemplate = focusTemplateFactory(context);
 
 	return html<NumberField>`
-<div class="base ${getStateClasses}">
+	<div class="base ${getStateClasses}">
     ${when(x => x.label, renderLabel())}
     <div class="fieldset">
       <input class="control"
