@@ -10,7 +10,7 @@ export const getTypographyConfig = (viewport: string) => ({
 	],
 	platforms: {
 		web: {
-			transforms: ["attribute/cti", "name/cti/kebab", "font/shorthand", "resolveMath",],
+			transforms: ["attribute/cti", "name/cti/kebab", "font/shorthand", "size/px"],
 			prefix,
 			buildPath,
 			files: [{
