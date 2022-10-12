@@ -90,7 +90,7 @@ Use the `icon` attribute to add an icon.
 
 ### Shape
 
-Use the `shape` attribute to change the button's edges.
+Use the `shape` attribute to change the text field's edges.
 
 - Type: `'rounded'` | `'pill'`
 - Default: `'rounded'`
@@ -102,7 +102,7 @@ Use the `shape` attribute to change the button's edges.
 
 ### Appearance
 
-Set the `appearance` attribute to change the button's appearance.
+Set the `appearance` attribute to change the text field's appearance.
 
 - Type: `'fieldset'` | `'ghost'`
 - Default: `'fieldset'`
