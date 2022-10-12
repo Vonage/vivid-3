@@ -1,15 +1,10 @@
-import { Parser } from "expr-eval";
 import type { Named, Transform } from "style-dictionary";
 
-/**
- * Helper: Transforms math like Figma Tokens
- */
-const parser = new Parser();
 
 function checkAndEvaluateMath(expr) {
 	try {
-		parser.evaluate(expr);
-		return +parser.evaluate(expr).toFixed();
+		eval(expr);
+		return +eval(expr).toFixed();
 	} catch (ex) {
     return expr;
   }
