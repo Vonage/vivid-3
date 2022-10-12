@@ -1,4 +1,4 @@
-module.exports = {
+export const sizingScssVariables = {
 	name: 'sizingScssVariables',
 	formatter({ dictionary }) {
 		return dictionary.allProperties.map(

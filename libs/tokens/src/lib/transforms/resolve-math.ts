@@ -1,4 +1,5 @@
 import { Parser } from "expr-eval";
+import type { Named, Transform } from "style-dictionary";
 
 /**
  * Helper: Transforms math like Figma Tokens
@@ -17,10 +18,10 @@ function checkAndEvaluateMath(expr) {
 /**
  * Transform to resolve math across all tokens
  */
-export const resolveMath = {
+export const resolveMath: Named<Transform> = {
   name: "resolveMath",
   type: "value",
   transitive: true,
-  matcher: (token) => token,
+  matcher: (token) => Boolean(token),
   transformer: (token) => `${checkAndEvaluateMath(token.value)}`
-} as any;
+};
