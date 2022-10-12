@@ -50,7 +50,7 @@
 		"@typescript-eslint/eslint-plugin": "^5.18.0",
 		"@typescript-eslint/experimental-utils": "^5.27.0",
 		"@typescript-eslint/parser": "^5.18.0",
-		"@vonage/vivid-figma-tokens": "vonage/vivid-figma-tokens#typography-tweaks",
+		"@vonage/vivid-figma-tokens": "github:vonage/vivid-figma-tokens#v1.0.0-next-4",
 		"beachball": "^2.30.1",
 		"clean-css": "^5.3.0",
 		"eslint": "^8.12.0",
@@ -59,6 +59,7 @@
 		"eslint-plugin-compat": "^4.0.2",
 		"eslint-plugin-import": "^2.26.0",
 		"eslint-plugin-jsdoc": "^37.9.7",
+		"expr-eval": "^2.0.2",
 		"glob": "^7.2.0",
 		"highlight.js": "^11.5.1",
 		"http-server": "^14.1.0",
@@ -89,7 +90,7 @@
 		"stylelint-config-standard-scss": "^3.0.0",
 		"stylelint-no-unsupported-browser-features": "^5.0.3",
 		"ts-jest": "27.1.4",
-		"ts-node": "^10.9.1",
-		"typescript": "^4.8.4"
+		"ts-node": "^10.7.0",
+		"typescript": "^4.7.2"
 	}
 }
