@@ -2,6 +2,7 @@ const sourceOnly = require('./filters/source-only');
 const shadowShorthand = require('./transforms/shadow-shorthand');
 const fontShorthand = require('./transforms/font-shorthand');
 const resolveMath = require('./transforms/resolve-math');
+const referenceSizingBase = require('./transforms/reference-sizing-base');
 const scssConstants = require('./formatters/scss-constants');
 const sizingScssVariables = require('./formatters/sizing-scss-variables');
 const suffixPxCssVariables = require('./formatters/suffix-px-css-variables');
@@ -15,15 +16,8 @@ const StyleDictionary = require('style-dictionary')
 .registerFormat(scssConstants)
 .registerFormat(sizingScssVariables)
 .registerFormat(suffixPxCssVariables)
+.registerTransform(referenceSizingBase);
 
-
-.registerTransform({
-  name: "referenceSizingBase",
-  type: "value",
-  transitive: true,
-	matcher: (token) => token.attributes.type === "base",
-  transformer: ({ name }) => `var(--${name})`,
-});
 
 const THEMES = require('../../../../node_modules/@vonage/vivid-figma-tokens/data/$themes.json');
 
