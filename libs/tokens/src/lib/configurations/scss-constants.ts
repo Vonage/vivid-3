@@ -1,4 +1,7 @@
-module.exports = {
+
+import { prefix, buildPath } from './common/config';
+
+export const scssConstantsConfig = {
 	source: [
 		"blueprint.tokens/**/*.tokens.json"
 	],
@@ -8,8 +11,8 @@ module.exports = {
 	platforms: {
 		scssConstants: {
 			transforms: ["name/cti/kebab"],
-			prefix: process.env.prefix,
-			buildPath: process.env.buildPath,
+			prefix,
+			buildPath,
 			files: [{
 				destination: '_constants.scss',
 				format: "scss/constants",

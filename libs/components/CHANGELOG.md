@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Fri, 07 Oct 2022 08:59:54 GMT and should not be manually modified.
+This log was last generated on Wed, 12 Oct 2022 06:55:48 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.73
+
+Wed, 12 Oct 2022 06:55:48 GMT
+
+### Changes
+
+- Add the number-field component (yonatan.kra@vonage.com)
 
 ## 3.0.0-next.72
 
