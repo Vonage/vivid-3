@@ -46,6 +46,7 @@
     "./side-drawer": "./side-drawer",
     "./text-field": "./text-field",
     "./text-area": "./text-area",
-    "./tooltip": "./tooltip"
+    "./tooltip": "./tooltip",
+	"./number-field": "./number-field"
   }
 }
