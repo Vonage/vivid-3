@@ -1,7 +1,6 @@
 import StyleDictionary from 'style-dictionary';
 import { sourceOnly } from './filters/source-only';
 import { shadowShorthand } from './transforms/shadow-shorthand';
-import { resolveMath } from './transforms/resolve-math';
 import { fontShorthand } from './transforms/font-shorthand';
 import { scssConstants } from './formatters/scss-constants';
 import { scssConstantsConfig } from './configurations/scss-constants';
@@ -13,7 +12,6 @@ import themes from '@vonage/vivid-figma-tokens/data/$themes.json';
 StyleDictionary
 .registerTransform(shadowShorthand)
 .registerTransform(fontShorthand)
-.registerTransform(resolveMath)
 .registerFilter(sourceOnly)
 .registerFormat(scssConstants)
 

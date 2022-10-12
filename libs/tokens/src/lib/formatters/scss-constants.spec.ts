@@ -1,5 +1,6 @@
-const { formatter } = require('./scss-constants');
+import { scssConstants } from './scss-constants';
 
+const { formatter } = scssConstants;
 
 describe('basic', () => {
 	const token = {
