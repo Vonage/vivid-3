@@ -1,4 +1,6 @@
-module.exports = {
+import { prefix, buildPath } from './common/config';
+
+export const sizeConfig = {
 	source: [
 		`../../../../node_modules/@vonage/vivid-figma-tokens/data/sizing/base.tokens.json`,
 		`../../../../node_modules/@vonage/vivid-figma-tokens/data/sizing/desktop.tokens.json`
@@ -6,8 +8,8 @@ module.exports = {
 	platforms: {
 		css: {
 			transforms: ["attribute/cti", "name/cti/kebab", "resolveMath"],
-			prefix: process.env.prefix,
-			buildPath: process.env.buildPath,
+			prefix,
+			buildPath,
 			files: [{
 				destination: `sizing/_base.mixin.scss`,
 				format: "suffixPxCssVariables",

@@ -15,6 +15,7 @@ import { suffixPxCssVariables } from './formatters/suffix-px-css-variables';
 import { scssConstantsConfig } from './configurations/scss-constants';
 import { getThemeConfig } from './configurations/theme';
 import { getTypographyConfig } from './configurations/typography';
+import { sizeConfig } from './configurations/size';
 
 import themes from '@vonage/vivid-figma-tokens/data/$themes.json';
 
@@ -46,6 +47,4 @@ themes.forEach(({ name }) =>
 );
 
 StyleDictionary
-	.extend(
-		require('./configurations/size')
-	).buildAllPlatforms();
+	.extend(sizeConfig).buildAllPlatforms();
