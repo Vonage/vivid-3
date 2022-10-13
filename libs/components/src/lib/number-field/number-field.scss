@@ -24,6 +24,12 @@
 			flex-shrink: 0;
 		}
 	}
+}
 
+.focus-indicator {
+	.disabled & {
+		display: none;
+		pointer-events: none;
+	}
 }
 
