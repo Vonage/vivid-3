@@ -1,0 +1,87 @@
+@use '../focus/partials/variables' as focus-variables;
+@use '../../../../../dist/libs/tokens/scss/constants' as constants;
+@use '../../../../shared/src/lib/sass/utils' as utils;
+
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+	$connotations: accent,
+	$shades: primary primary-text,
+	$default: accent,
+);
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+	$appearances: fieldset,
+	$states: idle hover checked disabled,
+	$default: fieldset,
+);
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+
+$control-size: 20px;
+$control-border: 2px;
+
+.base {
+	@include connotation.connotation;
+	@include appearance.appearance;
+
+	display: inline-flex;
+	align-items: center;
+	cursor: pointer;
+	gap: 8px;
+
+	@supports selector(:focus-visible) {
+		&:focus {
+			outline: none;
+		}
+	}
+
+	@supports (user-select: none) {
+		user-select: none;
+	}
+
+	&.disabled {
+		cursor: not-allowed;
+	}
+}
+
+.control {
+	position: relative;
+	width: $control-size;
+	height: $control-size;
+	background-color: var(#{utils.get-color-token(canvas)});
+	border-radius: 50%;
+	box-shadow: inset 0 0 0 $control-border var(#{appearance.get-appearance-token(outline)});
+
+	&::after {
+		position: absolute;
+		background-color: var(#{appearance.get-appearance-token(outline)});
+		border-radius: inherit;
+		content: '';
+		inset: 5px;
+
+		.base:not(.checked) & {
+			display: none;
+		}
+	}
+}
+
+label {
+	color: var(#{constants.$vvd-color-canvas-text});
+	cursor: pointer;
+	font: var(#{constants.$vvd-font-base});
+
+	.base.disabled & {
+		color: var(#{constants.$vvd-color-neutral-400});
+		cursor: not-allowed;
+	}
+}
+
+.focus-indicator {
+	#{focus-variables.$focus-inset}: -3px;
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+	border-radius: 50%;
+
+	.base:not(:focus-visible) & {
+		display: none;
+	}
+}

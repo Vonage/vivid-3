@@ -43,6 +43,7 @@
     "./popup": "./popup",
     "./progress": "./progress",
     "./progress-ring": "./progress-ring",
+    "./radio": "./radio",
     "./side-drawer": "./side-drawer",
     "./text-field": "./text-field",
     "./text-area": "./text-area",
