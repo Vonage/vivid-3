@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Thu, 13 Oct 2022 08:25:56 GMT and should not be manually modified.
+This log was last generated on Thu, 13 Oct 2022 10:40:38 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.76
+
+Thu, 13 Oct 2022 10:40:38 GMT
+
+### Changes
+
+- Prevent events on disabled and readonly fields (yonatan.kra@vonage.com)
 
 ## 3.0.0-next.75
 
