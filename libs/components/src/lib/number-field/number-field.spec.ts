@@ -503,6 +503,7 @@ describe('vwc-number-field', () => {
 			addButton = getRootElement(element).querySelector('#add') as HTMLButtonElement;
 			subtractButton = getRootElement(element).querySelector('#subtract') as HTMLButtonElement;
 		});
+
 		it('should advance value by 1 as default', async function () {
 			element.value = '10';
 			addButton?.click();
@@ -555,6 +556,50 @@ describe('vwc-number-field', () => {
 			addButton.click();
 			expect(element.value)
 				.toEqual('9');
+		});
+
+		it('should set inert in disabled and readonly', async function() {
+			function isButtonsWrapperInert() {
+				return addButton.parentElement?.hasAttribute('inert');
+			}
+
+			element.readOnly = true;
+			await elementUpdated(element);
+			const inertWhenReadOnly = isButtonsWrapperInert();
+
+			element.readOnly = false;
+			await elementUpdated(element);
+			const inertWhenActive = isButtonsWrapperInert();
+
+			element.disabled = true;
+			await elementUpdated(element);
+			const inertWhenDisabled = isButtonsWrapperInert();
+
+			expect(inertWhenActive).toEqual(false);
+			expect(inertWhenReadOnly).toEqual(true);
+			expect(inertWhenDisabled).toEqual(true);
+		});
+
+		it('should set tabindex="-1" on the buttons', async function() {
+			function isButtonsWrapperInert() {
+				return addButton.getAttribute('tabindex') === '-1' &&
+					subtractButton.getAttribute('tabindex') === '-1';
+			}
+
+			const inertWhenActive = isButtonsWrapperInert();
+
+			element.readOnly = true;
+			await elementUpdated(element);
+			const inertWhenReadOnly = isButtonsWrapperInert();
+
+			element.readOnly = false;
+			element.disabled = true;
+			await elementUpdated(element);
+			const inertWhenDisabled = isButtonsWrapperInert();
+
+			expect(inertWhenActive).toEqual(false);
+			expect(inertWhenReadOnly).toEqual(true);
+			expect(inertWhenDisabled).toEqual(true);
 		});
 	});
 
