@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Wed, 12 Oct 2022 15:27:47 GMT and should not be manually modified.
+This log was last generated on Thu, 13 Oct 2022 08:25:56 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.75
+
+Thu, 13 Oct 2022 08:25:56 GMT
+
+### Changes
+
+- Add radio button component (olaf-k@users.noreply.github.com)
 
 ## 3.0.0-next.74
 
