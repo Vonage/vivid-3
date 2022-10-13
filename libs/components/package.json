@@ -1,6 +1,6 @@
 {
   "name": "@vonage/vivid",
-  "version": "3.0.0-next.74",
+  "version": "3.0.0-next.75",
   "type": "module",
   "module": "./index.js",
   "main": "./index.js",
@@ -43,6 +43,7 @@
     "./popup": "./popup",
     "./progress": "./progress",
     "./progress-ring": "./progress-ring",
+    "./radio": "./radio",
     "./side-drawer": "./side-drawer",
     "./text-field": "./text-field",
     "./text-area": "./text-area",
