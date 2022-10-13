@@ -98,7 +98,7 @@ describe('vwc-avatar', () => {
 			expect(iconElement).toBeNull();
 		});
 
-		it('should not show the icon if name is set', async () => {
+		it('should show the initials if name is set', async () => {
 			element.name = 'John Doe';
 			await elementUpdated(element);
 			const text = baseElement.textContent?.trim();
