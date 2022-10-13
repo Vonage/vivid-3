@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "Prevent events on disabled and readonly fields",
-  "packageName": "@vonage/vivid",
-  "email": "yonatan.kra@vonage.com",
-  "dependentChangeType": "patch"
-}

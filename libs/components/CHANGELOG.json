@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Thu, 13 Oct 2022 10:40:38 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.76",
+      "version": "3.0.0-next.76",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "17e20570fe6f48609871f7e83c415fb6d7dad64c",
+            "comment": "Prevent events on disabled and readonly fields"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 13 Oct 2022 08:25:56 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.75",
       "version": "3.0.0-next.75",
