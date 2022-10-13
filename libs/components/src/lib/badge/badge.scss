@@ -1,4 +1,5 @@
 @use '../../../../../dist/libs/tokens/scss/constants' as constants;
+@use 'partials/variables' as variables;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent cta success alert warning information,
@@ -14,7 +15,7 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
-.control {
+.base {
 	@include connotation.connotation;
 	@include appearance.appearance;
 
@@ -22,37 +23,53 @@
 	box-sizing: border-box;
 	align-items: center;
 	background-color: var(#{appearance.get-appearance-token(fill)});
+	block-size: var(#{variables.$badge-block-size});
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	column-gap: 8px;
 	font: var(#{constants.$vvd-font-base-condensed-bold});
 	vertical-align: middle;
+
+	&.icon-only {
+		contain: size;
+		padding-inline: 0;
+		place-content: center;
+
+		@supports (aspect-ratio: 1) {
+			aspect-ratio: 1;
+		}
+
+		@supports not (aspect-ratio: 1) {
+			inline-size: var(#{variables.$badge-block-size});
+		}
+	}
 }
 
 /* Size */
 
-.control:not(.size-condensed):not(.size-expanded) {
-	block-size: 24px;
+
+.base:not(.size-condensed):not(.size-extended) {
+	#{variables.$badge-block-size}: 24px;
 	padding-inline: 10px;
 }
 
-.control.size-condensed {
-	block-size: 20px;
+.base.size-condensed {
+	#{variables.$badge-block-size}: 20px;
 	padding-inline: 8px;
 }
 
-.control.size-expanded {
-	block-size: 28px;
+.base.size-extended {
+	#{variables.$badge-block-size}: 28px;
 	padding-inline: 12px;
 }
 
 /* Shape */
 
 // stylelint-disable-next-line no-descending-specificity
-.control:not(.shape-pill) {
+.base:not(.shape-pill) {
 	border-radius: 4px;
 }
-.control.shape-pill {
+.base.shape-pill {
 	border-radius: 14px;
 }
 

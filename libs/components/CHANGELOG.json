@@ -2,6 +2,96 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Thu, 13 Oct 2022 08:25:56 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.75",
+      "version": "3.0.0-next.75",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "olaf-k@users.noreply.github.com",
+            "package": "@vonage/vivid",
+            "commit": "17073dc1f765b7de0e200a64914d73f5ba18e2bc",
+            "comment": "Add radio button component"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 12 Oct 2022 15:27:47 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.74",
+      "version": "3.0.0-next.74",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "29dfd3f0d28a7870528a04014bb1cab059a33233",
+            "comment": "correct style of appearance select state"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 12 Oct 2022 06:55:48 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.73",
+      "version": "3.0.0-next.73",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "425c8b29161d4bf91cc18ef8268ed014aa6d7be4",
+            "comment": "Add the number-field component"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 07 Oct 2022 08:59:54 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.72",
+      "version": "3.0.0-next.72",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "545c5c5fda3314d75e668f7125e42f61bb489d96",
+            "comment": "add icon-only support for badge"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 06 Oct 2022 14:03:22 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.71",
+      "version": "3.0.0-next.71",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "f6f110fc790e0f69c536a57f70686c1beb97bd02",
+            "comment": "remove role toolbar from header component part"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 06 Oct 2022 13:50:21 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.70",
+      "version": "3.0.0-next.70",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "9cd752b65e34b06d79db6969cd7e329f17c655d5",
+            "comment": "stabilize anchored menu visual regresstion test"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 02 Oct 2022 09:05:08 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.69",
       "version": "3.0.0-next.69",

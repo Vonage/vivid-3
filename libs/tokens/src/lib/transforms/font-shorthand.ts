@@ -1,9 +1,20 @@
+
 const isObject = (value) => typeof value === 'object' && !Array.isArray(value) && value !== null;
 
-const parseFontProps = ({ fontFamily, fontWeight, lineHeight, fontSize, fontStretch }) =>
-	`${fontWeight} ${fontStretch} ${fontSize}/${lineHeight} ${fontFamily}`;
+// due to figma api typography limitations,
+// we patch font weight to output font weight
+// as a number and stretch keyword.
+// once figma api supports variable fonts, we can refactor this
+const fontWeightMap = new Map([
+	['Wide Medium', '500 condensed'],
+	['Regular', '400 ultra-condensed'],
+	['SemiBold', '600 ultra-condensed']
+]);
 
-module.exports = {
+const parseFontProps = ({ fontFamily, fontWeight, lineHeight, fontSize }) =>
+	`${fontWeightMap.get(fontWeight)} calc(${fontSize})/calc(${lineHeight}) ${fontFamily}`;
+
+export const fontShorthand = {
 	type: `value`,
 	name: `font/shorthand`,
 	transitive: true,
@@ -12,4 +23,4 @@ module.exports = {
 	isObject(value)
 		? parseFontProps(value)
 		: value
-};
+} as any;
