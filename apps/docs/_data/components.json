@@ -160,6 +160,14 @@
 		]
 	},
 	{
+		"title": "number-field",
+		"markdown": "./libs/components/src/lib/number-field/README.md",
+		"modules": [
+			"/assets/modules/components/number-field/index.js",
+			"/assets/modules/components/button/index.js"
+		]
+	},
+	{
 		"title": "fab",
 		"markdown": "./libs/components/src/lib/fab/README.md",
 		"modules": [
@@ -264,6 +272,13 @@
 		"modules": [
 			"/assets/modules/components/text-area/index.js",
 			"/assets/modules/components/button/index.js"
+		]
+	},
+	{
+		"title": "radio",
+		"markdown": "./libs/components/src/lib/radio/README.md",
+		"modules": [
+			"/assets/modules/components/radio/index.js"
 		]
 	}
 ]
