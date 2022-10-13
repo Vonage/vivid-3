@@ -5,6 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import {classNames} from '@microsoft/fast-web-utilities';
+import {errorMessageTemplateFactory} from '../../shared/patterns/form-elements';
 import {focusTemplateFactory} from '../../shared/patterns';
 import type {TextArea} from './text-area';
 
@@ -28,12 +29,6 @@ function renderHelperText() {
 	return html<TextArea>`<span class="helper-text">${x => x.helperText}</span>`;
 }
 
-function renderErrorMessage() {
-	return html<TextArea>`
-    <vwc-icon class="error-message-icon" type="info-negative"></vwc-icon>
-    <span class="error-message">${x => x.errorValidationMessage}</span>
-	`;
-}
 /**
  * The template for the {@link @microsoft/fast-foundation#TextArea} component.
  *
@@ -45,6 +40,7 @@ export const TextAreaTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<TextArea> = (context: ElementDefinitionContext) => {
 	const focusTemplate = focusTemplateFactory(context);
+	const errorTemplate = errorMessageTemplateFactory(context);
 	return html`
 	  <div class="${getClasses}">
 		  ${when(x => x.label, renderLabel())}
@@ -88,7 +84,7 @@ export const TextAreaTemplate: (
 			  ${() => focusTemplate}
 		  </div>
 		  ${when(x => !x.errorValidationMessage && x.helperText?.length, renderHelperText())}
-		  ${when(x => x.errorValidationMessage, renderErrorMessage())}
+		  ${errorTemplate()}
 	  </div>
 	`;
 };

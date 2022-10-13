@@ -1,4 +1,7 @@
-import {attr, observable, volatile} from '@microsoft/fast-element';
+import {attr, html, observable, ViewTemplate, volatile, when} from '@microsoft/fast-element';
+import type {ElementDefinitionContext} from '@microsoft/fast-foundation';
+import {Icon} from '../../lib/icon/icon';
+import type {TextField} from '../../lib/text-field/text-field';
 
 const ElementInternalsKey = 'ElementInternals';
 const supportsElementInternals = () => ElementInternalsKey in window && 'setFormValue' in window[ElementInternalsKey].prototype;
@@ -59,3 +62,16 @@ export function formElements<T extends { new (...args: any[]): Record<string, an
 
 	return Decorated;
 }
+
+export const errorMessageTemplateFactory: (context: ElementDefinitionContext) =>
+() => ViewTemplate<FormElement> =
+	(context) => {
+		const iconTag = context.tagFor(Icon);
+		return () => {
+			return html<FormElement>`
+				${when(x => x.errorValidationMessage, html<TextField>`
+					<${iconTag} class="error-message-icon" type="info-negative"></${iconTag}>
+					<span class="error-message">${x => x.errorValidationMessage}</span>`)}
+		`;
+		};
+};

@@ -8,6 +8,7 @@ import {classNames} from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
 import '../icon/index';
+import {errorMessageTemplateFactory} from '../../shared/patterns/form-elements';
 import type {TextField} from './text-field';
 
 const getStateClasses = ({
@@ -53,16 +54,6 @@ function renderCharCount() {
 }
 
 /**
- *
- */
-function renderErrorMessage() {
-	return html<TextField>`
-    <vwc-icon class="error-message-icon" type="info-negative"></vwc-icon>
-    <span class="error-message">${x => x.errorValidationMessage}</span>
-	`;
-}
-
-/**
  * The template for the {@link @microsoft/fast-foundation#TextField} component.
  *
  * @param context
@@ -74,6 +65,7 @@ export const TextfieldTemplate: (
 ) => ViewTemplate<TextField> = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const focusTemplate = focusTemplateFactory(context);
+	const errorTemplate = errorMessageTemplateFactory(context);
 
 	return html<TextField>`
 	<div class="base ${getStateClasses}">
@@ -124,6 +116,6 @@ export const TextfieldTemplate: (
       ${() => focusTemplate}
     </div>
 	  ${when(x => !x.errorValidationMessage && x.helperText?.length, renderHelperText())}
-	  ${when(x => x.errorValidationMessage, renderErrorMessage())}
+	  ${errorTemplate()}
 	</div>`;
 };

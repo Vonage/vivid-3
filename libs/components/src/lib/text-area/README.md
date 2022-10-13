@@ -102,3 +102,20 @@ That means that:
 <vwc-text-area rows="2" value="2 rows text area"></vwc-text-area>
 <vwc-text-area rows="3" value="3 rows text area"></vwc-text-area>
 ```
+
+## Validation
+
+```html preview
+<vwc-text-area minlength="10"></vwc-text-area>
+
+<script>
+    const textField = document.querySelector('vwc-text-area');
+    const interval = setInterval(() => {
+        if (!textField.checkValidity) return;  
+        textField.value = '123';
+        textField.dirtyValue = true;
+        textField.checkValidity();
+        clearInterval(interval);
+    }, 50);
+</script>
+```
