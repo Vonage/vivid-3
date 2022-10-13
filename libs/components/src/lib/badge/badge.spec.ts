@@ -58,8 +58,8 @@ describe('vwc-badge', () => {
 			element.text = text;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector('.control');
-			expect(control?.textContent?.trim())
+			const base = element.shadowRoot?.querySelector('.base');
+			expect(base?.textContent?.trim())
 				.toEqual(text);
 		});
 	});
@@ -70,8 +70,8 @@ describe('vwc-badge', () => {
 			(element as any).connotation = connotation;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.connotation-${connotation}`);
-			expect(control)
+			const base = element.shadowRoot?.querySelector(`.base.connotation-${connotation}`);
+			expect(base)
 				.toBeInstanceOf(Element);
 		});
 	});
@@ -82,8 +82,8 @@ describe('vwc-badge', () => {
 			(element as any).shape = shape;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.shape-${shape}`);
-			expect(control)
+			const base = element.shadowRoot?.querySelector(`.base.shape-${shape}`);
+			expect(base)
 				.toBeInstanceOf(Element);
 		});
 	});
@@ -94,8 +94,8 @@ describe('vwc-badge', () => {
 			(element as any).appearance = appearance;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.appearance-${appearance}`);
-			expect(control)
+			const base = element.shadowRoot?.querySelector(`.base.appearance-${appearance}`);
+			expect(base)
 				.toBeInstanceOf(Element);
 		});
 	});
@@ -106,9 +106,23 @@ describe('vwc-badge', () => {
 			(element as any).density = density;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.density-${density}`);
-			expect(control)
+			const base = element.shadowRoot?.querySelector(`.base.density-${density}`);
+			expect(base)
 				.toBeInstanceOf(Element);
+		});
+	});
+
+	describe('icon-only', () => {
+		it('sets correct internal icon-only style', async () => {
+			const getControlIconOnly = () => element.shadowRoot?.querySelector('.base.icon-only');
+			const baseIconOnlyBefore = getControlIconOnly();
+
+			element.icon = 'home';
+			await elementUpdated(element);
+
+			const baseIconOnlyAfter = getControlIconOnly();
+			expect(baseIconOnlyBefore).toBeNull();
+			expect(baseIconOnlyAfter).toBeInstanceOf(Element);
 		});
 	});
 });

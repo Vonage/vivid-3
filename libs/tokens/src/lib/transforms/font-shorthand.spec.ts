@@ -1,5 +1,6 @@
-export {}
-const { transformer, matcher } = require('./font-shorthand');
+import { fontShorthand } from './font-shorthand';
+
+const { transformer, matcher } = fontShorthand;
 
 const token = {
 	type: 'typography',
@@ -7,15 +8,14 @@ const token = {
 		category: 'font'
 	},
 	value: {
-		fontFamily: "SpeziaCompleteVariableUpright",
-		fontWeight: "500",
-		lineHeight: "68",
-		fontSize: "52",
-		fontStretch: "condensed"
+		fontFamily: "SpeziaMonoCompleteVariable",
+		fontWeight: "Regular",
+		lineHeight: "{size.font.base} * 1",
+		fontSize: "{size.font.base} * 0.75"
 	}
 };
 
-const expectedParsedEffects = '500 condensed 52/68 SpeziaCompleteVariableUpright';
+const expectedParsedEffects = '400 ultra-condensed calc({size.font.base} * 0.75)/calc({size.font.base} * 1) SpeziaMonoCompleteVariable';
 
 describe('basic', () => {
 	it('should transform object of typography to a font shorthand value', () => {
