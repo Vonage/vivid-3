@@ -46,7 +46,7 @@ $control-border: 2px;
 .control {
 	position: relative;
 	width: $control-size;
-	min-width: $control-size;
+	flex-shrink: 0;
 	height: $control-size;
 	background-color: var(#{utils.get-color-token(canvas)});
 	border-radius: 50%;
