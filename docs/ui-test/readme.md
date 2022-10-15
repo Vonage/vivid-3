@@ -74,8 +74,8 @@ The docker image comes with the browsers and playwright ready for action.  If, f
 2. Update the tag and push to the repository.
 
 ```
-docker tag vivid-visual-tests-img drizzt99/vonage:1.x.x
-docker push drizzt99/vonage:1.x.x  
+docker tag vivid-visual-tests-img vivid3/vonage:latest
+docker push vivid3/vonage:latest
 ```
 
 3. Update the relevant `yml` files that are using this image to use the new version.
@@ -86,10 +86,9 @@ docker push drizzt99/vonage:1.x.x
 2. Change the version in the dockerfile
 3. Install locally: npm i && npx playwright install
 4. Rebuild the image: `npx nx run components:e2e --task=build`
-5. Bump the tag: `docker tag vivid-visual-tests-img drizzt99/vonage:1.x.x`
-6. Push to the repository: `docker push drizzt99/vonage:1.x.x`
-7. Run the tests: `npx nx run components:e2e` to ensure everything works fine
-8. Update the relevant `yml` files that are using this image to use the new version.
+5. Push to the repository: `docker push vivid3/vonage:latest`
+6. Run the tests: `npx nx run components:e2e` to ensure everything works fine
+7. Update the relevant `yml` files that are using this image to use the new version.
 
 ## Checking the tests
 
