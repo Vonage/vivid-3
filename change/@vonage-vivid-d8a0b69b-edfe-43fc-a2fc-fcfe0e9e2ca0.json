@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "prevent checkbox and radio shrinking",
+  "packageName": "@vonage/vivid",
+  "email": "olaf-k@users.noreply.github.com",
+  "dependentChangeType": "patch"
+}
