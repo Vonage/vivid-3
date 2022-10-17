@@ -1,4 +1,3 @@
-import { DesignToken } from '@microsoft/fast-foundation';
 import { type Named, type Transform, transform } from 'style-dictionary';
 
 const { transformer: sizeToPx } = transform['size/px'];
