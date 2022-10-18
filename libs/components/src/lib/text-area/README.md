@@ -106,15 +106,15 @@ That means that:
 ## Validation
 
 ```html preview
-<vwc-text-area minlength="10"></vwc-text-area>
+<vwc-text-area label="validation" minlength="10"></vwc-text-area>
 
 <script>
-    const textField = document.querySelector('vwc-text-area');
+    const textArea = document.querySelector('vwc-text-area');
     const interval = setInterval(() => {
-        if (!textField.checkValidity) return;  
-        textField.value = '123';
-        textField.dirtyValue = true;
-        textField.checkValidity();
+        if (!textArea.checkValidity) return;  
+        textArea.value = '123';
+        textArea.dirtyValue = true;
+        textArea.checkValidity();
         clearInterval(interval);
     }, 50);
 </script>

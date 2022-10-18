@@ -122,15 +122,15 @@ Add the `readonly` attribute to restrict user from changing the number field's v
 ## Validation
 
 ```html preview
-<vwc-number-field max="2"></vwc-number-field>
+<vwc-number-field label="validation" max="2"></vwc-number-field>
 
 <script>
-    const textField = document.querySelector('vwc-number-field');
+    const numberField = document.querySelector('vwc-number-field');
     const interval = setInterval(() => {
-        if (!textField.checkValidity) return;  
-        textField.value = 5;
-        textField.dirtyValue = true;
-        textField.checkValidity();
+        if (!numberField.checkValidity) return;  
+        numberField.value = 5;
+        numberField.dirtyValue = true;
+        numberField.checkValidity();
         clearInterval(interval);
     }, 50);
 </script>
