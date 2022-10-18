@@ -2,6 +2,7 @@ import {attr, html, observable, ViewTemplate, volatile, when} from '@microsoft/f
 import type {ElementDefinitionContext} from '@microsoft/fast-foundation';
 import {Icon} from '../../lib/icon/icon';
 import type {TextField} from '../../lib/text-field/text-field';
+import errorMessageStyles from './error-message.scss';
 
 const ElementInternalsKey = 'ElementInternals';
 const supportsElementInternals = () => ElementInternalsKey in window && 'setFormValue' in window[ElementInternalsKey].prototype;
@@ -66,6 +67,9 @@ export function formElements<T extends { new (...args: any[]): Record<string, an
 export const getErrorMessageTemplate = (context: ElementDefinitionContext): ViewTemplate<FormElement> => {
 	const iconTag = context.tagFor(Icon);
 	return html<FormElement>`
+			<style>
+				${errorMessageStyles}
+			</style>
 			${when(x => x.errorValidationMessage, html<TextField>`
 				<${iconTag} class="error-message-icon" type="info-negative"></${iconTag}>
 				<span class="error-message">${x => x.errorValidationMessage}</span>`)}
