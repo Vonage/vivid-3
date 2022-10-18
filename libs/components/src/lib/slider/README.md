@@ -14,21 +14,34 @@ Represents a slider custom element.
 
 ### Orientation
 
+When used vertically, the slider fills the height of its container.
+
 - Type: `'horizontal'` | `'vertical'`
 - Default: `horizontal`
 
 ```html preview blocks
- <vwc-slider orientation="vertical"></vwc-slider>
+<div style="height: 200px">
+ 	<vwc-slider orientation="vertical"></vwc-slider>
+ </div>
 ```
 
-## Slots
+### Markers
 
-## CSS Variables
+Toggles markers display.
 
-## Events
+- Type: `boolean`
+- Default: `false`
 
-## Methods
+```html preview blocks
+<vwc-slider markers></vwc-slider>
+```
+### Disabled
 
-## Accessibility
+Toggle the `disabled` member to disable/enable the slider.
 
-## Use Cases
+- Type: `boolean`
+- Default: `false`
+
+```html preview blocks
+<vwc-slider disabled></vwc-slider>
+```

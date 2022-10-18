@@ -1,5 +1,12 @@
 @use '../../../../../dist/libs/tokens/scss/constants' as constants;
 
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+	$appearances: fieldset,
+	$states: idle disabled readonly,
+	$default: fieldset,
+);
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+
 $thumb-size: 18px;
 $ring-size: 44px;
 $track-thickness: 4px;
@@ -10,26 +17,89 @@ $track-thickness: 4px;
 }
 
 :host([orientation="vertical"]) {
-	height: $thumb-size * 10;
+	height: 100%;
 }
 
 .control {
-	user-select: none;
-	outline: none;
-	cursor: pointer;
-	height: $ring-size;
+	@include appearance.appearance;
 
+	height: $ring-size;
+	cursor: pointer;
+	outline: none;
+	user-select: none;
+
+	& .positioning-region {
+		position: relative;
+	}
+
+	& .track {
+		position: absolute;
+		background: var(#{constants.$vvd-color-neutral-300});
+		border-radius: 4px;
+	
+		& .track-start {
+			position: absolute;
+			left: 0;
+			height: 100%;
+			background: var(#{appearance.get-appearance-token(text)});
+			border-radius: 4px;
+		}
+	}
+
+	& .thumb-container {
+		position: absolute;
+		width: $ring-size;
+		height: $ring-size;
+	
+		&::before {
+			position: absolute;
+			display: block;
+			width: $ring-size;
+			height: $ring-size;
+			background-color: var(#{constants.$vvd-color-canvas-text});
+			border-radius: 50%;
+			content: '';
+			opacity: 0;
+			transition: opacity 0.4s ease-out 0s;
+		}
+	
+		:host(:not(.disabled)) &:hover::before {
+			opacity: 0.12;
+		}
+	
+		:host(:not(.disabled)) &:active::before {
+			opacity: 0.25;
+		}
+	
+		&::after {
+			position: absolute;
+			top: calc(($ring-size - $thumb-size) / 2);
+			left: calc(($ring-size - $thumb-size) / 2);
+			display: block;
+			width: $thumb-size;
+			height: $thumb-size;
+			background-color: var(#{appearance.get-appearance-token(text)});
+			border-radius: 50%;
+			content: '';
+		}
+	}
+		
 	&[aria-orientation="horizontal"] {
-		touch-action: pan-y;
-		min-width: $thumb-size;
 		width: calc(100% - $thumb-size);
-		margin-left: $thumb-size / 2;
+		min-width: $thumb-size;
+		margin-left: calc($thumb-size / 2);
+		touch-action: pan-y;
 		
 		& .track {
+			top: calc(($ring-size - $track-thickness) / 2);
 			right: 0;
 			left: 0;
-			top: calc(($ring-size - $track-thickness) / 2);
 			height: $track-thickness;
+
+			& .mark {
+				width: 100%;
+				height: 4px;
+			}
 		}
 
 		& .thumb-container {
@@ -38,96 +108,38 @@ $track-thickness: 4px;
 	}
 
 	&[aria-orientation="vertical"] {
-		touch-action: pan-x;
-		min-height: $thumb-size;
 		height: calc(100% - $thumb-size);
-		margin-top: $thumb-size / 2;
+		min-height: $thumb-size;
+		margin-top: calc($thumb-size / 2);
+		touch-action: pan-x;
 		
 		& .positioning-region {
 			height: 100%;
 		}
 
 		& .track {
-			width: $track-thickness;
 			left: calc(($ring-size - $track-thickness) / 2);
+			width: $track-thickness;
 			height: 100%;
+
+			& .mark {
+				width: 4px;
+				height: 100%;
+			}
 		}
 
 		& .track-start {
-			height: auto;
-			width: 100%;
 			top: 0;
+			width: 100%;
+			height: auto;
 		}
 
 		& .thumb-container {
 			transform: translateY(calc($ring-size / 2));
 		}
 	}
-	
-	& .positioning-region {
-		position: relative;
-	}
 }	
 
-.track {
-	background: var(#{constants.$vvd-color-neutral-300});
-	position: absolute;
-	border-radius: 4px;
-}
-
-.track-start {
-	background: var(#{constants.$vvd-color-canvas-text});
-	position: absolute;
-	height: 100%;
-	left: 0;
-	border-radius: 4px;
-}
-
-.focus-ring {
-	width: 44px;
-	height: 44px;
-	background-color: var(#{constants.$vvd-color-neutral-100});
-	border-radius: 50%;
-	position: absolute;
-	transform: translateX(22px) translateY(-2px);
-	z-index: -1;
-	display: none;
-
-	&:hover {
-		display: block;
-	}
-}	
-
-.thumb-container {
-	position: absolute;
-	height: $ring-size;
-	width: $ring-size;
-
-	&::before {
-		height: $ring-size;
-		width: $ring-size;
-		background-color: var(#{constants.$vvd-color-canvas-text});
-		opacity: 0;
-		transition: opacity 0.4s ease-out 0s;
-		border-radius: 50%;
-		position: absolute;
-		content: '';
-		display: block;
-	}
-
-	&:hover::before {
-		opacity: 0.12;
-	}
-
-	&::after {
-		width: $thumb-size;
-		height: $thumb-size;
-		background-color: var(#{constants.$vvd-color-canvas-text});
-		border-radius: 50%;
-		position: absolute;
-		left: calc(($ring-size - $thumb-size) / 2);
-		top: calc(($ring-size - $thumb-size) / 2);
-		content: '';
-		display: block;
-	}
+:host(.disabled) .control .track {
+	background: var(#{constants.$vvd-color-neutral-100});
 }
