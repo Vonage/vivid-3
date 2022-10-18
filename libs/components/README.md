@@ -131,7 +131,7 @@ The following snippet fully renders a Vivid button component
 <link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/tokens/theme-light.css">
 
 <!-- import typography for desktop -->
-<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/typography.css">
+<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/core/typography.css">
 
 <!-- import Vivid button component -->
 <script type="module" src="https://unpkg.com/@vonage/vivid@next/button/index.js"></script>
