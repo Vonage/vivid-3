@@ -11,23 +11,23 @@ export const sizeConfig = {
 			prefix,
 			buildPath,
 			files: [{
-				destination: `sizing/_base.mixin.scss`,
+				destination: `size/_base.mixin.scss`,
 				format: "suffixPxCssVariables",
 				options: {
 					selector: "@mixin variables"
 				},
 				filter: token => token.attributes.type === "base",
 			}]
-		/* },
+		},
 		scss: {
 			transforms: ["attribute/cti", "name/cti/kebab", "referenceSizingBase", "resolveMath"],
-			prefix: process.env.prefix,
-			buildPath: process.env.buildPath,
+			prefix,
+			buildPath,
 			files: [{
-				destination: 'sizing/_variables.scss',
+				destination: 'size/_variables.scss',
 				format: "sizingScssVariables",
 				filter: token => !["base", "unit", "unitMultiplier"].includes(token.attributes.type),
-			}], */
+			}],
 		}
 	}
 };
