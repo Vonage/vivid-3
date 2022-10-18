@@ -37,9 +37,9 @@ Tokens should not affect the look of the application rather just provide a commo
 
 As the task of loading css is not trivial, and may vary from project to project, this library does not provide any way to load the css. It is up to the author to load the css in the most appropriate manner for their project.
 
-To **include the styles**, css files must be loaded into the project from the `node_modules/@vonage/vivid/styles/tokens` folder and *require a `vvd-root` class* selector to be present on the wrapping element (advisably `:root`).
+To **include the tokens**, its css files must be loaded into the project from the `node_modules/@vonage/vivid/styles/tokens` folder and *require a `vvd-root` class* selector to be present on a wrapping element (advisably the `:root`).
 
-Folder contains the following files:
+Tokens folder contains the following files:
 
 - `theme-light.css` - Light theme
 
@@ -53,17 +53,21 @@ Only one theme is required to be loaded.
 
 Note that font files are not included within the css file, and must be copied to application assets separately (within the same parsed css folder). This is to allow the author to choose the most appropriate way to load the font files based on their project.
 
-### Styles (Optional)
+### Core (Optional)
 
 In Addition, this library provides a set of styles (combined with the tokens and fonts) that can be used to embody the Vivid design system into an application.
 
-These styles are not required by vivid components directly. however, they do rely on the tokens and fonts 👆 to be loaded as components do.
+These styles are not required by vivid components directly. however, native HTML tags do.
 
-- `node_modules/@vonage/vivid/styles/core/theme.css` - Sets theme related styles
+These **core styles** rely on the tokens and fonts 👆 to be loaded.
 
-- `node_modules/@vonage/vivid/styles/core/typography.css` - Sets typography related styles
+To **include the core styles**, its css files must be loaded into the project from the `node_modules/@vonage/vivid/styles/core` folder and *require a `vvd-root` class* selector to be present on a wrapping element (advisably the `:root`).
 
-- `node_modules/@vonage/vivid/styles/core/all.css` - Sets all the above styles
+- `theme.css` - Sets theme related styles
+
+- `typography.css` - Sets typography related styles
+
+- `all.css` - Sets all the above styles
 
 Note: scss users can simply [forward](https://sass-lang.com/documentation/at-rules/forward) the styles to their scss project:
 
