@@ -1,5 +1,8 @@
 import { prefix, buildPath } from './common/config';
 
+const isBase = token => token.attributes.type === "base";
+const isDerivative = token => !["base", "unit", "unitMultiplier"].includes(token.attributes.type);
+
 export const sizeConfig = {
 	source: [
 		`../../../../node_modules/@vonage/vivid-figma-tokens/data/sizing/base.tokens.json`,
@@ -16,7 +19,7 @@ export const sizeConfig = {
 				options: {
 					selector: "@mixin variables"
 				},
-				filter: token => token.attributes.type === "base",
+				filter: isBase,
 			}]
 		},
 		scss: {
@@ -26,7 +29,7 @@ export const sizeConfig = {
 			files: [{
 				destination: 'size/_variables.scss',
 				format: "sizingScssVariables",
-				filter: token => !["base", "unit", "unitMultiplier"].includes(token.attributes.type),
+				filter: isDerivative,
 			}],
 		}
 	}
