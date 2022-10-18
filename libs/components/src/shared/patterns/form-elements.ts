@@ -63,15 +63,11 @@ export function formElements<T extends { new (...args: any[]): Record<string, an
 	return Decorated;
 }
 
-export const errorMessageTemplateFactory: (context: ElementDefinitionContext) =>
-() => ViewTemplate<FormElement> =
-	(context) => {
-		const iconTag = context.tagFor(Icon);
-		return () => {
-			return html<FormElement>`
-				${when(x => x.errorValidationMessage, html<TextField>`
-					<${iconTag} class="error-message-icon" type="info-negative"></${iconTag}>
-					<span class="error-message">${x => x.errorValidationMessage}</span>`)}
+export const getErrorMessageTemplate = (context: ElementDefinitionContext): ViewTemplate<FormElement> => {
+	const iconTag = context.tagFor(Icon);
+	return html<FormElement>`
+			${when(x => x.errorValidationMessage, html<TextField>`
+				<${iconTag} class="error-message-icon" type="info-negative"></${iconTag}>
+				<span class="error-message">${x => x.errorValidationMessage}</span>`)}
 		`;
-		};
 };

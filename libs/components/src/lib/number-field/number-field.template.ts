@@ -6,7 +6,7 @@ import type {
 } from '@microsoft/fast-foundation';
 import {classNames} from '@microsoft/fast-web-utilities';
 import {Density, Shape} from '../enums';
-import {errorMessageTemplateFactory} from '../../shared/patterns/form-elements';
+import {getErrorMessageTemplate} from '../../shared/patterns/form-elements';
 import {focusTemplateFactory} from '../../shared/patterns/focus';
 import {Button} from '../button/button';
 import {Divider} from '../divider/divider';
@@ -105,7 +105,6 @@ export const NumberFieldTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<NumberField> = (context) => {
 	const focusTemplate = focusTemplateFactory(context);
-	const errorTemplate = errorMessageTemplateFactory(context);
 
 	return html<NumberField>`
 	<div class="base ${getStateClasses}">
@@ -157,7 +156,7 @@ export const NumberFieldTemplate: (
       ${() => numberControlButtons(context)}
     </div>
 	  ${when(x => !x.errorValidationMessage && x.helperText?.length, renderHelperText())}
-	  ${errorTemplate()}
+	  ${getErrorMessageTemplate(context)}
 	</div>
 `;
 };

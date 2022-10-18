@@ -5,7 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import {classNames} from '@microsoft/fast-web-utilities';
-import {errorMessageTemplateFactory} from '../../shared/patterns/form-elements';
+import {getErrorMessageTemplate} from '../../shared/patterns/form-elements';
 import {focusTemplateFactory} from '../../shared/patterns';
 import type {TextArea} from './text-area';
 
@@ -40,7 +40,6 @@ export const TextAreaTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<TextArea> = (context: ElementDefinitionContext) => {
 	const focusTemplate = focusTemplateFactory(context);
-	const errorTemplate = errorMessageTemplateFactory(context);
 	return html`
 	  <div class="${getClasses}">
 		  ${when(x => x.label, renderLabel())}
@@ -84,7 +83,7 @@ export const TextAreaTemplate: (
 			  ${() => focusTemplate}
 		  </div>
 		  ${when(x => !x.errorValidationMessage && x.helperText?.length, renderHelperText())}
-		  ${errorTemplate()}
+		  ${getErrorMessageTemplate(context)}
 	  </div>
 	`;
 };
