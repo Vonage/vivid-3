@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Thu, 13 Oct 2022 10:40:38 GMT and should not be manually modified.
+This log was last generated on Mon, 17 Oct 2022 07:21:57 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.77
+
+Mon, 17 Oct 2022 07:21:57 GMT
+
+### Changes
+
+- prevent checkbox and radio shrinking (olaf-k@users.noreply.github.com)
 
 ## 3.0.0-next.76
 
