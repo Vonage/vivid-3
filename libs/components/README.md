@@ -136,5 +136,7 @@ The following snippet fully renders a Vivid button component
 <!-- import Vivid button component -->
 <script type="module" src="https://unpkg.com/@vonage/vivid@next/button/index.js"></script>
 
-<vwc-button label="Click me" appearance="filled" connotation="cta"></vwc-button>
+<div class="vvd-root">
+  <vwc-button label="Click me" appearance="filled" connotation="cta"></vwc-button>
+</div>
 ```
