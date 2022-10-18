@@ -116,7 +116,7 @@ Add the `readonly` attribute to restrict user from changing the number field's v
 - Default: `false`
 
 ```html preview blocks
-<vwc-number-field readonly value="readonly text" label='fieldset' appearance='fieldset'></vwc-number-field>
+<vwc-number-field readonly value="8" label='fieldset' appearance='fieldset'></vwc-number-field>
 ```
 
 ## Validation
