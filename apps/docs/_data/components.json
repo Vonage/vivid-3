@@ -273,5 +273,12 @@
 			"/assets/modules/components/text-area/index.js",
 			"/assets/modules/components/button/index.js"
 		]
+	},
+	{
+		"title": "radio",
+		"markdown": "./libs/components/src/lib/radio/README.md",
+		"modules": [
+			"/assets/modules/components/radio/index.js"
+		]
 	}
 ]
