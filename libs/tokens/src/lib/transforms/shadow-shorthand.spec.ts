@@ -1,18 +1,7 @@
-import { shadowShorthand } from './shadow-shorthand';
-
-const { transformer, matcher } = shadowShorthand;
-
-const defaultToken = {
-	value: undefined,
-	name: '',
-	path: [],
-	original: undefined,
-	filePath: '',
-	isSource: false
-};
+export {}
+const { transformer, matcher } = require('./shadow-shorthand');
 
 const token = {
-	...defaultToken,
 	type: 'boxShadow',
 	attributes: {
 		category: 'shadow'
@@ -53,12 +42,12 @@ describe('basic', () => {
 	});
 
 	it('should ignore already parsed value', () => {
-		expect(transformer({ ...defaultToken, value: expectedParsedEffects }))
+		expect(transformer({ value: expectedParsedEffects }))
 			.toEqual(expectedParsedEffects);
 	});
 
 	it('should match if category and type comply to a shadow type', () => {
-		expect(matcher({ ...defaultToken, attributes: {}})).toEqual(false);
+		expect(matcher({ attributes: {}})).toEqual(false);
 		expect(matcher(token)).toEqual(true);
 	});
 });

@@ -1,8 +1,6 @@
-import { formatHelpers } from 'style-dictionary';
+const { formatHelpers: { fileHeader } } = require('style-dictionary');
 
-const { fileHeader } = formatHelpers;
-
-export const scssConstants = {
+module.exports = {
 	name: 'scss/constants',
 	formatter({ dictionary, file }) {
 		return fileHeader({file}) + dictionary.allProperties.map(({ name }) =>

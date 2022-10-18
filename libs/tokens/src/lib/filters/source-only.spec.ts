@@ -1,6 +1,6 @@
-import { sourceOnly } from './source-only';
+export {}
+const { matcher } = require('./source-only');
 
-const { matcher } = sourceOnly;
 
 describe('basic', () => {
 	const token = {
@@ -8,7 +8,7 @@ describe('basic', () => {
 	};
 
 	it('should match source tokens only', () => {
-		expect(matcher({ isSource: false })).toEqual(false);
+		expect(matcher({})).toBeUndefined();
 		expect(matcher(token)).toEqual(true);
 	});
 });

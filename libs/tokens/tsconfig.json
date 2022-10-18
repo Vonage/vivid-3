@@ -1,10 +1,5 @@
 {
 	"extends": "../../tsconfig.base.json",
-	"compilerOptions": {
-		"resolveJsonModule": true,
-		"module": "NodeNext",
-		"esModuleInterop": true,
-	},
 	"files": [],
 	"include": [],
 	"references": [
