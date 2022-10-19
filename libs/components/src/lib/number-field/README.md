@@ -118,20 +118,3 @@ Add the `readonly` attribute to restrict user from changing the number field's v
 ```html preview blocks
 <vwc-number-field readonly value="8" label='fieldset' appearance='fieldset'></vwc-number-field>
 ```
-
-## Validation
-
-```html preview
-<vwc-number-field label="validation" max="2"></vwc-number-field>
-
-<script>
-    const numberField = document.querySelector('vwc-number-field');
-    const interval = setInterval(() => {
-        if (!numberField.checkValidity) return;  
-        numberField.value = 5;
-        numberField.dirtyValue = true;
-        numberField.checkValidity();
-        clearInterval(interval);
-    }, 50);
-</script>
-```

@@ -102,20 +102,3 @@ That means that:
 <vwc-text-area rows="2" value="2 rows text area"></vwc-text-area>
 <vwc-text-area rows="3" value="3 rows text area"></vwc-text-area>
 ```
-
-## Validation
-
-```html preview
-<vwc-text-area label="validation" minlength="10"></vwc-text-area>
-
-<script>
-    const textArea = document.querySelector('vwc-text-area');
-    const interval = setInterval(() => {
-        if (!textArea.checkValidity) return;  
-        textArea.value = '123';
-        textArea.dirtyValue = true;
-        textArea.checkValidity();
-        clearInterval(interval);
-    }, 50);
-</script>
-```
