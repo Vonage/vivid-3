@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Mon, 17 Oct 2022 07:21:57 GMT and should not be manually modified.
+This log was last generated on Tue, 18 Oct 2022 13:56:39 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.78
+
+Tue, 18 Oct 2022 13:56:39 GMT
+
+### Changes
+
+- improve components library usage documentation (yinon@hotmail.com)
 
 ## 3.0.0-next.77
 
