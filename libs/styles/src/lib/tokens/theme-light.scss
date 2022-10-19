@@ -1,12 +1,14 @@
 @use '../../../../../dist/libs/tokens/scss/themes/light.mixin' as light-mixin;
 @use '../../../../../dist/libs/tokens/scss/themes/dark.mixin' as dark-mixin;
 @use '../../../../../dist/libs/tokens/scss/typography/desktop.mixin' as typography;
+@use '../../../../../dist/libs/tokens/scss/size/base.mixin' as size;
 @use 'partials/variables' as variables;
 
 
 #{variables.$theme-main-selector} {
 	@include light-mixin.variables;
 	@include typography.variables;
+	@include size.variables;
 }
 
 #{variables.$theme-alternate-selector} {

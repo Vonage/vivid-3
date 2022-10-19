@@ -1,5 +1,15 @@
-export {}
-const { transformer, matcher } = require('./font-shorthand');
+import { fontShorthand } from './font-shorthand';
+
+const { transformer, matcher } = fontShorthand;
+
+const defualtToken = {
+	value: undefined,
+	name: '',
+	path: [],
+	original: undefined,
+	filePath: '',
+	isSource: false
+};
 
 const token = {
 	type: 'typography',
@@ -7,28 +17,39 @@ const token = {
 		category: 'font'
 	},
 	value: {
-		fontFamily: "SpeziaCompleteVariableUpright",
-		fontWeight: "500",
-		lineHeight: "68",
-		fontSize: "52",
-		fontStretch: "condensed"
+		fontFamily: "SpeziaMonoCompleteVariable",
+		fontWeight: "Regular",
+		lineHeight: "{size.font.base} * 1",
+		fontSize: "{size.font.base} * 0.75"
 	}
 };
 
-const expectedParsedEffects = '500 condensed 52/68 SpeziaCompleteVariableUpright';
+const expectedParsedEffects = '400 ultra-condensed calc({size.font.base} * 0.75)/calc({size.font.base} * 1) SpeziaMonoCompleteVariable';
 
 describe('basic', () => {
 	it('should transform object of typography to a font shorthand value', () => {
-		expect(transformer(token)).toEqual(expectedParsedEffects);
+		expect(transformer({
+			...defualtToken,
+			...token
+		})).toEqual(expectedParsedEffects);
 	});
 
 	it('should ignore already parsed value', () => {
-		expect(transformer({ value: expectedParsedEffects }))
+		expect(transformer({
+			...defualtToken,
+			value: expectedParsedEffects,
+		}))
 			.toEqual(expectedParsedEffects);
 	});
 
 	it('should match if category and type comply to a font type', () => {
-		expect(matcher({ attributes: {}})).toEqual(false);
-		expect(matcher(token)).toEqual(true);
+		expect(matcher({
+			...defualtToken,
+			attributes: {},
+		})).toEqual(false);
+		expect(matcher({
+			...defualtToken,
+			...token
+		})).toEqual(true);
 	});
 });
