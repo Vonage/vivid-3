@@ -297,3 +297,19 @@ article > h1 {
 }
 
 /* #endregion highlight js */
+.filter-test {
+	background: #aaa;
+	filter: drop-shadow(0px 1px 4px #0000001a) drop-shadow(0px 1px 2px #0000000d) drop-shadow(0px 2px 1px #0000000d);
+	transition: background-color 0.15s linear 0s, filter 0.15s linear 0s;
+	width: 300px;
+	height: 100px;
+	border-radius: inherit;
+	contain: layout;
+	margin-bottom: 20px;
+}
+.filter-test-wrapper {
+	position: fixed;
+	border-radius: 6px;
+	z-index: 1;
+	right: 0;
+}
