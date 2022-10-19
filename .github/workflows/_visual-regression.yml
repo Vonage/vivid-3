@@ -5,9 +5,9 @@ on: workflow_call
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: drizzt99/vonage:1.2.0
+    container: vivid3/vonage:latest
     steps:
-      - run: echo "Running 1.2.0"
+      - run: echo "Running vivid3/vonage:latest"
 
       - uses: actions/checkout@v3
 
