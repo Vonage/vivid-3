@@ -2,21 +2,36 @@ import { resolveMath } from './resolve-math';
 
 const { transformer, matcher } = resolveMath;
 
+const defualtToken = {
+	value: undefined,
+	name: '',
+	path: [],
+	original: undefined,
+	filePath: '',
+	isSource: false
+};
+
 const token = {
 	value: "4 * 3.72"
 };
 
 describe('basic', () => {
 	it('should evaluate math expression', () => {
-		expect(transformer(token)).toEqual('15');
+		expect(transformer({
+			...defualtToken,
+			...token
+		})).toEqual('15');
 	});
 
 	it('should throw', () => {
-		expect(transformer({ })).toEqual("undefined");
+		expect(transformer({ ...defualtToken })).toEqual("undefined");
 	});
 
 	it('should match if is token', () => {
 		expect(matcher(undefined)).toBeFalsy();
-		expect(matcher(token)).toBeTruthy();
+		expect(matcher({
+			...defualtToken,
+			...token,
+		})).toBeTruthy();
 	});
 });
