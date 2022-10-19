@@ -1,7 +1,7 @@
 {
 	"font": {
 		"headline": {
-			"value": "{font.alias.headline}",
+			"value": "{font.alias.headline.value.fontFamily}",
 			"type": "typography"
 		},
 		"subtitle": {

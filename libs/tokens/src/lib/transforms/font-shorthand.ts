@@ -1,6 +1,5 @@
 import type { Named, Transform } from "style-dictionary";
 
-const isObject = (value) => typeof value === 'object' && !Array.isArray(value) && value !== null;
 
 // due to figma api typography limitations,
 // we patch font weight to output font weight
@@ -12,16 +11,12 @@ const fontWeightMap = new Map([
 	['SemiBold', '600 ultra-condensed']
 ]);
 
-const parseFontProps = ({ fontFamily, fontWeight, lineHeight, fontSize }) =>
-	`${fontWeightMap.get(fontWeight)} calc(${fontSize})/calc(${lineHeight}) ${fontFamily}`;
+const parseFontProps = ({ value: { fontFamily, fontWeight, lineHeight, fontSize } }) => `${fontWeightMap.get(fontWeight)} ${fontSize}/${lineHeight} ${fontFamily}`;
 
 export const fontShorthand: Named<Transform> = {
 	type: `value`,
 	name: `font/shorthand`,
 	transitive: true,
 	matcher: ({ type, attributes: { category }}) => category == 'font' && type == 'typography',
-	transformer: ({ value }) =>
-	isObject(value)
-		? parseFontProps(value)
-		: value
+	transformer: parseFontProps
 };
