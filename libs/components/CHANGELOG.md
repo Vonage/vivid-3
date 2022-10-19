@@ -1,8 +1,32 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Thu, 13 Oct 2022 10:40:38 GMT and should not be manually modified.
+This log was last generated on Wed, 19 Oct 2022 05:40:47 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.79
+
+Wed, 19 Oct 2022 05:40:47 GMT
+
+### Changes
+
+- avatar initials (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.78
+
+Tue, 18 Oct 2022 13:56:39 GMT
+
+### Changes
+
+- improve components library usage documentation (yinon@hotmail.com)
+
+## 3.0.0-next.77
+
+Mon, 17 Oct 2022 07:21:57 GMT
+
+### Changes
+
+- prevent checkbox and radio shrinking (olaf-k@users.noreply.github.com)
 
 ## 3.0.0-next.76
 
