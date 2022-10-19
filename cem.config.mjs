@@ -1,3 +1,8 @@
+import { readonlyPlugin } from 'cem-plugin-readonly'
+import { asyncFunctionPlugin } from 'cem-plugin-async-function'
+import { jsdocFunctionPlugin } from 'cem-plugin-jsdoc-function'
+import { jsdocExamplePlugin } from 'cem-plugin-jsdoc-example'
+
 export default {
     /** Globs to analyze */
     globs: ['libs/components/src/lib/**/*.ts'],
@@ -12,10 +17,15 @@ export default {
         '**/helpers/*.ts'
     ],
     /** Directory to output CEM to */
-    outdir: 'dist',
+    outdir: 'libs/components',
     /** Run in dev mode, provides extra logging */
     dev: false,
     /** Enable special handling for fast */
     fast: true,
-    plugins: []
+    plugins: [
+        jsdocFunctionPlugin(),
+        jsdocExamplePlugin(),
+        asyncFunctionPlugin(),
+        readonlyPlugin()
+    ]
 }

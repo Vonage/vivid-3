@@ -2,11 +2,11 @@
   "sourceRoot": "libs/components/src",
   "projectType": "library",
   "targets": {
-    "doc": {
+    "gen": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "cem analyze"
+          "cem analyze --config cem.config.mjs"
         ],
         "parallel": false
       }
@@ -70,6 +70,11 @@
         "project": "libs/components/package.json",
         "rollupConfig": "libs/components/rollup.config.prod.ts",
         "assets": [
+          {
+            "input": "./libs/components",
+            "glob": "custom-elements.json",
+            "output": "."
+          },
           {
             "input": "./libs/components",
             "glob": "README.md",

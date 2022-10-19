@@ -4,6 +4,7 @@
   "type": "module",
   "module": "./index.js",
   "main": "./index.js",
+  "customElements": "./custom-elements.json",
   "homepage": "https://vivid.deno.dev",
   "repository": {
     "type": "git",
