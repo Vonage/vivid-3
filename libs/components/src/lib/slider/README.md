@@ -26,7 +26,7 @@ Use the `min`, `max` and `step` attributes to determine the range and values of 
 <script>
 	const slider = document.querySelector('vwc-slider');
 	const output = document.getElementById('slidervalue');
-	slider.addEventListener('change', (e) => output.innerText = slider.value.toString());
+	slider.addEventListener('change', (e) => output.innerText = slider.value);
 </script>
 ```
 
