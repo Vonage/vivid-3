@@ -1,8 +1,64 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Fri, 07 Oct 2022 08:59:54 GMT and should not be manually modified.
+This log was last generated on Wed, 19 Oct 2022 05:40:47 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.79
+
+Wed, 19 Oct 2022 05:40:47 GMT
+
+### Changes
+
+- avatar initials (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.78
+
+Tue, 18 Oct 2022 13:56:39 GMT
+
+### Changes
+
+- improve components library usage documentation (yinon@hotmail.com)
+
+## 3.0.0-next.77
+
+Mon, 17 Oct 2022 07:21:57 GMT
+
+### Changes
+
+- prevent checkbox and radio shrinking (olaf-k@users.noreply.github.com)
+
+## 3.0.0-next.76
+
+Thu, 13 Oct 2022 10:40:38 GMT
+
+### Changes
+
+- Prevent events on disabled and readonly fields (yonatan.kra@vonage.com)
+
+## 3.0.0-next.75
+
+Thu, 13 Oct 2022 08:25:56 GMT
+
+### Changes
+
+- Add radio button component (olaf-k@users.noreply.github.com)
+
+## 3.0.0-next.74
+
+Wed, 12 Oct 2022 15:27:47 GMT
+
+### Changes
+
+- correct style of appearance select state (yinon@hotmail.com)
+
+## 3.0.0-next.73
+
+Wed, 12 Oct 2022 06:55:48 GMT
+
+### Changes
+
+- Add the number-field component (yonatan.kra@vonage.com)
 
 ## 3.0.0-next.72
 

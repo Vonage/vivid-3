@@ -51,6 +51,7 @@ $gutter: 2px;
 	display: flex;
 	width: $size;
 	height: $size;
+	flex-shrink: 0;
 	align-items: center;
 	justify-content: center;
 	background-color: var(#{appearance.get-appearance-token(fill)});

@@ -1,13 +1,22 @@
-const { transform } = require('style-dictionary');
+import { type Named, type Transform, transform } from 'style-dictionary';
 
 const { transformer: sizeToPx } = transform['size/px'];
 
+const generateToken = value => ({
+	value,
+	name: '',
+	path: [],
+	original: undefined,
+	filePath: '',
+	isSource: false
+});
+
 const parseShadowEffects = value =>
 	value.map(
-		({ x, y, blur, color }) => `drop-shadow(${sizeToPx({ value: x })} ${sizeToPx({ value: y })} ${sizeToPx({ value: blur })} ${color})`
+		({ x, y, blur, color }) => `drop-shadow(${sizeToPx(generateToken(x))} ${sizeToPx(generateToken(y))} ${sizeToPx(generateToken(blur))} ${color})`
 	).join(' ')
 
-module.exports = {
+export const shadowShorthand: Named<Transform> = {
 	type: `value`,
 	name: `shadow/shorthand`,
 	transitive: true,

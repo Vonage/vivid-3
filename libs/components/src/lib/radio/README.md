@@ -45,16 +45,3 @@ Toggle the `disabled` member to disable/enable the radio.
 <vwc-radio disabled></vwc-radio>
 <vwc-radio disabled checked></vwc-radio>
 ```
-
-### Readonly
-
-Set the `readonly` member to specify that the radio is read-only.
-A read-only radio cannot be modified but can be focused and tabbed into.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<vwc-radio readonly></vwc-radio>
-<vwc-radio readonly checked></vwc-radio>
-```
