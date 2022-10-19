@@ -2,6 +2,126 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Wed, 19 Oct 2022 08:48:12 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.80",
+      "version": "3.0.0-next.80",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "olaf-k@users.noreply.github.com",
+            "package": "@vonage/vivid",
+            "commit": "e5709f163f1fda6cca5c4a068701794b81d7d424",
+            "comment": "new image for visual tests with Chromium"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 19 Oct 2022 05:40:47 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.79",
+      "version": "3.0.0-next.79",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "d432ad529bd1b0edf1a9aeea3e8db373cd58906e",
+            "comment": "avatar initials"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 18 Oct 2022 13:56:39 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.78",
+      "version": "3.0.0-next.78",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "6ae37df6873eaaea60c71a5fc1284d19593abeeb",
+            "comment": "improve components library usage documentation"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 17 Oct 2022 07:21:57 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.77",
+      "version": "3.0.0-next.77",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "olaf-k@users.noreply.github.com",
+            "package": "@vonage/vivid",
+            "commit": "84e02cccf8a00edeee689ed5280b1db725f37902",
+            "comment": "prevent checkbox and radio shrinking"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 13 Oct 2022 10:40:38 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.76",
+      "version": "3.0.0-next.76",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "17e20570fe6f48609871f7e83c415fb6d7dad64c",
+            "comment": "Prevent events on disabled and readonly fields"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 13 Oct 2022 08:25:56 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.75",
+      "version": "3.0.0-next.75",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "olaf-k@users.noreply.github.com",
+            "package": "@vonage/vivid",
+            "commit": "17073dc1f765b7de0e200a64914d73f5ba18e2bc",
+            "comment": "Add radio button component"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 12 Oct 2022 15:27:47 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.74",
+      "version": "3.0.0-next.74",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "29dfd3f0d28a7870528a04014bb1cab059a33233",
+            "comment": "correct style of appearance select state"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 12 Oct 2022 06:55:48 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.73",
+      "version": "3.0.0-next.73",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "425c8b29161d4bf91cc18ef8268ed014aa6d7be4",
+            "comment": "Add the number-field component"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 07 Oct 2022 08:59:54 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.72",
       "version": "3.0.0-next.72",
