@@ -51,6 +51,9 @@
 		border-radius: 50%;
 	}
 
+	.initials {
+		text-transform: uppercase;
+	}
 
 	::slotted(*) {
 		block-size: 100%;

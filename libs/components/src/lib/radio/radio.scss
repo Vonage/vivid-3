@@ -47,6 +47,7 @@ $control-border: 2px;
 	position: relative;
 	width: $control-size;
 	height: $control-size;
+	flex-shrink: 0;
 	background-color: var(#{utils.get-color-token(canvas)});
 	border-radius: 50%;
 	box-shadow: inset 0 0 0 $control-border var(#{appearance.get-appearance-token(outline)});

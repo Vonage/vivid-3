@@ -14,7 +14,7 @@ export const scssConstantsConfig = {
 			prefix,
 			buildPath,
 			files: [{
-				destination: `_constants.scss`,
+				destination: '_constants.scss',
 				format: "scss/constants",
 				filter: "sourceOnly"
 			}]

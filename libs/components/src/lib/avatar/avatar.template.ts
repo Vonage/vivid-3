@@ -1,4 +1,4 @@
-import { html } from '@microsoft/fast-element';
+import {html, when} from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
@@ -16,6 +16,27 @@ const getClasses = ({appearance, connotation, shape, size}: Avatar) => className
 );
 
 /**
+ avatar icon
+ */
+function renderIcon() {
+	return html<Avatar>`
+		<span class="icon">
+			<vwc-icon type="${(x) => x.icon? `${x.icon}` : 'user-line'}"></vwc-icon>
+		</span>
+	`;
+}
+
+
+/**
+ avatar initials
+ */
+function renderInitials() {
+	return html<Avatar>`
+		<span class="initials">${ ({ name }) => name!.substring(0, 2) }</span>
+	`;
+}
+
+/**
  * The template for the {@link @microsoft/fast-foundation#Avatar} component.
  *
  * @param context
@@ -27,8 +48,7 @@ export const AvatarTemplate: (
 ) => ViewTemplate<Avatar> = () => html`
 	<span class="${getClasses}">
 		<slot>
-			<span class="icon">
-				<vwc-icon type="${(x) => x.icon? `${x.icon}` : 'user-line'}"></vwc-icon>
-			</span>
+			${when(x => x.name, renderInitials())}
+			${when( x => !x.name, renderIcon())}
 		</slot>
 </span>`;

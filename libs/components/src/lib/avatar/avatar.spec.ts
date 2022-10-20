@@ -3,7 +3,6 @@ import {Connotation} from '../enums';
 import { Avatar } from './avatar';
 import '.';
 
-
 const COMPONENT_TAG = 'vwc-avatar';
 
 describe('vwc-avatar', () => {
@@ -91,4 +90,27 @@ describe('vwc-avatar', () => {
 
 	});
 
+	describe('avatar name', () => {
+		it('should not show the icon if name is set', async () => {
+			element.name = 'John Doe';
+			await elementUpdated(element);
+			const iconElement = baseElement.querySelector('vwc-icon');
+			expect(iconElement).toBeNull();
+		});
+
+		it('should show the initials if name is set', async () => {
+			element.name = 'John Doe';
+			await elementUpdated(element);
+			const text = baseElement.textContent?.trim();
+			expect(text).toEqual('Jo');
+		});
+
+		it('should show only 2 letters', async () => {
+			element.name = 'John Doe the vague man';
+			await elementUpdated(element);
+			const text = baseElement.textContent?.trim();
+			expect(text).toEqual('Jo');
+		});
+
+	});
 });

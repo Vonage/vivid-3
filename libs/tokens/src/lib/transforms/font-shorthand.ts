@@ -1,3 +1,4 @@
+import type { Named, Transform } from "style-dictionary";
 
 const isObject = (value) => typeof value === 'object' && !Array.isArray(value) && value !== null;
 
@@ -14,7 +15,7 @@ const fontWeightMap = new Map([
 const parseFontProps = ({ fontFamily, fontWeight, lineHeight, fontSize }) =>
 	`${fontWeightMap.get(fontWeight)} calc(${fontSize})/calc(${lineHeight}) ${fontFamily}`;
 
-export const fontShorthand = {
+export const fontShorthand: Named<Transform> = {
 	type: `value`,
 	name: `font/shorthand`,
 	transitive: true,
@@ -23,4 +24,4 @@ export const fontShorthand = {
 	isObject(value)
 		? parseFontProps(value)
 		: value
-} as any;
+};
