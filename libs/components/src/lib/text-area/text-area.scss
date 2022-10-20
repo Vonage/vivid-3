@@ -88,20 +88,6 @@ $low-ink-color: --_low-ink-color;
 	grid-column: 1 / 4;
 }
 
-.error-message {
-	display: flex;
-	color: var(#{constants.$vvd-color-canvas-text});
-	contain: inline-size;
-	font: var(#{constants.$vvd-font-base-condensed});
-	grid-column: 2 / 4;
-
-	&-icon {
-		color: var(#{constants.$vvd-color-alert-500});
-		font-size: 16px;
-		grid-column: 1 / 2;
-	}
-}
-
 .focus-indicator {
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
 

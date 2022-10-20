@@ -6,8 +6,8 @@ import type {
 } from '@microsoft/fast-foundation';
 import {classNames} from '@microsoft/fast-web-utilities';
 import {Density, Shape} from '../enums';
+import {getErrorMessageTemplate} from '../../shared/patterns';
 import {focusTemplateFactory} from '../../shared/patterns/focus';
-import {Icon} from '../icon/icon';
 import {Button} from '../button/button';
 import {Divider} from '../divider/divider';
 import type {NumberField} from './number-field';
@@ -52,17 +52,6 @@ function renderLabel() {
  */
 function renderHelperText() {
 	return html<NumberField>`<span id="helper-text" class="helper-text">${x => x.helperText}</span>`;
-}
-
-/**
- *
- */
-function renderErrorMessage(context: ElementDefinitionContext) {
-	const iconTag = context.tagFor(Icon);
-	return html<NumberField>`
-    <${iconTag} class="error-message-icon" type="info-negative"></${iconTag}>
-    <span class="error-message">${x => x.errorValidationMessage}</span>
-	`;
 }
 
 function adjustValueByStep(numberField: NumberField, direction = ADD) {
@@ -167,7 +156,7 @@ export const NumberFieldTemplate: (
       ${() => numberControlButtons(context)}
     </div>
 	  ${when(x => !x.errorValidationMessage && x.helperText?.length, renderHelperText())}
-	  ${when(x => x.errorValidationMessage, renderErrorMessage(context))}
+	  ${getErrorMessageTemplate(context)}
 	</div>
 `;
 };
