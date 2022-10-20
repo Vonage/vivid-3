@@ -8,7 +8,7 @@ import {classNames} from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
 import '../icon/index';
-import {getErrorMessageTemplate} from '../../shared/patterns/form-elements';
+import {getErrorMessageTemplate} from '../../shared/patterns';
 import type {TextField} from './text-field';
 
 const getStateClasses = ({

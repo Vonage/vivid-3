@@ -1,7 +1,7 @@
 import {attr, html, observable, ViewTemplate, volatile, when} from '@microsoft/fast-element';
 import type {ElementDefinitionContext} from '@microsoft/fast-foundation';
-import {Icon} from '../../lib/icon/icon';
-import type {TextField} from '../../lib/text-field/text-field';
+import {Icon} from '../../../lib/icon/icon';
+import type {TextField} from '../../../lib/text-field/text-field';
 import errorMessageStyles from './error-message.scss';
 
 const ElementInternalsKey = 'ElementInternals';

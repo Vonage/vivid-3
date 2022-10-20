@@ -5,7 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import {classNames} from '@microsoft/fast-web-utilities';
-import {getErrorMessageTemplate} from '../../shared/patterns/form-elements';
+import {getErrorMessageTemplate} from '../../shared/patterns';
 import {focusTemplateFactory} from '../../shared/patterns';
 import type {TextArea} from './text-area';
 

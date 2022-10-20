@@ -6,7 +6,7 @@ import type {
 } from '@microsoft/fast-foundation';
 import {classNames} from '@microsoft/fast-web-utilities';
 import {Density, Shape} from '../enums';
-import {getErrorMessageTemplate} from '../../shared/patterns/form-elements';
+import {getErrorMessageTemplate} from '../../shared/patterns';
 import {focusTemplateFactory} from '../../shared/patterns/focus';
 import {Button} from '../button/button';
 import {Divider} from '../divider/divider';
