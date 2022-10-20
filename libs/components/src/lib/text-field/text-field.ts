@@ -2,7 +2,7 @@ import {applyMixins, TextField as FoundationTextfield} from '@microsoft/fast-fou
 import {attr} from '@microsoft/fast-element';
 import type {Appearance, Density, Shape} from '../enums';
 import {AffixIcon} from '../../shared/patterns';
-import {FormElement, formElements} from '../../shared/patterns/form-elements';
+import {FormElement, formElements} from '../../shared/patterns';
 
 type TextFieldDensity = Extract<Density, Density.Normal | Density.Extended>;
 type TextFieldAppearance = Extract<Appearance, Appearance.Outlined | Appearance.Ghost>;
