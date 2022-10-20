@@ -19,7 +19,7 @@ describe('vwc-slider', () => {
 	});
 
 	describe('basic', () => {
-		it('should be initialized as a vwc-slider with proper default values', async () => {
+		it('should be initialized as a vwc-slider with a default value', async () => {
 			expect(element).toBeInstanceOf(Slider);
 			expect(element.valueAsNumber).toBe(5);
 			expect(element.value).toBe('5');
@@ -30,7 +30,7 @@ describe('vwc-slider', () => {
 		it('should set disabled class when disabled is true', async () => {
 			expect(element.disabled).toBeFalsy();
 			const classes = await setBoolAttributeOn(element, 'disabled');
-			expect(classes.contains('disabled')).toBeTruthy();
+			expect(classes).toContain('disabled');
 		});
 	});
 
@@ -38,17 +38,28 @@ describe('vwc-slider', () => {
 		it('should set readonly class when readonly is true', async () => {
 			expect(element.readOnly).toBeUndefined();
 			const classes = await setBoolAttributeOn(element, 'readonly');
-			expect(classes.contains('readonly')).toBeTruthy();
+			expect(classes).toContain('readonly');
+		});
+	});
+
+	describe('markers', () => {
+		it('should display the markers element when markers is true', async () => {
+			const markdiv = () => getControlElement(element).querySelector('.positioning-region > .track > .mark');
+			expect(element.markers).toBeFalsy();
+			expect(markdiv()).toBeNull();
+			await setBoolAttributeOn(element, 'markers');
+			expect(markdiv()).not.toBeNull();
 		});
 	});
 
 	describe('orientation', () => {
 		it('should update the positioning region when changing orientation', async () => {
 			expect(element.orientation).toBe(Orientation.horizontal);
-			expect(getControlElement(element).classList).toContain('horizontal');
+			const controlclasses = () => getControlElement(element).classList;
+			expect(controlclasses()).toContain('horizontal');
 			element.setAttribute('orientation', 'vertical');
 			await elementUpdated(element);
-			expect(getControlElement(element).classList).toContain('vertical');
+			expect(controlclasses()).toContain('vertical');
 		});
 	});
 
@@ -60,8 +71,22 @@ describe('vwc-slider', () => {
 			element.max = 7;
 			element.value = '1';
 			expect(element.valueAsNumber).toBe(3);
+			element.decrement();
+			expect(element.valueAsNumber).toBe(3);
 			element.value = '10';
 			expect(element.valueAsNumber).toBe(7);
+			element.increment();
+			expect(element.valueAsNumber).toBe(7);
+		});
+	});
+
+	describe('step', () => {
+		it('should respect the provided step', async () => {
+			expect(element.step).toBe(1);
+			element.step = 3.5;
+			element.value = '0';
+			element.increment();
+			expect(element.valueAsNumber).toBe(3.5);
 		});
 	});
 });

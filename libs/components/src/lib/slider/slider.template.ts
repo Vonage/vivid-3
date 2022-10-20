@@ -1,12 +1,12 @@
 import { html, ref } from '@microsoft/fast-element';
 import { classNames, Orientation } from '@microsoft/fast-web-utilities';
 import type { ViewTemplate } from '@microsoft/fast-element';
+import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 
+import { focusTemplateFactory } from '../../shared/patterns/focus';
 import type { Slider } from './slider';
 
-const getClasses = ({
-	readOnly, disabled
-}: Slider) =>
+const getClasses = ({ readOnly, disabled}: Slider) =>
 	classNames(
 		'control',
 		['readonly', Boolean(readOnly)],
@@ -31,7 +31,9 @@ const markers = (isHorizontal: boolean, numMarkers: number) => {
 * @param context
 * @public
 */
-export const SliderTemplate: () => ViewTemplate<Slider> = () => {
+export const SliderTemplate: (context: ElementDefinitionContext) => ViewTemplate<Slider> = (context: ElementDefinitionContext) => {
+	const focusTemplate = focusTemplateFactory(context);
+
 	/* eslint-disable @typescript-eslint/indent */
 	return html<Slider>`
 	<div
@@ -53,7 +55,9 @@ export const SliderTemplate: () => ViewTemplate<Slider> = () => {
 					? markers(x.orientation === Orientation.horizontal, Math.floor((x.max - x.min) / x.step))
 					: void 0} 
 			</div>
-			<div ${ref('thumb')} class="thumb-container" style="${x => x.position}"></div>
+			<div ${ref('thumb')} class="thumb-container" style="${x => x.position}">
+				${() => focusTemplate}
+			</div>
 		</div>
 	</div>`;
 };
