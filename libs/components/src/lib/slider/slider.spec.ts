@@ -44,11 +44,15 @@ describe('vwc-slider', () => {
 
 	describe('markers', () => {
 		it('should display the markers element when markers is true', async () => {
-			const markdiv = () => getControlElement(element).querySelector('.positioning-region > .track > .mark');
+			const markdiv = () => getControlElement(element).querySelector('.positioning-region > .track > .mark') as HTMLDivElement;
 			expect(element.markers).toBeFalsy();
 			expect(markdiv()).toBeNull();
 			await setBoolAttributeOn(element, 'markers');
 			expect(markdiv()).not.toBeNull();
+			element.orientation = Orientation.vertical;
+			await elementUpdated(element);
+			expect(markdiv().getAttribute('style')).toContain('linear-gradient(to bottom');
+			expect(markdiv().getAttribute('style')).toContain('repeat-y');
 		});
 	});
 
