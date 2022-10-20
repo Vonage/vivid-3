@@ -86,19 +86,19 @@ function numberControlButtons(context: ElementDefinitionContext) {
 	const dividerTag = context.tagFor(Divider);
 
 	return html<NumberField>`
-			<div class="control-buttons" 
+			<div class="control-buttons"
 			     ?inert="${x => x.disabled || x.readOnly}">
 				<${buttonTag} id="subtract" icon="minus-line"
 					  					aria-controls="control"
 					            shape="${ setControlButtonShape }"
-					            density="${ setControlButtonDensity }"
+					            size="${ setControlButtonDensity }"
 					  					tabindex="${getTabIndex}"
 					            @click="${x => adjustValueByStep(x, SUBTRACT)}"></${buttonTag}>
 				<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 				<${buttonTag} id="add" icon="plus-line"
 					  					aria-controls="control"
-					            shape="${ setControlButtonShape }" 
-					            density="${ setControlButtonDensity }"
+					            shape="${ setControlButtonShape }"
+					            size="${ setControlButtonDensity }"
 					  					tabindex="${getTabIndex}"
 					            @click="${x => adjustValueByStep(x)}"></${buttonTag}>
 		    </div>

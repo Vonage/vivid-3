@@ -48,7 +48,7 @@
 /* Size */
 
 
-.base:not(.size-condensed):not(.size-extended) {
+.base:not(.size-condensed):not(.size-expanded) {
 	#{variables.$badge-block-size}: 24px;
 	padding-inline: 10px;
 }
@@ -58,7 +58,7 @@
 	padding-inline: 8px;
 }
 
-.base.size-extended {
+.base.size-expanded {
 	#{variables.$badge-block-size}: 28px;
 	padding-inline: 12px;
 }
