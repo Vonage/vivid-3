@@ -39,16 +39,16 @@
     "./nav": "./nav",
     "./nav-disclosure": "./nav-disclosure",
     "./nav-item": "./nav-item",
+    "./number-field": "./number-field"
     "./note": "./note",
     "./popup": "./popup",
     "./progress": "./progress",
     "./progress-ring": "./progress-ring",
     "./radio": "./radio",
     "./side-drawer": "./side-drawer",
+    "./slider": "./slider"
     "./text-field": "./text-field",
     "./text-area": "./text-area",
-    "./tooltip": "./tooltip",
-    "./number-field": "./number-field",
-    "./slider": "./slider"
+    "./tooltip": "./tooltip"
   }
 }
