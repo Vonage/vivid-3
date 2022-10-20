@@ -1,7 +1,7 @@
 import {applyMixins, NumberField as FastNumberField} from '@microsoft/fast-foundation';
 import {attr} from '@microsoft/fast-element';
 import type {Appearance, Density, Shape} from '../enums';
-import {FormElement, formElements} from '../../shared/patterns/form-elements';
+import {FormElement, formElements} from '../../shared/patterns';
 import {AffixIcon} from '../../shared/patterns';
 
 type NumberFieldDensity = Extract<Density, Density.Normal | Density.Extended>;
