@@ -15,6 +15,9 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
+@use '../../../../../dist/libs/tokens/scss/size/variables' as sizes;
+
+
 .base {
 	@include connotation.connotation;
 	@include appearance.appearance;
@@ -48,19 +51,20 @@
 /* Size */
 
 .base:not(.density-condensed):not(.density-extended) {
-	#{variables.$badge-block-size}: 24px;
+	#{variables.$badge-block-size}: sizes.$vvd-size-super-condensed;
+
 
 	padding-inline: 10px;
 }
 
 .base.density-condensed {
-	#{variables.$badge-block-size}: 20px;
+	#{variables.$badge-block-size}: sizes.$vvd-size-ultra-condensed;
 
 	padding-inline: 8px;
 }
 
 .base.density-extended {
-	#{variables.$badge-block-size}: 28px;
+	#{variables.$badge-block-size}: sizes.$vvd-size-extra-condensed;
 
 	padding-inline: 12px;
 }
