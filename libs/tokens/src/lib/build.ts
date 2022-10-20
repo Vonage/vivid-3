@@ -1,51 +1,81 @@
 
-import StyleDictionary, { formatHelpers } from 'style-dictionary';
-
-import { sourceOnly } from './filters/source-only';
-
-import { shadowShorthand } from './transforms/shadow-shorthand';
-import { fontShorthand } from './transforms/font-shorthand';
-import { referenceSizingBase } from './transforms/reference-sizing-base';
-import { referenceFontFamilies } from './transforms/reference-font-families';
+import StyleDictionary from 'style-dictionary';
 import { resolveMath } from './transforms/resolve-math';
 
-import { scssConstants } from './formatters/scss-constants';
-import { sizingScssVariables } from './formatters/sizing-scss-variables';
-import { suffixPxCssVariables } from './formatters/suffix-px-css-variables';
+const isColor = token => token.type === 'color';
+const isTypography = token => token.type === 'typography';
 
-import { scssConstantsConfig } from './configurations/scss-constants';
-import { getThemeConfig } from './configurations/theme';
-import { getTypographyConfig } from './configurations/typography';
-import { sizeConfig } from './configurations/size';
+const fontWeightMap = {
+	'Wide Medium': '500 condensed',
+	'Regular': '400 ultra-condensed',
+	'SemiBold': '600 ultra-condensed'
+};
 
-import themes from '@vonage/vivid-figma-tokens/data/$themes.json';
+/**
+ * Helper: Transforms typography object to typography shorthand
+ * This currently works fine if every value uses an alias, but if any one of these use a raw value, it will not be transformed.
+ * If you'd like to output all typography values, you'd rather need to return the typography properties itself
+ */
+const transformTypography = ({ fontWeight, fontSize, lineHeight, fontFamily }) =>
+	`${fontWeight} ${fontSize}/${lineHeight} ${fontFamily}`;
 
-
-StyleDictionary
-	.registerTransform(shadowShorthand)
-	.registerTransform(fontShorthand)
-	.registerTransform(resolveMath)
-	.registerFilter(sourceOnly)
-	.registerFormat(scssConstants)
-	.registerFormat(sizingScssVariables)
-	.registerFormat(suffixPxCssVariables)
-	.registerTransform(referenceSizingBase)
-	.registerTransform(referenceFontFamilies);
-
-
-StyleDictionary
-	.extend(scssConstantsConfig	).buildPlatform('scssConstants');
-
-themes.forEach(({ name }) =>
-	StyleDictionary.extend(getThemeConfig(name)).buildPlatform('web')
-);
-
-['desktop'/*, 'mobile'*/].forEach(viewport =>
-	StyleDictionary
-		.extend(getTypographyConfig(viewport))
-		.buildAllPlatforms()
-);
+/**
+ * Transform typography shorthands for css variables
+ */
+StyleDictionary.registerTransform({
+  name: "typography/shorthand",
+  type: "value",
+  transitive: true,
+  matcher: (token) => token.type === "typography",
+  transformer: (token) => transformTypography(token.original.value),
+});
 
 StyleDictionary
-	.extend(sizeConfig)
+.registerTransform(resolveMath);
+
+StyleDictionary
+	.registerTransform({
+		type: 'value',
+		name: 'type/fontWeight',
+		transitive: true,
+		matcher: token => token.type === 'fontWeights',
+		transformer: ({ value }) => fontWeightMap[value]
+	});
+
+StyleDictionary
+	.registerTransform({
+		type: 'value',
+		name: 'type/fontFamily',
+		transitive: true,
+		matcher: token => token.type === 'fontFamilies',
+		transformer: token => `var(--${token.name})`
+	});
+
+export const config = {
+	source: [
+		'../../../../node_modules/@vonage/vivid-figma-tokens/data/**/*.tokens.json'
+	],
+	// include: [
+	// 	'../../../../node_modules/@vonage/vivid-figma-tokens/data/sizing/base.tokens.json',
+	// ],
+	platforms: {
+		css: {
+			transforms: ['attribute/cti', 'name/cti/kebab', 'resolveMath', 'type/fontFamily', 'type/fontWeight', 'typography/shorthand'],
+			prefix: 'vvd',
+			buildPath: '../../../../dist/libs/tokens/scss/',
+			files: [{
+				destination: '_variables.mixin.scss',
+				format: "css/variables",
+				filter: isTypography,
+				options: {
+					selector: '@mixin variables',
+					// outputReferences: true
+				}
+			}]
+		}
+	}
+};
+
+StyleDictionary
+	.extend(config)
 	.buildAllPlatforms();
