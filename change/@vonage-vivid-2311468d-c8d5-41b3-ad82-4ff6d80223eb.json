@@ -3,5 +3,5 @@
   "comment": "new slider component",
   "packageName": "@vonage/vivid",
   "email": "olaf-k@users.noreply.github.com",
-  "dependentChangeType": "patch"
+  "dependentChangeType": "prerelease"
 }
