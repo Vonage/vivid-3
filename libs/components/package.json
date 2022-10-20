@@ -39,14 +39,14 @@
     "./nav": "./nav",
     "./nav-disclosure": "./nav-disclosure",
     "./nav-item": "./nav-item",
-    "./number-field": "./number-field"
+    "./number-field": "./number-field",
     "./note": "./note",
     "./popup": "./popup",
     "./progress": "./progress",
     "./progress-ring": "./progress-ring",
     "./radio": "./radio",
     "./side-drawer": "./side-drawer",
-    "./slider": "./slider"
+    "./slider": "./slider",
     "./text-field": "./text-field",
     "./text-area": "./text-area",
     "./tooltip": "./tooltip"
