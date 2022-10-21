@@ -3,7 +3,7 @@ import StyleDictionary from 'style-dictionary';
 import { resolveMath } from './transforms/resolve-math';
 
 const isColor = token => token.type === 'color';
-const isTypography = token => token.type === 'typography';
+const isTypography = token => ['typography', 'fontFamilies'].includes(token.type);
 
 const fontWeightMap = {
 	'Wide Medium': '500 condensed',
@@ -42,14 +42,39 @@ StyleDictionary
 		transformer: ({ value }) => fontWeightMap[value]
 	});
 
-StyleDictionary
-	.registerTransform({
-		type: 'value',
-		name: 'type/fontFamily',
-		transitive: true,
-		matcher: token => token.type === 'fontFamilies',
-		transformer: token => `var(--${token.name})`
-	});
+// StyleDictionary
+// 	.registerTransform({
+// 		type: 'value',
+// 		name: 'type/fontFamily',
+// 		transitive: true,
+// 		matcher: token => token.type === 'fontFamilies',
+// 		transformer: token => `var(--${token.name})`
+// 	});
+
+StyleDictionary.registerFormat({
+  name: `es6WithReferences`,
+  formatter: function({dictionary}) {
+    return dictionary.allTokens.map(token => {
+      let value = JSON.stringify(token.value);
+      // the `dictionary` object now has `usesReference()` and
+      // `getReferences()` methods. `usesReference()` will return true if
+      // the value has a reference in it. `getReferences()` will return
+      // an array of references to the whole tokens so that you can access their
+      // names or any other attributes.
+      if (token.type === 'typography' && dictionary.usesReference(token.original.value)) {
+        // Note: make sure to use `token.original.value` because
+        // `token.value` is already resolved at this point.
+				const refs = dictionary.getReferences(token.original.value);
+				refs.forEach(ref => {
+					if (ref.type === 'fontFamilies') {
+						value = value.replace(ref.value, () => `--var(${ref.name})`);
+					}
+        });
+      }
+      return `--${token.name}: ${value};`
+    }).join(`\n`)
+  }
+});
 
 export const config = {
 	source: [
@@ -60,12 +85,12 @@ export const config = {
 	// ],
 	platforms: {
 		css: {
-			transforms: ['attribute/cti', 'name/cti/kebab', 'resolveMath', 'type/fontFamily', 'type/fontWeight', 'typography/shorthand'],
+			transforms: ['attribute/cti', 'name/cti/kebab', 'resolveMath', 'type/fontWeight', 'typography/shorthand'],
 			prefix: 'vvd',
 			buildPath: '../../../../dist/libs/tokens/scss/',
 			files: [{
 				destination: '_variables.mixin.scss',
-				format: "css/variables",
+				format: "es6WithReferences",
 				filter: isTypography,
 				options: {
 					selector: '@mixin variables',
