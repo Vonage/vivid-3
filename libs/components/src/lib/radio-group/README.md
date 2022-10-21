@@ -20,7 +20,7 @@ Use the `label` member to set the group's label.
 
 ```html preview
 <vwc-radio-group label="Pick a number" name="number">
-    <vwc-radio label="1" value="1" checked></vwc-radio>
+    <vwc-radio label="1" value="1"></vwc-radio>
     <vwc-radio label="2" value="2"></vwc-radio>
     <vwc-radio label="3" value="3"></vwc-radio>
 </vwc-radio-group>
@@ -66,7 +66,7 @@ Set the `orientation` member to set the orientation (`horizontal` or `vertical`)
 
 ```html preview
 <vwc-radio-group label="Pick a number" name="number" orientation="vertical">
-    <vwc-radio label="1" value="1" checked></vwc-radio>
+    <vwc-radio label="1" value="1"></vwc-radio>
     <vwc-radio label="2" value="2"></vwc-radio>
     <vwc-radio label="3" value="3"></vwc-radio>
 </vwc-radio-group>
