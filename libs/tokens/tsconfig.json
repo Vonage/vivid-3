@@ -4,6 +4,7 @@
 		"resolveJsonModule": true,
 		"module": "NodeNext",
 		"esModuleInterop": true,
+		"lib": ["es2022"],
 	},
 	"files": [],
 	"include": [],

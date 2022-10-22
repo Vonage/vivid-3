@@ -50,39 +50,59 @@ StyleDictionary
 // 		matcher: token => token.type === 'fontFamilies',
 // 		transformer: token => `var(--${token.name})`
 // 	});
+const { fileHeader } = StyleDictionary.formatHelpers;
 
 StyleDictionary.registerFormat({
-  name: `es6WithReferences`,
-  formatter: function({dictionary}) {
-    return dictionary.allTokens.map(token => {
-      let value = JSON.stringify(token.value);
-      // the `dictionary` object now has `usesReference()` and
-      // `getReferences()` methods. `usesReference()` will return true if
-      // the value has a reference in it. `getReferences()` will return
-      // an array of references to the whole tokens so that you can access their
-      // names or any other attributes.
-      if (token.type === 'typography' && dictionary.usesReference(token.original.value)) {
-        // Note: make sure to use `token.original.value` because
-        // `token.value` is already resolved at this point.
-				const refs = dictionary.getReferences(token.original.value);
-				refs.forEach(ref => {
-					if (ref.type === 'fontFamilies') {
-						value = value.replace(ref.value, () => `--var(${ref.name})`);
-					}
-        });
-      }
-      return `--${token.name}: ${value};`
-    }).join(`\n`)
-  }
-});
+  name: 'css/variablesWithReferences',
+	formatter: function({dictionary, file, options}) {
+		const { selector = ':root' } = options;
+		const indentation = '  ';
+    return fileHeader({file}) +
+			`${selector} {\n` +
+			dictionary.allTokens.map(token => {
+				// the `dictionary` object now has `usesReference()` and
+				// `getReferences()` methods. `usesReference()` will return true if
+				// the value has a reference in it. `getReferences()` will return
+				// an array of references to the whole tokens so that you can access their
+				// names or any other attributes.
+				if (token.type === 'typography' && dictionary.usesReference(token.original.value.fontFamily)) {
+					// Note: make sure to use `token.original.value` because
+					// `token.value` is already resolved at this point.
+					const fontFamilyRefs = dictionary.getReferences(token.original.value.fontFamily);
+					const { name, value } = fontFamilyRefs.at(-1)
+					token.value = token.value.replace(value, `var(--${name})`);
+				}
+				return `${indentation}--${token.name}: ${token.value};`;
+			}).join('\n') + '\n}';
+		}
+	});
+
+// function ({ dictionary, options }) {
+// return `${options.selector} {\n` + dictionary.allTokens.map(token => {
+// 	let value = token.value;
+// 	// the `dictionary` object now has `usesReference()` and
+// 	// `getReferences()` methods. `usesReference()` will return true if
+// 	// the value has a reference in it. `getReferences()` will return
+// 	// an array of references to the whole tokens so that you can access their
+// 	// names or any other attributes.
+// 	if (token.type === 'typography' && dictionary.usesReference(token.original.value)) {
+// 		// Note: make sure to use `token.original.value` because
+// 		// `token.value` is already resolved at this point.
+// 		const refs = dictionary.getReferences(token.original.value);
+// 		refs.forEach(ref => {
+// 			if (ref.type === 'fontFamilies') {
+// 				value = value.replace(ref.value, () => `var(--${ref.name})`);
+// 			}
+// 		});
+// 	}
+// 	return `--${token.name}: ${value};`
+// }).join(`\n`) + `\n}`;
+// }
 
 export const config = {
 	source: [
 		'../../../../node_modules/@vonage/vivid-figma-tokens/data/**/*.tokens.json'
 	],
-	// include: [
-	// 	'../../../../node_modules/@vonage/vivid-figma-tokens/data/sizing/base.tokens.json',
-	// ],
 	platforms: {
 		css: {
 			transforms: ['attribute/cti', 'name/cti/kebab', 'resolveMath', 'type/fontWeight', 'typography/shorthand'],
@@ -90,11 +110,11 @@ export const config = {
 			buildPath: '../../../../dist/libs/tokens/scss/',
 			files: [{
 				destination: '_variables.mixin.scss',
-				format: "es6WithReferences",
+				format: "css/variablesWithReferences",
 				filter: isTypography,
 				options: {
 					selector: '@mixin variables',
-					// outputReferences: true
+					// outputReferences: false
 				}
 			}]
 		}
