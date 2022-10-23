@@ -15,6 +15,20 @@ function getTextareaElement(element: TextArea) {
 }
 
 describe('vwc-text-area', () => {
+
+	function setToBlurred() {
+		element.dispatchEvent(new Event('blur'));
+	}
+
+	function setToFocused() {
+		element.dispatchEvent(new Event('focus'));
+	}
+
+	function setValidityToError(errorMessage = 'error') {
+		element.setValidity({badInput: true}, errorMessage);
+		element.validate();
+	}
+
 	let element: TextArea;
 
 	beforeEach(async () => {
@@ -289,27 +303,6 @@ describe('vwc-text-area', () => {
 	});
 
 	describe('error message', function () {
-		/**
-		 *
-		 */
-		function setToBlurred() {
-			element.dispatchEvent(new Event('blur'));
-		}
-
-		/**
-		 *
-		 */
-		function setToFocused() {
-			element.dispatchEvent(new Event('focus'));
-		}
-
-		/**
-		 * @param errorMessage
-		 */
-		function setValidityToError(errorMessage = 'error') {
-			element.setValidity({badInput: true}, errorMessage);
-			element.validate();
-		}
 
 		it('should add class error to base if not valid', async function () {
 			element.dirtyValue = true;
@@ -417,6 +410,32 @@ describe('vwc-text-area', () => {
 			expect(element.shadowRoot?.querySelector('.error-message')).toBeNull();
 		});
 
+	});
+
+	describe('successText', function () {
+		it('should not show helper text when success is shown', async function () {
+			element.helperText = 'help';
+			element.successText = 'success';
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.helper-text'))
+				.toBeNull();
+		});
+
+		it('should not show error message when success is shown', async function () {
+			element.dirtyValue = true;
+			setToBlurred();
+			setValidityToError('blah');
+			element.successText = 'success';
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.error-message'))
+				.toBeNull();
+		});
+
+		it('should show success message if set', async function() {
+			element.successText = 'success';
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.success-message')?.textContent?.trim()).toEqual('success');
+		});
 	});
 
 	describe('rows, cols and wrap', function () {
