@@ -447,6 +447,16 @@ describe('vwc-text-field', () => {
 		});
 	});
 
+	describe('successText', function () {
+		it('should not show helper text when success is shown', async function () {
+			element.helperText = 'help';
+			element.successText = 'success';
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.helper-text'))
+				.toBeNull();
+		});
+	});
+
 	describe('disabled', function () {
 		it('should set disabled class when attribute is set', async function () {
 			const disabledClassWhenEnabled = getBaseElement(element)

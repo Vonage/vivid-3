@@ -11,14 +11,17 @@ export interface FormElement {
 	charCount: boolean;
 	errorValidationMessage: boolean;
 	helperText: string;
+	successText: string;
 	label: string;
 	userValid: boolean;
 	dirtyValue: boolean;
 }
+
 export function formElements<T extends { new (...args: any[]): Record<string, any> }>(constructor: T) {
 	class Decorated extends constructor {
 		@attr label?: string;
 		@attr({attribute: 'helper-text'}) helperText?: string;
+		@attr({attribute: 'success-text'}) successText?: string;
 		@attr({
 			attribute: 'char-count',
 			mode: 'boolean'
