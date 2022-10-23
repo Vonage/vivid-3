@@ -56,37 +56,48 @@ const resolveFontFamily = (dictionary, token) => {
 	// the value has a reference in it. `getReferences()` will return
 	// an array of references to the whole tokens so that you can access their
 	// names or any other attributes.
-	if (token.type === 'typography' && dictionary.usesReference(token.original.value.fontFamily)) {
+	if (dictionary.usesReference(token.original.value)) {
 		// Note: make sure to use `token.original.value` because
 		// 'token.value' is already resolved at this point.
-		const fontFamilyRefs = dictionary.getReferences(token.original.value.fontFamily);
-		const { name, value } = fontFamilyRefs.at(-1);
-		token.value = token.value.replace(value, `var(--${name})`);
+		const refs = dictionary.getReferences(token.original.value);
+		refs.forEach(ref => {
+			if (ref.public) {
+				token.value = token.value.replace(ref.value, `var(--${ref.name})`);
+			}
+		});
+
+		// const { name, value } = fontFamilyRefs.at(-1);
+		// token.value = token.value.replace(value, `var(--${name})`);
 	}
 };
 
+const cssUnit = 'px';
 const pairSizingWithUnit = (dictionary, token) => {
-	if (dictionary.usesReference(token.original.value.fontSize)) {
-		const fontSizeRefs = dictionary.getReferences(token.original.value.fontSize);
-		const { value } = fontSizeRefs.at(-1)
-		token.value = token.value.replace(value, `${value}px`);
+	if (dictionary.usesReference(token.original.value)) {
+		const refs = dictionary.getReferences(token.original.value);
+		refs.forEach(ref => {
+			if(['fontSizes'].includes(ref.type)) {
+				token.value = token.value.replace(ref.value, `${ref.value}${cssUnit}`);
+			}
+		});
 	}
 };
 
 const { fileHeader } = StyleDictionary.formatHelpers;
+const indentation = '  ';
 
 StyleDictionary.registerFormat({
 	name: 'css/variablesWithReferences',
 	formatter: function({dictionary, file, options}) {
 		const { selector = ':root' } = options;
-		const indentation = '  ';
-    return fileHeader({file}) +
-			`${selector} {\n` +
-			dictionary.allTokens.map(token => {
-				resolveFontFamily(dictionary, token);
-				pairSizingWithUnit(dictionary, token);
-				return `${indentation}--${token.name}: ${token.value};`;
-			}).join('\n') + '\n}';
+
+		const tokens = dictionary.allTokens.map(token => {
+			resolveFontFamily(dictionary, token);
+			pairSizingWithUnit(dictionary, token);
+			return `${indentation}--${token.name}: ${token.value};`;
+		});
+
+    return fileHeader({file}) + `${ selector } {\n${ tokens.join('\n') }\n}`;
 	}
 });
 
@@ -104,8 +115,7 @@ export const config = {
 				format: "css/variablesWithReferences",
 				filter: isTypography,
 				options: {
-					selector: '@mixin variables',
-					// outputReferences: false
+					selector: '@mixin variables'
 				}
 			}]
 		}
