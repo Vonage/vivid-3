@@ -6,13 +6,15 @@ import { Parser } from 'expr-eval';
  */
 const parser = new Parser();
 
-function checkAndEvaluateMath(expr) {
-  try {
-    parser.evaluate(expr);
-    return +parser.evaluate(expr).toFixed(3);
-  } catch (ex) {
-    return expr;
-  }
+function checkAndEvaluateMath(token) {
+	const { value } = token;
+
+	try {
+		parser.evaluate(value);
+		return +parser.evaluate(value).toFixed(3);
+	} catch (ex) {
+		return value;
+	}
 }
 
 /**
@@ -22,6 +24,6 @@ export const resolveMath: Named<Transform> = {
   name: "resolveMath",
   type: "value",
   transitive: true,
-  matcher: (token) => ['sizing', 'fontSizes'].includes(token.type),
-  transformer: (token) => `${checkAndEvaluateMath(token.value)}`
+  matcher: (token) => ['sizing'].includes(token.type),
+  transformer: (token) => `${checkAndEvaluateMath(token)}`
 };
