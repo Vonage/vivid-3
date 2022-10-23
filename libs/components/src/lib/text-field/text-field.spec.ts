@@ -440,6 +440,16 @@ describe('vwc-text-field', () => {
 	});
 
 	describe('successText', function () {
+		it('should add class success to base if successText is set', async function () {
+			element.successText = 'success';
+			await elementUpdated(element);
+
+			expect(getBaseElement(element)
+				.classList
+				.contains('success'))
+				.toEqual(true);
+		});
+
 		it('should not show helper text when success is shown', async function () {
 			element.helperText = 'help';
 			element.successText = 'success';

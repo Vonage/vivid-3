@@ -9,13 +9,14 @@ import {getFeedbackTemplate} from '../../shared/patterns';
 import {focusTemplateFactory} from '../../shared/patterns';
 import type {TextArea} from './text-area';
 
-const getClasses = ({value, errorValidationMessage, disabled, placeholder, readOnly}: TextArea) => classNames(
+const getClasses = ({value, errorValidationMessage, disabled, placeholder, readOnly, successText}: TextArea) => classNames(
 	'base',
 	['readonly', readOnly],
 	['placeholder', Boolean(placeholder)],
 	['disabled', disabled],
 	['error', Boolean(errorValidationMessage)],
 	['has-value', Boolean(value)],
+	['success', !!successText]
 );
 
 function renderLabel() {

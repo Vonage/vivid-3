@@ -25,6 +25,7 @@ const getStateClasses = ({
 	appearance,
 	shape,
 	label,
+	successText
 }: NumberField) => classNames(
 	['error', Boolean(errorValidationMessage)],
 	['disabled', disabled],
@@ -35,6 +36,7 @@ const getStateClasses = ({
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	['no-label', !label],
+	['success', !!successText]
 );
 
 /**
