@@ -50,16 +50,19 @@
 
 .base:not(.size-condensed):not(.size-expanded) {
 	#{variables.$badge-block-size}: 24px;
+
 	padding-inline: 10px;
 }
 
 .base.size-condensed {
 	#{variables.$badge-block-size}: 20px;
+
 	padding-inline: 8px;
 }
 
 .base.size-expanded {
 	#{variables.$badge-block-size}: 28px;
+
 	padding-inline: 12px;
 }
 
