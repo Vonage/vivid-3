@@ -1,8 +1,9 @@
-import {attr, html, observable, volatile, when} from '@microsoft/fast-element';
+import {attr, ComposableStyles, html, observable, volatile, when} from '@microsoft/fast-element';
 import type {ElementDefinitionContext} from '@microsoft/fast-foundation';
 import {Icon} from '../../../lib/icon/icon';
 import errorMessageStyles from './error-message.scss';
 import helperTextStyles from './helper-text.scss';
+import successTextStyles from './success-message.scss';
 
 const ElementInternalsKey = 'ElementInternals';
 const supportsElementInternals = () => ElementInternalsKey in window && 'setFormValue' in window[ElementInternalsKey].prototype;
@@ -67,23 +68,57 @@ export function formElements<T extends { new (...args: any[]): Record<string, an
 	return Decorated;
 }
 
-export function getFeedbackTemplate(messageType: 'error' | 'helper', context: ElementDefinitionContext) {
+type FeedbackType = 'error' | 'helper' | 'success';
+type MessagePropertyType = 'errorValidationMessage' | 'helperText' | 'successText';
+type MessageTypeMap = { [key in FeedbackType]: {
+	iconType: string;
+	className: string;
+	styles: string | ComposableStyles;
+	messageProperty: MessagePropertyType }
+};
+
+export function getFeedbackTemplate(messageType: FeedbackType, context: ElementDefinitionContext) {
+	const MessageTypeMap: MessageTypeMap = {
+		'helper': {
+			'messageProperty': 'helperText',
+			'className': 'helper-text',
+			'styles': helperTextStyles,
+			'iconType': ''
+		},
+		'error': {
+			'messageProperty': 'errorValidationMessage',
+			'className': 'error-message',
+			'styles': errorMessageStyles,
+			'iconType': 'info-negative'
+		},
+		'success': {
+			'messageProperty': 'successText',
+			'className': 'success-message',
+			'styles': successTextStyles,
+			'iconType': 'check-circle-solid'
+		}
+	};
 	const iconTag = context.tagFor(Icon);
-	const messageProperty = messageType === 'error' ? 'errorValidationMessage' : 'helperText';
-	const className = messageType === 'error' ? 'error-message' : 'helper-text';
-	const iconType = messageType === 'error' ? 'info-negative' : 'check-circle-solid';
-	const styles = messageType === 'error' ? errorMessageStyles : helperTextStyles;
+	const messageTypeConfig = MessageTypeMap[messageType];
+	const iconType = messageTypeConfig.iconType;
 	return html<FormElement>`
 			<style>
-				${styles}
+				${MessageTypeMap[messageType].styles}
 			</style>
-		  	${when(() => messageType !== 'helper', html<FormElement>`
-					  <${iconTag} class="${className}-icon" type="${iconType}"></${iconTag}>`)}
-				${feedbackMessage({className, messageProperty})}
+		  	${when(() => iconType, html<FormElement>`
+					  <${iconTag} class="${MessageTypeMap[messageType].className}-icon" type="${iconType}"></${iconTag}>`)}
+				${feedbackMessage({
+		className: MessageTypeMap[messageType].className, 
+		messageProperty: MessageTypeMap[messageType].messageProperty})}
 		`;
 }
 
-function feedbackMessage({className, messageProperty}: {className: string; messageProperty: 'errorValidationMessage' | 'helperText'}) {
+/**
+ * @param root0
+ * @param root0.className
+ * @param root0.messageProperty
+ */
+function feedbackMessage({className, messageProperty}: {className: string; messageProperty: MessagePropertyType }) {
 	return html<FormElement>`
 	  <span class="${className}">${x => x[messageProperty]}</span>
 	`;

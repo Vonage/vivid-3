@@ -457,6 +457,12 @@ describe('vwc-text-field', () => {
 			expect(element.shadowRoot?.querySelector('.error-message'))
 				.toBeNull();
 		});
+
+		it('should show success message if set', async function() {
+			element.successText = 'success';
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.success-message')?.textContent?.trim()).toEqual('success');
+		});
 	});
 
 	describe('disabled', function () {

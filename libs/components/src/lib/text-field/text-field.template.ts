@@ -112,5 +112,6 @@ export const TextfieldTemplate: (
     </div>
 	  ${when(x => !x.successText && !x.errorValidationMessage && x.helperText?.length, getFeedbackTemplate('helper', context))}
 	  ${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplate('error', context))}
+	  ${when(x => x.successText, getFeedbackTemplate('success', context))}
 	</div>`;
 };
