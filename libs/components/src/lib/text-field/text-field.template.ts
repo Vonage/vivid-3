@@ -8,7 +8,7 @@ import {classNames} from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
 import '../icon/index';
-import {getErrorMessageTemplate} from '../../shared/patterns';
+import {getFeedbackTemplate} from '../../shared/patterns';
 import type {TextField} from './text-field';
 
 const getStateClasses = ({
@@ -41,10 +41,6 @@ function renderLabel() {
 	  <label for="control" class="label">
 		  ${x => x.label}
 	  </label>`;
-}
-
-function renderHelperText() {
-	return html<TextField>`<span class="helper-text">${x => x.helperText}</span>`;
 }
 
 function renderCharCount() {
@@ -114,7 +110,7 @@ export const TextfieldTemplate: (
       />
       ${() => focusTemplate}
     </div>
-	  ${when(x => !x.errorValidationMessage && x.helperText?.length, renderHelperText())}
-	  ${getErrorMessageTemplate(context)}
+	  ${when(x => !x.errorValidationMessage && x.helperText?.length, getFeedbackTemplate('helper', context))}
+	  ${when(x => x.errorValidationMessage, getFeedbackTemplate('error', context))}
 	</div>`;
 };

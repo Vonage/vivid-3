@@ -82,12 +82,6 @@ $low-ink-color: --_low-ink-color;
 	}
 }
 
-.helper-text {
-	color: var(#{$low-ink-color});
-	font: var(#{constants.$vvd-font-base-condensed});
-	grid-column: 1 / 4;
-}
-
 .focus-indicator {
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
 

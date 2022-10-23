@@ -5,7 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import {classNames} from '@microsoft/fast-web-utilities';
-import {getErrorMessageTemplate} from '../../shared/patterns';
+import {getFeedbackTemplate} from '../../shared/patterns';
 import {focusTemplateFactory} from '../../shared/patterns';
 import type {TextArea} from './text-area';
 
@@ -23,10 +23,6 @@ function renderLabel() {
 	  <label for="control" class="label">
 		  ${x => x.label}
 	  </label>`;
-}
-
-function renderHelperText() {
-	return html<TextArea>`<span class="helper-text">${x => x.helperText}</span>`;
 }
 
 /**
@@ -82,8 +78,8 @@ export const TextAreaTemplate: (
 			</textarea>
 			  ${() => focusTemplate}
 		  </div>
-		  ${when(x => !x.errorValidationMessage && x.helperText?.length, renderHelperText())}
-		  ${getErrorMessageTemplate(context)}
+		${when(x => !x.errorValidationMessage && x.helperText?.length, getFeedbackTemplate('helper', context))}
+		${when(x => x.errorValidationMessage, getFeedbackTemplate('error', context))}
 	  </div>
 	`;
 };

@@ -1,8 +1,8 @@
-import {attr, html, observable, ViewTemplate, volatile, when} from '@microsoft/fast-element';
+import {attr, html, observable, volatile, when} from '@microsoft/fast-element';
 import type {ElementDefinitionContext} from '@microsoft/fast-foundation';
 import {Icon} from '../../../lib/icon/icon';
-import type {TextField} from '../../../lib/text-field/text-field';
 import errorMessageStyles from './error-message.scss';
+import helperTextStyles from './helper-text.scss';
 
 const ElementInternalsKey = 'ElementInternals';
 const supportsElementInternals = () => ElementInternalsKey in window && 'setFormValue' in window[ElementInternalsKey].prototype;
@@ -64,14 +64,24 @@ export function formElements<T extends { new (...args: any[]): Record<string, an
 	return Decorated;
 }
 
-export const getErrorMessageTemplate = (context: ElementDefinitionContext): ViewTemplate<FormElement> => {
+export function getFeedbackTemplate(messageType: 'error' | 'helper', context: ElementDefinitionContext) {
 	const iconTag = context.tagFor(Icon);
+	const messageProperty = messageType === 'error' ? 'errorValidationMessage' : 'helperText';
+	const className = messageType === 'error' ? 'error-message' : 'helper-text';
+	const iconType = messageType === 'error' ? 'info-negative' : 'check-circle-solid';
+	const styles = messageType === 'error' ? errorMessageStyles : helperTextStyles;
 	return html<FormElement>`
 			<style>
-				${errorMessageStyles}
+				${styles}
 			</style>
-			${when(x => x.errorValidationMessage, html<TextField>`
-				<${iconTag} class="error-message-icon" type="info-negative"></${iconTag}>
-				<span class="error-message">${x => x.errorValidationMessage}</span>`)}
+		  	${when(() => messageType !== 'helper', html<FormElement>`
+					  <${iconTag} class="${className}-icon" type="${iconType}"></${iconTag}>`)}
+				${feedbackMessage({className, messageProperty})}
 		`;
-};
+}
+
+function feedbackMessage({className, messageProperty}: {className: string; messageProperty: 'errorValidationMessage' | 'helperText'}) {
+	return html<FormElement>`
+	  <span class="${className}">${x => x[messageProperty]}</span>
+	`;
+}
