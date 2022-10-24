@@ -8,6 +8,7 @@ import {classNames} from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
 import '../icon/index';
+import {getErrorMessageTemplate} from '../../shared/patterns';
 import type {TextField} from './text-field';
 
 const getStateClasses = ({
@@ -49,16 +50,6 @@ function renderHelperText() {
 function renderCharCount() {
 	return html<TextField>`
 		<span class="char-count">${x => x.value ? x.value.length : 0 } / ${ x => x.maxlength }</span>
-	`;
-}
-
-/**
- *
- */
-function renderErrorMessage() {
-	return html<TextField>`
-    <vwc-icon class="error-message-icon" type="info-negative"></vwc-icon>
-    <span class="error-message">${x => x.errorValidationMessage}</span>
 	`;
 }
 
@@ -124,6 +115,6 @@ export const TextfieldTemplate: (
       ${() => focusTemplate}
     </div>
 	  ${when(x => !x.errorValidationMessage && x.helperText?.length, renderHelperText())}
-	  ${when(x => x.errorValidationMessage, renderErrorMessage())}
+	  ${getErrorMessageTemplate(context)}
 	</div>`;
 };
