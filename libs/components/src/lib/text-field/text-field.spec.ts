@@ -323,7 +323,7 @@ describe('vwc-text-field', () => {
 			await elementUpdated(element);
 			expect(helperTextElementWithoutText)
 				.toBeNull();
-			expect(element.shadowRoot?.querySelector('.helper-text')
+			expect(element.shadowRoot?.querySelector('.helper-message')
 				?.textContent
 				?.trim())
 				.toEqual(helperText);

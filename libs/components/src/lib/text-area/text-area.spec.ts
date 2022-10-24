@@ -289,13 +289,13 @@ describe('vwc-text-area', () => {
 
 	describe('helper text', function () {
 		it('should render the helper text when attribute is set', async function () {
-			const helperTextElementWithoutText = element.shadowRoot?.querySelector('.helper-text');
+			const helperTextElementWithoutText = element.shadowRoot?.querySelector('.helper-message');
 			const helperText = 'Helper Text';
 			element.helperText = helperText;
 			await elementUpdated(element);
 			expect(helperTextElementWithoutText)
 				.toBeNull();
-			expect(element.shadowRoot?.querySelector('.helper-text')
+			expect(element.shadowRoot?.querySelector('.helper-message')
 				?.textContent
 				?.trim())
 				.toEqual(helperText);

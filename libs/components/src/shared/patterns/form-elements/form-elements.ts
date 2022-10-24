@@ -1,9 +1,7 @@
-import {attr, ComposableStyles, html, observable, volatile, when} from '@microsoft/fast-element';
+import {attr, html, observable, volatile, when} from '@microsoft/fast-element';
 import type {ElementDefinitionContext} from '@microsoft/fast-foundation';
 import {Icon} from '../../../lib/icon/icon';
-import errorMessageStyles from './error-message.scss';
-import helperTextStyles from './helper-text.scss';
-import successTextStyles from './success-message.scss';
+import messageStyles from './message.scss';
 
 const ElementInternalsKey = 'ElementInternals';
 const supportsElementInternals = () => ElementInternalsKey in window && 'setFormValue' in window[ElementInternalsKey].prototype;
@@ -73,7 +71,6 @@ type MessagePropertyType = 'errorValidationMessage' | 'helperText' | 'successTex
 type MessageTypeMap = { [key in FeedbackType]: {
 	iconType: string;
 	className: string;
-	styles: string | ComposableStyles;
 	messageProperty: MessagePropertyType }
 };
 
@@ -81,20 +78,17 @@ export function getFeedbackTemplate(messageType: FeedbackType, context: ElementD
 	const MessageTypeMap: MessageTypeMap = {
 		'helper': {
 			'messageProperty': 'helperText',
-			'className': 'helper-text',
-			'styles': helperTextStyles,
+			'className': 'helper',
 			'iconType': ''
 		},
 		'error': {
 			'messageProperty': 'errorValidationMessage',
-			'className': 'error-message',
-			'styles': errorMessageStyles,
+			'className': 'error',
 			'iconType': 'info-negative'
 		},
 		'success': {
 			'messageProperty': 'successText',
-			'className': 'success-message',
-			'styles': successTextStyles,
+			'className': 'success',
 			'iconType': 'check-circle-solid'
 		}
 	};
@@ -103,14 +97,15 @@ export function getFeedbackTemplate(messageType: FeedbackType, context: ElementD
 	const iconType = messageTypeConfig.iconType;
 	return html<FormElement>`
 			<style>
-				${MessageTypeMap[messageType].styles}
+				${messageStyles}
+
 			</style>
+			<div class="message ${MessageTypeMap[messageType].className}-message">
 		  	${when(() => iconType, html<FormElement>`
-					  <${iconTag} class="${MessageTypeMap[messageType].className}-icon" type="${iconType}"></${iconTag}>`)}
+					  <${iconTag} class="message-icon" type="${iconType}"></${iconTag}>`)}
 				${feedbackMessage({
-		className: MessageTypeMap[messageType].className, 
 		messageProperty: MessageTypeMap[messageType].messageProperty})}
-		`;
+			</div>`;
 }
 
 /**
@@ -118,8 +113,8 @@ export function getFeedbackTemplate(messageType: FeedbackType, context: ElementD
  * @param root0.className
  * @param root0.messageProperty
  */
-function feedbackMessage({className, messageProperty}: {className: string; messageProperty: MessagePropertyType }) {
+function feedbackMessage({messageProperty}: {messageProperty: MessagePropertyType }) {
 	return html<FormElement>`
-	  <span class="${className}">${x => x[messageProperty]}</span>
+	  <span class="message-text">${x => x[messageProperty]}</span>
 	`;
 }
