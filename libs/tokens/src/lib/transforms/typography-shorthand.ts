@@ -17,6 +17,6 @@ export default {
 	type: "value",
 	transitive: true,
 	matcher: (token) => token.type === "typography",
-	transformer: (token) => transformTypography(token.original.value),
+	transformer: (token) => transformTypography(token.value),
 } as Named<Transform>;
 

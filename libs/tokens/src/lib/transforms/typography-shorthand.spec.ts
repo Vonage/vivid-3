@@ -1,6 +1,6 @@
-import { fontShorthand } from './typography-shorthand';
+import typographyShorthand from './typography-shorthand';
 
-const { transformer, matcher } = fontShorthand;
+const { transformer, matcher } = typographyShorthand;
 
 const defualtToken = {
 	value: undefined,
@@ -24,7 +24,7 @@ const token = {
 	}
 };
 
-const expectedParsedEffects = '400 ultra-condensed calc({size.font.base} * 0.75)/calc({size.font.base} * 1) SpeziaMonoCompleteVariable';
+const expectedParsedEffects = 'Regular {size.font.base} * 0.75/{size.font.base} * 1 SpeziaMonoCompleteVariable';
 
 describe('basic', () => {
 	it('should transform object of typography to a font shorthand value', () => {
@@ -32,14 +32,6 @@ describe('basic', () => {
 			...defualtToken,
 			...token
 		})).toEqual(expectedParsedEffects);
-	});
-
-	it('should ignore already parsed value', () => {
-		expect(transformer({
-			...defualtToken,
-			value: expectedParsedEffects,
-		}))
-			.toEqual(expectedParsedEffects);
 	});
 
 	it('should match if category and type comply to a font type', () => {

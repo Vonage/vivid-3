@@ -12,7 +12,8 @@ const defualtToken = {
 };
 
 const token = {
-	value: "4 * 3.72"
+	value: "4 * 3.72",
+	type: 'sizing',
 };
 
 describe('basic', () => {
@@ -20,7 +21,7 @@ describe('basic', () => {
 		expect(transformer({
 			...defualtToken,
 			...token
-		})).toEqual('15');
+		})).toEqual('14.88');
 	});
 
 	it('should throw', () => {
@@ -28,7 +29,10 @@ describe('basic', () => {
 	});
 
 	it('should match if is token', () => {
-		expect(matcher(undefined)).toBeFalsy();
+		expect(matcher({
+			...defualtToken,
+			type: 'other'
+		})).toBeFalsy();
 		expect(matcher({
 			...defualtToken,
 			...token,

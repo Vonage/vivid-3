@@ -1,14 +1,27 @@
-import { sourceOnly } from './source-only';
+import { isTypography, isFontSize, isSource } from '.';
 
-const { matcher } = sourceOnly;
+describe('Filters', () => {
+	it('should return true if token of type typography', () => {
+		expect(isTypography({ type: 'typography' })).toEqual(true);
+	});
 
-describe('basic', () => {
-	const token = {
-		isSource: true
-	};
+	it('should return false if token not of type typography', () => {
+		expect(isTypography({ type: 'other' })).toEqual(false);
+	});
 
-	it('should match source tokens only', () => {
-		expect(matcher({ isSource: false })).toEqual(false);
-		expect(matcher(token)).toEqual(true);
+	it('should return true if token of type fontSizes', () => {
+		expect(isFontSize({ type: 'fontSizes' })).toEqual(true);
+	});
+
+	it('should return false if token not of type fontSizes', () => {
+		expect(isFontSize({ type: 'other' })).toEqual(false);
+	});
+
+	it('should return true if source tokens', () => {
+		expect(isSource({ isSource: true })).toEqual(true);
+	});
+
+	it('should return false if not source tokens', () => {
+		expect(isSource({ isSource: false })).toEqual(false);
 	});
 });
