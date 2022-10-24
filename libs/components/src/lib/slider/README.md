@@ -54,7 +54,7 @@ Use `max` to set the greatest value allowed for the slider.
 
 ### Step
 
-Use `step` to set determine the granularity of values allowed in the slider.
+Use `step` to set determine the granularity with which values can be incremented/decremented.
 
 - Type: `number`
 - Default: `1`
