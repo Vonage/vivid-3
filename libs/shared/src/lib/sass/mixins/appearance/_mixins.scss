@@ -17,6 +17,7 @@ $indeterminate: ':indeterminate, .indeterminate';
 $selected: '.selected, [aria-current]';
 $active: ':active, .active';
 $error: '.error';
+$success: '.success';
 
 $selectors: (
   idle: '&',
@@ -28,6 +29,7 @@ $selectors: (
   indeterminate: '&:where(#{$indeterminate}):where(:not(#{$disabled}))',
   active: '&:where(#{$active}):where(:not(#{$disabled}))',
   error: '&:where(#{$error}):where(:not(#{$disabled}))',
+	success: '&:where(#{$success}):where(:not(#{$disabled}))',
 );
 
 @mixin appearance {

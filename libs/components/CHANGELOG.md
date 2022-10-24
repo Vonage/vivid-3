@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Wed, 19 Oct 2022 08:48:12 GMT and should not be manually modified.
+This log was last generated on Mon, 24 Oct 2022 13:21:28 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.81
+
+Mon, 24 Oct 2022 13:21:28 GMT
+
+### Changes
+
+- Success Message for Form Elements (yonatan.kra@vonage.com)
 
 ## 3.0.0-next.80
 
