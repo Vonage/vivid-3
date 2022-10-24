@@ -18,10 +18,10 @@ function checkAndEvaluateMath(value) {
 /**
  * Transform to resolve math across all tokens
  */
-export const resolveMath: Named<Transform> = {
+export default {
   name: "resolveMath",
   type: "value",
   transitive: true,
   matcher: (token) => ['sizing'].includes(token.type),
   transformer: (token) => `${checkAndEvaluateMath(token.value)}`
-};
+} as Named<Transform>;

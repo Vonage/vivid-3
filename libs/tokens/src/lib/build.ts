@@ -1,7 +1,7 @@
 
 const SD = require('style-dictionary');
 
-import { resolveMath } from './transforms/resolve-math';
+import resolveMath from './transforms/resolve-math';
 
 import cssThemeableVariables from './formatters/themeable-variables/css';
 import sassThemeableVariables from './formatters/themeable-variables/sass';

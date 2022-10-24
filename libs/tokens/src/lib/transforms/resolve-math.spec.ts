@@ -1,4 +1,4 @@
-import { resolveMath } from './resolve-math';
+import resolveMath from './resolve-math';
 
 const { transformer, matcher } = resolveMath;
 
