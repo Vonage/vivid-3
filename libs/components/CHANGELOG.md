@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Wed, 19 Oct 2022 05:40:47 GMT and should not be manually modified.
+This log was last generated on Wed, 19 Oct 2022 08:48:12 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.80
+
+Wed, 19 Oct 2022 08:48:12 GMT
+
+### Changes
+
+- new image for visual tests with Chromium (olaf-k@users.noreply.github.com)
 
 ## 3.0.0-next.79
 
