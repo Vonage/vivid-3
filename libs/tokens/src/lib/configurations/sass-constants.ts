@@ -2,7 +2,7 @@
 const SD = require('style-dictionary');
 
 import { prefix, buildPath, selector } from './common/config';
-import cssThemeableVariables from '../formatters/scss-constants';
+import cssThemeableVariables from '../formatters/sass-constants';
 import { isSource } from '../filters';
 
 SD.registerFormat(cssThemeableVariables);
@@ -24,7 +24,7 @@ export default {
 			buildPath,
 			files: [{
 				destination: '_tokens.constants.scss',
-				format: "scss/constants",
+				format: "sass/constants",
 				filter: token => isSource(token) || token.public,
 				options: {
 					selector

@@ -6,7 +6,7 @@ import { resolveMath } from './transforms/resolve-math';
 import cssThemeableVariables from './formatters/themeable-variables/css';
 import sassThemeableVariables from './formatters/themeable-variables/sass';
 
-import configScssConstants from './configurations/scss-constants';
+import configScssConstants from './configurations/sass-constants';
 import getConfigTheme from './configurations/theme';
 import configTypography from './configurations/typography';
 import configSize from './configurations/size';

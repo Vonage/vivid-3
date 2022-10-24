@@ -2,9 +2,7 @@ const SD = require('style-dictionary');
 
 import { prefix, buildPath, selector } from './common/config';
 import { isSource } from '../filters';
-import referenceSizingBase from '../transforms/reference-sizing-base';
 
-SD.registerTransform(referenceSizingBase);
 SD.registerTransform({
   name: "wrapWithCalc",
   type: "value",

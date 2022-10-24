@@ -17,8 +17,8 @@ const parseShadowEffects = value =>
 	).join(' ')
 
 export default {
-	type: `value`,
-	name: `shadow/shorthand`,
+	type: 'value',
+	name: 'shadow/shorthand',
 	transitive: true,
 	matcher: ({ type, attributes: { category }}) => category == 'shadow' && type == 'boxShadow',
 	transformer: ({ value }) => Array.isArray(value)? parseShadowEffects(value) : value
