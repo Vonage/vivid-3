@@ -72,6 +72,14 @@ $low-ink-color: --_low-ink-color;
 	grid-column: 1 / 4;
 	transition: color .2s;
 
+	.success & {
+		--focus-stroke-color: var(#{constants.$vvd-color-success-500});
+	}
+
+	.error & {
+		--focus-stroke-color: var(#{constants.$vvd-color-alert-500});
+	}
+
 	/* Size */
 	.base:not(.density-extended)>& {
 		block-size: 40px;
@@ -89,15 +97,6 @@ $low-ink-color: --_low-ink-color;
 	.base.shape-pill & {
 		border-radius: 24px;
 	}
-
-	.success & {
-		--focus-stroke-color: var(#{constants.$vvd-color-success-500});
-	}
-
-	.error & {
-		--focus-stroke-color: var(#{constants.$vvd-color-alert-500});
-	}
-
 }
 
 .control {
