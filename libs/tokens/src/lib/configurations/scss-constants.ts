@@ -1,22 +1,34 @@
 
-import { prefix, buildPath } from './common/config';
+const SD = require('style-dictionary');
 
-export const scssConstantsConfig = {
+import { prefix, buildPath } from './common/config';
+import cssThemeableVariables from '../formatters/scss-constants';
+import { isSource } from '../filters';
+
+SD.registerFormat(cssThemeableVariables);
+
+
+export default {
 	source: [
-		"blueprint.tokens/**/*.tokens.json"
+		'../../../../node_modules/@vonage/vivid-figma-tokens/data/themes/light/semantics.tokens.json',
+		'../../../../node_modules/@vonage/vivid-figma-tokens/data/themes/light/elevation.tokens.json',
+		'../../../../node_modules/@vonage/vivid-figma-tokens/data/typography.tokens.json'
 	],
 	include: [
-		'../../../../node_modules/@vonage/vivid-figma-tokens/data/**/*.tokens.json'
+		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/**/*.tokens.json'
 	],
 	platforms: {
-		scssConstants: {
+		scss: {
 			transforms: ["name/cti/kebab"],
 			prefix,
 			buildPath,
 			files: [{
-				destination: '_constants.scss',
+				destination: '_constants.tokens.scss',
 				format: "scss/constants",
-				filter: "sourceOnly"
+				filter: isSource,
+				options: {
+					selector: '@mixin variables'
+				}
 			}]
 		}
 	}

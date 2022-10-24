@@ -16,7 +16,7 @@ export default (theme: string) => ({
 		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/color/**/*.tokens.json'
 	],
 	platforms: {
-		web: {
+		css: {
 			transforms: ["attribute/cti", "name/cti/kebab", "shadow/shorthand"],
 			prefix,
 			buildPath,
