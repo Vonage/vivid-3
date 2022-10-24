@@ -12,14 +12,56 @@ Represents a slider custom element.
 
 ## Members
 
-### Min, max and step
+### Min
 
-Use the `min`, `max` and `step` attributes to determine the range and values of the slider.
+Use `min` to set the lowest value allowed for the slider.
+
+- Type: `number`
+- Default: `0`
+
 ```html preview blocks
-<div style="display: flex; align-items: center">
-	<span>-5</span>
-	<vwc-slider min="-5" max="5" step="0.5"></vwc-slider>
-	<span>+5</span>
+<div>
+	<vwc-slider min="-5"></vwc-slider>
+</div>
+<div>Current value: <span id="slidervalue"></span></div>
+
+<script>
+	const slider = document.querySelector('vwc-slider');
+	const output = document.getElementById('slidervalue');
+	slider.addEventListener('change', (e) => output.innerText = slider.value);
+</script>
+```
+
+### Max
+
+Use `max` to set the greatest value allowed for the slider.
+
+- Type: `number`
+- Default: `10`
+
+```html preview blocks
+<div>
+	<vwc-slider max="100"></vwc-slider>
+</div>
+<div>Current value: <span id="slidervalue"></span></div>
+
+<script>
+	const slider = document.querySelector('vwc-slider');
+	const output = document.getElementById('slidervalue');
+	slider.addEventListener('change', (e) => output.innerText = slider.value);
+</script>
+```
+
+### Step
+
+Use `step` to set determine the granularity of values allowed in the slider.
+
+- Type: `number`
+- Default: `1`
+
+```html preview blocks
+<div>
+	<vwc-slider step="0.5"></vwc-slider>
 </div>
 <div>Current value: <span id="slidervalue"></span></div>
 
