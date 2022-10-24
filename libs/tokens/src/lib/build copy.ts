@@ -1,10 +1,10 @@
 
 import StyleDictionary, { formatHelpers } from 'style-dictionary';
 
-import { sourceOnly } from './filters/source-only';
+import { sourceOnly } from './filters';
 
 import { shadowShorthand } from './transforms/shadow-shorthand';
-import { fontShorthand } from './transforms/font-shorthand';
+import { fontShorthand } from './transforms/typography-shorthand';
 import { referenceSizingBase } from './transforms/reference-sizing-base';
 import { referenceFontFamilies } from './transforms/reference-font-families';
 import { resolveMath } from './transforms/resolve-math';

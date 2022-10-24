@@ -1,37 +1,33 @@
+const SD = require('style-dictionary');
 import { prefix, buildPath } from './common/config';
 
-export const getTypographyConfig = (viewport: string) => ({
+import fontWeight from '../transforms/font-weight';
+import fontSize from '../transforms/font-size';
+import typographyShorthand from '../transforms/typography-shorthand';
+import { isTypography } from '../filters';
+
+
+SD.registerTransform(fontWeight);
+SD.registerTransform(fontSize);
+SD.registerTransform(typographyShorthand);
+
+export default {
 	source: [
-		// `../../../../node_modules/@vonage/vivid-figma-tokens/data/typography/${viewport}/semantic-scale.tokens.json`,
-		`../../../../node_modules/@vonage/vivid-figma-tokens/data/typography/${viewport}/scale.tokens.json`,
-		// `../../../../node_modules/@vonage/vivid-figma-tokens/data/typography/${viewport}/font.tokens.json`,
+		'../../../../node_modules/@vonage/vivid-figma-tokens/data/**/*.tokens.json'
 	],
 	platforms: {
-		// cssTypography: {
-		// 	transforms: ['attribute/cti', 'name/cti/kebab', 'resolveMath', 'font/shorthand', 'referenceFontFamilies'],
-		// 	prefix,
-		// 	buildPath,
-		// 	files: [{
-		// 		destination: `typography/${viewport}/_scale.mixin.scss`,
-		// 		format: 'css/variables',
-		// 		filter: token => token.type === 'typography',
-		// 		options: {
-		// 			selector: '@mixin variables'
-		// 		}
-		// 	}]
-		// },
 		css: {
-			transforms: ['attribute/cti', 'name/cti/kebab', 'size/px'],
+			transforms: ['attribute/cti', 'name/cti/kebab', 'resolveMath', 'type/fontWeight', 'type/fontSize', 'typography/shorthand'],
 			prefix,
 			buildPath,
 			files: [{
-				destination: `typography/${viewport}/_font-family.mixin.scss`,
-				format: 'css/variables',
-				filter: token => token.access === "public",
+				destination: '_variables.mixin.scss',
+				format: "css/themeableVariables",
+				filter: token => isTypography(token) || token.public,
 				options: {
 					selector: '@mixin variables'
 				}
 			}]
 		}
 	}
-});
+};

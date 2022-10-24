@@ -1,4 +1,4 @@
-import { fontShorthand } from './font-shorthand';
+import { fontShorthand } from './typography-shorthand';
 
 const { transformer, matcher } = fontShorthand;
 
