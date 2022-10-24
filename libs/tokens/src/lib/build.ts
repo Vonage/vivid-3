@@ -4,7 +4,7 @@ import { resolveMath } from './transforms/resolve-math';
 
 const isColor = token => token.type === 'color';
 const isTypography = token => ['typography'].includes(token.type);
-const isSizing = token => ['sizing'].includes(token.type);
+const isSizing = token => ['sizing'].includes(token.type) ;
 const isFontSize = token => ['fontSizes'].includes(token.type);
 
 const fontWeightMap = {
@@ -44,17 +44,18 @@ StyleDictionary
 		transformer: ({ value }) => fontWeightMap[value]
 	});
 
-StyleDictionary
-	.registerTransform({
-		type: 'value',
-		name: 'size/px',
-		transitive: true,
-    matcher: isSizing,
-		transformer: function (token) {
-      const val = parseFloat(token.value);
-      return val + 'px';
-    }
-	});
+// StyleDictionary
+// 	.registerTransform({
+// 		type: 'value',
+// 		name: 'size/px',
+// 		transitive: true,
+//     matcher: isSizing,
+// 		transformer: function (token) {
+// 			console.log(token)
+//       const val = parseFloat(token.value);
+//       return val + 'px';
+//     }
+// 	});
 
 StyleDictionary
 	.registerTransform({
@@ -67,19 +68,15 @@ StyleDictionary
     }
 	});
 
-const { fileHeader, formattedVariables, createPropertyFormatter } = StyleDictionary.formatHelpers;
+const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers;
+
+const pairCssUnitToSizing = token => token.type === 'sizing' ? token.value = `${token.value}px` : token.value;
 
 StyleDictionary.registerFormat({
   name: 'css/themeableVariables',
 	formatter: function ({ dictionary, file, options }) {
 
-		const { outputReferences } = options;
-
-		const formatProperty = createPropertyFormatter({
-      outputReferences,
-      dictionary,
-      format: 'css'
-		});
+		const { outputReferences, selector = ':root' } = options;
 
 		const exposeThemeables = token => {
 
@@ -121,10 +118,10 @@ StyleDictionary.registerFormat({
 
 		dictionary.allTokens
 			.map(exposeThemeables)
-			// .map(formatProperty).join('\n');
+			.map(pairCssUnitToSizing)
 
 		return fileHeader({file}) +
-			':root {\n' +
+			`${selector} {\n` +
 			formattedVariables({
 				outputReferences,
 				format: 'css',
@@ -140,7 +137,7 @@ export const config = {
 	],
 	platforms: {
 		css: {
-			transforms: ['attribute/cti', 'name/cti/kebab', 'resolveMath', /*'size/px',*/ 'type/fontWeight', 'type/fontSize', 'typography/shorthand'],
+			transforms: ['attribute/cti', 'name/cti/kebab', 'resolveMath', 'type/fontWeight', 'type/fontSize', 'typography/shorthand'],
 			prefix: 'vvd',
 			buildPath: '../../../../dist/libs/tokens/scss/',
 			files: [{
