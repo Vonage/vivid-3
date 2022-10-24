@@ -16,10 +16,10 @@ const parseShadowEffects = value =>
 		({ x, y, blur, color }) => `drop-shadow(${sizeToPx(generateToken(x))} ${sizeToPx(generateToken(y))} ${sizeToPx(generateToken(blur))} ${color})`
 	).join(' ')
 
-export const shadowShorthand: Named<Transform> = {
+export default {
 	type: `value`,
 	name: `shadow/shorthand`,
 	transitive: true,
 	matcher: ({ type, attributes: { category }}) => category == 'shadow' && type == 'boxShadow',
 	transformer: ({ value }) => Array.isArray(value)? parseShadowEffects(value) : value
-};
+} as Named<Transform>;

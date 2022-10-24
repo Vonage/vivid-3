@@ -1,6 +1,6 @@
 const SD = require('style-dictionary');
-import { prefix, buildPath } from './common/config';
 
+import { prefix, buildPath } from './common/config';
 import fontWeight from '../transforms/font-weight';
 import fontSize from '../transforms/font-size';
 import typographyShorthand from '../transforms/typography-shorthand';
@@ -13,7 +13,9 @@ SD.registerTransform(typographyShorthand);
 
 export default {
 	source: [
-		'../../../../node_modules/@vonage/vivid-figma-tokens/data/**/*.tokens.json'
+		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/font.tokens.json',
+		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/typography-scale.tokens.json',
+		'../../../../node_modules/@vonage/vivid-figma-tokens/data/typography.tokens.json'
 	],
 	platforms: {
 		css: {
@@ -21,11 +23,11 @@ export default {
 			prefix,
 			buildPath,
 			files: [{
-				destination: '_variables.mixin.scss',
+				destination: 'typography.tokens.css',
 				format: "css/themeableVariables",
 				filter: token => isTypography(token) || token.public,
 				options: {
-					selector: '@mixin variables'
+					selector: '.vvd-root'
 				}
 			}]
 		}
