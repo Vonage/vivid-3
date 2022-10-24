@@ -1,6 +1,6 @@
 const SD = require('style-dictionary');
 
-import { prefix, buildPath } from './common/config';
+import { prefix, buildPath, selector } from './common/config';
 import fontWeight from '../transforms/font-weight';
 import fontSize from '../transforms/font-size';
 import typographyShorthand from '../transforms/typography-shorthand';
@@ -23,11 +23,11 @@ export default {
 			prefix,
 			buildPath,
 			files: [{
-				destination: 'typography.tokens.css',
+				destination: '_typography.tokens.scss',
 				format: "css/themeableVariables",
 				filter: token => isTypography(token) || token.public,
 				options: {
-					selector: '.vvd-root'
+					selector
 				}
 			}]
 		}

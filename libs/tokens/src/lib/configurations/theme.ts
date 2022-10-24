@@ -1,6 +1,6 @@
 const SD = require('style-dictionary');
 
-import { prefix, buildPath } from './common/config';
+import { prefix, buildPath, selector } from './common/config';
 import shadowShorthand from '../transforms/shadow-shorthand';
 import { isSource } from '../filters';
 
@@ -21,11 +21,11 @@ export default (theme: string) => ({
 			prefix,
 			buildPath,
 			files: [{
-				destination: `theme-${theme}.tokens.css`,
+				destination: `_theme-${theme}.tokens.scss`,
 				format: "css/themeableVariables",
 				filter: isSource,
 				options: {
-					selector: '.vvd-root'
+					selector
 				}
 			}]
 		}

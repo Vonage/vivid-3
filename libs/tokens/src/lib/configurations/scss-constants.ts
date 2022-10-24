@@ -1,7 +1,7 @@
 
 const SD = require('style-dictionary');
 
-import { prefix, buildPath } from './common/config';
+import { prefix, buildPath, selector } from './common/config';
 import cssThemeableVariables from '../formatters/scss-constants';
 import { isSource } from '../filters';
 
@@ -23,11 +23,11 @@ export default {
 			prefix,
 			buildPath,
 			files: [{
-				destination: '_constants.tokens.scss',
+				destination: '_tokens.constants.scss',
 				format: "scss/constants",
-				filter: isSource,
+				filter: token => isSource(token) || token.public,
 				options: {
-					selector: '@mixin variables'
+					selector
 				}
 			}]
 		}

@@ -3,15 +3,18 @@ const SD = require('style-dictionary');
 
 import { resolveMath } from './transforms/resolve-math';
 
-import cssThemeableVariables from './formatters/css-themeable-variables';
+import cssThemeableVariables from './formatters/themeable-variables/css';
+import sassThemeableVariables from './formatters/themeable-variables/sass';
 
 import configScssConstants from './configurations/scss-constants';
-import configTypography from './configurations/typography';
 import getConfigTheme from './configurations/theme';
+import configTypography from './configurations/typography';
+import configSize from './configurations/size';
 
 
 SD.registerTransform(resolveMath);
 SD.registerFormat(cssThemeableVariables);
+SD.registerFormat(sassThemeableVariables);
 
 SD.extend(configScssConstants).buildAllPlatforms();
 
@@ -20,3 +23,5 @@ SD.extend(configScssConstants).buildAllPlatforms();
 });
 
 SD.extend(configTypography).buildAllPlatforms();
+
+SD.extend(configSize).buildAllPlatforms();
