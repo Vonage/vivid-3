@@ -13,7 +13,7 @@ const getClasses = ({ readOnly, disabled}: Slider) =>
 		['disabled', Boolean(disabled)],
 	);
 	
-const markers = (isHorizontal: boolean, numMarkers: number) => {
+const getMarkersTemplate = (isHorizontal: boolean, numMarkers: number) => {
 	const placeholder = isHorizontal
 		? [ 'right' , 'center', ''    , '100% repeat-x' ]
 		: [ 'bottom', 'top'   , '100%', 'repeat-y'      ];
@@ -52,7 +52,7 @@ export const SliderTemplate: (context: ElementDefinitionContext) => ViewTemplate
 			<div ${ref('track')} class="track">
 				<div class="track-start" style="${x => x.position}"></div>
 				${x => x.markers
-					? markers(x.orientation === Orientation.horizontal, Math.floor((x.max - x.min) / x.step))
+					? getMarkersTemplate(x.orientation === Orientation.horizontal, Math.floor((x.max - x.min) / x.step))
 					: void 0} 
 			</div>
 			<div ${ref('thumb')} class="thumb-container" style="${x => x.position}">

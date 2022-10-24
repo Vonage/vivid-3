@@ -51,20 +51,24 @@ describe('vwc-slider', () => {
 	});
 
 	describe('markers', () => {
+		const getMarkersDiv = () => getControlElement(element).querySelector('.positioning-region > .track > .mark') as HTMLDivElement;
+
 		it('should display the markers element when markers is true', async () => {
-			const markersDiv = () => getControlElement(element).querySelector('.positioning-region > .track > .mark') as HTMLDivElement;
-			const markersDivInitialValue = markersDiv();
-			
+			const markersDivReferenceBefore = getMarkersDiv();
 			await setBoolAttributeOn(element, 'markers');
-			const markersDivAfterMarkersEnabled = markersDiv();
+			const markersDivReferenceAfter = getMarkersDiv();
+			await elementUpdated(element);
 			
+			expect(markersDivReferenceBefore).toBeNull();
+			expect(markersDivReferenceAfter).not.toBeNull();
+		});
+
+		it('should display the markers element with proper style vertically', async () => {
+			await setBoolAttributeOn(element, 'markers');
 			element.orientation = Orientation.vertical;
 			await elementUpdated(element);
-			const markersDivVerticalStyle = markersDiv().getAttribute('style');
 			
-			expect(markersDivInitialValue).toBeNull();
-			expect(markersDivAfterMarkersEnabled).not.toBeNull();
-			expect(markersDivVerticalStyle).toContain('repeat-y');
+			expect(getMarkersDiv().getAttribute('style')).toContain('repeat-y');
 		});
 	});
 
