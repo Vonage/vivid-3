@@ -6,9 +6,7 @@ import { Parser } from 'expr-eval';
  */
 const parser = new Parser();
 
-function checkAndEvaluateMath(token) {
-	const { value } = token;
-
+function checkAndEvaluateMath(value) {
 	try {
 		parser.evaluate(value);
 		return +parser.evaluate(value).toFixed(3);
@@ -25,5 +23,5 @@ export const resolveMath: Named<Transform> = {
   type: "value",
   transitive: true,
   matcher: (token) => ['sizing'].includes(token.type),
-  transformer: (token) => `${checkAndEvaluateMath(token)}`
+  transformer: (token) => `${checkAndEvaluateMath(token.value)}`
 };

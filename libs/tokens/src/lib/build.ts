@@ -67,7 +67,7 @@ StyleDictionary
     }
 	});
 
-const { fileHeader, createPropertyFormatter } = StyleDictionary.formatHelpers;
+const { fileHeader, formattedVariables, createPropertyFormatter } = StyleDictionary.formatHelpers;
 
 StyleDictionary.registerFormat({
   name: 'css/themeableVariables',
@@ -83,14 +83,14 @@ StyleDictionary.registerFormat({
 
 		const exposeThemeables = token => {
 
-			const recursive = (parent, value) => {
+			const findAndReplaceReferences = (parent, value) => {
 				if (dictionary.usesReference(parent)) {
 					const refs = dictionary.getReferences(parent);
 					refs.forEach(ref => {
 						if (ref.public) {
 							value = value.replace(ref.value, `var(--${ref.name})`);
 						} else {
-							value = recursive(ref, value);
+							value = findAndReplaceReferences(ref, value);
 						}
 					});
 				}
@@ -114,16 +114,25 @@ StyleDictionary.registerFormat({
 			// 	});
 			// }
 
-			token.value = recursive(token, token.value);
+			token.value = findAndReplaceReferences(token, token.value);
 
 			return token;
 		};
 
-		return dictionary.allTokens
+		dictionary.allTokens
 			.map(exposeThemeables)
-			.map(formatProperty).join('\n');
+			// .map(formatProperty).join('\n');
+
+		return fileHeader({file}) +
+			':root {\n' +
+			formattedVariables({
+				outputReferences,
+				format: 'css',
+				dictionary,
+			}) +
+			'\n}\n';
 	}
-	});
+});
 
 export const config = {
 	source: [
@@ -131,7 +140,7 @@ export const config = {
 	],
 	platforms: {
 		css: {
-			transforms: ['attribute/cti', 'name/cti/kebab', 'resolveMath', 'size/px', 'type/fontWeight', 'type/fontSize', 'typography/shorthand'],
+			transforms: ['attribute/cti', 'name/cti/kebab', 'resolveMath', /*'size/px',*/ 'type/fontWeight', 'type/fontSize', 'typography/shorthand'],
 			prefix: 'vvd',
 			buildPath: '../../../../dist/libs/tokens/scss/',
 			files: [{
