@@ -6,7 +6,7 @@ import type {
 } from '@microsoft/fast-foundation';
 import {classNames} from '@microsoft/fast-web-utilities';
 import {Density, Shape} from '../enums';
-import {getErrorMessageTemplate} from '../../shared/patterns';
+import {getFeedbackTemplate} from '../../shared/patterns';
 import {focusTemplateFactory} from '../../shared/patterns/focus';
 import {Button} from '../button/button';
 import {Divider} from '../divider/divider';
@@ -25,6 +25,7 @@ const getStateClasses = ({
 	appearance,
 	shape,
 	label,
+	successText
 }: NumberField) => classNames(
 	['error', Boolean(errorValidationMessage)],
 	['disabled', disabled],
@@ -35,6 +36,7 @@ const getStateClasses = ({
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	['no-label', !label],
+	['success', !!successText]
 );
 
 /**
@@ -45,13 +47,6 @@ function renderLabel() {
 	  <label for="control" class="label">
 		  ${x => x.label}
 	  </label>`;
-}
-
-/**
- *
- */
-function renderHelperText() {
-	return html<NumberField>`<span id="helper-text" class="helper-text">${x => x.helperText}</span>`;
 }
 
 function adjustValueByStep(numberField: NumberField, direction = ADD) {
@@ -155,8 +150,9 @@ export const NumberFieldTemplate: (
       ${() => focusTemplate}
       ${() => numberControlButtons(context)}
     </div>
-	  ${when(x => !x.errorValidationMessage && x.helperText?.length, renderHelperText())}
-	  ${getErrorMessageTemplate(context)}
+	  ${when(x => !x.successText && !x.errorValidationMessage && x.helperText?.length, getFeedbackTemplate('helper', context))}
+	  ${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplate('error', context))}
+	  ${when(x => x.successText, getFeedbackTemplate('success', context))}
 	</div>
 `;
 };
