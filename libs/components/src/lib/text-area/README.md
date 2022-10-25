@@ -58,6 +58,17 @@ Add the `helper-text` to add some helper text below the text area.
 <vwc-text-area label="Helper text below" helper-text="Help text"></vwc-text-area>
 ```
 
+### Success text
+
+Add the `success-text` to add some success text below the text area.
+
+- Type: `string` | `undefined`
+- Default: `undefined`
+
+```html preview
+<vwc-text-area label="Success text below" success-text="Success text"></vwc-text-area>
+```
+
 ### Disabled
 
 Add the `disabled` attribute to disable the text area.
