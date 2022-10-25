@@ -1,5 +1,5 @@
 import { formatHelpers } from 'style-dictionary';
-import { exposeThemeables, pairCssUnitToSizing } from './_utils';
+import { exposeThemeables } from './_utils';
 
 const { fileHeader, formattedVariables } = formatHelpers;
 
@@ -11,8 +11,7 @@ export default {
 		const { outputReferences } = options;
 
 		dictionary.allTokens
-			.map(token => exposeThemeables(dictionary, token))
-			.map(pairCssUnitToSizing);
+			.map(token => exposeThemeables(dictionary, token));
 
 		return fileHeader({ file }) +
 			formattedVariables({

@@ -7,7 +7,7 @@ import { isSizing } from "../filters";
  */
 const parser = new Parser();
 
-export function checkAndEvaluateMath(value) {
+function checkAndEvaluateMath(value) {
 	try {
 		parser.evaluate(value);
 		return +parser.evaluate(value).toFixed(3);
