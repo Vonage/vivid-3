@@ -43,6 +43,7 @@
 		justify-content: flex-start;
 		//box-shadow: inset 0px -1px 0px 0px var(--vvd-color-neutral-300);
 		border-bottom: 1px solid var(--vvd-color-neutral-300);
+		grid-auto-flow: column;
 
 	}
 }

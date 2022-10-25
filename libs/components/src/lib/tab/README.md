@@ -39,11 +39,13 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 
 ### Icon with Label
 
-Tab label can be prefixed by a decorative icon.
+Tab label can be affixed by a decorative icon, either by its start or end.
+Toggle `icon-trailing` to set the icon's horizontal alignment.
 
 ```html preview
 <vwc-tabs activeid="tab">
  <vwc-tab icon="profile" label="Account" id="tab"></vwc-tab>
+ <vwc-tab icon="profile" icon-trailing label="Account" id="tab-2"></vwc-tab>
 </vwc-tabs>
 ```
 

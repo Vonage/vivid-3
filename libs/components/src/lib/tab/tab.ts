@@ -1,6 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import { applyMixins, Tab as FoundationTab } from '@microsoft/fast-foundation';
-import { AffixIcon } from '../../shared/patterns/affix';
+import {AffixIcon, AffixIconWithTrailing} from '../../shared/patterns/affix';
 
 /**
  * Base class for tab
@@ -20,5 +20,5 @@ export class Tab extends FoundationTab {
 	@attr({ attribute: 'aria-selected' }) override ariaSelected: string | null = null;
 }
 
-export interface Tab extends AffixIcon {}
+export interface Tab extends AffixIconWithTrailing {}
 applyMixins(Tab, AffixIcon);
