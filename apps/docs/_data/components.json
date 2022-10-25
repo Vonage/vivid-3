@@ -259,7 +259,8 @@
 		]
 	},
 	{
-		"title": "avatar 🧪",
+		"title": "avatar",
+		"status": "alpha",
 		"markdown": "./libs/components/src/lib/avatar/README.md",
 		"modules": [
 			"/assets/modules/components/avatar/index.js",
