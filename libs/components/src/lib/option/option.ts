@@ -4,7 +4,7 @@ import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
 
 /**
- * Base class for listbox-option
+ * Base class for option
  *
  * @public
  */

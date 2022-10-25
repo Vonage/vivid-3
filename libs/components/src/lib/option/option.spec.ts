@@ -1,12 +1,12 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
-import { ListboxOption } from './listbox-option';
+import { ListboxOption } from './option';
 import '.';
 
 const COMPONENT_TAG = 'vwc-option';
 const ICON_SELECTOR = 'vwc-icon';
 
-describe('vwc-listbox-option', () => {
+describe('vwc-option', () => {
 	let element: ListboxOption;
 
 	beforeEach(async () => {
@@ -16,7 +16,7 @@ describe('vwc-listbox-option', () => {
 	});
 
 	describe('basic', () => {
-		it('should be initialized as a vwc-listbox-option', async () => {
+		it('should be initialized as a vwc-option', async () => {
 			expect(element).toBeInstanceOf(ListboxOption);
 			expect(element.optionText).toBeUndefined();
 			expect(element.icon).toBeUndefined();
@@ -27,7 +27,7 @@ describe('vwc-listbox-option', () => {
 	});
 
 	describe('icon', () => {
-		it('should add an icon to the listbox option', async () => {
+		it('should add an icon to the option', async () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 

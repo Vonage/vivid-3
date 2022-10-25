@@ -7,7 +7,7 @@ import {
 	loadTemplate
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['listbox-option', 'button'];
+const components = ['option', 'button'];
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(path.join(new URL('.', import.meta.url).pathname, 'README.md'))
 		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
@@ -29,6 +29,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	expect(await testWrapper?.screenshot())
 		.toMatchSnapshot(
-			'./snapshots/listbox-option.png',
+			'./snapshots/option.png',
 		);
 });
