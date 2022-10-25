@@ -9,7 +9,11 @@ describe('vwc-listbox', () => {
 
 	beforeEach(async () => {
 		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+			`<${COMPONENT_TAG}>
+				<vwc-option value="1" text="Option" role="option" id="option"></vwc-option>
+				<vwc-option value="2" text="Option" role="option"></vwc-option>
+				<vwc-option value="3" text="Option" role="option"></vwc-option>
+			</${COMPONENT_TAG}>`
 		)) as Listbox;
 	});
 
@@ -36,7 +40,7 @@ describe('vwc-listbox', () => {
 		element.disabled = true;
 		await elementUpdated(element);
 		element.slottedOptions.forEach(optionElement => {
-			expect((optionElement as any).disabled).toEqual(false);
+			expect((optionElement as any).disabled).toEqual(true);
 		});
 	});
 
@@ -44,5 +48,13 @@ describe('vwc-listbox', () => {
 		element.multiple = true;
 		await elementUpdated(element);
 		expect(element.getAttribute('aria-multiselectable')).toEqual('true');
+	});
+
+	it('should set the `aria-activedescendant` attribute with option id when clicked', async () => {
+		const firstOption = element.slottedOptions.pop() as HTMLElement;
+		firstOption?.click();
+		await elementUpdated(element);
+
+		expect(element.getAttribute('aria-activedescendant')).toEqual(firstOption.id);
 	});
 });
