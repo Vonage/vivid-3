@@ -1,4 +1,6 @@
-export const pairCssUnitToSizing = token => token.type === 'sizing' ? token.value = `${token.value}px` : token.value;
+import { cssUnit } from "../../common";
+
+export const pairCssUnitToSizing = token => token.type === 'sizing' ? token.value = `${token.value}${cssUnit}` : token.value;
 
 export const exposeThemeables = (dictionary, token) => {
 

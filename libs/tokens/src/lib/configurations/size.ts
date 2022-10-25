@@ -1,6 +1,6 @@
 const SD = require('style-dictionary');
 
-import { prefix, buildPath, selector } from './common/config';
+import { prefix, buildPath, selector, cssUnit } from '../common';
 import { isSource } from '../filters';
 
 SD.registerTransform({
@@ -8,7 +8,7 @@ SD.registerTransform({
   type: "value",
   transitive: true,
 	matcher: isSource,
-  transformer: ({ value }) => `calc(${value})`,
+  transformer: ({ value }) => `calc(${value}${cssUnit})`,
 });
 
 export default {

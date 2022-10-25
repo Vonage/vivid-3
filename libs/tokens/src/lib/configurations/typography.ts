@@ -1,6 +1,6 @@
 const SD = require('style-dictionary');
 
-import { prefix, buildPath, selector } from './common/config';
+import { prefix, buildPath, selector } from '../common';
 import fontWeight from '../transforms/font-weight';
 import fontSize from '../transforms/font-size';
 import typographyShorthand from '../transforms/typography-shorthand';

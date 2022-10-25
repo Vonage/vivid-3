@@ -1,7 +1,7 @@
 
 const SD = require('style-dictionary');
 
-import { prefix, buildPath, selector } from './common/config';
+import { prefix, buildPath, selector } from '../common';
 import cssThemeableVariables from '../formatters/sass-constants';
 import { isSource } from '../filters';
 
