@@ -2,6 +2,36 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Mon, 24 Oct 2022 13:21:28 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.81",
+      "version": "3.0.0-next.81",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "d222a3d9a148b561b604950b5b8fc1652789dbff",
+            "comment": "Success Message for Form Elements"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 20 Oct 2022 12:34:54 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.80",
+      "version": "3.0.0-next.80",
+      "comments": {
+        "none": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "c1562518a4b772a5376b58b96306656a3c41ebf9",
+            "comment": "Form elements error message pattern"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 19 Oct 2022 08:48:12 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.80",
       "version": "3.0.0-next.80",

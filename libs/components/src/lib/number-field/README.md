@@ -59,6 +59,17 @@ Add the `helper-text` to add some helper text below the number field.
 <vwc-number-field label="Helper text below" helper-text="Help text"></vwc-number-field>
 ```
 
+### Success text
+
+Add the `success-text` to add some success text below the number field.
+
+- Type: `string` | `undefined`
+- Default: `undefined`
+
+```html preview
+<vwc-number-field label="Valid value" success-text="Great success"></vwc-number-field>
+```
+
 ### Density
 
 Use the `density` attribute to set the number field's to one of the predefined block size extent.
@@ -116,5 +127,5 @@ Add the `readonly` attribute to restrict user from changing the number field's v
 - Default: `false`
 
 ```html preview blocks
-<vwc-number-field readonly value="readonly text" label='fieldset' appearance='fieldset'></vwc-number-field>
+<vwc-number-field readonly value="8" label='fieldset' appearance='fieldset'></vwc-number-field>
 ```
