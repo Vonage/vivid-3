@@ -1,4 +1,4 @@
-import { isTypography, isFontSize, isSource } from '.';
+import { isTypography, isFontSize, isSource, isSizing } from '.';
 
 describe('Filters', () => {
 	it('should return true if token of type typography', () => {
@@ -15,6 +15,14 @@ describe('Filters', () => {
 
 	it('should return false if token not of type fontSizes', () => {
 		expect(isFontSize({ type: 'other' })).toEqual(false);
+	});
+
+	it('should return true if token of type sizing', () => {
+		expect(isSizing({ type: 'sizing' })).toEqual(true);
+	});
+
+	it('should return false if token not of type sizing', () => {
+		expect(isSizing({ type: 'other' })).toEqual(false);
 	});
 
 	it('should return true if source tokens', () => {

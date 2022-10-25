@@ -1,12 +1,13 @@
 import type { Named, Transform } from "style-dictionary";
 import { Parser } from 'expr-eval';
+import { isSizing } from "../filters";
 
 /**
  * Helper: Transforms math like Figma Tokens
  */
 const parser = new Parser();
 
-function checkAndEvaluateMath(value) {
+export function checkAndEvaluateMath(value) {
 	try {
 		parser.evaluate(value);
 		return +parser.evaluate(value).toFixed(3);
@@ -22,6 +23,6 @@ export default {
   name: "resolveMath",
   type: "value",
   transitive: true,
-  matcher: (token) => ['sizing'].includes(token.type),
+  matcher: isSizing,
   transformer: (token) => `${checkAndEvaluateMath(token.value)}`
 } as Named<Transform>;

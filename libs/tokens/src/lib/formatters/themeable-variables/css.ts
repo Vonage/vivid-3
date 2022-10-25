@@ -12,7 +12,7 @@ export default {
 
 		dictionary.allTokens
 			.map(token => exposeThemeables(dictionary, token))
-			.map(pairCssUnitToSizing)
+			.map(pairCssUnitToSizing);
 
 		return fileHeader({ file }) +
 			`${selector} {\n` +

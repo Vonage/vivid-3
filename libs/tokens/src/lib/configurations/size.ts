@@ -1,15 +1,6 @@
-const SD = require('style-dictionary');
-
-import { prefix, buildPath, selector, cssUnit } from '../common';
+import { prefix, buildPath, selector } from '../common';
 import { isSource } from '../filters';
 
-SD.registerTransform({
-  name: "wrapWithCalc",
-  type: "value",
-  transitive: true,
-	matcher: isSource,
-  transformer: ({ value }) => `calc(${value}${cssUnit})`,
-});
 
 export default {
 	source: [
@@ -33,7 +24,7 @@ export default {
 			}]
 		},
 		scss: {
-			transforms: ['attribute/cti', 'name/cti/kebab', 'wrapWithCalc'],
+			transforms: ['attribute/cti', 'name/cti/kebab'],
 			prefix,
 			buildPath,
 			files: [{
