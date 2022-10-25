@@ -5,7 +5,7 @@ export const getTypographyConfig = (viewport: string) => ({
 		"blueprint.tokens/typography.tokens.json"
 	],
 	include: [
-		'../../../../node_modules/@vonage/vivid-figma-tokens/data/font.tokens.json',
+		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/font.tokens.json',
 		`../../../../node_modules/@vonage/vivid-figma-tokens/data/typography/${viewport}.tokens.json`
 	],
 	platforms: {
