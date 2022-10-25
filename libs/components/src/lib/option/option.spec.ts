@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
 import { ListboxOption } from './option';
 import '.';
@@ -65,7 +65,7 @@ describe('vwc-option', () => {
 
 	it('should set the `aria-disabled` attribute with the `disabled` value when provided', async () => {
 		element.disabled = true;
-		await elementUpdated(getBaseElement(element));
+		await elementUpdated(element);
 		expect(element.getAttribute('aria-disabled')).toEqual('true');
 	});
 });
