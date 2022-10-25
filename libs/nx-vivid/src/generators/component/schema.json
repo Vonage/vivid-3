@@ -18,6 +18,12 @@
       "description": "Add export in package.json?",
       "x-prompt": "Add export in package.json?",
       "default": true
+    },
+    "addToExports": {
+      "type": "boolean",
+      "description": "Add to component.ts?",
+      "x-prompt": "Add to component.ts?",
+      "default": true
     }
   },
   "required": ["name"]

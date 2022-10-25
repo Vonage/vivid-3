@@ -43,4 +43,22 @@ describe(`vivid component generator`, function () {
     const packageJson = JSON.parse(tree.read(`libs/components/package.json`).toString());
     expect(packageJson.exports[`./${fileName}`]).toBeUndefined();
   });
+
+  it('should add the component to components.ts exports if given this option', async function() {
+    const filePath = 'libs/components/src/lib/components.ts';
+    options.addToExports = true;
+    tree.write(filePath, '');
+    await vividComponentGenerator(tree, options);
+    const result = tree.read(filePath, 'utf8').trim();
+    expect(result).toBe(`export * from './${options.name}';`);
+  });
+
+  it('should not add the component to components.ts exports without the option', async function() {
+    const filePath = 'libs/components/src/lib/components.ts';
+    options.addToExports = false;
+    tree.write(filePath, '');
+    await vividComponentGenerator(tree, options);
+    const result = tree.read(filePath, 'utf8').trim();
+    expect(result).toBe('');
+  });
 });
