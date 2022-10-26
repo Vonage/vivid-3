@@ -34,7 +34,6 @@
     "./fab": "./fab",
     "./icon": "./icon",
     "./layout": "./layout",
-    "./listbox": "./listbox",
     "./menu": "./menu",
     "./menu-item": "./menu-item",
     "./nav": "./nav",
