@@ -9,7 +9,7 @@ import {
 
 const components = ['banner'];
 
-test('should show the component', async ({ page }: { page: Page }) => {
+test.only('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(
 		path.join(new URL('.', import.meta.url).pathname, 'README.md')
 	).reduce(
@@ -18,7 +18,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		''
 	);
 
-	page.setViewportSize({ width: 600, height: 720 });
+	await page.setViewportSize({ width: 600, height: 720 });
 
 	await loadComponents({
 		page,
