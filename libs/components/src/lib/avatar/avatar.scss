@@ -1,4 +1,4 @@
-@use '../../../../../dist/libs/tokens/scss/constants' as constants;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use 'partials/variables' as variables;
 @use 'partials/mixins' as mixins;
 
@@ -32,15 +32,15 @@
 	vertical-align: middle;
 
 	&.density-condensed {
-		@include mixins.get-density-properties(32px, #{constants.$vvd-font-base-condensed-bold});
+		@include mixins.get-density-properties(32px, #{constants.$vvd-typography-base-condensed-bold});
 	}
 
 	&.density-extended {
-		@include mixins.get-density-properties(48px, #{constants.$vvd-font-heading4});
+		@include mixins.get-density-properties(48px, #{constants.$vvd-typography-heading-4});
 	}
 
 	&:not(.density-condensed, .density-extended) {
-		@include mixins.get-density-properties(40px, #{constants.$vvd-font-base-extended-bold});
+		@include mixins.get-density-properties(40px, #{constants.$vvd-typography-base-extended-bold});
 	}
 
 	&:not(.shape-pill) {
@@ -51,6 +51,9 @@
 		border-radius: 50%;
 	}
 
+	.initials {
+		text-transform: uppercase;
+	}
 
 	::slotted(*) {
 		block-size: 100%;

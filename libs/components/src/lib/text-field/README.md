@@ -56,6 +56,17 @@ Add the `helper-text` to add some helper text below the text field.
 <vwc-text-field label="Helper text below" helper-text="Help text"></vwc-text-field>
 ```
 
+### Success text
+
+Add the `success-text` to add some success text below the text field.
+
+- Type: `string` | `undefined`
+- Default: `undefined`
+
+```html preview
+<vwc-text-field label="Username" value="Vlad" success-text="Valid username"></vwc-text-field>
+```
+
 ### Character Count
 
 - Type: `boolean`
@@ -90,7 +101,7 @@ Use the `icon` attribute to add an icon.
 
 ### Shape
 
-Use the `shape` attribute to change the button's edges.
+Use the `shape` attribute to change the text field's edges.
 
 - Type: `'rounded'` | `'pill'`
 - Default: `'rounded'`
@@ -102,7 +113,7 @@ Use the `shape` attribute to change the button's edges.
 
 ### Appearance
 
-Set the `appearance` attribute to change the button's appearance.
+Set the `appearance` attribute to change the text field's appearance.
 
 - Type: `'fieldset'` | `'ghost'`
 - Default: `'fieldset'`

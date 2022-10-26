@@ -1,4 +1,4 @@
-@use '../../../../../dist/libs/tokens/scss/constants' as constants;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 
 @use 'partials/variables' as variables;
 @use '../calendar/partials/variables' as calendar-variables;
@@ -78,7 +78,7 @@
 
 h2 {
 	margin: 0;
-	font: var(#{constants.$vvd-font-base-condensed-bold});
+	font: var(#{constants.$vvd-typography-base-condensed-bold});
 
 	>strong {
 		font: inherit;
@@ -87,5 +87,5 @@ h2 {
 
 p {
 	margin: 0;
-	font: var(#{constants.$vvd-font-base-condensed});
+	font: var(#{constants.$vvd-typography-base-condensed});
 }
