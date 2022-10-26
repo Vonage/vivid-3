@@ -1,24 +1,33 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Listbox } from './listbox';
+import type { ListboxOption } from '../listbox-option/listbox-option';
+import '../listbox-option';
 import '.';
 
 const COMPONENT_TAG = 'vwc-listbox';
 
 describe('vwc-listbox', () => {
 	let element: Listbox;
+	let option1: ListboxOption;
+	let option2: ListboxOption;
 
-	beforeEach(async () => {
+	beforeEach(async function () {
 		element = (await fixture(
 			`<${COMPONENT_TAG}>
-				<vwc-option value="1" text="Option" role="option" id="option"></vwc-option>
-				<vwc-option value="2" text="Option" role="option"></vwc-option>
-				<vwc-option value="3" text="Option" role="option"></vwc-option>
+				<vwc-option value="1" text="Option" role="option" id="option1"></vwc-option>
+				<vwc-option value="2" text="Option" role="option" id="option2"></vwc-option>
 			</${COMPONENT_TAG}>`
 		)) as Listbox;
+
+		await elementUpdated(element);
+		option1 = element.querySelector('#item1') as ListboxOption;
+		option2 = element.querySelector('#item2') as ListboxOption;
+		await elementUpdated(option1);
+		await elementUpdated(option2);
 	});
 
-	describe('basic', () => {
-		it('should be initialized as a vwc-listbox', async () => {
+	describe('basic', function () {
+		it('should be initialized as a vwc-listbox', async function () {
 			expect(element).toBeInstanceOf(Listbox);
 			expect(element.disabled).toBeUndefined();
 			expect(element.multiple).toBeUndefined();
@@ -26,8 +35,8 @@ describe('vwc-listbox', () => {
 		});
 	});
 
-	describe('appearance', () => {
-		it('sets correct internal appearance style', async () => {
+	describe('appearance', function () {
+		it('sets correct internal appearance style', async function () {
 			const appearance = 'ghost';
 			(element as any).appearance = appearance;
 			await elementUpdated(element);
@@ -36,25 +45,39 @@ describe('vwc-listbox', () => {
 		});
 	});
 
-	it('should set the `aria-disabled` attribute with the `disabled` value when provided', async () => {
-		element.disabled = true;
-		await elementUpdated(element);
-		element.slottedOptions.forEach(optionElement => {
-			expect((optionElement as any).disabled).toEqual(true);
+	describe('disabled', function () {
+		it('should set the `aria-disabled` attribute with the `disabled` value when provided', async function () {
+			element.disabled = true;
+			await elementUpdated(element);
+			element.slottedOptions.forEach(optionElement => {
+				expect((optionElement as any).disabled).toEqual(true);
+			});
 		});
 	});
 
-	it('should set the `aria-multiselectable` attribute with the `multiple` value when provided', async () => {
-		element.multiple = true;
-		await elementUpdated(element);
-		expect(element.getAttribute('aria-multiselectable')).toEqual('true');
+	describe('multiselectable', function () {
+		it('should set the `aria-multiselectable` attribute with the `multiple` value when provided', async function () {
+			element.multiple = true;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-multiselectable')).toEqual('true');
+		});
 	});
 
-	it('should set the `aria-activedescendant` attribute with option id when clicked', async () => {
-		const firstOption = element.slottedOptions.pop() as HTMLElement;
-		firstOption?.click();
-		await elementUpdated(element);
+	describe('activedescendant', function () {
+		it('should set the `aria-activedescendant` attribute with option id when clicked', async function () {
+			const firstOption = element.slottedOptions.pop() as HTMLElement;
+			firstOption?.click();
+			await elementUpdated(element);
 
-		expect(element.getAttribute('aria-activedescendant')).toEqual(firstOption.id);
+			expect(element.getAttribute('aria-activedescendant')).toEqual(firstOption.id);
+		});
+
+		it('should set the `aria-activedescendant` attribute with option when listbox is multiple and focused', async function () {
+			element.multiple = true;
+			element.focus();
+			await elementUpdated(element);
+
+			expect(element.getAttribute('aria-activedescendant')).toEqual("option1");
+		});
 	});
 });

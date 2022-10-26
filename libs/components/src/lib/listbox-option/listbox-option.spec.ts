@@ -1,6 +1,6 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
-import { ListboxOption } from './option';
+import { ListboxOption } from './listbox-option';
 import '.';
 
 const COMPONENT_TAG = 'vwc-option';
