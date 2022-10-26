@@ -95,8 +95,7 @@ describe('vwc-listbox', () => {
 		});
 
 		it('should not set the `aria-activedescendant` attribute with option id when mousedown', async () => {
-			const firstOption = element.slottedOptions.pop() as HTMLElement;
-			firstOption.dispatchEvent(new MouseEvent('mousedown'));
+			element.dispatchEvent(new MouseEvent('mousedown'));
 			await elementUpdated(element);
 
 			expect(element.getAttribute('aria-activedescendant')).toEqual('');
