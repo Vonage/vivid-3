@@ -73,6 +73,7 @@ describe('vwc-listbox', () => {
 		});
 
 		it('should set the `aria-activedescendant` attribute with option when listbox is multiple and focused', async function () {
+			Element.prototype.scrollIntoView = jest.fn();
 			element.multiple = true;
 			element.focus();
 			await elementUpdated(element);
