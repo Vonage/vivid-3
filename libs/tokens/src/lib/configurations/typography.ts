@@ -19,7 +19,7 @@ export default {
 	],
 	platforms: {
 		css: {
-			transforms: ['attribute/cti', 'name/cti/kebab', 'resolveMath', 'type/fontWeight', 'type/fontSize', 'typography/shorthand'],
+			transforms: ['attribute/cti', 'name/cti/kebab', 'type/fontWeight', 'type/fontSize', 'typography/shorthand'],
 			prefix,
 			buildPath,
 			files: [{
