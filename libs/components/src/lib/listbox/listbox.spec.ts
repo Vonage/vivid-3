@@ -1,6 +1,6 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import { Listbox } from './listbox';
 import type { ListboxOption } from '../listbox-option/listbox-option';
+import { Listbox } from './listbox';
 import '../listbox-option';
 import '.';
 
@@ -77,7 +77,7 @@ describe('vwc-listbox', () => {
 			element.focus();
 			await elementUpdated(element);
 
-			expect(element.getAttribute('aria-activedescendant')).toEqual("option1");
+			expect(element.getAttribute('aria-activedescendant')).toEqual('option1');
 		});
 	});
 });
