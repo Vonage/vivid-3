@@ -5,7 +5,7 @@
     <vwc-nav-item
 			href="{{ ('/designs/' + item.title) | url }}"
 			text="{{ item.title | replace("-", " ") | capitalize }}
-				{% if (item.status) == "alpha" %}🧪{% endif %}}"
+				{% if (item.status) == "alpha" %}🧪{% endif %}"
 			{% if ('/designs/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
     {% endfor %}
   </vwc-nav-disclosure>
