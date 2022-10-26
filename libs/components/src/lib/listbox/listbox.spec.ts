@@ -6,6 +6,8 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-listbox';
 
+Element.prototype.scrollIntoView = jest.fn();
+
 describe('vwc-listbox', () => {
 	let element: Listbox;
 	let option1: ListboxOption;
@@ -73,12 +75,23 @@ describe('vwc-listbox', () => {
 		});
 
 		it('should set the `aria-activedescendant` attribute with option when listbox is multiple and focused', async function () {
-			Element.prototype.scrollIntoView = jest.fn();
 			element.multiple = true;
 			element.focus();
 			await elementUpdated(element);
 
 			expect(element.getAttribute('aria-activedescendant')).toEqual('option1');
+		});
+
+		it('should set the `aria-activedescendant` attribute with option id when keydown', async () => {
+			element.focus();
+			await elementUpdated(element);
+
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+			element.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Enter' }));
+			await elementUpdated(element);
+
+			expect(element.getAttribute('aria-activedescendant')).toEqual('option2');
 		});
 	});
 });
