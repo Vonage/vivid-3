@@ -1,11 +1,11 @@
 @use '../../../../shared/src/lib/sass/utils' as utils;
-@use '../../../../../dist/libs/tokens/scss/constants' as constants;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 
 .base {
 	display: flex;
 	align-items: center;
 	color: var(#{constants.$vvd-color-canvas-text});
-	font: var(#{constants.$vvd-font-base});
+	font: var(#{constants.$vvd-typography-base});
 
 	vwc-icon {
 		margin: 0 16px;

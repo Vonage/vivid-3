@@ -2,8 +2,8 @@ import { formatHelpers } from 'style-dictionary';
 
 const { fileHeader } = formatHelpers;
 
-export const scssConstants = {
-	name: 'scss/constants',
+export default {
+	name: 'sass/constants',
 	formatter({ dictionary, file }) {
 		return fileHeader({file}) + dictionary.allProperties.map(({ name }) =>
 			`$${name}: --${name};`
