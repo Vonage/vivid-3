@@ -282,13 +282,6 @@
 		]
 	},
 	{
-		"title": "radio",
-		"markdown": "./libs/components/src/lib/radio/README.md",
-		"modules": [
-			"/assets/modules/components/radio/index.js"
-		]
-	},
-	{
 		"title": "listbox",
 		"markdown": "./libs/components/src/lib/listbox/README.md",
 		"modules": [
