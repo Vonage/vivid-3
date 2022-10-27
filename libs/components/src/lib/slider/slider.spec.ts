@@ -30,7 +30,6 @@ describe('vwc-slider', () => {
 			expect(element.step).toBe(1);
 
 			expect(element.disabled).toBeFalsy();
-			expect(element.readOnly).toBeUndefined();
 			expect(element.orientation).toBe(Orientation.horizontal);
 			expect(element.markers).toBeFalsy();
 		});
@@ -40,13 +39,6 @@ describe('vwc-slider', () => {
 		it('should set disabled class when disabled is true', async () => {
 			const classes = await setBoolAttributeOn(element, 'disabled');
 			expect(classes).toContain('disabled');
-		});
-	});
-
-	describe('readonly', () => {
-		it('should set readonly class when readonly is true', async () => {
-			const classes = await setBoolAttributeOn(element, 'readonly');
-			expect(classes).toContain('readonly');
 		});
 	});
 

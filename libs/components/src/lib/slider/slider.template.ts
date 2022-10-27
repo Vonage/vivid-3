@@ -6,10 +6,9 @@ import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
 import type { Slider } from './slider';
 
-const getClasses = ({ readOnly, disabled}: Slider) =>
+const getClasses = ({ disabled}: Slider) =>
 	classNames(
 		'control',
-		['readonly', Boolean(readOnly)],
 		['disabled', Boolean(disabled)],
 	);
 
@@ -44,7 +43,6 @@ export const SliderTemplate: (context: ElementDefinitionContext) => ViewTemplate
 		aria-valuemin="${x => x.min}"
 		aria-valuemax="${x => x.max}"
 		aria-disabled="${x => (x.disabled ? true : void 0)}"
-		aria-readonly="${x => (x.readOnly ? true : void 0)}"
 		aria-orientation="${x => x.orientation}"
 		class="${getClasses} ${x => x.orientation}"
 	>

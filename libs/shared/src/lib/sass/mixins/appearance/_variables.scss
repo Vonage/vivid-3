@@ -197,6 +197,13 @@ $states-mapping: (
       outline: transparent,
     )
   ),
+  selectedAndHover: (
+    ghost: (
+      text: var(#{connotation.get-connotation-token(primary-text)}),
+      fill: var(#{connotation.get-connotation-token(primary-increment)}),
+      outline: transparent,
+    )
+  ),
   error: (
     filled: (
       text: transparent,
