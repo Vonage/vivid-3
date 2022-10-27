@@ -41,6 +41,12 @@ $track-thickness: 2px;
 	&:not(.disabled) {
 		#{variables.$track-background-color}: var(#{utils.get-color-token(neutral-300)});
 		#{variables.$track-start-background-color}: var(#{utils.get-color-token(canvas-text)});
+		&:hover {
+			#{variables.$thumb-interaction-indicator-alpha}: 0.12;
+		}
+		&:active {
+			#{variables.$thumb-interaction-indicator-alpha}: 0.25;
+		}
 	}
 
 	& .positioning-region {
@@ -66,15 +72,6 @@ $track-thickness: 2px;
 		width: var(#{variables.$thumb-interaction-indicator-size});
 		height: var(#{variables.$thumb-interaction-indicator-size});
 		cursor: inherit;
-
-		@at-root&:not(.disabled) & {
-			&:hover {
-				#{variables.$thumb-interaction-indicator-alpha}: 0.12;
-			}
-			&:active {
-				#{variables.$thumb-interaction-indicator-alpha}: 0.25;
-			}
-		}
 
 		&::before {
 			position: absolute;
