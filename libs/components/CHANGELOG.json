@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Thu, 27 Oct 2022 06:36:37 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.82",
+      "version": "3.0.0-next.82",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "5f05c02b7979863362442ede0e31e1fa24ba2adc",
+            "comment": "refactor tokens to include public properties"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 24 Oct 2022 13:21:28 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.81",
       "version": "3.0.0-next.81",
