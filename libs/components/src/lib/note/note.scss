@@ -1,4 +1,4 @@
-@use '../../../../../dist/libs/tokens/scss/constants' as constants;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: success information alert announcement warning,
@@ -46,10 +46,10 @@
 	text-align: start;
 
 	.headline {
-		font: var(#{constants.$vvd-font-base-bold});
+		font: var(#{constants.$vvd-typography-base-bold});
 	}
 
 	.message {
-		font: var(#{constants.$vvd-font-base});
+		font: var(#{constants.$vvd-typography-base});
 	}
 }
