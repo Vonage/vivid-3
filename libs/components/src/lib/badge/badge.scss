@@ -19,6 +19,8 @@
 	@include connotation.connotation;
 	@include appearance.appearance;
 
+	#{variables.$badge-block-size}: 20px;
+
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
@@ -29,6 +31,7 @@
 	column-gap: 8px;
 	font: var(#{constants.$vvd-typography-base-condensed-bold});
 	vertical-align: middle;
+	padding-inline: 8px;
 
 	&.icon-only {
 		contain: size;
@@ -43,26 +46,6 @@
 			inline-size: var(#{variables.$badge-block-size});
 		}
 	}
-}
-
-/* Size */
-
-.base:not(.density-condensed):not(.density-extended) {
-	#{variables.$badge-block-size}: 24px;
-
-	padding-inline: 10px;
-}
-
-.base.density-condensed {
-	#{variables.$badge-block-size}: 20px;
-
-	padding-inline: 8px;
-}
-
-.base.density-extended {
-	#{variables.$badge-block-size}: 28px;
-
-	padding-inline: 12px;
 }
 
 /* Shape */
