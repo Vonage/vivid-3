@@ -30,8 +30,9 @@
 	color: var(#{appearance.get-appearance-token(text)});
 	column-gap: 8px;
 	font: var(#{constants.$vvd-typography-base-condensed-bold});
-	vertical-align: middle;
 	padding-inline: 8px;
+	vertical-align: middle;
+
 
 	&.icon-only {
 		contain: size;
@@ -50,7 +51,6 @@
 
 /* Shape */
 
-// stylelint-disable-next-line no-descending-specificity
 .base:not(.shape-pill) {
 	border-radius: 4px;
 }
