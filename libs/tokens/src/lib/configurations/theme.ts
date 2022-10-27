@@ -1,25 +1,31 @@
-import { prefix, buildPath } from './common/config';
+const SD = require('style-dictionary');
 
-export const getThemeConfig = (theme: string) => ({
+import { prefix, buildPath, selector } from '../common';
+import shadowShorthand from '../transforms/shadow-shorthand';
+import { isSource } from '../filters';
+
+
+SD.registerTransform(shadowShorthand);
+
+export default (theme: string) => ({
 	source: [
-		"blueprint.tokens/theme.tokens.json",
+		`../../../../node_modules/@vonage/vivid-figma-tokens/data/themes/${theme}/semantics.tokens.json`,
+		`../../../../node_modules/@vonage/vivid-figma-tokens/data/themes/${theme}/elevation.tokens.json`
 	],
 	include: [
-		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/alphahex.tokens.json',
-		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/palette.tokens.json',
-		`../../../../node_modules/@vonage/vivid-figma-tokens/data/themes/${theme}/**/*.tokens.json`
+		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/color/**/*.tokens.json'
 	],
 	platforms: {
-		web: {
+		css: {
 			transforms: ["attribute/cti", "name/cti/kebab", "shadow/shorthand"],
 			prefix,
 			buildPath,
 			files: [{
-				destination: `themes/_${theme}.mixin.scss`,
-				format: "css/variables",
-				filter: "sourceOnly",
+				destination: `_theme-${theme}.tokens.scss`,
+				format: "css/themeableVariables",
+				filter: isSource,
 				options: {
-					selector: "@mixin variables"
+					selector
 				}
 			}]
 		}
