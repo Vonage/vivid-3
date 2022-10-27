@@ -1,5 +1,5 @@
 @use 'config';
-@use '../../../../../../../dist/libs/tokens/scss/constants' as constants;
+@use '../../../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use '../connotation' as connotation;
 
 
@@ -194,6 +194,13 @@ $states-mapping: (
     subtle: (
       text: var(#{connotation.get-connotation-token(contrast)}),
       fill: var(#{connotation.get-connotation-token(soft)}),
+      outline: transparent,
+    )
+  ),
+  selectedAndHover: (
+    ghost: (
+      text: var(#{connotation.get-connotation-token(primary-text)}),
+      fill: var(#{connotation.get-connotation-token(primary-increment)}),
       outline: transparent,
     )
   ),
