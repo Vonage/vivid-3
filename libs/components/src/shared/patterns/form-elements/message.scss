@@ -1,11 +1,11 @@
-@use '../../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use '../../../../../../dist/libs/tokens/scss/constants' as constants;
 
 $low-ink-color: --_low-ink-color;
 
 .message {
 	display: flex;
 	contain: inline-size;
-	font: var(#{constants.$vvd-typography-base-condensed});
+	font: var(#{constants.$vvd-font-base-condensed});
 	gap: 4px;
 	grid-column: 1 / -1;
 

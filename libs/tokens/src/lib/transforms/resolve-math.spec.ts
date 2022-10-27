@@ -1,4 +1,4 @@
-import resolveMath from './resolve-math';
+import { resolveMath } from './resolve-math';
 
 const { transformer, matcher } = resolveMath;
 
@@ -12,8 +12,7 @@ const defualtToken = {
 };
 
 const token = {
-	value: "4 * 3.72",
-	type: 'sizing',
+	value: "4 * 3.72"
 };
 
 describe('basic', () => {
@@ -21,7 +20,7 @@ describe('basic', () => {
 		expect(transformer({
 			...defualtToken,
 			...token
-		})).toEqual('14.88');
+		})).toEqual('15');
 	});
 
 	it('should throw', () => {
@@ -29,10 +28,7 @@ describe('basic', () => {
 	});
 
 	it('should match if is token', () => {
-		expect(matcher({
-			...defualtToken,
-			type: 'other'
-		})).toBeFalsy();
+		expect(matcher(undefined)).toBeFalsy();
 		expect(matcher({
 			...defualtToken,
 			...token,

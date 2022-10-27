@@ -3,10 +3,10 @@ import { Icon } from '../icon/icon';
 import { ListboxOption } from './listbox-option';
 import '.';
 
-const COMPONENT_TAG = 'vwc-listbox-option';
+const COMPONENT_TAG = 'vwc-option';
 const ICON_SELECTOR = 'vwc-icon';
 
-describe('vwc-listbox-option', () => {
+describe('vwc-option', () => {
 	let element: ListboxOption;
 
 	beforeEach(async () => {
@@ -16,18 +16,18 @@ describe('vwc-listbox-option', () => {
 	});
 
 	describe('basic', () => {
-		it('should be initialized as a vwc-listbox-option', async () => {
+		it('should be initialized as a vwc-option', async () => {
 			expect(element).toBeInstanceOf(ListboxOption);
 			expect(element.optionText).toBeUndefined();
 			expect(element.icon).toBeUndefined();
 			expect(element.selected).toBeFalsy();
-			expect(element.checked).toBeFalsy();
-			expect(element.disabled).toBeFalsy();
+			expect(element.checked).toBeUndefined();
+			expect(element.disabled).toBeUndefined();
 		});
 	});
 
 	describe('icon', () => {
-		it('should add an icon to the listbox option', async () => {
+		it('should add an icon to the option', async () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
@@ -47,35 +47,25 @@ describe('vwc-listbox-option', () => {
 			await elementUpdated(element);
 
 			const base = element.shadowRoot?.querySelector('.base');
-			expect(base?.textContent).toEqual(text);
+			expect(base?.textContent?.trim()).toEqual(text);
 		});
 	});
 
-
-	describe('selected', function () {
-		it('should set selected class when selected is true', async () => {
-			expect(element.shadowRoot?.querySelector('.selected')).toBeFalsy();
-			element.toggleAttribute('selected', true);
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.selected')).toBeTruthy();
-		});
+	it('should set the `aria-selected` attribute with the `selected` value when provided', async () => {
+		element.selected = true;
+		await elementUpdated(element);
+		expect(element.getAttribute('aria-selected')).toEqual('true');
 	});
 
-	describe('checked', function () {
-		it('should set checked class when checked is true', async () => {
-			expect(element.shadowRoot?.querySelector('.checked')).toBeFalsy();
-			element.toggleAttribute('checked', true);
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.checked')).toBeTruthy();
-		});
+	it('should set the `aria-checked` attribute with the `checked` value when provided', async () => {
+		element.checked = true;
+		await elementUpdated(element);
+		expect(element.getAttribute('aria-checked')).toEqual('true');
 	});
 
-	describe('disabled', function () {
-		it('should set disabled class when disabled is true', async () => {
-			expect(element.shadowRoot?.querySelector('.disabled')).toBeFalsy();
-			element.toggleAttribute('disabled', true);
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.disabled')).toBeTruthy();
-		});
+	it('should set the `aria-disabled` attribute with the `disabled` value when provided', async () => {
+		element.disabled = true;
+		await elementUpdated(element);
+		expect(element.getAttribute('aria-disabled')).toEqual('true');
 	});
 });

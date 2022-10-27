@@ -1,4 +1,4 @@
-import shadowShorthand from './shadow-shorthand';
+import { shadowShorthand } from './shadow-shorthand';
 
 const { transformer, matcher } = shadowShorthand;
 

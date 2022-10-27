@@ -1,19 +1,14 @@
-const SD = require('style-dictionary');
+import { prefix, buildPath } from './common/config';
 
-import { prefix, buildPath, selector } from '../common';
-import shadowShorthand from '../transforms/shadow-shorthand';
-import { isSource } from '../filters';
-
-
-SD.registerTransform(shadowShorthand);
-
-export default (theme: string) => ({
+export const getThemeConfig = (theme: string) => ({
 	source: [
 		`../../../../node_modules/@vonage/vivid-figma-tokens/data/themes/${theme}/semantics.tokens.json`,
 		`../../../../node_modules/@vonage/vivid-figma-tokens/data/themes/${theme}/elevation.tokens.json`
 	],
 	include: [
-		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/color/**/*.tokens.json'
+		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/alphahex.tokens.json',
+		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/palette.tokens.json',
+		`../../../../node_modules/@vonage/vivid-figma-tokens/data/themes/${theme}/**/*.tokens.json`
 	],
 	platforms: {
 		css: {

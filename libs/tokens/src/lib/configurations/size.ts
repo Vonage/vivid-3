@@ -1,13 +1,13 @@
-import { prefix, buildPath, selector } from '../common';
-import { isSource } from '../filters';
+import { prefix, buildPath } from './common/config';
 
+const isBase = token => token.attributes.type === 'base';
 
-export default {
+export const sizeConfig = {
 	source: [
-		'../../../../node_modules/@vonage/vivid-figma-tokens/data/size.tokens.json',
+		'../../../../node_modules/@vonage/vivid-figma-tokens/data/sizing/desktop.tokens.json'
 	],
 	include: [
-		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/size.tokens.json'
+		'../../../../node_modules/@vonage/vivid-figma-tokens/data/sizing/base.tokens.json',
 	],
 	platforms: {
 		css: {
@@ -15,22 +15,22 @@ export default {
 			prefix,
 			buildPath,
 			files: [{
-				destination: '_size.tokens.scss',
-				format: 'css/themeableVariables',
-				filter: token => token.public,
+				destination: 'size/_base.mixin.scss',
+				format: 'suffixPxCssVariables',
 				options: {
-					selector
+					selector: '@mixin variables'
 				},
+				filter: isBase,
 			}]
 		},
 		scss: {
-			transforms: ['attribute/cti', 'name/cti/kebab'],
+			transforms: ['attribute/cti', 'name/cti/kebab', 'referenceSizingBase', 'resolveMath'],
 			prefix,
 			buildPath,
 			files: [{
-				destination: '_size.variables.scss',
-				format: 'sass/themeableVariables',
-				filter: isSource,
+				destination: 'size/_variables.scss',
+				format: 'sizingScssVariables',
+				filter: 'sourceOnly',
 			}],
 		}
 	}

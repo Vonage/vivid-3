@@ -1,4 +1,4 @@
-import scssConstants from './sass-constants';
+import { scssConstants } from './scss-constants';
 
 const { formatter } = scssConstants;
 

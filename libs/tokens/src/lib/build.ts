@@ -1,27 +1,50 @@
 
-const SD = require('style-dictionary');
+import StyleDictionary from 'style-dictionary';
 
-import resolveMath from './transforms/resolve-math';
+import { sourceOnly } from './filters/source-only';
 
-import cssThemeableVariables from './formatters/themeable-variables/css';
-import sassThemeableVariables from './formatters/themeable-variables/sass';
+import { shadowShorthand } from './transforms/shadow-shorthand';
+import { fontShorthand } from './transforms/font-shorthand';
+import { referenceSizingBase } from './transforms/reference-sizing-base';
+import { resolveMath } from './transforms/resolve-math';
 
-import configScssConstants from './configurations/sass-constants';
-import getConfigTheme from './configurations/theme';
-import configTypography from './configurations/typography';
-import configSize from './configurations/size';
+import { scssConstants } from './formatters/scss-constants';
+import { sizingScssVariables } from './formatters/sizing-scss-variables';
+import { suffixPxCssVariables } from './formatters/suffix-px-css-variables';
+
+import { scssConstantsConfig } from './configurations/scss-constants';
+import { getThemeConfig } from './configurations/theme';
+import { getTypographyConfig } from './configurations/typography';
+import { sizeConfig } from './configurations/size';
+
+import themes from '@vonage/vivid-figma-tokens/data/$themes.json';
+
+StyleDictionary
+.registerTransform(shadowShorthand)
+.registerTransform(fontShorthand)
+.registerTransform(resolveMath)
+.registerFilter(sourceOnly)
+.registerFormat(scssConstants)
+.registerFormat(sizingScssVariables)
+.registerFormat(suffixPxCssVariables)
+.registerTransform(referenceSizingBase);
 
 
-SD.registerTransform(resolveMath);
-SD.registerFormat(cssThemeableVariables);
-SD.registerFormat(sassThemeableVariables);
 
-SD.extend(configScssConstants).buildAllPlatforms();
 
-['light', 'dark'].forEach(theme => {
-	SD.extend(getConfigTheme(theme)).buildAllPlatforms();
-});
 
-SD.extend(configTypography).buildAllPlatforms();
+StyleDictionary
+	.extend(scssConstantsConfig	).buildPlatform('scssConstants');
 
-SD.extend(configSize).buildAllPlatforms();
+themes.forEach(({ name }) =>
+	StyleDictionary
+		.extend(getThemeConfig(name)).buildPlatform('web')
+);
+
+['desktop'/*, 'mobile'*/].forEach(viewport =>
+	StyleDictionary
+		.extend(getTypographyConfig(viewport)).buildPlatform('web')
+);
+
+StyleDictionary
+	.extend(sizeConfig).buildAllPlatforms();
