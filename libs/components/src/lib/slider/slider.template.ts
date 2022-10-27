@@ -12,25 +12,25 @@ const getClasses = ({ readOnly, disabled}: Slider) =>
 		['readonly', Boolean(readOnly)],
 		['disabled', Boolean(disabled)],
 	);
-	
+
 const getMarkersTemplate = (isHorizontal: boolean, numMarkers: number) => {
 	const placeholder = isHorizontal
 		? [ 'right' , 'center', ''    , '100% repeat-x' ]
 		: [ 'bottom', 'top'   , '100%', 'repeat-y'      ];
-	
+
 	return html`
 	<div class="mark" style="
 	background: linear-gradient(to ${placeholder[0]}, currentcolor 3px, transparent 0px)
 	0px ${placeholder[1]} / ${placeholder[2]} calc((100% - 3px) / ${numMarkers}) ${placeholder[3]}
 	"></div>`;
 };
-	
+
 /**
-* The template for the {@link @microsoft/fast-foundation#Slider} component.
-*
-* @param context
-* @public
-*/
+ * The template for the {@link @microsoft/fast-foundation#Slider} component.
+ *
+ * @param context
+ * @public
+ */
 export const SliderTemplate: (context: ElementDefinitionContext) => ViewTemplate<Slider> = (context: ElementDefinitionContext) => {
 	const focusTemplate = focusTemplateFactory(context);
 
@@ -53,7 +53,7 @@ export const SliderTemplate: (context: ElementDefinitionContext) => ViewTemplate
 				<div class="track-start" style="${x => x.position}"></div>
 				${x => x.markers
 					? getMarkersTemplate(x.orientation === Orientation.horizontal, Math.floor((x.max - x.min) / x.step))
-					: void 0} 
+					: void 0}
 			</div>
 			<div ${ref('thumb')} class="thumb-container" style="${x => x.position}">
 				${() => focusTemplate}
