@@ -69,6 +69,25 @@ Add the `dismissible` attribute to add a close button to the popup.
 </script>
 ```
 
+### Light Dismiss
+
+Add the `light-dismiss` attribute (or `lightDismiss` property) to close the popup when the user taps on any area other than the popup.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview center
+<vwc-button id="anchor" appearance='outlined' label='Click outside of the popup!'></vwc-button>
+<vwc-popup id="popup" anchor="anchor" open light-dismiss>
+  <vwc-layout gutters="small">
+   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  </vwc-layout>
+</vwc-popup>
+<script>
+  anchor.addEventListener('click', () => popup.open = !popup.open);
+</script>
+```
+
 ### Arrow
 
 Add the `arrow` attribute to add a small triangle to indicate the trigger element.
