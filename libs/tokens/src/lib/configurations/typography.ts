@@ -1,16 +1,25 @@
-import { prefix, buildPath } from './common/config';
+const SD = require('style-dictionary');
 
-export const getTypographyConfig = (viewport: string) => ({
+import { prefix, buildPath, selector } from '../common';
+import fontWeight from '../transforms/font-weight';
+import fontSize from '../transforms/font-size';
+import typographyShorthand from '../transforms/typography-shorthand';
+import { isTypography } from '../filters';
+
+
+SD.registerTransform(fontWeight);
+SD.registerTransform(fontSize);
+SD.registerTransform(typographyShorthand);
+
+export default {
 	source: [
-		"blueprint.tokens/typography.tokens.json"
-	],
-	include: [
 		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/font.tokens.json',
-		`../../../../node_modules/@vonage/vivid-figma-tokens/data/typography/${viewport}.tokens.json`
+		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/typography-scale.tokens.json',
+		'../../../../node_modules/@vonage/vivid-figma-tokens/data/typography.tokens.json'
 	],
 	platforms: {
-		web: {
-			transforms: ["attribute/cti", "name/cti/kebab", "font/shorthand", "size/px"],
+		css: {
+			transforms: ['attribute/cti', 'name/cti/kebab', 'type/fontWeight', 'type/fontSize', 'typography/shorthand'],
 			prefix,
 			buildPath,
 			files: [{
