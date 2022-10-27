@@ -41,11 +41,14 @@ $track-thickness: 2px;
 	&:not(.disabled) {
 		#{variables.$track-background-color}: var(#{utils.get-color-token(neutral-300)});
 		#{variables.$track-start-background-color}: var(#{utils.get-color-token(canvas-text)});
-		&:hover {
-			#{variables.$thumb-interaction-indicator-alpha}: 0.12;
-		}
-		&:active {
-			#{variables.$thumb-interaction-indicator-alpha}: 0.25;
+
+		.thumb-container {
+			&:hover {
+				#{variables.$thumb-interaction-indicator-alpha}: 0.12;
+			}
+			&:active {
+				#{variables.$thumb-interaction-indicator-alpha}: 0.25;
+			}
 		}
 	}
 
