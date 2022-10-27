@@ -106,15 +106,3 @@ Toggle the `disabled` member to disable/enable the slider.
 ```html preview blocks
 <vwc-slider disabled></vwc-slider>
 ```
-
-### Readonly
-
-Use the `readonly` member to make the slider read-only.
-A readonly slider is enabled but cannot be modified.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview blocks
-<vwc-slider readonly></vwc-slider>
-```
