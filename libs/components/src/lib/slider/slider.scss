@@ -1,5 +1,4 @@
 @use '../focus/partials/variables' as focus-variables;
-@use '../../../../../dist/libs/tokens/scss/constants' as constants;
 @use '../../../../shared/src/lib/sass/utils' as utils;
 @use 'partials/variables' as variables;
 
@@ -28,27 +27,6 @@ $track-thickness: 2px;
 	@supports selector(:focus-visible) {
 		&:focus {
 			outline: none;
-		}
-	}
-
-	&.disabled {
-		#{variables.$track-background-color}: var(#{utils.get-color-token(neutral-100)});
-		#{variables.$track-start-background-color}: var(#{utils.get-color-token(neutral-500)});
-
-		cursor: not-allowed;
-	}
-
-	&:not(.disabled) {
-		#{variables.$track-background-color}: var(#{utils.get-color-token(neutral-300)});
-		#{variables.$track-start-background-color}: var(#{utils.get-color-token(canvas-text)});
-
-		.thumb-container {
-			&:hover {
-				#{variables.$thumb-interaction-indicator-alpha}: 0.12;
-			}
-			&:active {
-				#{variables.$thumb-interaction-indicator-alpha}: 0.25;
-			}
 		}
 	}
 
@@ -152,6 +130,27 @@ $track-thickness: 2px;
 
 		& .thumb-container {
 			transform: translateY(calc(var(#{variables.$thumb-interaction-indicator-size}) / 2));
+		}
+	}
+
+	&.disabled {
+		#{variables.$track-background-color}: var(#{utils.get-color-token(neutral-100)});
+		#{variables.$track-start-background-color}: var(#{utils.get-color-token(neutral-500)});
+
+		cursor: not-allowed;
+	}
+
+	&:not(.disabled) {
+		#{variables.$track-background-color}: var(#{utils.get-color-token(neutral-300)});
+		#{variables.$track-start-background-color}: var(#{utils.get-color-token(canvas-text)});
+
+		.thumb-container {
+			&:hover {
+				#{variables.$thumb-interaction-indicator-alpha}: 0.12;
+			}
+			&:active {
+				#{variables.$thumb-interaction-indicator-alpha}: 0.25;
+			}
 		}
 	}
 }
