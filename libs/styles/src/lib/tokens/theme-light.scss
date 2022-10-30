@@ -1,14 +1,12 @@
 @use '../../../../../dist/libs/tokens/scss/theme-light.tokens' as light;
 @use '../../../../../dist/libs/tokens/scss/theme-dark.tokens' as dark;
 @use '../../../../../dist/libs/tokens/scss/typography.tokens' as typography;
-@use '../../../../../dist/libs/tokens/scss/size.tokens' as size;
 @use 'partials/variables' as variables;
 
 
 #{variables.$theme-main-selector} {
 	@include light.variables;
 	@include typography.variables;
-	@include size.variables;
 }
 
 #{variables.$theme-alternate-selector} {
