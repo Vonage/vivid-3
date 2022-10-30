@@ -2,10 +2,10 @@
 const SD = require('style-dictionary');
 
 import { prefix, buildPath, selector } from '../common';
-import cssThemeableVariables from '../formatters/scss-constants';
+import scssConstants from '../formatters/scss-constants';
 import { isSource } from '../filters';
 
-SD.registerFormat(cssThemeableVariables);
+SD.registerFormat(scssConstants);
 
 
 export default {
