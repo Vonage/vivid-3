@@ -231,8 +231,8 @@ article.article > h1 {
 /* #region highlight js */
 
 .hljs {
-  background-color: var(--vvd-color-neutral-50);
-  color: var(--vvd-color-neutral-400);
+  background-color: var(--vvd-color-neutral-100);
+  color: var(--vvd-color-neutral-900);
   padding: 8px;
   border-radius: 6px;
   font-size: 1rem;
@@ -247,7 +247,7 @@ article.article > h1 {
 .hljs-selector-class,
 .hljs-template-variable,
 .hljs-deletion {
-  color: var(--vvd-color-alert-500);
+  color: var(--vvd-color-alert-600);
 }
 
 .hljs-name,
@@ -278,7 +278,7 @@ article.article > h1 {
 .hljs-template-variable,
 .hljs-type,
 .hljs-variable.language_ {
-  color: var(--vvd-color-alert-700);
+  color: var(--vvd-color-alert-600);
 }
 
 .hljs-code,
