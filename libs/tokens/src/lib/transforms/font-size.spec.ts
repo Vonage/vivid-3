@@ -17,14 +17,14 @@ const token = {
 };
 
 describe('basic', () => {
-	it('should match if is of type fontSizes', () => {
+	it('should match if token is of type fontSizes', () => {
 		expect(matcher({
 			...defaultToken,
 			...token,
 		})).toBeTruthy();
 	});
 
-	it('should not match if not of type fontSizes', () => {
+	it('should not match if token is not of type fontSizes', () => {
 		expect(matcher({
 			...defaultToken,
 			type: 'other'
