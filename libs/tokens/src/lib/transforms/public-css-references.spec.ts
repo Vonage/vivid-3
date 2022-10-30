@@ -11,22 +11,15 @@ const defaultToken = {
 	isSource: false
 };
 
-const token = {
-	name: "vvd-size-font-scale-base",
-	value: "16",
-	type: "sizing",
-	public: true
-};
-
 describe('basic', () => {
-	it('should match if public', () => {
+	it('should match if token is public', () => {
 		expect(matcher({
 			...defaultToken,
-			...token,
+			public: true
 		})).toBeTruthy();
 	});
 
-	it('should not match if not public', () => {
+	it('should not match if token is not public', () => {
 		expect(matcher({
 			...defaultToken,
 			type: 'other'
@@ -36,7 +29,10 @@ describe('basic', () => {
 	it('should transform to css calc', () => {
 		expect(transformer({
 			...defaultToken,
-			...token
+			name: "vvd-size-font-scale-base",
+			value: "16",
+			type: "sizing",
+			public: true
 		})).toEqual('var(--vvd-size-font-scale-base, 16)');
 	});
 });

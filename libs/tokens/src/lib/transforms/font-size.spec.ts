@@ -11,16 +11,11 @@ const defaultToken = {
 	isSource: false
 };
 
-const token = {
-	value: "16 * 4.125",
-	type: 'fontSizes',
-};
-
 describe('basic', () => {
 	it('should match if token is of type fontSizes', () => {
 		expect(matcher({
 			...defaultToken,
-			...token,
+			type: 'fontSizes'
 		})).toBeTruthy();
 	});
 
@@ -34,7 +29,8 @@ describe('basic', () => {
 	it('should transform to css calc', () => {
 		expect(transformer({
 			...defaultToken,
-			...token
+			value: "16 * 4.125",
+			type: 'fontSizes'
 		})).toEqual('calc(16 * 4.125)');
 	});
 });

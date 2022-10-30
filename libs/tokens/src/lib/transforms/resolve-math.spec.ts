@@ -11,16 +11,12 @@ const defaultToken = {
 	isSource: false
 };
 
-const token = {
-	value: "4 * 3.72",
-	type: 'sizing',
-};
-
 describe('basic', () => {
 	it('should evaluate math expression', () => {
 		expect(transformer({
 			...defaultToken,
-			...token
+			value: "4 * 3.72",
+			type: 'sizing'
 		})).toEqual('14.88');
 	});
 
@@ -35,7 +31,7 @@ describe('basic', () => {
 		})).toBeFalsy();
 		expect(matcher({
 			...defaultToken,
-			...token,
+			type: 'sizing',
 		})).toBeTruthy();
 	});
 });

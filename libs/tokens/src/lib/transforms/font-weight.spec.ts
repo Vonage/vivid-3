@@ -11,16 +11,12 @@ const defualtToken = {
 	isSource: false
 };
 
-const token = {
-	value: "Wide Medium",
-	type: 'fontWeights',
-};
-
 describe('basic', () => {
 	it('should map font weight to weight and stretch', () => {
 		expect(transformer({
 			...defualtToken,
-			...token
+			value: "Wide Medium",
+			type: 'fontWeights',
 		})).toEqual('500 condensed');
 	});
 
@@ -28,14 +24,14 @@ describe('basic', () => {
 		expect(transformer({ ...defualtToken })).toEqual(undefined);
 	});
 
-	it('should match if is of type fontWeights', () => {
+	it('should match if token is of type fontWeights', () => {
 		expect(matcher({
 			...defualtToken,
-			...token,
+			type: 'fontWeights'
 		})).toBeTruthy();
 	});
 
-	it('should not match if not of type fontWeights', () => {
+	it('should not match if token is not of type fontWeights', () => {
 		expect(matcher({
 			...defualtToken,
 			type: 'other'
