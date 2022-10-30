@@ -1,5 +1,4 @@
 import type { Named, Transform } from "style-dictionary";
-import { cssUnit } from "../common";
 import { isTypography } from "../filters";
 
 /**
