@@ -3,7 +3,7 @@
 	"compilerOptions": {
 		"resolveJsonModule": true,
 		"module": "NodeNext",
-		"esModuleInterop": true
+		"esModuleInterop": true,
 	},
 	"files": [],
 	"include": [],

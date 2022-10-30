@@ -1,10 +1,10 @@
 {
-	"extends": "./tsconfig.json",
-	"compilerOptions": {
-		"lib": ["esnext"],
-		"outDir": "../../dist/out-tsc",
-		"types": ["node"]
-	},
-	"exclude": ["**/*.spec.ts", "jest.config.ts"],
-	"include": ["**/*.ts"]
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "lib": ["esnext"],
+    "outDir": "../../dist/out-tsc",
+    "types": ["node"]
+  },
+  "exclude": ["**/*.spec.ts", "jest.config.ts"],
+  "include": ["**/*.ts"]
 }
