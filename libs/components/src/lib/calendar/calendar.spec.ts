@@ -8,7 +8,6 @@ import type { CalendarEventContext } from './helpers/calendar.event-context';
 
 expect.extend(toHaveNoViolations);
 
-
 const COMPONENT_TAG = 'vwc-calendar';
 
 describe('vwc-calendar', () => {
@@ -31,14 +30,6 @@ describe('vwc-calendar', () => {
 	});
 
 	describe('datetime', () => {
-		it('should show recent monday as first day of this week', async () => {
-			const firstColumnDate = getFirstColumnDate(element);
-
-			const today = getValidDateString(new Date());
-			const monday = getMondayOfWeek(today);
-
-			expect(firstColumnDate).toEqual(monday);
-		});
 
 		it('should show recent monday as first day of \'2022-01-01\' week', async () => {
 			const date = '2022-01-01';
