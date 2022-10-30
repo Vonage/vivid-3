@@ -4,14 +4,24 @@ import { prefix, buildPath } from '../common';
 import { isSource } from '../filters';
 
 const transformToCssVariable = ({name, value}) => `var(--${name}, ${value})`;
-const transformer = (token) => `clamp(${+token.value - 1}, ${transformToCssVariable(token)}, ${+token.value + 1})`;
+const getRunTimeDensity = (token) => `clamp(${+token.value - 1}, ${transformToCssVariable(token)}, ${+token.value + 1})`;
 
 SD.registerTransform({
 	type: 'value',
 	name: 'type/density',
 	transitive: true,
 	matcher: token => token.attributes.type === 'density',
-	transformer
+	transformer: getRunTimeDensity
+});
+
+SD.registerTransform({
+	type: 'value',
+	name: 'css/calc',
+	transitive: true,
+	matcher: isSource,
+	transformer: function(token) {
+		return `calc(1px * (${token.value}))`;
+	}
 });
 
 export default {
@@ -23,7 +33,7 @@ export default {
 	],
 	platforms: {
 		scss: {
-			transforms: ['attribute/cti', 'name/cti/kebab', 'resolveMath', 'type/density'],
+			transforms: ['attribute/cti', 'name/cti/kebab', 'resolveMath', 'type/density', 'css/calc'],
 			prefix,
 			buildPath,
 			files: [{

@@ -2,7 +2,7 @@ import resolveMath from './resolve-math';
 
 const { transformer, matcher } = resolveMath;
 
-const defualtToken = {
+const defaultToken = {
 	value: undefined,
 	name: '',
 	path: [],
@@ -19,22 +19,22 @@ const token = {
 describe('basic', () => {
 	it('should evaluate math expression', () => {
 		expect(transformer({
-			...defualtToken,
+			...defaultToken,
 			...token
 		})).toEqual('14.88');
 	});
 
 	it('should throw', () => {
-		expect(transformer({ ...defualtToken })).toEqual("undefined");
+		expect(transformer({ ...defaultToken })).toEqual("undefined");
 	});
 
 	it('should match if is token', () => {
 		expect(matcher({
-			...defualtToken,
+			...defaultToken,
 			type: 'other'
 		})).toBeFalsy();
 		expect(matcher({
-			...defualtToken,
+			...defaultToken,
 			...token,
 		})).toBeTruthy();
 	});
