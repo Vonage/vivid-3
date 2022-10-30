@@ -284,7 +284,7 @@ article.article > h1 {
 .hljs-code,
 .hljs-comment,
 .hljs-formula {
-	color: var(--vvd-color-neutral-200);
+	color: var(--vvd-color-neutral-600);
 }
 
 /* #endregion highlight js */
