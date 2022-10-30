@@ -1,4 +1,4 @@
-@use '../../../../../dist/libs/tokens/scss/constants' as constants;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 
 @use "partials/variables" as variables;
 @use "../../../../shared/src/lib/sass/mixins/elevation" as elevation;
@@ -29,7 +29,7 @@
 	color: var(#{appearance.get-appearance-token(text)}, var(constants.$vvd-color-canvas-text));
 	column-gap: var(#{variables.$icon-gap});
 	filter: var(#{elevation.$vvd-elevation-shadow});
-	font: var(#{constants.$vvd-font-base-bold});
+	font: var(#{constants.$vvd-typography-base-bold});
 	transition: background-color 0.15s linear, filter 0.15s linear;
 	vertical-align: middle;
 	@include connotation.connotation;
