@@ -17,7 +17,7 @@ const token = {
 };
 
 describe('basic', () => {
-	it('should match if is of type fontSizes', () => {
+	it('should match if token is of type fontSizes', () => {
 		expect(matcher({
 			...defaultToken,
 			...token,
