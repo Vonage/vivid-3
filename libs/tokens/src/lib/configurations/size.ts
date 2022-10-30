@@ -1,5 +1,7 @@
+const SD = require('style-dictionary');
+
 import { prefix, buildPath, selector } from '../common';
-import { isSource } from '../filters';
+import {  isSource } from '../filters';
 
 
 export default {
@@ -10,26 +12,14 @@ export default {
 		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/size.tokens.json'
 	],
 	platforms: {
-		css: {
-			transforms: ['attribute/cti', 'name/cti/kebab', 'resolveMath'],
-			prefix,
-			buildPath,
-			files: [{
-				destination: '_size.tokens.scss',
-				format: 'css/themeableVariables',
-				filter: token => token.public,
-				options: {
-					selector
-				},
-			}]
-		},
+
 		scss: {
-			transforms: ['attribute/cti', 'name/cti/kebab'],
+			transforms: ['attribute/cti', 'name/cti/kebab', 'resolveMath', 'public/cssReferences'],
 			prefix,
 			buildPath,
 			files: [{
 				destination: '_size.variables.scss',
-				format: 'sass/themeableVariables',
+				format: 'scss/variables',
 				filter: isSource,
 			}],
 		}
