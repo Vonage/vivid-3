@@ -39,7 +39,7 @@
 		"serve": {
 			"executor": "@nrwl/workspace:run-commands",
 			"options": {
-				"command": "sass libs/styles/src/lib/themes:dist/libs/styles/themes --watch"
+				"command": "sass libs/styles/src/lib/core:dist/libs/styles/core --watch"
 			}
 		},
 		"stylelint": {
