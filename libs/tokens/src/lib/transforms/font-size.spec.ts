@@ -24,7 +24,7 @@ describe('basic', () => {
 		})).toBeTruthy();
 	});
 
-	it('should not match if not of type fontSizes', () => {
+	it('should not match if token is not of type fontSizes', () => {
 		expect(matcher({
 			...defaultToken,
 			type: 'other'
