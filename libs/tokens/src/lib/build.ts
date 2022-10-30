@@ -7,6 +7,7 @@ import configScssConstants from './configurations/scss-constants';
 import getConfigTheme from './configurations/theme';
 import configTypography from './configurations/typography';
 import configSize from './configurations/size';
+import cssAtRuleProperty from './configurations/@property';
 
 
 SD.registerTransform(publicCssReferences);
@@ -21,3 +22,5 @@ SD.extend(configScssConstants).buildAllPlatforms();
 SD.extend(configTypography).buildAllPlatforms();
 
 SD.extend(configSize).buildAllPlatforms();
+
+SD.extend(cssAtRuleProperty).buildAllPlatforms();
