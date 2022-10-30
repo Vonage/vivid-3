@@ -25,7 +25,7 @@ export default {
 			files: [{
 				destination: '_tokens.constants.scss',
 				format: "scss/constants",
-				filter: token => isSource(token) || token.public,
+				filter: isSource,
 				options: {
 					selector
 				}

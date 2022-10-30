@@ -1,8 +1,18 @@
 const SD = require('style-dictionary');
 
-import { prefix, buildPath, selector } from '../common';
-import {  isSource } from '../filters';
+import { prefix, buildPath } from '../common';
+import { isSource } from '../filters';
 
+const transformToCssVariable = ({name, value}) => `var(--${name}, ${value})`;
+const transformer = (token) => `clamp(${+token.value - 1}, ${transformToCssVariable(token)}, ${+token.value + 1})`;
+
+SD.registerTransform({
+	type: 'value',
+	name: 'type/density',
+	transitive: true,
+	matcher: token => token.attributes.type === 'density',
+	transformer
+});
 
 export default {
 	source: [
@@ -12,9 +22,8 @@ export default {
 		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/size.tokens.json'
 	],
 	platforms: {
-
 		scss: {
-			transforms: ['attribute/cti', 'name/cti/kebab', 'resolveMath', 'public/cssReferences'],
+			transforms: ['attribute/cti', 'name/cti/kebab', 'resolveMath', 'type/density'],
 			prefix,
 			buildPath,
 			files: [{
