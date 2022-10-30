@@ -5,13 +5,3 @@ export const isMath = token => ['math'].includes(token.type);
 
 export const isSource = token => token.isSource;
 export const isPublic = token => token.public;
-
-// export const isTypographyFilter = {
-// 	name: 'isTypography',
-// 	matcher: isTypography
-// };
-
-// export const isFontSizeFilter = {
-// 	name: 'isFontSize',
-// 	matcher: isFontSize
-// };
