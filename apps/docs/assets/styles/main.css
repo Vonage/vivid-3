@@ -52,7 +52,7 @@ vwc-side-drawer::part(base) {
 	inline-size: 280px;
 	inset-block-start: calc(var(--_header-block-size) + env(safe-area-inset-top));
 	inset-block-end: env(safe-area-inset-bottom);
-  background-color: var(--vvd-color-canvas);
+  background-color: var(--vvd-color-neutral-50);
   box-sizing: border-box;
 }
 
@@ -159,26 +159,17 @@ article > .cbd-container {
   }
 }
 
-article > h1 {
+article.article > h1 {
   padding-inline: 16px;
-  padding-block-start: 40px;
-  padding-block-end: 20px;
+  padding-block: 48px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-inline: -16px;
-  margin-block-start: -40px;
-  margin-block-end: 32px;
-  background-color: var(--vvd-color-cta-70);
-  color: var(--vvd-color-on-cta);
+  background-color: var(--vvd-color-cta-500);
+  color: var(--vvd-color-canvas);
+	border-radius: 6px;
 }
 
-@media (min-width: 960px) {
-  article > h1  {
-    margin-inline: -32px;
-    padding-inline: 32px;
-  }
-}
 
 .heading-wrapper {
   position: relative;
