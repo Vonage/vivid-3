@@ -42,7 +42,9 @@ export class Listbox extends FoundationListboxElement {
 
 	#disableSlottedChildren(): void {
 		this.options.forEach(optionElement => {
-			optionElement.disabled = this.disabled;
+			if (!optionElement.disabled) {
+				optionElement.disabled = this.disabled;
+			}
 		});
 	}
 }
