@@ -1,5 +1,5 @@
 @use 'partials/variables' as variables;
-@use '../../../../../dist/libs/tokens/scss/constants' as constants;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 
 
 ol {
@@ -31,7 +31,7 @@ ol {
 		align-items: flex-end;
 		justify-content: flex-end;
 		> time {
-			font: var(#{constants.$vvd-font-base-condensed});
+			font: var(#{constants.$vvd-typography-base-condensed});
 			font-size: small;
 			line-height: 1;
 			text-transform: uppercase;
@@ -151,7 +151,7 @@ ol {
 			display: grid;
 			align-items: baseline;
 			margin: 0;
-			font: var(#{constants.$vvd-font-heading4});
+			font: var(#{constants.$vvd-typography-heading-4});
 			grid-template-columns: 1fr auto 1fr;
 			> em {
 				font: inherit;
@@ -164,7 +164,7 @@ ol {
 				}
 			}
 			> small {
-				font: var(#{constants.$vvd-font-base-condensed});
+				font: var(#{constants.$vvd-typography-base-condensed});
 				text-transform: uppercase;
 			}
 		}
