@@ -31,7 +31,7 @@ describe('basic', () => {
 		})).toBeTruthy();
 	});
 
-	it('should not match if token is not of type fontWeights', () => {
+	it('should return false if token is not of type fontWeights', () => {
 		expect(matcher({
 			...defualtToken,
 			type: 'other'
