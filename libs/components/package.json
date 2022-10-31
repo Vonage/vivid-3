@@ -40,7 +40,7 @@
     "./nav-disclosure": "./nav-disclosure",
     "./nav-item": "./nav-item",
     "./note": "./note",
-    "./listbox-option": "./listbox-option",
+    "./option": "./listbox-option",
     "./popup": "./popup",
     "./progress": "./progress",
     "./progress-ring": "./progress-ring",
