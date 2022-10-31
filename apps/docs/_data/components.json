@@ -282,6 +282,22 @@
 		]
 	},
 	{
+		"title": "radio-group",
+		"markdown": "./libs/components/src/lib/radio-group/README.md",
+		"modules": [
+			"/assets/modules/components/radio/index.js",
+			"/assets/modules/components/radio-group/index.js"
+		]
+	},
+	{
+		"title": "option",
+		"markdown": "./libs/components/src/lib/listbox-option/README.md",
+		"modules": [
+			"/assets/modules/components/listbox-option/index.js",
+			"/assets/modules/components/button/index.js"
+		]
+	},
+	{
 		"title": "slider",
 		"markdown": "./libs/components/src/lib/slider/README.md",
 		"modules": [
