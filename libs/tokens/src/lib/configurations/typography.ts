@@ -19,13 +19,13 @@ export default {
 	],
 	platforms: {
 		css: {
-			transforms: ['attribute/cti', 'name/cti/kebab', 'type/fontWeight', 'type/fontSize', 'typography/shorthand'],
+			transforms: ['attribute/cti', 'name/cti/kebab', 'type/fontWeight', 'size/px', 'type/fontSize', 'typography/shorthand', 'public/cssReferences'],
 			prefix,
 			buildPath,
 			files: [{
 				destination: '_typography.tokens.scss',
-				format: "css/themeableVariables",
-				filter: token => isTypography(token) || token.public,
+				format: "css/variables",
+				filter: isTypography,
 				options: {
 					selector
 				}

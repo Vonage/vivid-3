@@ -1,6 +1,6 @@
 {
   "type": "prerelease",
-  "comment": "add listbox component",
+  "comment": "add option component",
   "packageName": "@vonage/vivid",
   "email": "rina.oksman@vonage.com",
   "dependentChangeType": "patch"

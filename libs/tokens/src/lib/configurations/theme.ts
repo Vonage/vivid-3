@@ -22,7 +22,7 @@ export default (theme: string) => ({
 			buildPath,
 			files: [{
 				destination: `_theme-${theme}.tokens.scss`,
-				format: "css/themeableVariables",
+				format: "css/variables",
 				filter: isSource,
 				options: {
 					selector

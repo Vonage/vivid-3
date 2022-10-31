@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "refactor tokens to include public properties",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}
