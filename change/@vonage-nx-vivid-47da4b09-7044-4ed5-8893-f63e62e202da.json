@@ -1,7 +1,0 @@
-{
-  "comment": "Upgrade NX version",
-  "type": "none",
-  "packageName": "@vonage/nx-vivid",
-  "email": "yonatan.kra@vonage.com",
-  "dependentChangeType": "none"
-}

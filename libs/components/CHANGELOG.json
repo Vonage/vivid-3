@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Mon, 31 Oct 2022 06:36:47 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.83",
+      "version": "3.0.0-next.83",
+      "comments": {
+        "none": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "11fcad061681cbc21627c6f103a576f1ba9397ec",
+            "comment": "Upgrade NX and playwright versions"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 30 Oct 2022 07:51:40 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.83",
       "version": "3.0.0-next.83",
