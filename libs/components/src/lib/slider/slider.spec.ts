@@ -78,26 +78,26 @@ describe('vwc-slider', () => {
 	});
 
 	describe('min/max', () => {
-		it('should respect the min constraint when setting value', async () => {
+		it('should use last valid value when setting value with min constraint', async () => {
 			element.min = 3;
 			element.value = '1';
 			expect(element.valueAsNumber).toBe(3);
 		});
 
-		it('should respect the min constraint when decrementing', async () => {
+		it('should use last valid value when decrementing out of bounds', async () => {
 			element.min = 3;
 			element.value = '3';
 			element.decrement();
 			expect(element.valueAsNumber).toBe(3);
 		});
 
-		it('should respect the max constraint when setting value', async () => {
+		it('should use last valid value when setting value with max constraint', async () => {
 			element.max = 7;
 			element.value = '10';
 			expect(element.valueAsNumber).toBe(7);
 		});
 
-		it('should respect the max constraint when incrementing', async () => {
+		it('should use last valid value when incrementing out of bounds', async () => {
 			element.max = 7;
 			element.value = '7';
 			element.increment();
@@ -106,15 +106,21 @@ describe('vwc-slider', () => {
 	});
 
 	describe('step', () => {
-		it('should respect the provided step', async () => {
+		it('should increment/decrement according to the provided step', async () => {
 			element.step = 3.5;
 			element.value = '0';
 			
 			element.increment();
 			const valueAfterIncrementing = element.valueAsNumber;
-			element.value = '6';
+			element.decrement();
 			
 			expect(valueAfterIncrementing).toBe(3.5);
+			expect(element.valueAsNumber).toBe(0);
+		});
+
+		it('should round values to the nearest step multiple', async () => {
+			element.step = 3.5;
+			element.value = '6';
 			expect(element.valueAsNumber).toBe(7);
 		});
 	});
