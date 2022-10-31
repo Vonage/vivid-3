@@ -38,6 +38,14 @@ export class Popup extends FoundationElement {
 		mode: 'boolean',
 	}) open = false;
 
+	/**
+	 *
+	 * @public
+	 * HTML Attribute: popUp
+	 */
+	@attr({ attribute: 'data-popup' })
+	popUp: 'auto' | 'hint' | 'manual' | undefined;
+
 	openChanged(_: boolean, newValue: boolean): void {
 		newValue ? this.$emit('open') : this.$emit('close');
 	}
@@ -104,7 +112,7 @@ export class Popup extends FoundationElement {
 
 	override connectedCallback(): void {
 		super.connectedCallback();
-		if(this.lightDismiss){
+		if (this.lightDismiss) {
 			window.addEventListener('mousedown', this.#dismiss);
 		}
 	}
