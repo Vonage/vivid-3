@@ -5,13 +5,12 @@ const config: PlaywrightTestConfig = {
 	timeout: 0,
 	projects: [
 		{
-			name: 'Chrome Stable',
+			name: 'Desktop Chromium',
 			use: {
 				browserName: 'chromium',
-				channel: 'chrome',
 				headless: false
 			},
-		}
+		},
 	]
 };
 export default config;
