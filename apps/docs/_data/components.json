@@ -280,5 +280,13 @@
 		"modules": [
 			"/assets/modules/components/radio/index.js"
 		]
+	},
+	{
+		"title": "radio-group",
+		"markdown": "./libs/components/src/lib/radio-group/README.md",
+		"modules": [
+			"/assets/modules/components/radio/index.js",
+			"/assets/modules/components/radio-group/index.js"
+		]
 	}
 ]

@@ -19,6 +19,8 @@
 	@include connotation.connotation;
 	@include appearance.appearance;
 
+	#{variables.$badge-block-size}: 20px;
+
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
@@ -28,7 +30,9 @@
 	color: var(#{appearance.get-appearance-token(text)});
 	column-gap: 8px;
 	font: var(#{constants.$vvd-typography-base-condensed-bold});
+	padding-inline: 8px;
 	vertical-align: middle;
+
 
 	&.icon-only {
 		contain: size;
@@ -45,29 +49,8 @@
 	}
 }
 
-/* Size */
-
-.base:not(.density-condensed):not(.density-extended) {
-	#{variables.$badge-block-size}: 24px;
-
-	padding-inline: 10px;
-}
-
-.base.density-condensed {
-	#{variables.$badge-block-size}: 20px;
-
-	padding-inline: 8px;
-}
-
-.base.density-extended {
-	#{variables.$badge-block-size}: 28px;
-
-	padding-inline: 12px;
-}
-
 /* Shape */
 
-// stylelint-disable-next-line no-descending-specificity
 .base:not(.shape-pill) {
 	border-radius: 4px;
 }
