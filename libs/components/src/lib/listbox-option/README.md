@@ -58,4 +58,5 @@ Add the `disabled` attribute to disable the option.
 ```html preview
 <vwc-listbox>
  <vwc-option text="Option" disabled></vwc-option>
+</vwc-listbox>
 ```
