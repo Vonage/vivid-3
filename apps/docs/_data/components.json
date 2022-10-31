@@ -294,15 +294,7 @@
 		"markdown": "./libs/components/src/lib/listbox-option/README.md",
 		"modules": [
 			"/assets/modules/components/listbox-option/index.js",
-			"/assets/modules/components/button/index.js"
-		]
-	},
-	{
-		"title": "list",
-		"markdown": "./libs/components/src/lib/listbox-option/README.md",
-		"modules": [
-			"/assets/modules/components/listbox-option/index.js",
-			"/assets/modules/components/button/index.js"
+			"/assets/modules/components/listbox/index.js"
 		]
 	},
 	{
