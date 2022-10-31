@@ -7,6 +7,7 @@
 	$default: fieldset,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
 
 $low-ink-color: --_low-ink-color;
 
@@ -81,12 +82,8 @@ $low-ink-color: --_low-ink-color;
 	}
 
 	/* Size */
-	.base:not(.density-extended)>& {
-		block-size: 40px;
-	}
-
-	.base.density-extended>& {
-		block-size: 48px;
+	.base > & {
+		block-size: #{size.$vvd-size-normal};
 	}
 
 	/* Shape */
