@@ -1,4 +1,4 @@
-import { shadowShorthand } from './shadow-shorthand';
+import shadowShorthand from './shadow-shorthand';
 
 const { transformer, matcher } = shadowShorthand;
 
@@ -20,24 +20,24 @@ const token = {
 	value: [
 		{
 			x: '0',
-			y: '2px',
-			blur: '1px',
+			y: '2',
+			blur: '1',
 			spread: '0',
 			color: '#0000000d',
 			type: 'dropShadow'
 		},
 		{
 			x: '0',
-			y: '1px',
-			blur: '2px',
+			y: '1',
+			blur: '2',
 			spread: '0',
 			color: '#0000000d',
 			type: 'innerShadow'
 		},
 		{
 			x: '0',
-			y: '1px',
-			blur: '4px',
+			y: '1',
+			blur: '4',
 			spread: '0',
 			color: '#0000001a',
 			type: 'innerShadow'

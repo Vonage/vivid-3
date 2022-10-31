@@ -1,7 +1,7 @@
 import {
 	createFormHTML,
 	elementUpdated,
-	fixture,
+	fixture, getBaseElement,
 	getControlElement,
 	listenToFormSubmission
 } from '@vivid-nx/shared';
@@ -19,6 +19,20 @@ function getRootElement(element: NumberField) {
 }
 
 describe('vwc-number-field', () => {
+
+	function setToBlurred() {
+		element.dispatchEvent(new Event('blur'));
+	}
+
+	function setToFocused() {
+		element.dispatchEvent(new Event('focus'));
+	}
+
+	function setValidityToError(errorMessage = 'error') {
+		element.setValidity({badInput: true}, errorMessage);
+		element.validate();
+	}
+
 	let element: NumberField;
 
 	beforeEach(async () => {
@@ -276,13 +290,13 @@ describe('vwc-number-field', () => {
 
 	describe('helper text', function () {
 		it('should render the helper text when attribute is set', async function () {
-			const helperTextElementWithoutText = element.shadowRoot?.querySelector('.helper-text');
+			const helperTextElementWithoutText = element.shadowRoot?.querySelector('.helper-message');
 			const helperText = 'Helper Text';
 			element.helperText = helperText;
 			await elementUpdated(element);
 			expect(helperTextElementWithoutText)
 				.toBeNull();
-			expect(element.shadowRoot?.querySelector('.helper-text')
+			expect(element.shadowRoot?.querySelector('.helper-message')
 				?.textContent
 				?.trim())
 				.toEqual(helperText);
@@ -290,27 +304,6 @@ describe('vwc-number-field', () => {
 	});
 
 	describe('error message', function () {
-		/**
-		 *
-		 */
-		function setToBlurred() {
-			element.dispatchEvent(new Event('blur'));
-		}
-
-		/**
-		 *
-		 */
-		function setToFocused() {
-			element.dispatchEvent(new Event('focus'));
-		}
-
-		/**
-		 * @param errorMessage
-		 */
-		function setValidityToError(errorMessage = 'error') {
-			element.setValidity({badInput: true}, errorMessage);
-			element.validate();
-		}
 
 		it('should add class error to base if not valid', async function () {
 			element.dirtyValue = true;
@@ -400,6 +393,42 @@ describe('vwc-number-field', () => {
 			await elementUpdated(element);
 
 			expect(element.shadowRoot?.querySelector('.error-message')).toBeNull();
+		});
+	});
+
+	describe('successText', function () {
+		it('should add class success to base if successText is set', async function () {
+			element.successText = 'success';
+			await elementUpdated(element);
+
+			expect(getBaseElement(element)
+				.classList
+				.contains('success'))
+				.toEqual(true);
+		});
+
+		it('should not show helper text when success is shown', async function () {
+			element.helperText = 'help';
+			element.successText = 'success';
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.helper-text'))
+				.toBeNull();
+		});
+
+		it('should not show error message when success is shown', async function () {
+			element.dirtyValue = true;
+			setToBlurred();
+			setValidityToError('blah');
+			element.successText = 'success';
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.error-message'))
+				.toBeNull();
+		});
+
+		it('should show success message if set', async function() {
+			element.successText = 'success';
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.success-message')?.textContent?.trim()).toEqual('success');
 		});
 	});
 

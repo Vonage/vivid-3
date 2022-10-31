@@ -1,9 +1,9 @@
-import { convertAnnotatedSourceToFailureCase } from '@angular-eslint/utils';
-import { TSESLint } from '@typescript-eslint/experimental-utils';
-import { rule, RULE_NAME } from './no-attribute-default-value';
+import { convertAnnotatedSourceToFailureCase } from "@angular-eslint/utils";
+import { TSESLint } from "@typescript-eslint/utils";
+import { rule, RULE_NAME } from "./no-attribute-default-value";
 
 const ruleTester = new TSESLint.RuleTester({
-  parser: require.resolve('@typescript-eslint/parser'),
+  parser: require.resolve("@typescript-eslint/parser"),
 });
 
 ruleTester.run(RULE_NAME, rule, {
@@ -39,34 +39,37 @@ ruleTester.run(RULE_NAME, rule, {
   ],
   invalid: [
     convertAnnotatedSourceToFailureCase({
-      description: 'should fail property decorated by \'attr\' decorator, if assignment mutates DOM tree',
+      description:
+        "should fail property decorated by 'attr' decorator, if assignment mutates DOM tree",
       annotatedSource: `
       class {
         @attr example = 'someValue';
                         ~~~~~~~~~~~
       }
       `,
-      messageId: 'noAttributeDefaultValue'
+      messageId: "noAttributeDefaultValue",
     }),
     convertAnnotatedSourceToFailureCase({
-      description: 'should fail property decorated by \'attr\' decorator, if assignment mutates DOM tree',
+      description:
+        "should fail property decorated by 'attr' decorator, if assignment mutates DOM tree",
       annotatedSource: `
       class {
         @attr({ mode: 'reflect' }) example = 'someValue';
                                              ~~~~~~~~~~~
       }
       `,
-      messageId: 'noAttributeDefaultValue'
+      messageId: "noAttributeDefaultValue",
     }),
     convertAnnotatedSourceToFailureCase({
-      description: 'should fail property decorated by \'attr\' decorator, if assignment mutates DOM tree',
+      description:
+        "should fail property decorated by 'attr' decorator, if assignment mutates DOM tree",
       annotatedSource: `
       class {
         @attr({ mode: 'boolean' }) example = true;
                                              ~~~~
       }
       `,
-      messageId: 'noAttributeDefaultValue'
-    })
+      messageId: "noAttributeDefaultValue",
+    }),
   ],
 });

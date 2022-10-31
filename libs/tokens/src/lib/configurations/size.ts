@@ -1,36 +1,45 @@
-import { prefix, buildPath } from './common/config';
+const SD = require('style-dictionary');
 
-const isBase = token => token.attributes.type === 'base';
+import { prefix, buildPath } from '../common';
+import { isSource } from '../filters';
 
-export const sizeConfig = {
+const transformToCssVariable = ({name, value}) => `var(--${name}, ${value})`;
+const getRunTimeDensity = (token) => `clamp(${+token.value - 1}, ${transformToCssVariable(token)}, ${+token.value + 1})`;
+
+SD.registerTransform({
+	type: 'value',
+	name: 'type/density',
+	transitive: true,
+	matcher: token => token.attributes.type === 'density',
+	transformer: getRunTimeDensity
+});
+
+SD.registerTransform({
+	type: 'value',
+	name: 'css/calc',
+	transitive: true,
+	matcher: isSource,
+	transformer: function(token) {
+		return `calc(1px * (${token.value}))`;
+	}
+});
+
+export default {
 	source: [
-		'../../../../node_modules/@vonage/vivid-figma-tokens/data/sizing/desktop.tokens.json'
+		'../../../../node_modules/@vonage/vivid-figma-tokens/data/size.tokens.json',
 	],
 	include: [
-		'../../../../node_modules/@vonage/vivid-figma-tokens/data/sizing/base.tokens.json',
+		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/size.tokens.json'
 	],
 	platforms: {
-		css: {
-			transforms: ['attribute/cti', 'name/cti/kebab', 'resolveMath'],
-			prefix,
-			buildPath,
-			files: [{
-				destination: 'size/_base.mixin.scss',
-				format: 'suffixPxCssVariables',
-				options: {
-					selector: '@mixin variables'
-				},
-				filter: isBase,
-			}]
-		},
 		scss: {
-			transforms: ['attribute/cti', 'name/cti/kebab', 'referenceSizingBase', 'resolveMath'],
+			transforms: ['attribute/cti', 'name/cti/kebab', 'resolveMath', 'type/density', 'css/calc'],
 			prefix,
 			buildPath,
 			files: [{
-				destination: 'size/_variables.scss',
-				format: 'sizingScssVariables',
-				filter: 'sourceOnly',
+				destination: '_size.variables.scss',
+				format: 'scss/variables',
+				filter: isSource,
 			}],
 		}
 	}
