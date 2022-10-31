@@ -5,17 +5,9 @@ Validating no private package among package dependencies
 
 Updating package-lock.json after bumping packages
 
-up to date, audited 1642 packages in 4s
+up to date, audited 1676 packages in 2s
 
-178 packages are looking for funding
+197 packages are looking for funding
   run `npm fund` for details
 
-11 high severity vulnerabilities
-
-To address issues that do not require attention, run:
-  npm audit fix
-
-To address all issues, run:
-  npm audit fix --force
-
-Run `npm audit` for details.
+found 0 vulnerabilities

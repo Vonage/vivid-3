@@ -2,6 +2,51 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Mon, 31 Oct 2022 06:36:47 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.83",
+      "version": "3.0.0-next.83",
+      "comments": {
+        "none": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "11fcad061681cbc21627c6f103a576f1ba9397ec",
+            "comment": "Upgrade NX and playwright versions"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 30 Oct 2022 07:51:40 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.83",
+      "version": "3.0.0-next.83",
+      "comments": {
+        "none": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "b614b4f712e38ce44aff092cbdb8bc615df9ec84",
+            "comment": "omit badge sizes"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sat, 29 Oct 2022 09:45:57 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.83",
+      "version": "3.0.0-next.83",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "olaf-k@users.noreply.github.com",
+            "package": "@vonage/vivid",
+            "commit": "17073dc1f765b7de0e200a64914d73f5ba18e2bc",
+            "comment": "Add radio button component"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 27 Oct 2022 06:36:37 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.82",
       "version": "3.0.0-next.82",

@@ -1,6 +1,28 @@
-import { prefix, buildPath, selector } from '../common';
+const SD = require('style-dictionary');
+
+import { prefix, buildPath } from '../common';
 import { isSource } from '../filters';
 
+const transformToCssVariable = ({name, value}) => `var(--${name}, ${value})`;
+const getRunTimeDensity = (token) => `clamp(${+token.value - 1}, ${transformToCssVariable(token)}, ${+token.value + 1})`;
+
+SD.registerTransform({
+	type: 'value',
+	name: 'type/density',
+	transitive: true,
+	matcher: token => token.attributes.type === 'density',
+	transformer: getRunTimeDensity
+});
+
+SD.registerTransform({
+	type: 'value',
+	name: 'css/calc',
+	transitive: true,
+	matcher: isSource,
+	transformer: function(token) {
+		return `calc(1px * (${token.value}))`;
+	}
+});
 
 export default {
 	source: [
@@ -10,26 +32,13 @@ export default {
 		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/size.tokens.json'
 	],
 	platforms: {
-		css: {
-			transforms: ['attribute/cti', 'name/cti/kebab', 'resolveMath'],
-			prefix,
-			buildPath,
-			files: [{
-				destination: '_size.tokens.scss',
-				format: 'css/themeableVariables',
-				filter: token => token.public,
-				options: {
-					selector
-				},
-			}]
-		},
 		scss: {
-			transforms: ['attribute/cti', 'name/cti/kebab'],
+			transforms: ['attribute/cti', 'name/cti/kebab', 'resolveMath', 'type/density', 'css/calc'],
 			prefix,
 			buildPath,
 			files: [{
 				destination: '_size.variables.scss',
-				format: 'sass/themeableVariables',
+				format: 'scss/variables',
 				filter: isSource,
 			}],
 		}
