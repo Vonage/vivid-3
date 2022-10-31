@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sat, 29 Oct 2022 09:45:57 GMT and should not be manually modified.
+This log was last generated on Mon, 31 Oct 2022 12:51:28 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.84
+
+Mon, 31 Oct 2022 12:51:28 GMT
+
+### Changes
+
+- add option component (rina.oksman@vonage.com)
 
 ## 3.0.0-next.83
 
