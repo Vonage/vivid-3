@@ -38,7 +38,7 @@ describe('icon', function () {
 
 	beforeEach(function () {
 		global.Promise = require('promise'); // needed in order for promises to work with jest fake timers
-		jest.useFakeTimers('legacy');
+		jest.useFakeTimers({legacyFakeTimers: true});
 	});
 
 	afterEach(function () {
