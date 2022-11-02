@@ -1,4 +1,4 @@
-@use '../../../../../dist/libs/tokens/scss/constants' as constants;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use 'partials/variables' as variables;
 @use 'partials/mixins' as mixins;
 
@@ -32,15 +32,15 @@
 	vertical-align: middle;
 
 	&.size-condensed {
-		@include mixins.get-size-properties(32px, #{constants.$vvd-font-base-condensed-bold});
+		@include mixins.get-size-properties(32px, #{constants.$vvd-typography-base-condensed-bold});
 	}
 
 	&.size-expanded {
-		@include mixins.get-size-properties(48px, #{constants.$vvd-font-heading4});
+		@include mixins.get-size-properties(48px, #{constants.$vvd-typography-heading4});
 	}
 
 	&:not(.size-condensed, .size-expanded) {
-		@include mixins.get-size-properties(40px, #{constants.$vvd-font-base-extended-bold});
+		@include mixins.get-size-properties(40px, #{constants.$vvd-typography-base-extended-bold});
 	}
 
 	&:not(.shape-pill) {

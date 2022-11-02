@@ -3,7 +3,7 @@ import { attr } from '@microsoft/fast-element';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
 import type {
-	Appearance, Connotation, Shape, Size,
+	Appearance, Connotation, Shape,
 } from '../enums.js';
 
 /**
@@ -33,13 +33,6 @@ Appearance.Filled | Appearance.Duotone | Appearance.Subtle>;
  * @public
  */
 type BadgeShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
-
-/**
- * Types of badge size.
- *
- * @public
- */
-type BadgeSize = Extract<Size, Size.Condensed | Size.Normal | Size.Expanded>;
 
 /**
  * Base class for badge
@@ -73,15 +66,6 @@ export class Badge extends FoundationElement {
 	 * HTML Attribute: appearance
 	 */
 	@attr appearance?: BadgeAppearance;
-
-	/**
-	 * The size the badge should have.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: size
-	 */
-	@attr size?: BadgeSize;
 
 	/**
 	 * Indicates the badge's text.

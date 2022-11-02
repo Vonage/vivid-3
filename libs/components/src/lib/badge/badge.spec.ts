@@ -22,7 +22,6 @@ describe('vwc-badge', () => {
 			expect(element.connotation).toBeUndefined();
 			expect(element.shape).toBeUndefined();
 			expect(element.appearance).toBeUndefined();
-			expect(element.size).toBeUndefined();
 		});
 	});
 
@@ -100,17 +99,6 @@ describe('vwc-badge', () => {
 		});
 	});
 
-	describe('size', () => {
-		it('sets correct internal size style', async () => {
-			const size = 'condensed';
-			(element as any).size = size;
-			await elementUpdated(element);
-
-			const base = element.shadowRoot?.querySelector(`.base.size-${size}`);
-			expect(base)
-				.toBeInstanceOf(Element);
-		});
-	});
 
 	describe('icon-only', () => {
 		it('sets correct internal icon-only style', async () => {
