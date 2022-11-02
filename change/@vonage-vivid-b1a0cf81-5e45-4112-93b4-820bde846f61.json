@@ -1,7 +1,7 @@
 {
-  "type": "prerelease",
-  "comment": "change banner's dismiss button to theme alternate to comply with",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
+	"type": "prerelease",
+	"comment": "change banner's dismiss button to theme alternate to comply with contrast rules",
+	"packageName": "@vonage/vivid",
+	"email": "yinon@hotmail.com",
+	"dependentChangeType": "patch"
 }
