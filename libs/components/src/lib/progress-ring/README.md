@@ -63,10 +63,7 @@ Use the `paused` attribute to show a disabled state of the progress.
 - Default: `false`
 
 ```html preview blocks
-<h2>Determinate</h2>
 <vwc-progress-ring min="0" max="50" value="25" paused></vwc-progress-ring>
-<h2>Indeterminate</h2>
-<vwc-progress-ring min="0" max="50" paused></vwc-progress-ring>
 ```
 
 ### Density
@@ -97,7 +94,7 @@ Set the `min`, `max` and `value` in order to show the determinate state.
 In the example below, we set the value to `12.5` while the range is `0` to `50`.  This means, 25% of the progress bar will be filled.
 
 ```html preview
-    <vwc-progress-ring min="0" max="50" value="12.5"></vwc-progress-ring>
+<vwc-progress-ring min="0" max="50" value="12.5"></vwc-progress-ring>
 ```
 
 ### Indeterminate
@@ -105,7 +102,6 @@ In the example below, we set the value to `12.5` while the range is `0` to `50`.
 Remove `value` or set it to be a non-number value (e.g. `indeterminate`) to show an indeterminate state.
 
 ```html preview blocks
-        <vwc-progress-ring min="0" max="50"></vwc-progress-ring>
-        <vwc-progress-ring min="0" max="50" value="indeterminate"></vwc-progress-ring>
-    </vwc-layout>
+<vwc-progress-ring min="0" max="50"></vwc-progress-ring>
+<vwc-progress-ring min="0" max="50" value="indeterminate"></vwc-progress-ring>
 ```
