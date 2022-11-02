@@ -53,6 +53,7 @@ $track-thickness: 2px;
 		width: var(#{variables.$thumb-interaction-indicator-size});
 		height: var(#{variables.$thumb-interaction-indicator-size});
 		cursor: inherit;
+		touch-action: none;
 
 		&::before {
 			position: absolute;
@@ -82,7 +83,6 @@ $track-thickness: 2px;
 		width: calc(100% - var(#{variables.$thumb-size}));
 		min-width: var(#{variables.$thumb-size});
 		margin-left: calc(var(#{variables.$thumb-size}) / 2);
-		touch-action: pan-y;
 
 		& .track {
 			top: calc((var(#{variables.$thumb-interaction-indicator-size}) - $track-thickness) / 2);
@@ -105,7 +105,6 @@ $track-thickness: 2px;
 		height: calc(100% - var(#{variables.$thumb-interaction-indicator-size}));
 		min-height: var(#{variables.$thumb-interaction-indicator-size});
 		margin-top: calc(var(#{variables.$thumb-interaction-indicator-size}) / 2);
-		touch-action: pan-x;
 
 		& .positioning-region {
 			height: 100%;
