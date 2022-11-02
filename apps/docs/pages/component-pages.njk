@@ -8,9 +8,15 @@ pagination:
 permalink: "components/{{ component.title | slug }}/"
 ---
 
+
 {% for url in component.modules %}
 <script type="module" src="{{ url | url }}"></script>
 {% endfor %}
 
+
+{% if (component.status) == "alpha" %}
+<script type="module" src="{{ "/assets/modules/components/banner/index.js" | url }}"></script>
+<vwc-banner class="banner" text="Alpha: this is an initial phase of component testing. expect breaking changes." connotation="warning"></vwc-banner>
+{% endif %}
 
 {% renderFile component.markdown %}

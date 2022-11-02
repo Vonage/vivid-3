@@ -207,6 +207,11 @@ article > h1 {
   }
 }
 
+.banner {
+	position: sticky;
+	top: var(--_header-block-size);
+	z-index: 1;
+}
 /* #endregion article */
 
 /* #region code fence demo */
