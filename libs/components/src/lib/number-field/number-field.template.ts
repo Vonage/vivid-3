@@ -21,7 +21,6 @@ const getStateClasses = ({
 	value,
 	readOnly,
 	placeholder,
-	density,
 	appearance,
 	shape,
 	label,
@@ -32,7 +31,6 @@ const getStateClasses = ({
 	['has-value', Boolean(value)],
 	['readonly', readOnly],
 	['placeholder', Boolean(placeholder)],
-	[`density-${density}`, Boolean(density)],
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	['no-label', !label],
@@ -70,7 +68,7 @@ function numberControlButtons(context: ElementDefinitionContext) {
 	const dividerTag = context.tagFor(Divider);
 
 	return html<NumberField>`
-			<div class="control-buttons" 
+			<div class="control-buttons"
 			     ?inert="${x => x.disabled || x.readOnly}">
 				<${buttonTag} id="subtract" icon="minus-line"
 					  					aria-controls="control"
@@ -81,7 +79,7 @@ function numberControlButtons(context: ElementDefinitionContext) {
 				<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 				<${buttonTag} id="add" icon="plus-line"
 					  					aria-controls="control"
-					            shape="${ setControlButtonShape }" 
+					            shape="${ setControlButtonShape }"
 					            density="${ setControlButtonDensity }"
 					  					tabindex="${getTabIndex}"
 					            @click="${x => adjustValueByStep(x)}"></${buttonTag}>
