@@ -5,7 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import {classNames} from '@microsoft/fast-web-utilities';
-import {Density, Shape} from '../enums';
+import {Shape} from '../enums';
 import {getFeedbackTemplate} from '../../shared/patterns';
 import {focusTemplateFactory} from '../../shared/patterns/focus';
 import {Button} from '../button/button';
@@ -55,10 +55,6 @@ function setControlButtonShape(numberField: NumberField) {
 	return numberField.shape === Shape.Pill ? Shape.Pill : null;
 }
 
-function setControlButtonDensity(numberField: NumberField) {
-	return numberField.density === Density.Extended ? Density.Normal : Density.Condensed;
-}
-
 function getTabIndex(numberField: NumberField) {
 	return (numberField.disabled || numberField.readOnly) ? '-1' : null;
 }
@@ -73,14 +69,14 @@ function numberControlButtons(context: ElementDefinitionContext) {
 				<${buttonTag} id="subtract" icon="minus-line"
 					  					aria-controls="control"
 					            shape="${ setControlButtonShape }"
-					            density="${ setControlButtonDensity }"
+					            density="condensed"
 					  					tabindex="${getTabIndex}"
 					            @click="${x => adjustValueByStep(x, SUBTRACT)}"></${buttonTag}>
 				<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 				<${buttonTag} id="add" icon="plus-line"
 					  					aria-controls="control"
 					            shape="${ setControlButtonShape }"
-					            density="${ setControlButtonDensity }"
+					            density="condensed"
 					  					tabindex="${getTabIndex}"
 					            @click="${x => adjustValueByStep(x)}"></${buttonTag}>
 		    </div>
