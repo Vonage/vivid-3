@@ -1,4 +1,4 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
+import { Switch as FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 
 /**
@@ -8,11 +8,12 @@ import { attr } from '@microsoft/fast-element';
  */
 export class Switch extends FoundationElement {
 	/**
-	 * Indicates the text's text.
+	 * Indicates the switch's label.
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: text
+	 * HTML Attribute: label
 	 */
-	@attr text?: string;
+	@attr label?: string;
+	@attr connotation?: string;
 }
