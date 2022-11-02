@@ -71,8 +71,8 @@ If you wish to update the visual snapshots (i.e. you've changed the design and w
 The docker image comes with the browsers and playwright ready for action.  If, for some reason, there's a need to update the playwright version, a new version should be published to the docker hub. To understand how to build multi-platform images (needed to run on Mac/intel and Mac/ARM), [you can read this page](https://docs.docker.com/build/building/multi-platform/). Here's a summary of commands:
 
 1. Login to docker hub if you aren't already (`docker login`).
-2. If you don't already have a `docker-container` driver, you'll need to create one and activate it by [following the instructions from this page](https://docs.docker.com/build/building/multi-platform/#getting-started).
-3. As the image you'll build is multi-platform, [it can't reside locally](https://github.com/docker/buildx/issues/166#issuecomment-544827163), so you'll build, tag and push the image in a single command: `docker buildx build --platform linux/amd64,linux/arm64 -t vivid3/vonage:2.x.x --push .` (remember to update the version).
+2. If you don't already have a `docker-container`-based builder, you'll need to create one and activate it by [following the instructions from this page](https://docs.docker.com/build/building/multi-platform/#getting-started). (This is a one-time thing.)
+3. As the image you'll build is multi-platform, [it can't reside locally](https://github.com/docker/buildx/issues/166#issuecomment-544827163). This means you'll build, tag and push the image in a single command. From the `dockerfile` location, use `./scripts/visual-tests/build.image.sh mybuilder 2.x.x` using the builder created in step 2 and a new version number.
 4. Update the relevant `yml` files that are using this image to use the new version.
 
 ## Updating playwright version
@@ -82,7 +82,7 @@ The docker image comes with the browsers and playwright ready for action.  If, f
 3. Install locally: npm i && npx playwright install
 4. Rebuild the image and push it to the repository following the steps described above.
 5. Run the tests: `npx nx run components:e2e` to ensure everything works fine
-6. Update the relevant `yml` files that are using this image to use the new version.
+6. Update `.github\workflows\_visual-regression.yml` to reference the new version.
 
 ## Checking the tests
 
