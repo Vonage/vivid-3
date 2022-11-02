@@ -1,5 +1,5 @@
 import type { Named, Transform } from "style-dictionary";
-
+import { isTypography } from "../filters";
 
 /**
  * Helper: Transforms typography object to typography shorthand
@@ -16,7 +16,7 @@ export default {
 	name: "typography/shorthand",
 	type: "value",
 	transitive: true,
-	matcher: (token) => token.type === "typography",
+	matcher: isTypography,
 	transformer: (token) => transformTypography(token.value),
 } as Named<Transform>;
 

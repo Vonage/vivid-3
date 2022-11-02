@@ -288,5 +288,13 @@
 			"/assets/modules/components/radio/index.js",
 			"/assets/modules/components/radio-group/index.js"
 		]
+	},
+	{
+		"title": "option",
+		"markdown": "./libs/components/src/lib/listbox-option/README.md",
+		"modules": [
+			"/assets/modules/components/listbox-option/index.js",
+			"/assets/modules/components/button/index.js"
+		]
 	}
 ]

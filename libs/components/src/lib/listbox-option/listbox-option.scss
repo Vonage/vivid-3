@@ -1,3 +1,4 @@
+@use '../focus/partials/variables' as focus-variables;
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
@@ -9,19 +10,21 @@
 
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
 	$appearances: ghost,
-	$states: idle hover active selected selectedAndHover,
+	$states: idle hover disabled active selected selectedAndHover,
 	$default: ghost,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 @use '../../../../../dist/libs/tokens/scss/size.variables' as size;
 
 
-.control {
+.base {
 	$min-block-size: #{size.$vvd-size-normal};
 	$gap: 8px;
 
-	position: relative;
-	display: inline-flex;
+	@include connotation.connotation;
+	@include appearance.appearance;
+
+	display: flex;
 	box-sizing: border-box;
 	align-items: center;
 	background-color: var(#{appearance.get-appearance-token(fill)});
@@ -35,34 +38,34 @@
 	min-block-size: $min-block-size;
 	padding-block: 10px;
 	padding-inline: $gap;
-	text-decoration: none;
 	vertical-align: middle;
 	word-break: break-word;
 
-	@include appearance.appearance;
-	@include connotation.connotation;
-
-	@supports selector(:focus-visible) {
-		&:focus {
-			outline: none;
-		}
+	@supports (user-select: none) {
+		user-select: none;
 	}
 
-	&.icon-only {
-		display: flex;
-		block-size: $min-block-size;
-		inline-size: $min-block-size;
-		place-content: center;
+	&:not(.disabled) {
+		cursor: pointer;
 	}
 
-}
+	&.disabled {
+		cursor: not-allowed;
+	}
 
-.focus-indicator {
-	.control:not(:focus-visible) & {
-		display: none;
+	.text {
+		font: var(#{constants.$vvd-typography-base});
 	}
 }
 
 .icon {
 	font-size: 20px;
+}
+
+.focus-indicator {
+	#{focus-variables.$focus-stroke-color}: var(#{constants.$vvd-color-neutral-500});
+
+	:host(:not([aria-checked="true"])) & {
+		display: none;
+	}
 }
