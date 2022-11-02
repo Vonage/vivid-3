@@ -3,7 +3,9 @@
 Represents a slider custom element.
 
 ```js
-<script type="module">import '@vonage/vivid/slider';</script>
+<script type="module">
+  import '@vonage/vivid/slider';
+</script>
 ```
 
 ```html preview
@@ -21,14 +23,12 @@ Use `min` to set the lowest value allowed for the slider.
 
 ```html preview blocks
 <div>
-	<vwc-slider min="-5"></vwc-slider>
+  <vwc-slider min="-5"></vwc-slider>
 </div>
 <div>Current value: <span id="slidervalue"></span></div>
 
 <script>
-	const slider = document.querySelector('vwc-slider');
-	const output = document.getElementById('slidervalue');
-	slider.addEventListener('change', (e) => output.innerText = slider.value);
+  slider.addEventListener('change', (e) => output.innerText = slider.value);
 </script>
 ```
 
@@ -41,14 +41,14 @@ Use `max` to set the greatest value allowed for the slider.
 
 ```html preview blocks
 <div>
-	<vwc-slider max="100"></vwc-slider>
+  <vwc-slider max="100"></vwc-slider>
 </div>
 <div>Current value: <span id="slidervalue"></span></div>
 
 <script>
-	const slider = document.querySelector('vwc-slider');
-	const output = document.getElementById('slidervalue');
-	slider.addEventListener('change', (e) => output.innerText = slider.value);
+  const slider = document.querySelector('vwc-slider');
+  const output = document.getElementById('slidervalue');
+  slider.addEventListener('change', (e) => output.innerText = slider.value);
 </script>
 ```
 
@@ -61,14 +61,14 @@ Use `step` to set determine the granularity with which values can be incremented
 
 ```html preview blocks
 <div>
-	<vwc-slider step="0.5"></vwc-slider>
+  <vwc-slider step="0.5"></vwc-slider>
 </div>
 <div>Current value: <span id="slidervalue"></span></div>
 
 <script>
-	const slider = document.querySelector('vwc-slider');
-	const output = document.getElementById('slidervalue');
-	slider.addEventListener('change', (e) => output.innerText = slider.value);
+  const slider = document.querySelector('vwc-slider');
+  const output = document.getElementById('slidervalue');
+  slider.addEventListener('change', (e) => output.innerText = slider.value);
 </script>
 ```
 
@@ -77,11 +77,11 @@ Use `step` to set determine the granularity with which values can be incremented
 When used vertically, the slider fills the height of its container.
 
 - Type: `'horizontal'` | `'vertical'`
-- Default: `horizontal`
+- Default: `'horizontal'`
 
 ```html preview blocks
 <div style="height: 200px">
- 	<vwc-slider orientation="vertical"></vwc-slider>
+  <vwc-slider orientation="vertical"></vwc-slider>
 </div>
 ```
 
