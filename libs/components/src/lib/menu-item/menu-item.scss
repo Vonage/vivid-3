@@ -2,14 +2,14 @@
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent,
-	$shades: primary primary-text faint soft,
+	$shades: primary primary-text primary-increment faint soft,
 	$default: accent,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
 	$appearances: ghost,
-	$states: idle hover selected active disabled,
+	$states: idle hover disabled active selected selectedAndHover,
 	$default: ghost,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
