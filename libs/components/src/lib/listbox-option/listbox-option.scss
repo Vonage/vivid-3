@@ -1,20 +1,19 @@
-@use '../focus/partials/variables' as focus-variables;
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use "../focus/partials/variables" as focus-variables;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent,
 	$shades: primary primary-text primary-increment faint soft,
-	$default: accent,
+	$default: accent
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: ghost,
 	$states: idle hover disabled active selected selectedAndHover,
-	$default: ghost,
+	$default: ghost
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
-
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 
 .base {
 	$min-block-size: 40px;
@@ -23,7 +22,7 @@
 	@include connotation.connotation;
 	@include appearance.appearance;
 
-	position: relative; /*this is needed for the focus*/
+	position: relative; /* this is needed for the focus */
 	display: flex;
 	box-sizing: border-box;
 	align-items: center;
