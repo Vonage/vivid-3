@@ -36,7 +36,7 @@
 	}
 
 	&.size-expanded {
-		@include mixins.get-size-properties(48px, #{constants.$vvd-typography-heading4});
+		@include mixins.get-size-properties(48px, #{constants.$vvd-typography-heading-4});
 	}
 
 	&:not(.size-condensed, .size-expanded) {
