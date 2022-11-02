@@ -33,3 +33,4 @@ export * from './side-drawer';
 export * from './text-field';
 export * from './text-area';
 export * from './tooltip';
+export * from './switch';
