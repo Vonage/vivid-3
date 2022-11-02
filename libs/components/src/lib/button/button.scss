@@ -122,7 +122,6 @@ $pill-selector: '.shape-pill:not(.stacked)';
 	.control:not(.stacked) > & {
 		font-size: calc(var(#{variables.$block-size}) / 2);
 	}
-
 }
 
 .focus-indicator {
