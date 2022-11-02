@@ -15,8 +15,10 @@
 	$default: fieldset,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
 
-$control-size: 20px;
+
+$control-size: #{size.$vvd-size-ultra-condesed};
 $control-border: 2px;
 
 .base {
@@ -45,8 +47,8 @@ $control-border: 2px;
 
 .control {
 	position: relative;
-	width: $control-size;
-	height: $control-size;
+	inline-size: $control-size;
+	block-size: $control-size;
 	flex-shrink: 0;
 	background-color: var(#{utils.get-color-token(canvas)});
 	border-radius: 50%;

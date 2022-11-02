@@ -14,8 +14,10 @@
 	$default: fieldset,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
 
-$size: 20px;
+
+$size: #{size.$vvd-size-ultra-condesed};
 $gutter: 2px;
 
 .base {
@@ -49,8 +51,8 @@ $gutter: 2px;
 .control {
 	position: relative;
 	display: flex;
-	width: $size;
-	height: $size;
+	inline-size: $size;
+	block-size: $size;
 	flex-shrink: 0;
 	align-items: center;
 	justify-content: center;
