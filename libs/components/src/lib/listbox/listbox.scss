@@ -14,7 +14,6 @@
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
 :host {
-	display: inline-flex;
 }
 
 :host(:focus-within) {
