@@ -15,12 +15,12 @@
 .control {
 	@include connotation.connotation;
 
-	block-size: var(#{variables.$block-size});
-	inline-size: var(#{variables.$block-size});
 	display: flex;
 	margin: unset;
+	block-size: var(#{variables.$block-size});
 	color: currentColor;
 	contain: strict;
+	inline-size: var(#{variables.$block-size});
 }
 
 // TODO: add a :where selector to unset any connotation variant from a mixin level

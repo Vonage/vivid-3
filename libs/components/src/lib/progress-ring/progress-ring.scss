@@ -31,7 +31,6 @@ $density: (
 	2: size.$vvd-size-expanded,
 	3: size.$vvd-size-extra-expanded,
 );
-
 $density-keys: map.keys($density);
 $default-density: list.nth($density-keys, 6);
 
