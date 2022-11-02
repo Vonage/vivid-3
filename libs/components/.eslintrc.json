@@ -24,7 +24,7 @@
     "no-tabs": "off",
     "no-mixed-spaces-and-tabs": "error",
     "linebreak-style": [
-      "error",
+      "warn",
       "unix"
     ],
     "semi": [
