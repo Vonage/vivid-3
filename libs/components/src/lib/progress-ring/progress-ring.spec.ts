@@ -139,7 +139,6 @@ describe('vwc-progress-ring', () => {
 	});
 
 	describe('density', function () {
-		const BASE_DENSITY = 10;
 		let baseElement: Element | null | undefined;
 		beforeEach(function () {
 			baseElement = element.shadowRoot?.querySelector('.base');
@@ -153,11 +152,11 @@ describe('vwc-progress-ring', () => {
 		});
 
 		it('should set density class according to attribute plus base density', async function () {
-			const densityValue = 12;
-			const expectedClass = `density-${densityValue + BASE_DENSITY}`;
+			const densityValue = 2;
+			const expectedClass = `density-${densityValue}`;
 			element.setAttribute('density', densityValue.toString());
 			await elementUpdated(element);
-			expect(baseElement?.classList.contains(expectedClass)).toBeTruthy();
+			expect(baseElement?.classList.contains(expectedClass)).toEqual(true);
 		});
 	});
 });
