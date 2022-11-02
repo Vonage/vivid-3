@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Mon, 31 Oct 2022 12:51:28 GMT and should not be manually modified.
+This log was last generated on Wed, 02 Nov 2022 12:59:11 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.85
+
+Wed, 02 Nov 2022 12:59:11 GMT
+
+### Changes
+
+- add selected & hover state to all selected states integrating components (yinon@hotmail.com)
 
 ## 3.0.0-next.84
 
