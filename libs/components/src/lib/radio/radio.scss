@@ -18,7 +18,7 @@
 @use '../../../../../dist/libs/tokens/scss/size.variables' as size;
 
 
-$control-size: #{size.$vvd-size-ultra-condesed};
+$control-size: #{size.$vvd-size-ultra-condensed};
 $control-border: 2px;
 
 .base {
@@ -47,12 +47,12 @@ $control-border: 2px;
 
 .control {
 	position: relative;
-	inline-size: $control-size;
-	block-size: $control-size;
 	flex-shrink: 0;
 	background-color: var(#{utils.get-color-token(canvas)});
+	block-size: $control-size;
 	border-radius: 50%;
 	box-shadow: inset 0 0 0 $control-border var(#{appearance.get-appearance-token(outline)});
+	inline-size: $control-size;
 
 	&::after {
 		position: absolute;
