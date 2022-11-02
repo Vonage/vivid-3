@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "add selected & hover state to all selected states integrating components",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}
