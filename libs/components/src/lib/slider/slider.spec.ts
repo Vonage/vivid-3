@@ -65,7 +65,7 @@ describe('vwc-slider', () => {
 	});
 
 	describe('orientation', () => {
-		it('should update the positioning region when changing orientation', async () => {
+		it('should set the vertical class on the control when changing orientation to vertical', async () => {
 			const controlClasses = () => Array.from(getControlElement(element).classList);
 			const classesInitialValue = controlClasses();
 
