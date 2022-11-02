@@ -5,7 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import {classNames} from '@microsoft/fast-web-utilities';
-import {Shape} from '../enums';
+import {Density, Shape} from '../enums';
 import {getFeedbackTemplate} from '../../shared/patterns';
 import {focusTemplateFactory} from '../../shared/patterns/focus';
 import {Button} from '../button/button';
@@ -21,6 +21,7 @@ const getStateClasses = ({
 	value,
 	readOnly,
 	placeholder,
+	density,
 	appearance,
 	shape,
 	label,
@@ -31,6 +32,7 @@ const getStateClasses = ({
 	['has-value', Boolean(value)],
 	['readonly', readOnly],
 	['placeholder', Boolean(placeholder)],
+	[`density-${density}`, Boolean(density)],
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	['no-label', !label],
@@ -47,47 +49,40 @@ function renderLabel() {
 	  </label>`;
 }
 
-/**
- * @param numberField
- * @param direction
- */
 function adjustValueByStep(numberField: NumberField, direction = ADD) {
 	numberField.value = (Number(numberField.value) + direction * (numberField.step ? numberField.step : 1)).toString();
 }
 
-/**
- * @param numberField
- */
 function setControlButtonShape(numberField: NumberField) {
 	return numberField.shape === Shape.Pill ? Shape.Pill : null;
 }
 
-/**
- * @param numberField
- */
+function setControlButtonDensity(numberField: NumberField) {
+	return numberField.density === Density.Extended ? Density.Normal : Density.Condensed;
+}
+
 function getTabIndex(numberField: NumberField) {
 	return (numberField.disabled || numberField.readOnly) ? '-1' : null;
 }
 
-/**
- * @param context
- */
 function numberControlButtons(context: ElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
 	const dividerTag = context.tagFor(Divider);
 
 	return html<NumberField>`
-			<div class="control-buttons"
+			<div class="control-buttons" 
 			     ?inert="${x => x.disabled || x.readOnly}">
 				<${buttonTag} id="subtract" icon="minus-line"
 					  					aria-controls="control"
 					            shape="${ setControlButtonShape }"
+					            density="${ setControlButtonDensity }"
 					  					tabindex="${getTabIndex}"
 					            @click="${x => adjustValueByStep(x, SUBTRACT)}"></${buttonTag}>
 				<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 				<${buttonTag} id="add" icon="plus-line"
 					  					aria-controls="control"
-					            shape="${ setControlButtonShape }"
+					            shape="${ setControlButtonShape }" 
+					            density="${ setControlButtonDensity }"
 					  					tabindex="${getTabIndex}"
 					            @click="${x => adjustValueByStep(x)}"></${buttonTag}>
 		    </div>

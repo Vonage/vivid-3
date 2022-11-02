@@ -82,8 +82,12 @@ $low-ink-color: --_low-ink-color;
 	}
 
 	/* Size */
-	.base > & {
+	.base:not(.density-extended)>& {
 		block-size: #{size.$vvd-size-normal};
+	}
+
+	.base.density-extended>& {
+		block-size: #{size.$vvd-size-expanded};
 	}
 
 	/* Shape */

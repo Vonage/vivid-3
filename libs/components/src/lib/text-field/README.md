@@ -78,6 +78,18 @@ Use the `char-count` attribute along with the `maxlength` attribute to show a ch
 <vwc-text-field label="Char count example" char-count maxlength="15"></vwc-text-field>
 ```
 
+### Density
+
+Use the `density` attribute to set the text field's to one of the predefined block size extent.
+
+- Type: `'normal'` | `'extended'`
+- Default: `'normal'`
+
+```html preview blocks
+<vwc-text-field label="normal" density="normal"></vwc-text-field>
+<vwc-text-field label="extended" density="extended"></vwc-text-field>
+```
+
 ### Icon
 
 Text field input can be prefixed by a decorative icon.

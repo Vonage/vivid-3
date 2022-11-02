@@ -70,6 +70,18 @@ Add the `success-text` to add some success text below the number field.
 <vwc-number-field label="Valid value" success-text="Great success"></vwc-number-field>
 ```
 
+### Density
+
+Use the `density` attribute to set the number field's to one of the predefined block size extent.
+
+- Type: `'normal'` | `'extended'`
+- Default: `'normal'`
+
+```html preview blocks
+<vwc-number-field label="normal" density="normal"></vwc-number-field>
+<vwc-number-field label="extended" density="extended"></vwc-number-field>
+```
+
 ### Shape
 
 Use the `shape` attribute to change the number field's edges.
