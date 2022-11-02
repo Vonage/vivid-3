@@ -1,5 +1,10 @@
 # Listbox
 
+Listbox displays list of [vwc-option](../../components/option) and allow users to select from them. 
+There are two types of listboxes: single-select and multi-select.
+You can find out more about listbox [here](https://www.w3.org/WAI/ARIA/apg/patterns/listbox).
+
+
 ```js
 <script type='module'>
     import '@vonage/vivid/listbox';
