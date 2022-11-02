@@ -26,6 +26,7 @@ export const ListboxTemplate: (
 <template
 	aria-activedescendant="${x => x.ariaActiveDescendant}"
 	aria-multiselectable="${x => x.ariaMultiSelectable}"
+	aria-label="listbox"
 	role="listbox"
 	@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
 	@focusin="${(x, c) => x.focusinHandler(c.event as FocusEvent)}"
