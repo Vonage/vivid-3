@@ -23,7 +23,7 @@
 	@include connotation.connotation;
 	@include appearance.appearance;
 
-	position: relative;
+	position: relative; /*this is needed for the focus*/
 	display: flex;
 	box-sizing: border-box;
 	align-items: center;
