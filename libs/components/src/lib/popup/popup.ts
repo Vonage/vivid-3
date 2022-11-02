@@ -44,7 +44,7 @@ export class Popup extends FoundationElement {
 	 * HTML Attribute: popUp
 	 */
 	@attr({ attribute: 'data-popup' })
-	popUp: 'auto' | 'hint' | 'manual' | undefined;
+	popup: 'auto' | 'hint' | 'manual' = 'auto';
 
 	openChanged(_: boolean, newValue: boolean): void {
 		newValue ? this.$emit('open') : this.$emit('close');

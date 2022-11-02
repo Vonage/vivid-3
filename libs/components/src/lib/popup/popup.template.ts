@@ -27,7 +27,7 @@ export const popupTemplate: (
     <!--the popup-wrapper is needed for alternating the inside of the popup nd not its shadow-->
 	  <div class="popup-wrapper" ${ref('popupEl')}>
 			<div class="${getClasses}" aria-hidden="${(x) => x.open ? 'false' : 'true'}"
-				part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}" data-popup="auto">
+				part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}">
 				<div class="popup-content">
 					<slot></slot>
 					${when(x => x.dismissible,
