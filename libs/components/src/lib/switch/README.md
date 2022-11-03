@@ -54,7 +54,7 @@ Use `value` in order to set the value of the switch. Mainly used inside a form t
 - Type: `string`
 - Default: `on`
 
-```html preview
+```html
     <vwc-switch value="my-value"></vwc-switch>
 ```
 
@@ -65,7 +65,7 @@ Use `name` in order to set the name of the switch. Mainly used inside a form tha
 - Type: `string`
 - Default: `undefined`
 
-```html preview
+```html
     <vwc-switch name="my-name"></vwc-switch>
 ```
 
