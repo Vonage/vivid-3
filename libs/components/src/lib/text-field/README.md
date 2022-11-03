@@ -1,7 +1,7 @@
 # Text Field
 
-TextField is meant to accept text input from the user.  
-All native `input` attributes of the text-field are supported as well as some enhancements.  
+TextField is meant to accept text input from the user.
+All native `input` attributes of the text-field are supported as well as some enhancements.
 Note that the text field does not support `type="number"`. For this there is the `number-field` component.
 
 ```js
@@ -54,6 +54,17 @@ Add the `helper-text` to add some helper text below the text field.
 
 ```html preview
 <vwc-text-field label="Helper text below" helper-text="Help text"></vwc-text-field>
+```
+
+### Success text
+
+Add the `success-text` to add some success text below the text field.
+
+- Type: `string` | `undefined`
+- Default: `undefined`
+
+```html preview
+<vwc-text-field label="Username" value="Vlad" success-text="Valid username"></vwc-text-field>
 ```
 
 ### Character Count
@@ -148,14 +159,14 @@ In addition, we programatically *"dirtied"* the field and then called `validate`
 <vwc-text-field pattern="123"></vwc-text-field>
 
 <script>
-    const textField = document.querySelector('vwc-text-field');
-    const interval = setInterval(() => {
-        if (!textField.checkValidity) return;  
-        textField.value = 5;
-        textField.dirtyValue = true;
-        textField.checkValidity();
-        clearInterval(interval);
-    }, 50);
+  const textField = document.querySelector('vwc-text-field');
+  const interval = setInterval(() => {
+    if (!textField.checkValidity) return;
+    textField.value = 5;
+    textField.dirtyValue = true;
+    textField.checkValidity();
+    clearInterval(interval);
+  }, 50);
 </script>
 ```
 
@@ -163,9 +174,9 @@ In addition, we programatically *"dirtied"* the field and then called `validate`
 
 ```html preview
 <form method="post" action="">
-<vwc-layout column-spacing="small" column-basis="block">
-  <vwc-text-field required label="Add email" placeholder="e.g. john@doe.dev" type="email" name="email" autocomplete="email" icon="search" maxlength="30" char-count style="justify-self: flex-start;"></vwc-text-field>
-  <vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>
-</vwc-layout>
+  <vwc-layout column-spacing="small" column-basis="block">
+    <vwc-text-field required label="Add email" placeholder="e.g. john@doe.dev" type="email" name="email" autocomplete="email" icon="search" maxlength="30" char-count style="justify-self: flex-start;"></vwc-text-field>
+    <vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>
+  </vwc-layout>
 </form>
 ```

@@ -5,7 +5,7 @@ If you'd like to know why we follow the `text` field type, you can read more abo
 
 ```js
 <script type="module">
-    import '@vonage/vivid/number-field';
+  import '@vonage/vivid/number-field';
 </script>
 ```
 
@@ -57,6 +57,17 @@ Add the `helper-text` to add some helper text below the number field.
 
 ```html preview
 <vwc-number-field label="Helper text below" helper-text="Help text"></vwc-number-field>
+```
+
+### Success text
+
+Add the `success-text` to add some success text below the number field.
+
+- Type: `string` | `undefined`
+- Default: `undefined`
+
+```html preview
+<vwc-number-field label="Valid value" success-text="Great success"></vwc-number-field>
 ```
 
 ### Density

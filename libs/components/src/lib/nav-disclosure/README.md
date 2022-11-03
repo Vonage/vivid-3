@@ -22,9 +22,9 @@ Add a `label` attribute to add label to the nav disclosure.
 
 ```html preview
 <vwc-nav>
-    <vwc-nav-disclosure label="1st level item">
-        <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
-    </vwc-nav-disclosure>
+  <vwc-nav-disclosure label="1st level item">
+    <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
+  </vwc-nav-disclosure>
 <vwc-nav>
 ```
 
@@ -37,9 +37,9 @@ You can toggle the nav-disclosure by using the `open` attribute.
 
 ```html preview
 <vwc-nav>
-    <vwc-nav-disclosure label="1st level item" open>
-        <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
-    </vwc-nav-disclosure>
+  <vwc-nav-disclosure label="1st level item" open>
+    <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
+  </vwc-nav-disclosure>
 <vwc-nav>
 ```
 
@@ -53,9 +53,9 @@ Use the `icon` attribute to add an icon.
 
 ```html preview
 <vwc-nav>
-    <vwc-nav-disclosure label="1st level item" icon="profile">
-        <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
-    </vwc-nav-disclosure>
+  <vwc-nav-disclosure label="1st level item" icon="profile">
+    <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
+  </vwc-nav-disclosure>
 <vwc-nav>
 ```
 
@@ -65,14 +65,14 @@ If label is not applied.
 
 ```html preview
 <vwc-nav>
-    <vwc-nav-disclosure icon="profile">
-        <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
-    </vwc-nav-disclosure>
+  <vwc-nav-disclosure icon="profile">
+    <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
+  </vwc-nav-disclosure>
 <vwc-nav>
 ```
 
 ## Accessibility
 
-The nav-disclosure has a `role` button.  
-Nav-disclosure has `aria-expanded` set to true when the content is visible. Otherwise, it is set to false.  
+The nav-disclosure has a `role` button.
+Nav-disclosure has `aria-expanded` set to true when the content is visible. Otherwise, it is set to false.
 Nav-disclosure has a value specified for `aria-controls` that refers to the content.

@@ -18,13 +18,13 @@
 - Default: `horizontal`
 
 ```html preview blocks
- <vwc-divider orientation="horizontal"></vwc-divider>
- <vwc-divider orientation="vertical" style="block-size: 40px;"></vwc-divider>
+<vwc-divider orientation="horizontal"></vwc-divider>
+<vwc-divider orientation="vertical" style="block-size: 40px;"></vwc-divider>
 ```
 
 ## Accessibility
 
-A `<vwc-divider>` element is by default rendered with a role of `'separator'`.  
+A `<vwc-divider>` element is by default rendered with a role of `'separator'`.
 When using `<vwc-divider>` as a decorative element the role should be set as `'presentation'`.
 
 [For further reading about divider foundational role & accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/separator_role)
@@ -35,9 +35,9 @@ When using `<vwc-divider>` as a decorative element the role should be set as `'p
 
 ```html preview
 <vwc-action-group appearance="fieldset">
- <vwc-button icon="transfer-line"></vwc-button>
- <vwc-divider orientation="vertical"></vwc-divider>
- <vwc-button icon="compose-line"></vwc-button>
+  <vwc-button icon="transfer-line"></vwc-button>
+  <vwc-divider orientation="vertical"></vwc-divider>
+  <vwc-button icon="compose-line"></vwc-button>
 </vwc-action-group>
 ```
 
@@ -75,14 +75,14 @@ When using `<vwc-divider>` as a decorative element the role should be set as `'p
 
 ```html preview
 <style>
-vwc-layout {
- --layout-grid-template-columns: 1fr auto 1fr;
-}
+  vwc-layout {
+    --layout-grid-template-columns: 1fr auto 1fr;
+  }
 
- vwc-divider {
-  display: flex;
-  align-items: center;
- }
+  vwc-divider {
+    display: flex;
+    align-items: center;
+  }
 </style>
 
 <vwc-layout>

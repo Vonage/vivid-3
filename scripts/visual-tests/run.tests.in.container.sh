@@ -7,5 +7,5 @@ case $1 in
 *)
   echo "Docker test run"
   # update with proper image name when moved
-  docker run -it --name vivid-visual-tests --env task=$1 --rm -v $PWD:/usr/src/app vivid3/vonage:latest
+  docker run -it --name vivid-visual-tests --env task=$1 --rm -v $PWD:/usr/src/app vivid3/vonage:2.0.1
 esac

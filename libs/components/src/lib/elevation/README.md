@@ -5,38 +5,38 @@ Applies a perceived visual elevation to a direct child element.
 
 ```js
 <script type='module'>
-    import '@vonage/vivid/elevation';
+  import '@vonage/vivid/elevation';
 </script>
 ```
 
 ```html preview
 <style>
- #card {
-  padding: 20px;
-  text-align: center;
-  border-radius: 6px;
- }
+  #card {
+    padding: 20px;
+    text-align: center;
+    border-radius: 6px;
+  }
 </style>
 
 <vwc-elevation id="elevation">
-    <div id="card">
-        Hover me!
-    </div>
+  <div id="card">
+    Hover me!
+  </div>
 </vwc-elevation>
 
 <script>
- elevation.addEventListener("mouseenter", this.onMouseEnter);
- elevation.addEventListener("mouseleave", this.onMouseLeave);
+  elevation.addEventListener("mouseenter", this.onMouseEnter);
+  elevation.addEventListener("mouseleave", this.onMouseLeave);
 
- function onMouseEnter() {
-  elevation.setAttribute('dp', '24');
-  card.innerText = 'Get OFF of me!';
- }
+  function onMouseEnter() {
+    elevation.setAttribute('dp', '24');
+    card.innerText = 'Get OFF of me!';
+  }
 
- function onMouseLeave() {
-  elevation.removeAttribute('dp');
-  card.innerText = 'Hover me!';
- }
+  function onMouseLeave() {
+    elevation.removeAttribute('dp');
+    card.innerText = 'Hover me!';
+  }
 </script>
 
 ```
@@ -52,11 +52,11 @@ Use the `dp` attribute to change the elevation's level in Density-Independent Pi
 
 ```html preview blocks
 <style>
-.card {
- padding: 20px;
- text-align: center;
- border-radius: 6px;
-}
+  .card {
+    padding: 20px;
+    text-align: center;
+    border-radius: 6px;
+  }
 </style>
 
 <vwc-elevation dp="0">
