@@ -15,53 +15,55 @@
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
 .control {
-  @include connotation.connotation;
-  @include appearance.appearance;
+	@include connotation.connotation;
+	@include appearance.appearance;
 
-  display: inline-flex;
+	display: inline-flex;
 }
 
 .switch {
-  border-radius: 10px;
-  border: 1px solid var(constants.$vvd-color-neutral-500);
-  height: 20px;
-  width: 36px;
+	width: 36px;
+	height: 20px;
+	border: 1px solid var(constants.$vvd-color-neutral-500);
+	border-radius: 10px;
 
-  .disabled & {
-    border-color: var(constants.$vvd-color-neutral-200);
-  }
+	.disabled & {
+		border-color: var(constants.$vvd-color-neutral-200);
+	}
 
-  [aria-checked="true"] & {
-    background-color: var(#{appearance.get-appearance-token(fill)});;
-  }
+	[aria-checked="true"] & {
+		background-color: var(#{appearance.get-appearance-token(fill)});;
+	}
 }
 
 .checked-indicator {
-  --checked-indicator-size: 12px;
-  border-radius: 10px;
-  height: var(--checked-indicator-size);
-  width: var(--checked-indicator-size);
-  background-color: var(constants.$vvd-color-neutral-500);
-  position: absolute;
-  margin-top: calc((20px - var(--checked-indicator-size)) / 2);
-  transform: translateX(4px);
-  transition: all 0.2s ease-in-out 0s;
+	--checked-indicator-size: 12px;
 
-  .disabled & {
-    background-color: var(constants.$vvd-color-neutral-200);
-  }
+	position: absolute;
+	width: var(--checked-indicator-size);
+	height: var(--checked-indicator-size);
+	margin-top: calc((20px - var(--checked-indicator-size)) / 2);
+	background-color: var(constants.$vvd-color-neutral-500);
+	border-radius: 10px;
+	transform: translateX(4px);
+	transition: all 0.2s ease-in-out 0s;
 
-  [aria-checked="true"] & {
-    --checked-indicator-size: 14px;
-    background-color: var(constants.$vvd-color-neutral-100);
-    transform: translateX(20px);
+	.disabled & {
+		background-color: var(constants.$vvd-color-neutral-200);
+	}
 
-    .disabled & {
-      background-color: var(constants.$vvd-color-neutral-50);
-    }
-  }
+	[aria-checked="true"] & {
+		--checked-indicator-size: 14px;
+
+		background-color: var(constants.$vvd-color-neutral-100);
+		transform: translateX(20px);
+
+		.disabled & {
+			background-color: var(constants.$vvd-color-neutral-50);
+		}
+	}
 }
 
 .label {
-  margin-left: 8px;
+	margin-left: 8px;
 }
