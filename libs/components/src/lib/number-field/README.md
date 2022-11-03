@@ -5,7 +5,7 @@ If you'd like to know why we follow the `text` field type, you can read more abo
 
 ```js
 <script type="module">
-    import '@vonage/vivid/number-field';
+  import '@vonage/vivid/number-field';
 </script>
 ```
 
