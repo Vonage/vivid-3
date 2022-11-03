@@ -46,7 +46,7 @@
 	position: absolute;
 	width: var(--checked-indicator-size);
 	height: var(--checked-indicator-size);
-	margin-top: calc((20px - var(--checked-indicator-size)) / 2);
+	margin-top: calc((18px - var(--checked-indicator-size)) / 2);
 	background-color: var(constants.$vvd-color-neutral-500);
 	border-radius: 10px;
 	transform: translateX(4px);
