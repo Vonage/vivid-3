@@ -12,5 +12,5 @@ up to date, audited 1676 packages in 2s
 
 found 0 vulnerabilities
 Removing change files:
-- @vonage-vivid-e64b4f86-b9a9-43da-bbe5-66a41d799084.json
+- @vonage-vivid-38ab39ec-d0e4-4f5b-8497-4a9c0788fb21.json
 Removing change path

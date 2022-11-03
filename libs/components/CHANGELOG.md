@@ -1,8 +1,48 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Wed, 02 Nov 2022 14:09:27 GMT and should not be manually modified.
+This log was last generated on Thu, 03 Nov 2022 17:25:45 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.91
+
+Thu, 03 Nov 2022 17:25:45 GMT
+
+### Changes
+
+- remove block padding from nav item (yinon@hotmail.com)
+
+## 3.0.0-next.90
+
+Thu, 03 Nov 2022 17:18:16 GMT
+
+### Changes
+
+- support components status indication (yinon@hotmail.com)
+
+## 3.0.0-next.89
+
+Thu, 03 Nov 2022 13:37:29 GMT
+
+### Changes
+
+- change banner's dismiss button to theme alternate to comply with contrast rules (yinon@hotmail.com)
+
+## 3.0.0-next.88
+
+Thu, 03 Nov 2022 12:07:37 GMT
+
+### Changes
+
+- omit desnity from text-field and number-field (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.87
+
+Thu, 03 Nov 2022 08:51:02 GMT
+
+### Changes
+
+- fix READMEs (olaf-k@users.noreply.github.com)
 
 ## 3.0.0-next.86
 
