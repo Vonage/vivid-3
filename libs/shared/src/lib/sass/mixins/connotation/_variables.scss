@@ -12,7 +12,7 @@
     soft: #{utils.get-color-token(#{$type}-100)},
     firm: #{utils.get-color-token(#{$type}-600)},
     faint: #{utils.get-color-token(#{$type}-50)},
-
+    underpin: #{utils.get-color-token(#{$type}-400)},
     fierce: #{utils.get-color-token(#{$type}-700)},
   );
 }
@@ -25,6 +25,8 @@ $connotation-mapping: (
       primary-text: utils.get-color-token(canvas),
       primary-increment: utils.get-color-token(neutral-800),
       firm: utils.get-color-token(canvas-text),
+			underpin: #{utils.get-color-token(neutral-400)},
+			faint: #{utils.get-color-token(canvas)},
     )
   ),
   cta: get-default-mapping(cta),
