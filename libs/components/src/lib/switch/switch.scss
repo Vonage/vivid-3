@@ -18,6 +18,7 @@
   @include connotation.connotation;
   @include appearance.appearance;
 
+  display: inline-flex;
 }
 
 .switch {
@@ -59,4 +60,8 @@
       background-color: var(constants.$vvd-color-neutral-50);
     }
   }
+}
+
+.label {
+  margin-left: 8px;
 }
