@@ -26,6 +26,10 @@
   height: 20px;
   width: 36px;
 
+  .disabled & {
+    border-color: var(constants.$vvd-color-neutral-200);
+  }
+
   [aria-checked="true"] & {
     background-color: var(#{appearance.get-appearance-token(fill)});;
   }
@@ -42,9 +46,19 @@
   transform: translateX(4px);
   transition: all 0.2s ease-in-out 0s;
 
+  .disabled & {
+    background-color: var(constants.$vvd-color-neutral-200);
+  }
+
   [aria-checked="true"] & {
     --checked-indicator-size: 14px;
     background-color: var(constants.$vvd-color-neutral-100);
     transform: translateX(20px);
+
+    .disabled & {
+      background-color: var(constants.$vvd-color-neutral-50);
+    }
   }
+
+
 }
