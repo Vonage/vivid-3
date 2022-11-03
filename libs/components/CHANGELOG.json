@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Thu, 03 Nov 2022 12:07:37 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.88",
+      "version": "3.0.0-next.88",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "3b213decffb8444fab230df02de4798432be11f4",
+            "comment": "omit desnity from text-field and number-field"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 03 Nov 2022 08:51:02 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.87",
       "version": "3.0.0-next.87",
