@@ -22,9 +22,9 @@
 	align-items: stretch;
 	padding: 20px;
 	background-color: var(#{appearance.get-appearance-token(fill)});
+	border-radius: 6px;
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
-	border-radius: 6px;
 
 	@supports(contain: content) {
 		contain: content;
@@ -37,9 +37,9 @@
 
 .icon {
 	align-self: flex-start;
+	color: var(#{appearance.get-appearance-token(outline)});
 	font-size: 24px;
 	margin-inline-end: 16px;
-	color: var(#{appearance.get-appearance-token(outline)});
 }
 
 .text {
