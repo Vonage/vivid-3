@@ -8,7 +8,7 @@
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
-	$appearances: filled ghost,
+	$appearances: filled,
 	$states: idle disabled readonly error success,
 	$default: filled,
 );
