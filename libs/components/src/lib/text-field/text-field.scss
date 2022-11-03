@@ -81,13 +81,9 @@ $low-ink-color: --_low-ink-color;
 		--focus-stroke-color: var(#{constants.$vvd-color-alert-500});
 	}
 
-	/* Size */
-	.base:not(.density-extended)>& {
-		block-size: #{size.$vvd-size-normal};
-	}
 
-	.base.density-extended>& {
-		block-size: #{size.$vvd-size-expanded};
+	.base > & {
+		block-size: #{size.$vvd-size-normal};
 	}
 
 	/* Shape */
