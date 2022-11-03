@@ -296,5 +296,12 @@
 			"/assets/modules/components/listbox-option/index.js",
 			"/assets/modules/components/button/index.js"
 		]
+	},
+	{
+		"title": "switch",
+		"markdown": "./libs/components/src/lib/switch/README.md",
+		"modules": [
+			"/assets/modules/components/switch/index.js"
+		]
 	}
 ]
