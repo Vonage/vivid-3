@@ -13,7 +13,7 @@ strong {
 /* #region document */
 
 html {
-  scroll-padding-top: 64px;
+  scroll-padding-top: var(--vvd-header-block-size);
 }
 
 body {
