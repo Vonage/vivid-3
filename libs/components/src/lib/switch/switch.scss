@@ -22,8 +22,9 @@
 }
 
 .switch {
-	width: 36px;
-	height: 20px;
+	inline-size: 36px;
+	block-size: 20px;
+	box-sizing: border-box;
 	border: 1px solid var(constants.$vvd-color-neutral-500);
 	border-radius: 10px;
 
