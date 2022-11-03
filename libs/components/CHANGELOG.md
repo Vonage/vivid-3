@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Wed, 02 Nov 2022 14:09:27 GMT and should not be manually modified.
+This log was last generated on Thu, 03 Nov 2022 08:51:02 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.87
+
+Thu, 03 Nov 2022 08:51:02 GMT
+
+### Changes
+
+- fix READMEs (olaf-k@users.noreply.github.com)
 
 ## 3.0.0-next.86
 
