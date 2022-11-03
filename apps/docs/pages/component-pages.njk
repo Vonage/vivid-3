@@ -19,11 +19,11 @@ permalink: "components/{{ component.title | slug }}/"
 	{% endif %}
 {% endblock %}
 
-{% if (component.status) == "alpha" %}
-	{% block banner %}
+{% block banner %}
+	{% if (component.status) == "alpha" %}
 <vwc-banner class="banner" text="Alpha: this is the initial phase of component testing. Expect breaking changes." connotation="warning"></vwc-banner>
-	{% endblock %}
-{% endif %}
+	{% endif %}
+{% endblock %}
 
 {% block content %}
 	{% renderFile component.markdown %}
