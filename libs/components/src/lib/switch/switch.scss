@@ -32,7 +32,8 @@
 	}
 
 	[aria-checked="true"] & {
-		background-color: var(#{appearance.get-appearance-token(fill)});;
+		background-color: var(#{appearance.get-appearance-token(fill)});
+		border-color:  var(#{appearance.get-appearance-token(fill)});
 	}
 }
 
