@@ -88,7 +88,7 @@ Use `connotation` in order to set the connotation of the switch.
 - Default: `primary`
 
 ```html preview
-    <vwc-switch connotation="primary"></vwc-switch>
-    <vwc-switch connotation="cta"></vwc-switch>
-    <vwc-switch connotation="alert"></vwc-switch>
+    <vwc-switch connotation="primary" checked ></vwc-switch>
+    <vwc-switch connotation="cta" checked ></vwc-switch>
+    <vwc-switch connotation="alert" checked ></vwc-switch>
 ```
