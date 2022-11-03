@@ -35,6 +35,11 @@
 		border-color:  var(#{appearance.get-appearance-token(fill)});
 		background-color: var(#{appearance.get-appearance-token(fill)});
 	}
+
+	.control:not(.disabled, [aria-checked="true"]) &:hover{
+		border: 1px solid var(constants.$vvd-color-neutral-700);
+	}
+
 	.control:not(.disabled, [aria-checked="true"]) &{
 		border: 1px solid var(constants.$vvd-color-neutral-500);
 	}
@@ -51,6 +56,10 @@
 	border-radius: 10px;
 	transform: translateX(4px);
 	transition: all 0.2s ease-in-out 0s;
+
+	.switch:hover & {
+		background-color: var(constants.$vvd-color-neutral-700);
+	}
 
 	.disabled & {
 		background-color: var(constants.$vvd-color-neutral-200);
