@@ -16,7 +16,7 @@ const getClasses = (_: Dialog) => classNames(
  */
 function icon() {
 	return html<Dialog>`
-		<vwc-icon class="icon" size="large" type="${x => x.icon}"></vwc-icon>
+		<vwc-icon class="icon" type="${x => x.icon}"></vwc-icon>
 	`;
 }
 
