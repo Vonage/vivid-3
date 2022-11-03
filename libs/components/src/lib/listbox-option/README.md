@@ -2,7 +2,7 @@
 
 ```js
 <script type='module'>
-    import '@vonage/vivid/option';
+  import '@vonage/vivid/option';
 </script>
 ```
 

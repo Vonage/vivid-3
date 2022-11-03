@@ -93,7 +93,7 @@ The meta slot is for action content in the card header
 
 ```html preview
 <vwc-card headline="Vivid Card Component" subtitle="extra text to the card headline">
-<vwc-button slot="meta" icon="more-vertical-solid" appearance="ghost"></vwc-button>
+  <vwc-button slot="meta" icon="more-vertical-solid" appearance="ghost"></vwc-button>
 </vwc-card>
 ```
 
@@ -111,7 +111,7 @@ footer slot main purpose is for action button
 
 ### Main
 
-Card is battery charged with opinionated template.  
+Card is battery charged with opinionated template.
 Assign nodes to `main` slot to fully override a card's predefined flow and style with your own.
 
 ```html preview

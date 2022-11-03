@@ -5,7 +5,7 @@ import {
 	getControlElement,
 	listenToFormSubmission
 } from '@vivid-nx/shared';
-import {Density, Shape} from '../enums';
+import {Shape} from '../enums';
 import { NumberField } from './number-field';
 import '.';
 
@@ -466,19 +466,6 @@ describe('vwc-number-field', () => {
 		});
 	});
 
-	describe('density', function () {
-		it('should set the size class on the root', async function () {
-			const density = 'extended';
-			element.setAttribute('density', density);
-			await elementUpdated(element);
-
-			expect(getRootElement(element)
-				.classList
-				.contains('density-extended'))
-				.toEqual(true);
-		});
-	});
-
 	describe('appearance', function () {
 		it('should set the shape class on the root', async function () {
 			const appearance = 'filled';
@@ -561,21 +548,6 @@ describe('vwc-number-field', () => {
 			await elementUpdated(element);
 			expect(addButton.getAttribute('shape')).toEqual(Shape.Pill);
 			expect(subtractButton.getAttribute('shape')).toEqual(Shape.Pill);
-		});
-
-		it('should have density normal when field is extended', async function() {
-			element.density = Density.Extended;
-			await elementUpdated(element);
-			expect(addButton.getAttribute('density')).toEqual(Density.Normal);
-			expect(subtractButton.getAttribute('density')).toEqual(Density.Normal);
-		});
-
-		it('should have density condensed when field is not extended', async function() {
-			const addButton = getRootElement(element).querySelector('#add') as HTMLButtonElement;
-			const subtractButton = getRootElement(element).querySelector('#subtract') as HTMLButtonElement;
-			await elementUpdated(element);
-			expect(addButton.getAttribute('density')).toEqual(Density.Condensed);
-			expect(subtractButton.getAttribute('density')).toEqual(Density.Condensed);
 		});
 
 		it('should set step as 1 when step is null', async function () {
