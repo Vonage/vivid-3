@@ -9,20 +9,20 @@ permalink: "components/{{ component.title | slug }}/"
 
 {% extends '../_layouts/base.njk' %}
 
+{% set urls = component.modules %}
+
+{% if (component.status) == "alpha" %}
+	{% set urls = (urls.push("/assets/modules/components/banner/index.js"),urls) %}
+
+	{% block banner %}
+		<vwc-banner class="banner" text="Alpha: this is the initial phase of component testing. Expect breaking changes." connotation="warning"></vwc-banner>
+	{% endblock %}
+{% endif %}
+
 {% block header %}
-	{% for url in component.modules %}
-<script type="module" src="{{ url | url }}"></script>
+	{% for url in urls %}
+		<script type="module" src="{{ url | url }}"></script>
 	{% endfor %}
-
-	{% if (component.status) == "alpha" %}
-<script type="module" src="{{ "/assets/modules/components/banner/index.js" | url }}"></script>
-	{% endif %}
-{% endblock %}
-
-{% block banner %}
-	{% if (component.status) == "alpha" %}
-<vwc-banner class="banner" text="Alpha: this is the initial phase of component testing. Expect breaking changes." connotation="warning"></vwc-banner>
-	{% endif %}
 {% endblock %}
 
 {% block content %}
