@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Thu, 03 Nov 2022 17:25:45 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.91",
+      "version": "3.0.0-next.91",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "f7bcc680c56e2e345dbdcbd417830d690544c2d4",
+            "comment": "remove block padding from nav item"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 03 Nov 2022 17:18:16 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.90",
       "version": "3.0.0-next.90",

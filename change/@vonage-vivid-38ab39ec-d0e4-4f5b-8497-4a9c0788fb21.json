@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "remove block padding from nav item",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}
