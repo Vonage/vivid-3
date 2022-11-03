@@ -4,7 +4,7 @@ Using layout, elements can be arranged easily in a variety of sizes and spaces t
 
 ```js
 <script type='module'>
-    import '@vonage/vivid/layout';
+  import '@vonage/vivid/layout';
 </script>
 ```
 

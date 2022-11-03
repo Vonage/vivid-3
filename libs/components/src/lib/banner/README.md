@@ -54,7 +54,7 @@ Note that icon, if not specifically set, defaults to a connotation-associated ic
 - Type: `boolean`
 - Default: `false`
 
-The `removable` attribute sets a remove button. On click it will remove the banner from the DOM.  
+The `removable` attribute sets a remove button. On click it will remove the banner from the DOM.
 
 ```html preview full
 <vwc-banner text="Here's some information that you may find important!" removable></vwc-banner>
@@ -68,7 +68,7 @@ You can add action items using slotted content in a named slot `action-items`:
 
 ```html preview full
 <vwc-banner text="A banner with an action button">
-    <vwc-button slot="action-items" appearance="filled" connotation="accent" label="Learn More"></vwc-button>
+  <vwc-button slot="action-items" appearance="filled" connotation="accent" label="Learn More"></vwc-button>
 </vwc-banner>
 ```
 
