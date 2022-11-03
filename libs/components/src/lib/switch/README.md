@@ -1,4 +1,4 @@
-# switch
+# Switch
 
 Represents a switch custom element.
 
