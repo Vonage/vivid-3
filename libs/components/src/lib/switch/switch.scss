@@ -36,6 +36,9 @@
 		background-color: var(#{appearance.get-appearance-token(fill)});
 		border-color:  var(#{appearance.get-appearance-token(fill)});
 	}
+.control:not(.disabled, [aria-checked="true"]) &{
+    border: 1px solid var(constants.$vvd-color-neutral-500);
+}
 }
 
 .checked-indicator {
