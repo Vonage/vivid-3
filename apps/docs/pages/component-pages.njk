@@ -21,7 +21,7 @@ permalink: "components/{{ component.title | slug }}/"
 
 {% if (component.status) == "alpha" %}
 	{% block banner %}
-<vwc-banner class="banner" text="Alpha: this is an initial phase of component testing. expect breaking changes." connotation="warning" slot="app-content"></vwc-banner>
+<vwc-banner class="banner" text="Alpha: this is an initial phase of component testing. expect breaking changes." connotation="warning"></vwc-banner>
 	{% endblock %}
 {% endif %}
 
