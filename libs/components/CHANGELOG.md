@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Thu, 03 Nov 2022 13:37:29 GMT and should not be manually modified.
+This log was last generated on Thu, 03 Nov 2022 17:18:16 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.90
+
+Thu, 03 Nov 2022 17:18:16 GMT
+
+### Changes
+
+- support components status indication (yinon@hotmail.com)
 
 ## 3.0.0-next.89
 

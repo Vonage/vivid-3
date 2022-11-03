@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Thu, 03 Nov 2022 17:18:16 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.90",
+      "version": "3.0.0-next.90",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "d1c6958d899281ba070ad15c4ecb2f68d6125c5e",
+            "comment": "support components status indication"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 03 Nov 2022 13:37:29 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.89",
       "version": "3.0.0-next.89",
