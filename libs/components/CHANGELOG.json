@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Thu, 03 Nov 2022 13:37:29 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.89",
+      "version": "3.0.0-next.89",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "ae80d993201b1c31b92952fb8fc44682ecb514e7",
+            "comment": "change banner's dismiss button to theme alternate to comply with contrast rules"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 03 Nov 2022 12:07:37 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.88",
       "version": "3.0.0-next.88",
