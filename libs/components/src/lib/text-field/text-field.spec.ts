@@ -509,18 +509,6 @@ describe('vwc-text-field', () => {
 		});
 	});
 
-	describe('density', function () {
-		it('should set the size class on the root', async function () {
-			const density = 'extended';
-			element.setAttribute('density', density);
-			await elementUpdated(element);
-
-			expect(getBaseElement(element)
-				.classList
-				.contains('density-extended'))
-				.toEqual(true);
-		});
-	});
 
 	describe('appearance', function () {
 		it('should set the shape class on the root', async function () {

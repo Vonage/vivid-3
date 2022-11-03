@@ -6,7 +6,9 @@ The radio-group should be used to group related `radio` elements in a form.
 Use the `name` attribute to give a name to your value.
 
 ```js
-<script type="module">import '@vonage/vivid/radio-group';</script>
+<script type="module">
+  import '@vonage/vivid/radio-group';
+</script>
 ```
 
 ## Members
@@ -20,9 +22,9 @@ Use the `label` member to set the group's label.
 
 ```html preview
 <vwc-radio-group label="Pick a number" name="number">
-    <vwc-radio label="1" value="1"></vwc-radio>
-    <vwc-radio label="2" value="2"></vwc-radio>
-    <vwc-radio label="3" value="3"></vwc-radio>
+  <vwc-radio label="1" value="1"></vwc-radio>
+  <vwc-radio label="2" value="2"></vwc-radio>
+  <vwc-radio label="3" value="3"></vwc-radio>
 </vwc-radio-group>
 ```
 
@@ -35,9 +37,9 @@ Toggle the `disabled` member to disable/enable all radio buttons in the radio-gr
 
 ```html preview
 <vwc-radio-group label="Pick a number" name="number" disabled>
-    <vwc-radio label="1" value="1" checked></vwc-radio>
-    <vwc-radio label="2" value="2"></vwc-radio>
-    <vwc-radio label="3" value="3"></vwc-radio>
+  <vwc-radio label="1" value="1" checked></vwc-radio>
+  <vwc-radio label="2" value="2"></vwc-radio>
+  <vwc-radio label="3" value="3"></vwc-radio>
 </vwc-radio-group>
 ```
 
@@ -51,9 +53,9 @@ A read-only radio-group cannot be modified but can be focused and tabbed into.
 
 ```html preview
 <vwc-radio-group label="Pick a number" name="number" readonly>
-    <vwc-radio label="1" value="1" checked></vwc-radio>
-    <vwc-radio label="2" value="2"></vwc-radio>
-    <vwc-radio label="3" value="3"></vwc-radio>
+  <vwc-radio label="1" value="1" checked></vwc-radio>
+  <vwc-radio label="2" value="2"></vwc-radio>
+  <vwc-radio label="3" value="3"></vwc-radio>
 </vwc-radio-group>
 ```
 
@@ -66,8 +68,8 @@ Set the `orientation` member to set the orientation (`horizontal` or `vertical`)
 
 ```html preview
 <vwc-radio-group label="Pick a number" name="number" orientation="vertical">
-    <vwc-radio label="1" value="1"></vwc-radio>
-    <vwc-radio label="2" value="2"></vwc-radio>
-    <vwc-radio label="3" value="3"></vwc-radio>
+  <vwc-radio label="1" value="1"></vwc-radio>
+  <vwc-radio label="2" value="2"></vwc-radio>
+  <vwc-radio label="3" value="3"></vwc-radio>
 </vwc-radio-group>
 ```

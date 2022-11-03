@@ -2,7 +2,7 @@
 
 ```js
 <script type='module'>
-    import '@vonage/vivid/option';
+  import '@vonage/vivid/option';
 </script>
 ```
 
@@ -16,7 +16,7 @@ Use the `text` attribute to set the option's text.
 - Default: `undefined`
 
 ```html preview
- <vwc-option text="Option"></vwc-option>
+<vwc-option text="Option"></vwc-option>
 ```
 
 ### Icon
@@ -28,7 +28,7 @@ Check out the [vivid icons gallery](https://icons.vivid.vonage.com) to see what 
 - Default: `''`
 
 ```html preview
- <vwc-option text="Option" icon="chat-line"></vwc-option>
+<vwc-option text="Option" icon="chat-line"></vwc-option>
 ```
 
 ### Selected
@@ -39,7 +39,7 @@ Add the `selected` attribute to select the option.
 - Default: `false`
 
 ```html preview
- <vwc-option text="Option" selected></vwc-option>
+<vwc-option text="Option" selected></vwc-option>
 ```
 
 ### Disabled
@@ -50,5 +50,5 @@ Add the `disabled` attribute to disable the option.
 - Default: `false`
 
 ```html preview
- <vwc-option text="Option" disabled></vwc-option>
+<vwc-option text="Option" disabled></vwc-option>
 ```
