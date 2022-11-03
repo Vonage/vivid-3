@@ -19,6 +19,20 @@
 	@include appearance.appearance;
 
 	display: inline-flex;
+
+	&:hover {
+		&.connotation-primary {
+			#{appearance.get-appearance-token(fill)}: var(#{constants.$vvd-color-neutral-600});
+		}
+
+		&.connotation-cta {
+			#{appearance.get-appearance-token(fill)}: var(#{constants.$vvd-color-cta-600});
+		}
+
+		&.connotation-alert {
+			#{appearance.get-appearance-token(fill)}: var(#{constants.$vvd-color-alert-600});
+		}
+	}
 }
 
 .switch {
@@ -36,12 +50,12 @@
 		background-color: var(#{appearance.get-appearance-token(fill)});
 	}
 
-	.control:not(.disabled, [aria-checked="true"]) &:hover{
-		border: 1px solid var(constants.$vvd-color-neutral-700);
-	}
-
 	.control:not(.disabled, [aria-checked="true"]) &{
 		border: 1px solid var(constants.$vvd-color-neutral-500);
+	}
+
+	.control:not(.disabled, [aria-checked="true"]) &:hover{
+		border: 1px solid var(constants.$vvd-color-neutral-700);
 	}
 }
 
@@ -51,13 +65,13 @@
 	position: absolute;
 	width: var(--checked-indicator-size);
 	height: var(--checked-indicator-size);
-	margin-top: calc((18px - var(--checked-indicator-size)) / 2);
+	margin-top: 3px;
 	background-color: var(constants.$vvd-color-neutral-500);
 	border-radius: 10px;
 	transform: translateX(4px);
 	transition: all 0.2s ease-in-out 0s;
 
-	.switch:hover & {
+	:hover & {
 		background-color: var(constants.$vvd-color-neutral-700);
 	}
 
@@ -73,6 +87,10 @@
 
 		.disabled & {
 			background-color: var(constants.$vvd-color-neutral-50);
+		}
+
+		:hover & {
+			background-color: var(constants.$vvd-color-neutral-100);
 		}
 	}
 }
