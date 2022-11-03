@@ -13,9 +13,11 @@
 	$default: ghost
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+
 
 .control {
-	$min-block-size: 40px;
+	$min-block-size: #{size.$vvd-size-normal};
 	$gap: 8px;
 
 	position: relative;
