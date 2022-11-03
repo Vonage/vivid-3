@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "omit desnity from text-field and number-field",
-  "packageName": "@vonage/vivid",
-  "email": "rachel.tannenbaum@vonage.com",
-  "dependentChangeType": "patch"
-}
