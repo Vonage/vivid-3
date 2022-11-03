@@ -263,8 +263,7 @@
 		"status": "alpha",
 		"markdown": "./libs/components/src/lib/avatar/README.md",
 		"modules": [
-			"/assets/modules/components/avatar/index.js",
-			"/assets/modules/components/icon/index.js"
+			"/assets/modules/components/avatar/index.js"
 		]
 	},
 	{
