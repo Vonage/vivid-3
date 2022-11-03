@@ -36,6 +36,15 @@ describe('vwc-side-drawer', () => {
 			expect(hasClassOpenBeforeShow).toEqual(false);
 			expect(hasClassOpenAfterShow).toEqual(true);
 		});
+
+		it('should fire open event', async function () {
+			const spy = jest.fn();
+			element.addEventListener('open', spy);
+			element.open = true;
+			await elementUpdated(element);
+			expect(spy)
+				.toHaveBeenCalled();
+		});
 	});
 
 	describe('hide', () => {
@@ -51,6 +60,19 @@ describe('vwc-side-drawer', () => {
 
 			expect(hasClassOpenBeforeHide).toEqual(true);
 			expect(hasClassOpenAfterHide).toEqual(false);
+		});
+
+		it('should fire close event', async function () {
+			element.open = true;
+			await elementUpdated(element);
+
+			const spy = jest.fn();
+			element.addEventListener('close', spy);
+			element.open = false;
+			await elementUpdated(element);
+
+			expect(spy)
+				.toHaveBeenCalled();
 		});
 	});
 
@@ -68,15 +90,12 @@ describe('vwc-side-drawer', () => {
 	});
 
 	describe('alternate', () => {
-		it('should set "alternate" to true and add "alternate" class', async () => {
-			const control = getControlElement(element);
-			let hasClassAlternate = control.classList.contains('alternate');
+		it('should set "alternate" on part', async () => {
 			element.alternate = true;
 			await elementUpdated(element);
-			expect(hasClassAlternate).toEqual(false);
 
-			hasClassAlternate = control.classList.contains('alternate');
-			expect(hasClassAlternate).toEqual(true);
+			const controlWithPartAlternate = element.shadowRoot?.querySelector('[part~=vvd-theme-alternate]');
+			expect(controlWithPartAlternate).toBeInstanceOf(HTMLElement);
 		});
 	});
 
@@ -125,4 +144,6 @@ describe('vwc-side-drawer', () => {
 			expect(element.open).toEqual(true);
 		});
 	});
+
+	
 });

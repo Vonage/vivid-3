@@ -4,7 +4,7 @@ import type {Connotation} from '../enums';
 import {AffixIcon} from '../../shared/patterns';
 
 export type NoteConnotation =
-	Connotation.Info |
+	Connotation.Information |
 	Connotation.Announcement |
 	Connotation.Success |
 	Connotation.Warning |

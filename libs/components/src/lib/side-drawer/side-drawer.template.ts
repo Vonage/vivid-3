@@ -7,10 +7,9 @@ import type {
 import type { SideDrawer } from './side-drawer';
 
 const getClasses = ({
-	alternate, modal, open, trailing
+	modal, open, trailing
 }: SideDrawer) => classNames(
 	'control',
-	['alternate', alternate],
 	['modal', modal],
 	['open', open],
 	['trailing', trailing],

@@ -3,8 +3,7 @@
 
 Essential UI **web components** for building modern web applications, bound to provide a **safe**, **simple** and **intuitive** interface.
 
-<!-- ! TODO add visual - GIF or image reflecting an easy integration of vivid in code and page result -->
-![the Vivid logo](/assets/images/vivid-cover-wide.avif)
+![image](https://user-images.githubusercontent.com/10883919/189522882-968358df-ee7c-4256-b61b-550cf369a087.png)
 
 ## Installation
 
@@ -30,44 +29,50 @@ And include in HTML:
 
 For a full list of components and API, explore the [components docs](https://vivid.deno.dev/components/accordion/) 📚.
 
-### Prerequisites
+### Tokens (Prerequisite)
 
-The Vivid components library rely on a set of **core styles** to:
+The Vivid components library rely on a set of **design tokens** (in the form of css custom properties).
 
-- Be present in the DOM
-
-- Be shared across all components
-
-- Apply common design identities (such as colors, typography, spacing etc')
-
-- Ensure the components look as intended.
+Tokens should not affect the look of the application rather just provide a common set of identities (such as colors, typography, spacing etc') to be used by the components to look as intended.
 
 As the task of loading css is not trivial, and may vary from project to project, this library does not provide any way to load the css. It is up to the author to load the css in the most appropriate manner for their project.
 
-To **include the styles**, css files must be loaded into the project from the `node_modules/@vonage/vivid/styles` folder.
+To **include the tokens**, its css files must be loaded into the project from the `node_modules/@vonage/vivid/styles/tokens` folder and *require a `vvd-root` class* selector to be present on a wrapping element (advisably the `:root`).
 
-The folder contains the following files:
+Tokens folder contains the following files:
 
-- Fonts
+- `theme-light.css` - Light theme
 
-  - `fonts/spezia.css` - Loads the *Spezia* variable font and specifies its font face definition. *Spezia* is Vonage's branded font and is required by most Vivid components. folder also contains the font files
+- `theme-dark.css` - Dark theme
 
-- Typography
+Only one theme is required to be loaded.
 
-  - `typography/desktop.css` - Defines the typography for desktop devices
+### Fonts (Prerequisite)
 
-- Themes - only one theme can apply at a time. thus, only one is required to be loaded
+- `node_modules/@vonage/vivid/styles/fonts/spezia.css` - Loads the *Spezia* variable font and defines its font face values. *Spezia* is Vonage's branded font and is required by most Vivid components. folder also contains the font files.
 
-  - `themes/light.css` - Light theme
+Note that font files are not included within the css file, and must be copied to application assets separately (within the same parsed css folder). This is to allow the author to choose the most appropriate way to load the font files based on their project.
 
-  - `themes/dark.css` - Dark theme
+### Core (Optional)
+
+In Addition, this library provides a set of styles (combined with the tokens and fonts) that can be used to embody the Vivid design system into an application.
+
+These styles are not required by vivid components directly. however, native HTML tags do.
+
+These **core styles** rely on the tokens and fonts 👆 to be loaded.
+
+To **include the core styles**, its css files must be loaded into the project from the `node_modules/@vonage/vivid/styles/core` folder and *require a `vvd-root` class* selector to be present on a wrapping element (advisably the `:root`).
+
+- `theme.css` - Sets theme related styles
+
+- `typography.css` - Sets typography related styles
+
+- `all.css` - Sets all the above styles
 
 Note: scss users can simply [forward](https://sass-lang.com/documentation/at-rules/forward) the styles to their scss project:
 
 ```css
-@forward 'node_modules/@vonage/vivid/styles/fonts/spezia.css';
-@forward 'node_modules/@vonage/vivid/styles/typography/desktop.css';
-@forward 'node_modules/@vonage/vivid/styles/themes/light.css';
+@forward 'node_modules/@vonage/vivid/styles/[path to file].css';
 ```
 
 ## Support
@@ -127,10 +132,13 @@ The following snippet fully renders a Vivid button component
 <link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/fonts/spezia.css">
 
 <!-- import light theme style tokens -->
-<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/themes/light.css">
+<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/tokens/theme-light.css">
 
 <!-- import Vivid button component -->
 <script type="module" src="https://unpkg.com/@vonage/vivid@next/button/index.js"></script>
 
-<vwc-button label="Click me" appearance="filled" connotation="cta"></vwc-button>
+<!-- Part of the app (or a whole app) that contains vivid components -->
+<div class="vvd-root">
+  <vwc-button label="Click me" appearance="filled" connotation="cta"></vwc-button>
+</div>
 ```

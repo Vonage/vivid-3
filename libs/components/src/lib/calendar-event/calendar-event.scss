@@ -1,11 +1,11 @@
-@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
-@use '../../../../../node_modules/@vonage/vivid-tokens/dist/sass/themes/consts' as theme-consts;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+
 @use 'partials/variables' as variables;
 @use '../calendar/partials/variables' as calendar-variables;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: accent cta success alert warning info announcement,
-	$shades: primary on-primary contrast soft,
-	$default: info,
+	$connotations: accent cta success alert warning information announcement,
+	$shades: primary primary-text contrast soft,
+	$default: information,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
@@ -71,15 +71,14 @@
 
 	&:focus {
 		z-index: 2000;
-		filter: var(#{theme-consts.$vvd-shadow-surface-8dp});
+		filter: var(#{constants.$vvd-shadow-surface-8dp});
 		outline: none;
 	}
 }
 
 h2 {
-	@include typography.typography-cat-shorthand('caption-bold');
-
 	margin: 0;
+	font: var(#{constants.$vvd-typography-base-condensed-bold});
 
 	>strong {
 		font: inherit;
@@ -87,7 +86,6 @@ h2 {
 }
 
 p {
-	@include typography.typography-cat-shorthand('caption');
-
 	margin: 0;
+	font: var(#{constants.$vvd-typography-base-condensed});
 }

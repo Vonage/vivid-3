@@ -6,7 +6,7 @@ Badges don’t work for navigation because they can't include a hyperlink.
 
 ```js
 <script type='module'>
-    import '@vonage/vivid/badge';
+  import '@vonage/vivid/badge';
 </script>
 ```
 
@@ -23,18 +23,6 @@ Add a `text` attribute to add text to the badge.
 <vwc-badge text='A default badge'></vwc-badge>
 ```
 
-### Density
-
-Use the `density` attribute to set the badge's to one of the predefined block size extent.
-
-- Type: `'condensed'` | `'normal'` | `'extended'`
-- Default: `'normal'`
-
-```html preview
-<vwc-badge text='condensed' density='condensed'></vwc-badge>
-<vwc-badge text='normal' density='normal'></vwc-badge>
-<vwc-badge text='extended' density='extended'></vwc-badge>
-```
 
 ### Shape
 
@@ -50,15 +38,30 @@ Use the `shape` attribute to change the badge's edges.
 
 ### Icon
 
-Badge text can be affixed by a decorative icon, either by its start or end.
-Use the `icon` attribute to add an icon. Use the `icon-trailing` to place the icon to the right.
+Use `icon` to set an icon to the badge.
+View list of available icon at the [vivid icons gallery](https://icons.vivid.vonage.com).
+
+Note: Icon, by its own, doesn't make a discernible text. If badge
 
 - Type: `string`
 - Default: `undefined`
 
 ```html preview
-<vwc-badge text='icon' icon='check-line'></vwc-badge>
-<vwc-badge text='icon-trailing' icon='check-line' icon-trailing></vwc-badge>
+<vwc-badge appearance="filled" icon='message-sent-line'></vwc-badge>
+<vwc-badge appearance="filled" icon='message-sent-line' shape="pill"></vwc-badge>
+```
+
+### Icon with Text
+
+Badge text can be affixed by a decorative icon, either by its start or end.
+Toggle `icon-trailing` to set the icon's horizontal alignment.
+
+- Type: `boolean`
+- Default: `undefined`
+
+```html preview
+<vwc-badge appearance="filled" text='icon' icon='check-line'></vwc-badge>
+<vwc-badge appearance="filled" text='icon-trailing' icon='check-line' icon-trailing></vwc-badge>
 ```
 
 ### Appearance
@@ -79,7 +82,7 @@ Set the `appearance` attribute to change the badge's appearance.
 Set the `connotation` attribute to change the badge's connotation.
 It accepts a subset of predefined values.
 
-- Type: `'accent'` | `'cta'` | `'success'` | `'alert'` | `'warning'` | `'info'`
+- Type: `'accent'` | `'cta'` | `'success'` | `'alert'` | `'warning'` | `'information'`
 - Default: `'accent'`
 
 #### Filled badge with connotation
@@ -87,7 +90,7 @@ It accepts a subset of predefined values.
 ```html preview
 <vwc-badge text='accent' connotation='accent' appearance="filled"></vwc-badge>
 <vwc-badge text='cta' connotation='cta' appearance="filled"></vwc-badge>
-<vwc-badge text='info' connotation='info' appearance="filled"></vwc-badge>
+<vwc-badge text='information' connotation='information' appearance="filled"></vwc-badge>
 <vwc-badge text='success' connotation='success'></vwc-badge>
 <vwc-badge text='warning' connotation='warning'></vwc-badge>
 <vwc-badge text='alert' connotation='alert'></vwc-badge>
@@ -98,7 +101,7 @@ It accepts a subset of predefined values.
 ```html preview
 <vwc-badge text='accent' appearance='subtle' connotation='accent'></vwc-badge>
 <vwc-badge text='cta' appearance='subtle' connotation='cta'></vwc-badge>
-<vwc-badge text='info' appearance='subtle' connotation='info'></vwc-badge>
+<vwc-badge text='information' appearance='subtle' connotation='information'></vwc-badge>
 <vwc-badge text='success' appearance='subtle' connotation='success'></vwc-badge>
 <vwc-badge text='warning' appearance='subtle' connotation='warning'></vwc-badge>
 <vwc-badge text='alert' appearance='subtle' connotation='alert'></vwc-badge>
@@ -109,7 +112,7 @@ It accepts a subset of predefined values.
 ```html preview
 <vwc-badge text='accent' appearance='duotone' connotation='accent'></vwc-badge>
 <vwc-badge text='cta' appearance='duotone' connotation='cta'></vwc-badge>
-<vwc-badge text='info' appearance='duotone' connotation='info'></vwc-badge>
+<vwc-badge text='information' appearance='duotone' connotation='information'></vwc-badge>
 <vwc-badge text='success' appearance='duotone' connotation='success'></vwc-badge>
 <vwc-badge text='warning' appearance='duotone' connotation='warning'></vwc-badge>
 <vwc-badge text='alert' appearance='duotone' connotation='alert'></vwc-badge>

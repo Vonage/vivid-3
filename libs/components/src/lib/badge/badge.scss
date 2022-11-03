@@ -1,8 +1,9 @@
-@use '../../../../shared/src/lib/sass/mixins/typography' as typography;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use 'partials/variables' as variables;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: accent cta success alert warning info,
-	$shades: primary on-primary intermediate soft contrast,
+	$connotations: accent cta success alert warning information,
+	$shades: primary primary-text intermediate soft contrast,
 	$default: accent,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
@@ -13,46 +14,49 @@
 	$default: filled,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
 
-.control {
-	@include typography.typography-cat-shorthand('caption-bold');
+
+.base {
 	@include connotation.connotation;
 	@include appearance.appearance;
+
+	#{variables.$badge-block-size}: #{size.$vvd-size-ultra-condensed};
 
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
 	background-color: var(#{appearance.get-appearance-token(fill)});
+	block-size: var(#{variables.$badge-block-size});
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	column-gap: 8px;
-	vertical-align: middle;
-}
-
-/* Size */
-
-.control:not(.density-condensed):not(.density-extended) {
-	block-size: 24px;
-	padding-inline: 10px;
-}
-
-.control.density-condensed {
-	block-size: 20px;
+	font: var(#{constants.$vvd-typography-base-condensed-bold});
 	padding-inline: 8px;
-}
+	vertical-align: middle;
 
-.control.density-extended {
-	block-size: 28px;
-	padding-inline: 12px;
+
+	&.icon-only {
+		contain: size;
+		padding-inline: 0;
+		place-content: center;
+
+		@supports (aspect-ratio: 1) {
+			aspect-ratio: 1;
+		}
+
+		@supports not (aspect-ratio: 1) {
+			inline-size: var(#{variables.$badge-block-size});
+		}
+	}
 }
 
 /* Shape */
 
-// stylelint-disable-next-line no-descending-specificity
-.control:not(.shape-pill) {
+.base:not(.shape-pill) {
 	border-radius: 4px;
 }
-.control.shape-pill {
+.base.shape-pill {
 	border-radius: 14px;
 }
 

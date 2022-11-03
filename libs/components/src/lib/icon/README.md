@@ -4,7 +4,7 @@ Find the icon you want to use on the [vivid icons search platform](https://icons
 
 ```js
 <script type='module'>
-    import '@vonage/vivid/icon';
+  import '@vonage/vivid/icon';
 </script>
 ```
 
@@ -64,7 +64,7 @@ Use the `size` attribute to apply a predefined size to the icon.
 Set the `connotation` attribute to change the icon's connotation.
 It accepts a subset of predefined values.
 
-- Type: `'accent'` | `'announcement'` | `'cta'` | `'success'` | `'alert'` | `'info'`
+- Type: `'accent'` | `'announcement'` | `'cta'` | `'success'` | `'alert'` | `'information'`
 - Default: `'accent'`
 
 ```html preview
@@ -73,5 +73,5 @@ It accepts a subset of predefined values.
 <vwc-icon type='heart-solid' connotation='cta'></vwc-icon>
 <vwc-icon type='heart-solid' connotation='success'></vwc-icon>
 <vwc-icon type='heart-solid' connotation='alert'></vwc-icon>
-<vwc-icon type='heart-solid' connotation='info'></vwc-icon>
+<vwc-icon type='heart-solid' connotation='information'></vwc-icon>
 ```
