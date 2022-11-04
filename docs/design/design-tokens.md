@@ -109,3 +109,40 @@ Use `--vvd-size-density` to modify the spacing and padding of widgets. Allowed v
 </pre>
 <vwc-button appearance="filled" label="But the button is"></vwc-button>
 ```
+
+#### Styles preset
+
+The following presets can be used to style the text in your application:
+- --vvd-typography-headline
+- --vvd-typography-subtitle
+- --vvd-typography-heading-1
+- --vvd-typography-heading-2
+- --vvd-typography-heading-3
+- --vvd-typography-heading-4
+- --vvd-typography-base
+- --vvd-typography-base-bold
+- --vvd-typography-base-code
+- --vvd-typography-base-condensed
+- --vvd-typography-base-condensed-bold
+- --vvd-typography-base-condensed-code
+- --vvd-typography-base-extended
+- --vvd-typography-base-extended-bold
+- --vvd-typography-base-extended-code
+
+```html preview
+<div style="font: var(--vvd-typography-headline)">headline</div>
+<div style="font: var(--vvd-typography-subtitle)">subtitle</div>
+<div style="font: var(--vvd-typography-heading-1)">heading-1</div>
+<div style="font: var(--vvd-typography-heading-2)">heading-2</div>
+<div style="font: var(--vvd-typography-heading-3)">heading-3</div>
+<div style="font: var(--vvd-typography-heading-4)">heading-4</div>
+<div style="font: var(--vvd-typography-base)">base</div>
+<div style="font: var(--vvd-typography-base-bold)">base-bold</div>
+<div style="font: var(--vvd-typography-base-code)">base-code</div>
+<div style="font: var(--vvd-typography-base-condensed)">base-condensed</div>
+<div style="font: var(--vvd-typography-base-condensed-bold)">base-condensed-bold</div>
+<div style="font: var(--vvd-typography-base-condensed-code)">base-condensed-code</div>
+<div style="font: var(--vvd-typography-base-extended)">base-extended</div>
+<div style="font: var(--vvd-typography-base-extended-bold)">base-extended-bold</div>
+<div style="font: var(--vvd-typography-base-extended-code)">base-extended-code</div>
+```
