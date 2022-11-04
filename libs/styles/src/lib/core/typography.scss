@@ -26,6 +26,7 @@ $selectors: (
 
 	#{map.get($selectors, 'code')} {
 		font: var(#{constants.$vvd-typography-base-code});
+		color: var(--vvd-color-neutral-600);
 	}
 
 	.headline {
