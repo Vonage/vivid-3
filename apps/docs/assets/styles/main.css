@@ -155,11 +155,11 @@ article > .cbd-container {
   max-inline-size: calc(100vw - 32px);
 }
 
-article pre,
-article var,
-article code,
-article kbd,
-article samp {
+article :not(a)>pre,
+article :not(a)>var,
+article :not(a)>code,
+article :not(a)>kbd,
+article :not(a)>samp {
   color: var(--vvd-color-neutral-600);
 }
 
