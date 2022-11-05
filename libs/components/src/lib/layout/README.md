@@ -179,8 +179,8 @@ Use the `gutters` attribute to set the initial preferred `margin`.
 Controls the grid-template-columns of the layout.
 
 - `--layout-grid-template-columns`
-- Type: repeat(`auto-sizing`, minmax(`column-basis`, 1fr))
-- Default: auto
+- Type: `repeat(auto-sizing, minmax(column-basis, 1fr))`
+- Default: `auto`
 
 ```html preview full
 <vwc-layout style="--layout-grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));">

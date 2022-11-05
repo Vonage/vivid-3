@@ -131,7 +131,7 @@ The number of lines are controlled by css variable:
 
 - `--headline-line-clamp`
 - `--subtitle-line-clamp`
-
+<!-- -->
 - Type: `string`
 - Default: `undefined`
 

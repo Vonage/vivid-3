@@ -132,13 +132,13 @@ Use the `--menu-min-inline-size` variable to set the menu's inline size.
 
 ### focus()
 
-- Returns: void
+- Returns: `void`
 
 Focuses the first item in the menu.
 
 ### collapseExpandedItem()
 
-- Returns: void
+- Returns: `void`
 
 Collapses any expanded menu items.
 
