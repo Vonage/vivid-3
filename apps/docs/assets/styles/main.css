@@ -155,6 +155,14 @@ article > .cbd-container {
   max-inline-size: calc(100vw - 32px);
 }
 
+article pre,
+article var,
+article code,
+article kbd,
+article samp {
+  color: var(--vvd-color-neutral-600);
+}
+
 @media (min-width: 960px) {
   article > pre,
   article > .cbd-container {
