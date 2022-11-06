@@ -42,7 +42,7 @@ test('should show the component focus', async ({ page }: { page: Page }) => {
 	</vwc-listbox>
   `;
 
-  	page.setViewportSize({ width: 1100, height: 720 });
+	page.setViewportSize({ width: 1100, height: 720 });
 
 	await loadComponents({
 		page,
