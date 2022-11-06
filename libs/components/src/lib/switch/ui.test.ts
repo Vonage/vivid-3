@@ -11,39 +11,40 @@ test('should show the component', async ({page}: { page: Page }) => {
 
 	const template = `
 	<div style="margin: 5px;">
-                                                                                                 
-                                                           <vwc-layout gutters="small"><div><vwc-switch></vwc-switch>
-                                                                                                                     </div></vwc-layout>
-              </div> 
+  	<vwc-layout gutters="small"><div><vwc-switch></vwc-switch></div></vwc-layout>
+  </div> 
   <div style="margin: 5px;">
-                                                   
-             <vwc-layout gutters="small"><div>    <vwc-switch checked></vwc-switch>
-                                                                                      </div></vwc-layout>
-                                                                                                         </div> 
+  	<vwc-layout gutters="small"><div><vwc-switch checked></vwc-switch></div></vwc-layout>
+  </div> 
 	<div style="margin: 5px;">
-                     <vwc-layout gutters="small"><div>    <vwc-switch disabled=""></vwc-switch>
-                                                            <vwc-switch disabled="" checked=""></vwc-switch>
-                                                                                                            </div></vwc-layout>
-     </div> 
+  	<vwc-layout gutters="small">
+  		<div><vwc-switch disabled=""></vwc-switch><vwc-switch disabled="" checked=""></vwc-switch></div>
+    </vwc-layout>
+  </div> 
   <div style="margin: 5px;">
-                                          
-
-    <vwc-layout gutters="small"><div>    <vwc-switch readonly=""></vwc-switch>
-                                                                                  <vwc-switch readonly="" checked=""></vwc-switch>
-        </div></vwc-layout>
-                           </div> 
+  	<vwc-layout gutters="small">
+  		<div>
+  			<vwc-switch readonly=""></vwc-switch>
+  			<vwc-switch readonly="" checked=""></vwc-switch>
+      </div>
+    </vwc-layout>
+  </div> 
   <div style="margin: 5px;">
-            
-                                                                                                <vwc-layout gutters="small"><div>    <vwc-switch label="my-label"></vwc-switch>
-                                                     </div></vwc-layout>
-                                                                        </div> 
+		<vwc-layout gutters="small">
+			<div>    
+				<vwc-switch label="my-label"></vwc-switch>
+      </div>
+    </vwc-layout>
+ 	</div> 
   <div style="margin: 5px;">
-                                                                                                             
-                                                                       <vwc-layout gutters="small"><div>    <vwc-switch connotation="primary" checked=""></vwc-switch>
-                                                <vwc-switch connotation="cta" checked=""></vwc-switch>
-                                                                                                          <vwc-switch connotation="alert" checked=""></vwc-switch>
-                                        </div></vwc-layout>
-                                                           </div>`;
+		<vwc-layout gutters="small">
+			<div>    				
+				<vwc-switch connotation="primary" checked=""></vwc-switch>
+	      <vwc-switch connotation="cta" checked=""></vwc-switch>
+	      <vwc-switch connotation="alert" checked=""></vwc-switch>
+	    </div>
+  	</vwc-layout>
+  </div>`;
 	await loadComponents({
 		page,
 		components,
