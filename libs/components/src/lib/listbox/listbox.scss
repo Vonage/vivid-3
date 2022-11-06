@@ -13,6 +13,10 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
+:host {
+	display: block;
+}
+
 :host(:focus-within) {
 	outline: none;
 }
