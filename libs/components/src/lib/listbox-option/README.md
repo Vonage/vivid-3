@@ -45,6 +45,7 @@ Add the `selected` attribute to select the option.
 ```html preview
 <vwc-listbox>
  <vwc-option text="Option" selected></vwc-option>
+  <vwc-option text="Option" ></vwc-option>
 </vwc-listbox>
 ```
 
