@@ -148,13 +148,13 @@ A *fixed* Header as primary element containing a Side Drawer containing applicat
   }
 
   vwc-side-drawer::part(base) {
-    block-size: calc(100vh - var(--_header-block-size));
+    block-size: calc(100vh - var(--vvd-header-block-size));
     bottom: 0;
     top: auto;
   }
 
   vwc-side-drawer > main {
-    padding-block-start: var(--_header-block-size);
+    padding-block-start: var(--vvd-header-block-size);
   }
 </style>
 
