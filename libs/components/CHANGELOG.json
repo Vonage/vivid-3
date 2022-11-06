@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Sun, 06 Nov 2022 11:13:06 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.92",
+      "version": "3.0.0-next.92",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "33573fb11993b2ca3a6ae81b024094b0fb92a13c",
+            "comment": "remove expect import"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 06 Nov 2022 10:45:46 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.92",
       "version": "3.0.0-next.92",
