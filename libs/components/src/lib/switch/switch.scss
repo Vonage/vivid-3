@@ -21,8 +21,8 @@
 	display: inline-flex;
 
 	&:hover {
-		&.connotation-primary {
-			#{appearance.get-appearance-token(fill)}: var(#{constants.$vvd-color-neutral-600});
+		&:not(.connotation-cta, .connotation-alert) {
+			#{appearance.get-appearance-token(fill)}: var(#{constants.$vvd-color-neutral-800});
 		}
 
 		&.connotation-cta {
