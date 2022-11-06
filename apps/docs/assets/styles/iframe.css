@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&display=swap');
+:root {
+	--vvd-font-family-upright: Mulish;
+	--vvd-font-family-monospace: Courier;
+}
+
 /* #region reset */
 h1, h2, h3, h4, h5, h6, p {
   margin: unset;
