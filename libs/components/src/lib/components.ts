@@ -30,7 +30,7 @@ export * from './progress-ring';
 export * from './radio';
 export * from './radio-group';
 export * from './side-drawer';
+export * from './switch';
 export * from './text-field';
 export * from './text-area';
 export * from './tooltip';
-export * from './switch';
