@@ -296,5 +296,12 @@
 			"/assets/modules/components/listbox-option/index.js",
 			"/assets/modules/components/button/index.js"
 		]
+	},
+	{
+		"title": "select",
+		"markdown": "./libs/components/src/lib/select/README.md",
+		"modules": [
+			"/assets/modules/components/select/index.js"
+		]
 	}
 ]
