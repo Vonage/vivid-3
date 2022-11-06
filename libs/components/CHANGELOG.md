@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Thu, 03 Nov 2022 17:25:45 GMT and should not be manually modified.
+This log was last generated on Sun, 06 Nov 2022 10:45:46 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.92
+
+Sun, 06 Nov 2022 10:45:46 GMT
+
+### Changes
+
+- implement a new design in note component (yinon@hotmail.com)
 
 ## 3.0.0-next.91
 

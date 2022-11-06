@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "implement a new design in note component",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}
