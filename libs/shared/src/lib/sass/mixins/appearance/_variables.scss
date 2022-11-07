@@ -135,30 +135,6 @@ $states-mapping: (
       outline: transparent,
     )
   ),
-  error: ( //!delete
-    fieldset: (
-      text: var(#{constants.$vvd-color-alert-500}),
-      fill: var(#{constants.$vvd-color-alert-100}),
-      outline: var(#{constants.$vvd-color-alert-500}),
-    ),
-    ghost: (
-      text: transparent,
-      fill: transparent,
-      outline: transparent,
-    )
-  ),
-	success: (//!delete
-		fieldset: (
-			text: var(#{constants.$vvd-color-canvas-text}),
-			fill: var(#{constants.$vvd-color-success-100}),
-			outline: var(#{constants.$vvd-color-success-500}),
-		),
-		ghost: (
-			text: transparent,
-			fill: transparent,
-			outline: transparent,
-		)
-	),
   checked: (
     fieldset: (
       text: var(#{connotation.get-connotation-token(primary-text)}),
