@@ -47,8 +47,8 @@ CheckboxOptions
   class="${getClasses}"
   >
     <div class="control">
-      <${iconTag} class="indicator checkmark" type="check-solid"></${iconTag}>
-      <${iconTag} class="indicator minus" type="minus-solid"></${iconTag}>
+			${when(x => x.checked, html<Checkbox>`<${iconTag} type="check-solid"></${iconTag}>`)}
+			${when(x => x.indeterminate, html<Checkbox>`<${iconTag} type="minus-solid"></${iconTag}>`)}
       ${() => focusTemplate}
     </div>
 

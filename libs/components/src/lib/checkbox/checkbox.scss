@@ -3,14 +3,14 @@
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent,
-	$shades: primary primary-text underpin faint,
+	$shades: primary primary-text backdrop underpin firm soft,
 	$default: accent,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
 	$appearances: fieldset,
-	$states: idle hover checked disabled readonly,
+	$states: idle hover checked disabled readonly readonlyAndHover,
 	$default: fieldset,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
