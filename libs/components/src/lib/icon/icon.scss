@@ -2,8 +2,10 @@
 	$connotations: accent announcement cta success alert information,
 	$shades: primary,
 );
-
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+@use "partials/variables" as variables;
+
 
 :host {
 	display: inline-block;
@@ -15,8 +17,10 @@
 
 	display: flex;
 	margin: unset;
+	block-size: var(#{variables.$block-size});
 	color: currentColor;
 	contain: strict;
+	inline-size: var(#{variables.$block-size});
 }
 
 // TODO: add a :where selector to unset any connotation variant from a mixin level
@@ -33,21 +37,18 @@ svg {
 /* Size */
 
 .control:not(.size-small):not(.size-medium):not(.size-large) {
-	block-size: 1em;
-	inline-size: 1em;
+	#{variables.$block-size}: 1em;
 }
 
 .control.size-small {
-	block-size: 16px;
-	inline-size: 16px;
+	#{variables.$block-size}: calc(#{size.$vvd-size-normal} - #{size.$vvd-size-super-condensed});
 }
 
 .control.size-medium {
-	block-size: 24px;
-	inline-size: 24px;
+	#{variables.$block-size}: #{size.$vvd-size-super-condensed};
+
 }
 
 .control.size-large {
-	block-size: 32px;
-	inline-size: 32px;
+	#{variables.$block-size}: #{size.$vvd-size-condensed};
 }

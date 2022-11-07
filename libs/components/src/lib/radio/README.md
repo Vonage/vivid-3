@@ -7,7 +7,9 @@ As such, they do not make sense on their own and should always be used inside `r
 Their `value` member contains the value that will be associated to the component name during form submission (i.e., the `radio-group`'s name).
 
 ```js
-<script type="module">import '@vonage/vivid/radio';</script>
+<script type="module">
+  import '@vonage/vivid/radio';
+</script>
 ```
 
 ## Members

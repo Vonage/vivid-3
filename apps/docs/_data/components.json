@@ -260,10 +260,10 @@
 	},
 	{
 		"title": "avatar",
+		"status": "alpha",
 		"markdown": "./libs/components/src/lib/avatar/README.md",
 		"modules": [
-			"/assets/modules/components/avatar/index.js",
-			"/assets/modules/components/icon/index.js"
+			"/assets/modules/components/avatar/index.js"
 		]
 	},
 	{
@@ -287,6 +287,14 @@
 		"modules": [
 			"/assets/modules/components/radio/index.js",
 			"/assets/modules/components/radio-group/index.js"
+		]
+	},
+	{
+		"title": "option",
+		"markdown": "./libs/components/src/lib/listbox-option/README.md",
+		"modules": [
+			"/assets/modules/components/listbox-option/index.js",
+			"/assets/modules/components/button/index.js"
 		]
 	},
 	{

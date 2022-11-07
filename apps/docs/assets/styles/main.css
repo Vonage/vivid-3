@@ -13,7 +13,7 @@ strong {
 /* #region document */
 
 html {
-  scroll-padding-top: 64px;
+  scroll-padding-top: var(--vvd-header-block-size);
 }
 
 body {
@@ -50,7 +50,7 @@ vwc-side-drawer:not([open]) {
 
 vwc-side-drawer::part(base) {
 	inline-size: 280px;
-	inset-block-start: calc(var(--_header-block-size) + env(safe-area-inset-top));
+	inset-block-start: calc(var(--vvd-header-block-size) + env(safe-area-inset-top));
 	inset-block-end: env(safe-area-inset-bottom);
   background-color: var(--vvd-color-canvas);
   box-sizing: border-box;
@@ -67,7 +67,10 @@ vwc-header[elevation-shadow] vwc-side-drawer::part(base) {
 }
 
 vwc-side-drawer > main {
-  margin-top: var(--_header-block-size);
+	/* prevents banner from topping the stacking context in a modal side-drawer open state  */
+	z-index: 0;
+	position: relative;
+  margin-top: var(--vvd-header-block-size);
 }
 
 /* #endregion side drawer */
@@ -207,6 +210,11 @@ article > h1 {
   }
 }
 
+.banner {
+	position: sticky;
+	top: var(--vvd-header-block-size);
+	z-index: 1;
+}
 /* #endregion article */
 
 /* #region code fence demo */

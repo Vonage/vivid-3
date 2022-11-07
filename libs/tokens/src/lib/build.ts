@@ -1,20 +1,17 @@
-
 const SD = require('style-dictionary');
 
 import resolveMath from './transforms/resolve-math';
+import publicCssReferences from './transforms/public-css-references';
 
-import cssThemeableVariables from './formatters/themeable-variables/css';
-import sassThemeableVariables from './formatters/themeable-variables/sass';
-
-import configScssConstants from './configurations/sass-constants';
+import configScssConstants from './configurations/scss-constants';
 import getConfigTheme from './configurations/theme';
 import configTypography from './configurations/typography';
 import configSize from './configurations/size';
+import cssAtRuleProperty from './configurations/@property';
 
 
+SD.registerTransform(publicCssReferences);
 SD.registerTransform(resolveMath);
-SD.registerFormat(cssThemeableVariables);
-SD.registerFormat(sassThemeableVariables);
 
 SD.extend(configScssConstants).buildAllPlatforms();
 
@@ -25,3 +22,5 @@ SD.extend(configScssConstants).buildAllPlatforms();
 SD.extend(configTypography).buildAllPlatforms();
 
 SD.extend(configSize).buildAllPlatforms();
+
+SD.extend(cssAtRuleProperty).buildAllPlatforms();
