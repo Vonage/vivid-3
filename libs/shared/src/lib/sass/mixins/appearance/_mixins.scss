@@ -11,7 +11,7 @@
 ////////////////////////////////////////////////////////////////////////////
 $hover: ':hover, .hover';
 $disabled: ':disabled, .disabled';
-$readonly: ':readonly, .readonly';
+$readonly: '.readonly';
 $checked: ':checked, .checked';
 $selected: '.selected, [aria-current]';
 $active: ':active, .active';
