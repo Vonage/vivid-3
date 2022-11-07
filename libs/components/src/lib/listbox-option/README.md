@@ -16,7 +16,9 @@ Use the `text` attribute to set the option's text.
 - Default: `undefined`
 
 ```html preview
-<vwc-option text="Option"></vwc-option>
+<vwc-listbox>
+ <vwc-option text="Option"></vwc-option>
+</vwc-listbox>
 ```
 
 ### Icon
@@ -28,7 +30,9 @@ Check out the [vivid icons gallery](https://icons.vivid.vonage.com) to see what 
 - Default: `''`
 
 ```html preview
-<vwc-option text="Option" icon="chat-line"></vwc-option>
+<vwc-listbox>
+ <vwc-option text="Option" icon="chat-line"></vwc-option>
+</vwc-listbox>
 ```
 
 ### Selected
@@ -39,7 +43,9 @@ Add the `selected` attribute to select the option.
 - Default: `false`
 
 ```html preview
-<vwc-option text="Option" selected></vwc-option>
+<vwc-listbox>
+ <vwc-option text="Option" selected></vwc-option>
+</vwc-listbox>
 ```
 
 ### Disabled
@@ -50,5 +56,7 @@ Add the `disabled` attribute to disable the option.
 - Default: `false`
 
 ```html preview
-<vwc-option text="Option" disabled></vwc-option>
+<vwc-listbox>
+ <vwc-option text="Option" disabled></vwc-option>
+</vwc-listbox>
 ```
