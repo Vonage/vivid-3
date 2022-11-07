@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 06 Nov 2022 10:45:46 GMT and should not be manually modified.
+This log was last generated on Mon, 07 Nov 2022 11:12:14 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.93
+
+Mon, 07 Nov 2022 11:12:14 GMT
+
+### Changes
+
+- add new listbox component (rina.oksman@vonage.com)
 
 ## 3.0.0-next.92
 
