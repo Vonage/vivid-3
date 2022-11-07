@@ -10,7 +10,7 @@
 
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
 	$appearances: fieldset,
-	$states: idle hover checked disabled readonly indeterminate,
+	$states: idle hover checked disabled readonly,
 	$default: fieldset,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;

@@ -15,9 +15,8 @@ const getClasses = ({
 	classNames(
 		'base',
 		['readonly', Boolean(readOnly)],
-		['checked', Boolean(checked)],
+		['checked', Boolean(checked) || Boolean(indeterminate)],
 		['disabled', Boolean(disabled)],
-		['indeterminate', Boolean(indeterminate)],
 	);
 
 
