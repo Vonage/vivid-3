@@ -3,7 +3,7 @@
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent success alert,
-	$shades: primary underpin backdrop firm,
+	$shades: primary backdrop intermediate firm,
 	$default: accent,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
@@ -43,7 +43,7 @@ $low-ink-color: --_low-ink-color;
 	}
 
 	&.disabled {
-		#{$low-ink-color}: var(#{constants.$vvd-color-neutral-400});
+		#{$low-ink-color}: var(#{appearance.get-appearance-token(text)});
 	}
 }
 
@@ -79,15 +79,6 @@ $low-ink-color: --_low-ink-color;
 	color: var(#{appearance.get-appearance-token(text)});
 	grid-column: 1 / 4;
 	transition: color .2s;
-
-	.success & {
-		--focus-stroke-color: var(#{constants.$vvd-color-success-500});
-	}
-
-	.error & {
-		--focus-stroke-color: var(#{constants.$vvd-color-alert-500});
-	}
-
 
 	.base > & {
 		block-size: #{size.$vvd-size-normal};

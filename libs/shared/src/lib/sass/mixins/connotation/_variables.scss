@@ -13,7 +13,6 @@
     firm: #{utils.get-color-token(#{$type}-600)},
     faint: #{utils.get-color-token(#{$type}-50)},
     backdrop: #{utils.get-color-token(#{$type}-50)},
-    underpin: #{utils.get-color-token(#{$type}-400)},//!delete
     fierce: #{utils.get-color-token(#{$type}-700)},
   );
 }
