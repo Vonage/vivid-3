@@ -4,15 +4,15 @@
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent,
-	$shades: primary underpin faint,
+	$shades: primary primary-text primary-increment backdrop underpin firm soft,
 	$default: accent,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
-	$appearances: fieldset,
-	$states: idle hover checked disabled,
-	$default: fieldset,
+	$appearances: outlined,
+	$states: idle hover checked checkedAndHover disabled readonly readonlyAndHover,
+	$default: outlined,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 

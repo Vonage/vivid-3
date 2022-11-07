@@ -27,6 +27,7 @@ $selectors: (
   selected: '&:where(#{$selected}):where(:not(#{$disabled}, #{$hover}))',
   selectedAndHover: '&:where(#{$selected}):where(#{$hover})',
   checked: '&:where(#{$checked}):where(:not(#{$disabled}))',
+	checkedAndHover: '&:where(#{$checked}):where(#{$hover})',
   active: '&:where(#{$active}):where(:not(#{$disabled}))',
   error: '&:where(#{$error}):where(:not(#{$disabled}))',
 	success: '&:where(#{$success}):where(:not(#{$disabled}))',
