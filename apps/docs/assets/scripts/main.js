@@ -39,7 +39,7 @@ const codeCopyButtonClick = (button) => {
 
   setTimeout(() => {
     button.icon = 'copy-2-line';
-  }, 2000);
+  }, 1000);
 };
 
 const onloadIframe = (iFrame) => {
