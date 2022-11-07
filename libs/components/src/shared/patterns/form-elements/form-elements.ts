@@ -16,6 +16,9 @@ export interface FormElement {
 	dirtyValue: boolean;
 }
 
+/**
+ * @param constructor
+ */
 export function formElements<T extends { new (...args: any[]): Record<string, any> }>(constructor: T) {
 	class Decorated extends constructor {
 		@attr label?: string;
@@ -74,6 +77,10 @@ type MessageTypeMap = { [key in FeedbackType]: {
 	messageProperty: MessagePropertyType }
 };
 
+/**
+ * @param messageType
+ * @param context
+ */
 export function getFeedbackTemplate(messageType: FeedbackType, context: ElementDefinitionContext) {
 	const MessageTypeMap: MessageTypeMap = {
 		'helper': {
