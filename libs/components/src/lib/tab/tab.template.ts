@@ -1,8 +1,8 @@
 import { html } from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { affixIconTemplateFactory } from '../../shared/patterns/affix.js';
-import { focusTemplateFactory } from '../../shared/patterns/focus.js';
+import { affixIconTemplateFactory } from '../../shared/patterns/affix';
+import { focusTemplateFactory } from '../../shared/patterns/focus';
 import type { Tab } from './tab.js';
 
 const getClasses = ({
