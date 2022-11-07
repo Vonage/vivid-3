@@ -2,7 +2,7 @@
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: success information alert announcement warning,
-	$shades: primary underpin faint,
+	$shades: primary underpin backdrop,
 	$default: announcement,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
