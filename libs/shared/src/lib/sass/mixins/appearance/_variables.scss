@@ -87,9 +87,9 @@ $states-mapping: (
       outline: var(#{constants.$vvd-color-neutral-400}),
     ),
     fieldset: (
-      text: var(#{constants.$vvd-color-neutral-400}),
-      fill: var(#{connotation.get-connotation-token(soft)}),
-      outline: var(#{connotation.get-connotation-token(underpin)}),
+      text: var(#{constants.$vvd-color-canvas}),
+      fill: var(#{constants.$vvd-color-neutral-200}),
+      outline: transparent,
     ),
     ghost: (
       text: var(#{constants.$vvd-color-neutral-400}),
@@ -99,8 +99,8 @@ $states-mapping: (
   ),
   readonly: (
     fieldset: (
-      text: var(#{constants.$vvd-color-neutral-600}),
-      fill: var(#{connotation.get-connotation-token(soft)}),
+      text: var(#{connotation.get-connotation-token(underpin)}),
+      fill: var(#{constants.$vvd-color-neutral-200}),
       outline: var(#{connotation.get-connotation-token(underpin)}),
     ),
     ghost: (
@@ -116,8 +116,8 @@ $states-mapping: (
   ),
   readonlyAndHover: (
     fieldset: (
-      text: var(#{constants.$vvd-color-neutral-600}),
-      fill: var(#{connotation.get-connotation-token(soft)}),
+      text: var(#{connotation.get-connotation-token(underpin)}),
+      fill: var(#{constants.$vvd-color-neutral-200}),
       outline: var(#{connotation.get-connotation-token(firm)}),
     ),
     ghost: (

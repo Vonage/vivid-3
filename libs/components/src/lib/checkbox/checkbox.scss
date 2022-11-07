@@ -3,7 +3,7 @@
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent,
-	$shades: primary primary-text primary-increment backdrop underpin firm soft,
+	$shades: primary primary-text primary-increment backdrop underpin firm,
 	$default: accent,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
