@@ -20,23 +20,14 @@ function getRootElement(element: NumberField) {
 
 describe('vwc-number-field', () => {
 
-	/**
-	 *
-	 */
 	function setToBlurred() {
 		element.dispatchEvent(new Event('blur'));
 	}
 
-	/**
-	 *
-	 */
 	function setToFocused() {
 		element.dispatchEvent(new Event('focus'));
 	}
 
-	/**
-	 * @param errorMessage
-	 */
 	function setValidityToError(errorMessage = 'error') {
 		element.setValidity({badInput: true}, errorMessage);
 		element.validate();

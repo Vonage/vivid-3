@@ -10,32 +10,20 @@ import '.';
 
 const COMPONENT_TAG_NAME = 'vwc-text-area';
 
-/**
- * @param element
- */
 function getTextareaElement(element: TextArea) {
 	return element.shadowRoot?.querySelector('textarea') as HTMLTextAreaElement;
 }
 
 describe('vwc-text-area', () => {
 
-	/**
-	 *
-	 */
 	function setToBlurred() {
 		element.dispatchEvent(new Event('blur'));
 	}
 
-	/**
-	 *
-	 */
 	function setToFocused() {
 		element.dispatchEvent(new Event('focus'));
 	}
 
-	/**
-	 * @param errorMessage
-	 */
 	function setValidityToError(errorMessage = 'error') {
 		element.setValidity({badInput: true}, errorMessage);
 		element.validate();

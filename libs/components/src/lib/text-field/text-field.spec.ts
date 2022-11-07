@@ -13,23 +13,14 @@ import '.';
 const COMPONENT_TAG_NAME = 'vwc-text-field';
 
 describe('vwc-text-field', () => {
-	/**
-	 *
-	 */
 	function setToBlurred() {
 		element.dispatchEvent(new Event('blur'));
 	}
 
-	/**
-	 *
-	 */
 	function setToFocused() {
 		element.dispatchEvent(new Event('focus'));
 	}
 
-	/**
-	 * @param errorMessage
-	 */
 	function setValidityToError(errorMessage = 'error') {
 		element.setValidity({badInput: true}, errorMessage);
 		element.validate();

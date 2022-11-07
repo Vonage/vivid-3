@@ -19,9 +19,6 @@ const getClasses = ({value, errorValidationMessage, disabled, placeholder, readO
 	['success', !!successText]
 );
 
-/**
- *
- */
 function renderLabel() {
 	return html<TextArea>`
 	  <label for="control" class="label">

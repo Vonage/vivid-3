@@ -6,25 +6,16 @@ const COMPONENT_TAG = 'vwc-dialog';
 
 describe('vwc-dialog', () => {
 
-	/**
-	 *
-	 */
 	async function closeDialog() {
 		element.close();
 		await elementUpdated(element);
 	}
 
-	/**
-	 *
-	 */
 	async function showDialog() {
 		element.show();
 		await elementUpdated(element);
 	}
 
-	/**
-	 *
-	 */
 	async function showModalDialog() {
 		element.showModal();
 		await elementUpdated(element);

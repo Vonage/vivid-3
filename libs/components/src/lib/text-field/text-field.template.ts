@@ -43,9 +43,6 @@ function renderLabel() {
 	  </label>`;
 }
 
-/**
- *
- */
 function renderCharCount() {
 	return html<TextField>`
 		<span class="char-count">${x => x.value ? x.value.length : 0 } / ${ x => x.maxlength }</span>

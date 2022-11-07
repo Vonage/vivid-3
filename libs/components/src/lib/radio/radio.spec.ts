@@ -4,10 +4,6 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-radio';
 
-/**
- * @param el
- * @param attr
- */
 async function setBoolAttributeOn(el: Radio, attr: string): Promise<DOMTokenList> {
 	el.toggleAttribute(attr, true);
 	await elementUpdated(el);
@@ -45,7 +41,7 @@ describe('vwc-radio', () => {
 	describe('checked', () => {
 		let base: HTMLElement;
 		beforeEach(() => base = getBaseElement(element));
-		
+
 		it('should set the element property and the base class when the attribute is set', async () => {
 			const classes = await setBoolAttributeOn(element, 'checked');
 			expect(element.checked).toBeTruthy();
@@ -103,5 +99,5 @@ describe('vwc-radio', () => {
 					.toEqual(checked);
 			});
 		});
-	});	
+	});
 });
