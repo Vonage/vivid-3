@@ -43,7 +43,7 @@
 
 	// border-radius: 6px;
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-	font: var(#{constants.$vvd-font-base-bold});
+	font: var(#{constants.$vvd-typography-base-bold});
 	gap: $gap;
 	inline-size: 100%;
 	min-block-size: $min-block-size;
