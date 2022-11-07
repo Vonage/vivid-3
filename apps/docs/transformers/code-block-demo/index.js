@@ -69,10 +69,11 @@ const getHtml = (demoData) => {
 	return `
     <vwc-card elevation="0" class="${CBD_CONTAINER}">
       <iframe class="${CBD_DEMO}" src="${iframeSrc}" onload=onloadIframe(this) loading="lazy" aria-label="code block preview iframe" slot="main"></iframe>
-      <vwc-action-group appearance="ghost" style="direction: rtl;" slot="main">
-        <vwc-button aria-label="Show source code" icon="code-line" aria-expanded="false" aria-controls="${codeBlockId}" onclick="codeBlockButtonClick(this)"></vwc-button>
+      <div style="text-align:right" slot="main">
+        Density:<vwc-number-field style="width:100px;margin-right:20px;" appearance="ghost" value="0" min="-1" max="1" onchange="codeBlockDensityChanged(this)"></vwc-number-field>
         <vwc-button aria-label="Copy source code" icon="copy-2-line" onclick="codeCopyButtonClick(this)"></vwc-button>
-      </vwc-action-group>
+        <vwc-button aria-label="Show source code" icon="code-line" aria-expanded="false" aria-controls="${codeBlockId}" onclick="codeBlockButtonClick(this)"></vwc-button>
+      </div>
       <details class="${CBD_DETAILS}" slot="main">
         <summary></summary>
         <div class="${CBD_CODE_BLOCK}" role="region" id="${codeBlockId}">

@@ -19,13 +19,13 @@ const toggleSideDrawerButtonIcon = (open) => {
 };
 
 const codeBlockButtonClick = (button) => {
-  const details = button.closest('vwc-action-group').nextElementSibling;
+  const details = button.closest('div[slot="main"]').nextElementSibling;
   details.open = !details.open;
   button.ariaExpanded = details.open;
 };
 
 const codeCopyButtonClick = (button) => {
-  const details = button.closest('vwc-action-group').nextElementSibling;
+  const details = button.closest('div[slot="main"]').nextElementSibling;
   const { textContent } = details;
   navigator.clipboard.writeText(textContent.trim())
     .then(() => {
@@ -41,6 +41,15 @@ const codeCopyButtonClick = (button) => {
     button.icon = 'copy-2-line';
   }, 1000);
 };
+
+const codeBlockDensityChanged = (numberfield) => {
+  const root = numberfield.closest('div[slot="main"]').previousElementSibling.contentWindow.document.querySelector(':root');
+  if ([-1,0,1].indexOf(numberfield.valueAsNumber) > -1)
+    root.style.setProperty('--vvd-size-density', numberfield.valueAsNumber);
+  else
+    numberfield.valueAsNumber = 0;
+  
+}
 
 const onloadIframe = (iFrame) => {
   const toggle = document.querySelector('dark-mode-toggle');
