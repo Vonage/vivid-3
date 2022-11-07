@@ -30,11 +30,11 @@ const codeCopyButtonClick = (button) => {
   navigator.clipboard.writeText(textContent.trim())
     .then(() => {
       /* clipboard successfully set */
-      button.icon = 'check-double-line';
+      button.icon = 'check-line';
     })
     .catch(() => {
       /* clipboard write failed */
-      button.icon = 'small-line';
+      button.icon = 'close-line';
     });
 
   setTimeout(() => {
