@@ -560,9 +560,6 @@ describe('vwc-number-field', () => {
 		});
 
 		it('should set inert in disabled and readonly', async function() {
-			/**
-			 *
-			 */
 			function isButtonsWrapperInert() {
 				return addButton.parentElement?.hasAttribute('inert');
 			}
@@ -585,9 +582,6 @@ describe('vwc-number-field', () => {
 		});
 
 		it('should set tabindex="-1" on the buttons', async function() {
-			/**
-			 *
-			 */
 			function isButtonsWrapperInert() {
 				return addButton.getAttribute('tabindex') === '-1' &&
 					subtractButton.getAttribute('tabindex') === '-1';
