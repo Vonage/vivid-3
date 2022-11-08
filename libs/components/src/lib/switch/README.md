@@ -20,7 +20,7 @@ Use `checked` in order to set the state of the switch.
 - Default: `false`
 
 ```html preview
-    <vwc-switch checked></vwc-switch>
+<vwc-switch checked></vwc-switch>
 ```
 
 ### Disabled
