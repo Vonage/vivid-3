@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Tue, 08 Nov 2022 17:33:31 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.94",
+      "version": "3.0.0-next.94",
+      "comments": {
+        "none": [
+          {
+            "author": "olaf-k@users.noreply.github.com",
+            "package": "@vonage/vivid",
+            "commit": "832138c8cda675c3c394b11363f899aabf3014f0",
+            "comment": "touch-ups"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 08 Nov 2022 16:43:27 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.94",
       "version": "3.0.0-next.94",
