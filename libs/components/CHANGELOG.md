@@ -1,8 +1,56 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Thu, 03 Nov 2022 08:51:02 GMT and should not be manually modified.
+This log was last generated on Mon, 07 Nov 2022 11:12:14 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.93
+
+Mon, 07 Nov 2022 11:12:14 GMT
+
+### Changes
+
+- add new listbox component (rina.oksman@vonage.com)
+
+## 3.0.0-next.92
+
+Sun, 06 Nov 2022 10:45:46 GMT
+
+### Changes
+
+- implement a new design in note component (yinon@hotmail.com)
+
+## 3.0.0-next.91
+
+Thu, 03 Nov 2022 17:25:45 GMT
+
+### Changes
+
+- remove block padding from nav item (yinon@hotmail.com)
+
+## 3.0.0-next.90
+
+Thu, 03 Nov 2022 17:18:16 GMT
+
+### Changes
+
+- support components status indication (yinon@hotmail.com)
+
+## 3.0.0-next.89
+
+Thu, 03 Nov 2022 13:37:29 GMT
+
+### Changes
+
+- change banner's dismiss button to theme alternate to comply with contrast rules (yinon@hotmail.com)
+
+## 3.0.0-next.88
+
+Thu, 03 Nov 2022 12:07:37 GMT
+
+### Changes
+
+- omit desnity from text-field and number-field (rachel.tannenbaum@vonage.com)
 
 ## 3.0.0-next.87
 
