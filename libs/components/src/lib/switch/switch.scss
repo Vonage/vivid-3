@@ -75,11 +75,11 @@
 	--checked-indicator-size: 12px;
 
 	position: absolute;
-	inline-size: var(--checked-indicator-size);
-	block-size: var(--checked-indicator-size);
 	margin-top: calc((20px - var(--checked-indicator-size)) / 2 - 1px);
 	background-color: var(constants.$vvd-color-neutral-500);
+	block-size: var(--checked-indicator-size);
 	border-radius: inherit;
+	inline-size: var(--checked-indicator-size);
 	transform: translateX(4px);
 	transition: all 0.2s ease-in-out 0s;
 
