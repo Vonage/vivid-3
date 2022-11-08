@@ -176,9 +176,8 @@ Use the `gutters` attribute to set the initial preferred `margin`.
 
 ### Grid-template-columns
 
-Controls the grid-template-columns of the layout.
+Control the grid-template-columns of the layout by setting `--layout-grid-template-columns`.
 
-- `--layout-grid-template-columns`
 - Type: `repeat(auto-sizing, minmax(column-basis, 1fr))`
 - Default: `auto`
 
