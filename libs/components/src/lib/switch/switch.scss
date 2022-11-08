@@ -75,8 +75,8 @@
 	--checked-indicator-size: 12px;
 
 	position: absolute;
-	width: var(--checked-indicator-size);
-	height: var(--checked-indicator-size);
+	inline-size: var(--checked-indicator-size);
+	block-size: var(--checked-indicator-size);
 	margin-top: calc((20px - var(--checked-indicator-size)) / 2 - 1px);
 	background-color: var(constants.$vvd-color-neutral-500);
 	border-radius: inherit;
