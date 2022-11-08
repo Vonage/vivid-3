@@ -99,7 +99,7 @@ $states-mapping: (
   ),
   readonly: (
     fieldset: (
-      text: var(#{constants.$vvd-color-neutral-950}),
+      text: var(#{constants.$vvd-color-neutral-800}),
       fill: var(#{constants.$vvd-color-neutral-200}),
       outline: var(#{constants.$vvd-color-neutral-500}),
     ),
@@ -116,7 +116,7 @@ $states-mapping: (
   ),
   readonlyAndHover: (
     fieldset: (
-      text: var(#{constants.$vvd-color-neutral-950}),
+      text: var(#{constants.$vvd-color-neutral-800}),
       fill: var(#{constants.$vvd-color-neutral-200}),
       outline: var(#{constants.$vvd-color-neutral-600}),
     ),
