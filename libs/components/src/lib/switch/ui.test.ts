@@ -11,7 +11,7 @@ test('should show the component', async ({page}: { page: Page }) => {
 
 	const template = `
 	<div style="margin: 5px;">
-  	<vwc-layout gutters="small"><div><vwc-switch></vwc-switch></div></vwc-layout>
+  	<vwc-layout gutters="small"><div><vwc-switch id="focused"></vwc-switch></div></vwc-layout>
   </div> 
   <div style="margin: 5px;">
   	<vwc-layout gutters="small"><div><vwc-switch checked></vwc-switch></div></vwc-layout>
@@ -44,7 +44,8 @@ test('should show the component', async ({page}: { page: Page }) => {
 	      <vwc-switch connotation="alert" checked=""></vwc-switch>
 	    </div>
   	</vwc-layout>
-  </div>`;
+  </div>
+	<script>document.getElementById('focused').focus()</script>`;
 	await loadComponents({
 		page,
 		components,
