@@ -1,6 +1,6 @@
 {
   "name": "@vonage/vivid",
-  "version": "3.0.0-next.91",
+  "version": "3.0.0-next.93",
   "type": "module",
   "module": "./index.js",
   "main": "./index.js",
@@ -34,6 +34,7 @@
     "./fab": "./fab",
     "./icon": "./icon",
     "./layout": "./layout",
+    "./listbox": "./listbox",
     "./menu": "./menu",
     "./menu-item": "./menu-item",
     "./nav": "./nav",
