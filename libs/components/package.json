@@ -39,6 +39,7 @@
     "./nav": "./nav",
     "./nav-disclosure": "./nav-disclosure",
     "./nav-item": "./nav-item",
+    "./number-field": "./number-field",
     "./note": "./note",
     "./listbox": "./listbox",
     "./option": "./listbox-option",
@@ -48,9 +49,9 @@
     "./radio": "./radio",
     "./radio-group": "./radio-group",
     "./side-drawer": "./side-drawer",
+    "./slider": "./slider",
     "./text-field": "./text-field",
     "./text-area": "./text-area",
-    "./tooltip": "./tooltip",
-    "./number-field": "./number-field"
+    "./tooltip": "./tooltip"
   }
 }
