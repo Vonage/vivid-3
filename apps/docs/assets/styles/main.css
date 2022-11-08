@@ -1,7 +1,7 @@
 /* #region reset */
 :root {
-	--vvd-font-family-upright: Mulish;
-	--vvd-font-family-monospace: Mulish;
+	--vvd-font-family-upright: Montserrat;
+	--vvd-font-family-monospace: Montserrat;
 }
 
 h1, h2, h3, h4, h5, h6, p {

@@ -1,7 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap');
+
 :root {
-	--vvd-font-family-upright: Mulish;
-	--vvd-font-family-monospace: Courier;
+	--vvd-font-family-upright: Montserrat;
+	--vvd-font-family-monospace: Montserrat;
 }
 
 /* #region reset */
