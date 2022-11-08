@@ -1,3 +1,4 @@
+@use '../focus/partials/variables' as focus-variables;
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
@@ -19,6 +20,12 @@
 	@include appearance.appearance;
 
 	display: inline-flex;
+
+	@supports selector(:focus-visible) {
+		&:focus {
+			outline: none;
+		}
+	}
 
 	&:hover {
 		&:not(.connotation-cta, .connotation-alert) {
@@ -72,7 +79,7 @@
 	height: var(--checked-indicator-size);
 	margin-top: calc((20px - var(--checked-indicator-size)) / 2 - 1px);
 	background-color: var(constants.$vvd-color-neutral-500);
-	border-radius: 10px;
+	border-radius: inherit;
 	transform: translateX(4px);
 	transition: all 0.2s ease-in-out 0s;
 
@@ -102,4 +109,15 @@
 
 .label {
 	margin-left: 8px;
+}
+
+.focus-indicator {
+	#{focus-variables.$focus-inset}: -4px;
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+	border-radius: 14px;
+
+	.control:not(:focus-visible) & {
+		display: none;
+	}
 }
