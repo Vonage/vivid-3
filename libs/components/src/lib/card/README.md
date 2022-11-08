@@ -124,29 +124,46 @@ Assign nodes to `main` slot to fully override a card's predefined flow and style
 
 ## CSS Variables
 
-### Trim headline & subtitle
+### Trim headline
 
-The card headline and the subtitle can be trimmed to your preferable number of lines.
-The number of lines are controlled by css variable:
+The card headline can be trimmed to your preferable number of lines.
+The number of lines is controlled by the css variable `--headline-line-clamp`.
 
-- `--headline-line-clamp`
-- `--subtitle-line-clamp`
-
-- Type: `string`
+- Type: `integer`
 - Default: `undefined`
 
 ```html preview
 <style>
   vwc-card {
     --headline-line-clamp: 1;
-    --subtitle-line-clamp: 2;
-
     max-inline-size: 42ch;
   }
 </style>
 
 <vwc-card
   headline="Vivid Card Component with long headline to trim"
+  subtitle="here is the card text"
+>
+</vwc-card>
+```
+### Trim subtitle
+
+The card subtitle can be trimmed to your preferable number of lines.
+The number of lines is controlled by css variable `--subtitle-line-clamp`.
+
+- Type: `integer`
+- Default: `undefined`
+
+```html preview
+<style>
+  vwc-card {
+    --subtitle-line-clamp: 2;
+    max-inline-size: 42ch;
+  }
+</style>
+
+<vwc-card
+  headline="Vivid Card Component"
   subtitle="extra text to the card headline that is set to be trimmed after 2 lines so the card will not be too long"
 >
 </vwc-card>

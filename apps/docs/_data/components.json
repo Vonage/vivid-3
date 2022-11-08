@@ -312,5 +312,12 @@
 		"modules": [
 			"/assets/modules/components/switch/index.js"
 		]
+	},
+	{
+		"title": "slider",
+		"markdown": "./libs/components/src/lib/slider/README.md",
+		"modules": [
+			"/assets/modules/components/slider/index.js"
+		]
 	}
 ]
