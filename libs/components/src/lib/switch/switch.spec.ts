@@ -162,6 +162,10 @@ describe('vwc-switch', () => {
 			expect(element.label).toEqual(labelText);
 			expect(element.shadowRoot?.querySelector('.label')?.textContent?.trim()).toEqual(labelText);
 		});
+
+		it('should hide the label if no label is supplied', function () {
+			expect(element.shadowRoot?.querySelector('.label')).toBeNull();
+		});
 	});
 
 	describe('connotation', function () {
@@ -171,14 +175,14 @@ describe('vwc-switch', () => {
 			await elementUpdated(element);
 			const connotationPropertyAfterAttributeChange = element.connotation;
 
-			element.connotation = Connotation.Success;
+			element.connotation = Connotation.CTA;
 			await elementUpdated(element);
 			const connotationAttributeAfterPropertyChange = element.getAttribute('connotation');
 
 			expect(connotationPropertyAfterAttributeChange)
 				.toEqual(Connotation.Alert);
 			expect(connotationAttributeAfterPropertyChange)
-				.toEqual(Connotation.Success);
+				.toEqual(Connotation.CTA);
 		});
 
 		it('should set connotation on the control div', async function () {

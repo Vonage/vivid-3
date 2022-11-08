@@ -1,4 +1,4 @@
-import { html } from '@microsoft/fast-element';
+import {html, when} from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
@@ -36,8 +36,8 @@ export const SwitchTemplate: (
 	<div class="switch">
 	  <span class="checked-indicator"></span>
 	</div>
-		<div class="label">
+		${when(x => x.label, html<Switch>`<div class="label">
 				${x => x.label}
-		</div>
+		</div>`)}
 </div>
 `;
