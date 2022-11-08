@@ -44,8 +44,7 @@ test('should show the component', async ({page}: { page: Page }) => {
 	      <vwc-switch connotation="alert" checked=""></vwc-switch>
 	    </div>
   	</vwc-layout>
-  </div>
-	<script>document.getElementById('focused').focus()</script>`;
+  </div>`;
 	await loadComponents({
 		page,
 		components,
@@ -56,6 +55,8 @@ test('should show the component', async ({page}: { page: Page }) => {
 	});
 
 	const testWrapper = await page.$('#wrapper');
+	const focusedElement = await page.$('#focused');
+	await focusedElement.focus();
 
 	await page.waitForLoadState('networkidle');
 
