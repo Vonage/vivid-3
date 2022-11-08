@@ -19,6 +19,12 @@
 $control-size: 20px;
 $control-border: 2px;
 
+@supports selector(:focus-visible) {
+	:host(:focus) {
+		outline: none;
+	}
+}
+
 .base {
 	@include connotation.connotation;
 	@include appearance.appearance;
@@ -27,12 +33,6 @@ $control-border: 2px;
 	align-items: center;
 	cursor: pointer;
 	gap: 8px;
-
-	@supports selector(:focus-visible) {
-		&:focus {
-			outline: none;
-		}
-	}
 
 	@supports (user-select: none) {
 		user-select: none;
@@ -82,7 +82,7 @@ label {
 
 	border-radius: 50%;
 
-	.base:not(:focus-visible) & {
+	:host(:not(:focus-visible)) & {
 		display: none;
 	}
 }
