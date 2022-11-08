@@ -43,8 +43,8 @@ Use the `readonly` attribute to show a readonly state of the switch.
 - Default: `false`
 
 ```html preview
-    <vwc-switch readonly></vwc-switch>
-    <vwc-switch readonly checked></vwc-switch>
+<vwc-switch readonly></vwc-switch>
+<vwc-switch readonly checked></vwc-switch>
 ```
 
 ### Value
@@ -55,7 +55,7 @@ Use `value` in order to set the value of the switch. Mainly used inside a form t
 - Default: `on`
 
 ```html
-    <vwc-switch value="my-value"></vwc-switch>
+<vwc-switch value="my-value"></vwc-switch>
 ```
 
 ### Name
@@ -66,7 +66,7 @@ Use `name` in order to set the name of the switch. Mainly used inside a form tha
 - Default: `undefined`
 
 ```html
-    <vwc-switch name="my-name"></vwc-switch>
+<vwc-switch name="my-name"></vwc-switch>
 ```
 
 ### Label
@@ -77,7 +77,7 @@ Use `label` in order to set the label of the switch.
 - Default: `undefined`
 
 ```html preview
-    <vwc-switch label="my-label"></vwc-switch>
+<vwc-switch label="my-label"></vwc-switch>
 ```
 
 ### Connotation
@@ -88,7 +88,7 @@ Use `connotation` in order to set the connotation of the switch.
 - Default: `primary`
 
 ```html preview
-    <vwc-switch connotation="primary" checked ></vwc-switch>
-    <vwc-switch connotation="cta" checked ></vwc-switch>
-    <vwc-switch connotation="alert" checked ></vwc-switch>
+<vwc-switch connotation="primary" checked ></vwc-switch>
+<vwc-switch connotation="cta" checked ></vwc-switch>
+<vwc-switch connotation="alert" checked ></vwc-switch>
 ```
