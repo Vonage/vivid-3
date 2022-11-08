@@ -45,11 +45,17 @@ const codeCopyButtonClick = (button) => {
 const onloadIframe = (iFrame) => {
   const toggle = document.querySelector('dark-mode-toggle');
 
-  iFrame.style.height = iFrame.contentWindow.document.documentElement.clientHeight + 4 + "px";
   setCurrentIframeTheme(toggle, iFrame);
   toggle.addEventListener('colorschemechange', () => {
     setCurrentIframeTheme(toggle, iFrame);
   });
+
+  // wait for repaint to set needed height
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      iFrame.style.height = iFrame.contentWindow.document.documentElement.clientHeight + 4 + "px";
+    }, 0);
+  })
 };
 
 const setCurrentIframeTheme = (toggle, iFrame) => {
