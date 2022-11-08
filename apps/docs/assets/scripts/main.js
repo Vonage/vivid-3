@@ -27,7 +27,19 @@ const codeBlockButtonClick = (button) => {
 const codeCopyButtonClick = (button) => {
   const details = button.closest('vwc-action-group').nextElementSibling;
   const { textContent } = details;
-  navigator.clipboard.writeText(textContent.trim());
+  navigator.clipboard.writeText(textContent.trim())
+    .then(() => {
+      /* clipboard successfully set */
+      button.icon = 'check-line';
+    })
+    .catch(() => {
+      /* clipboard write failed */
+      button.icon = 'close-line';
+    });
+
+  setTimeout(() => {
+    button.icon = 'copy-2-line';
+  }, 1000);
 };
 
 const onloadIframe = (iFrame) => {

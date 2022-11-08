@@ -1,6 +1,12 @@
 @use '../focus/partials/variables' as focus-variables;
 
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+	$connotations: accent,
+	$shades: primary underpin faint,
+	$default: accent,
+);
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
 	$appearances: fieldset ghost,
 	$states: idle hover disabled readonly error success,
@@ -17,6 +23,7 @@ $low-ink-color: --_low-ink-color;
 
 .base {
 	@include appearance.appearance;
+	@include connotation.connotation;
 
 	display: inline-grid;
 	width: 100%;
