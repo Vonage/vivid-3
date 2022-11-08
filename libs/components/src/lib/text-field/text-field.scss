@@ -48,6 +48,7 @@ $low-ink-color: --_low-ink-color;
 }
 
 .label {
+	color: var(#{constants.$vvd-color-canvas-text});
 	contain: inline-size;
 	font: var(#{constants.$vvd-typography-base});
 	grid-column: 1 / 4;
@@ -55,14 +56,6 @@ $low-ink-color: --_low-ink-color;
 
 	.char-count+& {
 		grid-column: 1 / 3;
-	}
-
-	.base:not(.disabled) & {
-		color: var(#{constants.$vvd-color-canvas-text});
-	}
-
-	.base.disabled & {
-		color: var(#{constants.$vvd-color-neutral-400});
 	}
 }
 
