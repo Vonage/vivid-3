@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "Switch Component",
-  "packageName": "@vonage/vivid",
-  "email": "yonatan.kra@vonage.com",
-  "dependentChangeType": "patch"
-}
