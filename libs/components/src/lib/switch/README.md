@@ -31,8 +31,8 @@ Use the `disabled` attribute to show a disabled state of the switch.
 - Default: `false`
 
 ```html preview
-    <vwc-switch disabled></vwc-switch>
-    <vwc-switch disabled checked></vwc-switch>
+<vwc-switch disabled></vwc-switch>
+<vwc-switch disabled checked></vwc-switch>
 ```
 
 ### Readonly
