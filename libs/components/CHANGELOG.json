@@ -2,6 +2,194 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Wed, 09 Nov 2022 08:48:48 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.96",
+      "version": "3.0.0-next.96",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "olaf-k@users.noreply.github.com",
+            "package": "@vonage/vivid",
+            "commit": "a503a9b98dca546b90d1b060925905fa5bb7d0a2",
+            "comment": "fix radio-group mouse focus"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 08 Nov 2022 19:42:09 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.95",
+      "version": "3.0.0-next.95",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "916ffad6c317ebffc920eb84ed5cb605d4cf7f39",
+            "comment": "Switch Component"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 08 Nov 2022 17:33:31 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.94",
+      "version": "3.0.0-next.94",
+      "comments": {
+        "none": [
+          {
+            "author": "olaf-k@users.noreply.github.com",
+            "package": "@vonage/vivid",
+            "commit": "832138c8cda675c3c394b11363f899aabf3014f0",
+            "comment": "touch-ups"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 08 Nov 2022 16:43:27 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.94",
+      "version": "3.0.0-next.94",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "olaf-k@users.noreply.github.com",
+            "package": "@vonage/vivid",
+            "commit": "dfb49b914395779013e2ac992a5ca62a4c88b7a5",
+            "comment": "new slider component"
+          }
+        ],
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "47eb5d417b7dbf2a47dfad984822bed50ce4d457",
+            "comment": "fix horizontal scroll"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 07 Nov 2022 11:12:14 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.93",
+      "version": "3.0.0-next.93",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "3b418f772c4e1257d387da4acb7067e81fe33b51",
+            "comment": "add new listbox component"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 06 Nov 2022 11:13:06 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.92",
+      "version": "3.0.0-next.92",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "33573fb11993b2ca3a6ae81b024094b0fb92a13c",
+            "comment": "remove expect import"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 06 Nov 2022 10:45:46 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.92",
+      "version": "3.0.0-next.92",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "2e55fe2331d0d07bd0a88650a3cbf4586a308499",
+            "comment": "implement a new design in note component"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 03 Nov 2022 17:25:45 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.91",
+      "version": "3.0.0-next.91",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "f7bcc680c56e2e345dbdcbd417830d690544c2d4",
+            "comment": "remove block padding from nav item"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 03 Nov 2022 17:18:16 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.90",
+      "version": "3.0.0-next.90",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "d1c6958d899281ba070ad15c4ecb2f68d6125c5e",
+            "comment": "support components status indication"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 03 Nov 2022 13:37:29 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.89",
+      "version": "3.0.0-next.89",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "ae80d993201b1c31b92952fb8fc44682ecb514e7",
+            "comment": "change banner's dismiss button to theme alternate to comply with contrast rules"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 03 Nov 2022 12:07:37 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.88",
+      "version": "3.0.0-next.88",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "3b213decffb8444fab230df02de4798432be11f4",
+            "comment": "omit desnity from text-field and number-field"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 03 Nov 2022 08:51:02 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.87",
+      "version": "3.0.0-next.87",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "olaf-k@users.noreply.github.com",
+            "package": "@vonage/vivid",
+            "commit": "34a91dddb4608b42e048a97d52c0552116a98ca0",
+            "comment": "fix READMEs"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 02 Nov 2022 14:09:27 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.86",
       "version": "3.0.0-next.86",

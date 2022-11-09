@@ -13,7 +13,7 @@ strong {
 /* #region document */
 
 html {
-  scroll-padding-top: 64px;
+  scroll-padding-top: var(--vvd-header-block-size);
 }
 
 body {
@@ -67,6 +67,9 @@ vwc-header[elevation-shadow] vwc-side-drawer::part(base) {
 }
 
 vwc-side-drawer > main {
+	/* prevents banner from topping the stacking context in a modal side-drawer open state  */
+	z-index: 0;
+	position: relative;
   margin-top: var(--vvd-header-block-size);
 }
 
@@ -199,6 +202,7 @@ article > h1 {
 
 .article {
   padding-inline: 16px;
+  word-break: break-word;
 }
 
 @media (min-width: 960px) {
@@ -207,6 +211,11 @@ article > h1 {
   }
 }
 
+.banner {
+	position: sticky;
+	top: var(--vvd-header-block-size);
+	z-index: 1;
+}
 /* #endregion article */
 
 /* #region code fence demo */
