@@ -87,6 +87,8 @@ $low-ink-color: --_low-ink-color;
 }
 
 .control {
+	// ! note: control is required to stretch fully so that
+	// ! autofill indication applies on all fieldset area
 	width: 100%;
 	border: 0 none;
 	background-color: var(#{appearance.get-appearance-token(fill)});
@@ -94,18 +96,14 @@ $low-ink-color: --_low-ink-color;
 	border-radius: inherit;
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});;
-
-	@supports (-webkit-text-fill-color: inherit) {
-		-webkit-text-fill-color: var(#{appearance.get-appearance-token(text)});;
-	}
-
-	// ! note: control is required to stretch fully so that
-	// ! autofill indication applies on all fieldset area
-
 	font: var(#{constants.$vvd-typography-base});
 	padding-inline-end: 16px;
 	padding-inline-start: 16px;
 	transition: box-shadow .2s, background-color .2s;
+
+	@supports		(-webkit-text-fill-color: inherit) {
+		-webkit-text-fill-color: var(#{appearance.get-appearance-token(text)});;
+	}
 
 	@supports selector(:focus-visible) {
 		&:focus {
