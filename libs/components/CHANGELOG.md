@@ -1,8 +1,24 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Mon, 07 Nov 2022 11:12:14 GMT and should not be manually modified.
+This log was last generated on Tue, 08 Nov 2022 19:42:09 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.95
+
+Tue, 08 Nov 2022 19:42:09 GMT
+
+### Changes
+
+- Switch Component (yonatan.kra@vonage.com)
+
+## 3.0.0-next.94
+
+Tue, 08 Nov 2022 16:43:27 GMT
+
+### Changes
+
+- new slider component (olaf-k@users.noreply.github.com)
 
 ## 3.0.0-next.93
 

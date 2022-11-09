@@ -2,6 +2,59 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Tue, 08 Nov 2022 19:42:09 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.95",
+      "version": "3.0.0-next.95",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "916ffad6c317ebffc920eb84ed5cb605d4cf7f39",
+            "comment": "Switch Component"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 08 Nov 2022 17:33:31 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.94",
+      "version": "3.0.0-next.94",
+      "comments": {
+        "none": [
+          {
+            "author": "olaf-k@users.noreply.github.com",
+            "package": "@vonage/vivid",
+            "commit": "832138c8cda675c3c394b11363f899aabf3014f0",
+            "comment": "touch-ups"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 08 Nov 2022 16:43:27 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.94",
+      "version": "3.0.0-next.94",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "olaf-k@users.noreply.github.com",
+            "package": "@vonage/vivid",
+            "commit": "dfb49b914395779013e2ac992a5ca62a4c88b7a5",
+            "comment": "new slider component"
+          }
+        ],
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "47eb5d417b7dbf2a47dfad984822bed50ce4d457",
+            "comment": "fix horizontal scroll"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 07 Nov 2022 11:12:14 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.93",
       "version": "3.0.0-next.93",
