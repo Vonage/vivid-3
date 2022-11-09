@@ -72,6 +72,11 @@ $low-ink-color: --_low-ink-color;
 	font: var(#{constants.$vvd-typography-base});
 	min-block-size: #{size.$vvd-size-normal};
 	transition: box-shadow .2s, background-color .2s, color .2s;
+
+	@supports(-webkit-text-fill-color: inherit) {
+		-webkit-text-fill-color: inherit;
+	}
+
 	@supports selector(:focus-visible) {
 		&:focus {
 			outline: none;
