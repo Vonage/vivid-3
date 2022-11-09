@@ -22,7 +22,7 @@ $selectors: (
   idle: '&',
   hover: '&:where(#{$hover}):where(:not(#{$disabled}, #{$readonly}))',
   disabled: '&:where(#{$disabled})',
-  readonly: '&:where(#{$readonly}):where(:not(#{$disabled}, #{$hover}, #{$active}))',
+  readonly: '&:where(#{$readonly}):where(:not(#{$disabled}))',
   selected: '&:where(#{$selected}):where(:not(#{$disabled}, #{$hover}))',
   selectedAndHover: '&:where(#{$selected}):where(#{$hover})',
   checked: '&:where(#{$checked}):where(:not(#{$disabled}))',

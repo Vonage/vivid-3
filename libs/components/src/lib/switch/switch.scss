@@ -11,7 +11,7 @@
 
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
 	$appearances: fieldset filled,
-	$states: idle disabled,
+	$states: idle disabled readonly,
 	$default: fieldset,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
@@ -44,7 +44,7 @@
 }
 
 .switch {
-	#{$switch-inline-size}: calc(#{size.$vvd-size-ultra-condensed} * 1.8);
+	#{variables.$switch-inline-size}: calc(#{size.$vvd-size-ultra-condensed} * 1.8);
 	position: relative;
 	display: flex;
 	box-sizing: border-box;
@@ -53,7 +53,7 @@
 	block-size: #{size.$vvd-size-ultra-condensed};
 	border-radius: calc(#{size.$vvd-size-ultra-condensed} / .5);
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-	inline-size: var(#{$switch-inline-size});
+	inline-size: var(#{variables.$switch-inline-size});
 	transition: all 0.2s ease-in-out 0s;
 }
 
@@ -67,20 +67,16 @@
 	margin-inline-start: auto ;
 	transition: all 0.2s ease-in-out 0s;
 
-	.control.disabled & {
-		background-color: var(#{appearance.get-appearance-token(text)});
-	}
-
-	.control:not(.disabled):not(.checked) & {
-		background-color: var(#{appearance.get-appearance-token(outline)});
-	}
-
-	.control.checked:not(.disabled) & {
+	.control.appearance-filled & {
 		background-color: var(#{constants.$vvd-color-neutral-100});
 	}
 
+	.control:not(.appearance-filled) & {
+		background-color: var(#{appearance.get-appearance-token(outline)});
+	}
+
 	.control:not(.checked) & {
-		transform: translateX(calc(-1 * var(#{$switch-inline-size}) + var(#{variables.$checked-indicator-size}) + var(#{variables.$gutter})));
+		transform: translateX(calc(-1 * var(#{variables.$switch-inline-size}) + var(#{variables.$checked-indicator-size}) + var(#{variables.$gutter})));
 	}
 
 	.control.checked & {
