@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Wed, 09 Nov 2022 08:48:48 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.96",
+      "version": "3.0.0-next.96",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "olaf-k@users.noreply.github.com",
+            "package": "@vonage/vivid",
+            "commit": "a503a9b98dca546b90d1b060925905fa5bb7d0a2",
+            "comment": "fix radio-group mouse focus"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 08 Nov 2022 19:42:09 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.95",
       "version": "3.0.0-next.95",

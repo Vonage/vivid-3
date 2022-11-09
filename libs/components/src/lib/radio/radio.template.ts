@@ -29,7 +29,6 @@ export const RadioTemplate: (context: ElementDefinitionContext) => ViewTemplate<
 		aria-checked="${x => x.checked}"
 		aria-required="${x => x.required}"
 		aria-disabled="${x => x.disabled}"
-		tabindex="${x => (x.disabled ? null : 0)}"
 		@keypress="${(x, c) => x.keypressHandler(c.event as KeyboardEvent)}"
 		@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
 	>

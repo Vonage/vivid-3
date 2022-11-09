@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Tue, 08 Nov 2022 19:42:09 GMT and should not be manually modified.
+This log was last generated on Wed, 09 Nov 2022 08:48:48 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.96
+
+Wed, 09 Nov 2022 08:48:48 GMT
+
+### Changes
+
+- fix radio-group mouse focus (olaf-k@users.noreply.github.com)
 
 ## 3.0.0-next.95
 
