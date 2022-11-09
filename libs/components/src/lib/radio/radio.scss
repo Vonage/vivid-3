@@ -11,7 +11,7 @@
 
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
 	$appearances: outlined,
-	$states: idle hover active checked checkedAndHover disabled readonly readonlyAndHover,
+	$states: idle hover active checked checkedAndHover disabled readonly,
 	$default: outlined,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
