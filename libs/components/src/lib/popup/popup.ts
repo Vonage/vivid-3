@@ -2,7 +2,6 @@ import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { arrow, autoUpdate, computePosition, flip, hide, inline, offset, Strategy } from '@floating-ui/dom';
 import type { Placement } from '@floating-ui/dom';
-import { keyEscape } from '@microsoft/fast-web-utilities';
 
 /**
  * Base class for popup
@@ -37,15 +36,6 @@ export class Popup extends FoundationElement {
 	@attr({
 		mode: 'boolean',
 	}) open = false;
-
-	/**
-	 *
-	 * @public
-	 * HTML Attribute: popUp
-	 */
-	@attr({ attribute: 'data-popup' })
-	popup: 'auto' | 'hint' | 'manual' = 'auto';
-
 	openChanged(_: boolean, newValue: boolean): void {
 		newValue ? this.$emit('open') : this.$emit('close');
 	}
@@ -60,15 +50,13 @@ export class Popup extends FoundationElement {
 		mode: 'boolean',
 	}) dismissible = false;
 
-	/**
-	 * determines if popup can be light dismissed
-	 *
-	 * @public
-	 * HTML Attribute: light-dismiss
-	 */
-	@attr({
-		mode: 'boolean', attribute: 'light-dismiss'
-	}) lightDismiss = false;
+	// /**
+	//  * determines if popup can be light dismissed
+	//  *
+	//  * @public
+	//  * HTML Attribute: popup
+	//  */
+	// @attr({ attribute: 'light-dismiss' }) popup: 'auto' | 'manual' = 'manual';
 
 	/**
 	 * adds small triangle to indicate the trigger element
@@ -106,21 +94,12 @@ export class Popup extends FoundationElement {
 	 */
 	@attr anchor!: string;
 
-	constructor() {
-		super();
-	}
-
 	override connectedCallback(): void {
 		super.connectedCallback();
-		if (this.lightDismiss) {
-			window.addEventListener('mousedown', this.#dismiss);
-		}
 	}
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		window.removeEventListener('mousedown', this.#dismiss);
-		this.#anchorEl?.removeEventListener('keydown', this.#handleKeydown);
 		this.#cleanup?.();
 	}
 
@@ -128,10 +107,7 @@ export class Popup extends FoundationElement {
 		super.attributeChangedCallback(name, oldValue, newValue);
 		switch (name) {
 			case 'anchor': {
-				this.#anchorEl?.removeEventListener('keydown', this.#handleKeydown);
 				this.#anchorEl = this.#getAnchorById();
-				// close the popup if pressed escape
-				this.#anchorEl?.addEventListener('keydown', this.#handleKeydown);
 				break;
 			}
 		}
@@ -191,28 +167,14 @@ export class Popup extends FoundationElement {
 		return document.getElementById(this.anchor);
 	}
 
-	#close(): void {
-		this.open = false;
-	}
+	// showPopUp() {
+	// 	debugger;
+	// 	this.showPopUp();
+	// 	this.open = true;
+	// }
 
-	#handleKeydown = (event: Event) => {
-		if ((event as KeyboardEvent).key === keyEscape) {
-			this.#close();
-		}
-	};
-
-	#dismiss = (event: Event) => {
-		if (!this.open || !this.#anchorEl) {
-			return;
-		}
-		// if clicked on popup
-		if (this.contains(event.target as Element)) {
-			return;
-		}
-		// if clicked on anchor
-		if (this.#anchorEl.contains(event.target as Element)) {
-			return;
-		}
-		this.#close();
-	};
+	// hidePopUp() {
+	// 	debugger;
+	// 	this.open = false;
+	// }
 }

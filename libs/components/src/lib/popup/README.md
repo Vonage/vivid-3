@@ -69,25 +69,26 @@ Add the `dismissible` attribute to add a close button to the popup.
 </script>
 ```
 
-### Light Dismiss
+### Popup
 
-Add the `light-dismiss` attribute (or `lightDismiss` property) to close the popup when the user taps on any area other than the popup.
+Use the `popup` attribute to add Light dismiss behaviors. 
+- When `'auto'` the following will dismiss the popup: pressing the ESC key, keyboard-navigation, invoking elsewhere in the document, invoking another popup, etc.
+- When `'manual'`, popup cannot be light dismissed (it can only be dismissed by an explicit trigger element or by JavaScript), and they don't automatically dismiss previously-shown popups.
 
-- Type: `boolean`
-- Default: `false`
+- Type: `'auto'` | `'manual'`
+- Default: `auto`
 
 ```html preview center
 <vwc-button id="anchor" appearance='outlined' label='Click outside of the popup!'></vwc-button>
-<vwc-popup id="popup" anchor="anchor" open light-dismiss>
+<vwc-popup id="popup" anchor="anchor" open popup="auto">
   <vwc-layout gutters="small">
    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   </vwc-layout>
 </vwc-popup>
 <script>
-  anchor.addEventListener('click', () => popup.open = !popup.open);
+  anchor.addEventListener('click', () => popup.showPopUp());
 </script>
 ```
-
 ### Arrow
 
 Add the `arrow` attribute to add a small triangle to indicate the trigger element.

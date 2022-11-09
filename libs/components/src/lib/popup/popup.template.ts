@@ -24,14 +24,14 @@ export const popupTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Popup> = () => html`
   <vwc-elevation>
-    <!--the popup-wrapper is needed for alternating the inside of the popup nd not its shadow-->
+    <!--the popup-wrapper is needed for alternating the inside of the popup and not it's shadow-->
 	  <div class="popup-wrapper" ${ref('popupEl')}>
 			<div class="${getClasses}" aria-hidden="${(x) => x.open ? 'false' : 'true'}"
 				part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}">
 				<div class="popup-content">
 					<slot></slot>
 					${when(x => x.dismissible,
-		html<Popup>`<vwc-button density="condensed" @click="${x => (x.open = false)}"
+	html<Popup>`<vwc-button density="condensed" @click="${x => (x.open = false)}"
 						class="dismissible-button" icon="close-small-solid" shape="pill"></vwc-button>`)}
 				</div>
 				${when(x => x.arrow,
