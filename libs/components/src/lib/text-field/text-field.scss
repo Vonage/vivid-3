@@ -95,24 +95,27 @@ $low-ink-color: --_low-ink-color;
 	block-size: 100%;
 	border-radius: inherit;
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-	color: var(#{appearance.get-appearance-token(text)});;
+	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
 	padding-inline-end: 16px;
 	padding-inline-start: 16px;
 	transition: box-shadow .2s, background-color .2s;
 
-	@supports		(-webkit-text-fill-color: inherit) {
-		-webkit-text-fill-color: var(#{appearance.get-appearance-token(text)});;
+	&:disabled {
+		opacity: 1; /* 2. correct opacity on iOS */
+		-webkit-text-fill-color: var(#{appearance.get-appearance-token(text)}); /* 1. sets text fill to current `color` for safari */
+	}
+
+	&::placeholder,
+	&:disabled::placeholder {
+		opacity: 1; /* 2. correct opacity on iOS */
+		-webkit-text-fill-color: var(#{$low-ink-color}); /* 1. sets text fill to current `color` for safari */
 	}
 
 	@supports selector(:focus-visible) {
 		&:focus {
 			outline: none;
 		}
-	}
-
-	&::placeholder {
-		color: var(#{$low-ink-color});
 	}
 }
 

@@ -73,18 +73,21 @@ $low-ink-color: --_low-ink-color;
 	min-block-size: #{size.$vvd-size-normal};
 	transition: box-shadow .2s, background-color .2s, color .2s;
 
-	@supports(-webkit-text-fill-color: inherit) {
-		-webkit-text-fill-color: var(#{appearance.get-appearance-token(text)});;
+	&:disabled {
+		opacity: 1; /* 2. correct opacity on iOS */
+		-webkit-text-fill-color: var(#{appearance.get-appearance-token(text)}); /* 1. sets text fill to current `color` for safari */
+	}
+
+	&::placeholder,
+	&:disabled::placeholder {
+		opacity: 1; /* 2. correct opacity on iOS */
+		-webkit-text-fill-color: var(#{$low-ink-color}); /* 1. sets text fill to current `color` for safari */
 	}
 
 	@supports selector(:focus-visible) {
 		&:focus {
 			outline: none;
 		}
-	}
-
-	&::placeholder {
-		color: var(#{$low-ink-color});
 	}
 }
 
