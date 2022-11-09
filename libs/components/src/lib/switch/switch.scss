@@ -45,6 +45,7 @@
 
 .switch {
 	#{variables.$switch-inline-size}: calc(#{size.$vvd-size-ultra-condensed} * 1.8);
+
 	position: relative;
 	display: flex;
 	box-sizing: border-box;
@@ -58,7 +59,7 @@
 }
 
 .checked-indicator {
-	#{variables.$checked-indicator-size}: calc(#{size.$vvd-size-ultra-condensed} / 1.666666666666667);
+	#{variables.$checked-indicator-size}: calc(#{size.$vvd-size-ultra-condensed} / 1.6667);
 	#{variables.$gutter}: calc(var(#{variables.$checked-indicator-size}) / 3);
 
 	block-size: var(#{variables.$checked-indicator-size});
