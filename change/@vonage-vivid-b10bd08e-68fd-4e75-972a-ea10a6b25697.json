@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "unify appearance to apply cross components",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}
