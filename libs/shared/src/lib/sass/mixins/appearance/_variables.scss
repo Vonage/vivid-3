@@ -22,8 +22,8 @@ $states-mapping: (
     ),
     fieldset: (
       text: var(#{constants.$vvd-color-canvas-text}),
-      fill: var(#{constants.$vvd-color-canvas}),
-      outline: var(#{constants.$vvd-color-neutral-400}),
+      fill: var(#{connotation.get-connotation-token(backdrop)}),
+      outline: var(#{connotation.get-connotation-token(intermediate)}),
     ),
     ghost: (
       text: var(#{connotation.get-connotation-token(primary)}),

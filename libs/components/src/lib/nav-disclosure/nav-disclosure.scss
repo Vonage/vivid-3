@@ -75,6 +75,9 @@
 	border-inline-start: 1px solid var(#{constants.$vvd-color-neutral-200});
 	margin-inline-start: 20px;
 	padding-inline-start: 12px;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
 }
 
 details > summary {

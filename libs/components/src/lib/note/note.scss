@@ -1,7 +1,7 @@
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: success information alert announcement warning,
+	$connotations: accent success information alert warning,
 	$shades: primary intermediate backdrop,
 	$default: announcement,
 );
