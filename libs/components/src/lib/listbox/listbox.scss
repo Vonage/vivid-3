@@ -27,6 +27,7 @@
 
 	position: relative;
 	display: inline-flex;
+	box-sizing: border-box;
 	padding: 4px;
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	border-radius: 6px;
