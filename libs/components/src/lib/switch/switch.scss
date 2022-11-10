@@ -4,14 +4,14 @@
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent cta alert success,
-	$shades: primary-text primary backdrop intermediate,
+	$shades: primary-text primary primary-increment backdrop firm intermediate,
 	$default: accent,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
 	$appearances: fieldset filled,
-	$states: idle disabled readonly,
+	$states: idle hover disabled readonly,
 	$default: fieldset,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
