@@ -19,12 +19,12 @@ const onScroll = () => {
 
 const setScrollFromLocalStorage = () => {
 	// set sideDrawer's scroll from localStorage
-	setTimeout(() => {
-		let scrollTop = localStorage.getItem("scroll");
-		if (scrollTop) {
+	let scrollTop = localStorage.getItem("scroll");
+	if (scrollTop) {
+		setTimeout(() => {
 			getAsideElement().scrollTop = scrollTop;
-		}
-	}, 10);
+		}, 1);
+	}
 }
 
 (() => {
