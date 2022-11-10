@@ -48,12 +48,11 @@ describe('vwc-listbox', () => {
 	});
 
 	describe('disabled', function () {
-		it('should set the `aria-disabled` attribute with the `disabled` value when provided', async function () {
+		it('should set disabled class when disabled', async function () {
 			element.disabled = true;
 			await elementUpdated(element);
-			element.slottedOptions.forEach(optionElement => {
-				expect((optionElement as any).disabled).toEqual(true);
-			});
+
+			expect(getBaseElement(element).classList.contains(`disabled`)).toBeTruthy();
 		});
 	});
 
