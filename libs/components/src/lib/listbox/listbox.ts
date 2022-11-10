@@ -24,6 +24,15 @@ export class Listbox extends FoundationListboxElement {
 	 */
 	@attr appearance?: LisboxAppearance;
 
+	/**
+	 * The direction the listbox options should flow.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: direction
+	 */
+	@attr direction?: 'horizontal' | 'vertical';
+
 	override slottedOptionsChanged(prev: Element[] | undefined, next: Element[]) {
 		super.slottedOptionsChanged(prev, next);
 		this.#disableSlottedChildren();

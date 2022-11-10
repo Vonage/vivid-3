@@ -1,6 +1,6 @@
 # Listbox
 
-Listbox displays list of [vwc-option](../../components/option) and allow users to select from them. 
+Listbox displays list of [vwc-option](../../components/option) and allow users to select from them.
 There are two types of listboxes: single-select and multi-select.
 Click [here](https://www.w3.org/WAI/ARIA/apg/patterns/listbox) to learn more about Listbox's Keyboard Interaction and Accessibility.
 
@@ -50,6 +50,21 @@ Set the `appearance` attribute to change the listbox's appearance.
 
 ```html preview
 <vwc-listbox appearance="ghost">
+  <vwc-option value="1" text="Option"></vwc-option>
+  <vwc-option value="2" text="Option"></vwc-option>
+  <vwc-option value="3" text="Option"></vwc-option>
+</vwc-listbox>
+```
+
+### Direction
+
+Set the `direction` property to change the listbox options' flow.
+
+- Type: `'vertical'` | `'horizontal'`
+- Default: `'vertical'`
+
+```html preview
+<vwc-listbox direction="horizontal">
   <vwc-option value="1" text="Option"></vwc-option>
   <vwc-option value="2" text="Option"></vwc-option>
   <vwc-option value="3" text="Option"></vwc-option>

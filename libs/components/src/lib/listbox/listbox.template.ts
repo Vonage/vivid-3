@@ -9,12 +9,13 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { focusTemplateFactory } from '../../shared/patterns';
 import type { Listbox } from './listbox';
 
-const getClasses = ({ appearance, disabled
-}: Listbox) => classNames(
-	'base',
-	['disabled', disabled],
-	[`appearance-${appearance}`, Boolean(appearance)],
-);
+const getClasses = ({ appearance, disabled, direction }: Listbox) =>
+	classNames(
+		'base',
+		['disabled', disabled],
+		[`appearance-${appearance}`, Boolean(appearance)],
+		[`direction-${direction}`, Boolean(direction)],
+	);
 
 export const ListboxTemplate: (
 	context: ElementDefinitionContext,
