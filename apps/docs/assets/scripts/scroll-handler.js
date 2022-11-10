@@ -19,12 +19,12 @@ const onScroll = () => {
 
 const setScrollFromLocalStorage = () => {
 	// set sideDrawer's scroll from localStorage
-	let scrollTop = localStorage.getItem("scroll");
-	if (scrollTop != null) {
-		setTimeout(() => {
+	setTimeout(() => {
+		let scrollTop = localStorage.getItem("scroll");
+		if (scrollTop != null) {
 			getAsideElement().scrollTop = scrollTop;
-		}, 1);
-	}
+		}
+	}, 10);
 }
 
 (() => {
@@ -32,7 +32,7 @@ const setScrollFromLocalStorage = () => {
 	window.addEventListener('scroll', onScroll);
 
 	customElements.whenDefined('vwc-side-drawer').then(() => {
-		setScrollFromLocalStorage();
+		setScrollFromLocalStorage(getAsideElement());
 		getAsideElement().addEventListener('scroll', onScroll);
 	});
 })();
