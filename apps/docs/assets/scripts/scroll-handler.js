@@ -22,7 +22,7 @@ const setScrollFromLocalStorage = (target) => {
 	let scrollTop = localStorage.getItem("scroll");
 	if (scrollTop != null) {
 		setTimeout(() => {
-			target.scrollTop = scrollTop;
+			getAsideElement().scrollTop = scrollTop;
 		}, 1);
 	}
 }
