@@ -1,8 +1,48 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Thu, 03 Nov 2022 17:25:45 GMT and should not be manually modified.
+This log was last generated on Wed, 09 Nov 2022 08:48:48 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.96
+
+Wed, 09 Nov 2022 08:48:48 GMT
+
+### Changes
+
+- fix radio-group mouse focus (olaf-k@users.noreply.github.com)
+
+## 3.0.0-next.95
+
+Tue, 08 Nov 2022 19:42:09 GMT
+
+### Changes
+
+- Switch Component (yonatan.kra@vonage.com)
+
+## 3.0.0-next.94
+
+Tue, 08 Nov 2022 16:43:27 GMT
+
+### Changes
+
+- new slider component (olaf-k@users.noreply.github.com)
+
+## 3.0.0-next.93
+
+Mon, 07 Nov 2022 11:12:14 GMT
+
+### Changes
+
+- add new listbox component (rina.oksman@vonage.com)
+
+## 3.0.0-next.92
+
+Sun, 06 Nov 2022 10:45:46 GMT
+
+### Changes
+
+- implement a new design in note component (yinon@hotmail.com)
 
 ## 3.0.0-next.91
 

@@ -1,0 +1,124 @@
+@use '../focus/partials/variables' as focus-variables;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+	$connotations: accent cta alert,
+	$shades: primary primary-text contrast,
+	$default: accent,
+);
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+	$appearances: filled,
+	$states: idle disabled readonly error success,
+	$default: filled,
+);
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+
+.control {
+	@include connotation.connotation;
+	@include appearance.appearance;
+
+	display: inline-flex;
+
+	@supports selector(:focus-visible) {
+		&:focus {
+			outline: none;
+		}
+	}
+
+	&:hover {
+		&:not(.connotation-cta, .connotation-alert) {
+			#{appearance.get-appearance-token(fill)}: var(#{constants.$vvd-color-neutral-800});
+		}
+
+		&.connotation-cta {
+			#{appearance.get-appearance-token(fill)}: var(#{constants.$vvd-color-cta-600});
+		}
+
+		&.connotation-alert {
+			#{appearance.get-appearance-token(fill)}: var(#{constants.$vvd-color-alert-600});
+		}
+	}
+}
+
+.switch {
+	--switch-block-size: 20px;
+
+	position: relative;
+	box-sizing: border-box;
+	border-width: 1px;
+	border-style: solid;
+	block-size: var(--switch-block-size);
+	border-radius: 10px;
+	inline-size: 36px;
+
+	.disabled & {
+		border-color: var(constants.$vvd-color-neutral-200);
+	}
+
+	[aria-checked="true"] & {
+		border-color: var(#{appearance.get-appearance-token(fill)});
+		background-color: var(#{appearance.get-appearance-token(fill)});
+	}
+
+	.control:not(.disabled, [aria-checked="true"]) &{
+		border-color: var(constants.$vvd-color-neutral-500);
+	}
+
+	.control:not(.disabled, [aria-checked="true"]) &:hover{
+		border-color: var(constants.$vvd-color-neutral-700);
+	}
+}
+
+.checked-indicator {
+	--checked-indicator-size: 12px;
+
+	position: absolute;
+	margin-top: calc((20px - var(--checked-indicator-size)) / 2 - 1px);
+	background-color: var(constants.$vvd-color-neutral-500);
+	block-size: var(--checked-indicator-size);
+	border-radius: inherit;
+	inline-size: var(--checked-indicator-size);
+	transform: translateX(4px);
+	transition: all 0.2s ease-in-out 0s;
+
+	:hover & {
+		background-color: var(constants.$vvd-color-neutral-700);
+	}
+
+	.disabled & {
+		background-color: var(constants.$vvd-color-neutral-200);
+	}
+
+	[aria-checked="true"] & {
+		--checked-indicator-size: 14px;
+
+		background-color: var(constants.$vvd-color-neutral-100);
+		transform: translateX(18px);
+
+		.disabled & {
+			background-color: var(constants.$vvd-color-neutral-50);
+		}
+
+		:hover & {
+			background-color: var(constants.$vvd-color-neutral-100);
+		}
+	}
+}
+
+.label {
+	margin-left: 8px;
+	font: var(#{constants.$vvd-typography-base});
+}
+
+.focus-indicator {
+	#{focus-variables.$focus-inset}: -4px;
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+	border-radius: 14px;
+
+	.control:not(:focus-visible) & {
+		display: none;
+	}
+}

@@ -55,8 +55,7 @@ Set the `appearance` attribute to change the avatar's appearance.
 
 Use the `connotation` attribute to set the avatar's color.
 
-Type: `'accent'` | `'cta'`
-
+- Type: `'accent'` | `'cta'`
 - Default: `'accent'`
 
 ```html preview
