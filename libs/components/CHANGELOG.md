@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Wed, 09 Nov 2022 08:48:48 GMT and should not be manually modified.
+This log was last generated on Thu, 10 Nov 2022 15:01:26 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.97
+
+Thu, 10 Nov 2022 15:01:26 GMT
+
+### Changes
+
+- unify appearance to apply cross components (yinon@hotmail.com)
 
 ## 3.0.0-next.96
 

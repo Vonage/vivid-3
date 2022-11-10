@@ -4,15 +4,15 @@
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent,
-	$shades: primary underpin faint,
+	$shades: primary firm faint soft,
 	$default: accent,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
-	$appearances: fieldset,
-	$states: idle hover checked disabled,
-	$default: fieldset,
+	$appearances: outlined,
+	$states: idle hover active checked checkedAndHover disabled readonly,
+	$default: outlined,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
@@ -48,13 +48,13 @@ $control-border: 2px;
 	width: $control-size;
 	height: $control-size;
 	flex-shrink: 0;
-	background-color: var(#{utils.get-color-token(canvas)});
+	background-color: var(#{appearance.get-appearance-token(fill)});
 	border-radius: 50%;
 	box-shadow: inset 0 0 0 $control-border var(#{appearance.get-appearance-token(outline)});
 
 	&::after {
 		position: absolute;
-		background-color: var(#{appearance.get-appearance-token(outline)});
+		background-color: var(#{appearance.get-appearance-token(text)});
 		border-radius: inherit;
 		content: '';
 		inset: 5px;
@@ -69,11 +69,6 @@ label {
 	color: var(#{constants.$vvd-color-canvas-text});
 	cursor: pointer;
 	font: var(#{constants.$vvd-typography-base});
-
-	.base.disabled & {
-		color: var(#{constants.$vvd-color-neutral-400});
-		cursor: not-allowed;
-	}
 }
 
 .focus-indicator {
