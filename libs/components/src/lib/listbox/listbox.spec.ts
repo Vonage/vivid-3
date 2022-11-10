@@ -52,7 +52,7 @@ describe('vwc-listbox', () => {
 			element.disabled = true;
 			await elementUpdated(element);
 
-			expect(getBaseElement(element).classList.contains(`disabled`)).toBeTruthy();
+			expect(getBaseElement(element).classList.contains('disabled')).toBeTruthy();
 		});
 	});
 
