@@ -24,7 +24,7 @@ export const popupTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Popup> = () => html`
   <vwc-elevation>
-    <!--the popup-wrapper is needed for alternating the inside of the popup and not it's shadow-->
+    <!--the popup-wrapper is needed for alternating the inside of the popup and not its shadow-->
 	  <div class="popup-wrapper" ${ref('popupEl')}>
 			<div class="${getClasses}" aria-hidden="${(x) => x.open ? 'false' : 'true'}"
 				part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}">
