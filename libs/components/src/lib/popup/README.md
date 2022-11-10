@@ -80,13 +80,13 @@ Use the `popup` attribute to add Light dismiss behaviors.
 
 ```html preview center
 <vwc-button id="anchor" appearance='outlined' label='Click outside of the popup!'></vwc-button>
-<vwc-popup id="popup" anchor="anchor" open popup="auto">
+<vwc-popup id="popup" anchor="anchor" popup="auto">
   <vwc-layout gutters="small">
    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   </vwc-layout>
 </vwc-popup>
 <script>
-  anchor.addEventListener('click', () => popup.showPopUp());
+  anchor.addEventListener('click', () => popup.open = !popup.open);
 </script>
 ```
 ### Arrow

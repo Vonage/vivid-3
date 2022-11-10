@@ -50,13 +50,13 @@ export class Popup extends FoundationElement {
 		mode: 'boolean',
 	}) dismissible = false;
 
-	// /**
-	//  * determines if popup can be light dismissed
-	//  *
-	//  * @public
-	//  * HTML Attribute: popup
-	//  */
-	// @attr({ attribute: 'light-dismiss' }) popup: 'auto' | 'manual' = 'manual';
+	/**
+	 * determines if popup can be light dismissed
+	 *
+	 * @public
+	 * HTML Attribute: popup
+	 */
+	@attr popup: 'auto' | 'manual' = 'manual';
 
 	/**
 	 * adds small triangle to indicate the trigger element
@@ -108,6 +108,12 @@ export class Popup extends FoundationElement {
 		switch (name) {
 			case 'anchor': {
 				this.#anchorEl = this.#getAnchorById();
+				break;
+			}
+			case 'open': {
+				if (this.popup == "auto") {
+					(this as any)?.showPopUp();
+				}
 				break;
 			}
 		}
@@ -166,15 +172,4 @@ export class Popup extends FoundationElement {
 	#getAnchorById(): HTMLElement | null {
 		return document.getElementById(this.anchor);
 	}
-
-	// showPopUp() {
-	// 	debugger;
-	// 	this.showPopUp();
-	// 	this.open = true;
-	// }
-
-	// hidePopUp() {
-	// 	debugger;
-	// 	this.open = false;
-	// }
 }
