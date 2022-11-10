@@ -2,7 +2,7 @@
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent success information alert warning,
-	$shades: primary intermediate backdrop,
+	$shades: intermediate backdrop,
 	$default: announcement,
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
