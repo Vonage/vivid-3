@@ -25,6 +25,9 @@
 	@include connotation.connotation;
 	@include appearance.appearance;
 
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
 	position: relative;
 	padding: 4px;
 	background-color: var(#{appearance.get-appearance-token(fill)});
@@ -39,10 +42,4 @@
 	:host(:not(:focus-within)) & {
 		display: none;
 	}
-}
-
-slot {
-	display: flex;
-	flex-direction: column;
-	gap: 4px;
 }
