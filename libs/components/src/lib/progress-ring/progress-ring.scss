@@ -31,7 +31,7 @@ $size: (
 	2: size.$vvd-size-expanded,
 	3: size.$vvd-size-extra-expanded,
 );
-$size-keys: map.keys($density);
+$size-keys: map.keys($size);
 $default-size: list.nth($size-keys, 6);
 
 .base {
@@ -45,7 +45,7 @@ $default-size: list.nth($size-keys, 6);
 	outline: none;
 
 	@include utils.spread-list-selectors('.size', $size-keys, $default-size) using($value) {
-		#{variables.$progress-ring-density}: map.get($size, $value);
+		#{variables.$progress-ring-size}: map.get($size, $value);
 	}
 }
 
