@@ -15,6 +15,8 @@
 	$default: filled,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+
 
 .base {
 	@include connotation.connotation;
@@ -32,15 +34,15 @@
 	vertical-align: middle;
 
 	&.size-condensed {
-		@include mixins.get-size-properties(32px, #{constants.$vvd-typography-base-condensed-bold});
+		@include mixins.get-size-properties(#{size.$vvd-size-condensed}, #{constants.$vvd-typography-base-condensed-bold});
 	}
 
 	&.size-expanded {
-		@include mixins.get-size-properties(48px, #{constants.$vvd-typography-heading-4});
+		@include mixins.get-size-properties(#{size.$vvd-size-expanded}, #{constants.$vvd-typography-heading-4});
 	}
 
 	&:not(.size-condensed, .size-expanded) {
-		@include mixins.get-size-properties(40px, #{constants.$vvd-typography-base-extended-bold});
+		@include mixins.get-size-properties(#{size.$vvd-size-normal}, #{constants.$vvd-typography-base-extended-bold});
 	}
 
 	&:not(.shape-pill) {

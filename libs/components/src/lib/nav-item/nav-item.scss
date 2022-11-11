@@ -13,10 +13,11 @@
 	$default: ghost,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
 
 
 .control {
-	$min-block-size: 40px;
+	$min-block-size: #{size.$vvd-size-normal};
 	$gap: 8px;
 
 	position: relative;
@@ -32,7 +33,6 @@
 	hyphens: auto;
 	inline-size: 100%;
 	min-block-size: $min-block-size;
-	padding-block: 10px;
 	padding-inline: $gap;
 	text-decoration: none;
 	vertical-align: middle;
@@ -64,4 +64,8 @@
 
 .icon {
 	font-size: 20px;
+
+	.control:not(.icon-only) & {
+		color: var(#{constants.$vvd-color-neutral-600});
+	}
 }

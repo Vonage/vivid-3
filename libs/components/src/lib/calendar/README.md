@@ -70,7 +70,7 @@ Assign elements to a day column using `'day-0'` | `'day-1'` | `'day-2'` | `'day-
 
 ### getEventContext()
 
-- Type: function
+- Type: `function`
 - Returns: `{ day: number, hour: number }` | `null`
 
 Accepts event reference and returns an object containing _day_ & _hour_  if applicable.

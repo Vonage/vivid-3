@@ -4,7 +4,7 @@ A floating action button (FAB) is a circled icon that floats above the user inte
 
 ```js
 <script type='module'>
-    import '@vonage/vivid/fab';
+  import '@vonage/vivid/fab';
 </script>
 ```
 

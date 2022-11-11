@@ -1,12 +1,12 @@
 # Button
 
-A button represents an action that the user can take. Use buttons to enable important actions.  
+A button represents an action that the user can take. Use buttons to enable important actions.
 All native attributes of `button` are supported as well as some enhancements.
 
 
 ```js
 <script type='module'>
-    import '@vonage/vivid/button';
+  import '@vonage/vivid/button';
 </script>
 ```
 

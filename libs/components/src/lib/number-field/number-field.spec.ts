@@ -5,7 +5,7 @@ import {
 	getControlElement,
 	listenToFormSubmission
 } from '@vivid-nx/shared';
-import {Density, Shape, Size} from '../enums';
+import {Shape} from '../enums';
 import { NumberField } from './number-field';
 import '.';
 
@@ -563,19 +563,19 @@ describe('vwc-number-field', () => {
 			expect(subtractButton.getAttribute('shape')).toEqual(Shape.Pill);
 		});
 
-		it('should have size normal when field is extended', async function() {
+		it('should have density normal when field is extended', async function() {
 			element.density = Density.Extended;
 			await elementUpdated(element);
-			expect(addButton.getAttribute('size')).toEqual(Size.Normal);
-			expect(subtractButton.getAttribute('size')).toEqual(Size.Normal);
+			expect(addButton.getAttribute('density')).toEqual(Density.Normal);
+			expect(subtractButton.getAttribute('density')).toEqual(Density.Normal);
 		});
 
-		it('should have size condensed when field is not extended', async function() {
+		it('should have density condensed when field is not extended', async function() {
 			const addButton = getRootElement(element).querySelector('#add') as HTMLButtonElement;
 			const subtractButton = getRootElement(element).querySelector('#subtract') as HTMLButtonElement;
 			await elementUpdated(element);
-			expect(addButton.getAttribute('size')).toEqual(Size.Condensed);
-			expect(subtractButton.getAttribute('size')).toEqual(Size.Condensed);
+			expect(addButton.getAttribute('density')).toEqual(Density.Condensed);
+			expect(subtractButton.getAttribute('density')).toEqual(Density.Condensed);
 		});
 
 		it('should set step as 1 when step is null', async function () {

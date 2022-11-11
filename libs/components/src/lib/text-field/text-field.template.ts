@@ -17,22 +17,20 @@ const getStateClasses = ({
 	value,
 	readOnly,
 	placeholder,
-	density,
 	appearance,
 	shape,
 	label,
 	successText
 }: TextField) => classNames(
-	['error', Boolean(errorValidationMessage)],
+	['error connotation-alert', Boolean(errorValidationMessage)],
 	['disabled', disabled],
 	['has-value', Boolean(value)],
 	['readonly', readOnly],
 	['placeholder', Boolean(placeholder)],
-	[`density-${density}`, Boolean(density)],
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	['no-label', !label],
-	['success', Boolean(successText)]
+	['success connotation-success', Boolean(successText)]
 );
 
 /**
@@ -45,6 +43,9 @@ function renderLabel() {
 	  </label>`;
 }
 
+/**
+ *
+ */
 function renderCharCount() {
 	return html<TextField>`
 		<span class="char-count">${x => x.value ? x.value.length : 0 } / ${ x => x.maxlength }</span>

@@ -11,7 +11,7 @@ const getClasses = ({connotation, size, paused}: ProgressRing) => classNames(
 	'base',
 	['disabled', !!paused],
 	[`connotation-${connotation}`, !!connotation],
-	[`size-${(size ? Number(size) : 0) + 10}`, !!size],
+	[`density-${size}`, !!size],
 );
 const progressSegments: number = 44;
 

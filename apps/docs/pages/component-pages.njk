@@ -1,5 +1,4 @@
 ---
-layout: base.njk
 tags: components
 pagination:
     data: components
@@ -8,9 +7,26 @@ pagination:
 permalink: "components/{{ component.title | slug }}/"
 ---
 
-{% for url in component.modules %}
-<script type="module" src="{{ url | url }}"></script>
-{% endfor %}
+{% extends '../_layouts/base.njk' %}
 
+{% block header %}
+	{% set urls = component.modules %}
 
-{% renderFile component.markdown %}
+	{% if (component.status) == "alpha" %}
+		{% set urls = (urls.push("/assets/modules/components/banner/index.js"),urls) %}
+	{% endif %}
+
+	{% for url in urls %}
+		<script type="module" src="{{ url | url }}"></script>
+	{% endfor %}
+{% endblock %}
+
+{% block banner %}
+	{% if (component.status) == "alpha" %}
+		<vwc-banner class="banner" text="Alpha: this is the initial phase of component testing. Expect breaking changes." connotation="warning"></vwc-banner>
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+	{% renderFile component.markdown %}
+{% endblock %}

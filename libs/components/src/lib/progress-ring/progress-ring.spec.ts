@@ -139,25 +139,24 @@ describe('vwc-progress-ring', () => {
 	});
 
 	describe('size', function () {
-		const BASE_size = 10;
 		let baseElement: Element | null | undefined;
 		beforeEach(function () {
 			baseElement = element.shadowRoot?.querySelector('.base');
 		});
 
 		it('should set size class only if exists', async function () {
-			const classListContainssize = baseElement?.className.split(' ').reduce((contains: boolean, className: string) => {
+			const classListContainsSize = baseElement?.className.split(' ').reduce((contains: boolean, className: string) => {
 				return contains || className.indexOf('size-') > -1;
 			}, false);
-			expect(classListContainssize).toEqual(false);
+			expect(classListContainsSize).toEqual(false);
 		});
 
 		it('should set size class according to attribute plus base size', async function () {
-			const sizeValue = 12;
-			const expectedClass = `size-${sizeValue + BASE_size}`;
+			const sizeValue = 2;
+			const expectedClass = `size-${sizeValue}`;
 			element.setAttribute('size', sizeValue.toString());
 			await elementUpdated(element);
-			expect(baseElement?.classList.contains(expectedClass)).toBeTruthy();
+			expect(baseElement?.classList.contains(expectedClass)).toEqual(true);
 		});
 	});
 });

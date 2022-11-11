@@ -13,6 +13,8 @@
 	$default: ghost,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+
 
 @supports selector(:focus-visible) {
 	:host(:focus) {
@@ -21,7 +23,7 @@
 }
 
 .base {
-	$min-block-size: 40px;
+	$min-block-size: #{size.$vvd-size-normal};
 	$gap: 8px;
 
 	@include appearance.appearance;
@@ -63,7 +65,11 @@
 .icon {
 	font-size: 20px;
 
-	.base:not(.item-checkbox, .item-radio) & {
+	.base:is(.disabled, .item-checkbox, .item-radio) & {
+		color: var(#{appearance.get-appearance-token(text)});
+	}
+
+	.base:not(.disabled, .item-checkbox, .item-radio) & {
 		color: var(#{constants.$vvd-color-neutral-600});
 	}
 }

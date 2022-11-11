@@ -16,6 +16,8 @@
 	$default: ghost,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+
 
 :host {
 	display: inline-block;
@@ -72,22 +74,22 @@
 	/* Size */
 	&:not(.stacked) {
 		&.size-condensed {
-			@include mixins.get-size-properties(32px, #{constants.$vvd-typography-base-condensed-bold}, 8px, 12px, 16px);
+			@include mixins.get-size-properties(#{size.$vvd-size-condensed}, #{constants.$vvd-typography-base-condensed-bold}, 8px, 12px, 16px);
 		}
 
 		&.size-expanded {
-			@include mixins.get-size-properties(48px, #{constants.$vvd-typography-base-extended-bold}, 10px, 20px, 24px);
+			@include mixins.get-size-properties(#{size.$vvd-size-expanded}, #{constants.$vvd-typography-base-extended-bold}, 10px, 20px, 24px);
 		}
 
 		&:not(.size-condensed, .size-expanded) {
-			@include mixins.get-size-properties(40px, #{constants.$vvd-typography-base-bold}, 8px, 16px, 20px);
+			@include mixins.get-size-properties(#{size.$vvd-size-normal}, #{constants.$vvd-typography-base-bold}, 8px, 16px, 20px);
 		}
 	}
 
 	&.stacked {
 		flex-direction: column;
 		justify-content: center;
-		@include mixins.get-size-properties(68px, #{constants.$vvd-typography-base-bold}, 10px, 16px, 20px);
+		@include mixins.get-size-properties(calc(#{size.$vvd-size-expanded} + #{size.$vvd-size-ultra-condensed}), #{constants.$vvd-typography-base-bold}, 10px, 16px, 20px);
 	}
 }
 

@@ -54,7 +54,7 @@ Note that icon, if not specifically set, defaults to a connotation-associated ic
 - Type: `boolean`
 - Default: `false`
 
-The `removable` attribute sets a remove button. On click it will remove the banner from the DOM.  
+The `removable` attribute sets a remove button. On click it will remove the banner from the DOM.
 
 ```html preview full
 <vwc-banner text="Here's some information that you may find important!" removable></vwc-banner>
@@ -68,7 +68,7 @@ You can add action items using slotted content in a named slot `action-items`:
 
 ```html preview full
 <vwc-banner text="A banner with an action button">
-    <vwc-button slot="action-items" appearance="filled" connotation="accent" label="Learn More"></vwc-button>
+  <vwc-button slot="action-items" appearance="filled" connotation="accent" label="Learn More"></vwc-button>
 </vwc-banner>
 ```
 
@@ -86,8 +86,8 @@ Fires `removed` when the removing animation is done.
 
 ### remove()
 
-- Type: function
-- Returns: void
+- Type: `function`
+- Returns: `void`
 
 Removes the banner from the DOM.  Fires the `removing` event and starts the remove animation.  When the animation finishes, it emits the `removed` event and removes the banner from the DOM completely.  If you have a variable that refers to the banner element make sure to clear it otherwise it might cause a memory leak.
 

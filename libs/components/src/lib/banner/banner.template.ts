@@ -19,6 +19,7 @@ const getClasses = (_: Banner) => classNames(
 function renderDismissButton() {
 	return html<Banner>`
 	  <vwc-button
+				part="vvd-theme-alternate"
 			  size="condensed"
 			  class="dismiss-button"
 			  icon="close-line"
