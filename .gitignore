@@ -4,7 +4,9 @@
 /dist
 /tmp
 /out-tsc
-/libs/components/custom-elements.json
+
+# generated output
+/libs/components/tsdoc-metadata.json
 
 # dependencies
 /node_modules

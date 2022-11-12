@@ -28,7 +28,7 @@
 		"@11ty/eleventy": "^1.0.1",
 		"@angular-eslint/utils": "^13.2.1",
 		"@microsoft/eslint-config-fast-dna": "^2.1.0",
-		"@microsoft/api-extractor": "7.24.2",
+		"@microsoft/api-extractor": "7.33.4",
 		"@custom-elements-manifest/analyzer": "0.6.4",
 		"cem-plugin-readonly": "0.0.5",
 		"cem-plugin-async-function": "0.0.5",

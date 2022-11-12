@@ -17,7 +17,7 @@ export default {
         '**/helpers/*.ts'
     ],
     /** Directory to output CEM to */
-    outdir: 'libs/components',
+    outdir: '/dist/libs/components',
     /** Run in dev mode, provides extra logging */
     dev: false,
     /** Enable special handling for fast */

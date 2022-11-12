@@ -4,10 +4,11 @@
   "projectType": "library",
   "targets": {
     "gen": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "cem analyze --config cem.config.mjs"
+          "cem analyze --config cem.config.mjs",
+          "api-extractor run -c ./libs/components/api-extractor.json"
         ],
         "parallel": false
       }
@@ -71,11 +72,6 @@
         "project": "libs/components/package.json",
         "rollupConfig": "libs/components/rollup.config.prod.ts",
         "assets": [
-          {
-            "input": "./libs/components",
-            "glob": "custom-elements.json",
-            "output": "."
-          },
           {
             "input": "./libs/components",
             "glob": "README.md",
