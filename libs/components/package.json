@@ -54,5 +54,6 @@
     "./text-field": "./text-field",
     "./text-area": "./text-area",
     "./tooltip": "./tooltip"
-  }
+  },
+  "customElements": "custom-elements.json"
 }
