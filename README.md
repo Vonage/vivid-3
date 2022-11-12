@@ -54,7 +54,7 @@ Feel free to check [issues page](https://github.com/Vonage/vivid-3/issues). You 
 
 `npx nx g @vonage/nx-vivid:component my-component`
 
-Will generate a new component in `libs/componnts/src/lib/my-component`
+Will generate a new component in `libs/components/src/lib/my-component`
 
 #### Test
 

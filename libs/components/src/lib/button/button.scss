@@ -1,4 +1,4 @@
-@use '../../../../../dist/libs/tokens/scss/constants' as constants;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use 'partials/variables' as variables;
 @use 'partials/mixins' as mixins;
 @use '../focus/partials/variables' as focus-variables;
@@ -16,6 +16,8 @@
 	$default: ghost,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+
 
 :host {
 	display: inline-block;
@@ -72,22 +74,22 @@
 	/* Size */
 	&:not(.stacked) {
 		&.density-condensed {
-			@include mixins.get-density-properties(32px, #{constants.$vvd-font-base-condensed-bold}, 8px, 12px, 16px);
+			@include mixins.get-density-properties(#{size.$vvd-size-condensed}, #{constants.$vvd-typography-base-condensed-bold}, 8px, 12px, 16px);
 		}
 
 		&.density-extended {
-			@include mixins.get-density-properties(48px, #{constants.$vvd-font-base-extended-bold}, 10px, 20px, 24px);
+			@include mixins.get-density-properties(#{size.$vvd-size-expanded}, #{constants.$vvd-typography-base-extended-bold}, 10px, 20px, 24px);
 		}
 
 		&:not(.density-condensed, .density-extended) {
-			@include mixins.get-density-properties(40px, #{constants.$vvd-font-base-bold}, 8px, 16px, 20px);
+			@include mixins.get-density-properties(#{size.$vvd-size-normal}, #{constants.$vvd-typography-base-bold}, 8px, 16px, 20px);
 		}
 	}
 
 	&.stacked {
 		flex-direction: column;
 		justify-content: center;
-		@include mixins.get-density-properties(68px, #{constants.$vvd-font-base-bold}, 10px, 16px, 20px);
+		@include mixins.get-density-properties(calc(#{size.$vvd-size-expanded} + #{size.$vvd-size-ultra-condensed}), #{constants.$vvd-typography-base-bold}, 10px, 16px, 20px);
 	}
 }
 

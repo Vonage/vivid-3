@@ -1,11 +1,11 @@
 import {
 	createFormHTML,
 	elementUpdated,
-	fixture,
+	fixture, getBaseElement,
 	getControlElement,
 	listenToFormSubmission
 } from '@vivid-nx/shared';
-import {Density, Shape} from '../enums';
+import {Shape} from '../enums';
 import { NumberField } from './number-field';
 import '.';
 
@@ -19,6 +19,20 @@ function getRootElement(element: NumberField) {
 }
 
 describe('vwc-number-field', () => {
+
+	function setToBlurred() {
+		element.dispatchEvent(new Event('blur'));
+	}
+
+	function setToFocused() {
+		element.dispatchEvent(new Event('focus'));
+	}
+
+	function setValidityToError(errorMessage = 'error') {
+		element.setValidity({badInput: true}, errorMessage);
+		element.validate();
+	}
+
 	let element: NumberField;
 
 	beforeEach(async () => {
@@ -276,13 +290,13 @@ describe('vwc-number-field', () => {
 
 	describe('helper text', function () {
 		it('should render the helper text when attribute is set', async function () {
-			const helperTextElementWithoutText = element.shadowRoot?.querySelector('.helper-text');
+			const helperTextElementWithoutText = element.shadowRoot?.querySelector('.helper-message');
 			const helperText = 'Helper Text';
 			element.helperText = helperText;
 			await elementUpdated(element);
 			expect(helperTextElementWithoutText)
 				.toBeNull();
-			expect(element.shadowRoot?.querySelector('.helper-text')
+			expect(element.shadowRoot?.querySelector('.helper-message')
 				?.textContent
 				?.trim())
 				.toEqual(helperText);
@@ -290,27 +304,6 @@ describe('vwc-number-field', () => {
 	});
 
 	describe('error message', function () {
-		/**
-		 *
-		 */
-		function setToBlurred() {
-			element.dispatchEvent(new Event('blur'));
-		}
-
-		/**
-		 *
-		 */
-		function setToFocused() {
-			element.dispatchEvent(new Event('focus'));
-		}
-
-		/**
-		 * @param errorMessage
-		 */
-		function setValidityToError(errorMessage = 'error') {
-			element.setValidity({badInput: true}, errorMessage);
-			element.validate();
-		}
 
 		it('should add class error to base if not valid', async function () {
 			element.dirtyValue = true;
@@ -403,6 +396,42 @@ describe('vwc-number-field', () => {
 		});
 	});
 
+	describe('successText', function () {
+		it('should add class success to base if successText is set', async function () {
+			element.successText = 'success';
+			await elementUpdated(element);
+
+			expect(getBaseElement(element)
+				.classList
+				.contains('success'))
+				.toEqual(true);
+		});
+
+		it('should not show helper text when success is shown', async function () {
+			element.helperText = 'help';
+			element.successText = 'success';
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.helper-text'))
+				.toBeNull();
+		});
+
+		it('should not show error message when success is shown', async function () {
+			element.dirtyValue = true;
+			setToBlurred();
+			setValidityToError('blah');
+			element.successText = 'success';
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.error-message'))
+				.toBeNull();
+		});
+
+		it('should show success message if set', async function() {
+			element.successText = 'success';
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.success-message')?.textContent?.trim()).toEqual('success');
+		});
+	});
+
 	describe('disabled', function () {
 		it('should set disabled class when attribute is set', async function () {
 			const disabledClassWhenEnabled = getRootElement(element)
@@ -433,19 +462,6 @@ describe('vwc-number-field', () => {
 			expect(activeClassWhenEnabled)
 				.toEqual(false);
 			expect(activeClassWhenDisabled)
-				.toEqual(true);
-		});
-	});
-
-	describe('density', function () {
-		it('should set the size class on the root', async function () {
-			const density = 'extended';
-			element.setAttribute('density', density);
-			await elementUpdated(element);
-
-			expect(getRootElement(element)
-				.classList
-				.contains('density-extended'))
 				.toEqual(true);
 		});
 	});
@@ -532,21 +548,6 @@ describe('vwc-number-field', () => {
 			await elementUpdated(element);
 			expect(addButton.getAttribute('shape')).toEqual(Shape.Pill);
 			expect(subtractButton.getAttribute('shape')).toEqual(Shape.Pill);
-		});
-
-		it('should have density normal when field is extended', async function() {
-			element.density = Density.Extended;
-			await elementUpdated(element);
-			expect(addButton.getAttribute('density')).toEqual(Density.Normal);
-			expect(subtractButton.getAttribute('density')).toEqual(Density.Normal);
-		});
-
-		it('should have density condensed when field is not extended', async function() {
-			const addButton = getRootElement(element).querySelector('#add') as HTMLButtonElement;
-			const subtractButton = getRootElement(element).querySelector('#subtract') as HTMLButtonElement;
-			await elementUpdated(element);
-			expect(addButton.getAttribute('density')).toEqual(Density.Condensed);
-			expect(subtractButton.getAttribute('density')).toEqual(Density.Condensed);
 		});
 
 		it('should set step as 1 when step is null', async function () {

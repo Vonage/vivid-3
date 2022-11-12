@@ -4,7 +4,7 @@ Find the icon you want to use on the [vivid icons search platform](https://icons
 
 ```js
 <script type='module'>
-    import '@vonage/vivid/icon';
+  import '@vonage/vivid/icon';
 </script>
 ```
 

@@ -5,18 +5,23 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import {classNames} from '@microsoft/fast-web-utilities';
+import {getFeedbackTemplate} from '../../shared/patterns';
 import {focusTemplateFactory} from '../../shared/patterns';
 import type {TextArea} from './text-area';
 
-const getClasses = ({value, errorValidationMessage, disabled, placeholder, readOnly}: TextArea) => classNames(
+const getClasses = ({value, errorValidationMessage, disabled, placeholder, readOnly, successText}: TextArea) => classNames(
 	'base',
 	['readonly', readOnly],
 	['placeholder', Boolean(placeholder)],
 	['disabled', disabled],
-	['error', Boolean(errorValidationMessage)],
+	['error connotation-alert', Boolean(errorValidationMessage)],
 	['has-value', Boolean(value)],
+	['success connotation-success', !!successText]
 );
 
+/**
+ *
+ */
 function renderLabel() {
 	return html<TextArea>`
 	  <label for="control" class="label">
@@ -24,16 +29,6 @@ function renderLabel() {
 	  </label>`;
 }
 
-function renderHelperText() {
-	return html<TextArea>`<span class="helper-text">${x => x.helperText}</span>`;
-}
-
-function renderErrorMessage() {
-	return html<TextArea>`
-    <vwc-icon class="error-message-icon" type="info-negative"></vwc-icon>
-    <span class="error-message">${x => x.errorValidationMessage}</span>
-	`;
-}
 /**
  * The template for the {@link @microsoft/fast-foundation#TextArea} component.
  *
@@ -87,8 +82,9 @@ export const TextAreaTemplate: (
 			</textarea>
 			  ${() => focusTemplate}
 		  </div>
-		  ${when(x => !x.errorValidationMessage && x.helperText?.length, renderHelperText())}
-		  ${when(x => x.errorValidationMessage, renderErrorMessage())}
+		${when(x => !x.successText && !x.errorValidationMessage && x.helperText?.length, getFeedbackTemplate('helper', context))}
+		${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplate('error', context))}
+		${when(x => x.successText, getFeedbackTemplate('success', context))}
 	  </div>
 	`;
 };

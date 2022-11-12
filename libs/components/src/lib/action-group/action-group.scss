@@ -1,3 +1,9 @@
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+	$connotations: accent,
+	$shades: backdrop primary intermediate faint,
+	$default: accent,
+);
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
 	$appearances: fieldset ghost,
 	$states: idle,
@@ -11,6 +17,7 @@
 }
 
 .base {
+	@include connotation.connotation;
 	@include appearance.appearance;
 
 	position: relative;
@@ -18,7 +25,6 @@
 	box-sizing: border-box;
 	align-items: center;
 	background-color: var(#{appearance.get-appearance-token(fill)});
-	color: var(#{appearance.get-appearance-token(text)});
 	inline-size: inherit;
 	vertical-align: middle;
 

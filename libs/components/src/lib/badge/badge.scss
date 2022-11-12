@@ -1,4 +1,4 @@
-@use '../../../../../dist/libs/tokens/scss/constants' as constants;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use 'partials/variables' as variables;
 
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
@@ -14,10 +14,14 @@
 	$default: filled,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+
 
 .base {
 	@include connotation.connotation;
 	@include appearance.appearance;
+
+	#{variables.$badge-block-size}: #{size.$vvd-size-ultra-condensed};
 
 	display: inline-flex;
 	box-sizing: border-box;
@@ -27,8 +31,10 @@
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	column-gap: 8px;
-	font: var(#{constants.$vvd-font-base-condensed-bold});
+	font: var(#{constants.$vvd-typography-base-condensed-bold});
+	padding-inline: 8px;
 	vertical-align: middle;
+
 
 	&.icon-only {
 		contain: size;
@@ -45,29 +51,8 @@
 	}
 }
 
-/* Size */
-
-.base:not(.density-condensed):not(.density-extended) {
-	#{variables.$badge-block-size}: 24px;
-
-	padding-inline: 10px;
-}
-
-.base.density-condensed {
-	#{variables.$badge-block-size}: 20px;
-
-	padding-inline: 8px;
-}
-
-.base.density-extended {
-	#{variables.$badge-block-size}: 28px;
-
-	padding-inline: 12px;
-}
-
 /* Shape */
 
-// stylelint-disable-next-line no-descending-specificity
 .base:not(.shape-pill) {
 	border-radius: 4px;
 }
