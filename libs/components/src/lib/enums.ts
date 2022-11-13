@@ -30,12 +30,6 @@ export enum Appearance {
 	Subtle = 'subtle',
 	Ghost = 'ghost',
 }
-//need to be removed after remove in text-field
-export enum Density {
-	Condensed = 'condensed',
-	Normal = 'normal',
-	Extended = 'extended',
-}
 
 export enum Size {
 	UltraCondensed = 'ultraCondensed',
