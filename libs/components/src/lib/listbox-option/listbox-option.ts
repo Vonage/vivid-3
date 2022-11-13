@@ -19,6 +19,7 @@ export class ListboxOption extends FoundationListboxOption {
 		attribute: 'text',
 	}) _text?: string;
 
+	// #region overrides base class accessor
 	override set text(value) {
 		this._text = value;
 	}
@@ -26,6 +27,7 @@ export class ListboxOption extends FoundationListboxOption {
 	override get text() {
 		return this._text ?? '';
 	}
+	// #endregion overrides
 }
 
 export interface ListboxOption extends AffixIconWithTrailing { }
