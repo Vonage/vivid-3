@@ -84,12 +84,12 @@ export function getFeedbackTemplate(messageType: FeedbackType, context: ElementD
 		'error': {
 			'messageProperty': 'errorValidationMessage',
 			'className': 'error',
-			'iconType': 'info-negative'
+			'iconType': 'info-line'
 		},
 		'success': {
 			'messageProperty': 'successText',
 			'className': 'success',
-			'iconType': 'check-circle-solid'
+			'iconType': 'check-circle-line'
 		}
 	};
 	const iconTag = context.tagFor(Icon);
