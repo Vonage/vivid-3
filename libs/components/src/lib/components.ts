@@ -30,6 +30,7 @@ export * from './progress';
 export * from './progress-ring';
 export * from './radio';
 export * from './radio-group';
+export * from './select';
 export * from './side-drawer';
 export * from './slider';
 export * from './switch';
