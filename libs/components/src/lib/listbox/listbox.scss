@@ -39,10 +39,6 @@
 	&:not(.direction-horizontal) {
 		flex-direction: column;
 	}
-
-	&.direction-horizontal {
-		flex-direction: row;
-	}
 }
 
 .focus-indicator {
