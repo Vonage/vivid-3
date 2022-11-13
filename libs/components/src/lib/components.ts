@@ -11,6 +11,7 @@ export * from './calendar';
 export * from './calendar-event';
 export * from './card';
 export * from './checkbox';
+export * from './combobox';
 export * from './elevation';
 export * from './dialog';
 export * from './divider';

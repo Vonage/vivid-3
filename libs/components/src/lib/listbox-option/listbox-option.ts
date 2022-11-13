@@ -13,11 +13,19 @@ export class ListboxOption extends FoundationListboxOption {
 	 *
 	 * @public
 	 *
-	 * HTML Attribute: optionText
+	 * HTML Attribute: text
 	 */
 	@attr({
 		attribute: 'text',
-	}) optionText?: string; // TODO: This should be named text
+	}) _text?: string;
+
+	override set text(value) {
+		this._text = value;
+	}
+
+	override get text() {
+		return this._text ?? '';
+	}
 }
 
 export interface ListboxOption extends AffixIconWithTrailing { }
