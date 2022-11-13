@@ -1,6 +1,6 @@
 {
   "type": "prerelease",
-  "comment": "change densety to size and extended to expanded",
+  "comment": "change density to size and extended to expanded",
   "packageName": "@vonage/vivid",
   "email": "rachel.tannenbaum@vonage.com",
   "dependentChangeType": "patch"
