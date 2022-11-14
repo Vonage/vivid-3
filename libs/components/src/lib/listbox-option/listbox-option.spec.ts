@@ -18,7 +18,7 @@ describe('vwc-option', () => {
 	describe('basic', () => {
 		it('should be initialized as a vwc-option', async () => {
 			expect(element).toBeInstanceOf(ListboxOption);
-			expect(element.text).toBeUndefined();
+			expect(element.text).toEqual('');
 			expect(element.icon).toBeUndefined();
 			expect(element.selected).toBeFalsy();
 			expect(element.checked).toBeUndefined();
