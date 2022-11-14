@@ -1,6 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import { ListboxElement as FoundationListboxElement } from '@microsoft/fast-foundation';
-import type { Appearance } from '../enums';
+import type { Appearance, Shape } from '../enums';
 
 /**
  * Types of listbox appearance.
@@ -8,6 +8,13 @@ import type { Appearance } from '../enums';
  * @public
  */
 export type LisboxAppearance = Extract<Appearance, Appearance.Outlined | Appearance.Ghost>;
+
+/**
+ * Types of listbox shape.
+ *
+ * @public
+ */
+type ListboxShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
  * Base class for listbox
@@ -32,6 +39,15 @@ export class Listbox extends FoundationListboxElement {
 	 * HTML Attribute: direction
 	 */
 	@attr direction?: 'horizontal' | 'vertical';
+
+	/**
+	 * The shape the listbox should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: shape
+	 */
+	@attr shape?: ListboxShape;
 
 	override slottedOptionsChanged(prev: Element[] | undefined, next: Element[]) {
 		super.slottedOptionsChanged(prev, next);

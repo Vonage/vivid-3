@@ -1,3 +1,4 @@
+@use 'partials/variables' as variables;
 @use '../focus/partials/variables' as focus-variables;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent,
@@ -25,12 +26,12 @@
 	@include connotation.connotation;
 	@include appearance.appearance;
 
+	border-radius: var(#{variables.$listbox-border-radius});
 	position: relative;
 	display: inline-flex;
 	box-sizing: border-box;
 	padding: 4px;
 	background-color: var(#{appearance.get-appearance-token(fill)});
-	border-radius: 6px;
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	contain: paint;
 	gap: 2px;
@@ -47,4 +48,18 @@
 	:host(:not(:focus-within)) & {
 		display: none;
 	}
+}
+
+/* Shape */
+.base:not(.shape-pill) {
+	#{variables.$listbox-border-radius}: 6px;
+}
+
+.base.shape-pill {
+	#{variables.$listbox-border-radius}: 24px;
+}
+
+::slotted([role='option']) {
+	border-radius: var(#{variables.$listbox-border-radius});
+	contain: content;
 }

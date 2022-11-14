@@ -71,6 +71,24 @@ Set the `direction` property to change the listbox options' flow.
 </vwc-listbox>
 ```
 
+### Shape
+
+Use the `shape` attribute to set the action-Group's edges.  
+When using shape - pay in mind setting the slotted elements with the same shape property.
+
+note that the `shape` property is **only supported** when the `direction` is set to `horizontal`.
+
+- Type: `'rounded'` | `'pill'`
+- Default: `'rounded'`
+
+```html preview
+<vwc-listbox shape="pill" direction="horizontal" >
+  <vwc-option value="1" text="Option 1"></vwc-option>
+  <vwc-option value="2" text="Option 2"></vwc-option>
+  <vwc-option value="3" text="Option 3"></vwc-option>
+</vwc-listbox>
+```
+
 ### Disabled
 
 Add the `disabled` attribute to disable the listbox.
