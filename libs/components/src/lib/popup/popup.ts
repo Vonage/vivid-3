@@ -23,6 +23,9 @@ export class Popup extends FoundationElement {
 	#cleanup?: () => void; // cleans the autoupdate
 
 	#anchorEl: Element | null | undefined;
+	get anchorElement(): Element | null | undefined {
+		return this.#anchorEl;
+	}
 
 	popupEl!: HTMLElement;
 
@@ -87,10 +90,6 @@ export class Popup extends FoundationElement {
 	 * HTML Attribute: anchor
 	 */
 	@attr anchor!: string;
-
-	constructor() {
-		super();
-	}
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();

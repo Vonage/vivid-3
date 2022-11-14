@@ -1,13 +1,12 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
-import type { Placement } from '@floating-ui/dom';
+import { Popup } from '../popup/popup';
 
 /**
  * Base class for tooltip
  *
  * @public
  */
-export class Tooltip extends FoundationElement {
+export class Tooltip extends Popup {
 	/**
 	 * the text of the tooltip
 	 * accepts string
@@ -16,29 +15,29 @@ export class Tooltip extends FoundationElement {
 	 */
 	@attr text?: string;
 
-	/**
-	 * indicates whether the tooltip is open
-	 *
-	 * @public
-	 * HTML Attribute: open
-	 */
-	@attr({
-		mode: 'boolean',
-	}) open = false;
+	override connectedCallback(): void {
+		super.connectedCallback();
 
-	/**
-	 * the placement of the tooltip
-	 *
-	 * @public
-	 * HTML Attribute: placement
-	 */
-	@attr placement?: Placement;
+		this.anchorElement?.addEventListener('mouseover', this.#show);
+		this.anchorElement?.addEventListener('mouseout', this.#hide);
+		this.anchorElement?.addEventListener('focusin', this.#show);
+		this.anchorElement?.addEventListener('focusout', this.#hide);
+	}
 
-	/**
-	 * ID reference to element in the tooltip's owner document.
-	 *
-	 * @public
-	 * HTML Attribute: anchor
-	 */
-	@attr anchor?: string;
+	override disconnectedCallback(): void {
+		super.disconnectedCallback();
+
+		this.anchorElement?.removeEventListener('mouseover', this.#show);
+		this.anchorElement?.removeEventListener('mouseout', this.#hide);
+		this.anchorElement?.removeEventListener('focusin', this.#show);
+		this.anchorElement?.removeEventListener('focusout', this.#hide);
+	}
+
+	#show = () => {
+		this.open = true;
+	}
+
+	#hide = () => {
+		this.open = false;
+	}
 }

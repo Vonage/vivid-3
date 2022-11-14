@@ -21,7 +21,7 @@ Do not target non-interactive controls as a tooltip's anchor (such as non-focusa
 
 ```html preview center
 <vwc-button id="anchor" icon="help-line" shape="pill" aria-describedby="tooltip"></vwc-button>
-<vwc-tooltip id="tooltip" anchor="anchor" text="I'm a tooltip" open></vwc-tooltip>
+<vwc-tooltip id="tooltip" anchor="anchor" text="I'm a tooltip"></vwc-tooltip>
 ```
 
 ### Text
@@ -30,26 +30,6 @@ The tooltip is a description and therefor, the tooltip itself can not be interac
 
 - Type: `string`
 - Default: `undefined`
-
-### Open
-
-Use the `open` attribute to indicate whether the tooltip is open.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview center
-<vwc-button id="button" icon="info-line" shape="pill" aria-describedby="tooltip"></vwc-button>
-<vwc-tooltip id="tooltip" anchor="button" text="Focus or hover to open."></vwc-tooltip>
-
-<script>
-  button.addEventListener('mouseover', ()=> tooltip.open = true);
-  button.addEventListener('mouseout', ()=> tooltip.open = false);
-
-  button.addEventListener('focusin', ()=> tooltip.open = true);
-  button.addEventListener('focusout', ()=> tooltip.open = false);
-</script>
-```
 
 ### Placement
 
@@ -65,10 +45,10 @@ Use the `placement` attribute to set the placement of the tooltip around the anc
   }
 </style>
 <vwc-button id="anchor" appearance='outlined' label='This is an anchor'></vwc-button>
-<vwc-tooltip anchor="anchor" open text="right" placement="right"></vwc-tooltip>
-<vwc-tooltip anchor="anchor" open text="left" placement="left"></vwc-tooltip>
-<vwc-tooltip anchor="anchor" open text="top" placement="top"></vwc-tooltip>
-<vwc-tooltip anchor="anchor" open text="bottom" placement="bottom"></vwc-tooltip>
+<vwc-tooltip anchor="anchor" text="right" placement="right"></vwc-tooltip>
+<vwc-tooltip anchor="anchor" text="left" placement="left"></vwc-tooltip>
+<vwc-tooltip anchor="anchor" text="top" placement="top"></vwc-tooltip>
+<vwc-tooltip anchor="anchor" text="bottom" placement="bottom"></vwc-tooltip>
 ```
 
 ## CSS Variables
@@ -88,7 +68,7 @@ Use the `--tooltip-inline-size` variable to set the tooltip's inline size.
 </style>
 
 <vwc-button id="button" icon="info-line" shape="pill" aria-describedby="tooltip"></vwc-button>
-<vwc-tooltip open id="tooltip" anchor="button" text="My inline size is 200px"></vwc-tooltip>
+<vwc-tooltip id="tooltip" anchor="button" text="My inline size is 200px"></vwc-tooltip>
 ```
 
 ## Accessibility
@@ -113,14 +93,6 @@ Use the `--tooltip-inline-size` variable to set the tooltip's inline size.
 </p>
 
 <vwc-tooltip id="tooltip" anchor="button" placement="bottom-end" text="I'm the tooltip content"></vwc-tooltip>
-
-<script>
-  button.addEventListener('mouseover', ()=> tooltip.open = true);
-  button.addEventListener('mouseout', ()=> tooltip.open = false);
-
-  button.addEventListener('focusin', ()=> tooltip.open = true);
-  button.addEventListener('focusout', ()=> tooltip.open = false);
-</script>
 ```
 
 ## Caveat
