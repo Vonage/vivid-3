@@ -1,6 +1,6 @@
 {
   "type": "none",
-  "comment": "add inert",
+  "comment": "add inert to tooltip",
   "packageName": "@vonage/vivid",
   "email": "rina.oksman@vonage.com",
   "dependentChangeType": "none"
