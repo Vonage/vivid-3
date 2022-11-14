@@ -5,4 +5,12 @@
 .icon {
 	inset-inline-start: unset;
 	inset-inline-end: 16px;
+
+	:not(.disabled) & {
+		cursor: pointer;
+	}
+
+	.disabled & {
+		cursor: not-allowed;
+	}
 }
