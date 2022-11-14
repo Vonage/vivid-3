@@ -9,10 +9,11 @@ Represents a combobox custom element.
 ```html preview
 <style>
   :root { /* for demo purposes */
-    block-size: 260px;
+    block-size: 280px;
   }
 </style>
-<vwc-combobox autocomplete="both">
+
+<vwc-combobox autocomplete="both" label="Search for something">
  <vwc-option text="Christopher Eccleston"></vwc-option>
  <vwc-option text="David Tenant"></vwc-option>
  <vwc-option text="Matt Smith"></vwc-option>
