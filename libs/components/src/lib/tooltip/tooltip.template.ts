@@ -21,8 +21,8 @@ export const TooltipTemplate: (
 ) => ViewTemplate<Tooltip> = () => html`
 <vwc-popup class="${getClasses}" arrow alternate
 placement=${(x) => x.placement} open=${(x) => x.open} anchor=${(x) => x.anchor}
-  exportparts="vvd-theme-alternate" role="tooltip" inert>
-  <div class="tooltip">
+  exportparts="vvd-theme-alternate">
+  <div class="tooltip" role="tooltip" inert>
     <header part="vvd-theme-alternate" class="tooltip-header">
       <div class="tooltip-text">${(x) => x.text}</div>
     </header>
