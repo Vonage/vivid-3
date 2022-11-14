@@ -3,6 +3,7 @@ import type { ElementDefinitionContext, FoundationElementDefinition } from '@mic
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Listbox } from '../listbox/listbox.js';
 import { affixIconTemplateFactory } from '../shared/patterns/affix.js';
+import { focusTemplateFactory } from '../shared/patterns/focus.js';
 import type { Combobox } from './combobox';
 
 
@@ -17,17 +18,13 @@ function renderLabel() {
 }
 
 const getStateClasses = ({
-	errorValidationMessage,
 	disabled,
 	placeholder,
 	label,
-	successText
 }: Combobox) => classNames(
-	['error connotation-alert', Boolean(errorValidationMessage)],
 	['disabled', disabled],
 	['placeholder', Boolean(placeholder)],
 	['no-label', !label],
-	['success connotation-success', Boolean(successText)]
 );
 
 /**
@@ -35,14 +32,15 @@ const getStateClasses = ({
  */
 function renderInput(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
+	const focusTemplate = focusTemplateFactory(context);
 
 	return html<Combobox>`
 		<div class="base ${getStateClasses}">
 			${when(x => x.label, renderLabel())}
 			<div class="fieldset">
-				${x => affixIconTemplate(x.icon)}
 				<input
 					id="control"
+					class="control"
 					aria-activedescendant="${x =>	x.open ? x.ariaActiveDescendant : null}"
 					aria-autocomplete="${x => x.ariaAutoComplete}"
 					aria-controls="${x => x.ariaControls}"
@@ -58,6 +56,8 @@ function renderInput(context: ElementDefinitionContext) {
 					@keyup="${(x, c) => x.keyupHandler(c.event as KeyboardEvent)}"
 					${ref('control')}
 				/>
+				${() => affixIconTemplate('chevron-down-line')}
+				${() => focusTemplate}
 			</div>
 		</div>`;
 }
@@ -66,12 +66,13 @@ function renderInput(context: ElementDefinitionContext) {
 /**
  * The template for the {@link @microsoft/fast-foundation#(Combobox:class)} component.
  *
+ * @param context
  * @public
  */
 export const ComboboxTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Combobox> = () => html<Combobox>`
+) => ViewTemplate<Combobox> = (context: ElementDefinitionContext) => html<Combobox>`
         <template
             aria-disabled="${x => x.ariaDisabled}"
             autocomplete="${x => x.autocomplete}"
@@ -82,7 +83,7 @@ export const ComboboxTemplate: (
             @keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
         >
 						<slot name="control">
-							${renderInput}
+							${() => renderInput(context)}
 						</slot>
 						<vwc-popup
 							anchor="text-field"
