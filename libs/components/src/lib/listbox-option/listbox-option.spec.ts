@@ -18,7 +18,7 @@ describe('vwc-option', () => {
 	describe('basic', () => {
 		it('should be initialized as a vwc-option', async () => {
 			expect(element).toBeInstanceOf(ListboxOption);
-			expect(element.optionText).toBeUndefined();
+			expect(element.text).toEqual('');
 			expect(element.icon).toBeUndefined();
 			expect(element.selected).toBeFalsy();
 			expect(element.checked).toBeUndefined();
@@ -43,7 +43,7 @@ describe('vwc-option', () => {
 		it('should set text property value as text content', async () => {
 			const text = 'lorem';
 
-			element.optionText = text;
+			element.text = text;
 			await elementUpdated(element);
 
 			const base = element.shadowRoot?.querySelector('.base');
