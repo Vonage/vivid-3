@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Thu, 10 Nov 2022 15:01:26 GMT and should not be manually modified.
+This log was last generated on Mon, 14 Nov 2022 13:05:26 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.98
+
+Mon, 14 Nov 2022 13:05:26 GMT
+
+### Changes
+
+- option class - align property with naming convetion (yinon@hotmail.com)
 
 ## 3.0.0-next.97
 
