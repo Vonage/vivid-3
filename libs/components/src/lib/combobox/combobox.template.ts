@@ -90,6 +90,7 @@ export const ComboboxTemplate: (
 							?open="${x => x.open}">
 							<div
 								id="${x => x.listboxId}"
+								class="listbox"
 								role="listbox"
 								?disabled="${x => x.disabled}"
 								${ref('listbox')}

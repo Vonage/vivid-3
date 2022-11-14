@@ -7,6 +7,11 @@ Represents a combobox custom element.
 ```
 
 ```html preview
+<style>
+  :root { /* for demo purposes */
+    block-size: 260px;
+  }
+</style>
 <vwc-combobox autocomplete="both">
  <vwc-option text="Christopher Eccleston"></vwc-option>
  <vwc-option text="David Tenant"></vwc-option>
