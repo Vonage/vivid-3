@@ -1,7 +1,67 @@
-import { html, ref, slotted, ViewTemplate } from '@microsoft/fast-element';
+import { html, ref, slotted, ViewTemplate, when } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
+import { classNames } from '@microsoft/fast-web-utilities';
 import { Listbox } from '../listbox/listbox.js';
+import { affixIconTemplateFactory } from '../shared/patterns/affix.js';
 import type { Combobox } from './combobox';
+
+
+/**
+ *
+ */
+function renderLabel() {
+	return html<Combobox>`
+	  <label for="control" class="label">
+		  ${x => x.label}
+	  </label>`;
+}
+
+const getStateClasses = ({
+	errorValidationMessage,
+	disabled,
+	placeholder,
+	label,
+	successText
+}: Combobox) => classNames(
+	['error connotation-alert', Boolean(errorValidationMessage)],
+	['disabled', disabled],
+	['placeholder', Boolean(placeholder)],
+	['no-label', !label],
+	['success connotation-success', Boolean(successText)]
+);
+
+/**
+ * @param context
+ */
+function renderInput(context: ElementDefinitionContext) {
+	const affixIconTemplate = affixIconTemplateFactory(context);
+
+	return html<Combobox>`
+		<div class="base ${getStateClasses}">
+			${when(x => x.label, renderLabel())}
+			<div class="fieldset">
+				${x => affixIconTemplate(x.icon)}
+				<input
+					id="control"
+					aria-activedescendant="${x =>	x.open ? x.ariaActiveDescendant : null}"
+					aria-autocomplete="${x => x.ariaAutoComplete}"
+					aria-controls="${x => x.ariaControls}"
+					aria-disabled="${x => x.ariaDisabled}"
+					aria-expanded="${x => x.ariaExpanded}"
+					aria-haspopup="listbox"
+					placeholder="${x => x.placeholder}"
+					role="combobox"
+					type="text"
+					?disabled="${x => x.disabled}"
+					:value="${x => x.value}"
+					@input="${(x, c) => x.inputHandler(c.event as InputEvent)}"
+					@keyup="${(x, c) => x.keyupHandler(c.event as KeyboardEvent)}"
+					${ref('control')}
+				/>
+			</div>
+		</div>`;
+}
+
 
 /**
  * The template for the {@link @microsoft/fast-foundation#(Combobox:class)} component.
@@ -11,7 +71,7 @@ import type { Combobox } from './combobox';
 export const ComboboxTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Combobox> = () => html`
+) => ViewTemplate<Combobox> = () => html<Combobox>`
         <template
             aria-disabled="${x => x.ariaDisabled}"
             autocomplete="${x => x.autocomplete}"
@@ -22,23 +82,7 @@ export const ComboboxTemplate: (
             @keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
         >
 						<slot name="control">
-							<vwc-text-field
-								id="text-field"
-								icon="chevron-down-line"
-								aria-activedescendant="${x =>	x.open ? x.ariaActiveDescendant : null}"
-								aria-autocomplete="${x => x.ariaAutoComplete}"
-								aria-controls="${x => x.ariaControls}"
-								aria-disabled="${x => x.ariaDisabled}"
-								aria-expanded="${x => x.ariaExpanded}"
-								aria-haspopup="listbox"
-								placeholder="${x => x.placeholder}"
-								role="combobox"
-								?disabled="${x => x.disabled}"
-								:value="${x => x.value}"
-								@input="${(x, c) => x.inputHandler(c.event as InputEvent)}"
-								@keyup="${(x, c) => x.keyupHandler(c.event as KeyboardEvent)}"
-								${ref('control')}
-							></vwc-text-field>
+							${renderInput}
 						</slot>
 						<vwc-popup
 							anchor="text-field"
