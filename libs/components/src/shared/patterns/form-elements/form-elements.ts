@@ -42,12 +42,26 @@ export function formElements<T extends { new (...args: any[]): Record<string, an
 			(this as unknown as HTMLElement).addEventListener('focus', () => {
 				this.#blurred = false;
 			});
-			(this as unknown as HTMLElement).addEventListener('invalid', () => {
-				if (this.#blurred && this.dirtyValue) return;
-				this.#blurred = true;
-				this.dirtyValue = true;
-				this.validate();
+			this.addEventListener('invalid', () => {
+				this.proxy?.dispatchEvent(new Event('invalid'));
 			});
+		}
+
+		connectedCallback() {
+			super.connectedCallback?.();
+			this.proxy.addEventListener('invalid', this.#handleInvalidEvent);
+		}
+
+		#handleInvalidEvent = () => {
+			if (this.#blurred && this.dirtyValue) return;
+			this.#blurred = true;
+			this.dirtyValue = true;
+			this.validate();
+		};
+
+		disconnectedCallback() {
+			super.disconnectedCallback?.();
+			this.proxy.removeEventListener('invalid', this.#handleInvalidEvent);
 		}
 
 		validate = () => {
