@@ -43,7 +43,7 @@ export function formElements<T extends { new (...args: any[]): Record<string, an
 				this.#blurred = false;
 			});
 			this.addEventListener('invalid', () => {
-				this.proxy?.dispatchEvent(new Event('invalid'));
+				this.proxy.dispatchEvent(new Event('invalid'));
 			});
 		}
 
