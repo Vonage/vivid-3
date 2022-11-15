@@ -18,19 +18,19 @@ export class Tooltip extends Popup {
 	override connectedCallback(): void {
 		super.connectedCallback();
 
-		this.anchorElement?.addEventListener('mouseover', this.#show);
-		this.anchorElement?.addEventListener('mouseout', this.#hide);
-		this.anchorElement?.addEventListener('focusin', this.#show);
-		this.anchorElement?.addEventListener('focusout', this.#hide);
+		this.anchorEl?.addEventListener('mouseover', this.#show);
+		this.anchorEl?.addEventListener('mouseout', this.#hide);
+		this.anchorEl?.addEventListener('focusin', this.#show);
+		this.anchorEl?.addEventListener('focusout', this.#hide);
 	}
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
 
-		this.anchorElement?.removeEventListener('mouseover', this.#show);
-		this.anchorElement?.removeEventListener('mouseout', this.#hide);
-		this.anchorElement?.removeEventListener('focusin', this.#show);
-		this.anchorElement?.removeEventListener('focusout', this.#hide);
+		this.anchorEl?.removeEventListener('mouseover', this.#show);
+		this.anchorEl?.removeEventListener('mouseout', this.#hide);
+		this.anchorEl?.removeEventListener('focusin', this.#show);
+		this.anchorEl?.removeEventListener('focusout', this.#hide);
 	}
 
 	#show = () => {

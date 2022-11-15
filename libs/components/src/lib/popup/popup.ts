@@ -22,10 +22,7 @@ export class Popup extends FoundationElement {
 
 	#cleanup?: () => void; // cleans the autoupdate
 
-	#anchorEl: Element | null | undefined;
-	get anchorElement(): Element | null | undefined {
-		return this.#anchorEl;
-	}
+	protected anchorEl: Element | null | undefined;
 
 	popupEl!: HTMLElement;
 
@@ -93,7 +90,7 @@ export class Popup extends FoundationElement {
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		this.#anchorEl?.removeEventListener('keydown', this.#handleKeydown);
+		this.anchorEl?.removeEventListener('keydown', this.#handleKeydown);
 		this.#cleanup?.();
 	}
 
@@ -101,15 +98,15 @@ export class Popup extends FoundationElement {
 		super.attributeChangedCallback(name, oldValue, newValue);
 		switch (name) {
 			case 'anchor': {
-				this.#anchorEl?.removeEventListener('keydown', this.#handleKeydown);
-				this.#anchorEl = this.#getAnchorById();
+				this.anchorEl?.removeEventListener('keydown', this.#handleKeydown);
+				this.anchorEl = this.#getAnchorById();
 				// close the popup if pressed escape
-				this.#anchorEl?.addEventListener('keydown', this.#handleKeydown);
+				this.anchorEl?.addEventListener('keydown', this.#handleKeydown);
 				break;
 			}
 		}
-		if (this.#anchorEl && this.popupEl) {
-			this.#cleanup = autoUpdate(this.#anchorEl, this.popupEl, () => this.updatePosition());
+		if (this.anchorEl && this.popupEl) {
+			this.#cleanup = autoUpdate(this.anchorEl, this.popupEl, () => this.updatePosition());
 		}
 		else {
 			this.#cleanup?.();
@@ -122,11 +119,11 @@ export class Popup extends FoundationElement {
 	 * @public
 	 */
 	async updatePosition() {
-		if (!this.open || !this.#anchorEl) {
+		if (!this.open || !this.anchorEl) {
 			return;
 		}
 
-		const positionData = await computePosition(this.#anchorEl, this.popupEl, {
+		const positionData = await computePosition(this.anchorEl, this.popupEl, {
 			placement: this.placement,
 			strategy: this.#strategy,
 			middleware: this.#middleware
