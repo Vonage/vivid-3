@@ -75,7 +75,10 @@ function renderControl(context: ElementDefinitionContext) {
 export const SelectTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Select> = (context: ElementDefinitionContext) => html<Select>`
+) => ViewTemplate<Select> = (context: ElementDefinitionContext) => {
+	const popupTag = context.tagFor(Listbox);
+	// const listboxTag = context.tagFor(Listbox);
+	return html<Select>`
 	  <template
             aria-activedescendant="${x => x.ariaActiveDescendant}"
             aria-controls="${x => x.ariaControls}"
@@ -94,15 +97,16 @@ export const SelectTemplate: (
         >
             ${when(x => x.collapsible, renderControl(context))}
 
-            <div
+						<${popupTag}
+							?open="${x => (x.collapsible ? x.open : true)}"
+							>
+							<div
                 class="listbox"
                 id="${x => x.listboxId}"
-                part="listbox"
                 role="listbox"
                 ?disabled="${x => x.disabled}"
-                ?hidden="${x => (x.collapsible ? !x.open : false)}"
                 ${ref('listbox')}
-            >
+								>
                 <slot
                     ${slotted({
 		filter: Listbox.slottedOptionFilter as any,
@@ -111,4 +115,6 @@ export const SelectTemplate: (
 	})}
                 ></slot>
             </div>
+					</${popupTag}>
         </template>`;
+};
