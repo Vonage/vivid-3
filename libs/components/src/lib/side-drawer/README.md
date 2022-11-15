@@ -152,7 +152,7 @@ Additionally, as aside element (which represents the actual side-drawer), is sty
 ```html preview full
 <style>
   vwc-side-drawer {
-    --side-drawer-app-content-offset: 230px;
+    --side-drawer-app-content-offset: 150px;
   }
 
   vwc-fab {

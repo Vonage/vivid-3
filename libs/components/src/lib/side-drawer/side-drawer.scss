@@ -12,7 +12,7 @@ $inline-size: 280px;
 	z-index: 1;
 	background-color: var(#{constants.$vvd-color-canvas});
 	color: var(#{constants.$vvd-color-canvas-text});
-	inline-size: $inline-size;
+	inline-size: var(#{variables.$side-drawer-app-content-offset}, $inline-size);
 	inset-block: 0;
 	overflow-y: auto;
 

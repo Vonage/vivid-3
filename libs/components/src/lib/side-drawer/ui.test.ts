@@ -90,3 +90,41 @@ test('should show the component modal', async ({ page }: { page: Page }) => {
 			'./snapshots/side-drawer-modal.png',
 		);
 });
+
+test('should show the component with custom width', async ({ page }: { page: Page }) => {
+	const template = `
+    <vwc-side-drawer open style="--side-drawer-app-content-offset: 100px">
+      <p>
+        Body
+      </p>
+
+      <vwc-layout slot="app-content" column-basis="block" gutters="small">
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in.
+					Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci.
+					Curabitur vestibulum elementum imperdiet.
+				</p>
+      </vwc-layout>
+    </vwc-side-drawer>
+  `;
+
+	page.setViewportSize({ width: 900, height: 720 });
+
+	await loadComponents({
+		page,
+		components,
+	});
+	await loadTemplate({
+		page,
+		template,
+	});
+
+	const testWrapper = await page.$('#wrapper');
+
+	await page.waitForLoadState('networkidle');
+
+	expect(await testWrapper?.screenshot())
+		.toMatchSnapshot(
+			'./snapshots/side-drawer.png',
+		);
+});
