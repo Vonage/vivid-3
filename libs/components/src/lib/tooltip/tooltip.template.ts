@@ -1,7 +1,7 @@
 import { html } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
-  ElementDefinitionContext, FoundationElementDefinition,
+	ElementDefinitionContext, FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { Tooltip } from './tooltip';
@@ -9,14 +9,14 @@ import type { Tooltip } from './tooltip';
 const getClasses = (_: Tooltip) => classNames('control');
 
 /**
- * The template for the {@link @microsoft/fast-foundation#Tooltip} component.
- *
- * @param context
- * @public
- */
+	* The template for the {@link @microsoft/fast-foundation#Tooltip} component.
+	*
+	* @param context
+	* @public
+	*/
 export const TooltipTemplate: (
-  context: ElementDefinitionContext,
-  definition: FoundationElementDefinition
+	context: ElementDefinitionContext,
+	definition: FoundationElementDefinition
 ) => ViewTemplate<Tooltip> = () => html`
 <vwc-popup class="${getClasses}" arrow alternate
 placement=${(x) => x.placement} open=${(x) => x.open} anchor=${(x) => x.anchor}
