@@ -125,6 +125,6 @@ test('should show the component with custom width', async ({ page }: { page: Pag
 
 	expect(await testWrapper?.screenshot())
 		.toMatchSnapshot(
-			'./snapshots/side-drawer.png',
+			'./snapshots/side-drawer-inlinsize.png',
 		);
 });
