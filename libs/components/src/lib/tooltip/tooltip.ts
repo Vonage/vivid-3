@@ -61,9 +61,9 @@ export class Tooltip extends Popup {
 
 	#show = () => {
 		this.open = true;
-	}
+	};
 
 	#hide = () => {
 		this.open = false;
-	}
+	};
 }

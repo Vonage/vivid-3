@@ -1,8 +1,7 @@
 import { html } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
-  ElementDefinitionContext,
-  FoundationElementDefinition,
+  ElementDefinitionContext, FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { Tooltip } from './tooltip';
