@@ -2,6 +2,8 @@
 
 A tooltip is a popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it. It typically appears after a small delay and disappears when Escape is pressed or on mouse out. 
 
+The tooltip should be referenced through the use of aria-describedby. The aria-describedby attribute is on the anchor element, not on the tooltip. It should be the same as tooltip's id. To change aria-describedby, change tooltip's id (the default id is 'tooltip').
+
 ```js
 <script type="module">
   import '@vonage/vivid/tooltip';
@@ -20,8 +22,8 @@ Do not target non-interactive controls as a tooltip's anchor (such as non-focusa
 - Default: `undefined`
 
 ```html preview center
-<vwc-button id="anchor" aria-describedby="tooltip" icon="help-line" shape="pill"></vwc-button>
-<vwc-tooltip id="tooltip" anchor="anchor" text="I'm a tooltip"></vwc-tooltip>
+<vwc-button id="anchor" icon="help-line" shape="pill"></vwc-button>
+<vwc-tooltip anchor="anchor" text="I'm a tooltip"></vwc-tooltip>
 ```
 
 ### Text
@@ -44,11 +46,11 @@ Use the `placement` attribute to set the placement of the tooltip around the anc
     --tooltip-inline-size: 100px;
   }
 </style>
-<vwc-button id="anchor" aria-describedby="tooltip" appearance='outlined' label='This is an anchor'></vwc-button>
-<vwc-tooltip id="tooltip" anchor="anchor" text="right" placement="right"></vwc-tooltip>
-<vwc-tooltip id="tooltip" anchor="anchor" text="left" placement="left"></vwc-tooltip>
-<vwc-tooltip id="tooltip" anchor="anchor" text="top" placement="top"></vwc-tooltip>
-<vwc-tooltip id="tooltip" anchor="anchor" text="bottom" placement="bottom"></vwc-tooltip>
+<vwc-button id="anchor" appearance='outlined' label='This is an anchor'></vwc-button>
+<vwc-tooltip anchor="anchor" text="right" placement="right"></vwc-tooltip>
+<vwc-tooltip anchor="anchor" text="left" placement="left"></vwc-tooltip>
+<vwc-tooltip anchor="anchor" text="top" placement="top"></vwc-tooltip>
+<vwc-tooltip anchor="anchor" text="bottom" placement="bottom"></vwc-tooltip>
 ```
 
 ## CSS Variables
@@ -67,8 +69,8 @@ Use the `--tooltip-inline-size` variable to set the tooltip's inline size.
   }
 </style>
 
-<vwc-button id="button" aria-describedby="tooltip" icon="info-line" shape="pill"></vwc-button>
-<vwc-tooltip id="tooltip" anchor="button" text="My inline size is 200px"></vwc-tooltip>
+<vwc-button id="button" icon="info-line" shape="pill"></vwc-button>
+<vwc-tooltip anchor="button" text="My inline size is 200px"></vwc-tooltip>
 ```
 
 ## Use Cases
@@ -78,11 +80,11 @@ Use the `--tooltip-inline-size` variable to set the tooltip's inline size.
 ```html preview
 <p>
   Text with tooltip - press the question mark
-  <vwc-button id="button" aria-describedby="tooltip" icon="help-line" shape="pill"></vwc-button>
+  <vwc-button id="button" icon="help-line" shape="pill"></vwc-button>
   more text after tooltip.
 </p>
 
-<vwc-tooltip id="tooltip" anchor="button" placement="bottom-end" text="I'm the tooltip content"></vwc-tooltip>
+<vwc-tooltip anchor="button" placement="bottom-end" text="I'm the tooltip content"></vwc-tooltip>
 ```
 
 ## Caveat

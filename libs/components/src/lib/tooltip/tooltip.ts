@@ -15,22 +15,48 @@ export class Tooltip extends Popup {
 	 */
 	@attr text?: string;
 
+	constructor() {
+		super();
+		this.id = 'tooltip';
+	}
+
 	override connectedCallback(): void {
 		super.connectedCallback();
+		this.#anchorUpdated();
+	}
 
+	override disconnectedCallback(): void {
+		super.disconnectedCallback();
+		this.#removeEventListener();
+	}
+
+	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
+		super.attributeChangedCallback(name, oldValue, newValue);
+		this.#anchorUpdated();
+	}
+
+	#anchorUpdated(): void {
+		this.#removeEventListener();
+		this.#addEventListener();
+		this.#setAriaDescribedBy();
+	}
+
+	#addEventListener(): void {
 		this.anchorEl?.addEventListener('mouseover', this.#show);
 		this.anchorEl?.addEventListener('mouseout', this.#hide);
 		this.anchorEl?.addEventListener('focusin', this.#show);
 		this.anchorEl?.addEventListener('focusout', this.#hide);
 	}
 
-	override disconnectedCallback(): void {
-		super.disconnectedCallback();
-
+	#removeEventListener(): void {
 		this.anchorEl?.removeEventListener('mouseover', this.#show);
 		this.anchorEl?.removeEventListener('mouseout', this.#hide);
 		this.anchorEl?.removeEventListener('focusin', this.#show);
 		this.anchorEl?.removeEventListener('focusout', this.#hide);
+	}
+
+	#setAriaDescribedBy(): void {
+		this.anchorEl?.setAttribute('aria-describedby', this.id);
 	}
 
 	#show = () => {
