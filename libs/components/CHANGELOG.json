@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Tue, 15 Nov 2022 08:30:44 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.99",
+      "version": "3.0.0-next.99",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "olaf-k@users.noreply.github.com",
+            "package": "@vonage/vivid",
+            "commit": "3c54d75e5b888f131cc003ba187ba3145eb2c2dd",
+            "comment": "fix radio isInsideRadioGroup"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 14 Nov 2022 13:05:26 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.98",
       "version": "3.0.0-next.98",
