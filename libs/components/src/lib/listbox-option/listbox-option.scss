@@ -61,6 +61,10 @@
 
 .icon {
 	font-size: 20px;
+
+	.base:not(.disabled, .selected) & {
+		color: var(#{constants.$vvd-color-neutral-600});
+	}
 }
 
 .focus-indicator {

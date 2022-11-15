@@ -65,7 +65,11 @@
 .icon {
 	font-size: 20px;
 
-	.base:not(.item-checkbox, .item-radio) & {
+	.base:is(.disabled, .item-checkbox, .item-radio) & {
+		color: var(#{appearance.get-appearance-token(text)});
+	}
+
+	.base:not(.disabled, .item-checkbox, .item-radio) & {
 		color: var(#{constants.$vvd-color-neutral-600});
 	}
 }

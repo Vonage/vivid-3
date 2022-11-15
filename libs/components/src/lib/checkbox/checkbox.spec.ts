@@ -69,12 +69,12 @@ describe('vwc-checkbox', () => {
 	});
 
 	describe('indeterminate', () => {
-		it('should set indeterminate class when indeterminate is true', async () => {
+		it('should set checked class when indeterminate is true', async () => {
 
 			element.indeterminate = true;
 			await elementUpdated(element);
 
-			const base = element.shadowRoot?.querySelector('.base.indeterminate');
+			const base = element.shadowRoot?.querySelector('.base.checked');
 			expect(base).toBeInstanceOf(Element);
 		});
 

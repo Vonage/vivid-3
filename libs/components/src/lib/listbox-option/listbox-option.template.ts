@@ -37,7 +37,7 @@ export const ListboxOptionTemplate: (
 		<div class="${getClasses}">
 			${() => focusTemplate}
 			${x => affixIconTemplate(x.icon)}
-			${when(x => x.optionText, html`<div class="text">${x => x.optionText}</div>`)}
+			${when(x => x.text, html`<div class="text">${x => x.text}</div>`)}
 		</div>
 	</template>
 	`;

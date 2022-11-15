@@ -2,6 +2,51 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Mon, 14 Nov 2022 13:05:26 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.98",
+      "version": "3.0.0-next.98",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "38bc604d08ea3ab745155240bb1a7059ab2d6ea2",
+            "comment": "option class - align property with naming convetion"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 13 Nov 2022 13:46:36 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.97",
+      "version": "3.0.0-next.97",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "d1848e14916d5d48047104790a013bd0e7bd74b2",
+            "comment": "accessibility insights action version 3.1.0"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 10 Nov 2022 15:01:26 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.97",
+      "version": "3.0.0-next.97",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "f6e9c357c2428098b70a0012eef1f907b017fa83",
+            "comment": "unify appearance to apply cross components"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 09 Nov 2022 08:48:48 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.96",
       "version": "3.0.0-next.96",
