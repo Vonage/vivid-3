@@ -1,3 +1,4 @@
+import '../popup';
 import '../icon';
 import '../listbox';
 
@@ -12,6 +13,9 @@ export const vividSelect = Select.compose<FoundationElementDefinition>({
 	baseName: 'select',
 	template: template as any,
 	styles,
+	shadowOptions: {
+		delegatesFocus: true,
+	},
 });
 
 designSystem.register(vividSelect());

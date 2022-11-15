@@ -1,15 +1,58 @@
-import { html } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
+import { html, ref, slotted, ViewTemplate } from '@microsoft/fast-element';
+import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
+import { Listbox } from '../listbox/listbox.js';
+import { affixIconTemplateFactory } from '../shared/patterns/affix.js';
+import { focusTemplateFactory } from '../shared/patterns/focus.js';
 import type { Select } from './select';
 
-const getClasses = (_: Select) => classNames(
-	'control-base'
+
+
+/**
+ *
+ */
+
+
+const getStateClasses = ({
+	disabled,
+}: Select) => classNames(
+	['disabled', disabled],
 );
+
+
+
+/**
+ * @param context
+ */
+function renderInput(context: ElementDefinitionContext) {
+	const affixIconTemplate = affixIconTemplateFactory(context);
+	const focusTemplate = focusTemplateFactory(context);
+
+	return html<Select>`
+      <div class="base ${getStateClasses}">
+
+			<div class="fieldset">
+				<button
+					id="control"
+					class="control"
+					aria-activedescendant="${x =>	x.open ? x.ariaActiveDescendant : null}"
+					aria-autocomplete="${x => x.ariaAutoComplete}"
+					aria-controls="${x => x.ariaControls}"
+					aria-disabled="${x => x.ariaDisabled}"
+					aria-expanded="${x => x.ariaExpanded}"
+					aria-haspopup="listbox"
+					role="combobox"
+					type="text"
+					?disabled="${x => x.disabled}"
+					:value="${x => x.value}"
+					${ref('control')}
+				/></button>
+				${() => affixIconTemplate('chevron-down-line')}
+				${() => focusTemplate}
+			</div>
+		</div>`;
+}
+
 
 /**
  * The template for the {@link @microsoft/fast-foundation#Select} component.
@@ -20,19 +63,44 @@ const getClasses = (_: Select) => classNames(
 export const SelectTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Select> = () => html`
-	<div
-	class="${getClasses}"
-	>
-		<div class="button-container">
-			<div aria-hidden="true" class="indicator" >
-				<vwc-icon type='chevron-up-solid'></vwc-icon>
-			</div>
-		</div>
-		<div class="selected-value">
-			the option that is selected
-		</div>
-		<vwc-listbox class="list-box">
-			<slot></slot>
-		</vwc-listbox>
-</div>`;
+) => ViewTemplate<Select> = (context: ElementDefinitionContext) => html`
+	 <template
+            aria-activedescendant="${x => x.ariaActiveDescendant}"
+            aria-controls="${x => x.ariaControls}"
+            aria-disabled="${x => x.ariaDisabled}"
+            aria-expanded="${x => x.ariaExpanded}"
+            aria-haspopup="${x => (x.collapsible ? 'listbox' : null)}"
+            aria-multiselectable="${x => x.ariaMultiSelectable}"
+            ?open="${x => x.open}"
+            role="combobox"
+            tabindex="${x => (!x.disabled ? '0' : null)}"
+            @click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
+            @focusin="${(x, c) => x.focusinHandler(c.event as FocusEvent)}"
+            @focusout="${(x, c) => x.focusoutHandler(c.event as FocusEvent)}"
+            @keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
+            @mousedown="${(x, c) => x.mousedownHandler(c.event as MouseEvent)}"
+        >
+
+						<slot name="control">
+							${() => renderInput(context)}
+						</slot>
+						<vwc-popup
+							anchor="text-field"
+							?open="${x => x.open}">
+							<div
+								id="${x => x.listboxId}"
+								class="listbox"
+								role="listbox"
+								?disabled="${x => x.disabled}"
+								${ref('listbox')}
+								>
+									<slot
+											${slotted({
+		filter: Listbox.slottedOptionFilter as any,
+		flatten: true,
+		property: 'slottedOptions',
+	})}
+									></slot>
+							</div>
+						</vwc-popup>
+        </template>`;

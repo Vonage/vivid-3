@@ -1,18 +1,13 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
+import { applyMixins, Select as FoundationSelect } from '@microsoft/fast-foundation';
+import { AffixIcon, FormElement } from '../shared/patterns';
 
 /**
  * Base class for select
  *
  * @public
  */
-export class Select extends FoundationElement {
-	/**
-	 * Indicates the text's text.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: text
-	 */
-	@attr text?: string;
+export class Select extends FoundationSelect {
 }
+
+export interface Select extends AffixIcon, FormElement{}
+applyMixins(Select, AffixIcon);
