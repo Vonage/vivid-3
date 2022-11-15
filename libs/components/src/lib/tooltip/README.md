@@ -1,6 +1,6 @@
 # Tooltip
 
-A tooltip is a brief, informative message or descriptions or explanations for their paired element. Tooltips in general are less accessible so be sure to follow our [accessibility recommendation](#accessibility) in the docs.
+A tooltip is a popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it. It typically appears after a small delay and disappears when Escape is pressed or on mouse out. 
 
 ```js
 <script type="module">
@@ -12,7 +12,7 @@ A tooltip is a brief, informative message or descriptions or explanations for th
 
 ### Anchor
 
-The tooltip can be placed on interactive controls (things that can be hovered or focusable) such as: button, checkbox, input text.
+The tooltip shoul be placed on interactive controls (things that can be hovered or focusable) such as: button, checkbox, input text.
 The tooltip can't be placed on non-interactive elements such as paragraph or plain div.
 Do not target non-interactive controls as a tooltip's anchor (such as non-focusable / disabled elements).
 
@@ -26,7 +26,7 @@ Do not target non-interactive controls as a tooltip's anchor (such as non-focusa
 
 ### Text
 
-The tooltip is a description and therefor, the tooltip itself can not be interactive and contains only text.
+The tooltip is a description and therefor, the tooltip itself can not be interactive or focusable and contains only text.
 
 - Type: `string`
 - Default: `undefined`
@@ -70,16 +70,6 @@ Use the `--tooltip-inline-size` variable to set the tooltip's inline size.
 <vwc-button id="button" aria-describedby="tooltip" icon="info-line" shape="pill"></vwc-button>
 <vwc-tooltip id="tooltip" anchor="button" text="My inline size is 200px"></vwc-tooltip>
 ```
-
-## Accessibility
-
-- Tooltip has a `role` tooltip.
-- Be sure to add `aria-describedby= "tooltip's id"` on the tooltip trigger element for screen readers readability.
-- The trigger of the tooltip must be focusable and interactive.
-- A tooltip cannot contain interactive or focusable content.
-- The escape key hides the tooltip when the anchor is focused.
-- Tooltip should show on mouse hover and keyboard focus.
-- Tabbing to the element should display the tooltip.
 
 ## Use Cases
 
