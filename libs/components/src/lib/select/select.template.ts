@@ -2,6 +2,7 @@ import { html, ref, slotted, ViewTemplate, when } from '@microsoft/fast-element'
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 // import { classNames } from '@microsoft/fast-web-utilities';
 import { Listbox } from '../listbox/listbox.js';
+import { Popup } from '../popup/popup.js';
 import { affixIconTemplateFactory } from '../shared/patterns/affix.js';
 // import { focusTemplateFactory } from '../shared/patterns/focus.js';
 import type { Select } from './select';
@@ -76,7 +77,7 @@ export const SelectTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Select> = (context: ElementDefinitionContext) => {
-	const popupTag = context.tagFor(Listbox);
+	const popupTag = context.tagFor(Popup);
 	// const listboxTag = context.tagFor(Listbox);
 	return html<Select>`
 	  <template
