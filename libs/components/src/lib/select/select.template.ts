@@ -101,7 +101,6 @@ export const SelectTemplate: (
 							?open="${x => (x.collapsible ? x.open : true)}"
 							>
 							<div
-                class="listbox"
                 id="${x => x.listboxId}"
                 role="listbox"
                 ?disabled="${x => x.disabled}"
