@@ -82,14 +82,14 @@ function numberControlButtons(context: ElementDefinitionContext) {
 				<${buttonTag} id="subtract" icon="minus-line"
 					  					aria-controls="control"
 					            shape="${ setControlButtonShape }"
-					            density="condensed"
+					            size="condensed"
 					  					tabindex="${getTabIndex}"
 					            @click="${x => adjustValueByStep(x, SUBTRACT)}"></${buttonTag}>
 				<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 				<${buttonTag} id="add" icon="plus-line"
 					  					aria-controls="control"
 					            shape="${ setControlButtonShape }"
-					            density="condensed"
+					            size="condensed"
 					  					tabindex="${getTabIndex}"
 					            @click="${x => adjustValueByStep(x)}"></${buttonTag}>
 		    </div>
