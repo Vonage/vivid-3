@@ -21,7 +21,7 @@ Do not target non-interactive controls as a tooltip's anchor (such as non-focusa
 
 ```html preview center
 <vwc-button id="anchor" aria-describedby="tooltip" icon="help-line" shape="pill"></vwc-button>
-<vwc-tooltip id="tooltip" anchor="anchor" text="I'm a tooltip" role="tooltip" inert></vwc-tooltip>
+<vwc-tooltip id="tooltip" anchor="anchor" text="I'm a tooltip"></vwc-tooltip>
 ```
 
 ### Text
