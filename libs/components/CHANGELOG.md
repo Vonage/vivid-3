@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Tue, 15 Nov 2022 08:30:44 GMT and should not be manually modified.
+This log was last generated on Tue, 15 Nov 2022 13:38:58 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.100
+
+Tue, 15 Nov 2022 13:38:58 GMT
+
+### Changes
+
+- change density to size and extended to expanded (rachel.tannenbaum@vonage.com)
 
 ## 3.0.0-next.99
 

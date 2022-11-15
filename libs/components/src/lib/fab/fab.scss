@@ -48,12 +48,12 @@
 
 	/* Size */
 
-	&.density-extended {
+	&.size-Expanded {
 		#{variables.$border-radius}: 30px;
 		#{variables.$block-size}: #{size.$vvd-size-super-expanded};
 	}
 
-	&:not(.density-extended) {
+	&:not(.size-expanded) {
 		#{variables.$border-radius}: 24px;
 		#{variables.$block-size}: #{size.$vvd-size-normal};
 	}
@@ -105,11 +105,11 @@
 		order: 1;
 	}
 
-	.density-extended & {
+	.size-expanded & {
 		font-size: 24px;
 	}
 
-	&:not(.density-extended) &{
+	&:not(.size-expanded) &{
 		font-size: 20px;
 	}
 }
