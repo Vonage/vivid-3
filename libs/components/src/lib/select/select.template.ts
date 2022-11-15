@@ -1,56 +1,67 @@
-import { html, ref, slotted, ViewTemplate } from '@microsoft/fast-element';
+import { html, ref, slotted, ViewTemplate, when } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { classNames } from '@microsoft/fast-web-utilities';
+// import { classNames } from '@microsoft/fast-web-utilities';
 import { Listbox } from '../listbox/listbox.js';
 import { affixIconTemplateFactory } from '../shared/patterns/affix.js';
-import { focusTemplateFactory } from '../shared/patterns/focus.js';
+// import { focusTemplateFactory } from '../shared/patterns/focus.js';
 import type { Select } from './select';
 
 
+// const getStateClasses = ({
+// 	disabled,
+// }: Select) => classNames(
+// 	['disabled', disabled],
+// );
 
-/**
- *
- */
+// function renderInput(context: ElementDefinitionContext) {
+// 	const affixIconTemplate = affixIconTemplateFactory(context);
+// 	const focusTemplate = focusTemplateFactory(context);
 
+// 	return html<Select>`
+//       <div class="base ${getStateClasses}">
 
-const getStateClasses = ({
-	disabled,
-}: Select) => classNames(
-	['disabled', disabled],
-);
-
-
+// 			<div class="fieldset">
+// 				<button
+// 					id="control"
+// 					class="control"
+// 					aria-activedescendant="${x =>	x.open ? x.ariaActiveDescendant : null}"
+// 					aria-autocomplete="${x => x.ariaAutoComplete}"
+// 					aria-controls="${x => x.ariaControls}"
+// 					aria-disabled="${x => x.ariaDisabled}"
+// 					aria-expanded="${x => x.ariaExpanded}"
+// 					aria-haspopup="listbox"
+// 					role="combobox"
+// 					type="text"
+// 					?disabled="${x => x.disabled}"
+// 					:value="${x => x.value}"
+// 					${ref('control')}
+// 				/></button>
+// 				${() => affixIconTemplate('chevron-down-line')}
+// 				${() => focusTemplate}
+// 			</div>
+// 		</div>`;
+// }
 
 /**
  * @param context
  */
-function renderInput(context: ElementDefinitionContext) {
+function renderControl(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
-	const focusTemplate = focusTemplateFactory(context);
+	// const focusTemplate = focusTemplateFactory(context);
 
 	return html<Select>`
-      <div class="base ${getStateClasses}">
-
-			<div class="fieldset">
-				<button
-					id="control"
-					class="control"
-					aria-activedescendant="${x =>	x.open ? x.ariaActiveDescendant : null}"
-					aria-autocomplete="${x => x.ariaAutoComplete}"
-					aria-controls="${x => x.ariaControls}"
-					aria-disabled="${x => x.ariaDisabled}"
-					aria-expanded="${x => x.ariaExpanded}"
-					aria-haspopup="listbox"
-					role="combobox"
-					type="text"
-					?disabled="${x => x.disabled}"
-					:value="${x => x.value}"
-					${ref('control')}
-				/></button>
-				${() => affixIconTemplate('chevron-down-line')}
-				${() => focusTemplate}
+		<div
+			class="control"
+			?disabled="${x => x.disabled}"
+			${ref('control')}
+			>
+			<div class="selected-value">
+				${x => x.displayValue}
 			</div>
-		</div>`;
+		</div>
+		${() => affixIconTemplate('chevron-down-line')}
+		`;
+	// ${() => focusTemplate}
 }
 
 
@@ -58,13 +69,14 @@ function renderInput(context: ElementDefinitionContext) {
  * The template for the {@link @microsoft/fast-foundation#Select} component.
  *
  * @param
+ * @param context
  * @public
  */
 export const SelectTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Select> = (context: ElementDefinitionContext) => html`
-	 <template
+) => ViewTemplate<Select> = (context: ElementDefinitionContext) => html<Select>`
+	  <template
             aria-activedescendant="${x => x.ariaActiveDescendant}"
             aria-controls="${x => x.ariaControls}"
             aria-disabled="${x => x.ariaDisabled}"
@@ -80,27 +92,23 @@ export const SelectTemplate: (
             @keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
             @mousedown="${(x, c) => x.mousedownHandler(c.event as MouseEvent)}"
         >
+            ${when(x => x.collapsible, renderControl(context))}
 
-						<slot name="control">
-							${() => renderInput(context)}
-						</slot>
-						<vwc-popup
-							anchor="text-field"
-							?open="${x => x.open}">
-							<div
-								id="${x => x.listboxId}"
-								class="listbox"
-								role="listbox"
-								?disabled="${x => x.disabled}"
-								${ref('listbox')}
-								>
-									<slot
-											${slotted({
+            <div
+                class="listbox"
+                id="${x => x.listboxId}"
+                part="listbox"
+                role="listbox"
+                ?disabled="${x => x.disabled}"
+                ?hidden="${x => (x.collapsible ? !x.open : false)}"
+                ${ref('listbox')}
+            >
+                <slot
+                    ${slotted({
 		filter: Listbox.slottedOptionFilter as any,
 		flatten: true,
 		property: 'slottedOptions',
 	})}
-									></slot>
-							</div>
-						</vwc-popup>
+                ></slot>
+            </div>
         </template>`;

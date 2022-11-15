@@ -13,9 +13,10 @@ export const vividSelect = Select.compose<FoundationElementDefinition>({
 	baseName: 'select',
 	template: template as any,
 	styles,
-	shadowOptions: {
-		delegatesFocus: true,
-	},
+	//! unnecessary when host is focusable
+	// shadowOptions: {
+	// 	delegatesFocus: true,
+	// },
 });
 
 designSystem.register(vividSelect());
