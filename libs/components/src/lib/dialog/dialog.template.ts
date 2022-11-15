@@ -16,7 +16,7 @@ const getClasses = (_: Dialog) => classNames(
  */
 function icon() {
 	return html<Dialog>`
-		<vwc-icon class="icon" size="large" type="${x => x.icon}"></vwc-icon>
+		<vwc-icon class="icon" size="expanded" type="${x => x.icon}"></vwc-icon>
 	`;
 }
 
@@ -38,7 +38,7 @@ function headline() {
 function renderDismissButton() {
 	return html<Dialog>`
 	  <vwc-button
-			  density="condensed"
+			  size="condensed"
 			  class="dismiss-button"
 			  icon="close-line"
 			  @click="${x => {
