@@ -1,9 +1,10 @@
 import { html, ref, slotted, ViewTemplate, when } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
+// import { classNames } from '@microsoft/fast-web-utilities';
 import { Listbox } from '../listbox/listbox.js';
 import { Popup } from '../popup/popup.js';
 import { affixIconTemplateFactory } from '../shared/patterns/affix.js';
-import { focusTemplateFactory } from '../shared/patterns/focus.js';
+// import { focusTemplateFactory } from '../shared/patterns/focus.js';
 import type { Select } from './select';
 
 
@@ -12,7 +13,7 @@ import type { Select } from './select';
  */
 function renderControl(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
-	const focusTemplate = focusTemplateFactory(context);
+	// const focusTemplate = focusTemplateFactory(context);
 
 	return html<Select>`
 		<div
@@ -23,9 +24,11 @@ function renderControl(context: ElementDefinitionContext) {
 			<div class="selected-value">
 				${x => x.displayValue}
 			</div>
+			${() => affixIconTemplate('chevron-down-line')}
 		</div>
-		${() => affixIconTemplate('chevron-down-line')}
-		${() => focusTemplate}`;
+
+		`;
+	// ${() => focusTemplate}
 }
 
 
