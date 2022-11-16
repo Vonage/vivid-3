@@ -6,7 +6,12 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { Tooltip } from './tooltip';
 
-const getClasses = (_: Tooltip) => classNames('control');
+const getClasses = ({
+	open
+}: Tooltip) => classNames(
+	'control',
+	['open', Boolean(open)],
+);
 
 /**
 	* The template for the {@link @microsoft/fast-foundation#Tooltip} component.
