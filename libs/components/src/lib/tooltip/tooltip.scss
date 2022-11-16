@@ -5,14 +5,14 @@
 	pointer-events: none;
 
 	.open {
-		transition: visibility 0s 0s linear, opacity 50ms 0.5s linear;
 		opacity: 1;
+		transition: visibility 0s 0s linear, opacity 50ms 0.5s linear;
 		visibility: visible;
 	}
 
 	&:not(.open) {
-		transition: visibility 0s 0.5s, opacity 50ms linear;
 		opacity: 0;
+		transition: visibility 0s 0.5s, opacity 50ms linear;
 		visibility: hidden;
 	}
 }
