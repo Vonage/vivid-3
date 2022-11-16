@@ -1,54 +1,18 @@
 import { html, ref, slotted, ViewTemplate, when } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
-// import { classNames } from '@microsoft/fast-web-utilities';
 import { Listbox } from '../listbox/listbox.js';
 import { Popup } from '../popup/popup.js';
 import { affixIconTemplateFactory } from '../shared/patterns/affix.js';
-// import { focusTemplateFactory } from '../shared/patterns/focus.js';
+import { focusTemplateFactory } from '../shared/patterns/focus.js';
 import type { Select } from './select';
 
-
-// const getStateClasses = ({
-// 	disabled,
-// }: Select) => classNames(
-// 	['disabled', disabled],
-// );
-
-// function renderInput(context: ElementDefinitionContext) {
-// 	const affixIconTemplate = affixIconTemplateFactory(context);
-// 	const focusTemplate = focusTemplateFactory(context);
-
-// 	return html<Select>`
-//       <div class="base ${getStateClasses}">
-
-// 			<div class="fieldset">
-// 				<button
-// 					id="control"
-// 					class="control"
-// 					aria-activedescendant="${x =>	x.open ? x.ariaActiveDescendant : null}"
-// 					aria-autocomplete="${x => x.ariaAutoComplete}"
-// 					aria-controls="${x => x.ariaControls}"
-// 					aria-disabled="${x => x.ariaDisabled}"
-// 					aria-expanded="${x => x.ariaExpanded}"
-// 					aria-haspopup="listbox"
-// 					role="combobox"
-// 					type="text"
-// 					?disabled="${x => x.disabled}"
-// 					:value="${x => x.value}"
-// 					${ref('control')}
-// 				/></button>
-// 				${() => affixIconTemplate('chevron-down-line')}
-// 				${() => focusTemplate}
-// 			</div>
-// 		</div>`;
-// }
 
 /**
  * @param context
  */
 function renderControl(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
-	// const focusTemplate = focusTemplateFactory(context);
+	const focusTemplate = focusTemplateFactory(context);
 
 	return html<Select>`
 		<div
@@ -61,8 +25,7 @@ function renderControl(context: ElementDefinitionContext) {
 			</div>
 		</div>
 		${() => affixIconTemplate('chevron-down-line')}
-		`;
-	// ${() => focusTemplate}
+		${() => focusTemplate}`;
 }
 
 
@@ -78,7 +41,7 @@ export const SelectTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Select> = (context: ElementDefinitionContext) => {
 	const popupTag = context.tagFor(Popup);
-	// const listboxTag = context.tagFor(Listbox);
+
 	return html<Select>`
 	  <template
             aria-activedescendant="${x => x.ariaActiveDescendant}"

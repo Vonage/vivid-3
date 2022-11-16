@@ -1,6 +1,5 @@
 import '../popup';
 import '../icon';
-// import '../listbox'; //! not using the component
 // by convention, listbox-option isn't required to be imported
 // in combobox as it is not used directly in template rather by authoring.
 // but, due to the race condition and way combobox needs children to
