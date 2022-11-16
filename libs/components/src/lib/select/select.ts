@@ -1,6 +1,6 @@
 import { applyMixins, Select as FoundationSelect } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
-import { AffixIcon, FormElement } from '../shared/patterns';
+import { AffixIcon, FormElement, formElements } from '../shared/patterns';
 import type { Appearance, Shape } from '../enums';
 
 
@@ -12,9 +12,10 @@ type SelectShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  *
  * @public
  */
+@formElements
 export class Select extends FoundationSelect {
 	/**
-	 * Indicates the switch's label.
+	 * Indicates the select's label.
 	 *
 	 * @public
 	 * @remarks
