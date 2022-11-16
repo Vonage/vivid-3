@@ -2,6 +2,81 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Wed, 16 Nov 2022 09:48:24 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.101",
+      "version": "3.0.0-next.101",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "148e25f2aab70dcb547483d2d68bcfd24caf585b",
+            "comment": "refine progress ring documentation code snippets"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 15 Nov 2022 13:38:58 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.100",
+      "version": "3.0.0-next.100",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "7e3229a0ea39656687bd652fff5674b189cf7970",
+            "comment": "change density to size and extended to expanded"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 15 Nov 2022 08:30:44 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.99",
+      "version": "3.0.0-next.99",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "olaf-k@users.noreply.github.com",
+            "package": "@vonage/vivid",
+            "commit": "3c54d75e5b888f131cc003ba187ba3145eb2c2dd",
+            "comment": "fix radio isInsideRadioGroup"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 14 Nov 2022 13:05:26 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.98",
+      "version": "3.0.0-next.98",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "38bc604d08ea3ab745155240bb1a7059ab2d6ea2",
+            "comment": "option class - align property with naming convetion"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 13 Nov 2022 13:46:36 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.97",
+      "version": "3.0.0-next.97",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "d1848e14916d5d48047104790a013bd0e7bd74b2",
+            "comment": "accessibility insights action version 3.1.0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 10 Nov 2022 15:01:26 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.97",
       "version": "3.0.0-next.97",
