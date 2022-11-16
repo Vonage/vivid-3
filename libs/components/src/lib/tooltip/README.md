@@ -2,8 +2,6 @@
 
 A tooltip is a popup that displays informative message, description or explanation related to an element receiving keyboard focus or when the mouse hovers over it. It typically appears after a small delay and disappears when Escape is pressed or on mouse out. 
 
-The tooltip should be referenced through the use of aria-describedby. The aria-describedby attribute is on the anchor element, not on the tooltip. It should be the same as tooltip's id. To change aria-describedby, change tooltip's id (the default id is 'tooltip').
-
 ```js
 <script type="module">
   import '@vonage/vivid/tooltip';
@@ -14,6 +12,8 @@ The tooltip should be referenced through the use of aria-describedby. The aria-d
 
 ### Anchor
 
+The tooltip should have an `anchor` attribute with the anchor's id.
+
 The tooltip should be placed on interactive controls, elements that can be hovered over or focusable (e.g. button, checkbox, input text etc'.).
 The tooltip can't be placed on non-interactive elements such as paragraph or plain div.
 Do not target non-interactive controls as a tooltip's anchor (such as non-focusable / disabled elements).
@@ -22,8 +22,8 @@ Do not target non-interactive controls as a tooltip's anchor (such as non-focusa
 - Default: `undefined`
 
 ```html preview center
-<vwc-button id="anchor" icon="help-line" shape="pill"></vwc-button>
-<vwc-tooltip anchor="anchor" text="I'm a tooltip"></vwc-tooltip>
+<vwc-button id="button" icon="help-line" shape="pill"></vwc-button>
+<vwc-tooltip anchor="button" text="I'm a tooltip"></vwc-tooltip>
 ```
 
 ### Text
