@@ -210,6 +210,7 @@ article > h1 {
 
 .article {
   padding-inline: 16px;
+  word-break: break-word;
 }
 
 @media (min-width: 960px) {
