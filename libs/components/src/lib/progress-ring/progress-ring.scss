@@ -20,7 +20,7 @@
 @use '../../../../../dist/libs/tokens/scss/size.variables' as size;
 
 
-$density: (
+$size: (
 	-5: size.$vvd-size-ultra-condensed,
 	-4: size.$vvd-size-super-condensed,
 	-3: size.$vvd-size-extra-condensed,
@@ -31,21 +31,21 @@ $density: (
 	2: size.$vvd-size-expanded,
 	3: size.$vvd-size-extra-expanded,
 );
-$density-keys: map.keys($density);
-$default-density: list.nth($density-keys, 6);
+$size-keys: map.keys($size);
+$default-size: list.nth($size-keys, 6);
 
 .base {
 	@include connotation.connotation;
 	@include appearance.appearance;
 
 	align-items: center;
-	block-size: var(#{variables.$progress-ring-density});
+	block-size: var(#{variables.$progress-ring-size});
 	color: var(#{appearance.get-appearance-token(text)});
-	inline-size: var(#{variables.$progress-ring-density});
+	inline-size: var(#{variables.$progress-ring-size});
 	outline: none;
 
-	@include utils.spread-list-selectors('.density', $density-keys, $default-density) using($value) {
-		#{variables.$progress-ring-density}: map.get($density, $value);
+	@include utils.spread-list-selectors('.size', $size-keys, $default-size) using($value) {
+		#{variables.$progress-ring-size}: map.get($size, $value);
 	}
 }
 
