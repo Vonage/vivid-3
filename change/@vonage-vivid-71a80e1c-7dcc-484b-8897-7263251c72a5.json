@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "typography style unset root's font size to resolve to 16px",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}
