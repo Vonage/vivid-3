@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Wed, 16 Nov 2022 11:04:59 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.101",
+      "version": "3.0.0-next.101",
+      "comments": {
+        "none": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "78f2cfda459c8704bb9a5a634d4ea215a16d98e1",
+            "comment": "feat(form-elements): change icon"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 16 Nov 2022 09:48:24 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.101",
       "version": "3.0.0-next.101",
