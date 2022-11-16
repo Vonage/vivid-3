@@ -57,16 +57,13 @@ Use `connotation` in order to set the color the progress.
 
 ### Paused
 
-Use the `paused` attribute to show a disabled state of the progress.
+Use the `paused` attribute to indicate the progress is paused.
 
 - Type: `boolean`
 - Default: `false`
 
 ```html preview blocks
-<h2>Determinate</h2>
 <vwc-progress-ring min="0" max="50" value="25" paused></vwc-progress-ring>
-<h2>Indeterminate</h2>
-<vwc-progress-ring min="0" max="50" paused></vwc-progress-ring>
 ```
 
 ### Size
