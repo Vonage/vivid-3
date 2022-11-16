@@ -57,7 +57,7 @@ Use `connotation` in order to set the color the progress.
 
 ### Paused
 
-Use the `paused` attribute to show a disabled state of the progress.
+Use the `paused` attribute to pause the animation of the progress ring.
 
 - Type: `boolean`
 - Default: `false`
