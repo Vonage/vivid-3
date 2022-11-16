@@ -28,7 +28,9 @@ Do not target non-interactive controls as a tooltip's anchor (such as non-focusa
 
 ### Text
 
-The tooltip is a description and therefor, the tooltip itself can not be interactive or focusable and contains only text.
+Use the `text` attribute to add text content to the tooltip.
+
+Because the tooltip itself never receives focus and is not in the tabbing order, a tooltip can not contain interactive elements like links, inputs, or buttons
 
 - Type: `string`
 - Default: `undefined`
