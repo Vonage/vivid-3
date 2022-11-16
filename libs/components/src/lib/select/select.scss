@@ -19,7 +19,6 @@
 
 	display: inline-flex;
 	flex-direction: column;
-	gap: 4px;
 }
 
 .label {
@@ -35,7 +34,6 @@
 	gap: 8px;
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	block-size: 100%;
-	border-radius: inherit;
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
@@ -49,10 +47,23 @@
 	&:disabled {
 		cursor: not-allowed;
 	}
+
+	.base:not(.shape-pill) & {
+		border-radius: 6px;
+	}
+
+	.base.shape-pill & {
+		border-radius: 24px;
+	}
+
 }
 
 
 .list-box {
 	// doesn't work because the popup is position: fixed
-	width: 100%;
+	// width: 100%;
+	padding: 4px;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
 }

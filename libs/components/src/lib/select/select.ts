@@ -1,10 +1,11 @@
 import { applyMixins, Select as FoundationSelect } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import { AffixIcon, FormElement } from '../shared/patterns';
-import type { Appearance } from '../enums';
+import type { Appearance, Shape } from '../enums';
 
 
 type SelectAppearance = Extract<Appearance, Appearance.Outlined | Appearance.Ghost>;
+type SelectShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
  * Base class for select
@@ -21,6 +22,7 @@ export class Select extends FoundationSelect {
 	 */
 	// @attr label?: string;
 	@attr appearance?: SelectAppearance;
+	@attr shape?: SelectShape;
 }
 
 export interface Select extends AffixIcon, FormElement{}

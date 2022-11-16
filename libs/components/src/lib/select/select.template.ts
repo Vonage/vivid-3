@@ -11,15 +11,15 @@ import type { Select } from './select';
 
 
 const getStateClasses = ({
-	errorValidationMessage,
+	shape,
 	disabled,
 	appearance,
 	label
 }: Select) => classNames(
-	['error connotation-alert', Boolean(errorValidationMessage)],
 	['disabled', disabled],
 	[`appearance-${appearance}`, Boolean(appearance)],
 	['no-label', !label],
+	[`shape-${shape}`, Boolean(shape)],
 );
 
 /**
