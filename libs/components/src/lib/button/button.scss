@@ -73,23 +73,23 @@
 
 	/* Size */
 	&:not(.stacked) {
-		&.density-condensed {
-			@include mixins.get-density-properties(#{size.$vvd-size-condensed}, #{constants.$vvd-typography-base-condensed-bold}, 8px, 12px);
+		&.size-condensed {
+			@include mixins.get-size-properties(#{size.$vvd-size-condensed}, #{constants.$vvd-typography-base-condensed-bold}, 8px, 12px);
 		}
 
-		&.density-extended {
-			@include mixins.get-density-properties(#{size.$vvd-size-expanded}, #{constants.$vvd-typography-base-extended-bold}, 10px, 20px);
+		&.size-extended {
+			@include mixins.get-size-properties(#{size.$vvd-size-expanded}, #{constants.$vvd-typography-base-extended-bold}, 10px, 20px);
 		}
 
-		&:not(.density-condensed, .density-extended) {
-			@include mixins.get-density-properties(#{size.$vvd-size-normal}, #{constants.$vvd-typography-base-bold}, 8px, 16px);
+		&:not(.size-condensed, .size-extended) {
+			@include mixins.get-size-properties(#{size.$vvd-size-normal}, #{constants.$vvd-typography-base-bold}, 8px, 16px);
 		}
 	}
 
 	&.stacked {
 		flex-direction: column;
 		justify-content: center;
-		@include mixins.get-density-properties(calc(#{size.$vvd-size-expanded} + #{size.$vvd-size-ultra-condensed}), #{constants.$vvd-typography-base-bold}, 10px, 16px);
+		@include mixins.get-size-properties(calc(#{size.$vvd-size-expanded} + #{size.$vvd-size-ultra-condensed}), #{constants.$vvd-typography-base-bold}, 10px, 16px);
 	}
 }
 

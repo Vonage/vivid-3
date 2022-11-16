@@ -38,7 +38,7 @@ function headline() {
 function renderDismissButton() {
 	return html<Dialog>`
 	  <vwc-button
-			  density="condensed"
+			  size="condensed"
 			  class="dismiss-button"
 			  icon="close-line"
 			  @click="${x => {

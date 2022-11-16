@@ -48,12 +48,12 @@
 
 	/* Size */
 
-	&.density-extended {
+	&.size-Expanded {
 		#{variables.$border-radius}: 30px;
 		#{variables.$block-size}: #{size.$vvd-size-super-expanded};
 	}
 
-	&:not(.density-extended) {
+	&:not(.size-expanded) {
 		#{variables.$border-radius}: 24px;
 		#{variables.$block-size}: #{size.$vvd-size-normal};
 	}
@@ -105,11 +105,11 @@
 		order: 1;
 	}
 
-	.control.density-extended & {
+	.control.size-extended & {
 		font-size: calc(#{size.$vvd-size-super-expanded} / 2.3333);
 	}
 
-	.control:not(.density-extended) &{
+	.control:not(.size-extended) &{
 		font-size: calc(#{size.$vvd-size-normal} / 2);
 	}
 }
