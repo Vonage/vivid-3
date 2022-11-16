@@ -1,11 +1,36 @@
 import { html, ref, slotted, ViewTemplate, when } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 // import { classNames } from '@microsoft/fast-web-utilities';
+import {classNames} from '@microsoft/fast-web-utilities';
 import { Listbox } from '../listbox/listbox.js';
 import { Popup } from '../popup/popup.js';
 import { affixIconTemplateFactory } from '../shared/patterns/affix.js';
 // import { focusTemplateFactory } from '../shared/patterns/focus.js';
 import type { Select } from './select';
+
+
+
+const getStateClasses = ({
+	errorValidationMessage,
+	disabled,
+	appearance,
+	label
+}: Select) => classNames(
+	['error connotation-alert', Boolean(errorValidationMessage)],
+	['disabled', disabled],
+	[`appearance-${appearance}`, Boolean(appearance)],
+	['no-label', !label],
+);
+
+/**
+ *
+ */
+function renderLabel() {
+	return html<Select>`
+	  <label for="control" class="label">
+		  ${x => x.label}
+	  </label>`;
+}
 
 
 /**
@@ -16,16 +41,17 @@ function renderControl(context: ElementDefinitionContext) {
 	// const focusTemplate = focusTemplateFactory(context);
 
 	return html<Select>`
-		<div
-			class="control"
-			?disabled="${x => x.disabled}"
-			${ref('control')}
-			>
-			<div class="selected-value">
-				${x => x.displayValue}
+			${when(x => x.label, renderLabel())}
+			<div
+				class="control"
+				?disabled="${x => x.disabled}"
+				${ref('control')}
+				>
+				<div class="selected-value">
+					${x => x.displayValue}
+				</div>
+				${() => affixIconTemplate('chevron-down-line')}
 			</div>
-			${() => affixIconTemplate('chevron-down-line')}
-		</div>
 
 		`;
 	// ${() => focusTemplate}
@@ -46,7 +72,7 @@ export const SelectTemplate: (
 	const popupTag = context.tagFor(Popup);
 
 	return html<Select>`
-	  <template
+	  <div class="base ${getStateClasses}"
             aria-activedescendant="${x => x.ariaActiveDescendant}"
             aria-controls="${x => x.ariaControls}"
             aria-disabled="${x => x.ariaDisabled}"
@@ -54,7 +80,7 @@ export const SelectTemplate: (
             aria-haspopup="${x => (x.collapsible ? 'listbox' : null)}"
             aria-multiselectable="${x => x.ariaMultiSelectable}"
             ?open="${x => x.open}"
-            role="combobox"
+            role="select"
             tabindex="${x => (!x.disabled ? '0' : null)}"
             @click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
             @focusin="${(x, c) => x.focusinHandler(c.event as FocusEvent)}"
@@ -72,6 +98,7 @@ export const SelectTemplate: (
                 role="listbox"
                 ?disabled="${x => x.disabled}"
                 ${ref('listbox')}
+								class="list-box"
 								>
                 <slot
                     ${slotted({
@@ -82,5 +109,5 @@ export const SelectTemplate: (
                 ></slot>
             </div>
 					</${popupTag}>
-        </template>`;
+        </div>`;
 };
