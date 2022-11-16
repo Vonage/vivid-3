@@ -14,7 +14,7 @@ The tooltip should be referenced through the use of aria-describedby. The aria-d
 
 ### Anchor
 
-The tooltip shoul be placed on interactive controls (things that can be hovered or focusable) such as: button, checkbox, input text.
+The tooltip should be placed on interactive controls, elements that can be hovered over or focusable (e.g. button, checkbox, input text etc'.).
 The tooltip can't be placed on non-interactive elements such as paragraph or plain div.
 Do not target non-interactive controls as a tooltip's anchor (such as non-focusable / disabled elements).
 
