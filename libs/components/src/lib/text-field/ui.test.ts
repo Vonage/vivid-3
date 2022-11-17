@@ -40,11 +40,11 @@ test('should show the component', async ({page}: { page: Page }) => {
 		);
 });
 
-test('should invalidate the component', async ({page, browserName}: { page: Page, browserName: string }) => {
+const testInvalidation = async ({page, browserName}: { page: Page, browserName: string }) => {
 	const selector = browserName === 'chromium' ? 'input[name="submit-button"]' : '#submit-button';
 
 	const template = `
-		<form onsubmit="return false">
+		<form onsubmit="return false" style="min-height: 150px;">
 			<vwc-text-field id="invalid-text-field" 
 																		label="invalid" 
 																		required
@@ -67,18 +67,20 @@ test('should invalidate the component', async ({page, browserName}: { page: Page
 	const testWrapper = await page.$('#wrapper');
 
 	const submitButton = await page.locator(selector);
-	await page.waitForLoadState('networkidle');
 
 	await submitButton.click();
+
+	await page.setViewportSize({ width: 300, height: 300 });
 	await page.waitForLoadState('networkidle');
-	await page.waitForTimeout(50);
+
+	await page.waitForTimeout(1000);
+	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot({animations: 'disabled'}))
 		.toMatchSnapshot(
-			'./snapshots/text-field-invalidation.png',
-			{
-				maxDiffPixelRatio: 0.05
-			}
+			'./snapshots/text-field-invalidation.png'
 		);
-});
+};
+
+test('should invalidate component', testInvalidation);
 
