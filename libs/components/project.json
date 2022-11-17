@@ -3,7 +3,7 @@
   "sourceRoot": "libs/components/src",
   "projectType": "library",
   "targets": {
-    "gen": {
+    "generateMeta": {
       "executor": "nx:run-commands",
       "options": {
         "commands": [
