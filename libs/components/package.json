@@ -53,6 +53,7 @@
     "./switch": "./switch",
     "./text-field": "./text-field",
     "./text-area": "./text-area",
-    "./tooltip": "./tooltip"
+    "./tooltip": "./tooltip",
+    "./toggletip": "./toggletip"
   }
 }

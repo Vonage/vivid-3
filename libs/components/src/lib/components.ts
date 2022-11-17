@@ -35,4 +35,5 @@ export * from './slider';
 export * from './switch';
 export * from './text-field';
 export * from './text-area';
+export * from './toggletip';
 export * from './tooltip';

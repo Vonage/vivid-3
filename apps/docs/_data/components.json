@@ -319,5 +319,13 @@
 		"modules": [
 			"/assets/modules/components/slider/index.js"
 		]
+	},
+	{
+		"title": "toggletip",
+		"markdown": "./libs/components/src/lib/toggletip/README.md",
+		"modules": [
+			"/assets/modules/components/toggletip/index.js",
+			"/assets/modules/components/button/index.js"
+		]
 	}
 ]
