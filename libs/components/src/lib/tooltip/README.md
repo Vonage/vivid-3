@@ -1,6 +1,6 @@
 # Tooltip
 
-A tooltip is a popup that displays informative message, description or explanation related to an element receiving keyboard focus or when the mouse hovers over it. It typically appears after a small delay and disappears when Escape is pressed or on mouse out. 
+A tooltip displays additional, non-essential, informative message, description or explanation to a focusable element upon hover or focus. It typically appears after a short delay and disappears when `Escape` key is pressed, element looses focus or hovered off. 
 
 ```js
 <script type="module">
