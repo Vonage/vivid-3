@@ -3,16 +3,15 @@
 
 .control {
 	pointer-events: none;
+	transition: visibility 0s 0s, opacity 50ms 0.2s linear;
 
-	.open {
+	&.open {
 		opacity: 1;
-		transition: visibility 0s 0s linear, opacity 50ms 0.5s linear;
 		visibility: visible;
 	}
 
 	&:not(.open) {
 		opacity: 0;
-		transition: visibility 0s 0.5s, opacity 50ms linear;
 		visibility: hidden;
 	}
 }
