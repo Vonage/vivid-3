@@ -6,6 +6,7 @@ import { Listbox } from '../listbox/listbox.js';
 import { Popup } from '../popup/popup.js';
 import { affixIconTemplateFactory } from '../shared/patterns/affix.js';
 // import { focusTemplateFactory } from '../shared/patterns/focus.js';
+import {getFeedbackTemplate} from '../../shared/patterns';
 import type { Select } from './select';
 
 
@@ -45,6 +46,7 @@ function renderControl(context: ElementDefinitionContext) {
 			<div
 				class="control"
 				?disabled="${x => x.disabled}"
+				id="control"
 				${ref('control')}
 				>
 				<div class="selected-value">
@@ -89,9 +91,9 @@ export const SelectTemplate: (
             @mousedown="${(x, c) => x.mousedownHandler(c.event as MouseEvent)}"
         >
             ${when(x => x.collapsible, renderControl(context))}
-
-						<${popupTag}
-							?open="${x => (x.collapsible ? x.open : true)}"
+			${when(x => !x.successText && !x.errorValidationMessage && x.helperText?.length, getFeedbackTemplate('helper', context))}
+			<${popupTag}
+							?open="${x => (x.collapsible ? x.open : true)}" anchor="control"
 							>
 							<div
                 id="${x => x.listboxId}"
@@ -109,5 +111,5 @@ export const SelectTemplate: (
                 ></slot>
             </div>
 					</${popupTag}>
-        </div>`;
+		</div>`;
 };

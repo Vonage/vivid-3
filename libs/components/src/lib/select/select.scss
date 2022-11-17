@@ -19,6 +19,7 @@
 
 	display: inline-flex;
 	flex-direction: column;
+	gap: 4px;
 }
 
 .label {
@@ -41,10 +42,10 @@
 	transition: box-shadow .2s, background-color .2s;
 	min-block-size: #{size.$vvd-size-normal};
 
-	&:not(.disabled) {
+	.base:not(.disabled) & {
 		cursor: pointer;
 	}
-	&:disabled {
+	.base.disabled & {
 		cursor: not-allowed;
 	}
 
@@ -55,9 +56,7 @@
 	.base.shape-pill & {
 		border-radius: 24px;
 	}
-
 }
-
 
 .list-box {
 	// doesn't work because the popup is position: fixed
