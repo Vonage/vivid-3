@@ -133,8 +133,6 @@ describe('vwc-popup', () => {
 				.toBeFalsy();
 			expect(element.anchor)
 				.toBeUndefined();
-			expect(element.lightDismiss)
-				.toEqual(false);
 			expect(element.placement)
 				.toBeUndefined();
 		});

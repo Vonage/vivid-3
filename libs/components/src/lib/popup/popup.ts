@@ -2,7 +2,6 @@ import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { arrow, autoUpdate, computePosition, flip, hide, inline, offset, Strategy } from '@floating-ui/dom';
 import type { Placement } from '@floating-ui/dom';
-// import { isSupported, apply } from '@oddbird/popover-polyfill/dist/popover';
 
 /**
  * Base class for popup
@@ -39,6 +38,7 @@ export class Popup extends FoundationElement {
 	}) open = false;
 	openChanged(_: boolean, newValue: boolean): void {
 		newValue ? this.$emit('open') : this.$emit('close');
+		newValue ? this.showPopover() : this.hidePopover();
 	}
 
 	/**
@@ -57,7 +57,7 @@ export class Popup extends FoundationElement {
 	//  * @public
 	//  * HTML Attribute: popover
 	//  */
-	// @attr override popover: 'auto' | 'manual' = 'manual';
+	// @attr override popover!: 'auto' | 'manual' | null;
 
 	/**
 	 * adds small triangle to indicate the trigger element
@@ -97,6 +97,7 @@ export class Popup extends FoundationElement {
 
 	override connectedCallback(): void {
 		super.connectedCallback();
+		//this.open ? this.showPopover() : this.hidePopover();
 	}
 
 	override disconnectedCallback(): void {
@@ -109,12 +110,6 @@ export class Popup extends FoundationElement {
 		switch (name) {
 			case 'anchor': {
 				this.#anchorEl = this.#getAnchorById();
-				break;
-			}
-			case 'open': {
-				if (this.popover == 'auto') {
-					this.showPopover();
-				}
 				break;
 			}
 		}
