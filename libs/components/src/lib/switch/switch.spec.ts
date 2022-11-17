@@ -154,8 +154,38 @@ describe('vwc-switch', () => {
 		});
 	});
 
+	describe('checked', function () {
+		it('should add class checked to control', async function () {
+			const checkedClassWhenFalse = getControlElement(element)
+				.classList
+				.contains('checked');
+			element.checked = true;
+			await elementUpdated(element);
+			const checkedClassWhenTrue = getControlElement(element)
+				.classList
+				.contains('checked');
+			expect(checkedClassWhenFalse)
+				.toEqual(false);
+			expect(checkedClassWhenTrue)
+				.toEqual(true);
+		});
+
+		it('should set aria-checked on the control', async function () {
+			element.checked = false;
+			await elementUpdated(element);
+			const control = getControlElement(element);
+			const ariaCheckedWhenNotChecked = control.getAttribute('aria-checked');
+
+			element.checked = true;
+			await elementUpdated(element);
+
+			expect(ariaCheckedWhenNotChecked).toEqual('false');
+			expect(control.getAttribute('aria-checked')).toEqual('true');
+		});
+	});
+
 	describe('label', function () {
-		it('should show the label', async function() {
+		it('should show the label', async function () {
 			const labelText = 'test';
 			element.setAttribute('label', labelText);
 			await elementUpdated(element);
@@ -185,10 +215,23 @@ describe('vwc-switch', () => {
 				.toEqual(Connotation.CTA);
 		});
 
-		it('should set connotation on the control div', async function () {
-			const connotation = Connotation.CTA;
+		it('should not set connotation on the control div if unchecked', async function () {
 			const control = getControlElement(element);
+
+			const connotation = Connotation.CTA;
+			element.connotation = connotation;
+			await elementUpdated(element);
+			const connotationClassExistsAfterChange = control?.classList.contains(`connotation-${connotation}`);
+
+			expect(connotationClassExistsAfterChange).toEqual(false);
+		});
+
+		it('should set connotation on the control div if checked', async function () {
+			const control = getControlElement(element);
+
+			const connotation = Connotation.CTA;
 			const connotationClassExistsBeforeChange = control?.classList.contains(`connotation-${connotation}`);
+			element.checked = true;
 			element.connotation = connotation;
 			await elementUpdated(element);
 			const connotationClassExistsAfterChange = control?.classList.contains(`connotation-${connotation}`);
@@ -197,6 +240,35 @@ describe('vwc-switch', () => {
 				.toEqual(false);
 			expect(connotationClassExistsAfterChange)
 				.toEqual(true);
+		});
+	});
+
+	describe('appearance', function () {
+		it('should apply filled appearance style when checked and not disabled, nor read-only', async function () {
+			const control = getControlElement(element);
+
+			const appearanceFilledClassExistsBeforeChecked = control?.classList.contains('appearance-filled');
+
+			element.checked = true;
+			await elementUpdated(element);
+
+			const appearanceFilledClassExistsAfterChecked = control?.classList.contains('appearance-filled');
+
+			element.disabled = true;
+			await elementUpdated(element);
+
+			const appearanceFilledClassExistsAfterDisabled = control?.classList.contains('appearance-filled');
+
+			element.disabled = false;
+			element.readOnly = true;
+			await elementUpdated(element);
+
+			const appearanceFilledClassExistsAfterReadonly = control?.classList.contains('appearance-filled');
+
+			expect(appearanceFilledClassExistsBeforeChecked).toEqual(false);
+			expect(appearanceFilledClassExistsAfterChecked).toEqual(true);
+			expect(appearanceFilledClassExistsAfterDisabled).toEqual(false);
+			expect(appearanceFilledClassExistsAfterReadonly).toEqual(false);
 		});
 	});
 });

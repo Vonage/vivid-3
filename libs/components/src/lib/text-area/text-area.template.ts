@@ -14,11 +14,14 @@ const getClasses = ({value, errorValidationMessage, disabled, placeholder, readO
 	['readonly', readOnly],
 	['placeholder', Boolean(placeholder)],
 	['disabled', disabled],
-	['error', Boolean(errorValidationMessage)],
+	['error connotation-alert', Boolean(errorValidationMessage)],
 	['has-value', Boolean(value)],
-	['success', !!successText]
+	['success connotation-success', !!successText]
 );
 
+/**
+ *
+ */
 function renderLabel() {
 	return html<TextArea>`
 	  <label for="control" class="label">

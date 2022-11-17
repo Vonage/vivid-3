@@ -62,13 +62,13 @@ describe('vwc-avatar', () => {
 		});
 	});
 
-	describe('avatar density', function () {
-		it('sets correct internal density style', async () => {
-			const density = 'condensed';
-			(element as any).density = density;
+	describe('avatar size', function () {
+		it('sets correct internal size style', async () => {
+			const size = 'condensed';
+			(element as any).size = size;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.base.density-${density}`);
+			const control = element.shadowRoot?.querySelector(`.base.size-${size}`);
 			expect(control).toBeInstanceOf(Element);
 		});
 	});
