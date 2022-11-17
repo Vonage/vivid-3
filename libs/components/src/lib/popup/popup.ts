@@ -2,6 +2,7 @@ import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { arrow, autoUpdate, computePosition, flip, hide, inline, offset, Strategy } from '@floating-ui/dom';
 import type { Placement } from '@floating-ui/dom';
+// import { isSupported, apply } from '@oddbird/popover-polyfill/dist/popover';
 
 /**
  * Base class for popup
@@ -50,13 +51,13 @@ export class Popup extends FoundationElement {
 		mode: 'boolean',
 	}) dismissible = false;
 
-	/**
-	 * determines if popup can be light dismissed
-	 *
-	 * @public
-	 * HTML Attribute: popup
-	 */
-	@attr popup: 'auto' | 'manual' = 'manual';
+	// /**
+	//  * determines if popover can be light dismissed
+	//  *
+	//  * @public
+	//  * HTML Attribute: popover
+	//  */
+	// @attr override popover: 'auto' | 'manual' = 'manual';
 
 	/**
 	 * adds small triangle to indicate the trigger element
@@ -111,8 +112,8 @@ export class Popup extends FoundationElement {
 				break;
 			}
 			case 'open': {
-				if (this.popup == "auto") {
-					(this as any)?.showPopUp();
+				if (this.popover == 'auto') {
+					this.showPopover();
 				}
 				break;
 			}

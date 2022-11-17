@@ -69,9 +69,9 @@ Add the `dismissible` attribute to add a close button to the popup.
 </script>
 ```
 
-### Popup
+### Popover
 
-Use the `popup` attribute to add Light dismiss behaviors. 
+Use the `popover` attribute to add Light dismiss behaviors. 
 - When `'auto'` the following will dismiss the popup: pressing the ESC key, keyboard-navigation, invoking elsewhere in the document, invoking another popup, etc.
 - When `'manual'`, popup cannot be light dismissed (it can only be dismissed by an explicit trigger element or by JavaScript), and they don't automatically dismiss previously-shown popups.
 
@@ -80,7 +80,7 @@ Use the `popup` attribute to add Light dismiss behaviors.
 
 ```html preview center
 <vwc-button id="anchor" appearance='outlined' label='Click outside of the popup!'></vwc-button>
-<vwc-popup id="popup" anchor="anchor" popup="auto">
+<vwc-popup id="popup" anchor="anchor" popover="auto">
   <vwc-layout gutters="small">
    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   </vwc-layout>
