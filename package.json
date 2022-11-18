@@ -90,7 +90,6 @@
 		"prettier": "2.7.1",
 		"rollup-plugin-copy": "^3.4.0",
 		"rollup-plugin-delete": "^2.0.0",
-		"rollup-plugin-postcss": "^4.0.2",
 		"sass": "^1.52.2",
 		"slugify": "^1.6.5",
 		"style-dictionary": "^3.7.1",
