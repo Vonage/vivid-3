@@ -1,6 +1,8 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import type { Popup } from '../popup/popup';
+import type { ButtonConnotation, ButtonAppearance, ButtonSize, ButtonShape } from '../button/button';
+import type { Placement } from '@floating-ui/dom';
 
 /**
  * Base class for toggletip
@@ -9,31 +11,86 @@ import type { Popup } from '../popup/popup';
  */
 export class Toggletip extends FoundationElement {
 	/**
-	 * Indicates the text's text.
+	 * Indicates whether the toggletip is disabled or not
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: text
+	 * HTML Attribute: disabled
 	 */
-	@attr text?: string;
+	 @attr({
+		mode: 'boolean'
+	}) disabled = false;
+
+	/**
+	 * The connotation the toggletip's button should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: connotation
+	 */
+	@attr connotation?: ButtonConnotation;
+
+	/**
+	 * The appearance the toggletip's button should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: appearance
+	 */
+	 @attr appearance?: ButtonAppearance;
+
+	/**
+	 * The size the toggletip's button should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: size
+	 */
+	 @attr size?: ButtonSize;
+
+	/**
+	 * The shape the button should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: shape
+	 */
+	 @attr shape?: ButtonShape;
+
+	/**
+	* A decorative icon the custom element should have.
+	*
+	* @public
+	* @remarks
+	* HTML Attribute: icon
+	*/
+	@attr icon?: string;
+
+	/**
+	 * the placement of the popup
+	 *
+	 * @public
+	 * HTML Attribute: placement
+	 */
+	 @attr placement?: Placement;
+
+	button!: HTMLButtonElement;
+	popup!: Popup;
 
 	override connectedCallback() {
 		super.connectedCallback();
 
-		const button = this.shadowRoot?.querySelector('#_ttanchor_');
-		const toggletip = this.shadowRoot?.querySelector('#_toggletip_') as Popup;
+		this.popup.anchorEl = this.button;
+		this.popup.anchorEl.addEventListener('keydown', this.popup.handleKeydown);
 
-		toggletip.anchorEl = button;
-		toggletip.anchorEl?.addEventListener('keydown', toggletip.handleKeydown);
-
-		// light dismiss
+		// quick'n'dirty light dismiss
 		document.addEventListener('click', (e) => {
-			if (toggletip.open && !this.contains(e.target as HTMLElement)) {
-				toggletip.open = false;
+			if (this.popup.open && !this.contains(e.target as HTMLElement)) {
+				this.popup.open = false;
 			}
 		});
 
-		button?.addEventListener('click', () => toggletip.open = true);
+		this.button.addEventListener('click', () => this.popup.open = true);
 	}
 
 }

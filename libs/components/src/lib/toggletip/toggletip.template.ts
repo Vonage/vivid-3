@@ -1,4 +1,4 @@
-import { html } from '@microsoft/fast-element';
+import { html, ref } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
@@ -23,8 +23,21 @@ export const ToggletipTemplate:
 
 		return html`
 			<span class="${getClasses}">
-				<${button} id="_ttanchor_" shape="pill" icon="info-line" aria-label="Mute"></${button}>
-				<${popup} id="_toggletip_" arrow placement="right">
+				<${button}
+					?disabled="${(x) => x.disabled}"
+					connotation="${(x) => x.connotation}"
+					appearance="${(x) => x.appearance}"
+					size="${x => x.size ? x.size : 'condensed'}"
+					shape="${x => x.shape ? x.shape : 'pill'}"
+					icon="${x => x.icon ? x.icon : 'info-line'}"
+					${ref('button')}
+				>
+				</${button}>
+				<${popup}
+					arrow
+					placement="${x => x.placement ? x.placement : 'right'}"
+					${ref('popup')}
+				>
 					<span style="padding: 12px;">
 						<slot></slot>
 					</span>
