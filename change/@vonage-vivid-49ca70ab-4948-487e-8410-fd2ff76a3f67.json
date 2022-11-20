@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "package generated customElements.json & TS meta",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}
