@@ -23,6 +23,7 @@
 }
 
 .base {
+	$min-block-size: #{size.$vvd-size-normal};
 	$gap: 12px;
 	$gutter: 16px;
 
@@ -34,18 +35,13 @@
 	box-sizing: border-box;
 	align-items: center;
 	background-color: var(#{appearance.get-appearance-token(fill)});
+	block-size: $min-block-size;
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+	color: var(#{appearance.get-appearance-token(text)});
+	font: var(#{constants.$vvd-typography-base});
 	gap: $gap;
 	inline-size: 100%;
 	padding-inline: $gutter;
-
-	&:not(.two-lines) {
-		block-size: #{size.$vvd-size-normal};
-	}
-
-	&.two-lines {
-		block-size: calc(#{size.$vvd-size-normal} + #{size.$vvd-size-super-condensed});
-	}
 
 	@supports(user-select: none) {
 		user-select: none;
@@ -80,27 +76,7 @@
 }
 
 .text {
-	display: flex;
-	flex-direction: column;
-}
-
-.primary-text,
-.secondary-text {
 	overflow: hidden;
-	color: var(#{appearance.get-appearance-token(text)});
-	font: var(#{constants.$vvd-typography-base});
 	text-overflow: ellipsis;
 	white-space: nowrap;
-}
-
-.primary-text {
-	.base.two-lines & {
-		font: var(#{constants.$vvd-typography-base-bold});
-	}
-}
-
-.secondary-text {
-	.base.two-lines & {
-		color: var(#{constants.$vvd-color-neutral-600});
-	}
 }

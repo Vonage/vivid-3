@@ -9,15 +9,14 @@ import { focusTemplateFactory } from './../../shared/patterns/focus';
 
 
 const getClasses = ({
-	disabled, checked, expanded, role, text, secondaryText
+	disabled, checked, expanded, role
 }: MenuItem) =>	classNames(
 	'base',
 	['disabled', Boolean(disabled)],
 	['selected', role !== MenuItemRole.menuitem && Boolean(checked)],
 	['expanded', Boolean(expanded)],
 	['item-checkbox', role === MenuItemRole.menuitemcheckbox],
-	['item-radio', role === MenuItemRole.menuitemradio],
-	['two-lines', Boolean(text?.length) && Boolean(secondaryText?.length)]
+	['item-radio', role === MenuItemRole.menuitemradio]
 );
 
 /**
@@ -78,14 +77,9 @@ export const MenuItemTemplate:  (
 			${when(x => x.role === MenuItemRole.menuitem && x.icon,
 		html`${x => affixIconTemplate(x.icon)}`)}
 
-			${when(x => x.text || x.secondaryText, html`<span class="text">
-				${when(x => x.text, html`<span class="primary-text">${x => x.text}</span>`)}
-				${when(x => x.secondaryText, html`<span class="secondary-text">${x => x.secondaryText}</span>`)}
-			</span>`)
-}
-
-
-
+			<span class="text">
+				${x => x.text}
+			</span>
 		</div>
 	</template>
 	`;
