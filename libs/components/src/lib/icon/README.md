@@ -4,7 +4,7 @@ Find the icon you want to use on the [vivid icons search platform](https://icons
 
 ```js
 <script type='module'>
-    import '@vonage/vivid/icon';
+  import '@vonage/vivid/icon';
 </script>
 ```
 
@@ -50,13 +50,13 @@ While `type` fetches an icon from the Vivid predefined set of icons, `svg` prope
 
 Use the `size` attribute to apply a predefined size to the icon.
 
-- Type: `'small'` | `'medium'` | `'large'`
-- Default: `'medium'`
+- Type: `'condensed'` | `'normal'` | `'expanded'`
+- Default: `'normal'`
 
 ```html preview
-<vwc-icon type='close-line' size='small'></vwc-icon>
-<vwc-icon type='close-line' size='medium'></vwc-icon>
-<vwc-icon type='close-line' size='large'></vwc-icon>
+<vwc-icon type='close-line' size='condensed'></vwc-icon>
+<vwc-icon type='close-line' size='normal'></vwc-icon>
+<vwc-icon type='close-line' size='expanded'></vwc-icon>
 ```
 
 ### Connotation

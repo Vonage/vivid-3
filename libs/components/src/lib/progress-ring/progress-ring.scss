@@ -1,4 +1,6 @@
+@use 'sass:map';
 @use 'sass:list';
+
 @use 'partials/variables' as variables;
 @use '../../../../shared/src/lib/sass/utils' as utils;
 
@@ -15,22 +17,35 @@
 	$default: ghost,
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
 
-$density: 5 6 7 8 9 10 11 12 13;
-$default-density: list.nth($density, 6);
+
+$size: (
+	-5: size.$vvd-size-ultra-condensed,
+	-4: size.$vvd-size-super-condensed,
+	-3: size.$vvd-size-extra-condensed,
+	-2: size.$vvd-size-condensed,
+	-1: size.$vvd-size-semi-condensed,
+	0: size.$vvd-size-normal,
+	1: size.$vvd-size-semi-expanded,
+	2: size.$vvd-size-expanded,
+	3: size.$vvd-size-extra-expanded,
+);
+$size-keys: map.keys($size);
+$default-size: list.nth($size-keys, 6);
 
 .base {
 	@include connotation.connotation;
 	@include appearance.appearance;
 
 	align-items: center;
-	block-size: var(#{variables.$progress-ring-density});
+	block-size: var(#{variables.$progress-ring-size});
 	color: var(#{appearance.get-appearance-token(text)});
-	inline-size: var(#{variables.$progress-ring-density});
+	inline-size: var(#{variables.$progress-ring-size});
 	outline: none;
 
-	@include utils.spread-list-selectors('.density', $density, $default-density) using($value) {
-		#{variables.$progress-ring-density}: calc(#{$value} * 4px);
+	@include utils.spread-list-selectors('.size', $size-keys, $default-size) using($value) {
+		#{variables.$progress-ring-size}: map.get($size, $value);
 	}
 }
 
