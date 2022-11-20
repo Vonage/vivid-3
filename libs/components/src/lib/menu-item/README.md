@@ -20,7 +20,7 @@ Represents a menu-item custom element.
 ### Text
 
 - Type: `string`
-- Default: `''`
+- Default: `undefined`
 
 Use the `text` attribute to set the menu item's text.
 
@@ -33,7 +33,7 @@ Use the `text` attribute to set the menu item's text.
 ### Secondary text
 
 - Type: `string`
-- Default: `''`
+- Default: `undefined`
 
 Use the `secondary-text` attribute (or `secondaryText` property) to set the menu item's secondary text.
 
@@ -46,13 +46,7 @@ Note: to improve readability, **avoid long text and multiple lines** where possi
  }
 </style>
 <vwc-menu open>
- <vwc-menu-item icon="home"></vwc-menu-item>
  <vwc-menu-item text="menu item" secondary-text="secondary text"></vwc-menu-item>
-  <vwc-menu-item text="menu item"></vwc-menu-item>
-  <vwc-menu-item secondary-text="secondary text"></vwc-menu-item>
- <vwc-menu-item icon="home" text="menu item" secondary-text="secondary text"></vwc-menu-item>
-  <vwc-menu-item icon="home" text="menu item"></vwc-menu-item>
-  <vwc-menu-item icon="home" secondary-text="secondary text"></vwc-menu-item>
 </vwc-menu>
 ```
 
