@@ -75,20 +75,6 @@ Use the `--tooltip-inline-size` variable to set the tooltip's inline size.
 <vwc-tooltip anchor="button" text="My inline size is 200px"></vwc-tooltip>
 ```
 
-## Use Cases
-
-### Usage inside text
-
-```html preview
-<p>
-  Text with tooltip - press the question mark
-  <vwc-button id="button" icon="help-line" shape="pill"></vwc-button>
-  more text after tooltip.
-</p>
-
-<vwc-tooltip anchor="button" placement="bottom-end" text="I'm the tooltip content"></vwc-tooltip>
-```
-
 ## Caveat
 
 Document elements display precedence is formed by the imaginary z-axis [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context), commonly by order of which elements are rendered and special properties (e.g. _z-index_).
