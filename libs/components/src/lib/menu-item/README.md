@@ -17,6 +17,45 @@ Represents a menu-item custom element.
 
 ## Members
 
+### Text
+
+- Type: `string`
+- Default: `''`
+
+Use the `text` attribute to set the menu item's text.
+
+```html preview
+<vwc-menu open>
+  <vwc-menu-item text="Menu item"></vwc-menu-item>
+</vwc-menu>
+```
+
+### Secondary text
+
+- Type: `string`
+- Default: `''`
+
+Use the `secondary-text` attribute (or `secondaryText` property) to set the menu item's secondary text.
+
+Note: to improve readability, **avoid long text and multiple lines** where possible.
+
+```html preview
+<style>
+ :root {
+  height: 500px;
+ }
+</style>
+<vwc-menu open>
+ <vwc-menu-item icon="home"></vwc-menu-item>
+ <vwc-menu-item text="menu item" secondary-text="secondary text"></vwc-menu-item>
+  <vwc-menu-item text="menu item"></vwc-menu-item>
+  <vwc-menu-item secondary-text="secondary text"></vwc-menu-item>
+ <vwc-menu-item icon="home" text="menu item" secondary-text="secondary text"></vwc-menu-item>
+  <vwc-menu-item icon="home" text="menu item"></vwc-menu-item>
+  <vwc-menu-item icon="home" secondary-text="secondary text"></vwc-menu-item>
+</vwc-menu>
+```
+
 ### Role
 
 set `role` to change the role of the menu item
@@ -29,7 +68,7 @@ set `role` to change the role of the menu item
   html { 
     block-size: 360px; 
   }
-</style>
+</>
 
 <vwc-menu open>
   <vwc-menu-item role="menuitem" text="Menu item 1"></vwc-menu-item>
