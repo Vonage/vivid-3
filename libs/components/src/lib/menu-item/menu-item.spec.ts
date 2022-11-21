@@ -61,8 +61,9 @@ describe('vwc-menu-item', () => {
 		await elementUpdated(element);
 
 		const control = element.shadowRoot?.querySelector('.base');
-		expect(control?.textContent?.trim())
-			.toEqual(text + secondaryText);
+
+		expect(control?.textContent?.trim().includes(text)).toEqual(true);
+		expect(control?.textContent?.trim().includes(secondaryText)).toEqual(true);
 	});
 
 	it('should set a leading icon', async () => {
