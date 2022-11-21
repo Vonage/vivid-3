@@ -44,7 +44,7 @@ The following types of design tokens are the building blocks and design decision
 
 ## Using design tokens
 
-Aside from the [color-related tokens](/designs/color-palette), you may use these ones to tweak your application appearance.
+Aside from the [color-related tokens](/designs/color-palette), you may use the following to customize your application appearance.
 
 ### Typography
 #### Font families
