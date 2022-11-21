@@ -4,7 +4,7 @@ import { prefix, buildPath } from '../common';
 import { isSource } from '../filters';
 
 const transformToCssVariable = ({name, value}) => `var(--${name}, ${value})`;
-const getRunTimeDensity = (token) => `clamp(${+token.value - 1}, ${transformToCssVariable(token)}, ${+token.value + 1})`;
+const getRunTimeDensity = (token) => `clamp(${+token.value - 1}, ${transformToCssVariable(token)}, ${+token.value + 2})`;
 
 SD.registerTransform({
 	type: 'value',

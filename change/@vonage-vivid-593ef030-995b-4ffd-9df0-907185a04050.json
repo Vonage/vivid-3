@@ -1,6 +1,6 @@
 {
   "type": "prerelease",
-  "comment": "package generated customElements.json & TS meta",
+  "comment": "style gutters and gaps in list items",
   "packageName": "@vonage/vivid",
   "email": "yinon@hotmail.com",
   "dependentChangeType": "patch"
