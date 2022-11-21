@@ -53,6 +53,12 @@ Use `--vvd-font-family-upright` to specify a base proportional font.
 
 Use `--vvd-font-family-monospace` to specify a base monospaced font.
 
+Unless explicitely stated otherwise, Vonage products should use the brand font `Spezia`. This is explained [in this repo](https://github.com/Vonage/spezia-webfont-kit).
+
+- Type: `string`
+- Default upright: `'Montserrat'`
+- Default monospace: `'Roboto Mono'`
+
 ```html preview
 <style>
   :root {
@@ -72,7 +78,12 @@ Use `--vvd-font-family-monospace` to specify a base monospaced font.
 
 #### Font size
 
-Use `--vvd-size-font-scale-base` to define the base font size for the widgets. The default value in Vivid is `16px`.
+Use `--vvd-size-font-scale-base` to define the base font size for the widgets.
+When the `.vvd-root` class is set on the root element (i.e., `<html>`), the default font size is reset to the user-agent's one (generally `16px`)
+and `--vvd-size-font-scale-base` set to `1rem`.
+
+- Type: [`<length>`](https://developer.mozilla.org/en-US/docs/Web/CSS/length)
+- Default: `undefined` or `'1rem'` (see above)
 
 ```html preview
 <style>
@@ -81,7 +92,7 @@ Use `--vvd-size-font-scale-base` to define the base font size for the widgets. T
   }
 </style>
 <vwc-header>
-  This header's title is 30% larger
+  This header's title is 30% larger than its parent
 </vwc-header>
 <pre>/*
  * This block of code too
@@ -93,6 +104,9 @@ Use `--vvd-size-font-scale-base` to define the base font size for the widgets. T
 #### Density
 
 Use `--vvd-size-density` to modify the spacing and padding of widgets. Allowed values are `-1` (condensed), `0` (default) and `1` (expanded).
+
+- Type: `-1` | `0` | `1`
+- Default: `0`
 
 ```html preview
 <style>
