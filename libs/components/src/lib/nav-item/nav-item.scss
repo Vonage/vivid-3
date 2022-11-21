@@ -34,7 +34,6 @@
 	hyphens: auto;
 	inline-size: 100%;
 	min-block-size: $min-block-size;
-	padding-inline: $gutter;
 	text-decoration: none;
 	vertical-align: middle;
 	word-break: break-word;
@@ -55,6 +54,9 @@
 		place-content: center;
 	}
 
+	&:not(.icon-only) {
+		padding-inline: $gutter;
+	}
 }
 
 .focus-indicator {
