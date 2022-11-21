@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "calendar css style to enable dark-theme background",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}
