@@ -1,4 +1,4 @@
-name: "📦 Publish Vivid"
+name: '📦 Publish Vivid'
 
 on: workflow_call
 
