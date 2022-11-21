@@ -113,25 +113,6 @@ vwc-header::part(base) {
   color: var(--vvd-color-neutral-800);
 }
 
-dark-mode-toggle::part(toggleLabel)::before {
-	background-image: none;
-	background-color: currentColor;
-}
-
-dark-mode-toggle[mode="light"]::part(toggleLabel)::before {
-  -webkit-mask: url(https://icon.resources.vonage.com/v4.0.28/dark-mode-solid.svg) no-repeat center;
-  mask: url(https://icon.resources.vonage.com/v4.0.28/dark-mode-solid.svg) no-repeat center;
-}
-
-dark-mode-toggle[mode="dark"]::part(toggleLabel)::before {
-  -webkit-mask: url(https://icon.resources.vonage.com/v4.0.28/light-mode-solid.svg) no-repeat center;
-  mask: url(https://icon.resources.vonage.com/v4.0.28/light-mode-solid.svg) no-repeat center;
-}
-
-dark-mode-toggle::part(form) {
-	margin: 0;
-}
-
 /* #endregion header */
 
 

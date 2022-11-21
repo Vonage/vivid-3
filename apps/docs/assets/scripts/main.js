@@ -43,12 +43,14 @@ const codeCopyButtonClick = (button) => {
 };
 
 const onloadIframe = (iFrame) => {
-  const toggle = document.querySelector('dark-mode-toggle');
+  const toggle = document.querySelector('vwc-button#dark-mode-toggle');
+  const menu = document.querySelector('vwc-menu#dark-mode-menu');
 
   setCurrentIframeTheme(toggle, iFrame);
-  toggle.addEventListener('colorschemechange', () => {
+  menu.addEventListener('change', () => {
     setCurrentIframeTheme(toggle, iFrame);
   });
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => setCurrentIframeTheme(toggle, iFrame));
 
   // wait for repaint to set needed height
   requestAnimationFrame(() => {
@@ -59,6 +61,6 @@ const onloadIframe = (iFrame) => {
 };
 
 const setCurrentIframeTheme = (toggle, iFrame) => {
-  const theme = toggle.mode === 'dark' ? '<link rel="stylesheet" href="/assets/styles/tokens/theme-dark.css" media="all">' : '<link rel="stylesheet" href="/assets/styles/tokens/theme-light.css" media="all">';
+  const theme = toggle.icon === "dark-mode-line" ? '<link rel="stylesheet" href="/assets/styles/tokens/theme-dark.css" media="all">' : '<link rel="stylesheet" href="/assets/styles/tokens/theme-light.css" media="all">';
   iFrame.contentWindow.document.head?.insertAdjacentHTML("beforeend", theme);
 }
