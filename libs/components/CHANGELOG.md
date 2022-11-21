@@ -1,8 +1,17 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 20 Nov 2022 21:47:05 GMT and should not be manually modified.
+This log was last generated on Mon, 21 Nov 2022 13:45:33 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.103
+
+Mon, 21 Nov 2022 13:45:33 GMT
+
+### Changes
+
+- typography style unset root's font size to resolve to 16px (yinon@hotmail.com)
+- calendar css style to enable dark-theme background (yinon@hotmail.com)
 
 ## 3.0.0-next.102
 
