@@ -27,17 +27,35 @@ const codeBlockButtonClick = (button) => {
 const codeCopyButtonClick = (button) => {
   const details = button.closest('vwc-action-group').nextElementSibling;
   const { textContent } = details;
-  navigator.clipboard.writeText(textContent.trim());
+  navigator.clipboard.writeText(textContent.trim())
+    .then(() => {
+      /* clipboard successfully set */
+      button.icon = 'check-line';
+    })
+    .catch(() => {
+      /* clipboard write failed */
+      button.icon = 'close-line';
+    });
+
+  setTimeout(() => {
+    button.icon = 'copy-2-line';
+  }, 1000);
 };
 
 const onloadIframe = (iFrame) => {
   const toggle = document.querySelector('dark-mode-toggle');
 
-  iFrame.style.height = iFrame.contentWindow.document.documentElement.clientHeight + 4 + "px";
   setCurrentIframeTheme(toggle, iFrame);
   toggle.addEventListener('colorschemechange', () => {
     setCurrentIframeTheme(toggle, iFrame);
   });
+
+  // wait for repaint to set needed height
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      iFrame.style.height = iFrame.contentWindow.document.documentElement.clientHeight + 4 + "px";
+    }, 0);
+  })
 };
 
 const setCurrentIframeTheme = (toggle, iFrame) => {

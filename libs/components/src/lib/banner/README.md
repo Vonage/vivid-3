@@ -86,8 +86,8 @@ Fires `removed` when the removing animation is done.
 
 ### remove()
 
-- Type: function
-- Returns: void
+- Type: `function`
+- Returns: `void`
 
 Removes the banner from the DOM.  Fires the `removing` event and starts the remove animation.  When the animation finishes, it emits the `removed` event and removes the banner from the DOM completely.  If you have a variable that refers to the banner element make sure to clear it otherwise it might cause a memory leak.
 
