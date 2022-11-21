@@ -77,11 +77,11 @@
 			@include mixins.get-size-properties(#{size.$vvd-size-condensed}, #{constants.$vvd-typography-base-condensed-bold}, 8px, 12px);
 		}
 
-		&.size-extended {
+		&.size-expanded {
 			@include mixins.get-size-properties(#{size.$vvd-size-expanded}, #{constants.$vvd-typography-base-extended-bold}, 10px, 20px);
 		}
 
-		&:not(.size-condensed, .size-extended) {
+		&:not(.size-condensed, .size-expanded) {
 			@include mixins.get-size-properties(#{size.$vvd-size-normal}, #{constants.$vvd-typography-base-bold}, 8px, 16px);
 		}
 	}
