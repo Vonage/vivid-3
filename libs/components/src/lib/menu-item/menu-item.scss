@@ -23,7 +23,8 @@
 }
 
 .base {
-	$gap: 8px;
+	$gap: 12px;
+	$gutter: 16px;
 
 	@include appearance.appearance;
 	@include connotation.connotation;
@@ -39,7 +40,7 @@
 	font: var(#{constants.$vvd-typography-base});
 	gap: $gap;
 	inline-size: 100%;
-	padding-inline: $gap;
+	padding-inline: $gutter;
 
 	@supports(user-select: none) {
 		user-select: none;

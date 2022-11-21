@@ -49,7 +49,7 @@ ol {
 .calendar-grid-presentation {
 	display: grid;
 	overflow: hidden;
-	background-color: var(#{constants.$vvd-color-surface-2dp});
+	background: var(#{constants.$vvd-color-surface-2dp});
 	border-radius: 6px;
 	counter-reset: listing;
 	filter: var(#{constants.$vvd-shadow-surface-2dp});
