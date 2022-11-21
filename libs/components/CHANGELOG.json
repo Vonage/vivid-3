@@ -2,6 +2,81 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Sun, 20 Nov 2022 21:47:05 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.102",
+      "version": "3.0.0-next.102",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "1e37e0d0703c1eb83df51f85dfa5b49d1bff68e1",
+            "comment": "package generated customElements.json & TS meta"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 16 Nov 2022 11:04:59 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.101",
+      "version": "3.0.0-next.101",
+      "comments": {
+        "none": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "78f2cfda459c8704bb9a5a634d4ea215a16d98e1",
+            "comment": "feat(form-elements): change icon"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 16 Nov 2022 09:48:24 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.101",
+      "version": "3.0.0-next.101",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "148e25f2aab70dcb547483d2d68bcfd24caf585b",
+            "comment": "refine progress ring documentation code snippets"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 15 Nov 2022 13:38:58 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.100",
+      "version": "3.0.0-next.100",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "7e3229a0ea39656687bd652fff5674b189cf7970",
+            "comment": "change density to size and extended to expanded"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 15 Nov 2022 08:30:44 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.99",
+      "version": "3.0.0-next.99",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "olaf-k@users.noreply.github.com",
+            "package": "@vonage/vivid",
+            "commit": "3c54d75e5b888f131cc003ba187ba3145eb2c2dd",
+            "comment": "fix radio isInsideRadioGroup"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 14 Nov 2022 13:05:26 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.98",
       "version": "3.0.0-next.98",

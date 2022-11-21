@@ -22,7 +22,7 @@ describe('vwc-button', () => {
 			expect(element.connotation).toBeUndefined();
 			expect(element.shape).toBeUndefined();
 			expect(element.appearance).toBeUndefined();
-			expect(element.density).toBeUndefined();
+			expect(element.size).toBeUndefined();
 		});
 	});
 
@@ -92,13 +92,13 @@ describe('vwc-button', () => {
 		});
 	});
 
-	describe('density', () => {
-		it('sets correct internal density style', async () => {
-			const density = 'condensed';
-			(element as any).density = density;
+	describe('size', () => {
+		it('sets correct internal size style', async () => {
+			const size = 'condensed';
+			(element as any).size = size;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.density-${density}`);
+			const control = element.shadowRoot?.querySelector(`.control.size-${size}`);
 			expect(control).toBeInstanceOf(Element);
 		});
 	});

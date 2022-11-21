@@ -1,8 +1,40 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Mon, 14 Nov 2022 13:05:26 GMT and should not be manually modified.
+This log was last generated on Sun, 20 Nov 2022 21:47:05 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.102
+
+Sun, 20 Nov 2022 21:47:05 GMT
+
+### Changes
+
+- package generated customElements.json & TS meta (yinon@hotmail.com)
+
+## 3.0.0-next.101
+
+Wed, 16 Nov 2022 09:48:24 GMT
+
+### Changes
+
+- refine progress ring documentation code snippets (yinon@hotmail.com)
+
+## 3.0.0-next.100
+
+Tue, 15 Nov 2022 13:38:58 GMT
+
+### Changes
+
+- change density to size and extended to expanded (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.99
+
+Tue, 15 Nov 2022 08:30:44 GMT
+
+### Changes
+
+- fix radio isInsideRadioGroup (olaf-k@users.noreply.github.com)
 
 ## 3.0.0-next.98
 
