@@ -2,6 +2,36 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Sun, 20 Nov 2022 21:47:05 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.102",
+      "version": "3.0.0-next.102",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "1e37e0d0703c1eb83df51f85dfa5b49d1bff68e1",
+            "comment": "package generated customElements.json & TS meta"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 16 Nov 2022 11:04:59 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.101",
+      "version": "3.0.0-next.101",
+      "comments": {
+        "none": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "78f2cfda459c8704bb9a5a634d4ea215a16d98e1",
+            "comment": "feat(form-elements): change icon"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 16 Nov 2022 09:48:24 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.101",
       "version": "3.0.0-next.101",
