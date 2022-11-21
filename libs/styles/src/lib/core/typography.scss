@@ -19,7 +19,7 @@ $selectors: (
 .vvd-root {
 	&:root { // <--- When 'vvd-root' is set on the `:root` (html element), typeface sizes are able to descend from the root font-size, thus comply with the [WCAG 1.4.4](https://www.w3.org/WAI/WCAG21/Understanding/resize-text)
 		--vvd-size-font-scale-base: 1rem;
-		font-size: unset; // resolve to 16px
+		font-size: unset; // resolves to the user-agent default font size (generally 16px)
 
 		> body {
 			@include typography-base;
