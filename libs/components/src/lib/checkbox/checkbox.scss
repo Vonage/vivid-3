@@ -94,3 +94,7 @@ label {
 		display: none;
 	}
 }
+
+.icon {
+	font-size: calc(#{$size} * 0.7);
+}
