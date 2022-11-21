@@ -2,6 +2,27 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Mon, 21 Nov 2022 13:45:33 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.103",
+      "version": "3.0.0-next.103",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "6708a9f142bc527685af83e742bef160adfc0ef7",
+            "comment": "typography style unset root's font size to resolve to 16px"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "8400848a6c9736ab5df4c0e67ee9f686aa09122b",
+            "comment": "calendar css style to enable dark-theme background"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 20 Nov 2022 21:47:05 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.102",
       "version": "3.0.0-next.102",
