@@ -1,4 +1,4 @@
-# toggletip
+# Toggletip
 
 Represents a toggletip custom element.
 
