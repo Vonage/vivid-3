@@ -19,7 +19,7 @@ Add a `label` attribute to add label to the tab.
 
 ```html preview
 <vwc-tabs>
- <vwc-tab label="Appetizers" id="apps"></vwc-tab>
+ <vwc-tab label="Tab" id="tab"></vwc-tab>
 </vwc-tabs>
 ```
 
@@ -35,7 +35,7 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 
 ```html preview
 <vwc-tabs>
- <vwc-tab icon="chat-line" aria-label="Account" id="tab"></vwc-tab>
+ <vwc-tab icon="chat-line" label="Tab" id="tab"></vwc-tab>
 </vwc-tabs>
 ```
 
@@ -45,7 +45,34 @@ Tab label can be affixed by a decorative icon, either by its start or end.
 
 ```html preview
 <vwc-tabs>
- <vwc-tab icon="chat-line" label="Account" id="tab"></vwc-tab>
+ <vwc-tab icon="chat-line" label="Tab" id="tab"></vwc-tab>
+</vwc-tabs>
+```
+
+### Shape
+
+Use the `shape` attribute to change the tab's edges.
+
+- Type: `'sharp'` | `'rounded'`
+- Default: `'rounded'`
+
+```html preview
+<vwc-tabs>
+    <vwc-tab label="Rounded" id="tab" shape="rounded"></vwc-tab>
+</vwc-tabs>
+```
+
+### Connotation
+
+Set the `connotation` attribute to change the tab's connotation.
+It accepts a subset of predefined values.
+
+- Type: `'accent'` | `'information'`
+- Default: `'accent'`
+
+```html preview
+<vwc-tabs>
+    <vwc-tab label="Information" id="tab" connotation="information"></vwc-tab>
 </vwc-tabs>
 ```
 
