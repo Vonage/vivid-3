@@ -3,7 +3,9 @@
 Represents a toggletip custom element.
 
 ```js
-<script type="module">import '@vonage/vivid/toggletip';</script>
+<script type="module">
+	import '@vonage/vivid/toggletip';
+</script>
 ```
 
 [temporary example, to be removed]
