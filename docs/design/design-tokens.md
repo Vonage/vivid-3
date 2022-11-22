@@ -47,21 +47,20 @@ The following types of design tokens are the building blocks and design decision
 Aside from the [color-related tokens](/designs/color-palette), you may use the following to customize your application appearance.
 
 ### Typography
+
 #### Font families
 
-Use `--vvd-font-family-upright` to specify a base proportional font.
+Use `--vvd-font-family-upright` to specify a base font family for your application. This is the default font family for all text elements.
 
-Use `--vvd-font-family-monospace` to specify a base monospaced font.
-
-Unless explicitely stated otherwise, Vonage products should use the brand font family `Spezia` for both. This is explained [in this repo](https://github.com/Vonage/spezia-webfont-kit).
-
-`--vvd-font-family-upright`
 - Type: `string`
-- Default: `'Montserrat'`
+- Default: `'SpeziaCompleteVariableUpright'` <!-- ! replace in #807  -->
 
-`--vvd-font-family-monospace`
+Use `--vvd-font-family-monospace` to specify a monospace font family for your application. This is the default font family for code elements.
+
 - Type: `string`
-- Default: `'Roboto Mono'`
+- Default: `'SpeziaMonoCompleteVariable'` <!-- ! replace in #807  -->
+
+** Unless explicitely stated otherwise, Vonage products should use the brand font families `Spezia`. Vonage teams may review guidelines at the [Spezia webfont kit](https://github.com/Vonage/spezia-webfont-kit).
 
 ```html preview
 <style>
@@ -82,12 +81,12 @@ Unless explicitely stated otherwise, Vonage products should use the brand font f
 
 #### Font size
 
-Use `--vvd-size-font-scale-base` to define the base font size for the widgets.
-
-When using the [core styles](/#core-optional) and the `.vvd-root` class is set on the root element (i.e., `<html>`), the default font size is reset to the user-agent's one (generally `16px`) and `--vvd-size-font-scale-base` set to `1rem`.
+Use `--vvd-size-font-scale-base` to define the base font size which all typefaces sizes are based on.
 
 - Type: [`<length>`](https://developer.mozilla.org/en-US/docs/Web/CSS/length)
-- Default: `undefined` or `'1rem'` (see above)
+- Default: `'16px'`
+
+Note that when using the [core styles](/#core-optional) with the `vvd-root` class set on the root element (i.e., `<html>`), the user-agent's default font size is unset (and generally default to `'16px'`) and the `--vvd-size-font-scale-base` custom property is set to `'1rem'` to ensure end user's font size preferences are respected.
 
 ```html preview
 <style>
@@ -107,36 +106,34 @@ When using the [core styles](/#core-optional) and the `.vvd-root` class is set o
 
 #### Density
 
-Use `--vvd-size-density` to modify the spacing and padding of widgets. Allowed values are `-1` (most condensed), `0`, `1` and `2` (most expanded).
+Use `--vvd-size-density` to modify the density of the Vivid integrated UI. This can be scoped to a specific element, or set globally.
+Due to a11y and design constraints, the density can only be set to one of the following values `-1` (most condensed), `0`, `1` and `2` (most expanded).
 
 - Type: `-1` | `0` | `1` | `2`
 - Default: `0`
 
 ```html preview
 <style>
-  :root {
-    --vvd-size-density: -1;
-  }
+ :root {
+  --vvd-size-density: -1;
+ }
 </style>
+
 <vwc-header>
   This header is condensed
 </vwc-header>
+
 <pre>/*
  * This block of code is not affected
  */
 </pre>
+
 <vwc-button appearance="filled" label="But the button is"></vwc-button>
 ```
 
-#### Styles preset
+#### Typefaces preset
 
-The following presets can be used to style the text in your application:
-- `--vvd-typography-headline`
-- `--vvd-typography-subtitle`
-- `--vvd-typography-heading-1`
-- `--vvd-typography-heading-2`
-- `--vvd-typography-heading-3`
-- `--vvd-typography-heading-4`
+The following CSS custom properties can be referred to style the text in your application with the Vivid design language:
 
 ```html preview
 <div style="font: var(--vvd-typography-headline)">headline</div>
@@ -145,4 +142,11 @@ The following presets can be used to style the text in your application:
 <div style="font: var(--vvd-typography-heading-2)">heading-2</div>
 <div style="font: var(--vvd-typography-heading-3)">heading-3</div>
 <div style="font: var(--vvd-typography-heading-4)">heading-4</div>
+<div style="font: var(--vvd-typography-base)">base</div>
+<div style="font: var(--vvd-typography-base-bold)">base bold</div>
+<div style="font: var(--vvd-typography-base-code)">base code</div>
+<div style="font: var(--vvd-typography-base-condensed)">condensed</div>
+<div style="font: var(--vvd-typography-base-condensed-bold)">condensed bold</div>
+<div style="font: var(--vvd-typography-base-extended)">extended</div>
+<div style="font: var(--vvd-typography-base-extended-bold)">extended bold</div>
 ```
