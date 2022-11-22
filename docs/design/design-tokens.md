@@ -60,7 +60,7 @@ Use `--vvd-font-family-monospace` to specify a monospace font family for your ap
 - Type: `string`
 - Default: `'SpeziaMonoCompleteVariable'` <!-- ! replace in #807  -->
 
-** Unless explicitely stated otherwise, Vonage products should use the brand font families `Spezia`. Vonage teams may review guidelines at the [Spezia webfont kit](https://github.com/Vonage/spezia-webfont-kit).
+** Unless explicitely stated otherwise, Vonage products should use the brand specified `Spezia` font families. Vonage teams may review guidelines at the [Spezia webfont kit](https://github.com/Vonage/spezia-webfont-kit).
 
 ```html preview
 <style>
