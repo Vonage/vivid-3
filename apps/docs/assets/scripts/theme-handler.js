@@ -13,6 +13,9 @@ function setTheme(newTheme) {
     theme = newTheme;
 
     localStorage.setItem('theme', theme);
+    // menu.menuItems?.forEach(item => {
+    //     item.selected = item.text.toLowerCase() === theme ? true : false;
+    // });
     button.icon = isDark() ? 'dark-mode-solid' : 'light-mode-line';
 
     const themeStyle = isDark() ?
