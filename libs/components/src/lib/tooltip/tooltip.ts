@@ -15,11 +15,6 @@ export class Tooltip extends Popup {
 	 */
 	@attr text?: string;
 
-	constructor() {
-		super();
-		this.id = 'tooltip';
-	}
-
 	override connectedCallback(): void {
 		super.connectedCallback();
 		this.#anchorUpdated();
@@ -38,7 +33,6 @@ export class Tooltip extends Popup {
 	#anchorUpdated(): void {
 		this.#removeEventListener();
 		this.#addEventListener();
-		this.#setAriaDescribedBy();
 	}
 
 	#addEventListener(): void {
@@ -53,10 +47,6 @@ export class Tooltip extends Popup {
 		this.anchorEl?.removeEventListener('mouseout', this.#hide);
 		this.anchorEl?.removeEventListener('focusin', this.#show);
 		this.anchorEl?.removeEventListener('focusout', this.#hide);
-	}
-
-	#setAriaDescribedBy(): void {
-		this.anchorEl?.setAttribute('aria-describedby', this.id);
 	}
 
 	#show = () => {
