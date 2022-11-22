@@ -6,14 +6,11 @@ import { focusTemplateFactory } from '../../shared/patterns/focus';
 import type { Tab } from './tab.js';
 
 const getClasses = ({
-	disabled, ariaSelected, label, icon, iconTrailing
+	disabled, ariaSelected
 }: Tab) =>	classNames(
 	'base',
 	['disabled', Boolean(disabled)],
 	['selected', ariaSelected === 'true'],
-	['icon-only', !label && !!icon],
-	['icon-trailing', iconTrailing],
-
 );
 
 /**

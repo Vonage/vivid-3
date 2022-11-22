@@ -18,7 +18,7 @@ Add a `label` attribute to add label to the tab.
 - Default: `''`
 
 ```html preview
-<vwc-tabs activeid="apps">
+<vwc-tabs>
  <vwc-tab label="Appetizers" id="apps"></vwc-tab>
 </vwc-tabs>
 ```
@@ -34,20 +34,18 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 - Default: `undefined`
 
 ```html preview
-<vwc-tabs activeid="tab">
- <vwc-tab icon="profile" aria-label="Account" id="tab"></vwc-tab>
+<vwc-tabs>
+ <vwc-tab icon="chat-line" aria-label="Account" id="tab"></vwc-tab>
 </vwc-tabs>
 ```
 
 ### Icon with Label
 
 Tab label can be affixed by a decorative icon, either by its start or end.
-Toggle `icon-trailing` to set the icon's horizontal alignment.
 
 ```html preview
-<vwc-tabs activeid="tab">
- <vwc-tab icon="profile" label="Account" id="tab"></vwc-tab>
- <vwc-tab icon="profile" icon-trailing label="Account" id="tab-2"></vwc-tab>
+<vwc-tabs>
+ <vwc-tab icon="chat-line" label="Account" id="tab"></vwc-tab>
 </vwc-tabs>
 ```
 
@@ -59,7 +57,7 @@ The disabled state of the element.
 - Default: `false`
 
 ```html preview
-<vwc-tabs activeid="tab">
+<vwc-tabs>
  <vwc-tab disabled label="Disabled Tab" id="tab"></vwc-tab>
 </vwc-tabs>
 ```

@@ -61,7 +61,7 @@
 		z-index: 1;
 		block-size: var(#{variables.$tabs-active-indicator-stroke-width});
 		grid-area: 2 / 1 / auto / auto;
-		inline-size: 100%;
+		inline-size: 80%;
 		justify-self: center;
 		margin-block-start: calc(var(#{variables.$tabs-active-indicator-stroke-width}) * -1);
 	}
