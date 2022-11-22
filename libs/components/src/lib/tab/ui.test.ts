@@ -7,7 +7,7 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['tab'];
+const components = ['tab', 'tabs'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(
