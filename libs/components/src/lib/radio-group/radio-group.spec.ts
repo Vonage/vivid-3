@@ -63,7 +63,7 @@ describe('vwc-radio-group', () => {
 			const positioningRegionDefaultClassList = Array.from(positioningRegion?.classList as DOMTokenList);
 			element.setAttribute('orientation', 'vertical');
 			await elementUpdated(element);
-
+			
 			expect(positioningRegionDefaultClassList).toContain('horizontal');
 			expect(positioningRegion?.classList).toContain('vertical');
 		});
@@ -81,7 +81,7 @@ describe('vwc-radio-group', () => {
 		it('should select the radio button with the same value', async () => {
 			element.setAttribute('value', '1');
 			await elementUpdated(element);
-
+			
 			expect(radios[1].checked && !radios[0].checked && !radios[2].checked).toBeTruthy();
 			expect(radios[0].getAttribute('tabindex')).toBe('-1');
 			expect(radios[1].getAttribute('tabindex')).toBe('0');
@@ -94,7 +94,7 @@ describe('vwc-radio-group', () => {
 			expect(element.getAttribute('value')).toEqual('1');
 		});
 	});
-
+	
 	describe('click', () => {
 		it('should update when a radio is clicked', async () => {
 			getBaseElement(radios[2]).click();
@@ -110,11 +110,11 @@ describe('vwc-radio-group', () => {
 			const radio = radios[radioToCheck];
 			const radioCheckedBefore = radio.checked;
 			const radioGroupValueBefore = element.value;
-
+			
 			radios[0].focus();
 			radios[0].dispatchEvent(new KeyboardEvent('keydown', { key: key, bubbles: true }));
 			await elementUpdated(element);
-
+			
 			expect(radioCheckedBefore).toBeFalsy();
 			expect(radioGroupValueBefore).toBeUndefined();
 			expect(radio.checked).toBeTruthy();
@@ -144,7 +144,7 @@ describe('vwc-radio-group', () => {
 			radios[0].focus();
 			const activeElementBeforeBlur = document.activeElement;
 			radios[0].blur();
-
+			
 			expect(activeElementBeforeBlur).toBe(radios[0]);
 			expect(document.activeElement).toBe(document.body);
 		});
@@ -162,14 +162,14 @@ describe('vwc-radio-group', () => {
 			form.onsubmit = () => false;
 			form.appendChild(element);
 			document.body.replaceChildren(form);
-
+			
 			element.name = 'chosenValue';
 			radios[2].checked = true;
 
 			const submitPromise = listenToFormSubmission(form);
 			form.requestSubmit();
 			const result = await submitPromise;
-
+			
 			expect(result.get(element.name)).toEqual('2');
 		});
 	});
