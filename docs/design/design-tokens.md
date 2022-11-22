@@ -90,13 +90,13 @@ Note that when using the [core styles](/#core-optional) with the `vvd-root` clas
 
 ```html preview
 <style>
- :root {
+ .vvd-root:root {
   --vvd-size-font-scale-base: 1.3rem;
  }
 </style>
 
 <vwc-header>
-  This header's title is 30% larger than its parent
+  This header's title is 30% larger
 </vwc-header>
 
 <pre>/*
