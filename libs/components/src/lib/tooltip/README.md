@@ -14,7 +14,7 @@ A tooltip displays additional, non-essential, informative message, description o
 
 The tooltip should have an `anchor` attribute with the anchor's id.
 
-The tooltip should be placed on interactive controls, elements that can be hovered over or focusable (e.g. button, checkbox, input text etc'.).
+The tooltip should be placed on interactive controls, elements that can be hovered over or focusable (e.g. button, checkbox, input text etc.).
 The tooltip can't be placed on non-interactive elements such as paragraph or plain div.
 Do not target non-interactive controls as a tooltip's anchor (such as non-focusable / disabled elements).
 
