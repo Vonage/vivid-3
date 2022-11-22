@@ -3,17 +3,6 @@
 
 .control {
 	pointer-events: none;
-	transition: visibility 0s 0s, opacity 50ms 0.2s linear;
-
-	&.open {
-		opacity: 1;
-		visibility: visible;
-	}
-
-	&:not(.open) {
-		opacity: 0;
-		visibility: hidden;
-	}
 }
 
 .tooltip {

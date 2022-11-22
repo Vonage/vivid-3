@@ -6,6 +6,10 @@
 	border-radius: inherit;
 	contain: layout;
 	inline-size: fit-content;
+
+	&:not(.open) {
+		display: none;
+	}
 }
 
 .popup-wrapper {
