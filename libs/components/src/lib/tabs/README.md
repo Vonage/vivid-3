@@ -3,7 +3,9 @@
 Represents a tabs custom element.
 
 ```js
-<script type="module">import '@vonage/vivid/tabs';</script>
+<script type="module">
+    import '@vonage/vivid/tabs';
+</script>
 ```
 
 ```html preview full
@@ -43,6 +45,11 @@ Represents a tabs custom element.
 
 ### Orientation
 
+Add a `orientation` attribute to control the orientation.
+
+- Type: `'horizontal'`, `'vertical'`
+- Default: `'horizontal'`
+
 ```html preview full
 <vwc-tabs activeid="entrees" orientation="vertical">
     <vwc-tab label="Appetizers" id="apps"></vwc-tab>
@@ -76,9 +83,12 @@ Represents a tabs custom element.
 </vwc-tabs>
 ```
 
-### activeid
+### Activeid
 
-The id of the active tab
+Add an `activeid` attribute of the active tab.
+
+- Type: `string`
+- Default: `''`
 
 ```html preview full
 <vwc-tabs activeid="entrees">
@@ -113,12 +123,8 @@ The id of the active tab
 </vwc-tabs>
 ```
 
-### activetab
-
-A reference to the active tab
-
 ## Events
 
-### change
+### Change
 
-Fires a custom 'change' event when a tab is clicked or during keyboard navigation
+Fires a custom `change` event when a tab is clicked or during keyboard navigation.

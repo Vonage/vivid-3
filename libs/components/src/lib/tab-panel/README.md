@@ -1,9 +1,11 @@
-# tab-panel
+# Tab Panel
 
 Represents a tab-panel custom element.
 
 ```js
-<script type="module">import '@vonage/vivid/tab-panel';</script>
+<script type="module">
+    import '@vonage/vivid/tab-panel';
+</script>
 ```
 
 ```html preview

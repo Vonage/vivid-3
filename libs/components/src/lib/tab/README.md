@@ -3,17 +3,19 @@
 Represents a tab custom element.
 
 ```js
-<script type="module">import '@vonage/vivid/tab';</script>
+<script type="module">
+    import '@vonage/vivid/tab';
+</script>
 ```
 
 ## Members
 
 ### Label
 
+Add a `label` attribute to add label to the tab.
+
 - Type: `string`
 - Default: `''`
-
-Add a `label` attribute to add label to the tab.
 
 ```html preview
 <vwc-tabs activeid="apps">
@@ -51,7 +53,7 @@ Toggle `icon-trailing` to set the icon's horizontal alignment.
 
 ### Disabled
 
-The disabled state of the element
+The disabled state of the element.
 
 - Type: `boolean`
 - Default: `false`
