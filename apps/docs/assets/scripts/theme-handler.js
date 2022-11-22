@@ -13,7 +13,7 @@ function setTheme(newTheme) {
     theme = newTheme;
 
     localStorage.setItem('theme', theme);
-    button.icon = isDark() ? 'dark-mode-line' : 'light-mode-line';
+    button.icon = isDark() ? 'dark-mode-solid' : 'light-mode-line';
 
     const themeStyle = isDark() ?
         '<link rel="stylesheet" href="/assets/styles/tokens/theme-dark.css" media="all"><link rel="stylesheet" href="/assets/styles/tokens/theme-light.css" media="not all" disabled>'
