@@ -41,7 +41,7 @@ describe('vwc-radio', () => {
 	describe('checked', () => {
 		let base: HTMLElement;
 		beforeEach(() => base = getBaseElement(element));
-
+		
 		it('should set the element property and the base class when the attribute is set', async () => {
 			const classes = await setBoolAttributeOn(element, 'checked');
 			expect(element.checked).toBeTruthy();
@@ -99,5 +99,5 @@ describe('vwc-radio', () => {
 					.toEqual(checked);
 			});
 		});
-	});
+	});	
 });
