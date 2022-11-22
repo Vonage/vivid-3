@@ -35,7 +35,7 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 
 ```html preview
 <vwc-tabs>
- <vwc-tab icon="chat-line" label="Tab" id="tab"></vwc-tab>
+ <vwc-tab icon="chat-line" aria-label="tab" id="tab"></vwc-tab>
 </vwc-tabs>
 ```
 
