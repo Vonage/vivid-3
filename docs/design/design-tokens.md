@@ -86,7 +86,7 @@ Use `--vvd-size-font-scale-base` to define the base font size which all typeface
 - Type: [`<length>`](https://developer.mozilla.org/en-US/docs/Web/CSS/length)
 - Default: `'16px'`
 
-Note that when using the [core styles](/#core-optional) with the `vvd-root` class set on the root element (i.e., `<html>`), the user-agent's default font size is unset (and generally default to `'16px'`) and the `--vvd-size-font-scale-base` custom property is set to `'1rem'` to ensure end user's font size preferences are respected.
+Note that when using the [core styles](/#core-optional) with the `vvd-root` class set on the root element (i.e., `<html>`), the user-agent's default font size is unset (generally default to `'16px'`) and the `--vvd-size-font-scale-base` custom property is set to `'1rem'` to ensure end user's font size preferences are respected.
 
 ```html preview
 <style>
