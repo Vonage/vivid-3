@@ -22,11 +22,11 @@ export const ToggletipTemplate:
 		// const layout = context.tagFor(Layout);
 
 		return html`
-			<span class="${getClasses}">
+			<div class="${getClasses}">
 				<${button}
-					?disabled="${(x) => x.disabled}"
-					connotation="${(x) => x.connotation}"
-					appearance="${(x) => x.appearance}"
+					?disabled="${x => x.disabled}"
+					connotation="${x => x.connotation}"
+					appearance="${x => x.appearance}"
 					size="${x => x.size ? x.size : 'condensed'}"
 					shape="${x => x.shape ? x.shape : 'pill'}"
 					icon="${x => x.icon ? x.icon : 'info-line'}"
@@ -35,13 +35,15 @@ export const ToggletipTemplate:
 				</${button}>
 				<${popup}
 					arrow
+					?alternate="${x => x.alternate}"
 					placement="${x => x.placement ? x.placement : 'right'}"
+					exportparts="vvd-theme-alternate"
 					${ref('popup')}
 				>
 					<span style="padding: 12px;">
 						<slot></slot>
 					</span>
 				</${popup}>
-			</span>
+			</div>
 		`;
 	}

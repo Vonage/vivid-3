@@ -74,6 +74,20 @@ export class Toggletip extends FoundationElement {
 	 */
 	 @attr placement?: Placement;
 
+	/**
+	 * reverse the color scheme
+	 *
+	 * @public
+	 * HTML Attribute: alternate
+	 */
+	@attr({
+		mode: 'boolean',
+	}) alternate = false;
+
+	/**
+	 * /end of attributes
+	 */
+
 	button!: HTMLButtonElement;
 	popup!: Popup;
 

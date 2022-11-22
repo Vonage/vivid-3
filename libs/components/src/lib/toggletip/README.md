@@ -34,9 +34,11 @@ Set the `appearance` attribute to change the appearance of the toggletip.
 - Default: `'ghost'`
 
 ```html preview
-<p><vwc-toggletip appearance='ghost'>more information</vwc-toggletip></p>
-<p><vwc-toggletip appearance='filled'>more information</vwc-toggletip></p>
-<p><vwc-toggletip appearance='outlined'>more information</vwc-toggletip></p>
+<vwc-layout column-basis="small" column-spacing="small" gutters="large">
+	<vwc-toggletip appearance='ghost'>more information</vwc-toggletip>
+	<vwc-toggletip appearance='filled'>more information</vwc-toggletip>
+	<vwc-toggletip appearance='outlined'>more information</vwc-toggletip>
+</vwc-layout>
 ```
 
 ### Icon
@@ -50,7 +52,7 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label` or `tit
 - Type: `string`
 - Default: `info-line`
 
-```html preview
+```html preview center
 <vwc-toggletip icon='info-solid'>more information</vwc-toggletip>
 ```
 
@@ -62,8 +64,10 @@ Use the `shape` attribute to set the toggletip's edges.
 - Default: `'pill'`
 
 ```html preview
-<p><vwc-toggletip shape='rounded'>more information</vwc-toggletip></p>
-<p><vwc-toggletip shape='pill'>more information</vwc-toggletip></p>
+<vwc-layout column-basis="small" column-spacing="small" gutters="large">
+	<vwc-toggletip shape='rounded'>more information</vwc-toggletip>
+	<vwc-toggletip shape='pill'>more information</vwc-toggletip>
+</vwc-layout>
 ```
 
 ### Size
@@ -74,9 +78,22 @@ Use the `size` attribute to set the toggletip's icon to one of the predefined bl
 - Default: `'condensed'`
 
 ```html preview
-<p><vwc-toggletip size='condensed'>more information</vwc-toggletip></p>
-<p><vwc-toggletip size='normal'>more information</vwc-toggletip></p>
-<p><vwc-toggletip size='expanded'>more information</vwc-toggletip></p>
+<vwc-layout column-basis="small" column-spacing="small" gutters="large">
+	<vwc-toggletip size='condensed'>more information</vwc-toggletip>
+	<vwc-toggletip size='normal'>more information</vwc-toggletip>
+	<vwc-toggletip size='expanded'>more information</vwc-toggletip>
+</vwc-layout>
+```
+
+### Alternate
+
+Add the `alternate` attribute to change the toggletip's color-scheme to the opposite of the currently selected one.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview center
+<vwc-toggletip alternate>more information</vwc-toggletip>
 ```
 
 ### Connotation
@@ -90,28 +107,34 @@ It accepts a subset of predefined values.
 #### Ghost toggletip with connotation
 
 ```html preview
-<p><vwc-toggletip connotation='accent'>more information</vwc-toggletip></p>
-<p><vwc-toggletip connotation='cta'>more information</vwc-toggletip></p>
-<p><vwc-toggletip connotation='success'>more information</vwc-toggletip></p>
-<p><vwc-toggletip connotation='alert'>more information</vwc-toggletip></p>
+<vwc-layout column-basis="small" column-spacing="small" gutters="large">
+	<vwc-toggletip connotation='accent'>more information</vwc-toggletip>
+	<vwc-toggletip connotation='cta'>more information</vwc-toggletip>
+	<vwc-toggletip connotation='success'>more information</vwc-toggletip>
+	<vwc-toggletip connotation='alert'>more information</vwc-toggletip>
+</vwc-layout>
 ```
 
 #### Filled toggletip with connotation
 
 ```html preview
-<p><vwc-toggletip appearance="filled" connotation='accent'>more information</vwc-toggletip></p>
-<p><vwc-toggletip appearance="filled" connotation='cta'>more information</vwc-toggletip></p>
-<p><vwc-toggletip appearance="filled" connotation='success'>more information</vwc-toggletip></p>
-<p><vwc-toggletip appearance="filled" connotation='alert'>more information</vwc-toggletip></p>
+<vwc-layout column-basis="small" column-spacing="small" gutters="large">
+	<vwc-toggletip appearance="filled" connotation='accent'>more information</vwc-toggletip>
+	<vwc-toggletip appearance="filled" connotation='cta'>more information</vwc-toggletip>
+	<vwc-toggletip appearance="filled" connotation='success'>more information</vwc-toggletip>
+	<vwc-toggletip appearance="filled" connotation='alert'>more information</vwc-toggletip>
+</vwc-layout>
 ```
 
 #### Outlined toggletip with connotation
 
 ```html preview
-<p><vwc-toggletip appearance="outlined" connotation='accent'>more information</vwc-toggletip></p>
-<p><vwc-toggletip appearance="outlined" connotation='cta'>more information</vwc-toggletip></p>
-<p><vwc-toggletip appearance="outlined" connotation='success'>more information</vwc-toggletip></p>
-<p><vwc-toggletip appearance="outlined" connotation='alert'>more information</vwc-toggletip></p>
+<vwc-layout column-basis="small" column-spacing="small" gutters="large">
+	<vwc-toggletip appearance="outlined" connotation='accent'>more information</vwc-toggletip>
+	<vwc-toggletip appearance="outlined" connotation='cta'>more information</vwc-toggletip>
+	<vwc-toggletip appearance="outlined" connotation='success'>more information</vwc-toggletip>
+	<vwc-toggletip appearance="outlined" connotation='alert'>more information</vwc-toggletip>
+</vwc-layout>
 ```
 
 ### Disabled
@@ -122,7 +145,9 @@ Add the `disabled` attribute to disable the toggletip.
 - Default: `false`
 
 ```html preview
-<p><vwc-toggletip disabled>more information</vwc-toggletip></p>
-<p><vwc-toggletip appearance='filled' disabled>more information</vwc-toggletip></p>
-<p><vwc-toggletip appearance='outlined' disabled>more information</vwc-toggletip></p>
+<vwc-layout column-basis="small" column-spacing="small" gutters="large">
+	<vwc-toggletip disabled>more information</vwc-toggletip>
+	<vwc-toggletip appearance='filled' disabled>more information</vwc-toggletip>
+	<vwc-toggletip appearance='outlined' disabled>more information</vwc-toggletip>
+</vwc-layout>
 ```
