@@ -11,9 +11,8 @@
 ////////////////////////////////////////////////////////////////////////////
 $hover: ':hover, .hover';
 $disabled: ':disabled, .disabled';
-$readonly: ':readonly, .readonly';
+$readonly: '.readonly';
 $checked: ':checked, .checked';
-$indeterminate: ':indeterminate, .indeterminate';
 $selected: '.selected, [aria-current]';
 $active: ':active, .active';
 $error: '.error';
@@ -21,13 +20,13 @@ $success: '.success';
 
 $selectors: (
   idle: '&',
-  hover: '&:where(#{$hover}):where(:not(#{$disabled}))',
+  hover: '&:where(#{$hover}):where(:not(#{$disabled}, #{$readonly}))',
   disabled: '&:where(#{$disabled})',
-  readonly: '&:where(#{$readonly}):where(:not(#{$disabled}, #{$hover}, #{$active}))',
+  readonly: '&:where(#{$readonly}):where(:not(#{$disabled}))',
   selected: '&:where(#{$selected}):where(:not(#{$disabled}, #{$hover}))',
   selectedAndHover: '&:where(#{$selected}):where(#{$hover})',
   checked: '&:where(#{$checked}):where(:not(#{$disabled}))',
-  indeterminate: '&:where(#{$indeterminate}):where(:not(#{$disabled}))',
+	checkedAndHover: '&:where(#{$checked}):where(#{$hover})',
   active: '&:where(#{$active}):where(:not(#{$disabled}))',
   error: '&:where(#{$error}):where(:not(#{$disabled}))',
 	success: '&:where(#{$success}):where(:not(#{$disabled}))',

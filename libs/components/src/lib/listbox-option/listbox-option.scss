@@ -19,7 +19,8 @@
 
 .base {
 	$min-block-size: #{size.$vvd-size-normal};
-	$gap: 8px;
+	$gap: 12px;
+	$gutter: 16px;
 
 	@include connotation.connotation;
 	@include appearance.appearance;
@@ -38,7 +39,7 @@
 	inline-size: 100%;
 	min-block-size: $min-block-size;
 	padding-block: 10px;
-	padding-inline: $gap;
+	padding-inline: $gutter;
 	vertical-align: middle;
 	word-break: break-word;
 
@@ -61,6 +62,10 @@
 
 .icon {
 	font-size: 20px;
+
+	.base:not(.disabled, .selected) & {
+		color: var(#{constants.$vvd-color-neutral-600});
+	}
 }
 
 .focus-indicator {

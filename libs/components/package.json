@@ -1,9 +1,10 @@
 {
   "name": "@vonage/vivid",
-  "version": "3.0.0-next.93",
+  "version": "3.0.0-next.104",
   "type": "module",
   "module": "./index.js",
   "main": "./index.js",
+  "customElements": "./custom-elements.json",
   "homepage": "https://vivid.deno.dev",
   "repository": {
     "type": "git",
@@ -34,13 +35,14 @@
     "./fab": "./fab",
     "./icon": "./icon",
     "./layout": "./layout",
+    "./listbox": "./listbox",
     "./menu": "./menu",
     "./menu-item": "./menu-item",
     "./nav": "./nav",
     "./nav-disclosure": "./nav-disclosure",
     "./nav-item": "./nav-item",
+    "./number-field": "./number-field",
     "./note": "./note",
-    "./listbox": "./listbox",
     "./option": "./listbox-option",
     "./popup": "./popup",
     "./progress": "./progress",
@@ -48,13 +50,10 @@
     "./radio": "./radio",
     "./radio-group": "./radio-group",
     "./side-drawer": "./side-drawer",
+    "./slider": "./slider",
+    "./switch": "./switch",
     "./text-field": "./text-field",
     "./text-area": "./text-area",
-    "./tooltip": "./tooltip",
-    "./number-field": "./number-field",
-    "./tooltip": "./tooltip",
-    "./tabs": "./tabs",
-    "./tab": "./tab",
-    "./tab-panel": "./tab-panel"
+    "./tooltip": "./tooltip"
   }
 }

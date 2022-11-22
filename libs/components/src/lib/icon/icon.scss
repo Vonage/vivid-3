@@ -36,19 +36,19 @@ svg {
 
 /* Size */
 
-.control:not(.size-small):not(.size-medium):not(.size-large) {
+.control:not(.size-condensed):not(.size-normal):not(.size-expanded) {
 	#{variables.$block-size}: 1em;
 }
 
-.control.size-small {
+.control.size-condensed {
 	#{variables.$block-size}: calc(#{size.$vvd-size-normal} - #{size.$vvd-size-super-condensed});
 }
 
-.control.size-medium {
+.control.size-normal {
 	#{variables.$block-size}: #{size.$vvd-size-super-condensed};
 
 }
 
-.control.size-large {
+.control.size-expanded {
 	#{variables.$block-size}: #{size.$vvd-size-condensed};
 }

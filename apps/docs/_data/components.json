@@ -307,6 +307,20 @@
 		]
 	},
 	{
+		"title": "switch",
+		"markdown": "./libs/components/src/lib/switch/README.md",
+		"modules": [
+			"/assets/modules/components/switch/index.js"
+		]
+	},
+	{
+		"title": "slider",
+		"markdown": "./libs/components/src/lib/slider/README.md",
+		"modules": [
+			"/assets/modules/components/slider/index.js"
+		]
+	},
+	{
 		"title": "tab",
 		"markdown": "./libs/components/src/lib/tab/README.md",
 		"modules": [
