@@ -90,17 +90,20 @@ Note that when using the [core styles](/#core-optional) with the `vvd-root` clas
 
 ```html preview
 <style>
-  :root {
-    --vvd-size-font-scale-base: 1.3rem;
-  }
+ :root {
+  --vvd-size-font-scale-base: 1.3rem;
+ }
 </style>
+
 <vwc-header>
   This header's title is 30% larger than its parent
 </vwc-header>
+
 <pre>/*
  * This block of code too
  */
 </pre>
+
 <vwc-button appearance="filled" label="And the button label"></vwc-button>
 ```
 
