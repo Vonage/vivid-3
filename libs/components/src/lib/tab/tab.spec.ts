@@ -1,5 +1,5 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import { Tab, TabConnotation, TabShape } from './tab';
+import { Tab, TabShape } from './tab';
 import '.';
 
 const COMPONENT_TAG = 'vwc-tab';
@@ -14,7 +14,6 @@ describe('vwc-tab', () => {
 	describe('basic', () => {
 		it('should be initialized as a vwc-tab', async () => {
 			expect(element).toBeInstanceOf(Tab);
-			expect(element.connotation).toBeUndefined();
 			expect(element.shape).toBeUndefined();
 			expect(element.icon).toBeUndefined();
 			expect(element.label).toBeUndefined();
@@ -29,16 +28,6 @@ describe('vwc-tab', () => {
 			element.label = label;
 			await elementUpdated(element);
 			expect(getBaseElement(element).textContent?.trim()).toEqual(label);
-		});
-	});
-
-	describe('connotation', () => {
-		it('should set connotation property', async () => {
-			const connotation = 'information' as TabConnotation;
-			expect(getBaseElement(element).classList.contains(`connotation-${connotation}`)).toBeFalsy();
-			element.connotation = connotation;
-			await elementUpdated(element);
-			expect(getBaseElement(element).classList.contains(`connotation-${connotation}`)).toBeTruthy();
 		});
 	});
 
