@@ -7,7 +7,7 @@ import type { Connotation } from '../enums.js';
  *
  * @public
  */
-type TabsConnotation = Extract<Connotation, Connotation.Accent | Connotation.Information>;
+export type TabsConnotation = Extract<Connotation, Connotation.Accent | Connotation.Information>;
 
 /**
  * Base class for tabs
