@@ -10,6 +10,8 @@
     "title": "design-tokens",
     "markdown": "./docs/design/design-tokens.md",
     "modules": [
+      "/assets/modules/components/header/index.js",
+      "/assets/modules/components/button/index.js"
     ]
   },
   {

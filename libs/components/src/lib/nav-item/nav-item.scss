@@ -18,7 +18,8 @@
 
 .control {
 	$min-block-size: #{size.$vvd-size-normal};
-	$gap: 8px;
+	$gap: 12px;
+	$gutter: 16px;
 
 	position: relative;
 	display: inline-flex;
@@ -33,7 +34,6 @@
 	hyphens: auto;
 	inline-size: 100%;
 	min-block-size: $min-block-size;
-	padding-inline: $gap;
 	text-decoration: none;
 	vertical-align: middle;
 	word-break: break-word;
@@ -54,6 +54,9 @@
 		place-content: center;
 	}
 
+	&:not(.icon-only) {
+		padding-inline: $gutter;
+	}
 }
 
 .focus-indicator {
@@ -64,4 +67,8 @@
 
 .icon {
 	font-size: 20px;
+
+	.control:not(.icon-only) & {
+		color: var(#{constants.$vvd-color-neutral-600});
+	}
 }

@@ -18,7 +18,8 @@
 
 .control {
 	$min-block-size: #{size.$vvd-size-normal};
-	$gap: 8px;
+	$gap: 12px;
+	$gutter: 16px;
 
 	position: relative;
 	display: flex;
@@ -34,7 +35,7 @@
 	hyphens: auto;
 	inline-size: 100%;
 	min-block-size: $min-block-size;
-	padding-inline: $gap;
+	padding-inline: $gutter;
 	text-decoration: none;
 	vertical-align: middle;
 	word-break: break-word;
@@ -65,6 +66,10 @@
 
 .icon {
 	font-size: 20px;
+
+	.control:not(.icon-only) & {
+		color: var(#{constants.$vvd-color-neutral-600});
+	}
 }
 
 .content {

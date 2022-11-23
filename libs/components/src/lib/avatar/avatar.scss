@@ -27,22 +27,22 @@
 	align-items: center;
 	justify-content: center;
 	background-color: var(#{appearance.get-appearance-token(fill)});
-	block-size: var(#{variables.$avatar-density});
+	block-size: var(#{variables.$avatar-size});
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
-	inline-size: var(#{variables.$avatar-density});
+	inline-size: var(#{variables.$avatar-size});
 	vertical-align: middle;
 
-	&.density-condensed {
-		@include mixins.get-density-properties(#{size.$vvd-size-condensed}, #{constants.$vvd-typography-base-condensed-bold});
+	&.size-condensed {
+		@include mixins.get-size-properties(#{size.$vvd-size-condensed}, #{constants.$vvd-typography-base-condensed-bold});
 	}
 
-	&.density-extended {
-		@include mixins.get-density-properties(#{size.$vvd-size-expanded}, #{constants.$vvd-typography-heading-4});
+	&.size-expanded {
+		@include mixins.get-size-properties(#{size.$vvd-size-expanded}, #{constants.$vvd-typography-heading-4});
 	}
 
-	&:not(.density-condensed, .density-extended) {
-		@include mixins.get-density-properties(#{size.$vvd-size-normal}, #{constants.$vvd-typography-base-extended-bold});
+	&:not(.size-condensed, .size-expanded) {
+		@include mixins.get-size-properties(#{size.$vvd-size-normal}, #{constants.$vvd-typography-base-extended-bold});
 	}
 
 	&:not(.shape-pill) {

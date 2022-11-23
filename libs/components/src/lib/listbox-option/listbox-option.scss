@@ -1,17 +1,17 @@
-@use '../focus/partials/variables' as focus-variables;
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use "../focus/partials/variables" as focus-variables;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent,
 	$shades: primary primary-text primary-increment faint soft,
-	$default: accent,
+	$default: accent
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: ghost,
 	$states: idle hover disabled active selected selectedAndHover,
-	$default: ghost,
+	$default: ghost
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 @use '../../../../../dist/libs/tokens/scss/size.variables' as size;
@@ -19,11 +19,13 @@
 
 .base {
 	$min-block-size: #{size.$vvd-size-normal};
-	$gap: 8px;
+	$gap: 12px;
+	$gutter: 16px;
 
 	@include connotation.connotation;
 	@include appearance.appearance;
 
+	position: relative; /* this is needed for the focus */
 	display: flex;
 	box-sizing: border-box;
 	align-items: center;
@@ -37,7 +39,7 @@
 	inline-size: 100%;
 	min-block-size: $min-block-size;
 	padding-block: 10px;
-	padding-inline: $gap;
+	padding-inline: $gutter;
 	vertical-align: middle;
 	word-break: break-word;
 
@@ -60,10 +62,15 @@
 
 .icon {
 	font-size: 20px;
+
+	.base:not(.disabled, .selected) & {
+		color: var(#{constants.$vvd-color-neutral-600});
+	}
 }
 
 .focus-indicator {
 	#{focus-variables.$focus-stroke-color}: var(#{constants.$vvd-color-neutral-500});
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
 
 	:host(:not([aria-checked="true"])) & {
 		display: none;
