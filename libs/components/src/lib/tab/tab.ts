@@ -9,7 +9,14 @@ import type { Shape } from '../enums.js';
  *
  * @public
  */
-type TabShape = Extract<Shape, Shape.Rounded | Shape.Sharp>;
+export type TabConnotation = Extract<Connotation, Connotation.Accent | Connotation.Information>;
+
+/**
+ * Types of badge shape.
+ *
+ * @public
+ */
+export type TabShape = Extract<Shape, Shape.Rounded | Shape.Sharp>;
 
 /**
  * Base class for tab
