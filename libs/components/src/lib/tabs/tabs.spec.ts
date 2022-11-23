@@ -14,7 +14,7 @@ describe('vwc-tabs', () => {
 	describe('basic', () => {
 		it('should be initialized as a vwc-tabs', async () => {
 			expect(element).toBeInstanceOf(Tabs);
-			expect(element.orientation).toEqual("horizontal");
+			expect(element.orientation).toEqual('horizontal');
 			expect(element.activeid).toBeUndefined();
 		});
 	});
