@@ -50,11 +50,11 @@
 
 	.base.orientation-vertical & {
 		align-self: center;
-		block-size: 100%;
-		grid-area: 1 / 2 / auto / auto;
+		block-size: 80%;
+		grid-area: 2 / 1 / auto / auto;
 		inline-size: var(#{variables.$tabs-active-indicator-stroke-width});
 		margin-inline-end: calc(var(#{variables.$tabs-active-indicator-stroke-width}) * -1);
-		place-self: flex-start end;
+		place-self: flex;
 	}
 
 	.base:not(.orientation-vertical) & {
