@@ -1,7 +1,15 @@
 @use '../tabs/partials/variables' as variables;
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+	$connotations: accent information,
+	$shades: primary primary-text primary-increment faint soft,
+	$default: accent
+);
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
 
 .base {
+	@include connotation.connotation;
+
 	display: grid;
 	box-sizing: border-box;
 

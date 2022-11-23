@@ -1,16 +1,11 @@
 @use "../tabs/partials/variables" as tabs-variables;
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 
-@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
-	$connotations: accent information,
-	$shades: primary faint soft,
-	$default: accent
-);
-@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+
 
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: ghost,
-	$states: idle hover disabled active,
+	$states: idle hover disabled active selected selectedAndHover,
 	$default: ghost
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
@@ -31,7 +26,6 @@
 	$gutter: 8px;
 
 	@include appearance.appearance;
-	@include connotation.connotation;
 
 	position: relative;
 	display: inline-flex;
@@ -47,10 +41,6 @@
 	min-block-size: $min-block-size;
 	vertical-align: middle;
 	white-space: nowrap;
-
-	&.selected {
-		background-color: var(#{constants.$vvd-color-neutral-100});
-	}
 
 	@supports (user-select: none) {
 		user-select: none;

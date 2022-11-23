@@ -62,20 +62,6 @@ Use the `shape` attribute to change the tab's edges.
 </vwc-tabs>
 ```
 
-### Connotation
-
-Set the `connotation` attribute to change the tab's connotation.
-It accepts a subset of predefined values.
-
-- Type: `'accent'` | `'information'`
-- Default: `'accent'`
-
-```html preview
-<vwc-tabs>
-    <vwc-tab label="Information" id="tab" connotation="information"></vwc-tab>
-</vwc-tabs>
-```
-
 ### Disabled
 
 The disabled state of the element.
