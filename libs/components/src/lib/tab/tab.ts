@@ -8,14 +8,14 @@ import type { Connotation, Shape } from '../enums.js';
  *
  * @public
  */
-type TabConnotation = Extract<Connotation, Connotation.Accent | Connotation.Information>;
+export type TabConnotation = Extract<Connotation, Connotation.Accent | Connotation.Information>;
 
 /**
 * Types of badge shape.
 *
 * @public
 */
-type TabShape = Extract<Shape, Shape.Rounded | Shape.Sharp>;
+export type TabShape = Extract<Shape, Shape.Rounded | Shape.Sharp>;
 
 /**
  * Base class for tab
