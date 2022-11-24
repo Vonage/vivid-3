@@ -26,7 +26,7 @@
 	@include appearance.appearance;
 
 	position: relative;
-	display: inline-flex;
+	display: flex;
 	box-sizing: border-box;
 	align-items: center;
 	padding: $gutter;
