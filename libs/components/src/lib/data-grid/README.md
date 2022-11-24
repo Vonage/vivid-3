@@ -47,3 +47,19 @@ Represents a data-grid custom element.
     
 </script>
 ```
+
+### Selectable Cells
+
+```html preview
+<vwc-data-grid></vwc-data-grid>
+<script>
+    const dataGrid = window.x = document.querySelector('vwc-data-grid');
+    dataGrid.rowsData = [
+        { name: 'John', age: 30 },
+        { name: 'Jane', age: 25 },
+        { name: 'Mary', age: 28 },
+    ];
+    dataGrid.selectableCells = true;
+    
+</script>
+```

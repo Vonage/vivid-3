@@ -15,7 +15,8 @@ export const DataGridCellRole = {
 
 const getClasses = (_: DataGridCell) => classNames(
 	'base',
-	['selectable', _.selectable]
+	['selectable', _.selectable],
+	['selected', _.selected],
 );
 /**
  * Generates a template for the {@link @microsoft/fast-foundation#FASTDataGridCell} component using

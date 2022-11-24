@@ -7,17 +7,24 @@ import {attr} from '@microsoft/fast-element';
  * @public
  */
 export class DataGrid extends FoundationElement {
-	@attr() selectableRows: boolean = false;
+	@attr({mode: 'boolean'}) selectableRows = false;
+	@attr({mode: 'boolean'}) selectableCells = false;
 
 	private handleClick = (e: MouseEvent) => {
 		e.stopPropagation();
 		e.preventDefault();
-		const cell = e.target;
 
-		if (this.selectableRows) {
+
+		if (this.selectableRows) {x
 			const row: any = (e.target as HTMLElement).parentElement;
 			row.selected = !row.selected;
-			dispatchEvent(new CustomEvent('selected', { detail: { cell, row } }));
+			dispatchEvent(new CustomEvent('selected', { detail: { row } }));
+		}
+
+		if (this.selectableCells) {
+			const cell = e.target as any;
+			cell.selected = !cell.selected;
+			dispatchEvent(new CustomEvent('selected', { detail: { cell } }));
 		}
 
 	};

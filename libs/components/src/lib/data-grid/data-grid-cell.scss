@@ -21,3 +21,8 @@
 :host(.selectable) {
     cursor: pointer;
 }
+
+:host(.selected) {
+  background-color: black;
+  color: white;
+}
