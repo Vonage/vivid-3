@@ -5,11 +5,6 @@ in the iframe we need this to effect the components preview
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap');
 
-:root {
-	--vvd-font-family-upright: Montserrat;
-	--vvd-font-family-monospace: Roboto Mono;
-}
-
 /* #region reset */
 h1, h2, h3, h4, h5, h6, p {
   margin: unset;
