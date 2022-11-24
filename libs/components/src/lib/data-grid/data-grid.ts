@@ -15,7 +15,7 @@ export class DataGrid extends FoundationElement {
 		e.preventDefault();
 
 
-		if (this.selectableRows) {x
+		if (this.selectableRows) {
 			const row: any = (e.target as HTMLElement).parentElement;
 			row.selected = !row.selected;
 			dispatchEvent(new CustomEvent('selected', { detail: { row } }));
