@@ -89,8 +89,9 @@
     <script type="module" src="{{ '/assets/modules/components/card/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/header/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/action-group/index.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/modules/components/menu/index.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/modules/components/menu-item/index.js' | url}}"></script>
+    <script type="module" src="{{ '/assets/modules/components/popup/index.js' | url}}"></script>
+    <script type="module" src="{{ '/assets/modules/components/listbox/index.js' | url}}"></script>
+    <script type="module" src="{{ '/assets/modules/components/listbox-option/index.js' | url}}"></script>
 
 		{% block header %}{% endblock %}
 
@@ -110,11 +111,13 @@
 	</div>
   <div slot="action-items">
     <vwc-button id="dark-mode-toggle" icon="light-mode-line" aria-label="dark mode toggle"></vwc-button>
-    <vwc-menu id="dark-mode-menu" anchor="dark-mode-toggle">
-      <vwc-menu-item text="Light" role="menuitemradio"></vwc-menu-item>
-      <vwc-menu-item text="Dark" role="menuitemradio"></vwc-menu-item>
-      <vwc-menu-item text="Auto" role="menuitemradio"></vwc-menu-item>
-    </vwc-menu>
+    <vwc-popup id="dark-mode-popup" anchor="dark-mode-toggle">
+      <vwc-listbox id="dark-mode-listbox">
+        <vwc-option id="option-light" value="light" text="Light"></vwc-option>
+        <vwc-option id="option-dark" value="dark" text="Dark"></vwc-option>
+        <vwc-option id="option-auto" value="auto" text="Auto"></vwc-option>
+      </vwc-listbox>
+    </vwc-popup>
   </div>
 	<vwc-nav-item slot="action-items" icon="github-mono" href="https://github.com/vonage/vivid-3" aria-label="View on GitHub" role="navigation"></vwc-nav-item>
 
