@@ -1,5 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import { ListboxElement as FoundationListboxElement } from '@microsoft/fast-foundation';
+import { keyArrowLeft, keyArrowRight } from '@microsoft/fast-web-utilities/dist/key-codes';
 import type { Appearance, Shape } from '../enums';
 
 /**
@@ -39,6 +40,49 @@ export class Listbox extends FoundationListboxElement {
 	 * HTML Attribute: direction
 	 */
 	@attr direction?: 'horizontal' | 'vertical';
+	directionChanged(): void {
+		if (this.direction === 'horizontal') {
+			this.addEventListener('keydown', this.horizontalKeydownHandler);
+		} else {
+			this.removeEventListener('keydown', this.horizontalKeydownHandler);
+		}
+	}
+
+	/**
+	 * Handles `keydown` actions for horizontal listbox navigation and typeahead.
+	 *
+	 * @param e
+	 * @internal
+	 */
+	private horizontalKeydownHandler(e: KeyboardEvent): boolean | void {
+		if (this.disabled) {
+			return true;
+		}
+
+		this.shouldSkipFocus = false;
+
+		const key = e.key;
+
+		switch (key) {
+			// Select the next selectable option
+			case keyArrowRight: {
+				if (!e.shiftKey) {
+					e.preventDefault();
+					this.selectNextOption();
+				}
+				break;
+			}
+
+			// Select the previous selectable option
+			case keyArrowLeft: {
+				if (!e.shiftKey) {
+					e.preventDefault();
+					this.selectPreviousOption();
+				}
+				break;
+			}
+		}
+	}
 
 	/**
 	 * The shape the listbox should have.
