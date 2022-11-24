@@ -37,9 +37,14 @@
       {% include "../assets/styles/main.css" %}
     {% endset %}
 
+    {% set speziaCss %}
+      {% include "../assets/styles/spezia.css" %}
+    {% endset %}
+
     <style>
       {{ highlightCss | cssmin | safe }}
       {{ mainCss | cssmin | safe }}
+      {{ speziaCss | cssmin | safe }}
     </style>
 
     {% set mainJs %}
