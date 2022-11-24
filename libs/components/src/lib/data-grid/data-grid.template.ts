@@ -1,50 +1,62 @@
-import {children, elements, html} from '@microsoft/fast-element';
+import {
+	children,
+	elements,
+	html
+} from '@microsoft/fast-element';
+import type {DataGrid, ElementDefinitionContext} from '@microsoft/fast-foundation';
 import type {ViewTemplate} from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
-import {classNames} from '@microsoft/fast-web-utilities';
-import type {DataGrid} from './data-grid';
 import {DataGridRow} from './data-grid-row';
 
-const getClasses = (_: DataGrid) => classNames('control');
-
-function rowItemTemplate(context: ElementDefinitionContext): ViewTemplate<any, DataGrid> {
-	const rowTag = context.tagFor(DataGridRow);
-	return html<any, DataGrid>`
-			${(_, c) => { console.log("Parent: ", c.parent); }}
-    <${rowTag}
-        :rowData="${x => x}"
-        :cellItemTemplate="${(_, c) => c.parent.cellItemTemplate}"
-        :headerCellItemTemplate="${(_, c) => c.parent.headerCellItemTemplate}"
-    ></${rowTag}>
-`;
+/**
+ * Options for data grid templates.
+ *
+ * @public
+ */
+export interface DataGridOptions extends ElementDefinitionContext {
+	dataGridRow: any;
 }
 
 /**
- * The template for the {@link @microsoft/fast-foundation#DataGrid} component.
+ * @param options
+ */
+function rowItemTemplate<T extends DataGridRow>(
+	options: DataGridOptions
+): ViewTemplate<T> {
+	const rowTag = options.tagFor(options.dataGridRow);
+	return html<T>`
+	  <${rowTag}
+				:selectable="${(_, c) => c.parent.selectableRows}"
+			  :rowData="${x => x}"
+			  :cellItemTemplate="${(_, c) => c.parent.cellItemTemplate}"
+			  :headerCellItemTemplate="${(_, c) => c.parent.headerCellItemTemplate}"
+	  ></${rowTag}>
+	`;
+}
+
+/**
+ * Generates a template for the {@link @microsoft/fast-foundation#FASTDataGrid} component using
+ * the provided prefix.
  *
- * @param context
+ * @param options
  * @public
  */
-export const DataGridTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<DataGrid> = (context: ElementDefinitionContext) => {
-	const rowTag = context.tagFor(DataGridRow);
-	return html<DataGrid>`
-	  <div class="${getClasses}" 
-	       role="grid" 
-	       tabindex="0" 
-	       :rowElementTag="${() => rowTag}" 
-	       ${children({
-			       property: 'rowElements', filter: elements('[role=row]')
-				 })}
-		 		:defaultRowItemTemplate="${rowItemTemplate(context)}"
+export function dataGridTemplate<T extends DataGrid>(
+	options: DataGridOptions
+): ViewTemplate<T> {
+	options.dataGridRow  = options.dataGridRow ?? DataGridRow;
+	const rowTag = options.tagFor(options.dataGridRow);
+	return html<T>`
+	  <template
+			  role="grid"
+			  tabindex="0"
+			  :rowElementTag="${rowTag}"
+			  :defaultRowItemTemplate="${rowItemTemplate(options)}"
+			  ${children({
+				  property: "rowElements",
+				  filter: elements("[role=row]"),
+			  })}
 	  >
 		  <slot></slot>
-	  </div>
-	  ;
+	  </template>
 	`;
-};
+}
