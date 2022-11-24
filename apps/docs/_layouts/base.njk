@@ -28,23 +28,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
 
+
+    <link rel="stylesheet" href="{{ '/assets/styles/tokens/theme-light.css' | url }}" media="(prefers-color-scheme: light)">
+    <link rel="stylesheet" href="{{ '/assets/styles/tokens/theme-dark.css' | url }}" media="(prefers-color-scheme: dark)">
+
+    <link rel="stylesheet" href="{{ '/assets/styles/core/all.css' | url }}">
+
     <!-- Load styles inline -->
     {% set highlightCss %}
       {% include "../../../node_modules/highlight.js/styles/github.css" %}
-    {% endset %}
-
-    {% set mainCss %}
-      {% include "../assets/styles/main.css" %}
     {% endset %}
 
     {% set speziaCss %}
       {% include "../assets/styles/spezia.css" %}
     {% endset %}
 
+    {% set mainCss %}
+      {% include "../assets/styles/main.css" %}
+    {% endset %}
+
     <style>
       {{ highlightCss | cssmin | safe }}
-      {{ mainCss | cssmin | safe }}
       {{ speziaCss | cssmin | safe }}
+      {{ mainCss | cssmin | safe }}
     </style>
 
     {% set mainJs %}
@@ -70,11 +76,6 @@
     <script type="module">
       {{ scrollHandler | safe }}
     </script>
-
-    <link rel="stylesheet" href="{{ '/assets/styles/tokens/theme-light.css' | url }}" media="(prefers-color-scheme: light)">
-    <link rel="stylesheet" href="{{ '/assets/styles/tokens/theme-dark.css' | url }}" media="(prefers-color-scheme: dark)">
-
-    <link rel="stylesheet" href="{{ '/assets/styles/core/all.css' | url }}">
 
 		<script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
 
