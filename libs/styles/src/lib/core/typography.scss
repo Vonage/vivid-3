@@ -79,10 +79,6 @@ $selectors: (
 		#{map.get($selectors, 'bold')} {
 			font: var(#{constants.$vvd-typography-base-condensed-bold});
 		}
-
-		#{map.get($selectors, 'code')} {
-			font: var(#{constants.$vvd-typography-base-condensed-code});
-		}
 	}
 
 	sub,
