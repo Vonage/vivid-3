@@ -6,11 +6,10 @@ import { focusTemplateFactory } from '../../shared/patterns/focus';
 import type { Tab } from './tab.js';
 
 const getClasses = ({
-	disabled, ariaSelected, shape
+	disabled, ariaSelected
 }: Tab) => classNames(
 	'base',
 	['disabled', Boolean(disabled)],
-	[`shape-${shape}`, Boolean(shape)],
 	['selected', ariaSelected === 'true'],
 );
 

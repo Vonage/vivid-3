@@ -49,19 +49,6 @@ Tab label can be affixed by a decorative icon, either by its start or end.
 </vwc-tabs>
 ```
 
-### Shape
-
-Use the `shape` attribute to change the tab's edges.
-
-- Type: `'sharp'` | `'rounded'`
-- Default: `'rounded'`
-
-```html preview
-<vwc-tabs>
-    <vwc-tab label="Rounded" id="tab" shape="rounded"></vwc-tab>
-</vwc-tabs>
-```
-
 ### Disabled
 
 The disabled state of the element.

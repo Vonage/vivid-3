@@ -1,14 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import { applyMixins, Tab as FoundationTab } from '@microsoft/fast-foundation';
 import { AffixIcon, AffixIconWithTrailing } from '../../shared/patterns/affix';
-import type { Shape } from '../enums.js';
-
-/**
- * Types of badge shape.
- *
- * @public
- */
-export type TabShape = Extract<Shape, Shape.Rounded | Shape.Sharp>;
 
 /**
  * Base class for tab
@@ -16,14 +8,6 @@ export type TabShape = Extract<Shape, Shape.Rounded | Shape.Sharp>;
  * @public
  */
 export class Tab extends FoundationTab {
-	/**
-	 * The shape the badge should have.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: shape
-	 */
-	@attr shape?: TabShape;
 	/**
 	 * Indicates the tab's label.
 	 *
