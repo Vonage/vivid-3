@@ -1,8 +1,65 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Thu, 10 Nov 2022 15:01:26 GMT and should not be manually modified.
+This log was last generated on Tue, 22 Nov 2022 08:33:47 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.104
+
+Tue, 22 Nov 2022 08:33:47 GMT
+
+### Changes
+
+- style gutters and gaps in list items (yinon@hotmail.com)
+
+## 3.0.0-next.103
+
+Mon, 21 Nov 2022 13:45:33 GMT
+
+### Changes
+
+- typography style unset root's font size to resolve to 16px (yinon@hotmail.com)
+- calendar css style to enable dark-theme background (yinon@hotmail.com)
+
+## 3.0.0-next.102
+
+Sun, 20 Nov 2022 21:47:05 GMT
+
+### Changes
+
+- package generated customElements.json & TS meta (yinon@hotmail.com)
+
+## 3.0.0-next.101
+
+Wed, 16 Nov 2022 09:48:24 GMT
+
+### Changes
+
+- refine progress ring documentation code snippets (yinon@hotmail.com)
+
+## 3.0.0-next.100
+
+Tue, 15 Nov 2022 13:38:58 GMT
+
+### Changes
+
+- change density to size and extended to expanded (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.99
+
+Tue, 15 Nov 2022 08:30:44 GMT
+
+### Changes
+
+- fix radio isInsideRadioGroup (olaf-k@users.noreply.github.com)
+
+## 3.0.0-next.98
+
+Mon, 14 Nov 2022 13:05:26 GMT
+
+### Changes
+
+- option class - align property with naming convetion (yinon@hotmail.com)
 
 ## 3.0.0-next.97
 
