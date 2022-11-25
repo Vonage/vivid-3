@@ -6,6 +6,7 @@ import type {
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import {textAnchorTemplate} from '../text-anchor/text-anchor.template';
+import { Icon } from '../icon/icon';
 import type { BreadcrumbItem } from './breadcrumb-item';
 
 const getClasses = (_: BreadcrumbItem) =>
@@ -22,7 +23,10 @@ export const BreadcrumbItemTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<BreadcrumbItem> =
-  (context: ElementDefinitionContext, definition: FoundationElementDefinition) => html`
+  (context: ElementDefinitionContext, definition: FoundationElementDefinition) => {
+	const iconTag = context.tagFor(Icon);
+
+	return html`
       <div role="listitem" class="${getClasses}">
         ${when(x => x.text && !x.href,
 		html<BreadcrumbItem>`${x => x.text}`)}
@@ -31,5 +35,6 @@ export const BreadcrumbItemTemplate: (
 		html<BreadcrumbItem>`${textAnchorTemplate(context, definition)}`)}
 
         ${when(x => x.separator,
-		html<BreadcrumbItem>`<vwc-icon type="chevron-right-solid"></vwc-icon>`)}
+		html<BreadcrumbItem>`<${iconTag} type="chevron-right-solid"></${iconTag}>`)}
       </div>`;
+};
