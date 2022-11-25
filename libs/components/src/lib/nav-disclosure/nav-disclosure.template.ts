@@ -5,8 +5,8 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
-import { focusTemplateFactory } from './../../shared/patterns/focus';
 import { Icon } from '../icon/icon';
+import { focusTemplateFactory } from './../../shared/patterns/focus';
 import type { NavDisclosure } from './nav-disclosure';
 
 /**

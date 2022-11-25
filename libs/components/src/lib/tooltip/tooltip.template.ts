@@ -20,9 +20,9 @@ export const TooltipTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Tooltip> = (context: ElementDefinitionContext) => {
-  const popupTag = context.tagFor(Popup);
+	const popupTag = context.tagFor(Popup);
 
-  return html`
+	return html`
 <${popupTag} class="${getClasses}" arrow alternate
 placement=${(x) => x.placement} open=${(x) => x.open} anchor=${(x) => x.anchor}
   exportparts="vvd-theme-alternate" role="tooltip">
