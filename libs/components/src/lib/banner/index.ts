@@ -1,7 +1,7 @@
 import '../button';
 
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import styles from './banner.scss';
 
 import { Banner } from './banner';
@@ -13,4 +13,4 @@ export const vividBanner = Banner.compose<FoundationElementDefinition>({
 	styles,
 });
 
-designSystem.register(vividBanner());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividBanner());

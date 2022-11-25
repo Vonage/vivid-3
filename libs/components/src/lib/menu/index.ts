@@ -5,7 +5,7 @@ import '../popup';
 // connect before setting/checking their props/attributes, it is required
 import '../menu-item';
 
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import styles from './menu.scss';
 import { Menu } from './menu';
 import { MenuTemplate as template } from './menu.template';
@@ -17,4 +17,4 @@ export const vividMenu = Menu.compose({
 	styles,
 });
 
-designSystem.register(vividMenu());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividMenu());

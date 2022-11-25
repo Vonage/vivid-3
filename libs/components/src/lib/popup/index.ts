@@ -2,7 +2,7 @@ import '../elevation';
 import '../button';
 
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import { Popup } from './popup';
 import styles from './popup.scss';
 import { popupTemplate as template } from './popup.template';
@@ -18,4 +18,4 @@ export const vividPopup = Popup.compose<FoundationElementDefinition>({
 	styles,
 });
 
-designSystem.register(vividPopup());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividPopup());

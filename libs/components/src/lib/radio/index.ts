@@ -1,7 +1,7 @@
 import '../focus';
 
 import type { RadioOptions } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import styles from './radio.scss';
 
 import { Radio } from './radio';
@@ -13,4 +13,4 @@ export const vividRadio = Radio.compose<RadioOptions>({
 	styles
 });
 
-designSystem.register(vividRadio());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividRadio());

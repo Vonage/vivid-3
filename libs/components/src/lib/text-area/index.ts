@@ -2,7 +2,7 @@ import '../focus';
 import '../icon';
 
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 
 import styles from './text-area.scss';
 import { TextArea } from './text-area';
@@ -17,4 +17,4 @@ export const vividTextArea = TextArea.compose<FoundationElementDefinition>({
 	},
 });
 
-designSystem.register(vividTextArea());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividTextArea());

@@ -3,7 +3,7 @@ import '../focus';
 
 
 import { Button as FastButton, type FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import { Button } from './button';
 import styles from './button.scss';
 import { buttonTemplate as template } from './button.template';
@@ -22,4 +22,4 @@ export const vividButton = Button.compose<FoundationElementDefinition>({
 	},
 });
 
-designSystem.register(vividButton());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividButton());

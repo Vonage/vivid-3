@@ -1,7 +1,7 @@
 import '../icon';
 
 import type { MenuItemOptions } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import styles from './menu-item.scss';
 
 import { MenuItem } from './menu-item';
@@ -13,4 +13,4 @@ export const vividMenuItem = MenuItem.compose<MenuItemOptions>({
 	styles
 });
 
-designSystem.register(vividMenuItem());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividMenuItem());

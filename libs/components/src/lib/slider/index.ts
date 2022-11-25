@@ -1,7 +1,7 @@
 import '../focus';
 
 import type { SliderOptions } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import styles from './slider.scss';
 
 import { Slider } from './slider';
@@ -13,4 +13,4 @@ export const vividSlider = Slider.compose<SliderOptions>({
 	styles,
 });
 
-designSystem.register(vividSlider());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividSlider());

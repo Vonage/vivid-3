@@ -2,7 +2,7 @@ import '../icon';
 import '../focus';
 
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import styles from './accordion-item.scss';
 
 import { AccordionItem } from './accordion-item';
@@ -18,4 +18,4 @@ export const vividAccordionItem =
 		},
 	});
 
-designSystem.register(vividAccordionItem());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividAccordionItem());

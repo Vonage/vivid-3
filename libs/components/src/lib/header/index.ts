@@ -1,7 +1,7 @@
 import '../elevation';
 
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import styles from './header.scss';
 
 import { Header } from './header';
@@ -13,4 +13,4 @@ export const vividHeader = Header.compose<FoundationElementDefinition>({
 	styles,
 });
 
-designSystem.register(vividHeader());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividHeader());

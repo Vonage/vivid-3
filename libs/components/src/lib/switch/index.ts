@@ -1,7 +1,7 @@
 import '../focus';
 
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import styles from './switch.scss';
 import '../focus';
 
@@ -17,4 +17,4 @@ export const vividSwitch = Switch.compose<FoundationElementDefinition>({
 	}
 });
 
-designSystem.register(vividSwitch());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividSwitch());

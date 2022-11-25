@@ -1,5 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 
 import { Nav } from './nav';
 import { NavTemplate as template } from './nav.template';
@@ -10,4 +10,4 @@ export const vividNav =
 		template: template as any,
 	});
 
-designSystem.register(vividNav());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividNav());

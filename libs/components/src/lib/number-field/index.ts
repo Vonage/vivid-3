@@ -1,5 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import styles from './number-field.scss';
 import '../button';
 import '../divider';
@@ -17,7 +17,7 @@ export const vividNumberField =
 		},
 	});
 
-designSystem.register(vividNumberField());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividNumberField());
 
 
 

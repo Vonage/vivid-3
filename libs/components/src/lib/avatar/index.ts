@@ -1,7 +1,7 @@
 import '../icon';
 
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import styles from './avatar.scss';
 
 import { Avatar } from './avatar';
@@ -13,4 +13,4 @@ export const vividAvatar = Avatar.compose<FoundationElementDefinition>({
 	styles,
 });
 
-designSystem.register(vividAvatar());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividAvatar());

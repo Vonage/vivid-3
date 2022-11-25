@@ -2,7 +2,7 @@ import '../elevation';
 import '../icon';
 
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import styles from './card.scss';
 
 import { Card } from './card';
@@ -14,4 +14,4 @@ export const vividCard = Card.compose<FoundationElementDefinition>({
 	styles,
 });
 
-designSystem.register(vividCard());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividCard());

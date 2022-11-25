@@ -1,5 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import styles from './note.scss';
 
 import { Note } from './note';
@@ -11,4 +11,4 @@ export const vividNote = Note.compose<FoundationElementDefinition>({
 	styles,
 });
 
-designSystem.register(vividNote());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividNote());

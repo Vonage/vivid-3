@@ -1,7 +1,7 @@
 import '../popup';
 
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import styles from './tooltip.scss';
 
 import { Tooltip } from './tooltip';
@@ -13,4 +13,4 @@ export const vividTooltip = Tooltip.compose<FoundationElementDefinition>({
 	styles,
 });
 
-designSystem.register(vividTooltip());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividTooltip());

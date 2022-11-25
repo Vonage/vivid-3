@@ -2,7 +2,7 @@ import '../icon';
 import '../focus';
 
 import type { CheckboxOptions } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import styles from './checkbox.scss';
 
 import { Checkbox } from './checkbox';
@@ -17,4 +17,4 @@ export const vividCheckbox = Checkbox.compose<CheckboxOptions>({
 	},
 });
 
-designSystem.register(vividCheckbox());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividCheckbox());

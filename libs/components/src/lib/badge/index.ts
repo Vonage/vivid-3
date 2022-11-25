@@ -1,7 +1,7 @@
 import '../icon';
 
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import { Badge } from './badge';
 import styles from './badge.scss';
 import { badgeTemplate as template } from './badge.template';
@@ -20,4 +20,4 @@ export const vividBadge = Badge.compose<FoundationElementDefinition>({
 	styles,
 });
 
-designSystem.register(vividBadge());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividBadge());

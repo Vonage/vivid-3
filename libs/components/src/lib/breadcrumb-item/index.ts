@@ -2,7 +2,7 @@ import '../icon';
 import '../focus';
 
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import {designSystem} from '../../shared/design-system';
+import {designSystem, getPrefix} from '../../shared/design-system';
 import styles from './breadcrumb-item.scss';
 
 import {BreadcrumbItem} from './breadcrumb-item';
@@ -17,4 +17,4 @@ export const vividBreadcrumbItem = BreadcrumbItem.compose<FoundationElementDefin
 	},
 });
 
-designSystem.register(vividBreadcrumbItem());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividBreadcrumbItem());
