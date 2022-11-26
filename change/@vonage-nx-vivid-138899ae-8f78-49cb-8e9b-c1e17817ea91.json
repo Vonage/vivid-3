@@ -1,0 +1,7 @@
+{
+  "comment": "align with custom prefix for custom-elements support",
+  "type": "none",
+  "packageName": "@vonage/nx-vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "none"
+}
