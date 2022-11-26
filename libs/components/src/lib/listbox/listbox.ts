@@ -59,8 +59,6 @@ export class Listbox extends FoundationListboxElement {
 			return true;
 		}
 
-		this.shouldSkipFocus = false;
-
 		const key = e.key;
 
 		switch (key) {
