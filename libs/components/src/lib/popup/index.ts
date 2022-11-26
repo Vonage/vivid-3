@@ -1,12 +1,14 @@
-import '../elevation';
-import '../button';
-
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { designSystem, getPrefix } from '../../shared/design-system';
+import { loadComponentsModules } from '../shared/utils';
 import { Popup } from './popup';
 import styles from './popup.scss';
 import { popupTemplate as template } from './popup.template';
 
+
+const prefix = getPrefix(import.meta.url);
+
+loadComponentsModules(['elevation', 'button'], prefix);
 
 /**
  * Represents a popup custom element.
@@ -18,4 +20,4 @@ export const vividPopup = Popup.compose<FoundationElementDefinition>({
 	styles,
 });
 
-designSystem.withPrefix(getPrefix(import.meta.url)).register(vividPopup());
+designSystem.withPrefix(prefix).register(vividPopup());

@@ -1,12 +1,14 @@
-import '../icon';
-import '../focus';
-
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import {designSystem, getPrefix} from '../../shared/design-system';
+import { loadComponentsModules } from '../shared/utils';
 import styles from './breadcrumb-item.scss';
 
 import {BreadcrumbItem} from './breadcrumb-item';
 import {BreadcrumbItemTemplate as template} from './breadcrumb-item.template';
+
+const prefix = getPrefix(import.meta.url);
+
+loadComponentsModules(['icon', 'focus'], prefix);
 
 export const vividBreadcrumbItem = BreadcrumbItem.compose<FoundationElementDefinition>({
 	baseName: 'breadcrumb-item',
@@ -17,4 +19,4 @@ export const vividBreadcrumbItem = BreadcrumbItem.compose<FoundationElementDefin
 	},
 });
 
-designSystem.withPrefix(getPrefix(import.meta.url)).register(vividBreadcrumbItem());
+designSystem.withPrefix(prefix).register(vividBreadcrumbItem());

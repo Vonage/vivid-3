@@ -1,11 +1,14 @@
-import '../icon';
-
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { designSystem, getPrefix } from '../../shared/design-system';
+import { loadComponentsModules } from '../shared/utils';
 import styles from './avatar.scss';
 
 import { Avatar } from './avatar';
 import { AvatarTemplate as template } from './avatar.template';
+
+const prefix = getPrefix(import.meta.url);
+
+loadComponentsModules(['icon'], prefix);
 
 export const vividAvatar = Avatar.compose<FoundationElementDefinition>({
 	baseName: 'avatar',
@@ -13,4 +16,4 @@ export const vividAvatar = Avatar.compose<FoundationElementDefinition>({
 	styles,
 });
 
-designSystem.withPrefix(getPrefix(import.meta.url)).register(vividAvatar());
+designSystem.withPrefix(prefix).register(vividAvatar());

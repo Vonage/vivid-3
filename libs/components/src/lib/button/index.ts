@@ -1,17 +1,17 @@
-import '../icon';
-import '../focus';
-
-
 import { Button as FastButton, type FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { designSystem, getPrefix } from '../../shared/design-system';
+import { loadComponentsModules } from '../shared/utils';
 import { Button } from './button';
 import styles from './button.scss';
 import { buttonTemplate as template } from './button.template';
 
+const prefix = getPrefix(import.meta.url);
+
+loadComponentsModules(['icon', 'focus'], prefix);
+
 /**
  * Represents a button custom element.
  */
-
 export const vividButton = Button.compose<FoundationElementDefinition>({
 	baseName: 'button',
 	baseClass: FastButton,
@@ -22,4 +22,4 @@ export const vividButton = Button.compose<FoundationElementDefinition>({
 	},
 });
 
-designSystem.withPrefix(getPrefix(import.meta.url)).register(vividButton());
+designSystem.withPrefix(prefix).register(vividButton());
