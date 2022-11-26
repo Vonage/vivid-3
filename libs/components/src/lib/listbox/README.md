@@ -73,10 +73,9 @@ Set the `direction` property to change the listbox options' flow.
 
 ### Shape
 
-Use the `shape` attribute to set the action-Group's edges.  
-When using shape - pay in mind setting the slotted elements with the same shape property.
+Use the `shape` attribute to set the listbox's (and its descendent options) edges.
 
-note that the `shape` property is **only supported** when the `direction` is set to `horizontal`.
+note that `shape`'s `pill` value is **only supported** when the `direction` is set to `horizontal`.
 
 - Type: `'rounded'` | `'pill'`
 - Default: `'rounded'`
