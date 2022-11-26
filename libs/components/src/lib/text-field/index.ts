@@ -7,7 +7,7 @@ import { TextfieldTemplate as template } from './text-field.template';
 
 const prefix = getPrefix(import.meta.url);
 
-loadComponentsModules(['icon', 'focus'], prefix);
+await loadComponentsModules(['icon', 'focus'], prefix);
 
 export const vividTextfield = TextField.compose<FoundationElementDefinition>({
 	baseName: 'text-field',

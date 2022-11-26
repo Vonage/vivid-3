@@ -8,7 +8,7 @@ import {BreadcrumbItemTemplate as template} from './breadcrumb-item.template';
 
 const prefix = getPrefix(import.meta.url);
 
-loadComponentsModules(['icon', 'focus'], prefix);
+await loadComponentsModules(['icon', 'focus'], prefix);
 
 export const vividBreadcrumbItem = BreadcrumbItem.compose<FoundationElementDefinition>({
 	baseName: 'breadcrumb-item',

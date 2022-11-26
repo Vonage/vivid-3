@@ -11,7 +11,7 @@ const prefix = getPrefix(import.meta.url);
 // in listbox as it is not used directly in its template rather by user's authoring.
 // but, due to the race condition and way listbox needs children to
 // connect before setting/checking their props/attributes, it is required
-loadComponentsModules(['listbox-option', 'focus'], prefix);
+await loadComponentsModules(['listbox-option', 'focus'], prefix);
 
 export const vividListbox = Listbox.compose<FoundationElementDefinition>({
 	baseName: 'listbox',

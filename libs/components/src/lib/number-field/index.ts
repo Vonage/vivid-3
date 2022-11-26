@@ -7,7 +7,7 @@ import { NumberFieldTemplate as template } from './number-field.template';
 
 const prefix = getPrefix(import.meta.url);
 
-loadComponentsModules(['button', 'divider'], prefix);
+await loadComponentsModules(['button', 'divider'], prefix);
 
 export const vividNumberField =
 	NumberField.compose<FoundationElementDefinition>({

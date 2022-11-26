@@ -8,7 +8,7 @@ import { popupTemplate as template } from './popup.template';
 
 const prefix = getPrefix(import.meta.url);
 
-loadComponentsModules(['elevation', 'button'], prefix);
+await loadComponentsModules(['elevation', 'button'], prefix);
 
 /**
  * Represents a popup custom element.

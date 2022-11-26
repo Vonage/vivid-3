@@ -8,7 +8,7 @@ import { SliderTemplate as template } from './slider.template';
 
 const prefix = getPrefix(import.meta.url);
 
-loadComponentsModules(['focus'], prefix);
+await loadComponentsModules(['focus'], prefix);
 
 export const vividSlider = Slider.compose<SliderOptions>({
 	baseName: 'slider',

@@ -8,7 +8,7 @@ import { CardTemplate as template } from './card.template';
 
 const prefix = getPrefix(import.meta.url);
 
-loadComponentsModules(['icon', 'elevation'], prefix);
+await loadComponentsModules(['icon', 'elevation'], prefix);
 
 export const vividCard = Card.compose<FoundationElementDefinition>({
 	baseName: 'card',

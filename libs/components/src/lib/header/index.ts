@@ -8,7 +8,7 @@ import { headerTemplate as template } from './header.template';
 
 const prefix = getPrefix(import.meta.url);
 
-loadComponentsModules(['elevation'], prefix);
+await loadComponentsModules(['elevation'], prefix);
 
 export const vividHeader = Header.compose<FoundationElementDefinition>({
 	baseName: 'header',

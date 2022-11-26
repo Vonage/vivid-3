@@ -8,7 +8,7 @@ import { AvatarTemplate as template } from './avatar.template';
 
 const prefix = getPrefix(import.meta.url);
 
-loadComponentsModules(['icon'], prefix);
+await loadComponentsModules(['icon'], prefix);
 
 export const vividAvatar = Avatar.compose<FoundationElementDefinition>({
 	baseName: 'avatar',

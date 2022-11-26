@@ -9,7 +9,7 @@ import { DialogTemplate as template } from './dialog.template';
 
 const prefix = getPrefix(import.meta.url);
 
-loadComponentsModules(['icon', 'button', 'elevation'], prefix);
+await loadComponentsModules(['icon', 'button', 'elevation'], prefix);
 
 export const vividDialog = Dialog.compose<FoundationElementDefinition>({
 	baseName: 'dialog',

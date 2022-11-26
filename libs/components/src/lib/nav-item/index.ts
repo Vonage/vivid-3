@@ -8,7 +8,7 @@ import { NavItemTemplate as template } from './nav-item.template';
 
 const prefix = getPrefix(import.meta.url);
 
-loadComponentsModules(['icon', 'focus'], prefix);
+await loadComponentsModules(['icon', 'focus'], prefix);
 
 export const vividNavItem =
 	NavItem.compose<FoundationElementDefinition>({

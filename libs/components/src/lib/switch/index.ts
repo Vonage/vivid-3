@@ -7,7 +7,7 @@ import { SwitchTemplate as template } from './switch.template';
 
 const prefix = getPrefix(import.meta.url);
 
-loadComponentsModules(['icon', 'focus'], prefix);
+await loadComponentsModules(['icon', 'focus'], prefix);
 
 export const vividSwitch = Switch.compose<FoundationElementDefinition>({
 	baseName: 'switch',

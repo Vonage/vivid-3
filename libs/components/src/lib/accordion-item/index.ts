@@ -8,7 +8,7 @@ import { AccordionItemTemplate as template } from './accordion-item.template';
 
 const prefix = getPrefix(import.meta.url);
 
-loadComponentsModules(['icon', 'focus'], prefix);
+await loadComponentsModules(['icon', 'focus'], prefix);
 
 export const vividAccordionItem =
 	AccordionItem.compose<FoundationElementDefinition>({

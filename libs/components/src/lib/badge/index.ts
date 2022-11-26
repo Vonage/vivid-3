@@ -7,8 +7,7 @@ import { badgeTemplate as template } from './badge.template';
 
 const prefix = getPrefix(import.meta.url);
 
-loadComponentsModules(['icon'], prefix);
-
+await loadComponentsModules(['icon'], prefix);
 
 /**
  * Represents a badge custom element.

@@ -8,7 +8,7 @@ import { RadioTemplate as template } from './radio.template';
 
 const prefix = getPrefix(import.meta.url);
 
-loadComponentsModules(['focus'], prefix);
+await loadComponentsModules(['focus'], prefix);
 
 export const vividRadio = Radio.compose<RadioOptions>({
 	baseName: 'radio',

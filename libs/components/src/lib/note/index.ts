@@ -8,7 +8,7 @@ import { NoteTemplate as template } from './note.template';
 
 const prefix = getPrefix(import.meta.url);
 
-loadComponentsModules(['icon'], prefix);
+await loadComponentsModules(['icon'], prefix);
 
 export const vividNote = Note.compose<FoundationElementDefinition>({
 	baseName: 'note',

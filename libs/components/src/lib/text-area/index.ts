@@ -8,7 +8,7 @@ import { TextAreaTemplate as template } from './text-area.template';
 
 const prefix = getPrefix(import.meta.url);
 
-loadComponentsModules(['icon', 'focus'], prefix);
+await loadComponentsModules(['icon', 'focus'], prefix);
 
 export const vividTextArea = TextArea.compose<FoundationElementDefinition>({
 	baseName: 'text-area',

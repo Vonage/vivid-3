@@ -8,7 +8,7 @@ import { NavDisclosureTemplate as template } from './nav-disclosure.template';
 
 const prefix = getPrefix(import.meta.url);
 
-loadComponentsModules(['icon', 'focus'], prefix);
+await loadComponentsModules(['icon', 'focus'], prefix);
 
 export const vividNavDisclosure =
 	NavDisclosure.compose<FoundationElementDefinition>({

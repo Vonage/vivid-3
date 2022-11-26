@@ -8,7 +8,7 @@ import { BannerTemplate as template } from './banner.template';
 
 const prefix = getPrefix(import.meta.url);
 
-loadComponentsModules(['button'], prefix);
+await loadComponentsModules(['button'], prefix);
 
 export const vividBanner = Banner.compose<FoundationElementDefinition>({
 	baseName: 'banner',

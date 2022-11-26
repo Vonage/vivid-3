@@ -8,7 +8,7 @@ import { FabTemplate as template } from './fab.template';
 
 const prefix = getPrefix(import.meta.url);
 
-loadComponentsModules(['icon', 'focus'], prefix);
+await loadComponentsModules(['icon', 'focus'], prefix);
 
 export const vividFab = Fab.compose<FoundationElementDefinition>({
 	baseName: 'fab',

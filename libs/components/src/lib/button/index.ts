@@ -7,7 +7,7 @@ import { buttonTemplate as template } from './button.template';
 
 const prefix = getPrefix(import.meta.url);
 
-loadComponentsModules(['icon', 'focus'], prefix);
+await loadComponentsModules(['icon', 'focus'], prefix);
 
 /**
  * Represents a button custom element.
