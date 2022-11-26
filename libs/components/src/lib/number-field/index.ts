@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { designSystem, getPrefix } from '../../shared/design-system';
-import { loadComponentsModules } from '../shared/utils';
+import { loadComponentsModules } from '../../shared/utils';
 import styles from './number-field.scss';
 import { NumberField } from './number-field';
 import { NumberFieldTemplate as template } from './number-field.template';

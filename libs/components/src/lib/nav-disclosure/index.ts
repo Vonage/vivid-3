@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { designSystem, getPrefix } from '../../shared/design-system';
-import { loadComponentsModules } from '../shared/utils';
+import { loadComponentsModules } from '../../shared/utils';
 import styles from './nav-disclosure.scss';
 
 import { NavDisclosure } from './nav-disclosure';

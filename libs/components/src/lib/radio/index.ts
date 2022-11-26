@@ -1,6 +1,6 @@
 import type { RadioOptions } from '@microsoft/fast-foundation';
 import { designSystem, getPrefix } from '../../shared/design-system';
-import { loadComponentsModules } from '../shared/utils';
+import { loadComponentsModules } from '../../shared/utils';
 import styles from './radio.scss';
 
 import { Radio } from './radio';

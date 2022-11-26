@@ -31,7 +31,7 @@ export class Banner extends FoundationElement {
 	@attr({attribute: 'action-text'}) actionText: string | undefined;
 	@attr({mode: 'boolean'}) removable = false;
 	@attr({attribute: 'aria-live'}) override ariaLive: any;
-	@attr() role: string | undefined;
+	@attr({ mode: 'fromView'}) override role = 'status';
 	@attr() text: string | undefined;
 	@attr() connotation: BannerConnotation | undefined;
 

@@ -1,5 +1,5 @@
 import { designSystem, getPrefix } from '../../shared/design-system';
-import { loadComponentsModules } from '../shared/utils';
+import { loadComponentsModules } from '../../shared/utils';
 import styles from './menu.scss';
 import { Menu } from './menu';
 import { MenuTemplate as template } from './menu.template';

@@ -1,6 +1,6 @@
 import type { MenuItemOptions } from '@microsoft/fast-foundation';
 import { designSystem, getPrefix } from '../../shared/design-system';
-import { loadComponentsModules } from '../shared/utils';
+import { loadComponentsModules } from '../../shared/utils';
 import styles from './menu-item.scss';
 
 import { MenuItem } from './menu-item';
