@@ -91,6 +91,12 @@ The following example will register *badge* custom element as `dashboard-badge`:
 import '/node_modules/@vonage/vivid/badge/index.js?prefix=dashboard';
 ```
 
+then use it as:
+
+```html
+<dashboard-badge text="I'm a custom prefixed badge"></dashboard-badge>
+```
+
 ## Support
 
 This library is open source, developed and maintained by the [Vonage Vivid team](Vonage/vivid).
