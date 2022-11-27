@@ -109,16 +109,16 @@
 			<strong>VIVID Web Components</strong>
 		</a>
 	</div>
-  <div slot="action-items">
-    <vwc-button id="dark-mode-toggle" icon="light-mode-line" aria-label="dark mode toggle"></vwc-button>
-    <vwc-popup id="dark-mode-popup" anchor="dark-mode-toggle">
+
+    <vwc-button id="dark-mode-toggle" icon="light-mode-line" aria-label="dark mode toggle" slot="action-items"></vwc-button>
+    <vwc-popup id="dark-mode-popup" anchor="dark-mode-toggle" slot="action-items">
       <vwc-listbox id="dark-mode-listbox">
         <vwc-option id="option-light" value="light" text="Light"></vwc-option>
         <vwc-option id="option-dark" value="dark" text="Dark"></vwc-option>
         <vwc-option id="option-auto" value="auto" text="Auto"></vwc-option>
       </vwc-listbox>
     </vwc-popup>
-  </div>
+
 	<vwc-nav-item slot="action-items" icon="github-mono" href="https://github.com/vonage/vivid-3" aria-label="View on GitHub" role="navigation"></vwc-nav-item>
 
   <vwc-side-drawer id="sidedrawer" open slot="app-content">
