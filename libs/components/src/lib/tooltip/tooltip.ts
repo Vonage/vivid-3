@@ -1,13 +1,12 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
-import type { Placement } from '@floating-ui/dom';
+import { Popup } from '../popup/popup';
 
 /**
  * Base class for tooltip
  *
  * @public
  */
-export class Tooltip extends FoundationElement {
+export class Tooltip extends Popup {
 	/**
 	 * the text of the tooltip
 	 * accepts string
@@ -16,29 +15,45 @@ export class Tooltip extends FoundationElement {
 	 */
 	@attr text?: string;
 
-	/**
-	 * indicates whether the tooltip is open
-	 *
-	 * @public
-	 * HTML Attribute: open
-	 */
-	@attr({
-		mode: 'boolean',
-	}) open = false;
+	override connectedCallback(): void {
+		super.connectedCallback();
+		this.#anchorUpdated();
+	}
 
-	/**
-	 * the placement of the tooltip
-	 *
-	 * @public
-	 * HTML Attribute: placement
-	 */
-	@attr placement?: Placement;
+	override disconnectedCallback(): void {
+		super.disconnectedCallback();
+		this.#removeEventListener();
+	}
 
-	/**
-	 * ID reference to element in the tooltip's owner document.
-	 *
-	 * @public
-	 * HTML Attribute: anchor
-	 */
-	@attr anchor?: string;
+	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
+		super.attributeChangedCallback(name, oldValue, newValue);
+		this.#anchorUpdated();
+	}
+
+	#anchorUpdated(): void {
+		this.#removeEventListener();
+		this.#addEventListener();
+	}
+
+	#addEventListener(): void {
+		this.anchorEl?.addEventListener('mouseover', this.#show);
+		this.anchorEl?.addEventListener('mouseout', this.#hide);
+		this.anchorEl?.addEventListener('focusin', this.#show);
+		this.anchorEl?.addEventListener('focusout', this.#hide);
+	}
+
+	#removeEventListener(): void {
+		this.anchorEl?.removeEventListener('mouseover', this.#show);
+		this.anchorEl?.removeEventListener('mouseout', this.#hide);
+		this.anchorEl?.removeEventListener('focusin', this.#show);
+		this.anchorEl?.removeEventListener('focusout', this.#hide);
+	}
+
+	#show = () => {
+		this.open = true;
+	};
+
+	#hide = () => {
+		this.open = false;
+	};
 }
