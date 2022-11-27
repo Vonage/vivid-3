@@ -97,6 +97,8 @@ then use it as:
 <dashboard-badge text="I'm a custom prefixed badge"></dashboard-badge>
 ```
 
+This method will still take advantage of npm's deduping mechanism, and thus will not cause multiple versions of the library to be loaded.
+
 ## Support
 
 This library is open source, developed and maintained by the [Vonage Vivid team](Vonage/vivid).
