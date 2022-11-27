@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "refactor tooltip",
-  "packageName": "@vonage/vivid",
-  "email": "rina.oksman@vonage.com",
-  "dependentChangeType": "patch"
-}
