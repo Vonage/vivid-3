@@ -1,8 +1,24 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Tue, 22 Nov 2022 08:33:47 GMT and should not be manually modified.
+This log was last generated on Sun, 27 Nov 2022 16:54:42 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.106
+
+Sun, 27 Nov 2022 16:54:42 GMT
+
+### Changes
+
+- map warning connotation to custom semantic variables (yinon@hotmail.com)
+
+## 3.0.0-next.105
+
+Sun, 27 Nov 2022 13:41:49 GMT
+
+### Changes
+
+- refactor tooltip (rina.oksman@vonage.com)
 
 ## 3.0.0-next.104
 
