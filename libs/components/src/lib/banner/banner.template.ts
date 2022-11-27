@@ -45,7 +45,7 @@ export const BannerTemplate: (
 					<div class="user-content">
             ${x => affixIconTemplate(x.conditionedIcon)}
 						<div class="banner--message"
-				 role="${x => x.role}"
+				 role="${x => x.role ? x.role : 'status'}"
 				 aria-live="${x => x.ariaLive ? x.ariaLive : 'polite'}">
               ${x => x.text}
             </div>
