@@ -1,8 +1,41 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Wed, 16 Nov 2022 09:48:24 GMT and should not be manually modified.
+This log was last generated on Sun, 27 Nov 2022 13:41:49 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.105
+
+Sun, 27 Nov 2022 13:41:49 GMT
+
+### Changes
+
+- refactor tooltip (rina.oksman@vonage.com)
+
+## 3.0.0-next.104
+
+Tue, 22 Nov 2022 08:33:47 GMT
+
+### Changes
+
+- style gutters and gaps in list items (yinon@hotmail.com)
+
+## 3.0.0-next.103
+
+Mon, 21 Nov 2022 13:45:33 GMT
+
+### Changes
+
+- typography style unset root's font size to resolve to 16px (yinon@hotmail.com)
+- calendar css style to enable dark-theme background (yinon@hotmail.com)
+
+## 3.0.0-next.102
+
+Sun, 20 Nov 2022 21:47:05 GMT
+
+### Changes
+
+- package generated customElements.json & TS meta (yinon@hotmail.com)
 
 ## 3.0.0-next.101
 

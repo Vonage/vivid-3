@@ -21,7 +21,7 @@ export class Popup extends FoundationElement {
 
 	#cleanup?: () => void; // cleans the autoupdate
 
-	#anchorEl: Element | null | undefined;
+	protected anchorEl: Element | null | undefined;
 
 	popupEl!: HTMLElement;
 
@@ -97,7 +97,6 @@ export class Popup extends FoundationElement {
 
 	override connectedCallback(): void {
 		super.connectedCallback();
-		//this.open ? this.showPopover() : this.hidePopover();
 	}
 
 	override disconnectedCallback(): void {
@@ -109,12 +108,12 @@ export class Popup extends FoundationElement {
 		super.attributeChangedCallback(name, oldValue, newValue);
 		switch (name) {
 			case 'anchor': {
-				this.#anchorEl = this.#getAnchorById();
+				this.anchorEl = this.#getAnchorById();
 				break;
 			}
 		}
-		if (this.#anchorEl && this.popupEl) {
-			this.#cleanup = autoUpdate(this.#anchorEl, this.popupEl, () => this.updatePosition());
+		if (this.anchorEl && this.popupEl) {
+			this.#cleanup = autoUpdate(this.anchorEl, this.popupEl, () => this.updatePosition());
 		}
 		else {
 			this.#cleanup?.();
@@ -127,11 +126,11 @@ export class Popup extends FoundationElement {
 	 * @public
 	 */
 	async updatePosition() {
-		if (!this.open || !this.#anchorEl) {
+		if (!this.open || !this.anchorEl) {
 			return;
 		}
 
-		const positionData = await computePosition(this.#anchorEl, this.popupEl, {
+		const positionData = await computePosition(this.anchorEl, this.popupEl, {
 			placement: this.placement,
 			strategy: this.#strategy,
 			middleware: this.#middleware
