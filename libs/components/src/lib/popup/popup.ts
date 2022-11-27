@@ -38,7 +38,6 @@ export class Popup extends FoundationElement {
 	}) open = false;
 	openChanged(_: boolean, newValue: boolean): void {
 		newValue ? this.$emit('open') : this.$emit('close');
-		newValue ? this.showPopover() : this.hidePopover();
 	}
 
 	/**
