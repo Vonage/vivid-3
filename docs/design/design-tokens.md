@@ -107,6 +107,28 @@ Note that when using the [core styles](/#core-optional) with the `vvd-root` clas
 <vwc-button appearance="filled" label="And the button label"></vwc-button>
 ```
 
+#### Typefaces preset
+
+The following CSS custom properties can be referred to style the text in your application with the Vivid design language:
+
+```html preview
+<div style="font: var(--vvd-typography-headline)">headline</div>
+<div style="font: var(--vvd-typography-subtitle)">subtitle</div>
+<div style="font: var(--vvd-typography-heading-1)">heading-1</div>
+<div style="font: var(--vvd-typography-heading-2)">heading-2</div>
+<div style="font: var(--vvd-typography-heading-3)">heading-3</div>
+<div style="font: var(--vvd-typography-heading-4)">heading-4</div>
+<div style="font: var(--vvd-typography-base)">base</div>
+<div style="font: var(--vvd-typography-base-bold)">base bold</div>
+<div style="font: var(--vvd-typography-base-code)">base code</div>
+<div style="font: var(--vvd-typography-base-condensed)">condensed</div>
+<div style="font: var(--vvd-typography-base-condensed-bold)">condensed bold</div>
+<div style="font: var(--vvd-typography-base-extended)">extended</div>
+<div style="font: var(--vvd-typography-base-extended-bold)">extended bold</div>
+```
+
+### Sizing
+
 #### Density
 
 Use `--vvd-size-density` to modify the density of the Vivid integrated UI. This can be scoped to a specific element, or set globally.
@@ -132,24 +154,4 @@ Due to a11y and design constraints, the density can only be set to one of the fo
 </pre>
 
 <vwc-button appearance="filled" label="But the button is"></vwc-button>
-```
-
-#### Typefaces preset
-
-The following CSS custom properties can be referred to style the text in your application with the Vivid design language:
-
-```html preview
-<div style="font: var(--vvd-typography-headline)">headline</div>
-<div style="font: var(--vvd-typography-subtitle)">subtitle</div>
-<div style="font: var(--vvd-typography-heading-1)">heading-1</div>
-<div style="font: var(--vvd-typography-heading-2)">heading-2</div>
-<div style="font: var(--vvd-typography-heading-3)">heading-3</div>
-<div style="font: var(--vvd-typography-heading-4)">heading-4</div>
-<div style="font: var(--vvd-typography-base)">base</div>
-<div style="font: var(--vvd-typography-base-bold)">base bold</div>
-<div style="font: var(--vvd-typography-base-code)">base code</div>
-<div style="font: var(--vvd-typography-base-condensed)">condensed</div>
-<div style="font: var(--vvd-typography-base-condensed-bold)">condensed bold</div>
-<div style="font: var(--vvd-typography-base-extended)">extended</div>
-<div style="font: var(--vvd-typography-base-extended-bold)">extended bold</div>
 ```
