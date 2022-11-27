@@ -8,7 +8,7 @@ import { MenuItemTemplate as template } from './menu-item.template';
 
 const prefix = getPrefix(import.meta.url);
 
-await loadComponentsModules(['icon'], prefix);
+await loadComponentsModules(['icon', 'focus'], prefix);
 
 export const vividMenuItem = MenuItem.compose<MenuItemOptions>({
 	baseName: 'menu-item',
