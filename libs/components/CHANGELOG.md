@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Mon, 21 Nov 2022 13:45:33 GMT and should not be manually modified.
+This log was last generated on Tue, 22 Nov 2022 08:33:47 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.104
+
+Tue, 22 Nov 2022 08:33:47 GMT
+
+### Changes
+
+- style gutters and gaps in list items (yinon@hotmail.com)
 
 ## 3.0.0-next.103
 
