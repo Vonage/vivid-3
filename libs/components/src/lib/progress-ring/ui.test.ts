@@ -23,6 +23,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	  <vwc-progress-ring min="0" max="50" value="50" size="1"></vwc-progress-ring>
 	  <vwc-progress-ring min="0" max="50" value="50" size="2"></vwc-progress-ring>
 	  <vwc-progress-ring min="0" max="50" value="50" size="3"></vwc-progress-ring>
+	  <vwc-progress-ring min="0" max="50" value="50" size="4"></vwc-progress-ring>
+	  <vwc-progress-ring min="0" max="50" value="50" size="5"></vwc-progress-ring>
 	`;
 
 	page.setViewportSize({ width: 80, height: 720 });
