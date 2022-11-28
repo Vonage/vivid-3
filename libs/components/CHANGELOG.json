@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Sun, 27 Nov 2022 16:54:42 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.106",
+      "version": "3.0.0-next.106",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "47ab0d2cd75657411ca167b287572c07c4bd7994",
+            "comment": "map warning connotation to custom semantic variables"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 27 Nov 2022 13:41:49 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.105",
       "version": "3.0.0-next.105",
