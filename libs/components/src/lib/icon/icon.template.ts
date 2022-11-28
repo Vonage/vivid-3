@@ -19,7 +19,7 @@ export const iconTemplate: (
 ) => ViewTemplate<Icon> = () => html`
   <figure class="${getClasses}">
 		<slot>
-			${when((x)=> isValidString(x.svg), (x) => html<Icon>`${x.svg as string}`)}
+			${when((x)=> isValidString(x._svg), (x) => html<Icon>`${x._svg as string}`)}
 		</slot>
   </figure>
 	`;
