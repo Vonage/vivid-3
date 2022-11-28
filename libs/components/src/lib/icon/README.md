@@ -49,15 +49,24 @@ While `name` fetches an icon from the Vivid predefined set of icons, `svg` prope
 
 ### Size
 
-Use the `size` attribute to apply a predefined size to the icon.
+Use the `size` attribute/property to set the icon's size.
 
-- Type: `'condensed'` | `'normal'` | `'expanded'`
-- Default: `'normal'`
+- Type: `-6` | `-5` | `-4` | `-3` | `-2` | `-1` | `0` | `1` | `2` | `3` | `4` | `5`
+- Default: `'1em'` (_inherits font-size_)
 
 ```html preview
-<vwc-icon name='close-line' size='condensed'></vwc-icon>
-<vwc-icon name='close-line' size='normal'></vwc-icon>
-<vwc-icon name='close-line' size='expanded'></vwc-icon>
+<vwc-icon name="close-line" size="-6"></vwc-icon>
+<vwc-icon name="close-line" size="-5"></vwc-icon>
+<vwc-icon name="close-line" size="-4"></vwc-icon>
+<vwc-icon name="close-line" size="-3"></vwc-icon>
+<vwc-icon name="close-line" size="-2"></vwc-icon>
+<vwc-icon name="close-line" size="-1"></vwc-icon>
+<vwc-icon name="close-line" size="0"></vwc-icon>
+<vwc-icon name="close-line" size="1"></vwc-icon>
+<vwc-icon name="close-line" size="2"></vwc-icon>
+<vwc-icon name="close-line" size="3"></vwc-icon>
+<vwc-icon name="close-line" size="4"></vwc-icon>
+<vwc-icon name="close-line" size="5"></vwc-icon>
 ```
 
 ### Connotation
