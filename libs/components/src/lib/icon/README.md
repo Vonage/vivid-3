@@ -50,10 +50,11 @@ While `type` fetches an icon from the Vivid predefined set of icons, `svg` prope
 
 Use the `size` attribute/property to set the icon's size.
 
-- Type: `-5` | `-4` | `-3` | `-2` | `-1` | `0` | `1` | `2` | `3` | `4` | `5`
+- Type: `-6` | `-5` | `-4` | `-3` | `-2` | `-1` | `0` | `1` | `2` | `3` | `4` | `5`
 - Default: `0`
 
 ```html preview
+<vwc-icon type="close-line" size="-6"></vwc-icon>
 <vwc-icon type="close-line" size="-5"></vwc-icon>
 <vwc-icon type="close-line" size="-4"></vwc-icon>
 <vwc-icon type="close-line" size="-3"></vwc-icon>

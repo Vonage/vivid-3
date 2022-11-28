@@ -57,7 +57,7 @@ export class Icon extends FoundationElement {
 	 */
 	@attr connotation?: IconConnotation;
 
-	@attr size?: -5 | -4 | -3 | -2 | -1 | 0 | 1 | 2 | 3 | 4 | 5;
+	@attr size?: -6 | -5 | -4 | -3 | -2 | -1 | 0 | 1 | 2 | 3 | 4 | 5;
 
 	@observable svg?: string;
 
