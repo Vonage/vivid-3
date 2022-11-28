@@ -71,7 +71,7 @@ Use the `paused` attribute to indicate the progress is paused.
 Use the `size` attribute/property to set the progress ring's size.
 
 - Type: `-5` | `-4` | `-3` | `-2` | `-1` | `0` | `1` | `2` | `3` | `4` | `5`
-- Default: `0`
+- Default: _inherited font-size_
 
 ```html preview blocks
 <vwc-progress-ring min="0" max="50" value="50" size="-5"></vwc-progress-ring>
