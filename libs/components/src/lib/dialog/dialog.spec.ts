@@ -6,16 +6,25 @@ const COMPONENT_TAG = 'vwc-dialog';
 
 describe('vwc-dialog', () => {
 
+	/**
+	 *
+	 */
 	async function closeDialog() {
 		element.close();
 		await elementUpdated(element);
 	}
 
+	/**
+	 *
+	 */
 	async function showDialog() {
 		element.show();
 		await elementUpdated(element);
 	}
 
+	/**
+	 *
+	 */
 	async function showModalDialog() {
 		element.showModal();
 		await elementUpdated(element);
@@ -242,7 +251,7 @@ describe('vwc-dialog', () => {
 		const iconElement = getBaseElement(element).querySelector('.icon');
 		expect(iconElementWhenUndefined).toBeNull();
 		expect(iconElement).toBeTruthy();
-		expect(iconElement?.getAttribute('type')).toEqual('home');
+		expect(iconElement?.getAttribute('name')).toEqual('home');
 	});
 
 	it('should render the content area when content is set', async function() {

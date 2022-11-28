@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "icon & progress-ring support full integer sizing spectrum",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}

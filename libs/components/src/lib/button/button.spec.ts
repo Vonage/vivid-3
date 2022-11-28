@@ -33,7 +33,7 @@ describe('vwc-button', () => {
 
 			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
 			expect(icon).toBeInstanceOf(HTMLElement);
-			expect(icon.type).toEqual('home');
+			expect(icon.name).toEqual('home');
 		});
 
 		it('setting `iconTrailing` set the order of element', async () => {

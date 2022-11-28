@@ -2,6 +2,27 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Mon, 28 Nov 2022 21:11:08 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.107",
+      "version": "3.0.0-next.107",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "2f90891228c3a971545705fb99d68550c2a51eb5",
+            "comment": "icon & progress-ring support full integer sizing spectrum"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "40646892f6cfc68f433c5a04e9e11cdef79b278d",
+            "comment": "icon type property renamed (to name)"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 27 Nov 2022 16:54:42 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.106",
       "version": "3.0.0-next.106",
