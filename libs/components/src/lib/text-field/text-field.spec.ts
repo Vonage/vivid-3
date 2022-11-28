@@ -546,7 +546,7 @@ describe('vwc-text-field', () => {
 				.toBeFalsy();
 			expect(iconElement instanceof Icon)
 				.toEqual(true);
-			expect(iconElement?.getAttribute('type'))
+			expect(iconElement?.getAttribute('name'))
 				.toEqual('home');
 		});
 	});
