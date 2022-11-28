@@ -1,5 +1,5 @@
 import './index.ts';
-import {fixture} from '@vivid-nx/shared';
+import {elementUpdated, fixture} from '@vivid-nx/shared';
 import type {Icon} from './icon';
 
 const COMPONENT_TAG = 'vwc-icon';
@@ -103,4 +103,25 @@ describe('icon', function () {
 		expect(element.svg).toEqual('');
 	});
 
+	describe('size', function () {
+		let baseElement: Element | null | undefined;
+		beforeEach(function () {
+			baseElement = element.shadowRoot?.querySelector('.base');
+		});
+
+		it('should set size class only if exists', async function () {
+			const classListContainsSize = baseElement?.className.split(' ').reduce((contains: boolean, className: string) => {
+				return contains || className.indexOf('size-') > -1;
+			}, false);
+			expect(classListContainsSize).toEqual(false);
+		});
+
+		it('should set size class according to attribute plus base size', async function () {
+			const sizeValue = 2;
+			const expectedClass = `size-${sizeValue}`;
+			element.setAttribute('size', sizeValue.toString());
+			await elementUpdated(element);
+			expect(baseElement?.classList.contains(expectedClass)).toEqual(true);
+		});
+	});
 });
