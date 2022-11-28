@@ -50,56 +50,56 @@ describe('icon', function () {
 	/**
 	 *
 	 */
-	function setIconTypeAndTriggerFirstTimer() {
-		element.type = 'none';
+	function setIconNameAndTriggerFirstTimer() {
+		element.name = 'none';
 		jest.advanceTimersToNextTimer();
 	}
 
 	/**
 	 * @param timeInMs
 	 */
-	function setIconTypeAndAdvanceTime(timeInMs: number) {
-		element.type = 'none';
+	function setIconNameAndAdvanceTime(timeInMs: number) {
+		element.name = 'none';
 		jest.advanceTimersByTime(timeInMs);
 	}
 
 	/**
-	 * @param iconType
+	 * @param iconName
 	 */
-	function setIconTypeAndRunAllTimers(iconType: string | undefined) {
-		element.type = iconType;
+	function setIconNameAndRunAllTimers(iconName: string | undefined) {
+		element.name = iconName;
 		jest.runAllTimers();
 	}
 
 	it('should show nothing when first changing the icon', async function () {
 		fakeFetch(4000);
-		setIconTypeAndTriggerFirstTimer();
+		setIconNameAndTriggerFirstTimer();
 
 		expect(element.svg).toEqual(undefined);
 	});
 
 	it('should set the icon as loading after 500ms', async function () {
 		fakeFetch(4000);
-		setIconTypeAndAdvanceTime(500);
+		setIconNameAndAdvanceTime(500);
 		expect(element.svg).toMatchSnapshot();
 	});
 
 	it('should remove loading icon after 2500ms', async function () {
 		fakeFetch(4000);
-		setIconTypeAndAdvanceTime(2500);
+		setIconNameAndAdvanceTime(2500);
 		expect(element.svg).toEqual(undefined);
 	});
 
 	it('should set icon in svg after icon fetch', async function () {
 		fakeFetch(100);
-		setIconTypeAndRunAllTimers('none');
+		setIconNameAndRunAllTimers('none');
 		expect(element.svg).toEqual(svg);
 	});
 
 	it('should show empty string when no icon is available', function () {
 		fakeFetch(100);
-		setIconTypeAndRunAllTimers('none');
-		setIconTypeAndRunAllTimers(undefined);
+		setIconNameAndRunAllTimers('none');
+		setIconNameAndRunAllTimers(undefined);
 		expect(element.svg).toEqual('');
 	});
 

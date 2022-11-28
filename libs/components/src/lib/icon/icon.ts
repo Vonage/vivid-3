@@ -73,11 +73,11 @@ export class Icon extends FoundationElement {
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: type
+	 * HTML Attribute: name
 	 */
-	@attr type?: string;
+	@attr name?: string;
 
-	async typeChanged() {
+	async nameChanged() {
 		this.svg = undefined;
 
 		let timeout = setTimeout(() => {
@@ -89,7 +89,7 @@ export class Icon extends FoundationElement {
 			}, PLACEHOLDER_TIMEOUT);
 		}, PLACEHOLDER_DELAY);
 
-		await resolveIcon(this.type)
+		await resolveIcon(this.name)
 			.then((svg) => {
 				this.svg = svg;
 			})
