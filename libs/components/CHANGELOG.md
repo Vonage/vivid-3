@@ -1,8 +1,17 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 27 Nov 2022 16:54:42 GMT and should not be manually modified.
+This log was last generated on Mon, 28 Nov 2022 21:11:08 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.107
+
+Mon, 28 Nov 2022 21:11:08 GMT
+
+### Changes
+
+- icon & progress-ring support full integer sizing spectrum (yinon@hotmail.com)
+- icon type property renamed (to name) (yinon@hotmail.com)
 
 ## 3.0.0-next.106
 
