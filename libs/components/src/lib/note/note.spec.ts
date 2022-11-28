@@ -35,7 +35,7 @@ describe('vwc-note', () => {
 		await elementUpdated(element);
 
 		expect(iconElement instanceof Icon).toEqual(true);
-		expect(iconElement.type).toEqual(iconName);
+		expect(iconElement.name).toEqual(iconName);
 	});
 
 	it('should set connotation class on the base element', async function() {
@@ -49,15 +49,15 @@ describe('vwc-note', () => {
 	});
 
 	it('should return default connotation icon if no icon or connotation are set', function () {
-		const defaultConnotationIconType = 'megaphone-solid';
+		const defaultConnotationIconName = 'megaphone-solid';
 		const iconElement = element.shadowRoot?.querySelector('.icon') as Icon;
-		expect(iconElement.type).toEqual(defaultConnotationIconType);
+		expect(iconElement.name).toEqual(defaultConnotationIconName);
 	});
 
 	it('should set icon type according to connotation', async function() {
 		const iconElement = element.shadowRoot?.querySelector('.icon') as Icon;
 		element.connotation = Connotation.Information;
 		await elementUpdated(element);
-		expect(iconElement.type).toEqual('info-solid');
+		expect(iconElement.name).toEqual('info-solid');
 	});
 });

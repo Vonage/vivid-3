@@ -57,7 +57,7 @@ describe('vwc-nav-disclosure', () => {
 			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
 			expect(icon)
 				.toBeInstanceOf(Icon);
-			expect(icon?.type)
+			expect(icon?.name)
 				.toEqual('home');
 		});
 	});

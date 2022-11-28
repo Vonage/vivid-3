@@ -3,31 +3,32 @@
 Find the icon you want to use on the [vivid icons search platform](https://icons.vivid.vonage.com).
 
 ```js
-<script type='module'>
+<script name='module'>
   import '@vonage/vivid/icon';
 </script>
 ```
 
 ```html preview
-<p>I <vwc-icon type='heart-line' connotation='alert'></vwc-icon> VIVID!</p>
+<p>I <vwc-icon name='heart-line' connotation='alert'></vwc-icon> VIVID!</p>
 ```
 
 ## Members
 
-### Type
+### Name
 
-Add a `type` attribute to add type to the icon.
+Use `name` to set the icon of choice.
+View list of available icon at the [vivid icons gallery](https://icons.vivid.vonage.com).
 
 - Type: `string`
 - Default: `undefined`
 
 ```html preview
-<vwc-icon type='profile-line'></vwc-icon>
+<vwc-icon name='profile-line'></vwc-icon>
 ```
 
 ### SVG
 
-While `type` fetches an icon from the Vivid predefined set of icons, `svg` property can be used to set a customized valid SVG string programmatically.
+While `name` fetches an icon from the Vivid predefined set of icons, `svg` property can be used to set a customized valid SVG string programmatically.
 
 - Type: `string`
 - Default: `undefined`
@@ -54,18 +55,18 @@ Use the `size` attribute/property to set the icon's size.
 - Default: `'1em'` (_inherits font-size_)
 
 ```html preview
-<vwc-icon type="close-line" size="-6"></vwc-icon>
-<vwc-icon type="close-line" size="-5"></vwc-icon>
-<vwc-icon type="close-line" size="-4"></vwc-icon>
-<vwc-icon type="close-line" size="-3"></vwc-icon>
-<vwc-icon type="close-line" size="-2"></vwc-icon>
-<vwc-icon type="close-line" size="-1"></vwc-icon>
-<vwc-icon type="close-line" size="0"></vwc-icon>
-<vwc-icon type="close-line" size="1"></vwc-icon>
-<vwc-icon type="close-line" size="2"></vwc-icon>
-<vwc-icon type="close-line" size="3"></vwc-icon>
-<vwc-icon type="close-line" size="4"></vwc-icon>
-<vwc-icon type="close-line" size="5"></vwc-icon>
+<vwc-icon name="close-line" size="-6"></vwc-icon>
+<vwc-icon name="close-line" size="-5"></vwc-icon>
+<vwc-icon name="close-line" size="-4"></vwc-icon>
+<vwc-icon name="close-line" size="-3"></vwc-icon>
+<vwc-icon name="close-line" size="-2"></vwc-icon>
+<vwc-icon name="close-line" size="-1"></vwc-icon>
+<vwc-icon name="close-line" size="0"></vwc-icon>
+<vwc-icon name="close-line" size="1"></vwc-icon>
+<vwc-icon name="close-line" size="2"></vwc-icon>
+<vwc-icon name="close-line" size="3"></vwc-icon>
+<vwc-icon name="close-line" size="4"></vwc-icon>
+<vwc-icon name="close-line" size="5"></vwc-icon>
 ```
 
 ### Connotation
@@ -77,10 +78,10 @@ It accepts a subset of predefined values.
 - Default: `'accent'`
 
 ```html preview
-<vwc-icon type='heart-solid' connotation='accent'></vwc-icon>
-<vwc-icon type='heart-solid' connotation='announcement'></vwc-icon>
-<vwc-icon type='heart-solid' connotation='cta'></vwc-icon>
-<vwc-icon type='heart-solid' connotation='success'></vwc-icon>
-<vwc-icon type='heart-solid' connotation='alert'></vwc-icon>
-<vwc-icon type='heart-solid' connotation='information'></vwc-icon>
+<vwc-icon name='heart-solid' connotation='accent'></vwc-icon>
+<vwc-icon name='heart-solid' connotation='announcement'></vwc-icon>
+<vwc-icon name='heart-solid' connotation='cta'></vwc-icon>
+<vwc-icon name='heart-solid' connotation='success'></vwc-icon>
+<vwc-icon name='heart-solid' connotation='alert'></vwc-icon>
+<vwc-icon name='heart-solid' connotation='information'></vwc-icon>
 ```

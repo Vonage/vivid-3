@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "icon type property renamed (to name)",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}
