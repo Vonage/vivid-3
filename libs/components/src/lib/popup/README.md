@@ -11,7 +11,7 @@ Popup's goal is to provide additional, helpful content. To trigger the Popup, it
 
 ## Members
 
-<!-- ### Anchor
+### Anchor
 
 Use the `anchor` attribute to reference the ID to element in the popup’s owner document.
 
@@ -67,7 +67,7 @@ Add the `dismissible` attribute to add a close button to the popup.
 <script>
   anchor.addEventListener('click', () => popup.open = !popup.open);
 </script>
-``` -->
+```
 
 ### Popover
 
@@ -76,11 +76,11 @@ Use the `popover` attribute to add Light dismiss behaviors.
 - When `'manual'`, popup cannot be light dismissed (it can only be dismissed by an explicit trigger element or by JavaScript), and they don't automatically dismiss previously-shown popups.
 
 - Type: `'auto'` | `'manual'`
-- Default: `auto`
+- Default: `'auto'`
 
 ```html preview center
 <vwc-button id="anchor" appearance='outlined' label='Click outside of the popup!' ></vwc-button>
-<vwc-popup id="popover" anchor="anchor" popover="auto">
+<vwc-popup id="popover" anchor="anchor" popover>
   <vwc-layout gutters="small">
    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   </vwc-layout>
@@ -89,7 +89,7 @@ Use the `popover` attribute to add Light dismiss behaviors.
   anchor.addEventListener('click', () => popover.open = !popover.open);
 </script>
 ```
-<!-- ### Arrow
+ ### Arrow
 
 Add the `arrow` attribute to add a small triangle to indicate the trigger element.
 
@@ -197,4 +197,4 @@ Popup component is a low level element, unaware of its document context, but is,
 
 A common practice used in apps / frameworks to promote a popup component to top other elements z-axis, is to utilise a service that dynamically appends a popup component to the end of the body element, when called for.
 
-This helps ensure elements don't render over top a popup undesirebly. -->
+This helps ensure elements don't render over top a popup undesirebly. 

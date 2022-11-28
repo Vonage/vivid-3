@@ -50,14 +50,6 @@ export class Popup extends FoundationElement {
 		mode: 'boolean',
 	}) dismissible = false;
 
-	// /**
-	//  * determines if popover can be light dismissed
-	//  *
-	//  * @public
-	//  * HTML Attribute: popover
-	//  */
-	// @attr override popover!: 'auto' | 'manual' | null;
-
 	/**
 	 * adds small triangle to indicate the trigger element
 	 *
@@ -108,6 +100,10 @@ export class Popup extends FoundationElement {
 		switch (name) {
 			case 'anchor': {
 				this.anchorEl = this.#getAnchorById();
+				break;
+			}
+			case 'open': {
+				this.open ? this.showPopover() : this.hidePopover();
 				break;
 			}
 		}
@@ -165,5 +161,19 @@ export class Popup extends FoundationElement {
 	 */
 	#getAnchorById(): HTMLElement | null {
 		return document.getElementById(this.anchor);
+	}
+
+	override showPopover(): void {
+		if (!this.classList.contains(':open')) {
+			super.showPopover();
+		}
+		this.open = this.classList.contains(':open');
+	}
+
+	override hidePopover(): void {
+		if (this.classList.contains(':open')) {
+			super.hidePopover();
+		}
+		this.open = this.classList.contains(':open');
 	}
 }
