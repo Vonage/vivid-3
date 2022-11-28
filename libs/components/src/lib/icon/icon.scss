@@ -1,6 +1,7 @@
 @use 'sass:map';
 @use 'sass:list';
 
+@use '../../../../shared/src/lib/sass/utils' as utils;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent announcement cta success alert information,
 	$shades: primary,
