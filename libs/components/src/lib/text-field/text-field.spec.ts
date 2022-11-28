@@ -537,9 +537,10 @@ describe('vwc-text-field', () => {
 	});
 
 	describe('icon', function () {
-		it('should render the icon with type', async function () {
+		it('should render the icon with name', async function () {
 			const iconExistsWithoutAttribute = element.shadowRoot?.querySelector('vwc-icon');
-			element.setAttribute('icon', 'home');
+			const iconName = 'home';
+			element.setAttribute('icon', iconName);
 			await elementUpdated(element);
 			const iconElement = element.shadowRoot?.querySelector('vwc-icon');
 			expect(iconExistsWithoutAttribute)
@@ -547,7 +548,7 @@ describe('vwc-text-field', () => {
 			expect(iconElement instanceof Icon)
 				.toEqual(true);
 			expect(iconElement?.getAttribute('name'))
-				.toEqual('home');
+				.toEqual(iconName);
 		});
 	});
 
