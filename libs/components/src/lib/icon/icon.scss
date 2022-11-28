@@ -35,7 +35,7 @@ $default-size: list.nth($size-keys, 1);
 .control {
 	@include connotation.connotation;
 	@include utils.spread-list-selectors('.size', $size-keys, $default-size) using($value) {
-		#{variables.$progress-ring-size}: map.get($size, $value);
+		#{variables.$block-size}: map.get($size, $value);
 	}
 
 	display: flex;
