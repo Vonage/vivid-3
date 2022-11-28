@@ -1,6 +1,6 @@
-import './index.ts';
 import {elementUpdated, fixture} from '@vivid-nx/shared';
 import type {Icon} from './icon';
+import '.';
 
 const COMPONENT_TAG = 'vwc-icon';
 
@@ -12,105 +12,108 @@ describe('icon', function () {
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as Icon;
 	});
-	/**
-	 * @param requestTime
-	 */
-	function fakeFetch(requestTime = 4000) {
-		(global.fetch as any) = jest.fn(() => {
-			return new Promise(res => {
-				setTimeout(() => res(response), requestTime);
+
+	describe('resolver', function () {
+		/**
+		 * @param requestTime
+		 */
+		function fakeFetch(requestTime = 4000) {
+			(global.fetch as any) = jest.fn(() => {
+				return new Promise(res => {
+					setTimeout(() => res(response), requestTime);
+				});
 			});
+		}
+
+		const svg = 'svg';
+		const response = {
+			ok: true,
+			headers: {
+				get: () => {
+					return 'image/svg+xml';
+				}
+			},
+			text: () => svg
+		};
+		const originalFetch = global.fetch;
+		const originalPromise = global.Promise;
+
+		beforeEach(function () {
+			global.Promise = require('promise'); // needed in order for promises to work with jest fake timers
+			jest.useFakeTimers({legacyFakeTimers: true});
 		});
-	}
 
-	const svg = 'svg';
-	const response = {
-		ok: true,
-		headers: {
-			get: () => {
-				return 'image/svg+xml';
-			}
-		},
-		text: () => svg
-	};
-	const originalFetch = global.fetch;
-	const originalPromise = global.Promise;
+		afterEach(function () {
+			jest.useRealTimers();
+			global.fetch = originalFetch;
+			global.Promise = originalPromise;
+		});
 
-	beforeEach(function () {
-		global.Promise = require('promise'); // needed in order for promises to work with jest fake timers
-		jest.useFakeTimers({legacyFakeTimers: true});
-	});
+		/**
+		 *
+		 */
+		function setIconTypeAndTriggerFirstTimer() {
+			element.type = 'none';
+			jest.advanceTimersToNextTimer();
+		}
 
-	afterEach(function () {
-		jest.useRealTimers();
-		global.fetch = originalFetch;
-		global.Promise = originalPromise;
-	});
+		/**
+		 * @param timeInMs
+		 */
+		function setIconTypeAndAdvanceTime(timeInMs: number) {
+			element.type = 'none';
+			jest.advanceTimersByTime(timeInMs);
+		}
 
-	/**
-	 *
-	 */
-	function setIconTypeAndTriggerFirstTimer() {
-		element.type = 'none';
-		jest.advanceTimersToNextTimer();
-	}
+		/**
+		 * @param iconType
+		 */
+		function setIconTypeAndRunAllTimers(iconType: string | undefined) {
+			element.type = iconType;
+			jest.runAllTimers();
+		}
 
-	/**
-	 * @param timeInMs
-	 */
-	function setIconTypeAndAdvanceTime(timeInMs: number) {
-		element.type = 'none';
-		jest.advanceTimersByTime(timeInMs);
-	}
+		it('should show nothing when first changing the icon', async function () {
+			fakeFetch(4000);
+			setIconTypeAndTriggerFirstTimer();
 
-	/**
-	 * @param iconType
-	 */
-	function setIconTypeAndRunAllTimers(iconType: string | undefined) {
-		element.type = iconType;
-		jest.runAllTimers();
-	}
+			expect(element.svg).toEqual(undefined);
+		});
 
-	it('should show nothing when first changing the icon', async function () {
-		fakeFetch(4000);
-		setIconTypeAndTriggerFirstTimer();
+		it('should set the icon as loading after 500ms', async function () {
+			fakeFetch(4000);
+			setIconTypeAndAdvanceTime(500);
+			expect(element.svg).toMatchSnapshot();
+		});
 
-		expect(element.svg).toEqual(undefined);
-	});
+		it('should remove loading icon after 2500ms', async function () {
+			fakeFetch(4000);
+			setIconTypeAndAdvanceTime(2500);
+			expect(element.svg).toEqual(undefined);
+		});
 
-	it('should set the icon as loading after 500ms', async function () {
-		fakeFetch(4000);
-		setIconTypeAndAdvanceTime(500);
-		expect(element.svg).toMatchSnapshot();
-	});
+		it('should set icon in svg after icon fetch', async function () {
+			fakeFetch(100);
+			setIconTypeAndRunAllTimers('none');
+			expect(element.svg).toEqual(svg);
+		});
 
-	it('should remove loading icon after 2500ms', async function () {
-		fakeFetch(4000);
-		setIconTypeAndAdvanceTime(2500);
-		expect(element.svg).toEqual(undefined);
-	});
-
-	it('should set icon in svg after icon fetch', async function () {
-		fakeFetch(100);
-		setIconTypeAndRunAllTimers('none');
-		expect(element.svg).toEqual(svg);
-	});
-
-	it('should show empty string when no icon is available', function () {
-		fakeFetch(100);
-		setIconTypeAndRunAllTimers('none');
-		setIconTypeAndRunAllTimers(undefined);
-		expect(element.svg).toEqual('');
+		it('should show empty string when no icon is available', function () {
+			fakeFetch(100);
+			setIconTypeAndRunAllTimers('none');
+			setIconTypeAndRunAllTimers(undefined);
+			expect(element.svg).toEqual('');
+		});
 	});
 
 	describe('size', function () {
-		let baseElement: Element | null | undefined;
+		let controlElement: Element | null | undefined;
 		beforeEach(function () {
-			baseElement = element.shadowRoot?.querySelector('.base');
+			controlElement = element.shadowRoot?.querySelector('.control');
 		});
 
 		it('should set size class only if exists', async function () {
-			const classListContainsSize = baseElement?.className.split(' ').reduce((contains: boolean, className: string) => {
+			const classListContainsSize = controlElement?.className.split(' ').reduce((contains: boolean, className: string) => {
 				return contains || className.indexOf('size-') > -1;
 			}, false);
 			expect(classListContainsSize).toEqual(false);
@@ -118,10 +121,10 @@ describe('icon', function () {
 
 		it('should set size class according to attribute plus base size', async function () {
 			const sizeValue = 2;
-			const expectedClass = `size-${sizeValue}`;
-			element.setAttribute('size', sizeValue.toString());
+			element.size = sizeValue;
 			await elementUpdated(element);
-			expect(baseElement?.classList.contains(expectedClass)).toEqual(true);
+			const expectedClass = `size-${sizeValue}`;
+			expect(controlElement?.classList.contains(expectedClass)).toEqual(true);
 		});
 	});
 });
