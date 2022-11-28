@@ -80,7 +80,7 @@ Use the `popover` attribute to add Light dismiss behaviors.
 
 ```html preview center
 <vwc-button id="anchor" appearance='outlined' label='Click outside of the popup!' ></vwc-button>
-<vwc-popup id="popover" anchor="anchor" popover>
+<vwc-popup id="popover" anchor="anchor" open popover>
   <vwc-layout gutters="small">
    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   </vwc-layout>
