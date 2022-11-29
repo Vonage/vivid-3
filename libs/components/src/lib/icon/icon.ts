@@ -59,7 +59,10 @@ export class Icon extends FoundationElement {
 
 	@attr size?: -6 | -5 | -4 | -3 | -2 | -1 | 0 | 1 | 2 | 3 | 4 | 5;
 
-	@observable svg?: string;
+	/**
+	 * @internal
+	 */
+	@observable _svg?: string;
 
 	/**
 	 * Indicates which icon to resolve.
@@ -71,23 +74,23 @@ export class Icon extends FoundationElement {
 	@attr name?: string;
 
 	async nameChanged() {
-		this.svg = undefined;
+		this._svg = undefined;
 
 		let timeout = setTimeout(() => {
-			this.svg = PLACEHOLDER_ICON;
+			this._svg = PLACEHOLDER_ICON;
 			timeout = setTimeout(() => {
-				if (this.svg === PLACEHOLDER_ICON) {
-					this.svg = undefined;
+				if (this._svg === PLACEHOLDER_ICON) {
+					this._svg = undefined;
 				}
 			}, PLACEHOLDER_TIMEOUT);
 		}, PLACEHOLDER_DELAY);
 
 		await resolveIcon(this.name)
 			.then((svg) => {
-				this.svg = svg;
+				this._svg = svg;
 			})
 			.catch(() => {
-				this.svg = undefined;
+				this._svg = undefined;
 			}).finally(() => { clearTimeout(timeout); });
 	}
 }

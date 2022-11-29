@@ -14,24 +14,16 @@ const getClasses = ({
 );
 
 /**
- * 
- * @returns {HTMLElement} template
+ *
+ *
+ * @param {string} [value] - value 
+ * @returns {*} {boolean}
  */
 export const iconTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Icon> = () => html`
   <figure class="${getClasses}">
-		${when((x)=> isValidString(x.svg), (x) => html<Icon>`${x.svg as string}`)}
+		<slot>${when((x)=> x._svg, (x) => html<Icon>`${x._svg as string}`)}</slot>
   </figure>
-	`;
-
-/**
- *
- *
- * @param {string} [value] - value 
- * @returns {*} {boolean}
- */
-function isValidString(value?: string): boolean {
-	return typeof value === 'string' && value.length > 0;
-}
+`;
