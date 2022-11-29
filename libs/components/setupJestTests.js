@@ -2,6 +2,7 @@
 // import { enableFetchMocks } from 'jest-fetch-mock';
 import {jest} from '@jest/globals';
 import fetchMock from 'jest-fetch-mock';
+import './src/shared/utils';
 
 fetchMock.enableMocks();
 
@@ -17,4 +18,18 @@ Object.defineProperty(window, 'matchMedia', {
 		removeEventListener: jest.fn(),
 		dispatchEvent: jest.fn(),
 	})),
+});
+
+jest.mock('./src/shared/utils', () => {
+	const originalModule = jest.requireActual('./src/shared/utils');
+
+	//Mock the default export and named export 'foo'
+	return {
+		...originalModule,
+		loadComponentsModules: jest.fn((components) => Promise.all(
+			components.map((component) =>
+				import(`./src/lib/${component}/index.ts`)
+			)
+		)),
+	};
 });
