@@ -7,8 +7,6 @@ import { badgeTemplate as template } from './badge.template';
 
 const prefix = getPrefix(import.meta.url);
 
-await loadComponentsModules(['icon'], prefix);
-
 /**
  * Represents a badge custom element.
  * badge is a label that holds small amounts of information.
@@ -22,4 +20,7 @@ export const vividBadge = Badge.compose<FoundationElementDefinition>({
 	styles,
 });
 
-designSystem.withPrefix(prefix).register(vividBadge());
+(async () => {
+	await loadComponentsModules(['icon'], prefix);
+	designSystem.withPrefix(prefix).register(vividBadge());
+})();

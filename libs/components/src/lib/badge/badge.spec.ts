@@ -9,6 +9,10 @@ const ICON_SELECTOR = 'vwc-icon';
 describe('vwc-badge', () => {
 	let element: Badge;
 
+	beforeAll(async () => {
+		await customElements.whenDefined(COMPONENT_TAG);
+	});
+
 	beforeEach(async () => {
 		element = await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Badge;
 	});

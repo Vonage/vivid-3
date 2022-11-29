@@ -7,8 +7,7 @@ import { AccordionItem } from './accordion-item';
 import { AccordionItemTemplate as template } from './accordion-item.template';
 
 const prefix = getPrefix(import.meta.url);
-
-await loadComponentsModules(['icon', 'focus'], prefix);
+const dependencies = ['icon', 'focus'];
 
 export const vividAccordionItem =
 	AccordionItem.compose<FoundationElementDefinition>({
@@ -20,4 +19,8 @@ export const vividAccordionItem =
 		},
 	});
 
-designSystem.withPrefix(prefix).register(vividAccordionItem());
+(async () => {
+	await loadComponentsModules(dependencies, prefix);
+	designSystem.withPrefix(prefix).register(vividAccordionItem());
+})();
+

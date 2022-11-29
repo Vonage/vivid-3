@@ -8,8 +8,6 @@ import { CheckboxTemplate as template } from './checkbox.template';
 
 const prefix = getPrefix(import.meta.url);
 
-await loadComponentsModules(['icon', 'focus'], prefix);
-
 export const vividCheckbox = Checkbox.compose<CheckboxOptions>({
 	baseName: 'checkbox',
 	template: template as any,
@@ -19,4 +17,7 @@ export const vividCheckbox = Checkbox.compose<CheckboxOptions>({
 	},
 });
 
-designSystem.withPrefix(prefix).register(vividCheckbox());
+(async () => {
+	await loadComponentsModules(['icon', 'focus'], prefix);
+	designSystem.withPrefix(prefix).register(vividCheckbox());
+})();
