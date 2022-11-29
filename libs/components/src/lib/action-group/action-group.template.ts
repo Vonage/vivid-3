@@ -20,8 +20,7 @@ const getClasses = ({
 /**
  * The template for the {@link @microsoft/fast-foundation#action-group} component.
  *
- * @param context
- * @public
+ * @returns {HTMLElement} template
  */
 export const ActionGroupTemplate: (
 	context: ElementDefinitionContext,

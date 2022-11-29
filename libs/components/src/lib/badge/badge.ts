@@ -9,7 +9,7 @@ import type {
 /**
  * Types of badge connotation.
  *
- * @public
+ * 
  */
 type BadgeConnotation = Extract<Connotation,
 | Connotation.Accent
@@ -22,7 +22,7 @@ type BadgeConnotation = Extract<Connotation,
 /**
  * Types of badge appearance.
  *
- * @public
+ * 
  */
 type BadgeAppearance = Extract<Appearance,
 Appearance.Filled | Appearance.Duotone | Appearance.Subtle>;
@@ -30,21 +30,21 @@ Appearance.Filled | Appearance.Duotone | Appearance.Subtle>;
 /**
  * Types of badge shape.
  *
- * @public
+ * 
  */
 type BadgeShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
  * Base class for badge
  *
- * @public
+ * 
  */
 export class Badge extends FoundationElement {
 	/**
 	 * The connotation the badge should have.
 	 *
-	 * @public
-	 * @remarks
+	 * 
+	 * 
 	 * HTML Attribute: connotation
 	 */
 	@attr connotation?: BadgeConnotation;
@@ -52,8 +52,8 @@ export class Badge extends FoundationElement {
 	/**
 	 * The shape the badge should have.
 	 *
-	 * @public
-	 * @remarks
+	 * 
+	 * 
 	 * HTML Attribute: shape
 	 */
 	@attr shape?: BadgeShape;
@@ -61,8 +61,8 @@ export class Badge extends FoundationElement {
 	/**
 	 * The appearance the badge should have.
 	 *
-	 * @public
-	 * @remarks
+	 * 
+	 * 
 	 * HTML Attribute: appearance
 	 */
 	@attr appearance?: BadgeAppearance;
@@ -70,8 +70,8 @@ export class Badge extends FoundationElement {
 	/**
 	 * Indicates the badge's text.
 	 *
-	 * @public
-	 * @remarks
+	 * 
+	 * 
 	 * HTML Attribute: text
 	 */
 	@attr text?: string;

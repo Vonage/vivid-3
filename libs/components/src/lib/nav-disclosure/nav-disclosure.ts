@@ -6,14 +6,14 @@ import { AffixIcon } from '../../shared/patterns/affix';
  * A Nav Item Custom HTML Element.
  * Based largely on the {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element }.
  *
- * @public
+ * 
  */
 export class NavDisclosure extends FoundationElement {
 	details!: HTMLDetailsElement;
 
 	/**
 	 *
-	 * @public
+	 * 
 	 * HTML Attribute: label
 	 */
 	@attr label?: string;
@@ -21,13 +21,13 @@ export class NavDisclosure extends FoundationElement {
 	/**
 	 * Indicates whether the nav-disclosure is open
 	 *
-	 * @public
+	 * 
 	 * HTML Attribute: open
 	 */
 	@attr({ mode: 'boolean' }) open = false;
 
 	/**
-	 * @internal
+	 * 
 	 */
 	override connectedCallback(): void {
 		super.connectedCallback();
@@ -36,7 +36,7 @@ export class NavDisclosure extends FoundationElement {
 	}
 
 	/**
-	 * @internal
+	 * 
 	 */
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();

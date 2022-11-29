@@ -7,7 +7,7 @@ import { TextAnchor } from '../text-anchor/text-anchor';
  * A Nav Item Custom HTML Element.
  * Based largely on the {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element }.
  *
- * @public
+ * 
  */
 export class NavItem extends TextAnchor {}
 

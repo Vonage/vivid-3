@@ -4,14 +4,14 @@ import { Popup } from '../popup/popup';
 /**
  * Base class for tooltip
  *
- * @public
+ * 
  */
 export class Tooltip extends Popup {
 	/**
 	 * the text of the tooltip
 	 * accepts string
 	 *
-	 * @public
+	 * 
 	 */
 	@attr text?: string;
 

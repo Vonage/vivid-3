@@ -9,7 +9,7 @@ import type {
 /**
  * Types of avatar connotation.
  *
- * @public
+ * 
  */
 export type AvatarConnotation = Extract<Connotation,
 | Connotation.Accent
@@ -18,7 +18,7 @@ export type AvatarConnotation = Extract<Connotation,
 /**
  * Types of avatar appearance.
  *
- * @public
+ * 
  */
 export type AvatarAppearance = Extract<Appearance,
 Appearance.Filled | Appearance.Outlined>;
@@ -26,19 +26,19 @@ Appearance.Filled | Appearance.Outlined>;
 /**
  * Types of avatar shape.
  *
- * @public
+ * 
  */
 type AvatarShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 /**
  * Base class for avatar
  *
- * @public
+ * 
  */
 
 /**
  * Types of avatar size.
  *
- * @public
+ * 
  */
 type AvatarSize = Extract<Size, Size.Condensed | Size.Normal | Size.Expanded>;
 
@@ -47,8 +47,8 @@ export class Avatar extends FoundationElement {
 	/**
 	 * The connotation the avatar should have.
 	 *
-	 * @public
-	 * @remarks
+	 * 
+	 * 
 	 * HTML Attribute: connotation
 	 */
 	@attr connotation?: AvatarConnotation;
@@ -56,8 +56,8 @@ export class Avatar extends FoundationElement {
 	/**
 	 * The shape the avatar should have.
 	 *
-	 * @public
-	 * @remarks
+	 * 
+	 * 
 	 * HTML Attribute: shape
 	 */
 	@attr shape?: AvatarShape;
@@ -65,8 +65,8 @@ export class Avatar extends FoundationElement {
 	/**
 	 * The appearance the avatar should have.
 	 *
-	 * @public
-	 * @remarks
+	 * 
+	 * 
 	 * HTML Attribute: appearance
 	 */
 	@attr appearance?: AvatarAppearance;
@@ -75,8 +75,8 @@ export class Avatar extends FoundationElement {
 	/**
 	 * The size the avatar should have.
 	 *
-	 * @public
-	 * @remarks
+	 * 
+	 * 
 	 * HTML Attribute: size
 	 */
 	@attr size?: AvatarSize;
@@ -85,14 +85,14 @@ export class Avatar extends FoundationElement {
 	/**
 	 * avatar header icon
 	 *
-	 * @public
+	 * 
 	 */
 	@attr icon?: string;
 
 	/**
 	 * avatar name
 	 *
-	 * @public
+	 * 
 	 */
 	@attr name?: string;
 }

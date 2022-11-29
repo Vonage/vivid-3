@@ -13,8 +13,8 @@ import {
 
 /**
  * the html days markup
- *
- * @internal
+ * 
+ * @returns {HTMLElement} template
  */
 const HoursTemplate = () => {
 	return html`
@@ -33,8 +33,8 @@ const HoursTemplate = () => {
 
 /**
  * The html days markup
- *
- * @internal
+ * 
+ * @returns {HTMLElement} template
  */
 const DaysTemplate = () => {
 	return html`
@@ -59,6 +59,7 @@ const DaysTemplate = () => {
 			</div>`;
 };
 
+/** @type {*} */
 const ColumnTemplate = html<string>`
             <div role="gridcell" tabindex="-1">
               <slot name="day-${(_, c) => c.index}"></slot>
@@ -67,8 +68,7 @@ const ColumnTemplate = html<string>`
 /**
  * The template for the {@link @microsoft/fast-foundation#Calendar} component.
  *
- * @param context
- * @public
+ * @returns {HTMLElement} template
  */
 export const CalendarTemplate: (
 	context: ElementDefinitionContext,

@@ -6,7 +6,6 @@ import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
 import type { Radio } from './radio';
 
-
 const getClasses = ({ checked, readOnly, disabled }: Radio) => classNames(
 	'base',
 	['checked', Boolean(checked)],
@@ -17,8 +16,8 @@ const getClasses = ({ checked, readOnly, disabled }: Radio) => classNames(
 /**
  * The template for the {@link @microsoft/fast-foundation#Radio} component.
  *
- * @param context
- * @public
+ * @param {ElementDefinitionContext} context element definition
+ * @returns {HTMLElement} template
  */
 export const RadioTemplate: (context: ElementDefinitionContext) => ViewTemplate<Radio> = (context: ElementDefinitionContext) => {
 	const focusTemplate = focusTemplateFactory(context);

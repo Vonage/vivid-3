@@ -15,8 +15,7 @@ const getClasses = ({orientation}: Divider) => classNames(
 /**
  * The template for the {@link @microsoft/fast-foundation#Divider} component.
  *
- * @param definition
- * @public
+ * @returns {HTMLElement} template
  */
 export const DividerTemplate: (
 	context: ElementDefinitionContext,

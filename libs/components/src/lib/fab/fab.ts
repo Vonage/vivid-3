@@ -7,28 +7,28 @@ import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 /**
  * Types of fab connotation.
  *
- * @public
+ * 
  */
 export type FabConnotation = Extract<Connotation, Connotation.CTA | Connotation.Accent>;
 
 /**
  * Types of FAB size.
  *
- * @public
+ * 
  */
 type FABSize = Extract<Size, Size.Normal | Size.Expanded>;
 
 /**
  * Base class for fab
  *
- * @public
+ * 
  */
 export class Fab extends FoundationButton {
 	/**
 	 * The connotation the fab should have.
 	 *
-	 * @public
-	 * @remarks
+	 * 
+	 * 
 	 * HTML Attribute: connotation
 	 */
 	@attr connotation?: FabConnotation;
@@ -36,8 +36,8 @@ export class Fab extends FoundationButton {
 	/**
 	 * The size the FAB should have.
 	 *
-	 * @public
-	 * @remarks
+	 * 
+	 * 
 	 * HTML Attribute: size
 	 */
 	@attr size?: FABSize;
@@ -45,8 +45,8 @@ export class Fab extends FoundationButton {
 	/**
 	 * Indicates the fab's label.
 	 *
-	 * @public
-	 * @remarks
+	 * 
+	 * 
 	 * HTML Attribute: label
 	 */
 	@attr label?: string;

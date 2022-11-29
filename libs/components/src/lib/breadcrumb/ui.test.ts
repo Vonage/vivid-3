@@ -7,6 +7,11 @@ import {
 
 const components = ['breadcrumb', 'breadcrumb-item'];
 
+/**
+ *
+ *
+ * @returns {*} - template
+ */
 function runBreadcrumbsTest() {
 	return async ({page}: { page: Page }) => {
 		const template = [

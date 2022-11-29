@@ -21,6 +21,11 @@ const getClasses = ({
 	['no-indicator', noIndicator],
 );
 
+/**
+ * 
+ * @param {ElementDefinitionContext} context element definition
+ * @returns {HTMLElement} template
+ */
 export const AccordionItemTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
@@ -33,6 +38,13 @@ export const AccordionItemTemplate: (
 	</div>
 `;
 
+/**
+ *
+ *
+ * @param {ElementDefinitionContext} context element definition
+ * @param {(number | string | undefined)} headingLevel - heading level
+ * @returns {HTMLElement} template
+ */
 const renderPanelHeader = (context: ElementDefinitionContext, headingLevel: number | string | undefined) => {
 	const header: string = headingLevel ? 'h' + headingLevel : 'h3';
 	return html<AccordionItem>`
@@ -42,6 +54,12 @@ const renderPanelHeader = (context: ElementDefinitionContext, headingLevel: numb
 	`;
 };
 
+/**
+ *
+ *
+ * @param {ElementDefinitionContext} context element definition
+ * @returns {HTMLElement} template
+ */
 const renderHeaderButton = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const focusTemplate = focusTemplateFactory(context);

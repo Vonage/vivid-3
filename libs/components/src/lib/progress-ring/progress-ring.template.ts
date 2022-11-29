@@ -16,19 +16,14 @@ const getClasses = ({connotation, size, paused}: ProgressRing) => classNames(
 const progressSegments: number = 44;
 
 /**
- * The template for the {@link @microsoft/fast-foundation#ProgressRing} component.
  *
- * @param context
- * @param _
- * @param definition
- * @public
+ *
+ * @returns {HTMLElement} template
  */
 export const ProgressRingTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<ProgressRing> = (
-	_: ElementDefinitionContext
-) => html`
+) => ViewTemplate<ProgressRing> = () => html`
 <div
         role="progressbar"
         aria-valuenow="${x => x.value}"

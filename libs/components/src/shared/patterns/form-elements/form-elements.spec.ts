@@ -4,19 +4,38 @@ const VALIDATION_MESSAGE = 'Validation Message';
 
 describe('formElements mixin', function () {
 
+	/**
+	 *
+	 *
+	 * @param {*} [elementInstance=instance] - proxy
+	 */
 	function setProxy(elementInstance = instance) {
 		elementInstance.proxy = document.createElement('input');
 	}
 
+	/**
+	 *
+	 *
+	 */
 	function enableValidation() {
 		dispatchBlurEvent();
 		instance.dirtyValue = true;
 	}
 
+	/**
+	 *
+	 *
+	 */
 	function dispatchBlurEvent() {
 		instance.dispatchEvent(new Event('blur'));
 	}
 
+	/**
+	 *
+	 *
+	 * @class TestClass
+	 * @augments {HTMLElement}
+	 */
 	@formElements
 	class TestClass extends HTMLElement{
 		constructor() {

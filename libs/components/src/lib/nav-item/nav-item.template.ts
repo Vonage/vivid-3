@@ -10,9 +10,9 @@ import type { NavItem } from './nav-item';
 /**
  * The template for the {@link @microsoft/fast-foundation#NavItem} component.
  *
- * @param context
- * @param definition
- * @public
+ * @param {ElementDefinitionContext} context element definition
+ * @param {FoundationElementDefinition} definition element foundation
+ * @returns {HTMLElement} template
  */
 export const NavItemTemplate: (
 	context: ElementDefinitionContext,

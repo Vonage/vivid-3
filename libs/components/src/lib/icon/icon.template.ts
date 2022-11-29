@@ -13,6 +13,10 @@ const getClasses = ({
 	[`size-${size}`, Boolean(size)],
 );
 
+/**
+ * 
+ * @returns {HTMLElement} template
+ */
 export const iconTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
@@ -23,7 +27,10 @@ export const iconTemplate: (
 	`;
 
 /**
- * @param value
+ *
+ *
+ * @param {string} [value] - value 
+ * @returns {*} {boolean}
  */
 function isValidString(value?: string): boolean {
 	return typeof value === 'string' && value.length > 0;

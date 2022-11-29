@@ -21,6 +21,9 @@ const getClasses = ({value, errorValidationMessage, disabled, placeholder, readO
 
 /**
  *
+ * renderLabel
+ * 
+ * @returns {HTMLElement} template
  */
 function renderLabel() {
 	return html<TextArea>`
@@ -30,10 +33,9 @@ function renderLabel() {
 }
 
 /**
- * The template for the {@link @microsoft/fast-foundation#TextArea} component.
- *
- * @param context
- * @public
+ * 
+ * @param {ElementDefinitionContext} context element definition 
+ * @returns {HTMLElement} template
  */
 export const TextAreaTemplate: (
 	context: ElementDefinitionContext,

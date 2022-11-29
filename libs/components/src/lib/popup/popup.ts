@@ -7,7 +7,7 @@ import { keyEscape } from '@microsoft/fast-web-utilities';
 /**
  * Base class for popup
  *
- * @public
+ * 
  */
 export class Popup extends FoundationElement {
 	get #arrowPosition(): any { return { top: 'bottom', right: 'left', bottom: 'top', left: 'right' }; }
@@ -31,7 +31,7 @@ export class Popup extends FoundationElement {
 	/**
 	 * indicates whether the popup is open
 	 *
-	 * @public
+	 * 
 	 * HTML Attribute: open
 	 */
 	@attr({
@@ -45,7 +45,7 @@ export class Popup extends FoundationElement {
 	/**
 	 * adds close button to the popup
 	 *
-	 * @public
+	 * 
 	 * HTML Attribute: dismissible
 	 */
 	@attr({
@@ -55,7 +55,7 @@ export class Popup extends FoundationElement {
 	/**
 	 * adds small triangle to indicate the trigger element
 	 *
-	 * @public
+	 * 
 	 * HTML Attribute: arrow
 	 */
 	@attr({
@@ -65,7 +65,7 @@ export class Popup extends FoundationElement {
 	/**
 	 * set the color-scheme to dark
 	 *
-	 * @public
+	 * 
 	 * HTML Attribute: alternate
 	 */
 	@attr({
@@ -75,7 +75,7 @@ export class Popup extends FoundationElement {
 	/**
 	 * the placement of the popup
 	 *
-	 * @public
+	 * 
 	 * HTML Attribute: placement
 	 */
 	@attr({ mode: 'fromView' }) placement?: Placement;
@@ -83,7 +83,7 @@ export class Popup extends FoundationElement {
 	/**
 	 * ID reference to element in the popup’s owner document.
 	 *
-	 * @public
+	 * 
 	 * HTML Attribute: anchor
 	 */
 	@attr anchor!: string;
@@ -116,7 +116,7 @@ export class Popup extends FoundationElement {
 	/**
 	 * Updates popup's position
 	 *
-	 * @public
+	 * 
 	 */
 	async updatePosition() {
 		if (!this.open || !this.anchorEl) {
@@ -156,6 +156,8 @@ export class Popup extends FoundationElement {
 
 	/**
 	 * Gets the anchor element by id
+	 * 
+	 * @returns {HTMLElement} anchor
 	 */
 	#getAnchorById(): HTMLElement | null {
 		return document.getElementById(this.anchor);

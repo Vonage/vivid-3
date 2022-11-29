@@ -12,7 +12,10 @@ import '.';
 const COMPONENT_TAG_NAME = 'vwc-number-field';
 
 /**
- * @param element
+ *
+ *
+ * @param {NumberField} element - number
+ * @returns {HTMLElement} - root
  */
 function getRootElement(element: NumberField) {
 	return element.shadowRoot?.querySelector('.base') as HTMLElement;
@@ -20,14 +23,25 @@ function getRootElement(element: NumberField) {
 
 describe('vwc-number-field', () => {
 
+	/**
+	 *
+	 */
 	function setToBlurred() {
 		element.dispatchEvent(new Event('blur'));
 	}
 
+	/**
+	 *
+	 */
 	function setToFocused() {
 		element.dispatchEvent(new Event('focus'));
 	}
 
+	/**
+	 *
+	 *
+	 * @param {string} [errorMessage='error'] - error
+	 */
 	function setValidityToError(errorMessage = 'error') {
 		element.setValidity({badInput: true}, errorMessage);
 		element.validate();
@@ -560,6 +574,10 @@ describe('vwc-number-field', () => {
 		});
 
 		it('should set inert in disabled and readonly', async function() {
+			/**
+			 *
+			 * @returns {boolean} is button inert
+			 */
 			function isButtonsWrapperInert() {
 				return addButton.parentElement?.hasAttribute('inert');
 			}
@@ -582,6 +600,11 @@ describe('vwc-number-field', () => {
 		});
 
 		it('should set tabindex="-1" on the buttons', async function() {
+			/**
+			 *
+			 *
+			 * @returns {boolean} if button inert
+			 */
 			function isButtonsWrapperInert() {
 				return addButton.getAttribute('tabindex') === '-1' &&
 					subtractButton.getAttribute('tabindex') === '-1';

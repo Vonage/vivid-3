@@ -37,7 +37,7 @@ const resolveIcon = memoizeWith(identity as () => string, (iconId = '') => (icon
 /**
  * Types of icon connotation.
  *
- * @public
+ * 
  */
 type IconConnotation = Extract<Connotation,
 | Connotation.Accent
@@ -51,8 +51,8 @@ export class Icon extends FoundationElement {
 	/**
 	 * The connotation the icon should have.
 	 *
-	 * @public
-	 * @remarks
+	 * 
+	 * 
 	 * HTML Attribute: connotation
 	 */
 	@attr connotation?: IconConnotation;
@@ -64,8 +64,8 @@ export class Icon extends FoundationElement {
 	/**
 	 * Indicates which icon to resolve.
 	 *
-	 * @public
-	 * @remarks
+	 * 
+	 * 
 	 * HTML Attribute: name
 	 */
 	@attr name?: string;

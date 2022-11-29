@@ -4,13 +4,13 @@ import { Slider as FastSlider } from '@microsoft/fast-foundation';
 /**
  * Base class for slider
  *
- * @public
+ * 
  */
 export class Slider extends FastSlider {
 	/**
 	 * Display markers on/off
 	 * 
-	 * @public
+	 * 
 	 * HTML Attribute: markers
 	 */
 	@attr({
@@ -18,9 +18,10 @@ export class Slider extends FastSlider {
 	}) markers = false;
 
 	/**
-	 * /!\ TO BE REMOVED WHEN UPGRADING TO FAST-FOUNDATION 3
-	 * 
-	 * @internal
+	 *
+	 *
+	 * @param {string} previous - previous value
+	 * @param {string} next - next value
 	 */
 	override valueChanged(previous: string, next: string): void {
 		if (this.$fastController.isConnected) {

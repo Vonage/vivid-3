@@ -17,7 +17,6 @@ const getClasses = ({
  * The template for the {@link @vonage/vivid#Popup} component.
  *
  * @returns {ViewTemplate<Popup>} A template capable of creating HTMLView instances or rendering directly to DOM.
- * @public
  */
 export const popupTemplate: (
 	context: ElementDefinitionContext,

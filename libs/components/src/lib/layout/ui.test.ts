@@ -9,6 +9,10 @@ import {
 
 const components = ['layout', 'card', 'divider'];
 
+/**
+ * 
+ * @returns {HTMLElement} - template
+ */
 function runLayoutUiTest() {
 	return async ({page}: { page: Page }) => {
 		const template = extractHTMLBlocksFromReadme(path.join(new URL('.', import.meta.url).pathname, 'README.md'))

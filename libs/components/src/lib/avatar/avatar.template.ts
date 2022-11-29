@@ -16,7 +16,9 @@ const getClasses = ({appearance, connotation, shape, size}: Avatar) => className
 );
 
 /**
- avatar icon
+ * avatar icon
+ * 
+ * @returns {HTMLElement} template
  */
 function renderIcon() {
 	return html<Avatar>`
@@ -28,19 +30,20 @@ function renderIcon() {
 
 
 /**
- avatar initials
+ * avatar initials
+ * 
+ * @returns {HTMLElement} template
  */
 function renderInitials() {
 	return html<Avatar>`
-		<span class="initials">${ ({ name }) => name!.substring(0, 2) }</span>
-	`;
+		<span class="initials">${ ({ name }) => name?.substring(0, 2) }</span>
+	` ?? html<Avatar>``;
 }
 
 /**
  * The template for the {@link @microsoft/fast-foundation#Avatar} component.
  *
- * @param context
- * @public
+ * @returns {HTMLElement} template
  */
 export const AvatarTemplate: (
 	context: ElementDefinitionContext,

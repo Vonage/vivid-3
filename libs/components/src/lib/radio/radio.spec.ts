@@ -4,6 +4,13 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-radio';
 
+/**
+ *
+ *
+ * @param {Radio} el - radio
+ * @param {string} attr - attribue
+ * @returns {*}  {Promise<DOMTokenList>} boolean
+ */
 async function setBoolAttributeOn(el: Radio, attr: string): Promise<DOMTokenList> {
 	el.toggleAttribute(attr, true);
 	await elementUpdated(el);

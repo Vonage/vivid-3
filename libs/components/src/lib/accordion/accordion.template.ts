@@ -11,8 +11,7 @@ const getClasses = (_: Accordion) => classNames('base');
 
 /**
  *
- * @param context
- * @public
+ * @returns {HTMLElement} template
  */
 export const AccordionTemplate: (
 	context: ElementDefinitionContext,

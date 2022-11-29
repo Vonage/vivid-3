@@ -106,6 +106,12 @@ describe('vwc-radio-group', () => {
 	});
 
 	describe('keyboard', () => {
+		/**
+		 *
+		 *
+		 * @param {number} radioToCheck - radio check
+		 * @param {string} key - radio key
+		 */
 		async function keyboardCheck(radioToCheck: number, key: string) {
 			const radio = radios[radioToCheck];
 			const radioCheckedBefore = radio.checked;

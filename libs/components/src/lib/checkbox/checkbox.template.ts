@@ -21,12 +21,9 @@ const getClasses = ({
 
 
 /**
- * The template for the {@link @microsoft/fast-foundation#Checkbox} component.
- *
- * @param context
- * @param _
- * @param definition
- * @public
+ * 
+ * @param {FoundationElementTemplate} context - ViewTemplate
+ * @returns {HTMLElement} template
  */
 export const CheckboxTemplate: FoundationElementTemplate<
 ViewTemplate<Checkbox>,

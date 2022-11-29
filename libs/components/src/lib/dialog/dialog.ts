@@ -15,14 +15,14 @@ let dialogPolyfill: any;
 /**
  * Base class for dialog
  *
- * @public
+ * 
  */
 export class Dialog extends FoundationElement {
 	/**
 	 * Indicates dialog's state
 	 *
-	 * @public
-	 * @remarks
+	 * 
+	 * 
 	 * HTML Attribute: open
 	 */
 	@attr({mode: 'boolean'}) open = false;
@@ -51,7 +51,7 @@ export class Dialog extends FoundationElement {
 
 	get #dialog() {
 		if (!this.#dialogElement) {
-			this.#dialogElement = this.shadowRoot!.querySelector('dialog') as HTMLDialogElement;
+			this.#dialogElement = this.shadowRoot?.querySelector('dialog') as HTMLDialogElement;
 			if (this.#dialogElement) {
 				this.#dialogElement.open = this.open;
 				if (dialogPolyfill) {

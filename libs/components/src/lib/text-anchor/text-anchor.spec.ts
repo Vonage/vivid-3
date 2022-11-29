@@ -32,16 +32,20 @@ describe( 'vwc-text-anchor', () => {
 
 	/**
 	 *
+	 *
+	 * @returns {*} HTMLElement
 	 */
 	function getAnchorElement() {
 		const anchorElement = element.shadowRoot?.querySelector('a');
 		return anchorElement;
 	}
 
-
 	describe('bindings', () => {
 		/**
-		 * @param str
+		 *
+		 *
+		 * @param {string} str - text
+		 * @returns {*}  - capitalize first letter
 		 */
 		function capitalizeFirstLetter(str: string) {
 			return str.charAt(0).toUpperCase() + str.slice(1);

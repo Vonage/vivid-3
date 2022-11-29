@@ -6,23 +6,21 @@ export const keySpace: ' ' = ' ' as const;
 /**
  * Base class for checkbox
  *
- * @public
+ * 
  */
 export class Checkbox extends FastCheckbox {
 	/**
 	 * Indicates the checkbox's label.
 	 *
-	 * @public
-	 * @remarks
+	 * 
+	 * 
 	 * HTML Attribute: label
 	 */
 	@attr label?: string;
 
 	/**
-	 * !remove method as will be implemented by fast-foundation in version > 2.46.9
-	 *
-	 * @param e
-	 * @internal
+	 * 
+	 * @param {KeyboardEvent} e - keypressHandler
 	 */
 	override keypressHandler = (e: KeyboardEvent): void => {
 		switch (e.key) {
@@ -36,10 +34,7 @@ export class Checkbox extends FastCheckbox {
 	};
 
 	/**
-	 * !remove method as will be implemented by fast-foundation in version > 2.46.9
-	 *
-	 * @param e
-	 * @internal
+	 * 
 	 */
 	override clickHandler = (): void => {
 		if (!this.disabled && !this.readOnly) {

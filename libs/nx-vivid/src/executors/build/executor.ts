@@ -1,6 +1,4 @@
-import { BuildExecutorSchema } from './schema';
-
-export default async function runExecutor(options: BuildExecutorSchema) {
+export default async function runExecutor() {
   return {
     success: true,
   };

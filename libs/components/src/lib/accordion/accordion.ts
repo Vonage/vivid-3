@@ -5,14 +5,14 @@ import type { AccordionItem } from '../accordion-item/accordion-item';
 /**
  * Base class for accordion
  *
- * @public
+ * 
  */
 export class Accordion extends FoundationElement {
 	private accordionItems: HTMLCollectionOf<AccordionItem> | undefined = undefined;
 
 	/**
 	 *
-	 * @public
+	 * 
 	 * HTML Attribute: multi
 	 */
 	@attr({

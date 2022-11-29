@@ -34,7 +34,9 @@ const getStateClasses = ({
 );
 
 /**
- *
+ * renderLabel
+ * 
+ * @returns {HTMLElement} template
  */
 function renderLabel() {
 	return html<TextField>`
@@ -45,6 +47,7 @@ function renderLabel() {
 
 /**
  *
+ * @returns {HTMLElement} template
  */
 function renderCharCount() {
 	return html<TextField>`
@@ -53,10 +56,9 @@ function renderCharCount() {
 }
 
 /**
- * The template for the {@link @microsoft/fast-foundation#TextField} component.
- *
- * @param context
- * @public
+ * 
+ * @param {ElementDefinitionContext} context element definition 
+ * @returns {HTMLElement} template
  */
 export const TextfieldTemplate: (
 	context: ElementDefinitionContext,

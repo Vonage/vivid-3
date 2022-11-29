@@ -17,7 +17,7 @@ import { getEventContext } from './helpers/calendar.event-context';
 /**
  * Base class for calendar
  *
- * @public
+ * 
  */
 export class Calendar extends FoundationElement {
 
@@ -25,7 +25,7 @@ export class Calendar extends FoundationElement {
 	 * The date within a week of choice.
 	 * Accepts any parameter acceptable by the `Date()` constructor.
 	 *
-	 * @public
+	 * 
 	 */
 	@attr	datetime?: Date | string;
 
@@ -36,7 +36,7 @@ export class Calendar extends FoundationElement {
 	 *
 	 * (only applicable for views of more than a single day)
 	 *
-	 * @public
+	 * 
 	 */
 	@attr({ attribute: 'start-day' })	startDay?: 'sunday' | 'monday';
 
@@ -48,7 +48,7 @@ export class Calendar extends FoundationElement {
 	 * This parameter must conform to BCP 47 standards; see the Intl.Collator object for details.
 	 * e.g. en-US | en-US, he-IL
 	 *
-	 * @public
+	 * 
 	 */
 	@attr	locales?: string | string[] | undefined;
 
@@ -56,30 +56,37 @@ export class Calendar extends FoundationElement {
 	 * The convention of displayed time in which the day runs from midnight to midnight and is divided into 24 or 12 hours.
 	 * Unless provided, choice will be set according to local time preference (e.g. US = 12, IL = 24)
 	 *
-	 * @public
+	 * 
 	 */
 	@attr({ mode: 'boolean' }) hour12 = false;
 
 	/**
-	 * @internal
+	 *
+	 *
+	 * @memberof Calendar
 	 */
 	_hours = 24;
 	/**
-	 * @internal
+	 *
+	 *
+	 * @memberof Calendar
 	 */
 	_days = 7;
 
 	/**
-	 * @internal
+	 *
+	 *
+	 * @memberof Calendar
 	 */
 	hoursAsDatetime = (Array.from({ length: this._hours - 1 }) as Date[])
 		.fill(new Date(new Date().setHours(0, 0, 0)))
 		.map((d, i) => new Date(d.setHours(++i)));
 
 	/**
-	 * @param dateArr array of dates. requires at least 1 date to be set within the array
-	 * @returns array of incremental dates from the first date in the array
-	 * @internal
+	 *
+	 *
+	 * @param {[Date, ...Date[]]} dateArr - dateArr array of dates. requires at least 1 date to be set within the array
+	 * @returns {Array} array of incremental dates from the first date in the array
 	 */
 	_generateDaysArr = (dateArr: [Date, ...Date[]]): Date[] => {
 		if (dateArr.length == this._days) {

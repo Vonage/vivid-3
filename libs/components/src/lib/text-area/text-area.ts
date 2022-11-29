@@ -7,7 +7,7 @@ type TextAreaWrap = 'hard' | 'soft' | 'off';
 /**
  * Base class for text-area
  *
- * @public
+ * 
  */
 @formElements
 export class TextArea extends FoundationElement {

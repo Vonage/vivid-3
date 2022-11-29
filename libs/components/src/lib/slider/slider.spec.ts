@@ -5,6 +5,13 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-slider';
 
+/**
+ *
+ *
+ * @param {Slider} el - slider
+ * @param {string} attr - attribure
+ * @returns {*}  {Promise<DOMTokenList>}
+ */
 async function setBoolAttributeOn(el: Slider, attr: string): Promise<DOMTokenList> {
 	el.toggleAttribute(attr, true);
 	await elementUpdated(el);

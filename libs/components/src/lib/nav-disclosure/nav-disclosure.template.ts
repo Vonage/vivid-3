@@ -11,9 +11,8 @@ import type { NavDisclosure } from './nav-disclosure';
 /**
  * The template for the {@link @microsoft/fast-foundation#Nav} component.
  *
- * @param context
- * @param definition
- * @public
+ * @param {ElementDefinitionContext} context element definition
+ * @returns {HTMLElement} template
  */
 export const NavDisclosureTemplate: (
 	context: ElementDefinitionContext,

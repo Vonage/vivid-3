@@ -9,8 +9,10 @@ import '.';
 const COMPONENT_TAG = 'vwc-banner';
 
 /**
- * @param element
- * @param removable
+ *
+ *
+ * @param {Banner} element - banner
+ * @param {boolean} [removable=true] - true
  */
 async function toggleRemovable(element: Banner, removable = true) {
 	element.removable = removable;
@@ -19,6 +21,7 @@ async function toggleRemovable(element: Banner, removable = true) {
 
 describe('vwc-banner', () => {
 	/**
+	 *
 	 *
 	 */
 	function dispatchAnimationEndEvent() {
@@ -44,7 +47,9 @@ describe('vwc-banner', () => {
 
 	describe('text', function () {
 		/**
-		 * @param text
+		 *
+		 *
+		 * @param {(string | undefined)} text - element text
 		 */
 		async function setTextProperty(text: string | undefined) {
 			element.text = text;
@@ -52,7 +57,9 @@ describe('vwc-banner', () => {
 		}
 
 		/**
-		 * @param text
+		 *
+		 *
+		 * @param {(string | undefined)} text - attribute text
 		 */
 		async function setTextAttribute(text: string | undefined) {
 			element.setAttribute('text', text ? text : '');
@@ -61,6 +68,8 @@ describe('vwc-banner', () => {
 
 		/**
 		 *
+		 *
+		 * @returns {*} - text
 		 */
 		function getText() {
 			const text = element.shadowRoot?.querySelector('.banner--message')?.textContent;

@@ -15,7 +15,7 @@ export type ProgressShape =
 /**
  * Base class for progress
  *
- * @public
+ * 
  */
 export class Progress extends BaseProgress {
 	@attr() shape?: ProgressShape;

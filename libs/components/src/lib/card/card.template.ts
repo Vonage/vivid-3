@@ -14,7 +14,8 @@ const getClasses = (_: Card) => classNames(
 );
 
 /**
-header icon
+ * 
+ * @returns {HTMLElement} template
  */
 function renderHeaderIcon() {
 	return html<Card>`
@@ -23,6 +24,8 @@ function renderHeaderIcon() {
 
 /**
  *
+ *
+ * @returns {HTMLElement} template
  */
 function Headline() {
 	return html`
@@ -32,6 +35,8 @@ function Headline() {
 
 /**
  *
+ *
+ * @returns {HTMLElement} template
  */
 function Subtitle() {
 	return html`
@@ -41,6 +46,8 @@ function Subtitle() {
 
 /**
  *
+ *
+ * @returns {HTMLElement} template
  */
 function headerContent() {
 	return html`
@@ -52,7 +59,9 @@ function headerContent() {
 }
 
 /**
- header
+ *
+ *
+ * @returns {HTMLElement} template
  */
 function renderHeader() {
 
@@ -65,7 +74,10 @@ function renderHeader() {
 
 
 /**
- * @param card
+ *
+ *
+ * @param {Card} card - card
+ * @returns {HTMLElement} template
  */
 function shouldHideHeader(card:Card) {
 	// eslint-disable-next-line max-len
@@ -74,6 +86,8 @@ function shouldHideHeader(card:Card) {
 
 /**
  *
+ *
+ * @returns {HTMLElement} template
  */
 function renderMetaSlot() {
 	return html`
@@ -83,6 +97,8 @@ function renderMetaSlot() {
 
 /**
  *
+ *
+ * @returns {HTMLElement} template
  */
 function text() {
 	return html`
@@ -93,8 +109,7 @@ function text() {
 /**
  * The template for the {@link @microsoft/fast-foundation#Card} component.
  *
- * @param context
- * @public
+ * @returns {HTMLElement} template
  */
 export const CardTemplate: (
 	context: ElementDefinitionContext,

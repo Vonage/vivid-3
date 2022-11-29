@@ -39,6 +39,8 @@ const getStateClasses = ({
 
 /**
  *
+ *
+ * @returns {HTMLElement} template
  */
 function renderLabel() {
 	return html<NumberField>`
@@ -48,29 +50,40 @@ function renderLabel() {
 }
 
 /**
- * @param numberField
- * @param direction
+ *
+ *
+ * @param {NumberField} numberField - number
+ * @param {*} [direction=ADD] - direction
  */
 function adjustValueByStep(numberField: NumberField, direction = ADD) {
 	numberField.value = (Number(numberField.value) + direction * (numberField.step ? numberField.step : 1)).toString();
 }
 
 /**
- * @param numberField
+ *
+ *
+ * @param {NumberField} numberField - number field
+ * @returns {*} control
  */
 function setControlButtonShape(numberField: NumberField) {
 	return numberField.shape === Shape.Pill ? Shape.Pill : null;
 }
 
 /**
- * @param numberField
+ *
+ *
+ * @param {NumberField} numberField - number field
+ * @returns {*} tabindex
  */
 function getTabIndex(numberField: NumberField) {
 	return (numberField.disabled || numberField.readOnly) ? '-1' : null;
 }
 
 /**
- * @param context
+ *
+ *
+ * @param {ElementDefinitionContext} context element definition
+ * @returns {HTMLElement} template
  */
 function numberControlButtons(context: ElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
@@ -99,8 +112,8 @@ function numberControlButtons(context: ElementDefinitionContext) {
 /**
  * The template for the {@link @microsoft/fast-foundation#NumberField} component.
  *
- * @param context
- * @public
+ * @param {ElementDefinitionContext} context element definition
+ * @returns {HTMLElement} template
  */
 export const NumberFieldTemplate: (
 	context: ElementDefinitionContext,

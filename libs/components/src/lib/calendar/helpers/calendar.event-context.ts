@@ -1,6 +1,5 @@
 import { isEmpty, not } from 'ramda';
 import type { Calendar } from '../calendar';
-// import { isCellOrHeader } from './calendar.keyboard-interactions';
 
 export interface CalendarEventContext {
 	day?: number;
@@ -8,7 +7,10 @@ export interface CalendarEventContext {
 }
 
 /**
- * @param el
+ *
+ *
+ * @param {HTMLElement} el - HTMLElement
+ * @returns {*}  {(number | void)} - day
  */
 function getDay(el: HTMLElement): number | void {
 	const cellOrHeader = el.closest('[role="gridcell"i], [role="columnheader"i]');
@@ -21,9 +23,12 @@ function getDay(el: HTMLElement): number | void {
 }
 
 /**
- * @param e
- * @param el
- * @param hours
+ *
+ *
+ * @param {MouseEvent} e - MouseEvent
+ * @param {HTMLElement} el - HTMLElement
+ * @param {number} hours - hours
+ * @returns {*}  {(number | void)} - hour
  */
 function getHour(e: MouseEvent, el: HTMLElement, hours: number): number | void {
 	const rowHeaderOrCell = el.closest('[role="rowheader"], [role="gridcell"i]') as HTMLElement;
@@ -39,10 +44,10 @@ function getHour(e: MouseEvent, el: HTMLElement, hours: number): number | void {
 }
 
 /**
- * @param this
- * @param shadowRoot
- * @param hours
- * @param e
+ * 
+ * @param {Calendar} this - calendar
+ * @param {MouseEvent} e - mouse event
+ * @returns {CalendarEventContext} - event context
  */
 export const getEventContext = function(this: Calendar, e: KeyboardEvent | MouseEvent): CalendarEventContext | null {
 

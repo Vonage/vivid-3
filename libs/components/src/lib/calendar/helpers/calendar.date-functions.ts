@@ -1,10 +1,12 @@
 /**
+ *
  * Returns a valid date string from date object e.g. 2020-01-01
  *
- * @remarks
+ * 
  * This method returns valid date string to be used as html time tag datetime value
- * @param date - js date object
- * @returns a date as a string value in ISO format.
+ * 
+ * @param {Date} date - js date object
+ * @returns {*}  {string} - a date as a string value in ISO format.
  */
 export function getValidDateString(date: Date): string {
 	const twoDigit = (num: number) => `0${num}`.slice(-2);
@@ -17,8 +19,9 @@ const weekdaysMap = new Map([
 ]);
 
 /**
- * @param date
- * @param startDay
+ * @param {Date} date - date
+ * @param {string} startDay - start day
+ * @returns {Date} - new date
  */
 export function getFirstDateOfTheWeek(date: Date = new Date(), startDay: 'sunday' | 'monday'): Date {
 	date = new Date(date);

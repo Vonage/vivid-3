@@ -19,8 +19,8 @@ const getClasses = ({
 /**
  * The template for the {@link @microsoft/fast-foundation#Badge} component.
  *
- * @param context
- * @public
+ * @param {ElementDefinitionContext} context element definition
+ * @returns {HTMLElement} template
  */
 export const badgeTemplate: (
 	context: ElementDefinitionContext,

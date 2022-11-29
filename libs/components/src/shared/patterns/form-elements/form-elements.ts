@@ -6,6 +6,12 @@ import messageStyles from './message.scss';
 const ElementInternalsKey = 'ElementInternals';
 const supportsElementInternals = () => ElementInternalsKey in window && 'setFormValue' in window[ElementInternalsKey].prototype;
 
+/**
+ *
+ *
+ * 
+ * @interface FormElement
+ */
 export interface FormElement {
 	charCount: boolean;
 	errorValidationMessage: boolean;
@@ -17,7 +23,12 @@ export interface FormElement {
 }
 
 /**
- * @param constructor
+ *
+ *
+ * 
+ * @template T
+ * @param {T} constructor - args
+ * @returns {*} HTMLElement
  */
 export function formElements<T extends { new (...args: any[]): Record<string, any> }>(constructor: T) {
 	class Decorated extends constructor {
@@ -92,8 +103,12 @@ type MessageTypeMap = { [key in FeedbackType]: {
 };
 
 /**
- * @param messageType
- * @param context
+ *
+ *
+ * 
+ * @param {FeedbackType} messageType - type
+ * @param {ElementDefinitionContext} context element definition
+ * @returns {*} HTMLElement
  */
 export function getFeedbackTemplate(messageType: FeedbackType, context: ElementDefinitionContext) {
 	const MessageTypeMap: MessageTypeMap = {
@@ -130,9 +145,10 @@ export function getFeedbackTemplate(messageType: FeedbackType, context: ElementD
 }
 
 /**
- * @param root0
- * @param root0.className
- * @param root0.messageProperty
+ *
+ *
+ * @param {{messageProperty: MessagePropertyType }} {messageProperty} - propety
+ * @returns {*} HTMLElement
  */
 function feedbackMessage({messageProperty}: {messageProperty: MessagePropertyType }) {
 	return html<FormElement>`

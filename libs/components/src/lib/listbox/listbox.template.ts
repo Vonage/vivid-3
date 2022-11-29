@@ -16,6 +16,11 @@ const getClasses = ({ appearance, disabled
 	[`appearance-${appearance}`, Boolean(appearance)],
 );
 
+/**
+ * 
+ * @param {ElementDefinitionContext} context element definition 
+ * @returns {HTMLElement} template
+ */
 export const ListboxTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition

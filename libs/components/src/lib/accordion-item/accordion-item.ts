@@ -4,15 +4,17 @@ import { attr } from '@microsoft/fast-element';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
 /**
- * Base class for accordion-item
  *
- * @public
+ * Base class for accordion-item
+ * 
+ * @class AccordionItem
+ * @augments {FoundationElement}
  */
 export class AccordionItem extends FoundationElement {
 	/**
 	 *
 	 *
-	 * @public
+	 * 
 	 *
 	 * HTML Attribute: heading
 	 */
@@ -20,7 +22,7 @@ export class AccordionItem extends FoundationElement {
 
 	/**
 	 *
-	 * @public
+	 * 
 	 * HTML Attribute: heading-level
 	 */
 	@attr({ attribute: 'heading-level' }) headingLevel?: 2 | 3 | 4 | 5 | 6;
@@ -28,14 +30,14 @@ export class AccordionItem extends FoundationElement {
 	/**
 	 * Indicates whether the accordion-item has indicator
 	 *
-	 * @public
+	 * 
 	 * HTML Attribute: no-indicator
 	 */
 	@attr({ mode: 'boolean', attribute: 'no-indicator' }) noIndicator = false;
 
 	/**
 	 *
-	 * @public
+	 * 
 	 *
 	 * HTML Attribute: meta
 	 */
@@ -44,7 +46,7 @@ export class AccordionItem extends FoundationElement {
 	/**
 	 * Indicates whether the accordion-item is open
 	 *
-	 * @public
+	 * 
 	 * HTML Attribute: open
 	 */
 	@attr({ mode: 'boolean' }) open = false;

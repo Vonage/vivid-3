@@ -12,14 +12,14 @@ export type NoteConnotation =
 /**
  * Base class for note
  *
- * @public
+ * 
  */
 export class Note extends FoundationElement {
 	/**
 	 * Indicates the note's headline text
 	 *
-	 * @public
-	 * @remarks
+	 * 
+	 * 
 	 * HTML Attribute: headline
 	 */
 	@attr headline?: string;

@@ -12,7 +12,7 @@ export type ProgressRingConnotation =
 /**
  * Base class for progress-ring
  *
- * @public
+ * 
  */
 export class ProgressRing extends BaseProgress {
 	@attr connotation?: ProgressRingConnotation;

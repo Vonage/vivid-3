@@ -4,6 +4,7 @@ import markdownIt from 'markdown-it';
 import { JSDOM } from 'jsdom';
 import type {Page} from '@playwright/test';
 
+/** @type {*} */
 const layout = (function() {
 	const layoutFactorial = (...attrs) =>
 		(code) => `
@@ -35,6 +36,7 @@ const layout = (function() {
 
 })();
 
+/** @type {*} */
 const md = markdownIt({
 	html: true,
 	highlight: function (str, _, attrs) {
@@ -43,16 +45,21 @@ const md = markdownIt({
 });
 
 /**
- * @param str
- * @param find
- * @param replace
+ *
+ * @param {string} str - string
+ * @param {string} find - string
+ * @param {string} replace - string
+ * @returns {*} - replaced
  */
 export function replaceAll(str: string, find: string, replace: string) {
 	return str.replace(new RegExp(find, 'g'), replace);
 }
 
 /**
- * @param html
+ *
+ *
+ * @param {*} html - HTMLPreElement
+ * @returns {*}  {NodeListOf<HTMLPreElement>}
  */
 function getPreElements(html): NodeListOf<HTMLPreElement> {
 	const dom = new JSDOM(html);
@@ -60,7 +67,11 @@ function getPreElements(html): NodeListOf<HTMLPreElement> {
 }
 
 /**
- * @param pathToReadme
+ *
+ *
+ * 
+ * @param {string} pathToReadme -readme path
+ * @returns {*}  {string[]}
  */
 export function extractHTMLBlocksFromReadme(pathToReadme: string): string[] {
 	const readmeFileContents = fs.readFileSync(path.resolve(pathToReadme))
@@ -72,6 +83,7 @@ export function extractHTMLBlocksFromReadme(pathToReadme: string): string[] {
 	);
 }
 
+/** @type {*} */
 const defaultStyles = [
 	'http://127.0.0.1:8080/dist/libs/components/styles/fonts/spezia.css',
 	'http://127.0.0.1:8080/dist/libs/components/styles/tokens/theme-light.css',
@@ -79,10 +91,11 @@ const defaultStyles = [
 ];
 
 /**
- * @param root0
- * @param root0.page
- * @param root0.components
- * @param root0.styleUrls
+ * 
+ * @param {Array} param0 - params
+ * @param {Array} param0.page - params page
+ * @param {Array} param0.components - params components
+ * @param {Array} param0.styleUrls - params styleUrls
  */
 export async function loadComponents({
 	page,
@@ -109,9 +122,10 @@ export async function loadComponents({
 }
 
 /**
- * @param root0
- * @param root0.page
- * @param root0.template
+ * 
+ * @param {Array} param0 - params
+ * @param {Array} param0.page - params page
+ * @param {Array} param0.template - params template
  */
 export async function loadTemplate({
 	page,

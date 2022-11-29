@@ -5,7 +5,7 @@ import type { Appearance, Connotation } from '../enums';
 /**
  * Types of calendar event connotation.
  *
- * @public
+ * 
  */
 type CalendarEventConnotation = Extract<Connotation,
 | Connotation.Accent
@@ -19,7 +19,7 @@ type CalendarEventConnotation = Extract<Connotation,
 /**
  * Types of calendar event appearance.
  *
- * @public
+ * 
  */
 type CalendarEventAppearance = Extract<Appearance,
 Appearance.Filled | Appearance.Duotone | Appearance.Subtle>;
@@ -27,28 +27,28 @@ Appearance.Filled | Appearance.Duotone | Appearance.Subtle>;
 /**
  * Base class for calendar-event
  *
- * @public
+ * 
  */
 export class CalendarEvent extends FoundationElement {
 	/**
 	 * the heading of the event
 	 *
-	 * @public
+	 * 
 	 */
 	@attr heading?: string;
 
 	/**
 	 * the description of the event
 	 *
-	 * @public
+	 * 
 	 */
 	@attr description?: string;
 
 	/**
 	 * The connotation the calendar event should have.
 	 *
-	 * @public
-	 * @remarks
+	 * 
+	 * 
 	 * HTML Attribute: connotation
 	 */
 	@attr connotation?: CalendarEventConnotation;
@@ -56,8 +56,8 @@ export class CalendarEvent extends FoundationElement {
 	/**
 	 * The appearance the calendar event should have.
 	 *
-	 * @public
-	 * @remarks
+	 * 
+	 * 
 	 * HTML Attribute: appearance
 	 */
 	@attr appearance?: CalendarEventAppearance;
@@ -65,7 +65,7 @@ export class CalendarEvent extends FoundationElement {
 	/**
 	 * sets card display precendence and indentation
 	 *
-	 * @public
+	 * 
 	 */
 	@attr({ converter: nullableNumberConverter, attribute: 'overlap-count' })
 		overlapCount?: number;
@@ -74,7 +74,6 @@ export class CalendarEvent extends FoundationElement {
 	 * time of day event starts
 	 *
 	 * @default 0
-	 * @public
 	 */
 	@attr({ converter: nullableNumberConverter  })
 		start?: number; // TODO should be converted to allowed range
@@ -83,7 +82,6 @@ export class CalendarEvent extends FoundationElement {
 	 * event's time duration in hours
 	 *
 	 * @default 1
-	 * @public
 	 */
 	@attr({ converter: nullableNumberConverter  })
 		duration?: number; // TODO should be converted to allowed range

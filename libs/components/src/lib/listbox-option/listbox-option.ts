@@ -6,12 +6,12 @@ import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 /**
  * Base class for option
  *
- * @public
+ * 
  */
 export class ListboxOption extends FoundationListboxOption {
 	/**
 	 *
-	 * @public
+	 * 
 	 *
 	 * HTML Attribute: text
 	 */

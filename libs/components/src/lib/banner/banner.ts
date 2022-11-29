@@ -24,7 +24,7 @@ const defaultConnotation =
 /**
  * Base class for banner
  *
- * @public
+ * 
  */
 export class Banner extends FoundationElement {
 	@attr({attribute: 'action-href'}) actionHref: string | undefined;

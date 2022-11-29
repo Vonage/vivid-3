@@ -17,9 +17,8 @@ const getClasses = ({text, icon}: TextAnchor) => classNames(
 /**
  * The template for the {@link @microsoft/fast-foundation#(Anchor:class)} component.
  *
- * @param context
- * @param definition
- * @public
+ * @param {ElementDefinitionContext} context element definition
+ * @returns {HTMLElement} template
  */
 export const textAnchorTemplate: (
 	context: ElementDefinitionContext,

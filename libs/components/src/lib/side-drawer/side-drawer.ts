@@ -4,13 +4,13 @@ import { FoundationElement } from '@microsoft/fast-foundation';
 /**
  * Base class for side-drawer
  *
- * @public
+ * 
  */
 export class SideDrawer extends FoundationElement {
 	/**
 	 * applies scheme alternate region
 	 *
-	 * @public
+	 * 
 	 */
 	@attr({
 		mode: 'boolean',
@@ -19,7 +19,7 @@ export class SideDrawer extends FoundationElement {
 	/**
 	 * sets the side drawer's type to modal
 	 *
-	 * @public
+	 * 
 	 */
 	@attr({
 		mode: 'boolean',
@@ -28,7 +28,7 @@ export class SideDrawer extends FoundationElement {
 	/**
 	 * indicates whether the side drawer is open
 	 *
-	 * @public
+	 * 
 	 */
 	@attr({
 		mode: 'boolean',
@@ -37,7 +37,7 @@ export class SideDrawer extends FoundationElement {
 	/**
 	 * sets the side of the side drawer
 	 *
-	 * @public
+	 * 
 	 */
 	@attr({
 		mode: 'boolean',

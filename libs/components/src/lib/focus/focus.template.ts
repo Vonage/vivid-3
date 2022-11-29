@@ -6,8 +6,7 @@ import type { Focus } from './focus';
 /**
  * The template for the {@link @microsoft/fast-foundation#Focus} component.
  *
- * @param context
- * @public
+ * @returns {HTMLElement} template
  */
 export const focusTemplate: (
 	context: ElementDefinitionContext,

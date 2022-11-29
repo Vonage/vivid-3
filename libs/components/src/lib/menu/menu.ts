@@ -7,7 +7,7 @@ import type { Popup } from '../popup/popup';
 /**
  * Base class for menu
  *
- * @public
+ * 
  */
 export class Menu extends FastMenu {
 	_popup?: Popup;
@@ -15,7 +15,7 @@ export class Menu extends FastMenu {
 	/**
 	 * indicates whether the menu is open
 	 *
-	 * @public
+	 * 
 	 * HTML Attribute: open
 	 */
 	@attr({
@@ -25,7 +25,7 @@ export class Menu extends FastMenu {
 	/**
 	 * the placement of the menu
 	 *
-	 * @public
+	 * 
 	 * HTML Attribute: placement
 	 */
 	@attr placement?: Placement;
@@ -33,7 +33,7 @@ export class Menu extends FastMenu {
 	/**
 	 * ID reference to element in the menu's owner document.
 	 *
-	 * @public
+	 * 
 	 * HTML Attribute: anchor
 	 */
 	@attr anchor?: string;

@@ -2,11 +2,9 @@ import { html, ViewTemplate, when } from '@microsoft/fast-element';
 import { ElementDefinitionContext, MenuItemRole } from '@microsoft/fast-foundation';
 import type { MenuItemOptions } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-// import { Icon } from '../icon/icon';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { MenuItem } from './menu-item';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
-
 
 const getClasses = ({
 	disabled, checked, expanded, role
@@ -23,10 +21,9 @@ const getClasses = ({
  * Generates a template for the {@link @microsoft/fast-foundation#(MenuItem:class)} component using
  * the provided prefix.
  *
- * @param options
- * @param context
- * @param definition
- * @public
+ * @param {ElementDefinitionContext} context element definition
+ * @param {MenuItemOptions} definition element foundation
+ * @returns {HTMLElement} template
  */
 export const MenuItemTemplate:  (
 	context: ElementDefinitionContext,

@@ -11,7 +11,7 @@ type TextFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 /**
  * Base class for text-field
  *
- * @public
+ * 
  */
 @formElements
 export class TextField extends FoundationTextfield {

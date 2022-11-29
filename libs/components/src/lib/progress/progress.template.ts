@@ -1,12 +1,11 @@
-import {html, when} from '@microsoft/fast-element';
+import { html, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
 } from '@microsoft/fast-foundation';
-import {classNames} from '@microsoft/fast-web-utilities';
-import type {BaseProgress, ProgressOptions} from '@microsoft/fast-foundation';
+import { classNames } from '@microsoft/fast-web-utilities';
+import type { BaseProgress, ProgressOptions } from '@microsoft/fast-foundation';
 import type { Progress } from './progress';
-
 
 const getClasses = ({
 	connotation, shape, reverse, paused
@@ -19,17 +18,10 @@ const getClasses = ({
 );
 
 /**
- * The template for the {@link @microsoft/fast-foundation#Progress} component.
  *
- * @param context
- * @param _
- * @param definition
- * @public
- */
-
-
-/**
- determinate
+ * determinate
+ * 
+ * @returns {HTMLElement} template
  */
 function determinate() {
 	return html<BaseProgress>`
@@ -37,7 +29,10 @@ function determinate() {
 }
 
 /**
- indeterminate
+ *
+ * indeterminate
+ * 
+ * @returns {HTMLElement} template
  */
 function indeterminate() {
 	return html<BaseProgress>`
@@ -47,10 +42,15 @@ function indeterminate() {
 		 </span>`;
 }
 
+/**
+ *
+ *
+ * @returns {HTMLElement} template
+ */
 export const ProgressTemplate: (
 	context: ElementDefinitionContext,
 	definition: ProgressOptions
-) => ViewTemplate<Progress> = (_: ElementDefinitionContext) => {
+) => ViewTemplate<Progress> = () => {
 	return html`
     <div
       role="progressbar"

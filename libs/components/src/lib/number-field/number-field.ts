@@ -10,7 +10,7 @@ type NumberFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 /**
  * Base class for number-field
  *
- * @public
+ * 
  */
 @formElements
 export class NumberField extends FastNumberField {

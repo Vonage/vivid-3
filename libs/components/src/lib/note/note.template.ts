@@ -24,13 +24,18 @@ const getClasses = ({ connotation }: Note) => classNames(
 
 /**
  *
+ *
+ * @returns {HTMLElement} template
  */
 function getHeaderTemplate() {
 	return html<Note>`<div class="headline">${x => x.headline}</div>`;
 }
 
 /**
- * @param note
+ *
+ *
+ * @param {Note} note - note
+ * @returns {*} icon
  */
 function getIconType(note: Note) {
 	return note.icon ? note.icon : note.connotation ? connotationIconMap.get(note.connotation) : 'megaphone-solid';
@@ -38,6 +43,8 @@ function getIconType(note: Note) {
 
 /**
  *
+ *
+ * @returns {HTMLElement} templateTemplate
  */
 function getIconTemplate() {
 	return html<Note>`<vwc-icon class="icon" name="${getIconType}"></vwc-icon>`;
@@ -46,8 +53,7 @@ function getIconTemplate() {
 /**
  * The template for the {@link @microsoft/fast-foundation#Note} component.
  *
- * @param context
- * @public
+ * @returns {HTMLElement} template
  */
 export const NoteTemplate: (
 	context: ElementDefinitionContext,

@@ -97,7 +97,9 @@ describe('vwc-popup', () => {
 		});
 
 		/**
-		 * @param hidden
+		 *
+		 *
+		 * @param {boolean} [hidden=true] - didden
 		 */
 		async function makePopupHidden(hidden = true) {
 			computePositionResult.middlewareData.hide.referenceHidden = hidden;

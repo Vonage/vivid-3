@@ -19,6 +19,11 @@ const getClasses = ({
 	['icon', Boolean(icon)],
 );
 
+/**
+ * 
+ * @param {ElementDefinitionContext} context element definition 
+ * @returns {HTMLElement} template
+ */
 export const ListboxOptionTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition

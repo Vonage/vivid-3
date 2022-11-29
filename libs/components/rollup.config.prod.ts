@@ -3,6 +3,12 @@ const path = require('path');
 const replace = require('@rollup/plugin-replace');
 const postcss = require('rollup-plugin-postcss');
 
+/**
+ *
+ *
+ * @param {string} [workingFolder='./src/lib/'] src
+ * @returns {*} folders
+ */
 function getFoldersInAFolder(workingFolder = './src/lib/') {
 	const folders = [];
 	const testsFolder = path.join(__dirname, workingFolder);
@@ -16,6 +22,7 @@ function getFoldersInAFolder(workingFolder = './src/lib/') {
 	return folders;
 }
 
+/** @type {*} */
 const components = getFoldersInAFolder();
 const input = components.reduce((inputObject, componentName) => {
 	inputObject[`${componentName}/index`] = path.join(
