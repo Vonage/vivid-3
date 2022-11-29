@@ -25,7 +25,7 @@ describe('vwc-button', () => {
 	let element: Button;
 
 	beforeAll(async () => {
-		await customElements.whenDefined('vwc-button');
+		await customElements.whenDefined(COMPONENT_TAG);
 	});
 
 	beforeEach(async () => {
