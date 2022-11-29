@@ -1,7 +1,7 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import type { Icon } from '../icon/icon';
 import { Button } from './button';
-import promise from '.';
+import  '.';
 import '../../shared/utils';
 
 const COMPONENT_TAG = 'vwc-button';
@@ -25,9 +25,7 @@ describe('vwc-button', () => {
 	let element: Button;
 
 	beforeAll(async () => {
-		await promise.then((vividButton) => {
-			console.log('Button is ready: ', vividButton);
-		});
+		await customElements.whenDefined('vwc-button');
 	});
 
 	beforeEach(async () => {
