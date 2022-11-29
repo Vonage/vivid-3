@@ -63,7 +63,7 @@ describe('vwc-card', () => {
 
 			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
 			expect(icon).toBeInstanceOf(Icon);
-			expect(icon.type).toEqual('chat-line');
+			expect(icon.name).toEqual('chat-line');
 		});
 
 		it( 'should add class .hide-header to .base', async () => {
