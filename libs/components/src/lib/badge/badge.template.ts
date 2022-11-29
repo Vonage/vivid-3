@@ -1,4 +1,4 @@
-import { html } from '@microsoft/fast-element';
+import { html, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
@@ -31,6 +31,6 @@ export const badgeTemplate: (
 	return html`
     <span class="${getClasses}">
       ${x => affixIconTemplate(x.icon)}
-			<span class="text">${(x) => x.text}</span>
+			${when((x)=> x.text, (x) => html<Badge>`<span class="text">${x.text as string}</span>`)}
 		</span>`;
 };
