@@ -1,4 +1,7 @@
-import { Button as FastButton, type FoundationElementDefinition } from '@microsoft/fast-foundation';
+import {
+	Button as FastButton,
+	type FoundationElementDefinition,
+} from '@microsoft/fast-foundation';
 import { designSystem, getPrefix } from '../../shared/design-system';
 import { loadComponentsModules } from '../../shared/utils';
 import { Button } from './button';
@@ -7,19 +10,28 @@ import { buttonTemplate as template } from './button.template';
 
 const prefix = getPrefix(import.meta.url);
 
-await loadComponentsModules(['icon', 'focus'], prefix);
+async function registerComponents(componentPrefix: string) {
+	await loadComponentsModules(['icon', 'focus'], componentPrefix);
 
-/**
- * Represents a button custom element.
- */
-export const vividButton = Button.compose<FoundationElementDefinition>({
-	baseName: 'button',
-	baseClass: FastButton,
-	template: template as any,
-	styles,
-	shadowOptions: {
-		delegatesFocus: true,
-	},
+	const vividButton = Button.compose<FoundationElementDefinition>({
+		baseName: 'button',
+		baseClass: FastButton,
+		template: template as any,
+		styles,
+		shadowOptions: {
+			delegatesFocus: true,
+		},
+	});
+
+	designSystem.withPrefix(prefix).register(vividButton());
+
+	return vividButton;
+}
+
+const promise = new Promise((resolve) => {
+	registerComponents(prefix).then((vividButton) => {
+		resolve(vividButton);
+	});
 });
 
-designSystem.withPrefix(prefix).register(vividButton());
+export default promise;

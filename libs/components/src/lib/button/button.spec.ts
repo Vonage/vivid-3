@@ -1,13 +1,34 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import type { Icon } from '../icon/icon';
 import { Button } from './button';
-import '.';
+import promise from '.';
+import '../../shared/utils';
 
 const COMPONENT_TAG = 'vwc-button';
 const ICON_SELECTOR = 'vwc-icon';
 
+jest.mock('../../shared/utils', () => {
+	const originalModule = jest.requireActual('../../shared/utils');
+
+	//Mock the default export and named export 'foo'
+	return {
+		...originalModule,
+		loadComponentsModules: jest.fn((components) => Promise.all(
+			components.map((component: any) =>
+				import(`../${component}/index`)
+			)
+		)),
+	};
+});
+
 describe('vwc-button', () => {
 	let element: Button;
+
+	beforeAll(async () => {
+		await promise.then((vividButton) => {
+			console.log('Button is ready: ', vividButton);
+		});
+	});
 
 	beforeEach(async () => {
 		element = await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Button;
