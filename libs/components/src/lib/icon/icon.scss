@@ -52,7 +52,7 @@ $default-size: list.nth($size-keys, 1);
 	color: var(#{connotation.get-connotation-token(primary)});
 }
 
-svg {
+slot, svg, ::slotted(:where(svg, img)) {
 	margin: auto;
 	block-size: inherit;
 	inline-size: inherit;
