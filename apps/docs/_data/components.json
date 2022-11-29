@@ -280,7 +280,7 @@
 		]
 	},
 	{
-		"title": "option",
+		"title": "listbox-option",
 		"markdown": "./libs/components/src/lib/listbox-option/README.md",
 		"modules": [
 			"/assets/modules/components/listbox-option/index.js",
