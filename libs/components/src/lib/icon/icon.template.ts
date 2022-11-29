@@ -14,10 +14,9 @@ const getClasses = ({
 );
 
 /**
+ * The template for the {@link @microsoft/fast-foundation#icon} component.
  *
- *
- * @param {string} [value] - value 
- * @returns {*} {boolean}
+ * @returns {HTMLElement} template
  */
 export const iconTemplate: (
 	context: ElementDefinitionContext,

@@ -60,7 +60,9 @@ export class Icon extends FoundationElement {
 	@attr size?: -6 | -5 | -4 | -3 | -2 | -1 | 0 | 1 | 2 | 3 | 4 | 5;
 
 	/**
-	 * @internal
+	 *
+	 *
+	 * @type {string} svg
 	 */
 	@observable _svg?: string;
 
