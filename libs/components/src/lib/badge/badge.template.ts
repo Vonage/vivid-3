@@ -31,6 +31,6 @@ export const badgeTemplate: (
 	return html`
     <span class="${getClasses}">
       ${x => affixIconTemplate(x.icon)}
-      ${(x) => x.text}
+			<span class="text">${(x) => x.text}</span>
 		</span>`;
 };

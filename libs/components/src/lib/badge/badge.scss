@@ -34,7 +34,7 @@
 	font: var(#{constants.$vvd-typography-base-condensed-bold});
 	padding-inline: 8px;
 	vertical-align: middle;
-
+    max-inline-size: 100%;
 
 	&.icon-only {
 		contain: size;
@@ -50,6 +50,13 @@
 		}
 	}
 }
+
+.text {
+	   white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-inline-size: 100%;
+	}
 
 /* Shape */
 
