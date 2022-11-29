@@ -9,8 +9,6 @@ import styles from './button.scss';
 import { buttonTemplate as template } from './button.template';
 
 
-const prefix = getPrefix(import.meta.url);
-
 const vividButton = Button.compose<FoundationElementDefinition>({
 	baseName: 'button',
 	baseClass: FastButton,
@@ -20,6 +18,8 @@ const vividButton = Button.compose<FoundationElementDefinition>({
 		delegatesFocus: true,
 	},
 });
+
+const prefix = getPrefix(import.meta.url);
 
 (async () => {
 	await loadComponentsModules(['icon', 'focus'], prefix);
