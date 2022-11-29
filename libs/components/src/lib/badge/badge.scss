@@ -32,9 +32,9 @@
 	color: var(#{appearance.get-appearance-token(text)});
 	column-gap: 8px;
 	font: var(#{constants.$vvd-typography-base-condensed-bold});
+	max-inline-size: 100%;
 	padding-inline: 8px;
 	vertical-align: middle;
-    max-inline-size: 100%;
 
 	&.icon-only {
 		contain: size;
@@ -52,11 +52,11 @@
 }
 
 .text {
-	   white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-inline-size: 100%;
-	}
+	overflow: hidden;
+	max-inline-size: 100%;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
 
 /* Shape */
 
