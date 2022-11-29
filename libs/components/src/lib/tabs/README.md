@@ -124,28 +124,6 @@ Add an `activeid` attribute of the active tab.
 </vwc-tabs>
 ```
 
-### Connotation
-
-Set the `connotation` attribute to change the tabs' connotation.
-It accepts a subset of predefined values.
-
-- Type: `'accent'` | `'information'`
-- Default: `'accent'`
-
-```html preview full
-<vwc-tabs activeid="entrees" connotation="information">
-  <vwc-tab label="Appetizers" id="apps"></vwc-tab>
-  <vwc-tab label="Entrees" id="entrees"></vwc-tab>
-  <vwc-tab label="Desserts" id="desserts"></vwc-tab>
-  <vwc-tab-panel id="appsPanel">
-  </vwc-tab-panel>
-  <vwc-tab-panel id="entreesPanel">
-  </vwc-tab-panel>
-  <vwc-tab-panel id="dessertsPanel">
-  </vwc-tab-panel>
-</vwc-tabs>
-```
-
 ## Events
 
 ### Change

@@ -1,11 +1,10 @@
-@use '../tabs/partials/variables' as variables;
+@use "../tabs/partials/variables" as variables;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
-	$connotations: accent information,
+	$connotations: accent,
 	$shades: primary primary-text primary-increment faint soft,
 	$default: accent
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-
 
 .base {
 	@include connotation.connotation;
@@ -16,13 +15,11 @@
 	&.orientation-vertical {
 		grid-template-columns: auto 1fr;
 		grid-template-rows: 1fr;
-
 	}
 
 	&:not(.orientation-vertical) {
 		grid-template-columns: 1fr;
 		grid-template-rows: auto 1fr;
-
 	}
 }
 
