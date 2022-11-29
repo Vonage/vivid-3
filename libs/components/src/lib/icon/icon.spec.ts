@@ -77,32 +77,32 @@ describe('icon', function () {
 			fakeFetch(4000);
 			setIconNameAndTriggerFirstTimer();
 
-			expect(element.svg).toEqual(undefined);
+			expect(element._svg).toEqual(undefined);
 		});
 
 		it('should set the icon as loading after 500ms', async function () {
 			fakeFetch(4000);
 			setIconNameAndAdvanceTime(500);
-			expect(element.svg).toMatchSnapshot();
+			expect(element._svg).toMatchSnapshot();
 		});
 
 		it('should remove loading icon after 2500ms', async function () {
 			fakeFetch(4000);
 			setIconNameAndAdvanceTime(2500);
-			expect(element.svg).toEqual(undefined);
+			expect(element._svg).toEqual(undefined);
 		});
 
 		it('should set icon in svg after icon fetch', async function () {
 			fakeFetch(100);
 			setIconNameAndRunAllTimers('none');
-			expect(element.svg).toEqual(svg);
+			expect(element._svg).toEqual(svg);
 		});
 
 		it('should show empty string when no icon is available', function () {
 			fakeFetch(100);
 			setIconNameAndRunAllTimers('none');
 			setIconNameAndRunAllTimers(undefined);
-			expect(element.svg).toEqual('');
+			expect(element._svg).toEqual('');
 		});
 	});
 
