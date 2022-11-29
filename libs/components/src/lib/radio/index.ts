@@ -8,12 +8,13 @@ import { RadioTemplate as template } from './radio.template';
 
 const prefix = getPrefix(import.meta.url);
 
-await loadComponentsModules(['focus'], prefix);
-
 export const vividRadio = Radio.compose<RadioOptions>({
 	baseName: 'radio',
 	template: template as any,
 	styles
 });
 
-designSystem.withPrefix(prefix).register(vividRadio());
+(async () => {
+	await loadComponentsModules(['focus'], prefix);
+	designSystem.withPrefix(prefix).register(vividRadio());
+})();

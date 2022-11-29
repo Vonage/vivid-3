@@ -10,7 +10,6 @@ const prefix = getPrefix(import.meta.url);
 // in menu as it is not used directly in template, rather by user's authoring.
 // but, due to the race condition and way menu needs children to
 // connect before setting/checking their props/attributes, it is required
-await loadComponentsModules(['popup', 'menu-item'], prefix);
 
 export const vividMenu = Menu.compose({
 	baseName: 'menu',
@@ -18,4 +17,7 @@ export const vividMenu = Menu.compose({
 	styles,
 });
 
-designSystem.withPrefix(prefix).register(vividMenu());
+(async () => {
+	await loadComponentsModules(['popup', 'menu-item'], prefix);
+	designSystem.withPrefix(prefix).register(vividMenu());
+})();

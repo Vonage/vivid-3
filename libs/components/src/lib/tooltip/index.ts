@@ -8,12 +8,13 @@ import { TooltipTemplate as template } from './tooltip.template';
 
 const prefix = getPrefix(import.meta.url);
 
-await loadComponentsModules(['popup'], prefix);
-
 export const vividTooltip = Tooltip.compose<FoundationElementDefinition>({
 	baseName: 'tooltip',
 	template: template as any,
 	styles,
 });
 
-designSystem.withPrefix(getPrefix(import.meta.url)).register(vividTooltip());
+(async () => {
+	await loadComponentsModules(['popup'], prefix);
+	designSystem.withPrefix(prefix).register(vividTooltip());
+})();

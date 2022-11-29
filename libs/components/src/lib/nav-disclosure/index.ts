@@ -8,8 +8,6 @@ import { NavDisclosureTemplate as template } from './nav-disclosure.template';
 
 const prefix = getPrefix(import.meta.url);
 
-await loadComponentsModules(['icon', 'focus'], prefix);
-
 export const vividNavDisclosure =
 	NavDisclosure.compose<FoundationElementDefinition>({
 		baseName: 'nav-disclosure',
@@ -17,4 +15,7 @@ export const vividNavDisclosure =
 		styles,
 	});
 
-designSystem.withPrefix(prefix).register(vividNavDisclosure());
+(async () => {
+	await loadComponentsModules(['icon', 'focus'], prefix);
+	designSystem.withPrefix(prefix).register(vividNavDisclosure());
+})();

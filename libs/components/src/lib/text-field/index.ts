@@ -7,8 +7,6 @@ import { TextfieldTemplate as template } from './text-field.template';
 
 const prefix = getPrefix(import.meta.url);
 
-await loadComponentsModules(['icon', 'focus'], prefix);
-
 export const vividTextfield = TextField.compose<FoundationElementDefinition>({
 	baseName: 'text-field',
 	template: template as any,
@@ -18,5 +16,7 @@ export const vividTextfield = TextField.compose<FoundationElementDefinition>({
 	},
 });
 
-designSystem.withPrefix(prefix).register(vividTextfield());
-
+( async () => {
+	await loadComponentsModules(['icon', 'focus'], prefix);
+	designSystem.withPrefix(prefix).register(vividTextfield());
+})();

@@ -8,8 +8,6 @@ import { popupTemplate as template } from './popup.template';
 
 const prefix = getPrefix(import.meta.url);
 
-await loadComponentsModules(['elevation', 'button'], prefix);
-
 /**
  * Represents a popup custom element.
  * popup is...
@@ -20,4 +18,7 @@ export const vividPopup = Popup.compose<FoundationElementDefinition>({
 	styles,
 });
 
-designSystem.withPrefix(prefix).register(vividPopup());
+( async () => {
+	await loadComponentsModules(['elevation', 'button'], prefix);
+	designSystem.withPrefix(prefix).register(vividPopup());
+})();

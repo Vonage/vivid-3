@@ -7,12 +7,13 @@ import styles from './listbox-option.scss';
 
 const prefix = getPrefix(import.meta.url);
 
-await loadComponentsModules(['icon', 'focus'], prefix);
-
 export const vividListboxOption = ListboxOption.compose<FoundationElementDefinition>({
 	baseName: 'option',
 	template: template as any,
 	styles
 });
 
-designSystem.withPrefix(prefix).register(vividListboxOption());
+(async () => {
+	await loadComponentsModules(['icon', 'focus'], prefix);
+	designSystem.withPrefix(prefix).register(vividListboxOption());
+})();
