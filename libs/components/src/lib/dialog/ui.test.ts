@@ -41,7 +41,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 								headline="Dialog with overridden graphic slot"
 								text="This is the content that I want to show and I will show it!!!"
 								open>
-								<vwc-icon type="home" slot="graphic"></vwc-icon>
+								<vwc-icon name="home" slot="graphic"></vwc-icon>
 								</vwc-dialog>
 		<vwc-dialog id="bottom-right-dialog"
 								icon="info"
