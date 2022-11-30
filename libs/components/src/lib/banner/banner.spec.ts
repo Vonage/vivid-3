@@ -234,7 +234,7 @@ describe('vwc-banner', () => {
 		});
 
 		it('should set the icon according to connotation information by default', function () {
-			expect(getIcon().type)
+			expect(getIcon().name)
 				.toEqual('info-solid');
 		});
 
@@ -242,7 +242,7 @@ describe('vwc-banner', () => {
 			element.setAttribute('icon', 'home');
 			await elementUpdated(element);
 
-			expect(getIcon().type)
+			expect(getIcon().name)
 				.toEqual('home');
 		});
 
@@ -260,7 +260,7 @@ describe('vwc-banner', () => {
 
 				await elementUpdated(element);
 
-				expect(getIcon().type).toEqual(iconName);
+				expect(getIcon().name).toEqual(iconName);
 			}
 		});
 	});

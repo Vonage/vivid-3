@@ -80,7 +80,7 @@ describe('vwc-avatar', () => {
 	describe('avatar icon', () => {
 		it('should have the default icon', async () => {
 			const iconElement = baseElement.querySelector('vwc-icon');
-			expect(iconElement?.getAttribute('type')).toEqual('user-line');
+			expect(iconElement?.getAttribute('name')).toEqual('user-line');
 		});
 
 		it('should set the icon according to the icon property', async () => {
@@ -88,7 +88,7 @@ describe('vwc-avatar', () => {
 			element.setAttribute('icon', icon);
 			await elementUpdated(element);
 			const iconElement = baseElement.querySelector('vwc-icon');
-			expect(iconElement?.getAttribute('type')).toEqual(icon);
+			expect(iconElement?.getAttribute('name')).toEqual(icon);
 			expect(element.icon).toEqual(icon);
 		});
 

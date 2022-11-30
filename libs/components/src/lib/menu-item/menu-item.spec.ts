@@ -51,7 +51,7 @@ describe('vwc-menu-item', () => {
 
 		const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
 		expect(icon).toBeInstanceOf(HTMLElement);
-		expect(icon.type).toEqual(iconName);
+		expect(icon.name).toEqual(iconName);
 	});
 
 	it('should toggle "expanded" on mouse over and mouse out', async () => {

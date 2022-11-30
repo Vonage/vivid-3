@@ -77,7 +77,7 @@ Add the `arrow` attribute to add a small triangle to indicate the trigger elemen
 - Default: `false`
 
 ```html preview center
-<vwc-icon id="anchor" type='info-line'></vwc-icon>
+<vwc-icon id="anchor" name='info-line'></vwc-icon>
 <vwc-popup anchor="anchor" open arrow>
   <vwc-layout gutters="small" style="200px">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -93,7 +93,7 @@ Add the `alternate` attribute to set the color-scheme to dark or light (dependin
 - Default: `false`
 
 ```html preview center
-<vwc-icon id="anchor" type='info-line'></vwc-icon>
+<vwc-icon id="anchor" name='info-line'></vwc-icon>
 <vwc-popup anchor="anchor" open alternate>
   <vwc-layout gutters="small" style="200px">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
