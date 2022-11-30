@@ -5,9 +5,8 @@ import styles from './number-field.scss';
 import { NumberField } from './number-field';
 import { NumberFieldTemplate as template } from './number-field.template';
 
-const prefix = getPrefix(import.meta.url);
 
-await loadComponentsModules(['button', 'divider'], prefix);
+const prefix = getPrefix(import.meta.url);
 
 export const vividNumberField =
 	NumberField.compose<FoundationElementDefinition>({
@@ -19,7 +18,7 @@ export const vividNumberField =
 		},
 	});
 
-designSystem.withPrefix(prefix).register(vividNumberField());
-
-
-
+(async () => {
+	await loadComponentsModules(['button', 'divider'], prefix);
+	designSystem.withPrefix(prefix).register(vividNumberField());
+})();

@@ -11,3 +11,4 @@ export const vividBreadcrumb = Breadcrumb.compose<FoundationElementDefinition>({
 });
 
 designSystem.withPrefix(getPrefix(import.meta.url)).register(vividBreadcrumb());
+

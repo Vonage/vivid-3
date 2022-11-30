@@ -8,12 +8,13 @@ import { CardTemplate as template } from './card.template';
 
 const prefix = getPrefix(import.meta.url);
 
-await loadComponentsModules(['icon', 'elevation'], prefix);
-
 export const vividCard = Card.compose<FoundationElementDefinition>({
 	baseName: 'card',
 	template: template as any,
 	styles,
 });
 
-designSystem.withPrefix(prefix).register(vividCard());
+(async () => {
+	await loadComponentsModules(['icon', 'elevation'], prefix);
+	designSystem.withPrefix(prefix).register(vividCard());
+})();

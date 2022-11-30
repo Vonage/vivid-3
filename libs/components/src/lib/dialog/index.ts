@@ -9,12 +9,13 @@ import { DialogTemplate as template } from './dialog.template';
 
 const prefix = getPrefix(import.meta.url);
 
-await loadComponentsModules(['icon', 'button', 'elevation'], prefix);
-
 export const vividDialog = Dialog.compose<FoundationElementDefinition>({
 	baseName: 'dialog',
 	template: template as any,
 	styles: [styles, dialogPolyfillStyles],
 });
 
-designSystem.withPrefix(prefix).register(vividDialog());
+(async () => {
+	await loadComponentsModules(['icon', 'button', 'elevation'], prefix);
+	designSystem.withPrefix(prefix).register(vividDialog());
+})();

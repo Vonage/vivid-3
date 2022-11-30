@@ -7,8 +7,7 @@ import { Avatar } from './avatar';
 import { AvatarTemplate as template } from './avatar.template';
 
 const prefix = getPrefix(import.meta.url);
-
-await loadComponentsModules(['icon'], prefix);
+const dependencies = ['icon'];
 
 export const vividAvatar = Avatar.compose<FoundationElementDefinition>({
 	baseName: 'avatar',
@@ -16,4 +15,7 @@ export const vividAvatar = Avatar.compose<FoundationElementDefinition>({
 	styles,
 });
 
-designSystem.withPrefix(prefix).register(vividAvatar());
+(async () => {
+	await loadComponentsModules(dependencies, prefix);
+	designSystem.withPrefix(prefix).register(vividAvatar());
+})();
