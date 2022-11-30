@@ -244,9 +244,9 @@ describe('vwc-popup', () => {
 		});
 	});
 
-	describe('handle light dismiss', () => {
+	describe('handle popover', () => {
 		it('should hide when clicked outside of the popup', async () => {
-			const element = await fixture('<vwc-popup light-dismiss open></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
+			const element = await fixture('<vwc-popup popover open></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
 			await elementUpdated(element);
 
 			await setAnchor();
@@ -272,7 +272,7 @@ describe('vwc-popup', () => {
 		});
 
 		it('should not hide when clicked on the popup', async () => {
-			const element = await fixture('<vwc-popup light-dismiss></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
+			const element = await fixture('<vwc-popup popover></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
 			await elementUpdated(element);
 
 			await setAnchor();
@@ -292,7 +292,7 @@ describe('vwc-popup', () => {
 		});
 
 		it('should not hide when clicked on the anchor', async () => {
-			const element = await fixture('<vwc-popup light-dismiss open></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
+			const element = await fixture('<vwc-popup popover open></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
 			await elementUpdated(element);
 
 			await setAnchor();
@@ -313,7 +313,7 @@ describe('vwc-popup', () => {
 		});
 
 		it('should stay closed when clicked outside of the popup', async () => {
-			const element = await fixture('<vwc-popup light-dismiss></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
+			const element = await fixture('<vwc-popup popover></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
 			await elementUpdated(element);
 
 			await setAnchor();
