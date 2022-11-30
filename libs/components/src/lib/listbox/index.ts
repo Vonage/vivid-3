@@ -19,6 +19,6 @@ export const vividListbox = Listbox.compose<FoundationElementDefinition>({
 	// in listbox as it is not used directly in its template rather by user's authoring.
 	// but, due to the race condition and way listbox needs children to
 	// connect before setting/checking their props/attributes, it is required
-	await loadComponentsModules(['listbox-option', 'focus'], prefix);
+	await loadComponentsModules(['option', 'focus'], prefix);
 	designSystem.withPrefix(prefix).register(vividListbox());
 })();
