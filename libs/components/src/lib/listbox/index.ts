@@ -5,12 +5,8 @@ import { Listbox } from './listbox';
 import { ListboxTemplate as template } from './listbox.template';
 import styles from './listbox.scss';
 
-const prefix = getPrefix(import.meta.url);
 
-// by convention, listbox-option isn't required to be imported
-// in listbox as it is not used directly in its template rather by user's authoring.
-// but, due to the race condition and way listbox needs children to
-// connect before setting/checking their props/attributes, it is required
+const prefix = getPrefix(import.meta.url);
 
 export const vividListbox = Listbox.compose<FoundationElementDefinition>({
 	baseName: 'listbox',
@@ -19,6 +15,10 @@ export const vividListbox = Listbox.compose<FoundationElementDefinition>({
 });
 
 (async () => {
+	// by convention, listbox-option isn't required to be imported
+	// in listbox as it is not used directly in its template rather by user's authoring.
+	// but, due to the race condition and way listbox needs children to
+	// connect before setting/checking their props/attributes, it is required
 	await loadComponentsModules(['listbox-option', 'focus'], prefix);
 	designSystem.withPrefix(prefix).register(vividListbox());
 })();
