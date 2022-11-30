@@ -58,11 +58,11 @@ Use `--vvd-font-family-upright` to specify a base font family for your applicati
 Use `--vvd-font-family-monospace` to specify a monospace font family for your application. This is the default font family for code elements.
 
 - Type: `string`
-- Default: `'Roboto Mono'` 
+- Default: `'Roboto Mono'`
 
-It is best to import the font as recommended in [google-fonts](https://fonts.google.com/knowledge/using_type/using_web_fonts_from_a_font_delivery_service#loading-web-fonts)
+Learn how to load fonts into your application [with google-fonts](https://fonts.google.com/knowledge/using_type/using_web_fonts_from_a_font_delivery_service#loading-web-fonts)
 
-** Unless explicitely stated otherwise, Vonage products should use the brand specified `Spezia` font families. Vonage teams may review guidelines at the [Spezia webfont kit](https://github.com/Vonage/spezia-webfont-kit).
+** Unless explicitely stated otherwise, *Vonage products* should use the brand specified `Spezia` font families. Vonage teams may review guidelines at the [Spezia webfont kit](https://github.com/Vonage/spezia-webfont-kit).
 
 ```html preview
 <style>
