@@ -18,7 +18,7 @@ export const vividPopup = Popup.compose<FoundationElementDefinition>({
 	styles,
 });
 
-( async () => {
+(async () => {
 	await loadComponentsModules(['elevation', 'button'], prefix);
 	designSystem.withPrefix(prefix).register(vividPopup());
 })();
