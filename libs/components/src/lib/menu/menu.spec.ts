@@ -1,4 +1,5 @@
 import { ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture } from '@vivid-nx/shared';
+import { jest } from '@jest/globals';
 import type { Button } from '@microsoft/fast-foundation';
 import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
 import { Popup } from '../popup/popup';
@@ -16,7 +17,7 @@ describe('vwc-menu', () => {
 			observe: jest.fn(),
 			unobserve: jest.fn(),
 			disconnect: jest.fn()
-		}));
+		})) as unknown as any;
 
 	beforeEach(async () => {
 		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Menu;

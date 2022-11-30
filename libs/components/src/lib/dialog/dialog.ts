@@ -3,7 +3,7 @@ import {attr} from '@microsoft/fast-element';
 
 // Make sure we support Safari 14
 let dialogPolyfill: any;
-(async () => {
+await (async () => {
 	if (!HTMLDialogElement || !HTMLDialogElement.prototype.showModal) {
 		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore

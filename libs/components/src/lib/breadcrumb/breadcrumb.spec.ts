@@ -1,11 +1,11 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
-import {axe, toHaveNoViolations} from 'jest-axe';
+// import {axe, toHaveNoViolations} from 'jest-axe';
 import type {BreadcrumbItem} from '../breadcrumb-item/breadcrumb-item';
 import { Breadcrumb } from './breadcrumb';
 import '../breadcrumb-item';
 import '.';
 
-expect.extend(toHaveNoViolations);
+// expect.extend(toHaveNoViolations);
 const COMPONENT_TAG = 'vwc-breadcrumb';
 
 describe('vwc-breadcrumb', () => {
@@ -77,20 +77,20 @@ describe('vwc-breadcrumb', () => {
 		});
 	});
 
-	describe('a11y', () => {
-		it('should pass accessibility test', async () => {
-			const children = Array.from(element.children)
-				.map(({ shadowRoot }) => shadowRoot?.innerHTML).join('');
+	// describe('a11y', () => {
+	// 	it('should pass accessibility test', async () => {
+	// 		const children = Array.from(element.children)
+	// 			.map(({ shadowRoot }) => shadowRoot?.innerHTML).join('');
 
-			const exposedHtmlString =  element.shadowRoot?.innerHTML.replace('<slot></slot>', children) as string;
-			const results = await axe(exposedHtmlString, {
-				rules: {
-					// components should not be tested as page content
-					'region': { enabled: false }
-				}
-			});
+	// 		const exposedHtmlString =  element.shadowRoot?.innerHTML.replace('<slot></slot>', children) as string;
+	// 		const results = await axe(exposedHtmlString, {
+	// 			rules: {
+	// 				// components should not be tested as page content
+	// 				'region': { enabled: false }
+	// 			}
+	// 		});
 
-			expect(results).toHaveNoViolations();
-		});
-	});
+	// 		expect(results).toHaveNoViolations();
+	// 	});
+	// });
 });

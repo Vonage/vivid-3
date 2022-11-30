@@ -1,4 +1,5 @@
 import { ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture } from '@vivid-nx/shared';
+import { jest } from '@jest/globals';
 import { fireEvent } from '@testing-library/dom';
 import type { Button } from '../button/button';
 import { Tooltip } from './tooltip';
@@ -14,7 +15,7 @@ describe('vwc-tooltip', () => {
 			observe: jest.fn(),
 			unobserve: jest.fn(),
 			disconnect: jest.fn()
-		}));
+		})) as unknown as any;
 
 	beforeEach(async () => {
 		element = (await fixture(

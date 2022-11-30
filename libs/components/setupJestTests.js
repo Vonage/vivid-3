@@ -1,10 +1,15 @@
-import * as jestFetchMock from 'jest-fetch-mock';
+// import * as jestFetchMock from 'jest-fetch-mock';
 
-jestFetchMock.enableFetchMocks();
+// jestFetchMock.enableFetchMocks();
+
+import { jest } from '@jest/globals';
+import fetchMocks from 'jest-fetch-mock';
+
+fetchMocks.enableMocks();
 
 Object.defineProperty(window, 'matchMedia', {
 	writable: true,
-	value: jest.fn().mockImplementation((query: any) => ({
+	value: jest.fn().mockImplementation((query) => ({
 		matches: false,
 		media: query,
 		onchange: null,

@@ -1,4 +1,5 @@
 import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
+import { jest } from '@jest/globals';
 import { Dialog } from './dialog';
 import '.';
 
@@ -236,7 +237,7 @@ describe('vwc-dialog', () => {
 		const returnValue = 'returnValue';
 		element.returnValue = returnValue;
 		await showDialog();
-		const spy = jest.fn().mockImplementation((e) => detail = e.detail);
+		const spy = jest.fn().mockImplementation((e: any) => detail = e.detail);
 		element.addEventListener('close', spy);
 
 		await closeDialog();

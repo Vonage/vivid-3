@@ -1,4 +1,5 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { jest } from '@jest/globals';
 import type { ListboxOption } from '../listbox-option/listbox-option';
 import { Listbox } from './listbox';
 import '../listbox-option';

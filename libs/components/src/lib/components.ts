@@ -12,7 +12,7 @@ export * from './calendar-event';
 export * from './card';
 export * from './checkbox';
 export * from './elevation';
-export * from './dialog';
+// export * from './dialog';
 export * from './divider';
 export * from './fab';
 export * from './icon';

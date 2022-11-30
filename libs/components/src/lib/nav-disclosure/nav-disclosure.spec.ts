@@ -1,4 +1,5 @@
 import { elementUpdated, fixture, getBaseElement, getControlElement } from '@vivid-nx/shared';
+import { jest } from '@jest/globals';
 import { Icon } from '../icon/icon';
 import { NavDisclosure } from './nav-disclosure';
 import '.';

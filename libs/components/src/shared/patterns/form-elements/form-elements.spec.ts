@@ -1,3 +1,4 @@
+import { jest } from '@jest/globals';
 import {FormElement, formElements} from './form-elements';
 
 const VALIDATION_MESSAGE = 'Validation Message';
@@ -81,7 +82,7 @@ describe('formElements mixin', function () {
 
 	describe('blur event', function () {
 		it('should call validate', function () {
-			instance.validate = jest.fn();
+			instance.validate = jest.fn() as () => number;
 			dispatchBlurEvent();
 			expect(instance.validate).toHaveBeenCalledTimes(1);
 		});
@@ -110,14 +111,14 @@ describe('formElements mixin', function () {
 		});
 
 		it('should call validate', function () {
-			instance.validate = jest.fn();
+			instance.validate = jest.fn() as () => number;
 			instance.dispatchEvent(new Event('invalid'));
 			expect(instance.validate).toHaveBeenCalledTimes(1);
 		});
 
 		it('should call validate only if validation is disabled', function () {
 			enableValidation();
-			instance.validate = jest.fn();
+			instance.validate = jest.fn() as () => number;
 			instance.dispatchEvent(new Event('invalid'));
 			expect(instance.validate).toHaveBeenCalledTimes(0);
 		});
