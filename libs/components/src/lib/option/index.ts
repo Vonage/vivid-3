@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem, getPrefix } from '../shared/design-system';
-import { loadComponentsModules } from '../shared/utils';
+import { designSystem, getPrefix } from '../../shared/design-system';
+import { loadComponentsModules } from '../../shared/utils';
 import { ListboxOption } from './option';
 import { ListboxOptionTemplate as template } from './option.template';
 import styles from './option.scss';
