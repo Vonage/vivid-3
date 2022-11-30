@@ -11,4 +11,8 @@ export const vividAccordion = Accordion.compose<FoundationElementDefinition>({
 	styles,
 });
 
+export function test(a: number) {
+	return a * 5;
+}
+
 designSystem.register(vividAccordion());
