@@ -20,11 +20,6 @@
     <title>Vivid</title>
     <link rel="icon" href="{{ '/assets/images/vivid-logo.svg' | url }}" type="image/svg+xml">
 
-    <link rel="stylesheet" href="{{ '/assets/styles/tokens/theme-light.css' | url }}" media="(prefers-color-scheme: light)">
-    <link rel="stylesheet" href="{{ '/assets/styles/tokens/theme-dark.css' | url }}" media="(prefers-color-scheme: dark)">
-
-    <link rel="stylesheet" href="{{ '/assets/styles/core/all.css' | url }}">
-
     <!-- Load styles inline -->
     {% set highlightCss %}
       {% include "../../../node_modules/highlight.js/styles/github.css" %}
@@ -67,6 +62,11 @@
     <script type="module">
       {{ scrollHandler | safe }}
     </script>
+
+    <link rel="stylesheet" href="{{ '/assets/styles/tokens/theme-light.css' | url }}" media="(prefers-color-scheme: light)">
+    <link rel="stylesheet" href="{{ '/assets/styles/tokens/theme-dark.css' | url }}" media="(prefers-color-scheme: dark)">
+
+    <link rel="stylesheet" href="{{ '/assets/styles/core/all.css' | url }}">
 
 		<script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
 
