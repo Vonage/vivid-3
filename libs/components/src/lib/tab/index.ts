@@ -11,6 +11,9 @@ export const vividTab = Tab.compose({
 	baseName: 'tab',
 	template: template as any,
 	styles,
+	shadowOptions: {
+		delegatesFocus: true,
+	},
 });
 
 designSystem.register(vividTab());

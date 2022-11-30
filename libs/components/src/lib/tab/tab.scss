@@ -13,12 +13,6 @@
 	grid-column: 1 / auto;
 }
 
-@supports selector(:focus-visible) {
-	:host(:focus) {
-		outline: none;
-	}
-}
-
 .base {
 	$min-block-size: 48px;
 	$gutter: 8px;
@@ -45,6 +39,12 @@
 		user-select: none;
 	}
 
+	@supports selector(:focus-visible) {
+		&:focus {
+			outline: none;
+		}
+	}
+	
 	&:not(.disabled) {
 		cursor: pointer;
 	}

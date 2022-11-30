@@ -25,8 +25,8 @@ export function TabTemplate<T extends Tab>(context: ElementDefinitionContext) {
 	const focusTemplate = focusTemplateFactory(context);
 
 	return html<T>`
-	<template slot="tab" role="tab" aria-disabled="${x => x.disabled}">
-		<div class="${getClasses}">
+	<template slot="tab" role="tab" aria-disabled="${x => x.disabled}" aria-selected="${x => x.ariaSelected}">
+		<div class="${getClasses}" tabindex="${x => x.tabIndex}">
       ${() => focusTemplate}
       ${x => affixIconTemplate(x.icon)}
       ${x => x.label}
