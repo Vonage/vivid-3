@@ -36,8 +36,7 @@ function renderIcon() {
  */
 function renderInitials() {
 	return html<Avatar>`
-		<span class="initials">${ ({ name }) => name?.substring(0, 2) }</span>
-	` ?? html<Avatar>``;
+		<span class="initials">${ ({ name }) => name!.substring(0, 2) }</span>`;
 }
 
 /**
