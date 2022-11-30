@@ -51,7 +51,7 @@ export class Dialog extends FoundationElement {
 
 	get #dialog() {
 		if (!this.#dialogElement) {
-			this.#dialogElement = this.shadowRoot?.querySelector('dialog') as HTMLDialogElement;
+			this.#dialogElement = this.shadowRoot!.querySelector('dialog') as HTMLDialogElement;
 			if (this.#dialogElement) {
 				this.#dialogElement.open = this.open;
 				if (dialogPolyfill) {

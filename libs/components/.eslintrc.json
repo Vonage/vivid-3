@@ -16,6 +16,7 @@
   "rules": {
     // lint
     "@nrwl/nx/workspace/no-attribute-default-value": "error",
+    "@typescript-eslint/no-non-null-assertion": "off",
     "indent": "off",
     "@typescript-eslint/indent": [
       "error",
