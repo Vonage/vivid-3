@@ -57,20 +57,20 @@
       {{ viewportHandler | safe }}
     </script>
 
-    {% set scrollHandler %}
-      {% include "../assets/scripts/scroll-handler.js" %}
-    {% endset %}
-
-    <script type="module">
-      {{ scrollHandler | safe }}
-    </script>
-
     {% set themeHandler %}
       {% include "../assets/scripts/theme-handler.js" %}
     {% endset %}
 
     <script type="module">
       {{ themeHandler | safe }}
+    </script>
+
+    {% set scrollHandler %}
+      {% include "../assets/scripts/scroll-handler.js" %}
+    {% endset %}
+
+    <script type="module">
+      {{ scrollHandler | safe }}
     </script>
 
     <link rel="stylesheet" href="{{ '/assets/styles/tokens/theme-light.css' | url }}" media="(prefers-color-scheme: light)">
