@@ -17,6 +17,8 @@ export class Tab extends FoundationTab {
 	 */
 	@attr label?: string;
 
+	@attr override tabIndex: any = '-1';
+
 	@attr({ attribute: 'aria-selected' }) override ariaSelected: string | null = null;
 }
 
