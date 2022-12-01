@@ -150,16 +150,17 @@ Due to a11y and design constraints, the density can only be set to one of the fo
 
 <div id="scoped-region">
 
-  <vwc-header>
-    This header is expanded
-  </vwc-header>
+ <form style="width: 250px">
+  <vwc-layout column-basis="block">
 
-  <pre>/*
-  * This block of code is not affected
-  */
-  </pre>
+   <vwc-text-field label="First name:"></vwc-text-field>
 
-  <vwc-button appearance="filled" label="But the button is"></vwc-button>
+   <vwc-text-field label="Last name:"></vwc-text-field>
+
+   <vwc-button appearance="filled" label="Submit"></vwc-button>
+
+  </vwc-layout>
+ </form>
 
 </div>
 
