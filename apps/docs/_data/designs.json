@@ -12,7 +12,8 @@
     "modules": [
       "/assets/modules/components/header/index.js",
       "/assets/modules/components/button/index.js",
-      "/assets/modules/components/number-field/index.js"
+      "/assets/modules/components/number-field/index.js",
+      "/assets/modules/components/divider/index.js"
     ]
   },
   {
