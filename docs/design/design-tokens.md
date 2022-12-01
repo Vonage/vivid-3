@@ -137,28 +137,32 @@ Due to a11y and design constraints, the density can only be set to one of the fo
 - Type: `-1` | `0` | `1` | `2`
 - Default: `0`
 
-```html preview
+```html preview blocks
 <style>
- :root {
+ #scoped-region {
   --vvd-size-density: 2;
  }
 </style>
 
 <vwc-number-field label="Change the value to changed the density value" min="-1" max="2" value="2"></vwc-number-field>
 
-<vwc-header>
-  This header is expanded
-</vwc-header>
+<div id="scoped-region">
 
-<pre>/*
- * This block of code is not affected
- */
-</pre>
+  <vwc-header>
+    This header is expanded
+  </vwc-header>
 
-<vwc-button appearance="filled" label="But the button is"></vwc-button>
+  <pre>/*
+  * This block of code is not affected
+  */
+  </pre>
+
+  <vwc-button appearance="filled" label="But the button is"></vwc-button>
+
+</div>
 
 <script>
-  const root = document.querySelector(':root');
+  const root = document.querySelector('#scoped-region');
   const numberfield = document.querySelector('vwc-number-field');
   numberfield.addEventListener('change', (e) => root.style.setProperty('--vvd-size-density', e.target.value));
 </script>
