@@ -140,11 +140,13 @@ Due to a11y and design constraints, the density can only be set to one of the fo
 ```html preview blocks
 <style>
  #scoped-region {
-  --vvd-size-density: 2;
+  --vvd-size-density: 1;
  }
 </style>
 
-<vwc-number-field label="Change the value to changed the density value" min="-1" max="2" value="2"></vwc-number-field>
+<vwc-number-field label="Choose density" helper-text="Change the value to changed the density value" min="-1" max="2" value="2" style="justify-self: flex-start"></vwc-number-field>
+
+<vwc-divider></vwc-divider>
 
 <div id="scoped-region">
 
