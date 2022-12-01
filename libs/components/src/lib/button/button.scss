@@ -40,6 +40,8 @@
 	gap: var(#{variables.$icon-gap});
 	vertical-align: middle;
 	white-space: nowrap;
+	inline-size: 100%;
+	justify-content: center;
 
 	@supports selector(:focus-visible) {
 		&:focus {
