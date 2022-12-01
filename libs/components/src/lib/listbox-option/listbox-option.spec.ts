@@ -1,4 +1,5 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { expect } from '@jest/globals';
 import { Icon } from '../icon/icon';
 import { ListboxOption } from './listbox-option';
 import '.';

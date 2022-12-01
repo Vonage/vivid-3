@@ -5,6 +5,7 @@ import {
 	getBaseElement,
 	getControlElement, listenToFormSubmission
 } from '@vivid-nx/shared';
+import { expect } from '@jest/globals';
 import { TextArea } from './text-area';
 import '.';
 

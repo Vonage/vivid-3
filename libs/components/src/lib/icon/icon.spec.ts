@@ -1,9 +1,11 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
-import { jest } from '@jest/globals';
+import {createRequire} from 'node:module';
+import { expect, jest } from '@jest/globals';
 import type {Icon} from './icon';
 import '.';
 
 const COMPONENT_TAG = 'vwc-icon';
+const require = createRequire(import.meta.url);
 
 describe('icon', function () {
 	let element: Icon;
@@ -40,7 +42,7 @@ describe('icon', function () {
 		const originalPromise = global.Promise;
 
 		beforeEach(function () {
-			// global.Promise = require('promise'); // needed in order for promises to work with jest fake timers
+			global.Promise = require('promise'); // needed in order for promises to work with jest fake timers
 			jest.useFakeTimers({legacyFakeTimers: true});
 		});
 
@@ -66,13 +68,13 @@ describe('icon', function () {
 			jest.advanceTimersByTime(timeInMs);
 		}
 
-		// /**
-		//  * @param iconName
-		//  */
-		// function setIconNameAndRunAllTimers(iconName: string | undefined) {
-		// 	element.name = iconName;
-		// 	jest.runAllTimers();
-		// }
+		/**
+		 * @param iconName
+		 */
+		function setIconNameAndRunAllTimers(iconName: string | undefined) {
+			element.name = iconName;
+			jest.runAllTimers();
+		}
 
 		it('should show nothing when first changing the icon', async function () {
 			fakeFetch(4000);
@@ -93,18 +95,18 @@ describe('icon', function () {
 			expect(element.svg).toEqual(undefined);
 		});
 
-		// it('should set icon in svg after icon fetch', async function () {
-		// 	fakeFetch(100);
-		// 	setIconNameAndRunAllTimers('none');
-		// 	expect(element.svg).toEqual(svg);
-		// });
+		it('should set icon in svg after icon fetch', async function () {
+			fakeFetch(100);
+			setIconNameAndRunAllTimers('none');
+			expect(element.svg).toEqual(svg);
+		});
 
-		// it('should show empty string when no icon is available', function () {
-		// 	fakeFetch(100);
-		// 	setIconNameAndRunAllTimers('none');
-		// 	setIconNameAndRunAllTimers(undefined);
-		// 	expect(element.svg).toEqual('');
-		// });
+		it('should show empty string when no icon is available', function () {
+			fakeFetch(100);
+			setIconNameAndRunAllTimers('none');
+			setIconNameAndRunAllTimers(undefined);
+			expect(element.svg).toEqual('');
+		});
 	});
 
 	describe('size', function () {

@@ -5,6 +5,7 @@ import {
 	getBaseElement,
 	listenToFormSubmission
 } from '@vivid-nx/shared';
+import { expect } from '@jest/globals';
 import {TextFieldType} from '@microsoft/fast-foundation';
 import {Icon} from '../icon/icon';
 import {TextField} from './text-field';

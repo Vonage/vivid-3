@@ -10,4 +10,8 @@ export const vividBreadcrumb = Breadcrumb.compose<FoundationElementDefinition>({
 	styles,
 });
 
-designSystem.register(vividBreadcrumb());
+export const getPrefix = (url:string) => new URL(url).searchParams.get('prefix') || 'vwc';
+
+console.log(import.meta.url);
+
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividBreadcrumb());

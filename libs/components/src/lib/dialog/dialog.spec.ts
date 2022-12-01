@@ -1,5 +1,5 @@
 import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
-import { jest } from '@jest/globals';
+import { expect, jest } from '@jest/globals';
 import { Dialog } from './dialog';
 import '.';
 

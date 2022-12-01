@@ -1,4 +1,5 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import { expect } from '@jest/globals';
 import { Orientation } from '@microsoft/fast-web-utilities';
 import { Slider } from './slider';
 import '.';

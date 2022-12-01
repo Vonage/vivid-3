@@ -1,4 +1,5 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { expect } from '@jest/globals';
 import type { AccordionItem } from '../accordion-item/accordion-item';
 import { Accordion } from './accordion';
 import '.';

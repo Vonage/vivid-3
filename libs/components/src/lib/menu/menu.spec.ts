@@ -1,5 +1,5 @@
 import { ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture } from '@vivid-nx/shared';
-import { jest } from '@jest/globals';
+import { expect, jest } from '@jest/globals';
 import type { Button } from '@microsoft/fast-foundation';
 import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
 import { Popup } from '../popup/popup';

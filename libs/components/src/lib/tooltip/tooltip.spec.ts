@@ -1,5 +1,5 @@
 import { ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture } from '@vivid-nx/shared';
-import { jest } from '@jest/globals';
+import { expect, jest } from '@jest/globals';
 import { fireEvent } from '@testing-library/dom';
 import type { Button } from '../button/button';
 import { Tooltip } from './tooltip';

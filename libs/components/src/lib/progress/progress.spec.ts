@@ -1,4 +1,5 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
+import { expect } from '@jest/globals';
 import {Connotation, Shape} from '../enums';
 import {Progress} from './progress';
 import '.';

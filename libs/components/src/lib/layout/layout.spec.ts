@@ -1,4 +1,5 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import { expect } from '@jest/globals';
 import { LayoutSize } from '../enums';
 import { AUTO_SIZING, Layout } from './layout';
 import '.';

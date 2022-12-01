@@ -1,4 +1,5 @@
 import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
+import { expect } from '@jest/globals';
 import { Divider } from './divider';
 import '.';
 

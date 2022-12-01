@@ -1,12 +1,14 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
-// import { axe, toHaveNoViolations } from 'jest-axe';
+import { expect } from '@jest/globals';
+import {createRequire} from 'node:module';
 import { CalendarEvent } from './calendar-event';
 import '.';
 
-// expect.extend(toHaveNoViolations);
-
-
 const COMPONENT_TAG = 'vwc-calendar-event';
+
+const require = createRequire(import.meta.url);
+const { axe, toHaveNoViolations } = require('jest-axe');
+expect.extend(toHaveNoViolations);
 
 describe('vwc-calendar-event', () => {
 	let element: CalendarEvent;
@@ -89,22 +91,22 @@ describe('vwc-calendar-event', () => {
 		});
 	});
 
-	// describe('a11y', () => {
-	// 	it('should pass accessibility test', async () => {
-	// 		element.heading = 'heading';
-	// 		await elementUpdated(element);
+	describe('a11y', () => {
+		it('should pass accessibility test', async () => {
+			element.heading = 'heading';
+			await elementUpdated(element);
 
-	// 		const { shadowRoot } = element;
-	// 		if (!shadowRoot) { return; }
+			const { shadowRoot } = element;
+			if (!shadowRoot) { return; }
 
-	// 		const results = await axe(shadowRoot.innerHTML, {
-	// 			rules: {
-	// 				// components should not be tested as page content
-	// 				'region': { enabled: false }
-	// 			}
-	// 		});
+			const results = await axe(shadowRoot.innerHTML, {
+				rules: {
+					// components should not be tested as page content
+					'region': { enabled: false }
+				}
+			});
 
-	// 		expect(results).toHaveNoViolations();
-	// 	});
-	// });
+			(expect(results) as any).toHaveNoViolations();
+		});
+	});
 });

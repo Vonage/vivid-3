@@ -1,4 +1,5 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
+import { expect } from '@jest/globals';
 import {Connotation} from '../enums';
 import {ProgressRing} from './progress-ring';
 import '.';

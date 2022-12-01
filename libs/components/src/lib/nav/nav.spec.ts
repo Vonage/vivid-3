@@ -1,10 +1,14 @@
 import { fixture } from '@vivid-nx/shared';
-// import { axe, toHaveNoViolations } from 'jest-axe';
+import { expect } from '@jest/globals';
+import {createRequire} from 'node:module';
 import { Nav } from './nav';
 import '.';
 
-// expect.extend(toHaveNoViolations);
 const COMPONENT_TAG = 'vwc-nav';
+
+const require = createRequire(import.meta.url);
+const { axe, toHaveNoViolations } = require('jest-axe');
+expect.extend(toHaveNoViolations);
 
 describe('vwc-nav', () => {
 	const navItemsTemplate = `
@@ -27,20 +31,20 @@ describe('vwc-nav', () => {
 		});
 	});
 
-	// describe('a11y', () => {
-	// 	it('should pass accessibility test', async () => {
-	// 		const children = Array.from(element.children)
-	// 			.map(({ shadowRoot }) => shadowRoot?.innerHTML).join('');
+	describe('a11y', () => {
+		it('should pass accessibility test', async () => {
+			const children = Array.from(element.children)
+				.map(({ shadowRoot }) => shadowRoot?.innerHTML).join('');
 
-	// 		const exposedHtmlString = element.shadowRoot?.innerHTML.replace('<slot></slot>', children) as string;
-	// 		const results = await axe(exposedHtmlString, {
-	// 			rules: {
-	// 				// components should not be tested as page content
-	// 				'region': { enabled: false }
-	// 			}
-	// 		});
+			const exposedHtmlString = element.shadowRoot?.innerHTML.replace('<slot></slot>', children) as string;
+			const results = await axe(exposedHtmlString, {
+				rules: {
+					// components should not be tested as page content
+					'region': { enabled: false }
+				}
+			});
 
-	// 		expect(results).toHaveNoViolations();
-	// 	});
-	// });
+			(expect(results) as any).toHaveNoViolations();
+		});
+	});
 });

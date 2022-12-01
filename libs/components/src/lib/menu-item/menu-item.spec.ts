@@ -1,4 +1,5 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { expect } from '@jest/globals';
 import '.';
 import { MenuItemRole } from '@microsoft/fast-foundation';
 import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';

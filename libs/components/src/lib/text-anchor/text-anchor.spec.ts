@@ -1,4 +1,5 @@
 import {elementUpdated, fixture, setAttribute} from '@vivid-nx/shared';
+import { expect } from '@jest/globals';
 import {TextAnchor} from './text-anchor';
 import '.';
 

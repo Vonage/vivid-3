@@ -1,4 +1,5 @@
 import {elementUpdated, fixture, getBaseElement, setAttribute} from '@vivid-nx/shared';
+import { expect } from '@jest/globals';
 import type {Icon} from '../icon/icon';
 import { BreadcrumbItem } from './breadcrumb-item';
 import '.';

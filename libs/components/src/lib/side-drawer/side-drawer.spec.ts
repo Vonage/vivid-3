@@ -1,5 +1,5 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
-import { jest } from '@jest/globals';
+import { expect, jest } from '@jest/globals';
 import { SideDrawer } from './side-drawer';
 import '.';
 

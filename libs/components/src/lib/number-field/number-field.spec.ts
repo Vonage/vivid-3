@@ -5,6 +5,7 @@ import {
 	getControlElement,
 	listenToFormSubmission
 } from '@vivid-nx/shared';
+import { expect } from '@jest/globals';
 import {Shape} from '../enums';
 import { NumberField } from './number-field';
 import '.';

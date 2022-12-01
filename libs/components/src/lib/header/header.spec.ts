@@ -1,4 +1,5 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { expect } from '@jest/globals';
 import type { Elevation } from './../elevation/elevation';
 import { Header } from './header';
 import '.';

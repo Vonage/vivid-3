@@ -1,15 +1,17 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
-import { jest } from '@jest/globals';
-// import { axe, toHaveNoViolations } from 'jest-axe';
+import { expect, jest } from '@jest/globals';
+import {createRequire} from 'node:module';
 import { Calendar } from './calendar';
 import '.';
 import '../calendar-event';
 import { getValidDateString } from './helpers/calendar.date-functions';
 import type { CalendarEventContext } from './helpers/calendar.event-context';
 
-// expect.extend(toHaveNoViolations);
-
 const COMPONENT_TAG = 'vwc-calendar';
+
+const require = createRequire(import.meta.url);
+const { axe, toHaveNoViolations } = require('jest-axe');
+expect.extend(toHaveNoViolations);
 
 describe('vwc-calendar', () => {
 	let element: Calendar;
@@ -94,7 +96,7 @@ describe('vwc-calendar', () => {
 
 			const hour13th = element.shadowRoot?.querySelector('.row-headers > :nth-child(13)') as HTMLSpanElement;
 
-			expect(hour13th.textContent?.trim()).toEqual('1 PM');
+			expect(hour13th.textContent?.trim()).toEqual('1 PM');
 		});
 	});
 
@@ -301,21 +303,21 @@ describe('vwc-calendar', () => {
 		});
 	});
 
-	// describe('a11y', () => {
-	// 	it('should pass accessibility test', async () => {
-	// 		const { shadowRoot } = element;
-	// 		if (!shadowRoot) { return; }
+	describe('a11y', () => {
+		it('should pass accessibility test', async () => {
+			const { shadowRoot } = element;
+			if (!shadowRoot) { return; }
 
-	// 		const results = await axe(shadowRoot.innerHTML, {
-	// 			rules: {
-	// 				// components should not be tested as page content
-	// 				'region': { enabled: false }
-	// 			}
-	// 		});
+			const results = await axe(shadowRoot.innerHTML, {
+				rules: {
+					// components should not be tested as page content
+					'region': { enabled: false }
+				}
+			});
 
-	// 		expect(results).toHaveNoViolations();
-	// 	});
-	// });
+			(expect(results) as any).toHaveNoViolations();
+		});
+	});
 });
 
 /**

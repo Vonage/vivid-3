@@ -1,5 +1,6 @@
 import { elementUpdated, fixture, getBaseElement, listenToFormSubmission } from '@vivid-nx/shared';
-// import { configureAxe, toHaveNoViolations } from 'jest-axe';
+import { expect } from '@jest/globals';
+import {createRequire} from 'node:module';
 import type { Radio } from '../radio/radio';
 import { RadioGroup } from './radio-group';
 import '../radio';
@@ -7,16 +8,19 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-radio-group';
 
+const require = createRequire(import.meta.url);
+const { configureAxe, toHaveNoViolations } = require('jest-axe');
+
 describe('vwc-radio-group', () => {
 	let element: RadioGroup;
 	let radios: Radio[];
-
-	// expect.extend(toHaveNoViolations);
-	// const axe = configureAxe({
-	// 	rules: {
-	// 		'region': { enabled: false }
-	// 	}
-	// });
+	
+	expect.extend(toHaveNoViolations);
+	const axe = configureAxe({
+		rules: {
+			'region': { enabled: false }
+		}
+	});
 
 	beforeEach(async () => {
 		element = fixture(`
@@ -150,11 +154,11 @@ describe('vwc-radio-group', () => {
 		});
 	});
 
-	// describe('axe a11y', () => {
-	// 	it('should make sure the markup is validated by Axe', async () => {
-	// 		expect(await axe(element)).toHaveNoViolations();
-	// 	});
-	// });
+	describe('axe a11y', () => {
+		it('should make sure the markup is validated by Axe', async () => {
+			(expect(await axe(element)) as any).toHaveNoViolations();
+		});
+	});
 
 	describe('form', () => {
 		it('should behave as a radio group in a form', async () => {

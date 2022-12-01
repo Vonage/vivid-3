@@ -1,4 +1,5 @@
 import {createFormHTML, elementUpdated, fixture, getBaseElement, listenToFormSubmission} from '@vivid-nx/shared';
+import { expect } from '@jest/globals';
 import { Checkbox } from './checkbox';
 import '.';
 

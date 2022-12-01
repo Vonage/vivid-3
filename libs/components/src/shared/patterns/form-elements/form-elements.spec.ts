@@ -1,4 +1,4 @@
-import { jest } from '@jest/globals';
+import { expect, jest } from '@jest/globals';
 import {FormElement, formElements} from './form-elements';
 
 const VALIDATION_MESSAGE = 'Validation Message';

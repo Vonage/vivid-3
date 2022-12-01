@@ -1,5 +1,5 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
-import { jest } from '@jest/globals';
+import { expect, jest } from '@jest/globals';
 import type {Icon} from '../icon/icon';
 import {Button} from '../button/button';
 import {Connotation} from '../enums';

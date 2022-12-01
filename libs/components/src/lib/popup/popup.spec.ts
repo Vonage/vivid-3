@@ -4,7 +4,7 @@ import {
 	fixture,
 	getControlElement
 } from '@vivid-nx/shared';
-import { jest } from '@jest/globals';
+import { expect, jest } from '@jest/globals';
 // import * as floatingUI from '@floating-ui/dom';
 import type { Button } from '../button/button';
 import { Popup } from './popup';
