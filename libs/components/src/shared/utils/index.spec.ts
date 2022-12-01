@@ -16,7 +16,7 @@ describe('loadComponentsModules', () => {
 	it('should load components modules', async () => {
 		const components = ['button'];
 		const prefix = 'vivid';
-		const {loadComponentsModules} = getNonMockedLoadComponentsModules();
+		const { loadComponentsModules } = getNonMockedLoadComponentsModules();
 
 		mockCallWithPrefix();
 
