@@ -245,31 +245,25 @@ describe('vwc-popup', () => {
 	});
 
 	describe('handle popover', () => {
-		// it('should hide when clicked outside of the popup', async () => {
-		// 	const element = await fixture('<vwc-popup popover open></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
-		// 	await elementUpdated(element);
+		it('should hide when call hidePopover', async () => {
+			await setAnchor();
 
-		// 	await setAnchor();
-		// 	element.anchor = 'anchor';
-		// 	await elementUpdated(element);
+			const element = await fixture('<vwc-popup popover open></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
+			await elementUpdated(element);
 
-		// 	const buttonEl = await fixture('<vwc-button id="button"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE) as Button;
-		// 	await elementUpdated(buttonEl);
+			element.anchor = 'anchor';
+			await elementUpdated(element);
 
-		// 	const openStateBeforeLightDismiss = element.open;
+			const openStateBeforeHidePopover = element.open;
 
-		// 	const button = document.querySelector('vwc-button#button');
-		// 	(button as HTMLElement).dispatchEvent(new MouseEvent('mousedown', {
-		// 		bubbles: true,
-		// 		composed: true
-		// 	}));
-		// 	await elementUpdated(element);
+			element.hidePopover();
+			await elementUpdated(element);
 
-		// 	expect(openStateBeforeLightDismiss)
-		// 		.toEqual(true);
-		// 	expect(element.open)
-		// 		.toEqual(false);
-		// });
+			expect(openStateBeforeHidePopover)
+				.toEqual(true);
+			expect(element.open)
+				.toEqual(false);
+		});
 
 		it('should not hide when clicked on the popup', async () => {
 			const element = await fixture('<vwc-popup popover></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
@@ -291,26 +285,25 @@ describe('vwc-popup', () => {
 				.toEqual(true);
 		});
 
-		// it('should not hide when clicked on the anchor', async () => {
-		// 	const element = await fixture('<vwc-popup popover open></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
-		// 	await elementUpdated(element);
+		it('should hide when clicked on the anchor', async () => {
+			const element = await fixture('<vwc-popup popover open></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
+			await elementUpdated(element);
 
-		// 	await setAnchor();
-		// 	element.anchor = 'anchor';
-		// 	await elementUpdated(element);
+			const anchorEl = await setAnchor();
+			element.anchor = 'anchor';
+			await elementUpdated(element);
 
-		// 	const openStateBeforeLightDismiss = element.open;
+			const openStateBeforeAnchorClicked = element.open;
 
-		// 	const dismissButton = document.querySelector('vwc-button#anchor');
-		// 	(dismissButton as HTMLElement).click();
+			anchorEl.click();
 
-		// 	await elementUpdated(element);
+			await elementUpdated(element);
 
-		// 	expect(openStateBeforeLightDismiss)
-		// 		.toEqual(true);
-		// 	expect(element.open)
-		// 		.toEqual(true);
-		// });
+			expect(openStateBeforeAnchorClicked)
+				.toEqual(true);
+			expect(element.open)
+				.toEqual(false);
+		});
 
 		it('should stay closed when clicked outside of the popup', async () => {
 			const element = await fixture('<vwc-popup popover></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
