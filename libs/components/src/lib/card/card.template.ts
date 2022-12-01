@@ -20,7 +20,7 @@ header icon
  */
 function renderHeaderIcon(iconTag: string) {
 	return html<Card>`
-	  <${iconTag} class="icon" inline type="${x => x.icon}"></${iconTag}>`;
+	  <${iconTag} class="icon" inline name="${x => x.icon}"></${iconTag}>`;
 }
 
 /**

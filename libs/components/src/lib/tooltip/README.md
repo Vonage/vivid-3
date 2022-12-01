@@ -1,6 +1,6 @@
 # Tooltip
 
-A tooltip is a brief, informative message or descriptions or explanations for their paired element. Tooltips in general are less accessible so be sure to follow our [accessibility recommendation](#accessibility) in the docs.
+A tooltip displays additional, non-essential, informative message, description or explanation to a focusable element upon hover or focus. It appears after a short delay and disappears when `Escape` key is pressed, element loses focus or hovered off. 
 
 ```js
 <script type="module">
@@ -12,7 +12,9 @@ A tooltip is a brief, informative message or descriptions or explanations for th
 
 ### Anchor
 
-The tooltip can be placed on interactive controls (things that can be hovered or focusable) such as: button, checkbox, input text.
+The tooltip should have an `anchor` attribute with the anchor's id.
+
+The tooltip should be placed on interactive controls, elements that can be hovered over or focusable (e.g. button, checkbox, input text etc.).
 The tooltip can't be placed on non-interactive elements such as paragraph or plain div.
 Do not target non-interactive controls as a tooltip's anchor (such as non-focusable / disabled elements).
 
@@ -20,36 +22,18 @@ Do not target non-interactive controls as a tooltip's anchor (such as non-focusa
 - Default: `undefined`
 
 ```html preview center
-<vwc-button id="anchor" icon="help-line" shape="pill" aria-describedby="tooltip"></vwc-button>
-<vwc-tooltip id="tooltip" anchor="anchor" text="I'm a tooltip" open></vwc-tooltip>
+<vwc-button id="button" icon="help-line" shape="pill"></vwc-button>
+<vwc-tooltip anchor="button" text="I'm a tooltip"></vwc-tooltip>
 ```
 
 ### Text
 
-The tooltip is a description and therefor, the tooltip itself can not be interactive and contains only text.
+Use the `text` attribute to add text content to the tooltip.
+
+Because the tooltip itself never receives focus and is not in the tabbing order, a tooltip can not contain interactive elements like links, inputs, or buttons
 
 - Type: `string`
 - Default: `undefined`
-
-### Open
-
-Use the `open` attribute to indicate whether the tooltip is open.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview center
-<vwc-button id="button" icon="info-line" shape="pill" aria-describedby="tooltip"></vwc-button>
-<vwc-tooltip id="tooltip" anchor="button" text="Focus or hover to open."></vwc-tooltip>
-
-<script>
-  button.addEventListener('mouseover', ()=> tooltip.open = true);
-  button.addEventListener('mouseout', ()=> tooltip.open = false);
-
-  button.addEventListener('focusin', ()=> tooltip.open = true);
-  button.addEventListener('focusout', ()=> tooltip.open = false);
-</script>
-```
 
 ### Placement
 
@@ -65,10 +49,10 @@ Use the `placement` attribute to set the placement of the tooltip around the anc
   }
 </style>
 <vwc-button id="anchor" appearance='outlined' label='This is an anchor'></vwc-button>
-<vwc-tooltip anchor="anchor" open text="right" placement="right"></vwc-tooltip>
-<vwc-tooltip anchor="anchor" open text="left" placement="left"></vwc-tooltip>
-<vwc-tooltip anchor="anchor" open text="top" placement="top"></vwc-tooltip>
-<vwc-tooltip anchor="anchor" open text="bottom" placement="bottom"></vwc-tooltip>
+<vwc-tooltip anchor="anchor" text="right" placement="right"></vwc-tooltip>
+<vwc-tooltip anchor="anchor" text="left" placement="left"></vwc-tooltip>
+<vwc-tooltip anchor="anchor" text="top" placement="top"></vwc-tooltip>
+<vwc-tooltip anchor="anchor" text="bottom" placement="bottom"></vwc-tooltip>
 ```
 
 ## CSS Variables
@@ -87,40 +71,8 @@ Use the `--tooltip-inline-size` variable to set the tooltip's inline size.
   }
 </style>
 
-<vwc-button id="button" icon="info-line" shape="pill" aria-describedby="tooltip"></vwc-button>
-<vwc-tooltip open id="tooltip" anchor="button" text="My inline size is 200px"></vwc-tooltip>
-```
-
-## Accessibility
-
-- Tooltip has a `role` tooltip.
-- Be sure to add `aria-describedby= "tooltip's id"` on the tooltip trigger element for screen readers readability.
-- The trigger of the tooltip must be focusable and interactive.
-- A tooltip cannot contain interactive or focusable content.
-- The escape key hides the tooltip when the anchor is focused.
-- Tooltip should show on mouse hover and keyboard focus.
-- Tabbing to the element should display the tooltip.
-
-## Use Cases
-
-### Usage inside text
-
-```html preview
-<p>
-  Text with tooltip - press the question mark
-  <vwc-button id="button" icon="help-line" shape="pill" aria-describedby="tooltip"></vwc-button>
-  more text after tooltip.
-</p>
-
-<vwc-tooltip id="tooltip" anchor="button" placement="bottom-end" text="I'm the tooltip content"></vwc-tooltip>
-
-<script>
-  button.addEventListener('mouseover', ()=> tooltip.open = true);
-  button.addEventListener('mouseout', ()=> tooltip.open = false);
-
-  button.addEventListener('focusin', ()=> tooltip.open = true);
-  button.addEventListener('focusout', ()=> tooltip.open = false);
-</script>
+<vwc-button id="button" icon="info-line" shape="pill"></vwc-button>
+<vwc-tooltip anchor="button" text="My inline size is 200px"></vwc-tooltip>
 ```
 
 ## Caveat

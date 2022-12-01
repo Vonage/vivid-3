@@ -2,6 +2,87 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Tue, 29 Nov 2022 15:41:17 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.108",
+      "version": "3.0.0-next.108",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "5f0b87a2700c7afdf1d023b157a8ed97c7a3edfd",
+            "comment": "icon component support svg slot assignment"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 29 Nov 2022 09:53:01 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.107",
+      "version": "3.0.0-next.107",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "d9c29d762e598f8b71f0bc66460398b55478d633",
+            "comment": "fix lint"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 28 Nov 2022 21:11:08 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.107",
+      "version": "3.0.0-next.107",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "2f90891228c3a971545705fb99d68550c2a51eb5",
+            "comment": "icon & progress-ring support full integer sizing spectrum"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "40646892f6cfc68f433c5a04e9e11cdef79b278d",
+            "comment": "icon type property renamed (to name)"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 27 Nov 2022 16:54:42 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.106",
+      "version": "3.0.0-next.106",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "47ab0d2cd75657411ca167b287572c07c4bd7994",
+            "comment": "map warning connotation to custom semantic variables"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 27 Nov 2022 13:41:49 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.105",
+      "version": "3.0.0-next.105",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "3cc31e2034c28f4251803c1e39d3552ed1c6ac52",
+            "comment": "refactor tooltip"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 22 Nov 2022 08:33:47 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.104",
       "version": "3.0.0-next.104",

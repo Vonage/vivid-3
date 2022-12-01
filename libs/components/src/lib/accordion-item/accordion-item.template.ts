@@ -58,8 +58,8 @@ const renderHeaderButton = (context: ElementDefinitionContext) => {
 		${when(x => x.meta, html`<span class="meta">${x => x.meta}</span>`)}
 		<span class="indicator">
 			${when(x => !x.noIndicator && !x.iconTrailing, html`
-				${when(x => !x.open, html`<${iconTag} type='chevron-down-solid'></${iconTag}>`)}
-				${when(x => x.open, html`<${iconTag} type='chevron-up-solid'></${iconTag}>`)}
+				${when(x => !x.open, html`<${iconTag} name='chevron-down-solid'></${iconTag}>`)}
+				${when(x => x.open, html`<${iconTag} name='chevron-up-solid'></${iconTag}>`)}
 			`)}
 		</span>
 	</button>

@@ -19,7 +19,7 @@ const getClasses = (_: Dialog) => classNames(
  */
 function icon(iconTag: string) {
 	return html<Dialog>`
-		<${iconTag} class="icon" size="expanded" type="${x => x.icon}"></${iconTag}>
+		<${iconTag} class="icon" name="${x => x.icon}"></${iconTag}>
 	`;
 }
 

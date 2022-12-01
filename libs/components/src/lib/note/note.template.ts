@@ -41,7 +41,7 @@ function getIconType(note: Note) {
  *
  */
 function getIconTemplate(iconTag: string) {
-	return html<Note>`<${iconTag} class="icon" type="${getIconType}"></${iconTag}>`;
+	return html<Note>`<${iconTag} class="icon" name="${getIconType}"></${iconTag}>`;
 }
 
 /**

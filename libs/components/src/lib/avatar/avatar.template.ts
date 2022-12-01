@@ -22,7 +22,7 @@ const getClasses = ({appearance, connotation, shape, size}: Avatar) => className
 function renderIcon(iconTag: string) {
 	return html<Avatar>`
 		<span class="icon">
-			<${iconTag} type="${(x) => x.icon? `${x.icon}` : 'user-line'}"></${iconTag}>
+			<${iconTag} name="${(x) => x.icon? `${x.icon}` : 'user-line'}"></${iconTag}>
 		</span>
 	`;
 }
