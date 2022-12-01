@@ -10,3 +10,6 @@ export const getPrefix = (url:string) => new URL(url).searchParams.get('prefix')
  * @returns {DesignSystem} - Represents a configurable design system. An API gateway to design system features.
  */
 export const designSystem = DesignSystem.getOrCreate();
+
+
+

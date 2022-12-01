@@ -8,6 +8,8 @@
 		"nx-vivid-e2e": "apps/nx-vivid-e2e",
 		"shared": "libs/shared",
 		"styles": "libs/styles",
+		"test-prefix": "apps/test-prefix",
+		"test-prefix-e2e": "apps/test-prefix-e2e",
 		"tokens": "libs/tokens"
 	},
 	"$schema": "./node_modules/nx/schemas/workspace-schema.json"

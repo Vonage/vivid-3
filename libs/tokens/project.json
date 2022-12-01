@@ -1,24 +1,19 @@
 {
+	"name": "tokens",
 	"$schema": "../../node_modules/nx/schemas/project-schema.json",
 	"sourceRoot": "libs/tokens/src",
 	"projectType": "library",
 	"targets": {
 		"lint": {
 			"executor": "@nrwl/linter:eslint",
-			"outputs": [
-				"{options.outputFile}"
-			],
+			"outputs": ["{options.outputFile}"],
 			"options": {
-				"lintFilePatterns": [
-					"libs/tokens/**/*.ts"
-				]
+				"lintFilePatterns": ["libs/tokens/**/*.ts"]
 			}
 		},
 		"test": {
 			"executor": "@nrwl/jest:jest",
-			"outputs": [
-				"{workspaceRoot}/coverage/libs/tokens"
-			],
+			"outputs": ["{workspaceRoot}/coverage/libs/tokens"],
 			"options": {
 				"jestConfig": "libs/tokens/jest.config.ts",
 				"passWithNoTests": true
@@ -27,9 +22,7 @@
 		"build": {
 			"executor": "nx:run-commands",
 			"options": {
-				"commands": [
-					"ts-node build.ts"
-				],
+				"commands": ["ts-node build.ts"],
 				"cwd": "libs/tokens/src/lib"
 			}
 		}

@@ -97,6 +97,7 @@ then use it as:
 <dashboard-badge text="I'm a custom prefixed badge"></dashboard-badge>
 ```
 
+
 Even though the custom elements are registered under different namespaces, [npm packages version range handling](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#dependencies) can still be used for multiple versions saving.
 
 ## Support
