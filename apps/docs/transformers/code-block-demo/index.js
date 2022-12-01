@@ -7,7 +7,7 @@ const layout = require('./layout');
 const ELEVENTY_HTML_CODE_BLOCK_SELECTOR = 'pre.preview > code';
 
 const IFRAME_STYLE = '<link rel="stylesheet" href="/assets/styles/iframe.css">';
-const FONTS = '<link rel="stylesheet" href="/assets/styles/spezia.css">';
+const FONTS = '<link rel="stylesheet" href="/assets/fonts/spezia/spezia.css">';
 const TYPOGRAPHY = '<link rel="stylesheet" href="/assets/styles/core/all.css">';
 
 const CBD_CONTAINER = 'cbd-container';
