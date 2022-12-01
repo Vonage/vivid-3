@@ -2,8 +2,11 @@ import '.';
 
 describe('loadComponentsModules', () => {
 	let whenDefinedMock: any;
+	const whenDefinedResolveValue = {};
+
 	beforeEach(() => {
-		whenDefinedMock = jest.spyOn(customElements, 'whenDefined').mockReturnValue(Promise.resolve({whenDefinedCalled: true} as unknown as CustomElementConstructor));
+		whenDefinedMock = jest.spyOn(customElements, 'whenDefined')
+			.mockReturnValue(Promise.resolve(whenDefinedResolveValue as CustomElementConstructor));
 	});
 
 	afterEach(() => {
@@ -13,18 +16,23 @@ describe('loadComponentsModules', () => {
 	it('should load components modules', async () => {
 		const components = ['button'];
 		const prefix = 'vivid';
-		const {loadComponentsModules} = jest.requireActual('.');
+		const {loadComponentsModules} = getNonMockedLoadComponentsModules();
 
-		let importCalledWithPrefix = false;
-		jest.mock('../button/index.js?prefix=vivid', async () => {
-			importCalledWithPrefix = true;
-			return import('../../lib/button/index');
-		  }, {virtual: true});
+		mockCallWithPrefix();
 
-		const [{whenDefinedCalled}] = await loadComponentsModules(components, prefix);
+		const [whenDefinedRActualesolveValue] = await loadComponentsModules(components, prefix);
 
-		expect(importCalledWithPrefix).toBeTruthy();
 		expect(customElements.whenDefined).toHaveBeenCalledWith('vivid-button');
-		expect(whenDefinedCalled).toEqual(true);
+		expect(whenDefinedResolveValue).toEqual(whenDefinedRActualesolveValue);
 	});
 });
+
+function mockCallWithPrefix() {
+	jest.mock('../button/index.js?prefix=vivid', async () => {
+		return import('../../lib/button/index');
+	}, { virtual: true });
+}
+
+function getNonMockedLoadComponentsModules(): { loadComponentsModules: any; } {
+	return jest.requireActual('.');
+}
