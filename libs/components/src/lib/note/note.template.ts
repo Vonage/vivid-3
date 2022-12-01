@@ -40,7 +40,7 @@ function getIconType(note: Note) {
  *
  */
 function getIconTemplate() {
-	return html<Note>`<vwc-icon class="icon" type="${getIconType}"></vwc-icon>`;
+	return html<Note>`<vwc-icon class="icon" name="${getIconType}"></vwc-icon>`;
 }
 
 /**

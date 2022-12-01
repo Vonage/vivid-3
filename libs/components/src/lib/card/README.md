@@ -73,7 +73,7 @@ The graphic slot overide the icon property
 
 ```html preview
 <vwc-card headline="Vivid Card Component" subtitle="extra text to the card headline">
-  <vwc-icon slot="graphic" type="android-mono" style="font-size: 44px; color: var(--vvd-color-sucess)" ></vwc-icon>
+  <vwc-icon slot="graphic" name="android-mono" style="font-size: 44px; color: var(--vvd-color-sucess)" ></vwc-icon>
 </vwc-card>
 ```
 
@@ -146,6 +146,7 @@ The number of lines is controlled by the css variable `--headline-line-clamp`.
 >
 </vwc-card>
 ```
+
 ### Trim subtitle
 
 The card subtitle can be trimmed to your preferable number of lines.
