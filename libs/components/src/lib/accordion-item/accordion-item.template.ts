@@ -46,20 +46,21 @@ const renderHeaderButton = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const focusTemplate = focusTemplateFactory(context);
 
+	/* eslint-disable @typescript-eslint/indent */
 	return html<AccordionItem>`
 	<button class="button" id="header" @click=${x => x.open = !x.open}
 		aria-expanded=${x => x.open}
 		aria-controls="${PANEL}">
-    ${() => focusTemplate}
+		${() => focusTemplate}
 		${x => affixIconTemplate(x.icon)}
 		<span class="heading-text">${x => x.heading}</span>
 		${when(x => x.meta, html`<span class="meta">${x => x.meta}</span>`)}
 		
 		${when(x => !x.noIndicator && !x.iconTrailing, html`${x => {
-			 return affixIconTemplate(
+			return affixIconTemplate(
 				x.open ? 'chevron-up-solid' : 'chevron-down-solid',
 				'indicator'
-			)}}`
+			);}}`
 		)}
 	</button>
 `;
