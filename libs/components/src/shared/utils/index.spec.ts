@@ -27,7 +27,7 @@ describe('loadComponentsModules', () => {
 		whenDefinedMock.mockRestore();
 	});
 
-	it('should import "../${component}/index.js?prefic=${prefix}', async () => {
+	it('should import "../${component}/index.js?prefix=${prefix}', async () => {
 		await loadComponentsModules(components, prefix);
 
 		expect(customElements.whenDefined).toHaveBeenCalledWith('vivid-button');
