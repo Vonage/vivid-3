@@ -137,12 +137,14 @@ Due to a11y and design constraints, the density can only be set to one of the fo
 - Type: `-1` | `0` | `1` | `2`
 - Default: `0`
 
-```html preview blocks
+```html preview
 <style>
  :root {
   --vvd-size-density: 2;
  }
 </style>
+
+<vwc-number-field label="Change the value to changed the density value" min="-1" max="2" value="2"></vwc-number-field>
 
 <vwc-header>
   This header is expanded
@@ -154,8 +156,6 @@ Due to a11y and design constraints, the density can only be set to one of the fo
 </pre>
 
 <vwc-button appearance="filled" label="But the button is"></vwc-button>
-
-<vwc-number-field label="Change the value to changed the density value" min="-1" max="2" value="2"></vwc-number-field>
 
 <script>
   const root = document.querySelector(':root');
