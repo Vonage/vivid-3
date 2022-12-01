@@ -6,7 +6,6 @@ import type {
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
-import { Icon } from '../icon/icon';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
 import type { AccordionItem } from './accordion-item';
 
@@ -46,7 +45,6 @@ const renderPanelHeader = (context: ElementDefinitionContext, headingLevel: numb
 const renderHeaderButton = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const focusTemplate = focusTemplateFactory(context);
-	const iconTag = context.tagFor(Icon);
 
 	return html<AccordionItem>`
 	<button class="button" id="header" @click=${x => x.open = !x.open}
@@ -56,12 +54,13 @@ const renderHeaderButton = (context: ElementDefinitionContext) => {
 		${x => affixIconTemplate(x.icon)}
 		<span class="heading-text">${x => x.heading}</span>
 		${when(x => x.meta, html`<span class="meta">${x => x.meta}</span>`)}
-		<span class="indicator">
-			${when(x => !x.noIndicator && !x.iconTrailing, html`
-				${when(x => !x.open, html`<${iconTag} name='chevron-down-solid'></${iconTag}>`)}
-				${when(x => x.open, html`<${iconTag} name='chevron-up-solid'></${iconTag}>`)}
-			`)}
-		</span>
+		
+		${when(x => !x.noIndicator && !x.iconTrailing, html`${x => {
+			 return affixIconTemplate(
+				x.open ? 'chevron-up-solid' : 'chevron-down-solid',
+				'indicator'
+			)}}`
+		)}
 	</button>
 `;
 };
