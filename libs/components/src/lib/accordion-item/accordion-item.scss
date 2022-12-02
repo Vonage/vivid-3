@@ -86,8 +86,7 @@
 
 	.indicator {
 		display: flex;
-		vwc-icon,
-		slot[name="indicator"i]::slotted(vwc-icon) {
+		:first-child {
 			margin-inline-start: 16px;
 		}
 	}
