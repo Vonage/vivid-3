@@ -84,8 +84,8 @@
 	flex-direction: column;
 }
 
-.primary-text,
-.secondary-text {
+.text-primary,
+.text-secondary {
 	overflow: hidden;
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
@@ -93,13 +93,13 @@
 	white-space: nowrap;
 }
 
-.primary-text {
+.text-primary {
 	.base.two-lines & {
 		font: var(#{constants.$vvd-typography-base-bold});
 	}
 }
 
-.secondary-text {
+.text-secondary {
 	.base.two-lines & {
 		color: var(#{constants.$vvd-color-neutral-600});
 	}

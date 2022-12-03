@@ -79,8 +79,8 @@ export const MenuItemTemplate:  (
 		html`${x => affixIconTemplate(x.icon)}`)}
 
 			${when(x => x.text || x.textSecondary, html`<span class="text">
-				${when(x => x.text, html`<span class="primary-text">${x => x.text}</span>`)}
-				${when(x => x.textSecondary, html`<span class="secondary-text">${x => x.textSecondary}</span>`)}
+				${when(x => x.text, html`<span class="text-primary">${x => x.text}</span>`)}
+				${when(x => x.textSecondary, html`<span class="text-secondary">${x => x.textSecondary}</span>`)}
 			</span>`)
 }
 
