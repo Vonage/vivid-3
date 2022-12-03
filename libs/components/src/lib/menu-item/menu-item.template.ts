@@ -80,7 +80,7 @@ export const MenuItemTemplate:  (
 
 			${when(x => x.text || x.textSecondary, html`<span class="text">
 				${when(x => x.text, html`<span class="primary-text">${x => x.text}</span>`)}
-				${when(x => x.secondaryText, html`<span class="secondary-text">${x => x.secondaryText}</span>`)}
+				${when(x => x.textSecondary, html`<span class="secondary-text">${x => x.textSecondary}</span>`)}
 			</span>`)
 }
 
