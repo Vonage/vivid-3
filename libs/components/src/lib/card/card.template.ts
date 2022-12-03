@@ -18,7 +18,7 @@ header icon
  */
 function renderHeaderIcon() {
 	return html<Card>`
-	  <vwc-icon class="icon" inline type="${x => x.icon}"></vwc-icon>`;
+	  <vwc-icon class="icon" inline name="${x => x.icon}"></vwc-icon>`;
 }
 
 /**
