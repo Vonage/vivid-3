@@ -35,7 +35,7 @@ Use the `text` attribute to set the menu item's text.
 - Type: `string`
 - Default: `undefined`
 
-Use the `secondary-text` attribute (or `secondaryText` property) to set the menu item's secondary text.
+Use the `text-secondary` attribute (or `textSecondary` property) to set the menu item's secondary text.
 
 Note: to improve readability, **avoid long text and multiple lines** where possible.
 
@@ -46,7 +46,7 @@ Note: to improve readability, **avoid long text and multiple lines** where possi
  }
 </style>
 <vwc-menu open>
- <vwc-menu-item text="menu item" secondary-text="secondary text"></vwc-menu-item>
+ <vwc-menu-item text="menu item" text-secondary="secondary text"></vwc-menu-item>
 </vwc-menu>
 ```
 

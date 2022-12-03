@@ -9,7 +9,7 @@ import { focusTemplateFactory } from './../../shared/patterns/focus';
 
 
 const getClasses = ({
-	disabled, checked, expanded, role, text, secondaryText
+	disabled, checked, expanded, role, text, textSecondary
 }: MenuItem) =>	classNames(
 	'base',
 	['disabled', Boolean(disabled)],
@@ -17,7 +17,7 @@ const getClasses = ({
 	['expanded', Boolean(expanded)],
 	['item-checkbox', role === MenuItemRole.menuitemcheckbox],
 	['item-radio', role === MenuItemRole.menuitemradio],
-	['two-lines', Boolean(text?.length) && Boolean(secondaryText?.length)]
+	['two-lines', Boolean(text?.length) && Boolean(textSecondary?.length)]
 );
 
 /**

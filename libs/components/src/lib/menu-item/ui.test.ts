@@ -22,9 +22,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-menu-item text="Menu item 1"></vwc-menu-item>
 				<vwc-menu-item role="menuitem" text="Menu item 2"></vwc-menu-item>
 				<vwc-menu-item icon="home" text="menu item" secondary-text="secondary text"></vwc-menu-item>
-				<vwc-menu-item secondary-text="secondary text"></vwc-menu-item>
+				<vwc-menu-item text-secondary="secondary text"></vwc-menu-item>
 				<vwc-menu-item icon="home"></vwc-menu-item>
-				<vwc-menu-item text="menu item" secondary-text="secondary text"></vwc-menu-item>
+				<vwc-menu-item text="menu item" text-secondary="secondary text"></vwc-menu-item>
 				<vwc-divider></vwc-divider>
 				<vwc-menu-item role="menuitemcheckbox" text="Checkbox 1" checked></vwc-menu-item>
 				<vwc-menu-item role="menuitemcheckbox" text="Checkbox 2"></vwc-menu-item>

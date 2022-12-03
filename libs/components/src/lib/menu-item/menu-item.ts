@@ -23,7 +23,7 @@ export class MenuItem extends FastMenuItem {
 	 * @remarks
 	 * HTML Attribute: text
 	 */
-	@attr({ attribute: 'secondary-text' }) secondaryText?: string;
+	@attr({ attribute: 'text-secondary' }) textSecondary?: string;
 }
 
 export interface MenuItem extends AffixIcon {}

@@ -23,7 +23,7 @@ describe('vwc-menu-item', () => {
 		it('should be initialized as a vwc-menu-item', async () => {
 			expect(element).toBeInstanceOf(MenuItem);
 			expect(element.text).toEqual(undefined);
-			expect(element.secondaryText).toEqual(undefined);
+			expect(element.textSecondary).toEqual(undefined);
 			expect(element.role).toEqual('menuitem');
 			expect(element.icon).toBeUndefined();
 			expect(element.checked).toBeUndefined();
@@ -43,7 +43,7 @@ describe('vwc-menu-item', () => {
 
 	it('should set secondary text property to node', async () => {
 		const secondaryText = 'lorem';
-		element.secondaryText = secondaryText;
+		element.textSecondary = secondaryText;
 		await elementUpdated(element);
 
 		const control = element.shadowRoot?.querySelector('.base');
@@ -56,7 +56,7 @@ describe('vwc-menu-item', () => {
 		const secondaryText = 'ipsum';
 
 		element.text = text;
-		element.secondaryText = secondaryText;
+		element.textSecondary = secondaryText;
 
 		await elementUpdated(element);
 
