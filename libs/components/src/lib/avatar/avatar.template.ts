@@ -21,7 +21,7 @@ const getClasses = ({appearance, connotation, shape, size}: Avatar) => className
 function renderIcon() {
 	return html<Avatar>`
 		<span class="icon">
-			<vwc-icon type="${(x) => x.icon? `${x.icon}` : 'user-line'}"></vwc-icon>
+			<vwc-icon name="${(x) => x.icon? `${x.icon}` : 'user-line'}"></vwc-icon>
 		</span>
 	`;
 }
