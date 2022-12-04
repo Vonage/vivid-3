@@ -11,7 +11,7 @@ import type { Note } from './note';
 
 const connotationIconMap = new Map([
 	[Connotation.Information, 'info-solid'],
-	[Connotation.Announcement, 'megaphone-solid'],
+	[Connotation.Accent, 'megaphone-solid'],
 	[Connotation.Success, 'check-circle-solid'],
 	[Connotation.Warning, 'warning-solid'],
 	[Connotation.Alert, 'error-solid']
