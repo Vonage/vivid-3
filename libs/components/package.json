@@ -43,7 +43,7 @@
     "./nav-item": "./nav-item",
     "./number-field": "./number-field",
     "./note": "./note",
-    "./option": "./listbox-option",
+    "./option": "./option",
     "./popup": "./popup",
     "./progress": "./progress",
     "./progress-ring": "./progress-ring",

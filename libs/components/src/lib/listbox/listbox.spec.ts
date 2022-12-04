@@ -1,7 +1,7 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import type { ListboxOption } from '../listbox-option/listbox-option';
+import type { ListboxOption } from '../option/option';
 import { Listbox } from './listbox';
-import '../listbox-option';
+import '../option';
 import '.';
 
 const COMPONENT_TAG = 'vwc-listbox';
