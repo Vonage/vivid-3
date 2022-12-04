@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Tue, 29 Nov 2022 15:41:17 GMT and should not be manually modified.
+This log was last generated on Sun, 04 Dec 2022 13:39:56 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.109
+
+Sun, 04 Dec 2022 13:39:56 GMT
+
+### Changes
+
+- badge support overflow clipping (yinon@hotmail.com)
 
 ## 3.0.0-next.108
 
