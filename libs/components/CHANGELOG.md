@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 04 Dec 2022 13:39:56 GMT and should not be manually modified.
+This log was last generated on Sun, 04 Dec 2022 15:36:59 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.110
+
+Sun, 04 Dec 2022 15:36:59 GMT
+
+### Changes
+
+- enable custom prefix for custom-elements (yinon@hotmail.com)
 
 ## 3.0.0-next.109
 
