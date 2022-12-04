@@ -1,8 +1,66 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Wed, 16 Nov 2022 09:48:24 GMT and should not be manually modified.
+This log was last generated on Tue, 29 Nov 2022 15:41:17 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.108
+
+Tue, 29 Nov 2022 15:41:17 GMT
+
+### Changes
+
+- icon component support svg slot assignment (yinon@hotmail.com)
+
+## 3.0.0-next.107
+
+Mon, 28 Nov 2022 21:11:08 GMT
+
+### Changes
+
+- icon & progress-ring support full integer sizing spectrum (yinon@hotmail.com)
+- icon type property renamed (to name) (yinon@hotmail.com)
+
+## 3.0.0-next.106
+
+Sun, 27 Nov 2022 16:54:42 GMT
+
+### Changes
+
+- map warning connotation to custom semantic variables (yinon@hotmail.com)
+
+## 3.0.0-next.105
+
+Sun, 27 Nov 2022 13:41:49 GMT
+
+### Changes
+
+- refactor tooltip (rina.oksman@vonage.com)
+
+## 3.0.0-next.104
+
+Tue, 22 Nov 2022 08:33:47 GMT
+
+### Changes
+
+- style gutters and gaps in list items (yinon@hotmail.com)
+
+## 3.0.0-next.103
+
+Mon, 21 Nov 2022 13:45:33 GMT
+
+### Changes
+
+- typography style unset root's font size to resolve to 16px (yinon@hotmail.com)
+- calendar css style to enable dark-theme background (yinon@hotmail.com)
+
+## 3.0.0-next.102
+
+Sun, 20 Nov 2022 21:47:05 GMT
+
+### Changes
+
+- package generated customElements.json & TS meta (yinon@hotmail.com)
 
 ## 3.0.0-next.101
 
