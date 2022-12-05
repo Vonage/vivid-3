@@ -1,5 +1,5 @@
 import type {FoundationElementDefinition} from '@microsoft/fast-foundation';
-import {designSystem} from '../../shared/design-system';
+import {designSystem, getPrefix} from '../../shared/design-system';
 import styles from './progress-ring.scss';
 
 import {ProgressRing} from './progress-ring';
@@ -12,5 +12,5 @@ export const vividProgressRing =
 		styles,
 	});
 
-designSystem.register(vividProgressRing());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividProgressRing());
 

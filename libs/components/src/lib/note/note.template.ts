@@ -5,7 +5,6 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import '../icon/index';
 import {Connotation} from '../enums';
 import { Icon } from '../icon/icon';
 import type { Note } from './note';

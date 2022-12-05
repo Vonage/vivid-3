@@ -1,5 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import styles from './<%= fileName %>.scss';
 
 import { <%= className %> } from './<%= fileName %>';
@@ -11,4 +11,4 @@ export const vivid<%= className %> = <%= className %>.compose<FoundationElementD
 	styles,
 });
 
-designSystem.register(vivid<%= className %>());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vivid<%= className %>());
