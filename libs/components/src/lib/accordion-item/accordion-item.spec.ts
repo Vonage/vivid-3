@@ -7,6 +7,10 @@ const COMPONENT_TAG = 'vwc-accordion-item';
 describe('vwc-accordion-item', () => {
 	let element: AccordionItem;
 
+	beforeAll(async () => {
+		await customElements.whenDefined(COMPONENT_TAG);
+	});
+
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`

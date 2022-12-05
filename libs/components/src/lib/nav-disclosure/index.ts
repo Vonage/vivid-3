@@ -1,12 +1,12 @@
-import '../icon';
-import '../focus';
-
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
+import { loadComponentsModules } from '../../shared/utils';
 import styles from './nav-disclosure.scss';
 
 import { NavDisclosure } from './nav-disclosure';
 import { NavDisclosureTemplate as template } from './nav-disclosure.template';
+
+const prefix = getPrefix(import.meta.url);
 
 export const vividNavDisclosure =
 	NavDisclosure.compose<FoundationElementDefinition>({
@@ -15,4 +15,7 @@ export const vividNavDisclosure =
 		styles,
 	});
 
-designSystem.register(vividNavDisclosure());
+(async () => {
+	await loadComponentsModules(['icon', 'focus'], prefix);
+	designSystem.withPrefix(prefix).register(vividNavDisclosure());
+})();

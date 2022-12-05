@@ -1,11 +1,12 @@
-import '../popup';
-
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
+import { loadComponentsModules } from '../../shared/utils';
 import styles from './tooltip.scss';
 
 import { Tooltip } from './tooltip';
 import { TooltipTemplate as template } from './tooltip.template';
+
+const prefix = getPrefix(import.meta.url);
 
 export const vividTooltip = Tooltip.compose<FoundationElementDefinition>({
 	baseName: 'tooltip',
@@ -13,4 +14,7 @@ export const vividTooltip = Tooltip.compose<FoundationElementDefinition>({
 	styles,
 });
 
-designSystem.register(vividTooltip());
+(async () => {
+	await loadComponentsModules(['popup'], prefix);
+	designSystem.withPrefix(prefix).register(vividTooltip());
+})();

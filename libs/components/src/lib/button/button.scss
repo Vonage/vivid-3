@@ -31,6 +31,7 @@
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
+	justify-content: center;
 	border: 0 none;
 	margin: 0;
 	background-color: var(#{appearance.get-appearance-token(fill)});
@@ -40,6 +41,10 @@
 	gap: var(#{variables.$icon-gap});
 	vertical-align: middle;
 	white-space: nowrap;
+
+	&:not(.icon-only) {
+		inline-size: 100%;
+	}
 
 	@supports selector(:focus-visible) {
 		&:focus {

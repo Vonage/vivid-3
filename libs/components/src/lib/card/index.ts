@@ -1,12 +1,12 @@
-import '../elevation';
-import '../icon';
-
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
+import { loadComponentsModules } from '../../shared/utils';
 import styles from './card.scss';
 
 import { Card } from './card';
 import { CardTemplate as template } from './card.template';
+
+const prefix = getPrefix(import.meta.url);
 
 export const vividCard = Card.compose<FoundationElementDefinition>({
 	baseName: 'card',
@@ -14,4 +14,7 @@ export const vividCard = Card.compose<FoundationElementDefinition>({
 	styles,
 });
 
-designSystem.register(vividCard());
+(async () => {
+	await loadComponentsModules(['icon', 'elevation'], prefix);
+	designSystem.withPrefix(prefix).register(vividCard());
+})();
