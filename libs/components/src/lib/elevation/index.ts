@@ -1,5 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import { Elevation } from './elevation';
 import styles from './elevation.scss';
 import { elevationTemplate as template } from './elevation.template';
@@ -14,4 +14,4 @@ export const vividElevation = Elevation.compose<FoundationElementDefinition>({
 	styles,
 });
 
-designSystem.register(vividElevation());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividElevation());
