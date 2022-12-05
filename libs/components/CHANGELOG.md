@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 04 Dec 2022 15:36:59 GMT and should not be manually modified.
+This log was last generated on Mon, 05 Dec 2022 11:11:21 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.111
+
+Mon, 05 Dec 2022 11:11:21 GMT
+
+### Changes
+
+- make button inline size fluid to its container (yinon@hotmail.com)
 
 ## 3.0.0-next.110
 

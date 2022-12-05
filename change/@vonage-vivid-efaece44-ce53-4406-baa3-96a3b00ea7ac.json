@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "make button inline size fluid to its container",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}
