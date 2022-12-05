@@ -1,5 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import styles from './divider.scss';
 
 import { Divider } from './divider';
@@ -11,4 +11,4 @@ export const vividDivider = Divider.compose<FoundationElementDefinition>({
 	styles,
 });
 
-designSystem.register(vividDivider());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividDivider());

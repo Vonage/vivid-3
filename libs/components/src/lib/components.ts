@@ -18,7 +18,7 @@ export * from './fab';
 export * from './icon';
 export * from './layout';
 export * from './listbox';
-export * from './listbox-option';
+export * from './option';
 export * from './menu';
 export * from './menu-item';
 export * from './nav';

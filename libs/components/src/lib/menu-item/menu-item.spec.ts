@@ -13,6 +13,10 @@ const ICON_SELECTOR = 'vwc-icon';
 describe('vwc-menu-item', () => {
 	let element: MenuItem;
 
+	beforeAll(async () => {
+		await customElements.whenDefined(COMPONENT_TAG);
+	});
+
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
