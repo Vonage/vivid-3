@@ -7,8 +7,9 @@ import type {
 import {classNames} from '@microsoft/fast-web-utilities';
 import type {Dialog} from './dialog';
 
-const getClasses = (_: Dialog) => classNames(
+const getClasses = ({alignedIcon}: Dialog) => classNames(
 	'base',
+	['aligned-icon', !!alignedIcon],
 );
 
 /**
@@ -89,7 +90,7 @@ export const DialogTemplate: (
 				<slot name="main">
 					<div class="main-wrapper">
 						<div class="header">
-							<div class="headline-wrapper">
+							<div class="headline-wrapper ">
 								<slot name="graphic">
 									${when(x => x.icon, icon())}
 								</slot>
