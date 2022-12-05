@@ -40,11 +40,6 @@ Use the `text-secondary` attribute (or `textSecondary` property) to set the menu
 Note: to improve readability, **avoid long text and multiple lines** where possible.
 
 ```html preview
-<style>
- :root {
-  height: 500px;
- }
-</style>
 <vwc-menu open>
  <vwc-menu-item text="menu item" text-secondary="secondary text"></vwc-menu-item>
 </vwc-menu>
@@ -62,7 +57,7 @@ set `role` to change the role of the menu item
   html { 
     block-size: 360px; 
   }
-</>
+</style>
 
 <vwc-menu open>
   <vwc-menu-item role="menuitem" text="Menu item 1"></vwc-menu-item>
