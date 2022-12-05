@@ -23,4 +23,29 @@ export class Listbox extends FoundationListboxElement {
 	 * HTML Attribute: appearance
 	 */
 	@attr appearance?: ListboxAppearance;
+
+	/**
+	 * To save the state of children options before going disabled.
+	 */
+	private _optionsState: boolean[] = [];
+
+	/**
+	 * Saves/restore children state when the `disabled` property changes.
+	 *
+	 * @param _ - The previous disabled value
+	 * @param becomesDisabled - The next disabled value
+	 *
+	 * @internal
+	 */
+	public disabledChanged(_: boolean, becomesDisabled: boolean): void {
+		if (becomesDisabled) {
+			this._options.forEach((option, idx) => {
+				this._optionsState[idx] = option.disabled;
+				option.disabled = true;
+			});
+		}
+		else {
+			this._options.forEach((option, idx) => option.disabled = this._optionsState[idx]);
+		}
+	}	
 }

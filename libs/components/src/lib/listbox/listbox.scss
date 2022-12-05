@@ -33,12 +33,9 @@
 	contain: paint;
 	gap: 4px;
 
-	&.disabled ::slotted(*) {
+	&.disabled {
 		cursor: not-allowed;
-		opacity: 0.3;
-		pointer-events: none;
-	}
-}
+	}}
 
 .focus-indicator {
 	pointer-events: none;
