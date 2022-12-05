@@ -7,7 +7,6 @@ import type {
 import {classNames} from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
-import '../icon/index';
 import {getFeedbackTemplate} from '../../shared/patterns';
 import type {TextField} from './text-field';
 

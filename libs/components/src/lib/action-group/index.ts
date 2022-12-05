@@ -1,5 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import styles from './action-group.scss';
 
 import { ActionGroup } from './action-group';
@@ -11,4 +11,4 @@ export const vividActionGroup = ActionGroup.compose<FoundationElementDefinition>
 	styles,
 });
 
-designSystem.register(vividActionGroup());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividActionGroup());

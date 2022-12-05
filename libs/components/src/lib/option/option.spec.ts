@@ -1,6 +1,6 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
-import { ListboxOption } from './listbox-option';
+import { ListboxOption } from './option';
 import '.';
 
 const COMPONENT_TAG = 'vwc-option';
@@ -20,6 +20,7 @@ describe('vwc-option', () => {
 			expect(element).toBeInstanceOf(ListboxOption);
 			expect(element.text).toEqual('');
 			expect(element.icon).toBeUndefined();
+			expect(element.iconTrailing).toBeFalsy();
 			expect(element.selected).toBeFalsy();
 			expect(element.checked).toBeUndefined();
 			expect(element.disabled).toBeUndefined();

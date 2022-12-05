@@ -1,8 +1,32 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Tue, 29 Nov 2022 15:41:17 GMT and should not be manually modified.
+This log was last generated on Mon, 05 Dec 2022 11:11:21 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.111
+
+Mon, 05 Dec 2022 11:11:21 GMT
+
+### Changes
+
+- make button inline size fluid to its container (yinon@hotmail.com)
+
+## 3.0.0-next.110
+
+Sun, 04 Dec 2022 15:36:59 GMT
+
+### Changes
+
+- enable custom prefix for custom-elements (yinon@hotmail.com)
+
+## 3.0.0-next.109
+
+Sun, 04 Dec 2022 13:39:56 GMT
+
+### Changes
+
+- badge support overflow clipping (yinon@hotmail.com)
 
 ## 3.0.0-next.108
 
