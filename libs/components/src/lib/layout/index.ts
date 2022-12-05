@@ -1,5 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import { Layout } from './layout';
 import styles from './layout.scss';
 import { layoutTemplate as template } from './layout.template';
@@ -15,4 +15,4 @@ export const vividLayout = Layout.compose<FoundationElementDefinition>({
 	styles,
 });
 
-designSystem.register(vividLayout());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividLayout());

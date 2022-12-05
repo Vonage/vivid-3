@@ -1,12 +1,13 @@
-import '../icon';
-import '../focus';
-
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
+import { loadComponentsModules } from '../../shared/utils';
 import styles from './accordion-item.scss';
 
 import { AccordionItem } from './accordion-item';
 import { AccordionItemTemplate as template } from './accordion-item.template';
+
+const prefix = getPrefix(import.meta.url);
+const dependencies = ['icon', 'focus'];
 
 export const vividAccordionItem =
 	AccordionItem.compose<FoundationElementDefinition>({
@@ -18,4 +19,8 @@ export const vividAccordionItem =
 		},
 	});
 
-designSystem.register(vividAccordionItem());
+(async () => {
+	await loadComponentsModules(dependencies, prefix);
+	designSystem.withPrefix(prefix).register(vividAccordionItem());
+})();
+

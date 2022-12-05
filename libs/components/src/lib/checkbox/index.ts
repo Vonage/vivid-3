@@ -1,12 +1,12 @@
-import '../icon';
-import '../focus';
-
 import type { CheckboxOptions } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
+import { loadComponentsModules } from '../../shared/utils';
 import styles from './checkbox.scss';
 
 import { Checkbox } from './checkbox';
 import { CheckboxTemplate as template } from './checkbox.template';
+
+const prefix = getPrefix(import.meta.url);
 
 export const vividCheckbox = Checkbox.compose<CheckboxOptions>({
 	baseName: 'checkbox',
@@ -17,4 +17,7 @@ export const vividCheckbox = Checkbox.compose<CheckboxOptions>({
 	},
 });
 
-designSystem.register(vividCheckbox());
+(async () => {
+	await loadComponentsModules(['icon', 'focus'], prefix);
+	designSystem.withPrefix(prefix).register(vividCheckbox());
+})();
