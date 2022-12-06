@@ -53,9 +53,9 @@ const onloadIframe = (iFrame) => {
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => setCurrentIframeTheme(toggle, iFrame));
 
   // wait for repaint to set needed height
-  requestAnimationFrame(() => {
+  iFrame.contentWindow.requestAnimationFrame(() => {
     setTimeout(() => {
-      iFrame.style.height = iFrame.contentWindow.document.documentElement.clientHeight + 4 + "px";
+      iFrame.style.height = iFrame.contentWindow.document.documentElement.scrollHeight + 4 + "px";
     }, 0);
   })
 };
