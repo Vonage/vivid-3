@@ -1,6 +1,5 @@
 window.onload = () => {
   addSideDrawerListeners();
-  resizeIframes();
 };
 
 const addSideDrawerListeners = () => {
@@ -52,17 +51,14 @@ const onloadIframe = (iFrame) => {
     setCurrentIframeTheme(toggle, iFrame);
   });
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => setCurrentIframeTheme(toggle, iFrame));
+
+  // wait for repaint to set needed height
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      iFrame.style.height = iFrame.contentWindow.document.documentElement.scrollHeight + 4 + "px";
+    }, 0);
+  })
 };
-		
-// wait for repaint to set needed height
-const resizeIframes = () => {
-	requestAnimationFrame(() => {
-		setTimeout(() => {
-			const iframes = document.querySelectorAll('iframe');
-			iframes.forEach(i => i.style.height = i.contentWindow.document.documentElement.scrollHeight + 4 + "px");
-		}, 0);
-	})
-}
 
 const setCurrentIframeTheme = (toggle, iFrame) => {
   const theme = toggle.icon === "dark-mode-solid" ? '<link rel="stylesheet" href="/assets/styles/tokens/theme-dark.css" media="all">' : '<link rel="stylesheet" href="/assets/styles/tokens/theme-light.css" media="all">';
