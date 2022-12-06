@@ -2,7 +2,7 @@ import { DesignSystem } from '@microsoft/fast-foundation';
 
 export let defaultPrefix = 'vwc';
 
-export const setPrefix = (prefix: string) => defaultPrefix = prefix;
+export const setDefaultPrefix = (prefix: string) => defaultPrefix = prefix;
 
 export const getPrefix = (url: string) => new URL(url).searchParams.get('prefix') || defaultPrefix;
 
