@@ -68,7 +68,6 @@ describe('vwc-dialog', () => {
 			expect(element.icon).toEqual(undefined);
 			expect(element.text).toEqual(undefined);
 			expect(element.headline).toEqual(undefined);
-			expect(element.horizontalIcon).toEqual(undefined);
 		});
 	});
 
@@ -253,6 +252,14 @@ describe('vwc-dialog', () => {
 		expect(iconElementWhenUndefined).toBeNull();
 		expect(iconElement).toBeTruthy();
 		expect(iconElement?.getAttribute('name')).toEqual('home');
+	});
+
+	it( 'should add class .horizontal-icon to .base', async () => {
+		const baseDiv = element.shadowRoot?.querySelector('.base');
+		element.horizontalIcon = true;
+		await elementUpdated(element);
+		expect(baseDiv?.classList.contains('horizontal-icon'))
+			.toEqual(true);
 	});
 
 	it('should render the content area when content is set', async function() {
