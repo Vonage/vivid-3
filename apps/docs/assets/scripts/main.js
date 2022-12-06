@@ -52,13 +52,22 @@ const onloadIframe = (iFrame) => {
   });
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => setCurrentIframeTheme(toggle, iFrame));
 
-  // wait for repaint to set needed height
-  requestAnimationFrame(() => {
-    setTimeout(() => {
-      iFrame.style.height = iFrame.contentWindow.document.documentElement.clientHeight + 4 + "px";
-    }, 0);
-  })
+  setHeight(0, iFrame);
 };
+
+// wait for repaint to complete then set final height
+const setHeight = (h, iFrame) => {
+	const docHeight = iFrame.contentWindow.document.documentElement.clientHeight;
+	console.log(h, docHeight);
+
+	if (h === 0 || docHeight === h) {
+		requestAnimationFrame(() => setHeight(docHeight, iFrame));
+	} else {
+		setTimeout(() => {
+			iFrame.style.height = Math.max(h, docHeight) + 4 + "px";
+		}, 0);
+	}
+}
 
 const setCurrentIframeTheme = (toggle, iFrame) => {
   const theme = toggle.icon === "dark-mode-solid" ? '<link rel="stylesheet" href="/assets/styles/tokens/theme-dark.css" media="all">' : '<link rel="stylesheet" href="/assets/styles/tokens/theme-light.css" media="all">';
