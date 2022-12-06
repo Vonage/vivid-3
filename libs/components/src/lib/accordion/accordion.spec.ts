@@ -11,6 +11,10 @@ describe('vwc-accordion', () => {
 	let accordionItem1: AccordionItem;
 	let accordionItem2: AccordionItem;
 
+	beforeAll(async () => {
+		await customElements.whenDefined(COMPONENT_TAG);
+	});
+
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}>
