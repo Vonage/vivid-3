@@ -43,6 +43,20 @@ Use the `icon` attribute to set the dialog's icon.
 <vwc-dialog icon="info" open></vwc-dialog>
 ```
 
+
+### horizontal-icon
+
+Use the `horizontal-icon` attribute to set the dialog's icon horizontal to dialog text
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-dialog icon="info" headline="Dialog Headline" open horizontal-icon></vwc-dialog>
+```
+
+
+
 ### Text
 
 Use the `text` attribute to set the dialog's text.

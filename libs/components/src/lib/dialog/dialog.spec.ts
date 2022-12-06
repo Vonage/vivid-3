@@ -68,6 +68,7 @@ describe('vwc-dialog', () => {
 			expect(element.icon).toEqual(undefined);
 			expect(element.text).toEqual(undefined);
 			expect(element.headline).toEqual(undefined);
+			expect(element.horizontalIcon).toEqual(undefined);
 		});
 	});
 

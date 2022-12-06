@@ -58,7 +58,7 @@
 		display: flex;
 		align-items: flex-start;
 
-		.base:not(.aligned-icon) & {
+		.base:not(.horizontal-icon) & {
 			flex-direction: column;
 			row-gap: 24px;
 			.icon {
@@ -66,7 +66,7 @@
 			}
 		}
 
-		.base.aligned-icon & {
+		.base.horizontal-icon & {
 			column-gap: 8px;
 			.icon {
 				font-size: #{size.$vvd-size-extra-condensed};

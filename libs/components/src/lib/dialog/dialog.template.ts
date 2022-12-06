@@ -7,9 +7,9 @@ import type {
 import {classNames} from '@microsoft/fast-web-utilities';
 import type {Dialog} from './dialog';
 
-const getClasses = ({alignedIcon}: Dialog) => classNames(
+const getClasses = ({horizontalIcon}: Dialog) => classNames(
 	'base',
-	['aligned-icon', !!alignedIcon],
+	['horizontal-icon', Boolean(horizontalIcon)],
 );
 
 /**

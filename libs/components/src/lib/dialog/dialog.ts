@@ -27,7 +27,10 @@ export class Dialog extends FoundationElement {
 	 */
 	@attr({mode: 'boolean'}) open = false;
 	@attr icon?: string;
-	@attr alignedIcon?: string;
+	@attr({
+		mode: 'boolean',
+		attribute: 'horizontal-icon',
+	}) horizontalIcon = false;
 	@attr text?: string;
 	@attr headline?: string;
 	@attr({attribute: 'aria-labelledby'}) ariaLabelledBy: string | null = null;
