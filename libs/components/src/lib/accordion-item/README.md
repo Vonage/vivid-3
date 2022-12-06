@@ -16,14 +16,9 @@ Add the `heading` attribute to set the heading text.
 - Default: `undefined`
 
 ```html preview full
-<vwc-accordion-item id="item" heading="Accordion item with heading">
+<vwc-accordion-item heading="Accordion item with heading">
   Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 </vwc-accordion-item>
-
-<script>
-item.addEventListener('opened', () => console.log('self'));
-item.parentElement.addEventListener('opened', () => console.log('parent'))
-</script>
 ```
 
 ### Heading-Level
