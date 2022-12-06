@@ -1,7 +1,7 @@
 {
-  "type": "none",
-  "comment": "feat(dialog): horizontal icon",
+  "type": "prerelease",
+  "comment": "dialog horizontal icon",
   "packageName": "@vonage/vivid",
   "email": "rachel.tannenbaum@vonage.com",
-  "dependentChangeType": "none"
+  "dependentChangeType": "patch"
 }
