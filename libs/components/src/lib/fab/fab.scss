@@ -48,7 +48,7 @@
 
 	/* Size */
 
-	&.size-Expanded {
+	&.size-expanded {
 		#{variables.$border-radius}: 30px;
 		#{variables.$block-size}: #{size.$vvd-size-super-expanded};
 	}
