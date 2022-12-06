@@ -119,3 +119,37 @@ Represents a data-grid custom element.
     
 </script>
 ```
+
+### Expandable Row
+```html preview
+<vwc-button label="Click to Use Custom Expandable Row" onclick="toggleExpandableRowTemplate()"></vwc-button>
+<vwc-data-grid></vwc-data-grid>
+<script>
+    function toggleExpandableRowTemplate() {
+        const button = document.querySelector('vwc-button');
+        const usingDefault = button.label.indexOf('Custom') > -1;
+        if (usingDefault) {
+            button.label = "Click to Use Default Expandable Row";
+            dataGrid.expandableRowTemplate = function(row) {
+                return `
+                    <div>${row.rowData.name} is ${row.rowData.age} years old!!!!!</div>
+                `;
+            }
+        } else {
+            button.label = "Click to Use Custom Expandable Row";
+            dataGrid.expandableRowTemplate = null;
+        }
+    }
+    const dataGrid = window.x = document.querySelector('vwc-data-grid');
+    dataGrid.rowsData = [
+        { name: 'John', age: 30 },
+        { name: 'Jane', age: 25 },
+        { name: 'Mary', age: 28 },
+    ];
+    dataGrid.expandableRows = true;
+    // TODO::expand the cell
+    // TODO::inject the template into the cell
+    // TODO::inject the data into the cell
+    
+</script>
+```

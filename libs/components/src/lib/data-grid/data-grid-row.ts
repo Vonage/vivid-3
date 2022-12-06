@@ -8,5 +8,7 @@ import {attr} from '@microsoft/fast-element';
  */
 export class DataGridRow extends FoundationElement {
 	@attr({mode: 'fromView'}) selectable: boolean = false;
-	@attr() selected = false;
+	@attr({mode: 'boolean'}) selected = false;
+	@attr({mode: 'boolean'}) expanded = false;
+	@attr() expandedRowTemplate: any;
 }

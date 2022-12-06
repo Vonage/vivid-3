@@ -3,6 +3,7 @@ import {
 	elements,
 	html,
 	slotted,
+	when
 } from '@microsoft/fast-element';
 import {classNames} from '@microsoft/fast-web-utilities';
 import type { ColumnDefinition } from '@microsoft/fast-foundation';
@@ -62,7 +63,8 @@ function headerCellItemTemplate<T extends DataGridRow>(
 
 const getClasses = (_: DataGridRow) => classNames(
 	'base',
-	['selected', _.selected]
+	['selected', _.selected],
+	['expanded', _.expanded]
 );
 
 /**
@@ -88,6 +90,23 @@ export function dataGridRowTemplate<T extends DataGridRow>(
 	})}
         >
             <slot ${slotted('slottedCellElements')}></slot>
+			${when(x => x.expanded, getExpandedRowTemplate())}
         </template>
     `;
+}
+
+function getExpandedRowTemplate() {
+	return html`
+	<div>
+		${when(x => !x.expandedRowTemplate, expandedRowTemplate())}
+		${when(x => x.expandedRowTemplate, customExpandedRowTemplate())}
+	</div>`;
+}
+
+function expandedRowTemplate() {
+	return html`<div>Hello ${x => x.rowData.name}!</div>`;
+}
+
+function customExpandedRowTemplate() {
+	return html`<div id="custom-expansion"></div>${x => {setTimeout(() => x.shadowRoot.querySelector('#custom-expansion').innerHTML = x.expandedRowTemplate(x), 0); return ''}}`;
 }
