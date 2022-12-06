@@ -1,11 +1,11 @@
+import '../icon';
+
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem, getPrefix } from '../../shared/design-system';
-import { loadComponentsModules } from '../../shared/utils';
+import { designSystem, prefix } from '../../shared/design-system';
 import { Badge } from './badge';
 import styles from './badge.scss';
 import { badgeTemplate as template } from './badge.template';
 
-const prefix = getPrefix(import.meta.url);
 
 /**
  * Represents a badge custom element.
@@ -20,7 +20,4 @@ export const vividBadge = Badge.compose<FoundationElementDefinition>({
 	styles,
 });
 
-(async () => {
-	await loadComponentsModules(['icon'], prefix);
-	designSystem.withPrefix(prefix).register(vividBadge());
-})();
+designSystem.withPrefix(prefix).register(vividBadge());
