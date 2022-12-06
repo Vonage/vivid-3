@@ -29,8 +29,8 @@ export const NavDisclosureTemplate: (
         >
             ${x => affixIconTemplate(x.icon)}
             ${x => x.label}
-			${when(x => x.open, html<NavDisclosure>`<vwc-icon class="toggleIcon" type='chevron-up-solid'></vwc-icon>`)}
-			${when(x => !x.open, html<NavDisclosure>`<vwc-icon class="toggleIcon" type='chevron-down-solid'></vwc-icon>`)}
+			${when(x => x.open, html<NavDisclosure>`<vwc-icon class="toggleIcon" name='chevron-up-solid'></vwc-icon>`)}
+			${when(x => !x.open, html<NavDisclosure>`<vwc-icon class="toggleIcon" name='chevron-down-solid'></vwc-icon>`)}
 			${() => focusTemplate}
         </summary>
         <div class="content" id="disclosure-content">

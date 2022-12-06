@@ -1,13 +1,17 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import type { Icon } from '../icon/icon';
 import { Button } from './button';
-import '.';
+import  '.';
 
 const COMPONENT_TAG = 'vwc-button';
 const ICON_SELECTOR = 'vwc-icon';
 
 describe('vwc-button', () => {
 	let element: Button;
+
+	beforeAll(async () => {
+		await customElements.whenDefined(COMPONENT_TAG);
+	});
 
 	beforeEach(async () => {
 		element = await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Button;
@@ -33,7 +37,7 @@ describe('vwc-button', () => {
 
 			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
 			expect(icon).toBeInstanceOf(HTMLElement);
-			expect(icon.type).toEqual('home');
+			expect(icon.name).toEqual('home');
 		});
 
 		it('setting `iconTrailing` set the order of element', async () => {

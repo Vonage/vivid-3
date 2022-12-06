@@ -1,12 +1,12 @@
-import '../icon';
-import '../focus';
-
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
+import { loadComponentsModules } from '../../shared/utils';
 import styles from './fab.scss';
 
 import { Fab } from './fab';
 import { FabTemplate as template } from './fab.template';
+
+const prefix = getPrefix(import.meta.url);
 
 export const vividFab = Fab.compose<FoundationElementDefinition>({
 	baseName: 'fab',
@@ -17,4 +17,7 @@ export const vividFab = Fab.compose<FoundationElementDefinition>({
 	},
 });
 
-designSystem.register(vividFab());
+( async () => {
+	await loadComponentsModules(['icon', 'focus'], prefix);
+	designSystem.withPrefix(prefix).register(vividFab());
+})();
