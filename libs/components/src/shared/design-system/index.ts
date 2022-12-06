@@ -1,6 +1,6 @@
 import { DesignSystem } from '@microsoft/fast-foundation';
 
-let defaultPrefix = 'vwc';
+export let defaultPrefix = 'vwc';
 
 export const setPrefix = (prefix: string) => defaultPrefix = prefix;
 
