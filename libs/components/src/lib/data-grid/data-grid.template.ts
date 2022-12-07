@@ -3,9 +3,9 @@ import {
 	elements,
 	html
 } from '@microsoft/fast-element';
-import type {DataGrid, ElementDefinitionContext} from '@microsoft/fast-foundation';
-import type {ViewTemplate} from '@microsoft/fast-element';
-import {DataGridRow} from './data-grid-row';
+import type { DataGrid, ElementDefinitionContext } from '@microsoft/fast-foundation';
+import type { ViewTemplate } from '@microsoft/fast-element';
+import { DataGridRow } from './data-grid-row';
 
 /**
  * Options for data grid templates.
@@ -25,7 +25,7 @@ function rowItemTemplate<T extends DataGridRow>(
 	const rowTag = options.tagFor(options.dataGridRow);
 	return html<T>`
 	  <${rowTag}
-				:selectable="${(_, c) => c.parent.selectableRows}"
+			  :selectable="${(_, c) => c.parent.selectableRows}"
 			  :rowData="${x => x}"
 			  :cellItemTemplate="${(_, c) => c.parent.cellItemTemplate}"
 			  :headerCellItemTemplate="${(_, c) => c.parent.headerCellItemTemplate}"
@@ -44,18 +44,18 @@ function rowItemTemplate<T extends DataGridRow>(
 export function dataGridTemplate<T extends DataGrid>(
 	options: DataGridOptions
 ): ViewTemplate<T> {
-	options.dataGridRow  = options.dataGridRow ?? DataGridRow;
+	options.dataGridRow = options.dataGridRow ?? DataGridRow;
 	const rowTag = options.tagFor(options.dataGridRow);
 	return html<T>`
 	  <template
 			  role="grid"
 			  tabindex="0"
-			  :rowElementTag="${rowTag}"
+			  :rowElementTag="${() => rowTag}"
 			  :defaultRowItemTemplate="${rowItemTemplate(options)}"
 			  ${children({
-				  property: "rowElements",
-				  filter: elements("[role=row]"),
-			  })}
+		property: 'rowElements',
+		filter: elements('[role=row]'),
+	})}
 	  >
 		  <slot></slot>
 	  </template>
