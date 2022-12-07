@@ -4,6 +4,7 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { Listbox } from '../listbox/listbox.js';
 import { affixIconTemplateFactory } from '../shared/patterns/affix.js';
 import { focusTemplateFactory } from '../shared/patterns/focus.js';
+import { Elevation } from '../elevation/elevation';
 import type { Combobox } from './combobox';
 
 
@@ -69,10 +70,13 @@ function renderInput(context: ElementDefinitionContext) {
  * @param context
  * @public
  */
-export const ComboboxTemplate: (
+export const comboboxTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Combobox> = (context: ElementDefinitionContext) => html<Combobox>`
+) => ViewTemplate<Combobox> = (context: ElementDefinitionContext) => {
+	const elevationTag = context.tagFor(Elevation);
+
+	return html<Combobox>`
         <template
             aria-disabled="${x => x.ariaDisabled}"
             autocomplete="${x => x.autocomplete}"
@@ -85,6 +89,7 @@ export const ComboboxTemplate: (
 						<slot name="control">
 							${() => renderInput(context)}
 						</slot>
+						<${elevationTag}>
 							<div
 								id="${x => x.listboxId}"
 								class="listbox"
@@ -95,11 +100,13 @@ export const ComboboxTemplate: (
 								>
 									<slot
 											${slotted({
-	filter: Listbox.slottedOptionFilter as any,
-	flatten: true,
-	property: 'slottedOptions',
-})}
+		filter: Listbox.slottedOptionFilter as any,
+		flatten: true,
+		property: 'slottedOptions',
+	})}
 									></slot>
 							</div>
+						</${elevationTag}>
         </template>
-    `;
+		`;
+};

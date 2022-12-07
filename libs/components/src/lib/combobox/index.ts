@@ -10,7 +10,7 @@ import textFieldStyles from '../text-field/text-field.scss';
 import styles from './combobox.scss';
 
 import { Combobox } from './combobox';
-import { ComboboxTemplate as template } from './combobox.template';
+import { comboboxTemplate as template } from './combobox.template';
 
 
 export const vividCombobox = Combobox.compose<FoundationElementDefinition>({
