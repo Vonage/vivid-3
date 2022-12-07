@@ -13,7 +13,7 @@ import { badgeTemplate as template } from './badge.template';
  * Badges don’t work for navigation because they can't include a hyperlink.
  */
 
-export const badgeDefinition = Badge.compose<FoundationElementDefinition>({
+export const badge = Badge.compose<FoundationElementDefinition>({
 	baseName: 'badge',
 	template: template as any,
 	styles,
