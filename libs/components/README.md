@@ -47,8 +47,7 @@ Tokens folder contains the following files:
 
 Only one theme is required to be loaded.
 
-### Fonts (Prerequisite)
-
+### Fonts (Prerequisite) - Should we leave it for Vonage users?
 - `node_modules/@vonage/vivid/styles/fonts/spezia.css` - Loads the *Spezia* variable font and defines its font face values. *Spezia* is Vonage's branded font and is required by most Vivid components. folder also contains the font files.
 
 Note that font files are not included within the css file, and must be copied to application assets separately (within the same parsed css folder). This is to allow the author to choose the most appropriate way to load the font files based on their project.
@@ -152,8 +151,9 @@ Tools like [UNPKG](https://unpkg.com), [jsDeliver](https://www.jsdelivr.com), [S
 The following snippet fully renders a Vivid button component
 
 ```html
-<!-- import spezia font -->
-<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/fonts/spezia.css">
+<!-- import Montserrat font -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">">
 
 <!-- import light theme style tokens -->
 <link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/tokens/theme-light.css">
