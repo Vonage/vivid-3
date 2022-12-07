@@ -1,6 +1,6 @@
 import { DesignSystem } from '@microsoft/fast-foundation';
 
-export const defaultPrefix = 'vwc';
+const defaultPrefix = 'vwc';
 
 // !important: remove export. only use register() to register components
 export const getPrefix = (url: string) => new URL(url).searchParams.get('prefix') || 'vwc';
@@ -13,3 +13,4 @@ export const getPrefix = (url: string) => new URL(url).searchParams.get('prefix'
  */
 export const designSystem = DesignSystem.getOrCreate(); // !important: remove export. only use register() to register components
 
+export const registerFactorial = (...args: any[]) => (prefix = defaultPrefix) => designSystem.withPrefix(prefix).register(...args);

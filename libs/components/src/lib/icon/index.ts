@@ -1,5 +1,4 @@
-import { defaultPrefix, designSystem } from '../shared/design-system';
-import { icon } from './definition';
+import { registerIcon } from './definition';
 
 
-designSystem.withPrefix(defaultPrefix).register(icon);
+registerIcon();
