@@ -60,7 +60,7 @@
 
 		.base:not(.horizontal-icon) & {
 			flex-direction: column;
-			row-gap: 24px;
+				row-gap: #{size.$vvd-size-super-condensed};
 			.icon {
 				font-size: #{size.$vvd-size-condensed};
 			}
@@ -68,6 +68,7 @@
 
 		.base.horizontal-icon & {
 			column-gap: 8px;
+			column-gap: calc(#{size.$vvd-size-condensed} - #{size.$vvd-size-super-condensed});
 			.icon {
 				font-size: #{size.$vvd-size-extra-condensed};
 			}
