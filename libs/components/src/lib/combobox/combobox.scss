@@ -1,3 +1,5 @@
+@use '../../../../shared/src/lib/sass/utils' as utils;
+
 .control {
 	padding-inline-end: 44px;
 }
@@ -16,5 +18,9 @@
 }
 
 .listbox {
+	color: var(#{utils.get-color-token(canvas-text)});
+	background: var(#{utils.get-color-token(surface-4dp)});
+	border-radius: 6px;
 	contain: content;
+	inline-size: fit-content;
 }

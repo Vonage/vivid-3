@@ -41,7 +41,7 @@ function renderInput(context: ElementDefinitionContext) {
 				<input
 					id="control"
 					class="control"
-					aria-activedescendant="${x =>	x.open ? x.ariaActiveDescendant : null}"
+					aria-activedescendant="${x => x.open ? x.ariaActiveDescendant : null}"
 					aria-autocomplete="${x => x.ariaAutoComplete}"
 					aria-controls="${x => x.ariaControls}"
 					aria-disabled="${x => x.ariaDisabled}"
@@ -85,24 +85,21 @@ export const ComboboxTemplate: (
 						<slot name="control">
 							${() => renderInput(context)}
 						</slot>
-						<vwc-popup
-							anchor="text-field"
-							?open="${x => x.open}">
 							<div
 								id="${x => x.listboxId}"
 								class="listbox"
 								role="listbox"
 								?disabled="${x => x.disabled}"
+								?hidden="${x => !x.open}"
 								${ref('listbox')}
 								>
 									<slot
 											${slotted({
-		filter: Listbox.slottedOptionFilter as any,
-		flatten: true,
-		property: 'slottedOptions',
-	})}
+	filter: Listbox.slottedOptionFilter as any,
+	flatten: true,
+	property: 'slottedOptions',
+})}
 									></slot>
 							</div>
-						</vwc-popup>
         </template>
     `;

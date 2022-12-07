@@ -1,9 +1,11 @@
-# combobox
+# Combobox
 
 Represents a combobox custom element.
 
 ```js
-<script type="module">import '@vonage/vivid/combobox';</script>
+<script type="module">
+  import '@vonage/vivid/combobox';
+</script>
 ```
 
 ```html preview
