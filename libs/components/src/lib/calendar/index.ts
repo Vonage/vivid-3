@@ -1,5 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import styles from './calendar.scss';
 
 import { Calendar } from './calendar';
@@ -14,4 +14,4 @@ export const vividCalendar = Calendar.compose<FoundationElementDefinition>({
 	}
 });
 
-designSystem.register(vividCalendar());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividCalendar());

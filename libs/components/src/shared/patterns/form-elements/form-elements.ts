@@ -16,6 +16,9 @@ export interface FormElement {
 	dirtyValue: boolean;
 }
 
+/**
+ * @param constructor
+ */
 export function formElements<T extends { new (...args: any[]): Record<string, any> }>(constructor: T) {
 	class Decorated extends constructor {
 		@attr label?: string;
@@ -88,6 +91,10 @@ type MessageTypeMap = { [key in FeedbackType]: {
 	messageProperty: MessagePropertyType }
 };
 
+/**
+ * @param messageType
+ * @param context
+ */
 export function getFeedbackTemplate(messageType: FeedbackType, context: ElementDefinitionContext) {
 	const MessageTypeMap: MessageTypeMap = {
 		'helper': {
@@ -116,7 +123,7 @@ export function getFeedbackTemplate(messageType: FeedbackType, context: ElementD
 			</style>
 			<div class="message ${MessageTypeMap[messageType].className}-message">
 		  	${when(() => iconType, html<FormElement>`
-					  <${iconTag} class="message-icon" type="${iconType}"></${iconTag}>`)}
+					  <${iconTag} class="message-icon" name="${iconType}"></${iconTag}>`)}
 				${feedbackMessage({
 		messageProperty: MessageTypeMap[messageType].messageProperty})}
 			</div>`;

@@ -3,7 +3,7 @@ const slugify = require("slugify");
 
 const linkAfterHeader = markdownItAnchor.permalink.linkAfterHeader({
   class: "anchor",
-  symbol: "<vwc-icon type=\"link-solid\"></vwc-icon>",
+  symbol: "<vwc-icon name=\"link-solid\"></vwc-icon>",
   style: "aria-labelledby",
 });
 

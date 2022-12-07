@@ -1,4 +1,4 @@
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import styles from './radio-group.scss';
 
 import { RadioGroup } from './radio-group';
@@ -10,4 +10,4 @@ export const vividRadioGroup = RadioGroup.compose({
 	styles,
 });
 
-designSystem.register(vividRadioGroup());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividRadioGroup());

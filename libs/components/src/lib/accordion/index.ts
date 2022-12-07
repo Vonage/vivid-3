@@ -1,5 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import styles from './accordion.scss';
 
 import { Accordion } from './accordion';
@@ -11,4 +11,4 @@ export const vividAccordion = Accordion.compose<FoundationElementDefinition>({
 	styles,
 });
 
-designSystem.register(vividAccordion());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividAccordion());

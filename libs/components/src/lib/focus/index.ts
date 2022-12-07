@@ -1,5 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import { Focus } from './focus';
 import styles from './focus.scss';
 import { focusTemplate as template } from './focus.template';
@@ -18,4 +18,4 @@ export const vividFocus = Focus.compose<FoundationElementDefinition>({
 	styles,
 });
 
-designSystem.register(vividFocus());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividFocus());

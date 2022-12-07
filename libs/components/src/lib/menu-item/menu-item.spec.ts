@@ -13,6 +13,10 @@ const ICON_SELECTOR = 'vwc-icon';
 describe('vwc-menu-item', () => {
 	let element: MenuItem;
 
+	beforeAll(async () => {
+		await customElements.whenDefined(COMPONENT_TAG);
+	});
+
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
@@ -47,7 +51,7 @@ describe('vwc-menu-item', () => {
 
 		const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
 		expect(icon).toBeInstanceOf(HTMLElement);
-		expect(icon.type).toEqual(iconName);
+		expect(icon.name).toEqual(iconName);
 	});
 
 	it('should toggle "expanded" on mouse over and mouse out', async () => {
