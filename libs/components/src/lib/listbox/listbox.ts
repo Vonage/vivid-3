@@ -7,6 +7,7 @@ import type { Appearance } from '../enums';
  *
  * @public
  */
+
 export type ListboxAppearance = Extract<Appearance, Appearance.Outlined | Appearance.Ghost>;
 
 /**
@@ -34,10 +35,9 @@ export class Listbox extends FoundationListboxElement {
 	 *
 	 * @param _ - The previous disabled value
 	 * @param becomesDisabled - The next disabled value
-	 *
 	 * @internal
 	 */
-	public disabledChanged(_: boolean, becomesDisabled: boolean): void {
+	disabledChanged(_: boolean, becomesDisabled: boolean): void {
 		if (becomesDisabled) {
 			this._options.forEach((option, idx) => {
 				this._optionsState[idx] = option.disabled;
@@ -47,5 +47,5 @@ export class Listbox extends FoundationListboxElement {
 		else {
 			this._options.forEach((option, idx) => option.disabled = this._optionsState[idx]);
 		}
-	}	
+	}
 }
