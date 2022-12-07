@@ -5,7 +5,6 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import '../icon/index';
 import {Connotation} from '../enums';
 import type { Note } from './note';
 
@@ -40,7 +39,7 @@ function getIconType(note: Note) {
  *
  */
 function getIconTemplate() {
-	return html<Note>`<vwc-icon class="icon" type="${getIconType}"></vwc-icon>`;
+	return html<Note>`<vwc-icon class="icon" name="${getIconType}"></vwc-icon>`;
 }
 
 /**

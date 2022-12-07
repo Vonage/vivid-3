@@ -5,9 +5,9 @@ Validating no private package among package dependencies
 
 Updating package-lock.json after bumping packages
 
-up to date, audited 1676 packages in 3s
+up to date, audited 1702 packages in 6s
 
-197 packages are looking for funding
+201 packages are looking for funding
   run `npm fund` for details
 
 4 critical severity vulnerabilities
@@ -17,5 +17,5 @@ To address all issues, run:
 
 Run `npm audit` for details.
 Removing change files:
-- @vonage-vivid-dbf94fe7-0778-4f8c-9311-8a04f662a5f2.json
+- @vonage-vivid-efaece44-ce53-4406-baa3-96a3b00ea7ac.json
 Removing change path

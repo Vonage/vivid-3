@@ -61,7 +61,7 @@ These styles are not required by vivid components directly. however, native HTML
 
 These **core styles** rely on the tokens and fonts 👆 to be loaded.
 
-To **include the core styles**, its css files must be loaded into the project from the `node_modules/@vonage/vivid/styles/core` folder and *require a `vvd-root` class* selector to be present on a wrapping element (advisably the `:root`).
+To **include the core styles**, its css files must be loaded into the project from the `node_modules/@vonage/vivid/styles/core` folder and *require a `vvd-root` class* selector to be present on a wrapping element (advisably the `:root`. When set on the `:root` (html element), typeface sizes are able to descend from the root font-size, thus comply with the [WCAG 1.4.4](https://www.w3.org/WAI/WCAG21/Understanding/resize-text)).
 
 - `theme.css` - Sets theme related styles
 
@@ -74,6 +74,30 @@ Note: scss users can simply [forward](https://sass-lang.com/documentation/at-rul
 ```css
 @forward 'node_modules/@vonage/vivid/styles/[path to file].css';
 ```
+
+## Advanced Usage
+
+### Scoped Elements
+
+Custom elements, by browsers limitations, are registered globally, and thus may conflict when multiple versions of the library are used in the same application as all custom elements register under the same namespace.
+
+This burdens micro frontend architecture and updates to outdated versions of the Vivid, enforcing a single version of the library to be used. Meaning, any update to the library will require a full application update.
+
+To avoid this bottleneck, Vivid provides a way for authors' to scope each custom element namespace by setting a `prefix` query parameter to their import call.
+
+The following example will register *badge* custom element as `dashboard-badge`:
+
+```js
+import '/node_modules/@vonage/vivid/badge/index.js?prefix=dashboard';
+```
+
+then use it as:
+
+```html
+<dashboard-badge text="I'm a custom prefixed badge"></dashboard-badge>
+```
+
+Even though the custom elements are registered under different namespaces, [npm packages version range handling](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#dependencies) can still be used for multiple versions saving.
 
 ## Support
 

@@ -1,5 +1,6 @@
 @use 'partials/variables' as variables;
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
 
 
 .base {
@@ -63,4 +64,8 @@
 
 .content {
 	font: var(#{constants.$vvd-typography-base});
+}
+
+.icon {
+	font-size: #{size.$vvd-size-condensed};
 }

@@ -1,5 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem } from '../../shared/design-system';
+import { designSystem, getPrefix } from '../../shared/design-system';
 import styles from './icon.scss';
 import { Icon } from './icon';
 import { iconTemplate as template } from './icon.template';
@@ -11,4 +11,4 @@ export const vividIcon = Icon.compose<FoundationElementDefinition>({
 	styles,
 });
 
-designSystem.register(vividIcon());
+designSystem.withPrefix(getPrefix(import.meta.url)).register(vividIcon());

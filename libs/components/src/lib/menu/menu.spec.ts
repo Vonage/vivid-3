@@ -3,7 +3,6 @@ import type { Button } from '@microsoft/fast-foundation';
 import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
 import { Popup } from '../popup/popup';
 import { Menu } from './menu';
-import '../menu-item';
 import '.';
 
 const COMPONENT_TAG = 'vwc-menu';
@@ -17,6 +16,10 @@ describe('vwc-menu', () => {
 			unobserve: jest.fn(),
 			disconnect: jest.fn()
 		}));
+
+	beforeAll(async () => {
+		await customElements.whenDefined(COMPONENT_TAG);
+	});
 
 	beforeEach(async () => {
 		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Menu;
