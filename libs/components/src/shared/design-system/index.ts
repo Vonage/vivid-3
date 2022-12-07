@@ -1,9 +1,6 @@
 import { DesignSystem } from '@microsoft/fast-foundation';
 
-export let prefix = 'vwc';
-
-export const setPrefix = (value: string) => prefix = value;
-
+// !important: remove export. only use register() to register components
 export const getPrefix = (url: string) => new URL(url).searchParams.get('prefix') || 'vwc';
 
 // common components dependency
@@ -12,4 +9,8 @@ export const getPrefix = (url: string) => new URL(url).searchParams.get('prefix'
  * @param prefix
  * @returns {DesignSystem} - Represents a configurable design system. An API gateway to design system features.
  */
-export const designSystem = DesignSystem.getOrCreate();
+export const designSystem = DesignSystem.getOrCreate(); // !important: remove export. only use register() to register components
+
+export const register = (prefix = 'vwc', ...elements: any[]) => {
+	designSystem.withPrefix(prefix).register(elements);
+};

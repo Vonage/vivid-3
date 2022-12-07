@@ -1,23 +1,6 @@
-import '../icon';
+import { register } from '../../shared/design-system';
+import { badgeDefinition } from './definition';
 
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem, prefix } from '../../shared/design-system';
-import { Badge } from './badge';
-import styles from './badge.scss';
-import { badgeTemplate as template } from './badge.template';
+register(undefined, badgeDefinition);
 
-
-/**
- * Represents a badge custom element.
- * badge is a label that holds small amounts of information.
- * A badge can be used to display unread notifications, or to label a block of text.
- * Badges don’t work for navigation because they can't include a hyperlink.
- */
-
-export const vividBadge = Badge.compose<FoundationElementDefinition>({
-	baseName: 'badge',
-	template: template as any,
-	styles,
-});
-
-designSystem.withPrefix(prefix).register(vividBadge());
+export { badgeDefinition }; // !important: can it auto export?
