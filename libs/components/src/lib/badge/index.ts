@@ -1,6 +1,5 @@
-import { register } from '../../shared/design-system';
+import { defaultPrefix, designSystem } from '../shared/design-system';
+import { icon } from '../icon/definition';
 import { badge } from './definition';
 
-register(undefined, badge);
-
-
+designSystem.withPrefix(defaultPrefix).register(badge, icon);
