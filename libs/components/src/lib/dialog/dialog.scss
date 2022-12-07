@@ -58,16 +58,15 @@
 		display: flex;
 		align-items: flex-start;
 
-		.base:not(.horizontal-icon) & {
+		.base:not(.icon-placement-left) & {
 			flex-direction: column;
-				row-gap: #{size.$vvd-size-super-condensed};
+			row-gap: #{size.$vvd-size-super-condensed};
 			.icon {
 				font-size: #{size.$vvd-size-condensed};
 			}
 		}
 
-		.base.horizontal-icon & {
-			column-gap: 8px;
+		.base.icon-placement-left & {
 			column-gap: calc(#{size.$vvd-size-condensed} - #{size.$vvd-size-super-condensed});
 			.icon {
 				font-size: #{size.$vvd-size-extra-condensed};

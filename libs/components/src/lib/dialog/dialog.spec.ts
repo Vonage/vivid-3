@@ -254,11 +254,11 @@ describe('vwc-dialog', () => {
 		expect(iconElement?.getAttribute('name')).toEqual('home');
 	});
 
-	it( 'should add class .horizontal-icon to .base', async () => {
+	it( 'should add class of icon placement  to .base', async () => {
 		const baseDiv = element.shadowRoot?.querySelector('.base');
-		element.horizontalIcon = true;
+		element.iconPlacement = 'left';
 		await elementUpdated(element);
-		expect(baseDiv?.classList.contains('horizontal-icon'))
+		expect(baseDiv?.classList.contains('icon-placement-left'))
 			.toEqual(true);
 	});
 
