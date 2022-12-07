@@ -144,7 +144,7 @@ Due to a11y and design constraints, the density can only be set to one of the fo
  }
 </style>
 
-<vwc-number-field label="Choose density" helper-text="Change density value" min="-1" max="2" value="2" style="justify-self: flex-start; width: 105px;"></vwc-number-field>
+<vwc-number-field label="Choose density" helper-text="Change density value" min="-1" max="2" value="1" style="justify-self: flex-start; width: 105px;"></vwc-number-field>
 
 <vwc-divider></vwc-divider>
 
