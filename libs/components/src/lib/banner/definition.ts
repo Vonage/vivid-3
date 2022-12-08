@@ -11,7 +11,7 @@ export const banner = Banner.compose<FoundationElementDefinition>({
 	baseName: 'banner',
 	template: template as any,
 	styles,
-});
+})();
 
 /**
  * Registers the banner component & its prerequisite components with the design system.
