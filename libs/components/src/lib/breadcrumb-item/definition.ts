@@ -20,7 +20,7 @@ const breadcrumbItem = BreadcrumbItem.compose<FoundationElementDefinition>({
 export const breadcrumbItemElements = [breadcrumbItem, icon, focus];
 
 /**
- * Registers the breadcrumb-item component & its prerequisite components with the design system.
+ * Registers the breadcrumb-item elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */

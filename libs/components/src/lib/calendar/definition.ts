@@ -5,7 +5,8 @@ import styles from './calendar.scss';
 import { Calendar } from './calendar';
 import { CalendarTemplate as template } from './calendar.template';
 
-export const calendar = Calendar.compose<FoundationElementDefinition>({
+
+const calendar = Calendar.compose<FoundationElementDefinition>({
 	baseName: 'calendar',
 	template: template as any,
 	styles,
@@ -14,10 +15,12 @@ export const calendar = Calendar.compose<FoundationElementDefinition>({
 	}
 })();
 
+export const calendarElements = [calendar];
+
 /**
- * Registers the calendar component
+ * Registers the calendar elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerCalendar = registerFactorial(calendar);
+export const registerCalendar = registerFactorial(...calendarElements);
 

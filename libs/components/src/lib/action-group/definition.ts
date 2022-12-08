@@ -15,7 +15,7 @@ const actionGroup = ActionGroup.compose<FoundationElementDefinition>({
 export const actionGroupElements = [actionGroup];
 
 /**
- * Registers the action-group component
+ * Registers the action-group elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */

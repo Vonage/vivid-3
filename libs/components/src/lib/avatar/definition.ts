@@ -16,7 +16,7 @@ const avatar = Avatar.compose<FoundationElementDefinition>({
 export const avatarElements = [avatar, icon];
 
 /**
- * Registers the avatar component & its prerequisite components with the design system.
+ * Registers the avatar elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */

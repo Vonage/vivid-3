@@ -21,7 +21,7 @@ const accordionItem =
 export const accordionItemElements = [accordionItem, icon, focus];
 
 /**
- * Registers the accordion item component & its prerequisite components with the design system.
+ * Registers the accordion item elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */

@@ -17,7 +17,7 @@ const banner = Banner.compose<FoundationElementDefinition>({
 export const bannerElements = [banner, icon, ...buttonElements];
 
 /**
- * Registers the banner component & its prerequisite components with the design system.
+ * Registers the banner elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */

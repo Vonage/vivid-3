@@ -21,7 +21,7 @@ const badge = Badge.compose<FoundationElementDefinition>({
 export const badgeElements = [badge, icon];
 
 /**
- * Registers the badge component & its prerequisite components with the design system.
+ * Registers the badge elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */

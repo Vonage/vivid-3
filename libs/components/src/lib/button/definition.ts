@@ -24,7 +24,7 @@ const button = Button.compose<FoundationElementDefinition>({
 export const buttonElements = [button, icon, focus];
 
 /**
- * Registers the button component & its prerequisite components with the design system.
+ * Registers the button elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */

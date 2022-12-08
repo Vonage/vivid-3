@@ -14,7 +14,7 @@ const accordion = Accordion.compose<FoundationElementDefinition>({
 export const accordionElements = [accordion];
 
 /**
- * Registers the accordion component
+ * Registers the accordion elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
