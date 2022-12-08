@@ -17,9 +17,11 @@ export const breadcrumbItem = BreadcrumbItem.compose<FoundationElementDefinition
 	},
 })();
 
+export const breadcrumbItemAndDependencies = [breadcrumbItem, icon, focus];
+
 /**
  * Registers the breadcrumb-item component & its prerequisite components with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerBreadcrumbItem = registerFactorial(breadcrumbItem, icon, focus);
+export const registerBreadcrumbItem = registerFactorial(...breadcrumbItemAndDependencies);
