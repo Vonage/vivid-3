@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "ensuring correct card text align",
+  "packageName": "@vonage/vivid",
+  "email": "rachel.tannenbaum@vonage.com",
+  "dependentChangeType": "patch"
+}
