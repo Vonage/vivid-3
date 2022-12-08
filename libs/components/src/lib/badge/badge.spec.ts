@@ -2,7 +2,6 @@ import { elementUpdated, fixture } from '@vivid-nx/shared';
 import {Icon} from '../icon/icon';
 import {Badge} from './badge';
 import '.';
-// import { registerBadge } from './definition';
 
 const COMPONENT_TAG = 'vwc-badge';
 const ICON_SELECTOR = 'vwc-icon';
@@ -28,10 +27,6 @@ describe('vwc-badge', () => {
 			expect(element.shape).toBeUndefined();
 			expect(element.appearance).toBeUndefined();
 		});
-
-		// it('registers the component and its integrated components', async () => {
-		// 	registerBadge();
-		// });
 	});
 
 	describe('icon', () => {
