@@ -16,6 +16,4 @@ export const icon = Icon.compose<FoundationElementDefinition>({
  *
  * @param prefix - the prefix to use for the component name
  */
-const registerIcon = registerFactorial(icon);
-
-export { registerIcon };
+export const registerIcon = registerFactorial(icon);
