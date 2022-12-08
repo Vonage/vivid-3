@@ -3,8 +3,8 @@ import {
 	type FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { registerFactorial } from '../../shared/design-system';
-import { icon } from '../icon/definition';
-import { focus } from '../focus/definition';
+import { iconElements } from '../icon/definition';
+import { focusElements } from '../focus/definition';
 import { Button } from './button';
 import styles from './button.scss';
 import { buttonTemplate as template } from './button.template';
@@ -21,7 +21,7 @@ const button = Button.compose<FoundationElementDefinition>({
 })();
 
 
-export const buttonElements = [button, icon, focus];
+export const buttonElements = [button, ...iconElements, ...focusElements];
 
 /**
  * Registers the button elements with the design system.

@@ -1,5 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { icon } from '../icon/definition';
+import { iconElements } from '../icon/definition';
 import { registerFactorial } from '../../shared/design-system';
 import { Badge } from './badge';
 import styles from './badge.scss';
@@ -18,7 +18,7 @@ const badge = Badge.compose<FoundationElementDefinition>({
 	styles,
 })();
 
-export const badgeElements = [badge, icon];
+export const badgeElements = [badge, ...iconElements];
 
 /**
  * Registers the badge elements with the design system.

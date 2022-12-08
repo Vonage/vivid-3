@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactorial } from '../../shared/design-system';
-import { icon } from '../icon/definition';
+import { iconElements } from '../icon/definition';
 import styles from './avatar.scss';
 
 import { Avatar } from './avatar';
@@ -13,7 +13,7 @@ const avatar = Avatar.compose<FoundationElementDefinition>({
 	styles,
 })();
 
-export const avatarElements = [avatar, icon];
+export const avatarElements = [avatar, ...iconElements];
 
 /**
  * Registers the avatar elements with the design system.

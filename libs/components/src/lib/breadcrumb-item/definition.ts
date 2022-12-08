@@ -1,7 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactorial} from '../../shared/design-system';
-import { icon } from '../icon/definition';
-import { focus } from '../focus/definition';
+import { iconElements } from '../icon/definition';
+import { focusElements } from '../focus/definition';
 import styles from './breadcrumb-item.scss';
 
 import {BreadcrumbItem} from './breadcrumb-item';
@@ -17,7 +17,7 @@ const breadcrumbItem = BreadcrumbItem.compose<FoundationElementDefinition>({
 	},
 })();
 
-export const breadcrumbItemElements = [breadcrumbItem, icon, focus];
+export const breadcrumbItemElements = [breadcrumbItem, ...iconElements, ...focusElements];
 
 /**
  * Registers the breadcrumb-item elements with the design system.
