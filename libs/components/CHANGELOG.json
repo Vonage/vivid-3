@@ -2,6 +2,29 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Thu, 08 Dec 2022 07:12:10 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.112",
+      "version": "3.0.0-next.112",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "a24ebf3fd720bf6e26cc62e9f88e937c1f8e71fb",
+            "comment": "duotone appearance & warning connotation conditioned to an outline lighter shade"
+          }
+        ],
+        "none": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "93708f4717700a4304c89ccbfe773e047d6fb709",
+            "comment": "feat(fab): typo"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 05 Dec 2022 11:11:21 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.111",
       "version": "3.0.0-next.111",
