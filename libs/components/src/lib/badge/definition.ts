@@ -12,17 +12,17 @@ import { badgeTemplate as template } from './badge.template';
  * A badge can be used to display unread notifications, or to label a block of text.
  * Badges don’t work for navigation because they can't include a hyperlink.
  */
-export const badge = Badge.compose<FoundationElementDefinition>({
+const badge = Badge.compose<FoundationElementDefinition>({
 	baseName: 'badge',
 	template: template as any,
 	styles,
 })();
 
-export const badgeAndDependencies = [badge, icon];
+export const badgeElements = [badge, icon];
 
 /**
  * Registers the badge component & its prerequisite components with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerBadge = registerFactorial(...badgeAndDependencies);
+export const registerBadge = registerFactorial(...badgeElements);

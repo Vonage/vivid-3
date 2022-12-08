@@ -10,7 +10,7 @@ import styles from './button.scss';
 import { buttonTemplate as template } from './button.template';
 
 
-export const button = Button.compose<FoundationElementDefinition>({
+const button = Button.compose<FoundationElementDefinition>({
 	baseName: 'button',
 	baseClass: FastButton,
 	template: template as any,
@@ -21,11 +21,11 @@ export const button = Button.compose<FoundationElementDefinition>({
 })();
 
 
-export const buttonAndDependencies = [button, icon, focus];
+export const buttonElements = [button, icon, focus];
 
 /**
  * Registers the button component & its prerequisite components with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerButton = registerFactorial(...buttonAndDependencies);
+export const registerButton = registerFactorial(...buttonElements);

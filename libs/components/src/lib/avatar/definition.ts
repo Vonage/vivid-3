@@ -7,17 +7,17 @@ import { Avatar } from './avatar';
 import { AvatarTemplate as template } from './avatar.template';
 
 
-export const avatar = Avatar.compose<FoundationElementDefinition>({
+const avatar = Avatar.compose<FoundationElementDefinition>({
 	baseName: 'avatar',
 	template: template as any,
 	styles,
 })();
 
-export const avatarAndDependencies = [avatar, icon];
+export const avatarElements = [avatar, icon];
 
 /**
  * Registers the avatar component & its prerequisite components with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerAvatar = registerFactorial(...avatarAndDependencies);
+export const registerAvatar = registerFactorial(...avatarElements);

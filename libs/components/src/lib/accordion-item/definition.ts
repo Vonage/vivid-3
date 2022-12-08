@@ -8,7 +8,7 @@ import { AccordionItem } from './accordion-item';
 import { AccordionItemTemplate as template } from './accordion-item.template';
 
 
-export const accordionItem =
+const accordionItem =
 	AccordionItem.compose<FoundationElementDefinition>({
 		baseName: 'accordion-item',
 		template: template as any,
@@ -18,11 +18,11 @@ export const accordionItem =
 		},
 	})();
 
-export const AccordionItemAndDependencies = [accordionItem, icon, focus];
+export const accordionItemElements = [accordionItem, icon, focus];
 
 /**
  * Registers the accordion item component & its prerequisite components with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerAccordionItem = registerFactorial(...AccordionItemAndDependencies);
+export const registerAccordionItem = registerFactorial(...accordionItemElements);

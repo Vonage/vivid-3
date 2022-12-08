@@ -6,15 +6,17 @@ import { ActionGroup } from './action-group';
 import { ActionGroupTemplate as template } from './action-group.template';
 
 
-export const actionGroup = ActionGroup.compose<FoundationElementDefinition>({
+const actionGroup = ActionGroup.compose<FoundationElementDefinition>({
 	baseName: 'action-group',
 	template: template as any,
 	styles,
 })();
+
+export const actionGroupElements = [actionGroup];
 
 /**
  * Registers the action-group component
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerActionGroup = registerFactorial(actionGroup);
+export const registerActionGroup = registerFactorial(...actionGroupElements);

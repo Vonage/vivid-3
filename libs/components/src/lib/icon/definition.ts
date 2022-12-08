@@ -5,15 +5,17 @@ import { Icon } from './icon';
 import { iconTemplate as template } from './icon.template';
 
 
-export const icon = Icon.compose<FoundationElementDefinition>({
+const icon = Icon.compose<FoundationElementDefinition>({
 	baseName: 'icon',
 	template: template as any,
 	styles,
 })();
+
+export const iconElements = [icon];
 
 /**
  * Registers the icon component & its prerequisite components with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerIcon = registerFactorial(icon);
+export const registerIcon = registerFactorial(...iconElements);

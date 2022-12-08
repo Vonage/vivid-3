@@ -8,7 +8,7 @@ import {BreadcrumbItem} from './breadcrumb-item';
 import {BreadcrumbItemTemplate as template} from './breadcrumb-item.template';
 
 
-export const breadcrumbItem = BreadcrumbItem.compose<FoundationElementDefinition>({
+const breadcrumbItem = BreadcrumbItem.compose<FoundationElementDefinition>({
 	baseName: 'breadcrumb-item',
 	template: template as any,
 	styles,
@@ -17,11 +17,11 @@ export const breadcrumbItem = BreadcrumbItem.compose<FoundationElementDefinition
 	},
 })();
 
-export const breadcrumbItemAndDependencies = [breadcrumbItem, icon, focus];
+export const breadcrumbItemElements = [breadcrumbItem, icon, focus];
 
 /**
  * Registers the breadcrumb-item component & its prerequisite components with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerBreadcrumbItem = registerFactorial(...breadcrumbItemAndDependencies);
+export const registerBreadcrumbItem = registerFactorial(...breadcrumbItemElements);

@@ -11,15 +11,17 @@ import { focusTemplate as template } from './focus.template';
  * A focus can be used to display unread notifications, or to label a block of text.
  * Focuss don’t work for navigation because they can't include a hyperlink.
  */
-export const focus = Focus.compose<FoundationElementDefinition>({
+const focus = Focus.compose<FoundationElementDefinition>({
 	baseName: 'focus',
 	template: template as any,
 	styles,
 })();
+
+export const focusElements = [focus];
 
 /**
  * Registers the focus component
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerFocus = registerFactorial(focus);
+export const registerFocus = registerFactorial(...focusElements);
