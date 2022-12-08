@@ -18,9 +18,11 @@ export const badge = Badge.compose<FoundationElementDefinition>({
 	styles,
 })();
 
+export const badgeAndDependencies = [badge, icon];
+
 /**
  * Registers the badge component & its prerequisite components with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerBadge = registerFactorial(badge, icon);
+export const registerBadge = registerFactorial(...badgeAndDependencies);
