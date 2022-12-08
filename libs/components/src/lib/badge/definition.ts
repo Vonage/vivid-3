@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { icon } from '../icon/definition';
-import { registerFactorial } from '../shared/design-system';
+import { registerFactorial } from '../../shared/design-system';
 import { Badge } from './badge';
 import styles from './badge.scss';
 import { badgeTemplate as template } from './badge.template';
