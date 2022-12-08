@@ -36,7 +36,7 @@ function renderInput(context: ElementDefinitionContext) {
 	const focusTemplate = focusTemplateFactory(context);
 
 	return html<Combobox>`
-		<div class="base ${getStateClasses}">
+		<div class="${getStateClasses}">
 			${when(x => x.label, renderLabel())}
 			<div class="fieldset">
 				<input
@@ -78,6 +78,7 @@ export const comboboxTemplate: (
 
 	return html<Combobox>`
         <template
+			class="base"
             aria-disabled="${x => x.ariaDisabled}"
             autocomplete="${x => x.autocomplete}"
             ?open="${x => x.open}"
