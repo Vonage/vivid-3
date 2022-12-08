@@ -59,7 +59,7 @@ const iframeObservers = new WeakMap();
 
 const autoResize = (iFrame) => {
   new ResizeObserver((entries, observer) => {
-    iFrame.style.height = iFrame.contentWindow.document.documentElement.scrollHeight + "px";
+    iFrame.style.height = Math.max(150, entries[0].contentRect.height) + "px";
     clearTimeout(iframeObservers.get(iFrame));
     iframeObservers.set(iFrame, setTimeout(() => {
       observer.disconnect();
