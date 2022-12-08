@@ -18,11 +18,11 @@ export const accordionItem =
 		},
 	})();
 
-const AccordionItemAndPrerequisiteComponents = [accordionItem, icon, focus];
+export const AccordionItemAndDependencies = [accordionItem, icon, focus];
 
 /**
  * Registers the accordion item component & its prerequisite components with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerAccordionItem = registerFactorial(...AccordionItemAndPrerequisiteComponents);
+export const registerAccordionItem = registerFactorial(...AccordionItemAndDependencies);
