@@ -21,11 +21,11 @@ const button = Button.compose<FoundationElementDefinition>({
 })();
 
 
-export const buttonAndPrerequisiteComponents = [button, icon, focus];
+export const buttonAndDependencies = [button, icon, focus];
 
 /**
  * Registers the button component & its prerequisite components with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerButton = registerFactorial(...buttonAndPrerequisiteComponents);
+export const registerButton = registerFactorial(...buttonAndDependencies);
