@@ -1,6 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactorial } from '../../shared/design-system';
 import { iconElements } from '../icon/definition';
+import { elevationElements } from '../elevation/definition';
 import styles from './card.scss';
 
 import { Card } from './card';
