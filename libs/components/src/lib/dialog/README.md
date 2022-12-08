@@ -48,11 +48,11 @@ Use the `icon` attribute to set the dialog's icon.
 
 Use the `icon-placement` attribute to set the dialog's icon horizontal to dialog text
 
-- Type: `top` | `left`
+- Type: `top` | `start`
 - Default: `top`
 
 ```html preview
-<vwc-dialog icon-placement="left" icon="info" headline="Dialog Headline" open></vwc-dialog>
+<vwc-dialog icon-placement="start" icon="info" headline="Dialog Headline" open></vwc-dialog>
 ```
 
 
