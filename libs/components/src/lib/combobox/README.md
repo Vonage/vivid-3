@@ -105,14 +105,17 @@ Read more about [vwc-option](../../components/option).
 
 ### Position
 
-```html preview center
+```html preview
 <style>
   :root { /* for demo purposes */
     block-size: 280px;
   }
+  .combobox {
+    align-self:flex-end;
+  }
 </style>
 
-<vwc-combobox position="above">
+<vwc-combobox class="combobox" position="above">
  <vwc-option text="Christopher Eccleston"></vwc-option>
  <vwc-option text="David Tenant"></vwc-option>
 </vwc-combobox>
