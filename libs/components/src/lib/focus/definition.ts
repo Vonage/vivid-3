@@ -10,8 +10,10 @@ import { focusTemplate as template } from './focus.template';
  * focus is a label that holds small amounts of information.
  * A focus can be used to display unread notifications, or to label a block of text.
  * Focuss don’t work for navigation because they can't include a hyperlink.
+ *
+ * @internal
  */
-const focus = Focus.compose<FoundationElementDefinition>({
+export const focus = Focus.compose<FoundationElementDefinition>({
 	baseName: 'focus',
 	template: template as any,
 	styles,

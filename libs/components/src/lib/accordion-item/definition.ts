@@ -8,7 +8,11 @@ import { AccordionItem } from './accordion-item';
 import { AccordionItemTemplate as template } from './accordion-item.template';
 
 
-const accordionItem =
+/**
+ *
+ * @internal
+ */
+export const accordionItem =
 	AccordionItem.compose<FoundationElementDefinition>({
 		baseName: 'accordion-item',
 		template: template as any,

@@ -5,7 +5,11 @@ import styles from './accordion.scss';
 import { Accordion } from './accordion';
 import { AccordionTemplate as template } from './accordion.template';
 
-const accordion = Accordion.compose<FoundationElementDefinition>({
+/**
+ *
+ * @internal
+ */
+export const accordion = Accordion.compose<FoundationElementDefinition>({
 	baseName: 'accordion',
 	template: template as any,
 	styles,

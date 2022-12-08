@@ -6,7 +6,12 @@ import { CalendarEvent } from './calendar-event';
 import { CalendarEventTemplate as template } from './calendar-event.template';
 
 
-const calendarEvent =
+/**
+ * The calendar-event element is a custom element that is used to display a single event in a calendar.
+ *
+ * @internal
+ */
+export const calendarEvent =
 	CalendarEvent.compose<FoundationElementDefinition>({
 		baseName: 'calendar-event',
 		template: template as any,

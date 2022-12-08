@@ -7,7 +7,11 @@ import { Avatar } from './avatar';
 import { AvatarTemplate as template } from './avatar.template';
 
 
-const avatar = Avatar.compose<FoundationElementDefinition>({
+/**
+ *
+ * @internal
+ */
+export const avatar = Avatar.compose<FoundationElementDefinition>({
 	baseName: 'avatar',
 	template: template as any,
 	styles,

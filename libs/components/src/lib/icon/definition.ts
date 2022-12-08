@@ -5,7 +5,10 @@ import { Icon } from './icon';
 import { iconTemplate as template } from './icon.template';
 
 
-const icon = Icon.compose<FoundationElementDefinition>({
+/**
+ * @internal
+ */
+export const icon = Icon.compose<FoundationElementDefinition>({
 	baseName: 'icon',
 	template: template as any,
 	styles,

@@ -8,7 +8,11 @@ import { Banner } from './banner';
 import { BannerTemplate as template } from './banner.template';
 
 
-const banner = Banner.compose<FoundationElementDefinition>({
+/**
+ *
+ * @internal
+ */
+export const banner = Banner.compose<FoundationElementDefinition>({
 	baseName: 'banner',
 	template: template as any,
 	styles,

@@ -4,7 +4,11 @@ import { breadcrumbTemplate as template } from './breadcrumb.template';
 import styles from './breadcrumb.scss';
 import { Breadcrumb } from './breadcrumb';
 
-const breadcrumb = Breadcrumb.compose<FoundationElementDefinition>({
+/**
+ *
+ * @internal
+ */
+export const breadcrumb = Breadcrumb.compose<FoundationElementDefinition>({
 	baseName: 'breadcrumb',
 	template,
 	styles,

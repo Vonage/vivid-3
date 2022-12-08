@@ -8,7 +8,11 @@ import {BreadcrumbItem} from './breadcrumb-item';
 import {BreadcrumbItemTemplate as template} from './breadcrumb-item.template';
 
 
-const breadcrumbItem = BreadcrumbItem.compose<FoundationElementDefinition>({
+/**
+ *
+ * @internal
+ */
+export const breadcrumbItem = BreadcrumbItem.compose<FoundationElementDefinition>({
 	baseName: 'breadcrumb-item',
 	template: template as any,
 	styles,

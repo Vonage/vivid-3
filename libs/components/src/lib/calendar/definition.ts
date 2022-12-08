@@ -6,7 +6,11 @@ import { Calendar } from './calendar';
 import { CalendarTemplate as template } from './calendar.template';
 
 
-const calendar = Calendar.compose<FoundationElementDefinition>({
+/**
+ *
+ * @internal
+ */
+export const calendar = Calendar.compose<FoundationElementDefinition>({
 	baseName: 'calendar',
 	template: template as any,
 	styles,

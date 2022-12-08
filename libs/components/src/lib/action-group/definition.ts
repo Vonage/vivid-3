@@ -6,7 +6,11 @@ import { ActionGroup } from './action-group';
 import { ActionGroupTemplate as template } from './action-group.template';
 
 
-const actionGroup = ActionGroup.compose<FoundationElementDefinition>({
+/**
+ *
+ * @internal
+ */
+export const actionGroup = ActionGroup.compose<FoundationElementDefinition>({
 	baseName: 'action-group',
 	template: template as any,
 	styles,

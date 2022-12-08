@@ -10,7 +10,11 @@ import styles from './button.scss';
 import { buttonTemplate as template } from './button.template';
 
 
-const button = Button.compose<FoundationElementDefinition>({
+/**
+ *
+ * @internal
+ */
+export const button = Button.compose<FoundationElementDefinition>({
 	baseName: 'button',
 	baseClass: FastButton,
 	template: template as any,
