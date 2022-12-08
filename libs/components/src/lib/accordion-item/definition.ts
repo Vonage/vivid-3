@@ -23,4 +23,4 @@ export const accordionItem =
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerAccordionItem = registerFactorial(icon, focus);
+export const registerAccordionItem = registerFactorial(accordionItem, icon, focus);
