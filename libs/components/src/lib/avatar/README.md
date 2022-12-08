@@ -97,7 +97,7 @@ Use the `size` attribute/property to set the avatar's to one of the predefined b
 
 ### Main
 
-set a graphic media of any kind (e.g. image, illustration etc.'.)
+Assign nodes to the main slot to set a graphic media of any kind (e.g. image, illustration etc.'.)
 
 ```html preview
 <vwc-avatar shape="pill" connotation="cta">
