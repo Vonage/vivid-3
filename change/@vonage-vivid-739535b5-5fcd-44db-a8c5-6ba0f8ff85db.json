@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "nameing avatar main slot",
-  "packageName": "@vonage/vivid",
-  "email": "rachel.tannenbaum@vonage.com",
-  "dependentChangeType": "patch"
-}
