@@ -1,6 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactorial } from '../../shared/design-system';
 import { buttonAndDependencies } from '../button/definition';
+import { icon } from '../icon/definition';
 import styles from './banner.scss';
 
 import { Banner } from './banner';
@@ -13,7 +14,7 @@ export const banner = Banner.compose<FoundationElementDefinition>({
 	styles,
 })();
 
-export const bannerAndDependencies = [banner, ...buttonAndDependencies];
+export const bannerAndDependencies = [banner, icon, ...buttonAndDependencies];
 
 /**
  * Registers the banner component & its prerequisite components with the design system.
