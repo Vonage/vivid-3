@@ -1,5 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactorial } from '../../shared/design-system';
+import { popupElements } from '../popup/definition';
 import styles from './tooltip.scss';
 
 import { Tooltip } from './tooltip';
@@ -15,13 +16,13 @@ export const tooltip = Tooltip.compose<FoundationElementDefinition>({
 	baseName: 'tooltip',
 	template: template as any,
 	styles,
-});
+})();
 
-export const tooltipElements = [tooltip];
+export const tooltipElements = [tooltip, ...popupElements];
 
 /**
- * Registers the calendar-event elements with the design system.
+ * Registers the tooltip elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registertooltip = registerFactorial(...tooltipElements);
+export const registerTooltip = registerFactorial(...tooltipElements);
