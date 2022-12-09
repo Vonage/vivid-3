@@ -1,6 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactorial } from '../../shared/design-system';
 import { focusElements } from '../focus/definition';
+import { listboxOptionElements } from '../option/definition';
 import { Listbox } from './listbox';
 import { ListboxTemplate as template } from './listbox.template';
 import styles from './listbox.scss';
