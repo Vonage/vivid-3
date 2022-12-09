@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "change prefix override interface",
+  "packageName": "@vonage/vivid",
+  "email": "yinon@hotmail.com",
+  "dependentChangeType": "patch"
+}
