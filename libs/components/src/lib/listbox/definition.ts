@@ -18,8 +18,6 @@ const listbox = Listbox.compose<FoundationElementDefinition>({
 	styles
 })();
 
-
-
 // by convention, option isn't required to be imported
 // in listbox as it is not used directly in its template rather by user's authoring.
 // but, due to the race condition and way listbox needs children to
