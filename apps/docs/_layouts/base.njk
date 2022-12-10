@@ -25,17 +25,12 @@
       {% include "../../../node_modules/highlight.js/styles/github.css" %}
     {% endset %}
 
-    {% set speziaCss %}
-      {% include "../../../assets/fonts/spezia/spezia.css" %}
-    {% endset %}
-
     {% set mainCss %}
       {% include "../assets/styles/main.css" %}
     {% endset %}
 
     <style>
       {{ highlightCss | cssmin | safe }}
-      {{ speziaCss | cssmin | safe }}
       {{ mainCss | cssmin | safe }}
     </style>
 

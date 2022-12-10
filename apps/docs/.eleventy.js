@@ -17,7 +17,6 @@ module.exports = function (eleventyConfig) {
 		"dist/libs/components": "assets/modules/components",
 		"assets/images/vivid-logo.svg": "assets/images/vivid-logo.svg",
 		"assets/images/vivid-cover-wide.avif": "assets/images/vivid-cover-wide.avif",
-		"assets/fonts/spezia/*.woff2": "assets/fonts",
 		[ASSETS_DIR]: "assets"
 	});
 
