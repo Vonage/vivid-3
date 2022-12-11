@@ -17,13 +17,13 @@
 	position: relative;
 }
 .control {
-	padding-inline-end: 44px;
 	display: flex;
+	padding-inline-end: 44px;
 }
 
 .icon {
-	inset-inline-start: unset;
 	inset-inline-end: 16px;
+	inset-inline-start: unset;
 
 	:not(.disabled) & {
 		cursor: pointer;
