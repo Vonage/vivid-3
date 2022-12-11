@@ -73,6 +73,7 @@ export function extractHTMLBlocksFromReadme(pathToReadme: string): string[] {
 }
 
 const defaultStyles = [
+	'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap',
 	'http://127.0.0.1:8080/dist/libs/components/styles/tokens/theme-light.css',
 	'http://127.0.0.1:8080/dist/libs/components/styles/core/all.css'
 ];
