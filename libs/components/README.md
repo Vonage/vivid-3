@@ -77,7 +77,7 @@ Note: scss users can simply [forward](https://sass-lang.com/documentation/at-rul
 
 ## Advanced Usage
 
-### Scoped Elements
+### Scoped Elements (🧪 Alpha)
 
 Custom elements, by browsers limitations, are registered globally, and thus may conflict when multiple versions of the library are used in the same application as all custom elements register under the same namespace.
 
