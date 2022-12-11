@@ -107,18 +107,20 @@ Read more about [vwc-option](../../components/option).
 
 ```html preview
 <style>
-  :root { /* for demo purposes */
+  .combobox-wrapper { /* for demo purposes */
     block-size: 280px;
-  }
-  .combobox {
-    align-self:flex-end;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: start;
   }
 </style>
-
-<vwc-combobox class="combobox" position="above">
- <vwc-option text="Christopher Eccleston"></vwc-option>
- <vwc-option text="David Tenant"></vwc-option>
-</vwc-combobox>
+<div class="combobox-wrapper">
+  <vwc-combobox class="combobox" position="above">
+    <vwc-option text="Christopher Eccleston"></vwc-option>
+    <vwc-option text="David Tenant"></vwc-option>
+  </vwc-combobox>
+</div>
 ```
 
 ### Disabled
