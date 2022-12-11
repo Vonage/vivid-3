@@ -2,6 +2,8 @@
 // in combobox as it is not used directly in template rather by authoring.
 // but, due to the race condition and way combobox needs children to
 // connect before setting/checking their props/attributes, it is required
+import '../option';
+
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { designSystem } from '../../shared/design-system';
 import textFieldStyles from '../text-field/text-field.scss';
