@@ -2,6 +2,104 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Thu, 08 Dec 2022 11:19:53 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.114",
+      "version": "3.0.0-next.114",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "9badcce8e4870d8be5ad7c15c7f03d63c2100faf",
+            "comment": "nameing avatar main slot"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 10:58:26 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.113",
+      "version": "3.0.0-next.113",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "6649e06646a02cc36b6b49edcb443c0d9985c51c",
+            "comment": "ensuring correct card text align"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 07:12:10 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.112",
+      "version": "3.0.0-next.112",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "a24ebf3fd720bf6e26cc62e9f88e937c1f8e71fb",
+            "comment": "duotone appearance & warning connotation conditioned to an outline lighter shade"
+          }
+        ],
+        "none": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "93708f4717700a4304c89ccbfe773e047d6fb709",
+            "comment": "feat(fab): typo"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 05 Dec 2022 11:11:21 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.111",
+      "version": "3.0.0-next.111",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "b51e9af216b2f3a4e6e982b3f6ab6bc90c446f60",
+            "comment": "make button inline size fluid to its container"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 04 Dec 2022 15:36:59 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.110",
+      "version": "3.0.0-next.110",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "f023bd00c65a102650e9d0cc6e4c5d91d27134db",
+            "comment": "enable custom prefix for custom-elements"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 04 Dec 2022 13:39:56 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.109",
+      "version": "3.0.0-next.109",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "80d31483aea412cb8932184fce541008b7a07854",
+            "comment": "badge support overflow clipping"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 29 Nov 2022 15:41:17 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.108",
       "version": "3.0.0-next.108",
