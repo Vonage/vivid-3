@@ -4,17 +4,24 @@ import type { Popup } from '../popup/popup';
 import { AffixIcon, FormElement, formElements } from '../shared/patterns';
 
 /**
-	* Base class for combobox
-	*
-	*/
+ * Types of popup placement
+ *
+ * @public
+ */
+type PopupPlacement = 'top' | 'bottom';
+
+/**
+* Base class for combobox
+*
+*/
 @formElements
 export class Combobox extends FoundationCombobox {
 	/**
-		* the placement of the combobox
-		*
-		* HTML Attribute: string
-		*/
-	@attr placement?: 'top' | 'bottom' = 'bottom';
+	* the placement of the combobox
+	*
+	* HTML Attribute: string
+	*/
+	@attr placement?: PopupPlacement = 'bottom';
 
 	_popup!: Popup;
 	_anchor!: HTMLElement;
