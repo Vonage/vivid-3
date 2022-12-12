@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Mon, 12 Dec 2022 11:29:26 GMT and should not be manually modified.
+This log was last generated on Mon, 12 Dec 2022 12:23:32 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.116
+
+Mon, 12 Dec 2022 12:23:32 GMT
+
+### Changes
+
+- anchor can recieve  HTMLElement (rina.oksman@vonage.com)
 
 ## 3.0.0-next.115
 
