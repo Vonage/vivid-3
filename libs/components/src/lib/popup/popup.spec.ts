@@ -193,8 +193,8 @@ describe('vwc-popup', () => {
 			element.open = true;
 			await elementUpdated(element);
 
-			await setAnchor();
-			element.anchor = 'anchor';
+			const anchorEl = await setAnchor();
+			element.anchor = anchorEl;
 			await elementUpdated(element);
 
 			element.arrowEl = element.shadowRoot?.querySelector('.arrow') as HTMLElement;
