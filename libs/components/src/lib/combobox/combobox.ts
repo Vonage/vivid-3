@@ -21,7 +21,7 @@ export class Combobox extends FoundationCombobox {
 	*
 	* HTML Attribute: string
 	*/
-	@attr placement?: PopupPlacement = 'bottom';
+	@attr placement?: PopupPlacement;
 
 	_popup!: Popup;
 	_anchor!: HTMLElement;
