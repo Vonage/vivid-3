@@ -2,6 +2,7 @@ import {
 	children,
 	elements,
 	html,
+	ref,
 	slotted,
 	when
 } from '@microsoft/fast-element';
@@ -9,7 +10,6 @@ import {classNames} from '@microsoft/fast-web-utilities';
 import type { ColumnDefinition } from '@microsoft/fast-foundation';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { DataGridRow } from './data-grid-row.js';
-import {DataGridCell} from './data-grid-cell';
 
 /**
  * Options for data grid cells.
@@ -21,11 +21,16 @@ export interface CellItemTemplateOptions {
 	tagFor?: (element: any) => string;
 }
 
+/**
+ * @param options
+ */
 function getCellTag(options: CellItemTemplateOptions) {
-	const cellTag = options.tagFor?.(options.dataGridCell) || options.dataGridCell;
-	return cellTag;
+	return options.tagFor?.(options.dataGridCell) || options.dataGridCell;
 }
 
+function getGridColumnIndex(_: any, c: { index: number; parent: any }) {
+	return c.parent.treeViewProperty ? null : c.index + 1;
+}
 /**
  * @param options
  */
@@ -36,7 +41,7 @@ function cellItemTemplate<T extends DataGridRow>(
 	return html<ColumnDefinition, T>`
     <${cellTag}
         cell-type="${x => (x.isRowHeader ? 'rowheader' : undefined)}"
-        grid-column="${(_, c) => c.index + 1}"
+        grid-column="${getGridColumnIndex}"
         :rowData="${(_, c) => c.parent.rowData}"
         :columnDefinition="${x => x}"
         :selectable="${(_, c) => c.parent.selectable}"
@@ -50,12 +55,11 @@ function cellItemTemplate<T extends DataGridRow>(
 function headerCellItemTemplate<T extends DataGridRow>(
 	options: CellItemTemplateOptions
 ): ViewTemplate<ColumnDefinition, T> {
-	options.dataGridCell = options.dataGridCell ?? DataGridCell;
 	const cellTag = getCellTag(options);
 	return html<ColumnDefinition, T>`
     <${cellTag}
         cell-type="columnheader"
-        grid-column="${(_, c) => c.index + 1}"
+        grid-column="${getGridColumnIndex}"
         :columnDefinition="${x => x}"
     ></${cellTag}>
 `;
@@ -78,8 +82,10 @@ export function dataGridRowTemplate<T extends DataGridRow>(
 	options: CellItemTemplateOptions
 ): ViewTemplate<T> {
 	return html<T>`
-        <template class="${getClasses}"
+        <template style="grid-template-columns: ${getGridTemplateColumns}"
+				  class="${getClasses}"
 				  role="row"
+				  	:treeview="${x => Boolean(x.treeViewProperty)}"
 		            :defaultCellItemTemplate="${cellItemTemplate(options)}"
 		            :defaultHeaderCellItemTemplate="${headerCellItemTemplate(options)}"
 		            ${children({
@@ -89,10 +95,22 @@ export function dataGridRowTemplate<T extends DataGridRow>(
 		),
 	})}
         >
-            <slot ${slotted('slottedCellElements')}></slot>
-			${when(x => x.expanded, getExpandedRowTemplate())}
+		${when(x => x.treeViewProperty, html<T>`
+			<div><vwc-button size="condensed" @click="${x => x.toggleTreeView()}" icon="${x => getTreeViewIcon(x)}"></vwc-button></div>`)}
+		<slot ${slotted('slottedCellElements')}></slot>
+		${when(x => x.treeViewOpen, html<T>`<div><vwc-data-grid id="sub-grid" ${ref<any>('subGrid')}></vwc-data-grid></div>`)}
+		${when(x => x.expanded, getExpandedRowTemplate())}
         </template>
     `;
+}
+
+const TREEVIEW_ICON = {
+	'open': 'chevron-down-solid',
+	'closed': 'chevron-right-solid'
+};
+
+function getTreeViewIcon({treeViewOpen}: DataGridRow) {
+	return treeViewOpen ? TREEVIEW_ICON['open'] : TREEVIEW_ICON['closed'];
 }
 
 function getExpandedRowTemplate() {
@@ -108,5 +126,15 @@ function expandedRowTemplate() {
 }
 
 function customExpandedRowTemplate() {
-	return html`<div id="custom-expansion"></div>${x => {setTimeout(() => x.shadowRoot.querySelector('#custom-expansion').innerHTML = x.expandedRowTemplate(x), 0); return ''}}`;
+	return html`
+		<div id="custom-expansion"></div>
+		${x => {setTimeout(() => x.shadowRoot.querySelector('#custom-expansion').innerHTML = x.expandedRowTemplate(x), 0); return '';}}`;
+}
+
+function getGridTemplateColumns(row: DataGridRow) {
+	return `${row.columnDefinitions?.reduce((templateColumns) => {
+		return `${templateColumns}${
+			templateColumns === '' ? '' : ' '
+		}${'1fr'}`;
+	}, row.treeViewProperty ? '32px' : '')}`;
 }

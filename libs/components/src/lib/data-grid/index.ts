@@ -1,4 +1,5 @@
 import type {FoundationElementDefinition} from '@microsoft/fast-foundation';
+import '../button';
 import {designSystem} from '../../shared/design-system';
 import gridStyles from './data-grid.scss';
 import gridSRowtyles from './data-grid-row.scss';

@@ -147,9 +147,29 @@ Represents a data-grid custom element.
         { name: 'Mary', age: 28 },
     ];
     dataGrid.expandableRows = true;
-    // TODO::expand the cell
-    // TODO::inject the template into the cell
-    // TODO::inject the data into the cell
     
+</script>
+```
+
+### Treeview
+```html preview
+<vwc-data-grid></vwc-data-grid>
+<script>
+    const dataGrid = window.x = document.querySelector('vwc-data-grid');
+    dataGrid.rowsData = [
+        { 
+            name: 'John', 
+            age: 30, 
+            data: [
+                { name: 'Jane', age: 25 },
+                { name: 'Mary', age: 28 },
+            ]
+        },
+        { name: 'Jane', age: 25 },
+        { name: 'Mary', age: 28 },
+    ];
+    dataGrid.treeViewProperty = 'data';
+    // if there's treeViewProperty, show the arrow
+    // clicking the arrow opens up an expandable row like appandage with a new grid with the `data`
 </script>
 ```

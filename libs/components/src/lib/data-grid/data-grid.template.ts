@@ -30,6 +30,7 @@ function rowItemTemplate<T extends DataGridRow>(
 			  :cellItemTemplate="${(_, c) => c.parent.cellItemTemplate}"
 			  :headerCellItemTemplate="${(_, c) => c.parent.headerCellItemTemplate}"
 			  :expandedRowTemplate="${(_, c) => c.parent.expandableRowTemplate}"
+			  :treeViewProperty="${(_, c) => c.parent.treeViewProperty}"
 	  ></${rowTag}>
 	`;
 }

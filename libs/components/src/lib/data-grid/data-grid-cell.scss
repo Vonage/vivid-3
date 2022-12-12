@@ -26,3 +26,7 @@
   background-color: black;
   color: white;
 }
+
+:host(.treeview) {
+  grid-column: unset !important;
+}
