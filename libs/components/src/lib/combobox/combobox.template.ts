@@ -89,7 +89,8 @@ export const comboboxTemplate: (
 						${() => renderInput(context)}
 						<vwc-popup
 							anchor="text-field"
-							?open="${x => x.open}">
+							?open="${x => x.open}"
+							placement="${x => x.placement}">
 							<div
 								id="${x => x.listboxId}"
 								class="listbox"

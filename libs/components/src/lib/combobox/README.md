@@ -26,7 +26,6 @@ Read more about [vwc-option](../../components/option).
  <vwc-option text="David Tenant"></vwc-option>
  <vwc-option text="Matt Smith"></vwc-option>
  <vwc-option text="Peter Capaldi"></vwc-option>
- <vwc-option text="Jodie Whittaker"></vwc-option>
 </vwc-combobox>
 ```
 
@@ -46,7 +45,6 @@ Read more about [vwc-option](../../components/option).
  <vwc-option text="David Tenant"></vwc-option>
  <vwc-option text="Matt Smith"></vwc-option>
  <vwc-option text="Peter Capaldi"></vwc-option>
- <vwc-option text="Jodie Whittaker"></vwc-option>
 </vwc-combobox>
 ```
 
@@ -64,7 +62,6 @@ Read more about [vwc-option](../../components/option).
  <vwc-option text="David Tenant"></vwc-option>
  <vwc-option text="Matt Smith"></vwc-option>
  <vwc-option text="Peter Capaldi"></vwc-option>
- <vwc-option text="Jodie Whittaker"></vwc-option>
 </vwc-combobox>
 ```
 
@@ -82,7 +79,6 @@ Read more about [vwc-option](../../components/option).
  <vwc-option text="David Tenant"></vwc-option>
  <vwc-option text="Matt Smith"></vwc-option>
  <vwc-option text="Peter Capaldi"></vwc-option>
- <vwc-option text="Jodie Whittaker"></vwc-option>
 </vwc-combobox>
 ```
 ### Autocomplete
@@ -99,11 +95,10 @@ Read more about [vwc-option](../../components/option).
  <vwc-option text="David Tenant"></vwc-option>
  <vwc-option text="Matt Smith"></vwc-option>
  <vwc-option text="Peter Capaldi"></vwc-option>
- <vwc-option text="Jodie Whittaker"></vwc-option>
 </vwc-combobox>
 ```
 
-### Position
+### Placement
 
 ```html preview
 <style>
@@ -116,7 +111,7 @@ Read more about [vwc-option](../../components/option).
   }
 </style>
 <div class="combobox-wrapper">
-  <vwc-combobox class="combobox" position="above">
+  <vwc-combobox placement="top">
     <vwc-option text="Christopher Eccleston"></vwc-option>
     <vwc-option text="David Tenant"></vwc-option>
   </vwc-combobox>
@@ -137,7 +132,6 @@ Read more about [vwc-option](../../components/option).
  <vwc-option text="David Tenant"></vwc-option>
  <vwc-option text="Matt Smith"></vwc-option>
  <vwc-option text="Peter Capaldi"></vwc-option>
- <vwc-option text="Jodie Whittaker"></vwc-option>
 </vwc-combobox>
 ```
 
