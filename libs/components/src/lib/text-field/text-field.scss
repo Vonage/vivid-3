@@ -100,8 +100,8 @@ $low-ink-color: --_low-ink-color;
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
-	padding-inline-end: var(--_text-field-gutter);
-	padding-inline-start: var(--_text-field-gutter);
+	padding-inline-end: var(#{variables.$text-field-gutter});
+	padding-inline-start: var(#{variables.$text-field-gutter});
 	transition: box-shadow .2s, background-color .2s;
 
 	&:disabled {
