@@ -1,6 +1,6 @@
 {
   "type": "prerelease",
-  "comment": "dialog horizontal icon",
+  "comment": "dialog icon placement side option added",
   "packageName": "@vonage/vivid",
   "email": "rachel.tannenbaum@vonage.com",
   "dependentChangeType": "patch"
