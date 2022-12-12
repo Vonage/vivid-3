@@ -22,10 +22,8 @@ Read more about [vwc-option](../../components/option).
 </style>
 
 <vwc-combobox>
- <vwc-option text="Christopher Eccleston"></vwc-option>
- <vwc-option text="David Tenant"></vwc-option>
- <vwc-option text="Matt Smith"></vwc-option>
- <vwc-option text="Peter Capaldi"></vwc-option>
+ <vwc-option text="First Option"></vwc-option>
+ <vwc-option text="Second Option"></vwc-option>
 </vwc-combobox>
 ```
 
@@ -46,10 +44,8 @@ Use the `label` member to set the combobox's label.
 </style>
 
 <vwc-combobox label="Search for something">
- <vwc-option text="Christopher Eccleston"></vwc-option>
- <vwc-option text="David Tenant"></vwc-option>
- <vwc-option text="Matt Smith"></vwc-option>
- <vwc-option text="Peter Capaldi"></vwc-option>
+ <vwc-option text="First Option"></vwc-option>
+ <vwc-option text="Second Option"></vwc-option>
 </vwc-combobox>
 ```
 
@@ -67,11 +63,9 @@ Set the `value` attribute to set the default value for the input field. Setting 
   }
 </style>
 
-<vwc-combobox value="ewfrwefew">
- <vwc-option text="Christopher Eccleston"></vwc-option>
- <vwc-option text="David Tenant"></vwc-option>
- <vwc-option text="Matt Smith"></vwc-option>
- <vwc-option text="Peter Capaldi"></vwc-option>
+<vwc-combobox value="value">
+ <vwc-option text="First Option"></vwc-option>
+ <vwc-option text="Second Option"></vwc-option>
 </vwc-combobox>
 ```
 
@@ -89,11 +83,9 @@ Add a `placeholder` attribute to add placeholder text to the input.
   }
 </style>
 
-<vwc-combobox placeholder="ewfrwefew">
- <vwc-option text="Christopher Eccleston"></vwc-option>
- <vwc-option text="David Tenant"></vwc-option>
- <vwc-option text="Matt Smith"></vwc-option>
- <vwc-option text="Peter Capaldi"></vwc-option>
+<vwc-combobox placeholder="placeholder">
+ <vwc-option text="First Option"></vwc-option>
+ <vwc-option text="Second Option"></vwc-option>
 </vwc-combobox>
 ```
 ### Autocomplete
@@ -111,10 +103,30 @@ See (https://www.w3.org/TR/wai-aria-1.2/#aria-autocomplete)[aria-autocomplete] f
 </style>
 
 <vwc-combobox autocomplete="both">
- <vwc-option text="Christopher Eccleston"></vwc-option>
- <vwc-option text="David Tenant"></vwc-option>
- <vwc-option text="Matt Smith"></vwc-option>
- <vwc-option text="Peter Capaldi"></vwc-option>
+ <vwc-option text="First Option"></vwc-option>
+ <vwc-option text="Second Option"></vwc-option>
+</vwc-combobox>
+```
+
+### Open
+
+_Combobox_ internally uses _popup_ to display an element and its descendants above the rest of the document.
+
+`open` property from _popup_ propagate through _combobox_ and sets its open state.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<style>
+  :root { /* for demo purposes */
+    block-size: 280px;
+  }
+</style>
+
+<vwc-combobox open>
+  <vwc-option text="First Option"></vwc-option>
+  <vwc-option text="Second Option"></vwc-option>
 </vwc-combobox>
 ```
 
@@ -126,7 +138,6 @@ _Combobox_ internally uses _popup_ to display an element and its descendants abo
 
 - Type: `'top'` | `'bottom'`
 - Default: `'bottom'`
-
 
 ```html preview
 <style>
@@ -140,8 +151,8 @@ _Combobox_ internally uses _popup_ to display an element and its descendants abo
 </style>
 <div class="combobox-wrapper">
   <vwc-combobox placement="top">
-    <vwc-option text="Christopher Eccleston"></vwc-option>
-    <vwc-option text="David Tenant"></vwc-option>
+    <vwc-option text="First Option"></vwc-option>
+    <vwc-option text="Second Option"></vwc-option>
   </vwc-combobox>
 </div>
 ```
@@ -161,9 +172,7 @@ Add the `disabled` attribute to disable the combobox.
 </style>
 
 <vwc-combobox disabled>
- <vwc-option text="Christopher Eccleston"></vwc-option>
- <vwc-option text="David Tenant"></vwc-option>
- <vwc-option text="Matt Smith"></vwc-option>
- <vwc-option text="Peter Capaldi"></vwc-option>
+ <vwc-option text="First Option"></vwc-option>
+ <vwc-option text="Second Option"></vwc-option>
 </vwc-combobox>
 ```
