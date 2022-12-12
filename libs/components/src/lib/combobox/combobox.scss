@@ -13,9 +13,6 @@
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 
-.base {
-	position: relative;
-}
 .control {
 	display: flex;
 	padding-inline-end: 44px;
@@ -38,7 +35,6 @@
 	@include connotation.connotation;
 	@include appearance.appearance;
 
-	position: absolute;
 	padding: 4px;
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	border-radius: 6px;

@@ -3,6 +3,7 @@
 // but, due to the race condition and way combobox needs children to
 // connect before setting/checking their props/attributes, it is required
 import '../option';
+import '../popup';
 
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { designSystem } from '../../shared/design-system';

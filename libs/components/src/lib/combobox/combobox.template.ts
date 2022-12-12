@@ -4,7 +4,6 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { Listbox } from '../listbox/listbox.js';
 import { affixIconTemplateFactory } from '../shared/patterns/affix.js';
 import { focusTemplateFactory } from '../shared/patterns/focus.js';
-import { Elevation } from '../elevation/elevation';
 import type { Combobox } from './combobox';
 
 
@@ -23,6 +22,7 @@ const getStateClasses = ({
 	placeholder,
 	label,
 }: Combobox) => classNames(
+	'base',
 	['disabled', disabled],
 	['placeholder', Boolean(placeholder)],
 	['no-label', !label],
@@ -74,7 +74,6 @@ export const comboboxTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Combobox> = (context: ElementDefinitionContext) => {
-	const elevationTag = context.tagFor(Elevation);
 
 	return html<Combobox>`
         <template
@@ -87,16 +86,15 @@ export const comboboxTemplate: (
             @focusout="${(x, c) => x.focusoutHandler(c.event as FocusEvent)}"
             @keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
         >
-						<slot name="control">
-							${() => renderInput(context)}
-						</slot>
-						<${elevationTag}>
+						${() => renderInput(context)}
+						<vwc-popup
+							anchor="text-field"
+							?open="${x => x.open}">
 							<div
 								id="${x => x.listboxId}"
 								class="listbox"
 								role="listbox"
 								?disabled="${x => x.disabled}"
-								?hidden="${x => !x.open}"
 								${ref('listbox')}
 								>
 									<slot
@@ -107,7 +105,7 @@ export const comboboxTemplate: (
 	})}
 									></slot>
 							</div>
-						</${elevationTag}>
+							</vwc-popup>
         </template>
 		`;
 };
