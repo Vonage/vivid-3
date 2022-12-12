@@ -1,8 +1,32 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Mon, 05 Dec 2022 11:11:21 GMT and should not be manually modified.
+This log was last generated on Thu, 08 Dec 2022 11:19:53 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.114
+
+Thu, 08 Dec 2022 11:19:53 GMT
+
+### Changes
+
+- nameing avatar main slot (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.113
+
+Thu, 08 Dec 2022 10:58:26 GMT
+
+### Changes
+
+- ensuring correct card text align (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.112
+
+Thu, 08 Dec 2022 07:12:10 GMT
+
+### Changes
+
+- duotone appearance & warning connotation conditioned to an outline lighter shade (yinon@hotmail.com)
 
 ## 3.0.0-next.111
 

@@ -110,7 +110,7 @@ const saveCodeAsHTMLFile = (frameData) => {
 	const componentName = getComponentName(frameData.outputPath);
 	const data = getComponentData(componentName);
 	frameData.demoStr += addModules(data);
-	const document = `<html class="vvd-root">${frameData.demoStr}</html>`;
+	const document = `<!DOCTYPE html><html class="vvd-root">${frameData.demoStr}</html>`;
 	fs.writeFileSync(filePath, document);
 	return filePath;
 }
