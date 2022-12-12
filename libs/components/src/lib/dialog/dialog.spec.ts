@@ -256,7 +256,7 @@ describe('vwc-dialog', () => {
 
 	it( 'should add class of icon placement  to .base', async () => {
 		const baseDiv = element.shadowRoot?.querySelector('.base');
-		element.iconPlacement = 'start';
+		element.iconPlacement = 'side';
 		await elementUpdated(element);
 		expect(baseDiv?.classList.contains('icon-placement-start'))
 			.toEqual(true);

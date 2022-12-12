@@ -58,7 +58,7 @@
 		display: flex;
 		align-items: flex-start;
 
-		.base:not(.icon-placement-start) & {
+		.base:not(.icon-placement-side) & {
 			flex-direction: column;
 			row-gap: #{size.$vvd-size-super-condensed};
 
@@ -67,7 +67,7 @@
 			}
 		}
 
-		.base.icon-placement-start & {
+		.base.icon-placement-side & {
 			column-gap: calc(#{size.$vvd-size-condensed} - #{size.$vvd-size-super-condensed});
 
 			.icon {
