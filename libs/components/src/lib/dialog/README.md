@@ -46,7 +46,7 @@ Use the `icon` attribute to set the dialog's icon.
 
 ### Icon-placement
 
-Use the `icon-placement` attribute to set the dialog's icon position (relatively to the dialog headline).  
+The `icon-placement` attribute specifies where the dialog's icon should appear (relative to the headline).
 
 - Type: `top` | `side`
 - Default: `top`
