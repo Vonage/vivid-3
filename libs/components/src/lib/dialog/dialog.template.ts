@@ -7,8 +7,9 @@ import type {
 import {classNames} from '@microsoft/fast-web-utilities';
 import type {Dialog} from './dialog';
 
-const getClasses = (_: Dialog) => classNames(
+const getClasses = ({iconPlacement}: Dialog) => classNames(
 	'base',
+	[`icon-placement-${iconPlacement}`, Boolean(iconPlacement)],
 );
 
 /**
