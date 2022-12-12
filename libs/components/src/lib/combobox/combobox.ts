@@ -6,7 +6,6 @@ import { AffixIcon, FormElement, formElements } from '../shared/patterns';
 /**
 	* Base class for combobox
 	*
-	* @public
 	*/
 @formElements
 export class Combobox extends FoundationCombobox {
