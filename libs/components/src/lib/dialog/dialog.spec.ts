@@ -258,7 +258,7 @@ describe('vwc-dialog', () => {
 		const baseDiv = element.shadowRoot?.querySelector('.base');
 		element.iconPlacement = 'side';
 		await elementUpdated(element);
-		expect(baseDiv?.classList.contains('icon-placement-start'))
+		expect(baseDiv?.classList.contains('icon-placement-side'))
 			.toEqual(true);
 	});
 

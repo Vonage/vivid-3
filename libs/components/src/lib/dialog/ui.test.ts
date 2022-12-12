@@ -44,7 +44,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 								<vwc-dialog
 								id="horizontal-icon"
 								icon="heart-solid"
-								icon-placement="start"
+								icon-placement="side"
 								headline="Horizontal icon"
 								open
 								>
