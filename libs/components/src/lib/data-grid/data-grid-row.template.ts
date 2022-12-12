@@ -98,7 +98,9 @@ export function dataGridRowTemplate<T extends DataGridRow>(
 		${when(x => x.treeViewProperty, html<T>`
 			<div><vwc-button size="condensed" @click="${x => x.toggleTreeView()}" icon="${x => getTreeViewIcon(x)}"></vwc-button></div>`)}
 		<slot ${slotted('slottedCellElements')}></slot>
-		${when(x => x.treeViewOpen, html<T>`<div class="sub-grid-wrapper"><vwc-data-grid id="sub-grid" ${ref<any>('subGrid')}></vwc-data-grid></div>`)}
+		<div class="sub-grid-wrapper ${x=> x.treeViewOpen ? 'visible' : 'hidden'}">
+			<vwc-data-grid id="sub-grid" ${ref<any>('subGrid')}></vwc-data-grid>
+		</div>
 		${when(x => x.expanded, getExpandedRowTemplate())}
         </template>
     `;

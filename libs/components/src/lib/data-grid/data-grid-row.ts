@@ -20,9 +20,9 @@ export class DataGridRow extends FoundationElement {
 	}
 
 	subGridChanged() {
-		if (this.subGrid?.rowsData) {
-			this.subGrid.rowsData = (this.rowData && this.treeViewProperty) ? (this.rowData as any)[this.treeViewProperty] as any : null;
-		} 
-		console.log(this.subGrid);
+		if (this.subGrid?.rowsData && this.treeViewProperty) {
+			const data = (this.rowData as any)[this.treeViewProperty];
+			this.subGrid.rowsData = Array.isArray(data) ? data : [];
+		}
 	}
 }
