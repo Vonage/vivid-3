@@ -13,8 +13,6 @@ strong {
 /* #region document */
 
 html {
-	/* delete this css property when this #782 is resolved */
-	--vvd-size-density: -1;
   scroll-padding-top: var(--vvd-header-block-size, 64px);
 }
 

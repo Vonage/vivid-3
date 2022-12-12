@@ -1,12 +1,3 @@
-
-/* delete this css block when this #782 is resolved */
-:root {
-	--vvd-size-density: -1;
-	/* considering this to be our default font base */
-	/* proposing this as default token. scaling down typography from 0 can result in a bad experience so we range from 0 - 1 */
-	--vvd-size-font-scale-base: calc(16px + clamp(0, var(--vvd-size-density), 1) * 1px * 0.8333);
-}
-
 /* #region reset */
 h1, h2, h3, h4, h5, h6, p {
   margin: unset;
