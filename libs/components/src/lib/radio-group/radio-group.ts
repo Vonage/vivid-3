@@ -25,6 +25,24 @@ export class RadioGroup extends FastRadioGroup {
 	// of fast-foundation disabledChanged is private instead of protected
 	constructor() {
 		super();
+
+		(this as any).slottedRadioButtonsChanged = (oldValue: HTMLElement[], newValue: HTMLElement[]) => {
+			if (!this.disabled) {
+				super['slottedRadioButtonsChanged'](oldValue, newValue);
+				return;
+			}
+	
+			super['slottedRadioButtonsChanged'](oldValue, newValue);
+			const nextRadios = newValue.filter(r => !oldValue?.includes(r));
+			nextRadios.forEach((radio: any) => {
+				this._radiosState.set(radio, radio.disabled);
+				radio.disabled = true;
+			});
+			const remRadios = oldValue.filter(r => !newValue?.includes(r));
+			remRadios.forEach(radio => {
+				this._radiosState.delete(radio);
+			});
+		};
 		
 		(this as any).disabledChanged = (_: boolean, becomesDisabled: boolean): void => {
 			if (this.slottedRadioButtons !== undefined) {
@@ -40,20 +58,6 @@ export class RadioGroup extends FastRadioGroup {
 					});
 				}
 			}
-		};
-
-		(this as any).slottedRadioButtonsChanged = (oldValue: HTMLElement[], newValue: HTMLElement[]) => {
-			if (!this.disabled) {
-				super['slottedRadioButtonsChanged'](oldValue, newValue);
-				return;
-			}
-	
-			super['slottedRadioButtonsChanged'](oldValue, newValue);
-			const nextRadios = newValue.filter(r => !oldValue?.includes(r));
-			nextRadios.forEach((radio: any) => {
-				this._radiosState.set(radio, radio.disabled);
-				radio.disabled = true;
-			});
 		};
 	}
 }

@@ -38,10 +38,14 @@ export class Listbox extends FoundationListboxElement {
 
 		const prevOptions = [...this.options];
 		super.slottedOptionsChanged(prev, next);
-		const nextOptions = this.options.filter(o => !prevOptions?.includes(o));
-		nextOptions.forEach(option => {
+		const newOptions = this.options.filter(o => !prevOptions?.includes(o));
+		newOptions.forEach(option => {
 			this._optionsState.set(option, option.disabled);
 			option.disabled = true;
+		});
+		const remOptions = prevOptions.filter(o => !this.options?.includes(o));
+		remOptions.forEach(option => {
+			this._optionsState.delete(option);
 		});
 	}
 
