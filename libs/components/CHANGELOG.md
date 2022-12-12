@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Thu, 08 Dec 2022 11:19:53 GMT and should not be manually modified.
+This log was last generated on Mon, 12 Dec 2022 11:29:26 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.115
+
+Mon, 12 Dec 2022 11:29:26 GMT
+
+### Changes
+
+- dialog icon placement side option added (rachel.tannenbaum@vonage.com)
 
 ## 3.0.0-next.114
 

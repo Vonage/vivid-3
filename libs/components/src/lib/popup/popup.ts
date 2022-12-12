@@ -81,7 +81,7 @@ export class Popup extends FoundationElement {
 	@attr({ mode: 'fromView' }) placement?: Placement;
 
 	/**
-	 * ID reference to element in the popup’s owner document or anchor HTMLElement.
+	 * ID reference to element in the popup’s owner document or HTMLElement.
 	 *
 	 * @public
 	 * HTML Attribute: anchor
@@ -158,10 +158,7 @@ export class Popup extends FoundationElement {
 	 * Gets the anchor element by id
 	 */
 	#getAnchor(): HTMLElement | null {
-		if(this.anchor instanceof HTMLElement){
-			return this.anchor;
-		}
-		return document.getElementById(this.anchor);
+		return this.anchor instanceof HTMLElement ? this.anchor : document.getElementById(this.anchor);
 	}
 
 	#handleKeydown = (event: Event) => {
