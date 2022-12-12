@@ -36,7 +36,7 @@ function renderInput(context: ElementDefinitionContext) {
 	const focusTemplate = focusTemplateFactory(context);
 
 	return html<Combobox>`
-		<div class="${getStateClasses}">
+		<div class="${getStateClasses}" ${ref('_anchor')}>
 			${when(x => x.label, renderLabel())}
 			<div class="fieldset">
 				<input
@@ -84,11 +84,13 @@ export const comboboxTemplate: (
             tabindex="${x => (!x.disabled ? '0' : null)}"
             @click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
             @focusout="${(x, c) => x.focusoutHandler(c.event as FocusEvent)}"
-            @keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}">
+            @keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
+        >
 			${() => renderInput(context)}
 			<${popupTag}
 				?open="${x => x.open}"
-				placement="${x => x.placement}">
+				placement="${x => x.placement}"
+				${ref('_popup')}>
 				<div id="${x => x.listboxId}"
 					class="listbox"
 					role="listbox"

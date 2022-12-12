@@ -81,12 +81,12 @@ export class Popup extends FoundationElement {
 	@attr({ mode: 'fromView' }) placement?: Placement;
 
 	/**
-	 * ID reference to element in the popup’s owner document.
+	 * ID reference to element in the popup’s owner document or anchor HTMLElement.
 	 *
 	 * @public
 	 * HTML Attribute: anchor
 	 */
-	@attr anchor!: string;
+	@attr anchor!: string | HTMLElement;
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
@@ -99,7 +99,7 @@ export class Popup extends FoundationElement {
 		switch (name) {
 			case 'anchor': {
 				this.anchorEl?.removeEventListener('keydown', this.#handleKeydown);
-				this.anchorEl = this.#getAnchorById();
+				this.anchorEl = this.#getAnchor();
 				// close the popup if pressed escape
 				this.anchorEl?.addEventListener('keydown', this.#handleKeydown);
 				break;
@@ -157,7 +157,10 @@ export class Popup extends FoundationElement {
 	/**
 	 * Gets the anchor element by id
 	 */
-	#getAnchorById(): HTMLElement | null {
+	#getAnchor(): HTMLElement | null {
+		if(this.anchor instanceof HTMLElement){
+			return this.anchor;
+		}
 		return document.getElementById(this.anchor);
 	}
 
