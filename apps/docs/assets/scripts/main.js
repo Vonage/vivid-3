@@ -52,12 +52,21 @@ const onloadIframe = (iFrame) => {
   });
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => setCurrentIframeTheme(toggle, iFrame));
 
-  // wait for repaint to set needed height
-  requestAnimationFrame(() => {
-    setTimeout(() => {
-      iFrame.style.height = iFrame.contentWindow.document.documentElement.clientHeight + 4 + "px";
-    }, 0);
-  })
+  autoResize(iFrame);
+};
+
+const iframeObservers = new WeakMap();
+
+const autoResize = (iFrame) => {
+  new ResizeObserver((entries, observer) => {
+	if (entries.length === 0) return;
+	iFrame.style.height = Math.max(150, entries[0].contentRect.height) + "px";
+    clearTimeout(iframeObservers.get(iFrame));
+    iframeObservers.set(iFrame, setTimeout(() => {
+      observer.disconnect();
+      iframeObservers.delete(iFrame);
+    }, 3000));
+  }).observe(iFrame.contentWindow.document.documentElement);
 };
 
 const setCurrentIframeTheme = (toggle, iFrame) => {

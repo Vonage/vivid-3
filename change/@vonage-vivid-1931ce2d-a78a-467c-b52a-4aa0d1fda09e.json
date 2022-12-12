@@ -1,7 +1,0 @@
-{
-	"type": "prerelease",
-	"comment": "duotone appearance & warning connotation conditioned to an outline lighter shade",
-	"packageName": "@vonage/vivid",
-	"email": "yinon@hotmail.com",
-	"dependentChangeType": "patch"
-}
