@@ -4,8 +4,8 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { Listbox } from '../listbox/listbox.js';
 import { affixIconTemplateFactory } from '../shared/patterns/affix.js';
 import { focusTemplateFactory } from '../shared/patterns/focus.js';
+import { Popup } from '../popup/popup';
 import type { Combobox } from './combobox';
-
 
 /**
  *
@@ -74,39 +74,34 @@ export const comboboxTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Combobox> = (context: ElementDefinitionContext) => {
+	const popupTag = context.tagFor(Popup);
 
 	return html<Combobox>`
-        <template
-			class="base"
+        <template class="base"
             aria-disabled="${x => x.ariaDisabled}"
             autocomplete="${x => x.autocomplete}"
             ?open="${x => x.open}"
             tabindex="${x => (!x.disabled ? '0' : null)}"
             @click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
             @focusout="${(x, c) => x.focusoutHandler(c.event as FocusEvent)}"
-            @keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
-        >
-						${() => renderInput(context)}
-						<vwc-popup
-							anchor="text-field"
-							?open="${x => x.open}"
-							placement="${x => x.placement}">
-							<div
-								id="${x => x.listboxId}"
-								class="listbox"
-								role="listbox"
-								?disabled="${x => x.disabled}"
-								${ref('listbox')}
-								>
-									<slot
-											${slotted({
+            @keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}">
+			${() => renderInput(context)}
+			<${popupTag}
+				?open="${x => x.open}"
+				placement="${x => x.placement}">
+				<div id="${x => x.listboxId}"
+					class="listbox"
+					role="listbox"
+					?disabled="${x => x.disabled}"
+					${ref('listbox')}>
+					<slot ${slotted({
 		filter: Listbox.slottedOptionFilter as any,
 		flatten: true,
-		property: 'slottedOptions',
-	})}
-									></slot>
-							</div>
-							</vwc-popup>
+		property: 'slottedOptions'
+	})}>
+					</slot>
+				</div>
+			</${popupTag}>
         </template>
 		`;
 };
