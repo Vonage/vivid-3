@@ -19,26 +19,41 @@ export class RadioGroup extends FastRadioGroup {
 	/**
 	 * To save the state of children radios before going disabled.
 	 */
-	private _radiosState: boolean[] = [];
+	private _radiosState = new WeakMap<HTMLElement, boolean>();
 
 	// super-mega-ugly hack to workaround the fact that in our current version
 	// of fast-foundation disabledChanged is private instead of protected
 	constructor() {
 		super();
+		
 		(this as any).disabledChanged = (_: boolean, becomesDisabled: boolean): void => {
 			if (this.slottedRadioButtons !== undefined) {
 				if (becomesDisabled) {
-					this.slottedRadioButtons.forEach((radio: any, idx) => {
-						this._radiosState[idx] = radio.disabled;
+					this.slottedRadioButtons.forEach((radio: any) => {
+						this._radiosState.set(radio, radio.disabled);
 						radio.disabled = true;
 					});
 				}
 				else {
-					this.slottedRadioButtons.forEach((radio: any, idx) => {
-						radio.disabled = this._radiosState[idx];
+					this.slottedRadioButtons.forEach((radio: any) => {
+						radio.disabled = !!this._radiosState.get(radio);
 					});
 				}
 			}
-		}
+		};
+
+		(this as any).slottedRadioButtonsChanged = (oldValue: HTMLElement[], newValue: HTMLElement[]) => {
+			if (!this.disabled) {
+				super['slottedRadioButtonsChanged'](oldValue, newValue);
+				return;
+			}
+	
+			super['slottedRadioButtonsChanged'](oldValue, newValue);
+			const nextRadios = newValue.filter(r => !oldValue?.includes(r));
+			nextRadios.forEach((radio: any) => {
+				this._radiosState.set(radio, radio.disabled);
+				radio.disabled = true;
+			});
+		};
 	}
 }

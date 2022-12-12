@@ -1,5 +1,5 @@
 import { attr } from '@microsoft/fast-element';
-import { ListboxElement as FoundationListboxElement } from '@microsoft/fast-foundation';
+import { ListboxElement as FoundationListboxElement, ListboxOption } from '@microsoft/fast-foundation';
 import type { Appearance } from '../enums';
 
 /**
@@ -28,7 +28,22 @@ export class Listbox extends FoundationListboxElement {
 	/**
 	 * To save the state of children options before going disabled.
 	 */
-	private _optionsState: boolean[] = [];
+	private _optionsState = new WeakMap<ListboxOption, boolean>();
+
+	override slottedOptionsChanged(prev: Element[] | undefined, next: Element[]) {
+		if (!this.disabled) {
+			super.slottedOptionsChanged(prev, next);
+			return;
+		}
+
+		const prevOptions = [...this.options];
+		super.slottedOptionsChanged(prev, next);
+		const nextOptions = this.options.filter(o => !prevOptions?.includes(o));
+		nextOptions.forEach(option => {
+			this._optionsState.set(option, option.disabled);
+			option.disabled = true;
+		});
+	}
 
 	/**
 	 * Saves/restore children state when the `disabled` property changes.
@@ -39,13 +54,13 @@ export class Listbox extends FoundationListboxElement {
 	 */
 	disabledChanged(_: boolean, becomesDisabled: boolean): void {
 		if (becomesDisabled) {
-			this._options.forEach((option, idx) => {
-				this._optionsState[idx] = option.disabled;
+			this.options.forEach(option => {
+				this._optionsState.set(option, option.disabled);
 				option.disabled = true;
 			});
 		}
 		else {
-			this._options.forEach((option, idx) => option.disabled = this._optionsState[idx]);
+			this.options.forEach(option => option.disabled = !!this._optionsState.get(option));
 		}
 	}
 }
