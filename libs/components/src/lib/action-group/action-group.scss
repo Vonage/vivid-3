@@ -54,7 +54,7 @@
 }
 
 /* Separator */
-::slotted(vwc-divider) {
+::slotted([role="separator"]) {
 	align-self: stretch;
 	margin-block: 4px;
 }

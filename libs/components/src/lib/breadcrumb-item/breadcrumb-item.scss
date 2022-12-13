@@ -7,7 +7,7 @@
 	color: var(#{constants.$vvd-color-canvas-text});
 	font: var(#{constants.$vvd-typography-base});
 
-	vwc-icon {
+	.separator {
 		margin: 0 16px;
 		color: var(#{constants.$vvd-color-neutral-600});
 		font-size: 12px;

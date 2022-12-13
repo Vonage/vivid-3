@@ -5,6 +5,6 @@
 	flex-direction: column;
 }
 
-::slotted(vwc-accordion-item:not(:only-of-type)) {
+::slotted(:not(:only-of-type)) {
 	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-200});
 }
