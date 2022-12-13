@@ -18,6 +18,7 @@
 	}
 	&.absolute {
 		position: absolute;
+		inline-size: var(#{variables.$popup-width});
 	}
 
 	border-radius: 6px;
