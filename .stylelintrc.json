@@ -16,7 +16,7 @@
 				"stylelint-config-prettier"
 			],
 			"rules": {
-				"string-quotes": "single",
+				"string-quotes": "double",
 				"indentation": "tab",
 				"plugin/no-unsupported-browser-features": [
 					true,

@@ -1,20 +1,20 @@
-@use '../focus/partials/variables' as focus-variables;
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
-@use '../../../../shared/src/lib/sass/utils' as utils;
+@use "../focus/partials/variables" as focus-variables;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "../../../../shared/src/lib/sass/utils" as utils;
 
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent,
 	$shades: primary firm faint soft,
 	$default: accent,
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: outlined,
 	$states: idle hover active checked checkedAndHover disabled readonly,
 	$default: outlined,
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 
 $control-size: 20px;
 $control-border: 2px;
@@ -56,7 +56,7 @@ $control-border: 2px;
 		position: absolute;
 		background-color: var(#{appearance.get-appearance-token(text)});
 		border-radius: inherit;
-		content: '';
+		content: "";
 		inset: 5px;
 
 		.base:not(.checked) & {
