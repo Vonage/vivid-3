@@ -8,7 +8,7 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 @use '../../../../../dist/libs/tokens/scss/size.variables' as size;
-@use "partials/variables" as variables;
+@use 'partials/variables' as variables;
 
 $size: (
 	default: 1em,
@@ -48,7 +48,7 @@ $default-size: list.nth($size-keys, 1);
 }
 
 // TODO: add a :where selector to unset any connotation variant from a mixin level
-.control[class*="connotation"] {
+.control[class*='connotation'] {
 	color: var(#{connotation.get-connotation-token(primary)});
 }
 
