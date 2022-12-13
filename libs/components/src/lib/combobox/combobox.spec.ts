@@ -19,7 +19,7 @@ describe('vwc-combobox', () => {
 			expect(element.open).toEqual(false);
 			expect(element.placement).toBeUndefined();
 			expect(element.disabled).toEqual(false);
-			expect(element.value).toBeUndefined();
+			expect(element.value).toEqual("");
 			expect(element.placeholder).toBeUndefined();
 			expect(element.autocomplete).toBeUndefined();
 		});
