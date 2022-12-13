@@ -30,7 +30,7 @@ const extractSvg = (response: Response) => {
 const loadSvg = (iconId: string) => fetch(baseUrlTemplate([iconId, 'svg'].join('.'), ICON_SET_VERSION))
 	.then(extractSvg);
 
-const resolveIcon = memoizeWith(identity as () => string, (iconId = '') => (iconId.trim()
+export const resolveIcon = memoizeWith(identity as () => string, (iconId = '') => (iconId.trim()
 	? loadSvg(iconId)
 	: Promise.resolve(''))) as (iconId?: string) => Promise<string>;
 

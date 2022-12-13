@@ -7,6 +7,7 @@ import type {
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
 import type { NavDisclosure } from './nav-disclosure';
+import { resolveIcon } from '../icon/icon';
 
 /**
  * The template for the {@link @microsoft/fast-foundation#Nav} component.
@@ -21,6 +22,7 @@ export const NavDisclosureTemplate: (
 ) => ViewTemplate<NavDisclosure> = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const focusTemplate = focusTemplateFactory(context);
+	['chevron-up-solid', 'chevron-down-solid'].forEach(i => resolveIcon(i));
 	return html`<details class="base" ${ref('details')} ?open=${x => x.open}>
         <summary class="control"
             role="button"
