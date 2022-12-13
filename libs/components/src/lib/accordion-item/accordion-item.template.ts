@@ -6,9 +6,9 @@ import type {
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
+import { resolveIcon } from '../icon/icon';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
 import type { AccordionItem } from './accordion-item';
-import { resolveIcon } from '../icon/icon';
 
 const PANEL = 'panel';
 

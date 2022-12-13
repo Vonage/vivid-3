@@ -5,9 +5,9 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
+import { resolveIcon } from '../icon/icon';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
 import type { NavDisclosure } from './nav-disclosure';
-import { resolveIcon } from '../icon/icon';
 
 /**
  * The template for the {@link @microsoft/fast-foundation#Nav} component.
