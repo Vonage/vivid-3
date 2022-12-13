@@ -87,9 +87,10 @@ export const comboboxTemplate: (
             @keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
         >
 			${() => renderInput(context)}
-			<${popupTag}
+			<${popupTag} class="popup"
 				?open="${x => x.open}"
 				placement="${x => x.placement}"
+				strategy="absolute"
 				${ref('_popup')}>
 				<div id="${x => x.listboxId}"
 					class="listbox"
