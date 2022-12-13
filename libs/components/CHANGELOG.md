@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Tue, 13 Dec 2022 13:34:41 GMT and should not be manually modified.
+This log was last generated on Tue, 13 Dec 2022 14:06:36 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.118
+
+Tue, 13 Dec 2022 14:06:36 GMT
+
+### Changes
+
+- code style enforce string single quotes (yinon.oved@vonage.com)
 
 ## 3.0.0-next.117
 

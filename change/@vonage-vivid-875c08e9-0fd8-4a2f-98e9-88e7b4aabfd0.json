@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "code style enforce string single quotes",
-  "packageName": "@vonage/vivid",
-  "email": "yinon.oved@vonage.com",
-  "dependentChangeType": "patch"
-}
