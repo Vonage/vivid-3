@@ -15,12 +15,6 @@ Represents a combobox custom element.
 Read more about [vwc-option](../../components/option).
 
 ```html preview
-<style>
-  :root { /* for demo purposes */
-    block-size: 280px;
-  }
-</style>
-
 <vwc-combobox>
  <vwc-option text="First Option"></vwc-option>
  <vwc-option text="Second Option"></vwc-option>
@@ -37,12 +31,6 @@ Use the `label` member to set the combobox's label.
 - Default: `undefined`
 
 ```html preview
-<style>
-  :root { /* for demo purposes */
-    block-size: 280px;
-  }
-</style>
-
 <vwc-combobox label="Search for something">
  <vwc-option text="First Option"></vwc-option>
  <vwc-option text="Second Option"></vwc-option>
@@ -57,12 +45,6 @@ Use the `label` member to set the combobox's label.
 Set the `value` attribute to set the default value for the input field. Setting the property on the element will not change the default value, but will change the value shown in the view as well as the submitted value in a form (imitating the native behavior).
 
 ```html preview
-<style>
-  :root { /* for demo purposes */
-    block-size: 280px;
-  }
-</style>
-
 <vwc-combobox value="value">
  <vwc-option text="First Option"></vwc-option>
  <vwc-option text="Second Option"></vwc-option>
@@ -77,12 +59,6 @@ Set the `value` attribute to set the default value for the input field. Setting 
 Add a `placeholder` attribute to add placeholder text to the input.
 
 ```html preview
-<style>
-  :root { /* for demo purposes */
-    block-size: 280px;
-  }
-</style>
-
 <vwc-combobox placeholder="placeholder">
  <vwc-option text="First Option"></vwc-option>
  <vwc-option text="Second Option"></vwc-option>
@@ -96,12 +72,6 @@ Add a `placeholder` attribute to add placeholder text to the input.
 See (https://www.w3.org/TR/wai-aria-1.2/#aria-autocomplete)[aria-autocomplete] for more information.
 
 ```html preview
-<style>
-  :root { /* for demo purposes */
-    block-size: 280px;
-  }
-</style>
-
 <vwc-combobox autocomplete="both">
  <vwc-option text="First Option"></vwc-option>
  <vwc-option text="Second Option"></vwc-option>
@@ -118,12 +88,6 @@ _Combobox_ internally uses _popup_ to display an element and its descendants abo
 - Default: `false`
 
 ```html preview
-<style>
-  :root { /* for demo purposes */
-    block-size: 280px;
-  }
-</style>
-
 <vwc-combobox open>
   <vwc-option text="First Option"></vwc-option>
   <vwc-option text="Second Option"></vwc-option>
@@ -142,7 +106,7 @@ _Combobox_ internally uses _popup_ to display an element and its descendants abo
 ```html preview
 <style>
   .combobox-wrapper { /* for demo purposes */
-    block-size: 280px;
+    block-size: 140px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -165,12 +129,6 @@ Add the `disabled` attribute to disable the combobox.
 - Default: `false`
 
 ```html preview
-<style>
-  :root { /* for demo purposes */
-    block-size: 280px;
-  }
-</style>
-
 <vwc-combobox disabled>
  <vwc-option text="First Option"></vwc-option>
  <vwc-option text="Second Option"></vwc-option>
