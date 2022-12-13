@@ -51,7 +51,7 @@ export const AvatarTemplate: (
 
 	return html`
 	<span class="${getClasses}">
-		<slot>
+		<slot name="graphic">
 			${when(x => x.name, renderInitials())}
 			${when( x => !x.name, renderIcon(iconTag))}
 		</slot>

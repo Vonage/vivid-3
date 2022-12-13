@@ -10,8 +10,9 @@ import { Icon } from '../icon/icon';
 import { Button } from '../button/button'; 
 import type {Dialog} from './dialog';
 
-const getClasses = (_: Dialog) => classNames(
+const getClasses = ({iconPlacement}: Dialog) => classNames(
 	'base',
+	[`icon-placement-${iconPlacement}`, Boolean(iconPlacement)],
 );
 
 /**

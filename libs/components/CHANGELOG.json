@@ -2,6 +2,89 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Mon, 12 Dec 2022 12:23:32 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.116",
+      "version": "3.0.0-next.116",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "a08d2374d5f0235db65ec45dd59a293e5c836412",
+            "comment": "anchor can recieve  HTMLElement"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 12 Dec 2022 11:29:26 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.115",
+      "version": "3.0.0-next.115",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "57e8375c4fcd2d02198f33e6b7d312c9fad83bbd",
+            "comment": "dialog icon placement side option added"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 11:19:53 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.114",
+      "version": "3.0.0-next.114",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "9badcce8e4870d8be5ad7c15c7f03d63c2100faf",
+            "comment": "nameing avatar main slot"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 10:58:26 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.113",
+      "version": "3.0.0-next.113",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "6649e06646a02cc36b6b49edcb443c0d9985c51c",
+            "comment": "ensuring correct card text align"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 07:12:10 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.112",
+      "version": "3.0.0-next.112",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "a24ebf3fd720bf6e26cc62e9f88e937c1f8e71fb",
+            "comment": "duotone appearance & warning connotation conditioned to an outline lighter shade"
+          }
+        ],
+        "none": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "93708f4717700a4304c89ccbfe773e047d6fb709",
+            "comment": "feat(fab): typo"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 05 Dec 2022 11:11:21 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.111",
       "version": "3.0.0-next.111",

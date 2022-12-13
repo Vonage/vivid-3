@@ -43,6 +43,20 @@ Use the `icon` attribute to set the dialog's icon.
 <vwc-dialog icon="info" open></vwc-dialog>
 ```
 
+
+### Icon-placement
+
+The `icon-placement` attribute specifies where the dialog's icon should appear (relative to the headline).
+
+- Type: `top` | `side`
+- Default: `top`
+
+```html preview
+<vwc-dialog icon-placement="side" icon="info" headline="Dialog Headline" open></vwc-dialog>
+```
+
+
+
 ### Text
 
 Use the `text` attribute to set the dialog's text.

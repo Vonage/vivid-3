@@ -11,13 +11,16 @@
     "markdown": "./docs/design/design-tokens.md",
     "modules": [
       "/assets/modules/components/header/index.js",
-      "/assets/modules/components/button/index.js"
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/number-field/index.js",
+      "/assets/modules/components/layout/index.js",
+      "/assets/modules/components/text-field/index.js",
+      "/assets/modules/components/divider/index.js"
     ]
   },
   {
     "title": "foundations",
     "markdown": "./docs/design/foundations.md",
-    "modules": [
-    ]
+    "modules": []
   }
 ]

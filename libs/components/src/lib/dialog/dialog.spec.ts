@@ -254,6 +254,14 @@ describe('vwc-dialog', () => {
 		expect(iconElement?.getAttribute('name')).toEqual('home');
 	});
 
+	it( 'should add class of icon placement  to .base', async () => {
+		const baseDiv = element.shadowRoot?.querySelector('.base');
+		element.iconPlacement = 'side';
+		await elementUpdated(element);
+		expect(baseDiv?.classList.contains('icon-placement-side'))
+			.toEqual(true);
+	});
+
 	it('should render the content area when content is set', async function() {
 		const contentElementWhenUndefined = getBaseElement(element).querySelector('.content');
 		const content = 'This is the content!';
