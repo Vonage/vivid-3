@@ -1,10 +1,11 @@
+@use "partials/variables" as variables;
 @use "../../../../shared/src/lib/sass/utils" as utils;
 
 .control {
 	background: var(#{utils.get-color-token(surface-4dp)});
 	border-radius: inherit;
 	contain: layout;
-	inline-size: fit-content;
+	inline-size: var(#{variables.$popup-width}, fit-content);
 
 	&:not(.open) {
 		display: none;
@@ -12,7 +13,13 @@
 }
 
 .popup-wrapper {
-	position: fixed;
+	&:not(.absolute) {
+		position: fixed;
+	}
+	&.absolute {
+		position: absolute;
+	}
+
 	border-radius: 6px;
 }
 
