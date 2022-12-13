@@ -51,6 +51,6 @@ export const affixIconTemplateFactory: (context: ElementDefinitionContext) =>
 (icon?: string) => ViewTemplate<AffixIcon> | null = (context: ElementDefinitionContext) => {
 	const iconTag = context.tagFor(Icon);
 	return (icon?: string) => icon
-		? html`<span class="icon"><${iconTag} :name="${() => icon}"></${iconTag}></span>`
+		? html`<span class="icon" style="line-height: var(--_icon-line-height, 1)"><${iconTag} :name="${() => icon}"></${iconTag}></span>`
 		: null;
 };

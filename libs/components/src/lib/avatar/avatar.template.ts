@@ -5,6 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
+import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { Avatar } from './avatar';
 
 const getClasses = ({appearance, connotation, shape, size}: Avatar) => classNames(
@@ -14,17 +15,6 @@ const getClasses = ({appearance, connotation, shape, size}: Avatar) => className
 	[`shape-${shape}`, Boolean(shape)],
 	[`size-${size}`, Boolean(size)],
 );
-
-/**
- avatar icon
- */
-function renderIcon() {
-	return html<Avatar>`
-		<span class="icon">
-			<vwc-icon name="${(x) => x.icon? `${x.icon}` : 'user-line'}"></vwc-icon>
-		</span>
-	`;
-}
 
 
 /**
@@ -45,10 +35,15 @@ function renderInitials() {
 export const AvatarTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Avatar> = () => html`
+) => ViewTemplate<Avatar> = (
+	context: ElementDefinitionContext,
+) => {
+	const affixIconTemplate = affixIconTemplateFactory(context);
+	return html`
 	<span class="${getClasses}">
 		<slot name="graphic">
 			${when(x => x.name, renderInitials())}
-			${when( x => !x.name, renderIcon())}
+			${when( x => !x.name, html`${x => affixIconTemplate(x.icon ? `${x.icon}` : 'user-line')}`)}
 		</slot>
 </span>`;
+};
