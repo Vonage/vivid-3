@@ -2,10 +2,10 @@ import { html, ref, slotted, ViewTemplate, when } from '@microsoft/fast-element'
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Listbox } from '../listbox/listbox.js';
-import { affixIconTemplateFactory } from '../shared/patterns/affix.js';
-import { focusTemplateFactory } from '../shared/patterns/focus.js';
+import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { Popup } from '../popup/popup';
 import type { Combobox } from './combobox';
+import { focusTemplateFactory } from './../../shared/patterns/focus';
 
 /**
  *
