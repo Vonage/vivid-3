@@ -85,11 +85,7 @@
 	}
 
 	.indicator {
-		display: flex;
-		vwc-icon,
-		slot[name="indicator"i]::slotted(vwc-icon) {
-			margin-inline-start: 16px;
-		}
+		margin-inline-start: 16px;
 	}
 
 	.icon {

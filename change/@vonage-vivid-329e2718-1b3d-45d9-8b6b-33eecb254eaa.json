@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "replace hardcoded tags with contextual tags",
+  "packageName": "@vonage/vivid",
+  "email": "olaf-k@users.noreply.github.com",
+  "dependentChangeType": "patch"
+}
