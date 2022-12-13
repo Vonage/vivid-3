@@ -21,11 +21,11 @@ export const menu = Menu.compose({
 // in menu as it is not used directly in template, rather by user's authoring.
 // but, due to the race condition and way menu needs children to
 // connect before setting/checking their props/attributes, it is required
-export const calendarEventElements = [menu, ...popupElements, ...menuItemElements];
+export const menuElements = [menu, ...popupElements, ...menuItemElements];
 
 /**
  * Registers the calendar-event elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerMenu = registerFactorial(...calendarEventElements);
+export const registerMenu = registerFactorial(...menuElements);
