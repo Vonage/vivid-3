@@ -1,6 +1,6 @@
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "partials/variables" as variables;
-@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
 $block-size: calc(#{size.$vvd-size-normal} + #{size.$vvd-size-super-condensed});
 
