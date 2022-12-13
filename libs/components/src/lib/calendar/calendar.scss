@@ -1,6 +1,6 @@
-@use 'partials/variables' as variables;
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
-@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+@use "partials/variables" as variables;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
 
 ol {
@@ -15,8 +15,8 @@ ol {
 	display: grid;
 	margin: auto;
 	grid-template-areas:
-		'. column-headers'
-		'row-headers calendar';
+		". column-headers"
+		"row-headers calendar";
 	grid-template-columns: min-content auto;
 	inline-size: max(100%, 500px);
 	min-inline-size: 880px;
@@ -73,7 +73,7 @@ ol {
 		&:not(:first-child)::after {
 			position: absolute;
 			border-block-end: var(#{constants.$vvd-color-neutral-100}) 1px solid;
-			content: '';
+			content: "";
 			inline-size: 100%;
 			margin-block-start: -1px;
 		}
@@ -103,7 +103,7 @@ ol {
 		position: absolute;
 		z-index: -1;
 		background-color: var(#{constants.$vvd-color-information-400});
-		content: '';
+		content: "";
 		@supports (inset: 0) {
 			inset: 0;
 		}
@@ -137,7 +137,7 @@ ol {
 			position: absolute;
 			block-size: 100%;
 			border-inline-end: var(#{constants.$vvd-color-neutral-100}) 1px solid;
-			content: '';
+			content: "";
 			margin-inline-start: -1px;
 		}
 	}
