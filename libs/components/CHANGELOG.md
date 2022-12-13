@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Mon, 12 Dec 2022 12:23:32 GMT and should not be manually modified.
+This log was last generated on Tue, 13 Dec 2022 13:34:41 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.117
+
+Tue, 13 Dec 2022 13:34:41 GMT
+
+### Changes
+
+- replace hardcoded tags with contextual tags (olaf-k@users.noreply.github.com)
 
 ## 3.0.0-next.116
 
