@@ -1,5 +1,4 @@
-@use '../../../../shared/src/lib/sass/utils' as utils;
-
+@use "../../../../shared/src/lib/sass/utils" as utils;
 
 .control {
 	background: var(#{utils.get-color-token(surface-4dp)});
@@ -19,8 +18,7 @@
 
 .popup-content {
 	display: grid;
-	color: var(#{utils.get-color-token(canvas-text)});/* neutral-100 */
-
+	color: var(#{utils.get-color-token(canvas-text)}); /* neutral-100 */
 
 	.dismissible & {
 		align-content: start;
@@ -42,4 +40,3 @@
 	margin-block-start: 4px;
 	margin-inline-end: 4px;
 }
-
