@@ -16,8 +16,7 @@ function setTheme(newTheme) {
     button.icon = isDark() ? 'dark-mode-solid' : 'light-mode-line';
 
     const themeStyle = isDark() ?
-        '<link rel="stylesheet" href="/assets/styles/tokens/theme-dark.css" media="all"><link rel="stylesheet" href="/assets/styles/tokens/theme-light.css" media="not all" disabled>'
-        : '<link rel="stylesheet" href="/assets/styles/tokens/theme-light.css" media="all"><link rel="stylesheet" href="/assets/styles/tokens/theme-dark.css" media="not all" disabled';
+        '<link rel="stylesheet" href="/assets/styles/tokens/theme-dark.css" media="all">' : '<link rel="stylesheet" href="/assets/styles/tokens/theme-light.css" media="all">';
     document.head?.insertAdjacentHTML("beforeend", themeStyle);
 
     popup.open = false;
