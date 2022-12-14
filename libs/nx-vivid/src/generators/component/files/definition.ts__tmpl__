@@ -11,7 +11,7 @@ export const <%= className %> = <%= className %>.compose<FoundationElementDefini
 	styles,
 })();
 
-export const <%= camelCasedName %>Elements = [vivid<%= className %>];
+export const <%= camelCasedName %>Elements = [<%= className %>];
 
 /**
  * Registers the <%= name %> element with the design system.
