@@ -16,6 +16,7 @@
   },
   "license": "Apache-2.0",
   "exports": {
+    ".": "./index.js",
     "./accordion": "./accordion",
     "./accordion-item": "./accordion-item",
     "./action-group": "./action-group",

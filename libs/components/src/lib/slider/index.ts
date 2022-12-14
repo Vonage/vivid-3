@@ -1,20 +1,4 @@
-import type { SliderOptions } from '@microsoft/fast-foundation';
-import { designSystem, getPrefix } from '../../shared/design-system';
-import { loadComponentsModules } from '../../shared/utils';
-import styles from './slider.scss';
+import { registerSlider } from './definition';
 
-import { Slider } from './slider';
-import { SliderTemplate as template } from './slider.template';
 
-const prefix = getPrefix(import.meta.url);
-
-export const vividSlider = Slider.compose<SliderOptions>({
-	baseName: 'slider',
-	template: template as any,
-	styles,
-});
-
-(async () => {
-	await loadComponentsModules(['focus'], prefix);
-	designSystem.withPrefix(prefix).register(vividSlider());
-})();
+registerSlider();
