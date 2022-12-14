@@ -16,9 +16,9 @@ export const banner = Banner.compose<FoundationElementDefinition>({
 	baseName: 'banner',
 	template: template as any,
 	styles,
-})();
+});
 
-export const bannerElements = [banner, ...iconElements, ...buttonElements];
+export const bannerElements = [banner(), ...iconElements, ...buttonElements];
 
 /**
  * Registers the banner elements with the design system.

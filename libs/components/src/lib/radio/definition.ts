@@ -15,9 +15,9 @@ export const radio = Radio.compose<RadioOptions>({
 	baseName: 'radio',
 	template: template as any,
 	styles
-})();
+});
 
-export const radioElements = [radio, ...focusElements];
+export const radioElements = [radio(), ...focusElements];
 
 /**
  * Registers the radio elements with the design system.

@@ -17,9 +17,9 @@ export const card = Card.compose<FoundationElementDefinition>({
 	baseName: 'card',
 	template: template as any,
 	styles,
-})();
+});
 
-export const cardElements = [card, ...iconElements, ...elevationElements];
+export const cardElements = [card(), ...iconElements, ...elevationElements];
 
 /**
  * Registers the card elements with the design system.

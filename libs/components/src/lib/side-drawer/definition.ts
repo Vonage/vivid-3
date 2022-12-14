@@ -13,9 +13,9 @@ export const sideDrawer = SideDrawer.compose<FoundationElementDefinition>({
 	baseName: 'side-drawer',
 	template: template as any,
 	styles,
-})();
+});
 
-export const sideDrawerElements = [sideDrawer];
+export const sideDrawerElements = [sideDrawer()];
 
 /**
  * Registers the side-drawer elements with the design system.

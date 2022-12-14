@@ -17,9 +17,9 @@ export const menuItem = MenuItem.compose<MenuItemOptions>({
 	baseName: 'menu-item',
 	template: template as any,
 	styles
-})();
+});
 
-export const menuItemElements = [menuItem, ...iconElements, ...focusElements];
+export const menuItemElements = [menuItem(), ...iconElements, ...focusElements];
 
 /**
  * Registers the menu-item elements with the design system.

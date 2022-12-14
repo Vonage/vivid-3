@@ -14,9 +14,9 @@ export const elevation = Elevation.compose<FoundationElementDefinition>({
 	baseName: 'elevation',
 	template: template as any,
 	styles,
-})();
+});
 
-export const elevationElements = [elevation];
+export const elevationElements = [elevation()];
 
 /**
  * Registers the elevation elements with the design system.

@@ -18,9 +18,9 @@ export const badge = Badge.compose<FoundationElementDefinition>({
 	baseName: 'badge',
 	template: template as any,
 	styles,
-})();
+});
 
-export const badgeElements = [badge, ...iconElements];
+export const badgeElements = [badge(), ...iconElements];
 
 /**
  * Registers the badge elements with the design system.

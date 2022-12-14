@@ -14,9 +14,9 @@ export const progress = Progress.compose<FoundationElementDefinition>({
 	baseName: 'progress',
 	template: template as any,
 	styles,
-})();
+});
 
-export const progressElements = [progress];
+export const progressElements = [progress()];
 
 /**
  * Registers the progress elements with the design system.

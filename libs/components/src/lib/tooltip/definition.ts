@@ -16,9 +16,9 @@ export const tooltip = Tooltip.compose<FoundationElementDefinition>({
 	baseName: 'tooltip',
 	template: template as any,
 	styles,
-})();
+});
 
-export const tooltipElements = [tooltip, ...popupElements];
+export const tooltipElements = [tooltip(), ...popupElements];
 
 /**
  * Registers the tooltip elements with the design system.

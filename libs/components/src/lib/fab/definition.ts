@@ -20,9 +20,9 @@ export const fab = Fab.compose<FoundationElementDefinition>({
 	shadowOptions: {
 		delegatesFocus: true,
 	},
-})();
+});
 
-export const fabElements = [fab, ...iconElements, ...focusElements];
+export const fabElements = [fab(), ...iconElements, ...focusElements];
 
 /**
  * Registers the FAB elements with the design system.

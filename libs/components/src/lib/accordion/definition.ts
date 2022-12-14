@@ -13,9 +13,9 @@ export const accordion = Accordion.compose<FoundationElementDefinition>({
 	baseName: 'accordion',
 	template: template as any,
 	styles,
-})();
+});
 
-export const accordionElements = [accordion];
+export const accordionElements = [accordion()];
 
 /**
  * Registers the accordion elements with the design system.

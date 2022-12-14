@@ -13,9 +13,9 @@ export const radioGroup = RadioGroup.compose({
 	baseName: 'radio-group',
 	template: template as any,
 	styles,
-})();
+});
 
-export const radioGroupElements = [radioGroup];
+export const radioGroupElements = [radioGroup()];
 
 /**
  * Registers the radio-group elements with the design system.

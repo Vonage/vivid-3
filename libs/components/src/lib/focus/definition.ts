@@ -17,9 +17,9 @@ export const focus = Focus.compose<FoundationElementDefinition>({
 	baseName: 'focus',
 	template: template as any,
 	styles,
-})();
+});
 
-export const focusElements = [focus];
+export const focusElements = [focus()];
 
 /**
  * Registers the focus component

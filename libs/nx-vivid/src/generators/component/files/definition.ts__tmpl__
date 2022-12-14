@@ -9,9 +9,9 @@ export const <%= camelCasedName %> = <%= className %>.compose<FoundationElementD
 	baseName: '<%= name %>',
 	template: template as any,
 	styles,
-})();
+});
 
-export const <%= camelCasedName %>Elements = [<%= camelCasedName %>];
+export const <%= camelCasedName %>Elements = [<%= camelCasedName %>()];
 
 /**
  * Registers the <%= name %> element with the design system.

@@ -15,9 +15,9 @@ export const header = Header.compose<FoundationElementDefinition>({
 	baseName: 'header',
 	template: template as any,
 	styles,
-})();
+});
 
-export const headerElements = [header, ...elevationElements];
+export const headerElements = [header(), ...elevationElements];
 
 /**
  * Registers the header elements with the design system.

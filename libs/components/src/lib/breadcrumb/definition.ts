@@ -12,9 +12,9 @@ export const breadcrumb = Breadcrumb.compose<FoundationElementDefinition>({
 	baseName: 'breadcrumb',
 	template,
 	styles,
-})();
+});
 
-export const breadcrumbElements = [breadcrumb];
+export const breadcrumbElements = [breadcrumb()];
 
 /**
  * Registers the breadcrumb elements with the design system.

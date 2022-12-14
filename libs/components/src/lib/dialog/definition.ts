@@ -19,9 +19,9 @@ export const dialog = Dialog.compose<FoundationElementDefinition>({
 	baseName: 'dialog',
 	template: template as any,
 	styles: [styles, dialogPolyfillStyles],
-})();
+});
 
-export const dialogElements = [dialog, ...iconElements, ...buttonElements, ...elevationElements];
+export const dialogElements = [dialog(), ...iconElements, ...buttonElements, ...elevationElements];
 
 /**
  * Registers the dialog elements with the design system.

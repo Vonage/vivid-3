@@ -19,9 +19,9 @@ export const textField = TextField.compose<FoundationElementDefinition>({
 	shadowOptions: {
 		delegatesFocus: true,
 	},
-})();
+});
 
-export const textFieldElements = [textField, ...iconElements, ...focusElements];
+export const textFieldElements = [textField(), ...iconElements, ...focusElements];
 
 /**
  * Registers the text-field elements with the design system.

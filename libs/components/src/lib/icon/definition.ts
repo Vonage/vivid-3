@@ -12,9 +12,9 @@ export const icon = Icon.compose<FoundationElementDefinition>({
 	baseName: 'icon',
 	template: template as any,
 	styles,
-})();
+});
 
-export const iconElements = [icon];
+export const iconElements = [icon()];
 
 /**
  * Registers the icon component & its prerequisite components with the design system.

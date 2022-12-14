@@ -15,9 +15,9 @@ export const listboxOption = ListboxOption.compose<FoundationElementDefinition>(
 	baseName: 'option',
 	template: template as any,
 	styles
-})();
+});
 
-export const listboxOptionElements = [listboxOption, ...iconElements, ...focusElements];
+export const listboxOptionElements = [listboxOption(), ...iconElements, ...focusElements];
 
 /**
  * Registers the listbox-option elements with the design system.

@@ -20,9 +20,9 @@ export const accordionItem =
 		shadowOptions: {
 			delegatesFocus: true,
 		},
-	})();
+	});
 
-export const accordionItemElements = [accordionItem, ...iconElements, ...focusElements];
+export const accordionItemElements = [accordionItem(), ...iconElements, ...focusElements];
 
 /**
  * Registers the accordion item elements with the design system.

@@ -18,9 +18,9 @@ export const navDisclosure =
 		baseName: 'nav-disclosure',
 		template: template as any,
 		styles,
-	})();
+	});
 
-export const navDisclosureElements = [navDisclosure, ...iconElements, ...focusElements];
+export const navDisclosureElements = [navDisclosure(), ...iconElements, ...focusElements];
 
 /**
  * Registers the nav-disclosure elements with the design system.

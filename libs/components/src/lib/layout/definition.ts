@@ -15,9 +15,9 @@ export const layout = Layout.compose<FoundationElementDefinition>({
 	baseName: 'layout',
 	template: template as any,
 	styles,
-})();
+});
 
-export const layoutElements = [layout];
+export const layoutElements = [layout()];
 
 /**
  * Registers the layout elements with the design system.

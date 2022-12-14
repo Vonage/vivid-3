@@ -19,9 +19,9 @@ export const breadcrumbItem = BreadcrumbItem.compose<FoundationElementDefinition
 	shadowOptions: {
 		delegatesFocus: true,
 	},
-})();
+});
 
-export const breadcrumbItemElements = [breadcrumbItem, ...iconElements, ...focusElements];
+export const breadcrumbItemElements = [breadcrumbItem(), ...iconElements, ...focusElements];
 
 /**
  * Registers the breadcrumb-item elements with the design system.

@@ -19,9 +19,9 @@ export const switchCE = Switch.compose<FoundationElementDefinition>({
 	shadowOptions: {
 		delegatesFocus: true,
 	}
-})();
+});
 
-export const switchElements = [switchCE, ...iconElements, ...focusElements];
+export const switchElements = [switchCE(), ...iconElements, ...focusElements];
 
 /**
  * Registers the switch elements with the design system.

@@ -22,10 +22,10 @@ export const button = Button.compose<FoundationElementDefinition>({
 	shadowOptions: {
 		delegatesFocus: true,
 	},
-})();
+});
 
 
-export const buttonElements = [button, ...iconElements, ...focusElements];
+export const buttonElements = [button(), ...iconElements, ...focusElements];
 
 /**
  * Registers the button elements with the design system.

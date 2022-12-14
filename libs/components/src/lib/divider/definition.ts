@@ -15,9 +15,9 @@ export const divider = Divider.compose<FoundationElementDefinition>({
 	baseName: 'divider',
 	template: template as any,
 	styles,
-})();
+});
 
-export const dividerElements = [divider];
+export const dividerElements = [divider()];
 
 /**
  * Registers the divider elements with the design system.

@@ -15,9 +15,9 @@ export const slider = Slider.compose<SliderOptions>({
 	baseName: 'slider',
 	template: template as any,
 	styles,
-})();
+});
 
-export const sliderElements = [slider, ...focusElements];
+export const sliderElements = [slider(), ...focusElements];
 
 /**
  * Registers the slider elements with the design system.

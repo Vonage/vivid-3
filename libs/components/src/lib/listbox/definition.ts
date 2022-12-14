@@ -16,13 +16,13 @@ const listbox = Listbox.compose<FoundationElementDefinition>({
 	baseName: 'listbox',
 	template: template as any,
 	styles
-})();
+});
 
 // by convention, option isn't required to be imported
 // in listbox as it is not used directly in its template rather by user's authoring.
 // but, due to the race condition and way listbox needs children to
 // connect before setting/checking their props/attributes, it is required
-export const listboxElements = [listbox, ...listboxOptionElements, ...focusElements];
+export const listboxElements = [listbox(), ...listboxOptionElements, ...focusElements];
 
 /**
  * Registers the listbox elements with the design system.

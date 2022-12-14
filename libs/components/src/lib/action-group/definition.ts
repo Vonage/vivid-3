@@ -14,9 +14,9 @@ export const actionGroup = ActionGroup.compose<FoundationElementDefinition>({
 	baseName: 'action-group',
 	template: template as any,
 	styles,
-})();
+});
 
-export const actionGroupElements = [actionGroup];
+export const actionGroupElements = [actionGroup()];
 
 /**
  * Registers the action-group elements with the design system.

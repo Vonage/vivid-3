@@ -20,9 +20,9 @@ export const textArea = TextArea.compose<FoundationElementDefinition>({
 	shadowOptions: {
 		delegatesFocus: true,
 	},
-})();
+});
 
-export const textAreaElements = [textArea, ...iconElements, ...focusElements];
+export const textAreaElements = [textArea(), ...iconElements, ...focusElements];
 
 /**
  * Registers the text-field elements with the design system.

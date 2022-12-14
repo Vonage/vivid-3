@@ -13,10 +13,10 @@ export const nav =
 	Nav.compose<FoundationElementDefinition>({
 		baseName: 'nav',
 		template: template as any,
-	})();
+	});
 
 
-export const navElements = [nav];
+export const navElements = [nav()];
 
 /**
  * Registers the nav elements with the design system.

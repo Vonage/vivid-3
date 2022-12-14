@@ -15,9 +15,9 @@ export const avatar = Avatar.compose<FoundationElementDefinition>({
 	baseName: 'avatar',
 	template: template as any,
 	styles,
-})();
+});
 
-export const avatarElements = [avatar, ...iconElements];
+export const avatarElements = [avatar(), ...iconElements];
 
 /**
  * Registers the avatar elements with the design system.

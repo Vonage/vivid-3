@@ -15,9 +15,9 @@ export const progressRing =
 		baseName: 'progress-ring',
 		template: template as any,
 		styles,
-	})();
+	});
 
-export const progressRingElements = [progressRing];
+export const progressRingElements = [progressRing()];
 
 /**
  * Registers the progress-ring  elements with the design system.

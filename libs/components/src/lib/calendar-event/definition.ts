@@ -19,9 +19,9 @@ export const calendarEvent =
 		shadowOptions: {
 			delegatesFocus: true
 		}
-	})();
+	});
 
-export const calendarEventElements = [calendarEvent];
+export const calendarEventElements = [calendarEvent()];
 
 /**
  * Registers the calendar-event elements with the design system.

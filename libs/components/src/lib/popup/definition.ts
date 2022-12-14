@@ -16,9 +16,9 @@ export const popup = Popup.compose<FoundationElementDefinition>({
 	baseName: 'popup',
 	template: template as any,
 	styles,
-})();
+});
 
-export const popupElements = [popup, ...elevationElements, ...buttonElements];
+export const popupElements = [popup(), ...elevationElements, ...buttonElements];
 
 /**
  * Registers the popup elements with the design system.

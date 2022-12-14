@@ -21,9 +21,9 @@ export const navItem =
 		shadowOptions: {
 			delegatesFocus: true,
 		},
-	})();
+	});
 
-export const navItemElements = [navItem, ...iconElements, ...focusElements];
+export const navItemElements = [navItem(), ...iconElements, ...focusElements];
 
 /**
  * Registers the nav-item elements with the design system.

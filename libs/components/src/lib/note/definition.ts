@@ -16,9 +16,9 @@ export const note = Note.compose<FoundationElementDefinition>({
 	baseName: 'note',
 	template: template as any,
 	styles,
-})();
+});
 
-export const noteElements = [note, ...iconElements];
+export const noteElements = [note(), ...iconElements];
 
 /**
  * Registers the note elements with the design system.

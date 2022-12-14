@@ -20,9 +20,9 @@ export const checkbox = Checkbox.compose<CheckboxOptions>({
 	shadowOptions: {
 		delegatesFocus: true,
 	},
-})();
+});
 
-export const checkboxElements = [checkbox, ...iconElements, ...focusElements];
+export const checkboxElements = [checkbox(), ...iconElements, ...focusElements];
 
 /**
  * Registers the checkbox elements with the design system.

@@ -17,9 +17,9 @@ export const calendar = Calendar.compose<FoundationElementDefinition>({
 	shadowOptions: {
 		delegatesFocus: true
 	}
-})();
+});
 
-export const calendarElements = [calendar];
+export const calendarElements = [calendar()];
 
 /**
  * Registers the calendar elements with the design system.

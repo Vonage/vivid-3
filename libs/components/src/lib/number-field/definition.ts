@@ -20,9 +20,9 @@ export const numberField =
 		shadowOptions: {
 			delegatesFocus: true,
 		},
-	})();
+	});
 
-export const numberFieldElement = [numberField, ...buttonElements, ...dividerElements];
+export const numberFieldElement = [numberField(), ...buttonElements, ...dividerElements];
 
 /**
  * Registers the number-field elements with the design system.
