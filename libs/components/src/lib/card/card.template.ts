@@ -5,6 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
+import {affixIconTemplateFactory} from '../../shared/patterns/affix';
 import type { Card } from './card';
 
 const getClasses = (_: Card) => classNames(
@@ -16,10 +17,10 @@ const getClasses = (_: Card) => classNames(
 /**
 header icon
  */
-function renderHeaderIcon() {
-	return html<Card>`
-	  <vwc-icon class="icon" inline name="${x => x.icon}"></vwc-icon>`;
-}
+// function renderHeaderIcon() {
+// 	return html<Card>`
+// 	  <vwc-icon class="icon" inline name="${x => x.icon}"></vwc-icon>`;
+// }
 
 /**
  *
@@ -54,11 +55,12 @@ function headerContent() {
 /**
  header
  */
-function renderHeader() {
+function renderHeader(_:any, context: ElementDefinitionContext) {
 
+	const affixIconTemplate = affixIconTemplateFactory(context);
 	return html<Card>`
 		<header class="header">
-			<slot name="graphic" ${slotted('graphicSlottedContent')}>${when(x => x.icon, renderHeaderIcon())}</slot>
+			<slot name="graphic" ${slotted('graphicSlottedContent')}>${when(x => x.icon, html`${x => affixIconTemplate(x.icon)}`)}</slot>
 			${when(x => x.headline || x.subtitle, headerContent())}
 		</header>`;
 }
@@ -110,7 +112,7 @@ export const CardTemplate: (
 				<slot name="main">
 					<div class="main-content">
 						<div class="header-wrapper">
-							${renderHeader()}
+							${renderHeader}
 							${renderMetaSlot()}
 						</div>
 						${when(x => x.text, text())}
