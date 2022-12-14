@@ -1,6 +1,7 @@
 import { attr, html } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
+import messageStyles from './affix.scss';
 import { Icon } from '../../lib/icon/icon';
 
 /**
@@ -51,6 +52,8 @@ export const affixIconTemplateFactory: (context: ElementDefinitionContext) =>
 (icon?: string) => ViewTemplate<AffixIcon> | null = (context: ElementDefinitionContext) => {
 	const iconTag = context.tagFor(Icon);
 	return (icon?: string) => icon
-		? html`<span class="icon" style="line-height: var(--_icon-line-height, 1)"><${iconTag} :name="${() => icon}"></${iconTag}></span>`
+		? html`
+			<style>${messageStyles}</style>
+			<span class="icon"><${iconTag} :name="${() => icon}"></${iconTag}></span>`
 		: null;
 };
