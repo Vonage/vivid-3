@@ -29,4 +29,4 @@ export const fabElements = [fab, ...iconElements, ...focusElements];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerFab = registerFactorial(...fabElements);
+export const registerFab = registerFactorial(fabElements);

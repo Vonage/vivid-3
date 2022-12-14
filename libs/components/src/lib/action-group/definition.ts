@@ -23,4 +23,4 @@ export const actionGroupElements = [actionGroup];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerActionGroup = registerFactorial(...actionGroupElements);
+export const registerActionGroup = registerFactorial(actionGroupElements);

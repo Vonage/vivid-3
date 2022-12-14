@@ -25,4 +25,4 @@ export const popupElements = [popup, ...elevationElements, ...buttonElements];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerPopup = registerFactorial(...popupElements);
+export const registerPopup = registerFactorial(popupElements);

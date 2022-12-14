@@ -24,4 +24,4 @@ export const headerElements = [header, ...elevationElements];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerHeader = registerFactorial(...headerElements);
+export const registerHeader = registerFactorial(headerElements);

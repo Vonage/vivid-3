@@ -24,4 +24,4 @@ export const sliderElements = [slider, ...focusElements];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerSlider = registerFactorial(...sliderElements);
+export const registerSlider = registerFactorial(sliderElements);

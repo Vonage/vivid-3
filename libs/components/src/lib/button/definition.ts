@@ -32,4 +32,4 @@ export const buttonElements = [button, ...iconElements, ...focusElements];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerButton = registerFactorial(...buttonElements);
+export const registerButton = registerFactorial(buttonElements);

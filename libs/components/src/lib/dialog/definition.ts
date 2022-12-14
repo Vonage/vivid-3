@@ -28,4 +28,4 @@ export const dialogElements = [dialog, ...iconElements, ...buttonElements, ...el
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerDialog = registerFactorial(...dialogElements);
+export const registerDialog = registerFactorial(dialogElements);

@@ -5,7 +5,7 @@ import { registerFactorial } from '.';
 describe('design system', () => {
 	it('should register with custom prefix instead of default', async () => {
 		const elementsDefintions = [badge, icon];
-		const registerBadge = registerFactorial(...elementsDefintions);
+		const registerBadge = registerFactorial(elementsDefintions);
 		const defaultPrefix = 'vwc';
 		const customPrefix = 'dashboard';
 
@@ -24,7 +24,7 @@ describe('design system', () => {
 
 	it('should register a component along with its integrated components', async () => {
 		const elementsDefintions = [badge, icon];
-		const registerBadge = registerFactorial(...elementsDefintions);
+		const registerBadge = registerFactorial(elementsDefintions);
 		const defaultPrefix = 'vwc';
 
 		registerBadge();

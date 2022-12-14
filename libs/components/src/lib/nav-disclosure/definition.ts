@@ -27,4 +27,4 @@ export const navDisclosureElements = [navDisclosure, ...iconElements, ...focusEl
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerNavDisclosure = registerFactorial(...navDisclosureElements);
+export const registerNavDisclosure = registerFactorial(navDisclosureElements);

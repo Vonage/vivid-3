@@ -24,4 +24,4 @@ export const radioElements = [radio, ...focusElements];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerRadio = registerFactorial(...radioElements);
+export const registerRadio = registerFactorial(radioElements);

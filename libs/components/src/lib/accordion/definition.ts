@@ -22,4 +22,4 @@ export const accordionElements = [accordion];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerAccordion = registerFactorial(...accordionElements);
+export const registerAccordion = registerFactorial(accordionElements);

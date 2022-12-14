@@ -25,4 +25,4 @@ export const tooltipElements = [tooltip, ...popupElements];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerTooltip = registerFactorial(...tooltipElements);
+export const registerTooltip = registerFactorial(tooltipElements);

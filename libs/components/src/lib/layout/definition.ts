@@ -24,4 +24,4 @@ export const layoutElements = [layout];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerLayout = registerFactorial(...layoutElements);
+export const registerLayout = registerFactorial(layoutElements);

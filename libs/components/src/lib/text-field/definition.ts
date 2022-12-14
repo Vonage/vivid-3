@@ -28,4 +28,4 @@ export const textFieldElements = [textField, ...iconElements, ...focusElements];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerTextField = registerFactorial(...textFieldElements);
+export const registerTextField = registerFactorial(textFieldElements);

@@ -23,4 +23,4 @@ export const elevationElements = [elevation];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerElevation = registerFactorial(...elevationElements);
+export const registerElevation = registerFactorial(elevationElements);

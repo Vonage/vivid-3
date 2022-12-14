@@ -18,4 +18,4 @@ export const <%= camelCasedName %>Elements = [<%= camelCasedName %>];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const register<%= className %> = registerFactorial(...<%= camelCasedName %>Elements);
+export const register<%= className %> = registerFactorial(<%= camelCasedName %>Elements);

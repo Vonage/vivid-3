@@ -24,4 +24,4 @@ export const dividerElements = [divider];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerDivider = registerFactorial(...dividerElements);
+export const registerDivider = registerFactorial(dividerElements);

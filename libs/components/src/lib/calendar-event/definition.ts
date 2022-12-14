@@ -28,4 +28,4 @@ export const calendarEventElements = [calendarEvent];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerCalendarEvent = registerFactorial(...calendarEventElements);
+export const registerCalendarEvent = registerFactorial(calendarEventElements);

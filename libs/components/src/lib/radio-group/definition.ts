@@ -22,4 +22,4 @@ export const radioGroupElements = [radioGroup];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerRadioGroup = registerFactorial(...radioGroupElements);
+export const registerRadioGroup = registerFactorial(radioGroupElements);

@@ -28,4 +28,4 @@ export const menuElements = [menu, ...popupElements, ...menuItemElements];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerMenu = registerFactorial(...menuElements);
+export const registerMenu = registerFactorial(menuElements);

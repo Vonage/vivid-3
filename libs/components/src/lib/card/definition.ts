@@ -26,4 +26,4 @@ export const cardElements = [card, ...iconElements, ...elevationElements];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerCard = registerFactorial(...cardElements);
+export const registerCard = registerFactorial(cardElements);

@@ -25,5 +25,5 @@ export const bannerElements = [banner, ...iconElements, ...buttonElements];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerBanner = registerFactorial(...bannerElements);
+export const registerBanner = registerFactorial(bannerElements);
 

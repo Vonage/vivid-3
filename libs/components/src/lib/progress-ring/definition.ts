@@ -24,4 +24,4 @@ export const progressRingElements = [progressRing];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerProgressRing = registerFactorial(...progressRingElements);
+export const registerProgressRing = registerFactorial(progressRingElements);

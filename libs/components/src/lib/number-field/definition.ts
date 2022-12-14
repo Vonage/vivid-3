@@ -29,4 +29,4 @@ export const numberFieldElement = [numberField, ...buttonElements, ...dividerEle
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerNumberField = registerFactorial(...numberFieldElement);
+export const registerNumberField = registerFactorial(numberFieldElement);

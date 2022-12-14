@@ -29,4 +29,4 @@ export const checkboxElements = [checkbox, ...iconElements, ...focusElements];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerCheckbox = registerFactorial(...checkboxElements);
+export const registerCheckbox = registerFactorial(checkboxElements);

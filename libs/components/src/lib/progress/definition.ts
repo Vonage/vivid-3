@@ -23,4 +23,4 @@ export const progressElements = [progress];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerProgress = registerFactorial(...progressElements);
+export const registerProgress = registerFactorial(progressElements);

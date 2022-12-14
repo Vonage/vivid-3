@@ -24,4 +24,4 @@ export const listboxOptionElements = [listboxOption, ...iconElements, ...focusEl
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerOption = registerFactorial(...listboxOptionElements);
+export const registerOption = registerFactorial(listboxOptionElements);

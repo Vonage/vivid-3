@@ -30,4 +30,4 @@ export const navItemElements = [navItem, ...iconElements, ...focusElements];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerNavItem = registerFactorial(...navItemElements);
+export const registerNavItem = registerFactorial(navItemElements);

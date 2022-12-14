@@ -22,4 +22,4 @@ export const textAnchorElements = [textAnchor];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerTextAnchor = registerFactorial(...textAnchorElements);
+export const registerTextAnchor = registerFactorial(textAnchorElements);

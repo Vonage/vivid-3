@@ -21,4 +21,4 @@ export const breadcrumbElements = [breadcrumb];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerBreadcrumb = registerFactorial(...breadcrumbElements);
+export const registerBreadcrumb = registerFactorial(breadcrumbElements);

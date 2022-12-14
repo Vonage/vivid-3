@@ -22,4 +22,4 @@ export const sideDrawerElements = [sideDrawer];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerSideDrawer = registerFactorial(...sideDrawerElements);
+export const registerSideDrawer = registerFactorial(sideDrawerElements);

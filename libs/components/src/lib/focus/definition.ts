@@ -26,4 +26,4 @@ export const focusElements = [focus];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerFocus = registerFactorial(...focusElements);
+export const registerFocus = registerFactorial(focusElements);

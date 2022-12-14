@@ -21,4 +21,4 @@ export const iconElements = [icon];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerIcon = registerFactorial(...iconElements);
+export const registerIcon = registerFactorial(iconElements);

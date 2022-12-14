@@ -27,4 +27,4 @@ export const badgeElements = [badge, ...iconElements];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerBadge = registerFactorial(...badgeElements);
+export const registerBadge = registerFactorial(badgeElements);

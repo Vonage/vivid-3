@@ -29,4 +29,4 @@ export const accordionItemElements = [accordionItem, ...iconElements, ...focusEl
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerAccordionItem = registerFactorial(...accordionItemElements);
+export const registerAccordionItem = registerFactorial(accordionItemElements);

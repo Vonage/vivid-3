@@ -25,4 +25,4 @@ export const noteElements = [note, ...iconElements];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerNote = registerFactorial(...noteElements);
+export const registerNote = registerFactorial(noteElements);
