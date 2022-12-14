@@ -6,6 +6,7 @@ import type {
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import {affixIconTemplateFactory} from '../../shared/patterns/affix';
+import { Elevation } from '../elevation/elevation';
 import type { Card } from './card';
 
 const getClasses = (_: Card) => classNames(
@@ -94,8 +95,10 @@ export const CardTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Card> = (context: ElementDefinitionContext) => {
+	const elevationTag = context.tagFor(Elevation);
+
 	return html<Card>`
-	<vwc-elevation dp=${(x => x.elevation ?? '4')}>
+	<${elevationTag} dp=${(x => x.elevation ?? '4')}>
 
 		<div class="${getClasses}">
 			<div class="wrapper">
@@ -117,6 +120,6 @@ export const CardTemplate: (
 			</div>
 		</div>
 
-	</vwc-elevation>
+	</${elevationTag}>
 `;
 };

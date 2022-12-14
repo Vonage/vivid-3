@@ -49,11 +49,11 @@ export class AffixIconWithTrailing extends AffixIcon {
  * @public
  */
 export const affixIconTemplateFactory: (context: ElementDefinitionContext) =>
-(icon?: string) => ViewTemplate<AffixIcon> | null = (context: ElementDefinitionContext) => {
+(icon?: string, className?: string) => ViewTemplate<AffixIcon> | null = (context: ElementDefinitionContext) => {
 	const iconTag = context.tagFor(Icon);
-	return (icon?: string) => icon
+	return (icon?: string, className?: string) => icon
 		? html`
 			<style>${messageStyles}</style>
-			<span class="icon"><${iconTag} :name="${() => icon}"></${iconTag}></span>`
+			<span class="${className ? className : 'icon'}"><${iconTag} :name="${() => icon}"></${iconTag}></span>`
 		: null;
 };

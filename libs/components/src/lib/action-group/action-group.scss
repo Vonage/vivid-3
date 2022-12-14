@@ -1,15 +1,15 @@
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent,
 	$shades: backdrop primary intermediate faint,
 	$default: accent,
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: fieldset ghost,
 	$states: idle,
 	$default: fieldset,
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 
 
 :host {
@@ -33,7 +33,7 @@
 		z-index: 1;
 		border-radius: inherit;
 		box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-		content: '';
+		content: "";
 		inset:0;
 		pointer-events: none;
 	}
@@ -54,7 +54,7 @@
 }
 
 /* Separator */
-::slotted(vwc-divider) {
+::slotted([role="separator"]) {
 	align-self: stretch;
 	margin-block: 4px;
 }

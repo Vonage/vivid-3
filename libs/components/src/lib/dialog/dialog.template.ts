@@ -5,6 +5,8 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import {classNames} from '@microsoft/fast-web-utilities';
+import { Elevation } from '../elevation/elevation';
+import { Button } from '../button/button';
 import {affixIconTemplateFactory} from '../../shared/patterns/affix';
 import type {Dialog} from './dialog';
 
@@ -30,16 +32,16 @@ function headline() {
 /**
  *
  */
-function renderDismissButton() {
+function renderDismissButton(buttonTag: string) {
 	return html<Dialog>`
-	  <vwc-button
+	  <${buttonTag}
 			  size="condensed"
 			  class="dismiss-button"
 			  icon="close-line"
 			  @click="${x => {
 		x.open = false;
 	}}">
-	  </vwc-button>`;
+	  </${buttonTag}>`;
 }
 
 /**
@@ -71,12 +73,14 @@ function content() {
 export const DialogTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Dialog> = (
-	context: ElementDefinitionContext,
-) => {
+) => ViewTemplate<Dialog> = (context: ElementDefinitionContext) => {
+	const elevationTag = context.tagFor(Elevation);
+	const buttonTag = context.tagFor(Button);
 	const affixIconTemplate = affixIconTemplateFactory(context);
+
+
 	return html<Dialog>`
-	<vwc-elevation dp="12">
+	<${elevationTag} dp="12">
 		<div>
 			<dialog class="${getClasses}"
 					@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
@@ -94,7 +98,7 @@ export const DialogTemplate: (
 								</slot>
 								${when(x => x.headline, headline())}
 							</div>
-						${renderDismissButton()}
+						${renderDismissButton(buttonTag)}
 						</div>
 						<slot name="content">
 							${when(x => x.text, content())}
@@ -104,6 +108,5 @@ export const DialogTemplate: (
 				</slot>
 			</dialog>
 		</div>
-	</vwc-elevation>`;
+	</${elevationTag}>`;
 };
-
