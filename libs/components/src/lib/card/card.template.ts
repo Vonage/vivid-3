@@ -55,8 +55,7 @@ function headerContent() {
 /**
  header
  */
-function renderHeader(_:any, context: ElementDefinitionContext) {
-
+function renderHeader(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	return html<Card>`
 		<header class="header">
@@ -101,7 +100,8 @@ function text() {
 export const CardTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Card> = () => html<Card>`
+) => ViewTemplate<Card> = (context: ElementDefinitionContext) => {
+	return html<Card>`
 	<vwc-elevation dp=${(x => x.elevation ?? '4')}>
 
 		<div class="${getClasses}">
@@ -112,7 +112,7 @@ export const CardTemplate: (
 				<slot name="main">
 					<div class="main-content">
 						<div class="header-wrapper">
-							${renderHeader}
+							${renderHeader(context)}
 							${renderMetaSlot()}
 						</div>
 						${when(x => x.text, text())}
@@ -126,3 +126,4 @@ export const CardTemplate: (
 
 	</vwc-elevation>
 `;
+};
