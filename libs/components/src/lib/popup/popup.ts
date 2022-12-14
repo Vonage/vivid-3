@@ -1,7 +1,7 @@
 import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { arrow, autoUpdate, computePosition, flip, hide, inline, offset, Strategy } from '@floating-ui/dom';
-import type { Placement } from '@floating-ui/dom';
+import { arrow, autoUpdate, computePosition, flip, hide, inline, offset } from '@floating-ui/dom';
+import type { Placement, Strategy } from '@floating-ui/dom';
 import { keyEscape } from '@microsoft/fast-web-utilities';
 
 /**
@@ -13,7 +13,6 @@ export class Popup extends FoundationElement {
 	get #arrowPosition(): any { return { top: 'bottom', right: 'left', bottom: 'top', left: 'right' }; }
 	get #padding(): number { return 0; }
 	get #distance(): number { return 12; }
-	get #strategy(): Strategy { return 'fixed'; }
 	get #middleware(): Array<any> {
 		const middleware = [flip(), hide(), inline()];
 		if (this.arrow) { middleware.push(arrow({ element: this.arrowEl, padding: this.#padding }), offset(this.#distance)); }
@@ -81,6 +80,14 @@ export class Popup extends FoundationElement {
 	@attr({ mode: 'fromView' }) placement?: Placement;
 
 	/**
+	 * the strategy of the popup
+	 *
+	 * @public
+	 * HTML Attribute: strategy
+	 */
+	@attr({ mode: 'fromView' }) strategy?: Strategy = 'fixed';
+
+	/**
 	 * ID reference to element in the popup’s owner document or HTMLElement.
 	 *
 	 * @public
@@ -122,10 +129,10 @@ export class Popup extends FoundationElement {
 		if (!this.open || !this.anchorEl) {
 			return;
 		}
-
+		
 		const positionData = await computePosition(this.anchorEl, this.popupEl, {
 			placement: this.placement,
-			strategy: this.#strategy,
+			strategy: this.strategy,
 			middleware: this.#middleware
 		});
 		this.#assignPopupPosition(positionData);
