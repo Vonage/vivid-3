@@ -1,4 +1,4 @@
-@use 'variables' as variables;
+@use "variables" as variables;
 
 
 @mixin get-size-properties($block-size, $font-face, $icon-gap, $padding-inline, $icon-size) {
