@@ -5,6 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import {classNames} from '@microsoft/fast-web-utilities';
+import {affixIconTemplateFactory} from '../../shared/patterns/affix';
 import type {Dialog} from './dialog';
 
 const getClasses = ({iconPlacement}: Dialog) => classNames(
@@ -12,14 +13,7 @@ const getClasses = ({iconPlacement}: Dialog) => classNames(
 	[`icon-placement-${iconPlacement}`, Boolean(iconPlacement)],
 );
 
-/**
- *
- */
-function icon() {
-	return html<Dialog>`
-		<vwc-icon class="icon" name="${x => x.icon}"></vwc-icon>
-	`;
-}
+
 
 /**
  *
@@ -77,7 +71,11 @@ function content() {
 export const DialogTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Dialog> = () => html<Dialog>`
+) => ViewTemplate<Dialog> = (
+	context: ElementDefinitionContext,
+) => {
+	const affixIconTemplate = affixIconTemplateFactory(context);
+	return html<Dialog>`
 	<vwc-elevation dp="12">
 		<div>
 			<dialog class="${getClasses}"
@@ -92,7 +90,7 @@ export const DialogTemplate: (
 						<div class="header">
 							<div class="headline-wrapper">
 								<slot name="graphic">
-									${when(x => x.icon, icon())}
+									${when( x => x.icon, html`${x => affixIconTemplate(x.icon)}`)}
 								</slot>
 								${when(x => x.headline, headline())}
 							</div>
@@ -107,4 +105,5 @@ export const DialogTemplate: (
 			</dialog>
 		</div>
 	</vwc-elevation>`;
+};
 

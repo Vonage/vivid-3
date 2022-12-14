@@ -14,13 +14,6 @@ const getClasses = (_: Card) => classNames(
 	['hide-header', shouldHideHeader(_)]
 );
 
-/**
-header icon
- */
-// function renderHeaderIcon() {
-// 	return html<Card>`
-// 	  <vwc-icon class="icon" inline name="${x => x.icon}"></vwc-icon>`;
-// }
 
 /**
  *

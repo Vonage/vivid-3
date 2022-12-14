@@ -72,6 +72,9 @@
 
 			.icon {
 				font-size: #{size.$vvd-size-extra-condensed};
+				> * {
+					vertical-align: top;
+				}
 			}
 		}
 	}
