@@ -102,7 +102,7 @@ then use it as:
 
 Remember to not include the default side-effect import (`import '@vonage/vivid/button';`) when using scoped elements as it will register the default namespace.
 
-One of the advantages of this approach is that, although custom elements are registered under different namespaces, it is possible to use [npm dedupe](https://docs.npmjs.com/cli/v8/commands/npm-dedupe) to ensure only a minimal number of versions of the library are used in the application.
+Even though custom elements can be registered under different namespaces, as many as needed, this approach lets you enjoy the benefits of [npm dedupe](https://docs.npmjs.com/cli/v8/commands/npm-dedupe) to ensure only a single version of the library is used in the application.
 
 ## Support
 
