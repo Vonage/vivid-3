@@ -83,9 +83,8 @@ describe('vwc-card', () => {
 
 			element.icon = 'home';
 			await elementUpdated(element);
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-			expect(graphicSlotElement).toBeTruthy();
-			expect(icon.parentElement).toEqual(graphicSlotElement);
+			const icon = graphicSlotElement?.querySelector(ICON_SELECTOR) as Icon;
+			expect(icon instanceof Icon).toBeTruthy();
 		});
 
 
