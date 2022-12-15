@@ -1,10 +1,14 @@
 import { icon } from '../../lib/icon/definition';
-import { badge } from '../../lib/badge/definition';
-import { registerFactorial } from '.';
+import { badgeDefinition } from '../../lib/badge/definition';
+import { designSystem, registerFactorial } from '.';
 
 describe('design system', () => {
+	it('should export \'designSystem\'', async () => {
+		expect(designSystem).toBeDefined();
+	});
+
 	it('should register with custom prefix instead of default', async () => {
-		const elementsDefintions = [badge, icon];
+		const elementsDefintions = [badgeDefinition(), icon()];
 		const registerBadge = registerFactorial(elementsDefintions);
 		const defaultPrefix = 'vwc';
 		const customPrefix = 'dashboard';
@@ -23,7 +27,7 @@ describe('design system', () => {
 	});
 
 	it('should register a component along with its integrated components', async () => {
-		const elementsDefintions = [badge, icon];
+		const elementsDefintions = [badgeDefinition(), icon()];
 		const registerBadge = registerFactorial(elementsDefintions);
 		const defaultPrefix = 'vwc';
 
