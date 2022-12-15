@@ -1,5 +1,5 @@
 {
-  "comment": "align with public exports",
+  "comment": "rewrite component definition",
   "type": "none",
   "packageName": "@vonage/nx-vivid",
   "email": "yinon.oved@vonage.com",
