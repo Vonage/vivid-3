@@ -2,6 +2,7 @@ import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
 import { NavItem } from './nav-item';
 import '.';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG = 'vwc-nav-item';
 const ICON_SELECTOR = 'vwc-icon';
@@ -17,6 +18,7 @@ describe('vwc-nav-item', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-nav-item', async () => {
+			expect(navItemDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(NavItem);
 			expect(element.text).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
@@ -62,3 +64,10 @@ describe('vwc-nav-item', () => {
 		});
 	});
 });
+/**
+ *
+ */
+function navItemDefinition(): any {
+	throw new Error('Function not implemented.');
+}
+

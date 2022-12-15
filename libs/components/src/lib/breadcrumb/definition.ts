@@ -14,6 +14,9 @@ export const breadcrumbDefinition = Breadcrumb.compose<FoundationElementDefiniti
 	styles,
 });
 
+/**
+ * @internal
+ */
 export const breadcrumbRegistries = [breadcrumbDefinition()];
 
 /**

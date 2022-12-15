@@ -1,6 +1,8 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { SideDrawer } from './side-drawer';
 import '.';
+import { sideDrawerDefinition } from './definition';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG = 'vwc-side-drawer';
 
@@ -15,6 +17,7 @@ describe('vwc-side-drawer', () => {
 
 	describe('basic', () => {
 		it('initializes as a vwc-side-drawer', async () => {
+			expect(sideDrawerDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(SideDrawer);
 			expect(element.open).toBeFalsy();
 			expect(element.alternate).toBeFalsy();
@@ -145,5 +148,5 @@ describe('vwc-side-drawer', () => {
 		});
 	});
 
-	
+
 });

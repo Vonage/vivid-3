@@ -1,7 +1,7 @@
 import type { CheckboxOptions } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
-import { focusElements } from '../focus/definition';
+import { focusRegistries } from '../focus/definition';
 import styles from './checkbox.scss';
 
 import { Checkbox } from './checkbox';
@@ -22,7 +22,10 @@ export const checkboxDefinition = Checkbox.compose<CheckboxOptions>({
 	},
 });
 
-export const checkboxRegistries = [checkbox(), ...iconRegistries, ...focusRegistries];
+/**
+ * @internal
+ */
+export const checkboxRegistries = [checkboxDefinition(), ...iconRegistries, ...focusRegistries];
 
 /**
  * Registers the checkbox elements with the design system.

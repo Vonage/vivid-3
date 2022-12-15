@@ -1,7 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
-import { focusElements } from '../focus/definition';
+import { focusRegistries } from '../focus/definition';
 import styles from './nav-item.scss';
 
 import { NavItem } from './nav-item';
@@ -10,8 +10,6 @@ import { NavItemTemplate as template } from './nav-item.template';
 
 /**
  * The nav-item element is a custom element that is used to display a single item in a nav.
- *
- * @internal
  */
 export const navItem =
 	NavItem.compose<FoundationElementDefinition>({
@@ -23,6 +21,9 @@ export const navItem =
 		},
 	});
 
+/**
+ * @internal
+ */
 export const navItemRegistries = [navItem(), ...iconRegistries, ...focusRegistries];
 
 /**

@@ -6,8 +6,6 @@ import { sideDrawerTemplate as template } from './side-drawer.template';
 
 /**
  * Represents a side-drawer custom element.
- *
- * @internal
  */
 export const sideDrawerDefinition = SideDrawer.compose<FoundationElementDefinition>({
 	baseName: 'side-drawer',
@@ -15,6 +13,9 @@ export const sideDrawerDefinition = SideDrawer.compose<FoundationElementDefiniti
 	styles,
 });
 
+/**
+ * @internal
+ */
 export const sideDrawerRegistries = [sideDrawerDefinition()];
 
 /**

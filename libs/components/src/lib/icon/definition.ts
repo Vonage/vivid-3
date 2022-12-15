@@ -11,6 +11,9 @@ export const iconDefinition = Icon.compose<FoundationElementDefinition>({
 	styles,
 });
 
+/**
+ * @internal
+ */
 export const iconRegistries = [iconDefinition()];
 
 /**

@@ -3,8 +3,8 @@ import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import dialogPolyfillStyles from 'dialog-polyfill/dist/dialog-polyfill.css';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
-import { buttonElements } from '../button/definition';
-import { elevationElements } from '../elevation/definition';
+import { buttonRegistries } from '../button/definition';
+import { elevationRegistries } from '../elevation/definition';
 import styles from './dialog.scss';
 import { Dialog } from './dialog';
 import { DialogTemplate as template } from './dialog.template';
@@ -21,7 +21,10 @@ export const dialogDefinition = Dialog.compose<FoundationElementDefinition>({
 	styles: [styles, dialogPolyfillStyles],
 });
 
-export const dialogRegistries = [dialog(), ...iconRegistries, ...buttonRegistries, ...elevationRegistries];
+/**
+ * @internal
+ */
+export const dialogRegistries = [dialogDefinition(), ...iconRegistries, ...buttonRegistries, ...elevationRegistries];
 
 /**
  * Registers the dialog elements with the design system.

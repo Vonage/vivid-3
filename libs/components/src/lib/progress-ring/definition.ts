@@ -7,16 +7,17 @@ import {ProgressRingTemplate as template} from './progress-ring.template';
 
 /**
  * The progress-ring element.
- *
- * @internal
  */
-export const progressRing =
+export const progressRingDefinition =
 	ProgressRing.compose<FoundationElementDefinition>({
 		baseName: 'progress-ring',
 		template: template as any,
 		styles,
 	});
 
+/**
+ * @internal
+ */
 export const progressRingRegistries = [progressRingDefinition()];
 
 /**

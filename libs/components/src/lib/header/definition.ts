@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import { elevationElements } from '../elevation/definition';
+import { elevationRegistries } from '../elevation/definition';
 import styles from './header.scss';
 import { Header } from './header';
 import { headerTemplate as template } from './header.template';
@@ -8,8 +8,6 @@ import { headerTemplate as template } from './header.template';
 
 /**
  * The header element.
- *
- * @internal
  */
 export const headerDefinition = Header.compose<FoundationElementDefinition>({
 	baseName: 'header',
@@ -17,6 +15,9 @@ export const headerDefinition = Header.compose<FoundationElementDefinition>({
 	styles,
 });
 
+/**
+ * @internal
+ */
 export const headerRegistries = [headerDefinition(), ...elevationRegistries];
 
 /**

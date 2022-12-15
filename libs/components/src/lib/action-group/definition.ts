@@ -16,6 +16,9 @@ export const actionGroupDefinition = ActionGroup.compose<FoundationElementDefini
 	styles,
 });
 
+/**
+ * @internal
+ */
 export const actionGroupRegistries = [actionGroupDefinition()];
 
 /**

@@ -25,7 +25,8 @@ describe('vwc-calendar-event', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-calendar-event', async () => {
-			expect(element).toBeInstanceOf(CalendarEvent);
+			expect((CalendarEvent)Definition()).toBeInstanceOf(FoundationElementRegistry);
+expect(element).toBeInstanceOf(CalendarEvent);
 			expect(element.heading).toBeUndefined();
 			expect(element.description).toBeUndefined();
 			expect(element.connotation).toBeUndefined();

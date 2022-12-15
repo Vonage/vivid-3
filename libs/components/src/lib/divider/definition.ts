@@ -17,6 +17,9 @@ export const dividerDefinition = Divider.compose<FoundationElementDefinition>({
 	styles,
 });
 
+/**
+ * @internal
+ */
 export const dividerRegistries = [dividerDefinition()];
 
 /**

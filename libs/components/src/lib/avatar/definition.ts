@@ -17,6 +17,9 @@ export const avatarDefinition = Avatar.compose<FoundationElementDefinition>({
 	styles,
 });
 
+/**
+ * @internal
+ */
 export const avatarRegistries = [avatarDefinition(), ...iconRegistries];
 
 /**

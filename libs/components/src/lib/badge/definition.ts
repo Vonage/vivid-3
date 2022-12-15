@@ -11,7 +11,7 @@ import { badgeTemplate as template } from './badge.template';
  * badge is a label that holds small amounts of information.
  * A badge can be used to display unread notifications, or to label a block of text.
  */
-export const badgeDefinitionDefinition = Badge.compose<FoundationElementDefinition>({
+export const badgeDefinition = Badge.compose<FoundationElementDefinition>({
 	baseName: 'badge',
 	template: template as any,
 	styles,

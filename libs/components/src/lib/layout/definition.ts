@@ -8,8 +8,6 @@ import { layoutTemplate as template } from './layout.template';
 /**
  * Represents a layout custom element.
  * layout is...
- *
- * @internal
  */
 export const layoutDefinition = Layout.compose<FoundationElementDefinition>({
 	baseName: 'layout',
@@ -17,6 +15,9 @@ export const layoutDefinition = Layout.compose<FoundationElementDefinition>({
 	styles,
 });
 
+/**
+ * @internal
+ */
 export const layoutRegistries = [layoutDefinition()];
 
 /**

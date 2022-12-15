@@ -1,7 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import { buttonElements } from '../button/definition';
-import { elevationElements } from '../elevation/definition';
+import { buttonRegistries } from '../button/definition';
+import { elevationRegistries } from '../elevation/definition';
 import { Popup } from './popup';
 import styles from './popup.scss';
 import { popupTemplate as template } from './popup.template';
@@ -18,7 +18,10 @@ export const popupDefinition = Popup.compose<FoundationElementDefinition>({
 	styles,
 });
 
-export const popupRegistries = [popup(), ...elevationRegistries, ...buttonRegistries];
+/**
+ * @internal
+ */
+export const popupRegistries = [popupDefinition(), ...elevationRegistries, ...buttonRegistries];
 
 /**
  * Registers the popup elements with the design system.

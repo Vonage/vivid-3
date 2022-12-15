@@ -1,7 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
-import { focusElements } from '../focus/definition';
+import { focusRegistries } from '../focus/definition';
 import styles from './fab.scss';
 
 import { Fab } from './fab';
@@ -10,8 +10,6 @@ import { FabTemplate as template } from './fab.template';
 
 /**
  * The calendar-event element is a custom element that is used to display a single event in a calendar.
- *
- * @internal
  */
 export const fabDefinition = Fab.compose<FoundationElementDefinition>({
 	baseName: 'fab',
@@ -22,7 +20,10 @@ export const fabDefinition = Fab.compose<FoundationElementDefinition>({
 	},
 });
 
-export const fabRegistries = [fab(), ...iconRegistries, ...focusRegistries];
+/**
+ * @internal
+ */
+export const fabRegistries = [fabDefinition(), ...iconRegistries, ...focusRegistries];
 
 /**
  * Registers the FAB elements with the design system.

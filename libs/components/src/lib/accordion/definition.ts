@@ -15,6 +15,9 @@ export const accordionDefinition = Accordion.compose<FoundationElementDefinition
 	styles,
 });
 
+/**
+ * @internal
+ */
 export const accordionRegistries = [accordionDefinition()];
 
 /**

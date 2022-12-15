@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import { focusElements } from '../focus/definition';
+import { focusRegistries } from '../focus/definition';
 import { iconRegistries } from '../icon/definition';
 import { TextField } from './text-field';
 import styles from './text-field.scss';
@@ -9,8 +9,6 @@ import { TextfieldTemplate as template } from './text-field.template';
 
 /**
  * The text-field element.
- *
- * @internal
  */
 export const textFieldDefinition = TextField.compose<FoundationElementDefinition>({
 	baseName: 'text-field',
@@ -21,7 +19,10 @@ export const textFieldDefinition = TextField.compose<FoundationElementDefinition
 	},
 });
 
-export const textFieldRegistries = [textField(), ...iconRegistries, ...focusRegistries];
+/**
+ * @internal
+ */
+export const textFieldRegistries = [textFieldDefinition(), ...iconRegistries, ...focusRegistries];
 
 /**
  * Registers the text-field elements with the design system.

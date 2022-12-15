@@ -7,14 +7,15 @@ import { textAnchorTemplate as template } from './text-anchor.template';
 
 /**
  * The text-anchor element.
- *
- * @internal
  */
 export const textAnchorDefinition = TextAnchor.compose<FoundationElementDefinition>({
 	baseName: 'text-anchor',
 	template: template as any,
 });
 
+/**
+ * @internal
+ */
 export const textAnchorRegistries = [textAnchorDefinition()];
 
 /**

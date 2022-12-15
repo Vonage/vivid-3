@@ -1,6 +1,8 @@
 import {createFormHTML, elementUpdated, fixture, getBaseElement, listenToFormSubmission} from '@vivid-nx/shared';
 import { Checkbox } from './checkbox';
 import '.';
+import { checkboxDefinition } from './definition';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG = 'vwc-checkbox';
 
@@ -15,6 +17,7 @@ describe('vwc-checkbox', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-checkbox', async () => {
+			expect(checkboxDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Checkbox);
 			expect(element.checked).toBeFalsy();
 			expect(element.indeterminate).toBeFalsy();

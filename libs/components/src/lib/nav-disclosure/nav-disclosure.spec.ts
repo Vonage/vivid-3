@@ -2,6 +2,7 @@ import { elementUpdated, fixture, getBaseElement, getControlElement } from '@viv
 import { Icon } from '../icon/icon';
 import { NavDisclosure } from './nav-disclosure';
 import '.';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG = 'vwc-nav-disclosure';
 const ICON_SELECTOR = 'vwc-icon';
@@ -17,6 +18,7 @@ describe('vwc-nav-disclosure', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-nav-disclosure', async () => {
+			expect(navDisclosureDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(NavDisclosure);
 			expect(element.label).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
@@ -85,3 +87,10 @@ describe('vwc-nav-disclosure', () => {
 		expect((spy as any).mock.calls.length).toEqual(1);
 	});
 });
+/**
+ *
+ */
+function navDisclosureDefinition(): any {
+	throw new Error('Function not implemented.');
+}
+

@@ -16,6 +16,9 @@ export const elevationDefinition = Elevation.compose<FoundationElementDefinition
 	styles,
 });
 
+/**
+ * @internal
+ */
 export const elevationRegistries = [elevationDefinition()];
 
 /**

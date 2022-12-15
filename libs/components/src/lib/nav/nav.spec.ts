@@ -23,7 +23,8 @@ describe('vwc-nav', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-nav', async () => {
-			expect(element).toBeInstanceOf(Nav);
+			expect((Nav)Definition()).toBeInstanceOf(FoundationElementRegistry);
+expect(element).toBeInstanceOf(Nav);
 		});
 	});
 

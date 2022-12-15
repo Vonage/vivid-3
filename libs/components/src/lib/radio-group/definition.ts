@@ -6,15 +6,16 @@ import { RadioGroupTemplate as template } from './radio-group.template';
 
 /**
  * The radio-group element is a custom element that is used to display a group of radio buttons.
- *
- * @internal
  */
-export const radioGroup = RadioGroup.compose({
+export const radioGroupDefinition = RadioGroup.compose({
 	baseName: 'radio-group',
 	template: template as any,
 	styles,
 });
 
+/**
+ * @internal
+ */
 export const radioGroupRegistries = [radioGroupDefinition()];
 
 /**

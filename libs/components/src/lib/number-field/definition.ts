@@ -1,7 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import { buttonElements } from '../button/definition';
-import { dividerElements } from '../divider/definition';
+import { buttonRegistries } from '../button/definition';
+import { dividerRegistries } from '../divider/definition';
 import styles from './number-field.scss';
 import { NumberField } from './number-field';
 import { NumberFieldTemplate as template } from './number-field.template';
@@ -9,8 +9,6 @@ import { NumberFieldTemplate as template } from './number-field.template';
 
 /**
  * The number-field element.
- *
- * @internal
  */
 export const numberField =
 	NumberField.compose<FoundationElementDefinition>({

@@ -19,6 +19,9 @@ export const calendarDefinition = Calendar.compose<FoundationElementDefinition>(
 	}
 });
 
+/**
+ * @internal
+ */
 export const calendarRegistries = [calendarDefinition()];
 
 /**

@@ -9,8 +9,6 @@ import { NoteTemplate as template } from './note.template';
 
 /**
  * The note element.
- *
- * @internal
  */
 export const noteDefinition = Note.compose<FoundationElementDefinition>({
 	baseName: 'note',
@@ -18,7 +16,10 @@ export const noteDefinition = Note.compose<FoundationElementDefinition>({
 	styles,
 });
 
-export const noteRegistries = [note(), ...iconRegistries];
+/**
+ * @internal
+ */
+export const noteRegistries = [noteDefinition(), ...iconRegistries];
 
 /**
  * Registers the note elements with the design system.

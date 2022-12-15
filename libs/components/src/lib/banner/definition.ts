@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import { buttonElements } from '../button/definition';
+import { buttonRegistries } from '../button/definition';
 import { iconRegistries } from '../icon/definition';
 import styles from './banner.scss';
 
@@ -18,7 +18,10 @@ export const bannerDefinition = Banner.compose<FoundationElementDefinition>({
 	styles,
 });
 
-export const bannerRegistries = [banner(), ...iconRegistries, ...buttonRegistries];
+/**
+ * @internal
+ */
+export const bannerRegistries = [bannerDefinition(), ...iconRegistries, ...buttonRegistries];
 
 /**
  * Registers the banner elements with the design system.

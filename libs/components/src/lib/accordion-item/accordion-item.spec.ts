@@ -19,6 +19,7 @@ describe('vwc-accordion-item', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-accordion-item', async () => {
+			expect(accordionItemDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(AccordionItem);
 			expect(element.open).toBeFalsy();
 			expect(element.icon).toBeUndefined();

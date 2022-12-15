@@ -30,7 +30,8 @@ describe('vwc-listbox', () => {
 
 	describe('basic', function () {
 		it('should be initialized as a vwc-listbox', async function () {
-			expect(element).toBeInstanceOf(Listbox);
+			expect((Listbox)Definition()).toBeInstanceOf(FoundationElementRegistry);
+expect(element).toBeInstanceOf(Listbox);
 			expect(element.disabled).toBeUndefined();
 			expect(element.multiple).toBeUndefined();
 			expect(element.appearance).toBeUndefined();

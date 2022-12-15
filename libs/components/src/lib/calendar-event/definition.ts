@@ -11,7 +11,7 @@ import { CalendarEventTemplate as template } from './calendar-event.template';
  *
  * @internal
  */
-export const calendarEvent =
+export const calendarEventDefinition =
 	CalendarEvent.compose<FoundationElementDefinition>({
 		baseName: 'calendar-event',
 		template: template as any,
@@ -21,6 +21,9 @@ export const calendarEvent =
 		}
 	});
 
+/**
+ * @internal
+ */
 export const calendarEventRegistries = [calendarEventDefinition()];
 
 /**

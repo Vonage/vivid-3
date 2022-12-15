@@ -7,8 +7,6 @@ import { ProgressTemplate as template } from './progress.template';
 
 /**
  * The progress element.
- *
- * @internal
  */
 export const progressDefinition = Progress.compose<FoundationElementDefinition>({
 	baseName: 'progress',
@@ -16,6 +14,9 @@ export const progressDefinition = Progress.compose<FoundationElementDefinition>(
 	styles,
 });
 
+/**
+ * @internal
+ */
 export const progressRegistries = [progressDefinition()];
 
 /**

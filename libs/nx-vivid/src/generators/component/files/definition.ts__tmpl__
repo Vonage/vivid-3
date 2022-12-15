@@ -11,6 +11,9 @@ export const <%= camelCasedName %>Definition = <%= className %>.compose<Foundati
 	styles,
 });
 
+/**
+ * @internal
+ */
 export const <%= camelCasedName %>Registries = [<%= camelCasedName %>Definition()];
 
 /**

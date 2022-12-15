@@ -8,6 +8,7 @@ import {
 import {Shape} from '../enums';
 import { NumberField } from './number-field';
 import '.';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG_NAME = 'vwc-number-field';
 
@@ -20,14 +21,23 @@ function getRootElement(element: NumberField) {
 
 describe('vwc-number-field', () => {
 
+	/**
+	 *
+	 */
 	function setToBlurred() {
 		element.dispatchEvent(new Event('blur'));
 	}
 
+	/**
+	 *
+	 */
 	function setToFocused() {
 		element.dispatchEvent(new Event('focus'));
 	}
 
+	/**
+	 * @param errorMessage
+	 */
 	function setValidityToError(errorMessage = 'error') {
 		element.setValidity({badInput: true}, errorMessage);
 		element.validate();
@@ -43,6 +53,7 @@ describe('vwc-number-field', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-number-field', async () => {
+			expect(numberFieldDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(NumberField);
 			expect(getControlElement(element).getAttribute('type')).toEqual('text');
 		});
@@ -560,6 +571,9 @@ describe('vwc-number-field', () => {
 		});
 
 		it('should set inert in disabled and readonly', async function() {
+			/**
+			 *
+			 */
 			function isButtonsWrapperInert() {
 				return addButton.parentElement?.hasAttribute('inert');
 			}
@@ -582,6 +596,9 @@ describe('vwc-number-field', () => {
 		});
 
 		it('should set tabindex="-1" on the buttons', async function() {
+			/**
+			 *
+			 */
 			function isButtonsWrapperInert() {
 				return addButton.getAttribute('tabindex') === '-1' &&
 					subtractButton.getAttribute('tabindex') === '-1';
@@ -614,4 +631,11 @@ describe('vwc-number-field', () => {
 		});
 	});
 });
+
+/**
+ *
+ */
+function numberFieldDefinition(): any {
+	throw new Error('Function not implemented.');
+}
 

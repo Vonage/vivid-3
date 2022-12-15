@@ -13,7 +13,8 @@ describe( 'vwc-<%= name %>', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-<%= name %>', async () => {
-			expect(element).toBeInstanceOf(<%= className %>);
+			expect((<%= className %>)Definition()).toBeInstanceOf(FoundationElementRegistry);
+expect(element).toBeInstanceOf(<%= className %>);
 		});
 	});
 });

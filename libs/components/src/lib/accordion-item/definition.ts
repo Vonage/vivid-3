@@ -1,7 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
-import { focusElements } from '../focus/definition';
+import { focusRegistries } from '../focus/definition';
 import styles from './accordion-item.scss';
 
 import { AccordionItem } from './accordion-item';
@@ -22,6 +22,9 @@ export const accordionItem =
 		},
 	});
 
+/**
+ * @internal
+ */
 export const accordionItemRegistries = [accordionItem(), ...iconRegistries, ...focusRegistries];
 
 /**

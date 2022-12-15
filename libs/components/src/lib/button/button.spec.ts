@@ -19,7 +19,8 @@ describe('vwc-button', () => {
 
 	describe('basic', () => {
 		it('initializes as a vwc-button', async () => {
-			expect(element).toBeInstanceOf(Button);
+			expect((Button)Definition()).toBeInstanceOf(FoundationElementRegistry);
+expect(element).toBeInstanceOf(Button);
 			expect(element.label).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
 			expect(element.iconTrailing).toBeFalsy();

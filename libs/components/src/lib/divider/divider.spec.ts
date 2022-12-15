@@ -15,7 +15,8 @@ describe('vwc-divider', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-divider', async () => {
-			expect(element).toBeInstanceOf(Divider);
+			expect((Divider)Definition()).toBeInstanceOf(FoundationElementRegistry);
+expect(element).toBeInstanceOf(Divider);
 		});
 	});
 

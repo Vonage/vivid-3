@@ -6,16 +6,17 @@ import { NavTemplate as template } from './nav.template';
 
 /**
  * The nav element.
- *
- * @internal
  */
-export const nav =
+export const navDefinition =
 	Nav.compose<FoundationElementDefinition>({
 		baseName: 'nav',
 		template: template as any,
 	});
 
 
+/**
+ * @internal
+ */
 export const navRegistries = [navDefinition()];
 
 /**
