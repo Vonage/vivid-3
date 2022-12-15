@@ -1,5 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactorial } from '../../shared/design-system';
+import { registerFactory } from '../../shared/design-system';
 import { buttonElements } from '../button/definition';
 import { dividerElements } from '../divider/definition';
 import styles from './number-field.scss';
@@ -22,11 +22,11 @@ export const numberField =
 		},
 	});
 
-export const numberFieldElement = [numberField(), ...buttonElements, ...dividerElements];
+export const numberFieldElement = [numberField(), ...buttonRegistries, ...dividerRegistries];
 
 /**
  * Registers the number-field elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerNumberField = registerFactorial(numberFieldElement);
+export const registerNumberField = registerFactory(numberFieldElement);

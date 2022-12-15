@@ -1,5 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactorial } from '../../shared/design-system';
+import { registerFactory } from '../../shared/design-system';
 import styles from './calendar-event.scss';
 
 import { CalendarEvent } from './calendar-event';
@@ -21,11 +21,11 @@ export const calendarEvent =
 		}
 	});
 
-export const calendarEventElements = [calendarEvent()];
+export const calendarEventRegistries = [calendarEventDefinition()];
 
 /**
  * Registers the calendar-event elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerCalendarEvent = registerFactorial(calendarEventElements);
+export const registerCalendarEvent = registerFactory(calendarEventRegistries);

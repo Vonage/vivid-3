@@ -1,6 +1,6 @@
 import type { MenuItemOptions } from '@microsoft/fast-foundation';
-import { registerFactorial } from '../../shared/design-system';
-import { iconElements } from '../icon/definition';
+import { registerFactory } from '../../shared/design-system';
+import { iconRegistries } from '../icon/definition';
 import { focusElements } from '../focus/definition';
 import styles from './menu-item.scss';
 
@@ -13,17 +13,17 @@ import { MenuItemTemplate as template } from './menu-item.template';
  *
  * @internal
  */
-export const menuItem = MenuItem.compose<MenuItemOptions>({
+export const menuItemDefinition = MenuItem.compose<MenuItemOptions>({
 	baseName: 'menu-item',
 	template: template as any,
 	styles
 });
 
-export const menuItemElements = [menuItem(), ...iconElements, ...focusElements];
+export const menuItemRegistries = [menuItem(), ...iconRegistries, ...focusRegistries];
 
 /**
  * Registers the menu-item elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerMenuItem = registerFactorial(menuItemElements);
+export const registerMenuItem = registerFactory(menuItemRegistries);

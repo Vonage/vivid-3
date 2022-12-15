@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactorial } from '../../shared/design-system';
-import { iconElements } from '../icon/definition';
+import { registerFactory } from '../../shared/design-system';
+import { iconRegistries } from '../icon/definition';
 import { focusElements } from '../focus/definition';
 import styles from './nav-item.scss';
 
@@ -23,11 +23,11 @@ export const navItem =
 		},
 	});
 
-export const navItemElements = [navItem(), ...iconElements, ...focusElements];
+export const navItemRegistries = [navItem(), ...iconRegistries, ...focusRegistries];
 
 /**
  * Registers the nav-item elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerNavItem = registerFactorial(navItemElements);
+export const registerNavItem = registerFactory(navItemRegistries);

@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactorial } from '../../shared/design-system';
-import { iconElements } from '../icon/definition';
+import { registerFactory } from '../../shared/design-system';
+import { iconRegistries } from '../icon/definition';
 import { focusElements } from '../focus/definition';
 import styles from './accordion-item.scss';
 
@@ -22,11 +22,11 @@ export const accordionItem =
 		},
 	});
 
-export const accordionItemElements = [accordionItem(), ...iconElements, ...focusElements];
+export const accordionItemRegistries = [accordionItem(), ...iconRegistries, ...focusRegistries];
 
 /**
  * Registers the accordion item elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerAccordionItem = registerFactorial(accordionItemElements);
+export const registerAccordionItem = registerFactory(accordionItemRegistries);

@@ -1,5 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactorial } from '../../shared/design-system';
+import { registerFactory } from '../../shared/design-system';
 import { focusElements } from '../focus/definition';
 import { listboxOptionElements } from '../option/definition';
 import { Listbox } from './listbox';
@@ -22,11 +22,11 @@ const listbox = Listbox.compose<FoundationElementDefinition>({
 // in listbox as it is not used directly in its template rather by user's authoring.
 // but, due to the race condition and way listbox needs children to
 // connect before setting/checking their props/attributes, it is required
-export const listboxElements = [listbox(), ...listboxOptionElements, ...focusElements];
+export const listboxRegistries = [listbox(), ...listboxOptionRegistries, ...focusRegistries];
 
 /**
  * Registers the listbox elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerListbox = registerFactorial(listboxElements);
+export const registerListbox = registerFactory(listboxRegistries);

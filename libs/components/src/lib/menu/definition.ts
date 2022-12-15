@@ -1,4 +1,4 @@
-import { registerFactorial } from '../../shared/design-system';
+import { registerFactory } from '../../shared/design-system';
 import { popupElements } from '../popup/definition';
 import { menuItemElements } from '../menu-item/definition';
 import styles from './menu.scss';
@@ -21,11 +21,11 @@ export const menu = Menu.compose({
 // in menu as it is not used directly in template, rather by user's authoring.
 // but, due to the race condition and way menu needs children to
 // connect before setting/checking their props/attributes, it is required
-export const menuElements = [menu(), ...popupElements, ...menuItemElements];
+export const menuRegistries = [menu(), ...popupRegistries, ...menuItemRegistries];
 
 /**
  * Registers the calendar-event elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerMenu = registerFactorial(menuElements);
+export const registerMenu = registerFactory(menuRegistries);

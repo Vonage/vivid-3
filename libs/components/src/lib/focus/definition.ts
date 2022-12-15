@@ -1,5 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactorial } from '../../shared/design-system';
+import { registerFactory } from '../../shared/design-system';
 import { Focus } from './focus';
 import styles from './focus.scss';
 import { focusTemplate as template } from './focus.template';
@@ -13,17 +13,17 @@ import { focusTemplate as template } from './focus.template';
  *
  * @internal
  */
-export const focus = Focus.compose<FoundationElementDefinition>({
+export const focusDefinition = Focus.compose<FoundationElementDefinition>({
 	baseName: 'focus',
 	template: template as any,
 	styles,
 });
 
-export const focusElements = [focus()];
+export const focusRegistries = [focusDefinition()];
 
 /**
  * Registers the focus component
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerFocus = registerFactorial(focusElements);
+export const registerFocus = registerFactory(focusRegistries);

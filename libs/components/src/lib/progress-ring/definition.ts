@@ -1,5 +1,5 @@
 import type {FoundationElementDefinition} from '@microsoft/fast-foundation';
-import { registerFactorial } from '../../shared/design-system';
+import { registerFactory } from '../../shared/design-system';
 import styles from './progress-ring.scss';
 
 import {ProgressRing} from './progress-ring';
@@ -17,11 +17,11 @@ export const progressRing =
 		styles,
 	});
 
-export const progressRingElements = [progressRing()];
+export const progressRingRegistries = [progressRingDefinition()];
 
 /**
  * Registers the progress-ring  elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerProgressRing = registerFactorial(progressRingElements);
+export const registerProgressRing = registerFactory(progressRingRegistries);
