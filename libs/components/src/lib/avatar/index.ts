@@ -1,21 +1,4 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { designSystem, getPrefix } from '../../shared/design-system';
-import { loadComponentsModules } from '../../shared/utils';
-import styles from './avatar.scss';
+import { registerAvatar } from './definition';
 
-import { Avatar } from './avatar';
-import { AvatarTemplate as template } from './avatar.template';
 
-const prefix = getPrefix(import.meta.url);
-const dependencies = ['icon'];
-
-export const vividAvatar = Avatar.compose<FoundationElementDefinition>({
-	baseName: 'avatar',
-	template: template as any,
-	styles,
-});
-
-(async () => {
-	await loadComponentsModules(dependencies, prefix);
-	designSystem.withPrefix(prefix).register(vividAvatar());
-})();
+registerAvatar();
