@@ -1,8 +1,8 @@
 import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Dialog } from './dialog';
 import '.';
 import { dialogDefinition } from './definition';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG = 'vwc-dialog';
 

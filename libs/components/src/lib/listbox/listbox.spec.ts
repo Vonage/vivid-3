@@ -1,10 +1,10 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { ListboxOption } from '../option/option';
 import { Listbox } from './listbox';
 import { listboxDefinition } from './definition';
 import '../option';
 import '.';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG = 'vwc-listbox';
 

@@ -1,9 +1,9 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { ListboxOption } from './option';
 import '.';
 import { listboxOptionDefinition } from './definition';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG = 'vwc-option';
 const ICON_SELECTOR = 'vwc-icon';

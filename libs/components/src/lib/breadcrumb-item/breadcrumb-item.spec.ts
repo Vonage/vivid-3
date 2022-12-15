@@ -1,9 +1,9 @@
 import {elementUpdated, fixture, getBaseElement, setAttribute} from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type {Icon} from '../icon/icon';
 import { BreadcrumbItem } from './breadcrumb-item';
 import '.';
 import { breadcrumbItemDefinition } from './definition';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG = 'vwc-breadcrumb-item';
 

@@ -1,9 +1,9 @@
 import { fixture } from '@vivid-nx/shared';
 import { axe, toHaveNoViolations } from 'jest-axe';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Nav } from './nav';
 import '.';
 import { navDefinition } from './definition';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 expect.extend(toHaveNoViolations);
 const COMPONENT_TAG = 'vwc-nav';

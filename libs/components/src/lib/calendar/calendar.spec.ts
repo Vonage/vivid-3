@@ -1,12 +1,12 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { axe, toHaveNoViolations } from 'jest-axe';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Calendar } from './calendar';
 import '.';
 import '../calendar-event';
 import { getValidDateString } from './helpers/calendar.date-functions';
 import type { CalendarEventContext } from './helpers/calendar.event-context';
 import { calendarDefinition } from './definition';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 expect.extend(toHaveNoViolations);
 

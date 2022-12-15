@@ -1,8 +1,8 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
-import { ActionGroup } from './action-group';
-import '.';
-import { actionGroupDefinition } from './definition';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { ActionGroup } from './action-group';
+import { actionGroupDefinition } from './definition';
+import '.';
 
 
 const COMPONENT_TAG = 'vwc-action-group';

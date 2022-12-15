@@ -1,11 +1,11 @@
 import { elementUpdated, fixture, getBaseElement, listenToFormSubmission } from '@vivid-nx/shared';
 import { configureAxe, toHaveNoViolations } from 'jest-axe';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Radio } from '../radio/radio';
 import { RadioGroup } from './radio-group';
 import '../radio';
 import '.';
 import { radioGroupDefinition } from './definition';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG = 'vwc-radio-group';
 

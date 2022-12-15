@@ -5,10 +5,10 @@ import {
 	getControlElement,
 	listenToFormSubmission
 } from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {Shape} from '../enums';
 import { NumberField } from './number-field';
 import '.';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { numberFieldDefinition } from './definition';
 
 const COMPONENT_TAG_NAME = 'vwc-number-field';

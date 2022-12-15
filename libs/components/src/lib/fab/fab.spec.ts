@@ -1,8 +1,8 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Fab, FabConnotation } from './fab';
 import '.';
 import { fabDefinition } from './definition';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG = 'vwc-fab';
 

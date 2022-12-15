@@ -1,8 +1,8 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { SideDrawer } from './side-drawer';
 import '.';
 import { sideDrawerDefinition } from './definition';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG = 'vwc-side-drawer';
 

@@ -1,9 +1,9 @@
 import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {Connotation} from '../enums';
 import { Avatar } from './avatar';
 import '.';
 import { avatarDefinition } from './definition';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG = 'vwc-avatar';
 

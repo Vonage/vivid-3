@@ -1,9 +1,9 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Icon } from '../icon/icon';
 import { Button } from './button';
 import  '.';
 import { buttonDefinition } from './definition';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG = 'vwc-button';
 const ICON_SELECTOR = 'vwc-icon';

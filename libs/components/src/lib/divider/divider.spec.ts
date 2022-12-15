@@ -1,8 +1,8 @@
 import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Divider } from './divider';
 import '.';
 import { dividerDefinition } from './definition';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG = 'vwc-divider';
 

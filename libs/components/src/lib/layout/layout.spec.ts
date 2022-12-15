@@ -1,9 +1,9 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { LayoutSize } from '../enums';
 import { AUTO_SIZING, Layout } from './layout';
 import '.';
 import { layoutDefinition } from './definition';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG = 'vwc-layout';
 

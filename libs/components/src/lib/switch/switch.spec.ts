@@ -1,9 +1,9 @@
 import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {Connotation} from '../enums';
 import { Switch } from './switch';
 import '.';
 import { switchDefinition } from './definition';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG = 'vwc-switch';
 

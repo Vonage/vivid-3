@@ -1,10 +1,10 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {Connotation} from '../enums';
 import {Icon} from '../icon/icon';
 import {Note} from './note';
 import '.';
 import { noteDefinition } from './definition';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG = 'vwc-note';
 

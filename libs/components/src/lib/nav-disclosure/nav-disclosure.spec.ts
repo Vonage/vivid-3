@@ -1,8 +1,8 @@
 import { elementUpdated, fixture, getBaseElement, getControlElement } from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { NavDisclosure } from './nav-disclosure';
 import '.';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { navDisclosureDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-nav-disclosure';

@@ -1,7 +1,7 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { AccordionItem } from './accordion-item';
 import '.';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { accordionItemDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-accordion-item';

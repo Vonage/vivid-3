@@ -1,8 +1,8 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { NavItem } from './nav-item';
 import '.';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { navItemDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-nav-item';

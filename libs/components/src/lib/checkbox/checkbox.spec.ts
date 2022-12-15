@@ -1,8 +1,8 @@
 import {createFormHTML, elementUpdated, fixture, getBaseElement, listenToFormSubmission} from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Checkbox } from './checkbox';
 import '.';
 import { checkboxDefinition } from './definition';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG = 'vwc-checkbox';
 

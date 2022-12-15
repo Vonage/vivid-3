@@ -1,8 +1,8 @@
 import { createFormHTML, elementUpdated, fixture, getBaseElement, listenToFormSubmission } from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Radio } from './radio';
 import '.';
 import { radioDefinition } from './definition';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG = 'vwc-radio';
 
