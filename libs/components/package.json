@@ -1,6 +1,6 @@
 {
   "name": "@vonage/vivid",
-  "version": "3.0.0-next.116",
+  "version": "3.0.0-next.120",
   "type": "module",
   "module": "./index.js",
   "main": "./index.js",
@@ -16,6 +16,7 @@
   },
   "license": "Apache-2.0",
   "exports": {
+    ".": "./index.js",
     "./accordion": "./accordion",
     "./accordion-item": "./accordion-item",
     "./action-group": "./action-group",
