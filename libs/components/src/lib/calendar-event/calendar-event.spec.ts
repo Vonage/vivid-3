@@ -2,6 +2,8 @@ import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import { CalendarEvent } from './calendar-event';
 import '.';
+import { calendarEventDefinition } from './definition';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 expect.extend(toHaveNoViolations);
 
@@ -25,8 +27,8 @@ describe('vwc-calendar-event', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-calendar-event', async () => {
-			expect((CalendarEvent)Definition()).toBeInstanceOf(FoundationElementRegistry);
-expect(element).toBeInstanceOf(CalendarEvent);
+			expect(calendarEventDefinition()).toBeInstanceOf(FoundationElementRegistry);
+			expect(element).toBeInstanceOf(CalendarEvent);
 			expect(element.heading).toBeUndefined();
 			expect(element.description).toBeUndefined();
 			expect(element.connotation).toBeUndefined();

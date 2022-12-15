@@ -3,6 +3,7 @@ import type { ListboxOption } from '../option/option';
 import { Listbox } from './listbox';
 import '../option';
 import '.';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG = 'vwc-listbox';
 
@@ -30,8 +31,8 @@ describe('vwc-listbox', () => {
 
 	describe('basic', function () {
 		it('should be initialized as a vwc-listbox', async function () {
-			expect((Listbox)Definition()).toBeInstanceOf(FoundationElementRegistry);
-expect(element).toBeInstanceOf(Listbox);
+			expect(listboxDefinition()).toBeInstanceOf(FoundationElementRegistry);
+			expect(element).toBeInstanceOf(Listbox);
 			expect(element.disabled).toBeUndefined();
 			expect(element.multiple).toBeUndefined();
 			expect(element.appearance).toBeUndefined();
@@ -103,3 +104,10 @@ expect(element).toBeInstanceOf(Listbox);
 		});
 	});
 });
+/**
+ *
+ */
+function listboxDefinition(): any {
+	throw new Error('Function not implemented.');
+}
+

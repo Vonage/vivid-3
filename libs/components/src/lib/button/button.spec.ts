@@ -2,6 +2,8 @@ import { elementUpdated, fixture } from '@vivid-nx/shared';
 import type { Icon } from '../icon/icon';
 import { Button } from './button';
 import  '.';
+import { buttonDefinition } from './definition';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG = 'vwc-button';
 const ICON_SELECTOR = 'vwc-icon';
@@ -19,8 +21,8 @@ describe('vwc-button', () => {
 
 	describe('basic', () => {
 		it('initializes as a vwc-button', async () => {
-			expect((Button)Definition()).toBeInstanceOf(FoundationElementRegistry);
-expect(element).toBeInstanceOf(Button);
+			expect(buttonDefinition()).toBeInstanceOf(FoundationElementRegistry);
+			expect(element).toBeInstanceOf(Button);
 			expect(element.label).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
 			expect(element.iconTrailing).toBeFalsy();

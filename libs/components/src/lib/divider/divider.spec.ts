@@ -1,6 +1,8 @@
 import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
 import { Divider } from './divider';
 import '.';
+import { dividerDefinition } from './definition';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG = 'vwc-divider';
 
@@ -15,8 +17,8 @@ describe('vwc-divider', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-divider', async () => {
-			expect((Divider)Definition()).toBeInstanceOf(FoundationElementRegistry);
-expect(element).toBeInstanceOf(Divider);
+			expect(dividerDefinition()).toBeInstanceOf(FoundationElementRegistry);
+			expect(element).toBeInstanceOf(Divider);
 		});
 	});
 
