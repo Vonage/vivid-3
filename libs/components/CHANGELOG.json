@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Thu, 15 Dec 2022 09:47:39 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.120",
+      "version": "3.0.0-next.120",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "999d60cfb47c20dc81772177a37bf1925dc4cc14",
+            "comment": "fix test"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 14 Dec 2022 16:38:10 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.120",
       "version": "3.0.0-next.120",
