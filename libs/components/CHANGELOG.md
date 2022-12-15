@@ -1,8 +1,24 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Tue, 13 Dec 2022 14:06:36 GMT and should not be manually modified.
+This log was last generated on Wed, 14 Dec 2022 16:38:10 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.120
+
+Wed, 14 Dec 2022 16:38:10 GMT
+
+### Changes
+
+- change prefix override interface (yinon@hotmail.com)
+
+## 3.0.0-next.119
+
+Wed, 14 Dec 2022 14:20:15 GMT
+
+### Changes
+
+- add absolute strategy (rina.oksman@vonage.com)
 
 ## 3.0.0-next.118
 

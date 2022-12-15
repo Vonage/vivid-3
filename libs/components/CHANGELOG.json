@@ -2,6 +2,36 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Wed, 14 Dec 2022 16:38:10 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.120",
+      "version": "3.0.0-next.120",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "cfa9964c9fb8475acd969bae5e0cc2b4d86ff8a2",
+            "comment": "change prefix override interface"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 14 Dec 2022 14:20:15 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.119",
+      "version": "3.0.0-next.119",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "074acf3a9f26584e9e965cb9188cfae4bcef96ca",
+            "comment": "add absolute strategy"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 13 Dec 2022 14:06:36 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.118",
       "version": "3.0.0-next.118",
