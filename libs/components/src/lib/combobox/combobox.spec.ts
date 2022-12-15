@@ -59,6 +59,15 @@ describe('vwc-combobox', () => {
 			expect(element.shadowRoot?.querySelector('.disabled')).toBeTruthy();
 		});
 	});
+
+	describe('open', function () {
+		it('should set open when clicked', async () => {
+			expect(element.open).toEqual(false);
+			element.click();
+			await elementUpdated(element);
+			expect(element.open).toEqual(true);
+		});
+	});
 	
 	describe('placeholder', function () {
 		const placeholderText = 'Text';
