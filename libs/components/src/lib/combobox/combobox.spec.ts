@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Combobox } from './combobox';
 import '.';
 
@@ -57,6 +57,27 @@ describe('vwc-combobox', () => {
 			element.toggleAttribute('disabled', true);
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.disabled')).toBeTruthy();
+		});
+	});
+	
+	describe('placeholder', function () {
+		const placeholderText = 'Text';
+		it('should set placeholder attribute on the input', async function () {
+
+			element.placeholder = placeholderText;
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('input')
+				?.getAttribute('placeholder'))
+				.toEqual(placeholderText);
+		});
+
+		it('should set class placeholder to root', async function () {
+			element.placeholder = placeholderText;
+			await elementUpdated(element);
+			expect(getBaseElement(element)
+				.classList
+				.contains('placeholder'))
+				.toEqual(true);
 		});
 	});
 });
