@@ -4,6 +4,7 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-accordion-item';
 
+/* eslint-disable @typescript-eslint/no-empty-function */
 global.fetch = jest.fn(() => new Promise(() => {}));
 
 describe('vwc-accordion-item', () => {
