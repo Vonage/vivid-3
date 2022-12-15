@@ -2,6 +2,7 @@ import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
 import {Connotation} from '../enums';
 import { Avatar } from './avatar';
 import '.';
+import type { Icon } from '../icon/icon';
 
 const COMPONENT_TAG = 'vwc-avatar';
 
@@ -78,16 +79,20 @@ describe('vwc-avatar', () => {
 	});
 
 	describe('avatar icon', () => {
-		it('should have the default icon', async () => {
-			const iconElement = baseElement.querySelector('vwc-icon');
+		const icon = 'user-line';
+		let iconElement: Icon;
+
+		beforeEach(async () => {
+			element.setAttribute('icon', icon);
+			await elementUpdated(element);
+			iconElement = baseElement.querySelector('vwc-icon') as Icon;
+		});
+
+		it('should have the default icon', async () => { 
 			expect(iconElement?.getAttribute('name')).toEqual('user-line');
 		});
 
 		it('should set the icon according to the icon property', async () => {
-			const icon = 'user-line';
-			element.setAttribute('icon', icon);
-			await elementUpdated(element);
-			const iconElement = baseElement.querySelector('vwc-icon');
 			expect(iconElement?.getAttribute('name')).toEqual(icon);
 			expect(element.icon).toEqual(icon);
 		});
