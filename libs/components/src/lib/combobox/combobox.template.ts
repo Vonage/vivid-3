@@ -77,10 +77,9 @@ export const comboboxTemplate: (
 	const popupTag = context.tagFor(Popup);
 
 	return html<Combobox>`
-        <template class="base"
+        <template
             aria-disabled="${x => x.ariaDisabled}"
             autocomplete="${x => x.autocomplete}"
-            ?open="${x => x.open}"
             tabindex="${x => (!x.disabled ? '0' : null)}"
             @click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
             @focusout="${(x, c) => x.focusoutHandler(c.event as FocusEvent)}"
