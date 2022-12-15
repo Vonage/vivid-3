@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "rewrite component definition",
+  "packageName": "@vonage/vivid",
+  "email": "yinon.oved@vonage.com",
+  "dependentChangeType": "patch"
+}

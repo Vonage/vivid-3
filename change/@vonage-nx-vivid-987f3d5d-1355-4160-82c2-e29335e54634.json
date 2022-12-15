@@ -1,0 +1,7 @@
+{
+  "comment": "align with public exports",
+  "type": "none",
+  "packageName": "@vonage/nx-vivid",
+  "email": "yinon.oved@vonage.com",
+  "dependentChangeType": "none"
+}
