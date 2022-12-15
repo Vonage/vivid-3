@@ -1,9 +1,9 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { axe, toHaveNoViolations } from 'jest-axe';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { CalendarEvent } from './calendar-event';
 import '.';
 import { calendarEventDefinition } from './definition';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 expect.extend(toHaveNoViolations);
 
