@@ -93,7 +93,7 @@ describe('vwc-calendar', () => {
 
 			const hour13th = element.shadowRoot?.querySelector('.row-headers > :nth-child(13)') as HTMLSpanElement;
 
-			expect(hour13th.textContent?.trim()).toEqual('1 PM');
+			expect(hour13th.textContent?.toLowerCase().trim()).toEqual('1 pm');
 		});
 	});
 
