@@ -66,10 +66,10 @@ Add a `placeholder` attribute to add placeholder text to the input.
 ```
 ### Autocomplete
 
-- Type: `'inline'` | `'list'` | `'both'` | `undefined`
+- Type: `'inline'` | `'list'` | `'both'`
 - Default: `undefined`
 
-See (https://www.w3.org/TR/wai-aria-1.2/#aria-autocomplete)[aria-autocomplete] for more information.
+See [aria-autocomplete](https://www.w3.org/TR/wai-aria-1.2/#aria-autocomplete) for more information.
 
 ```html preview
 <vwc-combobox autocomplete="both">
