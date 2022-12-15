@@ -50,6 +50,7 @@ slot {
 
 .base.disabled ::slotted([role="option"]) {
 	#{variables.$option-appearance-color-text}: var(#{appearance.get-appearance-token(outline)});
+
 	cursor: not-allowed;
 	pointer-events: none;
 }
