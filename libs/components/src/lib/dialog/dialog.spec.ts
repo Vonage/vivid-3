@@ -1,6 +1,7 @@
 import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
 import { Dialog } from './dialog';
 import '.';
+import { Icon } from '../icon/icon';
 
 const COMPONENT_TAG = 'vwc-dialog';
 
@@ -248,9 +249,9 @@ describe('vwc-dialog', () => {
 		const iconElementWhenUndefined = getBaseElement(element).querySelector('.icon');
 		element.icon = 'home';
 		await elementUpdated(element);
-		const iconElement = getBaseElement(element).querySelector('.icon');
+		const iconElement = getBaseElement(element).querySelector('.icon')?.children[0];
 		expect(iconElementWhenUndefined).toBeNull();
-		expect(iconElement).toBeTruthy();
+		expect(iconElement instanceof Icon).toBeTruthy();
 		expect(iconElement?.getAttribute('name')).toEqual('home');
 	});
 
