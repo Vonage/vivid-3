@@ -6,6 +6,8 @@ import '.';
 const COMPONENT_TAG = 'vwc-nav-disclosure';
 const ICON_SELECTOR = 'vwc-icon';
 
+global.fetch = jest.fn(() => new Promise(() => {}));
+
 describe('vwc-nav-disclosure', () => {
 	let element: NavDisclosure;
 
