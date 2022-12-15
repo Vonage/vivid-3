@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { Combobox } from './combobox';
 import '.';
 
@@ -6,6 +6,13 @@ const COMPONENT_TAG = 'vwc-combobox';
 
 describe('vwc-combobox', () => {
 	let element: Combobox;
+
+	global.ResizeObserver = jest.fn()
+		.mockImplementation(() => ({
+			observe: jest.fn(),
+			unobserve: jest.fn(),
+			disconnect: jest.fn()
+		}));
 
 	beforeEach(async () => {
 		element = (await fixture(
@@ -25,11 +32,22 @@ describe('vwc-combobox', () => {
 		});
 	});
 
-	describe('open', function () {
-		it('should open the combobox when set to true', async function () {
-			element.open = true;
+	describe('label', function () {
+		it('should set a label if label is set', async function () {
+			const labelText = 'label';
+			element.label = labelText;
 			await elementUpdated(element);
-			expect(getBaseElement(element).hasAttribute('open')).toEqual(true);
+			const labelElement = element.shadowRoot?.querySelector('label');
+			expect(labelElement)
+				.toBeTruthy();
+			expect(labelElement?.textContent?.trim())
+				.toEqual(labelText);
+		});
+
+		it('should show label only if label is set', async function () {
+			const labelElement = element.shadowRoot?.querySelector('label');
+			expect(labelElement)
+				.toBeNull();
 		});
 	});
 });
