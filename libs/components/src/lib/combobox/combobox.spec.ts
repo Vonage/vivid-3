@@ -68,12 +68,12 @@ describe('vwc-combobox', () => {
 			expect(element.open).toEqual(true);
 		});
 	});
-	
+
 	describe('placeholder', function () {
 		const placeholderText = 'Text';
 		it('should set placeholder attribute on the input', async function () {
-
 			element.placeholder = placeholderText;
+			element.dispatchEvent(new Event('input'));
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('input')
 				?.getAttribute('placeholder'))
