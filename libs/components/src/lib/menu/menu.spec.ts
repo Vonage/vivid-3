@@ -4,6 +4,7 @@ import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
 import { Popup } from '../popup/popup';
 import { Menu } from './menu';
 import '.';
+import { menuDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-menu';
 
@@ -221,10 +222,3 @@ describe('vwc-menu', () => {
 		return anchorEl;
 	}
 });
-/**
- *
- */
-function menuDefinition(): any {
-	throw new Error('Function not implemented.');
-}
-

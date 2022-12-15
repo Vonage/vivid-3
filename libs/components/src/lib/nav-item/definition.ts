@@ -11,7 +11,7 @@ import { NavItemTemplate as template } from './nav-item.template';
 /**
  * The nav-item element is a custom element that is used to display a single item in a nav.
  */
-export const navItem =
+export const navItemDefinition =
 	NavItem.compose<FoundationElementDefinition>({
 		baseName: 'nav-item',
 		template: template as any,
@@ -24,7 +24,7 @@ export const navItem =
 /**
  * @internal
  */
-export const navItemRegistries = [navItem(), ...iconRegistries, ...focusRegistries];
+export const navItemRegistries = [navItemDefinition(), ...iconRegistries, ...focusRegistries];
 
 /**
  * Registers the nav-item elements with the design system.

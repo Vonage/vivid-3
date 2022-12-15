@@ -11,7 +11,7 @@ import { NavDisclosureTemplate as template } from './nav-disclosure.template';
 /**
  * The nav-disclosure element.
  */
-export const navDisclosure =
+export const navDisclosureDefinition =
 	NavDisclosure.compose<FoundationElementDefinition>({
 		baseName: 'nav-disclosure',
 		template: template as any,
@@ -21,7 +21,7 @@ export const navDisclosure =
 /**
  * @internal
  */
-export const navDisclosureRegistries = [navDisclosure(), ...iconRegistries, ...focusRegistries];
+export const navDisclosureRegistries = [navDisclosureDefinition(), ...iconRegistries, ...focusRegistries];
 
 /**
  * Registers the nav-disclosure elements with the design system.

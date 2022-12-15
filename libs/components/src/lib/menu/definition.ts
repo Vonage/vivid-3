@@ -8,7 +8,7 @@ import { MenuTemplate as template } from './menu.template';
 /**
  * The menu element is a custom element that is used to display a list of menu items.
  */
-export const menu = Menu.compose({
+export const menuDefinition = Menu.compose({
 	baseName: 'menu',
 	template: template as any,
 	styles,
@@ -22,7 +22,7 @@ export const menu = Menu.compose({
 /**
  * @internal
  */
-export const menuRegistries = [menu(), ...popupRegistries, ...menuItemRegistries];
+export const menuRegistries = [menuDefinition(), ...popupRegistries, ...menuItemRegistries];
 
 /**
  * Registers the calendar-event elements with the design system.

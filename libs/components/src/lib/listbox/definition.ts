@@ -10,7 +10,7 @@ import styles from './listbox.scss';
 /**
  * The calendar-event element is a custom element that is used to display a single event in a calendar.
  */
-const listbox = Listbox.compose<FoundationElementDefinition>({
+export const listboxDefinition = Listbox.compose<FoundationElementDefinition>({
 	baseName: 'listbox',
 	template: template as any,
 	styles
@@ -23,7 +23,7 @@ const listbox = Listbox.compose<FoundationElementDefinition>({
 /**
  * @internal
  */
-export const listboxRegistries = [listbox(), ...listboxOptionRegistries, ...focusRegistries];
+export const listboxRegistries = [listboxDefinition(), ...listboxOptionRegistries, ...focusRegistries];
 
 /**
  * Registers the listbox elements with the design system.

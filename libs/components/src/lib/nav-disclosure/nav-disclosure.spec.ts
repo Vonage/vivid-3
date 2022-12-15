@@ -3,6 +3,7 @@ import { Icon } from '../icon/icon';
 import { NavDisclosure } from './nav-disclosure';
 import '.';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { navDisclosureDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-nav-disclosure';
 const ICON_SELECTOR = 'vwc-icon';
@@ -87,10 +88,3 @@ describe('vwc-nav-disclosure', () => {
 		expect((spy as any).mock.calls.length).toEqual(1);
 	});
 });
-/**
- *
- */
-function navDisclosureDefinition(): any {
-	throw new Error('Function not implemented.');
-}
-

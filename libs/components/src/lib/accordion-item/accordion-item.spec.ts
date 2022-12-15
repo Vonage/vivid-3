@@ -2,6 +2,7 @@ import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { AccordionItem } from './accordion-item';
 import '.';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { accordionItemDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-accordion-item';
 
@@ -125,10 +126,3 @@ describe('vwc-accordion-item', () => {
 		});
 	});
 });
-/**
- *
- */
-function accordionItemDefinition(): any {
-	throw new Error('Function not implemented.');
-}
-

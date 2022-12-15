@@ -10,7 +10,7 @@ import { NumberFieldTemplate as template } from './number-field.template';
 /**
  * The number-field element.
  */
-export const numberField =
+export const numberFieldDefinition =
 	NumberField.compose<FoundationElementDefinition>({
 		baseName: 'number-field',
 		template: template as any,
@@ -20,7 +20,7 @@ export const numberField =
 		},
 	});
 
-export const numberFieldElement = [numberField(), ...buttonRegistries, ...dividerRegistries];
+export const numberFieldElement = [numberFieldDefinition(), ...buttonRegistries, ...dividerRegistries];
 
 /**
  * Registers the number-field elements with the design system.

@@ -3,6 +3,7 @@ import { Icon } from '../icon/icon';
 import { NavItem } from './nav-item';
 import '.';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { navItemDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-nav-item';
 const ICON_SELECTOR = 'vwc-icon';
@@ -64,10 +65,3 @@ describe('vwc-nav-item', () => {
 		});
 	});
 });
-/**
- *
- */
-function navItemDefinition(): any {
-	throw new Error('Function not implemented.');
-}
-

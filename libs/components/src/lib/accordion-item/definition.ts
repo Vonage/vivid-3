@@ -12,7 +12,7 @@ import { AccordionItemTemplate as template } from './accordion-item.template';
  *
  * @internal
  */
-export const accordionItem =
+export const accordionItemDefinition =
 	AccordionItem.compose<FoundationElementDefinition>({
 		baseName: 'accordion-item',
 		template: template as any,
@@ -25,7 +25,7 @@ export const accordionItem =
 /**
  * @internal
  */
-export const accordionItemRegistries = [accordionItem(), ...iconRegistries, ...focusRegistries];
+export const accordionItemRegistries = [accordionItemDefinition(), ...iconRegistries, ...focusRegistries];
 
 /**
  * Registers the accordion item elements with the design system.

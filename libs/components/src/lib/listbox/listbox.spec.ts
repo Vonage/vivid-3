@@ -1,6 +1,7 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import type { ListboxOption } from '../option/option';
 import { Listbox } from './listbox';
+import { listboxDefinition } from './definition';
 import '../option';
 import '.';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
@@ -104,10 +105,4 @@ describe('vwc-listbox', () => {
 		});
 	});
 });
-/**
- *
- */
-function listboxDefinition(): any {
-	throw new Error('Function not implemented.');
-}
 
