@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "export component definition and design system",
+  "packageName": "@vonage/vivid",
+  "email": "yinon.oved@vonage.com",
+  "dependentChangeType": "patch"
+}
