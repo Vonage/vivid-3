@@ -1,6 +1,8 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Elevation } from './elevation';
 import '.';
+import { elevationDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-elevation';
 
@@ -13,6 +15,7 @@ describe('vwc-elevation', () => {
 
 	describe('basic', () => {
 		it('initializes as a vwc-elevation', async () => {
+			expect(elevationDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Elevation);
 			expect(element.dp).toBeUndefined();
 		});
