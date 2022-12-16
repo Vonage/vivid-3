@@ -1,22 +1,22 @@
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
-@use 'partials/variables' as variables;
-@use 'partials/mixins' as mixins;
-@use '../focus/partials/variables' as focus-variables;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "partials/variables" as variables;
+@use "partials/mixins" as mixins;
+@use "../focus/partials/variables" as focus-variables;
 
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta success alert,
 	$shades: primary primary-text primary-increment contrast fierce firm soft faint,
 	$default: accent,
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: filled outlined ghost,
 	$states: idle hover disabled active,
 	$default: ghost,
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
-@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
 
 :host {
@@ -31,6 +31,7 @@
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
+	justify-content: center;
 	border: 0 none;
 	margin: 0;
 	background-color: var(#{appearance.get-appearance-token(fill)});
@@ -40,6 +41,10 @@
 	gap: var(#{variables.$icon-gap});
 	vertical-align: middle;
 	white-space: nowrap;
+
+	&:not(.icon-only) {
+		inline-size: 100%;
+	}
 
 	@supports selector(:focus-visible) {
 		&:focus {
@@ -94,7 +99,7 @@
 }
 
 /* Shape */
-$pill-selector: '.shape-pill:not(.stacked)';
+$pill-selector: ".shape-pill:not(.stacked)";
 .control:not(#{$pill-selector}) {
 	border-radius: 6px;
 }

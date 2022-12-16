@@ -1,4 +1,4 @@
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent,
@@ -13,7 +13,7 @@
 	$default: ghost
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
-@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
 
 .control {

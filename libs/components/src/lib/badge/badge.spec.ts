@@ -1,6 +1,8 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {Icon} from '../icon/icon';
 import {Badge} from './badge';
+import { badgeDefinition } from './definition';
 import '.';
 
 const COMPONENT_TAG = 'vwc-badge';
@@ -9,12 +11,17 @@ const ICON_SELECTOR = 'vwc-icon';
 describe('vwc-badge', () => {
 	let element: Badge;
 
+	beforeAll(async () => {
+		await customElements.whenDefined(COMPONENT_TAG);
+	});
+
 	beforeEach(async () => {
 		element = await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Badge;
 	});
 
 	describe('basic', () => {
 		it('initializes as a vwc-badge', async () => {
+			expect(badgeDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Badge);
 			expect(element.text).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
