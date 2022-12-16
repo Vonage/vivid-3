@@ -93,7 +93,8 @@ describe('vwc-calendar', () => {
 
 			const hour13th = element.shadowRoot?.querySelector('.row-headers > :nth-child(13)') as HTMLSpanElement;
 
-			expect(hour13th.textContent?.toLowerCase().trim()).toEqual('1 pm');
+			// Intl uses short non-breaking spaces or just spaces depending on the node version
+			expect(hour13th.textContent?.toLowerCase().trim()).toMatch(/1[\u202f\u0020]pm/);
 		});
 	});
 
