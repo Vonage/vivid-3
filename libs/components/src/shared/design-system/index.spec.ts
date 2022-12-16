@@ -8,37 +8,37 @@ describe('design system', () => {
 	});
 
 	it('should register with custom prefix instead of default', async () => {
-		const elementsDefintions = [badgeDefinition(), iconDefinition()];
-		const registerBadge = registerFactory(elementsDefintions);
+		const elementsDefinitions = [badgeDefinition(), iconDefinition()];
+		const registerBadge = registerFactory(elementsDefinitions);
 		const defaultPrefix = 'vwc';
 		const customPrefix = 'dashboard';
 
 		registerBadge(customPrefix);
 
 		await Promise.all(
-			elementsDefintions.map(({ definition }) =>
+			elementsDefinitions.map(({ definition }) =>
 				customElements.whenDefined(`${customPrefix}-${definition.baseName}`)
 			));
 
-		elementsDefintions.forEach(({ definition }) => {
+		elementsDefinitions.forEach(({ definition }) => {
 			expect(customElements.get(`${customPrefix}-${definition.baseName}`)).toBeDefined();
 			expect(customElements.get(`${defaultPrefix}-${definition.baseName}`)).toBeUndefined();
 		});
 	});
 
 	it('should register a component along with its integrated components', async () => {
-		const elementsDefintions = [badgeDefinition(), iconDefinition()];
-		const registerBadge = registerFactory(elementsDefintions);
+		const elementsDefinitions = [badgeDefinition(), iconDefinition()];
+		const registerBadge = registerFactory(elementsDefinitions);
 		const defaultPrefix = 'vwc';
 
 		registerBadge();
 
 		await Promise.all(
-			elementsDefintions.map(({ definition }) =>
+			elementsDefinitions.map(({ definition }) =>
 				customElements.whenDefined(`${defaultPrefix}-${definition.baseName}`)
 			));
 
-		elementsDefintions.forEach(({ definition }) => {
+		elementsDefinitions.forEach(({ definition }) => {
 			expect(customElements.get(`${defaultPrefix}-${definition.baseName}`)).toBeDefined();
 		});
 	});
