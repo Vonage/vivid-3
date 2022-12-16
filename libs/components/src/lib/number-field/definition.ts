@@ -20,11 +20,11 @@ export const numberFieldDefinition =
 		},
 	});
 
-export const numberFieldElement = [numberFieldDefinition(), ...buttonRegistries, ...dividerRegistries];
+export const numberFieldRegistries = [numberFieldDefinition(), ...buttonRegistries, ...dividerRegistries];
 
 /**
  * Registers the number-field elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerNumberField = registerFactory(numberFieldElement);
+export const registerNumberField = registerFactory(numberFieldRegistries);

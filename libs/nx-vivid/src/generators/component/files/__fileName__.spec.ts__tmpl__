@@ -1,4 +1,5 @@
 import { fixture } from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {<%= className %>} from './<%= fileName %>';
 import '.';
 
