@@ -1,0 +1,41 @@
+{
+  "name": "@vivid-nx/styles",
+  "entries": [
+    {
+      "date": "Tue, 03 May 2022 20:34:29 GMT",
+      "tag": "@vivid-nx/styles_v0.0.1",
+      "version": "0.0.1",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vivid-nx/styles",
+            "commit": "d44f19b7332b602bf1c30d6c3e8b9113f77ab93c",
+            "comment": "fix typo of color scheme property"
+          },
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vivid-nx/styles",
+            "commit": "eed7821fe1eff3eb23c935c9e1e19def242cc28d",
+            "comment": "Migrate nx to 14.0.5"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 04 Mar 2022 07:18:22 GMT",
+      "tag": "@vivid-nx/styles_v0.0.1",
+      "version": "0.0.1",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vivid-nx/styles",
+            "commit": "460eb6e786247c2ae08be05a644b36823a3310bb",
+            "comment": "replaced hardcoded content with auto-generated tokens"
+          }
+        ]
+      }
+    }
+  ]
+}

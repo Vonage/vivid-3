@@ -1,0 +1,24 @@
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:selector';
+@use 'config' as config;
+@use 'variables' as variables;
+@use 'functions' as functions;
+@use '../../utils' as utils;
+
+
+@mixin connotation-shades($mapping) {
+	$shades: utils.pick-map(config.$shades, $mapping);
+	@each $name, $value in $shades {
+		#{functions.get-connotation-token($name)}: var(#{$value});
+	}
+}
+
+@mixin connotation {
+
+	$connotation-mapping: utils.pick-map(config.$connotations, variables.$connotation-mapping);
+
+  @include utils.spread-list-selectors('.connotation', config.$connotations, config.$default) using ($type) {
+		@include connotation-shades(map.get($connotation-mapping, $type));
+	}
+}

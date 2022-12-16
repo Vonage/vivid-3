@@ -1,0 +1,45 @@
+@use "../../../../shared/src/lib/sass/utils" as utils;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+
+.base {
+	display: flex;
+	align-items: center;
+	color: var(#{constants.$vvd-color-canvas-text});
+	font: var(#{constants.$vvd-typography-base});
+
+	.separator {
+		margin: 0 16px;
+		color: var(#{constants.$vvd-color-neutral-600});
+		font-size: 12px;
+	}
+}
+
+.control {
+	position: relative;
+	font: inherit;
+	@supports selector(:focus-visible) {
+		&:focus {
+			outline: none;
+		}
+	}
+
+	&:any-link {
+		color: var(#{constants.$vvd-color-cta-600});
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+}
+
+.focus-indicator {
+	--focus-inset: -4px -8px;
+	--focus-stroke-gap-color: transparent;
+
+	border-radius: 6px;
+	.control:not(:focus-visible)>& {
+		display: none;
+	}
+}

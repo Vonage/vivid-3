@@ -1,0 +1,56 @@
+@use 'sass:selector';
+@use 'sass:list';
+@use 'sass:map';
+
+@use 'functions' as functions;
+@use 'variables' as variables;
+@use 'config' as config;
+
+
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+$hover: ':hover, .hover';
+$disabled: ':disabled, .disabled';
+$readonly: '.readonly';
+$checked: ':checked, .checked';
+$selected: '.selected, [aria-current]';
+$active: ':active, .active';
+$error: '.error';
+$success: '.success';
+
+$selectors: (
+  idle: '&',
+  hover: '&:where(#{$hover}):where(:not(#{$disabled}, #{$readonly}))',
+  disabled: '&:where(#{$disabled})',
+  readonly: '&:where(#{$readonly}):where(:not(#{$disabled}))',
+  selected: '&:where(#{$selected}):where(:not(#{$disabled}, #{$hover}))',
+  selectedAndHover: '&:where(#{$selected}):where(#{$hover})',
+  checked: '&:where(#{$checked}):where(:not(#{$disabled}))',
+	checkedAndHover: '&:where(#{$checked}):where(#{$hover})',
+  active: '&:where(#{$active}):where(:not(#{$disabled}))',
+  error: '&:where(#{$error}):where(:not(#{$disabled}))',
+	success: '&:where(#{$success}):where(:not(#{$disabled}))',
+);
+
+@mixin appearance {
+
+  @each $state in config.$states {
+    #{map.get($selectors, $state)} {
+
+      $state-mapping: map.get(variables.$states-mapping, $state);
+
+      @each $appearance in config.$appearances {
+        $selector: if($appearance == config.$default, '&', '&.appearance-#{$appearance}');
+
+
+        #{$selector} {
+          $appearance-mapping: map.get($state-mapping, $appearance);
+          @each $type, $key in $appearance-mapping {
+            #{functions.get-appearance-token($type)}: $key;
+          }
+        }
+      }
+    }
+  }
+}
+

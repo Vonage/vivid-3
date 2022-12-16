@@ -27,7 +27,7 @@ jobs:
     if: github.event_name == 'issues' && github.event.action == 'opened'
     steps:
       - name: Move issue to ${{ env.no_status }}
-        uses: leonsteinhaeuser/project-beta-automations@v1.0.3
+        uses: leonsteinhaeuser/project-beta-automations@v1.1.0
         with:
           gh_token: ${{ secrets.VNG_VVD_PAT }}
           organization: vonage
@@ -40,7 +40,7 @@ jobs:
     if: github.event_name == 'pull_request' && github.event.pull_request.draft == true && github.event.action == 'opened' || github.event.action == 'converted_to_draft'
     steps:
       - name: Move PR to ${{ env.in_progress }}
-        uses: leonsteinhaeuser/project-beta-automations@v1.0.3
+        uses: leonsteinhaeuser/project-beta-automations@v1.1.0
         with:
           gh_token: ${{ secrets.VNG_VVD_PAT }}
           organization: vonage
@@ -53,7 +53,7 @@ jobs:
     if: github.event_name == 'pull_request' && github.event.pull_request.draft == false && github.event.action == 'opened' || github.event.action == 'review_requested' || github.event.action == 'ready_for_review'
     steps:
       - name: Move PR to ${{ env.needs_review }}
-        uses: leonsteinhaeuser/project-beta-automations@v1.0.3
+        uses: leonsteinhaeuser/project-beta-automations@v1.1.0
         with:
           gh_token: ${{ secrets.VNG_VVD_PAT }}
           organization: vonage

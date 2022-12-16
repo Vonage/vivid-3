@@ -1,0 +1,51 @@
+{
+  "root": true,
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nrwl/nx", "ban"],
+  "overrides": [
+    {
+      "files": ["*.spec.ts", "ui.test.ts"],
+      "rules": {
+        "ban/ban": [
+          2,
+          { "name": ["describe", "only"], "message": "don't focus tests" },
+          { "name": "fdescribe", "message": "don't focus tests" },
+          { "name": ["it", "only"], "message": "don't focus tests" },
+          { "name": "fit", "message": "don't focus tests" },
+          { "name": ["test", "only"], "message": "don't focus tests" },
+          { "name": "ftest", "message": "don't focus tests" }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@nrwl/nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "*",
+                "onlyDependOnLibsWithTags": ["*"]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nrwl/nx/typescript"],
+      "rules": {
+        "no-console": 2
+      }
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nrwl/nx/javascript"],
+      "rules": {}
+    }
+  ]
+}

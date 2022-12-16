@@ -1,0 +1,11 @@
+module.exports = {
+  displayName: 'components',
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  transform: {
+    '^.+\\.[tj]s?$': 'ts-jest',
+  },
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
+  coverageDirectory: '../../coverage/tools',
+  testMatch: [ "**/?(*.)+(spec).[jt]s?(x)" ]
+};

@@ -1,0 +1,39 @@
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "partials/variables" as variables;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+
+$block-size: calc(#{size.$vvd-size-normal} + #{size.$vvd-size-super-condensed});
+
+.base {
+	z-index: 1;
+	block-size: #{$block-size};
+	font: var(#{constants.$vvd-typography-heading-4});
+	inline-size: 100%;
+
+	.header-content {
+		display: inline-flex;
+		align-items: center;
+		column-gap: 4px;
+	}
+}
+
+.container {
+	display: flex;
+	box-sizing: border-box;
+	justify-content: space-between;
+	block-size: inherit;
+	color: var(#{constants.$vvd-color-canvas-text});
+	column-gap: 12px;
+	padding-block: 8px;
+	padding-inline: 16px;
+
+	&[part~="vvd-theme-alternate"] {
+		background-color: var(#{constants.$vvd-color-canvas});
+		color: var(#{constants.$vvd-color-canvas-text});
+		color-scheme: var(#{constants.$vvd-color-scheme});
+	}
+}
+
+.app-content {
+	#{variables.$header-block-size}: #{$block-size};
+}

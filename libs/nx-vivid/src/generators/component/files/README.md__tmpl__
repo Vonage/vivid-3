@@ -1,0 +1,27 @@
+# <%= name %>
+
+Represents a <%= name %> custom element.
+
+```js
+<script type='module'>
+  import '@vonage/vivid/<%= name %>';
+</script>
+```
+
+```html preview
+<vwc-<%= name %>></vwc-<%= name %>>
+```
+
+## Members
+
+## Slots
+
+## CSS Variables
+
+## Events
+
+## Methods
+
+## Accessibility
+
+## Use Cases

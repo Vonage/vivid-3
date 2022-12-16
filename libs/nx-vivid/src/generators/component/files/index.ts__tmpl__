@@ -1,0 +1,4 @@
+import { register<%= className %> } from './definition';
+
+
+register<%= className %>();

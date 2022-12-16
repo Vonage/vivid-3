@@ -1,0 +1,20 @@
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+
+
+:host{
+	display: block;
+}
+.base {
+	display: block;
+	background-color: var(#{constants.$vvd-color-neutral-200});
+
+	&:not(.vertical) {
+		block-size: 1px;
+		inline-size: 100%;
+	}
+
+	&.vertical {
+		block-size: 100%;
+		inline-size: 1px;
+	}
+}

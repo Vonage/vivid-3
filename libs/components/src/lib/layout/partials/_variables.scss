@@ -1,0 +1,29 @@
+$auto-sizing: --_auto-sizing; // interior. not API
+$layout-grid-template-columns: --layout-grid-template-columns;
+
+/* #region SIZEs */
+$auto-sizes: (
+	fill: auto-fill,
+	fit: auto-fit,
+);
+
+/* #region BASES */
+$bases: (
+	small: 160px,
+	medium: 320px,
+	large: 380px,
+	block: 1fr
+);
+
+/* #region SPACES */
+$spaces: (
+	small: 16px,
+	small-inline: 0 16px,
+	small-block: 16px 0,
+	medium: 24px,
+	medium-inline: 0 24px,
+	medium-block: 24px 0,
+	large: 32px,
+	large-inline: 0 32px,
+	large-block: 32px 0,
+);

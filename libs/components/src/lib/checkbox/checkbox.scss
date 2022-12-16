@@ -1,0 +1,94 @@
+@use "../focus/partials/variables" as focus-variables;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+	$connotations: accent,
+	$shades: primary primary-text primary-increment intermediate backdrop firm,
+	$default: accent,
+);
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+	$appearances: fieldset,
+	$states: idle hover checked checkedAndHover disabled readonly,
+	$default: fieldset,
+);
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+
+$size: 20px;
+$gutter: 2px;
+
+.base {
+	@include connotation.connotation;
+	@include appearance.appearance;
+
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	vertical-align: middle;
+
+	@supports selector(:focus-visible) {
+		&:focus {
+			outline: none;
+		}
+	}
+
+	@supports (user-select: none) {
+		user-select: none;
+	}
+
+	&:not(.disabled) {
+		cursor: pointer;
+	}
+
+	&.disabled {
+		cursor: not-allowed;
+	}
+}
+
+.control {
+	position: relative;
+	display: flex;
+	width: $size;
+	height: $size;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	background-color: var(#{appearance.get-appearance-token(fill)});
+	border-radius: 3px;
+	box-shadow: inset 0 0 0 2px var(#{appearance.get-appearance-token(outline)});
+	color: var(#{appearance.get-appearance-token(text)});
+}
+
+.indicator {
+	font-size: calc($size - $gutter * 2);
+
+	@at-root .base:not(.checked) #{&}.checkmark {
+		display: none;
+	}
+
+	&.minus {
+		@at-root
+		.base:not(.indeterminate) &,
+		.base.checked & {
+			display: none;
+		}
+	}
+}
+
+label {
+	color: var(#{constants.$vvd-color-canvas-text});
+	cursor: pointer;
+	font: var(#{constants.$vvd-typography-base});
+}
+
+.focus-indicator {
+	#{focus-variables.$focus-inset}: -3px;
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+	border-radius: 6px;
+
+	.base:not(:focus-visible) & {
+		display: none;
+	}
+}

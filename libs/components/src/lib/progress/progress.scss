@@ -1,0 +1,142 @@
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+	$connotations: accent cta alert success,
+	$shades: primary,
+	$default: accent,
+);
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+
+$block-size: 6px;
+$rounded-border-radius: 3px;
+
+.base {
+	height: $block-size;
+	align-items: center;
+	margin: 0;
+	outline: none;
+
+	&:not(.connotation-pacific){
+		@include connotation.connotation;
+	}
+
+	&.connotation-pacific {
+		$start: var(#{constants.$vvd-color-information-200});
+		$end: var(#{constants.$vvd-color-cta-600});
+
+		#{connotation.get-connotation-token(primary)}: linear-gradient(to right, $start, $end);
+	}
+
+}
+
+.progress {
+	position: relative;
+	display: flex;
+	overflow: hidden;
+	align-items: center;
+	background-color: var(#{constants.$vvd-color-neutral-100});
+	block-size: 100%;
+	inline-size: 100%;
+
+	/* Shape */
+	.base:not(.shape-sharp) & {
+		border-radius: $rounded-border-radius;
+	}
+}
+
+
+.indeterminate {
+	display: flex;
+	background-color: var(#{connotation.get-connotation-token(primary)});
+	block-size: 100%;
+	border-radius: inherit;
+	inline-size: 100%;
+}
+
+.determinate {
+	background-color: var(#{connotation.get-connotation-token(primary)});
+	block-size: 100%;
+	border-radius: inherit;
+	transition: all 0.2s ease-in-out;
+
+	.connotation-pacific & {
+		background-image: var(#{connotation.get-connotation-token(primary)});
+	}
+
+	.reverse & {
+		position: absolute;
+		right: 0;
+	}
+
+	.paused & {
+		background-color: var(#{constants.$vvd-color-neutral-300});
+	}
+}
+
+.indicator-1 {
+	animation: indeterminate-1 2s infinite;
+	inline-size: 30%;
+}
+
+.indicator-2 {
+	animation: indeterminate-2 2s infinite;
+	inline-size: 60%;
+}
+
+.indicator-1,
+.indicator-2 {
+	position: absolute;
+	animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+	background-color: var(#{constants.$vvd-color-neutral-100});
+	block-size: 100%;
+	opacity: 0;
+
+	.connotation-pacific & {
+		background-image: var(#{connotation.get-connotation-token(primary)});
+	}
+
+	.paused & {
+		animation-play-state: paused;
+		background-color: var(#{connotation.get-connotation-token(primary)});
+	}
+
+	.reverse & {
+		animation-direction: reverse;
+	}
+}
+
+
+@keyframes indeterminate-1 {
+	0% {
+		opacity: 1;
+		transform: translateX(-100%);
+	}
+	70% {
+		opacity: 1;
+		transform: translateX(300%);
+	}
+	70.01% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+		transform: translateX(300%);
+	}
+}
+@keyframes indeterminate-2 {
+	0% {
+		opacity: 0;
+		transform: translateX(-150%);
+	}
+	29.99% {
+		opacity: 0;
+	}
+	30% {
+		opacity: 1;
+		transform: translateX(-150%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(166.66%);
+	}
+}

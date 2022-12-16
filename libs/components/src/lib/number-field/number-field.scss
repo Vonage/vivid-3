@@ -1,0 +1,35 @@
+@forward "../text-field/text-field.scss";
+
+.control {
+	padding-inline-end: 70px;
+
+	&::-webkit-outer-spin-button,
+	&::-webkit-inner-spin-button {
+		appearance: none;
+	}
+
+	&-buttons {
+		position: absolute;
+		z-index: 1;
+		right: 3px;
+		display: flex;
+
+		.readonly &, .disabled & {
+			pointer-events: none;
+		}
+		.divider {
+			margin-block: 8px;
+		}
+		> * {
+			flex-shrink: 0;
+		}
+	}
+}
+
+.focus-indicator {
+	.disabled & {
+		display: none;
+		pointer-events: none;
+	}
+}
+

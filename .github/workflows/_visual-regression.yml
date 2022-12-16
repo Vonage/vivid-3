@@ -5,13 +5,31 @@ on: workflow_call
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: drizzt99/vonage:1.0.0
+    container: vivid3/vonage:2.0.1
     steps:
-        - uses: actions/checkout@v2
-        - uses: actions/setup-node@v2
-          with:
-            node-version: '16'
-            cache: 'npm'
-        - run: npm ci
-        - run: npm run build
-        - run: ./scripts/visual-tests/run.tests.sh
+      - run: echo "Running vivid3/vonage:2.0.1"
+
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+
+      - uses: actions/cache@v3
+        id: cache
+        with:
+          path: node_modules/
+          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - run: npm run nx e2e components -- --task=local
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: visual-regression-artifact
+          path: test-results/
+

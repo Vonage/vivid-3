@@ -16,33 +16,66 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  deps-cache:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+
+      - uses: actions/cache@v3
+        id: cache
+        with:
+          path: node_modules/
+          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+  check-changelogs:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+
+      - run: npx beachball check
+
   call-lint:
+    if: github.event.pull_request.draft == false
+    needs: [deps-cache]
     uses: vonage/vivid-3/.github/workflows/_lint.yml@main
 
-  call-test-chrome:
-    needs: call-lint
+  unit-tests:
+    if: github.event.pull_request.draft == false
+    needs: [ call-lint, check-changelogs ]
     uses: vonage/vivid-3/.github/workflows/_unit-test.yml@main
     with:
-      browser_name: chrome
       os: ubuntu-latest
       report_coverage: true
 
-  call-test-safari:
-    needs: call-lint
-    uses: vonage/vivid-3/.github/workflows/_unit-test.yml@main
-    with:
-      browser_name: safari
-      os: macos-latest
-      report_coverage: false
-
-  call-test-firefox:
-    needs: call-lint
-    uses: vonage/vivid-3/.github/workflows/_unit-test.yml@main
-    with:
-      browser_name: firefox
-      os: ubuntu-latest
-      report_coverage: false
-
   call-visual-regression:
-    needs: call-lint
+    if: github.event.pull_request.draft == false
+    needs: [call-lint, check-changelogs]
     uses: vonage/vivid-3/.github/workflows/_visual-regression.yml@main
+
+  call-deploy-deno-preview:
+    if: github.event.pull_request.draft == false
+    needs: [deps-cache]
+    uses: vonage/vivid-3/.github/workflows/_deploy-deno.yml@main
+
+  call-accessibility-validation:
+    if: github.event.pull_request.draft == false
+    needs: [deps-cache]
+    uses: vonage/vivid-3/.github/workflows/_accessibility-validation.yml@main

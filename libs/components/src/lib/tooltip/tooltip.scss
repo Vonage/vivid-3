@@ -1,0 +1,16 @@
+@use "partials/variables" as variables;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+
+.control {
+	pointer-events: none;
+}
+
+.tooltip {
+	width: var(#{variables.$tooltip-inline-size}, 240px);
+
+	&-text {
+		padding: 8px 12px;
+		color: var(#{constants.$vvd-color-canvas-text});
+		font: var(#{constants.$vvd-typography-base-bold});
+	}
+}

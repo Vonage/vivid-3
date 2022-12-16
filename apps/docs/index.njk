@@ -1,0 +1,9 @@
+---
+title: yo title
+permalink: /
+---
+{% extends './_layouts/base.njk' %}
+
+{% block content %}
+	{% renderFile './libs/components/README.md' %}
+{% endblock %}

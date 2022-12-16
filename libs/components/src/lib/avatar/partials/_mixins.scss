@@ -1,0 +1,14 @@
+@use "variables" as variables;
+
+
+@mixin get-size-properties($block-size, $font-face) {
+	#{variables.$avatar-size}: $block-size;
+
+	.initials {
+		font: var(#{$font-face});
+	}
+
+	.icon {
+		font-size: calc(#{$block-size} / 2);
+	}
+}

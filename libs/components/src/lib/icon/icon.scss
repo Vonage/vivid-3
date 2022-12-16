@@ -1,0 +1,59 @@
+@use "sass:map";
+@use "sass:list";
+
+@use "../../../../shared/src/lib/sass/utils" as utils;
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+	$connotations: accent announcement cta success alert information,
+	$shades: primary,
+);
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+@use "partials/variables" as variables;
+
+$size: (
+	default: 1em,
+	-6: calc(size.$vvd-size-normal - size.$vvd-size-super-condensed),
+	-5: size.$vvd-size-ultra-condensed,
+	-4: size.$vvd-size-super-condensed,
+	-3: size.$vvd-size-extra-condensed,
+	-2: size.$vvd-size-condensed,
+	-1: size.$vvd-size-semi-condensed,
+	0: size.$vvd-size-normal,
+	1: size.$vvd-size-semi-expanded,
+	2: size.$vvd-size-expanded,
+	3: size.$vvd-size-extra-expanded,
+	4: size.$vvd-size-super-expanded,
+	5: size.$vvd-size-ultra-expanded,
+);
+$size-keys: map.keys($size);
+$default-size: list.nth($size-keys, 1);
+
+:host {
+	display: inline-block;
+	vertical-align: sub;
+}
+
+.control {
+	@include connotation.connotation;
+	@include utils.spread-list-selectors(".size", $size-keys, $default-size) using($value) {
+		#{variables.$block-size}: map.get($size, $value);
+	}
+
+	display: flex;
+	margin: unset;
+	block-size: var(#{variables.$block-size});
+	color: currentColor;
+	contain: strict;
+	inline-size: var(#{variables.$block-size});
+}
+
+// TODO: add a :where selector to unset any connotation variant from a mixin level
+.control[class*="connotation"] {
+	color: var(#{connotation.get-connotation-token(primary)});
+}
+
+slot, svg, ::slotted(:where(svg, img)) {
+	margin: auto;
+	block-size: inherit;
+	inline-size: inherit;
+}

@@ -1,0 +1,84 @@
+@use "partials/variables" as variables;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+
+
+.base {
+	box-sizing: border-box;
+	padding: 0;
+	border: none;
+	background: var(#{variables.$dialog-elevation-fill});
+	border-radius: 6px;
+	color: var(#{constants.$vvd-color-canvas-text});
+	max-block-size: var(#{variables.$dialog-max-block-size}, calc(100vh - 64px));
+	max-inline-size: var(#{variables.$dialog-max-inline-size});
+	min-inline-size: var(#{variables.$dialog-min-inline-size}, 280px);
+	overflow-x: hidden;
+	overflow-y: auto;
+
+
+	@media not all and (min-width: 600px) {
+		#{variables.$dialog-max-inline-size}: 90vw;
+	}
+
+	@media (min-width: 600px) {
+		#{variables.$dialog-max-inline-size}: 560px;
+	}
+
+	&:not(.modal) {
+		z-index: var(#{variables.$dialog-z-index}, 1);
+	}
+}
+
+.main-wrapper {
+	display: flex;
+	flex-direction: column;
+	padding: 24px;
+	gap: 8px;
+}
+
+.header {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 4px;
+	inline-size: 100%;
+}
+
+.dismiss-button {
+	flex-shrink: 0;
+	margin-top: -8px;
+	margin-right: -8px;
+}
+
+.headline {
+	font: var(#{constants.$vvd-typography-heading-4});
+
+	&-wrapper {
+		display: flex;
+		align-items: flex-start;
+
+		.base:not(.icon-placement-side) & {
+			flex-direction: column;
+			row-gap: #{size.$vvd-size-super-condensed};
+
+			.icon {
+				font-size: #{size.$vvd-size-condensed};
+			}
+		}
+
+		.base.icon-placement-side & {
+			column-gap: calc(#{size.$vvd-size-condensed} - #{size.$vvd-size-super-condensed});
+
+			.icon {
+				font-size: #{size.$vvd-size-extra-condensed};
+			}
+		}
+	}
+}
+
+.content {
+	font: var(#{constants.$vvd-typography-base});
+}
+
+

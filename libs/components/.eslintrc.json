@@ -1,0 +1,70 @@
+{
+  "ignorePatterns": ["!**/*"],
+  "parserOptions": {
+    "project": "./tsconfig.base.json"
+  },
+  "env": {
+    "browser": true
+  },
+  "plugins": ["@typescript-eslint", "import", "eslint-plugin-tsdoc"],
+  "extends": [
+    "../../.eslintrc.json",
+    "@microsoft/eslint-config-fast-dna",
+    "plugin:compat/recommended"
+  ],
+  "rules": {
+    // lint
+    "@nrwl/nx/workspace/no-attribute-default-value": "error",
+    "indent": "off",
+    "@typescript-eslint/indent": [
+      "error",
+      "tab"
+    ],
+    "no-tabs": "off",
+    "no-mixed-spaces-and-tabs": "error",
+    "linebreak-style": [
+      "warn",
+      "unix"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "no-var": "error",
+    "no-floating-decimal": "error",
+    "prefer-const": "error",
+    // functional
+    "compat/compat": "error",
+    "import/prefer-default-export": "off",
+    "class-methods-use-this": "off",
+    "no-new": "warn",
+    "@typescript-eslint/explicit-member-accessibility": [
+      "error",
+      {
+        "accessibility": "no-public"
+      }
+    ],
+    "tsdoc/syntax": "warn"
+  },
+  "overrides": [
+    {
+      "files": ["rollup.config.*.ts"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    },
+    {
+      "files": ["*.spec.ts", "*.test.ts"],
+      "rules": {
+        "@nrwl/nx/enforce-module-boundaries": "off"
+      }
+    }
+  ]
+}

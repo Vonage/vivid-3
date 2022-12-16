@@ -1,0 +1,158 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/components/src",
+  "projectType": "library",
+  "targets": {
+    "generateMeta": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "cem analyze --config ./libs/components/cem.config.mjs",
+          "api-extractor run -c ./dist/libs/components/api-extractor.json"
+        ],
+        "parallel": true
+      }
+    },
+    "e2e": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "npx nx run components:build",
+          "./scripts/visual-tests/run.tests.in.container.sh {args.task}"
+        ],
+        "parallel": false
+      },
+      "configurations": {
+        "no-build": {
+          "commands": [
+            "./scripts/visual-tests/run.tests.in.container.sh {args.task}"
+          ]
+        },
+        "watch": {
+          "commands": [
+            {
+              "command": "npx nx run components:build --watch"
+            },
+            {
+              "command": "npx nx run styles:serve"
+            },
+            {
+              "command": "npx http-server -s"
+            },
+            {
+              "command": "npx -y nodemon --watch dist/libs/components/ --watch dist/libs/styles/ --watch 'libs/components/**/*.test.ts' -e js,css,ts --signal SIGHUP --exec 'npx playwright test -c ./libs/components/playwright.config.dev.ts'"
+            }
+          ],
+          "parallel": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/components/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/components"],
+      "options": {
+        "jestConfig": "libs/components/jest.config.cjs",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "entryFile": "libs/components/src/index.ts",
+        "outputPath": "dist/libs/components",
+        "tsConfig": "libs/components/tsconfig.lib.json",
+        "project": "libs/components/package.json",
+        "rollupConfig": "libs/components/rollup.config.prod.ts",
+        "assets": [
+          {
+            "input": "./libs/components",
+            "glob": "api-extractor.json",
+            "output": "."
+          },
+          {
+            "input": "./libs/components",
+            "glob": ".npmignore",
+            "output": "."
+          },
+          {
+            "input": "./libs/components",
+            "glob": "README.md",
+            "output": "."
+          },
+          {
+            "input": "./dist/libs/styles/tokens/**",
+            "glob": "*.css",
+            "output": "./styles/tokens"
+          },
+          {
+            "input": "./dist/libs/styles/fonts/**",
+            "glob": "*.{css,woff,woff2}",
+            "output": "./styles/fonts"
+          },
+          {
+            "input": "./dist/libs/styles/core/**",
+            "glob": "*.css",
+            "output": "./styles/core"
+          }
+        ],
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "updateBuildableProjectDepsInPackageJson": true,
+        "format": ["esm"],
+        "extractCss": false
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "entryFile": "libs/components/src/index.ts",
+        "outputPath": "dist/libs/components",
+        "tsConfig": "libs/components/tsconfig.lib.json",
+        "project": "libs/components/package.json",
+        "rollupConfig": "libs/components/rollup.config.prod.ts",
+        "watch": true,
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "updateBuildableProjectDepsInPackageJson": true,
+        "assets": [
+          {
+            "input": "./libs/components",
+            "glob": "README.md",
+            "output": "."
+          },
+          {
+            "input": "./dist/libs/styles/themes/**",
+            "glob": "*.css",
+            "output": "./styles/themes"
+          },
+          {
+            "input": "./dist/libs/styles/fonts/**",
+            "glob": "*.css",
+            "output": "./styles/fonts"
+          }
+        ],
+        "format": ["esm"],
+        "extractCss": false
+      }
+    },
+    "stylelint": {
+      "executor": "nx-stylelint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/components/**/*.scss"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": [
+		"styles",
+		"tokens"
+	]
+}

@@ -1,0 +1,20 @@
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+
+.positioning-region {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+
+	&.vertical {
+		flex-direction: column;
+	}
+
+	label + & {
+		margin-block-start: 8px;
+	}
+}
+
+label {
+	color: var(#{constants.$vvd-color-canvas-text});
+	font: var(#{constants.$vvd-typography-base});
+}

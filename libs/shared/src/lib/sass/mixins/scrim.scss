@@ -1,0 +1,8 @@
+@use 'sass:map';
+@use '../utils' as utils;
+
+
+@mixin scrim-variables {
+	background-color: var(#{utils.get-color-token(canvas-text)});
+	opacity: 0.5;
+}

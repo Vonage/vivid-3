@@ -1,0 +1,146 @@
+{
+  "name": "@vonage/nx-vivid",
+  "entries": [
+    {
+      "date": "Wed, 14 Dec 2022 16:38:10 GMT",
+      "tag": "@vonage/nx-vivid_v0.0.1",
+      "version": "0.0.1",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon.oved@vonage.com",
+            "package": "@vonage/nx-vivid",
+            "commit": "cfa9964c9fb8475acd969bae5e0cc2b4d86ff8a2",
+            "comment": "rewrite component class"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 04 Dec 2022 15:36:59 GMT",
+      "tag": "@vonage/nx-vivid_v0.0.1",
+      "version": "0.0.1",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/nx-vivid",
+            "commit": "f023bd00c65a102650e9d0cc6e4c5d91d27134db",
+            "comment": "align with custom prefix for custom-elements support"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 31 Oct 2022 06:36:47 GMT",
+      "tag": "@vonage/nx-vivid_v0.0.1",
+      "version": "0.0.1",
+      "comments": {
+        "none": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/nx-vivid",
+            "commit": "11fcad061681cbc21627c6f103a576f1ba9397ec",
+            "comment": "Upgrade NX version"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 27 Jul 2022 07:23:04 GMT",
+      "tag": "@vonage/nx-vivid_v0.0.1",
+      "version": "0.0.1",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/nx-vivid",
+            "commit": "2391502ad52717cd4528808b501a6222522000bc",
+            "comment": "update docs with the new conventions"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 19 Jul 2022 09:24:45 GMT",
+      "tag": "@vonage/nx-vivid_v0.0.1",
+      "version": "0.0.1",
+      "comments": {
+        "none": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/nx-vivid",
+            "commit": "2ae18dc78120b35bb4b0c58de9a496b8b5a81d70",
+            "comment": "titles terminotogy"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 18 Jul 2022 11:52:25 GMT",
+      "tag": "@vonage/nx-vivid_v0.0.1",
+      "version": "0.0.1",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/nx-vivid",
+            "commit": "81176391e09de9366b853d00e1022dd902663ece",
+            "comment": "conventions readme"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 27 Jun 2022 11:14:29 GMT",
+      "tag": "@vonage/nx-vivid_v0.0.1",
+      "version": "0.0.1",
+      "comments": {
+        "none": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/nx-vivid",
+            "commit": "971ff78f2e5da21d5f875dc3358de4410bc7456c",
+            "comment": "Add \"no conosle\" rule"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 19 Jun 2022 14:36:22 GMT",
+      "tag": "@vonage/nx-vivid_v0.0.1",
+      "version": "0.0.1",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/nx-vivid",
+            "commit": "0e5abeec10b36954e07823f8cfa1681a29d81cee",
+            "comment": "fix to correct import extention"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 30 May 2022 12:17:41 GMT",
+      "tag": "@vonage/nx-vivid_v0.0.1",
+      "version": "0.0.1",
+      "comments": {
+        "none": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/nx-vivid",
+            "commit": "8fe1a5d658ff26017731c13b29df51c2317a9683",
+            "comment": "Add to package.json export in generator"
+          },
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/nx-vivid",
+            "commit": "23124a1d2ba6db6bebcc886485c6b9faee0460f6",
+            "comment": "Convert the component generator to plugin"
+          }
+        ]
+      }
+    }
+  ]
+}
