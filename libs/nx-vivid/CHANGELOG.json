@@ -2,6 +2,21 @@
   "name": "@vonage/nx-vivid",
   "entries": [
     {
+      "date": "Fri, 16 Dec 2022 11:38:04 GMT",
+      "tag": "@vonage/nx-vivid_v0.0.1",
+      "version": "0.0.1",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon.oved@vonage.com",
+            "package": "@vonage/nx-vivid",
+            "commit": "8744b03df7beb267bcf8cbf080ac8537c9ee6f6f",
+            "comment": "rewrite component definition"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 14 Dec 2022 16:38:10 GMT",
       "tag": "@vonage/nx-vivid_v0.0.1",
       "version": "0.0.1",
