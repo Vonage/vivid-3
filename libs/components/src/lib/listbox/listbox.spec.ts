@@ -47,16 +47,6 @@ describe('vwc-listbox', () => {
 		});
 	});
 
-	describe('disabled', function () {
-		it('should set the `aria-disabled` attribute with the `disabled` value when provided', async function () {
-			element.disabled = true;
-			await elementUpdated(element);
-			element.slottedOptions.forEach(optionElement => {
-				expect((optionElement as any).disabled).toEqual(true);
-			});
-		});
-	});
-
 	describe('multiselectable', function () {
 		it('should set the `aria-multiselectable` attribute with the `multiple` value when provided', async function () {
 			element.multiple = true;
