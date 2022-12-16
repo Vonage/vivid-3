@@ -86,15 +86,17 @@ describe('vwc-calendar', () => {
 	});
 
 	describe('hour12', () => {
-		it('should set hebrew locales', async () => {
+		it('should display time in 12h format', async () => {
 			element.hour12 = true;
 
 			await elementUpdated(element);
 
 			const hour13th = element.shadowRoot?.querySelector('.row-headers > :nth-child(13)') as HTMLSpanElement;
 
-			// Intl uses short non-breaking spaces or just spaces depending on the node version
-			expect(hour13th.textContent?.toLowerCase().trim()).toMatch(/1[\u202f\u0020]pm/);
+			const expectedTimeString = new Intl.DateTimeFormat('en-US', {hour: 'numeric', hour12: true})
+				.format(new Date('2022-12-16T13:00:00.000'));
+
+			expect(hour13th.textContent?.trim()).toEqual(expectedTimeString);
 		});
 	});
 
