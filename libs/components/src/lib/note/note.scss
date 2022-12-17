@@ -11,8 +11,8 @@
 	$states: idle,
 	$default: fieldset,
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
-@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
 
 .base {

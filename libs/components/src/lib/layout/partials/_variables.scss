@@ -1,4 +1,4 @@
-@use '../../../../../../dist/libs/tokens/scss/size.variables' as size;
+@use "../../../../../../dist/libs/tokens/scss/size.variables" as size;
 
 $auto-sizing: --_auto-sizing; // interior. not API
 $layout-grid-template-columns: --layout-grid-template-columns;

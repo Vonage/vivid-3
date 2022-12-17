@@ -1,5 +1,5 @@
-@use 'partials/variables' as variables;
-@use '../focus/partials/variables' as focus-variables;
+@use "partials/variables" as variables;
+@use "../focus/partials/variables" as focus-variables;
 
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
