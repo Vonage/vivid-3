@@ -1,9 +1,10 @@
 import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { Icon } from '../icon/icon';
 import { Dialog } from './dialog';
 import '.';
 import { dialogDefinition } from './definition';
-import { Icon } from '../icon/icon';
+
 
 const COMPONENT_TAG = 'vwc-dialog';
 const ICON_SELECTOR = 'vwc-icon';
