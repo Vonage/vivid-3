@@ -8,6 +8,6 @@ const defaultPrefix = 'vwc';
  * @param prefix
  * @returns {DesignSystem} - Represents a configurable design system. An API gateway to design system features.
  */
-const designSystem = DesignSystem.getOrCreate();
+export const designSystem = DesignSystem.getOrCreate();
 
-export const registerFactorial = (args: any[]) => (prefix = defaultPrefix) => designSystem.withPrefix(prefix).register(...args);
+export const registerFactory = (registries: any[]) => (prefix = defaultPrefix) => designSystem.withPrefix(prefix).register(...registries);

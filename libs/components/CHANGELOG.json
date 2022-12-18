@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Fri, 16 Dec 2022 11:38:04 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.121",
+      "version": "3.0.0-next.121",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon.oved@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "8744b03df7beb267bcf8cbf080ac8537c9ee6f6f",
+            "comment": "export component definition and design system"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 15 Dec 2022 09:47:39 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.120",
       "version": "3.0.0-next.120",
