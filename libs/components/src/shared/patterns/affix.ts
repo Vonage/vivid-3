@@ -1,8 +1,8 @@
 import { attr, html } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
-import messageStyles from './affix.scss';
 import { Icon } from '../../lib/icon/icon';
+import messageStyles from './affix.scss';
 
 /**
 	* A mixin class implementing prefix elements.
