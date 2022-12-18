@@ -5,6 +5,7 @@ import '.';
 import type { Icon } from '../icon/icon';
 
 const COMPONENT_TAG = 'vwc-avatar';
+const ICON_SELECTOR = 'vwc-icon';
 
 describe('vwc-avatar', () => {
 	let baseElement: Element;
@@ -85,7 +86,7 @@ describe('vwc-avatar', () => {
 		beforeEach(async () => {
 			element.setAttribute('icon', icon);
 			await elementUpdated(element);
-			iconElement = baseElement.querySelector('vwc-icon') as Icon;
+			iconElement = baseElement.querySelector(ICON_SELECTOR) as Icon;
 		});
 
 		it('should have the default icon', async () => { 
@@ -100,10 +101,10 @@ describe('vwc-avatar', () => {
 	});
 
 	describe('avatar name', () => {
-		it('should not show the icon if name is set', async () => {
+		it('should show the name without icon', async () => {
 			element.name = 'John Doe';
 			await elementUpdated(element);
-			const iconElement = baseElement.querySelector('vwc-icon');
+			const iconElement = baseElement.querySelector(ICON_SELECTOR);
 			expect(iconElement).toBeNull();
 		});
 

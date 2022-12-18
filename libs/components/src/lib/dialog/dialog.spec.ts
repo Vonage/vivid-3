@@ -4,6 +4,7 @@ import '.';
 import { Icon } from '../icon/icon';
 
 const COMPONENT_TAG = 'vwc-dialog';
+const ICON_SELECTOR = 'vwc-icon';
 
 describe('vwc-dialog', () => {
 
@@ -249,7 +250,7 @@ describe('vwc-dialog', () => {
 		const iconElementWhenUndefined = getBaseElement(element).querySelector('.icon');
 		element.icon = 'home';
 		await elementUpdated(element);
-		const iconElement = getBaseElement(element).querySelector('.icon')?.children[0];
+		const iconElement = getBaseElement(element).querySelector(ICON_SELECTOR);
 		expect(iconElementWhenUndefined).toBeNull();
 		expect(iconElement instanceof Icon).toBeTruthy();
 		expect(iconElement?.getAttribute('name')).toEqual('home');
