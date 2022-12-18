@@ -1,13 +1,13 @@
-@use 'sass:map';
-@use 'sass:list';
+@use "sass:map";
+@use "sass:list";
 
-@use '../../../../shared/src/lib/sass/utils' as utils;
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use "../../../../shared/src/lib/sass/utils" as utils;
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent announcement cta success alert information,
 	$shades: primary,
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
-@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 @use "partials/variables" as variables;
 
 $size: (
@@ -35,7 +35,7 @@ $default-size: list.nth($size-keys, 1);
 
 .control {
 	@include connotation.connotation;
-	@include utils.spread-list-selectors('.size', $size-keys, $default-size) using($value) {
+	@include utils.spread-list-selectors(".size", $size-keys, $default-size) using($value) {
 		#{variables.$block-size}: map.get($size, $value);
 	}
 

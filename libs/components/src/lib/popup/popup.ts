@@ -12,7 +12,6 @@ export class Popup extends FoundationElement {
 	get #arrowPosition(): any { return { top: 'bottom', right: 'left', bottom: 'top', left: 'right' }; }
 	get #padding(): number { return 0; }
 	get #distance(): number { return 12; }
-	get #strategy(): Strategy { return 'fixed'; }
 	get #middleware(): Array<any> {
 		const middleware = [flip(), hide(), inline()];
 		if (this.arrow) { middleware.push(arrow({ element: this.arrowEl, padding: this.#padding }), offset(this.#distance)); }
@@ -79,12 +78,20 @@ export class Popup extends FoundationElement {
 	@attr({ mode: 'fromView' }) placement?: Placement;
 
 	/**
-	 * ID reference to element in the popup’s owner document.
+	 * the strategy of the popup
+	 *
+	 * @public
+	 * HTML Attribute: strategy
+	 */
+	@attr({ mode: 'fromView' }) strategy?: Strategy = 'fixed';
+
+	/**
+	 * ID reference to element in the popup’s owner document or HTMLElement.
 	 *
 	 * @public
 	 * HTML Attribute: anchor
 	 */
-	@attr anchor!: string;
+	@attr anchor!: string | HTMLElement;
 
 	override connectedCallback(): void {
 		super.connectedCallback();
@@ -124,10 +131,10 @@ export class Popup extends FoundationElement {
 		if (!this.open || !this.anchorEl) {
 			return;
 		}
-
+		
 		const positionData = await computePosition(this.anchorEl, this.popupEl, {
 			placement: this.placement,
-			strategy: this.#strategy,
+			strategy: this.strategy,
 			middleware: this.#middleware
 		});
 		this.#assignPopupPosition(positionData);
@@ -159,8 +166,8 @@ export class Popup extends FoundationElement {
 	/**
 	 * Gets the anchor element by id
 	 */
-	#getAnchorById(): HTMLElement | null {
-		return document.getElementById(this.anchor);
+	#getAnchor(): HTMLElement | null {
+		return this.anchor instanceof HTMLElement ? this.anchor : document.getElementById(this.anchor);
 	}
 
 	override showPopover(): void {
