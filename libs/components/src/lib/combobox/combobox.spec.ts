@@ -75,13 +75,8 @@ describe('vwc-combobox', () => {
 			element.placeholder = placeholderText;
 			const input: HTMLInputElement = getControlElement(element) as HTMLInputElement;
 			input.focus();
-			input.dispatchEvent(
-				new KeyboardEvent('keyup', {
-					key: 'tab',
-					code: 'tab',
-					keyCode: 9
-				})
-			);
+			input.dispatchEvent(new InputEvent('input'));
+			input.dispatchEvent(new KeyboardEvent('keyup'));
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('input')
 				?.getAttribute('placeholder'))
@@ -90,15 +85,8 @@ describe('vwc-combobox', () => {
 
 		it('should set class placeholder to root', async function () {
 			element.placeholder = placeholderText;
-			element.dispatchEvent(new Event('input'));
-			element.dispatchEvent(
-				new KeyboardEvent('keydown', {
-					key: 'tab',
-					code: 'tab',
-					keyCode: 9
-				})
-			);
-			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown'));
+			element.dispatchEvent(new FocusEvent('focusout'));
 			await elementUpdated(element);
 			expect(getBaseElement(element)
 				.classList
