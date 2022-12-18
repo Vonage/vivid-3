@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement, getControlElement } from '@vivid-nx/shared';
 import { Combobox } from './combobox';
 import '.';
 
@@ -73,7 +73,15 @@ describe('vwc-combobox', () => {
 		const placeholderText = 'Text';
 		it('should set placeholder attribute on the input', async function () {
 			element.placeholder = placeholderText;
-			element.dispatchEvent(new Event('input'));
+			const input: HTMLInputElement = getControlElement(element) as HTMLInputElement;
+			input.focus();
+			input.dispatchEvent(
+				new KeyboardEvent('keyup', {
+					key: 'tab',
+					code: 'tab',
+					keyCode: 9
+				})
+			);
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('input')
 				?.getAttribute('placeholder'))
@@ -82,6 +90,15 @@ describe('vwc-combobox', () => {
 
 		it('should set class placeholder to root', async function () {
 			element.placeholder = placeholderText;
+			element.dispatchEvent(new Event('input'));
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', {
+					key: 'tab',
+					code: 'tab',
+					keyCode: 9
+				})
+			);
+			element.focus();
 			await elementUpdated(element);
 			expect(getBaseElement(element)
 				.classList
