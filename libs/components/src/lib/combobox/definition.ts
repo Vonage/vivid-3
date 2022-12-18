@@ -1,8 +1,8 @@
 import type { ComboboxOptions } from '@microsoft/fast-foundation';
-import { registerFactorial } from '../../shared/design-system';
-import { iconElements } from '../icon/definition';
-import { popupElements } from '../popup/definition';
-import { focusElements } from '../focus/definition';
+import { registerFactory } from '../../shared/design-system';
+import { iconRegistries } from '../icon/definition';
+import { popupRegistries } from '../popup/definition';
+import { focusRegistries } from '../focus/definition';
 import textFieldStyles from '../text-field/text-field.scss';
 import styles from './combobox.scss';
 
@@ -24,11 +24,11 @@ export const combobox = Combobox.compose<ComboboxOptions>({
 	},
 })();
 
-export const comboboxElements = [combobox, ...iconElements, ...popupElements, ...focusElements];
+export const comboboxRegistries = [combobox, ...iconRegistries, ...popupRegistries, ...focusRegistries];
 
 /**
  * Registers the combobox elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerCombobox = registerFactorial(comboboxElements);
+export const registerCombobox = registerFactory(comboboxRegistries);
