@@ -1,8 +1,9 @@
 import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
 import {Connotation} from '../enums';
+import type { Icon } from '../icon/icon';
 import { Avatar } from './avatar';
 import '.';
-import type { Icon } from '../icon/icon';
+
 
 const COMPONENT_TAG = 'vwc-avatar';
 
