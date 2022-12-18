@@ -47,6 +47,18 @@ describe('vwc-listbox', () => {
 		});
 	});
 
+	describe('disabled', function () {
+		test('should have a tabindex of 0 when `disabled` is not defined', async () => {
+			expect(element.tabIndex).toEqual(0);
+		});
+
+		test('should NOT have a tabindex when `disabled` is true', async () => {
+			element.disabled = true;
+			await elementUpdated(element);
+			expect(element.getAttribute('tabindex')).toBeNull();
+		});
+	});
+
 	describe('multiselectable', function () {
 		it('should set the `aria-multiselectable` attribute with the `multiple` value when provided', async function () {
 			element.multiple = true;
