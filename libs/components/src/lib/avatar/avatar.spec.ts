@@ -1,9 +1,8 @@
 import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
 import {Connotation} from '../enums';
 import { Avatar } from './avatar';
-import type { Icon } from '../icon/icon';
 import '.';
-import { avatarDefinition } from './definition';
+import type { Icon } from '../icon/icon';
 
 const COMPONENT_TAG = 'vwc-avatar';
 
@@ -24,7 +23,6 @@ describe('vwc-avatar', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-avatar', async () => {
-			expect(avatarDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Avatar);
 		});
 	});
