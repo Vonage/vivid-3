@@ -1,7 +1,9 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { LayoutSize } from '../enums';
 import { AUTO_SIZING, Layout } from './layout';
 import '.';
+import { layoutDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-layout';
 
@@ -17,6 +19,7 @@ describe('vwc-layout', () => {
 
 	describe('basic', () => {
 		it('initializes as a vwc-layout', async () => {
+			expect(layoutDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Layout);
 			expect(element.gutters).toBeUndefined();
 			expect(element.columnBasis).toBeUndefined();

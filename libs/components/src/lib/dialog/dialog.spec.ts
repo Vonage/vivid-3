@@ -1,6 +1,8 @@
 import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Dialog } from './dialog';
 import '.';
+import { dialogDefinition } from './definition';
 import { Icon } from '../icon/icon';
 
 const COMPONENT_TAG = 'vwc-dialog';
@@ -63,6 +65,7 @@ describe('vwc-dialog', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-dialog', async () => {
+			expect(dialogDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Dialog);
 			expect(element.open).toEqual(false);
 			expect(element.returnValue).toEqual('');
