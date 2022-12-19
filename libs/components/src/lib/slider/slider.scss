@@ -1,6 +1,6 @@
-@use '../focus/partials/variables' as focus-variables;
-@use '../../../../shared/src/lib/sass/utils' as utils;
-@use 'partials/variables' as variables;
+@use "../focus/partials/variables" as focus-variables;
+@use "../../../../shared/src/lib/sass/utils" as utils;
+@use "partials/variables" as variables;
 
 
 $track-thickness: 2px;
@@ -62,7 +62,7 @@ $track-thickness: 2px;
 			height: var(#{variables.$thumb-interaction-indicator-size});
 			background-color: var(#{variables.$track-start-background-color});
 			border-radius: 50%;
-			content: '';
+			content: "";
 			opacity: var(#{variables.$thumb-interaction-indicator-alpha}, 0);
 			transition: opacity 0.2s ease-out 0s;
 		}
@@ -74,7 +74,7 @@ $track-thickness: 2px;
 			height: var(#{variables.$thumb-size});
 			background-color: var(#{variables.$track-start-background-color});
 			border-radius: 50%;
-			content: '';
+			content: "";
 			inset: calc((var(#{variables.$thumb-interaction-indicator-size}) - var(#{variables.$thumb-size})) / 2);
 		}
 	}

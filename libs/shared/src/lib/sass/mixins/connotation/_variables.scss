@@ -32,6 +32,7 @@ $connotation-mapping: (
     (
       primary: utils.get-color-token(warning-300),
 			primary-text: #{utils.get-color-token(canvas-text)},
+			intermediate: #{utils.get-color-token(warning-300)},
     )
   ),
   cta: get-default-mapping(cta),

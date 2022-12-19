@@ -1,8 +1,10 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {Connotation} from '../enums';
 import {Icon} from '../icon/icon';
 import {Note} from './note';
 import '.';
+import { noteDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-note';
 
@@ -15,6 +17,7 @@ describe('vwc-note', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-note', async () => {
+			expect(noteDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Note);
 		});
 	});

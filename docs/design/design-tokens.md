@@ -137,21 +137,36 @@ Due to a11y and design constraints, the density can only be set to one of the fo
 - Type: `-1` | `0` | `1` | `2`
 - Default: `0`
 
-```html preview
+```html preview blocks
 <style>
- :root {
-  --vvd-size-density: -1;
+ #scoped-region {
+  --vvd-size-density: 1;
  }
 </style>
 
-<vwc-header>
-  This header is condensed
-</vwc-header>
+<vwc-number-field label="Choose density" helper-text="Change density value" min="-1" max="2" value="1" style="justify-self: flex-start; width: 105px;"></vwc-number-field>
 
-<pre>/*
- * This block of code is not affected
- */
-</pre>
+<vwc-divider></vwc-divider>
 
-<vwc-button appearance="filled" label="But the button is"></vwc-button>
+<div id="scoped-region">
+
+ <form style="width: 250px">
+  <vwc-layout column-basis="block">
+
+   <vwc-text-field label="First name:"></vwc-text-field>
+
+   <vwc-text-field label="Last name:"></vwc-text-field>
+
+   <vwc-button appearance="filled" label="Submit"></vwc-button>
+
+  </vwc-layout>
+ </form>
+
+</div>
+
+<script>
+  const root = document.querySelector('#scoped-region');
+  const numberfield = document.querySelector('vwc-number-field');
+  numberfield.addEventListener('change', (e) => root.style.setProperty('--vvd-size-density', e.target.value));
+</script>
 ```
