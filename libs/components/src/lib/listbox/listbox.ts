@@ -56,7 +56,7 @@ export class Listbox extends FoundationListboxElement {
 	 * @param becomesDisabled - The next disabled value
 	 * @internal
 	 */
-	disabledChanged(_: boolean, becomesDisabled: boolean): void {
+	disabledChanged(_: boolean, next: boolean): void {
 		if (becomesDisabled) {
 			this.options.forEach(option => {
 				this._optionsState.set(option, option.disabled);
