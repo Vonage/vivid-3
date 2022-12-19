@@ -1,8 +1,10 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { AccordionItem } from '../accordion-item/accordion-item';
+import { accordionDefinition } from './definition';
 import { Accordion } from './accordion';
-import '.';
 import '../accordion-item';
+import '.';
 
 const COMPONENT_TAG = 'vwc-accordion';
 
@@ -32,6 +34,7 @@ describe('vwc-accordion', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-accordion', async () => {
+			expect(accordionDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Accordion);
 			expect(element.multi).toBeFalsy();
 		});

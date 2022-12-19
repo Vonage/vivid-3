@@ -6,6 +6,7 @@ import type {
 } from '@microsoft/fast-foundation';
 import {classNames} from '@microsoft/fast-web-utilities';
 import {affixIconTemplateFactory} from '../../shared/patterns/affix';
+import { Button } from '../button/button';
 import type {Banner} from './banner';
 
 const getClasses = (_: Banner) => classNames(
@@ -18,15 +19,15 @@ const getClasses = (_: Banner) => classNames(
  *
  * @returns {HTMLElement} template
  */
-function renderDismissButton() {
+function renderDismissButton(buttonTag: string) {
 	return html<Banner>`
-	  <vwc-button
+	  <${buttonTag}
 				part="vvd-theme-alternate"
 			  size="condensed"
 			  class="dismiss-button"
 			  icon="close-line"
 			  @click="${x => x.remove()}">
-	  </vwc-button>`;
+	  </${buttonTag}>`;
 }
 
 /**
@@ -40,6 +41,7 @@ export const BannerTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Banner> = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
+	const buttonTag = context.tagFor(Button);
 
 	return html<Banner>`
 	  <div class="banner ${getClasses}" tabindex="0">
@@ -54,7 +56,7 @@ export const BannerTemplate: (
 						<slot class="action-items" name="action-items"></slot>
 					</div>
 
-			  ${when(x => x.removable, renderDismissButton())}
+			  ${when(x => x.removable, renderDismissButton(buttonTag))}
 		  </header>
 	  </div>
 	`;

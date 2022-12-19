@@ -18,6 +18,7 @@ describe(`vivid component generator`, function () {
     await vividComponentGenerator(tree, options);
     expect(tree.exists(`libs/components/src/lib/${options.name}`)).toBeTruthy();
     expect(tree.exists(`libs/components/src/lib/${options.name}/index.ts`)).toBeTruthy();
+    expect(tree.exists(`libs/components/src/lib/${options.name}/definition.ts`)).toBeTruthy();
     expect(tree.exists(`libs/components/src/lib/${options.name}/README.md`)).toBeTruthy();
     expect(tree.exists(`libs/components/src/lib/${options.name}/ui.test.ts`)).toBeTruthy();
     expect(tree.exists(`libs/components/src/lib/${options.name}/${fileName}.ts`)).toBeTruthy();

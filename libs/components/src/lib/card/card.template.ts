@@ -5,6 +5,8 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
+import { Icon } from '../icon/icon';
+import { Elevation } from '../elevation/elevation';
 import type { Card } from './card';
 
 const getClasses = (_: Card) => classNames(
@@ -17,9 +19,9 @@ const getClasses = (_: Card) => classNames(
  * 
  * @returns {HTMLElement} template
  */
-function renderHeaderIcon() {
+function renderHeaderIcon(iconTag: string) {
 	return html<Card>`
-	  <vwc-icon class="icon" inline name="${x => x.icon}"></vwc-icon>`;
+	  <${iconTag} class="icon" inline name="${x => x.icon}"></${iconTag}>`;
 }
 
 /**
@@ -63,11 +65,11 @@ function headerContent() {
  *
  * @returns {HTMLElement} template
  */
-function renderHeader() {
+function renderHeader(iconTag: string) {
 
 	return html<Card>`
 		<header class="header">
-			<slot name="graphic" ${slotted('graphicSlottedContent')}>${when(x => x.icon, renderHeaderIcon())}</slot>
+			<slot name="graphic" ${slotted('graphicSlottedContent')}>${when(x => x.icon, renderHeaderIcon(iconTag))}</slot>
 			${when(x => x.headline || x.subtitle, headerContent())}
 		</header>`;
 }
@@ -114,8 +116,12 @@ function text() {
 export const CardTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Card> = () => html<Card>`
-	<vwc-elevation dp=${(x => x.elevation ?? '4')}>
+) => ViewTemplate<Card> = (context: ElementDefinitionContext) => {
+	const elevationTag = context.tagFor(Elevation);
+	const iconTag = context.tagFor(Icon);
+
+	return html<Card>`
+	<${elevationTag} dp=${(x => x.elevation ?? '4')}>
 
 		<div class="${getClasses}">
 			<div class="wrapper">
@@ -125,7 +131,7 @@ export const CardTemplate: (
 				<slot name="main">
 					<div class="main-content">
 						<div class="header-wrapper">
-							${renderHeader()}
+							${renderHeader(iconTag)}
 							${renderMetaSlot()}
 						</div>
 						${when(x => x.text, text())}
@@ -137,5 +143,6 @@ export const CardTemplate: (
 			</div>
 		</div>
 
-	</vwc-elevation>
+	</${elevationTag}>
 `;
+};

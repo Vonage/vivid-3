@@ -6,6 +6,7 @@ import type {
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import {Connotation} from '../enums';
+import { Icon } from '../icon/icon';
 import type { Note } from './note';
 
 const connotationIconMap = new Map([
@@ -45,8 +46,8 @@ function getIconType(note: Note) {
  *
  * @returns {HTMLElement} templateTemplate
  */
-function getIconTemplate() {
-	return html<Note>`<vwc-icon class="icon" name="${getIconType}"></vwc-icon>`;
+function getIconTemplate(iconTag: string) {
+	return html<Note>`<${iconTag} class="icon" name="${getIconType}"></${iconTag}>`;
 }
 
 /**
@@ -57,12 +58,16 @@ function getIconTemplate() {
 export const NoteTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Note> = () => html`
+) => ViewTemplate<Note> = (context: ElementDefinitionContext) => {
+	const iconTag = context.tagFor(Icon);
+
+	return html`
     <div class="${getClasses}">
-      ${getIconTemplate()}
+      ${getIconTemplate(iconTag)}
 			<div class="text">
 	        ${when(x => x.headline, getHeaderTemplate())}
 			    <slot class="message"></slot>
 			</div>
     </div>
 `;
+};

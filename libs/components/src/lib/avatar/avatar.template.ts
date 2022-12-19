@@ -5,6 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
+import { Icon } from '../icon/icon';
 import type { Avatar } from './avatar';
 
 const getClasses = ({appearance, connotation, shape, size}: Avatar) => classNames(
@@ -20,10 +21,10 @@ const getClasses = ({appearance, connotation, shape, size}: Avatar) => className
  * 
  * @returns {HTMLElement} template
  */
-function renderIcon() {
+function renderIcon(iconTag: string) {
 	return html<Avatar>`
 		<span class="icon">
-			<vwc-icon name="${(x) => x.icon? `${x.icon}` : 'user-line'}"></vwc-icon>
+			<${iconTag} name="${(x) => x.icon? `${x.icon}` : 'user-line'}"></${iconTag}>
 		</span>
 	`;
 }
@@ -47,10 +48,14 @@ function renderInitials() {
 export const AvatarTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Avatar> = () => html`
+) => ViewTemplate<Avatar> = (context: ElementDefinitionContext) => {
+	const iconTag = context.tagFor(Icon);
+
+	return html`
 	<span class="${getClasses}">
-		<slot>
+		<slot name="graphic">
 			${when(x => x.name, renderInitials())}
-			${when( x => !x.name, renderIcon())}
+			${when( x => !x.name, renderIcon(iconTag))}
 		</slot>
 </span>`;
+};

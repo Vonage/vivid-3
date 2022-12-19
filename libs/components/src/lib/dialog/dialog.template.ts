@@ -5,10 +5,14 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import {classNames} from '@microsoft/fast-web-utilities';
+import { Elevation } from '../elevation/elevation';
+import { Icon } from '../icon/icon';
+import { Button } from '../button/button'; 
 import type {Dialog} from './dialog';
 
-const getClasses = (_: Dialog) => classNames(
+const getClasses = ({iconPlacement}: Dialog) => classNames(
 	'base',
+	[`icon-placement-${iconPlacement}`, Boolean(iconPlacement)],
 );
 
 /**
@@ -16,9 +20,9 @@ const getClasses = (_: Dialog) => classNames(
  *
  * @returns {HTMLElement} template
  */
-function icon() {
+function icon(iconTag: string) {
 	return html<Dialog>`
-		<vwc-icon class="icon" name="${x => x.icon}"></vwc-icon>
+		<${iconTag} class="icon" name="${x => x.icon}"></${iconTag}>
 	`;
 }
 
@@ -41,16 +45,16 @@ function headline() {
  *
  * @returns {HTMLElement} template
  */
-function renderDismissButton() {
+function renderDismissButton(buttonTag: string) {
 	return html<Dialog>`
-	  <vwc-button
+	  <${buttonTag}
 			  size="condensed"
 			  class="dismiss-button"
 			  icon="close-line"
 			  @click="${x => {
 		x.open = false;
 	}}">
-	  </vwc-button>`;
+	  </${buttonTag}>`;
 }
 
 /**
@@ -85,8 +89,13 @@ function content() {
 export const DialogTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Dialog> = () => html<Dialog>`
-	<vwc-elevation dp="12">
+) => ViewTemplate<Dialog> = (context: ElementDefinitionContext) => {
+	const elevationTag = context.tagFor(Elevation);
+	const iconTag = context.tagFor(Icon);
+	const buttonTag = context.tagFor(Button);
+
+	return html<Dialog>`
+	<${elevationTag} dp="12">
 		<div>
 			<dialog class="${getClasses}"
 					@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
@@ -100,11 +109,11 @@ export const DialogTemplate: (
 						<div class="header">
 							<div class="headline-wrapper">
 								<slot name="graphic">
-									${when(x => x.icon, icon())}
+									${when(x => x.icon, icon(iconTag))}
 								</slot>
 								${when(x => x.headline, headline())}
 							</div>
-						${renderDismissButton()}
+						${renderDismissButton(buttonTag)}
 						</div>
 						<slot name="content">
 							${when(x => x.text, content())}
@@ -114,5 +123,5 @@ export const DialogTemplate: (
 				</slot>
 			</dialog>
 		</div>
-	</vwc-elevation>`;
-
+	</${elevationTag}>`;
+};
