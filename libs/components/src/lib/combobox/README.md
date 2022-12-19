@@ -10,7 +10,7 @@ Represents a combobox custom element.
 
 ## Slots
 
-### Option
+### Default
 
 Read more about [vwc-option](../../components/option).
 
