@@ -1,4 +1,4 @@
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 
 @use "partials/variables" as variables;
 @use "../../../../shared/src/lib/sass/mixins/elevation" as elevation;
@@ -15,7 +15,7 @@
 	$default: filled
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
-@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
 
 .control {
@@ -48,12 +48,12 @@
 
 	/* Size */
 
-	&.density-extended {
+	&.size-expanded {
 		#{variables.$border-radius}: 30px;
 		#{variables.$block-size}: #{size.$vvd-size-super-expanded};
 	}
 
-	&:not(.density-extended) {
+	&:not(.size-expanded) {
 		#{variables.$border-radius}: 24px;
 		#{variables.$block-size}: #{size.$vvd-size-normal};
 	}
@@ -105,11 +105,11 @@
 		order: 1;
 	}
 
-	.density-extended & {
+	.size-expanded & {
 		font-size: 24px;
 	}
 
-	&:not(.density-extended) &{
+	&:not(.size-expanded) &{
 		font-size: 20px;
 	}
 }

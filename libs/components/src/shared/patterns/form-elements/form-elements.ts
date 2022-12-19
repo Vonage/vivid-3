@@ -16,6 +16,9 @@ export interface FormElement {
 	dirtyValue: boolean;
 }
 
+/**
+ * @param constructor
+ */
 export function formElements<T extends { new (...args: any[]): Record<string, any> }>(constructor: T) {
 	class Decorated extends constructor {
 		@attr label?: string;
@@ -42,12 +45,26 @@ export function formElements<T extends { new (...args: any[]): Record<string, an
 			(this as unknown as HTMLElement).addEventListener('focus', () => {
 				this.#blurred = false;
 			});
-			(this as unknown as HTMLElement).addEventListener('invalid', () => {
-				if (this.#blurred && this.dirtyValue) return;
-				this.#blurred = true;
-				this.dirtyValue = true;
-				this.validate();
+			this.addEventListener('invalid', () => {
+				this.proxy.dispatchEvent(new Event('invalid'));
 			});
+		}
+
+		connectedCallback() {
+			super.connectedCallback?.();
+			this.proxy.addEventListener('invalid', this.#handleInvalidEvent);
+		}
+
+		#handleInvalidEvent = () => {
+			if (this.#blurred && this.dirtyValue) return;
+			this.#blurred = true;
+			this.dirtyValue = true;
+			this.validate();
+		};
+
+		disconnectedCallback() {
+			super.disconnectedCallback?.();
+			this.proxy.removeEventListener('invalid', this.#handleInvalidEvent);
 		}
 
 		validate = () => {
@@ -74,6 +91,10 @@ type MessageTypeMap = { [key in FeedbackType]: {
 	messageProperty: MessagePropertyType }
 };
 
+/**
+ * @param messageType
+ * @param context
+ */
 export function getFeedbackTemplate(messageType: FeedbackType, context: ElementDefinitionContext) {
 	const MessageTypeMap: MessageTypeMap = {
 		'helper': {
@@ -84,12 +105,12 @@ export function getFeedbackTemplate(messageType: FeedbackType, context: ElementD
 		'error': {
 			'messageProperty': 'errorValidationMessage',
 			'className': 'error',
-			'iconType': 'info-negative'
+			'iconType': 'info-line'
 		},
 		'success': {
 			'messageProperty': 'successText',
 			'className': 'success',
-			'iconType': 'check-circle-solid'
+			'iconType': 'check-circle-line'
 		}
 	};
 	const iconTag = context.tagFor(Icon);
@@ -102,7 +123,7 @@ export function getFeedbackTemplate(messageType: FeedbackType, context: ElementD
 			</style>
 			<div class="message ${MessageTypeMap[messageType].className}-message">
 		  	${when(() => iconType, html<FormElement>`
-					  <${iconTag} class="message-icon" type="${iconType}"></${iconTag}>`)}
+					  <${iconTag} class="message-icon" name="${iconType}"></${iconTag}>`)}
 				${feedbackMessage({
 		messageProperty: MessageTypeMap[messageType].messageProperty})}
 			</div>`;

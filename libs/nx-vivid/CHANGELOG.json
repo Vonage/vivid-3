@@ -2,6 +2,51 @@
   "name": "@vonage/nx-vivid",
   "entries": [
     {
+      "date": "Fri, 16 Dec 2022 11:38:04 GMT",
+      "tag": "@vonage/nx-vivid_v0.0.1",
+      "version": "0.0.1",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon.oved@vonage.com",
+            "package": "@vonage/nx-vivid",
+            "commit": "8744b03df7beb267bcf8cbf080ac8537c9ee6f6f",
+            "comment": "rewrite component definition"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 14 Dec 2022 16:38:10 GMT",
+      "tag": "@vonage/nx-vivid_v0.0.1",
+      "version": "0.0.1",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon.oved@vonage.com",
+            "package": "@vonage/nx-vivid",
+            "commit": "cfa9964c9fb8475acd969bae5e0cc2b4d86ff8a2",
+            "comment": "rewrite component class"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 04 Dec 2022 15:36:59 GMT",
+      "tag": "@vonage/nx-vivid_v0.0.1",
+      "version": "0.0.1",
+      "comments": {
+        "none": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/nx-vivid",
+            "commit": "f023bd00c65a102650e9d0cc6e4c5d91d27134db",
+            "comment": "align with custom prefix for custom-elements support"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 31 Oct 2022 06:36:47 GMT",
       "tag": "@vonage/nx-vivid_v0.0.1",
       "version": "0.0.1",

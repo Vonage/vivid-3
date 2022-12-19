@@ -7,7 +7,7 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { focusTemplateFactory } from '../../shared/patterns';
-import type { ListboxOption } from './listbox-option';
+import type { ListboxOption } from './option';
 
 const getClasses = ({
 	icon, disabled, selected, checked
@@ -37,7 +37,7 @@ export const ListboxOptionTemplate: (
 		<div class="${getClasses}">
 			${() => focusTemplate}
 			${x => affixIconTemplate(x.icon)}
-			${when(x => x.optionText, html`<div class="text">${x => x.optionText}</div>`)}
+			${when(x => x.text, html`<div class="text">${x => x.text}</div>`)}
 		</div>
 	</template>
 	`;

@@ -75,7 +75,7 @@ This project is [Apache 2.0][license-url] licensed.
 
 <hr>
 
-##### Built With [Typescript](https://www.typescriptlang.org), [Lit](https://lit.dev), [Sass](https://sass-lang.com) and ❤️
+##### Built With [Typescript](https://www.typescriptlang.org), [Fast](https://fast.design), [Sass](https://sass-lang.com) and ❤️
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->

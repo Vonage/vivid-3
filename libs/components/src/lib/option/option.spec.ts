@@ -1,7 +1,9 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
-import { ListboxOption } from './listbox-option';
+import { ListboxOption } from './option';
 import '.';
+import { listboxOptionDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-option';
 const ICON_SELECTOR = 'vwc-icon';
@@ -17,9 +19,11 @@ describe('vwc-option', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-option', async () => {
+			expect(listboxOptionDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(ListboxOption);
-			expect(element.optionText).toBeUndefined();
+			expect(element.text).toEqual('');
 			expect(element.icon).toBeUndefined();
+			expect(element.iconTrailing).toBeFalsy();
 			expect(element.selected).toBeFalsy();
 			expect(element.checked).toBeUndefined();
 			expect(element.disabled).toBeUndefined();
@@ -34,7 +38,7 @@ describe('vwc-option', () => {
 			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
 			expect(icon)
 				.toBeInstanceOf(Icon);
-			expect(icon?.type)
+			expect(icon?.name)
 				.toEqual('home');
 		});
 	});
@@ -43,7 +47,7 @@ describe('vwc-option', () => {
 		it('should set text property value as text content', async () => {
 			const text = 'lorem';
 
-			element.optionText = text;
+			element.text = text;
 			await elementUpdated(element);
 
 			const base = element.shadowRoot?.querySelector('.base');

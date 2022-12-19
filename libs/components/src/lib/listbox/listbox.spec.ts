@@ -1,7 +1,9 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import type { ListboxOption } from '../listbox-option/listbox-option';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import type { ListboxOption } from '../option/option';
 import { Listbox } from './listbox';
-import '../listbox-option';
+import { listboxDefinition } from './definition';
+import '../option';
 import '.';
 
 const COMPONENT_TAG = 'vwc-listbox';
@@ -30,6 +32,7 @@ describe('vwc-listbox', () => {
 
 	describe('basic', function () {
 		it('should be initialized as a vwc-listbox', async function () {
+			expect(listboxDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Listbox);
 			expect(element.disabled).toBeUndefined();
 			expect(element.multiple).toBeUndefined();
@@ -101,3 +104,4 @@ describe('vwc-listbox', () => {
 		});
 	});
 });
+
