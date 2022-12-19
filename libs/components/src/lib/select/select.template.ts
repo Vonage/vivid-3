@@ -75,6 +75,7 @@ export const SelectTemplate: (
 
 	return html<Select>`
 	  <div class="base ${getStateClasses}"
+				 		${ref('_anchor')}
             aria-activedescendant="${x => x.ariaActiveDescendant}"
             aria-controls="${x => x.ariaControls}"
             aria-disabled="${x => x.ariaDisabled}"
@@ -92,8 +93,13 @@ export const SelectTemplate: (
         >
             ${when(x => x.collapsible, renderControl(context))}
 			${when(x => !x.successText && !x.errorValidationMessage && x.helperText?.length, getFeedbackTemplate('helper', context))}
-			<${popupTag}
-							?open="${x => (x.collapsible ? x.open : true)}" anchor="control"
+		</div>
+	<${popupTag}
+							open
+							anchor="control"
+							strategy="absolute"
+							${ref('_popup')}
+							class="popup"
 							>
 							<div
                 id="${x => x.listboxId}"
@@ -111,5 +117,5 @@ export const SelectTemplate: (
                 ></slot>
             </div>
 					</${popupTag}>
-		</div>`;
+	`;
 };

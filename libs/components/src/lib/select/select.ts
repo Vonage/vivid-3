@@ -1,5 +1,6 @@
 import { applyMixins, Select as FoundationSelect } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
+import type { Popup } from '../popup/popup';
 import { AffixIcon, FormElement, formElements } from '../shared/patterns';
 import type { Appearance, Shape } from '../enums';
 
@@ -21,9 +22,21 @@ export class Select extends FoundationSelect {
 	 * @remarks
 	 * HTML Attribute: label
 	 */
-	// @attr label?: string;
 	@attr appearance?: SelectAppearance;
 	@attr shape?: SelectShape;
+
+	/**
+	 *
+	 * HTML Attribute: string
+	 */
+
+	_popup!: Popup;
+	_anchor!: HTMLElement;
+
+	override connectedCallback() {
+		super.connectedCallback();
+		this._popup.anchor = this._anchor;
+	}
 }
 
 export interface Select extends AffixIcon, FormElement{}

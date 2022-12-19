@@ -13,6 +13,10 @@
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 @use '../../../../../dist/libs/tokens/scss/size.variables' as size;
 
+
+:host {
+	position: relative;
+}
 .base {
 	@include appearance.appearance;
 	@include connotation.connotation;
@@ -59,10 +63,11 @@
 }
 
 .list-box {
-	// doesn't work because the popup is position: fixed
-	// width: 100%;
 	padding: 4px;
 	display: flex;
 	flex-direction: column;
 	gap: 2px;
+}
+.popup {
+	--_popup-width: 100%;
 }
