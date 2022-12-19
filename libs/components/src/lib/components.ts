@@ -16,6 +16,7 @@ export * from './elevation/definition';
 export * from './dialog/definition';
 export * from './divider/definition';
 export * from './fab/definition';
+export * from './header/definition';
 export * from './icon/definition';
 export * from './layout/definition';
 export * from './listbox/definition';
