@@ -61,7 +61,7 @@ These styles are not required by vivid components directly. however, native HTML
 
 These **core styles** rely on the tokens and fonts 👆 to be loaded.
 
-To **include the core styles**, its css files must be loaded into the project from the `node_modules/@vonage/vivid/styles/core` folder and *require a `vvd-root` class* selector to be present on a wrapping element (advisably the `:root`).
+To **include the core styles**, its css files must be loaded into the project from the `node_modules/@vonage/vivid/styles/core` folder and *require a `vvd-root` class* selector to be present on a wrapping element (advisably the `:root`. When set on the `:root` (html element), typeface sizes are able to descend from the root font-size, thus comply with the [WCAG 1.4.4](https://www.w3.org/WAI/WCAG21/Understanding/resize-text)).
 
 - `theme.css` - Sets theme related styles
 
@@ -74,6 +74,35 @@ Note: scss users can simply [forward](https://sass-lang.com/documentation/at-rul
 ```css
 @forward 'node_modules/@vonage/vivid/styles/[path to file].css';
 ```
+
+## Advanced Usage
+
+### Scoped Elements (🧪 Alpha)
+
+Custom elements, by browsers limitations, are registered globally, and thus may conflict when multiple versions of the library are used in the same application as all custom elements register under the same namespace.
+
+Enforcing only a single version of the library to be used simultaneously makes it difficult to progressively migrate to newer versions of the library, as each update will require a full application update.
+Also, in a micro-frontend architecture, this can be a major bottleneck as each micro-frontend may use a different version of the library.
+
+To work around this limitation, Vivid provides a way for authors' to scope each custom element namespace by passing an argument to the `prefix` parameter when registering each custom element.
+
+The following example will register *badge* custom element as `dashboard-badge`:
+
+```js
+import { registerBadge } from '@vonage/vivid';
+
+registerBadge('dashboard');
+```
+
+then use it as:
+
+```html
+<dashboard-badge text="dashboard scoped badge"></dashboard-badge>
+```
+
+Remember to not include the default side-effect import (`import '@vonage/vivid/button';`) when using scoped elements as it will register the default namespace.
+
+Even though custom elements can be registered under different namespaces, as many as needed, this approach lets you enjoy the benefits of [npm dedupe](https://docs.npmjs.com/cli/v8/commands/npm-dedupe) to ensure only a single version of the library is used in the application.
 
 ## Support
 

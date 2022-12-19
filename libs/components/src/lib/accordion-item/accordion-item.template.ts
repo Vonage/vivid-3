@@ -50,16 +50,17 @@ const renderHeaderButton = (context: ElementDefinitionContext) => {
 	<button class="button" id="header" @click=${x => x.open = !x.open}
 		aria-expanded=${x => x.open}
 		aria-controls="${PANEL}">
-    ${() => focusTemplate}
+		${() => focusTemplate}
 		${x => affixIconTemplate(x.icon)}
 		<span class="heading-text">${x => x.heading}</span>
 		${when(x => x.meta, html`<span class="meta">${x => x.meta}</span>`)}
-		<span class="indicator">
-			${when(x => !x.noIndicator && !x.iconTrailing, html`
-				${when(x => !x.open, html`<vwc-icon type='chevron-down-solid'></vwc-icon>`)}
-				${when(x => x.open, html`<vwc-icon type='chevron-up-solid'></vwc-icon>`)}
-			`)}
-		</span>
+		
+		${when(x => !x.noIndicator && !x.iconTrailing, html`${x => {
+		return affixIconTemplate(
+			x.open ? 'chevron-up-solid' : 'chevron-down-solid',
+			'indicator'
+		);}}`
+	)}
 	</button>
 `;
 };

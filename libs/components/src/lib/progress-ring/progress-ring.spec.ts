@@ -138,23 +138,23 @@ describe('vwc-progress-ring', () => {
 		});
 	});
 
-	describe('density', function () {
+	describe('size', function () {
 		let baseElement: Element | null | undefined;
 		beforeEach(function () {
 			baseElement = element.shadowRoot?.querySelector('.base');
 		});
 
-		it('should set density class only if exists', async function () {
-			const classListContainsDensity = baseElement?.className.split(' ').reduce((contains: boolean, className: string) => {
-				return contains || className.indexOf('density-') > -1;
+		it('should set size class only if exists', async function () {
+			const classListContainsSize = baseElement?.className.split(' ').reduce((contains: boolean, className: string) => {
+				return contains || className.indexOf('size-') > -1;
 			}, false);
-			expect(classListContainsDensity).toEqual(false);
+			expect(classListContainsSize).toEqual(false);
 		});
 
-		it('should set density class according to attribute plus base density', async function () {
-			const densityValue = 2;
-			const expectedClass = `density-${densityValue}`;
-			element.setAttribute('density', densityValue.toString());
+		it('should set size class according to attribute plus base size', async function () {
+			const sizeValue = 2;
+			const expectedClass = `size-${sizeValue}`;
+			element.setAttribute('size', sizeValue.toString());
 			await elementUpdated(element);
 			expect(baseElement?.classList.contains(expectedClass)).toEqual(true);
 		});

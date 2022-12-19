@@ -77,34 +77,34 @@ Use the `shape` attribute to change the avatar's edges.
 <vwc-avatar shape="pill"></vwc-avatar>
 ```
 
-### Density
+### Size
 
-Use the `density` attribute/property to set the avatar's to one of the predefined block size extent.
+Use the `size` attribute/property to set the avatar's to one of the predefined block size extent.
 
-- Type: `'condensed'` | `'normal'` | `'extended'`
+- Type: `'condensed'` | `'normal'` | `'expanded'`
 - Default: `'normal'`
 
 ```html preview
-<vwc-avatar density='condensed' shape="pill"></vwc-avatar>
-<vwc-avatar density='normal' shape="pill"></vwc-avatar>
-<vwc-avatar density='extended' shape="pill"></vwc-avatar>
-<vwc-avatar density='condensed' shape="pill" name="john doe"></vwc-avatar>
-<vwc-avatar density='normal' shape="pill" name="john doe"></vwc-avatar>
-<vwc-avatar density='extended' shape="pill" name="john doe"></vwc-avatar>
+<vwc-avatar size='condensed' shape="pill"></vwc-avatar>
+<vwc-avatar size='normal' shape="pill"></vwc-avatar>
+<vwc-avatar size='expanded' shape="pill"></vwc-avatar>
+<vwc-avatar size='condensed' shape="pill" name="john doe"></vwc-avatar>
+<vwc-avatar size='normal' shape="pill" name="john doe"></vwc-avatar>
+<vwc-avatar size='expanded' shape="pill" name="john doe"></vwc-avatar>
 ```
 
 ## Slots
 
-### Default
+### Graphic
 
-set a graphic media of any kind (e.g. image, illustration etc.'.)
+Assign nodes to the `graphic` slot to set a graphic media of any kind (e.g. image, illustration etc).
 
 ```html preview
 <vwc-avatar shape="pill" connotation="cta">
-<img src="https://images.pexels.com/photos/762080/pexels-photo-762080.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="woman"/>
+<img slot="graphic" src="https://images.pexels.com/photos/762080/pexels-photo-762080.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="woman"/>
 </vwc-avatar>
 <vwc-avatar shape="pill" connotation="cta">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" width="349.66" height="349.66" fill="none" version="1.1" viewBox="0 0 349.66 349.66">
+<svg slot="graphic" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" width="349.66" height="349.66" fill="none" version="1.1" viewBox="0 0 349.66 349.66">
   <metadata>
     <rdf:RDF>
       <cc:Work rdf:about="">
@@ -152,6 +152,7 @@ set a graphic media of any kind (e.g. image, illustration etc.'.)
       <stop stop-color="#fff" stop-opacity="0" offset="1"/>
     </linearGradient>
   </defs>
+  
 </svg>
 </vwc-avatar>
 ```

@@ -26,6 +26,7 @@ describe('formElements mixin', function () {
 		validate() {
 			return 5;
 		}
+
 		setValidity = jest.fn();
 		proxy?: HTMLElement;
 	}
@@ -37,6 +38,7 @@ describe('formElements mixin', function () {
 
 	beforeEach(async function () {
 		instance = document.createElement('test-class') as TestClass;
+		setProxy(instance);
 		document.body.appendChild(instance);
 	});
 
@@ -54,22 +56,14 @@ describe('formElements mixin', function () {
 	});
 
 	describe('validate', function () {
-		it('should toggle userValid', async function() {
-			instance.userValid = true;
-			instance.validate();
-			expect(instance.userValid).toEqual(false);
-		});
-
 		it('should set userValid to true if not blurred and not dirty with a valid proxy', async function() {
 			instance.userValid = true;
-			setProxy();
 			instance.validate();
 			expect(instance.userValid).toEqual(true);
 		});
 
 		it('should set userValid as false if blurred, dirty and with a valid proxy', function () {
 			instance.userValid = false;
-			setProxy();
 			enableValidation();
 			instance.validate();
 			expect(instance.userValid).toEqual(false);
@@ -78,7 +72,6 @@ describe('formElements mixin', function () {
 		it('should call set validity with the input control as anchor when ElementInternals is defined', function () {
 			const elementInternals = (window as any)['ElementInternals'] = function() { return 5; };
 			elementInternals.prototype.setFormValue = jest.fn();
-			setProxy();
 			const proxy = instance.proxy as any;
 			instance.validate();
 			expect(instance.setValidity).toHaveBeenCalledWith(proxy.validity, proxy.validationMessage, (instance as any).control);
@@ -96,7 +89,6 @@ describe('formElements mixin', function () {
 
 	describe('focus event', function () {
 		it('should prevent validation messages', function () {
-			setProxy();
 			enableValidation();
 			instance.validate();
 			const userValidAfterEnabledValidation = instance.userValid;
@@ -111,7 +103,6 @@ describe('formElements mixin', function () {
 	describe('invalid event', function () {
 
 		it('should enable validation', function () {
-			setProxy();
 			instance.dispatchEvent(new Event('invalid'));
 			instance.userValid = true;
 			instance.validate();

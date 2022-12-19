@@ -31,17 +31,26 @@ export enum Appearance {
 	Ghost = 'ghost',
 }
 
-export enum Density {
+export enum Size {
+	UltraCondensed = 'ultraCondensed',
+	SuperCondensed = 'superCondensed',
+	ExtraCondensed = 'extraCondensed',
+	SemiCondensed = 'semiCondensed',
 	Condensed = 'condensed',
 	Normal = 'normal',
-	Extended = 'extended',
+	SemiExpanded = 'semiExpanded',
+	Expanded = 'expanded',
+	ExtraExpanded = 'extraExpanded',
+	SuperExpanded = 'superExpanded',
+	UltraExpanded = 'ultraExpanded',
 }
 
-export enum Size {
+export enum LayoutSize {
 	Small = 'small',
 	Medium = 'medium',
 	Large = 'large',
 }
+
 
 export enum Position {
 	Top = 'TOP',

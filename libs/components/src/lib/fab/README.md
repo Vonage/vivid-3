@@ -58,16 +58,16 @@ It accepts a subset of predefined values.
 <vwc-fab icon='plus-line' connotation='cta'></vwc-fab>
 ```
 
-### Density
+### Size
 
-Use the `density` attribute to set the FAB's to one of the predefined block size extent.
+Use the `size` attribute to set the FAB's to one of the predefined block size extent.
 
-- Type: `'normal'` | `'extended'`
+- Type: `'normal'` | `'expanded'`
 - Default: `'normal'`
 
 ```html preview
-<vwc-fab icon="thumbs-up-line" label='normal' density='normal'></vwc-fab>
-<vwc-fab icon="thumbs-up-line" label='extended' density='extended'></vwc-fab>
+<vwc-fab icon="thumbs-up-line" label='normal' size='normal'></vwc-fab>
+<vwc-fab icon="thumbs-up-line" label='expanded' size='expanded'></vwc-fab>
 ```
 
 ### Disabled
