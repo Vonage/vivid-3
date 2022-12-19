@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Fri, 16 Dec 2022 11:38:04 GMT and should not be manually modified.
+This log was last generated on Sun, 18 Dec 2022 17:21:02 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.122
+
+Sun, 18 Dec 2022 17:21:02 GMT
+
+### Changes
+
+- export header component from package (yinon.oved@vonage.com)
 
 ## 3.0.0-next.121
 
