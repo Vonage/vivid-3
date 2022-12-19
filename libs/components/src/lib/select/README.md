@@ -1,9 +1,11 @@
-# select
+# Select
 
 Represents a select custom element.
 
 ```js
-<script type="module">import '@vonage/vivid/select';</script>
+<script type="module">
+  import '@vonage/vivid/select';
+</script>
 ```
 
 ```html preview
