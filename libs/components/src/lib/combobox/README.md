@@ -45,7 +45,7 @@ Use the `label` member to set the combobox's label.
 Set the `value` attribute to set the default value for the input field. Setting the property on the element will not change the default value, but will change the value shown in the view as well as the submitted value in a form (imitating the native behavior).
 
 ```html preview
-<vwc-combobox value="value">
+<vwc-combobox value="First Option">
  <vwc-option text="First Option"></vwc-option>
  <vwc-option text="Second Option"></vwc-option>
 </vwc-combobox>
