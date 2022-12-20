@@ -40,61 +40,23 @@ function renderLabel() {
 function renderControl(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	// const focusTemplate = focusTemplateFactory(context);
-
-	return html<Select>`
-			${when(x => x.label, renderLabel())}
-			<div
-				class="control"
-				?disabled="${x => x.disabled}"
-				id="control"
-				${ref('control')}
-				>
-				<div class="selected-value">
-					${x => x.displayValue}
-				</div>
-				${() => affixIconTemplate('chevron-down-line')}
-			</div>
-
-		`;
-	// ${() => focusTemplate}
-}
-
-
-/**
- * The template for the {@link @microsoft/fast-foundation#Select} component.
- *
- * @param
- * @param context
- * @public
- */
-export const SelectTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<Select> = (context: ElementDefinitionContext) => {
 	const popupTag = context.tagFor(Popup);
 
 	return html<Select>`
-	  <div class="base ${getStateClasses}"
-				 		${ref('_anchor')}
-            aria-activedescendant="${x => x.ariaActiveDescendant}"
-            aria-controls="${x => x.ariaControls}"
-            aria-disabled="${x => x.ariaDisabled}"
-            aria-expanded="${x => x.ariaExpanded}"
-            aria-haspopup="${x => (x.collapsible ? 'listbox' : null)}"
-            aria-multiselectable="${x => x.ariaMultiSelectable}"
-            ?open="${x => x.open}"
-            role="select"
-            tabindex="${x => (!x.disabled ? '0' : null)}"
-            @click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
-            @focusin="${(x, c) => x.focusinHandler(c.event as FocusEvent)}"
-            @focusout="${(x, c) => x.focusoutHandler(c.event as FocusEvent)}"
-            @keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
-            @mousedown="${(x, c) => x.mousedownHandler(c.event as MouseEvent)}"
-        >
-            ${when(x => x.collapsible, renderControl(context))}
-			${when(x => !x.successText && !x.errorValidationMessage && x.helperText?.length, getFeedbackTemplate('helper', context))}
-		</div>
-	<${popupTag}
+			${when(x => x.label, renderLabel())}
+			<div style="position: relative">
+				<div
+					class="control"
+					?disabled="${x => x.disabled}"
+					id="control"
+					${ref('control')}
+				>
+					<div class="selected-value">
+						${x => x.displayValue}
+					</div>
+					${() => affixIconTemplate('chevron-down-line')}
+				</div>
+				<${popupTag}
 							open
 							anchor="control"
 							strategy="absolute"
@@ -117,5 +79,48 @@ export const SelectTemplate: (
                 ></slot>
             </div>
 					</${popupTag}>
+			</div>
+
+
+		`;
+	// ${() => focusTemplate}
+}
+
+
+/**
+ * The template for the {@link @microsoft/fast-foundation#Select} component.
+ *
+ * @param
+ * @param context
+ * @public
+ */
+export const SelectTemplate: (
+	context: ElementDefinitionContext,
+	definition: FoundationElementDefinition
+) => ViewTemplate<Select> = (context: ElementDefinitionContext) => {
+	// const popupTag = context.tagFor(Popup);
+
+	return html<Select>`
+	  <div class="base ${getStateClasses}"
+				 		${ref('_anchor')}
+            aria-activedescendant="${x => x.ariaActiveDescendant}"
+            aria-controls="${x => x.ariaControls}"
+            aria-disabled="${x => x.ariaDisabled}"
+            aria-expanded="${x => x.ariaExpanded}"
+            aria-haspopup="${x => (x.collapsible ? 'listbox' : null)}"
+            aria-multiselectable="${x => x.ariaMultiSelectable}"
+            ?open="${x => x.open}"
+            role="select"
+            tabindex="${x => (!x.disabled ? '0' : null)}"
+            @click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
+            @focusin="${(x, c) => x.focusinHandler(c.event as FocusEvent)}"
+            @focusout="${(x, c) => x.focusoutHandler(c.event as FocusEvent)}"
+            @keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
+            @mousedown="${(x, c) => x.mousedownHandler(c.event as MouseEvent)}"
+        >
+            ${when(x => x.collapsible, renderControl(context))}
+			${when(x => !x.successText && !x.errorValidationMessage && x.helperText?.length, getFeedbackTemplate('helper', context))}
+		</div>
+
 	`;
 };
