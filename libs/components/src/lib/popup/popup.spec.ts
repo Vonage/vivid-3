@@ -290,7 +290,8 @@ describe('vwc-popup', () => {
 			const wrapper = await fixture('<div></div>', ADD_TEMPLATE_TO_FIXTURE) as HTMLDivElement;
 			await elementUpdated(wrapper);
 			await setAnchor();
-			const element = await fixture('<vwc-popup open popover="manual" anchor="anchor"></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
+			const element = await fixture('<vwc-popup open popover="manual" anchor="anchor"></vwc-popup>',
+				ADD_TEMPLATE_TO_FIXTURE) as Popup;
 			wrapper.appendChild(element);
 			await elementUpdated(element);
 
