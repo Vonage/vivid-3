@@ -9,9 +9,6 @@ import {
 
 const components = ['action-group', 'button', 'text-field', 'layout', 'popup', 'divider'];
 
-/**
- *
- */
 function runActionGroupTest() {
 	return async ({page}: { page: Page }) => {
 		const template = extractHTMLBlocksFromReadme(

@@ -16,7 +16,7 @@ const getClasses = ({iconPlacement}: Dialog) => classNames(
 );
 
 /**
- * @param iconTag
+ *
  */
 function icon(iconTag: string) {
 	return html<Dialog>`
@@ -37,7 +37,7 @@ function headline() {
 
 
 /**
- * @param buttonTag
+ *
  */
 function renderDismissButton(buttonTag: string) {
 	return html<Dialog>`

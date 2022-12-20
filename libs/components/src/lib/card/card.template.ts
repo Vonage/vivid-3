@@ -17,8 +17,6 @@ const getClasses = (_: Card) => classNames(
 
 /**
 header icon
- *
- * @param iconTag
  */
 function renderHeaderIcon(iconTag: string) {
 	return html<Card>`
@@ -57,8 +55,6 @@ function headerContent() {
 
 /**
  header
- *
- * @param iconTag
  */
 function renderHeader(iconTag: string) {
 

@@ -20,8 +20,6 @@ export class Slider extends FastSlider {
 	/**
 	 * /!\ TO BE REMOVED WHEN UPGRADING TO FAST-FOUNDATION 3
 	 * 
-	 * @param previous
-	 * @param next
 	 * @internal
 	 */
 	override valueChanged(previous: string, next: string): void {

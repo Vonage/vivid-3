@@ -37,7 +37,7 @@ function getIconType(note: Note) {
 }
 
 /**
- * @param iconTag
+ *
  */
 function getIconTemplate(iconTag: string) {
 	return html<Note>`<${iconTag} class="icon" name="${getIconType}"></${iconTag}>`;

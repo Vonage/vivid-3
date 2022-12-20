@@ -18,8 +18,6 @@ const getClasses = ({appearance, connotation, shape, size}: Avatar) => className
 
 /**
  avatar icon
- *
- * @param iconTag
  */
 function renderIcon(iconTag: string) {
 	return html<Avatar>`
