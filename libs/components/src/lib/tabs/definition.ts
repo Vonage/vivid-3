@@ -1,10 +1,10 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
+import { tabRegistries } from '../tab/definition';
+import { tabPanelRegistries } from '../tab-panel/definition';
 import styles from './tabs.scss';
 
 import { Tabs } from './tabs';
-import { tabRegistries } from '../tab/definition';
-import { tabPanelRegistries } from '../tab-panel/definition';
 import { TabsTemplate as template } from './tabs.template';
 
 
