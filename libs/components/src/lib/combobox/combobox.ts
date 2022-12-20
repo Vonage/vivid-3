@@ -12,16 +12,16 @@ import { AffixIcon } from '../../shared/patterns';
 type PopupPlacement = 'top' | 'bottom';
 
 /**
-* Base class for combobox
-*
-*/
+ * Base class for combobox
+ *
+ */
 @formElements
 export class Combobox extends FoundationCombobox {
 	/**
-	* the placement of the combobox
-	*
-	* HTML Attribute: string
-	*/
+	 * the placement of the combobox
+	 *
+	 * HTML Attribute: string
+	 */
 	@attr placement?: PopupPlacement;
 
 	_popup!: Popup;

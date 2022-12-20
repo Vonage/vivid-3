@@ -15,7 +15,7 @@ const getClasses = (_: Banner) => classNames(
 );
 
 /**
- *
+ * @param buttonTag
  */
 function renderDismissButton(buttonTag: string) {
 	return html<Banner>`
