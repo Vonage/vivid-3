@@ -267,6 +267,44 @@ describe('vwc-popup', () => {
 				.toEqual(false);
 		});
 
+		it('should hide when popover auto and clicked outside of the popup', async () => {
+			const wrapper = await fixture('<div></div>', ADD_TEMPLATE_TO_FIXTURE) as HTMLDivElement;
+			await elementUpdated(wrapper);
+			await setAnchor();
+			const element = await fixture('<vwc-popup open popover anchor="anchor"></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
+			wrapper.appendChild(element);
+			await elementUpdated(element);
+
+			const openStateBeforeLightDismiss = element.open;
+
+			wrapper?.click();
+			await elementUpdated(element);
+
+			expect(openStateBeforeLightDismiss)
+				.toEqual(true);
+			expect(element.open)
+				.toEqual(false);
+		});
+
+		it('should not hide when popover manual and clicked outside of the popup', async () => {
+			const wrapper = await fixture('<div></div>', ADD_TEMPLATE_TO_FIXTURE) as HTMLDivElement;
+			await elementUpdated(wrapper);
+			await setAnchor();
+			const element = await fixture('<vwc-popup open popover="manual" anchor="anchor"></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
+			wrapper.appendChild(element);
+			await elementUpdated(element);
+
+			const openStateBeforeLightDismiss = element.open;
+
+			wrapper?.click();
+			await elementUpdated(element);
+
+			expect(openStateBeforeLightDismiss)
+				.toEqual(true);
+			expect(element.open)
+				.toEqual(true);
+		});
+
 		it('should not hide when clicked on the popup', async () => {
 			const element = await fixture('<vwc-popup popover></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
 			await elementUpdated(element);
