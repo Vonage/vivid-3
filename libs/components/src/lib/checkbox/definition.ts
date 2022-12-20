@@ -1,7 +1,7 @@
 import type { CheckboxOptions } from '@microsoft/fast-foundation';
-import { registerFactorial } from '../../shared/design-system';
-import { iconElements } from '../icon/definition';
-import { focusElements } from '../focus/definition';
+import { registerFactory } from '../../shared/design-system';
+import { iconRegistries } from '../icon/definition';
+import { focusRegistries } from '../focus/definition';
 import styles from './checkbox.scss';
 
 import { Checkbox } from './checkbox';
@@ -13,20 +13,23 @@ import { CheckboxTemplate as template } from './checkbox.template';
  *
  * @internal
  */
-export const checkbox = Checkbox.compose<CheckboxOptions>({
+export const checkboxDefinition = Checkbox.compose<CheckboxOptions>({
 	baseName: 'checkbox',
 	template: template as any,
 	styles,
 	shadowOptions: {
 		delegatesFocus: true,
 	},
-})();
+});
 
-export const checkboxElements = [checkbox, ...iconElements, ...focusElements];
+/**
+ * @internal
+ */
+export const checkboxRegistries = [checkboxDefinition(), ...iconRegistries, ...focusRegistries];
 
 /**
  * Registers the checkbox elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerCheckbox = registerFactorial(checkboxElements);
+export const registerCheckbox = registerFactory(checkboxRegistries);
