@@ -47,5 +47,6 @@
 }
 
 .popup {
-	--_popup-width: 100%;
+	$popup-width: --_popup-width;
+	#{$popup-width}: 100%;
 }
