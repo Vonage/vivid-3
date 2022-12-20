@@ -57,8 +57,8 @@ function renderControl(context: ElementDefinitionContext) {
 					${() => affixIconTemplate('chevron-down-line')}
 				</div>
 				<${popupTag}
-							open
-							anchor="control"
+					?open="${x => (x.collapsible ? x.open : true)}"
+					anchor="control"
 							strategy="absolute"
 							${ref('_popup')}
 							class="popup"
