@@ -1,9 +1,16 @@
 diff --git a/node_modules/@oddbird/popover-polyfill/dist/popover.js b/node_modules/@oddbird/popover-polyfill/dist/popover.js
-index 46f6e4e..b5ce89e 100644
+index 46f6e4e..e1bf04e 100644
 --- a/node_modules/@oddbird/popover-polyfill/dist/popover.js
 +++ b/node_modules/@oddbird/popover-polyfill/dist/popover.js
-@@ -1,107 +1,112 @@
+@@ -1,107 +1,117 @@
 +import { querySelectorAllDeep } from 'query-selector-shadow-dom';
++
++function closestComposed(event) {
++	return event
++		.composedPath()
++		.find((el) => el instanceof HTMLElement && el.hasAttribute('popover')) ||
++		null;
++}
 +
  // src/popover.ts
  function isSupported() {
@@ -164,10 +171,7 @@ index 46f6e4e..b5ce89e 100644
 +		if (!(target instanceof Element))
 +			return;
 +		const doc = target.ownerDocument;
-+		let effectedPopover = event
-+			.composedPath()
-+			.find((el) => el instanceof HTMLElement && el.hasAttribute('popover')) ||
-+			null;
++		let effectedPopover = closestComposed(event);
 +		const button = target.closest(
 +			"[popovertoggletarget],[popoverhidetarget],[popovershowtarget]"
 +		);
@@ -211,4 +215,5 @@ index 46f6e4e..b5ce89e 100644
  if (!isSupported())
 -  apply();
 +	apply();
++
  //# sourceMappingURL=popover.js.map
