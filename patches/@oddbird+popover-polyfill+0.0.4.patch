@@ -1,8 +1,8 @@
 diff --git a/node_modules/@oddbird/popover-polyfill/dist/popover.js b/node_modules/@oddbird/popover-polyfill/dist/popover.js
-index 4f18494..e060199 100644
+index 46f6e4e..b5ce89e 100644
 --- a/node_modules/@oddbird/popover-polyfill/dist/popover.js
 +++ b/node_modules/@oddbird/popover-polyfill/dist/popover.js
-@@ -1,104 +1,106 @@
+@@ -1,107 +1,112 @@
 +import { querySelectorAllDeep } from 'query-selector-shadow-dom';
 +
  // src/popover.ts
@@ -66,28 +66,31 @@ index 4f18494..e060199 100644
 -  });
 -  document.addEventListener("click", (event) => {
 -    const target = event.target;
--    if (!(target instanceof HTMLElement))
+-    if (!(target instanceof Element))
 -      return;
 -    const doc = target.ownerDocument;
 -    let effectedPopover = target.closest("[popover]");
--    const isButton = target instanceof HTMLButtonElement;
--    if (isButton && target.hasAttribute("popovershowtarget")) {
+-    const button = target.closest(
+-      "[popovertoggletarget],[popoverhidetarget],[popovershowtarget]"
+-    );
+-    const isButton = button instanceof HTMLButtonElement;
+-    if (isButton && button.hasAttribute("popovershowtarget")) {
 -      effectedPopover = doc.getElementById(
--        target.getAttribute("popovershowtarget") || ""
+-        button.getAttribute("popovershowtarget") || ""
 -      );
 -      if (effectedPopover && effectedPopover.popover && !visibleElements.has(effectedPopover)) {
 -        effectedPopover.showPopover();
 -      }
--    } else if (isButton && target.hasAttribute("popoverhidetarget")) {
+-    } else if (isButton && button.hasAttribute("popoverhidetarget")) {
 -      effectedPopover = doc.getElementById(
--        target.getAttribute("popoverhidetarget") || ""
+-        button.getAttribute("popoverhidetarget") || ""
 -      );
 -      if (effectedPopover && effectedPopover.popover && visibleElements.has(effectedPopover)) {
 -        effectedPopover.hidePopover();
 -      }
--    } else if (isButton && target.hasAttribute("popovertoggletarget")) {
+-    } else if (isButton && button.hasAttribute("popovertoggletarget")) {
 -      effectedPopover = doc.getElementById(
--        target.getAttribute("popovertoggletarget") || ""
+-        button.getAttribute("popovertoggletarget") || ""
 -      );
 -      if (effectedPopover && effectedPopover.popover) {
 -        if (visibleElements.has(effectedPopover)) {
@@ -158,28 +161,34 @@ index 4f18494..e060199 100644
 +	});
 +	document.addEventListener("click", (event) => {
 +		const target = event.target;
-+		if (!(target instanceof HTMLElement))
++		if (!(target instanceof Element))
 +			return;
 +		const doc = target.ownerDocument;
-+		let effectedPopover = target.closest("[popover]");
-+		const isButton = target instanceof HTMLButtonElement;
-+		if (isButton && target.hasAttribute("popovershowtarget")) {
++		let effectedPopover = event
++			.composedPath()
++			.find((el) => el instanceof HTMLElement && el.hasAttribute('popover')) ||
++			null;
++		const button = target.closest(
++			"[popovertoggletarget],[popoverhidetarget],[popovershowtarget]"
++		);
++		const isButton = button instanceof HTMLButtonElement;
++		if (isButton && button.hasAttribute("popovershowtarget")) {
 +			effectedPopover = doc.getElementById(
-+				target.getAttribute("popovershowtarget") || ""
++				button.getAttribute("popovershowtarget") || ""
 +			);
 +			if (effectedPopover && effectedPopover.popover && !visibleElements.has(effectedPopover)) {
 +				effectedPopover.showPopover();
 +			}
-+		} else if (isButton && target.hasAttribute("popoverhidetarget")) {
++		} else if (isButton && button.hasAttribute("popoverhidetarget")) {
 +			effectedPopover = doc.getElementById(
-+				target.getAttribute("popoverhidetarget") || ""
++				button.getAttribute("popoverhidetarget") || ""
 +			);
 +			if (effectedPopover && effectedPopover.popover && visibleElements.has(effectedPopover)) {
 +				effectedPopover.hidePopover();
 +			}
-+		} else if (isButton && target.hasAttribute("popovertoggletarget")) {
++		} else if (isButton && button.hasAttribute("popovertoggletarget")) {
 +			effectedPopover = doc.getElementById(
-+				target.getAttribute("popovertoggletarget") || ""
++				button.getAttribute("popovertoggletarget") || ""
 +			);
 +			if (effectedPopover && effectedPopover.popover) {
 +				if (visibleElements.has(effectedPopover)) {
