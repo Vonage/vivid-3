@@ -131,7 +131,7 @@ export class Popup extends FoundationElement {
 		if (!this.open || !this.anchorEl) {
 			return;
 		}
-		
+
 		const positionData = await computePosition(this.anchorEl, this.popupEl, {
 			placement: this.placement,
 			strategy: this.strategy,
