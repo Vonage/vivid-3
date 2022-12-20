@@ -72,7 +72,7 @@ Add the `dismissible` attribute to add a close button to the popup.
 ### Popover
 
 Use the `popover` attribute to add Light dismiss behaviors. 
-- When `'auto'` the following will dismiss the popup: pressing the ESC key, keyboard-navigation, invoking elsewhere in the document, invoking another popup, etc.
+- When `'auto'` the following will dismiss the popup: ~~pressing the ESC key~~ (TBD), keyboard-navigation, invoking elsewhere in the document, invoking another popup, etc.
 - When `'manual'`, popup cannot be light dismissed (it can only be dismissed by an explicit trigger element or by JavaScript), and they don't automatically dismiss previously-shown popups.
 
 - Type: `'auto'` | `'manual'`
