@@ -25,6 +25,7 @@ describe('vwc-avatar', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-avatar', async () => {
+			expect(avatarDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Avatar);
 		});
 	});
