@@ -8,9 +8,6 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-accordion';
 
-/* eslint-disable @typescript-eslint/no-empty-function */
-global.fetch = jest.fn(() => new Promise(() => {}));
-
 describe('vwc-accordion', () => {
 	let element: Accordion;
 	let accordionItem1: AccordionItem;

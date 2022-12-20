@@ -24,8 +24,8 @@ export const NavDisclosureTemplate: (
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const focusTemplate = focusTemplateFactory(context);
 	const iconTag = context.tagFor(Icon);
-	
 	['chevron-up-solid', 'chevron-down-solid'].forEach(i => resolveIcon(i));
+
 	return html`<details class="base" ${ref('details')} ?open=${x => x.open}>
         <summary class="control"
             role="button"

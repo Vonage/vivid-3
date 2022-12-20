@@ -2,6 +2,7 @@ import { html, ViewTemplate, when } from '@microsoft/fast-element';
 import { ElementDefinitionContext, MenuItemRole } from '@microsoft/fast-foundation';
 import type { MenuItemOptions } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
+import { resolveIcon } from '../icon/icon';
 // import { Icon } from '../icon/icon';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { MenuItem } from './menu-item';
@@ -38,6 +39,7 @@ export const MenuItemTemplate:  (
 	// const iconTag = context.tagFor(Icon);
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const focusTemplate = focusTemplateFactory(context);
+	['checkbox-checked-line', 'checkbox-unchecked-line', 'radio-checked-line', 'radio-unchecked-line'].forEach(i => resolveIcon(i));
 
 	// const anchoredRegionTag = tagFor(options.anchoredRegion);
 	return html<MenuItem>`
