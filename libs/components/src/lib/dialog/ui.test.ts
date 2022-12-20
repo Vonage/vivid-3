@@ -21,6 +21,11 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			top: 500px;
 			left: 300px;
 		}
+		#horizontal-icon {
+			position: relative;
+			top: 50px;
+			left: 0;
+		}
 	</style>
 	<div style="height: 800px">
 		<vwc-dialog id="top-dialog"
@@ -34,6 +39,14 @@ test('should show the component', async ({ page }: { page: Page }) => {
 								icon="info"
 								headline="Headline"
 								text="This is the content that I want to show and I will show it!!!"
+								>
+								</vwc-dialog>
+								<vwc-dialog
+								id="horizontal-icon"
+								icon="heart-solid"
+								icon-placement="side"
+								headline="Horizontal icon"
+								open
 								>
 								</vwc-dialog>
 		<vwc-dialog id="bottom-left-dialog"
