@@ -1,13 +1,19 @@
 import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {Connotation} from '../enums';
 import { Avatar } from './avatar';
 import '.';
+import { avatarDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-avatar';
 
 describe('vwc-avatar', () => {
 	let baseElement: Element;
 	let element: Avatar;
+
+	beforeAll(async () => {
+		await customElements.whenDefined(COMPONENT_TAG);
+	});
 
 	beforeEach(async () => {
 		element = (await fixture(
@@ -18,6 +24,7 @@ describe('vwc-avatar', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-avatar', async () => {
+			expect(avatarDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Avatar);
 		});
 	});

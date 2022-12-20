@@ -1,5 +1,5 @@
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
-@use 'partials/card-variables' as card-variables;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "partials/card-variables" as card-variables;
 
 
 :host {
@@ -9,6 +9,7 @@
 .base {
 	border-radius: 6px;
 	inline-size: 100%;
+	text-align: start;
 }
 
 .wrapper {

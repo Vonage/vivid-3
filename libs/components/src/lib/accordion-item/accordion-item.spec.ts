@@ -1,11 +1,17 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { AccordionItem } from './accordion-item';
 import '.';
+import { accordionItemDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-accordion-item';
 
 describe('vwc-accordion-item', () => {
 	let element: AccordionItem;
+
+	beforeAll(async () => {
+		await customElements.whenDefined(COMPONENT_TAG);
+	});
 
 	beforeEach(async () => {
 		element = (await fixture(
@@ -15,6 +21,7 @@ describe('vwc-accordion-item', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-accordion-item', async () => {
+			expect(accordionItemDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(AccordionItem);
 			expect(element.open).toBeFalsy();
 			expect(element.icon).toBeUndefined();

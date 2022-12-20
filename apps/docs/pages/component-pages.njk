@@ -10,15 +10,9 @@ permalink: "components/{{ component.title | slug }}/"
 {% extends '../_layouts/base.njk' %}
 
 {% block header %}
-	{% set urls = component.modules %}
-
 	{% if (component.status) == "alpha" %}
-		{% set urls = (urls.push("/assets/modules/components/banner/index.js"),urls) %}
+		<script type="module" src="/assets/modules/components/banner/index.js"></script>
 	{% endif %}
-
-	{% for url in urls %}
-		<script type="module" src="{{ url | url }}"></script>
-	{% endfor %}
 {% endblock %}
 
 {% block banner %}
