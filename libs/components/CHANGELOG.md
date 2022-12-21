@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 18 Dec 2022 17:21:02 GMT and should not be manually modified.
+This log was last generated on Wed, 21 Dec 2022 15:15:42 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.123
+
+Wed, 21 Dec 2022 15:15:42 GMT
+
+### Changes
+
+- Remove exports from package.json (yonatan.kra@vonage.com)
 
 ## 3.0.0-next.122
 
