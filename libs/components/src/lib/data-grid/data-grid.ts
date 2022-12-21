@@ -1,4 +1,4 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
+import { DataGrid as FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 
 /**
