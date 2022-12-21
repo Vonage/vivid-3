@@ -62,7 +62,7 @@
       }
     },
     {
-      "files": ["*.spec.ts", "*.test.ts"],
+      "files": ["*.spec.ts"],
       "rules": {
         "@nrwl/nx/enforce-module-boundaries": "off"
       }
