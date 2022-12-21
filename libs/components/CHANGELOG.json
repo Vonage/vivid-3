@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Wed, 21 Dec 2022 09:29:23 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.122",
+      "version": "3.0.0-next.122",
+      "comments": {
+        "none": [
+          {
+            "author": "olaf-k@users.noreply.github.com",
+            "package": "@vonage/vivid",
+            "commit": "655a102838bfeaa0b6d1a9fdb90045f16c2c8f57",
+            "comment": "Update calendar.spec.ts"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 18 Dec 2022 17:21:02 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.122",
       "version": "3.0.0-next.122",
