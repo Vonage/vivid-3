@@ -52,7 +52,8 @@ export class AccordionItem extends FoundationElement {
 	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
 		super.attributeChangedCallback(name, oldValue, newValue);
 		if (name === 'open') {
-			newValue === null ? this.$emit('closed') : this.$emit('opened');
+			newValue === null ? this.$emit('closed', undefined, { bubbles: false })
+				:	this.$emit('opened', undefined, { bubbles: false });
 		}
 	}
 }

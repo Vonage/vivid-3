@@ -125,4 +125,40 @@ describe('vwc-accordion-item', () => {
 			expect(actualMetaText).toEqual(metaText);
 		});
 	});
+
+	describe('events', function () {
+		it("should fire an 'opened' event when done opening", async () => {
+			const fn = jest.fn();
+			element.addEventListener('opened', fn);
+			element.open = true;
+			await elementUpdated(element);
+			expect(fn).toBeCalled();
+		});
+
+		it("should not bubble 'opened' event", async () => {
+			const fn = jest.fn();
+			element.parentElement?.addEventListener('opened', fn);
+			element.open = true;
+			await elementUpdated(element);
+			expect(fn).not.toBeCalled();
+		});
+
+		it("should fire a 'closed' event when done closing", async () => {
+			const fn = jest.fn();
+			element.addEventListener('closed', fn);
+			element.open = true;
+			await elementUpdated(element);
+			element.open = false;
+			await elementUpdated(element);
+			expect(fn).toBeCalled();
+		});
+
+		it("should not bubble 'closed' event", async () => {
+			const fn = jest.fn();
+			element.parentElement?.addEventListener('closed', fn);
+			element.open = true;
+			await elementUpdated(element);
+			expect(fn).not.toBeCalled();
+		});
+	});
 });

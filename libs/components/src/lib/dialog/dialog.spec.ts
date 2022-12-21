@@ -234,7 +234,7 @@ describe('vwc-dialog', () => {
 		});
 	});
 
-	it('should fire close event with returnValue', async function() {
+	it("should fire 'close' event with returnValue", async function() {
 		let detail;
 		const returnValue = 'returnValue';
 		element.returnValue = returnValue;
@@ -245,6 +245,16 @@ describe('vwc-dialog', () => {
 		await closeDialog();
 
 		expect(detail).toEqual(returnValue);
+	});
+
+	it("should not bubble 'close' event", async () => {
+		await showDialog();
+
+		const fn = jest.fn();
+		element.parentElement?.addEventListener('close', fn);
+
+		await elementUpdated(element);
+		expect(fn).not.toBeCalled();
 	});
 
 	it('should render the icon when icon is set', async function() {
