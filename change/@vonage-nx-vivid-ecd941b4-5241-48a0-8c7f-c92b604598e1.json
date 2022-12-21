@@ -1,0 +1,7 @@
+{
+  "comment": "fix all lint warnings",
+  "type": "none",
+  "packageName": "@vonage/nx-vivid",
+  "email": "rina.oksman@vonage.com",
+  "dependentChangeType": "none"
+}
