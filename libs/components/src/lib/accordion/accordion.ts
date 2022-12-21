@@ -1,6 +1,6 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
-import type { AccordionItem } from '../accordion-item/accordion-item';
+import { attr, observable } from '@microsoft/fast-element';
+import { type AccordionItem, isAccordionItem } from '../accordion-item/accordion-item';
 
 /**
  * Base class for accordion
@@ -8,7 +8,35 @@ import type { AccordionItem } from '../accordion-item/accordion-item';
  * @public
  */
 export class Accordion extends FoundationElement {
-	private accordionItems: HTMLCollectionOf<AccordionItem> | undefined = undefined;
+	/**
+	 * A static filter to include only accordion items.
+	 *
+	 * @param n - element to filter
+	 * @public
+	 */
+	static slottedAccordionItemFilter = (n: HTMLElement) =>
+		isAccordionItem(n) && !n.hidden;
+
+	/**
+	 * The default slotted elements.
+	 *
+	 * @internal
+	 */
+	@observable
+		slottedAccordionItems?: AccordionItem[];
+
+	/**
+	 * if accordion not set multi, keep only a single accordion item open at a time
+	 *
+	 * @param prev - the previous list of slotted options
+	 * @param next - the current list of slotted options
+	 * @internal
+	 */
+	slottedAccordionItemsChanged(prev: AccordionItem[] | undefined, next: AccordionItem[]) {
+		// const new1 = next.filter();
+		// [...new Set([...prev, ...next])];
+		// next.find((item) => item.open);
+	}
 
 	/**
 	 *
@@ -19,32 +47,32 @@ export class Accordion extends FoundationElement {
 		mode: 'boolean',
 	}) multi = false;
 
-	override connectedCallback(): void {
-		super.connectedCallback();
-		this.addEventListener('opened', this.handleOpened);
-		this.accordionItems = this.children as HTMLCollectionOf<AccordionItem>;
-	}
+	/**
+	 * Handle click events for accordion items.
+	 *
+	 * @param e
+	 * @internal
+	 */
+	clickHandler(e: MouseEvent): boolean | void {
+		const captured = isAccordionItem(e.target as HTMLElement) &&
+			(e.composedPath() as HTMLElement[])[0].closest('button[aria-expanded="false"]');
 
-	override disconnectedCallback(): void {
-		super.disconnectedCallback();
-		this.removeEventListener('opened', this.handleOpened);
-	}
-
-	private handleOpened(e: Event): any {
-		if (!this.multi && this.accordionItems) {
-			for (let i = 0; i < this.accordionItems.length; i++) {
-				if (this.accordionItems[i] !== e.target) {
-					this.accordionItems[i].open = false;
-				}
-			}
+		if (captured && !this.multi) {
+			this.closeAccordionItems(e.target as AccordionItem);
+			return true;
 		}
+	}
+
+	private closeAccordionItems(itemToExclude?: AccordionItem) {
+		this.slottedAccordionItems?.forEach((item: AccordionItem) => {
+			if (item !== itemToExclude) {
+				item.open = false;
+			}
+		});
 	}
 
 	closeAll(): void {
-		if (this.accordionItems) {
-			for (let i = 0; i < this.accordionItems.length; i++) {
-				this.accordionItems[i].open = false;
-			}
-		}
+		this.closeAccordionItems();
 	}
 }
+

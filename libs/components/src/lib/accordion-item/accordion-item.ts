@@ -1,7 +1,21 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { applyMixins } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
+import { isHTMLElement } from '@microsoft/fast-web-utilities';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
+
+/**
+ * Determines if the element is a {@link (AccordionItem:class)}
+ *
+ * @param element - the element to test.
+ * @param el
+ * @public
+ */
+export function isAccordionItem(el: Element): el is AccordionItem {
+	return (
+		isHTMLElement(el) && el.tagName.endsWith('accordion-item'.toUpperCase())
+	);
+}
 
 /**
  * Base class for accordion-item
