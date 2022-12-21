@@ -93,10 +93,6 @@ export class Popup extends FoundationElement {
 	 */
 	@attr anchor!: string | HTMLElement;
 
-	override connectedCallback(): void {
-		super.connectedCallback();
-	}
-
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
 		this.#cleanup?.();
