@@ -10,7 +10,7 @@ const components = ['breadcrumb', 'breadcrumb-item'];
 /**
  *
  *
- * @returns {*} - template
+ * @returns (): Promise<void>;
  */
 function runBreadcrumbsTest() {
 	return async ({page}: { page: Page }) => {
