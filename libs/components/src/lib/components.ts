@@ -38,3 +38,5 @@ export * from './text-field/definition';
 export * from './text-area/definition';
 export * from './tooltip/definition';
 export * from './tabs/definition';
+export * from './tab/definition';
+export * from './tab-panel/definition';
