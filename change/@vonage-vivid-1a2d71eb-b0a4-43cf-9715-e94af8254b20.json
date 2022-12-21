@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "Remove exports from package.json",
-  "packageName": "@vonage/vivid",
-  "email": "yonatan.kra@vonage.com",
-  "dependentChangeType": "patch"
-}

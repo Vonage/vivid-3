@@ -1,7 +1,0 @@
-{
-  "comment": "Remove exports from package.json",
-  "type": "none",
-  "packageName": "@vonage/nx-vivid",
-  "email": "yonatan.kra@vonage.com",
-  "dependentChangeType": "none"
-}
