@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "style(code): adopt tsdocs",
+  "packageName": "@vonage/vivid",
+  "email": "rina.oksman@vonage.com",
+  "dependentChangeType": "none"
+}
