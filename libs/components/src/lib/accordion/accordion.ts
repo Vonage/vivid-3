@@ -19,14 +19,15 @@ export class Accordion extends FoundationElement {
 		mode: 'boolean',
 	}) multi = false;
 
-	constructor() {
-		super();
-		this.addEventListener('opened', this.handleOpened);
-	}
-
 	override connectedCallback(): void {
 		super.connectedCallback();
+		this.addEventListener('opened', this.handleOpened);
 		this.accordionItems = this.children as HTMLCollectionOf<AccordionItem>;
+	}
+
+	override disconnectedCallback(): void {
+		super.disconnectedCallback();
+		this.removeEventListener('opened', this.handleOpened);
 	}
 
 	private handleOpened(e: Event): any {
