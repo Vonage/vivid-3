@@ -1,4 +1,5 @@
 @use "../focus/partials/variables" as focus-variables;
+@use "../popup/partials/variables" as popup-variables;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent,
 	$shades: backdrop intermediate primary soft,
@@ -47,7 +48,5 @@
 }
 
 .popup {
-	$popup-width: --_popup-width;
-	
-	#{$popup-width}: 100%;
+	#{popup-variables.$popup-width}: 100%;
 }
