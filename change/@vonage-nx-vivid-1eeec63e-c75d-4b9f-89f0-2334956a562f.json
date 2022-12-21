@@ -1,7 +1,0 @@
-{
-  "comment": "Fix typo in the template",
-  "type": "none",
-  "packageName": "@vonage/nx-vivid",
-  "email": "yonatan.kra@vonage.com",
-  "dependentChangeType": "none"
-}
