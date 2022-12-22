@@ -47,7 +47,7 @@ Tokens folder contains the following files:
 
 Only one theme is required to be loaded.
 
-### Fonts (Prerequisite) - Should we leave it for Vonage users?
+### Fonts (Prerequisite)
 
 Vivid uses `Montserrat` and `Roboto Mono` Google fonts.  
 Learn how to load fonts into your application [with google-fonts](https://fonts.google.com/knowledge/using_type/using_web_fonts_from_a_font_delivery_service#loading-web-fonts)
