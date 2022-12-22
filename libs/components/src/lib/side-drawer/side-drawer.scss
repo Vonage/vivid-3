@@ -1,8 +1,8 @@
-@use 'sass:map';
+@use "sass:map";
 
-@use 'partials/variables' as variables;
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
-@use '../../../../shared/src/lib/sass/mixins/scrim' as scrim-mixins;
+@use "partials/variables" as variables;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "../../../../shared/src/lib/sass/mixins/scrim" as scrim-mixins;
 
 
 $inline-size: 280px;
