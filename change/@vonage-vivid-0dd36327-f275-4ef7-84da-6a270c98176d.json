@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "new component migration - select",
+  "packageName": "@vonage/vivid",
+  "email": "rachel.tannenbaum@vonage.com",
+  "dependentChangeType": "patch"
+}
