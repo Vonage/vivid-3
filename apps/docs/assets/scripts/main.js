@@ -43,22 +43,33 @@ const codeCopyButtonClick = (button) => {
 };
 
 const onloadIframe = (iFrame) => {
-  const toggle = document.querySelector('dark-mode-toggle');
+  const toggle = document.querySelector('vwc-button#dark-mode-toggle');
+  const listbox = document.querySelector('vwc-listbox#dark-mode-listbox');
 
   setCurrentIframeTheme(toggle, iFrame);
-  toggle.addEventListener('colorschemechange', () => {
+  listbox.addEventListener('click', () => {
     setCurrentIframeTheme(toggle, iFrame);
   });
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => setCurrentIframeTheme(toggle, iFrame));
 
-  // wait for repaint to set needed height
-  requestAnimationFrame(() => {
-    setTimeout(() => {
-      iFrame.style.height = iFrame.contentWindow.document.documentElement.clientHeight + 4 + "px";
-    }, 0);
-  })
+  autoResize(iFrame);
+};
+
+const iframeObservers = new WeakMap();
+
+const autoResize = (iFrame) => {
+  new ResizeObserver((entries, observer) => {
+	if (entries.length === 0) return;
+	iFrame.style.height = Math.max(150, entries[0].contentRect.height) + "px";
+    clearTimeout(iframeObservers.get(iFrame));
+    iframeObservers.set(iFrame, setTimeout(() => {
+      observer.disconnect();
+      iframeObservers.delete(iFrame);
+    }, 3000));
+  }).observe(iFrame.contentWindow.document.documentElement);
 };
 
 const setCurrentIframeTheme = (toggle, iFrame) => {
-  const theme = toggle.mode === 'dark' ? '<link rel="stylesheet" href="/assets/styles/tokens/theme-dark.css" media="all">' : '<link rel="stylesheet" href="/assets/styles/tokens/theme-light.css" media="all">';
+  const theme = toggle.icon === "dark-mode-solid" ? '<link rel="stylesheet" href="/assets/styles/tokens/theme-dark.css" media="all">' : '<link rel="stylesheet" href="/assets/styles/tokens/theme-light.css" media="all">';
   iFrame.contentWindow.document.head?.insertAdjacentHTML("beforeend", theme);
 }

@@ -1,5 +1,6 @@
-@use 'partials/variables' as variables;
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use "partials/variables" as variables;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
 
 .base {
@@ -55,12 +56,29 @@
 
 	&-wrapper {
 		display: flex;
-		flex-direction: column;
 		align-items: flex-start;
-		row-gap: 24px;
+
+		.base:not(.icon-placement-side) & {
+			flex-direction: column;
+			row-gap: #{size.$vvd-size-super-condensed};
+
+			.icon {
+				font-size: #{size.$vvd-size-condensed};
+			}
+		}
+
+		.base.icon-placement-side & {
+			column-gap: calc(#{size.$vvd-size-condensed} - #{size.$vvd-size-super-condensed});
+
+			.icon {
+				font-size: #{size.$vvd-size-extra-condensed};
+			}
+		}
 	}
 }
 
 .content {
 	font: var(#{constants.$vvd-typography-base});
 }
+
+

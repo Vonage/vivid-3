@@ -2,6 +2,365 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Wed, 21 Dec 2022 15:15:42 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.123",
+      "version": "3.0.0-next.123",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "758461be66e51578bc6f27e7282ebf67ffb1cf47",
+            "comment": "Remove exports from package.json"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 21 Dec 2022 09:58:50 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.122",
+      "version": "3.0.0-next.122",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "adea4543fb541706dd454ac28a20c0403dd484a3",
+            "comment": "style(code): adopt tsdocs"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 21 Dec 2022 09:29:23 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.122",
+      "version": "3.0.0-next.122",
+      "comments": {
+        "none": [
+          {
+            "author": "olaf-k@users.noreply.github.com",
+            "package": "@vonage/vivid",
+            "commit": "655a102838bfeaa0b6d1a9fdb90045f16c2c8f57",
+            "comment": "Update calendar.spec.ts"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 18 Dec 2022 17:21:02 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.122",
+      "version": "3.0.0-next.122",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon.oved@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "0eb643df0b8d0a72e137f22c268531e4c8cdac2b",
+            "comment": "export header component from package"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 16 Dec 2022 11:38:04 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.121",
+      "version": "3.0.0-next.121",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon.oved@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "8744b03df7beb267bcf8cbf080ac8537c9ee6f6f",
+            "comment": "export component definition and design system"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 15 Dec 2022 09:47:39 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.120",
+      "version": "3.0.0-next.120",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "999d60cfb47c20dc81772177a37bf1925dc4cc14",
+            "comment": "fix test"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 14 Dec 2022 16:38:10 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.120",
+      "version": "3.0.0-next.120",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "cfa9964c9fb8475acd969bae5e0cc2b4d86ff8a2",
+            "comment": "change prefix override interface"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 14 Dec 2022 14:20:15 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.119",
+      "version": "3.0.0-next.119",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "074acf3a9f26584e9e965cb9188cfae4bcef96ca",
+            "comment": "add absolute strategy"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 13 Dec 2022 14:06:36 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.118",
+      "version": "3.0.0-next.118",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon.oved@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "0092a6d03238458855b8c8a3db54f0d2556933a0",
+            "comment": "code style enforce string single quotes"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 13 Dec 2022 13:34:41 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.117",
+      "version": "3.0.0-next.117",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "olaf-k@users.noreply.github.com",
+            "package": "@vonage/vivid",
+            "commit": "b825e111d5f4982cf0ca21708563d221f3490852",
+            "comment": "replace hardcoded tags with contextual tags"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 12 Dec 2022 12:23:32 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.116",
+      "version": "3.0.0-next.116",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "a08d2374d5f0235db65ec45dd59a293e5c836412",
+            "comment": "anchor can recieve  HTMLElement"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 12 Dec 2022 11:29:26 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.115",
+      "version": "3.0.0-next.115",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "57e8375c4fcd2d02198f33e6b7d312c9fad83bbd",
+            "comment": "dialog icon placement side option added"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 11:19:53 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.114",
+      "version": "3.0.0-next.114",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "9badcce8e4870d8be5ad7c15c7f03d63c2100faf",
+            "comment": "nameing avatar main slot"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 10:58:26 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.113",
+      "version": "3.0.0-next.113",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "6649e06646a02cc36b6b49edcb443c0d9985c51c",
+            "comment": "ensuring correct card text align"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 07:12:10 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.112",
+      "version": "3.0.0-next.112",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "a24ebf3fd720bf6e26cc62e9f88e937c1f8e71fb",
+            "comment": "duotone appearance & warning connotation conditioned to an outline lighter shade"
+          }
+        ],
+        "none": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "93708f4717700a4304c89ccbfe773e047d6fb709",
+            "comment": "feat(fab): typo"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 05 Dec 2022 11:11:21 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.111",
+      "version": "3.0.0-next.111",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "b51e9af216b2f3a4e6e982b3f6ab6bc90c446f60",
+            "comment": "make button inline size fluid to its container"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 04 Dec 2022 15:36:59 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.110",
+      "version": "3.0.0-next.110",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "f023bd00c65a102650e9d0cc6e4c5d91d27134db",
+            "comment": "enable custom prefix for custom-elements"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 04 Dec 2022 13:39:56 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.109",
+      "version": "3.0.0-next.109",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "80d31483aea412cb8932184fce541008b7a07854",
+            "comment": "badge support overflow clipping"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 29 Nov 2022 15:41:17 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.108",
+      "version": "3.0.0-next.108",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "5f0b87a2700c7afdf1d023b157a8ed97c7a3edfd",
+            "comment": "icon component support svg slot assignment"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 29 Nov 2022 09:53:01 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.107",
+      "version": "3.0.0-next.107",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "d9c29d762e598f8b71f0bc66460398b55478d633",
+            "comment": "fix lint"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 28 Nov 2022 21:11:08 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.107",
+      "version": "3.0.0-next.107",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "2f90891228c3a971545705fb99d68550c2a51eb5",
+            "comment": "icon & progress-ring support full integer sizing spectrum"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "40646892f6cfc68f433c5a04e9e11cdef79b278d",
+            "comment": "icon type property renamed (to name)"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 27 Nov 2022 16:54:42 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.106",
+      "version": "3.0.0-next.106",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "47ab0d2cd75657411ca167b287572c07c4bd7994",
+            "comment": "map warning connotation to custom semantic variables"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 27 Nov 2022 13:41:49 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.105",
+      "version": "3.0.0-next.105",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "3cc31e2034c28f4251803c1e39d3552ed1c6ac52",
+            "comment": "refactor tooltip"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 22 Nov 2022 08:33:47 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.104",
       "version": "3.0.0-next.104",
