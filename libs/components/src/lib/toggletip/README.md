@@ -15,9 +15,9 @@ Represents a toggletip custom element.
 	This may require more details
 	<vwc-toggletip>
 		<div style="width: 300px;">
-			<p>Here are some more explanations about what this is about and what you want to do.</p>
-			<p>Maybe with an action or two?</p>
-			<div>
+			Here are some more explanations about what this is about and what you want to do.
+			<p>Do you want to learn more or do stuff?</p>
+			<div style="text-align: right">
 				<vwc-button label="Learn more" appearance="ghost"></vwc-button>
 				<vwc-button label="Do stuff!" appearance="outlined"></vwc-button>
 			</div>

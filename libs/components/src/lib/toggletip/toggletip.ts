@@ -94,10 +94,15 @@ export class Toggletip extends FoundationElement {
 	override connectedCallback() {
 		super.connectedCallback();
 
-		this.popup.anchorEl = this.button;
-		this.popup.anchorEl.addEventListener('keydown', this.popup.handleKeydown);
+		this.popup.anchor = this.button;
+		
+		this.button.addEventListener('keydown', this.closeOnEsc);
+		this.popup.addEventListener('keydown', this.closeOnEsc);
 
-		// quick'n'dirty light dismiss
+		this.popup.addEventListener('open', this.openClose);
+		this.popup.addEventListener('close', this.openClose);
+
+		// quick'n'dirty light dismiss waiting for https://github.com/Vonage/vivid-3/pull/765
 		document.addEventListener('click', (e) => {
 			if (this.popup.open && !this.contains(e.target as HTMLElement)) {
 				this.popup.open = false;
@@ -107,4 +112,18 @@ export class Toggletip extends FoundationElement {
 		this.button.addEventListener('click', () => this.popup.open = true);
 	}
 
+	closeOnEsc = (e: KeyboardEvent) => {
+		if (e.key === 'Escape') {
+			this.popup.open = false;
+		}
+	};
+
+	openClose = () => {
+		this.ariaExpanded = this.popup.open.toString();
+		if (this.popup.open)
+			this.popup.setAttribute('role', 'status');
+		else
+			this.popup.removeAttribute('role');
+		
+	}
 }

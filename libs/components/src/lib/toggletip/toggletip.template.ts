@@ -4,7 +4,6 @@ import type { ElementDefinitionContext, FoundationElementDefinition } from '@mic
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Button } from '../button/button';
 import { Popup } from '../popup/popup';
-// import { Layout } from '../layout/layout';
 import type { Toggletip } from './toggletip';
 
 const getClasses = (_: Toggletip) => classNames('control');
@@ -19,10 +18,13 @@ export const ToggletipTemplate:
 	(context: ElementDefinitionContext, definition: FoundationElementDefinition) => ViewTemplate<Toggletip> = (context: ElementDefinitionContext) => {
 		const button = context.tagFor(Button);
 		const popup = context.tagFor(Popup);
-		// const layout = context.tagFor(Layout);
 
 		return html`
-			<div class="${getClasses}">
+			<template class="${getClasses}"
+				aria-label="${x => x.ariaLabel ? x.ariaLabel : ' ; Show more information'}"
+				aria-expanded="${x => x.ariaExpanded}"
+				aria-controls="popup"
+			>
 				<${button}
 					?disabled="${x => x.disabled}"
 					connotation="${x => x.connotation}"
@@ -35,15 +37,16 @@ export const ToggletipTemplate:
 				</${button}>
 				<${popup}
 					arrow
+					id="popup"
 					?alternate="${x => x.alternate}"
 					placement="${x => x.placement ? x.placement : 'right'}"
 					exportparts="vvd-theme-alternate"
 					${ref('popup')}
 				>
-					<span style="padding: 12px;">
+					<span class="content-wrapper">
 						<slot></slot>
 					</span>
 				</${popup}>
-			</div>
+			</template>
 		`;
 	}
