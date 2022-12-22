@@ -2,6 +2,51 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Wed, 21 Dec 2022 15:15:42 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.123",
+      "version": "3.0.0-next.123",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "758461be66e51578bc6f27e7282ebf67ffb1cf47",
+            "comment": "Remove exports from package.json"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 21 Dec 2022 09:58:50 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.122",
+      "version": "3.0.0-next.122",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "adea4543fb541706dd454ac28a20c0403dd484a3",
+            "comment": "style(code): adopt tsdocs"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 21 Dec 2022 09:29:23 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.122",
+      "version": "3.0.0-next.122",
+      "comments": {
+        "none": [
+          {
+            "author": "olaf-k@users.noreply.github.com",
+            "package": "@vonage/vivid",
+            "commit": "655a102838bfeaa0b6d1a9fdb90045f16c2c8f57",
+            "comment": "Update calendar.spec.ts"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 18 Dec 2022 17:21:02 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.122",
       "version": "3.0.0-next.122",
