@@ -8,6 +8,12 @@ Represents a select custom element.
 </script>
 ```
 
+## Slots
+
+### Default
+
+Read more about [vwc-option](../../components/option).
+
 ```html preview
 <vwc-select label="choose one option">
   <vwc-option value="1" text="Option 1" selected></vwc-option>
@@ -26,21 +32,6 @@ Represents a select custom element.
 Add a `label` attribute to add label to the Select.
 ```html preview
 <vwc-select label="choose one option">
-  <vwc-option value="1" text="Option 1"></vwc-option>
-  <vwc-option value="2" text="Option 2"></vwc-option>
-  <vwc-option value="3" text="Option 3"></vwc-option>
-</vwc-select>
-```
-
-### Helper text
-
-Add the `helper-text` to add some helper text below the Select.
-
-- Type: `string` | `undefined`
-- Default: `undefined`
-
-```html preview
-<vwc-select label="choose one option" helper-text="try picking the right one">
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
   <vwc-option value="3" text="Option 3"></vwc-option>
@@ -92,14 +83,26 @@ Add the `disabled` attribute to disable the Select.
 </vwc-select>
 ```
 
-## Slots
 
-## CSS Variables
+### Open
 
-## Events
+_Select_ internally uses _popup_ to display an element and its descendants above the rest of the document.
 
-## Methods
+`open` property from _popup_ propagate through _select_ and sets its open state.
 
-## Accessibility
+- Type: `boolean`
+- Default: `false`
 
-## Use Cases
+```html preview
+<vwc-select open>
+  <vwc-option value="1" text="Option 1"></vwc-option>
+  <vwc-option value="2" text="Option 2"></vwc-option>
+  <vwc-option value="3" text="Option 3"></vwc-option>
+</vwc-select>
+```
+
+
+## Caveat
+
+Document elements display precedence is formed by the imaginary z-axis [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context), commonly by order of which elements are rendered and special properties (e.g. _z-index_).
+Combobox component is a low level element, unaware of its document context, but is, in most cases, required to overlay on top of all elements.

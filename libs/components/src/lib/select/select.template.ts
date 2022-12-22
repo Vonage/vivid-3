@@ -1,12 +1,10 @@
 import { html, ref, slotted, ViewTemplate, when } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
-// import { classNames } from '@microsoft/fast-web-utilities';
 import {classNames} from '@microsoft/fast-web-utilities';
 import { Listbox } from '../listbox/listbox.js';
 import { Popup } from '../popup/popup.js';
 import { affixIconTemplateFactory } from '../shared/patterns/affix.js';
 // import { focusTemplateFactory } from '../shared/patterns/focus.js';
-import {getFeedbackTemplate} from '../../shared/patterns';
 import type { Select } from './select';
 
 
@@ -44,7 +42,7 @@ function renderControl(context: ElementDefinitionContext) {
 
 	return html<Select>`
 			${when(x => x.label, renderLabel())}
-			<div style="position: relative">
+			<div class="control-wrapper">
 				<div
 					class="control"
 					?disabled="${x => x.disabled}"
@@ -80,8 +78,6 @@ function renderControl(context: ElementDefinitionContext) {
             </div>
 					</${popupTag}>
 			</div>
-
-
 		`;
 	// ${() => focusTemplate}
 }
@@ -119,7 +115,6 @@ export const SelectTemplate: (
             @mousedown="${(x, c) => x.mousedownHandler(c.event as MouseEvent)}"
         >
             ${when(x => x.collapsible, renderControl(context))}
-			${when(x => !x.successText && !x.errorValidationMessage && x.helperText?.length, getFeedbackTemplate('helper', context))}
 		</div>
 
 	`;
