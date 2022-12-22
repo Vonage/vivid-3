@@ -1,7 +1,8 @@
 import { applyMixins, Select as FoundationSelect } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import type { Popup } from '../popup/popup';
-import { AffixIcon, FormElement, formElements } from '../shared/patterns';
+import { FormElement, formElements } from '../../shared/patterns';
+import { AffixIcon } from '../../shared/patterns';
 import type { Appearance, Shape } from '../enums';
 
 
