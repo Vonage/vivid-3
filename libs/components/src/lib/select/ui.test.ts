@@ -10,7 +10,7 @@ import {
 const components = ['select', 'option'];
 
 
-test.only('should show the component', async ({ page }: { page: Page }) => {
+test('should show the component', async ({ page }: { page: Page }) => {
 	const template = '<style>#wrapper{height: 450px;}</style>' + extractHTMLBlocksFromReadme(path.join(new URL('.', import.meta.url).pathname, 'README.md'))
 		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
 
@@ -28,8 +28,6 @@ test.only('should show the component', async ({ page }: { page: Page }) => {
 	const testWrapper = await page.$('#wrapper');
 
 	await page.waitForLoadState('networkidle');
-
-	await page.pause();
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/select.png'
