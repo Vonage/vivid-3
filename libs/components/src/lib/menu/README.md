@@ -4,14 +4,14 @@ Menu, commonly known as a "context menu", is an element that is displayed upon u
 
 ```js
 <script type="module">
- import '@vonage/vivid/menu';
+  import '@vonage/vivid/menu';
 </script>
 ```
 
 ```html preview
 <vwc-menu open>
- <vwc-menu-item text="Menu item 1"></vwc-menu-item>
- <vwc-menu-item text="Menu item 2"></vwc-menu-item>
+  <vwc-menu-item text="Menu item 1"></vwc-menu-item>
+  <vwc-menu-item text="Menu item 2"></vwc-menu-item>
 </vwc-menu>
 ```
 
@@ -28,8 +28,8 @@ _Menu_ internally uses _popup_ to display an element and its descendants above t
 
 ```html preview
 <vwc-menu open>
- <vwc-menu-item text="Menu item 1"></vwc-menu-item>
- <vwc-menu-item text="Menu item 2"></vwc-menu-item>
+  <vwc-menu-item text="Menu item 1"></vwc-menu-item>
+  <vwc-menu-item text="Menu item 2"></vwc-menu-item>
 </vwc-menu>
 ```
 
@@ -47,8 +47,8 @@ _Menu_ internally uses _popup_ to display an element and its descendants above t
   <vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open" appearance="outlined"></vwc-button>
 
   <vwc-menu id="menu" anchor="button" open>
-   <vwc-menu-item text="Menu item 1"></vwc-menu-item>
-   <vwc-menu-item text="Menu item 2"></vwc-menu-item>
+    <vwc-menu-item text="Menu item 1"></vwc-menu-item>
+    <vwc-menu-item text="Menu item 2"></vwc-menu-item>
  </vwc-menu>
 </div>
 ```
@@ -66,10 +66,10 @@ _Menu_ internally uses _popup_ to display an element and its descendants above t
 <div style="position: relative">
   <vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open" appearance="outlined"></vwc-button>
 
- <vwc-menu id="menu" anchor="button" placement="right-start" open>
-   <vwc-menu-item text="Menu item 1"></vwc-menu-item>
-   <vwc-menu-item text="Menu item 2"></vwc-menu-item>
- </vwc-menu>
+  <vwc-menu id="menu" anchor="button" placement="right-start" open>
+    <vwc-menu-item text="Menu item 1"></vwc-menu-item>
+    <vwc-menu-item text="Menu item 2"></vwc-menu-item>
+  </vwc-menu>
 </div>
 ```
 
@@ -83,8 +83,8 @@ While any DOM content is permissible as a child of the menu, only `vwc-menu-item
 
 ```html preview
 <vwc-menu open>
- <vwc-menu-item text="Menu item 1"></vwc-menu-item>
- <vwc-menu-item text="Menu item 2"></vwc-menu-item>
+  <vwc-menu-item text="Menu item 1"></vwc-menu-item>
+  <vwc-menu-item text="Menu item 2"></vwc-menu-item>
 </vwc-menu>
 ```
 
@@ -105,7 +105,7 @@ Use the `--menu-max-inline-size` variable to set the menu's inline size.
 </style>
 
 <vwc-menu open>
- <vwc-menu-item text="Lorem ipsum dolor sit amet, consectetur adipisicing elit"></vwc-menu-item>
+  <vwc-menu-item text="Lorem ipsum dolor sit amet, consectetur adipisicing elit"></vwc-menu-item>
 </vwc-menu>
 ```
 
@@ -124,7 +124,7 @@ Use the `--menu-min-inline-size` variable to set the menu's inline size.
 </style>
 
 <vwc-menu open>
- <vwc-menu-item text="Menu Item"></vwc-menu-item>
+  <vwc-menu-item text="Menu Item"></vwc-menu-item>
 </vwc-menu>
 ```
 
@@ -132,13 +132,13 @@ Use the `--menu-min-inline-size` variable to set the menu's inline size.
 
 ### focus()
 
-- Returns: void
+- Returns: `void`
 
 Focuses the first item in the menu.
 
 ### collapseExpandedItem()
 
-- Returns: void
+- Returns: `void`
 
 Collapses any expanded menu items.
 

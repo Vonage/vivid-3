@@ -1,23 +1,29 @@
-@use '../focus/partials/variables' as focus-variables;
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
-@use '../../../../shared/src/lib/sass/utils' as utils;
+@use "../focus/partials/variables" as focus-variables;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "../../../../shared/src/lib/sass/utils" as utils;
 
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent,
-	$shades: primary primary-text,
+	$shades: primary firm faint soft,
 	$default: accent,
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
-	$appearances: fieldset,
-	$states: idle hover checked disabled,
-	$default: fieldset,
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+	$appearances: outlined,
+	$states: idle hover active checked checkedAndHover disabled readonly,
+	$default: outlined,
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 
 $control-size: 20px;
 $control-border: 2px;
+
+@supports selector(:focus-visible) {
+	:host(:focus) {
+		outline: none;
+	}
+}
 
 .base {
 	@include connotation.connotation;
@@ -27,12 +33,6 @@ $control-border: 2px;
 	align-items: center;
 	cursor: pointer;
 	gap: 8px;
-
-	@supports selector(:focus-visible) {
-		&:focus {
-			outline: none;
-		}
-	}
 
 	@supports (user-select: none) {
 		user-select: none;
@@ -48,15 +48,15 @@ $control-border: 2px;
 	width: $control-size;
 	height: $control-size;
 	flex-shrink: 0;
-	background-color: var(#{utils.get-color-token(canvas)});
+	background-color: var(#{appearance.get-appearance-token(fill)});
 	border-radius: 50%;
 	box-shadow: inset 0 0 0 $control-border var(#{appearance.get-appearance-token(outline)});
 
 	&::after {
 		position: absolute;
-		background-color: var(#{appearance.get-appearance-token(outline)});
+		background-color: var(#{appearance.get-appearance-token(text)});
 		border-radius: inherit;
-		content: '';
+		content: "";
 		inset: 5px;
 
 		.base:not(.checked) & {
@@ -69,11 +69,6 @@ label {
 	color: var(#{constants.$vvd-color-canvas-text});
 	cursor: pointer;
 	font: var(#{constants.$vvd-typography-base});
-
-	.base.disabled & {
-		color: var(#{constants.$vvd-color-neutral-400});
-		cursor: not-allowed;
-	}
 }
 
 .focus-indicator {
@@ -82,7 +77,7 @@ label {
 
 	border-radius: 50%;
 
-	.base:not(:focus-visible) & {
+	:host(:not(:focus-visible)) & {
 		display: none;
 	}
 }

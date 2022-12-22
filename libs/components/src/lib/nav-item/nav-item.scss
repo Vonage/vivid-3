@@ -1,23 +1,25 @@
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent,
-	$shades: primary primary-text faint soft,
+	$shades: primary primary-text primary-increment faint soft,
 	$default: accent,
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: ghost,
-	$states: idle hover active selected,
+	$states: idle hover active selected selectedAndHover,
 	$default: ghost,
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
 
 .control {
-	$min-block-size: 40px;
-	$gap: 8px;
+	$min-block-size: #{size.$vvd-size-normal};
+	$gap: 12px;
+	$gutter: 16px;
 
 	position: relative;
 	display: inline-flex;
@@ -32,8 +34,6 @@
 	hyphens: auto;
 	inline-size: 100%;
 	min-block-size: $min-block-size;
-	padding-block: 10px;
-	padding-inline: $gap;
 	text-decoration: none;
 	vertical-align: middle;
 	word-break: break-word;
@@ -54,6 +54,9 @@
 		place-content: center;
 	}
 
+	&:not(.icon-only) {
+		padding-inline: $gutter;
+	}
 }
 
 .focus-indicator {
@@ -64,4 +67,8 @@
 
 .icon {
 	font-size: 20px;
+
+	.control:not(.icon-only) & {
+		color: var(#{constants.$vvd-color-neutral-600});
+	}
 }

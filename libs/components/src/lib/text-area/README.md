@@ -1,11 +1,13 @@
 # Text-area
 
-Represents a text-area custom element.  
+Represents a text-area custom element.
 All native attributes of the `textarea` are supported as well as some enhancements.
 
 
 ```js
-<script type="module">import '@vonage/vivid/text-area';</script>
+<script type="module">
+  import '@vonage/vivid/text-area';
+</script>
 ```
 
 ```html preview

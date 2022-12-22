@@ -1,7 +1,9 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Icon } from '../icon/icon';
 import { Button } from './button';
-import '.';
+import  '.';
+import { buttonDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-button';
 const ICON_SELECTOR = 'vwc-icon';
@@ -9,12 +11,17 @@ const ICON_SELECTOR = 'vwc-icon';
 describe('vwc-button', () => {
 	let element: Button;
 
+	beforeAll(async () => {
+		await customElements.whenDefined(COMPONENT_TAG);
+	});
+
 	beforeEach(async () => {
 		element = await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Button;
 	});
 
 	describe('basic', () => {
 		it('initializes as a vwc-button', async () => {
+			expect(buttonDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Button);
 			expect(element.label).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
@@ -22,7 +29,7 @@ describe('vwc-button', () => {
 			expect(element.connotation).toBeUndefined();
 			expect(element.shape).toBeUndefined();
 			expect(element.appearance).toBeUndefined();
-			expect(element.density).toBeUndefined();
+			expect(element.size).toBeUndefined();
 		});
 	});
 
@@ -33,7 +40,7 @@ describe('vwc-button', () => {
 
 			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
 			expect(icon).toBeInstanceOf(HTMLElement);
-			expect(icon.type).toEqual('home');
+			expect(icon.name).toEqual('home');
 		});
 
 		it('setting `iconTrailing` set the order of element', async () => {
@@ -92,13 +99,13 @@ describe('vwc-button', () => {
 		});
 	});
 
-	describe('density', () => {
-		it('sets correct internal density style', async () => {
-			const density = 'condensed';
-			(element as any).density = density;
+	describe('size', () => {
+		it('sets correct internal size style', async () => {
+			const size = 'condensed';
+			(element as any).size = size;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.density-${density}`);
+			const control = element.shadowRoot?.querySelector(`.control.size-${size}`);
 			expect(control).toBeInstanceOf(Element);
 		});
 	});

@@ -1,4 +1,4 @@
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent,
@@ -13,10 +13,13 @@
 	$default: ghost
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+
 
 .control {
-	$min-block-size: 40px;
-	$gap: 8px;
+	$min-block-size: #{size.$vvd-size-normal};
+	$gap: 12px;
+	$gutter: 16px;
 
 	position: relative;
 	display: flex;
@@ -32,7 +35,7 @@
 	hyphens: auto;
 	inline-size: 100%;
 	min-block-size: $min-block-size;
-	padding-inline: $gap;
+	padding-inline: $gutter;
 	text-decoration: none;
 	vertical-align: middle;
 	word-break: break-word;
@@ -63,6 +66,10 @@
 
 .icon {
 	font-size: 20px;
+
+	.control:not(.icon-only) & {
+		color: var(#{constants.$vvd-color-neutral-600});
+	}
 }
 
 .content {

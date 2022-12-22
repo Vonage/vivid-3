@@ -44,6 +44,7 @@ function createFiles(tree: Tree, options: NormalizedSchema) {
     className,
     name,
     propertyName,
+    camelCasedName: className[0].toLowerCase() + className.substr(1),
     cliCommand: 'nx',
     strict: undefined,
     tmpl: '',

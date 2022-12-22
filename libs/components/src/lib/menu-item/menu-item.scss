@@ -1,18 +1,20 @@
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent,
-	$shades: primary primary-text faint soft,
+	$shades: primary primary-text primary-increment faint soft,
 	$default: accent,
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: ghost,
-	$states: idle hover selected active disabled,
+	$states: idle hover disabled active selected selectedAndHover,
 	$default: ghost,
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+
 
 @supports selector(:focus-visible) {
 	:host(:focus) {
@@ -21,8 +23,9 @@
 }
 
 .base {
-	$min-block-size: 40px;
-	$gap: 8px;
+	$min-block-size: #{size.$vvd-size-normal};
+	$gap: 12px;
+	$gutter: 16px;
 
 	@include appearance.appearance;
 	@include connotation.connotation;
@@ -38,7 +41,7 @@
 	font: var(#{constants.$vvd-typography-base});
 	gap: $gap;
 	inline-size: 100%;
-	padding-inline: $gap;
+	padding-inline: $gutter;
 
 	@supports(user-select: none) {
 		user-select: none;
@@ -63,8 +66,12 @@
 .icon {
 	font-size: 20px;
 
-	.base:not(.item-checkbox, .item-radio) & {
+	.base:not(.disabled, .item-checkbox, .item-radio) & {
 		color: var(#{constants.$vvd-color-neutral-600});
+	}
+
+	.base:is(.disabled, .item-checkbox, .item-radio) & {
+		color: var(#{appearance.get-appearance-token(text)});
 	}
 }
 

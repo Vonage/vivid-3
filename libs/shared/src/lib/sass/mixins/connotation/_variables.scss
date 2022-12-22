@@ -5,14 +5,14 @@
 @function get-default-mapping($type) {
   @return (
     primary: #{utils.get-color-token(#{$type}-500)},
-    primary-text: #{utils.get-color-token(canvas)},//! missing on- token
+    primary-text: #{utils.get-color-token(canvas)},
     primary-increment: #{utils.get-color-token(#{$type}-600)},
     intermediate: #{utils.get-color-token(#{$type}-500)},
     contrast: #{utils.get-color-token(#{$type}-800)},
     soft: #{utils.get-color-token(#{$type}-100)},
     firm: #{utils.get-color-token(#{$type}-600)},
     faint: #{utils.get-color-token(#{$type}-50)},
-
+    backdrop: #{utils.get-color-token(#{$type}-50)},
     fierce: #{utils.get-color-token(#{$type}-700)},
   );
 }
@@ -22,15 +22,22 @@ $connotation-mapping: (
     get-default-mapping(neutral),
     (
       primary: utils.get-color-token(canvas-text),
-      primary-text: utils.get-color-token(canvas),
       primary-increment: utils.get-color-token(neutral-800),
       firm: utils.get-color-token(canvas-text),
+      backdrop: utils.get-color-token(canvas),
+    )
+  ),
+  warning: map.merge(
+    get-default-mapping(warning),
+    (
+      primary: utils.get-color-token(warning-300),
+			primary-text: #{utils.get-color-token(canvas-text)},
+			intermediate: #{utils.get-color-token(warning-300)},
     )
   ),
   cta: get-default-mapping(cta),
   success: get-default-mapping(success),
   alert: get-default-mapping(alert),
-  warning: get-default-mapping(warning),
   information: get-default-mapping(information),
   announcement: get-default-mapping(announcement),
 );

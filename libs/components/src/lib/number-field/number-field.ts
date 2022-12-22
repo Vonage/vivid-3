@@ -1,10 +1,9 @@
 import {applyMixins, NumberField as FastNumberField} from '@microsoft/fast-foundation';
 import {attr} from '@microsoft/fast-element';
-import type {Appearance, Density, Shape} from '../enums';
+import type {Appearance, Shape} from '../enums';
 import {FormElement, formElements} from '../../shared/patterns';
 import {AffixIcon} from '../../shared/patterns';
 
-type NumberFieldDensity = Extract<Density, Density.Normal | Density.Extended>;
 type NumberFieldAppearance = Extract<Appearance, Appearance.Outlined | Appearance.Ghost>;
 type NumberFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
@@ -15,7 +14,6 @@ type NumberFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  */
 @formElements
 export class NumberField extends FastNumberField {
-	@attr density?: NumberFieldDensity;
 	@attr appearance?: NumberFieldAppearance;
 	@attr shape?: NumberFieldShape;
 	@attr autoComplete?: string;

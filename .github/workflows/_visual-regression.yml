@@ -5,9 +5,9 @@ on: workflow_call
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: vivid3/vonage:latest
+    container: vivid3/vonage:2.0.1
     steps:
-      - run: echo "Running vivid3/vonage:latest"
+      - run: echo "Running vivid3/vonage:2.0.1"
 
       - uses: actions/checkout@v3
 
@@ -15,8 +15,6 @@ jobs:
         with:
           node-version: '16'
           cache: 'npm'
-
-      - run: apt-get install tar -y
 
       - uses: actions/cache@v3
         id: cache

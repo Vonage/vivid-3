@@ -14,7 +14,7 @@ Add the `heading` attribute to set the heading text.
 
 - Type: `string`
 - Default: `undefined`
-  
+
 ```html preview full
 <vwc-accordion-item heading="Accordion item with heading">
   Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -68,7 +68,7 @@ Add the `no-indicator` attribute (or `noIndicator` property) to remove the indic
 
 ```html preview full
 <vwc-accordion-item heading="Accordion item without indicator" no-indicator>
- Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 </vwc-accordion-item>
 ```
 
@@ -81,7 +81,7 @@ Add the `meta` attribute to add metadata to the heading.
 
 ```html preview full
 <vwc-accordion-item heading="Accordion item with metadata" meta="meta-data">
- Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 </vwc-accordion-item>
 ```
 
@@ -94,7 +94,7 @@ Add the `icon` attribute to add an icon to the heading.
 
 ```html preview full
 <vwc-accordion-item heading="Accordion item with icon" icon="chat-solid">
- Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 </vwc-accordion-item>
 ```
 
@@ -107,12 +107,12 @@ Add the `icon-trailing` attribute (or `iconTrailing` property) to add an icon to
 
 ```html preview full
 <vwc-accordion-item heading="Accordion item with icon-trailing" icon="chat-solid" icon-trailing>
- Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 </vwc-accordion-item>
 ```
 
 ## Accessibility
 
-The accordion-item has a `role` button.  
-Accordion-item has `aria-expanded` set to true when the content is visible. Otherwise, it is set to false.  
+The accordion-item has a `role` button.
+Accordion-item has `aria-expanded` set to true when the content is visible. Otherwise, it is set to false.
 Accordion-item has a value specified for `aria-controls` that refers to the content.

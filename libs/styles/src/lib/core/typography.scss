@@ -8,12 +8,27 @@ $selectors: (
 	code: 'pre, var, code, kbd, samp',
 );
 
-.vvd-root {
+@mixin typography-base {
+	font: var(#{constants.$vvd-typography-base});
 	font-feature-settings: 'kern';       /* turns on kerning */
 	text-rendering: optimizeLegibility;  /* emphasise on legibility when rendering, turns on ligatures and kerning */
 	-webkit-font-smoothing: antialiased; /* apply font anti-aliasing for Webkit on OSX */
 	-moz-osx-font-smoothing: grayscale;  /* apply font anti-aliasing for Firefox on OSX */
-	font: var(#{constants.$vvd-typography-base});
+}
+
+.vvd-root {
+	&:root { // <--- When 'vvd-root' is set on the `:root` (html element), typeface sizes are able to descend from the root font-size, thus comply with the [WCAG 1.4.4](https://www.w3.org/WAI/WCAG21/Understanding/resize-text)
+		--vvd-size-font-scale-base: 1rem;
+		font-size: unset; // resolves to the user-agent default font size (generally 16px)
+
+		> body {
+			@include typography-base;
+		}
+	}
+
+	&:not(:root) {
+		@include typography-base;
+	}
 
 	p {
 		font: var(#{constants.$vvd-typography-base});

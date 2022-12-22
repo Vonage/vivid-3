@@ -83,16 +83,6 @@
 		]
 	},
 	{
-		"title": "popup",
-		"markdown": "./libs/components/src/lib/popup/README.md",
-		"modules": [
-			"/assets/modules/components/popup/index.js",
-			"/assets/modules/components/button/index.js",
-			"/assets/modules/components/icon/index.js",
-			"/assets/modules/components/layout/index.js"
-		]
-	},
-	{
 		"title": "side-drawer",
 		"markdown": "./libs/components/src/lib/side-drawer/README.md",
 		"modules": [
@@ -260,10 +250,10 @@
 	},
 	{
 		"title": "avatar",
+		"status": "alpha",
 		"markdown": "./libs/components/src/lib/avatar/README.md",
 		"modules": [
-			"/assets/modules/components/avatar/index.js",
-			"/assets/modules/components/icon/index.js"
+			"/assets/modules/components/avatar/index.js"
 		]
 	},
 	{
@@ -287,6 +277,37 @@
 		"modules": [
 			"/assets/modules/components/radio/index.js",
 			"/assets/modules/components/radio-group/index.js"
+		]
+	},
+	{
+		"title": "option",
+		"markdown": "./libs/components/src/lib/option/README.md",
+		"modules": [
+			"/assets/modules/components/option/index.js",
+			"/assets/modules/components/listbox/index.js"
+		]
+	},
+	{
+		"title": "listbox",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/listbox/README.md",
+		"modules": [
+			"/assets/modules/components/option/index.js",
+			"/assets/modules/components/listbox/index.js"
+		]
+	},
+	{
+		"title": "switch",
+		"markdown": "./libs/components/src/lib/switch/README.md",
+		"modules": [
+			"/assets/modules/components/switch/index.js"
+		]
+	},
+	{
+		"title": "slider",
+		"markdown": "./libs/components/src/lib/slider/README.md",
+		"modules": [
+			"/assets/modules/components/slider/index.js"
 		]
 	}
 ]

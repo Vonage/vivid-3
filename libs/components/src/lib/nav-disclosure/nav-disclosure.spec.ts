@@ -1,7 +1,9 @@
 import { elementUpdated, fixture, getBaseElement, getControlElement } from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { NavDisclosure } from './nav-disclosure';
 import '.';
+import { navDisclosureDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-nav-disclosure';
 const ICON_SELECTOR = 'vwc-icon';
@@ -17,6 +19,7 @@ describe('vwc-nav-disclosure', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-nav-disclosure', async () => {
+			expect(navDisclosureDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(NavDisclosure);
 			expect(element.label).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
@@ -57,7 +60,7 @@ describe('vwc-nav-disclosure', () => {
 			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
 			expect(icon)
 				.toBeInstanceOf(Icon);
-			expect(icon?.type)
+			expect(icon?.name)
 				.toEqual('home');
 		});
 	});

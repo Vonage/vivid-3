@@ -1,19 +1,19 @@
-@use '../focus/partials/variables' as focus-variables;
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use "../focus/partials/variables" as focus-variables;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent,
-	$shades: primary primary-text,
+	$shades: primary primary-text primary-increment intermediate backdrop firm,
 	$default: accent,
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: fieldset,
-	$states: idle hover checked disabled readonly indeterminate,
+	$states: idle hover checked checkedAndHover disabled readonly,
 	$default: fieldset,
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 
 $size: 20px;
 $gutter: 2px;

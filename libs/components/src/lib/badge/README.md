@@ -6,7 +6,7 @@ Badges don’t work for navigation because they can't include a hyperlink.
 
 ```js
 <script type='module'>
-    import '@vonage/vivid/badge';
+  import '@vonage/vivid/badge';
 </script>
 ```
 

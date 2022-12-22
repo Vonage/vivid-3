@@ -1,10 +1,11 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import '.';
-import { MenuItemRole } from '@microsoft/fast-foundation';
+import { FoundationElementRegistry, MenuItemRole } from '@microsoft/fast-foundation';
 import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import { fireEvent } from '@testing-library/dom';
 import type { Icon } from '../icon/icon';
 import { MenuItem } from './menu-item';
+import { menuItemDefinition } from './definition';
 
 
 const COMPONENT_TAG = 'vwc-menu-item';
@@ -12,6 +13,10 @@ const ICON_SELECTOR = 'vwc-icon';
 
 describe('vwc-menu-item', () => {
 	let element: MenuItem;
+
+	beforeAll(async () => {
+		await customElements.whenDefined(COMPONENT_TAG);
+	});
 
 	beforeEach(async () => {
 		element = (await fixture(
@@ -21,6 +26,7 @@ describe('vwc-menu-item', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-menu-item', async () => {
+			expect(menuItemDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(MenuItem);
 			expect(element.text).toEqual(undefined);
 			expect(element.role).toEqual('menuitem');
@@ -47,7 +53,7 @@ describe('vwc-menu-item', () => {
 
 		const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
 		expect(icon).toBeInstanceOf(HTMLElement);
-		expect(icon.type).toEqual(iconName);
+		expect(icon.name).toEqual(iconName);
 	});
 
 	it('should toggle "expanded" on mouse over and mouse out', async () => {

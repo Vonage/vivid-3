@@ -13,7 +13,7 @@ strong {
 /* #region document */
 
 html {
-  scroll-padding-top: 64px;
+  scroll-padding-top: var(--vvd-header-block-size, 64px);
 }
 
 body {
@@ -50,7 +50,7 @@ vwc-side-drawer:not([open]) {
 
 vwc-side-drawer::part(base) {
 	inline-size: 280px;
-	inset-block-start: calc(var(--_header-block-size) + env(safe-area-inset-top));
+	inset-block-start: calc(var(--vvd-header-block-size) + env(safe-area-inset-top));
 	inset-block-end: env(safe-area-inset-bottom);
   background-color: var(--vvd-color-canvas);
   box-sizing: border-box;
@@ -67,7 +67,10 @@ vwc-header[elevation-shadow] vwc-side-drawer::part(base) {
 }
 
 vwc-side-drawer > main {
-  margin-top: var(--_header-block-size);
+	/* prevents banner from topping the stacking context in a modal side-drawer open state  */
+	z-index: 0;
+	position: relative;
+  margin-top: var(--vvd-header-block-size);
 }
 
 /* #endregion side drawer */
@@ -108,25 +111,6 @@ vwc-header::part(base) {
 
 .logo-wrapper:any-link {
   color: var(--vvd-color-neutral-800);
-}
-
-dark-mode-toggle::part(toggleLabel)::before {
-	background-image: none;
-	background-color: currentColor;
-}
-
-dark-mode-toggle[mode="light"]::part(toggleLabel)::before {
-  -webkit-mask: url(https://icon.resources.vonage.com/v4.0.28/dark-mode-solid.svg) no-repeat center;
-  mask: url(https://icon.resources.vonage.com/v4.0.28/dark-mode-solid.svg) no-repeat center;
-}
-
-dark-mode-toggle[mode="dark"]::part(toggleLabel)::before {
-  -webkit-mask: url(https://icon.resources.vonage.com/v4.0.28/light-mode-solid.svg) no-repeat center;
-  mask: url(https://icon.resources.vonage.com/v4.0.28/light-mode-solid.svg) no-repeat center;
-}
-
-dark-mode-toggle::part(form) {
-	margin: 0;
 }
 
 /* #endregion header */
@@ -199,6 +183,7 @@ article > h1 {
 
 .article {
   padding-inline: 16px;
+  word-break: break-word;
 }
 
 @media (min-width: 960px) {
@@ -207,6 +192,11 @@ article > h1 {
   }
 }
 
+.banner {
+	position: sticky;
+	top: var(--vvd-header-block-size);
+	z-index: 1;
+}
 /* #endregion article */
 
 /* #region code fence demo */

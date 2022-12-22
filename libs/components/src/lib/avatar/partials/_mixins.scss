@@ -1,7 +1,8 @@
-@use 'variables' as variables;
+@use "variables" as variables;
 
-@mixin get-density-properties($block-size, $font-face) {
-	#{variables.$avatar-density}: $block-size;
+
+@mixin get-size-properties($block-size, $font-face) {
+	#{variables.$avatar-size}: $block-size;
 
 	.initials {
 		font: var(#{$font-face});

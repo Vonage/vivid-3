@@ -5,7 +5,7 @@ Popup's goal is to provide additional, helpful content. To trigger the Popup, it
 
 ```js
 <script type='module'>
-    import '@vonage/vivid/popup';
+  import '@vonage/vivid/popup';
 </script>
 ```
 
@@ -40,7 +40,7 @@ Use the `open` attribute to indicate whether the popup is open.
 <vwc-button id="anchor" appearance='outlined' label='Click me!'></vwc-button>
 <vwc-popup id="popup" anchor="anchor" open>
   <vwc-layout gutters="small">
-   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   </vwc-layout>
 </vwc-popup>
 
@@ -60,7 +60,7 @@ Add the `dismissible` attribute to add a close button to the popup.
 <vwc-button id="anchor" appearance='outlined' label='Click on me!'></vwc-button>
 <vwc-popup id="popup" anchor="anchor" open dismissible>
   <vwc-layout gutters="small">
-   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   </vwc-layout>
 </vwc-popup>
 
@@ -77,10 +77,10 @@ Add the `arrow` attribute to add a small triangle to indicate the trigger elemen
 - Default: `false`
 
 ```html preview center
-<vwc-icon id="anchor" type='info-line'></vwc-icon>
+<vwc-icon id="anchor" name='info-line'></vwc-icon>
 <vwc-popup anchor="anchor" open arrow>
   <vwc-layout gutters="small" style="200px">
-   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   </vwc-layout>
 </vwc-popup>
 ```
@@ -93,7 +93,7 @@ Add the `alternate` attribute to set the color-scheme to dark or light (dependin
 - Default: `false`
 
 ```html preview center
-<vwc-icon id="anchor" type='info-line'></vwc-icon>
+<vwc-icon id="anchor" name='info-line'></vwc-icon>
 <vwc-popup anchor="anchor" open alternate>
   <vwc-layout gutters="small" style="200px">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -124,40 +124,40 @@ Use the `placement` attribute to set the placement of the popup around the ancho
 <div id="anchor" class="square"></div>
 
 <vwc-popup id="popup" anchor="anchor" open placement="right-end">
- right-end
+  right-end
 </vwc-popup>
 <vwc-popup id="popup" anchor="anchor" open placement="right">
- right
+  right
 </vwc-popup>
 <vwc-popup id="popup" anchor="anchor" open placement="right-start">
- right-start
+  right-start
 </vwc-popup>
 <vwc-popup id="popup" anchor="anchor" open placement="left-end">
- left-end
+  left-end
 </vwc-popup>
 <vwc-popup id="popup" anchor="anchor" open placement="left">
- left
+  left
 </vwc-popup>
 <vwc-popup id="popup" anchor="anchor" open placement="left-start">
- left-start
+  left-start
 </vwc-popup>
 <vwc-popup id="popup" anchor="anchor" open placement="top-end">
- top-end
+  top-end
 </vwc-popup>
 <vwc-popup id="popup" anchor="anchor" open placement="top">
- top
+  top
 </vwc-popup>
 <vwc-popup id="popup" anchor="anchor" open placement="top-start">
- top-start
+  top-start
 </vwc-popup>
 <vwc-popup id="popup" anchor="anchor" open placement="bottom-end">
- bottom-end
+  bottom-end
 </vwc-popup>
 <vwc-popup id="popup" anchor="anchor" open placement="bottom">
- bottom
+  bottom
 </vwc-popup>
 <vwc-popup id="popup" anchor="anchor" open placement="bottom-start">
- bottom-start
+  bottom-start
 </vwc-popup>
 ```
 

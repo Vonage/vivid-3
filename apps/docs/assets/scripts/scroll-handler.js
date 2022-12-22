@@ -5,18 +5,35 @@ const updateHeaderElevationShadow = (isShadowed) => {
 	sideHeader.elevationShadow = isShadowed;
 }
 
-const onWindowScroll = ({ target }) => {
-	const isScrolled = target == document ? window.scrollY > 0 : target.scrollTop > 0;
-	updateHeaderElevationShadow(isScrolled);
+const getAsideElement = () => sidedrawer.shadowRoot.querySelector('aside');
+
+const onScroll = () => {
+	const isWindowScrolled = window.scrollY > 0;
+	const isAsideScrolled = getAsideElement().scrollTop > 0;
+	updateHeaderElevationShadow(isWindowScrolled || isAsideScrolled);
+	// save sideDrawer's scroll in localStorage
+	if (getAsideElement().scrollTop) {
+		localStorage.setItem("scroll", getAsideElement().scrollTop);
+	}
+}
+
+const setScrollFromLocalStorage = () => {
+	// set sideDrawer's scroll from localStorage
+	const asideElement = getAsideElement();
+	if (asideElement.offsetHeight > 0) {
+		asideElement.scrollTop = localStorage.getItem("scroll") ?? 0;
+	}
+	else {
+		requestAnimationFrame(setScrollFromLocalStorage);
+	}
 }
 
 (() => {
 	// hook window scroll
-	window.addEventListener('scroll', onWindowScroll);
+	window.addEventListener('scroll', onScroll);
 
 	customElements.whenDefined('vwc-side-drawer').then(() => {
-		const sideDrawer = document.querySelector('#sidedrawer');
-		const aside = sideDrawer.shadowRoot.querySelector('aside');
-		aside.addEventListener('scroll', onWindowScroll)
+		setScrollFromLocalStorage();
+		getAsideElement().addEventListener('scroll', onScroll);
 	});
 })();

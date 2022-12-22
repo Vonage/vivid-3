@@ -1,8 +1,322 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sat, 29 Oct 2022 09:45:57 GMT and should not be manually modified.
+This log was last generated on Sun, 18 Dec 2022 17:21:02 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.122
+
+Sun, 18 Dec 2022 17:21:02 GMT
+
+### Changes
+
+- export header component from package (yinon.oved@vonage.com)
+
+## 3.0.0-next.121
+
+Fri, 16 Dec 2022 11:38:04 GMT
+
+### Changes
+
+- export component definition and design system (yinon.oved@vonage.com)
+
+## 3.0.0-next.120
+
+Wed, 14 Dec 2022 16:38:10 GMT
+
+### Changes
+
+- change prefix override interface (yinon@hotmail.com)
+
+## 3.0.0-next.119
+
+Wed, 14 Dec 2022 14:20:15 GMT
+
+### Changes
+
+- add absolute strategy (rina.oksman@vonage.com)
+
+## 3.0.0-next.118
+
+Tue, 13 Dec 2022 14:06:36 GMT
+
+### Changes
+
+- code style enforce string single quotes (yinon.oved@vonage.com)
+
+## 3.0.0-next.117
+
+Tue, 13 Dec 2022 13:34:41 GMT
+
+### Changes
+
+- replace hardcoded tags with contextual tags (olaf-k@users.noreply.github.com)
+
+## 3.0.0-next.116
+
+Mon, 12 Dec 2022 12:23:32 GMT
+
+### Changes
+
+- anchor can recieve  HTMLElement (rina.oksman@vonage.com)
+
+## 3.0.0-next.115
+
+Mon, 12 Dec 2022 11:29:26 GMT
+
+### Changes
+
+- dialog icon placement side option added (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.114
+
+Thu, 08 Dec 2022 11:19:53 GMT
+
+### Changes
+
+- nameing avatar main slot (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.113
+
+Thu, 08 Dec 2022 10:58:26 GMT
+
+### Changes
+
+- ensuring correct card text align (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.112
+
+Thu, 08 Dec 2022 07:12:10 GMT
+
+### Changes
+
+- duotone appearance & warning connotation conditioned to an outline lighter shade (yinon@hotmail.com)
+
+## 3.0.0-next.111
+
+Mon, 05 Dec 2022 11:11:21 GMT
+
+### Changes
+
+- make button inline size fluid to its container (yinon@hotmail.com)
+
+## 3.0.0-next.110
+
+Sun, 04 Dec 2022 15:36:59 GMT
+
+### Changes
+
+- enable custom prefix for custom-elements (yinon@hotmail.com)
+
+## 3.0.0-next.109
+
+Sun, 04 Dec 2022 13:39:56 GMT
+
+### Changes
+
+- badge support overflow clipping (yinon@hotmail.com)
+
+## 3.0.0-next.108
+
+Tue, 29 Nov 2022 15:41:17 GMT
+
+### Changes
+
+- icon component support svg slot assignment (yinon@hotmail.com)
+
+## 3.0.0-next.107
+
+Mon, 28 Nov 2022 21:11:08 GMT
+
+### Changes
+
+- icon & progress-ring support full integer sizing spectrum (yinon@hotmail.com)
+- icon type property renamed (to name) (yinon@hotmail.com)
+
+## 3.0.0-next.106
+
+Sun, 27 Nov 2022 16:54:42 GMT
+
+### Changes
+
+- map warning connotation to custom semantic variables (yinon@hotmail.com)
+
+## 3.0.0-next.105
+
+Sun, 27 Nov 2022 13:41:49 GMT
+
+### Changes
+
+- refactor tooltip (rina.oksman@vonage.com)
+
+## 3.0.0-next.104
+
+Tue, 22 Nov 2022 08:33:47 GMT
+
+### Changes
+
+- style gutters and gaps in list items (yinon@hotmail.com)
+
+## 3.0.0-next.103
+
+Mon, 21 Nov 2022 13:45:33 GMT
+
+### Changes
+
+- typography style unset root's font size to resolve to 16px (yinon@hotmail.com)
+- calendar css style to enable dark-theme background (yinon@hotmail.com)
+
+## 3.0.0-next.102
+
+Sun, 20 Nov 2022 21:47:05 GMT
+
+### Changes
+
+- package generated customElements.json & TS meta (yinon@hotmail.com)
+
+## 3.0.0-next.101
+
+Wed, 16 Nov 2022 09:48:24 GMT
+
+### Changes
+
+- refine progress ring documentation code snippets (yinon@hotmail.com)
+
+## 3.0.0-next.100
+
+Tue, 15 Nov 2022 13:38:58 GMT
+
+### Changes
+
+- change density to size and extended to expanded (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.99
+
+Tue, 15 Nov 2022 08:30:44 GMT
+
+### Changes
+
+- fix radio isInsideRadioGroup (olaf-k@users.noreply.github.com)
+
+## 3.0.0-next.98
+
+Mon, 14 Nov 2022 13:05:26 GMT
+
+### Changes
+
+- option class - align property with naming convetion (yinon@hotmail.com)
+
+## 3.0.0-next.97
+
+Thu, 10 Nov 2022 15:01:26 GMT
+
+### Changes
+
+- unify appearance to apply cross components (yinon@hotmail.com)
+
+## 3.0.0-next.96
+
+Wed, 09 Nov 2022 08:48:48 GMT
+
+### Changes
+
+- fix radio-group mouse focus (olaf-k@users.noreply.github.com)
+
+## 3.0.0-next.95
+
+Tue, 08 Nov 2022 19:42:09 GMT
+
+### Changes
+
+- Switch Component (yonatan.kra@vonage.com)
+
+## 3.0.0-next.94
+
+Tue, 08 Nov 2022 16:43:27 GMT
+
+### Changes
+
+- new slider component (olaf-k@users.noreply.github.com)
+
+## 3.0.0-next.93
+
+Mon, 07 Nov 2022 11:12:14 GMT
+
+### Changes
+
+- add new listbox component (rina.oksman@vonage.com)
+
+## 3.0.0-next.92
+
+Sun, 06 Nov 2022 10:45:46 GMT
+
+### Changes
+
+- implement a new design in note component (yinon@hotmail.com)
+
+## 3.0.0-next.91
+
+Thu, 03 Nov 2022 17:25:45 GMT
+
+### Changes
+
+- remove block padding from nav item (yinon@hotmail.com)
+
+## 3.0.0-next.90
+
+Thu, 03 Nov 2022 17:18:16 GMT
+
+### Changes
+
+- support components status indication (yinon@hotmail.com)
+
+## 3.0.0-next.89
+
+Thu, 03 Nov 2022 13:37:29 GMT
+
+### Changes
+
+- change banner's dismiss button to theme alternate to comply with contrast rules (yinon@hotmail.com)
+
+## 3.0.0-next.88
+
+Thu, 03 Nov 2022 12:07:37 GMT
+
+### Changes
+
+- omit desnity from text-field and number-field (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.87
+
+Thu, 03 Nov 2022 08:51:02 GMT
+
+### Changes
+
+- fix READMEs (olaf-k@users.noreply.github.com)
+
+## 3.0.0-next.86
+
+Wed, 02 Nov 2022 14:09:27 GMT
+
+### Changes
+
+- replace components hardcoded block size length with scss variables generated by tokens (yinon@hotmail.com)
+
+## 3.0.0-next.85
+
+Wed, 02 Nov 2022 12:59:11 GMT
+
+### Changes
+
+- add selected & hover state to all selected states integrating components (yinon@hotmail.com)
+
+## 3.0.0-next.84
+
+Mon, 31 Oct 2022 12:51:28 GMT
+
+### Changes
+
+- add option component (rina.oksman@vonage.com)
 
 ## 3.0.0-next.83
 

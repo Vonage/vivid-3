@@ -1,6 +1,6 @@
-@use 'sass:list';
-@use '../../../../shared/src/lib/sass/utils' as utils;
-@use '../../../../shared/src/lib/sass/mixins/elevation' as elevation;
+@use "sass:list";
+@use "../../../../shared/src/lib/sass/utils" as utils;
+@use "../../../../shared/src/lib/sass/mixins/elevation" as elevation;
 
 $dps: 0 2 4 8 12 16 24;
 
@@ -13,7 +13,7 @@ $dps: 0 2 4 8 12 16 24;
 
 	display: contents;
 
-	@include utils.spread-list-selectors('.dp', $dps, $default) using ($type) {
+	@include utils.spread-list-selectors(".dp", $dps, $default) using ($type) {
 		@include elevation.elevation($type);
 	}
 
