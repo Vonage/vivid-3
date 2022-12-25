@@ -11,7 +11,8 @@ const components = ['select', 'option'];
 
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template = '<style>#wrapper{height: 450px;}</style>' + extractHTMLBlocksFromReadme(path.join(new URL('.', import.meta.url).pathname, 'README.md'))
+	const template = '<style>#wrapper{height: 450px;}</style>' + extractHTMLBlocksFromReadme(
+		path.join(new URL('.', import.meta.url).pathname, 'README.md'))
 		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
 
 	page.setViewportSize({ width: 250, height: 600 });

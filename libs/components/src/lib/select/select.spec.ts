@@ -56,14 +56,14 @@ describe('vwc-select', () => {
 		});
 	});
 
-	// describe('open', function () {
-	// 	it('should set open when clicked', async () => {
-	// 		expect(element.open).toEqual(false);
-	// 		element.click();
-	// 		await elementUpdated(element);
-	// 		expect(element.open).toEqual(true);
-	// 	});
-	// });
+	describe('open', function () {
+		it('should set open when clicked', async () => {
+			expect(element.open).toEqual(false);
+			getBaseElement(element).click();
+			await elementUpdated(element);
+			expect(element.open).toEqual(true);
+		});
+	});
 
 	describe('appearance', function () {
 		it('should set the shape class on the root', async function () {
