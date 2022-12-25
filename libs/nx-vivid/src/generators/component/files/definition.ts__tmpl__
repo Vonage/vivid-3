@@ -21,4 +21,4 @@ export const <%= camelCasedName %>Registries = [<%= camelCasedName %>Definition(
  *
  * @param prefix - the prefix to use for the component name
  */
-export const register<%= className %> = registerFactory(<%= camelCasedName %>Elements);
+export const register<%= className %> = registerFactory(<%= camelCasedName %>Registries);
