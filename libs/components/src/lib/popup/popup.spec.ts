@@ -246,20 +246,144 @@ describe('vwc-popup', () => {
 		});
 	});
 
-	describe('handle keydown', () => {
-		it('should hide on escape key', async () => {
-			const anchor = await setupPopupToOpenWithAnchor();
-			const openStateBeforeEsc = element.open;
+	describe('handle popover', () => {
+		it('should hide when call hidePopover', async () => {
+			await setAnchor();
 
-			await elementUpdated(element);
-			anchor.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+			const element = await fixture('<vwc-popup popover open></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
 			await elementUpdated(element);
 
-			expect(openStateBeforeEsc)
+			element.anchor = 'anchor';
+			await elementUpdated(element);
+
+			const openStateBeforeHidePopover = element.open;
+
+			element.hidePopover();
+			await elementUpdated(element);
+
+			expect(openStateBeforeHidePopover)
 				.toEqual(true);
 			expect(element.open)
 				.toEqual(false);
 		});
+
+		it('should hide when popover auto and clicked outside of the popup', async () => {
+			const wrapper = await fixture('<div></div>', ADD_TEMPLATE_TO_FIXTURE) as HTMLDivElement;
+			await elementUpdated(wrapper);
+			await setAnchor();
+			const element = await fixture('<vwc-popup open popover anchor="anchor"></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
+			wrapper.appendChild(element);
+			await elementUpdated(element);
+
+			const openStateBeforeLightDismiss = element.open;
+
+			wrapper?.click();
+			await elementUpdated(element);
+
+			expect(openStateBeforeLightDismiss)
+				.toEqual(true);
+			expect(element.open)
+				.toEqual(false);
+		});
+
+		it('should not hide when popover manual and clicked outside of the popup', async () => {
+			const wrapper = await fixture('<div></div>', ADD_TEMPLATE_TO_FIXTURE) as HTMLDivElement;
+			await elementUpdated(wrapper);
+			await setAnchor();
+			const element = await fixture('<vwc-popup open popover="manual" anchor="anchor"></vwc-popup>',
+				ADD_TEMPLATE_TO_FIXTURE) as Popup;
+			wrapper.appendChild(element);
+			await elementUpdated(element);
+
+			const openStateBeforeLightDismiss = element.open;
+
+			wrapper?.click();
+			await elementUpdated(element);
+
+			expect(openStateBeforeLightDismiss)
+				.toEqual(true);
+			expect(element.open)
+				.toEqual(true);
+		});
+
+		it('should not hide when clicked on the popup', async () => {
+			const element = await fixture('<vwc-popup popover></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
+			await elementUpdated(element);
+
+			await setAnchor();
+			element.anchor = 'anchor';
+			await elementUpdated(element);
+
+			element.open = true;
+			const openStateBeforeLightDismiss = element.open;
+
+			(element as HTMLElement).click();
+			await elementUpdated(element);
+
+			expect(openStateBeforeLightDismiss)
+				.toEqual(true);
+			expect(element.open)
+				.toEqual(true);
+		});
+
+		it('should hide when clicked on the anchor', async () => {
+			const element = await fixture('<vwc-popup popover open></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
+			await elementUpdated(element);
+
+			const anchorEl = await setAnchor();
+			element.anchor = 'anchor';
+			await elementUpdated(element);
+
+			const openStateBeforeAnchorClicked = element.open;
+
+			anchorEl.click();
+
+			await elementUpdated(element);
+
+			expect(openStateBeforeAnchorClicked)
+				.toEqual(true);
+			expect(element.open)
+				.toEqual(false);
+		});
+
+		it('should stay closed when clicked outside of the popup', async () => {
+			const element = await fixture('<vwc-popup popover></vwc-popup>', ADD_TEMPLATE_TO_FIXTURE) as Popup;
+			await elementUpdated(element);
+
+			await setAnchor();
+			element.anchor = 'anchor';
+			await elementUpdated(element);
+
+			const buttonEl = await fixture('<vwc-button id="button"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE) as Button;
+			await elementUpdated(buttonEl);
+
+			const openStateBeforeLightDismiss = element.open;
+
+			const button = document.querySelector('vwc-button#button');
+			(button as HTMLElement).click();
+			await elementUpdated(element);
+
+			expect(openStateBeforeLightDismiss)
+				.toEqual(false);
+			expect(element.open)
+				.toEqual(false);
+		});
+	});
+
+	describe('handle keydown', () => {
+		// it('should hide on escape key', async () => {
+		// 	const anchor = await setupPopupToOpenWithAnchor();
+		// 	const openStateBeforeEsc = element.open;
+
+		// 	await elementUpdated(element);
+		// 	anchor.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+		// 	await elementUpdated(element);
+
+		// 	expect(openStateBeforeEsc)
+		// 		.toEqual(true);
+		// 	expect(element.open)
+		// 		.toEqual(false);
+		// });
 
 		it('should remove keydown listener after disconnection', async function () {
 			const anchor = await setupPopupToOpenWithAnchor();
