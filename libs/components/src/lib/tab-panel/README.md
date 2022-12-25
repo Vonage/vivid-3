@@ -12,16 +12,3 @@ Represents a tab-panel custom element.
 <vwc-tab-panel></vwc-tab-panel>
 ```
 
-## Members
-
-## Slots
-
-## CSS Variables
-
-## Events
-
-## Methods
-
-## Accessibility
-
-## Use Cases
