@@ -1,13 +1,6 @@
-import { html } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
+import {
+	dataGridTemplate
 } from '@microsoft/fast-foundation';
-import { classNames } from '@microsoft/fast-web-utilities';
-import type { DataGrid } from './data-grid';
-
-const getClasses = (_: DataGrid) => classNames('control');
 
 /**
  * The template for the {@link @microsoft/fast-foundation#DataGrid} component.
@@ -15,10 +8,4 @@ const getClasses = (_: DataGrid) => classNames('control');
  * @param context
  * @public
  */
-export const DataGridTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<DataGrid> = (context: ElementDefinitionContext) => html` <span
-	class="${getClasses}"
-	>${context.name}
-</span>`;
+export const DataGridTemplate = dataGridTemplate;

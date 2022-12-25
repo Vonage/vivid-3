@@ -1,5 +1,4 @@
 import { DataGrid as FoundationElement } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
 
 /**
  * Base class for data-grid
@@ -7,12 +6,4 @@ import { attr } from '@microsoft/fast-element';
  * @public
  */
 export class DataGrid extends FoundationElement {
-	/**
-	 * Indicates the text's text.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: text
-	 */
-	@attr text?: string;
 }
