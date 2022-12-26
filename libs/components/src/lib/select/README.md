@@ -26,10 +26,10 @@ Read more about [vwc-option](../../components/option).
 
 ### Label
 
+Add a `label` attribute to add label to the Select.
+
 - Type: `string` | `undefined`
 - Default: `undefined`
-
-Add a `label` attribute to add label to the Select.
 ```html preview
 <vwc-select label="choose one option">
   <vwc-option value="1" text="Option 1"></vwc-option>
