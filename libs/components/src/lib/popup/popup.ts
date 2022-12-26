@@ -164,7 +164,7 @@ export class Popup extends FoundationElement {
 	/**
 	 * Gets the anchor element by id
 	 * 
-	 * @returns {HTMLElement} anchor
+	 * @returns HTMLElement - anchor
 	 */
 	#getAnchor(): HTMLElement | null {
 		return this.anchor instanceof HTMLElement ? this.anchor : document.getElementById(this.anchor);

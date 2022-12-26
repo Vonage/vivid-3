@@ -11,8 +11,8 @@ export type PredefindKeys = typeof ARROW_UP | typeof ARROW_RIGHT | typeof ARROW_
 /**
  *
  *
- * @param {unknown} el - element
- * @returns {*}  {el is HTMLElement} - cell or header
+ * @param unknown - element
+ * @returns HTMLElement - cell or header
  */
 export function isCellOrHeader(el: unknown): el is HTMLElement {
 	return el instanceof HTMLElement
@@ -24,8 +24,8 @@ export function isCellOrHeader(el: unknown): el is HTMLElement {
 
 /**
  * 
- * @param {HTMLElement} f - HTMLElement
- * @returns {HTMLElement} role - cell or header
+ * @param HTMLElement - HTMLElement
+ * @returns HTMLElement - cell or header
  */
 const getCellOrHeader = (f: HTMLElement) => (f.matches('[role="columnheader"i]')
 	? '[role="gridcell"i]'
@@ -34,10 +34,10 @@ const getCellOrHeader = (f: HTMLElement) => (f.matches('[role="columnheader"i]')
 /**
  *
  *
- * @param {Calendar} this - calendar
- * @param {PredefindKeys} key - keys
- * @param {HTMLElement} activeElement - htmlelement
- * @returns {*}  {(Element | null | void)} - focusable grid element
+ * @param Calendar - calendar
+ * @param PredefindKeys - keys
+ * @param HTMLElement - htmlelement
+ * @returns Element - focusable grid element
  */
 export function getNextFocusableGridElement(
 	this: Calendar, key: PredefindKeys, activeElement: HTMLElement
@@ -63,10 +63,10 @@ export function getNextFocusableGridElement(
 /**
  *
  *
- * @param {Calendar} this - calendar
- * @param {PredefindKeys} key - keys
- * @param {HTMLElement} activeElement - element
- * @returns {*}  {(Element | null | undefined)} - header descendant grid cell
+ * @param Calendar - calendar
+ * @param PredefindKeys - keys
+ * @param HTMLElement - element
+ * @returns Element - header descendant grid cell
  */
 export function getHeaderDescendantGridCell(this: Calendar, key: PredefindKeys, activeElement: HTMLElement): Element | null | undefined {
 	if (key !== ARROW_DOWN) {return;}

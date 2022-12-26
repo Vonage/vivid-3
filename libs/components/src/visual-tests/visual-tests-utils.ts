@@ -4,7 +4,6 @@ import markdownIt from 'markdown-it';
 import { JSDOM } from 'jsdom';
 import type {Page} from '@playwright/test';
 
-/** @type {*} */
 const layout = (function() {
 	const layoutFactorial = (...attrs) =>
 		(code) => `
@@ -36,7 +35,6 @@ const layout = (function() {
 
 })();
 
-/** @type {*} */
 const md = markdownIt({
 	html: true,
 	highlight: function (str, _, attrs) {
@@ -46,10 +44,10 @@ const md = markdownIt({
 
 /**
  *
- * @param {string} str - string
- * @param {string} find - string
- * @param {string} replace - string
- * @returns {*} - replaced
+ * @param  str - string
+ * @param  find - string
+ * @param  replace - string
+ * @returns string - replaced
  */
 export function replaceAll(str: string, find: string, replace: string) {
 	return str.replace(new RegExp(find, 'g'), replace);
@@ -58,8 +56,8 @@ export function replaceAll(str: string, find: string, replace: string) {
 /**
  *
  *
- * @param {*} html - HTMLPreElement
- * @returns {*}  {NodeListOf<HTMLPreElement>}
+ * @param  html - HTMLPreElement
+ * @returns NodeListOf<HTMLPreElement> - preview
  */
 function getPreElements(html): NodeListOf<HTMLPreElement> {
 	const dom = new JSDOM(html);
@@ -70,8 +68,8 @@ function getPreElements(html): NodeListOf<HTMLPreElement> {
  *
  *
  * 
- * @param {string} pathToReadme -readme path
- * @returns {*}  {string[]}
+ * @param  pathToReadme - readme path
+ * @returns string[] - HTMLBlocks
  */
 export function extractHTMLBlocksFromReadme(pathToReadme: string): string[] {
 	const readmeFileContents = fs.readFileSync(path.resolve(pathToReadme))
@@ -83,7 +81,6 @@ export function extractHTMLBlocksFromReadme(pathToReadme: string): string[] {
 	);
 }
 
-/** @type {*} */
 const defaultStyles = [
 	'http://127.0.0.1:8080/dist/libs/components/styles/fonts/spezia.css',
 	'http://127.0.0.1:8080/dist/libs/components/styles/tokens/theme-light.css',
@@ -92,10 +89,10 @@ const defaultStyles = [
 
 /**
  * 
- * @param {Array} param0 - params
- * @param {Array} param0.page - params page
- * @param {Array} param0.components - params components
- * @param {Array} param0.styleUrls - params styleUrls
+ * @param  param - params
+ * @param  page - params page
+ * @param  components - params components
+ * @param  styleUrls - params styleUrls
  */
 export async function loadComponents({
 	page,
@@ -123,9 +120,9 @@ export async function loadComponents({
 
 /**
  * 
- * @param {Array} param0 - params
- * @param {Array} param0.page - params page
- * @param {Array} param0.template - params template
+ * @param  param - params
+ * @param  page - params page
+ * @param  template - params template
  */
 export async function loadTemplate({
 	page,

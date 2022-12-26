@@ -9,8 +9,8 @@ export interface CalendarEventContext {
 /**
  *
  *
- * @param {HTMLElement} el - HTMLElement
- * @returns {*}  {(number | void)} - day
+ * @param HTMLElement - HTMLElement
+ * @returns Date - day
  */
 function getDay(el: HTMLElement): number | void {
 	const cellOrHeader = el.closest('[role="gridcell"i], [role="columnheader"i]');
@@ -25,10 +25,10 @@ function getDay(el: HTMLElement): number | void {
 /**
  *
  *
- * @param {MouseEvent} e - MouseEvent
- * @param {HTMLElement} el - HTMLElement
- * @param {number} hours - hours
- * @returns {*}  {(number | void)} - hour
+ * @param MouseEvent - MouseEvent
+ * @param HTMLElement - HTMLElement
+ * @param number - hours
+ * @returns number - hour
  */
 function getHour(e: MouseEvent, el: HTMLElement, hours: number): number | void {
 	const rowHeaderOrCell = el.closest('[role="rowheader"], [role="gridcell"i]') as HTMLElement;
@@ -45,9 +45,9 @@ function getHour(e: MouseEvent, el: HTMLElement, hours: number): number | void {
 
 /**
  * 
- * @param {Calendar} this - calendar
- * @param {MouseEvent} e - mouse event
- * @returns {CalendarEventContext} - event context
+ * @param Calendar - calendar
+ * @param MouseEvent - mouse event
+ * @returns CalendarEventContext - event context
  */
 export const getEventContext = function(this: Calendar, e: KeyboardEvent | MouseEvent): CalendarEventContext | null {
 

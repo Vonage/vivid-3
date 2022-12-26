@@ -21,7 +21,7 @@ const getClasses = ({
  *
  * determinate
  * 
- * @returns {HTMLElement} template
+ * @returns HTMLElement - template
  */
 function determinate() {
 	return html<BaseProgress>`
@@ -32,7 +32,7 @@ function determinate() {
  *
  * indeterminate
  * 
- * @returns {HTMLElement} template
+ * @returns HTMLElement - template
  */
 function indeterminate() {
 	return html<BaseProgress>`
@@ -45,7 +45,7 @@ function indeterminate() {
 /**
  *
  *
- * @returns {HTMLElement} template
+ * @returns HTMLElement - template
  */
 export const ProgressTemplate: (
 	context: ElementDefinitionContext,

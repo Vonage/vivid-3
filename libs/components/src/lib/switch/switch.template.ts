@@ -19,8 +19,8 @@ const getClasses = (_: Switch) => classNames('control',
 /**
  * The template for the {@link @microsoft/fast-foundation#Switch} component.
  *
- * @param {ElementDefinitionContext} context element definition
- * @returns {HTMLElement} template
+ * @param  ElementDefinitionContext - context element definition
+ * @returns HTMLElement - template
  */
 export const SwitchTemplate: (
 	context: ElementDefinitionContext,

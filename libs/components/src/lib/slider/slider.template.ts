@@ -15,9 +15,9 @@ const getClasses = ({ disabled}: Slider) =>
 /**
  *
  *
- * @param {boolean} isHorizontal - if Horizontal
- * @param {number} numMarkers - num of makers
- * @returns {*} HTMLElement -template
+ * @param isHorizontal - if Horizontal
+ * @param  numMarkers - num of makers
+ * @returns  HTMLElement - template
  */
 const getMarkersTemplate = (isHorizontal: boolean, numMarkers: number) => {
 	const placeholder = isHorizontal
@@ -32,10 +32,9 @@ const getMarkersTemplate = (isHorizontal: boolean, numMarkers: number) => {
 };
 
 /**
- * The template for the {@link @microsoft/fast-foundation#Slider} component.
  *
- * @param {ElementDefinitionContext} context element definition
- * @returns {HTMLElement} template
+ * @param  ElementDefinitionContext - context element definition
+ * @returns HTMLElement - template
  */
 export const SliderTemplate: (context: ElementDefinitionContext) => ViewTemplate<Slider> = (context: ElementDefinitionContext) => {
 	const focusTemplate = focusTemplateFactory(context);

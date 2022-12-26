@@ -15,9 +15,9 @@ const getClasses = (_: BreadcrumbItem) =>
 /**
  * The template for the {@link @microsoft/fast-foundation#BreadcrumbItem} component.
  *
- * @param {ElementDefinitionContext} context element definition
- * @param {FoundationElementDefinition} definition element foundation
- * @returns {HTMLElement} template
+ * @param ElementDefinitionContext - ElementDefinitionContext - context element definition
+ * @param FoundationElementDefinition - definition element foundation
+ * @returns HTMLElement - template
  */
 export const BreadcrumbItemTemplate: (
 	context: ElementDefinitionContext,

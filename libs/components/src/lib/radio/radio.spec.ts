@@ -7,8 +7,8 @@ import { radioDefinition } from './definition';
 const COMPONENT_TAG = 'vwc-radio';
 
 /**
- * @param el
- * @param attr
+ * @param el - radio
+ * @param attr - string
  */
 async function setBoolAttributeOn(el: Radio, attr: string): Promise<DOMTokenList> {
 	el.toggleAttribute(attr, true);

@@ -11,8 +11,8 @@ const COMPONENT_TAG = 'vwc-banner';
 /**
  *
  *
- * @param {Banner} element - banner
- * @param {boolean} [removable=true] - true
+ * @param Banner - banner
+ * @param boolean - true
  */
 async function toggleRemovable(element: Banner, removable = true) {
 	element.removable = removable;
@@ -53,7 +53,7 @@ describe('vwc-banner', () => {
 		/**
 		 *
 		 *
-		 * @param {(string | undefined)} text - element text
+		 * @param text - element text
 		 */
 		async function setTextProperty(text: string | undefined) {
 			element.text = text;
@@ -63,7 +63,7 @@ describe('vwc-banner', () => {
 		/**
 		 *
 		 *
-		 * @param {(string | undefined)} text - attribute text
+		 * @param text - attribute text
 		 */
 		async function setTextAttribute(text: string | undefined) {
 			element.setAttribute('text', text ? text : '');
@@ -73,7 +73,7 @@ describe('vwc-banner', () => {
 		/**
 		 *
 		 *
-		 * @returns {*} - text
+		 * @returns  - text
 		 */
 		function getText() {
 			const text = element.shadowRoot?.querySelector('.banner--message')?.textContent;

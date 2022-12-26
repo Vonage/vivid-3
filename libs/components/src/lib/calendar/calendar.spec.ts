@@ -326,8 +326,8 @@ describe('vwc-calendar', () => {
 /**
  *
  *
- * @param {Calendar} element - calendar
- * @returns {*} - first column date
+ * @param Calendar - calendar
+ * @returns Date - first column date
  */
 function getFirstColumnDate(element: Calendar) {
 	const firstColumnTimeEl = element.shadowRoot?.querySelector('.column-headers > :first-child time') as HTMLTimeElement;
@@ -338,8 +338,8 @@ function getFirstColumnDate(element: Calendar) {
 /**
  *
  *
- * @param {(Date | string)} d - date
- * @returns {*} - monday of week
+ * @param d - date
+ * @returns Date - monday of week
  */
 function getMondayOfWeek(d: Date | string) {
 	d = new Date(d);
@@ -351,8 +351,8 @@ function getMondayOfWeek(d: Date | string) {
 /**
  *
  *
- * @param {(Date | string)} d - date
- * @returns {*}  - sunday of week
+ * @param d - date
+ * @returns  Date - sunday of week
  */
 function getSundayOfWeek(d: Date | string) {
 	d = new Date(d);

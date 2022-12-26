@@ -17,7 +17,7 @@ const getClasses = (_: Banner) => classNames(
 /**
  *
  *
- * @returns {HTMLElement} template
+ * @returns HTMLElement - template
  */
 function renderDismissButton(buttonTag: string) {
 	return html<Banner>`
@@ -33,8 +33,8 @@ function renderDismissButton(buttonTag: string) {
 /**
  * The template for the {@link @microsoft/fast-foundation#Banner} component.
  *
- * @param {ElementDefinitionContext} context element definition
- * @returns {HTMLElement} template
+ * @param ElementDefinitionContext - ElementDefinitionContext - context element definition
+ * @returns HTMLElement - template
  */
 export const BannerTemplate: (
 	context: ElementDefinitionContext,

@@ -15,8 +15,8 @@ const getPartAlternate = ({ alternate }: Header) => classNames(
 /**
  * The template for the {@link @microsoft/fast-foundation#header} component.
  *
- * @param {ElementDefinitionContext} context element definition
- * @returns {HTMLElement} template
+ * @param ElementDefinitionContext - context element definition
+ * @returns HTMLElement - template
  */
 export const headerTemplate: (
 	context: ElementDefinitionContext,

@@ -21,9 +21,9 @@ const getClasses = ({
  * Generates a template for the {@link @microsoft/fast-foundation#(MenuItem:class)} component using
  * the provided prefix.
  *
- * @param {ElementDefinitionContext} context element definition
- * @param {MenuItemOptions} definition element foundation
- * @returns {HTMLElement} template
+ * @param ElementDefinitionContext - context element definition
+ * @param MenuItemOptions - definition element foundation
+ * @returns HTMLElement - template
  */
 export const MenuItemTemplate:  (
 	context: ElementDefinitionContext,

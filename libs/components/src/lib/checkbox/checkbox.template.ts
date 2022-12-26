@@ -22,8 +22,8 @@ const getClasses = ({
 
 /**
  * 
- * @param {FoundationElementTemplate} context - ViewTemplate
- * @returns {HTMLElement} template
+ * @param FoundationElementTemplate - ViewTemplate
+ * @returns HTMLElement - template
  */
 export const CheckboxTemplate: FoundationElementTemplate<
 ViewTemplate<Checkbox>,

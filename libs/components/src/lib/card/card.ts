@@ -17,7 +17,7 @@ export class Card extends FoundationElement {
 	@attr headline?: string;
 
 	/**
-	 * the text of the card sub-heading
+	 * the text of the card sub - heading
 	 * accepts string
 	 *
 	 * 
@@ -25,7 +25,7 @@ export class Card extends FoundationElement {
 	@attr subtitle?: string;
 
 	/**
-	 * the text of the card sub-heading
+	 * the text of the card sub - heading
 	 * accepts string
 	 *
 	 * 
@@ -51,9 +51,7 @@ export class Card extends FoundationElement {
 	/**
 	 *
 	 *
-	 * @type {HTMLElement[]}
-	 * @memberof Card
-	 */
+	 * 	 */
 	@observable footerSlottedContent?: HTMLElement[];
 	@observable graphicSlottedContent?: HTMLElement[];
 	@observable hasMetaSlottedContent?: HTMLElement[];

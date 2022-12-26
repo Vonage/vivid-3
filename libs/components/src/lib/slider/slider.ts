@@ -20,8 +20,8 @@ export class Slider extends FastSlider {
 	/**
 	 *
 	 *
-	 * @param {string} previous - previous value
-	 * @param {string} next - next value
+	 * @param  previous - previous value
+	 * @param  next - next value
 	 */
 	override valueChanged(previous: string, next: string): void {
 		if (this.$fastController.isConnected) {

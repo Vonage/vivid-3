@@ -9,7 +9,6 @@ import { Icon } from '../../lib/icon/icon';
  * These are generally used to decorate text elements with icons or other visual indicators.
  *
  * 
- * @class AffixIcon
  */
 export class AffixIcon {
 	/**
@@ -45,8 +44,8 @@ export class AffixIconWithTrailing extends AffixIcon {
  * The template for the prefixed element.
  * For use with {@link AffixIcon}
  *
- * @param {ElementDefinitionContext} context element definition
- * @returns {HTMLElement} - template
+ * @param  ElementDefinitionContext - context element definition
+ * @returns HTMLElement - template
  */
 export const affixIconTemplateFactory: (context: ElementDefinitionContext) =>
 (icon?: string, className?: string) => ViewTemplate<AffixIcon> | null = (context: ElementDefinitionContext) => {

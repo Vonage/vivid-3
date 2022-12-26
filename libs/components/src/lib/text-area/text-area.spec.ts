@@ -11,8 +11,8 @@ import '.';
 const COMPONENT_TAG_NAME = 'vwc-text-area';
 
 /**
- * @param {HTMLElement} element - textarea
- * @returns {HTMLElement} - HTMLTextAreaElement
+ * @param HTMLElement - textarea
+ * @returns HTMLElement - HTMLTextAreaElement
  */
 function getTextareaElement(element: TextArea) {
 	return element.shadowRoot?.querySelector('textarea') as HTMLTextAreaElement;
@@ -35,7 +35,7 @@ describe('vwc-text-area', () => {
 	}
 
 	/**
-	 * @param {string} errorMessage - validation
+	 * @param  errorMessage - validation
 	 */
 	function setValidityToError(errorMessage = 'error') {
 		element.setValidity({badInput: true}, errorMessage);

@@ -17,7 +17,7 @@ const getClasses = (_: Card) => classNames(
 
 /**
  * 
- * @returns {HTMLElement} template
+ * @returns HTMLElement - template
  */
 function renderHeaderIcon(iconTag: string) {
 	return html<Card>`
@@ -27,7 +27,7 @@ function renderHeaderIcon(iconTag: string) {
 /**
  *
  *
- * @returns {HTMLElement} template
+ * @returns HTMLElement - template
  */
 function Headline() {
 	return html`
@@ -38,7 +38,7 @@ function Headline() {
 /**
  *
  *
- * @returns {HTMLElement} template
+ * @returns HTMLElement - template
  */
 function Subtitle() {
 	return html`
@@ -49,7 +49,7 @@ function Subtitle() {
 /**
  *
  *
- * @returns {HTMLElement} template
+ * @returns HTMLElement - template
  */
 function headerContent() {
 	return html`
@@ -63,7 +63,7 @@ function headerContent() {
 /**
  *
  *
- * @returns {HTMLElement} template
+ * @returns HTMLElement - template
  */
 function renderHeader(iconTag: string) {
 
@@ -78,8 +78,8 @@ function renderHeader(iconTag: string) {
 /**
  *
  *
- * @param {Card} card - card
- * @returns {HTMLElement} template
+ * @param Card - card
+ * @returns HTMLElement - template
  */
 function shouldHideHeader(card:Card) {
 	// eslint-disable-next-line max-len
@@ -89,7 +89,7 @@ function shouldHideHeader(card:Card) {
 /**
  *
  *
- * @returns {HTMLElement} template
+ * @returns HTMLElement - template
  */
 function renderMetaSlot() {
 	return html`
@@ -100,7 +100,7 @@ function renderMetaSlot() {
 /**
  *
  *
- * @returns {HTMLElement} template
+ * @returns HTMLElement - template
  */
 function text() {
 	return html`
@@ -111,7 +111,7 @@ function text() {
 /**
  * The template for the {@link @microsoft/fast-foundation#Card} component.
  *
- * @returns {HTMLElement} template
+ * @returns HTMLElement - template
  */
 export const CardTemplate: (
 	context: ElementDefinitionContext,

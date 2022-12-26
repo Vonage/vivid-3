@@ -12,7 +12,7 @@ const getClasses = (_: <%= className %>) =>
 /**
  * The template for the {@link @microsoft/fast-foundation#<%= className %>} component.
  *
- * @param {ElementDefinitionContext} context element definition
+ * @param  ElementDefinitionContext - context element definition
  * 
  */
 export const <%= className %>Template: (

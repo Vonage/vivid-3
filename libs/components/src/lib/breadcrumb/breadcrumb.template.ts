@@ -5,7 +5,7 @@ import type {Breadcrumb} from './breadcrumb';
 
 /**
  * 
- * @returns {HTMLElement} - template
+ * @returns HTMLElement - - template
  */
 export const breadcrumbTemplate: FoundationElementTemplate<ViewTemplate<Breadcrumb>> = () => html`
 	<nav aria-label="breadcrumbs" class="base">

@@ -18,7 +18,7 @@ const getClasses = ({iconPlacement}: Dialog) => classNames(
 /**
  *
  *
- * @returns {HTMLElement} template
+ * @returns HTMLElement - template
  */
 function icon(iconTag: string) {
 	return html<Dialog>`
@@ -29,7 +29,7 @@ function icon(iconTag: string) {
 /**
  *
  *
- * @returns {HTMLElement} template
+ * @returns HTMLElement - template
  */
 function headline() {
 	return html<Dialog>`
@@ -43,7 +43,7 @@ function headline() {
 /**
  *
  *
- * @returns {HTMLElement} template
+ * @returns HTMLElement - template
  */
 function renderDismissButton(buttonTag: string) {
 	return html<Dialog>`
@@ -60,8 +60,8 @@ function renderDismissButton(buttonTag: string) {
 /**
  *
  *
- * @param {Dialog} dialog - dialog
- * @param {Event} event - event
+ * @param Dialog - dialog
+ * @param Event - event
  */
 function handleEscapeKey(dialog: Dialog, event: Event) {
 	if ((event as KeyboardEvent).key === 'Escape' && dialog.modal) {
@@ -72,7 +72,7 @@ function handleEscapeKey(dialog: Dialog, event: Event) {
 /**
  *
  *
- * @returns {*} @returns {HTMLElement} template
+ * @returns  @returns HTMLElement - template
  */
 function content() {
 	return html<Dialog>`
@@ -84,7 +84,7 @@ function content() {
 /**
  * The template for the {@link @microsoft/fast-foundation#Dialog} component.
  *
- * @returns {HTMLElement} template
+ * @returns HTMLElement - template
  */
 export const DialogTemplate: (
 	context: ElementDefinitionContext,

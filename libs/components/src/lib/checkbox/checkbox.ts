@@ -20,7 +20,7 @@ export class Checkbox extends FastCheckbox {
 
 	/**
 	 * 
-	 * @param {KeyboardEvent} e - keypressHandler
+	 * @param KeyboardEvent - keypressHandler
 	 */
 	override keypressHandler = (e: KeyboardEvent): void => {
 		switch (e.key) {

@@ -8,8 +8,8 @@ import { sliderDefinition } from './definition';
 const COMPONENT_TAG = 'vwc-slider';
 
 /**
- * @param el
- * @param attr
+ * @param el - slider
+ * @param attr - string
  */
 async function setBoolAttributeOn(el: Slider, attr: string): Promise<DOMTokenList> {
 	el.toggleAttribute(attr, true);

@@ -16,7 +16,7 @@ const getClasses = ({
 
 /**
  * 
- * @returns {HTMLElement} template
+ * @returns HTMLElement - template
  */
 export const TooltipTemplate: (
 	context: ElementDefinitionContext,

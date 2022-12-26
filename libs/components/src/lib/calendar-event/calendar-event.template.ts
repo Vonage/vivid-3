@@ -17,8 +17,8 @@ const getClasses = ({
 /**
  *
  *
- * @param {CalendarEvent} event - start, duration, overlapCount
- * @returns {HTMLElement} template
+ * @param CalendarEvent - start, duration, overlapCount
+ * @returns HTMLElement - template
  */
 const getStyles = ({ start, duration, overlapCount }: CalendarEvent) => {
 	const stylesObj = {
@@ -36,7 +36,7 @@ const getStyles = ({ start, duration, overlapCount }: CalendarEvent) => {
 /**
  * The template for the {@link @microsoft/fast-foundation#CalendarEvent} component.
  *
- * @returns {HTMLElement} template
+ * @returns HTMLElement - template
  */
 export const CalendarEventTemplate: (
 	context: ElementDefinitionContext,

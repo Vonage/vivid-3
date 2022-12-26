@@ -17,7 +17,7 @@ describe('icon', function () {
 		/**
 		 *
 		 *
-		 * @param {number} [requestTime=4000] - time
+		 * @param  requestTime - time
 		 */
 		function fakeFetch(requestTime = 4000) {
 			(global.fetch as any) = jest.fn(() => {
@@ -63,7 +63,7 @@ describe('icon', function () {
 		/**
 		 *
 		 *
-		 * @param {number} timeInMs - time in mins
+		 * @param  timeInMs - time in mins
 		 */
 		function setIconNameAndAdvanceTime(timeInMs: number) {
 			element.name = 'none';
@@ -73,7 +73,7 @@ describe('icon', function () {
 		/**
 		 *
 		 *
-		 * @param {(string | undefined)} iconName - icon name
+		 * @param iconName - icon name
 		 */
 		function setIconNameAndRunAllTimers(iconName: string | undefined) {
 			element.name = iconName;

@@ -62,7 +62,6 @@ export class Icon extends FoundationElement {
 	/**
 	 *
 	 *
-	 * @type {string} svg
 	 */
 	@observable _svg?: string;
 

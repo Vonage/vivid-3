@@ -10,7 +10,6 @@ const supportsElementInternals = () => ElementInternalsKey in window && 'setForm
  *
  *
  * 
- * @interface FormElement
  */
 export interface FormElement {
 	charCount: boolean;
@@ -26,9 +25,8 @@ export interface FormElement {
  *
  *
  * 
- * @template T
- * @param {T} constructor - args
- * @returns {*} HTMLElement
+ * @param constructor - args
+ * @returns HTMLElement
  */
 export function formElements<T extends { new (...args: any[]): Record<string, any> }>(constructor: T) {
 	class Decorated extends constructor {
@@ -106,9 +104,9 @@ type MessageTypeMap = { [key in FeedbackType]: {
  *
  *
  * 
- * @param {FeedbackType} messageType - type
- * @param {ElementDefinitionContext} context element definition
- * @returns {*} HTMLElement
+ * @param messageType - type
+ * @param ElementDefinitionContext - context element definition
+ * @returns HTMLElement
  */
 export function getFeedbackTemplate(messageType: FeedbackType, context: ElementDefinitionContext) {
 	const MessageTypeMap: MessageTypeMap = {
@@ -147,8 +145,8 @@ export function getFeedbackTemplate(messageType: FeedbackType, context: ElementD
 /**
  *
  *
- * @param {{messageProperty: MessagePropertyType }} {messageProperty} - propety
- * @returns {*} HTMLElement
+ * @param messageProperty - propety
+ * @returns HTMLElement - FormElement
  */
 function feedbackMessage({messageProperty}: {messageProperty: MessagePropertyType }) {
 	return html<FormElement>`

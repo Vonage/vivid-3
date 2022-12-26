@@ -16,8 +16,8 @@ const COMPONENT_TAG_NAME = 'vwc-number-field';
 /**
  *
  *
- * @param {NumberField} element - number
- * @returns {HTMLElement} - root
+ * @param NumberField - number
+ * @returns HTMLElement - root
  */
 function getRootElement(element: NumberField) {
 	return element.shadowRoot?.querySelector('.base') as HTMLElement;
@@ -40,7 +40,7 @@ describe('vwc-number-field', () => {
 	}
 
 	/**
-	 * @param errorMessage
+	 * @param string - errorMessage
 	 */
 	function setValidityToError(errorMessage = 'error') {
 		element.setValidity({badInput: true}, errorMessage);
@@ -577,7 +577,7 @@ describe('vwc-number-field', () => {
 		it('should set inert in disabled and readonly', async function() {
 			/**
 			 *
-			 * @returns {boolean} is button inert
+			 * @returns boolean - is button inert
 			 */
 			function isButtonsWrapperInert() {
 				return addButton.parentElement?.hasAttribute('inert');
@@ -604,7 +604,7 @@ describe('vwc-number-field', () => {
 			/**
 			 *
 			 *
-			 * @returns {boolean} if button inert
+			 * @returns boolean - if button inert
 			 */
 			function isButtonsWrapperInert() {
 				return addButton.getAttribute('tabindex') === '-1' &&

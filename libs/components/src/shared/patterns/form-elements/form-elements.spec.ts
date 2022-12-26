@@ -7,7 +7,7 @@ describe('formElements mixin', function () {
 	/**
 	 *
 	 *
-	 * @param {*} [elementInstance=instance] - proxy
+	 * @param elementInstance - proxy
 	 */
 	function setProxy(elementInstance = instance) {
 		elementInstance.proxy = document.createElement('input');
@@ -33,8 +33,6 @@ describe('formElements mixin', function () {
 	/**
 	 *
 	 *
-	 * @class TestClass
-	 * @augments {HTMLElement}
 	 */
 	@formElements
 	class TestClass extends HTMLElement{

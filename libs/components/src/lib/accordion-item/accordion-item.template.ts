@@ -23,8 +23,8 @@ const getClasses = ({
 
 /**
  * 
- * @param {ElementDefinitionContext} context element definition
- * @returns {HTMLElement} template
+ * @param ElementDefinitionContext - ElementDefinitionContext - context element definition
+ * @returns HTMLElement - template
  */
 export const AccordionItemTemplate: (
 	context: ElementDefinitionContext,
@@ -41,9 +41,9 @@ export const AccordionItemTemplate: (
 /**
  *
  *
- * @param {ElementDefinitionContext} context element definition
- * @param {(number | string | undefined)} headingLevel - heading level
- * @returns {HTMLElement} template
+ * @param ElementDefinitionContext - ElementDefinitionContext - context element definition
+ * @param HeadingLevel - heading level
+ * @returns HTMLElement - template
  */
 const renderPanelHeader = (context: ElementDefinitionContext, headingLevel: number | string | undefined) => {
 	const header: string = headingLevel ? 'h' + headingLevel : 'h3';
@@ -57,8 +57,8 @@ const renderPanelHeader = (context: ElementDefinitionContext, headingLevel: numb
 /**
  *
  *
- * @param {ElementDefinitionContext} context element definition
- * @returns {HTMLElement} template
+ * @param ElementDefinitionContext - ElementDefinitionContext - context element definition
+ * @returns HTMLElement - template
  */
 const renderHeaderButton = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);

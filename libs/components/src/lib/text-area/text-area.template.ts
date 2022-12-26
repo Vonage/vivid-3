@@ -23,7 +23,7 @@ const getClasses = ({value, errorValidationMessage, disabled, placeholder, readO
  *
  * renderLabel
  * 
- * @returns {HTMLElement} template
+ * @returns HTMLElement - template
  */
 function renderLabel() {
 	return html<TextArea>`
@@ -34,8 +34,8 @@ function renderLabel() {
 
 /**
  * 
- * @param {ElementDefinitionContext} context element definition 
- * @returns {HTMLElement} template
+ * @param ElementDefinitionContext - context element definition 
+ * @returns HTMLElement - template
  */
 export const TextAreaTemplate: (
 	context: ElementDefinitionContext,

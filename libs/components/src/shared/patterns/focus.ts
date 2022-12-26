@@ -6,10 +6,10 @@ import { Focus } from '../../lib/focus/focus';
 
 
 /**
- * The template for the focus element.}
+ * The template for the focus element.
  *
- * @param {ElementDefinitionContext} context element definition
- * @returns {HTMLElement} - template
+ * @param  ElementDefinitionContext - context element definition
+ * @returns HTMLElement - template
  */
 export const focusTemplateFactory: (context: ElementDefinitionContext) =>
 ViewTemplate | null = (context: ElementDefinitionContext) => {

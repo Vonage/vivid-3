@@ -18,7 +18,7 @@ const progressSegments: number = 44;
 /**
  *
  *
- * @returns {HTMLElement} template
+ * @returns HTMLElement - template
  */
 export const ProgressRingTemplate: (
 	context: ElementDefinitionContext,

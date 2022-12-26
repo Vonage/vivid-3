@@ -28,7 +28,7 @@ describe('vwc-text-field', () => {
 	}
 
 	/**
-	 * @param {string} errorMessage - validation
+	 * @param  errorMessage - validation
 	 */
 	function setValidityToError(errorMessage = 'error') {
 		element.setValidity({badInput: true}, errorMessage);

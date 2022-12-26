@@ -7,8 +7,6 @@ import { AffixIconWithTrailing } from '../../shared/patterns/affix';
  *
  * Base class for accordion-item
  * 
- * @class AccordionItem
- * @augments {FoundationElement}
  */
 export class AccordionItem extends FoundationElement {
 	/**

@@ -73,7 +73,6 @@ export class CalendarEvent extends FoundationElement {
 	/**
 	 * time of day event starts
 	 *
-	 * @default 0
 	 */
 	@attr({ converter: nullableNumberConverter  })
 		start?: number; // TODO should be converted to allowed range
@@ -81,7 +80,6 @@ export class CalendarEvent extends FoundationElement {
 	/**
 	 * event's time duration in hours
 	 *
-	 * @default 1
 	 */
 	@attr({ converter: nullableNumberConverter  })
 		duration?: number; // TODO should be converted to allowed range

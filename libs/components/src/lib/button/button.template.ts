@@ -29,8 +29,8 @@ const getClasses = ({
 /**
  * The template for the {@link @microsoft/fast-foundation#(Button:class)} component.
  *
- * @param {ElementDefinitionContext} context element definition
- * @returns {HTMLElement} template
+ * @param ElementDefinitionContext - ElementDefinitionContext - context element definition
+ * @returns HTMLElement - template
  */
 export const buttonTemplate: (
 	context: ElementDefinitionContext,

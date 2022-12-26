@@ -77,7 +77,7 @@ describe('vwc-breadcrumb-item', () => {
 		/**
 		 *
 		 *
-		 * @returns {*} - anchor
+		 * @returns  - anchor
 		 */
 		function getAnchorElement() {
 			return element.shadowRoot?.querySelector('a');
@@ -86,8 +86,8 @@ describe('vwc-breadcrumb-item', () => {
 		/**
 		 *
 		 *
-		 * @param {string} str - word
-		 * @returns {*} - capitalized first letter
+		 * @param string - word
+		 * @returns string - capitalized first letter
 		 */
 		function capitalizeFirstLetter(str: string) {
 			return str.charAt(0).toUpperCase() + str.slice(1);

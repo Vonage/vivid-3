@@ -6,8 +6,8 @@ const postcss = require('rollup-plugin-postcss');
 /**
  *
  *
- * @param {string} [workingFolder='./src/lib/'] src
- * @returns {*} folders
+ * @param string - [workingFolder='./src/lib/'] src
+ * @returns  folders
  */
 function getFoldersInAFolder(workingFolder = './src/lib/') {
 	const folders = [];
@@ -22,7 +22,6 @@ function getFoldersInAFolder(workingFolder = './src/lib/') {
 	return folders;
 }
 
-/** @type {*} */
 const components = getFoldersInAFolder();
 const input = components.reduce((inputObject, componentName) => {
 	inputObject[`${componentName}/index`] = path.join(

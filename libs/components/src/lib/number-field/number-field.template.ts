@@ -40,7 +40,7 @@ const getStateClasses = ({
 /**
  *
  *
- * @returns {HTMLElement} template
+ * @returns HTMLElement - template
  */
 function renderLabel() {
 	return html<NumberField>`
@@ -52,8 +52,8 @@ function renderLabel() {
 /**
  *
  *
- * @param {NumberField} numberField - number
- * @param {*} [direction=ADD] - direction
+ * @param NumberField - number
+ * @param direction - direction
  */
 function adjustValueByStep(numberField: NumberField, direction = ADD) {
 	numberField.value = (Number(numberField.value) + direction * (numberField.step ? numberField.step : 1)).toString();
@@ -62,8 +62,8 @@ function adjustValueByStep(numberField: NumberField, direction = ADD) {
 /**
  *
  *
- * @param {NumberField} numberField - number field
- * @returns {*} control
+ * @param  numberField - number field
+ * @returns  control
  */
 function setControlButtonShape(numberField: NumberField) {
 	return numberField.shape === Shape.Pill ? Shape.Pill : null;
@@ -72,8 +72,8 @@ function setControlButtonShape(numberField: NumberField) {
 /**
  *
  *
- * @param {NumberField} numberField - number field
- * @returns {*} tabindex
+ * @param  numberField - number field
+ * @returns  tabindex
  */
 function getTabIndex(numberField: NumberField) {
 	return (numberField.disabled || numberField.readOnly) ? '-1' : null;
@@ -82,8 +82,8 @@ function getTabIndex(numberField: NumberField) {
 /**
  *
  *
- * @param {ElementDefinitionContext} context element definition
- * @returns {HTMLElement} template
+ * @param  ElementDefinitionContext - context element definition
+ * @returns HTMLElement - template
  */
 function numberControlButtons(context: ElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
@@ -112,8 +112,8 @@ function numberControlButtons(context: ElementDefinitionContext) {
 /**
  * The template for the {@link @microsoft/fast-foundation#NumberField} component.
  *
- * @param {ElementDefinitionContext} context element definition
- * @returns {HTMLElement} template
+ * @param  ElementDefinitionContext - context element definition
+ * @returns HTMLElement - template
  */
 export const NumberFieldTemplate: (
 	context: ElementDefinitionContext,

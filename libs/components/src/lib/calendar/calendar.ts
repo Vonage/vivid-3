@@ -63,20 +63,17 @@ export class Calendar extends FoundationElement {
 	/**
 	 *
 	 *
-	 * @memberof Calendar
 	 */
 	_hours = 24;
 	/**
 	 *
 	 *
-	 * @memberof Calendar
 	 */
 	_days = 7;
 
 	/**
 	 *
 	 *
-	 * @memberof Calendar
 	 */
 	hoursAsDatetime = (Array.from({ length: this._hours - 1 }) as Date[])
 		.fill(new Date(new Date().setHours(0, 0, 0)))
@@ -85,8 +82,8 @@ export class Calendar extends FoundationElement {
 	/**
 	 *
 	 *
-	 * @param {[Date, ...Date[]]} dateArr - dateArr array of dates. requires at least 1 date to be set within the array
-	 * @returns {Array} array of incremental dates from the first date in the array
+	 * @param dateArr - dateArr array of dates. requires at least 1 date to be set within the array
+	 * @returns Array - array of incremental dates from the first date in the array
 	 */
 	_generateDaysArr = (dateArr: [Date, ...Date[]]): Date[] => {
 		if (dateArr.length == this._days) {
@@ -107,9 +104,9 @@ export class Calendar extends FoundationElement {
 	/**
 	 * Fire an event
 	 *
-	 * @param {string} event        - event name
-	 * @param {Object} [detail={}]  - optional event detail object
-	 * @returns {boolean}           - return true
+	 * @param string - event name
+	 * @param Object - optional event detail object
+	 * @returns boolean - return true
 	 */
 	getEventContext = getEventContext;
 

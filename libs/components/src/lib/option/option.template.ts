@@ -21,8 +21,8 @@ const getClasses = ({
 
 /**
  * 
- * @param {ElementDefinitionContext} context element definition 
- * @returns {HTMLElement} template
+ * @param  ElementDefinitionContext - context element definition 
+ * @returns HTMLElement - template
  */
 export const ListboxOptionTemplate: (
 	context: ElementDefinitionContext,

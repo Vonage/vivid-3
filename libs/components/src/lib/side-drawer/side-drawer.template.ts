@@ -23,9 +23,8 @@ const getScrimClasses = ({
 );
 
 /**
- * The template for the {@link @vonage/vivid#side-drawer} component.
  *
- * @returns {ViewTemplate} A template capable of creating HTMLView instances or rendering directly to DOM.
+ * @returns ViewTemplate - A template capable of creating HTMLView instances or rendering directly to DOM.
  */
 export const sideDrawerTemplate: FoundationElementTemplate<ViewTemplate<SideDrawer>> = () => html`
 	<aside class="${getClasses}" part="base ${(x) => x.alternate ? 'vvd-theme-alternate' : ''}"
@@ -44,9 +43,9 @@ export const sideDrawerTemplate: FoundationElementTemplate<ViewTemplate<SideDraw
 /**
  *
  *
- * @param {*} x - this
- * @param {KeyboardEvent} key - keyboard
- * @returns {*}  {(boolean | void)}
+ * @param  x - this
+ * @param KeyboardEvent - - keyboard
+ * @returns boolean - key
  */
 const handleKeydown = (x: any, { key }: KeyboardEvent): boolean | void => {
 	if (key === 'Escape') {

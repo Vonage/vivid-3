@@ -11,7 +11,7 @@ const components = ['layout', 'card', 'divider'];
 
 /**
  * 
- * @returns {HTMLElement} - template
+ * @returns HTMLElement - - template
  */
 function runLayoutUiTest() {
 	return async ({page}: { page: Page }) => {

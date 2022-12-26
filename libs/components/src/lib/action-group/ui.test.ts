@@ -12,7 +12,7 @@ const components = ['action-group', 'button', 'text-field', 'layout', 'popup', '
 /**
  *
  *
- * @returns {*} HTMLElement
+ * @returns  HTMLElement
  */
 function runActionGroupTest() {
 	return async ({page}: { page: Page }) => {
