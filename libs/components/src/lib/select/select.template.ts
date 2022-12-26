@@ -4,7 +4,7 @@ import {classNames} from '@microsoft/fast-web-utilities';
 import { Listbox } from '../listbox/listbox';
 import { Popup } from '../popup/popup';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
-// import { focusTemplateFactory } from '../shared/patterns/focus.js';
+import { focusTemplateFactory } from './../../shared/patterns/focus';
 import type { Select } from './select';
 
 
@@ -37,7 +37,7 @@ function renderLabel() {
  */
 function renderControl(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
-	// const focusTemplate = focusTemplateFactory(context);
+	const focusTemplate = focusTemplateFactory(context);
 	const popupTag = context.tagFor(Popup);
 
 	return html<Select>`
@@ -53,6 +53,7 @@ function renderControl(context: ElementDefinitionContext) {
 						${x => x.displayValue}
 					</div>
 					${() => affixIconTemplate('chevron-down-line')}
+					${() => focusTemplate}
 				</div>
 				<${popupTag}
 					?open="${x => (x.collapsible ? x.open : true)}"
@@ -78,8 +79,9 @@ function renderControl(context: ElementDefinitionContext) {
             </div>
 					</${popupTag}>
 			</div>
+
 		`;
-	// ${() => focusTemplate}
+
 }
 
 
@@ -94,7 +96,6 @@ export const SelectTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Select> = (context: ElementDefinitionContext) => {
-	// const popupTag = context.tagFor(Popup);
 
 	return html<Select>`
 	  <div class="base ${getStateClasses}"

@@ -12,6 +12,7 @@
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+@use "../focus/partials/variables" as focus-variables;
 
 :host {
 	display: block;
@@ -67,6 +68,12 @@
 	.base.shape-pill & {
 		border-radius: 24px;
 	}
+
+	@supports selector(:focus-visible) {
+	&:focus {
+		outline: none;
+	}
+}
 }
 
 .list-box {
@@ -80,4 +87,10 @@
 	$popup-width: --_popup-width;
 
 	#{$popup-width}: 100%;
+}
+
+.focus-indicator {
+	.control:not(:focus-visible, :focus-within) > & {
+		display: none;
+	}
 }

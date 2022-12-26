@@ -15,7 +15,10 @@ import { SelectTemplate as template } from './select.template';
 export const selectDefinition = Select.compose<SelectOptions>({
 	baseName: 'select',
 	template: template as any,
-	styles
+	styles,
+	shadowOptions: {
+		delegatesFocus: true,
+	},
 });
 
 /**
