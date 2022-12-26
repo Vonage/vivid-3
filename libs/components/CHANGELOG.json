@@ -2,6 +2,36 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Mon, 26 Dec 2022 11:42:54 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.124",
+      "version": "3.0.0-next.124",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "7fb68b48b7c524edbea211fdeccad67ac1c255a3",
+            "comment": "listbox inline size"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 25 Dec 2022 15:29:14 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.124",
+      "version": "3.0.0-next.124",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "554b1b8a0b6d9be6c5588c0d701eaf83ae71e147",
+            "comment": "add light dismiss support to popup"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 21 Dec 2022 15:15:42 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.123",
       "version": "3.0.0-next.123",
