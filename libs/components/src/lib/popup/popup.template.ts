@@ -39,8 +39,7 @@ export const popupTemplate: (
 		html<Popup>`<${buttonTag} size="condensed" @click="${x => (x.open = false)}"
 						class="dismissible-button" icon="close-small-solid" shape="pill"></${buttonTag}>`)}
 				</div>
-				${when(x => x.arrow,
-		html<Popup>`<div class="arrow" ${ref('arrowEl')}></div>`)}
+				${when(x => x.arrow, html<Popup>`<div class="arrow" ${ref('arrowEl')}></div>`)}
 			</div>
     </div>
   </${elevationTag}>`;
