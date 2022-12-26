@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Wed, 21 Dec 2022 15:15:42 GMT and should not be manually modified.
+This log was last generated on Sun, 25 Dec 2022 15:29:14 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.124
+
+Sun, 25 Dec 2022 15:29:14 GMT
+
+### Changes
+
+- add light dismiss support to popup (rina.oksman@vonage.com)
 
 ## 3.0.0-next.123
 

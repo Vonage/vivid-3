@@ -5,7 +5,7 @@ import { elevationRegistries } from '../elevation/definition';
 import { Popup } from './popup';
 import styles from './popup.scss';
 import { popupTemplate as template } from './popup.template';
-
+import '@oddbird/popover-polyfill';
 
 
 /**
