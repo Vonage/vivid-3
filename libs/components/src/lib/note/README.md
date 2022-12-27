@@ -44,15 +44,15 @@ Note that if not set, icon will default to the connotation-associated icon type.
 Set the `connotation` attribute to change the note's connotation.
 It accepts a subset of predefined values.
 
-- Type: `'success'` | `'alert'` | `'warning'` | `'information'` | `'announcement'`
-- Default: `'announcement'`
+- Type: `'accent'` | `'success'` | `'alert'` | `'warning'` | `'information'`
+- Default: `'accent'`
 
 ```html preview blocks
 <vwc-note connotation="alert" headline="alert note"></vwc-note>
 <vwc-note connotation="success" headline="success note"></vwc-note>
 <vwc-note connotation="warning" headline="warning note"></vwc-note>
 <vwc-note connotation="information" headline="information note"></vwc-note>
-<vwc-note connotation="announcement" headline="announcement note"></vwc-note>
+<vwc-note connotation="accent" headline="accent note"></vwc-note>
 ```
 
 ## Slots

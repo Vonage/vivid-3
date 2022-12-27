@@ -1,3 +1,5 @@
+@use "../../../../../../dist/libs/tokens/scss/size.variables" as size;
+
 $auto-sizing: --_auto-sizing; // interior. not API
 $layout-grid-template-columns: --layout-grid-template-columns;
 
@@ -17,13 +19,13 @@ $bases: (
 
 /* #region SPACES */
 $spaces: (
-	small: 16px,
-	small-inline: 0 16px,
-	small-block: 16px 0,
-	medium: 24px,
-	medium-inline: 0 24px,
-	medium-block: 24px 0,
-	large: 32px,
-	large-inline: 0 32px,
-	large-block: 32px 0,
+	small: calc(#{size.$vvd-size-normal} - #{size.$vvd-size-super-condensed}),
+	small-inline: 0 calc(#{size.$vvd-size-normal} - #{size.$vvd-size-super-condensed}),
+	small-block: calc(#{size.$vvd-size-normal} - #{size.$vvd-size-super-condensed}) 0,
+	medium: #{size.$vvd-size-super-condensed},
+	medium-inline: 0 #{size.$vvd-size-super-condensed},
+	medium-block: #{size.$vvd-size-super-condensed} 0,
+	large: #{size.$vvd-size-condensed},
+	large-inline: 0 #{size.$vvd-size-condensed},
+	large-block: #{size.$vvd-size-condensed} 0,
 );
