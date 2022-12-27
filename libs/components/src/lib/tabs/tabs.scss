@@ -66,12 +66,18 @@
 		z-index: 1;
 		block-size: var(#{variables.$tabs-active-indicator-stroke-width});
 		grid-area: 2 / 1 / auto / auto;
-		inline-size: 80%;
+		inline-size: var(#{variables.$tabs-active-indicator-inline-size}); // patches the janky transition of the indicator's width styled by fast using grid-column
 		justify-self: center;
 		margin-block-start: calc(var(#{variables.$tabs-active-indicator-stroke-width}) * -1);
+		position: absolute; // patches the janky transition of the indicator's width styled by fast using grid-column
+		inset-inline-start: 0; // patches the janky transition of the indicator's width styled by fast using grid-column
 	}
 }
 
 .activeIndicatorTransition {
-	transition: transform 0.2s ease-out 0s;
+	transition: transform #{variables.$tabs-active-indicator-transition-delay} ease-out 0s, inline-size #{variables.$tabs-active-indicator-transition-delay} ease-out 0s;
+}
+
+.base:not(.orientation-vertical) .active-indicator:not(.activeIndicatorTransition) {
+	opacity: 0;
 }
