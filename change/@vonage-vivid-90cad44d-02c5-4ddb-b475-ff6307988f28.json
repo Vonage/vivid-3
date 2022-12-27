@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "refactor UI style to align with v2.x design spec",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}

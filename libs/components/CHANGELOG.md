@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Tue, 27 Dec 2022 14:59:58 GMT and should not be manually modified.
+This log was last generated on Tue, 27 Dec 2022 16:08:19 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.128
+
+Tue, 27 Dec 2022 16:08:19 GMT
+
+### Changes
+
+- refactor UI style to align with v2.x design spec (yinon@hotmail.com)
 
 ## 3.0.0-next.127
 
