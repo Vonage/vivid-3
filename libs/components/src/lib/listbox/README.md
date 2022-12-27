@@ -12,7 +12,7 @@ Click [here](https://www.w3.org/WAI/ARIA/apg/patterns/listbox) to learn more abo
 
 ## Slots
 
-### Option
+### Default
 
 Read more about [vwc-option](../../components/option).
 

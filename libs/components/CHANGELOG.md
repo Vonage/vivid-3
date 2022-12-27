@@ -1,8 +1,88 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Thu, 08 Dec 2022 11:19:53 GMT and should not be manually modified.
+This log was last generated on Sun, 25 Dec 2022 15:29:14 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.124
+
+Sun, 25 Dec 2022 15:29:14 GMT
+
+### Changes
+
+- add light dismiss support to popup (rina.oksman@vonage.com)
+
+## 3.0.0-next.123
+
+Wed, 21 Dec 2022 15:15:42 GMT
+
+### Changes
+
+- Remove exports from package.json (yonatan.kra@vonage.com)
+
+## 3.0.0-next.122
+
+Sun, 18 Dec 2022 17:21:02 GMT
+
+### Changes
+
+- export header component from package (yinon.oved@vonage.com)
+
+## 3.0.0-next.121
+
+Fri, 16 Dec 2022 11:38:04 GMT
+
+### Changes
+
+- export component definition and design system (yinon.oved@vonage.com)
+
+## 3.0.0-next.120
+
+Wed, 14 Dec 2022 16:38:10 GMT
+
+### Changes
+
+- change prefix override interface (yinon@hotmail.com)
+
+## 3.0.0-next.119
+
+Wed, 14 Dec 2022 14:20:15 GMT
+
+### Changes
+
+- add absolute strategy (rina.oksman@vonage.com)
+
+## 3.0.0-next.118
+
+Tue, 13 Dec 2022 14:06:36 GMT
+
+### Changes
+
+- code style enforce string single quotes (yinon.oved@vonage.com)
+
+## 3.0.0-next.117
+
+Tue, 13 Dec 2022 13:34:41 GMT
+
+### Changes
+
+- replace hardcoded tags with contextual tags (olaf-k@users.noreply.github.com)
+
+## 3.0.0-next.116
+
+Mon, 12 Dec 2022 12:23:32 GMT
+
+### Changes
+
+- anchor can recieve  HTMLElement (rina.oksman@vonage.com)
+
+## 3.0.0-next.115
+
+Mon, 12 Dec 2022 11:29:26 GMT
+
+### Changes
+
+- dialog icon placement side option added (rachel.tannenbaum@vonage.com)
 
 ## 3.0.0-next.114
 

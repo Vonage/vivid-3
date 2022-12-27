@@ -10,7 +10,8 @@
 		"nx": "nx",
 		"test": "npx nx run components:test",
 		"test:ui": "npx nx run components:e2e",
-		"test:tools": "jest --projects tools"
+		"test:tools": "jest --projects tools",
+		"postinstall": "patch-package"
 	},
 	"private": true,
 	"dependencies": {
@@ -18,6 +19,7 @@
 		"@microsoft/fast-element": "^1.11.0",
 		"@microsoft/fast-foundation": "^2.47.1-0",
 		"@microsoft/fast-web-utilities": "^6.0.0",
+		"@oddbird/popover-polyfill": "^0.0.4",
 		"core-js": "^3.27.0",
 		"dialog-polyfill": "^0.5.6",
 		"ramda": "^0.28.0",
@@ -50,6 +52,7 @@
 		"@types/jest": "28.1.8",
 		"@types/jest-axe": "^3.5.3",
 		"@types/node": "18.7.1",
+		"@types/query-selector-shadow-dom": "^1.0.0",
 		"@types/ramda": "^0.27.66",
 		"@typescript-eslint/eslint-plugin": "5.41.0",
 		"@typescript-eslint/parser": "5.41.0",
@@ -66,7 +69,7 @@
 		"eslint-plugin-ban": "^1.6.0",
 		"eslint-plugin-compat": "^4.0.2",
 		"eslint-plugin-import": "^2.26.0",
-		"eslint-plugin-jsdoc": "^37.9.7",
+		"eslint-plugin-tsdoc": "^0.2.17",
 		"expr-eval": "^2.0.2",
 		"glob": "^7.2.0",
 		"highlight.js": "^11.5.1",
@@ -87,6 +90,7 @@
 		"markdown-it-anchor": "^8.6.4",
 		"nx": "15.0.3",
 		"nx-stylelint": "^13.4.0",
+		"patch-package": "^6.5.0",
 		"playwright": "1.27.1",
 		"prettier": "2.7.1",
 		"rollup-plugin-copy": "^3.4.0",

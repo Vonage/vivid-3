@@ -1,5 +1,7 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { ActionGroup } from './action-group';
+import { actionGroupDefinition } from './definition';
 import '.';
 
 
@@ -17,6 +19,7 @@ describe('vwc-action-group', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-action-group', async () => {
+			expect(actionGroupDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(ActionGroup);
 		});
 	});
