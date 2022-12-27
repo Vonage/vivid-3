@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Tue, 27 Dec 2022 14:28:03 GMT and should not be manually modified.
+This log was last generated on Tue, 27 Dec 2022 14:59:58 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.127
+
+Tue, 27 Dec 2022 14:59:58 GMT
+
+### Changes
+
+- fix text-field & text area-ghost appearance missing shades (yinon@hotmail.com)
 
 ## 3.0.0-next.126
 
