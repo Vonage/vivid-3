@@ -9,6 +9,13 @@
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 
+
+@supports selector(:focus-visible) {
+	:host(:focus) {
+		outline: none;
+	}
+}
+
 :host(.vertical) {
 	justify-content: end;
 	grid-column: 1 / auto;
@@ -38,12 +45,6 @@
 
 	@supports (user-select: none) {
 		user-select: none;
-	}
-
-	@supports selector(:focus-visible) {
-		&:focus {
-			outline: none;
-		}
 	}
 
 	&:not(.disabled) {

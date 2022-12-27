@@ -14,10 +14,7 @@ import { TabsTemplate as template } from './tabs.template';
 export const tabsDefinition = Tabs.compose<FoundationElementDefinition>({
 	baseName: 'tabs',
 	template: template as any,
-	styles,
-	shadowOptions: {
-		delegatesFocus: true,
-	},
+	styles
 });
 
 /**
