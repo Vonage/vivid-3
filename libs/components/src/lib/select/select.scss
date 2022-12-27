@@ -14,6 +14,8 @@
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 @use "../focus/partials/variables" as focus-variables;
 
+
+
 :host {
 	display: block;
 	inline-size: fit-content;
@@ -26,6 +28,12 @@
 	display: flex;
 	flex-direction: column;
 	gap: 4px;
+
+	@supports selector(:focus-visible) {
+	&:focus {
+		outline: none;
+	}
+}
 }
 
 .label {
@@ -68,12 +76,6 @@
 	.base.shape-pill & {
 		border-radius: 24px;
 	}
-
-	@supports selector(:focus-visible) {
-	&:focus {
-		outline: none;
-	}
-}
 }
 
 .list-box {
@@ -90,7 +92,7 @@
 }
 
 .focus-indicator {
-	.control:not(:focus-visible, :focus-within) > & {
+	:host(:not(:focus-visible, :focus-within)) & {
 		display: none;
 	}
 }
