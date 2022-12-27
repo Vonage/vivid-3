@@ -1,20 +1,20 @@
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
-@use 'partials/variables' as variables;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "partials/variables" as variables;
 
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta success alert warning information,
 	$shades: primary primary-text intermediate soft contrast,
 	$default: accent,
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: filled duotone subtle,
 	$states: idle,
 	$default: filled,
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
-@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
 
 .base {
@@ -68,7 +68,10 @@
 }
 
 /* Icon */
+.icon {
+	font-size: calc(var(#{variables.$badge-block-size}) / 1.6667);
 
-.icon-trailing .icon {
-	order: 1;
+	.icon-trailing & {
+		order: 1;
+	}
 }

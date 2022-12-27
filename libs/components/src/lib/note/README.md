@@ -57,7 +57,7 @@ It accepts a subset of predefined values.
 
 ## Slots
 
-### Default slot
+### Default
 
 Any slotted content will appear below the headline.
 

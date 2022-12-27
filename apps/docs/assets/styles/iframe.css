@@ -28,5 +28,5 @@ body::before {
   display: flex;
   place-items: center;
   place-content: center;
-  block-size: 100%;
+  block-size: 100vh;
 }
