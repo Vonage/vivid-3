@@ -14,11 +14,11 @@
 	},
 	"private": true,
 	"dependencies": {
-		"@floating-ui/dom": "^1.0.9",
+		"@floating-ui/dom": "^1.1.0",
 		"@microsoft/fast-element": "^1.11.0",
 		"@microsoft/fast-foundation": "^2.47.1-0",
 		"@microsoft/fast-web-utilities": "^6.0.0",
-		"core-js": "^3.26.1",
+		"core-js": "^3.27.0",
 		"dialog-polyfill": "^0.5.6",
 		"ramda": "^0.28.0",
 		"regenerator-runtime": "^0.13.11",
