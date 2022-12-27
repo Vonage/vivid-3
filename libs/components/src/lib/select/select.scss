@@ -30,10 +30,10 @@
 	gap: 4px;
 
 	@supports selector(:focus-visible) {
-	&:focus {
-		outline: none;
+		&:focus {
+			outline: none;
+		}
 	}
-}
 }
 
 .label {
@@ -92,7 +92,7 @@
 }
 
 .focus-indicator {
-	:host(:not(:focus-visible, :focus-within)) & {
+	.base:not(:focus-visible, :focus-within) & {
 		display: none;
 	}
 }
