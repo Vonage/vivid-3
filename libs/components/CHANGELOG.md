@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 25 Dec 2022 15:29:14 GMT and should not be manually modified.
+This log was last generated on Tue, 27 Dec 2022 14:15:03 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.125
+
+Tue, 27 Dec 2022 14:15:03 GMT
+
+### Changes
+
+- style listbox disabled option inheritance (yinon.oved@vonage.com)
 
 ## 3.0.0-next.124
 

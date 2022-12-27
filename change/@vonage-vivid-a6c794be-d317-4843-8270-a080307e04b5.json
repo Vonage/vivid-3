@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "style listbox disabled option inheritance",
-  "packageName": "@vonage/vivid",
-  "email": "yinon.oved@vonage.com",
-  "dependentChangeType": "patch"
-}
