@@ -12,9 +12,11 @@
 	$default: fieldset,
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "partials/variables" as variables;
 
 :host {
 	display: block;
+	inline-size: fit-content;
 }
 
 :host(:focus-within) {
@@ -42,4 +44,11 @@
 	:host(:not(:focus-within)) & {
 		display: none;
 	}
+}
+
+.base.disabled ::slotted([role="option"]) {
+	#{variables.$option-appearance-color-text}: var(#{appearance.get-appearance-token(outline)});
+
+	cursor: not-allowed;
+	pointer-events: none;
 }
