@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Tue, 27 Dec 2022 14:15:03 GMT and should not be manually modified.
+This log was last generated on Tue, 27 Dec 2022 14:28:03 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.126
+
+Tue, 27 Dec 2022 14:28:03 GMT
+
+### Changes
+
+- resolve components issues with custom density (yinon@hotmail.com)
 
 ## 3.0.0-next.125
 
