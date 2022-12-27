@@ -66,7 +66,6 @@
 		z-index: 1;
 		block-size: var(#{variables.$tabs-active-indicator-stroke-width});
 		grid-area: 2 / 1 / auto / auto;
-		inline-size: var(#{variables.$tabs-active-indicator-inline-size}); // patches the janky transition of the indicator's width styled by fast using grid-column
 		justify-self: center;
 		margin-block-start: calc(var(#{variables.$tabs-active-indicator-stroke-width}) * -1);
 		position: absolute; // patches the janky transition of the indicator's width styled by fast using grid-column
