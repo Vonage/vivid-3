@@ -11,6 +11,8 @@
 	$default: filled,
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+
 
 $banner-transition-delay: --transition-delay;
 
@@ -30,7 +32,7 @@ $banner-transition-delay: --transition-delay;
 
 	> .header {
 		display: flex;
-		min-height: 60px;
+		min-height: #{size.$vvd-size-ultra-expanded};
 		align-items: center;
 		justify-content: flex-start;
 		font: var(#{constants.$vvd-typography-base-bold});
