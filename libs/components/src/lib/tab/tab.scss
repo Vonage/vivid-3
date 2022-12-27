@@ -58,26 +58,26 @@
 		padding-inline-start: calc(var(#{tabs-variables.$tabs-active-indicator-stroke-width}) + $gutter);
 	}
 
-	&:not(.vertical)::after {
-		content: "";
-    inset-block-end: -$gutter;
-    pointer-events: none;
-    background: currentcolor;
-    position: absolute;
-    inline-size: calc(100% + $gutter * 2);
-    block-size: 2px;
-    margin-inline: -$gutter * 2;
-		transition-property: opacity;
-
-		:host([aria-selected="true"]) & {
+	&::after {
+		:host(:not(.vertical)) & {
+			content: "";
+			inset-block-end: -$gutter;
+			pointer-events: none;
+			background: currentcolor;
+			position: absolute;
+			inline-size: calc(100% + $gutter * 2);
+			block-size: 2px;
+			margin-inline: -$gutter * 2;
+			transition-property: opacity;
+		}
+		:host(:not(.vertical)[aria-selected="true"]) & {
 			transition-delay: #{tabs-variables.$tabs-active-indicator-transition-delay};
 		}
 
-		:host(:not([aria-selected="true"])) & {
+		:host(:not(.vertical):not([aria-selected="true"])) & {
 			opacity: 0;
 		}
 	}
-
 }
 
 .focus-indicator {
