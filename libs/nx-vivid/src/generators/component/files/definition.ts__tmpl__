@@ -1,21 +1,24 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactorial } from '../../shared/design-system';
+import { registerFactory } from '../../shared/design-system';
 import styles from './<%= fileName %>.scss';
 
 import { <%= className %> } from './<%= fileName %>';
 import { <%= className %>Template as template } from './<%= fileName %>.template';
 
-export const <%= camelCasedName %> = <%= className %>.compose<FoundationElementDefinition>({
+export const <%= camelCasedName %>Definition = <%= className %>.compose<FoundationElementDefinition>({
 	baseName: '<%= name %>',
 	template: template as any,
 	styles,
-})();
+});
 
-export const <%= camelCasedName %>Elements = [<%= camelCasedName %>];
+/**
+ * @internal
+ */
+export const <%= camelCasedName %>Registries = [<%= camelCasedName %>Definition()];
 
 /**
  * Registers the <%= name %> element with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const register<%= className %> = registerFactorial(<%= camelCasedName %>Elements);
+export const register<%= className %> = registerFactory(<%= camelCasedName %>Registries);

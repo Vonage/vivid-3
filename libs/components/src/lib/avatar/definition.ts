@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactorial } from '../../shared/design-system';
-import { iconElements } from '../icon/definition';
+import { registerFactory } from '../../shared/design-system';
+import { iconRegistries } from '../icon/definition';
 import styles from './avatar.scss';
 
 import { Avatar } from './avatar';
@@ -11,17 +11,20 @@ import { AvatarTemplate as template } from './avatar.template';
  *
  * @internal
  */
-export const avatar = Avatar.compose<FoundationElementDefinition>({
+export const avatarDefinition = Avatar.compose<FoundationElementDefinition>({
 	baseName: 'avatar',
 	template: template as any,
 	styles,
-})();
+});
 
-export const avatarElements = [avatar, ...iconElements];
+/**
+ * @internal
+ */
+export const avatarRegistries = [avatarDefinition(), ...iconRegistries];
 
 /**
  * Registers the avatar elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerAvatar = registerFactorial(avatarElements);
+export const registerAvatar = registerFactory(avatarRegistries);

@@ -1,7 +1,9 @@
 import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {Connotation} from '../enums';
 import { Switch } from './switch';
 import '.';
+import { switchDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-switch';
 
@@ -16,6 +18,7 @@ describe('vwc-switch', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-switch', async () => {
+			expect(switchDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Switch);
 			expect(element.name).toBeUndefined();
 			expect(element.value).toEqual('on');

@@ -16,6 +16,7 @@
 
 :host {
 	display: block;
+	inline-size: fit-content;
 }
 
 :host(:focus-within) {

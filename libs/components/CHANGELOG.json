@@ -2,6 +2,126 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Mon, 26 Dec 2022 16:01:49 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.124",
+      "version": "3.0.0-next.124",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "1086913e47ab62f9bc01c92601ed04603a3f1139",
+            "comment": " change to default slot"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 26 Dec 2022 11:42:54 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.124",
+      "version": "3.0.0-next.124",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "7fb68b48b7c524edbea211fdeccad67ac1c255a3",
+            "comment": "listbox inline size"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 25 Dec 2022 15:29:14 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.124",
+      "version": "3.0.0-next.124",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "554b1b8a0b6d9be6c5588c0d701eaf83ae71e147",
+            "comment": "add light dismiss support to popup"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 21 Dec 2022 15:15:42 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.123",
+      "version": "3.0.0-next.123",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yonatan.kra@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "758461be66e51578bc6f27e7282ebf67ffb1cf47",
+            "comment": "Remove exports from package.json"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 21 Dec 2022 09:58:50 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.122",
+      "version": "3.0.0-next.122",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "adea4543fb541706dd454ac28a20c0403dd484a3",
+            "comment": "style(code): adopt tsdocs"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 21 Dec 2022 09:29:23 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.122",
+      "version": "3.0.0-next.122",
+      "comments": {
+        "none": [
+          {
+            "author": "olaf-k@users.noreply.github.com",
+            "package": "@vonage/vivid",
+            "commit": "655a102838bfeaa0b6d1a9fdb90045f16c2c8f57",
+            "comment": "Update calendar.spec.ts"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 18 Dec 2022 17:21:02 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.122",
+      "version": "3.0.0-next.122",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon.oved@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "0eb643df0b8d0a72e137f22c268531e4c8cdac2b",
+            "comment": "export header component from package"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 16 Dec 2022 11:38:04 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.121",
+      "version": "3.0.0-next.121",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon.oved@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "8744b03df7beb267bcf8cbf080ac8537c9ee6f6f",
+            "comment": "export component definition and design system"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 15 Dec 2022 09:47:39 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.120",
       "version": "3.0.0-next.120",

@@ -1,5 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactorial } from '../../shared/design-system';
+import { registerFactory } from '../../shared/design-system';
 import { Focus } from './focus';
 import styles from './focus.scss';
 import { focusTemplate as template } from './focus.template';
@@ -10,20 +10,21 @@ import { focusTemplate as template } from './focus.template';
  * focus is a label that holds small amounts of information.
  * A focus can be used to display unread notifications, or to label a block of text.
  * Focuss don’t work for navigation because they can't include a hyperlink.
- *
- * @internal
  */
-export const focus = Focus.compose<FoundationElementDefinition>({
+export const focusDefinition = Focus.compose<FoundationElementDefinition>({
 	baseName: 'focus',
 	template: template as any,
 	styles,
-})();
+});
 
-export const focusElements = [focus];
+/**
+ * @internal
+ */
+export const focusRegistries = [focusDefinition()];
 
 /**
  * Registers the focus component
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerFocus = registerFactorial(focusElements);
+export const registerFocus = registerFactory(focusRegistries);
