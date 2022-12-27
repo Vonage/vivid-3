@@ -8,16 +8,6 @@ const TABS_ACTIVE_INDICATOR_INLINE_SIZE = "--_tabs-active-indicator-inline-size"
  * @public
  */
 export class Tabs extends FoundationTabs {
-	override connectedCallback() {
-		super.connectedCallback();
-		this.activeIndicatorRef.addEventListener("transitionend", this.handleActiveIndicatorTransitionEnd.bind(this));
-	}
-
-	override disconnectedCallback() {
-		super.disconnectedCallback();
-		this.activeIndicatorRef.removeEventListener("transitionend", this.handleActiveIndicatorTransitionEnd);
-	}
-
 	override orientationChanged(): void {
 		super.orientationChanged();
 		this.patchIndicatorStyleTransition();

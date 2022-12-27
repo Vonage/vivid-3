@@ -70,11 +70,12 @@
 			margin-inline: -$gutter * 2;
 			transition-property: opacity;
 		}
+
 		:host(:not(.vertical)[aria-selected="true"]) & {
 			transition-delay: #{tabs-variables.$tabs-active-indicator-transition-delay};
 		}
 
-		:host(:not(.vertical):not([aria-selected="true"])) & {
+		:host(:not(.vertical, [aria-selected="true"])) & {
 			opacity: 0;
 		}
 	}
