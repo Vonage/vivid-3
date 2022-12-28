@@ -69,14 +69,14 @@
 
 :host(:not(.vertical)) {
 	.base::after {
-		content: "";
-		inset-block-end: calc(var(#{tabs-variables.$tabs-tablist-gutter}) * -2);
-		pointer-events: none;
-		background: currentcolor;
 		position: absolute;
-		inline-size: calc(100% + var(#{tabs-variables.$tabs-tablist-gutter}) * 2);
+		background: currentColor;
 		block-size: 2px;
+		content: "";
+		inline-size: calc(100% + var(#{tabs-variables.$tabs-tablist-gutter}) * 2);
+		inset-block-end: calc(var(#{tabs-variables.$tabs-tablist-gutter}) * -2);
 		margin-inline: calc(var(#{tabs-variables.$tabs-tablist-gutter}) * -2);
+		pointer-events: none;
 		transition-property: opacity;
 	}
 
