@@ -1,10 +1,7 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 
 .base {
+	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
-}
-
-::slotted(:not(:only-of-type)) {
-	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-200});
 }

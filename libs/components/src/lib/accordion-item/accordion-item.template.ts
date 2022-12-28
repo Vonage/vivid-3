@@ -1,66 +1,65 @@
-import { html, when } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
-import { classNames } from '@microsoft/fast-web-utilities';
-import { affixIconTemplateFactory } from '../../shared/patterns/affix';
-import { focusTemplateFactory } from './../../shared/patterns/focus';
-import type { AccordionItem } from './accordion-item';
+import { html, ref, ViewTemplate, when } from "@microsoft/fast-element";
+import type { ElementDefinitionContext } from "@microsoft/fast-foundation";
+import { affixIconTemplateFactory } from '../shared/patterns/affix';
+import type { AccordionItem } from "./accordion-item.js";
 
-const PANEL = 'panel';
-
-const getClasses = ({
-	open, iconTrailing, icon, noIndicator
-}: AccordionItem) => classNames(
-	'base',
-	['open', open],
-	['icon', Boolean(icon)],
-	['icon-trailing', iconTrailing],
-	['no-indicator', noIndicator],
-);
-
-export const AccordionItemTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<AccordionItem> = (context) => html<AccordionItem>`
-	<div class="${getClasses}">
-		${x => renderPanelHeader(context, x.headingLevel)}
-		<div class="body" id="${PANEL}" role="region" aria-labelledby="header">
-			<slot></slot>
-		</div>
-	</div>
-`;
-
-const renderPanelHeader = (context: ElementDefinitionContext, headingLevel: number | string | undefined) => {
-	const header: string = headingLevel ? 'h' + headingLevel : 'h3';
-	return html<AccordionItem>`
-	<${header} class="header">
-		${renderHeaderButton(context)}
-	</${header}>
-	`;
-};
-
-const renderHeaderButton = (context: ElementDefinitionContext) => {
+const iconGlyph = (x: AccordionItem, context: ElementDefinitionContext, iconCondition: boolean, glyphCondition: boolean) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
-	const focusTemplate = focusTemplateFactory(context);
 
-	return html<AccordionItem>`
-	<button class="button" id="header" @click=${x => x.open = !x.open}
-		aria-expanded=${x => x.open}
-		aria-controls="${PANEL}">
-		${() => focusTemplate}
-		${x => affixIconTemplate(x.icon)}
-		<span class="heading-text">${x => x.heading}</span>
-		${when(x => x.meta, html`<span class="meta">${x => x.meta}</span>`)}
-		
-		${when(x => !x.noIndicator && !x.iconTrailing, html`${x => {
-		return affixIconTemplate(
-			x.open ? 'chevron-up-solid' : 'chevron-down-solid',
-			'indicator'
-		);}}`
-	)}
+	if (iconCondition) return affixIconTemplate(x.icon);
+	if (glyphCondition) return affixIconTemplate(x.expanded ? 'chevron-up-solid' : 'chevron-down-solid');
+	return null;
+}
+
+const header = (context: ElementDefinitionContext) => html<AccordionItem>`
+	<button
+		class="button"
+		part="button"
+		${ref("expandbutton")}
+		role="heading"
+		aria-level="${x => x.headinglevel}"
+		aria-expanded="${x => x.expanded}"
+		aria-controls="${x => x.id}-panel"
+		id="${x => x.id}"
+		@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
+	>
+
+		${x => iconGlyph(x, context,
+			Boolean(x.icon && !x.iconTrailing),
+			x.leading && !x.noIndicator
+		)}
+	
+		<span class="heading-content" part="heading-content">
+			${x => x.heading}
+		</span>
+
+		${when(x => x.meta, html`
+			<span class="meta">${x => x.meta}</span>
+		`)}
+
+		${x => iconGlyph(x, context,
+			Boolean(x.icon && x.iconTrailing),
+			!x.leading && !x.noIndicator
+		)}
 	</button>
 `;
-};
+
+export const AccordionItemTemplate: (
+	context: ElementDefinitionContext
+) => ViewTemplate<AccordionItem> = (
+	context: ElementDefinitionContext
+) => {
+
+	return html<AccordionItem>`
+		${header(context)}
+        <div
+            class="region"
+            part="region"
+            id="${x => x.id}-panel"
+            role="region"
+            aria-labelledby="${x => x.id}"
+        >
+            <slot></slot>
+        </div>
+	`;
+}
