@@ -58,18 +58,17 @@
 		block-size: 80%;
 		inline-size: var(#{variables.$tabs-active-indicator-stroke-width});
 		margin-inline-end: calc(var(#{variables.$tabs-active-indicator-stroke-width}) * -1);
-		place-self: flex;
+		grid-area: 2 / 1 / auto / auto;
 	}
 
 	.base:not(.orientation-vertical) & {
+		position: absolute;
 		z-index: 1;
 		block-size: var(#{variables.$tabs-active-indicator-stroke-width});
-		grid-area: 2 / 1 / auto / auto;
-		inline-size: var(#{variables.$tabs-active-indicator-inline-size}); // patches the janky transition of the indicator's width styled by fast using grid-column
+		inline-size: var(#{variables.$tabs-active-indicator-inline-size});
 		justify-self: center;
-		margin-block-start: calc(var(#{variables.$tabs-active-indicator-stroke-width}) * -1);
-		position: absolute; // patches the janky transition of the indicator's width styled by fast using grid-column
-		inset-inline-start: 0; // patches the janky transition of the indicator's width styled by fast using grid-column
+		inset-inline-start: 0;
+		inset-block-end: 0;
 	}
 }
 
