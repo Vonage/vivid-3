@@ -20,7 +20,7 @@ export function TabsTemplate<T extends Tabs>() {
 	return html<T>`
 	<template role="tablist">
 		<div class="${getClasses}">
-			<div class="tablist">
+			<div class="tablist" ${ref('tablist')}>
 				<slot name="tab" ${slotted('tabs')}></slot>
 				${when(x => x.showActiveIndicator, html<T>`
 					<div ${ref('activeIndicatorRef')} class="active-indicator"></div>

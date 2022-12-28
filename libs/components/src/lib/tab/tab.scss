@@ -21,25 +21,21 @@
 	grid-column: 1 / auto;
 }
 
-$min-block-size: 48px;
-$gutter: 8px;
-
 .base {
-
+	$min-block-size: 48px;
 	@include appearance.appearance;
 
 	position: relative;
 	display: flex;
 	box-sizing: border-box;
 	align-items: center;
-	padding: $gutter;
-	margin: $gutter;
+	padding: var(#{tabs-variables.$tabs-tablist-gutter});
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	border-radius: 6px;
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
-	gap: $gutter;
+	gap: var(#{tabs-variables.$tabs-tablist-gutter});
 	min-block-size: $min-block-size;
 	vertical-align: middle;
 	white-space: nowrap;
@@ -57,7 +53,7 @@ $gutter: 8px;
 	}
 
 	:host(.vertical) & {
-		padding-inline-start: calc(var(#{tabs-variables.$tabs-active-indicator-stroke-width}) + $gutter);
+		padding-inline-start: calc(var(#{tabs-variables.$tabs-active-indicator-stroke-width}) + var(#{tabs-variables.$tabs-tablist-gutter}));
 	}
 }
 
@@ -74,13 +70,13 @@ $gutter: 8px;
 :host(:not(.vertical)) {
 	.base::after {
 		content: "";
-		inset-block-end: -$gutter;
+		inset-block-end: calc(var(#{tabs-variables.$tabs-tablist-gutter}) * -2);
 		pointer-events: none;
 		background: currentcolor;
 		position: absolute;
-		inline-size: calc(100% + $gutter * 2);
+		inline-size: calc(100% + var(#{tabs-variables.$tabs-tablist-gutter}) * 2);
 		block-size: 2px;
-		margin-inline: -$gutter * 2;
+		margin-inline: calc(var(#{tabs-variables.$tabs-tablist-gutter}) * -2);
 		transition-property: opacity;
 	}
 

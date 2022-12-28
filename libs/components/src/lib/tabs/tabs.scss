@@ -6,6 +6,7 @@
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
+
 .base {
 	@include connotation.connotation;
 
@@ -24,11 +25,14 @@
 }
 
 .tablist {
+	#{variables.$tabs-tablist-gutter}: 8px;
 	#{variables.$tabs-active-indicator-stroke-width}: 2px;
 
 	position: relative;
 	display: grid;
 	box-sizing: border-box;
+	gap: var(#{variables.$tabs-tablist-gutter});
+	padding: var(#{variables.$tabs-tablist-gutter});
 
 	.base.orientation-vertical & {
 		box-shadow: 1px 0 0 0 var(--vvd-color-neutral-300);
@@ -57,7 +61,7 @@
 		align-self: center;
 		block-size: 80%;
 		inline-size: var(#{variables.$tabs-active-indicator-stroke-width});
-		margin-inline-end: calc(var(#{variables.$tabs-active-indicator-stroke-width}) * -1);
+		margin-inline-start: calc(var(#{variables.$tabs-tablist-gutter}) * -1);
 		grid-area: 2 / 1 / auto / auto;
 	}
 
