@@ -38,9 +38,7 @@ export class Tabs extends FoundationTabs {
 		if (this.orientation === 'vertical') return;
 		const width = this.activetab?.getClientRects()[0]?.width;
 		if (!width) return;
-		const tablistGutter = this.tablist?.style.getPropertyValue('--_tabs-tablist-gutter');
-		if (!tablistGutter) return;
 
-    this.activeIndicatorRef?.style.setProperty(TABS_ACTIVE_INDICATOR_INLINE_SIZE, `${Number(width) + Number(tablistGutter)}px`);
+    this.activeIndicatorRef?.style.setProperty(TABS_ACTIVE_INDICATOR_INLINE_SIZE, `${width}px`);
   }
 }

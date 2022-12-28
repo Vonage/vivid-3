@@ -56,12 +56,12 @@
 
 .active-indicator {
 	background: currentColor;
+	margin-inline-start: calc(var(#{variables.$tabs-tablist-gutter}) * -1);
 
 	.base.orientation-vertical & {
 		align-self: center;
 		block-size: 80%;
 		inline-size: var(#{variables.$tabs-active-indicator-stroke-width});
-		margin-inline-start: calc(var(#{variables.$tabs-tablist-gutter}) * -1);
 		grid-area: 2 / 1 / auto / auto;
 	}
 
@@ -73,6 +73,8 @@
 		justify-self: center;
 		inset-inline-start: 0;
 		inset-block-end: 0;
+		grid-column: 1 / auto;
+    padding-inline: var(#{variables.$tabs-tablist-gutter});
 	}
 }
 
