@@ -23,4 +23,8 @@ permalink: "components/{{ component.title | slug }}/"
 
 {% block content %}
 	{% renderFile component.markdown %}
+
+	{% if component.figma %}
+	<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="450" src="{{ component.figma }}" allowfullscreen></iframe>
+	{% endif %}
 {% endblock %}
