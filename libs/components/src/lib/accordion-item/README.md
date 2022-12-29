@@ -88,7 +88,7 @@ Add the `icon` attribute to add an icon to the heading.
 
 ### Icon-Trailing
 
-Add the `icon-trailing` attribute (or `iconTrailing` property) to add an icon to the end of the heading text. Note that `icon-trailing` will override the trailing indicator.
+Add the `icon-trailing` attribute (or `iconTrailing` property) to add an icon to the end of the heading text. Note that `icon-trailing` will override the default indicator.
 
 - Type: `boolean`
 - Default: `false`

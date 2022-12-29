@@ -21,34 +21,24 @@
 	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-200});
 }
 
-.heading {
-	position: relative;
-	padding: 0;
+h1, h2, h3, h4, h5, h6 {
 	margin: 0;
 }
 
-.button {
+button {
 	@include appearance.appearance;
 	@include connotation.connotation;
-
+	
 	font: var(#{constants.$vvd-typography-heading-4});
 	border: none;
 	background-color: var(#{appearance.get-appearance-token(fill)});
+	width: 100%;
 	display: flex;
 	gap: 16px;
 	align-items: center;
 	text-align: left;
 	cursor: pointer;
 	padding: 16px;
-}
-
-.region {
-	display: none;
-	padding: 8px 32px 24px 16px
-}
-
-.button:has(> .icon:first-child) + .region {
-	padding-left: 52px;
 }
 
 .heading-content {
@@ -66,6 +56,15 @@
 	white-space: nowrap;
 }
 
+.region {
+	display: none;
+	padding: 8px 32px 24px 16px
+}
+
 :host([expanded]) .region {
 	display: block;
+}
+
+:where(h1, h2, h3, h4, h5, h6):has(> button > .icon:first-child) + .region {
+	padding-left: 52px;
 }
