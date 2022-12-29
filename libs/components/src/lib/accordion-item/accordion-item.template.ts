@@ -26,7 +26,7 @@ const header = (context: ElementDefinitionContext) => html<AccordionItem>`
 
 		${x => iconGlyph(x, context,
 			Boolean(x.icon && !x.iconTrailing),
-			x.leading && !x.noIndicator
+			false
 		)}
 	
 		<span class="heading-content" part="heading-content">

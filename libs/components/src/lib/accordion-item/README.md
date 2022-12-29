@@ -47,19 +47,6 @@ Use the `expanded` attribute to set the accordion-item's open state.
 </vwc-accordion-item>
 ```
 
-### Leading
-
-Add the `leading` attribute to place the indicator at the start of the accordion-item.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview full
-<vwc-accordion-item heading="Accordion item with a leading indicator" leading>
-  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-</vwc-accordion-item>
-```
-
 ### No-Indicator
 
 Add the `no-indicator` attribute (or `noIndicator` property) to remove the indicator icon from the heading.
@@ -88,7 +75,7 @@ Add the `meta` attribute to add metadata to the heading.
 
 ### Icon
 
-Add the `icon` attribute to add an icon to the heading. Note that `icon` will override the leading indicator.
+Add the `icon` attribute to add an icon to the heading.
 
 - Type: `string`
 - Default: `''`
