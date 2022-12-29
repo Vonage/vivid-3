@@ -2,6 +2,111 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Tue, 27 Dec 2022 16:08:19 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.128",
+      "version": "3.0.0-next.128",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "0830e659c898f4ee2b74e286985a66f20a08ffb4",
+            "comment": "refactor UI style to align with v2.x design spec"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 27 Dec 2022 14:59:58 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.127",
+      "version": "3.0.0-next.127",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "9fad21591acf6d259c439d2f34da270d882aff82",
+            "comment": "fix text-field & text area-ghost appearance missing shades"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 27 Dec 2022 14:28:03 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.126",
+      "version": "3.0.0-next.126",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "0e6f0a7c252592b5196d01e5dd8d33bc28c8ade3",
+            "comment": "resolve components issues with custom density"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 27 Dec 2022 14:15:03 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.125",
+      "version": "3.0.0-next.125",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon.oved@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "edb340e5e6276e154c04f4b44c3292b315b307e2",
+            "comment": "style listbox disabled option inheritance"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 26 Dec 2022 16:01:49 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.124",
+      "version": "3.0.0-next.124",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "1086913e47ab62f9bc01c92601ed04603a3f1139",
+            "comment": " change to default slot"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 26 Dec 2022 11:42:54 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.124",
+      "version": "3.0.0-next.124",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "7fb68b48b7c524edbea211fdeccad67ac1c255a3",
+            "comment": "listbox inline size"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 25 Dec 2022 15:29:14 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.124",
+      "version": "3.0.0-next.124",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "554b1b8a0b6d9be6c5588c0d701eaf83ae71e147",
+            "comment": "add light dismiss support to popup"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 21 Dec 2022 15:15:42 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.123",
       "version": "3.0.0-next.123",

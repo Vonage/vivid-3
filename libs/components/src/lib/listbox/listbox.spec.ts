@@ -51,12 +51,14 @@ describe('vwc-listbox', () => {
 	});
 
 	describe('disabled', function () {
-		it('should set the `aria-disabled` attribute with the `disabled` value when provided', async function () {
+		test('should have a tabindex of 0 when `disabled` is not defined', async () => {
+			expect(element.tabIndex).toEqual(0);
+		});
+
+		test('should NOT have a tabindex when `disabled` is true', async () => {
 			element.disabled = true;
 			await elementUpdated(element);
-			element.slottedOptions.forEach(optionElement => {
-				expect((optionElement as any).disabled).toEqual(true);
-			});
+			expect(element.getAttribute('tabindex')).toBeNull();
 		});
 	});
 
