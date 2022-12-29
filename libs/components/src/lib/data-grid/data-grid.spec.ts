@@ -2,7 +2,6 @@ import { fixture } from '@vivid-nx/shared';
 import { DataGrid } from './data-grid';
 import '.';
 
-
 const COMPONENT_TAG = 'vwc-data-grid';
 
 describe('vwc-data-grid', () => {

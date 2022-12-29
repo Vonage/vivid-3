@@ -164,18 +164,42 @@ describe('vwc-data-grid-cell', () => {
 		});
 
 		describe('handleKeydown', () => {
-			it('should focus on target element with enter key when focused', async () => {
-				element.focus();
+			it('should focus on target element with enter key', async () => {
 				element.cellType = 'default';
 				element.columnDefinition = {
 					columnDataKey: 'name',
 					cellFocusTargetCallback: () => {
 						return elementToFocus;
-					}
-				};
+					},
+					cellInternalFocusQueue: true
+				};	
 				element.dispatchEvent(new KeyboardEvent('keydown', {key: 'Enter'}));
-				// console.log(document.activeElement);				
-				// expect(document.activeElement).toEqual(elementToFocus);
+				expect(document.activeElement).toEqual(elementToFocus);
+			});
+
+			it('should focus on target element with F2 key', async () => {
+				element.cellType = 'default';
+				element.columnDefinition = {
+					columnDataKey: 'name',
+					cellFocusTargetCallback: () => {
+						return elementToFocus;
+					},
+					cellInternalFocusQueue: true
+				};	
+				element.dispatchEvent(new KeyboardEvent('keydown', {key: 'F2'}));
+				expect(document.activeElement).toEqual(elementToFocus);
+			});
+
+			it('should focus on grid-cell when escape key pressed and child is focused', async () => {
+				element.columnDefinition = {
+					columnDataKey: 'name',
+					cellInternalFocusQueue: true
+				};	
+				const childNode = document.createElement('button');
+				element.appendChild(childNode);
+				childNode.focus();
+				element.dispatchEvent(new KeyboardEvent('keydown', {key: 'Escape'}));
+				expect(document.activeElement).toEqual(element);
 			});
 		});
 	});
