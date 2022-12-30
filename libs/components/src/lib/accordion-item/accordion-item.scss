@@ -29,6 +29,13 @@ button {
 	@include appearance.appearance;
 	@include connotation.connotation;
 	
+	@supports selector(:focus-visible) {
+		&:focus {
+			outline: none;
+		}
+	}
+
+	position: relative;
 	font: var(#{constants.$vvd-typography-heading-4});
 	border: none;
 	background-color: var(#{appearance.get-appearance-token(fill)});
@@ -67,4 +74,10 @@ button {
 
 :where(h1, h2, h3, h4, h5, h6):has(> button > .icon:first-child) + .region {
 	padding-left: 52px;
+}
+
+.focus-indicator {
+	button:not(:focus-visible) > & {
+		display: none;
+	}
 }

@@ -10,6 +10,6 @@ const getClasses = (_: Accordion) => classNames('base');
  */
 export const AccordionTemplate: () => ViewTemplate<Accordion> = () => html<Accordion>`
 	<div class="${getClasses}">
-		<slot ${slotted({ property: "accordionItems", filter: elements() })}></slot>
+		<slot ${slotted({ property: 'accordionItems', filter: elements() })}></slot>
 	</div>
 `;

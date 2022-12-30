@@ -1,11 +1,14 @@
-import { html, ViewTemplate, when } from "@microsoft/fast-element";
-import type { ElementDefinitionContext } from "@microsoft/fast-foundation";
+import { html, ref, ViewTemplate, when } from '@microsoft/fast-element';
+import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { affixIconTemplateFactory } from '../shared/patterns/affix';
-import type { AccordionItem } from "./accordion-item.js";
+import { focusTemplateFactory } from '../shared/patterns/focus';
+import type { AccordionItem } from './accordion-item.js';
 
 const header = (context: ElementDefinitionContext, hTag: string) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
+	const focusTemplate = focusTemplateFactory(context);
 
+	/* eslint-disable @typescript-eslint/indent */
 	return html<AccordionItem>`
 		<${hTag}>
 			<button
@@ -13,8 +16,10 @@ const header = (context: ElementDefinitionContext, hTag: string) => {
 				aria-expanded="${x => x.expanded}"
 				aria-controls="${x => x.id}-panel"
 				@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
+				${ref('expandbutton')}
 			>
-				
+				${() => focusTemplate}
+
 				${x => x.icon && !x.iconTrailing
 					? affixIconTemplate(x.icon) : null}
 			
@@ -30,7 +35,7 @@ const header = (context: ElementDefinitionContext, hTag: string) => {
 			</button>
 		</${hTag}>
 	`;
-}
+};
 
 export const AccordionItemTemplate: (
 	context: ElementDefinitionContext
