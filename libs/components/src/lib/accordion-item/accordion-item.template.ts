@@ -1,7 +1,7 @@
 import { html, ref, ViewTemplate, when } from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
-import { affixIconTemplateFactory } from '../shared/patterns/affix';
-import { focusTemplateFactory } from '../shared/patterns/focus';
+import { focusTemplateFactory } from '../../shared/patterns/focus';
+import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { AccordionItem } from './accordion-item.js';
 
 const header = (context: ElementDefinitionContext, hTag: string) => {

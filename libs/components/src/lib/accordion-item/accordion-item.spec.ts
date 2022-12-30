@@ -1,6 +1,6 @@
-import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import { AccordionItem } from './accordion-item';
+import {AccordionItem} from './accordion-item';
 import '.';
 import { accordionItemDefinition } from './definition';
 
@@ -23,94 +23,65 @@ describe('vwc-accordion-item', () => {
 		it('should be initialized as a vwc-accordion-item', async () => {
 			expect(accordionItemDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(AccordionItem);
-			expect(element.open).toBeFalsy();
+			expect(element.expanded).toBeFalsy();
 			expect(element.icon).toBeUndefined();
 			expect(element.iconTrailing).toBeFalsy();
 			expect(element.meta).toEqual(undefined);
 			expect(element.noIndicator).toBeFalsy();
 			expect(element.heading).toEqual(undefined);
-			expect(element.headingLevel).toBeUndefined();
+			expect(element.headinglevel).toBe(2);
 		});
 	});
 
-	describe('show', () => {
-		it('should set "open" to true and add "open" class', async () => {
-			expect(getBaseElement(element).classList.contains('open')).toBeFalsy();
-
-			element.open = true;
-			await elementUpdated(element);
-			expect(element.open).toBeTruthy();
-			expect(getBaseElement(element).classList.contains('open')).toBeTruthy();
-		});
-	});
-
-	describe('hide', () => {
-		it('should unset "open"', async () => {
-			element.open = true;
-			await elementUpdated(element);
-			expect(getBaseElement(element).classList.contains('open')).toBeTruthy();
-
-			element.open = false;
-			await elementUpdated(element);
-			expect(element.open).toBeFalsy();
-			expect(getBaseElement(element).classList.contains('open')).toBeFalsy();
-		});
-	});
-
-	describe('toggle', () => {
-		it('should toggle "open" state', async () => {
-			const button: any = element.shadowRoot?.querySelector('.button');
-			expect(getBaseElement(element).classList.contains('open')).toBeFalsy();
-
-			button.click();
-			await elementUpdated(element);
-			expect(element.open).toBeTruthy();
-			expect(getBaseElement(element).classList.contains('open')).toBeTruthy();
-
-			button.click();
-			await elementUpdated(element);
-			expect(element.open).toBeFalsy();
-			expect(getBaseElement(element).classList.contains('open')).toBeFalsy();
+	describe('click', () => {
+		it('should open/close on click', async () => {
+			expect(element.expanded).toBeFalsy();
+			element.shadowRoot?.querySelector('button')?.click();
+			expect(element.expanded).toBeTruthy();
+			element.shadowRoot?.querySelector('button')?.click();
+			expect(element.expanded).toBeFalsy();
 		});
 	});
 
 	describe('icon', () => {
-		it('should set icon class', async () => {
-			expect(getBaseElement(element).classList.contains('icon')).toBeFalsy();
+		it('should set icon', async () => {
+			expect(element.shadowRoot?.querySelector('button :nth-child(2)')?.classList).not.toContain('icon');
 			element.icon = 'chat-solid';
 			await elementUpdated(element);
-			expect(getBaseElement(element).classList.contains('icon')).toBeTruthy();
+			expect(element.shadowRoot?.querySelector('button :nth-child(2)')?.classList).toContain('icon');
+			expect(element.shadowRoot?.querySelector('button :nth-child(2) > vwc-icon')?.getAttribute('name')).toBe('chat-solid');
 		});
-		it('should set iconTrailing', async () => {
-			expect(getBaseElement(element).classList.contains('icon-trailing')).toBeFalsy();
+		it('should set trailing icon', async () => {
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('button :last-child > vwc-icon')?.getAttribute('name')).toBe('chevron-down-solid');
 			element.icon = 'chat-solid';
 			element.iconTrailing = true;
 			await elementUpdated(element);
-			expect(getBaseElement(element).classList.contains('icon-trailing')).toBeTruthy();
+			expect(element.shadowRoot?.querySelector('button :last-child > vwc-icon')?.getAttribute('name')).toBe('chat-solid');
 		});
 	});
 
 	describe('no-indicator', () => {
-		it('should remove indicator class', async () => {
-			expect(getBaseElement(element).classList.contains('no-indicator')).toBeFalsy();
+		it('should remove indicator', async () => {
+			expect(element.shadowRoot?.querySelector('.icon')).toBeDefined();
 			element.noIndicator = true;
 			await elementUpdated(element);
-			expect(getBaseElement(element).classList.contains('no-indicator')).toBeTruthy();
+			expect(element.shadowRoot?.querySelector('.icon')).toBeNull();
 		});
 	});
 
 	describe('heading level', () => {
 		it('should update heading level', async () => {
-			expect(element.shadowRoot?.querySelector('.header')?.tagName).toEqual('H3');
-			element.headingLevel = 4;
+			expect(element.shadowRoot?.querySelector(':first-child')?.tagName).toEqual('H2');
+			element.headinglevel = 4;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.header')?.tagName).toEqual('H4');
+			expect(element.shadowRoot?.querySelector(':first-child')?.tagName).toEqual('H4');
 		});
 	});
 
 	describe('aria expanded', () => {
-		it('should set aria expanded to significant false', async () => {
-			const button = element.shadowRoot?.querySelector('.button');
+		it('should set aria-expanded to false', async () => {
+			const button = element.shadowRoot?.querySelector('button');
 			expect(button?.getAttribute('aria-expanded')).toEqual('false');
 		});
 	});
