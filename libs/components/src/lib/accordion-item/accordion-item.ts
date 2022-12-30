@@ -1,6 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import { applyMixins, AccordionItem as FASTAccordionItem } from '@microsoft/fast-foundation';
-import { AffixIconWithTrailing } from '../shared/patterns/affix';
+import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
 export class AccordionItem extends FASTAccordionItem {
 	/**
@@ -11,13 +11,6 @@ export class AccordionItem extends FASTAccordionItem {
 	 * HTML Attribute: heading
 	 */
 	@attr heading?: string;
-
-	/**
-	 *
-	 * @public
-	 * HTML Attribute: leading
-	 */
-	@attr({ mode: 'boolean'	}) leading = false;
 
 	/**
 	 * Indicates whether the accordion-item has indicator
