@@ -36,16 +36,16 @@ button {
 	}
 
 	position: relative;
-	font: var(#{constants.$vvd-typography-heading-4});
+	display: flex;
+	width: 100%;
+	align-items: center;
+	padding: 16px;
 	border: none;
 	background-color: var(#{appearance.get-appearance-token(fill)});
-	width: 100%;
-	display: flex;
-	gap: 16px;
-	align-items: center;
-	text-align: left;
 	cursor: pointer;
-	padding: 16px;
+	font: var(#{constants.$vvd-typography-heading-4});
+	gap: 16px;
+	text-align: left;
 }
 
 .heading-content {
