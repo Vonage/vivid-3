@@ -8,6 +8,3 @@ Updating package-lock.json after bumping packages
 > vivid-nx@0.0.0 postinstall
 > patch-package
 
-Removing change files:
-- @vonage-vivid-90cad44d-02c5-4ddb-b475-ff6307988f28.json
-Removing change path

@@ -288,15 +288,6 @@
 		]
 	},
 	{
-		"title": "listbox",
-		"status": "alpha",
-		"markdown": "./libs/components/src/lib/listbox/README.md",
-		"modules": [
-			"/assets/modules/components/option/index.js",
-			"/assets/modules/components/listbox/index.js"
-		]
-	},
-	{
 		"title": "switch",
 		"markdown": "./libs/components/src/lib/switch/README.md",
 		"modules": [
