@@ -1,6 +1,6 @@
 import * as path from 'path';
 import { expect, test } from '@playwright/test';
-import type { Page, Browser } from '@playwright/test';
+import type { Page } from '@playwright/test';
 import {
 	extractHTMLBlocksFromReadme,
 	loadComponents,
@@ -8,7 +8,7 @@ import {
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['button'];
-test('should show the component', async ({ page, browser }: { page: Page, browser: Browser }) => {
+test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(path.join(new URL('.', import.meta.url).pathname, 'README.md'))
 		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
 
