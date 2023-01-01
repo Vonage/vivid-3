@@ -14,8 +14,10 @@
 	$default: fieldset,
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
-$size: 20px;
+
+$size: #{size.$vvd-size-ultra-condensed};
 $gutter: 2px;
 
 .base {
@@ -49,15 +51,15 @@ $gutter: 2px;
 .control {
 	position: relative;
 	display: flex;
-	width: $size;
-	height: $size;
 	flex-shrink: 0;
 	align-items: center;
 	justify-content: center;
 	background-color: var(#{appearance.get-appearance-token(fill)});
+	block-size: $size;
 	border-radius: 3px;
 	box-shadow: inset 0 0 0 2px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
+	inline-size: $size;
 }
 
 .indicator {
@@ -91,4 +93,8 @@ label {
 	.base:not(:focus-visible) & {
 		display: none;
 	}
+}
+
+.icon {
+	font-size: calc(#{$size} * 0.7);
 }
