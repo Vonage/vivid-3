@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "Montserrat as default font",
-  "packageName": "@vonage/vivid",
-  "email": "rachel.tannenbaum@vonage.com",
-  "dependentChangeType": "patch"
-}
