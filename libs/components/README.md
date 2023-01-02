@@ -49,9 +49,14 @@ Only one theme is required to be loaded.
 
 ### Fonts (Prerequisite)
 
-- `node_modules/@vonage/vivid/styles/fonts/spezia.css` - Loads the *Spezia* variable font and defines its font face values. *Spezia* is Vonage's branded font and is required by most Vivid components. folder also contains the font files.
+Vivid uses `Montserrat` and `Roboto Mono` Google fonts.  
+Learn how to load fonts into your application [with google-fonts](https://fonts.google.com/knowledge/using_type/using_web_fonts_from_a_font_delivery_service#loading-web-fonts)
 
-Note that font files are not included within the css file, and must be copied to application assets separately (within the same parsed css folder). This is to allow the author to choose the most appropriate way to load the font files based on their project.
+** Unless explicitly stated otherwise, *Vonage products* should use the brand specified `Spezia` font families.  
+Vonage teams may review guidelines at the [Spezia webfont kit](https://github.com/Vonage/spezia-webfont-kit).
+
+Note that font files are not included within the css file, and must be copied to application assets separately (within the same parsed css folder).  
+This is to allow the author to choose the most appropriate way to load the font files based on their project.
 
 ### Core (Optional)
 
@@ -157,8 +162,9 @@ Tools like [UNPKG](https://unpkg.com), [jsDeliver](https://www.jsdelivr.com), [S
 The following snippet fully renders a Vivid button component
 
 ```html
-<!-- import spezia font -->
-<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/fonts/spezia.css">
+<!-- import Montserrat & Roboto-Mono fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <!-- import light theme style tokens -->
 <link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/tokens/theme-light.css">
