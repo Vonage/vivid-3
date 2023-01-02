@@ -105,12 +105,12 @@
 		order: 1;
 	}
 
-	.size-expanded & {
-		font-size: 24px;
+	.control.size-extended & {
+		font-size: calc(#{size.$vvd-size-super-expanded} / 2.3333);
 	}
 
-	&:not(.size-expanded) &{
-		font-size: 20px;
+	.control:not(.size-extended) &{
+		font-size: calc(#{size.$vvd-size-normal} / 2);
 	}
 }
 
