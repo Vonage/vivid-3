@@ -91,5 +91,34 @@ describe('vwc-select', () => {
 		});
 	});
 
+	
+	describe('validation', function () {
+		function setValidityToError(errorMessage = 'error') {
+			element.setValidity({badInput: true}, errorMessage);
+			element.validate();
+		}
+	
+		function setToBlurred() {
+			element.dispatchEvent(new Event('blur'));
+		}
+	
+		// function setToFocused() {
+		// 	element.dispatchEvent(new Event('focus'));
+		// }
+		it('should set error message to empty string when pristine', async function () {
+			setValidityToError();
+			await elementUpdated(element);
+			expect(element.errorValidationMessage)
+				.toEqual('');
+		});
 
+		it('should validate after a blur', async function () {
+			const errorMessage = 'Error Text';
+			element.dirtyValue = true;
+			setValidityToError(errorMessage);
+			setToBlurred();
+			await elementUpdated(element);
+			expect(element.errorValidationMessage).toEqual(errorMessage);
+		});
+	});
 });
