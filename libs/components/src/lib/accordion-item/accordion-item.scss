@@ -65,15 +65,15 @@ button {
 
 .region {
 	display: none;
-	padding: 8px 32px 24px 16px
-}
+	padding: 8px 32px 24px 16px;
 
-:host([expanded]) .region {
-	display: block;
-}
+	:host([expanded]) & {
+		display: block;
+	}
 
-:where(h1, h2, h3, h4, h5, h6):has(> button > .icon:first-child) + .region {
-	padding-left: 52px;
+	:where(h1, h2, h3, h4, h5, h6):has(> button > .icon:nth-child(2)) + & {
+		padding-left: 52px;
+	}
 }
 
 .focus-indicator {
