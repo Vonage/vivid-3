@@ -49,9 +49,12 @@ describe('vwc-select', () => {
 
 	describe('disabled', function () {
 		it('should set disabled class for select  when disabled is true', async () => {
-			expect(element.shadowRoot?.querySelector('.disabled')).toBeFalsy();
+      const disableClassExistsWithDisabledFalse = Boolean(element.shadowRoot?.querySelector('.disabled'));
+      
 			element.toggleAttribute('disabled', true);
 			await elementUpdated(element);
+			
+			expect(disableClassExistsWithDisabledFalse).toBeFalsy();
 			expect(element.shadowRoot?.querySelector('.disabled')).toBeTruthy();
 		});
 	});
