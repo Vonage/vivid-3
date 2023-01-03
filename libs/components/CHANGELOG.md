@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Tue, 27 Dec 2022 16:08:19 GMT and should not be manually modified.
+This log was last generated on Mon, 02 Jan 2023 10:04:07 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.129
+
+Mon, 02 Jan 2023 10:04:07 GMT
+
+### Changes
+
+- Montserrat as default font (rachel.tannenbaum@vonage.com)
 
 ## 3.0.0-next.128
 
