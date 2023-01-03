@@ -34,8 +34,6 @@ describe('vwc-select', () => {
 			element.label = labelText;
 			await elementUpdated(element);
 			const labelElement = element.shadowRoot?.querySelector('label');
-			expect(labelElement)
-				.toBeTruthy();
 			expect(labelElement?.textContent?.trim())
 				.toEqual(labelText);
 		});
@@ -49,11 +47,11 @@ describe('vwc-select', () => {
 
 	describe('disabled', function () {
 		it('should set disabled class for select  when disabled is true', async () => {
-      const disableClassExistsWithDisabledFalse = Boolean(element.shadowRoot?.querySelector('.disabled'));
-      
+			const disableClassExistsWithDisabledFalse = Boolean(element.shadowRoot?.querySelector('.disabled'));
+
 			element.toggleAttribute('disabled', true);
 			await elementUpdated(element);
-			
+
 			expect(disableClassExistsWithDisabledFalse).toBeFalsy();
 			expect(element.shadowRoot?.querySelector('.disabled')).toBeTruthy();
 		});
@@ -94,17 +92,17 @@ describe('vwc-select', () => {
 		});
 	});
 
-	
+
 	describe('validation', function () {
 		function setValidityToError(errorMessage = 'error') {
 			element.setValidity({badInput: true}, errorMessage);
 			element.validate();
 		}
-	
+
 		function setToBlurred() {
 			element.dispatchEvent(new Event('blur'));
 		}
-	
+
 		// function setToFocused() {
 		// 	element.dispatchEvent(new Event('focus'));
 		// }
