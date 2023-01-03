@@ -40,7 +40,7 @@ describe('vwc-select', () => {
 				.toEqual(labelText);
 		});
 
-		it('should show label only if label is set', async function () {
+		it('should show label element only if label is set', async function () {
 			const labelElement = element.shadowRoot?.querySelector('label');
 			expect(labelElement)
 				.toBeNull();
