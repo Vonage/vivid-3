@@ -98,7 +98,7 @@ export const SelectTemplate: (
 ) => ViewTemplate<Select> = (context: ElementDefinitionContext) => {
 
 	return html<Select>`
-	  <div class="base ${getStateClasses}"
+	  <template class="base ${getStateClasses}"
 				 		${ref('_anchor')}
             aria-activedescendant="${x => x.ariaActiveDescendant}"
             aria-controls="${x => x.ariaControls}"
@@ -116,7 +116,7 @@ export const SelectTemplate: (
             @mousedown="${(x, c) => x.mousedownHandler(c.event as MouseEvent)}"
         >
             ${when(x => x.collapsible, renderControl(context))}
-		</div>
+		</template>
 
 	`;
 };

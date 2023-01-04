@@ -25,6 +25,10 @@ describe('vwc-select', () => {
 			expect(element).toBeInstanceOf(Select);
 			expect(element.open).toEqual(false);
 			expect(element.disabled).toEqual(false);
+			expect(element.shape).toEqual(undefined);
+			expect(element.appearance).toEqual(undefined);
+			expect(element.label).toEqual(undefined);
+
 		});
 	});
 
@@ -59,9 +63,12 @@ describe('vwc-select', () => {
 
 	describe('open', function () {
 		it('should set open when clicked', async () => {
-			expect(element.open).toEqual(false);
+			const openStateBeforeClick = element.open;
+
 			getBaseElement(element).click();
 			await elementUpdated(element);
+
+			expect(openStateBeforeClick).toEqual(false);
 			expect(element.open).toEqual(true);
 		});
 	});
