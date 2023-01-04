@@ -79,10 +79,10 @@ describe('vwc-select', () => {
 			element.setAttribute('appearance', appearance);
 			await elementUpdated(element);
 
-			expect(getBaseElement(element)
-				.classList
-				.contains('appearance-fieldset'))
-				.toEqual(true);
+			const control = element.shadowRoot?.querySelector('.control');
+
+			expect(control?.classList.contains(`appearance-${appearance}`))
+				.toBeTruthy();
 		});
 	});
 
@@ -92,10 +92,10 @@ describe('vwc-select', () => {
 			element.setAttribute('shape', shape);
 			await elementUpdated(element);
 
-			expect(getBaseElement(element)
-				.classList
-				.contains('shape-pill'))
-				.toEqual(true);
+			const control = element.shadowRoot?.querySelector('.control');
+
+			expect(control?.classList.contains(`shape-${shape}`))
+				.toBeTruthy();
 		});
 	});
 
