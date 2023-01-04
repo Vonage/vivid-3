@@ -13,11 +13,9 @@ const getStateClasses = ({
 	shape,
 	disabled,
 	appearance,
-	label
 }: Select) => classNames(
 	['disabled', disabled],
 	[`appearance-${appearance}`, Boolean(appearance)],
-	['no-label', !label],
 	[`shape-${shape}`, Boolean(shape)],
 );
 
@@ -44,7 +42,7 @@ function renderControl(context: ElementDefinitionContext) {
 			${when(x => x.label, renderLabel())}
 			<div class="control-wrapper">
 				<div
-					class="control"
+					class="control ${getStateClasses}"
 					?disabled="${x => x.disabled}"
 					id="control"
 					${ref('control')}
@@ -98,7 +96,7 @@ export const SelectTemplate: (
 ) => ViewTemplate<Select> = (context: ElementDefinitionContext) => {
 
 	return html<Select>`
-	  <template class="base ${getStateClasses}"
+	  <template class="base"
 				 		${ref('_anchor')}
             aria-activedescendant="${x => x.ariaActiveDescendant}"
             aria-controls="${x => x.ariaControls}"

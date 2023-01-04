@@ -17,24 +17,12 @@
 
 
 :host {
-	display: block;
-	inline-size: fit-content;
-}
-
-.base {
-	@include appearance.appearance;
-	@include connotation.connotation;
-
 	display: flex;
 	flex-direction: column;
 	gap: 4px;
-
-	@supports selector(:focus-visible) {
-		&:focus {
-			outline: none;
-		}
-	}
+	inline-size: fit-content;
 }
+
 
 .label {
 	color: var(#{constants.$vvd-color-canvas-text});
@@ -43,6 +31,9 @@
 }
 
 .control {
+	@include appearance.appearance;
+	@include connotation.connotation;
+
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -57,23 +48,29 @@
 	transition: box-shadow .2s, background-color .2s;
 
 
+	@supports selector(:focus-visible) {
+		&:focus {
+			outline: none;
+		}
+	}
+
 	&-wrapper {
 		position: relative;
 	}
 
-	.base:not(.disabled) & {
+	&:not(.disabled) {
 		cursor: pointer;
 	}
 
-	.base.disabled & {
+	&.disabled {
 		cursor: not-allowed;
 	}
 
-	.base:not(.shape-pill) & {
+	&:not(.shape-pill) {
 		border-radius: 6px;
 	}
 
-	.base.shape-pill & {
+	&.shape-pill {
 		border-radius: 24px;
 	}
 }
@@ -92,7 +89,7 @@
 }
 
 .focus-indicator {
-	.base:not(:focus-visible, :focus-within) & {
+	.control:not(:focus-visible, :focus-within) & {
 		display: none;
 	}
 }
