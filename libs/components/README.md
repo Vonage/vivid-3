@@ -111,9 +111,9 @@ Even though custom elements can be registered under different namespaces, as man
 
 ## Support
 
-This library is open source, developed and maintained by the [Vonage Vivid team](Vonage/vivid).
+This library is open source, developed and maintained by the [Vonage Vivid teams](https://github.com/orgs/Vonage/teams/vivid/teams).
 
-For any questions, please open a [bug report](https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=bug_report.md&title=) or [feature request](https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=feature_request.md&title=).
+For any questions, please open a [bug report](https://github.com/Vonage/vivid-3/issues/new?assignees=yonatankra%2C+rachelbt%2C+rinaok%2C+yinonov&labels=bug&template=bug_report.yml&title=%5BYOUR+TITLE%5D%3A+Brief+description) or [feature request](https://github.com/Vonage/vivid-3/issues/new?assignees=yonatankra%2C+rachelbt%2C+rinaok%2C+yinonov&labels=Feature+request&template=feature_request.yml&title=%5BYOUR+TITLE%5D%3A+Brief+description).
 
 ## Roadmap
 
@@ -127,7 +127,7 @@ We publish a *next* release on every successful merge to main, so you never need
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](.github/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/Vonage/vivid-3/blob/main/.github/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
 
@@ -135,11 +135,11 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/Vonage/vivid-3/graphs/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the Apache 2.0 License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the Apache 2.0 License - see the [LICENSE.md](https://github.com/Vonage/vivid-3/blob/main/LICENSE.md) file for details
 
 <!-- ## Acknowledgments
 
