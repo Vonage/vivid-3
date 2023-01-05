@@ -1,7 +1,7 @@
 # Tabs
 
 Represents a tabs custom element.
-The vwc-tabs accepts [vwc-tab](../../components/tab) and [vwc-tab-panel](../../components/tab-panel) elements as children.
+The vwc-tabs accepts [vwc-tab](../../components/tab) and `vwc-tab-panel` elements as children. Read more about `tabs` [here](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/).
 
 ```js
 <script type="module">
@@ -123,6 +123,11 @@ Add an `activeid` attribute of the active tab.
     </vwc-tab-panel>
 </vwc-tabs>
 ```
+
+### Slots
+
+Each `tab panel` has an associated [vwc-tab](../../components/tab) element, that when activated, displays the `tab panel`. 
+
 
 ## Events
 

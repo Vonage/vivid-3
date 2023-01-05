@@ -321,16 +321,6 @@
 		]
 	},
 	{
-		"title": "tab-panel",
-		"status": "alpha",
-		"markdown": "./libs/components/src/lib/tab-panel/README.md",
-		"modules": [
-			"/assets/modules/components/tab-panel/index.js",
-			"/assets/modules/components/tabs/index.js",
-			"/assets/modules/components/tab/index.js"
-		]
-	},
-	{
 		"title": "combobox",
 		"status": "alpha",
 		"markdown": "./libs/components/src/lib/combobox/README.md",
