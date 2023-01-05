@@ -53,14 +53,15 @@ Aside from the [color-related tokens](/designs/color-palette), you may use the f
 Use `--vvd-font-family-upright` to specify a base font family for your application. This is the default font family for all text elements.
 
 - Type: `string`
-- Default: `'SpeziaCompleteVariableUpright'` <!-- ! replace in #807  -->
+- Default: `'Montserrat'`
 
 Use `--vvd-font-family-monospace` to specify a monospace font family for your application. This is the default font family for code elements.
 
 - Type: `string`
-- Default: `'SpeziaMonoCompleteVariable'` <!-- ! replace in #807  -->
+- Default: `'Roboto Mono'`
 
-** Unless explicitely stated otherwise, Vonage products should use the brand specified `Spezia` font families. Vonage teams may review guidelines at the [Spezia webfont kit](https://github.com/Vonage/spezia-webfont-kit).
+Learn how to load fonts into your application [with google-fonts](https://fonts.google.com/knowledge/using_type/using_web_fonts_from_a_font_delivery_service#loading-web-fonts)
+
 
 ```html preview
 <style>
