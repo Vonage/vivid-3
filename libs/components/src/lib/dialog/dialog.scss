@@ -34,7 +34,7 @@
 	display: flex;
 	flex-direction: column;
 	padding: 24px;
-	gap: 8px;
+	gap: 12px;
 }
 
 .header {
@@ -62,23 +62,32 @@
 			flex-direction: column;
 			row-gap: #{size.$vvd-size-super-condensed};
 
+
 			.icon {
 				font-size: #{size.$vvd-size-condensed};
 			}
 		}
 
 		.base.icon-placement-side & {
-			column-gap: calc(#{size.$vvd-size-condensed} - #{size.$vvd-size-super-condensed});
+			column-gap: calc(#{size.$vvd-size-condensed} / 2);
 
 			.icon {
 				font-size: #{size.$vvd-size-extra-condensed};
 			}
 		}
 	}
+
+	&-text {
+		display: flex;
+		flex-direction: column;
+		column-gap: 4px;
+	}
 }
 
-.content {
+.subtitle {
 	font: var(#{constants.$vvd-typography-base});
 }
+
+
 
 

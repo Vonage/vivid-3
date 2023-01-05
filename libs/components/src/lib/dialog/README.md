@@ -16,7 +16,7 @@ All native attributes of `dialog` are supported as well as some enhancements.
   }
 </style>
 
-<vwc-dialog icon="info" headline="Headline" text="Text content" open></vwc-dialog>
+<vwc-dialog icon="info" headline="Headline" subtitle="subtitle" open></vwc-dialog>
 ```
 
 ## Members
@@ -31,6 +31,23 @@ Use the `headline` attribute to set the dialog's headline.
 ```html preview
 <vwc-dialog headline="Headline" open></vwc-dialog>
 ```
+
+### subtitle
+
+Use the `subtitle` attribute to set the dialog's subtitle.
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+</style>
+<vwc-dialog subtitle="subtitle content" open></vwc-dialog>
+```
+
 
 ### Icon
 
@@ -52,26 +69,9 @@ The `icon-placement` attribute specifies where the dialog's icon should appear (
 - Default: `top`
 
 ```html preview
-<vwc-dialog icon-placement="side" icon="info" headline="Dialog Headline" open></vwc-dialog>
+<vwc-dialog icon-placement="side" icon="info" headline="Dialog Headline" subtitle="subtitle content" open></vwc-dialog>
 ```
 
-
-
-### Text
-
-Use the `text` attribute to set the dialog's text.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<style>
-  html { /* for demo purposes */
-    block-size: 230px;
-  }
-</style>
-<vwc-dialog text="Text content" open></vwc-dialog>
-```
 
 ### Open
 
@@ -86,9 +86,9 @@ Sets or returns whether a dialog should be open or not
     block-size: 230px;
   }
 </style>
-<vwc-dialog id="dialog" text="Text content"></vwc-dialog>
 
 <vwc-button label="Toggle Dialog Open" onclick="dialog.open = !dialog.open"></vwc-button>
+<vwc-dialog id="dialog" headline="Headline" subtitle="subtitle"></vwc-dialog>
 ```
 
 ### Return Value
@@ -159,9 +159,10 @@ Use the `graphic` slot in order to replace the icon.
 </vwc-dialog>
 ```
 
-### Content
+### Body
 
-Use the content `slot` in order to add custom HTML to the dialog while enjoying the vivid dialog styling. Note that vivid styling comes with opinionated CSS like padding and margin.
+Use the content `slot` in order to add custom HTML to the dialog while enjoying the vivid dialog styling.  
+Note that vivid styling comes with opinionated CSS like padding and margin.
 
 ```html preview
 <style>
@@ -171,7 +172,7 @@ Use the content `slot` in order to add custom HTML to the dialog while enjoying 
   }
 </style>
 <vwc-dialog open headline="Dialog Content">
-  <div slot="content">
+  <div slot="body">
     <form>
       <vwc-layout column-basis="block">
         <vwc-text-field label="Name"></vwc-text-field>
@@ -201,7 +202,7 @@ Use the footer `slot` in order to add action buttons to the bottom of the dialog
 </style>
 <vwc-dialog open
   headline="Dialog with footer"
-  text="To quote Michael Carini, although we should never apologize for being ourselves, we should apologize for the times that we are not.">
+  subtitle="this is an example of the dialog with stooted buttons inside footer">
   <div slot="footer" class="demo-footer">
     <vwc-button appearance="outlined" label="Cancel"></vwc-button>
     <vwc-button appearance="filled" label="Action"></vwc-button>
@@ -265,7 +266,7 @@ vwc-dialog {
 }
 </style>
 
-<vwc-dialog icon="info" headline="Headline" text="Text content" open></vwc-dialog>
+<vwc-dialog icon="info" headline="Headline" subtitle="subtitle content" open></vwc-dialog>
 ```
 
 ### Block-Size
@@ -287,7 +288,7 @@ vwc-dialog {
 }
 </style>
 
-<vwc-dialog icon="info" headline="Headline" text="Text content" open></vwc-dialog>
+<vwc-dialog icon="info" headline="Headline" subtitle="subtitle content" open></vwc-dialog>
 ```
 
 ## Events

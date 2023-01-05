@@ -7,7 +7,7 @@ import type {
 import {classNames} from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
 import { Icon } from '../icon/icon';
-import { Button } from '../button/button'; 
+import { Button } from '../button/button';
 import type {Dialog} from './dialog';
 
 const getClasses = ({iconPlacement}: Dialog) => classNames(
@@ -31,6 +31,17 @@ function headline() {
 	return html<Dialog>`
 	  <div class="headline">
 		  ${x => x.headline}
+	  </div>
+	`;
+}
+
+/**
+ *
+ */
+function subtitle() {
+	return html<Dialog>`
+	  <div class="subtitle">
+		  ${x => x.subtitle}
 	  </div>
 	`;
 }
@@ -62,16 +73,6 @@ function handleEscapeKey(dialog: Dialog, event: Event) {
 }
 
 /**
- *
- */
-function content() {
-	return html<Dialog>`
-	  <div class="content">
-		  ${x => x.text}
-	  </div>
-	`;
-}
-/**
  * The template for the {@link @microsoft/fast-foundation#Dialog} component.
  *
  * @param context
@@ -102,13 +103,14 @@ export const DialogTemplate: (
 								<slot name="graphic">
 									${when(x => x.icon, icon(iconTag))}
 								</slot>
-								${when(x => x.headline, headline())}
+								<div class="headline-text">
+									${when(x => x.headline, headline())}
+									${when(x => x.subtitle, subtitle())}
+								</div>
 							</div>
 						${renderDismissButton(buttonTag)}
 						</div>
-						<slot name="content">
-							${when(x => x.text, content())}
-						</slot>
+						<slot name="body"></slot>
 						<slot name="footer"></slot>
 					</div>
 				</slot>
