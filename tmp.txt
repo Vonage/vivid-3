@@ -9,5 +9,5 @@ Updating package-lock.json after bumping packages
 > patch-package
 
 Removing change files:
-- @vonage-vivid-9f25c2ac-cc5a-4d2d-819c-0b9f5697de62.json
+- @vonage-vivid-d5251609-36b2-4a14-82ef-f7815f083bdb.json
 Removing change path
