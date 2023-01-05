@@ -1,7 +1,7 @@
 # Tabs
 
 Represents a tabs custom element.
-The vwc-tabs accepts [vwc-tab](../../components/tab) and `vwc-tab-panel` elements as children.
+The vwc-tabs accepts [vwc-tab](../../components/tab) and [vwc-tab-panel](../../components/tab-panel) elements as children.
 
 ```js
 <script type="module">
