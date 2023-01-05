@@ -161,7 +161,7 @@ Use the `graphic` slot in order to replace the icon.
 
 ### Body
 
-Use the content `slot` in order to add custom HTML to the dialog while enjoying the vivid dialog styling.  
+Use the `body` slot in order to add custom HTML to the dialog while enjoying the vivid dialog styling.  
 Note that vivid styling comes with opinionated CSS like padding and margin.
 
 ```html preview
@@ -202,7 +202,7 @@ Use the footer `slot` in order to add action buttons to the bottom of the dialog
 </style>
 <vwc-dialog open
   headline="Dialog with footer"
-  subtitle="this is an example of the dialog with stooted buttons inside footer">
+  subtitle="this is an example of the dialog with slotted buttons inside footer">
   <div slot="footer" class="demo-footer">
     <vwc-button appearance="outlined" label="Cancel"></vwc-button>
     <vwc-button appearance="filled" label="Action"></vwc-button>
