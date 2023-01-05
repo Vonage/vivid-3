@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "feat(components): combobox new component",
+  "packageName": "@vonage/vivid",
+  "email": "rina.oksman@vonage.com",
+  "dependentChangeType": "patch"
+}
