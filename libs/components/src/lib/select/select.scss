@@ -15,6 +15,11 @@
 @use "../focus/partials/variables" as focus-variables;
 
 
+@supports selector(:focus-visible) {
+	:host(:focus) {
+		outline: none;
+	}
+}
 
 :host {
 	display: flex;
@@ -46,13 +51,6 @@
 	min-block-size: #{size.$vvd-size-normal};
 	padding-inline: 16px;
 	transition: box-shadow .2s, background-color .2s;
-
-
-	@supports selector(:focus-visible) {
-		&:focus {
-			outline: none;
-		}
-	}
 
 	&-wrapper {
 		position: relative;
@@ -89,7 +87,7 @@
 }
 
 .focus-indicator {
-	.control:not(:focus-visible, :focus-within) & {
+	:host(:not(:focus-visible)) & {
 		display: none;
 	}
 }
