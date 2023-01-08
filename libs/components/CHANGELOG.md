@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Mon, 02 Jan 2023 10:04:07 GMT and should not be manually modified.
+This log was last generated on Thu, 05 Jan 2023 11:32:29 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.130
+
+Thu, 05 Jan 2023 11:32:29 GMT
+
+### Changes
+
+- feat(components): combobox new component (rina.oksman@vonage.com)
 
 ## 3.0.0-next.129
 

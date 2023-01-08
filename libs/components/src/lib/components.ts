@@ -11,6 +11,7 @@ export * from './calendar/definition';
 export * from './calendar-event/definition';
 export * from './card/definition';
 export * from './checkbox/definition';
+export * from './combobox/definition';
 export * from './elevation/definition';
 export * from './dialog/definition';
 export * from './divider/definition';
