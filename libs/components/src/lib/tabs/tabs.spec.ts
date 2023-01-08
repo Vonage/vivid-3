@@ -61,8 +61,8 @@ describe('vwc-tabs', () => {
 	});
 
 
-	describe('activeidChanged', () => {
-		it('should set orientation property', async () => {
+	describe('activeid', () => {
+		it('should set activeid property', async () => {
 			const activeid = 'entrees';
 			const tab = element.querySelector('#' + activeid);
 
