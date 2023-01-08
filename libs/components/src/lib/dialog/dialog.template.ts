@@ -46,6 +46,18 @@ function subtitle() {
 	`;
 }
 
+/**
+ *
+ */
+function headlineText() {
+	return html<Dialog>`
+		<div class="headline-text">
+			${when(x => x.headline, headline())}
+			${when(x => x.subtitle, subtitle())}
+		</div>
+	`;
+}
+
 
 /**
  *
@@ -103,10 +115,7 @@ export const DialogTemplate: (
 								<slot name="graphic">
 									${when(x => x.icon, icon(iconTag))}
 								</slot>
-								<div class="headline-text">
-									${when(x => x.headline, headline())}
-									${when(x => x.subtitle, subtitle())}
-								</div>
+								${when(x => x.headline || x.subtitle, headlineText())}
 							</div>
 						${renderDismissButton(buttonTag)}
 						</div>

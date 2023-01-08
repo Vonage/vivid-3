@@ -8,7 +8,7 @@ import type {Dialog} from './dialog';
 
 const components = ['dialog'];
 
-test.only('should show the component', async ({ page }: { page: Page }) => {
+test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 	<style>
 		#bottom-left-dialog {
