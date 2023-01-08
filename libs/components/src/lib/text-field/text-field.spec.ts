@@ -458,7 +458,7 @@ describe('vwc-text-field', () => {
 				.toBeNull();
 		});
 
-		it('should remove error message when success is shown', async function () {
+		it('should not show error message when success is shown', async function () {
 			element.dirtyValue = true;
 			setToBlurred();
 			setValidityToError('blah');
