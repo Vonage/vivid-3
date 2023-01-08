@@ -10,7 +10,7 @@ describe('vwc-tabs', () => {
 	let element: Tabs;
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}> activeid='apps'
+		element = (await fixture(`<${COMPONENT_TAG} activeid='apps'>
 		<vwc-tab label="Appetizers" id="apps"></vwc-tab>
 		<vwc-tab label="Entrees" id="entrees"></vwc-tab>
 		<vwc-tab label="Desserts" id="desserts"></vwc-tab>
