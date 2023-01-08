@@ -10,7 +10,7 @@ describe('vwc-tabs', () => {
 	let element: Tabs;
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}>
+		element = (await fixture(`<${COMPONENT_TAG}> activeid='apps'
 		<vwc-tab label="Appetizers" id="apps"></vwc-tab>
 		<vwc-tab label="Entrees" id="entrees"></vwc-tab>
 		<vwc-tab label="Desserts" id="desserts"></vwc-tab>
@@ -46,7 +46,7 @@ describe('vwc-tabs', () => {
 		it('should be initialized as a vwc-tabs', async () => {
 			expect(element).toBeInstanceOf(Tabs);
 			expect(element.orientation).toEqual('horizontal');
-			expect(element.activeid).toBeUndefined();
+			expect(element.activeid).toEqual('apps');
 		});
 	});
 
