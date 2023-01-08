@@ -64,10 +64,13 @@ describe('vwc-tabs', () => {
 	describe('activeid', () => {
 		it('should set activeid property', async () => {
 			const activeid = 'entrees';
-			const tab = element.querySelector('#' + activeid);
+			const tab: Tab = element.querySelector('#' + activeid) as Tab;
 
 			expect((tab as Tab).ariaSelected).toEqual('false');
 			element.activeid = activeid;
+			if (tab) {
+				element.activetab = tab;
+			}
 			await elementUpdated(element);
 
 			expect((tab as Tab).ariaSelected).toEqual('true');
