@@ -28,15 +28,15 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 <vwc-avatar icon="group-2-solid"></vwc-avatar>
 ```
 
-### Name
+### Initials
 
-Set the `name` attribute to set avatar's initials.
+Set the `initials` attribute to set avatar's initials.
 
 - Type: `string`
 - Default: `none`
 
 ```html preview
-<vwc-avatar name="vivid avatar"></vwc-avatar>
+<vwc-avatar initials="vivid avatar"></vwc-avatar>
 ```
 
 ### Appearance
@@ -88,9 +88,9 @@ Use the `size` attribute/property to set the avatar's to one of the predefined b
 <vwc-avatar size='condensed' shape="pill"></vwc-avatar>
 <vwc-avatar size='normal' shape="pill"></vwc-avatar>
 <vwc-avatar size='expanded' shape="pill"></vwc-avatar>
-<vwc-avatar size='condensed' shape="pill" name="john doe"></vwc-avatar>
-<vwc-avatar size='normal' shape="pill" name="john doe"></vwc-avatar>
-<vwc-avatar size='expanded' shape="pill" name="john doe"></vwc-avatar>
+<vwc-avatar size='condensed' shape="pill" initials="john doe"></vwc-avatar>
+<vwc-avatar size='normal' shape="pill" initials="john doe"></vwc-avatar>
+<vwc-avatar size='expanded' shape="pill" initials="john doe"></vwc-avatar>
 ```
 
 ## Slots
