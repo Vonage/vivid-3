@@ -35,7 +35,7 @@ export class Tabs extends FoundationTabs {
 	}
 
 	private patchIndicatorStyleTransition() {
-		if (this.orientation === 'vertical') return;
+		if (this.orientation === TabsOrientation.vertical) return;
 		const width = this.activetab?.getClientRects()[0]?.width;
 		if (!width) return;
 
