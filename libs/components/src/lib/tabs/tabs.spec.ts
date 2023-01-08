@@ -1,5 +1,7 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Tabs } from './tabs';
+import type { Tab } from'../tab/tab';
+import '../tab-panel/tab-panel';
 import '.';
 
 const COMPONENT_TAG = 'vwc-tabs';
@@ -8,7 +10,36 @@ describe('vwc-tabs', () => {
 	let element: Tabs;
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Tabs;
+		element = (await fixture(`<${COMPONENT_TAG}>
+		<vwc-tab label="Appetizers" id="apps"></vwc-tab>
+		<vwc-tab label="Entrees" id="entrees"></vwc-tab>
+		<vwc-tab label="Desserts" id="desserts"></vwc-tab>
+		<vwc-tab-panel id="appsPanel">
+			<ol>
+				<li>Stuffed artichokes</li>
+				<li>Bruschetta</li>
+				<li>Oven-baked polenta</li>
+				<li>Salami and Fig Crostini with Ricotta</li>
+				<li>Rosemary-Potato Focaccia with Goat Cheese</li>
+			</ol>
+		</vwc-tab-panel>
+		<vwc-tab-panel id="entreesPanel">
+			<ol>
+				<li>Mushroom-Sausage Ragù</li>
+				<li>Tomato Bread Soup with Steamed Mussels</li>
+				<li>Grilled Fish with Artichoke Caponata</li>
+				<li>Celery Root and Mushroom Lasagna</li>
+				<li>Osso Buco with Citrus Gremolata</li>
+			</ol>
+		</vwc-tab-panel>
+		<vwc-tab-panel id="dessertsPanel">
+			<ol>
+				<li>Tiramisu</li>
+				<li>Spumoni</li>
+				<li>Limoncello and Ice Cream with Biscotti</li>
+			</ol>
+		</vwc-tab-panel>
+		</${COMPONENT_TAG}>`)) as Tabs;
 	});
 
 	describe('basic', () => {
@@ -26,6 +57,20 @@ describe('vwc-tabs', () => {
 			element.orientation = orientation as any;
 			await elementUpdated(element);
 			expect(getBaseElement(element).classList.contains(`orientation-${orientation}`)).toBeTruthy();
+		});
+	});
+
+
+	describe('activeidChanged', () => {
+		it('should set orientation property', async () => {
+			const activeid = 'entrees';
+			const tab = element.querySelector("#" + activeid);
+
+			expect((tab as Tab).ariaSelected).toEqual(false);
+			element.activeid = activeid;
+			await elementUpdated(element);
+			
+			expect((tab as Tab).ariaSelected).toEqual(true);
 		});
 	});
 });
