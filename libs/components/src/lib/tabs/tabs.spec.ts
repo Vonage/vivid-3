@@ -69,6 +69,8 @@ describe('vwc-tabs', () => {
 			expect((tab as Tab).ariaSelected).toEqual('false');
 			element.activeid = activeid;
 			element.activetab = tab;
+			element.activetab.style.width = '300px';
+			
 			await elementUpdated(element);
 
 			expect((tab as Tab).ariaSelected).toEqual('true');
