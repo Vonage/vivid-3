@@ -1,6 +1,6 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import type { Tab } from '../tab/tab';
 import { Tabs } from './tabs';
-import type { Tab } from'../tab/tab';
 import '../tab-panel/tab-panel';
 import '.';
 
@@ -64,12 +64,12 @@ describe('vwc-tabs', () => {
 	describe('activeidChanged', () => {
 		it('should set orientation property', async () => {
 			const activeid = 'entrees';
-			const tab = element.querySelector("#" + activeid);
+			const tab = element.querySelector('#' + activeid);
 
 			expect((tab as Tab).ariaSelected).toEqual(false);
 			element.activeid = activeid;
 			await elementUpdated(element);
-			
+
 			expect((tab as Tab).ariaSelected).toEqual(true);
 		});
 	});
