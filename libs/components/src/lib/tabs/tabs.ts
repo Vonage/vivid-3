@@ -1,5 +1,5 @@
 import { observable } from '@microsoft/fast-element';
-import { Tabs as FoundationTabs } from '@microsoft/fast-foundation';
+import { Tabs as FoundationTabs, TabsOrientation } from '@microsoft/fast-foundation';
 
 const TABS_ACTIVE_INDICATOR_INLINE_SIZE = '--_tabs-active-indicator-inline-size';
 
