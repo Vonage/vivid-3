@@ -66,11 +66,11 @@ describe('vwc-tabs', () => {
 			const activeid = 'entrees';
 			const tab = element.querySelector('#' + activeid);
 
-			expect((tab as Tab).ariaSelected).toEqual(false);
+			expect((tab as Tab).ariaSelected).toEqual('false');
 			element.activeid = activeid;
 			await elementUpdated(element);
 
-			expect((tab as Tab).ariaSelected).toEqual(true);
+			expect((tab as Tab).ariaSelected).toEqual('true');
 		});
 	});
 });
