@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Thu, 05 Jan 2023 11:32:29 GMT and should not be manually modified.
+This log was last generated on Sun, 08 Jan 2023 11:03:35 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.131
+
+Sun, 08 Jan 2023 11:03:35 GMT
+
+### Changes
+
+- change the member name to initials (rachel.tannenbaum@vonage.com)
 
 ## 3.0.0-next.130
 
