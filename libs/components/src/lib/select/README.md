@@ -15,6 +15,11 @@ Represents a select custom element.
 Read more about [vwc-option](../../components/option).
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+</style>
 <vwc-select label="choose one option">
   <vwc-option value="1" text="Option 1" selected></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
@@ -31,6 +36,12 @@ Add a `label` attribute to add label to the Select.
 - Type: `string` | `undefined`
 - Default: `undefined`
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+  vwc-select {width: 150px;}
+</style>
 <vwc-select label="choose one option">
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
@@ -48,9 +59,8 @@ Set the `appearance` attribute to change the Select appearance.
 
 ```html preview
 <vwc-select appearance="ghost">
-  <vwc-option value="1" text="Option 1" selected disabled></vwc-option>
+  <vwc-option value="1" text="Option 1" selected></vwc-option>
   <vwc-option value="2" text="Option 2 "></vwc-option>
-  <vwc-option value="3" text="Option 3"></vwc-option>
 </vwc-select>
 ```
 
@@ -64,7 +74,6 @@ Use the `shape` attribute to change the Select edges.
 <vwc-select shape="pill">
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
-  <vwc-option value="3" text="Option 3"></vwc-option>
 </vwc-select>
 ```
 
@@ -78,8 +87,6 @@ Add the `disabled` attribute to disable the Select.
 ```html preview
 <vwc-select disabled>
   <vwc-option value="1" text="Option 1"></vwc-option>
-  <vwc-option value="2" text="Option 2"></vwc-option>
-  <vwc-option value="3" text="Option 3"></vwc-option>
 </vwc-select>
 ```
 
@@ -94,6 +101,11 @@ _Select_ internally uses _popup_ to display an element and its descendants above
 - Default: `false`
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+</style>
 <vwc-select open>
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
@@ -105,4 +117,5 @@ _Select_ internally uses _popup_ to display an element and its descendants above
 ## Caveat
 
 Document elements display precedence is formed by the imaginary z-axis [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context), commonly by order of which elements are rendered and special properties (e.g. _z-index_).
-Combobox component is a low level element, unaware of its document context, but is, in most cases, required to overlay on top of all elements.
+Select component is a low level element, unaware of its document context, but is, in most cases, required to overlay on top of all elements.  
+If needed a `z-index` value can be set on the host

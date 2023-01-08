@@ -427,7 +427,7 @@ describe('vwc-text-field', () => {
 				textContent?.trim()).toEqual(errorMessageTwo);
 		});
 
-		it('should change the error message only when not in focus', async function() {
+		it('should change the error message only when already not valid', async function() {
 			setToBlurred();
 			setToFocused();
 			const errorMessage = 'Error Text';
