@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "change the member name to initials",
-  "packageName": "@vonage/vivid",
-  "email": "rachel.tannenbaum@vonage.com",
-  "dependentChangeType": "patch"
-}
