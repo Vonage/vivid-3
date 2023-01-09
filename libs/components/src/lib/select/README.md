@@ -130,7 +130,7 @@ Default: `fit-content`
     --select-width: 100%;
   }
 </style>
-<vwc-select open>
+<vwc-select>
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
 </vwc-select>
@@ -151,7 +151,7 @@ Default: `fit-content`
     --select-height: 100px;
   }
 </style>
-<vwc-select open>
+<vwc-select>
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
   <vwc-option value="3" text="Option 3"></vwc-option>
