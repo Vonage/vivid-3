@@ -16,7 +16,7 @@ export class Tabs extends FoundationTabs {
 		super.orientationChanged();
 		this.patchIndicatorStyleTransition();
 		if (this.orientation === TabsOrientation.vertical) {
-			this.activeIndicatorRef?.style.removeProperty(ACTIVE_TAB_WIDTH);
+			this.activeIndicatorRef.style.removeProperty(ACTIVE_TAB_WIDTH);
 		}
 	}
 
