@@ -79,12 +79,12 @@ describe('vwc-tabs', () => {
 		it('should set activetab property', async () => {
 			const tab: Tab = element.querySelector('#entrees') as Tab;
 
-			expect((tab as Tab).ariaSelected).toEqual('false');
-			element.activetab = tab;
+			expect(element.activetab).not.toEqual(tab);
+			tab.click();
 
 			await elementUpdated(element);
 
-			expect((tab as Tab).ariaSelected).toEqual('true');
+			expect(element.activetab).toEqual(tab);
 		});
 	});
 });
