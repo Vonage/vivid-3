@@ -1,15 +1,22 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
+import { DataGridRow, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { ViewTemplate, html } from '@microsoft/fast-element';
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { designSystem } from '../../shared/design-system';
 import { DataGrid } from './data-grid';
 import { DataGridTemplate } from './data-grid.template';
+import { DataGridRowTemplate } from './data-grid-row.template';
+
+const dataGridRow = DataGridRow.compose<FoundationElementDefinition>({
+	baseName: 'data-grid-row',
+	template: DataGridRowTemplate as any
+});
 
 const dataGrid = DataGrid.compose<FoundationElementDefinition>({
 	baseName: 'data-grid',
 	template: DataGridTemplate as any
 });
 
+dataGridRow();
 designSystem.withPrefix('vwc').register(dataGrid());
 // TODO:: build the grid here with registration and add an integration test for index.ts
 const COMPONENT_TAG = 'vwc-data-grid';
@@ -126,23 +133,107 @@ describe('vwc-data-grid', () => {
 				{'columnDataKey': 'id', 'gridColumn': '3'}, {'columnDataKey': 'name', 'gridColumn': '5'}
 			];
 			element.columnDefinitions = columnDefinitions;
-			element.rowsData = [{ id: '1', name: 'Person 1' }];
+			element.rowsData = [
+				{ id: '1', name: 'Person 1' },
+				{ id: '2', name: 'Person 2' },
+			];
+
 			await elementUpdated(element);
-			element.rowsData = [{ id: '1', name: 'Person 1' }];
 			await elementUpdated(element);
 			
+			const rows = element.querySelectorAll('[role="row"]') as any;
+
+			rows.forEach((row: any, index: number) => {
+				expect(row.columnDefinitions).toEqual(columnDefinitions);			
+				expect(row.rowIndex).toEqual(index);
+				expect(row.gridTemplateColumns)
+					.toEqual(element.rowsData.reduce((acc: string, _, index) => acc + (index > 0 ? ' 1fr' : '1fr'), ''));
+			});
+			
+		});
+
+		// TODO::similar test should pass when the DOM elements mutate
+	});
+
+	describe('rowItemTemplate', () => {
+		it('should use the given row template', async () => {
+			const rowTag = 'just-for-test';
+			element.rowItemTemplate = html`<${rowTag} role="row"></${rowTag}>`;
+			element.rowsData = [
+				{ id: '1', name: 'Person 1' },
+				{ id: '2', name: 'Person 2' },
+				{ id: '2', name: 'Person 2' },
+				{ id: '2', name: 'Person 2' },
+			];
+			await elementUpdated(element);
+			expect(element.querySelectorAll(rowTag).length).toEqual(element.rowsData.length);
+		});
+	});
+
+	describe('cellItemTemplate', () => {
+		it('should set row.cellItemTemplate', async () => {
+			
+			element.rowItemTemplate = html`<vwc-data-grid-row role="row"></vwc-data-grid-row>`;
+			const cellItemTemplate = html`<div role="cell" class="just-for-test"></div>`;
+			element.cellItemTemplate = cellItemTemplate;
+			element.rowsData = [
+				{ id: '1', name: 'Person 1' },
+				{ id: '2', name: 'Person 2' },
+			];
+			await elementUpdated(element);
+			const row = element.querySelector('vwc-data-grid-row') as any;
 			console.log(element.innerHTML);
-			console.log((element as any).rowElements);
-			console.log(element.innerHTML);
-			console.log((element as any).rowElements);
-			const rows = element.querySelectorAll(rowElementTag);
-			const rowsSet = Array.from(rows).reduce((acc, currRow, index) => {
-				const row = currRow as any;
-				// console.log(index, ' || ', row.columnDefinitions, ' || ', columnDefinitions, ' || ', row.gridTemplateColumns, ' || ', element.gridTemplateColumns, ' || ', row.index );
-				return acc && row.columnDefinitions === columnDefinitions && 
-					row.gridTemplateColumns === element.gridTemplateColumns && row.index === index;
-			}, true);
-			expect(rowsSet).toEqual(true);	
+			console.log(row.innerHTML);
+			expect(row.cellItemTemplate).toEqual(cellItemTemplate);
+		});
+	});
+
+	describe('headerCellItemTemplate', () => {
+
+	});
+
+	describe('focusRowIndex', () => {	
+		it('should set the focused cell', async () => {
+			element.rowElementTag = 'div';
+			element.rowItemTemplate = html`
+			<${element.rowElementTag} role="row">
+				<button class="first" role="cell"/><button class="second" role="cell"/>
+			</${element.rowElementTag}>`;
+			element.generateHeader = 'none';
+			element.rowsData = [
+				{ id: '1', name: 'Person 1' },
+				{ id: '2', name: 'Person 2' },
+			];
+			await elementUpdated(element);	
+			const expectedFocsedCell = Array.from(element.querySelectorAll(element.rowElementTag))
+				.at(-1)
+				?.querySelector('button');
+			element.focusRowIndex = 2;
+			await elementUpdated(element);			
+			expect(expectedFocsedCell).toEqual(document.activeElement);
+		});
+	});
+
+	describe('focusColumnIndex', () => {	
+		it('should change the focused cell in selected row', async () => {
+			element.rowElementTag = 'div';
+			element.rowItemTemplate = html`
+			<${element.rowElementTag} role="row">
+				<button class="first" role="cell"/><button class="second" role="cell"/>
+			</${element.rowElementTag}>`;
+			element.generateHeader = 'none';
+			element.rowsData = [
+				{ id: '1', name: 'Person 1' },
+				{ id: '2', name: 'Person 2' },
+			];
+			await elementUpdated(element);	
+			const expectedFocsedCell = Array.from(element.querySelectorAll(element.rowElementTag))
+				.at(-1)
+				?.querySelector('.second');
+			element.focusRowIndex = 2;
+			element.focusColumnIndex = 2;
+			await elementUpdated(element);			
+			expect(expectedFocsedCell).toEqual(document.activeElement);
 		});
 	});
 });
