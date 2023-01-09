@@ -15,7 +15,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		path.join(new URL('.', import.meta.url).pathname, 'README.md'))
 		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
 
-	page.setViewportSize({ width: 250, height: 600 });
+	page.setViewportSize({ width: 250, height: 850 });
 
 	await loadComponents({
 		page,
