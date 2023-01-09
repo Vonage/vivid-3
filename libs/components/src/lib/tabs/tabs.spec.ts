@@ -1,6 +1,6 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import type { Tab } from '../tab/tab';
-import { Tabs, TABS_ACTIVE_INDICATOR_INLINE_SIZE } from './tabs';
+import { Tabs } from './tabs';
 import '../tab-panel/tab-panel';
 import '.';
 
