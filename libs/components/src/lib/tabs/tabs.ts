@@ -1,10 +1,8 @@
 import { observable } from '@microsoft/fast-element';
 import { Tabs as FoundationTabs, TabsOrientation } from '@microsoft/fast-foundation';
 
-/**
- * @internal
- */
-export const TABS_ACTIVE_INDICATOR_INLINE_SIZE = '--_tabs-active-indicator-inline-size';
+
+export const ACTIVE_TAB_WIDTH = '--_tabs-active-tab-inline-size';
 
 /**
  * Base class for tabs
@@ -18,7 +16,7 @@ export class Tabs extends FoundationTabs {
 		super.orientationChanged();
 		this.patchIndicatorStyleTransition();
 		if (this.orientation === TabsOrientation.vertical) {
-			this.activeIndicatorRef?.style.removeProperty(TABS_ACTIVE_INDICATOR_INLINE_SIZE);
+			this.activeIndicatorRef?.style.removeProperty(ACTIVE_TAB_WIDTH);
 		}
 	}
 
@@ -38,10 +36,8 @@ export class Tabs extends FoundationTabs {
 	}
 
 	private patchIndicatorStyleTransition() {
-		if (this.orientation === TabsOrientation.vertical) return;
-		const width = this.activetab?.getClientRects()[0]?.width;
-		if (!width) return;
-
-		this.activeIndicatorRef?.style.setProperty(TABS_ACTIVE_INDICATOR_INLINE_SIZE, `${width}px`);
+		if (this.orientation === TabsOrientation.vertical || !this.showActiveIndicator) return;
+		const width = this.activetab?.getBoundingClientRect().width;
+		this.activeIndicatorRef?.style.setProperty(ACTIVE_TAB_WIDTH, `${width}px`);
 	}
 }
