@@ -69,6 +69,7 @@ describe('vwc-tabs', () => {
 			expect(element).toBeInstanceOf(Tabs);
 			expect(element.orientation).toEqual('horizontal');
 			expect(element.activeid).toEqual('apps');
+			expect(element.activetab).toBeTruthy();
 		});
 	});
 
@@ -101,7 +102,7 @@ describe('vwc-tabs', () => {
 			const nextActiveid = 'desserts';
 
 			const appslWidth = element.activeIndicatorRef.style.getPropertyValue(TABS_ACTIVE_INDICATOR_INLINE_SIZE);
-			
+				
 			elementWidth = 150;
 			element.activeid = prevActiveid;	
 			await elementUpdated(element);		
