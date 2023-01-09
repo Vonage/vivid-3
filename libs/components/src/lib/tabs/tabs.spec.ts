@@ -47,6 +47,7 @@ describe('vwc-tabs', () => {
 			expect(element).toBeInstanceOf(Tabs);
 			expect(element.orientation).toEqual('horizontal');
 			expect(element.activeid).toEqual('apps');
+			expect(element.activetab).toBeTruthy();
 		});
 	});
 
@@ -67,6 +68,19 @@ describe('vwc-tabs', () => {
 
 			expect((tab as Tab).ariaSelected).toEqual('false');
 			element.activeid = activeid;
+
+			await elementUpdated(element);
+
+			expect((tab as Tab).ariaSelected).toEqual('true');
+		});
+	});
+
+	describe('activetab', () => {
+		it('should set activetab property', async () => {
+			const tab: Tab = element.querySelector('#entrees') as Tab;
+
+			expect((tab as Tab).ariaSelected).toEqual('false');
+			element.activetab = tab;
 
 			await elementUpdated(element);
 
