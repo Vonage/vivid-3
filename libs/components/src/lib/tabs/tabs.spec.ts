@@ -1,6 +1,6 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import type { Tab } from '../tab/tab';
-import { Tabs } from './tabs';
+import { Tabs, TABS_ACTIVE_INDICATOR_INLINE_SIZE } from './tabs';
 import '../tab-panel/tab-panel';
 import '.';
 
@@ -60,7 +60,6 @@ describe('vwc-tabs', () => {
 		});
 	});
 
-
 	describe('activeid', () => {
 		it('should set activeid property', async () => {
 			const activeid = 'entrees';
@@ -70,10 +69,23 @@ describe('vwc-tabs', () => {
 			element.activeid = activeid;
 			element.activetab = tab;
 			element.activetab.style.width = '300px';
-			
+
 			await elementUpdated(element);
 
 			expect((tab as Tab).ariaSelected).toEqual('true');
+		});
+
+		it('should change width of active indicator', async () => {
+			const prevActiveid = 'apps';
+			const nextActiveid = 'desserts';
+
+			element.activeid = prevActiveid;
+			await elementUpdated(element);
+			expect(element.activeIndicatorRef.style.getPropertyValue(TABS_ACTIVE_INDICATOR_INLINE_SIZE)).toEqual('85.3047px');
+
+			element.activeid = nextActiveid;
+			await elementUpdated(element);
+			expect(element.activeIndicatorRef.style.getPropertyValue(TABS_ACTIVE_INDICATOR_INLINE_SIZE)).toEqual('76.5px');
 		});
 	});
 });
