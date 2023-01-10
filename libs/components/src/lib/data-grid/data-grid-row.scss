@@ -1,0 +1,28 @@
+:host {
+    display: grid;
+    padding: 1px 0;
+    box-sizing: border-box;
+    width: 100%;
+    // border-bottom: calc(var(--stroke-width, 1px) * 1px) solid var(--neutral-stroke-divider-rest, #f2f2f2);
+      border-bottom: 1px solid darkred;
+  }
+  
+  :host([row-type="sticky-header"]) {
+    background: var(--neutral-fill-rest);
+    position: sticky;
+    top: 0;
+  }
+  
+  :host(.selected) {
+    background-color: black;
+    color: white;
+  }
+  
+  .sub-grid-wrapper {
+      grid-column: 2 / -1;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  

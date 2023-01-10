@@ -1,24 +1,18 @@
-import { DataGridRow, FoundationElementDefinition } from '@microsoft/fast-foundation';
+import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { ViewTemplate, html } from '@microsoft/fast-element';
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { designSystem } from '../../shared/design-system';
 import { DataGrid } from './data-grid';
 import { DataGridTemplate } from './data-grid.template';
-import { DataGridRowTemplate } from './data-grid-row.template';
 
-const dataGridRow = DataGridRow.compose<FoundationElementDefinition>({
-	baseName: 'data-grid-row',
-	template: DataGridRowTemplate as any
-});
 
 const dataGrid = DataGrid.compose<FoundationElementDefinition>({
 	baseName: 'data-grid',
 	template: DataGridTemplate as any
 });
 
-dataGridRow();
 designSystem.withPrefix('vwc').register(dataGrid());
-// TODO:: build the grid here with registration and add an integration test for index.ts
+
 const COMPONENT_TAG = 'vwc-data-grid';
 
 describe('vwc-data-grid', () => {
@@ -170,28 +164,6 @@ describe('vwc-data-grid', () => {
 		});
 	});
 
-	describe('cellItemTemplate', () => {
-		it('should set row.cellItemTemplate', async () => {
-			
-			element.rowItemTemplate = html`<vwc-data-grid-row role="row"></vwc-data-grid-row>`;
-			const cellItemTemplate = html`<div role="cell" class="just-for-test"></div>`;
-			element.cellItemTemplate = cellItemTemplate;
-			element.rowsData = [
-				{ id: '1', name: 'Person 1' },
-				{ id: '2', name: 'Person 2' },
-			];
-			await elementUpdated(element);
-			const row = element.querySelector('vwc-data-grid-row') as any;
-			console.log(element.innerHTML);
-			console.log(row.innerHTML);
-			expect(row.cellItemTemplate).toEqual(cellItemTemplate);
-		});
-	});
-
-	describe('headerCellItemTemplate', () => {
-
-	});
-
 	describe('focusRowIndex', () => {	
 		it('should set the focused cell', async () => {
 			element.rowElementTag = 'div';
@@ -213,7 +185,7 @@ describe('vwc-data-grid', () => {
 			expect(expectedFocsedCell).toEqual(document.activeElement);
 		});
 	});
-
+ 
 	describe('focusColumnIndex', () => {	
 		it('should change the focused cell in selected row', async () => {
 			element.rowElementTag = 'div';
@@ -234,6 +206,20 @@ describe('vwc-data-grid', () => {
 			element.focusColumnIndex = 2;
 			await elementUpdated(element);			
 			expect(expectedFocsedCell).toEqual(document.activeElement);
+		});
+	});
+
+	describe('rowElementTag', () => {
+
+		it('should use rowElementTag for the header row element', async () => {
+			const rowElementTag = 'just-for-test';
+			element.rowElementTag = rowElementTag;
+			element.rowsData = [
+				{ id: '1', name: 'Person 1' },
+				{ id: '2', name: 'Person 2' },
+			];
+			await elementUpdated(element);
+			expect(element.querySelectorAll(rowElementTag).length).toEqual(1);
 		});
 	});
 });

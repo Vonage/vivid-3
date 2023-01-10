@@ -300,5 +300,12 @@
 		"modules": [
 			"/assets/modules/components/slider/index.js"
 		]
+	},
+	{
+		"title": "data-grid",
+		"markdown": "./libs/components/src/lib/data-grid/README.md",
+		"modules": [
+			"/assets/modules/components/data-grid/index.js"
+		]
 	}
 ]

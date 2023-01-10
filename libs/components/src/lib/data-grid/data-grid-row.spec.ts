@@ -96,7 +96,7 @@ describe('vwc-data-grid-row', () => {
 		it('should render header cells according to number of columns', async () => {
 			const dataGridCellTagName = 'something-custom';
 			element.columnDefinitions = [
-				{ columnDataKey: 'name' },
+				{ columnDataKey: 'name', isRowHeader: true },
 				{ columnDataKey: 'age' }
 			];
 			element.rowType = 'header';
