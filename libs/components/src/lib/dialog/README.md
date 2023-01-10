@@ -57,6 +57,11 @@ Use the `icon` attribute to set the dialog's icon.
 - Default: `undefined`
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+</style>
 <vwc-dialog icon="info" open></vwc-dialog>
 ```
 
@@ -69,6 +74,11 @@ The `icon-placement` attribute specifies where the dialog's icon should appear (
 - Default: `top`
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+</style>
 <vwc-dialog icon-placement="side" icon="info" headline="Dialog Headline" subtitle="subtitle content" open></vwc-dialog>
 ```
 

@@ -46,14 +46,15 @@
 	.base:not(.icon-placement-side) & {
 		grid-template-columns: 1fr auto;
 		grid-template-rows: auto auto auto;
+
+		.icon {
+			font-size: #{size.$vvd-size-condensed};
+			grid-column: 1/2;
+			grid-row: 1/2;
+			margin-block-end: #{size.$vvd-size-super-condensed};
+		}
 	}
 
-	.icon {
-		font-size: #{size.$vvd-size-condensed};
-		grid-column: 1/2;
-		grid-row: 1/2;
-		margin-block-end: #{size.$vvd-size-super-condensed};
-	}
 
 	.base.icon-placement-side & {
 		grid-template-columns: auto 1fr auto;
