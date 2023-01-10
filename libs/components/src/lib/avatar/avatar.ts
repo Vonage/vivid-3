@@ -94,5 +94,5 @@ export class Avatar extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr name?: string;
+	@attr initials?: string;
 }

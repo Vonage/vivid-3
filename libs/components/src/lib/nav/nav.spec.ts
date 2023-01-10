@@ -1,7 +1,9 @@
 import { fixture } from '@vivid-nx/shared';
 import { axe, toHaveNoViolations } from 'jest-axe';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Nav } from './nav';
 import '.';
+import { navDefinition } from './definition';
 
 expect.extend(toHaveNoViolations);
 const COMPONENT_TAG = 'vwc-nav';
@@ -23,6 +25,7 @@ describe('vwc-nav', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-nav', async () => {
+			expect(navDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Nav);
 		});
 	});

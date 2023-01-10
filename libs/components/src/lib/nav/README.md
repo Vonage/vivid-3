@@ -11,7 +11,7 @@ The vwc-nav accepts [vwc-nav-item](../../components/nav-item) and [vwc-nav-discl
 
 ## Slots
 
-### Navigation Item
+### Default
 
 Read more about [vwc-nav-item](../../components/nav-item).
 

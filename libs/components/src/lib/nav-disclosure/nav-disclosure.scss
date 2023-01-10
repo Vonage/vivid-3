@@ -1,4 +1,4 @@
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent,
@@ -13,7 +13,7 @@
 	$default: ghost
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
-@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
 
 .control {
@@ -73,7 +73,11 @@
 }
 
 .content {
+	display: flex;
+	flex-direction: column;
 	border-inline-start: 1px solid var(#{constants.$vvd-color-neutral-200});
+	gap: 4px;
+	margin-block: 4px;
 	margin-inline-start: 20px;
 	padding-inline-start: 12px;
 }

@@ -9,7 +9,7 @@ Represents an avatar custom element.
 ```
 
 ```html preview
-<vwc-avatar></vwc-avatar>
+<vwc-avatar aria-label="avatar"></vwc-avatar>
 ```
 
 ## Members
@@ -28,15 +28,15 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 <vwc-avatar icon="group-2-solid"></vwc-avatar>
 ```
 
-### Name
+### Initials
 
-Set the `name` attribute to set avatar's initials.
+Set the `initials` attribute to set avatar's initials.
 
 - Type: `string`
 - Default: `none`
 
 ```html preview
-<vwc-avatar name="vivid avatar"></vwc-avatar>
+<vwc-avatar initials="vivid avatar"></vwc-avatar>
 ```
 
 ### Appearance
@@ -88,9 +88,9 @@ Use the `size` attribute/property to set the avatar's to one of the predefined b
 <vwc-avatar size='condensed' shape="pill"></vwc-avatar>
 <vwc-avatar size='normal' shape="pill"></vwc-avatar>
 <vwc-avatar size='expanded' shape="pill"></vwc-avatar>
-<vwc-avatar size='condensed' shape="pill" name="john doe"></vwc-avatar>
-<vwc-avatar size='normal' shape="pill" name="john doe"></vwc-avatar>
-<vwc-avatar size='expanded' shape="pill" name="john doe"></vwc-avatar>
+<vwc-avatar size='condensed' shape="pill" initials="john doe"></vwc-avatar>
+<vwc-avatar size='normal' shape="pill" initials="john doe"></vwc-avatar>
+<vwc-avatar size='expanded' shape="pill" initials="john doe"></vwc-avatar>
 ```
 
 ## Slots
@@ -156,3 +156,8 @@ Assign nodes to the `graphic` slot to set a graphic media of any kind (e.g. imag
 </svg>
 </vwc-avatar>
 ```
+
+## Accessibility
+It's generally a good idea to include an `aria-label` attribute on elements that are important for a user to be able to interact with or understand its purpose.  
+you could use an aria-label attribute like "Profile avatar" or "User profile picture" to describe the purpose of the avatar.  
+if your avatar is purely decorative and is not interactive, then you can use the `role="presentation"` attribute to indicate that the element is purely decorative.
