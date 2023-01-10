@@ -33,7 +33,7 @@ function renderIcon(iconTag: string) {
  */
 function renderInitials() {
 	return html<Avatar>`
-		<span class="initials">${ ({ name }) => name!.substring(0, 2) }</span>
+		<span class="initials">${ ({ initials }) => initials!.substring(0, 2) }</span>
 	`;
 }
 
@@ -52,8 +52,8 @@ export const AvatarTemplate: (
 	return html`
 	<span class="${getClasses}">
 		<slot name="graphic">
-			${when(x => x.name, renderInitials())}
-			${when( x => !x.name, renderIcon(iconTag))}
+			${when(x => x.initials, renderInitials())}
+			${when( x => !x.initials, renderIcon(iconTag))}
 		</slot>
 </span>`;
 };
