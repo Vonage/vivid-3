@@ -7,7 +7,7 @@ import {
 
 const components = ['data-grid'];
 
-test.only('should show the component', async ({ page }: { page: Page }) => {
+test('should show the component', async ({ page }: { page: Page }) => {
 
 	const template = `<div style="margin: 5px;">
 			<vwc-data-grid></vwc-data-grid>
