@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "note no-icon option",
+  "packageName": "@vonage/vivid",
+  "email": "rachel.tannenbaum@vonage.com",
+  "dependentChangeType": "patch"
+}
