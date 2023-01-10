@@ -70,11 +70,11 @@
 
 .dismiss-button {
 	flex-shrink: 0;
+	grid-column: -2/-1;
+	grid-row: 1/-1;
 	margin-block-start: -8px;
 	margin-inline-end: -8px;
 	margin-inline-start: 4px;
-	grid-column: -2/-1;
-	grid-row: 1/-1;
 }
 
 .headline {
