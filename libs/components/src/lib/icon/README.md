@@ -29,9 +29,10 @@ View list of available icon at the [vivid icons gallery](https://icons.vivid.von
 ### Size
 
 Use the `size` attribute/property to set the icon's size.
+Note that changing `--vvd-size-density` will affect the chosen size (the example below shows the size in px for the its default value).
 
 - Type: `-6` | `-5` | `-4` | `-3` | `-2` | `-1` | `0` | `1` | `2` | `3` | `4` | `5`
-- Default: `'1em'` (_inherits font-size_)
+- Default: `undefined` (the icon dimensions will default to `1em`×`1em`)
 
 ```html preview
 <vwc-icon name="close-line" size="-6"></vwc-icon>16px
