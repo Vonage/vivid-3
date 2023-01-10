@@ -17,10 +17,9 @@ const connotationIconMap = new Map([
 	[Connotation.Alert, 'error-solid'],
 ]);
 
-const getClasses = ({ connotation, noIcon }: Note) => classNames(
+const getClasses = ({ connotation }: Note) => classNames(
 	'base',
-	`connotation-${connotation}`,
-	['no-icon', noIcon],
+	`connotation-${connotation}`
 );
 
 /**

@@ -1,4 +1,4 @@
-import {elementUpdated, fixture} from '@vivid-nx/shared';
+import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {Connotation} from '../enums';
 import {Icon} from '../icon/icon';
@@ -39,6 +39,12 @@ describe('vwc-note', () => {
 
 		expect(iconElement instanceof Icon).toEqual(true);
 		expect(iconElement.name).toEqual(iconName);
+	});
+
+	it('should not render icon when no-icon is set', async function () {
+		element.noIcon = true;
+		await elementUpdated(element);
+		expect(getBaseElement(element).classList.contains('icon')).toBeFalsy();
 	});
 
 	it('should set connotation class on the base element', async function() {
