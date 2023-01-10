@@ -39,6 +39,21 @@ Note that if not set, icon will default to the connotation-associated icon type.
 <vwc-note icon="home"></vwc-note>
 ```
 
+
+### No-icon
+
+Use the `no-icon` attribute when no icon is needed.
+
+- Type: `boolean`
+- Default: `false`
+
+
+```html preview
+<vwc-note no-icon connotation="success"  headline="Pascal's theological argument">
+  Pascal argues that a rational person should live as though God exists and seek to believe in God. If God does not actually exist, such a person will have only a finite loss (some pleasures, luxury, etc.), whereas if God does exist, he stands to receive infinite gains (as represented by eternity in Heaven) and avoid infinite losses (eternity in Hell).
+</vwc-note>
+```
+
 ### Connotation
 
 Set the `connotation` attribute to change the note's connotation.

@@ -14,12 +14,13 @@ const connotationIconMap = new Map([
 	[Connotation.Accent, 'megaphone-solid'],
 	[Connotation.Success, 'check-circle-solid'],
 	[Connotation.Warning, 'warning-solid'],
-	[Connotation.Alert, 'error-solid']
+	[Connotation.Alert, 'error-solid'],
 ]);
 
-const getClasses = ({ connotation }: Note) => classNames(
+const getClasses = ({ connotation, noIcon }: Note) => classNames(
 	'base',
-	`connotation-${connotation}`
+	`connotation-${connotation}`,
+	['no-icon', noIcon],
 );
 
 /**
@@ -57,7 +58,8 @@ export const NoteTemplate: (
 
 	return html`
     <div class="${getClasses}">
-      ${getIconTemplate(iconTag)}
+
+			${when(x => !x.noIcon,  getIconTemplate(iconTag))}
 			<div class="text">
 	        ${when(x => x.headline, getHeaderTemplate())}
 			    <slot class="message"></slot>
