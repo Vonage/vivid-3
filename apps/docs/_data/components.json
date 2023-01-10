@@ -302,10 +302,21 @@
 		]
 	},
 	{
+		"title": "combobox",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/combobox/README.md",
+		"modules": [
+			"/assets/modules/components/combobox/index.js",
+			"/assets/modules/components/option/index.js"
+		]
+	},
+	{
 		"title": "data-grid",
 		"markdown": "./libs/components/src/lib/data-grid/README.md",
 		"modules": [
 			"/assets/modules/components/data-grid/index.js"
+
+
 		]
 	}
 ]
