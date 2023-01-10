@@ -1,5 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { ViewTemplate, html } from '@microsoft/fast-element';
+import { html, ViewTemplate } from '@microsoft/fast-element';
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { designSystem } from '../../shared/design-system';
 import { DataGrid } from './data-grid';
