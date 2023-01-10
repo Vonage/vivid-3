@@ -34,18 +34,18 @@ Use the `size` attribute/property to set the icon's size.
 - Default: `'1em'` (_inherits font-size_)
 
 ```html preview
-<vwc-icon name="close-line" size="-6"></vwc-icon>
-<vwc-icon name="close-line" size="-5"></vwc-icon>
-<vwc-icon name="close-line" size="-4"></vwc-icon>
-<vwc-icon name="close-line" size="-3"></vwc-icon>
-<vwc-icon name="close-line" size="-2"></vwc-icon>
-<vwc-icon name="close-line" size="-1"></vwc-icon>
-<vwc-icon name="close-line" size="0"></vwc-icon>
-<vwc-icon name="close-line" size="1"></vwc-icon>
-<vwc-icon name="close-line" size="2"></vwc-icon>
-<vwc-icon name="close-line" size="3"></vwc-icon>
-<vwc-icon name="close-line" size="4"></vwc-icon>
-<vwc-icon name="close-line" size="5"></vwc-icon>
+<vwc-icon name="close-line" size="-6"></vwc-icon>16px
+<vwc-icon name="close-line" size="-5"></vwc-icon>20px
+<vwc-icon name="close-line" size="-4"></vwc-icon>24px
+<vwc-icon name="close-line" size="-3"></vwc-icon>28px
+<vwc-icon name="close-line" size="-2"></vwc-icon>32px
+<vwc-icon name="close-line" size="-1"></vwc-icon>36px
+<vwc-icon name="close-line" size="0"></vwc-icon>40px
+<vwc-icon name="close-line" size="1"></vwc-icon>44px
+<vwc-icon name="close-line" size="2"></vwc-icon>48px
+<vwc-icon name="close-line" size="3"></vwc-icon>52px
+<vwc-icon name="close-line" size="4"></vwc-icon>56px
+<vwc-icon name="close-line" size="5"></vwc-icon>60px
 ```
 
 ### Connotation
