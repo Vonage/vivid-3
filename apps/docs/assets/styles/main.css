@@ -127,7 +127,7 @@ article h6,
 article p,
 article ul,
 article table {
-  max-inline-size: 64ch;
+  max-inline-size: 80ch;
 }
 article > pre,
 article > .cbd-container {
