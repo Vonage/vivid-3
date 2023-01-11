@@ -49,9 +49,9 @@
 
 		.icon {
 			font-size: #{size.$vvd-size-condensed};
-			line-height: 1;
 			grid-column: 1/2;
 			grid-row: 1/2;
+			line-height: 1;
 			margin-block-end: #{size.$vvd-size-super-condensed};
 		}
 	}
