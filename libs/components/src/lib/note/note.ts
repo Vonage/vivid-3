@@ -26,7 +26,6 @@ export class Note extends FoundationElement {
 	@attr({ mode: 'boolean', attribute: 'no-icon' }) noIcon = false;
 
 
-
 	@attr connotation?: NoteConnotation;
 
 }
