@@ -1,6 +1,6 @@
 {
   "type": "prerelease",
-  "comment": "note no-icon option",
+  "comment": "remove default connotation based icon",
   "packageName": "@vonage/vivid",
   "email": "rachel.tannenbaum@vonage.com",
   "dependentChangeType": "patch"
