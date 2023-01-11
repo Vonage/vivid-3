@@ -7,7 +7,6 @@ import type {
 import {classNames} from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
 import { Button } from '../button/button';
-import { Icon } from '../icon/icon';
 import {affixIconTemplateFactory} from '../../shared/patterns/affix';
 
 import type {Dialog} from './dialog';

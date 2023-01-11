@@ -2,7 +2,6 @@ import { attr, html } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { Icon } from '../../lib/icon/icon';
-import messageStyles from './affix.scss';
 
 /**
 	* A mixin class implementing prefix elements.
@@ -53,7 +52,9 @@ export const affixIconTemplateFactory: (context: ElementDefinitionContext) =>
 	const iconTag = context.tagFor(Icon);
 	return (icon?: string, className?: string) => icon
 		? html`
-			<style>${messageStyles}</style>
-			<span class="${className ? className : 'icon'}"><${iconTag} :name="${() => icon}"></${iconTag}></span>`
+			<!-- Using inline style until the affix + form elements will be created as scss mixin (vivid-3/issues/950)-->
+			<span class="${className ? className : 'icon'}" style="line-height: var(--_icon-line-height, 1);">
+				<${iconTag} :name="${() => icon}"></${iconTag}>
+			</span>`
 		: null;
 };
