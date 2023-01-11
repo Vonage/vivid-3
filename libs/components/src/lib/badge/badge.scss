@@ -68,7 +68,10 @@
 }
 
 /* Icon */
+.icon {
+	font-size: calc(var(#{variables.$badge-block-size}) / 1.6667);
 
-.icon-trailing .icon {
-	order: 1;
+	.icon-trailing & {
+		order: 1;
+	}
 }

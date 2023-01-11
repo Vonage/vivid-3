@@ -7,7 +7,9 @@ import type {
 import {classNames} from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
 import { Button } from '../button/button';
+import { Icon } from '../icon/icon';
 import {affixIconTemplateFactory} from '../../shared/patterns/affix';
+
 import type {Dialog} from './dialog';
 
 const getClasses = ({iconPlacement}: Dialog) => classNames(
@@ -28,6 +30,16 @@ function headline() {
 	`;
 }
 
+/**
+ *
+ */
+function subtitle() {
+	return html<Dialog>`
+	  <div class="subtitle">
+		  ${x => x.subtitle}
+	  </div>
+	`;
+}
 
 /**
  *
@@ -54,16 +66,6 @@ function handleEscapeKey(dialog: Dialog, event: Event) {
 	}
 }
 
-/**
- *
- */
-function content() {
-	return html<Dialog>`
-	  <div class="content">
-		  ${x => x.text}
-	  </div>
-	`;
-}
 /**
  * The template for the {@link @microsoft/fast-foundation#Dialog} component.
  *
@@ -92,17 +94,14 @@ export const DialogTemplate: (
 				<slot name="main">
 					<div class="main-wrapper">
 						<div class="header">
-							<div class="headline-wrapper">
 								<slot name="graphic">
 									${when( x => x.icon, html`${x => affixIconTemplate(x.icon)}`)}
 								</slot>
 								${when(x => x.headline, headline())}
-							</div>
-						${renderDismissButton(buttonTag)}
+								${when(x => x.subtitle, subtitle())}
+								${renderDismissButton(buttonTag)}
 						</div>
-						<slot name="content">
-							${when(x => x.text, content())}
-						</slot>
+						<slot name="body"></slot>
 						<slot name="footer"></slot>
 					</div>
 				</slot>

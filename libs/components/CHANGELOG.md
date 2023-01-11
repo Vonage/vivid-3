@@ -1,8 +1,88 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 18 Dec 2022 17:21:02 GMT and should not be manually modified.
+This log was last generated on Wed, 11 Jan 2023 06:39:43 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.132
+
+Wed, 11 Jan 2023 06:39:43 GMT
+
+### Changes
+
+- dialog subtitle (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.131
+
+Sun, 08 Jan 2023 11:03:35 GMT
+
+### Changes
+
+- change the member name to initials (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.130
+
+Thu, 05 Jan 2023 11:32:29 GMT
+
+### Changes
+
+- feat(components): combobox new component (rina.oksman@vonage.com)
+
+## 3.0.0-next.129
+
+Mon, 02 Jan 2023 10:04:07 GMT
+
+### Changes
+
+- Montserrat as default font (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.128
+
+Tue, 27 Dec 2022 16:08:19 GMT
+
+### Changes
+
+- refactor UI style to align with v2.x design spec (yinon@hotmail.com)
+
+## 3.0.0-next.127
+
+Tue, 27 Dec 2022 14:59:58 GMT
+
+### Changes
+
+- fix text-field & text area-ghost appearance missing shades (yinon@hotmail.com)
+
+## 3.0.0-next.126
+
+Tue, 27 Dec 2022 14:28:03 GMT
+
+### Changes
+
+- resolve components issues with custom density (yinon@hotmail.com)
+
+## 3.0.0-next.125
+
+Tue, 27 Dec 2022 14:15:03 GMT
+
+### Changes
+
+- style listbox disabled option inheritance (yinon.oved@vonage.com)
+
+## 3.0.0-next.124
+
+Sun, 25 Dec 2022 15:29:14 GMT
+
+### Changes
+
+- add light dismiss support to popup (rina.oksman@vonage.com)
+
+## 3.0.0-next.123
+
+Wed, 21 Dec 2022 15:15:42 GMT
+
+### Changes
+
+- Remove exports from package.json (yonatan.kra@vonage.com)
 
 ## 3.0.0-next.122
 

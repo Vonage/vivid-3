@@ -79,22 +79,22 @@
 	/* Size */
 	&:not(.stacked) {
 		&.size-condensed {
-			@include mixins.get-size-properties(#{size.$vvd-size-condensed}, #{constants.$vvd-typography-base-condensed-bold}, 8px, 12px, 16px);
+			@include mixins.get-size-properties(#{size.$vvd-size-condensed}, #{constants.$vvd-typography-base-condensed-bold}, 8px, 12px);
 		}
 
 		&.size-expanded {
-			@include mixins.get-size-properties(#{size.$vvd-size-expanded}, #{constants.$vvd-typography-base-extended-bold}, 10px, 20px, 24px);
+			@include mixins.get-size-properties(#{size.$vvd-size-expanded}, #{constants.$vvd-typography-base-extended-bold}, 10px, 20px);
 		}
 
 		&:not(.size-condensed, .size-expanded) {
-			@include mixins.get-size-properties(#{size.$vvd-size-normal}, #{constants.$vvd-typography-base-bold}, 8px, 16px, 20px);
+			@include mixins.get-size-properties(#{size.$vvd-size-normal}, #{constants.$vvd-typography-base-bold}, 8px, 16px);
 		}
 	}
 
 	&.stacked {
 		flex-direction: column;
 		justify-content: center;
-		@include mixins.get-size-properties(calc(#{size.$vvd-size-expanded} + #{size.$vvd-size-ultra-condensed}), #{constants.$vvd-typography-base-bold}, 10px, 16px, 20px);
+		@include mixins.get-size-properties(calc(#{size.$vvd-size-expanded} + #{size.$vvd-size-ultra-condensed}), #{constants.$vvd-typography-base-bold}, 10px, 16px);
 	}
 }
 
@@ -115,9 +115,17 @@ $pill-selector: ".shape-pill:not(.stacked)";
 }
 
 /* Icon */
-.icon-trailing {
-	.icon {
+.icon {
+	.icon-trailing & {
 		order: 1;
+	}
+
+	.control.stacked > & {
+		font-size: calc(#{size.$vvd-size-normal} / 2);
+	}
+
+	.control:not(.stacked) > & {
+		font-size: calc(var(#{variables.$block-size}) / 2);
 	}
 }
 
