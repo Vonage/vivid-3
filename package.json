@@ -6,7 +6,6 @@
 	"scripts": {
 		"start": "npx nx run docs:serve",
 		"lint": "npm run nx run-many -- --target=stylelint --all & npm run nx run-many -- --target=lint --all --fix",
-		"change": "npx beachball change",
 		"nx": "nx",
 		"test": "npx nx run components:test",
 		"test:ui": "npx nx run components:e2e",
@@ -59,7 +58,6 @@
 		"@typescript-eslint/parser": "5.41.0",
 		"@typescript-eslint/utils": "^5.36.1",
 		"@vonage/vivid-figma-tokens": "github:vonage/vivid-figma-tokens#v0.3.0",
-		"beachball": "^2.30.1",
 		"cem-plugin-async-function": "^0.0.5",
 		"cem-plugin-jsdoc-example": "^0.0.9",
 		"cem-plugin-jsdoc-function": "^0.0.5",
