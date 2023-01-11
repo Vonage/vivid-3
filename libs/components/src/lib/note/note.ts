@@ -23,11 +23,7 @@ export class Note extends FoundationElement {
 	 * HTML Attribute: headline
 	 */
 	@attr headline?: string;
-	@attr({ mode: 'boolean', attribute: 'no-icon' }) noIcon = false;
-
-
 	@attr connotation?: NoteConnotation;
-
 }
 
 applyMixins(Note, AffixIcon);

@@ -30,7 +30,7 @@ describe('vwc-note', () => {
 		expect(element.shadowRoot?.querySelector('.headline')?.textContent?.trim()).toEqual(headlineText);
 	});
 
-	it('should render an icon with given type', async function () {
+	it('should render an icon when icon is set', async function () {
 		const icon = 'user-line';
 		element.setAttribute('icon', icon);
 		await elementUpdated(element);
@@ -39,11 +39,6 @@ describe('vwc-note', () => {
 		expect(element.icon).toEqual(icon);
 	});
 
-	it('should not render icon when no icon member is set', async function () {
-		element.icon = 'alert';
-		await elementUpdated(element);
-		expect(getBaseElement(element).classList.contains('icon')).toBeFalsy();
-	});
 
 	it('should set connotation class on the base element', async function() {
 		const connotation = Connotation.Information;
