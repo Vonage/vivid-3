@@ -129,6 +129,7 @@ $low-ink-color: --_low-ink-color;
 	z-index: 1;
 	color: var(#{$low-ink-color});
 	font-size: var(#{variables.$text-field-icon-size});
+	line-height: 1;
 	inset-inline-start: var(#{variables.$text-field-gutter});
 
 	+.control {
