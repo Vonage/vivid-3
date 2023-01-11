@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 08 Jan 2023 11:03:35 GMT and should not be manually modified.
+This log was last generated on Wed, 11 Jan 2023 06:39:43 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.132
+
+Wed, 11 Jan 2023 06:39:43 GMT
+
+### Changes
+
+- dialog subtitle (rachel.tannenbaum@vonage.com)
 
 ## 3.0.0-next.131
 
