@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "fix icon vertical alignment",
-  "packageName": "@vonage/vivid",
-  "email": "rachel.tannenbaum@vonage.com",
-  "dependentChangeType": "patch"
-}

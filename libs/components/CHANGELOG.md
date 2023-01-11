@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Wed, 11 Jan 2023 06:39:43 GMT and should not be manually modified.
+This log was last generated on Wed, 11 Jan 2023 20:23:02 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.133
+
+Wed, 11 Jan 2023 20:23:02 GMT
+
+### Changes
+
+- fix icon vertical alignment (rachel.tannenbaum@vonage.com)
 
 ## 3.0.0-next.132
 
