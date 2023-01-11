@@ -145,18 +145,12 @@ article > .cbd-container {
 
 article.article > h1 {
   padding-inline: 16px;
-  padding-block: 48px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   /*background-color: var(--vvd-color-cta-500);*/
   color: var(--vvd-color-neutral-900);
 	border-radius: 6px;
-	--color: var(--vvd-color-neutral-100);
-	background-image: linear-gradient(135deg, var(--color) 25%, transparent 25%), linear-gradient(225deg, var(--color) 25%, transparent 25%), linear-gradient(45deg, var(--color) 25%, transparent 25%), linear-gradient(315deg, var(--color) 25%, var(--vvd-color-canvas) 25%);
-	background-position: 4px 0, 4px 0, 0 0, 0 0;
-	background-size: 4px 4px;
-	background-repeat: repeat;
 }
 
 
