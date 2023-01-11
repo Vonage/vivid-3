@@ -148,7 +148,6 @@ article.article > h1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /*background-color: var(--vvd-color-cta-500);*/
   color: var(--vvd-color-neutral-900);
 	border-radius: 6px;
 }
