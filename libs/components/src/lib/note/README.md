@@ -28,30 +28,13 @@ Add the `headline` attribute in order to set a headline text.
 ```
 
 ### Icon
-
-Use the `icon` attribute to set a decorative icon.
-Note that if not set, icon will default to the connotation-associated icon type.
+Add a `icon='icon-name'` attribute to set a decorative icon.
 
 - Type: `string`
 - Default: `undefined`
 
 ```html preview
 <vwc-note icon="home"></vwc-note>
-```
-
-
-### No-icon
-
-Use the `no-icon` attribute when no icon is needed.
-
-- Type: `boolean`
-- Default: `false`
-
-
-```html preview
-<vwc-note no-icon connotation="success"  headline="Pascal's theological argument">
-  Pascal argues that a rational person should live as though God exists and seek to believe in God. If God does not actually exist, such a person will have only a finite loss (some pleasures, luxury, etc.), whereas if God does exist, he stands to receive infinite gains (as represented by eternity in Heaven) and avoid infinite losses (eternity in Hell).
-</vwc-note>
 ```
 
 ### Connotation
@@ -63,11 +46,11 @@ It accepts a subset of predefined values.
 - Default: `'accent'`
 
 ```html preview blocks
-<vwc-note connotation="alert" headline="alert note"></vwc-note>
-<vwc-note connotation="success" headline="success note"></vwc-note>
-<vwc-note connotation="warning" headline="warning note"></vwc-note>
-<vwc-note connotation="information" headline="information note"></vwc-note>
-<vwc-note connotation="accent" headline="accent note"></vwc-note>
+<vwc-note connotation="alert" icon="error-solid" headline="alert note"></vwc-note>
+<vwc-note connotation="success" icon="check-circle-solid" headline="success note"></vwc-note>
+<vwc-note connotation="warning" icon="warning-solid" headline="warning note"></vwc-note>
+<vwc-note connotation="information" icon="info-solid" headline="information note"></vwc-note>
+<vwc-note connotation="accent" icon="megaphone-solid" headline="accent note"></vwc-note>
 ```
 
 ## Slots
