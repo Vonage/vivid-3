@@ -35,7 +35,7 @@ export class Dialog extends FoundationElement {
 	@attr({mode: 'boolean'}) open = false;
 	@attr icon?: string;
 	@attr({attribute: 'icon-placement'}) iconPlacement?: IconPlacement;
-	@attr text?: string;
+	@attr subtitle?: string;
 	@attr headline?: string;
 	@attr({attribute: 'aria-labelledby'}) ariaLabelledBy: string | null = null;
 	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
