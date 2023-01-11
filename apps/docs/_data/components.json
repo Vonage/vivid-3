@@ -312,6 +312,7 @@
 	},
 	{
 		"title": "data-grid",
+		"status": "alpha",
 		"markdown": "./libs/components/src/lib/data-grid/README.md",
 		"modules": [
 			"/assets/modules/components/data-grid/index.js"
