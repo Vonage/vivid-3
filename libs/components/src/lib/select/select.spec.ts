@@ -1,4 +1,4 @@
-import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
+import {elementUpdated, fixture} from '@vivid-nx/shared';
 import { Select } from './select';
 import '.';
 
@@ -28,6 +28,7 @@ describe('vwc-select', () => {
 			expect(element.shape).toEqual(undefined);
 			expect(element.appearance).toEqual(undefined);
 			expect(element.label).toEqual(undefined);
+			expect(element.multiple).toBeUndefined();
 
 		});
 	});
@@ -65,11 +66,24 @@ describe('vwc-select', () => {
 		it('should set open when clicked', async () => {
 			const openStateBeforeClick = element.open;
 
-			getBaseElement(element).click();
+			element.click();
 			await elementUpdated(element);
 
 			expect(openStateBeforeClick).toEqual(false);
 			expect(element.open).toEqual(true);
+		});
+
+		it('should leave popup open when not in single mode', async function () {
+			const popup = element.shadowRoot?.querySelector('.popup');
+
+			element.multiple = true;
+			element.open = true;
+			await elementUpdated(element);
+			await elementUpdated(element);
+			console.log(element.shadowRoot?.innerHTML);
+			console.log(popup?.getAttribute('open'));
+			expect(popup).toBeTruthy();
+			expect(popup?.getAttribute('open')).toBeNull();
 		});
 	});
 
@@ -110,9 +124,6 @@ describe('vwc-select', () => {
 			element.dispatchEvent(new Event('blur'));
 		}
 
-		// function setToFocused() {
-		// 	element.dispatchEvent(new Event('focus'));
-		// }
 		it('should set error message to empty string when pristine', async function () {
 			setValidityToError();
 			await elementUpdated(element);
