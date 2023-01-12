@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Wed, 11 Jan 2023 20:23:02 GMT and should not be manually modified.
+This log was last generated on Thu, 12 Jan 2023 07:26:00 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.134
+
+Thu, 12 Jan 2023 07:26:00 GMT
+
+### Changes
+
+- remove default connotation based icon (rachel.tannenbaum@vonage.com)
 
 ## 3.0.0-next.133
 

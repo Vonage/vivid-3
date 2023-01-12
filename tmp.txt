@@ -23,5 +23,5 @@ a different dependency.
 
 Run `npm audit` for details.
 Removing change files:
-- @vonage-vivid-d0e831e4-3c3f-4ac9-804b-e18d59594e44.json
+- @vonage-vivid-50cc6185-d6dd-4292-a82a-5530d8954408.json
 Removing change path
