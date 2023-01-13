@@ -38,20 +38,6 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
-  check-changelogs:
-    if: github.event.pull_request.draft == false
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-          cache: 'npm'
-
-      - run: npx beachball check
-
   call-lint:
     if: github.event.pull_request.draft == false
     needs: [deps-cache]
@@ -59,7 +45,7 @@ jobs:
 
   unit-tests:
     if: github.event.pull_request.draft == false
-    needs: [ call-lint, check-changelogs ]
+    needs: call-lint
     uses: vonage/vivid-3/.github/workflows/_unit-test.yml@main
     with:
       os: ubuntu-latest
@@ -67,7 +53,7 @@ jobs:
 
   call-visual-regression:
     if: github.event.pull_request.draft == false
-    needs: [call-lint, check-changelogs]
+    needs: call-lint
     uses: vonage/vivid-3/.github/workflows/_visual-regression.yml@main
 
   call-deploy-deno-preview:
