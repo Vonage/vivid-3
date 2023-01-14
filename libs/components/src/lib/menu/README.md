@@ -4,47 +4,72 @@ Menu, commonly known as a "context menu", is an element that is displayed upon u
 
 ```js
 <script type="module">
- import '@vonage/vivid/menu';
+  import '@vonage/vivid/menu';
 </script>
 ```
 
 ```html preview
-<vwc-menu open>Should contain menu items</vwc-menu>
+<vwc-menu open>
+  <vwc-menu-item text="Menu item 1"></vwc-menu-item>
+  <vwc-menu-item text="Menu item 2"></vwc-menu-item>
+</vwc-menu>
 ```
 
 ## Members
 
 ### Open
 
-Proxies the [`open` property to the underlying popup element](../popup#open).
+_Menu_ internally uses _popup_ to display an element and its descendants above the rest of the document.
+
+`open` property from _popup_ propagate through _menu_ and sets its open state.
+
+- Type: `boolean`
+- Default: `false`
 
 ```html preview
-<vwc-button label="open" onclick="menu.open = !menu.open"></vwc-button>
-
-<vwc-menu id="menu" text="Focus or hover to open." open>Should contain menu items</vwc-menu>
+<vwc-menu open>
+  <vwc-menu-item text="Menu item 1"></vwc-menu-item>
+  <vwc-menu-item text="Menu item 2"></vwc-menu-item>
+</vwc-menu>
 ```
 
 ### Anchor
 
-Proxies the [`anchor` property to the underlying popup element](../popup#anchor).
+_Menu_ internally uses _popup_ to display an element and its descendants above the rest of the document.
 
-```html preview center
+`anchor` property from _popup_ propagate through _menu_ and sets its anchor reference.
+
+- Type: `string`
+- Default: `''`
+
+```html preview
 <div style="position: relative">
-  <vwc-button id="button" label="open" onclick="menu.open = !menu.open"></vwc-button>
+  <vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open" appearance="outlined"></vwc-button>
 
-  <vwc-menu id="menu" anchor="button" text="Focus or hover to open." open>Should contain menu items</vwc-menu>
+  <vwc-menu id="menu" anchor="button" open>
+    <vwc-menu-item text="Menu item 1"></vwc-menu-item>
+    <vwc-menu-item text="Menu item 2"></vwc-menu-item>
+ </vwc-menu>
 </div>
 ```
 
 ### Placement
 
-Proxies the [`placement` property to the underlying popup element](../popup#placement).
+_Menu_ internally uses _popup_ to display an element and its descendants above the rest of the document.
 
-```html preview center
+`placement` property from _popup_ propagate through _menu_ and sets its position in accordance to its anchor.
+
+- Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
+- Default: `''`
+
+```html preview
 <div style="position: relative">
-  <vwc-button id="button" label="open" onclick="menu.open = !menu.open"></vwc-button>
+  <vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open" appearance="outlined"></vwc-button>
 
-  <vwc-menu id="menu" anchor="button" text="Focus or hover to open." placement="top-start" open>Should contain menu items</vwc-menu>
+  <vwc-menu id="menu" anchor="button" placement="right-start" open>
+    <vwc-menu-item text="Menu item 1"></vwc-menu-item>
+    <vwc-menu-item text="Menu item 2"></vwc-menu-item>
+  </vwc-menu>
 </div>
 ```
 
@@ -56,9 +81,50 @@ The default slot for the menu items.
 
 While any DOM content is permissible as a child of the menu, only `vwc-menu-item`'s and slotted content with a role of menu`item`, `menuitemcheckbox`, or `menuitemradio` will receive keyboard support.
 
-```html preview full
+```html preview
 <vwc-menu open>
-Should contain menu items
+  <vwc-menu-item text="Menu item 1"></vwc-menu-item>
+  <vwc-menu-item text="Menu item 2"></vwc-menu-item>
+</vwc-menu>
+```
+
+## CSS Variables
+
+### Max Inline Size
+
+Use the `--menu-max-inline-size` variable to set the menu's inline size.
+
+- Type: [`<length>`](https://developer.mozilla.org/en-US/docs/Web/CSS/length)
+- Default: `auto`
+
+```html preview
+<style>
+  vwc-menu {
+    --menu-max-inline-size: 300px;
+  }
+</style>
+
+<vwc-menu open>
+  <vwc-menu-item text="Lorem ipsum dolor sit amet, consectetur adipisicing elit"></vwc-menu-item>
+</vwc-menu>
+```
+
+### Min Inline Size
+
+Use the `--menu-min-inline-size` variable to set the menu's inline size.
+
+- Type: [`<length>`](https://developer.mozilla.org/en-US/docs/Web/CSS/length)
+- Default: `auto`
+
+```html preview
+<style>
+  vwc-menu {
+    --menu-min-inline-size: 300px;
+  }
+</style>
+
+<vwc-menu open>
+  <vwc-menu-item text="Menu Item"></vwc-menu-item>
 </vwc-menu>
 ```
 
@@ -66,13 +132,13 @@ Should contain menu items
 
 ### focus()
 
-- Returns: void
+- Returns: `void`
 
 Focuses the first item in the menu.
 
 ### collapseExpandedItem()
 
-- Returns: void
+- Returns: `void`
 
 Collapses any expanded menu items.
 

@@ -73,7 +73,7 @@ The graphic slot overide the icon property
 
 ```html preview
 <vwc-card headline="Vivid Card Component" subtitle="extra text to the card headline">
-  <vwc-icon slot="graphic" type="android-mono" style="font-size: 44px; color: var(--vvd-color-sucess)" ></vwc-icon>
+  <vwc-icon slot="graphic" name="android-mono" style="font-size: 44px; color: var(--vvd-color-sucess)" ></vwc-icon>
 </vwc-card>
 ```
 
@@ -93,7 +93,7 @@ The meta slot is for action content in the card header
 
 ```html preview
 <vwc-card headline="Vivid Card Component" subtitle="extra text to the card headline">
-<vwc-button slot="meta" icon="more-vertical-solid" appearance="ghost"></vwc-button>
+  <vwc-button slot="meta" icon="more-vertical-solid" appearance="ghost"></vwc-button>
 </vwc-card>
 ```
 
@@ -111,7 +111,7 @@ footer slot main purpose is for action button
 
 ### Main
 
-Card is battery charged with opinionated template.  
+Card is battery charged with opinionated template.
 Assign nodes to `main` slot to fully override a card's predefined flow and style with your own.
 
 ```html preview
@@ -124,29 +124,47 @@ Assign nodes to `main` slot to fully override a card's predefined flow and style
 
 ## CSS Variables
 
-### Trim headline & subtitle
+### Trim headline
 
-The card headline and the subtitle can be trimmed to your preferable number of lines.
-The number of lines are controlled by css variable:
+The card headline can be trimmed to your preferable number of lines.
+The number of lines is controlled by the css variable `--headline-line-clamp`.
 
-- `--headline-line-clamp`
-- `--subtitle-line-clamp`
-
-- Type: `string`
+- Type: `integer`
 - Default: `undefined`
 
 ```html preview
 <style>
   vwc-card {
     --headline-line-clamp: 1;
-    --subtitle-line-clamp: 2;
-
     max-inline-size: 42ch;
   }
 </style>
 
 <vwc-card
   headline="Vivid Card Component with long headline to trim"
+  subtitle="here is the card text"
+>
+</vwc-card>
+```
+
+### Trim subtitle
+
+The card subtitle can be trimmed to your preferable number of lines.
+The number of lines is controlled by css variable `--subtitle-line-clamp`.
+
+- Type: `integer`
+- Default: `undefined`
+
+```html preview
+<style>
+  vwc-card {
+    --subtitle-line-clamp: 2;
+    max-inline-size: 42ch;
+  }
+</style>
+
+<vwc-card
+  headline="Vivid Card Component"
   subtitle="extra text to the card headline that is set to be trimmed after 2 lines so the card will not be too long"
 >
 </vwc-card>

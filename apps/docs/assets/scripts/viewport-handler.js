@@ -3,22 +3,23 @@ const mobileWidth = 880;
 let pendingUpdate = false;
 
 function viewportHandler() {
-	const { visualViewport: { width } } = window;
+	const { innerWidth } = window;
+
 	if (pendingUpdate) return;
+
 	pendingUpdate = true;
 
 	requestAnimationFrame(() => {
 		pendingUpdate = false;
 
-		sideDrawer.modal = width < mobileWidth;
+		sideDrawer.modal = innerWidth < mobileWidth;
+		sideDrawer.open = innerWidth >= mobileWidth;
 	});
 
 }
 
 (function () {
 	viewportHandler();
-	const { visualViewport: { width } } = window;
-	sideDrawer.open = width >= mobileWidth;
 })();
 
-window.visualViewport.addEventListener('resize', viewportHandler);
+window.addEventListener('resize', viewportHandler);

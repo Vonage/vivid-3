@@ -1,21 +1,32 @@
 import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Dialog } from './dialog';
 import '.';
+import { dialogDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-dialog';
 
 describe('vwc-dialog', () => {
 
+	/**
+	 *
+	 */
 	async function closeDialog() {
 		element.close();
 		await elementUpdated(element);
 	}
 
+	/**
+	 *
+	 */
 	async function showDialog() {
 		element.show();
 		await elementUpdated(element);
 	}
 
+	/**
+	 *
+	 */
 	async function showModalDialog() {
 		element.showModal();
 		await elementUpdated(element);
@@ -53,11 +64,12 @@ describe('vwc-dialog', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-dialog', async () => {
+			expect(dialogDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Dialog);
 			expect(element.open).toEqual(false);
 			expect(element.returnValue).toEqual('');
 			expect(element.icon).toEqual(undefined);
-			expect(element.text).toEqual(undefined);
+			expect(element.subtitle).toEqual(undefined);
 			expect(element.headline).toEqual(undefined);
 		});
 	});
@@ -242,21 +254,29 @@ describe('vwc-dialog', () => {
 		const iconElement = getBaseElement(element).querySelector('.icon');
 		expect(iconElementWhenUndefined).toBeNull();
 		expect(iconElement).toBeTruthy();
-		expect(iconElement?.getAttribute('type')).toEqual('home');
+		expect(iconElement?.getAttribute('name')).toEqual('home');
 	});
 
-	it('should render the content area when content is set', async function() {
-		const contentElementWhenUndefined = getBaseElement(element).querySelector('.content');
-		const content = 'This is the content!';
-		element.text = content;
+	it( 'should add class of icon placement  to .base', async () => {
+		const baseDiv = element.shadowRoot?.querySelector('.base');
+		element.iconPlacement = 'side';
 		await elementUpdated(element);
-		const contentElement = getBaseElement(element).querySelector('.content');
+		expect(baseDiv?.classList.contains('icon-placement-side'))
+			.toEqual(true);
+	});
+
+	it('should render the subtitle if is set', async function() {
+		const contentElementWhenUndefined = getBaseElement(element).querySelector('.subtitle');
+		const content = 'This is the dialog subtitle!';
+		element.subtitle = content;
+		await elementUpdated(element);
+		const contentElement = getBaseElement(element).querySelector('.subtitle');
 		expect(contentElementWhenUndefined).toBeNull();
 		expect(contentElement).toBeTruthy();
 		expect(contentElement?.textContent?.trim()).toEqual(content);
 	});
 
-	it('should render the content area when content is set', async function() {
+	it('should render the header area when content is set', async function() {
 		const headlineElementWhenUndefined = getBaseElement(element).querySelector('.headline');
 		const content = 'This is the header!';
 

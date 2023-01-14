@@ -1,6 +1,7 @@
 import {
 	type ElementViewTemplate,
 	html,
+	ref,
 	slotted
 } from '@microsoft/fast-element';
 import type {
@@ -28,9 +29,12 @@ export const MenuTemplate: (
 			slot="${x => (x.slot || x.isNestedMenu() ? 'submenu' : void 0)}"
 		>
 			<${popupTag}
-				placement=${(x) => x.placement}
-				open=${(x) => x.open}
-				anchor=${(x) => x.anchor}
+				:placement=${(x) => x.placement}
+				:open=${(x) => x.open}
+				:anchor=${(x) => x.anchor}
+				@open="${x => x.popupOpenChanged()}"
+				@close="${x => x.popupOpenChanged()}"
+				${ref('_popup')}
 			>
 				<div
 					class="base"

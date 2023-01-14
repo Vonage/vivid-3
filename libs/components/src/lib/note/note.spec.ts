@@ -1,8 +1,9 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {Connotation} from '../enums';
-import {Icon} from '../icon/icon';
 import {Note} from './note';
 import '.';
+import { noteDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-note';
 
@@ -15,6 +16,7 @@ describe('vwc-note', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-note', async () => {
+			expect(noteDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Note);
 		});
 	});
@@ -28,15 +30,15 @@ describe('vwc-note', () => {
 		expect(element.shadowRoot?.querySelector('.headline')?.textContent?.trim()).toEqual(headlineText);
 	});
 
-	it('should render an icon with given type', async function () {
-		const iconElement = element.shadowRoot?.querySelector('.icon') as Icon;
-		const iconName = 'home';
-		element.icon = iconName;
+	it('should render an icon when icon is set', async function () {
+		const icon = 'user-line';
+		element.setAttribute('icon', icon);
 		await elementUpdated(element);
-
-		expect(iconElement instanceof Icon).toEqual(true);
-		expect(iconElement.type).toEqual(iconName);
+		const iconElement = element.shadowRoot?.querySelector('vwc-icon');
+		expect(iconElement?.getAttribute('name')).toEqual(icon);
+		expect(element.icon).toEqual(icon);
 	});
+
 
 	it('should set connotation class on the base element', async function() {
 		const connotation = Connotation.Information;
@@ -48,16 +50,4 @@ describe('vwc-note', () => {
 		expect(baseElement?.classList?.contains(`connotation-${connotation}`)).toEqual(true);
 	});
 
-	it('should return default connotation icon if no icon or connotation are set', function () {
-		const defaultConnotationIconType = 'megaphone-solid';
-		const iconElement = element.shadowRoot?.querySelector('.icon') as Icon;
-		expect(iconElement.type).toEqual(defaultConnotationIconType);
-	});
-
-	it('should set icon type according to connotation', async function() {
-		const iconElement = element.shadowRoot?.querySelector('.icon') as Icon;
-		element.connotation = Connotation.Information;
-		await elementUpdated(element);
-		expect(iconElement.type).toEqual('info-solid');
-	});
 });

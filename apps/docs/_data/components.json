@@ -1,259 +1,313 @@
 [
-  {
-    "title": "accordion",
-    "markdown": "./libs/components/src/lib/accordion/README.md",
-    "modules": [
-      "/assets/modules/components/accordion/index.js",
-      "/assets/modules/components/accordion-item/index.js"
-    ]
-  },
-  {
-    "title": "accordion-item",
-    "markdown": "./libs/components/src/lib/accordion-item/README.md",
-    "modules": [
-      "/assets/modules/components/accordion-item/index.js"
-    ]
-  },
-  {
-    "title": "badge",
-    "markdown": "./libs/components/src/lib/badge/README.md",
-    "modules": [
-      "/assets/modules/components/badge/index.js"
-    ]
-  },
-  {
-    "title": "banner",
-    "markdown": "./libs/components/src/lib/banner/README.md",
-    "modules": [
-      "/assets/modules/components/button/index.js",
-      "/assets/modules/components/banner/index.js"
-    ]
-  },
-  {
-    "title": "breadcrumb",
-    "markdown": "./libs/components/src/lib/breadcrumb/README.md",
-    "modules": [
-      "/assets/modules/components/breadcrumb-item/index.js",
-      "/assets/modules/components/breadcrumb/index.js"
-    ]
-  },
-  {
-    "title": "breadcrumb-item",
-    "markdown": "./libs/components/src/lib/breadcrumb-item/README.md",
-    "modules": [
-      "/assets/modules/components/breadcrumb-item/index.js"
-    ]
-  },
-  {
-    "title": "button",
-    "markdown": "./libs/components/src/lib/button/README.md",
-    "modules": [
-      "/assets/modules/components/button/index.js"
-    ]
-  },
-  {
-    "title": "calendar",
-    "markdown": "./libs/components/src/lib/calendar/README.md",
-    "modules": [
-      "/assets/modules/components/calendar/index.js"
-    ]
-  },
-  {
-    "title": "calendar-event",
-    "markdown": "./libs/components/src/lib/calendar-event/README.md",
-    "modules": [
-      "/assets/modules/components/calendar-event/index.js",
-      "/assets/modules/components/calendar/index.js"
-    ]
-  },
-  {
-    "title": "icon",
-    "markdown": "./libs/components/src/lib/icon/README.md",
-    "modules": [
-      "/assets/modules/components/icon/index.js"
-    ]
-  },
-  {
-    "title": "layout",
-    "markdown": "./libs/components/src/lib/layout/README.md",
-    "modules": [
-      "/assets/modules/components/layout/index.js",
-      "/assets/modules/components/card/index.js",
-      "/assets/modules/components/divider/index.js"
-    ]
-  },
-  {
-    "title": "popup",
-    "markdown": "./libs/components/src/lib/popup/README.md",
-    "modules": [
-      "/assets/modules/components/popup/index.js",
-      "/assets/modules/components/button/index.js",
-      "/assets/modules/components/icon/index.js",
-      "/assets/modules/components/layout/index.js"
-    ]
-  },
-  {
-    "title": "side-drawer",
-    "markdown": "./libs/components/src/lib/side-drawer/README.md",
-    "modules": [
-      "/assets/modules/components/side-drawer/index.js",
-      "/assets/modules/components/nav-item/index.js",
-      "/assets/modules/components/fab/index.js",
-      "/assets/modules/components/layout/index.js"
-    ]
-  },
-  {
-    "title": "nav-item",
-    "markdown": "./libs/components/src/lib/nav-item/README.md",
-    "modules": [
-      "/assets/modules/components/nav/index.js",
-      "/assets/modules/components/nav-item/index.js"
-    ]
-  },
-  {
-    "title": "nav-disclosure",
-    "markdown": "./libs/components/src/lib/nav-disclosure/README.md",
-    "modules": [
-      "/assets/modules/components/nav/index.js",
-      "/assets/modules/components/nav-disclosure/index.js",
-      "/assets/modules/components/nav-item/index.js"
-    ]
-  },
-  {
-    "title": "tooltip",
-    "markdown": "./libs/components/src/lib/tooltip/README.md",
-    "modules": [
-      "/assets/modules/components/tooltip/index.js",
-      "/assets/modules/components/button/index.js"
-    ]
-  },
-  {
-    "title": "progress",
-    "markdown": "./libs/components/src/lib/progress/README.md",
-    "modules": [
-      "/assets/modules/components/progress/index.js"
-    ]
-  },
-  {
-    "title": "progress-ring",
-    "markdown": "./libs/components/src/lib/progress-ring/README.md",
-    "modules": [
-      "/assets/modules/components/layout/index.js",
-      "/assets/modules/components/progress-ring/index.js"
-    ]
-  },
-  {
-    "title": "card",
-    "markdown": "./libs/components/src/lib/card/README.md",
-    "modules": [
-      "/assets/modules/components/card/index.js",
-      "/assets/modules/components/button/index.js",
-      "/assets/modules/components/layout/index.js"
-    ]
-  },
-  {
-    "title": "text-field",
-    "markdown": "./libs/components/src/lib/text-field/README.md",
-    "modules": [
-      "/assets/modules/components/text-field/index.js",
-      "/assets/modules/components/button/index.js"
-    ]
-  },
-  {
-    "title": "fab",
-    "markdown": "./libs/components/src/lib/fab/README.md",
-    "modules": [
-      "/assets/modules/components/fab/index.js",
-      "/assets/modules/components/layout/index.js"
-    ]
-  },
-  {
-    "title": "action-group",
-    "markdown": "./libs/components/src/lib/action-group/README.md",
-    "modules": [
-      "/assets/modules/components/action-group/index.js",
-      "/assets/modules/components/button/index.js",
-      "/assets/modules/components/text-field/index.js",
-      "/assets/modules/components/layout/index.js",
-      "/assets/modules/components/popup/index.js",
-      "/assets/modules/components/divider/index.js"
-    ]
-  },
-  {
-    "title": "note",
-    "markdown": "./libs/components/src/lib/note/README.md",
-    "modules": [
-      "/assets/modules/components/note/index.js"
-    ]
-  },
-  {
-    "title": "checkbox",
-    "markdown": "./libs/components/src/lib/checkbox/README.md",
-    "modules": [
-      "/assets/modules/components/checkbox/index.js"
-    ]
-  },
-  {
-    "title": "dialog",
-    "markdown": "./libs/components/src/lib/dialog/README.md",
-    "modules": [
-      "/assets/modules/components/dialog/index.js",
-      "/assets/modules/components/button/index.js",
-      "/assets/modules/components/text-field/index.js"
-    ]
-  },
-  {
-    "title": "header",
-    "markdown": "./libs/components/src/lib/header/README.md",
-    "modules": [
-      "/assets/modules/components/header/index.js",
-      "/assets/modules/components/button/index.js",
-      "/assets/modules/components/side-drawer/index.js",
-      "/assets/modules/components/layout/index.js",
-      "/assets/modules/components/banner/index.js"
-    ]
-  },
-  {
-    "title": "nav",
-    "markdown": "./libs/components/src/lib/nav/README.md",
-    "modules": [
-      "/assets/modules/components/nav/index.js",
-      "/assets/modules/components/nav-item/index.js",
-      "/assets/modules/components/nav-disclosure/index.js"
-    ]
-  },
-  {
-    "title": "divider",
-    "markdown": "./libs/components/src/lib/divider/README.md",
-    "modules": [
-      "/assets/modules/components/divider/index.js",
-      "/assets/modules/components/button/index.js",
-      "/assets/modules/components/action-group/index.js",
-      "/assets/modules/components/card/index.js"
-    ]
-  },
-  {
-    "title": "menu",
-    "markdown": "./libs/components/src/lib/menu/README.md",
-    "modules": [
-      "/assets/modules/components/menu/index.js",
-      "/assets/modules/components/button/index.js"
-    ]
-  },
-  {
-    "title": "avatar",
-    "markdown": "./libs/components/src/lib/avatar/README.md",
-    "modules": [
-      "/assets/modules/components/avatar/index.js",
-      "/assets/modules/components/icon/index.js"
-    ]
-  },
-  {
-    "title": "text-area",
-    "markdown": "./libs/components/src/lib/text-area/README.md",
-    "modules": [
-      "/assets/modules/components/text-area/index.js",
-      "/assets/modules/components/button/index.js"
-    ]
-  }
+	{
+		"title": "accordion",
+		"markdown": "./libs/components/src/lib/accordion/README.md",
+		"modules": [
+			"/assets/modules/components/accordion/index.js",
+			"/assets/modules/components/accordion-item/index.js"
+		]
+	},
+	{
+		"title": "accordion-item",
+		"markdown": "./libs/components/src/lib/accordion-item/README.md",
+		"modules": [
+			"/assets/modules/components/accordion-item/index.js"
+		]
+	},
+	{
+		"title": "badge",
+		"markdown": "./libs/components/src/lib/badge/README.md",
+		"modules": [
+			"/assets/modules/components/badge/index.js"
+		]
+	},
+	{
+		"title": "banner",
+		"markdown": "./libs/components/src/lib/banner/README.md",
+		"modules": [
+			"/assets/modules/components/button/index.js",
+			"/assets/modules/components/banner/index.js"
+		]
+	},
+	{
+		"title": "breadcrumb",
+		"markdown": "./libs/components/src/lib/breadcrumb/README.md",
+		"modules": [
+			"/assets/modules/components/breadcrumb-item/index.js",
+			"/assets/modules/components/breadcrumb/index.js"
+		]
+	},
+	{
+		"title": "breadcrumb-item",
+		"markdown": "./libs/components/src/lib/breadcrumb-item/README.md",
+		"modules": [
+			"/assets/modules/components/breadcrumb-item/index.js"
+		]
+	},
+	{
+		"title": "button",
+		"markdown": "./libs/components/src/lib/button/README.md",
+		"modules": [
+			"/assets/modules/components/button/index.js"
+		]
+	},
+	{
+		"title": "calendar",
+		"markdown": "./libs/components/src/lib/calendar/README.md",
+		"modules": [
+			"/assets/modules/components/calendar/index.js"
+		]
+	},
+	{
+		"title": "calendar-event",
+		"markdown": "./libs/components/src/lib/calendar-event/README.md",
+		"modules": [
+			"/assets/modules/components/calendar-event/index.js",
+			"/assets/modules/components/calendar/index.js"
+		]
+	},
+	{
+		"title": "icon",
+		"markdown": "./libs/components/src/lib/icon/README.md",
+		"modules": [
+			"/assets/modules/components/icon/index.js"
+		]
+	},
+	{
+		"title": "layout",
+		"markdown": "./libs/components/src/lib/layout/README.md",
+		"modules": [
+			"/assets/modules/components/layout/index.js",
+			"/assets/modules/components/card/index.js",
+			"/assets/modules/components/divider/index.js"
+		]
+	},
+	{
+		"title": "side-drawer",
+		"markdown": "./libs/components/src/lib/side-drawer/README.md",
+		"modules": [
+			"/assets/modules/components/side-drawer/index.js",
+			"/assets/modules/components/nav-item/index.js",
+			"/assets/modules/components/fab/index.js",
+			"/assets/modules/components/layout/index.js"
+		]
+	},
+	{
+		"title": "nav-item",
+		"markdown": "./libs/components/src/lib/nav-item/README.md",
+		"modules": [
+			"/assets/modules/components/nav/index.js",
+			"/assets/modules/components/nav-item/index.js"
+		]
+	},
+	{
+		"title": "nav-disclosure",
+		"markdown": "./libs/components/src/lib/nav-disclosure/README.md",
+		"modules": [
+			"/assets/modules/components/nav/index.js",
+			"/assets/modules/components/nav-disclosure/index.js",
+			"/assets/modules/components/nav-item/index.js"
+		]
+	},
+	{
+		"title": "tooltip",
+		"markdown": "./libs/components/src/lib/tooltip/README.md",
+		"modules": [
+			"/assets/modules/components/tooltip/index.js",
+			"/assets/modules/components/button/index.js"
+		]
+	},
+	{
+		"title": "progress",
+		"markdown": "./libs/components/src/lib/progress/README.md",
+		"modules": [
+			"/assets/modules/components/progress/index.js"
+		]
+	},
+	{
+		"title": "progress-ring",
+		"markdown": "./libs/components/src/lib/progress-ring/README.md",
+		"modules": [
+			"/assets/modules/components/layout/index.js",
+			"/assets/modules/components/progress-ring/index.js"
+		]
+	},
+	{
+		"title": "card",
+		"markdown": "./libs/components/src/lib/card/README.md",
+		"modules": [
+			"/assets/modules/components/card/index.js",
+			"/assets/modules/components/button/index.js",
+			"/assets/modules/components/layout/index.js"
+		]
+	},
+	{
+		"title": "text-field",
+		"markdown": "./libs/components/src/lib/text-field/README.md",
+		"modules": [
+			"/assets/modules/components/text-field/index.js",
+			"/assets/modules/components/button/index.js"
+		]
+	},
+	{
+		"title": "number-field",
+		"markdown": "./libs/components/src/lib/number-field/README.md",
+		"modules": [
+			"/assets/modules/components/number-field/index.js",
+			"/assets/modules/components/button/index.js"
+		]
+	},
+	{
+		"title": "fab",
+		"markdown": "./libs/components/src/lib/fab/README.md",
+		"modules": [
+			"/assets/modules/components/fab/index.js",
+			"/assets/modules/components/layout/index.js"
+		]
+	},
+	{
+		"title": "action-group",
+		"markdown": "./libs/components/src/lib/action-group/README.md",
+		"modules": [
+			"/assets/modules/components/action-group/index.js",
+			"/assets/modules/components/button/index.js",
+			"/assets/modules/components/text-field/index.js",
+			"/assets/modules/components/layout/index.js",
+			"/assets/modules/components/popup/index.js",
+			"/assets/modules/components/divider/index.js"
+		]
+	},
+	{
+		"title": "note",
+		"markdown": "./libs/components/src/lib/note/README.md",
+		"modules": [
+			"/assets/modules/components/note/index.js"
+		]
+	},
+	{
+		"title": "checkbox",
+		"markdown": "./libs/components/src/lib/checkbox/README.md",
+		"modules": [
+			"/assets/modules/components/checkbox/index.js"
+		]
+	},
+	{
+		"title": "dialog",
+		"markdown": "./libs/components/src/lib/dialog/README.md",
+		"modules": [
+			"/assets/modules/components/dialog/index.js",
+			"/assets/modules/components/button/index.js",
+			"/assets/modules/components/text-field/index.js"
+		]
+	},
+	{
+		"title": "header",
+		"markdown": "./libs/components/src/lib/header/README.md",
+		"modules": [
+			"/assets/modules/components/header/index.js",
+			"/assets/modules/components/button/index.js",
+			"/assets/modules/components/side-drawer/index.js",
+			"/assets/modules/components/layout/index.js",
+			"/assets/modules/components/banner/index.js"
+		]
+	},
+	{
+		"title": "nav",
+		"markdown": "./libs/components/src/lib/nav/README.md",
+		"modules": [
+			"/assets/modules/components/nav/index.js",
+			"/assets/modules/components/nav-item/index.js",
+			"/assets/modules/components/nav-disclosure/index.js"
+		]
+	},
+	{
+		"title": "divider",
+		"markdown": "./libs/components/src/lib/divider/README.md",
+		"modules": [
+			"/assets/modules/components/divider/index.js",
+			"/assets/modules/components/button/index.js",
+			"/assets/modules/components/action-group/index.js",
+			"/assets/modules/components/card/index.js"
+		]
+	},
+	{
+		"title": "menu",
+		"markdown": "./libs/components/src/lib/menu/README.md",
+		"modules": [
+			"/assets/modules/components/menu/index.js",
+			"/assets/modules/components/menu-item/index.js",
+			"/assets/modules/components/button/index.js"
+		]
+	},
+	{
+		"title": "menu-item",
+		"markdown": "./libs/components/src/lib/menu-item/README.md",
+		"modules": [
+			"/assets/modules/components/menu/index.js",
+			"/assets/modules/components/menu-item/index.js",
+			"/assets/modules/components/divider/index.js"
+		]
+	},
+	{
+		"title": "avatar",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/avatar/README.md",
+		"modules": [
+			"/assets/modules/components/avatar/index.js"
+		]
+	},
+	{
+		"title": "text-area",
+		"markdown": "./libs/components/src/lib/text-area/README.md",
+		"modules": [
+			"/assets/modules/components/text-area/index.js",
+			"/assets/modules/components/button/index.js"
+		]
+	},
+	{
+		"title": "radio",
+		"markdown": "./libs/components/src/lib/radio/README.md",
+		"modules": [
+			"/assets/modules/components/radio/index.js"
+		]
+	},
+	{
+		"title": "radio-group",
+		"markdown": "./libs/components/src/lib/radio-group/README.md",
+		"modules": [
+			"/assets/modules/components/radio/index.js",
+			"/assets/modules/components/radio-group/index.js"
+		]
+	},
+	{
+		"title": "option",
+		"markdown": "./libs/components/src/lib/option/README.md",
+		"modules": [
+			"/assets/modules/components/option/index.js",
+			"/assets/modules/components/listbox/index.js"
+		]
+	},
+	{
+		"title": "switch",
+		"markdown": "./libs/components/src/lib/switch/README.md",
+		"modules": [
+			"/assets/modules/components/switch/index.js"
+		]
+	},
+	{
+		"title": "slider",
+		"markdown": "./libs/components/src/lib/slider/README.md",
+		"modules": [
+			"/assets/modules/components/slider/index.js"
+		]
+	},
+	{
+		"title": "combobox",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/combobox/README.md",
+		"modules": [
+			"/assets/modules/components/combobox/index.js",
+			"/assets/modules/components/option/index.js"
+		]
+	}
 ]

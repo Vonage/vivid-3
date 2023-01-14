@@ -1,22 +1,37 @@
-import * as path from 'path';
 import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import {
-	extractHTMLBlocksFromReadme,
 	loadComponents,
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['menu'];
+const components = ['menu', 'menu-item', 'button'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template = extractHTMLBlocksFromReadme(
-		path.join(new URL('.', import.meta.url).pathname, 'README.md')
-	).reduce(
-		(htmlString: string, block: string) =>
-			`${htmlString} <div style="margin: 5px;">${block}</div>`,
-		''
-	);
+	const template =`
+		<style>
+			.wrapper {
+				width: 100%;
+				height: 220px;
+				position: relative
+			}
+
+			vwc-menu {
+				--menu-max-inline-size: 300px;
+			}
+		</style>
+
+		<div class="wrapper">
+			<vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open" appearance="outlined"></vwc-button>
+
+			<vwc-menu id="menu" anchor="button" placement="right-start" open>
+				<vwc-menu-item text="Lorem ipsum dolor sit amet, consectetur adipisicing elit"></vwc-menu-item>
+				<vwc-menu-item text="Menu item 1"></vwc-menu-item>
+				<vwc-menu-item text="Menu item 2"></vwc-menu-item>
+			</vwc-menu>
+		</div>`;
+
+	page.setViewportSize({ width: 560, height: 720 });
 
 	await loadComponents({
 		page,

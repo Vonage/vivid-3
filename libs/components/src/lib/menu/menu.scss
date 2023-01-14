@@ -1,3 +1,8 @@
+@use "partials/variables" as variables;
+
+
 .base {
+	max-inline-size: var(#{variables.$menu-max-inline-size}, 100%);
+	min-inline-size: var(#{variables.$menu-min-inline-size});
 	padding-block: 8px;
 }

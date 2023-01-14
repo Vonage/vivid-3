@@ -7,7 +7,7 @@ import type {
 import {classNames} from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
-import '../icon/index';
+import {getFeedbackTemplate} from '../../shared/patterns';
 import type {TextField} from './text-field';
 
 const getStateClasses = ({
@@ -16,20 +16,20 @@ const getStateClasses = ({
 	value,
 	readOnly,
 	placeholder,
-	density,
 	appearance,
 	shape,
 	label,
+	successText
 }: TextField) => classNames(
-	['error', Boolean(errorValidationMessage)],
+	['error connotation-alert', Boolean(errorValidationMessage)],
 	['disabled', disabled],
 	['has-value', Boolean(value)],
 	['readonly', readOnly],
 	['placeholder', Boolean(placeholder)],
-	[`density-${density}`, Boolean(density)],
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	['no-label', !label],
+	['success connotation-success', Boolean(successText)]
 );
 
 /**
@@ -42,23 +42,12 @@ function renderLabel() {
 	  </label>`;
 }
 
-function renderHelperText() {
-	return html<TextField>`<span class="helper-text">${x => x.helperText}</span>`;
-}
-
-function renderCharCount() {
-	return html<TextField>`
-		<span class="char-count">${x => x.value ? x.value.length : 0 } / ${ x => x.maxlength }</span>
-	`;
-}
-
 /**
  *
  */
-function renderErrorMessage() {
+function renderCharCount() {
 	return html<TextField>`
-    <vwc-icon class="error-message-icon" type="info-negative"></vwc-icon>
-    <span class="error-message">${x => x.errorValidationMessage}</span>
+		<span class="char-count">${x => x.value ? x.value.length : 0 } / ${ x => x.maxlength }</span>
 	`;
 }
 
@@ -123,7 +112,8 @@ export const TextfieldTemplate: (
       />
       ${() => focusTemplate}
     </div>
-	  ${when(x => !x.errorValidationMessage && x.helperText?.length, renderHelperText())}
-	  ${when(x => x.errorValidationMessage, renderErrorMessage())}
+	  ${when(x => !x.successText && !x.errorValidationMessage && x.helperText?.length, getFeedbackTemplate('helper', context))}
+	  ${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplate('error', context))}
+	  ${when(x => x.successText, getFeedbackTemplate('success', context))}
 	</div>`;
 };

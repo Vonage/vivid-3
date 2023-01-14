@@ -17,7 +17,7 @@
 		"test": {
 			"executor": "@nrwl/jest:jest",
 			"outputs": [
-				"coverage/libs/tokens"
+				"{workspaceRoot}/coverage/libs/tokens"
 			],
 			"options": {
 				"jestConfig": "libs/tokens/jest.config.ts",
@@ -25,7 +25,7 @@
 			}
 		},
 		"build": {
-			"executor": "@nrwl/workspace:run-commands",
+			"executor": "nx:run-commands",
 			"options": {
 				"commands": [
 					"ts-node build.ts"

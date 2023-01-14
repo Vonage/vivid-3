@@ -1,13 +1,14 @@
-@use '../../../../../dist/libs/tokens/scss/constants' as constants;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "partials/variables" as variables;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
+$block-size: calc(#{size.$vvd-size-normal} + #{size.$vvd-size-super-condensed});
 
 .base {
 	z-index: 1;
-	block-size: var(#{variables.$header-block-size});
-	font: var(#{constants.$vvd-font-heading4});
+	block-size: #{$block-size};
+	font: var(#{constants.$vvd-typography-heading-4});
 	inline-size: 100%;
-	#{variables.$header-block-size}: 64px;
 
 	.header-content {
 		display: inline-flex;
@@ -34,5 +35,5 @@
 }
 
 .app-content {
-	#{variables.$header-block-size}: 64px;
+	#{variables.$header-block-size}: #{$block-size};
 }

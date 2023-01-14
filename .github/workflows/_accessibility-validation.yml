@@ -27,7 +27,7 @@ jobs:
         run: npm run nx build docs
 
       - name: Scan for accessibility issues
-        uses: microsoft/accessibility-insights-action@v3
+        uses: microsoft/accessibility-insights-action@v3.1.0
         with:
           static-site-dir: ${{ github.workspace }}/dist/apps/docs
           static-site-port: 12345

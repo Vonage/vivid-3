@@ -1,12 +1,19 @@
-@use '../focus/partials/variables' as focus-variables;
+@use "../focus/partials/variables" as focus-variables;
 
-@use '../../../../../dist/libs/tokens/scss/constants' as constants;
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+	$connotations: accent success alert,
+	$shades: primary backdrop intermediate firm faint soft,
+	$default: accent,
+);
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: fieldset ghost,
-	$states: idle hover disabled readonly error,
+	$states: idle hover disabled readonly,
 	$default: fieldset,
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
 $low-ink-color: --_low-ink-color;
 
@@ -16,11 +23,12 @@ $low-ink-color: --_low-ink-color;
 
 .base {
 	@include appearance.appearance;
+	@include connotation.connotation;
 
 	display: inline-grid;
 	width: 100%;
 	gap: 4px;
-	grid-template-columns: min-content 1fr max-content;
+	grid-template-columns: 1fr max-content;
 
 	@supports(user-select: none) {
 		user-select: none;
@@ -31,25 +39,18 @@ $low-ink-color: --_low-ink-color;
 	}
 
 	&.disabled {
-		#{$low-ink-color}: var(#{constants.$vvd-color-neutral-400});
+		#{$low-ink-color}: var(#{appearance.get-appearance-token(text)});
 		pointer-events: none;
 	}
 }
 
 .label {
+	color: var(#{constants.$vvd-color-canvas-text});
 	contain: inline-size;
-	font: var(#{constants.$vvd-font-base});
-	grid-column: 1 / 4;
+	font: var(#{constants.$vvd-typography-base});
+	grid-column: 1 / 3;
 	grid-row: 1;
 	line-height: 20px;
-
-	.base:not(.disabled) & {
-		color: var(#{constants.$vvd-color-canvas-text});
-	}
-
-	.base.disabled & {
-		color: var(#{constants.$vvd-color-neutral-400});
-	}
 }
 
 .fieldset {
@@ -57,7 +58,7 @@ $low-ink-color: --_low-ink-color;
 	display: flex;
 	align-items: center;
 	border-radius: 6px;
-	grid-column: 1 / 4;
+	grid-column: 1 / 3;
 }
 
 .control {
@@ -68,37 +69,26 @@ $low-ink-color: --_low-ink-color;
 	border-radius: inherit;
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
-	font: var(#{constants.$vvd-font-base});
-	min-block-size: 40px;
+	font: var(#{constants.$vvd-typography-base});
+	min-block-size: #{size.$vvd-size-normal};
 	transition: box-shadow .2s, background-color .2s, color .2s;
+
+	&:disabled {
+		cursor: not-allowed;
+		opacity: 1; /* 2. correct opacity on iOS */
+		-webkit-text-fill-color: var(#{appearance.get-appearance-token(text)}); /* 1. sets text fill to current `color` for safari */
+	}
+
+	&::placeholder,
+	&:disabled::placeholder {
+		opacity: 1; /* 2. correct opacity on iOS */
+		-webkit-text-fill-color: var(#{$low-ink-color}); /* 1. sets text fill to current `color` for safari */
+	}
+
 	@supports selector(:focus-visible) {
 		&:focus {
 			outline: none;
 		}
-	}
-
-	&::placeholder {
-		color: var(#{$low-ink-color});
-	}
-}
-
-.helper-text {
-	color: var(#{$low-ink-color});
-	font: var(#{constants.$vvd-font-base-condensed});
-	grid-column: 1 / 4;
-}
-
-.error-message {
-	display: flex;
-	color: var(#{constants.$vvd-color-canvas-text});
-	contain: inline-size;
-	font: var(#{constants.$vvd-font-base-condensed});
-	grid-column: 2 / 4;
-
-	&-icon {
-		color: var(#{constants.$vvd-color-alert-500});
-		font-size: 16px;
-		grid-column: 1 / 2;
 	}
 }
 

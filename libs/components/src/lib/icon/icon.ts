@@ -1,7 +1,7 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
 import { identity, memoizeWith } from 'ramda';
-import type { Connotation, Size } from '../enums';
+import type { Connotation } from '../enums';
 import { PLACEHOLDER_ICON } from './icon.placeholder';
 
 const BASE_URL = 'https://icon.resources.vonage.com'; // namespaced as 3f7739a0-a898-4f69-a82b-ad9d743170b6 on icons.resources.vonage.com
@@ -47,13 +47,6 @@ type IconConnotation = Extract<Connotation,
 | Connotation.Alert
 | Connotation.Information>;
 
-/**
- * Types of icon size.
- *
- * @public
- */
-type IconSize = Extract<Size, Size.Small | Size.Medium | Size.Large>;
-
 export class Icon extends FoundationElement {
 	/**
 	 * The connotation the icon should have.
@@ -64,37 +57,40 @@ export class Icon extends FoundationElement {
 	 */
 	@attr connotation?: IconConnotation;
 
-	@attr size?: IconSize;
+	@attr size?: -6 | -5 | -4 | -3 | -2 | -1 | 0 | 1 | 2 | 3 | 4 | 5;
 
-	@observable svg?: string;
+	/**
+	 * @internal
+	 */
+	@observable _svg?: string;
 
 	/**
 	 * Indicates which icon to resolve.
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: type
+	 * HTML Attribute: name
 	 */
-	@attr type?: string;
+	@attr name?: string;
 
-	async typeChanged() {
-		this.svg = undefined;
+	async nameChanged() {
+		this._svg = undefined;
 
 		let timeout = setTimeout(() => {
-			this.svg = PLACEHOLDER_ICON;
+			this._svg = PLACEHOLDER_ICON;
 			timeout = setTimeout(() => {
-				if (this.svg === PLACEHOLDER_ICON) {
-					this.svg = undefined;
+				if (this._svg === PLACEHOLDER_ICON) {
+					this._svg = undefined;
 				}
 			}, PLACEHOLDER_TIMEOUT);
 		}, PLACEHOLDER_DELAY);
 
-		await resolveIcon(this.type)
+		await resolveIcon(this.name)
 			.then((svg) => {
-				this.svg = svg;
+				this._svg = svg;
 			})
 			.catch(() => {
-				this.svg = undefined;
+				this._svg = undefined;
 			}).finally(() => { clearTimeout(timeout); });
 	}
 }

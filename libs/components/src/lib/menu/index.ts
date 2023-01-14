@@ -1,15 +1,4 @@
-import '../popup';
-
-import { designSystem } from '../../shared/design-system';
-import styles from './menu.scss';
-import { Menu } from './menu';
-import { MenuTemplate as template } from './menu.template';
+import { registerMenu } from './definition';
 
 
-export const vividMenu = Menu.compose({
-	baseName: 'menu',
-	template: template as any,
-	styles,
-});
-
-designSystem.register(vividMenu());
+registerMenu();

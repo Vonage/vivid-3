@@ -2,7 +2,7 @@ import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 
 import type {
-	Appearance, Connotation, Density, Shape,
+	Appearance, Connotation, Shape, Size,
 } from '../enums.js';
 
 
@@ -40,7 +40,7 @@ type AvatarShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  *
  * @public
  */
-type AvatarDensity = Extract<Density, Density.Condensed | Density.Normal | Density.Extended>;
+type AvatarSize = Extract<Size, Size.Condensed | Size.Normal | Size.Expanded>;
 
 
 export class Avatar extends FoundationElement {
@@ -79,7 +79,7 @@ export class Avatar extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: size
 	 */
-	@attr density?: AvatarDensity;
+	@attr size?: AvatarSize;
 
 
 	/**
@@ -88,4 +88,11 @@ export class Avatar extends FoundationElement {
 	 * @public
 	 */
 	@attr icon?: string;
+
+	/**
+	 * avatar name
+	 *
+	 * @public
+	 */
+	@attr initials?: string;
 }

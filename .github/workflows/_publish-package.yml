@@ -45,6 +45,7 @@ jobs:
         run: |
           npm ci --ignore-scripts
           npx nx run components:build
+          npx nx run components:generateMeta
           npm publish dist/libs/components --tag next --access public --//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}

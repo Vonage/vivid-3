@@ -11,12 +11,12 @@ All native attributes of `dialog` are supported as well as some enhancements.
 
 ```html preview
 <style>
-  html { /* for demo purposes */ 
-    block-size: 230px; 
+  html { /* for demo purposes */
+    block-size: 230px;
   }
 </style>
 
-<vwc-dialog icon="info" headline="Headline" text="Text content" open></vwc-dialog>
+<vwc-dialog icon="info" headline="Headline" subtitle="subtitle" open></vwc-dialog>
 ```
 
 ## Members
@@ -32,6 +32,23 @@ Use the `headline` attribute to set the dialog's headline.
 <vwc-dialog headline="Headline" open></vwc-dialog>
 ```
 
+### subtitle
+
+Use the `subtitle` attribute to set the dialog's subtitle.
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+</style>
+<vwc-dialog subtitle="subtitle content" open></vwc-dialog>
+```
+
+
 ### Icon
 
 Use the `icon` attribute to set the dialog's icon.
@@ -40,24 +57,31 @@ Use the `icon` attribute to set the dialog's icon.
 - Default: `undefined`
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+</style>
 <vwc-dialog icon="info" open></vwc-dialog>
 ```
 
-### Text
 
-Use the `text` attribute to set the dialog's text.
+### Icon-placement
 
-- Type: `string`
-- Default: `undefined`
+The `icon-placement` attribute specifies where the dialog's icon should appear (relative to the headline).
+
+- Type: `top` | `side`
+- Default: `top`
 
 ```html preview
 <style>
-    html { /* for demo purposes */
-    block-size: 230px; 
-    }
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
 </style>
-<vwc-dialog text="Text content" open></vwc-dialog>
+<vwc-dialog icon-placement="side" icon="info" headline="Dialog Headline" subtitle="subtitle content" open></vwc-dialog>
 ```
+
 
 ### Open
 
@@ -68,13 +92,13 @@ Sets or returns whether a dialog should be open or not
 
 ```html preview
 <style>
-    html { /* for demo purposes */
-    block-size: 230px; 
-    }
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
 </style>
-<vwc-dialog id="dialog" text="Text content"></vwc-dialog>
 
 <vwc-button label="Toggle Dialog Open" onclick="dialog.open = !dialog.open"></vwc-button>
+<vwc-dialog id="dialog" headline="Headline" subtitle="subtitle"></vwc-dialog>
 ```
 
 ### Return Value
@@ -86,51 +110,50 @@ Use `returnValue` to get or set the return value. Often used to indicate which b
 
 ```html preview
 <style>
-    html { /* for demo purposes */
-    block-size: 250px; 
-    }
-    .demo-footer {
-        display: flex;
-        justify-content: flex-end;
-        column-gap: 8px;
-        margin-top: 8px;
-    
-    }
+  html { /* for demo purposes */
+    block-size: 250px;
+  }
+  .demo-footer {
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 8px;
+    margin-top: 8px;
+  }
 </style>
 <vwc-dialog open
             headline="Returning Dialog">
-                <div slot="footer" class="demo-footer">
-        <vwc-button appearance="outlined" label="Cancel"></vwc-button>
-        <vwc-button appearance="filled" label="Action"></vwc-button>
-    </div>
+  <div slot="footer" class="demo-footer">
+    <vwc-button appearance="outlined" label="Cancel"></vwc-button>
+    <vwc-button appearance="filled" label="Action"></vwc-button>
+  </div>
 </vwc-dialog>
 <div>Returned Value: <span id="dialog-output"></span></div>
 <vwc-button label="Open Dialog"
             onclick="openDialog()"></vwc-button>
 <script>
-    (function handleReturnValue() {
-        function handleClick(e) {
-            const buttonType = e.target.label;
-            console.log(buttonType);
-            dialog.returnValue = buttonType;
-            dialog.close();
-        }
-        
-        const cancelButton = document.querySelector('[label="Cancel"]');
-        const actionButton = document.querySelector('[label="Action"]');
-        const dialog = document.querySelector('vwc-dialog');
-        const dialogOutput = document.querySelector('#dialog-output');
-        
-        cancelButton.onclick = actionButton.onclick = handleClick;
-        dialog.addEventListener('close', (e) => dialogOutput.innerText = dialog.returnValue);
-        window.handleClick = handleClick;
-    })();
+  (function handleReturnValue() {
+    function handleClick(e) {
+      const buttonType = e.target.label;
+      console.log(buttonType);
+      dialog.returnValue = buttonType;
+      dialog.close();
+    }
+
+    const cancelButton = document.querySelector('[label="Cancel"]');
+    const actionButton = document.querySelector('[label="Action"]');
+    const dialog = document.querySelector('vwc-dialog');
+    const dialogOutput = document.querySelector('#dialog-output');
+
+    cancelButton.onclick = actionButton.onclick = handleClick;
+    dialog.addEventListener('close', (e) => dialogOutput.innerText = dialog.returnValue);
+    window.handleClick = handleClick;
+  })();
 </script>
 <script>
-    function openDialog() {
-        const dialog = document.querySelector('vwc-dialog');
-        dialog.show();
-    }
+  function openDialog() {
+    const dialog = document.querySelector('vwc-dialog');
+    dialog.show();
+  }
 </script>
 ```
 
@@ -142,23 +165,24 @@ Use the `graphic` slot in order to replace the icon.
 
 ```html preview
 <vwc-dialog open>
-            <img slot="graphic" src="https://doodleipsum.com/40x40/hand-drawn?bg=7463D9&amp;i=af462b28146d2ac91599602e083ddee5">
+  <img slot="graphic" src="https://doodleipsum.com/40x40/hand-drawn?bg=7463D9&amp;i=af462b28146d2ac91599602e083ddee5">
 </vwc-dialog>
 ```
 
-### Content
+### Body
 
-Use the content `slot` in order to add custom HTML to the dialog while enjoying the vivid dialog styling. Note that vivid styling comes with opinionated CSS like padding and margin.
+Use the `body` slot in order to add custom HTML to the dialog while enjoying the vivid dialog styling.  
+Note that vivid styling comes with opinionated CSS like padding and margin.
 
 ```html preview
 <style>
-    html { /* for demo purposes */
-        block-size: 350px; 
-        --dialog-max-block-size: 320px;
-    }
+  html { /* for demo purposes */
+    block-size: 350px;
+    --dialog-max-block-size: 320px;
+  }
 </style>
 <vwc-dialog open headline="Dialog Content">
-  <div slot="content">        
+  <div slot="body">
     <form>
       <vwc-layout column-basis="block">
         <vwc-text-field label="Name"></vwc-text-field>
@@ -176,24 +200,23 @@ Use the footer `slot` in order to add action buttons to the bottom of the dialog
 
 ```html preview
 <style>
-    html { /* for demo purposes */
-        block-size: 250px; 
-    }
-    .demo-footer {
-        display: flex;
-        justify-content: flex-end;
-        column-gap: 8px;
-        margin-top: 16px;
-
-    }
+  html { /* for demo purposes */
+    block-size: 250px;
+  }
+  .demo-footer {
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 8px;
+    margin-top: 16px;
+  }
 </style>
-<vwc-dialog open 
-    headline="Dialog with footer"
-    text="To quote Michael Carini, although we should never apologize for being ourselves, we should apologize for the times that we are not.">
-    <div slot="footer" class="demo-footer">
-        <vwc-button appearance="outlined" label="Cancel"></vwc-button>
-        <vwc-button appearance="filled" label="Action"></vwc-button>
-    </div>
+<vwc-dialog open
+  headline="Dialog with footer"
+  subtitle="this is an example of the dialog with slotted buttons inside footer">
+  <div slot="footer" class="demo-footer">
+    <vwc-button appearance="outlined" label="Cancel"></vwc-button>
+    <vwc-button appearance="filled" label="Action"></vwc-button>
+  </div>
 </vwc-dialog>
 ```
 
@@ -205,12 +228,12 @@ Note that all styles will be overridden including the dialog's padding. See the 
 
 ```html preview
 <style>
-.demo-main {
-  padding: 8px;
-}
-vwc-text {
-  text-align: center;
-}
+  .demo-main {
+    padding: 8px;
+  }
+  vwc-text {
+    text-align: center;
+  }
 </style>
 
 <vwc-dialog open>
@@ -234,10 +257,10 @@ When the dialog is not set as `modal` its initial z-index can be changed if need
 ### Inline min & Max size
 
 The Dialog has default `min-inline-size` and `max-inline-size`. This can be changed with setting a new value.
-setting the same value for `min-inline-size` and `max-inline-size` will set a definitive width to the dialog.  
+setting the same value for `min-inline-size` and `max-inline-size` will set a definitive width to the dialog.
 When setting a new value for `min-inline-size` and `max-inline-size` take in consideration if defendant value are needed for mobile.
 
-`--dialog-min-inline-size`  
+`--dialog-min-inline-size`
 `--dialog-max-inline-size`
 
 - Type: `string`
@@ -246,19 +269,19 @@ When setting a new value for `min-inline-size` and `max-inline-size` take in con
 ```html preview
 <style>
   html { /* for demo purposes */
-    block-size: 230px; 
+    block-size: 230px;
   }
 vwc-dialog {
-    --dialog-min-inline-size: 560px;
-}  
+  --dialog-min-inline-size: 560px;
+}
 </style>
 
-<vwc-dialog icon="info" headline="Headline" text="Text content" open></vwc-dialog>
+<vwc-dialog icon="info" headline="Headline" subtitle="subtitle content" open></vwc-dialog>
 ```
 
 ### Block-Size
 
-The Dialog has default `max-block-size`, if content is larger - there will be scroll.  
+The Dialog has default `max-block-size`, if content is larger - there will be scroll.
 
 `--dialog-max-block-size`
 
@@ -268,14 +291,14 @@ The Dialog has default `max-block-size`, if content is larger - there will be sc
 ```html preview
 <style>
   html { /* for demo purposes */
-    block-size: 250px; 
+    block-size: 250px;
   }
 vwc-dialog {
-    --dialog-max-block-size: 100px;
-}  
+  --dialog-max-block-size: 100px;
+}
 </style>
 
-<vwc-dialog icon="info" headline="Headline" text="Text content" open></vwc-dialog>
+<vwc-dialog icon="info" headline="Headline" subtitle="subtitle content" open></vwc-dialog>
 ```
 
 ## Events
@@ -292,15 +315,15 @@ It returns the return value inside the event's details property.
 <vwc-button label="Close Dialog"
             onclick="closeDialog()"></vwc-button>
 <script>
-    function closeDialog() {
-        const dialog = document.querySelector('vwc-dialog');
-        dialog.returnValue = 'Value';
-        dialog.close();
-    }
-    (function() {
-        const dialog = document.querySelector('vwc-dialog');
-        dialog.addEventListener('close', (e) => console.log(e.detail));
-    })();
+  function closeDialog() {
+    const dialog = document.querySelector('vwc-dialog');
+    dialog.returnValue = 'Value';
+    dialog.close();
+  }
+  (function() {
+    const dialog = document.querySelector('vwc-dialog');
+    dialog.addEventListener('close', (e) => console.log(e.detail));
+  })();
 </script>
 ```
 
@@ -316,10 +339,10 @@ Shows the dialog. Positioned in a top position by default.
 <vwc-button label="Open Dialog"
             onclick="openDialog()"></vwc-button>
 <script>
-    function openDialog() {
-        const dialog = document.querySelector('vwc-dialog');
-        dialog.show();
-    }
+  function openDialog() {
+    const dialog = document.querySelector('vwc-dialog');
+    dialog.show();
+  }
 </script>
 ```
 
@@ -335,10 +358,10 @@ For more information, see the native [Dialog.showModal](https://developer.mozill
 <vwc-button label="Open Modal Dialog"
             onclick="openDialog()"></vwc-button>
 <script>
-    function openDialog() {
-        const dialog = document.querySelector('vwc-dialog');
-        dialog.showModal();
-    }
+  function openDialog() {
+    const dialog = document.querySelector('vwc-dialog');
+    dialog.showModal();
+  }
 </script>
 ```
 
@@ -353,10 +376,10 @@ Closes the dialog.
 <vwc-button label="Close Dialog"
             onclick="closeDialog()"></vwc-button>
 <script>
-    function closeDialog() {
-        const dialog = document.querySelector('vwc-dialog');
-        dialog.close();
-    }
+  function closeDialog() {
+    const dialog = document.querySelector('vwc-dialog');
+    dialog.close();
+  }
 </script>
 ```
 
@@ -372,18 +395,18 @@ Closes the dialog.
 
 ```html preview
 <vwc-dialog headline="Open Dialog">
- <form slot="main" method="dialog">
-  <vwc-button type="submit" label="Submit"></vwc-button>
- </form>
+  <form slot="main" method="dialog">
+    <vwc-button type="submit" label="Submit"></vwc-button>
+  </form>
 </vwc-dialog>
 
 <vwc-button label="Open Modal Dialog" onclick="openDialog()">
 </vwc-button>
 
 <script>
- function openDialog() {
-  const dialog = document.querySelector('vwc-dialog');
-  dialog.showModal();
- }
+  function openDialog() {
+    const dialog = document.querySelector('vwc-dialog');
+    dialog.showModal();
+  }
 </script>
 ```

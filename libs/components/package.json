@@ -1,9 +1,10 @@
 {
   "name": "@vonage/vivid",
-  "version": "3.0.0-next.63",
+  "version": "3.0.0-next.134",
   "type": "module",
   "module": "./index.js",
   "main": "./index.js",
+  "customElements": "./custom-elements.json",
   "homepage": "https://vivid.deno.dev",
   "repository": {
     "type": "git",
@@ -13,38 +14,5 @@
   "bugs": {
     "url": "https://github.com/Vonage/vivid-3/issues"
   },
-  "license": "Apache-2.0",
-  "exports": {
-    "./accordion": "./accordion",
-    "./accordion-item": "./accordion-item",
-    "./action-group": "./action-group",
-    "./badge": "./badge",
-    "./banner": "./banner",
-    "./breadcrumb": "./breadcrumb",
-    "./breadcrumb-item": "./breadcrumb-item",
-    "./button": "./button",
-    "./calendar": "./calendar",
-    "./calendar-event": "./calendar-event",
-    "./card": "./card",
-    "./elevation": "./elevation",
-    "./fab": "./fab",
-    "./icon": "./icon",
-    "./layout": "./layout",
-    "./note": "./note",
-    "./popup": "./popup",
-    "./progress": "./progress",
-    "./progress-ring": "./progress-ring",
-    "./side-drawer": "./side-drawer",
-    "./nav": "./nav",
-    "./nav-item": "./nav-item",
-    "./nav-disclosure": "./nav-disclosure",
-    "./text-field": "./text-field",
-    "./tooltip": "./tooltip",
-    "./checkbox": "./checkbox",
-    "./dialog": "./dialog",
-    "./divider": "./divider",
-    "./menu": "./menu",
-    "./avatar": "./avatar",
-    "./text-area": "./text-area"
-  }
+  "license": "Apache-2.0"
 }

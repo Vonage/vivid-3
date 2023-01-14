@@ -1,6 +1,6 @@
 @use 'sass:map';
 
-@use '../../../../..//dist/libs/tokens/scss/constants' as constants;
+@use '../../../../..//dist/libs/tokens/scss/tokens.constants' as constants;
 
 
 $selectors: (
@@ -8,65 +8,76 @@ $selectors: (
 	code: 'pre, var, code, kbd, samp',
 );
 
-.vvd-root {
+@mixin typography-base {
+	font: var(#{constants.$vvd-typography-base});
 	font-feature-settings: 'kern';       /* turns on kerning */
 	text-rendering: optimizeLegibility;  /* emphasise on legibility when rendering, turns on ligatures and kerning */
 	-webkit-font-smoothing: antialiased; /* apply font anti-aliasing for Webkit on OSX */
 	-moz-osx-font-smoothing: grayscale;  /* apply font anti-aliasing for Firefox on OSX */
-	font: var(#{constants.$vvd-font-base});
+}
+
+.vvd-root {
+	&:root { // <--- When 'vvd-root' is set on the `:root` (html element), typeface sizes are able to descend from the root font-size, thus comply with the [WCAG 1.4.4](https://www.w3.org/WAI/WCAG21/Understanding/resize-text)
+		--vvd-size-font-scale-base: 1rem;
+		font-size: unset; // resolves to the user-agent default font size (generally 16px)
+
+		> body {
+			@include typography-base;
+		}
+	}
+
+	&:not(:root) {
+		@include typography-base;
+	}
 
 	p {
-		font: var(#{constants.$vvd-font-base});
+		font: var(#{constants.$vvd-typography-base});
 		margin-block: 16px;
 	}
 
 	#{map.get($selectors, 'bold')} {
-		font: var(#{constants.$vvd-font-base-bold});
+		font: var(#{constants.$vvd-typography-base-bold});
 	}
 
 	#{map.get($selectors, 'code')} {
-		font: var(#{constants.$vvd-font-base-code});
+		font: var(#{constants.$vvd-typography-base-code});
 	}
 
 	.headline {
-		font: var(#{constants.$vvd-font-headline});
+		font: var(#{constants.$vvd-typography-headline});
 		margin-block: 40px;
 	}
 
 	.subtitle {
-		font: var(#{constants.$vvd-font-subtitle});
+		font: var(#{constants.$vvd-typography-subtitle});
 		margin-block: 40px;
 	}
 
 	h1, .heading1 {
-		font: var(#{constants.$vvd-font-heading1});
+		font: var(#{constants.$vvd-typography-heading-1});
 		margin-block: 32px;
 	}
 
 	h2, .heading2 {
-		font: var(#{constants.$vvd-font-heading2});
+		font: var(#{constants.$vvd-typography-heading-2});
 		margin-block: 32px;
 	}
 
 	h3, .heading3 {
-		font: var(#{constants.$vvd-font-heading3});
+		font: var(#{constants.$vvd-typography-heading-3});
 		margin-block: 24px;
 	}
 
 	h4, .heading4 {
-		font: var(#{constants.$vvd-font-heading4});
+		font: var(#{constants.$vvd-typography-heading-4});
 		margin-block: 24px;
 	}
 
 	small, figcaption {
-		font: var(#{constants.$vvd-font-base-condensed});
+		font: var(#{constants.$vvd-typography-base-condensed});
 
 		#{map.get($selectors, 'bold')} {
-			font: var(#{constants.$vvd-font-base-condensed-bold});
-		}
-
-		#{map.get($selectors, 'code')} {
-			font: var(#{constants.$vvd-font-base-condensed-code});
+			font: var(#{constants.$vvd-typography-base-condensed-bold});
 		}
 	}
 

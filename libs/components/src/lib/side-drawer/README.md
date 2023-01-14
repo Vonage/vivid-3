@@ -2,7 +2,7 @@
 
 ```js
 <script type='module'>
-    import '@vonage/vivid/side-drawer';
+  import '@vonage/vivid/side-drawer';
 </script>
 ```
 
@@ -67,7 +67,7 @@ Use `alternate` to apply an alternate color-scheme, which is in contrast with th
 <vwc-side-drawer alternate open>
 
   <vwc-layout gutters="small">
-   Side Drawer content
+    Side Drawer content
   </vwc-layout>
 
   <vwc-layout gutters="small" slot="app-content">
@@ -108,7 +108,7 @@ The default slot sets assigned nodes to the side drawer itself.
 <vwc-side-drawer open>
 
   <vwc-layout gutters="small">
-  Side Drawer content
+    Side Drawer content
   </vwc-layout>
 
 </vwc-side-drawer>
@@ -122,7 +122,7 @@ The `app-content` slot sets assigned nodes to the main application content, the 
 <vwc-side-drawer open>
 
   <vwc-layout gutters="small" slot="app-content">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
  </vwc-layout>
 
 </vwc-side-drawer>
@@ -155,7 +155,7 @@ Additionally, as aside element (which represents the actual side-drawer), is sty
     --side-drawer-app-content-offset: 230px;
   }
 
-  vwc-fab { 
+  vwc-fab {
     position: fixed;
     inset: auto auto 8px 8px;
     z-index: 2;
@@ -191,7 +191,7 @@ Select `base` part to access the component's internal *aside* element.
 <vwc-side-drawer open>
 
   <vwc-layout gutters="small">
-   Side Drawer content
+    Side Drawer content
   </vwc-layout>
 
 </vwc-side-drawer>

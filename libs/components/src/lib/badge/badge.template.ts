@@ -1,4 +1,4 @@
-import { html } from '@microsoft/fast-element';
+import { html, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
@@ -6,14 +6,14 @@ import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { Badge } from './badge';
 
 const getClasses = ({
-	connotation, appearance, shape, density, iconTrailing
+	connotation, appearance, shape, iconTrailing, text, icon
 }: Badge) => classNames(
-	'control',
+	'base',
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
-	[`density-${density}`, Boolean(density)],
 	['icon-trailing', iconTrailing],
+	['icon-only', !text && Boolean(icon)],
 );
 
 /**
@@ -31,6 +31,6 @@ export const badgeTemplate: (
 	return html`
     <span class="${getClasses}">
       ${x => affixIconTemplate(x.icon)}
-      ${(x) => x.text}
+			${when((x)=> x.text, (x) => html<Badge>`<span class="text">${x.text as string}</span>`)}
 		</span>`;
 };

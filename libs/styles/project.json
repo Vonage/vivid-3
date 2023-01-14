@@ -1,19 +1,18 @@
 {
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
 	"sourceRoot": "libs/styles/src",
 	"projectType": "library",
 	"targets": {
 		"test": {
 			"executor": "@nrwl/jest:jest",
-			"outputs": [
-				"coverage/libs/styles"
-			],
+			"outputs": ["{workspaceRoot}/coverage/libs/styles"],
 			"options": {
 				"jestConfig": "libs/styles/jest.config.ts",
 				"passWithNoTests": true
 			}
 		},
 		"build": {
-			"executor": "@nrwl/workspace:run-commands",
+			"executor": "nx:run-commands",
 			"options": {
 				"commands": [
 					"npx nx run styles:build:scss",
@@ -24,22 +23,20 @@
 			"configurations": {
 				"assets": {
 					"commands": [
-						"cp libs/styles/src/lib/fonts/*.woff libs/styles/src/lib/fonts/*.woff2 dist/libs/styles/fonts"
 					]
 				},
 				"scss": {
 					"commands": [
 						"sass libs/styles/src/lib/tokens:dist/libs/styles/tokens",
-						"sass libs/styles/src/lib/fonts:dist/libs/styles/fonts",
 						"sass libs/styles/src/lib/core:dist/libs/styles/core"
 					]
 				}
 			}
 		},
 		"serve": {
-			"executor": "@nrwl/workspace:run-commands",
+			"executor": "nx:run-commands",
 			"options": {
-				"command": "sass libs/styles/src/lib/themes:dist/libs/styles/themes --watch"
+				"command": "sass libs/styles/src/lib/core:dist/libs/styles/core --watch"
 			}
 		},
 		"stylelint": {
