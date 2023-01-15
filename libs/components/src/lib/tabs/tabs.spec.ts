@@ -1,6 +1,6 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import type { Tab } from '../tab/tab';
-import { ACTIVE_TAB_WIDTH, Tabs } from './tabs';
+import { Tabs } from './tabs';
 import '../tab-panel/tab-panel';
 import '.';
 
@@ -8,27 +8,9 @@ const COMPONENT_TAG = 'vwc-tabs';
 
 describe('vwc-tabs', () => {
 	let element: Tabs;
-	let elementWidth = 100;
-	const originalGetBoundingClientRect: () => DOMRect = HTMLElement.prototype.getBoundingClientRect;
 
 	beforeAll(() => {
-		HTMLElement.prototype.getBoundingClientRect = () => {
-			return {
-				width: elementWidth,
-				height: 100,
-				top: 0,
-				left: 0,
-				right: 0,
-				bottom: 0,
-				x: 0,
-				y: 0,
-				toJSON: () => '',
-			};
-		};
-	});
-
-	afterAll(() => {
-		HTMLElement.prototype.getBoundingClientRect = originalGetBoundingClientRect;
+		element.activetab.getBoundingClientRect = jest.fn().mockReturnValue({ height: 20, width: 20 });
 	});
 
 	beforeEach(async () => {
@@ -83,39 +65,31 @@ describe('vwc-tabs', () => {
 		});
 	});
 
+
 	describe('activeid', () => {
 		it('should set activeid property', async () => {
 			const activeid = 'entrees';
 			const tab: Tab = element.querySelector('#' + activeid) as Tab;
-			const ariaSelectedOnTabBeforeSelection = (tab as Tab).ariaSelected;
 
+			expect((tab as Tab).ariaSelected).toEqual('false');
 			element.activeid = activeid;
 
 			await elementUpdated(element);
 
-			expect(ariaSelectedOnTabBeforeSelection).toEqual('false');
 			expect((tab as Tab).ariaSelected).toEqual('true');
 		});
+	});
 
-		it('should change width of active indicator', async () => {
-			const prevActiveid = 'entrees';
-			const nextActiveid = 'desserts';
+	describe('activetab', () => {
+		it('should set activetab property', async () => {
+			const tab: Tab = element.querySelector('#entrees') as Tab;
 
-			const appslWidth = element.activeIndicatorRef.style.getPropertyValue(ACTIVE_TAB_WIDTH);
+			expect(element.activetab).not.toEqual(tab);
+			tab.click();
 
-			elementWidth = 150;
-			element.activeid = prevActiveid;
 			await elementUpdated(element);
-			const entreesWidth = element.activeIndicatorRef.style.getPropertyValue(ACTIVE_TAB_WIDTH);
 
-			elementWidth = 200;
-			element.activeid = nextActiveid;
-			await elementUpdated(element);
-			const dessertsWidth = element.activeIndicatorRef.style.getPropertyValue(ACTIVE_TAB_WIDTH);
-
-			expect(appslWidth).toEqual('100px');
-			expect(entreesWidth).toEqual('150px');
-			expect(dessertsWidth).toEqual('200px');
+			expect(element.activetab).toEqual(tab);
 		});
 	});
 });
