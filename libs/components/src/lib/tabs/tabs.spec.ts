@@ -7,8 +7,8 @@ import '.';
 const COMPONENT_TAG = 'vwc-tabs';
 
 window.HTMLElement.prototype.getClientRects = function () {
-    return [ { width: 10 } ] as unknown as DOMRectList;
-}
+	return [{ width: 10 }] as unknown as DOMRectList;
+};
 
 describe('vwc-tabs', () => {
 	let element: Tabs;
