@@ -113,7 +113,7 @@ export const SelectTemplate: (
             @keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
             @mousedown="${(x, c) => x.mousedownHandler(c.event as MouseEvent)}"
         >
-            ${when(x => x.collapsible, renderControl(context))}
+            ${renderControl(context)}
 		</template>
 
 	`;

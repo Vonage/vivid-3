@@ -51,14 +51,35 @@ describe('vwc-select', () => {
 	});
 
 	describe('disabled', function () {
-		it('should set disabled class for select  when disabled is true', async () => {
-			const disableClassExistsWithDisabledFalse = Boolean(element.shadowRoot?.querySelector('.disabled'));
+		it('should set disabled class for select when disabled is true', async () => {
+			const disableClassExistsWithDisabledFalse = Boolean(element.shadowRoot?.querySelector('.control.disabled'));
 
 			element.toggleAttribute('disabled', true);
 			await elementUpdated(element);
 
 			expect(disableClassExistsWithDisabledFalse).toBeFalsy();
-			expect(element.shadowRoot?.querySelector('.disabled')).toBeTruthy();
+			expect(element.shadowRoot?.querySelector('.control.disabled')).toBeTruthy();
+		});
+	});
+
+	describe('multiple', () => {
+		it('should set multiple attribute on the element', async () => {
+			const multipleAttributeExistsWithMultipleFalse = element.hasAttribute('multiple');
+
+			element.multiple = true;
+			await elementUpdated(element);
+
+			expect(multipleAttributeExistsWithMultipleFalse).toBeFalsy();
+			expect(element.hasAttribute('multiple')).toBeTruthy();
+		});	
+
+		it('should leave popup open when set', async function () {
+			const popup = element.shadowRoot?.querySelector('.popup');
+
+			element.multiple = true;
+			element.open = true;
+			await elementUpdated(element);
+			expect(popup?.hasAttribute('open')).toBeTruthy();
 		});
 	});
 
@@ -71,19 +92,6 @@ describe('vwc-select', () => {
 
 			expect(openStateBeforeClick).toEqual(false);
 			expect(element.open).toEqual(true);
-		});
-
-		it('should leave popup open when not in single mode', async function () {
-			const popup = element.shadowRoot?.querySelector('.popup');
-
-			element.multiple = true;
-			element.open = true;
-			await elementUpdated(element);
-			await elementUpdated(element);
-			console.log(element.shadowRoot?.innerHTML);
-			console.log(popup?.getAttribute('open'));
-			expect(popup).toBeTruthy();
-			expect(popup?.getAttribute('open')).toBeNull();
 		});
 	});
 
