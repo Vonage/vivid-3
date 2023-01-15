@@ -8,10 +8,10 @@ const COMPONENT_TAG = 'vwc-tabs';
 
 window.HTMLElement.prototype.getBoundingClientRect = function () {
 	return {
-		x: 146, y: 50, width: 440, height: 240, 
+		x: 146, y: 50, width: 440, height: 240,
 		top: 50, right: 586, bottom: 290, left: 146
 	} as DOMRect;
-}
+};
 
 describe('vwc-tabs', () => {
 	let element: Tabs;
