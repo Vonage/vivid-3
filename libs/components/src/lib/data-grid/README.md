@@ -19,7 +19,7 @@ Represents a data-grid custom element.
 
 ## Members
 ### Generate-header
-Use `generate-header"` for data gris deader
+Use `generate-header"` for data grid deader
 
 - Type: `none` | `default`| `sticky`
 - Default: `default`
