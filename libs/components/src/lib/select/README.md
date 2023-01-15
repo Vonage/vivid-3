@@ -59,6 +59,7 @@ Set the `mulitple` attribute to allow multiple selection. Note that in multiple 
 <style>
   html { /* for demo purposes */
     block-size: 230px;
+    --select-width: 100%;
   }
   vwc-select {width: 150px;}
 </style>
