@@ -39,7 +39,6 @@
 	hyphens: auto;
 	inline-size: 100%;
 	min-block-size: $min-block-size;
-	padding-block: 10px;
 	padding-inline: $gutter;
 	vertical-align: middle;
 	word-break: break-word;
@@ -63,6 +62,7 @@
 
 .icon {
 	font-size: 20px;
+	line-height: 1;
 
 	.base:not(.disabled, .selected) & {
 		color: var(#{constants.$vvd-color-neutral-600});
