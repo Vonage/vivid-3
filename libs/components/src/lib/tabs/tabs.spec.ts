@@ -6,7 +6,12 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-tabs';
 
-Element.prototype.getBoundingClientRect().width = 20;
+window.HTMLElement.prototype.getBoundingClientRect = function () {
+	return {
+		x: 146, y: 50, width: 440, height: 240, 
+		top: 50, right: 586, bottom: 290, left: 146
+	} as DOMRect;
+}
 
 describe('vwc-tabs', () => {
 	let element: Tabs;
