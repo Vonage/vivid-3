@@ -79,15 +79,16 @@
 
 .list-box {
 	display: flex;
+	max-height: var(--select-height, auto);
 	flex-direction: column;
 	padding: 4px;
 	gap: 2px;
-	max-height: var(--select-height, auto);
 	overflow-y: auto;
 }
 
 .popup {
 	$popup-width: --_popup-width;
+
 	#{$popup-width}: var(--select-width, fit-content);
 }
 
