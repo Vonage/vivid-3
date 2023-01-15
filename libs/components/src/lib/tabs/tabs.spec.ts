@@ -6,9 +6,7 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-tabs';
 
-Element.prototype.getClientRects = function () {
-	return [{ width: 10 }] as unknown as DOMRectList;
-};
+Element.prototype.getClientRects = jest.fn();
 
 describe('vwc-tabs', () => {
 	let element: Tabs;
