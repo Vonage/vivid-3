@@ -6,7 +6,7 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-tabs';
 
-Element.prototype.getBoundingClientRect = jest.fn();
+Element.prototype.getBoundingClientRect().width = 20;
 
 describe('vwc-tabs', () => {
 	let element: Tabs;
