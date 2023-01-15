@@ -15,6 +15,7 @@ export class Tabs extends FoundationTabs {
 	override orientationChanged(): void {
 		super.orientationChanged();
 		this.patchIndicatorStyleTransition();
+		if (!this.activeIndicatorRef) return;
 		if (this.orientation === TabsOrientation.vertical) {
 			this.activeIndicatorRef.style.removeProperty(ACTIVE_TAB_WIDTH);
 		}
@@ -36,6 +37,7 @@ export class Tabs extends FoundationTabs {
 	}
 
 	private patchIndicatorStyleTransition() {
+		if (!this.activetab || !this.activeIndicatorRef) return;
 		if (this.orientation === TabsOrientation.vertical || !this.showActiveIndicator) return;
 		const width = this.activetab.getBoundingClientRect().width;
 		this.activeIndicatorRef.style.setProperty(ACTIVE_TAB_WIDTH, `${width}px`);
