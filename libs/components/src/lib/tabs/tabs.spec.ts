@@ -83,7 +83,7 @@ describe('vwc-tabs', () => {
 			expect(element.activetab).not.toEqual(tab);
 			tab.click();
 
-			element.activetab.getBoundingClientRect = jest.fn().mockReturnValue({ height: 20, width: 20 });
+			//element.activetab.getBoundingClientRect = jest.fn().mockReturnValue({ height: 20, width: 20 });
 			await elementUpdated(element);
 
 			expect(element.activetab).toEqual(tab);
