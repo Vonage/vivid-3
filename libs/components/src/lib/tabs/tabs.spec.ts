@@ -6,6 +6,10 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-tabs';
 
+window.HTMLElement.prototype.getClientRects = function () {
+    return [ { width: 10 } ] as unknown as DOMRectList;
+}
+
 describe('vwc-tabs', () => {
 	let element: Tabs;
 
@@ -82,7 +86,6 @@ describe('vwc-tabs', () => {
 
 			expect(element.activetab).not.toEqual(tab);
 			tab.click();
-			element.activetab.getBoundingClientRect = jest.fn().mockReturnValue({ height: 20, width: 20 });
 			await elementUpdated(element);
 
 			expect(element.activetab).toEqual(tab);
