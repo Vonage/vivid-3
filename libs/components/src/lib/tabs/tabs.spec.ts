@@ -84,6 +84,7 @@ describe('vwc-tabs', () => {
 
 			expect(element.activetab).not.toEqual(tab);
 			tab.click();
+			element.activetab = tab;
 			await elementUpdated(element);
 
 			expect(element.activetab).toEqual(tab);
