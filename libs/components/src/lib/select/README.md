@@ -49,6 +49,26 @@ Add a `label` attribute to add label to the Select.
 </vwc-select>
 ```
 
+### Multiple
+Set the `mulitple` attribute to allow multiple selection. Note that in multiple state, the options will always be visible.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+  vwc-select {width: 150px;}
+</style>
+<vwc-select multiple label="choose how many options you want">
+  <vwc-option value="1" text="Option 1"></vwc-option>
+  <vwc-option value="2" text="Option 2"></vwc-option>
+  <vwc-option value="3" text="Option 3"></vwc-option>
+</vwc-select>
+```
+
 ### Appearance
 Set the `appearance` attribute to change the Select appearance.
 
