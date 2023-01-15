@@ -9,10 +9,6 @@ const COMPONENT_TAG = 'vwc-tabs';
 describe('vwc-tabs', () => {
 	let element: Tabs;
 
-	beforeAll(() => {
-		element.activetab.getBoundingClientRect = jest.fn().mockReturnValue({ height: 20, width: 20 });
-	});
-
 	beforeEach(async () => {
 		element = (await fixture(`<${COMPONENT_TAG} activeid='apps'>
 		<vwc-tab label="Appetizers" id="apps"></vwc-tab>
@@ -87,6 +83,7 @@ describe('vwc-tabs', () => {
 			expect(element.activetab).not.toEqual(tab);
 			tab.click();
 
+			element.activetab.getBoundingClientRect = jest.fn().mockReturnValue({ height: 20, width: 20 });
 			await elementUpdated(element);
 
 			expect(element.activetab).toEqual(tab);
