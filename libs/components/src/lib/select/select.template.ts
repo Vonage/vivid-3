@@ -13,8 +13,10 @@ const getStateClasses = ({
 	shape,
 	disabled,
 	appearance,
+	multiple
 }: Select) => classNames(
 	['disabled', disabled],
+	['multiple', multiple],
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 );

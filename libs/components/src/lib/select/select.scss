@@ -73,6 +73,10 @@
 	}
 }
 
+.control.multiple {
+	display: none;
+}
+
 .list-box {
 	display: flex;
 	flex-direction: column;

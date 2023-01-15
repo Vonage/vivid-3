@@ -81,6 +81,12 @@ describe('vwc-select', () => {
 			await elementUpdated(element);
 			expect(popup?.hasAttribute('open')).toBeTruthy();
 		});
+
+		it('should add multiple class to control', async () => {
+			element.multiple = true;
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.control.multiple')).toBeTruthy();
+		});
 	});
 
 	describe('open', function () {
