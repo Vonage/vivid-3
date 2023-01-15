@@ -2,7 +2,7 @@ import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import dataGridStyles from './data-grid.scss';
 import dataGridRowStyles from './data-grid-row.scss';
-import dataGridCellStyles from './data-grid.scss';
+import dataGridCellStyles from './data-grid-cell.scss';
 
 import { DataGrid } from './data-grid';
 import { DataGridTemplate as template } from './data-grid.template';
@@ -35,4 +35,4 @@ export const dataGridElements = [dataGridCell, dataGridRow, dataGrid];
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerDataGrid = registerFactory(dataGridElements); 
+export const registerDataGrid = registerFactory(dataGridElements);

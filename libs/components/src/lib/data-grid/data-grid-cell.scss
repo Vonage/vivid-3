@@ -1,19 +1,24 @@
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+
+@use "../focus/partials/variables" as focus-variables;
+
 :host {
+	display: flex;
+	align-items: center;
 	overflow: hidden;
 	box-sizing: border-box;
-	padding: calc(var(--design-unit) * 1px) calc(var(--design-unit) * 3px);
-	border: transparent calc(var(--stroke-width) * 1px) solid;
-	border-radius: calc(var(--control-corner-radius) * 1px);
-	color: var(--neutral-foreground-rest);
-	font-size: var(--type-ramp-base-font-size);
-	outline: none;
+	padding: 8px 12px;
+	color: var(#{constants.$vvd-color-canvas-text});
+	font: var(#{constants.$vvd-typography-base});
+	text-overflow: ellipsis;
 	white-space: nowrap;
+	outline: none;
+	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-100});
+	block-size: #{size.$vvd-size-expanded};
 }
-  
-:host([cell-type="column-header"]) {
-	font-weight: 600;
-}
-  
-:host(:focus-visible) {
-	border-color: var(--focus-stroke-outer);
+
+:host([cell-type="columnheader"]) {
+	font: var(#{constants.$vvd-typography-base-bold});
+	border-color: currentColor;
 }

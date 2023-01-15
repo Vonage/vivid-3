@@ -1,29 +1,15 @@
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+
 :host {
 	display: grid;
 	width: 100%;
 	box-sizing: border-box;
-	padding: 1px 0;
-
-	// border-bottom: calc(var(--stroke-width, 1px) * 1px) solid var(--neutral-stroke-divider-rest, #f2f2f2);
-	border-bottom: 1px solid darkred;
+	color: var(#{constants.$vvd-color-canvas-text});
 }
-  
+
+
 :host([row-type="sticky-header"]) {
 	position: sticky;
 	top: 0;
-	background: var(--neutral-fill-rest);
+	background: var(#{constants.$vvd-color-canvas});
 }
-  
-:host(.selected) {
-	background-color: black;
-	color: white;
-}
-  
-.sub-grid-wrapper {
-	grid-column: 2 / -1;
-}
-  
-.hidden {
-	display: none;
-}
-  

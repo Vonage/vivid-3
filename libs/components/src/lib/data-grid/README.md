@@ -18,6 +18,30 @@ Represents a data-grid custom element.
 ```
 
 ## Members
+### Generate-header
+Use `generate-header"` for data gris deader
+
+- Type: `none` | `default`| `sticky`
+- Default: `default`
+
+```html preview
+<vwc-data-grid></vwc-data-grid>
+<script>
+    const grid = document.querySelector('vwc-data-grid');
+    
+    grid.generateHeader = ['sticky'];
+    grid.rowsData = [
+
+        {data1: 'data11', data2: 'data12'},
+        {data1: 'data21', data2: 'data22'},
+        {data1: 'data31', data2: 'data32'},
+        {data1: 'data41', data2: 'data42'},
+        {data1: 'data51', data2: 'data52'},
+        {data1: 'data61', data2: 'data62'},
+    ];
+</script>
+```
+
 
 ### noTabbing
 
@@ -26,16 +50,16 @@ Represents a data-grid custom element.
 
 When true the component will not add itself to the tab queue.
 
-```html preview
+```js
 <vwc-data-grid></vwc-data-grid>
-<script>
-    const grid = document.querySelector('vwc-data-grid');
-    grid.rowsData = [
-        {data1: 'tabs', data2: 'will'},
-        {data1: 'not', data2: 'work'},
-    ];
-    grid.noTabbing = true;
-</script>
+
+const grid = document.querySelector('vwc-data-grid');
+grid.rowsData = [
+		{data1: 'tabs', data2: 'will'},
+		{data1: 'not', data2: 'work'},
+];
+grid.noTabbing = true;
+
 ```
 
 ### rowsData
