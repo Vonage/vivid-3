@@ -6,7 +6,7 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-tabs';
 
-window.HTMLElement.prototype.getClientRects = function () {
+Element.prototype.getClientRects = function () {
 	return [{ width: 10 }] as unknown as DOMRectList;
 };
 
