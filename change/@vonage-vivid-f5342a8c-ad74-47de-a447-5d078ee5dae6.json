@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "menu item support secondary text",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}

@@ -2,6 +2,27 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Mon, 16 Jan 2023 13:29:19 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.135",
+      "version": "3.0.0-next.135",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "87e88957857392789d156d329a3826f6fdc1e828",
+            "comment": "tabs migration to fast"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "a5d699c9949a02c21b1e90e6f65b45a7aa30d297",
+            "comment": "menu item support secondary text"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 12 Jan 2023 07:26:00 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.134",
       "version": "3.0.0-next.134",
