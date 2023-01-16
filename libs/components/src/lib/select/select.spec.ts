@@ -97,6 +97,7 @@ describe('vwc-select', () => {
 	});
 
 	describe('multiple', () => {
+
 		it('should set multiple attribute on the element', async () => {
 			const multipleAttributeExistsWithMultipleFalse = element.hasAttribute('multiple');
 
@@ -116,10 +117,11 @@ describe('vwc-select', () => {
 			expect(popup?.hasAttribute('open')).toBeTruthy();
 		});
 
-		it('should add multiple class to control', async () => {
+		it('should render options only', async () => {
 			element.multiple = true;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.control.multiple')).toBeTruthy();
+			expect(element.shadowRoot?.querySelector('.control')).toBeFalsy();
+			expect(element.shadowRoot?.querySelector('.popup')).toBeTruthy();
 		});
 	});
 

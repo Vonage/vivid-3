@@ -13,10 +13,8 @@ const getStateClasses = ({
 	shape,
 	disabled,
 	appearance,
-	multiple
 }: Select) => classNames(
 	['disabled', disabled],
-	['multiple', multiple],
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 );
@@ -31,19 +29,11 @@ function renderLabel() {
 	  </label>`;
 }
 
-
-/**
- * @param context
- */
-function renderControl(context: ElementDefinitionContext) {
+function selectValue(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const focusTemplate = focusTemplateFactory(context);
-	const popupTag = context.tagFor(Popup);
-
 	return html<Select>`
-			${when(x => x.label, renderLabel())}
-			<div class="control-wrapper">
-				<div
+		<div
 					class="control ${getStateClasses}"
 					?disabled="${x => x.disabled}"
 					id="control"
@@ -55,6 +45,20 @@ function renderControl(context: ElementDefinitionContext) {
 					${() => affixIconTemplate('chevron-down-line')}
 					${() => focusTemplate}
 				</div>
+	`;
+}
+
+/**
+ * @param context
+ */
+function renderControl(context: ElementDefinitionContext) {
+	const focusTemplate = focusTemplateFactory(context);
+	const popupTag = context.tagFor(Popup);
+
+	return html<Select>`
+			${when(x => x.label, renderLabel())}
+			<div class="control-wrapper">
+				${when(x => !x.multiple, selectValue(context))}
 				<${popupTag}
 					?open="${x => (x.collapsible ? x.open : true)}"
 					anchor="control"
@@ -69,6 +73,7 @@ function renderControl(context: ElementDefinitionContext) {
                 ${ref('listbox')}
 								class="list-box"
 								>
+								${when(x => x.multiple, focusTemplate)}
                 <slot
                     ${slotted({
 		filter: Listbox.slottedOptionFilter as any,
@@ -117,6 +122,6 @@ export const SelectTemplate: (
         >
             ${renderControl(context)}
 		</template>
-
+// TODO:: add focus to the control-wrapper
 	`;
 };

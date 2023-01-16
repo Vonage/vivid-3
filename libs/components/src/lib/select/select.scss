@@ -73,10 +73,6 @@
 	}
 }
 
-.control.multiple {
-	display: none;
-}
-
 .list-box {
 	display: flex;
 	max-height: var(--select-height, auto);
@@ -93,6 +89,9 @@
 }
 
 .focus-indicator {
+	border-radius: 6px;
+	pointer-events: none;
+
 	:host(:not(:focus-visible)) & {
 		display: none;
 	}
