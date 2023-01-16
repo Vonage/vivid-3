@@ -185,12 +185,18 @@ describe('vwc-menu', () => {
 
 	describe('light dismiss', () => {
 		it('should hide when light dismiss and change', async () => {
+			element.innerHTML = `
+				<div role="menuitem" id="id1" text="Menu Item 1"></div>
+				<div role="menuitem" id="id2" text="Menu Item 2"></div>
+			`;
+
 			element.open = true;
 			element.lightDismiss = true;
 			await elementUpdated(element);
 			expect(element.open).toEqual(true);
 
-			element.dispatchEvent(new Event('change'));
+			await elementUpdated(element);
+			(element.parentNode as HTMLElement).click();
 			await elementUpdated(element);
 
 			expect(element.open).toEqual(false);
