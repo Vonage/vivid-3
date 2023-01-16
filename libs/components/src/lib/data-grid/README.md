@@ -29,7 +29,7 @@ Use `generate-header"` for data grid deader
 <script>
     const grid = document.querySelector('vwc-data-grid');
     
-    grid.generateHeader = ['sticky'];
+    grid.generateHeader = 'sticky';
     grid.rowsData = [
 
         {data1: 'data11', data2: 'data12'},
