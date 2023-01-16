@@ -31,6 +31,16 @@ export class Menu extends FastMenu {
 	@attr placement?: Placement;
 
 	/**
+	 * indicates whether the menu can be light dismissed
+	 *
+	 * @public
+	 * HTML Attribute: lightDismiss
+	 */
+	@attr({
+		mode: 'boolean',
+	}) lightDismiss?= false;
+
+	/**
 	 * ID reference to element in the menu's owner document.
 	 *
 	 * @public
