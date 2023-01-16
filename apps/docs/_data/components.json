@@ -302,6 +302,26 @@
 		]
 	},
 	{
+		"title": "tab",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/tab/README.md",
+		"modules": [
+			"/assets/modules/components/tabs/index.js",
+			"/assets/modules/components/tab/index.js",
+			"/assets/modules/components/tab-panel/index.js"
+		]
+	},
+	{
+		"title": "tabs",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/tabs/README.md",
+		"modules": [
+			"/assets/modules/components/tabs/index.js",
+			"/assets/modules/components/tab-panel/index.js",
+			"/assets/modules/components/tab/index.js"
+		]
+	},
+	{
 		"title": "combobox",
 		"status": "alpha",
 		"markdown": "./libs/components/src/lib/combobox/README.md",
