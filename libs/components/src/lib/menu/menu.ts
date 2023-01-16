@@ -20,7 +20,7 @@ export class Menu extends FastMenu {
 	 */
 	@attr({
 		mode: 'boolean',
-	}) open? = false;
+	}) open?= false;
 
 	/**
 	 * the placement of the menu
@@ -51,4 +51,18 @@ export class Menu extends FastMenu {
 	popupOpenChanged = () => {
 		this.open = (this._popup as Popup).open;
 	};
+
+	override disconnectedCallback(): void {
+		super.disconnectedCallback();
+		this.removeEventListener("change", this.#handleChange);
+	}
+
+	override connectedCallback(): void {
+		super.connectedCallback();
+		this.addEventListener("change", this.#handleChange);
+	}
+
+	#handleChange = () => {
+		if (this.lightDismiss) this._popup?.hidePopover();
+	}
 }
