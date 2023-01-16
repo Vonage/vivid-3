@@ -54,15 +54,15 @@ export class Menu extends FastMenu {
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		this.removeEventListener("change", this.#handleChange);
+		this.removeEventListener('change', this.#handleChange);
 	}
 
 	override connectedCallback(): void {
 		super.connectedCallback();
-		this.addEventListener("change", this.#handleChange);
+		this.addEventListener('change', this.#handleChange);
 	}
 
 	#handleChange = () => {
 		if (this.lightDismiss) this._popup?.hidePopover();
-	}
+	};
 }
