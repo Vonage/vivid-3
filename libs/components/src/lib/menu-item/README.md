@@ -17,6 +17,34 @@ Represents a menu-item custom element.
 
 ## Members
 
+### Text
+
+- Type: `string`
+- Default: `undefined`
+
+Use the `text` attribute to set the menu item's text.
+
+```html preview
+<vwc-menu open>
+  <vwc-menu-item text="Menu item"></vwc-menu-item>
+</vwc-menu>
+```
+
+### Secondary text
+
+- Type: `string`
+- Default: `undefined`
+
+Use the `text-secondary` attribute (or `textSecondary` property) to set the menu item's secondary text.
+
+Note: to improve readability, **avoid long text and multiple lines** where possible.
+
+```html preview
+<vwc-menu open>
+ <vwc-menu-item text="menu item" text-secondary="secondary text"></vwc-menu-item>
+</vwc-menu>
+```
+
 ### Role
 
 set `role` to change the role of the menu item
