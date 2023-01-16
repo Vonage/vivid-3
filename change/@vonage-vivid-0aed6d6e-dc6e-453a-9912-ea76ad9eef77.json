@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": " add light dismiss to menu",
+  "packageName": "@vonage/vivid",
+  "email": "rina.oksman@vonage.com",
+  "dependentChangeType": "patch"
+}
