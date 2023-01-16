@@ -9,7 +9,7 @@ Represents an avatar custom element.
 ```
 
 ```html preview
-<vwc-avatar></vwc-avatar>
+<vwc-avatar aria-label="avatar"></vwc-avatar>
 ```
 
 ## Members
@@ -28,15 +28,15 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 <vwc-avatar icon="group-2-solid"></vwc-avatar>
 ```
 
-### Name
+### Initials
 
-Set the `name` attribute to set avatar's initials.
+Set the `initials` attribute to set avatar's initials.
 
 - Type: `string`
 - Default: `none`
 
 ```html preview
-<vwc-avatar name="vivid avatar"></vwc-avatar>
+<vwc-avatar initials="vivid avatar"></vwc-avatar>
 ```
 
 ### Appearance
@@ -88,23 +88,23 @@ Use the `size` attribute/property to set the avatar's to one of the predefined b
 <vwc-avatar size='condensed' shape="pill"></vwc-avatar>
 <vwc-avatar size='normal' shape="pill"></vwc-avatar>
 <vwc-avatar size='expanded' shape="pill"></vwc-avatar>
-<vwc-avatar size='condensed' shape="pill" name="john doe"></vwc-avatar>
-<vwc-avatar size='normal' shape="pill" name="john doe"></vwc-avatar>
-<vwc-avatar size='expanded' shape="pill" name="john doe"></vwc-avatar>
+<vwc-avatar size='condensed' shape="pill" initials="john doe"></vwc-avatar>
+<vwc-avatar size='normal' shape="pill" initials="john doe"></vwc-avatar>
+<vwc-avatar size='expanded' shape="pill" initials="john doe"></vwc-avatar>
 ```
 
 ## Slots
 
-### Default
+### Graphic
 
-set a graphic media of any kind (e.g. image, illustration etc.'.)
+Assign nodes to the `graphic` slot to set a graphic media of any kind (e.g. image, illustration etc).
 
 ```html preview
 <vwc-avatar shape="pill" connotation="cta">
-<img src="https://images.pexels.com/photos/762080/pexels-photo-762080.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="woman"/>
+<img slot="graphic" src="https://images.pexels.com/photos/762080/pexels-photo-762080.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="woman"/>
 </vwc-avatar>
 <vwc-avatar shape="pill" connotation="cta">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" width="349.66" height="349.66" fill="none" version="1.1" viewBox="0 0 349.66 349.66">
+<svg slot="graphic" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" width="349.66" height="349.66" fill="none" version="1.1" viewBox="0 0 349.66 349.66">
   <metadata>
     <rdf:RDF>
       <cc:Work rdf:about="">
@@ -152,6 +152,12 @@ set a graphic media of any kind (e.g. image, illustration etc.'.)
       <stop stop-color="#fff" stop-opacity="0" offset="1"/>
     </linearGradient>
   </defs>
+  
 </svg>
 </vwc-avatar>
 ```
+
+## Accessibility
+It's generally a good idea to include an `aria-label` attribute on elements that are important for a user to be able to interact with or understand its purpose.  
+you could use an aria-label attribute like "Profile avatar" or "User profile picture" to describe the purpose of the avatar.  
+if your avatar is purely decorative and is not interactive, then you can use the `role="presentation"` attribute to indicate that the element is purely decorative.

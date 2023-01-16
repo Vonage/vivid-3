@@ -21,34 +21,47 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			top: 500px;
 			left: 300px;
 		}
+		#horizontal-icon {
+			position: relative;
+			top: 50px;
+			left: 0;
+		}
 	</style>
 	<div style="height: 800px">
 		<vwc-dialog id="top-dialog"
 								icon="info"
 								headline="Headline"
-								text="This is the content that I want to show and I will show it!!!"
+								subtitle="This is the content that I want to show and I will show it!!!"
 								open>
 								<div slot="main">This is the main content now - replacing EVERYTHING!</div>
 								</vwc-dialog>
 		<vwc-dialog id="modal"
 								icon="info"
 								headline="Headline"
-								text="This is the content that I want to show and I will show it!!!"
+								subtitle="This is the content that I want to show and I will show it!!!"
+								>
+								</vwc-dialog>
+								<vwc-dialog
+								id="horizontal-icon"
+								icon="heart-solid"
+								icon-placement="side"
+								headline="Horizontal icon"
+								open
 								>
 								</vwc-dialog>
 		<vwc-dialog id="bottom-left-dialog"
 								icon="info"
 								headline="Dialog with overridden graphic slot"
-								text="This is the content that I want to show and I will show it!!!"
+								subtitle="This is the content that I want to show and I will show it!!!"
 								open>
 								<vwc-icon name="home" slot="graphic"></vwc-icon>
 								</vwc-dialog>
 		<vwc-dialog id="bottom-right-dialog"
 								icon="info"
 								headline="Dialog with footer"
-								text="This is the content that I want to show and I will show it!!"
+								subtitle="This is the content that I want to show and I will show it!!"
 								open>
-								<div slot="content">
+								<div slot="body">
 									This text should appear instead of the text property value
 								</div>
 								<div slot="footer" class="demo-footer">

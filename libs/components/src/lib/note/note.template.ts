@@ -5,16 +5,9 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import {Connotation} from '../enums';
+import { Icon } from '../icon/icon';
 import type { Note } from './note';
 
-const connotationIconMap = new Map([
-	[Connotation.Information, 'info-solid'],
-	[Connotation.Announcement, 'megaphone-solid'],
-	[Connotation.Success, 'check-circle-solid'],
-	[Connotation.Warning, 'warning-solid'],
-	[Connotation.Alert, 'error-solid']
-]);
 
 const getClasses = ({ connotation }: Note) => classNames(
 	'base',
@@ -29,20 +22,6 @@ function getHeaderTemplate() {
 }
 
 /**
- * @param note
- */
-function getIconType(note: Note) {
-	return note.icon ? note.icon : note.connotation ? connotationIconMap.get(note.connotation) : 'megaphone-solid';
-}
-
-/**
- *
- */
-function getIconTemplate() {
-	return html<Note>`<vwc-icon class="icon" name="${getIconType}"></vwc-icon>`;
-}
-
-/**
  * The template for the {@link @microsoft/fast-foundation#Note} component.
  *
  * @param context
@@ -51,12 +30,16 @@ function getIconTemplate() {
 export const NoteTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Note> = () => html`
+) => ViewTemplate<Note> = (context: ElementDefinitionContext) => {
+	const iconTag = context.tagFor(Icon);
+
+	return html`
     <div class="${getClasses}">
-      ${getIconTemplate()}
+			${when( x => x.icon, html`<${iconTag} class="icon" name="${x => x.icon}"></${iconTag}>`)}
 			<div class="text">
 	        ${when(x => x.headline, getHeaderTemplate())}
 			    <slot class="message"></slot>
 			</div>
     </div>
 `;
+};

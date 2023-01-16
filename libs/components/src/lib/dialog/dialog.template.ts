@@ -5,18 +5,22 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import {classNames} from '@microsoft/fast-web-utilities';
+import { Elevation } from '../elevation/elevation';
+import { Icon } from '../icon/icon';
+import { Button } from '../button/button';
 import type {Dialog} from './dialog';
 
-const getClasses = (_: Dialog) => classNames(
+const getClasses = ({iconPlacement}: Dialog) => classNames(
 	'base',
+	[`icon-placement-${iconPlacement}`, Boolean(iconPlacement)],
 );
 
 /**
  *
  */
-function icon() {
+function icon(iconTag: string) {
 	return html<Dialog>`
-		<vwc-icon class="icon" name="${x => x.icon}"></vwc-icon>
+		<${iconTag} class="icon" name="${x => x.icon}"></${iconTag}>
 	`;
 }
 
@@ -31,20 +35,30 @@ function headline() {
 	`;
 }
 
+/**
+ *
+ */
+function subtitle() {
+	return html<Dialog>`
+	  <div class="subtitle">
+		  ${x => x.subtitle}
+	  </div>
+	`;
+}
 
 /**
  *
  */
-function renderDismissButton() {
+function renderDismissButton(buttonTag: string) {
 	return html<Dialog>`
-	  <vwc-button
+	  <${buttonTag}
 			  size="condensed"
 			  class="dismiss-button"
 			  icon="close-line"
 			  @click="${x => {
 		x.open = false;
 	}}">
-	  </vwc-button>`;
+	  </${buttonTag}>`;
 }
 
 /**
@@ -58,16 +72,6 @@ function handleEscapeKey(dialog: Dialog, event: Event) {
 }
 
 /**
- *
- */
-function content() {
-	return html<Dialog>`
-	  <div class="content">
-		  ${x => x.text}
-	  </div>
-	`;
-}
-/**
  * The template for the {@link @microsoft/fast-foundation#Dialog} component.
  *
  * @param context
@@ -76,8 +80,13 @@ function content() {
 export const DialogTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Dialog> = () => html<Dialog>`
-	<vwc-elevation dp="12">
+) => ViewTemplate<Dialog> = (context: ElementDefinitionContext) => {
+	const elevationTag = context.tagFor(Elevation);
+	const iconTag = context.tagFor(Icon);
+	const buttonTag = context.tagFor(Button);
+
+	return html<Dialog>`
+	<${elevationTag} dp="12">
 		<div>
 			<dialog class="${getClasses}"
 					@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
@@ -89,21 +98,18 @@ export const DialogTemplate: (
 				<slot name="main">
 					<div class="main-wrapper">
 						<div class="header">
-							<div class="headline-wrapper">
 								<slot name="graphic">
-									${when(x => x.icon, icon())}
+									${when(x => x.icon, icon(iconTag))}
 								</slot>
 								${when(x => x.headline, headline())}
-							</div>
-						${renderDismissButton()}
+								${when(x => x.subtitle, subtitle())}
+								${renderDismissButton(buttonTag)}
 						</div>
-						<slot name="content">
-							${when(x => x.text, content())}
-						</slot>
+						<slot name="body"></slot>
 						<slot name="footer"></slot>
 					</div>
 				</slot>
 			</dialog>
 		</div>
-	</vwc-elevation>`;
-
+	</${elevationTag}>`;
+};

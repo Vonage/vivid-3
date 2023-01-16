@@ -1,4 +1,4 @@
-@use 'variables' as variables;
+@use "variables" as variables;
 
 
 @mixin get-size-properties($block-size, $font-face) {
@@ -10,5 +10,6 @@
 
 	.icon {
 		font-size: calc(#{$block-size} / 2);
+		line-height: 1;
 	}
 }

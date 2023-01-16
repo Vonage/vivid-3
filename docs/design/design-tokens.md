@@ -53,14 +53,15 @@ Aside from the [color-related tokens](/designs/color-palette), you may use the f
 Use `--vvd-font-family-upright` to specify a base font family for your application. This is the default font family for all text elements.
 
 - Type: `string`
-- Default: `'SpeziaCompleteVariableUpright'` <!-- ! replace in #807  -->
+- Default: `'Montserrat'`
 
 Use `--vvd-font-family-monospace` to specify a monospace font family for your application. This is the default font family for code elements.
 
 - Type: `string`
-- Default: `'SpeziaMonoCompleteVariable'` <!-- ! replace in #807  -->
+- Default: `'Roboto Mono'`
 
-** Unless explicitely stated otherwise, Vonage products should use the brand specified `Spezia` font families. Vonage teams may review guidelines at the [Spezia webfont kit](https://github.com/Vonage/spezia-webfont-kit).
+Learn how to load fonts into your application [with google-fonts](https://fonts.google.com/knowledge/using_type/using_web_fonts_from_a_font_delivery_service#loading-web-fonts)
+
 
 ```html preview
 <style>
@@ -137,21 +138,36 @@ Due to a11y and design constraints, the density can only be set to one of the fo
 - Type: `-1` | `0` | `1` | `2`
 - Default: `0`
 
-```html preview
+```html preview blocks
 <style>
- :root {
-  --vvd-size-density: -1;
+ #scoped-region {
+  --vvd-size-density: 1;
  }
 </style>
 
-<vwc-header>
-  This header is condensed
-</vwc-header>
+<vwc-number-field label="Choose density" helper-text="Change density value" min="-1" max="2" value="1" style="justify-self: flex-start; width: 105px;"></vwc-number-field>
 
-<pre>/*
- * This block of code is not affected
- */
-</pre>
+<vwc-divider></vwc-divider>
 
-<vwc-button appearance="filled" label="But the button is"></vwc-button>
+<div id="scoped-region">
+
+ <form style="width: 250px">
+  <vwc-layout column-basis="block">
+
+   <vwc-text-field label="First name:"></vwc-text-field>
+
+   <vwc-text-field label="Last name:"></vwc-text-field>
+
+   <vwc-button appearance="filled" label="Submit"></vwc-button>
+
+  </vwc-layout>
+ </form>
+
+</div>
+
+<script>
+  const root = document.querySelector('#scoped-region');
+  const numberfield = document.querySelector('vwc-number-field');
+  numberfield.addEventListener('change', (e) => root.style.setProperty('--vvd-size-density', e.target.value));
+</script>
 ```
