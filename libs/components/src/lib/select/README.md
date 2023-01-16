@@ -148,7 +148,7 @@ Default: `fit-content`
     block-size: 230px;
   }
   vwc-select {
-    --select-height: 100px;
+    --select-height: 200px;
   }
 </style>
 <vwc-select>
@@ -158,6 +158,7 @@ Default: `fit-content`
   <vwc-option value="4" text="Option 4"></vwc-option>
   <vwc-option value="5" text="Option 5"></vwc-option>
   <vwc-option value="6" text="Option 6"></vwc-option>
+  <vwc-option value="7" text="Option 7"></vwc-option>
 </vwc-select>
 ```
 
