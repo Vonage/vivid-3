@@ -135,27 +135,6 @@ _Select_ internally uses _popup_ to display an element and its descendants above
 ```
 
 ## CSS Variables
-### Select-width
-By default, popover element is fit-content width.  
-Use the `--select-width` to 100% to fit it to the control width.
-
-Type: `string`
-Default: `fit-content`
-
-```html preview
-<style>
-  html { /* for demo purposes */
-    block-size: 230px;
-  }
-  vwc-select {
-    --select-width: 100%;
-  }
-</style>
-<vwc-select>
-  <vwc-option value="1" text="Option 1"></vwc-option>
-  <vwc-option value="2" text="Option 2"></vwc-option>
-</vwc-select>
-```
 
 ### Select-height
 If there are many options in the list-box, set a height with the `--select-height`.

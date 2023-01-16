@@ -85,7 +85,7 @@
 .popup {
 	$popup-width: --_popup-width;
 
-	#{$popup-width}: var(--select-width, fit-content);
+	#{$popup-width}: 100%;
 }
 
 .focus-indicator {
