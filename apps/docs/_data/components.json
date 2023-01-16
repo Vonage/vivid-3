@@ -307,7 +307,8 @@
 		"markdown": "./libs/components/src/lib/tab/README.md",
 		"modules": [
 			"/assets/modules/components/tabs/index.js",
-			"/assets/modules/components/tab/index.js"
+			"/assets/modules/components/tab/index.js",
+			"/assets/modules/components/tab-panel/index.js"
 		]
 	},
 	{
