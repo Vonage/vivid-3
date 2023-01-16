@@ -1,8 +1,17 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Thu, 12 Jan 2023 07:26:00 GMT and should not be manually modified.
+This log was last generated on Mon, 16 Jan 2023 13:29:19 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.135
+
+Mon, 16 Jan 2023 13:29:19 GMT
+
+### Changes
+
+- tabs migration to fast (yinon@hotmail.com)
+- menu item support secondary text (yinon@hotmail.com)
 
 ## 3.0.0-next.134
 
