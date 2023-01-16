@@ -1,0 +1,94 @@
+@use "../tabs/partials/variables" as tabs-variables;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "../focus/partials/variables" as focus-variables;
+
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+	$appearances: ghost,
+	$states: idle hover disabled active,
+	$default: ghost
+);
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+
+
+@supports selector(:focus-visible) {
+	:host(:focus) {
+		outline: none;
+	}
+}
+
+:host(.vertical) {
+	justify-content: end;
+	grid-column: 1 / auto;
+}
+
+.base {
+	$min-block-size: 48px;
+	@include appearance.appearance;
+
+	position: relative;
+	display: flex;
+	box-sizing: border-box;
+	align-items: center;
+	padding: var(#{tabs-variables.$tabs-tablist-gutter});
+	background-color: var(#{appearance.get-appearance-token(fill)});
+	border-radius: 6px;
+	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+	color: var(#{appearance.get-appearance-token(text)});
+	font: var(#{constants.$vvd-typography-base});
+	gap: var(#{tabs-variables.$tabs-tablist-gutter});
+	min-block-size: $min-block-size;
+	vertical-align: middle;
+	white-space: nowrap;
+
+	@supports (user-select: none) {
+		user-select: none;
+	}
+
+	&:not(.disabled) {
+		cursor: pointer;
+	}
+
+	&.disabled {
+		cursor: not-allowed;
+	}
+
+	:host(.vertical) & {
+		padding-inline-start: calc(var(#{tabs-variables.$tabs-active-indicator-stroke-width}) + var(#{tabs-variables.$tabs-tablist-gutter}));
+	}
+}
+
+.focus-indicator {
+	:host(:not(:focus-visible)) & {
+		display: none;
+	}
+}
+
+.icon {
+	font-size: 20px;
+}
+
+:host(:not(.vertical)) {
+	.base::after {
+		position: absolute;
+		background: currentColor;
+		block-size: 2px;
+		content: "";
+		inline-size: calc(100% + var(#{tabs-variables.$tabs-tablist-gutter}) * 2);
+		inset-block-end: calc(var(#{tabs-variables.$tabs-tablist-gutter}) * -2);
+		margin-inline: calc(var(#{tabs-variables.$tabs-tablist-gutter}) * -2);
+		pointer-events: none;
+		transition-property: opacity;
+	}
+
+	&:host([aria-selected="true"]) {
+		.base::after {
+			transition-delay: #{tabs-variables.$tabs-active-indicator-transition-delay};
+		}
+	}
+
+	&:host(:not([aria-selected="true"])) {
+		.base::after {
+			opacity: 0;
+		}
+	}
+}
