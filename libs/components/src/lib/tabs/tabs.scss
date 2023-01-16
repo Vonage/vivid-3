@@ -36,7 +36,7 @@
 	gap: var(#{variables.$tabs-tablist-gutter});
 
 	.base.orientation-vertical & {
-		box-shadow: 1px 0 0 0 var(--vvd-color-neutral-300);
+		box-shadow: 1px 0 0 0 var(#{constants.$vvd-color-neutral-300});
 		grid-row: 1 / 2;
 		grid-template-columns: auto 1fr;
 		grid-template-rows: auto;
