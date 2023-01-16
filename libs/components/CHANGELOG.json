@@ -2,6 +2,87 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Mon, 16 Jan 2023 13:29:19 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.135",
+      "version": "3.0.0-next.135",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "87e88957857392789d156d329a3826f6fdc1e828",
+            "comment": "tabs migration to fast"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "a5d699c9949a02c21b1e90e6f65b45a7aa30d297",
+            "comment": "menu item support secondary text"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 12 Jan 2023 07:26:00 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.134",
+      "version": "3.0.0-next.134",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "c266125a077b519a53d8b1b22f303257cb57223f",
+            "comment": "remove default connotation based icon"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 11 Jan 2023 20:23:02 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.133",
+      "version": "3.0.0-next.133",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "8ed11fbf1d209f2b7c4ca7dd39557f117c843670",
+            "comment": "fix icon vertical alignment"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 11 Jan 2023 12:40:43 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.132",
+      "version": "3.0.0-next.132",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "69002167be17c64460bffd56495834fbc86d99be",
+            "comment": "add px to icon docs"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 11 Jan 2023 06:39:43 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.132",
+      "version": "3.0.0-next.132",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "938be8ff399834f4ebc2446f19c613706dc2e807",
+            "comment": "dialog subtitle"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 08 Jan 2023 11:03:35 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.131",
       "version": "3.0.0-next.131",

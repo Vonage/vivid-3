@@ -1,8 +1,41 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 08 Jan 2023 11:03:35 GMT and should not be manually modified.
+This log was last generated on Mon, 16 Jan 2023 13:29:19 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.135
+
+Mon, 16 Jan 2023 13:29:19 GMT
+
+### Changes
+
+- tabs migration to fast (yinon@hotmail.com)
+- menu item support secondary text (yinon@hotmail.com)
+
+## 3.0.0-next.134
+
+Thu, 12 Jan 2023 07:26:00 GMT
+
+### Changes
+
+- remove default connotation based icon (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.133
+
+Wed, 11 Jan 2023 20:23:02 GMT
+
+### Changes
+
+- fix icon vertical alignment (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.132
+
+Wed, 11 Jan 2023 06:39:43 GMT
+
+### Changes
+
+- dialog subtitle (rachel.tannenbaum@vonage.com)
 
 ## 3.0.0-next.131
 

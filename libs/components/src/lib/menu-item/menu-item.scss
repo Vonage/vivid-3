@@ -34,13 +34,18 @@
 	box-sizing: border-box;
 	align-items: center;
 	background-color: var(#{appearance.get-appearance-token(fill)});
-	block-size: #{size.$vvd-size-normal};
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-	color: var(#{appearance.get-appearance-token(text)});
-	font: var(#{constants.$vvd-typography-base});
 	gap: $gap;
 	inline-size: 100%;
 	padding-inline: $gutter;
+
+	&:not(.two-lines) {
+		block-size: #{size.$vvd-size-normal};
+	}
+
+	&.two-lines {
+		block-size: calc(#{size.$vvd-size-normal} + #{size.$vvd-size-super-condensed});
+	}
 
 	@supports(user-select: none) {
 		user-select: none;
@@ -75,7 +80,28 @@
 }
 
 .text {
+	display: flex;
 	overflow: hidden;
+	flex-direction: column;
+}
+
+.text-primary,
+.text-secondary {
+	overflow: hidden;
+	color: var(#{appearance.get-appearance-token(text)});
+	font: var(#{constants.$vvd-typography-base});
 	text-overflow: ellipsis;
 	white-space: nowrap;
+}
+
+.text-primary {
+	.base.two-lines & {
+		font: var(#{constants.$vvd-typography-base-bold});
+	}
+}
+
+.text-secondary {
+	.base.two-lines & {
+		color: var(#{constants.$vvd-color-neutral-600});
+	}
 }
