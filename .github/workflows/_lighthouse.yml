@@ -1,0 +1,27 @@
+name: Lighthouse
+
+on: workflow_call
+
+jobs:
+  static-dist-dir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+          cache: "npm"
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Site
+        run: npx nx run docs:build
+
+      # name: Run Lighthouse against a static dist dir
+      - uses: treosh/lighthouse-ci-action@v9
+        with:
+          # no urls needed, since it uses local folder to scan .html files
+          configPath: "./lighthouserc.json"
+          uploadArtifacts: true # save results as an action artifacts
+          temporaryPublicStorage: true # upload lighthouse report to the temporary storage
