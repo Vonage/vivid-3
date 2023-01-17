@@ -13,6 +13,7 @@
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 @use "../focus/partials/variables" as focus-variables;
+@use "partials/variables" as variables;
 
 
 @supports selector(:focus-visible) {
@@ -43,6 +44,7 @@
 	justify-content: space-between;
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	block-size: 100%;
+	border-radius: var(#{variables.$select-control-border-radius});
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
@@ -50,7 +52,6 @@
 	min-block-size: #{size.$vvd-size-normal};
 	padding-inline: 16px;
 	transition: box-shadow .2s, background-color .2s;
-
 	&-wrapper {
 		position: relative;
 		min-width: fit-content;
@@ -65,11 +66,11 @@
 	}
 
 	&:not(.shape-pill) {
-		border-radius: 6px;
+		#{variables.$select-control-border-radius}: 6px;
 	}
 
 	&.shape-pill {
-		border-radius: 24px;
+		#{variables.$select-control-border-radius}: 24px;
 	}
 }
 
@@ -89,7 +90,7 @@
 }
 
 .focus-indicator {
-	border-radius: 6px;
+	border-radius: var(#{variables.$select-control-border-radius});
 	pointer-events: none;
 
 	:host(:not(:focus-visible)) & {
