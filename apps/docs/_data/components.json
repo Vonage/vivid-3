@@ -329,5 +329,14 @@
 			"/assets/modules/components/combobox/index.js",
 			"/assets/modules/components/option/index.js"
 		]
+	},
+	{
+		"title": "select",
+		"markdown": "./libs/components/src/lib/select/README.md",
+		"modules": [
+			"/assets/modules/components/select/index.js",
+			"/assets/modules/components/listbox-option/index.js",
+			"/assets/modules/components/icon/index.js"
+		]
 	}
 ]
