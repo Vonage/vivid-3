@@ -1,8 +1,28 @@
 @use "partials/variables" as variables;
+@forward "../../../../../node_modules/@oddbird/popover-polyfill/dist/popover.css";
 
+[popover] {
+	all: unset;
+}
 
 .base {
 	max-inline-size: var(#{variables.$menu-max-inline-size}, 100%);
 	min-inline-size: var(#{variables.$menu-min-inline-size});
 	padding-block: 8px;
+}
+
+// ! update popover to .6 and remove this
+/* stylelint-disable selector-class-pattern */
+[popover]:not(.\:open) {
+  display: none;
+}
+/* stylelint-enable selector-class-pattern */
+
+[popover][anchor] {
+  inset: auto;
+}
+
+/* Necessary for compatibility with Chrome */
+[popover]:not(:-internal-popover-hidden) {
+  display: block;
 }

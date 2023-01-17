@@ -329,5 +329,13 @@
 			"/assets/modules/components/combobox/index.js",
 			"/assets/modules/components/option/index.js"
 		]
+	},
+	{
+		"title": "popup",
+		"status": "underlying",
+		"markdown": "./libs/components/src/lib/popup/README.md",
+		"modules": [
+			"/assets/modules/components/popup/index.js"
+		]
 	}
 ]

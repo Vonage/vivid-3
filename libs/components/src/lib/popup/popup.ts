@@ -33,7 +33,7 @@ export class Popup extends FoundationElement {
 	 * HTML Attribute: open
 	 */
 	@attr({
-		mode: 'boolean',
+		mode: 'fromView',
 	}) open = false;
 	openChanged(_: boolean, newValue: boolean): void {
 		newValue ? this.$emit('open') : this.$emit('close');
