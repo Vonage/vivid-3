@@ -16,20 +16,9 @@ type SelectShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  */
 @formElements
 export class Select extends FoundationSelect {
-	/**
-	 * Indicates the select's label.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: label
-	 */
+
 	@attr appearance?: SelectAppearance;
 	@attr shape?: SelectShape;
-
-	/**
-	 *
-	 * HTML Attribute: string
-	 */
 
 	_popup!: Popup;
 	_anchor!: HTMLElement;
