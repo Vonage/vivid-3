@@ -8,7 +8,7 @@ import { menuDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-menu';
 
-describe('vwc-menu', () => {
+describe.only('vwc-menu', () => {
 	let element: Menu;
 
 	global.ResizeObserver = jest.fn()
@@ -195,8 +195,7 @@ describe('vwc-menu', () => {
 			await elementUpdated(element);
 			expect(element.open).toEqual(true);
 
-			await elementUpdated(element);
-			(element.parentNode as HTMLElement).click();
+			element.dispatchEvent(new Event('change'));
 			await elementUpdated(element);
 
 			expect(element.open).toEqual(false);
