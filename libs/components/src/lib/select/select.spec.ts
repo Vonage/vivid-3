@@ -163,7 +163,6 @@ describe('vwc-select', () => {
 		});
 	});
 
-	// TODO::check validation tests
 	describe('validation', function () {
 		function setValidityToError(errorMessage = 'error') {
 			element.setValidity({badInput: true}, errorMessage);
