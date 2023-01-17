@@ -8,7 +8,7 @@ import { menuDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-menu';
 
-describe.only('vwc-menu', () => {
+describe('vwc-menu', () => {
 	let element: Menu;
 
 	global.ResizeObserver = jest.fn()
