@@ -10,7 +10,7 @@ import type { Popup } from '../popup/popup';
  * @public
  */
 export class Menu extends FastMenu {
-	_popup?: Popup;
+	_popup!: Popup;
 
 	/**
 	 * indicates whether the menu is open
@@ -63,6 +63,6 @@ export class Menu extends FastMenu {
 	}
 
 	#handleChange = () => {
-		if (this.lightDismiss) this._popup?.hidePopover();
+		if (this.lightDismiss) this._popup.hidePopover();
 	};
 }
