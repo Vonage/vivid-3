@@ -30,18 +30,18 @@ export const popupTemplate: (
 	const buttonTag = context.tagFor(Button);
 
 	return html`
-	<${elevationTag}>
-		<div class="popup-wrapper ${(x) => x.strategy}" ${ref('popupEl')}>
+  <${elevationTag}>
+	  <div class="popup-wrapper ${(x) => x.strategy}" ${ref('popupEl')}>
 			<div class="${getClasses}" aria-hidden="${(x) => x.open ? 'false' : 'true'}"
 				part="${(x) => x.alternate ? 'vvd-theme-alternate' : ''}">
 				<div class="popup-content">
 					<slot></slot>
 					${when(x => x.dismissible,
-					html<Popup>`<${buttonTag} size="condensed" @click="${x => (x.open = false)}" class="dismissible-button"
-							icon="close-small-solid" shape="pill"></${buttonTag}>`)}
+		html<Popup>`<${buttonTag} size="condensed" @click="${x => (x.open = false)}"
+						class="dismissible-button" icon="close-small-solid" shape="pill"></${buttonTag}>`)}
 				</div>
 				${when(x => x.arrow, html<Popup>`<div class="arrow" ${ref('arrowEl')}></div>`)}
 			</div>
-		</div>
-	</${elevationTag}>`;
+    </div>
+  </${elevationTag}>`;
 };
