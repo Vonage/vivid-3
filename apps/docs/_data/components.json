@@ -348,5 +348,14 @@
 			"/assets/modules/components/layout/index.js",
 			"/assets/modules/components/icon/index.js"
 		]
+	},
+	{
+		"title": "listbox",
+		"status": "underlying",
+		"markdown": "./libs/components/src/lib/listbox/README.md",
+		"modules": [
+			"/assets/modules/components/listbox/index.js",
+			"/assets/modules/components/option/index.js"
+		]
 	}
 ]
