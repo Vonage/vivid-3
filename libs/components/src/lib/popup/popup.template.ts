@@ -43,4 +43,5 @@ export const popupTemplate: (
 				${when(x => x.arrow, html<Popup>`<div class="arrow" ${ref('arrowEl')}></div>`)}
 			</div>
 		</div>
-	</${elevationTag}>};
+	</${elevationTag}>`;
+};
