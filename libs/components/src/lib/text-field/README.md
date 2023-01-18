@@ -10,7 +10,7 @@ While `text-field` follows [the W3C specifictation](https://developer.mozilla.or
 - `tel`
 - `url`
 
-If you wish to use `type="number"`, refer to the [`number-field`](https://vivid.deno.dev/components/number-field) component.
+If you wish to use `type="number"`, refer to the [`number-field`](/number-field) component.
 
 ```js
 <script type="module">
