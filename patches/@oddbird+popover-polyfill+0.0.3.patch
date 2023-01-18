@@ -399,7 +399,7 @@ index 46f6e4e..79dae38 100644
 +		}
 +	});
  }
-
+ 
  // src/index.ts
  if (!isSupported())
 -  apply();
@@ -433,7 +433,7 @@ index 349b13a..d666b26 100644
      );
 @@ -116,7 +125,7 @@ export function apply() {
      }
-
+ 
      // Dismiss open Popovers
 -    for (const popover of doc.querySelectorAll(
 +    for (const popover of querySelectorAllDeep(
