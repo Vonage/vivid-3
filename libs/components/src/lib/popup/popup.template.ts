@@ -7,9 +7,10 @@ import { Button } from '../button/button';
 import type { Popup } from './popup';
 
 const getClasses = ({
-	dismissible, alternate
+	open, dismissible, alternate
 }: Popup) => classNames(
 	'control',
+	['open', Boolean(open)],
 	['dismissible', Boolean(dismissible)],
 	['alternate', Boolean(alternate)]
 );
@@ -42,5 +43,4 @@ export const popupTemplate: (
 				${when(x => x.arrow, html<Popup>`<div class="arrow" ${ref('arrowEl')}></div>`)}
 			</div>
 		</div>
-	</${elevationTag}>`;
-};
+	</${elevationTag}>};

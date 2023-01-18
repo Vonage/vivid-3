@@ -6,6 +6,10 @@
 	border-radius: inherit;
 	contain: layout;
 	inline-size: var(#{variables.$popup-width}, fit-content);
+
+	&:not(.open) {
+		display: none;
+	}
 }
 
 .popup-wrapper {

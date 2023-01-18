@@ -10,7 +10,7 @@
   </vwc-nav-disclosure>
 
   <vwc-nav-disclosure label="Components" open>
-    {%  for item in components | underlyingComponentsFilter | sort(false, false, 'title') %}
+    {%  for item in components | publicComponentsFilter | sort(false, false, 'title') %}
     <vwc-nav-item
 			href="{{ ('/components/' + item.title) | url }}"
 			text="{{ item.title | replace("-", " ") | capitalize }}	{% if (item.status) == "alpha" %}🧪{% endif %}"

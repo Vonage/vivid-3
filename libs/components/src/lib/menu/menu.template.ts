@@ -32,7 +32,6 @@ export const MenuTemplate: (
 				@open="${x => x.popupOpenChanged()}"
 				@close="${x => x.popupOpenChanged()}"
 				${ref('_popup')}
-				popover="auto"
 				>
 				<div class="base" role="menu" @keydown="${(x, c) => x.handleMenuKeyDown(c.event as KeyboardEvent)}"
 					@focusout="${(x, c) => x.handleFocusOut(c.event as FocusEvent)}">
