@@ -40,7 +40,7 @@ describe('vwc-text-area', () => {
 	describe('basic', () => {
 		it('should be initialized as a vwc-text-field', async () => {
 			const elmProps = {
-				charCount: false,
+				charCount: undefined,
 				cols: 20,
 				dirtyValue: false,
 				disabled: false,
