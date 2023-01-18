@@ -32,6 +32,7 @@ export * from './progress/definition';
 export * from './progress-ring/definition';
 export * from './radio/definition';
 export * from './radio-group/definition';
+export * from './select/definition';
 export * from './side-drawer/definition';
 export * from './slider/definition';
 export * from './switch/definition';
