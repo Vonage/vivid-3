@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "update appearance colors for ghost and outlined",
+  "packageName": "@vonage/vivid",
+  "email": "rachel.tannenbaum@vonage.com",
+  "dependentChangeType": "patch"
+}
