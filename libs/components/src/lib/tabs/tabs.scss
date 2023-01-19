@@ -1,7 +1,7 @@
 @use "../tabs/partials/variables" as variables;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent,
-	$shades: primary primary-text primary-increment faint soft,
+	$shades: primary primary-text primary-increment faint soft dim,
 	$default: accent
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;

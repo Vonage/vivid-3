@@ -121,15 +121,15 @@ $states-mapping: (
   ),
   selected: (
     ghost: (
-      text: var(#{connotation.get-connotation-token(primary-text)}),
-      fill: var(#{connotation.get-connotation-token(primary)}),
+      text: var(#{connotation.get-connotation-token(primary)}),
+      fill: var(#{connotation.get-connotation-token(dim)}),
       outline: transparent,
     )
   ),
   selectedAndHover: (
     ghost: (
-      text: var(#{connotation.get-connotation-token(primary-text)}),
-      fill: var(#{connotation.get-connotation-token(primary-increment)}),
+      text: var(#{connotation.get-connotation-token(primary)}),
+      fill: var(#{connotation.get-connotation-token(dim)}),
       outline: transparent,
     )
   ),

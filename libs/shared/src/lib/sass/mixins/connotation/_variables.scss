@@ -10,6 +10,7 @@
     intermediate: #{utils.get-color-token(#{$type}-500)},
     contrast: #{utils.get-color-token(#{$type}-800)},
     soft: #{utils.get-color-token(#{$type}-100)},
+    dim: #{utils.get-color-token(#{$type}-200)},
     firm: #{utils.get-color-token(#{$type}-600)},
     faint: #{utils.get-color-token(#{$type}-50)},
     backdrop: #{utils.get-color-token(#{$type}-50)},
