@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "progress ring stroke width",
+  "packageName": "@vonage/vivid",
+  "email": "rachel.tannenbaum@vonage.com",
+  "dependentChangeType": "patch"
+}
