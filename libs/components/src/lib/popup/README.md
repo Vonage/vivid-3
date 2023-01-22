@@ -21,10 +21,8 @@ The popup is positioned in a fixed manner to its anchor.
 - Default: `''`
 
 ```html preview center
-<span id="anchor">
-  ⚓️
-</span>
-<vwc-popup anchor="anchor" open>
+<vwc-button id="anchor" popovertoggletarget="popup" label="toggle popup"></vwc-button>
+<vwc-popup popover id="popup" anchor="anchor" open>
   This is a popup.
 </vwc-popup>
 ```
@@ -71,7 +69,8 @@ Add the `dismissible` attribute to add a close button to the popup.
 
 ### Popover
 
-Use the `popover` attribute to add Light dismiss behaviors. 
+Use the `popover` attribute to add Light dismiss behaviors.
+
 - When `'auto'` the following will dismiss the popup: ~~pressing the ESC key~~ (TBD), ~~keyboard-navigation~~ (TBD), invoking elsewhere in the document, invoking another popup, etc.
 - When `'manual'`, popup cannot be light dismissed (it can only be dismissed by an explicit trigger element or by JavaScript), and they don't automatically dismiss previously-shown popups.
 
@@ -89,7 +88,8 @@ Use the `popover` attribute to add Light dismiss behaviors.
   anchor.addEventListener('click', () => popover.open = !popover.open);
 </script>
 ```
- ### Arrow
+
+### Arrow
 
 Add the `arrow` attribute to add a small triangle to indicate the trigger element.
 
@@ -197,4 +197,4 @@ Popup component is a low level element, unaware of its document context, but is,
 
 A common practice used in apps / frameworks to promote a popup component to top other elements z-axis, is to utilise a service that dynamically appends a popup component to the end of the body element, when called for.
 
-This helps ensure elements don't render over top a popup undesirebly. 
+This helps ensure elements don't render over top a popup undesirebly.
