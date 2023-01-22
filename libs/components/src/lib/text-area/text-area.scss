@@ -75,6 +75,7 @@ $low-ink-color: --_low-ink-color;
 
 	&:disabled {
 		cursor: not-allowed;
+		pointer-events: none;
 		opacity: 1; /* 2. correct opacity on iOS */
 		-webkit-text-fill-color: var(#{appearance.get-appearance-token(text)}); /* 1. sets text fill to current `color` for safari */
 	}

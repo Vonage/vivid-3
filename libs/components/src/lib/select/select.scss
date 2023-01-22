@@ -63,6 +63,7 @@
 
 	&.disabled {
 		cursor: not-allowed;
+		pointer-events: none;
 	}
 
 	&:not(.shape-pill) {
