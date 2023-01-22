@@ -2,6 +2,21 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Sun, 22 Jan 2023 12:09:10 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.137",
+      "version": "3.0.0-next.137",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "833e1a05e25f02d296a55ed0c9b1be198d0d2fee",
+            "comment": "progress ring stroke width"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 17 Jan 2023 16:12:04 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.136",
       "version": "3.0.0-next.136",
