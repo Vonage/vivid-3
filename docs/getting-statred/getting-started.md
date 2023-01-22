@@ -1,51 +1,19 @@
 # Getting Started with Vivid@next
+Step-by-step instructions for setting up vivid@next
 
 
-If you do not have a vivid@2.x installed - you can move on to **[install vivid-next]**(#install-vivid@next)
+In case vivid@2.x is installed in your project, make sure you follow the  **[Pre-Installation]**(#Pre-Installation)
 
-## Pre Installation (for projects with vivid@2 installed)
-
-
-Vivid@next can be installed alongside vivid@2.x but there are some prerequisites:
-
-The project needs to import vivid@2 components individually and not as a whole package.
-
-DON’T:
-
-
-```
-"@vonage/vivid": "^2.37.0",# previous vivid version
-"@vonage/vivid": "next", # new vivid version
-```
-
-
-DO:
-
-
-```
-# Vivid new version
-"@vonage/vivid": "next",
-
-# Vivid previous version
-"@Vonage/vwc-accordion": "2.37.0",
-"@Vonage/vwc-action-group": "2.37.0",
-"@Vonage/vwc-audio": "2.37.0",
-...
-```
 
 ---
 ## install vivid@next
 
-
 ```
 npm install @vonage/vivid@next
 ```
-
 ---
 
 ## Setting the prefix
-
-
 
 ```
 import { registerDialog } from '@vonage/vivid';
@@ -210,12 +178,38 @@ Now it's time to use the components with the prefix you set. If you set the pref
 <dashboard-badge text="dashboard scoped badge"></dashboard-badge>
 ```
 
+## Pre Installation
+
+
+Vivid@next can be installed alongside vivid@2.x but there are some prerequisites:
+
+The project needs to import vivid@2 components individually and not as a whole package.
+
+DON’T:
+
+
+```json
+"@vonage/vivid": "^2.37.0", // previous vivid version
+"@vonage/vivid": "next", // new vivid version
+```
+
+DO:
+```json
+# Vivid new version
+"@vonage/vivid": "next",
+
+# Vivid previous version
+"@Vonage/vwc-accordion": "2.37.0",
+"@Vonage/vwc-action-group": "2.37.0",
+"@Vonage/vwc-audio": "2.37.0",
+...
+```
+
 
 
 ---
 
 ## Have fun using vivid-next components :)
-
 
 ### Have questions?
 
