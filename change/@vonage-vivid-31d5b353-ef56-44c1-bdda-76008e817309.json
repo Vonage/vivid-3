@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "offload popup code to polyfill",
+  "packageName": "@vonage/vivid",
+  "email": "yinon.oved@vonage.com",
+  "dependentChangeType": "none"
+}
