@@ -83,6 +83,7 @@ $low-ink-color: --_low-ink-color;
 	&::placeholder,
 	&:disabled::placeholder {
 		opacity: 1; /* 2. correct opacity on iOS */
+		pointer-events: none;
 		-webkit-text-fill-color: var(#{$low-ink-color}); /* 1. sets text fill to current `color` for safari */
 	}
 
