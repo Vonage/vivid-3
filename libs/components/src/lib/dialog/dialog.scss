@@ -28,6 +28,16 @@
 	&:not(.modal) {
 		z-index: var(#{variables.$dialog-z-index}, 1);
 	}
+
+	&.modal {
+		filter: var(#{constants.$vvd-shadow-surface-24dp});
+
+		&::backdrop {
+			background-color: currentColor; // using as current color cause ::backdrop doesn't inherit root variables
+			opacity: 0.5;
+		}
+	}
+
 }
 
 .main-wrapper {
