@@ -8,6 +8,33 @@ import type {Dialog} from './dialog';
 
 const components = ['dialog'];
 
+test('should set preventDefault to false on keydown event', async ({ page }: { page: Page }) => {
+	const template = `
+		<vwc-dialog id="dialog" open>
+			<div slot="main"><input id="input"/></div>
+		</vwc-dialog>
+	`;
+	await loadComponents({
+		page,
+		components,
+	});
+	await loadTemplate({
+		page,
+		template,
+	});
+
+	const input = await page.locator('#input');
+
+	await page.waitForLoadState('networkidle');
+
+	await input.focus();
+	const typedValue = 'abc';
+	await page.keyboard.type(typedValue);
+
+	expect(await input.inputValue()).toBe(typedValue);
+
+});
+
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 	<style>
@@ -31,14 +58,14 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-dialog id="top-dialog"
 								icon="info"
 								headline="Headline"
-								text="This is the content that I want to show and I will show it!!!"
+								subtitle="This is the content that I want to show and I will show it!!!"
 								open>
 								<div slot="main">This is the main content now - replacing EVERYTHING!</div>
 								</vwc-dialog>
 		<vwc-dialog id="modal"
 								icon="info"
 								headline="Headline"
-								text="This is the content that I want to show and I will show it!!!"
+								subtitle="This is the content that I want to show and I will show it!!!"
 								>
 								</vwc-dialog>
 								<vwc-dialog
@@ -52,16 +79,16 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-dialog id="bottom-left-dialog"
 								icon="info"
 								headline="Dialog with overridden graphic slot"
-								text="This is the content that I want to show and I will show it!!!"
+								subtitle="This is the content that I want to show and I will show it!!!"
 								open>
 								<vwc-icon name="home" slot="graphic"></vwc-icon>
 								</vwc-dialog>
 		<vwc-dialog id="bottom-right-dialog"
 								icon="info"
 								headline="Dialog with footer"
-								text="This is the content that I want to show and I will show it!!"
+								subtitle="This is the content that I want to show and I will show it!!"
 								open>
-								<div slot="content">
+								<div slot="body">
 									This text should appear instead of the text property value
 								</div>
 								<div slot="footer" class="demo-footer">

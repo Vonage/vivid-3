@@ -1,19 +1,18 @@
 Checking for changes against "origin/main"
 fetching latest from remotes "origin/main"
+"@vonage/vivid" has a "none" change type, no version bump is required.
 Validating no private package among package dependencies
  OK!
 
+"@vonage/vivid" has a "none" change type, no version bump is required.
 Updating package-lock.json after bumping packages
 
-up to date, audited 1722 packages in 3s
+up to date, audited 1719 packages in 3s
 
 202 packages are looking for funding
   run `npm fund` for details
 
-8 vulnerabilities (2 moderate, 2 high, 4 critical)
-
-To address issues that do not require attention, run:
-  npm audit fix
+6 vulnerabilities (2 moderate, 3 high, 1 critical)
 
 To address all issues possible, run:
   npm audit fix --force
@@ -22,3 +21,6 @@ Some issues need review, and may require choosing
 a different dependency.
 
 Run `npm audit` for details.
+Removing change files:
+- @vonage-vivid-76c6ee66-4ebe-4b5e-86c3-cf92b682d7e7.json
+Removing change path
