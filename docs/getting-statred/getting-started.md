@@ -1,5 +1,7 @@
 # Getting Started with Vivid@next
 
+A step-by-step instructions for getting up and running with vivid@next
+
 Step-by-step instructions for setting up vivid@next
 
 In case vivid@2.x is installed in your project, make sure you follow the  **[Pre-Installation]**(#Pre-Installation)
@@ -8,7 +10,7 @@ In case vivid@2.x is installed in your project, make sure you follow the  **[Pre
 
 ## install vivid@next
 
-```
+```bash
 npm install @vonage/vivid@next
 ```
 
@@ -16,8 +18,9 @@ npm install @vonage/vivid@next
 
 ## Setting the prefix
 
-```
+```js
 import { registerDialog } from '@vonage/vivid';
+
 registerDialog ('vwc3');
 ```
 
@@ -31,25 +34,25 @@ Add tokens to your app.
 
 CSS:
 
-```
+```css
 @import "~@vonage/vivid/styles/tokens/theme-light.css";
-// or alternatively
+
+/* or alternatively */
 @import "~@vonage/vivid/styles/tokens/theme-dark.css";
 ```
 
 SCSS:
 
-```
+```css
 @forward 'node_modules/@vonage/vivid/styles/tokens/theme-light.css";
 ```
 
 In the &lt;head> tag:
 
-```
+```html
 <link rel="stylesheet" href="/assets/styles/tokens/theme-light.css" media="all">
 
-
-Or via cdn:
+<!-- or via cdn: -->
 <link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/tokens/theme-light.css">
 ```
 
@@ -75,7 +78,7 @@ In your css file add this code for setting to font-family:
 
 Note - the`@import` needs to be declared at the top of the css file.
 
-```
+```css
 @font-face {
  font-family: SpeziaCompleteVariableUpright;
  font-stretch: 50% 200%;
@@ -87,7 +90,7 @@ Note - the`@import` needs to be declared at the top of the css file.
  font-family: SpeziaCompleteVariableItalic;
  font-stretch: 50% 200%;
  font-weight: 1 1000;
- rc: url('assets/fonts/Spezia_Web_Complete/VariableFont/Complete/SpeziaCompleteVariableItalicWeb.woff2') format('woff2');
+ src: url('assets/fonts/Spezia_Web_Complete/VariableFont/Complete/SpeziaCompleteVariableItalicWeb.woff2') format('woff2');
 }
 
 @font-face {
@@ -100,16 +103,16 @@ Note - the`@import` needs to be declared at the top of the css file.
 
 Now that we have the font - we need to override vivid default font by adding to the css:
 
-```
+```css
 :root {
-    --vvd-font-family-upright: SpeziaCompleteVariableUpright;
-    --vvd-font-family-monospace: SpeziaMonoCompleteVariable;
-  }
+ --vvd-font-family-upright: SpeziaCompleteVariableUpright;
+ --vvd-font-family-monospace: SpeziaMonoCompleteVariable;
+}
 ```
 
 To add fonts and tokens to the component you need to add the class`vvd-root` to your app.
 
-```
+```html
 <body class="vvd-root">...</body>
 ```
 
@@ -121,22 +124,22 @@ If you wish your whole app to align to vivid typography (instead of the deprecat
 
 CSS:
 
-```
+```css
 @import "~@vonage/vivid/vivid/styles/core/all.css"
 ```
 
 SCSS:
 
-```
+```css
 @forward 'node_modules/@vonage/vivid/styles//core/all.css"
 ```
 
 In the &lt;head> tag:
 
-```
+```html
 <link rel="stylesheet" href="/assets/styles/core/all.css">
 
-Or via cdn:
+<!-- Or via cdn: -->
 <link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/tokens/theme-light.css">
 ```
 
@@ -148,7 +151,7 @@ Remember you set a custom prefix?
 
 Now it's time to use the components with the prefix you set. If you set the prefix to `dashboard`, `(registerBadge ('dashboard');)` then you can use the components with the ``dashboard`` prefix like this
 
-```
+```html
 <dashboard-badge text="dashboard scoped badge"></dashboard-badge>
 ```
 
