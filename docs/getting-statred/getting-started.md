@@ -1,7 +1,5 @@
 # Getting Started with Vivid@next
 
-A step-by-step instructions for getting up and running with vivid@next
-
 Step-by-step instructions for setting up vivid@next
 
 In case vivid@2.x is installed in your project, make sure you follow the  **[Pre-Installation]**(#Pre-Installation)
