@@ -8,6 +8,33 @@ import type {Dialog} from './dialog';
 
 const components = ['dialog'];
 
+test('should set preventDefault to false on keydown event', async ({ page }: { page: Page }) => {
+	const template = `
+		<vwc-dialog id="dialog" open>
+			<div slot="main"><input id="input"/></div>
+		</vwc-dialog>
+	`;
+	await loadComponents({
+		page,
+		components,
+	});
+	await loadTemplate({
+		page,
+		template,
+	});
+
+	const input = await page.locator('#input');
+
+	await page.waitForLoadState('networkidle');
+
+	await input.focus();
+	const typedValue = 'abc';
+	await page.keyboard.type(typedValue);
+
+	expect(await input.inputValue()).toBe(typedValue);
+
+});
+
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 	<style>
