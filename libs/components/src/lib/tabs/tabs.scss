@@ -31,10 +31,12 @@
 
 	position: relative;
 	display: grid;
+	box-sizing: border-box;
+	padding: var(#{variables.$tabs-tablist-gutter});
+	gap: var(#{variables.$tabs-tablist-gutter});
 
 	.base.orientation-vertical & {
-		border-left: 1px solid var(#{constants.$vvd-color-neutral-100});
-		box-shadow: 1px 0 0 0 var(#{constants.$vvd-color-neutral-100});
+		box-shadow: 1px 0 0 0 var(#{constants.$vvd-color-neutral-300});
 		grid-row: 1 / 2;
 		grid-template-columns: auto 1fr;
 		grid-template-rows: auto;
@@ -45,7 +47,7 @@
 	.base:not(.orientation-vertical) & {
 		align-self: end;
 		justify-content: flex-start;
-		border-bottom: 1px solid var(--vvd-color-neutral-100);
+		border-bottom: 1px solid var(--vvd-color-neutral-300);
 		grid-auto-flow: column;
 		grid-template-columns: auto;
 		grid-template-rows: auto auto;
@@ -55,11 +57,11 @@
 
 .active-indicator {
 	background: currentColor;
+	margin-inline-start: calc(var(#{variables.$tabs-tablist-gutter}) * -1);
 
 	.base.orientation-vertical & {
 		align-self: center;
-		block-size: 60%;
-		border-radius: 1px;
+		block-size: 80%;
 		grid-area: 2 / 1 / auto / auto;
 		inline-size: var(#{variables.$tabs-active-indicator-stroke-width});
 	}

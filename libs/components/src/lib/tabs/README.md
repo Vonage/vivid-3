@@ -9,7 +9,7 @@ The vwc-tabs accepts [vwc-tab](../../components/tab) and `vwc-tab-panel` element
 </script>
 ```
 
-```html preview
+```html preview full
 <vwc-tabs activeid="apps">
     <vwc-tab label="Appetizers" id="apps"></vwc-tab>
     <vwc-tab label="Entrees" id="entrees"></vwc-tab>
@@ -51,7 +51,7 @@ Add a `orientation` attribute to control the orientation.
 - Type: `'horizontal'`, `'vertical'`
 - Default: `'horizontal'`
 
-```html preview
+```html preview full
 <vwc-tabs activeid="entrees" orientation="vertical">
     <vwc-tab label="Appetizers" id="apps"></vwc-tab>
     <vwc-tab label="Entrees" id="entrees"></vwc-tab>
@@ -91,7 +91,7 @@ Add an `activeid` attribute of the active tab.
 - Type: `string`
 - Default: `''`
 
-```html preview
+```html preview full
 <vwc-tabs activeid="entrees">
     <vwc-tab label="Appetizers" id="apps"></vwc-tab>
     <vwc-tab label="Entrees" id="entrees"></vwc-tab>
