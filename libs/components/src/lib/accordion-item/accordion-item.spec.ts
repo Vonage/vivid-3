@@ -35,30 +35,33 @@ describe('vwc-accordion-item', () => {
 
 	describe('click', () => {
 		it('should open/close on click', async () => {
-			const AccordionItemHeader = element.shadowRoot?.querySelector('.heading-container > .heading-button') as HTMLButtonElement;
+			const itemHeaderButton = element.shadowRoot?.querySelector('.heading-button') as HTMLButtonElement;
 			expect(element.expanded).toBeFalsy();
-			AccordionItemHeader.click();
+			itemHeaderButton.click();
 			expect(element.expanded).toBeTruthy();
-			AccordionItemHeader.click();
+			itemHeaderButton.click();
 			expect(element.expanded).toBeFalsy();
 		});
 	});
 
 	describe('icon', () => {
 		it('should render an icon when the icon property is set', async () => {
-			expect(element.shadowRoot?.querySelector('.heading-button :nth-child(2)')?.classList).not.toContain('icon');
+			const itemHeaderButton = element.shadowRoot?.querySelector('.heading-button') as HTMLButtonElement;
+			expect(itemHeaderButton.querySelector(':nth-child(2)')?.classList).not.toContain('icon');
 			element.icon = 'chat-solid';
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.heading-button :nth-child(2)')?.classList).toContain('icon');
-			expect(element.shadowRoot?.querySelector('.heading-button :nth-child(2) > vwc-icon')?.getAttribute('name')).toBe('chat-solid');
+			expect(itemHeaderButton.querySelector(':nth-child(2)')?.classList).toContain('icon');
+			expect(itemHeaderButton.querySelector(':nth-child(2) > vwc-icon')?.getAttribute('name')).toBe('chat-solid');
 		});
+
 		it('should render a trailing icon when the iconTrailing property is set', async () => {
+			const itemHeaderButton = element.shadowRoot?.querySelector('.heading-button') as HTMLButtonElement;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.heading-button :last-child > vwc-icon')?.getAttribute('name')).toBe('chevron-down-solid');
+			expect(itemHeaderButton.querySelector(':last-child > vwc-icon')?.getAttribute('name')).toBe('chevron-down-solid');
 			element.icon = 'chat-solid';
 			element.iconTrailing = true;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.heading-button :last-child > vwc-icon')?.getAttribute('name')).toBe('chat-solid');
+			expect(itemHeaderButton.querySelector(':last-child > vwc-icon')?.getAttribute('name')).toBe('chat-solid');
 		});
 	});
 
