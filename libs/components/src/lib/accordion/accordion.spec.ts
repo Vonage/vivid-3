@@ -41,7 +41,8 @@ describe('vwc-accordion', () => {
 	});
 
 	describe('non multi', () => {
-		it('should only allow one accordion items open at a time', async () => {
+		// test skipped pending FAST issue #6585 https://github.com/microsoft/fast/issues/6585
+		it.skip('should only allow one accordion items open at a time', async () => {
 			expect(accordionItem1.expanded).toBeTruthy();
 			expect(accordionItem2.expanded).toBeFalsy();
 
@@ -50,8 +51,7 @@ describe('vwc-accordion', () => {
 			accordionItem2.expanded = true;
 			await elementUpdated(element);
 
-			// FAST issue here
-			// expect(accordionItem1.expanded).toBeFalsy();
+			expect(accordionItem1.expanded).toBeFalsy();
 			expect(accordionItem2.expanded).toBeTruthy();
 		});
 	});
@@ -60,15 +60,16 @@ describe('vwc-accordion', () => {
 		it('should allow all accordion items open when multi', async () => {
 			element.expandmode = 'multi';
 			await elementUpdated(element);
-
+			
+			// by default, only the first item is expanded
 			expect(accordionItem1.expanded).toBeTruthy();
 			expect(accordionItem2.expanded).toBeFalsy();
-
-			accordionItem1.expanded = true;
-			await elementUpdated(element);
+			
+			// if we expand the second one...
 			accordionItem2.expanded = true;
 			await elementUpdated(element);
 
+			// ...both of them should be expanded
 			expect(accordionItem1.expanded).toBeTruthy();
 			expect(accordionItem2.expanded).toBeTruthy();
 		});
@@ -79,6 +80,7 @@ describe('vwc-accordion', () => {
 			element.expandmode = 'multi';
 			await elementUpdated(element);
 
+			// opening all (2) accordion items
 			accordionItem1.expanded = true;
 			await elementUpdated(element);
 			accordionItem2.expanded = true;
@@ -87,6 +89,7 @@ describe('vwc-accordion', () => {
 			expect(accordionItem1.expanded).toBeTruthy();
 			expect(accordionItem2.expanded).toBeTruthy();
 
+			// closing all accordion items
 			element.closeAll();
 			await elementUpdated(element);
 
