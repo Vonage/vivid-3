@@ -335,7 +335,9 @@ index 46f6e4e..79dae38 100644
 +				visibleElements.add(this);
 +				if (this.popover === "auto") {
 +					const focusEl = this.hasAttribute("autofocus") ? this : this.querySelector("[autofocus]");
-+					focusEl?.focus();
++					if (focusEl) {
++						focusEl.focus();
++					}
 +				}
 +			}
 +		},
