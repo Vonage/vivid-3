@@ -9,6 +9,7 @@
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 
+
 @supports selector(:focus-visible) {
 	:host(:focus) {
 		outline: none;
@@ -31,7 +32,7 @@
 	padding: var(#{tabs-variables.$tabs-tablist-gutter});
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	border-radius: 6px;
-	box-shadow: inset 0 0 0 2px var(#{appearance.get-appearance-token(outline)});
+	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
 	gap: var(#{tabs-variables.$tabs-tablist-gutter});
@@ -53,9 +54,7 @@
 	}
 
 	:host(.vertical) & {
-		padding-inline-start: calc(
-			var(#{tabs-variables.$tabs-active-indicator-stroke-width}) + var(#{tabs-variables.$tabs-tablist-gutter})
-		);
+		padding-inline-start: calc(var(#{tabs-variables.$tabs-active-indicator-stroke-width}) + var(#{tabs-variables.$tabs-tablist-gutter}));
 	}
 }
 
@@ -74,11 +73,10 @@
 		position: absolute;
 		background: currentColor;
 		block-size: 2px;
-		border-radius: 1px;
 		content: "";
-		inline-size: 60%;
-		inset-block-end: 0;
-		margin-inline: calc(var(#{tabs-variables.$tabs-tablist-gutter}));
+		inline-size: calc(100% + var(#{tabs-variables.$tabs-tablist-gutter}) * 2);
+		inset-block-end: calc(var(#{tabs-variables.$tabs-tablist-gutter}) * -2);
+		margin-inline: calc(var(#{tabs-variables.$tabs-tablist-gutter}) * -2);
 		pointer-events: none;
 		transition-property: opacity;
 	}
