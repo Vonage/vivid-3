@@ -35,7 +35,7 @@ describe('vwc-accordion-item', () => {
 
 	describe('click', () => {
 		it('should open/close on click', async () => {
-			const AccordionItemHeader = element.shadowRoot?.querySelector('.heading-container > button') as HTMLButtonElement;
+			const AccordionItemHeader = element.shadowRoot?.querySelector('.heading-container > .heading-button') as HTMLButtonElement;
 			expect(element.expanded).toBeFalsy();
 			AccordionItemHeader.click();
 			expect(element.expanded).toBeTruthy();
@@ -46,19 +46,19 @@ describe('vwc-accordion-item', () => {
 
 	describe('icon', () => {
 		it('should render an icon when the icon property is set', async () => {
-			expect(element.shadowRoot?.querySelector('button :nth-child(2)')?.classList).not.toContain('icon');
+			expect(element.shadowRoot?.querySelector('.heading-button :nth-child(2)')?.classList).not.toContain('icon');
 			element.icon = 'chat-solid';
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('button :nth-child(2)')?.classList).toContain('icon');
-			expect(element.shadowRoot?.querySelector('button :nth-child(2) > vwc-icon')?.getAttribute('name')).toBe('chat-solid');
+			expect(element.shadowRoot?.querySelector('.heading-button :nth-child(2)')?.classList).toContain('icon');
+			expect(element.shadowRoot?.querySelector('.heading-button :nth-child(2) > vwc-icon')?.getAttribute('name')).toBe('chat-solid');
 		});
 		it('should render a trailing icon when the iconTrailing property is set', async () => {
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('button :last-child > vwc-icon')?.getAttribute('name')).toBe('chevron-down-solid');
+			expect(element.shadowRoot?.querySelector('.heading-button :last-child > vwc-icon')?.getAttribute('name')).toBe('chevron-down-solid');
 			element.icon = 'chat-solid';
 			element.iconTrailing = true;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('button :last-child > vwc-icon')?.getAttribute('name')).toBe('chat-solid');
+			expect(element.shadowRoot?.querySelector('.heading-button :last-child > vwc-icon')?.getAttribute('name')).toBe('chat-solid');
 		});
 	});
 
@@ -82,7 +82,7 @@ describe('vwc-accordion-item', () => {
 
 	describe('aria expanded', () => {
 		it('should set aria-expanded to false', async () => {
-			const button = element.shadowRoot?.querySelector('button');
+			const button = element.shadowRoot?.querySelector('.heading-button');
 			expect(button?.getAttribute('aria-expanded')).toEqual('false');
 		});
 	});

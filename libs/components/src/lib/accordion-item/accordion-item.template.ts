@@ -12,6 +12,7 @@ const header = (context: ElementDefinitionContext, hTag: string) => {
 	return html<AccordionItem>`
 		<${hTag} class="heading-container">
 			<button
+				class="heading-button"
 				id="${x => x.id}"
 				aria-expanded="${x => x.expanded}"
 				aria-controls="${x => x.id}-panel"

@@ -25,7 +25,7 @@
 	margin: 0;
 }
 
-button {
+.heading-button {
 	@include appearance.appearance;
 	@include connotation.connotation;
 	
@@ -73,6 +73,14 @@ button {
 
 	&.padded {
 		padding-left: 52px;
+	}
+}
+
+.icon {
+	color: var(#{constants.$vvd-color-neutral-600});
+
+	:host(:not([icon-trailing])) &:last-of-type {
+		color: var(#{constants.$vvd-color-canvas-text});
 	}
 }
 
