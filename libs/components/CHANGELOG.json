@@ -2,6 +2,66 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Mon, 23 Jan 2023 12:22:48 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.137",
+      "version": "3.0.0-next.137",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "e5777ebc5b45d59db6192caa9807406d30fa51bf",
+            "comment": "add disabled to text area"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 23 Jan 2023 09:17:56 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.137",
+      "version": "3.0.0-next.137",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "c4f9b193b9e50d2416b8af15d84d2d477f8641d6",
+            "comment": "add pointer-events: none"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 22 Jan 2023 12:09:10 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.137",
+      "version": "3.0.0-next.137",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "833e1a05e25f02d296a55ed0c9b1be198d0d2fee",
+            "comment": "progress ring stroke width"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 17 Jan 2023 16:12:04 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.136",
+      "version": "3.0.0-next.136",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "2e65c59dcca03811233522127a62ff5cc769b357",
+            "comment": "new component migration - select"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 16 Jan 2023 13:29:19 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.135",
       "version": "3.0.0-next.135",

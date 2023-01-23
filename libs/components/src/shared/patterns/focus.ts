@@ -12,7 +12,7 @@ import { Focus } from '../../lib/focus/focus';
  * @public
  */
 export const focusTemplateFactory: (context: ElementDefinitionContext) =>
-ViewTemplate | null = (context: ElementDefinitionContext) => {
+ViewTemplate = (context: ElementDefinitionContext) => {
 	const focusTag = context.tagFor(Focus);
 	return html`<${focusTag} class="focus-indicator"></${focusTag}>`;
 };

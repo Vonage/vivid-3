@@ -1,8 +1,24 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Mon, 16 Jan 2023 13:29:19 GMT and should not be manually modified.
+This log was last generated on Sun, 22 Jan 2023 12:09:10 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.137
+
+Sun, 22 Jan 2023 12:09:10 GMT
+
+### Changes
+
+- progress ring stroke width (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.136
+
+Tue, 17 Jan 2023 16:12:04 GMT
+
+### Changes
+
+- new component migration - select (rachel.tannenbaum@vonage.com)
 
 ## 3.0.0-next.135
 
