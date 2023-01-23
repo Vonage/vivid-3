@@ -76,12 +76,14 @@ $low-ink-color: --_low-ink-color;
 	&:disabled {
 		cursor: not-allowed;
 		opacity: 1; /* 2. correct opacity on iOS */
+		pointer-events: none;
 		-webkit-text-fill-color: var(#{appearance.get-appearance-token(text)}); /* 1. sets text fill to current `color` for safari */
 	}
 
 	&::placeholder,
 	&:disabled::placeholder {
 		opacity: 1; /* 2. correct opacity on iOS */
+		pointer-events: none;
 		-webkit-text-fill-color: var(#{$low-ink-color}); /* 1. sets text fill to current `color` for safari */
 	}
 

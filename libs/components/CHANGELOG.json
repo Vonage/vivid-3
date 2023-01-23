@@ -2,6 +2,36 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Mon, 23 Jan 2023 12:22:48 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.137",
+      "version": "3.0.0-next.137",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "e5777ebc5b45d59db6192caa9807406d30fa51bf",
+            "comment": "add disabled to text area"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 23 Jan 2023 09:17:56 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.137",
+      "version": "3.0.0-next.137",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "c4f9b193b9e50d2416b8af15d84d2d477f8641d6",
+            "comment": "add pointer-events: none"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 22 Jan 2023 12:09:10 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.137",
       "version": "3.0.0-next.137",
