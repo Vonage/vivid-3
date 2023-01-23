@@ -21,7 +21,7 @@
 	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-200});
 }
 
-h1, h2, h3, h4, h5, h6 {
+.heading-container {
 	margin: 0;
 }
 
@@ -71,7 +71,7 @@ button {
 		display: block;
 	}
 
-	:where(h1, h2, h3, h4, h5, h6):has(> button > .icon:nth-child(2)) + & {
+	&.padded {
 		padding-left: 52px;
 	}
 }

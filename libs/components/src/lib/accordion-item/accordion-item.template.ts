@@ -10,7 +10,7 @@ const header = (context: ElementDefinitionContext, hTag: string) => {
 
 	/* eslint-disable @typescript-eslint/indent */
 	return html<AccordionItem>`
-		<${hTag}>
+		<${hTag} class="heading-container">
 			<button
 				id="${x => x.id}"
 				aria-expanded="${x => x.expanded}"
@@ -47,7 +47,7 @@ export const AccordionItemTemplate: (
 		id="${x => x.id}-panel"
 		aria-labelledby="${x => x.id}"
 		role="region"
-		class="region"
+		class="region ${x => x.icon && !x.iconTrailing ? 'padded' : ''}"
 	>
 		<slot></slot>
 	</div>
