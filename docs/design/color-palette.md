@@ -127,6 +127,7 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
     <div style="--color: var(--vvd-color-cta-700)"><small>700</small></div>
     <div style="--color: var(--vvd-color-cta-800)"><small>800</small></div>
     <div style="--color: var(--vvd-color-cta-900)"><small>900</small></div>
+    <div style="--color: var(--vvd-color-cta-950)"><small>950</small></div>
    </vwc-layout>
   </dd>
  </vwc-layout>
@@ -148,6 +149,7 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
     <div style="--color: var(--vvd-color-success-700)"><small>700</small></div>
     <div style="--color: var(--vvd-color-success-800)"><small>800</small></div>
     <div style="--color: var(--vvd-color-success-900)"><small>900</small></div>
+    <div style="--color: var(--vvd-color-success-950)"><small>950</small></div>
    </vwc-layout>
   </dd>
  </vwc-layout>
@@ -169,6 +171,7 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
     <div style="--color: var(--vvd-color-alert-700)"><small>700</small></div>
     <div style="--color: var(--vvd-color-alert-800)"><small>800</small></div>
     <div style="--color: var(--vvd-color-alert-900)"><small>900</small></div>
+    <div style="--color: var(--vvd-color-alert-950)"><small>950</small></div>
    </vwc-layout>
   </dd>
  </vwc-layout>
@@ -190,6 +193,7 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
     <div style="--color: var(--vvd-color-information-700)"><small>700</small></div>
     <div style="--color: var(--vvd-color-information-800)"><small>800</small></div>
     <div style="--color: var(--vvd-color-information-900)"><small>900</small></div>
+    <div style="--color: var(--vvd-color-information-950)"><small>950</small></div>
    </vwc-layout>
   </dd>
  </vwc-layout>
@@ -211,6 +215,7 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
     <div style="--color: var(--vvd-color-announcement-700)"><small>700</small></div>
     <div style="--color: var(--vvd-color-announcement-800)"><small>800</small></div>
     <div style="--color: var(--vvd-color-announcement-900)"><small>900</small></div>
+    <div style="--color: var(--vvd-color-announcement-950)"><small>950</small></div>
    </vwc-layout>
   </dd>
  </vwc-layout>
@@ -232,6 +237,7 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
     <div style="--color: var(--vvd-color-warning-700)"><small>700</small></div>
     <div style="--color: var(--vvd-color-warning-800)"><small>800</small></div>
     <div style="--color: var(--vvd-color-warning-900)"><small>900</small></div>
+    <div style="--color: var(--vvd-color-warning-950)"><small>950</small></div>
    </vwc-layout>
   </dd>
  </vwc-layout>
