@@ -1,12 +1,12 @@
-# Getting Started with Vivid@next
+# Getting Started with Vivid@3 and up For Vonage Users
 
-Step-by-step instructions for setting up vivid@next
+This is a step-by-step instructions for setting up vivid@3 and up.
 
-In case vivid@2.x is installed in your project, make sure you follow the  **[Pre-Installation]**(#Pre-Installation)
+In case vivid@2.x is installed in your project, make sure you follow the  **[integrating vivid@3 alongside vivid@2]**(#integrating-vivid@3-alongside-vivid@2)
 
 ---
 
-## install vivid@next
+## install vivid@3 and up
 
 ```bash
 npm install @vonage/vivid@next
@@ -14,17 +14,7 @@ npm install @vonage/vivid@next
 
 ---
 
-## Setting the prefix
-
-```js
-import { registerDialog } from '@vonage/vivid';
-
-registerDialog ('vwc3');
-```
-
----
-
-## Almost good to go
+## Prerequisites
 
 ### Tokens
 
@@ -49,9 +39,6 @@ In the &lt;head> tag:
 
 ```html
 <link rel="stylesheet" href="/assets/styles/tokens/theme-light.css" media="all">
-
-<!-- or via cdn: -->
-<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/tokens/theme-light.css">
 ```
 
 ### Font
@@ -116,7 +103,7 @@ To add fonts and tokens to the component you need to add the class`vvd-root` to 
 
 You can also add it to any wrapping element if you would like to scope the styles to only a certain part of your application.
 
-### Typography
+### Typography (Optional)
 
 If you wish your whole app to align to vivid typography (instead of the deprecated  vivid-2 vwc-text anymore) add the typography css, or all core css to typography and theme:
 
@@ -136,27 +123,20 @@ In the &lt;head> tag:
 
 ```html
 <link rel="stylesheet" href="/assets/styles/core/all.css">
+```
+---
 
-<!-- Or via cdn: -->
-<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/tokens/theme-light.css">
+### Adding component
+```html
+<vwc-button label="Click me"></vwc-button>
 ```
 
 ---
 
-## Start Using components
-
-Remember you set a custom prefix?
-
-Now it's time to use the components with the prefix you set. If you set the prefix to `dashboard`, `(registerBadge ('dashboard');)` then you can use the components with the ``dashboard`` prefix like this
-
-```html
-<dashboard-badge text="dashboard scoped badge"></dashboard-badge>
-```
-
-## Pre Installation
-
+## integrating vivid@3 alongside vivid@2
 Vivid@next can be installed alongside vivid@2.x but there are some prerequisites:
 
+### Pre Installation
 The project needs to import vivid@2 components individually and not as a whole package.
 
 DON’T:
@@ -178,10 +158,27 @@ DO:
 "@Vonage/vwc-audio": "2.37.0",
 ...
 ```
+---
+
+### Setting custom prefix
+
+```js
+import { registerBadge } from '@vonage/vivid';
+
+registerBadge ('vwc3');
+```
+
+### Start Using component
+
+Now it's time to use the components with the prefix you set.
+
+```html
+<vwc3-badge text="vivid@3 scoped badge"></vwc3-badge>
+```
 
 ---
 
-## Have fun using vivid-next components :)
+## Have fun using vivid@3 components :)
 
 ### Have questions?
 
