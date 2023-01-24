@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "fix(dialog): max-inline-size variable and dialog scream color",
-  "packageName": "@vonage/vivid",
-  "email": "rachel.tannenbaum@vonage.com",
-  "dependentChangeType": "patch"
-}
