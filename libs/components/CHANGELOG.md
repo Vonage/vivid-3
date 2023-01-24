@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 22 Jan 2023 12:09:10 GMT and should not be manually modified.
+This log was last generated on Tue, 24 Jan 2023 06:50:45 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.138
+
+Tue, 24 Jan 2023 06:50:45 GMT
+
+### Changes
+
+- fix(dialog): max-inline-size variable and dialog scream color (rachel.tannenbaum@vonage.com)
 
 ## 3.0.0-next.137
 
