@@ -46,22 +46,31 @@ describe('vwc-accordion-item', () => {
 
 	describe('icon', () => {
 		it('should render an icon when the icon property is set', async () => {
-			const itemHeaderButton = element.shadowRoot?.querySelector('.heading-button') as HTMLButtonElement;
-			expect(itemHeaderButton.querySelector(':nth-child(2)')?.classList).not.toContain('icon');
+			const headerSecondChild = () => element.shadowRoot?.querySelector('.heading-button :nth-child(2)') as HTMLSpanElement;
+
+			const secondChildBefore = headerSecondChild();
 			element.icon = 'chat-solid';
 			await elementUpdated(element);
-			expect(itemHeaderButton.querySelector(':nth-child(2)')?.classList).toContain('icon');
-			expect(itemHeaderButton.querySelector(':nth-child(2) > vwc-icon')?.getAttribute('name')).toBe('chat-solid');
+			const secondChildAfter = headerSecondChild();
+
+			expect(secondChildBefore.classList).toContain('heading-content');
+			expect(secondChildBefore.classList).not.toContain('icon');
+			expect(secondChildAfter.classList).not.toContain('heading-content');
+			expect(secondChildAfter.classList).toContain('icon');
+			expect(secondChildAfter.querySelector('vwc-icon')?.getAttribute('name')).toBe('chat-solid');
 		});
 
 		it('should render a trailing icon when the iconTrailing property is set', async () => {
-			const itemHeaderButton = element.shadowRoot?.querySelector('.heading-button') as HTMLButtonElement;
-			await elementUpdated(element);
-			expect(itemHeaderButton.querySelector(':last-child > vwc-icon')?.getAttribute('name')).toBe('chevron-down-solid');
+			const headerLastIcon = () => element.shadowRoot?.querySelector('vwc-icon:last-of-type') as HTMLElement;
+			
+			const lastIconBefore = headerLastIcon();
 			element.icon = 'chat-solid';
 			element.iconTrailing = true;
 			await elementUpdated(element);
-			expect(itemHeaderButton.querySelector(':last-child > vwc-icon')?.getAttribute('name')).toBe('chat-solid');
+			const lastIconAfter = headerLastIcon();
+
+			expect(lastIconBefore.getAttribute('name')).toBe('chevron-down-solid');
+			expect(lastIconAfter.getAttribute('name')).toBe('chat-solid');
 		});
 	});
 
@@ -76,10 +85,12 @@ describe('vwc-accordion-item', () => {
 
 	describe('heading level', () => {
 		it('should update heading level', async () => {
-			expect(element.shadowRoot?.querySelector(':first-child')?.tagName).toEqual('H2');
+			const headerTag = () => element.shadowRoot?.querySelector(':first-child')?.tagName as string;
+			
+			expect(headerTag()).toEqual('H2');
 			element.headinglevel = 4;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector(':first-child')?.tagName).toEqual('H4');
+			expect(headerTag()).toEqual('H4');
 		});
 	});
 
