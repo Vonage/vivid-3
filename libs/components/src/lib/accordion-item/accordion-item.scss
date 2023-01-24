@@ -41,8 +41,8 @@
 	align-items: center;
 	padding: 16px;
 	border: none;
-	color: var(#{constants.$vvd-color-canvas-text});
 	background-color: var(#{appearance.get-appearance-token(fill)});
+	color: var(#{constants.$vvd-color-canvas-text});
 	cursor: pointer;
 	font: var(#{constants.$vvd-typography-heading-4});
 	gap: 16px;
