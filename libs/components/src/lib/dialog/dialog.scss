@@ -1,6 +1,7 @@
 @use "partials/variables" as variables;
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+@use "../../../../shared/src/lib/sass/mixins/scrim" as scrim-mixins;
 
 
 .base {
@@ -11,23 +12,32 @@
 	border-radius: 6px;
 	color: var(#{constants.$vvd-color-canvas-text});
 	max-block-size: var(#{variables.$dialog-max-block-size}, calc(100vh - 64px));
-	max-inline-size: var(#{variables.$dialog-max-inline-size});
+	max-inline-size: var(#{variables.$dialog-max-inline-size}, #{variables.$dialog-default-max-inline-size});
 	min-inline-size: var(#{variables.$dialog-min-inline-size}, 280px);
 	overflow-x: hidden;
 	overflow-y: auto;
 
 
 	@media not all and (min-width: 600px) {
-		#{variables.$dialog-max-inline-size}: 90vw;
+		#{variables.$dialog-default-max-inline-size}: 90vw;
 	}
 
 	@media (min-width: 600px) {
-		#{variables.$dialog-max-inline-size}: 560px;
+		#{variables.$dialog-default-max-inline-size}: 560px;
 	}
 
 	&:not(.modal) {
 		z-index: var(#{variables.$dialog-z-index}, 1);
 	}
+
+	&.modal {
+		filter: var(#{constants.$vvd-shadow-surface-24dp});
+
+		&::backdrop {
+			@include scrim-mixins.scrim-variables;
+		}
+	}
+
 }
 
 .main-wrapper {
