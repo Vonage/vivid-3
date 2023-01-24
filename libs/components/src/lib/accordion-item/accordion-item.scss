@@ -42,7 +42,7 @@
 	padding: 16px;
 	border: none;
 	background-color: var(#{appearance.get-appearance-token(fill)});
-	color: var(#{constants.$vvd-color-canvas-text});
+	color: var(#{appearance.get-appearance-token(text)});
 	cursor: pointer;
 	font: var(#{constants.$vvd-typography-heading-4});
 	gap: 16px;
@@ -81,7 +81,7 @@
 	color: var(#{constants.$vvd-color-neutral-600});
 
 	:host(:not([icon-trailing])) &:last-of-type {
-		color: var(#{constants.$vvd-color-canvas-text});
+		color: var(#{appearance.get-appearance-token(text)});
 	}
 }
 
