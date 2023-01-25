@@ -73,11 +73,15 @@
 
 		.icon {
 			font-size: #{size.$vvd-size-extra-condensed};
-			grid-column: 1/2;
-			grid-row: 1/-1;
-			margin-inline-end: calc(#{size.$vvd-size-condensed} / 2);
 		}
 	}
+}
+
+::slotted(*),
+.icon {
+	grid-column: 1/2;
+	grid-row: 1/-1;
+	margin-inline-end: calc(#{size.$vvd-size-condensed} / 2);
 }
 
 .dismiss-button {
