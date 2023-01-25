@@ -42,6 +42,7 @@ $control-border: 2px;
 
 	&.disabled {
 		cursor: not-allowed;
+		pointer-events: none;
 	}
 }
 

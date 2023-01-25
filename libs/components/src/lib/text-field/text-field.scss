@@ -130,6 +130,7 @@ $low-ink-color: --_low-ink-color;
 	color: var(#{$low-ink-color});
 	font-size: var(#{variables.$text-field-icon-size});
 	inset-inline-start: var(#{variables.$text-field-gutter});
+	line-height: 1;
 
 	+.control {
 		padding-inline-start: calc(var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter}) * 2);

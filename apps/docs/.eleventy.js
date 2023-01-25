@@ -37,6 +37,11 @@ module.exports = function (eleventyConfig) {
     return new CleanCSS({}).minify(code).styles;
   });
 
+  eleventyConfig.addFilter("publicComponentsFilter", function (components) {
+    const isServing = process.argv.includes('--serve');
+    return components.filter(component => component?.status !== 'underlying' || isServing)
+  });
+
   return {
     dir: {
       input: INPUT_DIR,
