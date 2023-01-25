@@ -38,4 +38,30 @@ describe('data grid', () => {
 		await elementUpdated(element);
 		expect(element.querySelectorAll('vwc-data-grid-cell').length).toBe(9);
 	});
+
+	it('should fire cell-focused event', async function () {
+		const spy = jest.fn();
+
+		element.addEventListener('cell-focused', spy);
+		element.rowsData = [
+			{ id: 1, name: 'John', age: 20 },
+			{ id: 2, name: 'Jane', age: 21 },
+		];
+		await elementUpdated(element);
+		element.rowElements[0].children[0].dispatchEvent(new Event('focusin'));
+		expect(spy).toHaveBeenCalled();
+	});
+
+	it('should fire row-focused event', async function () {
+		const spy = jest.fn();
+
+		element.addEventListener('row-focused', spy);
+		element.rowsData = [
+			{ id: 1, name: 'John', age: 20 },
+			{ id: 2, name: 'Jane', age: 21 },
+		];
+		await elementUpdated(element);
+		element.rowElements[0].children[0].dispatchEvent(new Event('focusin'));
+		expect(spy).toHaveBeenCalled();
+	});
 });
