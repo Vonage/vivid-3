@@ -161,6 +161,14 @@ describe('vwc-data-grid-cell', () => {
 				element.focus();
 				expect(spy).toHaveBeenCalledTimes(1);
 			});
+
+			it('should set "active" class on the "focus-wrapper" element', async () => {
+				const focusWrapper = element.shadowRoot?.querySelector('#focus-wrapper');
+				const hasActiveClassBeforeFocus = focusWrapper?.classList.contains('active');
+				element.dispatchEvent(new Event('focusin'));
+				expect(hasActiveClassBeforeFocus).toBeFalsy();
+				expect(focusWrapper?.classList.contains('active')).toBeTruthy();
+			});
 		});
 
 		describe('handleKeydown', () => {
@@ -172,7 +180,7 @@ describe('vwc-data-grid-cell', () => {
 						return elementToFocus;
 					},
 					cellInternalFocusQueue: true
-				};	
+				};
 				element.dispatchEvent(new KeyboardEvent('keydown', {key: 'Enter'}));
 				expect(document.activeElement).toEqual(elementToFocus);
 			});
@@ -185,7 +193,7 @@ describe('vwc-data-grid-cell', () => {
 						return elementToFocus;
 					},
 					cellInternalFocusQueue: true
-				};	
+				};
 				element.dispatchEvent(new KeyboardEvent('keydown', {key: 'F2'}));
 				expect(document.activeElement).toEqual(elementToFocus);
 			});
@@ -194,7 +202,7 @@ describe('vwc-data-grid-cell', () => {
 				element.columnDefinition = {
 					columnDataKey: 'name',
 					cellInternalFocusQueue: true
-				};	
+				};
 				const childNode = document.createElement('button');
 				element.appendChild(childNode);
 				childNode.focus();

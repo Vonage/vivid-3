@@ -22,3 +22,17 @@
 	font: var(#{constants.$vvd-typography-base-bold});
 	border-color: currentColor;
 }
+
+:host {
+	position: relative;
+}
+
+.focus-indicator {
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+	pointer-events: none;
+
+	#focus-wrapper:not(.active) > & {
+		display: none;
+	}
+}
