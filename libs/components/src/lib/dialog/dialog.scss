@@ -37,8 +37,15 @@
 			@include scrim-mixins.scrim-variables;
 		}
 	}
-
 }
+
+::slotted(*),
+.icon {
+	grid-column: 1/2;
+	grid-row: 1/-1;
+	margin-inline-end: calc(#{size.$vvd-size-condensed} / 2);
+}
+
 
 .main-wrapper {
 	display: flex;
@@ -77,12 +84,6 @@
 	}
 }
 
-::slotted(*),
-.icon {
-	grid-column: 1/2;
-	grid-row: 1/-1;
-	margin-inline-end: calc(#{size.$vvd-size-condensed} / 2);
-}
 
 .dismiss-button {
 	flex-shrink: 0;
