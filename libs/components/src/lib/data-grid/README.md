@@ -19,26 +19,36 @@ Represents a data-grid custom element.
 
 ## Members
 ### Generate-header
-Use `generate-header"` for data grid deader
+Use `generate-header"` for data grid header visibility mode.
 
 - Type: `none` | `default`| `sticky`
 - Default: `default`
 
 ```html preview
+
+<vwc-button label="None" onclick="changeHeader('none')"></vwc-button>
+<vwc-button label="Sticky" onclick="changeHeader('sticky')"></vwc-button>
+<vwc-button label="Default" onclick="changeHeader('default')"></vwc-button>
+
 <vwc-data-grid></vwc-data-grid>
 <script>
+		function changeHeader(headerType) {
+			grid.generateHeader = headerType;
+		}
+        
     const grid = document.querySelector('vwc-data-grid');
     
     grid.generateHeader = 'sticky';
     grid.rowsData = [
 
-        {data1: 'data11', data2: 'data12'},
+        {data1: 'data111', data2: 'data12'},
         {data1: 'data21', data2: 'data22'},
         {data1: 'data31', data2: 'data32'},
         {data1: 'data41', data2: 'data42'},
         {data1: 'data51', data2: 'data52'},
         {data1: 'data61', data2: 'data62'},
     ];
+	
 </script>
 ```
 
