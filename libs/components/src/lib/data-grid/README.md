@@ -60,16 +60,35 @@ Use `generate-header"` for data grid header visibility mode.
 
 When true the component will not add itself to the tab queue.
 
-```js
+```html preview
+<vwc-button label="Tabbing" onclick="changeTabbing(false)"></vwc-button>
+<vwc-button label="No Tabbing" onclick="changeTabbing(true)"></vwc-button>
+
+<div id="active-element-content-display">
+	<p>Hit Tab key to browse the tab queue. When in `noTabbing` mode, grid will never be focused.</p>
+	<div id="active-element-content">Grid not focused</div>
+</div>
 <vwc-data-grid></vwc-data-grid>
-
-const grid = document.querySelector('vwc-data-grid');
-grid.rowsData = [
-		{data1: 'tabs', data2: 'will'},
-		{data1: 'not', data2: 'work'},
-];
-grid.noTabbing = true;
-
+<script>
+	function changeTabbing(tabbing) {
+		grid.noTabbing = tabbing;
+	}
+    
+	const grid = document.querySelector('vwc-data-grid');
+	grid.rowsData = [
+			{data1: 'tabs', data2: 'will'},
+			{data1: 'not', data2: 'work'},
+	];
+	grid.addEventListener('focusin', () => {
+		document.getElementById('active-element-content').innerText = 'Grid Focused';
+	});
+	grid.addEventListener('focusout', () => {
+		document.getElementById('active-element-content').innerText = 'Grid Not Focused';
+	});
+    grid.addEventListener('cell-focused', e => {
+       console.log(e.detail.innerText); 
+		});
+</script>
 ```
 
 ### rowsData
