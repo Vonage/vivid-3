@@ -9,6 +9,10 @@ import '.';
 const COMPONENT_TAG = 'vwc-accordion';
 
 describe('vwc-accordion', () => {
+	function toggleAccordionItem(accordionItem: AccordionItem) {
+		accordionItem.expandbutton.click();
+	}
+
 	let element: Accordion;
 	let accordionItem1: AccordionItem;
 	let accordionItem2: AccordionItem;
@@ -45,7 +49,7 @@ describe('vwc-accordion', () => {
 			element.expandmode = 'single';
 			accordionItem1.expanded = true;
 
-			accordionItem2.shadowRoot?.querySelector('button')?.click();
+			toggleAccordionItem(accordionItem2);
 			await elementUpdated(element);
 
 			expect(accordionItem1.expanded).toBeFalsy();
@@ -55,7 +59,7 @@ describe('vwc-accordion', () => {
 		it('should allow expansions of multiple accordion items when set to "multi"', async () => {
 			element.expandmode = 'multi';
 
-			accordionItem2.shadowRoot?.querySelector('button')?.click();
+			toggleAccordionItem(accordionItem2);
 			await elementUpdated(element);
 
 			expect(accordionItem1.expanded).toBeTruthy();
@@ -108,4 +112,54 @@ describe('vwc-accordion', () => {
 			expect(accordionItem2.expanded).toBeFalsy();
 		});
 	});
+
+	describe('accordion-item keydown', () => {
+
+		function addTwoMoreItems() {
+			const anotherAccordionItem1 = document.createElement('vwc-accordion-item') as AccordionItem;
+			const anotherAccordionItem2 = document.createElement('vwc-accordion-item') as AccordionItem;
+			element.insertBefore(anotherAccordionItem1, accordionItem2);
+			element.insertBefore(anotherAccordionItem2, accordionItem2);
+			return [anotherAccordionItem1, anotherAccordionItem2];
+		}
+
+		it('should focus on next item when downkey is pressed', async () => {
+			toggleAccordionItem(accordionItem1);
+			accordionItem1.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+			expect(accordionItem2.contains(document.activeElement)).toBeTruthy();
+		});
+
+		it('should set focus on the first element when downkey is pressed on last element', async () => {
+			toggleAccordionItem(accordionItem2);
+			accordionItem2.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+			expect(accordionItem1.contains(document.activeElement)).toBeTruthy();
+		});
+
+		it('should focus on former item when upkey is pressed', async () => {
+			toggleAccordionItem(accordionItem2);
+			accordionItem2.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp' }));
+			expect(accordionItem1.contains(document.activeElement)).toBeTruthy();
+		});
+
+		it('should set focus on the last element when upkey is pressed on first element', async () => {
+			toggleAccordionItem(accordionItem1);
+			accordionItem1.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp' }));
+			expect(accordionItem2.contains(document.activeElement)).toBeTruthy();
+		});
+
+		it('should focus on the first element when home is pressed', async () => {
+			const [_, anotherAccordionItem2] = addTwoMoreItems();
+			toggleAccordionItem(anotherAccordionItem2);
+			accordionItem2.dispatchEvent(new KeyboardEvent('keydown', { key: 'Home' }));
+			expect(accordionItem1.contains(document.activeElement)).toBeTruthy();
+		});
+
+		it('should focus on the last element when end is pressed', async () => {
+			const [_, anotherAccordionItem2] = addTwoMoreItems();
+			toggleAccordionItem(anotherAccordionItem2);
+			accordionItem2.dispatchEvent(new KeyboardEvent('keydown', { key: 'End' }));
+			expect(accordionItem2.contains(document.activeElement)).toBeTruthy();
+		});
+	});
+
 });
