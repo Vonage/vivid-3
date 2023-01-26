@@ -18,7 +18,6 @@
 	display: flex;
 	box-sizing: border-box;
 	flex-direction: column;
-	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-200});
 }
 
 .heading-container {
@@ -28,7 +27,7 @@
 .heading-button {
 	@include appearance.appearance;
 	@include connotation.connotation;
-	
+
 	@supports selector(:focus-visible) {
 		&:focus {
 			outline: none;

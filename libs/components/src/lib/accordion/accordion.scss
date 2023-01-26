@@ -5,3 +5,7 @@
 	box-sizing: border-box;
 	flex-direction: column;
 }
+
+::slotted(:not(:only-of-type)) {
+	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-200});
+}
