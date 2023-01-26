@@ -37,8 +37,8 @@
 			@include scrim-mixins.scrim-variables;
 		}
 	}
-
 }
+
 
 .main-wrapper {
 	display: flex;
@@ -73,12 +73,17 @@
 
 		.icon {
 			font-size: #{size.$vvd-size-extra-condensed};
+		}
+
+		::slotted(*),
+		.icon {
 			grid-column: 1/2;
 			grid-row: 1/-1;
 			margin-inline-end: calc(#{size.$vvd-size-condensed} / 2);
 		}
 	}
 }
+
 
 .dismiss-button {
 	flex-shrink: 0;
