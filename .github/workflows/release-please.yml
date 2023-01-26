@@ -20,7 +20,7 @@ jobs:
           # REMOVE release-as AFTER THE FIRST RELEASE!
           release-as: 3.0.0
           # SELECT THE PROPER bootstrap-sha BEFORE THE FIRST RELEASE!
-          bootstrap-sha: 771791dc8bdba550bd2aa8c250c147ff41b6d311
+          bootstrap-sha: 3f548d7c4a9264505451d7c6880654ff1ba66730
 
   npm-publish:
     runs-on: ubuntu-latest
