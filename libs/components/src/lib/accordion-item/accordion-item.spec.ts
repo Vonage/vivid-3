@@ -34,18 +34,16 @@ describe('vwc-accordion-item', () => {
 	});
 
 	describe('click', () => {
-		it('should open/close on click', async () => {
+		it('should expand/close on click', async () => {
 			const itemHeaderButton = element.shadowRoot?.querySelector('.heading-button') as HTMLButtonElement;
 
-			const initExpandState = element.expanded;
 			itemHeaderButton.click();
-			const isOpenAfterFirstClick = element.expanded;
+			const isExpandedAfterFirstClick = element.expanded;
 			itemHeaderButton.click();
-			const isClosedAfterSecondClick = element.expanded;
+			const isExpandedAfterSecondClick = element.expanded;
 
-			expect(initExpandState).toBeFalsy();
-			expect(isOpenAfterFirstClick).toBeTruthy();
-			expect(isClosedAfterSecondClick).toBeFalsy();
+			expect(isExpandedAfterFirstClick).toBeTruthy();
+			expect(isExpandedAfterSecondClick).toBeFalsy();
 		});
 	});
 
@@ -85,7 +83,7 @@ describe('vwc-accordion-item', () => {
 			element.noIndicator = true;
 			await elementUpdated(element);
 
-			expect(indicatorExistsOnInit).toBeDefined();
+			expect(indicatorExistsOnInit).toBe(true);
 			expect(element.shadowRoot?.querySelector('.icon')).toBeNull();
 		});
 	});
