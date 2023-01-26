@@ -69,6 +69,7 @@ function handleEscapeKey(dialog: Dialog, event: Event) {
 	if ((event as KeyboardEvent).key === 'Escape' && dialog.modal) {
 		dialog.open = false;
 	}
+	return true;
 }
 
 /**

@@ -1,0 +1,100 @@
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+	$connotations: accent success alert,
+	$shades: primary backdrop intermediate firm,
+	$default: accent,
+);
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+	$appearances: fieldset ghost,
+	$states: idle hover disabled readonly,
+	$default: fieldset,
+);
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+@use "../focus/partials/variables" as focus-variables;
+@use "partials/variables" as variables;
+
+
+@supports selector(:focus-visible) {
+	:host(:focus) {
+		outline: none;
+	}
+}
+
+:host {
+	display: inline-flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+
+.label {
+	color: var(#{constants.$vvd-color-canvas-text});
+	contain: inline-size;
+	font: var(#{constants.$vvd-typography-base});
+}
+
+.control {
+	@include appearance.appearance;
+	@include connotation.connotation;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: var(#{appearance.get-appearance-token(fill)});
+	block-size: 100%;
+	border-radius: var(#{variables.$select-control-border-radius});
+	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+	color: var(#{appearance.get-appearance-token(text)});
+	font: var(#{constants.$vvd-typography-base});
+	gap: 8px;
+	min-block-size: #{size.$vvd-size-normal};
+	padding-inline: 16px;
+	transition: box-shadow .2s, background-color .2s;
+	&-wrapper {
+		position: relative;
+		min-width: fit-content;
+	}
+
+	&:not(.disabled) {
+		cursor: pointer;
+	}
+
+	&.disabled {
+		cursor: not-allowed;
+		pointer-events: none;
+	}
+
+	&:not(.shape-pill) {
+		#{variables.$select-control-border-radius}: 6px;
+	}
+
+	&.shape-pill {
+		#{variables.$select-control-border-radius}: 24px;
+	}
+}
+
+.list-box {
+	display: flex;
+	max-height: var(--select-height, auto);
+	flex-direction: column;
+	padding: 4px;
+	gap: 2px;
+	overflow-y: auto;
+}
+
+.popup {
+	$popup-width: --_popup-width;
+
+	#{$popup-width}: 100%;
+}
+
+.focus-indicator {
+	border-radius: var(#{variables.$select-control-border-radius});
+	pointer-events: none;
+
+	:host(:not(:focus-visible)) & {
+		display: none;
+	}
+}

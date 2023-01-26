@@ -244,8 +244,8 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
 The color tokens are referenced using the `--vvd-color-{name}-{n}`.  
 
 ```css
-#sideDrawer {
-  --side-drawer-background-color: var(--vvd-color-neutral-100);
+vwc-side-drawer::part(base) {
+  background-color: var(--vvd-color-neutral-100);
 }
 ```
 
