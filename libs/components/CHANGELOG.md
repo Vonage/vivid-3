@@ -1,8 +1,16 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Tue, 24 Jan 2023 06:50:45 GMT and should not be manually modified.
+This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0-next.139
+
+Thu, 26 Jan 2023 14:40:25 GMT
+
+### Changes
+
+- assign slotted to grid area (rachel.tannenbaum@vonage.com)
 
 ## 3.0.0-next.138
 
