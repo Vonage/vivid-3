@@ -9,6 +9,10 @@ import '.';
 const COMPONENT_TAG = 'vwc-accordion';
 
 describe('vwc-accordion', () => {
+	function triggerAccordionUpdate() {
+		const newItem = document.createElement('vwc-accordion-item') as AccordionItem;
+		element.appendChild(newItem);
+	}
 	function toggleAccordionItem(accordionItem: AccordionItem) {
 		accordionItem.expandbutton.click();
 	}
@@ -23,7 +27,7 @@ describe('vwc-accordion', () => {
 
 	beforeEach(async () => {
 		element = (await fixture(
-			`<${COMPONENT_TAG}>
+			`<${COMPONENT_TAG} id="tested">
 				<vwc-accordion-item heading="accordion item" id="item1"><p>content</p></vwc-accordion-item>
 				<vwc-accordion-item heading="accordion item" id="item2"><p>content</p></vwc-accordion-item>
 			</${COMPONENT_TAG}>`
@@ -162,4 +166,29 @@ describe('vwc-accordion', () => {
 		});
 	});
 
+	describe('accordion-item focus', () => {
+		it('should set focused element as the active item', async function () {
+
+			element.expandmode = 'single';
+			toggleAccordionItem(accordionItem2);
+			const item2ExpandedBeforeFocus = accordionItem2.expanded;
+			const item1ExpandedBeforeFocus = accordionItem1.expanded;
+
+			accordionItem1.dispatchEvent(new FocusEvent('focus'));
+			triggerAccordionUpdate();
+			await elementUpdated(element);
+
+			expect(item1ExpandedBeforeFocus).toBeFalsy();
+			expect(item2ExpandedBeforeFocus).toBeTruthy();
+
+			expect(accordionItem1.expanded).toBeTruthy();
+			expect(accordionItem2.expanded).toBeFalsy();
+		});
+	});
+
+	it('should set aria-disabled on active item', async function () {
+		toggleAccordionItem(accordionItem2);
+		await elementUpdated(element);
+		expect(accordionItem2.hasAttribute('aria-disabled')).toBe(true);
+	});
 });
