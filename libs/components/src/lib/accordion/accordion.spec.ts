@@ -181,7 +181,8 @@ describe('vwc-accordion', () => {
 		});
 	});
 
-	it('should set aria-disabled on active item', async function () {
+	it('should set aria-disabled on active item in single mode', async function () {
+		element.expandmode = 'single';
 		toggleAccordionItem(accordionItem2);
 		await elementUpdated(element);
 		expect(accordionItem2.hasAttribute('aria-disabled')).toBe(true);
