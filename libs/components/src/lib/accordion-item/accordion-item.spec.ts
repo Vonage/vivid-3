@@ -66,14 +66,14 @@ describe('vwc-accordion-item', () => {
 		it('should render a trailing icon when the iconTrailing property is set', async () => {
 			const headerLastIcon = () => element.shadowRoot?.querySelector('vwc-icon:last-of-type') as HTMLElement;
 
-			const lastIconBefore = headerLastIcon();
+			const lastIconWithDefaultIcon = headerLastIcon();
 			element.icon = 'chat-solid';
 			element.iconTrailing = true;
 			await elementUpdated(element);
-			const lastIconAfter = headerLastIcon();
+			const lastIconWithIconSet = headerLastIcon();
 
-			expect(lastIconBefore.getAttribute('name')).toBe('chevron-down-solid');
-			expect(lastIconAfter.getAttribute('name')).toBe('chat-solid');
+			expect(lastIconWithDefaultIcon.getAttribute('name')).toBe('chevron-down-solid');
+			expect(lastIconWithIconSet.getAttribute('name')).toBe('chat-solid');
 		});
 	});
 

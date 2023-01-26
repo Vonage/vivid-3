@@ -119,7 +119,7 @@ describe('vwc-accordion', () => {
 			const anotherAccordionItem2 = document.createElement('vwc-accordion-item') as AccordionItem;
 			element.insertBefore(anotherAccordionItem1, accordionItem2);
 			element.insertBefore(anotherAccordionItem2, accordionItem2);
-			return [anotherAccordionItem1, anotherAccordionItem2];
+			return anotherAccordionItem2;
 		}
 
 		it('should focus on next item when downkey is pressed', async () => {
@@ -147,14 +147,14 @@ describe('vwc-accordion', () => {
 		});
 
 		it('should focus on the first element when home is pressed', async () => {
-			const [_, anotherAccordionItem2] = addTwoMoreItems();
+			const anotherAccordionItem2 = addTwoMoreItems();
 			toggleAccordionItem(anotherAccordionItem2);
 			accordionItem2.dispatchEvent(new KeyboardEvent('keydown', { key: 'Home' }));
 			expect(accordionItem1.contains(document.activeElement)).toBeTruthy();
 		});
 
 		it('should focus on the last element when end is pressed', async () => {
-			const [_, anotherAccordionItem2] = addTwoMoreItems();
+			const anotherAccordionItem2 = addTwoMoreItems();
 			toggleAccordionItem(anotherAccordionItem2);
 			accordionItem2.dispatchEvent(new KeyboardEvent('keydown', { key: 'End' }));
 			expect(accordionItem2.contains(document.activeElement)).toBeTruthy();
