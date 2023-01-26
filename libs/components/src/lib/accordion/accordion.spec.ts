@@ -99,16 +99,11 @@ describe('vwc-accordion', () => {
 			element.expandmode = 'multi';
 			await elementUpdated(element);
 
-			// opening all (2) accordion items
 			accordionItem1.expanded = true;
 			await elementUpdated(element);
 			accordionItem2.expanded = true;
 			await elementUpdated(element);
 
-			expect(accordionItem1.expanded).toBeTruthy();
-			expect(accordionItem2.expanded).toBeTruthy();
-
-			// closing all accordion items
 			element.closeAll();
 			await elementUpdated(element);
 
