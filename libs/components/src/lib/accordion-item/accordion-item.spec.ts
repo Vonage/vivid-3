@@ -34,16 +34,21 @@ describe('vwc-accordion-item', () => {
 	});
 
 	describe('click', () => {
-		it('should expand/close on click', async () => {
-			const itemHeaderButton = element.shadowRoot?.querySelector('.heading-button') as HTMLButtonElement;
+		let itemHeaderButton: HTMLButtonElement;
+		beforeEach(function () {
+			itemHeaderButton = element.shadowRoot?.querySelector('.heading-button') as HTMLButtonElement;
+		});
 
+		it('should expand a closed item on click', async () => {
+			element.expanded = false;
 			itemHeaderButton.click();
-			const isExpandedAfterFirstClick = element.expanded;
-			itemHeaderButton.click();
-			const isExpandedAfterSecondClick = element.expanded;
+			expect(element.expanded).toBe(true);
+		});
 
-			expect(isExpandedAfterFirstClick).toBeTruthy();
-			expect(isExpandedAfterSecondClick).toBeFalsy();
+		it('should close and expanded item on click', function () {
+			element.expanded = true;
+			itemHeaderButton.click();
+			expect(element.expanded).toBe(false);
 		});
 	});
 
