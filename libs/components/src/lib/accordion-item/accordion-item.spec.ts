@@ -51,16 +51,16 @@ describe('vwc-accordion-item', () => {
 		it('should render an icon when the icon property is set', async () => {
 			const headerSecondChild = () => element.shadowRoot?.querySelector('.heading-button :nth-child(2)') as HTMLSpanElement;
 
-			const secondChildBefore = headerSecondChild();
+			const secondChildWithoutIcon = headerSecondChild();
 			element.icon = 'chat-solid';
 			await elementUpdated(element);
-			const secondChildAfter = headerSecondChild();
+			const secondChildWithIcon = headerSecondChild();
 
-			expect(secondChildBefore.classList).toContain('heading-content');
-			expect(secondChildBefore.classList).not.toContain('icon');
-			expect(secondChildAfter.classList).not.toContain('heading-content');
-			expect(secondChildAfter.classList).toContain('icon');
-			expect(secondChildAfter.querySelector('vwc-icon')?.getAttribute('name')).toBe('chat-solid');
+			expect(secondChildWithoutIcon.classList).toContain('heading-content');
+			expect(secondChildWithoutIcon.classList).not.toContain('icon');
+			expect(secondChildWithIcon.classList).not.toContain('heading-content');
+			expect(secondChildWithIcon.classList).toContain('icon');
+			expect(secondChildWithIcon.querySelector('vwc-icon')?.getAttribute('name')).toBe('chat-solid');
 		});
 
 		it('should render a trailing icon when the iconTrailing property is set', async () => {
