@@ -31,7 +31,6 @@ describe('vwc-menu', () => {
 			expect(menuDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Menu);
 			expect(element.open).toEqual(false);
-			expect(element.lightDismiss).toEqual(false);
 			expect(element.anchor).toBeUndefined();
 			expect(element.placement).toBeUndefined();
 			expect(element._popup).toBeInstanceOf(Popup);
@@ -184,14 +183,13 @@ describe('vwc-menu', () => {
 	});
 
 	describe('light dismiss', () => {
-		it('should hide when light dismiss and change', async () => {
+		it('should hide when change', async () => {
 			element.innerHTML = `
 				<div role="menuitem" id="id1" text="Menu Item 1"></div>
 				<div role="menuitem" id="id2" text="Menu Item 2"></div>
 			`;
 
 			element.open = true;
-			element.lightDismiss = true;
 			await elementUpdated(element);
 			expect(element.open).toEqual(true);
 

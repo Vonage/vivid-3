@@ -73,26 +73,6 @@ _Menu_ internally uses _popup_ to display an element and its descendants above t
 </div>
 ```
 
-### Light Dismiss
-
-_Menu_ internally uses _popup_ to display an element and its descendants above the rest of the document.
-
-`popover` property from _popup_ propagate through _menu_ and sets its lightDismiss state.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<div style="position: relative">
-  <vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open" appearance="outlined"></vwc-button>
-
-  <vwc-menu id="menu" anchor="button" open lightDismiss>
-    <vwc-menu-item text="Menu item 1"></vwc-menu-item>
-    <vwc-menu-item text="Menu item 2"></vwc-menu-item>
-  </vwc-menu>
-</div>
-```
-
 ## Slots
 
 ### Default

@@ -35,7 +35,7 @@ export const MenuTemplate: (
 				@open="${x => x.popupOpenChanged()}"
 				@close="${x => x.popupOpenChanged()}"
 				${ref('_popup')}
-				?popover=${(x) => x.lightDismiss}
+				popover
 			>
 				<div
 					class="base"
