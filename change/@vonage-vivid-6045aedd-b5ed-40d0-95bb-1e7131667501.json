@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "assign slotted to grid area",
-  "packageName": "@vonage/vivid",
-  "email": "rachel.tannenbaum@vonage.com",
-  "dependentChangeType": "patch"
-}
