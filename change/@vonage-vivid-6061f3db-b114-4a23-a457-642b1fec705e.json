@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "new Accordion API",
-  "packageName": "@vonage/vivid",
-  "email": "olaf-k@users.noreply.github.com",
-  "dependentChangeType": "patch"
-}
