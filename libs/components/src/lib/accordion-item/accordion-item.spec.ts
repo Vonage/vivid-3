@@ -36,11 +36,16 @@ describe('vwc-accordion-item', () => {
 	describe('click', () => {
 		it('should open/close on click', async () => {
 			const itemHeaderButton = element.shadowRoot?.querySelector('.heading-button') as HTMLButtonElement;
-			expect(element.expanded).toBeFalsy();
+
+			const initExpandState = element.expanded;
 			itemHeaderButton.click();
-			expect(element.expanded).toBeTruthy();
+			const isOpenAfterFirstClick = element.expanded;
 			itemHeaderButton.click();
-			expect(element.expanded).toBeFalsy();
+			const isClosedAfterSecondClick = element.expanded;
+
+			expect(initExpandState).toBeFalsy();
+			expect(isOpenAfterFirstClick).toBeTruthy();
+			expect(isClosedAfterSecondClick).toBeFalsy();
 		});
 	});
 
@@ -62,7 +67,7 @@ describe('vwc-accordion-item', () => {
 
 		it('should render a trailing icon when the iconTrailing property is set', async () => {
 			const headerLastIcon = () => element.shadowRoot?.querySelector('vwc-icon:last-of-type') as HTMLElement;
-			
+
 			const lastIconBefore = headerLastIcon();
 			element.icon = 'chat-solid';
 			element.iconTrailing = true;
@@ -76,9 +81,11 @@ describe('vwc-accordion-item', () => {
 
 	describe('no-indicator', () => {
 		it('should remove indicator', async () => {
-			expect(element.shadowRoot?.querySelector('.icon')).toBeDefined();
+			const indicatorExistsOnInit = !!element.shadowRoot?.querySelector('.icon');
 			element.noIndicator = true;
 			await elementUpdated(element);
+
+			expect(indicatorExistsOnInit).toBeDefined();
 			expect(element.shadowRoot?.querySelector('.icon')).toBeNull();
 		});
 	});
@@ -86,10 +93,12 @@ describe('vwc-accordion-item', () => {
 	describe('heading level', () => {
 		it('should update heading level', async () => {
 			const headerTag = () => element.shadowRoot?.querySelector(':first-child')?.tagName as string;
-			
-			expect(headerTag()).toEqual('H2');
+			const headerTagOnInit = headerTag();
+
 			element.headinglevel = 4;
 			await elementUpdated(element);
+
+			expect(headerTagOnInit).toEqual('H2');
 			expect(headerTag()).toEqual('H4');
 		});
 	});
