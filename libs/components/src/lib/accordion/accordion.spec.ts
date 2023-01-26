@@ -40,38 +40,49 @@ describe('vwc-accordion', () => {
 		});
 	});
 
-	describe('non multi', () => {
-		// test skipped pending FAST issue #6585 https://github.com/microsoft/fast/issues/6585
-		it.skip('should only allow one accordion items open at a time', async () => {
-			expect(accordionItem1.expanded).toBeTruthy();
-			expect(accordionItem2.expanded).toBeFalsy();
-
+	describe('expandmode', () => {
+		it('should allow only one accordion item expanded when set to "single"', async () => {
+			element.expandmode = 'single';
 			accordionItem1.expanded = true;
-			await elementUpdated(element);
-			accordionItem2.expanded = true;
+
+			accordionItem2.shadowRoot?.querySelector('button')?.click();
 			await elementUpdated(element);
 
 			expect(accordionItem1.expanded).toBeFalsy();
 			expect(accordionItem2.expanded).toBeTruthy();
 		});
-	});
 
-	describe('multi', () => {
-		it('should allow all accordion items open when multi', async () => {
+		it('should allow expansions of multiple accordion items when set to "multi"', async () => {
 			element.expandmode = 'multi';
+
+			accordionItem2.shadowRoot?.querySelector('button')?.click();
 			await elementUpdated(element);
-			
-			// by default, only the first item is expanded
+
 			expect(accordionItem1.expanded).toBeTruthy();
-			expect(accordionItem2.expanded).toBeFalsy();
-			
-			// if we expand the second one...
+			expect(accordionItem2.expanded).toBeTruthy();
+		});
+
+		it('should expand multiple items by child.expanded in single mode::DOCUMENTED BUG SHOULD FAIL ONCE FIXED IN FAST!', async () => {
+			element.expandmode = 'single';
 			accordionItem2.expanded = true;
 			await elementUpdated(element);
 
-			// ...both of them should be expanded
 			expect(accordionItem1.expanded).toBeTruthy();
 			expect(accordionItem2.expanded).toBeTruthy();
+		});
+
+		it('should always open the first accordion-item::DOCUMENTED BUG SHOULD FAIL ONCE FIXED IN FAST! ', async function () {
+			element = (await fixture(
+				`<${COMPONENT_TAG} expand-mode="single">
+				<vwc-accordion-item heading="accordion item" id="item1"><p>content</p></vwc-accordion-item>
+				<vwc-accordion-item heading="accordion item" id="item2" expanded><p>content</p></vwc-accordion-item>
+			</${COMPONENT_TAG}>`
+			)) as Accordion;
+			await elementUpdated(element);
+
+			expect(element.expandmode).toBe('single');
+			expect((element.children[0] as AccordionItem).expanded).toBeTruthy();
+			expect((element.children[1] as AccordionItem).expanded).toBeFalsy();
 		});
 	});
 
