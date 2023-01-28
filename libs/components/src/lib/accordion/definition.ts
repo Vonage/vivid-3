@@ -1,5 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
+import { accordionItemRegistries } from '../accordion-item/definition'; // cf https://github.com/Vonage/vivid-3/discussions/929
 import styles from './accordion.scss';
 
 import { Accordion } from './accordion';
@@ -18,7 +19,7 @@ export const accordionDefinition = Accordion.compose<FoundationElementDefinition
 /**
  * @internal
  */
-export const accordionRegistries = [accordionDefinition()];
+export const accordionRegistries = [accordionDefinition(), ...accordionItemRegistries];
 
 /**
  * Registers the accordion elements with the design system.
