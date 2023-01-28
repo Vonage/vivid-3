@@ -75,6 +75,14 @@ describe('vwc-data-grid-cell', () => {
 			expect(element.querySelector('#cell')).toBeTruthy();
 			expect(element.querySelector('#header')).toBeNull();
 		});
+
+		it('should render default cell template if given an invalid cell type', async () => {
+			setCellDataAndConfig();
+			element.cellType = 'invalid' as any;
+			await elementUpdated(element);
+			expect(element.querySelector('#cell')).toBeNull();
+			expect(element.innerText).toBeUndefined();
+		});
 	});
 
 	describe('gridColumn', () => {
