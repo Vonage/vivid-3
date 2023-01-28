@@ -26,7 +26,7 @@ function createHeaderCellItemTemplate(context: ElementDefinitionContext) {
 }
 
 /**
- * Generates a template for the {@link @microsoft/fast-foundation#DataGridRow} component using
+ * Generates a template for the DataGridRow component using
  * the provided prefix.
  *
  * @public
@@ -49,3 +49,5 @@ export const DataGridRowTemplate = (context: ElementDefinitionContext) => {
         </template>
     `;
 };
+
+

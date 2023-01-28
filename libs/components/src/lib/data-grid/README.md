@@ -61,16 +61,19 @@ Use `generate-header"` for data grid header visibility mode.
 When true the component will not add itself to the tab queue.
 
 ```html preview
-<vwc-button label="Tabbing" onclick="changeTabbing(false)"></vwc-button>
+<vwc-button appearance="filled" label="Tabbing" onclick="changeTabbing(false)"></vwc-button>
 <vwc-button label="No Tabbing" onclick="changeTabbing(true)"></vwc-button>
 
 <div id="active-element-content-display">
 	<p>Hit Tab key to browse the tab queue. When in `noTabbing` mode, grid will never be focused.</p>
 	<div id="active-element-content">Grid not focused</div>
+	<div id="focused-cell-content"></div>
 </div>
 <vwc-data-grid></vwc-data-grid>
 <script>
 	function changeTabbing(tabbing) {
+    event.target.appearance = 'filled';
+		Array.from(event.target.parentElement.querySelectorAll('vwc-button')).filter(x => x !== event.target)[0].appearance = null;
 		grid.noTabbing = tabbing;
 	}
     
@@ -84,10 +87,11 @@ When true the component will not add itself to the tab queue.
 	});
 	grid.addEventListener('focusout', () => {
 		document.getElementById('active-element-content').innerText = 'Grid Not Focused';
+		document.getElementById('focused-cell-content').innerText = '';
 	});
-    grid.addEventListener('cell-focused', e => {
-       console.log(e.detail.innerText); 
-		});
+	grid.addEventListener('cell-focused', e => {
+		document.getElementById('focused-cell-content').innerText = 'Focused Cell Content: ' + e.detail.innerText;
+	});
 </script>
 ```
 
@@ -121,8 +125,8 @@ The column definitions of the grid
 <script>
     const grid = document.querySelector('vwc-data-grid');
     grid.columnDefinitions = [
-        {columnDataKey: 'data1', title: 'Data 1'},
-        {columnDataKey: 'data2', title: 'Data 2'},
+        {columnDataKey: 'data1', title: 'Custom Title 1'},
+        {columnDataKey: 'data2', title: 'Custom Title 2'},
     ];
     grid.rowsData = [
         {data1: 'data11', data2: 'data12'},
@@ -136,13 +140,14 @@ The column definitions of the grid
 - Type: `ViewTemplate`
 - Default: DataGridRowTemplate
 
-The template used to render rows.
+The template used to render rows. Note you need to use `html` from `fast-element`.
 
-```html preview
+```html
 <vwc-data-grid></vwc-data-grid>
 <script>
-    // TODO:: add example
+		import { html } from '@microsoft/fast-element';
     const grid = document.querySelector('vwc-data-grid');
+    grid.rowItemTemplate = html`<div>All rows will look like me!</civ>`;
     grid.rowsData = [
         {data1: 'data11', data2: 'data12'},
         {data1: 'data21', data2: 'data22'},
@@ -155,13 +160,14 @@ The template used to render rows.
 - Type: `ViewTemplate`
 - Default: DataGridCellTemplate
 
-The template used to render cells in generated rows.
+The template used to render cells in generated rows. Note you need to use `html` from `fast-element`.
 
-```html preview
+```html
 <vwc-data-grid></vwc-data-grid>
 <script>
-    // TODO:: add example
-    const grid = document.querySelector('vwc-data-grid');
+		import { html } from '@microsoft/fast-element';
+		const grid = document.querySelector('vwc-data-grid');
+		grid.cellItemTemplate = html`<div>All cells will look like me!</civ>`;
     grid.rowsData = [
         {data1: 'data11', data2: 'data12'},
         {data1: 'data21', data2: 'data22'},
@@ -174,14 +180,15 @@ The template used to render cells in generated rows.
 - Type: `ViewTemplate`
 - Default: DataGridCellTemplate
 
-The template used to render cells in generated header rows.
+The template used to render cells in generated header rows. Note you need to use `html` from `fast-element`.
 
-```html preview
+```html
 <vwc-data-grid></vwc-data-grid>
 <script>
-    // TODO:: add example
-    const grid = document.querySelector('vwc-data-grid');
-    grid.rowsData = [
+		import { html } from '@microsoft/fast-element';
+		const grid = document.querySelector('vwc-data-grid');
+		grid.headerCellItemTemplate = html`<div>All header cells will look like me!</civ>`;
+		grid.rowsData = [
         {data1: 'data11', data2: 'data12'},
         {data1: 'data21', data2: 'data22'},
     ];
@@ -196,13 +203,22 @@ The template used to render cells in generated header rows.
 The index of the row that will be focused the next time the grid is focused. If grid is already focused, changing this value will result in changing the focused row.
 
 ```html preview
+<div>Row Index (starts from 0)</div>
+<vwc-number-field id="row-number"></vwc-number-field>
+<vwc-button appearance="filled" connotation="cta" label="Change Focused Row" onclick="changeActiveRow()"></vwc-button>
 <vwc-data-grid></vwc-data-grid>
 <script>
-    // TODO:: add example with text-field and change focus button to change the focus?
+		function changeActiveRow() {
+            const newActiveRow = document.getElementById('row-number').value;
+            grid.focusRowIndex = Number(newActiveRow);
+		}
+
     const grid = document.querySelector('vwc-data-grid');
     grid.rowsData = [
-        {data1: 'data11', data2: 'data12'},
-        {data1: 'data21', data2: 'data22'},
+			{data1: 'data11', data2: 'data12', data3: 'data13'},
+			{data1: 'data21', data2: 'data22', data3: 'data23'},
+			{data1: 'data31', data2: 'data32', data3: 'data33'},
+			{data1: 'data41', data2: 'data42', data3: 'data43'},
     ];
 </script>
 ```
@@ -215,13 +231,22 @@ The index of the row that will be focused the next time the grid is focused. If 
 The index of the column that will be focused the next time the grid is focused inside `focusRowIndex`. If grid is already focused, changing this value will result in changing the focused column.
 
 ```html preview
+<div>Column Index (starts from 0)</div>
+<vwc-number-field id="col-number"></vwc-number-field><br/>
+<vwc-button appearance="filled" connotation="cta" label="Change Focused Column" onclick="changeActiveColumn()"></vwc-button>
 <vwc-data-grid></vwc-data-grid>
 <script>
-    // TODO:: add example with text-field and change focus button to change the focus?
+		function changeActiveColumn() {
+        const newActiveColumn = document.getElementById('col-number').value;
+        grid.focusColumnIndex = Number(newActiveColumn);
+    }
+
     const grid = document.querySelector('vwc-data-grid');
     grid.rowsData = [
-        {data1: 'data11', data2: 'data12'},
-        {data1: 'data21', data2: 'data22'},
+        {data1: 'data11', data2: 'data12', data3: 'data13'},
+        {data1: 'data21', data2: 'data22', data3: 'data23'},
+        {data1: 'data31', data2: 'data32', data3: 'data33'},
+        {data1: 'data41', data2: 'data42', data3: 'data43'},
     ];
 </script>
 ```
@@ -231,7 +256,7 @@ The index of the column that will be focused the next time the grid is focused i
 - Type: `string`
 - Default: `undefined`
 
-The element tag for header row
+The element tag for header row cells. If not set, the default tag `vwc-data-grid-cell` will be used.
 
 ```html preview
 <vwc-data-grid></vwc-data-grid>
@@ -274,14 +299,6 @@ Fires when a row is focused.
 ### cell-focused
 
 Fires when a cell is focused.
-
-## Methods
-
-### handleFocusout
-
-### handleCellFocus
-
-### handleKeydown
 
 ## Accessibility
 

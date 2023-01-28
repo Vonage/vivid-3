@@ -7,7 +7,6 @@
 	color: var(#{constants.$vvd-color-canvas-text});
 }
 
-
 :host([row-type="sticky-header"]) {
 	position: sticky;
 	top: 0;
