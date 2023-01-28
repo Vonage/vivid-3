@@ -9,7 +9,7 @@
 
 :host([row-type="sticky-header"]) {
 	position: sticky;
+	z-index: 999;
 	top: 0;
 	background: var(#{constants.$vvd-color-canvas});
-	z-index: 999;
 }
