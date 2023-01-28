@@ -12,4 +12,5 @@
 	position: sticky;
 	top: 0;
 	background: var(#{constants.$vvd-color-canvas});
+	z-index: 999;
 }
