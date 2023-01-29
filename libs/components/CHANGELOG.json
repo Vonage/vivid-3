@@ -2,6 +2,36 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Thu, 26 Jan 2023 14:40:25 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.139",
+      "version": "3.0.0-next.139",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "dd365e794293279351524f09621abc021b6b9b14",
+            "comment": "assign slotted to grid area"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 24 Jan 2023 06:50:45 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.138",
+      "version": "3.0.0-next.138",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "cc4aa2792768295d03cd5eebbd3c1947f51953a9",
+            "comment": "fix(dialog): max-inline-size variable and dialog scream color"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 23 Jan 2023 12:22:48 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.137",
       "version": "3.0.0-next.137",
