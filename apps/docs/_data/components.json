@@ -371,7 +371,15 @@
 		"title": "tree-view",
 		"markdown": "./libs/components/src/lib/tree-view/README.md",
 		"modules": [
-			"/assets/modules/components/tree-view/index.js"
+			"/assets/modules/components/tree-view/index.js",
+			"/assets/modules/components/tree-item/index.js"
+		]
+	},
+	{
+		"title": "tree-item",
+		"markdown": "./libs/components/src/lib/tree-item/README.md",
+		"modules": [
+			"/assets/modules/components/tree-item/index.js"
 		]
 	}
 ]
