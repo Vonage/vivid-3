@@ -28,10 +28,6 @@ Never made an open source contribution before? Wondering how contributions work 
 
 - Once you are done developing the change, commit your changes with a meaningful commit message
 
-- We are using `beachball` in order to document changes:
-  - run: `npx beachball change` or `npm run change` . You will be prompted to describe your change. Once you do, change files will be generated and commited.
-  - Note that during CI a check is made to make sure this rule is followed
-
 - Push the changes to the remote repository using `git push origin branch-name-here`.
 
 - Submit a pull request to the upstream repository.
