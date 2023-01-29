@@ -366,5 +366,12 @@
 			"/assets/modules/components/listbox-option/index.js",
 			"/assets/modules/components/icon/index.js"
 		]
+	},
+	{
+		"title": "tree-view",
+		"markdown": "./libs/components/src/lib/tree-view/README.md",
+		"modules": [
+			"/assets/modules/components/tree-view/index.js"
+		]
 	}
 ]
