@@ -48,9 +48,9 @@ Aside from the [color-related tokens](/designs/color-palette), you may use the f
 
 ### Typography
 
-#### Font families
+#### Typefaces
 
-Set the font-variable to override the typography tokens with your own font.
+Set the font css-variable to override the default typography with your font and typography scale.
 
 ```css
 --vvd-typography-headline
@@ -72,21 +72,19 @@ Set the font-variable to override the typography tokens with your own font.
 ```html preview
 <style>
   :root {
-
   --vvd-typography-heading-4: 500 20px/1.4 Georgia;
-  --vvd-typography-base-code: 400 14px Courier;
-  --vvd-typography-base-bold: 500 14px Georgia;
-  
+  --vvd-typography-base-code: 400 16px Courier;
+  --vvd-typography-base-bold: 500 16px Georgia;
   }
 </style>
 <vwc-header>
-  This header is using Georgia
+  This header is set by an override '--vvd-typography-heading-4' 
 </vwc-header>
 <pre>/*
- * This block of code uses Courier
+ * This block of code uses an override '--vvd-typography-base-code'
  */
 </pre>
-<vwc-button appearance="filled" label="I use Georgia too"></vwc-button>
+<vwc-button appearance="filled" label="I using my override '--vvd-typography-base-bold'"></vwc-button>
 ```
 
 #### Font size
