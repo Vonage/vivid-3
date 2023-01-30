@@ -4,6 +4,17 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## 3.0.0 (2023-01-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **components:** fast-based accordion ([#930](https://github.com/Vonage/vivid-3/issues/930))
+
+### Features
+
+* **components:** fast-based accordion ([#930](https://github.com/Vonage/vivid-3/issues/930)) ([e228c60](https://github.com/Vonage/vivid-3/commit/e228c60bcb8982d06f0a7bac24dc3149cdd84574))
+
 ## 3.0.0-next.139
 
 Thu, 26 Jan 2023 14:40:25 GMT
