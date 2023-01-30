@@ -48,36 +48,43 @@ Aside from the [color-related tokens](/designs/color-palette), you may use the f
 
 ### Typography
 
-#### Font families
+#### Typefaces
 
-Use `--vvd-font-family-upright` to specify a base font family for your application. This is the default font family for all text elements.
+Set the font custom properties of your choice (or all) to override the default typography styles with your own.
 
-- Type: `string`
-- Default: `'Montserrat'`
-
-Use `--vvd-font-family-monospace` to specify a monospace font family for your application. This is the default font family for code elements.
-
-- Type: `string`
-- Default: `'Roboto Mono'`
-
-Learn how to load fonts into your application [with google-fonts](https://fonts.google.com/knowledge/using_type/using_web_fonts_from_a_font_delivery_service#loading-web-fonts)
+```css
+--vvd-typography-headline
+--vvd-typography-subtitle
+--vvd-typography-heading-1
+--vvd-typography-heading-2
+--vvd-typography-heading-3
+--vvd-typography-heading-4
+--vvd-typography-base
+--vvd-typography-base-bold
+--vvd-typography-base-code
+--vvd-typography-base-condensed
+--vvd-typography-base-condensed-bold
+--vvd-typography-base-extended
+--vvd-typography-base-extended-bold
+```
 
 
 ```html preview
 <style>
   :root {
-    --vvd-font-family-upright: Georgia;
-    --vvd-font-family-monospace: Courier;
+  --vvd-typography-heading-4: 500 20px/1.4 Georgia;
+  --vvd-typography-base-code: 400 16px monospace;
+  --vvd-typography-base-bold: 500 16px Georgia;
   }
 </style>
 <vwc-header>
-  This header is using Georgia
+  This header typeface is set by '--vvd-typography-heading-4' 
 </vwc-header>
 <pre>/*
- * This block of code uses Courier
+ * This block of code typeface is set by '--vvd-typography-base-code'
  */
 </pre>
-<vwc-button appearance="filled" label="I use Georgia too"></vwc-button>
+<vwc-button appearance="filled" label="This button typeface is set by '--vvd-typography-base-bold'"></vwc-button>
 ```
 
 #### Font size
