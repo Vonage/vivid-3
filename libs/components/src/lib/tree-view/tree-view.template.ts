@@ -1,4 +1,4 @@
-import { html, ref, slotted } from '@microsoft/fast-element';
+import { html, slotted } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
@@ -23,7 +23,6 @@ export const TreeViewTemplate: (
 	<template
 		class="${getClasses}"
 		role="tree"
-		${ref("treeView")}
 		@keydown="${(x, c) => x.handleKeyDown(c.event as KeyboardEvent)}"
 		@focusin="${(x, c) => x.handleFocus(c.event as FocusEvent)}"
 		@focusout="${(x, c) => x.handleBlur(c.event as FocusEvent)}"

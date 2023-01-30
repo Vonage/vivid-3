@@ -1,13 +1,15 @@
-# tree-item
+# Tree Item
 
 Represents a tree-item custom element.
 
 ```js
-<script type="module">import '@vonage/vivid/tree-item';</script>
+<script type="module">
+    import '@vonage/vivid/tree-item';
+</script>
 ```
 
 ```html preview
-<vwc-tree-item></vwc-tree-item>
+<vwc-tree-item text="Tree Item"></vwc-tree-item>
 ```
 
 ## Members
