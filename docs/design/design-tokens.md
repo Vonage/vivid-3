@@ -78,7 +78,7 @@ Set the font custom properties of your choice (or all) to override the default t
   }
 </style>
 <vwc-header>
-  This header is set by an override '--vvd-typography-heading-4' 
+  This header typeface is set by '--vvd-typography-heading-4' 
 </vwc-header>
 <pre>/*
  * This block of code uses an override '--vvd-typography-base-code'
