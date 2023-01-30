@@ -81,7 +81,7 @@ Set the font custom properties of your choice (or all) to override the default t
   This header typeface is set by '--vvd-typography-heading-4' 
 </vwc-header>
 <pre>/*
- * This block of code uses an override '--vvd-typography-base-code'
+ * This block of code typeface is set by '--vvd-typography-base-code'
  */
 </pre>
 <vwc-button appearance="filled" label="I using my override '--vvd-typography-base-bold'"></vwc-button>
