@@ -73,7 +73,7 @@ Set the font custom properties of your choice (or all) to override the default t
 <style>
   :root {
   --vvd-typography-heading-4: 500 20px/1.4 Georgia;
-  --vvd-typography-base-code: 400 16px Courier;
+  --vvd-typography-base-code: 400 16px monospace;
   --vvd-typography-base-bold: 500 16px Georgia;
   }
 </style>
