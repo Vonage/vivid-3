@@ -50,7 +50,7 @@ Aside from the [color-related tokens](/designs/color-palette), you may use the f
 
 #### Typefaces
 
-Set the font css-variable to override the default typography with your font and typography scale.
+Set the font custom properties of your choice (or all) to override the default typography styles with your own.
 
 ```css
 --vvd-typography-headline
