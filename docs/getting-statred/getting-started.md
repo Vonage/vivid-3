@@ -6,10 +6,10 @@ In case vivid@2.x is installed in your project, make sure you follow the  **[int
 
 ---
 
-## install vivid@3 and up
+## install vivid
 
 ```bash
-npm install @vonage/vivid@next
+npm install @vonage/vivid
 ```
 
 ---
@@ -181,6 +181,7 @@ import { registerBadge } from '@vonage/vivid';
 
 registerBadge ('vwc3');
 ```
+
 
 ### Start Using component
 
