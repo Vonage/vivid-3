@@ -50,24 +50,33 @@ Aside from the [color-related tokens](/designs/color-palette), you may use the f
 
 #### Font families
 
-Use `--vvd-font-family-upright` to specify a base font family for your application. This is the default font family for all text elements.
+Set the font-variable to override the typography tokens with your own font.
 
-- Type: `string`
-- Default: `'Montserrat'`
-
-Use `--vvd-font-family-monospace` to specify a monospace font family for your application. This is the default font family for code elements.
-
-- Type: `string`
-- Default: `'Roboto Mono'`
-
-Learn how to load fonts into your application [with google-fonts](https://fonts.google.com/knowledge/using_type/using_web_fonts_from_a_font_delivery_service#loading-web-fonts)
+```css
+--vvd-typography-headline
+--vvd-typography-subtitle
+--vvd-typography-heading-1
+--vvd-typography-heading-2
+--vvd-typography-heading-3
+--vvd-typography-heading-4
+--vvd-typography-base
+--vvd-typography-base-bold
+--vvd-typography-base-code
+--vvd-typography-base-condensed
+--vvd-typography-base-condensed-bold
+--vvd-typography-base-extended
+--vvd-typography-base-extended-bold
+```
 
 
 ```html preview
 <style>
   :root {
-    --vvd-font-family-upright: Georgia;
-    --vvd-font-family-monospace: Courier;
+
+  --vvd-typography-heading-4: 500 20px/1.4 Georgia;
+  --vvd-typography-base-code: 400 14px Courier;
+  --vvd-typography-base-bold: 500 14px Georgia;
+  
   }
 </style>
 <vwc-header>
