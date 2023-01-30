@@ -2,6 +2,66 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Thu, 26 Jan 2023 14:40:25 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.139",
+      "version": "3.0.0-next.139",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "dd365e794293279351524f09621abc021b6b9b14",
+            "comment": "assign slotted to grid area"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 24 Jan 2023 06:50:45 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.138",
+      "version": "3.0.0-next.138",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "cc4aa2792768295d03cd5eebbd3c1947f51953a9",
+            "comment": "fix(dialog): max-inline-size variable and dialog scream color"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 23 Jan 2023 12:22:48 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.137",
+      "version": "3.0.0-next.137",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "e5777ebc5b45d59db6192caa9807406d30fa51bf",
+            "comment": "add disabled to text area"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 23 Jan 2023 09:17:56 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.137",
+      "version": "3.0.0-next.137",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "c4f9b193b9e50d2416b8af15d84d2d477f8641d6",
+            "comment": "add pointer-events: none"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 22 Jan 2023 12:09:10 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.137",
       "version": "3.0.0-next.137",

@@ -1,8 +1,35 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Sun, 22 Jan 2023 12:09:10 GMT and should not be manually modified.
+This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0 (2023-01-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **components:** fast-based accordion ([#930](https://github.com/Vonage/vivid-3/issues/930))
+
+### Features
+
+* **components:** fast-based accordion ([#930](https://github.com/Vonage/vivid-3/issues/930)) ([e228c60](https://github.com/Vonage/vivid-3/commit/e228c60bcb8982d06f0a7bac24dc3149cdd84574))
+
+## 3.0.0-next.139
+
+Thu, 26 Jan 2023 14:40:25 GMT
+
+### Changes
+
+- assign slotted to grid area (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.138
+
+Tue, 24 Jan 2023 06:50:45 GMT
+
+### Changes
+
+- fix(dialog): max-inline-size variable and dialog scream color (rachel.tannenbaum@vonage.com)
 
 ## 3.0.0-next.137
 

@@ -1,15 +1,15 @@
-import {html, ref, when} from '@microsoft/fast-element';
-import type {ViewTemplate} from '@microsoft/fast-element';
+import { html, ref, when } from '@microsoft/fast-element';
+import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
-import {classNames} from '@microsoft/fast-web-utilities';
-import {getFeedbackTemplate} from '../../shared/patterns';
-import {focusTemplateFactory} from '../../shared/patterns';
-import type {TextArea} from './text-area';
+import { classNames } from '@microsoft/fast-web-utilities';
+import { getFeedbackTemplate } from '../../shared/patterns';
+import { focusTemplateFactory } from '../../shared/patterns';
+import type { TextArea } from './text-area';
 
-const getClasses = ({value, errorValidationMessage, disabled, placeholder, readOnly, successText}: TextArea) => classNames(
+const getClasses = ({ value, errorValidationMessage, disabled, placeholder, readOnly, successText }: TextArea) => classNames(
 	'base',
 	['readonly', readOnly],
 	['placeholder', Boolean(placeholder)],
@@ -53,6 +53,7 @@ export const TextAreaTemplate: (
 				cols="${x => x.cols ? x.cols : null}"
 				wrap="${x => x.wrap ? x.wrap : null}"
 				?readonly="${x => x.readOnly}"
+				?disabled="${x => x.disabled}"
 				?required="${x => x.required}"
 				?spellcheck="${x => x.spellcheck}"
 				:value="${x => x.value}"
