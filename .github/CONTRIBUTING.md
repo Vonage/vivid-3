@@ -26,15 +26,13 @@ Never made an open source contribution before? Wondering how contributions work 
   - Visual tests: see the [ui-tests documentation](../docs/ui-tests/readme.md)
   - Build: `npx nx run build components`
 
-- Once you are done developing the change, commit your changes with a meaningful commit message
+- Once you are done developing the change, commit your changes with a meaningful commit message.
 
 - Push the changes to the remote repository using `git push origin branch-name-here`.
 
-- Submit a pull request to the upstream repository.
+- Submit a pull request to the upstream repository. Make sure the title of the pull request follows the [conventional commits format](https://www.conventionalcommits.org/en/v1.0.0/) (this will be checked in the CI). It should summarize the changes you propose, e.g.: "feat(button): added new feature requested in #876"
 
-- Title the pull request with a short description of the changes made and the issue or bug number associated with your change. For example, you can title an issue like so "Added more log outputting to resolve #4352".
-
-- In the description of the pull request, explain the changes that you made, any issues you think exist with the pull request you made, and any questions you have for the maintainer. It's OK if your pull request is not perfect (no pull request is), the reviewer will be able to help you fix any problems and improve it!
+- In the description of the pull request, explain the changes that you made in detail, any issues you think exist with the pull request you made, and any questions you have for the maintainer. It's OK if your pull request is not perfect (no pull request is), the reviewer will be able to help you fix any problems and improve it!
 
 - Wait for the pull request to be reviewed by a maintainer.
 
