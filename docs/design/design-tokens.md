@@ -84,7 +84,7 @@ Set the font custom properties of your choice (or all) to override the default t
  * This block of code typeface is set by '--vvd-typography-base-code'
  */
 </pre>
-<vwc-button appearance="filled" label="I using my override '--vvd-typography-base-bold'"></vwc-button>
+<vwc-button appearance="filled" label="This button typeface is set by '--vvd-typography-base-bold'"></vwc-button>
 ```
 
 #### Font size
