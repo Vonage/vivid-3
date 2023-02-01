@@ -44,6 +44,7 @@ function runBreadcrumbsTest() {
 		const testWrapper = await page.$('#wrapper');
 
 		await page.waitForLoadState('networkidle');
+		await page.locator('svg');
 
 		await page.waitForSelector('vwc-breadcrumb-item:last-child');
 		await page.waitForSelector('div:nth-child(2) vwc-breadcrumb-item:last-child');
