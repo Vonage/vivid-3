@@ -17,16 +17,18 @@ npm install @vonage/vivid
 ## Prerequisites
 
 ### Tokens
+Design system tokens are standardized visual design elements, such as colors, typography and spacing.
+Tokens are not applying any style, they are css-variables that Vivid uses in its style.  
 
-Add tokens to your app.
+Adding tokens to your project.
 
 CSS:
 
 ```css
-@import "~@vonage/vivid/styles/tokens/theme-light.css";
+@import "node_modules/@vonage/vivid/styles/tokens/theme-light.css";
 
 /* or alternatively */
-@import "~@vonage/vivid/styles/tokens/theme-dark.css";
+@import "node_modules/@vonage/vivid/styles/tokens/theme-dark.css";
 ```
 
 SCSS:
@@ -38,7 +40,7 @@ SCSS:
 In the &lt;head> tag:
 
 ```html
-<link rel="stylesheet" href="/assets/styles/tokens/theme-light.css" media="all">
+<link rel="stylesheet" href="node_modules/@vonage/vivid/styles/tokens/theme-light.css" media="all">
 ```
 
 ### Font
@@ -47,11 +49,11 @@ Vivid uses _Montserrat_ and _Roboto Mono_ Google fonts.
 
 **Vonage** products should use the brand-specific _Spezia_ font families.
 
-Go to this repo:
+To obtain the _Spezia_ webfont kit, go to this repository:
 
 [https://github.com/Vonage/spezia-webfont-kit](https://github.com/Vonage/spezia-webfont-kit)
 
-Download and add the Spezia font to your app.
+Download the font and add it to your project.
 
 Make sure it is added to the correct path as indicated in the CSS file (or update the path in the CSS below).
 
@@ -109,13 +111,6 @@ Now that we have the _Spezia_ font families set up - we need to override Vivid's
 }
 ```
 
-To add fonts and tokens to the component you need to add the class`vvd-root` to your app.
-
-```html
-<body class="vvd-root">...</body>
-```
-
-You can also add it to any wrapping element if you would like to scope the styles to only a certain part of your application.
 
 ### Typography (Optional)
 
@@ -124,26 +119,37 @@ If you wish your whole app to align to vivid typography (instead of the deprecat
 CSS:
 
 ```css
-@import "~@vonage/vivid/vivid/styles/core/all.css"
+@import "node_modules/@vonage/vivid/styles/core/all.css"
 ```
 
 SCSS:
 
 ```css
-@forward 'node_modules/@vonage/vivid/styles//core/all.css"
+@forward 'node_modules/@vonage/vivid/styles/core/all.css"
 ```
 
 In the &lt;head> tag:
 
 ```html
-<link rel="stylesheet" href="/assets/styles/core/all.css">
+<link rel="stylesheet" href="node_modules/@vonage/vivid/styles/core/all.css">
 ```
 ---
 
-### Adding component
+## Vivid Class
+To add fonts and tokens (and typography) to the component you need to add the class`vvd-root` to your app.
+
+```html
+<body class="vvd-root">...</body>
+```
+
+You can also add it to any wrapping element if you would like to scope the styles to only a certain part of your application.
+
+---
+
+## Adding component
 ```html
 <vwc-button label="Click me"></vwc-button>
-```
+``` 
 
 ---
 
