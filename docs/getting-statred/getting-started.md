@@ -1,8 +1,8 @@
 # Getting Started with Vivid@3 and up For Vonage Users
 
-This is a step-by-step instructions for setting up vivid@3 and up.
+This guide provides step-by-step instructions for setting up vivid@3.x.
 
-In case vivid@2.x is installed in your project, make sure you follow the  **[integrating vivid@3 alongside vivid@2]**(#integrating-vivid@3-alongside-vivid@2)
+If you have [vivid@2.x](mailto:vivid@2.x) installed in your project, make sure to follow the instructions for [integrating vivid@3 alongside vivid@2](#integrating-vivid@3-alongside-vivid@2).
 
 ---
 
@@ -43,7 +43,7 @@ In the &lt;head> tag:
 
 ### Font
 
-Vivid uses Montserrat and Roboto Mono Google fonts.
+Vivid uses _Montserrat_ and _Roboto Mono_ Google fonts.
 
 **Vonage** products should use the brand-specific _Spezia_ font families.
 
@@ -53,15 +53,15 @@ Go to this repo:
 
 Download and add the Spezia font to your app.
 
-Make sure you add it in the correct path as in the css file (or change the path in the css below):
+Make sure it is added to the correct path as indicated in the CSS file (or update the path in the CSS below).
 
 ```
 assets/fonts/Spezia_Web_Complete/VariableFont/Complete
 ```
 
-In your css file add this code for setting to font-family:
+In your CSS file, add the following code to specify & load the font family:
 
-Note - the`@import` needs to be declared at the top of the css file.
+Note: The `@font-face` declaration must be placed at the top of the CSS file.
 
 ```css
 @font-face {
@@ -86,7 +86,7 @@ Note - the`@import` needs to be declared at the top of the css file.
 }
 ```
 
-Now that we have the font - we need to override vivid default font by adding to the css:
+Now that we have the _Spezia_ font families set up - we need to override Vivid's default typefaces by applying the following to the css:
 
 ```css
 .vvd-root {
