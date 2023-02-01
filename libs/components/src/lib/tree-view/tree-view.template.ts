@@ -7,7 +7,7 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { TreeView } from './tree-view';
 
-const getClasses = (_: TreeView) => classNames('base');
+const getClasses = (_: TreeView) => classNames('control');
 
 /**
  * The template for the {@link @microsoft/fast-foundation#TreeView} component.
@@ -20,7 +20,7 @@ export const TreeViewTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<TreeView> = () => 
 	html`
-	<template
+	<div
 		class="${getClasses}"
 		role="tree"
 		@keydown="${(x, c) => x.handleKeyDown(c.event as KeyboardEvent)}"
@@ -30,5 +30,5 @@ export const TreeViewTemplate: (
 		@selected-change="${(x, c) => x.handleSelectedChange(c.event)}"
 		>
 		<slot ${slotted("slottedTreeItems")}></slot>
-	</template>
+	</div>
 `;

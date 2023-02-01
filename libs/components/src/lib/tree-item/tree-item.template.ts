@@ -7,7 +7,7 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { TreeItem } from './tree-item';
 
-const getClasses = (_: TreeItem) => classNames('base');
+const getClasses = (_: TreeItem) => classNames('control');
 
 /**
  * The template for the {@link @microsoft/fast-foundation#TreeItem} component.
@@ -20,7 +20,7 @@ export const TreeItemTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<TreeItem> = () =>
 		html<TreeItem>`
-		<template
+		<div
 			class="${getClasses}"
 			role="treeitem"
 			slot="${x => (x.isNestedItem() ? "item" : void 0)}"
@@ -37,5 +37,5 @@ export const TreeItemTemplate: (
 				})}
 			>
 			${x => x.text as string}
-		</template>
+		</div>
 `;
