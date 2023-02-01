@@ -21,7 +21,23 @@ The popup is positioned in a fixed manner to its anchor.
 - Default: `''`
 
 ```html preview center
-<vwc-button id="anchor" popovertoggletarget="popup" label="toggle popup"></vwc-button>
+<span id="anchor">Anchor</span>
+<vwc-popup popover anchor="anchor" open>
+  This is a popup.
+</vwc-popup>
+```
+
+### Invokers (taken from browsers' native `popover` support)
+
+[Supported elements](https://whatpr.org/html/8221/popover.html#attr-popover-target-supported-elements) can be used to invoke the popup display state.
+Set `popovertoggletarget`, `popovershowtarget` or `popoverhidetarget` on a supported element to reference the ID to popover element for it to be used as a trigger.
+Alternatively, use the attributes respective properties `popoverToggleTargetElement`, `popoverShowTargetElement` or `popoverHideTargetElement` to reference to the popover element(could come in handy when referencing accross different tree scopes).
+
+Normally, these attributes are set on the popover's anchor element, but they can be set on any supported element.
+
+```html preview center
+<vwc-button popovertoggletarget="popup" label="toggle popup"></vwc-button>
+<span id="anchor">Anchor</span>
 <vwc-popup popover id="popup" anchor="anchor" open>
   This is a popup.
 </vwc-popup>
