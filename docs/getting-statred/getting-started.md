@@ -45,7 +45,7 @@ In the &lt;head> tag:
 
 Vivid uses Montserrat and Roboto Mono Google fonts.
 
-**Vonage** products should use the brand-specified Spezia font families.
+**Vonage** products should use the brand-specific _Spezia_ font families.
 
 Go to this repo:
 
