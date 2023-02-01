@@ -134,4 +134,6 @@ export async function loadTemplate({
 	await page.$('body').then(body => body?.evaluate((body, {template, style}) => {
 		body.innerHTML = `${style}<div id="wrapper">${template}</div>`;
 	}, {template, style}));
+
+	await page.waitForTimeout(100);
 }
