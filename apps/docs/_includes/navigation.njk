@@ -1,5 +1,6 @@
 {% block content %}
 <vwc-nav>
+  <vwc-nav-item href="/getting-started" text="Getting started"></vwc-nav-item>
   <vwc-nav-disclosure label="Design System" open>
     {%  for item in designs | sort(false, false, 'title') %}
     <vwc-nav-item
