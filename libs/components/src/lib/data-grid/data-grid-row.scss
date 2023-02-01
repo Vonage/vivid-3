@@ -1,0 +1,15 @@
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+
+:host {
+	display: grid;
+	width: 100%;
+	box-sizing: border-box;
+	color: var(#{constants.$vvd-color-canvas-text});
+}
+
+:host([row-type="sticky-header"]) {
+	position: sticky;
+	z-index: 999;
+	top: 0;
+	background: var(#{constants.$vvd-color-canvas});
+}

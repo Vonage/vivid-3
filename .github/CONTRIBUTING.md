@@ -23,7 +23,7 @@ Never made an open source contribution before? Wondering how contributions work 
     - `npx nx run components:test` to start the tests or `npm test`
     - `npx nx run components:test --watch` to start the tests in watch mode
     - `npx nx run components:test --coverage` to start the tests with coverage report (generated in the `coverage` folder)
-  - Visual tests: see the [ui-tests documentation](../docs/ui-tests/readme.md)
+  - Visual tests: see the [ui-tests documentation](../docs/ui-test/readme.md)
   - Build: `npx nx run build components`
 
 - Once you are done developing the change, commit your changes with a meaningful commit message.
