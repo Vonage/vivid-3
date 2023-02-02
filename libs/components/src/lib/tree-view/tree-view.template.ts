@@ -1,4 +1,4 @@
-import { html, slotted } from '@microsoft/fast-element';
+import { html, slotted, ref } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
@@ -20,15 +20,18 @@ export const TreeViewTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<TreeView> = () => 
 	html`
-	<div
-		class="${getClasses}"
+	<template
 		role="tree"
+		${ref("treeView")}
 		@keydown="${(x, c) => x.handleKeyDown(c.event as KeyboardEvent)}"
 		@focusin="${(x, c) => x.handleFocus(c.event as FocusEvent)}"
 		@focusout="${(x, c) => x.handleBlur(c.event as FocusEvent)}"
 		@click="${(x, c) => x.handleClick(c.event as MouseEvent)}"
 		@selected-change="${(x, c) => x.handleSelectedChange(c.event)}"
 		>
-		<slot ${slotted("slottedTreeItems")}></slot>
-	</div>
+		<div class="${getClasses}">
+			<slot ${slotted("slottedTreeItems")}></slot>
+		</div>
+	</template>
 `;
+

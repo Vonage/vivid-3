@@ -21,7 +21,6 @@
 
 	$min-block-size: #{size.$vvd-size-normal};
 	$gap: 12px;
-	$gutter: 16px;
 
 	position: relative;
 	display: inline-flex;
@@ -53,17 +52,27 @@
 	&:disabled {
 		cursor: not-allowed;
 	}
+}
 
-	&.icon-only {
-		display: flex;
-		block-size: $min-block-size;
-		inline-size: $min-block-size;
-		place-content: center;
+.expand-collapse-button {
+	@include appearance.appearance;
+	@include connotation.connotation;
+
+	@supports selector(:focus-visible) {
+		&:focus {
+			outline: none;
+		}
 	}
 
-	&:not(.icon-only) {
-		padding-inline: $gutter;
-	}
+	position: relative;
+	display: flex;
+	align-items: center;
+	border: none;
+	background-color: var(#{appearance.get-appearance-token(fill)});
+	color: var(#{appearance.get-appearance-token(text)});
+	cursor: pointer;
+	font: var(#{constants.$vvd-typography-base});
+	text-align: left;
 }
 
 .focus-indicator {
