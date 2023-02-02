@@ -9,50 +9,50 @@ Popup's goal is to provide additional, helpful content. To trigger the Popup, it
 </script>
 ```
 
-## Members
+## Properties
 
 ### Anchor
 
-Use the `anchor` attribute to reference the ID to element in the popup’s owner document.
-
-The popup is positioned in a fixed manner to its anchor.
+Use the `anchor` attribute to reference the ID of an element (in the same popup's owner document) of which the popup should be anchored to.
 
 - Type: `string`
 - Default: `''`
 
 ```html preview center
 <span id="anchor">Anchor</span>
-<vwc-popup popover anchor="anchor" open>
+<vwc-popup popover anchor="anchor" defaultopen>
   This is a popup.
 </vwc-popup>
 ```
 
-### Invokers (taken from browsers' native `popover` support)
+### Invokers
+
+(taken from browsers' native `popover` support)
 
 [Supported elements](https://whatpr.org/html/8221/popover.html#attr-popover-target-supported-elements) can be used to invoke the popup display state.
 Set `popovertoggletarget`, `popovershowtarget` or `popoverhidetarget` on a supported element to reference the ID to popover element for it to be used as a trigger.
-Alternatively, use the attributes respective properties `popoverToggleTargetElement`, `popoverShowTargetElement` or `popoverHideTargetElement` to reference to the popover element(could come in handy when referencing accross different tree scopes).
+Alternatively, use the attributes respective properties `popoverToggleTargetElement`, `popoverShowTargetElement` or `popoverHideTargetElement` to reference to the popover element(this can come in handy when referencing accross different tree scopes).
 
-Normally, these attributes are set on the popover's anchor element, but they can be set on any supported element.
+Normally, these attributes are set on the popover's anchored element, but they can be set on any other supported element.
 
 ```html preview center
 <vwc-button popovertoggletarget="popup" label="toggle popup"></vwc-button>
 <span id="anchor">Anchor</span>
-<vwc-popup popover id="popup" anchor="anchor" open>
+<vwc-popup popover id="popup" anchor="anchor" defaultopen>
   This is a popup.
 </vwc-popup>
 ```
 
-### Open
+### Default Open
 
-Use the `open` attribute to indicate whether the popup is open.
+Use the `defaultopen` attribute to indicate whether the popup should be open when the page loads.
 
 - Type: `boolean`
 - Default: `false`
 
 ```html preview center
 <vwc-button id="anchor" appearance='outlined' label='Click me!'></vwc-button>
-<vwc-popup id="popup" anchor="anchor" open>
+<vwc-popup id="popup" anchor="anchor" defaultopen>
   <vwc-layout gutters="small">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   </vwc-layout>
@@ -72,7 +72,7 @@ Add the `dismissible` attribute to add a close button to the popup.
 
 ```html preview center
 <vwc-button id="anchor" appearance='outlined' label='Click on me!'></vwc-button>
-<vwc-popup id="popup" anchor="anchor" open dismissible>
+<vwc-popup id="popup" anchor="anchor" defaultopen dismissible>
   <vwc-layout gutters="small">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   </vwc-layout>
@@ -95,7 +95,7 @@ Use the `popover` attribute to add Light dismiss behaviors.
 
 ```html preview center
 <vwc-button id="anchor" appearance='outlined' label='Click outside of the popup!' ></vwc-button>
-<vwc-popup id="popover" anchor="anchor" open popover>
+<vwc-popup id="popover" anchor="anchor" defaultopen popover>
   <vwc-layout gutters="small">
    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   </vwc-layout>
@@ -114,7 +114,7 @@ Add the `arrow` attribute to add a small triangle to indicate the trigger elemen
 
 ```html preview center
 <vwc-icon id="anchor" name='info-line'></vwc-icon>
-<vwc-popup anchor="anchor" open arrow>
+<vwc-popup anchor="anchor" defaultopen arrow>
   <vwc-layout gutters="small" style="200px">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   </vwc-layout>
@@ -130,7 +130,7 @@ Add the `alternate` attribute to set the color-scheme to dark or light (dependin
 
 ```html preview center
 <vwc-icon id="anchor" name='info-line'></vwc-icon>
-<vwc-popup anchor="anchor" open alternate>
+<vwc-popup anchor="anchor" defaultopen alternate>
   <vwc-layout gutters="small" style="200px">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   </vwc-layout>
@@ -159,40 +159,40 @@ Use the `placement` attribute to set the placement of the popup around the ancho
 
 <div id="anchor" class="square"></div>
 
-<vwc-popup id="popup" anchor="anchor" open placement="right-end">
+<vwc-popup id="popup" anchor="anchor" defaultopen placement="right-end">
   right-end
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open placement="right">
+<vwc-popup id="popup" anchor="anchor" defaultopen placement="right">
   right
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open placement="right-start">
+<vwc-popup id="popup" anchor="anchor" defaultopen placement="right-start">
   right-start
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open placement="left-end">
+<vwc-popup id="popup" anchor="anchor" defaultopen placement="left-end">
   left-end
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open placement="left">
+<vwc-popup id="popup" anchor="anchor" defaultopen placement="left">
   left
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open placement="left-start">
+<vwc-popup id="popup" anchor="anchor" defaultopen placement="left-start">
   left-start
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open placement="top-end">
+<vwc-popup id="popup" anchor="anchor" defaultopen placement="top-end">
   top-end
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open placement="top">
+<vwc-popup id="popup" anchor="anchor" defaultopen placement="top">
   top
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open placement="top-start">
+<vwc-popup id="popup" anchor="anchor" defaultopen placement="top-start">
   top-start
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open placement="bottom-end">
+<vwc-popup id="popup" anchor="anchor" defaultopen placement="bottom-end">
   bottom-end
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open placement="bottom">
+<vwc-popup id="popup" anchor="anchor" defaultopen placement="bottom">
   bottom
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open placement="bottom-start">
+<vwc-popup id="popup" anchor="anchor" defaultopen placement="bottom-start">
   bottom-start
 </vwc-popup>
 ```

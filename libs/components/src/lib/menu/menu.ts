@@ -20,7 +20,7 @@ export class Menu extends FastMenu {
 	 */
 	@attr({
 		mode: 'boolean',
-	}) open? = false;
+	}) open?= false;
 
 	/**
 	 * the placement of the menu
@@ -39,6 +39,6 @@ export class Menu extends FastMenu {
 	@attr anchor?: string;
 
 	popupOpenChanged = () => {
-		this.open = (this._popup as Popup).open;
+		this.open = (this._popup as Popup)._open;
 	};
 }

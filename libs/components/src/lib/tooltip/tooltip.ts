@@ -50,10 +50,10 @@ export class Tooltip extends Popup {
 	}
 
 	#show = () => {
-		this.open = true;
+		this._open = true;
 	};
 
 	#hide = () => {
-		this.open = false;
+		this._open = false;
 	};
 }

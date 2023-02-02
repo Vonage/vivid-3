@@ -8,7 +8,7 @@ import { Popup } from '../popup/popup';
 import type { Tooltip } from './tooltip';
 
 const getClasses = ({
-	open
+	_open: open
 }: Tooltip) => classNames(
 	'control',
 	['open', Boolean(open)],
@@ -27,13 +27,13 @@ export const TooltipTemplate: (
 	const popupTag = context.tagFor(Popup);
 
 	return html`
-<${popupTag} class="${getClasses}" arrow alternate
-placement=${(x) => x.placement} open=${(x) => x.open} anchor=${(x) => x.anchor}
-  exportparts="vvd-theme-alternate">
-  <div class="tooltip" role="tooltip">
-    <header part="vvd-theme-alternate" class="tooltip-header">
-      <div class="tooltip-text">${(x) => x.text}</div>
-    </header>
-  </div>
+<${popupTag} class="${getClasses}" arrow alternate placement=${(x)=> x.placement} open=${(x) => x._open} anchor=${(x) =>
+	x.anchor}
+	exportparts="vvd-theme-alternate">
+	<div class="tooltip" role="tooltip">
+		<header part="vvd-theme-alternate" class="tooltip-header">
+			<div class="tooltip-text">${(x) => x.text}</div>
+		</header>
+	</div>
 </${popupTag}>`;
 };

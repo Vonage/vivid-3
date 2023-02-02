@@ -1,4 +1,4 @@
-import { attr } from '@microsoft/fast-element';
+import { attr, observable } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { arrow, autoUpdate, computePosition, flip, hide, inline, offset } from '@floating-ui/dom';
 import type { Placement, Strategy } from '@floating-ui/dom';
@@ -29,13 +29,11 @@ export class Popup extends FoundationElement {
 	/**
 	 * indicates whether the popup is open
 	 *
-	 * @public
+	 * @internal
 	 * HTML Attribute: open
 	 */
-	@attr({
-		mode: 'boolean',
-	}) open = false;
-	openChanged(_: boolean, newValue: boolean): void {
+	@observable _open = false;
+	openChanged(_: boolean, newValue: boolean): void { // ! replace by BeforeToggleEvent?
 		newValue ? this.$emit('open') : this.$emit('close');
 	}
 
@@ -106,7 +104,7 @@ export class Popup extends FoundationElement {
 				break;
 			}
 			case 'open': {
-				this.open ? this.showPopover() : this.hidePopover();
+				this._open ? this.showPopover() : this.hidePopover();
 				break;
 			}
 		}
@@ -124,7 +122,7 @@ export class Popup extends FoundationElement {
 	 * @public
 	 */
 	async updatePosition() {
-		if (!this.open || !this.anchorEl) {
+		if (!this._open || !this.anchorEl) {
 			return;
 		}
 
@@ -170,13 +168,13 @@ export class Popup extends FoundationElement {
 		if (!this.classList.contains(':open')) {
 			super.showPopover();
 		}
-		this.open = this.classList.contains(':open');
+		this._open = this.classList.contains(':open');
 	}
 
 	override hidePopover(): void {
 		if (this.classList.contains(':open')) {
 			super.hidePopover();
 		}
-		this.open = this.classList.contains(':open');
+		this._open = this.classList.contains(':open');
 	}
 }
