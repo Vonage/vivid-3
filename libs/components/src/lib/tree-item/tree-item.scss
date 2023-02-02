@@ -21,6 +21,7 @@
 
 	$min-block-size: #{size.$vvd-size-normal};
 	$gap: 12px;
+	$gutter: 16px;
 
 	position: relative;
 	display: inline-flex;
@@ -38,6 +39,7 @@
 	text-decoration: none;
 	vertical-align: middle;
 	word-break: break-word;
+	padding-inline: $gutter;
 
 	@supports selector(:focus-visible) {
 		&:focus {
@@ -54,7 +56,7 @@
 	}
 }
 
-.expand-collapse-button {
+.button {
 	@include appearance.appearance;
 	@include connotation.connotation;
 
@@ -73,6 +75,18 @@
 	cursor: pointer;
 	font: var(#{constants.$vvd-typography-base});
 	text-align: left;
+
+	&.expanded{
+		transform: rotate(45deg);
+	}
+}
+
+.items {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	margin-block: 4px;
+	padding-inline: 60px;
 }
 
 .focus-indicator {
@@ -82,7 +96,7 @@
 }
 
 .icon {
-	font-size: 20px;
+	font-size: 16px;
 	line-height: 1;
 
 	.control:not(.icon-only) & {

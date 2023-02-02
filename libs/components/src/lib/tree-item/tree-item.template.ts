@@ -14,13 +14,13 @@ export const expandButton = (context: ElementDefinitionContext) => {
 	return html<TreeItem>`
 	<button
 		aria-hidden="true"
-		class="expand-collapse-button"
+		class="button ${(x) => x.expanded ? 'expanded' : ''}""
 		@click="${(x, c) =>
 			x.handleExpandCollapseButtonClick(c.event as MouseEvent)}"
 		${ref("expandCollapseButton")}
 	>
 		${() => focusTemplate}
-		${x => affixIconTemplate(x.expanded ? 'chevron-up-solid' : 'chevron-down-solid')}
+		${() => affixIconTemplate('chevron-right-solid')}
 	</button>`;
 };
 
