@@ -9,6 +9,7 @@ on:
       - 'docs/**'
       - 'assets/**'
       - 'apps/docs/**'
+      - '!apps/docs/_data/components.json'
 
 jobs:
   deploy-deno:
