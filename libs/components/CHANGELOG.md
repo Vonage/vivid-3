@@ -4,6 +4,18 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.1.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.0.1...vivid-v3.1.0) (2023-02-03)
+
+
+### Features
+
+* **data-grid:** port data grid component from fast ([#947](https://github.com/Vonage/vivid-3/issues/947)) ([c85c865](https://github.com/Vonage/vivid-3/commit/c85c865425612b920c9af2160c303606e21c2fd0))
+
+
+### Bug Fixes
+
+* **components:** remove popover polyfill ([#1004](https://github.com/Vonage/vivid-3/issues/1004)) ([337151c](https://github.com/Vonage/vivid-3/commit/337151c64fd48131a8e2d8a2055feea0b9fa53e8))
+
 ## 3.0.0 (2023-01-30)
 
 
