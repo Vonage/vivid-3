@@ -24,10 +24,11 @@ const codeBlockButtonClick = (button) => {
   button.ariaExpanded = details.open;
 };
 
+const getCodeText = (fromEl) => fromEl.parentElement.nextElementSibling.textContent.trim();
+
 const codeCopyButtonClick = (button) => {
-  const details = button.closest('vwc-action-group').nextElementSibling;
-  const { textContent } = details;
-  navigator.clipboard.writeText(textContent.trim())
+  const textContent = getCodeText(button);
+  navigator.clipboard.writeText(textContent)
     .then(() => {
       /* clipboard successfully set */
       button.icon = 'check-line';
@@ -41,6 +42,29 @@ const codeCopyButtonClick = (button) => {
     button.icon = 'copy-2-line';
   }, 1000);
 };
+
+let codePenForm = null;
+
+const openCodePen = (button, deps) => {
+	const codePenPayload = JSON.stringify({
+		html: `<div class="vvd-root">\n${getCodeText(button)}\n</div>`,
+		css:  `@import "https://unpkg.com/@vonage/vivid@next/styles/tokens/theme-light.css";\n@import "https://unpkg.com/@vonage/vivid@next/styles/core/all.css";`,
+		js:	  deps.map(d => `import 'https://unpkg.com/@vonage/vivid@next/${d}';`).join('\n')
+	}).replace(/"/g, '&quot;')
+	  .replace(/'/g, '&apos;');
+
+	if (!codePenForm) {
+		codePenForm = document.createElement('form');
+		Object.assign(codePenForm, {
+			action: 'https://codepen.io/pen/define',
+			method: 'post',
+			target: '_blank'
+		})
+		document.lastElementChild.insertAdjacentElement('beforeend', codePenForm);
+	}
+	codePenForm.innerHTML = `<input type="hidden" name="data" value="${codePenPayload}"/>`;
+	codePenForm.submit();
+}
 
 const onloadIframe = (iFrame) => {
   const toggle = document.querySelector('vwc-button#dark-mode-toggle');
