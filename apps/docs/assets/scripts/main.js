@@ -48,8 +48,8 @@ let codePenForm = null;
 const openCodePen = (button, deps) => {
 	const codePenPayload = JSON.stringify({
 		html: `<div class="vvd-root">\n${getCodeText(button)}\n</div>`,
-		css:  `@import "https://unpkg.com/@vonage/vivid@next/styles/tokens/theme-light.css";\n@import "https://unpkg.com/@vonage/vivid@next/styles/core/all.css";`,
-		js:	  deps.map(d => `import 'https://unpkg.com/@vonage/vivid@next/${d}';`).join('\n')
+		css:  `@import "https://unpkg.com/@vonage/vivid@latest/styles/tokens/theme-light.css";\n@import "https://unpkg.com/@vonage/vivid@latest/styles/core/all.css";`,
+		js:	  deps.map(d => `import 'https://unpkg.com/@vonage/vivid@latest/${d}';`).join('\n')
 	}).replace(/"/g, '&quot;')
 	  .replace(/'/g, '&apos;');
 
