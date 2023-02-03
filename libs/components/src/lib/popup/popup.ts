@@ -1,6 +1,6 @@
 import { attr, observable } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { arrow, autoUpdate, computePosition, flip, hide, inline, offset } from '@floating-ui/dom';
+import { arrow, computePosition, flip, hide, inline, offset } from '@floating-ui/dom';
 import type { Placement, Strategy } from '@floating-ui/dom';
 
 /**
@@ -91,30 +91,46 @@ export class Popup extends FoundationElement {
 	 */
 	@attr anchor!: string | HTMLElement;
 
+	/**
+	 * Whether the popup is open by default
+	 *
+	 * @public
+	 * HTML Attribute: defaultopen
+	 */
+	@attr defaultopen!: string | HTMLElement;
+
+	override connectedCallback(): void {
+		super.connectedCallback();
+		if (this.defaultopen) {
+			console.log('defaultopen');
+			// this.showPopover();
+		}
+	}
+
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
 		this.#cleanup?.();
 	}
 
-	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
-		super.attributeChangedCallback(name, oldValue, newValue);
-		switch (name) {
-			case 'anchor': {
-				this.anchorEl = this.#getAnchor();
-				break;
-			}
-			case 'open': {
-				this._open ? this.showPopover() : this.hidePopover();
-				break;
-			}
-		}
-		if (this.anchorEl && this.popupEl) {
-			this.#cleanup = autoUpdate(this.anchorEl, this.popupEl, () => this.updatePosition());
-		}
-		else {
-			this.#cleanup?.();
-		}
-	}
+	// override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
+	// 	super.attributeChangedCallback(name, oldValue, newValue);
+	// 	switch (name) {
+	// 		case 'anchor': {
+	// 			this.anchorEl = this.#getAnchor();
+	// 			break;
+	// 		}
+	// 		case 'open': {
+	// 			this._open ? this.showPopover() : this.hidePopover();
+	// 			break;
+	// 		}
+	// 	}
+	// 	if (this.anchorEl && this.popupEl) {
+	// 		this.#cleanup = autoUpdate(this.anchorEl, this.popupEl, () => this.updatePosition());
+	// 	}
+	// 	else {
+	// 		this.#cleanup?.();
+	// 	}
+	// }
 
 	/**
 	 * Updates popup's position
@@ -160,21 +176,21 @@ export class Popup extends FoundationElement {
 	/**
 	 * Gets the anchor element by id
 	 */
-	#getAnchor(): HTMLElement | null {
-		return this.anchor instanceof HTMLElement ? this.anchor : document.getElementById(this.anchor);
-	}
+	// #getAnchor(): HTMLElement | null {
+	// 	return this.anchor instanceof HTMLElement ? this.anchor : document.getElementById(this.anchor);
+	// }
 
-	override showPopover(): void {
-		if (!this.classList.contains(':open')) {
-			super.showPopover();
-		}
-		this._open = this.classList.contains(':open');
-	}
+	// override showPopover(): void {
+	// 	if (!this.classList.contains(':open')) {
+	// 		super.showPopover();
+	// 	}
+	// 	this._open = this.classList.contains(':open');
+	// }
 
-	override hidePopover(): void {
-		if (this.classList.contains(':open')) {
-			super.hidePopover();
-		}
-		this._open = this.classList.contains(':open');
-	}
+	// override hidePopover(): void {
+	// 	if (this.classList.contains(':open')) {
+	// 		super.hidePopover();
+	// 	}
+	// 	this._open = this.classList.contains(':open');
+	// }
 }
