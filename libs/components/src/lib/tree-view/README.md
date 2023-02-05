@@ -10,11 +10,14 @@ Represents a tree-view custom element.
 
 ```html preview
 <vwc-tree-view>
-    <vwc-tree-item text="Tree item 1">
-        <vwc-tree-item slot="item" text="Tree item 1 - 1"></vwc-tree-item>
-        <vwc-tree-item slot="item" text="Tree item 1 - 2"></vwc-tree-item>
+    <vwc-tree-item text="Tree item 1" icon="home-line">
+        <vwc-tree-item slot="item" text="Tree item 1 - 1" icon="home-line"></vwc-tree-item>
+        <vwc-tree-item slot="item" text="Tree item 1 - 2">
+            <vwc-tree-item slot="item" text="Tree item 2 - 1"></vwc-tree-item>
+            <vwc-tree-item slot="item" text="Tree item 2 - 2"></vwc-tree-item>
+        </vwc-tree-item>
     </vwc-tree-item>
-    <vwc-tree-item text="Tree item 2"></vwc-tree-item>
+    <vwc-tree-item text="Tree item 2" icon="home-line"></vwc-tree-item>
 </vwc-tree-view>
 ```
 

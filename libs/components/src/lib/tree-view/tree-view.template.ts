@@ -1,8 +1,7 @@
 import { html, slotted, ref } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
+import { focusTemplateFactory } from '../../shared/patterns/focus';
 import type {
 	ElementDefinitionContext,
-	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { TreeView } from './tree-view';
@@ -15,11 +14,9 @@ const getClasses = (_: TreeView) => classNames('control');
  * @param context
  * @public
  */
-export const TreeViewTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<TreeView> = () => 
-	html`
+export const TreeViewTemplate = (context: ElementDefinitionContext) => {
+	const focusTemplate = focusTemplateFactory(context);
+	return html<TreeView>`
 	<template
 		role="tree"
 		${ref("treeView")}
@@ -30,8 +27,8 @@ export const TreeViewTemplate: (
 		@selected-change="${(x, c) => x.handleSelectedChange(c.event)}"
 		>
 		<div class="${getClasses}">
+			${() => focusTemplate}
 			<slot ${slotted("slottedTreeItems")}></slot>
 		</div>
-	</template>
-`;
-
+	</template>`;
+};

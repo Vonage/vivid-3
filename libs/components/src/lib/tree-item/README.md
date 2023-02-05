@@ -9,7 +9,9 @@ Represents a tree-item custom element.
 ```
 
 ```html preview
-<vwc-tree-item text="Tree Item"></vwc-tree-item>
+<vwc-tree-view>
+    <vwc-tree-item text="Tree Item" icon="home-line"></vwc-tree-item>
+</vwc-tree-view>
 ```
 
 ## Members

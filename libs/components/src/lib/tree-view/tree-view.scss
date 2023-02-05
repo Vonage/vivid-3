@@ -1,5 +1,19 @@
+@use "../focus/partials/variables" as focus-variables;
+
+:host(:focus-within) {
+	outline: none;
+}
+
 tree-view {
 	display: flex;
 	flex-direction: column;
 	gap: 4px;
+}
+
+.focus-indicator {
+	pointer-events: none;
+
+	:host(:not(:focus-within)) & {
+		display: none;
+	}
 }

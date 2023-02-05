@@ -6,8 +6,7 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import type { TreeItem } from './tree-item';
 
 const getClasses = ({
-	icon, disabled, selected
-}: TreeItem) => classNames(
+	icon, disabled, selected}: TreeItem) => classNames(
 	'control',
 	['disabled', disabled],
 	['selected', Boolean(selected)],
@@ -15,7 +14,6 @@ const getClasses = ({
 );
 
 export const expandButton = (context: ElementDefinitionContext) => {
-	const focusTemplate = focusTemplateFactory(context);
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html<TreeItem>`
@@ -24,9 +22,8 @@ export const expandButton = (context: ElementDefinitionContext) => {
 		class="button ${(x) => x.expanded ? 'expanded' : ''}""
 		@click="${(x, c) =>
 			x.handleExpandCollapseButtonClick(c.event as MouseEvent)}"
-		${ref("expandCollapseButton")}
+			${ref("expandCollapseButton")}
 	>
-		${() => focusTemplate}
 		${() => affixIconTemplate('chevron-right-solid')}
 	</button>`;
 };
@@ -38,7 +35,9 @@ export const expandButton = (context: ElementDefinitionContext) => {
  * @public
  */
 export const TreeItemTemplate = (context: ElementDefinitionContext) => {
+	const affixIconTemplate = affixIconTemplateFactory(context);
 	const focusTemplate = focusTemplateFactory(context);
+	
 	return html<TreeItem>`
 	<template
 			role="treeitem"
@@ -53,9 +52,10 @@ export const TreeItemTemplate = (context: ElementDefinitionContext) => {
 			${children({ property: "childItems", filter: elements(), })}
 			>
 			<div class="${getClasses}">
-				${when(x => x.childItems && x.childItems.length > 0, expandButton(context))}
-				${x => x.text as string}
 				${() => focusTemplate}
+				${when(x => x.childItems && x.childItems.length > 0, expandButton(context))}
+				${x => affixIconTemplate(x.icon)}
+				${x => x.text as string}
 			</div>
 			${when(x => x.childItems && x.childItems.length > 0 && x.expanded,
 				html<TreeItem>`

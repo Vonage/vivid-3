@@ -4,19 +4,24 @@ import styles from './tree-view.scss';
 
 import { TreeView } from './tree-view';
 import { TreeViewTemplate as template } from './tree-view.template';
+import { treeItemRegistries } from '../tree-item/definition';
+import { focusRegistries } from '../focus/definition';
 
 export const treeViewDefinition = TreeView.compose<FoundationElementDefinition>(
 	{
 		baseName: 'tree-view',
 		template: template as any,
 		styles,
+		shadowOptions: {
+			delegatesFocus: true,
+		},
 	}
 );
 
 /**
  * @internal
  */
-export const treeViewRegistries = [treeViewDefinition()];
+export const treeViewRegistries = [treeViewDefinition(), ...treeItemRegistries, ...focusRegistries];
 
 /**
  * Registers the tree-view element with the design system.
