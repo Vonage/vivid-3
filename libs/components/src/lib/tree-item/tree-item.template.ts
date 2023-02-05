@@ -5,7 +5,14 @@ import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { TreeItem } from './tree-item';
 
-const getClasses = (_: TreeItem) => classNames('control');
+const getClasses = ({
+	icon, disabled, selected
+}: TreeItem) => classNames(
+	'control',
+	['disabled', disabled],
+	['selected', Boolean(selected)],
+	['icon', Boolean(icon)],
+);
 
 export const expandButton = (context: ElementDefinitionContext) => {
 	const focusTemplate = focusTemplateFactory(context);
