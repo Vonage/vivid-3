@@ -119,6 +119,7 @@ For more information check out [getting started](add/link)
 ## Advanced Usage
 - Scoped Elements
 - Core styles
+
 For further information check our [docs : Advanced Usage](link)
 
 
