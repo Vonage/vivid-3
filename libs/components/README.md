@@ -32,7 +32,7 @@ The following snippet fully renders a Vivid button component
 </div>
 ```
 
-### Local Installation
+### Installation
 
 To integrate Vivid components into your project, run:
 
