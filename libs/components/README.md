@@ -77,17 +77,17 @@ Tokens folder contains the following files:
 Only one theme is required to be loaded.
 
 
-##### Option 1: css
+**Option 1: css**
 ```css
 @import "node_modules/@vonage/vivid/styles/tokens/theme-light.css";
 ```
 
-##### Option 2: scss
+**Option 2: scss**
 ```css
 @forward 'node_modules/@vonage/vivid/styles/tokens/theme-light.css";
 ``` 
 
-##### Option 3: HTML (inside the &lt;head> tag)
+**Option 3: HTML (inside the &lt;head> tag)**
 ```html
 <link rel="stylesheet" href="node_modules/@vonage/vivid/styles/tokens/theme-light.css" media="all">
 ```
