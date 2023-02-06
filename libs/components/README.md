@@ -108,7 +108,7 @@ You can also add it to any wrapping element if you would like to scope the style
 Vivid uses `Montserrat` and `Roboto Mono` Google fonts.  
 Learn how to load fonts into your application [with google-fonts](https://fonts.google.com/knowledge/using_type/using_web_fonts_from_a_font_delivery_service#loading-web-fonts)
 
-#### Vonage users:
+#### Vonage authors:
 Unless explicitly stated otherwise, *Vonage products* should use the brand specified `Spezia` font families.  
 Vonage teams may review guidelines at the [Spezia webfont kit](https://github.com/Vonage/spezia-webfont-kit).  
 For more information check out [getting started](add/link) 
