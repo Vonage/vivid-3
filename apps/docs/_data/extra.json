@@ -1,0 +1,16 @@
+[
+  {
+    "title": "extra-features",
+    "markdown": "./docs/starting/extra-features.md",
+    "modules": [
+      "/assets/modules/components/layout/index.js"
+    ]
+  },
+	{
+		"title": "vonage-users",
+		"markdown": "./docs/starting/vonage-users.md",
+		"modules": [
+			"/assets/modules/components/layout/index.js"
+		]
+	}
+]

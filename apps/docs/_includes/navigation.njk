@@ -1,6 +1,16 @@
 {% block content %}
 <vwc-nav>
-  <vwc-nav-item href="/getting-started" text="Getting started"></vwc-nav-item>
+    <vwc-nav-disclosure label="Getting Started" open>
+      {%  for item in extra | sort(false, false, 'title') %}
+      <vwc-nav-item
+  			href="{{ ('/extra/' + item.title) | url }}"
+  			text="{{ item.title | replace("-", " ") | capitalize }}
+  			{% if (item.status) == "alpha" %}🧪{% endif %}
+  			{% if (item.status) == "underlying" %}🔒{% endif %}"
+  			{% if ('/starting/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
+      {% endfor %}
+    </vwc-nav-disclosure>
+
   <vwc-nav-disclosure label="Design System" open>
     {%  for item in designs | sort(false, false, 'title') %}
     <vwc-nav-item

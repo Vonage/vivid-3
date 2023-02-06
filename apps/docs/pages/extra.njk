@@ -1,0 +1,20 @@
+---
+tags: extra
+pagination:
+    data: extra
+    size: 1
+    alias: starting
+permalink: "extra/{{ starting.title | slug }}/"
+---
+
+{% extends '../_layouts/base.njk' %}
+
+{% block header %}
+	{% for url in starting.modules %}
+<script type="module" src="{{ url | url }}"></script>
+	{% endfor %}
+{% endblock %}
+
+{% block content %}
+	{% renderFile starting.markdown %}
+{% endblock %}
