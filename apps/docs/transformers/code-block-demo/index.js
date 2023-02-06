@@ -15,13 +15,9 @@ const CBD_DEMO = 'cbd-demo';
 const CBD_DETAILS = 'cbd-details';
 const CBD_CODE_BLOCK = 'cbd-code-block';
 
-const getComponentName = (outputPath) => {
-	const pathName = path.dirname(outputPath).substring(0, outputPath.lastIndexOf('/'));
-	const componentName = pathName.substring(pathName.lastIndexOf('/') + 1);
-	return componentName;
-}
-
-const getComponentData = (componentName) => jsonData.find(({ title }) => title == componentName);
+let notServing = true;
+let componentName = '';
+let componentData = '';
 
 const generateCodeBlockDemo = function (blockData) {
 	let code = blockData.pre.querySelector('code').textContent;
@@ -40,10 +36,15 @@ const generateCodeBlockDemo = function (blockData) {
 	return dom.window.document.querySelector(`.${CBD_CONTAINER}`);
 };
 
-module.exports = function (content, outputPath) {
+module.exports = function (content, outputPath, isServing) {
 	if (!outputPath.endsWith('.html')) {
 		return content;
 	}
+
+	notServing = !isServing;
+	const pathName = path.dirname(outputPath).substring(0, outputPath.lastIndexOf('/'));
+	componentName = pathName.substring(pathName.lastIndexOf('/') + 1);
+	componentData = jsonData.find(({ title }) => title == componentName);
 
 	const blockData = {};
 	blockData.outputPath = outputPath;
@@ -66,11 +67,13 @@ const getHtml = (demoData) => {
 	frameData.outputPath = demoData.outputPath;
 	const iframeSrc = getIframe(frameData);
 
-	// TODO optimize this. getComponentData / getComponentName are already computed in getIframe()
-	const compdata = getComponentData(getComponentName(frameData.outputPath));
-	const deps = compdata.modules
-		.map(m => m.split('/')[4])
-		.reduceRight((acc, v, i) => `${acc}\'${v}\'${i === 0 ? ']' : ','}`, '[');
+	let codePenButton = '';
+	if (notServing) {
+		const deps = componentData.modules
+			.map(m => m.split('/')[4])
+			.reduceRight((acc, v, i) => `${acc}\'${v}\'${i === 0 ? ']' : ','}`, '[');
+		codePenButton = `<vwc-button aria-label="Open on CodePen" label="CodePen" icon="open-line" onclick="openCodePen(this, ${deps})"></vwc-button>`;
+	}
 
 	return `
     <vwc-card elevation="0" class="${CBD_CONTAINER}">
@@ -78,7 +81,7 @@ const getHtml = (demoData) => {
       <vwc-action-group appearance="ghost" style="direction: rtl;" slot="main">
         <vwc-button aria-label="Show source code" icon="code-line" aria-expanded="false" aria-controls="${codeBlockId}" onclick="codeBlockButtonClick(this)"></vwc-button>
         <vwc-button aria-label="Copy source code" icon="copy-2-line" onclick="codeCopyButtonClick(this)"></vwc-button>
-        <vwc-button aria-label="Open on CodePen" label="CodePen" icon="open-line" onclick="openCodePen(this, ${deps})"></vwc-button>
+		${codePenButton}
       </vwc-action-group>
       <details class="${CBD_DETAILS}" slot="main">
         <summary></summary>
@@ -114,9 +117,7 @@ const addModules = (data) => {
 
 const saveCodeAsHTMLFile = (frameData) => {
 	const filePath = `${frameData.saveFolder}/${frameData.codeBlockId}.html`;
-	const componentName = getComponentName(frameData.outputPath);
-	const data = getComponentData(componentName);
-	frameData.demoStr += addModules(data);
+	frameData.demoStr += addModules(componentData);
 	const document = `<!DOCTYPE html><html class="vvd-root">${frameData.demoStr}</html>`;
 	fs.writeFileSync(filePath, document);
 	return filePath;
