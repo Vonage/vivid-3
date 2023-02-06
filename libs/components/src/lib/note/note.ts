@@ -23,7 +23,6 @@ export class Note extends FoundationElement {
 	 * HTML Attribute: headline
 	 */
 	@attr headline?: string;
-
 	@attr connotation?: NoteConnotation;
 }
 

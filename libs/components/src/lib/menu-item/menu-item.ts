@@ -16,6 +16,14 @@ export class MenuItem extends FastMenuItem {
 	 * HTML Attribute: text
 	 */
 	@attr text?: string;
+	/**
+	 * Indicates the menu item's secondary text.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: text
+	 */
+	@attr({ attribute: 'text-secondary' }) textSecondary?: string;
 }
 
 export interface MenuItem extends AffixIcon {}

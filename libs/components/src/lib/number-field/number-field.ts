@@ -1,7 +1,7 @@
 import {applyMixins, NumberField as FastNumberField} from '@microsoft/fast-foundation';
 import {attr} from '@microsoft/fast-element';
 import type {Appearance, Shape} from '../enums';
-import {FormElement, formElements} from '../../shared/patterns';
+import {FormElement, FormElementCharCount, FormElementHelperText, formElements, FormElementSuccessText} from '../../shared/patterns';
 import {AffixIcon} from '../../shared/patterns';
 
 type NumberFieldAppearance = Extract<Appearance, Appearance.Outlined | Appearance.Ghost>;
@@ -19,6 +19,7 @@ export class NumberField extends FastNumberField {
 	@attr autoComplete?: string;
 }
 
-export interface NumberField extends AffixIcon, FormElement{}
-applyMixins(NumberField, AffixIcon);
+export interface NumberField extends AffixIcon, FormElement, FormElementCharCount, FormElementHelperText, FormElementSuccessText{}
+applyMixins(NumberField, AffixIcon, FormElementCharCount, FormElementHelperText, FormElementSuccessText);
+
 

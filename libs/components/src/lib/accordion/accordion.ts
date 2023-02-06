@@ -1,5 +1,4 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
+import { AccordionExpandMode, Accordion as FastAccordion } from '@microsoft/fast-foundation';
 import type { AccordionItem } from '../accordion-item/accordion-item';
 
 /**
@@ -7,43 +6,23 @@ import type { AccordionItem } from '../accordion-item/accordion-item';
  *
  * @public
  */
-export class Accordion extends FoundationElement {
-	private accordionItems: HTMLCollectionOf<AccordionItem> | undefined = undefined;
+export class Accordion extends FastAccordion {
 
 	/**
-	 *
+	 * Controls the expand mode of the Accordion, either allowing
+	 * single or multiple item expansion.
 	 * @public
-	 * HTML Attribute: multi
+	 *
+	 * @remarks
+	 * HTML attribute: expand-mode
 	 */
-	@attr({
-		mode: 'boolean',
-	}) multi = false;
-
-	constructor() {
-		super();
-		this.addEventListener('opened', this.handleOpened);
-	}
-
-	override connectedCallback(): void {
-		super.connectedCallback();
-		this.accordionItems = this.children as HTMLCollectionOf<AccordionItem>;
-	}
-
-	private handleOpened(e: Event): any {
-		if (!this.multi && this.accordionItems) {
-			for (let i = 0; i < this.accordionItems.length; i++) {
-				if (this.accordionItems[i] !== e.target) {
-					this.accordionItems[i].open = false;
-				}
-			}
-		}
-	}
+	override expandmode: AccordionExpandMode = AccordionExpandMode.single;
 
 	closeAll(): void {
-		if (this.accordionItems) {
-			for (let i = 0; i < this.accordionItems.length; i++) {
-				this.accordionItems[i].open = false;
-			}
+		if (this.expandmode === AccordionExpandMode.multi) {
+			(this.accordionItems as AccordionItem[]).forEach((item) => {
+				item.expanded = false;
+			});
 		}
 	}
 }
