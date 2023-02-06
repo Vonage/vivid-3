@@ -54,7 +54,7 @@ And include in HTML:
 <vwc-button label="Click me"></vwc-button>
 ```
 
-For a full list of components and API, explore the [components docs](https://vivid.deno.dev/components/accordion/) 📚.
+For a full list of components and API, explore the [components docs](https://vivid.deno.dev) 📚.
 
 ## Prerequisite
 ### Tokens
