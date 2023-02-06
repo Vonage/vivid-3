@@ -1,0 +1,9 @@
+[
+  {
+    "title": "getting-started",
+    "markdown": "./docs/getting-started/getting-started.md",
+    "modules": [
+      "/assets/modules/components/layout/index.js"
+    ]
+  }
+]
