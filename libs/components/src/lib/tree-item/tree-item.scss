@@ -11,7 +11,7 @@
 
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: ghost,
-	$states: idle hover active selected selectedAndHover,
+	$states: idle disabled hover active selected selectedAndHover,
 	$default: ghost
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
@@ -55,12 +55,17 @@
 		}
 	}
 
-	&:not(:disabled) {
+	@supports (user-select: none) {
+		user-select: none;
+	}
+
+	&:not(.disabled) {
 		cursor: pointer;
 	}
 
-	&:disabled {
+	&.disabled {
 		cursor: not-allowed;
+		pointer-events: none;
 	}
 
 	.text {
