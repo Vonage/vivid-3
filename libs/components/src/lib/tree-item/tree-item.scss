@@ -17,6 +17,12 @@
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
+@supports selector(:focus-visible) {
+	:host(:focus) {
+		outline: none;
+	}
+}
+
 .control {
 	@include appearance.appearance;
 	@include connotation.connotation;
@@ -66,12 +72,6 @@
 	@include appearance.appearance;
 	@include connotation.connotation;
 
-	@supports selector(:focus-visible) {
-		&:focus {
-			outline: none;
-		}
-	}
-
 	position: relative;
 	display: flex;
 	align-items: center;
@@ -96,7 +96,7 @@
 }
 
 .focus-indicator {
-	.control:not(:focus-visible) & {
+	:host(:not(:focus-visible)) & {
 		display: none;
 	}
 }

@@ -12,9 +12,6 @@ export const treeItemDefinition = TreeItem.compose<FoundationElementDefinition>(
 		baseName: 'tree-item',
 		template: template as any,
 		styles,
-		shadowOptions: {
-			delegatesFocus: true,
-		},
 	}
 );
 

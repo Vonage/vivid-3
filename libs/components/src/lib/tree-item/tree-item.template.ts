@@ -1,6 +1,6 @@
 import { children, elements, html, when, slotted, ref } from '@microsoft/fast-element';
-import { focusTemplateFactory } from '../../shared/patterns/focus';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
+import { focusTemplateFactory } from './../../shared/patterns/focus';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { TreeItem } from './tree-item';
