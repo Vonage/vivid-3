@@ -1,49 +1,13 @@
-# First Steps for Vonage Users
-## Getting Started with Vivid@3 and up For Vonage Users
-
-This guide provides step-by-step instructions for setting up vivid@3.x.
+# Vonage Users
+This guide provides extra details for Vonage users when installing vivid@3.x.
 
 If you have [vivid@2.x](mailto:vivid@2.x) installed in your project, make sure to follow the instructions for [integrating vivid@3 alongside vivid@2](#integrating-vivid@3-alongside-vivid@2).
 
 ---
 
-## install vivid
 
-```bash
-npm install @vonage/vivid
-```
-
----
 
 ## Prerequisites
-
-### Tokens
-Design system tokens are standardized visual design elements, such as colors, typography and spacing.
-Tokens are not applying any style, they are css-variables that Vivid uses in its style.  
-
-Adding tokens to your project.
-
-CSS:
-
-```css
-@import "node_modules/@vonage/vivid/styles/tokens/theme-light.css";
-
-/* or alternatively */
-@import "node_modules/@vonage/vivid/styles/tokens/theme-dark.css";
-```
-
-SCSS:
-
-```css
-@forward 'node_modules/@vonage/vivid/styles/tokens/theme-light.css";
-```
-
-In the &lt;head> tag:
-
-```html
-<link rel="stylesheet" href="node_modules/@vonage/vivid/styles/tokens/theme-light.css" media="all">
-```
-
 ### Font
 
 Vivid uses _Montserrat_ and _Roboto Mono_ Google fonts.
@@ -112,49 +76,9 @@ Now that we have the _Spezia_ font families set up - we need to override Vivid's
 }
 ```
 
-
-### Typography (Optional)
-
-If you wish your whole app to align to vivid typography (instead of the deprecated  vivid-2 vwc-text anymore) add the typography css, or all core css to typography and theme:
-
-CSS:
-
-```css
-@import "node_modules/@vonage/vivid/styles/core/all.css";
-```
-
-SCSS:
-
-```css
-@forward 'node_modules/@vonage/vivid/styles/core/all.css";
-```
-
-In the &lt;head> tag:
-
-```html
-<link rel="stylesheet" href="node_modules/@vonage/vivid/styles/core/all.css">
-```
 ---
 
-## Vivid Class
-To add fonts and tokens (and typography) to the component you need to add the class`vvd-root` to your app.
-
-```html
-<body class="vvd-root">...</body>
-```
-
-You can also add it to any wrapping element if you would like to scope the styles to only a certain part of your application.
-
----
-
-## Adding component
-```html
-<vwc-button label="Click me"></vwc-button>
-``` 
-
----
-
-## integrating vivid@3 alongside vivid@2
+## Integrating vivid@3 alongside vivid@2
 Vivid@next can be installed alongside vivid@2.x but there are some prerequisites:
 
 ### Pre Installation
@@ -200,7 +124,7 @@ Now it's time to use the components with the prefix you set.
 
 ---
 
-## Have fun using vivid@3 components :)
+## Have fun using vivid@3 components!
 
 ### Have questions?
 
