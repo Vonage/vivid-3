@@ -1,11 +1,11 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
+import { iconRegistries } from '../components';
+import { focusRegistries } from '../focus/definition';
 import styles from './tree-item.scss';
 
 import { TreeItem } from './tree-item';
 import { TreeItemTemplate as template } from './tree-item.template';
-import { iconRegistries } from '../components';
-import { focusRegistries } from '../focus/definition';
 
 export const treeItemDefinition = TreeItem.compose<FoundationElementDefinition>(
 	{

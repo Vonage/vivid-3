@@ -44,10 +44,10 @@
 	hyphens: auto;
 	inline-size: 100%;
 	min-block-size: $min-block-size;
+	padding-inline: $gutter;
 	text-decoration: none;
 	vertical-align: middle;
 	word-break: break-word;
-	padding-inline: $gutter;
 
 	@supports selector(:focus-visible) {
 		&:focus {

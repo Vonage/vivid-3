@@ -1,10 +1,10 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
+import { treeItemRegistries } from '../tree-item/definition';
 import styles from './tree-view.scss';
 
 import { TreeView } from './tree-view';
 import { TreeViewTemplate as template } from './tree-view.template';
-import { treeItemRegistries } from '../tree-item/definition';
 
 export const treeViewDefinition = TreeView.compose<FoundationElementDefinition>(
 	{
