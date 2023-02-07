@@ -75,13 +75,13 @@ Set the `orientation` property to change the listbox options' flow.
 
 Use the `shape` attribute to set the listbox's (and its descendent options) edges.
 
-note that `shape`'s `pill` value is **only supported** when the `direction` is set to `horizontal`.
+note that `shape`'s `pill` value is **only supported** when the `orientation` is set to `horizontal`.
 
 - Type: `'rounded'` | `'pill'`
 - Default: `'rounded'`
 
 ```html preview
-<vwc-listbox shape="pill" direction="horizontal" >
+<vwc-listbox shape="pill" orientation="horizontal" >
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
   <vwc-option value="3" text="Option 3"></vwc-option>
