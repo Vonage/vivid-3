@@ -21,7 +21,7 @@ describe('vwc-tree-item', () => {
 		it('should be initialized as a vwc-tree-item', async () => {
 			expect(treeItemDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(TreeItem);
-			expect(element.text).toEqual(undefined);
+			expect(element.text).toBeUndefined();
 			expect(element.icon).toBeUndefined();
 			expect(element.selected).toEqual(false);
 			expect(element.expanded).toEqual(false);
