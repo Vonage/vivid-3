@@ -1,4 +1,4 @@
-import { fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { treeViewDefinition } from './definition';
 import { TreeView } from './tree-view';
@@ -20,5 +20,10 @@ describe('vwc-tree-view', () => {
 			expect(treeViewDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(TreeView);
 		});
+	});
+
+	it('should have a slot', async () => {
+		await elementUpdated(element);
+		expect(Boolean(element.shadowRoot?.querySelector('slot'))).toEqual(true);
 	});
 });

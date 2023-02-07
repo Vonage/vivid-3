@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import '.';
@@ -28,6 +28,7 @@ describe('vwc-tree-item', () => {
 			expect(element.disabled).toBeUndefined();
 		});
 	});
+
 	describe('icon', () => {
 		it('should add an icon to the nav item', async () => {
 			element.icon = 'home';
@@ -47,8 +48,7 @@ describe('vwc-tree-item', () => {
 			element.text = text;
 			await elementUpdated(element);
 	
-			const control = element.shadowRoot?.querySelector('.control');
-			expect(control?.textContent?.trim())
+			expect(getControlElement(element)?.textContent?.trim())
 				.toEqual(text);
 		});
 	});
