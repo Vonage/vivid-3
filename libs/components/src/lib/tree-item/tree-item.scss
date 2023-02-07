@@ -74,18 +74,9 @@
 }
 
 .button {
-	@include appearance.appearance;
-	@include connotation.connotation;
-
 	position: relative;
 	display: flex;
 	align-items: center;
-	border: none;
-	background-color: var(#{appearance.get-appearance-token(fill)});
-	color: var(#{appearance.get-appearance-token(text)});
-	cursor: pointer;
-	font: var(#{constants.$vvd-typography-base});
-	text-align: left;
 
 	&.expanded {
 		transform: rotate(45deg);

@@ -12,19 +12,18 @@ const getClasses = ({
 	['selected', Boolean(selected)],
 );
 
-export const expandButton = (context: ElementDefinitionContext) => {
+export const expandIcon = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html<TreeItem>`
-	<button
-		aria-hidden="true"
-		class="button ${(x) => x.expanded ? 'expanded' : ''}""
+	<div aria-hidden="true"
+		class="button ${(x) => x.expanded ? 'expanded' : ''}"
 		@click="${(x, c) =>
 			x.handleExpandCollapseButtonClick(c.event as MouseEvent)}"
 			${ref("expandCollapseButton")}
 	>
 		${() => affixIconTemplate('chevron-right-solid')}
-	</button>`;
+	</div>`;
 };
 
 /**
@@ -52,7 +51,7 @@ export const TreeItemTemplate = (context: ElementDefinitionContext) => {
 			>
 			<div class="${getClasses}">
 				${() => focusTemplate}
-				${when(x => x.childItems && x.childItems.length > 0, expandButton(context))}
+				${when(x => x.childItems && x.childItems.length > 0, expandIcon(context))}
 				${x => affixIconTemplate(x.icon)}
 				${x => x.text as string}
 			</div>
