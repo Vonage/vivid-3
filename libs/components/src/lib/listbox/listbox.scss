@@ -13,7 +13,7 @@
 	$default: fieldset,
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
-@use "partials/variables" as variables;
+
 
 :host {
 	display: inline-block;

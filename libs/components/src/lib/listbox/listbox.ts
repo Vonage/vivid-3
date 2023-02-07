@@ -39,9 +39,9 @@ export class Listbox extends FoundationListboxElement {
 	 * @remarks
 	 * HTML Attribute: direction
 	 */
-	@attr direction?: 'horizontal' | 'vertical';
-	directionChanged(): void {
-		if (this.direction === 'horizontal') {
+	@attr orientation?: 'horizontal' | 'vertical';
+	orientationChanged(): void {
+		if (this.orientation === 'horizontal') {
 			this.addEventListener('keydown', this.horizontalKeydownHandler);
 		} else {
 			this.removeEventListener('keydown', this.horizontalKeydownHandler);

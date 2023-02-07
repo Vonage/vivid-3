@@ -56,15 +56,15 @@ Set the `appearance` attribute to change the listbox's appearance.
 </vwc-listbox>
 ```
 
-### Direction
+### Orientation
 
-Set the `direction` property to change the listbox options' flow.
+Set the `orientation` property to change the listbox options' flow.
 
 - Type: `'vertical'` | `'horizontal'`
 - Default: `'vertical'`
 
 ```html preview
-<vwc-listbox direction="horizontal">
+<vwc-listbox orientation="horizontal">
   <vwc-option value="1" text="Option"></vwc-option>
   <vwc-option value="2" text="Option"></vwc-option>
   <vwc-option value="3" text="Option"></vwc-option>

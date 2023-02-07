@@ -9,13 +9,13 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { focusTemplateFactory } from '../../shared/patterns';
 import type { Listbox } from './listbox';
 
-const getClasses = ({ appearance, shape, disabled, direction }: Listbox) =>
+const getClasses = ({ appearance, shape, disabled, orientation }: Listbox) =>
 	classNames(
 		'base',
 		['disabled', disabled],
 		[`appearance-${appearance}`, Boolean(appearance)],
-		[`shape-${shape}`, Boolean(shape) && direction === 'horizontal'],
-		[`direction-${direction}`, Boolean(direction)],
+		[`shape-${shape}`, Boolean(shape) && orientation === 'horizontal'],
+		[`orientation-${orientation}`, Boolean(orientation)],
 	);
 
 export const ListboxTemplate: (
@@ -28,6 +28,7 @@ export const ListboxTemplate: (
 <template
 	aria-activedescendant="${x => x.ariaActiveDescendant}"
 	aria-multiselectable="${x => x.ariaMultiSelectable}"
+	aria-orientation="${x => x.ariaOrientation}"
 	aria-label="listbox"
 	role="listbox"
 	@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
