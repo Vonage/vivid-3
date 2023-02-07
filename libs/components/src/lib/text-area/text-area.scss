@@ -65,6 +65,7 @@ $low-ink-color: --_low-ink-color;
 	width: 100%;
 	padding: 8px 16px;
 	border: 0 none;
+	appearance: none; /* for box-shadow visibility on IOS */
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	border-radius: inherit;
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
@@ -72,7 +73,6 @@ $low-ink-color: --_low-ink-color;
 	font: var(#{constants.$vvd-typography-base});
 	min-block-size: #{size.$vvd-size-normal};
 	transition: box-shadow .2s, background-color .2s, color .2s;
-	-webkit-appearance: none; /*for box-shadow visibility on IOS*/
 
 	&:disabled {
 		cursor: not-allowed;
