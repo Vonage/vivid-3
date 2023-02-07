@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "add direction support for listbox",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}
