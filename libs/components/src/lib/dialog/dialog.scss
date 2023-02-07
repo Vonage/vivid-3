@@ -31,14 +31,11 @@
 	}
 
 	&.modal {
-		filter: var(#{constants.$vvd-shadow-surface-24dp});
-
 		&::backdrop {
 			@include scrim-mixins.scrim-variables;
 		}
 	}
 }
-
 
 .main-wrapper {
 	display: flex;
