@@ -23,7 +23,7 @@ describe('vwc-tree-item', () => {
 			expect(element).toBeInstanceOf(TreeItem);
 			expect(element.text).toBeUndefined();
 			expect(element.icon).toBeUndefined();
-			expect(element.selected).toEqual(false);
+			expect(element.selected).toBeUndefined();
 			expect(element.expanded).toEqual(false);
 			expect(element.disabled).toBeUndefined();
 		});
