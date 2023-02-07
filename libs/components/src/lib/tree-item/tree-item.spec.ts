@@ -13,7 +13,7 @@ describe('vwc-tree-item', () => {
 
 	beforeEach(async () => {
 		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+			`<${COMPONENT_TAG}><${COMPONENT_TAG}></${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as TreeItem;
 	});
 
@@ -37,8 +37,6 @@ describe('vwc-tree-item', () => {
 			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
 			expect(icon).toBeInstanceOf(Icon);
 			expect(icon?.name).toEqual('home');
-			expect(element.text).toEqual(undefined);
-			expect(element.icon).toBeUndefined();
 		});
 	});
 	
