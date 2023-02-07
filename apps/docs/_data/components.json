@@ -351,7 +351,7 @@
 	},
 	{
 		"title": "listbox",
-		"status": "underlying",
+		"status": "alpha",
 		"markdown": "./libs/components/src/lib/listbox/README.md",
 		"modules": [
 			"/assets/modules/components/listbox/index.js",
