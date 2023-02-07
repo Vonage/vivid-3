@@ -102,6 +102,7 @@ $low-ink-color: --_low-ink-color;
 	font: var(#{constants.$vvd-typography-base});
 	padding-inline-end: var(#{variables.$text-field-gutter});
 	padding-inline-start: var(#{variables.$text-field-gutter});
+	padding-block: 0;
 	transition: box-shadow .2s, background-color .2s;
 
 	&:disabled {
