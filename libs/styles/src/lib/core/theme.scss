@@ -1,7 +1,11 @@
 @use '../../../../..//dist/libs/tokens/scss/tokens.constants' as constants;
 
-.vvd-root {
-	color-scheme: var(#{constants.$vvd-color-scheme});
-	background-color: var(#{constants.$vvd-color-canvas});
-	color: var(#{constants.$vvd-color-canvas-text});
+
+@layer vivid.theme {
+	.vvd-root {
+		color-scheme: var(#{constants.$vvd-color-scheme});
+		background-color: var(#{constants.$vvd-color-canvas});
+		color: var(#{constants.$vvd-color-canvas-text});
+	}
 }
+

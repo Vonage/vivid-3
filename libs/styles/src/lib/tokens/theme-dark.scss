@@ -5,13 +5,15 @@
 @use 'partials/variables' as variables;
 
 
-@include properties.properties;
+@layer vivid.theme {
+	@include properties.properties;
 
-#{variables.$theme-main-selector} {
-	@include dark.variables;
-	@include typography.variables;
-}
+	#{variables.$theme-main-selector} {
+		@include dark.variables;
+		@include typography.variables;
+	}
 
-#{variables.$theme-alternate-selector} {
-	@include light.variables;
+	#{variables.$theme-alternate-selector} {
+		@include light.variables;
+	}
 }
