@@ -1,7 +1,7 @@
-@use 'variables' as variables;
+@use "variables" as variables;
 
 
-@mixin get-size-properties($block-size, $font-face, $icon-gap, $padding-inline, $icon-size) {
+@mixin get-size-properties($block-size, $font-face, $icon-gap, $padding-inline) {
 	#{variables.$block-size}: $block-size;
 
 	font: var(#{$font-face});
@@ -9,9 +9,5 @@
 		#{variables.$icon-gap}: $icon-gap;
 
 		padding-inline: $padding-inline;
-	}
-
-	.icon {
-		font-size: $icon-size;
 	}
 }

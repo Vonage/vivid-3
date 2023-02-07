@@ -7,24 +7,45 @@ const ElementInternalsKey = 'ElementInternals';
 const supportsElementInternals = () => ElementInternalsKey in window && 'setFormValue' in window[ElementInternalsKey].prototype;
 
 export interface FormElement {
-	charCount: boolean;
 	errorValidationMessage: boolean;
-	helperText: string;
-	successText: string;
 	label: string;
 	userValid: boolean;
 	dirtyValue: boolean;
 }
 
+export interface FormElementHelperText {
+	helperText?: string;
+}
+
+export interface FormElementSuccessText {
+	successText?: string;
+}
+
+export interface FormElementCharCount {
+	charCount: boolean;
+}
+
+export class FormElementHelperText {
+	@attr({attribute: 'helper-text'}) helperText?: string;
+}
+
+export class FormElementSuccessText {
+	@attr({attribute: 'success-text'}) successText?: string;
+}
+
+export class FormElementCharCount {
+	@attr({
+		attribute: 'char-count',
+		mode: 'boolean'
+	}) charCount = false;
+}
+/**
+ * @param constructor
+ */
 export function formElements<T extends { new (...args: any[]): Record<string, any> }>(constructor: T) {
 	class Decorated extends constructor {
 		@attr label?: string;
-		@attr({attribute: 'helper-text'}) helperText?: string;
-		@attr({attribute: 'success-text'}) successText?: string;
-		@attr({
-			attribute: 'char-count',
-			mode: 'boolean'
-		}) charCount = false;
+		
 		@observable userValid = true;
 		#blurred = false;
 
@@ -88,6 +109,10 @@ type MessageTypeMap = { [key in FeedbackType]: {
 	messageProperty: MessagePropertyType }
 };
 
+/**
+ * @param messageType
+ * @param context
+ */
 export function getFeedbackTemplate(messageType: FeedbackType, context: ElementDefinitionContext) {
 	const MessageTypeMap: MessageTypeMap = {
 		'helper': {
@@ -116,7 +141,7 @@ export function getFeedbackTemplate(messageType: FeedbackType, context: ElementD
 			</style>
 			<div class="message ${MessageTypeMap[messageType].className}-message">
 		  	${when(() => iconType, html<FormElement>`
-					  <${iconTag} class="message-icon" type="${iconType}"></${iconTag}>`)}
+					  <${iconTag} class="message-icon" name="${iconType}"></${iconTag}>`)}
 				${feedbackMessage({
 		messageProperty: MessageTypeMap[messageType].messageProperty})}
 			</div>`;
@@ -128,7 +153,7 @@ export function getFeedbackTemplate(messageType: FeedbackType, context: ElementD
  * @param root0.messageProperty
  */
 function feedbackMessage({messageProperty}: {messageProperty: MessagePropertyType }) {
-	return html<FormElement>`
+	return html<FormElement & FormElementHelperText & FormElementSuccessText>`
 	  <span class="message-text">${x => x[messageProperty]}</span>
 	`;
 }

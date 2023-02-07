@@ -1,10 +1,16 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { Orientation } from '@microsoft/fast-web-utilities';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Slider } from './slider';
 import '.';
+import { sliderDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-slider';
 
+/**
+ * @param el
+ * @param attr
+ */
 async function setBoolAttributeOn(el: Slider, attr: string): Promise<DOMTokenList> {
 	el.toggleAttribute(attr, true);
 	await elementUpdated(el);
@@ -20,6 +26,7 @@ describe('vwc-slider', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-slider with proper default values', async () => {
+			expect(sliderDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Slider);
 
 			expect(element.valueAsNumber).toBe(5);
@@ -34,7 +41,7 @@ describe('vwc-slider', () => {
 			expect(element.markers).toBeFalsy();
 		});
 	});
-	
+
 	describe('disabled', () => {
 		it('should set disabled class when disabled is true', async () => {
 			const classes = await setBoolAttributeOn(element, 'disabled');
@@ -50,7 +57,7 @@ describe('vwc-slider', () => {
 			await setBoolAttributeOn(element, 'markers');
 			const markersDivReferenceAfter = getMarkersDiv();
 			await elementUpdated(element);
-			
+
 			expect(markersDivReferenceBefore).toBeNull();
 			expect(markersDivReferenceAfter).not.toBeNull();
 		});
@@ -59,7 +66,7 @@ describe('vwc-slider', () => {
 			await setBoolAttributeOn(element, 'markers');
 			element.orientation = Orientation.vertical;
 			await elementUpdated(element);
-			
+
 			expect(getMarkersDiv().getAttribute('style')).toContain('repeat-y');
 		});
 	});
@@ -71,7 +78,7 @@ describe('vwc-slider', () => {
 
 			element.setAttribute('orientation', 'vertical');
 			await elementUpdated(element);
-			
+
 			expect(classesInitialValue).toContain('horizontal');
 			expect(controlClasses()).toContain('vertical');
 		});
@@ -109,11 +116,11 @@ describe('vwc-slider', () => {
 		it('should increment/decrement according to the provided step', async () => {
 			element.step = 3.5;
 			element.value = '0';
-			
+
 			element.increment();
 			const valueAfterIncrementing = element.valueAsNumber;
 			element.decrement();
-			
+
 			expect(valueAfterIncrementing).toBe(3.5);
 			expect(element.valueAsNumber).toBe(0);
 		});

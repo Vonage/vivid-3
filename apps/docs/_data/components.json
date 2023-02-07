@@ -83,16 +83,6 @@
 		]
 	},
 	{
-		"title": "popup",
-		"markdown": "./libs/components/src/lib/popup/README.md",
-		"modules": [
-			"/assets/modules/components/popup/index.js",
-			"/assets/modules/components/button/index.js",
-			"/assets/modules/components/icon/index.js",
-			"/assets/modules/components/layout/index.js"
-		]
-	},
-	{
 		"title": "side-drawer",
 		"markdown": "./libs/components/src/lib/side-drawer/README.md",
 		"modules": [
@@ -291,18 +281,9 @@
 	},
 	{
 		"title": "option",
-		"markdown": "./libs/components/src/lib/listbox-option/README.md",
+		"markdown": "./libs/components/src/lib/option/README.md",
 		"modules": [
-			"/assets/modules/components/listbox-option/index.js",
-			"/assets/modules/components/listbox/index.js"
-		]
-	},
-	{
-		"title": "listbox",
-		"status": "alpha",
-		"markdown": "./libs/components/src/lib/listbox/README.md",
-		"modules": [
-			"/assets/modules/components/listbox-option/index.js",
+			"/assets/modules/components/option/index.js",
 			"/assets/modules/components/listbox/index.js"
 		]
 	},
@@ -318,6 +299,82 @@
 		"markdown": "./libs/components/src/lib/slider/README.md",
 		"modules": [
 			"/assets/modules/components/slider/index.js"
+		]
+	},
+	{
+		"title": "tab",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/tab/README.md",
+		"modules": [
+			"/assets/modules/components/tabs/index.js",
+			"/assets/modules/components/tab/index.js",
+			"/assets/modules/components/tab-panel/index.js"
+		]
+	},
+	{
+		"title": "tabs",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/tabs/README.md",
+		"modules": [
+			"/assets/modules/components/tabs/index.js",
+			"/assets/modules/components/tab-panel/index.js",
+			"/assets/modules/components/tab/index.js"
+		]
+	},
+	{
+		"title": "combobox",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/combobox/README.md",
+		"modules": [
+			"/assets/modules/components/combobox/index.js",
+			"/assets/modules/components/option/index.js"
+		]
+	},
+	{
+		"title": "elevation",
+		"status": "underlying",
+		"markdown": "./libs/components/src/lib/elevation/README.md",
+		"modules": [
+			"/assets/modules/components/elevation/index.js"
+		]
+	},
+	{
+		"title": "popup",
+		"status": "underlying",
+		"markdown": "./libs/components/src/lib/popup/README.md",
+		"modules": [
+			"/assets/modules/components/popup/index.js",
+			"/assets/modules/components/button/index.js",
+			"/assets/modules/components/layout/index.js",
+			"/assets/modules/components/icon/index.js"
+		]
+	},
+	{
+		"title": "listbox",
+		"status": "underlying",
+		"markdown": "./libs/components/src/lib/listbox/README.md",
+		"modules": [
+			"/assets/modules/components/listbox/index.js",
+			"/assets/modules/components/option/index.js"
+		]
+	},
+	{
+		"title": "select",
+		"markdown": "./libs/components/src/lib/select/README.md",
+		"modules": [
+			"/assets/modules/components/select/index.js",
+			"/assets/modules/components/listbox-option/index.js",
+			"/assets/modules/components/icon/index.js"
+		]
+	},
+	{
+		"title": "data-grid",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/data-grid/README.md",
+		"modules": [
+			"/assets/modules/components/button/index.js",
+			"/assets/modules/components/number-field/index.js",
+			"/assets/modules/components/data-grid/index.js"
 		]
 	}
 ]

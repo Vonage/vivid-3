@@ -13,6 +13,13 @@ let dialogPolyfill: any;
 })();
 
 /**
+ * Types of icon placement
+ *
+ * @public
+ */
+type IconPlacement = 'top' | 'side';
+
+/**
  * Base class for dialog
  *
  * @public
@@ -27,7 +34,8 @@ export class Dialog extends FoundationElement {
 	 */
 	@attr({mode: 'boolean'}) open = false;
 	@attr icon?: string;
-	@attr text?: string;
+	@attr({attribute: 'icon-placement'}) iconPlacement?: IconPlacement;
+	@attr subtitle?: string;
 	@attr headline?: string;
 	@attr({attribute: 'aria-labelledby'}) ariaLabelledBy: string | null = null;
 	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;

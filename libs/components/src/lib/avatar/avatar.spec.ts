@@ -1,13 +1,19 @@
 import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {Connotation} from '../enums';
 import { Avatar } from './avatar';
 import '.';
+import { avatarDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-avatar';
 
 describe('vwc-avatar', () => {
 	let baseElement: Element;
 	let element: Avatar;
+
+	beforeAll(async () => {
+		await customElements.whenDefined(COMPONENT_TAG);
+	});
 
 	beforeEach(async () => {
 		element = (await fixture(
@@ -18,6 +24,7 @@ describe('vwc-avatar', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-avatar', async () => {
+			expect(avatarDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Avatar);
 		});
 	});
@@ -76,7 +83,7 @@ describe('vwc-avatar', () => {
 	describe('avatar icon', () => {
 		it('should have the default icon', async () => {
 			const iconElement = baseElement.querySelector('vwc-icon');
-			expect(iconElement?.getAttribute('type')).toEqual('user-line');
+			expect(iconElement?.getAttribute('name')).toEqual('user-line');
 		});
 
 		it('should set the icon according to the icon property', async () => {
@@ -84,29 +91,29 @@ describe('vwc-avatar', () => {
 			element.setAttribute('icon', icon);
 			await elementUpdated(element);
 			const iconElement = baseElement.querySelector('vwc-icon');
-			expect(iconElement?.getAttribute('type')).toEqual(icon);
+			expect(iconElement?.getAttribute('name')).toEqual(icon);
 			expect(element.icon).toEqual(icon);
 		});
 
 	});
 
-	describe('avatar name', () => {
-		it('should not show the icon if name is set', async () => {
-			element.name = 'John Doe';
+	describe('avatar initials', () => {
+		it('should not show the icon if initials is set', async () => {
+			element.initials = 'John Doe';
 			await elementUpdated(element);
 			const iconElement = baseElement.querySelector('vwc-icon');
 			expect(iconElement).toBeNull();
 		});
 
 		it('should show the initials if name is set', async () => {
-			element.name = 'John Doe';
+			element.initials = 'John Doe';
 			await elementUpdated(element);
 			const text = baseElement.textContent?.trim();
 			expect(text).toEqual('Jo');
 		});
 
 		it('should show only 2 letters', async () => {
-			element.name = 'John Doe the vague man';
+			element.initials = 'John Doe the vague man';
 			await elementUpdated(element);
 			const text = baseElement.textContent?.trim();
 			expect(text).toEqual('Jo');

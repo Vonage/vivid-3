@@ -1,8 +1,313 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Tue, 22 Nov 2022 08:33:47 GMT and should not be manually modified.
+This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## [3.1.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.0.1...vivid-v3.1.0) (2023-02-03)
+
+
+### Features
+
+* **data-grid:** port data grid component from fast ([#947](https://github.com/Vonage/vivid-3/issues/947)) ([c85c865](https://github.com/Vonage/vivid-3/commit/c85c865425612b920c9af2160c303606e21c2fd0))
+
+
+### Bug Fixes
+
+* **components:** remove popover polyfill ([#1004](https://github.com/Vonage/vivid-3/issues/1004)) ([337151c](https://github.com/Vonage/vivid-3/commit/337151c64fd48131a8e2d8a2055feea0b9fa53e8))
+
+## 3.0.0 (2023-01-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **components:** fast-based accordion ([#930](https://github.com/Vonage/vivid-3/issues/930))
+
+### Features
+
+* **components:** fast-based accordion ([#930](https://github.com/Vonage/vivid-3/issues/930)) ([e228c60](https://github.com/Vonage/vivid-3/commit/e228c60bcb8982d06f0a7bac24dc3149cdd84574))
+
+## 3.0.0-next.139
+
+Thu, 26 Jan 2023 14:40:25 GMT
+
+### Changes
+
+- assign slotted to grid area (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.138
+
+Tue, 24 Jan 2023 06:50:45 GMT
+
+### Changes
+
+- fix(dialog): max-inline-size variable and dialog scream color (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.137
+
+Sun, 22 Jan 2023 12:09:10 GMT
+
+### Changes
+
+- progress ring stroke width (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.136
+
+Tue, 17 Jan 2023 16:12:04 GMT
+
+### Changes
+
+- new component migration - select (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.135
+
+Mon, 16 Jan 2023 13:29:19 GMT
+
+### Changes
+
+- tabs migration to fast (yinon@hotmail.com)
+- menu item support secondary text (yinon@hotmail.com)
+
+## 3.0.0-next.134
+
+Thu, 12 Jan 2023 07:26:00 GMT
+
+### Changes
+
+- remove default connotation based icon (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.133
+
+Wed, 11 Jan 2023 20:23:02 GMT
+
+### Changes
+
+- fix icon vertical alignment (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.132
+
+Wed, 11 Jan 2023 06:39:43 GMT
+
+### Changes
+
+- dialog subtitle (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.131
+
+Sun, 08 Jan 2023 11:03:35 GMT
+
+### Changes
+
+- change the member name to initials (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.130
+
+Thu, 05 Jan 2023 11:32:29 GMT
+
+### Changes
+
+- feat(components): combobox new component (rina.oksman@vonage.com)
+
+## 3.0.0-next.129
+
+Mon, 02 Jan 2023 10:04:07 GMT
+
+### Changes
+
+- Montserrat as default font (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.128
+
+Tue, 27 Dec 2022 16:08:19 GMT
+
+### Changes
+
+- refactor UI style to align with v2.x design spec (yinon@hotmail.com)
+
+## 3.0.0-next.127
+
+Tue, 27 Dec 2022 14:59:58 GMT
+
+### Changes
+
+- fix text-field & text area-ghost appearance missing shades (yinon@hotmail.com)
+
+## 3.0.0-next.126
+
+Tue, 27 Dec 2022 14:28:03 GMT
+
+### Changes
+
+- resolve components issues with custom density (yinon@hotmail.com)
+
+## 3.0.0-next.125
+
+Tue, 27 Dec 2022 14:15:03 GMT
+
+### Changes
+
+- style listbox disabled option inheritance (yinon.oved@vonage.com)
+
+## 3.0.0-next.124
+
+Sun, 25 Dec 2022 15:29:14 GMT
+
+### Changes
+
+- add light dismiss support to popup (rina.oksman@vonage.com)
+
+## 3.0.0-next.123
+
+Wed, 21 Dec 2022 15:15:42 GMT
+
+### Changes
+
+- Remove exports from package.json (yonatan.kra@vonage.com)
+
+## 3.0.0-next.122
+
+Sun, 18 Dec 2022 17:21:02 GMT
+
+### Changes
+
+- export header component from package (yinon.oved@vonage.com)
+
+## 3.0.0-next.121
+
+Fri, 16 Dec 2022 11:38:04 GMT
+
+### Changes
+
+- export component definition and design system (yinon.oved@vonage.com)
+
+## 3.0.0-next.120
+
+Wed, 14 Dec 2022 16:38:10 GMT
+
+### Changes
+
+- change prefix override interface (yinon@hotmail.com)
+
+## 3.0.0-next.119
+
+Wed, 14 Dec 2022 14:20:15 GMT
+
+### Changes
+
+- add absolute strategy (rina.oksman@vonage.com)
+
+## 3.0.0-next.118
+
+Tue, 13 Dec 2022 14:06:36 GMT
+
+### Changes
+
+- code style enforce string single quotes (yinon.oved@vonage.com)
+
+## 3.0.0-next.117
+
+Tue, 13 Dec 2022 13:34:41 GMT
+
+### Changes
+
+- replace hardcoded tags with contextual tags (olaf-k@users.noreply.github.com)
+
+## 3.0.0-next.116
+
+Mon, 12 Dec 2022 12:23:32 GMT
+
+### Changes
+
+- anchor can recieve  HTMLElement (rina.oksman@vonage.com)
+
+## 3.0.0-next.115
+
+Mon, 12 Dec 2022 11:29:26 GMT
+
+### Changes
+
+- dialog icon placement side option added (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.114
+
+Thu, 08 Dec 2022 11:19:53 GMT
+
+### Changes
+
+- nameing avatar main slot (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.113
+
+Thu, 08 Dec 2022 10:58:26 GMT
+
+### Changes
+
+- ensuring correct card text align (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.112
+
+Thu, 08 Dec 2022 07:12:10 GMT
+
+### Changes
+
+- duotone appearance & warning connotation conditioned to an outline lighter shade (yinon@hotmail.com)
+
+## 3.0.0-next.111
+
+Mon, 05 Dec 2022 11:11:21 GMT
+
+### Changes
+
+- make button inline size fluid to its container (yinon@hotmail.com)
+
+## 3.0.0-next.110
+
+Sun, 04 Dec 2022 15:36:59 GMT
+
+### Changes
+
+- enable custom prefix for custom-elements (yinon@hotmail.com)
+
+## 3.0.0-next.109
+
+Sun, 04 Dec 2022 13:39:56 GMT
+
+### Changes
+
+- badge support overflow clipping (yinon@hotmail.com)
+
+## 3.0.0-next.108
+
+Tue, 29 Nov 2022 15:41:17 GMT
+
+### Changes
+
+- icon component support svg slot assignment (yinon@hotmail.com)
+
+## 3.0.0-next.107
+
+Mon, 28 Nov 2022 21:11:08 GMT
+
+### Changes
+
+- icon & progress-ring support full integer sizing spectrum (yinon@hotmail.com)
+- icon type property renamed (to name) (yinon@hotmail.com)
+
+## 3.0.0-next.106
+
+Sun, 27 Nov 2022 16:54:42 GMT
+
+### Changes
+
+- map warning connotation to custom semantic variables (yinon@hotmail.com)
+
+## 3.0.0-next.105
+
+Sun, 27 Nov 2022 13:41:49 GMT
+
+### Changes
+
+- refactor tooltip (rina.oksman@vonage.com)
 
 ## 3.0.0-next.104
 
