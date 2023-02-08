@@ -376,5 +376,14 @@
 			"/assets/modules/components/number-field/index.js",
 			"/assets/modules/components/data-grid/index.js"
 		]
+	},
+	{
+		"title": "toolbar",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/toolbar/README.md",
+		"modules": [
+			"/assets/modules/components/toolbar/index.js",
+			"/assets/modules/components/button/index.js"
+		]
 	}
 ]

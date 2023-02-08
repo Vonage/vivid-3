@@ -1,0 +1,16 @@
+diff --git a/node_modules/@microsoft/fast-foundation/dist/esm/toolbar/toolbar.js b/node_modules/@microsoft/fast-foundation/dist/esm/toolbar/toolbar.js
+index 772c149..9ceafcf 100644
+--- a/node_modules/@microsoft/fast-foundation/dist/esm/toolbar/toolbar.js
++++ b/node_modules/@microsoft/fast-foundation/dist/esm/toolbar/toolbar.js
+@@ -164,9 +164,9 @@ export class Toolbar extends FoundationElement {
+      */
+     get allSlottedItems() {
+         return [
+-            ...this.start.assignedElements(),
++            // ...this.start.assignedElements(),
+             ...this.slottedItems,
+-            ...this.end.assignedElements(),
++            // ...this.end.assignedElements(),
+         ];
+     }
+     /**
