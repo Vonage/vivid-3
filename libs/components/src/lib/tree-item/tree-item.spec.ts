@@ -13,7 +13,7 @@ describe('vwc-tree-item', () => {
 
 	beforeEach(async () => {
 		element = (await fixture(
-			`<${COMPONENT_TAG}><${COMPONENT_TAG}></${COMPONENT_TAG}></${COMPONENT_TAG}>`
+			`<${COMPONENT_TAG}><${COMPONENT_TAG} class="tree-item"></${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as TreeItem;
 	});
 
@@ -31,12 +31,14 @@ describe('vwc-tree-item', () => {
 
 	describe('icon', () => {
 		it('should add an icon to the nav item', async () => {
-			element.icon = 'home';
-			await elementUpdated(element);
+			const iconName = 'home';
+			const treeElement : TreeItem = element.querySelector(".tree-item") as TreeItem;
+			treeElement.icon = iconName;
+			await elementUpdated(treeElement);
 	
-			const icon = getControlElement(element).querySelector(ICON_SELECTOR) as Icon;
+			const icon = getControlElement(treeElement).querySelector(ICON_SELECTOR) as Icon;
 			expect(icon).toBeInstanceOf(Icon);
-			expect(icon?.name).toEqual('home');
+			expect(icon?.name).toEqual(iconName);
 		});
 	});
 	
