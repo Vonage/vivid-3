@@ -3,9 +3,6 @@ This guide provides extra details for Vonage users when installing vivid@3.x.
 
 If you have [vivid@2.x](mailto:vivid@2.x) installed in your project, make sure to follow the instructions for [integrating vivid@3 alongside vivid@2](#integrating-vivid@3-alongside-vivid@2).
 
----
-
-
 
 ## Prerequisites
 ### Font
@@ -76,7 +73,6 @@ Now that we have the _Spezia_ font families set up - we need to override Vivid's
 }
 ```
 
----
 
 ## Integrating vivid@3 alongside vivid@2
 Vivid@next can be installed alongside vivid@2.x but there are some prerequisites:
@@ -103,7 +99,7 @@ DO:
 "@Vonage/vwc-audio": "2.37.0",
 ...
 ```
----
+
 
 ### Setting custom prefix
 
@@ -122,7 +118,6 @@ Now it's time to use the components with the prefix you set.
 <vwc3-badge text="vivid@3 scoped badge"></vwc3-badge>
 ```
 
----
 
 ## Have fun using vivid@3 components!
 

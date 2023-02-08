@@ -15,7 +15,7 @@ In Addition, this library provides a set of styles (combined with the tokens and
 These **core styles** rely on the [tokens and fonts to be loaded](link to home page)
 
 
-### Importting files: 
+### Include the styles
 #### Option 1: css
 
 ```css
@@ -28,7 +28,7 @@ These **core styles** rely on the [tokens and fonts to be loaded](link to home p
 @forward 'node_modules/@vonage/vivid/styles/[path to file].css';
 ```
 
-##### Option 3: HTML (inside the &lt;head> tag)
+#### Option 3: HTML (inside the &lt;head> tag)
 
 ```html
 <link rel="stylesheet" href="node_modules/@vonage/vivid/styles/[path to file].css" media="all">

@@ -6,41 +6,13 @@ Essential UI **web components** for building modern web applications, bound to p
 ![image](https://user-images.githubusercontent.com/10883919/189522882-968358df-ee7c-4256-b61b-550cf369a087.png)
 
 ## Installation
-
-### CDN - Quickstart
-
-Global content delivery networks can help quickly integrate content within html pages, fetching content from an URL, skipping local builds entirely.
-Such practice is often used when working on POCs or reproduction environments.
-Tools like [UNPKG](https://unpkg.com), [jsDeliver](https://www.jsdelivr.com), [Skypack](https://www.skypack.dev) etc' are bound to deliver any content registered in the npm registry.
-
-The following snippet fully renders a Vivid button component
-
-```html
-<!-- import Montserrat & Roboto-Mono fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-<!-- import light theme style tokens -->
-<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@3.x/styles/tokens/theme-light.css">
-
-<!-- import Vivid button component -->
-<script type="module" src="https://unpkg.com/@vonage/vivid@3.x/button/index.js"></script>
-
-<!-- Part of the app (or a whole app) that contains vivid components -->
-<div class="vvd-root">
-  <vwc-button label="Click me" appearance="filled" connotation="cta"></vwc-button>
-</div>
-```
-
-### Installation
-
 To integrate Vivid components into your project, run:
 
 ```bash
 npm install @vonage/vivid # or yarn add @vonage/vivid
 ```
 
-#### Usage
+### Usage
 
 Import components in your project via [side effect imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_a_module_for_its_side_effects_only):
 
@@ -92,7 +64,7 @@ Only one theme is required to be loaded.
 <link rel="stylesheet" href="node_modules/@vonage/vivid/styles/tokens/theme-light.css" media="all">
 ```
 
-#### Setting Vivid class
+### Setting Vivid class
 Require a `vvd-root` class selector to be present on a wrapping element (advisably the `:root`).
 
 ```html
@@ -102,11 +74,11 @@ Require a `vvd-root` class selector to be present on a wrapping element (advisab
 You can also add it to any wrapping element if you would like to scope the styles to only a certain part of your application.
 
 
-
 ### Fonts (Prerequisite)
 
 Vivid uses `Montserrat` and `Roboto Mono` Google fonts.  
 Learn how to load fonts into your application [with google-fonts](https://fonts.google.com/knowledge/using_type/using_web_fonts_from_a_font_delivery_service#loading-web-fonts)
+
 
 #### Vonage authors:
 Unless explicitly stated otherwise, *Vonage products* should use the brand specified `Spezia` font families.  
@@ -114,11 +86,34 @@ Vonage teams may review guidelines at the [Spezia webfont kit](https://github.co
 For more information check out [getting started](add/link) 
 
 
-
-
 ## Advanced Usage
 
-For further information check our [docs : Advanced Usage](link)
+For further information on **core application styles** & **scoped elements** check out [advanced usage](link)
+
+## CDN - Quickstart
+
+Global content delivery networks can help quickly integrate content within html pages, fetching content from an URL, skipping local builds entirely.
+Such practice is often used when working on POCs or reproduction environments.
+Tools like [UNPKG](https://unpkg.com), [jsDeliver](https://www.jsdelivr.com), [Skypack](https://www.skypack.dev) etc' are bound to deliver any content registered in the npm registry.
+
+The following snippet fully renders a Vivid button component
+
+```html
+<!-- import Montserrat & Roboto-Mono fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- import light theme style tokens -->
+<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@3.x/styles/tokens/theme-light.css">
+
+<!-- import Vivid button component -->
+<script type="module" src="https://unpkg.com/@vonage/vivid@3.x/button/index.js"></script>
+
+<!-- Part of the app (or a whole app) that contains vivid components -->
+<div class="vvd-root">
+  <vwc-button label="Click me" appearance="filled" connotation="cta"></vwc-button>
+</div>
+```
 
 
 ## Support
@@ -135,7 +130,6 @@ For any questions, please open a [bug report](https://github.com/Vonage/vivid-3/
 
 - See the [open issues](https://github.com/vonage/vivid-3/issues) for a full list of proposed features (and known issues).
 
-We publish a *next* release on every successful merge to main, so you never need to wait for a new stable version to make use of any updates.
 
 ## Contributing
 
@@ -159,7 +153,7 @@ This project is licensed under the Apache 2.0 License - see the [LICENSE.md](htt
 - Inspiration
 - etc -->
 
-## Built With
+## Built With ♡ And:
 
 - [Fast](https://www.fast.design) - to extend element classes and compile code to native web components
 - [Typescript](https://www.typescriptlang.org) - for ergonomic and type-safe code
