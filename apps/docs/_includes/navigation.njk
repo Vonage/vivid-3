@@ -7,7 +7,7 @@
   			text="{{ item.title | replace("-", " ") | capitalize }}
   			{% if (item.status) == "alpha" %}🧪{% endif %}
   			{% if (item.status) == "underlying" %}🔒{% endif %}"
-  			{% if ('/starting/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
+  			{% if ('/extra/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
       {% endfor %}
     </vwc-nav-disclosure>
 
