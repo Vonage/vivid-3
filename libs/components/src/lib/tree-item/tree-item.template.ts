@@ -7,10 +7,10 @@ import type { TreeItem } from './tree-item';
 
 const getClasses = ({
 	disabled, selected }: TreeItem) => classNames(
-		'control',
-		['disabled', disabled],
-		['selected', Boolean(selected)],
-	);
+	'control',
+	['disabled', disabled],
+	['selected', Boolean(selected)],
+);
 
 export const expandCollapseButton = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
@@ -19,7 +19,7 @@ export const expandCollapseButton = (context: ElementDefinitionContext) => {
 	<div aria-hidden="true"
 		class="expandCollapseButton"
 		@click="${(x, c) =>
-			x.handleExpandCollapseButtonClick(c.event as MouseEvent)}"
+		x.handleExpandCollapseButtonClick(c.event as MouseEvent)}"
 			${ref('expandCollapseButton')}
 	>
 		${x => affixIconTemplate(x.expanded ? 'chevron-down-solid' : 'chevron-right-solid')}
@@ -42,7 +42,7 @@ export const TreeItemTemplate = (context: ElementDefinitionContext) => {
 			slot="${x => (x.isNestedItem() ? 'item' : void 0)}"
 			tabindex="-1"
 			aria-expanded="${x =>
-			x.childItems && x.childItems.length > 0 ? x.expanded : void 0}"
+		x.childItems && x.childItems.length > 0 ? x.expanded : void 0}"
 			aria-selected="${x => x.selected}"
 			aria-disabled="${x => x.disabled}"
 			@focusin="${(x, c) => x.handleFocus(c.event as FocusEvent)}"
@@ -56,10 +56,10 @@ export const TreeItemTemplate = (context: ElementDefinitionContext) => {
 				${x => x.text as string}
 			</div>
 			${when(x => x.childItems && x.childItems.length > 0 && x.expanded,
-				html<TreeItem>`
+		html<TreeItem>`
 				<div role="group" class="items">
 					<slot name="item" ${slotted('items')}></slot>
 				</div>`
-			)}
+	)}
 		</template>`;
 };
