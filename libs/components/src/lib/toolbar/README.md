@@ -13,9 +13,11 @@ Represents a toolbar custom element.
  }
 </style>
 
-<vwc-toolbar>
- <vwc-button role="radio" icon="align-left-line" aria-label="Text Align Left"></vwc-button>
- <vwc-divider orientation="vertical" style="block-size: 40px;"></vwc-divider>
+<vwc-toolbar tight>
+ <vwc-button icon="bold-solid" aria-label="Bold"></vwc-button>
+ <vwc-button icon="italic-line" aria-label="Italic"></vwc-button>
+ <vwc-button icon="underline-line" aria-label="Underline"></vwc-button>
+ <vwc-divider orientation="vertical"></vwc-divider>
  <div role="radiogroup" aria-label="Text Alignment">
   <vwc-button role="radio" icon="align-left-line" aria-label="Text Align Left"></vwc-button>
   <vwc-button role="radio" icon="align-center-line" aria-label="Text Align Center"></vwc-button>

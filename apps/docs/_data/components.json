@@ -383,7 +383,8 @@
 		"markdown": "./libs/components/src/lib/toolbar/README.md",
 		"modules": [
 			"/assets/modules/components/toolbar/index.js",
-			"/assets/modules/components/button/index.js"
+			"/assets/modules/components/button/index.js",
+			"/assets/modules/components/divider/index.js"
 		]
 	}
 ]
