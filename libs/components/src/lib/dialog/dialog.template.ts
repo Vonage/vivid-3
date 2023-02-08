@@ -88,29 +88,27 @@ export const DialogTemplate: (
 
 	return html<Dialog>`
 	<${elevationTag} dp="12">
-		<div>
-			<dialog class="${getClasses}"
-					@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
-					returnValue="${x => x.returnValue}"
-					aria-labelledby="${x => x.ariaLabelledBy}"
-					aria-label="${x => x.ariaLabel}"
-					aria-describedby="${x => x.ariaDescribedBy}"
-			>
-				<slot name="main">
-					<div class="main-wrapper">
-						<div class="header">
-								<slot name="graphic">
-									${when(x => x.icon, icon(iconTag))}
-								</slot>
-								${when(x => x.headline, headline())}
-								${when(x => x.subtitle, subtitle())}
-								${renderDismissButton(buttonTag)}
-						</div>
-						<slot name="body"></slot>
-						<slot name="footer"></slot>
+		<dialog class="${getClasses}"
+				@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
+				returnValue="${x => x.returnValue}"
+				aria-labelledby="${x => x.ariaLabelledBy}"
+				aria-label="${x => x.ariaLabel}"
+				aria-describedby="${x => x.ariaDescribedBy}"
+		>
+			<slot name="main">
+				<div class="main-wrapper">
+					<div class="header">
+							<slot name="graphic">
+								${when(x => x.icon, icon(iconTag))}
+							</slot>
+							${when(x => x.headline, headline())}
+							${when(x => x.subtitle, subtitle())}
+							${renderDismissButton(buttonTag)}
 					</div>
-				</slot>
-			</dialog>
-		</div>
+					<slot name="body"></slot>
+					<slot name="footer"></slot>
+				</div>
+			</slot>
+		</dialog>
 	</${elevationTag}>`;
 };
