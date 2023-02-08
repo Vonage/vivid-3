@@ -34,7 +34,7 @@ describe('vwc-tree-item', () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 	
-			const icon = getControlElement(element).shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			const icon = getControlElement(element).querySelector(ICON_SELECTOR) as Icon;
 			expect(icon).toBeInstanceOf(Icon);
 			expect(icon?.name).toEqual('home');
 		});
