@@ -22,7 +22,7 @@ export const expandCollapseButton = (context: ElementDefinitionContext) => {
 			x.handleExpandCollapseButtonClick(c.event as MouseEvent)}"
 			${ref('expandCollapseButton')}
 	>
-		${x => affixIconTemplate(x.expanded ? 'chevron-right-solid' : 'chevron-down-solid')}
+		${x => affixIconTemplate(x.expanded ? 'chevron-down-solid' : 'chevron-right-solid')}
 	</div>`;
 };
 
