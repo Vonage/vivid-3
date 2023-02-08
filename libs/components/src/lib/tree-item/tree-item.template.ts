@@ -6,23 +6,23 @@ import { focusTemplateFactory } from './../../shared/patterns/focus';
 import type { TreeItem } from './tree-item';
 
 const getClasses = ({
-	disabled, selected}: TreeItem) => classNames(
-	'control',
-	['disabled', disabled],
-	['selected', Boolean(selected)],
-);
+	disabled, selected }: TreeItem) => classNames(
+		'control',
+		['disabled', disabled],
+		['selected', Boolean(selected)],
+	);
 
-export const expandIcon = (context: ElementDefinitionContext) => {
+export const expandCollapseButton = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html<TreeItem>`
 	<div aria-hidden="true"
-		class="button ${(x) => x.expanded ? 'expanded' : ''}"
+		class="expandCollapseButton"
 		@click="${(x, c) =>
-		x.handleExpandCollapseButtonClick(c.event as MouseEvent)}"
+			x.handleExpandCollapseButtonClick(c.event as MouseEvent)}"
 			${ref('expandCollapseButton')}
 	>
-		${() => affixIconTemplate('chevron-right-solid')}
+		${x => affixIconTemplate(x.expanded ? 'chevron-right-solid' : 'chevron-down-solid')}
 	</div>`;
 };
 
@@ -35,14 +35,14 @@ export const expandIcon = (context: ElementDefinitionContext) => {
 export const TreeItemTemplate = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const focusTemplate = focusTemplateFactory(context);
-	
+
 	return html<TreeItem>`
 	<template
 			role="treeitem"
 			slot="${x => (x.isNestedItem() ? 'item' : void 0)}"
 			tabindex="-1"
 			aria-expanded="${x =>
-		x.childItems && x.childItems.length > 0 ? x.expanded : void 0}"
+			x.childItems && x.childItems.length > 0 ? x.expanded : void 0}"
 			aria-selected="${x => x.selected}"
 			aria-disabled="${x => x.disabled}"
 			@focusin="${(x, c) => x.handleFocus(c.event as FocusEvent)}"
@@ -51,15 +51,15 @@ export const TreeItemTemplate = (context: ElementDefinitionContext) => {
 			>
 			<div class="${getClasses}">
 				${() => focusTemplate}
-				${when(x => x.childItems && x.childItems.length > 0, expandIcon(context))}
+				${when(x => x.childItems && x.childItems.length > 0, expandCollapseButton(context))}
 				${x => affixIconTemplate(x.icon)}
 				${x => x.text as string}
 			</div>
 			${when(x => x.childItems && x.childItems.length > 0 && x.expanded,
-		html<TreeItem>`
+				html<TreeItem>`
 				<div role="group" class="items">
 					<slot name="item" ${slotted('items')}></slot>
 				</div>`
-	)}
+			)}
 		</template>`;
 };

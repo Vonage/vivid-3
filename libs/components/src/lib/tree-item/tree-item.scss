@@ -73,14 +73,10 @@
 	}
 }
 
-.button {
+.expandCollapseButton {
 	position: relative;
 	display: flex;
 	align-items: center;
-
-	&.expanded {
-		transform: rotate(45deg);
-	}
 }
 
 .items {
