@@ -26,4 +26,5 @@ describe('vwc-tree-view', () => {
 		await elementUpdated(element);
 		expect(Boolean(element.shadowRoot?.querySelector('slot'))).toEqual(true);
 	});
+	
 });

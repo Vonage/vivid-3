@@ -1,8 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import { treeItemRegistries } from '../tree-item/definition';
 import styles from './tree-view.scss';
-
 import { TreeView } from './tree-view';
 import { TreeViewTemplate as template } from './tree-view.template';
 
@@ -17,7 +15,7 @@ export const treeViewDefinition = TreeView.compose<FoundationElementDefinition>(
 /**
  * @internal
  */
-export const treeViewRegistries = [treeViewDefinition(), ...treeItemRegistries];
+export const treeViewRegistries = [treeViewDefinition()];
 
 /**
  * Registers the tree-view element with the design system.

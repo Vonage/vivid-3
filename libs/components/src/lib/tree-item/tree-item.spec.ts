@@ -2,6 +2,8 @@ import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import '.';
+import '../tree-view/tree-view';
+import type { TreeView } from '../tree-view/tree-view';
 import { TreeItem } from './tree-item';
 import { treeItemDefinition } from './definition';
 
@@ -9,65 +11,112 @@ const COMPONENT_TAG = 'vwc-tree-item';
 const ICON_SELECTOR = 'vwc-icon';
 
 describe('vwc-tree-item', () => {
-	let element: TreeItem;
+	let element: TreeView;
+	let treeItem1: TreeItem;
+	let treeItem2: TreeItem;
 
 	beforeEach(async () => {
 		element = (await fixture(
-			`<${COMPONENT_TAG}><${COMPONENT_TAG} class="tree-item"></${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as TreeItem;
+			`<vwc-tree-view>
+				<${COMPONENT_TAG} id="item1">
+					<${COMPONENT_TAG} slot="item"></${COMPONENT_TAG}>
+				</${COMPONENT_TAG}>
+				<${COMPONENT_TAG} id="item2"></${COMPONENT_TAG}>
+			</vwc-tree-view>`
+		)) as TreeView;
+		await elementUpdated(element);
+
+		treeItem1 = element.querySelector('#item1') as TreeItem;
+		treeItem2 = element.querySelector('#item2') as TreeItem;
+
+		await elementUpdated(treeItem1);
+		await elementUpdated(treeItem2);
 	});
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-tree-item', async () => {
 			expect(treeItemDefinition()).toBeInstanceOf(FoundationElementRegistry);
-			expect(element).toBeInstanceOf(TreeItem);
-			expect(element.text).toBeUndefined();
-			expect(element.icon).toBeUndefined();
-			expect(element.selected).toBeUndefined();
-			expect(element.expanded).toEqual(false);
-			expect(element.disabled).toBeUndefined();
+			expect(treeItem1).toBeInstanceOf(TreeItem);
+			expect(treeItem1.text).toBeUndefined();
+			expect(treeItem1.icon).toBeUndefined();
+			expect(treeItem1.selected).toBeUndefined();
+			expect(treeItem1.expanded).toEqual(false);
+			expect(treeItem1.disabled).toBeUndefined();
 		});
 	});
 
 	describe('icon', () => {
 		it('should add an icon to the nav item', async () => {
 			const iconName = 'home';
-			const treeElement : TreeItem = element.querySelector('.tree-item') as TreeItem;
-			treeElement.icon = iconName;
-			await elementUpdated(treeElement);
-	
-			const icon = getControlElement(treeElement).querySelector(ICON_SELECTOR) as Icon;
+			treeItem2.icon = iconName;
+			await elementUpdated(treeItem2);
+
+			const icon = getControlElement(treeItem2).querySelector(ICON_SELECTOR) as Icon;
 			expect(icon).toBeInstanceOf(Icon);
 			expect(icon?.name).toEqual(iconName);
 		});
 	});
-	
+
 	describe('text', () => {
 		it('should set text property value as text content', async () => {
 			const text = 'lorem';
-			element.text = text;
-			await elementUpdated(element);
-	
-			expect(getControlElement(element)?.textContent?.trim())
+			treeItem1.text = text;
+			await elementUpdated(treeItem1);
+
+			expect(getControlElement(treeItem1)?.textContent?.trim())
 				.toEqual(text);
 		});
 	});
-	
+
 	it('should set the `aria-selected` attribute with the `selected` value when provided', async () => {
-		element.selected = true;
-		await elementUpdated(element);
-		expect(element.getAttribute('aria-selected')).toEqual('true');
+		treeItem1.selected = true;
+		await elementUpdated(treeItem1);
+		expect(treeItem1.getAttribute('aria-selected')).toEqual('true');
 	});
 
 	it('should set the `aria-expanded` attribute with the `expanded` value when provided', async () => {
-		element.expanded = true;
-		await elementUpdated(element);
-		expect(element.getAttribute('aria-expanded')).toEqual('true');
+		treeItem1.expanded = true;
+		await elementUpdated(treeItem1);
+		expect(treeItem1.getAttribute('aria-expanded')).toEqual('true');
 	});
 
 	it('should set the `aria-disabled` attribute with the `disabled` value when provided', async () => {
-		element.disabled = true;
-		await elementUpdated(element);
-		expect(element.getAttribute('aria-disabled')).toEqual('true');
+		treeItem1.disabled = true;
+		await elementUpdated(treeItem1);
+		expect(treeItem1.getAttribute('aria-disabled')).toEqual('true');
+	});
+
+	describe('tree-item click', () => {
+		it('should expand when click', async () => {
+			const expandButton = getControlElement(treeItem1).querySelector(ICON_SELECTOR) as Icon;
+			expandButton.click();
+
+			await elementUpdated(treeItem1);
+			expect(treeItem1.getAttribute('aria-expanded')).toEqual('true');
+		});
+
+		it('should not expand when keydown arrow left', async () => {
+			treeItem1.focus();
+			await elementUpdated(treeItem1);
+
+			treeItem1.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft' }));
+			await elementUpdated(treeItem1);
+
+			expect(treeItem1.getAttribute('aria-expanded')).toEqual('false');
+		});
+
+		it('should focus out', async () => {
+			treeItem1.focus();
+			await elementUpdated(treeItem1);
+
+			expect(treeItem1.contains(document.activeElement)).toBeTruthy();
+			expect(treeItem2.contains(document.activeElement)).toBeFalsy();
+
+			treeItem2.focus();
+			await elementUpdated(treeItem2);
+
+			expect(treeItem1.contains(document.activeElement)).toBeFalsy();
+			expect(treeItem2.contains(document.activeElement)).toBeTruthy();
+		});
 	});
 });
