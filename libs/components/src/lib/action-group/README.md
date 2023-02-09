@@ -129,7 +129,7 @@ Use `<vwc-divider>` for adding separator between the action elements
 
 ### Radio Group
 
-Note: this is a simplified styling example of a radio group and is not intended to be a complete implementation of the [Radio Group Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/radio/).
+Note: this is a simplified example illustrating a styled radio group and is not intended to be a complete implementation of the [Radio Group Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/radio/).
 
 ```html preview
 <style>
