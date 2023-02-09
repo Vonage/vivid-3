@@ -251,8 +251,7 @@ describe('vwc-dialog', () => {
 		await showDialog();
 		const fn = jest.fn();
 		element.parentElement?.addEventListener('close', fn);
-		element.close();
-		await elementUpdated(element);
+		await closeDialog();
 		expect(fn).not.toBeCalled();
 	});
 

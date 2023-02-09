@@ -51,7 +51,7 @@ describe('vwc-side-drawer', () => {
 
 		it("should not bubble 'open' event", async () => {
 			const spy = jest.fn();
-			element.parentElement?.addEventListener('open', fn);
+			element.parentElement?.addEventListener('open', spy);
 			element.open = true;
 			await elementUpdated(element);
 			expect(spy).not.toBeCalled();
@@ -90,7 +90,7 @@ describe('vwc-side-drawer', () => {
 			element.modal = true;
 			element.open = true;
 			const spy = jest.fn();
-			element.parentElement?.addEventListener('close', fn);
+			element.parentElement?.addEventListener('close', spy);
 
 			await elementUpdated(element);
 			expect(spy).not.toBeCalled();
