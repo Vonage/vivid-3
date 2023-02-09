@@ -57,13 +57,13 @@ $default-size: list.nth($size-keys, 6);
 .background {
 	fill: none;
 	stroke: transparent;
-	stroke-width: 2px;
+	stroke-width: 1px;
 }
 .determinate {
 	fill: none;
 	stroke: currentColor;
 	stroke-linecap: round;
-	stroke-width: 2px;
+	stroke-width: 1px;
 	transform: rotate(-90deg);
 	transform-origin: 50% 50%;
 	transition: all 0.2s ease-in-out;
@@ -73,7 +73,7 @@ $default-size: list.nth($size-keys, 6);
 	fill: none;
 	stroke: currentColor;
 	stroke-linecap: round;
-	stroke-width: 2px;
+	stroke-width: 1px;
 	transform: rotate(-90deg);
 	transform-origin: 50% 50%;
 	transition: all 0.2s ease-in-out;

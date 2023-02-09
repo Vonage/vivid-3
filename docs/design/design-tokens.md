@@ -48,35 +48,43 @@ Aside from the [color-related tokens](/designs/color-palette), you may use the f
 
 ### Typography
 
-#### Font families
+#### Typefaces
 
-Use `--vvd-font-family-upright` to specify a base font family for your application. This is the default font family for all text elements.
+Set the font custom properties of your choice (or all) to override the default typography styles with your own.
 
-- Type: `string`
-- Default: `'SpeziaCompleteVariableUpright'` <!-- ! replace in #807  -->
+```css
+--vvd-typography-headline
+--vvd-typography-subtitle
+--vvd-typography-heading-1
+--vvd-typography-heading-2
+--vvd-typography-heading-3
+--vvd-typography-heading-4
+--vvd-typography-base
+--vvd-typography-base-bold
+--vvd-typography-base-code
+--vvd-typography-base-condensed
+--vvd-typography-base-condensed-bold
+--vvd-typography-base-extended
+--vvd-typography-base-extended-bold
+```
 
-Use `--vvd-font-family-monospace` to specify a monospace font family for your application. This is the default font family for code elements.
-
-- Type: `string`
-- Default: `'SpeziaMonoCompleteVariable'` <!-- ! replace in #807  -->
-
-** Unless explicitely stated otherwise, Vonage products should use the brand specified `Spezia` font families. Vonage teams may review guidelines at the [Spezia webfont kit](https://github.com/Vonage/spezia-webfont-kit).
 
 ```html preview
 <style>
   :root {
-    --vvd-font-family-upright: Georgia;
-    --vvd-font-family-monospace: Courier;
+  --vvd-typography-heading-4: 500 20px/1.4 Georgia;
+  --vvd-typography-base-code: 400 16px monospace;
+  --vvd-typography-base-bold: 500 16px Georgia;
   }
 </style>
 <vwc-header>
-  This header is using Georgia
+  This header typeface is set by '--vvd-typography-heading-4' 
 </vwc-header>
 <pre>/*
- * This block of code uses Courier
+ * This block of code typeface is set by '--vvd-typography-base-code'
  */
 </pre>
-<vwc-button appearance="filled" label="I use Georgia too"></vwc-button>
+<vwc-button appearance="filled" label="This button typeface is set by '--vvd-typography-base-bold'"></vwc-button>
 ```
 
 #### Font size

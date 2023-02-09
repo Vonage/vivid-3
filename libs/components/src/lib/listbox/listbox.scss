@@ -12,9 +12,11 @@
 	$default: fieldset,
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "partials/variables" as variables;
 
 :host {
 	display: block;
+	inline-size: fit-content;
 }
 
 :host(:focus-within) {
@@ -26,11 +28,14 @@
 	@include appearance.appearance;
 
 	position: relative;
+	display: flex;
+	flex-direction: column;
 	padding: 4px;
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	border-radius: 6px;
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	contain: paint;
+	gap: 4px;
 }
 
 .focus-indicator {
@@ -41,8 +46,9 @@
 	}
 }
 
-slot {
-	display: flex;
-	flex-direction: column;
-	gap: 2px;
+.base.disabled ::slotted([role="option"]) {
+	#{variables.$option-appearance-color-text}: var(#{appearance.get-appearance-token(outline)});
+
+	cursor: not-allowed;
+	pointer-events: none;
 }

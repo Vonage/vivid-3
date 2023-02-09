@@ -7,7 +7,6 @@ import styles from './popup.scss';
 import { popupTemplate as template } from './popup.template';
 
 
-
 /**
  * Represents a popup custom element.
  * popup is...

@@ -49,9 +49,14 @@ Only one theme is required to be loaded.
 
 ### Fonts (Prerequisite)
 
-- `node_modules/@vonage/vivid/styles/fonts/spezia.css` - Loads the *Spezia* variable font and defines its font face values. *Spezia* is Vonage's branded font and is required by most Vivid components. folder also contains the font files.
+Vivid uses `Montserrat` and `Roboto Mono` Google fonts.  
+Learn how to load fonts into your application [with google-fonts](https://fonts.google.com/knowledge/using_type/using_web_fonts_from_a_font_delivery_service#loading-web-fonts)
 
-Note that font files are not included within the css file, and must be copied to application assets separately (within the same parsed css folder). This is to allow the author to choose the most appropriate way to load the font files based on their project.
+** Unless explicitly stated otherwise, *Vonage products* should use the brand specified `Spezia` font families.  
+Vonage teams may review guidelines at the [Spezia webfont kit](https://github.com/Vonage/spezia-webfont-kit).
+
+Note that font files are not included within the css file, and must be copied to application assets separately (within the same parsed css folder).  
+This is to allow the author to choose the most appropriate way to load the font files based on their project.
 
 ### Core (Optional)
 
@@ -106,9 +111,9 @@ Even though custom elements can be registered under different namespaces, as man
 
 ## Support
 
-This library is open source, developed and maintained by the [Vonage Vivid team](Vonage/vivid).
+This library is open source, developed and maintained by the [Vonage Vivid teams](https://github.com/orgs/Vonage/teams/vivid/teams).
 
-For any questions, please open a [bug report](https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=bug_report.md&title=) or [feature request](https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=feature_request.md&title=).
+For any questions, please open a [bug report](https://github.com/Vonage/vivid-3/issues/new?assignees=yonatankra%2C+rachelbt%2C+rinaok%2C+yinonov&labels=bug&template=bug_report.yml&title=%5BYOUR+TITLE%5D%3A+Brief+description) or [feature request](https://github.com/Vonage/vivid-3/issues/new?assignees=yonatankra%2C+rachelbt%2C+rinaok%2C+yinonov&labels=Feature+request&template=feature_request.yml&title=%5BYOUR+TITLE%5D%3A+Brief+description).
 
 ## Roadmap
 
@@ -122,7 +127,7 @@ We publish a *next* release on every successful merge to main, so you never need
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](.github/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/Vonage/vivid-3/blob/main/.github/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
 
@@ -130,11 +135,11 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/Vonage/vivid-3/graphs/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the Apache 2.0 License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the Apache 2.0 License - see the [LICENSE.md](https://github.com/Vonage/vivid-3/blob/main/LICENSE.md) file for details
 
 <!-- ## Acknowledgments
 
@@ -157,14 +162,15 @@ Tools like [UNPKG](https://unpkg.com), [jsDeliver](https://www.jsdelivr.com), [S
 The following snippet fully renders a Vivid button component
 
 ```html
-<!-- import spezia font -->
-<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/fonts/spezia.css">
+<!-- import Montserrat & Roboto-Mono fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <!-- import light theme style tokens -->
-<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/tokens/theme-light.css">
+<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@3.x/styles/tokens/theme-light.css">
 
 <!-- import Vivid button component -->
-<script type="module" src="https://unpkg.com/@vonage/vivid@next/button/index.js"></script>
+<script type="module" src="https://unpkg.com/@vonage/vivid@3.x/button/index.js"></script>
 
 <!-- Part of the app (or a whole app) that contains vivid components -->
 <div class="vvd-root">
