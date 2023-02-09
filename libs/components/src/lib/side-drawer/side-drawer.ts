@@ -53,10 +53,10 @@ export class SideDrawer extends FoundationElement {
 	}
 
 	#close(): void {
-		this.$emit('close');
+		this.$emit('close', undefined, { bubbles: false });
 	}
 
 	#open(): void {
-		this.$emit('open');
+		this.$emit('open', undefined, { bubbles: false });
 	}
 }

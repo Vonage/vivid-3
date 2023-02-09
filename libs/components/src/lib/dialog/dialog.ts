@@ -110,7 +110,7 @@ export class Dialog extends FoundationElement {
 	close() {
 		if (this.#dialog.open) {
 			this.#dialog.close();
-			this.dispatchEvent(new CustomEvent('close', {bubbles: true, composed: true, detail: this.returnValue}));
+			this.$emit('close', this.returnValue, { bubbles: false });
 		}
 
 		this.open = false;
