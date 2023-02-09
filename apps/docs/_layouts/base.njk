@@ -69,6 +69,8 @@
       {{ scrollHandler | safe }}
     </script>
 
+    <link rel="stylesheet" id="themeLink" media="all">
+
     <link rel="stylesheet" href="{{ '/assets/styles/core/all.css' | url }}">
 
     <script type="module" src="{{ '/assets/modules/components/layout/index.js' | url}}"></script>
@@ -104,7 +106,7 @@
 		</a>
 	</div>
 
-	<vwc-button slot="action-items" id="dark-mode-menu-button" icon="light-mode-line" aria-label="Dark mode toggle" aria-haspopup="menu" aria-expanded="false"></vwc-button>
+	<vwc-button slot="action-items" id="dark-mode-menu-button" icon="light-mode-line" aria-label="Dark / light mode toggle" aria-haspopup="menu" aria-expanded="false"></vwc-button>
 	{# find menu at the bottom of the page #}
 
 	<vwc-nav-item slot="action-items" icon="github-mono" href="https://github.com/vonage/vivid-3" aria-label="View on GitHub" role="navigation"></vwc-nav-item>
@@ -126,9 +128,9 @@
 </vwc-header>
 
 <vwc-menu style="z-index: 2; position: relative;" id="dark-mode-menu" anchor="dark-mode-menu-button" placement="bottom-end" slot="action-items">
-	<vwc-menu-item icon="light-mode-solid" data-value="light" text="Light"></vwc-menu-item>
-	<vwc-menu-item icon="dark-mode-solid" data-value="dark" text="Dark"></vwc-menu-item>
-	<vwc-menu-item icon="user-sync-2-line" data-value="auto" text="Auto"></vwc-menu-item>
+	<vwc-menu-item role="menuitemradio" icon="light-mode-solid" data-value="light" text="Light"></vwc-menu-item>
+	<vwc-menu-item role="menuitemradio" icon="dark-mode-solid" data-value="dark" text="Dark"></vwc-menu-item>
+	<vwc-menu-item role="menuitemradio" icon="user-sync-2-line" data-value="auto" text="Auto"></vwc-menu-item>
 </vwc-menu>
 </body>
 
