@@ -55,6 +55,23 @@ describe('vwc-tree-view', () => {
 	});
 
 	describe('tree-view click', () => {
+		it('should focus on key down', async () => {
+			treeItem1.click();
+			treeItem1.focus();
+			await elementUpdated(treeItem1);
+			await elementUpdated(element);
+
+			expect(treeItem1.contains(document.activeElement)).toBeTruthy();
+
+			treeItem1.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+
+			treeItem2.focus();
+			await elementUpdated(treeItem2);
+			await elementUpdated(element);
+
+			expect(treeItem1.contains(document.activeElement)).toBeFalsy();
+		});
+
 		it('should change selected', async () => {
 			treeItem1.click();
 			treeItem1.focus();
@@ -70,6 +87,21 @@ describe('vwc-tree-view', () => {
 			await elementUpdated(element);
 
 			expect(treeItem1.contains(document.activeElement)).toBeFalsy();
+		});
+
+		it('should dispatch selected-changed', async () => {
+			const spy = jest.fn();
+
+			treeItem1.selected = true;
+			await elementUpdated(element);
+
+			element.addEventListener('selected-change', spy);
+			element.dispatchEvent(new KeyboardEvent('selected-change'));
+
+			treeItem2.selected = true;
+			await elementUpdated(element);
+
+			expect(spy).toBeCalled();
 		});
 	});
 });
