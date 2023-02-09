@@ -249,10 +249,9 @@ describe('vwc-dialog', () => {
 
 	it("should not bubble 'close' event", async () => {
 		await showDialog();
-
 		const fn = jest.fn();
 		element.parentElement?.addEventListener('close', fn);
-
+		element.close();
 		await elementUpdated(element);
 		expect(fn).not.toBeCalled();
 	});
