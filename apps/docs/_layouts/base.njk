@@ -71,7 +71,7 @@
 
     <link rel="stylesheet" href="{{ '/assets/styles/core/all.css' | url }}">
 
-    <script type="module" src="{{ '/assets/modules/components/layout/index.js' | url}}"></script>
+	<script type="module" src="{{ '/assets/modules/components/layout/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/side-drawer/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/nav/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/nav-item/index.js' | url}}"></script>
@@ -89,6 +89,9 @@
 		{% block header %}{% endblock %}
 
     {% include "prefetches.njk" %}
+
+    <script type="module" src="{{ '/assets/scripts/live-sample.bundle.js' | url}}"></script>
+    
   </head>
 
 <body>

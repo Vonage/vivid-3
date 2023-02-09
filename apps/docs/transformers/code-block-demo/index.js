@@ -68,7 +68,7 @@ const getHtml = (demoData) => {
 
 	return `
     <vwc-card elevation="0" class="${CBD_CONTAINER}">
-      <iframe class="${CBD_DEMO}" src="${iframeSrc}" onload=onloadIframe(this) loading="lazy" aria-label="code block preview iframe" slot="main"></iframe>
+      <iframe id="iframe-sample-${demoData.index}" class="${CBD_DEMO}" src="${iframeSrc}" onload=onloadIframe(this) loading="lazy" aria-label="code block preview iframe" slot="main"></iframe>
       <vwc-action-group appearance="ghost" style="direction: rtl;" slot="main">
         <vwc-button aria-label="Show source code" icon="code-line" aria-expanded="false" aria-controls="${codeBlockId}" onclick="codeBlockButtonClick(this)"></vwc-button>
         <vwc-button aria-label="Copy source code" icon="copy-2-line" onclick="codeCopyButtonClick(this)"></vwc-button>
@@ -78,8 +78,9 @@ const getHtml = (demoData) => {
         <div class="${CBD_CODE_BLOCK}" role="region" id="${codeBlockId}">
           ${demoData.codeStr}
         </div>
+		<div class="cbd-live-sample"></div>
       </details>
-    </vwc-card>`;
+	</vwc-card>`;
 }
 
 const getIframe = (frameData) => {

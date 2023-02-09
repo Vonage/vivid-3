@@ -6,19 +6,24 @@
   "targets": {
     "build": {
       "executor": "nx:run-commands",
+	    "dependsOn": ["package"],
       "options": {
         "pathprefix": "",
         "commands": [
-          {
-            "command": "npx eleventy --config=./apps/docs/.eleventy.js"
-          }
-        ]
+            "npx eleventy --config=./apps/docs/.eleventy.js",
+            "npx rollup ./apps/docs/assets/scripts/live-sample.js -f esm -o ./dist/apps/docs/assets/scripts/live-sample.bundle.js -p @rollup/plugin-node-resolve"
+        ],
+        "parallel": false
       }
     },
     "serve": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npx eleventy --config=./apps/docs/.eleventy.js --serve & npx nx serve styles & npx nx build components --watch"
+        "commands": [
+          "npx rollup ./apps/docs/assets/scripts/live-sample.js -f esm -o ./dist/apps/docs/assets/scripts/live-sample.bundle.js -p @rollup/plugin-node-resolve",
+          "npx eleventy --config=./apps/docs/.eleventy.js --serve & npx nx serve styles & npx nx build components --watch"
+        ],
+        "parallel": false
       }
     }
   },

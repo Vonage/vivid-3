@@ -11,6 +11,7 @@ const center = code => `<div class="center">${code}</div>`;
 
 
 module.exports = (code, classList) => {
+  code = `<div id="replaceme">${code}</div>`;
   if (classList.contains('full')) {
     return code;
   } else if (classList.contains('blocks')) {
