@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "prevent components events propagation",
-  "packageName": "@vonage/vivid",
-  "email": "yinon@hotmail.com",
-  "dependentChangeType": "patch"
-}
