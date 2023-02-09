@@ -1,0 +1,35 @@
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+
+@use "../focus/partials/variables" as focus-variables;
+
+:host {
+	position: relative;
+	display: flex;
+	overflow: hidden;
+	box-sizing: border-box;
+	align-items: center;
+	padding: 8px 12px;
+	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-100});
+	block-size: #{size.$vvd-size-expanded};
+	color: var(#{constants.$vvd-color-canvas-text});
+	font: var(#{constants.$vvd-typography-base});
+	outline: none;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+:host([cell-type="columnheader"]) {
+	border-color: currentColor;
+	font: var(#{constants.$vvd-typography-base-bold});
+}
+
+.focus-indicator {
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+	pointer-events: none;
+
+	#focus-wrapper:not(.active) > & {
+		display: none;
+	}
+}

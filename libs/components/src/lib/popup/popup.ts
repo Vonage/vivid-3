@@ -106,7 +106,7 @@ export class Popup extends FoundationElement {
 				break;
 			}
 			case 'open': {
-				this.open ? this.showPopover() : this.hidePopover();
+				this.open ? this.show() : this.hide();
 				break;
 			}
 		}
@@ -166,17 +166,11 @@ export class Popup extends FoundationElement {
 		return this.anchor instanceof HTMLElement ? this.anchor : document.getElementById(this.anchor);
 	}
 
-	override showPopover(): void {
-		if (!this.classList.contains(':open')) {
-			super.showPopover();
-		}
-		this.open = this.classList.contains(':open');
+	show(): void {
+		this.open = true;
 	}
 
-	override hidePopover(): void {
-		if (this.classList.contains(':open')) {
-			super.hidePopover();
-		}
-		this.open = this.classList.contains(':open');
+	hide(): void {
+		this.open = false;
 	}
 }

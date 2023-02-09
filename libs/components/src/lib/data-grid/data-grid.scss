@@ -1,0 +1,9 @@
+:host {
+	position: relative;
+	display: block;
+}
+
+:host([generate-header="sticky"]){
+	max-height: var(--data-grid-max-height, 200px);
+	overflow-y: auto;
+}
