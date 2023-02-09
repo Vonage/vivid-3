@@ -167,10 +167,10 @@ The following snippet fully renders a Vivid button component
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <!-- import light theme style tokens -->
-<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@next/styles/tokens/theme-light.css">
+<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@3.x/styles/tokens/theme-light.css">
 
 <!-- import Vivid button component -->
-<script type="module" src="https://unpkg.com/@vonage/vivid@next/button/index.js"></script>
+<script type="module" src="https://unpkg.com/@vonage/vivid@3.x/button/index.js"></script>
 
 <!-- Part of the app (or a whole app) that contains vivid components -->
 <div class="vvd-root">

@@ -70,6 +70,15 @@ const autoResize = (iFrame) => {
 };
 
 const setCurrentIframeTheme = (toggle, iFrame) => {
-  const theme = toggle.icon === "dark-mode-solid" ? '<link rel="stylesheet" href="/assets/styles/tokens/theme-dark.css" media="all">' : '<link rel="stylesheet" href="/assets/styles/tokens/theme-light.css" media="all">';
-  iFrame.contentWindow.document.head?.insertAdjacentHTML("beforeend", theme);
+  const iframeHead = iFrame.contentWindow.document.head;
+
+  const displayMode = toggle.icon === "dark-mode-solid" ? 'dark' : 'light';
+  const theme = `<link id="theme-link" rel="stylesheet" href="/assets/styles/tokens/theme-${displayMode}.css" media="all">`;
+
+  const themeLink = iframeHead.querySelector('#theme-link');
+  if (themeLink) {
+    themeLink.outerHTML = theme;
+  } else {
+    iframeHead.insertAdjacentHTML("beforeend", theme);
+  }
 }
