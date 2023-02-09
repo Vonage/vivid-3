@@ -1,9 +1,9 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import type { TreeItem } from '../tree-item/tree-item';
 import { treeViewDefinition } from './definition';
 import { TreeView } from './tree-view';
 import '.';
-import type { TreeItem } from '../tree-item/tree-item';
 
 const COMPONENT_TAG = 'vwc-tree-view';
 
