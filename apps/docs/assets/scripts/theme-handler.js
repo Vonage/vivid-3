@@ -48,5 +48,3 @@ menu.addEventListener('change', ({ target }) => {
 const theme = getTheme();
 document.querySelector(`[data-value="${theme}"]`).checked = true;
 setTheme(theme);
-
-// window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => setTheme(theme));

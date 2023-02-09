@@ -47,10 +47,12 @@ const onloadIframe = (iFrame) => {
 	const menu = document.querySelector('#dark-mode-menu');
 
 	setCurrentIframeTheme(menuButton, iFrame);
-	menu.addEventListener('change', () => {
-		setCurrentIframeTheme(menuButton, iFrame);
+	menu.addEventListener('change', ({ target }) => {
+		if (target.checked) {
+			setCurrentIframeTheme(menuButton, iFrame);
+		}
 	});
-	window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => setCurrentIframeTheme(menuButton, iFrame));
+
 
 	autoResize(iFrame);
 };
@@ -70,6 +72,14 @@ const autoResize = (iFrame) => {
 };
 
 const setCurrentIframeTheme = (menuButton, iFrame) => {
-	const theme = menuButton.icon === "dark-mode-solid" ? '<link rel="stylesheet" href="/assets/styles/tokens/theme-dark.css" media="all">' : '<link rel="stylesheet" href="/assets/styles/tokens/theme-light.css" media="all">';
-	iFrame.contentWindow.document.head?.insertAdjacentHTML("beforeend", theme);
+  const iframeHead = iFrame.contentWindow.document.head;
+  const displayMode = menuButton.icon === "dark-mode-solid" ? 'dark' : 'light';
+  const theme = `<link id="themeLink" rel="stylesheet" href="/assets/styles/tokens/theme-${displayMode}.css" media="all">`;
+
+  const themeLink = iframeHead.querySelector('#themeLink');
+  if (themeLink) {
+    themeLink.outerHTML = theme;
+  } else {
+    iframeHead.insertAdjacentHTML("beforeend", theme);
+  }
 }
