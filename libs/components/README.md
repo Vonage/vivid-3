@@ -9,7 +9,7 @@ Essential UI **web components** for building modern web applications, bound to p
 To integrate Vivid components into your project, run:
 
 ```bash
-npm install @vonage/vivid # or yarn add @vonage/vivid
+npm install @vonage/vivid
 ```
 
 ### Usage
