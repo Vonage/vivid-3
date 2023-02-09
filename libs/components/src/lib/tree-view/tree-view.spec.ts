@@ -3,16 +3,29 @@ import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { treeViewDefinition } from './definition';
 import { TreeView } from './tree-view';
 import '.';
+import type { TreeItem } from '../tree-item/tree-item';
 
 const COMPONENT_TAG = 'vwc-tree-view';
 
 describe('vwc-tree-view', () => {
 	let element: TreeView;
+	let treeItem1: TreeItem;
+	let treeItem2: TreeItem;
 
 	beforeEach(async () => {
 		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+			`<vwc-tree-view>
+				<${COMPONENT_TAG} id="item1"></${COMPONENT_TAG}>
+				<${COMPONENT_TAG} id="item2"></${COMPONENT_TAG}>
+			</vwc-tree-view>`
 		)) as TreeView;
+		await elementUpdated(element);
+
+		treeItem1 = element.querySelector('#item1') as TreeItem;
+		treeItem2 = element.querySelector('#item2') as TreeItem;
+
+		await elementUpdated(treeItem1);
+		await elementUpdated(treeItem2);
 	});
 
 	describe('basic', () => {
@@ -26,5 +39,37 @@ describe('vwc-tree-view', () => {
 		await elementUpdated(element);
 		expect(Boolean(element.shadowRoot?.querySelector('slot'))).toEqual(true);
 	});
-	
+
+	describe('tree-view focus', () => {
+		it('should focus', async () => {
+			element.focus();
+			await elementUpdated(element);
+
+			expect(element.contains(document.activeElement)).toBeTruthy();
+
+			treeItem1.focus();
+			await elementUpdated(treeItem1);
+
+			expect(element.contains(document.activeElement)).toBeTruthy();
+		});
+	});
+
+	describe('tree-view click', () => {
+		it('should change selected', async () => {
+			treeItem1.click();
+			treeItem1.focus();
+			await elementUpdated(treeItem1);
+			await elementUpdated(element);
+
+			expect(treeItem1.contains(document.activeElement)).toBeTruthy();
+
+			treeItem1.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+
+			treeItem2.focus();
+			await elementUpdated(treeItem2);
+			await elementUpdated(element);
+
+			expect(treeItem1.contains(document.activeElement)).toBeFalsy();
+		});
+	});
 });
