@@ -26,6 +26,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.setBrowserSyncConfig({
     server: {
       baseDir: OUTPUT_DIR
+	},
+    snippetOptions: {
+      ignorePaths: '/components/**/frames/*.html'
     }
   });
 
