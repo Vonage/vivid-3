@@ -1,4 +1,4 @@
-# Extra Features
+# Advanced
 
 ## Core (Optional)
 

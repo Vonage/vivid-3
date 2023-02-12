@@ -1,6 +1,6 @@
 [
   {
-    "title": "Advanced",
+    "title": "advanced",
     "markdown": "./docs/starting/advanced.md",
     "modules": [
       "/assets/modules/components/layout/index.js"

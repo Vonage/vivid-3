@@ -1,4 +1,4 @@
-# Vonage Users
+# Vonage Authors
 This guide provides extra details for Vonage users when installing vivid@3.x.
 
 If you have [vivid@2.x](mailto:vivid@2.x) installed in your project, make sure to follow the instructions for [integrating vivid@3 alongside vivid@2](#integrating-vivid@3-alongside-vivid@2).
