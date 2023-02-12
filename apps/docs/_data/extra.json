@@ -1,14 +1,14 @@
 [
   {
-    "title": "extra-features",
-    "markdown": "./docs/starting/extra-features.md",
+    "title": "Advanced",
+    "markdown": "./docs/starting/advanced.md",
     "modules": [
       "/assets/modules/components/layout/index.js"
     ]
   },
 	{
-		"title": "vonage-users",
-		"markdown": "./docs/starting/vonage-users.md",
+		"title": "vonage-authors",
+		"markdown": "./docs/starting/vonage-authors.md",
 		"modules": [
 			"/assets/modules/components/layout/index.js"
 		]

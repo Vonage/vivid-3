@@ -65,7 +65,7 @@ Only one theme is required to be loaded.
 ```
 
 ### Setting Vivid class
-The `vivid` styles require a `vvd-root` class selector to be present on a wrapping element (advisably the `:root`).
+The Vivid tokens require a `vvd-root` class selector to be present on a wrapping element (advisably the `:root`) for it to apply its css custom properties to.
 
 ```html
 <html class="vvd-root">...</html>
@@ -115,6 +115,10 @@ The following snippet fully renders a Vivid button component
 </div>
 ```
 
+
+## Support Matrix
+
+This library is supported on 2 recent versions of major browsers (Chrome, Firefox, Safari, Edge).
 
 ## Support
 
