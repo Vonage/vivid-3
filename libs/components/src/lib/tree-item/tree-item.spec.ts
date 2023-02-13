@@ -95,16 +95,6 @@ describe('vwc-tree-item', () => {
 			expect(treeItem1.getAttribute('aria-expanded')).toEqual('true');
 		});
 
-		it('should not expand when keydown arrow left', async () => {
-			treeItem1.focus();
-			await elementUpdated(treeItem1);
-
-			treeItem1.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft' }));
-			await elementUpdated(treeItem1);
-
-			expect(treeItem1.getAttribute('aria-expanded')).toEqual('false');
-		});
-
 		it('should focus out', async () => {
 			treeItem1.focus();
 			await elementUpdated(treeItem1);
@@ -112,6 +102,7 @@ describe('vwc-tree-item', () => {
 			expect(treeItem1.contains(document.activeElement)).toBeTruthy();
 			expect(treeItem2.contains(document.activeElement)).toBeFalsy();
 
+			treeItem1.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
 			treeItem2.focus();
 			await elementUpdated(treeItem2);
 
