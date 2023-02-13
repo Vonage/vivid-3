@@ -23,8 +23,7 @@ export const expandCollapseButton = (context: ElementDefinitionContext) => {
 		x.handleExpandCollapseButtonClick(c.event as MouseEvent)}"
 			${ref('expandCollapseButton')}
 	>
-		${when(x => x.expanded, html<TreeItem>`<${iconTag} class="expandCollapseButton" name='chevron-down-line'></${iconTag}>`)}
-		${when(x => !x.expanded, html<TreeItem>`<${iconTag} class="expandCollapseButton" name='chevron-right-line'></${iconTag}>`)}
+		<${iconTag} class="expandCollapseButton" name="${x => x.expanded ? 'chevron-down-line' : 'chevron-right-line'}"></${iconTag}>
 	</div>`;
 };
 
