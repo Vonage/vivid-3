@@ -19,7 +19,7 @@ Represents an avatar custom element.
 Use `icon` to set an icon to the avatar.
 View list of available icon at the [vivid icons gallery](https://icons.vivid.vonage.com).
 
-Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the avatar.
+{% include "icon-note.md" %}
 
 - Type: `string`
 - Default: `user-line`

@@ -77,6 +77,8 @@ Add the `meta` attribute to add metadata to the heading.
 
 Add the `icon` attribute to add an icon to the heading.
 
+{% include "icon-note.md" %}
+
 - Type: `string`
 - Default: `''`
 

@@ -45,7 +45,7 @@ Control the elevation depth by adding the `elevation` attribute
 
 ### Icon
 
-Add a `icon='icon-name'` attribute to add icon on the right of the card headline
+Add a `icon='icon-name'` attribute to add icon at the start of the card headline
 
 - Type: `string`
 - Default: `undefined`

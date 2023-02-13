@@ -1,0 +1,1 @@
+Note: An icon on its own doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the component's purpose.

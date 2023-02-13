@@ -51,21 +51,11 @@ You can toggle the nav-disclosure by using the `open` attribute.
 Nav disclosure label can be prefixed by a decorative icon.
 Use the `icon` attribute to add an icon.
 
+{% include "icon-note.md" %}
+
 ```html preview
 <vwc-nav>
   <vwc-nav-disclosure label="1st level item" icon="profile">
-    <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
-  </vwc-nav-disclosure>
-<vwc-nav>
-```
-
-### Icon Only
-
-If label is not applied.
-
-```html preview
-<vwc-nav>
-  <vwc-nav-disclosure icon="profile">
     <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
   </vwc-nav-disclosure>
 <vwc-nav>

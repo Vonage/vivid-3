@@ -26,6 +26,8 @@ Use the `text` attribute to set the option's text.
 Add the `icon` attribute to add an icon to the option.
 Check out the [vivid icons gallery](https://icons.vivid.vonage.com) to see what icons are available.
 
+{% include "icon-note.md" %}
+
 - Type: `string`
 - Default: `''`
 
