@@ -34,7 +34,7 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 
 ```html preview
 <vwc-tree-view>
-    <vwc-tree-item text="Tree Item" icon="home-line"></vwc-tree-item>
+    <vwc-tree-item text="Tree Item" icon="chat-line"></vwc-tree-item>
 </vwc-tree-view>
 ```
 

@@ -2,6 +2,7 @@ import { children, elements, html, ref, slotted, when } from '@microsoft/fast-el
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
+import { Icon } from '../icon/icon';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
 import type { TreeItem } from './tree-item';
 
@@ -13,7 +14,7 @@ const getClasses = ({
 );
 
 export const expandCollapseButton = (context: ElementDefinitionContext) => {
-	const affixIconTemplate = affixIconTemplateFactory(context);
+	const iconTag = context.tagFor(Icon);
 
 	return html<TreeItem>`
 	<div aria-hidden="true"
@@ -22,7 +23,8 @@ export const expandCollapseButton = (context: ElementDefinitionContext) => {
 		x.handleExpandCollapseButtonClick(c.event as MouseEvent)}"
 			${ref('expandCollapseButton')}
 	>
-		${x => affixIconTemplate(x.expanded ? 'chevron-down-solid' : 'chevron-right-solid')}
+		${when(x => x.expanded, html<TreeItem>`<${iconTag} class="expandCollapseButton" name='chevron-down-line'></${iconTag}>`)}
+		${when(x => !x.expanded, html<TreeItem>`<${iconTag} class="expandCollapseButton" name='chevron-right-line'></${iconTag}>`)}
 	</div>`;
 };
 

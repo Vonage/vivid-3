@@ -77,6 +77,7 @@
 	position: relative;
 	display: flex;
 	align-items: center;
+	font-size: 20px;
 }
 
 .items {
@@ -94,7 +95,7 @@
 }
 
 .icon {
-	font-size: inherit;
+	font-size: 20px;
 	line-height: 1;
 
 	.control:not(.disabled, .selected) & {
