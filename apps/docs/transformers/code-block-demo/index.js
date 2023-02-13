@@ -32,7 +32,16 @@ const generateCodeBlockDemo = function (blockData) {
 
 	const { pre: { outerHTML: codeStr }, index, outputPath } = blockData;
 
-	const demoStr = decode(IFRAME_STYLE) + decode(FONTS) + decode(TYPOGRAPHY) + decode(code);
+	const demoStr = `
+		<head>
+			${decode(IFRAME_STYLE)}
+			${decode(FONTS)}
+			${decode(TYPOGRAPHY)}
+		</head>
+		<body>
+			${decode(code)}
+		</body>`;
+
 	const demoData = { demoStr, codeStr, index, outputPath };
 
 	const dom = new JSDOM(`<body>${getHtml(demoData)}</body>`);
