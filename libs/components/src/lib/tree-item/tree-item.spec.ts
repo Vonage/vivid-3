@@ -46,7 +46,7 @@ describe('vwc-tree-item', () => {
 	});
 
 	describe('icon', () => {
-		it('should add an icon to the nav item', async () => {
+		it('should add an icon to the tree item', async () => {
 			const iconName = 'home';
 			treeItem2.icon = iconName;
 			await elementUpdated(treeItem2);
