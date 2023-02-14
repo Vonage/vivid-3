@@ -1,6 +1,9 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+
 import type { TreeItem } from '../tree-item/tree-item';
+import '../tree-item';
+
 import { treeViewDefinition } from './definition';
 import { TreeView } from './tree-view';
 import '.';
@@ -14,10 +17,10 @@ describe('vwc-tree-view', () => {
 
 	beforeEach(async () => {
 		element = (await fixture(
-			`<vwc-tree-view>
-				<${COMPONENT_TAG} id="item1"></${COMPONENT_TAG}>
-				<${COMPONENT_TAG} id="item2"></${COMPONENT_TAG}>
-			</vwc-tree-view>`
+			`<${COMPONENT_TAG}>
+				<vwc-tree-item id="item1"></vwc-tree-item>
+				<vwc-tree-item id="item2"></vwc-tree-item>
+			</${COMPONENT_TAG}>`
 		)) as TreeView;
 		await elementUpdated(element);
 

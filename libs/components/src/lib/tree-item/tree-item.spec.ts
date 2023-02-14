@@ -1,11 +1,13 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
-import '.';
-import '../tree-view/tree-view';
+
 import type { TreeView } from '../tree-view/tree-view';
-import { TreeItem } from './tree-item';
+import '../tree-view';
+
 import { treeItemDefinition } from './definition';
+import { TreeItem } from './tree-item';
+import '.';
 
 const COMPONENT_TAG = 'vwc-tree-item';
 const ICON_SELECTOR = 'vwc-icon';
@@ -85,6 +87,20 @@ describe('vwc-tree-item', () => {
 		await elementUpdated(treeItem1);
 		expect(treeItem1.getAttribute('aria-disabled')).toEqual('true');
 	});
+
+	it('should expand/collapse using right/left arrows', async () => {
+		expect(treeItem1.expanded).toBeFalsy();
+		
+		treeItem1.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+		await elementUpdated(treeItem1);
+
+		expect(treeItem1.expanded).toBeTruthy();
+
+		treeItem1.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }));
+		await elementUpdated(treeItem1);
+
+		expect(treeItem1.expanded).toBeFalsy();
+	})
 
 	describe('tree-item click', () => {
 		it('should expand when click', async () => {
