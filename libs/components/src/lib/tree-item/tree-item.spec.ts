@@ -100,7 +100,7 @@ describe('vwc-tree-item', () => {
 		await elementUpdated(treeItem1);
 
 		expect(treeItem1.expanded).toBeFalsy();
-	})
+	});
 
 	describe('tree-item click', () => {
 		it('should expand when click', async () => {
