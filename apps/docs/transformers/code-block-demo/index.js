@@ -5,7 +5,7 @@ const path = require('path');
 const jsonData = [
 	...require('../../_data/components.json'),
 	...require('../../_data/designs.json'),
-	...require('../../_data/getting-started.json')
+	...require('../../_data/introduction.json')
 ];
 const layout = require('./layout');
 const ELEVENTY_HTML_CODE_BLOCK_SELECTOR = 'pre.preview > code';

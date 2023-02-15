@@ -1,7 +1,7 @@
 {% block content %}
 <vwc-nav>
 	<vwc-nav-disclosure label="Getting Started" open>
-		{%  for item in getting-started %}
+		{%  for item in introduction %}
 		<vwc-nav-item
 			href="{{ ('/getting-started/' + item.title) | url }}"
 			text="{{ item.title | replace("-", " ") | capitalize }}"
