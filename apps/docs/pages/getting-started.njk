@@ -3,18 +3,18 @@ tags: getting-started
 pagination:
     data: getting-started
     size: 1
-    alias: starting
-permalink: "getting-started/{{ starting.title | slug }}/"
+    alias: doc
+permalink: "getting-started/{{ doc.title | slug }}/"
 ---
 
 {% extends '../_layouts/base.njk' %}
 
 {% block header %}
-	{% for url in starting.modules %}
+	{% for url in doc.modules %}
 <script type="module" src="{{ url | url }}"></script>
 	{% endfor %}
 {% endblock %}
 
 {% block content %}
-	{% renderFile starting.markdown %}
+	{% renderFile doc.markdown %}
 {% endblock %}
