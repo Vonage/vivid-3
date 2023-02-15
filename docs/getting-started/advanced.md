@@ -11,31 +11,21 @@ Vivid provides a set of styles (combined with the tokens and fonts) that can be 
 
 - `all.css` - Sets all the above styles
 
-These **core styles** rely on the [tokens and fonts to be loaded](link to home page)
+These **core styles** rely on the [tokens and fonts to be loaded](/getting-started/quick-start/#prerequisite)
 
 ### Include the styles
 
-#### Option 1: css
+To include the styles, its css files must be loaded into the project from: `node_modules/@vonage/vivid/styles/[path to file].css`.  
 
-```css
-@import 'node_modules/@vonage/vivid/styles/[path to file].css';
+Note: scss users can simply [forward](https://sass-lang.com/documentation/at-rules/forward) the styles to their scss project:
+
 ```
-
-#### Option 2: scss
-
-```css
 @forward 'node_modules/@vonage/vivid/styles/[path to file].css';
-```
-
-#### Option 3: HTML (inside the &lt;head> tag)
-
-```html
-<link rel="stylesheet" href="node_modules/@vonage/vivid/styles/[path to file].css" media="all">
 ```
 
 ### Setting Vivid class
 
-"[As in tokens](/README.md), styles *require* a `vvd-root` class* selector to be present on a wrapping element (advisably the `:root`.  
+[As in tokens](/getting-started/quick-start/#setting-vivid-class), styles *require* a `vvd-root` class* selector to be present on a wrapping element (advisably the `:root`.  
 When set on the `:root` (html element), typeface sizes are able to descend from the root font-size, thus comply with the [WCAG 1.4.4](https://www.w3.org/WAI/WCAG21/Understanding/resize-text)) to ensure text readability experience..
 
 ---

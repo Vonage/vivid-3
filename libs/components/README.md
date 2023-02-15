@@ -53,8 +53,9 @@ As the task of loading css is not trivial, and may vary from project to project,
 
 ### Setting Vivid class
 
-The Vivid tokens require a `vvd-root` class selector to be present on a wrapping element (advisably the `:root`) for it to apply its css custom properties to.  
-💡 The [:root CSS pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/:root) matches the root element of a tree representing the document
+The Vivid tokens require a `vvd-root` class selector to be present on a wrapping element (advisably the `:root`) for it to apply its css custom properties to.    
+
+💡 The [:root](https://developer.mozilla.org/en-US/docs/Web/CSS/:root) CSS pseudo-class matches the root element of a tree representing the document
 
 ```html
 <html class="vvd-root">...</html>
@@ -71,11 +72,12 @@ Learn how to load fonts into your application [with google-fonts](https://fonts.
 
 Unless explicitly stated otherwise, *Vonage* products should use the brand specified font families by `Spezia`.  
 Vonage teams may review guidelines at the [Spezia webfont kit](https://github.com/Vonage/spezia-webfont-kit).  
-For more information check out [getting started](add/link)
+
+💡 For more information check out [Vonage Authors](/getting-started/vonage-authors)
 
 ## Advanced Usage
 
-For further information on **core application styles** & **scoped elements** check out [advanced usage](link)
+For further information on **core application styles** & **scoped elements** check out [advanced usage](/getting-started/advanced)
 
 ## CDN - Quickstart
 
