@@ -1,10 +1,7 @@
 const { JSDOM } = require('jsdom');
-const { decode } = require("html-entities");
 const fs = require('fs');
 const path = require('path');
 const jsonData = [...require('../../_data/components.json'), ...require('../../_data/designs.json')];
-const layout = require('./layout');
-const ELEVENTY_HTML_CODE_BLOCK_SELECTOR = 'pre.preview > code';
 
 const FONTS = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap">';
 const IFRAME_STYLE = '<link rel="stylesheet" href="/assets/styles/iframe.css">';
@@ -15,103 +12,94 @@ const CBD_DEMO = 'cbd-demo';
 const CBD_DETAILS = 'cbd-details';
 const CBD_CODE_BLOCK = 'cbd-code-block';
 
-const getComponentName = (outputPath) => {
-	const pathName = path.dirname(outputPath).substring(0, outputPath.lastIndexOf('/'));
-	const componentName = pathName.substring(pathName.lastIndexOf('/') + 1);
-	return componentName;
-}
-
-const getComponentData = (componentName) => jsonData.find(({ title }) => title == componentName);
-
-const generateCodeBlockDemo = function (blockData) {
-	let code = blockData.pre.querySelector('code').textContent;
-
-	const { classList } = blockData.pre;
-
-	code = layout(code, classList);
-
-	const { pre: { outerHTML: codeStr }, index, outputPath } = blockData;
-
-	const demoStr = decode(IFRAME_STYLE) + decode(FONTS) + decode(TYPOGRAPHY) + decode(code);
-	const demoData = { demoStr, codeStr, index, outputPath };
-
-	const dom = new JSDOM(`<body>${getHtml(demoData)}</body>`);
-
-	return dom.window.document.querySelector(`.${CBD_CONTAINER}`);
-};
-
 module.exports = function (content, outputPath) {
 	if (!outputPath.endsWith('.html')) {
 		return content;
 	}
 
-	const blockData = {};
-	blockData.outputPath = outputPath;
-	const jsdomObj = new JSDOM(content);
-	const codeBlocks = jsdomObj.window.document.querySelectorAll(ELEVENTY_HTML_CODE_BLOCK_SELECTOR);
-	codeBlocks.forEach(function (codeBlock, index) {
-		const pre = codeBlock.closest('pre');
-		blockData.pre = pre;
-		blockData.index = index++;
-		pre.replaceWith(generateCodeBlockDemo(blockData));
+	const dom = new JSDOM(content);
+	const codeBlocks = dom.window.document.querySelectorAll('pre.preview > code');
+	codeBlocks.forEach((codeBlock, index) => {
+		const pre = codeBlock.closest('pre'); // optimize this and the previous querySelectorAll
+		const src = createiFrameContent(codeBlock.textContent, pre.classList, index, outputPath);
+		renderiFrame(codeBlock, index, src)
 	});
-	return jsdomObj.serialize();
+	return dom.serialize();
 };
 
-const getHtml = (demoData) => {
-	const codeBlockId = `${CBD_CODE_BLOCK}-${demoData.index}`;
-	const frameData = {};
-	frameData.demoStr = demoData.demoStr;
-	frameData.codeBlockId = codeBlockId;
-	frameData.outputPath = demoData.outputPath;
-	const iframeSrc = getIframe(frameData);
-
-	return `
+const renderiFrame = (codeBlock, index, src) => {
+	const pre = codeBlock.closest('pre');
+	
+	const fragment = JSDOM.fragment(`
     <vwc-card elevation="0" class="${CBD_CONTAINER}">
-      <iframe id="iframe-sample-${demoData.index}" class="${CBD_DEMO}" src="${iframeSrc}" onload=onloadIframe(this) loading="lazy" aria-label="code block preview iframe" slot="main"></iframe>
+      <iframe id="iframe-sample-${index}" src="${src}" class="${CBD_DEMO}" onload=onloadIframe(this) loading="lazy" aria-label="code block preview iframe" slot="main"></iframe>
       <vwc-action-group appearance="ghost" style="direction: rtl;" slot="main">
-        <vwc-button aria-label="Show source code" icon="code-line" aria-expanded="false" aria-controls="${codeBlockId}" onclick="codeBlockButtonClick(this)"></vwc-button>
+        <vwc-button aria-label="Show source code" icon="code-line" aria-expanded="false" aria-controls="${CBD_CODE_BLOCK}-${index}" onclick="codeBlockButtonClick(this)"></vwc-button>
         <vwc-button aria-label="Copy source code" icon="copy-2-line" onclick="codeCopyButtonClick(this)"></vwc-button>
       </vwc-action-group>
       <details class="${CBD_DETAILS}" slot="main">
         <summary></summary>
-        <div class="${CBD_CODE_BLOCK}" role="region" id="${codeBlockId}">
-          ${demoData.codeStr}
-        </div>
-		<div class="cbd-live-sample"></div>
+		<div class="cbd-live-sample" data-index="${index}" role="region">
+			${pre.outerHTML}
+		</div>
+		<div style="display:flex; align-items:center; justify-content:flex-end; padding:5px">
+			Ctrl-Enter or
+			<vwc-button aria-label="Update sample" icon="reload-line" size="condensed" onclick="updateiFrameCode(${index})"></vwc-button>
+		</div>
       </details>
-	</vwc-card>`;
+    </vwc-card>`);
+
+	pre.replaceWith(fragment);
 }
 
-const getIframe = (frameData) => {
-	const saveFolder = verifyAndCreateSaveFolder(frameData.outputPath);
-	frameData.saveFolder = saveFolder;
-	const filePath = saveCodeAsHTMLFile(frameData);
-	return filePath.substring(saveFolder.indexOf('docs' + path.sep) + 4);
-}
+const createiFrameContent = (code, classList, index, outputPath) => {
+	const componentName = outputPath.split('/').at(-2);
+	const componentData = jsonData.filter(c => c.title === componentName);
+	const modules = new Set(componentData?.[0]?.modules);
 
-const verifyAndCreateSaveFolder = (outputPath) => {
+	const layoutResult = layout(code, classList);
+
+	if (!classList.contains('full') && !classList.contains('center')) {
+		modules.add('/assets/modules/components/layout/index.js');
+	}
+	
+	const document =
+		`<!DOCTYPE html>
+		 <html class="vvd-root">
+			<head>
+				${IFRAME_STYLE}
+			 	${FONTS}
+			 	${TYPOGRAPHY}
+			 	${[...modules].map(m => `<script type="module" src="${m}"></script>`).join('')}
+			</head>
+			<body ${classList.contains('full') ? 'id="_target"' : ''}>
+			 	${layout(code, classList)}
+			</body>
+		 </html>`;
+
 	const saveFolder = path.join(path.dirname(outputPath), '/frames');
 	if (!fs.existsSync(saveFolder)) {
 		fs.mkdirSync(saveFolder, { recursive: true });
 	}
-	return saveFolder;
-}
-
-const addModules = (data) => {
-	let modulesStr = '';
-	data.modules.forEach(module => {
-		modulesStr += `<script type="module" src="${module}"></script>`;
-	});
-	return modulesStr;
-}
-
-const saveCodeAsHTMLFile = (frameData) => {
-	const filePath = `${frameData.saveFolder}/${frameData.codeBlockId}.html`;
-	const componentName = getComponentName(frameData.outputPath);
-	const data = getComponentData(componentName);
-	frameData.demoStr += addModules(data);
-	const document = `<!DOCTYPE html><html class="vvd-root">${frameData.demoStr}</html>`;
+	
+	const filePath = `${saveFolder}/${CBD_CODE_BLOCK}-${index}.html`;
 	fs.writeFileSync(filePath, document);
-	return filePath;
+	return filePath.substring(saveFolder.indexOf('docs' + path.sep) + 4);
+}
+
+const layout = (code, classList) => {
+	const useLayout = (content, isTarget, column) => `
+		<vwc-layout
+			gutters="small"
+			${isTarget ? 'id="_target"' : ''}
+			${column ? `column-basis="${column}"` : ''}
+		>
+			${content}
+		</vwc-layout>`;
+
+	if (classList.contains('full')) return code;
+	if (classList.contains('center')) return `<div id="_target" class="center">${code}</div>`;
+	if (classList.contains('blocks')) return useLayout(code, true, 'block');
+	if (classList.contains('blocks')) return useLayout(code, true, 'medium');
+	return useLayout(`<div id="_target">${code}</div>`, false);
 }

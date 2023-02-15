@@ -3,41 +3,47 @@ import { keymap } from "@codemirror/view"
 import { html } from "@codemirror/lang-html"
 
 window.onload = () => {
-	addEditors();
+	addSamplesEditors();
+	window.updateiFrameCode = updateiFrameCode;
 };
 
-function test(view, idx) {
-	const iframe = document.querySelector(`#iframe-sample-${idx}`);
-	const placeholder = iframe.contentDocument.querySelector('#replaceme');
+const samplesEditors = new Map();
 
-	const replacement = document.createRange().createContextualFragment(view.state.doc.toString().trim());
+function updateiFrameCode(idx) {
+	const { view, iframe } = samplesEditors.get(idx);
+
+	const placeholder = iframe.contentDocument.querySelector('#_target');
+	const updatedCode = view.state.doc.toString().trim();
+	const replacement = iframe.contentDocument.createRange().createContextualFragment(updatedCode);
+
 	placeholder.replaceChildren(replacement);
-
-	// const replacement = document.createElement('template');
-	// replacement.innerHTML = view.state.doc.toString().trim();
-	
-	// placeholder.replaceChildren(replacement.content);
 
 	return true;
 }
 
-function addEditors() {
+function addSamplesEditors() {
 	const codeBlocks = document.querySelectorAll('.cbd-live-sample');
 
 	codeBlocks.forEach(cbd => {
-		const prevCodeBlock = cbd.previousElementSibling;
-		const idx = prevCodeBlock.id[prevCodeBlock.id.length - 1];
-		const editor = new EditorView({
-			doc: prevCodeBlock.textContent.trim(),
+		const code = cbd.textContent.trim();
+		cbd.innerHTML = '';
+		const idx = +cbd.dataset.index;
+
+		const iframe = document.querySelector(`#iframe-sample-${idx}`);
+		const view = new EditorView({
+			doc: code,
 			extensions: [
-				keymap.of([{ key: "Ctrl-Enter", run: (view) => test(view, idx) }]),
+				keymap.of([{ key: "Ctrl-Enter", run: () => updateiFrameCode(idx) }]),
 				basicSetup,
 				html()
 			],
 			parent: cbd,
 			root: window.document
 		});
-		
-		prevCodeBlock.style.display = 'none';
+
+		samplesEditors.set(idx, {
+			view,
+			iframe
+		})
 	});
 }
