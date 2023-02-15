@@ -1,13 +1,13 @@
 {% block content %}
 <vwc-nav>
-    <vwc-nav-disclosure label="Getting Started" open>
-      {%  for item in getting-started | sort(false, false, 'title') %}
-      <vwc-nav-item
-  			href="{{ ('/getting-started/' + item.title) | url }}"
-  			text="{{ item.title | replace("-", " ") | capitalize }}"
-  			{% if ('/getting-started/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
-      {% endfor %}
-    </vwc-nav-disclosure>
+	<vwc-nav-disclosure label="Getting Started" open>
+		{%  for item in getting %}
+		<vwc-nav-item
+			href="{{ ('/getting/' + item.title) | url }}"
+			text="{{ item.title | replace("-", " ") | capitalize }}"
+			{% if ('/getting/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
+		{% endfor %}
+	</vwc-nav-disclosure>
 
   <vwc-nav-disclosure label="Design System" open>
     {%  for item in designs | sort(false, false, 'title') %}
