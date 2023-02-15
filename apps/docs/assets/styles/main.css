@@ -144,6 +144,7 @@ article > .cbd-container {
 }
 
 article.article > h1 {
+  padding-inline: 16px;
   display: flex;
   flex-direction: column;
   justify-content: center;
