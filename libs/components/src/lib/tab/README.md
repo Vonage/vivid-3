@@ -29,7 +29,7 @@ Add a `label` attribute to add label to the tab.
 Use `icon` to set an icon to the tab.
 View list of available icon at the [vivid icons gallery](https://icons.vivid.vonage.com).
 
-{% include "icon-note.md" %}
+Note: An icon on its own doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the tab's purpose.
 
 - Type: `string`
 - Default: `undefined`

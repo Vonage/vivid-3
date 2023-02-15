@@ -41,7 +41,7 @@ Use the `shape` attribute to change the badge's edges.
 Use `icon` to set an icon to the badge.
 View list of available icon at the [vivid icons gallery](https://icons.vivid.vonage.com).
 
-{% include "icon-note.md" %}
+Note: An icon on its own doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the badge's purpose.
 
 - Type: `string`
 - Default: `undefined`

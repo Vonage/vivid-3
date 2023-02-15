@@ -51,7 +51,7 @@ You can toggle the nav-disclosure by using the `open` attribute.
 Nav disclosure label can be prefixed by a decorative icon.
 Use the `icon` attribute to add an icon.
 
-{% include "icon-note.md" %}
+Note: An icon on its own doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the nav-disclosure's purpose.
 
 ```html preview
 <vwc-nav>

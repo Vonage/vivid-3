@@ -26,7 +26,7 @@ Use the `text` attribute to set the option's text.
 Add the `icon` attribute to add an icon to the option.
 Check out the [vivid icons gallery](https://icons.vivid.vonage.com) to see what icons are available.
 
-{% include "icon-note.md" %}
+Note: An icon on its own doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the option's purpose.
 
 - Type: `string`
 - Default: `''`

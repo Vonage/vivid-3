@@ -77,7 +77,7 @@ Add the `meta` attribute to add metadata to the heading.
 
 Add the `icon` attribute to add an icon to the heading.
 
-{% include "icon-note.md" %}
+Note: An icon on its own doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the accordion-item's purpose.
 
 - Type: `string`
 - Default: `''`

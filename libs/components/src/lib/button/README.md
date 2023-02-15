@@ -41,7 +41,7 @@ Set the `appearance` attribute to change the button's appearance.
 Use `icon` to set an icon to the button.
 View list of available icon at the [vivid icons gallery](https://icons.vivid.vonage.com).
 
-{% include "icon-note.md" %}
+Note: An icon on its own doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the button's purpose.
 
 - Type: `string`
 - Default: `undefined`

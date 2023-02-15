@@ -79,7 +79,7 @@ set `role` to change the role of the menu item
 Use `icon` to set an icon to the nav item.
 View list of available icon at the [vivid icons gallery](https://icons.vivid.vonage.com).
 
-{% include "icon-note.md" %}
+Note: An icon on its own doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the menu-item's purpose.
 
 - Type: `string`
 - Default: `undefined`
