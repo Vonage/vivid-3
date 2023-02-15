@@ -1,11 +1,11 @@
 {% block content %}
 <vwc-nav>
     <vwc-nav-disclosure label="Getting Started" open>
-      {%  for item in extra | sort(false, false, 'title') %}
+      {%  for item in getting-started | sort(false, false, 'title') %}
       <vwc-nav-item
   			href="{{ ('/getting-started/' + item.title) | url }}"
   			text="{{ item.title | replace("-", " ") | capitalize }}"
-  			{% if ('/extra/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
+  			{% if ('/getting-started/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
       {% endfor %}
     </vwc-nav-disclosure>
 

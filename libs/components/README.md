@@ -6,6 +6,7 @@ Essential UI **web components** for building modern web applications, bound to p
 ![image](https://user-images.githubusercontent.com/10883919/189522882-968358df-ee7c-4256-b61b-550cf369a087.png)
 
 ## Installation
+
 To integrate Vivid components into your project, run:
 
 ```bash
@@ -29,6 +30,7 @@ And include in HTML:
 For a full list of components and API, explore the [components docs](https://vivid.deno.dev) 📚.
 
 ## Prerequisite
+
 ### Tokens
 
 To **include the tokens**, its css files must be loaded into the project from the `node_modules/@vonage/vivid/styles/tokens` folder.  
@@ -42,14 +44,15 @@ Tokens folder contains the following files:
 Only one theme is required to be loaded.
 
 #### About tokens
+
 The Vivid components library rely on a set of **design tokens** (in the form of css custom properties).
 
 Tokens should not affect the look of the application rather just provide a common set of identities (such as colors, typography, spacing etc') to be used by the components to look as intended.
 
 As the task of loading css is not trivial, and may vary from project to project, this library does not provide any way to load the css. It is up to the author to load the css in the most appropriate manner for their project.
 
-
 ### Setting Vivid class
+
 The Vivid tokens require a `vvd-root` class selector to be present on a wrapping element (advisably the `:root`) for it to apply its css custom properties to.  
 💡 The [:root CSS pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/:root) matches the root element of a tree representing the document
 
@@ -59,18 +62,16 @@ The Vivid tokens require a `vvd-root` class selector to be present on a wrapping
 
 You can also add it to any wrapping element if you would like to scope the styles to only a certain part of your application.
 
-
 ### Fonts (Prerequisite)
 
 Vivid uses `Montserrat` and `Roboto Mono` Google fonts.
 Learn how to load fonts into your application [with google-fonts](https://fonts.google.com/knowledge/using_type/using_web_fonts_from_a_font_delivery_service#loading-web-fonts)
 
+#### Vonage authors
 
-#### Vonage authors:
 Unless explicitly stated otherwise, *Vonage* products should use the brand specified font families by `Spezia`.  
 Vonage teams may review guidelines at the [Spezia webfont kit](https://github.com/Vonage/spezia-webfont-kit).  
-For more information check out [getting started](add/link) 
-
+For more information check out [getting started](add/link)
 
 ## Advanced Usage
 
@@ -101,7 +102,6 @@ The following snippet fully renders a Vivid button component
 </div>
 ```
 
-
 ## Support Matrix
 
 This library is supported on 2 recent versions of major browsers (Chrome, Firefox, Safari, Edge).
@@ -119,7 +119,6 @@ For any questions, please open a [bug report](https://github.com/Vonage/vivid-3/
 - [What's on our plate](https://github.com/orgs/Vonage/projects/3/views/7)
 
 - See the [open issues](https://github.com/vonage/vivid-3/issues) for a full list of proposed features (and known issues).
-
 
 ## Contributing
 
@@ -143,9 +142,8 @@ This project is licensed under the Apache 2.0 License - see the [LICENSE.md](htt
 - Inspiration
 - etc -->
 
-## Built With ♡ And:
+## Built With ♡ And
 
 - [Fast](https://www.fast.design) - to extend element classes and compile code to native web components
 - [Typescript](https://www.typescriptlang.org) - for ergonomic and type-safe code
 - [Sass](https://sass-lang.com) - for styles authoring extensibility and consistency
-
