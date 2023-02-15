@@ -2,21 +2,19 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 @use "../../../../shared/src/lib/sass/mixins/scrim" as scrim-mixins;
+@use "../../../../shared/src/lib/sass/mixins/elevation" as elevation;
 
 
 .base {
 	box-sizing: border-box;
 	padding: 0;
 	border: none;
-	background: var(#{variables.$dialog-elevation-fill});
+	background: var(elevation.$vvd-elevation-fill);
 	border-radius: 6px;
 	color: var(#{constants.$vvd-color-canvas-text});
 	max-block-size: var(#{variables.$dialog-max-block-size}, calc(100vh - 64px));
 	max-inline-size: var(#{variables.$dialog-max-inline-size}, #{variables.$dialog-default-max-inline-size});
 	min-inline-size: var(#{variables.$dialog-min-inline-size}, 280px);
-	overflow-x: hidden;
-	overflow-y: auto;
-
 
 	@media not all and (min-width: 600px) {
 		#{variables.$dialog-default-max-inline-size}: 90vw;
@@ -31,14 +29,11 @@
 	}
 
 	&.modal {
-		filter: var(#{constants.$vvd-shadow-surface-24dp});
-
 		&::backdrop {
 			@include scrim-mixins.scrim-variables;
 		}
 	}
 }
-
 
 .main-wrapper {
 	display: flex;
@@ -102,6 +97,9 @@
 	font: var(#{constants.$vvd-typography-base});
 }
 
-
-
-
+slot[name="main"] {
+	display: block;
+	overflow: hidden auto;
+	max-width: inherit;
+	max-height: inherit;
+}
