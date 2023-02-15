@@ -31,14 +31,7 @@ For a full list of components and API, explore the [components docs](https://viv
 ## Prerequisite
 ### Tokens
 
-The Vivid components library rely on a set of **design tokens** (in the form of css custom properties).
-
-Tokens should not affect the look of the application rather just provide a common set of identities (such as colors, typography, spacing etc') to be used by the components to look as intended.
-
-As the task of loading css is not trivial, and may vary from project to project, this library does not provide any way to load the css. It is up to the author to load the css in the most appropriate manner for their project.
-
-#### Include the tokens
-To **include the tokens**, its css files must be loaded into the project from the `node_modules/@vonage/vivid/styles/tokens` folder.
+To **include the tokens**, its css files must be loaded into the project from the `node_modules/@vonage/vivid/styles/tokens` folder.  
 
 Tokens folder contains the following files:
 
@@ -48,24 +41,17 @@ Tokens folder contains the following files:
 
 Only one theme is required to be loaded.
 
+#### About tokens
+The Vivid components library rely on a set of **design tokens** (in the form of css custom properties).
 
-**Option 1: css**
-```css
-@import "node_modules/@vonage/vivid/styles/tokens/theme-light.css";
-```
+Tokens should not affect the look of the application rather just provide a common set of identities (such as colors, typography, spacing etc') to be used by the components to look as intended.
 
-**Option 2: scss**
-```css
-@forward 'node_modules/@vonage/vivid/styles/tokens/theme-light.css";
-``` 
+As the task of loading css is not trivial, and may vary from project to project, this library does not provide any way to load the css. It is up to the author to load the css in the most appropriate manner for their project.
 
-**Option 3: HTML (inside the &lt;head> tag)**
-```html
-<link rel="stylesheet" href="node_modules/@vonage/vivid/styles/tokens/theme-light.css" media="all">
-```
 
 ### Setting Vivid class
-The Vivid tokens require a `vvd-root` class selector to be present on a wrapping element (advisably the `:root`) for it to apply its css custom properties to.
+The Vivid tokens require a `vvd-root` class selector to be present on a wrapping element (advisably the `:root`) for it to apply its css custom properties to.  
+💡 The [:root CSS pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/:root) matches the root element of a tree representing the document
 
 ```html
 <html class="vvd-root">...</html>
