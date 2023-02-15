@@ -33,9 +33,9 @@ These **core styles** rely on the [tokens and fonts to be loaded](link to home p
 <link rel="stylesheet" href="node_modules/@vonage/vivid/styles/[path to file].css" media="all">
 ```
 
-### vivid class
+### Setting Vivid class
 
-*require* a `vvd-root` class* selector to be present on a wrapping element (advisably the `:root`.  
+"[As in tokens](/README.md), styles *require* a `vvd-root` class* selector to be present on a wrapping element (advisably the `:root`.  
 When set on the `:root` (html element), typeface sizes are able to descend from the root font-size, thus comply with the [WCAG 1.4.4](https://www.w3.org/WAI/WCAG21/Understanding/resize-text)) to ensure text readability experience..
 
 ---
