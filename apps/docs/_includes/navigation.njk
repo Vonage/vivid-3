@@ -3,7 +3,7 @@
     <vwc-nav-disclosure label="Getting Started" open>
       {%  for item in extra | sort(false, false, 'title') %}
       <vwc-nav-item
-  			href="{{ ('/extra/' + item.title) | url }}"
+  			href="{{ ('/getting-started/' + item.title) | url }}"
   			text="{{ item.title | replace("-", " ") | capitalize }}"
   			{% if ('/extra/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
       {% endfor %}
