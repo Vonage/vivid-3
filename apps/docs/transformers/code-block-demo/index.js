@@ -6,8 +6,6 @@ const jsonData = [
 	...require('../../_data/designs.json'),
 	...require('../../_data/introduction.json')
 ];
-const layout = require('./layout');
-const ELEVENTY_HTML_CODE_BLOCK_SELECTOR = 'pre.preview > code';
 
 const FONTS = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap">';
 const IFRAME_STYLE = '<link rel="stylesheet" href="/assets/styles/iframe.css">';
