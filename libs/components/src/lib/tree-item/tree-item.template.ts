@@ -23,7 +23,7 @@ export const expandCollapseButton = (context: ElementDefinitionContext) => {
 		x.handleExpandCollapseButtonClick(c.event as MouseEvent)}"
 			${ref('expandCollapseButton')}
 	>
-		<${iconTag} class="expandCollapseButton" name="${x => x.expanded ? 'chevron-down-line' : 'chevron-right-line'}"></${iconTag}>
+		<${iconTag} class="expandCollapseIcon" name="${x => x.expanded ? 'chevron-down-line' : 'chevron-right-line'}"></${iconTag}>
 	</div>`;
 };
 

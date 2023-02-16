@@ -29,7 +29,7 @@
 
 	$min-block-size: #{size.$vvd-size-normal};
 	$gap: 12px;
-	$gutter: 16px;
+	$gutter: 12px;
 
 	position: relative;
 	display: inline-flex;
@@ -77,6 +77,15 @@
 	display: flex;
 	align-items: center;
 	font-size: 20px;
+	border-radius: 6px;
+
+	.expandCollapseIcon {
+		margin: 4px;
+	}
+
+	&:hover {
+		background-color: var(#{constants.$vvd-color-neutral-100});
+	}
 }
 
 .items {
