@@ -17,14 +17,14 @@ const onScroll = () => {
 	}
 }
 
-const setScrollFromsessionStorage = () => {
+const setScrollFromSessionStorage = () => {
 	// set sideDrawer's scroll from sessionStorage
 	const asideElement = getAsideElement();
 	if (asideElement.offsetHeight > 0) {
 		asideElement.scrollTop = sessionStorage.getItem("scroll") ?? 0;
 	}
 	else {
-		requestAnimationFrame(setScrollFromsessionStorage);
+		requestAnimationFrame(setScrollFromSessionStorage);
 	}
 }
 
@@ -33,7 +33,7 @@ const setScrollFromsessionStorage = () => {
 	window.addEventListener('scroll', onScroll);
 
 	customElements.whenDefined('vwc-side-drawer').then(() => {
-		setScrollFromsessionStorage();
+		setScrollFromSessionStorage();
 		getAsideElement().addEventListener('scroll', onScroll);
 	});
 })();
