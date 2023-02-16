@@ -6,6 +6,7 @@ import { html } from "@codemirror/lang-html"
 window.onload = () => {
 	addSamplesEditors();
 	window.updateiFrameCode = updateiFrameCode;
+	window.codeCopyButtonClick = codeCopyButtonClick;
 };
 
 const samplesEditors = new Map();
@@ -48,4 +49,22 @@ function addSamplesEditors() {
 			iframe
 		})
 	});
+}
+
+function codeCopyButtonClick(idx, button) {
+	const { view } = samplesEditors.get(idx);
+
+	navigator.clipboard.writeText(view.state.doc.toString().trim())
+		.then(() => {
+		/* clipboard successfully set */
+		button.icon = 'check-line';
+		})
+		.catch(() => {
+		/* clipboard write failed */
+		button.icon = 'close-line';
+		});
+
+	setTimeout(() => {
+		button.icon = 'copy-2-line';
+	}, 1000);
 }
