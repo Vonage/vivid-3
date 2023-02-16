@@ -74,9 +74,9 @@ Now that we have the _Spezia_ font families set up - we need to override Vivid's
 }
 ```
 
-## Integrating vivid@3 alongside vivid@2
+## Integrating Vivid@3.x alongside Vivid@2
 
-Vivid@next can be installed alongside vivid@2.x but there are some prerequisites:
+Vivid@3.x can be installed alongside vivid@2.x but there are some prerequisites:
 
 ### Pre Installation
 
@@ -86,14 +86,14 @@ DON’T:
 
 ```json
 "@vonage/vivid": "^2.37.0", // previous vivid version
-"@vonage/vivid": "next", // new vivid version
+"@vonage/vivid": "3.x", // new vivid version
 ```
 
 DO:
 
 ```json
 # Vivid new version
-"@vonage/vivid": "next",
+"@vonage/vivid": "3.x",
 
 # Vivid previous version
 "@Vonage/vwc-accordion": "2.37.0",
@@ -107,7 +107,7 @@ DO:
 ```js
 import { registerBadge } from '@vonage/vivid';
 
-registerBadge ('dashboard');
+registerBadge('dashboard');
 ```
 
 ### Start Using component
