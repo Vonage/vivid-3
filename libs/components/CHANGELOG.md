@@ -4,6 +4,13 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.1.3](https://github.com/Vonage/vivid-3/compare/vivid-v3.1.2...vivid-v3.1.3) (2023-02-16)
+
+
+### Bug Fixes
+
+* **documentation:** getting started ([#1007](https://github.com/Vonage/vivid-3/issues/1007)) ([8da7500](https://github.com/Vonage/vivid-3/commit/8da7500eb681ca6d85aaa206da2c77eb859ec435))
+
 ## [3.1.2](https://github.com/Vonage/vivid-3/compare/vivid-v3.1.1...vivid-v3.1.2) (2023-02-15)
 
 

@@ -1,0 +1,20 @@
+---
+tags: introduction getting-started
+pagination:
+    data: introduction
+    size: 1
+    alias: doc
+permalink: "getting-started/{{ doc.title | slug }}/"
+---
+
+{% extends '../_layouts/base.njk' %}
+
+{% block header %}
+	{% for url in doc.modules %}
+<script type="module" src="{{ url | url }}"></script>
+	{% endfor %}
+{% endblock %}
+
+{% block content %}
+	{% renderFile doc.markdown %}
+{% endblock %}
