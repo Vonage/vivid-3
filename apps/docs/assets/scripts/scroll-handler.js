@@ -11,20 +11,20 @@ const onScroll = () => {
 	const isWindowScrolled = window.scrollY > 0;
 	const isAsideScrolled = getAsideElement().scrollTop > 0;
 	updateHeaderElevationShadow(isWindowScrolled || isAsideScrolled);
-	// save sideDrawer's scroll in localStorage
+	// save sideDrawer's scroll in sessionStorage
 	if (getAsideElement().scrollTop) {
-		localStorage.setItem("scroll", getAsideElement().scrollTop);
+		sessionStorage.setItem("scroll", getAsideElement().scrollTop);
 	}
 }
 
-const setScrollFromLocalStorage = () => {
-	// set sideDrawer's scroll from localStorage
+const setScrollFromsessionStorage = () => {
+	// set sideDrawer's scroll from sessionStorage
 	const asideElement = getAsideElement();
 	if (asideElement.offsetHeight > 0) {
-		asideElement.scrollTop = localStorage.getItem("scroll") ?? 0;
+		asideElement.scrollTop = sessionStorage.getItem("scroll") ?? 0;
 	}
 	else {
-		requestAnimationFrame(setScrollFromLocalStorage);
+		requestAnimationFrame(setScrollFromsessionStorage);
 	}
 }
 
@@ -33,7 +33,7 @@ const setScrollFromLocalStorage = () => {
 	window.addEventListener('scroll', onScroll);
 
 	customElements.whenDefined('vwc-side-drawer').then(() => {
-		setScrollFromLocalStorage();
+		setScrollFromsessionStorage();
 		getAsideElement().addEventListener('scroll', onScroll);
 	});
 })();
