@@ -39,7 +39,7 @@ const renderiFrame = (codeBlock, index, src) => {
       <iframe id="iframe-sample-${index}" src="${src}" class="${CBD_DEMO}" onload=onloadIframe(this) loading="lazy" aria-label="code block preview iframe" slot="main"></iframe>
       <vwc-action-group appearance="ghost" style="direction: rtl;" slot="main">
         <vwc-button aria-label="Show source code" icon="code-line" aria-expanded="false" aria-controls="${CBD_CODE_BLOCK}-${index}" onclick="codeBlockButtonClick(this)"></vwc-button>
-        <vwc-button aria-label="Copy source code" icon="copy-2-line" onclick="codeCopyButtonClick(${index}, this)"></vwc-button>
+        <vwc-button aria-label="Copy source code" icon="copy-2-line" data-index="${index}"></vwc-button>
       </vwc-action-group>
       <details class="${CBD_DETAILS}" slot="main">
         <summary></summary>
@@ -48,7 +48,7 @@ const renderiFrame = (codeBlock, index, src) => {
 		</div>
 		<div style="display:flex; align-items:center; justify-content:flex-end; padding:5px">
 			Ctrl-Enter or
-			<vwc-button aria-label="Update sample" icon="reload-line" size="condensed" onclick="updateiFrameCode(${index})"></vwc-button>
+			<vwc-button aria-label="Update sample" icon="reload-line" size="condensed" data-index="${index}"></vwc-button>
 		</div>
       </details>
     </vwc-card>`);

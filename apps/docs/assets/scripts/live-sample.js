@@ -2,14 +2,30 @@ import { EditorView, minimalSetup } from "codemirror"
 import { keymap } from "@codemirror/view"
 import { bracketMatching } from "@codemirror/language"
 import { html } from "@codemirror/lang-html"
+import { Compartment } from '@codemirror/state'
+import { oneDark } from '@codemirror/theme-one-dark'
 
 window.onload = () => {
 	addSamplesEditors();
-	window.updateiFrameCode = updateiFrameCode;
-	window.codeCopyButtonClick = codeCopyButtonClick;
+	addButtonsHandlers();
 };
 
 const samplesEditors = new Map();
+const theme = new Compartment();
+
+window.setEditorsTheme = function() {
+	for (const {view} of samplesEditors.values()) {
+		view.dispatch({ effects: theme.reconfigure(window._darkTheme ? oneDark : EditorView.theme({})) });
+	}
+}
+
+function addButtonsHandlers() {
+	const copyCodeButtons = document.querySelectorAll('vwc-button[icon="copy-2-line"]')
+	copyCodeButtons.forEach(btn => btn.addEventListener('click', codeCopyButtonClick))
+
+	const reloadCodeButtons = document.querySelectorAll('vwc-button[icon="reload-line"]')
+	reloadCodeButtons.forEach(btn => btn.addEventListener('click', () => updateiFrameCode(+btn.dataset.index)))
+}
 
 function updateiFrameCode(idx) {
 	const { view, iframe } = samplesEditors.get(idx);
@@ -36,6 +52,7 @@ function addSamplesEditors() {
 			doc: code,
 			extensions: [
 				keymap.of([{ key: "Ctrl-Enter", run: () => updateiFrameCode(idx) }]),
+				theme.of(EditorView.theme({})),
 				minimalSetup,
 				bracketMatching(),
 				html()
@@ -47,12 +64,15 @@ function addSamplesEditors() {
 		samplesEditors.set(idx, {
 			view,
 			iframe
-		})
+		});
+
+		setEditorsTheme();
 	});
 }
 
-function codeCopyButtonClick(idx, button) {
-	const { view } = samplesEditors.get(idx);
+function codeCopyButtonClick(event) {
+	const button = event.target;
+	const { view } = samplesEditors.get(+button.dataset.index);
 
 	navigator.clipboard.writeText(view.state.doc.toString().trim())
 		.then(() => {
