@@ -1,0 +1,21 @@
+[
+	{
+		"title": "quick-start",
+		"markdown": "./libs/components/README.md",
+		"modules": []
+	},
+	{
+		"title": "advanced",
+		"markdown": "./docs/getting-started/advanced.md",
+		"modules": [
+			"/assets/modules/components/layout/index.js"
+		]
+	},
+	{
+		"title": "vonage-authors",
+		"markdown": "./docs/getting-started/vonage-authors.md",
+		"modules": [
+			"/assets/modules/components/layout/index.js"
+		]
+	}
+]
