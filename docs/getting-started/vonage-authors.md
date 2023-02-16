@@ -107,7 +107,7 @@ DO:
 ```js
 import { registerBadge } from '@vonage/vivid';
 
-registerBadge ('vwc3');
+registerBadge ('dashboard');
 ```
 
 ### Start Using component
@@ -115,7 +115,7 @@ registerBadge ('vwc3');
 Now it's time to use the components with the prefix you set.
 
 ```html
-<vwc3-badge text="vivid@3 scoped badge"></vwc3-badge>
+<dashboard-badge text="vivid@3 scoped badge"></dashboard-badge>
 ```
 
 ## Have fun using vivid@3 components
