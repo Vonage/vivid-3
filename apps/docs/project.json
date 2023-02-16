@@ -9,20 +9,18 @@
       "options": {
         "pathprefix": "",
         "commands": [
-            "npx eleventy --config=./apps/docs/.eleventy.js",
-            "npx rollup ./apps/docs/assets/scripts/live-sample.js -f esm -o ./dist/apps/docs/assets/scripts/live-sample.bundle.js -p @rollup/plugin-node-resolve"
-        ],
-        "parallel": false
+          "npx rollup -c ./apps/docs/rollup.config.js",
+          "npx eleventy --config=./apps/docs/.eleventy.js"
+        ]
       }
     },
     "serve": {
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "npx rollup ./apps/docs/assets/scripts/live-sample.js -f esm -o ./dist/apps/docs/assets/scripts/live-sample.bundle.js -p @rollup/plugin-node-resolve",
+          "npx rollup -c ./apps/docs/rollup.config.js",
           "npx eleventy --config=./apps/docs/.eleventy.js --serve & npx nx serve styles & npx nx build components --watch"
-        ],
-        "parallel": false
+        ]
       }
     }
   },

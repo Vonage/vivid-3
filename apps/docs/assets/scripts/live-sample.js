@@ -1,5 +1,6 @@
-import { EditorView, basicSetup } from "codemirror"
+import { EditorView, minimalSetup } from "codemirror"
 import { keymap } from "@codemirror/view"
+import { bracketMatching } from "@codemirror/language"
 import { html } from "@codemirror/lang-html"
 
 window.onload = () => {
@@ -34,7 +35,8 @@ function addSamplesEditors() {
 			doc: code,
 			extensions: [
 				keymap.of([{ key: "Ctrl-Enter", run: () => updateiFrameCode(idx) }]),
-				basicSetup,
+				minimalSetup,
+				bracketMatching(),
 				html()
 			],
 			parent: cbd,
