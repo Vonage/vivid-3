@@ -148,8 +148,8 @@ In addition, we programatically *"dirtied"* the field and then called `validate`
 <vwc-text-field pattern="123"></vwc-text-field>
 
 <script>
-  const textField = document.querySelector('vwc-text-field');
-  const interval = setInterval(() => {
+  textField = document.querySelector('vwc-text-field');
+  interval = setInterval(() => {
     if (!textField.checkValidity) return;
     textField.value = 5;
     textField.dirtyValue = true;
