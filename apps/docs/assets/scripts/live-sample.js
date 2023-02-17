@@ -22,9 +22,6 @@ window.setEditorsTheme = function() {
 function addButtonsHandlers() {
 	const copyCodeButtons = document.querySelectorAll('vwc-button[icon="copy-2-line"]')
 	copyCodeButtons.forEach(btn => btn.addEventListener('click', codeCopyButtonClick))
-
-	const reloadCodeButtons = document.querySelectorAll('vwc-button[icon="reload-line"]')
-	reloadCodeButtons.forEach(btn => btn.addEventListener('click', () => updateiFrameCode(+btn.dataset.index)))
 }
 
 function updateiFrameCode(idx) {
@@ -53,6 +50,7 @@ function addSamplesEditors() {
 			extensions: [
 				keymap.of([{ key: "Ctrl-Enter", run: () => updateiFrameCode(idx) }]),
 				theme.of(EditorView.theme({})),
+				EditorView.updateListener.of(sampleChanged(idx)),
 				minimalSetup,
 				bracketMatching(),
 				html()
@@ -68,6 +66,17 @@ function addSamplesEditors() {
 
 		setEditorsTheme();
 	});
+}
+
+function sampleChanged(idx) {
+	let debounceID;
+	
+	return v => {
+		if (!v.docChanged) return;
+		
+		clearTimeout(debounceID);
+		debounceID = setTimeout(() => updateiFrameCode(idx), 500)
+	}
 }
 
 function codeCopyButtonClick(event) {

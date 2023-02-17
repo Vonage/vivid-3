@@ -46,10 +46,6 @@ const renderiFrame = (codeBlock, index, src) => {
 		<div class="cbd-live-sample" data-index="${index}" role="region">
 			${pre.outerHTML}
 		</div>
-		<div style="display:flex; align-items:center; justify-content:flex-end; padding:5px">
-			Ctrl-Enter or
-			<vwc-button aria-label="Update sample" icon="reload-line" size="condensed" data-index="${index}"></vwc-button>
-		</div>
       </details>
     </vwc-card>`);
 
