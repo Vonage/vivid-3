@@ -4,6 +4,13 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.2.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.1.3...vivid-v3.2.0) (2023-02-19)
+
+
+### Features
+
+* **tree:** add component ([#987](https://github.com/Vonage/vivid-3/issues/987)) ([a840e43](https://github.com/Vonage/vivid-3/commit/a840e43c830f5eb55b1fbb808a84a5da1c565391))
+
 ## [3.1.3](https://github.com/Vonage/vivid-3/compare/vivid-v3.1.2...vivid-v3.1.3) (2023-02-16)
 
 
