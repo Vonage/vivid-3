@@ -44,13 +44,13 @@ describe('vwc-data-grid', () => {
 	describe('noTabbing', () => {
 		it('should have a tabIndex of -1 when no-tabbing is true', async () => {
 			element.noTabbing = true;
-	
+
 			expect(element.getAttribute('tabindex')).toEqual('-1');
 		});
 
 		it('should have a tabIndex of -1 when noTabbing is true', async () => {
 			element.toggleAttribute('no-tabbing', true);
-	
+
 			expect(element.getAttribute('tabindex')).toEqual('-1');
 		});
 	});
@@ -85,15 +85,15 @@ describe('vwc-data-grid', () => {
 			element.rowsData = [
 				{ id: '1', name: 'Person 1' },
 				{ id: '2', name: 'Person 2' },
-			];	
-			await elementUpdated(element);		
+			];
+			await elementUpdated(element);
 			generatedHeader = element.querySelector(rowElementTag) as any;
 		});
 		it('should generate the header row with columnDefinition', async () => {
 			expect(generatedHeader.columnDefinitions).toEqual(element.columnDefinitions);
 		});
 
-		it('should generate the header row with gridTemplateColumns', async () => { 
+		it('should generate the header row with gridTemplateColumns', async () => {
 			expect(generatedHeader.gridTemplateColumns).toEqual(element.gridTemplateColumns);
 		});
 
@@ -134,16 +134,16 @@ describe('vwc-data-grid', () => {
 
 			await elementUpdated(element);
 			await elementUpdated(element);
-			
+
 			const rows = element.querySelectorAll('[role="row"]') as any;
 
 			rows.forEach((row: any, index: number) => {
-				expect(row.columnDefinitions).toEqual(columnDefinitions);			
+				expect(row.columnDefinitions).toEqual(columnDefinitions);
 				expect(row.rowIndex).toEqual(index);
 				expect(row.gridTemplateColumns)
 					.toEqual(element.rowsData.reduce((acc: string, _, index) => acc + (index > 0 ? ' 1fr' : '1fr'), ''));
 			});
-			
+
 		});
 
 		// TODO::similar test should pass when the DOM elements mutate
@@ -164,29 +164,29 @@ describe('vwc-data-grid', () => {
 		});
 	});
 
-	describe('focusRowIndex', () => {	
+	describe('focusRowIndex', () => {
 		it('should set the focused cell', async () => {
 			element.rowElementTag = 'div';
 			element.rowItemTemplate = html`
 			<${element.rowElementTag} role="row">
 				<button class="first" role="cell"/><button class="second" role="cell"/>
 			</${element.rowElementTag}>`;
-			element.generateHeader = 'none';
+			element.generateHeader = 'default';
 			element.rowsData = [
 				{ id: '1', name: 'Person 1' },
 				{ id: '2', name: 'Person 2' },
 			];
-			await elementUpdated(element);	
-			const expectedFocsedCell = Array.from(element.querySelectorAll(element.rowElementTag))
+			await elementUpdated(element);
+			const expectedFocusedCell = Array.from(element.querySelectorAll(element.rowElementTag))
 				.at(-1)
 				?.querySelector('button');
 			element.focusRowIndex = 2;
-			await elementUpdated(element);			
-			expect(expectedFocsedCell).toEqual(document.activeElement);
+			await elementUpdated(element);
+			expect(expectedFocusedCell).toEqual(document.activeElement);
 		});
 	});
- 
-	describe('focusColumnIndex', () => {	
+
+	describe('focusColumnIndex', () => {
 		it('should change the focused cell in selected row', async () => {
 			element.rowElementTag = 'div';
 			element.rowItemTemplate = html`
@@ -198,14 +198,14 @@ describe('vwc-data-grid', () => {
 				{ id: '1', name: 'Person 1' },
 				{ id: '2', name: 'Person 2' },
 			];
-			await elementUpdated(element);	
-			const expectedFocsedCell = Array.from(element.querySelectorAll(element.rowElementTag))
+			await elementUpdated(element);
+			const expectedFocusedCell = Array.from(element.querySelectorAll(element.rowElementTag))
 				.at(-1)
 				?.querySelector('.second');
 			element.focusRowIndex = 2;
 			element.focusColumnIndex = 2;
-			await elementUpdated(element);			
-			expect(expectedFocsedCell).toEqual(document.activeElement);
+			await elementUpdated(element);
+			expect(expectedFocusedCell).toEqual(document.activeElement);
 		});
 	});
 
