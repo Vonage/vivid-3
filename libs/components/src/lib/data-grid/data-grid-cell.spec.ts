@@ -83,6 +83,21 @@ describe('vwc-data-grid-cell', () => {
 			expect(element.querySelector('#cell')).toBeNull();
 			expect(element.innerText).toBeUndefined();
 		});
+
+		it('should render cell focus template when not columnheader', async function () {
+			setCellDataAndConfig();
+
+			element.cellType = 'rowheader';
+			await elementUpdated(element);
+			const indicatorExistsInRowHeader = Boolean(element.shadowRoot?.querySelector('.focus-indicator'));
+			element.cellType = 'columnheader';
+			await elementUpdated(element);
+			const indicatorExistsInColumnHeader = element.shadowRoot?.querySelector('.focus-indicator');
+
+			expect(indicatorExistsInRowHeader).toBeTruthy();
+			expect(indicatorExistsInColumnHeader).toBeNull();
+
+		});
 	});
 
 	describe('gridColumn', () => {

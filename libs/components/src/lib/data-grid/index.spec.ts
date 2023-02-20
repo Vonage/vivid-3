@@ -6,6 +6,16 @@ const COMPONENT_TAG = 'vwc-data-grid';
 //TODO::tagfor is hard coded and does not allow extension of the template!!!
 
 describe('data grid', () => {
+
+	async function setRowsData() {
+		element.rowsData = [
+			{id: '1', name: 'Person 1'},
+			{id: '2', name: 'Person 2'},
+		];
+		await elementUpdated(element);
+		await elementUpdated(element);
+	}
+
 	let element: DataGrid;
 
 	beforeEach(async () => {
@@ -43,11 +53,7 @@ describe('data grid', () => {
 		const spy = jest.fn();
 
 		element.addEventListener('cell-focused', spy);
-		element.rowsData = [
-			{ id: 1, name: 'John', age: 20 },
-			{ id: 2, name: 'Jane', age: 21 },
-		];
-		await elementUpdated(element);
+		await setRowsData();
 		element.rowElements[0].children[0].dispatchEvent(new Event('focusin'));
 		expect(spy).toHaveBeenCalled();
 	});
@@ -56,11 +62,7 @@ describe('data grid', () => {
 		const spy = jest.fn();
 
 		element.addEventListener('row-focused', spy);
-		element.rowsData = [
-			{ id: 1, name: 'John', age: 20 },
-			{ id: 2, name: 'Jane', age: 21 },
-		];
-		await elementUpdated(element);
+		await setRowsData();
 		element.rowElements[0].children[0].dispatchEvent(new Event('focusin'));
 		expect(spy).toHaveBeenCalled();
 	});
@@ -73,22 +75,13 @@ describe('data grid', () => {
 			return expectedFocusedCell;
 		}
 
-		async function setRowsData() {
-			element.rowsData = [
-				{id: '1', name: 'Person 1'},
-				{id: '2', name: 'Person 2'},
-			];
-			await elementUpdated(element);
-			await elementUpdated(element);
-		}
-
 		it('should focus on first row after header', async function () {
 			element.generateHeader = 'default';
 			await setRowsData();
 			const expectedFocusedCell = getExpectedFocusedCell();
 
 			element.dispatchEvent(new FocusEvent('focus'));
-			
+
 			expect(expectedFocusedCell?.innerHTML).toEqual(document.activeElement?.innerHTML);
 		});
 	});

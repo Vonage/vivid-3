@@ -12,7 +12,7 @@ export function DataGridCellTemplate<T extends DataGridCell>(context: ElementDef
         >
 					<div id="focus-wrapper">
 							<slot></slot>
-					${() => focusTemplate}
+					${x => x.cellType !== 'columnheader' ? focusTemplate : ''}
 					</div>
 
         </template>

@@ -32,4 +32,9 @@ export class DataGrid extends FoundationElement {
 		}
 		focusOnCell(this.focusRowIndex, this.focusColumnIndex, true);
 	}
+
+	override handleRowFocus(e: Event) {
+		super.handleRowFocus(e);
+		this.handleFocus();
+	}
 }
