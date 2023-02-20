@@ -63,9 +63,9 @@ function addSamplesEditors() {
 			view,
 			iframe
 		});
-
-		setEditorsTheme();
 	});
+	
+	setEditorsTheme();
 }
 
 function sampleChanged(idx) {
