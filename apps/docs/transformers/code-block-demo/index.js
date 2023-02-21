@@ -23,18 +23,17 @@ module.exports = function (content, outputPath) {
 
 	const dom = new JSDOM(content);
 	const codeBlocks = dom.window.document.querySelectorAll('pre.preview > code');
-	codeBlocks.forEach((codeBlock, index) => {
-		const pre = codeBlock.closest('pre'); // optimize this and the previous querySelectorAll
-		const src = createiFrameContent(codeBlock.textContent, pre.classList, index, outputPath);
-		renderiFrame(codeBlock, index, src)
+	const preBlocks = dom.window.document.querySelectorAll('pre.preview');
+	preBlocks.forEach((pre, index) => {
+		const code = pre.querySelector(':scope > code');
+		const src = createiFrameContent(code.textContent, pre.classList, index, outputPath);
+		const fragment = renderiFrame(index, src, pre.outerHTML);
+		pre.replaceWith(fragment);
 	});
 	return dom.serialize();
 };
 
-const renderiFrame = (codeBlock, index, src) => {
-	const pre = codeBlock.closest('pre');
-	
-	const fragment = JSDOM.fragment(`
+const renderiFrame = (index, src, content) => JSDOM.fragment(`
     <vwc-card elevation="0" class="${CBD_CONTAINER}">
       <iframe id="iframe-sample-${index}" src="${src}" class="${CBD_DEMO}" onload=onloadIframe(this) loading="lazy" aria-label="code block preview iframe" slot="main"></iframe>
       <vwc-action-group appearance="ghost" style="direction: rtl;" slot="main">
@@ -44,13 +43,10 @@ const renderiFrame = (codeBlock, index, src) => {
       <details class="${CBD_DETAILS}" slot="main">
         <summary></summary>
 		<div class="cbd-live-sample" data-index="${index}" role="region">
-			${pre.outerHTML}
+			${content}
 		</div>
       </details>
     </vwc-card>`);
-
-	pre.replaceWith(fragment);
-}
 
 const createiFrameContent = (code, classList, index, outputPath) => {
 	const componentName = outputPath.split('/').at(-2);
