@@ -7,6 +7,11 @@ const COMPONENT_TAG = 'vwc-data-grid';
 
 describe('data grid', () => {
 
+	async function clearRowsData() {
+		element.rowsData = [];
+		await elementUpdated(element);
+		await elementUpdated(element);
+	}
 	async function setRowsData() {
 		element.rowsData = [
 			{id: '1', name: 'Person 1'},
@@ -68,12 +73,25 @@ describe('data grid', () => {
 	});
 
 	describe('focus', function () {
+
 		function getExpectedFocusedCell() {
 			const expectedFocusedCell = Array.from(element.querySelectorAll(`${COMPONENT_TAG}-row`))
 				.at(1)
 				?.querySelector(`${COMPONENT_TAG}-cell`);
 			return expectedFocusedCell;
 		}
+
+		it('should focus on first row after resetting the data', async function () {
+			await setRowsData();
+			element.focusRowIndex = 2;
+			element.dispatchEvent(new FocusEvent('focus'));
+			await clearRowsData();
+			element.dispatchEvent(new FocusEvent('focus'));
+			await setRowsData();
+			element.dispatchEvent(new FocusEvent('focus'));
+			const expectedFocusedCell = getExpectedFocusedCell();
+			expect(expectedFocusedCell?.innerHTML).toEqual(document.activeElement?.innerHTML);
+		});
 
 		it('should focus on first row after header', async function () {
 			element.generateHeader = 'default';
