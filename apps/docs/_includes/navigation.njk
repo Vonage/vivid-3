@@ -28,5 +28,15 @@
 			{% if ('/components/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
     {% endfor %}
   </vwc-nav-disclosure>
+
+  <vwc-nav-disclosure label="Patterns" open>
+  		{%  for item in patterns %}
+  		<vwc-nav-item
+  			href="{{ ('/patterns/' + item.title) | url }}"
+  			text="{{ item.title | replace("-", " ") | capitalize }}"
+  			{% if ('/patterns/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
+  		{% endfor %}
+  	</vwc-nav-disclosure>
+
 </vwc-nav>
 {% endblock %}
