@@ -47,3 +47,14 @@ Toggle the `disabled` member to disable/enable the radio.
 <vwc-radio disabled></vwc-radio>
 <vwc-radio disabled checked></vwc-radio>
 ```
+
+### Value
+
+Use the `value` member to set the radio's value.
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-radio value="my-value"></vwc-radio>
+```

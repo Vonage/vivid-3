@@ -79,3 +79,14 @@ A read-only checkbox cannot be modified (however it can focused and tabbed into)
 <vwc-checkbox readonly></vwc-checkbox>
 <vwc-checkbox readonly checked></vwc-checkbox>
 ```
+
+### Value
+
+Use the `value` member to set the checkbox's value.
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-checkbox value="my-value"></vwc-checkbox>
+```

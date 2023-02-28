@@ -23,6 +23,7 @@ describe('vwc-switch', () => {
 			expect(element.name).toBeUndefined();
 			expect(element.value).toEqual('on');
 			expect(element.checked).toEqual(false);
+			expect(element.value).toEqual('');
 			expect(element.disabled).toEqual(false);
 			expect(element.readOnly).toBeUndefined();
 			expect(element.required).toEqual(false);
