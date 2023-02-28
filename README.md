@@ -16,9 +16,9 @@
   </h6>
   <a class="home-page-hero-docs-btn" href="https://vivid.deno.dev"><strong>Explore the docs</strong></a>
   <div class="home-page-hero-docs-links">
-    <a href="https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=bug_report.md&title=">Report Bug</a>
+    <a href="https://github.com/Vonage/vivid-3/issues/new?assignees=yonatankra%2C+rachelbt%2C+rinaok%2C+yinonov%2C+olaf-k&labels=bug&template=bug_report.yml&title=%5BYOUR+TITLE%5D%3A+Brief+description">Report Bug</a>
     <span>|</span>
-    <a href="https://github.com/Vonage/vivid-3/issues/new?assignees=&labels=&template=feature_request.md&title=">Request Feature</a>
+    <a href="https://github.com/Vonage/vivid-3/issues/new?assignees=yonatankra%2C+rachelbt%2C+rinaok%2C+yinonov%2C+olaf-k&labels=Feature+request&template=feature_request.yml&title=%5BYOUR+TITLE%5D%3A+Brief+description">Request Feature</a>
   </div>
 </div>
 
@@ -33,7 +33,7 @@
 
 [view components status](https://github.com/orgs/Vonage/projects/6)
 
-Follow our API planning on the [Vivid project components' view](https://github.com/orgs/Vonage/projects/3/views/13)
+Follow our API planning on the [Vivid project components' view](https://github.com/orgs/Vonage/projects/3/views/7)
 
 Tagged (_next_) release is published on every successful merge to main, so you never need to wait for a new stable version to make use of any updates.
 
@@ -59,7 +59,7 @@ Will generate a new component in `libs/components/src/lib/my-component`
 #### Test
 
 `npm run test components` will run unit tests for the components
-See the [ui-tests docs](docs/ui-tests/readme.md) for how to run visual tests.
+See the [ui-tests docs](docs/ui-test/readme.md) for how to run visual tests.
 
 ## Show your support
 

@@ -137,6 +137,7 @@ $track-thickness: 2px;
 		#{variables.$track-start-background-color}: var(#{utils.get-color-token(neutral-500)});
 
 		cursor: not-allowed;
+		pointer-events: none;
 	}
 
 	&:not(.disabled) {

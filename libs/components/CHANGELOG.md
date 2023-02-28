@@ -1,8 +1,84 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Tue, 17 Jan 2023 16:12:04 GMT and should not be manually modified.
+This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## [3.2.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.1.3...vivid-v3.2.0) (2023-02-19)
+
+
+### Features
+
+* **tree:** add component ([#987](https://github.com/Vonage/vivid-3/issues/987)) ([a840e43](https://github.com/Vonage/vivid-3/commit/a840e43c830f5eb55b1fbb808a84a5da1c565391))
+
+## [3.1.3](https://github.com/Vonage/vivid-3/compare/vivid-v3.1.2...vivid-v3.1.3) (2023-02-16)
+
+
+### Bug Fixes
+
+* **documentation:** getting started ([#1007](https://github.com/Vonage/vivid-3/issues/1007)) ([8da7500](https://github.com/Vonage/vivid-3/commit/8da7500eb681ca6d85aaa206da2c77eb859ec435))
+
+## [3.1.2](https://github.com/Vonage/vivid-3/compare/vivid-v3.1.1...vivid-v3.1.2) (2023-02-15)
+
+
+### Bug Fixes
+
+* **components:** add number field to public exports ([#1028](https://github.com/Vonage/vivid-3/issues/1028)) ([24c1f17](https://github.com/Vonage/vivid-3/commit/24c1f17675182a84b14a6785532524360f1da835))
+
+## [3.1.1](https://github.com/Vonage/vivid-3/compare/vivid-v3.1.0...vivid-v3.1.1) (2023-02-09)
+
+
+### Bug Fixes
+
+* **dialog:** remove filter ([#1018](https://github.com/Vonage/vivid-3/issues/1018)) ([53bc8c2](https://github.com/Vonage/vivid-3/commit/53bc8c28383451e4745436ed12365378db3e8411))
+* **text-field:** show outline in ios-16 ([#1013](https://github.com/Vonage/vivid-3/issues/1013)) ([cc2b662](https://github.com/Vonage/vivid-3/commit/cc2b66244cde86826f9f77e2864df655fd712491))
+
+## [3.1.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.0.1...vivid-v3.1.0) (2023-02-03)
+
+
+### Features
+
+* **data-grid:** port data grid component from fast ([#947](https://github.com/Vonage/vivid-3/issues/947)) ([c85c865](https://github.com/Vonage/vivid-3/commit/c85c865425612b920c9af2160c303606e21c2fd0))
+
+
+### Bug Fixes
+
+* **components:** remove popover polyfill ([#1004](https://github.com/Vonage/vivid-3/issues/1004)) ([337151c](https://github.com/Vonage/vivid-3/commit/337151c64fd48131a8e2d8a2055feea0b9fa53e8))
+
+## 3.0.0 (2023-01-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **components:** fast-based accordion ([#930](https://github.com/Vonage/vivid-3/issues/930))
+
+### Features
+
+* **components:** fast-based accordion ([#930](https://github.com/Vonage/vivid-3/issues/930)) ([e228c60](https://github.com/Vonage/vivid-3/commit/e228c60bcb8982d06f0a7bac24dc3149cdd84574))
+
+## 3.0.0-next.139
+
+Thu, 26 Jan 2023 14:40:25 GMT
+
+### Changes
+
+- assign slotted to grid area (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.138
+
+Tue, 24 Jan 2023 06:50:45 GMT
+
+### Changes
+
+- fix(dialog): max-inline-size variable and dialog scream color (rachel.tannenbaum@vonage.com)
+
+## 3.0.0-next.137
+
+Sun, 22 Jan 2023 12:09:10 GMT
+
+### Changes
+
+- progress ring stroke width (rachel.tannenbaum@vonage.com)
 
 ## 3.0.0-next.136
 

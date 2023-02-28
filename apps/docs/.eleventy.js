@@ -26,6 +26,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.setBrowserSyncConfig({
     server: {
       baseDir: OUTPUT_DIR
+	},
+    snippetOptions: {
+      ignorePaths: '/components/**/frames/*.html'
     }
   });
 
@@ -35,6 +38,11 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("cssmin", function (code) {
     return new CleanCSS({}).minify(code).styles;
+  });
+
+  eleventyConfig.addFilter("publicComponentsFilter", function (components) {
+    const isServing = process.argv.includes('--serve');
+    return components.filter(component => component?.status !== 'underlying' || isServing)
   });
 
   return {
