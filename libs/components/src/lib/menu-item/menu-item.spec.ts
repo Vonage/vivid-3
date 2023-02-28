@@ -29,6 +29,7 @@ describe('vwc-menu-item', () => {
 			expect(menuItemDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(MenuItem);
 			expect(element.text).toEqual(undefined);
+			expect(element.textSecondary).toEqual(undefined);
 			expect(element.role).toEqual('menuitem');
 			expect(element.icon).toBeUndefined();
 			expect(element.checked).toBeUndefined();
@@ -44,6 +45,31 @@ describe('vwc-menu-item', () => {
 		const control = element.shadowRoot?.querySelector('.base');
 		expect(control?.textContent?.trim())
 			.toEqual(text);
+	});
+
+	it('should set secondary text property to node', async () => {
+		const secondaryText = 'lorem';
+		element.textSecondary = secondaryText;
+		await elementUpdated(element);
+
+		const control = element.shadowRoot?.querySelector('.base');
+		expect(control?.textContent?.trim())
+			.toEqual(secondaryText);
+	});
+
+	it('should set both text and secondary text properties to node', async () => {
+		const text = 'lorem';
+		const secondaryText = 'ipsum';
+
+		element.text = text;
+		element.textSecondary = secondaryText;
+
+		await elementUpdated(element);
+
+		const control = element.shadowRoot?.querySelector('.base');
+
+		expect(control?.textContent?.trim().includes(text)).toEqual(true);
+		expect(control?.textContent?.trim().includes(secondaryText)).toEqual(true);
 	});
 
 	it('should set a leading icon', async () => {

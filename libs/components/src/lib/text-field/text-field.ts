@@ -1,7 +1,7 @@
 import {applyMixins, TextField as FoundationTextfield} from '@microsoft/fast-foundation';
 import {attr} from '@microsoft/fast-element';
 import type {Appearance, Shape} from '../enums';
-import {AffixIcon} from '../../shared/patterns';
+import {AffixIcon, FormElementCharCount, FormElementHelperText, FormElementSuccessText} from '../../shared/patterns';
 import {FormElement, formElements} from '../../shared/patterns';
 
 
@@ -20,7 +20,7 @@ export class TextField extends FoundationTextfield {
 	@attr autoComplete?: string;
 }
 
-export interface TextField extends AffixIcon, FormElement{}
-applyMixins(TextField, AffixIcon);
+export interface TextField extends AffixIcon, FormElement, FormElementCharCount, FormElementHelperText, FormElementSuccessText{}
+applyMixins(TextField, AffixIcon, FormElementCharCount, FormElementHelperText, FormElementSuccessText);
 
 

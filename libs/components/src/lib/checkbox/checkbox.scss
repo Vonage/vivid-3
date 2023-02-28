@@ -45,6 +45,7 @@ $gutter: 2px;
 
 	&.disabled {
 		cursor: not-allowed;
+		pointer-events: none;
 	}
 }
 
@@ -97,4 +98,5 @@ label {
 
 .icon {
 	font-size: calc(#{$size} * 0.7);
+	line-height: 1;
 }

@@ -94,12 +94,14 @@ $low-ink-color: --_low-ink-color;
 	// ! autofill indication applies on all fieldset area
 	width: 100%;
 	border: 0 none;
+	appearance: none; /* for box-shadow visibility on IOS */
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	block-size: 100%;
 	border-radius: inherit;
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
+	padding-block: 0;
 	padding-inline-end: var(#{variables.$text-field-gutter});
 	padding-inline-start: var(#{variables.$text-field-gutter});
 	transition: box-shadow .2s, background-color .2s;
@@ -130,6 +132,7 @@ $low-ink-color: --_low-ink-color;
 	color: var(#{$low-ink-color});
 	font-size: var(#{variables.$text-field-icon-size});
 	inset-inline-start: var(#{variables.$text-field-gutter});
+	line-height: 1;
 
 	+.control {
 		padding-inline-start: calc(var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter}) * 2);

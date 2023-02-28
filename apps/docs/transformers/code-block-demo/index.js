@@ -2,12 +2,16 @@ const { JSDOM } = require('jsdom');
 const { decode } = require("html-entities");
 const fs = require('fs');
 const path = require('path');
-const jsonData = [...require('../../_data/components.json'), ...require('../../_data/designs.json')];
+const jsonData = [
+	...require('../../_data/components.json'),
+	...require('../../_data/designs.json'),
+	...require('../../_data/introduction.json')
+];
 const layout = require('./layout');
 const ELEVENTY_HTML_CODE_BLOCK_SELECTOR = 'pre.preview > code';
 
+const FONTS = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap">';
 const IFRAME_STYLE = '<link rel="stylesheet" href="/assets/styles/iframe.css">';
-const FONTS = '<link rel="stylesheet" href="/assets/styles/fonts/spezia.css">';
 const TYPOGRAPHY = '<link rel="stylesheet" href="/assets/styles/core/all.css">';
 
 const CBD_CONTAINER = 'cbd-container';
@@ -32,7 +36,16 @@ const generateCodeBlockDemo = function (blockData) {
 
 	const { pre: { outerHTML: codeStr }, index, outputPath } = blockData;
 
-	const demoStr = decode(IFRAME_STYLE) + decode(FONTS) + decode(TYPOGRAPHY) + decode(code);
+	const demoStr = `
+		<head>
+			${decode(IFRAME_STYLE)}
+			${decode(FONTS)}
+			${decode(TYPOGRAPHY)}
+		</head>
+		<body>
+			${decode(code)}
+		</body>`;
+
 	const demoData = { demoStr, codeStr, index, outputPath };
 
 	const dom = new JSDOM(`<body>${getHtml(demoData)}</body>`);
