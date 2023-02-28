@@ -34,19 +34,23 @@ module.exports = function (content, outputPath) {
 };
 
 const renderiFrame = (index, src, content) => JSDOM.fragment(`
-    <vwc-card elevation="0" class="${CBD_CONTAINER}">
-      <iframe id="iframe-sample-${index}" src="${src}" class="${CBD_DEMO}" onload=onloadIframe(this) loading="lazy" aria-label="code block preview iframe" slot="main"></iframe>
-      <vwc-action-group appearance="ghost" style="direction: rtl;" slot="main">
-        <vwc-button aria-label="Show source code" icon="code-line" aria-expanded="false" aria-controls="${CBD_CODE_BLOCK}-${index}" onclick="codeBlockButtonClick(this)"></vwc-button>
-        <vwc-button aria-label="Copy source code" icon="copy-2-line" data-index="${index}"></vwc-button>
-      </vwc-action-group>
-      <details class="${CBD_DETAILS}" slot="main">
-        <summary></summary>
-		<div class="cbd-live-sample" data-index="${index}" role="region">
-			${content}
-		</div>
-      </details>
-    </vwc-card>`);
+	<div style="--tooltip-inline-size: 160px;">
+		<vwc-card elevation="0" class="${CBD_CONTAINER}">
+			<iframe id="iframe-sample-${index}" src="${src}" class="${CBD_DEMO}" onload=onloadIframe(this) loading="lazy" aria-label="code block preview iframe" slot="main"></iframe>
+			<vwc-action-group appearance="ghost" style="direction: rtl;" slot="main">
+				<vwc-button id="buttonEdit${index}" aria-label="Edit source code" icon="code-line" aria-expanded="false" aria-controls="${CBD_CODE_BLOCK}-${index}" onclick="codeBlockButtonClick(this)"></vwc-button>
+				<vwc-button id="buttonCopy${index}" aria-label="Copy source code" icon="copy-2-line" data-index="${index}"></vwc-button>
+			</vwc-action-group>
+			<details class="${CBD_DETAILS}" slot="main">
+				<summary></summary>
+				<div class="cbd-live-sample" data-index="${index}" role="region">
+					${content}
+				</div>
+			</details>
+		</vwc-card>
+		<vwc-tooltip anchor="buttonEdit${index}" text="Edit source code" placement="top-start"></vwc-tooltip>
+		<vwc-tooltip anchor="buttonCopy${index}" text="Copy source code" placement="top-start"></vwc-tooltip>
+	</div>`);
 
 const createiFrameContent = (code, classList, index, outputPath) => {
 	const componentName = outputPath.split('/').at(-2);
