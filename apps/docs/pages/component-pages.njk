@@ -30,14 +30,14 @@ permalink: "components/{{ component.title | slug }}/"
 {% endif %}
 {% block content %}
     {% if component.figma %}
-        <vwc-tabs activeid="developers">
-            <vwc-tab label="Developers" id="developers"></vwc-tab>
-            <vwc-tab label="Designers" id="designers"></vwc-tab>
-            <vwc-tab-panel id="developersPanel">
+        <vwc-tabs activeid="dev">
+            <vwc-tab label="Dev" id="dev"></vwc-tab>
+            <vwc-tab label="Figma" id="figma"></vwc-tab>
+            <vwc-tab-panel id="devPanel">
                 {% renderFile component.markdown %}
             </vwc-tab-panel>
-            <vwc-tab-panel id="designersPanel">
-                <iframe id="figma" style="border: 0px solid rgba(0, 0, 0, 0);" src="{{ component.figma }}" allowfullscreen></iframe>
+            <vwc-tab-panel id="figmaPanel">
+                <iframe class="figmaIframe" style="border: 0px solid rgba(0, 0, 0, 0);" src="{{ component.figma }}" allowfullscreen></iframe>
             </vwc-tab-panel>
         </vwc-tabs>
     {% else %}
