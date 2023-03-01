@@ -100,3 +100,14 @@ Toggle the `disabled` member to disable/enable the slider.
 ```html preview blocks
 <vwc-slider disabled></vwc-slider>
 ```
+
+### Value
+
+Use `value` in order to set the value of the switch.
+
+- Type: `string`
+- Default: `on`
+
+```html
+<vwc-switch value="my-value"></vwc-switch>
+```

@@ -29,7 +29,7 @@ describe('vwc-radio', () => {
 			expect(element).toBeInstanceOf(Radio);
 			expect(element.checked).toBeFalsy();
 			expect(element.disabled).toBeFalsy();
-			expect(element.value).toEqual('');
+			expect(element.value).toEqual('on');
 			expect(element.label).toBeUndefined();
 		});
 	});
