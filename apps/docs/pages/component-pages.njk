@@ -37,7 +37,7 @@ permalink: "components/{{ component.title | slug }}/"
                 {% renderFile component.markdown %}
             </vwc-tab-panel>
             <vwc-tab-panel id="figmaPanel">
-                <iframe class="figmaIframe" src="{{ component.figma }}"></iframe>
+                <iframe class="figmaIframe" src="{{ component.figma }}" loading="lazy"></iframe>
             </vwc-tab-panel>
         </vwc-tabs>
     {% else %}
