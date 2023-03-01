@@ -72,4 +72,30 @@ describe('vwc-option', () => {
 		await elementUpdated(element);
 		expect(element.getAttribute('aria-disabled')).toEqual('true');
 	});
+
+	describe('label', function () {
+		it('should return the options\'s text when label attribute and value are not provided', async function () {
+			const text = 'text';
+			element.text = text;
+
+			expect(element.label).toEqual(text);
+		});
+
+		it('should return the options\'s value when label attribute is not provided', async function () {
+			const value = 'value';
+			element.value = value;
+			element.text = 'text';
+
+			expect(element.label).toEqual(value);
+		});
+
+		it('should return the options\'s label instead of the text', async function () {
+			const label = 'label';
+			element.text = 'text';
+			element.value = 'value';
+			element.setAttribute('label', label);
+
+			expect(element.label).toEqual(label);
+		});
+	});
 });

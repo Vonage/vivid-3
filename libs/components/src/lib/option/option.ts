@@ -1,5 +1,5 @@
 import { applyMixins, ListboxOption as FoundationListboxOption } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
+import {attr} from '@microsoft/fast-element';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
 
@@ -26,6 +26,10 @@ export class ListboxOption extends FoundationListboxOption {
 
 	override get text() {
 		return this._text ?? '';
+	}
+
+	override get label(): string {
+		return this.getAttribute('label') ?? this.value ?? this.text;
 	}
 	// #endregion overrides
 }
