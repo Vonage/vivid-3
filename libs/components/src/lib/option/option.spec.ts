@@ -22,6 +22,7 @@ describe('vwc-option', () => {
 			expect(listboxOptionDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(ListboxOption);
 			expect(element.text).toEqual('');
+			expect(element.value).toEqual('');
 			expect(element.icon).toBeUndefined();
 			expect(element.iconTrailing).toBeFalsy();
 			expect(element.selected).toBeFalsy();
