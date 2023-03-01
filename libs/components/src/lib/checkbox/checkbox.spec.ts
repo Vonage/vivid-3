@@ -20,7 +20,7 @@ describe('vwc-checkbox', () => {
 			expect(checkboxDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Checkbox);
 			expect(element.checked).toBeFalsy();
-			expect(element.value).toEqual('');
+			expect(element.value).toEqual('on');
 			expect(element.indeterminate).toBeFalsy();
 			expect(element.readOnly).toBeFalsy();
 			expect(element.disabled).toBeFalsy();
