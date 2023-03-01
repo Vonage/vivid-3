@@ -103,11 +103,10 @@ Toggle the `disabled` member to disable/enable the slider.
 
 ### Value
 
-Use `value` in order to set the value of the switch.
+Use `value` in order to set the value of the slider.
 
 - Type: `string`
 - Default: `on`
 
 ```html
-<vwc-switch value="my-value"></vwc-switch>
-```
+<vwc-slider value="5"></vwc-slider>
