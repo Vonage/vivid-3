@@ -106,7 +106,7 @@ Toggle the `disabled` member to disable/enable the slider.
 Use `value` in order to set the value of the slider.
 
 - Type: `string`
-- Default: `on`
+- Default: `5`
 
 ```html
 <vwc-slider value="5"></vwc-slider>
