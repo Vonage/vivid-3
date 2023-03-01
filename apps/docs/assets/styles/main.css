@@ -140,6 +140,7 @@ article > .cbd-container {
   width: 1300px;
   height: 1990px;
   margin-block: 32px;
+  border: none;  
   border-radius: 6px;  
 }
 
