@@ -8,29 +8,39 @@ permalink: "components/{{ component.title | slug }}/"
 ---
 
 {% extends '../_layouts/base.njk' %}
-
-
 {% if (component.status == "alpha") or (component.status == 'underlying') %}
-
-	{% block header %}
-			<script type="module" src="/assets/modules/components/banner/index.js"></script>
-	{% endblock %}
-
-	{% block banner %}
-		{% if (component.status == "alpha") %}
-			<vwc-banner class="banner" text="Alpha: this is the initial phase of component testing. Expect breaking changes." connotation="warning"></vwc-banner>
-		{% endif %}
-		{% if (component.status == "underlying") %}
-			<vwc-banner class="banner" text="Underlying: this component is only used by other components and not intended to be used by authors outside the Vivid team" connotation="information"></vwc-banner>
-		{% endif %}
-	{% endblock %}
+    {% block header %}
+        <script type="module" src="/assets/modules/components/banner/index.js"></script>
+    {% endblock %}
+    {% block banner %}
+        {% if (component.status == "alpha") %}
+            <vwc-banner
+                class="banner"
+                text="Alpha: this is the initial phase of component testing. Expect breaking changes."
+                connotation="warning"></vwc-banner>
+        {% endif %}
+        {% if (component.status == "underlying") %}
+            <vwc-banner
+                class="banner"
+                text="Underlying: this component is only used by other components and not intended to be used by authors outside the
+                    Vivid team"
+                connotation="information"></vwc-banner>
+        {% endif %}
+    {% endblock %}
 {% endif %}
-
-
 {% block content %}
-	{% renderFile component.markdown %}
-
-	{% if component.figma %}
-	<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="450" src="{{ component.figma }}" allowfullscreen></iframe>
-	{% endif %}
+    {% if component.figma %}
+        <vwc-tabs activeid="developers">
+            <vwc-tab label="Developers" id="developers"></vwc-tab>
+            <vwc-tab label="Designers" id="designers"></vwc-tab>
+            <vwc-tab-panel id="developersPanel">
+                {% renderFile component.markdown %}
+            </vwc-tab-panel>
+            <vwc-tab-panel id="designersPanel">
+                <iframe id="figma" style="border: 0px solid rgba(0, 0, 0, 0);" src="{{ component.figma }}" allowfullscreen></iframe>
+            </vwc-tab-panel>
+        </vwc-tabs>
+    {% else %}
+        {% renderFile component.markdown %}
+    {% endif %}
 {% endblock %}

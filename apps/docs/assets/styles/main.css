@@ -136,6 +136,16 @@ article > .cbd-container {
   max-inline-size: calc(100vw - 32px);
 }
 
+article {
+  max-inline-size: calc(1200px);
+}
+
+#figma {
+  width: 100%;
+  height: 800px;
+  margin-block: 32px;
+}
+
 @media (min-width: 960px) {
   article > pre,
   article > .cbd-container {

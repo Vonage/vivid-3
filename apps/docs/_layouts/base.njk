@@ -85,6 +85,9 @@
     <script type="module" src="{{ '/assets/modules/components/popup/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/listbox/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/option/index.js' | url}}"></script>
+    <script type="module" src="{{ '/assets/modules/components/tabs/index.js' | url}}"></script>
+    <script type="module" src="{{ '/assets/modules/components/tab/index.js' | url}}"></script>
+    <script type="module" src="{{ '/assets/modules/components/tab-panel/index.js' | url}}"></script>
 
 		{% block header %}{% endblock %}
 
@@ -120,10 +123,10 @@
     </vwc-layout>
 
       <main slot="app-content">
-				{% block banner %}{% endblock %}
+        {% block banner %}{% endblock %}
         <vwc-layout column-basis="block" class="main-layout">
           <article class="article">
-						{% block content %}{% endblock %}
+            {% block content %}{% endblock %}
           </article>
         </vwc-layout>
       </main>

@@ -35,8 +35,7 @@
 		"modules": [
 			"/assets/modules/components/breadcrumb-item/index.js",
 			"/assets/modules/components/breadcrumb/index.js"
-		],
-		"figma": "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2Fr8OYLPmRmDqfLKt6KHdJDB%2FVivid-UI-Kit---2.0%3Fnode-id%3D1968%253A616%26t%3DTQg9Vc4bTd00w4qw-1"
+		]
 	},
 	{
 		"title": "breadcrumb-item",
@@ -164,7 +163,8 @@
 		"modules": [
 			"/assets/modules/components/fab/index.js",
 			"/assets/modules/components/layout/index.js"
-		]
+		],
+		"figma": "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FJJNgZvt1qf3ydYmOwbE3Jg%2FVivid-UI-Kit---3.0-WIP%3Fnode-id%3D19313%253A96162%26t%3DKCApfV6auGLMLj04-1"
 	},
 	{
 		"title": "action-group",
