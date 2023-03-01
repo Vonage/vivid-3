@@ -34,8 +34,8 @@ module.exports = function (content, outputPath) {
 };
 
 const renderiFrame = (index, src, content) => JSDOM.fragment(`
-	<div style="--tooltip-inline-size: 160px;">
-		<vwc-card elevation="0" class="${CBD_CONTAINER}">
+	<div class="${CBD_CONTAINER}" style="--tooltip-inline-size: 100px;">
+		<vwc-card elevation="0">
 			<iframe id="iframe-sample-${index}" src="${src}" class="${CBD_DEMO}" onload=onloadIframe(this) loading="lazy" aria-label="code block preview iframe" slot="main"></iframe>
 			<vwc-action-group appearance="ghost" style="direction: rtl;" slot="main">
 				<vwc-button id="buttonEdit${index}" aria-label="Edit source code" icon="code-line" aria-expanded="false" aria-controls="${CBD_CODE_BLOCK}-${index}" onclick="codeBlockButtonClick(this)"></vwc-button>
@@ -48,8 +48,8 @@ const renderiFrame = (index, src, content) => JSDOM.fragment(`
 				</div>
 			</details>
 		</vwc-card>
-		<vwc-tooltip anchor="buttonEdit${index}" text="Edit source code" placement="top-start"></vwc-tooltip>
-		<vwc-tooltip anchor="buttonCopy${index}" text="Copy source code" placement="top-start"></vwc-tooltip>
+		<vwc-tooltip anchor="buttonEdit${index}" text="Edit code" placement="top"></vwc-tooltip>
+		<vwc-tooltip anchor="buttonCopy${index}" text="Copy code" placement="top"></vwc-tooltip>
 	</div>`);
 
 const createiFrameContent = (code, classList, index, outputPath) => {
