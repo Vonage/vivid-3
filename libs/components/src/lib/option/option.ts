@@ -29,7 +29,7 @@ export class ListboxOption extends FoundationListboxOption {
 	}
 
 	override get label(): string {
-		return this.getAttribute('label') ?? this.value;
+		return this.getAttribute('label') ?? this.text;
 	}
 	// #endregion overrides
 }

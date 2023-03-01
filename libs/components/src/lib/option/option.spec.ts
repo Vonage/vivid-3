@@ -81,12 +81,13 @@ describe('vwc-option', () => {
 			expect(element.label).toEqual(text);
 		});
 
-		it('should return the options\'s value when label attribute is not provided', async function () {
+		it('should return the options\'s text when label attribute is not provided and value is', async function () {
 			const value = 'value';
+			const text = 'text';
 			element.value = value;
-			element.text = 'text';
+			element.text = text;
 
-			expect(element.label).toEqual(value);
+			expect(element.label).toEqual(text);
 		});
 
 		it('should return the options\'s label instead of the text', async function () {
