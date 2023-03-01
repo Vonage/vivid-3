@@ -30,14 +30,14 @@ permalink: "components/{{ component.title | slug }}/"
 {% endif %}
 {% block content %}
     {% if component.figma %}
-        <vwc-tabs activeid="dev">
+        <vwc-tabs class="componentsTabs" activeid="dev">
             <vwc-tab label="Dev" id="dev"></vwc-tab>
             <vwc-tab label="Figma" id="figma"></vwc-tab>
             <vwc-tab-panel id="devPanel">
                 {% renderFile component.markdown %}
             </vwc-tab-panel>
             <vwc-tab-panel id="figmaPanel">
-                <iframe class="figmaIframe" src="{{ component.figma }}" allowfullscreen></iframe>
+                <iframe class="figmaIframe" src="{{ component.figma }}"></iframe>
             </vwc-tab-panel>
         </vwc-tabs>
     {% else %}
