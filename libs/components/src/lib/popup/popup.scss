@@ -13,6 +13,7 @@
 }
 
 .popup-wrapper {
+	border-radius: 6px;
 	inline-size: fit-content;
 	&:not(.absolute) {
 		position: fixed;
@@ -20,8 +21,6 @@
 	&.absolute {
 		position: absolute;
 	}
-
-	border-radius: 6px;
 }
 
 .popup-content {
