@@ -65,3 +65,16 @@ Add the `disabled` attribute to disable the option.
  <vwc-option text="Option" disabled></vwc-option>
 </vwc-listbox>
 ```
+
+### Value
+
+Use the `value` attribute to set the option's value.
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-listbox>
+ <vwc-option text="Option" value="my-value"></vwc-option>
+</vwc-listbox>
+```
