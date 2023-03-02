@@ -6,7 +6,12 @@
 			"/assets/modules/components/layout/index.js",
 			"/assets/modules/components/dialog/index.js",
 			"/assets/modules/components/card/index.js",
-			"/assets/modules/components/button/index.js"
+			"/assets/modules/components/button/index.js",
+			"/assets/modules/components/action-group/index.js",
+			"/assets/modules/components/divider/index.js",
+			"/assets/modules/components/tabs/index.js",
+			"/assets/modules/components/tab/index.js",
+			"/assets/modules/components/text-field/index.js"
 		]
 	}
 ]
