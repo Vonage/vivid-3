@@ -48,8 +48,8 @@ const renderiFrame = (index, src, content) => JSDOM.fragment(`
 				</div>
 			</details>
 		</vwc-card>
-		<vwc-tooltip anchor="buttonEdit${index}" text="Edit code" placement="top"></vwc-tooltip>
-		<vwc-tooltip anchor="buttonCopy${index}" text="Copy code" placement="top"></vwc-tooltip>
+		<vwc-tooltip anchor="buttonEdit${index}" text="Edit code" placement="top" style="text-align: center"></vwc-tooltip>
+		<vwc-tooltip anchor="buttonCopy${index}" text="Copy code" placement="top" style="text-align: center"></vwc-tooltip>
 	</div>`);
 
 const createiFrameContent = (code, classList, index, outputPath) => {
