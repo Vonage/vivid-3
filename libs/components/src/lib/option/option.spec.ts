@@ -74,6 +74,14 @@ describe('vwc-option', () => {
 	});
 
 	describe('label', function () {
+
+		it('should reflect the label to an attribute', function () {
+			const label = 'label';
+			element.label = label;
+
+			expect(element.getAttribute('label')).toEqual(label);
+		});
+
 		it('should return the options\'s text when label attribute and value are not provided', async function () {
 			const text = 'text';
 			element.text = text;
