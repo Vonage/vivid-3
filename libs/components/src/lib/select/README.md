@@ -23,7 +23,7 @@ Read more about [vwc-option](../../components/option).
 <vwc-select label="choose one option">
   <vwc-option value="1" text="Option 1: dogs" selected></vwc-option>
   <vwc-option value="2" text="Option 2: cats"></vwc-option>
-  <vwc-option value="3" text="Option 3: doges and catas"></vwc-option>
+  <vwc-option value="3" text="Option 3: dogs and cats"></vwc-option>
 </vwc-select>
 ```
 
