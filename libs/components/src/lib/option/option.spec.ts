@@ -76,10 +76,10 @@ describe('vwc-option', () => {
 
 	describe('label', function () {
 
-		it('should reflect the label to an attribute', function () {
+		it('should reflect the label to an attribute', async function () {
 			const label = 'label';
 			element.label = label;
-
+			await elementUpdated(element);
 			expect(element.getAttribute('label')).toEqual(label);
 		});
 

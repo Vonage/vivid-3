@@ -28,12 +28,14 @@ export class ListboxOption extends FoundationListboxOption {
 		return this._text ?? '';
 	}
 
+	@attr({
+		attribute: 'label',
+	}) _label?: string;
 	override get label(): string {
-		return this.getAttribute('label') ?? this.text;
+		return this._label ?? this.text;
 	}
-
 	override set label(value: string) {
-		this.setAttribute('label', value);
+		this._label = value;
 	}
 	// #endregion overrides
 }
