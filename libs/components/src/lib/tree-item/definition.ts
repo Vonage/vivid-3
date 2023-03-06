@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import { iconRegistries } from '../components';
+import { iconRegistries } from '../icon/definition';
 import { focusRegistries } from '../focus/definition';
 import styles from './tree-item.scss';
 
