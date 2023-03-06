@@ -64,16 +64,16 @@ function addSamplesEditors() {
 			iframe
 		});
 	});
-	
+
 	setEditorsTheme();
 }
 
 function sampleChanged(idx) {
 	let debounceID;
-	
+
 	return v => {
 		if (!v.docChanged) return;
-		
+
 		clearTimeout(debounceID);
 		debounceID = setTimeout(() => updateiFrameCode(idx), 500)
 	}
