@@ -4,6 +4,18 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.3.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.2.0...vivid-v3.3.0) (2023-03-08)
+
+
+### Features
+
+* **select:** add label handling to option component ([#1047](https://github.com/Vonage/vivid-3/issues/1047)) ([560f7cd](https://github.com/Vonage/vivid-3/commit/560f7cd8e34d8d1685c0fa08ae4cc29690b0e8d6))
+
+
+### Bug Fixes
+
+* **components:** circular dependency in tree-item ([#1053](https://github.com/Vonage/vivid-3/issues/1053)) ([72984b9](https://github.com/Vonage/vivid-3/commit/72984b99b1f2cc727da222fee67d52490d9acb49))
+
 ## [3.2.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.1.3...vivid-v3.2.0) (2023-02-19)
 
 
