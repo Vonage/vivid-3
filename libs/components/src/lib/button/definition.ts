@@ -9,7 +9,7 @@ import { Button } from './button';
 import styles from './button.scss';
 import { buttonTemplate as template } from './button.template';
 
-export type { ButtonAppearance, ButtonConnotation, ButtonShape, ButtonSize } from './button'
+export type { ButtonAppearance, ButtonConnotation, ButtonShape, ButtonSize } from './button';
 
 /**
  *

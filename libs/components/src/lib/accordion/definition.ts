@@ -6,7 +6,7 @@ import styles from './accordion.scss';
 import { Accordion } from './accordion';
 import { AccordionTemplate as template } from './accordion.template';
 
-export type { AccordionExpandMode } from '@microsoft/fast-foundation'
+export type { AccordionExpandMode } from '@microsoft/fast-foundation';
 
 /**
  *

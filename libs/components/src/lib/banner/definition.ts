@@ -7,7 +7,7 @@ import styles from './banner.scss';
 import { Banner } from './banner';
 import { BannerTemplate as template } from './banner.template';
 
-export type { BannerConnotation } from './banner'
+export type { BannerConnotation } from './banner';
 
 /**
  *

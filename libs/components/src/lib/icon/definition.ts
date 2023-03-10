@@ -4,7 +4,7 @@ import styles from './icon.scss';
 import { Icon } from './icon';
 import { iconTemplate as template } from './icon.template';
 
-export type { IconConnotation } from './icon'
+export type { IconConnotation } from './icon';
 
 export const iconDefinition = Icon.compose<FoundationElementDefinition>({
 	baseName: 'icon',
