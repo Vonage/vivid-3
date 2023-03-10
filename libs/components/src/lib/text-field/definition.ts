@@ -6,6 +6,7 @@ import { TextField } from './text-field';
 import styles from './text-field.scss';
 import { TextfieldTemplate as template } from './text-field.template';
 
+export type { TextFieldAppearance, TextFieldShape } from './text-field';
 
 /**
  * The text-field element.

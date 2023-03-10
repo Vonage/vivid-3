@@ -17,7 +17,7 @@ let dialogPolyfill: any;
  *
  * @public
  */
-type IconPlacement = 'top' | 'side';
+export type IconPlacement = 'top' | 'side';
 
 /**
  * Base class for dialog

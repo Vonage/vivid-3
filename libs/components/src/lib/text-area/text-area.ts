@@ -2,7 +2,7 @@ import { applyMixins, TextArea as FoundationElement } from '@microsoft/fast-foun
 import {attr} from '@microsoft/fast-element';
 import {FormElement, FormElementCharCount, FormElementHelperText, formElements, FormElementSuccessText} from '../../shared/patterns';
 
-type TextAreaWrap = 'hard' | 'soft' | 'off';
+export type TextAreaWrap = 'hard' | 'soft' | 'off';
 
 /**
  * Base class for text-area

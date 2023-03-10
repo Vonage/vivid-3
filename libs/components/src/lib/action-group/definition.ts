@@ -5,6 +5,7 @@ import styles from './action-group.scss';
 import { ActionGroup } from './action-group';
 import { ActionGroupTemplate as template } from './action-group.template';
 
+export type { ActionGroupShape, ActionGroupAppearance } from './action-group'
 
 /**
  *
