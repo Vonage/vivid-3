@@ -1,5 +1,5 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
-import {attr} from '@microsoft/fast-element';
+import {attr, observable} from '@microsoft/fast-element';
 
 // Make sure we support Safari 14
 let dialogPolyfill: any;
@@ -145,4 +145,17 @@ export class Dialog extends FoundationElement {
 		this.#dialog.removeEventListener('click', this.#handleScrimClick);
 		this.#dialog.removeEventListener('submit', this.#handleInternalFormSubmit);
 	}
+
+
+	/**
+	 *
+	 * Slot observer:
+	 *
+	 * @internal
+	 */
+
+
+	@observable bodySlottedContent?: HTMLElement[];
+	@observable footerSlottedContent?: HTMLElement[];
+
 }

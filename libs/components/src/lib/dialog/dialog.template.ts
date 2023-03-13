@@ -1,4 +1,4 @@
-import {html, when} from '@microsoft/fast-element';
+import {html, slotted, when} from '@microsoft/fast-element';
 import type {ViewTemplate} from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
@@ -10,7 +10,7 @@ import { Icon } from '../icon/icon';
 import { Button } from '../button/button';
 import type {Dialog} from './dialog';
 
-const getClasses = ({iconPlacement}: Dialog) => classNames(
+const getClasses = ({iconPlacement} : Dialog) => classNames(
 	'base',
 	[`icon-placement-${iconPlacement}`, Boolean(iconPlacement)],
 );
@@ -105,8 +105,12 @@ export const DialogTemplate: (
 							${when(x => x.subtitle, subtitle())}
 							${renderDismissButton(buttonTag)}
 					</div>
-					<slot name="body"></slot>
-					<slot name="footer"></slot>
+					<div class="body ${x => x.bodySlottedContent?.length ? '' : 'hide'}">
+						<slot name="body" ${slotted('bodySlottedContent')}></slot>
+					</div>
+					<div class="footer ${x => x.footerSlottedContent?.length ? '' : 'hide'}">
+						<slot name="footer" ${slotted('footerSlottedContent')}></slot>
+					</div>
 				</div>
 			</slot>
 		</dialog>

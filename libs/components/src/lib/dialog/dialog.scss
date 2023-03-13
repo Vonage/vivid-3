@@ -16,6 +16,7 @@
 	max-inline-size: var(#{variables.$dialog-max-inline-size}, #{variables.$dialog-default-max-inline-size});
 	min-inline-size: var(#{variables.$dialog-min-inline-size}, 280px);
 
+
 	@media not all and (min-width: 600px) {
 		#{variables.$dialog-default-max-inline-size}: 90vw;
 	}
@@ -38,8 +39,13 @@
 .main-wrapper {
 	display: flex;
 	flex-direction: column;
-	padding: 24px;
 	gap: 12px;
+	padding-block: 24px;
+	box-sizing: border-box;
+
+	> * {
+		box-sizing: border-box;
+	}
 }
 
 .header {
@@ -47,6 +53,7 @@
 	align-items: flex-start;
 	justify-content: space-between;
 	inline-size: 100%;
+	padding-inline: 24px;
 
 	.base:not(.icon-placement-side) & {
 		grid-template-columns: 1fr auto;
@@ -76,6 +83,15 @@
 			grid-row: 1/-1;
 			margin-inline-end: calc(#{size.$vvd-size-condensed} / 2);
 		}
+	}
+}
+
+.body,
+.footer {
+	padding-inline: 24px;
+
+	&.hide {
+		display: none;
 	}
 }
 
