@@ -12,6 +12,7 @@
     soft: #{utils.get-color-token(#{$type}-100)},
     firm: #{utils.get-color-token(#{$type}-600)},
     faint: #{utils.get-color-token(#{$type}-50)},
+		pale: #{utils.get-color-token(#{$type}-300)},
     backdrop: #{utils.get-color-token(#{$type}-50)},
     fierce: #{utils.get-color-token(#{$type}-700)},
   );
