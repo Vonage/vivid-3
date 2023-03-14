@@ -1,5 +1,5 @@
 import { applyMixins, Select as FoundationSelect } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
+import {attr, Observable} from '@microsoft/fast-element';
 import type { Popup } from '../popup/popup';
 import { FormElement, formElements } from '../../shared/patterns';
 import { AffixIcon } from '../../shared/patterns';
@@ -26,6 +26,11 @@ export class Select extends FoundationSelect {
 	override connectedCallback() {
 		super.connectedCallback();
 		this._popup.anchor = this._anchor;
+	}
+
+	override get displayValue(): string {
+		Observable.track(this, 'displayValue');
+		return this.firstSelectedOption?.getAttribute('label') ?? this.firstSelectedOption?.text ?? '';
 	}
 }
 
