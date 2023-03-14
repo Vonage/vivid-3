@@ -39,7 +39,7 @@
 .main-wrapper {
 	display: flex;
 	flex-direction: column;
-	gap: 12px;
+	gap: 24px;
 	padding-block: 24px;
 	box-sizing: border-box;
 
@@ -82,6 +82,23 @@
 			grid-column: 1/2;
 			grid-row: 1/-1;
 			margin-inline-end: calc(#{size.$vvd-size-condensed} / 2);
+		}
+	}
+
+	&.border {
+		position: relative;
+		&::after {
+			content: "";
+			inline-size: 100%;
+			block-size: 1px;
+			position: absolute;
+			left: 0;
+			bottom: -24px;
+			background-color: var(#{constants.$vvd-color-neutral-200});
+
+			.base.hide-body & {
+				content: none;
+			}
 		}
 	}
 

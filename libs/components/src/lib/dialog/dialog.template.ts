@@ -98,7 +98,7 @@ export const DialogTemplate: (
 		>
 			<slot name="main">
 				<div class="main-wrapper">
-					<div class="header">
+					<div class="header ${x => x.subtitle ? 'border' : ''}">
 							<slot name="graphic">
 								${when(x => x.icon, icon(iconTag))}
 							</slot>
