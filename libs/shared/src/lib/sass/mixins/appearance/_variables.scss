@@ -16,9 +16,9 @@ $states-mapping: (
       outline: var(#{connotation.get-connotation-token(firm)}),
     ),
     duotone: (
-      text: var(#{connotation.get-connotation-token(contrast)}),
+      text: var(#{connotation.get-connotation-token(fierce)}),
       fill: transparent,
-      outline: var(#{connotation.get-connotation-token(intermediate)}),
+      outline: var(#{connotation.get-connotation-token(pale)}),
     ),
     fieldset: (
       text: var(#{constants.$vvd-color-canvas-text}),

@@ -33,7 +33,7 @@
 
 [view components status](https://github.com/orgs/Vonage/projects/6)
 
-Follow our API planning on the [Vivid project components' view](https://github.com/orgs/Vonage/projects/3/views/13)
+Follow our API planning on the [Vivid project components' view](https://github.com/orgs/Vonage/projects/3/views/7)
 
 Tagged (_next_) release is published on every successful merge to main, so you never need to wait for a new stable version to make use of any updates.
 

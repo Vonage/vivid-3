@@ -4,6 +4,47 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.3.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.2.0...vivid-v3.3.0) (2023-03-08)
+
+
+### Features
+
+* **select:** add label handling to option component ([#1047](https://github.com/Vonage/vivid-3/issues/1047)) ([560f7cd](https://github.com/Vonage/vivid-3/commit/560f7cd8e34d8d1685c0fa08ae4cc29690b0e8d6))
+
+
+### Bug Fixes
+
+* **components:** circular dependency in tree-item ([#1053](https://github.com/Vonage/vivid-3/issues/1053)) ([72984b9](https://github.com/Vonage/vivid-3/commit/72984b99b1f2cc727da222fee67d52490d9acb49))
+
+## [3.2.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.1.3...vivid-v3.2.0) (2023-02-19)
+
+
+### Features
+
+* **tree:** add component ([#987](https://github.com/Vonage/vivid-3/issues/987)) ([a840e43](https://github.com/Vonage/vivid-3/commit/a840e43c830f5eb55b1fbb808a84a5da1c565391))
+
+## [3.1.3](https://github.com/Vonage/vivid-3/compare/vivid-v3.1.2...vivid-v3.1.3) (2023-02-16)
+
+
+### Bug Fixes
+
+* **documentation:** getting started ([#1007](https://github.com/Vonage/vivid-3/issues/1007)) ([8da7500](https://github.com/Vonage/vivid-3/commit/8da7500eb681ca6d85aaa206da2c77eb859ec435))
+
+## [3.1.2](https://github.com/Vonage/vivid-3/compare/vivid-v3.1.1...vivid-v3.1.2) (2023-02-15)
+
+
+### Bug Fixes
+
+* **components:** add number field to public exports ([#1028](https://github.com/Vonage/vivid-3/issues/1028)) ([24c1f17](https://github.com/Vonage/vivid-3/commit/24c1f17675182a84b14a6785532524360f1da835))
+
+## [3.1.1](https://github.com/Vonage/vivid-3/compare/vivid-v3.1.0...vivid-v3.1.1) (2023-02-09)
+
+
+### Bug Fixes
+
+* **dialog:** remove filter ([#1018](https://github.com/Vonage/vivid-3/issues/1018)) ([53bc8c2](https://github.com/Vonage/vivid-3/commit/53bc8c28383451e4745436ed12365378db3e8411))
+* **text-field:** show outline in ios-16 ([#1013](https://github.com/Vonage/vivid-3/issues/1013)) ([cc2b662](https://github.com/Vonage/vivid-3/commit/cc2b66244cde86826f9f77e2864df655fd712491))
+
 ## [3.1.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.0.1...vivid-v3.1.0) (2023-02-03)
 
 

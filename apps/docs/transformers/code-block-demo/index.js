@@ -2,7 +2,11 @@ const { JSDOM } = require('jsdom');
 const { decode } = require("html-entities");
 const fs = require('fs');
 const path = require('path');
-const jsonData = [...require('../../_data/components.json'), ...require('../../_data/designs.json')];
+const jsonData = [
+	...require('../../_data/components.json'),
+	...require('../../_data/designs.json'),
+	...require('../../_data/introduction.json')
+];
 const layout = require('./layout');
 const ELEVENTY_HTML_CODE_BLOCK_SELECTOR = 'pre.preview > code';
 
@@ -32,7 +36,16 @@ const generateCodeBlockDemo = function (blockData) {
 
 	const { pre: { outerHTML: codeStr }, index, outputPath } = blockData;
 
-	const demoStr = decode(IFRAME_STYLE) + decode(FONTS) + decode(TYPOGRAPHY) + decode(code);
+	const demoStr = `
+		<head>
+			${decode(IFRAME_STYLE)}
+			${decode(FONTS)}
+			${decode(TYPOGRAPHY)}
+		</head>
+		<body>
+			${decode(code)}
+		</body>`;
+
 	const demoData = { demoStr, codeStr, index, outputPath };
 
 	const dom = new JSDOM(`<body>${getHtml(demoData)}</body>`);
