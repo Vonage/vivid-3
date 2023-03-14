@@ -38,10 +38,10 @@
 
 .main-wrapper {
 	display: flex;
+	box-sizing: border-box;
 	flex-direction: column;
 	gap: 24px;
 	padding-block: 24px;
-	box-sizing: border-box;
 
 	> * {
 		box-sizing: border-box;
@@ -88,13 +88,13 @@
 	&.border {
 		position: relative;
 		&::after {
+			position: absolute;
+			bottom: -24px;
+			left: 0;
+			background-color: var(#{constants.$vvd-color-neutral-200});
+			block-size: 1px;
 			content: "";
 			inline-size: 100%;
-			block-size: 1px;
-			position: absolute;
-			left: 0;
-			bottom: -24px;
-			background-color: var(#{constants.$vvd-color-neutral-200});
 
 			.base.hide-body & {
 				content: none;
