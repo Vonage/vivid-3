@@ -171,8 +171,7 @@ Use the `graphic` slot in order to replace the icon.
 
 ### Body
 
-Use the `body` slot in order to add custom HTML to the dialog while enjoying the vivid dialog styling.  
-Note that vivid styling comes with opinionated CSS like padding and margin.  
+Use the `body` slot in order to add custom HTML to the dialog.  
 Body slot after a header containing a subtitle will have a top separator.
 
 ```html preview
