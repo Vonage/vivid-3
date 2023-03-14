@@ -34,6 +34,7 @@
 	box-sizing: border-box;
 
 	.base.orientation-vertical & {
+		padding: var(#{variables.$tabs-tablist-gutter});
 		box-shadow: 1px 0 0 0 var(#{constants.$vvd-color-neutral-300});
 		grid-row: 1 / 2;
 		grid-template-columns: auto 1fr;
@@ -41,21 +42,18 @@
 		inline-size: 100%;
 		place-self: flex-start end;
 		row-gap: var(#{variables.$tabs-tablist-gutter});
-		padding: var(#{variables.$tabs-tablist-gutter});
-
 	}
 
 	.base:not(.orientation-vertical) & {
 		align-self: end;
 		justify-content: flex-start;
 		border-bottom: 1px solid var(--vvd-color-neutral-300);
+		column-gap: var(#{variables.$tabs-tablist-gutter});
 		grid-auto-flow: column;
 		grid-template-columns: auto;
 		grid-template-rows: auto auto;
 		inline-size: 100%;
-		column-gap: var(#{variables.$tabs-tablist-gutter});
 		padding-inline: var(#{variables.$tabs-tablist-gutter});
-
 	}
 }
 
