@@ -12,14 +12,19 @@ function isDark() {
 function setTheme(newTheme) {
     theme = newTheme;
 
-    localStorage.setItem('theme', theme);
-    button.icon = isDark() ? 'dark-mode-solid' : 'light-mode-line';
+	const darkTheme = isDark();
 
-    const themeStyle = isDark() ?
+    localStorage.setItem('theme', theme);
+    button.icon = darkTheme ? 'dark-mode-solid' : 'light-mode-line';
+
+    const themeStyle = darkTheme ?
         '<link rel="stylesheet" href="/assets/styles/tokens/theme-dark.css" media="all">' : '<link rel="stylesheet" href="/assets/styles/tokens/theme-light.css" media="all">';
     document.head?.insertAdjacentHTML("beforeend", themeStyle);
 
     popup.open = false;
+
+	window._darkTheme = darkTheme;
+	window.setEditorsTheme?.();
 }
 
 function toggleMenu() {
