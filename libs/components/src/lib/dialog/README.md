@@ -172,16 +172,20 @@ Use the `graphic` slot in order to replace the icon.
 ### Body
 
 Use the `body` slot in order to add custom HTML to the dialog while enjoying the vivid dialog styling.  
-Note that vivid styling comes with opinionated CSS like padding and margin.
+Note that vivid styling comes with opinionated CSS like padding and margin.  
+Body slot after a header containing a subtitle will have a top separator.
 
 ```html preview
 <style>
   html { /* for demo purposes */
-    block-size: 350px;
-    --dialog-max-block-size: 320px;
+    block-size: 420px;
+    --dialog-max-block-size: 360px;
+  }
+  div {
+  	margin-block-start: 24px;
   }
 </style>
-<vwc-dialog open headline="Dialog Content">
+<vwc-dialog open headline="Dialog Content" subtitle="Dialog with body contnent">
   <div slot="body">
     <form>
       <vwc-layout column-basis="block">
@@ -192,6 +196,36 @@ Note that vivid styling comes with opinionated CSS like padding and margin.
     </form>
   </div>
 </vwc-dialog>
+```
+
+#### Full width Body Slot
+For removing the body inline padding use `::part(body)`. 
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 400px;
+  }
+  ::part(body){
+  	padding-inline: 0;
+  }
+  vwc-progress {
+    margin-block-end: 24px;
+    display: block;
+  }
+</style>
+<vwc-dialog open icon-placement="side" icon="info" headline="Dialog Headline" full-body>
+  <div slot="body">
+  <vwc-progress min="0" max="50" value="12.5" shape="sharp" connotation="pacific"></vwc-progress>
+  <vwc-layout column-basis="block" gutters="medium-inline">
+    <form>
+      <vwc-layout column-basis="block">
+        <vwc-text-field label="Agent Name" placeholder="Search for an agent / department / skill group" icon="search-line"></vwc-text-field>
+        <vwc-text-area label="Additional Note (Optional)"></vwc-text-area></vwc-layout>
+    </form>
+    </vwc-layout>
+</vwc-dialog>
+
 ```
 
 ### Footer
