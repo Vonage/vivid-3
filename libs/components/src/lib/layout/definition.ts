@@ -4,6 +4,7 @@ import { Layout } from './layout';
 import styles from './layout.scss';
 import { layoutTemplate as template } from './layout.template';
 
+export type { AUTO_SIZING, ColumnBasis, ColumnSpacing, Gutters } from './layout';
 
 /**
  * Represents a layout custom element.

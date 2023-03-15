@@ -5,6 +5,7 @@ import { Badge } from './badge';
 import styles from './badge.scss';
 import { badgeTemplate as template } from './badge.template';
 
+export type { BadgeConnotation, BadgeAppearance, BadgeShape } from './badge';
 
 /**
  * Represents a badge custom element.

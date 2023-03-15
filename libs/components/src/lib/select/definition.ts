@@ -9,6 +9,8 @@ import styles from './select.scss';
 import { Select } from './select';
 import { SelectTemplate as template } from './select.template';
 
+export type { SelectAppearance, SelectShape } from './select';
+
 /**
  * The select element.
  */

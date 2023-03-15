@@ -6,6 +6,7 @@ import { Listbox } from './listbox';
 import { ListboxTemplate as template } from './listbox.template';
 import styles from './listbox.scss';
 
+export type { LisboxAppearance } from './listbox';
 
 /**
  * The calendar-event element is a custom element that is used to display a single event in a calendar.
