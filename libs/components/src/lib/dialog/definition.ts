@@ -9,6 +9,7 @@ import styles from './dialog.scss';
 import { Dialog } from './dialog';
 import { DialogTemplate as template } from './dialog.template';
 
+export type { IconPlacement } from './dialog';
 
 /**
  * The dialog element.

@@ -6,6 +6,7 @@ import styles from './number-field.scss';
 import { NumberField } from './number-field';
 import { NumberFieldTemplate as template } from './number-field.template';
 
+export type { NumberFieldAppearance, NumberFieldShape } from './number-field';
 
 /**
  * The number-field element.

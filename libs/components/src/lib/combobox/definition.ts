@@ -10,6 +10,7 @@ import styles from './combobox.scss';
 import { Combobox } from './combobox';
 import { comboboxTemplate as template } from './combobox.template';
 
+export type { PopupPlacement } from './combobox';
 
 /**
  * The combobox element.

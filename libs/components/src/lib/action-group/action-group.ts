@@ -22,7 +22,7 @@ Appearance.Filled | Appearance.Outlined | Appearance.Ghost>;
  *
  * @public
  */
-type ActionGroupShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+export type ActionGroupShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
  * Base class for action-group
