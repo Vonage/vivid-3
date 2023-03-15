@@ -9,7 +9,7 @@ Represents a data-grid custom element.
 ```html preview
 <vwc-data-grid></vwc-data-grid>
 <script>
-    const grid = document.querySelector('vwc-data-grid');
+    grid = document.querySelector('vwc-data-grid');
     grid.rowsData = [
         {data1: 'data11', data2: 'data12'},
         {data1: 'data21', data2: 'data22'},
@@ -36,7 +36,7 @@ Use `generate-header"` for data grid header visibility mode.
 			grid.generateHeader = headerType;
 		}
         
-    const grid = document.querySelector('vwc-data-grid');
+    grid = document.querySelector('vwc-data-grid');
     
     grid.generateHeader = 'sticky';
     grid.rowsData = [
@@ -77,7 +77,7 @@ When true the component will not add itself to the tab queue.
 		grid.noTabbing = tabbing;
 	}
     
-	const grid = document.querySelector('vwc-data-grid');
+	grid = document.querySelector('vwc-data-grid');
 	grid.rowsData = [
 			{data1: 'tabs', data2: 'will'},
 			{data1: 'not', data2: 'work'},
@@ -105,7 +105,7 @@ The data being displayed in the grid.
 ```html preview
 <vwc-data-grid></vwc-data-grid>
 <script>
-    const grid = document.querySelector('vwc-data-grid');
+    grid = document.querySelector('vwc-data-grid');
     grid.rowsData = [
         {data1: 'data11', data2: 'data12'},
         {data1: 'data21', data2: 'data22'},
@@ -146,7 +146,7 @@ The template used to render rows. Note you need to use `html` from `fast-element
 <vwc-data-grid></vwc-data-grid>
 <script>
 		import { html } from '@microsoft/fast-element';
-    const grid = document.querySelector('vwc-data-grid');
+    grid = document.querySelector('vwc-data-grid');
     grid.rowItemTemplate = html`<div>All rows will look like me!</civ>`;
     grid.rowsData = [
         {data1: 'data11', data2: 'data12'},
@@ -166,7 +166,7 @@ The template used to render cells in generated rows. Note you need to use `html`
 <vwc-data-grid></vwc-data-grid>
 <script>
 		import { html } from '@microsoft/fast-element';
-		const grid = document.querySelector('vwc-data-grid');
+		grid = document.querySelector('vwc-data-grid');
 		grid.cellItemTemplate = html`<div>All cells will look like me!</civ>`;
     grid.rowsData = [
         {data1: 'data11', data2: 'data12'},
@@ -186,7 +186,7 @@ The template used to render cells in generated header rows. Note you need to use
 <vwc-data-grid></vwc-data-grid>
 <script>
 		import { html } from '@microsoft/fast-element';
-		const grid = document.querySelector('vwc-data-grid');
+		grid = document.querySelector('vwc-data-grid');
 		grid.headerCellItemTemplate = html`<div>All header cells will look like me!</civ>`;
 		grid.rowsData = [
         {data1: 'data11', data2: 'data12'},
@@ -209,11 +209,11 @@ The index of the row that will be focused the next time the grid is focused. If 
 <vwc-data-grid></vwc-data-grid>
 <script>
 		function changeActiveRow() {
-            const newActiveRow = document.getElementById('row-number').value;
+            newActiveRow = document.getElementById('row-number').value;
             grid.focusRowIndex = Number(newActiveRow);
 		}
 
-    const grid = document.querySelector('vwc-data-grid');
+    grid = document.querySelector('vwc-data-grid');
     grid.rowsData = [
 			{data1: 'data11', data2: 'data12', data3: 'data13'},
 			{data1: 'data21', data2: 'data22', data3: 'data23'},
@@ -237,11 +237,11 @@ The index of the column that will be focused the next time the grid is focused i
 <vwc-data-grid></vwc-data-grid>
 <script>
 		function changeActiveColumn() {
-        const newActiveColumn = document.getElementById('col-number').value;
+        newActiveColumn = document.getElementById('col-number').value;
         grid.focusColumnIndex = Number(newActiveColumn);
     }
 
-    const grid = document.querySelector('vwc-data-grid');
+    grid = document.querySelector('vwc-data-grid');
     grid.rowsData = [
         {data1: 'data11', data2: 'data12', data3: 'data13'},
         {data1: 'data21', data2: 'data22', data3: 'data23'},
@@ -261,7 +261,7 @@ The element tag for header row cells. If not set, the default tag `vwc-data-grid
 ```html preview
 <vwc-data-grid></vwc-data-grid>
 <script>
-    const grid = document.querySelector('vwc-data-grid');
+    grid = document.querySelector('vwc-data-grid');
     grid.rowElementTag = 'div';
     grid.rowsData = [
         {data1: 'data11', data2: 'data12'},
