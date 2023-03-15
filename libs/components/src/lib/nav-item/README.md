@@ -65,7 +65,7 @@ Within a set of pagination links, set a nav item `aria-current` value to *page* 
 
 <script>
   function onClick(event) {
-    const currentNavItem = document.querySelector('vwc-nav-item[aria-current="page"]');
+    currentNavItem = document.querySelector('vwc-nav-item[aria-current="page"]');
     currentNavItem?.removeAttribute('aria-current');
     event.currentTarget.setAttribute('aria-current', 'page');
   }
