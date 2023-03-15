@@ -5,6 +5,8 @@ import styles from './progress-ring.scss';
 import {ProgressRing} from './progress-ring';
 import {ProgressRingTemplate as template} from './progress-ring.template';
 
+export type { ProgressRingConnotation } from './progress-ring';
+
 /**
  * The progress-ring element.
  */

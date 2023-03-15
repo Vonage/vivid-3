@@ -15,6 +15,7 @@ export * from './combobox/definition';
 export * from './elevation/definition';
 export * from './dialog/definition';
 export * from './divider/definition';
+export * from './data-grid/definition';
 export * from './fab/definition';
 export * from './header/definition';
 export * from './icon/definition';
