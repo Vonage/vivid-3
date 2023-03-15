@@ -4,13 +4,13 @@
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta,
-	$shades: primary primary-text firm,
+	$shades: primary primary-text firm fierce pale,
 	$default: accent,
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
-	$appearances: filled outlined ghost,
+	$appearances: filled outlined duotone,
 	$states: idle,
 	$default: filled,
 );
