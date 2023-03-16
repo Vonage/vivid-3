@@ -14,7 +14,7 @@ $dialog-space-size: 24px;
 	border-radius: 6px;
 	color: var(#{constants.$vvd-color-canvas-text});
 	max-block-size: var(#{variables.$dialog-max-block-size}, calc(100vh - 64px));
-	max-inline-size: var(#{variables.$dialog-max-inline-size}, #{variables.$dialog-default-max-inline-size});
+	max-inline-size: var(#{variables.$dialog-max-inline-size}, var(#{variables.$dialog-default-max-inline-size}));
 	min-inline-size: var(#{variables.$dialog-min-inline-size}, 280px);
 
 
@@ -106,7 +106,9 @@ $dialog-space-size: 24px;
 }
 
 .body {
-	padding-inline: $dialog-space-size;
+	&:not(.full-width) {
+		padding-inline: $dialog-space-size;
+	}
 
 	.hide-body & {
 		display: none;

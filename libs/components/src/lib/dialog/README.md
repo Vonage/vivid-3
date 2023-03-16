@@ -32,7 +32,7 @@ Use the `headline` attribute to set the dialog's headline.
 <vwc-dialog headline="Headline" open></vwc-dialog>
 ```
 
-### subtitle
+### Subtitle
 
 Use the `subtitle` attribute to set the dialog's subtitle.
 
@@ -184,7 +184,7 @@ Body slot after a header containing a subtitle will have a top separator.
   	margin-block-start: 24px;
   }
 </style>
-<vwc-dialog open headline="Dialog Content" subtitle="Dialog with body contnent">
+<vwc-dialog open headline="Dialog Content" subtitle="Dialog with body content">
   <div slot="body">
     <form>
       <vwc-layout column-basis="block">
@@ -197,29 +197,29 @@ Body slot after a header containing a subtitle will have a top separator.
 </vwc-dialog>
 ```
 
-#### Full width Body Slot
-For removing the body inline padding use `::part(body)`. 
+#### Full-width-body
+To remove the body inline padding use `full-width-body`.
+
+- Type: boolean
+- Default: false
 
 ```html preview
 <style>
   html { /* for demo purposes */
     block-size: 400px;
   }
-  ::part(body){
-  	padding-inline: 0;
-  }
   vwc-progress {
     margin-block-end: 24px;
     display: block;
   }
 </style>
-<vwc-dialog open icon-placement="side" icon="info" headline="Dialog Headline" full-body>
+<vwc-dialog open icon-placement="side" icon="info" headline="Dialog Headline" full-width-body>
   <div slot="body">
   <vwc-progress min="0" max="50" value="12.5" shape="sharp" connotation="pacific"></vwc-progress>
   <vwc-layout column-basis="block" gutters="medium-inline">
     <form>
       <vwc-layout column-basis="block">
-        <vwc-text-field label="Agent Name" placeholder="Search for an agent / department / skill group" icon="search-line"></vwc-text-field>
+        <vwc-text-field label="Agent Name" placeholder="Search for an agent" icon="search-line"></vwc-text-field>
         <vwc-text-area label="Additional Note (Optional)"></vwc-text-area></vwc-layout>
     </form>
     </vwc-layout>

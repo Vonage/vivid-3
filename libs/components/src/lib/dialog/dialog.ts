@@ -37,6 +37,7 @@ export class Dialog extends FoundationElement {
 	@attr({attribute: 'icon-placement'}) iconPlacement?: IconPlacement;
 	@attr subtitle?: string;
 	@attr headline?: string;
+	@attr ({attribute: 'full-width-body', mode: 'boolean'}) fullWidthBody = false;
 	@attr({attribute: 'aria-labelledby'}) ariaLabelledBy: string | null = null;
 	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
 	@attr({attribute: 'aria-describedby'}) ariaDescribedBy: string | null = null;

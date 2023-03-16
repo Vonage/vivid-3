@@ -106,7 +106,7 @@ export const DialogTemplate: (
 							${when(x => x.subtitle, subtitle())}
 							${renderDismissButton(buttonTag)}
 					</div>
-					<div class="body ${x => x.bodySlottedContent?.length ? '' : 'hide'}" part="body">
+					<div class="body ${x => x.bodySlottedContent?.length ? '' : 'hide'} ${x => x.fullWidthBody? 'full-width' : ''}" >
 						<slot name="body" ${slotted('bodySlottedContent')}></slot>
 					</div>
 					<div class="footer ${x => x.footerSlottedContent?.length ? '' : 'hide'}">
