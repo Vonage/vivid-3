@@ -5,8 +5,8 @@ import {AffixIcon, FormElementCharCount, FormElementHelperText, FormElementSucce
 import {FormElement, formElements} from '../../shared/patterns';
 
 
-type TextFieldAppearance = Extract<Appearance, Appearance.Outlined | Appearance.Ghost>;
-type TextFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+export type TextFieldAppearance = Extract<Appearance, Appearance.Outlined | Appearance.Ghost>;
+export type TextFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
  * Base class for text-field

@@ -84,11 +84,19 @@
 	overflow-y: auto;
 }
 
-.popup {
-	$popup-width: --_popup-width;
-
-	#{$popup-width}: 100%;
+.selected-value {
+	overflow: hidden;
+	max-inline-size: 100%;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
+
+
+::part(popup-base) {
+	inline-size: max-content;
+	min-inline-size: 100%;
+}
+
 
 .focus-indicator {
 	border-radius: var(#{variables.$select-control-border-radius});

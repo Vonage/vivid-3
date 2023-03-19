@@ -133,16 +133,16 @@ Use `returnValue` to get or set the return value. Often used to indicate which b
 <script>
   (function handleReturnValue() {
     function handleClick(e) {
-      const buttonType = e.target.label;
+      buttonType = e.target.label;
       console.log(buttonType);
       dialog.returnValue = buttonType;
       dialog.close();
     }
 
-    const cancelButton = document.querySelector('[label="Cancel"]');
-    const actionButton = document.querySelector('[label="Action"]');
-    const dialog = document.querySelector('vwc-dialog');
-    const dialogOutput = document.querySelector('#dialog-output');
+    cancelButton = document.querySelector('[label="Cancel"]');
+    actionButton = document.querySelector('[label="Action"]');
+    dialog = document.querySelector('vwc-dialog');
+    dialogOutput = document.querySelector('#dialog-output');
 
     cancelButton.onclick = actionButton.onclick = handleClick;
     dialog.addEventListener('close', (e) => dialogOutput.innerText = dialog.returnValue);
@@ -151,7 +151,7 @@ Use `returnValue` to get or set the return value. Often used to indicate which b
 </script>
 <script>
   function openDialog() {
-    const dialog = document.querySelector('vwc-dialog');
+    dialog = document.querySelector('vwc-dialog');
     dialog.show();
   }
 </script>
@@ -316,12 +316,12 @@ It returns the return value inside the event's details property.
             onclick="closeDialog()"></vwc-button>
 <script>
   function closeDialog() {
-    const dialog = document.querySelector('vwc-dialog');
+    dialog = document.querySelector('vwc-dialog');
     dialog.returnValue = 'Value';
     dialog.close();
   }
   (function() {
-    const dialog = document.querySelector('vwc-dialog');
+    dialog = document.querySelector('vwc-dialog');
     dialog.addEventListener('close', (e) => console.log(e.detail));
   })();
 </script>
@@ -340,7 +340,7 @@ Shows the dialog. Positioned in a top position by default.
             onclick="openDialog()"></vwc-button>
 <script>
   function openDialog() {
-    const dialog = document.querySelector('vwc-dialog');
+    dialog = document.querySelector('vwc-dialog');
     dialog.show();
   }
 </script>
@@ -359,7 +359,7 @@ For more information, see the native [Dialog.showModal](https://developer.mozill
             onclick="openDialog()"></vwc-button>
 <script>
   function openDialog() {
-    const dialog = document.querySelector('vwc-dialog');
+    dialog = document.querySelector('vwc-dialog');
     dialog.showModal();
   }
 </script>
@@ -377,7 +377,7 @@ Closes the dialog.
             onclick="closeDialog()"></vwc-button>
 <script>
   function closeDialog() {
-    const dialog = document.querySelector('vwc-dialog');
+    dialog = document.querySelector('vwc-dialog');
     dialog.close();
   }
 </script>
@@ -405,7 +405,7 @@ Closes the dialog.
 
 <script>
   function openDialog() {
-    const dialog = document.querySelector('vwc-dialog');
+    dialog = document.querySelector('vwc-dialog');
     dialog.showModal();
   }
 </script>

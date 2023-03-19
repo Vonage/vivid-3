@@ -173,8 +173,8 @@ Due to a11y and design constraints, the density can only be set to one of the fo
 </div>
 
 <script>
-  const root = document.querySelector('#scoped-region');
-  const numberfield = document.querySelector('vwc-number-field');
+  root = document.querySelector('#scoped-region');
+  numberfield = document.querySelector('vwc-number-field');
   numberfield.addEventListener('change', (e) => root.style.setProperty('--vvd-size-density', e.target.value));
 </script>
 ```

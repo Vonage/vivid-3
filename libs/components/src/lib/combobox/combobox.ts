@@ -9,7 +9,7 @@ import { AffixIcon } from '../../shared/patterns';
  *
  * @public
  */
-type PopupPlacement = 'top' | 'bottom';
+export type PopupPlacement = 'top' | 'bottom';
 
 /**
  * Base class for combobox

@@ -6,8 +6,8 @@ import { AffixIcon } from '../../shared/patterns';
 import type { Appearance, Shape } from '../enums';
 
 
-type SelectAppearance = Extract<Appearance, Appearance.Outlined | Appearance.Ghost>;
-type SelectShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+export type SelectAppearance = Extract<Appearance, Appearance.Outlined | Appearance.Ghost>;
+export type SelectShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
  * Base class for select

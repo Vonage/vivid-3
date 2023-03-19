@@ -24,24 +24,6 @@ const codeBlockButtonClick = (button) => {
   button.ariaExpanded = details.open;
 };
 
-const codeCopyButtonClick = (button) => {
-  const details = button.closest('vwc-action-group').nextElementSibling;
-  const { textContent } = details;
-  navigator.clipboard.writeText(textContent.trim())
-    .then(() => {
-      /* clipboard successfully set */
-      button.icon = 'check-line';
-    })
-    .catch(() => {
-      /* clipboard write failed */
-      button.icon = 'close-line';
-    });
-
-  setTimeout(() => {
-    button.icon = 'copy-2-line';
-  }, 1000);
-};
-
 const onloadIframe = (iFrame) => {
   const toggle = document.querySelector('vwc-button#dark-mode-toggle');
   const listbox = document.querySelector('vwc-listbox#dark-mode-listbox');

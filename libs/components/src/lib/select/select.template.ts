@@ -62,6 +62,7 @@ function renderControl(context: ElementDefinitionContext) {
 				<${popupTag}
 					?open="${x => (x.collapsible ? x.open : true)}"
 					anchor="control"
+					placement="bottom-start"
 							strategy="absolute"
 							${ref('_popup')}
 							class="popup"
