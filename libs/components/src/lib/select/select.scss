@@ -85,10 +85,23 @@
 }
 
 .selected-value {
-	overflow: hidden;
-	max-inline-size: 100%;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+	display: flex;
+	align-items: center;
+	column-gap: 12px;
+
+	.text {
+		overflow: hidden;
+		max-inline-size: 100%;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		flex: 1;
+	}
+
+	.icon {
+		font-size: 20px;
+		line-height: 1;
+		flex: 0 1 20px;
+	}
 }
 
 

@@ -21,7 +21,7 @@ Read more about [vwc-option](../../components/option).
   }
 </style>
 <vwc-select label="choose one option">
-  <vwc-option value="1" text="Option 1: dogs" selected></vwc-option>
+  <vwc-option value="1" text="Option 1: dogs"></vwc-option>
   <vwc-option value="2" text="Option 2: cats"></vwc-option>
   <vwc-option value="3" text="Option 3: dogs and cats"></vwc-option>
 </vwc-select>
@@ -46,6 +46,26 @@ Add a `label` attribute to add label to the Select.
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
   <vwc-option value="3" text="Option 3"></vwc-option>
+</vwc-select>
+```
+
+### Icon
+Add an `icon` attribute to add an icon to the Select. 
+
+- Type: `string` | `undefined`
+- Default: `undefined`
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+  vwc-select {width: 150px;}
+</style>
+<vwc-select label="phone" icon="search-line">
+  <vwc-option value="1" text="+1" icon="flag-united-states"></vwc-option>
+  <vwc-option value="+49" text="+49" icon="flag-germany"></vwc-option>
+  <vwc-option value="+355" text="+355" icon="flag-albania"></vwc-option>
 </vwc-select>
 ```
 
