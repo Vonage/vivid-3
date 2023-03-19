@@ -315,7 +315,7 @@ describe('vwc-dialog', () => {
 			const bodySlotElement = element.shadowRoot?.
 				querySelector('.body slot[name="body"]');
 
-			expect(bodySlotElement).toBeTruthy();
+			expect(bodySlotElement).toBeDefined();
 		});
 
 		it('should remove hide-body class from .base if body is slotted', async function () {
@@ -325,10 +325,10 @@ describe('vwc-dialog', () => {
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
-			const baseElementHasBody = element.shadowRoot?.
-				querySelector('.base')?.classList.contains('hide-body');
+			const baseElementClasses = element.shadowRoot?.
+				querySelector('.base')?.classList;
 
-			expect(baseElementHasBody).toEqual(false);
+			expect(baseElementClasses).not.toContain('hide-body');
 		});
 
 		it('should add class of full-width to body div wrapper', async () => {
@@ -336,8 +336,7 @@ describe('vwc-dialog', () => {
 			element.fullWidthBody = true;
 			await  elementUpdated(element);
 			expect(element.hasAttribute('full-width-body')).toEqual(true);
-			expect(bodyDiv?.classList.contains('full-width'))
-				.toEqual(true);
+			expect(bodyDiv?.classList).toContain('full-width');
 
 		});
 
@@ -349,7 +348,7 @@ describe('vwc-dialog', () => {
 			const bodySlotElement = element.shadowRoot?.
 				querySelector('.footer slot[name="footer"]');
 
-			expect(bodySlotElement).toBeTruthy();
+			expect(bodySlotElement).toBeDefined();
 		});
 
 		it('should remove hide-footer class from .base if body is slotted', async function () {
@@ -359,10 +358,10 @@ describe('vwc-dialog', () => {
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
-			const baseElementHasBody = element.shadowRoot?.
-				querySelector('.base')?.classList.contains('hide-footer');
+			const baseElementClasses = element.shadowRoot?.
+				querySelector('.base')?.classList;
 
-			expect(baseElementHasBody).toEqual(false);
+			expect(baseElementClasses).not.toContain('hide-footer');
 		});
 	});
 
