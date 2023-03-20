@@ -233,7 +233,7 @@ If needed a `z-index` value can be set on the host
 ```html preview
 <style>
   html { /* for demo purposes */
-    block-size: 120px;
+    block-size: 250px;
   }
   vwc-select {width: 120px;}
 </style>
