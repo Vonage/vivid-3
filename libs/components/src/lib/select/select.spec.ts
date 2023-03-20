@@ -1,8 +1,10 @@
 import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
 import { Select } from './select';
+import {Icon} from "../icon/icon";
 import '.';
 
 const COMPONENT_TAG = 'vwc-select';
+const ICON_SELECTOR = 'vwc-icon';
 
 describe('vwc-select', () => {
 	let originalScrollIntoView: any;
@@ -41,7 +43,7 @@ describe('vwc-select', () => {
 			expect(element.label).toEqual(undefined);
 			expect(element.multiple).toBeUndefined();
 			expect(element.selectedIndex).toEqual(-1);
-
+			expect(element.icon).toEqual(undefined);
 		});
 	});
 
@@ -95,6 +97,19 @@ describe('vwc-select', () => {
 			const labelElement = element.shadowRoot?.querySelector('label');
 			expect(labelElement)
 				.toBeNull();
+		});
+	});
+
+	describe('select icon', () => {
+		it('should add an icon to the select', async () => {
+			element.icon = 'search-solid';
+			await elementUpdated(element);
+
+			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			expect(icon)
+				.toBeInstanceOf(Icon);
+			expect(icon?.name)
+				.toEqual('search-solid');
 		});
 	});
 
