@@ -1,6 +1,6 @@
 import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
+import {Icon} from '../icon/icon';
 import { Select } from './select';
-import {Icon} from "../icon/icon";
 import '.';
 
 const COMPONENT_TAG = 'vwc-select';
