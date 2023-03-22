@@ -1,11 +1,11 @@
-@use '../../../../shared/src/lib/sass/utils' as utils;
-
+@use "partials/variables" as variables;
+@use "../../../../shared/src/lib/sass/utils" as utils;
 
 .control {
 	background: var(#{utils.get-color-token(surface-4dp)});
 	border-radius: inherit;
 	contain: layout;
-	inline-size: fit-content;
+
 
 	&:not(.open) {
 		display: none;
@@ -13,14 +13,19 @@
 }
 
 .popup-wrapper {
-	position: fixed;
 	border-radius: 6px;
+	inline-size: fit-content;
+	&:not(.absolute) {
+		position: fixed;
+	}
+	&.absolute {
+		position: absolute;
+	}
 }
 
 .popup-content {
 	display: grid;
-	color: var(#{utils.get-color-token(canvas-text)});/* neutral-100 */
-
+	color: var(#{utils.get-color-token(canvas-text)}); /* neutral-100 */
 
 	.dismissible & {
 		align-content: start;
@@ -42,4 +47,3 @@
 	margin-block-start: 4px;
 	margin-inline-end: 4px;
 }
-

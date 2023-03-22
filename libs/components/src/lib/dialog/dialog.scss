@@ -1,66 +1,149 @@
-@use 'partials/variables' as variables;
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use "partials/variables" as variables;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+@use "../../../../shared/src/lib/sass/mixins/scrim" as scrim-mixins;
+@use "../../../../shared/src/lib/sass/mixins/elevation" as elevation;
 
+$dialog-space-size: 24px;
 
 .base {
 	box-sizing: border-box;
 	padding: 0;
 	border: none;
-	background: var(#{variables.$dialog-elevation-fill});
+	background: var(elevation.$vvd-elevation-fill);
 	border-radius: 6px;
 	color: var(#{constants.$vvd-color-canvas-text});
 	max-block-size: var(#{variables.$dialog-max-block-size}, calc(100vh - 64px));
-	max-inline-size: var(#{variables.$dialog-max-inline-size});
+	max-inline-size: var(#{variables.$dialog-max-inline-size}, var(#{variables.$dialog-default-max-inline-size}));
 	min-inline-size: var(#{variables.$dialog-min-inline-size}, 280px);
-	overflow-x: hidden;
-	overflow-y: auto;
 
 
 	@media not all and (min-width: 600px) {
-		#{variables.$dialog-max-inline-size}: 90vw;
+		#{variables.$dialog-default-max-inline-size}: 90vw;
 	}
 
 	@media (min-width: 600px) {
-		#{variables.$dialog-max-inline-size}: 560px;
+		#{variables.$dialog-default-max-inline-size}: 560px;
 	}
 
 	&:not(.modal) {
 		z-index: var(#{variables.$dialog-z-index}, 1);
 	}
+
+	&.modal {
+		&::backdrop {
+			@include scrim-mixins.scrim-variables;
+		}
+	}
 }
 
 .main-wrapper {
 	display: flex;
+	box-sizing: border-box;
 	flex-direction: column;
-	padding: 24px;
-	gap: 8px;
+	gap: $dialog-space-size;
+	padding-block: $dialog-space-size;
+
+	> * {
+		box-sizing: border-box;
+	}
 }
 
 .header {
-	display: flex;
+	display: grid;
 	align-items: flex-start;
 	justify-content: space-between;
-	gap: 4px;
 	inline-size: 100%;
+	padding-inline: $dialog-space-size;
+
+	.base:not(.icon-placement-side) & {
+		grid-template-columns: 1fr auto;
+		grid-template-rows: auto auto auto;
+
+		.icon {
+			font-size: #{size.$vvd-size-condensed};
+			grid-column: 1/2;
+			grid-row: 1/2;
+			line-height: 1;
+			margin-block-end: #{size.$vvd-size-super-condensed};
+		}
+	}
+
+
+	.base.icon-placement-side & {
+		grid-template-columns: auto 1fr auto;
+		grid-template-rows: auto auto;
+
+		.icon {
+			font-size: #{size.$vvd-size-extra-condensed};
+		}
+
+		::slotted(*),
+		.icon {
+			grid-column: 1/2;
+			grid-row: 1/-1;
+			margin-inline-end: calc(#{size.$vvd-size-condensed} / 2);
+		}
+	}
+
+	&.border {
+		position: relative;
+		&::after {
+			position: absolute;
+			bottom: calc($dialog-space-size * -1);
+			left: 0;
+			background-color: var(#{constants.$vvd-color-neutral-200});
+			block-size: 1px;
+			content: "";
+			inline-size: 100%;
+
+			.base.hide-body & {
+				content: none;
+			}
+		}
+	}
+
 }
+
+.body {
+	&:not(.full-width) {
+		padding-inline: $dialog-space-size;
+	}
+
+	.hide-body & {
+		display: none;
+	}
+}
+
+.footer {
+	padding-inline: $dialog-space-size;
+
+	.hide-footer & {
+		display: none;
+	}
+}
+
 
 .dismiss-button {
 	flex-shrink: 0;
-	margin-top: -8px;
-	margin-right: -8px;
+	grid-column: -2/-1;
+	grid-row: 1/-1;
+	margin-block-start: -8px;
+	margin-inline-end: -8px;
+	margin-inline-start: 4px;
 }
 
 .headline {
 	font: var(#{constants.$vvd-typography-heading-4});
-
-	&-wrapper {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		row-gap: 24px;
-	}
 }
 
-.content {
+.subtitle {
 	font: var(#{constants.$vvd-typography-base});
+}
+
+slot[name="main"] {
+	display: block;
+	overflow: hidden auto;
+	max-width: inherit;
+	max-height: inherit;
 }

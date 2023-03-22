@@ -1,22 +1,27 @@
-import {html, when} from '@microsoft/fast-element';
+import {html, slotted, when} from '@microsoft/fast-element';
 import type {ViewTemplate} from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import {classNames} from '@microsoft/fast-web-utilities';
+import { Elevation } from '../elevation/elevation';
+import { Icon } from '../icon/icon';
+import { Button } from '../button/button';
 import type {Dialog} from './dialog';
 
-const getClasses = (_: Dialog) => classNames(
+const getClasses = ({iconPlacement, bodySlottedContent, footerSlottedContent} : Dialog) => classNames(
 	'base',
+	[`icon-placement-${iconPlacement}`, Boolean(iconPlacement)],
+	['hide-body', !bodySlottedContent?.length],
+	['hide-footer', !footerSlottedContent?.length],
 );
-
 /**
  *
  */
-function icon() {
+function icon(iconTag: string) {
 	return html<Dialog>`
-		<vwc-icon class="icon" size="expanded" type="${x => x.icon}"></vwc-icon>
+		<${iconTag} class="icon" name="${x => x.icon}"></${iconTag}>
 	`;
 }
 
@@ -31,20 +36,30 @@ function headline() {
 	`;
 }
 
+/**
+ *
+ */
+function subtitle() {
+	return html<Dialog>`
+	  <div class="subtitle">
+		  ${x => x.subtitle}
+	  </div>
+	`;
+}
 
 /**
  *
  */
-function renderDismissButton() {
+function renderDismissButton(buttonTag: string) {
 	return html<Dialog>`
-	  <vwc-button
+	  <${buttonTag}
 			  size="condensed"
 			  class="dismiss-button"
 			  icon="close-line"
 			  @click="${x => {
 		x.open = false;
 	}}">
-	  </vwc-button>`;
+	  </${buttonTag}>`;
 }
 
 /**
@@ -55,18 +70,9 @@ function handleEscapeKey(dialog: Dialog, event: Event) {
 	if ((event as KeyboardEvent).key === 'Escape' && dialog.modal) {
 		dialog.open = false;
 	}
+	return true;
 }
 
-/**
- *
- */
-function content() {
-	return html<Dialog>`
-	  <div class="content">
-		  ${x => x.text}
-	  </div>
-	`;
-}
 /**
  * The template for the {@link @microsoft/fast-foundation#Dialog} component.
  *
@@ -76,34 +82,38 @@ function content() {
 export const DialogTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Dialog> = () => html<Dialog>`
-	<vwc-elevation dp="12">
-		<div>
-			<dialog class="${getClasses}"
-					@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
-					returnValue="${x => x.returnValue}"
-					aria-labelledby="${x => x.ariaLabelledBy}"
-					aria-label="${x => x.ariaLabel}"
-					aria-describedby="${x => x.ariaDescribedBy}"
-			>
-				<slot name="main">
-					<div class="main-wrapper">
-						<div class="header">
-							<div class="headline-wrapper">
-								<slot name="graphic">
-									${when(x => x.icon, icon())}
-								</slot>
-								${when(x => x.headline, headline())}
-							</div>
-						${renderDismissButton()}
-						</div>
-						<slot name="content">
-							${when(x => x.text, content())}
-						</slot>
-						<slot name="footer"></slot>
-					</div>
-				</slot>
-			</dialog>
-		</div>
-	</vwc-elevation>`;
+) => ViewTemplate<Dialog> = (context: ElementDefinitionContext) => {
+	const elevationTag = context.tagFor(Elevation);
+	const iconTag = context.tagFor(Icon);
+	const buttonTag = context.tagFor(Button);
 
+	return html<Dialog>`
+	<${elevationTag} dp="12">
+		<dialog class="${getClasses}"
+				@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
+				returnValue="${x => x.returnValue}"
+				aria-labelledby="${x => x.ariaLabelledBy}"
+				aria-label="${x => x.ariaLabel}"
+				aria-describedby="${x => x.ariaDescribedBy}"
+		>
+			<slot name="main">
+				<div class="main-wrapper">
+					<div class="header ${x => x.subtitle ? 'border' : ''}">
+							<slot name="graphic">
+								${when(x => x.icon, icon(iconTag))}
+							</slot>
+							${when(x => x.headline, headline())}
+							${when(x => x.subtitle, subtitle())}
+							${renderDismissButton(buttonTag)}
+					</div>
+					<div class="body ${x => x.bodySlottedContent?.length ? '' : 'hide'} ${x => x.fullWidthBody? 'full-width' : ''}" >
+						<slot name="body" ${slotted('bodySlottedContent')}></slot>
+					</div>
+					<div class="footer ${x => x.footerSlottedContent?.length ? '' : 'hide'}">
+						<slot name="footer" ${slotted('footerSlottedContent')}></slot>
+					</div>
+				</div>
+			</slot>
+		</dialog>
+	</${elevationTag}>`;
+};

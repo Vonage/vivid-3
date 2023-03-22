@@ -1,5 +1,7 @@
 import { fixture } from '@vivid-nx/shared';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {<%= className %>} from './<%= fileName %>';
+import { <%= camelCasedName %>Definition } from './definition';
 import '.';
 
 const COMPONENT_TAG = 'vwc-<%= name %>';
@@ -13,6 +15,7 @@ describe( 'vwc-<%= name %>', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-<%= name %>', async () => {
+			expect(<%= camelCasedName %>Definition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(<%= className %>);
 		});
 	});

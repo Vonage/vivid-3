@@ -1,16 +1,18 @@
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: success information alert announcement warning,
 	$shades: primary primary-text,
 	$default: information,
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: filled,
 	$default: filled,
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+
 
 $banner-transition-delay: --transition-delay;
 
@@ -30,7 +32,7 @@ $banner-transition-delay: --transition-delay;
 
 	> .header {
 		display: flex;
-		min-height: 60px;
+		min-height: #{size.$vvd-size-ultra-expanded};
 		align-items: center;
 		justify-content: flex-start;
 		font: var(#{constants.$vvd-typography-base-bold});
@@ -45,6 +47,7 @@ $banner-transition-delay: --transition-delay;
 			> .icon {
 				flex: 0 0 auto;
 				font-size: 20px;
+				line-height: 1;
 				margin-inline-end: 15px;
 			}
 

@@ -174,3 +174,18 @@ Add the `disabled` attribute to disable the button.
   });
 </script>
 ```
+
+### Full-width Button
+```html preview
+<style>
+.button-width {
+  display: block;
+}
+</style>
+<vwc-button
+  class='button-width'
+  label="I'm full width"
+  shape='pill'
+  appearance='filled'>
+</vwc-button>
+```
