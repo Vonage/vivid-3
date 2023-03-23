@@ -237,7 +237,7 @@ If needed a `z-index` value can be set on the host
   }
   vwc-select {width: 120px;}
 </style>
-<vwc-select label="phone">
+<vwc-select label="phone" icon="flag-united-states">
   <vwc-option value="1" text="+1" icon="flag-united-states"></vwc-option>
   <vwc-option value="+49" text="+49" icon="flag-germany"></vwc-option>
   <vwc-option value="+355" text="+355" icon="flag-albania"></vwc-option>
