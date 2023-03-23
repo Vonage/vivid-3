@@ -1,0 +1,104 @@
+@use "partials/variables" as variables;
+@use "../focus/partials/variables" as focus-variables;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+	$connotations: accent cta alert success,
+	$shades: primary-text primary primary-increment backdrop firm intermediate,
+	$default: accent,
+);
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+	$appearances: fieldset filled,
+	$states: idle hover disabled readonly,
+	$default: fieldset,
+);
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+
+.control {
+	@include connotation.connotation;
+	@include appearance.appearance;
+
+	display: inline-flex;
+	gap: 8px;
+
+	@supports selector(:focus-visible) {
+		&:focus {
+			outline: none;
+		}
+	}
+
+	@supports (user-select: none) {
+		user-select: none;
+	}
+
+	&:not(.disabled) {
+		cursor: pointer;
+	}
+
+	&.disabled {
+		cursor: not-allowed;
+		pointer-events: none;
+	}
+}
+
+.switch {
+	#{variables.$switch-inline-size}: calc(#{size.$vvd-size-ultra-condensed} * 1.8);
+
+	position: relative;
+	display: flex;
+	box-sizing: border-box;
+	align-items: center;
+	background-color: var(#{appearance.get-appearance-token(fill)});
+	block-size: #{size.$vvd-size-ultra-condensed};
+	border-radius: calc(#{size.$vvd-size-ultra-condensed} / .5);
+	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+	inline-size: var(#{variables.$switch-inline-size});
+	transition: all 0.2s ease-in-out 0s;
+}
+
+.checked-indicator {
+	#{variables.$checked-indicator-size}: calc(#{size.$vvd-size-ultra-condensed} / 1.6667);
+	#{variables.$gutter}: calc(var(#{variables.$checked-indicator-size}) / 3);
+
+	block-size: var(#{variables.$checked-indicator-size});
+	border-radius: inherit;
+	inline-size: var(#{variables.$checked-indicator-size});
+	margin-inline-start: auto ;
+	transition: all 0.2s ease-in-out 0s;
+
+	.control.appearance-filled & {
+		background-color: var(#{constants.$vvd-color-neutral-100});
+	}
+
+	.control:not(.appearance-filled) & {
+		background-color: var(#{appearance.get-appearance-token(outline)});
+	}
+
+	.control:not(.checked) & {
+		transform: translateX(calc(-1 * var(#{variables.$switch-inline-size}) + var(#{variables.$checked-indicator-size}) + var(#{variables.$gutter})));
+	}
+
+	.control.checked & {
+		transform: translateX(calc(-1 * var(#{variables.$gutter})));
+	}
+}
+
+.label {
+	color: var(#{constants.$vvd-color-canvas-text});
+	cursor: pointer;
+	font: var(#{constants.$vvd-typography-base});
+}
+
+.focus-indicator {
+	#{focus-variables.$focus-inset}: -4px;
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+	border-radius: 14px;
+
+	.control:not(:focus-visible) & {
+		display: none;
+	}
+}

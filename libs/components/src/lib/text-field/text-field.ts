@@ -1,12 +1,12 @@
 import {applyMixins, TextField as FoundationTextfield} from '@microsoft/fast-foundation';
 import {attr} from '@microsoft/fast-element';
-import type {Appearance, Density, Shape} from '../enums';
-import {AffixIcon} from '../../shared/patterns';
-import {FormElement, formElements} from '../../shared/patterns/form-elements';
+import type {Appearance, Shape} from '../enums';
+import {AffixIcon, FormElementCharCount, FormElementHelperText, FormElementSuccessText} from '../../shared/patterns';
+import {FormElement, formElements} from '../../shared/patterns';
 
-type TextFieldDensity = Extract<Density, Density.Normal | Density.Extended>;
-type TextFieldAppearance = Extract<Appearance, Appearance.Outlined | Appearance.Ghost>;
-type TextFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+
+export type TextFieldAppearance = Extract<Appearance, Appearance.Outlined | Appearance.Ghost>;
+export type TextFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
  * Base class for text-field
@@ -15,13 +15,12 @@ type TextFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  */
 @formElements
 export class TextField extends FoundationTextfield {
-	@attr density?: TextFieldDensity;
 	@attr appearance?: TextFieldAppearance;
 	@attr shape?: TextFieldShape;
 	@attr autoComplete?: string;
 }
 
-export interface TextField extends AffixIcon, FormElement{}
-applyMixins(TextField, AffixIcon);
+export interface TextField extends AffixIcon, FormElement, FormElementCharCount, FormElementHelperText, FormElementSuccessText{}
+applyMixins(TextField, AffixIcon, FormElementCharCount, FormElementHelperText, FormElementSuccessText);
 
 

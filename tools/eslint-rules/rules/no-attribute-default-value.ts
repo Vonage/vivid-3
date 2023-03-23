@@ -14,33 +14,36 @@
  * https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin/src/rules
  */
 
-import { AttributeMode } from '@microsoft/fast-element';
-import { ESLintUtils, TSESTree, ASTUtils } from '@typescript-eslint/experimental-utils';
+import { AttributeMode } from "@microsoft/fast-element";
+import { ESLintUtils, TSESTree, ASTUtils } from "@typescript-eslint/utils";
 
 // NOTE: The rule will be available in ESLint configs as "@nrwl/nx/workspace/no-attribute-default-value"
-export const RULE_NAME = 'no-attribute-default-value';
+export const RULE_NAME = "no-attribute-default-value";
 
 export const rule = ESLintUtils.RuleCreator(() => __filename)({
   name: RULE_NAME,
   meta: {
-    type: 'problem',
+    type: "problem",
     docs: {
       description: ``,
-      recommended: 'error',
+      recommended: "error",
     },
     schema: [],
     messages: {
-      noAttributeDefaultValue: '\'attr\' decorator assigned with a default value (unless mode is set to \'fromView\', or, to \'boolean\' assigned to false) will mutate the custom element in the DOM light tree.'
+      noAttributeDefaultValue:
+        "'attr' decorator assigned with a default value (unless mode is set to 'fromView', or, to 'boolean' assigned to false) will mutate the custom element in the DOM light tree.",
     },
   },
   defaultOptions: [],
   create(context) {
     return {
-      'Decorator:matches([expression.name=attr], [expression.callee.name=attr])'(node: TSESTree.Decorator) {
-
+      "Decorator:matches([expression.name=attr], [expression.callee.name=attr])"(
+        node: TSESTree.Decorator
+      ) {
         const parent = node.parent as TSESTree.PropertyDefinition;
 
-        if (parent.type !== 'PropertyDefinition' || parent.value === null) return; // if is not a 'PropertyDefinition' or no value is provided, we're good
+        if (parent.type !== "PropertyDefinition" || parent.value === null)
+          return; // if is not a 'PropertyDefinition' or no value is provided, we're good
 
         const { expression } = node;
 
@@ -48,49 +51,62 @@ export const rule = ESLintUtils.RuleCreator(() => __filename)({
           return;
         }
 
-        if (expression.type === 'CallExpression') {
-
+        if (expression.type === "CallExpression") {
           const { arguments: args } = expression;
 
-          const props = args.flatMap(arg =>
-            arg.type === 'ObjectExpression'
-            && arg.properties
+          const props = args.flatMap(
+            (arg) => arg.type === "ObjectExpression" && arg.properties
           );
 
           const modeValue = getAttrReflectionModeValue(props);
 
-          if (isFromView(modeValue) || isFalseBoolean(modeValue, parent) || isNullish(parent)) {
+          if (
+            isFromView(modeValue) ||
+            isFalseBoolean(modeValue, parent) ||
+            isNullish(parent)
+          ) {
             return;
           }
         }
 
         context.report({
           node: parent.value,
-          messageId: "noAttributeDefaultValue"
+          messageId: "noAttributeDefaultValue",
         });
-      }
+      },
     };
   },
 });
 
-function getAttrReflectionModeValue(props: TSESTree.ObjectLiteralElement[]): AttributeMode {
+function getAttrReflectionModeValue(
+  props: TSESTree.ObjectLiteralElement[]
+): AttributeMode {
   return props
-    .filter(({ key, value }: TSESTree.Property) => ASTUtils.isIdentifier(key)
-      && value.type === 'Literal'
-      && key.name === 'mode'
+    .filter(
+      ({ key, value }: TSESTree.Property) =>
+        ASTUtils.isIdentifier(key) &&
+        value.type === "Literal" &&
+        key.name === "mode"
     )
-    .map(({ value }: TSESTree.Property) => (value as TSESTree.Literal).value)[0] as AttributeMode;
+    .map(
+      ({ value }: TSESTree.Property) => (value as TSESTree.Literal).value
+    )[0] as AttributeMode;
 }
 
 function isFromView(modeValue: AttributeMode) {
-  return modeValue === 'fromView';
+  return modeValue === "fromView";
 }
 
-function isFalseBoolean(modeValue: AttributeMode, parent: TSESTree.PropertyDefinition): boolean {
-  return modeValue === 'boolean' && (parent.value as TSESTree.Literal).value === false;
+function isFalseBoolean(
+  modeValue: AttributeMode,
+  parent: TSESTree.PropertyDefinition
+): boolean {
+  return (
+    modeValue === "boolean" &&
+    (parent.value as TSESTree.Literal).value === false
+  );
 }
 
 function isNullish(parent: TSESTree.PropertyDefinition): boolean {
   return (parent.value as TSESTree.Literal).value === null;
 }
-

@@ -3,7 +3,7 @@ import { attr } from '@microsoft/fast-element';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
 import type {
-	Appearance, Connotation, Density, Shape,
+	Appearance, Connotation, Shape,
 } from '../enums.js';
 
 /**
@@ -11,7 +11,7 @@ import type {
  *
  * @public
  */
-type BadgeConnotation = Extract<Connotation,
+export type BadgeConnotation = Extract<Connotation,
 | Connotation.Accent
 | Connotation.CTA
 | Connotation.Success
@@ -24,7 +24,7 @@ type BadgeConnotation = Extract<Connotation,
  *
  * @public
  */
-type BadgeAppearance = Extract<Appearance,
+export type BadgeAppearance = Extract<Appearance,
 Appearance.Filled | Appearance.Duotone | Appearance.Subtle>;
 
 /**
@@ -32,14 +32,7 @@ Appearance.Filled | Appearance.Duotone | Appearance.Subtle>;
  *
  * @public
  */
-type BadgeShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
-
-/**
- * Types of badge density.
- *
- * @public
- */
-type BadgeDensity = Extract<Density, Density.Condensed | Density.Normal | Density.Extended>;
+export type BadgeShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
  * Base class for badge
@@ -73,15 +66,6 @@ export class Badge extends FoundationElement {
 	 * HTML Attribute: appearance
 	 */
 	@attr appearance?: BadgeAppearance;
-
-	/**
-	 * The size the badge should have.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: size
-	 */
-	@attr density?: BadgeDensity;
 
 	/**
 	 * Indicates the badge's text.

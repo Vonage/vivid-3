@@ -1,29 +1,28 @@
 {
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "root": "apps/vivid-demo",
   "sourceRoot": "apps/vivid-demo/src",
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "pathprefix": "",
         "commands": [
-          {
-            "command": "npx eleventy --config=./apps/docs/.eleventy.js"
-          }
+          "npx rollup -c ./apps/docs/rollup.config.js",
+          "npx eleventy --config=./apps/docs/.eleventy.js"
         ]
       }
     },
     "serve": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
-        "command": "npx eleventy --config=./apps/docs/.eleventy.js --serve & npx nx serve styles & npx nx build components --watch"
+        "commands": [
+          "npx rollup -c ./apps/docs/rollup.config.js --watch",
+          "npx eleventy --config=./apps/docs/.eleventy.js --serve & npx nx serve styles & npx nx build components --watch"
+        ]
       }
     }
   },
-  "implicitDependencies": [
-    "components",
-		"styles"
-  ]
+  "implicitDependencies": ["components", "styles"]
 }

@@ -1,20 +1,20 @@
-@use '../../../../../dist/libs/tokens/scss/constants' as constants;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 
-@use 'partials/variables' as variables;
-@use '../calendar/partials/variables' as calendar-variables;
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use "partials/variables" as variables;
+@use "../calendar/partials/variables" as calendar-variables;
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta success alert warning information announcement,
 	$shades: primary primary-text contrast soft,
 	$default: information,
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: filled subtle,
 	$states: idle,
 	$default: filled,
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 
 :host {
 	display: contents;
@@ -78,7 +78,7 @@
 
 h2 {
 	margin: 0;
-	font: var(#{constants.$vvd-font-base-condensed-bold});
+	font: var(#{constants.$vvd-typography-base-condensed-bold});
 
 	>strong {
 		font: inherit;
@@ -87,5 +87,5 @@ h2 {
 
 p {
 	margin: 0;
-	font: var(#{constants.$vvd-font-base-condensed});
+	font: var(#{constants.$vvd-typography-base-condensed});
 }

@@ -1,0 +1,86 @@
+@use "../focus/partials/variables" as focus-variables;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "../../../../shared/src/lib/sass/utils" as utils;
+
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+	$connotations: accent,
+	$shades: primary firm faint soft,
+	$default: accent,
+);
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+	$appearances: outlined,
+	$states: idle hover active checked checkedAndHover disabled readonly,
+	$default: outlined,
+);
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+
+
+$control-size: #{size.$vvd-size-ultra-condensed};
+$control-border: 2px;
+
+@supports selector(:focus-visible) {
+	:host(:focus) {
+		outline: none;
+	}
+}
+
+.base {
+	@include connotation.connotation;
+	@include appearance.appearance;
+
+	display: inline-flex;
+	align-items: center;
+	cursor: pointer;
+	gap: 8px;
+
+	@supports (user-select: none) {
+		user-select: none;
+	}
+
+	&.disabled {
+		cursor: not-allowed;
+		pointer-events: none;
+	}
+}
+
+.control {
+	position: relative;
+	flex-shrink: 0;
+	background-color: var(#{appearance.get-appearance-token(fill)});
+	block-size: $control-size;
+	border-radius: 50%;
+	box-shadow: inset 0 0 0 $control-border var(#{appearance.get-appearance-token(outline)});
+	inline-size: $control-size;
+
+	&::after {
+		position: absolute;
+		background-color: var(#{appearance.get-appearance-token(text)});
+		border-radius: inherit;
+		content: "";
+		inset: 5px;
+
+		.base:not(.checked) & {
+			display: none;
+		}
+	}
+}
+
+label {
+	color: var(#{constants.$vvd-color-canvas-text});
+	cursor: pointer;
+	font: var(#{constants.$vvd-typography-base});
+}
+
+.focus-indicator {
+	#{focus-variables.$focus-inset}: -3px;
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+	border-radius: 50%;
+
+	:host(:not(:focus-visible)) & {
+		display: none;
+	}
+}

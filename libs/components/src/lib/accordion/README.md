@@ -12,7 +12,7 @@ The vwc-accordion accepts [vwc-accordion-item](../../components/accordion-item) 
 
 ```html preview full
 <vwc-accordion>
-  <vwc-accordion-item heading="Accordion item 1" open>
+  <vwc-accordion-item heading="Accordion item 1" expanded>
     This is the first item's accordion body.
   </vwc-accordion-item>
   <vwc-accordion-item heading="Accordion item 2">
@@ -29,16 +29,16 @@ The vwc-accordion accepts [vwc-accordion-item](../../components/accordion-item) 
 
 ## Members
 
-### Multi
+### Expand-mode
 
-Add the `multi` attribute to the accordion to allow multiple items to be open at once.
+Use the `expand-mode` attribute to control the expand mode of the accordion, either allowing single or multiple item expansion.
 
-- Type: `boolean`
-- Default: `false`
+- Type: `'multi'` | `'single'`
+- Default: `'single'`
 
 ```html preview full
-<vwc-accordion multi>
-  <vwc-accordion-item heading="Accordion item 1" open>
+<vwc-accordion expand-mode="multi">
+  <vwc-accordion-item heading="Accordion item 1" expanded>
     This is the first item's accordion body.
   </vwc-accordion-item>
   <vwc-accordion-item heading="Accordion item 2">
@@ -57,7 +57,7 @@ Add the `multi` attribute to the accordion to allow multiple items to be open at
 
 ### closeAll()
 
-- Type: function
+- Type: `function`
 - Returns: `void`
 
- Closes all the accordion items from the open state.
+When `expand-mode` is set to `multi`, closes all the accordion items from the open state.

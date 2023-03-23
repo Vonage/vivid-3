@@ -1,8 +1,7 @@
 import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { arrow, autoUpdate, computePosition, flip, hide, inline, offset, Strategy } from '@floating-ui/dom';
-import type { Placement } from '@floating-ui/dom';
-import { keyEscape } from '@microsoft/fast-web-utilities';
+import { arrow, autoUpdate, computePosition, flip, hide, inline, offset } from '@floating-ui/dom';
+import type { Placement, Strategy } from '@floating-ui/dom';
 
 /**
  * Base class for popup
@@ -13,7 +12,6 @@ export class Popup extends FoundationElement {
 	get #arrowPosition(): any { return { top: 'bottom', right: 'left', bottom: 'top', left: 'right' }; }
 	get #padding(): number { return 0; }
 	get #distance(): number { return 12; }
-	get #strategy(): Strategy { return 'fixed'; }
 	get #middleware(): Array<any> {
 		const middleware = [flip(), hide(), inline()];
 		if (this.arrow) { middleware.push(arrow({ element: this.arrowEl, padding: this.#padding }), offset(this.#distance)); }
@@ -22,7 +20,7 @@ export class Popup extends FoundationElement {
 
 	#cleanup?: () => void; // cleans the autoupdate
 
-	#anchorEl: Element | null | undefined;
+	protected anchorEl: Element | null | undefined;
 
 	popupEl!: HTMLElement;
 
@@ -37,7 +35,6 @@ export class Popup extends FoundationElement {
 	@attr({
 		mode: 'boolean',
 	}) open = false;
-
 	openChanged(_: boolean, newValue: boolean): void {
 		newValue ? this.$emit('open') : this.$emit('close');
 	}
@@ -81,20 +78,23 @@ export class Popup extends FoundationElement {
 	@attr({ mode: 'fromView' }) placement?: Placement;
 
 	/**
-	 * ID reference to element in the popup’s owner document.
+	 * the strategy of the popup
+	 *
+	 * @public
+	 * HTML Attribute: strategy
+	 */
+	@attr({ mode: 'fromView' }) strategy?: Strategy = 'fixed';
+
+	/**
+	 * ID reference to element in the popup’s owner document or HTMLElement.
 	 *
 	 * @public
 	 * HTML Attribute: anchor
 	 */
-	@attr anchor!: string;
-
-	constructor() {
-		super();
-	}
+	@attr anchor!: string | HTMLElement;
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		this.#anchorEl?.removeEventListener('keydown', this.#handleKeydown);
 		this.#cleanup?.();
 	}
 
@@ -102,15 +102,16 @@ export class Popup extends FoundationElement {
 		super.attributeChangedCallback(name, oldValue, newValue);
 		switch (name) {
 			case 'anchor': {
-				this.#anchorEl?.removeEventListener('keydown', this.#handleKeydown);
-				this.#anchorEl = this.#getAnchorById();
-				// close the popup if pressed escape
-				this.#anchorEl?.addEventListener('keydown', this.#handleKeydown);
+				this.anchorEl = this.#getAnchor();
+				break;
+			}
+			case 'open': {
+				this.open ? this.show() : this.hide();
 				break;
 			}
 		}
-		if (this.#anchorEl && this.popupEl) {
-			this.#cleanup = autoUpdate(this.#anchorEl, this.popupEl, () => this.updatePosition());
+		if (this.anchorEl && this.popupEl) {
+			this.#cleanup = autoUpdate(this.anchorEl, this.popupEl, () => this.updatePosition());
 		}
 		else {
 			this.#cleanup?.();
@@ -123,13 +124,13 @@ export class Popup extends FoundationElement {
 	 * @public
 	 */
 	async updatePosition() {
-		if (!this.open || !this.#anchorEl) {
+		if (!this.open || !this.anchorEl) {
 			return;
 		}
 
-		const positionData = await computePosition(this.#anchorEl, this.popupEl, {
+		const positionData = await computePosition(this.anchorEl, this.popupEl, {
 			placement: this.placement,
-			strategy: this.#strategy,
+			strategy: this.strategy,
 			middleware: this.#middleware
 		});
 		this.#assignPopupPosition(positionData);
@@ -161,13 +162,15 @@ export class Popup extends FoundationElement {
 	/**
 	 * Gets the anchor element by id
 	 */
-	#getAnchorById(): HTMLElement | null {
-		return document.getElementById(this.anchor);
+	#getAnchor(): HTMLElement | null {
+		return this.anchor instanceof HTMLElement ? this.anchor : document.getElementById(this.anchor);
 	}
 
-	#handleKeydown = (event: Event) => {
-		if ((event as KeyboardEvent).key === keyEscape) {
-			this.open = false;
-		}
-	};
+	show(): void {
+		this.open = true;
+	}
+
+	hide(): void {
+		this.open = false;
+	}
 }

@@ -1,12 +1,12 @@
 # Button
 
-A button represents an action that the user can take. Use buttons to enable important actions.  
+A button represents an action that the user can take. Use buttons to enable important actions.
 All native attributes of `button` are supported as well as some enhancements.
 
 
 ```js
 <script type='module'>
-    import '@vonage/vivid/button';
+  import '@vonage/vivid/button';
 </script>
 ```
 
@@ -73,17 +73,17 @@ Use the `shape` attribute to set the button's edges.
 <vwc-button appearance='filled' label='pill' shape='pill'></vwc-button>
 ```
 
-### Density
+### Size
 
-Use the `density` attribute to set the button's to one of the predefined block size extent.
+Use the `size` attribute to set the button's to one of the predefined block size extent.
 
-- Type: `'condensed'` | `'normal'` | `'extended'`
+- Type: `'condensed'` | `'normal'` | `'expanded'`
 - Default: `'normal'`
 
 ```html preview
-<vwc-button appearance='filled' label='condensed' density='condensed'></vwc-button>
-<vwc-button appearance='filled' label='normal' density='normal'></vwc-button>
-<vwc-button appearance='filled' label='extended' density='extended'></vwc-button>
+<vwc-button appearance='filled' label='condensed' size='condensed'></vwc-button>
+<vwc-button appearance='filled' label='normal' size='normal'></vwc-button>
+<vwc-button appearance='filled' label='expanded' size='expanded'></vwc-button>
 ```
 
 ### Stacked
@@ -96,7 +96,7 @@ Set the `stacked` attribute to change the button's layout to stacked.
 Caveats:
 
 - This is only applicable to the `'rounded'` shape.
-- This will override any applied [density](#density) style to match a predefined stacked block size.
+- This will override any applied [size](#size) style to match a predefined stacked block size.
 
 ```html preview
 <vwc-button stacked appearance='filled' label='Stacked'></vwc-button>
@@ -173,4 +173,19 @@ Add the `disabled` attribute to disable the button.
     button.ariaLabel = button.ariaPressed ? 'Unmute' : 'Mute';
   });
 </script>
+```
+
+### Full-width Button
+```html preview
+<style>
+.button-width {
+  display: block;
+}
+</style>
+<vwc-button
+  class='button-width'
+  label="I'm full width"
+  shape='pill'
+  appearance='filled'>
+</vwc-button>
 ```

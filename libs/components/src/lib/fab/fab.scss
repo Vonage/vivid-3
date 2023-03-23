@@ -1,4 +1,4 @@
-@use '../../../../../dist/libs/tokens/scss/constants' as constants;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 
 @use "partials/variables" as variables;
 @use "../../../../shared/src/lib/sass/mixins/elevation" as elevation;
@@ -15,6 +15,7 @@
 	$default: filled
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
 
 .control {
@@ -29,7 +30,7 @@
 	color: var(#{appearance.get-appearance-token(text)}, var(constants.$vvd-color-canvas-text));
 	column-gap: var(#{variables.$icon-gap});
 	filter: var(#{elevation.$vvd-elevation-shadow});
-	font: var(#{constants.$vvd-font-base-bold});
+	font: var(#{constants.$vvd-typography-base-bold});
 	transition: background-color 0.15s linear, filter 0.15s linear;
 	vertical-align: middle;
 	@include connotation.connotation;
@@ -47,14 +48,14 @@
 
 	/* Size */
 
-	&.density-extended {
+	&.size-expanded {
 		#{variables.$border-radius}: 30px;
-		#{variables.$block-size}: 56px;
+		#{variables.$block-size}: #{size.$vvd-size-super-expanded};
 	}
 
-	&:not(.density-extended) {
+	&:not(.size-expanded) {
 		#{variables.$border-radius}: 24px;
-		#{variables.$block-size}: 40px;
+		#{variables.$block-size}: #{size.$vvd-size-normal};
 	}
 
 	&.icon-only {
@@ -100,16 +101,18 @@
 
 /* Icon */
 .icon {
+	line-height: 1;
+
 	.icon-trailing & {
 		order: 1;
 	}
 
-	.density-extended & {
-		font-size: 24px;
+	.control.size-extended & {
+		font-size: calc(#{size.$vvd-size-super-expanded} / 2.3333);
 	}
 
-	&:not(.density-extended) &{
-		font-size: 20px;
+	.control:not(.size-extended) &{
+		font-size: calc(#{size.$vvd-size-normal} / 2);
 	}
 }
 

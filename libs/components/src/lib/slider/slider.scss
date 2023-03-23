@@ -1,0 +1,167 @@
+@use "../focus/partials/variables" as focus-variables;
+@use "../../../../shared/src/lib/sass/utils" as utils;
+@use "partials/variables" as variables;
+
+
+$track-thickness: 2px;
+
+:host {
+	display: inline-block;
+	width: 100%;
+}
+
+:host([orientation="vertical"]) {
+	height: 100%;
+	min-height: calc(var(#{variables.$thumb-interaction-indicator-size}) * 5);
+}
+
+.control {
+	#{variables.$thumb-size}: 12px;
+	#{variables.$thumb-interaction-indicator-size}: 36px;
+
+	height: var(#{variables.$thumb-interaction-indicator-size});
+	cursor: pointer;
+	outline: none;
+	user-select: none;
+
+	@supports selector(:focus-visible) {
+		&:focus {
+			outline: none;
+		}
+	}
+
+	& .positioning-region {
+		position: relative;
+	}
+
+	.track {
+		position: absolute;
+		background: var(#{variables.$track-background-color});
+		border-radius: 4px;
+
+		.track-start {
+			position: absolute;
+			left: 0;
+			height: 100%;
+			background: var(#{variables.$track-start-background-color});
+			border-radius: 4px;
+		}
+	}
+
+	& .thumb-container {
+		position: absolute;
+		width: var(#{variables.$thumb-interaction-indicator-size});
+		height: var(#{variables.$thumb-interaction-indicator-size});
+		cursor: inherit;
+		touch-action: none;
+
+		&::before {
+			position: absolute;
+			display: block;
+			width: var(#{variables.$thumb-interaction-indicator-size});
+			height: var(#{variables.$thumb-interaction-indicator-size});
+			background-color: var(#{variables.$track-start-background-color});
+			border-radius: 50%;
+			content: "";
+			opacity: var(#{variables.$thumb-interaction-indicator-alpha}, 0);
+			transition: opacity 0.2s ease-out 0s;
+		}
+
+		&::after {
+			position: absolute;
+			display: block;
+			width: var(#{variables.$thumb-size});
+			height: var(#{variables.$thumb-size});
+			background-color: var(#{variables.$track-start-background-color});
+			border-radius: 50%;
+			content: "";
+			inset: calc((var(#{variables.$thumb-interaction-indicator-size}) - var(#{variables.$thumb-size})) / 2);
+		}
+	}
+
+	&[aria-orientation="horizontal"] {
+		width: calc(100% - var(#{variables.$thumb-size}));
+		min-width: var(#{variables.$thumb-size});
+		margin-left: calc(var(#{variables.$thumb-size}) / 2);
+
+		& .track {
+			top: calc((var(#{variables.$thumb-interaction-indicator-size}) - $track-thickness) / 2);
+			right: 0;
+			left: 0;
+			height: $track-thickness;
+
+			& .mark {
+				width: 100%;
+				height: 4px;
+			}
+		}
+
+		& .thumb-container {
+			transform: translateX(calc(var(#{variables.$thumb-interaction-indicator-size}) / 2));
+		}
+	}
+
+	&[aria-orientation="vertical"] {
+		height: calc(100% - var(#{variables.$thumb-interaction-indicator-size}));
+		min-height: var(#{variables.$thumb-interaction-indicator-size});
+		margin-top: calc(var(#{variables.$thumb-interaction-indicator-size}) / 2);
+
+		& .positioning-region {
+			height: 100%;
+		}
+
+		& .track {
+			left: calc((var(#{variables.$thumb-interaction-indicator-size}) - $track-thickness) / 2);
+			width: $track-thickness;
+			height: 100%;
+
+			& .mark {
+				width: 4px;
+				height: 100%;
+			}
+		}
+
+		& .track-start {
+			top: 0;
+			width: 100%;
+			height: auto;
+		}
+
+		& .thumb-container {
+			transform: translateY(calc(var(#{variables.$thumb-interaction-indicator-size}) / 2));
+		}
+	}
+
+	&.disabled {
+		#{variables.$track-background-color}: var(#{utils.get-color-token(neutral-100)});
+		#{variables.$track-start-background-color}: var(#{utils.get-color-token(neutral-500)});
+
+		cursor: not-allowed;
+		pointer-events: none;
+	}
+
+	&:not(.disabled) {
+		#{variables.$track-background-color}: var(#{utils.get-color-token(neutral-300)});
+		#{variables.$track-start-background-color}: var(#{utils.get-color-token(canvas-text)});
+
+		.thumb-container {
+			&:hover {
+				#{variables.$thumb-interaction-indicator-alpha}: 0.12;
+			}
+			&:active {
+				#{variables.$thumb-interaction-indicator-alpha}: 0.25;
+			}
+		}
+	}
+}
+
+.focus-indicator {
+	#{focus-variables.$focus-inset}: -3px;
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+	border-radius: 50%;
+
+	.control:not(:focus-visible) & {
+		display: none;
+	}
+}

@@ -5,10 +5,9 @@ const config: PlaywrightTestConfig = {
 	outputDir: '../../test-results',
 	projects: [
 		{
-			name: 'Chrome Stable',
+			name: 'Desktop Chromium',
 			use: {
-				browserName: 'chromium',
-				channel: 'chrome',
+				browserName: 'chromium'
 			},
 		},
 		{

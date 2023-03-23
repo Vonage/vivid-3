@@ -1,8 +1,9 @@
 import {elementUpdated, fixture } from '@vivid-nx/shared';
-import {expect} from '@playwright/test';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { Card } from './card';
 import '.';
+import { cardDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-card';
 const ICON_SELECTOR = 'vwc-icon';
@@ -16,6 +17,7 @@ describe('vwc-card', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-card', async () => {
+			expect(cardDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Card);
 			expect(element.icon).toBeUndefined();
 		});
@@ -64,7 +66,7 @@ describe('vwc-card', () => {
 
 			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
 			expect(icon).toBeInstanceOf(Icon);
-			expect(icon.type).toEqual('chat-line');
+			expect(icon.name).toEqual('chat-line');
 		});
 
 		it( 'should add class .hide-header to .base', async () => {

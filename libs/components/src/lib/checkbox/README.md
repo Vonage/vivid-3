@@ -1,8 +1,7 @@
 # Checkbox
 
-Represents a checkbox custom element.  
+Represents a checkbox custom element.
 All native attributes of `checkbox` are supported as well as some enhancements.
-
 
 ```js
 <script type="module">
@@ -65,6 +64,7 @@ Toggle the `disabled` member to disable/enable the checkbox.
 
 ```html preview
 <vwc-checkbox disabled></vwc-checkbox>
+<vwc-checkbox disabled checked></vwc-checkbox>
 ```
 
 ### Readonly
@@ -77,4 +77,16 @@ A read-only checkbox cannot be modified (however it can focused and tabbed into)
 
 ```html preview
 <vwc-checkbox readonly></vwc-checkbox>
+<vwc-checkbox readonly checked></vwc-checkbox>
+```
+
+### Value
+
+Use the `value` member to set the checkbox's value.
+
+- Type: `string`
+- Default: `"on"`
+
+```html preview
+<vwc-checkbox value="my-value"></vwc-checkbox>
 ```

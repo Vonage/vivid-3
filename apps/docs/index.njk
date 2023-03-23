@@ -1,7 +1,9 @@
 ---
-layout: base.njk
 title: yo title
 permalink: /
 ---
+{% extends './_layouts/base.njk' %}
 
-{% renderFile './libs/components/README.md' %}
+{% block content %}
+	{% renderFile './libs/components/README.md' %}
+{% endblock %}

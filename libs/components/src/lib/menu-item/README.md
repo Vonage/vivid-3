@@ -4,18 +4,46 @@ Represents a menu-item custom element.
 
 ```js
 <script type="module">
- import '@vonage/vivid/menu-item';
+  import '@vonage/vivid/menu-item';
 </script>
 ```
 
 ```html preview
 
 <vwc-menu open>
- <vwc-menu-item text="Menu item"></vwc-menu-item>
+  <vwc-menu-item text="Menu item"></vwc-menu-item>
 </vwc-menu>
 ```
 
 ## Members
+
+### Text
+
+- Type: `string`
+- Default: `undefined`
+
+Use the `text` attribute to set the menu item's text.
+
+```html preview
+<vwc-menu open>
+  <vwc-menu-item text="Menu item"></vwc-menu-item>
+</vwc-menu>
+```
+
+### Secondary text
+
+- Type: `string`
+- Default: `undefined`
+
+Use the `text-secondary` attribute (or `textSecondary` property) to set the menu item's secondary text.
+
+Note: to improve readability, **avoid long text and multiple lines** where possible.
+
+```html preview
+<vwc-menu open>
+ <vwc-menu-item text="menu item" text-secondary="secondary text"></vwc-menu-item>
+</vwc-menu>
+```
 
 ### Role
 
@@ -26,23 +54,23 @@ set `role` to change the role of the menu item
 
 ```html preview
 <style>
- html { 
-  block-size: 360px; 
- }
+  html { 
+    block-size: 360px; 
+  }
 </style>
 
 <vwc-menu open>
- <vwc-menu-item role="menuitem" text="Menu item 1"></vwc-menu-item>
- <vwc-menu-item role="menuitem" text="Menu item 2"></vwc-menu-item>
- <vwc-divider></vwc-divider>
- <vwc-menu-item role="menuitemcheckbox" text="Checkbox 1"></vwc-menu-item>
- <vwc-menu-item role="menuitemcheckbox" text="Checkbox 2"></vwc-menu-item>
- <vwc-divider></vwc-divider>
- <vwc-menu-item role="menuitemradio" text="Radio 1.1"></vwc-menu-item>
- <vwc-menu-item role="menuitemradio" text="Radio 1.2"></vwc-menu-item>
- <vwc-divider></vwc-divider>
- <vwc-menu-item role="menuitemradio" text="Radio 2.1"></vwc-menu-item>
- <vwc-menu-item role="menuitemradio" text="Radio 2.2"></vwc-menu-item>
+  <vwc-menu-item role="menuitem" text="Menu item 1"></vwc-menu-item>
+  <vwc-menu-item role="menuitem" text="Menu item 2"></vwc-menu-item>
+  <vwc-divider></vwc-divider>
+  <vwc-menu-item role="menuitemcheckbox" text="Checkbox 1"></vwc-menu-item>
+  <vwc-menu-item role="menuitemcheckbox" text="Checkbox 2"></vwc-menu-item>
+  <vwc-divider></vwc-divider>
+  <vwc-menu-item role="menuitemradio" text="Radio 1.1"></vwc-menu-item>
+  <vwc-menu-item role="menuitemradio" text="Radio 1.2"></vwc-menu-item>
+  <vwc-divider></vwc-divider>
+  <vwc-menu-item role="menuitemradio" text="Radio 2.1"></vwc-menu-item>
+  <vwc-menu-item role="menuitemradio" text="Radio 2.2"></vwc-menu-item>
 </vwc-menu>
 ```
 
@@ -58,7 +86,7 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 
 ```html preview
 <vwc-menu open>
- <vwc-menu-item icon="file-pdf-line" text="Export to PDF"></vwc-menu-item>
+  <vwc-menu-item icon="file-pdf-line" text="Export to PDF"></vwc-menu-item>
 </vwc-menu>
 ```
 
@@ -71,7 +99,7 @@ The checked value of the element (if role is set to `'menuitemcheckbox'`).
 
 ```html preview
 <vwc-menu open>
- <vwc-menu-item role="menuitemcheckbox" checked text="Checked Menu item"></vwc-menu-item>
+  <vwc-menu-item role="menuitemcheckbox" checked text="Checked Menu item"></vwc-menu-item>
 </vwc-menu>
 ```
 
@@ -84,7 +112,7 @@ The disabled state of the element
 
 ```html preview
 <vwc-menu open>
- <vwc-menu-item disabled text="Disabled Menu item"></vwc-menu-item>
+  <vwc-menu-item disabled text="Disabled Menu item"></vwc-menu-item>
 </vwc-menu>
 ```
 

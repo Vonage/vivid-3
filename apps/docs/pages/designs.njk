@@ -1,5 +1,4 @@
 ---
-layout: base.njk
 tags: designs
 pagination:
     data: designs
@@ -8,9 +7,14 @@ pagination:
 permalink: "designs/{{ design.title | slug }}/"
 ---
 
-{% for url in design.modules %}
+{% extends '../_layouts/base.njk' %}
+
+{% block header %}
+	{% for url in design.modules %}
 <script type="module" src="{{ url | url }}"></script>
-{% endfor %}
+	{% endfor %}
+{% endblock %}
 
-
-{% renderFile design.markdown %}
+{% block content %}
+	{% renderFile design.markdown %}
+{% endblock %}

@@ -15,9 +15,8 @@ const getClasses = ({
 	classNames(
 		'base',
 		['readonly', Boolean(readOnly)],
-		['checked', Boolean(checked)],
+		['checked', Boolean(checked) || Boolean(indeterminate)],
 		['disabled', Boolean(disabled)],
-		['indeterminate', Boolean(indeterminate)],
 	);
 
 
@@ -48,8 +47,8 @@ CheckboxOptions
   class="${getClasses}"
   >
     <div class="control">
-      <${iconTag} class="indicator checkmark" type="check-solid"></${iconTag}>
-      <${iconTag} class="indicator minus" type="minus-solid"></${iconTag}>
+			${when(x => x.checked, html<Checkbox>`<${iconTag} name="check-solid" class="icon"></${iconTag}>`)}
+			${when(x => x.indeterminate, html<Checkbox>`<${iconTag} name="minus-solid" class="icon"></${iconTag}>`)}
       ${() => focusTemplate}
     </div>
 

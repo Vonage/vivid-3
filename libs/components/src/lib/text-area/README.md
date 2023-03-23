@@ -1,11 +1,13 @@
 # Text-area
 
-Represents a text-area custom element.  
+Represents a text-area custom element.
 All native attributes of the `textarea` are supported as well as some enhancements.
 
 
 ```js
-<script type="module">import '@vonage/vivid/text-area';</script>
+<script type="module">
+  import '@vonage/vivid/text-area';
+</script>
 ```
 
 ```html preview
@@ -56,6 +58,17 @@ Add the `helper-text` to add some helper text below the text area.
 
 ```html preview
 <vwc-text-area label="Helper text below" helper-text="Help text"></vwc-text-area>
+```
+
+### Success text
+
+Add the `success-text` to add some success text below the text area.
+
+- Type: `string` | `undefined`
+- Default: `undefined`
+
+```html preview
+<vwc-text-area label="Success text below" success-text="Success text"></vwc-text-area>
 ```
 
 ### Disabled

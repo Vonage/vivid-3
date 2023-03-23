@@ -1,0 +1,32 @@
+@use "../../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+
+$low-ink-color: --_low-ink-color;
+
+.message {
+	display: flex;
+	contain: inline-size;
+	font: var(#{constants.$vvd-typography-base-condensed});
+	gap: 4px;
+	grid-column: 1 / -1;
+
+	&-text {
+		color: var(#{constants.$vvd-color-canvas-text});
+
+		.helper-message & {
+			color: var(#{$low-ink-color});
+		}
+	}
+
+	&-icon {
+		font-size: 16px;
+
+		.success-message & {
+			color: var(#{constants.$vvd-color-success-500});
+		}
+
+		.error-message & {
+			color: var(#{constants.$vvd-color-alert-500});
+		}
+	}
+}
+

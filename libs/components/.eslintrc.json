@@ -6,12 +6,11 @@
   "env": {
     "browser": true
   },
-  "plugins": ["@typescript-eslint", "import", "jsdoc"],
+  "plugins": ["@typescript-eslint", "import", "eslint-plugin-tsdoc"],
   "extends": [
     "../../.eslintrc.json",
     "@microsoft/eslint-config-fast-dna",
-    "plugin:compat/recommended",
-    "plugin:jsdoc/recommended"
+    "plugin:compat/recommended"
   ],
   "rules": {
     // lint
@@ -24,7 +23,7 @@
     "no-tabs": "off",
     "no-mixed-spaces-and-tabs": "error",
     "linebreak-style": [
-      "error",
+      "warn",
       "unix"
     ],
     "semi": [
@@ -51,7 +50,8 @@
       {
         "accessibility": "no-public"
       }
-    ]
+    ],
+    "tsdoc/syntax": "warn"
   },
   "overrides": [
     {

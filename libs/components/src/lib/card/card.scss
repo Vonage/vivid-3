@@ -1,5 +1,5 @@
-@use '../../../../../dist/libs/tokens/scss/constants' as constants;
-@use 'partials/card-variables' as card-variables;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "partials/card-variables" as card-variables;
 
 
 :host {
@@ -9,6 +9,7 @@
 .base {
 	border-radius: 6px;
 	inline-size: 100%;
+	text-align: start;
 }
 
 .wrapper {
@@ -50,11 +51,11 @@
 	}
 
 	&-headline {
-		font: var(#{constants.$vvd-font-heading4});
+		font: var(#{constants.$vvd-typography-heading-4});
 		-webkit-line-clamp: var(#{card-variables.$headline-line-clamp});
 	}
 	&-subtitle {
-		font: var(#{constants.$vvd-font-base});
+		font: var(#{constants.$vvd-typography-base});
 		-webkit-line-clamp: var(#{card-variables.$subtitle-line-clamp});
 	}
 
@@ -66,7 +67,7 @@
 .header-subtitle,
 .text {
 	color: var(#{constants.$vvd-color-neutral-600});
-	font: var(#{constants.$vvd-font-base});
+	font: var(#{constants.$vvd-typography-base});
 }
 
 .text {

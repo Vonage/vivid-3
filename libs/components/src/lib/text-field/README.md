@@ -1,8 +1,16 @@
 # Text Field
 
-TextField is meant to accept text input from the user.  
-All native `input` attributes of the text-field are supported as well as some enhancements.  
-Note that the text field does not support `type="number"`. For this there is the `number-field` component.
+TextField is meant to accept text input from the user.
+All native `input` attributes of the text-field are supported as well as some enhancements.
+While `text-field` follows [the W3C specifictation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), the following are the only supported types:
+
+- `text` (default)
+- `email`
+- `password`
+- `tel`
+- `url`
+
+If you wish to use `type="number"`, refer to the [`number-field`](/number-field) component.
 
 ```js
 <script type="module">
@@ -56,6 +64,17 @@ Add the `helper-text` to add some helper text below the text field.
 <vwc-text-field label="Helper text below" helper-text="Help text"></vwc-text-field>
 ```
 
+### Success text
+
+Add the `success-text` to add some success text below the text field.
+
+- Type: `string` | `undefined`
+- Default: `undefined`
+
+```html preview
+<vwc-text-field label="Username" value="Vlad" success-text="Valid username"></vwc-text-field>
+```
+
 ### Character Count
 
 - Type: `boolean`
@@ -67,17 +86,6 @@ Use the `char-count` attribute along with the `maxlength` attribute to show a ch
 <vwc-text-field label="Char count example" char-count maxlength="15"></vwc-text-field>
 ```
 
-### Density
-
-Use the `density` attribute to set the text field's to one of the predefined block size extent.
-
-- Type: `'normal'` | `'extended'`
-- Default: `'normal'`
-
-```html preview blocks
-<vwc-text-field label="normal" density="normal"></vwc-text-field>
-<vwc-text-field label="extended" density="extended"></vwc-text-field>
-```
 
 ### Icon
 
@@ -90,7 +98,7 @@ Use the `icon` attribute to add an icon.
 
 ### Shape
 
-Use the `shape` attribute to change the button's edges.
+Use the `shape` attribute to change the text field's edges.
 
 - Type: `'rounded'` | `'pill'`
 - Default: `'rounded'`
@@ -102,7 +110,7 @@ Use the `shape` attribute to change the button's edges.
 
 ### Appearance
 
-Set the `appearance` attribute to change the button's appearance.
+Set the `appearance` attribute to change the text field's appearance.
 
 - Type: `'fieldset'` | `'ghost'`
 - Default: `'fieldset'`
@@ -148,14 +156,14 @@ In addition, we programatically *"dirtied"* the field and then called `validate`
 <vwc-text-field pattern="123"></vwc-text-field>
 
 <script>
-    const textField = document.querySelector('vwc-text-field');
-    const interval = setInterval(() => {
-        if (!textField.checkValidity) return;  
-        textField.value = 5;
-        textField.dirtyValue = true;
-        textField.checkValidity();
-        clearInterval(interval);
-    }, 50);
+  textField = document.querySelector('vwc-text-field');
+  interval = setInterval(() => {
+    if (!textField.checkValidity) return;
+    textField.value = 5;
+    textField.dirtyValue = true;
+    textField.checkValidity();
+    clearInterval(interval);
+  }, 50);
 </script>
 ```
 
@@ -163,9 +171,9 @@ In addition, we programatically *"dirtied"* the field and then called `validate`
 
 ```html preview
 <form method="post" action="">
-<vwc-layout column-spacing="small" column-basis="block">
-  <vwc-text-field required label="Add email" placeholder="e.g. john@doe.dev" type="email" name="email" autocomplete="email" icon="search" maxlength="30" char-count style="justify-self: flex-start;"></vwc-text-field>
-  <vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>
-</vwc-layout>
+  <vwc-layout column-spacing="small" column-basis="block">
+    <vwc-text-field required label="Add email" placeholder="e.g. john@doe.dev" type="email" name="email" autocomplete="email" icon="search" maxlength="30" char-count style="justify-self: flex-start;"></vwc-text-field>
+    <vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>
+  </vwc-layout>
 </form>
 ```

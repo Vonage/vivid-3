@@ -6,7 +6,7 @@ Badges don’t work for navigation because they can't include a hyperlink.
 
 ```js
 <script type='module'>
-    import '@vonage/vivid/badge';
+  import '@vonage/vivid/badge';
 </script>
 ```
 
@@ -23,18 +23,6 @@ Add a `text` attribute to add text to the badge.
 <vwc-badge text='A default badge'></vwc-badge>
 ```
 
-### Density
-
-Use the `density` attribute to set the badge's to one of the predefined block size extent.
-
-- Type: `'condensed'` | `'normal'` | `'extended'`
-- Default: `'normal'`
-
-```html preview
-<vwc-badge text='condensed' density='condensed'></vwc-badge>
-<vwc-badge text='normal' density='normal'></vwc-badge>
-<vwc-badge text='extended' density='extended'></vwc-badge>
-```
 
 ### Shape
 
@@ -50,15 +38,30 @@ Use the `shape` attribute to change the badge's edges.
 
 ### Icon
 
-Badge text can be affixed by a decorative icon, either by its start or end.
-Use the `icon` attribute to add an icon. Use the `icon-trailing` to place the icon to the right.
+Use `icon` to set an icon to the badge.
+View list of available icon at the [vivid icons gallery](https://icons.vivid.vonage.com).
+
+Note: Icon, by its own, doesn't make a discernible text. If badge
 
 - Type: `string`
 - Default: `undefined`
 
 ```html preview
-<vwc-badge text='icon' icon='check-line'></vwc-badge>
-<vwc-badge text='icon-trailing' icon='check-line' icon-trailing></vwc-badge>
+<vwc-badge appearance="filled" icon='message-sent-line'></vwc-badge>
+<vwc-badge appearance="filled" icon='message-sent-line' shape="pill"></vwc-badge>
+```
+
+### Icon with Text
+
+Badge text can be affixed by a decorative icon, either by its start or end.
+Toggle `icon-trailing` to set the icon's horizontal alignment.
+
+- Type: `boolean`
+- Default: `undefined`
+
+```html preview
+<vwc-badge appearance="filled" text='icon' icon='check-line'></vwc-badge>
+<vwc-badge appearance="filled" text='icon-trailing' icon='check-line' icon-trailing></vwc-badge>
 ```
 
 ### Appearance

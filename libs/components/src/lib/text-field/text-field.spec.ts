@@ -13,6 +13,19 @@ import '.';
 const COMPONENT_TAG_NAME = 'vwc-text-field';
 
 describe('vwc-text-field', () => {
+	function setToBlurred() {
+		element.dispatchEvent(new Event('blur'));
+	}
+
+	function setToFocused() {
+		element.dispatchEvent(new Event('focus'));
+	}
+
+	function setValidityToError(errorMessage = 'error') {
+		element.setValidity({badInput: true}, errorMessage);
+		element.validate();
+	}
+
 	let element: TextField;
 
 	beforeEach(async () => {
@@ -310,7 +323,7 @@ describe('vwc-text-field', () => {
 			await elementUpdated(element);
 			expect(helperTextElementWithoutText)
 				.toBeNull();
-			expect(element.shadowRoot?.querySelector('.helper-text')
+			expect(element.shadowRoot?.querySelector('.helper-message')
 				?.textContent
 				?.trim())
 				.toEqual(helperText);
@@ -318,27 +331,6 @@ describe('vwc-text-field', () => {
 	});
 
 	describe('error message', function () {
-		/**
-		 *
-		 */
-		function setToBlurred() {
-			element.dispatchEvent(new Event('blur'));
-		}
-
-		/**
-		 *
-		 */
-		function setToFocused() {
-			element.dispatchEvent(new Event('focus'));
-		}
-
-		/**
-		 * @param errorMessage
-		 */
-		function setValidityToError(errorMessage = 'error') {
-			element.setValidity({badInput: true}, errorMessage);
-			element.validate();
-		}
 
 		it('should add class error to base if not valid', async function () {
 			element.dirtyValue = true;
@@ -447,6 +439,42 @@ describe('vwc-text-field', () => {
 		});
 	});
 
+	describe('successText', function () {
+		it('should add class success to base if successText is set', async function () {
+			element.successText = 'success';
+			await elementUpdated(element);
+
+			expect(getBaseElement(element)
+				.classList
+				.contains('success'))
+				.toEqual(true);
+		});
+
+		it('should not show helper text when success is shown', async function () {
+			element.helperText = 'help';
+			element.successText = 'success';
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.helper-text'))
+				.toBeNull();
+		});
+
+		it('should not show error message when success is shown', async function () {
+			element.dirtyValue = true;
+			setToBlurred();
+			setValidityToError('blah');
+			element.successText = 'success';
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.error-message'))
+				.toBeNull();
+		});
+
+		it('should show success message if set', async function() {
+			element.successText = 'success';
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.success-message')?.textContent?.trim()).toEqual('success');
+		});
+	});
+
 	describe('disabled', function () {
 		it('should set disabled class when attribute is set', async function () {
 			const disabledClassWhenEnabled = getBaseElement(element)
@@ -481,18 +509,6 @@ describe('vwc-text-field', () => {
 		});
 	});
 
-	describe('density', function () {
-		it('should set the size class on the root', async function () {
-			const density = 'extended';
-			element.setAttribute('density', density);
-			await elementUpdated(element);
-
-			expect(getBaseElement(element)
-				.classList
-				.contains('density-extended'))
-				.toEqual(true);
-		});
-	});
 
 	describe('appearance', function () {
 		it('should set the shape class on the root', async function () {
@@ -521,17 +537,18 @@ describe('vwc-text-field', () => {
 	});
 
 	describe('icon', function () {
-		it('should render the icon with type', async function () {
+		it('should render the icon with name', async function () {
 			const iconExistsWithoutAttribute = element.shadowRoot?.querySelector('vwc-icon');
-			element.setAttribute('icon', 'home');
+			const iconName = 'home';
+			element.setAttribute('icon', iconName);
 			await elementUpdated(element);
 			const iconElement = element.shadowRoot?.querySelector('vwc-icon');
 			expect(iconExistsWithoutAttribute)
 				.toBeFalsy();
 			expect(iconElement instanceof Icon)
 				.toEqual(true);
-			expect(iconElement?.getAttribute('type'))
-				.toEqual('home');
+			expect(iconElement?.getAttribute('name'))
+				.toEqual(iconName);
 		});
 	});
 

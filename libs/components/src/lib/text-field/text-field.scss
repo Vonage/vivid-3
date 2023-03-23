@@ -1,12 +1,20 @@
-@use '../focus/partials/variables' as focus-variables;
+@use "partials/variables" as variables;
+@use "../focus/partials/variables" as focus-variables;
 
-@use '../../../../../dist/libs/tokens/scss/constants' as constants;
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as appearance-config with (
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+	$connotations: accent success alert,
+	$shades: primary backdrop intermediate firm faint soft,
+	$default: accent,
+);
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: fieldset ghost,
-	$states: idle hover disabled readonly error,
+	$states: idle hover disabled readonly,
 	$default: fieldset,
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
 $low-ink-color: --_low-ink-color;
 
@@ -20,6 +28,9 @@ $low-ink-color: --_low-ink-color;
 	// input element :invalid state isn't enough as our spec awaits user interaction
 	// before showing the error.
 	@include appearance.appearance;
+	@include connotation.connotation;
+	#{variables.$text-field-gutter}: calc(#{size.$vvd-size-normal} / 2.5);
+	#{variables.$text-field-icon-size}: calc(#{size.$vvd-size-normal} / 2);
 
 	display: inline-grid;
 	width: 100%;
@@ -35,32 +46,25 @@ $low-ink-color: --_low-ink-color;
 	}
 
 	&.disabled {
-		#{$low-ink-color}: var(#{constants.$vvd-color-neutral-400});
+		#{$low-ink-color}: var(#{appearance.get-appearance-token(text)});
 	}
 }
 
 .label {
+	color: var(#{constants.$vvd-color-canvas-text});
 	contain: inline-size;
-	font: var(#{constants.$vvd-font-base});
+	font: var(#{constants.$vvd-typography-base});
 	grid-column: 1 / 4;
 	grid-row: 1;
 
 	.char-count+& {
 		grid-column: 1 / 3;
 	}
-
-	.base:not(.disabled) & {
-		color: var(#{constants.$vvd-color-canvas-text});
-	}
-
-	.base.disabled & {
-		color: var(#{constants.$vvd-color-neutral-400});
-	}
 }
 
 .char-count {
 	color: var(#{$low-ink-color});
-	font: var(#{constants.$vvd-font-base});
+	font: var(#{constants.$vvd-typography-base});
 	grid-column: 3 / 4;
 }
 
@@ -68,17 +72,11 @@ $low-ink-color: --_low-ink-color;
 	position: relative;
 	display: flex;
 	align-items: center;
-	color: var(#{appearance.get-appearance-token(text)});
 	grid-column: 1 / 4;
 	transition: color .2s;
 
-	/* Size */
-	.base:not(.density-extended)>& {
-		block-size: 40px;
-	}
-
-	.base.density-extended>& {
-		block-size: 48px;
+	.base > & {
+		block-size: #{size.$vvd-size-normal};
 	}
 
 	/* Shape */
@@ -89,34 +87,41 @@ $low-ink-color: --_low-ink-color;
 	.base.shape-pill & {
 		border-radius: 24px;
 	}
-
 }
 
 .control {
+	// ! note: control is required to stretch fully so that
+	// ! autofill indication applies on all fieldset area
 	width: 100%;
 	border: 0 none;
+	appearance: none; /* for box-shadow visibility on IOS */
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	block-size: 100%;
 	border-radius: inherit;
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-	color: inherit;
-
-	// ! note: control is required to stretch fully so that
-	// ! autofill indication applies on all fieldset area
-
-	font: var(#{constants.$vvd-font-base});
-	padding-inline-end: 16px;
-	padding-inline-start: 16px;
+	color: var(#{appearance.get-appearance-token(text)});
+	font: var(#{constants.$vvd-typography-base});
+	padding-block: 0;
+	padding-inline-end: var(#{variables.$text-field-gutter});
+	padding-inline-start: var(#{variables.$text-field-gutter});
 	transition: box-shadow .2s, background-color .2s;
+
+	&:disabled {
+		cursor: not-allowed;
+		opacity: 1; /* 2. correct opacity on iOS */
+		-webkit-text-fill-color: var(#{appearance.get-appearance-token(text)}); /* 1. sets text fill to current `color` for safari */
+	}
+
+	&::placeholder,
+	&:disabled::placeholder {
+		opacity: 1; /* 2. correct opacity on iOS */
+		-webkit-text-fill-color: var(#{$low-ink-color}); /* 1. sets text fill to current `color` for safari */
+	}
 
 	@supports selector(:focus-visible) {
 		&:focus {
 			outline: none;
 		}
-	}
-
-	&::placeholder {
-		color: var(#{$low-ink-color});
 	}
 }
 
@@ -125,32 +130,12 @@ $low-ink-color: --_low-ink-color;
 	position: absolute;
 	z-index: 1;
 	color: var(#{$low-ink-color});
-	font-size: 20px;
-	inset-inline-start: 16px;
+	font-size: var(#{variables.$text-field-icon-size});
+	inset-inline-start: var(#{variables.$text-field-gutter});
+	line-height: 1;
 
 	+.control {
-		padding-inline-start: 44px;
-	}
-}
-
-.helper-text {
-	color: var(#{$low-ink-color});
-	font: var(#{constants.$vvd-font-base-condensed});
-	grid-column: 1 / 4;
-	margin-inline-start: 16px;
-}
-
-.error-message {
-	display: flex;
-	color: var(#{constants.$vvd-color-canvas-text});
-	contain: inline-size;
-	font: var(#{constants.$vvd-font-base-condensed});
-	grid-column: 2 / 4;
-
-	&-icon {
-		color: var(#{constants.$vvd-color-alert-500});
-		font-size: 16px;
-		grid-column: 1 / 2;
+		padding-inline-start: calc(var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter}) * 2);
 	}
 }
 

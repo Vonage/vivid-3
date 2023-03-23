@@ -1,6 +1,5 @@
-@use 'partials/variables' as variables;
-@use '../../../../../dist/libs/tokens/scss/constants' as constants;
-
+@use "partials/variables" as variables;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 
 .control {
 	pointer-events: none;
@@ -12,6 +11,6 @@
 	&-text {
 		padding: 8px 12px;
 		color: var(#{constants.$vvd-color-canvas-text});
-		font: var(#{constants.$vvd-font-base-bold});
+		font: var(#{constants.$vvd-typography-base-bold});
 	}
 }

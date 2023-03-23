@@ -10,9 +10,9 @@ const components = ['menu', 'menu-item', 'button'];
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template =`
 		<style>
-			div {
+			.wrapper {
 				width: 100%;
-				height: 160px;
+				height: 220px;
 				position: relative
 			}
 
@@ -21,7 +21,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			}
 		</style>
 
-		<div>
+		<div class="wrapper">
 			<vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open" appearance="outlined"></vwc-button>
 
 			<vwc-menu id="menu" anchor="button" placement="right-start" open>
@@ -31,7 +31,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			</vwc-menu>
 		</div>`;
 
-	page.setViewportSize({ width: 560, height: 160 });
+	page.setViewportSize({ width: 560, height: 720 });
 
 	await loadComponents({
 		page,

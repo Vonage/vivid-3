@@ -1,5 +1,4 @@
 ---
-layout: base.njk
 tags: components
 pagination:
     data: components
@@ -8,9 +7,26 @@ pagination:
 permalink: "components/{{ component.title | slug }}/"
 ---
 
-{% for url in component.modules %}
-<script type="module" src="{{ url | url }}"></script>
-{% endfor %}
+{% extends '../_layouts/base.njk' %}
 
 
-{% renderFile component.markdown %}
+{% if (component.status == "alpha") or (component.status == 'underlying') %}
+
+	{% block header %}
+			<script type="module" src="/assets/modules/components/banner/index.js"></script>
+	{% endblock %}
+
+	{% block banner %}
+		{% if (component.status == "alpha") %}
+			<vwc-banner class="banner" text="Alpha: this is the initial phase of component testing. Expect breaking changes." connotation="warning"></vwc-banner>
+		{% endif %}
+		{% if (component.status == "underlying") %}
+			<vwc-banner class="banner" text="Underlying: this component is only used by other components and not intended to be used by authors outside the Vivid team" connotation="information"></vwc-banner>
+		{% endif %}
+	{% endblock %}
+{% endif %}
+
+
+{% block content %}
+	{% renderFile component.markdown %}
+{% endblock %}

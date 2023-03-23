@@ -1,9 +1,20 @@
 {
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/components/src",
   "projectType": "library",
   "targets": {
+    "generateMeta": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "cem analyze --config ./libs/components/cem.config.mjs",
+          "api-extractor run -c ./dist/libs/components/api-extractor.json"
+        ],
+        "parallel": true
+      }
+    },
     "e2e": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "npx nx run components:build",
@@ -45,14 +56,14 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/components"],
+      "outputs": ["{workspaceRoot}/coverage/libs/components"],
       "options": {
         "jestConfig": "libs/components/jest.config.cjs",
         "passWithNoTests": true
       }
     },
     "build": {
-      "executor": "@nrwl/web:rollup",
+      "executor": "@nrwl/rollup:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
         "entryFile": "libs/components/src/index.ts",
@@ -61,6 +72,16 @@
         "project": "libs/components/package.json",
         "rollupConfig": "libs/components/rollup.config.prod.ts",
         "assets": [
+          {
+            "input": "./libs/components",
+            "glob": "api-extractor.json",
+            "output": "."
+          },
+          {
+            "input": "./libs/components",
+            "glob": ".npmignore",
+            "output": "."
+          },
           {
             "input": "./libs/components",
             "glob": "README.md",
