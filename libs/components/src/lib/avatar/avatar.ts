@@ -28,7 +28,7 @@ Appearance.Filled | Appearance.Outlined>;
  *
  * @public
  */
-type AvatarShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+export type AvatarShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 /**
  * Base class for avatar
  *
@@ -40,7 +40,7 @@ type AvatarShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  *
  * @public
  */
-type AvatarSize = Extract<Size, Size.Condensed | Size.Normal | Size.Expanded>;
+export type AvatarSize = Extract<Size, Size.Condensed | Size.Normal | Size.Expanded>;
 
 
 export class Avatar extends FoundationElement {
@@ -94,5 +94,5 @@ export class Avatar extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr name?: string;
+	@attr initials?: string;
 }

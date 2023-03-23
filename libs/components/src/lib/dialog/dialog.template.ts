@@ -1,4 +1,4 @@
-import {html, when} from '@microsoft/fast-element';
+import {html, slotted, when} from '@microsoft/fast-element';
 import type {ViewTemplate} from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
@@ -7,14 +7,15 @@ import type {
 import {classNames} from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
 import { Icon } from '../icon/icon';
-import { Button } from '../button/button'; 
+import { Button } from '../button/button';
 import type {Dialog} from './dialog';
 
-const getClasses = ({iconPlacement}: Dialog) => classNames(
+const getClasses = ({iconPlacement, bodySlottedContent, footerSlottedContent} : Dialog) => classNames(
 	'base',
 	[`icon-placement-${iconPlacement}`, Boolean(iconPlacement)],
+	['hide-body', !bodySlottedContent?.length],
+	['hide-footer', !footerSlottedContent?.length],
 );
-
 /**
  *
  */
@@ -35,6 +36,16 @@ function headline() {
 	`;
 }
 
+/**
+ *
+ */
+function subtitle() {
+	return html<Dialog>`
+	  <div class="subtitle">
+		  ${x => x.subtitle}
+	  </div>
+	`;
+}
 
 /**
  *
@@ -59,18 +70,9 @@ function handleEscapeKey(dialog: Dialog, event: Event) {
 	if ((event as KeyboardEvent).key === 'Escape' && dialog.modal) {
 		dialog.open = false;
 	}
+	return true;
 }
 
-/**
- *
- */
-function content() {
-	return html<Dialog>`
-	  <div class="content">
-		  ${x => x.text}
-	  </div>
-	`;
-}
 /**
  * The template for the {@link @microsoft/fast-foundation#Dialog} component.
  *
@@ -87,32 +89,31 @@ export const DialogTemplate: (
 
 	return html<Dialog>`
 	<${elevationTag} dp="12">
-		<div>
-			<dialog class="${getClasses}"
-					@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
-					returnValue="${x => x.returnValue}"
-					aria-labelledby="${x => x.ariaLabelledBy}"
-					aria-label="${x => x.ariaLabel}"
-					aria-describedby="${x => x.ariaDescribedBy}"
-			>
-				<slot name="main">
-					<div class="main-wrapper">
-						<div class="header">
-							<div class="headline-wrapper">
-								<slot name="graphic">
-									${when(x => x.icon, icon(iconTag))}
-								</slot>
-								${when(x => x.headline, headline())}
-							</div>
-						${renderDismissButton(buttonTag)}
-						</div>
-						<slot name="content">
-							${when(x => x.text, content())}
-						</slot>
-						<slot name="footer"></slot>
+		<dialog class="${getClasses}"
+				@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
+				returnValue="${x => x.returnValue}"
+				aria-labelledby="${x => x.ariaLabelledBy}"
+				aria-label="${x => x.ariaLabel}"
+				aria-describedby="${x => x.ariaDescribedBy}"
+		>
+			<slot name="main">
+				<div class="main-wrapper">
+					<div class="header ${x => x.subtitle ? 'border' : ''}">
+							<slot name="graphic">
+								${when(x => x.icon, icon(iconTag))}
+							</slot>
+							${when(x => x.headline, headline())}
+							${when(x => x.subtitle, subtitle())}
+							${renderDismissButton(buttonTag)}
 					</div>
-				</slot>
-			</dialog>
-		</div>
+					<div class="body ${x => x.bodySlottedContent?.length ? '' : 'hide'} ${x => x.fullWidthBody? 'full-width' : ''}" >
+						<slot name="body" ${slotted('bodySlottedContent')}></slot>
+					</div>
+					<div class="footer ${x => x.footerSlottedContent?.length ? '' : 'hide'}">
+						<slot name="footer" ${slotted('footerSlottedContent')}></slot>
+					</div>
+				</div>
+			</slot>
+		</dialog>
 	</${elevationTag}>`;
 };

@@ -69,8 +69,9 @@ describe('vwc-dialog', () => {
 			expect(element.open).toEqual(false);
 			expect(element.returnValue).toEqual('');
 			expect(element.icon).toEqual(undefined);
-			expect(element.text).toEqual(undefined);
+			expect(element.subtitle).toEqual(undefined);
 			expect(element.headline).toEqual(undefined);
+			expect(element.fullWidthBody).toEqual(false);
 		});
 	});
 
@@ -234,7 +235,7 @@ describe('vwc-dialog', () => {
 		});
 	});
 
-	it('should fire close event with returnValue', async function() {
+	it("should fire 'close' event with returnValue", async function() {
 		let detail;
 		const returnValue = 'returnValue';
 		element.returnValue = returnValue;
@@ -245,6 +246,14 @@ describe('vwc-dialog', () => {
 		await closeDialog();
 
 		expect(detail).toEqual(returnValue);
+	});
+
+	it("should not bubble 'close' event", async () => {
+		await showDialog();
+		const fn = jest.fn();
+		element.parentElement?.addEventListener('close', fn);
+		await closeDialog();
+		expect(fn).not.toBeCalled();
 	});
 
 	it('should render the icon when icon is set', async function() {
@@ -265,18 +274,18 @@ describe('vwc-dialog', () => {
 			.toEqual(true);
 	});
 
-	it('should render the content area when content is set', async function() {
-		const contentElementWhenUndefined = getBaseElement(element).querySelector('.content');
-		const content = 'This is the content!';
-		element.text = content;
+	it('should render the subtitle if is set', async function() {
+		const contentElementWhenUndefined = getBaseElement(element).querySelector('.subtitle');
+		const content = 'This is the dialog subtitle!';
+		element.subtitle = content;
 		await elementUpdated(element);
-		const contentElement = getBaseElement(element).querySelector('.content');
+		const contentElement = getBaseElement(element).querySelector('.subtitle');
 		expect(contentElementWhenUndefined).toBeNull();
 		expect(contentElement).toBeTruthy();
 		expect(contentElement?.textContent?.trim()).toEqual(content);
 	});
 
-	it('should render the content area when content is set', async function() {
+	it('should render the header area when content is set', async function() {
 		const headlineElementWhenUndefined = getBaseElement(element).querySelector('.headline');
 		const content = 'This is the header!';
 
@@ -299,6 +308,61 @@ describe('vwc-dialog', () => {
 
 		expect(element.open).toEqual(false);
 		expect(spy).toHaveBeenCalledTimes(1);
+	});
+
+	describe( 'dialog body', () => {
+		it('should have body slot ', async function () {
+			const bodySlotElement = element.shadowRoot?.
+				querySelector('.body slot[name="body"]');
+
+			expect(bodySlotElement).toBeDefined();
+		});
+
+		it('should remove hide-body class from .base if body is slotted', async function () {
+			const slottedElement = document.createElement('div');
+			slottedElement.slot = 'body';
+			slottedElement.id = 'body';
+			element.appendChild(slottedElement);
+			await elementUpdated(element);
+
+			const baseElementClasses = element.shadowRoot?.
+				querySelector('.base')?.classList;
+
+			expect(baseElementClasses).not.toContain('hide-body');
+		});
+
+		it('should add class of full-width to body div wrapper', async () => {
+			const bodyDiv = element.shadowRoot?.querySelector('.body');
+			element.fullWidthBody = true;
+			await  elementUpdated(element);
+			expect(element.hasAttribute('full-width-body')).toEqual(true);
+			expect(bodyDiv?.classList).toContain('full-width');
+
+		});
+
+	});
+
+
+	describe( 'dialog footer', () => {
+		it('should have footer slot ', async function () {
+			const bodySlotElement = element.shadowRoot?.
+				querySelector('.footer slot[name="footer"]');
+
+			expect(bodySlotElement).toBeDefined();
+		});
+
+		it('should remove hide-footer class from .base if body is slotted', async function () {
+			const slottedElement = document.createElement('div');
+			slottedElement.slot = 'footer';
+			slottedElement.id = 'footer';
+			element.appendChild(slottedElement);
+			await elementUpdated(element);
+
+			const baseElementClasses = element.shadowRoot?.
+				querySelector('.base')?.classList;
+
+			expect(baseElementClasses).not.toContain('hide-footer');
+		});
 	});
 
 	describe('a11y', function () {

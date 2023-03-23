@@ -6,7 +6,8 @@ import { Popup } from './popup';
 import styles from './popup.scss';
 import { popupTemplate as template } from './popup.template';
 
-
+export type { Popup } from './popup';
+export type { Strategy } from '@floating-ui/dom';
 
 /**
  * Represents a popup custom element.

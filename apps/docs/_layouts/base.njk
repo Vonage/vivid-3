@@ -20,12 +20,8 @@
     <title>Vivid</title>
     <link rel="icon" href="{{ '/assets/images/vivid-logo.svg' | url }}" type="image/svg+xml">
 
-    <!-- Load fonts -->
-    <link rel="preload" href="/assets/styles/fonts/SpeziaCompleteVariableItalicWeb.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/assets/styles/fonts/SpeziaCompleteVariableUprightWeb.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/assets/styles/fonts/SpeziaMonoCompleteVariableWeb.woff2" as="font" type="font/woff2" crossorigin>
-
-    <link rel="stylesheet" href="{{ '/assets/styles/fonts/spezia.css' | url }}">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <!-- Load styles inline -->
     {% set highlightCss %}
@@ -75,7 +71,7 @@
 
     <link rel="stylesheet" href="{{ '/assets/styles/core/all.css' | url }}">
 
-    <script type="module" src="{{ '/assets/modules/components/layout/index.js' | url}}"></script>
+	<script type="module" src="{{ '/assets/modules/components/layout/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/side-drawer/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/nav/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/nav-item/index.js' | url}}"></script>
@@ -89,10 +85,14 @@
     <script type="module" src="{{ '/assets/modules/components/popup/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/listbox/index.js' | url}}"></script>
     <script type="module" src="{{ '/assets/modules/components/option/index.js' | url}}"></script>
+    <script type="module" src="{{ '/assets/modules/components/tooltip/index.js' | url}}"></script>
 
 		{% block header %}{% endblock %}
 
     {% include "prefetches.njk" %}
+
+    <script type="module" src="{{ '/assets/scripts/live-sample.js' | url}}"></script>
+    
   </head>
 
 <body>

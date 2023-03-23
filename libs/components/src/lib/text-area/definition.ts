@@ -7,6 +7,7 @@ import styles from './text-area.scss';
 import { TextArea } from './text-area';
 import { TextAreaTemplate as template } from './text-area.template';
 
+export type { TextAreaWrap } from './text-area';
 
 /**
  * The text-area element.

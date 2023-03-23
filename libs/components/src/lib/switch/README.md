@@ -52,7 +52,7 @@ Use the `readonly` attribute to show a readonly state of the switch.
 Use `value` in order to set the value of the switch. Mainly used inside a form that will receive the value on submit.
 
 - Type: `string`
-- Default: `on`
+- Default: `"on"`
 
 ```html
 <vwc-switch value="my-value"></vwc-switch>

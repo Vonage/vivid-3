@@ -2,6 +2,342 @@
   "name": "@vonage/vivid",
   "entries": [
     {
+      "date": "Thu, 26 Jan 2023 14:40:25 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.139",
+      "version": "3.0.0-next.139",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "dd365e794293279351524f09621abc021b6b9b14",
+            "comment": "assign slotted to grid area"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 24 Jan 2023 06:50:45 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.138",
+      "version": "3.0.0-next.138",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "cc4aa2792768295d03cd5eebbd3c1947f51953a9",
+            "comment": "fix(dialog): max-inline-size variable and dialog scream color"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 23 Jan 2023 12:22:48 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.137",
+      "version": "3.0.0-next.137",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "e5777ebc5b45d59db6192caa9807406d30fa51bf",
+            "comment": "add disabled to text area"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 23 Jan 2023 09:17:56 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.137",
+      "version": "3.0.0-next.137",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "c4f9b193b9e50d2416b8af15d84d2d477f8641d6",
+            "comment": "add pointer-events: none"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 22 Jan 2023 12:09:10 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.137",
+      "version": "3.0.0-next.137",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "833e1a05e25f02d296a55ed0c9b1be198d0d2fee",
+            "comment": "progress ring stroke width"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 17 Jan 2023 16:12:04 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.136",
+      "version": "3.0.0-next.136",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "2e65c59dcca03811233522127a62ff5cc769b357",
+            "comment": "new component migration - select"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 16 Jan 2023 13:29:19 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.135",
+      "version": "3.0.0-next.135",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "87e88957857392789d156d329a3826f6fdc1e828",
+            "comment": "tabs migration to fast"
+          },
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "a5d699c9949a02c21b1e90e6f65b45a7aa30d297",
+            "comment": "menu item support secondary text"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 12 Jan 2023 07:26:00 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.134",
+      "version": "3.0.0-next.134",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "c266125a077b519a53d8b1b22f303257cb57223f",
+            "comment": "remove default connotation based icon"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 11 Jan 2023 20:23:02 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.133",
+      "version": "3.0.0-next.133",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "8ed11fbf1d209f2b7c4ca7dd39557f117c843670",
+            "comment": "fix icon vertical alignment"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 11 Jan 2023 12:40:43 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.132",
+      "version": "3.0.0-next.132",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "69002167be17c64460bffd56495834fbc86d99be",
+            "comment": "add px to icon docs"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 11 Jan 2023 06:39:43 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.132",
+      "version": "3.0.0-next.132",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "938be8ff399834f4ebc2446f19c613706dc2e807",
+            "comment": "dialog subtitle"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 08 Jan 2023 11:03:35 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.131",
+      "version": "3.0.0-next.131",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "31073d3443a739096fad6b7d9617180708c91660",
+            "comment": "change the member name to initials"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 05 Jan 2023 12:45:41 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.130",
+      "version": "3.0.0-next.130",
+      "comments": {
+        "none": [
+          {
+            "author": "olaf-k@users.noreply.github.com",
+            "package": "@vonage/vivid",
+            "commit": "e4bcc94a3d8aca40dd75c72bc279337a6ae51bac",
+            "comment": "broken links"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 05 Jan 2023 11:32:29 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.130",
+      "version": "3.0.0-next.130",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "0da5371683787898dec979adf7774a60da904045",
+            "comment": "feat(components): combobox new component"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 02 Jan 2023 10:04:07 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.129",
+      "version": "3.0.0-next.129",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rachel.tannenbaum@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "61e77eb311630483db8ad4379388f7da5edeff0b",
+            "comment": "Montserrat as default font"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 27 Dec 2022 16:08:19 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.128",
+      "version": "3.0.0-next.128",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "0830e659c898f4ee2b74e286985a66f20a08ffb4",
+            "comment": "refactor UI style to align with v2.x design spec"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 27 Dec 2022 14:59:58 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.127",
+      "version": "3.0.0-next.127",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "9fad21591acf6d259c439d2f34da270d882aff82",
+            "comment": "fix text-field & text area-ghost appearance missing shades"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 27 Dec 2022 14:28:03 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.126",
+      "version": "3.0.0-next.126",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon@hotmail.com",
+            "package": "@vonage/vivid",
+            "commit": "0e6f0a7c252592b5196d01e5dd8d33bc28c8ade3",
+            "comment": "resolve components issues with custom density"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 27 Dec 2022 14:15:03 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.125",
+      "version": "3.0.0-next.125",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "yinon.oved@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "edb340e5e6276e154c04f4b44c3292b315b307e2",
+            "comment": "style listbox disabled option inheritance"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 26 Dec 2022 16:01:49 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.124",
+      "version": "3.0.0-next.124",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "1086913e47ab62f9bc01c92601ed04603a3f1139",
+            "comment": " change to default slot"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 26 Dec 2022 11:42:54 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.124",
+      "version": "3.0.0-next.124",
+      "comments": {
+        "none": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "7fb68b48b7c524edbea211fdeccad67ac1c255a3",
+            "comment": "listbox inline size"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 25 Dec 2022 15:29:14 GMT",
+      "tag": "@vonage/vivid_v3.0.0-next.124",
+      "version": "3.0.0-next.124",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "rina.oksman@vonage.com",
+            "package": "@vonage/vivid",
+            "commit": "554b1b8a0b6d9be6c5588c0d701eaf83ae71e147",
+            "comment": "add light dismiss support to popup"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 21 Dec 2022 15:15:42 GMT",
       "tag": "@vonage/vivid_v3.0.0-next.123",
       "version": "3.0.0-next.123",

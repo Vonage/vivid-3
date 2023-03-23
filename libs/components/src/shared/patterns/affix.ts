@@ -50,7 +50,7 @@ export class AffixIconWithTrailing extends AffixIcon {
 export const affixIconTemplateFactory: (context: ElementDefinitionContext) =>
 (icon?: string, className?: string) => ViewTemplate<AffixIcon> | null = (context: ElementDefinitionContext) => {
 	const iconTag = context.tagFor(Icon);
-	return (icon?: string, className?: string) => icon
-		? html`<span class="${className ? className : 'icon'}"><${iconTag} :name="${() => icon}"></${iconTag}></span>`
+	return (icon?: string) => icon
+		? html`<span class="${'icon'}"><${iconTag} :name="${() => icon}"></${iconTag}></span>`
 		: null;
 };

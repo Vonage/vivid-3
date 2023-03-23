@@ -23,24 +23,4 @@ export class Listbox extends FoundationListboxElement {
 	 * HTML Attribute: appearance
 	 */
 	@attr appearance?: LisboxAppearance;
-
-	override slottedOptionsChanged(prev: Element[] | undefined, next: Element[]) {
-		super.slottedOptionsChanged(prev, next);
-		this.#disableSlottedChildren();
-	}
-
-	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
-		super.attributeChangedCallback(name, oldValue, newValue);
-		if (name === 'disabled') {
-			this.#disableSlottedChildren();
-		}
-	}
-
-	#disableSlottedChildren(): void {
-		this.options.forEach(optionElement => {
-			if (!optionElement.disabled) {
-				optionElement.disabled = this.disabled;
-			}
-		});
-	}
 }

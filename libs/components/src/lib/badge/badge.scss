@@ -3,7 +3,7 @@
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta success alert warning information,
-	$shades: primary primary-text intermediate soft contrast,
+	$shades: primary primary-text intermediate soft contrast pale fierce,
 	$default: accent,
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
@@ -68,7 +68,11 @@
 }
 
 /* Icon */
+.icon {
+	font-size: calc(var(#{variables.$badge-block-size}) / 1.6667);
+	line-height: 1;
 
-.icon-trailing .icon {
-	order: 1;
+	.icon-trailing & {
+		order: 1;
+	}
 }

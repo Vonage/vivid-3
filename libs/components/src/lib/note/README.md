@@ -28,9 +28,7 @@ Add the `headline` attribute in order to set a headline text.
 ```
 
 ### Icon
-
-Use the `icon` attribute to set a decorative icon.
-Note that if not set, icon will default to the connotation-associated icon type.
+Add a `icon='icon-name'` attribute to set a decorative icon.
 
 - Type: `string`
 - Default: `undefined`
@@ -44,20 +42,20 @@ Note that if not set, icon will default to the connotation-associated icon type.
 Set the `connotation` attribute to change the note's connotation.
 It accepts a subset of predefined values.
 
-- Type: `'success'` | `'alert'` | `'warning'` | `'information'` | `'announcement'`
-- Default: `'announcement'`
+- Type: `'accent'` | `'success'` | `'alert'` | `'warning'` | `'information'`
+- Default: `'accent'`
 
 ```html preview blocks
-<vwc-note connotation="alert" headline="alert note"></vwc-note>
-<vwc-note connotation="success" headline="success note"></vwc-note>
-<vwc-note connotation="warning" headline="warning note"></vwc-note>
-<vwc-note connotation="information" headline="information note"></vwc-note>
-<vwc-note connotation="announcement" headline="announcement note"></vwc-note>
+<vwc-note connotation="alert" icon="error-solid" headline="alert note"></vwc-note>
+<vwc-note connotation="success" icon="check-circle-solid" headline="success note"></vwc-note>
+<vwc-note connotation="warning" icon="warning-solid" headline="warning note"></vwc-note>
+<vwc-note connotation="information" icon="info-solid" headline="information note"></vwc-note>
+<vwc-note connotation="accent" icon="megaphone-solid" headline="accent note"></vwc-note>
 ```
 
 ## Slots
 
-### Default slot
+### Default
 
 Any slotted content will appear below the headline.
 

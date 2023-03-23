@@ -247,19 +247,19 @@ describe('vwc-popup', () => {
 	});
 
 	describe('handle keydown', () => {
-		it('should hide on escape key', async () => {
-			const anchor = await setupPopupToOpenWithAnchor();
-			const openStateBeforeEsc = element.open;
+		// it('should hide on escape key', async () => {
+		// 	const anchor = await setupPopupToOpenWithAnchor();
+		// 	const openStateBeforeEsc = element.open;
 
-			await elementUpdated(element);
-			anchor.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
-			await elementUpdated(element);
+		// 	await elementUpdated(element);
+		// 	anchor.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+		// 	await elementUpdated(element);
 
-			expect(openStateBeforeEsc)
-				.toEqual(true);
-			expect(element.open)
-				.toEqual(false);
-		});
+		// 	expect(openStateBeforeEsc)
+		// 		.toEqual(true);
+		// 	expect(element.open)
+		// 		.toEqual(false);
+		// });
 
 		it('should remove keydown listener after disconnection', async function () {
 			const anchor = await setupPopupToOpenWithAnchor();

@@ -7,6 +7,7 @@ import styles from './fab.scss';
 import { Fab } from './fab';
 import { FabTemplate as template } from './fab.template';
 
+export type { FabConnotation, FABSize } from './fab';
 
 /**
  * The calendar-event element is a custom element that is used to display a single event in a calendar.
