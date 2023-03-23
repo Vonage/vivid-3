@@ -6,6 +6,7 @@ import styles from './note.scss';
 import { Note } from './note';
 import { NoteTemplate as template } from './note.template';
 
+export type { NoteConnotation } from './note';
 
 /**
  * The note element.

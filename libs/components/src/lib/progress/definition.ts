@@ -5,6 +5,8 @@ import styles from './progress.scss';
 import { Progress } from './progress';
 import { ProgressTemplate as template } from './progress.template';
 
+export type { ProgressConnotation, ProgressShape } from './progress';
+
 /**
  * The progress element.
  */

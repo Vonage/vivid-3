@@ -71,6 +71,7 @@ describe('vwc-dialog', () => {
 			expect(element.icon).toEqual(undefined);
 			expect(element.subtitle).toEqual(undefined);
 			expect(element.headline).toEqual(undefined);
+			expect(element.fullWidthBody).toEqual(false);
 		});
 	});
 
@@ -307,6 +308,61 @@ describe('vwc-dialog', () => {
 
 		expect(element.open).toEqual(false);
 		expect(spy).toHaveBeenCalledTimes(1);
+	});
+
+	describe( 'dialog body', () => {
+		it('should have body slot ', async function () {
+			const bodySlotElement = element.shadowRoot?.
+				querySelector('.body slot[name="body"]');
+
+			expect(bodySlotElement).toBeDefined();
+		});
+
+		it('should remove hide-body class from .base if body is slotted', async function () {
+			const slottedElement = document.createElement('div');
+			slottedElement.slot = 'body';
+			slottedElement.id = 'body';
+			element.appendChild(slottedElement);
+			await elementUpdated(element);
+
+			const baseElementClasses = element.shadowRoot?.
+				querySelector('.base')?.classList;
+
+			expect(baseElementClasses).not.toContain('hide-body');
+		});
+
+		it('should add class of full-width to body div wrapper', async () => {
+			const bodyDiv = element.shadowRoot?.querySelector('.body');
+			element.fullWidthBody = true;
+			await  elementUpdated(element);
+			expect(element.hasAttribute('full-width-body')).toEqual(true);
+			expect(bodyDiv?.classList).toContain('full-width');
+
+		});
+
+	});
+
+
+	describe( 'dialog footer', () => {
+		it('should have footer slot ', async function () {
+			const bodySlotElement = element.shadowRoot?.
+				querySelector('.footer slot[name="footer"]');
+
+			expect(bodySlotElement).toBeDefined();
+		});
+
+		it('should remove hide-footer class from .base if body is slotted', async function () {
+			const slottedElement = document.createElement('div');
+			slottedElement.slot = 'footer';
+			slottedElement.id = 'footer';
+			element.appendChild(slottedElement);
+			await elementUpdated(element);
+
+			const baseElementClasses = element.shadowRoot?.
+				querySelector('.base')?.classList;
+
+			expect(baseElementClasses).not.toContain('hide-footer');
+		});
 	});
 
 	describe('a11y', function () {

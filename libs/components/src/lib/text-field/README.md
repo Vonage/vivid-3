@@ -2,7 +2,15 @@
 
 TextField is meant to accept text input from the user.
 All native `input` attributes of the text-field are supported as well as some enhancements.
-Note that the text field does not support `type="number"`. For this there is the `number-field` component.
+While `text-field` follows [the W3C specifictation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), the following are the only supported types:
+
+- `text` (default)
+- `email`
+- `password`
+- `tel`
+- `url`
+
+If you wish to use `type="number"`, refer to the [`number-field`](/number-field) component.
 
 ```js
 <script type="module">
@@ -148,8 +156,8 @@ In addition, we programatically *"dirtied"* the field and then called `validate`
 <vwc-text-field pattern="123"></vwc-text-field>
 
 <script>
-  const textField = document.querySelector('vwc-text-field');
-  const interval = setInterval(() => {
+  textField = document.querySelector('vwc-text-field');
+  interval = setInterval(() => {
     if (!textField.checkValidity) return;
     textField.value = 5;
     textField.dirtyValue = true;

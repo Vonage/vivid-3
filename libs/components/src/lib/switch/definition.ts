@@ -6,6 +6,7 @@ import styles from './switch.scss';
 import { Switch } from './switch';
 import { SwitchTemplate as template } from './switch.template';
 
+export type { SwitchConnotation } from './switch';
 
 /**
  * The switch element.

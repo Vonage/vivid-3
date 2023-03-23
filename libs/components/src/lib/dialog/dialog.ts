@@ -1,5 +1,5 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
-import {attr} from '@microsoft/fast-element';
+import {attr, observable} from '@microsoft/fast-element';
 
 // Make sure we support Safari 14
 let dialogPolyfill: any;
@@ -17,7 +17,7 @@ let dialogPolyfill: any;
  *
  * @public
  */
-type IconPlacement = 'top' | 'side';
+export type IconPlacement = 'top' | 'side';
 
 /**
  * Base class for dialog
@@ -37,6 +37,7 @@ export class Dialog extends FoundationElement {
 	@attr({attribute: 'icon-placement'}) iconPlacement?: IconPlacement;
 	@attr subtitle?: string;
 	@attr headline?: string;
+	@attr ({attribute: 'full-width-body', mode: 'boolean'}) fullWidthBody = false;
 	@attr({attribute: 'aria-labelledby'}) ariaLabelledBy: string | null = null;
 	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
 	@attr({attribute: 'aria-describedby'}) ariaDescribedBy: string | null = null;
@@ -145,4 +146,17 @@ export class Dialog extends FoundationElement {
 		this.#dialog.removeEventListener('click', this.#handleScrimClick);
 		this.#dialog.removeEventListener('submit', this.#handleInternalFormSubmit);
 	}
+
+
+	/**
+	 *
+	 * Slot observer:
+	 *
+	 * @internal
+	 */
+
+
+	@observable bodySlottedContent?: HTMLElement[];
+	@observable footerSlottedContent?: HTMLElement[];
+
 }

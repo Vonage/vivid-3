@@ -21,9 +21,9 @@ Read more about [vwc-option](../../components/option).
   }
 </style>
 <vwc-select label="choose one option">
-  <vwc-option value="1" text="Option 1" selected></vwc-option>
-  <vwc-option value="2" text="Option 2"></vwc-option>
-  <vwc-option value="3" text="Option 3"></vwc-option>
+  <vwc-option value="1" text="Option 1: dogs" selected></vwc-option>
+  <vwc-option value="2" text="Option 2: cats"></vwc-option>
+  <vwc-option value="3" text="Option 3: dogs and cats"></vwc-option>
 </vwc-select>
 ```
 
@@ -111,7 +111,6 @@ Add the `disabled` attribute to disable the Select.
 </vwc-select>
 ```
 
-
 ### Open
 
 _Select_ internally uses _popup_ to display an element and its descendants above the rest of the document.
@@ -134,6 +133,22 @@ _Select_ internally uses _popup_ to display an element and its descendants above
 </vwc-select>
 ```
 
+## Option Label
+
+You can add a `label` attribute to the `vwc-option` to set a custom display value for the selected option.
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+</style>
+<vwc-select open>
+  <vwc-option label="Custom Label 1" value="1" text="Option 1"></vwc-option>
+  <vwc-option label="Custom Label 2" value="2" text="Option 2"></vwc-option>
+  <vwc-option label="Custom Label 3" value="3" text="Option 3"></vwc-option>
+</vwc-select>
+```
 ## CSS Variables
 
 ### Select-height
