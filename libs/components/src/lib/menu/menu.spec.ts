@@ -203,6 +203,19 @@ describe('vwc-menu', () => {
 		});
 	});
 
+	it('should set and remove the aria-haspopup attribute on its anchor when it changes', async () => {
+		await setAnchor();
+		
+		element.anchor = 'anchor';
+		await elementUpdated(element);
+		const button = document.getElementById(element.anchor);
+		expect(button?.getAttribute('aria-haspopup')).toBe('menu');
+		
+		element.anchor = '';
+		await elementUpdated(element);
+		expect(button?.getAttribute('aria-haspopup')).toBeUndefined;
+	});
+
 	const arrowUpEvent = new KeyboardEvent('keydown', {
 		key: keyArrowUp,
 		bubbles: true,
