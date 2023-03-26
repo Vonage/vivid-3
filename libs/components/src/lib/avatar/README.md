@@ -64,8 +64,8 @@ Use the `connotation` attribute to set the avatar's color.
 <vwc-avatar connotation="cta"></vwc-avatar>
 <vwc-avatar connotation="accent" appearance="duotone"></vwc-avatar>
 <vwc-avatar connotation="cta" appearance="duotone"></vwc-avatar>
-<vwc-avatar connotation="cta" appearance="outlined"></vwc-avatar>
 <vwc-avatar connotation="accent" appearance="outlined"></vwc-avatar>
+<vwc-avatar connotation="cta" appearance="outlined"></vwc-avatar>
 
 ```
 
