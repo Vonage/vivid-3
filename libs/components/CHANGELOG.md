@@ -4,6 +4,20 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.5.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.4.0...vivid-v3.5.0) (2023-03-26)
+
+
+### Features
+
+* **data-grid:** adds selection-mode attribute to the grid ([#1077](https://github.com/Vonage/vivid-3/issues/1077)) ([2bceba8](https://github.com/Vonage/vivid-3/commit/2bceba8d05d7b524d34f3c626c0378b54cdd9edd))
+
+
+### Bug Fixes
+
+* **components:** proper role for menu anchor ([#1044](https://github.com/Vonage/vivid-3/issues/1044)) ([fa1f12a](https://github.com/Vonage/vivid-3/commit/fa1f12a4afdcfbfbefc02f373e4da4908ab72d68))
+* **dialog:** border-radius inherit for slot main ([#1082](https://github.com/Vonage/vivid-3/issues/1082)) ([54aa3a4](https://github.com/Vonage/vivid-3/commit/54aa3a4eeb39ad6d214a98a8559e7c7323048f7c))
+* **dialog:** header separator and body full width ([#1071](https://github.com/Vonage/vivid-3/issues/1071)) ([ea56f26](https://github.com/Vonage/vivid-3/commit/ea56f26040abf6fa7b25f5b79dad7c26c173a774))
+
 ## [3.4.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.3.0...vivid-v3.4.0) (2023-03-15)
 
 
