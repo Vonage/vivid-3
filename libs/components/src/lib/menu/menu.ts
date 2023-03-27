@@ -38,6 +38,13 @@ export class Menu extends FastMenu {
 	 */
 	@attr anchor?: string;
 
+	anchorChanged(prevAnchor: string, newAnchor: string ) {
+		const prevAnchorEl = document.getElementById(prevAnchor);
+		const newAnchorEl = document.getElementById(newAnchor);
+		prevAnchorEl?.removeAttribute('aria-haspopup');
+		newAnchorEl?.setAttribute('aria-haspopup', 'menu');
+	}
+
 	popupOpenChanged = () => {
 		this.open = (this._popup as Popup).open;
 	};
