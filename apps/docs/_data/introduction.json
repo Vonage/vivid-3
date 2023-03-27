@@ -8,14 +8,22 @@
 		"title": "advanced",
 		"markdown": "./docs/getting-started/advanced.md",
 		"modules": [
-			"/assets/modules/components/layout/index.js"
+			"/assets/modules/components/note/index.js"
 		]
 	},
 	{
 		"title": "vonage-authors",
 		"markdown": "./docs/getting-started/vonage-authors.md",
 		"modules": [
-			"/assets/modules/components/layout/index.js"
+			"/assets/modules/components/note/index.js"
+		]
+	},
+	{
+		"title": "vivid-2-authors",
+		"markdown": "./docs/getting-started/migration.md",
+		"modules": [
+			"/assets/modules/components/note/index.js",
+			"/assets/modules/components/accordion/index.js"
 		]
 	}
 ]

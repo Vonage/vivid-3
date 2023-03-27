@@ -12,9 +12,7 @@ Vivid uses _Montserrat_ and _Roboto Mono_ Google fonts.
 
 **Vonage** products should use the brand-specific _Spezia_ font families.
 
-To obtain the _Spezia_ webfont kit, go to this repository:
-
-[https://github.com/Vonage/spezia-webfont-kit](https://github.com/Vonage/spezia-webfont-kit)
+To obtain the _Spezia_ webfont kit, go to this repository: [https://github.com/Vonage/spezia-webfont-kit](https://github.com/Vonage/spezia-webfont-kit)
 
 Download the font and add it to your project.
 
@@ -26,7 +24,7 @@ assets/fonts/Spezia_Web_Complete/VariableFont/Complete
 
 In your CSS file, add the following code to specify & load the font family:
 
-Note: The `@font-face` declaration must be placed at the top of the CSS file.
+<vwc-note connotation="warning" headline="The @font-face declaration must be placed at the top of the CSS file."></vwc-note>
 
 ```css
 @font-face {
@@ -51,6 +49,7 @@ Note: The `@font-face` declaration must be placed at the top of the CSS file.
 }
 ```
 
+
 Now that we have the _Spezia_ font families set up - we need to override Vivid's default typefaces by applying the following to the css:
 
 ```css
@@ -74,53 +73,8 @@ Now that we have the _Spezia_ font families set up - we need to override Vivid's
 }
 ```
 
-## Integrating Vivid@3.x alongside Vivid@2
-
-Vivid@3.x can be installed alongside vivid@2.x but there are some prerequisites:
-
-### Pre Installation
-
-The project needs to import vivid@2 components individually and not as a whole package.
-
-DON’T:
-
-```json
-"@vonage/vivid": "^2.37.0", // previous vivid version
-"@vonage/vivid": "3.x", // new vivid version
-```
-
-DO:
-
-```json
-# Vivid new version
-"@vonage/vivid": "3.x",
-
-# Vivid previous version
-"@Vonage/vwc-accordion": "2.37.0",
-"@Vonage/vwc-action-group": "2.37.0",
-"@Vonage/vwc-audio": "2.37.0",
-...
-```
-
-### Setting custom prefix
-
-```js
-import { registerBadge } from '@vonage/vivid';
-
-registerBadge('dashboard');
-```
-
-### Start Using component
-
-Now it's time to use the components with the prefix you set.
-
-```html
-<dashboard-badge text="vivid@3 scoped badge"></dashboard-badge>
-```
-
 ## Have fun using vivid@3 components
 
 ### Have questions?
 
-* Check out the [documentation](https://vivid.deno.dev/)
-* Still looking for answers, ask us in[#Ask-Vivid slack channel](https://vonage.slack.com/archives/C013F0YKH99).
+Still looking for answers, ask us in [#ask-vivid slack channel](https://vonage.slack.com/archives/C013F0YKH99).

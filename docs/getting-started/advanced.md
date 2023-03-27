@@ -15,22 +15,25 @@ These **core styles** rely on the [tokens and fonts to be loaded](/getting-start
 
 ### Include the styles
 
-To include the styles, its css files must be loaded into the project from: `node_modules/@vonage/vivid/styles/[path to file].css`.  
+To include the styles, its css files must be loaded into the project from: 
 
-Note: scss users can simply [forward](https://sass-lang.com/documentation/at-rules/forward) the styles to their scss project:
-
+```js
+'node_modules/@vonage/vivid/styles/[path to file].css';
 ```
+
+Scss users can simply use [@forward](https://sass-lang.com/documentation/at-rules/forward).
+```js
 @forward 'node_modules/@vonage/vivid/styles/[path to file].css';
 ```
 
 ### Setting Vivid class
 
-[As in tokens](/getting-started/quick-start/#setting-vivid-class), styles *require* a `vvd-root` class* selector to be present on a wrapping element (advisably the `:root`.  
-When set on the `:root` (html element), typeface sizes are able to descend from the root font-size, thus comply with the [WCAG 1.4.4](https://www.w3.org/WAI/WCAG21/Understanding/resize-text)) to ensure text readability experience..
+[As in tokens](/getting-started/quick-start/#setting-vivid-class) styles **require** a `vvd-root` class selector to be present on a wrapping element (advisably the `:root`). 
+When set on the `:root` HTML Element, typeface sizes are able to descend from the root font-size, thus comply with the [WCAG 1.4.4](https://www.w3.org/WAI/WCAG21/Understanding/resize-text) to ensure text readability experience.
 
 ---
 
-## Scoped Elements (🧪 Alpha)
+## Scoped Elements
 
 Custom elements are registered globally by the browser. When two custom elements with the same tag name are registered on the same document, it creates a conflict that results in an error. Loading multiple versions of `vivid` is likely to cause this error as vivid elements are named the same.
 
@@ -47,7 +50,7 @@ import { registerBadge } from '@vonage/vivid';
 registerBadge('dashboard');
 ```
 
-then use it as:
+Then use it as:
 
 ```html
 <dashboard-badge text="dashboard scoped badge"></dashboard-badge>
