@@ -4,6 +4,7 @@
 @use "../../../../shared/src/lib/sass/mixins/scrim" as scrim-mixins;
 @use "../../../../shared/src/lib/sass/mixins/elevation" as elevation;
 
+$dialog-space-size: 24px;
 
 .base {
 	box-sizing: border-box;
@@ -13,8 +14,9 @@
 	border-radius: 6px;
 	color: var(#{constants.$vvd-color-canvas-text});
 	max-block-size: var(#{variables.$dialog-max-block-size}, calc(100vh - 64px));
-	max-inline-size: var(#{variables.$dialog-max-inline-size}, #{variables.$dialog-default-max-inline-size});
+	max-inline-size: var(#{variables.$dialog-max-inline-size}, var(#{variables.$dialog-default-max-inline-size}));
 	min-inline-size: var(#{variables.$dialog-min-inline-size}, 280px);
+
 
 	@media not all and (min-width: 600px) {
 		#{variables.$dialog-default-max-inline-size}: 90vw;
@@ -37,9 +39,14 @@
 
 .main-wrapper {
 	display: flex;
+	box-sizing: border-box;
 	flex-direction: column;
-	padding: 24px;
-	gap: 12px;
+	gap: $dialog-space-size;
+	padding-block: $dialog-space-size;
+
+	> * {
+		box-sizing: border-box;
+	}
 }
 
 .header {
@@ -47,6 +54,7 @@
 	align-items: flex-start;
 	justify-content: space-between;
 	inline-size: 100%;
+	padding-inline: $dialog-space-size;
 
 	.base:not(.icon-placement-side) & {
 		grid-template-columns: 1fr auto;
@@ -77,6 +85,42 @@
 			margin-inline-end: calc(#{size.$vvd-size-condensed} / 2);
 		}
 	}
+
+	&.border {
+		position: relative;
+		&::after {
+			position: absolute;
+			bottom: calc($dialog-space-size * -1);
+			left: 0;
+			background-color: var(#{constants.$vvd-color-neutral-200});
+			block-size: 1px;
+			content: "";
+			inline-size: 100%;
+
+			.base.hide-body & {
+				content: none;
+			}
+		}
+	}
+
+}
+
+.body {
+	&:not(.full-width) {
+		padding-inline: $dialog-space-size;
+	}
+
+	.hide-body & {
+		display: none;
+	}
+}
+
+.footer {
+	padding-inline: $dialog-space-size;
+
+	.hide-footer & {
+		display: none;
+	}
 }
 
 
@@ -102,4 +146,5 @@ slot[name="main"] {
 	overflow: hidden auto;
 	max-width: inherit;
 	max-height: inherit;
+	border-radius: inherit;
 }
