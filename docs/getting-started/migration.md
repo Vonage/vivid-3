@@ -1,4 +1,4 @@
-# Migrate from VIVID 2 to VIVID 3
+# Migration guide from VIVID 2 to VIVID 3
 
 ---
 
@@ -14,14 +14,23 @@ This is a step-by-step guide for integrating vivid-3.x alongside vivid-2.
 
 The project needs to import vivid@2 components individually and not as a whole package.
 
+Before:
+
 ```json
-"@vonage/vvd-context": "2.x",
-"@vonage/vvd-core": "2.x",
+"@vonage/vivid": "^2.x.x"
+...
+```
+
+After: 
+
+```json
+"@vonage/vvd-context": "^2.x.x",
+"@vonage/vvd-core": "^2.x.x",
 //import all vivid 2 components you are using in the project
-"@vonage/vwc-accordion": "2.x",
-"@vonage/vwc-action-group": "2.x",
-"@vonage/vwc-audio": "2.x",
-"@vonage/vwc-button": "2.x",
+"@vonage/vwc-accordion": "^2.x.x",
+"@vonage/vwc-action-group": "^2.x.x",
+"@vonage/vwc-audio": "^2.x.x",
+"@vonage/vwc-button": "^2.x.x",
 ...
 ```
 
@@ -44,6 +53,34 @@ import { VWCButton } from '@vonage/vwc-button'
 ```json
 npm install @vonage/vivid@latest
 ```
+
+Before:
+
+```json
+"@vonage/vvd-context": "^2.x.x",
+"@vonage/vvd-core": "^2.x.x",
+//import all vivid 2 components you are using in the project
+"@vonage/vwc-accordion": "^2.x.x",
+"@vonage/vwc-action-group": "^2.x.x",
+"@vonage/vwc-audio": "^2.x.x",
+"@vonage/vwc-button": "^2.x.x",
+...
+```
+
+After: 
+
+```json
+"@vonage/vivid": "^3.x.x",
+"@vonage/vvd-context": "^2.x.x",
+"@vonage/vvd-core": "^2.x.x",
+//import all vivid 2 components you are using in the project
+"@vonage/vwc-accordion": "^2.x.x",
+"@vonage/vwc-action-group": "^2.x.x",
+"@vonage/vwc-audio": "^2.x.x",
+"@vonage/vwc-button": "^2.x.x",
+...
+```
+
 ---
 
 ## Step 3: Import tokens
