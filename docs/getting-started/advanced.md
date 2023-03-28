@@ -62,7 +62,7 @@ Remember to not include the default side-effect import (`import '@vonage/vivid/b
 In addition to avoiding namespace collision and customizing elements' tag names, this approach lets you enjoy the benefits of [npm dedupe](https://docs.npmjs.com/cli/v8/commands/npm-dedupe). With [npm dedupe](https://docs.npmjs.com/cli/v8/commands/npm-dedupe), only the least needed versions of the library are used in the application.
 
 ---
-## Fonts
+## Vonage Fonts
 
 Vivid uses _Montserrat_ and _Roboto Mono_ Google fonts.
 

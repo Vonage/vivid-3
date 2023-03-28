@@ -4,7 +4,7 @@
 Essential UI **web components** for building modern web applications, bound to provide a **safe**, **simple** and **intuitive** interface.
 
 ![image](https://user-images.githubusercontent.com/10883919/189522882-968358df-ee7c-4256-b61b-550cf369a087.png)
-
+---
 ## Installation
 
 To integrate Vivid components into your project, run:
@@ -12,7 +12,7 @@ To integrate Vivid components into your project, run:
 ```bash
 npm install @vonage/vivid
 ```
-
+---
 ### Usage
 
 Import components in your project via [side effect imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_a_module_for_its_side_effects_only):
@@ -28,7 +28,7 @@ And include in HTML:
 ```
 
 For a full list of components and API, explore the [components docs](https://vivid.deno.dev) 📚.
-
+---
 ## Prerequisite
 
 ### Tokens
@@ -67,17 +67,15 @@ You can also add it to any wrapping element if you would like to scope the style
 
 Vivid uses **Montserrat** and **Roboto Mono** Google fonts.
 Learn how to load fonts into your application with [google-fonts](https://fonts.google.com/knowledge/using_type/using_web_fonts_from_a_font_delivery_service#loading-web-fonts)
-
-#### Vonage authors
+---
+## Advanced Usage
 
 Unless explicitly stated otherwise, **Vonage** products should use the brand specified font families by **Spezia**. Vonage teams may review guidelines at the [Spezia webfont kit](https://github.com/Vonage/spezia-webfont-kit).  
 
-💡 For more information check out [Vonage Authors](/getting-started/vonage-authors)
+💡 For more information check out [vonage fonts](/getting-started/advanced/#vonage-fonts)
 
-## Advanced Usage
-
-For further information on **core application styles** & **scoped elements** check out [advanced usage](/getting-started/advanced)
-
+💡 For more information on **core application styles** & **scoped elements** check out [advanced usage](/getting-started/advanced)
+---
 ## CDN - Quickstart
 
 Global content delivery networks can help quickly integrate content within html pages, fetching content from an URL, skipping local builds entirely.
@@ -102,17 +100,17 @@ The following snippet fully renders a Vivid button component
   <vwc-button label="Click me" appearance="filled" connotation="cta"></vwc-button>
 </div>
 ```
-
+---
 ## Support Matrix
 
 This library is supported on 2 recent versions of major browsers (Chrome, Firefox, Safari, Edge).
-
+---
 ## Support
 
 This library is open source, developed and maintained by the [Vonage Vivid teams](https://github.com/orgs/Vonage/teams/vivid/teams).
 
 For any questions, please open a [bug report](https://github.com/Vonage/vivid-3/issues/new?assignees=yonatankra%2C+rachelbt%2C+rinaok%2C+yinonov&labels=bug&template=bug_report.yml&title=%5BYOUR+TITLE%5D%3A+Brief+description) or [feature request](https://github.com/Vonage/vivid-3/issues/new?assignees=yonatankra%2C+rachelbt%2C+rinaok%2C+yinonov&labels=Feature+request&template=feature_request.yml&title=%5BYOUR+TITLE%5D%3A+Brief+description).
-
+---
 ## Roadmap
 
 - View [components status](https://github.com/orgs/Vonage/projects/6)
@@ -120,19 +118,19 @@ For any questions, please open a [bug report](https://github.com/Vonage/vivid-3/
 - [What's on our plate](https://github.com/orgs/Vonage/projects/3/views/7)
 
 - See the [open issues](https://github.com/vonage/vivid-3/issues) for a full list of proposed features (and known issues).
-
+---
 ## Contributing
 
 Please read [CONTRIBUTING.md](https://github.com/Vonage/vivid-3/blob/main/.github/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
-
+---
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [npm page](https://www.npmjs.com/package/@vonage/vivid).
-
+---
 ## Authors
 
 See also the list of [contributors](https://github.com/Vonage/vivid-3/graphs/contributors) who participated in this project.
-
+---
 ## License
 
 This project is licensed under the Apache 2.0 License - see the [LICENSE.md](https://github.com/Vonage/vivid-3/blob/main/LICENSE.md) file for details
@@ -142,7 +140,7 @@ This project is licensed under the Apache 2.0 License - see the [LICENSE.md](htt
 - Hat tip to anyone whose code was used
 - Inspiration
 - etc -->
-
+---
 ## Built With ♡ And
 
 - [Fast](https://www.fast.design) - to extend element classes and compile code to native web components
