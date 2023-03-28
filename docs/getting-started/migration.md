@@ -135,7 +135,7 @@ For the typography style to work correctly, the vvd-root class should be set on 
 After using vivid-3 **exclusively**, follow these steps:
 
 - Remove vivid-2 import from package.json. You sould only have `@vonage/vivid": "^3.x"`.
-- Set `vvd-root` class on the [:root](https://developer.mozilla.org/en-US/docs/Web/CSS/:root) and remove from all the components.
+- Set `vvd-root` class on the `:root` and remove it from all the components.
 - All registered components should be removed and imported directly.
 - Rename all prefixes to `vwc`.
 
