@@ -132,7 +132,7 @@ Alternatively, you can add it to any other wrapping element in order to restrict
 ---
 ## Step 5: Adding the Spezia Font
 
-[Follow the instructions to set the Spezia Font](/docs/getting-started/fonts-and-tokens).
+[Follow the instructions to set the Spezia Font](docs/getting-started/fonts-and-tokens).
 
 ---
 ## Step 6: Setting custom prefix
