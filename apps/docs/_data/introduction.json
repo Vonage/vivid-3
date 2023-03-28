@@ -12,6 +12,13 @@
 		]
 	},
 	{
+		"title": "fonts and tokens",
+		"markdown": "./docs/getting-started/fonts-and-tokens.md",
+		"modules": [
+			"/assets/modules/components/note/index.js"
+		]
+	},
+	{
 		"title": "vivid-2-migration",
 		"markdown": "./docs/getting-started/migration.md",
 		"modules": [

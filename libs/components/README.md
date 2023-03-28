@@ -72,7 +72,7 @@ Learn how to load fonts into your application with [google-fonts](https://fonts.
 
 Unless explicitly stated otherwise, **Vonage** products should use the brand specified font families by **Spezia**. Vonage teams may review guidelines at the [Spezia webfont kit](https://github.com/Vonage/spezia-webfont-kit).  
 
-💡 For more information check out [vonage fonts](/getting-started/advanced/#vonage-fonts)
+💡 For more information check out [vonage fonts](/getting-started/fonts-and-tokens)
 
 ---
 ## Advanced Usage
