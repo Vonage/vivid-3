@@ -160,6 +160,7 @@ You are good to go with vivid-3 and gradually integrate more and more components
 For any question or problem you are more that welcome to reach us at the #ask-vivid slack channel. 
 
 ---
+
 ## FAQ
 
 <vwc-accordion>
@@ -173,6 +174,7 @@ For any question or problem you are more that welcome to reach us at the #ask-vi
     Angular projects have an angular.json file. Inside you have the  styles property. Add the vivid style files paths to your angular.json file.
   </vwc-accordion-item>
 </vwc-accordion>
+
 ---
 
 ## Have questions?
