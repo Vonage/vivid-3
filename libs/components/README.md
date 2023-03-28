@@ -70,12 +70,12 @@ You can also add it to any wrapping element if you would like to scope the style
 Vivid uses **Montserrat** and **Roboto Mono** Google fonts.
 Learn how to load fonts into your application with [google-fonts](https://fonts.google.com/knowledge/using_type/using_web_fonts_from_a_font_delivery_service#loading-web-fonts)
 
----
-## Advanced Usage
-
 Unless explicitly stated otherwise, **Vonage** products should use the brand specified font families by **Spezia**. Vonage teams may review guidelines at the [Spezia webfont kit](https://github.com/Vonage/spezia-webfont-kit).  
 
 💡 For more information check out [vonage fonts](/getting-started/advanced/#vonage-fonts)
+
+---
+## Advanced Usage
 
 💡 For more information on **core application styles** & **scoped elements** check out [advanced usage](/getting-started/advanced)
 
