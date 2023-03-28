@@ -1,10 +1,14 @@
 # Migrate from VIVID 2 to VIVID 3
 
+---
+
 You are a vivid user, familiar with most of the components and now on the verge of upgrading to the latest version.
 
 vivid.3.x can be installed alongside vivid.2.x allowing you to migrate easily and gradually to vivid.3.x.
 
 This is a step-by-step guide for integrating vivid-3.x alongside vivid-2.
+
+---
 
 ## Step 1: Pre Installation
 
@@ -34,13 +38,13 @@ After:
 ```js
 import { VWCButton } from '@vonage/vwc-button'
 ```
-
+---
 ## Step 2: Install vivid@3.x
 
 ```json
 npm install @vonage/vivid@latest
 ```
-
+---
 
 ## Step 3: Import tokens
 
@@ -72,7 +76,7 @@ Here are 3 common option for importing css:
 ```json
 <link rel="stylesheet" href="node_modules/@vonage/vivid/styles/tokens/theme-light.css" media="all">
 ```
-
+---
 
 ## Step 4: Setting Vivid Class
 
@@ -88,10 +92,11 @@ Alternatively, you can add it to any other wrapping element in order to restrict
 
 <vwc-note connotation="warning" headline="Avoid Tokens Collisions">As long as you use vivid-2 components in the project it is best to add the vvd-root class to each vivid-3 component, and not to the html or body.</vwc-note>
 
+---
 ## Step 5: Adding the Spezia Font
 
-[Follow the instructions to set the `Spezia Font`](docs/getting-started/vonage-authors/#font).
-
+[Follow the instructions to set the **Spezia Font**](docs/getting-started/advanced/#fonts).
+---
 ## Step 6: Setting custom prefix
 
 Read about the vivid 3.x [scroped elements](docs/getting-started/advanced/#scoped-elements).
@@ -102,7 +107,7 @@ Register the first vivid-3 component that you wish to migrate from vivid-2.
 import { registerButton } from '@vonage/vivid';
 registerButton ('vwc-3');
 ```
-
+---
 ## Step 7: Start using components
 
 Now it's time to use the components with the prefix you have set.
@@ -110,7 +115,7 @@ Now it's time to use the components with the prefix you have set.
 ```json
 <vwc-3-button label="scoped vivid-3 button"></vwc-3-button>
 ```
-
+---
 ## Step 8: Extra - Typography and Theming
 
 If you wish your whole app to align to vivid typography, in vivid 3.x  Simply add the typography css, or all core css to typography and theme and your headings and other HTML elements will be applied with Spezia font and Vivid typography.
@@ -122,7 +127,7 @@ The css need to be imported from the folder:
 ```
 
 For the typography style to work correctly, the vvd-root class should be set on the :root element. When set on the [:root](https://developer.mozilla.org/en-US/docs/Web/CSS/:root), typeface sizes are able to descend from the root font-size, thus comply with the WCAG 1.4.4) to ensure text readability experience.
-
+---
 ## Step 9: Done!
 
 After using vivid-3 **exclusively**, follow these steps:
@@ -151,7 +156,7 @@ import '@vonage/vivid/button';
 
 You are good to go with vivid-3 and gradually integrate more and more components to vivid-3.
 For any question or problem you are more that welcome to reach us at the #ask-vivid slack channel. 
-
+---
 ## FAQ
 
 <vwc-accordion>
@@ -165,7 +170,7 @@ For any question or problem you are more that welcome to reach us at the #ask-vi
     Angular projects have an angular.json file. Inside you have the  styles property. Add the vivid style files paths to your angular.json file.
   </vwc-accordion-item>
 </vwc-accordion>
-
+---
 ## Have questions?
 
 Still looking for answers, ask us in [#ask-vivid](https://vonage.slack.com/archives/C013F0YKH99) slack channel.

@@ -12,14 +12,7 @@
 		]
 	},
 	{
-		"title": "vonage-authors",
-		"markdown": "./docs/getting-started/vonage-authors.md",
-		"modules": [
-			"/assets/modules/components/note/index.js"
-		]
-	},
-	{
-		"title": "vivid-2-authors",
+		"title": "vivid-2-migration",
 		"markdown": "./docs/getting-started/migration.md",
 		"modules": [
 			"/assets/modules/components/note/index.js",
