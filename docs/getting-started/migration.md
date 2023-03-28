@@ -96,6 +96,7 @@ Alternatively, you can add it to any other wrapping element in order to restrict
 ## Step 5: Adding the Spezia Font
 
 [Follow the instructions to set the Spezia Font](docs/getting-started/advanced/#vonage-fonts).
+
 ---
 ## Step 6: Setting custom prefix
 
@@ -127,6 +128,7 @@ The css need to be imported from the folder:
 ```
 
 For the typography style to work correctly, the vvd-root class should be set on the :root element. When set on the [:root](https://developer.mozilla.org/en-US/docs/Web/CSS/:root), typeface sizes are able to descend from the root font-size, thus comply with the WCAG 1.4.4) to ensure text readability experience.
+
 ---
 ## Step 9: Done!
 
@@ -156,6 +158,7 @@ import '@vonage/vivid/button';
 
 You are good to go with vivid-3 and gradually integrate more and more components to vivid-3.
 For any question or problem you are more that welcome to reach us at the #ask-vivid slack channel. 
+
 ---
 ## FAQ
 
@@ -171,6 +174,7 @@ For any question or problem you are more that welcome to reach us at the #ask-vi
   </vwc-accordion-item>
 </vwc-accordion>
 ---
+
 ## Have questions?
 
 Still looking for answers, ask us in [#ask-vivid](https://vonage.slack.com/archives/C013F0YKH99) slack channel.
