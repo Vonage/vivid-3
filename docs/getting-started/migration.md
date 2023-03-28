@@ -162,7 +162,7 @@ For any question or problem you are more that welcome to reach us at the #ask-vi
 ---
 
 ## FAQ
-
+Still looking for answers, ask us in [#ask-vivid](https://vonage.slack.com/archives/C013F0YKH99) slack channel.
 <vwc-accordion>
   <vwc-accordion-item heading="'No matching version found for' Error">
     vivid-3 should be pulled from npmjs and not from github packages . Check your .npmrc file to make sure you are not pulling from github packages . I'd advice uninstalling all vivid components via npm uninstall or yarn remove and reinstalling them afterwards.
