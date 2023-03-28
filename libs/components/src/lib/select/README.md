@@ -201,11 +201,10 @@ Default: `fit-content`
 </vwc-select>
 ```
 
-### Select-width
-By default, the select width is `fit-content`, and the list-box containing the options aligned to the longest option.  
-Specify width on the `vwc-select` if required.
+### Width
+By default, the select width is `fit-content` and the same goes for the list-box containing the options.  
 
-List-box options will not be affected by a width setting for the select.
+You can specify width on the `vwc-select` if required (the list-box will not be affected by this setting).
 
 
 ```html preview
