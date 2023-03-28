@@ -28,7 +28,7 @@ Scss users can simply use [@forward](https://sass-lang.com/documentation/at-rule
 
 ### Setting Vivid class
 
-[As in tokens](/getting-started/quick-start/#setting-vivid-class) styles **require** a `vvd-root` class selector to be present on a wrapping element (advisably the `:root`). 
+[As in tokens](/getting-started/quick-start/#setting-vivid-class) styles **require** a `vvd-root` class selector to be present on a wrapping element (advisably the [:root](https://developer.mozilla.org/en-US/docs/Web/CSS/:root)). 
 When set on the `:root` HTML Element, typeface sizes are able to descend from the root font-size, thus comply with the [WCAG 1.4.4](https://www.w3.org/WAI/WCAG21/Understanding/resize-text) to ensure text readability experience.
 
 ---
