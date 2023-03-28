@@ -66,7 +66,7 @@ Check out our [use case example](/#use-case)
   }
   vwc-select {width: 150px;}
 </style>
-<vwc-select label="country code" icon="search-line">
+<vwc-select label="choose one option" icon="search-line">
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
   <vwc-option value="3" text="Option 3"></vwc-option>
@@ -175,7 +175,7 @@ You can add a `label` attribute to the `vwc-option` to set a custom display valu
 ```
 ## Dimensions
 
-### CSS Variables - Select-height
+### Height (CSS Variable)
 Use `--select-height` to set the height of the list-box containing the select options
 
 Type: `string`  
