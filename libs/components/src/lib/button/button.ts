@@ -94,6 +94,18 @@ export class Button extends FoundationButton {
 	}) stacked = false;
 
 	/**
+	 * Displays the button in pending state.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: pending
+	 */
+	@attr({
+		mode: 'boolean',
+		attribute: 'pending',
+	}) pending = false;
+
+	/**
 	 * Indicates the button's label.
 	 *
 	 * @public
