@@ -176,7 +176,3 @@ For any question or problem you are more that welcome to reach us at the #ask-vi
 </vwc-accordion>
 
 ---
-
-## Have questions?
-
-Still looking for answers, ask us in [#ask-vivid](https://vonage.slack.com/archives/C013F0YKH99) slack channel.
