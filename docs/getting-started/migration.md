@@ -175,4 +175,3 @@ Still looking for answers, ask us in [#ask-vivid](https://vonage.slack.com/archi
   </vwc-accordion-item>
 </vwc-accordion>
 
----
