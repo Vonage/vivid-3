@@ -59,3 +59,7 @@ Then use it as:
 Remember to not include the default side-effect import (`import '@vonage/vivid/button';`) when using scoped elements as it will register the default namespace.
 
 In addition to avoiding namespace collision and customizing elements' tag names, this approach lets you enjoy the benefits of [npm dedupe](https://docs.npmjs.com/cli/v8/commands/npm-dedupe). With [npm dedupe](https://docs.npmjs.com/cli/v8/commands/npm-dedupe), only the least needed versions of the library are used in the application.
+
+## Have questions?
+
+Still looking for answers, ask us in [#ask-vivid](https://vonage.slack.com/archives/C013F0YKH99) slack channel.

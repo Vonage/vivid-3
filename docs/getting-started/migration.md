@@ -82,7 +82,7 @@ To add fonts and tokens to the component you need to add the class `vvd-root` to
 <html class=”vvd-root”>...</html>
 ```
 
-It is recommended to add the class to the `:root` element, this is the easiest way to make your app benefit from tokens and fonts.
+It is recommended to add the class to the [:root](https://developer.mozilla.org/en-US/docs/Web/CSS/:root) element, this is the easiest way to make your app benefit from tokens and fonts.
 
 Alternatively, you can add it to any other wrapping element in order to restrict the styles's scope to specific parts of your application, but please note that this may negatively impact font scaling.
 
@@ -121,14 +121,14 @@ The css need to be imported from the folder:
 "node_modules/@vonage/vivid/styles/core/all.css"
 ```
 
-For the typography style to work correctly, the vvd-root class should be set on the :root element. When set on the :root (html element), typeface sizes are able to descend from the root font-size, thus comply with the WCAG 1.4.4) to ensure text readability experience.
+For the typography style to work correctly, the vvd-root class should be set on the :root element. When set on the [:root](https://developer.mozilla.org/en-US/docs/Web/CSS/:root), typeface sizes are able to descend from the root font-size, thus comply with the WCAG 1.4.4) to ensure text readability experience.
 
 ## Step 9: Done!
 
 After using vivid-3 **exclusively**, follow these steps:
 
 - Remove vivid-2 import from package.json. You sould only have `@vonage/vivid": "^3.x"`.
-- Set `vvd-root` class in the :root element and remove from all the components.
+- Set `vvd-root` class on the [:root](https://developer.mozilla.org/en-US/docs/Web/CSS/:root) and remove from all the components.
 - All registered components should be removed and imported directly.
 - Rename all prefixes to `vwc`.
 
@@ -165,3 +165,7 @@ For any question or problem you are more that welcome to reach us at the #ask-vi
     Angular projects have an angular.json file. Inside you have the  styles property. Add the vivid style files paths to your angular.json file.
   </vwc-accordion-item>
 </vwc-accordion>
+
+## Have questions?
+
+Still looking for answers, ask us in [#ask-vivid](https://vonage.slack.com/archives/C013F0YKH99) slack channel.

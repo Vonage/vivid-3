@@ -73,8 +73,6 @@ Now that we have the _Spezia_ font families set up - we need to override Vivid's
 }
 ```
 
-## Have fun using vivid@3 components
+## Have questions?
 
-### Have questions?
-
-Still looking for answers, ask us in [#ask-vivid slack channel](https://vonage.slack.com/archives/C013F0YKH99).
+Still looking for answers, ask us in [#ask-vivid](https://vonage.slack.com/archives/C013F0YKH99) slack channel.
