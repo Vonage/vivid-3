@@ -46,7 +46,7 @@ export const buttonTemplate: (
     <button
         class="${getClasses}"
         ?autofocus="${(x) => x.autofocus}"
-        ?disabled="${(x) => x.disabled}"
+        ?disabled="${(x) => x.disabled || x.pending}"
         form="${(x) => x.formId}"
         formaction="${(x) => x.formaction}"
         formenctype="${(x) => x.formenctype}"
