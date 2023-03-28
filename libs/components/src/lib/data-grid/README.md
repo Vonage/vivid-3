@@ -123,7 +123,7 @@ The column definitions of the grid
 ```html preview
 <vwc-data-grid></vwc-data-grid>
 <script>
-    const grid = document.querySelector('vwc-data-grid');
+    grid = document.querySelector('vwc-data-grid');
     grid.columnDefinitions = [
         {columnDataKey: 'data1', title: 'Custom Title 1'},
         {columnDataKey: 'data2', title: 'Custom Title 2'},
