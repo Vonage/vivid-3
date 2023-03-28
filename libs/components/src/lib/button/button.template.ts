@@ -82,7 +82,7 @@ export const buttonTemplate: (
         ${() => focusTemplate}
         ${x => affixIconTemplate(x.icon)}
         ${(x) => x.label}
-        ${when(x => x.pending, html`<${progressTag} size="-5"></${progressTag}>`)}
+        ${when(x => x.pending, html`<${progressTag} class="pending" size="-5"></${progressTag}>`)}
     </button>
 `;
 };
