@@ -53,7 +53,8 @@ Add a `label` attribute to add label to the Select.
 ```
 
 ### Icon
-Add an `icon` attribute to add an icon to the Select. 
+Add an `icon` attribute to add an icon to the Select.  
+Check out our [use case example](/#use-case)
 
 - Type: `string` | `undefined`
 - Default: `undefined`
@@ -172,10 +173,10 @@ You can add a `label` attribute to the `vwc-option` to set a custom display valu
   <vwc-option label="Custom Label 3" value="3" text="Option 3"></vwc-option>
 </vwc-select>
 ```
-## CSS Variables
+## Dimensions
 
-### Select-height
-If there are many options in the list-box, set a height with the `--select-height`.
+### CSS Variables - Select-height
+Use `--select-height` to set the height of the list-box containing the select options
 
 Type: `string`  
 Default: `fit-content`
@@ -201,8 +202,11 @@ Default: `fit-content`
 ```
 
 ### Select-width
-By default, the select width is `fit-content`.  
-There's no need for a css-variable for the width, if needed, simply specific width on the `vwc-select`
+By default, the select width is `fit-content`, and the list-box containing the options aligned to the longest option.  
+Specify width on the `vwc-select` if required.
+
+List-box options will not be affected by a width setting for the select.
+
 
 ```html preview
 <style>
@@ -221,7 +225,6 @@ There's no need for a css-variable for the width, if needed, simply specific wid
 ```
 
 
-
 ## Caveat
 
 Document elements display precedence is formed by the imaginary z-axis [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context), commonly by order of which elements are rendered and special properties (e.g. _z-index_).
@@ -237,7 +240,7 @@ If needed a `z-index` value can be set on the host
   }
   vwc-select {width: 120px;}
 </style>
-<vwc-select label="phone" icon="flag-united-states">
+<vwc-select label="country code" icon="flag-united-states">
   <vwc-option value="1" text="+1" icon="flag-united-states"></vwc-option>
   <vwc-option value="+49" text="+49" icon="flag-germany"></vwc-option>
   <vwc-option value="+355" text="+355" icon="flag-albania"></vwc-option>
