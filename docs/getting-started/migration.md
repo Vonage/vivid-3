@@ -132,7 +132,7 @@ Alternatively, you can add it to any other wrapping element in order to restrict
 ---
 ## Step 5: Adding the Spezia Font
 
-[Follow the instructions to set the Spezia Font](docs/getting-started/fonts-and-tokens).
+[Follow the instructions](docs/getting-started/fonts-and-tokens) to set the Spezia Font.
 
 ---
 ## Step 6: Setting custom prefix
@@ -156,7 +156,7 @@ Now it's time to use the components with the prefix you have set.
 ---
 ## Step 8: Extra - Typography and Theming
 
-[Follow the instructions if you wish your whole app to align to vivid typography](docs/getting-started/dvanced#styles-optional).
+[Follow the instructions](docs/getting-started/dvanced#styles-optional) to align with vivid typography.
 
 ---
 ## Step 9: Done!
