@@ -42,7 +42,7 @@ In your CSS file, add the following code to specify & load the font family:
 ```
 
 
-Now that we have the _Spezia_ font families set up - we need to override Vivid's default typefaces by applying the following to the css:
+Now that we have the **Spezia** font families set up - we need to override Vivid's default typefaces by applying the following to the css:
 
 ```css
 .vvd-root {
