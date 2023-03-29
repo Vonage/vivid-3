@@ -156,15 +156,7 @@ Now it's time to use the components with the prefix you have set.
 ---
 ## Step 8: Extra - Typography and Theming
 
-If you wish your whole app to align to vivid typography, in vivid 3.x  Simply add the typography css, or all core css to typography and theme and your headings and other HTML elements will be applied with Spezia font and Vivid typography.
-
-The css need to be imported from the folder:
-
-```json
-"node_modules/@vonage/vivid/styles/core/all.css"
-```
-
-For the typography style to work correctly, the vvd-root class should be set on the :root element. When set on the [:root](https://developer.mozilla.org/en-US/docs/Web/CSS/:root), typeface sizes are able to descend from the root font-size, thus comply with the WCAG 1.4.4) to ensure text readability experience.
+[Follow the instructions if you wish your whole app to align to vivid typography](docs/getting-started/dvanced#styles-optional).
 
 ---
 ## Step 9: Done!

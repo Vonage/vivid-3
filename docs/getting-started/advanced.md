@@ -4,6 +4,7 @@
 ## Styles (Optional)
 
 Vivid provides a set of styles (combined with the tokens and fonts) that can be used to embody the Vivid design system into an application.  
+
 **These styles are not required by vivid components directly. However, native HTML tags do.**
 
 - `theme.css` - Sets theme related styles
