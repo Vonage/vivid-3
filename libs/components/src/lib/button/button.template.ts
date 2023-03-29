@@ -4,8 +4,8 @@ import type { ElementDefinitionContext, FoundationElementDefinition } from '@mic
 import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
-import type { Button, ButtonAppearance } from './button';
 import { ProgressRing } from '../progress-ring/progress-ring';
+import type { Button, ButtonAppearance } from './button';
 
 
 const getAppearanceClassName = (appearance: ButtonAppearance, disabled: boolean) => {
@@ -40,7 +40,7 @@ export const buttonTemplate: (
 ) => ViewTemplate<Button> = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const focusTemplate = focusTemplateFactory(context);
-    const progressTag = context.tagFor(ProgressRing);
+	const progressTag = context.tagFor(ProgressRing);
 
 	return html`
     <button
