@@ -54,7 +54,6 @@
 	transition: box-shadow .2s, background-color .2s;
 	&-wrapper {
 		position: relative;
-		min-width: fit-content;
 	}
 
 	&:not(.disabled) {
@@ -82,13 +81,27 @@
 	padding: 4px;
 	gap: 2px;
 	overflow-y: auto;
+
 }
 
 .selected-value {
+	display: flex;
 	overflow: hidden;
-	max-inline-size: 100%;
-	text-overflow: ellipsis;
+	align-items: center;
+	column-gap: 12px;
 	white-space: nowrap;
+
+	.text {
+		overflow: hidden;
+		max-inline-size: 100%;
+		text-overflow: ellipsis;
+	}
+
+	.icon {
+		flex: 0 0 20px;
+		font-size: 20px;
+		line-height: 1;
+	}
 }
 
 
