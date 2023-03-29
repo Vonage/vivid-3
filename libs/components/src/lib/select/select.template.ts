@@ -40,7 +40,8 @@ function selectValue(context: ElementDefinitionContext) {
 					${ref('control')}
 				>
 					<div class="selected-value">
-						${x => x.displayValue}
+						${x => affixIconTemplate(x.icon)}
+						<span class="text">${x => x.displayValue}</span>
 					</div>
 					${() => affixIconTemplate('chevron-down-line')}
 					${() => focusTemplate}
