@@ -1,13 +1,13 @@
 # Fonts and Tokens
 
+---
+
 Vivid uses **Montserrat** and **Roboto Mono** Google fonts.
 
 **Vonage** products should use the brand-specific **Spezia** font families.
 
 To obtain the **Spezia** webfont kit, go to this repository: [https://github.com/Vonage/spezia-webfont-kit](https://github.com/Vonage/spezia-webfont-kit)
-
 Download the font and add it to your project.
-
 Make sure it is added to the correct path as indicated in the CSS file (or update the path in the CSS below).
 
 ```
@@ -64,3 +64,9 @@ Now that we have the _Spezia_ font families set up - we need to override Vivid's
  css variable as derivative will flexibly update font-size by the user preference */
 }
 ```
+
+---
+
+## Have questions?
+
+Still looking for answers, ask us in [#ask-vivid](https://vonage.slack.com/archives/C013F0YKH99) slack channel.
