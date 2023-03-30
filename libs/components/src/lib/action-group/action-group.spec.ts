@@ -67,11 +67,12 @@ describe('vwc-action-group', () => {
 		});
 	});
 
-	it('should set "aria-label" on base if set on host', async function () {
-		const labelId = 'label';
-		element.setAttribute('aria-label', labelId);
-		await elementUpdated(element);
-		expect(getBaseElement(element).getAttribute('aria-label')).toEqual(labelId);
+	describe('aria-label', function () {
+		it('should set "aria-label" on base if set on host', async function () {
+			const labelId = 'label';
+			element.setAttribute('aria-label', labelId);
+			await elementUpdated(element);
+			expect(getBaseElement(element).getAttribute('aria-label')).toEqual(labelId);
+		});
 	});
-	
 });
