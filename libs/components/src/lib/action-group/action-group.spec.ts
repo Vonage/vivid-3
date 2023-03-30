@@ -21,6 +21,11 @@ describe('vwc-action-group', () => {
 		it('should be initialized as a vwc-action-group', async () => {
 			expect(actionGroupDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(ActionGroup);
+			expect(element.shape).toEqual(undefined);
+			expect(element.appearance).toEqual(undefined);
+			expect(element.tight).toEqual(false);
+			expect(element.role).toEqual(undefined);
+			expect(element.ariaLabel).toEqual(null);
 		});
 	});
 
