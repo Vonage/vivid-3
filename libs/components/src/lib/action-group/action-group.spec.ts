@@ -1,4 +1,4 @@
-import {elementUpdated, fixture} from '@vivid-nx/shared';
+import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { ActionGroup } from './action-group';
 import { actionGroupDefinition } from './definition';
@@ -26,25 +26,44 @@ describe('vwc-action-group', () => {
 
 	describe('appearance', function () {
 		it('should set the appearance class on the base', async function () {
-			const control = element.shadowRoot?.querySelector('.base');
 			const appearance = 'fieldset';
 			(element as any).appearance = appearance;
 			await elementUpdated(element);
 
-			expect(control?.classList.contains(`appearance-${appearance}`))
+			expect(getBaseElement(element)?.classList.contains(`appearance-${appearance}`))
 				.toBeTruthy();
 		});
 	});
 
 	describe('shape', function () {
 		it('should set the shape class on the base', async function () {
-			const control = element.shadowRoot?.querySelector('.base');
 			const shape = 'pill';
 			(element as any).shape = shape;
 			await elementUpdated(element);
 
-			expect(control?.classList.contains(`shape-${shape}`))
+			expect(getBaseElement(element)?.classList.contains(`shape-${shape}`))
 				.toBeTruthy();
+		});
+	});
+
+	describe('role', function () {
+		it('should be set to "group" on init', function () {
+			const role = getBaseElement(element)?.getAttribute('role');
+			expect(role).toEqual('group');
+		});
+
+		it('should change role to role radiogroup', async function () {
+			element.role = 'radiogroup';
+			await elementUpdated(element);
+			const role = getBaseElement(element)?.getAttribute('role');
+			expect(role).toEqual('radiogroup');
+		});
+
+		it('should change role when role attribute is set', async function () {
+			element.setAttribute('role', 'radiogroup');
+			await elementUpdated(element);
+			const role = getBaseElement(element)?.getAttribute('role');
+			expect(role).toEqual('radiogroup');
 		});
 	});
 });
