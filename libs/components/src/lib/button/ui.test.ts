@@ -10,7 +10,9 @@ import {
 const components = ['button'];
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
-	<div style="margin: 5px;"><vwc-button appearance='filled' label='A default button'></vwc-button></div>
+	<div style="margin: 5px;">
+		<vwc-button appearance='filled' label='A default button'></vwc-button>
+	</div>
 	<div style="margin: 5px;">
 		<vwc-button label='ghost' appearance='ghost'></vwc-button>
 		<vwc-button label='filled' appearance='filled'></vwc-button>
@@ -62,8 +64,12 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-button appearance='filled' label='filled' disabled></vwc-button>
 		<vwc-button appearance='outlined' label='outlined' disabled></vwc-button>
 	</div>
-	<div style="margin: 5px;"><vwc-button connotation='cta' shape='pill' icon='microphone-solid' aria-label="Mute"></vwc-button></div>
-	<div style="margin: 5px;"><vwc-button style='display: block;' label="I'm full width" shape='pill' appearance='filled'></vwc-button></div>
+	<div style="margin: 5px;">
+		<vwc-button connotation='cta' shape='pill' icon='microphone-solid' aria-label="Mute"></vwc-button>
+	</div>
+	<div style="margin: 5px;">
+		<vwc-button style='display: block;' label="I'm full width" shape='pill' appearance='filled'></vwc-button>
+	</div>
 	`;
 
 	page.setViewportSize({ width: 500, height: 720 });
