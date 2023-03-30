@@ -12,5 +12,7 @@ jobs:
       - uses: amannn/action-semantic-pull-request@v5
         with:
           requireScope: true
+          subjectPattern: ^.*VIV-\d+.*$
+          subjectPatternError: The PR title's description "{subject}" must contain a reference to the corresponding Jira ticket (VIV-xxx).
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
