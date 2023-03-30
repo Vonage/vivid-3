@@ -59,6 +59,8 @@ export class ActionGroup extends FoundationElement {
 		mode: 'boolean',
 	}) tight = false;
 
+	@attr() role: string | undefined;
+	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
 }
 
 

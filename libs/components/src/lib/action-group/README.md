@@ -132,18 +132,10 @@ Use `<vwc-divider>` for adding separator between the action elements
 Note: This is a simplified example illustrating a styled radio group and is not intended to be a complete implementation of the [Radio Group Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/radio/).
 
 ```html preview
-<style>
- [role="radiogroup"] {
-  display: contents;
- }
-</style>
-
-<vwc-action-group>
-  <div role="radiogroup" aria-label="Text Alignment">
-   <vwc-button type="button" role="radio" icon="align-left-line" aria-checked="false" tabindex="0" aria-label="Text Align Left"></vwc-button>
-   <vwc-button type="button" role="radio" icon="align-center-line" aria-checked="true" tabindex="-1" aria-label="Text Align Center" appearance="filled"></vwc-button>
-   <vwc-button type="button" role="radio" icon="align-right-line" aria-checked="false" tabindex="-1" aria-label="Text Align Right"></vwc-button>
-  </div>
+<vwc-action-group role="radiogroup" aria-label="Text Alignment">
+    <vwc-button type="button" role="radio" icon="align-left-line" aria-checked="false" tabindex="0" aria-label="Text Align Left"></vwc-button>
+    <vwc-button type="button" role="radio" icon="align-center-line" aria-checked="true" tabindex="-1" aria-label="Text Align Center" appearance="filled"></vwc-button>
+    <vwc-button type="button" role="radio" icon="align-right-line" aria-checked="false" tabindex="-1" aria-label="Text Align Right"></vwc-button>
 </vwc-action-group>
 ```
 
@@ -169,3 +161,9 @@ Note: This is a simplified example illustrating a styled radio group and is not 
   anchor.addEventListener('click', () => popup.open = !popup.open);
 </script>
 ```
+
+## Accessibility
+
+The `action-group` defaults its role to 'group'. 
+However - if this role does not suit the use-case, you can change it.
+[For further reading about group role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/group_role).
