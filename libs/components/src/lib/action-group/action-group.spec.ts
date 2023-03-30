@@ -66,4 +66,12 @@ describe('vwc-action-group', () => {
 			expect(role).toEqual('radiogroup');
 		});
 	});
+
+	it('should set "aria-label" on base if set on host', async function () {
+		const labelId = 'label';
+		element.setAttribute('aria-label', labelId);
+		await elementUpdated(element);
+		expect(getBaseElement(element).getAttribute('aria-label')).toEqual(labelId);
+	});
+	
 });
