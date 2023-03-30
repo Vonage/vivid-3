@@ -4,6 +4,26 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.6.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.5.0...vivid-v3.6.0) (2023-03-30)
+
+
+### Features
+
+* **avatar:** duotone appearance and deprecate outline ([#1074](https://github.com/Vonage/vivid-3/issues/1074)) ([277a19c](https://github.com/Vonage/vivid-3/commit/277a19c7a116afb2a97504786e98dc9c43023526))
+* **components:** VIV-881 button pending state ([#1088](https://github.com/Vonage/vivid-3/issues/1088)) ([370fb80](https://github.com/Vonage/vivid-3/commit/370fb80349febf1aee33051f0df87a1af832725e))
+* **icon:** update icons version (VIV-951) ([#1091](https://github.com/Vonage/vivid-3/issues/1091)) ([e43a3c9](https://github.com/Vonage/vivid-3/commit/e43a3c9a25edd081c9920ff0224c4d0b1010759d))
+* **select:** add icon ([#1076](https://github.com/Vonage/vivid-3/issues/1076)) ([1fccb13](https://github.com/Vonage/vivid-3/commit/1fccb13eaa782195309a4ca400b1b6b556f41f76))
+
+
+### Bug Fixes
+
+* **doc:** tiny sample fix ([#1086](https://github.com/Vonage/vivid-3/issues/1086)) ([e73decd](https://github.com/Vonage/vivid-3/commit/e73decdc2b06f26e9cd40e7f7b982c33c8a66db8))
+
+
+### Performance Improvements
+
+* **components:** action group role as group (VIV-897) ([#837](https://github.com/Vonage/vivid-3/issues/837)) ([4e976fc](https://github.com/Vonage/vivid-3/commit/4e976fc023ed129488f47250a2908e2e540222bb))
+
 ## [3.5.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.4.0...vivid-v3.5.0) (2023-03-26)
 
 
