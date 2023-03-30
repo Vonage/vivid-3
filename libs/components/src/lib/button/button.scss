@@ -141,3 +141,7 @@ $pill-selector: ".shape-pill:not(.stacked)";
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
 	}
 }
+
+.pending {
+	order: 2;
+}

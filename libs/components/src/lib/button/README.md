@@ -153,6 +153,19 @@ Add the `disabled` attribute to disable the button.
 <vwc-button appearance='outlined' label='outlined' disabled></vwc-button>
 ```
 
+### Pending
+
+Add the `pending` attribute to disable the button and display a processing indicator.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-button appearance='ghost' label='ghost' pending></vwc-button>
+<vwc-button appearance='filled' label='filled' pending></vwc-button>
+<vwc-button appearance='outlined' label='outlined' pending></vwc-button>
+```
+
 ## Use Cases
 
 ### Toggle Button
