@@ -6,6 +6,7 @@ import { AffixIcon } from '../../shared/patterns/affix';
  * Base class for text-anchor
  *
  * @public
+ * @slot - Default slot.
  */
 export class TextAnchor extends Anchor {
 	/**

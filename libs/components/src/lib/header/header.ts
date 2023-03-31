@@ -5,6 +5,7 @@ import { attr } from '@microsoft/fast-element';
  * Base class for header
  *
  * @public
+ * @slot - Default slot.
  */
 export class Header extends FoundationElement {
 	/**

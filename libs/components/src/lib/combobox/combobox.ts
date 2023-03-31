@@ -14,6 +14,7 @@ export type PopupPlacement = 'top' | 'bottom';
 /**
  * Base class for combobox
  *
+ * @slot - Default slot.
  */
 @formElements
 export class Combobox extends FoundationCombobox {

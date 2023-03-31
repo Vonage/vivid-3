@@ -2,6 +2,9 @@ import { attr } from '@microsoft/fast-element';
 import { applyMixins, AccordionItem as FASTAccordionItem } from '@microsoft/fast-foundation';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
+/**
+ * @slot - Default slot.
+ */
 export class AccordionItem extends FASTAccordionItem {
 	/**
 	 *
