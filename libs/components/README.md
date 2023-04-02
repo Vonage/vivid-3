@@ -35,15 +35,19 @@ For a full list of components and API, explore the [components docs](https://viv
 
 ### Tokens
 
-To **include the tokens**, its css files must be loaded into the project from the `node_modules/@vonage/vivid/styles/tokens` folder.  
+To **include the tokens**, you must load **one** of the following themse:
 
-Tokens folder contains the following files:
+<vwc-note connotation="warning" icon="warning-solid" headline="Only one theme is required to be loaded."></vwc-note>
 
-- `theme-light.css` - Light theme
+```js
+'node_modules/@vonage/vivid/styles/tokens/theme-light.css';
+```
 
-- `theme-dark.css` - Dark theme
+**Or**
 
-Only one theme is required to be loaded.
+```js
+'node_modules/@vonage/vivid/styles/tokens/theme-dark.css';
+```
 
 #### About tokens
 
