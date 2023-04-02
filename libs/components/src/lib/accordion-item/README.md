@@ -89,7 +89,7 @@ Add the `icon` attribute to add an icon to the heading.
 - Default: `''`
 
 ```html preview full
-	<vwc-accordion>
+<vwc-accordion>
 	<vwc-accordion-item heading="Accordion item with icon" icon="chat-solid">
 		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 	</vwc-accordion-item>
