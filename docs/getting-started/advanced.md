@@ -20,7 +20,7 @@ These **core styles** rely on the [tokens and fonts to be loaded](/getting-start
 // Sets typography related styles
 'node_modules/@vonage/vivid/styles/core/typography.css';
 ```
-**Or**
+**Or all if both files are needed**
 ```js
 // Sets all the above styles
 'node_modules/@vonage/vivid/styles/core/all.css';
