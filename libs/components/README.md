@@ -35,7 +35,7 @@ For a full list of components and API, explore the [components docs](https://viv
 
 ### Tokens
 
-To **include the tokens**, you must load **one** of the following themse:
+To **include the tokens**, you must load theme css:
 
 <vwc-note connotation="warning" icon="warning-solid" headline="Only one theme is required to be loaded."></vwc-note>
 
