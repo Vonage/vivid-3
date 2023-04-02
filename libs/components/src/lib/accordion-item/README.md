@@ -99,6 +99,25 @@ Add the `icon-trailing` attribute (or `iconTrailing` property) to add an icon to
 </vwc-accordion-item>
 ```
 
+### Size
+
+Use the `size` attribute to set the accordion-item's size.
+
+- Type: `'condensed'` | `'normal'`
+- Default: `'normal'`
+
+```html preview full
+<vwc-accordion-item heading="normal accordion item" meta="meta-data" icon="chat-solid">
+  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+</vwc-accordion-item>
+<hr>
+<vwc-accordion-item heading="condensed accordion item" size="condensed" meta="meta-data" icon="chat-solid">
+  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+</vwc-accordion-item>
+
+```
+
+
 ## Accessibility
 
 The accordion-item has a button `role` (it is a button).

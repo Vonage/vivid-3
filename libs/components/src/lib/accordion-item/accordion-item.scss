@@ -13,6 +13,7 @@
 	$default: ghost,
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
 :host {
 	display: flex;
@@ -43,9 +44,17 @@
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	color: var(#{appearance.get-appearance-token(text)});
 	cursor: pointer;
-	font: var(#{constants.$vvd-typography-heading-4});
-	gap: 16px;
 	text-align: left;
+
+	&.size-condensed {
+		font: var(#{constants.$vvd-typography-base-bold});
+		gap: 12px;
+	}
+
+	&:not(.size-condensed) {
+		font: var(#{constants.$vvd-typography-heading-4});
+		gap: 16px;
+	}
 }
 
 .heading-content {
@@ -57,10 +66,18 @@
 	max-width: 20%;
 	flex-shrink: 0;
 	color: var(#{constants.$vvd-color-neutral-600});
-	font: var(#{constants.$vvd-typography-base-bold});
+
 	text-align: end;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+
+	.heading-button:not(.size-condensed) & {
+		font: var(#{constants.$vvd-typography-base-bold});
+	}
+
+	.heading-button.size-condensed & {
+		font: var(#{constants.$vvd-typography-base-condensed-bold});
+	}
 }
 
 .region {
@@ -71,8 +88,16 @@
 		display: block;
 	}
 
-	&.padded {
-		padding-left: 52px;
+	&:not(.size-condensed) {
+		&.padded {
+			padding-inline-start: 52px;
+		}
+	}
+
+	&.size-condensed {
+		&.padded {
+			padding-inline-start: 44px;
+		}
 	}
 }
 
@@ -81,6 +106,14 @@
 
 	:host(:not([icon-trailing])) &:last-of-type {
 		color: var(#{appearance.get-appearance-token(text)});
+	}
+
+	.heading-button:not(.size-condensed) & {
+		font: inherit;
+	}
+
+	.heading-button.size-condensed & {
+		font: var(#{constants.$vvd-typography-base-extended});
 	}
 }
 
