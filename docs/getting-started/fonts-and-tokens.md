@@ -16,7 +16,7 @@ assets/fonts/Spezia_Web_Complete/VariableFont/Complete
 
 In your CSS file, add the following code to specify & load the font family:
 
-<vwc-note connotation="warning" headline="The @font-face declaration must be placed at the top of the CSS file."></vwc-note>
+<vwc-note connotation="warning" icon="warning-solid" headline="The @font-face declaration must be placed at the top of the CSS file."></vwc-note>
 
 ```css
 @font-face {
