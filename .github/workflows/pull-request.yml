@@ -41,12 +41,12 @@ jobs:
   call-lint:
     if: github.event.pull_request.draft == false
     needs: [deps-cache]
-    uses: vonage/vivid-3/.github/workflows/_lint.yml@main
+    uses: vonage/vivid-3/.github/workflows/_lint.yml
 
   unit-tests:
     if: github.event.pull_request.draft == false
     needs: call-lint
-    uses: vonage/vivid-3/.github/workflows/_unit-test.yml@main
+    uses: vonage/vivid-3/.github/workflows/_unit-test.yml
     with:
       os: ubuntu-latest
       report_coverage: true
@@ -54,14 +54,14 @@ jobs:
   call-visual-regression:
     if: github.event.pull_request.draft == false
     needs: call-lint
-    uses: vonage/vivid-3/.github/workflows/_visual-regression.yml@main
+    uses: vonage/vivid-3/.github/workflows/_visual-regression.yml
 
   call-deploy-deno-preview:
     if: github.event.pull_request.draft == false
     needs: [deps-cache]
-    uses: vonage/vivid-3/.github/workflows/_deploy-deno.yml@main
+    uses: vonage/vivid-3/.github/workflows/_deploy-deno.yml
 
   call-lighthouse:
     if: github.event.pull_request.draft == false
     needs: [deps-cache]
-    uses: vonage/vivid-3/.github/workflows/_lighthouse.yml@main
+    uses: vonage/vivid-3/.github/workflows/_lighthouse.yml
