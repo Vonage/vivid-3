@@ -38,6 +38,12 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
+      - name: publish github action package
+        run: |
+          npx nx run components:build
+          npx nx run components:generateMeta
+          npm publish ./dist/libs/components --//npm.pkg.github.com/:_authToken=${{ secrets.VNG_VVD_PAT }}
+
   call-lint:
     if: github.event.pull_request.draft == false
     needs: [deps-cache]
