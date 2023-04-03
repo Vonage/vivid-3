@@ -49,4 +49,4 @@ jobs:
   deploy-deno:
     needs: release-please
     if: ${{ needs.release-please.outputs.releases_created }}
-    uses: vonage/vivid-3/.github/workflows/_deploy-deno.yml
+    uses: vonage/vivid-3/.github/workflows/_deploy-deno.yml@main
