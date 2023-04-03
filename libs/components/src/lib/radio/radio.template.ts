@@ -24,7 +24,7 @@ export const RadioTemplate: (context: ElementDefinitionContext) => ViewTemplate<
 	const focusTemplate = focusTemplateFactory(context);
 
 	return html<Radio>`
-	<span class="${getClasses}"
+	<div class="${getClasses}"
 		role="radio"
 		aria-checked="${x => x.checked}"
 		aria-required="${x => x.required}"
@@ -36,6 +36,6 @@ export const RadioTemplate: (context: ElementDefinitionContext) => ViewTemplate<
 			${() => focusTemplate}
 		</div>
 		${when(x => x.label, html<Radio>`<label class="label">${x => x.label}</label>`)}
-	</span>
+	</div>
 	`;
 };

@@ -47,6 +47,9 @@ export type IconConnotation = Extract<Connotation,
 | Connotation.Alert
 | Connotation.Information>;
 
+/**
+ * @slot - Default slot.
+ */
 export class Icon extends FoundationElement {
 	/**
 	 * The connotation the icon should have.

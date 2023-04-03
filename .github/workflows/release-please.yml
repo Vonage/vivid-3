@@ -30,14 +30,21 @@ jobs:
           node-version: 16
           registry-url: 'https://registry.npmjs.org'
 
-      - name: publish npm package
+      - name: build
         run: |
           npm ci --ignore-scripts
           npx nx run components:build
           npx nx run components:generateMeta
-          npm publish dist/libs/components --//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
+
+      - name: publish npm package
+        run: npm publish dist/libs/components --//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
+
+      - name: publish to github packages
+        run: npm publish ./dist/libs/components --registry=https://npm.pkg.github.com --//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.VNG_VVD_PAT }}
 
   deploy-deno:
     needs: release-please

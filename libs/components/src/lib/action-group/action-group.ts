@@ -28,6 +28,7 @@ export type ActionGroupShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  * Base class for action-group
  *
  * @public
+ * @slot - Default slot.
  */
 export class ActionGroup extends FoundationElement {
 	/**
