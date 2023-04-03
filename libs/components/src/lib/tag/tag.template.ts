@@ -1,0 +1,54 @@
+import { html, when } from '@microsoft/fast-element';
+import type { ViewTemplate } from '@microsoft/fast-element';
+import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
+import { classNames } from '@microsoft/fast-web-utilities';
+import { focusTemplateFactory } from '../../shared/patterns/focus';
+import { affixIconTemplateFactory } from '../../shared/patterns/affix';
+import { Icon } from '../icon/icon';
+import type { Tag } from './tag';
+
+const getClasses = ({
+	connotation, appearance, size, shape, disabled, selected, removable
+}: Tag) => classNames(
+	'base',
+	['disabled', disabled],
+	['selected', selected],
+	['removable', removable],
+	[`connotation-${connotation}`, Boolean(connotation)],
+	[`appearance-${appearance}`, Boolean(appearance)],
+	[`size-${size}`, Boolean(size)],
+	[`shape-${shape}`, Boolean(shape)],
+);
+
+function renderDismissButton(iconTag: string) {
+	return html<Tag>`
+	<div 
+		aria-hidden="true"
+		class="dismiss-button"
+		@click="${x => x.remove()}">
+		<${iconTag} class="dismiss-icon" name="close-line"></${iconTag}>
+	</div>`;
+}
+
+/**
+ * The template for the {@link @microsoft/fast-foundation#Tag} component.
+ *
+ * @param context
+ * @public
+ */
+export const tagTemplate: (
+	context: ElementDefinitionContext,
+	definition: FoundationElementDefinition
+) => ViewTemplate<Tag> = (context: ElementDefinitionContext) => {
+	const affixIconTemplate = affixIconTemplateFactory(context);
+	const iconTag = context.tagFor(Icon);
+	const focusTemplate = focusTemplateFactory(context);
+
+	return html`
+	<span class="${getClasses}">
+		${x => affixIconTemplate(x.icon)}
+		${when((x) => x.text, (x) => html<Tag>`<span class="text">${x.text as string}</span>`)}
+		${when(x => x.removable, renderDismissButton(iconTag))}
+		${() => focusTemplate}
+	</span>`;
+};

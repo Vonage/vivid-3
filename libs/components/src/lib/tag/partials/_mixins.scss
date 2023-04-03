@@ -1,0 +1,8 @@
+@use "variables" as variables;
+
+@mixin get-size-properties($tag-block-size, $font-face, $padding-inline) {
+	#{variables.$tag-block-size}: $tag-block-size;
+
+	font: var(#{$font-face});
+	padding-inline: $padding-inline;
+}
