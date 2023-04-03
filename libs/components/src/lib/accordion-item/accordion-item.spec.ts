@@ -131,11 +131,11 @@ describe('vwc-accordion-item', () => {
 			(element as any).size = size;
 			await elementUpdated(element);
 
-			const accordionButton = element.shadowRoot?.querySelector(`.heading-button.size-${size}`);
-			expect(accordionButton).toBeInstanceOf(Element);
+			const accordionButton = element.shadowRoot?.querySelector('.heading-button');
+			const accordionRegion = element.shadowRoot?.querySelector('.region');
 
-			const accordionRegion = element.shadowRoot?.querySelector(`.region.size-${size}`);
-			expect(accordionRegion).toBeInstanceOf(Element);
+			expect(accordionButton?.classList.contains(`size-${size}`)).toBeTruthy();
+			expect(accordionRegion?.classList.contains(`size-${size}`)).toBeTruthy();
 		});
 	});
 });
