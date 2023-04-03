@@ -41,7 +41,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
 
-      - name: publish github action package
+      - name: publish to github packages
         run: |
           printf "always-auth=true\nregistry=https://npm.pkg.github.com/\n//npm.pkg.github.com/:_authToken=${{ secrets.VNG_VVD_PAT }}" > .npmrc
           npm publish ./dist/components
