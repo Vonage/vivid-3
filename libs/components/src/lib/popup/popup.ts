@@ -7,6 +7,7 @@ import type { Placement, Strategy } from '@floating-ui/dom';
  * Base class for popup
  *
  * @public
+ * @slot - Default slot.
  */
 export class Popup extends FoundationElement {
 	get #arrowPosition(): any { return { top: 'bottom', right: 'left', bottom: 'top', left: 'right' }; }

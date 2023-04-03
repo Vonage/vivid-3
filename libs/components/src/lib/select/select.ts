@@ -12,6 +12,7 @@ export type SelectShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  * Base class for select
  *
  * @public
+ * @slot - Default slot.
  */
 @formElements
 export class Select extends FoundationSelect {

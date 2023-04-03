@@ -13,6 +13,7 @@ export type LisboxAppearance = Extract<Appearance, Appearance.Outlined | Appeara
  * Base class for listbox
  *
  * @public
+ * @slot - Default slot.
  */
 export class Listbox extends FoundationListboxElement {
 	/**

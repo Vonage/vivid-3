@@ -18,6 +18,14 @@ import { getEventContext } from './helpers/calendar.event-context';
  * Base class for calendar
  *
  * @public
+ * @slot - Default slot.
+ * @slot day-0 - Assign elements to corresponding day column using this slot.
+ * @slot day-1 - Assign elements to corresponding day column using this slot.
+ * @slot day-2 - Assign elements to corresponding day column using this slot.
+ * @slot day-3 - Assign elements to corresponding day column using this slot.
+ * @slot day-4 - Assign elements to corresponding day column using this slot.
+ * @slot day-5 - Assign elements to corresponding day column using this slot.
+ * @slot day-6 - Assign elements to corresponding day column using this slot.
  */
 export class Calendar extends FoundationElement {
 
