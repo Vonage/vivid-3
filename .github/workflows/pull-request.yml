@@ -42,7 +42,7 @@ jobs:
         run: |
           npx nx run components:build
           npx nx run components:generateMeta
-          npm publish ./dist/libs/components --//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN
+          npm publish ./dist/libs/components --registry=https://npm.pkg.github.com --//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN
         env:
           NODE_AUTH_TOKEN: ${{ secrets.VNG_VVD_PAT }}
 
