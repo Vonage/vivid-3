@@ -3,38 +3,34 @@
 ---
 ## Styles (Optional)
 
-Vivid provides a set of styles (combined with the tokens and fonts) that can be used to embody the Vivid design system into an application.  
-
-**These styles are not required by vivid components directly. However, native HTML tags do.**
-
-- `theme.css` - Sets theme related styles
-
-- `typography.css` - Sets typography related styles
-
-- `all.css` - Sets all the above styles
-
-These **core styles** rely on the [tokens and fonts to be loaded](/getting-started/quick-start/#prerequisite)
-
 ### Include the styles
 
-To include the styles, its css files must be loaded into the project from: 
+Vivid provides a set of styles (combined with the tokens and fonts) that can be used to embody the Vivid design system into an application.  
+
+<vwc-note connotation="accent" icon="megaphone-solid" headline="These styles are not required by vivid components directly. However, native HTML tags do."></vwc-note>
+
+These **core styles** rely on the [tokens and fonts to be loaded](/getting-started/quick-start/#prerequisite).
 
 ```js
-'node_modules/@vonage/vivid/styles/[path to file].css';
+// Sets theme related styles
+'node_modules/@vonage/vivid/styles/core/theme.css';
+```
+**Or**
+```js
+// Sets typography related styles
+'node_modules/@vonage/vivid/styles/core/typography.css';
+```
+**Or all if both files are needed**
+```js
+// Sets all the above styles
+'node_modules/@vonage/vivid/styles/core/all.css';
 ```
 
-Scss users can simply use [@forward](https://sass-lang.com/documentation/at-rules/forward).
-```js
-@forward 'node_modules/@vonage/vivid/styles/[path to file].css';
-```
+<vwc-note connotation="information" icon="info-solid" headline="Scss users can simply use @forward."></vwc-note>
 
 ### Setting Vivid class
 
-Styles **require** a `vvd-root` class selector to be present on a wrapping element. 
-
-We advise this wrapping element to be the [:root](https://developer.mozilla.org/en-US/docs/Web/CSS/:root).
-
-When set on the **:root HTML Element**, typeface sizes are able to descend from the root font-size, thus comply with the [WCAG 1.4.4](https://www.w3.org/WAI/WCAG21/Understanding/resize-text) to ensure text readability experience.
+Styles **require** a `vvd-root` class selector to be present on a wrapping element. [Follow the instruction to set a vvd-root class](/getting-started/quick-start/#setting-vivid-class).
 
 ---
 

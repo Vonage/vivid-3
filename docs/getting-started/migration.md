@@ -127,7 +127,7 @@ It is recommended to add the class to the [:root](https://developer.mozilla.org/
 
 Alternatively, you can add it to any other wrapping element in order to restrict the styles's scope to specific parts of your application, but please note that this may negatively impact font scaling.
 
-<vwc-note connotation="warning" headline="Avoid Tokens Collisions">As long as you use vivid-2 components in the project it is best to add the vvd-root class to each vivid-3 component, and not to the html or body.</vwc-note>
+<vwc-note connotation="warning" icon="warning-solid" headline="Avoid Tokens Collisions">As long as you use vivid-2 components in the project it is best to add the vvd-root class to each vivid-3 component, and not to the html or body.</vwc-note>
 
 ---
 ## Step 5: Adding the Spezia Font
