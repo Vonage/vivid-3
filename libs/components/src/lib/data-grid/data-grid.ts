@@ -14,6 +14,7 @@ export type DataGridSelectionMode = ValueOf<typeof DataGridSelectionMode>;
  * Base class for data-grid
  *
  * @public
+ * @slot - Default slot.
  */
 export class DataGrid extends FoundationElement {
 	@attr({attribute: 'selection-mode'})

@@ -8,6 +8,7 @@ import type { Popup } from '../popup/popup';
  * Base class for menu
  *
  * @public
+ * @slot - Default slot.
  */
 export class Menu extends FastMenu {
 	_popup?: Popup;

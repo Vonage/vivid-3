@@ -11,6 +11,9 @@ import type { Size } from '../enums.js';
  */
 export type AccordionItemSize = Extract<Size, Size.Condensed | Size.Normal>;
 
+/**
+ * @slot - Default slot.
+ */
 export class AccordionItem extends FASTAccordionItem {
 	/**
 	 *
