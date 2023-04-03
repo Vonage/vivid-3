@@ -6,7 +6,7 @@ import type {
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { getFeedbackTemplate } from '../../shared/patterns';
-import { focusTemplateFactory } from '../../shared/patterns';
+// import { focusTemplateFactory } from '../../shared/patterns';
 import type { TextArea } from './text-area';
 
 const getClasses = ({ value, errorValidationMessage, disabled, placeholder, readOnly, successText }: TextArea) => classNames(
@@ -39,11 +39,10 @@ export const TextAreaTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<TextArea> = (context: ElementDefinitionContext) => {
-	const focusTemplate = focusTemplateFactory(context);
+	// const focusTemplate = focusTemplateFactory(context);
 	return html`
 	  <div class="${getClasses}">
 		  ${when(x => x.label, renderLabel())}
-		  <div class="fieldset">
 			<textarea class="control"
 				?autofocus="${x => x.autofocus}"
 				placeholder="${x => x.placeholder ? x.placeholder : null}"
@@ -81,8 +80,6 @@ export const TextAreaTemplate: (
 				${ref('control')}
 	  >
 			</textarea>
-			  ${() => focusTemplate}
-		  </div>
 		${when(x => !x.successText && !x.errorValidationMessage && x.helperText?.length, getFeedbackTemplate('helper', context))}
 		${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplate('error', context))}
 		${when(x => x.successText, getFeedbackTemplate('success', context))}

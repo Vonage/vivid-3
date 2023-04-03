@@ -26,7 +26,7 @@ $low-ink-color: --_low-ink-color;
 	@include connotation.connotation;
 
 	display: inline-grid;
-	width: 100%;
+	width: inherit;
 	gap: 4px;
 	grid-template-columns: 1fr max-content;
 
@@ -53,21 +53,12 @@ $low-ink-color: --_low-ink-color;
 	line-height: 20px;
 }
 
-.fieldset {
-	position: relative;
-	display: flex;
-	align-items: center;
-	border-radius: 6px;
-	grid-column: 1 / 3;
-}
-
 .control {
-	width: 100%;
 	padding: 8px 16px;
 	border: 0 none;
 	appearance: none; /* for box-shadow visibility on IOS */
 	background-color: var(#{appearance.get-appearance-token(fill)});
-	border-radius: inherit;
+	border-radius: 6px;
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
@@ -88,19 +79,4 @@ $low-ink-color: --_low-ink-color;
 		-webkit-text-fill-color: var(#{$low-ink-color}); /* 1. sets text fill to current `color` for safari */
 	}
 
-	@supports selector(:focus-visible) {
-		&:focus {
-			outline: none;
-		}
-	}
-}
-
-.focus-indicator {
-	#{focus-variables.$focus-stroke-gap-color}: transparent;
-
-	pointer-events: none;
-
-	.fieldset:not(:focus-visible, :focus-within) > & {
-		display: none;
-	}
 }
