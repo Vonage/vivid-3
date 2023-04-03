@@ -35,7 +35,7 @@ CheckboxOptions
 	const focusTemplate = focusTemplateFactory(context);
 	const iconTag = context.tagFor(Icon);
 
-	return html`<span
+	return html`<div
   role="checkbox"
   aria-checked="${x => x.checked}"
   aria-required="${x => x.required}"
@@ -54,5 +54,5 @@ CheckboxOptions
 
     ${when(x => x.label, html<Checkbox>`<label>${x => x.label}</label>`)}
 
-  </span>`;
+  </div>`;
 };
