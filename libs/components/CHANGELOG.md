@@ -4,6 +4,13 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.7.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.6.0...vivid-v3.7.0) (2023-04-03)
+
+
+### Features
+
+* **accordion-item:** add size condensed (VIV-883) ([#1093](https://github.com/Vonage/vivid-3/issues/1093)) ([1977ae5](https://github.com/Vonage/vivid-3/commit/1977ae51ff8a73fb4ab8f5c27a94a187c6242701))
+
 ## [3.6.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.5.0...vivid-v3.6.0) (2023-03-30)
 
 
