@@ -6,7 +6,6 @@ import type {
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { getFeedbackTemplate } from '../../shared/patterns';
-// import { focusTemplateFactory } from '../../shared/patterns';
 import type { TextArea } from './text-area';
 
 const getClasses = ({ value, errorValidationMessage, disabled, placeholder, readOnly, successText }: TextArea) => classNames(
@@ -39,7 +38,6 @@ export const TextAreaTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<TextArea> = (context: ElementDefinitionContext) => {
-	// const focusTemplate = focusTemplateFactory(context);
 	return html`
 	  <div class="${getClasses}">
 		  ${when(x => x.label, renderLabel())}
