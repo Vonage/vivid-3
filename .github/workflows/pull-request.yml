@@ -38,6 +38,11 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
+      - name: publish github action package
+        run: |
+          printf "always-auth=true\nregistry=https://npm.pkg.github.com/\n//npm.pkg.github.com/:_authToken=${{ secrets.VNG_VVD_PAT }}" > .npmrc
+          npm publish --dry-run ./dist/libs/components
+
   call-lint:
     if: github.event.pull_request.draft == false
     needs: [deps-cache]
