@@ -11,7 +11,7 @@ import type {
  *
  * @public
  */
-export type TagConnotation = Extract<Connotation,Connotation.Accent | Connotation.CTA>;
+export type TagConnotation = Extract<Connotation, Connotation.Accent | Connotation.CTA>;
 
 /**
  * Types of tag appearance.
@@ -35,7 +35,7 @@ export type TagShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 export type TagSize = Extract<Size, Size.Condensed | Size.Normal | Size.Expanded>;
 
 /**
- * Base class for tag
+ * Base class for tag.
  *
  * @public
  */
@@ -102,6 +102,14 @@ export class Tag extends FoundationElement {
 	@attr({ mode: 'boolean' }) disabled = false;
 
 	/**
+	 * indicates whether the tag is selectable
+	 *
+	 * @public
+	 * HTML Attribute: selectable
+	 */
+	@attr({ mode: 'boolean' }) selectable = false;
+
+	/**
 	* indicates whether the tag is selected
 	*
 	* @public
@@ -117,6 +125,18 @@ export class Tag extends FoundationElement {
 	override disconnectedCallback() {
 		super.disconnectedCallback();
 		this.removeEventListener('keydown', this.#closeOnKeyDown);
+	}
+
+	handleClick(): void {
+		if (!this.selectable || this.disabled || this.removable) {
+			return;
+		}
+		this.changeSelection();
+	}
+
+	changeSelection(): void {
+		this.selected = !this.selected;
+		this.$emit('selected-change');
 	}
 
 	override remove(): void {

@@ -91,17 +91,6 @@ It accepts a subset of predefined values.
 <vwc-tag text='cta' appearance='duotone' connotation='cta'></vwc-tag>
 ```
 
-### Selected
-
-Add the `selected` attribute to select the tag.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<vwc-tag text="selected" selected></vwc-tag>
-```
-
 ### Disabled
 
 Add the `disabled` attribute to disable the tag.
@@ -111,6 +100,17 @@ Add the `disabled` attribute to disable the tag.
 
 ```html preview
 <vwc-tag text="disabled" disabled></vwc-tag>
+```
+
+### Selectable
+
+Add the `selectable` attribute to select the tag.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-tag text="selectable" selectable></vwc-tag>
 ```
 
 ### Removable
@@ -129,6 +129,10 @@ The `removable` attribute sets a remove button. On click it will remove the tag 
 ### Removed
 
 Fires `removed` when the tag removed.
+
+### Selected Change
+
+Fires a custom `selected-change` event when the selected state changes.
 
 ## Methods
 

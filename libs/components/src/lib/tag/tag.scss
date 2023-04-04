@@ -52,17 +52,17 @@
 		user-select: none;
 	}
 
-	&:not(.disabled) {
+	&:not(.selectable) {
+		pointer-events: none;
+	}
+
+	&.selectable {
 		cursor: pointer;
 	}
 
 	&.disabled {
 		cursor: not-allowed;
 		pointer-events: none;
-	}
-
-	&.removable {
-		padding-right: 0px;
 	}
 
 	/* Size */
@@ -84,6 +84,10 @@
 
 	&:not(.size-condensed, .size-expanded) {
 		@include mixins.get-size-properties(#{size.$vvd-size-super-condensed}, #{constants.$vvd-typography-base}, 8px);
+	}
+
+	&.removable {
+		padding-inline-end: 2px;
 	}
 }
 
@@ -111,6 +115,9 @@
 
 /* Dismiss button */
 .dismiss-button {
+	cursor: pointer;
+	pointer-events: auto;
+
 	display: flex;
 	align-items: center;
 	border-radius: 6px;
@@ -118,10 +125,6 @@
 	.dismiss-icon {
 		margin: 4px;
 		font-size: calc(var(#{variables.$tag-block-size}) / 1.6667);
-	}
-
-	&:hover {
-		background-color: var(#{constants.$vvd-color-neutral-200});
 	}
 }
 
