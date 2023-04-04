@@ -83,7 +83,7 @@ $outline-width: 2px;
 	}
 
 	&:focus {
-		outline: $outline-width solid var(#{variables.$focus-stroke-color}, var(#{constants.$vvd-color-canvas-text}));
+		outline: $outline-width solid var(#{variables.$focus-stroke-color}, currentColor);
 		outline-offset: -$outline-width;
 	}
 }
