@@ -11,8 +11,7 @@ import type {
  *
  * @public
  */
-export type TagConnotation = Extract<Connotation,
-Connotation.Accent | Connotation.CTA>;
+export type TagConnotation = Extract<Connotation,Connotation.Accent | Connotation.CTA>;
 
 /**
  * Types of tag appearance.

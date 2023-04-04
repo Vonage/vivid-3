@@ -5,14 +5,14 @@
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta,
-	$shades: primary primary-text intermediate soft contrast pale fierce,
+	$shades: contrast soft pale fierce firm faint,
 	$default: accent
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: subtle duotone,
-	$states: idle,
+	$states: idle hover active disabled selected,
 	$default: subtle
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;

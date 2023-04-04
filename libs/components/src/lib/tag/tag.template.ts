@@ -22,12 +22,12 @@ const getClasses = ({
 
 function renderDismissButton(iconTag: string) {
 	return html<Tag>`
-	<div 
+	<span 
 		aria-hidden="true"
 		class="dismiss-button"
 		@click="${x => x.remove()}">
 		<${iconTag} class="dismiss-icon" name="close-line"></${iconTag}>
-	</div>`;
+	</span>`;
 }
 
 /**
