@@ -8,15 +8,15 @@
 
 ## Members
 
-### Text
+### Label
 
-Add a `text` attribute to add text to the tag.
+Add a `label` attribute to add label to the tag.
 
 - Type: `string`
 - Default: `undefined`
 
 ```html preview
-<vwc-tag text='tag'></vwc-tag>
+<vwc-tag label='tag'></vwc-tag>
 ```
 
 
@@ -28,8 +28,8 @@ Use the `shape` attribute to change the tag's edges.
 - Default: `'rounded'`
 
 ```html preview
-<vwc-tag text='rounded' shape='rounded'></vwc-tag>
-<vwc-tag text='pill' shape='pill'></vwc-tag>
+<vwc-tag label='rounded' shape='rounded'></vwc-tag>
+<vwc-tag label='pill' shape='pill'></vwc-tag>
 ```
 
 ### Size
@@ -40,9 +40,9 @@ Use the `size` attribute to set the tag's to one of the predefined block size ex
 - Default: `'normal'`
 
 ```html preview
-<vwc-tag text='condensed' size='condensed'></vwc-tag>
-<vwc-tag text='normal' size='normal'></vwc-tag>
-<vwc-tag text='expanded' size='expanded'></vwc-tag>
+<vwc-tag label='condensed' size='condensed'></vwc-tag>
+<vwc-tag label='normal' size='normal'></vwc-tag>
+<vwc-tag label='expanded' size='expanded'></vwc-tag>
 ```
 
 ### Icon
@@ -54,7 +54,7 @@ View list of available icon at the [vivid icons gallery](https://icons.vivid.von
 - Default: `undefined`
 
 ```html preview
-<vwc-tag text='icon' icon='pin-line'></vwc-tag>
+<vwc-tag label='icon' icon='pin-line'></vwc-tag>
 ```
 
 ### Appearance
@@ -65,8 +65,8 @@ Set the `appearance` attribute to change the tag's appearance.
 - Default: `'filled'`
 
 ```html preview
-<vwc-tag text='subtle' appearance='subtle'></vwc-tag>
-<vwc-tag text='duotone' appearance='duotone'></vwc-tag>
+<vwc-tag label='subtle' appearance='subtle'></vwc-tag>
+<vwc-tag label='duotone' appearance='duotone'></vwc-tag>
 ```
 
 ### Connotation
@@ -80,15 +80,15 @@ It accepts a subset of predefined values.
 #### Subtle tag with connotation
 
 ```html preview
-<vwc-tag text='accent' appearance='subtle' connotation='accent'></vwc-tag>
-<vwc-tag text='cta' appearance='subtle' connotation='cta'></vwc-tag>
+<vwc-tag label='accent' appearance='subtle' connotation='accent'></vwc-tag>
+<vwc-tag label='cta' appearance='subtle' connotation='cta'></vwc-tag>
 ```
 
 #### Duotone tag with connotation
 
 ```html preview
-<vwc-tag text='accent' appearance='duotone' connotation='accent'></vwc-tag>
-<vwc-tag text='cta' appearance='duotone' connotation='cta'></vwc-tag>
+<vwc-tag label='accent' appearance='duotone' connotation='accent'></vwc-tag>
+<vwc-tag label='cta' appearance='duotone' connotation='cta'></vwc-tag>
 ```
 
 ### Disabled
@@ -99,18 +99,19 @@ Add the `disabled` attribute to disable the tag.
 - Default: `false`
 
 ```html preview
-<vwc-tag text="disabled" disabled></vwc-tag>
+<vwc-tag label="disabled" disabled></vwc-tag>
 ```
 
 ### Selectable
 
-Add the `selectable` attribute to select the tag.
+Add the `selectable` attribute to be able to select the tag.
+Toggle the `selected` attribute to select and deselect the tag.
 
 - Type: `boolean`
 - Default: `false`
 
 ```html preview
-<vwc-tag text="selectable" selectable></vwc-tag>
+<vwc-tag label="selectable" selectable selected></vwc-tag>
 ```
 
 ### Removable
@@ -121,7 +122,7 @@ The `removable` attribute sets a remove button. On click it will remove the tag 
 - Default: `false`
 
 ```html preview
-<vwc-tag text="removable" removable></vwc-tag>
+<vwc-tag label="removable" removable></vwc-tag>
 ```
 
 ## Events
@@ -144,6 +145,3 @@ Fires a custom `selected-change` event when the selected state changes.
 Removes the tag from the DOM.  Fires the `removed` event and removes the tag from the DOM completely.  If you have a variable that refers to the tag element make sure to clear it otherwise it might cause a memory leak.
 
 
-### Accessibility
-
-Authors MUST ensure tags default to role option are contained in, or owned by, a tags set which default to the listbox role. Options not associated with a listbox might not be correctly mapped to an accessibility API

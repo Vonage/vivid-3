@@ -77,13 +77,13 @@ export class Tag extends FoundationElement {
 	@attr appearance?: TagAppearance;
 
 	/**
-	 * Indicates the tag's text.
+	 * Indicates the tag's label.
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: text
+	 * HTML Attribute: label
 	 */
-	@attr text?: string;
+	@attr label?: string;
 
 	/**
 	 * indicates whether the tag is removable
@@ -128,14 +128,15 @@ export class Tag extends FoundationElement {
 	}
 
 	handleClick(): void {
-		if (!this.selectable || this.disabled || this.removable) {
-			return;
-		}
 		this.changeSelection();
 	}
 
 	changeSelection(): void {
+		if (!this.selectable || this.disabled || this.removable) {
+			return;
+		}
 		this.selected = !this.selected;
+
 		this.$emit('selected-change');
 	}
 

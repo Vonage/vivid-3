@@ -18,12 +18,6 @@
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
-@supports selector(:focus-visible) {
-	:host(:focus) {
-		outline: none;
-	}
-}
-
 .base {
 	@include connotation.connotation;
 	@include appearance.appearance;
@@ -52,11 +46,7 @@
 		user-select: none;
 	}
 
-	&:not(.selectable) {
-		pointer-events: none;
-	}
-
-	&.selectable {
+	&:not(.disabled) {
 		cursor: pointer;
 	}
 
@@ -87,11 +77,12 @@
 	}
 
 	&.removable {
+		cursor: auto;
 		padding-inline-end: 2px;
 	}
 }
 
-.text {
+.label {
 	overflow: hidden;
 	max-inline-size: 100%;
 	text-overflow: ellipsis;
@@ -116,7 +107,6 @@
 /* Dismiss button */
 .dismiss-button {
 	cursor: pointer;
-	pointer-events: auto;
 
 	display: flex;
 	align-items: center;
@@ -126,10 +116,14 @@
 		margin: 4px;
 		font-size: calc(var(#{variables.$tag-block-size}) / 1.6667);
 	}
+
+	&:hover {
+		background-color: var(#{constants.$vvd-color-neutral-100});
+	}
 }
 
 .focus-indicator {
-	:host(:not(:focus-visible)) & {
+	.base:not(:focus-visible) & {
 		display: none;
 	}
 }

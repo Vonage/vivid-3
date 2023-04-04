@@ -8,12 +8,11 @@ import { Icon } from '../icon/icon';
 import type { Tag } from './tag';
 
 const getClasses = ({
-	connotation, appearance, size, shape, disabled, selected, selectable, removable
+	connotation, appearance, size, shape, disabled, selectable, removable
 }: Tag) => classNames(
 	'base',
 	['disabled', disabled],
-	['active', selected && selectable],
-	['selectable', selectable],
+	['selectable', selectable && !removable],
 	['removable', removable],
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[`appearance-${appearance}`, Boolean(appearance)],
@@ -46,11 +45,11 @@ export const tagTemplate: (
 	const focusTemplate = focusTemplateFactory(context);
 
 	return html`
-	<span class="${getClasses}" @click="${x => x.handleClick()}">
+	<span class="${getClasses}" role="option" @click="${x => x.handleClick()}">
 		${x => affixIconTemplate(x.icon)}
-		${when((x) => x.text, (x) => html<Tag>`<span class="text">${x.text as string}</span>`)}
+		${when((x) => x.label, (x) => html<Tag>`<span class="label">${x.label as string}</span>`)}
 		${when(x => x.removable, renderDismissButton(iconTag))}
-		${when(x => x.selected, html<Tag>`<${iconTag} name="check-line"></${iconTag}>`)}
+		${when(x => (x.selected && x.selectable && !x.removable), html<Tag>`<${iconTag} name="check-line"></${iconTag}>`)}
 		${() => focusTemplate}
 	</span>`;
 };

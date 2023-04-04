@@ -17,6 +17,9 @@ export const tagDefinition = Tag.compose<FoundationElementDefinition>({
 	baseName: 'tag',
 	template: template as any,
 	styles,
+	shadowOptions: {
+		delegatesFocus: true,
+	},
 });
 
 const tagRegistries = [tagDefinition(), ...iconRegistries, ...focusRegistries];
