@@ -30,8 +30,8 @@ $outline-width: 2px;
 
 	display: inline-grid;
 	width: inherit;
-	row-gap: 4px;
 	grid-template-columns: 1fr max-content;
+	row-gap: 4px;
 
 	@supports(user-select: none) {
 		user-select: none;
