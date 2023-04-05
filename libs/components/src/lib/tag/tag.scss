@@ -106,11 +106,10 @@
 
 /* Dismiss button */
 .dismiss-button {
-	cursor: pointer;
-
 	display: flex;
 	align-items: center;
 	border-radius: 6px;
+	cursor: pointer;
 
 	.dismiss-icon {
 		margin: 4px;

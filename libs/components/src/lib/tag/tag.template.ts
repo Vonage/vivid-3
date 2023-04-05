@@ -49,7 +49,8 @@ export const tagTemplate: (
 		${x => affixIconTemplate(x.icon)}
 		${when((x) => x.label, (x) => html<Tag>`<span class="label">${x.label as string}</span>`)}
 		${when(x => x.removable, renderDismissButton(iconTag))}
-		${when(x => (x.selected && x.selectable && !x.removable), html<Tag>`<${iconTag} name="check-line"></${iconTag}>`)}
+		${when(x => (x.selected && x.selectable && !x.removable),
+		html<Tag>`<${iconTag} class="selectable-icon" name="check-line"></${iconTag}>`)}
 		${() => focusTemplate}
 	</span>`;
 };
