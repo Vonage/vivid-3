@@ -45,7 +45,12 @@ export const tagTemplate: (
 	const focusTemplate = focusTemplateFactory(context);
 
 	return html`
-	<span class="${getClasses}" role="option" @click="${x => x.handleClick()}">
+	<span class="${getClasses}" 
+	role="option" 
+	aria-disabled="${x => x.disabled}"
+	tabindex="${x => (x.disabled ? null : 0)}"
+	@keypress="${x => x.handleKeypress()}"
+	@click="${x => x.handleClick()}">
 		${x => affixIconTemplate(x.icon)}
 		${when((x) => x.label, (x) => html<Tag>`<span class="label">${x.label as string}</span>`)}
 		${when(x => x.removable, renderDismissButton(iconTag))}

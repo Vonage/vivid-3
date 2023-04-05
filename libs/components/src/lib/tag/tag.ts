@@ -127,17 +127,19 @@ export class Tag extends FoundationElement {
 		this.removeEventListener('keydown', this.#closeOnKeyDown);
 	}
 
-	handleClick(): void {
-		this.changeSelection();
+	handleKeypress(): void {
+		this.#select();
 	}
 
-	changeSelection(): void {
+	handleClick(): void {
+		this.#select();
+	}
+
+	#select(): void {
 		if (!this.selectable || this.disabled || this.removable) {
 			return;
 		}
 		this.selected = !this.selected;
-
-		this.$emit('selected-change');
 	}
 
 	override remove(): void {

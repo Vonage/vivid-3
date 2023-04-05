@@ -218,5 +218,49 @@ describe('vwc-tag', () => {
 			expect(document.body.contains(element))
 				.toEqual(false);
 		});
+
+		it('should remove tag on remove', async () => {
+			await toggleRemovable(element, true);
+			element.remove();
+			await elementUpdated(element);
+			expect(document.body.contains(element))
+				.toEqual(false);
+		});
+	});
+
+	describe('remove', () => {
+		it('should fire removed event', async () => {
+			await toggleRemovable(element, true);
+			element.remove();
+			await elementUpdated(element);
+			expect(document.body.contains(element))
+				.toEqual(false);
+		});
+
+		it('should fire removed event', async () => {
+			const spy = jest.fn();
+			element.addEventListener('removed', spy);
+			element.remove();
+			expect(spy)
+				.toHaveBeenCalled();
+		});
+
+		it('should disable removed events after disconnected callback', async () => {
+			const spy = jest.fn();
+			element.addEventListener('removed', spy);
+			element.disconnectedCallback();
+
+			element.remove();
+			await elementUpdated(element);
+
+			expect(spy.mock.calls.length)
+				.toEqual(0);
+		});
+
+		it('should remove the tag after dispatch', async () => {
+			element.remove();
+			expect(document.body.contains(element))
+				.toEqual(false);
+		});
 	});
 });

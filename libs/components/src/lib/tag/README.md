@@ -131,10 +131,6 @@ The `removable` attribute sets a remove button. On click it will remove the tag 
 
 Fires `removed` when the tag removed.
 
-### Selected Change
-
-Fires a custom `selected-change` event when the selected state changes.
-
 ## Methods
 
 ### remove()
