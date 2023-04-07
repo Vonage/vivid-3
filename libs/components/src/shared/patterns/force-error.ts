@@ -16,20 +16,24 @@ export function forceError<T extends { new (...args: any[]): Record<string, any>
 			super(...args);
 			this._validate = this.validate;
 			this.validate = () => {
-				if (this.#bypassValidation) return;
-				this._validate();
+				if (this.#bypassValidation) {
+					this.forceErrorChanged('', this.forceError);
+				} else {
+					this._validate();
+				}
 			};
 		}
 
-		forceErrorChanged(_: string, newmsg: string) {
+		forceErrorChanged(_: string, newmsg: string | undefined) {
 			if (newmsg) {
-				this.setValidity({ customError: true }, newmsg);
+				this.setValidity({ customError: true }, newmsg, this.control);
 				this.userValid = false;
 				this.#bypassValidation = true;
 			} else {
-				this.setValidity({ customError: false }, '');
+				this.setValidity({ customError: false }, '', this.control);
 				this.userValid = true;
 				this.#bypassValidation = false;
+				this._validate();
 			}
 		}
 	}
