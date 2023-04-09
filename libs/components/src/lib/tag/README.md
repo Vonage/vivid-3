@@ -32,19 +32,6 @@ Use the `shape` attribute to change the tag's edges.
 <vwc-tag label='pill' shape='pill'></vwc-tag>
 ```
 
-### Size
-
-Use the `size` attribute to set the tag's to one of the predefined block size extent.
-
-- Type: `'condensed'` | `'normal'` | `'expanded'`
-- Default: `'normal'`
-
-```html preview
-<vwc-tag label='condensed' size='condensed'></vwc-tag>
-<vwc-tag label='normal' size='normal'></vwc-tag>
-<vwc-tag label='expanded' size='expanded'></vwc-tag>
-```
-
 ### Icon
 
 Use `icon` to set an icon to the tag.
@@ -140,4 +127,9 @@ Fires `removed` when the tag removed.
 
 Removes the tag from the DOM.  Fires the `removed` event and removes the tag from the DOM completely.  If you have a variable that refers to the tag element make sure to clear it otherwise it might cause a memory leak.
 
+### select()
 
+- Type: `function`
+- Returns: `void`
+
+Selects the tag. Works only if the tag is selectable, not disabled and not removable.

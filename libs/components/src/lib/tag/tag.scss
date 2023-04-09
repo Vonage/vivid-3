@@ -1,6 +1,5 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "partials/variables" as variables;
-@use "partials/mixins" as mixins;
 @use "../focus/partials/variables" as focus-variables;
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
@@ -22,7 +21,7 @@
 	@include connotation.connotation;
 	@include appearance.appearance;
 
-	#{variables.$tag-block-size}: #{size.$vvd-size-ultra-condensed};
+	#{variables.$tag-block-size}: #{size.$vvd-size-super-condensed};
 
 	display: inline-flex;
 	box-sizing: border-box;
@@ -34,6 +33,7 @@
 	column-gap: 8px;
 	font: var(#{constants.$vvd-typography-base});
 	max-inline-size: 100%;
+	padding-inline: 8px;
 	vertical-align: middle;
 
 	@supports selector(:focus-visible) {
@@ -55,30 +55,8 @@
 		pointer-events: none;
 	}
 
-	/* Size */
-	&.size-condensed {
-		@include mixins.get-size-properties(
-			#{size.$vvd-size-ultra-condensed},
-			#{constants.$vvd-typography-base-condensed},
-			4px
-		);
-	}
-
-	&.size-expanded {
-		@include mixins.get-size-properties(
-			#{size.$vvd-size-extra-condensed},
-			#{constants.$vvd-typography-base-extended},
-			16px
-		);
-	}
-
-	&:not(.size-condensed, .size-expanded) {
-		@include mixins.get-size-properties(#{size.$vvd-size-super-condensed}, #{constants.$vvd-typography-base}, 8px);
-	}
-
 	&.removable {
 		cursor: auto;
-		padding-inline-end: 2px;
 	}
 }
 
@@ -100,7 +78,7 @@
 
 /* Icon */
 .icon {
-	font-size: calc(var(#{variables.$tag-block-size}) / 1.6667);
+	font-size: calc(var(#{variables.$tag-block-size}) / 1.5);
 	line-height: 1;
 }
 
@@ -108,17 +86,9 @@
 .dismiss-button {
 	display: flex;
 	align-items: center;
-	border-radius: 6px;
+	border-radius: inherit;
 	cursor: pointer;
-
-	.dismiss-icon {
-		margin: 4px;
-		font-size: calc(var(#{variables.$tag-block-size}) / 1.6667);
-	}
-
-	&:hover {
-		background-color: var(#{constants.$vvd-color-neutral-100});
-	}
+	background-color: var(#{appearance.get-appearance-token(fill)});
 }
 
 .focus-indicator {

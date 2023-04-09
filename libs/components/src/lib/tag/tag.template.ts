@@ -8,7 +8,7 @@ import { Icon } from '../icon/icon';
 import type { Tag } from './tag';
 
 const getClasses = ({
-	connotation, appearance, size, shape, disabled, selectable, removable
+	connotation, appearance, shape, disabled, selectable, removable
 }: Tag) => classNames(
 	'base',
 	['disabled', disabled],
@@ -16,7 +16,6 @@ const getClasses = ({
 	['removable', removable],
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[`appearance-${appearance}`, Boolean(appearance)],
-	[`size-${size}`, Boolean(size)],
 	[`shape-${shape}`, Boolean(shape)],
 );
 
@@ -26,7 +25,7 @@ function renderDismissButton(iconTag: string) {
 		aria-hidden="true"
 		class="dismiss-button"
 		@click="${x => x.remove()}">
-		<${iconTag} class="dismiss-icon" name="close-line"></${iconTag}>
+		<${iconTag} name="close-line"></${iconTag}>
 	</span>`;
 }
 
@@ -49,7 +48,7 @@ export const tagTemplate: (
 	role="option" 
 	aria-disabled="${x => x.disabled}"
 	tabindex="${x => (x.disabled ? null : 0)}"
-	@keypress="${x => x.handleKeypress()}"
+	@keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}"
 	@click="${x => x.handleClick()}">
 		${x => affixIconTemplate(x.icon)}
 		${when((x) => x.label, (x) => html<Tag>`<span class="label">${x.label as string}</span>`)}

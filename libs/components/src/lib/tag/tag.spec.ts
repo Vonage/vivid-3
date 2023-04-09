@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { Tag } from './tag';
@@ -95,17 +95,6 @@ describe('vwc-tag', () => {
 		});
 	});
 
-	describe('size', () => {
-		it('sets correct internal size style', async () => {
-			const size = 'condensed';
-			(element as any).size = size;
-			await elementUpdated(element);
-
-			const base = element.shadowRoot?.querySelector(`.base.size-${size}`);
-			expect(base).toBeInstanceOf(Element);
-		});
-	});
-
 	describe('appearance', () => {
 		it('sets correct internal appearance style', async () => {
 			const appearance = 'duotone';
@@ -169,6 +158,35 @@ describe('vwc-tag', () => {
 			expect(element.shadowRoot?.querySelector('.selectable-icon'))
 				.toEqual(null);
 		});
+
+		it('should update selected to true when selectable', async () => {
+			await toggleSelectable(element, true);
+			getBaseElement(element).click();
+			await elementUpdated(element);
+			expect(element.selected).toBeTruthy();
+		});
+
+		it('should not update selected to true when not selectable', async () => {
+			await toggleSelectable(element, false);
+			getBaseElement(element).click();
+			await elementUpdated(element);
+			expect(element.selected).toBeFalsy();
+		});
+
+		it('should update selected to true when keydown', async () => {
+			await toggleSelectable(element, true);
+			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+			await elementUpdated(element);
+			expect(element.selected).toBeTruthy();
+		});
+
+		it('should not update selected to true when removable', async () => {
+			await toggleSelectable(element, true);
+			await toggleRemovable(element, true);
+			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+			await elementUpdated(element);
+			expect(element.selected).toBeFalsy();
+		});
 	});
 
 	describe('removable', () => {
@@ -229,7 +247,7 @@ describe('vwc-tag', () => {
 	});
 
 	describe('remove', () => {
-		it('should fire removed event', async () => {
+		it('should remove tag', async () => {
 			await toggleRemovable(element, true);
 			element.remove();
 			await elementUpdated(element);
@@ -237,11 +255,44 @@ describe('vwc-tag', () => {
 				.toEqual(false);
 		});
 
+		it('should remove tag on keydown when removable', async () => {
+			await toggleRemovable(element, true);
+			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+			await elementUpdated(element);
+			expect(document.body.contains(element))
+				.toEqual(false);
+		});
+
+		it('should not remove tag on keydown when not removable', async () => {
+			await toggleRemovable(element, false);
+			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+			await elementUpdated(element);
+			expect(document.body.contains(element))
+				.toEqual(true);
+		});
+
+		it('should not remove tag on keydown when disabled', async () => {
+			element.disabled = false;
+			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+			await elementUpdated(element);
+			expect(document.body.contains(element))
+				.toEqual(true);
+		});
+
 		it('should fire removed event', async () => {
 			const spy = jest.fn();
+			await toggleRemovable(element, true);
 			element.addEventListener('removed', spy);
 			element.remove();
 			expect(spy)
+				.toHaveBeenCalled();
+		});
+
+		it('should not fire removed event', async () => {
+			const spy = jest.fn();
+			element.addEventListener('removed', spy);
+			element.remove();
+			expect(spy).not
 				.toHaveBeenCalled();
 		});
 
@@ -255,12 +306,6 @@ describe('vwc-tag', () => {
 
 			expect(spy.mock.calls.length)
 				.toEqual(0);
-		});
-
-		it('should remove the tag after dispatch', async () => {
-			element.remove();
-			expect(document.body.contains(element))
-				.toEqual(false);
 		});
 	});
 });

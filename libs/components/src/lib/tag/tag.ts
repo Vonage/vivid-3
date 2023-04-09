@@ -3,7 +3,7 @@ import { attr } from '@microsoft/fast-element';
 import { AffixIcon } from '../../shared/patterns/affix';
 
 import type {
-	Appearance, Connotation, Shape, Size,
+	Appearance, Connotation, Shape,
 } from '../enums.js';
 
 /**
@@ -28,13 +28,6 @@ export type TagAppearance = Extract<Appearance, Appearance.Subtle | Appearance.D
 export type TagShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
- * Types of tag size.
- *
- * @public
- */
-export type TagSize = Extract<Size, Size.Condensed | Size.Normal | Size.Expanded>;
-
-/**
  * Base class for tag.
  *
  * @public
@@ -57,15 +50,6 @@ export class Tag extends FoundationElement {
 	 * HTML Attribute: shape
 	 */
 	@attr shape?: TagShape;
-
-	/**
-	 * The size the tag should have.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: size
-	 */
-	@attr size?: TagSize;
 
 	/**
 	 * The appearance the tag should have.
@@ -117,42 +101,34 @@ export class Tag extends FoundationElement {
 	*/
 	@attr({ mode: 'boolean' }) selected = false;
 
-	override connectedCallback() {
-		super.connectedCallback();
-		this.addEventListener('keydown', this.#closeOnKeyDown);
-	}
-
-	override disconnectedCallback() {
-		super.disconnectedCallback();
-		this.removeEventListener('keydown', this.#closeOnKeyDown);
-	}
-
-	handleKeypress(): void {
-		this.#select();
-	}
-
-	handleClick(): void {
-		this.#select();
-	}
-
-	#select(): void {
-		if (!this.selectable || this.disabled || this.removable) {
+	override remove(): void {
+		if (!this.removable) {
 			return;
 		}
-		this.selected = !this.selected;
-	}
 
-	override remove(): void {
 		this.$emit('removed');
 		this.parentElement && this.parentElement.removeChild(this);
 	}
 
-	#closeOnKeyDown = (e: KeyboardEvent) => {
-		if (e.key !== 'Escape' || !this.removable) {
+	select = (): void => {
+		if (!this.selectable || this.disabled || this.removable) {
 			return;
 		}
-		this.remove();
+		this.selected = !this.selected;
 	};
+
+	handleKeydown(e: KeyboardEvent): void {
+		if (e.key === 'Enter') {
+			this.select();
+		}
+		if (e.key === 'Escape') {
+			this.remove();
+		}
+	}
+
+	handleClick(): void {
+		this.select();
+	}
 }
 
 export interface Tag extends AffixIcon { }
