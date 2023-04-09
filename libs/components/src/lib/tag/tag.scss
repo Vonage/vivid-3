@@ -86,9 +86,9 @@
 .dismiss-button {
 	display: flex;
 	align-items: center;
+	background-color: var(#{appearance.get-appearance-token(fill)});
 	border-radius: inherit;
 	cursor: pointer;
-	background-color: var(#{appearance.get-appearance-token(fill)});
 }
 
 .focus-indicator {
