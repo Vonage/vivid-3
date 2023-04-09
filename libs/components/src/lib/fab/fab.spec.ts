@@ -22,6 +22,7 @@ describe('vwc-fab', () => {
 			expect(element.connotation).toBeUndefined();
 			expect(element.iconTrailing).toBeFalsy();
 			expect(element.disabled).toBeFalsy();
+			expect(element.size).toBeUndefined();
 		});
 	});
 
@@ -61,6 +62,17 @@ describe('vwc-fab', () => {
 			element.connotation = connotation;
 			await elementUpdated(element);
 			expect(getControlElement(element).classList.contains(`connotation-${connotation}`)).toBeTruthy();
+		});
+	});
+
+	describe('fab size', function () {
+		it('sets correct internal size style', async () => {
+			const size = 'expanded';
+			(element as any).size = size;
+			await elementUpdated(element);
+
+			const control = element.shadowRoot?.querySelector(`.control.size-${size}`);
+			expect(control?.classList.contains(`size-${size}`)).toBeTruthy();
 		});
 	});
 
