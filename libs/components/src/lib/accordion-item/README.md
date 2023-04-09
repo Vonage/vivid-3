@@ -16,7 +16,7 @@ Add the `heading` attribute to set the heading text.
 - Default: `undefined`
 
 ```html preview full
-<vwc-accordion>
+<vwc-accordion expand-mode="multi">
 	<vwc-accordion-item heading="Accordion item with heading">
 		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 	</vwc-accordion-item>
@@ -44,7 +44,7 @@ Use the `expanded` attribute to set the accordion-item's open state.
 - Default: `false`
 
 ```html preview full
-<vwc-accordion>
+<vwc-accordion expand-mode="multi">
 	<vwc-accordion-item heading="Click to toggle accordion item" expanded>
 		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 	</vwc-accordion-item>
@@ -59,7 +59,7 @@ Add the `no-indicator` attribute (or `noIndicator` property) to remove the indic
 - Default: `false`
 
 ```html preview full
-<vwc-accordion>
+<vwc-accordion expand-mode="multi">
 	<vwc-accordion-item heading="Accordion item without indicator" no-indicator>
 		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 	</vwc-accordion-item>
@@ -74,7 +74,7 @@ Add the `meta` attribute to add metadata to the heading.
 - Default: `undefined`
 
 ```html preview full
-<vwc-accordion>
+<vwc-accordion expand-mode="multi">
 	<vwc-accordion-item heading="Accordion item with metadata" meta="meta-data">
 		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 	</vwc-accordion-item>
@@ -89,7 +89,7 @@ Add the `icon` attribute to add an icon to the heading.
 - Default: `''`
 
 ```html preview full
-<vwc-accordion>
+<vwc-accordion expand-mode="multi">
 	<vwc-accordion-item heading="Accordion item with icon" icon="chat-solid">
 		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 	</vwc-accordion-item>
@@ -104,7 +104,7 @@ Add the `icon-trailing` attribute (or `iconTrailing` property) to add an icon to
 - Default: `false`
 
 ```html preview full
-<vwc-accordion>
+<vwc-accordion expand-mode="multi">
 	<vwc-accordion-item heading="Accordion item with icon-trailing" icon="chat-solid" icon-trailing>
 		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 	</vwc-accordion-item>
@@ -119,13 +119,18 @@ Use the `size` attribute to set the accordion-item's size.
 - Default: `'normal'`
 
 ```html preview full
-<vwc-accordion>
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+</style>
+<vwc-accordion expand-mode="multi">
 	<vwc-accordion-item heading="normal accordion item" meta="meta-data" icon="chat-solid">
 		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 	</vwc-accordion-item>
 </vwc-accordion>
 <hr>
-<vwc-accordion>
+<vwc-accordion expand-mode="multi">
 	<vwc-accordion-item heading="condensed accordion item" size="condensed" meta="meta-data" icon="chat-solid">
 		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 	</vwc-accordion-item>
