@@ -1,3 +1,10 @@
 {% for component in components %}
-	<link rel="prefetch" href="{{ '/assets/modules/components/' + component.title + '/index.js' | url }}">
-{% endfor %}
+    {% if component.children %}
+	    <link rel="prefetch" href="{{ '/assets/modules/components/' + component.title + '/index.js' | url }}">
+        {% for child in component.children %}
+            <link rel="prefetch" href="{{ '/assets/modules/components/' + child.title + '/index.js' | url }}">
+            {% endfor %}
+        {% else %}
+            <link rel="prefetch" href="{{ '/assets/modules/components/' + component.title + '/index.js' | url }}">
+            {% endif %}
+        {% endfor %}
