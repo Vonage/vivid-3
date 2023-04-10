@@ -29,8 +29,18 @@ permalink: "components/{{ component.title | slug }}/"
     {% endblock %}
 {% endif %}
 {% block content %}
-    {% renderFile component.markdown %}
-    {% for child in component.children %}
-        {% renderFile child.markdown %}
-    {% endfor %}
+    <vwc-tabs activeid="{{ component.title }}" orientation="vertical">
+        <vwc-tab label="{{ component.title }}" id="{{ component.title }}"></vwc-tab>
+        {% for child in component.children %}
+            <vwc-tab label="{{ child.title }}" id="{{ child.title }}"></vwc-tab>
+        {% endfor %}
+        <vwc-tab-panel id="{{ component.title }}Panel">
+            {% renderFile component.markdown %}
+        </vwc-tab-panel>
+        {% for child in component.children %}
+            <vwc-tab-panel id="{{ child.title }}Panel">
+                {% renderFile child.markdown %}
+            </vwc-tab-panel>
+        {% endfor %}
+    </vwc-tabs>
 {% endblock %}
