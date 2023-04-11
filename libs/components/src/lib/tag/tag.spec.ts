@@ -174,7 +174,7 @@ describe('vwc-tag', () => {
 			expect(element.selected).toBeFalsy();
 		});
 
-		it('should update selected to true when keydown', async () => {
+		it('should update selected to true when Enter is pressed', async () => {
 			await toggleSelectable(element, true);
 			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
 			await elementUpdated(element);
@@ -256,7 +256,7 @@ describe('vwc-tag', () => {
 				.toEqual(false);
 		});
 
-		it('should remove tag on keydown when removable', async () => {
+		it('should remove tag on Escape press and removable is true', async () => {
 			await toggleRemovable(element, true);
 			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 			await elementUpdated(element);
@@ -264,7 +264,7 @@ describe('vwc-tag', () => {
 				.toEqual(false);
 		});
 
-		it('should leave tag unchanged on keydown when not removable', async () => {
+		it('should still show tag after Escape press when removable is false', async () => {
 			await toggleRemovable(element, false);
 			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 			await elementUpdated(element);
@@ -272,7 +272,7 @@ describe('vwc-tag', () => {
 				.toEqual(true);
 		});
 
-		it('should leave tag unchanged on keydown when disabled', async () => {
+		it('should still show tag on keydown when disabled', async () => {
 			element.disabled = false;
 			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 			await elementUpdated(element);
@@ -289,7 +289,7 @@ describe('vwc-tag', () => {
 				.toHaveBeenCalled();
 		});
 
-		it('should leave tag unchanged', async () => {
+		it('should still show tag', async () => {
 			const spy = jest.fn();
 			element.addEventListener('removed', spy);
 			element.remove();
