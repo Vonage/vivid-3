@@ -54,10 +54,6 @@ export function formElements<T extends { new (...args: any[]): Record<string, an
 			return this.userValid ? '' : this.validationMessage;
 		}
 
-		errorValidationMessageChanged(oldmsg: string, newmsg: string) {
-			console.log('in errorValidationMessageChanged', oldmsg, newmsg);
-		}
-
 		constructor(...args: any[]) {
 			super(...args);
 			(this as unknown as HTMLElement).addEventListener('blur', () => {
