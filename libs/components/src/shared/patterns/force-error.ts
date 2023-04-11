@@ -10,18 +10,14 @@ export interface ForceError {
 export function forceError<T extends { new (...args: any[]): Record<string, any> }>(constructor: T) {
 	class Decorated extends constructor {
 		@attr({ attribute: 'force-error' }) forceError?: string;
-		#bypassValidation = false;
+		#shouldValidate = true;
 		#prevSuccessText = '';
 
 		constructor(...args: any[]) {
 			super(...args);
 			this._validate = this.validate;
 			this.validate = () => {
-				if (this.#bypassValidation) {
-					this.forceErrorChanged('', this.forceError);
-				} else {
-					this._validate();
-				}
+				if (this.#shouldValidate) this._validate();
 			};
 		}
 
@@ -32,12 +28,12 @@ export function forceError<T extends { new (...args: any[]): Record<string, any>
 				this.successText = '';
 				this.userValid = !this.userValid; // forces template refresh
 				this.userValid = false;
-				this.#bypassValidation = true;
+				this.#shouldValidate = false;
 			} else {
 				this.setValidity({ customError: false }, '', this.control);
 				this.successText = this.#prevSuccessText;
 				this.userValid = true;
-				this.#bypassValidation = false;
+				this.#shouldValidate = true;
 				this._validate();
 			}
 		}
