@@ -107,6 +107,8 @@ Notice that it works only if the tag is `selectable`, not `disabled` and not `re
 
 The `removable` attribute sets a remove button. On click it will remove the tag from the DOM.
 
+You can also remove the tag by pressing the `Delete` key.
+
 - Type: `boolean`
 - Default: `false`
 

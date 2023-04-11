@@ -268,17 +268,17 @@ describe('vwc-tag', () => {
 				.toEqual(false);
 		});
 
-		it('should remove tag on Escape press and removable is true', async () => {
+		it('should remove tag on Delete press and removable is true', async () => {
 			await toggleRemovable(element, true);
-			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Delete' }));
 			await elementUpdated(element);
 			expect(document.body.contains(element))
 				.toEqual(false);
 		});
 
-		it('should still show tag after Escape press when removable is false', async () => {
+		it('should still show tag after Delete press when removable is false', async () => {
 			await toggleRemovable(element, false);
-			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Delete' }));
 			await elementUpdated(element);
 			expect(document.body.contains(element))
 				.toEqual(true);
@@ -286,7 +286,7 @@ describe('vwc-tag', () => {
 
 		it('should still show tag on keydown when disabled', async () => {
 			element.disabled = false;
-			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Delete' }));
 			await elementUpdated(element);
 			expect(document.body.contains(element))
 				.toEqual(true);
