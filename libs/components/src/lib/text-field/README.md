@@ -143,6 +143,17 @@ Add the `readonly` attribute to restrict user from changing the text field's val
 ```html preview blocks
 <vwc-text-field readonly icon="chat-line" value="readonly text" label='fieldset' appearance='fieldset'></vwc-text-field>
 ```
+### Force error
+
+It is possible to force the text field's error state by setting the `force-error` attribute to a custom error message.
+Note that any current error state will be overriden by `force-error` (and, if applicable, restored once it is removed).
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-text-field value="some text" label='Enter some text' force-error="Please take this seriously"></vwc-text-field>
+```
 
 ## Use Cases
 
