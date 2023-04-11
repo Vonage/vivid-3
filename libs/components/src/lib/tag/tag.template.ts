@@ -8,11 +8,12 @@ import { Icon } from '../icon/icon';
 import type { Tag } from './tag';
 
 const getClasses = ({
-	connotation, appearance, shape, disabled, selectable, removable
+	connotation, appearance, shape, disabled, selectable, removable, selected
 }: Tag) => classNames(
 	'base',
 	['disabled', disabled],
 	['selectable', selectable && !removable],
+	['active', selectable && !removable && selected],
 	['removable', removable],
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[`appearance-${appearance}`, Boolean(appearance)],

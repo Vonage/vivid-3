@@ -400,7 +400,7 @@
 	},
 	{
 		"title": "tag",
-		"status": "alpha",
+		"status": "underlying",
 		"markdown": "./libs/components/src/lib/tag/README.md",
 		"modules": [
 			"/assets/modules/components/tag/index.js"

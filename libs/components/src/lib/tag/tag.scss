@@ -35,7 +35,6 @@
 	max-inline-size: 100%;
 	padding-inline: 8px;
 	vertical-align: middle;
-	transition: inline-size 2s;
 
 	@supports selector(:focus-visible) {
 		&:focus {
