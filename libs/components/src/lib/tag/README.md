@@ -49,7 +49,7 @@ View list of available icon at the [vivid icons gallery](https://icons.vivid.von
 Set the `appearance` attribute to change the tag's appearance.
 
 - Type: `'subtle'` | `'duotone'`
-- Default: `'filled'`
+- Default: `'subtle'`
 
 ```html preview
 <vwc-tag label='subtle' appearance='subtle'></vwc-tag>
