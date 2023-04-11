@@ -166,7 +166,7 @@ describe('vwc-tag', () => {
 			expect(element.selected).toBeTruthy();
 		});
 
-		it('should not update selected to true when not selectable', async () => {
+		it('should leave selected unchanged when not selectable', async () => {
 			await toggleSelectable(element, false);
 			getBaseElement(element).click();
 			await elementUpdated(element);
