@@ -94,6 +94,8 @@ Add the `disabled` attribute to disable the tag.
 Add the `selectable` attribute to be able to select the tag.
 Toggle the `selected` attribute to select and deselect the tag.
 
+Notice that it works only if the tag is selectable, not disabled and not removable.
+
 - Type: `boolean`
 - Default: `false`
 
@@ -118,6 +120,11 @@ The `removable` attribute sets a remove button. On click it will remove the tag 
 
 Fires `removed` when the tag removed.
 
+### Selected Change
+
+Fires a custom 'selected-change' event when a tag has been selected.
+
+
 ## Methods
 
 ### remove()
@@ -126,10 +133,3 @@ Fires `removed` when the tag removed.
 - Returns: `void`
 
 Removes the tag from the DOM.  Fires the `removed` event and removes the tag from the DOM completely.  If you have a variable that refers to the tag element make sure to clear it otherwise it might cause a memory leak.
-
-### select()
-
-- Type: `function`
-- Returns: `void`
-
-Selects the tag. Works only if the tag is selectable, not disabled and not removable.

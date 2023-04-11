@@ -110,16 +110,17 @@ export class Tag extends FoundationElement {
 		this.parentElement && this.parentElement.removeChild(this);
 	}
 
-	select = (): void => {
+	#select = (): void => {
 		if (!this.selectable || this.disabled || this.removable) {
 			return;
 		}
 		this.selected = !this.selected;
+		this.$emit('selected-change');
 	};
 
 	handleKeydown(e: KeyboardEvent): void {
 		if (e.key === 'Enter') {
-			this.select();
+			this.#select();
 		}
 		if (e.key === 'Escape') {
 			this.remove();
@@ -127,7 +128,7 @@ export class Tag extends FoundationElement {
 	}
 
 	handleClick(): void {
-		this.select();
+		this.#select();
 	}
 }
 

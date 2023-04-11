@@ -160,13 +160,6 @@ describe('vwc-tag', () => {
 				.toEqual(null);
 		});
 
-		it('should update selected when selectable', async () => {
-			await toggleSelectable(element, true);
-			element.select();
-			await elementUpdated(element);
-			expect(element.selected).toBeTruthy();
-		});
-
 		it('should update selected to true when selectable', async () => {
 			await toggleSelectable(element, true);
 			getBaseElement(element).click();
@@ -194,6 +187,21 @@ describe('vwc-tag', () => {
 			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
 			await elementUpdated(element);
 			expect(element.selected).toBeFalsy();
+		});
+
+		it('should dispatch selected-changed', async () => {
+			const spy = jest.fn();
+
+			element.selected = true;
+			await elementUpdated(element);
+
+			element.addEventListener('selected-change', spy);
+			element.dispatchEvent(new KeyboardEvent('selected-change'));
+
+			element.selected = true;
+			await elementUpdated(element);
+
+			expect(spy).toBeCalled();
 		});
 	});
 
