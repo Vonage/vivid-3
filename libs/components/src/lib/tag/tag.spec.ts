@@ -160,6 +160,13 @@ describe('vwc-tag', () => {
 				.toEqual(null);
 		});
 
+		it('should update selected when selectable', async () => {
+			await toggleSelectable(element, true);
+			element.select();
+			await elementUpdated(element);
+			expect(element.selected).toBeTruthy();
+		});
+
 		it('should update selected to true when selectable', async () => {
 			await toggleSelectable(element, true);
 			getBaseElement(element).click();
@@ -218,15 +225,12 @@ describe('vwc-tag', () => {
 				.toEqual(true);
 		});
 
-		it('should remove the remove button when removable is false', async () => {
+		it('should add a remove button when true', async () => {
 			expect(element.shadowRoot?.querySelector('.dismiss-button'))
 				.toEqual(null);
-		});
-
-		it('should add a remove button when true', async () => {
 			await toggleRemovable(element, true);
 			expect(element.shadowRoot?.querySelector('.dismiss-button'))
-				.toBeInstanceOf(Element);
+				.toBeInstanceOf(HTMLElement);
 		});
 
 		it('should remove tag on remove button click', async () => {
