@@ -11,6 +11,7 @@ export function forceError<T extends { new (...args: any[]): Record<string, any>
 	class Decorated extends constructor {
 		@attr({ attribute: 'force-error' }) forceError?: string;
 		#bypassValidation = false;
+		#prevSuccessText = '';
 
 		constructor(...args: any[]) {
 			super(...args);
@@ -27,10 +28,14 @@ export function forceError<T extends { new (...args: any[]): Record<string, any>
 		forceErrorChanged(_: string, newmsg: string | undefined) {
 			if (newmsg) {
 				this.setValidity({ customError: true }, newmsg, this.control);
+				this.#prevSuccessText = this.successText;
+				this.successText = '';
+				this.userValid = !this.userValid; // forces template refresh
 				this.userValid = false;
 				this.#bypassValidation = true;
 			} else {
 				this.setValidity({ customError: false }, '', this.control);
+				this.successText = this.#prevSuccessText;
 				this.userValid = true;
 				this.#bypassValidation = false;
 				this._validate();
