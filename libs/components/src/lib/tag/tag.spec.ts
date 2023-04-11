@@ -174,7 +174,7 @@ describe('vwc-tag', () => {
 			expect(element.selected).toBeFalsy();
 		});
 
-		it('should update selected to true when keydown', async () => {
+		it('should update selected to true when Enter is pressed', async () => {
 			await toggleSelectable(element, true);
 			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
 			await elementUpdated(element);
