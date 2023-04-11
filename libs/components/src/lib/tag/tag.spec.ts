@@ -180,7 +180,7 @@ describe('vwc-tag', () => {
 			expect(element.selected).toBeTruthy();
 		});
 
-		it('should not update selected to true when removable', async () => {
+		it('should leave selected unchanged when removable is true', async () => {
 			await toggleSelectable(element, true);
 			await toggleRemovable(element, true);
 			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
