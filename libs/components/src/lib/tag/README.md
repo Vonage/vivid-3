@@ -94,7 +94,7 @@ Add the `disabled` attribute to disable the tag.
 Add the `selectable` attribute to be able to select the tag.
 Toggle the `selected` attribute to select and deselect the tag.
 
-Notice that it works only if the tag is selectable, not disabled and not removable.
+Notice that it works only if the tag is `selectable`, not `disabled` and not `removable`.
 
 - Type: `boolean`
 - Default: `false`
