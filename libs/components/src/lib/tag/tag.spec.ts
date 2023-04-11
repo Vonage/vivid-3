@@ -264,7 +264,7 @@ describe('vwc-tag', () => {
 				.toEqual(false);
 		});
 
-		it('should not remove tag on keydown when not removable', async () => {
+		it('should leave tag unchanged on keydown when not removable', async () => {
 			await toggleRemovable(element, false);
 			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 			await elementUpdated(element);
@@ -272,7 +272,7 @@ describe('vwc-tag', () => {
 				.toEqual(true);
 		});
 
-		it('should not remove tag on keydown when disabled', async () => {
+		it('should leave tag unchanged on keydown when disabled', async () => {
 			element.disabled = false;
 			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 			await elementUpdated(element);
@@ -289,7 +289,7 @@ describe('vwc-tag', () => {
 				.toHaveBeenCalled();
 		});
 
-		it('should not fire removed event', async () => {
+		it('should leave tag unchanged', async () => {
 			const spy = jest.fn();
 			element.addEventListener('removed', spy);
 			element.remove();
