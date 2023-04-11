@@ -77,9 +77,9 @@ describe('vwc-tag', () => {
 			(element as any).connotation = connotation;
 			await elementUpdated(element);
 
-			const base = element.shadowRoot?.querySelector(`.base.connotation-${connotation}`);
-			expect(base)
-				.toBeInstanceOf(Element);
+			const baseElementContainsConnotationClass = getBaseElement(element).classList.contains(`connotation-${connotation}`;
+			expect(baseElementContainsConnotationClass)
+				.toBeTruthy();
 		});
 	});
 
