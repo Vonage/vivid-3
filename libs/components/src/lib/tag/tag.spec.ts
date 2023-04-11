@@ -77,7 +77,7 @@ describe('vwc-tag', () => {
 			(element as any).connotation = connotation;
 			await elementUpdated(element);
 
-			const baseElementContainsConnotationClass = getBaseElement(element).classList.contains(`connotation-${connotation}`;
+			const baseElementContainsConnotationClass = getBaseElement(element).classList.contains(`connotation-${connotation}`);
 			expect(baseElementContainsConnotationClass)
 				.toBeTruthy();
 		});
@@ -89,9 +89,9 @@ describe('vwc-tag', () => {
 			(element as any).shape = shape;
 			await elementUpdated(element);
 
-			const base = element.shadowRoot?.querySelector(`.base.shape-${shape}`);
-			expect(base)
-				.toBeInstanceOf(Element);
+			const baseElementContainsShapeClass = getBaseElement(element).classList.contains(`shape-${shape}`);
+			expect(baseElementContainsShapeClass)
+				.toBeTruthy();
 		});
 	});
 
@@ -101,9 +101,9 @@ describe('vwc-tag', () => {
 			(element as any).appearance = appearance;
 			await elementUpdated(element);
 
-			const base = element.shadowRoot?.querySelector(`.base.appearance-${appearance}`);
-			expect(base)
-				.toBeInstanceOf(Element);
+			const baseElementContainsAppearanceClass = getBaseElement(element).classList.contains(`appearance-${appearance}`);
+			expect(baseElementContainsAppearanceClass)
+				.toBeTruthy();
 		});
 	});
 
@@ -113,8 +113,9 @@ describe('vwc-tag', () => {
 			element.toggleAttribute('disabled', true);
 			await elementUpdated(element);
 
-			const base = element.shadowRoot?.querySelector('.base.disabled');
-			expect(base).toBeInstanceOf(Element);
+			const baseElementContainsDisabledClass = getBaseElement(element).classList.contains('disabled');
+			expect(baseElementContainsDisabledClass)
+				.toBeTruthy();
 		});
 	});
 
