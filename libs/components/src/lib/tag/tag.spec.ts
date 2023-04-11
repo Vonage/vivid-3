@@ -264,7 +264,7 @@ describe('vwc-tag', () => {
 				.toEqual(false);
 		});
 
-		it('should not remove tag on keydown when not removable', async () => {
+		it('should still show tag after Escape press when removable is false', async () => {
 			await toggleRemovable(element, false);
 			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 			await elementUpdated(element);
