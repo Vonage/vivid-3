@@ -575,17 +575,17 @@ describe('vwc-text-field', () => {
 	});
 
 	describe('forced error', function () {
-		const errorMessage = 'BAD!';
+		const forcedErrorMessage = 'BAD!';
 
 		it('should force the input in custom error mode', async function () {
-			element.forceError = errorMessage;
+			element.forceError = forcedErrorMessage;
 			await elementUpdated(element);
-			expect(element.validationMessage).toBe(errorMessage);
+			expect(element.validationMessage).toBe(forcedErrorMessage);
 			expect(element.validity.valid).toBeFalsy();
 		});
 
 		it('should add the error class', async function () {
-			element.forceError = errorMessage;
+			element.forceError = forcedErrorMessage;
 			await elementUpdated(element);
 			expect(getBaseElement(element)
 				.classList
@@ -594,13 +594,15 @@ describe('vwc-text-field', () => {
 		});
 
 		it('should display the given error message', async function () {
-			element.forceError = errorMessage;
+			element.forceError = forcedErrorMessage;
 			await elementUpdated(element);
 			const errorElement = element.shadowRoot?.querySelector('.error-message');
-			expect(errorElement !== null).toBeTruthy();
+			expect(errorElement).toBeDefined();
 		});
 
 		it('should replace/restore the current error state, if any, when set/removed', async function () {
+			let initialErrorMessage = '';
+
 			expect(element.validationMessage).toBe('');
 			expect(element.validity.valid).toBeTruthy();
 
@@ -608,21 +610,22 @@ describe('vwc-text-field', () => {
 			element.value = 'abc';
 			setToBlurred();
 			await elementUpdated(element);
+			initialErrorMessage = element.validationMessage;
 
-			expect(element.validationMessage).not.toBe('');
-			expect(element.validationMessage).not.toBe(errorMessage);
+			expect(initialErrorMessage).not.toBe('');
+			expect(initialErrorMessage).not.toBe(forcedErrorMessage);
 			expect(element.validity.valid).toBeFalsy();
 
-			element.forceError = errorMessage;
+			element.forceError = forcedErrorMessage;
 			await elementUpdated(element);
 
-			expect(element.validationMessage).toBe(errorMessage);
+			expect(element.validationMessage).toBe(forcedErrorMessage);
 			expect(element.validity.valid).toBeFalsy();
 
 			element.forceError = '';
 			await elementUpdated(element);
 
-			expect(element.validationMessage).not.toBe(errorMessage);
+			expect(element.validationMessage).toBe(initialErrorMessage);
 			expect(element.validity.valid).toBeFalsy();
 		});
 	});
