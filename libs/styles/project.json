@@ -23,6 +23,7 @@
 			"configurations": {
 				"assets": {
 					"commands": [
+						"cp -r libs/styles/src/lib/fonts dist/libs/styles"
 					]
 				},
 				"scss": {
