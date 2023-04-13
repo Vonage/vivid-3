@@ -10,7 +10,7 @@ import {
 const components = ['tag'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template = extractHTMLBlocksFromReadme(
+	const template = `<style>#wrapper{height: 180px; width: 260px;}</style>' +extractHTMLBlocksFromReadme(
 		path.join(new URL('.', import.meta.url).pathname, 'README.md')
 	).reduce(
 		(htmlString: string, block: string) =>
