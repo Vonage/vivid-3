@@ -1,0 +1,103 @@
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "partials/variables" as variables;
+@use "../focus/partials/variables" as focus-variables;
+
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+	$connotations: accent cta,
+	$shades: contrast soft pale fierce firm faint,
+	$default: accent
+);
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+	$appearances: subtle duotone,
+	$states: idle hover active disabled selected,
+	$default: subtle
+);
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+
+.base {
+	@include connotation.connotation;
+	@include appearance.appearance;
+
+	#{variables.$tag-block-size}: #{size.$vvd-size-super-condensed};
+
+	position: relative;
+	display: inline-flex;
+	box-sizing: border-box;
+	align-items: center;
+	background-color: var(#{appearance.get-appearance-token(fill)});
+	block-size: var(#{variables.$tag-block-size});
+	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+	color: var(#{appearance.get-appearance-token(text)});
+	column-gap: 8px;
+	font: var(#{constants.$vvd-typography-base});
+	max-inline-size: 100%;
+	padding-inline: 8px;
+	vertical-align: middle;
+
+
+	/* Shape */
+	&:not(.shape-pill) {
+		border-radius: 4px;
+	}
+	&.shape-pill {
+		border-radius: 14px;
+	}
+
+	@supports selector(:focus-visible) {
+		&:focus {
+			outline: none;
+		}
+	}
+
+	@supports (user-select: none) {
+		user-select: none;
+	}
+
+	&:not(.disabled) {
+		cursor: pointer;
+	}
+
+	&.disabled {
+		cursor: not-allowed;
+		pointer-events: none;
+	}
+
+	&.removable {
+		cursor: auto;
+	}
+}
+
+.label {
+	overflow: hidden;
+	max-inline-size: 100%;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+
+.icon {
+	font-size: calc(var(#{variables.$tag-block-size}) / 1.5);
+	line-height: 1;
+
+	> * {
+		vertical-align: middle;
+	}
+
+}
+
+.dismiss-button {
+	display: flex;
+	align-items: center;
+	background-color: var(#{appearance.get-appearance-token(fill)});
+	border-radius: inherit;
+	cursor: pointer;
+}
+
+.focus-indicator {
+	.base:not(:focus-visible) & {
+		display: none;
+	}
+}
