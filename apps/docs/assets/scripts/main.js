@@ -1,11 +1,11 @@
-window.onload = () => {
+window.addEventListener('load', () => {
   addSideDrawerListeners();
-};
+})
 
 const addSideDrawerListeners = () => {
   const sideDrawer = document.querySelector('vwc-side-drawer#sidedrawer');
-  sideDrawer.addEventListener('close', () => { toggleSideDrawerButtonIcon(false); });
-  sideDrawer.addEventListener('open', () => { toggleSideDrawerButtonIcon(true); });
+  sideDrawer.addEventListener('close', () => toggleSideDrawerButtonIcon(false));
+  sideDrawer.addEventListener('open', () => toggleSideDrawerButtonIcon(true));
 }
 
 const toggleSideDrawerButton = () => {
@@ -41,8 +41,8 @@ const iframeObservers = new WeakMap();
 
 const autoResize = (iFrame) => {
   new ResizeObserver((entries, observer) => {
-	if (entries.length === 0) return;
-	iFrame.style.height = Math.max(150, entries[0].contentRect.height) + "px";
+    if (entries.length === 0) return;
+    iFrame.style.height = Math.max(150, entries[0].contentRect.height) + "px";
     clearTimeout(iframeObservers.get(iFrame));
     iframeObservers.set(iFrame, setTimeout(() => {
       observer.disconnect();
