@@ -276,6 +276,14 @@ describe('vwc-tag', () => {
 				.toEqual(false);
 		});
 
+		it('should remove tag on Backspace press and removable is true', async () => {
+			await toggleRemovable(element, true);
+			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Backspace' }));
+			await elementUpdated(element);
+			expect(document.body.contains(element))
+				.toEqual(false);
+		});
+
 		it('should still show tag after Delete press when removable is false', async () => {
 			await toggleRemovable(element, false);
 			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Delete' }));

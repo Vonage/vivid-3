@@ -122,7 +122,7 @@ export class Tag extends FoundationElement {
 		if (e.key === 'Enter') {
 			this.#select();
 		}
-		if (e.key === 'Delete') {
+		if (e.key === 'Delete' || e.key === 'Backspace') {
 			this.remove();
 		}
 	}
