@@ -5,6 +5,13 @@
 	src: url('https://fonts.resources.vonage.com/fonts/v1/Spezia_Web_Complete_Upright.woff2') format('woff2');
 }
 
+@font-face {
+	font-family: SpeziaMonoCompleteVariable;
+	font-stretch: 50% 200%;
+	font-weight: 1 1000;
+	src: url('https://fonts.resources.vonage.com/fonts/v1/Spezia_Web_Monospace_Complete.woff2') format('woff2');
+}
+
 .vvd-root {
 	--vvd-typography-headline: 500 condensed calc(var(--vvd-size-font-scale-base, 16px) * 4.125)/1.3333333333333333 SpeziaCompleteVariableUpright;
 	--vvd-typography-subtitle: 500 condensed calc(var(--vvd-size-font-scale-base, 16px) * 3.25)/1.3076923076923077 SpeziaCompleteVariableUpright;
