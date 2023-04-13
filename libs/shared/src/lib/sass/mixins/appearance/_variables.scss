@@ -57,6 +57,16 @@ $states-mapping: (
       fill: var(#{connotation.get-connotation-token(faint)}),
       outline: transparent,
     ),
+    subtle: (
+      text: var(#{connotation.get-connotation-token(contrast)}),
+      fill: var(#{connotation.get-connotation-token(faint)}),
+      outline: transparent,
+    ),
+    duotone: (
+      text: var(#{connotation.get-connotation-token(fierce)}),
+      fill: transparent,
+      outline: var(#{connotation.get-connotation-token(firm)}),
+    )
   ),
   active: (
     filled: (
@@ -73,6 +83,16 @@ $states-mapping: (
       text: var(#{connotation.get-connotation-token(primary)}),
       fill: var(#{connotation.get-connotation-token(soft)}),
       outline: transparent,
+    ),
+    subtle: (
+      text: var(#{connotation.get-connotation-token(contrast)}),
+      fill: var(#{connotation.get-connotation-token(pale)}),
+      outline: transparent,
+    ),
+    duotone: (
+      text: var(#{connotation.get-connotation-token(fierce)}),
+      fill: var(#{connotation.get-connotation-token(faint)}),
+      outline: var(#{connotation.get-connotation-token(pale)}),
     )
   ),
   disabled: (
@@ -95,6 +115,16 @@ $states-mapping: (
       text: var(#{constants.$vvd-color-neutral-400}),
       fill: transparent,
       outline: transparent,
+    ),
+    subtle: (
+      text: var(#{constants.$vvd-color-neutral-400}),
+      fill: var(#{constants.$vvd-color-neutral-200}),
+      outline: transparent,
+    ),
+    duotone: (
+      text: var(#{constants.$vvd-color-neutral-400}),
+      fill: transparent,
+      outline: var(#{constants.$vvd-color-neutral-200})
     )
   ),
   readonly: (
@@ -124,6 +154,16 @@ $states-mapping: (
       text: var(#{connotation.get-connotation-token(primary-text)}),
       fill: var(#{connotation.get-connotation-token(primary)}),
       outline: transparent,
+    ),
+    subtle: (
+      text: var(#{connotation.get-connotation-token(contrast)}),
+      fill: var(#{connotation.get-connotation-token(pale)}),
+      outline: transparent,
+    ),
+    duotone: (
+      text: var(#{connotation.get-connotation-token(fierce)}),
+      fill: var(#{connotation.get-connotation-token(faint)}),
+      outline: var(#{connotation.get-connotation-token(pale)}),
     )
   ),
   selectedAndHover: (
