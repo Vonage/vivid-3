@@ -115,7 +115,8 @@ $low-ink-color: --_low-ink-color;
 	min-inline-size: 100%;
 
 	.with-helper-text & {
-		top: #{size.$vvd-size-normal}; /*to override the helper text height*/
+		// to override the helper text height
+		top: #{size.$vvd-size-normal};
 	}
 }
 
