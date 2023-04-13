@@ -109,5 +109,5 @@ Use `value` to set the value of the slider.
 - Default: `5`
 
 ```html preview blocks
-<vwc-slider value="5"></vwc-slider>
+<vwc-slider value="3"></vwc-slider>
 ```
