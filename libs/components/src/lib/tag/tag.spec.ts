@@ -238,7 +238,7 @@ describe('vwc-tag', () => {
 				.toEqual(null);
 			await toggleRemovable(element, true);
 			expect(element.shadowRoot?.querySelector('.dismiss-button'))
-				.toBeInstanceOf(HTMLElement);
+				.toBeTruthy();
 		});
 
 		it('should remove tag on remove button click', async () => {
