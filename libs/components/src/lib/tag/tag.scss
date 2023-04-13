@@ -23,6 +23,7 @@
 
 	#{variables.$tag-block-size}: #{size.$vvd-size-super-condensed};
 
+	position: relative;
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
@@ -35,6 +36,15 @@
 	max-inline-size: 100%;
 	padding-inline: 8px;
 	vertical-align: middle;
+
+
+	/* Shape */
+	&:not(.shape-pill) {
+		border-radius: 4px;
+	}
+	&.shape-pill {
+		border-radius: 14px;
+	}
 
 	@supports selector(:focus-visible) {
 		&:focus {
@@ -67,22 +77,17 @@
 	white-space: nowrap;
 }
 
-/* Shape */
 
-.base:not(.shape-pill) {
-	border-radius: 4px;
-}
-.base.shape-pill {
-	border-radius: 14px;
-}
-
-/* Icon */
 .icon {
 	font-size: calc(var(#{variables.$tag-block-size}) / 1.5);
 	line-height: 1;
+
+	> * {
+		vertical-align: middle;
+	}
+
 }
 
-/* Dismiss button */
 .dismiss-button {
 	display: flex;
 	align-items: center;
