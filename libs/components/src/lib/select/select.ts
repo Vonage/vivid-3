@@ -1,7 +1,7 @@
 import { applyMixins, Select as FoundationSelect } from '@microsoft/fast-foundation';
 import {attr, Observable} from '@microsoft/fast-element';
 import type { Popup } from '../popup/popup';
-import {AffixIconWithTrailing, FormElement, formElements} from '../../shared/patterns';
+import {AffixIconWithTrailing, FormElement, FormElementHelperText, formElements} from '../../shared/patterns';
 import type { Appearance, Shape } from '../enums';
 
 
@@ -34,5 +34,5 @@ export class Select extends FoundationSelect {
 	}
 }
 
-export interface Select extends AffixIconWithTrailing, FormElement{}
-applyMixins(Select, AffixIconWithTrailing);
+export interface Select extends AffixIconWithTrailing, FormElement, FormElementHelperText{}
+applyMixins(Select, AffixIconWithTrailing, FormElementHelperText);

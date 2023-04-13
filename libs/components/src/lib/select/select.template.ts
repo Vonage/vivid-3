@@ -4,6 +4,7 @@ import {classNames} from '@microsoft/fast-web-utilities';
 import { Listbox } from '../listbox/listbox';
 import { Popup } from '../popup/popup';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
+import { getFeedbackTemplate} from '../../shared/patterns';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
 import type { Select } from './select';
 
@@ -58,7 +59,7 @@ function renderControl(context: ElementDefinitionContext) {
 
 	return html<Select>`
 			${when(x => x.label, renderLabel())}
-			<div class="control-wrapper">
+			<div class="control-wrapper ${x => x.helperText?.length ? 'with-helper-text' : ''}">
 				${when(x => !x.multiple, selectValue(context))}
 				<${popupTag}
 					?open="${x => (x.collapsible ? x.open : true)}"
@@ -86,7 +87,7 @@ function renderControl(context: ElementDefinitionContext) {
             </div>
 					</${popupTag}>
 			</div>
-
+			${when(x =>  x.helperText?.length, getFeedbackTemplate('helper', context))}
 		`;
 
 }
