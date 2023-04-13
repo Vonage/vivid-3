@@ -94,8 +94,6 @@ Add the `disabled` attribute to disable the tag.
 Add the `selectable` attribute to be able to select the tag.
 Toggle the `selected` attribute to select and deselect the tag.
 
-Notice that it works only if the tag is `selectable`, not `disabled` and not `removable`.
-
 - Type: `boolean`
 - Default: `false`
 
@@ -106,8 +104,9 @@ Notice that it works only if the tag is `selectable`, not `disabled` and not `re
 ### Removable
 
 The `removable` attribute sets a remove button. On click it will remove the tag from the DOM.
+You can also remove the tag by pressing the `Delete` `Backspace` or  key.
 
-You can also remove the tag by pressing the `Delete` key.
+Notice that it works only if the tag is `removable` and not `selectable`.
 
 - Type: `boolean`
 - Default: `false`

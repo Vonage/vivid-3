@@ -102,7 +102,7 @@ export class Tag extends FoundationElement {
 	@attr({ mode: 'boolean' }) selected = false;
 
 	override remove(): void {
-		if (!this.removable) {
+		if (!this.removable || this.selectable) {
 			return;
 		}
 
@@ -111,7 +111,7 @@ export class Tag extends FoundationElement {
 	}
 
 	#select = (): void => {
-		if (!this.selectable || this.disabled || this.removable) {
+		if (!this.selectable || this.disabled) {
 			return;
 		}
 		this.selected = !this.selected;

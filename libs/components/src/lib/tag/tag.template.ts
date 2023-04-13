@@ -12,9 +12,9 @@ const getClasses = ({
 }: Tag) => classNames(
 	'base',
 	['disabled', disabled],
-	['selectable', selectable && !removable],
-	['active', selectable && !removable && selected],
-	['removable', removable],
+	['selectable', selectable],
+	['active', selectable && selected],
+	['removable', removable && !selectable],
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
@@ -53,8 +53,8 @@ export const tagTemplate: (
 	@click="${x => x.handleClick()}">
 		${x => affixIconTemplate(x.icon)}
 		${when((x) => x.label, (x) => html<Tag>`<span class="label">${x.label as string}</span>`)}
-		${when(x => x.removable, renderDismissButton(iconTag))}
-		${when(x => (x.selected && x.selectable && !x.removable),
+		${when(x => x.removable && !x.selectable, renderDismissButton(iconTag))}
+		${when(x => (x.selectable && x.selected),
 		html<Tag>`<${iconTag} class="selectable-icon" name="check-line"></${iconTag}>`)}
 		${() => focusTemplate}
 	</span>`;

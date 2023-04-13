@@ -181,14 +181,6 @@ describe('vwc-tag', () => {
 			expect(element.selected).toBeTruthy();
 		});
 
-		it('should leave selected unchanged when removable is true', async () => {
-			await toggleSelectable(element, true);
-			await toggleRemovable(element, true);
-			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
-			await elementUpdated(element);
-			expect(element.selected).toBeFalsy();
-		});
-
 		it('should dispatch selected-changed', async () => {
 			const spy = jest.fn();
 
@@ -292,8 +284,17 @@ describe('vwc-tag', () => {
 				.toEqual(true);
 		});
 
-		it('should still show tag on keydown when disabled', async () => {
+		it('should c on keydown when disabled', async () => {
 			element.disabled = false;
+			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Delete' }));
+			await elementUpdated(element);
+			expect(document.body.contains(element))
+				.toEqual(true);
+		});
+
+		it('should still show tag when selectable is true', async () => {
+			await toggleSelectable(element, true);
+			await toggleRemovable(element, true);
 			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Delete' }));
 			await elementUpdated(element);
 			expect(document.body.contains(element))
