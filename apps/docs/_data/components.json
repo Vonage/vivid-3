@@ -397,5 +397,13 @@
 			"/assets/modules/components/tree-item/index.js",
 			"/assets/modules/components/tree-view/index.js"
 		]
+	},
+	{
+		"title": "tag",
+		"status": "underlying",
+		"markdown": "./libs/components/src/lib/tag/README.md",
+		"modules": [
+			"/assets/modules/components/tag/index.js"
+		]
 	}
 ]
