@@ -113,6 +113,21 @@ describe('vwc-select', () => {
 		});
 	});
 
+	describe('helper text', function () {
+		it('should render the helper text when attribute is set on select', async function () {
+			const helperTextElementWithoutText = element.shadowRoot?.querySelector('.helper-text');
+			const helperText = 'Helper Text';
+			element.helperText = helperText;
+			await elementUpdated(element);
+			expect(helperTextElementWithoutText)
+				.toBeNull();
+			expect(element.shadowRoot?.querySelector('.helper-message')
+				?.textContent
+				?.trim())
+				.toEqual(helperText);
+		});
+	});
+
 	describe('disabled', function () {
 		it('should set disabled class for select when disabled is true', async () => {
 			const disableClassExistsWithDisabledFalse = Boolean(element.shadowRoot?.querySelector('.control.disabled'));
