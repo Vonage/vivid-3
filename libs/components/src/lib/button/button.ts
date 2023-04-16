@@ -37,7 +37,7 @@ export type ButtonShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  *
  * @public
  */
-export type ButtonSize = Extract<Size, Size.Condensed | Size.Normal | Size.Expanded>;
+export type ButtonSize = Extract<Size, Size.SuperCondensed | Size.Condensed | Size.Normal | Size.Expanded>;
 
 /**
  * Base class for button
