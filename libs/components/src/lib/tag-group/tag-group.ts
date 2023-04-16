@@ -13,6 +13,5 @@ export class TagGroup extends FoundationElement {
 	 *
 	 * @internal
 	 */
-
 	@observable slottedTags?: HTMLElement[];
 }

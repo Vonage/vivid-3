@@ -16,7 +16,7 @@ const getClasses = (_: Tag) => classNames(
  */
 export const TagGroupTemplate: (context: ElementDefinitionContext) => ViewTemplate<TagGroup> = (context: ElementDefinitionContext) => {
 	return html<TagGroup>`
-		<div class="${getClasses}" >
+		<div class="${getClasses}" role="listbox" aria-orientation="horizontal">
 			<slot ${slotted({ property: 'slottedTags', filter: elements(context.tagFor(Tag)) })}></slot>
 		</div>
 	`;

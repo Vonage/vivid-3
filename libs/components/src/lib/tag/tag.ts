@@ -118,13 +118,14 @@ export class Tag extends FoundationElement {
 		this.$emit('selected-change');
 	};
 
-	handleKeydown(e: KeyboardEvent): void {
+	handleKeydown(e: KeyboardEvent) {
 		if (e.key === 'Enter') {
 			this.#select();
 		}
 		if (e.key === 'Delete' || e.key === 'Backspace') {
 			this.remove();
 		}
+		return true;
 	}
 
 	handleClick(): void {

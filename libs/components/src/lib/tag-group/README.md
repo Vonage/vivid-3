@@ -24,3 +24,25 @@ Read more about [vwc-tag](../../components/tag).
   <vwc-tag label="third tag"></vwc-tag>
 </vwc-tag-group>
 ```
+
+## Use Case
+
+### Selectable
+
+```html preview
+<vwc-tag-group>
+  <vwc-tag label="first tag" selectable selected></vwc-tag>
+  <vwc-tag label="second tag" selectable></vwc-tag>
+  <vwc-tag label="third tag" selectable selected></vwc-tag>
+</vwc-tag-group>
+```
+
+### Removable
+
+```html preview
+<vwc-tag-group>
+  <vwc-tag label="first tag" removable></vwc-tag>
+  <vwc-tag label="second tag" removable></vwc-tag>
+  <vwc-tag label="third tag" removable></vwc-tag>
+</vwc-tag-group>
+```
