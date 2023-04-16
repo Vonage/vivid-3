@@ -7,12 +7,10 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['select', 'option'];
-
+const components = ['tag'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-
-	const template = '<style>#wrapper{height: 250px; width: 1800px; display: flex; flex-wrap: wrap;}</style>' + extractHTMLBlocksFromReadme(
+	const template = '<style>#wrapper{height: 250px; width: 1600px; display: flex; flex-wrap: wrap;}</style>' + extractHTMLBlocksFromReadme(
 		path.join(new URL('.', import.meta.url).pathname, 'README.md'))
 		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
 
@@ -30,6 +28,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/select.png'
+		'./snapshots/tag.png'
 	);
 });

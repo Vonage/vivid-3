@@ -348,7 +348,7 @@
 		"markdown": "./libs/components/src/lib/select/README.md",
 		"modules": [
 			"/assets/modules/components/select/index.js",
-			"/assets/modules/components/listbox-option/index.js",
+			"/assets/modules/components/option/index.js",
 			"/assets/modules/components/icon/index.js"
 		]
 	},
@@ -375,6 +375,14 @@
 				"title": "tree-item",
 				"markdown": "./libs/components/src/lib/tree-item/README.md"
 			}
+		]
+	},
+	{
+		"title": "tag",
+		"status": "underlying",
+		"markdown": "./libs/components/src/lib/tag/README.md",
+		"modules": [
+			"/assets/modules/components/tag/index.js"
 		]
 	}
 ]
