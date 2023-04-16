@@ -2,6 +2,7 @@
 
 h1, h2, h3, h4, h5, h6, p {
   margin: unset;
+  padding-inline-start: 20px;
 }
 
 strong {
@@ -156,7 +157,6 @@ article.article > h1 {
 .heading-wrapper {
   position: relative;
   padding-inline-start: 20px;
-  margin-inline-start: -20px;
 }
 
 .heading-wrapper > .anchor {
@@ -170,14 +170,21 @@ article.article > h1 {
   display: none;
 }
 
+.article:not(:has(> vwc-tabs)){
+  padding-inline-start: 16px;
+}
+
 .article {
-  padding-inline: 16px;
+  padding-inline-end: 16px;
   word-break: break-word;
 }
 
 @media (min-width: 960px) {
+  .article:not(:has(> vwc-tabs)){
+    padding-inline-start: 32px;
+  }
   .article {
-    padding-inline: 32px;
+    padding-inline-end: 32px;
   }
 }
 
