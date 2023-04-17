@@ -1,4 +1,3 @@
-import { observable } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 
 /**
@@ -7,11 +6,4 @@ import { FoundationElement } from '@microsoft/fast-foundation';
  * @public
  */
 export class TagGroup extends FoundationElement {
-	/**
-	 *
-	 * Slot observer:
-	 *
-	 * @internal
-	 */
-	@observable slottedTags?: HTMLElement[];
 }
