@@ -12,7 +12,16 @@
         </vwc-nav-disclosure>
         <vwc-nav-disclosure label="Components" open>
             {% for item in components | publicComponentsFilter | sort(false, false, 'title') %}
-                <vwc-nav-item href="{{ ('/components/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }} {% if (item.status) == "alpha" %}🧪{% endif %} {% if (item.status) == "underlying" %}🔒{% endif %}" {% if ('/components/' + item.title + '/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
+                {% if item.children %}
+                    <vwc-nav-disclosure label="{{item.title}}">
+                        <vwc-nav-item href="{{ ('/components/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }} {% if (item.status) == "alpha" %}🧪{% endif %} {% if (item.status) == "underlying" %}🔒{% endif %}" {% if ('/components/' + item.title + '/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
+                        {% for child in item.children | sort(false, false, 'title') %}
+                            <vwc-nav-item href="{{ ('/components/' + child.title) | url }}" text="{{ child.title | replace("-", " ") | capitalize }} {% if (item.status) == "alpha" %}🧪{% endif %} {% if (item.status) == "underlying" %}🔒{% endif %}" {% if ('/components/' + child.title + '/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
+                        {% endfor %}
+                    </vwc-nav-disclosure>
+                {% else %}
+                    <vwc-nav-item href="{{ ('/components/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }} {% if (item.status) == "alpha" %}🧪{% endif %} {% if (item.status) == "underlying" %}🔒{% endif %}" {% if ('/components/' + item.title + '/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
+                {% endif %}
             {% endfor %}
         </vwc-nav-disclosure>
     </vwc-nav>
