@@ -8,7 +8,7 @@ const linkAfterHeader = markdownItAnchor.permalink.linkAfterHeader({
 });
 
 module.exports = {
-  level: [1, 2, 3],
+  level: [2, 3],
   slugify: (str) =>
     slugify(str, {
       lower: true,
