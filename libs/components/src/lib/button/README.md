@@ -77,10 +77,11 @@ Use the `shape` attribute to set the button's edges.
 
 Use the `size` attribute to set the button's to one of the predefined block size extent.
 
-- Type: `'condensed'` | `'normal'` | `'expanded'`
+- Type: `'super-condensed'` | `'condensed'` | `'normal'` | `'expanded'`
 - Default: `'normal'`
 
 ```html preview
+<vwc-button appearance='filled' label='super-condensed' size='super-condensed'></vwc-button>
 <vwc-button appearance='filled' label='condensed' size='condensed'></vwc-button>
 <vwc-button appearance='filled' label='normal' size='normal'></vwc-button>
 <vwc-button appearance='filled' label='expanded' size='expanded'></vwc-button>

@@ -31,9 +31,16 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-button appearance='filled' label='pill' shape='pill'></vwc-button>
 	</div>
 	<div style="margin: 5px;">
+		<vwc-button appearance='filled' label='super-condensed' size='super-condensed'></vwc-button>
 		<vwc-button appearance='filled' label='condensed' size='condensed'></vwc-button>
 		<vwc-button appearance='filled' label='normal' size='normal'></vwc-button>
 		<vwc-button appearance='filled' label='expanded' size='expanded'></vwc-button>
+	</div>
+		<div style="margin: 5px;">
+		<vwc-button appearance='filled' icon='message-sent-line' size='super-condensed'></vwc-button>
+		<vwc-button appearance='filled' icon='message-sent-line' size='condensed'></vwc-button>
+		<vwc-button appearance='filled' icon='message-sent-line' size='normal'></vwc-button>
+		<vwc-button appearance='filled' icon='message-sent-line' size='expanded'></vwc-button>
 	</div>
 	<div style="margin: 5px;">
 		<vwc-button stacked appearance='filled' label='Stacked'></vwc-button>

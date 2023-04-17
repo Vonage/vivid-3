@@ -66,6 +66,7 @@ $outline-width: 2px;
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
 	min-block-size: #{size.$vvd-size-normal};
+	resize: none;
 	transition: box-shadow .2s, background-color .2s, color .2s;
 
 	&:disabled {
@@ -86,4 +87,16 @@ $outline-width: 2px;
 		outline: $outline-width solid var(#{variables.$focus-stroke-color}, currentColor);
 		outline-offset: -$outline-width;
 	}
+
+	:host([resize="both"]) & {
+		resize: both;
+	}
+
+	:host([resize="horizontal"]) & {
+		resize: horizontal;
+	}
+
+	:host([resize="vertical"]) & {
+		resize: vertical;
+	}	
 }
