@@ -122,6 +122,29 @@ Use the `shape` attribute to change the Select edges.
 </vwc-select>
 ```
 
+### Helper text
+
+Add the `helper-text` to add some helper text below the select.
+
+- Type: `string` | `undefined`
+- Default: `undefined`
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+  vwc-select {
+    width: 150px;
+  }
+</style>
+<vwc-select label="choose one option" helper-text="Helper text">
+  <vwc-option value="1" text="Option 1"></vwc-option>
+  <vwc-option value="2" text="Option 2"></vwc-option>
+  <vwc-option value="3" text="Option 3"></vwc-option>
+</vwc-select>
+```
+
 ### Disabled
 
 Add the `disabled` attribute to disable the Select.
