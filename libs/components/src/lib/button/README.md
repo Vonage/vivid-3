@@ -77,7 +77,7 @@ Use the `shape` attribute to set the button's edges.
 
 Use the `size` attribute to set the button's to one of the predefined block size extent.
 
-- Type: `'condensed'` | `'normal'` | `'expanded'`
+- Type: `'super-condensed'` | `'condensed'` | `'normal'` | `'expanded'`
 - Default: `'normal'`
 
 ```html preview
@@ -85,12 +85,6 @@ Use the `size` attribute to set the button's to one of the predefined block size
 <vwc-button appearance='filled' label='condensed' size='condensed'></vwc-button>
 <vwc-button appearance='filled' label='normal' size='normal'></vwc-button>
 <vwc-button appearance='filled' label='expanded' size='expanded'></vwc-button>
-<hr>
-<p>this is for Ayala to do QA. Will be removed before merge</p>
-<vwc-button appearance="filled" icon='compose-line' aria-label="Send Message" size='super-condensed'></vwc-button>
-<vwc-button appearance="filled" icon='compose-line' aria-label="Send Message" size='condensed'></vwc-button>
-<vwc-button appearance="filled" icon='compose-line' aria-label="Send Message" size='normal'></vwc-button>
-<vwc-button appearance="filled" icon='compose-line' aria-label="Send Message" size='expanded'></vwc-button>
 ```
 
 ### Stacked
