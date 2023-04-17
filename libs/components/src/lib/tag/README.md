@@ -16,7 +16,9 @@ Add a `label` attribute to add label to the tag.
 - Default: `undefined`
 
 ```html preview
-<vwc-tag label='tag'></vwc-tag>
+<vwc-tag-group>
+  <vwc-tag label='tag'></vwc-tag>
+</vwc-tag-group>
 ```
 
 
@@ -28,8 +30,10 @@ Use the `shape` attribute to change the tag's edges.
 - Default: `'rounded'`
 
 ```html preview
-<vwc-tag label='rounded' shape='rounded'></vwc-tag>
-<vwc-tag label='pill' shape='pill'></vwc-tag>
+<vwc-tag-group>
+  <vwc-tag label='rounded' shape='rounded'></vwc-tag>
+  <vwc-tag label='pill' shape='pill'></vwc-tag>
+</vwc-tag-group>
 ```
 
 ### Icon
@@ -41,7 +45,9 @@ View list of available icon at the [vivid icons gallery](https://icons.vivid.von
 - Default: `undefined`
 
 ```html preview
-<vwc-tag label='icon' icon='pin-line'></vwc-tag>
+<vwc-tag-group>
+  <vwc-tag label='icon' icon='pin-line'></vwc-tag>
+</vwc-tag-group>
 ```
 
 ### Appearance
@@ -52,8 +58,10 @@ Set the `appearance` attribute to change the tag's appearance.
 - Default: `'subtle'`
 
 ```html preview
-<vwc-tag label='subtle' appearance='subtle'></vwc-tag>
-<vwc-tag label='duotone' appearance='duotone'></vwc-tag>
+<vwc-tag-group>
+  <vwc-tag label='subtle' appearance='subtle'></vwc-tag>
+  <vwc-tag label='duotone' appearance='duotone'></vwc-tag>
+</vwc-tag-group>
 ```
 
 ### Connotation
@@ -67,15 +75,19 @@ It accepts a subset of predefined values.
 #### Subtle tag with connotation
 
 ```html preview
-<vwc-tag label='accent' appearance='subtle' connotation='accent'></vwc-tag>
-<vwc-tag label='cta' appearance='subtle' connotation='cta'></vwc-tag>
+<vwc-tag-group>
+  <vwc-tag label='accent' appearance='subtle' connotation='accent'></vwc-tag>
+  <vwc-tag label='cta' appearance='subtle' connotation='cta'></vwc-tag>
+</vwc-tag-group>
 ```
 
 #### Duotone tag with connotation
 
 ```html preview
-<vwc-tag label='accent' appearance='duotone' connotation='accent'></vwc-tag>
-<vwc-tag label='cta' appearance='duotone' connotation='cta'></vwc-tag>
+<vwc-tag-group>
+  <vwc-tag label='accent' appearance='duotone' connotation='accent'></vwc-tag>
+  <vwc-tag label='cta' appearance='duotone' connotation='cta'></vwc-tag>
+</vwc-tag-group>
 ```
 
 ### Disabled
@@ -86,7 +98,9 @@ Add the `disabled` attribute to disable the tag.
 - Default: `false`
 
 ```html preview
-<vwc-tag label="disabled" disabled></vwc-tag>
+<vwc-tag-group>
+  <vwc-tag label="disabled" disabled></vwc-tag>
+</vwc-tag-group>
 ```
 
 ### Selectable
@@ -98,7 +112,9 @@ Toggle the `selected` attribute to select and deselect the tag.
 - Default: `false`
 
 ```html preview
-<vwc-tag label="selectable" selectable selected></vwc-tag>
+<vwc-tag-group>
+  <vwc-tag label="selectable" selectable selected></vwc-tag>
+</vwc-tag-group>
 ```
 
 ### Removable
@@ -112,7 +128,9 @@ Notice that it works only if the tag is `removable` and not `selectable`.
 - Default: `false`
 
 ```html preview
-<vwc-tag label="removable" removable></vwc-tag>
+<vwc-tag-group>
+  <vwc-tag label="removable" removable></vwc-tag>
+</vwc-tag-group>
 ```
 
 ## Events
