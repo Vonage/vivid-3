@@ -9,7 +9,11 @@
 		"children": [
 			{
 				"title": "accordion-item",
-				"markdown": "./libs/components/src/lib/accordion-item/README.md"
+				"markdown": "./libs/components/src/lib/accordion-item/README.md",
+				"modules": [
+					"/assets/modules/components/accordion/index.js",
+					"/assets/modules/components/accordion-item/index.js"
+				]
 			}
 		]
 	},
@@ -38,7 +42,11 @@
 		"children": [
 			{
 				"title": "breadcrumb-item",
-				"markdown": "./libs/components/src/lib/breadcrumb-item/README.md"
+				"markdown": "./libs/components/src/lib/breadcrumb-item/README.md",
+				"modules": [
+					"/assets/modules/components/accordion/index.js",
+					"/assets/modules/components/accordion-item/index.js"
+				]
 			}
 		]
 	},
@@ -59,7 +67,11 @@
 		"children": [
 			{
 				"title": "calendar-event",
-				"markdown": "./libs/components/src/lib/calendar-event/README.md"
+				"markdown": "./libs/components/src/lib/calendar-event/README.md",
+				"modules": [
+					"/assets/modules/components/calendar/index.js",
+					"/assets/modules/components/calendar-event/index.js"
+				]
 			}
 		]
 	},
@@ -204,11 +216,21 @@
 		"children": [
 			{
 				"title": "nav-item",
-				"markdown": "./libs/components/src/lib/nav-item/README.md"
+				"markdown": "./libs/components/src/lib/nav-item/README.md",
+				"modules": [
+					"/assets/modules/components/nav/index.js",
+					"/assets/modules/components/nav-item/index.js",
+					"/assets/modules/components/nav-disclosure/index.js"
+				]
 			},
 			{
 				"title": "nav-disclosure",
-				"markdown": "./libs/components/src/lib/nav-disclosure/README.md"
+				"markdown": "./libs/components/src/lib/nav-disclosure/README.md",
+				"modules": [
+					"/assets/modules/components/nav/index.js",
+					"/assets/modules/components/nav-item/index.js",
+					"/assets/modules/components/nav-disclosure/index.js"
+				]
 			}
 		]
 	},
@@ -234,7 +256,13 @@
 		"children": [
 			{
 				"title": "menu-item",
-				"markdown": "./libs/components/src/lib/menu-item/README.md"
+				"markdown": "./libs/components/src/lib/menu-item/README.md",
+				"modules": [
+					"/assets/modules/components/menu/index.js",
+					"/assets/modules/components/menu-item/index.js",
+					"/assets/modules/components/button/index.js",
+					"/assets/modules/components/divider/index.js"
+				]
 			}
 		]
 	},
@@ -264,7 +292,11 @@
 		"children": [
 			{
 				"title": "radio",
-				"markdown": "./libs/components/src/lib/radio/README.md"
+				"markdown": "./libs/components/src/lib/radio/README.md",
+				"modules": [
+					"/assets/modules/components/radio/index.js",
+					"/assets/modules/components/radio-group/index.js"
+				]
 			}
 		]
 	},
@@ -302,7 +334,12 @@
 		"children": [
 			{
 				"title": "tab",
-				"markdown": "./libs/components/src/lib/tab/README.md"
+				"markdown": "./libs/components/src/lib/tab/README.md",
+				"modules": [
+					"/assets/modules/components/tabs/index.js",
+					"/assets/modules/components/tab-panel/index.js",
+					"/assets/modules/components/tab/index.js"
+				]
 			}
 		]
 	},
@@ -373,7 +410,11 @@
 		"children":[
 			{
 				"title": "tree-item",
-				"markdown": "./libs/components/src/lib/tree-item/README.md"
+				"markdown": "./libs/components/src/lib/tree-item/README.md",
+				"modules": [
+					"/assets/modules/components/tree-view/index.js",
+					"/assets/modules/components/tree-item/index.js"
+				]
 			}
 		]
 	},

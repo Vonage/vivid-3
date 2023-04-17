@@ -7,6 +7,25 @@ const jsonData = [
 	...require('../../_data/introduction.json')
 ];
 
+
+function myFlat(arr) {
+	const result = []
+	arr.map((obj) => {
+		if (obj.children) {
+			const el = { ...obj, ...{} }
+			delete el.children
+			result.push(el)
+			Object.values(obj.children).map((v, i) => {
+				result.push(v)
+			})
+		} else {
+			result.push(obj)
+		}
+	})
+	return result;
+}
+
+
 const FONTS = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap">';
 const IFRAME_STYLE = '<link rel="stylesheet" href="/assets/styles/iframe.css">';
 const TYPOGRAPHY = '<link rel="stylesheet" href="/assets/styles/core/all.css">';
@@ -54,7 +73,8 @@ const renderiFrame = (index, src, content) => JSDOM.fragment(`
 
 const createiFrameContent = (code, classList, index, outputPath) => {
 	const componentName = outputPath.split('/').at(-2);
-	const componentData = jsonData.filter(c => c.title === componentName);
+
+	const componentData = myFlat(jsonData).filter(c => c.title === componentName);
 	const modules = new Set(componentData?.[0]?.modules);
 
 	const layoutResult = layout(code, classList);
@@ -62,7 +82,7 @@ const createiFrameContent = (code, classList, index, outputPath) => {
 	if (!classList.contains('full') && !classList.contains('center')) {
 		modules.add('/assets/modules/components/layout/index.js');
 	}
-	
+
 	const document =
 		`<!DOCTYPE html>
 		 <html class="vvd-root">
@@ -81,7 +101,7 @@ const createiFrameContent = (code, classList, index, outputPath) => {
 	if (!fs.existsSync(saveFolder)) {
 		fs.mkdirSync(saveFolder, { recursive: true });
 	}
-	
+
 	const filePath = `${saveFolder}/${CBD_CODE_BLOCK}-${index}.html`;
 	fs.writeFileSync(filePath, document);
 	return filePath.substring(saveFolder.indexOf('docs' + path.sep) + 4);
