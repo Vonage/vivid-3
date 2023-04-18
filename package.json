@@ -16,7 +16,7 @@
 	"dependencies": {
 		"@codemirror/lang-html": "^6.4.1",
 		"@codemirror/theme-one-dark": "^6.1.0",
-		"@floating-ui/dom": "^1.2.0",
+		"@floating-ui/dom": "^1.2.6",
 		"@microsoft/fast-element": "^1.11.0",
 		"@microsoft/fast-foundation": "^2.47.1-0",
 		"@microsoft/fast-web-utilities": "^6.0.0",
