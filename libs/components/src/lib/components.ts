@@ -4,6 +4,7 @@ export * from './action-group/definition';
 export * from './avatar/definition';
 export * from './badge/definition';
 export * from './banner/definition';
+export * from './alert/definition';
 export * from './breadcrumb/definition';
 export * from './breadcrumb-item/definition';
 export * from './button/definition';
