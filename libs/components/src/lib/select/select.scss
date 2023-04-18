@@ -15,6 +15,7 @@
 @use "../focus/partials/variables" as focus-variables;
 @use "partials/variables" as variables;
 
+$low-ink-color: --_low-ink-color;
 
 @supports selector(:focus-visible) {
 	:host(:focus) {
@@ -26,6 +27,11 @@
 	display: inline-flex;
 	flex-direction: column;
 	gap: 4px;
+	#{$low-ink-color}: var(#{constants.$vvd-color-neutral-600});
+}
+
+:host([disabled]) {
+	#{$low-ink-color}: var(#{constants.$vvd-color-neutral-400});
 }
 
 
@@ -43,13 +49,12 @@
 	align-items: center;
 	justify-content: space-between;
 	background-color: var(#{appearance.get-appearance-token(fill)});
-	block-size: 100%;
+	block-size: #{size.$vvd-size-normal};
 	border-radius: var(#{variables.$select-control-border-radius});
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
 	gap: 8px;
-	min-block-size: #{size.$vvd-size-normal};
 	padding-inline: 16px;
 	transition: box-shadow .2s, background-color .2s;
 	&-wrapper {
@@ -76,7 +81,7 @@
 
 .list-box {
 	display: flex;
-	max-height: var(--select-height, auto);
+	max-height: var(--select-height, 408px);
 	flex-direction: column;
 	padding: 4px;
 	gap: 2px;
@@ -108,6 +113,11 @@
 ::part(popup-base) {
 	inline-size: max-content;
 	min-inline-size: 100%;
+
+	.with-helper-text & {
+		// to override the helper text height
+		top: #{size.$vvd-size-normal};
+	}
 }
 
 

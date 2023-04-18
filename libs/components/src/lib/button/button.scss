@@ -78,6 +78,10 @@
 
 	/* Size */
 	&:not(.stacked) {
+		&.size-super-condensed {
+			@include mixins.get-size-properties(#{size.$vvd-size-super-condensed}, #{constants.$vvd-typography-base-condensed-bold}, 4px, 8px);
+		}
+
 		&.size-condensed {
 			@include mixins.get-size-properties(#{size.$vvd-size-condensed}, #{constants.$vvd-typography-base-condensed-bold}, 8px, 12px);
 		}
@@ -86,7 +90,7 @@
 			@include mixins.get-size-properties(#{size.$vvd-size-expanded}, #{constants.$vvd-typography-base-extended-bold}, 10px, 20px);
 		}
 
-		&:not(.size-condensed, .size-expanded) {
+		&:not(.size-condensed, .size-expanded, .size-super-condensed) {
 			@include mixins.get-size-properties(#{size.$vvd-size-normal}, #{constants.$vvd-typography-base-bold}, 8px, 16px);
 		}
 	}
