@@ -59,7 +59,7 @@ function renderControl(context: ElementDefinitionContext) {
 
 	return html<Select>`
 			${when(x => x.label, renderLabel())}
-			<div class="control-wrapper ${x => x.helperText?.length ? 'with-helper-text' : ''}">
+			<div class="control-wrapper">
 				${when(x => !x.multiple, selectValue(context))}
 				<${popupTag}
 					?open="${x => (x.collapsible ? x.open : true)}"
