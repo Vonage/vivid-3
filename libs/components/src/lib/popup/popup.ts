@@ -14,8 +14,8 @@ export class Popup extends FoundationElement {
 	get #padding(): number { return 0; }
 	get #distance(): number { return 12; }
 	get #middleware(): Array<any> {
-		const middleware = [flip(), inline()];
-		if (this.arrow) { middleware.push(offset(this.#distance), arrow({ element: this.arrowEl, padding: this.#padding }), hide()); }
+		const middleware = [flip(), hide(), inline()];
+		if (this.arrow) { middleware.push(arrow({ element: this.arrowEl, padding: this.#padding }), offset(this.#distance)); }
 		return middleware;
 	}
 
