@@ -48,3 +48,4 @@ export * from './tab-panel/definition';
 export * from './tree-view/definition';
 export * from './tree-item/definition';
 export * from './tag/definition';
+export * from './tag-group/definition';

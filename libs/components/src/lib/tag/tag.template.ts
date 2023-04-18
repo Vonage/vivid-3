@@ -46,8 +46,9 @@ export const tagTemplate: (
 
 	return html`
 	<span class="${getClasses}" 
-	role="option" 
+	role="option"
 	aria-disabled="${x => x.disabled}"
+	aria-selected="${x => x.selectable}"
 	tabindex="${x => (x.disabled ? null : 0)}"
 	@keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}"
 	@click="${x => x.handleClick()}">
