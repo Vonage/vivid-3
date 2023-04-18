@@ -70,6 +70,7 @@ $rounded-border-radius: 3px;
 
 	.paused & {
 		background-color: var(#{constants.$vvd-color-neutral-300});
+		background-image: none;
 	}
 }
 
