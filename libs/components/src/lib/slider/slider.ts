@@ -27,11 +27,11 @@ export class Slider extends FastSlider {
 		if (this.$fastController.isConnected) {
 			// min/max constraints backported from v3
 			const nextAsNumber = parseFloat(next);
-            const value = limit(
-                this.min,
-                this.max,
-                this['convertToConstrainedValue'](nextAsNumber)
-            ).toString();
+			const value = limit(
+				this.min,
+				this.max,
+				this['convertToConstrainedValue'](nextAsNumber)
+			).toString();
 
 			if (value !== next) {
 				this.value = value;
