@@ -38,7 +38,7 @@ function selectValue(context: ElementDefinitionContext) {
 					class="control ${getStateClasses}"
 					?disabled="${x => x.disabled}"
 					id="control"
-					${ref('control')}
+					${ref('_anchor')}
 				>
 					<div class="selected-value">
 						${x => affixIconTemplate(x.icon)}
@@ -66,6 +66,7 @@ function renderControl(context: ElementDefinitionContext) {
 					anchor="control"
 					placement="bottom-start"
 							strategy="absolute"
+							${ref('_popup')}
 							class="popup"
 							>
 							<div
