@@ -28,11 +28,10 @@ const defaultConnotation =
  * @slot action-items - Add action items to alert using this slot.
  */
 export class Alert extends FoundationElement {
-	@attr({attribute: 'action-href'}) actionHref: string | undefined;
-	@attr({attribute: 'action-text'}) actionText: string | undefined;
 	@attr({mode: 'boolean'}) removable = false;
-	@attr() text: string | undefined;
-	@attr() connotation: AlertConnotation | undefined;
+	@attr subtitle?: string;
+	@attr headline?: string;
+	@attr() connotation?: AlertConnotation;
 
 	get conditionedIcon() {
 		return this.icon ?? defaultConnotation(this.connotation);

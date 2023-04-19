@@ -46,109 +46,55 @@ describe('vwc-alert', () => {
 		});
 	});
 
-	describe('text', function () {
+	describe('headline', function () {
 		/**
-		 * @param text
+		 * @param headline
 		 */
-		async function setTextProperty(text: string | undefined) {
-			element.text = text;
+		async function setHeadlineProperty(headline: string | undefined) {
+			element.headline = headline;
 			await elementUpdated(element);
 		}
 
 		/**
-		 * @param text
+		 * @param headline
 		 */
-		async function setTextAttribute(text: string | undefined) {
-			element.setAttribute('text', text ? text : '');
+		async function setHeadlineAttribute(headline: string | undefined) {
+			element.setAttribute('headline', headline ? headline : '');
 			await elementUpdated(element);
 		}
 
 		/**
 		 *
 		 */
-		function getText() {
-			const text = element.shadowRoot?.querySelector('.alert--message')?.textContent;
-			return text?.trim();
+		function getHeadline() {
+			const headline = element.shadowRoot?.querySelector('.alert--message')?.textContent;
+			return headline?.trim();
 		}
 
 		it('should init with undefined and set as empty string in DOM', function () {
-			const initTextPropEmpty = element.text;
-			const initTextAttrEmpty = getText();
+			const initHeadlinePropEmpty = element.headline;
+			const initHeadlineAttrEmpty = getHeadline();
 
-			expect(initTextPropEmpty)
+			expect(initHeadlinePropEmpty)
 				.toEqual(undefined);
-			expect(initTextAttrEmpty)
+			expect(initHeadlineAttrEmpty)
 				.toEqual('');
 		});
 
 		it('should reflect the message', async function () {
-			const messageText = 'Some Text';
+			const messageHeadline = 'Some Headline';
 
-			await setTextProperty(messageText);
-			const DOMTextWithProperty = getText();
+			await setHeadlineProperty(messageHeadline);
+			const DOMHeadlineWithProperty = getHeadline();
 
-			await setTextProperty(undefined);
-			await setTextAttribute(messageText);
-			const propertyTextWithAttribute = element.text;
+			await setHeadlineProperty(undefined);
+			await setHeadlineAttribute(messageHeadline);
+			const propertyHeadlineWithAttribute = element.headline;
 
-			expect(DOMTextWithProperty)
-				.toEqual(messageText);
-			expect(propertyTextWithAttribute)
-				.toEqual(messageText);
-		});
-	});
-
-	describe('role', function () {
-		it('should be set to "status" on init', function () {
-			const role = element.shadowRoot?.querySelector('.alert--message')
-				?.getAttribute('role');
-			expect(role)
-				.toEqual('status');
-		});
-
-		it('should change role to role text', async function () {
-			element.role = 'alert';
-			await elementUpdated(element);
-			const role = element.shadowRoot?.querySelector('.alert--message')
-				?.getAttribute('role');
-			expect(role)
-				.toEqual('alert');
-		});
-
-		it('should change role when role attribute is set', async function () {
-			element.setAttribute('role', 'alert');
-			await elementUpdated(element);
-			const role = element.shadowRoot?.querySelector('.alert--message')
-				?.getAttribute('role');
-			expect(role)
-				.toEqual('alert');
-		});
-	});
-
-	describe('aria live', function () {
-		it('should be set to "live" on init', function () {
-			const ariaLive = element.shadowRoot?.querySelector('.alert--message')
-				?.getAttribute('aria-live');
-			expect(ariaLive)
-				.toEqual('polite');
-		});
-
-		it('should change aria-live to ariaLive text', async function () {
-			element.ariaLive = 'assertive';
-			await elementUpdated(element);
-			const ariaLive = element.shadowRoot?.querySelector('.alert--message')
-				?.getAttribute('aria-live');
-			expect(ariaLive)
-				.toEqual('assertive');
-		});
-
-		it('should change reflect aria-live inside the message', async function () {
-			element.setAttribute('aria-live', 'assertive');
-			await elementUpdated(element);
-			const ariaLive = element.shadowRoot?.querySelector('.alert--message')
-				?.getAttribute('aria-live');
-			expect(ariaLive)
-				.toEqual('assertive');
+			expect(DOMHeadlineWithProperty)
+				.toEqual(messageHeadline);
+			expect(propertyHeadlineWithAttribute)
+				.toEqual(messageHeadline);
 		});
 	});
 
@@ -200,7 +146,7 @@ describe('vwc-alert', () => {
 
 	describe('connotation', function () {
 		const possibleConnotations = [Connotation.Information,
-			Connotation.Announcement,
+			Connotation.Accent,
 			Connotation.Success,
 			Connotation.Warning,
 			Connotation.Alert
@@ -249,7 +195,7 @@ describe('vwc-alert', () => {
 		it('should set the icon according to set connotation', async function () {
 			const connotationIconMap: Map<AlertConnotation, string> = new Map([
 				[Connotation.Information, 'info-solid'],
-				[Connotation.Announcement, 'megaphone-solid'],
+				[Connotation.Accent, 'megaphone-solid'],
 				[Connotation.Success, 'check-circle-solid'],
 				[Connotation.Warning, 'warning-solid'],
 				[Connotation.Alert, 'error-solid']

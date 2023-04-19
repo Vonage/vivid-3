@@ -10,9 +10,20 @@ import { Button } from '../button/button';
 import type { Alert } from './alert';
 
 const getClasses = (_: Alert) => classNames(
-	'control',
+	'base',
 	[`connotation-${_.connotation}`, !!_.connotation]
 );
+
+/**
+ *
+ */
+function headline() {
+	return html<Alert>`
+	  <div class="headline">
+		  ${x => x.headline}
+	  </div>
+	`;
+}
 
 /**
  *
@@ -20,7 +31,6 @@ const getClasses = (_: Alert) => classNames(
 function renderDismissButton(buttonTag: string) {
 	return html<Alert>`
 	  <${buttonTag}
-				part="vvd-theme-alternate"
 			  size="condensed"
 			  class="dismiss-button"
 			  icon="close-line"
@@ -42,20 +52,18 @@ export const AlertTemplate: (
 	const buttonTag = context.tagFor(Button);
 
 	return html<Alert>`
-	  <div class="alert ${getClasses}" tabindex="0">
-		  <header class="header">
-					<div class="user-content">
+	  <div class="${getClasses}" tabindex="0">
+		<div class="user-content">
             ${x => affixIconTemplate(x.conditionedIcon)}
 						<div class="alert--message"
-						role="alert"
-						aria-live="assertive">
-              ${x => x.text}
-            </div>
-						<slot class="action-items" name="action-items"></slot>
-					</div>
-
+							role="alert"
+							aria-live="assertive">
+							${when(x => x.headline, headline())}
+							${x => x.subtitle}
+            			</div>
+			<slot class="action-items" name="action-items"></slot>
+		</div>
 			  ${when(x => x.removable, renderDismissButton(buttonTag))}
-		  </header>
 	  </div>
 	`;
 };
