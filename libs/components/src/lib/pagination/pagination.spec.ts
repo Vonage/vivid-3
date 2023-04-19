@@ -59,6 +59,12 @@ describe('vwc-pagination', () => {
 			expect(selectedIndexAfterSecondTotalSet).toEqual(1);
 		});
 
+		it('should reflect selectedIndex attribute', async function () {
+			element.setAttribute('selected-index', '10');
+			await elementUpdated(element);
+			expect(element.selectedIndex).toEqual(10);
+		});
+
 
 	});
 });

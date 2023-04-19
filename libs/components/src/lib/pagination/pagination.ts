@@ -20,7 +20,7 @@ export class Pagination extends FoundationElement {
 	 * HTML Attribute: text
 	 */
 	@attr({mode: 'reflect', converter: totalConverter}) total: number;
-	selectedIndex: number;
+	@attr({mode: 'reflect', converter: totalConverter, attribute: 'selected-index'}) selectedIndex: number;
 
 	constructor() {
 		super();
