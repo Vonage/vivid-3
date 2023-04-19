@@ -24,7 +24,7 @@ $low-ink-color: --_low-ink-color;
 }
 
 :host {
-	display: flex;
+	display: inline-flex;
 	flex-direction: column;
 	gap: 4px;
 	#{$low-ink-color}: var(#{constants.$vvd-color-neutral-600});
