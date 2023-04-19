@@ -1,5 +1,10 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
+import {attr, ValueConverter} from "@microsoft/fast-element";
+
+const totalConverter: ValueConverter = {
+	fromView: (value: string) => parseInt(value, 10),
+	toView: (value: number) => value.toString()
+};
 
 /**
  * Base class for pagination
@@ -14,5 +19,23 @@ export class Pagination extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: text
 	 */
-	@attr text?: string;
+	@attr({mode: 'reflect', converter: totalConverter}) total: number;
+	selectedIndex: number;
+
+	constructor() {
+		super();
+		this.total = 0;
+		this.selectedIndex = -1;
+	}
+
+	totalChanged(_: number, newValue: number) {
+		if (newValue < 0) {
+			this.total = 0;
+		}
+
+		if (this.selectedIndex === -1) {
+			this.selectedIndex = 0;
+		}
+	}
 }
+
