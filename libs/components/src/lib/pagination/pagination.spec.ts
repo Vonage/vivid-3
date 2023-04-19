@@ -29,7 +29,6 @@ describe('vwc-pagination', () => {
 
 		it('should set total as zero of set as negative', async () => {
 			element.total = -10;
-			await elementUpdated(element);
 			expect(element.total).toEqual(0);
 		});
 
@@ -47,12 +46,10 @@ describe('vwc-pagination', () => {
 
 		it('should set selectedIndex as zero only when first setting total', async () => {
 			element.total = 2;
-			await elementUpdated(element);
 			const selectedIndexAfterFirstTotalSet = element.selectedIndex;
 
 			element.selectedIndex = 1;
 			element.total = 3;
-			await elementUpdated(element);
 			const selectedIndexAfterSecondTotalSet = element.selectedIndex;
 
 			expect(selectedIndexAfterFirstTotalSet).toEqual(0);
@@ -65,6 +62,10 @@ describe('vwc-pagination', () => {
 			expect(element.selectedIndex).toEqual(10);
 		});
 
-
+		it('should set to -1 when total is set to zero', function () {
+			element.total = 2;
+			element.total = 0;
+			expect(element.selectedIndex).toEqual(-1);
+		});
 	});
 });

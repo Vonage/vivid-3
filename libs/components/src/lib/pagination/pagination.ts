@@ -33,7 +33,9 @@ export class Pagination extends FoundationElement {
 			this.total = 0;
 		}
 
-		if (this.selectedIndex === -1) {
+		if (newValue <= 0) {
+			this.selectedIndex = -1;
+		} else if (this.selectedIndex === -1) {
 			this.selectedIndex = 0;
 		}
 	}
