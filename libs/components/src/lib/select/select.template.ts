@@ -66,7 +66,6 @@ function renderControl(context: ElementDefinitionContext) {
 					anchor="control"
 					placement="bottom-start"
 							strategy="absolute"
-							${ref('_popup')}
 							class="popup"
 							>
 							<div
@@ -107,7 +106,6 @@ export const SelectTemplate: (
 
 	return html<Select>`
 	  <template class="base"
-				 		${ref('_anchor')}
             aria-activedescendant="${x => x.ariaActiveDescendant}"
             aria-controls="${x => x.ariaControls}"
             aria-disabled="${x => x.ariaDisabled}"
