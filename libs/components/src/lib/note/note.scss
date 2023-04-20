@@ -20,7 +20,8 @@
 	@include appearance.appearance;
 
 	display: flex;
-	align-items: stretch;
+	align-items: flex-start;
+	column-gap: 16px;
 	padding: #{size.$vvd-size-ultra-condensed};
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	border-radius: 6px;
@@ -40,15 +41,15 @@
 	align-self: flex-start;
 	color: var(#{appearance.get-appearance-token(outline)});
 	font-size: #{size.$vvd-size-super-condensed};
-	margin-inline-end: 16px;
 }
 
 .text {
 	display: flex;
 	min-height: 24px;
-	flex: 1;
+	flex-grow: 1;
 	flex-direction: column;
 	justify-content: center;
+	align-items: flex-start;
 	gap: 4px;
 	text-align: start;
 
