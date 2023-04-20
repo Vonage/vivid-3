@@ -85,11 +85,6 @@ Use the `size` attribute to set the button's to one of the predefined block size
 <vwc-button appearance='filled' label='condensed' size='condensed'></vwc-button>
 <vwc-button appearance='filled' label='normal' size='normal'></vwc-button>
 <vwc-button appearance='filled' label='expanded' size='expanded'></vwc-button>
-<hr>
-<vwc-button stacked size='super-condensed' appearance='filled' icon='message-sent-line' label='With Icon'></vwc-button>
-<vwc-button stacked size='condensed' appearance='filled' icon='message-sent-line' label='With Icon'></vwc-button>
-<vwc-button stacked size='normal' appearance='filled' icon='message-sent-line' label='With Icon'></vwc-button>
-<vwc-button stacked size='expanded' appearance='filled' icon='message-sent-line' label='With Icon'></vwc-button>
 ```
 
 ### Stacked
@@ -108,23 +103,6 @@ Caveats:
 
 <vwc-button stacked appearance='filled' icon='message-sent-line' label='With Icon'></vwc-button>
 <vwc-button stacked appearance='filled' icon='message-sent-line' icon-trailing label='Icon Trailing'></vwc-button>
-<hr>
-<vwc-button stacked size='super-condensed' appearance='filled' icon='message-sent-line' label='With Icon'></vwc-button>
-<vwc-button stacked size='condensed' appearance='filled' icon='message-sent-line' label='With Icon'></vwc-button>
-<vwc-button stacked size='normal' appearance='filled' icon='message-sent-line' label='With Icon'></vwc-button>
-<vwc-button stacked size='expanded' appearance='filled' icon='message-sent-line' label='With Icon'></vwc-button>
-<hr>
-<vwc-button stacked size='super-condensed' appearance='filled' shape='pill' icon='message-sent-line' label='With Icon'></vwc-button>
-<vwc-button stacked size='condensed' appearance='filled' shape='pill' icon='message-sent-line' label='With Icon'></vwc-button>
-<vwc-button stacked size='normal' appearance='filled' shape='pill' icon='message-sent-line' label='With Icon'></vwc-button>
-<vwc-button stacked size='expanded' appearance='filled' shape='pill' icon='message-sent-line' label='With Icon'></vwc-button>
-<hr>
-<vwc-button stacked size='normal' appearance='filled' shape='pill' icon='message-sent-line'></vwc-button>
-<vwc-button stacked size='normal' appearance='filled' shape='pill' label='With Icon'></vwc-button>
-<vwc-button stacked size='normal' appearance='filled' shape='pill' icon='message-sent-line'></vwc-button>
-<vwc-button stacked size='normal' appearance='filled' shape='pill' label='With Icon'></vwc-button>
-
-
 ```
 
 ### Connotation
