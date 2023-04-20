@@ -1,12 +1,13 @@
 import { html, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
+import {
+	Button,
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { affixIconTemplateFactory } from '../shared/patterns/affix';
-import { Button } from '../button/button';
+import { Elevation } from '../elevation/elevation';
+import { affixIconTemplateFactory } from '../shared/patterns';
 import type { Alert } from './alert';
 
 const getClasses = (_: Alert) => classNames(
@@ -14,14 +15,56 @@ const getClasses = (_: Alert) => classNames(
 	[`connotation-${_.connotation}`, !!_.connotation]
 );
 
+
 /**
  *
  */
-function headline() {
+function Headline() {
+	return html`
+		<div class="header-headline">${(x) => x.headline}</div>
+	`;
+}
+
+/**
+ *
+ */
+function Subtitle() {
+	return html`
+		<div class="header-subtitle">${(x) => x.subtitle}</div>
+	`;
+}
+
+/**
+ *
+ */
+function headerContent() {
+	return html`
+		<div class="header-content">
+			${when(x => x.headline, Headline())}
+			${when(x => x.subtitle, Subtitle())}
+		</div>
+	`;
+}
+
+/**
+ header
+ */
+function renderHeader() {
+
 	return html<Alert>`
-	  <div class="headline">
-		  ${x => x.headline}
-	  </div>
+		<header class="header">
+			${when(x => x.headline || x.subtitle, headerContent())}
+		</header>`;
+}
+
+/**
+ *
+ */
+function renderIcon(context: ElementDefinitionContext) {
+	const affixIconTemplate = affixIconTemplateFactory(context);
+
+	return html<Alert>`
+	${x => affixIconTemplate(x.conditionedIcon)}
 	`;
 }
 
@@ -33,6 +76,7 @@ function renderDismissButton(buttonTag: string) {
 	  <${buttonTag}
 			  size="condensed"
 			  class="dismiss-button"
+			  appearance="filled"
 			  icon="close-line"
 			  @click="${x => x.remove()}">
 	  </${buttonTag}>`;
@@ -48,23 +92,22 @@ export const AlertTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Alert> = (context: ElementDefinitionContext) => {
-	const affixIconTemplate = affixIconTemplateFactory(context);
+	const elevationTag = context.tagFor(Elevation);
 	const buttonTag = context.tagFor(Button);
 
 	return html<Alert>`
-	  <div class="${getClasses}" tabindex="0">
-		<div class="user-content">
-            ${x => affixIconTemplate(x.conditionedIcon)}
-						<div class="alert--message"
-							role="alert"
-							aria-live="assertive">
-							${when(x => x.headline, headline())}
-							${x => x.subtitle}
-            			</div>
-			<slot class="action-items" name="action-items"></slot>
+	<${elevationTag} dp='4'>
+		<div class="${getClasses}">
+			<div class="start-content">
+				${when(x => x.icon || x.connotation, renderIcon(context))}
+				${renderHeader()}
+			</div>
+			<div class="end-content">
+				<slot class="action-items" name="action-items"></slot>
+				${when(x => x.removable, renderDismissButton(buttonTag))}
+			</div>
 		</div>
-			  ${when(x => x.removable, renderDismissButton(buttonTag))}
-	  </div>
+	</${elevationTag}>
 	`;
 };
 

@@ -1,6 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../shared/design-system';
 import { buttonRegistries } from '../button/definition';
+import { elevationRegistries } from '../elevation/definition';
 import { iconRegistries } from '../icon/definition';
 import styles from './alert.scss';
 
@@ -22,7 +23,7 @@ export const alertDefinition = Alert.compose<FoundationElementDefinition>({
 /**
  * @internal
  */
-export const alertRegistries = [alertDefinition(), ...iconRegistries, ...buttonRegistries];
+export const alertRegistries = [alertDefinition(), ...iconRegistries, ...buttonRegistries, ...elevationRegistries];
 
 /**
  * Registers the alert elements with the design system.

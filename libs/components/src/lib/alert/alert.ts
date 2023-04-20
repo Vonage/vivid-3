@@ -1,7 +1,7 @@
-import {applyMixins, FoundationElement} from '@microsoft/fast-foundation';
-import {attr} from '@microsoft/fast-element';
-import {Connotation} from '../enums';
-import {AffixIcon} from '../shared/patterns/affix';
+import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
+import { attr } from '@microsoft/fast-element';
+import { Connotation } from '../enums';
+import { AffixIcon } from '../shared/patterns/affix';
 
 export type AlertConnotation =
 	Connotation.Information |
@@ -19,7 +19,7 @@ const connotationIconMap = new Map([
 ]);
 
 const defaultConnotation =
-	(connotation: Connotation | undefined = Connotation.Information) => connotationIconMap.get(connotation) as Connotation;
+	(connotation: Connotation | undefined = Connotation.Accent) => connotationIconMap.get(connotation) as Connotation;
 
 /**
  * Base class for alert
@@ -28,10 +28,43 @@ const defaultConnotation =
  * @slot action-items - Add action items to alert using this slot.
  */
 export class Alert extends FoundationElement {
-	@attr({mode: 'boolean'}) removable = false;
-	@attr subtitle?: string;
+	/**
+	 * if the alert is removable
+	 * accepts boolean
+	 *
+	 * @public
+	 */
+	@attr({ mode: 'boolean' }) removable = false;
+
+	/**
+	 * the text of the alert heading
+	 * accepts string
+	 *
+	 * @public
+	 */
 	@attr headline?: string;
-	@attr() connotation?: AlertConnotation;
+
+	/**
+	 * the text of the alert sub-heading
+	 * accepts string
+	 *
+	 * @public
+	 */
+	@attr subtitle?: string;
+
+	/**
+	 * alert header icon
+	 *
+	 * @public
+	 */
+	@attr icon?: string;
+
+	/**
+	 * alert connotation
+	 *
+	 * @public
+	 */
+	@attr connotation?: AlertConnotation;
 
 	get conditionedIcon() {
 		return this.icon ?? defaultConnotation(this.connotation);

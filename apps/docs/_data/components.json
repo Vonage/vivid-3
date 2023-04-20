@@ -35,7 +35,8 @@
 		"markdown": "./libs/components/src/lib/alert/README.md",
 		"modules": [
 			"/assets/modules/components/button/index.js",
-			"/assets/modules/components/alert/index.js"
+			"/assets/modules/components/alert/index.js",
+			"/assets/modules/components/layout/index.js"
 		]
 	},
 	{

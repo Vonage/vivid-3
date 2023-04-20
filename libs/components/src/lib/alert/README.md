@@ -10,16 +10,6 @@ Alerts are meant to be used on top of pages, outside the main content.
 
 ## Members
 
-### Headline
-
-- Type: `string`
-- Default: `''`
-
-Use the `headline` attribute to set the alert's headline.
-
-```html preview full
-<vwc-alert headline="Alert title"></vwc-alert>
-```
 
 ### Subtitle
 
@@ -28,9 +18,21 @@ Use the `headline` attribute to set the alert's headline.
 
 Use the `subtitle` attribute to set the alert's subtitle.
 
-```html preview full
+```html preview center
+<vwc-alert subtitle="What an important info!!!"></vwc-alert>
+```
+
+### Headline
+
+- Type: `string`
+- Default: `''`
+
+Use the `headline` attribute to set the alert's headline.
+
+```html preview center
 <vwc-alert headline="Alert title" subtitle="What an important info!!!"></vwc-alert>
 ```
+
 
 ### Icon
 
@@ -39,8 +41,8 @@ Use the `subtitle` attribute to set the alert's subtitle.
 
 The `icon` attribute will override the icon set by connotation.
 
-```html preview full
-<vwc-alert headline="Alert title" icon="megaphone-line"></vwc-alert>
+```html preview center
+<vwc-alert subtitle="What an important info!!!" icon="megaphone-line"></vwc-alert>
 ```
 
 ### Connotation
@@ -53,11 +55,13 @@ The `connotation` attribute sets the colors according to the wanted connotation.
 Note that icon, if not specifically set, defaults to a connotation-associated icon.
 
 ```html preview
-<vwc-alert headline="Alert title" connotation="accent"></vwc-alert>
-<vwc-alert headline="Here's some information that you may find useful!" connotation="information"></vwc-alert>
-<vwc-alert headline="Operation Successful!" connotation="success"></vwc-alert>
-<vwc-alert headline="Heads up - this is a warning" connotation="warning"></vwc-alert>
-<vwc-alert headline="ALERT! Something went wrong!" connotation="alert"></vwc-alert>
+<vwc-layout gutters="small" column-basis="block">
+  <vwc-alert subtitle="What an important info!!!" connotation="accent"></vwc-alert>
+  <vwc-alert subtitle="What an important info!!!" connotation="information"></vwc-alert>
+  <vwc-alert subtitle="What an important info!!!" connotation="success"></vwc-alert>
+  <vwc-alert subtitle="What an important info!!!" connotation="warning"></vwc-alert>
+  <vwc-alert subtitle="What an important info!!!" connotation="alert"></vwc-alert>
+</vwc-layout>
 ```
 
 ### Removable
@@ -67,8 +71,8 @@ Note that icon, if not specifically set, defaults to a connotation-associated ic
 
 The `removable` attribute sets a remove button. On click it will remove the alert from the DOM.
 
-```html preview full
-<vwc-alert headline="Alert title" removable></vwc-alert>
+```html preview center
+<vwc-alert subtitle="What an important info!!!" removable></vwc-alert>
 ```
 
 ## Slots
@@ -77,9 +81,9 @@ The `removable` attribute sets a remove button. On click it will remove the aler
 
 You can add action items using slotted content in a named slot `action-items`:
 
-```html preview full
-<vwc-alert headline="A alert with an action button">
-  <vwc-button slot="action-items" appearance="filled" connotation="accent" label="Learn More"></vwc-button>
+```html preview center
+<vwc-alert subtitle="What an important info!!!">
+  <vwc-button slot="action-items" appearance="filled" shape='pill' label="Action"></vwc-button>
 </vwc-alert>
 ```
 
