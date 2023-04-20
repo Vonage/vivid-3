@@ -100,10 +100,9 @@ Caveats:
 - This will override any applied [size](#size) style to match a predefined stacked block size.
 
 ```html preview
-<vwc-button stacked appearance='filled' label='Stacked'></vwc-button>
+
 <vwc-button stacked appearance='filled' icon='message-sent-line' label='With Icon'></vwc-button>
 <vwc-button stacked appearance='filled' icon='message-sent-line' icon-trailing label='Icon Trailing'></vwc-button>
-<vwc-button stacked appearance='filled' icon='message-sent-line'></vwc-button>
 ```
 
 ### Connotation
