@@ -3,7 +3,7 @@ import {attr} from '@microsoft/fast-element';
 import type {Appearance, Shape} from '../enums';
 import {AffixIcon, FormElementCharCount, FormElementHelperText, FormElementSuccessText} from '../../shared/patterns';
 import {FormElement, formElements} from '../../shared/patterns';
-
+import {ErrorText, errorText} from '../../shared/patterns';
 
 export type TextFieldAppearance = Extract<Appearance, Appearance.Outlined | Appearance.Ghost>;
 export type TextFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
@@ -13,6 +13,7 @@ export type TextFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  *
  * @public
  */
+@errorText
 @formElements
 export class TextField extends FoundationTextfield {
 	@attr appearance?: TextFieldAppearance;
@@ -20,7 +21,5 @@ export class TextField extends FoundationTextfield {
 	@attr autoComplete?: string;
 }
 
-export interface TextField extends AffixIcon, FormElement, FormElementCharCount, FormElementHelperText, FormElementSuccessText{}
+export interface TextField extends AffixIcon, ErrorText, FormElement, FormElementCharCount, FormElementHelperText, FormElementSuccessText{}
 applyMixins(TextField, AffixIcon, FormElementCharCount, FormElementHelperText, FormElementSuccessText);
-
-
