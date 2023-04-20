@@ -578,14 +578,14 @@ describe('vwc-text-field', () => {
 		const forcedErrorMessage = 'BAD!';
 
 		it('should force the input in custom error mode', async function () {
-			element.forceError = forcedErrorMessage;
+			element.errorText = forcedErrorMessage;
 			await elementUpdated(element);
 			expect(element.validationMessage).toBe(forcedErrorMessage);
 			expect(element.validity.valid).toBeFalsy();
 		});
 
 		it('should add the error class', async function () {
-			element.forceError = forcedErrorMessage;
+			element.errorText = forcedErrorMessage;
 			await elementUpdated(element);
 			expect(getBaseElement(element)
 				.classList
@@ -594,7 +594,7 @@ describe('vwc-text-field', () => {
 		});
 
 		it('should display the given error message', async function () {
-			element.forceError = forcedErrorMessage;
+			element.errorText = forcedErrorMessage;
 			await elementUpdated(element);
 			const errorElement = element.shadowRoot?.querySelector('.error-message');
 			expect(errorElement).toBeDefined();
@@ -616,13 +616,13 @@ describe('vwc-text-field', () => {
 			expect(initialErrorMessage).not.toBe(forcedErrorMessage);
 			expect(element.validity.valid).toBeFalsy();
 
-			element.forceError = forcedErrorMessage;
+			element.errorText = forcedErrorMessage;
 			await elementUpdated(element);
 
 			expect(element.validationMessage).toBe(forcedErrorMessage);
 			expect(element.validity.valid).toBeFalsy();
 
-			element.forceError = '';
+			element.errorText = '';
 			await elementUpdated(element);
 
 			expect(element.validationMessage).toBe(initialErrorMessage);
