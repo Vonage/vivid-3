@@ -38,7 +38,7 @@ function selectValue(context: ElementDefinitionContext) {
 					class="control ${getStateClasses}"
 					?disabled="${x => x.disabled}"
 					id="control"
-					${ref('control')}
+					${ref('_anchor')}
 				>
 					<div class="selected-value">
 						${x => affixIconTemplate(x.icon)}
@@ -59,7 +59,7 @@ function renderControl(context: ElementDefinitionContext) {
 
 	return html<Select>`
 			${when(x => x.label, renderLabel())}
-			<div class="control-wrapper ${x => x.helperText?.length ? 'with-helper-text' : ''}">
+			<div class="control-wrapper">
 				${when(x => !x.multiple, selectValue(context))}
 				<${popupTag}
 					?open="${x => (x.collapsible ? x.open : true)}"
@@ -107,7 +107,6 @@ export const SelectTemplate: (
 
 	return html<Select>`
 	  <template class="base"
-				 		${ref('_anchor')}
             aria-activedescendant="${x => x.ariaActiveDescendant}"
             aria-controls="${x => x.ariaControls}"
             aria-disabled="${x => x.ariaDisabled}"
