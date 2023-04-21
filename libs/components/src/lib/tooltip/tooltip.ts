@@ -56,4 +56,17 @@ export class Tooltip extends Popup {
 	#hide = () => {
 		this.open = false;
 	};
+
+	_closeOnEscape = (e:KeyboardEvent) => {
+		if (e.key === 'Escape') this.#hide();
+	};
+	
+	override openChanged(_: boolean, newValue: boolean): void {
+		super.openChanged(_, newValue);
+		if (newValue) {
+			document.addEventListener('keydown', this._closeOnEscape);
+		} else {
+			document.removeEventListener('keydown', this._closeOnEscape);
+		}
+	}	
 }

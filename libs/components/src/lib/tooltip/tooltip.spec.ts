@@ -68,6 +68,25 @@ describe('vwc-tooltip', () => {
 		});
 	});
 
+	describe('escape', () => {
+		it('should disappear when Escape is pressed', async () => {
+			const anchor = await setAnchor();
+			element.anchor = 'anchor';
+			await elementUpdated(element);
+
+			fireEvent(anchor, new MouseEvent('mouseover'));
+			await elementUpdated(element);
+			expect(element.open)
+				.toEqual(true);
+
+			fireEvent(document, new KeyboardEvent('keydown', {key: 'Escape'}));
+			await elementUpdated(element);
+
+			expect(element.open)
+				.toEqual(false);
+		});
+	});
+
 	/**
 	 *
 	 */
