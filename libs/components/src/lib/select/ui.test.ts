@@ -11,8 +11,8 @@ const components = ['select', 'option'];
 
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	
-	const template = '<style>#wrapper{height: 600px; width: 500px; display: flex; flex-wrap: wrap;}</style>' + extractHTMLBlocksFromReadme(
+
+	const template = '<style>#wrapper{height: 250px; width: 1800px; display: flex; flex-wrap: wrap;}</style>' + extractHTMLBlocksFromReadme(
 		path.join(new URL('.', import.meta.url).pathname, 'README.md'))
 		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
 

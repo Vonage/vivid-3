@@ -7,7 +7,7 @@ import type { Appearance, Connotation } from '../enums';
  *
  * @public
  */
-type CalendarEventConnotation = Extract<Connotation,
+export type CalendarEventConnotation = Extract<Connotation,
 | Connotation.Accent
 | Connotation.CTA
 | Connotation.Success
@@ -21,7 +21,7 @@ type CalendarEventConnotation = Extract<Connotation,
  *
  * @public
  */
-type CalendarEventAppearance = Extract<Appearance,
+export type CalendarEventAppearance = Extract<Appearance,
 Appearance.Filled | Appearance.Duotone | Appearance.Subtle>;
 
 /**

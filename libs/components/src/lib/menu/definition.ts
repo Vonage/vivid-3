@@ -5,6 +5,8 @@ import styles from './menu.scss';
 import { Menu } from './menu';
 import { MenuTemplate as template } from './menu.template';
 
+export type { Placement } from '@floating-ui/dom';
+
 /**
  * The menu element is a custom element that is used to display a list of menu items.
  */

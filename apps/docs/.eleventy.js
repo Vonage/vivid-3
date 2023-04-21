@@ -17,15 +17,20 @@ module.exports = function (eleventyConfig) {
     "dist/libs/components": "assets/modules/components",
     "assets/images/vivid-logo.svg": "assets/images/vivid-logo.svg",
     "assets/images/vivid-cover-wide.avif": "assets/images/vivid-cover-wide.avif",
-    [ASSETS_DIR]: "assets"
+    [`${ASSETS_DIR}/scripts`]: "assets/scripts",
+    [`${ASSETS_DIR}/styles`]: "assets/styles"
   });
 
-  eleventyConfig.addWatchTarget("dist/libs/components");
   eleventyConfig.addWatchTarget("dist/libs/styles");
-  eleventyConfig.addWatchTarget(`${INPUT_DIR}/assets`);
+  eleventyConfig.addWatchTarget("dist/libs/components");
+  eleventyConfig.addWatchTarget(`${ASSETS_DIR}/scripts`);
+  eleventyConfig.addWatchTarget(`${ASSETS_DIR}/styles`);
   eleventyConfig.setBrowserSyncConfig({
     server: {
       baseDir: OUTPUT_DIR
+	},
+    snippetOptions: {
+      ignorePaths: '/components/**/frames/*.html'
     }
   });
 

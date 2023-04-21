@@ -1,8 +1,10 @@
-import {elementUpdated, fixture} from '@vivid-nx/shared';
+import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
+import {Icon} from '../icon/icon';
 import { Select } from './select';
 import '.';
 
 const COMPONENT_TAG = 'vwc-select';
+const ICON_SELECTOR = 'vwc-icon';
 
 describe('vwc-select', () => {
 	let originalScrollIntoView: any;
@@ -20,7 +22,7 @@ describe('vwc-select', () => {
 		originalScrollIntoView = HTMLElement.prototype.scrollIntoView;
 		HTMLElement.prototype.scrollIntoView = jest.fn();
 	});
-	
+
 	afterAll(() => {
 		HTMLElement.prototype.scrollIntoView = originalScrollIntoView;
 	});
@@ -41,7 +43,21 @@ describe('vwc-select', () => {
 			expect(element.label).toEqual(undefined);
 			expect(element.multiple).toBeUndefined();
 			expect(element.selectedIndex).toEqual(-1);
+			expect(element.icon).toEqual(undefined);
+		});
+	});
 
+	describe('option label', function () {
+		it('should show the options\'s label instead of the text', async function () {
+			const label = 'label';
+			element.innerHTML = `
+				<vwc-option label="${label}" value="1" text="Option 1"></vwc-option>
+				<vwc-option value="2" text="Option 2"></vwc-option>
+				<vwc-option value="3" text="Option 3"></vwc-option>
+				`;
+			await elementUpdated(element);
+
+			expect(getControlElement(element).querySelector('.selected-value')?.textContent?.trim()).toEqual(label);
 		});
 	});
 
@@ -54,7 +70,7 @@ describe('vwc-select', () => {
 				`;
 			await elementUpdated(element);
 		});
-		
+
 		it('should set selectedIndex to 0 when first option is selected', async () => {
 			await elementUpdated(element);
 			expect(element.selectedIndex).toEqual(0);
@@ -84,6 +100,34 @@ describe('vwc-select', () => {
 		});
 	});
 
+	describe('select icon', () => {
+		it('should add an icon to the select', async () => {
+			element.icon = 'search-solid';
+			await elementUpdated(element);
+
+			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			expect(icon)
+				.toBeInstanceOf(Icon);
+			expect(icon?.name)
+				.toEqual('search-solid');
+		});
+	});
+
+	describe('helper text', function () {
+		it('should render the helper text when attribute is set on select', async function () {
+			const helperTextElementWithoutText = element.shadowRoot?.querySelector('.helper-text');
+			const helperText = 'Helper Text';
+			element.helperText = helperText;
+			await elementUpdated(element);
+			expect(helperTextElementWithoutText)
+				.toBeNull();
+			expect(element.shadowRoot?.querySelector('.helper-message')
+				?.textContent
+				?.trim())
+				.toEqual(helperText);
+		});
+	});
+
 	describe('disabled', function () {
 		it('should set disabled class for select when disabled is true', async () => {
 			const disableClassExistsWithDisabledFalse = Boolean(element.shadowRoot?.querySelector('.control.disabled'));
@@ -106,7 +150,7 @@ describe('vwc-select', () => {
 
 			expect(multipleAttributeExistsWithMultipleFalse).toBeFalsy();
 			expect(element.hasAttribute('multiple')).toBeTruthy();
-		});	
+		});
 
 		it('should leave popup open when set', async function () {
 			const popup = element.shadowRoot?.querySelector('.popup');
@@ -229,10 +273,10 @@ describe('vwc-select', () => {
 
 		it('should toggle selection if spacebar pressed in single selection mode', async () => {
 			element.open = true;
-			
+
 			element.dispatchEvent(new KeyboardEvent('keydown', {key: ' '}));
 			const elementStatusAfterSpacebar = element.open;
-			
+
 			element.dispatchEvent(new KeyboardEvent('keydown', {key: ' '}));
 
 			expect(elementStatusAfterSpacebar).toBeFalsy();
@@ -241,28 +285,28 @@ describe('vwc-select', () => {
 
 		it('should toggle selection if spacebar pressed in single selection mode', async () => {
 			element.open = true;
-			
+
 			element.dispatchEvent(new KeyboardEvent('keydown', {key: 'Enter'}));
 			const elementStatusAfterSpacebar = element.open;
-			
+
 			element.dispatchEvent(new KeyboardEvent('keydown', {key: 'Enter'}));
 
 			expect(elementStatusAfterSpacebar).toBeFalsy();
 			expect(element.open).toBeTruthy();
 		});
 
-		it('should close selection if escape key pressed', async () => {			
+		it('should close selection if escape key pressed', async () => {
 			element.open = true;
 			await elementUpdated(element);
 			element.dispatchEvent(new KeyboardEvent('keydown', {key: 'Escape'}));
-			expect(element.open).toBeFalsy();	
+			expect(element.open).toBeFalsy();
 		});
 
-		it('should close selection if tab key pressed', async () => {			
+		it('should close selection if tab key pressed', async () => {
 			element.open = true;
 			await elementUpdated(element);
 			element.dispatchEvent(new KeyboardEvent('keydown', {key: 'Tab'}));
-			expect(element.open).toBeFalsy();	
+			expect(element.open).toBeFalsy();
 		});
 
 		it('should emit input and change events if value changed', async () => {
@@ -277,10 +321,10 @@ describe('vwc-select', () => {
 			element.addEventListener('change', changeSpy);
 			element.open = true;
 			await elementUpdated(element);
-			
+
 			element.selectedIndex = 2;
 			element.dispatchEvent(new KeyboardEvent('keydown', {key: 'Enter'}));
-			
+
 			expect(inputSpy).toHaveBeenCalled();
 			expect(changeSpy).toHaveBeenCalled();
 		});
@@ -300,9 +344,9 @@ describe('vwc-select', () => {
 			const shouldSkipFocusAfterOneMouseDown = (element as any).shouldSkipFocus;
 			element.dispatchEvent(new Event('focusin'));
 			const shouldSkipFocusAfterFocusIn = (element as any).shouldSkipFocus;
-			
-			expect(shouldSkipFocusAfterOneMouseDown).toBeTruthy();	
-			expect(shouldSkipFocusAfterFocusIn).toBeFalsy();	
+
+			expect(shouldSkipFocusAfterOneMouseDown).toBeTruthy();
+			expect(shouldSkipFocusAfterFocusIn).toBeFalsy();
 		});
-	});	
+	});
 });

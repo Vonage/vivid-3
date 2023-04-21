@@ -1,9 +1,10 @@
-import type { ViewTemplate } from '@microsoft/fast-element';
+import { ViewTemplate, when } from '@microsoft/fast-element';
 import { html, ref } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
+import { ProgressRing } from '../progress-ring/progress-ring';
 import type { Button, ButtonAppearance } from './button';
 
 
@@ -39,12 +40,13 @@ export const buttonTemplate: (
 ) => ViewTemplate<Button> = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const focusTemplate = focusTemplateFactory(context);
+	const progressTag = context.tagFor(ProgressRing);
 
 	return html`
     <button
         class="${getClasses}"
         ?autofocus="${(x) => x.autofocus}"
-        ?disabled="${(x) => x.disabled}"
+        ?disabled="${(x) => x.disabled || x.pending}"
         form="${(x) => x.formId}"
         formaction="${(x) => x.formaction}"
         formenctype="${(x) => x.formenctype}"
@@ -80,6 +82,7 @@ export const buttonTemplate: (
         ${() => focusTemplate}
         ${x => affixIconTemplate(x.icon)}
         ${(x) => x.label}
+        ${when(x => x.pending, html`<${progressTag} class="pending" size="-5"></${progressTag}>`)}
     </button>
 `;
 };

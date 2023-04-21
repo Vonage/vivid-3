@@ -9,16 +9,18 @@
       "options": {
         "pathprefix": "",
         "commands": [
-          {
-            "command": "npx eleventy --config=./apps/docs/.eleventy.js"
-          }
+          "npx rollup -c ./apps/docs/rollup.config.js",
+          "npx eleventy --config=./apps/docs/.eleventy.js"
         ]
       }
     },
     "serve": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npx eleventy --config=./apps/docs/.eleventy.js --serve & npx nx serve styles & npx nx build components --watch"
+        "commands": [
+          "npx rollup -c ./apps/docs/rollup.config.js --watch",
+          "npx eleventy --config=./apps/docs/.eleventy.js --serve & npx nx serve styles & npx nx build components --watch"
+        ]
       }
     }
   },

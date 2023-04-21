@@ -28,7 +28,7 @@ Appearance.Filled | Appearance.Outlined>;
  *
  * @public
  */
-type AvatarShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+export type AvatarShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 /**
  * Base class for avatar
  *
@@ -40,9 +40,11 @@ type AvatarShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  *
  * @public
  */
-type AvatarSize = Extract<Size, Size.Condensed | Size.Normal | Size.Expanded>;
+export type AvatarSize = Extract<Size, Size.Condensed | Size.Normal | Size.Expanded>;
 
-
+/**
+ * @slot graphic - Assign nodes to the graphic slot to set a graphic media of any kind (e.g. image, illustration etc).
+ */
 export class Avatar extends FoundationElement {
 	/**
 	 * The connotation the avatar should have.

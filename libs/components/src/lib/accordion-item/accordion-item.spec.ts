@@ -30,6 +30,7 @@ describe('vwc-accordion-item', () => {
 			expect(element.noIndicator).toBeFalsy();
 			expect(element.heading).toEqual(undefined);
 			expect(element.headinglevel).toBe(2);
+			expect(element.size).toBeUndefined();
 		});
 	});
 
@@ -121,6 +122,20 @@ describe('vwc-accordion-item', () => {
 			const metaWrapper = element.shadowRoot?.querySelector('.meta');
 			const actualMetaText = metaWrapper?.textContent?.trim();
 			expect(actualMetaText).toEqual(metaText);
+		});
+	});
+
+	describe('size', () => {
+		it('sets correct internal size style', async () => {
+			const size = 'condensed';
+			(element as any).size = size;
+			await elementUpdated(element);
+
+			const accordionButton = element.shadowRoot?.querySelector('.heading-button');
+			const accordionRegion = element.shadowRoot?.querySelector('.region');
+
+			expect(accordionButton?.classList.contains(`size-${size}`)).toBeTruthy();
+			expect(accordionRegion?.classList.contains(`size-${size}`)).toBeTruthy();
 		});
 	});
 });

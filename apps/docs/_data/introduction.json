@@ -1,0 +1,29 @@
+[
+	{
+		"title": "quick-start",
+		"markdown": "./libs/components/README.md",
+		"modules": []
+	},
+	{
+		"title": "advanced",
+		"markdown": "./docs/getting-started/advanced.md",
+		"modules": [
+			"/assets/modules/components/note/index.js"
+		]
+	},
+	{
+		"title": "fonts-and-tokens",
+		"markdown": "./docs/getting-started/fonts-and-tokens.md",
+		"modules": [
+			"/assets/modules/components/note/index.js"
+		]
+	},
+	{
+		"title": "vivid-2-migration",
+		"markdown": "./docs/getting-started/migration.md",
+		"modules": [
+			"/assets/modules/components/note/index.js",
+			"/assets/modules/components/accordion/index.js"
+		]
+	}
+]

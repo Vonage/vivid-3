@@ -11,7 +11,7 @@ import { AffixIconWithTrailing } from '../../shared/patterns/affix';
  *
  * @public
  */
-type ButtonConnotation = Extract<Connotation,
+export type ButtonConnotation = Extract<Connotation,
 | Connotation.Accent
 | Connotation.CTA
 | Connotation.Success
@@ -30,14 +30,14 @@ Appearance.Filled | Appearance.Outlined | Appearance.Ghost>;
  *
  * @public
  */
-type ButtonShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+export type ButtonShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
  * Types of button size.
  *
  * @public
  */
-type ButtonSize = Extract<Size, Size.Condensed | Size.Normal | Size.Expanded>;
+export type ButtonSize = Extract<Size, Size.SuperCondensed | Size.Condensed | Size.Normal | Size.Expanded>;
 
 /**
  * Base class for button
@@ -92,6 +92,18 @@ export class Button extends FoundationButton {
 		mode: 'boolean',
 		attribute: 'stacked',
 	}) stacked = false;
+
+	/**
+	 * Displays the button in pending state.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: pending
+	 */
+	@attr({
+		mode: 'boolean',
+		attribute: 'pending',
+	}) pending = false;
 
 	/**
 	 * Indicates the button's label.

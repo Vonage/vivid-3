@@ -32,7 +32,7 @@ Use the `headline` attribute to set the dialog's headline.
 <vwc-dialog headline="Headline" open></vwc-dialog>
 ```
 
-### subtitle
+### Subtitle
 
 Use the `subtitle` attribute to set the dialog's subtitle.
 
@@ -133,16 +133,16 @@ Use `returnValue` to get or set the return value. Often used to indicate which b
 <script>
   (function handleReturnValue() {
     function handleClick(e) {
-      const buttonType = e.target.label;
+      buttonType = e.target.label;
       console.log(buttonType);
       dialog.returnValue = buttonType;
       dialog.close();
     }
 
-    const cancelButton = document.querySelector('[label="Cancel"]');
-    const actionButton = document.querySelector('[label="Action"]');
-    const dialog = document.querySelector('vwc-dialog');
-    const dialogOutput = document.querySelector('#dialog-output');
+    cancelButton = document.querySelector('[label="Cancel"]');
+    actionButton = document.querySelector('[label="Action"]');
+    dialog = document.querySelector('vwc-dialog');
+    dialogOutput = document.querySelector('#dialog-output');
 
     cancelButton.onclick = actionButton.onclick = handleClick;
     dialog.addEventListener('close', (e) => dialogOutput.innerText = dialog.returnValue);
@@ -151,7 +151,7 @@ Use `returnValue` to get or set the return value. Often used to indicate which b
 </script>
 <script>
   function openDialog() {
-    const dialog = document.querySelector('vwc-dialog');
+    dialog = document.querySelector('vwc-dialog');
     dialog.show();
   }
 </script>
@@ -171,17 +171,20 @@ Use the `graphic` slot in order to replace the icon.
 
 ### Body
 
-Use the `body` slot in order to add custom HTML to the dialog while enjoying the vivid dialog styling.  
-Note that vivid styling comes with opinionated CSS like padding and margin.
+Use the `body` slot in order to add custom HTML to the dialog.  
+Body slot after a header containing a subtitle will have a top separator.
 
 ```html preview
 <style>
   html { /* for demo purposes */
-    block-size: 350px;
-    --dialog-max-block-size: 320px;
+    block-size: 420px;
+    --dialog-max-block-size: 360px;
+  }
+  div {
+  	margin-block-start: 24px;
   }
 </style>
-<vwc-dialog open headline="Dialog Content">
+<vwc-dialog open headline="Dialog Content" subtitle="Dialog with body content">
   <div slot="body">
     <form>
       <vwc-layout column-basis="block">
@@ -192,6 +195,36 @@ Note that vivid styling comes with opinionated CSS like padding and margin.
     </form>
   </div>
 </vwc-dialog>
+```
+
+#### Full-width-body
+To remove the body inline padding use `full-width-body`.
+
+- Type: boolean
+- Default: false
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 400px;
+  }
+  vwc-progress {
+    margin-block-end: 24px;
+    display: block;
+  }
+</style>
+<vwc-dialog open icon-placement="side" icon="info" headline="Dialog Headline" full-width-body>
+  <div slot="body">
+  <vwc-progress min="0" max="50" value="12.5" shape="sharp" connotation="pacific"></vwc-progress>
+  <vwc-layout column-basis="block" gutters="medium-inline">
+    <form>
+      <vwc-layout column-basis="block">
+        <vwc-text-field label="Agent Name" placeholder="Search for an agent" icon="search-line"></vwc-text-field>
+        <vwc-text-area label="Additional Note (Optional)"></vwc-text-area></vwc-layout>
+    </form>
+    </vwc-layout>
+</vwc-dialog>
+
 ```
 
 ### Footer
@@ -316,12 +349,12 @@ It returns the return value inside the event's details property.
             onclick="closeDialog()"></vwc-button>
 <script>
   function closeDialog() {
-    const dialog = document.querySelector('vwc-dialog');
+    dialog = document.querySelector('vwc-dialog');
     dialog.returnValue = 'Value';
     dialog.close();
   }
   (function() {
-    const dialog = document.querySelector('vwc-dialog');
+    dialog = document.querySelector('vwc-dialog');
     dialog.addEventListener('close', (e) => console.log(e.detail));
   })();
 </script>
@@ -340,7 +373,7 @@ Shows the dialog. Positioned in a top position by default.
             onclick="openDialog()"></vwc-button>
 <script>
   function openDialog() {
-    const dialog = document.querySelector('vwc-dialog');
+    dialog = document.querySelector('vwc-dialog');
     dialog.show();
   }
 </script>
@@ -359,7 +392,7 @@ For more information, see the native [Dialog.showModal](https://developer.mozill
             onclick="openDialog()"></vwc-button>
 <script>
   function openDialog() {
-    const dialog = document.querySelector('vwc-dialog');
+    dialog = document.querySelector('vwc-dialog');
     dialog.showModal();
   }
 </script>
@@ -377,7 +410,7 @@ Closes the dialog.
             onclick="closeDialog()"></vwc-button>
 <script>
   function closeDialog() {
-    const dialog = document.querySelector('vwc-dialog');
+    dialog = document.querySelector('vwc-dialog');
     dialog.close();
   }
 </script>
@@ -405,7 +438,7 @@ Closes the dialog.
 
 <script>
   function openDialog() {
-    const dialog = document.querySelector('vwc-dialog');
+    dialog = document.querySelector('vwc-dialog');
     dialog.showModal();
   }
 </script>

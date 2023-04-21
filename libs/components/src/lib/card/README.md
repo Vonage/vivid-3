@@ -69,7 +69,7 @@ Add a `text` attribute to add text to the card
 
 ### Graphic
 
-The graphic slot overide the icon property
+The graphic slot overrides the icon property
 
 ```html preview
 <vwc-card headline="Vivid Card Component" subtitle="extra text to the card headline">
@@ -99,7 +99,7 @@ The meta slot is for action content in the card header
 
 ### Footer
 
-footer slot main purpose is for action button
+The footer slot is for content in the card footer.
 
 ```html preview
 <vwc-card headline="All Options on Deck" subtitle="subtitle" icon="chat-line" text="here is the card text">

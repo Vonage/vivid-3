@@ -77,10 +77,11 @@ Use the `shape` attribute to set the button's edges.
 
 Use the `size` attribute to set the button's to one of the predefined block size extent.
 
-- Type: `'condensed'` | `'normal'` | `'expanded'`
+- Type: `'super-condensed'` | `'condensed'` | `'normal'` | `'expanded'`
 - Default: `'normal'`
 
 ```html preview
+<vwc-button appearance='filled' label='super-condensed' size='super-condensed'></vwc-button>
 <vwc-button appearance='filled' label='condensed' size='condensed'></vwc-button>
 <vwc-button appearance='filled' label='normal' size='normal'></vwc-button>
 <vwc-button appearance='filled' label='expanded' size='expanded'></vwc-button>
@@ -99,10 +100,9 @@ Caveats:
 - This will override any applied [size](#size) style to match a predefined stacked block size.
 
 ```html preview
-<vwc-button stacked appearance='filled' label='Stacked'></vwc-button>
+
 <vwc-button stacked appearance='filled' icon='message-sent-line' label='With Icon'></vwc-button>
 <vwc-button stacked appearance='filled' icon='message-sent-line' icon-trailing label='Icon Trailing'></vwc-button>
-<vwc-button stacked appearance='filled' icon='message-sent-line'></vwc-button>
 ```
 
 ### Connotation
@@ -153,6 +153,19 @@ Add the `disabled` attribute to disable the button.
 <vwc-button appearance='outlined' label='outlined' disabled></vwc-button>
 ```
 
+### Pending
+
+Add the `pending` attribute to disable the button and display a processing indicator.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-button appearance='ghost' label='ghost' pending></vwc-button>
+<vwc-button appearance='filled' label='filled' pending></vwc-button>
+<vwc-button appearance='outlined' label='outlined' pending></vwc-button>
+```
+
 ## Use Cases
 
 ### Toggle Button
@@ -173,4 +186,19 @@ Add the `disabled` attribute to disable the button.
     button.ariaLabel = button.ariaPressed ? 'Unmute' : 'Mute';
   });
 </script>
+```
+
+### Full-width Button
+```html preview
+<style>
+.button-width {
+  display: block;
+}
+</style>
+<vwc-button
+  class='button-width'
+  label="I'm full width"
+  shape='pill'
+  appearance='filled'>
+</vwc-button>
 ```

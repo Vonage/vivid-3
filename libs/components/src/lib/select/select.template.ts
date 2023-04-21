@@ -4,6 +4,7 @@ import {classNames} from '@microsoft/fast-web-utilities';
 import { Listbox } from '../listbox/listbox';
 import { Popup } from '../popup/popup';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
+import { getFeedbackTemplate} from '../../shared/patterns';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
 import type { Select } from './select';
 
@@ -37,10 +38,11 @@ function selectValue(context: ElementDefinitionContext) {
 					class="control ${getStateClasses}"
 					?disabled="${x => x.disabled}"
 					id="control"
-					${ref('control')}
+					${ref('_anchor')}
 				>
 					<div class="selected-value">
-						${x => x.displayValue}
+						${x => affixIconTemplate(x.icon)}
+						<span class="text">${x => x.displayValue}</span>
 					</div>
 					${() => affixIconTemplate('chevron-down-line')}
 					${() => focusTemplate}
@@ -62,6 +64,7 @@ function renderControl(context: ElementDefinitionContext) {
 				<${popupTag}
 					?open="${x => (x.collapsible ? x.open : true)}"
 					anchor="control"
+					placement="bottom-start"
 							strategy="absolute"
 							${ref('_popup')}
 							class="popup"
@@ -84,7 +87,7 @@ function renderControl(context: ElementDefinitionContext) {
             </div>
 					</${popupTag}>
 			</div>
-
+			${when(x =>  x.helperText?.length, getFeedbackTemplate('helper', context))}
 		`;
 
 }
@@ -104,7 +107,6 @@ export const SelectTemplate: (
 
 	return html<Select>`
 	  <template class="base"
-				 		${ref('_anchor')}
             aria-activedescendant="${x => x.ariaActiveDescendant}"
             aria-controls="${x => x.ariaControls}"
             aria-disabled="${x => x.ariaDisabled}"
