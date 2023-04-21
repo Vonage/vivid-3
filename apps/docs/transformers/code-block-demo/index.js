@@ -47,7 +47,7 @@ const renderiFrame = (index, src, content, componentData) => {
 		<vwc-card elevation="0">
 			<iframe id="iframe-sample-${index}" src="${src}" class="${CBD_DEMO}" onload=onloadIframe(this) loading="lazy" aria-label="code block preview iframe" slot="main"></iframe>
 			<vwc-action-group appearance="ghost" style="direction: rtl;" slot="main">
-				<vwc-button id="buttonCPen${index}" connotation="cta" aria-label="Open on CodePen" icon="open-line" data-index="${index}" data-deps="${deps}"></vwc-button>
+				<vwc-button id="buttonCPen${index}" connotation="cta" aria-label="Edit on CodePen" icon="open-line" data-index="${index}" data-deps="${deps}"></vwc-button>
 				<vwc-button id="buttonEdit${index}" connotation="cta" aria-label="Edit source code" icon="compose-line" aria-expanded="false" aria-controls="${CBD_CODE_BLOCK}-${index}" onclick="codeBlockButtonClick(this)"></vwc-button>
 				<vwc-button id="buttonCopy${index}" connotation="cta" aria-label="Copy source code" icon="copy-2-line" data-index="${index}"></vwc-button>
 			</vwc-action-group>
@@ -58,7 +58,7 @@ const renderiFrame = (index, src, content, componentData) => {
 				</div>
 			</details>
 		</vwc-card>
-		<vwc-tooltip anchor="buttonCPen${index}" text="Open on CodePen" placement="top" style="text-align: center"></vwc-tooltip>
+		<vwc-tooltip anchor="buttonCPen${index}" text="Edit on CodePen" placement="top" style="text-align: center"></vwc-tooltip>
 		<vwc-tooltip anchor="buttonEdit${index}" text="Edit code" placement="top" style="text-align: center"></vwc-tooltip>
 		<vwc-tooltip anchor="buttonCopy${index}" text="Copy code" placement="top" style="text-align: center"></vwc-tooltip>
 	</div>`);
