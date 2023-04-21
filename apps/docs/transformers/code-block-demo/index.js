@@ -41,7 +41,6 @@ const renderiFrame = (index, src, content, componentData) => {
 	const deps = componentData.modules
 		.map(m => m.split('/')[4])
 		.join(',');
-		// .reduceRight((acc, v, i) => `${acc}\'${v}\'${i === 0 ? ']' : ','}`, '[');
 
 	return JSDOM.fragment(`
 	<div class="${CBD_CONTAINER}" style="--tooltip-inline-size: auto;">

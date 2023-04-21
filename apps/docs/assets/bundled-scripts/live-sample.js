@@ -20,10 +20,10 @@ window.setEditorsTheme = function() {
 }
 
 function addButtonsHandlers() {
-	const copyCodeButtons = document.querySelectorAll('vwc-button[icon="copy-2-line"]')
+	const copyCodeButtons = document.querySelectorAll('vwc-button[id^="buttonCopy"]')
 	copyCodeButtons.forEach(btn => btn.addEventListener('click', codeCopyButtonClick))
 	
-	const codePenButtons = document.querySelectorAll('vwc-button[icon="open-line"]')
+	const codePenButtons = document.querySelectorAll('vwc-button[id^="buttonCPen"]')
 	codePenButtons.forEach(btn => btn.addEventListener('click', openCodePen))
 }
 
@@ -68,7 +68,7 @@ function addSamplesEditors() {
 		});
 	});
 
-	setEditorsTheme();
+	window.setEditorsTheme();
 }
 
 function sampleChanged(idx) {
