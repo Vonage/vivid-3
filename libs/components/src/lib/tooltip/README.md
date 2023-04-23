@@ -43,11 +43,6 @@ Use the `placement` attribute to set the placement of the tooltip around the anc
 - Default: `'left'`
 
 ```html preview center
-<style>
-  vwc-tooltip {
-    --tooltip-inline-size: 100px;
-  }
-</style>
 <vwc-button id="anchor" appearance='outlined' label='This is an anchor'></vwc-button>
 <vwc-tooltip anchor="anchor" text="right" placement="right"></vwc-tooltip>
 <vwc-tooltip anchor="anchor" text="left" placement="left"></vwc-tooltip>
@@ -62,17 +57,20 @@ Use the `placement` attribute to set the placement of the tooltip around the anc
 Use the `--tooltip-inline-size` variable to set the tooltip's inline size.
 
 - Type: `Number`
-- Default: `240px`
+- Default: `auto`
 
 ```html preview center
 <style>
-  #tooltip {
-    --tooltip-inline-size: 200px;
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+  .tooltip {
+    --tooltip-inline-size: 160px;
   }
 </style>
 
 <vwc-button id="button" icon="info-line" shape="pill"></vwc-button>
-<vwc-tooltip anchor="button" text="My inline size is 200px"></vwc-tooltip>
+<vwc-tooltip anchor="button" text="I'm a tooltip with long text so my inline size is 160px" class="tooltip"></vwc-tooltip>
 ```
 
 ## Caveat
