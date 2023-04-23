@@ -21,11 +21,16 @@ $alert-transition-delay: --transition-delay;
 	position: fixed;
 	min-inline-size: var(#{variables.$alert-min-inline-size}, 420px);
 	inline-size: max-content;
+	opacity: 0;
 	transition: opacity var(#{$alert-transition-delay}, 200ms);
 	border-radius: 6px;
 	bottom: 0px;
 	left: 50%;
     transform: translateX(-50%);
+
+	&.open {
+		opacity: 1;
+	}
 }
 
 .base {

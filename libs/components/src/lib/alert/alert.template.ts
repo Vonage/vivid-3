@@ -12,7 +12,12 @@ import type { Alert } from './alert';
 
 const getClasses = (_: Alert) => classNames(
 	'base',
-	[`connotation-${_.connotation}`, !!_.connotation]
+	[`connotation-${_.connotation}`, !!_.connotation],
+);
+
+const getControlClasses = (_: Alert) => classNames(
+	'control',
+	['open', _.open]
 );
 
 
@@ -73,7 +78,7 @@ export const AlertTemplate: (
 
 	return html<Alert>`
 	<${elevationTag} class="elevation" dp='4' exportparts="vvd-theme-alternate">
-		<div class="control" role="alert" aria-live="assertive">
+		<div class="${getControlClasses}" role="alert" aria-live="assertive">
 			<slot name="main">
 				<div part="vvd-theme-alternate" class="${getClasses}">
 					${when(x => x.icon || x.connotation, renderIcon(context))}

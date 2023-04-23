@@ -60,6 +60,16 @@ export class Alert extends FoundationElement {
 	@attr icon?: string;
 
 	/**
+	 * indicates whether the alert is open
+	 *
+	 * @public
+	 * HTML Attribute: open
+	 */
+	@attr({
+		mode: 'boolean',
+	}) open = false;
+
+	/**
 	 * alert connotation
 	 *
 	 * @public
@@ -80,19 +90,13 @@ export class Alert extends FoundationElement {
 		this.removeEventListener('keydown', this.#closeOnKeyDown);
 	}
 
-	override remove(): void {
-		this.$emit('removing');
-		const alert = this.shadowRoot && this.shadowRoot.querySelector('.alert');
-		if (alert) {
-			alert.classList.add('removing');
-			alert.addEventListener('transitionend', this.#handleRemoveEnd);
-		}
+	show(): void {
+		this.open = true;
 	}
 
-	#handleRemoveEnd = () => {
-		this.$emit('removed');
-		this.parentElement && this.parentElement.removeChild(this);
-	};
+	override remove(): void {
+		this.open = false;
+	}
 
 	#closeOnKeyDown = (e: KeyboardEvent) => {
 		if (e.key !== 'Escape' || !this.removable) {
