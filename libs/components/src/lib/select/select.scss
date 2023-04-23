@@ -113,11 +113,6 @@ $low-ink-color: --_low-ink-color;
 ::part(popup-base) {
 	inline-size: max-content;
 	min-inline-size: 100%;
-
-	.with-helper-text & {
-		// to override the helper text height
-		top: #{size.$vvd-size-normal};
-	}
 }
 
 

@@ -42,11 +42,23 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-button appearance='filled' icon='message-sent-line' size='normal'></vwc-button>
 		<vwc-button appearance='filled' icon='message-sent-line' size='expanded'></vwc-button>
 	</div>
-	<div style="margin: 5px;">
+		<div style="margin: 5px;">
 		<vwc-button stacked appearance='filled' label='Stacked'></vwc-button>
 		<vwc-button stacked appearance='filled' icon='message-sent-line' label='With Icon'></vwc-button>
 		<vwc-button stacked appearance='filled' icon='message-sent-line' icon-trailing label='Icon Trailing'></vwc-button>
 		<vwc-button stacked appearance='filled' icon='message-sent-line'></vwc-button>
+	</div>
+	<div style="margin: 5px;">
+		<vwc-button stacked size='super-condensed' appearance='filled' icon='message-sent-line' label='With Icon'></vwc-button>
+		<vwc-button stacked size='condensed' appearance='filled' icon='message-sent-line' label='With Icon'></vwc-button>
+		<vwc-button stacked size='normal' appearance='filled' icon='message-sent-line' label='With Icon'></vwc-button>
+		<vwc-button stacked size='expanded' appearance='filled' icon='message-sent-line' label='With Icon'></vwc-button>
+	</div>
+	<div style="margin: 5px;">
+		<vwc-button stacked size='super-condensed' appearance='filled' shape='pill' icon='message-sent-line' label='With Icon'></vwc-button>
+		<vwc-button stacked size='condensed' appearance='filled' shape='pill' icon='message-sent-line' label='With Icon'></vwc-button>
+		<vwc-button stacked size='normal' appearance='filled' shape='pill' icon='message-sent-line' label='With Icon'></vwc-button>
+		<vwc-button stacked size='expanded' appearance='filled' shape='pill' icon='message-sent-line' label='With Icon'></vwc-button>
 	</div>
 	<div style="margin: 5px;">
 		<vwc-button appearance="ghost" label='accent' connotation='accent'></vwc-button>
