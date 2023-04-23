@@ -83,7 +83,7 @@ You can add action items using slotted content in a named slot `action-items`:
 
 ```html preview center
 <vwc-alert subtitle="What an important info!!!">
-  <vwc-button slot="action-items" appearance="filled" shape='pill' label="Action"></vwc-button>
+  <vwc-button slot="action-items" appearance="outlined" shape='pill' label="Action"></vwc-button>
 </vwc-alert>
 ```
 

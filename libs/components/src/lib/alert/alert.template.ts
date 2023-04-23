@@ -21,7 +21,7 @@ const getClasses = (_: Alert) => classNames(
  */
 function Headline() {
 	return html`
-		<div class="header-headline">${(x) => x.headline}</div>
+		<div class="headline">${(x) => x.headline}</div>
 	`;
 }
 
@@ -30,31 +30,8 @@ function Headline() {
  */
 function Subtitle() {
 	return html`
-		<div class="header-subtitle">${(x) => x.subtitle}</div>
+		<div class="subtitle">${(x) => x.subtitle}</div>
 	`;
-}
-
-/**
- *
- */
-function headerContent() {
-	return html`
-		<div class="header-content">
-			${when(x => x.headline, Headline())}
-			${when(x => x.subtitle, Subtitle())}
-		</div>
-	`;
-}
-
-/**
- header
- */
-function renderHeader() {
-
-	return html<Alert>`
-		<header class="header">
-			${when(x => x.headline || x.subtitle, headerContent())}
-		</header>`;
 }
 
 /**
@@ -74,11 +51,10 @@ function renderIcon(context: ElementDefinitionContext) {
 function renderDismissButton(buttonTag: string) {
 	return html<Alert>`
 	  <${buttonTag}
-			  size="condensed"
-			  class="dismiss-button"
-			  appearance="filled"
-			  icon="close-line"
-			  @click="${x => x.remove()}">
+			size="condensed"
+			class="dismiss-button"
+			icon="close-line"
+			@click="${x => x.remove()}">
 	  </${buttonTag}>`;
 }
 
@@ -96,16 +72,19 @@ export const AlertTemplate: (
 	const buttonTag = context.tagFor(Button);
 
 	return html<Alert>`
-	<${elevationTag} dp='4'>
-		<div class="${getClasses}">
-			<div class="start-content">
-				${when(x => x.icon || x.connotation, renderIcon(context))}
-				${renderHeader()}
-			</div>
-			<div class="end-content">
-				<slot class="action-items" name="action-items"></slot>
-				${when(x => x.removable, renderDismissButton(buttonTag))}
-			</div>
+	<${elevationTag} dp='4' exportparts="vvd-theme-alternate">
+		<div class="control" role="alert" aria-live="assertive">
+			<slot name="main">
+				<div part="vvd-theme-alternate" class="${getClasses}">
+					${when(x => x.icon || x.connotation, renderIcon(context))}
+					<div class="alert-text">
+						${when(x => x.headline, Headline())}
+						${when(x => x.subtitle, Subtitle())}
+					</div>
+					<slot class="action-items" name="action-items"></slot>
+					${when(x => x.removable, renderDismissButton(buttonTag))}
+				</div>
+			</slot>
 		</div>
 	</${elevationTag}>
 	`;

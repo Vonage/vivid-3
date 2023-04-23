@@ -17,73 +17,51 @@
 
 $alert-transition-delay: --transition-delay;
 
+.control {
+	position: fixed;
+	min-inline-size: var(#{variables.$alert-min-inline-size}, 420px);
+	inline-size: max-content;
+	transition: opacity var(#{$alert-transition-delay}, 200ms);
+	border-radius: 6px;
+}
+
 .base {
 	@include connotation.connotation;
 	@include appearance.appearance;
 
-	border-radius: 6px;
-	min-inline-size: var(#{variables.$alert-min-inline-size}, 420px);
-	inline-size: max-content;
-	overflow: hidden;
-	max-height: 160px;
-	background-color: var(--vvd-color-neutral-950);
-	color: var(#{constants.$vvd-color-canvas});
-	transition: max-height var(#{$alert-transition-delay}, 200ms);
 	display: flex;
+	column-gap: 16px;
+	border-radius: 6px;
+	background-color: var(--vvd-color-neutral-50);
+	color: var(#{constants.$vvd-color-canvas-text});
+	padding: 16px;
+	align-items: center;
 
-	&.connotation-success,
-	&.connotation-information,
-	&.connotation-alert,
-	&.connotation-warning {
-		.icon {
-			color: var(#{appearance.get-appearance-token(fill)});
-		}
-	}
-
-	.start-content {
+	.alert-text {
 		display: flex;
-		align-items: center;
+		flex-direction: column;
 		justify-self: flex-start;
-		padding-inline-start: 16px;
+		gap: 4px;
+		margin-inline-end: auto;
 
-		.header {
-			display: flex;
-			min-height: #{size.$vvd-size-ultra-expanded};
-			align-items: center;
+		.headline {
+			font: var(#{constants.$vvd-typography-base-bold});
+		}
+
+		.subtitle {
 			font: var(#{constants.$vvd-typography-base});
-
-			&-headline {
-				font: var(#{constants.$vvd-typography-base-bold});
-			}
-		}
-
-		.icon {
-			flex: 0 0 auto;
-			font-size: 20px;
-			line-height: 1;
-			margin-inline-end: 16px;
 		}
 	}
 
-	.end-content {
-		display: flex;
-		align-items: center;
-		padding-inline-end: 16px;
-		justify-content: flex-end;
-
-		.action-items {
-			display: inline-block;
-			flex: 0 0 auto;
-		}
-
-		.dismiss-button {
-			display: inline-block;
-			color: var(#{constants.$vvd-color-canvas});
-			border-left: 1px solid var(--vvd-color-neutral-700);
-		}
+	.icon {
+		flex-shrink: 0;
+		font-size: 20px;
+		line-height: 1;
+		color: var(#{appearance.get-appearance-token(fill)});
 	}
 
-	&.removing {
-		max-height: 0;
+	.dismiss-button {
+		padding-inline-start: 8px;
+		border-left: 1px solid var(--vvd-color-neutral-200);
 	}
 }
