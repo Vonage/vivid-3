@@ -4,6 +4,7 @@ import styles from './pagination.scss';
 
 import { Pagination } from './pagination';
 import { PaginationTemplate as template } from './pagination.template';
+import {buttonRegistries} from "@vonage/vivid";
 
 export const paginationDefinition =
 	Pagination.compose<FoundationElementDefinition>({
@@ -15,7 +16,7 @@ export const paginationDefinition =
 /**
  * @internal
  */
-export const paginationRegistries = [paginationDefinition()];
+export const paginationRegistries = [paginationDefinition(), buttonRegistries];
 
 /**
  * Registers the pagination element with the design system.

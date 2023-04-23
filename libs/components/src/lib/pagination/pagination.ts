@@ -1,5 +1,5 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
-import {attr, ValueConverter} from "@microsoft/fast-element";
+import {attr, observable, ValueConverter} from '@microsoft/fast-element';
 
 const totalConverter: ValueConverter = {
 	fromView: (value: string) => parseInt(value, 10),
@@ -12,6 +12,7 @@ const totalConverter: ValueConverter = {
  * @public
  */
 export class Pagination extends FoundationElement {
+	@observable pagesList: any[] = [];
 	/**
 	 * Indicates the text's text.
 	 *
@@ -38,6 +39,8 @@ export class Pagination extends FoundationElement {
 		} else if (this.selectedIndex === -1) {
 			this.selectedIndex = 0;
 		}
+
+		this.pagesList = new Array(this.total).fill(0);
 	}
 }
 

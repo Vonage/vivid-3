@@ -1,4 +1,4 @@
-import { html } from '@microsoft/fast-element';
+import {html, repeat} from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
@@ -15,9 +15,14 @@ const getClasses = (_: Pagination) => classNames('control');
  * @param context
  * @public
  */
+
 export const PaginationTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Pagination> = (
-	context: ElementDefinitionContext
-) => html` <span class="${getClasses}">${context.name} </span>`;
+) => ViewTemplate<Pagination> = () => html`<div class="${getClasses}">
+		${repeat(x => x.pagesList, html`
+			<vwc-button class="vwc-pagination-button"
+									label="${(_, c) => (c.index + 1)}">
+			</vwc-button>
+		`, { positioning: true })}
+</div>`;
