@@ -13,9 +13,9 @@
 }
 
 .popup-wrapper {
+	z-index: 10;
 	border-radius: 6px;
 	inline-size: fit-content;
-	z-index: 10;
 
 	&:not(.absolute) {
 		position: fixed;
