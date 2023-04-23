@@ -72,7 +72,7 @@ export const AlertTemplate: (
 	const buttonTag = context.tagFor(Button);
 
 	return html<Alert>`
-	<${elevationTag} dp='4' exportparts="vvd-theme-alternate">
+	<${elevationTag} class="elevation" dp='4' exportparts="vvd-theme-alternate">
 		<div class="control" role="alert" aria-live="assertive">
 			<slot name="main">
 				<div part="vvd-theme-alternate" class="${getClasses}">

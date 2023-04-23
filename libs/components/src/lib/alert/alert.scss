@@ -23,6 +23,9 @@ $alert-transition-delay: --transition-delay;
 	inline-size: max-content;
 	transition: opacity var(#{$alert-transition-delay}, 200ms);
 	border-radius: 6px;
+	bottom: 0px;
+	left: 50%;
+    transform: translateX(-50%);
 }
 
 .base {
