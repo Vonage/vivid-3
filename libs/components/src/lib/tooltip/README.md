@@ -12,18 +12,25 @@ A tooltip displays additional, non-essential, informative message, description o
 
 ### Anchor
 
-The tooltip should have an `anchor` attribute with the anchor's id.
+Use the `anchor` attribute to set the anchor element. This can be done either by referencing the anchor's id, or by setting the anchor element directly as a DOM property.
 
 The tooltip should be placed on interactive controls, elements that can be hovered over or focusable (e.g. button, checkbox, input text etc.).
 The tooltip can't be placed on non-interactive elements such as paragraph or plain div.
 Do not target non-interactive controls as a tooltip's anchor (such as non-focusable / disabled elements).
 
-- Type: `string`
+- Type: `string | HTMLElement`
 - Default: `undefined`
 
 ```html preview center
 <vwc-button id="button" icon="help-line" shape="pill"></vwc-button>
 <vwc-tooltip anchor="button" text="I'm a tooltip"></vwc-tooltip>
+
+<vwc-button id="button2" icon="help-line" shape="pill"></vwc-button>
+<vwc-tooltip id="tooltip2" text="My anchor is an HTMLElement"></vwc-tooltip>
+
+<script>
+	tooltip2.anchor = button2;
+</script>
 ```
 
 ### Text
@@ -43,11 +50,6 @@ Use the `placement` attribute to set the placement of the tooltip around the anc
 - Default: `'left'`
 
 ```html preview center
-<style>
-  vwc-tooltip {
-    --tooltip-inline-size: 100px;
-  }
-</style>
 <vwc-button id="anchor" appearance='outlined' label='This is an anchor'></vwc-button>
 <vwc-tooltip anchor="anchor" text="right" placement="right"></vwc-tooltip>
 <vwc-tooltip anchor="anchor" text="left" placement="left"></vwc-tooltip>
@@ -62,17 +64,20 @@ Use the `placement` attribute to set the placement of the tooltip around the anc
 Use the `--tooltip-inline-size` variable to set the tooltip's inline size.
 
 - Type: `Number`
-- Default: `240px`
+- Default: `auto`
 
 ```html preview center
 <style>
-  #tooltip {
-    --tooltip-inline-size: 200px;
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+  .tooltip {
+    --tooltip-inline-size: 160px;
   }
 </style>
 
 <vwc-button id="button" icon="info-line" shape="pill"></vwc-button>
-<vwc-tooltip anchor="button" text="My inline size is 200px"></vwc-tooltip>
+<vwc-tooltip anchor="button" text="I'm a tooltip with long text so my inline size is 160px" class="tooltip"></vwc-tooltip>
 ```
 
 ## Caveat

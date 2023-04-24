@@ -25,6 +25,10 @@ export interface FormElementCharCount {
 	charCount: boolean;
 }
 
+export interface ErrorText {
+	errorText: string;
+}
+
 export class FormElementHelperText {
 	@attr({attribute: 'helper-text'}) helperText?: string;
 }
@@ -156,4 +160,42 @@ function feedbackMessage({messageProperty}: {messageProperty: MessagePropertyTyp
 	return html<FormElement & FormElementHelperText & FormElementSuccessText>`
 	  <span class="message-text">${x => x[messageProperty]}</span>
 	`;
+}
+
+/**
+ * @param constructor
+ */
+export function errorText<T extends { new (...args: any[]): Record<string, any> }>(constructor: T) {
+	class Decorated extends constructor {
+		@attr({ attribute: 'error-text' }) errorText?: string;
+		#shouldValidate = true;
+		#prevSuccessText = '';
+
+		constructor(...args: any[]) {
+			super(...args);
+			this._validate = this.validate;
+			this.validate = () => {
+				if (this.#shouldValidate) this._validate();
+			};
+		}
+
+		errorTextChanged(_: string, newmsg: string | undefined) {
+			if (newmsg) {
+				this.setValidity({ customError: true }, newmsg, this.control);
+				this.#prevSuccessText = this.successText;
+				this.successText = '';
+				this.userValid = !this.userValid; // forces template refresh
+				this.userValid = false;
+				this.#shouldValidate = false;
+			} else {
+				this.setValidity({ customError: false }, '', this.control);
+				this.successText = this.#prevSuccessText;
+				this.userValid = true;
+				this.#shouldValidate = true;
+				this._validate();
+			}
+		}
+	}
+
+	return Decorated;
 }
