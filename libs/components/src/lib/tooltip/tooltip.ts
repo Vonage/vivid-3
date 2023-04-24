@@ -23,6 +23,7 @@ export class Tooltip extends Popup {
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
 		this.#removeEventListener();
+		document.removeEventListener('keydown', this._closeOnEscape);
 	}
 
 	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
