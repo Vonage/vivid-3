@@ -28,6 +28,9 @@ const defaultConnotation =
  * @slot action-items - Add action items to alert using this slot.
  */
 export class Alert extends FoundationElement {
+	// timeout to close the alert
+	timeout: any;
+
 	/**
 	 * if the alert is removable
 	 * accepts boolean
@@ -70,6 +73,14 @@ export class Alert extends FoundationElement {
 	}) open = false;
 
 	/**
+	 * the timeout ms to show the alert
+	 * accepts number
+	 *
+	 * @public
+	 */
+	@attr({ mode: 'fromView' }) timeoutms: number = 0;
+
+	/**
 	 * alert connotation
 	 *
 	 * @public
@@ -83,26 +94,45 @@ export class Alert extends FoundationElement {
 	override connectedCallback() {
 		super.connectedCallback();
 		this.addEventListener('keydown', this.#closeOnKeyDown);
+
+		if (this.open) {
+			this.#show();
+		}
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
 		this.removeEventListener('keydown', this.#closeOnKeyDown);
+		clearTimeout(this.timeout);
 	}
 
-	show(): void {
+	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
+		super.attributeChangedCallback(name, oldValue, newValue);
+		switch (name) {
+			case 'open': {
+				this.open ? this.#show() : this.#hide();
+			}
+		}
+	}
+
+	#show(): void {
 		this.open = true;
+		clearTimeout(this.timeout);
+		if (this.timeoutms > 0) {
+			this.timeout = setTimeout(() => this.#hide(), this.timeoutms);
+		}
 	}
 
-	override remove(): void {
+	#hide(): void {
 		this.open = false;
+		clearTimeout(this.timeout);
 	}
 
 	#closeOnKeyDown = (e: KeyboardEvent) => {
 		if (e.key !== 'Escape' || !this.removable) {
 			return;
 		}
-		this.remove();
+		this.#hide;
 	};
 }
 

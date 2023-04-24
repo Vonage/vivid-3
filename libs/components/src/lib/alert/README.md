@@ -10,11 +10,10 @@ Alerts are meant to be used on top of pages, outside the main content.
 
 ## Members
 
-
 ### Open
 
-- Type: `string`
-- Default: `''`
+- Type: `boolean`
+- Default: `false`
 
 Use the `open` attribute to open alert.
 
@@ -26,7 +25,7 @@ Use the `open` attribute to open alert.
 <script>
   function openAlert() {
     alert = document.querySelector('vwc-alert');
-    alert.show();
+    alert.open = true;
   }
 </script>
 ```
@@ -57,7 +56,7 @@ Use the `headline` attribute to set the alert's headline.
 ### Icon
 
 - Type: `string`
-- Default: `'information'`
+- Default: `''`
 
 The `icon` attribute will override the icon set by connotation.
 
@@ -90,7 +89,7 @@ Note that icon, if not specifically set, defaults to a connotation-associated ic
 <script>
   function openAlert(connotation) {
     alert = document.getElementById(connotation);
-    alert.show();
+    alert.open = true;
   }
 </script>
 ```
@@ -100,7 +99,7 @@ Note that icon, if not specifically set, defaults to a connotation-associated ic
 - Type: `boolean`
 - Default: `false`
 
-The `removable` attribute sets a remove button. On click it will remove the alert from the DOM.
+The `removable` attribute sets a remove button.
 
 ```html preview
 <vwc-alert subtitle="What an important info!!!" open removable></vwc-alert>
@@ -110,7 +109,27 @@ The `removable` attribute sets a remove button. On click it will remove the aler
 <script>
   function openAlert() {
     alert = document.querySelector('vwc-alert');
-    alert.show();
+    alert.open = true;
+  }
+</script>
+```
+
+### Timeoutms
+
+- Type: `number`
+- Default: `0`
+
+Use the `timeoutms` attribute to set timeout to close the alert.
+
+```html preview
+<vwc-alert subtitle="What an important info!!!" timeoutms=2000></vwc-alert>
+
+<vwc-button label="Show alert" onclick="openAlert()"></vwc-button>
+
+<script>
+  function openAlert() {
+    alert = document.querySelector('vwc-alert');
+    alert.open = true;
   }
 </script>
 ```
@@ -126,15 +145,3 @@ You can add action items using slotted content in a named slot `action-items`:
   <vwc-button slot="action-items" appearance="outlined" shape='pill' label="Action"></vwc-button>
 </vwc-alert>
 ```
-
-## Methods
-
-### show()
-
-- Type: `function`
-- Returns: `void`
-
-### remove()
-
-- Type: `function`
-- Returns: `void`
