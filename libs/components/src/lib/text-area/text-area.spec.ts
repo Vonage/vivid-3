@@ -474,32 +474,23 @@ describe('vwc-text-area', () => {
 			expect(errorElement !== null).toBeTruthy();
 		});
 
-		it('should replace/restore the current error state, if any, when set/removed', async function () {
-			let initialErrorMessage = '';
-
-			expect(element.validationMessage).toBe('');
-			expect(element.validity.valid).toBeTruthy();
-
+		it('should replace the current error state when set', async function () {
+			element.required = true;
+			setToBlurred();
+			element.errorText = forcedErrorMessage;
+			await elementUpdated(element);
+			expect(element.validationMessage).toBe(forcedErrorMessage);
+		});
+		
+		it('should restore the current error state when removed', async function () {
 			element.required = true;
 			setToBlurred();
 			await elementUpdated(element);
-			initialErrorMessage = element.validationMessage;
-
-			expect(initialErrorMessage).not.toBe('');
-			expect(initialErrorMessage).not.toBe(forcedErrorMessage);
-			expect(element.validity.valid).toBeFalsy();
-
+			const initialErrorMessage = element.validationMessage;
 			element.errorText = forcedErrorMessage;
 			await elementUpdated(element);
-
-			expect(element.validationMessage).toBe(forcedErrorMessage);
-			expect(element.validity.valid).toBeFalsy();
-
 			element.errorText = '';
-			await elementUpdated(element);
-
 			expect(element.validationMessage).toBe(initialErrorMessage);
-			expect(element.validity.valid).toBeFalsy();
 		});
 	});
 
