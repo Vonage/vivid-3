@@ -37,7 +37,7 @@ describe(`vivid component generator`, function () {
     expect(packageJson.exports[`./${fileName}`]).toBeUndefined();
   });
 
-  it('should add the component to components.ts exports if given this option', async function() {
+  it('should add the component to components.ts exports when addToExports is true', async function() {
     const filePath = 'libs/components/src/lib/components.ts';
     options.addToExports = true;
     tree.write(filePath, '');
