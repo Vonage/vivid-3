@@ -106,7 +106,7 @@ describe('vwc-button', () => {
 			await elementUpdated(element);
 
 			const control = element.shadowRoot?.querySelector(`.control.size-${size}`);
-			expect(control).toBeInstanceOf(Element);
+			expect(control?.classList.contains(`size-${size}`)).toBeTruthy();
 		});
 	});
 

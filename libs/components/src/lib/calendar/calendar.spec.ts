@@ -96,7 +96,7 @@ describe('vwc-calendar', () => {
 
 			const hour13th = element.shadowRoot?.querySelector('.row-headers > :nth-child(13)') as HTMLSpanElement;
 
-			const expectedTimeString = new Intl.DateTimeFormat('en-US', {hour: 'numeric', hour12: true})
+			const expectedTimeString = new Intl.DateTimeFormat(element.locales, {hour: 'numeric', hour12: true})
 				.format(new Date('2022-12-16T13:00:00.000'));
 
 			expect(hour13th.textContent?.trim()).toEqual(expectedTimeString);

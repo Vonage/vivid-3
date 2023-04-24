@@ -1,8 +1,7 @@
 import { applyMixins, Select as FoundationSelect } from '@microsoft/fast-foundation';
 import {attr, Observable} from '@microsoft/fast-element';
 import type { Popup } from '../popup/popup';
-import { FormElement, formElements } from '../../shared/patterns';
-import { AffixIcon } from '../../shared/patterns';
+import {AffixIconWithTrailing, FormElement, FormElementHelperText, formElements} from '../../shared/patterns';
 import type { Appearance, Shape } from '../enums';
 
 
@@ -13,6 +12,7 @@ export type SelectShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  * Base class for select
  *
  * @public
+ * @slot - Default slot.
  */
 @formElements
 export class Select extends FoundationSelect {
@@ -34,5 +34,5 @@ export class Select extends FoundationSelect {
 	}
 }
 
-export interface Select extends AffixIcon, FormElement{}
-applyMixins(Select, AffixIcon);
+export interface Select extends AffixIconWithTrailing, FormElement, FormElementHelperText{}
+applyMixins(Select, AffixIconWithTrailing, FormElementHelperText);

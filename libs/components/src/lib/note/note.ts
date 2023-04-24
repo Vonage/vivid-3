@@ -13,6 +13,7 @@ export type NoteConnotation =
  * Base class for note
  *
  * @public
+ * @slot - Any slotted content will appear below the headline.
  */
 export class Note extends FoundationElement {
 	/**

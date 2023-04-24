@@ -25,6 +25,7 @@ const defaultConnotation =
  * Base class for banner
  *
  * @public
+ * @slot action-items - Add action items to banner using this slot.
  */
 export class Banner extends FoundationElement {
 	@attr({attribute: 'action-href'}) actionHref: string | undefined;

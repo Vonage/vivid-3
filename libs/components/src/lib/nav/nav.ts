@@ -5,5 +5,6 @@ import { FoundationElement } from '@microsoft/fast-foundation';
  * Based largely on the {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element }.
  *
  * @public
+ * @slot - Default slot.
  */
 export class Nav extends FoundationElement { }

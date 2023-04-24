@@ -17,8 +17,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
     align-items: center;
     justify-content: center;
   }
-  vwc-tooltip#tooltip{
-    --tooltip-inline-size:100px;
+  vwc-tooltip.tooltip{
+    --tooltip-inline-size:150px;
   }
 </style>
 <div class="wrapper">
@@ -29,7 +29,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
   </vwc-tooltip>
   <vwc-tooltip id="tooltip" anchor="anchor" open text="top" placement="top">
   </vwc-tooltip>
-  <vwc-tooltip id="tooltip" anchor="anchor" open text="bottom" placement="bottom">
+  <vwc-tooltip id="tooltip" class="tooltip" anchor="anchor" open text="bottom with custom width" placement="bottom">
   </vwc-tooltip>
 </div>
 	`;

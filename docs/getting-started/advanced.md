@@ -1,36 +1,40 @@
 # Advanced
 
+---
 ## Styles (Optional)
-
-Vivid provides a set of styles (combined with the tokens and fonts) that can be used to embody the Vivid design system into an application.  
-**These styles are not required by vivid components directly. however, native HTML tags do.**
-
-- `theme.css` - Sets theme related styles
-
-- `typography.css` - Sets typography related styles
-
-- `all.css` - Sets all the above styles
-
-These **core styles** rely on the [tokens and fonts to be loaded](/getting-started/quick-start/#prerequisite)
 
 ### Include the styles
 
-To include the styles, its css files must be loaded into the project from: `node_modules/@vonage/vivid/styles/[path to file].css`.  
+Vivid provides a set of styles (combined with the tokens and fonts) that can be used to embody the Vivid design system into an application.  
 
-Note: scss users can simply [forward](https://sass-lang.com/documentation/at-rules/forward) the styles to their scss project:
+<vwc-note connotation="accent" icon="megaphone-solid" headline="These styles are not required by vivid components directly. However, native HTML tags do."></vwc-note>
 
+These **core styles** rely on the [tokens and fonts to be loaded](/getting-started/quick-start/#prerequisite).
+
+```js
+// Sets theme related styles
+'node_modules/@vonage/vivid/styles/core/theme.css';
 ```
-@forward 'node_modules/@vonage/vivid/styles/[path to file].css';
+**Or**
+```js
+// Sets typography related styles
+'node_modules/@vonage/vivid/styles/core/typography.css';
 ```
+**Or all if both files are needed**
+```js
+// Sets all the above styles
+'node_modules/@vonage/vivid/styles/core/all.css';
+```
+
+<vwc-note connotation="information" icon="info-solid" headline="Scss users can simply use @forward."></vwc-note>
 
 ### Setting Vivid class
 
-[As in tokens](/getting-started/quick-start/#setting-vivid-class), styles *require* a `vvd-root` class* selector to be present on a wrapping element (advisably the `:root`.  
-When set on the `:root` (html element), typeface sizes are able to descend from the root font-size, thus comply with the [WCAG 1.4.4](https://www.w3.org/WAI/WCAG21/Understanding/resize-text)) to ensure text readability experience..
+Styles **require** a `vvd-root` class selector to be present on a wrapping element. [Follow the instruction to set a vvd-root class](/getting-started/quick-start/#setting-vivid-class).
 
 ---
 
-## Scoped Elements (🧪 Alpha)
+## Scoped Elements
 
 Custom elements are registered globally by the browser. When two custom elements with the same tag name are registered on the same document, it creates a conflict that results in an error. Loading multiple versions of `vivid` is likely to cause this error as vivid elements are named the same.
 
@@ -47,7 +51,7 @@ import { registerBadge } from '@vonage/vivid';
 registerBadge('dashboard');
 ```
 
-then use it as:
+Then use it as:
 
 ```html
 <dashboard-badge text="dashboard scoped badge"></dashboard-badge>
@@ -56,3 +60,8 @@ then use it as:
 Remember to not include the default side-effect import (`import '@vonage/vivid/button';`) when using scoped elements as it will register the default namespace.
 
 In addition to avoiding namespace collision and customizing elements' tag names, this approach lets you enjoy the benefits of [npm dedupe](https://docs.npmjs.com/cli/v8/commands/npm-dedupe). With [npm dedupe](https://docs.npmjs.com/cli/v8/commands/npm-dedupe), only the least needed versions of the library are used in the application.
+
+---
+## Have questions?
+
+Still looking for answers, ask us in [#ask-vivid](https://vonage.slack.com/archives/C013F0YKH99) slack channel.

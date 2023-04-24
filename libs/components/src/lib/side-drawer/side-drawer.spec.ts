@@ -91,7 +91,8 @@ describe('vwc-side-drawer', () => {
 			element.open = true;
 			const spy = jest.fn();
 			element.parentElement?.addEventListener('close', spy);
-
+			element.open = false;
+			
 			await elementUpdated(element);
 			expect(spy).not.toBeCalled();
 		});
