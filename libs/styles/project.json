@@ -28,7 +28,8 @@
 				"scss": {
 					"commands": [
 						"sass libs/styles/src/lib/tokens:dist/libs/styles/tokens",
-						"sass libs/styles/src/lib/core:dist/libs/styles/core"
+						"sass libs/styles/src/lib/core:dist/libs/styles/core",
+						"sass libs/styles/src/lib/fonts:dist/libs/styles/fonts"
 					]
 				}
 			}
