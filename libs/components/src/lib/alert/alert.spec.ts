@@ -1,7 +1,7 @@
-import {elementUpdated, fixture} from '@vivid-nx/shared';
-import type {Icon} from '../icon/icon';
-import {Button} from '../button/button';
-import {Connotation} from '../enums';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import type { Icon } from '../icon/icon';
+import { Button } from '../button/button';
+import { Connotation } from '../enums';
 import { Alert } from './alert';
 import type { AlertConnotation } from './alert';
 import '.';
@@ -18,20 +18,7 @@ async function toggleRemovable(element: Alert, removable = true) {
 }
 
 describe('vwc-alert', () => {
-	/**
-	 *
-	 */
-	function dispatchAnimationEndEvent() {
-		const alert = element.shadowRoot?.querySelector('.alert');
-		const event = new Event('transitionend');
-		alert?.dispatchEvent(event);
-	}
-
 	let element: Alert;
-
-	beforeAll(async () => {
-		await customElements.whenDefined(COMPONENT_TAG);
-	});
 
 	beforeEach(async () => {
 		element = (await fixture(
@@ -43,6 +30,14 @@ describe('vwc-alert', () => {
 		it('should be initialized as a vwc-alert', async () => {
 			expect(element)
 				.toBeInstanceOf(Alert);
+			expect(element.open).toBeFalsy();
+			expect(element.icon).toBeUndefined();
+			expect(element.subtitle).toBeUndefined();
+			expect(element.headline).toBeUndefined();
+			expect(element.connotation).toBeUndefined();
+			expect(element.removable).toBeFalsy();
+			expect(element.timeoutms).toBe(0);
+			expect(element.placement).toBeUndefined();
 		});
 	});
 
@@ -67,7 +62,7 @@ describe('vwc-alert', () => {
 		 *
 		 */
 		function getHeadline() {
-			const headline = element.shadowRoot?.querySelector('.alert--message')?.textContent;
+			const headline = element.shadowRoot?.querySelector('.headline')?.textContent;
 			return headline?.trim();
 		}
 
@@ -98,52 +93,6 @@ describe('vwc-alert', () => {
 		});
 	});
 
-	describe('remove', function () {
-
-		it('should fire removing event', async function () {
-			const spy = jest.fn();
-			element.addEventListener('removing', spy);
-			element.remove();
-			expect(spy)
-				.toHaveBeenCalled();
-		});
-
-		it('should fire removed after animation end', async function () {
-
-			const spy = jest.fn();
-			element.addEventListener('removed', spy);
-			element.remove();
-
-			dispatchAnimationEndEvent();
-
-			expect(spy)
-				.toHaveBeenCalled();
-			expect(spy.mock.calls.length)
-				.toEqual(1);
-		});
-
-		it('should disable removed and removing events after disconnected callback', async function () {
-
-			const spy = jest.fn();
-			element.addEventListener('removed', spy);
-			element.addEventListener('removing', spy);
-			element.disconnectedCallback();
-
-			element.remove();
-			dispatchAnimationEndEvent();
-
-			expect(spy.mock.calls.length)
-				.toEqual(0);
-		});
-
-		it('should remove the alert after dispatch', function () {
-			element.remove();
-			dispatchAnimationEndEvent();
-			expect(document.body.contains(element))
-				.toEqual(false);
-		});
-	});
-
 	describe('connotation', function () {
 		const possibleConnotations = [Connotation.Information,
 			Connotation.Accent,
@@ -154,7 +103,7 @@ describe('vwc-alert', () => {
 
 		it('should leave connotation class empty if not set', async function () {
 			possibleConnotations.forEach(connotation => {
-				expect(element.shadowRoot?.querySelector('.alert')
+				expect(getBaseElement(element)
 					?.classList
 					.contains(connotation))
 					.toEqual(false);
@@ -165,7 +114,7 @@ describe('vwc-alert', () => {
 			const connotation = possibleConnotations[2];
 			(element.connotation as Connotation) = connotation;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.alert')
+			expect(getBaseElement(element)
 				?.classList
 				.contains(`connotation-${connotation}`))
 				.toEqual(true);
@@ -254,7 +203,6 @@ describe('vwc-alert', () => {
 			await toggleRemovable(element, true);
 			const dismissButton = element.shadowRoot?.querySelector('.dismiss-button') as HTMLElement;
 			dismissButton.click();
-			dispatchAnimationEndEvent();
 			expect(document.body.contains(element))
 				.toEqual(false);
 		});

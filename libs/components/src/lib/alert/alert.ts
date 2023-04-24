@@ -31,7 +31,7 @@ const defaultConnotation =
  */
 export class Alert extends FoundationElement {
 	// timeout to close the alert
-	timeout: any;
+	private timeout: any;
 
 	/**
 	 * if the alert is removable
