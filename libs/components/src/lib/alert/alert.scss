@@ -19,15 +19,6 @@ $alert-transition-delay: --transition-delay;
 
 .control {
 	position: fixed;
-	min-inline-size: var(#{variables.$alert-min-inline-size}, 420px);
-	inline-size: max-content;
-	opacity: 0;
-	transition: opacity var(#{$alert-transition-delay}, 200ms);
-	border-radius: 6px;
-
-	&.open {
-		opacity: 1;
-	}
 
 	// placement
 
@@ -54,6 +45,19 @@ $alert-transition-delay: --transition-delay;
 	&.placement-bottom-end {
 		left: 0%;
 	}
+
+	&:not(.open) {
+		opacity: 0;
+	}
+
+	&.open {
+		opacity: 1;
+	}
+
+	border-radius: 6px;
+	inline-size: max-content;
+	min-inline-size: var(#{variables.$alert-min-inline-size}, 420px);
+	transition: opacity var(#{$alert-transition-delay}, 200ms);
 }
 
 .base {
@@ -61,18 +65,18 @@ $alert-transition-delay: --transition-delay;
 	@include appearance.appearance;
 
 	display: flex;
-	column-gap: 16px;
-	border-radius: 6px;
-	background-color: var(--vvd-color-neutral-50);
-	color: var(#{constants.$vvd-color-canvas-text});
-	padding: 16px;
 	align-items: center;
+	padding: 16px;
+	background-color: var(--vvd-color-neutral-50);
+	border-radius: 6px;
+	color: var(#{constants.$vvd-color-canvas-text});
+	column-gap: 16px;
 
 	.alert-text {
 		display: flex;
 		flex-direction: column;
-		justify-self: flex-start;
 		gap: 4px;
+		justify-self: flex-start;
 		margin-inline-end: auto;
 
 		.headline {
@@ -86,13 +90,13 @@ $alert-transition-delay: --transition-delay;
 
 	.icon {
 		flex-shrink: 0;
+		color: var(#{appearance.get-appearance-token(text)});
 		font-size: 20px;
 		line-height: 1;
-		color: var(#{appearance.get-appearance-token(text)});
 	}
 
 	.dismiss-button {
-		padding-inline-start: 8px;
 		border-left: 1px solid var(--vvd-color-neutral-200);
+		padding-inline-start: 8px;
 	}
 }
