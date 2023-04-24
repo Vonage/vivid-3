@@ -12,18 +12,25 @@ A tooltip displays additional, non-essential, informative message, description o
 
 ### Anchor
 
-The tooltip should have an `anchor` attribute with the anchor's id.
+Use the `anchor` attribute to set the anchor element. This can be done either by referencing the anchor's id, or by setting the anchor element directly as a DOM property.
 
 The tooltip should be placed on interactive controls, elements that can be hovered over or focusable (e.g. button, checkbox, input text etc.).
 The tooltip can't be placed on non-interactive elements such as paragraph or plain div.
 Do not target non-interactive controls as a tooltip's anchor (such as non-focusable / disabled elements).
 
-- Type: `string`
+- Type: `string | HTMLElement`
 - Default: `undefined`
 
 ```html preview center
 <vwc-button id="button" icon="help-line" shape="pill"></vwc-button>
 <vwc-tooltip anchor="button" text="I'm a tooltip"></vwc-tooltip>
+
+<vwc-button id="button2" icon="help-line" shape="pill"></vwc-button>
+<vwc-tooltip id="tooltip2" text="My anchor is an HTMLElement"></vwc-tooltip>
+
+<script>
+	tooltip2.anchor = button2;
+</script>
 ```
 
 ### Text
