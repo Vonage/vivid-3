@@ -44,12 +44,12 @@
 
 
 	.text {
-		width: 100%;
 		/* stylelint-disable value-no-vendor-prefix */
 		display: -webkit-box;
 		/* stylelint-enable value-no-vendor-prefix */
 		overflow: hidden;
 		-webkit-box-orient: vertical;
+		inline-size: 100%;
 		-webkit-line-clamp: var(#{variables.$button-line-clamp}, 2);
 		line-height: normal;
 	}
