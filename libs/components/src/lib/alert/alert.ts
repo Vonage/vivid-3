@@ -144,7 +144,7 @@ export class Alert extends FoundationElement {
 		if (e.key !== 'Escape' || !this.removable) {
 			return;
 		}
-		this.#hide;
+		this.#hide();
 	};
 }
 

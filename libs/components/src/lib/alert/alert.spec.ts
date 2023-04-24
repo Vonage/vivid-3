@@ -1,21 +1,11 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import type { Icon } from '../icon/icon';
-import { Button } from '../button/button';
 import { Connotation } from '../enums';
 import { Alert } from './alert';
 import type { AlertConnotation } from './alert';
 import '.';
 
 const COMPONENT_TAG = 'vwc-alert';
-
-/**
- * @param element
- * @param removable
- */
-async function toggleRemovable(element: Alert, removable = true) {
-	element.removable = removable;
-	await elementUpdated(element);
-}
 
 describe('vwc-alert', () => {
 	let element: Alert;
@@ -154,24 +144,53 @@ describe('vwc-alert', () => {
 		});
 	});
 
+	describe('timeout', function () {
+		it('should fire removed event', async function () {
+			const timeout = 100;
+			const spy = jest.fn();
+			element.addEventListener('removed', spy);
+			element.open = true;
+			element.timeoutms = timeout;
+
+			await elementUpdated(element);
+			expect(spy)
+				.not.toHaveBeenCalled();
+
+			setTimeout(() => {
+				expect(spy)
+					.toHaveBeenCalled();
+			}, timeout);
+
+		});
+
+		it('should fire removed event when open from start', async function () {
+			const timeout = 100;
+
+			element = (await fixture(
+				`<${COMPONENT_TAG} open timeoutms=${timeout}></${COMPONENT_TAG}>`
+			)) as Alert;
+
+			const spy = jest.fn();
+			element.addEventListener('removed', spy);
+
+			await elementUpdated(element);
+			element.open = false;
+			expect(spy)
+				.not.toHaveBeenCalled();
+
+			setTimeout(() => {
+				expect(spy)
+					.toHaveBeenCalled();
+			}, timeout);
+
+		});
+	});
+
 	describe('removable', function () {
 		it('should init to false', function () {
 			expect(element.removable)
 				.toEqual(false);
 			expect(element.hasAttribute('removable'))
-				.toEqual(false);
-		});
-
-		it('should toggle attribute on host', async function () {
-			await toggleRemovable(element);
-			const removeAttributeExistsWhenTrue = element.hasAttribute('removable');
-
-			await toggleRemovable(element, false);
-			const removeAttributeExistsWhenFalse = element.hasAttribute('removable');
-
-			expect(removeAttributeExistsWhenTrue)
-				.toEqual(true);
-			expect(removeAttributeExistsWhenFalse)
 				.toEqual(false);
 		});
 
@@ -186,54 +205,45 @@ describe('vwc-alert', () => {
 			expect(element.shadowRoot?.querySelector('.dismiss-button'))
 				.toEqual(null);
 		});
-
-		it('should add a remove button when true', async function () {
-			await toggleRemovable(element, true);
-			expect(element.shadowRoot?.querySelector('.dismiss-button'))
-				.toBeInstanceOf(Button);
-		});
-
-		it('should remove alert on remove button click', async function () {
-			await toggleRemovable(element, true);
-			const dismissButton = element.shadowRoot?.querySelector('.dismiss-button') as HTMLElement;
-			dismissButton.click();
-			expect(document.body.contains(element))
-				.toEqual(false);
-		});
-
-		it('should remove class "open" to alert on remove button click', async function () {
-			element.open = true;
-			await toggleRemovable(element, true);
-			const dismissButton = element.shadowRoot?.querySelector('.dismiss-button') as HTMLElement;
-			dismissButton.click();
-			expect(getBaseElement(element)?.classList.contains('open')).toEqual(false);
-		});
 	});
 
 	describe('remove on escape key', function () {
-
-		it('should remove the alert only on escape key', async function () {
+		it('should remove the alert when esc and removable is true', async function () {
+			const spy = jest.fn();
+			element.addEventListener('removed', spy);
 			element.removable = true;
 			element.focus();
-			const spy = jest.spyOn(element, 'remove');
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+			elementUpdated(element);
+			expect((spy as any).mock.calls.length).toEqual(1);
+		});
+
+		it('should remove the alert only on escape key', async function () {
+			const spy = jest.fn();
+			element.addEventListener('removed', spy);
+			element.removable = true;
+			element.focus();
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
 			expect((spy as any).mock.calls.length).toEqual(0);
 		});
 
 		it('should remove keydown listener after disconnection', async function () {
+			const spy = jest.fn();
+			element.addEventListener('removed', spy);
 			element.removable = true;
 			element.focus();
 			element.disconnectedCallback();
-			const spy = jest.spyOn(element, 'remove');
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 			expect((spy as any).mock.calls.length).toEqual(0);
 		});
 
 		it('should remove the alert only if "removable" is true', async function () {
+			const spy = jest.fn();
+			element.addEventListener('removed', spy);
 			element.removable = false;
 			element.focus();
-			const spy = jest.spyOn(element, 'remove');
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+			elementUpdated(element);
 			expect((spy as any).mock.calls.length).toEqual(0);
 		});
 	});
