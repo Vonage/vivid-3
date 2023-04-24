@@ -3,6 +3,7 @@ import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Pagination } from './pagination';
 import { paginationDefinition } from './definition';
 import '.';
+import {expect} from "@playwright/test";
 
 const COMPONENT_TAG = 'vwc-pagination';
 
@@ -65,41 +66,51 @@ describe('vwc-pagination', () => {
 			});
 		});
 
-		describe('selectedIndex', function () {
-			it('should init as -1', async () => {
-				expect(element.selectedIndex).toEqual(-1);
-			});
+		it('should add 1,2,3 buttons, 3 dots and the last page when over 5 total', async () => {
+			element.total = 20;
+			await elementUpdated(element);
+			const buttons = element.shadowRoot?.querySelectorAll('.vwc-pagination-button');
+			const dots = buttons?.item(3);
+			expect(buttons?.length).toEqual(5);
+			expect(getButtonText(dots)).toEqual('...');
+			expect(getButtonText(buttons?.item(4))).toEqual(element.total.toString());
+		});
+	});
 
-			it('should set selectedIndex as zero only when first setting total', async () => {
-				element.total = 2;
-				const selectedIndexAfterFirstTotalSet = element.selectedIndex;
-
-				element.selectedIndex = 1;
-				element.total = 3;
-				const selectedIndexAfterSecondTotalSet = element.selectedIndex;
-
-				expect(selectedIndexAfterFirstTotalSet).toEqual(0);
-				expect(selectedIndexAfterSecondTotalSet).toEqual(1);
-			});
-
-			it('should reflect selectedIndex attribute', async function () {
-				element.setAttribute('selected-index', '10');
-				await elementUpdated(element);
-				expect(element.selectedIndex).toEqual(10);
-			});
-
-			it('should set to -1 when total is set to zero', function () {
-				element.total = 2;
-				element.total = 0;
-				expect(element.selectedIndex).toEqual(-1);
-			});
+	describe('selectedIndex', function () {
+		it('should init as -1', async () => {
+			expect(element.selectedIndex).toEqual(-1);
 		});
 
-		// TODO: add tests for adding the buttons with lots of pages (the ...)
-		// TODO: add tests for clicking the buttons
-		// TODO: add tests for clicking the buttons with lots of pages (the ...)
-		// TODO: add tests for keyboard navigation
-		// TODO: add tests for prev/next buttons
-		// TODO: prevent pagesList mutation
+		it('should set selectedIndex as zero only when first setting total', async () => {
+			element.total = 2;
+			const selectedIndexAfterFirstTotalSet = element.selectedIndex;
+
+			element.selectedIndex = 1;
+			element.total = 3;
+			const selectedIndexAfterSecondTotalSet = element.selectedIndex;
+
+			expect(selectedIndexAfterFirstTotalSet).toEqual(0);
+			expect(selectedIndexAfterSecondTotalSet).toEqual(1);
+		});
+
+		it('should reflect selectedIndex attribute', async function () {
+			element.setAttribute('selected-index', '10');
+			await elementUpdated(element);
+			expect(element.selectedIndex).toEqual(10);
+		});
+
+		it('should set to -1 when total is set to zero', function () {
+			element.total = 2;
+			element.total = 0;
+			expect(element.selectedIndex).toEqual(-1);
+		});
 	});
+
+	// TODO: add tests for adding the buttons with lots of pages (the ...)
+	// TODO: add tests for clicking the buttons
+	// TODO: add tests for clicking the buttons with lots of pages (the ...)
+	// TODO: add tests for keyboard navigation
+	// TODO: add tests for prev/next buttons
+	// TODO: prevent pagesList mutation
 });

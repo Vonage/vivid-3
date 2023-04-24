@@ -8,7 +8,10 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import type { Pagination } from './pagination';
 
 const getClasses = (_: Pagination) => classNames('control');
-
+const getButtonClasses = (pageText: string) => classNames(
+	'vwc-pagination-button',
+	['vwc-pagination-dots', pageText === '...'],
+);
 /**
  * The template for the {@link @microsoft/fast-foundation#Pagination} component.
  *
@@ -21,8 +24,9 @@ export const PaginationTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Pagination> = () => html`<div class="${getClasses}">
 		${repeat(x => x.pagesList, html`
-			<vwc-button class="vwc-pagination-button"
-									label="${(_, c) => (c.index + 1)}">
+			<vwc-button class="${getButtonClasses}"
+									label="${(x) => x}">
 			</vwc-button>
 		`, { positioning: true })}
 </div>`;
+

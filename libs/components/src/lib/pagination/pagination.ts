@@ -40,7 +40,11 @@ export class Pagination extends FoundationElement {
 			this.selectedIndex = 0;
 		}
 
-		this.pagesList = new Array(this.total).fill(0);
+		this.pagesList = new Array(this.total < 5 ? this.total : 5).fill(0).map((_, i) => {
+			if (this.total > 5 && i === 3) return '...';
+			if (this.total > 5 && i === 4) return this.total;
+			return i + 1;
+		});
 	}
 }
 
