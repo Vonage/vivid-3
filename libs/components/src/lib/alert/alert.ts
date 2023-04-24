@@ -137,6 +137,7 @@ export class Alert extends FoundationElement {
 	#hide(): void {
 		this.open = false;
 		clearTimeout(this.timeout);
+		this.$emit('removed');
 	}
 
 	#closeOnKeyDown = (e: KeyboardEvent) => {

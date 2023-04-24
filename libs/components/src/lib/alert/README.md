@@ -161,3 +161,9 @@ You can add action items using slotted content in a named slot `action-items`:
   <vwc-button slot="action-items" appearance="outlined" shape='pill' label="Action"></vwc-button>
 </vwc-alert>
 ```
+
+## Events
+
+### Removed
+
+Fires `removed` when the removing animation is done.

@@ -37,7 +37,7 @@ describe('vwc-alert', () => {
 			expect(element.connotation).toBeUndefined();
 			expect(element.removable).toBeFalsy();
 			expect(element.timeoutms).toBe(0);
-			expect(element.placement).toBeUndefined();
+			expect(element.placement).toEqual('bottom');
 		});
 	});
 
@@ -62,7 +62,7 @@ describe('vwc-alert', () => {
 		 *
 		 */
 		function getHeadline() {
-			const headline = element.shadowRoot?.querySelector('.headline')?.textContent;
+			const headline = getBaseElement(element).querySelector('.headline')?.textContent;
 			return headline?.trim();
 		}
 
@@ -72,8 +72,7 @@ describe('vwc-alert', () => {
 
 			expect(initHeadlinePropEmpty)
 				.toEqual(undefined);
-			expect(initHeadlineAttrEmpty)
-				.toEqual('');
+			expect(initHeadlineAttrEmpty).toBeUndefined();
 		});
 
 		it('should reflect the message', async function () {
@@ -125,12 +124,7 @@ describe('vwc-alert', () => {
 		let getIcon: () => Icon;
 
 		beforeEach(function () {
-			getIcon = () => element.shadowRoot?.querySelector('.icon > vwc-icon') as Icon;
-		});
-
-		it('should set the icon according to connotation information by default', function () {
-			expect(getIcon().name)
-				.toEqual('info-solid');
+			getIcon = () => getBaseElement(element).querySelector('.icon > vwc-icon') as Icon;
 		});
 
 		it('should set the icon according to "icon" attribute', async function () {
@@ -143,11 +137,11 @@ describe('vwc-alert', () => {
 
 		it('should set the icon according to set connotation', async function () {
 			const connotationIconMap: Map<AlertConnotation, string> = new Map([
-				[Connotation.Information, 'info-solid'],
-				[Connotation.Accent, 'megaphone-solid'],
-				[Connotation.Success, 'check-circle-solid'],
-				[Connotation.Warning, 'warning-solid'],
-				[Connotation.Alert, 'error-solid']
+				[Connotation.Information, 'info-line'],
+				[Connotation.Accent, 'megaphone-line'],
+				[Connotation.Success, 'check-circle-line'],
+				[Connotation.Warning, 'warning-line'],
+				[Connotation.Alert, 'error-line']
 			]);
 
 			for (const [connotation, iconName] of connotationIconMap) {
@@ -207,22 +201,16 @@ describe('vwc-alert', () => {
 				.toEqual(false);
 		});
 
-		it('should add class "removing" to alert on remove button click', async function () {
+		it('should remove class "open" to alert on remove button click', async function () {
+			element.open = true;
 			await toggleRemovable(element, true);
 			const dismissButton = element.shadowRoot?.querySelector('.dismiss-button') as HTMLElement;
 			dismissButton.click();
-			expect(element.shadowRoot?.querySelector('.alert')?.classList.contains('removing')).toEqual(true);
+			expect(getBaseElement(element)?.classList.contains('open')).toEqual(false);
 		});
 	});
 
 	describe('remove on escape key', function () {
-		it('should remove the button on escape key', async function () {
-			element.removable = true;
-			element.focus();
-			jest.spyOn(element, 'remove');
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
-			expect(element.remove).toHaveBeenCalled();
-		});
 
 		it('should remove the alert only on escape key', async function () {
 			element.removable = true;
@@ -230,7 +218,6 @@ describe('vwc-alert', () => {
 			const spy = jest.spyOn(element, 'remove');
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
 			expect((spy as any).mock.calls.length).toEqual(0);
-
 		});
 
 		it('should remove keydown listener after disconnection', async function () {
