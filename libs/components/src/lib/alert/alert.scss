@@ -65,7 +65,7 @@ $alert-transition-delay: --transition-delay;
 		flex-shrink: 0;
 		font-size: 20px;
 		line-height: 1;
-		color: var(#{appearance.get-appearance-token(fill)});
+		color: var(#{appearance.get-appearance-token(text)});
 	}
 
 	.dismiss-button {
