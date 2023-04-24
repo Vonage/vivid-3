@@ -22,10 +22,11 @@ const getButtonClasses = (pageText: string) => classNames(
 export const PaginationTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Pagination> = () => html`<div class="${getClasses}">
+) => ViewTemplate<Pagination> = () => html<Pagination>`<div class="${getClasses}">
 		${repeat(x => x.pagesList, html`
 			<vwc-button class="${getButtonClasses}"
-									label="${(x) => x}">
+									label="${(value) => value}"
+									@click="${(value, {parent: x}) => x.selectedIndex = isNaN(Number(value)) ? x.selectedIndex : (Number(value) - 1)}">
 			</vwc-button>
 		`, { positioning: true })}
 </div>`;

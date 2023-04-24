@@ -46,5 +46,9 @@ export class Pagination extends FoundationElement {
 			return i + 1;
 		});
 	}
+
+	selectedIndexChanged(oldValue: number, newValue: number) {
+		this.$emit('change', {selectedIndex: newValue, total: this.total, oldIndex: oldValue});
+	}
 }
 

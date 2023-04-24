@@ -77,6 +77,63 @@ describe('vwc-pagination', () => {
 		});
 	});
 
+	describe('click events', function () {
+		let clicked: boolean;
+		let event: Event;
+		let buttons: NodeListOf<Element> | undefined;
+
+		beforeEach(async function () {
+			element.selectedIndex = 1;
+			clicked = false;
+			element.addEventListener('change', (e) => {
+				clicked = true;
+				event = e;
+			});
+			element.total = 20;
+			await elementUpdated(element);
+			buttons = element.shadowRoot?.querySelectorAll('.vwc-pagination-button');
+		});
+
+		it('should change selectedIndex when clicking a valid button', async function () {
+			const button = buttons?.item(2);
+			button?.dispatchEvent(new MouseEvent('click'));
+			expect(element.selectedIndex).toEqual(2);
+		});
+
+		it('should leave selectedIndex as is when clicking the "..." button', async function () {
+			element.selectedIndex = 2;
+			const dots = buttons?.item(3);
+			dots?.dispatchEvent(new MouseEvent('click'));
+			expect(element.selectedIndex).toEqual(2);
+		});
+
+		it('should fire "change" event when a valid button is clicked', async () => {
+			element.selectedIndex = 0;
+			const button = buttons?.item(1);
+			button?.dispatchEvent(new MouseEvent('click'));
+			expect(clicked).toEqual(true);
+		});
+
+		it('should fire the "change" event with the selectedIndex, total and oldIndex', function () {
+			const button = buttons?.item(2);
+			button?.dispatchEvent(new MouseEvent('click'));
+			expect((event as MouseEvent).detail).toEqual({selectedIndex: 2, total: 20, oldIndex: 1});
+		});
+
+		it('should prevent "change" event when selected button is clicked', function () {
+			element.selectedIndex = 1;
+			const button = buttons?.item(1);
+			button?.dispatchEvent(new MouseEvent('click'));
+			expect(clicked).toEqual(false);
+		});
+
+		it('should prevent change event when "..." is clicked', async () => {
+			const dots = buttons?.item(3);
+			dots?.dispatchEvent(new MouseEvent('click'));
+			expect(clicked).toEqual(false);
+		});
+	});
+
 	describe('selectedIndex', function () {
 		it('should init as -1', async () => {
 			expect(element.selectedIndex).toEqual(-1);
@@ -107,6 +164,7 @@ describe('vwc-pagination', () => {
 		});
 	});
 
+	// TODO:: should not fire change event if old value is undefined (on init)
 	// TODO: add tests for adding the buttons with lots of pages (the ...)
 	// TODO: add tests for clicking the buttons
 	// TODO: add tests for clicking the buttons with lots of pages (the ...)
