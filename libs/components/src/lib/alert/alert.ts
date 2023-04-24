@@ -18,6 +18,8 @@ const connotationIconMap = new Map([
 	[Connotation.Alert, 'error-line']
 ]);
 
+export type AlertPlacement = 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end';
+
 const defaultConnotation =
 	(connotation: Connotation | undefined = Connotation.Accent) => connotationIconMap.get(connotation) as Connotation;
 
@@ -38,6 +40,15 @@ export class Alert extends FoundationElement {
 	 * @public
 	 */
 	@attr({ mode: 'boolean' }) removable = false;
+
+	/**
+	 * the placement of the alert
+	 *
+	 * @public
+	 * HTML Attribute: placement
+	 */
+	@attr({ mode: 'fromView' }) placement?: AlertPlacement = 'bottom';
+
 
 	/**
 	 * the text of the alert heading

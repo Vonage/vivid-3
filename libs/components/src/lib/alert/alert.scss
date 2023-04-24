@@ -24,12 +24,35 @@ $alert-transition-delay: --transition-delay;
 	opacity: 0;
 	transition: opacity var(#{$alert-transition-delay}, 200ms);
 	border-radius: 6px;
-	bottom: 0px;
-	left: 50%;
-    transform: translateX(-50%);
 
 	&.open {
 		opacity: 1;
+	}
+
+	// placement
+
+	left: 50%;
+
+	&.placement-bottom,
+	&.placement-bottom-start,
+	&.placement-bottom-end {
+		bottom: 0;
+	}
+
+	&.placement-top,
+	&.placement-top-start,
+	&.placement-top-end {
+		top: 0;
+	}
+
+	&.placement-top-start,
+	&.placement-bottom-start {
+		left: 100%;
+	}
+
+	&.placement-top-end,
+	&.placement-bottom-end {
+		left: 0%;
 	}
 }
 

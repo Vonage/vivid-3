@@ -17,7 +17,8 @@ const getClasses = (_: Alert) => classNames(
 
 const getControlClasses = (_: Alert) => classNames(
 	'control',
-	['open', _.open]
+	['open', _.open],
+	[`placement-${_.placement}`, !!_.placement],
 );
 
 

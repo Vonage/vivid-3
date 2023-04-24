@@ -134,6 +134,22 @@ Use the `timeoutms` attribute to set timeout to close the alert.
 </script>
 ```
 
+### Placement
+
+Use the `placement` attribute to set the placement of the alert.
+
+- Type: `'top'` | `'top-start'` | `'top-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`
+- Default: `''`
+
+```html preview center
+<vwc-alert subtitle="What an important info!!!" placement="top" open></vwc-alert>
+<vwc-alert subtitle="What an important info!!!" placement="top-start" open></vwc-alert>
+<vwc-alert subtitle="What an important info!!!" placement="top-end" open></vwc-alert>
+<vwc-alert subtitle="What an important info!!!" placement="bottom" open></vwc-alert>
+<vwc-alert subtitle="What an important info!!!" placement="bottom-start" open></vwc-alert>
+<vwc-alert subtitle="What an important info!!!" placement="bottom-end" open></vwc-alert>
+```
+
 ## Slots
 
 ### Action Items
