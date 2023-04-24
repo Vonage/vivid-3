@@ -1,3 +1,4 @@
 export interface VividComponentGeneratorOptions {
-  name: string;
+	addToExports?: boolean;
+	name: string;
 }
