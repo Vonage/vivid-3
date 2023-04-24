@@ -76,11 +76,11 @@ describe('vwc-tooltip', () => {
 
 			fireEvent(anchor, new MouseEvent('mouseover'));
 			await elementUpdated(element);
-      const openStateBeforeEscape = element.open;
+			const openStateBeforeEscape = element.open;
 
 			fireEvent(document, new KeyboardEvent('keydown', {key: 'Escape'}));
 			await elementUpdated(element);
-      const openStateAfterEscape = element.open;
+			const openStateAfterEscape = element.open;
 			
 			expect(openStateBeforeEscape)
 				.toEqual(true);
