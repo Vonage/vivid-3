@@ -7,7 +7,7 @@ import {
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
-import { affixIconTemplateFactory } from '../shared/patterns';
+import { affixIconTemplateFactory } from '../../shared/patterns';
 import type { Alert } from './alert';
 
 const getClasses = (_: Alert) => classNames(
