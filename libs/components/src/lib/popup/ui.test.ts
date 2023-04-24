@@ -17,6 +17,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		height: 150px;
 		width: 400px;
 	  }
+	  .small {
+	  height: 20px;
+	  }
 	.wrapper{
 		width: 100%;
 		height: 300px;
@@ -24,9 +27,17 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		align-items: center;
 		justify-content: center;
 		background-color: grey;
-
+	  }
+	  .element{
+	  width: 300px;
+	  height: 50px;
+	  position: relative;
+	  z-index: 11;
+	  background-color: #0074D9;
+	  margin-top: 20px;
 	  }
 	</style>
+	<div>
 	<div class="wrapper">
 	<div id="anchor5" class="square"></div>
 	<vwc-popup id="popup" anchor="anchor5" open placement="right-end" alternate>
@@ -90,6 +101,17 @@ test('should show the component', async ({ page }: { page: Page }) => {
     </div>
 	</vwc-popup>
 	</div>
+	<hr>
+	<div class="wrapper" style="flex-direction: column; height: 100px;">
+	<div id="anchor-index" class="square small"></div>
+	<vwc-popup id="popup" anchor="anchor-index" open placement="bottom-center" strategy="absolute" style="z-index: 12;">
+    <div class="contentWrapper">
+			z-index checks
+    </div>
+    </vwc-popup>
+    <div class="element">I have z-index: 11</div>
+	</div>
+	</div>
 	`;
 
 	page.setViewportSize({ width: 800, height: 720 });
@@ -104,7 +126,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	});
 
 	const testWrapper = await page.$('#wrapper');
-	await page.waitForLoadState('networkidle');
+	await page.waitForLoadState('networkidle');+
 
 	expect(await testWrapper?.screenshot())
 		.toMatchSnapshot(
