@@ -46,7 +46,7 @@ describe(`vivid component generator`, function () {
     expect(result).toBe(`export * from './${options.name}';`);
   });
 
-  it('should not add the component to components.ts exports without the option', async function() {
+  it('should omit the component to components.ts exports when addToExports is false', async function() {
     const filePath = 'libs/components/src/lib/components.ts';
     options.addToExports = false;
     tree.write(filePath, '');
