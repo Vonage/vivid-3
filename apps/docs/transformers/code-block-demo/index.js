@@ -21,25 +21,35 @@ module.exports = function (content, outputPath) {
 		return content;
 	}
 
+	const componentName = outputPath.split('/').at(-2);
+	const componentData = jsonData.find(c => c.title === componentName);
+
 	const dom = new JSDOM(content);
-	const codeBlocks = dom.window.document.querySelectorAll('pre.preview > code');
 	const preBlocks = dom.window.document.querySelectorAll('pre.preview');
+
 	preBlocks.forEach((pre, index) => {
 		const code = pre.querySelector(':scope > code');
-		const src = createiFrameContent(code.textContent, pre.classList, index, outputPath);
-		const fragment = renderiFrame(index, src, pre.outerHTML);
+		const src = createiFrameContent(code.textContent, pre.classList, index, outputPath, componentData);
+		const fragment = renderiFrame(index, src, pre.outerHTML, componentData);
 		pre.replaceWith(fragment);
 	});
+
 	return dom.serialize();
 };
 
-const renderiFrame = (index, src, content) => JSDOM.fragment(`
-	<div class="${CBD_CONTAINER}" style="--tooltip-inline-size: 100px;">
+const renderiFrame = (index, src, content, componentData) => {
+	const deps = componentData.modules
+		.map(m => m.split('/')[4])
+		.join(',');
+
+	return JSDOM.fragment(`
+	<div class="${CBD_CONTAINER}" style="--tooltip-inline-size: auto;">
 		<vwc-card elevation="0">
 			<iframe id="iframe-sample-${index}" src="${src}" class="${CBD_DEMO}" onload=onloadIframe(this) loading="lazy" aria-label="code block preview iframe" slot="main"></iframe>
 			<vwc-action-group appearance="ghost" style="direction: rtl;" slot="main">
-				<vwc-button id="buttonEdit${index}" aria-label="Edit source code" icon="code-line" aria-expanded="false" aria-controls="${CBD_CODE_BLOCK}-${index}" onclick="codeBlockButtonClick(this)"></vwc-button>
-				<vwc-button id="buttonCopy${index}" aria-label="Copy source code" icon="copy-2-line" data-index="${index}"></vwc-button>
+				<vwc-button id="buttonCPen${index}" connotation="cta" aria-label="Edit on CodePen" icon="open-line" data-index="${index}" data-deps="${deps}"></vwc-button>
+				<vwc-button id="buttonEdit${index}" connotation="cta" aria-label="Edit source code" icon="compose-line" aria-expanded="false" aria-controls="${CBD_CODE_BLOCK}-${index}" onclick="codeBlockButtonClick(this)"></vwc-button>
+				<vwc-button id="buttonCopy${index}" connotation="cta" aria-label="Copy source code" icon="copy-2-line" data-index="${index}"></vwc-button>
 			</vwc-action-group>
 			<details class="${CBD_DETAILS}" slot="main">
 				<summary></summary>
@@ -48,14 +58,14 @@ const renderiFrame = (index, src, content) => JSDOM.fragment(`
 				</div>
 			</details>
 		</vwc-card>
+		<vwc-tooltip anchor="buttonCPen${index}" text="Edit on CodePen" placement="top" style="text-align: center"></vwc-tooltip>
 		<vwc-tooltip anchor="buttonEdit${index}" text="Edit code" placement="top" style="text-align: center"></vwc-tooltip>
 		<vwc-tooltip anchor="buttonCopy${index}" text="Copy code" placement="top" style="text-align: center"></vwc-tooltip>
 	</div>`);
+}
 
-const createiFrameContent = (code, classList, index, outputPath) => {
-	const componentName = outputPath.split('/').at(-2);
-	const componentData = jsonData.filter(c => c.title === componentName);
-	const modules = new Set(componentData?.[0]?.modules);
+const createiFrameContent = (code, classList, index, outputPath, componentData) => {
+	const modules = new Set(componentData?.modules);
 
 	const layoutResult = layout(code, classList);
 
