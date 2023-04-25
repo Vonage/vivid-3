@@ -74,11 +74,7 @@ The `connotation` attribute sets the colors and icon according to the wanted con
 Note that icon, if not specifically set, defaults to a connotation-associated icon.
 
 ```html preview
-  <vwc-alert id="accent" subtitle="What an important info!!!" connotation="accent"></vwc-alert>
-  <vwc-alert id="success" subtitle="What an important info!!!" connotation="success"></vwc-alert>
-  <vwc-alert id="warning" subtitle="What an important info!!!" connotation="warning"></vwc-alert>
-  <vwc-alert id="alert" subtitle="What an important info!!!" connotation="alert"></vwc-alert>
-  <vwc-alert id="information" subtitle="What an important info!!!" connotation="information"></vwc-alert>
+  <vwc-alert subtitle="What an important info!!!" connotation="accent" open></vwc-alert>
 
   <vwc-button appearance='outlined' label="Show accent connotation" onclick="openAlert('accent')"></vwc-button>
   <vwc-button appearance='outlined' label="Show success connotation" onclick="openAlert('success')"></vwc-button> 
@@ -88,8 +84,8 @@ Note that icon, if not specifically set, defaults to a connotation-associated ic
 
 <script>
   function openAlert(connotation) {
-    alert = document.getElementById(connotation);
-    alert.open = true;
+    alert = document.querySelector('vwc-alert');
+    alert.connotation = connotation;
   }
 </script>
 ```
