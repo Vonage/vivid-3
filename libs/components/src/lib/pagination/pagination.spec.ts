@@ -78,18 +78,16 @@ describe('vwc-pagination', () => {
 	});
 
 	describe('click events', function () {
-		let clicked: boolean;
-		let event: Event;
 		let buttons: NodeListOf<Element> | undefined;
 
-		function setEventListeners(eventResults: Event) {
+		function setEventListeners(status: { clicked: boolean; event?: Event;}) {
 			element.addEventListener('change', (e) => {
-				eventResults = e;
+				status.clicked = true;
+				status.event = e;
 			});
 		}
 		beforeEach(async function () {
 			element.selectedIndex = 1;
-			clicked = false;
 
 			element.total = 20;
 			await elementUpdated(element);
@@ -97,49 +95,53 @@ describe('vwc-pagination', () => {
 		});
 
 		it('should change selectedIndex when clicking a valid button', async function () {
+			const status = {clicked: false};
+			setEventListeners(status);
 			const button = buttons?.item(2);
 			button?.dispatchEvent(new MouseEvent('click'));
 			expect(element.selectedIndex).toEqual(2);
 		});
 
 		it('should leave selectedIndex as is when clicking the "..." button', async function () {
+			const status = {clicked: false};
+			setEventListeners(status);
 			element.selectedIndex = 2;
 			const dots = buttons?.item(3);
 			dots?.dispatchEvent(new MouseEvent('click'));
 			expect(element.selectedIndex).toEqual(2);
 		});
 
-		it('should fire "change" event when a valid button is clicked', async () => {
-			element.selectedIndex = 0;
-			const button = buttons?.item(1);
-			button?.dispatchEvent(new MouseEvent('click'));
-			expect(clicked).toEqual(true);
-		});
-
-		it('should fire the "change" event with the selectedIndex, total and oldIndex', function () {
+		it('should fire the "change" event with the selectedIndex, total and oldIndex', async function () {
+			const status = {clicked: false, event: new Event('test')};
+			setEventListeners(status);
 			const button = buttons?.item(2);
 			button?.dispatchEvent(new MouseEvent('click'));
-			expect((event as MouseEvent).detail).toEqual({selectedIndex: 2, total: 20, oldIndex: 1});
+			expect(status.clicked).toEqual(true);
+			expect((status.event as MouseEvent).detail).toEqual({selectedIndex: 2, total: 20, oldIndex: 1});
 		});
 
 		it('should prevent "change" event when selected button is clicked', function () {
+			const status = {clicked: false, event: new Event('test')};
+			setEventListeners(status);
 			element.selectedIndex = 1;
 			const button = buttons?.item(1);
 			button?.dispatchEvent(new MouseEvent('click'));
-			expect(clicked).toEqual(false);
+			expect(status.clicked).toEqual(false);
 		});
 
 		it('should prevent change event when "..." is clicked', async () => {
+			const status = {clicked: false, event: new Event('test')};
+			setEventListeners(status);
 			const dots = buttons?.item(3);
 			dots?.dispatchEvent(new MouseEvent('click'));
-			expect(clicked).toEqual(false);
+			expect(status.clicked).toEqual(false);
 		});
 
 		it('should prevent change event on init', async () => {
-			element.selectedIndex = undefined;
-			const lastPage = buttons?.item(4);
-			lastPage?.dispatchEvent(new MouseEvent('click'));
-			expect(clicked).toEqual(false);
+			const status = {clicked: false, event: new Event('test')};
+			setEventListeners(status);
+			(element as any).selectedIndexChanged(undefined);
+			expect(status.clicked).toEqual(false);
 		});
 	});
 
