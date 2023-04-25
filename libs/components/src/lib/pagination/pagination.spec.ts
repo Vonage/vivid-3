@@ -82,13 +82,15 @@ describe('vwc-pagination', () => {
 		let event: Event;
 		let buttons: NodeListOf<Element> | undefined;
 
+		function setEventListeners(eventResults: Event) {
+			element.addEventListener('change', (e) => {
+				eventResults = e;
+			});
+		}
 		beforeEach(async function () {
 			element.selectedIndex = 1;
 			clicked = false;
-			element.addEventListener('change', (e) => {
-				clicked = true;
-				event = e;
-			});
+
 			element.total = 20;
 			await elementUpdated(element);
 			buttons = element.shadowRoot?.querySelectorAll('.vwc-pagination-button');
@@ -130,6 +132,13 @@ describe('vwc-pagination', () => {
 		it('should prevent change event when "..." is clicked', async () => {
 			const dots = buttons?.item(3);
 			dots?.dispatchEvent(new MouseEvent('click'));
+			expect(clicked).toEqual(false);
+		});
+
+		it('should prevent change event on init', async () => {
+			element.selectedIndex = undefined;
+			const lastPage = buttons?.item(4);
+			lastPage?.dispatchEvent(new MouseEvent('click'));
 			expect(clicked).toEqual(false);
 		});
 	});

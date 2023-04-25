@@ -21,7 +21,7 @@ export class Pagination extends FoundationElement {
 	 * HTML Attribute: text
 	 */
 	@attr({mode: 'reflect', converter: totalConverter}) total: number;
-	@attr({mode: 'reflect', converter: totalConverter, attribute: 'selected-index'}) selectedIndex: number;
+	@attr({mode: 'reflect', converter: totalConverter, attribute: 'selected-index'}) selectedIndex: number | undefined;
 
 	constructor() {
 		super();
@@ -48,6 +48,7 @@ export class Pagination extends FoundationElement {
 	}
 
 	selectedIndexChanged(oldValue: number, newValue: number) {
+		if (oldValue === undefined) return;
 		this.$emit('change', {selectedIndex: newValue, total: this.total, oldIndex: oldValue});
 	}
 }
