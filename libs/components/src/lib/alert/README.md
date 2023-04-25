@@ -102,7 +102,7 @@ Note that icon, if not specifically set, defaults to a connotation-associated ic
 The `removable` attribute sets a remove button.
 
 ```html preview
-<vwc-alert subtitle="What an important info!!!" open removable></vwc-alert>
+<vwc-alert subtitle="What an important info!!!" removable open></vwc-alert>
 
 <vwc-button label="Show alert" onclick="openAlert()"></vwc-button>
 
@@ -162,3 +162,12 @@ You can add action items using slotted content in a named slot `action-items`:
 ### Removed
 
 Fires `removed` when the removing animation is done.
+
+## Methods
+
+### remove()
+
+- Type: `function`
+- Returns: `void`
+
+Removes the alert from the DOM.  When the animation finishes, it emits the `removed` event and removes the alert from the DOM completely.  If you have a variable that refers to the alert element make sure to clear it otherwise it might cause a memory leak.

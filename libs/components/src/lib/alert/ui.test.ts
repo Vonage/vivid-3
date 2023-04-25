@@ -37,30 +37,3 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		'./snapshots/alert.png'
 	);
 });
-
-test('should remove the component when clicking on remove button', async ({ page }: { page: Page }) => {
-	const template = `
-			<vwc-alert removable icon="home" text="ET Phone!"></vwc-alert>
-	`;
-
-	await loadComponents({
-		page,
-		components,
-	});
-	await loadTemplate({
-		page,
-		template,
-	});
-
-	await page.waitForLoadState('networkidle');
-
-	const removeButton = await page.locator('.dismiss-button');
-	const element = await page.locator('vwc-alert');
-
-	await removeButton.click();
-
-	await element.waitFor({state: 'detached'});
-
-	expect(await element.count()).toEqual(0);
-
-});

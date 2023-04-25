@@ -121,22 +121,26 @@ export class Alert extends FoundationElement {
 		super.attributeChangedCallback(name, oldValue, newValue);
 		switch (name) {
 			case 'open': {
-				this.open ? this.#show() : this.#hide();
+				this.open ? this.#show() : this.remove();
 			}
 		}
 	}
 
 	#show(): void {
 		this.open = true;
-		clearTimeout(this.timeout);
+		if (this.timeout) {
+			clearTimeout(this.timeout);
+		}
 		if (this.timeoutms > 0) {
-			this.timeout = setTimeout(() => this.#hide(), this.timeoutms);
+			this.timeout = setTimeout(() => this.remove(), this.timeoutms);
 		}
 	}
 
-	#hide(): void {
+	override remove(): void {
 		this.open = false;
-		clearTimeout(this.timeout);
+		if (this.timeout) {
+			clearTimeout(this.timeout);
+		}
 		this.$emit('removed');
 	}
 
@@ -144,7 +148,7 @@ export class Alert extends FoundationElement {
 		if (e.key !== 'Escape' || !this.removable) {
 			return;
 		}
-		this.#hide();
+		this.remove();
 	};
 }
 

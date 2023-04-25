@@ -1,5 +1,6 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import type { Icon } from '../icon/icon';
+import type { Button } from '../button/button';
 import { Connotation } from '../enums';
 import { Alert } from './alert';
 import type { AlertConnotation } from './alert';
@@ -79,6 +80,57 @@ describe('vwc-alert', () => {
 				.toEqual(messageHeadline);
 			expect(propertyHeadlineWithAttribute)
 				.toEqual(messageHeadline);
+		});
+	});
+
+	describe('subtitle', function () {
+		/**
+		 * @param subtitle
+		 */
+		async function setSubtitleProperty(subtitle: string | undefined) {
+			element.subtitle = subtitle;
+			await elementUpdated(element);
+		}
+
+		/**
+		 * @param subtitle
+		 */
+		async function setSubtitleAttribute(subtitle: string | undefined) {
+			element.setAttribute('subtitle', subtitle ? subtitle : '');
+			await elementUpdated(element);
+		}
+
+		/**
+		 *
+		 */
+		function getSubtitle() {
+			const subtitle = getBaseElement(element).querySelector('.subtitle')?.textContent;
+			return subtitle?.trim();
+		}
+
+		it('should init with undefined and set as empty string in DOM', function () {
+			const initSubtitlePropEmpty = element.subtitle;
+			const initSubtitleAttrEmpty = getSubtitle();
+
+			expect(initSubtitlePropEmpty)
+				.toEqual(undefined);
+			expect(initSubtitleAttrEmpty).toBeUndefined();
+		});
+
+		it('should reflect the message', async function () {
+			const messageSubtitle = 'Some Subtitle';
+
+			await setSubtitleProperty(messageSubtitle);
+			const DOMSubtitleWithProperty = getSubtitle();
+
+			await setSubtitleProperty(undefined);
+			await setSubtitleAttribute(messageSubtitle);
+			const propertySubtitleWithAttribute = element.subtitle;
+
+			expect(DOMSubtitleWithProperty)
+				.toEqual(messageSubtitle);
+			expect(propertySubtitleWithAttribute)
+				.toEqual(messageSubtitle);
 		});
 	});
 
@@ -201,9 +253,31 @@ describe('vwc-alert', () => {
 				.toEqual(true);
 		});
 
+		it('should have dismiss button when removable is true', async function () {
+			element.toggleAttribute('removable');
+			await elementUpdated(element);
+			const dismissButton: Button = element.shadowRoot?.querySelector('.dismiss-button') as Button;
+			
+			expect(dismissButton).not.toEqual(null);
+		});
+
 		it('should remove the remove button when removable is false', async function () {
 			expect(element.shadowRoot?.querySelector('.dismiss-button'))
 				.toEqual(null);
+		});
+
+		it('should close when removable is true', async function () {
+			element.open = true;
+			element.toggleAttribute('removable');
+			await elementUpdated(element);
+			const dismissButton: Button = element.shadowRoot?.querySelector('.dismiss-button') as Button;
+			
+			expect(element.open).toEqual(true);
+
+			dismissButton.click();
+			await elementUpdated(element);
+
+			expect(element.open).toEqual(false);
 		});
 	});
 
