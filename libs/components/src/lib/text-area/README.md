@@ -49,6 +49,20 @@ Set the `value` attribute to set the default value for the text area. Setting th
 <vwc-text-area value="Default Value"></vwc-text-area>
 ```
 
+### Resize
+
+- Type: `none` | `vertical` | `horizontal` | `both`
+- Default: `none`
+
+Set the `resize` attribute to control how the text area can be resized by the user.
+
+```html preview
+<vwc-text-area value="You can't resize me by default"></vwc-text-area>
+<vwc-text-area value="You can resize me vertically" resize="vertical"></vwc-text-area>
+<vwc-text-area value="You can resize me horizontally" resize="horizontal"></vwc-text-area>
+<vwc-text-area value="You can resize me in both directions" resize="both"></vwc-text-area>
+```
+
 ### Helper text
 
 Add the `helper-text` to add some helper text below the text area.
@@ -69,6 +83,18 @@ Add the `success-text` to add some success text below the text area.
 
 ```html preview
 <vwc-text-area label="Success text below" success-text="Success text"></vwc-text-area>
+```
+
+### Error text
+
+It is possible to force the text area's error state by setting the `error-text` attribute to a custom error message.
+Note that any current error state will be overriden by `error-text` (and, if applicable, restored once it is removed).
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-text-area value="some text" label='Enter some text' error-text="Please take this seriously"></vwc-text-area>
 ```
 
 ### Disabled

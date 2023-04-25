@@ -28,6 +28,8 @@ export const ActionGroupTemplate: (
 	definition: FoundationElementDefinition
 
 ) => ViewTemplate<ActionGroup> = () => html`
-<div class="${getClasses}">
+<div class="${getClasses}" 
+	role="${x => x.role ? x.role : 'group'}" 
+	aria-label="${x => x.ariaLabel}">
   <slot></slot>
 </div>`;

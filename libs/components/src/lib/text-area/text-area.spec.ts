@@ -38,7 +38,7 @@ describe('vwc-text-area', () => {
 	});
 
 	describe('basic', () => {
-		it('should be initialized as a vwc-text-field', async () => {
+		it('should be initialized as a vwc-text-area', async () => {
 			const elmProps = {
 				charCount: undefined,
 				cols: 20,
@@ -445,6 +445,52 @@ describe('vwc-text-area', () => {
 			element.successText = 'success';
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.success-message')?.textContent?.trim()).toEqual('success');
+		});
+	});
+
+	describe('forced error', function () {
+		const forcedErrorMessage = 'BAD!';
+
+		it('should force the input in custom error mode', async function () {
+			element.errorText = forcedErrorMessage;
+			await elementUpdated(element);
+			expect(element.validationMessage).toBe(forcedErrorMessage);
+			expect(element.validity.valid).toBeFalsy();
+		});
+
+		it('should add the error class', async function () {
+			element.errorText = forcedErrorMessage;
+			await elementUpdated(element);
+			expect(getBaseElement(element)
+				.classList
+				.contains('error'))
+				.toEqual(true);
+		});
+
+		it('should display the given error message', async function () {
+			element.errorText = forcedErrorMessage;
+			await elementUpdated(element);
+			const errorElement = element.shadowRoot?.querySelector('.error-message');
+			expect(errorElement !== null).toBeTruthy();
+		});
+
+		it('should replace the current error state when set', async function () {
+			element.required = true;
+			setToBlurred();
+			element.errorText = forcedErrorMessage;
+			await elementUpdated(element);
+			expect(element.validationMessage).toBe(forcedErrorMessage);
+		});
+		
+		it('should restore the current error state when removed', async function () {
+			element.required = true;
+			setToBlurred();
+			await elementUpdated(element);
+			const initialErrorMessage = element.validationMessage;
+			element.errorText = forcedErrorMessage;
+			await elementUpdated(element);
+			element.errorText = '';
+			expect(element.validationMessage).toBe(initialErrorMessage);
 		});
 	});
 

@@ -5,6 +5,7 @@ import { FoundationElement } from '@microsoft/fast-foundation';
  * Base class for elevation
  *
  * @public
+ * @slot - Default slot.
  */
 export class Elevation extends FoundationElement {
 	/**

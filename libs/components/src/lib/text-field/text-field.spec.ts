@@ -573,4 +573,60 @@ describe('vwc-text-field', () => {
 			expect(internalInput.getAttribute('name')).toEqual('off');
 		});
 	});
+
+	describe('forced error', function () {
+		const forcedErrorMessage = 'BAD!';
+
+		it('should force the input in custom error mode', async function () {
+			element.errorText = forcedErrorMessage;
+			await elementUpdated(element);
+			expect(element.validationMessage).toBe(forcedErrorMessage);
+			expect(element.validity.valid).toBeFalsy();
+		});
+
+		it('should add the error class', async function () {
+			element.errorText = forcedErrorMessage;
+			await elementUpdated(element);
+			expect(getBaseElement(element)
+				.classList
+				.contains('error'))
+				.toEqual(true);
+		});
+
+		it('should display the given error message', async function () {
+			element.errorText = forcedErrorMessage;
+			await elementUpdated(element);
+			const errorElement = element.shadowRoot?.querySelector('.error-message');
+			expect(errorElement).toBeDefined();
+		});
+
+		it('should replace/restore the current error state, if any, when set/removed', async function () {
+			let initialErrorMessage = '';
+
+			expect(element.validationMessage).toBe('');
+			expect(element.validity.valid).toBeTruthy();
+
+			element.pattern = '123';
+			element.value = 'abc';
+			setToBlurred();
+			await elementUpdated(element);
+			initialErrorMessage = element.validationMessage;
+
+			expect(initialErrorMessage).not.toBe('');
+			expect(initialErrorMessage).not.toBe(forcedErrorMessage);
+			expect(element.validity.valid).toBeFalsy();
+
+			element.errorText = forcedErrorMessage;
+			await elementUpdated(element);
+
+			expect(element.validationMessage).toBe(forcedErrorMessage);
+			expect(element.validity.valid).toBeFalsy();
+
+			element.errorText = '';
+			await elementUpdated(element);
+
+			expect(element.validationMessage).toBe(initialErrorMessage);
+			expect(element.validity.valid).toBeFalsy();
+		});
+	});
 });

@@ -44,7 +44,9 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("publicComponentsFilter", function (components) {
     const isServing = process.argv.includes('--serve');
-    return components.filter(component => component?.status !== 'underlying' || isServing)
+    return isServing
+		? components
+		: components.filter(component => component?.status !== 'underlying');
   });
 
   return {

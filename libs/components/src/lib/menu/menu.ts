@@ -8,6 +8,7 @@ import type { Popup } from '../popup/popup';
  * Base class for menu
  *
  * @public
+ * @slot - Default slot.
  */
 export class Menu extends FastMenu {
 	_popup?: Popup;
@@ -37,6 +38,13 @@ export class Menu extends FastMenu {
 	 * HTML Attribute: anchor
 	 */
 	@attr anchor?: string;
+
+	anchorChanged(prevAnchor: string, newAnchor: string ) {
+		const prevAnchorEl = document.getElementById(prevAnchor);
+		const newAnchorEl = document.getElementById(newAnchor);
+		prevAnchorEl?.removeAttribute('aria-haspopup');
+		newAnchorEl?.setAttribute('aria-haspopup', 'menu');
+	}
 
 	popupOpenChanged = () => {
 		this.open = (this._popup as Popup).open;
