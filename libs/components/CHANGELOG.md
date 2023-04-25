@@ -4,6 +4,26 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.9.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.8.0...vivid-v3.9.0) (2023-04-24)
+
+
+### Features
+
+* **button:** size and shape in stacked (VIV-1012) ([#1123](https://github.com/Vonage/vivid-3/issues/1123)) ([7f9f8b1](https://github.com/Vonage/vivid-3/commit/7f9f8b1e433fb5348832a7a01e64464fdbdd5c5b))
+* **components:** add a way to manually set text-field in error state (VIV-970) ([#1103](https://github.com/Vonage/vivid-3/issues/1103)) ([6af1f2e](https://github.com/Vonage/vivid-3/commit/6af1f2ea5a6b6c90791c0eb3df0c4e73558cc780))
+* **popup:** set default z-index of 10 (VIV-1023) ([#1132](https://github.com/Vonage/vivid-3/issues/1132)) ([601dd6f](https://github.com/Vonage/vivid-3/commit/601dd6fca13e0f9778c9657cc7f2b6bb073b93fa))
+
+
+### Bug Fixes
+
+* **calendar:** failing test on Windows (VIV-000) ([#1125](https://github.com/Vonage/vivid-3/issues/1125)) ([1a4463f](https://github.com/Vonage/vivid-3/commit/1a4463f4e34b121bd32cec6e95f03e993387b198))
+* **components:** paused progress with `pacific` connotation (VIV-1003) ([#1122](https://github.com/Vonage/vivid-3/issues/1122)) ([6adc292](https://github.com/Vonage/vivid-3/commit/6adc292c6f74cfb40d2cd5baec54d843ac0ca53c))
+* **note:** align-items start in slot (VIV-1024) ([#1127](https://github.com/Vonage/vivid-3/issues/1127)) ([8781633](https://github.com/Vonage/vivid-3/commit/87816330901ebcfe63ec3a84b62f5989145fbc46))
+* **popup:** popup inside select (VIV-984) ([#1119](https://github.com/Vonage/vivid-3/issues/1119)) ([11c95b7](https://github.com/Vonage/vivid-3/commit/11c95b7476e8b685f06c90730adffea07211363c))
+* **tooltip:** allow setting anchor to an HTMLElement (VIV-1032) ([#1130](https://github.com/Vonage/vivid-3/issues/1130)) ([5f4e34a](https://github.com/Vonage/vivid-3/commit/5f4e34aa1cf6b8747f188a9e4ed0c744481f5a8d))
+* **tooltip:** set auto as initial width ([29b10cc](https://github.com/Vonage/vivid-3/commit/29b10cc04ff61a4bf8bda3d2986d03572976cd19))
+* **tooltip:** set auto as initial width (VIV-1027) ([#1131](https://github.com/Vonage/vivid-3/issues/1131)) ([29b10cc](https://github.com/Vonage/vivid-3/commit/29b10cc04ff61a4bf8bda3d2986d03572976cd19))
+
 ## [3.8.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.7.0...vivid-v3.8.0) (2023-04-18)
 
 
