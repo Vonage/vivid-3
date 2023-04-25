@@ -23,6 +23,7 @@ export class Tooltip extends Popup {
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
 		this.#removeEventListener();
+		document.removeEventListener('keydown', this.#closeOnEscape);
 	}
 
 	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
@@ -56,4 +57,18 @@ export class Tooltip extends Popup {
 	#hide = () => {
 		this.open = false;
 	};
+
+	#closeOnEscape = (e:KeyboardEvent) => {
+		if (e.key === 'Escape') this.#hide();
+	};
+
+	override openChanged(oldValue: boolean, newValue: boolean): void {
+		super.openChanged(oldValue, newValue);
+		if (oldValue === undefined) return;
+		if (newValue) {
+			document.addEventListener('keydown', this.#closeOnEscape);
+		} else {
+			document.removeEventListener('keydown', this.#closeOnEscape);
+		}
+	}
 }
