@@ -4,15 +4,15 @@ import { Connotation } from '../enums';
 import { AffixIcon } from '../../shared/patterns/affix';
 
 export type AlertConnotation =
-	Connotation.Information |
 	Connotation.Accent |
+	Connotation.Information |
 	Connotation.Success |
 	Connotation.Warning |
 	Connotation.Alert;
 
 const connotationIconMap = new Map([
-	[Connotation.Information, 'info-line'],
 	[Connotation.Accent, 'megaphone-line'],
+	[Connotation.Information, 'info-line'],
 	[Connotation.Success, 'check-circle-line'],
 	[Connotation.Warning, 'warning-line'],
 	[Connotation.Alert, 'error-line']
@@ -21,7 +21,7 @@ const connotationIconMap = new Map([
 export type AlertPlacement = 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end';
 
 const defaultConnotation =
-	(connotation: Connotation | undefined = Connotation.Accent) => connotationIconMap.get(connotation) as Connotation;
+	(connotation: Connotation) => connotationIconMap.get(connotation) as Connotation;
 
 /**
  * Base class for alert
@@ -99,7 +99,7 @@ export class Alert extends FoundationElement {
 	@attr connotation?: AlertConnotation;
 
 	get conditionedIcon() {
-		return this.icon ?? defaultConnotation(this.connotation);
+		return this.icon ?? defaultConnotation(this.connotation as any);
 	}
 
 	override connectedCallback() {

@@ -135,8 +135,8 @@ describe('vwc-alert', () => {
 	});
 
 	describe('connotation', function () {
-		const possibleConnotations = [Connotation.Information,
-			Connotation.Accent,
+		const possibleConnotations = [Connotation.Accent,
+			Connotation.Information,
 			Connotation.Success,
 			Connotation.Warning,
 			Connotation.Alert
@@ -169,6 +169,10 @@ describe('vwc-alert', () => {
 			getIcon = () => getBaseElement(element).querySelector('.icon > vwc-icon') as Icon;
 		});
 
+		it('should set the icon according to connotation accent by default', async function () {
+			expect(element.connotation).toBeUndefined();
+		});
+
 		it('should set the icon according to "icon" attribute', async function () {
 			element.setAttribute('icon', 'home');
 			await elementUpdated(element);
@@ -179,8 +183,8 @@ describe('vwc-alert', () => {
 
 		it('should set the icon according to set connotation', async function () {
 			const connotationIconMap: Map<AlertConnotation, string> = new Map([
-				[Connotation.Information, 'info-line'],
 				[Connotation.Accent, 'megaphone-line'],
+				[Connotation.Information, 'info-line'],
 				[Connotation.Success, 'check-circle-line'],
 				[Connotation.Warning, 'warning-line'],
 				[Connotation.Alert, 'error-line']
