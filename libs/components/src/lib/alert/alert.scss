@@ -20,25 +20,27 @@ $alert-transition-delay: --transition-delay;
 .control {
 	position: fixed;
 	z-index: 10;
+	border-radius: 6px;
+	inline-size: max-content;
 
 	// placement
-	inset-inline-start: 0;
-	inset-inline-end: 0;
 	inset-block-end: 0;
-	margin-inline: auto;
+	inset-inline-end: 0;
+	inset-inline-start: 0;
 	margin-block: 16px;
+	margin-inline: auto;
 
 	&.placement-top,
 	&.placement-top-start,
 	&.placement-top-end {
-		inset-block-start: 0;
 		inset-block-end: auto;
+		inset-block-start: 0;
 	}
 
 	&.placement-top-start,
 	&.placement-bottom-start {
-		inset-inline-end: auto;
 		right: auto;
+		inset-inline-end: auto;
 		margin-inline: 16px;
 	}
 
@@ -58,8 +60,6 @@ $alert-transition-delay: --transition-delay;
 		transform: scale(1);
 	}
 
-	border-radius: 6px;
-	inline-size: max-content;
 	min-inline-size: var(#{variables.$alert-min-inline-size}, 420px);
 	transition: opacity 150ms cubic-bezier(0, 0, 0.2, 1) 0ms, transform 150ms cubic-bezier(0, 0, 0.2, 1) 0ms;
 }
