@@ -20,7 +20,7 @@ Use the `open` attribute to open alert.
 ```html preview
 <vwc-alert subtitle="What an important info!!!"></vwc-alert>
 
-<vwc-button label="Show alert" onclick="openAlert()"></vwc-button>
+<vwc-button appearance='outlined' label="Show alert" onclick="openAlert()"></vwc-button>
 
 <script>
   function openAlert() {
@@ -80,11 +80,11 @@ Note that icon, if not specifically set, defaults to a connotation-associated ic
   <vwc-alert id="alert" subtitle="What an important info!!!" connotation="alert"></vwc-alert>
   <vwc-alert id="information" subtitle="What an important info!!!" connotation="information"></vwc-alert>
 
-  <vwc-button label="Show accent connotation" onclick="openAlert('accent')"></vwc-button>
-  <vwc-button label="Show success connotation" onclick="openAlert('success')"></vwc-button> 
-  <vwc-button label="Show warning connotation" onclick="openAlert('warning')"></vwc-button> 
-  <vwc-button label="Show alert connotation" onclick="openAlert('alert')"></vwc-button>
-  <vwc-button label="Show information connotation" onclick="openAlert('information')"></vwc-button>
+  <vwc-button appearance='outlined' label="Show accent connotation" onclick="openAlert('accent')"></vwc-button>
+  <vwc-button appearance='outlined' label="Show success connotation" onclick="openAlert('success')"></vwc-button> 
+  <vwc-button appearance='outlined' label="Show warning connotation" onclick="openAlert('warning')"></vwc-button> 
+  <vwc-button appearance='outlined' label="Show alert connotation" onclick="openAlert('alert')"></vwc-button>
+  <vwc-button appearance='outlined' label="Show information connotation" onclick="openAlert('information')"></vwc-button>
 
 <script>
   function openAlert(connotation) {
@@ -104,7 +104,7 @@ The `removable` attribute sets a remove button.
 ```html preview
 <vwc-alert subtitle="What an important info!!!" removable open></vwc-alert>
 
-<vwc-button label="Show alert" onclick="openAlert()"></vwc-button>
+<vwc-button appearance='outlined' label="Show alert" onclick="openAlert()"></vwc-button>
 
 <script>
   function openAlert() {
@@ -124,7 +124,7 @@ Use the `timeoutms` attribute to set timeout to close the alert.
 ```html preview
 <vwc-alert subtitle="What an important info!!!" timeoutms=2000></vwc-alert>
 
-<vwc-button label="Show alert" onclick="openAlert()"></vwc-button>
+<vwc-button appearance='outlined' label="Show alert" onclick="openAlert()"></vwc-button>
 
 <script>
   function openAlert() {
@@ -142,7 +142,21 @@ Use the `placement` attribute to set the placement of the alert.
 - Default: `'bottom'`
 
 ```html preview center
-<vwc-alert subtitle="What an important info!!!" placement="top" open></vwc-alert>
+<vwc-alert subtitle="What an important info!!!" open></vwc-alert>
+
+<vwc-button appearance='outlined' label="Show top alert" onclick="openAlert('top')"></vwc-button>
+<vwc-button appearance='outlined' label="Show top-start alert" onclick="openAlert('top-start')"></vwc-button>
+<vwc-button appearance='outlined' label="Show top-end alert" onclick="openAlert('top-end')"></vwc-button>
+<vwc-button appearance='outlined' label="Show bottom alert" onclick="openAlert('bottom')"></vwc-button>
+<vwc-button appearance='outlined' label="Show bottom-start alert" onclick="openAlert('bottom-start')"></vwc-button>
+<vwc-button appearance='outlined' label="Show bottom-end alert" onclick="openAlert('bottom-end')"></vwc-button>
+
+<script>
+  function openAlert(placement) {
+    alert = document.querySelector('vwc-alert');
+    alert.placement = placement;
+  }
+</script>
 ```
 
 ## Slots
@@ -155,6 +169,25 @@ You can add action items using slotted content in a named slot `action-items`:
 <vwc-alert subtitle="What an important info!!!" open>
   <vwc-button slot="action-items" appearance="outlined" shape='pill' label="Action"></vwc-button>
 </vwc-alert>
+```
+
+## CSS Variables
+
+### Min Inline Size
+
+Use the `--alert-min-inline-size` variable to set the alert's inline size.
+
+- Type: [`<length>`](https://developer.mozilla.org/en-US/docs/Web/CSS/length)
+- Default: `auto`
+
+```html preview
+<style>
+  vwc-alert {
+    --alert-min-inline-size: 100px;
+  }
+</style>
+
+<vwc-alert subtitle="What an important info!!!" open></vwc-alert>
 ```
 
 ## Events
