@@ -61,12 +61,12 @@ Use the `headline` attribute to set the alert's headline.
 The `icon` attribute will override the icon set by connotation.
 
 ```html preview
-<vwc-alert subtitle="What an important info!!!" open icon="megaphone-line"></vwc-alert>
+<vwc-alert subtitle="What an important info!!!" open icon="megaphone-solid"></vwc-alert>
 ```
 
 ### Connotation
 
-The `connotation` attribute sets the colors according to the wanted connotation.
+The `connotation` attribute sets the colors and icon according to the wanted connotation.
 
 - Type: `'accent'` | `'information'` | `'success'` | `'warning'` | `'alert'`
 - Default: `'accent'`
@@ -139,15 +139,10 @@ Use the `timeoutms` attribute to set timeout to close the alert.
 Use the `placement` attribute to set the placement of the alert.
 
 - Type: `'top'` | `'top-start'` | `'top-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`
-- Default: `''`
+- Default: `'bottom'`
 
 ```html preview center
 <vwc-alert subtitle="What an important info!!!" placement="top" open></vwc-alert>
-<vwc-alert subtitle="What an important info!!!" placement="top-start" open></vwc-alert>
-<vwc-alert subtitle="What an important info!!!" placement="top-end" open></vwc-alert>
-<vwc-alert subtitle="What an important info!!!" placement="bottom" open></vwc-alert>
-<vwc-alert subtitle="What an important info!!!" placement="bottom-start" open></vwc-alert>
-<vwc-alert subtitle="What an important info!!!" placement="bottom-end" open></vwc-alert>
 ```
 
 ## Slots
