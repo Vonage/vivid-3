@@ -203,16 +203,14 @@ describe('vwc-alert', () => {
 			element.addEventListener('removed', spy);
 			element.open = true;
 			element.timeoutms = timeout;
+			await elementUpdated(element);
+			element.open = false;
+
+			expect(spy).not.toHaveBeenCalled();
 
 			await elementUpdated(element);
-			expect(spy)
-				.not.toHaveBeenCalled();
 
-			setTimeout(() => {
-				expect(spy)
-					.toHaveBeenCalled();
-			}, timeout);
-
+			expect(spy).toHaveBeenCalled();
 		});
 
 		it('should fire removed event when open from start', async function () {
@@ -225,16 +223,18 @@ describe('vwc-alert', () => {
 			const spy = jest.fn();
 			element.addEventListener('removed', spy);
 
-			await elementUpdated(element);
 			element.open = false;
-			expect(spy)
-				.not.toHaveBeenCalled();
+			expect(spy).not.toHaveBeenCalled();
 
-			setTimeout(() => {
-				expect(spy)
-					.toHaveBeenCalled();
-			}, timeout);
+			await elementUpdated(element);
 
+			expect(spy).toHaveBeenCalled();
+
+			element.open = true;
+			await elementUpdated(element);
+
+			element.remove();
+			expect(spy).toHaveBeenCalled();
 		});
 	});
 
@@ -257,7 +257,7 @@ describe('vwc-alert', () => {
 			element.toggleAttribute('removable');
 			await elementUpdated(element);
 			const dismissButton: Button = element.shadowRoot?.querySelector('.dismiss-button') as Button;
-			
+
 			expect(dismissButton).not.toEqual(null);
 		});
 
@@ -271,7 +271,7 @@ describe('vwc-alert', () => {
 			element.toggleAttribute('removable');
 			await elementUpdated(element);
 			const dismissButton: Button = element.shadowRoot?.querySelector('.dismiss-button') as Button;
-			
+
 			expect(element.open).toEqual(true);
 
 			dismissButton.click();
