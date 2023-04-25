@@ -89,6 +89,15 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	<div style="margin: 5px;">
 		<vwc-button style='display: block;' label="I'm full width" shape='pill' appearance='filled'></vwc-button>
 	</div>
+	<div style="margin: 5px;">
+		<vwc-button style="width: 150px" label='I am button with long text and text wrap' shape='pill' appearance='filled'></vwc-button>
+	</div>
+	<div style="margin: 5px;">
+		<vwc-button style="width: 150px; --button-line-clamp: 2;"
+		label="I'm button with long text and text wrap"shape='pill' appearance='filled'>
+		</vwc-button>
+	</div>
+	</div>
 	`;
 
 	page.setViewportSize({ width: 500, height: 720 });

@@ -202,29 +202,3 @@ Add the `pending` attribute to disable the button and display a processing indic
   appearance='filled'>
 </vwc-button>
 ```
-
-### Long text in buttons
-#### Not sure if we need to specify this - currently this is for design QA
-```html preview
-<style>
-.button-wrap {
-  width: 150px;
-	--button-line-clamp: 1;
-}
-.button-width {
-  width: 150px;
-}
-</style>
-<vwc-button
-  class='button-width'
-  label="I'm button with long text and text wrap"
-  shape='pill'
-  appearance='filled'>
-</vwc-button>
-<vwc-button
-  class='button-wrap'
-  label="I'm button with long text and text wrap"
-  shape='pill'
-  appearance='filled'>
-</vwc-button>
-```

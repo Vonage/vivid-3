@@ -50,7 +50,7 @@
 		overflow: hidden;
 		-webkit-box-orient: vertical;
 		inline-size: 100%;
-		-webkit-line-clamp: var(#{variables.$button-line-clamp}, 2);
+		-webkit-line-clamp: var(#{variables.$button-line-clamp}, 1);
 	}
 
 	&:not(.icon-only) {
