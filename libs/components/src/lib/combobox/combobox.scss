@@ -47,6 +47,6 @@
 	contain: paint;
 }
 
-.popup {
-	#{popup-variables.$popup-width}: 100%;
+::part(popup-base) {
+	inline-size: 100%;
 }

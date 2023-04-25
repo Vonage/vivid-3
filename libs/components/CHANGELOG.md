@@ -4,6 +4,146 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.9.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.8.0...vivid-v3.9.0) (2023-04-24)
+
+
+### Features
+
+* **button:** size and shape in stacked (VIV-1012) ([#1123](https://github.com/Vonage/vivid-3/issues/1123)) ([7f9f8b1](https://github.com/Vonage/vivid-3/commit/7f9f8b1e433fb5348832a7a01e64464fdbdd5c5b))
+* **components:** add a way to manually set text-field in error state (VIV-970) ([#1103](https://github.com/Vonage/vivid-3/issues/1103)) ([6af1f2e](https://github.com/Vonage/vivid-3/commit/6af1f2ea5a6b6c90791c0eb3df0c4e73558cc780))
+* **popup:** set default z-index of 10 (VIV-1023) ([#1132](https://github.com/Vonage/vivid-3/issues/1132)) ([601dd6f](https://github.com/Vonage/vivid-3/commit/601dd6fca13e0f9778c9657cc7f2b6bb073b93fa))
+
+
+### Bug Fixes
+
+* **calendar:** failing test on Windows (VIV-000) ([#1125](https://github.com/Vonage/vivid-3/issues/1125)) ([1a4463f](https://github.com/Vonage/vivid-3/commit/1a4463f4e34b121bd32cec6e95f03e993387b198))
+* **components:** paused progress with `pacific` connotation (VIV-1003) ([#1122](https://github.com/Vonage/vivid-3/issues/1122)) ([6adc292](https://github.com/Vonage/vivid-3/commit/6adc292c6f74cfb40d2cd5baec54d843ac0ca53c))
+* **note:** align-items start in slot (VIV-1024) ([#1127](https://github.com/Vonage/vivid-3/issues/1127)) ([8781633](https://github.com/Vonage/vivid-3/commit/87816330901ebcfe63ec3a84b62f5989145fbc46))
+* **popup:** popup inside select (VIV-984) ([#1119](https://github.com/Vonage/vivid-3/issues/1119)) ([11c95b7](https://github.com/Vonage/vivid-3/commit/11c95b7476e8b685f06c90730adffea07211363c))
+* **tooltip:** allow setting anchor to an HTMLElement (VIV-1032) ([#1130](https://github.com/Vonage/vivid-3/issues/1130)) ([5f4e34a](https://github.com/Vonage/vivid-3/commit/5f4e34aa1cf6b8747f188a9e4ed0c744481f5a8d))
+* **tooltip:** set auto as initial width ([29b10cc](https://github.com/Vonage/vivid-3/commit/29b10cc04ff61a4bf8bda3d2986d03572976cd19))
+* **tooltip:** set auto as initial width (VIV-1027) ([#1131](https://github.com/Vonage/vivid-3/issues/1131)) ([29b10cc](https://github.com/Vonage/vivid-3/commit/29b10cc04ff61a4bf8bda3d2986d03572976cd19))
+
+## [3.8.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.7.0...vivid-v3.8.0) (2023-04-18)
+
+
+### Features
+
+* **button:** add super-condensed size (VIV-871) ([#1115](https://github.com/Vonage/vivid-3/issues/1115)) ([42ee3dc](https://github.com/Vonage/vivid-3/commit/42ee3dcdb816ebcba6f1c139e2865c66bac4f7df))
+* **icon:** update icons set to version 4.1.0 (VIV-987) ([#1111](https://github.com/Vonage/vivid-3/issues/1111)) ([2b378c6](https://github.com/Vonage/vivid-3/commit/2b378c641c71135c744dede5d24bda29d8238a7f))
+* **icon:** update icons set version (VIV-1011) ([#1120](https://github.com/Vonage/vivid-3/issues/1120)) ([0d05674](https://github.com/Vonage/vivid-3/commit/0d056741e9bd1d30e4deefc616711ada294bf4de))
+* **select:** add helper text (VIV-980) ([#1109](https://github.com/Vonage/vivid-3/issues/1109)) ([bd6baa1](https://github.com/Vonage/vivid-3/commit/bd6baa13116de053375d06b416ba6c246570431a))
+* **tag-group:** add tag group component (VIV-945) ([#1114](https://github.com/Vonage/vivid-3/issues/1114)) ([1e3cf55](https://github.com/Vonage/vivid-3/commit/1e3cf5585a391d50fb1c44d35b263036fa34aa87))
+* **tag:** migrate tag component (VIV-944) ([#1100](https://github.com/Vonage/vivid-3/issues/1100)) ([ee15a08](https://github.com/Vonage/vivid-3/commit/ee15a08e445bafc05487d0b1d14e5ffad07db3bf))
+
+
+### Bug Fixes
+
+* **badge:** docs (VIV-981) ([#1106](https://github.com/Vonage/vivid-3/issues/1106)) ([1c920e2](https://github.com/Vonage/vivid-3/commit/1c920e2bb55e079979178a99eafaa0288125f157))
+* **components:** arrow position for popup (VIV-960) ([#1097](https://github.com/Vonage/vivid-3/issues/1097)) ([4a29828](https://github.com/Vonage/vivid-3/commit/4a29828b8e8dfeab63588434f91d69902e9a1a96))
+* **components:** focus indicator when textarea is resized (VIV-905) ([#1099](https://github.com/Vonage/vivid-3/issues/1099)) ([c1889b0](https://github.com/Vonage/vivid-3/commit/c1889b006be89f1d1303a1a8a8e346092d63eefc))
+* **components:** text-area resize (VIV-1004) ([#1113](https://github.com/Vonage/vivid-3/issues/1113)) ([b0b7985](https://github.com/Vonage/vivid-3/commit/b0b79858b17d57816926b1984e362a58674b5dca))
+* **docs:** hamburger button (VIV-1002) ([#1112](https://github.com/Vonage/vivid-3/issues/1112)) ([0393110](https://github.com/Vonage/vivid-3/commit/0393110e294916d90b7381b161e369efa36db00c))
+* **select:** set a default max-height ([729b42c](https://github.com/Vonage/vivid-3/commit/729b42c4ed8a53bfe847bf1c9b3c08b5a8367bf8))
+* **select:** set a default max-height (VIV-1014) ([#1118](https://github.com/Vonage/vivid-3/issues/1118)) ([729b42c](https://github.com/Vonage/vivid-3/commit/729b42c4ed8a53bfe847bf1c9b3c08b5a8367bf8))
+
+## [3.7.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.6.0...vivid-v3.7.0) (2023-04-03)
+
+
+### Features
+
+* **accordion-item:** add size condensed (VIV-883) ([#1093](https://github.com/Vonage/vivid-3/issues/1093)) ([1977ae5](https://github.com/Vonage/vivid-3/commit/1977ae51ff8a73fb4ab8f5c27a94a187c6242701))
+
+## [3.6.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.5.0...vivid-v3.6.0) (2023-03-30)
+
+
+### Features
+
+* **avatar:** duotone appearance and deprecate outline ([#1074](https://github.com/Vonage/vivid-3/issues/1074)) ([277a19c](https://github.com/Vonage/vivid-3/commit/277a19c7a116afb2a97504786e98dc9c43023526))
+* **components:** VIV-881 button pending state ([#1088](https://github.com/Vonage/vivid-3/issues/1088)) ([370fb80](https://github.com/Vonage/vivid-3/commit/370fb80349febf1aee33051f0df87a1af832725e))
+* **icon:** update icons version (VIV-951) ([#1091](https://github.com/Vonage/vivid-3/issues/1091)) ([e43a3c9](https://github.com/Vonage/vivid-3/commit/e43a3c9a25edd081c9920ff0224c4d0b1010759d))
+* **select:** add icon ([#1076](https://github.com/Vonage/vivid-3/issues/1076)) ([1fccb13](https://github.com/Vonage/vivid-3/commit/1fccb13eaa782195309a4ca400b1b6b556f41f76))
+
+
+### Bug Fixes
+
+* **doc:** tiny sample fix ([#1086](https://github.com/Vonage/vivid-3/issues/1086)) ([e73decd](https://github.com/Vonage/vivid-3/commit/e73decdc2b06f26e9cd40e7f7b982c33c8a66db8))
+
+
+### Performance Improvements
+
+* **components:** action group role as group (VIV-897) ([#837](https://github.com/Vonage/vivid-3/issues/837)) ([4e976fc](https://github.com/Vonage/vivid-3/commit/4e976fc023ed129488f47250a2908e2e540222bb))
+
+## [3.5.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.4.0...vivid-v3.5.0) (2023-03-26)
+
+
+### Features
+
+* **data-grid:** adds selection-mode attribute to the grid ([#1077](https://github.com/Vonage/vivid-3/issues/1077)) ([2bceba8](https://github.com/Vonage/vivid-3/commit/2bceba8d05d7b524d34f3c626c0378b54cdd9edd))
+
+
+### Bug Fixes
+
+* **components:** proper role for menu anchor ([#1044](https://github.com/Vonage/vivid-3/issues/1044)) ([fa1f12a](https://github.com/Vonage/vivid-3/commit/fa1f12a4afdcfbfbefc02f373e4da4908ab72d68))
+* **dialog:** border-radius inherit for slot main ([#1082](https://github.com/Vonage/vivid-3/issues/1082)) ([54aa3a4](https://github.com/Vonage/vivid-3/commit/54aa3a4eeb39ad6d214a98a8559e7c7323048f7c))
+* **dialog:** header separator and body full width ([#1071](https://github.com/Vonage/vivid-3/issues/1071)) ([ea56f26](https://github.com/Vonage/vivid-3/commit/ea56f26040abf6fa7b25f5b79dad7c26c173a774))
+
+## [3.4.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.3.0...vivid-v3.4.0) (2023-03-15)
+
+
+### Features
+
+* **documentation:** live samples ([#1030](https://github.com/Vonage/vivid-3/issues/1030)) ([ed4a88c](https://github.com/Vonage/vivid-3/commit/ed4a88c369937e89d1b6dd3f0e67960363a6eb45))
+
+
+### Bug Fixes
+
+* **appearance:** duotone color change ([#1051](https://github.com/Vonage/vivid-3/issues/1051)) ([29f58fe](https://github.com/Vonage/vivid-3/commit/29f58fed4737e70b287e09e9b3ff0e7f932ded77))
+* **public-contract:** export public contract constant types ([#1066](https://github.com/Vonage/vivid-3/issues/1066)) ([5d30baa](https://github.com/Vonage/vivid-3/commit/5d30baa7e1403a02d01939b0d7a078e990e2433a))
+* **select:** options width and selected-value ellipsis ([#1049](https://github.com/Vonage/vivid-3/issues/1049)) ([91c1148](https://github.com/Vonage/vivid-3/commit/91c11483a74ff60b17bfb7c880c41154d5ca9c79))
+* **tabs:** style fixes ([#1072](https://github.com/Vonage/vivid-3/issues/1072)) ([d8d4660](https://github.com/Vonage/vivid-3/commit/d8d46609275127566ad7d0131920dd632e091d0d))
+
+## [3.3.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.2.0...vivid-v3.3.0) (2023-03-08)
+
+
+### Features
+
+* **select:** add label handling to option component ([#1047](https://github.com/Vonage/vivid-3/issues/1047)) ([560f7cd](https://github.com/Vonage/vivid-3/commit/560f7cd8e34d8d1685c0fa08ae4cc29690b0e8d6))
+
+
+### Bug Fixes
+
+* **components:** circular dependency in tree-item ([#1053](https://github.com/Vonage/vivid-3/issues/1053)) ([72984b9](https://github.com/Vonage/vivid-3/commit/72984b99b1f2cc727da222fee67d52490d9acb49))
+
+## [3.2.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.1.3...vivid-v3.2.0) (2023-02-19)
+
+
+### Features
+
+* **tree:** add component ([#987](https://github.com/Vonage/vivid-3/issues/987)) ([a840e43](https://github.com/Vonage/vivid-3/commit/a840e43c830f5eb55b1fbb808a84a5da1c565391))
+
+## [3.1.3](https://github.com/Vonage/vivid-3/compare/vivid-v3.1.2...vivid-v3.1.3) (2023-02-16)
+
+
+### Bug Fixes
+
+* **documentation:** getting started ([#1007](https://github.com/Vonage/vivid-3/issues/1007)) ([8da7500](https://github.com/Vonage/vivid-3/commit/8da7500eb681ca6d85aaa206da2c77eb859ec435))
+
+## [3.1.2](https://github.com/Vonage/vivid-3/compare/vivid-v3.1.1...vivid-v3.1.2) (2023-02-15)
+
+
+### Bug Fixes
+
+* **components:** add number field to public exports ([#1028](https://github.com/Vonage/vivid-3/issues/1028)) ([24c1f17](https://github.com/Vonage/vivid-3/commit/24c1f17675182a84b14a6785532524360f1da835))
+
+## [3.1.1](https://github.com/Vonage/vivid-3/compare/vivid-v3.1.0...vivid-v3.1.1) (2023-02-09)
+
+
+### Bug Fixes
+
+* **dialog:** remove filter ([#1018](https://github.com/Vonage/vivid-3/issues/1018)) ([53bc8c2](https://github.com/Vonage/vivid-3/commit/53bc8c28383451e4745436ed12365378db3e8411))
+* **text-field:** show outline in ios-16 ([#1013](https://github.com/Vonage/vivid-3/issues/1013)) ([cc2b662](https://github.com/Vonage/vivid-3/commit/cc2b66244cde86826f9f77e2864df655fd712491))
+
 ## [3.1.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.0.1...vivid-v3.1.0) (2023-02-03)
 
 

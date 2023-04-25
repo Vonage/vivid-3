@@ -3,14 +3,17 @@ name: 'Lint PR Title'
 on:
   pull_request:
     types: ['opened', 'edited', 'reopened', 'synchronize', 'ready_for_review']
+    branches-ignore: ['dependabot/npm_and_yarn/**', 'release-please--branches--main--**']
 
 jobs:
   lint-pr-title:
-    if: github.event.pull_request.draft == false
+    if: ${{ github.event.pull_request.draft == false && github.actor != 'dependabot[bot]' }}
     runs-on: ubuntu-latest
     steps:
       - uses: amannn/action-semantic-pull-request@v5
         with:
           requireScope: true
+          subjectPattern: ^.*VIV-\d+.*$
+          subjectPatternError: The PR title's description "{subject}" must contain a reference to the corresponding Jira ticket (VIV-xxx).
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

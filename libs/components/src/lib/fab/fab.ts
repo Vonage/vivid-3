@@ -16,7 +16,7 @@ export type FabConnotation = Extract<Connotation, Connotation.CTA | Connotation.
  *
  * @public
  */
-type FABSize = Extract<Size, Size.Normal | Size.Expanded>;
+export type FABSize = Extract<Size, Size.Normal | Size.Expanded>;
 
 /**
  * Base class for fab

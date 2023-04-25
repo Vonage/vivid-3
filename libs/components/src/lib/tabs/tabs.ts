@@ -8,6 +8,7 @@ export const ACTIVE_TAB_WIDTH = '--_tabs-active-tab-inline-size';
  * Base class for tabs
  *
  * @public
+ * @slot - Default slot.
  */
 export class Tabs extends FoundationTabs {
 	@observable tablist?: HTMLElement;

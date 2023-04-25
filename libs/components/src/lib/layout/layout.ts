@@ -4,9 +4,9 @@ import type { LayoutSize } from '../enums.js';
 
 
 export enum AUTO_SIZING { Fit = 'fit', Fill = 'fill' }
-type Gutters = Extract<LayoutSize, LayoutSize.Small | LayoutSize.Medium | LayoutSize.Large>;
-type ColumnSpacing = Extract<LayoutSize, LayoutSize.Small | LayoutSize.Medium | LayoutSize.Large>;
-type ColumnBasis = Extract<LayoutSize, LayoutSize.Small | LayoutSize.Medium | LayoutSize.Large> | 'block';
+export type Gutters = Extract<LayoutSize, LayoutSize.Small | LayoutSize.Medium | LayoutSize.Large>;
+export type ColumnSpacing = Extract<LayoutSize, LayoutSize.Small | LayoutSize.Medium | LayoutSize.Large>;
+export type ColumnBasis = Extract<LayoutSize, LayoutSize.Small | LayoutSize.Medium | LayoutSize.Large> | 'block';
 
 /**
  * Base class for layout
@@ -14,6 +14,7 @@ type ColumnBasis = Extract<LayoutSize, LayoutSize.Small | LayoutSize.Medium | La
  * @cssprop [--layout-grid-template-columns=repeat([the `auto-sizing` mapped value],
  * minmax([the `column-basis` mapped value], 1fr))] - Controls the `grid-template-columns` of the layout.
  * @public
+ * @slot - Default slot.
  */
 export class Layout extends FoundationElement {
 	/**

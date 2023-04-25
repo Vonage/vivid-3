@@ -52,9 +52,23 @@ function createFiles(tree: Tree, options: NormalizedSchema) {
   });
 }
 
+function updateComponentsExports(tree: Tree, options: NormalizedSchema) {
+  const componentsPath = `libs/components/src/lib/components.ts`;
+  if (options.addToExports && tree.exists(componentsPath)) {
+    const toAdd = `export * from './${options.name}';`;
+    const lines = tree.read(componentsPath, 'utf8').split('\n');
+    if (lines.indexOf(toAdd) === -1) {
+      lines.push(toAdd);
+      lines.sort();
+      tree.write(componentsPath, lines.join('\n'));
+    }
+  }
+}
+
 export default async function vividComponentGenerator(tree: Tree, schema: VividComponentGeneratorOptions) {
   const options = normalizeOptions(tree, schema);
   createFiles(tree, options);
+  updateComponentsExports(tree, options);
 
   await formatFiles(tree);
 }

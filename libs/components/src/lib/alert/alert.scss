@@ -1,0 +1,106 @@
+@use "partials/variables" as variables;
+
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+	$connotations: accent success information alert warning,
+	$shades: primary primary-text,
+	$default: accent
+);
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+	$appearances: filled,
+	$default: filled
+);
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+
+$alert-transition-delay: --transition-delay;
+
+.control {
+	position: fixed;
+	z-index: 10;
+	border-radius: 6px;
+	inline-size: max-content;
+
+	// placement
+	inset-block-end: 0;
+	inset-inline-end: 0;
+	inset-inline-start: 0;
+	margin-block: 16px;
+	margin-inline: auto;
+
+	&.placement-top,
+	&.placement-top-start,
+	&.placement-top-end {
+		inset-block-end: auto;
+		inset-block-start: 0;
+	}
+
+	&.placement-top-start,
+	&.placement-bottom-start {
+		right: auto;
+		inset-inline-end: auto;
+		margin-inline: 16px;
+	}
+
+	&.placement-top-end,
+	&.placement-bottom-end {
+		inset-inline-start: auto;
+		margin-inline: 16px;
+	}
+
+	&:not(.open) {
+		opacity: 0;
+		transform: scale(0.8);
+	}
+
+	&.open {
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	min-inline-size: var(#{variables.$alert-min-inline-size}, 420px);
+	transition: opacity 150ms cubic-bezier(0, 0, 0.2, 1) 0ms, transform 150ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+}
+
+.base {
+	@include connotation.connotation;
+	@include appearance.appearance;
+
+	display: flex;
+	align-items: center;
+	padding: 16px;
+	background-color: var(--vvd-color-neutral-50);
+	border-radius: 6px;
+	color: var(#{constants.$vvd-color-canvas-text});
+	column-gap: 16px;
+
+	.alert-text {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		justify-self: flex-start;
+		margin-inline-end: auto;
+
+		.headline {
+			font: var(#{constants.$vvd-typography-base-bold});
+		}
+
+		.subtitle {
+			font: var(#{constants.$vvd-typography-base});
+		}
+	}
+
+	.icon {
+		flex-shrink: 0;
+		color: var(#{appearance.get-appearance-token(fill)});
+		font-size: 24px;
+		line-height: 1;
+	}
+
+	.dismiss-button {
+		border-left: 1px solid var(--vvd-color-neutral-200);
+		padding-inline-start: 8px;
+	}
+}

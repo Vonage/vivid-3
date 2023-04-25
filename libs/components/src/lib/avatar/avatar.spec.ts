@@ -76,7 +76,7 @@ describe('vwc-avatar', () => {
 			await elementUpdated(element);
 
 			const control = element.shadowRoot?.querySelector(`.base.size-${size}`);
-			expect(control).toBeInstanceOf(Element);
+			expect(control?.classList.contains(`size-${size}`)).toBeTruthy();
 		});
 	});
 

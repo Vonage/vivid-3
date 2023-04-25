@@ -2,7 +2,15 @@
 
 TextField is meant to accept text input from the user.
 All native `input` attributes of the text-field are supported as well as some enhancements.
-Note that the text field does not support `type="number"`. For this there is the `number-field` component.
+While `text-field` follows [the W3C specifictation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), the following are the only supported types:
+
+- `text` (default)
+- `email`
+- `password`
+- `tel`
+- `url`
+
+If you wish to use `type="number"`, refer to the [`number-field`](/number-field) component.
 
 ```js
 <script type="module">
@@ -65,6 +73,18 @@ Add the `success-text` to add some success text below the text field.
 
 ```html preview
 <vwc-text-field label="Username" value="Vlad" success-text="Valid username"></vwc-text-field>
+```
+
+### Error text
+
+It is possible to force the text field's error state by setting the `error-text` attribute to a custom error message.
+Note that any current error state will be overriden by `error-text` (and, if applicable, restored once it is removed).
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-text-field value="some text" label='Enter some text' error-text="Please take this seriously"></vwc-text-field>
 ```
 
 ### Character Count
@@ -135,7 +155,6 @@ Add the `readonly` attribute to restrict user from changing the text field's val
 ```html preview blocks
 <vwc-text-field readonly icon="chat-line" value="readonly text" label='fieldset' appearance='fieldset'></vwc-text-field>
 ```
-
 ## Use Cases
 
 ### Validation
@@ -148,8 +167,8 @@ In addition, we programatically *"dirtied"* the field and then called `validate`
 <vwc-text-field pattern="123"></vwc-text-field>
 
 <script>
-  const textField = document.querySelector('vwc-text-field');
-  const interval = setInterval(() => {
+  textField = document.querySelector('vwc-text-field');
+  interval = setInterval(() => {
     if (!textField.checkValidity) return;
     textField.value = 5;
     textField.dirtyValue = true;

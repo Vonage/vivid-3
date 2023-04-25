@@ -5,6 +5,8 @@ import { FoundationElement } from '@microsoft/fast-foundation';
  * Base class for side-drawer
  *
  * @public
+ * @slot - Sets assigned nodes to the side drawer itself.
+ * @slot app-content - Sets assigned nodes to the main application content, the side drawer is opened next to.
  */
 export class SideDrawer extends FoundationElement {
 	/**
@@ -53,10 +55,10 @@ export class SideDrawer extends FoundationElement {
 	}
 
 	#close(): void {
-		this.$emit('close');
+		this.$emit('close', undefined, { bubbles: false });
 	}
 
 	#open(): void {
-		this.$emit('open');
+		this.$emit('open', undefined, { bubbles: false });
 	}
 }

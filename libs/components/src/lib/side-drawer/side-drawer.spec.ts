@@ -48,6 +48,14 @@ describe('vwc-side-drawer', () => {
 			expect(spy)
 				.toHaveBeenCalled();
 		});
+
+		it("should not bubble 'open' event", async () => {
+			const spy = jest.fn();
+			element.parentElement?.addEventListener('open', spy);
+			element.open = true;
+			await elementUpdated(element);
+			expect(spy).not.toBeCalled();
+		});
 	});
 
 	describe('hide', () => {
@@ -76,6 +84,17 @@ describe('vwc-side-drawer', () => {
 
 			expect(spy)
 				.toHaveBeenCalled();
+		});
+
+		it("should not bubble 'close' event", async () => {
+			element.modal = true;
+			element.open = true;
+			const spy = jest.fn();
+			element.parentElement?.addEventListener('close', spy);
+			element.open = false;
+			
+			await elementUpdated(element);
+			expect(spy).not.toBeCalled();
 		});
 	});
 

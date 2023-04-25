@@ -5,7 +5,7 @@
 	background: var(#{utils.get-color-token(surface-4dp)});
 	border-radius: inherit;
 	contain: layout;
-	inline-size: var(#{variables.$popup-width}, fit-content);
+
 
 	&:not(.open) {
 		display: none;
@@ -13,15 +13,16 @@
 }
 
 .popup-wrapper {
+	z-index: 10;
+	border-radius: 6px;
+	inline-size: fit-content;
+
 	&:not(.absolute) {
 		position: fixed;
 	}
 	&.absolute {
 		position: absolute;
-		inline-size: var(#{variables.$popup-width});
 	}
-
-	border-radius: 6px;
 }
 
 .popup-content {

@@ -11,6 +11,7 @@
 		"title": "accordion-item",
 		"markdown": "./libs/components/src/lib/accordion-item/README.md",
 		"modules": [
+			"/assets/modules/components/accordion/index.js",
 			"/assets/modules/components/accordion-item/index.js"
 		]
 	},
@@ -27,6 +28,16 @@
 		"modules": [
 			"/assets/modules/components/button/index.js",
 			"/assets/modules/components/banner/index.js"
+		]
+	},
+	{
+		"title": "alert",
+		"markdown": "./libs/components/src/lib/alert/README.md",
+		"status": "underlying",
+		"modules": [
+			"/assets/modules/components/button/index.js",
+			"/assets/modules/components/alert/index.js",
+			"/assets/modules/components/layout/index.js"
 		]
 	},
 	{
@@ -197,7 +208,9 @@
 		"modules": [
 			"/assets/modules/components/dialog/index.js",
 			"/assets/modules/components/button/index.js",
-			"/assets/modules/components/text-field/index.js"
+			"/assets/modules/components/text-field/index.js",
+			"/assets/modules/components/progress/index.js",
+			"/assets/modules/components/text-area/index.js"
 		]
 	},
 	{
@@ -363,7 +376,7 @@
 		"markdown": "./libs/components/src/lib/select/README.md",
 		"modules": [
 			"/assets/modules/components/select/index.js",
-			"/assets/modules/components/listbox-option/index.js",
+			"/assets/modules/components/option/index.js",
 			"/assets/modules/components/icon/index.js"
 		]
 	},
@@ -384,6 +397,43 @@
 			"/assets/modules/components/toggletip/index.js",
 			"/assets/modules/components/button/index.js",
 			"/assets/modules/components/layout/index.js"
+		]
+	},
+	{
+		"title": "tree-view",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/tree-view/README.md",
+		"modules": [
+			"/assets/modules/components/tree-view/index.js",
+			"/assets/modules/components/tree-item/index.js"
+		]
+	},
+	{
+		"title": "tree-item",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/tree-item/README.md",
+		"modules": [
+			"/assets/modules/components/tree-item/index.js",
+			"/assets/modules/components/tree-view/index.js"
+		]
+	},
+	{
+		"title": "tag",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/tag/README.md",
+		"modules": [
+			"/assets/modules/components/tag/index.js",
+			"/assets/modules/components/tag-group/index.js"
+		]
+	}
+	,
+	{
+		"title": "tag-group",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/tag-group/README.md",
+		"modules": [
+			"/assets/modules/components/tag-group/index.js",
+			"/assets/modules/components/tag/index.js"
 		]
 	}
 ]

@@ -43,11 +43,12 @@ Set the `initials` attribute to set avatar's initials.
 
 Set the `appearance` attribute to change the avatar's appearance.
 
-- Type: `'filled'` | `'outlined'`
+- Type: `'filled'` | `'duotone'` | `'outlined'`
 - Default: `'filled'`
 
 ```html preview
 <vwc-avatar appearance="filled"></vwc-avatar>
+<vwc-avatar appearance="duotone"></vwc-avatar>
 <vwc-avatar appearance="outlined"></vwc-avatar>
 ```
 
@@ -61,8 +62,11 @@ Use the `connotation` attribute to set the avatar's color.
 ```html preview
 <vwc-avatar connotation="accent"></vwc-avatar>
 <vwc-avatar connotation="cta"></vwc-avatar>
+<vwc-avatar connotation="accent" appearance="duotone"></vwc-avatar>
+<vwc-avatar connotation="cta" appearance="duotone"></vwc-avatar>
 <vwc-avatar connotation="accent" appearance="outlined"></vwc-avatar>
 <vwc-avatar connotation="cta" appearance="outlined"></vwc-avatar>
+
 ```
 
 ### Shape
