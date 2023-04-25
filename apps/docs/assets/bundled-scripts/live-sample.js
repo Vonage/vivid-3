@@ -20,8 +20,11 @@ window.setEditorsTheme = function() {
 }
 
 function addButtonsHandlers() {
-	const copyCodeButtons = document.querySelectorAll('vwc-button[icon="copy-2-line"]')
+	const copyCodeButtons = document.querySelectorAll('vwc-button[id^="buttonCopy"]')
 	copyCodeButtons.forEach(btn => btn.addEventListener('click', codeCopyButtonClick))
+	
+	const codePenButtons = document.querySelectorAll('vwc-button[id^="buttonCPen"]')
+	codePenButtons.forEach(btn => btn.addEventListener('click', openCodePen))
 }
 
 function updateiFrameCode(idx) {
@@ -65,7 +68,7 @@ function addSamplesEditors() {
 		});
 	});
 
-	setEditorsTheme();
+	window.setEditorsTheme();
 }
 
 function sampleChanged(idx) {
@@ -97,3 +100,34 @@ function codeCopyButtonClick(event) {
 		button.icon = 'copy-2-line';
 	}, 1000);
 }
+
+let codePenForm = null;
+
+function openCodePen(event) {
+	const button = event.target;
+	const { view } = samplesEditors.get(+button.dataset.index);
+
+	const codePenPayload = JSON.stringify({
+		html: `<div class="vvd-root">\n${view.state.doc.toString().trim()}\n</div>`,
+		head: `<link rel="preload" href="https://fonts.resources.vonage.com/fonts/v2/SpeziaCompleteVariableUprightWeb.woff2" type="font/woff2" as="font" crossorigin="anonymous" >
+		<link rel="preload" href="https://fonts.resources.vonage.com/fonts/v2/SpeziaMonoCompleteVariableWeb.woff2" type="font/woff2" as="font" crossorigin="anonymous" >`,
+		css:  `@import "https://unpkg.com/@vonage/vivid@latest/styles/tokens/theme-light.css";
+@import "https://unpkg.com/@vonage/vivid@latest/styles/core/all.css";
+@import "https://unpkg.com/@vonage/vivid@latest/styles/fonts/spezia-variable.css";`,
+		js:	  button.dataset.deps.split(',').map(d => `import 'https://unpkg.com/@vonage/vivid@latest/${d}';`).join('\n')
+	}).replace(/"/g, '&quot;')
+	  .replace(/'/g, '&apos;');
+
+	if (!codePenForm) {
+		codePenForm = document.createElement('form');
+		Object.assign(codePenForm, {
+			action: 'https://codepen.io/pen/define',
+			method: 'post',
+			target: '_blank'
+		})
+		document.lastElementChild.insertAdjacentElement('beforeend', codePenForm);
+	}
+	codePenForm.innerHTML = `<input type="hidden" name="data" value="${codePenPayload}"/>`;
+	codePenForm.submit();
+}
+
