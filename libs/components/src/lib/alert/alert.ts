@@ -126,23 +126,23 @@ export class Alert extends FoundationElement {
 		}
 	}
 
-	#show(): void {
+	#show = () => {
 		this.open = true;
 		if (this.timeout) {
 			clearTimeout(this.timeout);
 		}
 		if (this.timeoutms > 0) {
-			this.timeout = setTimeout(() => this.remove(), this.timeoutms);
+			this.timeout = setTimeout(this.remove, this.timeoutms);
 		}
-	}
+	};
 
-	override remove(): void {
+	override remove = () => {
 		this.open = false;
 		if (this.timeout) {
 			clearTimeout(this.timeout);
 		}
 		this.$emit('removed');
-	}
+	};
 
 	#closeOnKeyDown = (e: KeyboardEvent) => {
 		if (e.key !== 'Escape' || !this.removable) {
