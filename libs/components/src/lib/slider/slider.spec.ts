@@ -131,4 +131,15 @@ describe('vwc-slider', () => {
 			expect(element.valueAsNumber).toBe(7);
 		});
 	});
+
+	describe('change event', () => {
+		it('should fire a change event when value changes', async () => {
+			const spy = jest.fn();
+			element.addEventListener('change', spy);
+			element.value = '0';
+
+			expect(spy).toHaveBeenCalled();
+			expect(spy.mock.calls.length).toEqual(1);
+		});
+	});
 });
