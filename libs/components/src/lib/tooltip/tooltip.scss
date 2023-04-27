@@ -1,5 +1,6 @@
 @use "partials/variables" as variables;
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "../popup/popup.scss";
 
 .control {
 	pointer-events: none;

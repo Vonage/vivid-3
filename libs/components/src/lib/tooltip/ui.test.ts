@@ -5,9 +5,13 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['tooltip','button'];
+const components = ['tooltip'];
 
-test('should show the component', async ({ page }: { page: Page }) => {
+function changeAnchor() {
+		const tooltip = document.querySelector('#tooltip5');
+		(tooltip as any).anchor = 'anchor2';
+}
+test.only('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 <style>
   .wrapper{
@@ -23,14 +27,21 @@ test('should show the component', async ({ page }: { page: Page }) => {
 </style>
 <div class="wrapper">
   <vwc-button id="anchor" aria-describedby="tooltip" appearance='outlined' label='This is an anchor'></vwc-button>
-  <vwc-tooltip id="tooltip" anchor="anchor" open text="right" placement="right">
+  <vwc-button id="anchor2"
+  						style="position: absolute; top: 0;"
+  						aria-describedby="tooltip"
+  						appearance='outlined'
+  						label='This is an anchor'></vwc-button>
+  <vwc-tooltip id="tooltip1" anchor="anchor" open text="right" placement="right">
   </vwc-tooltip>
-  <vwc-tooltip id="tooltip" anchor="anchor" open text="left" placement="left">
+  <vwc-tooltip id="tooltip2" anchor="anchor" open text="left" placement="left">
   </vwc-tooltip>
-  <vwc-tooltip id="tooltip" anchor="anchor" open text="top" placement="top">
+  <vwc-tooltip id="tooltip3" anchor="anchor" open text="top" placement="top">
   </vwc-tooltip>
-  <vwc-tooltip id="tooltip" class="tooltip" anchor="anchor" open text="bottom with custom width" placement="bottom">
+  <vwc-tooltip id="tooltip4" anchor="anchor" open text="bottom with custom width" placement="bottom"> </vwc-tooltip>
+  <vwc-tooltip id="tooltip5" class="tooltip" anchor="anchor" open text="Dynamic Anchor Change" placement="right">
   </vwc-tooltip>
+
 </div>
 	`;
 
@@ -48,6 +59,10 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const testWrapper = await page.$('#wrapper');
 
 	await page.waitForLoadState('networkidle');
+
+	await page.addScriptTag({content: changeAnchor.toString() + 'changeAnchor();'});
+
+	await page.pause();
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/tooltip.png'
