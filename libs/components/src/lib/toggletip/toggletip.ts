@@ -1,8 +1,9 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
-import type { Popup } from '../popup/popup';
-import type { ButtonConnotation, ButtonAppearance, ButtonSize, ButtonShape } from '../button/button';
+import { FoundationElement } from '@microsoft/fast-foundation';
 import type { Placement } from '@floating-ui/dom';
+import type { Popup } from '../components';
+
+type anchorType = string | HTMLElement;
 
 /**
  * Base class for toggletip
@@ -10,120 +11,95 @@ import type { Placement } from '@floating-ui/dom';
  * @public
  */
 export class Toggletip extends FoundationElement {
-	/**
-	 * Indicates whether the toggletip is disabled or not
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: disabled
-	 */
-	 @attr({
-		mode: 'boolean'
-	}) disabled = false;
+
+	popup!: Popup;
+
+	anchorEl: HTMLElement | null = null;
+
+	#ANCHOR_ARIA_LABEL_SUFFIX = ' ; Show more information';
 
 	/**
-	 * The connotation the toggletip's button should have.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: connotation
-	 */
-	@attr connotation?: ButtonConnotation;
-
-	/**
-	 * The appearance the toggletip's button should have.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: appearance
-	 */
-	 @attr appearance?: ButtonAppearance;
-
-	/**
-	 * The size the toggletip's button should have.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: size
-	 */
-	 @attr size?: ButtonSize;
-
-	/**
-	 * The shape the button should have.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: shape
-	 */
-	 @attr shape?: ButtonShape;
-
-	/**
-	* A decorative icon the custom element should have.
-	*
-	* @public
-	* @remarks
-	* HTML Attribute: icon
-	*/
-	@attr icon?: string;
-
-	/**
-	 * the placement of the popup
-	 *
-	 * @public
-	 * HTML Attribute: placement
-	 */
-	 @attr placement?: Placement;
-
-	/**
-	 * reverse the color scheme
+	 * toggle color scheme
 	 *
 	 * @public
 	 * HTML Attribute: alternate
 	 */
-	@attr({
-		mode: 'boolean',
-	}) alternate = false;
+	@attr({ mode: 'boolean'	}) alternate = false;
 
 	/**
-	 * /end of attributes
+	 * placement of the toggletip
+	 *
+	 * @public
+	 * HTML Attribute: placement
 	 */
+	@attr({ mode: 'fromView' }) placement?: Placement = 'right';
+	
+	/**
+	 * id or direct reference to the toggletip's anchor element
+	 *
+	 * @public
+	 * HTML Attribute: anchor
+	 */
+	@attr({ mode: 'fromView' }) anchor: anchorType = '';
+	anchorChanged(_: anchorType, newValue: anchorType) {
+		if (this.anchorEl) this.#cleanupAnchor(this.anchorEl);
 
-	button!: HTMLButtonElement;
-	popup!: Popup;
-
-	override connectedCallback() {
-		super.connectedCallback();
-
-		this.popup.anchor = this.button;
-		
-		this.button.addEventListener('keydown', this.closeOnEsc);
-		this.popup.addEventListener('keydown', this.closeOnEsc);
-
-		this.popup.addEventListener('open', this.openClose);
-		this.popup.addEventListener('close', this.openClose);
-
-		// quick'n'dirty light dismiss waiting for https://github.com/Vonage/vivid-3/pull/765
-		document.addEventListener('click', (e) => {
-			if (this.popup.open && !this.contains(e.target as HTMLElement)) {
-				this.popup.open = false;
-			}
-		});
-
-		this.button.addEventListener('click', () => this.popup.open = true);
+		this.anchorEl = newValue instanceof HTMLElement ? newValue : document.getElementById(newValue);
+		if (this.anchorEl) this.#setupAnchor(this.anchorEl);
 	}
 
-	closeOnEsc = (e: KeyboardEvent) => {
-		if (e.key === 'Escape') {
-			this.popup.open = false;
+	/**
+	 * indicates whether the toggletip is open
+	 *
+	 * @public
+	 * HTML Attribute: open
+	 */
+	@attr({ mode: 'boolean'	}) open = false;
+	openChanged(oldValue: boolean, newValue: boolean): void {
+		if (oldValue === undefined) return;
+
+		if (newValue) {
+			document.addEventListener('keydown', this.#closeOnEscape);
+			this.setAttribute('role', 'status');
+		} else {
+			document.removeEventListener('keydown', this.#closeOnEscape);
+			this.removeAttribute('role');
 		}
+		
+		if (this.anchorEl) {
+			this.anchorEl.ariaExpanded = this.open.toString();
+		}
+	}
+
+	override disconnectedCallback(): void {
+		super.disconnectedCallback();
+		if (this.anchorEl) this.#cleanupAnchor(this.anchorEl);
+		document.removeEventListener('keydown', this.#closeOnEscape);
+	}
+
+	#setupAnchor(a: HTMLElement) {
+		a.addEventListener('click', this.#toggle);
+		a.addEventListener('focusout', this.#hide);
+		a.ariaLabel = (a.ariaLabel ?? '') + this.#ANCHOR_ARIA_LABEL_SUFFIX;
+		// TODO aria-controls="myid"
 	};
 
-	openClose = () => {
-		this.ariaExpanded = this.popup.open.toString();
-		if (this.popup.open)
-			this.popup.setAttribute('role', 'status');
-		else
-			this.popup.removeAttribute('role');
-		
-	}
+	#cleanupAnchor(a: HTMLElement) {
+		console.log('cleanup', a);
+		a.removeEventListener('click', this.#toggle);
+		a.removeEventListener('focusout', this.#hide);
+		a.ariaLabel = a.ariaLabel?.replace(this.#ANCHOR_ARIA_LABEL_SUFFIX, '') as string;
+	};
+
+	#toggle = () => {
+		this.open = !this.open;
+	};
+
+	#hide = () => {
+		this.open = false;
+	};
+
+	#closeOnEscape = (e:KeyboardEvent) => {
+		if (e.key === 'Escape') this.#hide();
+	};
 }

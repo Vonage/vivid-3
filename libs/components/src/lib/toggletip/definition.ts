@@ -2,7 +2,6 @@ import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 
 import { registerFactory } from '../../shared/design-system';
 import { popupRegistries } from '../popup/definition';
-import { buttonRegistries } from '../button/definition';
 
 import styles from './toggletip.scss';
 import { Toggletip } from './toggletip';
@@ -20,7 +19,7 @@ export const toggletipDefinition = Toggletip.compose<FoundationElementDefinition
 /**
  * @internal
  */
-export const toggletipRegistries = [toggletipDefinition(), ...popupRegistries, ...buttonRegistries];
+export const toggletipRegistries = [toggletipDefinition(), ...popupRegistries];
 
 /**
  * Registers the toggletip element with the design system.
