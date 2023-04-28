@@ -4,6 +4,20 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.10.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.9.0...vivid-v3.10.0) (2023-04-27)
+
+
+### Features
+
+* **alert:** migrate component (VIV-1009) ([#1117](https://github.com/Vonage/vivid-3/issues/1117)) ([2de6df1](https://github.com/Vonage/vivid-3/commit/2de6df17ef721b9f08f9b54224e7c3c48f395b61))
+* **text-area:** add a way to manually set text-area in error state (VIV-990) ([#1126](https://github.com/Vonage/vivid-3/issues/1126)) ([1532007](https://github.com/Vonage/vivid-3/commit/1532007b935e65bf81c438d1a9c84c9839f509f9))
+
+
+### Bug Fixes
+
+* **components:** slider change event (VIV-985) ([#1121](https://github.com/Vonage/vivid-3/issues/1121)) ([1bcd85f](https://github.com/Vonage/vivid-3/commit/1bcd85f6261591aa5e0f020851608050aded5aac))
+* **tooltip:** hide on Escape (VIV-1017) ([#1129](https://github.com/Vonage/vivid-3/issues/1129)) ([5a926cb](https://github.com/Vonage/vivid-3/commit/5a926cbc822f51028c49f475333bf9822f73d6c4))
+
 ## [3.9.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.8.0...vivid-v3.9.0) (2023-04-24)
 
 
