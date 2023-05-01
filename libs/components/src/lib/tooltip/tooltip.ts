@@ -24,7 +24,7 @@ export class Tooltip extends FoundationElement {
 	anchorUpdated?: Promise<void>;
 
 	get #popupEl(): Popup {
-		return this.shadowRoot?.querySelector('.control') as Popup;
+		return this.shadowRoot!.querySelector('.control') as Popup;
 	}
 
 	override connectedCallback(): void {
@@ -42,11 +42,10 @@ export class Tooltip extends FoundationElement {
 		super.attributeChangedCallback(name, oldValue, newValue);
 		if (name === 'anchor') {
 			if (oldValue !== newValue) {
-				await this.#waitForPopupEl();
-				this.#popupEl.anchor = this.anchor;
-				this.anchorUpdated = this.#waitForAnchorElementUpdate();
-				await this.anchorUpdated;
-				this.#anchorUpdated();
+				if (Boolean(await this.#waitForPopupEl())) {
+					this.#popupEl.anchor = this.anchor;
+					this.#anchorUpdated();
+				}
 			}
 		}
 	}
@@ -56,38 +55,13 @@ export class Tooltip extends FoundationElement {
 		this.#addEventListener();
 	}
 
-	async #waitForAnchorElementUpdate() {
-		const oldAnchor = this.#popupEl && this.#popupEl.anchorEl;
-		let attempts = 0;
-		await new Promise((resolve) => {
-			const interval = setInterval(() => {
-				if ((this.#popupEl && this.#popupEl.anchorEl !== oldAnchor)) {
-					resolve(this.#popupEl.anchorEl);
-					clearInterval(interval);
-				}
-				if (attempts >= 10) {
-					resolve(this.#popupEl.anchorEl);
-					clearInterval(interval);
-				}
-				attempts++;
-			}, 50);
-		});
-	}
-
-	async #waitForPopupEl() {
-		let attempts = 0;
-		await new Promise((resolve) => {
+	#waitForPopupEl(): Promise<Popup | null> {
+		return new Promise((resolve) => {
 			if (this.#popupEl) resolve(this.#popupEl);
-			const interval = setInterval(() => {
+			setTimeout(() => {
 				if (this.#popupEl) {
 					resolve(this.#popupEl);
-					clearInterval(interval);
 				}
-				if (attempts >= 10) {
-					resolve(this.#popupEl.anchorEl);
-					clearInterval(interval);
-				}
-				attempts++;
 			}, 10);
 		});
 	}

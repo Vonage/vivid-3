@@ -45,7 +45,6 @@ describe('vwc-tooltip', () => {
 			const anchor = await setAnchor();
 			element.anchor = 'anchor';
 			await elementUpdated(element);
-			await element.anchorUpdated;
 			element.open = false;
 
 			fireEvent(anchor, new MouseEvent('mouseover'));
@@ -59,7 +58,7 @@ describe('vwc-tooltip', () => {
 			const anchor = await setAnchor();
 			element.anchor = 'anchor';
 			await elementUpdated(element);
-			await element.anchorUpdated;
+
 			element.open = false;
 
 			fireEvent(anchor, new Event('focusin'));
@@ -73,7 +72,7 @@ describe('vwc-tooltip', () => {
 			const anchor = await setAnchor();
 			element.anchor = 'anchor';
 			await elementUpdated(element);
-			await element.anchorUpdated;
+
 			element.open = true;
 			fireEvent(anchor, new MouseEvent('mouseout'));
 			await elementUpdated(element);
@@ -86,7 +85,7 @@ describe('vwc-tooltip', () => {
 			const anchor = await setAnchor();
 			element.anchor = 'anchor';
 			await elementUpdated(element);
-			await element.anchorUpdated;
+
 			element.open = true;
 			fireEvent(anchor, new Event('focusout'));
 			await elementUpdated(element);
@@ -142,7 +141,7 @@ describe('vwc-tooltip', () => {
 
 			element.anchor = id;
 			await elementUpdated(element);
-			await element.anchorUpdated;
+
 
 			expect(popup.anchor).toBe(id);
 			expect(popup.anchorEl).toEqual(anchorEl);
@@ -154,7 +153,7 @@ describe('vwc-tooltip', () => {
 
 			element.anchor = anchorEl;
 			await elementUpdated(element);
-			await element.anchorUpdated;
+
 
 			expect(popup.anchorEl)
 				.toEqual(anchorEl);
