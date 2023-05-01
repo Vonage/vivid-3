@@ -35,22 +35,23 @@ $banner-transition-delay: --transition-delay;
 	display: flex;
 	min-height: #{size.$vvd-size-ultra-expanded};
 	align-items: center;
-	inline-size: 100%;
 	font: var(#{constants.$vvd-typography-base-bold});
+	inline-size: 100%;
 
 	.content {
 		display: flex;
-		column-gap: 16px;
 		flex-grow: 1;
-		inline-size: 100%;
 		align-items: center;
 		justify-content: center;
+		column-gap: 16px;
+		inline-size: 100%;
 		padding-inline: 16px;
 
 		.icon {
+			flex-shrink: 0;
 			font-size: 20px;
 			line-height: 1;
-			flex-shrink: 0;
+
 		}
 
 		.action-items {
