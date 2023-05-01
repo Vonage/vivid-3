@@ -12,6 +12,7 @@
 		soft: #{utils.get-color-token(#{$type}-100)},
 		muted: #{utils.get-color-token(#{$type}-200)},
 		pale: #{utils.get-color-token(#{$type}-300)},
+		dim: #{utils.get-color-token(#{$type}-400)},
     primary: #{utils.get-color-token(#{$type}-500)},
 		primary-text: #{utils.get-color-token(canvas)},
 		firm: #{utils.get-color-token(#{$type}-600)},
