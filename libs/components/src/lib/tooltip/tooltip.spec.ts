@@ -39,11 +39,13 @@ describe('vwc-tooltip', () => {
 		});
 	});
 
-	describe('show', () => {
-		it('should set "open" to true', async () => {
+	describe('open', () => {
+		it('should set "open" to true on mouseover', async () => {
 			const anchor = await setAnchor();
 			element.anchor = 'anchor';
 			await elementUpdated(element);
+			await element.anchorUpdated;
+			element.open = false;
 
 			fireEvent(anchor, new MouseEvent('mouseover'));
 			await elementUpdated(element);
@@ -51,16 +53,41 @@ describe('vwc-tooltip', () => {
 			expect(element.open)
 				.toEqual(true);
 		});
-	});
 
-	describe('hide', () => {
-		it('should set "open" to false', async () => {
+		it('should set "open" to true on focusin', async () => {
 			const anchor = await setAnchor();
 			element.anchor = 'anchor';
-			element.open = true;
+			await elementUpdated(element);
+			await element.anchorUpdated;
+			element.open = false;
+
+			fireEvent(anchor, new Event('focusin'));
 			await elementUpdated(element);
 
+			expect(element.open)
+				.toEqual(true);
+		});
+
+		it('should set "open" to false on mouseout', async () => {
+			const anchor = await setAnchor();
+			element.anchor = 'anchor';
+			await elementUpdated(element);
+			await element.anchorUpdated;
+			element.open = true;
 			fireEvent(anchor, new MouseEvent('mouseout'));
+			await elementUpdated(element);
+
+			expect(element.open)
+				.toEqual(false);
+		});
+
+		it('should set "open" to false on focusout', async () => {
+			const anchor = await setAnchor();
+			element.anchor = 'anchor';
+			await elementUpdated(element);
+			await element.anchorUpdated;
+			element.open = true;
+			fireEvent(anchor, new Event('focusout'));
 			await elementUpdated(element);
 
 			expect(element.open)
@@ -71,19 +98,15 @@ describe('vwc-tooltip', () => {
 	describe('escape', () => {
 		it('should disappear when Escape is pressed', async () => {
 			const anchor = await setAnchor();
-			element.anchor = 'anchor';
+			element.anchor = anchor;
 			await elementUpdated(element);
 
-			fireEvent(anchor, new MouseEvent('mouseover'));
-			await elementUpdated(element);
-			const openStateBeforeEscape = element.open;
+			element.open = true;
 
 			fireEvent(document, new KeyboardEvent('keydown', {key: 'Escape'}));
 			await elementUpdated(element);
 			const openStateAfterEscape = element.open;
-			
-			expect(openStateBeforeEscape)
-				.toEqual(true);
+
 			expect(openStateAfterEscape)
 				.toEqual(false);
 		});

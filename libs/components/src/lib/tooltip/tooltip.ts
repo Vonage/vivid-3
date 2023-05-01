@@ -1,12 +1,13 @@
 import { attr } from '@microsoft/fast-element';
-import { Popup } from '../popup/popup';
+import {FoundationElement} from "@microsoft/fast-foundation";
+import type {Popup} from "@vonage/vivid";
 
 /**
  * Base class for tooltip
  *
  * @public
  */
-export class Tooltip extends Popup {
+export class Tooltip extends FoundationElement {
 	/**
 	 * the text of the tooltip
 	 * accepts string
@@ -14,6 +15,17 @@ export class Tooltip extends Popup {
 	 * @public
 	 */
 	@attr text?: string;
+
+	@attr anchor?: string | HTMLElement;
+
+	@attr placement?: string;
+
+	@attr({mode: 'boolean'}) open?: boolean;
+	anchorUpdated?: Promise<void>;
+
+	get #popupEl(): Popup {
+		return this.shadowRoot?.querySelector('.control') as Popup;
+	}
 
 	override connectedCallback(): void {
 		super.connectedCallback();
@@ -26,9 +38,15 @@ export class Tooltip extends Popup {
 		document.removeEventListener('keydown', this.#closeOnEscape);
 	}
 
-	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
+	override async attributeChangedCallback(name: string, oldValue: string, newValue: string): Promise<void> {
 		super.attributeChangedCallback(name, oldValue, newValue);
-		this.#anchorUpdated();
+		if (name === 'anchor') {
+			if (oldValue !== newValue) {
+				this.anchorUpdated = this.#waitForAnchorElementUpdate();
+				await this.anchorUpdated;
+				this.#anchorUpdated();
+			}
+		}
 	}
 
 	#anchorUpdated(): void {
@@ -36,18 +54,37 @@ export class Tooltip extends Popup {
 		this.#addEventListener();
 	}
 
+	async #waitForAnchorElementUpdate() {
+		const oldAnchor = this.#popupEl && this.#popupEl.anchorEl;
+		let attempts = 0;
+		await new Promise((resolve) => {
+			let interval = setInterval(() => {
+				if ((this.#popupEl && this.#popupEl.anchorEl !== oldAnchor)) {
+					resolve(this.#popupEl.anchorEl);
+					clearInterval(interval);
+				}
+				if (attempts >= 10) {
+					console.error('anchor element not found');
+					resolve(this.#popupEl.anchorEl);
+					clearInterval(interval);
+				}
+				attempts++;
+			}, 50)
+		});
+	}
+
 	#addEventListener(): void {
-		this.anchorEl?.addEventListener('mouseover', this.#show);
-		this.anchorEl?.addEventListener('mouseout', this.#hide);
-		this.anchorEl?.addEventListener('focusin', this.#show);
-		this.anchorEl?.addEventListener('focusout', this.#hide);
+		this.#popupEl.anchorEl?.addEventListener('mouseover', this.#show);
+		this.#popupEl.anchorEl?.addEventListener('mouseout', this.#hide);
+		this.#popupEl.anchorEl?.addEventListener('focusin', this.#show);
+		this.#popupEl.anchorEl?.addEventListener('focusout', this.#hide);
 	}
 
 	#removeEventListener(): void {
-		this.anchorEl?.removeEventListener('mouseover', this.#show);
-		this.anchorEl?.removeEventListener('mouseout', this.#hide);
-		this.anchorEl?.removeEventListener('focusin', this.#show);
-		this.anchorEl?.removeEventListener('focusout', this.#hide);
+		this.#popupEl.anchorEl?.removeEventListener('mouseover', this.#show);
+		this.#popupEl.anchorEl?.removeEventListener('mouseout', this.#hide);
+		this.#popupEl.anchorEl?.removeEventListener('focusin', this.#show);
+		this.#popupEl.anchorEl?.removeEventListener('focusout', this.#hide);
 	}
 
 	#show = () => {
@@ -62,9 +99,7 @@ export class Tooltip extends Popup {
 		if (e.key === 'Escape') this.#hide();
 	};
 
-	override openChanged(oldValue: boolean, newValue: boolean): void {
-		super.openChanged(oldValue, newValue);
-		if (oldValue === undefined) return;
+	openChanged(_: boolean, newValue: boolean): void {
 		if (newValue) {
 			document.addEventListener('keydown', this.#closeOnEscape);
 		} else {
