@@ -2,10 +2,10 @@ import {ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture, getControlElement} fro
 import { fireEvent } from '@testing-library/dom';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Button } from '../button/button';
+import type {Popup} from '../popup/popup';
 import { Tooltip } from './tooltip';
 import '.';
 import { tooltipDefinition } from './definition';
-import type {Popup} from "@vonage/vivid";
 
 const COMPONENT_TAG = 'vwc-tooltip';
 

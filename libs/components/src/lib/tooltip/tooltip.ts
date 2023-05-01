@@ -1,6 +1,6 @@
 import { attr } from '@microsoft/fast-element';
-import {FoundationElement} from "@microsoft/fast-foundation";
-import type {Popup} from "@vonage/vivid";
+import {FoundationElement} from '@microsoft/fast-foundation';
+import type {Popup} from '../popup/popup';
 
 /**
  * Base class for tooltip
@@ -60,7 +60,7 @@ export class Tooltip extends FoundationElement {
 		const oldAnchor = this.#popupEl && this.#popupEl.anchorEl;
 		let attempts = 0;
 		await new Promise((resolve) => {
-			let interval = setInterval(() => {
+			const interval = setInterval(() => {
 				if ((this.#popupEl && this.#popupEl.anchorEl !== oldAnchor)) {
 					resolve(this.#popupEl.anchorEl);
 					clearInterval(interval);
@@ -70,7 +70,7 @@ export class Tooltip extends FoundationElement {
 					clearInterval(interval);
 				}
 				attempts++;
-			}, 50)
+			}, 50);
 		});
 	}
 
@@ -78,7 +78,7 @@ export class Tooltip extends FoundationElement {
 		let attempts = 0;
 		await new Promise((resolve) => {
 			if (this.#popupEl) resolve(this.#popupEl);
-			let interval = setInterval(() => {
+			const interval = setInterval(() => {
 				if (this.#popupEl) {
 					resolve(this.#popupEl);
 					clearInterval(interval);
@@ -88,7 +88,7 @@ export class Tooltip extends FoundationElement {
 					clearInterval(interval);
 				}
 				attempts++;
-			}, 10)
+			}, 10);
 		});
 	}
 
