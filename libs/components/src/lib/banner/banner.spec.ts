@@ -22,7 +22,7 @@ describe('vwc-banner', () => {
 	 *
 	 */
 	function dispatchAnimationEndEvent() {
-		const banner = element.shadowRoot?.querySelector('.banner');
+		const banner = element.shadowRoot?.querySelector('.control');
 		const event = new Event('transitionend');
 		banner?.dispatchEvent(event);
 	}
@@ -208,7 +208,7 @@ describe('vwc-banner', () => {
 
 		it('should leave connotation class empty if not set', async function () {
 			possibleConnotations.forEach(connotation => {
-				expect(element.shadowRoot?.querySelector('.banner')
+				expect(element.shadowRoot?.querySelector('.control')
 					?.classList
 					.contains(connotation))
 					.toEqual(false);
@@ -219,7 +219,7 @@ describe('vwc-banner', () => {
 			const connotation = possibleConnotations[2];
 			(element.connotation as Connotation) = connotation;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.banner')
+			expect(element.shadowRoot?.querySelector('.control')
 				?.classList
 				.contains(`connotation-${connotation}`))
 				.toEqual(true);
@@ -317,7 +317,7 @@ describe('vwc-banner', () => {
 			await toggleRemovable(element, true);
 			const dismissButton = element.shadowRoot?.querySelector('.dismiss-button') as HTMLElement;
 			dismissButton.click();
-			expect(element.shadowRoot?.querySelector('.banner')?.classList.contains('removing')).toEqual(true);
+			expect(element.shadowRoot?.querySelector('.control')?.classList.contains('removing')).toEqual(true);
 		});
 	});
 
