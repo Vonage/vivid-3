@@ -143,13 +143,7 @@ describe('vwc-popup', () => {
 
 	describe('show', () => {
 		it('should set "open" to true', async () => {
-			await setAnchor();
-			element.anchor = 'anchor';
-			await elementUpdated(element);
-
-			element.open = true;
-			await element.updatePosition();
-			await elementUpdated(element);
+			element.show();
 
 			expect(element.open)
 				.toEqual(true);
@@ -157,19 +151,11 @@ describe('vwc-popup', () => {
 
 		it('should fire open & close events', async function () {
 			const spyOpen = jest.fn();
-			const spyClose = jest.fn();
-
 			element.addEventListener('open', spyOpen);
-			element.addEventListener('close', spyClose);
 
-			element.open = true;
-			await elementUpdated(element);
-
-			element.open = false;
-			await elementUpdated(element);
+			element.show();
 
 			expect(spyOpen).toHaveBeenCalled();
-			expect(spyClose).toHaveBeenCalled();
 		});
 	});
 
@@ -177,12 +163,20 @@ describe('vwc-popup', () => {
 		it('should set "open" to false', async () => {
 			element.open = true;
 
-			element.open = false;
-			await element.updatePosition();
-			await elementUpdated(element);
+			element.hide();
 
 			expect(element.open)
 				.toEqual(false);
+		});
+
+		it('should fire close event', async function () {
+			element.open = true;
+			const spyClose = jest.fn();
+			element.addEventListener('close', spyClose);
+
+			element.hide();
+
+			expect(spyClose).toHaveBeenCalled();
 		});
 	});
 
