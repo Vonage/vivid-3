@@ -42,6 +42,7 @@ export class Tooltip extends FoundationElement {
 		super.attributeChangedCallback(name, oldValue, newValue);
 		if (name === 'anchor') {
 			if (oldValue !== newValue) {
+				await this.#waitForPopupEl();
 				this.#popupEl.anchor = this.anchor;
 				this.anchorUpdated = this.#waitForAnchorElementUpdate();
 				await this.anchorUpdated;
@@ -70,6 +71,24 @@ export class Tooltip extends FoundationElement {
 				}
 				attempts++;
 			}, 50)
+		});
+	}
+
+	async #waitForPopupEl() {
+		let attempts = 0;
+		await new Promise((resolve) => {
+			if (this.#popupEl) resolve(this.#popupEl);
+			let interval = setInterval(() => {
+				if (this.#popupEl) {
+					resolve(this.#popupEl);
+					clearInterval(interval);
+				}
+				if (attempts >= 10) {
+					resolve(this.#popupEl.anchorEl);
+					clearInterval(interval);
+				}
+				attempts++;
+			}, 10)
 		});
 	}
 
