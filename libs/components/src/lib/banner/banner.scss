@@ -29,45 +29,39 @@ $banner-transition-delay: --transition-delay;
 	&.removing {
 		max-height: 0;
 	}
+}
 
-	> .header {
+.header {
+	display: flex;
+	min-height: #{size.$vvd-size-ultra-expanded};
+	align-items: center;
+	inline-size: 100%;
+	font: var(#{constants.$vvd-typography-base-bold});
+
+	.content {
 		display: flex;
-		min-height: #{size.$vvd-size-ultra-expanded};
+		column-gap: 16px;
+		flex-grow: 1;
+		inline-size: 100%;
 		align-items: center;
-		justify-content: flex-start;
-		font: var(#{constants.$vvd-typography-base-bold});
+		justify-content: center;
+		padding-inline: 16px;
 
-		> .user-content {
-			display: flex;
-			flex: 1 0;
-			align-items: center;
-			justify-content: center;
-			padding-inline: 16px;
-
-			> .icon {
-				flex: 0 0 auto;
-				font-size: 20px;
-				line-height: 1;
-				margin-inline-end: 15px;
-			}
-
-			> .action-items {
-				display: inline-block;
-				flex: 0 0 auto;
-				padding-inline-start: 15px;
-			}
-
-			> .message {
-				padding: 20px 0;
-			}
+		.icon {
+			font-size: 20px;
+			line-height: 1;
+			flex-shrink: 0;
 		}
 
-		> .dismiss-button {
-			--vvd-icon-button-color: inherit;
-
-			flex: 0 0 auto;
-			margin-inline-end: 8px;
+		.action-items {
+			flex-shrink: 0;
 		}
 	}
+
+	.dismiss-button {
+		flex-shrink: 0;
+		margin-inline-end: 8px;
+	}
 }
+
 
