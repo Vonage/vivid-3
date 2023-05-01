@@ -1,10 +1,11 @@
-import { ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture } from '@vivid-nx/shared';
+import {ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
 import { fireEvent } from '@testing-library/dom';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Button } from '../button/button';
 import { Tooltip } from './tooltip';
 import '.';
 import { tooltipDefinition } from './definition';
+import type {Popup} from "@vonage/vivid";
 
 const COMPONENT_TAG = 'vwc-tooltip';
 
@@ -109,6 +110,54 @@ describe('vwc-tooltip', () => {
 
 			expect(openStateAfterEscape)
 				.toEqual(false);
+		});
+	});
+
+	describe('anchor', () => {
+		it('should reflect the anchor when given a string', async function () {
+			element.anchor = 'button1';
+			await elementUpdated(element);
+			const anchorAttributeValueWithString = element.getAttribute('anchor');
+
+			expect(anchorAttributeValueWithString)
+				.toEqual('button1');
+		});
+
+		it('should reflect the anchor to element.toString when given an element', async function () {
+			const anchor = document.createElement('div');
+
+			element.anchor = anchor;
+			await elementUpdated(element);
+			const anchorAttributeValueWithElement = element.getAttribute('anchor');
+
+			expect(anchorAttributeValueWithElement)
+				.toEqual(anchor.toString());
+
+		});
+
+		it('should set the anchor on the popup by id', async function () {
+			const anchorEl = await setAnchor();
+			const id = 'anchor';
+			const popup = getControlElement(element) as Popup;
+
+			element.anchor = id;
+			await elementUpdated(element);
+			await element.anchorUpdated;
+
+			expect(popup.anchor).toBe(id);
+			expect(popup.anchorEl).toEqual(anchorEl);
+		});
+
+		it('should set the anchor on the popup by element', async function () {
+			const anchorEl = await setAnchor();
+			const popup = getControlElement(element) as Popup;
+
+			element.anchor = anchorEl;
+			await elementUpdated(element);
+			await element.anchorUpdated;
+
+			expect(popup.anchorEl)
+				.toEqual(anchorEl);
 		});
 	});
 

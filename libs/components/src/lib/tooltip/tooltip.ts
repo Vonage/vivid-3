@@ -42,6 +42,7 @@ export class Tooltip extends FoundationElement {
 		super.attributeChangedCallback(name, oldValue, newValue);
 		if (name === 'anchor') {
 			if (oldValue !== newValue) {
+				this.#popupEl.anchor = this.anchor;
 				this.anchorUpdated = this.#waitForAnchorElementUpdate();
 				await this.anchorUpdated;
 				this.#anchorUpdated();
@@ -64,7 +65,6 @@ export class Tooltip extends FoundationElement {
 					clearInterval(interval);
 				}
 				if (attempts >= 10) {
-					console.error('anchor element not found');
 					resolve(this.#popupEl.anchorEl);
 					clearInterval(interval);
 				}

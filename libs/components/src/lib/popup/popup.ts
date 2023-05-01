@@ -90,7 +90,7 @@ export class Popup extends FoundationElement {
 	 * @public
 	 * HTML Attribute: anchor
 	 */
-	@attr anchor!: string | HTMLElement;
+	@attr anchor?: string | HTMLElement;
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
@@ -151,7 +151,7 @@ export class Popup extends FoundationElement {
 	 * Gets the anchor element by id
 	 */
 	get anchorEl(): HTMLElement | null {
-		return this.anchor instanceof HTMLElement ? this.anchor : document.getElementById(this.anchor);
+		return this.anchor instanceof HTMLElement ? this.anchor : document.getElementById(this.anchor ? this.anchor : '');
 	}
 
 	show(): void {
