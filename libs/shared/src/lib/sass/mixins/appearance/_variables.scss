@@ -182,7 +182,7 @@ $states-mapping: (
     ),
 		listitem: (
 			text: var(#{connotation.get-connotation-token(primary)}),
-			fill: var(#{connotation.get-connotation-token(muted)}),
+			fill: var(#{connotation.get-connotation-token(dim)}),
 			outline: transparent,
 		),
     subtle: (
