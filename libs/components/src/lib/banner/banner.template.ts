@@ -42,14 +42,14 @@ export const BannerTemplate: (
 	const buttonTag = context.tagFor(Button);
 
 	return html<Banner>`
-	  <div class="banner ${getClasses}" tabindex="0">
+	  <div class="${getClasses}" tabindex="0">
 		  <header class="header">
-					<div class="user-content">
+					<div class="content">
             ${x => affixIconTemplate(x.conditionedIcon)}
-						<div class="banner--message"
-				 role="${x => x.role ? x.role : 'status'}"
-				 aria-live="${x => x.ariaLive ? x.ariaLive : 'polite'}">
-              ${x => x.text}
+						<div class="banner-message"
+						 role="${x => x.role ? x.role : 'status'}"
+						 aria-live="${x => x.ariaLive ? x.ariaLive : 'polite'}">
+									${x => x.text}
             </div>
 						<slot class="action-items" name="action-items"></slot>
 					</div>
