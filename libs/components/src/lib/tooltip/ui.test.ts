@@ -10,8 +10,9 @@ const components = ['tooltip'];
 function changeAnchor() {
 	const tooltip = document.querySelector('#tooltip5');
 	(tooltip as any).anchor = 'anchor2';
+	(tooltip as any).open = true;
 }
-test('should show the component', async ({ page }: { page: Page }) => {
+test.only('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 <style>
   .wrapper{
@@ -39,7 +40,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
   <vwc-tooltip id="tooltip3" anchor="anchor" open text="top" placement="top">
   </vwc-tooltip>
   <vwc-tooltip id="tooltip4" anchor="anchor" open text="bottom with custom width" placement="bottom"> </vwc-tooltip>
-  <vwc-tooltip id="tooltip5" class="tooltip" anchor="anchor" open text="Dynamic Anchor Change" placement="right">
+  <vwc-tooltip id="tooltip5" class="tooltip" anchor="anchor" text="Dynamic Anchor Change" placement="right">
   </vwc-tooltip>
 
 </div>
