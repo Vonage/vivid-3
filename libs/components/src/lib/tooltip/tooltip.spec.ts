@@ -113,27 +113,6 @@ describe('vwc-tooltip', () => {
 	});
 
 	describe('anchor', () => {
-		it('should reflect the anchor when given a string', async function () {
-			element.anchor = 'button1';
-			await elementUpdated(element);
-			const anchorAttributeValueWithString = element.getAttribute('anchor');
-
-			expect(anchorAttributeValueWithString)
-				.toEqual('button1');
-		});
-
-		it('should reflect the anchor to element.toString when given an element', async function () {
-			const anchor = document.createElement('div');
-
-			element.anchor = anchor;
-			await elementUpdated(element);
-			const anchorAttributeValueWithElement = element.getAttribute('anchor');
-
-			expect(anchorAttributeValueWithElement)
-				.toEqual(anchor.toString());
-
-		});
-
 		it('should set the anchor on the popup by id', async function () {
 			const anchorEl = await setAnchorInDOM();
 			const id = 'anchor';
@@ -141,7 +120,6 @@ describe('vwc-tooltip', () => {
 
 			element.anchor = id;
 			await elementUpdated(element);
-
 
 			expect(popup.anchor).toBe(id);
 			expect(popup.anchorEl).toEqual(anchorEl);

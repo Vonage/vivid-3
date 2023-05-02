@@ -29,6 +29,7 @@ export const TooltipTemplate: (
 	return html`
 <${popupTag} class="${getClasses}" arrow alternate
 	:placement=${(x) => x.placement}
+	:anchor="${x => x.anchor}"
 	:open=${(x) => x.open}
   exportparts="vvd-theme-alternate">
   <div class="tooltip" role="tooltip">
