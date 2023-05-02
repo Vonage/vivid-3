@@ -99,11 +99,9 @@ export class Popup extends FoundationElement {
 
 	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
 		super.attributeChangedCallback(name, oldValue, newValue);
+		this.#cleanup?.();
 		if (this.anchorEl && this.popupEl) {
 			this.#cleanup = autoUpdate(this.anchorEl, this.popupEl, () => this.updatePosition());
-		}
-		else {
-			this.#cleanup?.();
 		}
 	}
 

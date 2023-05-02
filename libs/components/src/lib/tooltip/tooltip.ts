@@ -22,6 +22,7 @@ export class Tooltip extends FoundationElement {
 
 	@attr({mode: 'boolean'}) open?: boolean;
 	anchorUpdated?: Promise<void>;
+	#oldAnchor?: HTMLElement | null;
 
 	get #popupEl(): Popup {
 		return this.shadowRoot!.querySelector('.control') as Popup;
@@ -43,6 +44,7 @@ export class Tooltip extends FoundationElement {
 		if (name === 'anchor') {
 			if (oldValue !== newValue) {
 				if (Boolean(await this.#waitForPopupEl())) {
+					this.#oldAnchor = this.#popupEl.anchorEl;
 					this.#popupEl.anchor = this.anchor;
 					this.#anchorUpdated();
 				}
@@ -74,10 +76,10 @@ export class Tooltip extends FoundationElement {
 	}
 
 	#removeEventListener(): void {
-		this.#popupEl.anchorEl?.removeEventListener('mouseover', this.#show);
-		this.#popupEl.anchorEl?.removeEventListener('mouseout', this.#hide);
-		this.#popupEl.anchorEl?.removeEventListener('focusin', this.#show);
-		this.#popupEl.anchorEl?.removeEventListener('focusout', this.#hide);
+		this.#oldAnchor?.removeEventListener('mouseover', this.#show);
+		this.#oldAnchor?.removeEventListener('mouseout', this.#hide);
+		this.#oldAnchor?.removeEventListener('focusin', this.#show);
+		this.#oldAnchor?.removeEventListener('focusout', this.#hide);
 	}
 
 	#show = () => {
