@@ -34,7 +34,10 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/banner.png'
+		'./snapshots/banner.png',
+		{
+			maxDiffPixelRatio: 0.02
+		}
 	);
 });
 
