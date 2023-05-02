@@ -16,7 +16,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 <style>
   .wrapper{
     width: 100%;
-    height: 220px;
+    height: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -28,7 +28,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 <div class="wrapper">
   <vwc-button id="anchor" aria-describedby="tooltip" appearance='outlined' label='This is an anchor'></vwc-button>
   <vwc-button id="anchor2"
-  						style="position: absolute; top: 0;"
+  						style="position: absolute; top: 20px;"
   						aria-describedby="tooltip"
   						appearance='outlined'
   						label='This is an anchor'></vwc-button>
@@ -61,8 +61,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.waitForLoadState('networkidle');
 
 	await page.addScriptTag({content: changeAnchor.toString() + 'changeAnchor();'});
-
-	await page.pause();
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/tooltip.png'
