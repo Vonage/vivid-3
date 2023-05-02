@@ -58,7 +58,7 @@ describe('vwc-popup', () => {
 		});
 	});
 
-	describe('viewport visibility transition', function () {
+	describe('updatePosition', function () {
 
 		const computePositionResult = {
 			'x': -15,
@@ -99,15 +99,15 @@ describe('vwc-popup', () => {
 		/**
 		 * @param hidden
 		 */
-		async function makePopupHidden(hidden = true) {
+		function resetPosition(hidden = true) {
 			computePositionResult.middlewareData.hide.referenceHidden = hidden;
 			(floatingUI.computePosition as jest.MockedFunction<any>).mockReturnValue(Promise.resolve(computePositionResult));
-			await element.updatePosition();
 		}
 
 		it('should be hidden when not in viewport', async function () {
 			await setupPopupToOpenWithAnchor();
-			await makePopupHidden(true);
+			await resetPosition(true);
+			await element.updatePosition();
 
 			expect(element.popupEl.style.visibility)
 				.toEqual('hidden');
@@ -115,7 +115,8 @@ describe('vwc-popup', () => {
 
 		it('should be hidden when not in viewport', async function () {
 			await setupPopupToOpenWithAnchor();
-			await makePopupHidden(false);
+			await resetPosition(false);
+			await element.updatePosition();
 			expect(element.popupEl.style.visibility)
 				.toEqual('visible');
 		});
@@ -142,13 +143,7 @@ describe('vwc-popup', () => {
 
 	describe('show', () => {
 		it('should set "open" to true', async () => {
-			await setAnchor();
-			element.anchor = 'anchor';
-			await elementUpdated(element);
-
-			element.open = true;
-			element.updatePosition();
-			await elementUpdated(element);
+			element.show();
 
 			expect(element.open)
 				.toEqual(true);
@@ -156,19 +151,11 @@ describe('vwc-popup', () => {
 
 		it('should fire open & close events', async function () {
 			const spyOpen = jest.fn();
-			const spyClose = jest.fn();
-
 			element.addEventListener('open', spyOpen);
-			element.addEventListener('close', spyClose);
 
-			element.open = true;
-			await elementUpdated(element);
-
-			element.open = false;
-			await elementUpdated(element);
+			element.show();
 
 			expect(spyOpen).toHaveBeenCalled();
-			expect(spyClose).toHaveBeenCalled();
 		});
 	});
 
@@ -176,31 +163,31 @@ describe('vwc-popup', () => {
 		it('should set "open" to false', async () => {
 			element.open = true;
 
-			element.open = false;
-			element.updatePosition();
-			await elementUpdated(element);
+			element.hide();
 
 			expect(element.open)
 				.toEqual(false);
 		});
+
+		it('should fire close event', async function () {
+			element.open = true;
+			const spyClose = jest.fn();
+			element.addEventListener('close', spyClose);
+
+			element.hide();
+
+			expect(spyClose).toHaveBeenCalled();
+		});
 	});
 
-	describe('render arrow', () => {
+	describe('arrow', () => {
 		it('should remove the arrow class on the container if arrow is false', async () => {
 			expect(element.shadowRoot?.querySelector('.arrow'))
 				.toBeNull();
 		});
+
 		it('should set the arrow class on the container if arrow is true', async () => {
 			element.arrow = true;
-			element.open = true;
-			await elementUpdated(element);
-
-			const anchorEl = await setAnchor();
-			element.anchor = anchorEl;
-			await elementUpdated(element);
-
-			element.arrowEl = element.shadowRoot?.querySelector('.arrow') as HTMLElement;
-			element.updatePosition();
 			await elementUpdated(element);
 
 			expect(element.shadowRoot?.querySelector('.arrow'))
@@ -209,11 +196,12 @@ describe('vwc-popup', () => {
 		});
 	});
 
-	describe('render dismiss', () => {
+	describe('dismissible', () => {
 		it('should remove the dismiss class on the container if dismissible is false', async () => {
 			expect(element.shadowRoot?.querySelector('.dismissible'))
 				.toBeNull();
 		});
+
 		it('should set the dismiss class on the container if dismissible is true', async () => {
 			element.dismissible = true;
 
@@ -222,19 +210,15 @@ describe('vwc-popup', () => {
 				.not
 				.toBeNull();
 		});
-	});
 
-	describe('handle dismiss', () => {
 		it('should hide when dismiss button is clicked', async () => {
-			await setAnchor();
-			element.anchor = 'anchor';
 			element.dismissible = true;
 			await elementUpdated(element);
 
 			element.open = true;
 			const openStateBeforeEsc = element.open;
-
 			await elementUpdated(element);
+
 			const dismissButton = element.shadowRoot?.querySelector('vwc-button');
 			(dismissButton as HTMLElement).click();
 			await elementUpdated(element);
@@ -246,63 +230,16 @@ describe('vwc-popup', () => {
 		});
 	});
 
-	describe('handle keydown', () => {
-		// it('should hide on escape key', async () => {
-		// 	const anchor = await setupPopupToOpenWithAnchor();
-		// 	const openStateBeforeEsc = element.open;
-
-		// 	await elementUpdated(element);
-		// 	anchor.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
-		// 	await elementUpdated(element);
-
-		// 	expect(openStateBeforeEsc)
-		// 		.toEqual(true);
-		// 	expect(element.open)
-		// 		.toEqual(false);
-		// });
-
-		it('should remove keydown listener after disconnection', async function () {
-			const anchor = await setupPopupToOpenWithAnchor();
-			const openStateBeforeEsc = element.open;
-
-			await elementUpdated(element);
-			element.disconnectedCallback();
-			await elementUpdated(element);
-			anchor.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
-
-			expect(openStateBeforeEsc)
-				.toEqual(true);
-			expect(element.open)
-				.toEqual(true);
-		});
-
-		it('should remove keydown listener after changing anchor', async function () {
-			const anchor = await setupPopupToOpenWithAnchor();
-			const openStateBeforeEsc = element.open;
-
-			await elementUpdated(element);
-			element.anchor = 'new-anchor';
-			await elementUpdated(element);
-			anchor.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
-
-			expect(openStateBeforeEsc)
-				.toEqual(true);
-			expect(element.open)
-				.toEqual(true);
-		});
-	});
-
 	describe('alternate', () => {
 		it('should set to alternate', async () => {
-			expect(getControlElement(element)
-				.getAttribute('part'))
-				.toEqual('');
-			element.alternate = true;
+			const partValueWithoutAlternate = getControlElement(element).getAttribute('part');
 
+			element.alternate = true;
 			await elementUpdated(element);
-			expect(getControlElement(element)
-				.getAttribute('part'))
-				.toEqual('vvd-theme-alternate');
+			const partValueWithAlternate = getControlElement(element).getAttribute('part');
+
+			expect(partValueWithoutAlternate).toEqual('');
+			expect(partValueWithAlternate).toEqual('vvd-theme-alternate');
 		});
 	});
 
@@ -320,6 +257,25 @@ describe('vwc-popup', () => {
 		});
 	});
 
+	describe('anchorEl', () => {
+		it('should set anchorEl', async () => {
+			const anchorEl = await setAnchor();
+			element.anchor = 'anchor';
+			await elementUpdated(element);
+
+			expect(element.anchorEl)
+				.toEqual(anchorEl);
+		});
+
+		it('should set anchorEl as an element', async function () {
+			const anchorEl = await setAnchor();
+			element.anchor = anchorEl;
+			await elementUpdated(element);
+
+			expect(element.anchorEl)
+				.toEqual(anchorEl);
+		});
+	});
 	/**
 	 *
 	 */

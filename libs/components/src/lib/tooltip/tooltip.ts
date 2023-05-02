@@ -1,12 +1,18 @@
 import { attr } from '@microsoft/fast-element';
-import { Popup } from '../popup/popup';
+import {FoundationElement} from '@microsoft/fast-foundation';
+import type { Placement } from '@floating-ui/dom';
+
+type anchorType = string | HTMLElement;
 
 /**
  * Base class for tooltip
  *
  * @public
  */
-export class Tooltip extends Popup {
+export class Tooltip extends FoundationElement {
+
+	#anchorEl: HTMLElement | null = null;
+
 	/**
 	 * the text of the tooltip
 	 * accepts string
@@ -15,9 +21,16 @@ export class Tooltip extends Popup {
 	 */
 	@attr text?: string;
 
-	override connectedCallback(): void {
-		super.connectedCallback();
-		this.#anchorUpdated();
+	@attr({ mode: 'fromView' }) placement?: Placement;
+
+	@attr({ mode: 'boolean'	}) open = false;
+
+	@attr({ mode: 'fromView' }) anchor?: anchorType;
+	anchorChanged(_: anchorType, newValue: anchorType) {
+		if (this.#anchorEl) this.#removeEventListener();
+
+		this.#anchorEl = newValue instanceof HTMLElement ? newValue : document.getElementById(newValue);
+		if (this.#anchorEl) this.#anchorUpdated();
 	}
 
 	override disconnectedCallback(): void {
@@ -26,28 +39,25 @@ export class Tooltip extends Popup {
 		document.removeEventListener('keydown', this.#closeOnEscape);
 	}
 
-	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
-		super.attributeChangedCallback(name, oldValue, newValue);
-		this.#anchorUpdated();
-	}
-
 	#anchorUpdated(): void {
 		this.#removeEventListener();
 		this.#addEventListener();
 	}
 
 	#addEventListener(): void {
-		this.anchorEl?.addEventListener('mouseover', this.#show);
-		this.anchorEl?.addEventListener('mouseout', this.#hide);
-		this.anchorEl?.addEventListener('focusin', this.#show);
-		this.anchorEl?.addEventListener('focusout', this.#hide);
+		if (this.#anchorEl) {
+			this.#anchorEl.addEventListener('mouseover', this.#show);
+			this.#anchorEl.addEventListener('mouseout', this.#hide);
+			this.#anchorEl.addEventListener('focusin', this.#show);
+			this.#anchorEl.addEventListener('focusout', this.#hide);
+		}
 	}
 
 	#removeEventListener(): void {
-		this.anchorEl?.removeEventListener('mouseover', this.#show);
-		this.anchorEl?.removeEventListener('mouseout', this.#hide);
-		this.anchorEl?.removeEventListener('focusin', this.#show);
-		this.anchorEl?.removeEventListener('focusout', this.#hide);
+		this.#anchorEl?.removeEventListener('mouseover', this.#show);
+		this.#anchorEl?.removeEventListener('mouseout', this.#hide);
+		this.#anchorEl?.removeEventListener('focusin', this.#show);
+		this.#anchorEl?.removeEventListener('focusout', this.#hide);
 	}
 
 	#show = () => {
@@ -62,9 +72,9 @@ export class Tooltip extends Popup {
 		if (e.key === 'Escape') this.#hide();
 	};
 
-	override openChanged(oldValue: boolean, newValue: boolean): void {
-		super.openChanged(oldValue, newValue);
-		if (oldValue === undefined) return;
+	openChanged(_: boolean, newValue: boolean): void {
+		if (_ === undefined) return;
+
 		if (newValue) {
 			document.addEventListener('keydown', this.#closeOnEscape);
 		} else {
