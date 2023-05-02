@@ -12,7 +12,7 @@ function changeAnchor() {
 	(tooltip as any).anchor = 'anchor2';
 	(tooltip as any).open = true;
 }
-test.only('should show the component', async ({ page }: { page: Page }) => {
+test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 <style>
   .wrapper{
