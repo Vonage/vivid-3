@@ -17,6 +17,11 @@ async function toggleRemovable(element: Banner, removable = true) {
 	await elementUpdated(element);
 }
 
+function getBannerMessageAttribute(element: Banner, attribute: string ) {
+	return element.shadowRoot?.querySelector('.banner-message')
+		?.getAttribute(attribute);
+}
+
 describe('vwc-banner', () => {
 	/**
 	 *
@@ -100,8 +105,7 @@ describe('vwc-banner', () => {
 
 	describe('role', function () {
 		it('should be set to "status" on init', function () {
-			const role = element.shadowRoot?.querySelector('.banner-message')
-				?.getAttribute('role');
+			const role = getBannerMessageAttribute(element, 'role');
 			expect(role)
 				.toEqual('status');
 		});
@@ -109,8 +113,7 @@ describe('vwc-banner', () => {
 		it('should change role to role text', async function () {
 			element.role = 'alert';
 			await elementUpdated(element);
-			const role = element.shadowRoot?.querySelector('.banner-message')
-				?.getAttribute('role');
+			const role = getBannerMessageAttribute(element, 'role');
 			expect(role)
 				.toEqual('alert');
 		});
@@ -118,8 +121,7 @@ describe('vwc-banner', () => {
 		it('should change role when role attribute is set', async function () {
 			element.setAttribute('role', 'alert');
 			await elementUpdated(element);
-			const role = element.shadowRoot?.querySelector('.banner-message')
-				?.getAttribute('role');
+			const role = getBannerMessageAttribute(element, 'role');
 			expect(role)
 				.toEqual('alert');
 		});
@@ -127,8 +129,7 @@ describe('vwc-banner', () => {
 
 	describe('aria live', function () {
 		it('should be set to "live" on init', function () {
-			const ariaLive = element.shadowRoot?.querySelector('.banner-message')
-				?.getAttribute('aria-live');
+			const ariaLive = getBannerMessageAttribute(element, 'aria-live');
 			expect(ariaLive)
 				.toEqual('polite');
 		});
@@ -136,8 +137,7 @@ describe('vwc-banner', () => {
 		it('should change aria-live to ariaLive text', async function () {
 			element.ariaLive = 'assertive';
 			await elementUpdated(element);
-			const ariaLive = element.shadowRoot?.querySelector('.banner-message')
-				?.getAttribute('aria-live');
+			const ariaLive = getBannerMessageAttribute(element, 'aria-live');
 			expect(ariaLive)
 				.toEqual('assertive');
 		});
@@ -145,8 +145,7 @@ describe('vwc-banner', () => {
 		it('should change reflect aria-live inside the message', async function () {
 			element.setAttribute('aria-live', 'assertive');
 			await elementUpdated(element);
-			const ariaLive = element.shadowRoot?.querySelector('.banner-message')
-				?.getAttribute('aria-live');
+			const ariaLive = getBannerMessageAttribute(element, 'aria-live');
 			expect(ariaLive)
 				.toEqual('assertive');
 		});
