@@ -93,7 +93,7 @@ export class Toggletip extends FoundationElement {
 
 	#cleanupAnchor(a: HTMLElement) {
 		a.removeEventListener('click', this.#openIfClosed, true);
-		a.ariaLabel = a.ariaLabel?.replace(this.#ANCHOR_ARIA_LABEL_SUFFIX, '') as string;
+		if (a.ariaLabel) a.ariaLabel = a.ariaLabel.replace(this.#ANCHOR_ARIA_LABEL_SUFFIX, '');
 	}
 
 	#openIfClosed = () => {

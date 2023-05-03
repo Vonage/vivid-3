@@ -121,7 +121,7 @@ describe('vwc-toggletip', () => {
 			expect(element.open).toEqual(true);
 		});
 
-		it('should update the anchor aria-label as needed', async () => {
+		it('should update the anchor aria-label when none is set', async () => {
 			element.anchor = anchor;
 			await elementUpdated(element);
 
@@ -131,6 +131,21 @@ describe('vwc-toggletip', () => {
 			await elementUpdated(element);
 
 			expect(anchor.ariaLabel).toEqual('');
+		});
+
+		it('should update the anchor aria-label when it already has one', async () => {
+			const initialLabel = 'some existing label';
+			
+			anchor.ariaLabel = initialLabel;
+			element.anchor = anchor;
+			await elementUpdated(element);
+
+			expect(anchor.ariaLabel).toEqual(initialLabel + ' ; Show more information');
+
+			element.anchor = '';
+			await elementUpdated(element);
+
+			expect(anchor.ariaLabel).toEqual(initialLabel);
 		});
 	});
 
