@@ -1,4 +1,4 @@
-import { html, ref } from '@microsoft/fast-element';
+import { html, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
@@ -19,7 +19,6 @@ export const ToggletipTemplate:
 
 	return html`
 		<${popup}
-			${ref('popup')}
 			class="${getClasses}"
 			arrow
 			:anchor="${x => x.anchor}"
@@ -29,7 +28,9 @@ export const ToggletipTemplate:
 			exportparts="vvd-theme-alternate"
 		>
 			<span class="content-wrapper">
+				${when(x => x.headline, html`<div class="headline">${x => x.headline}</div>`)}
 				<slot></slot>
+				<slot class="action-items" name="action-items"></slot>
 			</span>
 		</${popup}>
 	`;

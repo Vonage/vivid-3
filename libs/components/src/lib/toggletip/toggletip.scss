@@ -1,7 +1,27 @@
+@use "partials/variables" as variables;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+
+$padding: 16px;
+
 .control {
 	display: inline-block;
 }
 
 .content-wrapper {
-	padding: 16px;
+	padding: $padding;
+	width: var(#{variables.$toggletip-inline-size}, auto);
+}
+
+.headline {
+	font: var(#{constants.$vvd-typography-base-bold});
+}
+
+.action-items {
+	display: flex;
+	justify-content: flex-end;
+	gap: 10px;
+}
+
+::slotted([slot=action-items]) {
+	margin-block-start: $padding;
 }

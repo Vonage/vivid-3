@@ -1,6 +1,7 @@
 # Toggletip
 
-Represents a toggletip custom element.
+Toggletips provide supplementary or clarifying information. The main differences with tooltips is that they require a click to display and are keyboard accessible.
+This means they can display user actions such as links or buttons.
 
 ```js
 <script type="module">
@@ -8,83 +9,51 @@ Represents a toggletip custom element.
 </script>
 ```
 
-[temporary example, to be removed]
-
-```html preview full
-<section style="margin: 100px 20px">
-	This may require more details
-	<vwc-toggletip>
-		<div style="width: 300px;">
-			Here are some more explanations about what this is about and what you want to do.
-			<p>Do you want to learn more or do stuff?</p>
-			<div style="text-align: right">
-				<vwc-button label="Learn more" appearance="ghost"></vwc-button>
-				<vwc-button label="Do stuff!" appearance="outlined"></vwc-button>
-			</div>
-		</div>
-	</vwc-toggletip>
-</section>
-```
-
 ## Members
 
-### Appearance
+### Anchor
 
-Set the `appearance` attribute to change the appearance of the toggletip.
+Use the `anchor` attribute to link the toggletip to the element responsible for showing and hiding it. It can be the ID or a reference to said element.
 
-- Type: `'ghost'` | `'filled'` | `'outlined'`
-- Default: `'ghost'`
+The anchor must be clickable and in most cases, will be a button displaying an information glyph as in the example below.
 
-```html preview
-<vwc-layout column-basis="small" column-spacing="small" gutters="large">
-	<vwc-toggletip appearance='ghost'>more information</vwc-toggletip>
-	<vwc-toggletip appearance='filled'>more information</vwc-toggletip>
-	<vwc-toggletip appearance='outlined'>more information</vwc-toggletip>
-</vwc-layout>
-```
-
-### Icon
-
-Use `icon` to set the toggletip's icon.
-
-View list of available icon at the [vivid icons gallery](https://icons.vivid.vonage.com).
-
-Note: Icon, by its own, doesn't make a discernible text. An `aria-label` or `title` must be provided to ensure that the user can understand the toggletip's purpose.
-
-- Type: `string`
-- Default: `info-line`
+- Type: `string | HTMLElement`
+- Default: `undefined`
 
 ```html preview center
-<vwc-toggletip icon='info-solid'>more information</vwc-toggletip>
+<vwc-button id="button1" icon="help-solid" shape="pill"></vwc-button>
+<vwc-toggletip anchor="button1">My anchor is an ID</vwc-toggletip>
+
+<vwc-button id="button2" icon="help-solid" shape="pill"></vwc-button>
+<vwc-toggletip id="toggletip">My anchor is a reference</vwc-toggletip>
+
+<script>
+	toggletip.anchor = button2;
+</script>
 ```
 
-### Shape
+### Open
 
-Use the `shape` attribute to set the toggletip's edges.
+You can toggle toggletip's display by using the `open` attribute.
 
-- Type: `'rounded'` | `'pill'`
-- Default: `'pill'`
+- Type: `boolean`
+- Default: `false`
 
-```html preview
-<vwc-layout column-basis="small" column-spacing="small" gutters="large">
-	<vwc-toggletip shape='rounded'>more information</vwc-toggletip>
-	<vwc-toggletip shape='pill'>more information</vwc-toggletip>
-</vwc-layout>
+```html preview center
+<vwc-button id="button1" icon="help-solid" shape="pill"></vwc-button>
+<vwc-toggletip anchor="button1" open>I'm open by default</vwc-toggletip>
 ```
 
-### Size
+### Headline
 
-Use the `size` attribute to set the toggletip's icon to one of the predefined block size extent.
+Use the `headline` attribute to set the toggletip's headline.
 
-- Type: `'condensed'` | `'normal'` | `'expanded'`
-- Default: `'condensed'`
+- Type: `string`
+- Default: `undefined`
 
-```html preview
-<vwc-layout column-basis="small" column-spacing="small" gutters="large">
-	<vwc-toggletip size='condensed'>more information</vwc-toggletip>
-	<vwc-toggletip size='normal'>more information</vwc-toggletip>
-	<vwc-toggletip size='expanded'>more information</vwc-toggletip>
-</vwc-layout>
+```html preview center
+<vwc-button id="button1" icon="help-solid" shape="pill"></vwc-button>
+<vwc-toggletip anchor="button1" headline="This is the headline">This is the content</vwc-toggletip>
 ```
 
 ### Alternate
@@ -95,61 +64,44 @@ Add the `alternate` attribute to change the toggletip's color-scheme to the oppo
 - Default: `false`
 
 ```html preview center
-<vwc-toggletip alternate>more information</vwc-toggletip>
+<vwc-button id="button1" icon="help-solid" shape="pill"></vwc-button>
+<vwc-toggletip anchor="button1" alternate>An alternate toggletip</vwc-toggletip>
 ```
 
-### Connotation
+### Placement
 
-Set the `connotation` attribute to change the toggletip's connotation.
-It accepts a subset of predefined values.
+Use the `placement` attribute to control the position of the toggletip relative to its anchor.
 
-- Type: `'accent'` | `'cta'` | `'success'` | `'alert'`
-- Default: `'accent'`
+- Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'` | `'left'` | `'left-start'` | `'left-end'`
+- Default: `'right'`
 
-#### Ghost toggletip with connotation
+```html preview center
+<style>
+	body {
+		height: 200px;
+	}
+</style>
 
-```html preview
-<vwc-layout column-basis="small" column-spacing="small" gutters="large">
-	<vwc-toggletip connotation='accent'>more information</vwc-toggletip>
-	<vwc-toggletip connotation='cta'>more information</vwc-toggletip>
-	<vwc-toggletip connotation='success'>more information</vwc-toggletip>
-	<vwc-toggletip connotation='alert'>more information</vwc-toggletip>
-</vwc-layout>
+<vwc-button id="button1" icon="help-solid" shape="pill"></vwc-button>
+
+<vwc-toggletip anchor="button1" placement="top">top</vwc-toggletip>
+<vwc-toggletip anchor="button1" placement="right">right</vwc-toggletip>
+<vwc-toggletip anchor="button1" placement="bottom">bottom</vwc-toggletip>
+<vwc-toggletip anchor="button1" placement="left">left</vwc-toggletip>
 ```
 
-#### Filled toggletip with connotation
+## Slots
 
-```html preview
-<vwc-layout column-basis="small" column-spacing="small" gutters="large">
-	<vwc-toggletip appearance="filled" connotation='accent'>more information</vwc-toggletip>
-	<vwc-toggletip appearance="filled" connotation='cta'>more information</vwc-toggletip>
-	<vwc-toggletip appearance="filled" connotation='success'>more information</vwc-toggletip>
-	<vwc-toggletip appearance="filled" connotation='alert'>more information</vwc-toggletip>
-</vwc-layout>
-```
+### Action Items
 
-#### Outlined toggletip with connotation
+You can add action items elements using the `action-items` slot. They will be displayed right-aligned at the bottom of the toggletip.
 
-```html preview
-<vwc-layout column-basis="small" column-spacing="small" gutters="large">
-	<vwc-toggletip appearance="outlined" connotation='accent'>more information</vwc-toggletip>
-	<vwc-toggletip appearance="outlined" connotation='cta'>more information</vwc-toggletip>
-	<vwc-toggletip appearance="outlined" connotation='success'>more information</vwc-toggletip>
-	<vwc-toggletip appearance="outlined" connotation='alert'>more information</vwc-toggletip>
-</vwc-layout>
-```
+```html preview center
+<vwc-button id="button1" icon="help-solid" shape="pill"></vwc-button>
 
-### Disabled
-
-Add the `disabled` attribute to disable the toggletip.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<vwc-layout column-basis="small" column-spacing="small" gutters="large">
-	<vwc-toggletip disabled>more information</vwc-toggletip>
-	<vwc-toggletip appearance='filled' disabled>more information</vwc-toggletip>
-	<vwc-toggletip appearance='outlined' disabled>more information</vwc-toggletip>
-</vwc-layout>
+<vwc-toggletip anchor="button1">
+	This is a toggletip with action items
+	<vwc-button appearance='outlined' label='Action' shape='pill' slot="action-items"></vwc-button>
+	<vwc-button appearance='filled' label='Action' shape='pill' slot="action-items"></vwc-button>
+</vwc-toggletip>
 ```

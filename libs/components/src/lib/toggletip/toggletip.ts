@@ -1,7 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 import type { Placement } from '@floating-ui/dom';
-import type { Popup } from '../components';
 
 type anchorType = string | HTMLElement;
 
@@ -12,11 +11,18 @@ type anchorType = string | HTMLElement;
  */
 export class Toggletip extends FoundationElement {
 
-	popup!: Popup;
-
 	anchorEl: HTMLElement | null = null;
 
 	#ANCHOR_ARIA_LABEL_SUFFIX = ' ; Show more information';
+
+	/**
+	 * the optional title of the toggletip
+	 *
+	 * @public
+	 * HTML Attribute: headline
+	 */
+
+	@attr headline?: string;
 
 	/**
 	 * toggle color scheme
@@ -59,9 +65,11 @@ export class Toggletip extends FoundationElement {
 		if (oldValue === undefined) return;
 
 		if (newValue) {
+			document.addEventListener('click', this.#closeOnClickOutside);
 			document.addEventListener('keydown', this.#closeOnEscape);
 			this.setAttribute('role', 'status');
 		} else {
+			document.removeEventListener('click', this.#closeOnClickOutside);
 			document.removeEventListener('keydown', this.#closeOnEscape);
 			this.removeAttribute('role');
 		}
@@ -78,28 +86,27 @@ export class Toggletip extends FoundationElement {
 	}
 
 	#setupAnchor(a: HTMLElement) {
-		a.addEventListener('click', this.#toggle);
-		a.addEventListener('focusout', this.#hide);
+		a.addEventListener('click', this.#openIfClosed, true);
 		a.ariaLabel = (a.ariaLabel ?? '') + this.#ANCHOR_ARIA_LABEL_SUFFIX;
 		// TODO aria-controls="myid"
 	};
 
 	#cleanupAnchor(a: HTMLElement) {
-		console.log('cleanup', a);
-		a.removeEventListener('click', this.#toggle);
-		a.removeEventListener('focusout', this.#hide);
+		a.removeEventListener('click', this.#openIfClosed);
 		a.ariaLabel = a.ariaLabel?.replace(this.#ANCHOR_ARIA_LABEL_SUFFIX, '') as string;
 	};
 
-	#toggle = () => {
-		this.open = !this.open;
+	#openIfClosed = () => {
+		// requestAnimationFrame is required to prevent the click event from being
+		// caught by the document click handler that will be added in anchorChanged
+		if (!this.open) requestAnimationFrame(() => this.open = true);
 	};
 
-	#hide = () => {
-		this.open = false;
-	};
+	#closeOnClickOutside = (e: Event) => {
+		if (!this.contains(e.target as Node)) this.open = false;
+	}
 
 	#closeOnEscape = (e:KeyboardEvent) => {
-		if (e.key === 'Escape') this.#hide();
+		if (e.key === 'Escape') this.open = false;
 	};
 }
