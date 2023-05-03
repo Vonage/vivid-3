@@ -101,7 +101,7 @@ $states-mapping: (
 		),
     subtle: (
       text: var(#{connotation.get-connotation-token(contrast)}),
-      fill: var(#{connotation.get-connotation-token(pale)}),
+      fill: var(#{connotation.get-connotation-token(dim)}),
       outline: transparent,
     ),
     duotone: (
