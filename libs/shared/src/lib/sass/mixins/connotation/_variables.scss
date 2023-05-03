@@ -4,17 +4,21 @@
 
 @function get-default-mapping($type) {
   @return (
-    primary: #{utils.get-color-token(#{$type}-500)},
-    primary-text: #{utils.get-color-token(canvas)},
-    primary-increment: #{utils.get-color-token(#{$type}-600)},
-    intermediate: #{utils.get-color-token(#{$type}-500)},
-    contrast: #{utils.get-color-token(#{$type}-800)},
-    soft: #{utils.get-color-token(#{$type}-100)},
-    firm: #{utils.get-color-token(#{$type}-600)},
-    faint: #{utils.get-color-token(#{$type}-50)},
+		backdrop: #{utils.get-color-token(#{$type}-50)},
+		intermediate: #{utils.get-color-token(#{$type}-500)},
+		primary-increment: #{utils.get-color-token(#{$type}-600)},
+
+		faint: #{utils.get-color-token(#{$type}-50)},
+		soft: #{utils.get-color-token(#{$type}-100)},
+		dim: #{utils.get-color-token(#{$type}-200)},
 		pale: #{utils.get-color-token(#{$type}-300)},
-    backdrop: #{utils.get-color-token(#{$type}-50)},
-    fierce: #{utils.get-color-token(#{$type}-700)},
+		light: #{utils.get-color-token(#{$type}-400)},
+    primary: #{utils.get-color-token(#{$type}-500)},
+		primary-text: #{utils.get-color-token(canvas)},
+		firm: #{utils.get-color-token(#{$type}-600)},
+		fierce: #{utils.get-color-token(#{$type}-700)},
+    contrast: #{utils.get-color-token(#{$type}-800)},
+
   );
 }
 

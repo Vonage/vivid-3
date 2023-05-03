@@ -29,6 +29,7 @@ export enum Appearance {
 	Fieldset = 'fieldset',
 	Subtle = 'subtle',
 	Ghost = 'ghost',
+	Listitem ='listitem',
 }
 
 export enum Size {
