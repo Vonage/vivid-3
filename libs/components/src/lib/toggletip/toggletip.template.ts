@@ -14,8 +14,9 @@ const getClasses = (_: Toggletip) => classNames('control');
  * @public
  */
 export const ToggletipTemplate:
-	(context: ElementDefinitionContext, definition: FoundationElementDefinition) => ViewTemplate<Toggletip> = (context: ElementDefinitionContext) => {
-		const popup = context.tagFor(Popup);
+(context: ElementDefinitionContext, definition: FoundationElementDefinition)
+=> ViewTemplate<Toggletip> = (context: ElementDefinitionContext) => {
+	const popup = context.tagFor(Popup);
 
 	return html`
 		<${popup}
@@ -34,4 +35,4 @@ export const ToggletipTemplate:
 			</span>
 		</${popup}>
 	`;
-}
+};

@@ -89,12 +89,12 @@ export class Toggletip extends FoundationElement {
 		a.addEventListener('click', this.#openIfClosed, true);
 		a.ariaLabel = (a.ariaLabel ?? '') + this.#ANCHOR_ARIA_LABEL_SUFFIX;
 		// TODO aria-controls="myid"
-	};
+	}
 
 	#cleanupAnchor(a: HTMLElement) {
-		a.removeEventListener('click', this.#openIfClosed);
+		a.removeEventListener('click', this.#openIfClosed, true);
 		a.ariaLabel = a.ariaLabel?.replace(this.#ANCHOR_ARIA_LABEL_SUFFIX, '') as string;
-	};
+	}
 
 	#openIfClosed = () => {
 		// requestAnimationFrame is required to prevent the click event from being
@@ -104,7 +104,7 @@ export class Toggletip extends FoundationElement {
 
 	#closeOnClickOutside = (e: Event) => {
 		if (!this.contains(e.target as Node)) this.open = false;
-	}
+	};
 
 	#closeOnEscape = (e:KeyboardEvent) => {
 		if (e.key === 'Escape') this.open = false;

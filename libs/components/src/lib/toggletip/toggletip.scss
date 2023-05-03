@@ -8,8 +8,8 @@ $padding: 16px;
 }
 
 .content-wrapper {
-	padding: $padding;
 	width: var(#{variables.$toggletip-inline-size}, auto);
+	padding: $padding;
 }
 
 .headline {
