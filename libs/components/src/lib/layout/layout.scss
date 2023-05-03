@@ -6,7 +6,7 @@
 
 .control {
 	display: grid;
-	grid-auto-rows: min-content;
+	grid-auto-rows: var(#{variables.$layout-grid-template-rows}, min-content);
 
 	@include mixins.measurement(map.keys(variables.$bases)...) using ($basis) {
 		#{functions.get-selector-with-default(".column-basis", $basis, 'medium', map.keys(variables.$bases))} {
@@ -22,9 +22,21 @@
 
 	@include mixins.measurement(map.keys(variables.$spaces)...) using ($space) {
 		#{functions.get-selector-with-default(".column-spacing", $space, 'medium', map.keys(variables.$spaces))} {
-			gap: map.get(variables.$spaces, $space);
+			column-gap: var(#{variables.$layout-column-gap}, map.get(variables.$spaces, $space));
 		}
 	}
+
+@include mixins.measurement(map.keys(variables.$spaces)...) using ($space) {
+	#{functions.get-selector-with-default(".row-spacing", $space, 'medium', map.keys(variables.$spaces))} {
+		row-gap: var(#{variables.$layout-row-gap}, map.get(variables.$spaces, $space));
+	}
+}
+
+	//@include mixins.measurement(map.keys(variables.$spaces)...) using ($space) {
+	//	#{functions.get-selector-without-default(".row-spacing", $space, map.keys(variables.$spaces))} {
+	//		row-gap: var(#{variables.$layout-row-gap}, map.get(variables.$spaces, $space));
+	//	}
+	//}
 
 	@include mixins.measurement(map.keys(variables.$spaces)...) using ($space) {
 		&.gutters-#{$space} {

@@ -178,23 +178,48 @@ Use the `gutters` attribute to set the initial preferred `margin`.
 
 Control the grid-template-columns of the layout by setting `--layout-grid-template-columns`.
 
-- Type: `repeat(auto-sizing, minmax(column-basis, 1fr))`
-- Default: `auto`
+- Type: `string`
+- Default: `undefined`
 
 ```html preview full
-<vwc-layout style="--layout-grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));">
+<vwc-layout style="--layout-grid-template-columns: 1fr 1fr;">
   <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
 </vwc-layout>
-<vwc-layout style="--layout-grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));">
+```
+
+### Grid-template-rows
+
+Control the grid-template-rows of the layout by setting `--layout-grid-template-rows`.
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview full
+<vwc-layout style="--layout-grid-template-rows: 80px 40px auto;">
   <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
+  <vwc-card elevation="2"></vwc-card>
+    <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
 </vwc-layout>
-<vwc-layout style="--layout-grid-template-columns: 280px repeat(auto-fill, minmax(100px, 1fr));">
+```
+
+### Grid-gap
+#### Grid-template-row-gap
+Control the grid column-gap by setting `--layout-column-gap`.
+
+#### Grid-template-column-gap
+Control the grid row-gap by setting `--layout-row-gap`.
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview full
+<vwc-layout style="--layout-column-gap: 0; --layout-row-gap: 0;">
   <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
