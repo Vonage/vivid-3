@@ -1,4 +1,4 @@
-import { attr } from '@microsoft/fast-element';
+import {attr} from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { arrow, autoUpdate, computePosition, flip, hide, inline, offset } from '@floating-ui/dom';
 import type { Placement, Strategy } from '@floating-ui/dom';
@@ -20,8 +20,6 @@ export class Popup extends FoundationElement {
 	}
 
 	#cleanup?: () => void; // cleans the autoupdate
-
-	protected anchorEl: Element | null | undefined;
 
 	popupEl!: HTMLElement;
 
@@ -92,7 +90,7 @@ export class Popup extends FoundationElement {
 	 * @public
 	 * HTML Attribute: anchor
 	 */
-	@attr anchor!: string | HTMLElement;
+	@attr anchor?: string | HTMLElement;
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
@@ -101,21 +99,9 @@ export class Popup extends FoundationElement {
 
 	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
 		super.attributeChangedCallback(name, oldValue, newValue);
-		switch (name) {
-			case 'anchor': {
-				this.anchorEl = this.#getAnchor();
-				break;
-			}
-			case 'open': {
-				this.open ? this.show() : this.hide();
-				break;
-			}
-		}
+		this.#cleanup?.();
 		if (this.anchorEl && this.popupEl) {
 			this.#cleanup = autoUpdate(this.anchorEl, this.popupEl, () => this.updatePosition());
-		}
-		else {
-			this.#cleanup?.();
 		}
 	}
 
@@ -162,8 +148,8 @@ export class Popup extends FoundationElement {
 	/**
 	 * Gets the anchor element by id
 	 */
-	#getAnchor(): HTMLElement | null {
-		return this.anchor instanceof HTMLElement ? this.anchor : document.getElementById(this.anchor);
+	get anchorEl(): HTMLElement | null {
+		return this.anchor instanceof HTMLElement ? this.anchor : document.getElementById(this.anchor ? this.anchor : '');
 	}
 
 	show(): void {

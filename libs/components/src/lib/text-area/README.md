@@ -85,6 +85,18 @@ Add the `success-text` to add some success text below the text area.
 <vwc-text-area label="Success text below" success-text="Success text"></vwc-text-area>
 ```
 
+### Error text
+
+It is possible to force the text area's error state by setting the `error-text` attribute to a custom error message.
+Note that any current error state will be overriden by `error-text` (and, if applicable, restored once it is removed).
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-text-area value="some text" label='Enter some text' error-text="Please take this seriously"></vwc-text-area>
+```
+
 ### Disabled
 
 Add the `disabled` attribute to disable the text area.
