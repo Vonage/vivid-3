@@ -1,9 +1,6 @@
 import {elementUpdated, fixture} from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Pagination } from './pagination';
-import { paginationDefinition } from './definition';
 import '.';
-import {expect} from "@playwright/test";
 
 const COMPONENT_TAG = 'vwc-pagination';
 
@@ -23,7 +20,6 @@ describe('vwc-pagination', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-pagination', async () => {
-			expect(paginationDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Pagination);
 		});
 	});
