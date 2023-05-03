@@ -58,6 +58,31 @@ Use the `column-spacing` attribute to set the initial preferred `spacing` of a c
 </vwc-layout>
 ```
 
+### Row Spacing
+
+Use the `row-spacing` attribute to set the initial preferred `spacing` of a row.
+
+- Type: `'small'` | `'medium'` | `'large'`
+- Default: `'default to column-spacing value'`
+
+```html preview full
+<vwc-layout gutters="small" row-spacing="small" column-basis="block">
+  <vwc-card elevation="2" text="small"></vwc-card>
+  <vwc-card elevation="2" text="small"></vwc-card>
+  <vwc-card elevation="2" text="small"></vwc-card>
+</vwc-layout>
+<vwc-layout gutters="small" row-spacing="medium" column-basis="block">
+  <vwc-card elevation="2" text="medium"></vwc-card>
+  <vwc-card elevation="2" text="medium"></vwc-card>
+  <vwc-card elevation="2" text="medium"></vwc-card>
+</vwc-layout>
+<vwc-layout gutters="small" row-spacing="large" column-basis="block">
+  <vwc-card elevation="2" text="large"></vwc-card>
+  <vwc-card elevation="2" text="large"></vwc-card>
+  <vwc-card elevation="2" text="large"></vwc-card>
+</vwc-layout>
+```
+
 ### Column Basis
 
 Use the `column-basis` attribute to set the initial preferred `measure` of a column.
@@ -178,23 +203,48 @@ Use the `gutters` attribute to set the initial preferred `margin`.
 
 Control the grid-template-columns of the layout by setting `--layout-grid-template-columns`.
 
-- Type: `repeat(auto-sizing, minmax(column-basis, 1fr))`
-- Default: `auto`
+- Type: `string`
+- Default: `undefined`
 
 ```html preview full
-<vwc-layout style="--layout-grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));">
+<vwc-layout style="--layout-grid-template-columns: 1fr 1fr;">
   <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
 </vwc-layout>
-<vwc-layout style="--layout-grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));">
+```
+
+### Grid-template-rows
+
+Control the grid-template-rows of the layout by setting `--layout-grid-template-rows`.
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview full
+<vwc-layout style="--layout-grid-template-rows: 80px 40px auto;">
   <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
+  <vwc-card elevation="2"></vwc-card>
+    <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
 </vwc-layout>
-<vwc-layout style="--layout-grid-template-columns: 280px repeat(auto-fill, minmax(100px, 1fr));">
+```
+
+### Grid-gap
+#### Grid-template-row-gap
+Control the grid column-gap by setting `--layout-column-gap`.
+
+#### Grid-template-column-gap
+Control the grid row-gap by setting `--layout-row-gap`.
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview full
+<vwc-layout style="--layout-column-gap: 0; --layout-row-gap: 0;">
   <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>

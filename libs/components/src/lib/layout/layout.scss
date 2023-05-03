@@ -26,17 +26,11 @@
 		}
 	}
 
-@include mixins.measurement(map.keys(variables.$spaces)...) using ($space) {
-	#{functions.get-selector-with-default(".row-spacing", $space, 'medium', map.keys(variables.$spaces))} {
-		row-gap: var(#{variables.$layout-row-gap}, map.get(variables.$spaces, $space));
+	@include mixins.measurement(map.keys(variables.$spaces)...) using ($space) {
+		#{functions.get-selector-with-default(".row-spacing", $space, 'medium', map.keys(variables.$spaces))} {
+			row-gap: var(#{variables.$layout-row-gap}, map.get(variables.$spaces, $space));
+		}
 	}
-}
-
-	//@include mixins.measurement(map.keys(variables.$spaces)...) using ($space) {
-	//	#{functions.get-selector-without-default(".row-spacing", $space, map.keys(variables.$spaces))} {
-	//		row-gap: var(#{variables.$layout-row-gap}, map.get(variables.$spaces, $space));
-	//	}
-	//}
 
 	@include mixins.measurement(map.keys(variables.$spaces)...) using ($space) {
 		&.gutters-#{$space} {
