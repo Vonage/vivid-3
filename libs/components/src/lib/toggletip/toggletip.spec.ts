@@ -120,6 +120,18 @@ describe('vwc-toggletip', () => {
 			await elementUpdated(element);
 			expect(element.open).toEqual(true);
 		});
+
+		it('should update the anchor aria-label as needed', async () => {
+			element.anchor = anchor;
+			await elementUpdated(element);
+
+			expect(anchor.ariaLabel).toEqual(' ; Show more information');
+
+			element.anchor = '';
+			await elementUpdated(element);
+
+			expect(anchor.ariaLabel).toEqual('');
+		});
 	});
 
 	describe('headline', () => {
