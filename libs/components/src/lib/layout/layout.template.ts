@@ -5,13 +5,13 @@ import type { ElementDefinitionContext, FoundationElementDefinition } from '@mic
 import type { Layout } from './layout';
 
 const getClasses = ({
-	columnBasis, gutters, columnSpacing, autoSizing
+	columnBasis, gutters, columnSpacing, autoSizing, rowSpacing
 }: Layout) => classNames(
 	'control',
 	[`column-basis-${columnBasis}`, Boolean(columnBasis)],
-	[`row-basis-${columnBasis}`, Boolean(columnBasis)],
 	[`gutters-${gutters}`, Boolean(gutters)],
 	[`column-spacing-${columnSpacing}`, Boolean(columnSpacing)],
+	[`row-spacing-${!rowSpacing ? columnSpacing : rowSpacing}`, !Boolean(rowSpacing) ? Boolean(columnSpacing) : Boolean(rowSpacing)],
 	//need to add - if there's a columnSpacing - use that. if not - use the rowSpacing
 	[`auto-sizing-${autoSizing}`, Boolean(autoSizing)],
 );
