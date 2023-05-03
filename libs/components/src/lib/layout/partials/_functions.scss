@@ -15,7 +15,6 @@
 }
 
 @function get-selector-without-default($prefix, $key, $all-keys) {
-	//$selector: "&#{$prefix}-#{$key}";
-		$selector: "&#{get-default-selector($all-keys, $prefix)}";
+	$selector: "&#{get-default-selector($all-keys, $prefix)}";
 	@return $selector;
 }
