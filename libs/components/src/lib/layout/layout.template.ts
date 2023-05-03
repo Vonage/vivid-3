@@ -12,7 +12,6 @@ const getClasses = ({
 	[`gutters-${gutters}`, Boolean(gutters)],
 	[`column-spacing-${columnSpacing}`, Boolean(columnSpacing)],
 	[`row-spacing-${!rowSpacing ? columnSpacing : rowSpacing}`, !Boolean(rowSpacing) ? Boolean(columnSpacing) : Boolean(rowSpacing)],
-	//need to add - if there's a columnSpacing - use that. if not - use the rowSpacing
 	[`auto-sizing-${autoSizing}`, Boolean(autoSizing)],
 );
 
