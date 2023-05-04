@@ -36,6 +36,19 @@ Default: `0`
 		pagination.selectedIndex = 5;
 </script>
 ```
+
+### Nav Icons
+
+Set the `navIcons` attribute to change the pagination's navigation buttons type.
+
+Type: `Boolean`
+Default: `false`
+
+```html preview
+<vwc-pagination total="20"></vwc-pagination>
+<vwc-pagination total="20" nav-icons></vwc-pagination>
+```
+
 ### Pages List
 `pagesList` is an immutable array that represents the current pagination's state.
 

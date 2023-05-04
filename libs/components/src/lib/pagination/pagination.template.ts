@@ -48,14 +48,18 @@ export const PaginationTemplate: (
 	const buttonTag = context.tagFor(Button);
 	return html<Pagination>`
 	<div class="${getClasses}">
-		<${buttonTag} class="vwc-pagination-prev-button" icon='chevron-left-line'
+		<${buttonTag} class="vwc-pagination-prev-button"
+									label="${x => !x.navIcons ? 'Previous' : null}"
+									icon="${x => x.navIcons ? 'chevron-left-line' : null}"
 									?disabled="${x => x.total === 0 || x.selectedIndex === 0}"
 									@click="${x => (x.selectedIndex !== undefined) && x.selectedIndex--}"
 		></${buttonTag}>
-		<span id="buttons-wrapper"${children({ property: 'paginationButtons', filter: elements('vwc-button') })} >
+		<div id="buttons-wrapper"${children({ property: 'paginationButtons', filter: elements('vwc-button') })} >
 			${repeat(x => x.pagesList, paginationButtonRenderer(buttonTag), { positioning: true })}
-		</span>
-		<${buttonTag} class="vwc-pagination-next-button" icon='chevron-right-line'
+		</div>
+		<${buttonTag} class="vwc-pagination-next-button"
+									label="${x => !x.navIcons ? 'Next' : null}"
+									icon="${x => x.navIcons ? 'chevron-right-line' : null}"
 									?disabled="${x => x.total === 0 || x.selectedIndex === (x.total - 1)}"
 									@click="${x => (x.selectedIndex !== undefined) && x.selectedIndex++}"
 		></${buttonTag}>

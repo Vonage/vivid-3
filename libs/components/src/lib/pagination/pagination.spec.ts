@@ -158,6 +158,40 @@ describe('vwc-pagination', () => {
 		});
 	});
 
+	describe('navIcons', function() {
+		let prevButton: Button | undefined | null;
+		let nextButton: Button | undefined | null;
+
+		beforeEach(async function () {
+			element.total = 20;
+			await elementUpdated(element);
+			prevButton = element.shadowRoot?.querySelector('.vwc-pagination-prev-button');
+			nextButton = element.shadowRoot?.querySelector('.vwc-pagination-next-button');
+		});
+
+		it('should default to true', function () {
+			expect(element.navIcons).toEqual(false);
+		});
+
+		it('should set icons if set to true', async function () {
+			element.navIcons = true;
+			await elementUpdated(element);
+			expect(prevButton?.hasAttribute('label')).toEqual(false);
+			expect(nextButton?.hasAttribute('label')).toEqual(false);
+			expect(prevButton?.getAttribute('icon')).toEqual('chevron-left-line');
+			expect(nextButton?.getAttribute('icon')).toEqual('chevron-right-line');
+		});
+
+		it('should use text buttons if set to false', async function () {
+			element.navIcons = false;
+			await elementUpdated(element);
+			expect(prevButton?.getAttribute('label')).toEqual('Previous');
+			expect(nextButton?.getAttribute('label')).toEqual('Next');
+			expect(prevButton?.hasAttribute('icon')).toEqual(false);
+			expect(nextButton?.hasAttribute('icon')).toEqual(false);
+		});
+	});
+
 	describe('prev/next buttons', function () {
 		let prevButton: Button | undefined | null;
 		let nextButton: Button | undefined | null;

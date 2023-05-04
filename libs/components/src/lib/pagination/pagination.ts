@@ -16,6 +16,8 @@ export class Pagination extends FoundationElement {
 	@observable
 	public paginationButtons?: HTMLElement[];
 
+	@attr({attribute: 'nav-icons', mode: 'boolean'}) navIcons = false;
+
 	@volatile
 	get pagesList() {
 		return new Array(this.total < MAX_DIGITS_AND_PLACEHOLDERS ? this.total :
