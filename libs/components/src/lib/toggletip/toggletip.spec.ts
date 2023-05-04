@@ -151,12 +151,12 @@ describe('vwc-toggletip', () => {
 
 	describe('headline', () => {
 		it('should have an headline element only when set', async () => {
-			expect(element.shadowRoot?.querySelectorAll('div.headline')).toHaveLength(0);
+			expect(element.shadowRoot?.querySelectorAll('header.headline')).toHaveLength(0);
 
 			element.headline = 'A title!';
 			await elementUpdated(element);
 
-			expect(element.shadowRoot?.querySelectorAll('div.headline')).toHaveLength(1);
+			expect(element.shadowRoot?.querySelectorAll('header.headline')).toHaveLength(1);
 		});
 	});
 });
