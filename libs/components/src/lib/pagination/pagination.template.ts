@@ -33,7 +33,7 @@ const paginationButtonRenderer = (buttonTag: string) => html`
 											appearance="${getButtonAppearance}"
 				</${buttonTag}>
 			`)}
-			${when(value => value === '...', html`<div class="vwc-pagination-dots">...</div>`)}`
+			${when(value => value === '...', html`<div class="vwc-pagination-dots"><span>...</span></div>`)}`
 /**
  * The template for the {@link @microsoft/fast-foundation#Pagination} component.
  *

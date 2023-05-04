@@ -1,3 +1,14 @@
 .control, #buttons-wrapper {
 	display: inline-flex;
 }
+
+.vwc-pagination-dots {
+	width: 32px;
+	height: 32px;
+	display: flex;
+}
+
+.vwc-pagination-dots span {
+	align-self: flex-end;
+	width: 100%;
+}
