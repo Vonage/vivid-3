@@ -159,17 +159,17 @@ $states-mapping: (
       outline: var(#{constants.$vvd-color-neutral-400}),
     ),
     ghost: (
-      text: var(#{constants.$vvd-color-neutral-400}),
+      text: var(#{constants.$vvd-color-neutral-600}),
       fill: transparent,
       outline: transparent,
     ),
 		listitem: (
-			text: var(#{constants.$vvd-color-neutral-400}),
+			text: var(#{constants.$vvd-color-neutral-600}),
 			fill: transparent,
 			outline: transparent,
 		),
     outlined: (
-      text: var(#{constants.$vvd-color-neutral-400}),
+      text: var(#{constants.$vvd-color-neutral-600}),
       fill: transparent,
       outline: var(#{constants.$vvd-color-neutral-400}),
     )
