@@ -201,7 +201,7 @@ Use the `gutters` attribute to set the initial preferred `margin`.
 
 ### Grid-template-columns
 
-Control the grid-template-columns of the layout by setting `--layout-grid-template-columns`.
+Control the [grid-template-columns](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns) of the layout by setting `--layout-grid-template-columns`.
 
 - Type: `string`
 - Default: `undefined`
@@ -217,7 +217,8 @@ Control the grid-template-columns of the layout by setting `--layout-grid-templa
 
 ### Grid-template-rows
 
-Control the grid-template-rows of the layout by setting `--layout-grid-template-rows`.
+Control the [grid-template-rows](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows) of the layout by setting `--layout-grid-template-rows`.  
+
 
 - Type: `string`
 - Default: `undefined`
@@ -235,10 +236,10 @@ Control the grid-template-rows of the layout by setting `--layout-grid-template-
 
 ### Grid-gap
 #### Layout-row-gap
-Control the grid column-gap by setting `--layout-column-gap`.
+Control the grid [column-gap](https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap) by setting `--layout-column-gap`.
 
 #### Layout-column-gap
-Control the grid row-gap by setting `--layout-row-gap`.
+Control the grid [row-gap](https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap) by setting `--layout-row-gap`.
 
 - Type: `string`
 - Default: `undefined`
