@@ -11,7 +11,7 @@ const getClasses = ({
 	[`column-basis-${columnBasis}`, Boolean(columnBasis)],
 	[`gutters-${gutters}`, Boolean(gutters)],
 	[`column-spacing-${columnSpacing}`, Boolean(columnSpacing)],
-	[`row-spacing-${!rowSpacing ? columnSpacing : rowSpacing}`, !Boolean(rowSpacing) ? Boolean(columnSpacing) : Boolean(rowSpacing)],
+	[`row-spacing-${rowSpacing ? rowSpacing : columnSpacing}`, Boolean(rowSpacing) || Boolean(columnSpacing)],
 	[`auto-sizing-${autoSizing}`, Boolean(autoSizing)],
 );
 
