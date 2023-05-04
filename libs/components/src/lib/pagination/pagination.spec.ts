@@ -1,11 +1,12 @@
-import {elementUpdated, fixture} from '@vivid-nx/shared';
+import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
 import { Pagination } from './pagination';
 import '.';
+import type {Button} from "../button/button";
 
 const COMPONENT_TAG = 'vwc-pagination';
 
 function getButtonText(button: any) {
-	const firstButtonText = button.label;
+	const firstButtonText = button.label || button.textContent.trim();
 	return firstButtonText;
 }
 
@@ -50,7 +51,7 @@ describe('vwc-pagination', () => {
 			expect(firstButtonText).toEqual('1');
 		});
 
-		it.each([2, 3, 4, 5])('should add %i buttons when total is set to %i', async (total) => {
+		it.each([2, 3, 4, 5, 6, 7])('should add %i buttons when total is set to %i', async (total) => {
 			element.total = total;
 			await elementUpdated(element);
 			const buttons = element.shadowRoot?.querySelectorAll('.vwc-pagination-button');
@@ -62,14 +63,149 @@ describe('vwc-pagination', () => {
 			});
 		});
 
-		it('should add 1,2,3 buttons, 3 dots and the last page when over 5 total', async () => {
+		it('should add 1,2,3 buttons, 3 dots and the last page when over 7 total', async () => {
 			element.total = 20;
 			await elementUpdated(element);
-			const buttons = element.shadowRoot?.querySelectorAll('.vwc-pagination-button');
-			const dots = buttons?.item(3);
-			expect(buttons?.length).toEqual(5);
+			const buttonsAndDots = getControlElement(element).querySelector('#buttons-wrapper')?.children;
+			const dots = buttonsAndDots?.item(5);
+			const lastItem = buttonsAndDots?.item(6);
+			expect(buttonsAndDots?.length).toEqual(7);
 			expect(getButtonText(dots)).toEqual('...');
-			expect(getButtonText(buttons?.item(4))).toEqual(element.total.toString());
+			expect(getButtonText(lastItem)).toEqual(element.total.toString());
+		});
+
+		it(`should set the second and one before last as "..."
+			when total over 7 and selectedIndex between 6 and total - 1 `, async function () {
+			element.total = 20;
+			element.selectedIndex = 6;
+			await elementUpdated(element);
+			const buttonsAndDots = getControlElement(element).querySelector('#buttons-wrapper')?.children;
+			expect(getButtonText(buttonsAndDots?.item(1))).toEqual('...');
+			expect(getButtonText(buttonsAndDots?.item(5))).toEqual('...');
+		});
+
+		it('should set only the first as "..." when total over 7 and selected index is one before last', async function () {
+			element.total = 20;
+			element.selectedIndex = 18;
+			await elementUpdated(element);
+			const buttonsAndDots = getControlElement(element).querySelector('#buttons-wrapper')?.children;
+			expect(getButtonText(buttonsAndDots?.item(1))).toEqual('...');
+			expect(getButtonText(buttonsAndDots?.item(buttonsAndDots?.length - 2))).toEqual('19');
+		});
+	});
+
+	describe('selectedIndex', function () {
+		it('should init as -1', async () => {
+			expect(element.selectedIndex).toEqual(-1);
+		});
+
+		it('should set selectedIndex as zero only when first setting total', async () => {
+			element.total = 2;
+			const selectedIndexAfterFirstTotalSet = element.selectedIndex;
+
+			element.selectedIndex = 1;
+			element.total = 3;
+			const selectedIndexAfterSecondTotalSet = element.selectedIndex;
+
+			expect(selectedIndexAfterFirstTotalSet).toEqual(0);
+			expect(selectedIndexAfterSecondTotalSet).toEqual(1);
+		});
+
+		it('should reflect selectedIndex attribute', async function () {
+			element.setAttribute('selected-index', '10');
+			await elementUpdated(element);
+			expect(element.selectedIndex).toEqual(10);
+		});
+
+		it('should set to -1 when total is set to zero', function () {
+			element.total = 2;
+			element.total = 0;
+			expect(element.selectedIndex).toEqual(-1);
+		});
+
+		it('should set appearance "filled" of selectedIndex', async function () {
+			element.total = 20;
+			element.selectedIndex = 3;
+			await elementUpdated(element);
+			const button = element.shadowRoot?.querySelectorAll('.vwc-pagination-button').item(3);
+			expect(button?.getAttribute('appearance')).toEqual('filled');
+		});
+
+		it('should set appearance "ghost" to any unselected buttons', async function () {
+			element.total = 20;
+			element.selectedIndex = 3;
+			await elementUpdated(element);
+			const buttons = Array.from(element.shadowRoot?.querySelectorAll('.vwc-pagination-button') as unknown as Button[]);
+			buttons.forEach((button: Button, index: number) => {
+				if (index !== 3) {
+					expect(button.getAttribute('appearance')).toEqual('ghost');
+				}
+			});
+		});
+	});
+
+	describe('prev/next buttons', function () {
+		let prevButton: Button | undefined | null;
+		let nextButton: Button | undefined | null;
+
+		beforeEach(function () {
+			element.total = 20;
+			prevButton = element.shadowRoot?.querySelector('.vwc-pagination-prev-button');
+			nextButton = element.shadowRoot?.querySelector('.vwc-pagination-next-button');
+		});
+
+		it('should set prevButton to enabled if selectedIndex is not 0', async function () {
+			element.selectedIndex = 3;
+			await elementUpdated(element);
+			expect(prevButton?.disabled).toEqual(false);
+		});
+
+		it('should set nextButton to enabled if selectedIndex is not the last', async function () {
+			element.selectedIndex = 19;
+			await elementUpdated(element);
+			element.selectedIndex = 3;
+			await elementUpdated(element);
+			expect(nextButton?.disabled).toEqual(false);
+		});
+
+		it('should set prevButton to disabled if selectedIndex is 0', async function () {
+			element.selectedIndex = 0;
+			await elementUpdated(element);
+			expect(prevButton?.disabled).toEqual(true);
+		});
+
+		it('should set nextButton to disabled if selectedIndex is the last', async function () {
+			element.selectedIndex = 19;
+			await elementUpdated(element);
+			expect(nextButton?.disabled).toEqual(true);
+		});
+
+		it('should increase selectedIndex when nextButton is clicked', async function () {
+			element.selectedIndex = 3;
+			await elementUpdated(element);
+			nextButton?.click();
+			expect(element.selectedIndex).toEqual(4);
+		});
+
+		it('should decrease selectedIndex when prevButton is clicked', async function () {
+			element.selectedIndex = 3;
+			await elementUpdated(element);
+			prevButton?.click();
+			expect(element.selectedIndex).toEqual(2);
+		});
+
+		it('should disabled buttons when selectedIndex is -1', async function () {
+			element.total = 0;
+			await elementUpdated(element);
+			expect(prevButton?.disabled).toEqual(true);
+			expect(nextButton?.disabled).toEqual(true);
+		});
+	});
+
+	describe('pagesList', function () {
+		it('should be immutable', function () {
+			const pagesList = element.pagesList;
+			expect(element.pagesList === pagesList).toEqual(false);
 		});
 	});
 
@@ -102,7 +238,7 @@ describe('vwc-pagination', () => {
 			const status = {clicked: false};
 			setEventListeners(status);
 			element.selectedIndex = 2;
-			const dots = buttons?.item(3);
+			const dots = getControlElement(element).querySelector('.vwc-pagination-dots');
 			dots?.dispatchEvent(new MouseEvent('click'));
 			expect(element.selectedIndex).toEqual(2);
 		});
@@ -128,7 +264,7 @@ describe('vwc-pagination', () => {
 		it('should prevent change event when "..." is clicked', async () => {
 			const status = {clicked: false, event: new Event('test')};
 			setEventListeners(status);
-			const dots = buttons?.item(3);
+			const dots = getControlElement(element).querySelector('.vwc-pagination-dots');
 			dots?.dispatchEvent(new MouseEvent('click'));
 			expect(status.clicked).toEqual(false);
 		});
@@ -141,41 +277,23 @@ describe('vwc-pagination', () => {
 		});
 	});
 
-	describe('selectedIndex', function () {
-		it('should init as -1', async () => {
-			expect(element.selectedIndex).toEqual(-1);
-		});
-
-		it('should set selectedIndex as zero only when first setting total', async () => {
-			element.total = 2;
-			const selectedIndexAfterFirstTotalSet = element.selectedIndex;
-
-			element.selectedIndex = 1;
-			element.total = 3;
-			const selectedIndexAfterSecondTotalSet = element.selectedIndex;
-
-			expect(selectedIndexAfterFirstTotalSet).toEqual(0);
-			expect(selectedIndexAfterSecondTotalSet).toEqual(1);
-		});
-
-		it('should reflect selectedIndex attribute', async function () {
-			element.setAttribute('selected-index', '10');
+	describe('keyboard events', function () {
+		it('should select tag on spacebar', async function () {
+			element.total = 20;
 			await elementUpdated(element);
-			expect(element.selectedIndex).toEqual(10);
+			const button = element.shadowRoot?.querySelectorAll('.vwc-pagination-button').item(3);
+			const event = new KeyboardEvent('keydown', {key: ' ', bubbles: true, composed: true});
+			button?.dispatchEvent(event);
+			expect(element.selectedIndex).toEqual(3);
 		});
 
-		it('should set to -1 when total is set to zero', function () {
-			element.total = 2;
-			element.total = 0;
-			expect(element.selectedIndex).toEqual(-1);
+		it('should select tag on Enter', async function () {
+			element.total = 30;
+			await elementUpdated(element);
+			const button = element.shadowRoot?.querySelectorAll('.vwc-pagination-button').item(1);
+			const event = new KeyboardEvent('keydown', {key: 'Enter', bubbles: true, composed: true});
+			button?.dispatchEvent(event);
+			expect(element.selectedIndex).toEqual(1);
 		});
 	});
-
-	// TODO:: should not fire change event if old value is undefined (on init)
-	// TODO: add tests for adding the buttons with lots of pages (the ...)
-	// TODO: add tests for clicking the buttons
-	// TODO: add tests for clicking the buttons with lots of pages (the ...)
-	// TODO: add tests for keyboard navigation
-	// TODO: add tests for prev/next buttons
-	// TODO: prevent pagesList mutation
 });
