@@ -35,7 +35,7 @@ Using layout, elements can be arranged easily in a variety of sizes and spaces t
 
 ### Column Spacing
 
-Use the `column-spacing` attribute to set the initial preferred `spacing` of a column.
+Use the `column-spacing` attribute to set the initial preferred `gap` of a column.
 
 - Type: `'small'` | `'medium'` | `'large'`
 - Default: `'medium'`
@@ -60,7 +60,7 @@ Use the `column-spacing` attribute to set the initial preferred `spacing` of a c
 
 ### Row Spacing
 
-Use the `row-spacing` attribute to set the initial preferred `spacing` of a row.
+Use the `row-spacing` attribute to set the initial preferred `gap` of a row.
 
 - Type: `'small'` | `'medium'` | `'large'`
 - Default: `'default to column-spacing value'`
@@ -85,8 +85,8 @@ Use the `row-spacing` attribute to set the initial preferred `spacing` of a row.
 
 ### Column Basis
 
-Use the `column-basis` attribute to set the initial preferred `measure` of a column.
-Use `block` to stack elements one above the other.
+Use the `column-basis` attribute to set the initial preferred `min-width` of a column.
+Use `block` to get full-width elements stacking one after the other.
 
 - Type: `'small'` | `'medium'` | `'large'` | `'block'`
 - Default: `'medium'`
@@ -234,10 +234,10 @@ Control the grid-template-rows of the layout by setting `--layout-grid-template-
 ```
 
 ### Grid-gap
-#### Grid-template-row-gap
+#### Layout-row-gap
 Control the grid column-gap by setting `--layout-column-gap`.
 
-#### Grid-template-column-gap
+#### Layout-column-gap
 Control the grid row-gap by setting `--layout-row-gap`.
 
 - Type: `string`
