@@ -28,11 +28,11 @@ export const ToggletipTemplate:
 			placement="${x => x.placement}"
 			exportparts="vvd-theme-alternate"
 		>
-			<span class="content-wrapper">
-				${when(x => x.headline, html`<div class="headline">${x => x.headline}</div>`)}
+			<div class="content-wrapper">
+				${when(x => x.headline, html`<header class="headline">${x => x.headline}</header>`)}
 				<slot></slot>
-				<slot class="action-items" name="action-items"></slot>
-			</span>
+				<footer class="action-items"><slot name="action-items"></slot></footer>
+			</div>
 		</${popup}>
 	`;
 };
