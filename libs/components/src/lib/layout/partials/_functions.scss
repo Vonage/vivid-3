@@ -13,8 +13,3 @@
 	}
 	@return $selector;
 }
-
-@function get-selector-without-default($prefix, $key, $all-keys) {
-	$selector: "&#{get-default-selector($all-keys, $prefix)}";
-	@return $selector;
-}
