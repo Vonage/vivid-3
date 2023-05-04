@@ -9,7 +9,7 @@ import {Button} from '../button/button';
 import type { Pagination } from './pagination';
 
 const handleSelection = (value: string | number, {parent: x}: {parent: Pagination}) => {
-	return x.selectedIndex = isNaN(Number(value)) ? x.selectedIndex : (Number(value) - 1);
+	return x.selectedIndex = (Number(value) - 1);
 };
 
 const handleKeyDown = (value: string | number, {event, parent}: {event: KeyboardEvent, parent: Pagination}) => {
@@ -20,28 +20,20 @@ const handleKeyDown = (value: string | number, {event, parent}: {event: Keyboard
 
 const getClasses = (_: Pagination) => classNames('control');
 
+function getButtonAppearance(value: string | number, {parent}: {parent: Pagination}) {
+	return (parent.selectedIndex === Number(value) - 1) ? 'filled' : 'ghost';
+}
+
 const paginationButtonRenderer = (buttonTag: string) => html`
 			${when(value => value !== '...', html`<${buttonTag} class="vwc-pagination-button"
 											label="${(value) => value}"
 											@click="${handleSelection}"
 											@keydown="${handleKeyDown}"
 											connotation="accent"
-											appearance="${(_, {parent, index}) => parent.selectedIndex === index ? 'filled' : 'ghost'}"
+											appearance="${getButtonAppearance}"
 				</${buttonTag}>
 			`)}
 			${when(value => value === '...', html`<span class="vwc-pagination-dots">...</span>`)}`
-/*const renderButton = (_: string | number, context: ElementDefinitionContext) => {
-	const buttonTag = context.tagFor(Button);
-	return html`
-				<${buttonTag} class="${getButtonClasses}"
-											label="${(value) => value}"
-											@click="${handleSelection}"
-											@keydown="${handleKeyDown}"
-											connotation="accent"
-											appearance="${(_, {parent, index}) => parent.selectedIndex === index ? 'filled' : 'ghost'}"
-				</${buttonTag}>
-			`;
-};*/
 /**
  * The template for the {@link @microsoft/fast-foundation#Pagination} component.
  *
@@ -56,15 +48,15 @@ export const PaginationTemplate: (
 	const buttonTag = context.tagFor(Button);
 	return html<Pagination>`
 	<div class="${getClasses}">
-		<${buttonTag} class="vwc-pagination-prev-button"
-									disabled="${x => x.selectedIndex === -1 || x.selectedIndex === 0}"
+		<${buttonTag} class="vwc-pagination-prev-button" icon='chevron-left-line'
+									?disabled="${x => x.total === 0 || x.selectedIndex === 0}"
 									@click="${x => (x.selectedIndex !== undefined) && x.selectedIndex--}"
 		></${buttonTag}>
 		<span id="buttons-wrapper"${children({ property: 'paginationButtons', filter: elements('vwc-button') })} >
 			${repeat(x => x.pagesList, paginationButtonRenderer(buttonTag), { positioning: true })}
 		</span>
-		<${buttonTag} class="vwc-pagination-next-button"
-									disabled="${x => x.selectedIndex === -1 || x.selectedIndex === (x.total - 1)}"
+		<${buttonTag} class="vwc-pagination-next-button" icon='chevron-right-line'
+									?disabled="${x => x.total === 0 || x.selectedIndex === (x.total - 1)}"
 									@click="${x => (x.selectedIndex !== undefined) && x.selectedIndex++}"
 		></${buttonTag}>
 </div>`;

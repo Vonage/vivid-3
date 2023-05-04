@@ -19,13 +19,23 @@ export class Pagination extends FoundationElement {
 	@volatile
 	get pagesList() {
 		return new Array(this.total < MAX_DIGITS_AND_PLACEHOLDERS ? this.total :
-			MAX_DIGITS_AND_PLACEHOLDERS).fill(0).map((_, i) => {
-			if (this.total > MAX_DIGITS_AND_PLACEHOLDERS) {
-				if (this.selectedIndex && this.selectedIndex === (this.total - 2) && (i === MAX_DIGITS_AND_PLACEHOLDERS - 2))
-					return this.total - 1;
-				if (this.selectedIndex && this.selectedIndex >= 6 && i === 1) return '...';
-				if (i === (MAX_DIGITS_AND_PLACEHOLDERS - 2)) return '...';
-				if (i === MAX_DIGITS_AND_PLACEHOLDERS - 1) return this.total;
+			MAX_DIGITS_AND_PLACEHOLDERS).fill(0).map((_, i, arr) => {
+
+			if (i === 0) return 1;
+			if (i === arr.length - 1) return this.total;
+
+			if (this.selectedIndex !== undefined && this.total > MAX_DIGITS_AND_PLACEHOLDERS) {
+				if (this.selectedIndex < 4) {
+					if (i === MAX_DIGITS_AND_PLACEHOLDERS - 2) return '...';
+				}
+				if (this.selectedIndex >= 4 && this.selectedIndex <= this.total - 5) {
+					if (i > 1 && i < MAX_DIGITS_AND_PLACEHOLDERS - 2) return this.selectedIndex + (i - 2);
+					if (i === 1 || i === MAX_DIGITS_AND_PLACEHOLDERS - 2) return '...';
+				}
+				if (this.selectedIndex > this.total - 5) {
+					if (i > 1) return this.total - (6 - i);
+					if (i === 1) return '...';
+				}
 			}
 			return i + 1;
 		});
@@ -37,7 +47,7 @@ export class Pagination extends FoundationElement {
 	constructor() {
 		super();
 		this.total = 0;
-		this.selectedIndex = -1;
+		this.selectedIndex = 0;
 	}
 
 	totalChanged(_: number, newValue: number) {
@@ -45,27 +55,12 @@ export class Pagination extends FoundationElement {
 			this.total = 0;
 		}
 
-		if (newValue <= 0) {
-			this.selectedIndex = -1;
-		} else if (this.selectedIndex === -1) {
-			this.selectedIndex = 0;
-		}
+		this.selectedIndex = 0;
 	}
 
 	selectedIndexChanged(oldValue: number, newValue: number) {
 		if (oldValue === undefined) return;
-		this.$emit('change', {selectedIndex: newValue, total: this.total, oldIndex: oldValue});
+		this.$emit('vwc-pagination-change', {selectedIndex: newValue, total: this.total, oldIndex: oldValue});
 	}
-
-	// paginationButtonsChanged(_: HTMLElement[] | undefined, newValue: HTMLElement[] | undefined) {
-	// 	const pagesList = this.pagesList;
-	// 	newValue?.forEach((button: HTMLElement, index: number) => {
-	// 		button.addEventListener('keydown', e => {
-	// 			if (e.key === ' ') {
-	// 				handleSelection(pagesList[index], {parent: this});
-	// 			}
-	// 		});
-	// 	});
-	// }
 }
 
