@@ -1,4 +1,4 @@
-import { attr } from '@microsoft/fast-element';
+import { DOM, attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 import type { Placement } from '@floating-ui/dom';
 
@@ -97,9 +97,9 @@ export class Toggletip extends FoundationElement {
 	}
 
 	#openIfClosed = () => {
-		// requestAnimationFrame is required to prevent the click event from being
-		// caught by the document click handler that will be added in anchorChanged
-		if (!this.open) requestAnimationFrame(() => this.open = true);
+		// DOM.queueUpdate() is required to prevent the click event from
+		// being caught by the document click handler (added by openChanged)
+		if (!this.open) DOM.queueUpdate(() => this.open = true);
 	};
 
 	#closeOnClickOutside = (e: Event) => {
