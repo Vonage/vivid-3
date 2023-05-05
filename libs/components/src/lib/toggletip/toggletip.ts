@@ -1,4 +1,4 @@
-import { DOM, attr } from '@microsoft/fast-element';
+import { attr, DOM } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 import type { Placement } from '@floating-ui/dom';
 
