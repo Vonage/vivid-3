@@ -202,3 +202,18 @@ Add the `pending` attribute to disable the button and display a processing indic
   appearance='filled'>
 </vwc-button>
 ```
+
+### Custom Colors
+
+```html preview
+<style>
+.vvd-root {
+	--vvd-button-accent-primary: blue;
+	--vvd-button-accent-firm: blue;
+}
+</style>
+
+<vwc-button label='ghost' appearance='ghost'></vwc-button>
+<vwc-button label='filled' appearance='filled'></vwc-button>
+<vwc-button label='outlined' appearance='outlined'></vwc-button>
+```
