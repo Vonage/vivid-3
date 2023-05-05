@@ -18,7 +18,7 @@
 
 
 .base {
-	@include connotation.connotation;
+	@include connotation.connotation (badge);
 	@include appearance.appearance;
 
 	#{variables.$badge-block-size}: #{size.$vvd-size-ultra-condensed};

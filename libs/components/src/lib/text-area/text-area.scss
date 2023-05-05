@@ -26,7 +26,7 @@ $outline-width: 2px;
 
 .base {
 	@include appearance.appearance;
-	@include connotation.connotation;
+	@include connotation.connotation (text-area);
 
 	display: inline-grid;
 	width: inherit;

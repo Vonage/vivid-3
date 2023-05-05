@@ -18,7 +18,7 @@
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
 .base {
-	@include connotation.connotation;
+	@include connotation.connotation (tag);
 	@include appearance.appearance;
 
 	#{variables.$tag-block-size}: #{size.$vvd-size-super-condensed};

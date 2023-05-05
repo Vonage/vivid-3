@@ -27,7 +27,7 @@
 	$gutter: 16px;
 
 	@include appearance.appearance;
-	@include connotation.connotation;
+	@include connotation.connotation (menu-item);
 
 	position: relative;
 	display: flex;

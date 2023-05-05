@@ -21,7 +21,7 @@
 }
 
 .base {
-	@include connotation.connotation;
+	@include connotation.connotation (calendar-event);
 	@include appearance.appearance;
 
 	$margin-block: 2px;

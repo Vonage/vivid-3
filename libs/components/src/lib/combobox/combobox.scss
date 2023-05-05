@@ -37,7 +37,7 @@
 }
 
 .listbox {
-	@include connotation.connotation;
+	@include connotation.connotation (combobox);
 	@include appearance.appearance;
 
 	padding: 4px;
