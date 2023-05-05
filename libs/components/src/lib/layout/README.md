@@ -35,7 +35,7 @@ Using layout, elements can be arranged easily in a variety of sizes and spaces t
 
 ### Column Spacing
 
-Use the `column-spacing` attribute to set the initial preferred `spacing` of a column.
+Use the `column-spacing` attribute to set the initial preferred `gap` of a column.
 
 - Type: `'small'` | `'medium'` | `'large'`
 - Default: `'medium'`
@@ -58,10 +58,35 @@ Use the `column-spacing` attribute to set the initial preferred `spacing` of a c
 </vwc-layout>
 ```
 
+### Row Spacing
+
+Use the `row-spacing` attribute to set the initial preferred `gap` of a row.
+
+- Type: `'small'` | `'medium'` | `'large'`
+- Default: `'default to column-spacing value'`
+
+```html preview full
+<vwc-layout gutters="small" row-spacing="small" column-basis="block">
+  <vwc-card elevation="2" text="small"></vwc-card>
+  <vwc-card elevation="2" text="small"></vwc-card>
+  <vwc-card elevation="2" text="small"></vwc-card>
+</vwc-layout>
+<vwc-layout gutters="small" row-spacing="medium" column-basis="block">
+  <vwc-card elevation="2" text="medium"></vwc-card>
+  <vwc-card elevation="2" text="medium"></vwc-card>
+  <vwc-card elevation="2" text="medium"></vwc-card>
+</vwc-layout>
+<vwc-layout gutters="small" row-spacing="large" column-basis="block">
+  <vwc-card elevation="2" text="large"></vwc-card>
+  <vwc-card elevation="2" text="large"></vwc-card>
+  <vwc-card elevation="2" text="large"></vwc-card>
+</vwc-layout>
+```
+
 ### Column Basis
 
-Use the `column-basis` attribute to set the initial preferred `measure` of a column.
-Use `block` to stack elements one above the other.
+Use the `column-basis` attribute to set the initial preferred `min-width` of a column.
+Use `block` to get full-width elements stacking one after the other.
 
 - Type: `'small'` | `'medium'` | `'large'` | `'block'`
 - Default: `'medium'`
@@ -176,25 +201,51 @@ Use the `gutters` attribute to set the initial preferred `margin`.
 
 ### Grid-template-columns
 
-Control the grid-template-columns of the layout by setting `--layout-grid-template-columns`.
+Control the [grid-template-columns](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns) of the layout by setting `--layout-grid-template-columns`.
 
-- Type: `repeat(auto-sizing, minmax(column-basis, 1fr))`
-- Default: `auto`
+- Type: `string`
+- Default: `undefined`
 
 ```html preview full
-<vwc-layout style="--layout-grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));">
+<vwc-layout style="--layout-grid-template-columns: 1fr 1fr;">
   <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
 </vwc-layout>
-<vwc-layout style="--layout-grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));">
+```
+
+### Grid-template-rows
+
+Control the [grid-template-rows](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows) of the layout by setting `--layout-grid-template-rows`.  
+
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview full
+<vwc-layout style="--layout-grid-template-rows: 80px 40px auto;">
   <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
+  <vwc-card elevation="2"></vwc-card>
+    <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
 </vwc-layout>
-<vwc-layout style="--layout-grid-template-columns: 280px repeat(auto-fill, minmax(100px, 1fr));">
+```
+
+### Grid-gap
+#### Layout-row-gap
+Control the grid [column-gap](https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap) by setting `--layout-column-gap`.
+
+#### Layout-column-gap
+Control the grid [row-gap](https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap) by setting `--layout-row-gap`.
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview full
+<vwc-layout style="--layout-column-gap: 0; --layout-row-gap: 0;">
   <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
