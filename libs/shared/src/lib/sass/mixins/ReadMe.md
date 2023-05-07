@@ -70,7 +70,7 @@ hover: (
 ```
 
 ## Using Appearance
-in the component file we need to import the connotation with the shades that is being used in the appearance
+In the component file, we need to import the connotation with the shades that are being used in the appearance
 
 ```css
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
