@@ -1,7 +1,7 @@
 import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
+import type {Button} from '../button/button';
 import { Pagination } from './pagination';
 import '.';
-import type {Button} from "../button/button";
 
 const COMPONENT_TAG = 'vwc-pagination';
 

@@ -1,6 +1,6 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import {attr, observable, ValueConverter, volatile} from '@microsoft/fast-element';
-import type {Button} from "../button/button";
+import type {Button} from '../button/button';
 
 const MAX_DIGITS_AND_PLACEHOLDERS = 7;
 const totalConverter: ValueConverter = {
@@ -15,7 +15,7 @@ const totalConverter: ValueConverter = {
  */
 export class Pagination extends FoundationElement {
 	@observable
-	public paginationButtons?: Button[];
+		paginationButtons?: Button[];
 
 	@observable
 		prevButton?: Button;

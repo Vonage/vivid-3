@@ -17,7 +17,8 @@ const handleKeyDown = (value: string | number, {event, parent}: {event: Keyboard
 		handleSelection(value, {parent});
 	}
 	if (event.key === 'Tab') {
-		event.target?.dispatchEvent(new CustomEvent('tabpressed', {detail: {value, shiftKey: event.shiftKey}, bubbles: true, composed: true}));
+		event.target!.dispatchEvent(
+			new CustomEvent('tabpressed', {detail: {value, shiftKey: event.shiftKey}, bubbles: true, composed: true}));
 	}
 };
 
@@ -53,7 +54,7 @@ export const PaginationTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Pagination> = (context) => {
 	const buttonTag = context.tagFor(Button);
-	const paginationButtonTemplate = paginationButtonRenderer(buttonTag)
+	const paginationButtonTemplate = paginationButtonRenderer(buttonTag);
 	return html<Pagination>`
 	<div class="${getClasses}">
 		<${buttonTag} class="prev-button" ${ref('prevButton')}
