@@ -4,7 +4,7 @@
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta,
-	$shades: contrast soft pale fierce firm faint,
+	$shades: contrast soft pale fierce firm faint dim,
 	$default: accent
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
