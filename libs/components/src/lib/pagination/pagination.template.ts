@@ -16,6 +16,9 @@ const handleKeyDown = (value: string | number, {event, parent}: {event: Keyboard
 	if (event.key === ' ' || event.key === 'Enter') {
 		handleSelection(value, {parent});
 	}
+	if (event.key === 'Tab') {
+		event.target?.dispatchEvent(new CustomEvent('tabpressed', {detail: {value, shiftKey: event.shiftKey}, bubbles: true, composed: true}));
+	}
 };
 
 const getClasses = (_: Pagination) => classNames('control');
@@ -31,7 +34,7 @@ const paginationButtonRenderer = (buttonTag: string) => html`
 									label="${(value) => value}"
 									appearance="${getButtonAppearance}"
 									size="super-condensed"
-									tabindex="1"
+									tabindex="0"
 									aria-pressed="${(value, {parent}) => parent.selectedIndex === Number(value) - 1}"
 									@click="${handleSelection}"
 									@keydown="${handleKeyDown}"
@@ -60,7 +63,7 @@ export const PaginationTemplate: (
 									?disabled="${x => x.total === 0 || x.selectedIndex === 0}"
 									@click="${x => (x.selectedIndex !== undefined) && x.selectedIndex--}"
 		></${buttonTag}>
-		<div id="buttons-wrapper" class="buttons-wrapper" ${children({ property: 'paginationButtons', filter: elements('vwc-button') })}>
+		<div id="buttons-wrapper" class="buttons-wrapper" ${children({ property: 'paginationButtons', filter: elements(buttonTag) })}>
 			${repeat(x => x.pagesList, paginationButtonTemplate, { positioning: true })}
 		</div>
 		<${buttonTag} class="next-button"

@@ -1,5 +1,6 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import {attr, observable, ValueConverter, volatile} from '@microsoft/fast-element';
+import type {Button} from "../button/button";
 
 const MAX_DIGITS_AND_PLACEHOLDERS = 7;
 const totalConverter: ValueConverter = {
@@ -14,7 +15,7 @@ const totalConverter: ValueConverter = {
  */
 export class Pagination extends FoundationElement {
 	@observable
-	public paginationButtons?: HTMLElement[];
+	public paginationButtons?: Button[];
 
 	@attr({attribute: 'nav-icons', mode: 'boolean'}) navIcons = false;
 
@@ -50,6 +51,12 @@ export class Pagination extends FoundationElement {
 		super();
 		this.total = 0;
 		this.selectedIndex = 0;
+		this.addEventListener('tabpressed', (e: Event) => {
+			const {value: currentLabel, shiftKey} = (e as CustomEvent).detail;
+			const index = this.paginationButtons?.findIndex(button => Number(button.label) === currentLabel) as number;
+			const focusDirection = shiftKey ? -1 : 1;
+			this.paginationButtons && this.paginationButtons[index + focusDirection].focus();
+		});
 	}
 
 	totalChanged(_: number, newValue: number) {

@@ -328,22 +328,44 @@ describe('vwc-pagination', () => {
 	});
 
 	describe('keyboard events', function () {
-		it('should select tag on spacebar', async function () {
-			element.total = 20;
+		function getButtons(element: Pagination) {
+			return Array.from(element.shadowRoot?.querySelectorAll('.vwc-pagination-button') as unknown as Button[]);
+		}
+		beforeEach(async function () {
+			element.total = 30;
 			await elementUpdated(element);
-			const button = element.shadowRoot?.querySelectorAll('.vwc-pagination-button').item(3);
+		});
+		it('should select tag on spacebar', async function () {
+
+			const button = getButtons(element)[3];
 			const event = new KeyboardEvent('keydown', {key: ' ', bubbles: true, composed: true});
 			button?.dispatchEvent(event);
 			expect(element.selectedIndex).toEqual(3);
 		});
 
 		it('should select tag on Enter', async function () {
-			element.total = 30;
-			await elementUpdated(element);
-			const button = element.shadowRoot?.querySelectorAll('.vwc-pagination-button').item(1);
+			const button = getButtons(element)[1];
 			const event = new KeyboardEvent('keydown', {key: 'Enter', bubbles: true, composed: true});
 			button?.dispatchEvent(event);
 			expect(element.selectedIndex).toEqual(1);
+		});
+
+		it('should focus on next button on Tab', async function () {
+			const buttons = getButtons(element);
+			const button = buttons[1];
+			button.focus();
+			const event = new KeyboardEvent('keydown', {key: 'Tab', bubbles: true, composed: true});
+			button.dispatchEvent(event);
+			expect((element.shadowRoot?.activeElement as any).label).toEqual(buttons[2].label);
+		});
+
+		it('should focus on previous button when tab+shift are pressed', async function () {
+			const buttons = getButtons(element);
+			const button = buttons[1];
+			button.focus();
+			const event = new KeyboardEvent('keydown', {key: 'Tab', shiftKey: true, bubbles: true, composed: true});
+			button.dispatchEvent(event);
+			expect((element.shadowRoot?.activeElement as any).label).toEqual(buttons[0].label);
 		});
 	});
 
@@ -367,4 +389,17 @@ describe('vwc-pagination', () => {
 			expect(button?.getAttribute('aria-pressed')).toEqual('true');
 		});
 	});
+
+	describe('tabindex', function () {
+		it('should set tabindex of buttons to 0 by default', async function () {
+			element.total = 20;
+			await elementUpdated(element);
+			const buttons = Array.from(element.shadowRoot?.querySelectorAll('.vwc-pagination-button') as unknown as Button[]);
+			const allButtonsAriaPressedFalse = buttons?.reduce((correct, button) => {
+				return correct && button.getAttribute('tabindex') === '0';
+			}, true);
+			expect(allButtonsAriaPressedFalse).toEqual(true);
+		});
+	});
+	// TODO:: add tabindex 0 for focused and 1 for rest
 });
