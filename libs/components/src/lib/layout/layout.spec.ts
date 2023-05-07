@@ -24,6 +24,7 @@ describe('vwc-layout', () => {
 			expect(element.gutters).toBeUndefined();
 			expect(element.columnBasis).toBeUndefined();
 			expect(element.columnSpacing).toBeUndefined();
+			expect(element.rowSpacing).toBeUndefined();
 			expect(element.autoSizing).toBeUndefined();
 		});
 	});
@@ -58,7 +59,29 @@ describe('vwc-layout', () => {
 			expect(getControlElement(element).classList.toString()).toEqual('control');
 			element.columnSpacing = columnSpacing;
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.toString()).toEqual(`control column-spacing-${columnSpacing}`);
+			expect(getControlElement(element).classList.toString()).toContain(`control column-spacing-${columnSpacing}`);
+		});
+	});
+
+
+	describe('row-spacing', () => {
+		it('should set correct internal row-spacing style', async () => {
+			const rowSpacing = LayoutSize.Large;
+
+			expect(getControlElement(element).classList.toString()).toEqual('control');
+			element.rowSpacing = rowSpacing;
+			await elementUpdated(element);
+			expect(getControlElement(element).classList.toString()).toEqual(`control row-spacing-${rowSpacing}`);
+		});
+
+		it('should set column-spacing value to row-spacing class if rowSpacing is not set', async () => {
+			const columnSpacing = LayoutSize.Small;
+
+			expect(getControlElement(element).classList.toString()).toEqual('control');
+			element.columnSpacing = columnSpacing;
+			await elementUpdated(element);
+			expect(getControlElement(element).classList.toString())
+				.toEqual(`control column-spacing-${columnSpacing} row-spacing-${columnSpacing}`);
 		});
 	});
 
