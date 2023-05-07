@@ -346,4 +346,25 @@ describe('vwc-pagination', () => {
 			expect(element.selectedIndex).toEqual(1);
 		});
 	});
+
+	describe('aria', function () {
+		it('should set aria-pressed false by default', async function () {
+			element.total = 20;
+			await elementUpdated(element);
+			const buttons = Array.from(element.shadowRoot?.querySelectorAll('.vwc-pagination-button') as unknown as Button[]);
+			const allButtonsAriaPressedFalse = buttons?.reduce((correct, button, index) => {
+				if (element.selectedIndex === index) return correct;
+				return correct && button.getAttribute('aria-pressed') === 'false';
+			}, true);
+			expect(allButtonsAriaPressedFalse).toEqual(true);
+		});
+
+		it('should set aria-pressed on the selected button', async function () {
+			element.total = 20;
+			element.selectedIndex = 3;
+			await elementUpdated(element);
+			const button = element.shadowRoot?.querySelectorAll('.vwc-pagination-button').item(3);
+			expect(button?.getAttribute('aria-pressed')).toEqual('true');
+		});
+	});
 });

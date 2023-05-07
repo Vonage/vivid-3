@@ -31,6 +31,8 @@ const paginationButtonRenderer = (buttonTag: string) => html`
 									label="${(value) => value}"
 									appearance="${getButtonAppearance}"
 									size="super-condensed"
+									tabindex="1"
+									aria-pressed="${(value, {parent}) => parent.selectedIndex === Number(value) - 1}"
 									@click="${handleSelection}"
 									@keydown="${handleKeyDown}"
 		</${buttonTag}>
