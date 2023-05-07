@@ -30,10 +30,11 @@ const paginationButtonRenderer = (buttonTag: string) => html`
 											@click="${handleSelection}"
 											@keydown="${handleKeyDown}"
 											connotation="accent"
+											size="super-condensed"
 											appearance="${getButtonAppearance}"
 				</${buttonTag}>
 			`)}
-			${when(value => value === '...', html`<div class="vwc-pagination-dots"><span>...</span></div>`)}`
+			${when(value => value === '...', html`<div class="dots">...</div>`)}`;
 /**
  * The template for the {@link @microsoft/fast-foundation#Pagination} component.
  *
@@ -48,18 +49,20 @@ export const PaginationTemplate: (
 	const buttonTag = context.tagFor(Button);
 	return html<Pagination>`
 	<div class="${getClasses}">
-		<${buttonTag} class="vwc-pagination-prev-button"
+		<${buttonTag} class="prev-button"
 									label="${x => !x.navIcons ? 'Previous' : null}"
 									icon="${x => x.navIcons ? 'chevron-left-line' : null}"
+									size="super-condensed"
 									?disabled="${x => x.total === 0 || x.selectedIndex === 0}"
 									@click="${x => (x.selectedIndex !== undefined) && x.selectedIndex--}"
 		></${buttonTag}>
-		<div id="buttons-wrapper"${children({ property: 'paginationButtons', filter: elements('vwc-button') })} >
+		<div id="buttons-wrapper" class="buttons-wrapper" ${children({ property: 'paginationButtons', filter: elements('vwc-button') })} >
 			${repeat(x => x.pagesList, paginationButtonRenderer(buttonTag), { positioning: true })}
 		</div>
-		<${buttonTag} class="vwc-pagination-next-button"
+		<${buttonTag} class="next-button"
 									label="${x => !x.navIcons ? 'Next' : null}"
 									icon="${x => x.navIcons ? 'chevron-right-line' : null}"
+									size="super-condensed"
 									?disabled="${x => x.total === 0 || x.selectedIndex === (x.total - 1)}"
 									@click="${x => (x.selectedIndex !== undefined) && x.selectedIndex++}"
 		></${buttonTag}>

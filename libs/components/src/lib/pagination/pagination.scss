@@ -1,14 +1,17 @@
-.control, #buttons-wrapper {
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+
+.control{
 	display: inline-flex;
+	justify-content: space-between;
 }
 
-.vwc-pagination-dots {
-	width: 32px;
-	height: 32px;
+.buttons-wrapper {
 	display: flex;
+	column-gap: 4px;
 }
 
-.vwc-pagination-dots span {
-	align-self: flex-end;
-	width: 100%;
+.dots {
+	font: var(#{constants.$vvd-typography-base-condensed-bold});
+	text-align: center;
+	align-self: center;
 }

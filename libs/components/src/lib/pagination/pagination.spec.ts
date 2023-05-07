@@ -165,8 +165,8 @@ describe('vwc-pagination', () => {
 		beforeEach(async function () {
 			element.total = 20;
 			await elementUpdated(element);
-			prevButton = element.shadowRoot?.querySelector('.vwc-pagination-prev-button');
-			nextButton = element.shadowRoot?.querySelector('.vwc-pagination-next-button');
+			prevButton = element.shadowRoot?.querySelector('.prev-button');
+			nextButton = element.shadowRoot?.querySelector('.next-button');
 		});
 
 		it('should default to true', function () {
@@ -199,8 +199,8 @@ describe('vwc-pagination', () => {
 		beforeEach(async function () {
 			element.total = 20;
 			await elementUpdated(element);
-			prevButton = element.shadowRoot?.querySelector('.vwc-pagination-prev-button');
-			nextButton = element.shadowRoot?.querySelector('.vwc-pagination-next-button');
+			prevButton = element.shadowRoot?.querySelector('.prev-button');
+			nextButton = element.shadowRoot?.querySelector('.next-button');
 		});
 
 		it('should set prevButton to enabled if selectedIndex is not 0', async function () {
@@ -287,7 +287,7 @@ describe('vwc-pagination', () => {
 			const status = {clicked: false};
 			setEventListeners(status);
 			element.selectedIndex = 2;
-			const dots = getControlElement(element).querySelector('.vwc-pagination-dots');
+			const dots = getControlElement(element).querySelector('.dots');
 			dots?.dispatchEvent(new MouseEvent('click'));
 			expect(element.selectedIndex).toEqual(2);
 		});
@@ -314,7 +314,7 @@ describe('vwc-pagination', () => {
 		it('should prevent change event when "..." is clicked', async () => {
 			const status = {clicked: false, event: new Event('test')};
 			setEventListeners(status);
-			const dots = getControlElement(element).querySelector('.vwc-pagination-dots');
+			const dots = getControlElement(element).querySelector('.dots');
 			dots?.dispatchEvent(new MouseEvent('click'));
 			expect(status.clicked).toEqual(false);
 		});
