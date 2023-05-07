@@ -25,16 +25,17 @@ function getButtonAppearance(value: string | number, {parent}: {parent: Paginati
 }
 
 const paginationButtonRenderer = (buttonTag: string) => html`
-			${when(value => value !== '...', html`<${buttonTag} class="vwc-pagination-button"
-											label="${(value) => value}"
-											@click="${handleSelection}"
-											@keydown="${handleKeyDown}"
-											connotation="accent"
-											size="super-condensed"
-											appearance="${getButtonAppearance}"
-				</${buttonTag}>
-			`)}
-			${when(value => value === '...', html`<div class="dots">...</div>`)}`;
+	${when(value => value !== '...',
+		html`
+		<${buttonTag} class="vwc-pagination-button"
+									label="${(value) => value}"
+									appearance="${getButtonAppearance}"
+									size="super-condensed"
+									@click="${handleSelection}"
+									@keydown="${handleKeyDown}"
+		</${buttonTag}>
+	`)}
+	${when(value => value === '...', html`<div class="dots">...</div>`)}`;
 /**
  * The template for the {@link @microsoft/fast-foundation#Pagination} component.
  *
@@ -47,6 +48,7 @@ export const PaginationTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Pagination> = (context) => {
 	const buttonTag = context.tagFor(Button);
+	const paginationButtonTemplate = paginationButtonRenderer(buttonTag)
 	return html<Pagination>`
 	<div class="${getClasses}">
 		<${buttonTag} class="prev-button"
@@ -56,8 +58,8 @@ export const PaginationTemplate: (
 									?disabled="${x => x.total === 0 || x.selectedIndex === 0}"
 									@click="${x => (x.selectedIndex !== undefined) && x.selectedIndex--}"
 		></${buttonTag}>
-		<div id="buttons-wrapper" class="buttons-wrapper" ${children({ property: 'paginationButtons', filter: elements('vwc-button') })} >
-			${repeat(x => x.pagesList, paginationButtonRenderer(buttonTag), { positioning: true })}
+		<div id="buttons-wrapper" class="buttons-wrapper" ${children({ property: 'paginationButtons', filter: elements('vwc-button') })}>
+			${repeat(x => x.pagesList, paginationButtonTemplate, { positioning: true })}
 		</div>
 		<${buttonTag} class="next-button"
 									label="${x => !x.navIcons ? 'Next' : null}"
