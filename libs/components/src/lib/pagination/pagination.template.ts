@@ -7,6 +7,7 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import {Button} from '../button/button';
 import type { Pagination } from './pagination';
+import {Size} from "@vonage/vivid";
 
 const handleSelection = (value: string | number, {parent: x}: {parent: Pagination}) => {
 	return x.selectedIndex = (Number(value) - 1);
@@ -34,7 +35,7 @@ const paginationButtonRenderer = (buttonTag: string) => html`
 		<${buttonTag} class="vwc-pagination-button"
 									label="${(value) => value}"
 									appearance="${getButtonAppearance}"
-									size="super-condensed"
+									size="${(_, {parent: x}) => x.size ? x.size : Size.Condensed}"
 									tabindex="0"
 									aria-pressed="${(value, {parent}) => parent.selectedIndex === Number(value) - 1}"
 									@click="${handleSelection}"
@@ -60,7 +61,7 @@ export const PaginationTemplate: (
 		<${buttonTag} class="prev-button" ${ref('prevButton')}
 									label="${x => !x.navIcons ? 'Previous' : null}"
 									icon="${x => x.navIcons ? 'chevron-left-line' : null}"
-									size="super-condensed"
+									size="${x => x.size ? x.size : Size.Condensed}"
 									?disabled="${x => x.total === 0 || x.selectedIndex === 0}"
 									@click="${x => (x.selectedIndex !== undefined) && x.selectedIndex--}"
 		></${buttonTag}>
@@ -70,7 +71,7 @@ export const PaginationTemplate: (
 		<${buttonTag} class="next-button" ${ref('nextButton')}
 									label="${x => !x.navIcons ? 'Next' : null}"
 									icon="${x => x.navIcons ? 'chevron-right-line' : null}"
-									size="super-condensed"
+									size="${x => x.size ? x.size : Size.Condensed}"
 									?disabled="${x => x.total === 0 || x.selectedIndex === (x.total - 1)}"
 									@click="${x => (x.selectedIndex !== undefined) && x.selectedIndex++}"
 		></${buttonTag}>

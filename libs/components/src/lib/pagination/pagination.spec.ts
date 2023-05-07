@@ -1,5 +1,6 @@
 import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
 import type {Button} from '../button/button';
+import {Size} from "@vonage/vivid";
 import { Pagination } from './pagination';
 import '.';
 
@@ -423,6 +424,30 @@ describe('vwc-pagination', () => {
 				return correct && button.getAttribute('tabindex') === '0';
 			}, true);
 			expect(allButtonsAriaPressedFalse).toEqual(true);
+		});
+	});
+
+	describe('size', function () {
+		it('should set size condensed of all buttons by default', async function () {
+			element.total = 20;
+			await elementUpdated(element);
+			const allButtons = Array.from(element.shadowRoot?.querySelectorAll('vwc-button') as unknown as Button[]);
+			const allButtonsCondensed = allButtons?.reduce((correct, button) => {
+				return correct && button.size === Size.Condensed;
+			}, true);
+			expect(allButtonsCondensed).toEqual(true);
+		});
+
+		it('should change all buttons sizes', async function () {
+			element.total = 20;
+			await elementUpdated(element);
+			element.size = Size.SuperCondensed;
+			await elementUpdated(element);
+			const allButtons = Array.from(element.shadowRoot?.querySelectorAll('vwc-button') as unknown as Button[]);
+			const allButtonsCondensed = allButtons?.reduce((correct, button) => {
+				return correct && button.size === Size.SuperCondensed;
+			}, true);
+			expect(allButtonsCondensed).toEqual(true);
 		});
 	});
 });

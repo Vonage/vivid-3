@@ -1,6 +1,9 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import {attr, observable, ValueConverter, volatile} from '@microsoft/fast-element';
 import type {Button} from '../button/button';
+import type {Size} from "@vonage/vivid";
+
+export type PaginationSize = Extract<Size, Size.SuperCondensed | Size.Condensed | Size.Normal>;
 
 const MAX_DIGITS_AND_PLACEHOLDERS = 7;
 const totalConverter: ValueConverter = {
@@ -14,6 +17,8 @@ const totalConverter: ValueConverter = {
  * @public
  */
 export class Pagination extends FoundationElement {
+	@attr size?: PaginationSize;
+
 	@observable
 		paginationButtons?: Button[];
 
