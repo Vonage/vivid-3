@@ -54,7 +54,7 @@ describe('vwc-pagination', () => {
 		it.each([2, 3, 4, 5, 6, 7])('should add %i buttons when total is set to %i', async (total) => {
 			element.total = total;
 			await elementUpdated(element);
-			const buttons = element.shadowRoot?.querySelectorAll('.vwc-pagination-button');
+			const buttons = getButtons(element);
 			expect(element.pagesList.length).toEqual(total);
 			expect(buttons?.length).toEqual(total);
 			buttons?.forEach((button: any, index: number) => {
@@ -149,7 +149,7 @@ describe('vwc-pagination', () => {
 			element.total = 20;
 			element.selectedIndex = 3;
 			await elementUpdated(element);
-			const buttons = Array.from(element.shadowRoot?.querySelectorAll('.vwc-pagination-button') as unknown as Button[]);
+			const buttons = getButtons(element);
 			buttons.forEach((button: Button, index: number) => {
 				if (index !== 3) {
 					expect(button.getAttribute('appearance')).toEqual('ghost');
@@ -327,16 +327,18 @@ describe('vwc-pagination', () => {
 		});
 	});
 
+	function getButtons(element: Pagination) {
+		return Array.from(element.shadowRoot?.querySelectorAll('.vwc-pagination-button') as unknown as Button[]);
+	}
+
 	describe('keyboard events', function () {
-		function getButtons(element: Pagination) {
-			return Array.from(element.shadowRoot?.querySelectorAll('.vwc-pagination-button') as unknown as Button[]);
-		}
+
 		beforeEach(async function () {
 			element.total = 30;
 			await elementUpdated(element);
 		});
-		it('should select tag on spacebar', async function () {
 
+		it('should select tag on spacebar', async function () {
 			const button = getButtons(element)[3];
 			const event = new KeyboardEvent('keydown', {key: ' ', bubbles: true, composed: true});
 			button?.dispatchEvent(event);
@@ -350,7 +352,7 @@ describe('vwc-pagination', () => {
 			expect(element.selectedIndex).toEqual(1);
 		});
 
-		it('should focus on next button on Tab', async function () {
+		it('should focus on next button on Tab press on a button', async function () {
 			const buttons = getButtons(element);
 			const button = buttons[1];
 			button.focus();
@@ -359,13 +361,35 @@ describe('vwc-pagination', () => {
 			expect((element.shadowRoot?.activeElement as any).label).toEqual(buttons[2].label);
 		});
 
-		it('should focus on previous button when tab+shift are pressed', async function () {
+		it('should focus on previous button when tab+shift are pressed on a button', async function () {
 			const buttons = getButtons(element);
 			const button = buttons[1];
 			button.focus();
 			const event = new KeyboardEvent('keydown', {key: 'Tab', shiftKey: true, bubbles: true, composed: true});
 			button.dispatchEvent(event);
 			expect((element.shadowRoot?.activeElement as any).label).toEqual(buttons[0].label);
+		});
+
+		it('should focus on prev button if focused on the first element', async function () {
+			element.selectedIndex = 5;
+			await elementUpdated(element);
+			const prevButton = element.shadowRoot?.querySelector('.prev-button') as Button;
+			const buttons = getButtons(element);
+			const button = buttons[0];
+			button.focus();
+			const event = new KeyboardEvent('keydown', {key: 'Tab', shiftKey: true, bubbles: true, composed: true});
+			button.dispatchEvent(event);
+			expect((element.shadowRoot?.activeElement as any).label).toEqual(prevButton?.label);
+		});
+
+		it('should focus on prev button if focused on the first element', async function () {
+			const nextButton = element.shadowRoot?.querySelector('.next-button') as Button;
+			const buttons = getButtons(element);
+			const button = buttons[5];
+			button.focus();
+			const event = new KeyboardEvent('keydown', {key: 'Tab', bubbles: true, composed: true});
+			button.dispatchEvent(event);
+			expect((element.shadowRoot?.activeElement as any).label).toEqual(nextButton?.label);
 		});
 	});
 
@@ -401,5 +425,4 @@ describe('vwc-pagination', () => {
 			expect(allButtonsAriaPressedFalse).toEqual(true);
 		});
 	});
-	// TODO:: add tabindex 0 for focused and 1 for rest
 });

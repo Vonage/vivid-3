@@ -1,4 +1,4 @@
-import {children, elements, html, repeat, when} from '@microsoft/fast-element';
+import {children, elements, html, ref, repeat, when} from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
@@ -56,7 +56,7 @@ export const PaginationTemplate: (
 	const paginationButtonTemplate = paginationButtonRenderer(buttonTag)
 	return html<Pagination>`
 	<div class="${getClasses}">
-		<${buttonTag} class="prev-button"
+		<${buttonTag} class="prev-button" ${ref('prevButton')}
 									label="${x => !x.navIcons ? 'Previous' : null}"
 									icon="${x => x.navIcons ? 'chevron-left-line' : null}"
 									size="super-condensed"
@@ -66,7 +66,7 @@ export const PaginationTemplate: (
 		<div id="buttons-wrapper" class="buttons-wrapper" ${children({ property: 'paginationButtons', filter: elements(buttonTag) })}>
 			${repeat(x => x.pagesList, paginationButtonTemplate, { positioning: true })}
 		</div>
-		<${buttonTag} class="next-button"
+		<${buttonTag} class="next-button" ${ref('nextButton')}
 									label="${x => !x.navIcons ? 'Next' : null}"
 									icon="${x => x.navIcons ? 'chevron-right-line' : null}"
 									size="super-condensed"

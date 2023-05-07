@@ -17,6 +17,12 @@ export class Pagination extends FoundationElement {
 	@observable
 	public paginationButtons?: Button[];
 
+	@observable
+		prevButton?: Button;
+
+	@observable
+		nextButton?: Button;
+
 	@attr({attribute: 'nav-icons', mode: 'boolean'}) navIcons = false;
 
 	@volatile
@@ -53,8 +59,15 @@ export class Pagination extends FoundationElement {
 		this.selectedIndex = 0;
 		this.addEventListener('tabpressed', (e: Event) => {
 			const {value: currentLabel, shiftKey} = (e as CustomEvent).detail;
-			const index = this.paginationButtons?.findIndex(button => Number(button.label) === currentLabel) as number;
+			const index = this.paginationButtons!.findIndex(button => Number(button.label) === currentLabel) as number;
 			const focusDirection = shiftKey ? -1 : 1;
+			const newIndex = index + focusDirection;
+			if (newIndex < 0) {
+				return this.prevButton!.focus();
+			}
+			if (newIndex > this.paginationButtons!.length - 1) {
+				return this.nextButton!.focus();
+			}
 			this.paginationButtons && this.paginationButtons[index + focusDirection].focus();
 		});
 	}
