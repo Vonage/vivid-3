@@ -7,7 +7,7 @@ import {
 
 const components = ['data-grid'];
 
-test('should show the component', async ({ page }: { page: Page }) => {
+export const gridTestFunction = async ({ page }: { page: Page }) => {
 
 	const template = `<div style="margin: 5px;">
 			<vwc-data-grid></vwc-data-grid>
@@ -41,4 +41,5 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/data-grid.png'
 	);
-});
+};
+test.only('should show the component', gridTestFunction);
