@@ -38,8 +38,12 @@ export const gridTestFunction = async ({ page }: { page: Page }) => {
 	];
 	`});
 
+	const text = await page.locator('vwc-data-grid-cell:has-text("data22")');
+	await text.isVisible();
+
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/data-grid.png'
+		'./snapshots/data-grid.png',
+		{ threshold: 0.02 }
 	);
 };
 test.only('should show the component', gridTestFunction);
