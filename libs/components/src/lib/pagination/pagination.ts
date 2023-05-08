@@ -89,5 +89,11 @@ export class Pagination extends FoundationElement {
 		if (oldValue === undefined) return;
 		this.$emit('vwc-pagination-change', {selectedIndex: newValue, total: this.total, oldIndex: oldValue});
 	}
+
+	paginationButtonsChanged(_: Button[] | undefined, newValue: Button[] | undefined) {
+		newValue?.forEach(button => {
+			button.shadowRoot?.querySelector('button')?.classList.add('icon-only');
+		});
+	}
 }
 
