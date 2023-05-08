@@ -30,7 +30,7 @@ Set the `size` attribute to change the pagination's buttons sizes.
 Type: `super-condensed` | `condensed` | `normal`
 Default: `super-condensed`
 
-```html preview
+```html preview blocks
 <vwc-pagination size="super-condensed" total="20"></vwc-pagination>
 <vwc-pagination size="condensed" total="20"></vwc-pagination>
 <vwc-pagination size="normal" total="20"></vwc-pagination>
@@ -57,15 +57,13 @@ Set the `navIcons` attribute to change the pagination's navigation buttons type.
 Type: `Boolean`
 Default: `false`
 
-```html preview
+```html preview blocks
 <vwc-pagination total="20"></vwc-pagination>
 <vwc-pagination total="20" nav-icons></vwc-pagination>
 ```
 
 ### Pages List
 `pagesList` is an immutable array that represents the current pagination's state.
-
-## CSS Variables
 
 ## Events
 

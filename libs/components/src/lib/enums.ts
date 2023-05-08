@@ -33,17 +33,17 @@ export enum Appearance {
 }
 
 export enum Size {
-	UltraCondensed = 'ultraCondensed',
-	SuperCondensed = 'superCondensed',
-	ExtraCondensed = 'extraCondensed',
-	SemiCondensed = 'semiCondensed',
+	UltraCondensed = 'ultra-condensed',
+	SuperCondensed = 'super-condensed',
+	ExtraCondensed = 'extra-condensed',
+	SemiCondensed = 'semi-condensed',
 	Condensed = 'condensed',
 	Normal = 'normal',
-	SemiExpanded = 'semiExpanded',
+	SemiExpanded = 'semi-expanded',
 	Expanded = 'expanded',
-	ExtraExpanded = 'extraExpanded',
-	SuperExpanded = 'superExpanded',
-	UltraExpanded = 'ultraExpanded',
+	ExtraExpanded = 'extra-expanded',
+	SuperExpanded = 'super-expanded',
+	UltraExpanded = 'ultra-expanded',
 }
 
 export enum LayoutSize {
