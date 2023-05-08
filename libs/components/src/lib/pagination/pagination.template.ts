@@ -5,9 +5,11 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
+import { Size } from '../enums';
 import {Button} from '../button/button';
-import type { Pagination } from './pagination';
-import {Size} from "@vonage/vivid";
+import type {Pagination} from './pagination';
+
+const ALLOWED_SIZES = [Size.SuperCondensed, Size.Condensed, Size.Normal];
 
 const handleSelection = (value: string | number, {parent: x}: {parent: Pagination}) => {
 	return x.selectedIndex = (Number(value) - 1);
@@ -35,7 +37,7 @@ const paginationButtonRenderer = (buttonTag: string) => html`
 		<${buttonTag} class="vwc-pagination-button"
 									label="${(value) => value}"
 									appearance="${getButtonAppearance}"
-									size="${(_, {parent: x}) => x.size ? x.size : Size.Condensed}"
+									size="${(_, {parent: x}) => getPaginationSize(x)}"
 									tabindex="0"
 									aria-pressed="${(value, {parent}) => parent.selectedIndex === Number(value) - 1}"
 									@click="${handleSelection}"
@@ -43,6 +45,15 @@ const paginationButtonRenderer = (buttonTag: string) => html`
 		</${buttonTag}>
 	`)}
 	${when(value => value === '...', html`<div class="dots">...</div>`)}`;
+
+const getPaginationSize = (x: Pagination) => {
+	if (!x.size || !ALLOWED_SIZES.includes(x.size)) {
+		return Size.SuperCondensed;
+	}
+	return x.size;
+};
+
+
 /**
  * The template for the {@link @microsoft/fast-foundation#Pagination} component.
  *
@@ -61,7 +72,7 @@ export const PaginationTemplate: (
 		<${buttonTag} class="prev-button" ${ref('prevButton')}
 									label="${x => !x.navIcons ? 'Previous' : null}"
 									icon="${x => x.navIcons ? 'chevron-left-line' : null}"
-									size="${x => x.size ? x.size : Size.Condensed}"
+									size="${getPaginationSize}"
 									?disabled="${x => x.total === 0 || x.selectedIndex === 0}"
 									@click="${x => (x.selectedIndex !== undefined) && x.selectedIndex--}"
 		></${buttonTag}>
@@ -71,7 +82,7 @@ export const PaginationTemplate: (
 		<${buttonTag} class="next-button" ${ref('nextButton')}
 									label="${x => !x.navIcons ? 'Next' : null}"
 									icon="${x => x.navIcons ? 'chevron-right-line' : null}"
-									size="${x => x.size ? x.size : Size.Condensed}"
+									size="${getPaginationSize}"
 									?disabled="${x => x.total === 0 || x.selectedIndex === (x.total - 1)}"
 									@click="${x => (x.selectedIndex !== undefined) && x.selectedIndex++}"
 		></${buttonTag}>

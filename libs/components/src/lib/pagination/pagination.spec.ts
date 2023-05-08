@@ -1,7 +1,7 @@
 import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
+import {Size} from '@vonage/vivid';
 import type {Button} from '../button/button';
-import {Size} from "@vonage/vivid";
-import { Pagination } from './pagination';
+import {Pagination, PaginationSize} from './pagination';
 import '.';
 
 const COMPONENT_TAG = 'vwc-pagination';
@@ -428,12 +428,12 @@ describe('vwc-pagination', () => {
 	});
 
 	describe('size', function () {
-		it('should set size condensed of all buttons by default', async function () {
+		it('should set size super-condensed of all buttons by default', async function () {
 			element.total = 20;
 			await elementUpdated(element);
 			const allButtons = Array.from(element.shadowRoot?.querySelectorAll('vwc-button') as unknown as Button[]);
 			const allButtonsCondensed = allButtons?.reduce((correct, button) => {
-				return correct && button.size === Size.Condensed;
+				return correct && button.size === Size.SuperCondensed;
 			}, true);
 			expect(allButtonsCondensed).toEqual(true);
 		});
@@ -441,7 +441,19 @@ describe('vwc-pagination', () => {
 		it('should change all buttons sizes', async function () {
 			element.total = 20;
 			await elementUpdated(element);
-			element.size = Size.SuperCondensed;
+			element.size = Size.Normal;
+			await elementUpdated(element);
+			const allButtons = Array.from(element.shadowRoot?.querySelectorAll('vwc-button') as unknown as Button[]);
+			const allButtonsCondensed = allButtons?.reduce((correct, button) => {
+				return correct && button.size === Size.Normal;
+			}, true);
+			expect(allButtonsCondensed).toEqual(true);
+		});
+
+		it('should revert to super-condensed if set to invalid size', async function () {
+			element.total = 20;
+			await elementUpdated(element);
+			element.size = 'invalid-size' as PaginationSize;
 			await elementUpdated(element);
 			const allButtons = Array.from(element.shadowRoot?.querySelectorAll('vwc-button') as unknown as Button[]);
 			const allButtonsCondensed = allButtons?.reduce((correct, button) => {

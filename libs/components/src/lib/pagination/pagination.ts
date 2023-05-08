@@ -1,7 +1,7 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import {attr, observable, ValueConverter, volatile} from '@microsoft/fast-element';
+import type { Size } from '../enums';
 import type {Button} from '../button/button';
-import type {Size} from "@vonage/vivid";
 
 export type PaginationSize = Extract<Size, Size.SuperCondensed | Size.Condensed | Size.Normal>;
 

@@ -23,6 +23,19 @@ Default: `0`
 <vwc-pagination total="20"></vwc-pagination>
 ```
 
+### Size
+
+Set the `size` attribute to change the pagination's buttons sizes.
+
+Type: `super-condensed` | `condensed` | `normal`
+Default: `super-condensed`
+
+```html preview
+<vwc-pagination size="super-condensed" total="20"></vwc-pagination>
+<vwc-pagination size="condensed" total="20"></vwc-pagination>
+<vwc-pagination size="normal" total="20"></vwc-pagination>
+```
+
 ### Selected Index
 Set the `selectedIndex` attribute to change the pagination's currently selected index. Note that this is a Zero Index counter. It is set to -1 if total pages is 0.
 
