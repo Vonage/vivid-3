@@ -1,4 +1,6 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+
 
 .control{
 	display: inline-flex;
@@ -12,6 +14,21 @@
 
 .dots {
 	align-self: center;
-	font: var(#{constants.$vvd-typography-base-condensed-bold});
 	text-align: center;
+
+	&:not(.size-super-condensed) {
+		font: var(#{constants.$vvd-typography-base-bold});
+	}
+	&.size-super-condensed {
+		font: var(#{constants.$vvd-typography-base-condensed-bold});
+		inline-size: #{size.$vvd-size-super-condensed};
+	}
+
+	&.size-condensed {
+		inline-size: #{size.$vvd-size-condensed};
+	}
+
+	&.size-normal {
+		inline-size: #{size.$vvd-size-normal};
+	}
 }

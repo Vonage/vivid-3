@@ -16,8 +16,8 @@ Represents a pagination custom element.
 
 Set the `total` attribute to change the pagination's view total pages.
 
-Type: `number`
-Default: `0`
+- Type: `number`
+- Default: `0`
 
 ```html preview
 <vwc-pagination total="20"></vwc-pagination>
@@ -27,8 +27,8 @@ Default: `0`
 
 Set the `size` attribute to change the pagination's buttons sizes.
 
-Type: `super-condensed` | `condensed` | `normal`
-Default: `super-condensed`
+- Type: `super-condensed` | `condensed` | `normal`
+- Default: `super-condensed`
 
 ```html preview blocks
 <vwc-pagination size="super-condensed" total="20"></vwc-pagination>
@@ -39,8 +39,8 @@ Default: `super-condensed`
 ### Selected Index
 Set the `selectedIndex` attribute to change the pagination's currently selected index. Note that this is a Zero Index counter. It is set to -1 if total pages is 0.
 
-Type: `number`
-Default: `0`
+- Type: `number`
+- Default: `0`
 
 ```html preview
 <vwc-pagination total="20"></vwc-pagination>
@@ -54,8 +54,8 @@ Default: `0`
 
 Set the `navIcons` attribute to change the pagination's navigation buttons type.
 
-Type: `Boolean`
-Default: `false`
+- Type: `Boolean`
+- Default: `false`
 
 ```html preview blocks
 <vwc-pagination total="20"></vwc-pagination>
