@@ -88,7 +88,7 @@ export const DialogTemplate: (
 	const buttonTag = context.tagFor(Button);
 
 	return html<Dialog>`
-	<${elevationTag} dp="8">
+	<${elevationTag} dp="0">
 		<dialog class="${getClasses}"
 				@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
 				returnValue="${x => x.returnValue}"
