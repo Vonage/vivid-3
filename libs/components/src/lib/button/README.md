@@ -205,14 +205,7 @@ Add the `pending` attribute to disable the button and display a processing indic
 
 ### Custom Colors
 
-```html preview
-<style>
-.vvd-root {
-	--vvd-button-accent-primary: blue;
-	--vvd-button-accent-firm: blue;
-}
-</style>
-
+```html preview variables
 <vwc-button label='ghost' appearance='ghost'></vwc-button>
 <vwc-button label='filled' appearance='filled'></vwc-button>
 <vwc-button label='outlined' appearance='outlined'></vwc-button>

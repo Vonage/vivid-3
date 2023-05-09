@@ -66,13 +66,7 @@ When the nav has focus:
 
 ### Custom Colors
 
-```html preview
-<style>
-.vvd-root {
-	--vvd-nav-item-accent-primary: blue;
-}
-</style>
-
+```html preview variables
 <vwc-nav>
   <vwc-nav-item href="#" text="1st level item" onclick="onClick(event)" aria-current="page"></vwc-nav-item>
   <vwc-nav-item href="#" text="1st level item" onclick="onClick(event)"></vwc-nav-item>

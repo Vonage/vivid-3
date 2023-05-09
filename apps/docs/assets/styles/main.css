@@ -214,6 +214,23 @@ article.article > h1 {
   border-radius: 0;
 }
 
+.cbd-variables,
+.cbd-variables th,
+.cbd-variables td {
+  padding: 8px
+}
+
+.cbd-variables__color {
+  display: flex;
+  gap: 8px;
+}
+
+.cbd-variables__color-square {
+  width: 1em;
+  height: 1em;
+  border: 1px solid var(--vvd-color-neutral-100);
+}
+
 /* #endregion code fence demo */
 
 /* #region highlight js */
