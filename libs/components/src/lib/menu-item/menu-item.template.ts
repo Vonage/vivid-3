@@ -75,13 +75,13 @@ export const MenuItemTemplate:  (
 			${() => focusTemplate}
 
 			${when(x => x.role === MenuItemRole.menuitemcheckbox,
-		html`${x => getCheckIcon(affixIconTemplate, x, 'checkbox')}`)}
+		html`<span class="action">${x => getCheckIcon(affixIconTemplate, x, 'checkbox')}</span>`)}
 
 			${when(x => x.role === MenuItemRole.menuitemradio,
-		html`${x => getCheckIcon(affixIconTemplate, x, 'radio')}`)}
+		html`<span class="action">${x => getCheckIcon(affixIconTemplate, x, 'radio')}</span>`)}
 
 			${when(x => x.icon,
-		html`${x => affixIconTemplate(x.icon)}`)}
+		html`<span class="decorative">${x => affixIconTemplate(x.icon)}</span>`)}
 
 			${when(x => x.text || x.textSecondary, html`<span class="text">
 				${when(x => x.text, html`<span class="text-primary">${x => x.text}</span>`)}

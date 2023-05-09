@@ -90,6 +90,23 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 </vwc-menu>
 ```
 
+#### Icon with Checkbox or Radiobutton
+When icon is added to `menuitemcheckbox` or `menuitemradio` the checkbox or the radio will be trailing
+
+```html preview
+<style>
+  html { 
+    block-size: 300px; 
+  }
+</style>
+<vwc-menu open>
+  <vwc-menu-item icon="layout-1-solid" role="menuitemcheckbox" text="Checkbox 1"></vwc-menu-item>
+  <vwc-menu-item icon="apps-solid" role="menuitemcheckbox" text="Checkbox 2"></vwc-menu-item>
+  <vwc-divider></vwc-divider>
+  <vwc-menu-item icon="layout-1-solid" role="menuitemradio" text="Radio 1.1"></vwc-menu-item>
+  <vwc-menu-item icon="apps-solid" role="menuitemradio" text="Radio 1.1"></vwc-menu-item>
+```
+
 ### Checked
 
 The checked value of the element (if role is set to `'menuitemcheckbox'`).
@@ -112,7 +129,7 @@ The disabled state of the element
 
 ```html preview
 <vwc-menu open>
-  <vwc-menu-item disabled text="Disabled Menu item"></vwc-menu-item>
+  <vwc-menu-item disabled text="Disabled Menu item" icon="layout-2-solid" ></vwc-menu-item>
 </vwc-menu>
 ```
 
