@@ -10,8 +10,12 @@
 @mixin connotation-shades($component, $type, $mapping) {
 	$shades: utils.pick-map(config.$shades, $mapping);
 	@each $name, $value in $shades {
-		/* @cssprop [--vvd-#{$component}-#{$type}-#{$name}=var(#{$value})] */
-		#{functions.get-connotation-token($name)}: var(--vvd-#{$component}-#{$type}-#{$name}, var(#{$value}));
+		@if $type == 'accent' {
+			/* @cssprop [--vvd-#{$component}-#{$type}-#{$name}=var(#{$value})] */
+			#{functions.get-connotation-token($name)}: var(--vvd-#{$component}-#{$type}-#{$name}, var(#{$value}));
+		} @else {
+			#{functions.get-connotation-token($name)}: var(#{$value});
+		}
 	}
 }
 
