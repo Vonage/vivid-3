@@ -6,6 +6,11 @@ import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { MenuItem } from './menu-item';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
 
+const getCheckIcon = (affixIconTemplate: any, x: MenuItem, iconType: string) => {
+	const iconStatus = x.checked ? 'checked' : 'unchecked';
+	const icon = `${iconType}-${iconStatus}-line`;
+	return affixIconTemplate(icon, x.icon ? 'trailing' : '');
+};
 
 const getClasses = ({
 	disabled, checked, expanded, role, text, textSecondary, icon
@@ -70,10 +75,10 @@ export const MenuItemTemplate:  (
 			${() => focusTemplate}
 
 			${when(x => x.role === MenuItemRole.menuitemcheckbox,
-		html`${x => affixIconTemplate(x.checked ? 'checkbox-checked-line' : 'checkbox-unchecked-line', x.icon ? 'trailing' : '')}`)}
+		html`${x => getCheckIcon(affixIconTemplate, x, 'checkbox')}`)}
 
 			${when(x => x.role === MenuItemRole.menuitemradio,
-		html`${x => affixIconTemplate(x.checked ? 'radio-checked-line' : 'radio-unchecked-line', x.icon ? 'trailing' : '')}`)}
+		html`${x => getCheckIcon(affixIconTemplate, x, 'radio')}`)}
 
 			${when(x => x.icon,
 		html`${x => affixIconTemplate(x.icon)}`)}
