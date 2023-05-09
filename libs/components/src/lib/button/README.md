@@ -203,7 +203,7 @@ Add the `pending` attribute to disable the button and display a processing indic
 </vwc-button>
 ```
 
-### Custom Colors
+## Custom Colors
 
 ```html preview variables
 <vwc-button label='ghost' appearance='ghost'></vwc-button>

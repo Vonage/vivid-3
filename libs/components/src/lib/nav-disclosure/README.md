@@ -76,3 +76,13 @@ If label is not applied.
 The nav-disclosure has a `role` button.
 Nav-disclosure has `aria-expanded` set to true when the content is visible. Otherwise, it is set to false.
 Nav-disclosure has a value specified for `aria-controls` that refers to the content.
+
+## Custom Colors
+
+```html preview variables
+<vwc-nav>
+  <vwc-nav-disclosure label="1st level item">
+    <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
+  </vwc-nav-disclosure>
+<vwc-nav>
+```

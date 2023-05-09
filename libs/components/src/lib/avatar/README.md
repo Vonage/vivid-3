@@ -165,3 +165,11 @@ Assign nodes to the `graphic` slot to set a graphic media of any kind (e.g. imag
 It's generally a good idea to include an `aria-label` attribute on elements that are important for a user to be able to interact with or understand its purpose.  
 you could use an aria-label attribute like "Profile avatar" or "User profile picture" to describe the purpose of the avatar.  
 if your avatar is purely decorative and is not interactive, then you can use the `role="presentation"` attribute to indicate that the element is purely decorative.
+
+## Custom Colors
+
+```html preview variables
+<vwc-avatar appearance="filled"></vwc-avatar>
+<vwc-avatar appearance="duotone"></vwc-avatar>
+<vwc-avatar appearance="outlined"></vwc-avatar>
+```

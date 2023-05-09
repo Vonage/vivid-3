@@ -152,3 +152,12 @@ Fires a custom 'selected-change' event when a tag has been selected.
 - Returns: `void`
 
 Removes the tag from the DOM.  Fires the `removed` event and removes the tag from the DOM completely.  If you have a variable that refers to the tag element make sure to clear it otherwise it might cause a memory leak.
+
+## Custom Colors
+
+```html preview variables
+<vwc-tag-group>
+  <vwc-tag label='subtle' appearance='subtle'></vwc-tag>
+  <vwc-tag label='duotone' appearance='duotone'></vwc-tag>
+</vwc-tag-group>
+```

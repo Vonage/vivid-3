@@ -86,8 +86,8 @@ While `name` property resolves an icon from the Vivid predefined set of icons, i
 </vwc-icon>
 ```
 
-### Custom Colors
+## Custom Colors
 
 ```html preview variables
-<vwc-icon class="rainbow" size="3" name='heart-solid' connotation='accent'></vwc-icon>
+<vwc-icon size="3" name='heart-solid' connotation='accent'></vwc-icon>
 ```

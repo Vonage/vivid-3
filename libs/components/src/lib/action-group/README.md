@@ -167,3 +167,14 @@ Note: This is a simplified example illustrating a styled radio group and is not 
 The `action-group` defaults its role to 'group'. 
 However - if this role does not suit the use-case, you can change it.
 [For further reading about group role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/group_role).
+
+## Custom Colors
+
+```html preview variables
+<vwc-action-group>
+  <vwc-button icon="reply-line"></vwc-button>
+  <vwc-button label="copy"></vwc-button>
+  <vwc-button label="paste"></vwc-button>
+  <vwc-button label="submit"></vwc-button>
+</vwc-action-group>
+```

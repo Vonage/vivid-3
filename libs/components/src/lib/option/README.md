@@ -78,3 +78,11 @@ Use the `value` attribute to set the option's value.
  <vwc-option text="Option" value="my-value"></vwc-option>
 </vwc-listbox>
 ```
+
+## Custom Colors
+
+```html preview variables
+<vwc-listbox>
+ <vwc-option text="Option" icon="chat-line"></vwc-option>
+</vwc-listbox>
+```

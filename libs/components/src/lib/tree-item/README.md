@@ -101,3 +101,11 @@ Fires a custom 'expanded-change' event when the expanded state changes.
 ### Selected Change
 
 Fires a custom 'selected-change' event when an item has been selected.
+
+## Custom Colors
+
+```html preview variables
+<vwc-tree-view>
+    <vwc-tree-item text="Tree Item" icon="chat-line"></vwc-tree-item>
+</vwc-tree-view>
+```

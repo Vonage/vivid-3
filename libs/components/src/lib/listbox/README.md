@@ -70,3 +70,13 @@ Add the `disabled` attribute to disable the listbox.
   <vwc-option value="3" text="Option"></vwc-option>
 </vwc-listbox>
 ```
+
+## Custom Colors
+
+```html preview variables
+<vwc-listbox>
+  <vwc-option value="1" text="Option" selected></vwc-option>
+  <vwc-option value="2" text="Option"></vwc-option>
+  <vwc-option value="3" text="Option"></vwc-option>
+</vwc-listbox>
+```

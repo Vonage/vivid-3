@@ -107,3 +107,9 @@ Set `value` to be a non-number value (e.g. `indeterminate`) to show an indetermi
 ```html preview
 <vwc-progress min="0" max="50" value="indeterminate"></vwc-progress>
 ```
+
+## Custom Colors
+
+```html preview variables
+<vwc-progress min="0" max="50" value="12.5"></vwc-progress>
+```

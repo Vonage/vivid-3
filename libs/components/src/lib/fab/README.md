@@ -80,3 +80,9 @@ To disable the FAB, use the `disabled` attribute.
 ```html preview
 <vwc-fab icon='store-line' disabled></vwc-fab>
 ```
+
+## Custom Colors
+
+```html preview variables
+<vwc-fab connotation="accent" icon='cart-line' label='Add to cart'></vwc-fab>
+```

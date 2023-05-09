@@ -64,7 +64,7 @@ When the nav has focus:
 `Tab`: moves focus to the next element in the tab order.
 `Shift` + `Tab`: moves focus to the previous element in the tab order.
 
-### Custom Colors
+## Custom Colors
 
 ```html preview variables
 <vwc-nav>

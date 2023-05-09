@@ -90,3 +90,9 @@ Use the `value` member to set the checkbox's value.
 ```html preview
 <vwc-checkbox value="my-value"></vwc-checkbox>
 ```
+
+## Custom Colors
+
+```html preview variables
+<vwc-checkbox label='A default checkbox'></vwc-checkbox>
+```

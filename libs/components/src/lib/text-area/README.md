@@ -141,3 +141,9 @@ That means that:
 <vwc-text-area rows="2" value="2 rows text area"></vwc-text-area>
 <vwc-text-area rows="3" value="3 rows text area"></vwc-text-area>
 ```
+
+## Custom Colors
+
+```html preview variables
+<vwc-text-area label="Helper text below" helper-text="Help text" placeholder="My Placeholder"></vwc-text-area>
+```
