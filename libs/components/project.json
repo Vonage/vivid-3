@@ -63,6 +63,16 @@
       }
     },
     "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "npx nx run components:rollup",
+          "npx nx run components:generateMeta"
+        ],
+        "parallel": false
+      }
+    },
+    "rollup": {
       "executor": "@nrwl/rollup:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
