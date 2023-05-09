@@ -87,7 +87,7 @@ export class Pagination extends FoundationElement {
 
 	selectedIndexChanged(oldValue: number, newValue: number) {
 		if (oldValue === undefined) return;
-		this.$emit('vwc-pagination-change', {selectedIndex: newValue, total: this.total, oldIndex: oldValue});
+		this.$emit('pagination-change', {selectedIndex: newValue, total: this.total, oldIndex: oldValue});
 	}
 
 	paginationButtonsChanged(_: Button[] | undefined, newValue: Button[]) {

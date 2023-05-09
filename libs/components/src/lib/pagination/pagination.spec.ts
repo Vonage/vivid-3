@@ -263,7 +263,7 @@ describe('vwc-pagination', () => {
 		let buttons: NodeListOf<Element> | undefined;
 
 		function setEventListeners(status: { clicked: boolean; event?: Event;}) {
-			element.addEventListener('vwc-pagination-change', (e) => {
+			element.addEventListener('pagination-change', (e) => {
 				status.clicked = true;
 				status.event = e;
 			});
