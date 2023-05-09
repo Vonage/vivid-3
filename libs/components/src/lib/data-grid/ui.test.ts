@@ -46,4 +46,5 @@ export const gridTestFunction = async ({ page }: { page: Page }) => {
 		{ threshold: 0.02 }
 	);
 };
+
 test.only('should show the component', gridTestFunction);
