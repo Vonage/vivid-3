@@ -130,7 +130,7 @@ The disabled state of the element
 
 ```html preview
 <vwc-menu open>
-  <vwc-menu-item disabled text="Disabled Menu item" icon="layout-2-solid" ></vwc-menu-item>
+  <vwc-menu-item disabled text="Disabled Menu item"></vwc-menu-item>
 </vwc-menu>
 ```
 
