@@ -1,9 +1,9 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
 import '.';
 import { FoundationElementRegistry, MenuItemRole } from '@microsoft/fast-foundation';
 import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import { fireEvent } from '@testing-library/dom';
-import type { Icon } from '../icon/icon';
+import { Icon } from '../icon/icon';
 import { MenuItem } from './menu-item';
 import { menuItemDefinition } from './definition';
 
@@ -35,6 +35,83 @@ describe('vwc-menu-item', () => {
 			expect(element.checked).toBeUndefined();
 			expect(element.disabled).toBeUndefined();
 		});
+	});
+
+	describe('icon', function () {
+		it('should set a leading icon', async () => {
+			const iconName = 'file-pdf-line';
+			element.icon = iconName;
+			await elementUpdated(element);
+
+			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			expect(icon.name).toEqual(iconName);
+		});
+	});
+
+	describe('role', () => {
+		it('should reflect the role property', async () => {
+			const role = MenuItemRole.menuitem;
+			element.role = role;
+			await elementUpdated(element);
+			expect(element.getAttribute('role')).toEqual(role);
+		});
+
+		it('should set trailing class if role=checkbox and icon is set', async function () {
+			const iconName = 'file-pdf-line';
+			element.icon = iconName;
+			element.role = MenuItemRole.menuitemcheckbox;
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).classList.contains('trailing')).toBeTruthy();
+		});
+
+		it('should display icon if role=checkbox and icon is set', async function () {
+			const iconName = 'file-pdf-line';
+			element.icon = iconName;
+			element.role = MenuItemRole.menuitemcheckbox;
+			element.checked = true;
+			await elementUpdated(element);
+
+			const icon = element.shadowRoot?.querySelector(`[name="${iconName}"]`) as Icon;
+			expect(icon).toBeInstanceOf(Icon);
+		});
+
+		it('should set a checkbox-checked-line icon when checked=true and role is checkbox', async () => {
+			element.role = MenuItemRole.menuitemcheckbox;
+			element.checked = true;
+			await elementUpdated(element);
+
+			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			expect(icon.name).toEqual('checkbox-checked-line');
+		});
+
+		it('should set a checkbox-unchecked-line icon when checked=false and role is checkbox', async () => {
+			element.role = MenuItemRole.menuitemcheckbox;
+			element.checked = false;
+			await elementUpdated(element);
+
+			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			expect(icon.name).toEqual('checkbox-unchecked-line');
+		});
+
+		it('should set a radio-checked-line icon when checked=true and role is radio', async () => {
+			element.role = MenuItemRole.menuitemradio;
+			element.checked = true;
+			await elementUpdated(element);
+
+			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			expect(icon.name).toEqual('radio-checked-line');
+		});
+
+		it('should set a radio-unchecked-line icon when checked=false and role is radio', async () => {
+			element.role = MenuItemRole.menuitemradio;
+			element.checked = false;
+			await elementUpdated(element);
+
+			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			expect(icon.name).toEqual('radio-unchecked-line');
+		});
+
 	});
 
 	it('should set text property to node', async () => {
@@ -72,15 +149,7 @@ describe('vwc-menu-item', () => {
 		expect(control?.textContent?.trim().includes(secondaryText)).toEqual(true);
 	});
 
-	it('should set a leading icon', async () => {
-		const iconName = 'file-pdf-line';
-		element.icon = iconName;
-		await elementUpdated(element);
 
-		const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-		expect(icon).toBeInstanceOf(HTMLElement);
-		expect(icon.name).toEqual(iconName);
-	});
 
 	it('should toggle "expanded" on mouse over and mouse out', async () => {
 		expect(element.expanded).toEqual(undefined);
@@ -96,31 +165,6 @@ describe('vwc-menu-item', () => {
 		expect(element.expanded).toEqual(false);
 	});
 
-	it('should include a role of menuitem when `menuitem` role is provided', async () => {
-		const role = MenuItemRole.menuitem;
-		element.role = role;
-		await elementUpdated(element);
-		expect(element.getAttribute('role')).toEqual(role);
-	});
-
-	it('should include a role of `menuitemcheckbox` when `menuitemcheckbox` role is provided', async () => {
-		const role = MenuItemRole.menuitemcheckbox;
-		element.role = role;
-		await elementUpdated(element);
-		expect(element.getAttribute('role')).toEqual(role);
-	});
-
-	it('should include a role of `menuitemradio` when `menuitemradio` role is provided', async () => {
-		const role = MenuItemRole.menuitemradio;
-		element.role = role;
-		await elementUpdated(element);
-		expect(element.getAttribute('role')).toEqual(role);
-	});
-
-	it('should include a role of `menuitem` by default when no role is provided', async () => {
-		await elementUpdated(element);
-		expect(element.getAttribute('role')).toEqual(MenuItemRole.menuitem);
-	});
 
 	it('should set the `aria-disabled` attribute with the `disabled` value when provided', async () => {
 		element.disabled = true;

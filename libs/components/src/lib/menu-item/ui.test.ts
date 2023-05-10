@@ -12,7 +12,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<style>
 			div {
 				width: 100%;
-				height: 580px;
+				height: 800px;
 				position: relative
 			}
 		</style>
@@ -25,6 +25,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-menu-item text-secondary="secondary text"></vwc-menu-item>
 				<vwc-menu-item icon="home"></vwc-menu-item>
 				<vwc-menu-item text="menu item" text-secondary="secondary text"></vwc-menu-item>
+				<vwc-menu-item icon="home" text="primary text" text-secondary="secondary text" disabled></vwc-menu-item>
 				<vwc-divider></vwc-divider>
 				<vwc-menu-item role="menuitemcheckbox" text="Checkbox 1" checked></vwc-menu-item>
 				<vwc-menu-item role="menuitemcheckbox" text="Checkbox 2"></vwc-menu-item>
@@ -34,10 +35,15 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-divider></vwc-divider>
 				<vwc-menu-item role="menuitemradio" text="Radio 2.1"></vwc-menu-item>
 				<vwc-menu-item role="menuitemradio" text="Radio 2.2"></vwc-menu-item>
+				<vwc-menu-item icon="layout-1-solid" role="menuitemcheckbox" text="Checkbox 1"></vwc-menu-item>
+				<vwc-menu-item icon="apps-solid" role="menuitemcheckbox" text="Checkbox 2"></vwc-menu-item>
+				<vwc-divider></vwc-divider>
+				<vwc-menu-item icon="layout-1-solid" role="menuitemradio" text="Radio 1.1"></vwc-menu-item>
+				<vwc-menu-item icon="apps-solid" role="menuitemradio" text="Radio 1.1"></vwc-menu-item>
 			</vwc-menu>
 		</div>`;
 
-	page.setViewportSize({ width: 200, height: 580 });
+	page.setViewportSize({ width: 200, height: 800 });
 
 	await loadComponents({
 		page,
