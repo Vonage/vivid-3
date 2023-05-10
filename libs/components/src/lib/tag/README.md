@@ -157,7 +157,7 @@ Removes the tag from the DOM.  Fires the `removed` event and removes the tag fro
 
 ```html preview variables
 <vwc-tag-group>
-  <vwc-tag label='subtle' appearance='subtle'></vwc-tag>
-  <vwc-tag label='duotone' appearance='duotone'></vwc-tag>
+  <vwc-tag connotation="$CONNOTATION" label='subtle' appearance='subtle'></vwc-tag>
+  <vwc-tag connotation="$CONNOTATION" label='duotone' appearance='duotone'></vwc-tag>
 </vwc-tag-group>
 ```

@@ -84,5 +84,5 @@ To disable the FAB, use the `disabled` attribute.
 ## Custom Colors
 
 ```html preview variables
-<vwc-fab connotation="accent" icon='cart-line' label='Add to cart'></vwc-fab>
+<vwc-fab connotation="$CONNOTATION" icon='cart-line' label='Add to cart'></vwc-fab>
 ```

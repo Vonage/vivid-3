@@ -111,5 +111,5 @@ Set `value` to be a non-number value (e.g. `indeterminate`) to show an indetermi
 ## Custom Colors
 
 ```html preview variables
-<vwc-progress min="0" max="50" value="12.5"></vwc-progress>
+<vwc-progress connotation="$CONNOTATION" min="0" max="50" value="12.5"></vwc-progress>
 ```

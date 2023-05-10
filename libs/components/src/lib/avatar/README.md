@@ -169,7 +169,7 @@ if your avatar is purely decorative and is not interactive, then you can use the
 ## Custom Colors
 
 ```html preview variables
-<vwc-avatar appearance="filled"></vwc-avatar>
-<vwc-avatar appearance="duotone"></vwc-avatar>
-<vwc-avatar appearance="outlined"></vwc-avatar>
+<vwc-avatar connotation="$CONNOTATION" appearance="filled"></vwc-avatar>
+<vwc-avatar connotation="$CONNOTATION" appearance="duotone"></vwc-avatar>
+<vwc-avatar connotation="$CONNOTATION" appearance="outlined"></vwc-avatar>
 ```

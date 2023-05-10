@@ -111,7 +111,7 @@ It accepts a subset of predefined values.
 
 ```html preview variables
 <vwc-calendar>
-  <vwc-calendar-event connotation="accent" appearance="filled" heading="filled" slot="day-0"></vwc-calendar-event>
-  <vwc-calendar-event connotation="accent" appearance="subtle" heading="subtle" slot="day-1"></vwc-calendar-event>
+  <vwc-calendar-event connotation="$CONNOTATION" appearance="filled" heading="filled" slot="day-0"></vwc-calendar-event>
+  <vwc-calendar-event connotation="$CONNOTATION" appearance="subtle" heading="subtle" slot="day-1"></vwc-calendar-event>
 </vwc-calendar>
 ```

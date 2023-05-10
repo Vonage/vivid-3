@@ -105,3 +105,9 @@ However, consumers can modify the above attributes (role and aria-live) to fit c
             aria-live="polite"
             text="Here's some information that you may find important!"></vwc-banner>
 ```
+
+## Custom Colors
+
+```html preview full variables
+<vwc-banner connotation="$CONNOTATION" text="Here's some information that you may find important!"></vwc-banner>
+```

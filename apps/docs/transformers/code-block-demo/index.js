@@ -18,6 +18,16 @@ const CBD_DETAILS = 'cbd-details';
 const CBD_CODE_BLOCK = 'cbd-code-block';
 const CBD_VARIABLES = 'cbd-variables';
 
+const CONNOTATIONS = [
+	'accent',
+	'cta',
+	'success',
+	'alert',
+	'warning',
+	'information',
+	'announcement',
+];
+
 module.exports = function (content, outputPath) {
 	if (!outputPath.endsWith('.html')) {
 		return content;
@@ -40,21 +50,44 @@ module.exports = function (content, outputPath) {
 	const dom = new JSDOM(content);
 	const preBlocks = dom.window.document.querySelectorAll('pre.preview');
 
-	preBlocks.forEach((pre, index) => {
+	let index = 0;
+	preBlocks.forEach((pre) => {
 		const showVariables = pre.classList.contains('variables');
-
 		const code = pre.querySelector(':scope > code');
-		if (showVariables) {
-			// Inject a <style> setting the initial values into the code
-			code.textContent = renderVariablesStylesheet(cssProperties) + code.textContent;
+
+		if (!showVariables) {
+			pre.replaceWith(renderCodeExample(index++, code, pre, outputPath, componentData, null));
+		} else {
+			// Group the variables by connotation and render a tab for each
+			const tabs = JSDOM.fragment(`<vwc-tabs></vwc-tabs>`).firstChild;
+			const exampleCode = code.textContent;
+			for (const connotation of CONNOTATIONS) {
+				const connotationProperties = cssProperties.filter(prop => prop.name.includes(connotation));
+				if (connotationProperties.length === 0) {
+					continue;
+				}
+
+				// Inject a <style> setting the initial values into the code.
+				code.textContent = renderVariablesStylesheet(connotationProperties) + exampleCode.replace(/\$CONNOTATION/g, connotation);
+				const example = renderCodeExample(index++, code, pre, outputPath, componentData, connotationProperties);
+				const tab = JSDOM.fragment(`
+					<vwc-tab label="${connotation}"></vwc-tab>
+					<vwc-tab-panel></vwc-tab-panel>
+				`);
+				tab.querySelector('vwc-tab-panel').appendChild(example);
+				tabs.appendChild(tab);
+			}
+			pre.replaceWith(tabs);
 		}
-		const src = createiFrameContent(code.textContent, pre.classList, index, outputPath, componentData);
-		const fragment = renderiFrame(index, src, pre.outerHTML, componentData, showVariables ? cssProperties : null);
-		pre.replaceWith(fragment);
 	});
 
 	return dom.serialize();
 };
+
+const renderCodeExample = (index, code, pre, outputPath, componentData, cssProperties) => {
+	const src = createiFrameContent(code.textContent, pre.classList, index, outputPath, componentData);
+	return renderiFrame(index, src, pre.outerHTML, componentData, cssProperties);
+}
 
 const renderiFrame = (index, src, content, componentData, variableToShow) => {
 	const deps = componentData.modules
@@ -173,23 +206,24 @@ const initialValueForVariable = (cssProperty) => {
 
 const renderVariablesTable = (cssProperties) => {
 	return `<table class="${CBD_VARIABLES}">
-        <thead>
-            <tr>
-                <th>Variable</th>
-                <th>Default value</th>
-            </tr>
-        </thead>
-        <tbody>
-            ${cssProperties.map(prop => `
-                <tr>
-                    <td><code>${prop.name}</code></td>
-                    <td>
-                        <div class="cbd-variables__color">
-                            <div class="cbd-variables__color-square" style="background-color: ${prop.default};"></div>
-                            <code>${prop.default}</code>
-                        </div>
-                    </td>
-                </tr>
-            `).join('\n')}
-    </table>`
+		<thead>
+			<tr>
+				<th>Variable</th>
+				<th>Default value</th>
+			</tr>
+		</thead>
+		<tbody>
+			${cssProperties.map(prop => `
+				<tr>
+					<td><code>${prop.name}</code></td>
+					<td>
+						<div class="cbd-variables__color">
+							<div class="cbd-variables__color-square" style="background-color: ${prop.default};"></div>
+							<code>${prop.default}</code>
+						</div>
+					</td>
+				</tr>
+			`).join('\n')}
+		</tbody>
+</table>`
 }

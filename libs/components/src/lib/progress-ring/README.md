@@ -111,5 +111,5 @@ Remove `value` or set it to be a non-number value (e.g. `indeterminate`) to show
 ## Custom Colors
 
 ```html preview variables
-<vwc-progress-ring></vwc-progress-ring>
+<vwc-progress-ring connotation="$CONNOTATION"></vwc-progress-ring>
 ```

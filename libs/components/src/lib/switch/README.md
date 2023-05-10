@@ -97,5 +97,5 @@ Use `connotation` in order to set the connotation of the switch.
 ## Custom Colors
 
 ```html preview variables
-<vwc-switch></vwc-switch>
+<vwc-switch connotation="$CONNOTATION"></vwc-switch>
 ```
