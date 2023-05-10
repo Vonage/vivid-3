@@ -100,11 +100,11 @@ When icon is added to `menuitemcheckbox` or `menuitemradio` the checkbox or the 
   }
 </style>
 <vwc-menu open>
-  <vwc-menu-item icon="layout-1-solid" role="menuitemcheckbox" text="Checkbox 1"></vwc-menu-item>
-  <vwc-menu-item icon="apps-solid" role="menuitemcheckbox" text="Checkbox 2"></vwc-menu-item>
+  <vwc-menu-item icon="image-line" role="menuitemcheckbox" text="Checkbox 1"></vwc-menu-item>
+  <vwc-menu-item icon="file-1-line" role="menuitemcheckbox" text="Checkbox 2"></vwc-menu-item>
   <vwc-divider></vwc-divider>
-  <vwc-menu-item icon="layout-1-solid" role="menuitemradio" text="Radio 1.1"></vwc-menu-item>
-  <vwc-menu-item icon="apps-solid" role="menuitemradio" text="Radio 1.1"></vwc-menu-item>
+  <vwc-menu-item icon="image-line" role="menuitemradio" text="Radio 1.1"></vwc-menu-item>
+  <vwc-menu-item icon="file-1-line" role="menuitemradio" text="Radio 1.1"></vwc-menu-item>
 </vwc-menu open>
 ```
 
