@@ -55,7 +55,7 @@ export default {
                         const compiledCss = result.css.toString();
                         for (const line of compiledCss.split('\n')) {
                             const match = line.match(
-                                /^\s*\/\*\s*@cssprop(erty)?\s+(.+)\s*\*\/\s*$/
+                                /^.*\/\*\s*@cssprop(erty)?\s+(.+)\s*\*\/\s*$/
                             );
                             if (!match) {
                                 continue;
