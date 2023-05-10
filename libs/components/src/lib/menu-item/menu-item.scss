@@ -69,9 +69,15 @@
 }
 
 .icon {
-	font-size: calc(#{size.$vvd-size-normal} / 2);
 	flex-shrink: 0;
+	font-size: calc(#{size.$vvd-size-normal} / 2);
 	line-height: 1;
+}
+
+.action,
+.decorative {
+	display: flex;
+	place-content: center;
 }
 
 .action {
@@ -92,11 +98,6 @@
 	}
 }
 
-.action,
-.decorative {
-	display: flex;
-	place-content: center;
-}
 
 .text {
 	display: flex;

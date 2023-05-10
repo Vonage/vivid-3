@@ -105,6 +105,7 @@ When icon is added to `menuitemcheckbox` or `menuitemradio` the checkbox or the 
   <vwc-divider></vwc-divider>
   <vwc-menu-item icon="layout-1-solid" role="menuitemradio" text="Radio 1.1"></vwc-menu-item>
   <vwc-menu-item icon="apps-solid" role="menuitemradio" text="Radio 1.1"></vwc-menu-item>
+</vwc-menu open>
 ```
 
 ### Checked
