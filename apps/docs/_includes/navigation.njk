@@ -19,6 +19,27 @@
   </vwc-nav-disclosure>
 
   <vwc-nav-disclosure label="Components" open>
+  	<style>
+  		.hidden {
+				display: none;
+			}
+  	</style>
+  	<script>
+  		function isComponentHidden(component, term) {
+    		return component.tagName === 'VWC-NAV-ITEM' && !component.text.toLowerCase().includes(term.toLowerCase());
+    	}
+
+  		function filterComponentsInput(e) {
+				const term = e.target.value;
+				const components = Array.from(e.target.parentNode.children);
+				components.forEach(component => {
+					isComponentHidden(component, term) ?
+						component.classList.add('hidden') :
+						component.classList.remove('hidden')
+				});
+			};
+  	</script>
+  	<vwc-text-field placeholder="Search Components" oninput="filterComponentsInput(event)"></vwc-text-field>
     {%  for item in components | publicComponentsFilter | sort(false, false, 'title') %}
     <vwc-nav-item
 			href="{{ ('/components/' + item.title) | url }}"
