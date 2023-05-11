@@ -4,6 +4,24 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.11.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.10.0...vivid-v3.11.0) (2023-05-08)
+
+
+### Features
+
+* **appearance:** selected & checked in option and menu-item (VIV-1043) ([#1141](https://github.com/Vonage/vivid-3/issues/1141)) ([aef0304](https://github.com/Vonage/vivid-3/commit/aef03046621c6f7206ee26e526a62ae6766f9fbd))
+* **button:** text line break (VIV-1034) ([#1133](https://github.com/Vonage/vivid-3/issues/1133)) ([40e1732](https://github.com/Vonage/vivid-3/commit/40e1732d5e30f9d2457f7967f70148493d88b351))
+* **layout:** customized rows and gaps (VIV-1046) ([#1143](https://github.com/Vonage/vivid-3/issues/1143)) ([9a997a5](https://github.com/Vonage/vivid-3/commit/9a997a5329a9f203b86038630df35bcd162cc82b))
+* **pagination:** create the pagination component (VIV-964) ([#1146](https://github.com/Vonage/vivid-3/issues/1146)) ([cc18146](https://github.com/Vonage/vivid-3/commit/cc18146018be217ef67571440b6b907657699a0f))
+
+
+### Bug Fixes
+
+* **banner:** centering content (VIV-1049) ([#1138](https://github.com/Vonage/vivid-3/issues/1138)) ([7fe2caa](https://github.com/Vonage/vivid-3/commit/7fe2caad99e7abf061465344e3d0a4f84ddfdc14))
+* **dialog:** drop-shadow tone (VIV-1064) ([#1148](https://github.com/Vonage/vivid-3/issues/1148)) ([99afea9](https://github.com/Vonage/vivid-3/commit/99afea98de0d1d1b20ba1a72b0352e5967b4c123))
+* **tag:** active state color (VIV-1016) ([#1142](https://github.com/Vonage/vivid-3/issues/1142)) ([5918ad9](https://github.com/Vonage/vivid-3/commit/5918ad9785bb4308fbeaf141fc33c7326ba33c67))
+* **tooltip:** dynamically changing anchor now works as expected (VIV-1045) ([#1139](https://github.com/Vonage/vivid-3/issues/1139)) ([d8b61ca](https://github.com/Vonage/vivid-3/commit/d8b61ca52cb6d35a5361d289ccaade7d50bc8bbf))
+
 ## [3.10.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.9.0...vivid-v3.10.0) (2023-04-27)
 
 
