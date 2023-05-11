@@ -12,7 +12,10 @@ const CBD_DETAILS = 'cbd-details';
 const CBD_CODE_BLOCK = 'cbd-code-block';
 const CBD_VARIABLES = 'cbd-variables';
 
-module.exports = function renderCodeExample(index, code, pre, outputPath, componentData, cssProperties) {
+let exampleIndex = 0;
+
+module.exports = function createCodeExample(code, pre, outputPath, componentData, cssProperties) {
+	const index = exampleIndex++;
 	const src = createiFrameContent(code.textContent, pre.classList, index, outputPath, componentData);
 	return renderiFrame(index, src, pre.outerHTML, componentData, cssProperties);
 }

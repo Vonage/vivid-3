@@ -25,7 +25,6 @@ module.exports = function (content, outputPath) {
 	const dom = new JSDOM(content);
 	const preBlocks = dom.window.document.querySelectorAll('pre[class*=variables-preview]');
 
-	let index = 0;
 	preBlocks.forEach((pre) => {
 		const code = pre.querySelector(':scope > code');
 
@@ -45,7 +44,7 @@ module.exports = function (content, outputPath) {
 
 			// Inject a <style> setting the initial values into the code.
 			code.textContent = renderVariablesStylesheet(connotationProperties) + exampleCode.replace(/\$CONNOTATION/g, connotation);
-			const example = createCodeExamples(`vars${index++}`, code, pre, outputPath, componentData, connotationProperties);
+			const example = createCodeExamples(code, pre, outputPath, componentData, connotationProperties);
 			const tab = JSDOM.fragment(`
 				<vwc-tab label="${connotation}"></vwc-tab>
 				<vwc-tab-panel></vwc-tab-panel>

@@ -17,9 +17,9 @@ module.exports = function (content, outputPath) {
 	const dom = new JSDOM(content);
 	const preBlocks = dom.window.document.querySelectorAll('pre.preview');
 
-	preBlocks.forEach((pre, index) => {
+	preBlocks.forEach((pre) => {
 		const code = pre.querySelector(':scope > code');
-		pre.replaceWith(createCodeExample(`cbd${index}`, code, pre, outputPath, componentData, null));
+		pre.replaceWith(createCodeExample(code, pre, outputPath, componentData, null));
 	});
 	return dom.serialize();
 };

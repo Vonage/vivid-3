@@ -202,13 +202,13 @@
 
 ## Radio
 
-```html variables-preview[ring]
+```html variables-preview[radio]
 <vwc-radio label="A default radio"></vwc-radio>
 ```
 
 ## Select
 
-```html variables-preview[Select]
+```html variables-preview[select]
 <style>
   html { /* for demo purposes */
     block-size: 230px;
