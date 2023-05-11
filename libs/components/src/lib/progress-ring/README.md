@@ -107,9 +107,3 @@ Remove `value` or set it to be a non-number value (e.g. `indeterminate`) to show
 <vwc-progress-ring min="0" max="50"></vwc-progress-ring>
 <vwc-progress-ring min="0" max="50" value="indeterminate"></vwc-progress-ring>
 ```
-
-## Custom Colors
-
-```html preview variables
-<vwc-progress-ring connotation="$CONNOTATION"></vwc-progress-ring>
-```

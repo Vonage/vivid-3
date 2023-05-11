@@ -106,12 +106,3 @@ It accepts a subset of predefined values.
   <vwc-calendar-event connotation="announcement" appearance="subtle" heading="announcement" slot="day-6"></vwc-calendar-event>
 </vwc-calendar>
 ```
-
-## Custom Colors
-
-```html preview variables
-<vwc-calendar>
-  <vwc-calendar-event connotation="$CONNOTATION" appearance="filled" heading="filled" slot="day-0"></vwc-calendar-event>
-  <vwc-calendar-event connotation="$CONNOTATION" appearance="subtle" heading="subtle" slot="day-1"></vwc-calendar-event>
-</vwc-calendar>
-```

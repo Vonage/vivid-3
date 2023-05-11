@@ -200,9 +200,3 @@ Fires `removed` when the removing animation is done.
 - Returns: `void`
 
 Removes the alert from the DOM.  When the animation finishes, it emits the `removed` event and removes the alert from the DOM completely.  If you have a variable that refers to the alert element make sure to clear it otherwise it might cause a memory leak.
-
-## Custom Colors
-
-```html preview variables
-<vwc-alert headline="Alert title" subtitle="What an important info!!!" open></vwc-alert>
-```

@@ -202,11 +202,3 @@ Add the `pending` attribute to disable the button and display a processing indic
   appearance='filled'>
 </vwc-button>
 ```
-
-## Custom Colors
-
-```html preview variables
-<vwc-button connotation="$CONNOTATION" label='ghost' appearance='ghost'></vwc-button>
-<vwc-button connotation="$CONNOTATION" label='filled' appearance='filled'></vwc-button>
-<vwc-button connotation="$CONNOTATION" label='outlined' appearance='outlined'></vwc-button>
-```

@@ -58,9 +58,3 @@ Use the `value` member to set the radio's value.
 ```html preview
 <vwc-radio value="my-value"></vwc-radio>
 ```
-
-## Custom Colors
-
-```html preview variables
-<vwc-radio label="A default radio"></vwc-radio>
-```

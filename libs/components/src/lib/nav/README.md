@@ -63,21 +63,3 @@ When the nav has focus:
 `Space`: activates the nav-disclosure and toggles the visibility of the content.
 `Tab`: moves focus to the next element in the tab order.
 `Shift` + `Tab`: moves focus to the previous element in the tab order.
-
-## Custom Colors
-
-```html preview variables
-<vwc-nav>
-  <vwc-nav-item href="#" text="1st level item" onclick="onClick(event)" aria-current="page"></vwc-nav-item>
-  <vwc-nav-item href="#" text="1st level item" onclick="onClick(event)"></vwc-nav-item>
-  <vwc-nav-item href="#" text="1st level item" onclick="onClick(event)"></vwc-nav-item>
-<vwc-nav>
-
-<script>
-  function onClick(event) {
-    currentNavItem = document.querySelector('vwc-nav-item[aria-current="page"]');
-    currentNavItem?.removeAttribute('aria-current');
-    event.currentTarget.setAttribute('aria-current', 'page');
-  }
-</script>
-```

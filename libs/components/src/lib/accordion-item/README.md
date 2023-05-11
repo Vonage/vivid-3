@@ -137,18 +137,9 @@ Use the `size` attribute to set the accordion-item's size.
 </vwc-accordion>
 ```
 
+
 ## Accessibility
 
 The accordion-item has a button `role` (it is a button).
 Accordion-item has `aria-expanded` set to true when the content is visible. Otherwise, it is set to false.
 Accordion-item has a value specified for `aria-controls` that refers to the content.
-
-## Custom Colors
-
-```html preview variables
-<vwc-accordion expand-mode="multi">
-	<vwc-accordion-item heading="Accordion item with heading">
-		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-	</vwc-accordion-item>
-</vwc-accordion>
-```

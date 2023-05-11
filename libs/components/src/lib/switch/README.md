@@ -93,9 +93,3 @@ Use `connotation` in order to set the connotation of the switch.
 <vwc-switch connotation="success" checked ></vwc-switch>
 <vwc-switch connotation="alert" checked ></vwc-switch>
 ```
-
-## Custom Colors
-
-```html preview variables
-<vwc-switch connotation="$CONNOTATION"></vwc-switch>
-```

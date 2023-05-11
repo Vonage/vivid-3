@@ -188,9 +188,3 @@ In addition, we programatically *"dirtied"* the field and then called `validate`
   </vwc-layout>
 </form>
 ```
-
-## Custom Colors
-
-```html preview variables
-<vwc-text-field label="Helper text below" helper-text="Help text" placeholder="My Placeholder"></vwc-text-field>
-```

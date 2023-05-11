@@ -71,21 +71,3 @@ Within a set of pagination links, set a nav item `aria-current` value to *page* 
   }
 </script>
 ```
-
-## Custom Colors
-
-```html preview variables
-<vwc-nav>
-  <vwc-nav-item href="#" text="Account" onclick="onClick(event)"></vwc-nav-item>
-  <vwc-nav-item href="#" text="Shop" onclick="onClick(event)" aria-current="page"></vwc-nav-item>
-  <vwc-nav-item href="#" text="My Cart" onclick="onClick(event)"></vwc-nav-item>
-</vwc-nav>
-
-<script>
-  function onClick(event) {
-    currentNavItem = document.querySelector('vwc-nav-item[aria-current="page"]');
-    currentNavItem?.removeAttribute('aria-current');
-    event.currentTarget.setAttribute('aria-current', 'page');
-  }
-</script>
-```

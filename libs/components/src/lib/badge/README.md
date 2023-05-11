@@ -117,11 +117,3 @@ It accepts a subset of predefined values.
 <vwc-badge text='warning' appearance='duotone' connotation='warning'></vwc-badge>
 <vwc-badge text='alert' appearance='duotone' connotation='alert'></vwc-badge>
 ```
-
-## Custom Colors
-
-```html preview variables
-<vwc-badge connotation="$CONNOTATION" text='filled' appearance='filled'></vwc-badge>
-<vwc-badge connotation="$CONNOTATION" text='subtle' appearance='subtle'></vwc-badge>
-<vwc-badge connotation="$CONNOTATION" text='duotone' appearance='duotone'></vwc-badge>
-```
