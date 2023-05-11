@@ -2,10 +2,17 @@
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta alert success,
-	$shades: primary,
+	$shades: primary soft,
 	$default: accent,
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+	$appearances: subtle,
+	$states: idle,
+	$default: subtle
+);
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 
 $block-size: 6px;
 $rounded-border-radius: 3px;
@@ -18,6 +25,7 @@ $rounded-border-radius: 3px;
 
 	&:not(.connotation-pacific){
 		@include connotation.connotation;
+		@include appearance.appearance;
 	}
 
 	&.connotation-pacific {
@@ -34,9 +42,17 @@ $rounded-border-radius: 3px;
 	display: flex;
 	overflow: hidden;
 	align-items: center;
-	background-color: var(#{constants.$vvd-color-neutral-100});
 	block-size: 100%;
 	inline-size: 100%;
+
+	.base:not(.connotation-pacific) & {
+		background-color: var(#{appearance.get-appearance-token(fill)});
+	}
+
+	.base.connotation-pacific & {
+		background-color: var(#{constants.$vvd-color-neutral-100});
+	}
+
 
 	/* Shape */
 	.base:not(.shape-sharp) & {
