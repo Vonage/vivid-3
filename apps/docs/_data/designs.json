@@ -22,5 +22,11 @@
     "title": "foundations",
     "markdown": "./docs/design/foundations.md",
     "modules": []
-  }
+  },
+	{
+		"title": "customization",
+		"markdown": "./docs/design/customization.md",
+		"status": "underlying",
+		"modules": []
+	}
 ]
