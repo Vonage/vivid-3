@@ -150,3 +150,23 @@ Fires a custom 'expanded-change' event when the expanded state changes
 ### Change
 
 Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `menuitemradio`, or `menuitem` is invoked
+
+## CSS Variables
+Line clamp by default is set to one line.  
+
+This can be changed by setting a css-variable to a fixed number of lines or `auto`   
+- `--text-primary-line-clamp` for the primary text
+- `--text-secondary-line-clamp` for the secondary text
+```html preview
+<style>
+vwc-menu {
+ --text-primary-line-clamp: auto; 
+ --text-secondary-line-clamp: auto;
+ --menu-max-inline-size: 200px;
+}
+</style>
+<vwc-menu open>
+ <vwc-menu-item text="primary text with long text and auto line clamp"
+	text-secondary="secondary text and auto line clamp"></vwc-menu-item>
+</vwc-menu>
+```
