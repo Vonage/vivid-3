@@ -11,7 +11,8 @@
           "api-extractor run -c ./dist/libs/components/api-extractor.json"
         ],
         "parallel": true
-      }
+      },
+			"dependsOn": ["build"]
     },
     "e2e": {
       "executor": "nx:run-commands",
@@ -63,16 +64,6 @@
       }
     },
     "build": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": [
-          "npx nx run components:rollup",
-          "npx nx run components:generateMeta"
-        ],
-        "parallel": false
-      }
-    },
-    "rollup": {
       "executor": "@nrwl/rollup:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {

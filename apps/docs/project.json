@@ -12,7 +12,10 @@
           "npx rollup -c ./apps/docs/rollup.config.js",
           "npx eleventy --config=./apps/docs/.eleventy.js"
         ]
-      }
+      },
+			"dependsOn": [
+				"^generateMeta"
+			]
     },
     "serve": {
       "executor": "nx:run-commands",
@@ -21,7 +24,10 @@
           "npx rollup -c ./apps/docs/rollup.config.js --watch",
           "npx eleventy --config=./apps/docs/.eleventy.js --serve & npx nx serve styles & npx nx build components --watch"
         ]
-      }
+      },
+			"dependsOn": [
+				"^generateMeta"
+			]
     }
   },
   "implicitDependencies": ["components", "styles"]

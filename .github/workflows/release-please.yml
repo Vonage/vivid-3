@@ -34,6 +34,7 @@ jobs:
         run: |
           npm ci --ignore-scripts
           npx nx run components:build
+          npx nx run components:generateMeta
 
       - name: publish npm package
         run: npm publish dist/libs/components --//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
