@@ -31,6 +31,7 @@ describe('vwc-data-grid-cell', () => {
 			expect(element.getAttribute('grid-column')).toBeNull();
 			expect(element.rowData).toBeNull();
 			expect(element.columnDefinition).toBeNull();
+			expect(element.selected).toEqual(false);
 		});
 	});
 
@@ -216,6 +217,14 @@ describe('vwc-data-grid-cell', () => {
 				childNode.focus();
 				element.dispatchEvent(new KeyboardEvent('keydown', {key: 'Escape'}));
 				expect(document.activeElement).toEqual(element);
+			});
+		});
+
+		describe('selected', () => {
+			it('should reflect selected attribute', async function () {
+				element.selected = true;
+				await elementUpdated(element);
+				expect(element.hasAttribute('selected')).toBeTruthy();
 			});
 		});
 	});

@@ -224,11 +224,15 @@ describe('vwc-data-grid', () => {
 		});
 	});
 
-	describe('rowSelection', () => {
+	describe('selectionMode', () => {
 		it('should reflect selectionMode', async () => {
 			element.selectionMode = DataGridSelectionMode.singleRow;
 			await elementUpdated(element);
 			expect(element.getAttribute('selection-mode')).toEqual(DataGridSelectionMode.singleRow);
 		});
+	});
+
+	describe('rowElements', () => {
+		// TODO::test rowElements
 	});
 });
