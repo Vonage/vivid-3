@@ -23,6 +23,12 @@
   		.hidden {
 				display: none;
 			}
+
+			.components-filter {
+				background-color: var(--vvd-color-neutral-100);
+				padding: 8px;
+				border-radius: 8px;
+			}
   	</style>
   	<script>
   		function isComponentHidden(component, term) {
@@ -39,7 +45,7 @@
 				});
 			};
   	</script>
-  	<vwc-text-field placeholder="Search Components" oninput="filterComponentsInput(event)"></vwc-text-field>
+  	<vwc-text-field class="components-filter" icon="search-line" placeholder="Component Name" label="Search Components" oninput="filterComponentsInput(event)"></vwc-text-field>
     {%  for item in components | publicComponentsFilter | sort(false, false, 'title') %}
     <vwc-nav-item
 			href="{{ ('/components/' + item.title) | url }}"
