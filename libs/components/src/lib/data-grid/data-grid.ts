@@ -23,9 +23,25 @@ export class DataGrid extends FoundationElement {
 	@attr({attribute: 'selection-mode'})
 		selectionMode?: DataGridSelectionMode;
 
+	#selectedCells: DataGridCell[] = [];
+
 	#handleClick = (e: MouseEvent) => {
+		const target = e.target as DataGridCell;
+		const ctrlKey = e.ctrlKey;
+		const shiftKey = e.shiftKey;
 		if (this.selectionMode === DataGridSelectionMode.singleCell || this.selectionMode === DataGridSelectionMode.multiCell)  {
-			(e.target as DataGridCell).selected = !(e.target as DataGridCell).selected;
+
+			if (this.selectionMode === DataGridSelectionMode.multiCell && (ctrlKey || shiftKey)) {
+				target.selected = !this.#selectedCells.includes(target);
+			} else {
+				this.#selectedCells.forEach(cell => cell.selected = false);
+				target.selected = !this.#selectedCells.includes(target);
+				this.#selectedCells = [];
+			}
+
+			if (target.selected) {
+				this.#selectedCells.push(target);
+			}
 		}
 	};
 	constructor() {

@@ -1,7 +1,7 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import type { DataGrid } from './data-grid';
+import {DataGridSelectionMode} from './data-grid';
 import './index';
-import {DataGridSelectionMode} from "./data-grid";
 
 const COMPONENT_TAG = 'vwc-data-grid';
 //TODO::tagfor is hard coded and does not allow extention of the template!!!
@@ -114,6 +114,36 @@ describe('data grid', () => {
 			await elementUpdated(element);
 
 			expect(cell.hasAttribute('selected')).toEqual(false);
+		});
+
+		it.each([DataGridSelectionMode.singleCell, DataGridSelectionMode.multiCell])
+		('should remove selected attribute if clicked other cell and selectionMode is %s', async function (selectionMode: string) {
+			element.selectionMode = selectionMode as DataGridSelectionMode;
+
+			cell.click();
+			await elementUpdated(element);
+
+			const otherCell = element.rowElements[0].children[1] as HTMLElement;
+			otherCell.click();
+			await elementUpdated(element);
+
+			expect(cell.hasAttribute('selected')).toEqual(false);
+			expect(otherCell.hasAttribute('selected')).toEqual(true);
+		});
+
+		it.each(['ctrlKey', 'shiftKey'])
+		('should leave selected attribute if clicked other cell with %s and selectionMode is multiCell', async function (activeKey: string) {
+			element.selectionMode = DataGridSelectionMode.multiCell;
+
+			cell.click();
+			await elementUpdated(element);
+
+			const otherCell = element.rowElements[0].children[1] as HTMLElement;
+			otherCell.dispatchEvent(new MouseEvent('click', { [activeKey]: true, bubbles: true, composed: true }));
+			await elementUpdated(element);
+
+			expect(cell.hasAttribute('selected')).toEqual(true);
+			expect(otherCell.hasAttribute('selected')).toEqual(true);
 		});
 	});
 });

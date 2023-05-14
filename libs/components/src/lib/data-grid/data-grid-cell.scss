@@ -24,6 +24,10 @@
 	font: var(#{constants.$vvd-typography-base-bold});
 }
 
+:host([selected]) {
+	background-color: red;
+}
+
 .focus-indicator {
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
 
