@@ -86,7 +86,7 @@ describe('vwc-toggletip', () => {
 
 			expect(element.open).toEqual(false);
 		});
-	
+
 	});
 
 	describe('anchor', () => {
@@ -104,7 +104,7 @@ describe('vwc-toggletip', () => {
 			fixture(
 				'<vwc-button id="anchorButton2"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE
 			) as Button;
-	
+
 			element.anchor = 'anchorButton';
 			await elementUpdated(element);
 
@@ -120,7 +120,7 @@ describe('vwc-toggletip', () => {
 			const anchor2 = fixture(
 				'<vwc-button id="anchorButton2"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE
 			) as Button;
-	
+
 			element.anchor = 'anchorButton';
 			await elementUpdated(element);
 
@@ -132,26 +132,38 @@ describe('vwc-toggletip', () => {
 			expect(element.open).toEqual(true);
 		});
 
-		it('should update the anchor aria-label when none is set', async () => {
+		it('should remove the aria-label from old anchor when changed', async () => {
 			element.anchor = anchor;
 			await elementUpdated(element);
 
-			expect(anchor.ariaLabel).toEqual(' ; Show more information');
-
-			element.anchor = '';
+			element.anchor = 'anchor2';
 			await elementUpdated(element);
 
 			expect(anchor.ariaLabel).toEqual('');
 		});
 
-		it('should update the anchor aria-label when it already has one', async () => {
+		it('should set the aria-label on anchor', async () => {
+			element.anchor = anchor;
+			await elementUpdated(element);
+
+			expect(anchor.ariaLabel).toEqual(' ; Show more information');
+		});
+
+		it('should update the anchor aria-label', async () => {
 			const initialLabel = 'some existing label';
-			
 			anchor.ariaLabel = initialLabel;
+
 			element.anchor = anchor;
 			await elementUpdated(element);
 
 			expect(anchor.ariaLabel).toEqual(initialLabel + ' ; Show more information');
+		});
+
+		it('should revert the aria-label on anchor when toggletip is removed', async () => {
+			const initialLabel = 'some existing label';
+			anchor.ariaLabel = initialLabel;
+			element.anchor = anchor;
+			await elementUpdated(element);
 
 			element.anchor = '';
 			await elementUpdated(element);
@@ -161,13 +173,20 @@ describe('vwc-toggletip', () => {
 	});
 
 	describe('headline', () => {
-		it('should have an headline element only when set', async () => {
-			expect(element.shadowRoot?.querySelectorAll('header.headline')).toHaveLength(0);
-
+		it('should set the headline', async () => {
 			element.headline = 'A title!';
 			await elementUpdated(element);
 
-			expect(element.shadowRoot?.querySelectorAll('header.headline')).toHaveLength(1);
+			expect(element.shadowRoot?.querySelector('header.headline')?.textContent?.trim()).toEqual(element.headline);
+		});
+
+		it('should remove headline element when headline is undefined', async () => {
+			element.headline = 'A title!';
+			await elementUpdated(element);
+			element.headline = undefined;
+			await elementUpdated(element);
+
+			expect(element.shadowRoot?.querySelector('header.headline')).toBeNull();
 		});
 	});
 });
