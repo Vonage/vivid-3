@@ -278,4 +278,33 @@ describe('vwc-menu-item', () => {
 			expect(spy).toHaveBeenCalled();
 		});
 	});
+
+	describe('slot', ()=> (
+		it('should render slot if role menuItem', async function () {
+			element.role = MenuItemRole.menuitem;
+			const metaSlotElement = element.shadowRoot?.querySelector('.base slot[name="meta"]');
+			await elementUpdated(element);
+
+			expect(metaSlotElement).toBeTruthy();
+		}),
+
+		it('should not render slot if role is different then menuItem', async function () {
+			element.role = MenuItemRole.menuitemcheckbox;
+			const metaSlotElement = element.shadowRoot?.querySelector('.base slot[name="meta"]');
+			await elementUpdated(element);
+
+			!expect(metaSlotElement);
+		}),
+
+		it('should add class .has-meta if slot is slotted', async function () {
+			const slottedElement = document.createElement('div');
+			slottedElement.slot = 'meta';
+			slottedElement.id = 'meta';
+			element.appendChild(slottedElement);
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).classList.contains('has-meta')).toBeTruthy();
+
+		})
+	));
 });
