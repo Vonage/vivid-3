@@ -7,7 +7,7 @@ import {
 
 const components = ['menu', 'menu-item', 'divider', 'badge'];
 
-test.only('should show the component', async ({ page }: { page: Page }) => {
+test('should show the component', async ({ page }: { page: Page }) => {
 	const template =`
 		<style>
 			div {
