@@ -6,6 +6,7 @@ import type { LayoutSize } from '../enums.js';
 export enum AUTO_SIZING { Fit = 'fit', Fill = 'fill' }
 export type Gutters = Extract<LayoutSize, LayoutSize.Small | LayoutSize.Medium | LayoutSize.Large>;
 export type ColumnSpacing = Extract<LayoutSize, LayoutSize.Small | LayoutSize.Medium | LayoutSize.Large>;
+export type RowSpacing = Extract<LayoutSize, LayoutSize.Small | LayoutSize.Medium | LayoutSize.Large>;
 export type ColumnBasis = Extract<LayoutSize, LayoutSize.Small | LayoutSize.Medium | LayoutSize.Large> | 'block';
 
 /**
@@ -37,6 +38,14 @@ export class Layout extends FoundationElement {
 	 * @public
 	 */
 	@attr({ attribute: 'column-spacing' }) columnSpacing?: ColumnSpacing;
+
+	/**
+	 * sets the initial preferred spacing of a row from predefined available options
+	 *
+	 * @public
+	 */
+	@attr({ attribute: 'row-spacing' }) rowSpacing?: RowSpacing;
+
 
 	/**
 	 * sets the initial preferred auto-sizing from predefined available options

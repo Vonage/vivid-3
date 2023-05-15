@@ -2,18 +2,23 @@ import { html, ViewTemplate, when } from '@microsoft/fast-element';
 import { ElementDefinitionContext, MenuItemRole } from '@microsoft/fast-foundation';
 import type { MenuItemOptions } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-// import { Icon } from '../icon/icon';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { MenuItem } from './menu-item';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
 
+const getCheckIcon = (affixIconTemplate: any, x: MenuItem, iconType: string) => {
+	const iconStatus = x.checked ? 'checked' : 'unchecked';
+	const icon = `${iconType}-${iconStatus}-line`;
+	return affixIconTemplate(icon, x.icon ? 'trailing' : '');
+};
 
 const getClasses = ({
-	disabled, checked, expanded, role, text, textSecondary
+	disabled, checked, expanded, role, text, textSecondary, icon
 }: MenuItem) =>	classNames(
 	'base',
 	['disabled', Boolean(disabled)],
 	['selected', role !== MenuItemRole.menuitem && Boolean(checked)],
+	['trailing', role !== MenuItemRole.menuitem && Boolean(icon)],
 	['expanded', Boolean(expanded)],
 	['item-checkbox', role === MenuItemRole.menuitemcheckbox],
 	['item-radio', role === MenuItemRole.menuitemradio],
@@ -70,13 +75,13 @@ export const MenuItemTemplate:  (
 			${() => focusTemplate}
 
 			${when(x => x.role === MenuItemRole.menuitemcheckbox,
-		html`${x => affixIconTemplate(x.checked ? 'checkbox-checked-line' : 'checkbox-unchecked-line')}`)}
+		html`<span class="action">${x => getCheckIcon(affixIconTemplate, x, 'checkbox')}</span>`)}
 
 			${when(x => x.role === MenuItemRole.menuitemradio,
-		html`${x => affixIconTemplate(x.checked ? 'radio-checked-line' : 'radio-unchecked-line')}`)}
+		html`<span class="action">${x => getCheckIcon(affixIconTemplate, x, 'radio')}</span>`)}
 
-			${when(x => x.role === MenuItemRole.menuitem && x.icon,
-		html`${x => affixIconTemplate(x.icon)}`)}
+			${when(x => x.icon,
+		html`<span class="decorative">${x => affixIconTemplate(x.icon)}</span>`)}
 
 			${when(x => x.text || x.textSecondary, html`<span class="text">
 				${when(x => x.text, html`<span class="text-primary">${x => x.text}</span>`)}

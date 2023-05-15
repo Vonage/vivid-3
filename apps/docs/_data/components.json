@@ -426,5 +426,13 @@
 			"/assets/modules/components/tag-group/index.js",
 			"/assets/modules/components/tag/index.js"
 		]
+	},
+	{
+		"title": "pagination",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/pagination/README.md",
+		"modules": [
+			"/assets/modules/components/pagination/index.js"
+		]
 	}
 ]
