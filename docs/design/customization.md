@@ -87,22 +87,6 @@
 <vwc-fab connotation="$CONNOTATION" icon='cart-line' label='Add to cart'></vwc-fab>
 ```
 
-## Icon
-
-```html variables-preview[icon]
-<vwc-icon size="3" name="heart-solid" connotation="$CONNOTATION"></vwc-icon>
-```
-
-## Listbox
-
-```html variables-preview[listbox]
-<vwc-listbox>
-  <vwc-option value="1" text="Option" selected></vwc-option>
-  <vwc-option value="2" text="Option"></vwc-option>
-  <vwc-option value="3" text="Option"></vwc-option>
-</vwc-listbox>
-```
-
 ## Menu Item
 
 ```html variables-preview[menu-item]
