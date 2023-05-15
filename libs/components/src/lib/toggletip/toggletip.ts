@@ -11,7 +11,7 @@ type anchorType = string | HTMLElement;
  */
 export class Toggletip extends FoundationElement {
 
-	anchorEl: HTMLElement | null = null;
+	#anchorEl: HTMLElement | null = null;
 
 	#ANCHOR_ARIA_LABEL_SUFFIX = ' ; Show more information';
 
@@ -48,10 +48,10 @@ export class Toggletip extends FoundationElement {
 	 */
 	@attr({ mode: 'fromView' }) anchor: anchorType = '';
 	anchorChanged(_: anchorType, newValue: anchorType) {
-		if (this.anchorEl) this.#cleanupAnchor(this.anchorEl);
+		if (this.#anchorEl) this.#cleanupAnchor(this.#anchorEl);
 
-		this.anchorEl = newValue instanceof HTMLElement ? newValue : document.getElementById(newValue);
-		if (this.anchorEl) this.#setupAnchor(this.anchorEl);
+		this.#anchorEl = newValue instanceof HTMLElement ? newValue : document.getElementById(newValue);
+		if (this.#anchorEl) this.#setupAnchor(this.#anchorEl);
 	}
 
 	/**
@@ -74,14 +74,14 @@ export class Toggletip extends FoundationElement {
 			this.removeAttribute('role');
 		}
 		
-		if (this.anchorEl) {
-			this.anchorEl.ariaExpanded = this.open.toString();
+		if (this.#anchorEl) {
+			this.#anchorEl.ariaExpanded = this.open.toString();
 		}
 	}
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		if (this.anchorEl) this.#cleanupAnchor(this.anchorEl);
+		if (this.#anchorEl) this.#cleanupAnchor(this.#anchorEl);
 		document.removeEventListener('keydown', this.#closeOnEscape);
 	}
 

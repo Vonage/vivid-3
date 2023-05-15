@@ -41,7 +41,7 @@ describe('vwc-toggletip', () => {
 		});
 	});
 
-	describe('open/close', () => {
+	describe('open', () => {
 		it('should open when its anchor is clicked', async () => {
 			element.anchor = 'anchorButton';
 			await elementUpdated(element);
@@ -65,7 +65,7 @@ describe('vwc-toggletip', () => {
 			expect(element.open).toEqual(true);
 		});
 
-		it('should close when clicked outside', async () => {
+		it('should set open to false when clicked outside', async () => {
 			element.anchor = 'anchorButton';
 			element.open = true;
 			await elementUpdated(element);
@@ -76,7 +76,7 @@ describe('vwc-toggletip', () => {
 			expect(element.open).toEqual(false);
 		});
 
-		it('should close when Escape is pressed', async () => {
+		it('should set open to false when Escape is pressed', async () => {
 			element.anchor = 'anchorButton';
 			element.open = true;
 			await elementUpdated(element);
@@ -100,7 +100,23 @@ describe('vwc-toggletip', () => {
 			expect(element.open).toEqual(true);
 		});
 
-		it('should open correctly when its anchor is changed', async () => {
+		it('should remove the previous anchor\'s listener when anchor is changed', async () => {
+			fixture(
+				'<vwc-button id="anchorButton2"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE
+			) as Button;
+	
+			element.anchor = 'anchorButton';
+			await elementUpdated(element);
+
+			element.anchor = 'anchorButton2';
+			await elementUpdated(element);
+
+			anchor.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+			await elementUpdated(element);
+			expect(element.open).toEqual(false);
+		});
+
+		it('should set the new anchor\'s listener when anchor is changed', async () => {
 			const anchor2 = fixture(
 				'<vwc-button id="anchorButton2"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE
 			) as Button;
@@ -110,11 +126,6 @@ describe('vwc-toggletip', () => {
 
 			element.anchor = 'anchorButton2';
 			await elementUpdated(element);
-			expect(element.open).toEqual(false);
-
-			anchor.dispatchEvent(new MouseEvent('click', {bubbles: true}));
-			await elementUpdated(element);
-			expect(element.open).toEqual(false);
 
 			anchor2.dispatchEvent(new MouseEvent('click', {bubbles: true}));
 			await elementUpdated(element);
