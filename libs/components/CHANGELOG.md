@@ -4,6 +4,14 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.12.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.11.0...vivid-v3.12.0) (2023-05-10)
+
+
+### Features
+
+* **menu-item:** allow icon and checkbox or radio-button (VIV-1044) ([#1152](https://github.com/Vonage/vivid-3/issues/1152)) ([e7021dd](https://github.com/Vonage/vivid-3/commit/e7021dd27a28dc7b2892a355ea560501c7796a5c))
+* **progress:** line color change (VIV-1036) ([#1149](https://github.com/Vonage/vivid-3/issues/1149)) ([d6c40c1](https://github.com/Vonage/vivid-3/commit/d6c40c1ca7b801cc60b8cdf2762801dae202ea8d))
+
 ## [3.11.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.10.0...vivid-v3.11.0) (2023-05-08)
 
 

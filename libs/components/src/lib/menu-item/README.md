@@ -90,6 +90,24 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 </vwc-menu>
 ```
 
+#### Icon with Checkbox or Radiobutton
+When icon is added to `menuitemcheckbox` or `menuitemradio` the checkbox or the radio will be trailing
+
+```html preview
+<style>
+  html { 
+    block-size: 300px; 
+  }
+</style>
+<vwc-menu open>
+  <vwc-menu-item icon="image-line" role="menuitemcheckbox" text="Checkbox 1"></vwc-menu-item>
+  <vwc-menu-item icon="file-1-line" role="menuitemcheckbox" text="Checkbox 2"></vwc-menu-item>
+  <vwc-divider></vwc-divider>
+  <vwc-menu-item icon="image-line" role="menuitemradio" text="Radio 1.1"></vwc-menu-item>
+  <vwc-menu-item icon="file-1-line" role="menuitemradio" text="Radio 1.1"></vwc-menu-item>
+</vwc-menu open>
+```
+
 ### Checked
 
 The checked value of the element (if role is set to `'menuitemcheckbox'`).
@@ -132,3 +150,23 @@ Fires a custom 'expanded-change' event when the expanded state changes
 ### Change
 
 Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `menuitemradio`, or `menuitem` is invoked
+
+## CSS Variables
+Line clamp by default is set to one line.  
+
+This can be changed by setting a css-variable to a fixed number of lines or `auto`   
+- `--text-primary-line-clamp` for the primary text
+- `--text-secondary-line-clamp` for the secondary text
+```html preview
+<style>
+vwc-menu {
+ --text-primary-line-clamp: auto; 
+ --text-secondary-line-clamp: auto;
+ --menu-max-inline-size: 200px;
+}
+</style>
+<vwc-menu open>
+ <vwc-menu-item text="primary text with long text and auto line clamp"
+	text-secondary="secondary text and auto line clamp"></vwc-menu-item>
+</vwc-menu>
+```
