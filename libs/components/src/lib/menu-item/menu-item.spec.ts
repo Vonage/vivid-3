@@ -114,146 +114,160 @@ describe('vwc-menu-item', () => {
 
 	});
 
-	it('should set text property to node', async () => {
-		const text = 'lorem';
-		element.text = text;
-		await elementUpdated(element);
-
-		const control = element.shadowRoot?.querySelector('.base');
-		expect(control?.textContent?.trim())
-			.toEqual(text);
-	});
-
-	it('should set secondary text property to node', async () => {
-		const secondaryText = 'lorem';
-		element.textSecondary = secondaryText;
-		await elementUpdated(element);
-
-		const control = element.shadowRoot?.querySelector('.base');
-		expect(control?.textContent?.trim())
-			.toEqual(secondaryText);
-	});
-
-	it('should set both text and secondary text properties to node', async () => {
-		const text = 'lorem';
-		const secondaryText = 'ipsum';
-
-		element.text = text;
-		element.textSecondary = secondaryText;
-
-		await elementUpdated(element);
-
-		const control = element.shadowRoot?.querySelector('.base');
-
-		expect(control?.textContent?.trim().includes(text)).toEqual(true);
-		expect(control?.textContent?.trim().includes(secondaryText)).toEqual(true);
-	});
-
-
-
-	it('should toggle "expanded" on mouse over and mouse out', async () => {
-		expect(element.expanded).toEqual(undefined);
-
-		element.hasSubmenu = true;
-
-		fireEvent(element, new MouseEvent('mouseover'));
-
-		expect(element.expanded).toEqual(true);
-
-		fireEvent(element, new MouseEvent('mouseout'));
-
-		expect(element.expanded).toEqual(false);
-	});
-
-
-	it('should set the `aria-disabled` attribute with the `disabled` value when provided', async () => {
-		element.disabled = true;
-		await elementUpdated(element);
-		expect(element.getAttribute('aria-disabled')).toEqual('true');
-	});
-
-	it('should set an `aria-expanded` attribute with the `expanded` value when provided', async () => {
-		element.expanded = true;
-		await elementUpdated(element);
-		expect(element.getAttribute('aria-expanded')).toEqual('true');
-	});
-
-	it('should set an `aria-checked` attribute with the `checked` value when provided to a menuitemcheckbox', async () => {
-		element.role = MenuItemRole.menuitemcheckbox;
-		element.checked = true;
-		await elementUpdated(element);
-		expect(element.getAttribute('aria-checked')).toEqual('true');
-	});
-
-	it('should NOT set an `aria-checked` attribute when checked is provided to a menuitem', async () => {
-		element.role = MenuItemRole.menuitem;
-		element.checked = true;
-		await elementUpdated(element);
-		expect(element.getAttribute('aria-checked')).toEqual(null);
-	});
-
-	it('should toggle the aria-checked attribute of checkbox item when clicked', async () => {
-		element.role = MenuItemRole.menuitemcheckbox;
-		await elementUpdated(element);
-		expect(element.getAttribute('aria-checked')).toEqual(null);
-		element.click();
-		await elementUpdated(element);
-		expect(element.getAttribute('aria-checked')).toEqual('true');
-		element.click();
-		await elementUpdated(element);
-		expect(element.getAttribute('aria-checked')).toEqual('false');
-	});
-
-	it('should aria-checked attribute of radio item to true when clicked', async () => {
-		element.role = MenuItemRole.menuitemradio;
-		await elementUpdated(element);
-		expect(element.getAttribute('aria-checked')).toEqual(null);
-		element.click();
-		await elementUpdated(element);
-		expect(element.getAttribute('aria-checked')).toEqual('true');
-		element.click();
-		await elementUpdated(element);
-		expect(element.getAttribute('aria-checked')).toEqual('true');
-	});
-
-	describe('events', () => {
-		it('should fire an event on click', async () => {
-			let wasClicked: boolean = false;
-			element.addEventListener('change', e => {
-				e.preventDefault();
-				wasClicked = true;
-			});
-			await elementUpdated(element);
-			element.click();
-			expect(wasClicked).toEqual(true);
+	describe('text', () => {
+		it('should reflect attribute', function () {
+			const text = 'lorem';
+			element.setAttribute('text', text);
+			expect(element.text).toEqual(text);
 		});
 
-		it('should fire an event when spacebar is invoked', async () => {
-			let wasInvoked: boolean = false;
+		it('should set text property to node', async () => {
+			const text = 'lorem';
+			element.text = text;
+			await elementUpdated(element);
+
+			const primaryTextSpan = element.shadowRoot?.querySelector('.text-primary');
+			expect(primaryTextSpan?.textContent?.trim())
+				.toEqual(text);
+		});
+	});
+
+	describe('textSecondary', () => {
+		it('should reflect attribute', function () {
+			const secondaryText = 'lorem';
+			element.setAttribute('text-secondary', secondaryText);
+			expect(element.textSecondary).toEqual(secondaryText);
+		});
+
+		it('should set secondary text property to node', async () => {
+			const secondaryText = 'lorem';
+			element.textSecondary = secondaryText;
+			await elementUpdated(element);
+
+			const secondaryTextSpan = element.shadowRoot?.querySelector('.text-secondary');
+			expect(secondaryTextSpan?.textContent?.trim())
+				.toEqual(secondaryText);
+		});
+	});
+
+	describe('disabled', () => {
+		it('should set the `aria-disabled` attribute with the `disabled` value when provided', async () => {
+			element.disabled = true;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-disabled')).toEqual('true');
+		});
+
+		it('should set disabled class on the base element', async function () {
+			element.disabled = true;
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('disabled')).toBeTruthy();
+		});
+	});
+
+	describe('expanded', () => {
+		it('should toggle "expanded" on mouse over and mouse out', async () => {
+			expect(element.expanded).toEqual(undefined);
+
+			element.hasSubmenu = true;
+
+			fireEvent(element, new MouseEvent('mouseover'));
+
+			expect(element.expanded).toEqual(true);
+
+			fireEvent(element, new MouseEvent('mouseout'));
+
+			expect(element.expanded).toEqual(false);
+		});
+
+		it('should set an `aria-expanded` attribute with the `expanded` value when provided', async () => {
+			element.expanded = true;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-expanded')).toEqual('true');
+		});
+
+	});
+
+	describe('checked', () => {
+		it('should set an `aria-checked` attribute with the `checked` value when provided to a menuitemcheckbox', async () => {
+			element.role = MenuItemRole.menuitemcheckbox;
+			element.checked = true;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-checked')).toEqual('true');
+		});
+		it('should NOT set an `aria-checked` attribute when checked is provided to a menuitem', async () => {
+			element.role = MenuItemRole.menuitem;
+			element.checked = true;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-checked')).toEqual(null);
+		});
+		it('should toggle the aria-checked attribute of checkbox item when clicked', async () => {
+			element.role = MenuItemRole.menuitemcheckbox;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-checked')).toEqual(null);
+			element.click();
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-checked')).toEqual('true');
+			element.click();
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-checked')).toEqual('false');
+		});
+		it('should aria-checked attribute of radio item to true when clicked', async () => {
+			element.role = MenuItemRole.menuitemradio;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-checked')).toEqual(null);
+			element.click();
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-checked')).toEqual('true');
+			element.click();
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-checked')).toEqual('true');
+		});
+	});
+
+	describe('change event', () => {
+		it('should fire "change" on click', async () => {
+			const spy = jest.fn();
+			element.addEventListener('change', spy);
+			await elementUpdated(element);
+			element.click();
+			expect(spy).toHaveBeenCalled();
+		});
+
+		it('should fire "change" event on spacebar press', async () => {
+			const spy = jest.fn();
+			element.addEventListener('change', spy);
 			const event = new KeyboardEvent('keydown', {
 				key: keySpace,
 			} as KeyboardEventInit);
-			element.addEventListener('keydown', e => {
-				e.preventDefault();
-				wasInvoked = true;
-			});
-			await elementUpdated(element);
 			element.dispatchEvent(event);
-			expect(wasInvoked).toEqual(true);
+			expect(spy).toHaveBeenCalled();
 		});
 
-		it('should fire an event when enter is invoked', async () => {
-			let wasInvoked: boolean = false;
+		it('should fire "change" event when enter is pressed', async () => {
+			const spy = jest.fn();
+			element.addEventListener('change', spy);
 			const event = new KeyboardEvent('keydown', {
 				key: keyEnter,
 			} as KeyboardEventInit);
-			element.addEventListener('keydown', e => {
-				e.preventDefault();
-				wasInvoked = true;
-			});
-			await elementUpdated(element);
 			element.dispatchEvent(event);
-			expect(wasInvoked).toEqual(true);
+			expect(spy).toHaveBeenCalled();
+		});
+
+		it('should fire "change" event when checked is changed', async () => {
+			const spy = jest.fn();
+			element.addEventListener('change', spy);
+			element.checked = !element.checked;
+			expect(spy).toHaveBeenCalled();
+		});
+	});
+
+	describe('expanded-change event', () => {
+		it('should fire "expanded-change" event when submenu exists and expanded changes', function () {
+			const spy = jest.fn();
+			element.addEventListener('expanded-change', spy);
+			element.submenu = document.createElement('div');
+			element.expanded = !element.expanded;
+			expect(spy).toHaveBeenCalled();
 		});
 	});
 });
