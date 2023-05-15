@@ -1,5 +1,37 @@
 {% block content %}
 <vwc-nav>
+	<style>
+		.hidden {
+			display: none;
+		}
+
+		.components-filter {
+			background-color: var(--vvd-color-neutral-100);
+			padding: 8px;
+			border-radius: 8px;
+		}
+	</style>
+	<script>
+		function isComponentHidden(component, term) {
+			return component.tagName === 'VWC-NAV-ITEM' && !component.text.toLowerCase().includes(term.toLowerCase());
+		}
+
+		function filterComponentsInput(e) {
+			const term = e.target.value;
+			const components = Array.from(document.querySelector('[label="Components"]').children);
+			components.forEach(component => {
+				isComponentHidden(component, term) ?
+					component.classList.add('hidden') :
+					component.classList.remove('hidden')
+			});
+			document.querySelectorAll('vwc-nav-disclosure:not([label="Components"])').forEach(disclosure => {
+				term !== '' ?
+					disclosure.classList.add('hidden') :
+					disclosure.classList.remove('hidden')
+			});
+		};
+	</script>
+	<vwc-text-field class="components-filter" icon="search-line" placeholder="Find Component" label="Filter Components" oninput="filterComponentsInput(event)"></vwc-text-field>
 	<vwc-nav-disclosure label="Getting Started" open>
 		{%  for item in introduction %}
 		<vwc-nav-item
@@ -19,33 +51,6 @@
   </vwc-nav-disclosure>
 
   <vwc-nav-disclosure label="Components" open>
-  	<style>
-  		.hidden {
-				display: none;
-			}
-
-			.components-filter {
-				background-color: var(--vvd-color-neutral-100);
-				padding: 8px;
-				border-radius: 8px;
-			}
-  	</style>
-  	<script>
-  		function isComponentHidden(component, term) {
-    		return component.tagName === 'VWC-NAV-ITEM' && !component.text.toLowerCase().includes(term.toLowerCase());
-    	}
-
-  		function filterComponentsInput(e) {
-				const term = e.target.value;
-				const components = Array.from(e.target.parentNode.children);
-				components.forEach(component => {
-					isComponentHidden(component, term) ?
-						component.classList.add('hidden') :
-						component.classList.remove('hidden')
-				});
-			};
-  	</script>
-  	<vwc-text-field class="components-filter" icon="search-line" placeholder="Component Name" label="Search Components" oninput="filterComponentsInput(event)"></vwc-text-field>
     {%  for item in components | publicComponentsFilter | sort(false, false, 'title') %}
     <vwc-nav-item
 			href="{{ ('/components/' + item.title) | url }}"
