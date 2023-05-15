@@ -148,6 +148,14 @@ describe('vwc-menu-item', () => {
 			expect(secondaryTextSpan?.textContent?.trim())
 				.toEqual(secondaryText);
 		});
+
+		it('should add two-lines text class to base when both texts exist', async () => {
+			const base = getBaseElement(element);
+			element.text = 'text';
+			element.textSecondary = 'textSecondary';
+			await elementUpdated(element);
+			expect(base.classList.contains('two-lines')).toBeTruthy();
+		});
 	});
 
 	describe('disabled', () => {
