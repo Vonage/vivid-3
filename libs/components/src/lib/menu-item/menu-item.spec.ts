@@ -288,7 +288,7 @@ describe('vwc-menu-item', () => {
 			expect(metaSlotElement).toBeTruthy();
 		}),
 
-		it('should not render slot if role is different then menuItem', async function () {
+		it('should remove slot if role is different then menuItem', async function () {
 			element.role = MenuItemRole.menuitemcheckbox;
 			const metaSlotElement = element.shadowRoot?.querySelector('.base slot[name="meta"]');
 			await elementUpdated(element);
