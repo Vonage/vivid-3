@@ -5,9 +5,9 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['menu', 'menu-item', 'divider'];
+const components = ['menu', 'menu-item', 'divider', 'badge'];
 
-test('should show the component', async ({ page }: { page: Page }) => {
+test.only('should show the component', async ({ page }: { page: Page }) => {
 	const template =`
 		<style>
 			div {

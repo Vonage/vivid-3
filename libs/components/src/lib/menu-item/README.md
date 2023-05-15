@@ -143,7 +143,8 @@ The expanded state of the element
 
 ## Slots
 ### meta
-Assign nodes to the `meta` slot to set a badge or an additional icon.
+Assign nodes to the `meta` slot to set a badge or an additional icon.  
+When icon member is set with slot - the icon will be trailing.
 ```html preview
 <vwc-menu open>
   <vwc-menu-item icon="file-pdf-line" text="Export to PDF">
