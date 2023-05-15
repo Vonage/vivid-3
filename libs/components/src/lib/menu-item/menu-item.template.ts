@@ -1,4 +1,4 @@
-import { html, ViewTemplate, when } from '@microsoft/fast-element';
+import { html, slotted, ViewTemplate, when } from '@microsoft/fast-element';
 import { ElementDefinitionContext, MenuItemRole } from '@microsoft/fast-foundation';
 import type { MenuItemOptions } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
@@ -13,7 +13,7 @@ const getCheckIcon = (affixIconTemplate: any, x: MenuItem, iconType: string) => 
 };
 
 const getClasses = ({
-	disabled, checked, expanded, role, text, textSecondary, icon
+	disabled, checked, expanded, role, text, textSecondary, icon, metaSlottedContent
 }: MenuItem) =>	classNames(
 	'base',
 	['disabled', Boolean(disabled)],
@@ -22,7 +22,8 @@ const getClasses = ({
 	['expanded', Boolean(expanded)],
 	['item-checkbox', role === MenuItemRole.menuitemcheckbox],
 	['item-radio', role === MenuItemRole.menuitemradio],
-	['two-lines', Boolean(text?.length) && Boolean(textSecondary?.length)]
+	['two-lines', Boolean(text?.length) && Boolean(textSecondary?.length)],
+	['has-meta', Boolean(metaSlottedContent) && Boolean(metaSlottedContent?.length)]
 );
 
 /**
@@ -73,7 +74,8 @@ export const MenuItemTemplate:  (
 						`
 	)}
 			${() => focusTemplate}
-
+			${when(x => x.role != (MenuItemRole.menuitemcheckbox || MenuItemRole.menuitemradio),
+		html`<slot name="meta" ${slotted('metaSlottedContent')}></slot>`)}
 			${when(x => x.role === MenuItemRole.menuitemcheckbox,
 		html`<span class="action">${x => getCheckIcon(affixIconTemplate, x, 'checkbox')}</span>`)}
 

@@ -141,6 +141,17 @@ The expanded state of the element
 - Type: `boolean`
 - Default: `false` -->
 
+## Slots
+### meta
+Assign nodes to the `meta` slot to set a badge or an additional icon.
+```html preview
+<vwc-menu open>
+  <vwc-menu-item icon="file-pdf-line" text="Export to PDF">
+  <vwc-badge slot="meta" appearance='subtle' connotation='cta' shape='pill' icon='check-solid'></vwc-badge>
+  </vwc-menu-item>
+</vwc-menu>
+```
+
 ## Events
 
 ### Expanded Change
