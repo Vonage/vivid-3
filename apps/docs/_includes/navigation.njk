@@ -1,37 +1,12 @@
 {% block content %}
+{% set componentsFilter %}
+	{% include "../assets/scripts/components.filter.js" %}
+{% endset %}
 <vwc-nav>
-	<style>
-		.hidden {
-			display: none;
-		}
-
-		.components-filter {
-			background-color: var(--vvd-color-neutral-100);
-			padding: 8px;
-			border-radius: 8px;
-		}
-	</style>
-	<script>
-		function isComponentHidden(component, term) {
-			return component.tagName === 'VWC-NAV-ITEM' && !component.text.toLowerCase().includes(term.toLowerCase());
-		}
-
-		function filterComponentsInput(e) {
-			const term = e.target.value;
-			const components = Array.from(document.querySelector('[label="Components"]').children);
-			components.forEach(component => {
-				isComponentHidden(component, term) ?
-					component.classList.add('hidden') :
-					component.classList.remove('hidden')
-			});
-			document.querySelectorAll('vwc-nav-disclosure:not([label="Components"])').forEach(disclosure => {
-				term !== '' ?
-					disclosure.classList.add('hidden') :
-					disclosure.classList.remove('hidden')
-			});
-		};
+	<vwc-text-field class="components-filter" icon="search-line" placeholder="Find Component" label="Filter Components"></vwc-text-field>
+  <script>
+		{{ componentsFilter | safe }}
 	</script>
-	<vwc-text-field class="components-filter" icon="search-line" placeholder="Find Component" label="Filter Components" oninput="filterComponentsInput(event)"></vwc-text-field>
 	<vwc-nav-disclosure label="Getting Started" open>
 		{%  for item in introduction %}
 		<vwc-nav-item
