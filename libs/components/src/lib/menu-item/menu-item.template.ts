@@ -42,11 +42,9 @@ export const MenuItemTemplate:  (
 	context: ElementDefinitionContext,
 	definition: MenuItemOptions
 ) => {
-	// const iconTag = context.tagFor(Icon);
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const focusTemplate = focusTemplateFactory(context);
 
-	// const anchoredRegionTag = tagFor(options.anchoredRegion);
 	return html<MenuItem>`
 	<template
 		aria-checked="${x => (x.role !== MenuItemRole.menuitem ? x.checked : void 0)}"

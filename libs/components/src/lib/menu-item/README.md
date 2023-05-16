@@ -147,10 +147,13 @@ Assign nodes to the `meta` slot to set a badge or an additional icon.
 When icon member is set with slot - the icon will be trailing.
 ```html preview
 <vwc-menu open>
-  <vwc-menu-item icon="file-pdf-line" text="Export to PDF">
-  <vwc-badge slot="meta" appearance='subtle' connotation='cta' shape='pill' icon='check-solid'></vwc-badge>
+ <vwc-menu-item text="Export to PDF">
+  <vwc-badge slot="meta" appearance='filled' connotation='success' shape='pill' icon='check-solid'></vwc-badge>
   </vwc-menu-item>
-</vwc-menu>
+  <vwc-menu-item icon="check-line" text="Export to PDF">
+  <vwc-badge slot="meta" appearance='filled' connotation='alert' shape='pill' icon='minus-solid'></vwc-badge>
+  </vwc-menu-item>
+</vwc-menu> 
 ```
 
 ## Events
