@@ -279,32 +279,33 @@ describe('vwc-menu-item', () => {
 		});
 	});
 
-	describe('slot', ()=> (
+	describe('slot', ()=> {
+
 		it('should render slot if role menuItem', async function () {
 			element.role = MenuItemRole.menuitem;
 			const metaSlotElement = element.shadowRoot?.querySelector('.base slot[name="meta"]');
 			await elementUpdated(element);
 
 			expect(metaSlotElement).toBeTruthy();
-		}),
+		});
 
-		it('should remove slot if role is different then menuItem', async function () {
-			element.role = MenuItemRole.menuitemcheckbox;
-			const metaSlotElement = element.shadowRoot?.querySelector('.base slot[name="meta"]');
+		it.each([MenuItemRole.menuitemcheckbox, MenuItemRole.menuitemradio])
+		('should remove slot if role is %s', async function (role: string) {
+			element.setAttribute('role', role);
 			await elementUpdated(element);
-
-			!expect(metaSlotElement);
-		}),
+			const metaSlotElement = element.shadowRoot?.querySelector('.base slot[name="meta"]');
+			console.log(element.role);
+			expect(metaSlotElement).toBeNull();
+		});
 
 		it('should add class .has-meta if slot is slotted', async function () {
 			const slottedElement = document.createElement('div');
 			slottedElement.slot = 'meta';
-			slottedElement.id = 'meta';
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
 			expect(getBaseElement(element).classList.contains('has-meta')).toBeTruthy();
 
-		})
-	));
+		});
+	});
 });

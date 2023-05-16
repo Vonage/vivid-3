@@ -23,7 +23,7 @@ const getClasses = ({
 	['item-checkbox', role === MenuItemRole.menuitemcheckbox],
 	['item-radio', role === MenuItemRole.menuitemradio],
 	['two-lines', Boolean(text?.length) && Boolean(textSecondary?.length)],
-	['has-meta', Boolean(metaSlottedContent) && Boolean(metaSlottedContent?.length)]
+	['has-meta', !!metaSlottedContent && Boolean(metaSlottedContent.length)]
 );
 
 /**
