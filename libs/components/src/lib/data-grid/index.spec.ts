@@ -4,7 +4,6 @@ import {DataGridSelectionMode} from './data-grid';
 import './index';
 
 const COMPONENT_TAG = 'vwc-data-grid';
-//TODO::tagfor is hard coded and does not allow extention of the template!!!
 
 describe('data grid', () => {
 	let element: DataGrid;

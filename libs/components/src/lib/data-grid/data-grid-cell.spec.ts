@@ -21,7 +21,6 @@ describe('vwc-data-grid-cell', () => {
 		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as DataGridCell;
 	});
 
-	// TODO::adds grid column style
 	describe('basic', () => {
 		it('should be initialized as a vwc-data-grid', async () => {
 			expect(element).toBeInstanceOf(DataGridCell);

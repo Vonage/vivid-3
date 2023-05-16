@@ -15,6 +15,14 @@ designSystem.withPrefix('vwc').register(dataGrid());
 
 const COMPONENT_TAG = 'vwc-data-grid';
 
+function setMockRows(element: DataGrid) {
+	element.rowElementTag = 'div';
+	element.rowItemTemplate = html`
+			<${element.rowElementTag} role="row">
+				<button class="first" role="cell"/><button class="second" role="cell"/>
+			</${element.rowElementTag}>`;
+}
+
 describe('vwc-data-grid', () => {
 	let element: DataGrid;
 
@@ -144,10 +152,7 @@ describe('vwc-data-grid', () => {
 				expect(row.gridTemplateColumns)
 					.toEqual(element.rowsData.reduce((acc: string, _, index) => acc + (index > 0 ? ' 1fr' : '1fr'), ''));
 			});
-
 		});
-
-		// TODO::similar test should pass when the DOM elements mutate
 	});
 
 	describe('rowItemTemplate', () => {
@@ -189,11 +194,7 @@ describe('vwc-data-grid', () => {
 
 	describe('focusColumnIndex', () => {
 		it('should change the focused cell in selected row', async () => {
-			element.rowElementTag = 'div';
-			element.rowItemTemplate = html`
-			<${element.rowElementTag} role="row">
-				<button class="first" role="cell"/><button class="second" role="cell"/>
-			</${element.rowElementTag}>`;
+			setMockRows(element);
 			element.generateHeader = 'none';
 			element.rowsData = [
 				{ id: '1', name: 'Person 1' },
@@ -233,6 +234,16 @@ describe('vwc-data-grid', () => {
 	});
 
 	describe('rowElements', () => {
-		// TODO::test rowElements
+		it('should return all row elements', async () => {
+			setMockRows(element);
+			element.rowsData = [
+				{ id: '1', name: 'Person 1' },
+				{ id: '2', name: 'Person 2' },
+			];
+			await elementUpdated(element);
+			const expected = Array.from(element.querySelectorAll(element.rowElementTag));
+			expected.splice(0, 1);
+			expect(element.rowElements).toEqual(expected);
+		});
 	});
 });
