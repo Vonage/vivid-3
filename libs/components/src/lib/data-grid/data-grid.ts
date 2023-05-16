@@ -10,6 +10,10 @@ export const DataGridSelectionMode = {
 	multiCell: 'multi-cell',
 } as const;
 
+function isTargetRoleHeader(target: DataGridCell) {
+	return target.getAttribute('role') === 'columnheader';
+}
+
 export type ValueOf<T> = T[keyof T];
 
 export type DataGridSelectionMode = ValueOf<typeof DataGridSelectionMode>;
@@ -23,7 +27,13 @@ export class DataGrid extends FoundationElement {
 	@attr({attribute: 'selection-mode'})
 		selectionMode?: DataGridSelectionMode;
 
-	#selectedCells: DataGridCell[] = [];
+	get #selectedCells(): DataGridCell[] {
+		return this.rowElements.reduce((acc, row) => {
+			const rowChildren = Array.from(row.children) as DataGridCell[];
+			const selectedCells = rowChildren.filter((cell: DataGridCell) => cell.selected);
+			return acc.concat(selectedCells);
+		}, [] as DataGridCell[]);
+	}
 
 	selectionModeChanged() {
 		this.#resetSelection();
@@ -31,7 +41,7 @@ export class DataGrid extends FoundationElement {
 
 	#handleClick = (e: MouseEvent) => {
 		const target = e.target as DataGridCell;
-		if (target.getAttribute('role') === 'columnheader') {
+		if (isTargetRoleHeader(target)) {
 			return;
 		}
 		const {ctrlKey, shiftKey, metaKey} = e;
@@ -40,9 +50,9 @@ export class DataGrid extends FoundationElement {
 			if (this.selectionMode === DataGridSelectionMode.multiCell && (ctrlKey || shiftKey || metaKey)) {
 				target.selected = !this.#selectedCells.includes(target);
 			} else {
-				this.#selectedCells.forEach(cell => cell.selected = false);
-				target.selected = !this.#selectedCells.includes(target);
-				this.#selectedCells = [];
+				const cacheTargetSelection = target.selected;
+				this.#resetSelection();
+				target.selected = !cacheTargetSelection;
 			}
 
 			if (target.selected) {
@@ -58,7 +68,6 @@ export class DataGrid extends FoundationElement {
 
 	#resetSelection() {
 		this.#selectedCells.forEach(cell => cell.selected = false);
-		this.#selectedCells = [];
 	}
 }
 
