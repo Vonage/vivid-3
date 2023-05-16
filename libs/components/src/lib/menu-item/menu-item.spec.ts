@@ -294,7 +294,6 @@ describe('vwc-menu-item', () => {
 			element.setAttribute('role', role);
 			await elementUpdated(element);
 			const metaSlotElement = element.shadowRoot?.querySelector('.base slot[name="meta"]');
-			console.log(element.role);
 			expect(metaSlotElement).toBeNull();
 		});
 
