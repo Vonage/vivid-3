@@ -59,7 +59,7 @@ jobs:
           path: dist/
 
       - name: publish npm package
-        run: npm publish --dry-run dist/libs/components --//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
+        run: npm publish dist/libs/components --//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
 
@@ -80,7 +80,7 @@ jobs:
           path: dist/
 
       - name: publish to github packages
-        run: npm publish --dry-run ./dist/libs/components --registry=https://npm.pkg.github.com --//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN
+        run: npm publish ./dist/libs/components --registry=https://npm.pkg.github.com --//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN
         env:
           NODE_AUTH_TOKEN: ${{ secrets.VNG_VVD_PAT }}
 
