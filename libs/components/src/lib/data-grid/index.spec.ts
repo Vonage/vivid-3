@@ -180,6 +180,13 @@ describe('data grid', () => {
 			});
 		});
 	});
-
-
 });
+
+
+// TODO:: underline state
+// TODO:: header cells design
+// TODO:: row selection
+// TODO:: header cell with filter
+// TODO:: header cell with sort
+// TODO:: add sorting and filtering examples
+// TODO:: add "manual" example
