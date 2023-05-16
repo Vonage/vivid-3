@@ -14,6 +14,7 @@
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+@use "partials/menu-item-variables" as menu-item-variables;
 
 
 @supports selector(:focus-visible) {
@@ -37,14 +38,16 @@
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	gap: $gap;
 	inline-size: 100%;
+	padding-block: 2px;
 	padding-inline: $gutter;
 
+
 	&:not(.two-lines) {
-		block-size: #{size.$vvd-size-normal};
+		min-block-size: #{size.$vvd-size-normal};
 	}
 
 	&.two-lines {
-		block-size: calc(#{size.$vvd-size-normal} + #{size.$vvd-size-super-condensed});
+		min-block-size: calc(#{size.$vvd-size-normal} + #{size.$vvd-size-super-condensed});
 	}
 
 	@supports(user-select: none) {
@@ -69,16 +72,35 @@
 }
 
 .icon {
+	flex-shrink: 0;
 	font-size: calc(#{size.$vvd-size-normal} / 2);
+	line-height: 1;
+}
 
-	.base:not(.disabled, .item-checkbox, .item-radio) & {
-		color: var(#{constants.$vvd-color-neutral-600});
-	}
+.action,
+.decorative {
+	display: flex;
+	place-content: center;
+}
 
-	.base:is(.disabled, .item-checkbox, .item-radio) & {
-		color: var(#{appearance.get-appearance-token(text)});
+.action {
+	color: var(#{appearance.get-appearance-token(text)});
+
+	.base.trailing & {
+		order: 1;
+		margin-inline-start: auto;
 	}
 }
+
+.decorative {
+	.base:not(.disabled) & {
+		color: var(#{constants.$vvd-color-neutral-600});
+	}
+	.base.disabled & {
+		color: var(#{constants.$vvd-color-neutral-200});
+	}
+}
+
 
 .text {
 	display: flex;
@@ -88,20 +110,25 @@
 
 .text-primary,
 .text-secondary {
+	/* stylelint-disable value-no-vendor-prefix */
+	display: -webkit-box;
+	/* stylelint-enable value-no-vendor-prefix */
 	overflow: hidden;
+	-webkit-box-orient: vertical;
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
-	text-overflow: ellipsis;
-	white-space: nowrap;
 }
 
+
 .text-primary {
+	-webkit-line-clamp: var(#{menu-item-variables.$text-primary-line-clamp}, 1);
 	.base.two-lines & {
 		font: var(#{constants.$vvd-typography-base-bold});
 	}
 }
 
 .text-secondary {
+	-webkit-line-clamp: var(#{menu-item-variables.$text-secondary-line-clamp}, 1);
 	.base.two-lines & {
 		color: var(#{constants.$vvd-color-neutral-600});
 	}

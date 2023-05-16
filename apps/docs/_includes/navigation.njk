@@ -1,5 +1,12 @@
 {% block content %}
+{% set componentsFilter %}
+	{% include "../assets/scripts/components.filter.js" %}
+{% endset %}
 <vwc-nav>
+	<vwc-text-field class="components-filter" icon="search-line" placeholder="Find Component" label="Filter Components"></vwc-text-field>
+  <script>
+		{{ componentsFilter | safe }}
+	</script>
 	<vwc-nav-disclosure label="Getting Started" open>
 		{%  for item in introduction %}
 		<vwc-nav-item
