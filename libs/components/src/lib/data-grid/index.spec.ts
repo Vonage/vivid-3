@@ -6,6 +6,10 @@ import './index';
 const COMPONENT_TAG = 'vwc-data-grid';
 
 describe('data grid', () => {
+	function getRowCell(row: number, cell: number) {
+		return element.rowElements[row].children[cell] as HTMLElement
+	}
+
 	let element: DataGrid;
 
 	beforeEach(async () => {
@@ -65,10 +69,6 @@ describe('data grid', () => {
 		expect(spy).toHaveBeenCalled();
 	});
 
-	describe('keyboard navigation', function () {
-		// TODO::test keyboard navigation
-	});
-
 	describe('selectionMode', function () {
 
 		describe('cell-selection', function () {
@@ -80,7 +80,8 @@ describe('data grid', () => {
 					{ id: 2, name: 'Jane', age: 21 },
 				];
 				await elementUpdated(element);
-				cell = element.rowElements[0].children[0] as HTMLElement;
+				await elementUpdated(element);
+				cell = getRowCell(1,0);
 			});
 
 			it('should add selected attribute to clicked cell', async function () {
@@ -124,7 +125,7 @@ describe('data grid', () => {
 				cell.click();
 				await elementUpdated(element);
 
-				const otherCell = element.rowElements[0].children[1] as HTMLElement;
+				const otherCell = element.rowElements[2].children[1] as HTMLElement;
 				otherCell.click();
 				await elementUpdated(element);
 
@@ -140,7 +141,7 @@ describe('data grid', () => {
 					cell.click();
 					await elementUpdated(element);
 
-					const otherCell = element.rowElements[0].children[1] as HTMLElement;
+					const otherCell = getRowCell(2,1);
 					otherCell.dispatchEvent(new MouseEvent('click', { [activeKey]: true, bubbles: true, composed: true }));
 					await elementUpdated(element);
 
@@ -154,7 +155,7 @@ describe('data grid', () => {
 				cell.click();
 				await elementUpdated(element);
 
-				const otherCell = element.rowElements[0].children[1] as HTMLElement;
+				const otherCell = getRowCell(2,1);
 				otherCell.dispatchEvent(new MouseEvent('click', { ctrlKey: true, bubbles: true, composed: true }));
 				await elementUpdated(element);
 
@@ -171,12 +172,21 @@ describe('data grid', () => {
 				cell.click();
 				await elementUpdated(element);
 
-				const otherCell = element.rowElements[0].children[1] as HTMLElement;
+				const otherCell = getRowCell(2,1);
+
 				otherCell.dispatchEvent(new MouseEvent('click', { bubbles: true, composed: true }));
 				await elementUpdated(element);
 
 				expect(cell.hasAttribute('selected')).toEqual(false);
 				expect(otherCell.hasAttribute('selected')).toEqual(true);
+			});
+
+			it('should select only non-header cells', async function () {
+				element.selectionMode = DataGridSelectionMode.multiCell;
+				const headerCell = getRowCell(0, 1);
+				headerCell.click();
+				await elementUpdated(element);
+				expect(headerCell.hasAttribute('selected')).toEqual(false);
 			});
 		});
 	});
@@ -190,3 +200,4 @@ describe('data grid', () => {
 // TODO:: header cell with sort
 // TODO:: add sorting and filtering examples
 // TODO:: add "manual" example
+// TODO:: test keyboard navigation

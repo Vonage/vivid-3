@@ -31,6 +31,9 @@ export class DataGrid extends FoundationElement {
 
 	#handleClick = (e: MouseEvent) => {
 		const target = e.target as DataGridCell;
+		if (target.getAttribute('role') === 'columnheader') {
+			return;
+		}
 		const {ctrlKey, shiftKey, metaKey} = e;
 		if (this.selectionMode === DataGridSelectionMode.singleCell || this.selectionMode === DataGridSelectionMode.multiCell)  {
 
