@@ -54,7 +54,7 @@ Use `generate-header"` for data grid header visibility mode.
 
 ### selectionMode
 
-- Type: `none` | `single-cell` | `multi-cell` | `single-row` | `multi-row`
+- Type: `none` | `single-cell` | `multi-cell`
 - Default: `none`
 
 Use the `selection-mode` attribute to specify the selection mode of the grid.

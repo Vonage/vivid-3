@@ -25,6 +25,10 @@ export class DataGrid extends FoundationElement {
 
 	#selectedCells: DataGridCell[] = [];
 
+	selectionModeChanged() {
+		this.#resetSelection();
+	}
+
 	#handleClick = (e: MouseEvent) => {
 		const target = e.target as DataGridCell;
 		const {ctrlKey, shiftKey, metaKey} = e;
@@ -47,6 +51,11 @@ export class DataGrid extends FoundationElement {
 	constructor() {
 		super();
 		this.addEventListener('click', this.#handleClick);
+	}
+
+	#resetSelection() {
+		this.#selectedCells.forEach(cell => cell.selected = false);
+		this.#selectedCells = [];
 	}
 }
 

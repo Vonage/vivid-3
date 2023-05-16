@@ -70,9 +70,6 @@ describe('data grid', () => {
 	});
 
 	describe('selectionMode', function () {
-		it('should reset selection when selectionMode changes', function () {
-
-		});
 
 		describe('cell-selection', function () {
 			let cell: HTMLElement;
@@ -150,6 +147,37 @@ describe('data grid', () => {
 					expect(cell.hasAttribute('selected')).toEqual(true);
 					expect(otherCell.hasAttribute('selected')).toEqual(true);
 				});
+
+			it('should reset selection when selectionMode changes', async function () {
+				element.selectionMode = DataGridSelectionMode.multiCell;
+
+				cell.click();
+				await elementUpdated(element);
+
+				const otherCell = element.rowElements[0].children[1] as HTMLElement;
+				otherCell.dispatchEvent(new MouseEvent('click', { ctrlKey: true, bubbles: true, composed: true }));
+				await elementUpdated(element);
+
+				element.selectionMode = DataGridSelectionMode.singleCell;
+				await elementUpdated(element);
+
+				expect(cell.hasAttribute('selected')).toEqual(false);
+				expect(otherCell.hasAttribute('selected')).toEqual(false);
+			});
+
+			it('should reset selection clicking a cell in multi-cell', async function () {
+				element.selectionMode = DataGridSelectionMode.multiCell;
+
+				cell.click();
+				await elementUpdated(element);
+
+				const otherCell = element.rowElements[0].children[1] as HTMLElement;
+				otherCell.dispatchEvent(new MouseEvent('click', { bubbles: true, composed: true }));
+				await elementUpdated(element);
+
+				expect(cell.hasAttribute('selected')).toEqual(false);
+				expect(otherCell.hasAttribute('selected')).toEqual(true);
+			});
 		});
 	});
 
