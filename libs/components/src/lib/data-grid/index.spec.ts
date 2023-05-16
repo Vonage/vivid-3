@@ -84,9 +84,9 @@ describe('data grid', () => {
 				cell = getRowCell(1,0);
 			});
 
-			it('should add selected attribute to clicked cell', async function () {
-				element.selectionMode = DataGridSelectionMode.singleCell;
-
+			it.each([DataGridSelectionMode.singleCell, DataGridSelectionMode.multiCell])
+			('should add selected attribute to clicked cell if selection mode is %s', async function (selectionMode) {
+				element.selectionMode = selectionMode;
 				cell.click();
 				await elementUpdated(element);
 				expect(cell.hasAttribute('selected')).toEqual(true);
@@ -100,14 +100,7 @@ describe('data grid', () => {
 				expect(cell.hasAttribute('selected')).toEqual(false);
 			});
 
-			it('should add selected attribute to clicked cell if selectionMode is multiCell', async function () {
-				element.selectionMode = DataGridSelectionMode.multiCell;
-				cell.click();
-				await elementUpdated(element);
-				expect(cell.hasAttribute('selected')).toEqual(true);
-			});
-
-			it('should remove selected attribute from selected clicked cell', async function () {
+			it('should remove selected attribute from selected clicked cell in single mode', async function () {
 				element.selectionMode = DataGridSelectionMode.singleCell;
 
 				cell.click();
