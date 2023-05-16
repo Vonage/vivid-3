@@ -225,6 +225,9 @@ describe('vwc-data-grid-cell', () => {
 				await elementUpdated(element);
 				expect(element.hasAttribute('selected')).toBeTruthy();
 			});
+
+			// TODO: Add aria-selected/pressed
+
 		});
 	});
 });
