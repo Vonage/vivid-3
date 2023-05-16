@@ -7,7 +7,7 @@ const COMPONENT_TAG = 'vwc-data-grid';
 
 describe('data grid', () => {
 	function getRowCell(row: number, cell: number) {
-		return element.rowElements[row].children[cell] as HTMLElement
+		return element.rowElements[row].children[cell] as HTMLElement;
 	}
 
 	let element: DataGrid;
