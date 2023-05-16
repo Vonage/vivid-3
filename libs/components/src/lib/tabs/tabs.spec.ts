@@ -14,10 +14,8 @@ window.HTMLElement.prototype.getBoundingClientRect = function () {
 };
 
 describe('vwc-tabs', () => {
-	let element: Tabs;
-
-	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG} activeid='apps'>
+	async function setFixture(activeid: string | null = 'apps'): Promise<Tabs> {
+		return (await fixture(`<${COMPONENT_TAG} ${activeid ? `activeid="${activeid}"` : ''}>
 		<vwc-tab label="Appetizers" id="apps"></vwc-tab>
 		<vwc-tab label="Entrees" id="entrees"></vwc-tab>
 		<vwc-tab label="Desserts" id="desserts"></vwc-tab>
@@ -47,6 +45,11 @@ describe('vwc-tabs', () => {
 			</ol>
 		</vwc-tab-panel>
 		</${COMPONENT_TAG}>`)) as Tabs;
+	}
+	let element: Tabs;
+
+	beforeEach(async () => {
+		element = await setFixture('apps');
 	});
 
 	describe('basic', () => {
@@ -80,6 +83,12 @@ describe('vwc-tabs', () => {
 			await elementUpdated(element);
 
 			expect((tab as Tab).ariaSelected).toEqual('true');
+		});
+
+		it('should set activeid property to first tab if activeid is not set', async () => {
+			const tmpElement = await setFixture(null);
+			await elementUpdated(tmpElement);
+			expect(tmpElement.activeid).toEqual('apps');
 		});
 	});
 

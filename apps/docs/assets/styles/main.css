@@ -293,3 +293,13 @@ article.article > h1 {
 }
 
 /* #endregion highlight js */
+
+.hidden {
+	display: none;
+}
+
+.components-filter {
+	background-color: var(--vvd-color-neutral-100);
+	padding: 8px;
+	border-radius: 8px;
+}
