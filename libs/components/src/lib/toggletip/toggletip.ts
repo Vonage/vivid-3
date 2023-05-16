@@ -2,7 +2,7 @@ import { attr, DOM } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 import type { Placement } from '@floating-ui/dom';
 
-type anchorType = string | HTMLElement;
+type AnchorType = string | HTMLElement;
 
 /**
  * Base class for toggletip
@@ -46,8 +46,8 @@ export class Toggletip extends FoundationElement {
 	 * @public
 	 * HTML Attribute: anchor
 	 */
-	@attr({ mode: 'fromView' }) anchor: anchorType = '';
-	anchorChanged(_: anchorType, newValue: anchorType) {
+	@attr({ mode: 'fromView' }) anchor: AnchorType = '';
+	anchorChanged(_: AnchorType, newValue: AnchorType) {
 		if (this.#anchorEl) this.#cleanupAnchor(this.#anchorEl);
 
 		this.#anchorEl = newValue instanceof HTMLElement ? newValue : document.getElementById(newValue);
