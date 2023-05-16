@@ -27,11 +27,10 @@ export class DataGrid extends FoundationElement {
 
 	#handleClick = (e: MouseEvent) => {
 		const target = e.target as DataGridCell;
-		const ctrlKey = e.ctrlKey;
-		const shiftKey = e.shiftKey;
+		const {ctrlKey, shiftKey, metaKey} = e;
 		if (this.selectionMode === DataGridSelectionMode.singleCell || this.selectionMode === DataGridSelectionMode.multiCell)  {
 
-			if (this.selectionMode === DataGridSelectionMode.multiCell && (ctrlKey || shiftKey)) {
+			if (this.selectionMode === DataGridSelectionMode.multiCell && (ctrlKey || shiftKey || metaKey)) {
 				target.selected = !this.#selectedCells.includes(target);
 			} else {
 				this.#selectedCells.forEach(cell => cell.selected = false);
@@ -44,8 +43,10 @@ export class DataGrid extends FoundationElement {
 			}
 		}
 	};
+
 	constructor() {
 		super();
 		this.addEventListener('click', this.#handleClick);
 	}
 }
+

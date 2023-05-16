@@ -25,7 +25,11 @@
 }
 
 :host([selected]) {
-	background-color: red;
+	background: var(--vvd-color-neutral-50);
+}
+
+:host(:hover) {
+	background: var(--vvd-color-neutral-50);
 }
 
 .focus-indicator {

@@ -70,80 +70,89 @@ describe('data grid', () => {
 		// TODO::test keyboard navigation
 	});
 
-	describe('cell-selection', function () {
-		let cell: HTMLElement;
+	describe('selectionMode', function () {
+		it('should reset selection when selectionMode changes', function () {
 
-		beforeEach(async function () {
-			element.rowsData = [
-				{ id: 1, name: 'John', age: 20 },
-				{ id: 2, name: 'Jane', age: 21 },
-			];
-			await elementUpdated(element);
-			cell = element.rowElements[0].children[0] as HTMLElement;
 		});
 
-		it('should add selected attribute to clicked cell', async function () {
-			element.selectionMode = DataGridSelectionMode.singleCell;
+		describe('cell-selection', function () {
+			let cell: HTMLElement;
 
-			cell.click();
-			await elementUpdated(element);
-			expect(cell.hasAttribute('selected')).toEqual(true);
-		});
+			beforeEach(async function () {
+				element.rowsData = [
+					{ id: 1, name: 'John', age: 20 },
+					{ id: 2, name: 'Jane', age: 21 },
+				];
+				await elementUpdated(element);
+				cell = element.rowElements[0].children[0] as HTMLElement;
+			});
 
-		it.each(['none', 'single-row', 'multi-row'])
-		( 'should prevent selected attribute to cell if selectionMode is %s', async function (selectionMode) {
-			(element.selectionMode as any)= selectionMode;
-			cell.click();
-			await elementUpdated(element);
-			expect(cell.hasAttribute('selected')).toEqual(false);
-		});
+			it('should add selected attribute to clicked cell', async function () {
+				element.selectionMode = DataGridSelectionMode.singleCell;
 
-		it('should add selected attribute to clicked cell if selectionMode is multiCell', async function () {
-			element.selectionMode = DataGridSelectionMode.multiCell;
-			cell.click();
-			await elementUpdated(element);
-			expect(cell.hasAttribute('selected')).toEqual(true);
-		});
+				cell.click();
+				await elementUpdated(element);
+				expect(cell.hasAttribute('selected')).toEqual(true);
+			});
 
-		it('should remove selected attribute from selected clicked cell', async function () {
-			element.selectionMode = DataGridSelectionMode.singleCell;
+			it.each(['none', 'single-row', 'multi-row'])
+			( 'should prevent selected attribute to cell if selectionMode is %s', async function (selectionMode) {
+				(element.selectionMode as any)= selectionMode;
+				cell.click();
+				await elementUpdated(element);
+				expect(cell.hasAttribute('selected')).toEqual(false);
+			});
 
-			cell.click();
-			await elementUpdated(element);
-			cell.click();
-			await elementUpdated(element);
+			it('should add selected attribute to clicked cell if selectionMode is multiCell', async function () {
+				element.selectionMode = DataGridSelectionMode.multiCell;
+				cell.click();
+				await elementUpdated(element);
+				expect(cell.hasAttribute('selected')).toEqual(true);
+			});
 
-			expect(cell.hasAttribute('selected')).toEqual(false);
-		});
+			it('should remove selected attribute from selected clicked cell', async function () {
+				element.selectionMode = DataGridSelectionMode.singleCell;
 
-		it.each([DataGridSelectionMode.singleCell, DataGridSelectionMode.multiCell])
-		('should remove selected attribute if clicked other cell and selectionMode is %s', async function (selectionMode: string) {
-			element.selectionMode = selectionMode as DataGridSelectionMode;
+				cell.click();
+				await elementUpdated(element);
+				cell.click();
+				await elementUpdated(element);
 
-			cell.click();
-			await elementUpdated(element);
+				expect(cell.hasAttribute('selected')).toEqual(false);
+			});
 
-			const otherCell = element.rowElements[0].children[1] as HTMLElement;
-			otherCell.click();
-			await elementUpdated(element);
+			it.each([DataGridSelectionMode.singleCell, DataGridSelectionMode.multiCell])
+			('should remove selected attribute if clicked other cell and selectionMode is %s', async function (selectionMode: string) {
+				element.selectionMode = selectionMode as DataGridSelectionMode;
 
-			expect(cell.hasAttribute('selected')).toEqual(false);
-			expect(otherCell.hasAttribute('selected')).toEqual(true);
-		});
+				cell.click();
+				await elementUpdated(element);
 
-		it.each(['ctrlKey', 'shiftKey'])
-		('should leave selected attribute if clicked other cell with %s and selectionMode is multiCell', async function (activeKey: string) {
-			element.selectionMode = DataGridSelectionMode.multiCell;
+				const otherCell = element.rowElements[0].children[1] as HTMLElement;
+				otherCell.click();
+				await elementUpdated(element);
 
-			cell.click();
-			await elementUpdated(element);
+				expect(cell.hasAttribute('selected')).toEqual(false);
+				expect(otherCell.hasAttribute('selected')).toEqual(true);
+			});
 
-			const otherCell = element.rowElements[0].children[1] as HTMLElement;
-			otherCell.dispatchEvent(new MouseEvent('click', { [activeKey]: true, bubbles: true, composed: true }));
-			await elementUpdated(element);
+			it.each(['ctrlKey', 'shiftKey', 'metaKey'])
+			('should leave selected attribute if clicked other cell with %s and selectionMode is multiCell',
+				async function (activeKey: string) {
+					element.selectionMode = DataGridSelectionMode.multiCell;
 
-			expect(cell.hasAttribute('selected')).toEqual(true);
-			expect(otherCell.hasAttribute('selected')).toEqual(true);
+					cell.click();
+					await elementUpdated(element);
+
+					const otherCell = element.rowElements[0].children[1] as HTMLElement;
+					otherCell.dispatchEvent(new MouseEvent('click', { [activeKey]: true, bubbles: true, composed: true }));
+					await elementUpdated(element);
+
+					expect(cell.hasAttribute('selected')).toEqual(true);
+					expect(otherCell.hasAttribute('selected')).toEqual(true);
+				});
 		});
 	});
+
+
 });
