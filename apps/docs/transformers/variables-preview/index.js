@@ -17,6 +17,36 @@ const CONNOTATIONS = [
 	'announcement',
 ];
 
+const getConnotation = (variableName, componentName) => {
+	return variableName.replace(`--vvd-${componentName}-`, '').split('-')[0];
+}
+
+const getShade = (variableName, componentName, connotationName) => {
+	return variableName.replace(`--vvd-${componentName}-${connotationName}-`, '');
+}
+
+// Order of shades from light to dark
+const shadeOrder = Array.from([
+	'primary-text',
+	'backdrop',
+	'faint',
+	'soft',
+	'dim',
+	'pale',
+	'light',
+	'intermediate',
+	'primary',
+	'firm',
+	'primary-increment',
+	'fierce',
+	'contrast'
+].entries()).reduce((acc, [index, shade]) => {
+	acc[shade] = index;
+	return acc;
+}, {});
+const getShadeOrder = (shade) => shadeOrder[shade] ?? 999;
+
+
 module.exports = function (content, outputPath) {
 	if (!outputPath.endsWith('.html')) {
 		return content;
@@ -37,7 +67,8 @@ module.exports = function (content, outputPath) {
 		const tabs = JSDOM.fragment(`<vwc-tabs></vwc-tabs>`).firstChild;
 		const exampleCode = code.textContent;
 		for (const connotation of CONNOTATIONS) {
-			const connotationProperties = cssProperties.filter(prop => prop.name.includes(connotation));
+			const connotationProperties = cssProperties.filter(prop => getConnotation(prop.name, componentName) === connotation);
+			connotationProperties.sort((a, b) => getShadeOrder(getShade(a.name, componentName, connotation)) - getShadeOrder(getShade(b.name, componentName, connotation)));
 			if (connotationProperties.length === 0) {
 				continue;
 			}
