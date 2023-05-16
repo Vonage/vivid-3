@@ -60,31 +60,46 @@ module.exports = function (content, outputPath) {
 
 		const componentName = Array.from(pre.classList).find(c => c.includes('variables-preview')).match(/\[(.*?)\]/)[1];
 		const componentData = jsonData.find(c => c.title === componentName);
-
 		const cssProperties = getCssPropertiesForComponent(componentData);
 
-		// Group the variables by connotation and render a tab for each
-		const tabs = JSDOM.fragment(`<vwc-tabs></vwc-tabs>`).firstChild;
 		const exampleCode = code.textContent;
-		for (const connotation of CONNOTATIONS) {
-			const connotationProperties = cssProperties.filter(prop => getConnotation(prop.name, componentName) === connotation);
-			connotationProperties.sort((a, b) => getShadeOrder(getShade(a.name, componentName, connotation)) - getShadeOrder(getShade(b.name, componentName, connotation)));
-			if (connotationProperties.length === 0) {
-				continue;
+
+		const groupIntoTabs = !pre.classList.contains('no-tabs');
+
+		if (groupIntoTabs) {
+			// Group the variables by connotation and render a tab for each
+			const tabs = JSDOM.fragment(`<vwc-tabs></vwc-tabs>`).firstChild;
+			for (const connotation of CONNOTATIONS) {
+				const connotationProperties = cssProperties.filter(prop => getConnotation(prop.name, componentName) === connotation);
+				connotationProperties.sort((a, b) => getShadeOrder(getShade(a.name, componentName, connotation)) - getShadeOrder(getShade(b.name, componentName, connotation)));
+				if (connotationProperties.length === 0) {
+					continue;
+				}
+
+				// Inject a <style> setting the initial values into the code.
+				code.textContent = renderVariablesStylesheet(connotationProperties) + exampleCode.replace(/\$CONNOTATION/g, connotation);
+				const example = createCodeExamples(code, pre, outputPath, componentData, connotationProperties);
+				const tab = JSDOM.fragment(`
+					<vwc-tab label="${connotation}"></vwc-tab>
+					<vwc-tab-panel></vwc-tab-panel>
+				`);
+				tab.querySelector('vwc-tab-panel').appendChild(example);
+				tabs.appendChild(tab);
 			}
-
-			// Inject a <style> setting the initial values into the code.
-			code.textContent = renderVariablesStylesheet(connotationProperties) + exampleCode.replace(/\$CONNOTATION/g, connotation);
-			const example = createCodeExamples(code, pre, outputPath, componentData, connotationProperties);
-			const tab = JSDOM.fragment(`
-				<vwc-tab label="${connotation}"></vwc-tab>
-				<vwc-tab-panel></vwc-tab-panel>
-			`);
-			tab.querySelector('vwc-tab-panel').appendChild(example);
-			tabs.appendChild(tab);
+			pre.replaceWith(tabs);
+		} else {
+			cssProperties.sort((a, b) => {
+				const aConnotation = getConnotation(a.name, componentName);
+				const bConnotation = getConnotation(b.name, componentName);
+				if (aConnotation !== bConnotation) {
+					return aConnotation.localeCompare(bConnotation);
+				}
+				return getShadeOrder(getShade(a.name, componentName, aConnotation)) - getShadeOrder(getShade(b.name, componentName, bConnotation));
+			})
+			code.textContent = renderVariablesStylesheet(cssProperties) + exampleCode;
+			const example = createCodeExamples(code, pre, outputPath, componentData, cssProperties);
+			pre.replaceWith(example);
 		}
-
-		pre.replaceWith(tabs);
 	});
 
 	return dom.serialize();

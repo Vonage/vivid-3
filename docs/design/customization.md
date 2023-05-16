@@ -192,7 +192,7 @@
 
 ## Select
 
-```html variables-preview[select]
+```html variables-preview[select] no-tabs
 <style>
   html { /* for demo purposes */
     block-size: 230px;
@@ -260,13 +260,13 @@
 
 ## Text Area
 
-```html variables-preview[text-area]
+```html variables-preview[text-area] no-tabs
 <vwc-text-area label="Helper text below" helper-text="Help text" placeholder="My Placeholder"></vwc-text-area>
 ```
 
 ## Text Field
 
-```html variables-preview[text-field]
+```html variables-preview[text-field] no-tabs
 <vwc-text-field label="Helper text below" helper-text="Help text" placeholder="My Placeholder"></vwc-text-field>
 ```
 
