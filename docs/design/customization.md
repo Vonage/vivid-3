@@ -1,6 +1,90 @@
 # Customization
 
-## Accordion Item
+Colors can be overridden by setting CSS variables.  
+Each component has a set of tokens that are needed for full customization of the component and its states (hover, selected, active etc.).
+
+## CSS Variables
+The exposed CSS variables follow this structure:
+![variables schema](/assets/images/customization-variables.png)
+
+## Colors
+Vivid is using a naming scale for all connotations that are in use in the components.
+
+```html preview
+<style>
+td {
+	padding: 0 4px;
+	font-size: 20px;
+}
+
+.scale {
+	color: var(--vvd-color-alert-500);
+	text-align: right;
+}
+
+.color-square {
+	width: 1em;
+	height: 1em;
+	border: 1px solid var(--vvd-color-neutral-300)
+}
+</style>
+
+<table>
+	<tbody>
+	<tr>
+		<td class="scale"><code>--50</code></td>
+		<td><div class="color-square" style="background-color: var(--vvd-color-cta-50)"></td>
+		<td><code>faint</code>, <code>backdrop</code></td>
+	</tr>
+	<tr>
+		<td class="scale"><code>--100</code></td>
+		<td><div class="color-square" style="background-color: var(--vvd-color-cta-100)"></td>
+		<td><code>soft</code></td>
+	</tr>
+	<tr>
+		<td class="scale"><code>--200</code></td>
+		<td><div class="color-square" style="background-color: var(--vvd-color-cta-200)"></td>
+		<td><code>dim</code></td>
+	</tr>
+	<tr>
+		<td class="scale"><code>--300</code></td>
+		<td><div class="color-square" style="background-color: var(--vvd-color-cta-300)"></td>
+		<td><code>pale</code></td>
+	</tr>
+	<tr>
+		<td class="scale"><code>--400</code></td>
+		<td><div class="color-square" style="background-color: var(--vvd-color-cta-400)"></td>
+		<td><code>light</code></td>
+	</tr>
+	<tr>
+		<td class="scale"><code>--500</code></td>
+		<td><div class="color-square" style="background-color: var(--vvd-color-cta-500)"></td>
+		<td><code>primary</code>, <code>intermediate</code></td>
+	</tr>
+	<tr>
+		<td class="scale"><code>--600</code></td>
+		<td><div class="color-square" style="background-color: var(--vvd-color-cta-600)"></td>
+		<td><code>firm</code>, <code>primary-increment</code></td>
+	</tr>
+	<tr>
+		<td class="scale"><code>--700</code></td>
+		<td><div class="color-square" style="background-color: var(--vvd-color-cta-700)"></td>
+		<td><code>fierce</code></td>
+	</tr>
+	<tr>
+		<td class="scale"><code>--800</code></td>
+		<td><div class="color-square" style="background-color: var(--vvd-color-cta-800)"></td>
+		<td><code>contrast</code></td>
+	</tr>
+	</tbody>
+</table>
+```
+
+## Components
+Below you can find the list of components with their exposed CSS variables for their respective connotations.
+Click on "Edit code" to be able to modify the variables. 
+
+### Accordion Item
 
 ```html variables-preview[accordion-item]
 <vwc-accordion expand-mode="multi">
@@ -10,7 +94,7 @@
 </vwc-accordion>
 ```
 
-## Action Group
+### Action Group
 
 ```html variables-preview[action-group]
 <vwc-action-group>
@@ -21,13 +105,13 @@
 </vwc-action-group>
 ```
 
-## Alert
+### Alert
 
 ```html variables-preview[alert]
 <vwc-alert headline="Alert title" subtitle="What an important info!!!" open></vwc-alert>
 ```
 
-## Avatar
+### Avatar
 
 ```html variables-preview[avatar]
 <vwc-avatar connotation="$CONNOTATION" appearance="filled"></vwc-avatar>
@@ -35,7 +119,7 @@
 <vwc-avatar connotation="$CONNOTATION" appearance="outlined"></vwc-avatar>
 ```
 
-## Badge
+### Badge
 
 ```html variables-preview[badge]
 <vwc-badge connotation="$CONNOTATION" text='filled' appearance='filled'></vwc-badge>
@@ -43,13 +127,13 @@
 <vwc-badge connotation="$CONNOTATION" text='duotone' appearance='duotone'></vwc-badge>
 ```
 
-## Banner
+### Banner
 
 ```html variables-preview[banner]
 <vwc-banner connotation="$CONNOTATION" text="Here's some information that you may find important!"></vwc-banner>
 ```
 
-## Button
+### Button
 
 ```html variables-preview[button]
 <vwc-button connotation="$CONNOTATION" label='ghost' appearance='ghost'></vwc-button>
@@ -57,7 +141,7 @@
 <vwc-button connotation="$CONNOTATION" label='outlined' appearance='outlined'></vwc-button>
 ```
 
-## Calendar Event
+### Calendar Event
 
 ```html variables-preview[calendar-event]
 <vwc-calendar>
@@ -66,13 +150,13 @@
 </vwc-calendar>
 ```
 
-## Checkbox
+### Checkbox
 
 ```html variables-preview[checkbox]
 <vwc-checkbox label='A default checkbox'></vwc-checkbox>
 ```
 
-## Combobox
+### Combobox
 
 ```html variables-preview[combobox]
 <vwc-combobox>
@@ -81,13 +165,13 @@
 </vwc-combobox>
 ```
 
-## Fab
+### Fab
 
 ```html variables-preview[fab]
 <vwc-fab connotation="$CONNOTATION" icon='cart-line' label='Add to cart'></vwc-fab>
 ```
 
-## Menu Item
+### Menu Item
 
 ```html variables-preview[menu-item]
 <style>
@@ -110,7 +194,7 @@
 </vwc-menu>
 ```
 
-## Nav
+### Nav
 
 ```html variables-preview[nav]
 <vwc-nav>
@@ -128,7 +212,7 @@
 </script>
 ```
 
-## Nav Disclosure
+### Nav Disclosure
 
 ```html variables-preview[nav-disclosure]
 <vwc-nav>
@@ -138,7 +222,7 @@
 <vwc-nav>
 ```
 
-## Nav Item
+### Nav Item
 
 ```html variables-preview[nav-item]
 <vwc-nav>
@@ -156,7 +240,7 @@
 </script>
 ```
 
-## Note
+### Note
 
 ```html variables-preview[note]
 <vwc-note connotation="$CONNOTATION" icon="check-circle" headline="Pascal's theological argument">
@@ -164,7 +248,7 @@
 </vwc-note>
 ```
 
-## Option
+### Option
 
 ```html variables-preview[option]
 <vwc-listbox>
@@ -172,25 +256,25 @@
 </vwc-listbox>
 ```
 
-## Progress
+### Progress
 
 ```html variables-preview[progress]
 <vwc-progress connotation="$CONNOTATION" min="0" max="50" value="12.5"></vwc-progress>
 ```
 
-## Progress Ring
+### Progress Ring
 
 ```html variables-preview[progress-ring]
 <vwc-progress-ring connotation="$CONNOTATION"></vwc-progress-ring>
 ```
 
-## Radio
+### Radio
 
 ```html variables-preview[radio]
 <vwc-radio label="A default radio"></vwc-radio>
 ```
 
-## Select
+### Select
 
 ```html variables-preview[select] no-tabs
 <style>
@@ -208,13 +292,13 @@
 </vwc-select>
 ```
 
-## Switch
+### Switch
 
 ```html variables-preview[switch]
 <vwc-switch connotation="$CONNOTATION"></vwc-switch>
 ```
 
-## Tabs
+### Tabs
 
 ```html variables-preview[tabs]
 <vwc-tabs activeid="apps">
@@ -249,7 +333,7 @@
 </vwc-tabs>
 ```
 
-## Tag
+### Tag
 
 ```html variables-preview[tag]
 <vwc-tag-group>
@@ -258,19 +342,19 @@
 </vwc-tag-group>
 ```
 
-## Text Area
+### Text Area
 
 ```html variables-preview[text-area] no-tabs
 <vwc-text-area label="Helper text below" helper-text="Help text" placeholder="My Placeholder"></vwc-text-area>
 ```
 
-## Text Field
+### Text Field
 
 ```html variables-preview[text-field] no-tabs
 <vwc-text-field label="Helper text below" helper-text="Help text" placeholder="My Placeholder"></vwc-text-field>
 ```
 
-## Tree Item
+### Tree Item
 
 ```html variables-preview[tree-item]
 <vwc-tree-view>
