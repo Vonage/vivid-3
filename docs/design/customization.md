@@ -10,75 +10,49 @@ The exposed CSS variables follow this structure:
 ## Colors
 Vivid is using a naming scale for all connotations that are in use in the components.
 
-```html preview
 <style>
-td {
-	padding: 0 4px;
-	font-size: 20px;
-}
-
 .scale {
-	color: var(--vvd-color-alert-500);
 	text-align: right;
 }
-
 .color-square {
-	width: 1em;
-	height: 1em;
-	border: 1px solid var(--vvd-color-neutral-300)
+	width: 22px;
+	aspect-ratio: 1;
+	border: 1px solid var(--vvd-color-neutral-300);
+  background-color: var(--sample-bg);
 }
 </style>
-
-<table>
-	<tbody>
-	<tr>
-		<td class="scale"><code>--50</code></td>
-		<td><div class="color-square" style="background-color: var(--vvd-color-cta-50)"></td>
-		<td><code>faint</code>, <code>backdrop</code></td>
-	</tr>
-	<tr>
-		<td class="scale"><code>--100</code></td>
-		<td><div class="color-square" style="background-color: var(--vvd-color-cta-100)"></td>
-		<td><code>soft</code></td>
-	</tr>
-	<tr>
-		<td class="scale"><code>--200</code></td>
-		<td><div class="color-square" style="background-color: var(--vvd-color-cta-200)"></td>
-		<td><code>dim</code></td>
-	</tr>
-	<tr>
-		<td class="scale"><code>--300</code></td>
-		<td><div class="color-square" style="background-color: var(--vvd-color-cta-300)"></td>
-		<td><code>pale</code></td>
-	</tr>
-	<tr>
-		<td class="scale"><code>--400</code></td>
-		<td><div class="color-square" style="background-color: var(--vvd-color-cta-400)"></td>
-		<td><code>light</code></td>
-	</tr>
-	<tr>
-		<td class="scale"><code>--500</code></td>
-		<td><div class="color-square" style="background-color: var(--vvd-color-cta-500)"></td>
-		<td><code>primary</code>, <code>intermediate</code></td>
-	</tr>
-	<tr>
-		<td class="scale"><code>--600</code></td>
-		<td><div class="color-square" style="background-color: var(--vvd-color-cta-600)"></td>
-		<td><code>firm</code>, <code>primary-increment</code></td>
-	</tr>
-	<tr>
-		<td class="scale"><code>--700</code></td>
-		<td><div class="color-square" style="background-color: var(--vvd-color-cta-700)"></td>
-		<td><code>fierce</code></td>
-	</tr>
-	<tr>
-		<td class="scale"><code>--800</code></td>
-		<td><div class="color-square" style="background-color: var(--vvd-color-cta-800)"></td>
-		<td><code>contrast</code></td>
-	</tr>
-	</tbody>
-</table>
-```
+<vwc-layout style="--layout-grid-template-columns: auto 22px 1fr; --layout-column-gap: 8px; --layout-row-gap: 6px;">
+		<span class="scale"><code>--var-color-50</code></span>
+		<span class="color-square" style="--sample-bg: var(--vvd-color-cta-50)"></span>
+		<span><code>faint</code>, <code>backdrop</code></span>
+		<span class="scale"><code>--var-100</code></span>
+		<span class="color-square" style="--sample-bg: var(--vvd-color-cta-100)"></span>
+		<span><code>soft</code></span>
+		<span class="scale"><code>--var-200</code></span>
+		<span class="color-square" style="--sample-bg: var(--vvd-color-cta-200)"></span>
+		<span><code>dim</code></span>
+		<span class="scale"><code>--var-300</code></span>
+		<span class="color-square" style="--sample-bg: var(--vvd-color-cta-300)"></span>
+		<span><code>pale</code></span>
+		<span class="scale"><code>--var-400</code></span>
+		<span class="color-square" style="--sample-bg: var(--vvd-color-cta-400)"></span>
+		<span><code>light</code></span>
+		<span class="scale"><code>--var-color-500</code></span>
+		<span class="color-square" style="--sample-bg: var(--vvd-color-cta-500)"></span>
+		<span><code>primary</code>, <code>intermediate</code></span>
+		<span class="scale"><code>--var-color-600</code></span>
+		<span class="color-square" style="--sample-bg: var(--vvd-color-cta-600)"></span>
+		<span><code>firm</code>, <code>primary-increment</code></span>
+		<span class="scale"><code>--var-color-700</code></span>
+		<span class="color-square" style="--sample-bg: var(--vvd-color-cta-700)"></span>
+		<span><code>fierce</code></span>
+		<span class="scale"><code>--var-color-800</code></span>
+		<span class="color-square" style="--sample-bg: var(--vvd-color-cta-800)"></span>
+		<span><code>contrast</code></span>
+		<span class="scale"><code>--var-color-canvas</code></span>
+		<span class="color-square" style="--sample-bg: var(--vvd-color-canvas)"></span>
+		<span><code>primary-text</code></span>
+</vwc-layout>
 
 ## Components
 Below you can find the list of components with their exposed CSS variables for their respective connotations.
