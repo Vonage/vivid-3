@@ -77,18 +77,22 @@ describe('data grid integration tests', () => {
 
 	describe('selectionMode', function () {
 
-		describe('cell-selection', function () {
-			let cell: HTMLElement;
+		beforeEach(async function () {
+			element.rowsData = [
+				{ id: 1, name: 'John', age: 20 },
+				{ id: 2, name: 'Jane', age: 21 },
+			];
+			await elementUpdated(element);
+			await elementUpdated(element);
+		});
 
-			beforeEach(async function () {
-				element.rowsData = [
-					{ id: 1, name: 'John', age: 20 },
-					{ id: 2, name: 'Jane', age: 21 },
-				];
-				await elementUpdated(element);
-				await elementUpdated(element);
-				cell = getRowCell(1,0);
+		describe('cell-selection', function () {
+			let firstCell: HTMLElement;
+
+			beforeEach(function () {
+				firstCell = getRowCell(1,0);
 			});
+
 			it.each([DataGridSelectionMode.singleCell, DataGridSelectionMode.multiCell])
 			('should add aria-selected="false" to all cells if selectionMode is %s', async function (selectionMode: DataGridSelectionMode) {
 				element.selectionMode = selectionMode;
@@ -113,42 +117,42 @@ describe('data grid integration tests', () => {
 			it.each([DataGridSelectionMode.singleCell, DataGridSelectionMode.multiCell])
 			('should add selected attribute to clicked cell if selection mode is %s', async function (selectionMode) {
 				element.selectionMode = selectionMode;
-				cell.click();
+				firstCell.click();
 				await elementUpdated(element);
-				expect(isElementSelected(cell)).toEqual(true);
+				expect(isElementSelected(firstCell)).toEqual(true);
 			});
 
 			it.each(['none', 'single-row', 'multi-row'])
 			( 'should prevent selected attribute to cell if selectionMode is %s', async function (selectionMode) {
 				(element.selectionMode as any)= selectionMode;
-				cell.click();
+				firstCell.click();
 				await elementUpdated(element);
-				expect(isElementSelected(cell)).toEqual(false);
+				expect(isElementSelected(firstCell)).toEqual(false);
 			});
 
 			it('should remove selected attribute from selected clicked cell in single mode', async function () {
 				element.selectionMode = DataGridSelectionMode.singleCell;
 
-				cell.click();
+				firstCell.click();
 				await elementUpdated(element);
-				cell.click();
+				firstCell.click();
 				await elementUpdated(element);
 
-				expect(isElementSelected(cell)).toEqual(false);
+				expect(isElementSelected(firstCell)).toEqual(false);
 			});
 
 			it.each([DataGridSelectionMode.singleCell, DataGridSelectionMode.multiCell])
 			('should remove selected attribute if clicked other cell and selectionMode is %s', async function (selectionMode: string) {
 				element.selectionMode = selectionMode as DataGridSelectionMode;
 
-				cell.click();
+				firstCell.click();
 				await elementUpdated(element);
 
 				const otherCell = element.rowElements[2].children[1] as HTMLElement;
 				otherCell.click();
 				await elementUpdated(element);
 
-				expect(isElementSelected(cell)).toEqual(false);
+				expect(isElementSelected(firstCell)).toEqual(false);
 				expect(isElementSelected(otherCell)).toEqual(true);
 			});
 
@@ -157,21 +161,21 @@ describe('data grid integration tests', () => {
 				async function (activeKey: string) {
 					element.selectionMode = DataGridSelectionMode.multiCell;
 
-					cell.click();
+					firstCell.click();
 					await elementUpdated(element);
 
 					const otherCell = getRowCell(2,1);
 					otherCell.dispatchEvent(new MouseEvent('click', { [activeKey]: true, bubbles: true, composed: true }));
 					await elementUpdated(element);
 
-					expect(isElementSelected(cell)).toEqual(true);
+					expect(isElementSelected(firstCell)).toEqual(true);
 					expect(isElementSelected(otherCell)).toEqual(true);
 				});
 
 			it('should reset selection when selectionMode changes', async function () {
 				element.selectionMode = DataGridSelectionMode.multiCell;
 
-				cell.click();
+				firstCell.click();
 				await elementUpdated(element);
 
 				const otherCell = getRowCell(2,1);
@@ -181,14 +185,14 @@ describe('data grid integration tests', () => {
 				element.selectionMode = DataGridSelectionMode.singleCell;
 				await elementUpdated(element);
 
-				expect(isElementSelected(cell)).toEqual(false);
+				expect(isElementSelected(firstCell)).toEqual(false);
 				expect(isElementSelected(otherCell)).toEqual(false);
 			});
 
 			it('should reset selection clicking a cell in multi-cell', async function () {
 				element.selectionMode = DataGridSelectionMode.multiCell;
 
-				cell.click();
+				firstCell.click();
 				await elementUpdated(element);
 
 				const otherCell = getRowCell(2,1);
@@ -196,7 +200,7 @@ describe('data grid integration tests', () => {
 				otherCell.dispatchEvent(new MouseEvent('click', { bubbles: true, composed: true }));
 				await elementUpdated(element);
 
-				expect(isElementSelected(cell)).toEqual(false);
+				expect(isElementSelected(firstCell)).toEqual(false);
 				expect(isElementSelected(otherCell)).toEqual(true);
 			});
 
@@ -219,6 +223,15 @@ describe('data grid integration tests', () => {
 
 				expect(isElementSelected(cell1)).toEqual(true);
 				expect(isElementSelected(cell2)).toEqual(true);
+			});
+		});
+
+		describe('row-selection', function () {
+			it('should set rows aria-selected attribute to false', function () {
+				element.selectionMode = DataGridSelectionMode.singleRow;
+				const rows = Array.from(element.querySelectorAll('[role="row"]'));
+				const allRowsNotSelected = rows.every(row => row.getAttribute('aria-selected') === 'false');
+				expect(allRowsNotSelected).toEqual(true);
 			});
 		});
 	});

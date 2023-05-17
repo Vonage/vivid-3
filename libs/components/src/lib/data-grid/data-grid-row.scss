@@ -1,6 +1,23 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+	$connotations: accent cta,
+	$shades: primary primary-text primary-increment faint pale dim,
+	$default: accent
+);
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+	$appearances: listitem,
+	$states: idle hover selected selectedAndHover,
+	$default: listitem,
+);
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+
 :host {
+	@include connotation.connotation;
+	@include appearance.appearance;
+
 	display: grid;
 	width: 100%;
 	box-sizing: border-box;

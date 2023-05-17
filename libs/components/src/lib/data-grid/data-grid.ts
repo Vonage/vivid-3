@@ -65,11 +65,11 @@ export class DataGrid extends FoundationElement {
 
 		if (this.selectionMode === DataGridSelectionMode.singleCell || this.selectionMode === DataGridSelectionMode.multiCell)  {
 			if (this.selectionMode === DataGridSelectionMode.multiCell && (ctrlKey || shiftKey || metaKey)) {
-				this.#setCellSelectedState(targetAsCell, !this.#selectedCells.includes(targetAsCell));
+				this.#setSelectedState(targetAsCell, !this.#selectedCells.includes(targetAsCell));
 			} else {
 				const cacheTargetSelection = targetAsCell.getAttribute('aria-selected') === 'true';
 				this.#resetSelection();
-				this.#setCellSelectedState(targetAsCell, !cacheTargetSelection);
+				this.#setSelectedState(targetAsCell, !cacheTargetSelection);
 			}
 		}
 	};
@@ -80,16 +80,19 @@ export class DataGrid extends FoundationElement {
 		this.addEventListener('keydown', this.#handleKeypress);
 	}
 
-	#setCellSelectedState = (cell: DataGridCell, selectedState: boolean) => {
+	#setSelectedState = (cell: Element, selectedState: boolean) => {
 		cell.setAttribute('aria-selected', selectedState.toString());
 	};
 
 	#resetSelection() {
 		if (this.selectionMode === DataGridSelectionMode.singleCell || this.selectionMode === DataGridSelectionMode.multiCell) {
-			Array.from(this.querySelectorAll('[role="gridcell"]')).forEach(cell => this.#setCellSelectedState(cell as DataGridCell, false));
+			Array.from(this.querySelectorAll('[role="gridcell"]')).forEach(cell => this.#setSelectedState(cell, false));
 		}
 		if (this.selectionMode === DataGridSelectionMode.none) {
 			Array.from(this.querySelectorAll('[role="gridcell"]')).forEach(cell => cell.removeAttribute('aria-selected'));
+		}
+		if (this.selectionMode === DataGridSelectionMode.singleRow) {
+			Array.from(this.querySelectorAll('[role="row"]')).forEach(row => this.#setSelectedState(row, false));
 		}
 	}
 }
