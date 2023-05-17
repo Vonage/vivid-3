@@ -1,4 +1,4 @@
-import { attr } from '@microsoft/fast-element';
+import {attr, observable} from '@microsoft/fast-element';
 import { applyMixins, MenuItem as FastMenuItem } from '@microsoft/fast-foundation';
 import { AffixIcon } from '../../shared/patterns/affix';
 
@@ -24,6 +24,14 @@ export class MenuItem extends FastMenuItem {
 	 * HTML Attribute: text
 	 */
 	@attr({ attribute: 'text-secondary' }) textSecondary?: string;
+
+	/**
+	 *
+	 * Slot observer:
+	 *
+	 * @internal
+	 */
+	@observable metaSlottedContent?: HTMLElement[];
 }
 
 export interface MenuItem extends AffixIcon {}

@@ -258,7 +258,8 @@
 		"modules": [
 			"/assets/modules/components/menu/index.js",
 			"/assets/modules/components/menu-item/index.js",
-			"/assets/modules/components/divider/index.js"
+			"/assets/modules/components/divider/index.js",
+			"/assets/modules/components/badge/index.js"
 		]
 	},
 	{
