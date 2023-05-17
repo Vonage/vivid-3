@@ -194,3 +194,5 @@ describe('data grid', () => {
 // TODO:: add sorting and filtering examples
 // TODO:: add "manual" example
 // TODO:: test keyboard navigation
+// TODO:: add aria-multiselectable to grid if multi selection is enabled
+// TODO:: add aria-selected to grid cells/rows only if selection is enabled
