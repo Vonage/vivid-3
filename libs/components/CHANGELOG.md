@@ -4,6 +4,21 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.13.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.12.0...vivid-v3.13.0) (2023-05-17)
+
+
+### Features
+
+* **components:** toggletip (VIV-865) ([#1137](https://github.com/Vonage/vivid-3/issues/1137)) ([ec3dc40](https://github.com/Vonage/vivid-3/commit/ec3dc4067331cd281185b3e4d71933da852ce8f6))
+* **menu-item:** text wrap (VIV-1058) ([#1157](https://github.com/Vonage/vivid-3/issues/1157)) ([b60eb52](https://github.com/Vonage/vivid-3/commit/b60eb52118c0b3ade9763aa1e35db4dae5f735e4))
+
+
+### Bug Fixes
+
+* **layout:** export RowSpacing property ([befda12](https://github.com/Vonage/vivid-3/commit/befda127cd35ac8d9d6bc2e45b20653328a7488a))
+* **layout:** export RowSpacing property (VIV-1076) ([#1155](https://github.com/Vonage/vivid-3/issues/1155)) ([befda12](https://github.com/Vonage/vivid-3/commit/befda127cd35ac8d9d6bc2e45b20653328a7488a))
+* **tabs:** make sure `activeid` is always set (VIV-1040) ([#1145](https://github.com/Vonage/vivid-3/issues/1145)) ([5898002](https://github.com/Vonage/vivid-3/commit/5898002bc6f8add7dfb6a3341108bba4d8925062))
+
 ## [3.12.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.11.0...vivid-v3.12.0) (2023-05-10)
 
 
