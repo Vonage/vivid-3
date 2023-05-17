@@ -1,5 +1,5 @@
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
+import { attr, nullableNumberConverter } from '@microsoft/fast-element';
 import { Connotation } from '../enums';
 import { AffixIcon } from '../../shared/patterns/affix';
 
@@ -20,9 +20,6 @@ const connotationIconMap = new Map([
 
 export type AlertPlacement = 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end';
 
-const defaultConnotation =
-	(connotation: Connotation) => connotationIconMap.get(connotation) as Connotation;
-
 /**
  * Base class for alert
  *
@@ -31,7 +28,7 @@ const defaultConnotation =
  */
 export class Alert extends FoundationElement {
 	// timeout to close the alert
-	private timeout: any;
+	#timeoutID?: NodeJS.Timeout;
 
 	/**
 	 * if the alert is removable
@@ -59,12 +56,12 @@ export class Alert extends FoundationElement {
 	@attr headline?: string;
 
 	/**
-	 * the text of the alert sub-heading
+	 * the main text of the alert
 	 * accepts string
 	 *
 	 * @public
 	 */
-	@attr subtitle?: string;
+	@attr text?: string;
 
 	/**
 	 * alert header icon
@@ -74,22 +71,15 @@ export class Alert extends FoundationElement {
 	@attr icon?: string;
 
 	/**
-	 * indicates whether the alert is open
-	 *
-	 * @public
-	 * HTML Attribute: open
-	 */
-	@attr({
-		mode: 'boolean',
-	}) open = false;
-
-	/**
 	 * the timeout ms to show the alert
 	 * accepts number
 	 *
 	 * @public
 	 */
-	@attr({ mode: 'fromView' }) timeoutms: number = 0;
+	@attr({
+		mode: 'fromView',
+		converter: nullableNumberConverter
+	}) timeoutms: number = 0;
 
 	/**
 	 * alert connotation
@@ -98,61 +88,52 @@ export class Alert extends FoundationElement {
 	 */
 	@attr connotation?: AlertConnotation;
 
-	get conditionedIcon() {
-		return this.icon ?? defaultConnotation(this.connotation as any);
+	/**
+	 * indicates whether the alert is open
+	 *
+	 * @public
+	 * HTML Attribute: open
+	 */
+	@attr({ mode: 'boolean'	}) open = false;
+	openChanged(oldValue: boolean, newValue: boolean): void {
+		if (oldValue === undefined) return;
+
+		if (this.#timeoutID) clearTimeout(this.#timeoutID);
+
+		if (newValue) {
+			this.$emit('open');
+			if (this.timeoutms > 0) {
+				this.#timeoutID = setTimeout(() => this.open = false, this.timeoutms);
+			}
+			if (this.removable) {
+				document.addEventListener('keydown', this.#closeOnEscape);
+			}
+		} else {
+			this.$emit('close');
+			document.removeEventListener('keydown', this.#closeOnEscape);
+		}
 	}
 
-	override connectedCallback() {
-		super.connectedCallback();
-		this.addEventListener('keydown', this.#closeOnKeyDown);
+	get conditionedIcon() {
+		return this.icon ?? (this.connotation ? connotationIconMap.get(this.connotation) : this.connotation);
+	}
 
-		if (this.open) {
-			this.#show();
-		}
+	override connectedCallback(): void {
+		this.openChanged(!this.open, this.open);
+		super.connectedCallback();
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
-		this.removeEventListener('keydown', this.#closeOnKeyDown);
-		clearTimeout(this.timeout);
+		if (this.#timeoutID) clearTimeout(this.#timeoutID);
+		document.removeEventListener('keydown', this.#closeOnEscape);
 	}
 
-	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
-		super.attributeChangedCallback(name, oldValue, newValue);
-		switch (name) {
-			case 'open': {
-				this.open ? this.#show() : this.remove();
-			}
-		}
-	}
-
-	#show = () => {
-		this.open = true;
-		if (this.timeout) {
-			clearTimeout(this.timeout);
-		}
-		if (this.timeoutms > 0) {
-			this.timeout = setTimeout(this.remove, this.timeoutms);
-		}
-	};
-
-	override remove = () => {
-		this.open = false;
-		if (this.timeout) {
-			clearTimeout(this.timeout);
-		}
-		this.$emit('removed');
-	};
-
-	#closeOnKeyDown = (e: KeyboardEvent) => {
-		if (e.key !== 'Escape' || !this.removable) {
-			return;
-		}
-		this.remove();
+	#closeOnEscape = (e:KeyboardEvent) => {
+		if (e.key === 'Escape') this.open = false;
 	};
 }
 
 applyMixins(Alert, AffixIcon);
 
-export interface Alert extends AffixIcon {
-}
+export interface Alert extends AffixIcon {}

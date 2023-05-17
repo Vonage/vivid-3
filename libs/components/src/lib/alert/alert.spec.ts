@@ -23,7 +23,7 @@ describe('vwc-alert', () => {
 				.toBeInstanceOf(Alert);
 			expect(element.open).toBeFalsy();
 			expect(element.icon).toBeUndefined();
-			expect(element.subtitle).toBeUndefined();
+			expect(element.text).toBeUndefined();
 			expect(element.headline).toBeUndefined();
 			expect(element.connotation).toBeUndefined();
 			expect(element.removable).toBeFalsy();
@@ -88,7 +88,7 @@ describe('vwc-alert', () => {
 		 * @param subtitle
 		 */
 		async function setSubtitleProperty(subtitle: string | undefined) {
-			element.subtitle = subtitle;
+			element.text = subtitle;
 			await elementUpdated(element);
 		}
 
@@ -109,7 +109,7 @@ describe('vwc-alert', () => {
 		}
 
 		it('should init with undefined and set as empty string in DOM', function () {
-			const initSubtitlePropEmpty = element.subtitle;
+			const initSubtitlePropEmpty = element.text;
 			const initSubtitleAttrEmpty = getSubtitle();
 
 			expect(initSubtitlePropEmpty)
@@ -125,7 +125,7 @@ describe('vwc-alert', () => {
 
 			await setSubtitleProperty(undefined);
 			await setSubtitleAttribute(messageSubtitle);
-			const propertySubtitleWithAttribute = element.subtitle;
+			const propertySubtitleWithAttribute = element.text;
 
 			expect(DOMSubtitleWithProperty)
 				.toEqual(messageSubtitle);
