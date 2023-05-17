@@ -2,6 +2,13 @@ import { DataGrid as FoundationElement } from '@microsoft/fast-foundation';
 import {attr} from '@microsoft/fast-element';
 import type {DataGridCell} from './data-grid-cell';
 
+interface SelectionMetaData {
+	target: EventTarget | null
+	ctrlKey: boolean,
+	shiftKey: boolean,
+	metaKey: boolean
+}
+
 export const DataGridSelectionMode = {
 	none: 'none',
 	singleRow: 'single-row',
@@ -10,8 +17,8 @@ export const DataGridSelectionMode = {
 	multiCell: 'multi-cell',
 } as const;
 
-function isTargetRoleHeader(target: DataGridCell) {
-	return target.getAttribute('role') === 'columnheader';
+function isTargetRoleHeader(target: EventTarget) {
+	return (target as HTMLElement).getAttribute('role') === 'columnheader';
 }
 
 export type ValueOf<T> = T[keyof T];
@@ -39,24 +46,31 @@ export class DataGrid extends FoundationElement {
 		this.#resetSelection();
 	}
 
-	#handleClick = (e: MouseEvent) => {
-		const target = e.target as DataGridCell;
-		if (isTargetRoleHeader(target)) {
+	#handleKeypress = (e: KeyboardEvent): void => {
+		if (e.key === 'Enter' || e.key === ' ') {
+			this.#handleClick(e as unknown as MouseEvent);
+		}
+	};
+
+	#handleClick = ({target, ctrlKey, shiftKey, metaKey}: MouseEvent) => {
+		this.#handleSelection({target, ctrlKey, shiftKey, metaKey});
+	};
+
+	#handleSelection = ({target, ctrlKey, shiftKey, metaKey}: SelectionMetaData) => {
+		const targetAsCell = target as DataGridCell;
+
+		if (isTargetRoleHeader(targetAsCell)) {
 			return;
 		}
-		const {ctrlKey, shiftKey, metaKey} = e;
+
 		if (this.selectionMode === DataGridSelectionMode.singleCell || this.selectionMode === DataGridSelectionMode.multiCell)  {
 
 			if (this.selectionMode === DataGridSelectionMode.multiCell && (ctrlKey || shiftKey || metaKey)) {
-				target.selected = !this.#selectedCells.includes(target);
+				targetAsCell.selected = !this.#selectedCells.includes(targetAsCell);
 			} else {
-				const cacheTargetSelection = target.selected;
+				const cacheTargetSelection = targetAsCell.selected;
 				this.#resetSelection();
-				target.selected = !cacheTargetSelection;
-			}
-
-			if (target.selected) {
-				this.#selectedCells.push(target);
+				targetAsCell.selected = !cacheTargetSelection;
 			}
 		}
 	};
@@ -64,6 +78,7 @@ export class DataGrid extends FoundationElement {
 	constructor() {
 		super();
 		this.addEventListener('click', this.#handleClick);
+		this.addEventListener('keydown', this.#handleKeypress);
 	}
 
 	#resetSelection() {

@@ -182,7 +182,18 @@ describe('data grid', () => {
 				expect(isElementSelected(headerCell)).toEqual(false);
 			});
 
-			
+			it('should select a cell on enter and space press', async function () {
+				element.selectionMode = DataGridSelectionMode.multiCell;
+				const cell1 = getRowCell(1, 1);
+				const cell2 = getRowCell(2, 1);
+
+				cell1.dispatchEvent(new KeyboardEvent('keydown', { ctrlKey: true, key: 'Enter', bubbles: true, composed: true }));
+				cell2.dispatchEvent(new KeyboardEvent('keydown', { ctrlKey: true, key: ' ', bubbles: true, composed: true }));
+				await elementUpdated(element);
+
+				expect(isElementSelected(cell1)).toEqual(true);
+				expect(isElementSelected(cell2)).toEqual(true);
+			});
 		});
 	});
 });
@@ -203,4 +214,3 @@ function isElementSelected(element: HTMLElement): boolean {
 // TODO:: test keyboard navigation
 // TODO:: add aria-multiselectable to grid if multi selection is enabled
 // TODO:: add aria-selected to grid cells/rows only if selection is enabled (remove when changing selection mode)
-// TODO:: keyboard selection
