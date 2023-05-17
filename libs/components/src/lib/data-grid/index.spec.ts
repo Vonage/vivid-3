@@ -89,7 +89,7 @@ describe('data grid', () => {
 				element.selectionMode = selectionMode;
 				cell.click();
 				await elementUpdated(element);
-				expect(cell.hasAttribute('selected')).toEqual(true);
+				expect(isElementSelected(cell)).toEqual(true);
 			});
 
 			it.each(['none', 'single-row', 'multi-row'])
@@ -97,7 +97,7 @@ describe('data grid', () => {
 				(element.selectionMode as any)= selectionMode;
 				cell.click();
 				await elementUpdated(element);
-				expect(cell.hasAttribute('selected')).toEqual(false);
+				expect(isElementSelected(cell)).toEqual(false);
 			});
 
 			it('should remove selected attribute from selected clicked cell in single mode', async function () {
@@ -108,7 +108,7 @@ describe('data grid', () => {
 				cell.click();
 				await elementUpdated(element);
 
-				expect(cell.hasAttribute('selected')).toEqual(false);
+				expect(isElementSelected(cell)).toEqual(false);
 			});
 
 			it.each([DataGridSelectionMode.singleCell, DataGridSelectionMode.multiCell])
@@ -122,8 +122,8 @@ describe('data grid', () => {
 				otherCell.click();
 				await elementUpdated(element);
 
-				expect(cell.hasAttribute('selected')).toEqual(false);
-				expect(otherCell.hasAttribute('selected')).toEqual(true);
+				expect(isElementSelected(cell)).toEqual(false);
+				expect(isElementSelected(otherCell)).toEqual(true);
 			});
 
 			it.each(['ctrlKey', 'shiftKey', 'metaKey'])
@@ -138,8 +138,8 @@ describe('data grid', () => {
 					otherCell.dispatchEvent(new MouseEvent('click', { [activeKey]: true, bubbles: true, composed: true }));
 					await elementUpdated(element);
 
-					expect(cell.hasAttribute('selected')).toEqual(true);
-					expect(otherCell.hasAttribute('selected')).toEqual(true);
+					expect(isElementSelected(cell)).toEqual(true);
+					expect(isElementSelected(otherCell)).toEqual(true);
 				});
 
 			it('should reset selection when selectionMode changes', async function () {
@@ -155,8 +155,8 @@ describe('data grid', () => {
 				element.selectionMode = DataGridSelectionMode.singleCell;
 				await elementUpdated(element);
 
-				expect(cell.hasAttribute('selected')).toEqual(false);
-				expect(otherCell.hasAttribute('selected')).toEqual(false);
+				expect(isElementSelected(cell)).toEqual(false);
+				expect(isElementSelected(otherCell)).toEqual(false);
 			});
 
 			it('should reset selection clicking a cell in multi-cell', async function () {
@@ -170,8 +170,8 @@ describe('data grid', () => {
 				otherCell.dispatchEvent(new MouseEvent('click', { bubbles: true, composed: true }));
 				await elementUpdated(element);
 
-				expect(cell.hasAttribute('selected')).toEqual(false);
-				expect(otherCell.hasAttribute('selected')).toEqual(true);
+				expect(isElementSelected(cell)).toEqual(false);
+				expect(isElementSelected(otherCell)).toEqual(true);
 			});
 
 			it('should select only non-header cells', async function () {
@@ -179,11 +179,18 @@ describe('data grid', () => {
 				const headerCell = getRowCell(0, 1);
 				headerCell.click();
 				await elementUpdated(element);
-				expect(headerCell.hasAttribute('selected')).toEqual(false);
+				expect(isElementSelected(headerCell)).toEqual(false);
 			});
+
+			
 		});
 	});
 });
+
+function isElementSelected(element: HTMLElement): boolean {
+	return element.hasAttribute('selected');
+	// return element.getAttribute('aria-selected') === 'true';
+}
 
 // TODO:: underline state
 // TODO:: header cells design
@@ -195,4 +202,5 @@ describe('data grid', () => {
 // TODO:: add "manual" example
 // TODO:: test keyboard navigation
 // TODO:: add aria-multiselectable to grid if multi selection is enabled
-// TODO:: add aria-selected to grid cells/rows only if selection is enabled
+// TODO:: add aria-selected to grid cells/rows only if selection is enabled (remove when changing selection mode)
+// TODO:: keyboard selection
