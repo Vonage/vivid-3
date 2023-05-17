@@ -1,5 +1,5 @@
 import { DataGridCell as FoundationElement } from '@microsoft/fast-foundation';
-import {attr} from "@microsoft/fast-element";
+import {attr} from '@microsoft/fast-element';
 
 /**
  * Base class for data-grid

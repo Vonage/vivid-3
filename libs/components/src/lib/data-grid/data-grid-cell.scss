@@ -40,8 +40,8 @@
 	}
 
 	:host([cell-type="columnheader"]) & {
-		font: var(#{constants.$vvd-typography-base-bold});
 		border-color: var(#{constants.$vvd-color-canvas-text});
+		font: var(#{constants.$vvd-typography-base-bold});
 	}
 }
 
