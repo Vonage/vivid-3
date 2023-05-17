@@ -226,8 +226,15 @@ describe('vwc-data-grid-cell', () => {
 				expect(element.hasAttribute('selected')).toBeTruthy();
 			});
 
-			// TODO: Add aria-selected/pressed
+			it('should set aria-selected to cell', async function () {
+				expect(element.getAttribute('aria-selected')).toEqual('false');
+			});
 
+			it('should set aria-selected to true when selected', async function () {
+				element.selected = true;
+				await elementUpdated(element);
+				expect(element.getAttribute('aria-selected')).toEqual('true');
+			});
 		});
 	});
 });

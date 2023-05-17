@@ -8,6 +8,7 @@ export function DataGridCellTemplate<T extends DataGridCell>(context: ElementDef
 	return html<T>`
         <template
             tabindex="-1"
+						aria-selected="${x => x.selected}"
             role="${x => DataGridCellRole[x.cellType] ?? DataGridCellRole.default}"
         >
 					<div id="focus-wrapper">
