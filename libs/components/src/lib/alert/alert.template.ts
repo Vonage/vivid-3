@@ -33,7 +33,7 @@ function renderDismissButton(buttonTag: string) {
 			size="condensed"
 			class="dismiss-button"
 			icon="close-line"
-			@click="${x => x.remove()}">
+			@click="${x => x.open = false}">
 		</${buttonTag}>`;
 }
 
@@ -57,10 +57,10 @@ export const AlertTemplate: (
 				${when(x => x.icon || x.connotation, renderIcon(context))}
 				<div class="alert-text">
 					${when(x => x.headline,
-						html`<div class="headline">${(x) => x.headline}</div>`)}
+		html`<div class="headline">${(x) => x.headline}</div>`)}
 					<slot>
 						${when(x => x.text,
-							html`<div class="maintext">${(x) => x.text}</div>`)}
+		html`<div class="maintext">${(x) => x.text}</div>`)}
 					</slot>
 				</div>
 				<slot class="action-items" name="action-items"></slot>

@@ -83,34 +83,34 @@ describe('vwc-alert', () => {
 		});
 	});
 
-	describe('subtitle', function () {
+	describe('text', function () {
 		/**
-		 * @param subtitle
+		 * @param text
 		 */
-		async function setSubtitleProperty(subtitle: string | undefined) {
-			element.text = subtitle;
+		async function setTextProperty(text: string | undefined) {
+			element.text = text;
 			await elementUpdated(element);
 		}
 
 		/**
-		 * @param subtitle
+		 * @param text
 		 */
-		async function setSubtitleAttribute(subtitle: string | undefined) {
-			element.setAttribute('subtitle', subtitle ? subtitle : '');
+		async function setTextAttribute(text: string | undefined) {
+			element.setAttribute('text', text ? text : '');
 			await elementUpdated(element);
 		}
 
 		/**
 		 *
 		 */
-		function getSubtitle() {
-			const subtitle = getBaseElement(element).querySelector('.subtitle')?.textContent;
+		function getText() {
+			const subtitle = getBaseElement(element).querySelector('.maintext')?.textContent;
 			return subtitle?.trim();
 		}
 
 		it('should init with undefined and set as empty string in DOM', function () {
 			const initSubtitlePropEmpty = element.text;
-			const initSubtitleAttrEmpty = getSubtitle();
+			const initSubtitleAttrEmpty = getText();
 
 			expect(initSubtitlePropEmpty)
 				.toEqual(undefined);
@@ -120,11 +120,11 @@ describe('vwc-alert', () => {
 		it('should reflect the message', async function () {
 			const messageSubtitle = 'Some Subtitle';
 
-			await setSubtitleProperty(messageSubtitle);
-			const DOMSubtitleWithProperty = getSubtitle();
+			await setTextProperty(messageSubtitle);
+			const DOMSubtitleWithProperty = getText();
 
-			await setSubtitleProperty(undefined);
-			await setSubtitleAttribute(messageSubtitle);
+			await setTextProperty(undefined);
+			await setTextAttribute(messageSubtitle);
 			const propertySubtitleWithAttribute = element.text;
 
 			expect(DOMSubtitleWithProperty)
@@ -201,44 +201,18 @@ describe('vwc-alert', () => {
 	});
 
 	describe('timeout', function () {
-		it('should fire removed event', async function () {
-			const timeout = 100;
+		it('should fire close event when open from start', async function () {
+			jest.useFakeTimers();
 			const spy = jest.fn();
-			element.addEventListener('removed', spy);
+
+			element.timeoutms = 100;
 			element.open = true;
-			element.timeoutms = timeout;
-			await elementUpdated(element);
-			element.open = false;
-
-			expect(spy).not.toHaveBeenCalled();
-
-			await elementUpdated(element);
+			element.addEventListener('close', spy);
+			
+			jest.advanceTimersByTime(100);
 
 			expect(spy).toHaveBeenCalled();
-		});
-
-		it('should fire removed event when open from start', async function () {
-			const timeout = 100;
-
-			element = (await fixture(
-				`<${COMPONENT_TAG} open timeoutms=${timeout}></${COMPONENT_TAG}>`
-			)) as Alert;
-
-			const spy = jest.fn();
-			element.addEventListener('removed', spy);
-
-			element.open = false;
-			expect(spy).not.toHaveBeenCalled();
-
-			await elementUpdated(element);
-
-			expect(spy).toHaveBeenCalled();
-
-			element.open = true;
-			await elementUpdated(element);
-
-			element.remove();
-			expect(spy).toHaveBeenCalled();
+			jest.useRealTimers();
 		});
 	});
 
@@ -286,43 +260,54 @@ describe('vwc-alert', () => {
 	});
 
 	describe('remove on escape key', function () {
+
+		beforeEach(() => element.open = true);
+
 		it('should remove the alert when esc and removable is true', async function () {
 			const spy = jest.fn();
-			element.addEventListener('removed', spy);
 			element.removable = true;
-			element.focus();
+			element.addEventListener('close', spy);
+
+			await elementUpdated(element);
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
-			elementUpdated(element);
-			expect((spy as any).mock.calls.length).toEqual(1);
+
+			expect(spy).toHaveBeenCalledTimes(1);
+			expect(element.open).toBeFalsy();
 		});
 
 		it('should remove the alert only on escape key', async function () {
 			const spy = jest.fn();
-			element.addEventListener('removed', spy);
 			element.removable = true;
-			element.focus();
+			element.addEventListener('close', spy);
+
+			await elementUpdated(element);
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
-			expect((spy as any).mock.calls.length).toEqual(0);
+
+			expect(spy).toHaveBeenCalledTimes(0);
+			expect(element.open).toBeTruthy();
 		});
 
 		it('should remove keydown listener after disconnection', async function () {
 			const spy = jest.fn();
-			element.addEventListener('removed', spy);
 			element.removable = true;
-			element.focus();
+			element.addEventListener('close', spy);
+
+			await elementUpdated(element);
 			element.disconnectedCallback();
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
-			expect((spy as any).mock.calls.length).toEqual(0);
+
+			expect(spy).not.toHaveBeenCalled();
 		});
 
 		it('should remove the alert only if "removable" is true', async function () {
 			const spy = jest.fn();
-			element.addEventListener('removed', spy);
 			element.removable = false;
-			element.focus();
+			element.addEventListener('close', spy);
+
+			await elementUpdated(element);
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
-			elementUpdated(element);
-			expect((spy as any).mock.calls.length).toEqual(0);
+
+			expect(spy).not.toHaveBeenCalled();
 		});
 	});
 });

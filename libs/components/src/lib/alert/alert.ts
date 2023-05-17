@@ -97,40 +97,36 @@ export class Alert extends FoundationElement {
 	@attr({ mode: 'boolean'	}) open = false;
 	openChanged(oldValue: boolean, newValue: boolean): void {
 		if (oldValue === undefined) return;
-
-		if (this.#timeoutID) clearTimeout(this.#timeoutID);
-
-		if (newValue) {
-			this.$emit('open');
-			if (this.timeoutms > 0) {
-				this.#timeoutID = setTimeout(() => this.open = false, this.timeoutms);
-			}
-			if (this.removable) {
-				document.addEventListener('keydown', this.#closeOnEscape);
-			}
-		} else {
-			this.$emit('close');
-			document.removeEventListener('keydown', this.#closeOnEscape);
-		}
-	}
-
-	get conditionedIcon() {
-		return this.icon ?? (this.connotation ? connotationIconMap.get(this.connotation) : this.connotation);
+		this.$emit(newValue ? 'open' : 'close');
+		this.#setupTimeout();
 	}
 
 	override connectedCallback(): void {
-		this.openChanged(!this.open, this.open);
+		this.#setupTimeout();
+		this.addEventListener('keydown', this.#closeOnEscape);
 		super.connectedCallback();
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
 		if (this.#timeoutID) clearTimeout(this.#timeoutID);
-		document.removeEventListener('keydown', this.#closeOnEscape);
+		this.removeEventListener('keydown', this.#closeOnEscape);
+	}
+
+	get conditionedIcon() {
+		return this.icon ?? (this.connotation ? connotationIconMap.get(this.connotation) : this.connotation);
+	}
+
+	#setupTimeout() {
+		if (this.#timeoutID) clearTimeout(this.#timeoutID);
+
+		if (this.open && this.timeoutms > 0) {
+			this.#timeoutID = setTimeout(() => this.open = false, this.timeoutms);
+		}
 	}
 
 	#closeOnEscape = (e:KeyboardEvent) => {
-		if (e.key === 'Escape') this.open = false;
+		if (this.removable && e.key === 'Escape') this.open = false;
 	};
 }
 
