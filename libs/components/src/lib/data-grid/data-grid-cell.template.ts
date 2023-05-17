@@ -11,7 +11,7 @@ export function DataGridCellTemplate<T extends DataGridCell>(context: ElementDef
 						aria-selected="${x => x.selected}"
             role="${x => DataGridCellRole[x.cellType] ?? DataGridCellRole.default}"
         >
-					<div id="focus-wrapper">
+					<div id="focus-wrapper" class="base">
 							<slot></slot>
 					${() => focusTemplate}
 					</div>

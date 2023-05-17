@@ -60,12 +60,17 @@ Use `generate-header"` for data grid header visibility mode.
 Use the `selection-mode` attribute to specify the selection mode of the grid.
 
 ```html preview
+<style>
+  html { 
+    block-size: 300px; 
+  }
+</style>
 <vwc-select onchange="changeSelectionMode()">
 	<vwc-option value="none" text="none"></vwc-option>
 	<vwc-option value="single-cell" text="single-cell"></vwc-option>
 	<vwc-option value="multi-cell" text="multi-cell"></vwc-option>
-	<vwc-option value="single-row" text="single-row"></vwc-option>
-	<vwc-option value="multi-row" text="multi-row"></vwc-option>
+	<vwc-option value="single-row" text="single-row" disabled></vwc-option>
+	<vwc-option value="multi-row" text="multi-row" disabled></vwc-option>
 </vwc-select>
 
 <vwc-data-grid></vwc-data-grid>
