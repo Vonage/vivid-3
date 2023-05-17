@@ -392,6 +392,14 @@
 		]
 	},
 	{
+		"title": "toggletip",
+		"markdown": "./libs/components/src/lib/toggletip/README.md",
+		"modules": [
+			"/assets/modules/components/toggletip/index.js",
+			"/assets/modules/components/button/index.js"
+		]
+	},
+	{
 		"title": "tree-view",
 		"status": "alpha",
 		"markdown": "./libs/components/src/lib/tree-view/README.md",
