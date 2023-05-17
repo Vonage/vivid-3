@@ -78,9 +78,9 @@ $alert-transition-delay: --transition-delay;
 
 	.alert-text {
 		display: flex;
+		flex: 1;
 		flex-direction: column;
 		gap: 4px;
-		justify-self: flex-start;
 		margin-inline-end: auto;
 
 		.headline {
