@@ -214,3 +214,4 @@ function isElementSelected(element: HTMLElement): boolean {
 // TODO:: test keyboard navigation
 // TODO:: add aria-multiselectable to grid if multi selection is enabled
 // TODO:: add aria-selected to grid cells/rows only if selection is enabled (remove when changing selection mode)
+// TODO:: check the rtl states

@@ -27,7 +27,7 @@
 	box-sizing: border-box;
 	align-items: center;
 	padding: 8px 12px;
-	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-100});
+	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-400});
 	block-size: #{size.$vvd-size-expanded};
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
@@ -41,12 +41,7 @@
 
 	:host([cell-type="columnheader"]) & {
 		font: var(#{constants.$vvd-typography-base-bold});
-	}
-
-	// will be in use later on?
-
-	:host(.underline) & {
-		border-bottom-color: var(#{constants.$vvd-color-neutral-400});
+		border-bottom: 1px solid var(#{constants.$vvd-color-neutral-400});
 	}
 }
 
