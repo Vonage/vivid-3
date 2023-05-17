@@ -5,14 +5,14 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['menu', 'menu-item', 'divider'];
+const components = ['menu', 'menu-item', 'divider', 'badge'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template =`
 		<style>
 			div {
 				width: 100%;
-				height: 1200px;
+				height: 1300px;
 				position: relative
 			}
 		</style>
@@ -48,10 +48,13 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-menu-item style="--text-primary-line-clamp: auto; --text-secondary-line-clamp: auto;"
 				icon="home" text="primary text with long text and default line clamp"
 				text-secondary="secondary text with long text and default line clamp" role="menuitemradio" ></vwc-menu-item>
+				<vwc-menu-item icon="file-pdf-line" text="Export to PDF">
+				<vwc-badge slot="meta" appearance='subtle' connotation='cta' shape='pill' icon='check-solid'></vwc-badge>
+				</vwc-menu-item>
 			</vwc-menu>
 		</div>`;
 
-	page.setViewportSize({ width: 200, height: 1200 });
+	page.setViewportSize({ width: 200, height: 1300 });
 
 	await loadComponents({
 		page,
