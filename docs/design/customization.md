@@ -82,7 +82,7 @@ Click on "Edit code" to be able to modify the variables.
 ### Alert
 
 ```html variables-preview[alert]
-<vwc-alert headline="Alert title" subtitle="What an important info!!!" open></vwc-alert>
+<vwc-alert connotation="$CONNOTATION" subtitle="What an important info!!!" open icon="megaphone-solid"></vwc-alert>
 ```
 
 ### Avatar
