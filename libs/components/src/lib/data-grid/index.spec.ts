@@ -5,7 +5,7 @@ import './index';
 
 const COMPONENT_TAG = 'vwc-data-grid';
 
-describe('data grid', () => {
+describe('data grid integration tests', () => {
 	function getRowCell(row: number, cell: number) {
 		return element.rowElements[row].children[cell] as HTMLElement;
 	}
@@ -18,55 +18,61 @@ describe('data grid', () => {
 		)) as DataGrid;
 	});
 
-	it('should register vwc-data-grid, vwc-data-grid-row and vwc-data-grid-cell', async () => {
-		expect(customElements.get('vwc-data-grid')).toBeTruthy();
-		expect(customElements.get('vwc-data-grid-row')).toBeTruthy();
-		expect(customElements.get('vwc-data-grid-cell')).toBeTruthy();
+	describe('basic', function () {
+		it('should register vwc-data-grid, vwc-data-grid-row and vwc-data-grid-cell', async () => {
+			expect(customElements.get('vwc-data-grid')).toBeTruthy();
+			expect(customElements.get('vwc-data-grid-row')).toBeTruthy();
+			expect(customElements.get('vwc-data-grid-cell')).toBeTruthy();
+		});
 	});
 
-	it('should display grid with rows', async () => {
-		element.rowsData = [
-			{ id: 1, name: 'John', age: 20 },
-			{ id: 2, name: 'Jane', age: 21 },
-		];
-		await elementUpdated(element);
-		expect(element.querySelectorAll('vwc-data-grid-row').length).toBe(3);
+	describe('rows and columns rendering', function () {
+		it('should display grid with rows', async () => {
+			element.rowsData = [
+				{ id: 1, name: 'John', age: 20 },
+				{ id: 2, name: 'Jane', age: 21 },
+			];
+			await elementUpdated(element);
+			expect(element.querySelectorAll('vwc-data-grid-row').length).toBe(3);
+		});
+
+		it('should display grid with columns', async () => {
+			element.rowsData = [
+				{ id: 1, name: 'John', age: 20 },
+				{ id: 2, name: 'Jane', age: 21 },
+			];
+			await elementUpdated(element);
+			await elementUpdated(element);
+			expect(element.querySelectorAll('vwc-data-grid-cell').length).toBe(9);
+		});
 	});
 
-	it('should display grid with columns', async () => {
-		element.rowsData = [
-			{ id: 1, name: 'John', age: 20 },
-			{ id: 2, name: 'Jane', age: 21 },
-		];
-		await elementUpdated(element);
-		await elementUpdated(element);
-		expect(element.querySelectorAll('vwc-data-grid-cell').length).toBe(9);
-	});
+	describe('events', function () {
+		it('should fire cell-focused event', async function () {
+			const spy = jest.fn();
 
-	it('should fire cell-focused event', async function () {
-		const spy = jest.fn();
+			element.addEventListener('cell-focused', spy);
+			element.rowsData = [
+				{ id: 1, name: 'John', age: 20 },
+				{ id: 2, name: 'Jane', age: 21 },
+			];
+			await elementUpdated(element);
+			element.rowElements[0].children[0].dispatchEvent(new Event('focusin'));
+			expect(spy).toHaveBeenCalled();
+		});
 
-		element.addEventListener('cell-focused', spy);
-		element.rowsData = [
-			{ id: 1, name: 'John', age: 20 },
-			{ id: 2, name: 'Jane', age: 21 },
-		];
-		await elementUpdated(element);
-		element.rowElements[0].children[0].dispatchEvent(new Event('focusin'));
-		expect(spy).toHaveBeenCalled();
-	});
+		it('should fire row-focused event', async function () {
+			const spy = jest.fn();
 
-	it('should fire row-focused event', async function () {
-		const spy = jest.fn();
-
-		element.addEventListener('row-focused', spy);
-		element.rowsData = [
-			{ id: 1, name: 'John', age: 20 },
-			{ id: 2, name: 'Jane', age: 21 },
-		];
-		await elementUpdated(element);
-		element.rowElements[0].children[0].dispatchEvent(new Event('focusin'));
-		expect(spy).toHaveBeenCalled();
+			element.addEventListener('row-focused', spy);
+			element.rowsData = [
+				{ id: 1, name: 'John', age: 20 },
+				{ id: 2, name: 'Jane', age: 21 },
+			];
+			await elementUpdated(element);
+			element.rowElements[0].children[0].dispatchEvent(new Event('focusin'));
+			expect(spy).toHaveBeenCalled();
+		});
 	});
 
 	describe('selectionMode', function () {
@@ -82,6 +88,26 @@ describe('data grid', () => {
 				await elementUpdated(element);
 				await elementUpdated(element);
 				cell = getRowCell(1,0);
+			});
+			it.each([DataGridSelectionMode.singleCell, DataGridSelectionMode.multiCell])
+			('should add aria-selected="false" to all cells if selectionMode is %s', async function (selectionMode: DataGridSelectionMode) {
+				element.selectionMode = selectionMode;
+				await elementUpdated(element);
+				const allNoneHeaderCells = Array.from(element.querySelectorAll('[role="gridcell"]'));
+				const allNoneHeaderCellsSelectable = allNoneHeaderCells.every(cell => cell.getAttribute('aria-selected') === 'false');
+				expect(allNoneHeaderCellsSelectable).toEqual(true);
+			});
+
+			it('should remove aria-selected from all cells if set to "none"', async function () {
+				element.selectionMode = DataGridSelectionMode.singleCell;
+				await elementUpdated(element);
+
+				element.selectionMode = DataGridSelectionMode.none;
+				await elementUpdated(element);
+
+				const allNoneHeaderCells = Array.from(element.querySelectorAll('[role="gridcell"]'));
+				const allNoneHeaderCellsNotSelectable = allNoneHeaderCells.every(cell => !cell.hasAttribute('aria-selected'));
+				expect(allNoneHeaderCellsNotSelectable).toEqual(true);
 			});
 
 			it.each([DataGridSelectionMode.singleCell, DataGridSelectionMode.multiCell])
@@ -196,15 +222,14 @@ describe('data grid', () => {
 			});
 		});
 	});
+
 });
 
 function isElementSelected(element: HTMLElement): boolean {
-	return element.hasAttribute('selected');
-	// return element.getAttribute('aria-selected') === 'true';
+	return element.getAttribute('aria-selected') === 'true';
 }
 
-// TODO:: underline state
-// TODO:: header cells design
+// TODO:: header cells design - sort and filter variants
 // TODO:: row selection
 // TODO:: aria-selected to selected rows
 // TODO:: header cell with filter
@@ -213,5 +238,5 @@ function isElementSelected(element: HTMLElement): boolean {
 // TODO:: add "manual" example
 // TODO:: test keyboard navigation
 // TODO:: add aria-multiselectable to grid if multi selection is enabled
-// TODO:: add aria-selected to grid cells/rows only if selection is enabled (remove when changing selection mode)
+// TODO:: add aria-selected to grid rows only if selection is enabled (remove when changing selection mode)
 // TODO:: check the rtl states

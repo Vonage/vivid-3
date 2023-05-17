@@ -1,5 +1,5 @@
 import { DataGridCell as FoundationElement } from '@microsoft/fast-foundation';
-import {attr} from '@microsoft/fast-element';
+import {attr} from "@microsoft/fast-element";
 
 /**
  * Base class for data-grid
@@ -8,15 +8,19 @@ import {attr} from '@microsoft/fast-element';
  */
 export class DataGridCell extends FoundationElement {
 
-	@attr({mode: 'boolean'}) selected = false;
+	@attr({attribute: 'aria-selected', mode: 'fromView'}) override ariaSelected: string | null = null;
+
+	ariaSelectedChanged(_: string | null, selectedState: string | null) {
+		this.shadowRoot?.querySelector('.base')?.classList.toggle('selected', selectedState === 'true');
+	}
 
 	override handleFocusin(e: FocusEvent) {
 		super.handleFocusin(e);
-		this.shadowRoot!.getElementById('focus-wrapper')!.classList.add('active');
+		this.shadowRoot!.querySelector('.base')!.classList.add('active');
 	}
 
 	override handleFocusout(e: FocusEvent) {
 		super.handleFocusout(e);
-		this.shadowRoot!.getElementById('focus-wrapper')!.classList.remove('active');
+		this.shadowRoot!.querySelector('.base')!.classList.remove('active');
 	}
 }

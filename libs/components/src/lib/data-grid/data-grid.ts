@@ -37,7 +37,7 @@ export class DataGrid extends FoundationElement {
 	get #selectedCells(): DataGridCell[] {
 		return this.rowElements.reduce((acc, row) => {
 			const rowChildren = Array.from(row.children) as DataGridCell[];
-			const selectedCells = rowChildren.filter((cell: DataGridCell) => cell.selected);
+			const selectedCells = rowChildren.filter((cell: DataGridCell) => cell.getAttribute('aria-selected') === 'true');
 			return acc.concat(selectedCells);
 		}, [] as DataGridCell[]);
 	}
@@ -64,13 +64,12 @@ export class DataGrid extends FoundationElement {
 		}
 
 		if (this.selectionMode === DataGridSelectionMode.singleCell || this.selectionMode === DataGridSelectionMode.multiCell)  {
-
 			if (this.selectionMode === DataGridSelectionMode.multiCell && (ctrlKey || shiftKey || metaKey)) {
-				targetAsCell.selected = !this.#selectedCells.includes(targetAsCell);
+				this.#setCellSelectedState(targetAsCell, !this.#selectedCells.includes(targetAsCell));
 			} else {
-				const cacheTargetSelection = targetAsCell.selected;
+				const cacheTargetSelection = targetAsCell.getAttribute('aria-selected') === 'true';
 				this.#resetSelection();
-				targetAsCell.selected = !cacheTargetSelection;
+				this.#setCellSelectedState(targetAsCell, !cacheTargetSelection);
 			}
 		}
 	};
@@ -81,8 +80,17 @@ export class DataGrid extends FoundationElement {
 		this.addEventListener('keydown', this.#handleKeypress);
 	}
 
+	#setCellSelectedState = (cell: DataGridCell, selectedState: boolean) => {
+		cell.setAttribute('aria-selected', selectedState.toString());
+	};
+
 	#resetSelection() {
-		this.#selectedCells.forEach(cell => cell.selected = false);
+		if (this.selectionMode === DataGridSelectionMode.singleCell || this.selectionMode === DataGridSelectionMode.multiCell) {
+			Array.from(this.querySelectorAll('[role="gridcell"]')).forEach(cell => this.#setCellSelectedState(cell as DataGridCell, false));
+		}
+		if (this.selectionMode === DataGridSelectionMode.none) {
+			Array.from(this.querySelectorAll('[role="gridcell"]')).forEach(cell => cell.removeAttribute('aria-selected'));
+		}
 	}
 }
 

@@ -41,7 +41,7 @@
 
 	:host([cell-type="columnheader"]) & {
 		font: var(#{constants.$vvd-typography-base-bold});
-		border-bottom: 1px solid var(#{constants.$vvd-color-neutral-400});
+		border-color: var(#{constants.$vvd-color-canvas});
 	}
 }
 

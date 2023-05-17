@@ -1,6 +1,6 @@
 import { html } from '@microsoft/fast-element';
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
 import { designSystem } from '../../shared/design-system';
 import { DataGridCell } from './data-grid-cell';
 import { DataGridCellTemplate } from './data-grid-cell.template';
@@ -30,7 +30,6 @@ describe('vwc-data-grid-cell', () => {
 			expect(element.getAttribute('grid-column')).toBeNull();
 			expect(element.rowData).toBeNull();
 			expect(element.columnDefinition).toBeNull();
-			expect(element.selected).toEqual(false);
 		});
 	});
 
@@ -170,12 +169,12 @@ describe('vwc-data-grid-cell', () => {
 				expect(spy).toHaveBeenCalledTimes(1);
 			});
 
-			it('should set "active" class on the "focus-wrapper" element', async () => {
-				const focusWrapper = element.shadowRoot?.querySelector('#focus-wrapper');
-				const hasActiveClassBeforeFocus = focusWrapper?.classList.contains('active');
+			it('should set "active" class on the base element', async () => {
+				const baseElement = getBaseElement(element);
+				const hasActiveClassBeforeFocus = baseElement?.classList.contains('active');
 				element.dispatchEvent(new Event('focusin'));
 				expect(hasActiveClassBeforeFocus).toBeFalsy();
-				expect(focusWrapper?.classList.contains('active')).toBeTruthy();
+				expect(baseElement?.classList.contains('active')).toBeTruthy();
 			});
 		});
 
@@ -218,23 +217,22 @@ describe('vwc-data-grid-cell', () => {
 				expect(document.activeElement).toEqual(element);
 			});
 		});
+	});
 
-		describe('selected', () => {
-			it('should reflect selected attribute', async function () {
-				element.selected = true;
-				await elementUpdated(element);
-				expect(element.hasAttribute('selected')).toBeTruthy();
-			});
+	describe('aria-selected', function () {
+		it('should set selected class on base when aria-selected true', async () => {
+			element.setAttribute('aria-selected', 'true');
+			await elementUpdated(element);
+			expect(getBaseElement(element)?.classList.contains('selected')).toBeTruthy();
+		});
 
-			it('should set aria-selected to cell', async function () {
-				expect(element.getAttribute('aria-selected')).toEqual('false');
-			});
+		it('should remove selected class on base when aria-selected is not true', async function () {
+			element.setAttribute('aria-selected', 'true');
+			await elementUpdated(element);
 
-			it('should set aria-selected to true when selected', async function () {
-				element.selected = true;
-				await elementUpdated(element);
-				expect(element.getAttribute('aria-selected')).toEqual('true');
-			});
+			element.setAttribute('aria-selected', 'false');
+			await elementUpdated(element);
+			expect(getBaseElement(element)?.classList.contains('selected')).toBeFalsy();
 		});
 	});
 });
