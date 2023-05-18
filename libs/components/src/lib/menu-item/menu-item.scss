@@ -99,6 +99,11 @@
 	.base.disabled & {
 		color: var(#{constants.$vvd-color-neutral-200});
 	}
+
+	.base.has-meta & {
+		order: 1;
+		margin-inline-start: auto;
+	}
 }
 
 
