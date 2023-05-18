@@ -1,5 +1,6 @@
 const { EleventyRenderPlugin } = require("@11ty/eleventy");
 const codeBlockDemo = require("./transformers/code-block-demo");
+const variablesPreview = require("./transformers/variables-preview");
 const markdownLibrary = require("./libraries/markdown-it");
 const CleanCSS = require("clean-css");
 
@@ -15,8 +16,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({
     "dist/libs/styles": "assets/styles",
     "dist/libs/components": "assets/modules/components",
-    "assets/images/vivid-logo.svg": "assets/images/vivid-logo.svg",
-    "assets/images/vivid-cover-wide.avif": "assets/images/vivid-cover-wide.avif",
+    "assets/images": "assets/images",
     [`${ASSETS_DIR}/scripts`]: "assets/scripts",
     [`${ASSETS_DIR}/styles`]: "assets/styles"
   });
@@ -35,6 +35,7 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addTransform('codeBlockDemo', codeBlockDemo);
+  eleventyConfig.addTransform('variablesPreview', variablesPreview);
 
   eleventyConfig.setUseGitIgnore(false);
 
@@ -42,11 +43,11 @@ module.exports = function (eleventyConfig) {
     return new CleanCSS({}).minify(code).styles;
   });
 
-  eleventyConfig.addFilter("publicComponentsFilter", function (components) {
+  eleventyConfig.addFilter("publicPageFilter", function (pages) {
     const isServing = process.argv.includes('--serve');
     return isServing
-		? components
-		: components.filter(component => component?.status !== 'underlying');
+		? pages
+		: pages.filter(page => page?.status !== 'underlying');
   });
 
   return {

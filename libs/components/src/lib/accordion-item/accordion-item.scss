@@ -27,7 +27,7 @@
 
 .heading-button {
 	@include appearance.appearance;
-	@include connotation.connotation;
+	@include connotation.connotation (accordion-item);
 
 	@supports selector(:focus-visible) {
 		&:focus {
