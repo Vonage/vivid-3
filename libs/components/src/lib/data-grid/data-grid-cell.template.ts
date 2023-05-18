@@ -4,8 +4,6 @@ import { focusTemplateFactory } from './../../shared/patterns/focus';
 import {DataGridCellRole} from './data-grid.options';
 import type {DataGridCell} from './data-grid-cell';
 
-// TODO::observe ariaSelected and add/remove selected class from base
-
 export function DataGridCellTemplate<T extends DataGridCell>(context: ElementDefinitionContext): ViewTemplate<T> {
 	const focusTemplate = focusTemplateFactory(context);
 	return html<T>`
