@@ -43,7 +43,7 @@ $low-ink-color: --_low-ink-color;
 
 .control {
 	@include appearance.appearance;
-	@include connotation.connotation;
+	@include connotation.connotation (select);
 
 	display: flex;
 	align-items: center;

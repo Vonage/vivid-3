@@ -16,7 +16,7 @@
 
 
 .base {
-	@include connotation.connotation;
+	@include connotation.connotation (note);
 	@include appearance.appearance;
 
 	display: flex;

@@ -25,7 +25,7 @@
 
 .control {
 	@include appearance.appearance;
-	@include connotation.connotation;
+	@include connotation.connotation (tree-item);
 
 	$min-block-size: #{size.$vvd-size-normal};
 	$gap: 12px;

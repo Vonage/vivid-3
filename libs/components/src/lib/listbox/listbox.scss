@@ -24,7 +24,7 @@
 }
 
 .base {
-	@include connotation.connotation;
+	@include connotation.connotation (listbox);
 	@include appearance.appearance;
 
 	position: relative;

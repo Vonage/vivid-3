@@ -33,7 +33,7 @@
 	font: var(#{constants.$vvd-typography-base-bold});
 	transition: background-color 0.15s linear, filter 0.15s linear;
 	vertical-align: middle;
-	@include connotation.connotation;
+	@include connotation.connotation (fab);
 	@include appearance.appearance;
 
 	@supports selector(:focus-visible) {

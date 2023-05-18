@@ -41,7 +41,7 @@
 	word-break: break-word;
 
 	@include appearance.appearance;
-	@include connotation.connotation;
+	@include connotation.connotation (nav-disclosure);
 
 	@supports selector(:focus-visible) {
 		&:focus {

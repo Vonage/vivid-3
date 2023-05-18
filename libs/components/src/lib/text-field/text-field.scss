@@ -28,7 +28,7 @@ $low-ink-color: --_low-ink-color;
 	// input element :invalid state isn't enough as our spec awaits user interaction
 	// before showing the error.
 	@include appearance.appearance;
-	@include connotation.connotation;
+	@include connotation.connotation (text-field);
 	#{variables.$text-field-gutter}: calc(#{size.$vvd-size-normal} / 2.5);
 	#{variables.$text-field-icon-size}: calc(#{size.$vvd-size-normal} / 2);
 

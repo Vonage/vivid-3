@@ -17,7 +17,7 @@
 }
 
 .base {
-	@include connotation.connotation;
+	@include connotation.connotation (action-group);
 	@include appearance.appearance;
 
 	position: relative;
