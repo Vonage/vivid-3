@@ -19,7 +19,7 @@
 
 
 .base {
-	@include connotation.connotation;
+	@include connotation.connotation (avatar);
 	@include appearance.appearance;
 
 	display: inline-flex;

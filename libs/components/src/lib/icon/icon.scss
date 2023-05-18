@@ -34,7 +34,7 @@ $default-size: list.nth($size-keys, 1);
 }
 
 .control {
-	@include connotation.connotation;
+	@include connotation.connotation (icon);
 	@include utils.spread-list-selectors(".size", $size-keys, $default-size) using($value) {
 		#{variables.$block-size}: map.get($size, $value);
 	}

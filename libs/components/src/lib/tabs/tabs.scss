@@ -9,7 +9,7 @@
 
 
 .base {
-	@include connotation.connotation;
+	@include connotation.connotation (tabs);
 
 	display: grid;
 	box-sizing: border-box;
