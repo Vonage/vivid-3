@@ -13,7 +13,7 @@ $hover: ':hover, .hover';
 $disabled: ':disabled, .disabled';
 $readonly: '.readonly';
 $checked: ':checked, .checked';
-$selected: '.selected, [aria-current], [aria-selected='true']';
+$selected: '.selected, [aria-current]';
 $active: ':active, .active';
 $error: '.error';
 $success: '.success';

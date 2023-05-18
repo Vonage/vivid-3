@@ -11,7 +11,7 @@ export class DataGridCell extends FoundationElement {
 	@attr({attribute: 'aria-selected', mode: 'fromView'}) override ariaSelected: string | null = null;
 
 	ariaSelectedChanged(_: string | null, selectedState: string | null) {
-		this.shadowRoot?.querySelector('.base')?.classList.toggle('selected', selectedState === 'true');
+		this.shadowRoot!.querySelector('.base')?.classList.toggle('selected', selectedState === 'true');
 	}
 
 	override handleFocusin(e: FocusEvent) {
