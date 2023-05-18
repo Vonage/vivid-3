@@ -258,7 +258,8 @@
 		"modules": [
 			"/assets/modules/components/menu/index.js",
 			"/assets/modules/components/menu-item/index.js",
-			"/assets/modules/components/divider/index.js"
+			"/assets/modules/components/divider/index.js",
+			"/assets/modules/components/badge/index.js"
 		]
 	},
 	{
@@ -388,6 +389,14 @@
 			"/assets/modules/components/button/index.js",
 			"/assets/modules/components/number-field/index.js",
 			"/assets/modules/components/data-grid/index.js"
+		]
+	},
+	{
+		"title": "toggletip",
+		"markdown": "./libs/components/src/lib/toggletip/README.md",
+		"modules": [
+			"/assets/modules/components/toggletip/index.js",
+			"/assets/modules/components/button/index.js"
 		]
 	},
 	{

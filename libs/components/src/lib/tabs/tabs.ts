@@ -20,21 +20,25 @@ export class Tabs extends FoundationTabs {
 		if (this.orientation === TabsOrientation.vertical) {
 			this.activeIndicatorRef.style.removeProperty(ACTIVE_TAB_WIDTH);
 		}
+		this.patchActiveID();
 	}
 
 	override activeidChanged(oldValue: string, newValue: string): void {
 		super.activeidChanged(oldValue, newValue);
 		this.patchIndicatorStyleTransition();
+		this.patchActiveID();
 	}
 
 	override tabsChanged(): void {
 		super.tabsChanged();
 		this.patchIndicatorStyleTransition();
+		this.patchActiveID();
 	}
 
 	override tabpanelsChanged(): void {
 		super.tabpanelsChanged();
 		this.patchIndicatorStyleTransition();
+		this.patchActiveID();
 	}
 
 	private patchIndicatorStyleTransition() {
@@ -42,5 +46,13 @@ export class Tabs extends FoundationTabs {
 		if (this.orientation === TabsOrientation.vertical || !this.showActiveIndicator) return;
 		const width = this.activetab.getBoundingClientRect().width;
 		this.activeIndicatorRef.style.setProperty(ACTIVE_TAB_WIDTH, `${width}px`);
+	}
+
+	// adapted FAST fix https://github.com/microsoft/fast/pull/6606
+	private patchActiveID() {
+		if (!this.activetab) return;
+		
+		const idx = this.tabs.indexOf(this.activetab);
+		this.activeid = this['tabIds'][idx];
 	}
 }
