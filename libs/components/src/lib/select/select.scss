@@ -92,6 +92,7 @@ $low-ink-color: --_low-ink-color;
 .selected-value {
 	display: flex;
 	overflow: hidden;
+	flex-grow: 1;
 	align-items: center;
 	column-gap: 12px;
 	white-space: nowrap;
@@ -106,6 +107,10 @@ $low-ink-color: --_low-ink-color;
 		flex: 0 0 20px;
 		font-size: 20px;
 		line-height: 1;
+	}
+
+	.control.has-meta & {
+		padding-inline-end: 8px;
 	}
 }
 

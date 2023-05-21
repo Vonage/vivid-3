@@ -1,5 +1,5 @@
 import { applyMixins, Select as FoundationSelect } from '@microsoft/fast-foundation';
-import {attr, Observable} from '@microsoft/fast-element';
+import {attr, observable, Observable} from '@microsoft/fast-element';
 import type { Popup } from '../popup/popup';
 import {AffixIconWithTrailing, FormElement, FormElementHelperText, formElements} from '../../shared/patterns';
 import type { Appearance, Shape } from '../enums';
@@ -13,6 +13,7 @@ export type SelectShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  *
  * @public
  * @slot - Default slot.
+ * @slot meta - Slot to add meta content to the select control.
  */
 @formElements
 export class Select extends FoundationSelect {
@@ -22,6 +23,14 @@ export class Select extends FoundationSelect {
 
 	_popup!: Popup;
 	_anchor!: HTMLElement;
+
+	/**
+	 *
+	 * Slot observer:
+	 *
+	 * @internal
+	 */
+	@observable metaSlottedContent?: Node[];
 
 	override connectedCallback() {
 		super.connectedCallback();
