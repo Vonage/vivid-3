@@ -17,11 +17,12 @@ All native attributes of the `textarea` are supported as well as some enhancemen
 ## Members
 
 ### Label
+Add a `label` attribute to add label to the text area.  
+The label is important to help users understand what is needed. I case you choose not to add mind our [accessibility notice](#accessibility)
 
 - Type: `string` | `undefined`
 - Default: `undefined`
 
-Add a `label` attribute to add label to the text area.
 
 ```html preview
 <vwc-text-area label="My Label"></vwc-text-area>
@@ -140,4 +141,11 @@ That means that:
 <vwc-text-area rows="1" value="1 row text area"></vwc-text-area>
 <vwc-text-area rows="2" value="2 rows text area"></vwc-text-area>
 <vwc-text-area rows="3" value="3 rows text area"></vwc-text-area>
+```
+
+## Accessibility
+If no label is set - it is highly recommended that `aria-label` will be added.
+
+```html
+<vwc-text-area aria-label="your comment" rows="2" placeholder="your comment"></vwc-text-area>
 ```
