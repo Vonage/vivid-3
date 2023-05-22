@@ -17,7 +17,7 @@
 $banner-transition-delay: --transition-delay;
 
 .control {
-	@include connotation.connotation;
+	@include connotation.connotation (banner);
 	@include appearance.appearance;
 
 	overflow: hidden;

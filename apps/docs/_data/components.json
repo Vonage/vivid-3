@@ -378,7 +378,8 @@
 		"modules": [
 			"/assets/modules/components/select/index.js",
 			"/assets/modules/components/option/index.js",
-			"/assets/modules/components/icon/index.js"
+			"/assets/modules/components/icon/index.js",
+			"/assets/modules/components/badge/index.js"
 		]
 	},
 	{

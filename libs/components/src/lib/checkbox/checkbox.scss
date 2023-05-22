@@ -21,7 +21,7 @@ $size: #{size.$vvd-size-ultra-condensed};
 $gutter: 2px;
 
 .base {
-	@include connotation.connotation;
+	@include connotation.connotation (checkbox);
 	@include appearance.appearance;
 
 	display: inline-flex;

@@ -24,7 +24,7 @@ $rounded-border-radius: 3px;
 	outline: none;
 
 	&:not(.connotation-pacific){
-		@include connotation.connotation;
+		@include connotation.connotation (progress);
 		@include appearance.appearance;
 	}
 

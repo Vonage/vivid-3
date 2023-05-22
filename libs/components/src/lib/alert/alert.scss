@@ -65,7 +65,7 @@ $alert-transition-delay: --transition-delay;
 }
 
 .base {
-	@include connotation.connotation;
+	@include connotation.connotation (alert);
 	@include appearance.appearance;
 
 	display: flex;

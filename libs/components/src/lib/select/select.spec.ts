@@ -1,5 +1,5 @@
-import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
-import {Icon} from '../icon/icon';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import { Icon } from '../icon/icon';
 import { Select } from './select';
 import '.';
 
@@ -347,6 +347,22 @@ describe('vwc-select', () => {
 
 			expect(shouldSkipFocusAfterOneMouseDown).toBeTruthy();
 			expect(shouldSkipFocusAfterFocusIn).toBeFalsy();
+		});
+	});
+
+	describe('slot', ()=> {
+		it('should have a meta slot', async function () {
+			expect(Boolean(element.shadowRoot?.querySelector('slot[name="meta"]'))).toEqual(true);
+		});
+
+		it('should add class .has-meta if the meta slot is occupied', async function () {
+			const slottedElement = document.createElement('div');
+			slottedElement.slot = 'meta';
+			element.appendChild(slottedElement);
+			await elementUpdated(element);
+
+			expect(getControlElement(element).classList.contains('has-meta')).toBeTruthy();
+
 		});
 	});
 });
