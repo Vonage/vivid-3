@@ -444,5 +444,14 @@
 		"modules": [
 			"/assets/modules/components/pagination/index.js"
 		]
+	},
+	{
+		"title": "empty-state",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/empty-state/README.md",
+		"modules": [
+			"/assets/modules/components/empty-state/index.js",
+			"/assets/modules/components/button/index.js"
+		]
 	}
 ]
