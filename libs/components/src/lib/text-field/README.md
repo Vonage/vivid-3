@@ -21,11 +21,12 @@ If you wish to use `type="number"`, refer to the [`number-field`](/number-field)
 ## Members
 
 ### Label
-
+Add a `label` attribute to add label to the text field.  
+The label is important to help users understand what is needed. I case you choose not to add mind our [accessibility notice](#accessibility)
 - Type: `string` | `undefined`
 - Default: `undefined`
 
-Add a `label` attribute to add label to the text field.
+
 
 ```html preview
 <vwc-text-field label="My Label"></vwc-text-field>
@@ -181,10 +182,22 @@ In addition, we programatically *"dirtied"* the field and then called `validate`
 ### In Form
 
 ```html preview
+<style>
+vwc-button {
+  justify-self: flex-start;
+}
+</style>
 <form method="post" action="">
   <vwc-layout column-spacing="small" column-basis="block">
     <vwc-text-field required label="Add email" placeholder="e.g. john@doe.dev" type="email" name="email" autocomplete="email" icon="search" maxlength="30" char-count style="justify-self: flex-start;"></vwc-text-field>
     <vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>
   </vwc-layout>
 </form>
+```
+
+## Accessibility
+If no label is set - it is highly recommended that `aria-label` will be added.
+
+```html
+<vwc-text-field  aria-label="your name" placeholder="your name"></vwc-text-field>
 ```
