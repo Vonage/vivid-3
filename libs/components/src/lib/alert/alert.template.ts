@@ -57,10 +57,10 @@ export const AlertTemplate: (
 				${when(x => x.icon || x.connotation, renderIcon(context))}
 				<div class="alert-text">
 					${when(x => x.headline,
-		html`<div class="headline">${(x) => x.headline}</div>`)}
-					<slot>
-						${when(x => x.text,
+		html`<header class="headline">${(x) => x.headline}</header>`)}
+					${when(x => x.text,
 		html`<div class="maintext">${(x) => x.text}</div>`)}
+					<slot>
 					</slot>
 				</div>
 				<slot class="action-items" name="action-items"></slot>

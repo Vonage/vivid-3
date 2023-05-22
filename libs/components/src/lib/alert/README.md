@@ -1,6 +1,6 @@
 # Alert
 
-Alerts are meant to be used on top of pages, outside the main content.
+Alerts are meant to display short-lived important information to the user, usually at the top or bottom of the screen.
 
 ```js
 <script type="module">
@@ -10,101 +10,100 @@ Alerts are meant to be used on top of pages, outside the main content.
 
 ## Members
 
-### Open
+### Text
 
-- Type: `boolean`
-- Default: `false`
-
-Use the `open` attribute to open alert.
-
-```html preview
-<vwc-alert subtitle="What an important info!!!"></vwc-alert>
-
-<vwc-button appearance='outlined' label="Show alert" onclick="openAlert()"></vwc-button>
-
-<script>
-  function openAlert() {
-    alert = document.querySelector('vwc-alert');
-    alert.open = true;
-  }
-</script>
-```
-
-### Subtitle
+Use the `text` attribute to set the alert's main text.
 
 - Type: `string`
-- Default: `''`
-
-Use the `subtitle` attribute to set the alert's subtitle.
+- Default: `undefined`
 
 ```html preview
-<vwc-alert subtitle="What an important info!!!" open></vwc-alert>
+<vwc-alert text="An important information for you" open></vwc-alert>
 ```
 
 ### Headline
 
-- Type: `string`
-- Default: `''`
+Use the `headline` attribute to add a headline to your alert.
 
-Use the `headline` attribute to set the alert's headline.
+- Type: `string`
+- Default: `undefined`
 
 ```html preview
-<vwc-alert headline="Alert title" subtitle="What an important info!!!" open></vwc-alert>
+<vwc-alert headline="This requires your attention" text="An important information for you" open></vwc-alert>
 ```
 
+### Open
 
-### Icon
+Use the `open` attribute to toggle the alert open state.
 
-- Type: `string`
-- Default: `''`
-
-The `icon` attribute will override the icon set by connotation.
+- Type: `boolean`
+- Default: `false`
 
 ```html preview
-<vwc-alert subtitle="What an important info!!!" open icon="megaphone-solid"></vwc-alert>
+<vwc-alert text="An important information for you"></vwc-alert>
+
+<vwc-button appearance='outlined' label="Show/Hide alert" onclick="toggleAlert()"></vwc-button>
+
+<script>
+  alert = document.querySelector('vwc-alert');
+  function toggleAlert() {
+    alert.open = !alert.open;
+  }
+</script>
 ```
 
 ### Connotation
 
-The `connotation` attribute sets the colors and icon according to the wanted connotation.
+Use the `connotation` attribute to change the alert's icon and icon color.
 
 - Type: `'accent'` | `'information'` | `'success'` | `'warning'` | `'alert'`
-- Default: `'accent'`
+- Default: `undefined`
 
-Note that icon, if not specifically set, defaults to a connotation-associated icon.
+Note that each connotation comes with a default icon (that you can override with the `icon` attribute).
 
 ```html preview
-  <vwc-alert subtitle="What an important info!!!" connotation="accent" open></vwc-alert>
+<vwc-alert text="An important information for you" connotation="accent" open></vwc-alert>
 
-  <vwc-button appearance='outlined' label="Show accent connotation" onclick="openAlert('accent')"></vwc-button>
-  <vwc-button appearance='outlined' label="Show success connotation" onclick="openAlert('success')"></vwc-button> 
-  <vwc-button appearance='outlined' label="Show warning connotation" onclick="openAlert('warning')"></vwc-button> 
-  <vwc-button appearance='outlined' label="Show alert connotation" onclick="openAlert('alert')"></vwc-button>
-  <vwc-button appearance='outlined' label="Show information connotation" onclick="openAlert('information')"></vwc-button>
+<vwc-button appearance='outlined' label="Show accent connotation" onclick="openAlert('accent')"></vwc-button>
+<vwc-button appearance='outlined' label="Show success connotation" onclick="openAlert('success')"></vwc-button> 
+<vwc-button appearance='outlined' label="Show warning connotation" onclick="openAlert('warning')"></vwc-button> 
+<vwc-button appearance='outlined' label="Show alert connotation" onclick="openAlert('alert')"></vwc-button>
+<vwc-button appearance='outlined' label="Show information connotation" onclick="openAlert('information')"></vwc-button>
 
 <script>
+  alert = document.querySelector('vwc-alert');
   function openAlert(connotation) {
-    alert = document.querySelector('vwc-alert');
     alert.connotation = connotation;
   }
 </script>
 ```
 
+### Icon
+
+Use the `icon` attribute to add an icon to your alert.
+
+- Type: `string`
+- Default: `''`
+
+```html preview
+<vwc-alert text="An important information for you" open icon="megaphone-solid"></vwc-alert>
+```
+
 ### Removable
+
+Use the `removable` attribute to add a close button to the alert.
 
 - Type: `boolean`
 - Default: `false`
 
-The `removable` attribute sets a remove button.
-
 ```html preview
-<vwc-alert subtitle="What an important info!!!" removable open></vwc-alert>
+<vwc-alert text="An important information for you" removable open></vwc-alert>
 
 <vwc-button appearance='outlined' label="Show alert" onclick="openAlert()"></vwc-button>
 
 <script>
+  alert = document.querySelector('vwc-alert');
   function openAlert() {
-    alert = document.querySelector('vwc-alert');
     alert.open = true;
   }
 </script>
@@ -112,19 +111,19 @@ The `removable` attribute sets a remove button.
 
 ### Timeoutms
 
-- Type: `number`
-- Default: `0`
+Use the `timeoutms` attribute to set the time after which the alert will automatically close.
 
-Use the `timeoutms` attribute to set timeout to close the alert.
+- Type: `number` (in milliseconds)
+- Default: `0` (stays open indefinitely)
 
 ```html preview
-<vwc-alert subtitle="What an important info!!!" timeoutms=2000></vwc-alert>
+<vwc-alert text="An important information for you" timeoutms="2000"></vwc-alert>
 
-<vwc-button appearance='outlined' label="Show alert" onclick="openAlert()"></vwc-button>
+<vwc-button appearance='outlined' label="Show an alert for 2 seconds" onclick="openAlert()"></vwc-button>
 
 <script>
+  alert = document.querySelector('vwc-alert');
   function openAlert() {
-    alert = document.querySelector('vwc-alert');
     alert.open = true;
   }
 </script>
@@ -132,71 +131,72 @@ Use the `timeoutms` attribute to set timeout to close the alert.
 
 ### Placement
 
-Use the `placement` attribute to set the placement of the alert.
+Use the `placement` attribute to set the location of the alert.
 
 - Type: `'top'` | `'top-start'` | `'top-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`
 - Default: `'bottom'`
 
 ```html preview center
-<vwc-alert subtitle="What an important info!!!" open></vwc-alert>
-
-<vwc-button appearance='outlined' label="Show top alert" onclick="openAlert('top')"></vwc-button>
-<vwc-button appearance='outlined' label="Show top-start alert" onclick="openAlert('top-start')"></vwc-button>
-<vwc-button appearance='outlined' label="Show top-end alert" onclick="openAlert('top-end')"></vwc-button>
-<vwc-button appearance='outlined' label="Show bottom alert" onclick="openAlert('bottom')"></vwc-button>
-<vwc-button appearance='outlined' label="Show bottom-start alert" onclick="openAlert('bottom-start')"></vwc-button>
-<vwc-button appearance='outlined' label="Show bottom-end alert" onclick="openAlert('bottom-end')"></vwc-button>
-
-<script>
-  function openAlert(placement) {
-    alert = document.querySelector('vwc-alert');
-    alert.placement = placement;
+<style>
+  vwc-alert {
+    --alert-inline-size: 200px;
   }
-</script>
+</style>
+<vwc-alert placement="top-start" text="top-start" open></vwc-alert>
+<vwc-alert placement="top" text="top" open></vwc-alert>
+<vwc-alert placement="top-end" text="top-end" open></vwc-alert>
+<vwc-alert placement="bottom-start" text="bottom-start" open></vwc-alert>
+<vwc-alert placement="bottom" text="bottom" open></vwc-alert>
+<vwc-alert placement="bottom-end" text="bottom-end" open></vwc-alert>
 ```
 
 ## Slots
 
-### Action Items
+### Default
 
-You can add action items using slotted content in a named slot `action-items`:
+If you want to add rich content to your alert, you can use the default slot.
 
 ```html preview
-<vwc-alert subtitle="What an important info!!!" open>
+<vwc-alert open>
+  <vwc-switch label="Do not show more alerts"></vwc-switch>
+</vwc-alert>
+```
+
+### Action Items
+
+You can add action items elements using the `action-items` slot. They will be displayed at the inline-end of the alert.
+
+```html preview
+<vwc-alert text="An important information for you" open>
   <vwc-button slot="action-items" appearance="outlined" shape='pill' label="Action"></vwc-button>
 </vwc-alert>
 ```
 
 ## CSS Variables
 
-### Min Inline Size
+### Inline Size
 
-Use the `--alert-min-inline-size` variable to set the alert's inline size.
+Use the `--alert-inline-size` variable to set the alert's inline size.
 
 - Type: [`<length>`](https://developer.mozilla.org/en-US/docs/Web/CSS/length)
-- Default: `auto`
+- Default: `420px`
 
 ```html preview
 <style>
   vwc-alert {
-    --alert-min-inline-size: 100px;
+    --alert-inline-size: auto;
   }
 </style>
 
-<vwc-alert subtitle="What an important info!!!" open></vwc-alert>
+<vwc-alert text="Very fitting!" open>
 ```
 
 ## Events
 
-### Removed
+### Open
 
-Fires `removed` when the removing animation is done.
+The `open` event fires when the alert is opened.
 
-## Methods
+### Close
 
-### remove()
-
-- Type: `function`
-- Returns: `void`
-
-Removes the alert from the DOM.  When the animation finishes, it emits the `removed` event and removes the alert from the DOM completely.  If you have a variable that refers to the alert element make sure to clear it otherwise it might cause a memory leak.
+The `close` event fires when the alert is closed.
