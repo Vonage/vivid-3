@@ -89,6 +89,30 @@ Use the `icon` attribute to add an icon to your alert.
 <vwc-alert text="An important information for you" open icon="megaphone-solid"></vwc-alert>
 ```
 
+### Placement
+
+Use the `placement` attribute to set the location of the alert.
+
+- Type: `'top'` | `'top-start'` | `'top-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`
+- Default: `'bottom'`
+
+```html preview center
+<style>
+  html { /* for demo purposes */
+    block-size: 250px;
+  }
+  vwc-alert {
+    --alert-inline-size: 200px;
+  }
+</style>
+<vwc-alert placement="top-start" text="top-start" open></vwc-alert>
+<vwc-alert placement="top" text="top" open></vwc-alert>
+<vwc-alert placement="top-end" text="top-end" open></vwc-alert>
+<vwc-alert placement="bottom-start" text="bottom-start" open></vwc-alert>
+<vwc-alert placement="bottom" text="bottom" open></vwc-alert>
+<vwc-alert placement="bottom-end" text="bottom-end" open></vwc-alert>
+```
+
 ### Removable
 
 Use the `removable` attribute to add a close button to the alert.
@@ -127,27 +151,6 @@ Use the `timeoutms` attribute to set the time after which the alert will automat
     alert.open = true;
   }
 </script>
-```
-
-### Placement
-
-Use the `placement` attribute to set the location of the alert.
-
-- Type: `'top'` | `'top-start'` | `'top-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`
-- Default: `'bottom'`
-
-```html preview center
-<style>
-  vwc-alert {
-    --alert-inline-size: 200px;
-  }
-</style>
-<vwc-alert placement="top-start" text="top-start" open></vwc-alert>
-<vwc-alert placement="top" text="top" open></vwc-alert>
-<vwc-alert placement="top-end" text="top-end" open></vwc-alert>
-<vwc-alert placement="bottom-start" text="bottom-start" open></vwc-alert>
-<vwc-alert placement="bottom" text="bottom" open></vwc-alert>
-<vwc-alert placement="bottom-end" text="bottom-end" open></vwc-alert>
 ```
 
 ## Slots
