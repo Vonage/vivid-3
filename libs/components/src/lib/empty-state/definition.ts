@@ -1,7 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import styles from './empty-state.scss';
 import { iconRegistries } from '../icon/definition';
+import styles from './empty-state.scss';
 
 import { EmptyState } from './empty-state';
 import { EmptyStateTemplate as template } from './empty-state.template';
