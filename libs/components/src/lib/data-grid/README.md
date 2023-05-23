@@ -52,6 +52,41 @@ Use `generate-header"` for data grid header visibility mode.
 </script>
 ```
 
+### selectionMode
+
+- Type: `none` | `single-cell` | `multi-cell`
+- Default: `none`
+
+Use the `selection-mode` attribute to specify the selection mode of the grid.
+
+```html preview
+<style>
+  html { 
+    block-size: 300px; 
+  }
+</style>
+<vwc-select onchange="changeSelectionMode()">
+	<vwc-option value="none" text="none"></vwc-option>
+	<vwc-option value="single-cell" text="single-cell"></vwc-option>
+	<vwc-option value="multi-cell" text="multi-cell"></vwc-option>
+	<vwc-option value="single-row" text="single-row" disabled></vwc-option>
+	<vwc-option value="multi-row" text="multi-row" disabled></vwc-option>
+</vwc-select>
+
+<vwc-data-grid></vwc-data-grid>
+<script>
+	function changeSelectionMode() {
+    selectionMode = event.target.value;
+		grid.selectionMode = selectionMode;
+	}
+    
+	grid = document.querySelector('vwc-data-grid');
+	grid.rowsData = [
+			{data1: 'tabs', data2: 'will'},
+			{data1: 'not', data2: 'work'},
+	];
+</script>
+```
 
 ### noTabbing
 

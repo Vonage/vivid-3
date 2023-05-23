@@ -1,35 +1,57 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+	$connotations: accent cta,
+	$shades: primary primary-text primary-increment faint pale dim,
+	$default: accent
+);
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+	$appearances: listitem,
+	$states: idle hover selected selectedAndHover,
+	$default: listitem,
+);
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+
 @use "../focus/partials/variables" as focus-variables;
 
-:host {
+.base {
+	@include connotation.connotation (data-grid-cell);
+	@include appearance.appearance;
+
 	position: relative;
 	display: flex;
 	overflow: hidden;
 	box-sizing: border-box;
 	align-items: center;
 	padding: 8px 12px;
-	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-100});
+	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-200});
 	block-size: #{size.$vvd-size-expanded};
-	color: var(#{constants.$vvd-color-canvas-text});
+	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
 	outline: none;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+
+	:host(:is([aria-selected]):not([cell-type="columnheader"])) & {
+		background-color: var(#{appearance.get-appearance-token(fill)});
+	}
+
+	:host([cell-type="columnheader"]) & {
+		border-color: var(#{constants.$vvd-color-canvas-text});
+		font: var(#{constants.$vvd-typography-base-bold});
+	}
 }
 
-:host([cell-type="columnheader"]) {
-	border-color: currentColor;
-	font: var(#{constants.$vvd-typography-base-bold});
-}
 
 .focus-indicator {
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
 
 	pointer-events: none;
 
-	#focus-wrapper:not(.active) > & {
+	.base:not(.active) > & {
 		display: none;
 	}
 }
