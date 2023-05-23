@@ -114,7 +114,7 @@ export class Alert extends FoundationElement {
 	}
 
 	get conditionedIcon() {
-		return this.icon ?? (this.connotation ? connotationIconMap.get(this.connotation) : this.connotation);
+		return this.icon || connotationIconMap.get(this.connotation as AlertConnotation);
 	}
 
 	#setupTimeout() {
