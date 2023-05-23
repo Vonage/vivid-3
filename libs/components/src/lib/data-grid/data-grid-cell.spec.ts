@@ -1,6 +1,6 @@
 import { html } from '@microsoft/fast-element';
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
 import { designSystem } from '../../shared/design-system';
 import { DataGridCell } from './data-grid-cell';
 import { DataGridCellTemplate } from './data-grid-cell.template';
@@ -21,7 +21,6 @@ describe('vwc-data-grid-cell', () => {
 		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as DataGridCell;
 	});
 
-	// TODO::adds grid column style
 	describe('basic', () => {
 		it('should be initialized as a vwc-data-grid', async () => {
 			expect(element).toBeInstanceOf(DataGridCell);
@@ -170,12 +169,12 @@ describe('vwc-data-grid-cell', () => {
 				expect(spy).toHaveBeenCalledTimes(1);
 			});
 
-			it('should set "active" class on the "focus-wrapper" element', async () => {
-				const focusWrapper = element.shadowRoot?.querySelector('#focus-wrapper');
-				const hasActiveClassBeforeFocus = focusWrapper?.classList.contains('active');
+			it('should set "active" class on the base element', async () => {
+				const baseElement = getBaseElement(element);
+				const hasActiveClassBeforeFocus = baseElement?.classList.contains('active');
 				element.dispatchEvent(new Event('focusin'));
 				expect(hasActiveClassBeforeFocus).toBeFalsy();
-				expect(focusWrapper?.classList.contains('active')).toBeTruthy();
+				expect(baseElement?.classList.contains('active')).toBeTruthy();
 			});
 		});
 
@@ -217,6 +216,23 @@ describe('vwc-data-grid-cell', () => {
 				element.dispatchEvent(new KeyboardEvent('keydown', {key: 'Escape'}));
 				expect(document.activeElement).toEqual(element);
 			});
+		});
+	});
+
+	describe('aria-selected', function () {
+		it('should set selected class on base when aria-selected true', async () => {
+			element.setAttribute('aria-selected', 'true');
+			await elementUpdated(element);
+			expect(getBaseElement(element)?.classList.contains('selected')).toBeTruthy();
+		});
+
+		it('should remove selected class on base when aria-selected is not true', async function () {
+			element.setAttribute('aria-selected', 'true');
+			await elementUpdated(element);
+
+			element.setAttribute('aria-selected', 'false');
+			await elementUpdated(element);
+			expect(getBaseElement(element)?.classList.contains('selected')).toBeFalsy();
 		});
 	});
 });

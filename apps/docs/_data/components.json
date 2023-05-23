@@ -388,6 +388,8 @@
 		"markdown": "./libs/components/src/lib/data-grid/README.md",
 		"modules": [
 			"/assets/modules/components/button/index.js",
+			"/assets/modules/components/select/index.js",
+			"/assets/modules/components/option/index.js",
 			"/assets/modules/components/number-field/index.js",
 			"/assets/modules/components/data-grid/index.js"
 		]
