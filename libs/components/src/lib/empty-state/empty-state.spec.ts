@@ -25,14 +25,14 @@ describe('vwc-empty-state', () => {
 
 	describe('headline', () => {
 		it('should not render a headline by default', () => {
-			expect(element.shadowRoot?.querySelector('.headline')).toBeNull();
+			expect(element.shadowRoot?.querySelector('header')).toBeNull();
 		});
 
 		it('should render a headline when headline attribute is set', async () => {
 			const headlineText = 'headline';
 			element.setAttribute('headline', headlineText);
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.headline')?.textContent?.trim()).toEqual(headlineText);
+			expect(element.shadowRoot?.querySelector('header')?.textContent?.trim()).toEqual(headlineText);
 		});
 	});
 
@@ -51,8 +51,8 @@ describe('vwc-empty-state', () => {
 	});
 
 	describe('default slot', () => {
-		it('should should have a default slot with "No results." as fallback content', () => {
-			expect(element.shadowRoot?.querySelector('slot:not([name])')?.textContent?.trim()).toEqual('No results.');
+		it('should should have a default slot with "Nothing to show." as fallback content', () => {
+			expect(element.shadowRoot?.querySelector('slot:not([name])')?.textContent?.trim()).toEqual('Nothing to show.');
 		});
 	});
 

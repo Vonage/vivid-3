@@ -38,10 +38,10 @@ export const EmptyStateTemplate: (
 			<div class="content">
 				${when(
 		(x) => x.headline,
-		html<EmptyState>`<h3 class="headline">${(x) => x.headline}</h3>`
+		html<EmptyState>`<header>${(x) => x.headline}</header>`
 	)}
 				<div class="body">
-					<slot>No results.</slot>
+					<slot>Nothing to show.</slot>
 				</div>
 			</div>
 			<div class="actions">

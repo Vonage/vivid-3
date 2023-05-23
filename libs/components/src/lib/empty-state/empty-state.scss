@@ -6,11 +6,11 @@
 
 .base {
 	display: flex;
-	height: 100%;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	padding: 48px;
+	block-size: 100%;
 	gap: 24px;
 }
 
@@ -30,8 +30,7 @@
 	border-radius: 60px;
 }
 
-.headline {
-	margin: 0;
+header {
 	font: var(#{constants.$vvd-typography-base-bold});
 	text-align: center;
 }

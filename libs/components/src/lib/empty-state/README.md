@@ -25,9 +25,7 @@ Use the `headline` attribute add a headline to the empty state.
 - Default: `undefined`
 
 ```html preview
-<vwc-empty-state headline="No results found">
-  No results match your search criteria.
-</vwc-empty-state>
+<vwc-empty-state headline="No results found"></vwc-empty-state>
 ```
 
 ### Icon
@@ -38,9 +36,7 @@ Use the `icon` attribute to set the icon of the empty state.
 - Default: `inbox-line`
 
 ```html preview
-<vwc-empty-state icon="search-line">
-  No results match your search criteria.
-</vwc-empty-state>
+<vwc-empty-state icon="search-line"></vwc-empty-state>
 ```
 
 ## Slots
@@ -49,8 +45,10 @@ Use the `icon` attribute to set the icon of the empty state.
 
 Use the default slot to set the content of the empty state.
 
+- Default: `Nothing to show.`
+
 ```html preview
-<vwc-empty-state headline="No results found">
+<vwc-empty-state>
   No results match your search criteria.
 </vwc-empty-state>
 ```
