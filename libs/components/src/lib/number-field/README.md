@@ -16,11 +16,12 @@ If you'd like to know why we follow the `text` field type, you can read more abo
 ## Members
 
 ### Label
+Add a `label` attribute to add label to the number field.  
+The label is important to help users understand what is needed. I case you choose not to add mind our [accessibility notice](#accessibility)
 
 - Type: `string` | `undefined`
 - Default: `undefined`
 
-Add a `label` attribute to add label to the number field.
 
 ```html preview
 <vwc-number-field label="My Label"></vwc-number-field>
@@ -116,4 +117,11 @@ Add the `readonly` attribute to restrict user from changing the number field's v
 
 ```html preview blocks
 <vwc-number-field readonly value="8" label='fieldset' appearance='fieldset'></vwc-number-field>
+```
+
+## Accessibility
+If no label is set - it is highly recommended that `aria-label` will be added.
+
+```html
+<vwc-number-field aria-label="choose a number" maxlength="4" minlength="2"></vwc-number-field>
 ```

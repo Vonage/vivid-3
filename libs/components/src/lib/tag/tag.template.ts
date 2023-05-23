@@ -22,7 +22,7 @@ const getClasses = ({
 
 function renderDismissButton(iconTag: string) {
 	return html<Tag>`
-	<span 
+	<span
 		aria-hidden="true"
 		class="dismiss-button"
 		@click="${x => x.remove()}">
@@ -45,7 +45,7 @@ export const tagTemplate: (
 	const focusTemplate = focusTemplateFactory(context);
 
 	return html`
-	<span class="${getClasses}" 
+	<span class="${getClasses}"
 	role="option"
 	aria-disabled="${x => x.disabled}"
 	aria-selected="${x => x.selectable}"
@@ -56,7 +56,7 @@ export const tagTemplate: (
 		${when((x) => x.label, (x) => html<Tag>`<span class="label">${x.label as string}</span>`)}
 		${when(x => x.removable && !x.selectable, renderDismissButton(iconTag))}
 		${when(x => (x.selectable && x.selected),
-		html<Tag>`<${iconTag} class="selectable-icon" name="check-line"></${iconTag}>`)}
+		html<Tag>`<${iconTag} class="selectable-icon" name="check-circle-solid"></${iconTag}>`)}
 		${() => focusTemplate}
 	</span>`;
 };
