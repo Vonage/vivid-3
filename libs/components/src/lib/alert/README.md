@@ -80,7 +80,8 @@ Note that each connotation comes with a default icon (that you can override with
 
 ### Icon
 
-Use the `icon` attribute to add an icon to your alert.
+Use the `icon` attribute to add an icon to your alert. Note that setting this attribute takes precedence
+over the connotation's icon, if any.
 
 - Type: `string`
 - Default: `''`
