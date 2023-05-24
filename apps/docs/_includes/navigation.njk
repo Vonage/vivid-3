@@ -20,9 +20,10 @@
     {%  for item in designs | publicPageFilter | sort(false, false, 'title') %}
     <vwc-nav-item
 			href="{{ ('/designs/' + item.title) | url }}"
-			text="{{ item.title | replace("-", " ") | capitalize }}
-			{% if (item.status) == "underlying" %}🔒{% endif %}"
-			{% if ('/designs/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
+			text="{{ item.title | replace("-", " ") | capitalize }}"
+			{% if ('/designs/' + item.title + '/') == page.url %}aria-current="page"{% endif %}>
+				{% if (item.status) == "underlying" %}<vwc-icon slot="meta" name="lock-line"></vwc-icon>{% endif %}"
+		</vwc-nav-item>
     {% endfor %}
   </vwc-nav-disclosure>
 
@@ -30,10 +31,11 @@
     {%  for item in components | publicPageFilter | sort(false, false, 'title') %}
     <vwc-nav-item
 			href="{{ ('/components/' + item.title) | url }}"
-			text="{{ item.title | replace("-", " ") | capitalize }}
-			{% if (item.status) == "alpha" %}🧪{% endif %}
-			{% if (item.status) == "underlying" %}🔒{% endif %}"
-			{% if ('/components/' + item.title + '/') == page.url %}aria-current="page"{% endif %}></vwc-nav-item>
+			text="{{ item.title | replace("-", " ") | capitalize }}"
+			{% if ('/components/' + item.title + '/') == page.url %}aria-current="page"{% endif %}>
+				{% if (item.status) == "alpha" %}<vwc-badge slot="meta" text="alpha" appearance="subtle" shape="pill" connotation="success"></vwc-badge>{% endif %}
+				{% if (item.status) == "underlying" %}<vwc-icon slot="meta" name="lock-line"></vwc-icon>{% endif %}"
+		</vwc-nav-item>
     {% endfor %}
   </vwc-nav-disclosure>
 </vwc-nav>
