@@ -108,7 +108,8 @@
 		"markdown": "./libs/components/src/lib/nav-item/README.md",
 		"modules": [
 			"/assets/modules/components/nav/index.js",
-			"/assets/modules/components/nav-item/index.js"
+			"/assets/modules/components/nav-item/index.js",
+			"/assets/modules/components/badge/index.js"
 		]
 	},
 	{
