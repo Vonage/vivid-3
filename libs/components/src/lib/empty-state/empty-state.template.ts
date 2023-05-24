@@ -31,7 +31,7 @@ export const EmptyStateTemplate: (
 			<div class="graphic">
 				<slot name="graphic">
 					<div class="icon-container">
-						<${iconTag} class="icon" name="${(x) => x.icon}" size="5"></${iconTag}>
+						<${iconTag} class="icon" name="${(x) => x.icon ?? 'inbox-line'}" size="5"></${iconTag}>
 					</div>
 				</slot>
 			</div>

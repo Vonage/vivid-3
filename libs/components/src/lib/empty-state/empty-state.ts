@@ -18,7 +18,7 @@ export class EmptyState extends FoundationElement {
 	 * Icon for the empty state.
 	 * @public
 	 */
-	@attr({mode: 'fromView'}) icon: string = 'inbox-line';
+	@attr icon?: string;
 
 	/**
 	 * The action items to display in the empty state.
