@@ -6,9 +6,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: drizzt99/vonage:2.1.1
+      image: drizzt99/vonage:2.2.0
     steps:
-      - run: echo "Running drizzt99/vonage:2.1.1"
+      - run: echo "Running drizzt99/vonage:2.2.0"
 
       - uses: actions/checkout@v3
 
@@ -33,7 +33,7 @@ jobs:
           path: dist/
           key: ${{ runner.os }}-dist-${{ hashFiles('libs/**/*.*') }}
 
-      - run: npx nx run components:e2e:no-build --task=local
+      - run: npx nx run components:e2e:no-build
       - uses: actions/upload-artifact@v3
         if: always()
         with:
