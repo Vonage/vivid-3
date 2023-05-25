@@ -32,6 +32,8 @@ export class Select extends FoundationSelect {
 	 */
 	@observable metaSlottedContent?: Node[];
 
+	@observable iconSlottedContent?: Node[];
+
 	override connectedCallback() {
 		super.connectedCallback();
 		this._popup.anchor = this._anchor;

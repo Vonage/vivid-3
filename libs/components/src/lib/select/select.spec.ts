@@ -101,7 +101,11 @@ describe('vwc-select', () => {
 	});
 
 	describe('select icon', () => {
-		it('should add an icon to the select', async () => {
+		it('should not have the has-icon class by default', async () => {
+			expect(getControlElement(element).classList.contains('has-icon')).toBe(false);
+		});
+
+		it('should add an icon to the select and add has-meta class when icon property is set', async () => {
 			element.icon = 'search-solid';
 			await elementUpdated(element);
 
@@ -110,6 +114,20 @@ describe('vwc-select', () => {
 				.toBeInstanceOf(Icon);
 			expect(icon?.name)
 				.toEqual('search-solid');
+			expect(getControlElement(element).classList.contains('has-icon')).toBe(true);
+		});
+
+		it('should have a icon slot', async () => {
+			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
+		});
+
+		it('should add has-meta class if the icon slot is occupied', async () => {
+			const slotted = document.createElement('div');
+			slotted.slot = 'icon';
+			element.appendChild(slotted);
+			await elementUpdated(element);
+
+			expect(getControlElement(element).classList.contains('has-icon')).toBe(true);
 		});
 	});
 

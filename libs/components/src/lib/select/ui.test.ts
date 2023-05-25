@@ -12,7 +12,15 @@ const components = ['select', 'option', 'badge'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 
-	const template = '<style>#wrapper{height: 250px; width: 1800px; display: flex; flex-wrap: wrap;}</style>' + extractHTMLBlocksFromReadme(
+	const template = `
+			<style>
+				#wrapper {
+					width: 1800px;
+					display: grid;
+					grid-auto-rows: 250px;
+					grid-template-columns: repeat(8, 1fr);
+				}
+			</style>` + extractHTMLBlocksFromReadme(
 		path.join(new URL('.', import.meta.url).pathname, 'README.md'))
 		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
 
