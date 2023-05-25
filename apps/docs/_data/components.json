@@ -36,6 +36,8 @@
 		"modules": [
 			"/assets/modules/components/alert/index.js",
 			"/assets/modules/components/button/index.js",
+			"/assets/modules/components/select/index.js",
+			"/assets/modules/components/option/index.js",
 			"/assets/modules/components/switch/index.js"
 		]
 	},

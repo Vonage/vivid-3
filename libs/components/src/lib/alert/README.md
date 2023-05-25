@@ -62,19 +62,30 @@ Use the `connotation` attribute to change the alert's icon and icon color.
 Note that each connotation comes with a default icon (that you can override with the `icon` attribute).
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 350px;
+  }
+  vwc-select {
+    width: 160px;
+  }
+</style>
 <vwc-alert text="An important information for you" connotation="accent" open></vwc-alert>
 
-<vwc-button appearance='outlined' label="Show accent connotation" onclick="openAlert('accent')"></vwc-button>
-<vwc-button appearance='outlined' label="Show success connotation" onclick="openAlert('success')"></vwc-button> 
-<vwc-button appearance='outlined' label="Show warning connotation" onclick="openAlert('warning')"></vwc-button> 
-<vwc-button appearance='outlined' label="Show alert connotation" onclick="openAlert('alert')"></vwc-button>
-<vwc-button appearance='outlined' label="Show information connotation" onclick="openAlert('information')"></vwc-button>
+<vwc-select label="Select a connotation">
+  <vwc-option value="accent" text="accent"></vwc-option>
+  <vwc-option value="success" text="success"></vwc-option>
+  <vwc-option value="warning" text="warning"></vwc-option>
+  <vwc-option value="alert" text="alert"></vwc-option>
+  <vwc-option value="information" text="information"></vwc-option>
+</vwc-select>
 
 <script>
+  select = document.querySelector('vwc-select');
   alert = document.querySelector('vwc-alert');
-  function openAlert(connotation) {
-    alert.connotation = connotation;
-  }
+  select.addEventListener('change', (e) => {
+	  alert.connotation = select.value;
+  });
 </script>
 ```
 
@@ -102,16 +113,16 @@ Use the `placement` attribute to set the location of the alert.
   html { /* for demo purposes */
     block-size: 250px;
   }
-  vwc-alert {
-    --alert-inline-size: 200px;
+  .small-alert {
+    --alert-min-inline-size: 200px;
   }
 </style>
-<vwc-alert placement="top-start" text="top-start" open></vwc-alert>
-<vwc-alert placement="top" text="top" open></vwc-alert>
-<vwc-alert placement="top-end" text="top-end" open></vwc-alert>
-<vwc-alert placement="bottom-start" text="bottom-start" open></vwc-alert>
-<vwc-alert placement="bottom" text="bottom" open></vwc-alert>
-<vwc-alert placement="bottom-end" text="bottom-end" open></vwc-alert>
+<vwc-alert class="small-alert" placement="top-start" text="top-start" open></vwc-alert>
+<vwc-alert class="small-alert" placement="top" text="top" open></vwc-alert>
+<vwc-alert class="small-alert" placement="top-end" text="top-end" open></vwc-alert>
+<vwc-alert class="small-alert" placement="bottom-start" text="bottom-start" open></vwc-alert>
+<vwc-alert class="small-alert" placement="bottom" text="bottom" open></vwc-alert>
+<vwc-alert class="small-alert" placement="bottom-end" text="bottom-end" open></vwc-alert>
 ```
 
 ### Removable
@@ -160,6 +171,8 @@ Use the `timeoutms` attribute to set the time after which the alert will automat
 
 If you want to add rich content to your alert, you can use the default slot.
 
+You can style the content as you wish using `vwc-alert::part(vvd-theme-alternate)`.
+
 ```html preview
 <vwc-alert open>
   <vwc-switch label="Do not show more alerts"></vwc-switch>
@@ -178,21 +191,26 @@ You can add action items elements using the `action-items` slot. They will be di
 
 ## CSS Variables
 
-### Inline Size
+### Minimum inline Size
 
-Use the `--alert-inline-size` variable to set the alert's inline size.
+Use the `--alert-min-inline-size` variable to set the alert's minimum inline size.
 
 - Type: [`<length>`](https://developer.mozilla.org/en-US/docs/Web/CSS/length)
 - Default: `420px`
 
 ```html preview
-<style>
-  vwc-alert {
-    --alert-inline-size: auto;
-  }
-</style>
+<vwc-alert style="--alert-min-inline-size: auto;" text="Very fitting!" open>
+```
 
-<vwc-alert text="Very fitting!" open>
+### Maximum inline Size
+
+Use the `--alert-max-inline-size` variable to set the alert's maximum inline size.
+
+- Type: [`<length>`](https://developer.mozilla.org/en-US/docs/Web/CSS/length)
+- Default: `fit-content`
+
+```html preview
+<vwc-alert style="--alert-max-inline-size: 300px;" text="This is helptful to prevent the alert from becoming too wide when displaying a long message" open>
 ```
 
 ## Events

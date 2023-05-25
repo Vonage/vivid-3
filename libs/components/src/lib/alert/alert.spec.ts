@@ -33,104 +33,56 @@ describe('vwc-alert', () => {
 	});
 
 	describe('headline', function () {
-		/**
-		 * @param headline
-		 */
-		async function setHeadlineProperty(headline: string | undefined) {
-			element.headline = headline;
-			await elementUpdated(element);
-		}
-
-		/**
-		 * @param headline
-		 */
-		async function setHeadlineAttribute(headline: string | undefined) {
-			element.setAttribute('headline', headline ? headline : '');
-			await elementUpdated(element);
-		}
-
-		/**
-		 *
-		 */
-		function getHeadline() {
-			const headline = getBaseElement(element).querySelector('.headline')?.textContent;
-			return headline?.trim();
-		}
+		const getHeadline = () => getBaseElement(element).querySelector('.headline')?.textContent?.trim();
 
 		it('should init with undefined and set as empty string in DOM', function () {
-			const initHeadlinePropEmpty = element.headline;
-			const initHeadlineAttrEmpty = getHeadline();
-
-			expect(initHeadlinePropEmpty)
-				.toEqual(undefined);
-			expect(initHeadlineAttrEmpty).toBeUndefined();
+			expect(element.headline).toEqual(undefined);
+			expect(getHeadline()).toBeUndefined();
 		});
 
-		it('should reflect the message', async function () {
-			const messageHeadline = 'Some Headline';
+		it('should reflect the message passed in headline as a prop/attr', async function () {
+			const alertHeadline = 'headline text';
 
-			await setHeadlineProperty(messageHeadline);
-			const DOMHeadlineWithProperty = getHeadline();
+			element.headline = alertHeadline;
+			await elementUpdated(element);
+			const fromProptoDOM = getHeadline();
 
-			await setHeadlineProperty(undefined);
-			await setHeadlineAttribute(messageHeadline);
-			const propertyHeadlineWithAttribute = element.headline;
+			element.headline = undefined;
+			element.setAttribute('headline', alertHeadline);
+			await elementUpdated(element);
+			const fromDOMtoProp = element.headline;
 
-			expect(DOMHeadlineWithProperty)
-				.toEqual(messageHeadline);
-			expect(propertyHeadlineWithAttribute)
-				.toEqual(messageHeadline);
+			expect(fromProptoDOM)
+				.toEqual(alertHeadline);
+			expect(fromDOMtoProp)
+				.toEqual(alertHeadline);
 		});
 	});
 
 	describe('text', function () {
-		/**
-		 * @param text
-		 */
-		async function setTextProperty(text: string | undefined) {
-			element.text = text;
-			await elementUpdated(element);
-		}
-
-		/**
-		 * @param text
-		 */
-		async function setTextAttribute(text: string | undefined) {
-			element.setAttribute('text', text ? text : '');
-			await elementUpdated(element);
-		}
-
-		/**
-		 *
-		 */
-		function getText() {
-			const subtitle = getBaseElement(element).querySelector('.maintext')?.textContent;
-			return subtitle?.trim();
-		}
+		const getText = () => getBaseElement(element).querySelector('.main-text')?.textContent?.trim();
 
 		it('should init with undefined and set as empty string in DOM', function () {
-			const initSubtitlePropEmpty = element.text;
-			const initSubtitleAttrEmpty = getText();
-
-			expect(initSubtitlePropEmpty)
-				.toEqual(undefined);
-			expect(initSubtitleAttrEmpty).toBeUndefined();
+			expect(element.text).toEqual(undefined);
+			expect(getText()).toBeUndefined();
 		});
 
-		it('should reflect the message', async function () {
-			const messageSubtitle = 'Some Subtitle';
+		it('should reflect the message passed in text as a prop/attr', async function () {
+			const alertText = 'alert text';
 
-			await setTextProperty(messageSubtitle);
-			const DOMSubtitleWithProperty = getText();
+			element.text = alertText;
+			await elementUpdated(element);
+			const fromProptoDOM = getText();
 
-			await setTextProperty(undefined);
-			await setTextAttribute(messageSubtitle);
-			const propertySubtitleWithAttribute = element.text;
+			element.text = undefined;
+			element.setAttribute('text', alertText);
+			await elementUpdated(element);
+			const fromDOMtoProp = element.text;
 
-			expect(DOMSubtitleWithProperty)
-				.toEqual(messageSubtitle);
-			expect(propertySubtitleWithAttribute)
-				.toEqual(messageSubtitle);
+			expect(fromProptoDOM)
+				.toEqual(alertText);
+			expect(fromDOMtoProp)
+				.toEqual(alertText);
 		});
 	});
 
