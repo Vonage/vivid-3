@@ -31,7 +31,7 @@ $dialog-space-size: 24px;
 	}
 
 	&.modal {
-		// reason for box-shadow & hardcoded color - PR-XXX
+		// reason for box-shadow & hardcoded color - PR-1172
 
 		box-shadow: 0 4px 20px rgb(0 0 0 / 35%);
 		&::backdrop {
