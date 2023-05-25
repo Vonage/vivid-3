@@ -20,10 +20,6 @@ $dps: 0 2 4 8 12 16 24;
 	::slotted(*) {
 		position: relative;
 
-		@include utils.spread-list-selectors(".dp", $dps, $default) using($type) {
-			@include elevation.elevation($type);
-		}
-
 		&::before {
 			$default: list.nth($dps, 2);
 
