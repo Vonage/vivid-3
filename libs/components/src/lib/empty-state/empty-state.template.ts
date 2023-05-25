@@ -41,7 +41,7 @@ export const EmptyStateTemplate: (
 		html<EmptyState>`<header>${(x) => x.headline}</header>`
 	)}
 				<div class="body">
-					<slot>Nothing to show.</slot>
+					<slot></slot>
 				</div>
 			</div>
 			<div class="actions">

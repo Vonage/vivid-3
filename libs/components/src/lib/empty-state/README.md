@@ -45,8 +45,6 @@ Use the `icon` attribute to set the icon of the empty state.
 
 Use the default slot to set the content of the empty state.
 
-- Default: `Nothing to show.`
-
 ```html preview
 <vwc-empty-state>
   No results match your search criteria.

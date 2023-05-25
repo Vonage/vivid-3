@@ -51,8 +51,8 @@ describe('vwc-empty-state', () => {
 	});
 
 	describe('default slot', () => {
-		it('should should have a default slot with "Nothing to show." as fallback content', () => {
-			expect(element.shadowRoot?.querySelector('slot:not([name])')?.textContent?.trim()).toEqual('Nothing to show.');
+		it('should should have a default slot', () => {
+			expect(element.shadowRoot?.querySelector('slot:not([name])')).toBeTruthy();
 		});
 	});
 
