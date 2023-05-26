@@ -6,6 +6,7 @@ import {
 	loadComponents,
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
+import type { Select } from './select.js'
 
 const components = ['select', 'option', 'badge'];
 
@@ -26,6 +27,11 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	});
 
 	const testWrapper = await page.$('#wrapper');
+
+	await page.evaluate(() => {
+		const selects = (document.querySelectorAll('vwc-select') as NodeListOf<Select>);
+		selects.forEach(select => select.focusoutHandler = e => e.stopImmediatePropagation());
+	});
 
 	await page.waitForLoadState('networkidle');
 
