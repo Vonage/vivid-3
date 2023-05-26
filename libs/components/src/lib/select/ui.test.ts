@@ -28,11 +28,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	const testWrapper = await page.$('#wrapper');
 
-	await page.evaluate(() => {
-		const selects = (document.querySelectorAll('vwc-select') as NodeListOf<Select>);
-		selects.forEach(select => select.focusoutHandler = e => e.stopImmediatePropagation());
-	});
-
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
