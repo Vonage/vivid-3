@@ -167,15 +167,15 @@ Use the `timeoutms` attribute to set the time after which the alert will automat
 
 ## Slots
 
-### Default
+### Main
 
-If you want to add rich content to your alert, you can use the default slot.
+If you want to add rich content to your alert, you can use the main slot.
 
-You can style the content as you wish using `vwc-alert::part(vvd-theme-alternate)`.
+You can style the alert content as needed using `vwc-alert::part(vvd-theme-alternate)`.
 
 ```html preview
 <vwc-alert open>
-  <vwc-switch label="Do not show more alerts"></vwc-switch>
+  <vwc-switch slot="main" label="Do not show more alerts"></vwc-switch>
 </vwc-alert>
 ```
 

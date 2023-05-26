@@ -60,7 +60,7 @@ export const AlertTemplate: (
 		html`<header class="headline">${(x) => x.headline}</header>`)}
 					${when(x => x.text,
 		html`<div class="main-text">${(x) => x.text}</div>`)}
-					<slot>
+					<slot name="main">
 					</slot>
 				</div>
 				<slot class="action-items" name="action-items"></slot>
