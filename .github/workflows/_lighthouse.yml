@@ -30,11 +30,7 @@ jobs:
         with:
           directory: ${{ github.workspace }}
           port: 8080
-          no-cache: false
-          index-files: |
-            ["index.html", "index.htm"]
-          allowed-methods: |
-            ["GET", "HEAD"]
+          no-cache: true
           content-types: |
             {
               "appcache": "text/cache-manifest",
