@@ -224,7 +224,7 @@ You can add a `label` attribute to the `vwc-option` to set a custom display valu
     block-size: 230px;
   }
 </style>
-<vwc-select>
+<vwc-select open>
   <vwc-option label="Custom Label 1" value="1" text="Option 1"></vwc-option>
   <vwc-option label="Custom Label 2" value="2" text="Option 2"></vwc-option>
   <vwc-option label="Custom Label 3" value="3" text="Option 3"></vwc-option>
