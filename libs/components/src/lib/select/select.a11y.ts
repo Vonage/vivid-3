@@ -8,7 +8,7 @@ import {
 
 const components = ['select', 'option', 'badge'];
 
-test.only('a11y', async ({ page }: { page: Page }) => {
+test('a11y', async ({ page }: { page: Page }) => {
 
 	const template = `
 		<vwc-select aria-label="test">

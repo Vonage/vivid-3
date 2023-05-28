@@ -54,11 +54,13 @@
         },
 				"a11y": {
 					"commands": [
+						"npx nx run components:build",
 						"./scripts/visual-tests/run.tests.in.container.sh a11y"
 					]
 				},
 				"a11y-local": {
 					"commands": [
+						"npx nx run components:build",
 						"./scripts/visual-tests/run.tests.in.container.sh a11y-local"
 					]
 				}
