@@ -73,8 +73,10 @@ function renderControl(context: ElementDefinitionContext) {
 							class="popup"
 							>
 							<div
-                id="${x => x.listboxId}"
+								aria-activedescendant="${x => x.ariaActiveDescendant}"
+                id="listbox"
                 role="listbox"
+								aria-label="${x => x.ariaLabel ? x.ariaLabel : x.label ? x.label : 'listbox'}"
                 ?disabled="${x => x.disabled}"
                 ${ref('listbox')}
 								class="list-box"
@@ -92,7 +94,6 @@ function renderControl(context: ElementDefinitionContext) {
 			</div>
 			${when(x =>  x.helperText?.length, getFeedbackTemplate('helper', context))}
 		`;
-
 }
 
 
@@ -110,20 +111,20 @@ export const SelectTemplate: (
 
 	return html<Select>`
 	  <template class="base"
-            aria-activedescendant="${x => x.ariaActiveDescendant}"
-            aria-controls="${x => x.ariaControls}"
-            aria-disabled="${x => x.ariaDisabled}"
-            aria-expanded="${x => x.ariaExpanded}"
-            aria-haspopup="${x => (x.collapsible ? 'listbox' : null)}"
-            aria-multiselectable="${x => x.ariaMultiSelectable}"
-            ?open="${x => x.open}"
-            role="select"
-            tabindex="${x => (!x.disabled ? '0' : null)}"
-            @click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
-            @focusin="${(x, c) => x.focusinHandler(c.event as FocusEvent)}"
-            @focusout="${(x, c) => x.focusoutHandler(c.event as FocusEvent)}"
-            @keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
-            @mousedown="${(x, c) => x.mousedownHandler(c.event as MouseEvent)}"
+							role="combobox"
+            	aria-controls="listbox"
+							aria-label="${x => x.ariaLabel ? x.ariaLabel : x.label ? x.label : 'select'}"
+							aria-disabled="${x => x.ariaDisabled}"
+							aria-expanded="${x => x.ariaExpanded}"
+							aria-haspopup="${x => (x.collapsible ? 'listbox' : null)}"
+							aria-multiselectable="${x => x.ariaMultiSelectable}"
+							?open="${x => x.open}"
+							tabindex="${x => (!x.disabled ? '0' : null)}"
+							@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
+							@focusin="${(x, c) => x.focusinHandler(c.event as FocusEvent)}"
+							@focusout="${(x, c) => x.focusoutHandler(c.event as FocusEvent)}"
+							@keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
+							@mousedown="${(x, c) => x.mousedownHandler(c.event as MouseEvent)}"
         >
             ${renderControl(context)}
 		</template>
