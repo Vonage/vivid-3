@@ -1,7 +1,7 @@
 {
   "ci": {
     "collect": {
-      "url": "https://localhost:8080/scripts/index.html"
+      "url": "http://localhost:8080/scripts/index.html"
     }
   }
 }
