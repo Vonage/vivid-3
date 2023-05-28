@@ -18,8 +18,31 @@ jobs:
       - name: Build Site
         run: npx nx run components:build
 
-      - name: run http server
-        run: npx http-server -p 8080
+      - name: Serve Files
+        uses: Eun/http-server-action@v1
+        with:
+          directory: ${{ github.workspace }}
+          port: 8080
+          no-cache: false
+          index-files: |
+            ["index.html", "index.htm"]
+          allowed-methods: |
+            ["GET", "HEAD"]
+          content-types: |
+            {
+              "appcache": "text/cache-manifest",
+              "css": "text/css",
+              "gif": "image/gif",
+              "html": "text/html",
+              "ico": "image/x-icon",
+              "jpeg": "image/jpeg",
+              "jpg": "image/jpeg",
+              "js": "text/javascript",
+              "json": "application/json",
+              "png": "image/png",
+              "txt": "text/plain",
+              "xml": "text/xml"
+            }
 
       # name: Run Lighthouse against a static dist dir
       - uses: treosh/lighthouse-ci-action@v9

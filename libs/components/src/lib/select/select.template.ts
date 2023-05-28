@@ -128,6 +128,5 @@ export const SelectTemplate: (
         >
             ${renderControl(context)}
 		</template>
-// TODO:: add focus to the control-wrapper
 	`;
 };
