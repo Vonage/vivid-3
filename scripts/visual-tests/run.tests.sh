@@ -7,6 +7,11 @@ case $arg in
   npx http-server -s &
   npx playwright test --update-snapshots -c ./libs/components/playwright.config.ts
   ;;
+"a11y")
+	echo "Testing accessibility"
+	npx http-server -s &
+	npx playwright test -c ./libs/components/playwright.config.a11y.ts
+	;;
 *)
   echo "Testing snapshots"
   npx http-server -s &

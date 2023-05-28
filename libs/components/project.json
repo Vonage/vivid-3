@@ -45,7 +45,12 @@
             }
           ],
           "parallel": true
-        }
+        },
+				"a11y": {
+					"commands": [
+						"./scripts/visual-tests/run.tests.in.container.sh a11y"
+					]
+				}
       }
     },
     "lint": {
