@@ -16,7 +16,10 @@ jobs:
         run: npm ci
 
       - name: Build Site
-        run: npx nx run docs:build
+        run: npx nx run components:build
+
+      - name: run http server
+        run: npx http-server -p 8080
 
       # name: Run Lighthouse against a static dist dir
       - uses: treosh/lighthouse-ci-action@v9

@@ -1,7 +1,7 @@
 {
   "ci": {
     "collect": {
-      "staticDistDir": "./dist/apps/docs"
+      "url": "https://localhost:8080/scrtips/index.html"
     }
   }
 }
