@@ -14,6 +14,12 @@
       },
 			"dependsOn": ["build"]
     },
+		"a11y": {
+			"executor": "nx:run-commands",
+			"options": {
+
+			}
+		},
     "e2e": {
       "executor": "nx:run-commands",
       "options": {
@@ -49,6 +55,11 @@
 				"a11y": {
 					"commands": [
 						"./scripts/visual-tests/run.tests.in.container.sh a11y"
+					]
+				},
+				"a11y-local": {
+					"commands": [
+						"./scripts/visual-tests/run.tests.in.container.sh a11y-local"
 					]
 				}
       }

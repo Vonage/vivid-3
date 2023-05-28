@@ -92,7 +92,8 @@ test.only('a11y', async ({ page }: { page: Page }) => {
 		port: 9222,
 		reports: {
 			formats: {
-				html: true, //defaults to false
+				html: true,
+				json: true,
 			},
 			name: 'select-a11y', //defaults to `lighthouse-${new Date().getTime()}`
 		},

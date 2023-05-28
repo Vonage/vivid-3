@@ -4,6 +4,10 @@ case $1 in
 "local" )
   echo "Local test run"
   ./scripts/visual-tests/run.tests.sh ;;
+"a11y-local" )
+	echo "Accessibility local test run"
+	export task=a11y
+	./scripts/visual-tests/run.tests.sh;;
 *)
   echo "Docker test run"
   # update with proper image name when moved
