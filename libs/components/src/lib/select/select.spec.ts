@@ -128,6 +128,32 @@ describe('vwc-select', () => {
 		});
 	});
 
+	describe('successText', function () {
+		// it('should add class success to base if successText is set', async function () {
+		// 	element.successText = 'success';
+		// 	await elementUpdated(element);
+		//
+		// 	expect(getBaseElement(element)
+		// 		.classList
+		// 		.contains('success'))
+		// 		.toEqual(true);
+		// });
+
+		// it('should not show helper text when success is shown', async function () {
+		// 	element.helperText = 'help';
+		// 	element.successText = 'success';
+		// 	await elementUpdated(element);
+		// 	expect(element.shadowRoot?.querySelector('.helper-text'))
+		// 		.toBeNull();
+		// });
+
+		// it('should show success message if set', async function() {
+		// 	element.successText = 'success';
+		// 	await elementUpdated(element);
+		// 	expect(element.shadowRoot?.querySelector('.success-message')?.textContent?.trim()).toEqual('success');
+		// });
+	});
+
 	describe('disabled', function () {
 		it('should set disabled class for select when disabled is true', async () => {
 			const disableClassExistsWithDisabledFalse = Boolean(element.shadowRoot?.querySelector('.control.disabled'));
@@ -365,4 +391,5 @@ describe('vwc-select', () => {
 
 		});
 	});
+
 });
