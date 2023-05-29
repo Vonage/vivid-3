@@ -11,9 +11,9 @@ import type { Select } from './select.js';
 const components = ['select', 'option', 'badge'];
 
 
-test('should show the component', async ({ page }: { page: Page }) => {
+test.only('should show the component', async ({ page }: { page: Page }) => {
 
-	const template = '<style>#wrapper{height: 250px; width: 2300px; display: flex; flex-wrap: nowrap;}</style>'
+	const template = '<style>#wrapper{height: 250px; width: 2500px; display: flex; flex-wrap: nowrap;}</style>'
 		+ extractHTMLBlocksFromReadme(
 			path.join(new URL('.', import.meta.url).pathname, 'README.md'))
 			.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');

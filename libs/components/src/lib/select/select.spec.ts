@@ -128,30 +128,50 @@ describe('vwc-select', () => {
 		});
 	});
 
-	describe('successText', function () {
-		// it('should add class success to base if successText is set', async function () {
-		// 	element.successText = 'success';
-		// 	await elementUpdated(element);
-		//
-		// 	expect(getBaseElement(element)
-		// 		.classList
-		// 		.contains('success'))
-		// 		.toEqual(true);
-		// });
+	describe('success Text', ()=> {
+		it('should add success class to base when successText is set', async function () {
+			(element as any).successText = 'success';
+			await elementUpdated(element);
+			expect(getControlElement(element).classList.contains('success')).toBeTruthy();
+		});
 
-		// it('should not show helper text when success is shown', async function () {
-		// 	element.helperText = 'help';
-		// 	element.successText = 'success';
-		// 	await elementUpdated(element);
-		// 	expect(element.shadowRoot?.querySelector('.helper-text'))
-		// 		.toBeNull();
-		// });
+		it('should show success text when successText is set', async function () {
+			(element as any).successText = 'success';
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.success-message')?.textContent?.trim()).toEqual('success');
+		});
 
-		// it('should show success message if set', async function() {
-		// 	element.successText = 'success';
-		// 	await elementUpdated(element);
-		// 	expect(element.shadowRoot?.querySelector('.success-message')?.textContent?.trim()).toEqual('success');
-		// });
+		it('should remove success text when undefined', async function () {
+			(element as any).successText = 'success';
+			await elementUpdated(element);
+			(element as any).successText = undefined;
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.success-message')).toBeNull();
+		});
+
+	});
+
+	describe('error Text', ()=> {
+		it('should add error class to base when errorText is set', async function () {
+			(element as any).errorText = 'error';
+			await elementUpdated(element);
+			expect(getControlElement(element).classList.contains('error')).toBeTruthy();
+		});
+
+		it('should show error text when errorText is set', async function () {
+			(element as any).errorText = 'error';
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.error-message')?.textContent?.trim()).toEqual('error');
+		});
+
+		it('should remove error text when undefined', async function () {
+			(element as any).errorText = 'error';
+			await elementUpdated(element);
+			(element as any).errorText = undefined;
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.error-message')).toBeNull();
+		});
+
 	});
 
 	describe('disabled', function () {
@@ -391,5 +411,7 @@ describe('vwc-select', () => {
 
 		});
 	});
+
+
 
 });
