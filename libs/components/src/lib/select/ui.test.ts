@@ -11,7 +11,7 @@ import type { Select } from './select.js';
 const components = ['select', 'option', 'badge'];
 
 
-test.only('should show the component', async ({ page }: { page: Page }) => {
+test('should show the component', async ({ page }: { page: Page }) => {
 
 	const template = '<style>#wrapper{height: 250px; width: 2500px; display: flex; flex-wrap: nowrap;}</style>'
 		+ extractHTMLBlocksFromReadme(
