@@ -65,7 +65,7 @@ It accepts a subset of predefined values.
 		list-style: none;
 	}
 	.custom {
-		color: #FF7F50;
+		color: var(--vvd-color-announcement-400);
 	}
 </style>
 <ul>
