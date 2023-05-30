@@ -14,12 +14,16 @@ const getStateClasses = ({
 	shape,
 	disabled,
 	appearance,
-	metaSlottedContent
+	metaSlottedContent,
+	errorValidationMessage,
+	successText
 }: Select) => classNames(
 	['disabled', disabled],
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
-	['has-meta', Boolean(metaSlottedContent?.length)]
+	['has-meta', Boolean(metaSlottedContent?.length)],
+	['error connotation-alert', Boolean(errorValidationMessage)],
+	['success connotation-success', !!successText]
 );
 
 /**
@@ -91,6 +95,8 @@ function renderControl(context: ElementDefinitionContext) {
 					</${popupTag}>
 			</div>
 			${when(x =>  x.helperText?.length, getFeedbackTemplate('helper', context))}
+			${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplate('error', context))}
+			${when(x => x.successText, getFeedbackTemplate('success', context))}
 		`;
 
 }
