@@ -1,5 +1,5 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import type {Icon} from "../icon/icon";
+import type {Icon} from '../icon/icon';
 import { Tab } from './tab';
 import '.';
 
