@@ -163,7 +163,7 @@ describe('vwc-alert', () => {
 			expect(element.conditionedIcon).toEqual('home');
 		});
 	});
-	
+
 	describe('icon', function () {
 
 		const getIcon: () => Icon | null = () => getBaseElement(element).querySelector('.icon > vwc-icon');
