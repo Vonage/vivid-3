@@ -56,9 +56,6 @@ vwc-side-drawer::part(base) {
   box-sizing: border-box;
 }
 
-/*vwc-header[elevation-shadow] vwc-side-drawer::part(base) {*/
-/*	border-right: 1px solid var(--vvd-color-neutral-100);*/
-/*}*/
 
 @supports (overscroll-behavior: none) {
   vwc-side-drawer::part(base) {
