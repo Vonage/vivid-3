@@ -130,7 +130,41 @@ describe('vwc-alert', () => {
 		});
 	});
 
-	describe('icon / conditionedIcon', function () {
+	describe('conditionedIcon', function () {
+		// const getIcon: () => Icon | null = () => getBaseElement(element).querySelector('.icon > vwc-icon');
+		it('should return undefined if no icon or connotations are set', function () {
+			expect(element.conditionedIcon).toBeUndefined();
+		});
+
+		it('should return the icon if icon is set', async function () {
+			element.icon = 'home';
+			await elementUpdated(element);
+			expect(element.conditionedIcon).toEqual('home');
+		});
+
+		it('should return the connotation icon if connotation is set', function () {
+			const connotationIconMap: Map<AlertConnotation, string> = new Map([
+				[Connotation.Accent, 'megaphone-line'],
+				[Connotation.Information, 'info-line'],
+				[Connotation.Success, 'check-circle-line'],
+				[Connotation.Warning, 'warning-line'],
+				[Connotation.Alert, 'error-line']
+			]);
+
+			connotationIconMap.forEach((icon, connotation) => {
+				element.connotation = connotation;
+				expect(element.conditionedIcon).toEqual(icon);
+			});
+		});
+
+		it('should return the icon if icon and connotation are set', function () {
+			element.icon = 'home';
+			element.connotation = Connotation.Alert;
+			expect(element.conditionedIcon).toEqual('home');
+		});
+	});
+	
+	describe('icon', function () {
 
 		const getIcon: () => Icon | null = () => getBaseElement(element).querySelector('.icon > vwc-icon');
 
@@ -138,7 +172,7 @@ describe('vwc-alert', () => {
 			expect(getIcon()).toBeNull();
 		});
 
-		it('should have an icon if one is set and no connotation is', async function () {
+		it('should have an icon when icon is set', async function () {
 			element.setAttribute('icon', 'home');
 
 			await elementUpdated(element);
@@ -148,7 +182,7 @@ describe('vwc-alert', () => {
 			expect(iconEl?.name).toEqual('home');
 		});
 
-		it('should have the connotion icon if connotation is set and icon is not', async function () {
+		it('should have the connotation icon if connotation is set', async function () {
 			const connotationIconMap: Map<AlertConnotation, string> = new Map([
 				[Connotation.Accent, 'megaphone-line'],
 				[Connotation.Information, 'info-line'],
@@ -164,14 +198,12 @@ describe('vwc-alert', () => {
 			}
 		});
 
-
 		it('should override the connotation icon if the icon attribute is set', async function () {
 			element.setAttribute('icon', 'home');
 			element.setAttribute('connotation', 'warning');
 			await elementUpdated(element);
 			expect(getIcon()?.name).toEqual('home');
 		});
-
 	});
 
 	describe('removable', function () {
