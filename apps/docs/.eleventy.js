@@ -25,6 +25,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget("dist/libs/components");
   eleventyConfig.addWatchTarget(`${ASSETS_DIR}/scripts`);
   eleventyConfig.addWatchTarget(`${ASSETS_DIR}/styles`);
+  eleventyConfig.addWatchTarget("docs");
+  eleventyConfig.addWatchTarget("libs/components/src/lib/*/README.md");
   eleventyConfig.setBrowserSyncConfig({
     server: {
       baseDir: OUTPUT_DIR
