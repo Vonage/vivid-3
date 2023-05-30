@@ -14,10 +14,12 @@ const getStateClasses = ({
 	shape,
 	disabled,
 	appearance,
+	metaSlottedContent
 }: Select) => classNames(
 	['disabled', disabled],
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
+	['has-meta', Boolean(metaSlottedContent?.length)]
 );
 
 /**
@@ -43,6 +45,7 @@ function selectValue(context: ElementDefinitionContext) {
 					<div class="selected-value">
 						${x => affixIconTemplate(x.icon)}
 						<span class="text">${x => x.displayValue}</span>
+						<slot name="meta" ${slotted('metaSlottedContent')}></slot>
 					</div>
 					${() => affixIconTemplate('chevron-down-line')}
 					${() => focusTemplate}

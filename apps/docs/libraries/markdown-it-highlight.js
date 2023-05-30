@@ -9,7 +9,7 @@ module.exports = function (str, language, attrs) {
       // if code fence is attributed by preview,
       // we'd add a class to hook into and render
       // the code snippet as a live preview
-      const classes = ['hljs', ...attrs.split('-')];
+      const classes = ['hljs', ...attrs.split(' ')];
 
       return `<pre class="${classes.join(' ')}"><code>${highlight}</code></pre>`;
 

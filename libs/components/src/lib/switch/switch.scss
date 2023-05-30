@@ -18,7 +18,7 @@
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
 .control {
-	@include connotation.connotation;
+	@include connotation.connotation (switch);
 	@include appearance.appearance;
 
 	display: inline-flex;

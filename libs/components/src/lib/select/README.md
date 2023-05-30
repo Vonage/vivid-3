@@ -8,28 +8,6 @@ Represents a select custom element.
 </script>
 ```
 
-## Slots
-
-### Default
-
-Read more about [vwc-option](../../components/option).
-
-```html preview
-<style>
-  html { /* for demo purposes */
-    block-size: 230px;
-  }
-  vwc-select {
-    width: 150px;
-  }
-</style>
-<vwc-select label="choose one option">
-  <vwc-option value="1" text="Option 1"></vwc-option>
-  <vwc-option value="2" text="Option 2"></vwc-option>
-  <vwc-option value="3" text="Option 3"></vwc-option>
-</vwc-select>
-```
-
 ## Members
 
 ### Label
@@ -177,6 +155,62 @@ _Select_ internally uses _popup_ to display an element and its descendants above
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
   <vwc-option value="3" text="Option 3"></vwc-option>
+</vwc-select>
+```
+
+## Slots
+
+### Default
+
+Read more about [vwc-option](../../components/option).
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+  vwc-select {
+    width: 150px;
+  }
+</style>
+<vwc-select label="choose one option">
+  <vwc-option value="1" text="Option 1"></vwc-option>
+  <vwc-option value="2" text="Option 2"></vwc-option>
+  <vwc-option value="3" text="Option 3"></vwc-option>
+</vwc-select>
+```
+
+### Meta
+
+Set the `meta` slot to show meta information after the selected option label.
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+  vwc-select {
+    width: 250px;
+  }
+  .duration {
+    color: var(--vvd-color-neutral-600);
+    text-align: end;
+    flex-grow: 1;
+  }
+</style>
+<vwc-select>
+  <vwc-option value="1" text="Option 1"></vwc-option>
+  <vwc-option value="2" text="Option 2"></vwc-option>
+  <vwc-option value="3" text="Option 3"></vwc-option>
+  <span slot="meta">
+    <vwc-badge connotation="success" text="Beta"></vwc-badge>
+  </span>
+</vwc-select>
+<vwc-select>
+  <vwc-option value="1" text="Option 1"></vwc-option>
+  <vwc-option value="2" text="Option 2"></vwc-option>
+  <vwc-option value="3" text="Option 3"></vwc-option>
+  <span slot="meta" class="duration">00:00:00</span>
 </vwc-select>
 ```
 

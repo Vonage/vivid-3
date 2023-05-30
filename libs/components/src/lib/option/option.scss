@@ -23,7 +23,7 @@
 	$gap: 12px;
 	$gutter: 16px;
 
-	@include connotation.connotation;
+	@include connotation.connotation (option);
 	@include appearance.appearance;
 
 	position: relative; /* this is needed for the focus */
