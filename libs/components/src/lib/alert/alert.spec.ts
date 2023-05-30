@@ -23,7 +23,7 @@ describe('vwc-alert', () => {
 				.toBeInstanceOf(Alert);
 			expect(element.open).toBeFalsy();
 			expect(element.icon).toBeUndefined();
-			expect(element.subtitle).toBeUndefined();
+			expect(element.text).toBeUndefined();
 			expect(element.headline).toBeUndefined();
 			expect(element.connotation).toBeUndefined();
 			expect(element.removable).toBeFalsy();
@@ -33,104 +33,56 @@ describe('vwc-alert', () => {
 	});
 
 	describe('headline', function () {
-		/**
-		 * @param headline
-		 */
-		async function setHeadlineProperty(headline: string | undefined) {
-			element.headline = headline;
-			await elementUpdated(element);
-		}
-
-		/**
-		 * @param headline
-		 */
-		async function setHeadlineAttribute(headline: string | undefined) {
-			element.setAttribute('headline', headline ? headline : '');
-			await elementUpdated(element);
-		}
-
-		/**
-		 *
-		 */
-		function getHeadline() {
-			const headline = getBaseElement(element).querySelector('.headline')?.textContent;
-			return headline?.trim();
-		}
+		const getHeadline = () => getBaseElement(element).querySelector('.headline')?.textContent?.trim();
 
 		it('should init with undefined and set as empty string in DOM', function () {
-			const initHeadlinePropEmpty = element.headline;
-			const initHeadlineAttrEmpty = getHeadline();
-
-			expect(initHeadlinePropEmpty)
-				.toEqual(undefined);
-			expect(initHeadlineAttrEmpty).toBeUndefined();
+			expect(element.headline).toEqual(undefined);
+			expect(getHeadline()).toBeUndefined();
 		});
 
-		it('should reflect the message', async function () {
-			const messageHeadline = 'Some Headline';
+		it('should reflect the message passed in headline as a prop/attr', async function () {
+			const alertHeadline = 'headline text';
 
-			await setHeadlineProperty(messageHeadline);
-			const DOMHeadlineWithProperty = getHeadline();
+			element.headline = alertHeadline;
+			await elementUpdated(element);
+			const fromProptoDOM = getHeadline();
 
-			await setHeadlineProperty(undefined);
-			await setHeadlineAttribute(messageHeadline);
-			const propertyHeadlineWithAttribute = element.headline;
+			element.headline = undefined;
+			element.setAttribute('headline', alertHeadline);
+			await elementUpdated(element);
+			const fromDOMtoProp = element.headline;
 
-			expect(DOMHeadlineWithProperty)
-				.toEqual(messageHeadline);
-			expect(propertyHeadlineWithAttribute)
-				.toEqual(messageHeadline);
+			expect(fromProptoDOM)
+				.toEqual(alertHeadline);
+			expect(fromDOMtoProp)
+				.toEqual(alertHeadline);
 		});
 	});
 
-	describe('subtitle', function () {
-		/**
-		 * @param subtitle
-		 */
-		async function setSubtitleProperty(subtitle: string | undefined) {
-			element.subtitle = subtitle;
-			await elementUpdated(element);
-		}
-
-		/**
-		 * @param subtitle
-		 */
-		async function setSubtitleAttribute(subtitle: string | undefined) {
-			element.setAttribute('subtitle', subtitle ? subtitle : '');
-			await elementUpdated(element);
-		}
-
-		/**
-		 *
-		 */
-		function getSubtitle() {
-			const subtitle = getBaseElement(element).querySelector('.subtitle')?.textContent;
-			return subtitle?.trim();
-		}
+	describe('text', function () {
+		const getText = () => getBaseElement(element).querySelector('.main-text')?.textContent?.trim();
 
 		it('should init with undefined and set as empty string in DOM', function () {
-			const initSubtitlePropEmpty = element.subtitle;
-			const initSubtitleAttrEmpty = getSubtitle();
-
-			expect(initSubtitlePropEmpty)
-				.toEqual(undefined);
-			expect(initSubtitleAttrEmpty).toBeUndefined();
+			expect(element.text).toEqual(undefined);
+			expect(getText()).toBeUndefined();
 		});
 
-		it('should reflect the message', async function () {
-			const messageSubtitle = 'Some Subtitle';
+		it('should reflect the message passed in text as a prop/attr', async function () {
+			const alertText = 'alert text';
 
-			await setSubtitleProperty(messageSubtitle);
-			const DOMSubtitleWithProperty = getSubtitle();
+			element.text = alertText;
+			await elementUpdated(element);
+			const fromProptoDOM = getText();
 
-			await setSubtitleProperty(undefined);
-			await setSubtitleAttribute(messageSubtitle);
-			const propertySubtitleWithAttribute = element.subtitle;
+			element.text = undefined;
+			element.setAttribute('text', alertText);
+			await elementUpdated(element);
+			const fromDOMtoProp = element.text;
 
-			expect(DOMSubtitleWithProperty)
-				.toEqual(messageSubtitle);
-			expect(propertySubtitleWithAttribute)
-				.toEqual(messageSubtitle);
+			expect(fromProptoDOM)
+				.toEqual(alertText);
+			expect(fromDOMtoProp)
+				.toEqual(alertText);
 		});
 	});
 
@@ -162,26 +114,75 @@ describe('vwc-alert', () => {
 		});
 	});
 
-	describe('icon', function () {
-		let getIcon: () => Icon;
+	describe('timeoutms', function () {
+		it('should fire close event after timeoutms milliseconds', async function () {
+			jest.useFakeTimers();
+			const spy = jest.fn();
 
-		beforeEach(function () {
-			getIcon = () => getBaseElement(element).querySelector('.icon > vwc-icon') as Icon;
+			element.timeoutms = 100;
+			element.open = true;
+			element.addEventListener('close', spy);
+
+			jest.advanceTimersByTime(100);
+
+			expect(spy).toHaveBeenCalled();
+			jest.useRealTimers();
+		});
+	});
+
+	describe('conditionedIcon', function () {
+		// const getIcon: () => Icon | null = () => getBaseElement(element).querySelector('.icon > vwc-icon');
+		it('should return undefined if no icon or connotations are set', function () {
+			expect(element.conditionedIcon).toBeUndefined();
 		});
 
-		it('should set the icon according to connotation accent by default', async function () {
-			expect(element.connotation).toBeUndefined();
-		});
-
-		it('should set the icon according to "icon" attribute', async function () {
-			element.setAttribute('icon', 'home');
+		it('should return the icon if icon is set', async function () {
+			element.icon = 'home';
 			await elementUpdated(element);
-
-			expect(getIcon().name)
-				.toEqual('home');
+			expect(element.conditionedIcon).toEqual('home');
 		});
 
-		it('should set the icon according to set connotation', async function () {
+		it('should return the connotation icon if connotation is set', function () {
+			const connotationIconMap: Map<AlertConnotation, string> = new Map([
+				[Connotation.Accent, 'megaphone-line'],
+				[Connotation.Information, 'info-line'],
+				[Connotation.Success, 'check-circle-line'],
+				[Connotation.Warning, 'warning-line'],
+				[Connotation.Alert, 'error-line']
+			]);
+
+			connotationIconMap.forEach((icon, connotation) => {
+				element.connotation = connotation;
+				expect(element.conditionedIcon).toEqual(icon);
+			});
+		});
+
+		it('should return the icon if icon and connotation are set', function () {
+			element.icon = 'home';
+			element.connotation = Connotation.Alert;
+			expect(element.conditionedIcon).toEqual('home');
+		});
+	});
+
+	describe('icon', function () {
+
+		const getIcon: () => Icon | null = () => getBaseElement(element).querySelector('.icon > vwc-icon');
+
+		it('should not have an icon if there is none and no connotation is set', async function () {
+			expect(getIcon()).toBeNull();
+		});
+
+		it('should have an icon when icon is set', async function () {
+			element.setAttribute('icon', 'home');
+
+			await elementUpdated(element);
+			const iconEl = getIcon();
+
+			expect(iconEl).toBeDefined();
+			expect(iconEl?.name).toEqual('home');
+		});
+
+		it('should have the connotation icon if connotation is set', async function () {
 			const connotationIconMap: Map<AlertConnotation, string> = new Map([
 				[Connotation.Accent, 'megaphone-line'],
 				[Connotation.Information, 'info-line'],
@@ -192,53 +193,16 @@ describe('vwc-alert', () => {
 
 			for (const [connotation, iconName] of connotationIconMap) {
 				element.connotation = connotation;
-
 				await elementUpdated(element);
-
-				expect(getIcon().name).toEqual(iconName);
+				expect(getIcon()?.name).toEqual(iconName);
 			}
 		});
-	});
 
-	describe('timeout', function () {
-		it('should fire removed event', async function () {
-			const timeout = 100;
-			const spy = jest.fn();
-			element.addEventListener('removed', spy);
-			element.open = true;
-			element.timeoutms = timeout;
+		it('should override the connotation icon if the icon attribute is set', async function () {
+			element.setAttribute('icon', 'home');
+			element.setAttribute('connotation', 'warning');
 			await elementUpdated(element);
-			element.open = false;
-
-			expect(spy).not.toHaveBeenCalled();
-
-			await elementUpdated(element);
-
-			expect(spy).toHaveBeenCalled();
-		});
-
-		it('should fire removed event when open from start', async function () {
-			const timeout = 100;
-
-			element = (await fixture(
-				`<${COMPONENT_TAG} open timeoutms=${timeout}></${COMPONENT_TAG}>`
-			)) as Alert;
-
-			const spy = jest.fn();
-			element.addEventListener('removed', spy);
-
-			element.open = false;
-			expect(spy).not.toHaveBeenCalled();
-
-			await elementUpdated(element);
-
-			expect(spy).toHaveBeenCalled();
-
-			element.open = true;
-			await elementUpdated(element);
-
-			element.remove();
-			expect(spy).toHaveBeenCalled();
+			expect(getIcon()?.name).toEqual('home');
 		});
 	});
 
@@ -257,72 +221,87 @@ describe('vwc-alert', () => {
 				.toEqual(true);
 		});
 
-		it('should have dismiss button when removable is true', async function () {
-			element.toggleAttribute('removable');
-			await elementUpdated(element);
-			const dismissButton: Button = element.shadowRoot?.querySelector('.dismiss-button') as Button;
+		describe('removable with button', function () {
 
-			expect(dismissButton).not.toEqual(null);
+			it('should have dismiss button when removable is true', async function () {
+				element.toggleAttribute('removable');
+				await elementUpdated(element);
+				const dismissButton: Button = element.shadowRoot?.querySelector('.dismiss-button') as Button;
+
+				expect(dismissButton).not.toEqual(null);
+			});
+
+			it('should remove the remove button when removable is false', async function () {
+				expect(element.shadowRoot?.querySelector('.dismiss-button'))
+					.toEqual(null);
+			});
+
+			it('should close when removable is true', async function () {
+				element.open = true;
+				element.toggleAttribute('removable');
+				await elementUpdated(element);
+				const dismissButton: Button = element.shadowRoot?.querySelector('.dismiss-button') as Button;
+
+				expect(element.open).toEqual(true);
+
+				dismissButton.click();
+				await elementUpdated(element);
+
+				expect(element.open).toEqual(false);
+			});
 		});
 
-		it('should remove the remove button when removable is false', async function () {
-			expect(element.shadowRoot?.querySelector('.dismiss-button'))
-				.toEqual(null);
+		describe('removable with Escape', function () {
+
+			beforeEach(() => element.open = true);
+
+			it('should remove the alert when esc and removable is true', async function () {
+				const spy = jest.fn();
+				element.removable = true;
+				element.addEventListener('close', spy);
+
+				await elementUpdated(element);
+				element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+
+				expect(spy).toHaveBeenCalledTimes(1);
+				expect(element.open).toBeFalsy();
+			});
+
+			it('should remove the alert only on escape key', async function () {
+				const spy = jest.fn();
+				element.removable = true;
+				element.addEventListener('close', spy);
+
+				await elementUpdated(element);
+				element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+
+				expect(spy).toHaveBeenCalledTimes(0);
+				expect(element.open).toBeTruthy();
+			});
+
+			it('should remove keydown listener after disconnection', async function () {
+				const spy = jest.fn();
+				element.removable = true;
+				element.addEventListener('close', spy);
+
+				await elementUpdated(element);
+				element.disconnectedCallback();
+				element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+
+				expect(spy).not.toHaveBeenCalled();
+			});
+
+			it('should not fire close event when removable is false', async function () {
+				const spy = jest.fn();
+				element.removable = false;
+				element.addEventListener('close', spy);
+
+				await elementUpdated(element);
+				element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+
+				expect(spy).not.toHaveBeenCalled();
+			});
 		});
 
-		it('should close when removable is true', async function () {
-			element.open = true;
-			element.toggleAttribute('removable');
-			await elementUpdated(element);
-			const dismissButton: Button = element.shadowRoot?.querySelector('.dismiss-button') as Button;
-
-			expect(element.open).toEqual(true);
-
-			dismissButton.click();
-			await elementUpdated(element);
-
-			expect(element.open).toEqual(false);
-		});
-	});
-
-	describe('remove on escape key', function () {
-		it('should remove the alert when esc and removable is true', async function () {
-			const spy = jest.fn();
-			element.addEventListener('removed', spy);
-			element.removable = true;
-			element.focus();
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
-			elementUpdated(element);
-			expect((spy as any).mock.calls.length).toEqual(1);
-		});
-
-		it('should remove the alert only on escape key', async function () {
-			const spy = jest.fn();
-			element.addEventListener('removed', spy);
-			element.removable = true;
-			element.focus();
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
-			expect((spy as any).mock.calls.length).toEqual(0);
-		});
-
-		it('should remove keydown listener after disconnection', async function () {
-			const spy = jest.fn();
-			element.addEventListener('removed', spy);
-			element.removable = true;
-			element.focus();
-			element.disconnectedCallback();
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
-			expect((spy as any).mock.calls.length).toEqual(0);
-		});
-
-		it('should remove the alert only if "removable" is true', async function () {
-			const spy = jest.fn();
-			element.addEventListener('removed', spy);
-			element.removable = false;
-			element.focus();
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
-			elementUpdated(element);
-			expect((spy as any).mock.calls.length).toEqual(0);
-		});
 	});
 });
