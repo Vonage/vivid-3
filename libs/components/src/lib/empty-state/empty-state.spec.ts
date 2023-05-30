@@ -37,9 +37,8 @@ describe('vwc-empty-state', () => {
 	});
 
 	describe('icon', () => {
-		it('should render an inbox-line icon by default', () => {
-			const icon = element.shadowRoot?.querySelector('vwc-icon') as Icon;
-			expect(icon.name).toBe('inbox-line');
+		it('should not render an icon by default', () => {
+			expect(element.shadowRoot?.querySelector('vwc-icon')).toBeNull();
 		});
 
 		it('should allows setting the icon name with the icon attribute', async () => {
@@ -57,9 +56,16 @@ describe('vwc-empty-state', () => {
 	});
 
 	describe('graphic slot', () => {
-		it('should should have a graphic slot that contains an icon-container by default', () => {
+		it('should should have a graphic slot that is empty by default', () => {
 			const slot = element.shadowRoot?.querySelector('slot[name=graphic]');
 			expect(slot).toBeTruthy();
+			expect(slot?.childElementCount).toBe(0);
+		});
+
+		it('should place icon inside the graphic slot when using icon attribute', async () => {
+			element.setAttribute('icon', 'user-line');
+			await elementUpdated(element);
+			const slot = element.shadowRoot?.querySelector('slot[name=graphic]');
 			expect(slot?.querySelector('.icon-container')).toBeTruthy();
 		});
 	});

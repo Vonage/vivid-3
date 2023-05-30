@@ -10,13 +10,21 @@ import {
 const components = ['empty-state', 'button'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template = extractHTMLBlocksFromReadme(
-		path.join(new URL('.', import.meta.url).pathname, 'README.md')
-	).reduce(
-		(htmlString: string, block: string) =>
-			`${htmlString} <div style="margin: 5px;">${block}</div>`,
-		''
-	);
+	const template = `<style>
+			#wrapper {
+				width: 500px;
+				display: grid;
+				grid-auto-rows: 380px;
+				grid-template-columns: 1fr;
+			}
+		</style>` +
+		extractHTMLBlocksFromReadme(
+			path.join(new URL('.', import.meta.url).pathname, 'README.md')
+		).reduce(
+			(htmlString: string, block: string) =>
+				`${htmlString} <div style="margin: 5px;">${block}</div>`,
+			''
+		);
 
 	await loadComponents({
 		page,

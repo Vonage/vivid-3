@@ -28,21 +28,20 @@ export const EmptyStateTemplate: (
 
 	return html<EmptyState>`
 		<div class="${getClasses}">
-			<div class="graphic">
-				<slot name="graphic">
-					<div class="icon-container">
-						<${iconTag} class="icon" name="${(x) => x.icon ?? 'inbox-line'}" size="5"></${iconTag}>
-					</div>
-				</slot>
-			</div>
+			<slot name="graphic">
+				${when(
+		x => x.icon,
+		html<EmptyState>`<div class="icon-container">
+					<${iconTag} class="icon" name="${(x) => x.icon}" size="5"></${iconTag}>
+				</div>`
+	)}
+			</slot>
 			<div class="content">
 				${when(
 		(x) => x.headline,
 		html<EmptyState>`<header>${(x) => x.headline}</header>`
 	)}
-				<div class="body">
-					<slot></slot>
-				</div>
+				<slot></slot>
 			</div>
 			<div class="actions">
 				<slot name="action-items" ${slotted('slottedActionItems')}></slot>
