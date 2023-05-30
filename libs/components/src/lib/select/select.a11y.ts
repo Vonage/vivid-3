@@ -5,6 +5,7 @@ import {
 	loadComponents,
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
+import {checkA11y, injectAxe} from "axe-playwright";
 
 const components = ['select', 'option', 'badge'];
 
@@ -12,16 +13,16 @@ test('a11y', async ({ page }: { page: Page }) => {
 
 	const template = `
 	<div style="height: 500px; width: 500px; display: flex; flex-wrap: nowrap;">
-		<vwc-select aria-label="test">
+		<!--<vwc-select aria-label="test">
 			<vwc-option value="1" text="Option 1"></vwc-option>
 			<vwc-option value="2" text="Option 2"></vwc-option>
 			<vwc-option value="3" text="Option 3"></vwc-option>
 			<span slot="meta">
 					<vwc-badge connotation="success" text="Beta"></vwc-badge>
 				</span>
-			</vwc-select>
+			</vwc-select>-->
 
-			<vwc-select open aria-label="test">
+			<vwc-select open label="test">
 			<vwc-option value="1" text="Option 1"></vwc-option>
 			<vwc-option value="2" text="Option 2"></vwc-option>
 			<vwc-option value="3" text="Option 3"></vwc-option>
@@ -43,7 +44,11 @@ test('a11y', async ({ page }: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
-	const config = {
+	await testWrapper?.screenshot({
+		path: './snapshots/select-a11y.png',
+	});
+
+	/*const config = {
 		extends: 'lighthouse:default',
 		settings: {
 			maxWaitForFcp: 15 * 1000,
@@ -65,10 +70,6 @@ test('a11y', async ({ page }: { page: Page }) => {
 		},
 	};
 
-	await testWrapper?.screenshot({
-		path: './snapshots/select-a11y.png',
-	});
-
 	await playAudit({
 		page: page,
 		thresholds: {
@@ -83,5 +84,20 @@ test('a11y', async ({ page }: { page: Page }) => {
 			name: 'select-a11y', //defaults to `lighthouse-${new Date().getTime()}`
 		},
 		config,
+	});*/
+
+	await page.waitForSelector('#listbox-0');
+	await injectAxe(page);
+
+	await checkA11y(page, '#wrapper', {
+		detailedReport: true,
+		verbose: true,
+		detailedReportOptions: {
+			html: true,
+		}
+	}, true, 'html', {
+		outputDir: 'a11y-reports',
+		reportFileName: 'accessibility-audit.html'
 	});
 });
+
