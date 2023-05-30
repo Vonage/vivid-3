@@ -10,58 +10,31 @@ import { Elevation } from '../elevation/elevation';
 import { affixIconTemplateFactory } from '../../shared/patterns';
 import type { Alert } from './alert';
 
-const getClasses = (_: Alert) => classNames(
+const getClasses = ({ connotation }: Alert) => classNames(
 	'base',
-	[`connotation-${_.connotation}`, !!_.connotation],
+	[`connotation-${connotation}`, Boolean(connotation)],
 );
 
-const getControlClasses = (_: Alert) => classNames(
+const getControlClasses = ({ open, placement }: Alert) => classNames(
 	'control',
-	['open', _.open],
-	[`placement-${_.placement}`, !!_.placement],
+	['open', open],
+	[`placement-${placement}`, Boolean(placement)],
 );
 
-
-/**
- *
- */
-function Headline() {
-	return html`
-		<div class="headline">${(x) => x.headline}</div>
-	`;
-}
-
-/**
- *
- */
-function Subtitle() {
-	return html`
-		<div class="subtitle">${(x) => x.subtitle}</div>
-	`;
-}
-
-/**
- *
- */
 function renderIcon(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
-	return html<Alert>`
-	${x => affixIconTemplate(x.conditionedIcon)}
-	`;
+	return html`${x => affixIconTemplate(x.conditionedIcon)}`;
 }
 
-/**
- *
- */
 function renderDismissButton(buttonTag: string) {
-	return html<Alert>`
-	  <${buttonTag}
+	return html`
+		<${buttonTag}
 			size="condensed"
 			class="dismiss-button"
 			icon="close-line"
-			@click="${x => x.remove()}">
-	  </${buttonTag}>`;
+			@click="${x => x.open = false}">
+		</${buttonTag}>`;
 }
 
 /**
@@ -80,17 +53,19 @@ export const AlertTemplate: (
 	return html<Alert>`
 	<${elevationTag} class="elevation" dp='8' exportparts="vvd-theme-alternate">
 		<div class="${getControlClasses}" role="alert" aria-live="assertive">
-			<slot name="main">
-				<div part="vvd-theme-alternate" class="${getClasses}">
-					${when(x => x.icon || x.connotation, renderIcon(context))}
-					<div class="alert-text">
-						${when(x => x.headline, Headline())}
-						${when(x => x.subtitle, Subtitle())}
-					</div>
-					<slot class="action-items" name="action-items"></slot>
-					${when(x => x.removable, renderDismissButton(buttonTag))}
+			<div part="vvd-theme-alternate" class="${getClasses}">
+				${when(x => x.icon || x.connotation, renderIcon(context))}
+				<div class="alert-text">
+					${when(x => x.headline,
+		html`<header class="headline">${(x) => x.headline}</header>`)}
+					${when(x => x.text,
+		html`<div class="main-text">${(x) => x.text}</div>`)}
+					<slot name="main">
+					</slot>
 				</div>
-			</slot>
+				<slot class="action-items" name="action-items"></slot>
+				${when(x => x.removable, renderDismissButton(buttonTag))}
+			</div>
 		</div>
 	</${elevationTag}>
 	`;

@@ -10,7 +10,7 @@ $dialog-space-size: 24px;
 	box-sizing: border-box;
 	padding: 0;
 	border: none;
-	background: var(elevation.$vvd-elevation-fill);
+	background-color: transparent;
 	border-radius: 6px;
 	color: var(#{constants.$vvd-color-canvas-text});
 	max-block-size: var(#{variables.$dialog-max-block-size}, calc(100vh - 64px));
@@ -31,6 +31,9 @@ $dialog-space-size: 24px;
 	}
 
 	&.modal {
+		// reason for box-shadow & hardcoded color - PR-1172
+
+		box-shadow: 0 4px 20px rgb(0 0 0 / 35%);
 		&::backdrop {
 			@include scrim-mixins.scrim-variables;
 		}
@@ -148,3 +151,4 @@ slot[name="main"] {
 	max-height: inherit;
 	border-radius: inherit;
 }
+
