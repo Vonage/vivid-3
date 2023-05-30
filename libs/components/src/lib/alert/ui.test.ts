@@ -7,13 +7,23 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['alert', 'button'];
+const components = ['alert', 'button', 'switch'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template = '<style>#wrapper{height: 250px; width: 1600px; display: flex; flex-wrap: wrap;}</style>' + extractHTMLBlocksFromReadme(
-		path.join(new URL('.', import.meta.url).pathname, 'README.md'))
-		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
 
+	const CSS = `
+		<style>
+			#wrapper > div { height: 250px; transform: translateY(0px); }
+		</style>`;
+
+	const template = CSS + extractHTMLBlocksFromReadme(
+		path.join(new URL('.', import.meta.url).pathname, 'README.md')
+	).reduce(
+		(htmlString: string, block: string) =>
+			`${htmlString} <div>${block}</div>`,'');
+
+	page.setViewportSize({ width: 1300, height: 2750 });
+	
 	await loadComponents({
 		page,
 		components,

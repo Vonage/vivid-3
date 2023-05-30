@@ -123,6 +123,54 @@ Add the `helper-text` to add some helper text below the select.
 </vwc-select>
 ```
 
+### Success text
+
+Add the `success-text` to add some success text below the select.
+
+- Type: `string` | `undefined`
+- Default: `undefined`
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+  vwc-select {
+    width: 150px;
+  }
+</style>
+<vwc-select label="choose one option" success-text="Success text">
+  <vwc-option value="1" text="Option 1"></vwc-option>
+  <vwc-option value="2" text="Option 2"></vwc-option>
+  <vwc-option value="3" text="Option 3"></vwc-option>
+</vwc-select>
+```
+
+### Error text
+
+It is possible to force the select error state by setting the `error-text` attribute to a custom error message.
+Note that any current error state will be overriden by `error-text` (and, if applicable, restored once it is removed).
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+  vwc-select {
+    width: 150px;
+  }
+</style>
+<vwc-select label="choose one option" error-text="Please pick one">
+  <vwc-option value="1" text="Option 1"></vwc-option>
+  <vwc-option value="2" text="Option 2"></vwc-option>
+  <vwc-option value="3" text="Option 3"></vwc-option>
+</vwc-select>
+```
+
+
 ### Disabled
 
 Add the `disabled` attribute to disable the Select.
