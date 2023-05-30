@@ -7,30 +7,30 @@
 
 .base {
 	display: flex;
+	box-sizing: border-box;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	block-size: 100%;
 	gap: 24px;
-	box-sizing: border-box;
 }
 
 .icon-container {
 	display: flex;
-	inline-size: 120px;
-	block-size: 120px;
 	align-items: center;
 	justify-content: center;
 	background-color: var(#{constants.$vvd-color-neutral-100});
+	block-size: 120px;
 	border-radius: 50%;
+	inline-size: 120px;
 }
 
 .content {
 	display: flex;
 	flex-direction: column;
+	font: var(#{constants.$vvd-typography-base});
 	gap: 8px;
 	text-align: center;
-	font: var(#{constants.$vvd-typography-base});
 }
 
 header {
