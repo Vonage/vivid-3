@@ -4,6 +4,27 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.14.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.13.0...vivid-v3.14.0) (2023-05-30)
+
+
+### Features
+
+* **data-grid:** data grid cell selection (VIV-1071) ([#1162](https://github.com/Vonage/vivid-3/issues/1162)) ([fc8a607](https://github.com/Vonage/vivid-3/commit/fc8a607ddad903e3fac25a5a2e252d3e08fac1f5))
+* **elevation:** moving style to :before pseudo element (VIV-1098) ([#1172](https://github.com/Vonage/vivid-3/issues/1172)) ([9eaeb27](https://github.com/Vonage/vivid-3/commit/9eaeb273129e16db71427bd13d122f0ea994b024))
+* **icon:** upgrade icons version (VIV-1094) ([#1168](https://github.com/Vonage/vivid-3/issues/1168)) ([550c8d0](https://github.com/Vonage/vivid-3/commit/550c8d0f525cd4d7cbfba31d23d8157cffd3c769))
+* **menu-item:** add slot (VIV-1078) ([#1161](https://github.com/Vonage/vivid-3/issues/1161)) ([d8cc899](https://github.com/Vonage/vivid-3/commit/d8cc89964da80661be8bbdf216a03921496ea798))
+* **select:** add meta slot (VIV-1053) ([#1165](https://github.com/Vonage/vivid-3/issues/1165)) ([0836ac6](https://github.com/Vonage/vivid-3/commit/0836ac61d74298f97024793c7817f2e0e3ecc973))
+* **select:** success and error message (VIV-1181) ([#1181](https://github.com/Vonage/vivid-3/issues/1181)) ([5e35fa6](https://github.com/Vonage/vivid-3/commit/5e35fa614efacd39a38e16defc8a2bde8bb426cc))
+* **tokens:** Add granular component tokens (VIV-1059) ([#1147](https://github.com/Vonage/vivid-3/issues/1147)) ([08d5cd6](https://github.com/Vonage/vivid-3/commit/08d5cd673e0153ef804a6068126862d44201af72))
+
+
+### Bug Fixes
+
+* **accessibility:** add reference to aria-label in form elements (VIV-959) ([#1170](https://github.com/Vonage/vivid-3/issues/1170)) ([e9a287d](https://github.com/Vonage/vivid-3/commit/e9a287db982cbef3d8d226f6b7bb9f0e177f863c))
+* **alert:** complete component (VIV-1038) ([#1164](https://github.com/Vonage/vivid-3/issues/1164)) ([67a54a9](https://github.com/Vonage/vivid-3/commit/67a54a91041f43d542bb928f015c8186ffb73968))
+* **tag:** change in style (VIV-1081) ([#1167](https://github.com/Vonage/vivid-3/issues/1167)) ([3ca3134](https://github.com/Vonage/vivid-3/commit/3ca313428e2982ee3bb013c56b71ef9b1373bdc5))
+* **tests:** flaky select ui test (VIV-000) ([#1178](https://github.com/Vonage/vivid-3/issues/1178)) ([0121831](https://github.com/Vonage/vivid-3/commit/012183196d8b92a1988bd5baffe4e47315d54d22))
+
 ## [3.13.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.12.0...vivid-v3.13.0) (2023-05-17)
 
 
