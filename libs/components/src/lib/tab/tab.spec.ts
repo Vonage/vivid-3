@@ -1,5 +1,5 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import type {Icon} from '../icon/icon';
+import {Icon} from '../icon/icon';
 import { Tab } from './tab';
 import '.';
 
@@ -34,14 +34,16 @@ describe('vwc-tab', () => {
 		});
 	});
 
-	describe('tab icon', () => {
+	describe('icon', () => {
 		it('should add an icon to the tab when icon is set', async () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
 			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-			expect(icon).toBeInstanceOf(HTMLElement);
-			expect(icon.name).toEqual('home');
+			expect(icon)
+				.toBeInstanceOf(Icon);
+			expect(icon?.name)
+				.toEqual('home');
 		});
 
 		it('setting `iconTrailing` set the order of element', async () => {
@@ -52,7 +54,8 @@ describe('vwc-tab', () => {
 			const trailingIcon = element.shadowRoot?.querySelector(
 				`.icon-trailing ${ICON_SELECTOR}`,
 			);
-			expect(trailingIcon).toBeInstanceOf(HTMLElement);
+			expect(trailingIcon)
+				.toBeInstanceOf(Icon);
 		});
 	});
 
