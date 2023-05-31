@@ -18,13 +18,31 @@ $dps: 0 2 4 8 12 16 24;
 	}
 
 	::slotted(*) {
-		background: var(elevation.$vvd-elevation-fill);
-		filter: var(elevation.$vvd-elevation-shadow);
-		transition: background-color 0.15s linear, filter 0.15s linear;
+		position: relative;
+
+		&::before {
+			$default: list.nth($dps, 2);
+
+			position: absolute;
+			z-index: -1;
+			background: var(elevation.$vvd-elevation-fill);
+			block-size: 100%;
+			border-radius: inherit;
+			content: "";
+			filter: var(elevation.$vvd-elevation-shadow);
+			inline-size: 100%;
+			inset-block-start: 0;
+			inset-inline-start: 0;
+			transition: background-color 0.15s linear, filter 0.15s linear;
+		}
 	}
+
+
 	&.no-shadow {
 		::slotted(*) {
-			filter: none;
+			&::before {
+				filter: none;
+			}
 		}
 	}
 }
