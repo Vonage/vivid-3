@@ -28,6 +28,12 @@ function renderLabel() {
 	  </label>`;
 }
 
+function renderCharCount() {
+	return html<TextArea>`
+		<span class="char-count">${x => x.value ? x.value.length : 0 } / ${ x => x.maxlength }</span>
+	`;
+}
+
 /**
  * The template for the {@link @microsoft/fast-foundation#TextArea} component.
  *
@@ -40,7 +46,8 @@ export const TextAreaTemplate: (
 ) => ViewTemplate<TextArea> = (context: ElementDefinitionContext) => {
 	return html`
 	  <div class="${getClasses}">
-		  ${when(x => x.label, renderLabel())}
+		${when(x => x.charCount && x.maxlength, renderCharCount())}
+		${when(x => x.label, renderLabel())}
 			<textarea class="control"
 				?autofocus="${x => x.autofocus}"
 				placeholder="${x => x.placeholder ? x.placeholder : null}"
