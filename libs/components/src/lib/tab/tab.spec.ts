@@ -35,7 +35,7 @@ describe('vwc-tab', () => {
 	});
 
 	describe('tab icon', () => {
-		it('adds an icon to the tab', async () => {
+		it('should add an icon to the tab when icon is set', async () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
