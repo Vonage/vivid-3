@@ -98,17 +98,6 @@ Note that any current error state will be overriden by `error-text` (and, if app
 <vwc-text-area value="some text" label='Enter some text' error-text="Please take this seriously"></vwc-text-area>
 ```
 
-### Character Count
-
-Use the `char-count` attribute along with the `maxlength` attribute to show a character count.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<vwc-text-area label="Char count example" char-count maxlength="15"></vwc-text-area>
-```
-
 ### Disabled
 
 Add the `disabled` attribute to disable the text area.
