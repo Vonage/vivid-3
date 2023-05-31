@@ -45,8 +45,10 @@ describe('vwc-tab', () => {
 			expect(icon?.name)
 				.toEqual('home');
 		});
+	});
 
-		it('setting `iconTrailing` set the order of element', async () => {
+	describe('iconTrailing', function() {
+		it('should add "icon-trailing" class to base', async () => {
 			element.icon = 'home';
 			element.iconTrailing = true;
 			await elementUpdated(element);
