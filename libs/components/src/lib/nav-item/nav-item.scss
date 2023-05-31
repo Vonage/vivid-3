@@ -68,8 +68,4 @@
 .icon {
 	font-size: 20px;
 	line-height: 1;
-
-	.control:not(.icon-only) & {
-		color: var(#{constants.$vvd-color-neutral-600});
-	}
 }
