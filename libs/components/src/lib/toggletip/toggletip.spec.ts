@@ -1,11 +1,11 @@
 import { ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import {fireEvent} from '@testing-library/dom';
 import type { Button } from '../button/button';
 import { Toggletip } from './toggletip';
+import { toggletipDefinition } from './definition';
 import '../button';
 import '.';
-import { toggletipDefinition } from './definition';
-import {fireEvent} from "@testing-library/dom";
 
 const COMPONENT_TAG = 'vwc-toggletip';
 
