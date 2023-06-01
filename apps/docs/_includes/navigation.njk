@@ -22,7 +22,7 @@
 			href="{{ ('/designs/' + item.title) | url }}"
 			text="{{ item.title | replace("-", " ") | capitalize }}"
 			{% if ('/designs/' + item.title + '/') == page.url %}aria-current="page"{% endif %}>
-				{% if (item.status) == "underlying" %}<vwc-icon slot="meta" name="lock-line"></vwc-icon>{% endif %}"
+				{% if (item.status) == "underlying" %}<vwc-badge slot="meta" icon="lock-line" appearance="subtle" shape="pill" connotation="alert"></vwc-badge>{% endif %}"
 		</vwc-nav-item>
     {% endfor %}
   </vwc-nav-disclosure>
@@ -33,8 +33,8 @@
 			href="{{ ('/components/' + item.title) | url }}"
 			text="{{ item.title | replace("-", " ") | capitalize }}"
 			{% if ('/components/' + item.title + '/') == page.url %}aria-current="page"{% endif %}>
-				{% if (item.status) == "alpha" %}<vwc-badge slot="meta" text="alpha" appearance="subtle" shape="pill" connotation="success"></vwc-badge>{% endif %}
-				{% if (item.status) == "underlying" %}<vwc-icon slot="meta" name="lock-line"></vwc-icon>{% endif %}"
+				{% if (item.status) == "alpha" %}<vwc-badge slot="meta" text="alpha" appearance="subtle" shape="pill" connotation="warning"></vwc-badge>{% endif %}
+				{% if (item.status) == "underlying" %}<vwc-badge slot="meta" icon="lock-line" appearance="subtle" shape="pill" connotation="alert"></vwc-badge>{% endif %}"
 		</vwc-nav-item>
     {% endfor %}
   </vwc-nav-disclosure>
