@@ -26,16 +26,33 @@ export class Tooltip extends FoundationElement {
 	@attr({ mode: 'boolean'	}) open = false;
 
 	@attr({ mode: 'fromView' }) anchor?: anchorType;
+
+	#observer?: MutationObserver;
+
 	anchorChanged(_: anchorType, newValue: anchorType) {
 		if (this.#anchorEl) this.#removeEventListener();
 
 		this.#anchorEl = newValue instanceof HTMLElement ? newValue : document.getElementById(newValue);
-		if (this.#anchorEl) this.#anchorUpdated();
+		if (this.#anchorEl) {
+			this.#anchorUpdated();
+		} else {
+			 this.#observer = new MutationObserver(() => {
+				const anchor = document.getElementById(newValue as string);
+				if (anchor) {
+					this.#anchorEl = anchor;
+					this.#anchorUpdated();
+					this.#observer!.disconnect();
+					this.#observer = undefined;
+				}
+			});
+			this.#observer.observe(document.body, { childList: true, subtree: true });
+		}
 	}
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
 		this.#removeEventListener();
+		this.#observer?.disconnect();
 		document.removeEventListener('keydown', this.#closeOnEscape);
 	}
 
