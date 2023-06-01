@@ -5,6 +5,7 @@ import { Toggletip } from './toggletip';
 import '../button';
 import '.';
 import { toggletipDefinition } from './definition';
+import {fireEvent} from "@testing-library/dom";
 
 const COMPONENT_TAG = 'vwc-toggletip';
 
@@ -116,20 +117,18 @@ describe('vwc-toggletip', () => {
 		});
 
 		it('should accept an anchor before anchor element is added to the DOM', async () => {
-			const elementParent = element.parentElement;
 			const newAnchor = document.createElement('vwc-button');
 			newAnchor.id = 'anchorButton2';
-			const newElement = document.createElement(COMPONENT_TAG) as Toggletip;
-			newElement.anchor = 'anchorButton2';
-			elementParent?.appendChild(newElement);
-			elementParent?.appendChild(newAnchor);
-			await elementUpdated(newElement);
+			element.anchor = 'anchorButton2';
 
-			newAnchor.dispatchEvent(new MouseEvent('click', {bubbles: true}));
-			await elementUpdated(newElement);
+			element.parentElement?.appendChild(newAnchor);
 
-			expect(newElement.open).toEqual(true);
-			newElement.remove();
+			await elementUpdated(element);
+
+			fireEvent(newAnchor, new MouseEvent('click', {bubbles: true}));
+			await elementUpdated(element);
+
+			expect(element.open).toEqual(true);
 			newAnchor.remove();
 		});
 

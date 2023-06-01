@@ -139,20 +139,18 @@ describe('vwc-tooltip', () => {
 		});
 
 		it('should accept an anchor before anchor element is added to the DOM', async () => {
-			const elementParent = element.parentElement;
 			const newAnchor = document.createElement('vwc-button');
 			newAnchor.id = 'anchorButton2';
-			const newElement = document.createElement(COMPONENT_TAG) as Tooltip;
-			newElement.anchor = 'anchorButton2';
-			elementParent?.appendChild(newElement);
-			elementParent?.appendChild(newAnchor);
-			await elementUpdated(newElement);
+			element.anchor = 'anchorButton2';
+
+			element.parentElement?.appendChild(newAnchor);
+
+			await elementUpdated(element);
 
 			fireEvent(newAnchor, new MouseEvent('mouseover', {bubbles: true}));
-			await elementUpdated(newElement);
+			await elementUpdated(element);
 
-			expect(newElement.open).toEqual(true);
-			newElement.remove();
+			expect(element.open).toEqual(true);
 			newAnchor.remove();
 		});
 
