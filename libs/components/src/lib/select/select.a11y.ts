@@ -23,11 +23,11 @@ test('a11y', async ({ page }: { page: Page }) => {
 			</vwc-select>-->
 
 			<vwc-select open label="test">
-			<vwc-option value="1" text="Option 1"></vwc-option>
-			<vwc-option value="2" text="Option 2"></vwc-option>
-			<vwc-option value="3" text="Option 3"></vwc-option>
-			<span slot="meta" class="duration">00:00:00</span>
-		</vwc-select>
+				<vwc-option value="1" text="Option 1"></vwc-option>
+				<vwc-option value="2" text="Option 2"></vwc-option>
+				<vwc-option value="3" text="Option 3"></vwc-option>
+				<span slot="meta" class="duration">00:00:00</span>
+			</vwc-select>
 		</div>
 	`;
 
