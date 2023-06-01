@@ -1,6 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import { applyMixins, Tab as FoundationTab } from '@microsoft/fast-foundation';
-import { AffixIcon, AffixIconWithTrailing } from '../../shared/patterns/affix';
+import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
 /**
  * Base class for tab
@@ -23,4 +23,4 @@ export class Tab extends FoundationTab {
 }
 
 export interface Tab extends AffixIconWithTrailing { }
-applyMixins(Tab, AffixIcon);
+applyMixins(Tab, AffixIconWithTrailing);
