@@ -43,11 +43,16 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 
 ### Icon with Label
 
-Tab label can be affixed by a decorative icon, either by its start or end.
+Tab label can be affixed by a decorative icon, either by its start or end.  
+Use `icon-trailing` to place the icon after the label.
 
 ```html preview
 <vwc-tabs>
  <vwc-tab icon="chat-line" label="Tab" id="tab"></vwc-tab>
+ <vwc-tab-panel id="tab" slot="tabpanel"></vwc-tab-panel>
+</vwc-tabs>
+<vwc-tabs>
+ <vwc-tab icon-trailing icon="chat-line" label="Tab" id="tab"></vwc-tab>
  <vwc-tab-panel id="tab" slot="tabpanel"></vwc-tab-panel>
 </vwc-tabs>
 ```
