@@ -35,17 +35,8 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 
 ```html preview
 <vwc-nav>
-  <vwc-nav-item href="#" icon="profile" aria-label="Account"></vwc-nav-item>
-</vwc-nav>
-```
-
-### Icon with Text
-
-Nav item text can be prefixed by a decorative icon.
-
-```html preview
-<vwc-nav>
-  <vwc-nav-item href="#" icon="profile" text="Account"></vwc-nav-item>
+	<vwc-nav-item href="#" icon="profile" text="Account"></vwc-nav-item>
+	<vwc-nav-item href="#" icon="profile" aria-label="Account"></vwc-nav-item>
 </vwc-nav>
 ```
 
@@ -71,3 +62,4 @@ Within a set of pagination links, set a nav item `aria-current` value to *page* 
   }
 </script>
 ```
+
