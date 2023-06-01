@@ -335,6 +335,13 @@ Document elements display precedence is formed by the imaginary z-axis [stacking
 Select component is a low level element, unaware of its document context, but is, in most cases, required to overlay on top of all elements.  
 If needed a `z-index` value can be set on the host
 
+## Accessibility
+
+### Arial Label
+A select requires a label to be set for screen readers to be able to describe the component.
+If label is set, it is used as the `aria-label` attribute value on the host element.
+If label is not set, please make sure to add an `aria-label` attribute to the host element.
+
 ## Use Case
 
 ```html preview
