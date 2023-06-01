@@ -36,18 +36,22 @@ export class Tooltip extends FoundationElement {
 		if (this.#anchorEl) {
 			this.#anchorUpdated();
 		} else {
-			 this.#observer = new MutationObserver(() => {
-				const anchor = document.getElementById(newValue as string);
-				if (anchor) {
-					this.#anchorEl = anchor;
-					this.#anchorUpdated();
-					this.#observer!.disconnect();
-					this.#observer = undefined;
-				}
-			});
-			this.#observer.observe(document.body, { childList: true, subtree: true });
+			this.#observeMissingAnchor(newValue as string);
 		}
 	}
+
+	#observeMissingAnchor = (anchorId: string) => {
+		this.#observer = new MutationObserver(() => {
+			const anchor = document.getElementById(anchorId as string);
+			if (anchor) {
+				this.#anchorEl = anchor;
+				this.#anchorUpdated();
+				this.#observer!.disconnect();
+				this.#observer = undefined;
+			}
+		});
+		this.#observer.observe(document.body, { childList: true, subtree: true });
+	};
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();

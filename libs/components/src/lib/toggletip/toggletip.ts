@@ -13,6 +13,18 @@ export class Toggletip extends FoundationElement {
 
 	#observer?: MutationObserver;
 	#anchorEl: HTMLElement | null = null;
+	#observeMissingAnchor = (anchorId: string) => {
+		this.#observer = new MutationObserver(() => {
+			const anchor = document.getElementById(anchorId as string);
+			if (anchor) {
+				this.#anchorEl = anchor;
+				this.#setupAnchor(this.#anchorEl);
+				this.#observer!.disconnect();
+				this.#observer = undefined;
+			}
+		});
+		this.#observer.observe(document.body, { childList: true, subtree: true });
+	};
 
 	#ANCHOR_ARIA_LABEL_SUFFIX = ' ; Show more information';
 
@@ -56,16 +68,7 @@ export class Toggletip extends FoundationElement {
 		if (this.#anchorEl) {
 			this.#setupAnchor(this.#anchorEl);
 		} else {
-			this.#observer = new MutationObserver(() => {
-				const anchor = document.getElementById(newValue as string);
-				if (anchor) {
-					this.#anchorEl = anchor;
-					this.#setupAnchor(this.#anchorEl);
-					this.#observer!.disconnect();
-					this.#observer = undefined;
-				}
-			});
-			this.#observer.observe(document.body, { childList: true, subtree: true });
+			this.#observeMissingAnchor(newValue as string);
 		}
 	}
 
