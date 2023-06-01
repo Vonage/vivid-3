@@ -21,6 +21,7 @@
 
 
 $size: (
+	-6: calc(size.$vvd-size-normal - size.$vvd-size-super-condensed),
 	-5: size.$vvd-size-ultra-condensed,
 	-4: size.$vvd-size-super-condensed,
 	-3: size.$vvd-size-extra-condensed,
