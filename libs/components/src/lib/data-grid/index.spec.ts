@@ -10,6 +10,9 @@ describe('data grid integration tests', () => {
 		return element.rowElements[row].children[cell] as HTMLElement;
 	}
 
+	function getRow(row: number) {
+		return element.rowElements[row] as HTMLElement;
+	}
 	let element: DataGrid;
 
 	beforeEach(async () => {
@@ -89,6 +92,7 @@ describe('data grid integration tests', () => {
 				await elementUpdated(element);
 				cell = getRowCell(1,0);
 			});
+
 			it.each([DataGridSelectionMode.singleCell, DataGridSelectionMode.multiCell])
 			('should add aria-selected="false" to all cells if selectionMode is %s', async function (selectionMode: DataGridSelectionMode) {
 				element.selectionMode = selectionMode;
@@ -219,6 +223,37 @@ describe('data grid integration tests', () => {
 
 				expect(isElementSelected(cell1)).toEqual(true);
 				expect(isElementSelected(cell2)).toEqual(true);
+			});
+		});
+
+		describe('row selection', () => {
+			beforeEach(async function () {
+				element.rowsData = [
+					{ id: 1, name: 'John', age: 20 },
+					{ id: 2, name: 'Jane', age: 21 },
+				];
+				await elementUpdated(element);
+				await elementUpdated(element);
+			});
+
+			it.each([DataGridSelectionMode.singleRow, DataGridSelectionMode.multiRow])
+			('should set aria-selected="false" on all non header rows if selectionMode is %s',
+				async function (selectionMode: DataGridSelectionMode) {
+					element.selectionMode = selectionMode;
+					await elementUpdated(element);
+					const allNoneHeaderRows = element.querySelectorAll('[role="row"]');
+					const allNoneHeaderRowsHaveSelectedFalse = Array.from(allNoneHeaderRows).every((row) => {
+						return row.getAttribute('aria-selected') === 'false';
+					});
+					expect(allNoneHeaderRowsHaveSelectedFalse).toEqual(true);
+				});
+
+			it('should set aria-selected="true" on clicked row', async function () {
+				element.selectionMode = DataGridSelectionMode.singleRow;
+				const row = getRow(1);
+				row.click();
+				await elementUpdated(element);
+				expect(row.getAttribute('aria-selected')).toEqual('true');
 			});
 		});
 	});
