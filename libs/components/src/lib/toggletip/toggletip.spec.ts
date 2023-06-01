@@ -90,6 +90,49 @@ describe('vwc-toggletip', () => {
 	});
 
 	describe('anchor', () => {
+
+		describe('observer cleanup', function () {
+			let disconnectionFunc: any;
+			let mutationObserverSpy: any;
+			beforeEach(function () {
+				const mockMutationObserver = jest.fn(function(this: any, callback) {
+					this.observe = jest.fn();
+					disconnectionFunc = this.disconnect = jest.fn();
+					callback();
+				});
+				mutationObserverSpy = jest.spyOn(window, 'MutationObserver')
+					.mockImplementation(mockMutationObserver as any);
+			});
+
+			afterEach(function () {
+				mutationObserverSpy.mockRestore();
+			});
+
+			it('should remove observer when element is removed from the DOM', async function () {
+				element.anchor = 'nonExistentAnchor';
+				element.remove();
+				expect(disconnectionFunc).toHaveBeenCalled();
+			});
+		});
+
+		it('should accept an anchor before anchor element is added to the DOM', async () => {
+			const elementParent = element.parentElement;
+			const newAnchor = document.createElement('vwc-button');
+			newAnchor.id = 'anchorButton2';
+			const newElement = document.createElement(COMPONENT_TAG) as Toggletip;
+			newElement.anchor = 'anchorButton2';
+			elementParent?.appendChild(newElement);
+			elementParent?.appendChild(newAnchor);
+			await elementUpdated(newElement);
+
+			newAnchor.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+			await elementUpdated(newElement);
+
+			expect(newElement.open).toEqual(true);
+			newElement.remove();
+			newAnchor.remove();
+		});
+
 		it('should accept an HTMLElement as anchor', async () => {
 			element.anchor = anchor;
 			await elementUpdated(element);
@@ -190,3 +233,5 @@ describe('vwc-toggletip', () => {
 		});
 	});
 });
+
+//TODO:: test for removal of observer when removed from DOM
