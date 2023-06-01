@@ -123,7 +123,7 @@ export const SelectTemplate: (
             aria-haspopup="${x => (x.collapsible ? 'listbox' : null)}"
             aria-multiselectable="${x => x.ariaMultiSelectable}"
             ?open="${x => x.open}"
-            role="select"
+            role="combobox"
             tabindex="${x => (!x.disabled ? '0' : null)}"
             @click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
             @focusin="${(x, c) => x.focusinHandler(c.event as FocusEvent)}"
@@ -133,6 +133,5 @@ export const SelectTemplate: (
         >
             ${renderControl(context)}
 		</template>
-// TODO:: add focus to the control-wrapper
 	`;
 };
