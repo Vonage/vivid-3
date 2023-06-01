@@ -65,6 +65,12 @@
 
 .icon {
 	font-size: 20px;
+
+	.icon-trailing & {
+		order: 1;
+		margin-inline-start: auto;
+	}
+
 }
 
 :host(:not(.vertical)) {
