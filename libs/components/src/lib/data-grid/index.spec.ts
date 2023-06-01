@@ -286,8 +286,9 @@ describe('data grid integration tests', () => {
 
 			it('should set aria-selected="true" on clicked row', async function () {
 				element.selectionMode = DataGridSelectionMode.singleRow;
+				const cell = getRowCell(1, 0);
 				const row = getRow(1);
-				row.click();
+				cell.click();
 				await elementUpdated(element);
 				expect(row.getAttribute('aria-selected')).toEqual('true');
 			});
@@ -295,11 +296,13 @@ describe('data grid integration tests', () => {
 			it('should set aria-selected="true" on clicked row and remove from other rows', async function () {
 				element.selectionMode = DataGridSelectionMode.singleRow;
 				const row1 = getRow(1);
+				const cellInRow1 = getRowCell(1, 0);
 				const row2 = getRow(2);
+				const cellInRow2 = getRowCell(2, 0);
 
-				row1.click();
+				cellInRow1.click();
 				await elementUpdated(element);
-				row2.click();
+				cellInRow2.click();
 				await elementUpdated(element);
 
 				expect(row1.getAttribute('aria-selected')).toEqual('false');
@@ -311,14 +314,28 @@ describe('data grid integration tests', () => {
 				function (activeKey) {
 					element.selectionMode = DataGridSelectionMode.multiRow;
 					const row1 = getRow(1);
+					const cellInRow1 = getRowCell(1, 0);
 					const row2 = getRow(2);
+					const cellInRow2 = getRowCell(2, 0);
 
-					row1.click();
-					row2.dispatchEvent(new MouseEvent('click', { [activeKey]: true, bubbles: true, composed: true }));
+					cellInRow1.click();
+					cellInRow2.dispatchEvent(new MouseEvent('click', { [activeKey]: true, bubbles: true, composed: true }));
 
 					expect(row1.getAttribute('aria-selected')).toEqual('true');
 					expect(row2.getAttribute('aria-selected')).toEqual('true');
 				});
+
+			it('should set selected attribute on cells', async () => {
+				const row = getRow(1);
+				row.ariaSelected = 'true';
+				await elementUpdated(element);
+
+				const allCellsSelected = Array.from(row.querySelectorAll('[role="gridcell"]'))
+					.reduce((acc, child) => {
+						return acc && child.hasAttribute('selected');
+					}, true);
+				expect(allCellsSelected).toEqual(true);
+			});
 		});
 	});
 

@@ -35,7 +35,7 @@
 	text-overflow: ellipsis;
 	white-space: nowrap;
 
-	:host(:is([aria-selected]):not([cell-type="columnheader"])) & {
+	&.selected, :host(:is([aria-selected]):not([cell-type="columnheader"])) & {
 		background-color: var(#{appearance.get-appearance-token(fill)});
 	}
 

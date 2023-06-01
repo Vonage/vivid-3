@@ -18,10 +18,6 @@ export const DataGridSelectionMode = {
 	multiCell: 'multi-cell',
 } as const;
 
-function isTargetRoleHeader(target: EventTarget) {
-	return (target as HTMLElement).getAttribute('role') === 'columnheader';
-}
-
 export type ValueOf<T> = T[keyof T];
 
 export type DataGridSelectionMode = ValueOf<typeof DataGridSelectionMode>;
@@ -58,10 +54,14 @@ export class DataGrid extends FoundationElement {
 	};
 
 	#handleClick = ({target, ctrlKey, shiftKey, metaKey}: MouseEvent) => {
-		if ((target as HTMLElement).getAttribute('role') === 'gridcell') {
+		if ((target as HTMLElement).getAttribute('role') !== 'gridcell') return;
+
+		if (this.selectionMode === DataGridSelectionMode.singleCell || this.selectionMode === DataGridSelectionMode.multiCell) {
 			this.#handleCellSelection({target, ctrlKey, shiftKey, metaKey});
+			return;
 		}
-		if ((target as HTMLElement).getAttribute('role') === 'row') {
+
+		if (this.selectionMode === DataGridSelectionMode.singleRow || this.selectionMode === DataGridSelectionMode.multiRow) {
 			this.#handleRowSelection({target, ctrlKey, shiftKey, metaKey});
 		}
 	};
@@ -69,37 +69,23 @@ export class DataGrid extends FoundationElement {
 	#handleCellSelection = ({target, ctrlKey, shiftKey, metaKey}: SelectionMetaData) => {
 		const cell = target as DataGridCell;
 
-		if (cell.getAttribute('role') === 'gridcell') {
-
-			if (isTargetRoleHeader(cell)) {
-				return;
-			}
-
-			if (this.selectionMode === DataGridSelectionMode.singleCell || this.selectionMode === DataGridSelectionMode.multiCell)  {
-				if (this.selectionMode === DataGridSelectionMode.multiCell && (ctrlKey || shiftKey || metaKey)) {
-					this.#setSelectedState(cell, !this.#selectedCells.includes(cell));
-				} else {
-					const cacheTargetSelection = cell.getAttribute('aria-selected') === 'true';
-					this.#resetSelection();
-					this.#setSelectedState(cell, !cacheTargetSelection);
-				}
-			}
+		if (this.selectionMode === DataGridSelectionMode.multiCell && (ctrlKey || shiftKey || metaKey)) {
+			this.#setSelectedState(cell, !this.#selectedCells.includes(cell));
+		} else {
+			const cacheTargetSelection = cell.getAttribute('aria-selected') === 'true';
+			this.#resetSelection();
+			this.#setSelectedState(cell, !cacheTargetSelection);
 		}
 	};
 
 	#handleRowSelection = ({target, ctrlKey, shiftKey, metaKey}: SelectionMetaData) => {
-		const row = target as DataGridRow;
-
-		if (row.getAttribute('role') === 'row') {
-			if (this.selectionMode === DataGridSelectionMode.singleRow || this.selectionMode === DataGridSelectionMode.multiRow) {
-				if (this.selectionMode === DataGridSelectionMode.multiRow && (ctrlKey || shiftKey || metaKey)) {
-					this.#setSelectedState(row, !this.#selectedRows.includes(row));
-				} else {
-					const cacheTargetSelection = row?.getAttribute('aria-selected') === 'true';
-					this.#resetSelection();
-					this.#setSelectedState(row, !cacheTargetSelection);
-				}
-			}
+		const row = (target as DataGridCell).parentNode as DataGridRow;
+		if (this.selectionMode === DataGridSelectionMode.multiRow && (ctrlKey || shiftKey || metaKey)) {
+			this.#setSelectedState(row, !this.#selectedRows.includes(row));
+		} else {
+			const cacheTargetSelection = row?.getAttribute('aria-selected') === 'true';
+			this.#resetSelection();
+			this.#setSelectedState(row, !cacheTargetSelection);
 		}
 	};
 

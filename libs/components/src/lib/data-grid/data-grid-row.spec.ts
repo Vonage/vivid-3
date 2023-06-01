@@ -123,17 +123,17 @@ describe('vwc-data-grid-row', () => {
 				{ columnDataKey: 'age' }
 			];
 			element.cellItemTemplate = html`<${dataGridCellTagName} role="cell"></${dataGridCellTagName}>`;
-			await elementUpdated(element);	
+			await elementUpdated(element);
 			const cells = Array.from(element.querySelectorAll(dataGridCellTagName));
 			const focusedElementBeforeArrowKey = document.activeElement;
 			const rowCellFocused = cells.includes(focusedElementBeforeArrowKey as any);
-			
+
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft' }));
-			const firstCellFocused = cells[0] === document.activeElement;			
-			
+			const firstCellFocused = cells[0] === document.activeElement;
+
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
-			const secondCellFocused = cells[1] === document.activeElement;					
-			
+			const secondCellFocused = cells[1] === document.activeElement;
+
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft' }));
 			const firstCellFocusedAfterArrowLeft = cells[0] === document.activeElement;
 
@@ -152,7 +152,7 @@ describe('vwc-data-grid-row', () => {
 				{ columnDataKey: 'get' },
 			];
 			element.cellItemTemplate = html`<${dataGridCellTagName} role="cell"></${dataGridCellTagName}>`;
-			await elementUpdated(element);	
+			await elementUpdated(element);
 			const cells = Array.from(element.querySelectorAll(dataGridCellTagName));
 
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'End' }));
@@ -160,6 +160,14 @@ describe('vwc-data-grid-row', () => {
 
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Home' }));
 			expect(cells[0] === document.activeElement).toBeTruthy();
+		});
+	});
+
+	describe('aria-selected', () => {
+		it('should reflect on host', async function () {
+			element.ariaSelected = 'true';
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-selected')).toEqual('true');
 		});
 	});
 });
