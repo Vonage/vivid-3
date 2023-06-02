@@ -219,13 +219,6 @@ describe('vwc-data-grid-cell', () => {
 		});
 	});
 
-	describe('selected', function () {
-		it('should set selected class on base when true', async function () {
-			element.toggleAttribute('selected', true);
-			await elementUpdated(element);
-			expect(getBaseElement(element)?.classList.contains('selected')).toBeTruthy();
-		});
-	});
 	describe('aria-selected', function () {
 		it('should set selected class on base when aria-selected true', async () => {
 			element.setAttribute('aria-selected', 'true');

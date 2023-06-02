@@ -83,7 +83,7 @@ export class DataGrid extends FoundationElement {
 		if (this.selectionMode === DataGridSelectionMode.multiRow && (ctrlKey || shiftKey || metaKey)) {
 			this.#setSelectedState(row, !this.#selectedRows.includes(row));
 		} else {
-			const cacheTargetSelection = row?.getAttribute('aria-selected') === 'true';
+			const cacheTargetSelection = row.getAttribute('aria-selected') === 'true';
 			this.#resetSelection();
 			this.#setSelectedState(row, !cacheTargetSelection);
 		}

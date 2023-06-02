@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { html } from '@microsoft/fast-element';
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
 import { designSystem } from '../../shared/design-system';
 import { DataGridRow } from './data-grid-row';
 import { DataGridRowTemplate } from './data-grid-row.template';
@@ -168,6 +168,20 @@ describe('vwc-data-grid-row', () => {
 			element.ariaSelected = 'true';
 			await elementUpdated(element);
 			expect(element.getAttribute('aria-selected')).toEqual('true');
+		});
+
+		it('should set selected class on base element', async function () {
+			element.ariaSelected = 'true';
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('selected')).toBeTruthy();
+		});
+
+		it('should remove selected class on base element when false', async function () {
+			element.ariaSelected = 'true';
+			await elementUpdated(element);
+			element.ariaSelected = 'false';
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('selected')).toBeFalsy();
 		});
 	});
 });

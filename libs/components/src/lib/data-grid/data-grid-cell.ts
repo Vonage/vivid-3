@@ -9,7 +9,6 @@ import {attr} from '@microsoft/fast-element';
 export class DataGridCell extends FoundationElement {
 
 	@attr({attribute: 'aria-selected', mode: 'fromView'}) override ariaSelected: string | null = null;
-	@attr({mode: 'boolean'}) selected: boolean = false;
 
 	ariaSelectedChanged(_: string | null, selectedState: string | null) {
 		this.shadowRoot!.querySelector('.base')?.classList.toggle('selected', selectedState === 'true');
