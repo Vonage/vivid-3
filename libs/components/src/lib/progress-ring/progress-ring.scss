@@ -35,7 +35,7 @@ $size: (
 	5: size.$vvd-size-ultra-expanded,
 );
 $size-keys: map.keys($size);
-$default-size: list.nth($size-keys, 6);
+$default-size: list.nth($size-keys, 7);
 
 .base {
 	@include connotation.connotation (progress-ring);
