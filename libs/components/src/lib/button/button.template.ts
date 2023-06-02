@@ -2,10 +2,11 @@ import { ViewTemplate, when } from '@microsoft/fast-element';
 import { html, ref } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
+import { Icon } from '../icon/icon';
 import { ProgressRing } from '../progress-ring/progress-ring';
-import type { Button, ButtonAppearance } from './button';
+import type { Button, ButtonAppearance, ButtonSize } from './button';
+import { Size } from '../enums';
 
 
 const getAppearanceClassName = (appearance: ButtonAppearance, disabled: boolean) => {
@@ -27,6 +28,27 @@ const getClasses = ({
 	['stacked', Boolean(stacked)],
 );
 
+function renderIconOrPending (context: ElementDefinitionContext, icon: string | undefined, pending: boolean, size: ButtonSize | undefined = Size.Normal) {
+    if (!icon && !pending) return null;
+
+    let content = '';
+    let classes = 'icon';
+    if (pending && size != Size.SuperCondensed) {
+        const progressTag = context.tagFor(ProgressRing);
+        const progressSize = {
+            [Size.Condensed]: '-6',
+            [Size.Normal]: '-5',
+            [Size.Expanded]: '-4',
+        };
+        content = `<${progressTag} size="${progressSize[size]}"></${progressTag}>`;
+        classes += ' pending';
+    } else {
+        const iconTag = context.tagFor(Icon);
+        content = `<${iconTag} name="${icon}"></${iconTag}>`;
+    }
+    return html`<span class="${classes}">${content}</span>`;
+}
+
 /**
  * The template for the {@link @microsoft/fast-foundation#(Button:class)} component.
  *
@@ -38,9 +60,7 @@ export const buttonTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Button> = (context: ElementDefinitionContext) => {
-	const affixIconTemplate = affixIconTemplateFactory(context);
 	const focusTemplate = focusTemplateFactory(context);
-	const progressTag = context.tagFor(ProgressRing);
 
 	return html`
     <button
@@ -80,9 +100,10 @@ export const buttonTemplate: (
         ${ref('control')}
     >
         ${() => focusTemplate}
-        ${x => affixIconTemplate(x.icon)}
-				${when(x => x.label, html`<span class="text">${(x) => x.label}</span>`)}
-        ${when(x => x.pending, html`<${progressTag} class="pending" size="-5"></${progressTag}>`)}
+        
+        ${x => renderIconOrPending(context, x.icon, x.pending, x.size)}
+
+        ${when(x => x.label, html`<span class="text">${(x) => x.label}</span>`)}
     </button>
 `;
 };
