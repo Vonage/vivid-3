@@ -142,6 +142,100 @@ async function testMultiCellSelection({ page }: { page: Page }) {
 	);
 }
 
+async function testRowSelection({ page }: { page: Page }) {
+	const template = `<div style="margin: 5px;">
+			<vwc-data-grid id="clicked-row" selection-mode="single-row"></vwc-data-grid>
+	</div>`;
+
+	await loadComponents({
+		page,
+		components,
+	});
+	await loadTemplate({
+		page,
+		template,
+	});
+
+	const testWrapper = await page.$('#wrapper');
+
+	await page.waitForLoadState('networkidle');
+
+	await page.addScriptTag({content: `
+	const grid = document.querySelector('vwc-data-grid');
+	grid.columnDefinitions = [
+		{columnDataKey: 'data1', title: 'Data 1'},
+		{columnDataKey: 'data2', title: 'Data 2'},
+	];
+	grid.rowsData = [
+		{data1: 'data11', data2: 'data12'},
+		{data1: 'data21', data2: 'data22'},
+		{data1: 'data31', data2: 'data32'},
+	];
+	`});
+
+	const text = await page.locator('vwc-data-grid-cell:has-text("data22")').nth(2);
+	await text.isVisible();
+
+	const clickableCell = await page.locator('#clicked-row vwc-data-grid-row');
+	await clickableCell.nth(1).click();
+	await clickableCell.nth(1).hover();
+	await clickableCell.nth(2).focus();
+
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'./snapshots/data-grid-single-row-select.png',
+		{ maxDiffPixelRatio: 0.01 }
+	);
+}
+
+async function testMultiRowSelection({ page }: { page: Page }) {
+	const template = `<div style="margin: 5px;">
+			<vwc-data-grid id="clicked-row" selection-mode="multi-row"></vwc-data-grid>
+	</div>`;
+
+	await loadComponents({
+		page,
+		components,
+	});
+	await loadTemplate({
+		page,
+		template,
+	});
+
+	const testWrapper = await page.$('#wrapper');
+
+	await page.waitForLoadState('networkidle');
+
+	await page.addScriptTag({content: `
+	const grid = document.querySelector('vwc-data-grid');
+	grid.columnDefinitions = [
+		{columnDataKey: 'data1', title: 'Data 1'},
+		{columnDataKey: 'data2', title: 'Data 2'},
+	];
+	grid.rowsData = [
+		{data1: 'data11', data2: 'data12'},
+		{data1: 'data21', data2: 'data22'},
+		{data1: 'data31', data2: 'data32'},
+	];
+	`});
+
+	const text = await page.locator('vwc-data-grid-cell:has-text("data22")').nth(2);
+	await text.isVisible();
+
+	const clickableCell = await page.locator('#clicked-row vwc-data-grid-row');
+	await clickableCell.nth(1).click();
+	await clickableCell.nth(2).click({
+		modifiers: ['Meta']
+	});
+	await clickableCell.nth(1).hover();
+	await clickableCell.nth(2).focus();
+
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'./snapshots/data-grid-multi-row-select.png',
+		{ maxDiffPixelRatio: 0.01 }
+	);
+}
 test('should show the component', gridTestFunction);
 test('single cell selection', testCellSelection);
 test('multi cell selection', testMultiCellSelection);
+test('single row selection', testRowSelection);
+test('multi row selection', testMultiRowSelection);
