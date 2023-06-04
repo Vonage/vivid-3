@@ -345,14 +345,10 @@ function isElementSelected(element: HTMLElement): boolean {
 	return element.getAttribute('aria-selected') === 'true';
 }
 
+// TODO:: add "manual" example + remove "grid-column" if `undefined`
 // TODO:: header cells design - sort and filter variants
-// TODO:: row selection
-// TODO:: aria-selected to selected rows
 // TODO:: header cell with filter
 // TODO:: header cell with sort
 // TODO:: add sorting and filtering examples
-// TODO:: add "manual" example
 // TODO:: test keyboard navigation
 // TODO:: add aria-multiselectable to grid if multi selection is enabled
-// TODO:: add aria-selected to grid rows only if selection is enabled (remove when changing selection mode)
-// TODO:: check the rtl states
