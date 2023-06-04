@@ -2,7 +2,7 @@ import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { children, elements, html } from '@microsoft/fast-element';
 import { DataGridRow } from './data-grid-row';
 import type { DataGrid } from './data-grid';
-import {DataGridSelectionMode} from "./data-grid";
+import {DataGridSelectionMode} from './data-grid';
 
 function createRowItemTemplate(context: ElementDefinitionContext)  {
 	const rowTag = context.tagFor(DataGridRow);
