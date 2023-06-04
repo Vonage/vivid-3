@@ -319,6 +319,49 @@ The element tag for header row cells. If not set, the default tag `vwc-data-grid
 | `cellFocusTargetCallback` | `(cell) => HTMLElement` | Callback function that is called when cell is focused |
 | `isRowHeader` | `boolean` | Whether this column is the row header |
 
+### Row
+
+#### aria-selected
+
+User the `aria-selected` attribute to indicate the selected state of a row.
+
+```html preview
+<vwc-data-grid>
+	<vwc-data-grid-row aria-selected="true">
+		<vwc-data-grid-cell>Cell 1</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row aria-selected="false">
+		<vwc-data-grid-cell>Cell 1</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+</vwc-data-grid>
+
+<script>
+	grid = document.querySelector('vwc-data-grid');
+	grid.columnDefinitions = [
+		{columnDataKey: 'data1', title: 'Custom Title 1'},
+		{columnDataKey: 'data2', title: 'Custom Title 2'},
+	];
+</script>
+```
+
+### Cell
+
+#### aria-selected
+
+User the `aria-selected` attribute to indicate the selected state of a cell.
+
+```html preview
+<vwc-data-grid>
+	<vwc-data-grid-row>
+		<vwc-data-grid-cell aria-selected="true">Cell 1</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Cell 3</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+</vwc-data-grid>
+```
+
 ## Slots
 
 ### default
@@ -338,3 +381,5 @@ Fires when a cell is focused.
 ## Accessibility
 
 Keyboard events and focus handling are compliant with WACG standards.
+
+Usage of `aria-selected` hints on a selectable element and its selection status.
