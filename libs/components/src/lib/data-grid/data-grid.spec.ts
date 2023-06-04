@@ -232,6 +232,10 @@ describe('vwc-data-grid', () => {
 			expect(element.getAttribute('selection-mode')).toEqual(DataGridSelectionMode.singleRow);
 		});
 
+		it('should init without aria-multiselectable', async function () {
+			expect(element.hasAttribute('aria-multiselectable')).toEqual(false);
+		});
+
 		it.each([DataGridSelectionMode.multiCell, DataGridSelectionMode.multiRow])
 		('should set aria-multiselectable="true" when multiple mode is selected', async (selectionMode) => {
 			element.selectionMode = selectionMode;
