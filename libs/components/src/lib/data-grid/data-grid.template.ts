@@ -2,6 +2,7 @@ import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { children, elements, html } from '@microsoft/fast-element';
 import { DataGridRow } from './data-grid-row';
 import type { DataGrid } from './data-grid';
+import {DataGridSelectionMode} from "./data-grid";
 
 function createRowItemTemplate(context: ElementDefinitionContext)  {
 	const rowTag = context.tagFor(DataGridRow);
@@ -13,6 +14,11 @@ function createRowItemTemplate(context: ElementDefinitionContext)  {
     ></${rowTag}>
 `;
 }
+
+function getMultiSelectAriaState(x: DataGrid) {
+	return x.selectionMode === DataGridSelectionMode.none ? null : x.selectionMode?.includes('multi') ? 'true' : 'false';
+}
+
 /**
  * Generates a template for the {@link @microsoft/fast-foundation#DataGrid} component using
  * the provided prefix.
@@ -24,6 +30,7 @@ export const DataGridTemplate = (context: ElementDefinitionContext) => {
 	const rowTag = context.tagFor(DataGridRow);
 	return html<DataGrid> `
         <template
+						aria-multiselectable="${(getMultiSelectAriaState)}"
             role="grid"
             tabindex="0"
             :rowElementTag="${() => rowTag}"
