@@ -16,9 +16,11 @@
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
+$low-ink-color: --_low-ink-color;
 
 $size: #{size.$vvd-size-ultra-condensed};
 $gutter: 2px;
+
 
 .base {
 	@include connotation.connotation (checkbox);
@@ -99,4 +101,9 @@ label {
 .icon {
 	font-size: calc(#{$size} * 0.7);
 	line-height: 1;
+}
+
+.message {
+	margin-block-start: 4px;
+	#{$low-ink-color}: var(#{constants.$vvd-color-neutral-600});
 }
