@@ -8,6 +8,7 @@ export function DataGridCellTemplate<T extends DataGridCell>(context: ElementDef
 	const focusTemplate = focusTemplateFactory(context);
 	return html<T>`
         <template
+						style="grid-column: ${x => x.gridColumn.includes('undefined') ? null : x.gridColumn};"
             tabindex="-1"
             role="${x => DataGridCellRole[x.cellType] ?? DataGridCellRole.default}"
         >

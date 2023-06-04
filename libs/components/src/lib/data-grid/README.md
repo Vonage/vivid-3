@@ -326,16 +326,7 @@ The element tag for header row cells. If not set, the default tag `vwc-data-grid
 User the `aria-selected` attribute to indicate the selected state of a row.
 
 ```html preview
-<vwc-data-grid>
-	<vwc-data-grid-row aria-selected="true">
-		<vwc-data-grid-cell>Cell 1</vwc-data-grid-cell>
-		<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
-	</vwc-data-grid-row>
-	<vwc-data-grid-row aria-selected="false">
-		<vwc-data-grid-cell>Cell 1</vwc-data-grid-cell>
-		<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
-	</vwc-data-grid-row>
-</vwc-data-grid>
+<vwc-data-grid></vwc-data-grid>
 
 <script>
 	grid = document.querySelector('vwc-data-grid');
@@ -343,6 +334,16 @@ User the `aria-selected` attribute to indicate the selected state of a row.
 		{columnDataKey: 'data1', title: 'Custom Title 1'},
 		{columnDataKey: 'data2', title: 'Custom Title 2'},
 	];
+    grid.innerHTML = `
+			<vwc-data-grid-row aria-selected="true">
+				<vwc-data-grid-cell>Cell 1</vwc-data-grid-cell>
+				<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
+			</vwc-data-grid-row>
+			<vwc-data-grid-row aria-selected="false">
+				<vwc-data-grid-cell>Cell 1</vwc-data-grid-cell>
+				<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
+			</vwc-data-grid-row>
+    `;
 </script>
 ```
 

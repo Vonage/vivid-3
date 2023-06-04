@@ -351,4 +351,3 @@ function isElementSelected(element: HTMLElement): boolean {
 // TODO:: header cell with sort
 // TODO:: add sorting and filtering examples
 // TODO:: test keyboard navigation
-// TODO:: add aria-multiselectable to grid if multi selection is enabled
