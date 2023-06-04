@@ -17,7 +17,7 @@ function createRowItemTemplate(context: ElementDefinitionContext)  {
 
 function getMultiSelectAriaState(x: DataGrid) {
 	return (x.selectionMode === undefined || x.selectionMode === DataGridSelectionMode.none) ? null :
-		x.selectionMode?.includes('multi') ? 'true' : 'false';
+		x.selectionMode.includes('multi') ? 'true' : 'false';
 }
 
 /**
