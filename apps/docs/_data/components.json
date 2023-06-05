@@ -449,5 +449,13 @@
 		"modules": [
 			"/assets/modules/components/pagination/index.js"
 		]
+	},
+	{
+		"title": "file-picker",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/file-picker/README.md",
+		"modules": [
+			"/assets/modules/components/file-picker/index.js"
+		]
 	}
 ]

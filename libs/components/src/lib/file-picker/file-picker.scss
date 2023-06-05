@@ -1,0 +1,38 @@
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+    $connotations: accent,
+    $shades: primary faint soft,
+    $default: accent
+);
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+    $appearances: ghost,
+    $states: idle hover active,
+    $default: ghost
+);
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+
+.base {
+    @include appearance.appearance;
+    @include connotation.connotation(file-picker);
+
+    position: relative;
+    box-sizing: border-box;
+    flex-grow: 1;
+    justify-content: center;
+    padding: 16px;
+    border: 1px dashed var(--vvd-color-neutral-300);
+    background-color: var(#{appearance.get-appearance-token(fill)});
+    border-radius: 6px;
+    outline: none;
+
+    display: inline-block;
+    cursor: pointer;
+}
+
+input[type="file"] {
+    display: none;
+}
