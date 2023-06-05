@@ -84,6 +84,47 @@ describe('vwc-text-area', () => {
 		});
 	});
 
+	describe('char-count', function () {
+		it('should render char-count if attribute char-count and max-length are set', async function () {
+			element.charCount = true;
+			element.maxlength = 20;
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.char-count'))
+				.toBeTruthy();
+		});
+
+		it('should remove char count if max-length is not set', async function () {
+			element.charCount = true;
+			element.toggleAttribute('max-length', false);
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.char-count'))
+				.toBeNull();
+		});
+
+		it('should render count with 0 if value is not set', async function () {
+			element.charCount = true;
+			element.maxlength = 20;
+			const expectedString = '0 / 20';
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.char-count')
+				?.textContent
+				?.trim())
+				.toEqual(expectedString);
+		});
+
+		it('should render count according to value and max', async function () {
+			element.charCount = true;
+			element.maxlength = 20;
+			element.value = '12345';
+			const expectedString = '5 / 20';
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.char-count')
+				?.textContent
+				?.trim())
+				.toEqual(expectedString);
+		});
+	});
+
 	describe('readOnly', function () {
 		it('should add class readonly to host', async function () {
 			const readonlyClassWhenFalse = getBaseElement(element)

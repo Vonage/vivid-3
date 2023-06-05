@@ -21,6 +21,7 @@
 
 
 $size: (
+	-6: calc(size.$vvd-size-normal - size.$vvd-size-super-condensed),
 	-5: size.$vvd-size-ultra-condensed,
 	-4: size.$vvd-size-super-condensed,
 	-3: size.$vvd-size-extra-condensed,
@@ -34,7 +35,7 @@ $size: (
 	5: size.$vvd-size-ultra-expanded,
 );
 $size-keys: map.keys($size);
-$default-size: list.nth($size-keys, 6);
+$default-size: list.nth($size-keys, 7);
 
 .base {
 	@include connotation.connotation (progress-ring);
