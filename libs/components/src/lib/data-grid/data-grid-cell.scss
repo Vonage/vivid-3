@@ -27,7 +27,7 @@
 	box-sizing: border-box;
 	align-items: center;
 	padding: 8px 12px;
-	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-200});
+	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-400});
 	block-size: #{size.$vvd-size-expanded};
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
