@@ -2,6 +2,7 @@ import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { children, elements, html, slotted } from '@microsoft/fast-element';
 import { DataGridCell } from './data-grid-cell';
 import type { DataGridRow } from './data-grid-row';
+
 function createCellItemTemplate(context: ElementDefinitionContext) {
 	const cellTag = context.tagFor(DataGridCell);
 	return html `
@@ -10,6 +11,7 @@ function createCellItemTemplate(context: ElementDefinitionContext) {
         grid-column="${(_, c) => c.index + 1}"
         :rowData="${(_, c) => c.parent.rowData}"
         :columnDefinition="${x => x}"
+				selected="${(_, c) => c.parent.ariaSelected === 'true' ? true : null}"
     ></${cellTag}>
 `;
 }
@@ -45,7 +47,9 @@ export const DataGridRowTemplate = (context: ElementDefinitionContext) => {
 		filter: elements('[role="cell"],[role="gridcell"],[role="columnheader"],[role="rowheader"]'),
 	})}
         >
+					<div class="base ${x => (x.ariaSelected === 'true' ? 'selected' : '')}">
             <slot ${slotted('slottedCellElements')}></slot>
+					</div>
         </template>
     `;
 };
