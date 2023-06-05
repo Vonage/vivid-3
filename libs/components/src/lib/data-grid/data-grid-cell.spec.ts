@@ -96,6 +96,16 @@ describe('vwc-data-grid-cell', () => {
 			await elementUpdated(element);
 			expect(element.style.gridColumn).toEqual('3');
 		});
+
+		it('should remove the gridColumn style if gridColumn is undefined', async () => {
+			expect(element.style.gridColumn).toEqual('');
+		});
+
+		it('should remove the gridColumn style if gridColumn contains undefined', async function () {
+			element.gridColumn = 'undefined / undefined';
+			await elementUpdated(element);
+			expect(element.style.gridColumn).toEqual('');
+		});
 	});
 
 	describe('columnDefinition', () => {

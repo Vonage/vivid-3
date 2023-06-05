@@ -28,4 +28,15 @@ export class DataGridCell extends FoundationElement {
 		super.handleFocusout(e);
 		this.shadowRoot!.querySelector('.base')!.classList.remove('active');
 	}
+
+	constructor() {
+		super();
+		(this as any).updateCellStyle = () => {
+			if (this.gridColumn && !this.gridColumn.includes('undefined')){
+				this.style.gridColumn = this.gridColumn;
+			} else {
+				this.style.removeProperty('grid-column');
+			}
+		};
+	}
 }

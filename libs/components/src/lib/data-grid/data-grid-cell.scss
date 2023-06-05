@@ -45,10 +45,6 @@
 	}
 }
 
-:host {
-	grid-column: unset !important;
-}
-
 .focus-indicator {
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
 
