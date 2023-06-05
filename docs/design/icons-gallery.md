@@ -10,6 +10,7 @@ As an example, you can use it as follows:
 <vwc-text-field id="iconsTextField" icon="search-line" label="Search Icons" oninput="onClickFilter()"></vwc-text-field>
 
 <vwc-tag-group onclick="onClickFilter()">
+  You can also filter by:
   <vwc-tag id="solidTag" label="Solid" selectable></vwc-tag>
   <vwc-tag id="linearTag" label="Linear" selectable></vwc-tag>
   <vwc-tag id="singleTag" label="Single Color" selectable></vwc-tag>
