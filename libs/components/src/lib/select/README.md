@@ -81,7 +81,7 @@ Set the `appearance` attribute to change the Select appearance.
 (`'ghost'` is typically used within a composition such as action group / toolbar).
 
 ```html preview
-<vwc-select appearance="ghost">
+<vwc-select aria-label="Options Selector" appearance="ghost">
   <vwc-option value="1" text="Option 1" selected></vwc-option>
   <vwc-option value="2" text="Option 2 "></vwc-option>
 </vwc-select>
@@ -94,7 +94,7 @@ Use the `shape` attribute to change the Select edges.
 - Default: `'rounded'`
 
 ```html preview
-<vwc-select shape="pill">
+<vwc-select aria-label="Options Selector" shape="pill">
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
 </vwc-select>
@@ -179,7 +179,7 @@ Add the `disabled` attribute to disable the Select.
 - Default: `false`
 
 ```html preview
-<vwc-select disabled>
+<vwc-select aria-label="Options Selector" disabled>
   <vwc-option value="1" text="Option 1"></vwc-option>
 </vwc-select>
 ```
@@ -199,7 +199,7 @@ _Select_ internally uses _popup_ to display an element and its descendants above
     block-size: 230px;
   }
 </style>
-<vwc-select open>
+<vwc-select aria-label="Options Selector" open>
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
   <vwc-option value="3" text="Option 3"></vwc-option>
@@ -246,7 +246,7 @@ Set the `meta` slot to show meta information after the selected option label.
     flex-grow: 1;
   }
 </style>
-<vwc-select>
+<vwc-select aria-label="Options Selector">
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
   <vwc-option value="3" text="Option 3"></vwc-option>
@@ -254,7 +254,7 @@ Set the `meta` slot to show meta information after the selected option label.
     <vwc-badge connotation="success" text="Beta"></vwc-badge>
   </span>
 </vwc-select>
-<vwc-select>
+<vwc-select aria-label="Options Selector">
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
   <vwc-option value="3" text="Option 3"></vwc-option>
@@ -272,7 +272,7 @@ You can add a `label` attribute to the `vwc-option` to set a custom display valu
     block-size: 230px;
   }
 </style>
-<vwc-select>
+<vwc-select aria-label="Options Selector">
   <vwc-option label="Custom Label 1" value="1" text="Option 1"></vwc-option>
   <vwc-option label="Custom Label 2" value="2" text="Option 2"></vwc-option>
   <vwc-option label="Custom Label 3" value="3" text="Option 3"></vwc-option>
@@ -295,7 +295,7 @@ Default: `fit-content`
     --select-height: 200px;
   }
 </style>
-<vwc-select>
+<vwc-select aria-label="Options Selector">
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
   <vwc-option value="3" text="Option 3"></vwc-option>
