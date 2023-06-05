@@ -44,7 +44,7 @@ As an example, you can use it as follows:
       addIcon(data[index].id);
       if(++ index >= ICONS_TO_SHOW) break;
     }
-    hideShowMoreButton(data);
+    disableShowMoreButton(data);
   }
 
   function showMoreIcons(data){
@@ -52,7 +52,7 @@ As an example, you can use it as follows:
       addIcon(data[index].id);
       if(++ index >= iconsShown) break;
     }
-    hideShowMoreButton(data);
+    disableShowMoreButton(data);
   }
 
   function disableShowMoreButton(data){
