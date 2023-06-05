@@ -54,6 +54,41 @@ Use the `indeterminate` member to indicate that the checkbox's is neither "on" o
   checkbox.indeterminate = true;
 </script>
 ```
+### Helper text
+
+Add the `helper-text` to add some helper text below the checkbox.
+
+- Type: `string` | `undefined`
+- Default: `undefined`
+
+```html preview
+<vwc-checkbox label='A default checkbox' helper-text="Helper text"></vwc-checkbox>
+```
+
+### Success text
+
+Add the `success-text` to add some success text below the checkbox.
+
+- Type: `string` | `undefined`
+- Default: `undefined`
+
+```html preview
+<vwc-checkbox label='A default checkbox' success-text="Success text"></vwc-checkbox>
+```
+
+
+### Error text
+
+It is possible to force the checkbox error state by setting the `error-text` attribute to a custom error message.
+Note that any current error state will be overriden by `error-text` (and, if applicable, restored once it is removed).
+
+- Type: `string`
+- Default: `undefined`
+
+
+```html preview
+<vwc-checkbox label='A default checkbox' error-text="Please pick one"></vwc-checkbox>
+```
 
 ### Disabled
 

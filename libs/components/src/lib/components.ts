@@ -30,6 +30,7 @@ export * from './nav-disclosure/definition';
 export * from './nav-item/definition';
 export * from './note/definition';
 export * from './number-field/definition';
+export * from './pagination/definition';
 export * from './popup/definition';
 export * from './progress/definition';
 export * from './progress-ring/definition';

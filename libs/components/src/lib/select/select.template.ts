@@ -116,23 +116,23 @@ export const SelectTemplate: (
 
 	return html<Select>`
 	  <template class="base"
-            aria-activedescendant="${x => x.ariaActiveDescendant}"
-            aria-controls="${x => x.ariaControls}"
-            aria-disabled="${x => x.ariaDisabled}"
-            aria-expanded="${x => x.ariaExpanded}"
-            aria-haspopup="${x => (x.collapsible ? 'listbox' : null)}"
-            aria-multiselectable="${x => x.ariaMultiSelectable}"
-            ?open="${x => x.open}"
-            role="select"
-            tabindex="${x => (!x.disabled ? '0' : null)}"
-            @click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
-            @focusin="${(x, c) => x.focusinHandler(c.event as FocusEvent)}"
-            @focusout="${(x, c) => x.focusoutHandler(c.event as FocusEvent)}"
-            @keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
-            @mousedown="${(x, c) => x.mousedownHandler(c.event as MouseEvent)}"
+							aria-label="${x => x.ariaLabel ? x.ariaLabel : x.label}"
+							aria-activedescendant="${x => x.ariaActiveDescendant}"
+							aria-controls="${x => x.ariaControls}"
+							aria-disabled="${x => x.ariaDisabled}"
+							aria-expanded="${x => x.ariaExpanded}"
+							aria-haspopup="${x => (x.collapsible ? 'listbox' : null)}"
+							aria-multiselectable="${x => x.ariaMultiSelectable}"
+							?open="${x => x.open}"
+							role="combobox"
+							tabindex="${x => (!x.disabled ? '0' : null)}"
+							@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
+							@focusin="${(x, c) => x.focusinHandler(c.event as FocusEvent)}"
+							@focusout="${(x, c) => x.focusoutHandler(c.event as FocusEvent)}"
+							@keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
+							@mousedown="${(x, c) => x.mousedownHandler(c.event as MouseEvent)}"
         >
             ${renderControl(context)}
 		</template>
-// TODO:: add focus to the control-wrapper
 	`;
 };
