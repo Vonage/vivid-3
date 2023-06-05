@@ -43,9 +43,10 @@ export class DataGrid extends FoundationElement {
 		}, [] as DataGridCell[]);
 	}
 
-	selectionModeChanged(oldValue: DataGridSelectionMode, newValue: DataGridSelectionMode) {
-		if (oldValue === undefined && newValue !== DataGridSelectionMode.none) {
-			DOM.queueUpdate(this.#initSelections); return;
+	selectionModeChanged(oldValue: DataGridSelectionMode) {
+		if (oldValue === undefined) {
+			DOM.queueUpdate(this.#initSelections);
+			return;
 		}
 		this.#resetSelection();
 	}
@@ -123,10 +124,12 @@ export class DataGrid extends FoundationElement {
 				.forEach(cell => !cell.hasAttribute('aria-selected') && this.#setSelectedState(cell as DataGridCell, false));
 			Array.from(this.querySelectorAll('[role="row"]')).forEach(row => row.removeAttribute('aria-selected'));
 		}
+
 		if (this.selectionMode === DataGridSelectionMode.none) {
 			Array.from(this.querySelectorAll('[role="gridcell"]')).forEach(cell => cell.removeAttribute('aria-selected'));
 			Array.from(this.querySelectorAll('[role="row"]')).forEach(row => row.removeAttribute('aria-selected'));
 		}
+
 		if (this.selectionMode === DataGridSelectionMode.singleRow || this.selectionMode === DataGridSelectionMode.multiRow) {
 			Array.from(this.querySelectorAll('[role="gridcell"]')).forEach(cell => cell.removeAttribute('aria-selected'));
 			Array.from(this.querySelectorAll('[role="row"]'))
