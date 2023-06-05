@@ -355,6 +355,106 @@ describe('data grid integration tests', () => {
 				expect(row.getAttribute('aria-selected')).toEqual('true');
 			});
 		});
+
+		describe('row selection', () => {
+			beforeEach(async function () {
+				element.rowsData = [
+					{ id: 1, name: 'John', age: 20 },
+					{ id: 2, name: 'Jane', age: 21 },
+				];
+				await elementUpdated(element);
+				await elementUpdated(element);
+			});
+
+			it('should remove aria-selected from all rows if set to "none"', async function () {
+				element.selectionMode = DataGridSelectionMode.multiRow;
+				await elementUpdated(element);
+
+				element.selectionMode = DataGridSelectionMode.none;
+				await elementUpdated(element);
+
+				const allNoneHeaderRows = Array.from(element.querySelectorAll('[role="row"]'));
+				const allNonHeaderRowsNotSelectable = allNoneHeaderRows.every(row => !row.hasAttribute('aria-selected'));
+				expect(allNonHeaderRowsNotSelectable).toEqual(true);
+			});
+
+			it('should remove aria-selected from all cells if set to "*-row"', async function () {
+				element.selectionMode = DataGridSelectionMode.singleCell;
+				await elementUpdated(element);
+
+				element.selectionMode = DataGridSelectionMode.multiRow;
+				await elementUpdated(element);
+
+				const allNonHeaderCells = Array.from(element.querySelectorAll('[role="gridcell"]'));
+				const allNonHeaderCellsNotSelectable = allNonHeaderCells.every(cell => !cell.hasAttribute('aria-selected'));
+				expect(allNonHeaderCellsNotSelectable).toEqual(true);
+			});
+
+			it.each([DataGridSelectionMode.singleRow, DataGridSelectionMode.multiRow])
+			('should set aria-selected="false" on all non header rows if selectionMode is %s',
+				async function (selectionMode: DataGridSelectionMode) {
+					element.selectionMode = selectionMode;
+					await elementUpdated(element);
+					const allNonHeaderRows = element.querySelectorAll('[role="row"]');
+					const allNonHeaderRowsHaveSelectedFalse = Array.from(allNonHeaderRows).every((row) => {
+						return row.getAttribute('aria-selected') === 'false';
+					});
+					expect(allNonHeaderRowsHaveSelectedFalse).toEqual(true);
+				});
+
+			it('should set aria-selected="true" on clicked row', async function () {
+				element.selectionMode = DataGridSelectionMode.singleRow;
+				const cell = getRowCell(1, 0);
+				const row = getRow(1);
+				cell.click();
+				await elementUpdated(element);
+				expect(row.getAttribute('aria-selected')).toEqual('true');
+			});
+
+			it('should set aria-selected="true" on clicked row and remove from other rows', async function () {
+				element.selectionMode = DataGridSelectionMode.singleRow;
+				const row1 = getRow(1);
+				const cellInRow1 = getRowCell(1, 0);
+				const row2 = getRow(2);
+				const cellInRow2 = getRowCell(2, 0);
+
+				cellInRow1.click();
+				await elementUpdated(element);
+				cellInRow2.click();
+				await elementUpdated(element);
+
+				expect(row1.getAttribute('aria-selected')).toEqual('false');
+				expect(row2.getAttribute('aria-selected')).toEqual('true');
+			});
+
+			it.each(['ctrlKey', 'shiftKey', 'metaKey'])
+			('should set aria-selected="true" to all clicked rows in "multi-row" state and %s key pressed',
+				function (activeKey) {
+					element.selectionMode = DataGridSelectionMode.multiRow;
+					const row1 = getRow(1);
+					const cellInRow1 = getRowCell(1, 0);
+					const row2 = getRow(2);
+					const cellInRow2 = getRowCell(2, 0);
+
+					cellInRow1.click();
+					cellInRow2.dispatchEvent(new MouseEvent('click', { [activeKey]: true, bubbles: true, composed: true }));
+
+					expect(row1.getAttribute('aria-selected')).toEqual('true');
+					expect(row2.getAttribute('aria-selected')).toEqual('true');
+				});
+
+			it('should set selected attribute on cells', async () => {
+				const row = getRow(1);
+				row.ariaSelected = 'true';
+				await elementUpdated(element);
+
+				const allCellsSelected = Array.from(row.querySelectorAll('[role="gridcell"]'))
+					.reduce((acc, child) => {
+						return acc && child.hasAttribute('selected');
+					}, true);
+				expect(allCellsSelected).toEqual(true);
+			});
+		});
 	});
 
 });

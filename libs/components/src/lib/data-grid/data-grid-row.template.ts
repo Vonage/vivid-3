@@ -11,6 +11,7 @@ function createCellItemTemplate(context: ElementDefinitionContext) {
         grid-column="${(_, c) => c.index + 1}"
         :rowData="${(_, c) => c.parent.rowData}"
         :columnDefinition="${x => x}"
+				selected="${(_, c) => c.parent.ariaSelected === 'true' ? true : null}"
     ></${cellTag}>
 `;
 }
