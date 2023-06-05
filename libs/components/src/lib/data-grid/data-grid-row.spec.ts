@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { html } from '@microsoft/fast-element';
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
 import { designSystem } from '../../shared/design-system';
 import { DataGridRow } from './data-grid-row';
 import { DataGridRowTemplate } from './data-grid-row.template';
@@ -123,17 +123,17 @@ describe('vwc-data-grid-row', () => {
 				{ columnDataKey: 'age' }
 			];
 			element.cellItemTemplate = html`<${dataGridCellTagName} role="cell"></${dataGridCellTagName}>`;
-			await elementUpdated(element);	
+			await elementUpdated(element);
 			const cells = Array.from(element.querySelectorAll(dataGridCellTagName));
 			const focusedElementBeforeArrowKey = document.activeElement;
 			const rowCellFocused = cells.includes(focusedElementBeforeArrowKey as any);
-			
+
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft' }));
-			const firstCellFocused = cells[0] === document.activeElement;			
-			
+			const firstCellFocused = cells[0] === document.activeElement;
+
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
-			const secondCellFocused = cells[1] === document.activeElement;					
-			
+			const secondCellFocused = cells[1] === document.activeElement;
+
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft' }));
 			const firstCellFocusedAfterArrowLeft = cells[0] === document.activeElement;
 
@@ -152,7 +152,7 @@ describe('vwc-data-grid-row', () => {
 				{ columnDataKey: 'get' },
 			];
 			element.cellItemTemplate = html`<${dataGridCellTagName} role="cell"></${dataGridCellTagName}>`;
-			await elementUpdated(element);	
+			await elementUpdated(element);
 			const cells = Array.from(element.querySelectorAll(dataGridCellTagName));
 
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'End' }));
@@ -160,6 +160,28 @@ describe('vwc-data-grid-row', () => {
 
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Home' }));
 			expect(cells[0] === document.activeElement).toBeTruthy();
+		});
+	});
+
+	describe('aria-selected', () => {
+		it('should reflect on host', async function () {
+			element.ariaSelected = 'true';
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-selected')).toEqual('true');
+		});
+
+		it('should set selected class on base element', async function () {
+			element.ariaSelected = 'true';
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('selected')).toBeTruthy();
+		});
+
+		it('should remove selected class on base element when false', async function () {
+			element.ariaSelected = 'true';
+			await elementUpdated(element);
+			element.ariaSelected = 'false';
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('selected')).toBeFalsy();
 		});
 	});
 });
