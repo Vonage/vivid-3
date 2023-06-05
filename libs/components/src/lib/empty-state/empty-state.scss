@@ -1,0 +1,49 @@
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+
+:host {
+	display: block;
+}
+
+.base {
+	display: flex;
+	box-sizing: border-box;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	block-size: 100%;
+	gap: 24px;
+}
+
+.icon-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(#{constants.$vvd-color-neutral-100});
+	block-size: 120px;
+	border-radius: 50%;
+	inline-size: 120px;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	font: var(#{constants.$vvd-typography-base});
+	gap: 8px;
+	text-align: center;
+}
+
+header {
+	font: var(#{constants.$vvd-typography-base-bold});
+}
+
+.actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+
+	.base.no-actions & {
+		display: none;
+	}
+}
