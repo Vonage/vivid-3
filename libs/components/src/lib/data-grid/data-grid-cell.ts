@@ -14,6 +14,11 @@ export class DataGridCell extends FoundationElement {
 		this.shadowRoot!.querySelector('.base')?.classList.toggle('selected', selectedState === 'true');
 	}
 
+	override connectedCallback() {
+		super.connectedCallback();
+		this.ariaSelectedChanged(null, this.ariaSelected);
+	}
+
 	override handleFocusin(e: FocusEvent) {
 		super.handleFocusin(e);
 		this.shadowRoot!.querySelector('.base')!.classList.add('active');
