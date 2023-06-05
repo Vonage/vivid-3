@@ -11,6 +11,10 @@
     display: flex;
 }
 
+#emptyState{
+    align-self: start;
+}
+
 article p{
     max-inline-size:1200px;
 }

@@ -42,6 +42,7 @@ function showMore(){
 
 function addIcon(id){
     const emptyState = document.createElement('vwc-empty-state');
+    emptyState.id = "emptyState";
     emptyState.headline = emptyState.icon = id;
     iconsLayout.appendChild(emptyState);
 }
@@ -54,21 +55,21 @@ function onClickFilter() {
 function filterIcons() {
   let iconsArray = jsonData.filter(item => item.keyword.some(icon => icon.includes(iconsTextField.value)));
 
-  iconsArray = filterIconsByTags(iconsArray);
+  iconsArray = filterIconsByRadio(iconsArray);
   iconsShown > ICONS_TO_SHOW ? showMoreIcons(iconsArray) : showIcons(iconsArray);
 }
 
- function filterIconsByTags(iconsArray) {
-  if(solidTag.selected){
+ function filterIconsByRadio(iconsArray) {
+  if(solidRadio.checked){
     iconsArray = iconsArray.filter(item => item.tag.some(icon => icon === "style_weight_solid"));
   }
-  if(linearTag.selected){
+  if(linearRadio.checked){
     iconsArray = iconsArray.filter(item => item.tag.some(icon => icon === "style_weight_regular"));
   }
-  if(singleTag.selected){
+  if(singleRadio.checked){
     iconsArray = iconsArray.filter(item => item.tag.some(icon => icon === "style_color_single"));
   }
-  if(multiTag.selected){
+  if(multiRadio.checked){
     iconsArray = iconsArray.filter(item => item.tag.some(icon => icon === "style_color_multi"));
   }
 
