@@ -81,7 +81,7 @@ Set the `appearance` attribute to change the Select appearance.
 (`'ghost'` is typically used within a composition such as action group / toolbar).
 
 ```html preview
-<vwc-select appearance="ghost">
+<vwc-select aria-label="Options Selector" appearance="ghost">
   <vwc-option value="1" text="Option 1" selected></vwc-option>
   <vwc-option value="2" text="Option 2 "></vwc-option>
 </vwc-select>
@@ -94,7 +94,7 @@ Use the `shape` attribute to change the Select edges.
 - Default: `'rounded'`
 
 ```html preview
-<vwc-select shape="pill">
+<vwc-select aria-label="Options Selector" shape="pill">
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
 </vwc-select>
@@ -179,7 +179,7 @@ Add the `disabled` attribute to disable the Select.
 - Default: `false`
 
 ```html preview
-<vwc-select disabled>
+<vwc-select aria-label="Options Selector" disabled>
   <vwc-option value="1" text="Option 1"></vwc-option>
 </vwc-select>
 ```
@@ -199,7 +199,7 @@ _Select_ internally uses _popup_ to display an element and its descendants above
     block-size: 230px;
   }
 </style>
-<vwc-select open>
+<vwc-select aria-label="Options Selector" open>
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
   <vwc-option value="3" text="Option 3"></vwc-option>
@@ -246,7 +246,7 @@ Set the `meta` slot to show meta information after the selected option label.
     flex-grow: 1;
   }
 </style>
-<vwc-select>
+<vwc-select aria-label="Options Selector">
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
   <vwc-option value="3" text="Option 3"></vwc-option>
@@ -254,7 +254,7 @@ Set the `meta` slot to show meta information after the selected option label.
     <vwc-badge connotation="success" text="Beta"></vwc-badge>
   </span>
 </vwc-select>
-<vwc-select>
+<vwc-select aria-label="Options Selector">
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
   <vwc-option value="3" text="Option 3"></vwc-option>
@@ -272,7 +272,7 @@ You can add a `label` attribute to the `vwc-option` to set a custom display valu
     block-size: 230px;
   }
 </style>
-<vwc-select>
+<vwc-select aria-label="Options Selector">
   <vwc-option label="Custom Label 1" value="1" text="Option 1"></vwc-option>
   <vwc-option label="Custom Label 2" value="2" text="Option 2"></vwc-option>
   <vwc-option label="Custom Label 3" value="3" text="Option 3"></vwc-option>
@@ -295,7 +295,7 @@ Default: `fit-content`
     --select-height: 200px;
   }
 </style>
-<vwc-select>
+<vwc-select aria-label="Options Selector">
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
   <vwc-option value="3" text="Option 3"></vwc-option>
@@ -334,6 +334,13 @@ You can specify width on the `vwc-select` if required (the list-box will not be 
 Document elements display precedence is formed by the imaginary z-axis [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context), commonly by order of which elements are rendered and special properties (e.g. _z-index_).
 Select component is a low level element, unaware of its document context, but is, in most cases, required to overlay on top of all elements.  
 If needed a `z-index` value can be set on the host
+
+## Accessibility
+
+### Arial Label
+A select requires a label to be set for screen readers to be able to describe the component.
+If label is set, it is used as the `aria-label` attribute value on the host element.
+If label is not set, please make sure to add an `aria-label` attribute to the host element.
 
 ## Use Case
 

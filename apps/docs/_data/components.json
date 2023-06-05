@@ -119,7 +119,8 @@
 		"modules": [
 			"/assets/modules/components/nav/index.js",
 			"/assets/modules/components/nav-disclosure/index.js",
-			"/assets/modules/components/nav-item/index.js"
+			"/assets/modules/components/nav-item/index.js",
+			"/assets/modules/components/badge/index.js"
 		]
 	},
 	{
