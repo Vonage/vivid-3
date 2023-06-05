@@ -87,4 +87,10 @@ describe('vwc-nav-disclosure', () => {
 
 		expect((spy as any).mock.calls.length).toEqual(1);
 	});
+
+	describe('meta slot', () => {
+		it('should have meta slot', async () => {
+			expect(element.shadowRoot?.querySelector('slot[name="meta"]')).toBeTruthy();
+		});
+	});
 });
