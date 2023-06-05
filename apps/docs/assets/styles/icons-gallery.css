@@ -10,3 +10,7 @@
 #showMoreButton{
     display: flex;
 }
+
+article p{
+    max-inline-size:1200px;
+}
