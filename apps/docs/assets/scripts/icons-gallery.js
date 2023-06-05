@@ -1,5 +1,5 @@
 const VERSION = "4.1.2";
-const ICONS_TO_SHOW = 16;
+const ICONS_TO_SHOW = 14;
 let jsonData;
 let index = 0;
 let iconsShown = ICONS_TO_SHOW;
