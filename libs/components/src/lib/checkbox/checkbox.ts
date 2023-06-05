@@ -1,5 +1,11 @@
-import { attr } from '@microsoft/fast-element';
-import { Checkbox as FastCheckbox } from '@microsoft/fast-foundation';
+import {applyMixins, Checkbox as FoundationCheckbox} from '@microsoft/fast-foundation';
+import {
+	FormElement,
+	FormElementHelperText,
+	formElements,
+	FormElementSuccessText,
+} from '../../shared/patterns';
+import {ErrorText, errorText} from '../../shared/patterns';
 
 export const keySpace: ' ' = ' ' as const;
 
@@ -8,7 +14,9 @@ export const keySpace: ' ' = ' ' as const;
  *
  * @public
  */
-export class Checkbox extends FastCheckbox {
+@errorText
+@formElements
+export class Checkbox extends FoundationCheckbox {
 	/**
 	 * Indicates the checkbox's label.
 	 *
@@ -16,7 +24,7 @@ export class Checkbox extends FastCheckbox {
 	 * @remarks
 	 * HTML Attribute: label
 	 */
-	@attr label?: string;
+
 
 	/**
 	 * !remove method as will be implemented by fast-foundation in version > 2.46.9
@@ -50,3 +58,6 @@ export class Checkbox extends FastCheckbox {
 		}
 	};
 }
+
+export interface Checkbox extends FormElement, FormElementHelperText, ErrorText, FormElementSuccessText{}
+applyMixins(Checkbox, FormElementHelperText, FormElementSuccessText);
