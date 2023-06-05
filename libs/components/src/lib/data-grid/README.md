@@ -327,6 +327,14 @@ User the `aria-selected` attribute to indicate the selected state of a row.
 
 ```html preview
 <vwc-data-grid>
+	<vwc-data-grid-row role="row" class="header" row-type="header">
+		<vwc-data-grid-cell cell-type="columnheader" role="columnheader">
+			data1
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">
+			data2
+		</vwc-data-grid-cell>
+	</vwc-data-grid-row>
 	<vwc-data-grid-row aria-selected="true">
 		<vwc-data-grid-cell>Cell 1</vwc-data-grid-cell>
 		<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
@@ -336,14 +344,6 @@ User the `aria-selected` attribute to indicate the selected state of a row.
 		<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
 	</vwc-data-grid-row>
 </vwc-data-grid>
-
-<script>
-	grid = document.querySelector('vwc-data-grid');
-	grid.columnDefinitions = [
-		{columnDataKey: 'data1', title: 'Custom Title 1'},
-		{columnDataKey: 'data2', title: 'Custom Title 2'},
-	];
-</script>
 ```
 
 ### Cell
