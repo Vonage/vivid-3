@@ -7,7 +7,7 @@ As an example, you can use it as follows:
 <vwc-icon name="icon-name-here"></vwc-icon>
 ```
 
-<vwc-text-field id="iconsTextField" icon="search-line" label="Search Icons" oninput="onClickFilter()" style="display: flex;"></vwc-text-field>
+<vwc-text-field id="iconsTextField" icon="search-line" label="Search Icons" oninput="onClickFilter()"></vwc-text-field>
 
 <vwc-tag-group onclick="onClickFilter()">
   <vwc-tag id="solidTag" label="Solid" selectable></vwc-tag>
@@ -16,8 +16,9 @@ As an example, you can use it as follows:
   <vwc-tag id="multiTag" label="Multi Color" selectable></vwc-tag>
 </vwc-tag-group>
 
-<vwc-layout id="iconsLayout" gutters="small" column-basis="small" style="--layout-column-gap: 0; --layout-row-gap: 0;"></vwc-layout>
+<vwc-layout id="iconsLayout" gutters="small" column-basis="small"></vwc-layout>
 
-<vwc-button id="showMoreButton" label="Show More" appearance='filled' onclick="showMore()" style="display: flex;"></vwc-button>
+<vwc-button id="showMoreButton" label="Show More" appearance='filled' onclick="showMore()"></vwc-button>
 
 <script src="../../assets/scripts/icons-gallery.js" async></script>
+<link rel="stylesheet" href="../../assets/styles/icons-gallery.css"">

@@ -1,0 +1,12 @@
+#iconsTextField {
+    display: flex;
+}
+
+#iconsLayout{
+    --layout-column-gap: 0; 
+    --layout-row-gap: 0;
+}
+
+#showMoreButton{
+    display: flex;
+}
