@@ -236,6 +236,21 @@ describe('data grid integration tests', () => {
 				expect(isElementSelected(cell1)).toEqual(true);
 				expect(isElementSelected(cell2)).toEqual(true);
 			});
+
+			it('should leave aria-selected value to cells without aria-selected on init', async function () {
+				element = (await fixture(
+					`<${COMPONENT_TAG} selection-mode="single-cell">
+											<vwc-data-grid-row>
+												<vwc-data-grid-cell aria-selected="true">Cell 1</vwc-data-grid-cell>
+												<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
+											</vwc-data-grid-row>
+										</${COMPONENT_TAG}>`
+				)) as DataGrid;
+				await elementUpdated(element);
+				await elementUpdated(element);
+				const cell = element.querySelector('vwc-data-grid-cell') as HTMLElement;
+				expect(cell.getAttribute('aria-selected')).toEqual('true');
+			});
 		});
 
 		describe('row selection', () => {
@@ -324,6 +339,21 @@ describe('data grid integration tests', () => {
 					expect(row1.getAttribute('aria-selected')).toEqual('true');
 					expect(row2.getAttribute('aria-selected')).toEqual('true');
 				});
+
+			it('should leave aria-selected value to rows on init', async function () {
+				element = (await fixture(
+					`<${COMPONENT_TAG} selection-mode="single-row">
+											<vwc-data-grid-row aria-selected="true">
+												<vwc-data-grid-cell>Cell 1</vwc-data-grid-cell>
+												<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
+											</vwc-data-grid-row>
+										</${COMPONENT_TAG}>`
+				)) as DataGrid;
+				await elementUpdated(element);
+				await elementUpdated(element);
+				const row = element.querySelector('vwc-data-grid-row') as HTMLElement;
+				expect(row.getAttribute('aria-selected')).toEqual('true');
+			});
 		});
 	});
 

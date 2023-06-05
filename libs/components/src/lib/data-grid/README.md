@@ -323,10 +323,12 @@ The element tag for header row cells. If not set, the default tag `vwc-data-grid
 
 #### aria-selected
 
-User the `aria-selected` attribute to indicate the selected state of a row.
+User the `aria-selected` attribute to indicate the selected state of a row. 
+For a full selection functionality the cell has to be inside a grid with the proper `selectionMode`.
+The grid also adds the `aria-selected` attribute to the row when it is selected and adds `aria-selected="false"` for none-selected rows.
 
 ```html preview
-<vwc-data-grid>
+<vwc-data-grid selection-mode="single-row">
 	<vwc-data-grid-row role="row" class="header" row-type="header">
 		<vwc-data-grid-cell cell-type="columnheader" role="columnheader">
 			data1
@@ -350,13 +352,15 @@ User the `aria-selected` attribute to indicate the selected state of a row.
 
 #### aria-selected
 
-User the `aria-selected` attribute to indicate the selected state of a cell.
+User the `aria-selected` attribute to indicate the selected state of a cell. 
+For a full selection functionality the cell has to be inside a grid with the proper `selectionMode`.
+The grid also adds the `aria-selected` attribute to the cell when it is selected and adds `aria-selected="false"` for none-selected cells.
 
 ```html preview
-<vwc-data-grid>
+<vwc-data-grid selection-mode="single-cell">
 	<vwc-data-grid-row>
 		<vwc-data-grid-cell aria-selected="true">Cell 1</vwc-data-grid-cell>
-		<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
+		<vwc-data-grid-cell aria-selected="false">Cell 2</vwc-data-grid-cell>
 		<vwc-data-grid-cell>Cell 3</vwc-data-grid-cell>
 	</vwc-data-grid-row>
 </vwc-data-grid>
