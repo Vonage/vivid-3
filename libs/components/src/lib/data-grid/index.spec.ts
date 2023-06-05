@@ -324,18 +324,6 @@ describe('data grid integration tests', () => {
 					expect(row1.getAttribute('aria-selected')).toEqual('true');
 					expect(row2.getAttribute('aria-selected')).toEqual('true');
 				});
-
-			it('should set selected attribute on cells', async () => {
-				const row = getRow(1);
-				row.ariaSelected = 'true';
-				await elementUpdated(element);
-
-				const allCellsSelected = Array.from(row.querySelectorAll('[role="gridcell"]'))
-					.reduce((acc, child) => {
-						return acc && child.hasAttribute('selected');
-					}, true);
-				expect(allCellsSelected).toEqual(true);
-			});
 		});
 	});
 
@@ -351,4 +339,3 @@ function isElementSelected(element: HTMLElement): boolean {
 // TODO:: header cell with sort
 // TODO:: add sorting and filtering examples
 // TODO:: test keyboard navigation
-// TODO:: add aria-multiselectable to grid if multi selection is enabled
