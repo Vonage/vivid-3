@@ -1,4 +1,10 @@
-import {createFormHTML, elementUpdated, fixture, getBaseElement, listenToFormSubmission} from '@vivid-nx/shared';
+import {
+	createFormHTML,
+	elementUpdated,
+	fixture,
+	getBaseElement,
+	listenToFormSubmission
+} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Checkbox } from './checkbox';
 import '.';
@@ -103,6 +109,66 @@ describe('vwc-checkbox', () => {
 
 			expect(element.indeterminate).toBeFalsy();
 		});
+	});
+
+	describe('helper text', function () {
+		it('should render the helper text when attribute is set on checkbox', async function () {
+			const helperTextElementWithoutText = element.shadowRoot?.querySelector('.helper-text');
+			const helperText = 'Helper Text';
+			element.helperText = helperText;
+			await elementUpdated(element);
+			expect(helperTextElementWithoutText)
+				.toBeNull();
+			expect(element.shadowRoot?.querySelector('.helper-message')
+				?.textContent
+				?.trim())
+				.toEqual(helperText);
+		});
+	});
+
+	describe('success Text', ()=> {
+		it('should add success class to base when successText is set', async function () {
+			(element as any).successText = 'success';
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('success')).toBeTruthy();
+		});
+
+		it('should show success text when successText is set', async function () {
+			(element as any).successText = 'success';
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.success-message')?.textContent?.trim()).toEqual('success');
+		});
+
+		it('should remove success text when undefined', async function () {
+			(element as any).successText = 'success';
+			await elementUpdated(element);
+			(element as any).successText = undefined;
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.success-message')).toBeNull();
+		});
+	});
+
+	describe('error Text', ()=> {
+		it('should add error class to base when errorText is set', async function () {
+			(element as any).errorText = 'error';
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('error')).toBeTruthy();
+		});
+
+		it('should show error text when errorText is set', async function () {
+			(element as any).errorText = 'error';
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.error-message')?.textContent?.trim()).toEqual('error');
+		});
+
+		it('should remove error text when undefined', async function () {
+			(element as any).errorText = 'error';
+			await elementUpdated(element);
+			(element as any).errorText = undefined;
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.error-message')).toBeNull();
+		});
+
 	});
 
 	describe('form association', function () {
