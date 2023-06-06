@@ -30,6 +30,10 @@
     padding: 16px;
 }
 
+#nameSpan{
+    text-align: center;
+}
+
 #showMoreButton{
     margin-inline-start: 50%;
 }
