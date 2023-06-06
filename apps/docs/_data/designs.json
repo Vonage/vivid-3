@@ -25,11 +25,11 @@
 			"/assets/modules/components/text-field/index.js",
 			"/assets/modules/components/layout/index.js",
 			"/assets/modules/components/icon/index.js",
-			"/assets/modules/components/empty-state/index.js",
 			"/assets/modules/components/card/index.js",
-      "/assets/modules/components/radio-group/index.js",
-			"/assets/modules/components/radio/index.js",
-      "/assets/modules/components/button/index.js"
+      "/assets/modules/components/tag-group/index.js",
+			"/assets/modules/components/tag/index.js",
+      "/assets/modules/components/button/index.js",
+      "/assets/modules/components/alert/index.js"
 		]
 	},
   {
