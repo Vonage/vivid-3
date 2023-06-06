@@ -11,14 +11,19 @@ As an example, you can use it as follows:
 
 <vwc-text-field id="iconsTextField" icon="search-line" label="Search Icons" oninput="onClickFilter()"></vwc-text-field>
 
-<vwc-tag-group onclick="onClickFilter()">
-  Filter By Style:
-  <vwc-tag id="solidTag" label="Solid" selectable></vwc-tag>
-  <vwc-tag id="linearTag" label="Linear" selectable></vwc-tag>
-  Filter By Color:
-  <vwc-tag id="singleTag" label="Single Color" selectable></vwc-tag>
-  <vwc-tag id="multiTag" label="Multi Color" selectable></vwc-tag>
-</vwc-tag-group>
+<span class="tagWrapper">
+  <vwc-tag-group class="tagGroup" onclick="onClickFilter()">
+    Filter By Style:
+    <vwc-tag id="solidTag" label="Solid" selectable></vwc-tag>
+    <vwc-tag id="linearTag" label="Linear" selectable></vwc-tag>
+  </vwc-tag-group>
+
+  <vwc-tag-group class="tagGroup" onclick="onClickFilter()">
+    Filter By Color:
+    <vwc-tag id="singleTag" label="Single Color" selectable></vwc-tag>
+    <vwc-tag id="multiTag" label="Multi Color" selectable></vwc-tag>
+  </vwc-tag-group>
+</span>
 
 <vwc-alert id="copyAlert" text="Icon name copied to clipboard" connotation="success" timeoutms="2000"></vwc-alert>
 

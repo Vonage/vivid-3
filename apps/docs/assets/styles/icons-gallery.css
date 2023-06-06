@@ -35,9 +35,21 @@
 }
 
 #showMoreButton{
-    margin-inline-start: 50%;
+    margin-inline-start: 46%;
 }
 
 article p{
     max-inline-size: 1200px;
+}
+
+#copyAlert {
+    --alert-min-inline-size: auto;
+}
+
+.tagWrapper {
+    display: flex;
+}
+
+.tagGroup {
+    margin: 16px;
 }
