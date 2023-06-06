@@ -22,4 +22,4 @@ As an example, you can use it as follows:
 <vwc-button id="showMoreButton" label="Show More" appearance='filled' onclick="showMore()"></vwc-button>
 
 <script src="../../assets/scripts/icons-gallery.js" async></script>
-<link rel="stylesheet" href="../../assets/styles/icons-gallery.css"">
+<link rel="stylesheet" href="../../assets/styles/icons-gallery.css">
