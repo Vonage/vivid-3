@@ -27,7 +27,7 @@ As an example, you can use it as follows:
 
 <vwc-alert id="copyAlert" text="Icon name copied to clipboard" connotation="success" timeoutms="2000"></vwc-alert>
 
-<vwc-layout id="iconsLayout" gutters="small" column-basis="small"></vwc-layout>
+<vwc-layout id="iconsLayout" gutters="small" ></vwc-layout>
 
 <vwc-button id="showMoreButton" label="Show More" appearance='filled' onclick="showMore()"></vwc-button>
 
