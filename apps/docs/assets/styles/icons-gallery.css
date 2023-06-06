@@ -3,8 +3,9 @@
 }
 
 #iconsLayout {
-    --layout-column-gap: 0; 
-    --layout-row-gap: 0;
+    --layout-column-gap: 16; 
+    --layout-row-gap: 16;
+    --layout-grid-template-columns: repeat(auto-fill, minmax(150px, 150px));
 }
 
 #iconDiv {
