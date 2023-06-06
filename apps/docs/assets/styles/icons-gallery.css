@@ -1,10 +1,15 @@
+.div-wrapper{
+    width: 1200px;
+}
+
 #iconsTextField {
     display: flex;
+    margin-top: 32px;
 }
 
 #iconsLayout {
-    --layout-column-gap: 16; 
-    --layout-row-gap: 16;
+    --layout-column-gap: 16px; 
+    --layout-row-gap: 16px;
     --layout-grid-template-columns: repeat(auto-fill, minmax(150px, 150px));
 }
 
@@ -12,13 +17,11 @@
     background-color: var(--vvd-color-neutral-50);
     cursor: pointer;
     border-radius: 6px;
-       aspect-ratio: 1;
+    aspect-ratio: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    vertical-align: middle;
     padding: 16px;
-    position: relative;
 
     &:hover{
         background-color: var(--vvd-color-neutral-100);
@@ -33,20 +36,25 @@
     text-align: center;
 }
 
-
-article p{
-    max-inline-size: 1200px;
+.button-wrapper{
+    grid-column: 1/-1;
+    text-align: center;
+    margin-block: 32px;
 }
 
 #copyAlert {
     --alert-min-inline-size: auto;
 }
 
-.tagWrapper {
+article p{
+    max-inline-size: 1200px;
+}
+
+.tag-wrapper {
     display: flex;
 }
 
-.tagGroup {
-        margin-inline-end: 16px;
-    margin-block: 16px;
+.tag-group {
+    margin-inline-end: 50px;
+    margin-block: 32px;
 }
