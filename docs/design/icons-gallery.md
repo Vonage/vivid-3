@@ -23,7 +23,7 @@ As an example, you can use it as follows:
     <vwc-tag id="singleTag" label="Single Color" selectable></vwc-tag>
     <vwc-tag id="multiTag" label="Multi Color" selectable></vwc-tag>
   </vwc-tag-group>
-</span>
+</div>
 
 <vwc-alert id="copyAlert" text="Icon name copied to clipboard" connotation="success" timeoutms="2000"></vwc-alert>
 
