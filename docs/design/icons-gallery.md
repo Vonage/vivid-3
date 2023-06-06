@@ -11,7 +11,7 @@ As an example, you can use it as follows:
 
 <vwc-text-field id="iconsTextField" icon="search-line" label="Search Icons" oninput="onClickFilter()"></vwc-text-field>
 
-<span class="tagWrapper">
+<div class="tagWrapper">
   <vwc-tag-group class="tagGroup" onclick="onClickFilter()">
     Filter By Style:
     <vwc-tag id="solidTag" label="Solid" selectable></vwc-tag>
