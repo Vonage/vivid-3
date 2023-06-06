@@ -4,6 +4,28 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.15.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.14.0...vivid-v3.15.0) (2023-06-06)
+
+
+### Features
+
+* **checkbox:** add helper text and error success message (VIV-1087) ([#1192](https://github.com/Vonage/vivid-3/issues/1192)) ([df9bf51](https://github.com/Vonage/vivid-3/commit/df9bf51ce99b2a81b7d6d8c6c465db25a7d5303b))
+* **data-grid:** data grid row selection (VIV-1069) ([#1189](https://github.com/Vonage/vivid-3/issues/1189)) ([ba17b4a](https://github.com/Vonage/vivid-3/commit/ba17b4a99ceaee198de5ae30c7ee22ff33e7aa08))
+* **empty-state:** add empty-state (VIV-1060) ([#1169](https://github.com/Vonage/vivid-3/issues/1169)) ([50effb4](https://github.com/Vonage/vivid-3/commit/50effb48c14a7b2964598ec597e54a9d44738668))
+* **icon:** update icons set to 4.2.0 (VIV-1122) ([#1195](https://github.com/Vonage/vivid-3/issues/1195)) ([bb6d652](https://github.com/Vonage/vivid-3/commit/bb6d652d2eab473a3cc54b34d3c98c23d4d0789e))
+* **nav-disclosure:** add meta slot (VIV-1103) ([#1174](https://github.com/Vonage/vivid-3/issues/1174)) ([5cd00e0](https://github.com/Vonage/vivid-3/commit/5cd00e00d433c9fcbb4bf061ef631156f73eb49a))
+* **progress-ring:** -6 size (VIV-1112) ([#1188](https://github.com/Vonage/vivid-3/issues/1188)) ([5086870](https://github.com/Vonage/vivid-3/commit/50868702667b006ea15fb3133147544dd132aa75))
+* **tab:** add trailing icon option (VIV-1109) ([#1182](https://github.com/Vonage/vivid-3/issues/1182)) ([be6d65a](https://github.com/Vonage/vivid-3/commit/be6d65a17842604b3263a6b5f046063734a09feb))
+* **text-area:** add a char counter (VIV-833) ([#1183](https://github.com/Vonage/vivid-3/issues/1183)) ([b91f6be](https://github.com/Vonage/vivid-3/commit/b91f6bec016a4fb1b797ccb16cbabdc515eda949))
+
+
+### Bug Fixes
+
+* **icon:** fix icon color (VIV-1101) ([#1175](https://github.com/Vonage/vivid-3/issues/1175)) ([d968318](https://github.com/Vonage/vivid-3/commit/d96831876e38e29bd320ee179a4c3c7f8f87730e))
+* **pagination:** add missing export (VIV-000) ([#1191](https://github.com/Vonage/vivid-3/issues/1191)) ([93b56fe](https://github.com/Vonage/vivid-3/commit/93b56fe6158af33a001243341d94a870e5ce3faa))
+* **pagination:** add missing import (VIV-000) ([93b56fe](https://github.com/Vonage/vivid-3/commit/93b56fe6158af33a001243341d94a870e5ce3faa))
+* **select:** fix select a11y violations (VIV-1099) ([#1179](https://github.com/Vonage/vivid-3/issues/1179)) ([99a5846](https://github.com/Vonage/vivid-3/commit/99a5846085e4fcd1834f8b261c90080ddcee3bd2))
+
 ## [3.14.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.13.0...vivid-v3.14.0) (2023-05-30)
 
 
