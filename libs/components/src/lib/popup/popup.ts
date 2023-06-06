@@ -10,12 +10,11 @@ import type { Placement, Strategy } from '@floating-ui/dom';
  * @slot - Default slot.
  */
 export class Popup extends FoundationElement {
-	get #arrowPosition(): any { return { top: 'bottom', right: 'left', bottom: 'top', left: 'right' }; }
-	get #padding(): number { return 0; }
-	get #distance(): number { return 12; }
 	get #middleware(): Array<any> {
-		const middleware = [flip(), hide(), inline()];
-		if (this.arrow) { middleware.push(arrow({ element: this.arrowEl, padding: this.#padding }), offset(this.#distance)); }
+		let middleware = [inline(), flip(), hide()];
+		if (this.arrow) {
+			middleware = [offset(12), ...middleware, arrow({ element: this.arrowEl, padding: 6 })];
+		}
 		return middleware;
 	}
 
@@ -136,12 +135,11 @@ export class Popup extends FoundationElement {
 
 	#assignArrowPosition(data: any): void {
 		const { x: arrowX, y: arrowY } = data.middlewareData.arrow;
-		const side: string = this.#arrowPosition[data.placement.split('-')[0]];
+		const staticAxis = data.placement.split('-')[0];
+
 		Object.assign(this.arrowEl.style, {
-			left: `${arrowX}px`,
-			top: `${arrowY}px`,
-			[this.#arrowPosition[side]]: '',
-			[side]: '-4px',
+			left: arrowX ? `${arrowX}px` : `calc(${staticAxis === 'left' ? '100%' : '0%'} - 4px)`,
+			top:  arrowY ? `${arrowY}px` : `calc(${staticAxis === 'top'  ? '100%' : '0%'} - 4px)`,
 		});
 	}
 
