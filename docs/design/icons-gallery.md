@@ -29,6 +29,8 @@ As an example, you can use it as follows:
 
 <vwc-layout id="iconsLayout" gutters="small" ></vwc-layout>
 
+<div>
 <vwc-button id="showMoreButton" label="Show More" appearance='filled' onclick="showMore()"></vwc-button>
+</div>
 
 <script src="../../assets/scripts/icons-gallery.js" async></script>
