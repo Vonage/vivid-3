@@ -1,4 +1,6 @@
-const ICONS_VERSION = "4.1.2";
+const BASE_URL = 'https://icon.resources.vonage.com'; // namespaced as 3f7739a0-a898-4f69-a82b-ad9d743170b6 on icons.resources.vonage.com
+const ICON_SET_VERSION = '4.2.0';
+
 const ICONS_TO_SHOW = 21;
 
 let jsonData;
@@ -9,7 +11,7 @@ fetchJSONData();
 
 async function fetchJSONData() {
   try {
-    const response = await fetch(`https://icon.resources.vonage.com/v${ICONS_VERSION}/manifest.json`);
+    const response = await fetch(`${BASE_URL}/v${ICON_SET_VERSION}/manifest.json`);
     jsonData = await response.json();
     showIcons(jsonData);
   } catch (err) {
