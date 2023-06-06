@@ -7,13 +7,13 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['nav-disclosure', 'nav-item'];
+const components = ['nav-disclosure', 'nav-item', 'badge'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(path.join(new URL('.', import.meta.url).pathname, 'README.md'))
 		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
 
-	page.setViewportSize({ width: 200, height: 720 });
+	page.setViewportSize({ width: 300, height: 720 });
 
 	await loadComponents({
 		page,
