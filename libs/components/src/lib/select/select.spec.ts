@@ -98,6 +98,34 @@ describe('vwc-select', () => {
 			expect(labelElement)
 				.toBeNull();
 		});
+
+		it('should set arialabel on host', async function () {
+			const labelText = 'label';
+			element.label = labelText;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-label'))
+				.toEqual(labelText);
+		});
+	});
+
+	describe('ariaLabel', () => {
+		it('should reflect on the host', async function () {
+			const ariaLabel = 'label';
+			element.ariaLabel = ariaLabel;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-label'))
+				.toEqual(ariaLabel);
+		});
+
+		it('should set ariaLabel on the host overriding label', async function () {
+			const ariaLabel = 'arialabel';
+			const label = 'label';
+			element.ariaLabel = ariaLabel;
+			element.label = label;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-label'))
+				.toEqual(ariaLabel);
+		});
 	});
 
 	describe('select icon', () => {
@@ -411,7 +439,5 @@ describe('vwc-select', () => {
 
 		});
 	});
-
-
 
 });

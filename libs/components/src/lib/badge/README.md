@@ -39,7 +39,7 @@ Use the `shape` attribute to change the badge's edges.
 ### Icon
 
 Use `icon` to set an icon to the badge.
-View list of available icon at the [vivid icons gallery](https://icons.vivid.vonage.com).
+View list of available icon at the [vivid icons gallery](../../designs/icons-gallery).
 
 Note: Icon, on its own, doesn't make a discernible text.
 

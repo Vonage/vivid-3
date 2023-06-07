@@ -14,6 +14,11 @@ export class DataGridCell extends FoundationElement {
 		this.shadowRoot!.querySelector('.base')?.classList.toggle('selected', selectedState === 'true');
 	}
 
+	override connectedCallback() {
+		super.connectedCallback();
+		this.ariaSelectedChanged(null, this.ariaSelected);
+	}
+
 	override handleFocusin(e: FocusEvent) {
 		super.handleFocusin(e);
 		this.shadowRoot!.querySelector('.base')!.classList.add('active');
@@ -22,5 +27,16 @@ export class DataGridCell extends FoundationElement {
 	override handleFocusout(e: FocusEvent) {
 		super.handleFocusout(e);
 		this.shadowRoot!.querySelector('.base')!.classList.remove('active');
+	}
+
+	constructor() {
+		super();
+		(this as any).updateCellStyle = () => {
+			if (this.gridColumn && !this.gridColumn.includes('undefined')){
+				this.style.gridColumn = this.gridColumn;
+			} else {
+				this.style.removeProperty('grid-column');
+			}
+		};
 	}
 }
