@@ -1,3 +1,5 @@
+@use "partials/variables" as variables;
+
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
@@ -15,6 +17,16 @@
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
+.wrapper {
+    display: inline-flex;
+    flex-direction: column;
+
+    max-inline-size: 100%;
+    min-block-size: var(#{variables.$file-picker-min-block-size}, 140px);
+    min-inline-size: var(#{variables.$file-picker-min-inline-size}, 320px);
+    cursor: pointer;
+}
+
 .base {
     @include appearance.appearance;
     @include connotation.connotation(file-picker);
@@ -22,15 +34,16 @@
     position: relative;
     box-sizing: border-box;
     flex-grow: 1;
-    justify-content: center;
     padding: 16px;
     border: 1px dashed var(--vvd-color-neutral-300);
     background-color: var(#{appearance.get-appearance-token(fill)});
     border-radius: 6px;
     outline: none;
-
     display: inline-block;
-    cursor: pointer;
+
+    .text {
+		font: var(#{constants.$vvd-typography-base});
+	}
 }
 
 input[type="file"] {

@@ -1,11 +1,15 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
+import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
+import { FormElementHelperText } from '../../shared/patterns';
+import { FormElement, formElements } from '../../shared/patterns';
 
 /**
  * Base class for file-picker
  *
  * @public
  */
+
+@formElements
 export class FilePicker extends FoundationElement {
 	/**
 	 * Indicates the text's text.
@@ -15,4 +19,8 @@ export class FilePicker extends FoundationElement {
 	 * HTML Attribute: text
 	 */
 	@attr text?: string;
+	helperText: any;
 }
+
+export interface FilePicker extends FormElement, FormElementHelperText{}
+applyMixins(FilePicker, FormElementHelperText);
