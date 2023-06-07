@@ -1,6 +1,6 @@
 # Icon
 
-Find the icon you want to use on the [vivid icons search platform](https://icons.vivid.vonage.com).
+Find the icon you want to use on the [vivid icons search platform](../../designs/icons-gallery).
 
 ```js
 <script name='module'>
@@ -17,7 +17,7 @@ Find the icon you want to use on the [vivid icons search platform](https://icons
 ### Name
 
 Use `name` to set the icon of choice.
-View list of available icon at the [vivid icons gallery](https://icons.vivid.vonage.com).
+View list of available icon at the [vivid icons gallery](../../designs/icons-gallery).
 
 - Type: `string`
 - Default: `undefined`

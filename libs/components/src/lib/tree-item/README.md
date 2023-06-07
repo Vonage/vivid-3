@@ -25,7 +25,7 @@ Read more about [vwc-tree-view](../../components/tree-view).
 ### Icon
 
 Use `icon` to set an icon to the tree item.
-Check out the [vivid icons gallery](https://icons.vivid.vonage.com) for a list of available icons.
+Check out the [vivid icons gallery](../../designs/icons-gallery) for a list of available icons.
 
 Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the tree item's purpose.
 

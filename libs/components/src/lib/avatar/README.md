@@ -17,7 +17,7 @@ Represents an avatar custom element.
 ### Icon
 
 Use `icon` to set an icon to the avatar.
-View list of available icon at the [vivid icons gallery](https://icons.vivid.vonage.com).
+View list of available icon at the [vivid icons gallery](../../designs/icons-gallery).
 
 Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the avatar.
 
