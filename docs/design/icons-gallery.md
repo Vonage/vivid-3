@@ -24,10 +24,10 @@ As an example, you can use it as follows:
       </vwc-tag-group> 
     </div>
     <vwc-layout id="iconsLayout" gutters="small">
+    </vwc-layout>
     <div class="button-wrapper">
       <vwc-button id="showMoreButton" label="Show More" appearance='filled' onclick="showMore()"></vwc-button>
     </div>
-    </vwc-layout>
     <vwc-alert id="copyAlert" text="Icon name copied to clipboard" connotation="success" timeoutms="2000"></vwc-alert>
 </div>
 
