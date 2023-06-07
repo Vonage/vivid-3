@@ -395,7 +395,7 @@ Usage of `aria-selected` hints on a selectable element and its selection status.
 In order for the select popup to show correctly in the grid, use the `fixed-popup` attribute on the select inside grid cells.
 
 ```html preview
-	<vwc-data-grid selection-mode="single-row">
+	<vwc-data-grid>
 	<vwc-data-grid-row role="row" class="header" row-type="header">
 		<vwc-data-grid-cell cell-type="columnheader" role="columnheader">
 			data1
