@@ -39,7 +39,7 @@ Use the `shape` attribute to change the tag's edges.
 ### Icon
 
 Use `icon` to set an icon to the tag.
-View list of available icon at the [vivid icons gallery](https://icons.vivid.vonage.com).
+View list of available icon at the [vivid icons gallery](../../designs/icons-gallery).
 
 - Type: `string`
 - Default: `undefined`
