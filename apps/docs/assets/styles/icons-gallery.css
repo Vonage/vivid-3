@@ -10,7 +10,8 @@
 #iconsLayout {
     --layout-column-gap: 16px; 
     --layout-row-gap: 16px;
-    --layout-grid-template-columns: repeat(auto-fill, minmax(150px, 150px));
+    --layout-grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+```it looks better in mobile
 }
 
 #iconDiv {
