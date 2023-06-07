@@ -1,10 +1,11 @@
 import { ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import {fireEvent} from '@testing-library/dom';
 import type { Button } from '../button/button';
 import { Toggletip } from './toggletip';
+import { toggletipDefinition } from './definition';
 import '../button';
 import '.';
-import { toggletipDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-toggletip';
 
@@ -90,6 +91,54 @@ describe('vwc-toggletip', () => {
 	});
 
 	describe('anchor', () => {
+
+		describe('observer cleanup', function () {
+			let disconnectionFunc: any;
+			let mutationObserverSpy: any;
+			beforeEach(function () {
+				const mockMutationObserver = jest.fn(function(this: any, callback) {
+					this.observe = jest.fn();
+					disconnectionFunc = this.disconnect = jest.fn();
+					callback();
+				});
+				mutationObserverSpy = jest.spyOn(window, 'MutationObserver')
+					.mockImplementation(mockMutationObserver as any);
+			});
+
+			afterEach(function () {
+				mutationObserverSpy.mockRestore();
+			});
+
+			it('should remove observer when element is removed from the DOM', async function () {
+				element.anchor = 'nonExistentAnchor';
+				element.remove();
+				expect(disconnectionFunc).toHaveBeenCalled();
+			});
+
+			it('should remove observer when anchor changes', async function () {
+				element.anchor = 'nonExistentAnchor';
+				const cachedDisconnectionFunc = disconnectionFunc;
+				element.anchor = 'anotherNonExistentAnchor';
+				expect(cachedDisconnectionFunc).toHaveBeenCalled();
+			});
+		});
+
+		it('should accept an anchor before anchor element is added to the DOM', async () => {
+			const newAnchor = document.createElement('vwc-button');
+			newAnchor.id = 'anchorButton2';
+			element.anchor = 'anchorButton2';
+
+			element.parentElement?.appendChild(newAnchor);
+
+			await elementUpdated(element);
+
+			fireEvent(newAnchor, new MouseEvent('click', {bubbles: true}));
+			await elementUpdated(element);
+
+			expect(element.open).toEqual(true);
+			newAnchor.remove();
+		});
+
 		it('should accept an HTMLElement as anchor', async () => {
 			element.anchor = anchor;
 			await elementUpdated(element);
@@ -190,3 +239,5 @@ describe('vwc-toggletip', () => {
 		});
 	});
 });
+
+//TODO:: test for removal of observer when removed from DOM

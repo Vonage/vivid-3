@@ -11,7 +11,20 @@ type AnchorType = string | HTMLElement;
  */
 export class Toggletip extends FoundationElement {
 
+	#observer?: MutationObserver;
 	#anchorEl: HTMLElement | null = null;
+	#observeMissingAnchor = (anchorId: string) => {
+		this.#observer = new MutationObserver(() => {
+			const anchor = document.getElementById(anchorId as string);
+			if (anchor) {
+				this.#anchorEl = anchor;
+				this.#setupAnchor(this.#anchorEl);
+				this.#observer!.disconnect();
+				this.#observer = undefined;
+			}
+		});
+		this.#observer.observe(document.body, { childList: true, subtree: true });
+	};
 
 	#ANCHOR_ARIA_LABEL_SUFFIX = ' ; Show more information';
 
@@ -39,7 +52,7 @@ export class Toggletip extends FoundationElement {
 	 * HTML Attribute: placement
 	 */
 	@attr({ mode: 'fromView' }) placement?: Placement = 'right';
-	
+
 	/**
 	 * id or direct reference to the toggletip's anchor element
 	 *
@@ -47,11 +60,17 @@ export class Toggletip extends FoundationElement {
 	 * HTML Attribute: anchor
 	 */
 	@attr({ mode: 'fromView' }) anchor: AnchorType = '';
+
 	anchorChanged(_: AnchorType, newValue: AnchorType) {
 		if (this.#anchorEl) this.#cleanupAnchor(this.#anchorEl);
-
+		this.#observer?.disconnect();
+		
 		this.#anchorEl = newValue instanceof HTMLElement ? newValue : document.getElementById(newValue);
-		if (this.#anchorEl) this.#setupAnchor(this.#anchorEl);
+		if (this.#anchorEl) {
+			this.#setupAnchor(this.#anchorEl);
+		} else {
+			this.#observeMissingAnchor(newValue as string);
+		}
 	}
 
 	/**
@@ -73,7 +92,7 @@ export class Toggletip extends FoundationElement {
 			document.removeEventListener('keydown', this.#closeOnEscape);
 			this.removeAttribute('role');
 		}
-		
+
 		if (this.#anchorEl) {
 			this.#anchorEl.ariaExpanded = this.open.toString();
 		}
@@ -82,6 +101,7 @@ export class Toggletip extends FoundationElement {
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
 		if (this.#anchorEl) this.#cleanupAnchor(this.#anchorEl);
+		this.#observer?.disconnect();
 		document.removeEventListener('keydown', this.#closeOnEscape);
 	}
 
