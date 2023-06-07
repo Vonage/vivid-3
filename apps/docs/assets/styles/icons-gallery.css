@@ -52,6 +52,8 @@ article p{
 
 .tag-wrapper {
     display: flex;
+    margin-block: 32px;
+    row-gap: 16px;
 }
 
 .tag-group {
