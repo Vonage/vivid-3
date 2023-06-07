@@ -468,5 +468,21 @@ describe('vwc-select', () => {
 			const variableValue = window.getComputedStyle(popup).getPropertyValue('--_select-fixed-width');
 			expect(variableValue).toEqual(`${width}px`);
 		});
+
+		it('should update the width on each opening', async function () {
+			const width = 50;
+			element.getBoundingClientRect = jest.fn().mockReturnValue({ width: 30 });
+			element.fixedPopup = true;
+			element.open = true;
+			await elementUpdated(element);
+			element.getBoundingClientRect = jest.fn().mockReturnValue({ width });
+			element.open = false;
+			await elementUpdated(element);
+			element.open = true;
+			await elementUpdated(element);
+			const popup = element.shadowRoot?.querySelector('.popup') as HTMLElement;
+			const variableValue = window.getComputedStyle(popup).getPropertyValue('--_select-fixed-width');
+			expect(variableValue).toEqual(`${width}px`);
+		});
 	});
 });

@@ -75,7 +75,7 @@ function renderControl(context: ElementDefinitionContext) {
 							strategy="${x => x.fixedPopup ? null : 'absolute'}"
 							${ref('_popup')}
 							class="popup"
-					style="${x => x.fixedPopup ? `--_select-fixed-width: ${x.getBoundingClientRect().width}px` : null}"
+					style="${x => (x.open && x.fixedPopup) ? `--_select-fixed-width: ${x.getBoundingClientRect().width}px` : null}"
 							>
 							<div
                 id="${x => x.listboxId}"
