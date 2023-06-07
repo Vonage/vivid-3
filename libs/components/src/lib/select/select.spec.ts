@@ -441,6 +441,14 @@ describe('vwc-select', () => {
 	});
 
 	describe('fixed-popup', ()=> {
+		function setBoundingClientRect(width: number) {
+			element.getBoundingClientRect = jest.fn().mockReturnValue({ width });
+		}
+
+		async function toggleOpenState(open = true) {
+			element.open = open;
+			await elementUpdated(element);
+		}
 
 		it('should reflect fixed-popup attribute to property', async function () {
 			element.toggleAttribute('fixed-popup', true);
@@ -460,10 +468,28 @@ describe('vwc-select', () => {
 
 		it('should set --_select-fixed-width to the width of the select on open', async function () {
 			const width = 50;
-			element.getBoundingClientRect = jest.fn().mockReturnValue({ width });
 			element.fixedPopup = true;
-			element.open = true;
-			await elementUpdated(element);
+			setBoundingClientRect(width);
+
+			await toggleOpenState(true);
+
+			const popup = element.shadowRoot?.querySelector('.popup') as HTMLElement;
+			const variableValue = window.getComputedStyle(popup).getPropertyValue('--_select-fixed-width');
+			expect(variableValue).toEqual(`${width}px`);
+		});
+
+
+		it('should update the width on each opening', async function () {
+			const width = 50;
+			element.fixedPopup = true;
+
+			setBoundingClientRect(30);
+			await toggleOpenState(true);
+
+			setBoundingClientRect(width);
+			await toggleOpenState(false);
+			await toggleOpenState(true);
+
 			const popup = element.shadowRoot?.querySelector('.popup') as HTMLElement;
 			const variableValue = window.getComputedStyle(popup).getPropertyValue('--_select-fixed-width');
 			expect(variableValue).toEqual(`${width}px`);
