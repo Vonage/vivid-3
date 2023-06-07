@@ -47,7 +47,9 @@ export const DataGridRowTemplate = (context: ElementDefinitionContext) => {
 		filter: elements('[role="cell"],[role="gridcell"],[role="columnheader"],[role="rowheader"]'),
 	})}
         >
-					<div class="base ${x => (x.ariaSelected === 'true' ? 'selected' : '')}">
+					<div class="base ${x => (x.ariaSelected === 'true' ? 'selected' : '')}"
+							 style="grid-template-columns: ${x => x.gridTemplateColumns};"
+					>
             <slot ${slotted('slottedCellElements')}></slot>
 					</div>
         </template>
