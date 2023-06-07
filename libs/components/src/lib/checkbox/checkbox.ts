@@ -7,7 +7,21 @@ import {
 } from '../../shared/patterns';
 import {ErrorText, errorText} from '../../shared/patterns';
 
+import type {Connotation} from '../enums.js';
+import {attr} from "@microsoft/fast-element";
+import type {AvatarConnotation} from "@vonage/vivid";
+
 export const keySpace: ' ' = ' ' as const;
+
+/**
+ * Types of Checkbox connotation.
+ *
+ * @public
+ */
+export type CheckboxConnotation = Extract<Connotation,
+| Connotation.Accent
+| Connotation.CTA>;
+
 
 /**
  * Base class for checkbox
@@ -18,13 +32,13 @@ export const keySpace: ' ' = ' ' as const;
 @formElements
 export class Checkbox extends FoundationCheckbox {
 	/**
-	 * Indicates the checkbox's label.
+	 * The connotation the checklist should have.
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: label
+	 * HTML Attribute: connotation
 	 */
-
+	@attr connotation?: CheckboxConnotation;
 
 	/**
 	 * !remove method as will be implemented by fast-foundation in version > 2.46.9
