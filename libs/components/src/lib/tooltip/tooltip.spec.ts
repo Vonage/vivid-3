@@ -136,6 +136,13 @@ describe('vwc-tooltip', () => {
 				element.remove();
 				expect(disconnectionFunc).toHaveBeenCalled();
 			});
+
+			it('should remove observer when anchor changes', async function () {
+				element.anchor = 'nonExistentAnchor';
+				const cachedDisconnectionFunc = disconnectionFunc;
+				element.anchor = 'anotherNonExistentAnchor';
+				expect(cachedDisconnectionFunc).toHaveBeenCalled();
+			});
 		});
 
 		it('should accept an anchor before anchor element is added to the DOM', async () => {

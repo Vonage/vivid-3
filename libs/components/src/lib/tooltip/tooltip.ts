@@ -31,6 +31,10 @@ export class Tooltip extends FoundationElement {
 
 	anchorChanged(_: anchorType, newValue: anchorType) {
 		if (this.#anchorEl) this.#removeEventListener();
+		if (this.#observer) {
+			this.#observer.disconnect();
+		}
+
 
 		this.#anchorEl = newValue instanceof HTMLElement ? newValue : document.getElementById(newValue);
 		if (this.#anchorEl) {
