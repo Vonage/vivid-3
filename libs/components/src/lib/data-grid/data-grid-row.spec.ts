@@ -81,6 +81,16 @@ describe('vwc-data-grid-row', () => {
 
 	});
 
+	describe('gridTemplateColumns', () => {
+		it('should set "grid-template-columns" on base element according to gridTemplateColumns', async function () {
+
+			element.gridTemplateColumns = '1fr 1fr 1fr';
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).style['gridTemplateColumns']).toEqual('1fr 1fr 1fr');
+		});
+	});
+
 	describe('cellItemTemplate and headerCellItemTemplate', () => {
 		it('should render cells according to number of columns', async () => {
 			const dataGridCellTagName = 'something-custom';

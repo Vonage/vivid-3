@@ -96,6 +96,16 @@ describe('vwc-data-grid-cell', () => {
 			await elementUpdated(element);
 			expect(element.style.gridColumn).toEqual('3');
 		});
+
+		it('should remove the gridColumn style if gridColumn is undefined', async () => {
+			expect(element.style.gridColumn).toEqual('');
+		});
+
+		it('should remove the gridColumn style if gridColumn contains undefined', async function () {
+			element.gridColumn = 'undefined / undefined';
+			await elementUpdated(element);
+			expect(element.style.gridColumn).toEqual('');
+		});
 	});
 
 	describe('columnDefinition', () => {
@@ -220,6 +230,16 @@ describe('vwc-data-grid-cell', () => {
 	});
 
 	describe('aria-selected', function () {
+		it('should init without aria-selected', async () => {
+			expect(element.hasAttribute('aria-selected')).toEqual(false);
+		});
+
+		it('should set selected class on base when aria-selected true on init', async () => {
+			const newElement = (await fixture(`<${COMPONENT_TAG} aria-selected="true"></${COMPONENT_TAG}>`)) as DataGridCell;
+			await elementUpdated(newElement);
+			expect(getBaseElement(newElement)?.classList.contains('selected')).toBeTruthy();
+		});
+
 		it('should set selected class on base when aria-selected true', async () => {
 			element.setAttribute('aria-selected', 'true');
 			await elementUpdated(element);
