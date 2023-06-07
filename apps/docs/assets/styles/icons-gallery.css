@@ -52,6 +52,7 @@ article p{
 
 .tag-wrapper {
     display: flex;
+    flex-wrap: wrap;
     margin-block: 32px;
     row-gap: 16px;
 }
