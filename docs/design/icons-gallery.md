@@ -8,8 +8,6 @@ As an example, you can use it as follows:
 ```
 
 <link rel="stylesheet" href="../../assets/styles/icons-gallery.css">
-    
-<vwc-alert id="copyAlert" text="Icon name copied to clipboard" connotation="success" timeoutms="2000"></vwc-alert>
 
 <div class="div-wrapper">
     <vwc-text-field id="iconsTextField" icon="search-line" label="Search Icons" oninput="onClickFilter()"></vwc-text-field>
@@ -30,6 +28,7 @@ As an example, you can use it as follows:
     <div class="button-wrapper">
       <vwc-button id="showMoreButton" label="Show More" appearance='filled' onclick="showMore()"></vwc-button>
     </div>
+    <vwc-alert id="copyAlert" text="Icon name copied to clipboard" connotation="success" timeoutms="2000"></vwc-alert>
 </div>
 
 <script src="../../assets/scripts/icons-gallery.js" async></script>

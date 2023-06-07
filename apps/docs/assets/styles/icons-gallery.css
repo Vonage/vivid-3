@@ -11,7 +11,6 @@
     --layout-column-gap: 16px; 
     --layout-row-gap: 16px;
     --layout-grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-```it looks better in mobile
 }
 
 #iconDiv {
@@ -45,6 +44,7 @@
 
 #copyAlert {
     --alert-min-inline-size: auto;
+    pointer-events: none;
 }
 
 article p{
