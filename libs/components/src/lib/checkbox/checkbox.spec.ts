@@ -6,7 +6,7 @@ import {
 	listenToFormSubmission
 } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import {Connotation} from "@vonage/vivid";
+import { Connotation } from '@vonage/vivid';
 import { Checkbox } from './checkbox';
 import '.';
 import { checkboxDefinition } from './definition';

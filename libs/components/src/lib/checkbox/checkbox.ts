@@ -1,4 +1,6 @@
 import {applyMixins, Checkbox as FoundationCheckbox} from '@microsoft/fast-foundation';
+import {attr} from '@microsoft/fast-element';
+import type {Connotation} from '../enums.js';
 import {
 	FormElement,
 	FormElementHelperText,
@@ -7,9 +9,6 @@ import {
 } from '../../shared/patterns';
 import {ErrorText, errorText} from '../../shared/patterns';
 
-import type {Connotation} from '../enums.js';
-import {attr} from "@microsoft/fast-element";
-import type {AvatarConnotation} from "@vonage/vivid";
 
 export const keySpace: ' ' = ' ' as const;
 
