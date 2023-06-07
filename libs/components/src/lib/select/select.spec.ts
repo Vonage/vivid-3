@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
 import { Select } from './select';
 import '.';
@@ -440,4 +440,33 @@ describe('vwc-select', () => {
 		});
 	});
 
+	describe('fixed-popup', ()=> {
+
+		it('should reflect fixed-popup attribute to property', async function () {
+			element.toggleAttribute('fixed-popup', true);
+			await elementUpdated(element);
+			expect(element.fixedPopup).toBe(true);
+		});
+
+		it('should remove strategy attribute from popup', async function () {
+			element.fixedPopup = true;
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.popup')?.hasAttribute('strategy')).toBeFalsy();
+		});
+
+		it('should add strategy="absolute" when fixedPopup is false', function () {
+			expect(element.shadowRoot?.querySelector('.popup')?.getAttribute('strategy')).toEqual('absolute');
+		});
+
+		it('should set --_select-fixed-width to the width of the select on open', async function () {
+			const width = 50;
+			element.getBoundingClientRect = jest.fn().mockReturnValue({ width });
+			element.fixedPopup = true;
+			element.open = true;
+			await elementUpdated(element);
+			const popup = element.shadowRoot?.querySelector('.popup') as HTMLElement;
+			const variableValue = window.getComputedStyle(popup).getPropertyValue('--_select-fixed-width');
+			expect(variableValue).toEqual(`${width}px`);
+		});
+	});
 });

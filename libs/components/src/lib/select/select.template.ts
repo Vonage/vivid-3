@@ -72,9 +72,10 @@ function renderControl(context: ElementDefinitionContext) {
 					?open="${x => (x.collapsible ? x.open : true)}"
 					anchor="control"
 					placement="bottom-start"
-							strategy="absolute"
+							strategy="${x => x.fixedPopup ? null : 'absolute'}"
 							${ref('_popup')}
 							class="popup"
+					style="${x => x.fixedPopup ? `--_select-fixed-width: ${x.getBoundingClientRect().width}px` : null}"
 							>
 							<div
                 id="${x => x.listboxId}"
@@ -136,3 +137,5 @@ export const SelectTemplate: (
 		</template>
 	`;
 };
+
+// TODO::change the css variable according to select width
