@@ -63,7 +63,8 @@ export class Toggletip extends FoundationElement {
 
 	anchorChanged(_: AnchorType, newValue: AnchorType) {
 		if (this.#anchorEl) this.#cleanupAnchor(this.#anchorEl);
-
+		this.#observer?.disconnect();
+		
 		this.#anchorEl = newValue instanceof HTMLElement ? newValue : document.getElementById(newValue);
 		if (this.#anchorEl) {
 			this.#setupAnchor(this.#anchorEl);
