@@ -117,7 +117,7 @@ $low-ink-color: --_low-ink-color;
 
 ::part(popup-base) {
 	inline-size: max-content;
-	min-inline-size: var(#{variables.$select-control-border-radius}, 100%);
+	min-inline-size: var(#{variables.$select-fixed-width}, 100%);
 }
 
 
