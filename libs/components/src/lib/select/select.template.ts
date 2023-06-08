@@ -57,8 +57,8 @@ function selectValue(context: ElementDefinitionContext) {
 	`;
 }
 
-function setFixedPopupVarWidth(x: Select) {
-	return (x.open && x.fixedPopup) ? `--_select-fixed-width: ${Math.round(x.getBoundingClientRect().width)}px` : null;
+function setFixedDropdownVarWidth(x: Select) {
+	return (x.open && x.fixedDropdown) ? `--_select-fixed-width: ${Math.round(x.getBoundingClientRect().width)}px` : null;
 }
 
 /**
@@ -76,10 +76,10 @@ function renderControl(context: ElementDefinitionContext) {
 					?open="${x => (x.collapsible ? x.open : true)}"
 					anchor="control"
 					placement="bottom-start"
-							strategy="${x => x.fixedPopup ? null : 'absolute'}"
+							strategy="${x => x.fixedDropdown ? null : 'absolute'}"
 							${ref('_popup')}
 							class="popup"
-					style="${setFixedPopupVarWidth}"
+					style="${setFixedDropdownVarWidth}"
 							>
 							<div
                 id="${x => x.listboxId}"

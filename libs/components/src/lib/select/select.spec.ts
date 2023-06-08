@@ -440,7 +440,7 @@ describe('vwc-select', () => {
 		});
 	});
 
-	describe('fixed-popup', ()=> {
+	describe('fixed-dropdown', ()=> {
 		function setBoundingClientRect(width: number) {
 			element.getBoundingClientRect = jest.fn().mockReturnValue({ width });
 		}
@@ -450,25 +450,25 @@ describe('vwc-select', () => {
 			await elementUpdated(element);
 		}
 
-		it('should reflect fixed-popup attribute to property', async function () {
-			element.toggleAttribute('fixed-popup', true);
+		it('should reflect fixed-dropdown attribute to property', async function () {
+			element.toggleAttribute('fixed-dropdown', true);
 			await elementUpdated(element);
-			expect(element.fixedPopup).toBe(true);
+			expect(element.fixedDropdown).toBe(true);
 		});
 
 		it('should remove strategy attribute from popup', async function () {
-			element.fixedPopup = true;
+			element.fixedDropdown = true;
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.popup')?.hasAttribute('strategy')).toBeFalsy();
 		});
 
-		it('should add strategy="absolute" when fixedPopup is false', function () {
+		it('should add strategy="absolute" when fixedDropdown is false', function () {
 			expect(element.shadowRoot?.querySelector('.popup')?.getAttribute('strategy')).toEqual('absolute');
 		});
 
 		it('should set --_select-fixed-width to the width of the select on open', async function () {
 			const width = 50;
-			element.fixedPopup = true;
+			element.fixedDropdown = true;
 			setBoundingClientRect(width);
 
 			await toggleOpenState(true);
@@ -481,7 +481,7 @@ describe('vwc-select', () => {
 		it('should round the width set to --_select-fixed-width', async function () {
 			const width = 50.5;
 			const expectedWidth = Math.round(width);
-			element.fixedPopup = true;
+			element.fixedDropdown = true;
 			setBoundingClientRect(width);
 			await toggleOpenState(true);
 			const popup = element.shadowRoot?.querySelector('.popup') as HTMLElement;
@@ -492,7 +492,7 @@ describe('vwc-select', () => {
 
 		it('should update the width on each opening', async function () {
 			const width = 50;
-			element.fixedPopup = true;
+			element.fixedDropdown = true;
 
 			setBoundingClientRect(30);
 			await toggleOpenState(true);
