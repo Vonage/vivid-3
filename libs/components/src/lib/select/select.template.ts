@@ -57,6 +57,10 @@ function selectValue(context: ElementDefinitionContext) {
 	`;
 }
 
+function setFixedPopupVarWidth(x: Select) {
+	return (x.open && x.fixedPopup) ? `--_select-fixed-width: ${Math.round(x.getBoundingClientRect().width)}px` : null;
+}
+
 /**
  * @param context
  */
@@ -75,7 +79,7 @@ function renderControl(context: ElementDefinitionContext) {
 							strategy="${x => x.fixedPopup ? null : 'absolute'}"
 							${ref('_popup')}
 							class="popup"
-					style="${x => (x.open && x.fixedPopup) ? `--_select-fixed-width: ${x.getBoundingClientRect().width}px` : null}"
+					style="${setFixedPopupVarWidth}"
 							>
 							<div
                 id="${x => x.listboxId}"

@@ -478,6 +478,17 @@ describe('vwc-select', () => {
 			expect(variableValue).toEqual(`${width}px`);
 		});
 
+		it('should round the width set to --_select-fixed-width', async function () {
+			const width = 50.5;
+			const expectedWidth = Math.round(width);
+			element.fixedPopup = true;
+			setBoundingClientRect(width);
+			await toggleOpenState(true);
+			const popup = element.shadowRoot?.querySelector('.popup') as HTMLElement;
+			const variableValue = window.getComputedStyle(popup).getPropertyValue('--_select-fixed-width');
+			expect(variableValue).toEqual(`${expectedWidth}px`);
+		});
+
 
 		it('should update the width on each opening', async function () {
 			const width = 50;
