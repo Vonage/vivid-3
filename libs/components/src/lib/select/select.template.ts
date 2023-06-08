@@ -57,6 +57,10 @@ function selectValue(context: ElementDefinitionContext) {
 	`;
 }
 
+function setFixedDropdownVarWidth(x: Select) {
+	return (x.open && x.fixedDropdown) ? `--_select-fixed-width: ${Math.round(x.getBoundingClientRect().width)}px` : null;
+}
+
 /**
  * @param context
  */
@@ -72,10 +76,10 @@ function renderControl(context: ElementDefinitionContext) {
 					?open="${x => (x.collapsible ? x.open : true)}"
 					anchor="control"
 					placement="bottom-start"
-							strategy="${x => x.fixedPopup ? null : 'absolute'}"
+							strategy="${x => x.fixedDropdown ? null : 'absolute'}"
 							${ref('_popup')}
 							class="popup"
-					style="${x => (x.open && x.fixedPopup) ? `--_select-fixed-width: ${x.getBoundingClientRect().width}px` : null}"
+					style="${setFixedDropdownVarWidth}"
 							>
 							<div
                 id="${x => x.listboxId}"

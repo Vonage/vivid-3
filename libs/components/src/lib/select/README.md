@@ -205,16 +205,16 @@ _Select_ internally uses _popup_ to display an element and its descendants above
 </vwc-select>
 ```
 
-### Fixed-Popup
+### Fixed-Dropdown
 
-Add the `fixed-popup` attribute to set its popup to open as fixed. 
+Add the `fixed-dropdown` attribute to set its popup to open as fixed. 
 This is useful for cases in which the popup is obstructed by other elements (see [the grid select example](../../components/data-grid#select-in-a-grid)).
 
 - Type: `boolean`
 - Default: `false`
 
 ```html preview
-<vwc-select aria-label="Options Selector" fixed-popup>
+<vwc-select aria-label="Options Selector" fixed-dropdown>
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
 </vwc-select>
