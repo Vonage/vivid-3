@@ -54,6 +54,20 @@ Use the `indeterminate` member to indicate that the checkbox's is neither "on" o
   checkbox.indeterminate = true;
 </script>
 ```
+
+### Connotation
+Use the `connotation` attribute to set the checkbox color.
+
+- Type: `'accent'` | `'cta'`
+- Default: `'accent'`
+- 
+```html preview
+<vwc-checkbox connotation="accent" ></vwc-checkbox>
+<vwc-checkbox connotation="accent" checked></vwc-checkbox>
+<vwc-checkbox connotation="cta" ></vwc-checkbox>
+<vwc-checkbox connotation="cta" checked></vwc-checkbox>
+```
+
 ### Helper text
 
 Add the `helper-text` to add some helper text below the checkbox.
