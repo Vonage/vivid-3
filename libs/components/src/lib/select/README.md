@@ -207,8 +207,8 @@ _Select_ internally uses _popup_ to display an element and its descendants above
 
 ### Fixed-Dropdown
 
-Add the `fixed-dropdown` attribute to set its dropdown fixed. 
-This is useful for cases in which the dropdown is obstructed by other elements (see the grid select example).
+Add the `fixed-dropdown` attribute to set its popup to open as fixed. 
+This is useful for cases in which the dropdown is obstructed by other elements (see [the grid select example](../../components/data-grid#select-in-a-grid)).
 
 - Type: `boolean`
 - Default: `false`
