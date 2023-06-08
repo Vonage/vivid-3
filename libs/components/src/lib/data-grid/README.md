@@ -392,7 +392,7 @@ Usage of `aria-selected` hints on a selectable element and its selection status.
 
 ### Select in a grid
 
-In order for the select popup to show correctly in the grid, use the `fixed-popup` attribute on the select inside grid cells.
+In order for the select popup to show correctly in the grid, use the `fixed-dropdown` attribute on the select inside grid cells.
 
 ```html preview
 	<vwc-data-grid>
@@ -404,18 +404,18 @@ In order for the select popup to show correctly in the grid, use the `fixed-popu
 			data2
 		</vwc-data-grid-cell>
 	</vwc-data-grid-row>
-	<vwc-data-grid-row aria-selected="true">
+	<vwc-data-grid-row>
 		<vwc-data-grid-cell>
-			<vwc-select fixed-popup>
+			<vwc-select fixed-dropdown>
 				<vwc-option value="1" text="Data 1"></vwc-option>
 				<vwc-option value="2" text="Data 2"></vwc-option>
 			</vwc-select>
 		</vwc-data-grid-cell>
 		<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
 	</vwc-data-grid-row>
-	<vwc-data-grid-row aria-selected="false">
+	<vwc-data-grid-row>
 		<vwc-data-grid-cell>
-			<vwc-select fixed-popup>
+			<vwc-select fixed-dropdown>
 				<vwc-option value="1" text="Data 1"></vwc-option>
 				<vwc-option value="2" text="Data 2"></vwc-option>
 			</vwc-select>
