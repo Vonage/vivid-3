@@ -2,6 +2,7 @@ import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import { FormElementHelperText } from '../../shared/patterns';
 import { FormElement, formElements } from '../../shared/patterns';
+import { AffixIcon } from '../../shared/patterns/affix';
 
 /**
  * Base class for file-picker
@@ -22,5 +23,5 @@ export class FilePicker extends FoundationElement {
 	helperText: any;
 }
 
-export interface FilePicker extends FormElement, FormElementHelperText{}
-applyMixins(FilePicker, FormElementHelperText);
+export interface FilePicker extends FormElement, FormElementHelperText, AffixIcon{}
+applyMixins(FilePicker, FormElementHelperText, AffixIcon);

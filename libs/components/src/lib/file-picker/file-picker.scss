@@ -25,6 +25,19 @@
     min-block-size: var(#{variables.$file-picker-min-block-size}, 140px);
     min-inline-size: var(#{variables.$file-picker-min-inline-size}, 320px);
     cursor: pointer;
+
+
+    @supports selector(:focus-visible) {
+		&:focus {
+			outline: none;
+		}
+	}
+}
+
+.control {
+    display: inline-flex;
+    line-height: 1;
+    vertical-align: middle;
 }
 
 .base {
@@ -39,13 +52,28 @@
     background-color: var(#{appearance.get-appearance-token(fill)});
     border-radius: 6px;
     outline: none;
-    display: inline-block;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     .text {
 		font: var(#{constants.$vvd-typography-base});
 	}
 }
 
+.icon {
+    color: var(#{appearance.get-appearance-token(text)});
+    font-size: 24px;
+}
+
+
 input[type="file"] {
     display: none;
+}
+
+.focus-indicator {
+	.wrapper:not(:focus-visible) > & {
+		display: none;
+	}
 }

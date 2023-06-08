@@ -42,3 +42,14 @@ Add the `helper-text` to add some helper text below the file picker.
 ```html preview
 <vwc-file-picker helper-text="Drag and drop your files onto the surface"></vwc-file-picker>
 ```
+
+### Icon
+
+Add the `icon` attribute to add an icon to the file picker text.
+
+- Type: `string`
+- Default: `''`
+
+```html preview full
+<vwc-file-picker text="Drag & Drop files here" icon="upload-line"></vwc-file-picker>
+```
