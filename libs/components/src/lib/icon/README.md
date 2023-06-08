@@ -1,6 +1,6 @@
 # Icon
 
-Find the icon you want to use on the [vivid icons search platform](https://icons.vivid.vonage.com).
+Find the icon you want to use on the [vivid icons search platform](../../designs/icons-gallery).
 
 ```js
 <script name='module'>
@@ -17,7 +17,7 @@ Find the icon you want to use on the [vivid icons search platform](https://icons
 ### Name
 
 Use `name` to set the icon of choice.
-View list of available icon at the [vivid icons gallery](https://icons.vivid.vonage.com).
+View list of available icon at the [vivid icons gallery](../../designs/icons-gallery).
 
 - Type: `string`
 - Default: `undefined`
@@ -51,19 +51,32 @@ Note that changing `--vvd-size-density` will affect the chosen size (the example
 
 ### Connotation
 
-Set the `connotation` attribute to change the icon's connotation.
+If the component is used without a `connotation`, it will use the current text color.
+
+Set the `connotation` attribute to change the icon's connotation and thereby color.
 It accepts a subset of predefined values.
 
 - Type: `'accent'` | `'announcement'` | `'cta'` | `'success'` | `'alert'` | `'information'`
-- Default: `'accent'`
+- Default: `undefined`
 
 ```html preview
-<vwc-icon name='heart-solid' connotation='accent'></vwc-icon>
-<vwc-icon name='heart-solid' connotation='announcement'></vwc-icon>
-<vwc-icon name='heart-solid' connotation='cta'></vwc-icon>
-<vwc-icon name='heart-solid' connotation='success'></vwc-icon>
-<vwc-icon name='heart-solid' connotation='alert'></vwc-icon>
-<vwc-icon name='heart-solid' connotation='information'></vwc-icon>
+<style>
+	li {
+		list-style: none;
+	}
+	.custom {
+		color: var(--vvd-color-announcement-400);
+	}
+</style>
+<ul>
+	<li><vwc-icon name='heart-solid' connotation='accent'></vwc-icon> accent</li>
+	<li><vwc-icon name='heart-solid' connotation='announcement'></vwc-icon> announcement</li>
+	<li><vwc-icon name='heart-solid' connotation='cta'></vwc-icon> cta</li>
+	<li><vwc-icon name='heart-solid' connotation='success'></vwc-icon> success</li>
+	<li><vwc-icon name='heart-solid' connotation='alert'></vwc-icon> alert</li>
+	<li><vwc-icon name='heart-solid' connotation='information'></vwc-icon> information</li>
+	<li class="custom"><vwc-icon name='heart-solid'></vwc-icon> none - using text color</li>
+</ul>
 ```
 
 ## Slots

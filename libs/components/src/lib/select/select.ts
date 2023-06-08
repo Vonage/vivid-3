@@ -39,6 +39,7 @@ export class Select extends FoundationSelect {
 	 * @internal
 	 */
 	@observable metaSlottedContent?: Node[];
+	@attr({mode: 'boolean', attribute: 'fixed-dropdown'}) fixedDropdown = false;
 
 	override connectedCallback() {
 		super.connectedCallback();

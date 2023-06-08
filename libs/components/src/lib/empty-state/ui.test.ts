@@ -7,14 +7,24 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['select', 'option', 'badge'];
+const components = ['empty-state', 'button'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-
-	const template = '<style>#wrapper{height: 250px; width: 2500px; display: flex; flex-wrap: nowrap;}</style>'
-		+ extractHTMLBlocksFromReadme(
-			path.join(new URL('.', import.meta.url).pathname, 'README.md'))
-			.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
+	const template = `<style>
+			#wrapper {
+				width: 500px;
+				display: grid;
+				grid-auto-rows: 380px;
+				grid-template-columns: 1fr;
+			}
+		</style>` +
+		extractHTMLBlocksFromReadme(
+			path.join(new URL('.', import.meta.url).pathname, 'README.md')
+		).reduce(
+			(htmlString: string, block: string) =>
+				`${htmlString} <div style="margin: 5px;">${block}</div>`,
+			''
+		);
 
 	await loadComponents({
 		page,
@@ -30,6 +40,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/select.png'
+		'./snapshots/empty-state.png'
 	);
 });
