@@ -1,7 +1,4 @@
-//import { rovingIndex } from 'roving-ux';      // npm es6/common modules
 import { FoundationElement } from '@microsoft/fast-foundation';
-
-
 
 import {attr} from '@microsoft/fast-element';
 import type {

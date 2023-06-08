@@ -1,0 +1,39 @@
+<!DOCTYPE html lang="en">
+<html class="vvd-root">
+
+<head>
+	<title>Vivid Components A11y Test</title>
+	<link rel="stylesheet" href="../dist/libs/styles/core/all.css">
+	<link rel="stylesheet" href="../dist/libs/styles/tokens/theme-light.css" media="all">
+
+	<script type="module" src="../dist/libs/components/select/index.js"></script>
+	<script type="module" src="../dist/libs/components/badge/index.js"></script>
+
+</head>
+
+<body style="margin: 50px">
+
+<vwc-select open label="test">
+	<vwc-option value="1" text="Option 1"></vwc-option>
+	<vwc-option value="2" text="Option 2"></vwc-option>
+	<vwc-option value="3" text="Option 3"></vwc-option>
+	<span slot="meta" class="duration">00:00:00</span>
+</vwc-select>
+<!--<vwc-select aria-label="test">
+	<vwc-option value="1" text="Option 1"></vwc-option>
+	<vwc-option value="2" text="Option 2"></vwc-option>
+	<vwc-option value="3" text="Option 3"></vwc-option>
+	<span slot="meta">
+    <vwc-badge connotation="success" text="Beta"></vwc-badge>
+  </span>
+</vwc-select>
+
+<vwc-select open aria-label="test">
+	<vwc-option value="1" text="Option 1"></vwc-option>
+	<vwc-option value="2" text="Option 2"></vwc-option>
+	<vwc-option value="3" text="Option 3"></vwc-option>
+	<span slot="meta" class="duration">00:00:00</span>
+</vwc-select>-->
+</body>
+
+</html>
