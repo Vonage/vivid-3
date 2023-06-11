@@ -387,3 +387,40 @@ Fires when a cell is focused.
 Keyboard events and focus handling are compliant with WACG standards.
 
 Usage of `aria-selected` hints on a selectable element and its selection status.
+
+## Use Cases
+
+### Select in a grid
+
+In order for the select popup to show correctly in the grid, use the `fixed-dropdown` attribute on the select inside grid cells.
+
+```html preview
+	<vwc-data-grid>
+	<vwc-data-grid-row role="row" class="header" row-type="header">
+		<vwc-data-grid-cell cell-type="columnheader" role="columnheader">
+			data1
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">
+			data2
+		</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row>
+		<vwc-data-grid-cell>
+			<vwc-select fixed-dropdown>
+				<vwc-option value="1" text="Data 1"></vwc-option>
+				<vwc-option value="2" text="Data 2"></vwc-option>
+			</vwc-select>
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row>
+		<vwc-data-grid-cell>
+			<vwc-select fixed-dropdown>
+				<vwc-option value="1" text="Data 1"></vwc-option>
+				<vwc-option value="2" text="Data 2"></vwc-option>
+			</vwc-select>
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+</vwc-data-grid>
+```
