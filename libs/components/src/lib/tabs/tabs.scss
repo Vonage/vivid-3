@@ -1,14 +1,22 @@
 @use "../tabs/partials/variables" as variables;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
-	$connotations: accent,
-	$shades: primary primary-text primary-increment faint soft,
+	$connotations: accent cta,
+	$shades: primary,
 	$default: accent
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+	$appearances: ghost,
+	$states: idle,
+	$default: ghost
+);
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 
 
 .base {
+	@include appearance.appearance;
 	@include connotation.connotation (tabs);
 
 	display: grid;
@@ -32,6 +40,7 @@
 	position: relative;
 	display: grid;
 	box-sizing: border-box;
+	color: var(#{appearance.get-appearance-token(text)});
 
 	.base.orientation-vertical & {
 		padding: var(#{variables.$tabs-tablist-gutter});
@@ -73,7 +82,7 @@
 		z-index: 1;
 		block-size: var(#{variables.$tabs-active-indicator-stroke-width});
 		grid-column: 1 / auto;
-		inline-size: var(#{variables.$tabs-active-indicator-inline-size});
+		inline-size: calc(var(#{variables.$tabs-active-indicator-inline-size}) - 32px);
 		inset-block-end: 0;
 		inset-inline-start: 0;
 		justify-self: center;

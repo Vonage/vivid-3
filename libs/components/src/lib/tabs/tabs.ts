@@ -1,8 +1,17 @@
-import { observable } from '@microsoft/fast-element';
+import {attr, observable} from '@microsoft/fast-element';
 import { Tabs as FoundationTabs, TabsOrientation } from '@microsoft/fast-foundation';
-
+import type { Connotation} from '../enums.js';
 
 export const ACTIVE_TAB_WIDTH = '--_tabs-active-tab-inline-size';
+
+/**
+ * Types of tabs connotation.
+ *
+ * @public
+ */
+export type TabsConnotation = Extract<Connotation,
+| Connotation.Accent
+| Connotation.CTA>;
 
 /**
  * Base class for tabs
@@ -11,6 +20,15 @@ export const ACTIVE_TAB_WIDTH = '--_tabs-active-tab-inline-size';
  * @slot - Default slot.
  */
 export class Tabs extends FoundationTabs {
+	/**
+	 * The connotation the tabs should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: connotation
+	 */
+	@attr connotation?: TabsConnotation;
+
 	@observable tablist?: HTMLElement;
 
 	override orientationChanged(): void {
@@ -51,7 +69,7 @@ export class Tabs extends FoundationTabs {
 	// adapted FAST fix https://github.com/microsoft/fast/pull/6606
 	private patchActiveID() {
 		if (!this.activetab) return;
-		
+
 		const idx = this.tabs.indexOf(this.activetab);
 		this.activeid = this['tabIds'][idx];
 	}
