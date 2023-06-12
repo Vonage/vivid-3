@@ -135,11 +135,17 @@ export class Popup extends FoundationElement {
 
 	#assignArrowPosition(data: any): void {
 		const { x: arrowX, y: arrowY } = data.middlewareData.arrow;
-		const staticAxis = data.placement.split('-')[0];
+		const styles = {
+			'left'  : 'calc(100% - 4px)',
+			'right' : '-4px',
+			'top'   : 'calc(100% - 4px)',
+			'bottom': '-4px'
+		};
+		const staticAxis = data.placement.split('-')[0] as keyof typeof styles;
 
 		Object.assign(this.arrowEl.style, {
-			left: arrowX ? `${arrowX}px` : `calc(${staticAxis === 'left' ? '100%' : '0%'} - 4px)`,
-			top:  arrowY ? `${arrowY}px` : `calc(${staticAxis === 'top'  ? '100%' : '0%'} - 4px)`,
+			left: arrowX ? `${arrowX}px` : styles[staticAxis],
+			top:  arrowY ? `${arrowY}px` : styles[staticAxis],
 		});
 	}
 
