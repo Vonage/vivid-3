@@ -231,6 +231,31 @@ describe('vwc-data-grid', () => {
 			await elementUpdated(element);
 			expect(element.getAttribute('selection-mode')).toEqual(DataGridSelectionMode.singleRow);
 		});
+
+		it('should init without aria-multiselectable', async function () {
+			expect(element.hasAttribute('aria-multiselectable')).toEqual(false);
+		});
+
+		it.each([DataGridSelectionMode.multiCell, DataGridSelectionMode.multiRow])
+		('should set aria-multiselectable="true" when multiple mode is selected', async (selectionMode) => {
+			element.selectionMode = selectionMode;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-multiselectable')).toEqual('true');
+		});
+
+		it.each([DataGridSelectionMode.singleCell, DataGridSelectionMode.singleRow])
+		('should set aria-multiselectable="false" when single mode is selected', async (selectionMode) => {
+			element.selectionMode = selectionMode;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-multiselectable')).toEqual('false');
+		});
+
+		it('should remove aria-multiselectable when selectionMode is "none"', async function () {
+			element.setAttribute('aria-multiselectable', 'true');
+			element.selectionMode = DataGridSelectionMode.none;
+			await elementUpdated(element);
+			expect(element.hasAttribute('aria-multiselectable')).toEqual(false);
+		});
 	});
 
 	describe('rowElements', () => {

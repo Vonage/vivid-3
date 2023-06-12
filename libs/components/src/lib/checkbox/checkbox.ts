@@ -1,22 +1,43 @@
-import { attr } from '@microsoft/fast-element';
-import { Checkbox as FastCheckbox } from '@microsoft/fast-foundation';
+import {applyMixins, Checkbox as FoundationCheckbox} from '@microsoft/fast-foundation';
+import {attr} from '@microsoft/fast-element';
+import type {Connotation} from '../enums.js';
+import {
+	FormElement,
+	FormElementHelperText,
+	formElements,
+	FormElementSuccessText,
+} from '../../shared/patterns';
+import {ErrorText, errorText} from '../../shared/patterns';
+
 
 export const keySpace: ' ' = ' ' as const;
+
+/**
+ * Types of Checkbox connotation.
+ *
+ * @public
+ */
+export type CheckboxConnotation = Extract<Connotation,
+| Connotation.Accent
+| Connotation.CTA>;
+
 
 /**
  * Base class for checkbox
  *
  * @public
  */
-export class Checkbox extends FastCheckbox {
+@errorText
+@formElements
+export class Checkbox extends FoundationCheckbox {
 	/**
-	 * Indicates the checkbox's label.
+	 * The connotation the checklist should have.
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: label
+	 * HTML Attribute: connotation
 	 */
-	@attr label?: string;
+	@attr connotation?: CheckboxConnotation;
 
 	/**
 	 * !remove method as will be implemented by fast-foundation in version > 2.46.9
@@ -50,3 +71,6 @@ export class Checkbox extends FastCheckbox {
 		}
 	};
 }
+
+export interface Checkbox extends FormElement, FormElementHelperText, ErrorText, FormElementSuccessText{}
+applyMixins(Checkbox, FormElementHelperText, FormElementSuccessText);

@@ -5,18 +5,28 @@ import type {
 	FoundationElementTemplate,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
+import { getFeedbackTemplate} from '../../shared/patterns';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
 import { Icon } from '../icon/icon';
 import type { Checkbox } from './checkbox';
 
 const getClasses = ({
-	readOnly, checked, disabled, indeterminate
+	connotation,
+	readOnly,
+	checked,
+	disabled,
+	indeterminate,
+	errorValidationMessage,
+	successText
 }: Checkbox) =>
 	classNames(
 		'base',
+		[`connotation-${connotation}`, Boolean(connotation)],
 		['readonly', Boolean(readOnly)],
 		['checked', Boolean(checked) || Boolean(indeterminate)],
 		['disabled', Boolean(disabled)],
+		['error connotation-alert', Boolean(errorValidationMessage)],
+		['success connotation-success', !!successText]
 	);
 
 
@@ -54,5 +64,10 @@ CheckboxOptions
 
     ${when(x => x.label, html<Checkbox>`<label>${x => x.label}</label>`)}
 
-  </div>`;
+  </div>
+
+	${when(x =>  x.helperText?.length, getFeedbackTemplate('helper', context))}
+	${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplate('error', context))}
+	${when(x => x.successText, getFeedbackTemplate('success', context))}
+	`;
 };

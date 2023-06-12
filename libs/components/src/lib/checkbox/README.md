@@ -55,6 +55,55 @@ Use the `indeterminate` member to indicate that the checkbox's is neither "on" o
 </script>
 ```
 
+### Connotation
+Use the `connotation` attribute to set the checkbox color.
+
+- Type: `'accent'` | `'cta'`
+- Default: `'accent'`
+- 
+```html preview
+<vwc-checkbox connotation="accent" ></vwc-checkbox>
+<vwc-checkbox connotation="accent" checked></vwc-checkbox>
+<vwc-checkbox connotation="cta" ></vwc-checkbox>
+<vwc-checkbox connotation="cta" checked></vwc-checkbox>
+```
+
+### Helper text
+
+Add the `helper-text` to add some helper text below the checkbox.
+
+- Type: `string` | `undefined`
+- Default: `undefined`
+
+```html preview
+<vwc-checkbox label='A default checkbox' helper-text="Helper text"></vwc-checkbox>
+```
+
+### Success text
+
+Add the `success-text` to add some success text below the checkbox.
+
+- Type: `string` | `undefined`
+- Default: `undefined`
+
+```html preview
+<vwc-checkbox label='A default checkbox' success-text="Success text"></vwc-checkbox>
+```
+
+
+### Error text
+
+It is possible to force the checkbox error state by setting the `error-text` attribute to a custom error message.
+Note that any current error state will be overriden by `error-text` (and, if applicable, restored once it is removed).
+
+- Type: `string`
+- Default: `undefined`
+
+
+```html preview
+<vwc-checkbox label='A default checkbox' error-text="Please pick one"></vwc-checkbox>
+```
+
 ### Disabled
 
 Toggle the `disabled` member to disable/enable the checkbox.

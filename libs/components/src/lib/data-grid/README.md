@@ -54,7 +54,7 @@ Use `generate-header"` for data grid header visibility mode.
 
 ### selectionMode
 
-- Type: `none` | `single-cell` | `multi-cell`
+- Type: `none` | `single-cell` | `multi-cell` | `single-row` | `multi-row`
 - Default: `none`
 
 Use the `selection-mode` attribute to specify the selection mode of the grid.
@@ -69,8 +69,8 @@ Use the `selection-mode` attribute to specify the selection mode of the grid.
 	<vwc-option value="none" text="none"></vwc-option>
 	<vwc-option value="single-cell" text="single-cell"></vwc-option>
 	<vwc-option value="multi-cell" text="multi-cell"></vwc-option>
-	<vwc-option value="single-row" text="single-row" disabled></vwc-option>
-	<vwc-option value="multi-row" text="multi-row" disabled></vwc-option>
+	<vwc-option value="single-row" text="single-row"></vwc-option>
+	<vwc-option value="multi-row" text="multi-row"></vwc-option>
 </vwc-select>
 
 <vwc-data-grid></vwc-data-grid>
@@ -319,6 +319,53 @@ The element tag for header row cells. If not set, the default tag `vwc-data-grid
 | `cellFocusTargetCallback` | `(cell) => HTMLElement` | Callback function that is called when cell is focused |
 | `isRowHeader` | `boolean` | Whether this column is the row header |
 
+### Row
+
+#### aria-selected
+
+User the `aria-selected` attribute to indicate the selected state of a row. 
+For a full selection functionality the cell has to be inside a grid with the proper `selectionMode`.
+The grid also adds the `aria-selected` attribute to the row when it is selected and adds `aria-selected="false"` for none-selected rows.
+
+```html preview
+<vwc-data-grid selection-mode="single-row">
+	<vwc-data-grid-row role="row" class="header" row-type="header">
+		<vwc-data-grid-cell cell-type="columnheader" role="columnheader">
+			data1
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">
+			data2
+		</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row aria-selected="true">
+		<vwc-data-grid-cell>Cell 1</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row aria-selected="false">
+		<vwc-data-grid-cell>Cell 1</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+</vwc-data-grid>
+```
+
+### Cell
+
+#### aria-selected
+
+User the `aria-selected` attribute to indicate the selected state of a cell. 
+For a full selection functionality the cell has to be inside a grid with the proper `selectionMode`.
+The grid also adds the `aria-selected` attribute to the cell when it is selected and adds `aria-selected="false"` for none-selected cells.
+
+```html preview
+<vwc-data-grid selection-mode="single-cell">
+	<vwc-data-grid-row>
+		<vwc-data-grid-cell aria-selected="true">Cell 1</vwc-data-grid-cell>
+		<vwc-data-grid-cell aria-selected="false">Cell 2</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Cell 3</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+</vwc-data-grid>
+```
+
 ## Slots
 
 ### default
@@ -338,3 +385,42 @@ Fires when a cell is focused.
 ## Accessibility
 
 Keyboard events and focus handling are compliant with WACG standards.
+
+Usage of `aria-selected` hints on a selectable element and its selection status.
+
+## Use Cases
+
+### Select in a grid
+
+In order for the select popup to show correctly in the grid, use the `fixed-dropdown` attribute on the select inside grid cells.
+
+```html preview
+	<vwc-data-grid>
+	<vwc-data-grid-row role="row" class="header" row-type="header">
+		<vwc-data-grid-cell cell-type="columnheader" role="columnheader">
+			data1
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">
+			data2
+		</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row>
+		<vwc-data-grid-cell>
+			<vwc-select fixed-dropdown>
+				<vwc-option value="1" text="Data 1"></vwc-option>
+				<vwc-option value="2" text="Data 2"></vwc-option>
+			</vwc-select>
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row>
+		<vwc-data-grid-cell>
+			<vwc-select fixed-dropdown>
+				<vwc-option value="1" text="Data 1"></vwc-option>
+				<vwc-option value="2" text="Data 2"></vwc-option>
+			</vwc-select>
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+</vwc-data-grid>
+```
