@@ -4,6 +4,21 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.16.1](https://github.com/Vonage/vivid-3/compare/vivid-v3.16.0...vivid-v3.16.1) (2023-06-07)
+
+
+### Bug Fixes
+
+* **tabs:** indicator position in vertical mode (VIV-1132) ([#1199](https://github.com/Vonage/vivid-3/issues/1199)) ([3b74efa](https://github.com/Vonage/vivid-3/commit/3b74efa64dffc8aa0a9b29060bdf725b4eea097b))
+
+## [3.16.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.15.0...vivid-v3.16.0) (2023-06-07)
+
+
+### Features
+
+* **toggletip:** enable adding anchor element after anchor prop set (VIV-1115) ([#1186](https://github.com/Vonage/vivid-3/issues/1186)) ([4c70b7c](https://github.com/Vonage/vivid-3/commit/4c70b7caacb827a8bb36fc5da82c8f993f5bde98))
+* **tooltip:** enable adding anchor element after anchor prop set (VIV-1115) ([#1186](https://github.com/Vonage/vivid-3/issues/1186)) ([4c70b7c](https://github.com/Vonage/vivid-3/commit/4c70b7caacb827a8bb36fc5da82c8f993f5bde98))
+
 ## [3.15.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.14.0...vivid-v3.15.0) (2023-06-06)
 
 

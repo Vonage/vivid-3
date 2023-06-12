@@ -1,6 +1,6 @@
 {
   "name": "@vonage/vivid",
-  "version": "3.15.0",
+  "version": "3.16.1",
   "type": "module",
   "module": "./index.js",
   "main": "./index.js",

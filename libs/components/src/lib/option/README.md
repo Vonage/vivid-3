@@ -29,7 +29,7 @@ Note that you cannot set `label` programmatically like this: `option.label = 'ne
 ### Icon
 
 Add the `icon` attribute to add an icon to the option.
-Check out the [vivid icons gallery](https://icons.vivid.vonage.com) to see what icons are available.
+Check out the [vivid icons gallery](../../designs/icons-gallery) to see what icons are available.
 
 - Type: `string`
 - Default: `''`

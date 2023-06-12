@@ -64,7 +64,7 @@
 	.base.orientation-vertical & {
 		align-self: center;
 		block-size: 80%;
-		grid-area: 2 / 1 / auto / auto;
+		grid-area: 1 / 1 / auto / auto;
 		inline-size: var(#{variables.$tabs-active-indicator-stroke-width});
 	}
 

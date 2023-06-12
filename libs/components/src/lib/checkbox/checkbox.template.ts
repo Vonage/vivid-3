@@ -11,6 +11,7 @@ import { Icon } from '../icon/icon';
 import type { Checkbox } from './checkbox';
 
 const getClasses = ({
+	connotation,
 	readOnly,
 	checked,
 	disabled,
@@ -20,6 +21,7 @@ const getClasses = ({
 }: Checkbox) =>
 	classNames(
 		'base',
+		[`connotation-${connotation}`, Boolean(connotation)],
 		['readonly', Boolean(readOnly)],
 		['checked', Boolean(checked) || Boolean(indeterminate)],
 		['disabled', Boolean(disabled)],

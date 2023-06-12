@@ -17,12 +17,12 @@ function runActionGroupTest() {
 			.reduce(
 				(htmlString: string, block: string) =>
 					`${htmlString} <div style="margin: 5px;">${block}</div>`,
-				''
-			) + '<style> .center { text-align: center; } </style>';
+				'<style> .center { height: 100px; display: flex; place-items: end; place-content: center; } </style>'
+			);
 
 		await page.setViewportSize({
 			width: 380,
-			height: 720
+			height: 1000
 		});
 
 		await loadComponents({
