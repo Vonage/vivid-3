@@ -1,8 +1,7 @@
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
+import Dropzone from 'dropzone';
 import { FormElementHelperText } from '../../shared/patterns';
-import { FormElement, formElements } from '../../shared/patterns';
-import { AffixIcon } from '../../shared/patterns/affix';
 
 /**
  * Base class for file-picker
@@ -10,18 +9,46 @@ import { AffixIcon } from '../../shared/patterns/affix';
  * @public
  */
 
-@formElements
 export class FilePicker extends FoundationElement {
 	/**
-	 * Indicates the text's text.
+	 * Indicates the file picker's text.
 	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: text
 	 */
 	@attr text?: string;
-	helperText: any;
+
+	/**
+	 * Indicates the file picker's label.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: label
+	 */
+	@attr label?: string;
+
+	filtPicker!: Dropzone;
+
+	_dz!: HTMLElement;
+
+	constructor() {
+		super();
+		Dropzone.autoDiscover = false;
+	}
+
+	override connectedCallback() {
+		super.connectedCallback();
+
+		this.filtPicker = new Dropzone(this._dz,
+			{
+				url: '/',
+			});
+		this.filtPicker.on('addedfile', file => {
+			console.log(file);
+		});
+	}
 }
 
-export interface FilePicker extends FormElement, FormElementHelperText, AffixIcon{}
-applyMixins(FilePicker, FormElementHelperText, AffixIcon);
+export interface FilePicker extends FormElementHelperText { }
+applyMixins(FilePicker, FormElementHelperText);

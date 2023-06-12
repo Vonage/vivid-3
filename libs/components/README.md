@@ -161,6 +161,8 @@ This project is licensed under the Apache 2.0 License - see the [LICENSE.md](htt
 - [Fast](https://www.fast.design) - to extend element classes and compile code to native web components
 - [Typescript](https://www.typescriptlang.org) - for ergonomic and type-safe code
 - [Sass](https://sass-lang.com) - for styles authoring extensibility and consistency
+- [Floating UI](https://floating-ui.com) - for positioning floating elements
+- [Dropzone](https://dropzone.dev) - for handling dropped files
 
 ---
 ## Have questions?

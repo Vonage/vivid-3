@@ -18,6 +18,11 @@ Add a `text` attribute to add text to the file picker.
 - Default: `undefined`
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+</style>
 <vwc-file-picker text="Drag & Drop files here"></vwc-file-picker>
 ```
 
@@ -29,7 +34,12 @@ Use the `label` member to set the file picker's label.
 - Default: `undefined`
 
 ```html preview
-<vwc-file-picker label='Pick up your image'></vwc-file-picker>
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+</style>
+<vwc-file-picker label='Label'></vwc-file-picker>
 ```
 
 ### Helper text
@@ -40,16 +50,44 @@ Add the `helper-text` to add some helper text below the file picker.
 - Default: `undefined`
 
 ```html preview
-<vwc-file-picker helper-text="Drag and drop your files onto the surface"></vwc-file-picker>
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+</style>
+<vwc-file-picker helper-text="helper-text"></vwc-file-picker>
 ```
 
-### Icon
+## CSS Variables
 
-Add the `icon` attribute to add an icon to the file picker text.
+### File-picker-min-height
+
+Control the height of the file picker.
 
 - Type: `string`
-- Default: `''`
+- Default: `undefined`
 
-```html preview full
-<vwc-file-picker text="Drag & Drop files here" icon="upload-line"></vwc-file-picker>
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+</style>
+<vwc-file-picker style="--file-picker-min-height: 120px;"></vwc-file-picker>
+```
+
+### File-picker-min-width
+
+Conrol the width of the file picker.
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+</style>
+<vwc-file-picker style=" --file-picker-min-width: 52px;"></vwc-file-picker>
 ```

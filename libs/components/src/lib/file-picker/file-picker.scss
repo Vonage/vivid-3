@@ -3,44 +3,28 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
-    $connotations: accent,
+    $connotations: cta,
     $shades: primary faint soft,
-    $default: accent
+    $default: cta
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
-    $appearances: ghost,
+    $appearances: subtle,
     $states: idle hover active,
-    $default: ghost
+    $default: subtle
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
-.wrapper {
+$low-ink-color: --_low-ink-color;
+
+.base {
     display: inline-flex;
     flex-direction: column;
-
-    max-inline-size: 100%;
-    min-block-size: var(#{variables.$file-picker-min-block-size}, 140px);
-    min-inline-size: var(#{variables.$file-picker-min-inline-size}, 320px);
-    cursor: pointer;
-
-
-    @supports selector(:focus-visible) {
-		&:focus {
-			outline: none;
-		}
-	}
 }
 
 .control {
-    display: inline-flex;
-    line-height: 1;
-    vertical-align: middle;
-}
-
-.base {
     @include appearance.appearance;
     @include connotation.connotation(file-picker);
 
@@ -48,18 +32,23 @@
     box-sizing: border-box;
     flex-grow: 1;
     padding: 16px;
-    border: 1px dashed var(--vvd-color-neutral-300);
+    border: 1px dashed var(--vvd-color-neutral-400);
     background-color: var(#{appearance.get-appearance-token(fill)});
+    color: var(--vvd-color-neutral-600);
     border-radius: 6px;
     outline: none;
+
+    min-block-size: var(#{variables.$file-picker-min-block-size}, 52px);
+    min-inline-size: var(#{variables.$file-picker-min-inline-size}, 400px);
 
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 
     .text {
-		font: var(#{constants.$vvd-typography-base});
-	}
+        font: var(#{constants.$vvd-typography-base});
+    }
 }
 
 .icon {
@@ -67,13 +56,15 @@
     font-size: 24px;
 }
 
-
-input[type="file"] {
-    display: none;
+.dz-preview {
+    .dz-image{
+        display: none;
+    }
+    position: absolute;
+    top: var(#{variables.$file-picker-min-block-size}, 52px);
 }
 
-.focus-indicator {
-	.wrapper:not(:focus-visible) > & {
-		display: none;
-	}
+.message {
+	margin-block-start: 4px;
+	#{$low-ink-color}: var(#{constants.$vvd-color-neutral-600});
 }
