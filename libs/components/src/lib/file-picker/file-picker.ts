@@ -45,7 +45,8 @@ export class FilePicker extends FoundationElement {
 				url: '/',
 			});
 		this.filtPicker.on('addedfile', file => {
-			console.log(file);
+			// eslint-disable-next-line no-console
+			console.log('file ' + file); // TODO: remove
 		});
 	}
 }

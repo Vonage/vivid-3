@@ -3,16 +3,16 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
-    $connotations: cta,
-    $shades: primary faint soft,
-    $default: cta
+	$connotations: cta,
+	$shades: primary faint soft,
+	$default: cta
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
-    $appearances: subtle,
-    $states: idle hover active,
-    $default: subtle
+	$appearances: subtle,
+	$states: idle hover active,
+	$default: subtle
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
@@ -20,48 +20,46 @@
 $low-ink-color: --_low-ink-color;
 
 .base {
-    display: inline-flex;
-    flex-direction: column;
+	display: inline-flex;
+	flex-direction: column;
 }
 
 .control {
-    @include appearance.appearance;
-    @include connotation.connotation(file-picker);
+	@include appearance.appearance;
+	@include connotation.connotation(file-picker);
 
-    position: relative;
-    box-sizing: border-box;
-    flex-grow: 1;
-    padding: 16px;
-    border: 1px dashed var(--vvd-color-neutral-400);
-    background-color: var(#{appearance.get-appearance-token(fill)});
-    color: var(--vvd-color-neutral-600);
-    border-radius: 6px;
-    outline: none;
+	position: relative;
+	box-sizing: border-box;
+	flex-grow: 1;
+	padding: 16px;
+	display: flex;
+	border: 1px dashed var(--vvd-color-neutral-400);
+	border-radius: 6px;
+	background-color: var(#{appearance.get-appearance-token(fill)});
+	color: var(--vvd-color-neutral-600);
+	min-block-size: var(#{variables.$file-picker-min-block-size}, 52px);
+	min-inline-size: var(#{variables.$file-picker-min-inline-size}, 400px);
+	outline: none;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
 
-    min-block-size: var(#{variables.$file-picker-min-block-size}, 52px);
-    min-inline-size: var(#{variables.$file-picker-min-inline-size}, 400px);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-
-    .text {
-        font: var(#{constants.$vvd-typography-base});
-    }
+	.text {
+		font: var(#{constants.$vvd-typography-base});
+	}
 }
 
 .icon {
-    color: var(#{appearance.get-appearance-token(text)});
-    font-size: 24px;
+	color: var(#{appearance.get-appearance-token(text)});
+	font-size: 24px;
 }
 
 .dz-preview {
-    .dz-image{
-        display: none;
-    }
-    position: absolute;
-    top: var(#{variables.$file-picker-min-block-size}, 52px);
+	.dz-image {
+		display: none;
+	}
+	position: absolute;
+	top: var(#{variables.$file-picker-min-block-size}, 52px);
 }
 
 .message {
