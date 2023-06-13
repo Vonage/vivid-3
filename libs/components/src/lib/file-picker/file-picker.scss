@@ -55,14 +55,84 @@ $low-ink-color: --_low-ink-color;
 }
 
 .dz-preview {
+	$start: var(#{constants.$vvd-color-information-200});
+	$end: var(#{constants.$vvd-color-cta-600});
+
+	width: 90%;
+	padding: 8px 12px 8px 12px;
+	margin-top: 30px;
+	border-radius: 6px;
+	position: absolute;
+	top: var(#{variables.$file-picker-min-block-size}, 52px);
+
+	.dz-success-mark,
+	.dz-error-mark,
 	.dz-image {
 		display: none;
 	}
-	position: absolute;
-	top: var(#{variables.$file-picker-min-block-size}, 52px);
+
+	&:not(.dz-error) {
+		.dz-progress {
+			position: absolute;
+			height: 6px;
+			width: 100%;
+			background: linear-gradient(to right, $start, $end);
+			border-radius: 3px;
+			overflow: hidden;
+
+			.dz-upload {
+				background: linear-gradient(to right, $start, $end);
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				width: 0;
+				-webkit-transition: width 300ms ease-in-out;
+				-moz-transition: width 300ms ease-in-out;
+				-ms-transition: width 300ms ease-in-out;
+				-o-transition: width 300ms ease-in-out;
+				transition: width 300ms ease-in-out;
+			}
+		}
+	}
+
+	&.dz-error {
+		background-color: var(#{constants.$vvd-color-alert-50});
+
+		.dz-details .dz-size,
+		.dz-progress {
+			display: none;
+		}
+	}
+
+	.dz-details {
+		display: grid;
+		.dz-filename {
+			order: 1;
+			font: var(#{constants.$vvd-typography-base});
+			color: var(#{constants.$vvd-color-canvas-text});
+		}
+
+		.dz-size {
+			order: 2;
+			margin-block-start: 4px;
+			font: var(#{constants.$vvd-typography-base-condensed});
+			color: var(#{constants.$vvd-color-neutral-600});
+		}
+	}
+
+	.dz-error-message {
+		margin-block-start: 4px;
+		font: var(#{constants.$vvd-typography-base-condensed});
+		color: var(#{constants.$vvd-color-alert-500});
+	}
 }
 
 .message {
 	margin-block-start: 4px;
 	#{$low-ink-color}: var(#{constants.$vvd-color-neutral-600});
+}
+
+strong {
+	font-weight: normal;
 }
