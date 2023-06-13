@@ -29,10 +29,9 @@ const getClasses = ({
 );
 
 function renderIconOrPending (context: ElementDefinitionContext, icon: string | undefined, pending: boolean, size: ButtonSize | undefined = Size.Normal) {
-    if (!icon && !pending) return null;
-
     let content = '';
     let classes = 'icon';
+
     if (pending && size != Size.SuperCondensed) {
         const progressTag = context.tagFor(ProgressRing);
         const progressSize = {
@@ -42,11 +41,12 @@ function renderIconOrPending (context: ElementDefinitionContext, icon: string | 
         };
         content = `<${progressTag} size="${progressSize[size]}"></${progressTag}>`;
         classes += ' pending';
-    } else {
+    } else if (icon) {
         const iconTag = context.tagFor(Icon);
         content = `<${iconTag} name="${icon}"></${iconTag}>`;
     }
-    return html`<span class="${classes}">${content}</span>`;
+
+    return content ? html`<span class="${classes}">${content}</span>` : null;
 }
 
 /**
