@@ -1,11 +1,11 @@
 import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
-import type { Button } from './button'
-import type { ProgressRing } from '../progress-ring/progress-ring'
+import type { ProgressRing } from '../progress-ring/progress-ring';
 import {
 	loadComponents,
 	loadTemplate
 } from '../../visual-tests/visual-tests-utils.js';
+import type { Button } from './button';
 
 const components = ['button'];
 test('should show the component', async ({ page }: { page: Page }) => {

@@ -2,10 +2,10 @@ import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { ProgressRing } from '../progress-ring/progress-ring';
+import { Size } from '../enums';
 import { Button } from './button';
 import  '.';
 import { buttonDefinition } from './definition';
-import { Size } from '../enums';
 
 const COMPONENT_TAG = 'vwc-button';
 const ICON_SELECTOR = 'vwc-icon';
