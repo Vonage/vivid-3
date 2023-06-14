@@ -19,10 +19,6 @@ describe('vwc-tabs', () => {
 		};
 	});
 
-	afterEach(function () {
-		window.HTMLElement.prototype.getBoundingClientRect = jest.fn();
-	});
-
 	async function setFixture(activeid: string | null = 'apps'): Promise<Tabs> {
 		return (await fixture(`<${COMPONENT_TAG} ${activeid ? `activeid="${activeid}"` : ''}>
 		<vwc-tab label="Appetizers" id="apps"></vwc-tab>

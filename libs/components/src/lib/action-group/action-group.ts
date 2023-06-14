@@ -28,6 +28,7 @@ export type ActionGroupShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  * @slot - Default slot.
  */
 export class ActionGroup extends FoundationElement {
+	@attr() override role: string | null = null;
 	/**
 	 * The shape the ActionGroup should have.
 	 *
@@ -57,7 +58,6 @@ export class ActionGroup extends FoundationElement {
 		mode: 'boolean',
 	}) tight = false;
 
-	@attr() role: string | undefined;
 	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
 }
 

@@ -51,7 +51,7 @@ export class Tabs extends FoundationTabs {
 	// adapted FAST fix https://github.com/microsoft/fast/pull/6606
 	private patchActiveID() {
 		if (!this.activetab) return;
-		
+
 		const idx = this.tabs.indexOf(this.activetab);
 		this.activeid = this['tabIds'][idx];
 	}

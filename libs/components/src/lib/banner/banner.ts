@@ -32,9 +32,9 @@ export class Banner extends FoundationElement {
 	@attr({attribute: 'action-text'}) actionText: string | undefined;
 	@attr({mode: 'boolean'}) removable = false;
 	@attr({attribute: 'aria-live'}) override ariaLive: any;
-	@attr() role: string | undefined;
 	@attr() text: string | undefined;
 	@attr() connotation: BannerConnotation | undefined;
+	@attr() override role: string | null = null;
 
 	get conditionedIcon() {
 		return this.icon ?? defaultConnotation(this.connotation);

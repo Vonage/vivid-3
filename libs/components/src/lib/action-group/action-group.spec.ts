@@ -24,7 +24,7 @@ describe('vwc-action-group', () => {
 			expect(element.shape).toEqual(undefined);
 			expect(element.appearance).toEqual(undefined);
 			expect(element.tight).toEqual(false);
-			expect(element.role).toEqual(undefined);
+			expect(element.role).toEqual(null);
 			expect(element.ariaLabel).toEqual(null);
 		});
 	});
