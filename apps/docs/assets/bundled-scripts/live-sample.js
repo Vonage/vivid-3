@@ -109,8 +109,8 @@ function openCodePen(event) {
 
 	const codePenPayload = JSON.stringify({
 		html: `<div class="vvd-root">\n${view.state.doc.toString().trim()}\n</div>`,
-		head: `<link rel="preload" href="https://fonts.resources.vonage.com/fonts/v2/SpeziaCompleteVariableUprightWeb.woff2" type="font/woff2" as="font" crossorigin="anonymous" >
-		<link rel="preload" href="https://fonts.resources.vonage.com/fonts/v2/SpeziaMonoCompleteVariableWeb.woff2" type="font/woff2" as="font" crossorigin="anonymous" >`,
+		head: `<link href="https://fonts.resources.vonage.com/fonts/v2/SpeziaCompleteVariableUprightWeb.woff2" type="font/woff2" as="font" crossorigin="anonymous" >
+		<link href="https://fonts.resources.vonage.com/fonts/v2/SpeziaMonoCompleteVariableWeb.woff2" type="font/woff2" as="font" crossorigin="anonymous" >`,
 		css:  `@import "https://unpkg.com/@vonage/vivid@latest/styles/tokens/theme-light.css";
 @import "https://unpkg.com/@vonage/vivid@latest/styles/core/all.css";
 @import "https://unpkg.com/@vonage/vivid@latest/styles/fonts/spezia-variable.css";`,
