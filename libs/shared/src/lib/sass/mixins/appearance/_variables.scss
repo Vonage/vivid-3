@@ -112,39 +112,39 @@ $states-mapping: (
   ),
   disabled: (
     filled: (
-      text: var(#{constants.$vvd-color-neutral-400}),
-      fill: var(#{constants.$vvd-color-neutral-200}),
+      text: var(#{constants.$vvd-color-neutral-300}),
+      fill: var(#{constants.$vvd-color-neutral-100}),
       outline: transparent,
     ),
     outlined: (
-      text: var(#{constants.$vvd-color-neutral-400}),
+      text: var(#{constants.$vvd-color-neutral-300}),
       fill: transparent,
-      outline: var(#{constants.$vvd-color-neutral-400}),
+      outline: var(#{constants.$vvd-color-neutral-300}),
     ),
     fieldset: (
-      text: var(#{constants.$vvd-color-neutral-400}),
-      fill: var(#{constants.$vvd-color-neutral-200}),
-      outline: var(#{constants.$vvd-color-neutral-400}),
+      text: var(#{constants.$vvd-color-neutral-300}),
+      fill: var(#{constants.$vvd-color-neutral-100}),
+      outline: var(#{constants.$vvd-color-neutral-300}),
     ),
     ghost: (
-      text: var(#{constants.$vvd-color-neutral-400}),
+      text: var(#{constants.$vvd-color-neutral-300}),
       fill: transparent,
       outline: transparent,
     ),
 		listitem: (
-			text: var(#{constants.$vvd-color-neutral-400}),
+			text: var(#{constants.$vvd-color-neutral-300}),
 			fill: transparent,
 			outline: transparent,
 		),
     subtle: (
-      text: var(#{constants.$vvd-color-neutral-400}),
-      fill: var(#{constants.$vvd-color-neutral-200}),
+      text: var(#{constants.$vvd-color-neutral-300}),
+      fill: var(#{constants.$vvd-color-neutral-100}),
       outline: transparent,
     ),
     duotone: (
-      text: var(#{constants.$vvd-color-neutral-400}),
+      text: var(#{constants.$vvd-color-neutral-300}),
       fill: transparent,
-      outline: var(#{constants.$vvd-color-neutral-200})
+      outline: var(#{constants.$vvd-color-neutral-100})
     )
   ),
   readonly: (
@@ -155,7 +155,7 @@ $states-mapping: (
     ),
     fieldset: (
       text: var(#{constants.$vvd-color-canvas-text}),
-      fill: var(#{constants.$vvd-color-neutral-100}),
+      fill: var(#{constants.$vvd-color-neutral-200}),
       outline: var(#{constants.$vvd-color-neutral-400}),
     ),
     ghost: (

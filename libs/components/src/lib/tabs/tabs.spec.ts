@@ -6,14 +6,23 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-tabs';
 
-window.HTMLElement.prototype.getBoundingClientRect = function () {
-	return {
-		x: 146, y: 50, width: 440, height: 240,
-		top: 50, right: 586, bottom: 290, left: 146
-	} as DOMRect;
-};
+
 
 describe('vwc-tabs', () => {
+
+	beforeEach(function () {
+		window.HTMLElement.prototype.getBoundingClientRect = function () {
+			return {
+				x: 146, y: 50, width: 440, height: 240,
+				top: 50, right: 586, bottom: 290, left: 146
+			} as DOMRect;
+		};
+	});
+
+	afterEach(function () {
+		window.HTMLElement.prototype.getBoundingClientRect = jest.fn();
+	});
+
 	async function setFixture(activeid: string | null = 'apps'): Promise<Tabs> {
 		return (await fixture(`<${COMPONENT_TAG} ${activeid ? `activeid="${activeid}"` : ''}>
 		<vwc-tab label="Appetizers" id="apps"></vwc-tab>
@@ -70,7 +79,6 @@ describe('vwc-tabs', () => {
 			expect(getBaseElement(element).classList.contains(`orientation-${orientation}`)).toBeTruthy();
 		});
 	});
-
 
 	describe('activeid', () => {
 		it('should set activeid property', async () => {
