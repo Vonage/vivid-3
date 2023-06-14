@@ -2,6 +2,7 @@ import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
 import { focusRegistries } from '../focus/definition';
+import { buttonRegistries } from '../button/definition';
 import styles from './file-picker.scss';
 
 import { FilePicker } from './file-picker';
@@ -20,7 +21,7 @@ export const filePickerDefinition =
 /**
  * @internal
  */
-export const filePickerRegistries = [filePickerDefinition(), ...iconRegistries, ...focusRegistries];
+export const filePickerRegistries = [filePickerDefinition(), ...iconRegistries, ...focusRegistries, ...buttonRegistries];
 
 /**
  * Registers the file-picker element with the design system.

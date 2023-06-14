@@ -75,18 +75,18 @@ $low-ink-color: --_low-ink-color;
 		.dz-progress {
 			position: absolute;
 			height: 6px;
-			width: 100%;
-			background: linear-gradient(to right, $start, $end);
+			width: 80%;
+			background: var(#{constants.$vvd-color-neutral-100});
 			border-radius: 3px;
 			overflow: hidden;
 
 			.dz-upload {
-				background: linear-gradient(to right, $start, $end);
 				position: absolute;
 				top: 0;
 				left: 0;
 				bottom: 0;
 				width: 0;
+				background: linear-gradient(to right, $start, $end);
 				-webkit-transition: width 300ms ease-in-out;
 				-moz-transition: width 300ms ease-in-out;
 				-ms-transition: width 300ms ease-in-out;
@@ -100,6 +100,12 @@ $low-ink-color: --_low-ink-color;
 		background-color: var(#{constants.$vvd-color-alert-50});
 
 		.dz-details .dz-size,
+		.dz-progress {
+			display: none;
+		}
+	}
+
+	&.dz-success {
 		.dz-progress {
 			display: none;
 		}
@@ -125,6 +131,13 @@ $low-ink-color: --_low-ink-color;
 		margin-block-start: 4px;
 		font: var(#{constants.$vvd-typography-base-condensed});
 		color: var(#{constants.$vvd-color-alert-500});
+	}
+
+	.dz-remove {
+		display: none;
+		top: 10px;
+		right: 10px;
+		position: inherit;
 	}
 }
 
