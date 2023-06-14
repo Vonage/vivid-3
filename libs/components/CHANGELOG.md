@@ -4,6 +4,19 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.17.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.16.1...vivid-v3.17.0) (2023-06-12)
+
+
+### Features
+
+* **checkbox:** cta connotation (VIV-1124) ([#1203](https://github.com/Vonage/vivid-3/issues/1203)) ([ba57146](https://github.com/Vonage/vivid-3/commit/ba57146f005bdfef31e7df64ab229fc992a46c49))
+* **select:** select fixed dropdown (VIV-1135) ([#1201](https://github.com/Vonage/vivid-3/issues/1201)) ([9fab89a](https://github.com/Vonage/vivid-3/commit/9fab89ab2f8999a2798ae335214396481a828653))
+
+
+### Bug Fixes
+
+* **components:** updated CSS for disabled & readonly (VIV-1114) ([#1187](https://github.com/Vonage/vivid-3/issues/1187)) ([4c7f150](https://github.com/Vonage/vivid-3/commit/4c7f150f3602c4acb06f9ef7b248767d055a8c9f))
+
 ## [3.16.1](https://github.com/Vonage/vivid-3/compare/vivid-v3.16.0...vivid-v3.16.1) (2023-06-07)
 
 
