@@ -463,7 +463,8 @@
 		"status": "alpha",
 		"markdown": "./libs/components/src/lib/file-picker/README.md",
 		"modules": [
-			"/assets/modules/components/file-picker/index.js"
+			"/assets/modules/components/file-picker/index.js",
+			"/assets/modules/components/button/index.js"
 		]
 	}
 ]

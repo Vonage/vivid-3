@@ -36,6 +36,7 @@ $low-ink-color: --_low-ink-color;
 	border: 1px dashed var(--vvd-color-neutral-400);
 	border-radius: 6px;
 	background-color: var(#{appearance.get-appearance-token(fill)});
+	font: var(#{constants.$vvd-typography-base});
 	color: var(--vvd-color-neutral-600);
 	min-block-size: var(#{variables.$file-picker-min-block-size}, 52px);
 	min-inline-size: var(#{variables.$file-picker-min-inline-size}, 400px);
@@ -43,10 +44,6 @@ $low-ink-color: --_low-ink-color;
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
-
-	.text {
-		font: var(#{constants.$vvd-typography-base});
-	}
 }
 
 .icon {
@@ -60,7 +57,7 @@ $low-ink-color: --_low-ink-color;
 
 	width: 90%;
 	padding: 8px 12px 8px 12px;
-	margin-top: 30px;
+	margin-top: 22px;
 	border-radius: 6px;
 	position: absolute;
 	top: var(#{variables.$file-picker-min-block-size}, 52px);
@@ -106,6 +103,8 @@ $low-ink-color: --_low-ink-color;
 	}
 
 	&.dz-success {
+		//background-color: var(#{constants.$vvd-color-neutral-50});
+
 		.dz-progress {
 			display: none;
 		}

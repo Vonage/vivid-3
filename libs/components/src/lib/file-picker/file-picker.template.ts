@@ -29,7 +29,9 @@ export const FilePickerTemplate: (
 		${when(x => x.label, html<FilePicker>`<label>${x => x.label}</label>`)}
 		<div class="control" ${ref('_dz')}>
 			<div class="dz-default dz-message">
-				${when(x => x.text, html`<div class="text">${x => x.text}</div>`)}
+				<slot> 
+					Drag & Drop files here
+				</slot>
 			</div>
 		</div>
 		${when(x => x.helperText?.length, getFeedbackTemplate('helper', context))}
