@@ -5,7 +5,7 @@
 	"projectType": "library",
 	"targets": {
 		"test": {
-			"executor": "@nrwl/jest:jest",
+			"executor": "@nx/jest:jest",
 			"outputs": ["{workspaceRoot}/coverage/libs/styles"],
 			"options": {
 				"jestConfig": "libs/styles/jest.config.ts",

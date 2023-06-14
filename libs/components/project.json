@@ -50,14 +50,14 @@
 			}
 		},
 		"lint": {
-			"executor": "@nrwl/linter:eslint",
+			"executor": "@nx/linter:eslint",
 			"outputs": ["{options.outputFile}"],
 			"options": {
 				"lintFilePatterns": ["libs/components/**/*.ts"]
 			}
 		},
 		"test": {
-			"executor": "@nrwl/jest:jest",
+			"executor": "@nx/jest:jest",
 			"outputs": ["{workspaceRoot}/coverage/libs/components"],
 			"options": {
 				"jestConfig": "libs/components/jest.config.cjs",
@@ -65,7 +65,7 @@
 			}
 		},
 		"build": {
-			"executor": "@nrwl/rollup:rollup",
+			"executor": "@nx/rollup:rollup",
 			"outputs": ["{options.outputPath}"],
 			"options": {
 				"entryFile": "libs/components/src/index.ts",
@@ -112,7 +112,7 @@
 			}
 		},
 		"serve": {
-			"executor": "@nrwl/web:rollup",
+			"executor": "@nx/web:rollup",
 			"outputs": ["{options.outputPath}"],
 			"options": {
 				"entryFile": "libs/components/src/index.ts",

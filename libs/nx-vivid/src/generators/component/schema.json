@@ -1,6 +1,5 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "cli": "nx",
   "$id": "vivid-component",
   "type": "object",
   "properties": {
@@ -20,5 +19,7 @@
       "default": true
     }
   },
-  "required": ["name"]
+  "required": [
+    "name"
+  ]
 }

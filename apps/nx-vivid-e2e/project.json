@@ -5,11 +5,12 @@
 	"sourceRoot": "apps/nx-vivid-e2e/src",
 	"targets": {
 		"e2e": {
-			"executor": "@nrwl/nx-plugin:e2e",
+			"executor": "@nx/jest:jest",
 			"options": {
-				"target": "nx-vivid:build",
-				"jestConfig": "apps/nx-vivid-e2e/jest.config.ts"
-			}
+				"jestConfig": "apps/nx-vivid-e2e/jest.config.ts",
+				"runInBand": true
+			},
+			"dependsOn": ["nx-vivid:build"]
 		}
 	},
 	"tags": [],
