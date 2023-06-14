@@ -61,6 +61,22 @@ describe('vwc-menu', () => {
 		});
 	});
 
+	describe('auto-dismiss', () => {
+		it('should set "open" to false when clicked outside', async () => {
+			element.open = true;
+			element.autoDismiss = true;
+
+			await elementUpdated(element);
+
+			document.body.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+
+			await elementUpdated(element);
+
+			expect(element.open)
+				.toEqual(false);
+		});
+	});
+
 	describe('submenu', () => {
 		it('should not be assigned to an explicit slot', async () => {
 			expect(element.slot).toBeFalsy();
@@ -205,12 +221,12 @@ describe('vwc-menu', () => {
 
 	it('should set and remove the aria-haspopup attribute on its anchor when it changes', async () => {
 		await setAnchor();
-		
+
 		element.anchor = 'anchor';
 		await elementUpdated(element);
 		const button = document.getElementById(element.anchor);
 		expect(button?.getAttribute('aria-haspopup')).toBe('menu');
-		
+
 		element.anchor = '';
 		await elementUpdated(element);
 		expect(button?.getAttribute('aria-haspopup')).toBeUndefined;

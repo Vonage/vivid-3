@@ -39,6 +39,18 @@ export class Menu extends FastMenu {
 	 */
 	@attr anchor?: string;
 
+	/**
+	 * indicates whether the menu will automatically close when
+	 * the user clicks outside the menu
+	 *
+	 * @public
+	 * HTML Attribute: auto-dismiss
+	 */
+	@attr({
+		mode: 'boolean',
+		attribute: 'auto-dismiss'
+	}) autoDismiss? = false;
+
 	anchorChanged(prevAnchor: string, newAnchor: string ) {
 		const prevAnchorEl = document.getElementById(prevAnchor);
 		const newAnchorEl = document.getElementById(newAnchor);
@@ -49,4 +61,20 @@ export class Menu extends FastMenu {
 	popupOpenChanged = () => {
 		this.open = (this._popup as Popup).open;
 	};
+
+	autoDismissChanged(prevAutoDismiss: boolean, newAutoDismiss: boolean) {
+		const dismissOnClickOutside = (e: MouseEvent) => {
+			const popup = (this._popup as Popup);
+			if (popup.open && !this.contains(e.target as HTMLElement)) {
+				popup.open = false;
+			}
+		};
+		if (prevAutoDismiss !== newAutoDismiss) {
+			if (newAutoDismiss) {
+				document.addEventListener('click', dismissOnClickOutside);
+			} else {
+				document.removeEventListener('click', dismissOnClickOutside);
+			}
+		}
+	}
 }
