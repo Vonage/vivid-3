@@ -19,6 +19,14 @@ export class FilePicker extends FoundationElement {
 	 */
 	@attr label?: string;
 
+	@attr({ attribute: 'max-files' }) maxFiles?: number;
+
+	@attr({ mode: 'fromView', attribute: 'max-file-size' }) maxFileSize: number = 256;
+
+	@attr({ mode: 'boolean', attribute: 'upload-multiple' }) uploadMultiple = false;
+
+	@attr({ attribute: 'accepted-files' }) acceptedFiles?: string;
+
 	filePicker!: Dropzone;
 
 	_dz!: HTMLElement;
@@ -34,9 +42,17 @@ export class FilePicker extends FoundationElement {
 		this.filePicker = new Dropzone(this._dz,
 			{
 				url: '/',
+				maxFiles: this.maxFiles,
+				maxFilesize: this.maxFileSize,
+				uploadMultiple: this.uploadMultiple,
+				acceptedFiles: this.acceptedFiles,
 				addRemoveLinks: true,
 			});
 
+		this.#addRemoveToButton();
+	}
+
+	#addRemoveToButton(): void {
 		this.filePicker.on('sending', file => {
 			const removeElement = file.previewElement.querySelector('.dz-remove');
 			if (removeElement instanceof HTMLElement) {

@@ -35,6 +35,48 @@ Add the `helper-text` to add some helper text below the file picker.
 ```html preview
 <vwc-file-picker helper-text="helper-text"></vwc-file-picker>
 ```
+### Max File Size
+
+Use the `max-file-size` attribute (or `maxFileSize` property) to define the maximum file size (in bytes) that is allowed to be uploaded.
+
+- Type: `number` | `string`
+- Default: `256`
+
+```html preview
+<vwc-file-picker helper-text="Max file zise is 0.1MB" max-file-size=0.1></vwc-file-picker>
+```
+
+### Max Files
+
+Use the `max-files` attribute (or `maxFiles` property) to define how many files this file picker handles. 
+
+- Type: `number` | `string`
+- Default: `undefined`
+
+```html preview
+<vwc-file-picker helper-text="Single file only" max-files=1></vwc-file-picker>
+```
+### Upload Multiple
+
+Use the `upload-multiple` attribute (or `uploadMultiple` property) to define whether to send multiple files in one request. In addition, you must add the [`max-files`](#max-files) attribute.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-file-picker helper-text="Upload multiple files" max-files="10" upload-multiple></vwc-file-picker>
+```
+
+### Accepted Files
+
+Use the `accepted-files` attribute (or `acceptedFiles` property) to define a comma separated list of accepted files types.
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-file-picker helper-text=".jpg, .jpeg, .png types only" accepted-files=".jpg, .jpeg, .png"></vwc-file-picker>
+```
 
 ## Slots
 
