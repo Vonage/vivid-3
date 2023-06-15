@@ -75,6 +75,40 @@ describe('vwc-menu', () => {
 			expect(element.open)
 				.toEqual(false);
 		});
+
+		it('should remove the listener on attribute change', async function () {
+			let spy1, spy2;
+			jest.spyOn(document, 'addEventListener').mockImplementation(function (_: string, cb: any) {
+				spy1 = cb;
+			});
+			jest.spyOn(document, 'removeEventListener').mockImplementation(function (_: string, cb: any) {
+				spy2 = cb;
+			});
+			element.open = true;
+			element.autoDismiss = true;
+			await elementUpdated(element);
+			element.autoDismiss = false;
+			await elementUpdated(element);
+
+			expect(spy1).toBe(spy2);
+		});
+
+		it('should remove the listener on destruction', async function () {
+			let spy1, spy2;
+			jest.spyOn(document, 'addEventListener').mockImplementation(function (_: string, cb: any) {
+				spy1 = cb;
+			});
+			jest.spyOn(document, 'removeEventListener').mockImplementation(function (_: string, cb: any) {
+				spy2 = cb;
+			});
+			element.open = true;
+			element.autoDismiss = true;
+			await elementUpdated(element);
+			element.remove();
+			await elementUpdated(element);
+
+			expect(spy1).toBe(spy2);
+		});
 	});
 
 	describe('submenu', () => {
