@@ -29,7 +29,7 @@ describe('vwc-file-picker', () => {
 	});
 
 	describe('label', function () {
-		it('should set a select label if label is set', async function () {
+		it('should set a file picker label if label is set', async function () {
 			const labelText = 'label';
 			element.label = labelText;
 			await elementUpdated(element);
@@ -64,7 +64,7 @@ describe('vwc-file-picker', () => {
 	});
 
 	describe('helper text', function () {
-		it('should render the helper text when attribute is set on select', async function () {
+		it('should render the helper text when attribute is set on file picker', async function () {
 			const helperTextElementWithoutText = element.shadowRoot?.querySelector('.helper-text');
 			const helperText = 'Helper Text';
 			element.helperText = helperText;
@@ -75,6 +75,42 @@ describe('vwc-file-picker', () => {
 				?.textContent
 				?.trim())
 				.toEqual(helperText);
+		});
+	});
+
+	describe('max files', function () {
+		it('should set maxFiles if it is set', async function () {
+			const maxFiles = 2;
+			element.maxFiles = maxFiles;
+			await elementUpdated(element);
+			expect(element?.filePicker.options.maxFiles).toEqual(maxFiles);
+		});
+	});
+
+	describe('max file size', function () {
+		it('should set maxFileSize if it is set', async function () {
+			const maxFileSize = 0.1;
+			element.maxFileSize = maxFileSize;
+			await elementUpdated(element);
+			expect(element?.filePicker.options.maxFilesize).toEqual(maxFileSize);
+		});
+	});
+
+	describe('upload multiple', function () {
+		it('should set uploadMultiple if it is set', async function () {
+			const uploadMultiple = true;
+			element.uploadMultiple = uploadMultiple;
+			await elementUpdated(element);
+			expect(element?.filePicker.options.uploadMultiple).toEqual(uploadMultiple);
+		});
+	});
+
+	describe('accepted files', function () {
+		it('should set acceptedFiles if it is set', async function () {
+			const acceptedFiles = '.jpg';
+			element.acceptedFiles = acceptedFiles;
+			await elementUpdated(element);
+			expect(element?.filePicker.options.acceptedFiles).toEqual(acceptedFiles);
 		});
 	});
 });

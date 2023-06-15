@@ -10,6 +10,11 @@ import { FormElementHelperText } from '../../shared/patterns';
  */
 
 export class FilePicker extends FoundationElement {
+
+	filePicker!: Dropzone;
+
+	_dz!: HTMLElement;
+
 	/**
 	 * Indicates the file picker's label.
 	 *
@@ -27,6 +32,10 @@ export class FilePicker extends FoundationElement {
 	 * HTML Attribute: max-files
 	 */
 	@attr({ attribute: 'max-files' }) maxFiles?: number;
+	maxFilesChanged(_oldValue: number, newValue: number): void {
+		if(!this.filePicker) return;
+		(this.filePicker.options).maxFiles = newValue;
+	}
 
 	/**
 	 * The max size that can be choosed
@@ -36,6 +45,10 @@ export class FilePicker extends FoundationElement {
 	 * HTML Attribute: max-file-size
 	 */
 	@attr({ mode: 'fromView', attribute: 'max-file-size' }) maxFileSize: number = 256;
+	maxFileSizeChanged(_oldValue: number, newValue: number): void {
+		if(!this.filePicker) return;
+		(this.filePicker.options).maxFilesize = newValue;
+	}
 
 	/**
 	 * If it is possible to upload multiple files
@@ -45,6 +58,10 @@ export class FilePicker extends FoundationElement {
 	 * HTML Attribute: upload-multiple
 	 */
 	@attr({ mode: 'boolean', attribute: 'upload-multiple' }) uploadMultiple = false;
+	uploadMultipleChanged(_oldValue: boolean, newValue: boolean): void {
+		if(!this.filePicker) return;
+		(this.filePicker.options).uploadMultiple = newValue;
+	}
 
 	/**
 	 * List of accepted files types
@@ -54,10 +71,10 @@ export class FilePicker extends FoundationElement {
 	 * HTML Attribute: accepted-files
 	 */
 	@attr({ attribute: 'accepted-files' }) acceptedFiles?: string;
-
-	filePicker!: Dropzone;
-
-	_dz!: HTMLElement;
+	acceptedFilesChanged(_oldValue: string, newValue: string): void {
+		if(!this.filePicker) return;
+		(this.filePicker.options).acceptedFiles = newValue;
+	}
 
 	constructor() {
 		super();
