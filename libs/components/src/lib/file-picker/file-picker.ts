@@ -19,12 +19,40 @@ export class FilePicker extends FoundationElement {
 	 */
 	@attr label?: string;
 
+	/**
+	 * The max files that can be choosed
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: max-files
+	 */
 	@attr({ attribute: 'max-files' }) maxFiles?: number;
 
+	/**
+	 * The max size that can be choosed
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: max-file-size
+	 */
 	@attr({ mode: 'fromView', attribute: 'max-file-size' }) maxFileSize: number = 256;
 
+	/**
+	 * If it is possible to upload multiple files
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: upload-multiple
+	 */
 	@attr({ mode: 'boolean', attribute: 'upload-multiple' }) uploadMultiple = false;
 
+	/**
+	 * List of accepted files types
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: accepted-files
+	 */
 	@attr({ attribute: 'accepted-files' }) acceptedFiles?: string;
 
 	filePicker!: Dropzone;

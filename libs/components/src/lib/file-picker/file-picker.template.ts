@@ -5,7 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { getFeedbackTemplate } from '../shared/patterns';
+import { getFeedbackTemplate } from '../../shared/patterns';
 import type { FilePicker } from './file-picker';
 
 const getClasses = (_: FilePicker) =>
@@ -25,7 +25,7 @@ export const FilePickerTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<FilePicker> = (context: ElementDefinitionContext) => {
 	return html<FilePicker>`
-	<div class="${getClasses}">
+	<div class="${getClasses}" aria-label="${x => x.ariaLabel ? x.ariaLabel : x.label}">
 		${when(x => x.label, html<FilePicker>`<label>${x => x.label}</label>`)}
 		<div class="control" ${ref('_dz')}>
 			<div class="dz-default dz-message">
