@@ -1,7 +1,7 @@
 import { applyMixins, TextArea as FoundationElement } from '@microsoft/fast-foundation';
 import {attr} from '@microsoft/fast-element';
-import {FormElement, FormElementCharCount, FormElementHelperText, formElements, FormElementSuccessText} from '../../shared/patterns';
-import {ErrorText, errorText} from '../../shared/patterns';
+import type {ErrorText, FormElement} from '../../shared/patterns';
+import {FormElementCharCount, FormElementHelperText, formElements, FormElementSuccessText, errorText} from '../../shared/patterns';
 
 export type TextAreaWrap = 'hard' | 'soft' | 'off';
 

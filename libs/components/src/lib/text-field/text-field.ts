@@ -2,8 +2,8 @@ import {applyMixins, TextField as FoundationTextfield} from '@microsoft/fast-fou
 import {attr} from '@microsoft/fast-element';
 import type {Appearance, Shape} from '../enums';
 import {AffixIcon, FormElementCharCount, FormElementHelperText, FormElementSuccessText} from '../../shared/patterns';
-import {FormElement, formElements} from '../../shared/patterns';
-import {ErrorText, errorText} from '../../shared/patterns';
+import {errorText, formElements} from '../../shared/patterns';
+import type {ErrorText, FormElement} from '../../shared/patterns';
 
 export type TextFieldAppearance = Extract<Appearance, Appearance.Outlined | Appearance.Ghost>;
 export type TextFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;

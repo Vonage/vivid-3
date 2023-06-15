@@ -9,8 +9,8 @@ import {
 	getHeaderDescendantGridCell,
 	getNextFocusableGridElement,
 	isCellOrHeader,
-	PredefindKeys,
 } from './helpers/calendar.keyboard-interactions';
+import type{ 	PredefindKeys, } from './helpers/calendar.keyboard-interactions';
 import { getEventContext } from './helpers/calendar.event-context';
 
 

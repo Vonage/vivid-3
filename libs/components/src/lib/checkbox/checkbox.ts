@@ -2,12 +2,12 @@ import {applyMixins, Checkbox as FoundationCheckbox} from '@microsoft/fast-found
 import {attr} from '@microsoft/fast-element';
 import type {Connotation} from '../enums.js';
 import {
-	FormElement,
+	errorText,
 	FormElementHelperText,
 	formElements,
 	FormElementSuccessText,
 } from '../../shared/patterns';
-import {ErrorText, errorText} from '../../shared/patterns';
+import type {FormElement, ErrorText} from '../../shared/patterns';
 
 
 export const keySpace: ' ' = ' ' as const;
