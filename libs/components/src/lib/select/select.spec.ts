@@ -129,7 +129,7 @@ describe('vwc-select', () => {
 	});
 
 	describe('select icon', () => {
-		it('should not have the has-icon class by default', async () => {
+		it('should initialize without the "has-icon" class', async () => {
 			expect(getControlElement(element).classList.contains('has-icon')).toBe(false);
 		});
 
@@ -149,7 +149,7 @@ describe('vwc-select', () => {
 			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
 		});
 
-		it('should add has-meta class if the icon slot is occupied', async () => {
+		it('should add has-icon class if the icon slot is occupied', async () => {
 			const slotted = document.createElement('div');
 			slotted.slot = 'icon';
 			element.appendChild(slotted);
