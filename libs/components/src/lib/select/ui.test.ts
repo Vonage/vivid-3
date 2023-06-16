@@ -9,7 +9,6 @@ import {
 
 const components = ['select', 'option', 'badge'];
 
-
 test('should show the component', async ({ page }: { page: Page }) => {
 
 	const template = `

@@ -113,6 +113,54 @@ describe('vwc-tooltip', () => {
 	});
 
 	describe('anchor', () => {
+
+		describe('observer cleanup', function () {
+			let disconnectionFunc: any;
+			let mutationObserverSpy: any;
+			beforeEach(function () {
+				const mockMutationObserver = jest.fn(function(this: any, callback) {
+					this.observe = jest.fn();
+					disconnectionFunc = this.disconnect = jest.fn();
+					callback();
+				});
+				mutationObserverSpy = jest.spyOn(window, 'MutationObserver')
+					.mockImplementation(mockMutationObserver as any);
+			});
+
+			afterEach(function () {
+				mutationObserverSpy.mockRestore();
+			});
+
+			it('should remove observer when element is removed from the DOM', async function () {
+				element.anchor = 'nonExistentAnchor';
+				element.remove();
+				expect(disconnectionFunc).toHaveBeenCalled();
+			});
+
+			it('should remove observer when anchor changes', async function () {
+				element.anchor = 'nonExistentAnchor';
+				const cachedDisconnectionFunc = disconnectionFunc;
+				element.anchor = 'anotherNonExistentAnchor';
+				expect(cachedDisconnectionFunc).toHaveBeenCalled();
+			});
+		});
+
+		it('should accept an anchor before anchor element is added to the DOM', async () => {
+			const newAnchor = document.createElement('vwc-button');
+			newAnchor.id = 'anchorButton2';
+			element.anchor = 'anchorButton2';
+
+			element.parentElement?.appendChild(newAnchor);
+
+			await elementUpdated(element);
+
+			fireEvent(newAnchor, new MouseEvent('mouseover', {bubbles: true}));
+			await elementUpdated(element);
+
+			expect(element.open).toEqual(true);
+			newAnchor.remove();
+		});
+
 		it('should set the anchor on the popup by id', async function () {
 			const anchorEl = await setAnchorInDOM();
 			const id = 'anchor';
@@ -167,3 +215,5 @@ describe('vwc-tooltip', () => {
 		return anchorEl;
 	}
 });
+
+//TODO:: test for removal of observer when removed from DOM

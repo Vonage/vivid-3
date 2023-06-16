@@ -80,6 +80,24 @@ describe('data grid integration tests', () => {
 
 	describe('selectionMode', function () {
 
+		it('should remove aria-selected when "none" is set initially', async function () {
+			element = (await fixture(
+				`<${COMPONENT_TAG} selection-mode="none">
+											<vwc-data-grid-row aria-selected="true">
+												<vwc-data-grid-cell aria-selected="true">Cell 1</vwc-data-grid-cell>
+												<vwc-data-grid-cell aria-selected="false">Cell 2</vwc-data-grid-cell>
+											</vwc-data-grid-row>
+											<vwc-data-grid-row aria-selected="false">
+												<vwc-data-grid-cell aria-selected="true">Cell 1</vwc-data-grid-cell>
+												<vwc-data-grid-cell aria-selected="false">Cell 2</vwc-data-grid-cell>
+											</vwc-data-grid-row>
+										</${COMPONENT_TAG}>`
+			)) as DataGrid;
+			await elementUpdated(element);
+			const ariaSelectedExists = element.querySelectorAll('[aria-selected]').length > 0;
+			expect(ariaSelectedExists).toEqual(false);
+		});
+
 		describe('cell-selection', function () {
 			let cell: HTMLElement;
 
@@ -236,6 +254,20 @@ describe('data grid integration tests', () => {
 				expect(isElementSelected(cell1)).toEqual(true);
 				expect(isElementSelected(cell2)).toEqual(true);
 			});
+
+			it('should leave aria-selected value to cells with aria-selected on init', async function () {
+				element = (await fixture(
+					`<${COMPONENT_TAG} selection-mode="single-cell">
+											<vwc-data-grid-row>
+												<vwc-data-grid-cell aria-selected="true">Cell 1</vwc-data-grid-cell>
+												<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
+											</vwc-data-grid-row>
+										</${COMPONENT_TAG}>`
+				)) as DataGrid;
+				await elementUpdated(element);
+				const cell = element.querySelector('vwc-data-grid-cell') as HTMLElement;
+				expect(cell.getAttribute('aria-selected')).toEqual('true');
+			});
 		});
 
 		describe('row selection', () => {
@@ -325,16 +357,18 @@ describe('data grid integration tests', () => {
 					expect(row2.getAttribute('aria-selected')).toEqual('true');
 				});
 
-			it('should set selected attribute on cells', async () => {
-				const row = getRow(1);
-				row.ariaSelected = 'true';
+			it('should leave aria-selected value to rows on init', async function () {
+				element = (await fixture(
+					`<${COMPONENT_TAG} selection-mode="single-row">
+											<vwc-data-grid-row aria-selected="true">
+												<vwc-data-grid-cell>Cell 1</vwc-data-grid-cell>
+												<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
+											</vwc-data-grid-row>
+										</${COMPONENT_TAG}>`
+				)) as DataGrid;
 				await elementUpdated(element);
-
-				const allCellsSelected = Array.from(row.querySelectorAll('[role="gridcell"]'))
-					.reduce((acc, child) => {
-						return acc && child.hasAttribute('selected');
-					}, true);
-				expect(allCellsSelected).toEqual(true);
+				const row = element.querySelector('vwc-data-grid-row') as HTMLElement;
+				expect(row.getAttribute('aria-selected')).toEqual('true');
 			});
 		});
 	});
@@ -351,4 +385,3 @@ function isElementSelected(element: HTMLElement): boolean {
 // TODO:: header cell with sort
 // TODO:: add sorting and filtering examples
 // TODO:: test keyboard navigation
-// TODO:: add aria-multiselectable to grid if multi selection is enabled
