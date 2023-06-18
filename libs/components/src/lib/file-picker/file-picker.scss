@@ -55,8 +55,8 @@ $low-ink-color: --_low-ink-color;
 	$start: var(#{constants.$vvd-color-information-200});
 	$end: var(#{constants.$vvd-color-cta-600});
 
-	border-radius: 6px;
 	display: flex;
+	border-radius: 6px;
 	inline-size: 100%;
 
 	.dz-success-mark,
@@ -124,11 +124,11 @@ $low-ink-color: --_low-ink-color;
 	}
 
 	.dz-remove {
-		margin-left: auto;
 		position: inherit;
 		top: 10px;
 		right: 10px;
 		display: none;
+		margin-left: auto;
 	}
 }
 
@@ -144,6 +144,6 @@ strong {
 .preview-list {
 	display: flex;
 	flex-direction: column;
-	gap: 24px;
 	margin-top: 12px;
+	gap: 24px;
 }
