@@ -114,6 +114,11 @@ $low-ink-color: --_low-ink-color;
 	}
 }
 
+.icon {
+	display: flex;
+	flex-shrink: 0;
+}
+
 
 ::part(popup-base) {
 	inline-size: max-content;
