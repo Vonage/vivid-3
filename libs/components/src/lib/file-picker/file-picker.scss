@@ -24,7 +24,7 @@ $low-ink-color: --_low-ink-color;
 	flex-direction: column;
 }
 
-.control {
+.dz-default {
 	@include appearance.appearance;
 	@include connotation.connotation(file-picker);
 
@@ -55,12 +55,9 @@ $low-ink-color: --_low-ink-color;
 	$start: var(#{constants.$vvd-color-information-200});
 	$end: var(#{constants.$vvd-color-cta-600});
 
-	position: absolute;
-	top: var(#{variables.$file-picker-min-block-size}, 52px);
-	width: 90%;
-	padding: 8px 12px;
-	margin-top: 22px;
 	border-radius: 6px;
+	display: flex;
+	inline-size: 100%;
 
 	.dz-success-mark,
 	.dz-error-mark,
@@ -127,6 +124,7 @@ $low-ink-color: --_low-ink-color;
 	}
 
 	.dz-remove {
+		margin-left: auto;
 		position: inherit;
 		top: 10px;
 		right: 10px;
@@ -141,4 +139,11 @@ $low-ink-color: --_low-ink-color;
 
 strong {
 	font-weight: normal;
+}
+
+.preview-list {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	margin-top: 12px;
 }

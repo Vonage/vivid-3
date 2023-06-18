@@ -27,14 +27,13 @@ export const FilePickerTemplate: (
 	return html<FilePicker>`
 	<div class="${getClasses}" aria-label="${x => x.ariaLabel ? x.ariaLabel : x.label}">
 		${when(x => x.label, html<FilePicker>`<label>${x => x.label}</label>`)}
-		<div class="control" ${ref('_dz')}>
-			<div class="dz-default dz-message">
-				<slot> 
-					Drag & Drop files here
-				</slot>
-			</div>
+		<div class="dz-default dz-message" ${ref('_dz')}>
+			<slot> 
+				Drag & Drop files here
+			</slot>
 		</div>
 		${when(x => x.helperText?.length, getFeedbackTemplate('helper', context))}
+		<div class='preview-list' ${ref('previewList')}></div>
 	</div>
 	`;
 };

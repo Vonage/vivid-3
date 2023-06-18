@@ -14,6 +14,7 @@ export class FilePicker extends FoundationElement {
 	filePicker!: Dropzone;
 
 	_dz!: HTMLElement;
+	previewList!: HTMLDivElement;
 
 	/**
 	 * Indicates the file picker's label.
@@ -105,6 +106,7 @@ export class FilePicker extends FoundationElement {
 				removeElement.innerHTML =
 					"<vwc-button icon='close-circle-line' appearance='ghost'></vwc-button>";
 			}
+			file.previewElement?.parentNode?.removeChild(file.previewElement);
 		});
 
 		this.filePicker.on('complete', file => {
@@ -114,6 +116,7 @@ export class FilePicker extends FoundationElement {
 				removeElement.innerHTML =
 					"<vwc-button icon='delete-line' appearance='ghost'></vwc-button>";
 			}
+			this.previewList.appendChild(file.previewElement);
 		});
 	}
 
