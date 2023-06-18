@@ -35,4 +35,4 @@ jobs:
         with:
           project: vivid
           root: dist/apps/docs
-          entrypoint: https://deno.land/std@0.135.0/http/file_server.ts
+          entrypoint: https://deno.land/std/http/file_server.ts
