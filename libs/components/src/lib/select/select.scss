@@ -89,6 +89,11 @@ $low-ink-color: --_low-ink-color;
 
 }
 
+.icon {
+	display: flex;
+	flex-shrink: 0;
+}
+
 .selected-value {
 	display: flex;
 	overflow: hidden;
@@ -112,11 +117,6 @@ $low-ink-color: --_low-ink-color;
 	.control.has-meta & {
 		padding-inline-end: 8px;
 	}
-}
-
-.icon {
-	display: flex;
-	flex-shrink: 0;
 }
 
 
