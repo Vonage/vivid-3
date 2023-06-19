@@ -16,10 +16,9 @@
 	display: flex;
 	overflow: hidden;
 	flex-flow: column;
-	block-size: inherit;
+	block-size: 100%;
 	border-radius: inherit;
 	color: var(#{constants.$vvd-color-canvas-text});
-	block-size: 100%;
 }
 
 .main-content {
