@@ -52,7 +52,7 @@ export default [['./apps/docs/assets/bundled-scripts/live-sample.js', 'vivid-com
 			dir: DIRS[index],
 			format: 'esm',
 			entryFileNames: (chunkInfo) => {
-				if (chunkInfo.name === 'vivid-components') {
+				if (chunkInfo.name.includes('vivid-components')) {
 					return 'vivid-components.js';
 				}
 				return `${chunkInfo.name}.js`;
