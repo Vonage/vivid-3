@@ -104,11 +104,6 @@ export class FilePicker extends FoundationElement {
 
 	#addRemoveToButton = () => {
 		this.filePicker.on('sending', file => {
-			if (file && file.previewElement && file.previewElement.parentNode) {
-				file.previewElement.parentNode.removeChild(file.previewElement);
-				this.previewList.appendChild(file.previewElement);
-			}
-
 			this.#changeRemoveElement(file,
 				"<vwc-button icon='close-circle-line' appearance='ghost' size='condensed'></vwc-button>");
 		});
@@ -120,6 +115,11 @@ export class FilePicker extends FoundationElement {
 	};
 
 	#changeRemoveElement(file: any, innerHTML: string): void {
+		if (file && file.previewElement && file.previewElement.parentNode) {
+			file.previewElement.parentNode.removeChild(file.previewElement);
+			this.previewList.appendChild(file.previewElement);
+		}
+		
 		const removeElement = file.previewElement.querySelector('.dz-remove');
 		if (removeElement instanceof HTMLElement) {
 			removeElement.style.display = 'inline';
