@@ -3,8 +3,11 @@ import terser from '@rollup/plugin-terser';
 import path from "path";
 import fs from "fs";
 import virtual from "@rollup/plugin-virtual";
+import replace from "@rollup/plugin-replace";
 
 const EXCLUDED_FOLDERS = ['lib', 'styles'];
+const componentsFolder = path.join(__dirname, '../../dist/libs/components');
+
 function getFoldersInAFolder(workingFolder = './src/lib/') {
 	const folders = [];
 	const testsFolder = path.join(__dirname, workingFolder);
@@ -16,6 +19,11 @@ function getFoldersInAFolder(workingFolder = './src/lib/') {
 		}
 	});
 	return folders;
+}
+function getVividVersion() {
+	const packageJson = fs.readFileSync(path.join(componentsFolder, 'package.json'), 'utf8');
+	const packageObject = JSON.parse(packageJson);
+	return packageObject.version;
 }
 const components = getFoldersInAFolder('../../dist/libs/components');
 
@@ -31,22 +39,25 @@ const importsFile = input.reduce((imports, inputPath) => {
 	imports += `import '${inputPath}';\n`;
 	return imports;
 }, '');
-
 const virtualPlugin = virtual({
 	"vivid-components": importsFile
 });
 
-export default {
-	input: ['./apps/docs/assets/bundled-scripts/live-sample.js', 'vivid-components'],
-	output: {
-		dir: './dist/apps/docs/assets/scripts/',
-		format: 'esm',
-		entryFileNames: (chunkInfo) => {
-			if (chunkInfo.name === 'live-sample') {
-				return 'live-sample.js';
+const DIRS = ['./dist/apps/docs/assets/scripts/', './dist/apps/docs'];
+export default [['./apps/docs/assets/bundled-scripts/live-sample.js', 'vivid-components'],
+	'./apps/docs/assets/bundled-scripts/sw.js'].map((input, index) => {
+	return {
+		input,
+		output: {
+			dir: DIRS[index],
+			format: 'esm',
+			entryFileNames: (chunkInfo) => {
+				if (chunkInfo.name === 'vivid-components') {
+					return 'vivid-components.js';
+				}
+				return `${chunkInfo.name}.js`;
 			}
-			return 'vivid-components.js';
-		}
-	},
-	plugins: [virtualPlugin, nodeResolve(), terser()]
-};
+		},
+		plugins: [virtualPlugin, nodeResolve(), terser(), replace({'SW_VERSION': getVividVersion()})]
+	}
+});
