@@ -109,17 +109,24 @@ export class FilePicker extends FoundationElement {
 		});
 
 		this.filePicker.on('complete', file => {
-			this.#changeRemoveElement(file,
-				"<vwc-button icon='delete-line' appearance='ghost' size='condensed'></vwc-button>");
+			if (file.status === Dropzone.ERROR) {
+				this.#changeRemoveElement(file,
+					"<vwc-button icon='delete-line' appearance='ghost' size='condensed' connotation='alert'></vwc-button>");
+			} else {
+				this.#changeRemoveElement(file,
+					"<vwc-button icon='delete-line' appearance='ghost' size='condensed'></vwc-button>");
+			}
 		});
 	};
 
 	#changeRemoveElement(file: any, innerHTML: string): void {
-		if (file && file.previewElement && file.previewElement.parentNode) {
-			file.previewElement.parentNode.removeChild(file.previewElement);
-			this.previewList.appendChild(file.previewElement);
+		if (file && file.previewElement) {
+			if (file.previewElement.parentNode && file.previewElement.parentNode !== this.previewList) {
+				file.previewElement.parentNode.removeChild(file.previewElement);
+				this.previewList.appendChild(file.previewElement);
+			}
 		}
-		
+
 		const removeElement = file.previewElement.querySelector('.dz-remove');
 		if (removeElement instanceof HTMLElement) {
 			removeElement.style.display = 'inline';
