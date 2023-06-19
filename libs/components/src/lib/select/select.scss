@@ -89,6 +89,11 @@ $low-ink-color: --_low-ink-color;
 
 }
 
+.icon {
+	display: flex;
+	flex-shrink: 0;
+}
+
 .selected-value {
 	display: flex;
 	overflow: hidden;

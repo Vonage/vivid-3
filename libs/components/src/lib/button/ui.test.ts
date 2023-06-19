@@ -1,11 +1,11 @@
-import * as path from 'path';
 import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import type { ProgressRing } from '../progress-ring/progress-ring';
 import {
-	extractHTMLBlocksFromReadme,
 	loadComponents,
 	loadTemplate
 } from '../../visual-tests/visual-tests-utils.js';
+import type { Button } from './button';
 
 const components = ['button'];
 test('should show the component', async ({ page }: { page: Page }) => {
@@ -84,6 +84,17 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-button appearance='outlined' label='outlined' disabled></vwc-button>
 	</div>
 	<div style="margin: 5px;">
+		<vwc-button appearance="ghost" label="ghost" pending></vwc-button>
+		<vwc-button appearance="filled" label="filled" pending></vwc-button>
+		<vwc-button appearance="outlined" label="outlined" pending></vwc-button>
+		<vwc-button appearance="filled" label="super-condensed" size="super-condensed" pending></vwc-button>
+	</div>
+	<div style="margin: 5px;">
+		<vwc-button appearance="ghost" icon="check-line" label="ghost" pending></vwc-button>
+		<vwc-button appearance="filled" icon="check-line" label="filled" pending></vwc-button>
+		<vwc-button appearance="outlined" icon="check-line" label="outlined" pending></vwc-button>
+	</div>
+	<div style="margin: 5px;">
 		<vwc-button connotation='cta' shape='pill' icon='microphone-solid' aria-label="Mute"></vwc-button>
 	</div>
 	<div style="margin: 5px;">
@@ -112,6 +123,14 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	});
 
 	const testWrapper = await page.$('#wrapper');
+
+	await page.evaluate(() => {
+		const pendingButtons = (document.querySelectorAll('vwc-button[pending]') as NodeListOf<Button>);
+		pendingButtons.forEach(button => {
+			const indicator = button.shadowRoot?.querySelector('vwc-progress-ring') as ProgressRing;
+			if (indicator) indicator.value = 66;
+		});
+	});
 
 	await page.waitForLoadState('networkidle');
 
