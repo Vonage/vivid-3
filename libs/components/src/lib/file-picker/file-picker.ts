@@ -102,28 +102,29 @@ export class FilePicker extends FoundationElement {
 		this.#addRemoveToButton();
 	}
 
-	#addRemoveToButton(): void {
+	#addRemoveToButton = () => {
 		this.filePicker.on('sending', file => {
-			const removeElement = file.previewElement.querySelector('.dz-remove');
-			if (removeElement instanceof HTMLElement) {
-				removeElement.style.display = 'inline';
-				removeElement.innerHTML =
-					"<vwc-button icon='close-circle-line' appearance='ghost' size='condensed'></vwc-button>";
-			}
 			if (file && file.previewElement && file.previewElement.parentNode) {
 				file.previewElement.parentNode.removeChild(file.previewElement);
+				this.previewList.appendChild(file.previewElement);
 			}
+
+			this.#changeRemoveElement(file,
+				"<vwc-button icon='close-circle-line' appearance='ghost' size='condensed'></vwc-button>");
 		});
 
 		this.filePicker.on('complete', file => {
-			const removeElement = file.previewElement.querySelector('.dz-remove');
-			if (removeElement instanceof HTMLElement) {
-				removeElement.style.display = 'inline';
-				removeElement.innerHTML =
-					"<vwc-button icon='delete-line' appearance='ghost' size='condensed'></vwc-button>";
-			}
-			this.previewList.appendChild(file.previewElement);
+			this.#changeRemoveElement(file,
+				"<vwc-button icon='delete-line' appearance='ghost' size='condensed'></vwc-button>");
 		});
+	};
+
+	#changeRemoveElement(file: any, innerHTML: string): void {
+		const removeElement = file.previewElement.querySelector('.dz-remove');
+		if (removeElement instanceof HTMLElement) {
+			removeElement.style.display = 'inline';
+			removeElement.innerHTML = innerHTML;
+		}
 	}
 
 	chooseFile(): void {

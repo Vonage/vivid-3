@@ -73,7 +73,7 @@ $low-ink-color: --_low-ink-color;
 		}
 	}
 
-	&:not(.dz-success){
+	&:not(.dz-success) {
 		.dz-size {
 			display: none;
 		}
@@ -104,7 +104,6 @@ $low-ink-color: --_low-ink-color;
 		margin-block-start: 4px;
 	}
 
-
 	&.dz-success {
 		.dz-progress,
 		.dz-error-message {
@@ -121,8 +120,6 @@ $low-ink-color: --_low-ink-color;
 		}
 	}
 
-
-
 	.dz-remove,
 	.dz-error-mark {
 		display: none;
@@ -137,8 +134,10 @@ $low-ink-color: --_low-ink-color;
 	#{$low-ink-color}: var(#{constants.$vvd-color-neutral-600});
 }
 
-
 .preview-list {
+	&:empty {
+		display: none;
+	}
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
