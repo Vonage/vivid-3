@@ -172,7 +172,10 @@ The number of lines is controlled by css variable `--subtitle-line-clamp`.
 
 ## Use case
 ```html preview
-<vwc-layout>
+<style>
+.wrapper{--layout-grid-template-columns: repeat(var(--_auto-sizing), minmax(150px, 1fr));}
+</style>
+<vwc-layout class="wrapper">
 <vwc-card headline="Cards in layout" subtitle="subtitle" icon="chat-line" text="here is the card text">
   <div slot="media" style="height: 150px; width: 100%; background-color: rebeccapurple;"></div>
   <vwc-button slot="meta" icon="more-vertical-solid" appearance="ghost"></vwc-button>
