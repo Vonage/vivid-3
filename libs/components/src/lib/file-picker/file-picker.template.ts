@@ -27,8 +27,8 @@ export const FilePickerTemplate: (
 	return html<FilePicker>`
 	<div class="${getClasses}" aria-label="${x => x.ariaLabel ? x.ariaLabel : x.label}">
 		${when(x => x.label, html<FilePicker>`<label>${x => x.label}</label>`)}
-		<div class="dz-default dz-message" ${ref('_dz')}>
-			<slot> 
+		<div class="control dz-default dz-message" ${ref('_dz')}>
+			<slot class="main">
 				Drag & Drop files here
 			</slot>
 		</div>

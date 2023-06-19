@@ -108,7 +108,7 @@ export class FilePicker extends FoundationElement {
 			if (removeElement instanceof HTMLElement) {
 				removeElement.style.display = 'inline';
 				removeElement.innerHTML =
-					"<vwc-button icon='close-circle-line' appearance='ghost'></vwc-button>";
+					"<vwc-button icon='close-circle-line' appearance='ghost' size='condensed'></vwc-button>";
 			}
 			if (file && file.previewElement && file.previewElement.parentNode) {
 				file.previewElement.parentNode.removeChild(file.previewElement);
@@ -120,7 +120,7 @@ export class FilePicker extends FoundationElement {
 			if (removeElement instanceof HTMLElement) {
 				removeElement.style.display = 'inline';
 				removeElement.innerHTML =
-					"<vwc-button icon='delete-line' appearance='ghost'></vwc-button>";
+					"<vwc-button icon='delete-line' appearance='ghost' size='condensed'></vwc-button>";
 			}
 			this.previewList.appendChild(file.previewElement);
 		});
