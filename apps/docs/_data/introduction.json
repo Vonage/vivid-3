@@ -6,24 +6,14 @@
 	},
 	{
 		"title": "advanced",
-		"markdown": "./docs/getting-started/advanced.md",
-		"modules": [
-			"/assets/modules/components/note/index.js"
-		]
+		"markdown": "./docs/getting-started/advanced.md"
 	},
 	{
 		"title": "fonts-and-tokens",
-		"markdown": "./docs/getting-started/fonts-and-tokens.md",
-		"modules": [
-			"/assets/modules/components/note/index.js"
-		]
+		"markdown": "./docs/getting-started/fonts-and-tokens.md"
 	},
 	{
 		"title": "vivid-2-migration",
-		"markdown": "./docs/getting-started/migration.md",
-		"modules": [
-			"/assets/modules/components/note/index.js",
-			"/assets/modules/components/accordion/index.js"
-		]
+		"markdown": "./docs/getting-started/migration.md"
 	}
 ]
