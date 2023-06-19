@@ -1,4 +1,4 @@
-import { DataGrid as FoundationElement } from '@microsoft/fast-foundation';
+import { DataGrid as FoundationDataGrid } from '@microsoft/fast-foundation';
 import {attr, DOM} from '@microsoft/fast-element';
 import type {DataGridCell} from './data-grid-cell';
 import type {DataGridRow} from './data-grid-row';
@@ -27,7 +27,7 @@ export type DataGridSelectionMode = ValueOf<typeof DataGridSelectionMode>;
  * @public
  * @slot - Default slot.
  */
-export class DataGrid extends FoundationElement {
+export class DataGrid extends FoundationDataGrid {
 	@attr({attribute: 'selection-mode'})
 		selectionMode?: DataGridSelectionMode;
 
