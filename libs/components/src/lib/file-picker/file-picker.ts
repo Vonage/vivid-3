@@ -34,8 +34,9 @@ export class FilePicker extends FoundationElement {
 	 */
 	@attr({ attribute: 'max-files' }) maxFiles?: number;
 	maxFilesChanged(_oldValue: number, newValue: number): void {
-		if(!this.filePicker) return;
-		(this.filePicker.options).maxFiles = newValue;
+		if (this.filePicker) {
+			(this.filePicker.options).maxFiles = newValue;
+		}
 	}
 
 	/**
@@ -47,8 +48,9 @@ export class FilePicker extends FoundationElement {
 	 */
 	@attr({ mode: 'fromView', attribute: 'max-file-size' }) maxFileSize: number = 256;
 	maxFileSizeChanged(_oldValue: number, newValue: number): void {
-		if(!this.filePicker) return;
-		(this.filePicker.options).maxFilesize = newValue;
+		if (this.filePicker) {
+			(this.filePicker.options).maxFilesize = newValue;
+		}
 	}
 
 	/**
@@ -60,8 +62,9 @@ export class FilePicker extends FoundationElement {
 	 */
 	@attr({ mode: 'boolean', attribute: 'upload-multiple' }) uploadMultiple = false;
 	uploadMultipleChanged(_oldValue: boolean, newValue: boolean): void {
-		if(!this.filePicker) return;
-		(this.filePicker.options).uploadMultiple = newValue;
+		if (this.filePicker) {
+			(this.filePicker.options).uploadMultiple = newValue;
+		}
 	}
 
 	/**
@@ -73,8 +76,9 @@ export class FilePicker extends FoundationElement {
 	 */
 	@attr({ attribute: 'accepted-files' }) acceptedFiles?: string;
 	acceptedFilesChanged(_oldValue: string, newValue: string): void {
-		if(!this.filePicker) return;
-		(this.filePicker.options).acceptedFiles = newValue;
+		if (this.filePicker) {
+			(this.filePicker.options).acceptedFiles = newValue;
+		}
 	}
 
 	constructor() {
@@ -106,7 +110,9 @@ export class FilePicker extends FoundationElement {
 				removeElement.innerHTML =
 					"<vwc-button icon='close-circle-line' appearance='ghost'></vwc-button>";
 			}
-			file.previewElement?.parentNode?.removeChild(file.previewElement);
+			if (file && file.previewElement && file.previewElement.parentNode) {
+				file.previewElement.parentNode.removeChild(file.previewElement);
+			}
 		});
 
 		this.filePicker.on('complete', file => {
@@ -121,7 +127,9 @@ export class FilePicker extends FoundationElement {
 	}
 
 	chooseFile(): void {
-		this.filePicker?.hiddenFileInput?.click();
+		if (this.filePicker && this.filePicker.hiddenFileInput) {
+			this.filePicker.hiddenFileInput.click();
+		}
 	}
 }
 
