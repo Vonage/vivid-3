@@ -71,73 +71,53 @@
 
     <link rel="stylesheet" href="{{ '/assets/styles/core/all.css' | url }}">
 
-	<script type="module" src="{{ '/assets/modules/components/layout/index.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/modules/components/side-drawer/index.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/modules/components/nav/index.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/modules/components/nav-item/index.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/modules/components/nav-disclosure/index.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/modules/components/button/index.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/modules/components/fab/index.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/modules/components/icon/index.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/modules/components/card/index.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/modules/components/header/index.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/modules/components/action-group/index.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/modules/components/popup/index.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/modules/components/listbox/index.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/modules/components/option/index.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/modules/components/tooltip/index.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/modules/components/note/index.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/modules/components/text-field/index.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/modules/components/tabs/index.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/modules/components/tab/index.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/modules/components/tab-panel/index.js' | url}}"></script>
+    <script type="module" src="{{ '/assets/scripts/vivid-components.js' | url}}"></script>
 
 		{% block header %}{% endblock %}
 
-    {% include "prefetches.njk" %}
-
     <script type="module" src="{{ '/assets/scripts/live-sample.js' | url}}"></script>
+    <script src="{{ '/assets/scripts/cache-assets.js' | url}}"></script>
 
   </head>
 
 <body>
 
-<vwc-header id="header-main" slot="app-content">
+	<vwc-header id="header-main" slot="app-content">
 
-	<div class="header-content-wrapper">
-		<vwc-button id="hamburger-button" connotation="accent" icon='collapse-solid' size='condensed' id="menu-button" aria-label="Menu" onclick="toggleSideDrawerButton()" class="menu-button"></vwc-button>
-		<a class="logo-wrapper" href="/" alt="Vivid Web Components">
-			<img src="/assets/images/vivid-logo.svg" alt="Vivid Logo" style="width: 32px">
-			<strong>VIVID Web Components</strong>
-		</a>
-	</div>
+		<div class="header-content-wrapper">
+			<vwc-button id="hamburger-button" connotation="accent" icon='collapse-solid' size='condensed' id="menu-button" aria-label="Menu" onclick="toggleSideDrawerButton()" class="menu-button"></vwc-button>
+			<a class="logo-wrapper" href="/" alt="Vivid Web Components">
+				<img src="/assets/images/vivid-logo.svg" alt="Vivid Logo" style="width: 32px">
+				<strong>VIVID Web Components</strong>
+			</a>
+		</div>
 
-    <vwc-button id="dark-mode-toggle" icon="light-mode-line" aria-label="dark mode toggle" slot="action-items"></vwc-button>
-    <vwc-popup id="dark-mode-popup" anchor="dark-mode-toggle" slot="action-items">
-      <vwc-listbox id="dark-mode-listbox" appearance="ghost">
-        <vwc-option id="option-light" value="light" text="Light"></vwc-option>
-        <vwc-option id="option-dark" value="dark" text="Dark"></vwc-option>
-        <vwc-option id="option-auto" value="auto" text="Auto"></vwc-option>
-      </vwc-listbox>
-    </vwc-popup>
+			<vwc-button id="dark-mode-toggle" icon="light-mode-line" aria-label="dark mode toggle" slot="action-items"></vwc-button>
+			<vwc-popup id="dark-mode-popup" anchor="dark-mode-toggle" slot="action-items">
+				<vwc-listbox id="dark-mode-listbox" appearance="ghost">
+					<vwc-option id="option-light" value="light" text="Light"></vwc-option>
+					<vwc-option id="option-dark" value="dark" text="Dark"></vwc-option>
+					<vwc-option id="option-auto" value="auto" text="Auto"></vwc-option>
+				</vwc-listbox>
+			</vwc-popup>
 
-	<vwc-nav-item slot="action-items" icon="github-mono" href="https://github.com/vonage/vivid-3" aria-label="View on GitHub" role="navigation"></vwc-nav-item>
+		<vwc-nav-item slot="action-items" icon="github-mono" href="https://github.com/vonage/vivid-3" aria-label="View on GitHub" role="navigation"></vwc-nav-item>
 
-  <vwc-side-drawer id="sidedrawer" open slot="app-content">
-    <vwc-layout gutters="small" column-basis="block">
-      {% include "navigation.njk" %}
-    </vwc-layout>
+		<vwc-side-drawer id="sidedrawer" open slot="app-content">
+			<vwc-layout gutters="small" column-basis="block">
+				{% include "navigation.njk" %}
+			</vwc-layout>
 
-      <main slot="app-content">
-				{% block banner %}{% endblock %}
-        <vwc-layout column-basis="block" class="main-layout">
-          <article class="article">
-						{% block content %}{% endblock %}
-          </article>
-        </vwc-layout>
-      </main>
-  </vwc-side-drawer>
-</vwc-header>
+				<main slot="app-content">
+					{% block banner %}{% endblock %}
+					<vwc-layout column-basis="block" class="main-layout">
+						<article class="article">
+							{% block content %}{% endblock %}
+						</article>
+					</vwc-layout>
+				</main>
+		</vwc-side-drawer>
+	</vwc-header>
 
 </body>
 
