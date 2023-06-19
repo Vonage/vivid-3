@@ -172,9 +172,6 @@ The number of lines is controlled by css variable `--subtitle-line-clamp`.
 
 ## Use case
 ```html preview
-<style>
-  vwc-card {}
-</style>
 <vwc-layout>
 <vwc-card headline="Cards in layout" subtitle="subtitle" icon="chat-line" text="here is the card text">
   <div slot="media" style="height: 150px; width: 100%; background-color: rebeccapurple;"></div>
