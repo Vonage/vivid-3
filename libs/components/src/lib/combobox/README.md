@@ -135,22 +135,6 @@ Add the `disabled` attribute to disable the combobox.
 </vwc-combobox>
 ```
 
-## Methods
-
-### selectFirstOption()
-
-- Type: `function`
-- Returns: `void`
-
-Moves focus to the first selectable option.
-
-### setSelectedOptions()
-
-- Type: `function`
-- Returns: `void`
-
-Sets an option as selected and gives it focus.
-
 ## Properties
 
 ### options
