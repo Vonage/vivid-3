@@ -113,6 +113,7 @@ describe('vwc-tabs', () => {
 		beforeEach(function () {
 			element.connotation = Connotation.CTA;
 		});
+		
 		it('should reflect connotation on active tab after init', async function () {
 			await elementUpdated(element);
 			checkConnotationOnActiveTab();

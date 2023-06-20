@@ -20,6 +20,16 @@ export type TabsConnotation = Extract<Connotation,
  * @slot - Default slot.
  */
 export class Tabs extends FoundationTabs {
+	#updateTabsConnotation() {
+		this.tabs?.forEach(tab => {
+			if (tab.getAttribute('aria-selected') === 'true') {
+				tab.setAttribute('connotation', this.connotation as string);
+			} else {
+				tab.removeAttribute('connotation');
+			}
+		});
+	}
+
 	/**
 	 * The connotation the tabs should have.
 	 *
@@ -72,5 +82,10 @@ export class Tabs extends FoundationTabs {
 
 		const idx = this.tabs.indexOf(this.activetab);
 		this.activeid = this['tabIds'][idx];
+		this.#updateTabsConnotation();
+	}
+
+	connotationChanged() {
+		this.#updateTabsConnotation();
 	}
 }
