@@ -12,9 +12,6 @@ permalink: "components/{{ component.title | slug }}/"
 
 {% if (component.status == "alpha") or (component.status == 'underlying') %}
 
-	{% block header %}
-			<script type="module" src="/assets/modules/components/banner/index.js"></script>
-	{% endblock %}
 
 	{% block banner %}
 		{% if (component.status == "alpha") %}
