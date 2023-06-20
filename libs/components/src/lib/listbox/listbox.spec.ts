@@ -37,6 +37,7 @@ describe('vwc-listbox', () => {
 			expect(element.disabled).toBeUndefined();
 			expect(element.multiple).toBeUndefined();
 			expect(element.appearance).toBeUndefined();
+			expect(element.selectedIndex).toEqual(-1);
 		});
 	});
 
@@ -104,6 +105,28 @@ describe('vwc-listbox', () => {
 			await elementUpdated(element);
 
 			expect(element.getAttribute('aria-activedescendant')).toEqual('');
+		});
+	});
+
+	describe('selectedIndex', () => {
+		beforeEach(async () => {
+			element.innerHTML = `
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				`;
+			await elementUpdated(element);
+		});
+
+		it('should set selectedIndex to -1 when first option is selected', async () => {
+			await elementUpdated(element);
+			expect(element.selectedIndex).toEqual(-1);
+		});
+
+		it('should change selection when changed', async () => {
+			element.selectedIndex = 1;
+			await elementUpdated(element);
+			expect(element.selectedOptions).toEqual([element.querySelector('option:nth-child(2)')]);
 		});
 	});
 });
