@@ -9,6 +9,7 @@ $low-ink-color: --_low-ink-color;
 .base {
 	display: inline-flex;
 	flex-direction: column;
+	inline-size: var(#{variables.$file-picker-inline-size}, 400px);
 }
 
 .main {
@@ -30,7 +31,7 @@ $low-ink-color: --_low-ink-color;
 	color: var(#{constants.$vvd-color-neutral-600});
 	cursor: pointer;
 	font: var(#{constants.$vvd-typography-base});
-	inline-size: var(#{variables.$file-picker-inline-size}, 400px);
+	inline-size: 100%;
 	outline: none;
 }
 
@@ -59,11 +60,16 @@ $low-ink-color: --_low-ink-color;
 
 	.dz-details {
 		display: flex;
+		overflow: hidden;
 		flex-direction: column;
+		max-inline-size: 100%;
 
 		.dz-filename {
+			overflow: hidden;
 			color: var(#{constants.$vvd-color-canvas-text});
 			font: var(#{constants.$vvd-typography-base});
+			text-overflow: ellipsis;
+			white-space: nowrap;
 		}
 
 		.dz-size {
@@ -138,7 +144,7 @@ $low-ink-color: --_low-ink-color;
 	&:empty {
 		display: none;
 	}
-	
+
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
