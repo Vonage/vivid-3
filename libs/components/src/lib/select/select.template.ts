@@ -17,8 +17,6 @@ const getStateClasses = ({
 	metaSlottedContent,
 	errorValidationMessage,
 	successText,
-	icon,
-	iconSlottedContent
 }: Select) => classNames(
 	['disabled', disabled],
 	[`appearance-${appearance}`, Boolean(appearance)],
@@ -27,7 +25,6 @@ const getStateClasses = ({
 	['error connotation-alert', Boolean(errorValidationMessage)],
 	['success connotation-success', !!successText],
 	['has-meta', Boolean(metaSlottedContent?.length)],
-	['has-icon', Boolean(icon || iconSlottedContent?.length)]
 );
 
 /**
@@ -51,7 +48,7 @@ function selectValue(context: ElementDefinitionContext) {
 					${ref('_anchor')}
 				>
 					<div class="selected-value">
-						<slot name="icon" ${slotted('iconSlottedContent')}>
+						<slot name="icon">
 							${when(x => x.icon, html<Select>`${x => affixIconTemplate(x.icon)}`)}
 						</slot>
 						<span class="text">${x => x.displayValue}</span>

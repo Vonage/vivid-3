@@ -41,8 +41,6 @@ export class Select extends FoundationSelect {
 	@observable metaSlottedContent?: Node[];
 	@attr({mode: 'boolean', attribute: 'fixed-dropdown'}) fixedDropdown = false;
 
-	@observable iconSlottedContent?: Node[];
-
 	override connectedCallback() {
 		super.connectedCallback();
 		this._popup.anchor = this._anchor;

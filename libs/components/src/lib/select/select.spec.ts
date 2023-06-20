@@ -1,5 +1,4 @@
 import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
-import { Icon } from '../icon/icon';
 import { Select } from './select';
 import '.';
 
@@ -128,34 +127,16 @@ describe('vwc-select', () => {
 		});
 	});
 
-	describe('select icon', () => {
-		it('should initialize without the "has-icon" class', async () => {
-			expect(getControlElement(element).classList.contains('has-icon')).toBe(false);
-		});
-
-		it('should add an icon to the select and add has-meta class when icon property is set', async () => {
-			element.icon = 'search-solid';
-			await elementUpdated(element);
-
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-			expect(icon)
-				.toBeInstanceOf(Icon);
-			expect(icon?.name)
-				.toEqual('search-solid');
-			expect(getControlElement(element).classList.contains('has-icon')).toBe(true);
-		});
-
+	describe('icon', () => {
 		it('should have a icon slot', async () => {
 			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
 		});
 
-		it('should add has-icon class if the icon slot is occupied', async () => {
-			const slotted = document.createElement('div');
-			slotted.slot = 'icon';
-			element.appendChild(slotted);
+		it('should have an icon when icon is set without slotted icon', async function () {
+			const icon = 'info';
+			element.icon = icon;
 			await elementUpdated(element);
-
-			expect(getControlElement(element).classList.contains('has-icon')).toBe(true);
+			expect(element.shadowRoot?.querySelector(ICON_SELECTOR)?.getAttribute('name')).toEqual(icon);
 		});
 	});
 
