@@ -9,7 +9,7 @@ The vwc-file-picker component enables users to select files either by opening a 
 ```
 
 ```html preview
-<vwc-file-picker></vwc-file-picker>
+<vwc-file-picker>Drag & Drop or click to upload</vwc-file-picker>
 ```
 
 ## Members
@@ -22,7 +22,7 @@ Use the `label` member to set the file picker's label.
 - Default: `undefined`
 
 ```html preview
-<vwc-file-picker label='Label'></vwc-file-picker>
+<vwc-file-picker label='Label'>Drag & Drop or click to upload</vwc-file-picker>
 ```
 
 ### Helper text
@@ -33,7 +33,7 @@ Add the `helper-text` to add some helper text below the file picker.
 - Default: `undefined`
 
 ```html preview
-<vwc-file-picker helper-text="helper-text"></vwc-file-picker>
+<vwc-file-picker helper-text="helper-text">Drag & Drop or click to upload</vwc-file-picker>
 ```
 
 ### Max File Size
@@ -44,7 +44,7 @@ Use the `max-file-size` attribute (or `maxFileSize` property) to define the maxi
 - Default: `256`
 
 ```html preview
-<vwc-file-picker helper-text="Max file zise is 0.1MB" max-file-size=0.1></vwc-file-picker>
+<vwc-file-picker helper-text="Max file zise is 0.1MB" max-file-size=0.1>Drag & Drop or click to upload</vwc-file-picker>
 ```
 
 ### Max Files
@@ -55,7 +55,7 @@ Use the `max-files` attribute (or `maxFiles` property) to define how many files 
 - Default: `undefined`
 
 ```html preview
-<vwc-file-picker helper-text="Single file only" max-files=1></vwc-file-picker>
+<vwc-file-picker helper-text="Single file only" max-files=1>Drag & Drop or click to upload</vwc-file-picker>
 ```
 ### Upload Multiple
 
@@ -65,7 +65,7 @@ Use the `upload-multiple` attribute (or `uploadMultiple` property) to define whe
 - Default: `false`
 
 ```html preview
-<vwc-file-picker helper-text="Upload multiple files" max-files="10" upload-multiple></vwc-file-picker>
+<vwc-file-picker helper-text="Upload multiple files" max-files="10" upload-multiple>Drag & Drop or click to upload</vwc-file-picker>
 ```
 
 ### Accepted Files
@@ -76,7 +76,7 @@ Use the `accepted-files` attribute (or `acceptedFiles` property) to define a com
 - Default: `undefined`
 
 ```html preview
-<vwc-file-picker helper-text=".jpg, .jpeg, .png types only" accepted-files=".jpg, .jpeg, .png"></vwc-file-picker>
+<vwc-file-picker helper-text=".jpg, .jpeg, .png types only" accepted-files=".jpg, .jpeg, .png">Drag & Drop or click to upload</vwc-file-picker>
 ```
 
 ## Slots
@@ -86,12 +86,12 @@ Use the `accepted-files` attribute (or `acceptedFiles` property) to define a com
 Use the default slot to set the content of the file picker.
 
 ```html preview
-<vwc-file-picker>Drag & Drop or click to upload</vwc-file-picker>
+<vwc-file-picker>Add custom content here</vwc-file-picker>
 ```
 
 ## CSS Variables
 
-### File-picker-min-height
+### File-picker-height
 
 Control the height of the file picker.
 
@@ -99,10 +99,10 @@ Control the height of the file picker.
 - Default: `undefined`
 
 ```html preview
-<vwc-file-picker style="--file-picker-min-height: 120px;"></vwc-file-picker>
+<vwc-file-picker style="--file-picker-height: 120px;"></vwc-file-picker>
 ```
 
-### File-picker-min-width
+### File-picker-width
 
 Conrol the width of the file picker.
 
@@ -110,7 +110,7 @@ Conrol the width of the file picker.
 - Default: `undefined`
 
 ```html preview
-<vwc-file-picker style=" --file-picker-min-width: 52px;"></vwc-file-picker>
+<vwc-file-picker style=" --file-picker-width: 52px;"></vwc-file-picker>
 ```
 
 ## Use Cases
@@ -126,7 +126,7 @@ Conrol the width of the file picker.
 
 <form>
   <vwc-layout column-basis="block">
-    <vwc-file-picker label='Pick files' helper-text="multiple files of any type" max-files="50" upload-multiple></vwc-file-picker>
+    <vwc-file-picker label='Pick files' helper-text="multiple files of any type" max-files="50" upload-multiple>Drag & Drop or click to upload</vwc-file-picker>
     <vwc-divider></vwc-divider>
     <vwc-button label='Submit' appearance='filled' shape='pill' type="submit"></vwc-button>
   </vwc-layout>

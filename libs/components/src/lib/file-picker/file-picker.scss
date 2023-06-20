@@ -29,8 +29,8 @@ $low-ink-color: --_low-ink-color;
 	color: var(#{constants.$vvd-color-neutral-600});
 	cursor: pointer;
 	font: var(#{constants.$vvd-typography-base});
-	min-block-size: var(#{variables.$file-picker-min-block-size}, 52px);
-	min-inline-size: var(#{variables.$file-picker-min-inline-size}, 400px);
+	block-size: var(#{variables.$file-picker-block-size}, 52px);
+	inline-size: var(#{variables.$file-picker-inline-size}, 400px);
 	outline: none;
 }
 
