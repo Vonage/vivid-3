@@ -342,6 +342,43 @@ You can specify width on the `vwc-select` if required (the list-box will not be 
 </vwc-select>
 ```
 
+## Methods
+
+### selectFirstOption()
+
+- Type: `function`
+- Returns: `void`
+
+Moves focus to the first selectable option.
+
+### setSelectedOptions()
+
+- Type: `function`
+- Returns: `void`
+
+Sets an option as selected and gives it focus.
+
+## Properties
+
+### options
+
+List of options.
+
+- Type: `Option[]`
+
+### selectedOptions
+
+A collection of the selected options.
+
+- Type: `Option[]`
+
+### selectedIndex
+
+The index of the selected option.
+
+- Type: `number`
+
+
 
 ## Caveat
 

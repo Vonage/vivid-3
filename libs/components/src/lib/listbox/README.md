@@ -70,3 +70,39 @@ Add the `disabled` attribute to disable the listbox.
   <vwc-option value="3" text="Option"></vwc-option>
 </vwc-listbox>
 ```
+
+## Methods
+
+### selectFirstOption()
+
+- Type: `function`
+- Returns: `void`
+
+Moves focus to the first selectable option.
+
+### setSelectedOptions()
+
+- Type: `function`
+- Returns: `void`
+
+Sets an option as selected and gives it focus.
+
+## Properties
+
+### options
+
+List of options.
+
+- Type: `Option[]`
+
+### selectedOptions
+
+A collection of the selected options.
+
+- Type: `Option[]`
+
+### selectedIndex
+
+The index of the selected option.
+
+- Type: `number`
