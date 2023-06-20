@@ -51,7 +51,7 @@ function selectValue(context: ElementDefinitionContext) {
 					${ref('_anchor')}
 				>
 					<div class="selected-value">
-						<slot class="icon" name="icon" ${slotted('iconSlottedContent')}>
+						<slot name="icon" ${slotted('iconSlottedContent')}>
 							${when(x => x.icon, html<Select>`${x => affixIconTemplate(x.icon)}`)}
 						</slot>
 						<span class="text">${x => x.displayValue}</span>
