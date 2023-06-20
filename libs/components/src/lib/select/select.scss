@@ -104,14 +104,9 @@ $low-ink-color: --_low-ink-color;
 	}
 
 	.icon {
-		display: none;
 		flex: 0 0 20px;
 		font-size: 20px;
 		line-height: 1;
-
-		.control.has-icon & {
-			display: inline;
-		}
 	}
 
 	.control.has-meta & {
