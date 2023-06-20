@@ -112,7 +112,7 @@ $low-ink-color: --_low-ink-color;
 	}
 
 	&.dz-error {
-		background-color: var(#{constants.$vvd-color-alert-50});
+		border: 1px solid var(#{constants.$vvd-color-alert-500});
 
 		.dz-details .dz-size,
 		.dz-progress {
