@@ -1,6 +1,7 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { DropzoneFile } from 'dropzone';
+import Dropzone from 'dropzone';
 import { FilePicker } from './file-picker';
 import { filePickerDefinition } from './definition';
 import '.';
@@ -155,6 +156,36 @@ describe('vwc-file-picker', () => {
 		});
 	});
 
+	describe('preview classes', function () {
+		it('should have dz-error class and status when files not added', async function () {
+			const maxFileSize = 0.2;
+			element.maxFileSize = maxFileSize;
+			await elementUpdated(element);
+
+			const file = await generateFile('london.png', 2) as DropzoneFile;
+			element.filePicker.addFile(file);
+
+			await elementUpdated(element);
+
+			const preview = element.shadowRoot?.querySelector('.dz-preview') as HTMLElement;
+			expect(preview.classList).toContain('dz-error');
+
+			expect(element.filePicker.getFilesWithStatus(Dropzone.ERROR).length).toEqual(1);
+		});
+
+		it('should have canceled status when cancel file', async function () {
+			await elementUpdated(element);
+
+			const file = await generateFile('london.png', 2) as DropzoneFile;
+			element.filePicker.addFile(file);
+			element.filePicker.cancelUpload(file);
+
+			await elementUpdated(element);
+	
+			expect(element.filePicker.getFilesWithStatus(Dropzone.CANCELED).length).toEqual(1);
+		});
+	});
+
 	describe('upload multiple', function () {
 		it('should set uploadMultiple if it is set', async function () {
 			const uploadMultiple = true;
@@ -200,4 +231,3 @@ describe('vwc-file-picker', () => {
 		return new File([blob], fileName, { type: blob.type }) as DropzoneFile;
 	}
 });
-
