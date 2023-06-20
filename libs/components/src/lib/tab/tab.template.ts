@@ -9,7 +9,7 @@ const getClasses = ({
 	connotation, disabled, ariaSelected, iconTrailing
 }: Tab) => classNames(
 	'base',
-	[`connotation-${connotation}`, Boolean(connotation)],
+	[`connotation-${connotation}`, (Boolean(connotation)) && (ariaSelected === 'true')],
 	['disabled', Boolean(disabled)],
 	['selected', ariaSelected === 'true'],
 	['icon-trailing', iconTrailing],
