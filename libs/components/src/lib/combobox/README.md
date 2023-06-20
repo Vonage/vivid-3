@@ -158,18 +158,21 @@ Sets an option as selected and gives it focus.
 List of options.
 
 - Type: `Option[]`
+- Default: `[]`
 
 ### selectedOptions
 
 A collection of the selected options.
 
 - Type: `Option[]`
+- Default: `[]`
 
 ### selectedIndex
 
 The index of the selected option.
 
 - Type: `number`
+- Default: `undefined`
 
 ## Caveat
 
