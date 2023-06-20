@@ -465,7 +465,9 @@
 		"markdown": "./libs/components/src/lib/file-picker/README.md",
 		"modules": [
 			"/assets/modules/components/file-picker/index.js",
-			"/assets/modules/components/button/index.js"
+			"/assets/modules/components/button/index.js",
+			"/assets/modules/components/divider/index.js",
+			"/assets/modules/components/layout/index.js"
 		]
 	}
 ]

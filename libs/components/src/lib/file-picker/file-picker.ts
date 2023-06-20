@@ -133,12 +133,6 @@ export class FilePicker extends FoundationElement {
 			removeElement.innerHTML = innerHTML;
 		}
 	}
-
-	chooseFile(): void {
-		if (this.filePicker && this.filePicker.hiddenFileInput) {
-			this.filePicker.hiddenFileInput.click();
-		}
-	}
 }
 
 export interface FilePicker extends FormElementHelperText { }

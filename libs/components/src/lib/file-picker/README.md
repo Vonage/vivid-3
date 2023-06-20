@@ -35,6 +35,7 @@ Add the `helper-text` to add some helper text below the file picker.
 ```html preview
 <vwc-file-picker helper-text="helper-text"></vwc-file-picker>
 ```
+
 ### Max File Size
 
 Use the `max-file-size` attribute (or `maxFileSize` property) to define the maximum file size (in bytes) that is allowed to be uploaded.
@@ -85,7 +86,7 @@ Use the `accepted-files` attribute (or `acceptedFiles` property) to define a com
 Use the default slot to set the content of the file picker.
 
 ```html preview
-<vwc-file-picker>Custom content</vwc-file-picker>
+<vwc-file-picker>Drag & Drop or click to upload</vwc-file-picker>
 ```
 
 ## CSS Variables
@@ -112,31 +113,22 @@ Conrol the width of the file picker.
 <vwc-file-picker style=" --file-picker-min-width: 52px;"></vwc-file-picker>
 ```
 
-## Methods
-
-### chooseFile()
-
-- Returns: `void`
-
-Opens the file dialog box.
-
-
 ## Use Cases
 
-### Link
+### In a from
 
 ```html preview
 <style>
-  a {
-    color: var(--vvd-color-cta-600);
-    text-decoration: underline;
+  form {
+   width: 250px;
   }
 </style>
-<vwc-file-picker id="filePicker">Drag & Drop files here or <a id="choose" onclick="filePicker.chooseFile()">choose file</a></vwc-file-picker>
-```
 
-### Button
-
-```html preview
-<vwc-file-picker id="filePicker">Drag & Drop files here or <vwc-button label='Select' appearance='outlined' shape='pill' onclick="filePicker.chooseFile()"></vwc-button></vwc-file-picker>
+<form>
+  <vwc-layout column-basis="block">
+    <vwc-file-picker label='Pick files' helper-text="multiple files of any type" max-files="50" upload-multiple></vwc-file-picker>
+    <vwc-divider></vwc-divider>
+    <vwc-button label='Submit' appearance='filled' shape='pill' type="submit"></vwc-button>
+  </vwc-layout>
+</form>
 ```

@@ -195,21 +195,6 @@ describe('vwc-file-picker', () => {
 		});
 	});
 
-	describe('choose file', function () {
-		it('should open hidden file input on click', async function () {
-			const hiddenFileInput = element.filePicker?.hiddenFileInput as HTMLInputElement;
-			expect(hiddenFileInput).not.toBe(null);
-
-			const openSpy = jest.spyOn(hiddenFileInput, 'click');
-			expect(openSpy).not.toHaveBeenCalled();
-
-			element.chooseFile();
-
-			await elementUpdated(element);
-			expect(openSpy).toHaveBeenCalled();
-		});
-	});
-
 	async function generateFile(fileName: string, size: number): Promise<DropzoneFile> {
 		const blob = new Blob(['x'.repeat(size * 1024 * 1024)], { type: 'text/plain' });
 		return new File([blob], fileName, { type: blob.type }) as DropzoneFile;
