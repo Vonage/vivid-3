@@ -5,6 +5,8 @@ import fs from "fs";
 import virtual from "@rollup/plugin-virtual";
 import replace from "@rollup/plugin-replace";
 
+const DEV_MODE = process.env['DEV_MODE'] === 'true';
+
 const EXCLUDED_FOLDERS = ['lib', 'styles'];
 const componentsFolder = path.join(__dirname, '../../dist/libs/components');
 
@@ -43,8 +45,8 @@ const virtualPlugin = virtual({
 	"vivid-components": importsFile
 });
 
-const DIRS = ['./dist/apps/docs/assets/scripts/', './dist/apps/docs'];
-export default [['./apps/docs/assets/bundled-scripts/live-sample.js', 'vivid-components'],
+const DIRS = ['./dist/apps/docs/assets/scripts/', './dist/apps/docs/assets/scripts/', './dist/apps/docs'];
+export default [['./apps/docs/assets/bundled-scripts/live-sample.js', './apps/docs/assets/bundled-scripts/cache-assets.js', 'vivid-components'],
 	'./apps/docs/assets/bundled-scripts/sw.js'].map((input, index) => {
 	return {
 		input,
@@ -58,6 +60,9 @@ export default [['./apps/docs/assets/bundled-scripts/live-sample.js', 'vivid-com
 				return `${chunkInfo.name}.js`;
 			}
 		},
-		plugins: [virtualPlugin, nodeResolve(), terser(), replace({'SW_VERSION': getVividVersion()})]
+		plugins: [virtualPlugin, nodeResolve(), replace({
+			'SW_VERSION': getVividVersion(),
+			'ACTIVE': DEV_MODE ? 'false' : 'true'
+		}) ]
 	}
 });
