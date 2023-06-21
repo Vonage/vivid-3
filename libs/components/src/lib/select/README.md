@@ -276,6 +276,28 @@ Set the `meta` slot to show meta information after the selected option label.
 </vwc-select>
 ```
 
+### Icon
+
+Set the `icon` slot to show an icon before the selected option label.
+If set, the `icon` attribute is ignored.
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+  vwc-select {
+    width: 150px;
+  }
+</style>
+<vwc-select aria-label="Options Selector">
+  <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+  <vwc-option value="1" text="Option 1"></vwc-option>
+  <vwc-option value="2" text="Option 2"></vwc-option>
+  <vwc-option value="3" text="Option 3"></vwc-option>
+</vwc-select>
+```
+
 ## Option Label
 
 You can add a `label` attribute to the `vwc-option` to set a custom display value for the selected option.
@@ -378,8 +400,9 @@ A select requires a label to be set for screen readers to be able to describe th
 If label is set, it is used as the `aria-label` attribute value on the host element.
 If label is not set, please make sure to add an `aria-label` attribute to the host element.
 
-## Use Case
+## Use Cases
 
+### Country Code
 ```html preview
 <style>
   html { /* for demo purposes */
@@ -395,7 +418,29 @@ If label is not set, please make sure to add an `aria-label` attribute to the ho
 <script>
 const select = document.querySelector('vwc-select');
 select?.addEventListener('change', (e) => {
-	select.icon = select.selectedOptions[0].icon;
+  select.icon = select.selectedOptions[0].icon;
 });
+</script>
+```
+
+
+### Call Status
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 250px;
+  }
+  vwc-select {width: 150px;}
+</style>
+<vwc-select id="select" shape="pill" aria-label="Status">
+  <vwc-icon id="icon" slot="icon" name="bullet-solid" connotation="success"></vwc-icon>
+  <vwc-option value="ready" text="Ready" data-connotation="success"></vwc-option>
+  <vwc-option value="away" text="Away" data-connotation="cta"></vwc-option>
+  <vwc-option value="offline" text="Offline" data-connotation="alert"></vwc-option>
+</vwc-select>
+<script>
+  select.addEventListener('change', () => {
+    icon.connotation = select.selectedOptions[0].dataset.connotation;
+  });
 </script>
 ```
