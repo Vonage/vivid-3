@@ -6,9 +6,10 @@ import { focusTemplateFactory } from '../../shared/patterns/focus';
 import type { Tab } from './tab.js';
 
 const getClasses = ({
-	disabled, ariaSelected, iconTrailing
+	connotation, disabled, ariaSelected, iconTrailing
 }: Tab) => classNames(
 	'base',
+	[`connotation-${connotation}`, (Boolean(connotation)) && (ariaSelected === 'true')],
 	['disabled', Boolean(disabled)],
 	['selected', ariaSelected === 'true'],
 	['icon-trailing', iconTrailing],
@@ -27,7 +28,7 @@ export function TabTemplate<T extends Tab>(context: ElementDefinitionContext) {
 
 	return html<T>`
 	<template slot="tab" role="tab" aria-disabled="${x => x.disabled}" aria-selected="${x => x.ariaSelected}">
-		<div class="${getClasses}">
+		<div class="${getClasses}" >
       ${() => focusTemplate}
       ${x => affixIconTemplate(x.icon)}
       ${x => x.label}
