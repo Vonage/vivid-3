@@ -31,7 +31,9 @@ $low-ink-color: --_low-ink-color;
 	inline-size: 100%;
 	outline: none;
 }
-
+.main {
+	pointer-events: none;
+}
 .icon {
 	color: var(#{constants.$vvd-color-neutral-600});
 	font-size: 24px;
