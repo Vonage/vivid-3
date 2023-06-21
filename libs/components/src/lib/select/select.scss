@@ -108,7 +108,7 @@ $low-ink-color: --_low-ink-color;
 		text-overflow: ellipsis;
 	}
 
-	.icon {
+	slot[name="icon"] {
 		flex: 0 0 20px;
 		font-size: 20px;
 		line-height: 1;
