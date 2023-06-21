@@ -12,9 +12,6 @@ $low-ink-color: --_low-ink-color;
 	inline-size: var(#{variables.$file-picker-inline-size}, 400px);
 }
 
-.main {
-	pointer-events: none;
-}
 
 .control {
 	position: relative;
