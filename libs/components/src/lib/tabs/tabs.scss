@@ -62,8 +62,8 @@
 		grid-template-columns: auto;
 		grid-template-rows: auto auto;
 		inline-size: 100%;
-		padding-inline: var(#{variables.$tabs-tablist-gutter});
 		overflow-y: auto;
+		padding-inline: var(#{variables.$tabs-tablist-gutter});
 	}
 }
 
