@@ -45,8 +45,9 @@ const virtualPlugin = virtual({
 	"vivid-components": importsFile
 });
 
-const DIRS = ['./dist/apps/docs/assets/scripts/', './dist/apps/docs/assets/scripts/', './dist/apps/docs'];
-export default [['./apps/docs/assets/bundled-scripts/live-sample.js', './apps/docs/assets/bundled-scripts/cache-assets.js', 'vivid-components'],
+const DIRS = ['./dist/apps/docs/assets/scripts/', './dist/apps/docs/assets/scripts/', './dist/apps/docs/assets/scripts/', './dist/apps/docs'];
+export default [
+	'./apps/docs/assets/bundled-scripts/live-sample.js', './apps/docs/assets/bundled-scripts/cache-assets.js', 'vivid-components',
 	'./apps/docs/assets/bundled-scripts/sw.js'].map((input, index) => {
 	return {
 		input,
@@ -63,6 +64,6 @@ export default [['./apps/docs/assets/bundled-scripts/live-sample.js', './apps/do
 		plugins: [virtualPlugin, nodeResolve(), replace({
 			'SW_VERSION': getVividVersion(),
 			'ACTIVE': DEV_MODE ? 'false' : 'true'
-		}) ]
+		}), terser() ]
 	}
 });
