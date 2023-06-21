@@ -89,7 +89,7 @@ A collection of the selected options.
 
 ### selectedIndex
 
-The index of the selected option.
+The index of the selected option or -1 if no option is selected.
 
 - Type: `number`
 - Default: `undefined`
