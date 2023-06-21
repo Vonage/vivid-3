@@ -139,14 +139,14 @@ Add the `disabled` attribute to disable the combobox.
 
 ### options
 
-List of options.
+A read-only list of options.
 
 - Type: `Option[]`
 - Default: `[]`
 
 ### selectedOptions
 
-A collection of the selected options.
+A read-only collection of the selected options.
 
 - Type: `Option[]`
 - Default: `[]`
