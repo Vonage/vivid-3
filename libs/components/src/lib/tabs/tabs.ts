@@ -1,6 +1,6 @@
-import {attr, observable} from '@microsoft/fast-element';
+import { attr, observable } from '@microsoft/fast-element';
 import { Tabs as FoundationTabs, TabsOrientation } from '@microsoft/fast-foundation';
-import type { Connotation} from '../enums.js';
+import type { Connotation } from '../enums.js';
 
 export const ACTIVE_TAB_WIDTH = '--_tabs-active-tab-inline-size';
 
@@ -10,8 +10,8 @@ export const ACTIVE_TAB_WIDTH = '--_tabs-active-tab-inline-size';
  * @public
  */
 export type TabsConnotation = Extract<Connotation,
-| Connotation.Accent
-| Connotation.CTA>;
+	| Connotation.Accent
+	| Connotation.CTA>;
 
 /**
  * Base class for tabs
@@ -20,15 +20,8 @@ export type TabsConnotation = Extract<Connotation,
  * @slot - Default slot.
  */
 export class Tabs extends FoundationTabs {
-	#updateTabsConnotation() {
-		this.tabs?.forEach(tab => {
-			if (tab.getAttribute('aria-selected') === 'true') {
-				tab.setAttribute('connotation', this.connotation as string);
-			} else {
-				tab.removeAttribute('connotation');
-			}
-		});
-	}
+
+	@observable tablist?: HTMLElement;
 
 	/**
 	 * The connotation the tabs should have.
@@ -38,8 +31,21 @@ export class Tabs extends FoundationTabs {
 	 * HTML Attribute: connotation
 	 */
 	@attr connotation?: TabsConnotation;
+	connotationChanged() {
+		this.#updateTabsConnotation();
+	}
 
-	@observable tablist?: HTMLElement;
+	#updateTabsConnotation() {
+		if (this.tabs) {
+			this.tabs.forEach(tab => {
+				if (tab.getAttribute('aria-selected') === 'true') {
+					tab.setAttribute('connotation', this.connotation as string);
+				} else {
+					tab.removeAttribute('connotation');
+				}
+			});
+		}
+	}
 
 	override orientationChanged(): void {
 		super.orientationChanged();
@@ -89,11 +95,6 @@ export class Tabs extends FoundationTabs {
 		this.#updateTabsConnotation();
 	}
 
-	connotationChanged() {
-		this.#updateTabsConnotation();
-	}
-
-
 	private connotationClass() {
 		this.tabs?.forEach(tab => {
 			if (tab.getAttribute('aria-selected') === 'true') {
@@ -103,5 +104,4 @@ export class Tabs extends FoundationTabs {
 			}
 		});
 	}
-
 }
