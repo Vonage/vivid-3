@@ -1,5 +1,4 @@
-﻿
-# Foundations
+﻿# Foundations
 
 <hr>
 
