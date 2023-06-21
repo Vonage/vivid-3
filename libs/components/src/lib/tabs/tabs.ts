@@ -10,8 +10,8 @@ export const ACTIVE_TAB_WIDTH = '--_tabs-active-tab-inline-size';
  * @public
  */
 export type TabsConnotation = Extract<Connotation,
-	| Connotation.Accent
-	| Connotation.CTA>;
+| Connotation.Accent
+| Connotation.CTA>;
 
 /**
  * Base class for tabs
@@ -35,6 +35,45 @@ export class Tabs extends FoundationTabs {
 		this.#updateTabsConnotation();
 	}
 
+	override orientationChanged(): void {
+		super.orientationChanged();
+		this.patchIndicatorStyleTransition();
+		if (!this.activeIndicatorRef) return;
+		if (this.orientation === TabsOrientation.vertical) {
+			this.activeIndicatorRef.style.removeProperty(ACTIVE_TAB_WIDTH);
+		}
+		this.#patchActiveID();
+		this.#connotationClass();
+	}
+
+	override activeidChanged(oldValue: string, newValue: string): void {
+		super.activeidChanged(oldValue, newValue);
+		this.patchIndicatorStyleTransition();
+		this.#patchActiveID();
+		this.#connotationClass();
+	}
+
+	override tabsChanged(): void {
+		super.tabsChanged();
+		this.patchIndicatorStyleTransition();
+		this.#patchActiveID();
+		this.#connotationClass();
+	}
+
+	override tabpanelsChanged(): void {
+		super.tabpanelsChanged();
+		this.patchIndicatorStyleTransition();
+		this.#patchActiveID();
+		this.#connotationClass();
+	}
+
+	patchIndicatorStyleTransition() {
+		if (!this.activetab || !this.activeIndicatorRef) return;
+		if (this.orientation === TabsOrientation.vertical || !this.showActiveIndicator) return;
+		const width = this.activetab.getBoundingClientRect().width;
+		this.activeIndicatorRef.style.setProperty(ACTIVE_TAB_WIDTH, `${width}px`);
+	}
+
 	#updateTabsConnotation() {
 		if (this.tabs) {
 			this.tabs.forEach(tab => {
@@ -47,47 +86,8 @@ export class Tabs extends FoundationTabs {
 		}
 	}
 
-	override orientationChanged(): void {
-		super.orientationChanged();
-		this.patchIndicatorStyleTransition();
-		if (!this.activeIndicatorRef) return;
-		if (this.orientation === TabsOrientation.vertical) {
-			this.activeIndicatorRef.style.removeProperty(ACTIVE_TAB_WIDTH);
-		}
-		this.patchActiveID();
-		this.connotationClass();
-	}
-
-	override activeidChanged(oldValue: string, newValue: string): void {
-		super.activeidChanged(oldValue, newValue);
-		this.patchIndicatorStyleTransition();
-		this.patchActiveID();
-		this.connotationClass();
-	}
-
-	override tabsChanged(): void {
-		super.tabsChanged();
-		this.patchIndicatorStyleTransition();
-		this.patchActiveID();
-		this.connotationClass();
-	}
-
-	override tabpanelsChanged(): void {
-		super.tabpanelsChanged();
-		this.patchIndicatorStyleTransition();
-		this.patchActiveID();
-		this.connotationClass();
-	}
-
-	private patchIndicatorStyleTransition() {
-		if (!this.activetab || !this.activeIndicatorRef) return;
-		if (this.orientation === TabsOrientation.vertical || !this.showActiveIndicator) return;
-		const width = this.activetab.getBoundingClientRect().width;
-		this.activeIndicatorRef.style.setProperty(ACTIVE_TAB_WIDTH, `${width}px`);
-	}
-
 	// adapted FAST fix https://github.com/microsoft/fast/pull/6606
-	private patchActiveID() {
+	#patchActiveID() {
 		if (!this.activetab) return;
 
 		const idx = this.tabs.indexOf(this.activetab);
@@ -95,7 +95,7 @@ export class Tabs extends FoundationTabs {
 		this.#updateTabsConnotation();
 	}
 
-	private connotationClass() {
+	#connotationClass() {
 		this.tabs?.forEach(tab => {
 			if (tab.getAttribute('aria-selected') === 'true') {
 				tab.setAttribute('connotation', this.connotation as string);
