@@ -115,7 +115,6 @@ vwc-header::part(base) {
 
 /* #region article */
 
-article h1,
 article h2,
 article h3,
 article h4,
@@ -145,7 +144,7 @@ article.article > h1 {
   flex-direction: column;
   justify-content: center;
   color: var(--vvd-color-text-canvas);
-	background-color: var(--vvd-color-cta-200);
+	background-color: var(--vvd-color-cta-400);
 	padding-block: 60px;
 
 }
