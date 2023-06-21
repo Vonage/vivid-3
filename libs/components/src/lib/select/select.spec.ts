@@ -1,5 +1,4 @@
 import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
-import { Icon } from '../icon/icon';
 import { Select } from './select';
 import '.';
 
@@ -128,16 +127,16 @@ describe('vwc-select', () => {
 		});
 	});
 
-	describe('select icon', () => {
-		it('should add an icon to the select', async () => {
-			element.icon = 'search-solid';
-			await elementUpdated(element);
+	describe('icon', () => {
+		it('should have a icon slot', async () => {
+			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
+		});
 
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-			expect(icon)
-				.toBeInstanceOf(Icon);
-			expect(icon?.name)
-				.toEqual('search-solid');
+		it('should have an icon when icon is set without slotted icon', async function () {
+			const icon = 'info';
+			element.icon = icon;
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector(ICON_SELECTOR)?.getAttribute('name')).toEqual(icon);
 		});
 	});
 
