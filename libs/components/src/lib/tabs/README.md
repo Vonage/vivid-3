@@ -86,9 +86,11 @@ Add a `orientation` attribute to control the orientation.
 
 ### Connotation
 - Type: `'accent' | 'cta'`
-- Default: `accent`
+- Default: `accent`  
 
-```html preview
+Setting a connotation will only affect the active tab
+
+```html preview full
 <vwc-tabs activeid="entrees" connotation="cta">
     <vwc-tab label="Appetizers" id="apps"></vwc-tab>
     <vwc-tab label="Entrees" id="entrees"></vwc-tab>
