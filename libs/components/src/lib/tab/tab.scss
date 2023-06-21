@@ -46,7 +46,6 @@
 	min-block-size: $min-block-size;
 	vertical-align: middle;
 	white-space: nowrap;
-	border-radius: 6px;
 
 	@supports (user-select: none) {
 		user-select: none;
