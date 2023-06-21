@@ -57,6 +57,10 @@ function selectValue(context: ElementDefinitionContext) {
 	`;
 }
 
+function setFixedDropdownVarWidth(x: Select) {
+	return (x.open && x.fixedDropdown) ? `--_select-fixed-width: ${Math.round(x.getBoundingClientRect().width)}px` : null;
+}
+
 /**
  * @param context
  */
@@ -72,9 +76,10 @@ function renderControl(context: ElementDefinitionContext) {
 					?open="${x => (x.collapsible ? x.open : true)}"
 					anchor="control"
 					placement="bottom-start"
-							strategy="absolute"
+							strategy="${x => x.fixedDropdown ? null : 'absolute'}"
 							${ref('_popup')}
 							class="popup"
+					style="${setFixedDropdownVarWidth}"
 							>
 							<div
                 id="${x => x.listboxId}"
@@ -136,3 +141,5 @@ export const SelectTemplate: (
 		</template>
 	`;
 };
+
+// TODO::change the css variable according to select width

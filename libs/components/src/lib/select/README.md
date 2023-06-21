@@ -170,7 +170,6 @@ Note that any current error state will be overriden by `error-text` (and, if app
 </vwc-select>
 ```
 
-
 ### Disabled
 
 Add the `disabled` attribute to disable the Select.
@@ -203,6 +202,21 @@ _Select_ internally uses _popup_ to display an element and its descendants above
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
   <vwc-option value="3" text="Option 3"></vwc-option>
+</vwc-select>
+```
+
+### Fixed-Dropdown
+
+Add the `fixed-dropdown` attribute to set its popup to open as fixed. 
+This is useful for cases in which the dropdown is obstructed by other elements (see [the grid select example](../../components/data-grid#select-in-a-grid)).
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-select aria-label="Options Selector" fixed-dropdown>
+  <vwc-option value="1" text="Option 1"></vwc-option>
+  <vwc-option value="2" text="Option 2"></vwc-option>
 </vwc-select>
 ```
 

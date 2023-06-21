@@ -6,6 +6,7 @@ import {
 	listenToFormSubmission
 } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import {Connotation} from '../enums';
 import { Checkbox } from './checkbox';
 import '.';
 import { checkboxDefinition } from './definition';
@@ -31,6 +32,7 @@ describe('vwc-checkbox', () => {
 			expect(element.readOnly).toBeFalsy();
 			expect(element.disabled).toBeFalsy();
 			expect(element.label).toBeUndefined();
+			expect(element.connotation).toBeUndefined();
 		});
 	});
 
@@ -108,6 +110,18 @@ describe('vwc-checkbox', () => {
 			base.dispatchEvent(new KeyboardEvent('keypress', { key: ' ' }));
 
 			expect(element.indeterminate).toBeFalsy();
+		});
+	});
+
+	describe('connotation', function () {
+		it('should set the connotation class on base', async function () {
+			const connotation = Connotation.CTA;
+			(element as any).connotation = 'cta';
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.base')
+				?.classList
+				.contains(`connotation-${connotation}`))
+				.toEqual(true);
 		});
 	});
 

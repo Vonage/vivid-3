@@ -4,6 +4,39 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.18.1](https://github.com/Vonage/vivid-3/compare/vivid-v3.18.0...vivid-v3.18.1) (2023-06-20)
+
+
+### Bug Fixes
+
+* **card:** inner wrapper height inherit(VIV-1151) ([#1213](https://github.com/Vonage/vivid-3/issues/1213)) ([c7081ee](https://github.com/Vonage/vivid-3/commit/c7081eed7acb90f2a8aab9bdb952b9f14b064cb2))
+* **components:** align icon vertically (VIV-1146) ([#1211](https://github.com/Vonage/vivid-3/issues/1211)) ([9267cb9](https://github.com/Vonage/vivid-3/commit/9267cb94fd13398bb11aed8852061e38086ddd57))
+
+## [3.18.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.17.0...vivid-v3.18.0) (2023-06-19)
+
+
+### Features
+
+* **menu:** add `auto-dismiss` attribute (VIV-1144) ([#1207](https://github.com/Vonage/vivid-3/issues/1207)) ([ef95a11](https://github.com/Vonage/vivid-3/commit/ef95a11e127e502a1a728a0f69add303fd105858))
+
+
+### Bug Fixes
+
+* **button:** update pending state (VIV-1113) ([#1190](https://github.com/Vonage/vivid-3/issues/1190)) ([cd34e91](https://github.com/Vonage/vivid-3/commit/cd34e913d5eeeec77a41d752d94db535387cdc1a))
+
+## [3.17.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.16.1...vivid-v3.17.0) (2023-06-12)
+
+
+### Features
+
+* **checkbox:** cta connotation (VIV-1124) ([#1203](https://github.com/Vonage/vivid-3/issues/1203)) ([ba57146](https://github.com/Vonage/vivid-3/commit/ba57146f005bdfef31e7df64ab229fc992a46c49))
+* **select:** select fixed dropdown (VIV-1135) ([#1201](https://github.com/Vonage/vivid-3/issues/1201)) ([9fab89a](https://github.com/Vonage/vivid-3/commit/9fab89ab2f8999a2798ae335214396481a828653))
+
+
+### Bug Fixes
+
+* **components:** updated CSS for disabled & readonly (VIV-1114) ([#1187](https://github.com/Vonage/vivid-3/issues/1187)) ([4c7f150](https://github.com/Vonage/vivid-3/commit/4c7f150f3602c4acb06f9ef7b248767d055a8c9f))
+
 ## [3.16.1](https://github.com/Vonage/vivid-3/compare/vivid-v3.16.0...vivid-v3.16.1) (2023-06-07)
 
 
