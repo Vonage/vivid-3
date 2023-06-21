@@ -1,5 +1,5 @@
 import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
-import {Connotation} from "@vonage/vivid";
+import {Connotation} from '@vonage/vivid';
 import type {Tab} from '../tab/tab';
 import {Tabs} from './tabs';
 import '../tab-panel/tab-panel';
@@ -113,7 +113,7 @@ describe('vwc-tabs', () => {
 		beforeEach(function () {
 			element.connotation = Connotation.CTA;
 		});
-		
+
 		it('should reflect connotation on active tab after init', async function () {
 			await elementUpdated(element);
 			checkConnotationOnActiveTab();
