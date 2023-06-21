@@ -505,4 +505,20 @@ describe('vwc-select', () => {
 			expect(variableValue).toEqual(`${width}px`);
 		});
 	});
+
+	describe('options', () => {
+		beforeEach(async () => {
+			element.innerHTML = `
+			<option value="1">1</option>
+			<option value="2" selected>2</option>
+			<option value="3">3</option>
+			`;
+			await elementUpdated(element);
+		});
+
+		it('should recieve array of options', async () => {
+			await elementUpdated(element);
+			expect(element.options[1]).toEqual(element.querySelector('option:nth-child(2)'));
+		});
+	});
 });
