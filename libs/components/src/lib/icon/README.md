@@ -56,11 +56,11 @@ If the predefined sizes are not enough, you can use the `font-size` property to 
 ```html preview
 <style>
 	.small-icon {
-		font-size: 12px;
+		font-size: 30px;
 	}
 </style>
 
-<vwc-icon name='close-line' class="small-icon"></vwc-icon>12px
+<vwc-icon name='close-line' class="small-icon"></vwc-icon>30px
 ```
 
 ### Connotation
