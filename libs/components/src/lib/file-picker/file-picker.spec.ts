@@ -1,6 +1,5 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import type { DropzoneFile } from 'dropzone';
 import Dropzone from 'dropzone';
 import { FilePicker } from './file-picker';
 import { filePickerDefinition } from './definition';
@@ -85,7 +84,7 @@ describe('vwc-file-picker', () => {
 			const maxFiles = 2;
 			element.maxFiles = maxFiles;
 			await elementUpdated(element);
-			expect(element?.filePicker.options.maxFiles).toEqual(maxFiles);
+			expect(element.options.maxFiles).toEqual(maxFiles);
 		});
 
 		it('should upload two files when maxFiles is set to 2', async function () {
@@ -93,15 +92,15 @@ describe('vwc-file-picker', () => {
 			element.maxFiles = maxFiles;
 			await elementUpdated(element);
 
-			const firstFile = await generateFile('london.png', 2) as DropzoneFile;
-			element.filePicker.addFile(firstFile);
+			const firstFile = await generateFile('london.png', 2);
+			element.addFile(firstFile);
 
-			const secondFile = await generateFile('paris.png', 2) as DropzoneFile;
-			element.filePicker.addFile(secondFile);
+			const secondFile = await generateFile('paris.png', 2);
+			element.addFile(secondFile);
 
 			await elementUpdated(element);
-			expect(element.filePicker.files.length).toEqual(2);
-			expect(element.filePicker.getAcceptedFiles().length).toEqual(2);
+			expect(element.files.length).toEqual(2);
+			expect(element.getAcceptedFiles().length).toEqual(2);
 		});
 
 		it('should upload only one file when maxFiles is set to 1', async function () {
@@ -109,15 +108,15 @@ describe('vwc-file-picker', () => {
 			element.maxFiles = maxFiles;
 			await elementUpdated(element);
 
-			const firstFile = await generateFile('london.png', 2) as DropzoneFile;
-			element.filePicker.addFile(firstFile);
+			const firstFile = await generateFile('london.png', 2);
+			element.addFile(firstFile);
 
-			const secondFile = await generateFile('paris.png', 2) as DropzoneFile;
-			element.filePicker.addFile(secondFile);
+			const secondFile = await generateFile('paris.png', 2);
+			element.addFile(secondFile);
 
 			await elementUpdated(element);
-			expect(element.filePicker.files.length).toEqual(2);
-			expect(element.filePicker.getAcceptedFiles().length).toEqual(1);
+			expect(element.files.length).toEqual(2);
+			expect(element.getAcceptedFiles().length).toEqual(1);
 		});
 	});
 
@@ -126,7 +125,7 @@ describe('vwc-file-picker', () => {
 			const maxFileSize = 0.1;
 			element.maxFileSize = maxFileSize;
 			await elementUpdated(element);
-			expect(element?.filePicker.options.maxFilesize).toEqual(maxFileSize);
+			expect(element.options.maxFilesize).toEqual(maxFileSize);
 		});
 
 		it('should upload file with size 0.1 when max file size is set to 0.2', async function () {
@@ -134,12 +133,12 @@ describe('vwc-file-picker', () => {
 			element.maxFileSize = maxFileSize;
 			await elementUpdated(element);
 
-			const file = await generateFile('london.png', 0.1) as DropzoneFile;
-			element.filePicker.addFile(file);
+			const file = await generateFile('london.png', 0.1);
+			element.addFile(file);
 
 			await elementUpdated(element);
-			expect(element.filePicker.files.length).toEqual(1);
-			expect(element.filePicker.getAcceptedFiles().length).toEqual(1);
+			expect(element.files.length).toEqual(1);
+			expect(element.getAcceptedFiles().length).toEqual(1);
 		});
 
 		it('should not upload file with size 2 when max file size is set to 0.2', async function () {
@@ -147,12 +146,12 @@ describe('vwc-file-picker', () => {
 			element.maxFileSize = maxFileSize;
 			await elementUpdated(element);
 
-			const file = await generateFile('london.png', 2) as DropzoneFile;
-			element.filePicker.addFile(file);
+			const file = await generateFile('london.png', 2);
+			element.addFile(file);
 
 			await elementUpdated(element);
-			expect(element.filePicker.files.length).toEqual(1);
-			expect(element.filePicker.getAcceptedFiles().length).toEqual(0);
+			expect(element.files.length).toEqual(1);
+			expect(element.getAcceptedFiles().length).toEqual(0);
 		});
 	});
 
@@ -162,27 +161,27 @@ describe('vwc-file-picker', () => {
 			element.maxFileSize = maxFileSize;
 			await elementUpdated(element);
 
-			const file = await generateFile('london.png', 2) as DropzoneFile;
-			element.filePicker.addFile(file);
+			const file = await generateFile('london.png', 2);
+			element.addFile(file);
 
 			await elementUpdated(element);
 
 			const preview = element.shadowRoot?.querySelector('.dz-preview') as HTMLElement;
 			expect(preview.classList).toContain('dz-error');
 
-			expect(element.filePicker.getFilesWithStatus(Dropzone.ERROR).length).toEqual(1);
+			expect(element.getFilesWithStatus(Dropzone.ERROR).length).toEqual(1);
 		});
 
 		it('should have canceled status when cancel file', async function () {
 			await elementUpdated(element);
 
-			const file = await generateFile('london.png', 2) as DropzoneFile;
-			element.filePicker.addFile(file);
-			element.filePicker.cancelUpload(file);
+			const file = await generateFile('london.png', 2);
+			element.addFile(file);
+			element.cancelUpload(file);
 
 			await elementUpdated(element);
-	
-			expect(element.filePicker.getFilesWithStatus(Dropzone.CANCELED).length).toEqual(1);
+
+			expect(element.getFilesWithStatus(Dropzone.CANCELED).length).toEqual(1);
 		});
 	});
 
@@ -191,7 +190,7 @@ describe('vwc-file-picker', () => {
 			const uploadMultiple = true;
 			element.uploadMultiple = uploadMultiple;
 			await elementUpdated(element);
-			expect(element?.filePicker.options.uploadMultiple).toEqual(uploadMultiple);
+			expect(element.options.uploadMultiple).toEqual(uploadMultiple);
 		});
 	});
 
@@ -200,16 +199,16 @@ describe('vwc-file-picker', () => {
 			const acceptedFiles = '.jpg';
 			element.acceptedFiles = acceptedFiles;
 			await elementUpdated(element);
-			expect(element?.filePicker.options.acceptedFiles).toEqual(acceptedFiles);
+			expect(element.options.acceptedFiles).toEqual(acceptedFiles);
 		});
 
 		it('should add png file when acceptedFiles is null', async function () {
-			const file = await generateFile('london.png', 2) as DropzoneFile;
-			element.filePicker.addFile(file);
+			const file = await generateFile('london.png', 2);
+			element.addFile(file);
 
 			await elementUpdated(element);
-			expect(element.filePicker.files.length).toEqual(1);
-			expect(element.filePicker.getAcceptedFiles().length).toEqual(1);
+			expect(element.files.length).toEqual(1);
+			expect(element.getAcceptedFiles().length).toEqual(1);
 		});
 
 		it('should not add png file when acceptedFiles is set to .jpg', async function () {
@@ -217,17 +216,47 @@ describe('vwc-file-picker', () => {
 			element.acceptedFiles = acceptedFiles;
 			await elementUpdated(element);
 
-			const file = await generateFile('london.png', 2) as DropzoneFile;
-			element.filePicker.addFile(file);
+			const file = await generateFile('london.png', 2);
+			element.addFile(file);
 
 			await elementUpdated(element);
-			expect(element.filePicker.files.length).toEqual(1);
-			expect(element.filePicker.getAcceptedFiles().length).not.toEqual(1);
+			expect(element.files.length).toEqual(1);
+			expect(element.getAcceptedFiles().length).not.toEqual(1);
+		});
+
+		it('should have 1 files after adding 2 files and calling removeFile', async function () {
+			await elementUpdated(element);
+
+			const firstFile = await generateFile('london.png', 2);
+			element.addFile(firstFile);
+			const secondFile = await generateFile('paris.png', 2);
+			element.addFile(secondFile);
+			await elementUpdated(element);
+			expect(element.files.length).toEqual(2);
+
+			element.removeFile(firstFile);
+			await elementUpdated(element);
+			expect(element.files.length).toEqual(1);
+		});
+
+		it('should have 0 files after adding 2 files and calling removeAllFiles', async function () {
+			await elementUpdated(element);
+
+			const firstFile = await generateFile('london.png', 2);
+			element.addFile(firstFile);
+			const secondFile = await generateFile('paris.png', 2);
+			element.addFile(secondFile);
+			await elementUpdated(element);
+			expect(element.files.length).toEqual(2);
+
+			element.removeAllFiles();
+			await elementUpdated(element);
+			expect(element.files.length).toEqual(0);
 		});
 	});
 
-	async function generateFile(fileName: string, size: number): Promise<DropzoneFile> {
+	async function generateFile(fileName: string, size: number): Promise<File> {
 		const blob = new Blob(['x'.repeat(size * 1024 * 1024)], { type: 'text/plain' });
-		return new File([blob], fileName, { type: blob.type }) as DropzoneFile;
+		return new File([blob], fileName, { type: blob.type });
 	}
 });

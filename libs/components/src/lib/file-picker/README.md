@@ -113,6 +113,66 @@ Conrol the width of the file picker.
 <vwc-file-picker style=" --file-picker-width: 52px;"></vwc-file-picker>
 ```
 
+
+## Methods
+
+### addFile(file)
+
+- Type: `function`
+- Returns: `void`
+- Accepts: `File`
+
+Adds file to the file picker.
+
+### cancelUpload(file)
+
+- Type: `function`
+- Returns: `void`
+- Accepts: `File`
+
+Cancels upload of the file.
+
+### removeFile(file)
+
+- Type: `function`
+- Returns: `void`
+- Accepts: `File`
+
+Removes file from the file picker.
+
+### removeAllFiles()
+
+- Type: `function`
+- Returns: `void`
+
+Removes all files from the file picker.
+
+### getAcceptedFiles()
+
+- Type: `function`
+- Returns: `File[]`
+
+### getFilesWithStatus()
+
+- Type: `function`
+- Returns: `File[]`
+
+## Properties
+
+### files
+
+A read-only list of files.
+
+- Type: `File[]`
+- Default: `[]`
+
+### options
+
+A read-only object.
+
+- Type: `Object`
+- Default: `null`
+
 ## Use Cases
 
 ### In a from
@@ -122,13 +182,23 @@ Conrol the width of the file picker.
   form {
    width: 250px;
   }
+  vwc-button {
+    justify-self: flex-start;
+  }
 </style>
 
-<form>
+<form id='form'>
   <vwc-layout column-basis="block">
-    <vwc-file-picker label='Pick files' helper-text="multiple files of any type" max-files="50" upload-multiple>Drag & Drop or click to upload</vwc-file-picker>
+    <vwc-file-picker id='filePicker' label='Pick files' helper-text="multiple files of any type" max-files="50" upload-multiple>Drag & Drop or click to upload</vwc-file-picker>
     <vwc-divider></vwc-divider>
     <vwc-button label='Submit' appearance='filled' shape='pill' type="submit"></vwc-button>
   </vwc-layout>
 </form>
+
+<script>
+  form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        console.log(filePicker.files);
+    });
+</script>
 ```

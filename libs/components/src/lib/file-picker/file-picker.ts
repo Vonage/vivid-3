@@ -1,5 +1,6 @@
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
+import type { DropzoneFile } from 'dropzone';
 import Dropzone from 'dropzone';
 import { FormElementHelperText } from '../../shared/patterns';
 
@@ -11,7 +12,15 @@ import { FormElementHelperText } from '../../shared/patterns';
 
 export class FilePicker extends FoundationElement {
 
-	filePicker!: Dropzone;
+	private filePicker!: Dropzone;
+
+	get files(): File[] {
+		return this.filePicker.files;
+	}
+
+	get options(): any {
+		return this.filePicker.options;
+	}
 
 	_dz!: HTMLElement;
 	previewList!: HTMLDivElement;
@@ -132,6 +141,30 @@ export class FilePicker extends FoundationElement {
 			removeElement.style.display = 'inline';
 			removeElement.innerHTML = innerHTML;
 		}
+	}
+
+	getAcceptedFiles(): File[] {
+		return this.filePicker.getAcceptedFiles();
+	}
+
+	getFilesWithStatus(status: string): File[] {
+		return this.filePicker.getFilesWithStatus(status);
+	}
+
+	addFile(file: File): void {
+		this.filePicker.addFile(file as DropzoneFile);
+	}
+
+	cancelUpload(file: File): void {
+		this.filePicker.cancelUpload(file as DropzoneFile);
+	}
+
+	removeFile(file: File): void {
+		this.filePicker.removeFile(file as DropzoneFile);
+	}
+
+	removeAllFiles(): void {
+		this.filePicker.removeAllFiles();
 	}
 }
 
