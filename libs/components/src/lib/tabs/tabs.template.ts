@@ -1,12 +1,12 @@
-
 import { html, ref, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { Tabs } from './tabs.js';
 
 const getClasses = ({
-	orientation
+	connotation, orientation
 }: Tabs) => classNames(
 	'base',
+	[`connotation-${connotation}`, Boolean(connotation)],
 	[`orientation-${orientation}`, Boolean(orientation)],
 );
 
@@ -33,3 +33,5 @@ export function TabsTemplate<T extends Tabs>() {
 	</template>
     `;
 }
+
+//TODO: add connotation="cta" to selected tab when connotation cta is set to tabs
