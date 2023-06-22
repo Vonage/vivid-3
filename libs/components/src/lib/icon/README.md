@@ -49,6 +49,20 @@ Note that changing `--vvd-size-density` will affect the chosen size (the example
 <vwc-icon name="close-line" size="5"></vwc-icon>60px
 ```
 
+### Custom Size
+
+If the predefined sizes are not enough, you can use the `font-size` property to specify the size of the icon.
+
+```html preview
+<style>
+	.small-icon {
+		font-size: 30px;
+	}
+</style>
+
+<vwc-icon name='close-line' class="small-icon"></vwc-icon>30px
+```
+
 ### Connotation
 
 If the component is used without a `connotation`, it will use the current text color.
