@@ -1,4 +1,5 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import {Connotation} from '../enums';
 import {Icon} from '../icon/icon';
 import { Tab } from './tab';
 import '.';
@@ -21,6 +22,8 @@ describe('vwc-tab', () => {
 			expect(element.iconTrailing).toBeFalsy();
 			expect(element.label).toBeUndefined();
 			expect(element.disabled).toBeFalsy();
+			expect(element.connotation).toBeFalsy();
+			expect(element.ariaSelected).toBeNull();
 		});
 	});
 
@@ -61,13 +64,35 @@ describe('vwc-tab', () => {
 		});
 	});
 
-
 	describe('disabled', function () {
 		it('should set disabled class when disabled is true', async () => {
 			expect(element.shadowRoot?.querySelector('.disabled')).toBeFalsy();
 			element.toggleAttribute('disabled', true);
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.disabled')).toBeTruthy();
+		});
+	});
+
+	describe('ariaSelected', function () {
+		it('should set connotation class on base if true', async () => {
+			element.connotation = Connotation.CTA;
+			element.ariaSelected = 'true';
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains(`connotation-${Connotation.CTA}`)).toBeTruthy();
+		});
+
+		it('should remove connotation class on base if false', async () => {
+			element.connotation = Connotation.CTA;
+			element.ariaSelected = 'false';
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains(`connotation-${Connotation.CTA}`)).toBeFalsy();
+		});
+
+		it('should remove connotation class on base if null', async () => {
+			element.connotation = Connotation.CTA;
+			element.ariaSelected = null;
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains(`connotation-${Connotation.CTA}`)).toBeFalsy();
 		});
 	});
 });

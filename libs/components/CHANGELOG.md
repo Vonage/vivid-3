@@ -4,6 +4,18 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.19.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.18.1...vivid-v3.19.0) (2023-06-21)
+
+
+### Features
+
+* **select:** add icon slot to select (VIV-1054) ([#1166](https://github.com/Vonage/vivid-3/issues/1166)) ([0b8a23c](https://github.com/Vonage/vivid-3/commit/0b8a23ce366fbbdca99dcd63e1684265b4c9d884))
+
+
+### Bug Fixes
+
+* **header:** enable setting bg-color (VIV-1156) ([#1217](https://github.com/Vonage/vivid-3/issues/1217)) ([51b6c4f](https://github.com/Vonage/vivid-3/commit/51b6c4fa4932dfbf284696499549fd4ac2e12e83))
+
 ## [3.18.1](https://github.com/Vonage/vivid-3/compare/vivid-v3.18.0...vivid-v3.18.1) (2023-06-20)
 
 
