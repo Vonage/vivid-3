@@ -13,7 +13,7 @@ export class Popup extends FoundationElement {
 	get #middleware(): Array<any> {
 		let middleware = [inline(), flip(), hide()];
 		if (this.arrow) {
-			middleware = [offset(12), ...middleware, arrow({ element: this.arrowEl, padding: 6 })];
+			middleware = [offset(12), ...middleware, arrow({ element: this.arrowEl, padding: 10 })];
 		}
 		return middleware;
 	}

@@ -88,3 +88,50 @@ Tooltip component is a low level element, unaware of its document context, but i
 A common practice used in apps / frameworks to promote a tooltip component to top other elements z-axis, is to utilise a service that dynamically appends a tooltip component to the end of the body element, when called for.
 
 This helps ensure elements don't render over top a tooltip undesirebly.
+
+## Placement - only for Now! will be removed once all is OK
+
+```html preview center
+<style>
+html { /* for demo purposes */
+    block-size: 350px;
+  }
+  .square {
+    inline-size: 400px;
+    block-size: 160px;
+    background-color: var(--vvd-color-neutral-50);
+  }
+
+  vwc-text {
+    white-space: nowrap;
+  }
+</style>
+
+<div id="anchor" class="square"></div>
+
+<vwc-tooltip text="right-end" id="popup" anchor="anchor" open placement="right-end">
+</vwc-tooltip>
+<vwc-tooltip text="right" id="popup" anchor="anchor" open placement="right">
+</vwc-tooltip>
+<vwc-tooltip text="right-start" id="popup" anchor="anchor" open placement="right-start">
+</vwc-tooltip>
+<vwc-tooltip text="left-end"  id="popup" anchor="anchor" open placement="left-end">
+</vwc-tooltip>
+<vwc-tooltip text="left" id="popup" anchor="anchor" open placement="left">
+</vwc-tooltip>
+<vwc-tooltip text="left-start" id="popup" anchor="anchor" open placement="left-start">
+</vwc-tooltip>
+<vwc-tooltip text="top-end" id="popup" anchor="anchor" open placement="top-end">
+</vwc-tooltip>
+<vwc-tooltip text="top" id="popup" anchor="anchor" open placement="top">
+</vwc-tooltip>
+<vwc-tooltip text="top-start" id="popup" anchor="anchor" open placement="top-start">
+</vwc-tooltip>
+<vwc-tooltip text="bottom-end" id="popup" anchor="anchor" open placement="bottom-end">
+</vwc-tooltip>
+<vwc-tooltip text="bottom" id="popup" anchor="anchor" open placement="bottom">
+  bottom
+</vwc-tooltip>
+<vwc-tooltip text="bottom-start" id="popup" anchor="anchor" open placement="bottom-start">
+</vwc-tooltip>
+```
