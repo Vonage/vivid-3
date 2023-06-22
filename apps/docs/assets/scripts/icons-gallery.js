@@ -81,6 +81,7 @@ function onClickFilter() {
 
 function filterIcons() {
   let iconsArray = jsonData.filter(item => item.keyword.some(icon => icon.includes(iconsTextField.value.toLowerCase())));
+  iconsArray = iconsArray.concat(jsonData.filter(item => item.id.includes(iconsTextField.value.toLowerCase())));
 
   iconsArray = filterIconsByTag(iconsArray);
   iconsShown > ICONS_TO_SHOW ? showMoreIcons(iconsArray) : showIcons(iconsArray);
