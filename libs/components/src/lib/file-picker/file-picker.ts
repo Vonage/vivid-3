@@ -150,10 +150,10 @@ export class FilePicker extends FoundationElement {
 	}
 
 	#removeDefaultDivs(file: any) {
-		file.previewElement.querySelector('.dz-success-mark')?.remove();
-		file.previewElement.querySelector('.dz-error-mark')?.remove();
-		file.previewElement.querySelector('.dz-remove')?.remove();
-		file.previewElement.querySelector('.dz-image')?.remove();
+		file.previewElement.querySelector('.dz-success-mark').remove();
+		file.previewElement.querySelector('.dz-error-mark').remove();
+		file.previewElement.querySelector('.dz-remove').remove();
+		file.previewElement.querySelector('.dz-image').remove();
 	}
 
 	getAcceptedFiles(): File[] {

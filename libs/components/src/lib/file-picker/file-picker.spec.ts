@@ -210,7 +210,9 @@ describe('vwc-file-picker', () => {
 			expect(element.files.length).toEqual(1);
 			expect(element.getAcceptedFiles().length).not.toEqual(1);
 		});
+	});
 
+	describe('remove files', function () {
 		it('should have 1 files after adding 2 files and calling removeFile', async function () {
 			await elementUpdated(element);
 
@@ -224,6 +226,19 @@ describe('vwc-file-picker', () => {
 			element.removeFile(firstFile);
 			await elementUpdated(element);
 			expect(element.files.length).toEqual(1);
+		});
+		
+		it('should remove files on click', async function () {
+			await elementUpdated(element);
+
+			const file = await generateFile('london.png', 2);
+			element.addFile(file);
+			await elementUpdated(element);
+			expect(element.files.length).toEqual(1);
+
+			(getBaseElement(element).querySelector('.remove-btn') as HTMLElement).click();
+			await elementUpdated(element);
+			expect(element.files.length).toEqual(0);
 		});
 	});
 
