@@ -2,7 +2,7 @@
 {% set componentsFilter %}
 	{% include "../assets/scripts/components.filter.js" %}
 {% endset %}
-<vwc-nav>
+<vwc-nav class="side-nav">
 	<vwc-text-field class="components-filter" icon="search-line" placeholder="Find Component" label="Filter Components"></vwc-text-field>
   <script>
 		{{ componentsFilter | safe }}
