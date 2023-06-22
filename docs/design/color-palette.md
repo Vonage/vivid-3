@@ -249,6 +249,29 @@ vwc-side-drawer::part(base) {
 }
 ```
 
+### Alternate
+A single component can be set with alternate colors.  
+
+#### class
+adding the class `vvd-theme-alternate` to the component
+```html preview
+<style>
+.wrapper {
+background-color: var(--vvd-color-neutral-950);
+    width: 200px;
+    height: 60px;
+    display: grid;
+    place-content: center;
+}
+</style>
+<div class='wrapper'>
+<vwc-button label='filled' appearance='filled' class='vvd-theme-alternate'></vwc-button>
+</div>
+```
+
+#### part
+If the component has part, add `part='vvd-theme-alternate'`
+
 ### Gradients
 
 Our brand colors are used to build two distinctive sets of gradients. 2-tone and 3-tone gradients.  
