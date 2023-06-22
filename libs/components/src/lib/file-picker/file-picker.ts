@@ -110,28 +110,17 @@ export class FilePicker extends FoundationElement {
 				addRemoveLinks: true,
 			});
 
-		this.#addRemoveToButton();
+		this.#onFileAdded();
 	}
 
-	#addRemoveToButton = () => {
+	#onFileAdded = () => {
 		let removeButton: Button;
 		this.filePicker.on('addedfile', file => {
 			if (file && file.previewElement) {
-				if (file.previewElement.parentNode && file.previewElement.parentNode !== this.previewList) {
-					file.previewElement.parentNode.removeChild(file.previewElement);
-					this.previewList.appendChild(file.previewElement);
-				}
+				this.#removeParent(this, file);
+				this.#removeDefaultDivs(file);
 			}
-
-			// eslint-disable-next-line @typescript-eslint/no-this-alias
-			const _this = this;
-			removeButton = Dropzone.createElement("<vwc-button class='remove-btn' icon='close-circle-line' appearance='ghost' size='condensed'></vwc-button>") as Button;
-			removeButton.addEventListener('click', function (e) {
-				e.preventDefault();
-				e.stopPropagation();
-				_this.removeFile(file);
-			});
-			file.previewElement.appendChild(removeButton);
+			removeButton = this.#addRemoveButton(this, file);
 		});
 
 		this.filePicker.on('complete', file => {
@@ -141,6 +130,31 @@ export class FilePicker extends FoundationElement {
 			}
 		});
 	};
+
+	#addRemoveButton(_this: any, file: any) {
+		const removeButton = Dropzone.createElement("<vwc-button class='remove-btn' icon='close-circle-line' appearance='ghost' size='condensed'></vwc-button>") as Button;
+		removeButton.addEventListener('click', function (e) {
+			e.preventDefault();
+			e.stopPropagation();
+			_this.removeFile(file);
+		});
+		file.previewElement.appendChild(removeButton);
+		return removeButton;
+	}
+
+	#removeParent(_this: any, file: any) {
+		if (file.previewElement.parentNode && file.previewElement.parentNode !== _this.previewList) {
+			file.previewElement.parentNode.removeChild(file.previewElement);
+			_this.previewList.appendChild(file.previewElement);
+		}
+	}
+
+	#removeDefaultDivs(file: any) {
+		file.previewElement.querySelector('.dz-success-mark')?.remove();
+		file.previewElement.querySelector('.dz-error-mark')?.remove();
+		file.previewElement.querySelector('.dz-remove')?.remove();
+		file.previewElement.querySelector('.dz-image')?.remove();
+	}
 
 	getAcceptedFiles(): File[] {
 		return this.filePicker.getAcceptedFiles();

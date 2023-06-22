@@ -50,13 +50,6 @@ $low-ink-color: --_low-ink-color;
 	grid-template-rows: auto auto;
 	inline-size: 100%;
 
-	.dz-success-mark,
-	.dz-error-mark,
-	.dz-remove,
-	.dz-image {
-		display: none;
-	}
-
 	.dz-details {
 		display: flex;
 		overflow: hidden;
