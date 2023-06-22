@@ -81,7 +81,7 @@ Set the `appearance` attribute to change the Select appearance.
 (`'ghost'` is typically used within a composition such as action group / toolbar).
 
 ```html preview
-<vwc-select appearance="ghost">
+<vwc-select aria-label="Options Selector" appearance="ghost">
   <vwc-option value="1" text="Option 1" selected></vwc-option>
   <vwc-option value="2" text="Option 2 "></vwc-option>
 </vwc-select>
@@ -94,7 +94,7 @@ Use the `shape` attribute to change the Select edges.
 - Default: `'rounded'`
 
 ```html preview
-<vwc-select shape="pill">
+<vwc-select aria-label="Options Selector" shape="pill">
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
 </vwc-select>
@@ -170,7 +170,6 @@ Note that any current error state will be overriden by `error-text` (and, if app
 </vwc-select>
 ```
 
-
 ### Disabled
 
 Add the `disabled` attribute to disable the Select.
@@ -179,7 +178,7 @@ Add the `disabled` attribute to disable the Select.
 - Default: `false`
 
 ```html preview
-<vwc-select disabled>
+<vwc-select aria-label="Options Selector" disabled>
   <vwc-option value="1" text="Option 1"></vwc-option>
 </vwc-select>
 ```
@@ -199,10 +198,25 @@ _Select_ internally uses _popup_ to display an element and its descendants above
     block-size: 230px;
   }
 </style>
-<vwc-select open>
+<vwc-select aria-label="Options Selector" open>
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
   <vwc-option value="3" text="Option 3"></vwc-option>
+</vwc-select>
+```
+
+### Fixed-Dropdown
+
+Add the `fixed-dropdown` attribute to set its popup to open as fixed. 
+This is useful for cases in which the dropdown is obstructed by other elements (see [the grid select example](../../components/data-grid#select-in-a-grid)).
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-select aria-label="Options Selector" fixed-dropdown>
+  <vwc-option value="1" text="Option 1"></vwc-option>
+  <vwc-option value="2" text="Option 2"></vwc-option>
 </vwc-select>
 ```
 
@@ -246,7 +260,7 @@ Set the `meta` slot to show meta information after the selected option label.
     flex-grow: 1;
   }
 </style>
-<vwc-select>
+<vwc-select aria-label="Options Selector">
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
   <vwc-option value="3" text="Option 3"></vwc-option>
@@ -254,11 +268,33 @@ Set the `meta` slot to show meta information after the selected option label.
     <vwc-badge connotation="success" text="Beta"></vwc-badge>
   </span>
 </vwc-select>
-<vwc-select>
+<vwc-select aria-label="Options Selector">
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
   <vwc-option value="3" text="Option 3"></vwc-option>
   <span slot="meta" class="duration">00:00:00</span>
+</vwc-select>
+```
+
+### Icon
+
+Set the `icon` slot to show an icon before the selected option label.
+If set, the `icon` attribute is ignored.
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+  vwc-select {
+    width: 150px;
+  }
+</style>
+<vwc-select aria-label="Options Selector">
+  <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+  <vwc-option value="1" text="Option 1"></vwc-option>
+  <vwc-option value="2" text="Option 2"></vwc-option>
+  <vwc-option value="3" text="Option 3"></vwc-option>
 </vwc-select>
 ```
 
@@ -272,7 +308,7 @@ You can add a `label` attribute to the `vwc-option` to set a custom display valu
     block-size: 230px;
   }
 </style>
-<vwc-select>
+<vwc-select aria-label="Options Selector">
   <vwc-option label="Custom Label 1" value="1" text="Option 1"></vwc-option>
   <vwc-option label="Custom Label 2" value="2" text="Option 2"></vwc-option>
   <vwc-option label="Custom Label 3" value="3" text="Option 3"></vwc-option>
@@ -295,7 +331,7 @@ Default: `fit-content`
     --select-height: 200px;
   }
 </style>
-<vwc-select>
+<vwc-select aria-label="Options Selector">
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
   <vwc-option value="3" text="Option 3"></vwc-option>
@@ -335,8 +371,16 @@ Document elements display precedence is formed by the imaginary z-axis [stacking
 Select component is a low level element, unaware of its document context, but is, in most cases, required to overlay on top of all elements.  
 If needed a `z-index` value can be set on the host
 
-## Use Case
+## Accessibility
 
+### Arial Label
+A select requires a label to be set for screen readers to be able to describe the component.
+If label is set, it is used as the `aria-label` attribute value on the host element.
+If label is not set, please make sure to add an `aria-label` attribute to the host element.
+
+## Use Cases
+
+### Country Code
 ```html preview
 <style>
   html { /* for demo purposes */
@@ -352,7 +396,29 @@ If needed a `z-index` value can be set on the host
 <script>
 const select = document.querySelector('vwc-select');
 select?.addEventListener('change', (e) => {
-	select.icon = select.selectedOptions[0].icon;
+  select.icon = select.selectedOptions[0].icon;
 });
+</script>
+```
+
+
+### Call Status
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 250px;
+  }
+  vwc-select {width: 150px;}
+</style>
+<vwc-select id="select" shape="pill" aria-label="Status">
+  <vwc-icon id="icon" slot="icon" name="bullet-solid" connotation="success"></vwc-icon>
+  <vwc-option value="ready" text="Ready" data-connotation="success"></vwc-option>
+  <vwc-option value="away" text="Away" data-connotation="cta"></vwc-option>
+  <vwc-option value="offline" text="Offline" data-connotation="alert"></vwc-option>
+</vwc-select>
+<script>
+  select.addEventListener('change', () => {
+    icon.connotation = select.selectedOptions[0].dataset.connotation;
+  });
 </script>
 ```

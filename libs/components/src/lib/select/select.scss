@@ -89,6 +89,11 @@ $low-ink-color: --_low-ink-color;
 
 }
 
+.icon {
+	display: flex;
+	flex-shrink: 0;
+}
+
 .selected-value {
 	display: flex;
 	overflow: hidden;
@@ -103,7 +108,7 @@ $low-ink-color: --_low-ink-color;
 		text-overflow: ellipsis;
 	}
 
-	.icon {
+	slot[name="icon"] {
 		flex: 0 0 20px;
 		font-size: 20px;
 		line-height: 1;
@@ -117,7 +122,7 @@ $low-ink-color: --_low-ink-color;
 
 ::part(popup-base) {
 	inline-size: max-content;
-	min-inline-size: 100%;
+	min-inline-size: var(#{variables.$select-fixed-width}, 100%);
 }
 
 

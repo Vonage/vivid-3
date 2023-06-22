@@ -23,7 +23,7 @@ export const NavDisclosureTemplate: (
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const focusTemplate = focusTemplateFactory(context);
 	const iconTag = context.tagFor(Icon);
-	
+
 	return html`<details class="base" ${ref('details')} ?open=${x => x.open}>
         <summary class="control"
             role="button"
@@ -32,6 +32,7 @@ export const NavDisclosureTemplate: (
         >
             ${x => affixIconTemplate(x.icon)}
             ${x => x.label}
+						<slot name="meta"></slot>
 			${when(x => x.open, html<NavDisclosure>`<${iconTag} class="toggleIcon" name='chevron-up-solid'></${iconTag}>`)}
 			${when(x => !x.open, html<NavDisclosure>`<${iconTag} class="toggleIcon" name='chevron-down-solid'></${iconTag}>`)}
 			${() => focusTemplate}

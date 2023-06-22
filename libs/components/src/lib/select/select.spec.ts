@@ -1,5 +1,4 @@
-import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
-import { Icon } from '../icon/icon';
+import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
 import { Select } from './select';
 import '.';
 
@@ -98,18 +97,46 @@ describe('vwc-select', () => {
 			expect(labelElement)
 				.toBeNull();
 		});
+
+		it('should set arialabel on host', async function () {
+			const labelText = 'label';
+			element.label = labelText;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-label'))
+				.toEqual(labelText);
+		});
 	});
 
-	describe('select icon', () => {
-		it('should add an icon to the select', async () => {
-			element.icon = 'search-solid';
+	describe('ariaLabel', () => {
+		it('should reflect on the host', async function () {
+			const ariaLabel = 'label';
+			element.ariaLabel = ariaLabel;
 			await elementUpdated(element);
+			expect(element.getAttribute('aria-label'))
+				.toEqual(ariaLabel);
+		});
 
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-			expect(icon)
-				.toBeInstanceOf(Icon);
-			expect(icon?.name)
-				.toEqual('search-solid');
+		it('should set ariaLabel on the host overriding label', async function () {
+			const ariaLabel = 'arialabel';
+			const label = 'label';
+			element.ariaLabel = ariaLabel;
+			element.label = label;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-label'))
+				.toEqual(ariaLabel);
+		});
+	});
+
+	describe('icon', () => {
+		it('should have a icon slot', async () => {
+			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
+		});
+
+		it('should have an icon when icon is set without slotted icon', async function () {
+			const icon = 'info';
+			element.icon = icon;
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector(ICON_SELECTOR)?.getAttribute('name')).toEqual(icon);
 		});
 	});
 
@@ -412,6 +439,70 @@ describe('vwc-select', () => {
 		});
 	});
 
+	describe('fixed-dropdown', ()=> {
+		function setBoundingClientRect(width: number) {
+			element.getBoundingClientRect = jest.fn().mockReturnValue({ width });
+		}
+
+		async function toggleOpenState(open = true) {
+			element.open = open;
+			await elementUpdated(element);
+		}
+
+		it('should reflect fixed-dropdown attribute to property', async function () {
+			element.toggleAttribute('fixed-dropdown', true);
+			await elementUpdated(element);
+			expect(element.fixedDropdown).toBe(true);
+		});
+
+		it('should remove strategy attribute from popup', async function () {
+			element.fixedDropdown = true;
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.popup')?.hasAttribute('strategy')).toBeFalsy();
+		});
+
+		it('should add strategy="absolute" when fixedDropdown is false', function () {
+			expect(element.shadowRoot?.querySelector('.popup')?.getAttribute('strategy')).toEqual('absolute');
+		});
+
+		it('should set --_select-fixed-width to the width of the select on open', async function () {
+			const width = 50;
+			element.fixedDropdown = true;
+			setBoundingClientRect(width);
+
+			await toggleOpenState(true);
+
+			const popup = element.shadowRoot?.querySelector('.popup') as HTMLElement;
+			const variableValue = window.getComputedStyle(popup).getPropertyValue('--_select-fixed-width');
+			expect(variableValue).toEqual(`${width}px`);
+		});
+
+		it('should round the width set to --_select-fixed-width', async function () {
+			const width = 50.5;
+			const expectedWidth = Math.round(width);
+			element.fixedDropdown = true;
+			setBoundingClientRect(width);
+			await toggleOpenState(true);
+			const popup = element.shadowRoot?.querySelector('.popup') as HTMLElement;
+			const variableValue = window.getComputedStyle(popup).getPropertyValue('--_select-fixed-width');
+			expect(variableValue).toEqual(`${expectedWidth}px`);
+		});
 
 
+		it('should update the width on each opening', async function () {
+			const width = 50;
+			element.fixedDropdown = true;
+
+			setBoundingClientRect(30);
+			await toggleOpenState(true);
+
+			setBoundingClientRect(width);
+			await toggleOpenState(false);
+			await toggleOpenState(true);
+
+			const popup = element.shadowRoot?.querySelector('.popup') as HTMLElement;
+			const variableValue = window.getComputedStyle(popup).getPropertyValue('--_select-fixed-width');
+			expect(variableValue).toEqual(`${width}px`);
+		});
+	});
 });

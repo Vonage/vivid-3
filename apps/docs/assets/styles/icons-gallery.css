@@ -1,0 +1,62 @@
+.div-wrapper{
+    max-width: 1200px;
+}
+
+#iconsTextField {
+    display: flex;
+    margin-top: 32px;
+}
+
+#iconsLayout {
+    --layout-column-gap: 16px; 
+    --layout-row-gap: 16px;
+    --layout-grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+#iconDiv {
+    background-color: var(--vvd-color-neutral-50);
+    cursor: pointer;
+    border-radius: 6px;
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+
+    &:hover{
+        background-color: var(--vvd-color-neutral-100);
+    }
+}
+
+#iconSpan{
+    padding: 16px;
+}
+
+#nameSpan{
+    text-align: center;
+}
+
+.button-wrapper{
+    text-align: center;
+    margin-block: 32px;
+}
+
+#copyAlert {
+    --alert-min-inline-size: auto;
+    pointer-events: none;
+}
+
+article p{
+    max-inline-size: 1200px;
+}
+
+.tag-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin-block: 32px;
+    row-gap: 16px;
+}
+
+.tag-group {
+    margin-inline-end: 50px;
+}
