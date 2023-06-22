@@ -125,6 +125,11 @@ article ul,
 article table {
   max-inline-size: 80ch;
 }
+
+.vvd-root p:empty {
+	margin: 0;
+}
+
 article > pre,
 article > .cbd-container {
   margin-block: 12px;
