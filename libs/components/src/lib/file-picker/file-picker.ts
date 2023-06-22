@@ -1,8 +1,10 @@
+/* eslint-disable max-len */
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import type { DropzoneFile } from 'dropzone';
 import Dropzone from 'dropzone';
 import { FormElementHelperText } from '../../shared/patterns';
+import type { Button, ButtonConnotation } from '../button/button';
 
 /**
  * Base class for file-picker
@@ -112,59 +114,48 @@ export class FilePicker extends FoundationElement {
 	}
 
 	#addRemoveToButton = () => {
-		this.filePicker.on('sending', file => {
-			this.#changeRemoveElement(file,
-				"<vwc-button icon='close-circle-line' appearance='ghost' size='condensed'></vwc-button>");
+		let removeButton: Button;
+		this.filePicker.on('addedfile', file => {
+			if (file && file.previewElement) {
+				if (file.previewElement.parentNode && file.previewElement.parentNode !== this.previewList) {
+					file.previewElement.parentNode.removeChild(file.previewElement);
+					this.previewList.appendChild(file.previewElement);
+				}
+			}
+
+			// eslint-disable-next-line @typescript-eslint/no-this-alias
+			const _this = this;
+			removeButton = Dropzone.createElement("<vwc-button class='remove-btn' icon='close-circle-line' appearance='ghost' size='condensed'></vwc-button>") as Button;
+			removeButton.addEventListener('click', function (e) {
+				e.preventDefault();
+				e.stopPropagation();
+				_this.removeFile(file);
+			});
+			file.previewElement.appendChild(removeButton);
 		});
 
 		this.filePicker.on('complete', file => {
+			removeButton.icon = 'delete-line';
 			if (file.status === Dropzone.ERROR) {
-				this.#changeRemoveElement(file,
-					"<vwc-button icon='delete-line' appearance='ghost' size='condensed' connotation='alert'></vwc-button>");
-			} else {
-				this.#changeRemoveElement(file,
-					"<vwc-button icon='delete-line' appearance='ghost' size='condensed'></vwc-button>");
+				removeButton.connotation = 'alert' as ButtonConnotation;
 			}
 		});
 	};
-
-	#changeRemoveElement(file: any, innerHTML: string): void {
-		if (file && file.previewElement) {
-			if (file.previewElement.parentNode && file.previewElement.parentNode !== this.previewList) {
-				file.previewElement.parentNode.removeChild(file.previewElement);
-				this.previewList.appendChild(file.previewElement);
-			}
-		}
-
-		const removeElement = file.previewElement.querySelector('.dz-remove');
-		if (removeElement instanceof HTMLElement) {
-			removeElement.style.display = 'inline';
-			removeElement.innerHTML = innerHTML;
-		}
-	}
 
 	getAcceptedFiles(): File[] {
 		return this.filePicker.getAcceptedFiles();
 	}
 
-	getFilesWithStatus(status: string): File[] {
-		return this.filePicker.getFilesWithStatus(status);
+	getFilesWithErrorStatus(): File[] {
+		return this.filePicker.getFilesWithStatus(Dropzone.ERROR);
 	}
 
 	addFile(file: File): void {
 		this.filePicker.addFile(file as DropzoneFile);
 	}
 
-	cancelUpload(file: File): void {
-		this.filePicker.cancelUpload(file as DropzoneFile);
-	}
-
 	removeFile(file: File): void {
 		this.filePicker.removeFile(file as DropzoneFile);
-	}
-
-	removeAllFiles(): void {
-		this.filePicker.removeAllFiles();
 	}
 }
 

@@ -1,6 +1,5 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import Dropzone from 'dropzone';
 import { FilePicker } from './file-picker';
 import { filePickerDefinition } from './definition';
 import '.';
@@ -155,7 +154,7 @@ describe('vwc-file-picker', () => {
 		});
 	});
 
-	describe('preview classes', function () {
+	describe('get files with error status', function () {
 		it('should have dz-error class and status when files not added', async function () {
 			const maxFileSize = 0.2;
 			element.maxFileSize = maxFileSize;
@@ -169,19 +168,7 @@ describe('vwc-file-picker', () => {
 			const preview = element.shadowRoot?.querySelector('.dz-preview') as HTMLElement;
 			expect(preview.classList).toContain('dz-error');
 
-			expect(element.getFilesWithStatus(Dropzone.ERROR).length).toEqual(1);
-		});
-
-		it('should have canceled status when cancel file', async function () {
-			await elementUpdated(element);
-
-			const file = await generateFile('london.png', 2);
-			element.addFile(file);
-			element.cancelUpload(file);
-
-			await elementUpdated(element);
-
-			expect(element.getFilesWithStatus(Dropzone.CANCELED).length).toEqual(1);
+			expect(element.getFilesWithErrorStatus().length).toEqual(1);
 		});
 	});
 
@@ -237,21 +224,6 @@ describe('vwc-file-picker', () => {
 			element.removeFile(firstFile);
 			await elementUpdated(element);
 			expect(element.files.length).toEqual(1);
-		});
-
-		it('should have 0 files after adding 2 files and calling removeAllFiles', async function () {
-			await elementUpdated(element);
-
-			const firstFile = await generateFile('london.png', 2);
-			element.addFile(firstFile);
-			const secondFile = await generateFile('paris.png', 2);
-			element.addFile(secondFile);
-			await elementUpdated(element);
-			expect(element.files.length).toEqual(2);
-
-			element.removeAllFiles();
-			await elementUpdated(element);
-			expect(element.files.length).toEqual(0);
 		});
 	});
 

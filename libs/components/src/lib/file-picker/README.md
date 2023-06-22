@@ -124,14 +124,6 @@ Conrol the width of the file picker.
 
 Adds file to the file picker.
 
-### cancelUpload(file)
-
-- Type: `function`
-- Returns: `void`
-- Accepts: `File`
-
-Cancels upload of the file.
-
 ### removeFile(file)
 
 - Type: `function`
@@ -140,22 +132,19 @@ Cancels upload of the file.
 
 Removes file from the file picker.
 
-### removeAllFiles()
-
-- Type: `function`
-- Returns: `void`
-
-Removes all files from the file picker.
-
 ### getAcceptedFiles()
 
 - Type: `function`
 - Returns: `File[]`
 
-### getFilesWithStatus()
+Recieve an array of accepted files.
+
+### getFilesWithErrorStatus()
 
 - Type: `function`
 - Returns: `File[]`
+
+Recieve an array of files with 'error' status.
 
 ## Properties
 

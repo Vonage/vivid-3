@@ -12,7 +12,6 @@ $low-ink-color: --_low-ink-color;
 	inline-size: var(#{variables.$file-picker-inline-size}, 400px);
 }
 
-
 .control {
 	position: relative;
 	display: grid;
@@ -53,6 +52,7 @@ $low-ink-color: --_low-ink-color;
 
 	.dz-success-mark,
 	.dz-error-mark,
+	.dz-remove,
 	.dz-image {
 		display: none;
 	}
@@ -125,9 +125,8 @@ $low-ink-color: --_low-ink-color;
 		}
 	}
 
-	.dz-remove,
-	.dz-error-mark {
-		display: none;
+	.remove-btn {
+		display: inline;
 		align-self: center;
 		grid-column: 2 / -1;
 		grid-row: 1 / -1;
