@@ -75,7 +75,7 @@ Add the `disabled` attribute to disable the listbox.
 
 ### options
 
-List of options.
+A read-only list of options.
 
 - Type: `Option[]`
 - Default: `[]`
