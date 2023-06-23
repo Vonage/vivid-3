@@ -4,6 +4,19 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.20.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.19.0...vivid-v3.20.0) (2023-06-23)
+
+
+### Features
+
+* **option:** add icon slot to option (VIV-1055) ([#1224](https://github.com/Vonage/vivid-3/issues/1224)) ([99d29b2](https://github.com/Vonage/vivid-3/commit/99d29b252907b2cc0092b3998538bafb6aff4f48))
+* **tabs:** cta connotation (VIV-1127) ([#1205](https://github.com/Vonage/vivid-3/issues/1205)) ([3fb238c](https://github.com/Vonage/vivid-3/commit/3fb238c54cf3dafbc3fee539c06c6bd6fb230541))
+
+
+### Bug Fixes
+
+* **popup:** arrow position issue (VIV-1052) ([#1197](https://github.com/Vonage/vivid-3/issues/1197)) ([276ea63](https://github.com/Vonage/vivid-3/commit/276ea63f936905e831afae8d49a64de584c1064c))
+
 ## [3.19.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.18.1...vivid-v3.19.0) (2023-06-21)
 
 
