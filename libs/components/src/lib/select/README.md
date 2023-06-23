@@ -412,13 +412,19 @@ select?.addEventListener('change', (e) => {
 </style>
 <vwc-select id="select" shape="pill" aria-label="Status">
   <vwc-icon id="icon" slot="icon" name="bullet-solid" connotation="success"></vwc-icon>
-  <vwc-option value="ready" text="Ready" data-connotation="success"></vwc-option>
-  <vwc-option value="away" text="Away" data-connotation="cta"></vwc-option>
-  <vwc-option value="offline" text="Offline" data-connotation="alert"></vwc-option>
+  <vwc-option value="ready" text="Ready">
+		<vwc-icon slot="icon" name="bullet-solid" connotation="success"></vwc-icon>
+	</vwc-option>
+  <vwc-option value="away" text="Away">
+		<vwc-icon slot="icon" name="bullet-solid" connotation="cta"></vwc-icon>
+	</vwc-option>
+  <vwc-option value="offline" text="Offline">
+		<vwc-icon slot="icon" name="bullet-solid" connotation="alert"></vwc-icon>
+	</vwc-option>
 </vwc-select>
 <script>
   select.addEventListener('change', () => {
-    icon.connotation = select.selectedOptions[0].dataset.connotation;
+    icon.connotation = select.selectedOptions[0].querySelector('vwc-icon').connotation;
   });
 </script>
 ```
