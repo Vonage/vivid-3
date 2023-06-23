@@ -368,7 +368,7 @@ You can specify width on the `vwc-select` if required (the list-box will not be 
 
 ### options
 
-List of options.
+A read-only list of options.
 
 - Type: `Option[]`
 - Default: `[]`
