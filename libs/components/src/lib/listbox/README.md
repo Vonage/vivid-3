@@ -82,7 +82,7 @@ A read-only list of options.
 
 ### selectedOptions
 
-A collection of the selected options.
+A read-only collection of the selected options.
 
 - Type: `Option[]`
 - Default: `[]`
