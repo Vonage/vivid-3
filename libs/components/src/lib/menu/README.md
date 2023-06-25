@@ -148,7 +148,7 @@ Use the `--menu-min-inline-size` variable to set the menu's inline size.
 
 ### Menu Block Size
 
-Use the `menu-block-size-size` variable to set the menu's block size.
+Use the `--menu-block-size` variable to set the menu's block size.
 
 - Type: [`<length>`](https://developer.mozilla.org/en-US/docs/Web/CSS/length)
 - Default: `408px`
