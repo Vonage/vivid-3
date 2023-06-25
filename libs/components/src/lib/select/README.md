@@ -364,6 +364,28 @@ You can specify width on the `vwc-select` if required (the list-box will not be 
 </vwc-select>
 ```
 
+## Properties
+
+### options
+
+A read-only list of options.
+
+- Type: `Option[]`
+- Default: `[]`
+
+### selectedOptions
+
+A read-only collection of the selected options.
+
+- Type: `Option[]`
+- Default: `[]`
+
+### selectedIndex
+
+The index of the selected option or -1 if no option is selected.
+
+- Type: `number`
+- Default: `undefined`
 
 ## Caveat
 
