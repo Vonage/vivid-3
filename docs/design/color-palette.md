@@ -257,8 +257,8 @@ vwc-side-drawer::part(base) {
 ### Alternate
 A single component can be set with alternate colors.  
 
-#### class
-adding the class `vvd-theme-alternate` to the component
+#### Class
+Add the class `vvd-theme-alternate` to the component.
 ```html preview
 <style>
 .wrapper {
@@ -274,7 +274,7 @@ background-color: var(--vvd-color-neutral-950);
 </div>
 ```
 
-#### part
+#### Part
 If the component has part, add `part='vvd-theme-alternate'`
 
 ### Gradients
