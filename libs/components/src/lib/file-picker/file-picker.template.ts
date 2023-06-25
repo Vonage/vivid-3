@@ -5,7 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { getFeedbackTemplate } from '../../shared/patterns';
+import { focusTemplateFactory, getFeedbackTemplate } from '../../shared/patterns';
 import type { FilePicker } from './file-picker';
 
 const getClasses = (_: FilePicker) =>
@@ -24,11 +24,15 @@ export const FilePickerTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<FilePicker> = (context: ElementDefinitionContext) => {
+	const focusTemplate = focusTemplateFactory(context);
+
 	return html<FilePicker>`
 	<div class="${getClasses}" aria-label="${x => x.ariaLabel ? x.ariaLabel : x.label}">
 		${when(x => x.label, html<FilePicker>`<label>${x => x.label}</label>`)}
-		<div class="control dz-default dz-message" ${ref('_dz')}>
+		<div class="control dz-default dz-message" ${ref('_dz')} tabindex="0"
+		role="button" aria-label="Dropzone area">
 			<slot class="main"></slot>
+			${() => focusTemplate}
 		</div>
 		${when(x => x.helperText?.length, getFeedbackTemplate('helper', context))}
 		<div class='preview-list' ${ref('previewList')}></div>

@@ -191,3 +191,10 @@ A read-only object.
     });
 </script>
 ```
+
+## Accessibility
+If no label is set - it is highly recommended that `aria-label` will be added.
+
+```html
+<vwc-file-picker aria-label="Upload Files">Drag & Drop or click to upload</vwc-file-picker>
+```
