@@ -50,7 +50,8 @@ $low-ink-color: --_low-ink-color;
 
 	display: grid;
 	box-sizing: border-box;
-	padding: 10px;
+	padding: 6px 12px;
+	block-size: 52px;
 	border-radius: 6px;
 	grid-template-columns: 1fr auto;
 	grid-template-rows: auto auto;
@@ -58,7 +59,6 @@ $low-ink-color: --_low-ink-color;
 
 	.dz-details {
 		display: flex;
-		overflow: hidden;
 		flex-direction: column;
 		max-inline-size: 100%;
 
