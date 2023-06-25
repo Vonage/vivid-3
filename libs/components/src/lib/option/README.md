@@ -78,3 +78,18 @@ Use the `value` attribute to set the option's value.
  <vwc-option text="Option" value="my-value"></vwc-option>
 </vwc-listbox>
 ```
+
+## Slots
+
+### Icon
+
+Set the `icon` slot to show an icon before the option's label.
+If set, the `icon` attribute is ignored.
+
+```html preview
+<vwc-listbox>
+	<vwc-option text="Option" value="my-value">
+		<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+	</vwc-option>
+</vwc-listbox>
+```
