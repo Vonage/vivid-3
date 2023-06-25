@@ -7,6 +7,7 @@ import { AffixIconWithTrailing } from '../../shared/patterns/affix';
  * Base class for option
  *
  * @public
+ * @slot icon - Slot to add an icon to the option.
  */
 export class ListboxOption extends FoundationListboxOption {
 	/**

@@ -408,17 +408,50 @@ select?.addEventListener('change', (e) => {
   html { /* for demo purposes */
     block-size: 250px;
   }
-  vwc-select {width: 150px;}
+  vwc-select {
+		width: 280px;
+	}
+	
+	vwc-icon {
+		font-size: 12px;
+	}
+	vwc-select[current-value=ready] > vwc-icon,
+	vwc-option[value=ready] > vwc-icon {
+		color: var(--vvd-color-success-300);
+	}
+	vwc-select[current-value=away] > vwc-icon,
+	vwc-option[value=away] > vwc-icon {
+		color: var(--vvd-color-warning-300);
+	}
+	vwc-select[current-value=extended-away] > vwc-icon,
+	vwc-option[value=extended-away] > vwc-icon {
+		color: var(--vvd-color-announcement-500);
+	}
+	vwc-select[current-value=logged-out] > vwc-icon,
+	vwc-option[value=logged-out] > vwc-icon {
+		color: var(--vvd-color-neutral-300);
+	}
+	
+	.duration {
+		color: var(--vvd-color-neutral-600);
+		text-align: end;
+		flex-grow: 1;
+	}
 </style>
 <vwc-select id="select" shape="pill" aria-label="Status">
-  <vwc-icon id="icon" slot="icon" name="bullet-solid" connotation="success"></vwc-icon>
-  <vwc-option value="ready" text="Ready" data-connotation="success"></vwc-option>
-  <vwc-option value="away" text="Away" data-connotation="cta"></vwc-option>
-  <vwc-option value="offline" text="Offline" data-connotation="alert"></vwc-option>
+  <vwc-icon id="icon" slot="icon" name="bullet-solid"></vwc-icon>
+	<span slot="meta" class="duration">00:00:00</span>
+  <vwc-option value="ready" text="Ready">
+		<vwc-icon slot="icon" name="bullet-solid"></vwc-icon>
+	</vwc-option>
+  <vwc-option value="away" text="Away">
+		<vwc-icon slot="icon" name="bullet-solid"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="extended-away" text="Extended away">
+		<vwc-icon slot="icon" name="bullet-solid"></vwc-icon>
+	</vwc-option>
+  <vwc-option value="logged-out" text="Logged out">
+		<vwc-icon slot="icon" name="bullet-solid"></vwc-icon>
+	</vwc-option>
 </vwc-select>
-<script>
-  select.addEventListener('change', () => {
-    icon.connotation = select.selectedOptions[0].dataset.connotation;
-  });
-</script>
 ```
