@@ -4,24 +4,24 @@ import type { Page } from '@playwright/test';
 import {
 	extractHTMLBlocksFromReadme,
 	loadComponents,
-	loadTemplate
+	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['select', 'option', 'badge', 'icon'];
+
 test('should show the component', async ({ page }: { page: Page }) => {
+
 	const template = `
-	<style>
-		#wrapper {
-			width: 1800px;
-			display: grid;
-			grid-auto-rows: 250px;
-			grid-template-columns: repeat(8, 1fr);
-		}
-	</style>` + extractHTMLBlocksFromReadme(
+			<style>
+				#wrapper {
+					width: 1800px;
+					display: grid;
+					grid-auto-rows: 250px;
+					grid-template-columns: repeat(8, 1fr);
+				}
+			</style>` + extractHTMLBlocksFromReadme(
 		path.join(new URL('.', import.meta.url).pathname, 'README.md'))
 		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
-
-	page.setViewportSize({ width: 440, height: 720 });
 
 	await loadComponents({
 		page,
@@ -36,8 +36,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
-	expect(await testWrapper?.screenshot())
-		.toMatchSnapshot(
-			'./snapshots/select.png',
-		);
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'./snapshots/select.png'
+	);
 });
