@@ -30,7 +30,7 @@ export const FilePickerTemplate: (
 	<div class="${getClasses}" aria-label="${x => x.ariaLabel ? x.ariaLabel : x.label}">
 		${when(x => x.label, html<FilePicker>`<label>${x => x.label}</label>`)}
 		<div class="control dz-default dz-message" ${ref('_dz')} tabindex="0"
-		role="button" aria-label="Dropzone area">
+		role="button" aria-label="Dropzone area" @keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}">
 			<slot class="main"></slot>
 			${() => focusTemplate}
 		</div>

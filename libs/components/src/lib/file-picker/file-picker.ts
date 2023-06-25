@@ -171,6 +171,19 @@ export class FilePicker extends FoundationElement {
 	removeFile(file: File): void {
 		this.filePicker.removeFile(file as DropzoneFile);
 	}
+
+	handleKeydown(e: KeyboardEvent) {
+		if (e.key === 'Enter') {
+			this.#chooseFile();
+		}
+		return true;
+	}
+
+	#chooseFile(): void {
+		if (this.filePicker.hiddenFileInput) {
+			this.filePicker.hiddenFileInput.click();
+		}
+	}
 }
 
 export interface FilePicker extends FormElementHelperText { }

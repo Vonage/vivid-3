@@ -242,6 +242,15 @@ describe('vwc-file-picker', () => {
 		});
 	});
 
+	describe('choose file on enter key', function () {
+		it('should remove the button on enter key', async function () {
+			element.focus();
+			const spy = jest.spyOn(element, 'handleKeydown');
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+			expect((spy as any).mock.calls.length).toEqual(0);
+		});
+	});
+
 	async function generateFile(fileName: string, size: number): Promise<File> {
 		const blob = new Blob(['x'.repeat(size * 1024 * 1024)], { type: 'text/plain' });
 		return new File([blob], fileName, { type: blob.type });
