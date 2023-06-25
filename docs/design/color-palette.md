@@ -39,9 +39,14 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
 - Green - Success
 - Yellow - Warning
 
-```html preview
 <style>
- dl,
+ dl{
+  border: 1px solid var(--vvd-color-neutral-100);
+  border-radius: 6px;
+  width: max-content;
+  margin: 0;
+ }
+
  dd {
   margin: 0;
  }
@@ -70,6 +75,7 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
   border-radius: 50%;
   content: '';
   transform: translateY(calc(0px - var(--box-size)));
+  border: 1px solid var(--vvd-color-neutral-100);
  }
 </style>
 
@@ -237,7 +243,6 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
  </vwc-layout>
 
 </dl>
-```
 
 #### Usage
 
