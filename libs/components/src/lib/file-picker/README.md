@@ -57,26 +57,26 @@ Use the `max-files` attribute (or `maxFiles` property) to define how many files 
 ```html preview
 <vwc-file-picker helper-text="Single file only" max-files=1>Drag & Drop or click to upload</vwc-file-picker>
 ```
-### Upload Multiple
+### Multiple
 
-Use the `upload-multiple` attribute (or `uploadMultiple` property) to define whether to send multiple files in one request. In addition, you must add the [`max-files`](#max-files) attribute.
+Use the `multiple` attribute to define whether to send multiple files in one request.
 
 - Type: `boolean`
 - Default: `false`
 
 ```html preview
-<vwc-file-picker helper-text="Upload multiple files" max-files="10" upload-multiple>Drag & Drop or click to upload</vwc-file-picker>
+<vwc-file-picker helper-text="Upload multiple files" multiple>Drag & Drop or click to upload</vwc-file-picker>
 ```
 
-### Accepted Files
+### Accept
 
-Use the `accepted-files` attribute (or `acceptedFiles` property) to define a comma separated list of accepted files types.
+Use the `accept` attribute to define a comma separated list of files types to accept.
 
 - Type: `string`
 - Default: `undefined`
 
 ```html preview
-<vwc-file-picker helper-text=".jpg, .jpeg, .png types only" accepted-files=".jpg, .jpeg, .png">Drag & Drop or click to upload</vwc-file-picker>
+<vwc-file-picker helper-text="png and jpeg types only" accept="image/png, image/jpeg">Drag & Drop or click to upload</vwc-file-picker>
 ```
 
 ## Slots

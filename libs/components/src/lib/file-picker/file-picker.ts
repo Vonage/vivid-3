@@ -6,6 +6,7 @@ import Dropzone from 'dropzone';
 import { FormElementHelperText } from '../../shared/patterns';
 import type { Button, ButtonConnotation } from '../button/button';
 
+const DEFAULT_MAX_FILES : number = 100;
 /**
  * Base class for file-picker
  *
@@ -69,24 +70,24 @@ export class FilePicker extends FoundationElement {
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: upload-multiple
+	 * HTML Attribute: multiple
 	 */
-	@attr({ mode: 'boolean', attribute: 'upload-multiple' }) uploadMultiple = false;
-	uploadMultipleChanged(_oldValue: boolean, newValue: boolean): void {
+	@attr({ mode: 'boolean' }) multiple = false;
+	multipleChanged(_oldValue: boolean, newValue: boolean): void {
 		if (this.filePicker) {
 			(this.filePicker.options).uploadMultiple = newValue;
 		}
 	}
 
 	/**
-	 * List of accepted files types
+	 * List of files types to accept
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: accepted-files
+	 * HTML Attribute: accept
 	 */
-	@attr({ attribute: 'accepted-files' }) acceptedFiles?: string;
-	acceptedFilesChanged(_oldValue: string, newValue: string): void {
+	@attr accept?: string;
+	acceptChanged(_oldValue: string, newValue: string): void {
 		if (this.filePicker) {
 			(this.filePicker.options).acceptedFiles = newValue;
 		}
@@ -103,10 +104,10 @@ export class FilePicker extends FoundationElement {
 		this.filePicker = new Dropzone(this._dz,
 			{
 				url: '/',
-				maxFiles: this.maxFiles,
+				maxFiles: (this.multiple && !this.maxFiles) ? DEFAULT_MAX_FILES : this.maxFiles,
 				maxFilesize: this.maxFileSize,
-				uploadMultiple: this.uploadMultiple,
-				acceptedFiles: this.acceptedFiles,
+				uploadMultiple: this.multiple,
+				acceptedFiles: this.accept,
 				addRemoveLinks: true,
 			});
 
