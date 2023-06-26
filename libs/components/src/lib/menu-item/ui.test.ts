@@ -18,7 +18,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		</style>
 
 		<div>
-			<vwc-menu open>
+			<vwc-menu open style="--menu-block-size: auto;">
 				<vwc-menu-item text="Menu item 1"></vwc-menu-item>
 				<vwc-menu-item role="menuitem" text="Menu item 2"></vwc-menu-item>
 				<vwc-menu-item icon="home" text="primary text" text-secondary="secondary text"></vwc-menu-item>
