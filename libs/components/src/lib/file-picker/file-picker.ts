@@ -6,7 +6,7 @@ import Dropzone from 'dropzone';
 import { FormElementHelperText } from '../../shared/patterns';
 import type { Button, ButtonConnotation } from '../button/button';
 
-const DEFAULT_MAX_FILES : number = 100;
+const DEFAULT_MAX_FILES: number = 100;
 /**
  * Base class for file-picker
  *
@@ -93,6 +93,20 @@ export class FilePicker extends FoundationElement {
 		}
 	}
 
+	/**
+	 * List of capture types
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: capture
+	 */
+	@attr capture?: string;
+	captureChanged(_oldValue: string, newValue: string): void {
+		if (this.filePicker) {
+			(this.filePicker.options).capture = newValue;
+		}
+	}
+
 	constructor() {
 		super();
 		Dropzone.autoDiscover = false;
@@ -108,6 +122,7 @@ export class FilePicker extends FoundationElement {
 				maxFilesize: this.maxFileSize,
 				uploadMultiple: this.multiple,
 				acceptedFiles: this.accept,
+				capture: this.capture,
 				addRemoveLinks: true,
 			});
 

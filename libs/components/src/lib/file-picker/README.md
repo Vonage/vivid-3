@@ -39,23 +39,39 @@ Add the `helper-text` to add some helper text below the file picker.
 ### Accept
 
 Use the `accept` attribute to define a comma separated list of files types to accept.
+Read more on [accept](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept).
 
 - Type: `string`
 - Default: `undefined`
 
 ```html preview
-<vwc-file-picker helper-text="png and jpeg types only" accept="image/png, image/jpeg">Drag & Drop or click to upload</vwc-file-picker>
+<vwc-file-picker accept="image/png, image/jpeg">Drag & Drop or click to upload</vwc-file-picker>
+```
+
+### Capture
+
+Use the `capture` attribute to specify which camera to use for capture of image or video data.
+Read more on [capture](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#capture).
+
+    If null, no capture type will be specified. If camera, mobile devices will skip the file selection and choose camera. If microphone, mobile devices will skip the file selection and choose the microphone. If camcorder, mobile devices will skip the file selection and choose the camera in video mode. On apple devices multiple must be set to false. [accept](#accept) may need to be set to an appropriate mime type (e.g. "image/*", "audio/*", or "video/*").
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-file-picker capture="user">Drag & Drop or click to upload</vwc-file-picker>
 ```
 
 ### Multiple
 
 Use the `multiple` attribute to define whether to send multiple files in one request.
+Read more on [multiple](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#multiple).
 
 - Type: `boolean`
 - Default: `false`
 
 ```html preview
-<vwc-file-picker helper-text="Upload multiple files" multiple>Drag & Drop or click to upload</vwc-file-picker>
+<vwc-file-picker multiple>Drag & Drop or click to upload</vwc-file-picker>
 ```
 
 ### Max File Size
@@ -66,7 +82,7 @@ Use the `max-file-size` attribute (or `maxFileSize` property) to define the maxi
 - Default: `256`
 
 ```html preview
-<vwc-file-picker helper-text="Max file zise is 0.1MB" max-file-size=0.1>Drag & Drop or click to upload</vwc-file-picker>
+<vwc-file-picker max-file-size=0.1>Drag & Drop or click to upload</vwc-file-picker>
 ```
 
 ### Max Files
@@ -77,7 +93,7 @@ Use the `max-files` attribute (or `maxFiles` property) to define how many files 
 - Default: `undefined`
 
 ```html preview
-<vwc-file-picker helper-text="Single file only" max-files=1>Drag & Drop or click to upload</vwc-file-picker>
+<vwc-file-picker max-files=1>Drag & Drop or click to upload</vwc-file-picker>
 ```
 
 ## Slots
