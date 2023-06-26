@@ -170,7 +170,7 @@ Recieve an array of files with 'error' status.
 
 ## Properties
 
-### files
+### Files
 
 A read-only list of files.
 Read more on [files](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#getting_information_on_selected_files).
@@ -178,7 +178,7 @@ Read more on [files](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/i
 - Type: `File[]`
 - Default: `[]`
 
-### value
+### Value
 
 Read more on [value](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#value).
 
