@@ -173,23 +173,38 @@ describe('vwc-file-picker', () => {
 	});
 
 	describe('multiple', function () {
-		it('should set uploadMultiple if it is set', async function () {
+		it('should set multiple if it is set', async function () {
 			const uploadMultiple = true;
 			element.multiple = uploadMultiple;
 			await elementUpdated(element);
 			expect(element.options.uploadMultiple).toEqual(uploadMultiple);
 		});
+
+		it('should not accept multiple files if maxFiles is set to 1', async function () {
+			const uploadMultiple = true;
+			element.maxFiles = 1;
+			element.multiple = uploadMultiple;
+			await elementUpdated(element);
+
+			const firstFile = await generateFile('london.png', 2);
+			element.addFile(firstFile);
+			const secondFile = await generateFile('paris.png', 2);
+			element.addFile(secondFile);
+			await elementUpdated(element);
+			expect(element.files.length).toEqual(2);
+			expect(element.getAcceptedFiles().length).toEqual(1);
+		});
 	});
 
 	describe('accept', function () {
-		it('should set acceptedFiles if it is set', async function () {
+		it('should set accept if it is set', async function () {
 			const acceptedFiles = '.jpg';
 			element.accept = acceptedFiles;
 			await elementUpdated(element);
 			expect(element.options.acceptedFiles).toEqual(acceptedFiles);
 		});
 
-		it('should add png file when acceptedFiles is null', async function () {
+		it('should add png file when accept is null', async function () {
 			const file = await generateFile('london.png', 2);
 			element.addFile(file);
 
@@ -198,7 +213,7 @@ describe('vwc-file-picker', () => {
 			expect(element.getAcceptedFiles().length).toEqual(1);
 		});
 
-		it('should not add png file when acceptedFiles is set to .jpg', async function () {
+		it('should not add png file when accept is set to .jpg', async function () {
 			const acceptedFiles = '.jpg';
 			element.accept = acceptedFiles;
 			await elementUpdated(element);
