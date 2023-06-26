@@ -18,6 +18,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 			vwc-menu {
 				--menu-max-inline-size: 300px;
+				--menu-block-size: 150px;
 			}
 		</style>
 
@@ -28,6 +29,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-menu-item text="Lorem ipsum dolor sit amet, consectetur adipisicing elit"></vwc-menu-item>
 				<vwc-menu-item text="Menu item 1"></vwc-menu-item>
 				<vwc-menu-item text="Menu item 2"></vwc-menu-item>
+				<vwc-menu-item text="Menu item 3"></vwc-menu-item>
+				<vwc-menu-item text="Menu item 4"></vwc-menu-item>
 			</vwc-menu>
 		</div>`;
 
