@@ -36,6 +36,28 @@ Add the `helper-text` to add some helper text below the file picker.
 <vwc-file-picker helper-text="helper-text">Drag & Drop or click to upload</vwc-file-picker>
 ```
 
+### Accept
+
+Use the `accept` attribute to define a comma separated list of files types to accept.
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-file-picker helper-text="png and jpeg types only" accept="image/png, image/jpeg">Drag & Drop or click to upload</vwc-file-picker>
+```
+
+### Multiple
+
+Use the `multiple` attribute to define whether to send multiple files in one request.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-file-picker helper-text="Upload multiple files" multiple>Drag & Drop or click to upload</vwc-file-picker>
+```
+
 ### Max File Size
 
 Use the `max-file-size` attribute (or `maxFileSize` property) to define the maximum file size (in bytes) that is allowed to be uploaded.
@@ -56,27 +78,6 @@ Use the `max-files` attribute (or `maxFiles` property) to define how many files 
 
 ```html preview
 <vwc-file-picker helper-text="Single file only" max-files=1>Drag & Drop or click to upload</vwc-file-picker>
-```
-### Multiple
-
-Use the `multiple` attribute to define whether to send multiple files in one request.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<vwc-file-picker helper-text="Upload multiple files" multiple>Drag & Drop or click to upload</vwc-file-picker>
-```
-
-### Accept
-
-Use the `accept` attribute to define a comma separated list of files types to accept.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<vwc-file-picker helper-text="png and jpeg types only" accept="image/png, image/jpeg">Drag & Drop or click to upload</vwc-file-picker>
 ```
 
 ## Slots
@@ -112,7 +113,6 @@ Conrol the width of the file picker.
 ```html preview
 <vwc-file-picker style=" --file-picker-width: 52px;"></vwc-file-picker>
 ```
-
 
 ## Methods
 
