@@ -1,4 +1,4 @@
-import { html, when } from '@microsoft/fast-element';
+import {html, when} from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 
@@ -17,7 +17,12 @@ export const iconTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Icon> = () => html`
-  <figure class="${getClasses}">
-		<slot>${when((x)=> x._svg, (x) => html<Icon>`${x._svg as string}`)}</slot>
-  </figure>
+
+	<figure class="${getClasses}">
+		<slot>
+			${when(x => !x.iconLoaded, html<Icon>`<img alt="${x => x.name}" src="${x => x.iconUrl}"/>`)}
+			${when((x)=> x.iconLoaded && x._svg, (x) => html<Icon>`${x._svg as string}`)}
+		</slot>
+	</figure>
+
 `;
