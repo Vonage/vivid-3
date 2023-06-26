@@ -25,10 +25,6 @@ export class FilePicker extends FoundationElement {
 		return `C:\\fakepath\\${this.filePicker.files[0].name}`;
 	}
 
-	get options(): any {
-		return this.filePicker.options;
-	}
-
 	_dz!: HTMLElement;
 	previewList!: HTMLDivElement;
 
@@ -136,6 +132,7 @@ export class FilePicker extends FoundationElement {
 	#onFileAdded = () => {
 		let removeButton: Button;
 		this.filePicker.on('addedfile', file => {
+			this.$emit('change');
 			if (file && file.previewElement) {
 				this.#removeParent(this, file);
 				this.#removeDefaultDivs(file);

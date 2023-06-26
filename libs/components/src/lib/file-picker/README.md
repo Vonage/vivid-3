@@ -130,6 +130,12 @@ Conrol the width of the file picker.
 <vwc-file-picker style=" --file-picker-width: 52px;"></vwc-file-picker>
 ```
 
+## Events
+
+### Change
+
+Fires a custom `change` event when file is selected.
+
 ## Methods
 
 ### addFile(file)
@@ -178,13 +184,6 @@ Read more on [value](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/i
 
 - Type: `string`
 - Default: `""`
-
-### options
-
-A read-only object.
-
-- Type: `Object`
-- Default: `null`
 
 ## Use Cases
 
