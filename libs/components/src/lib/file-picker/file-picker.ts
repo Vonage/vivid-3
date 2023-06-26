@@ -21,6 +21,10 @@ export class FilePicker extends FoundationElement {
 		return this.filePicker.files;
 	}
 
+	get value(): string {
+		return `C:\\fakepath\\${this.filePicker.files[0].name}`;
+	}
+
 	get options(): any {
 		return this.filePicker.options;
 	}
@@ -47,7 +51,7 @@ export class FilePicker extends FoundationElement {
 	@attr({ attribute: 'max-files' }) maxFiles?: number;
 	maxFilesChanged(_oldValue: number, newValue: number): void {
 		if (this.filePicker) {
-			(this.filePicker.options).maxFiles = newValue;
+			(this.filePicker.options).maxFiles = (this.multiple && !this.maxFiles) ? DEFAULT_MAX_FILES : newValue;
 		}
 	}
 
@@ -118,7 +122,7 @@ export class FilePicker extends FoundationElement {
 		this.filePicker = new Dropzone(this._dz,
 			{
 				url: '/',
-				maxFiles: (this.multiple && !this.maxFiles) ? DEFAULT_MAX_FILES : this.maxFiles,
+				maxFiles: this.maxFiles,
 				maxFilesize: this.maxFileSize,
 				uploadMultiple: this.multiple,
 				acceptedFiles: this.accept,

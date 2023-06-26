@@ -167,9 +167,17 @@ Recieve an array of files with 'error' status.
 ### files
 
 A read-only list of files.
+Read more on [files](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#getting_information_on_selected_files).
 
 - Type: `File[]`
 - Default: `[]`
+
+### value
+
+Read more on [value](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#value).
+
+- Type: `string`
+- Default: `""`
 
 ### options
 
