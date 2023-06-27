@@ -65,5 +65,6 @@ export const textAnchorTemplate: (
       ${() => focusTemplate}
       ${x => affixIconTemplate(x.icon)}
       ${x => x.text}
+			${x => x.getBodyTemplate?.() ?? ''}
     </a>
 `;};
