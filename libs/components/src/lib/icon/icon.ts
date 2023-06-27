@@ -5,7 +5,8 @@ import type { Connotation } from '../enums';
 import { PLACEHOLDER_ICON } from './icon.placeholder';
 
 const BASE_URL = 'https://icon.resources.vonage.com'; // namespaced as 3f7739a0-a898-4f69-a82b-ad9d743170b6 on icons.resources.vonage.com
-export const ICON_SET_VERSION = '4.2.0';
+
+export const ICON_SET_VERSION = '4.2.1';
 
 // Start displaying placeholder if waiting more than this period of time
 const PLACEHOLDER_DELAY = 500;

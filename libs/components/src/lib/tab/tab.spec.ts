@@ -23,6 +23,7 @@ describe('vwc-tab', () => {
 			expect(element.label).toBeUndefined();
 			expect(element.disabled).toBeFalsy();
 			expect(element.connotation).toBeFalsy();
+			expect(element.shape).toBeFalsy();
 			expect(element.ariaSelected).toBeNull();
 		});
 	});
@@ -93,6 +94,17 @@ describe('vwc-tab', () => {
 			element.ariaSelected = null;
 			await elementUpdated(element);
 			expect(getBaseElement(element).classList.contains(`connotation-${Connotation.CTA}`)).toBeFalsy();
+		});
+	});
+
+	describe('shape', function () {
+		it('should set the shape class on the base', async function () {
+			const shape = 'rounded';
+
+			(element as any).shape = shape;
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).classList.contains(`shape-${shape}`)).toBeTruthy();
 		});
 	});
 });
