@@ -50,16 +50,16 @@ Read more on [accept](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/
 
 ### Capture
 
-Use the `capture` attribute to specify which camera to use for capture of image or video data.
+Use the `capture` attribute to specify which camera to use for capture image, video or audio data.
 Read more on [capture](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#capture).
 
-    If null, no capture type will be specified. If camera, mobile devices will skip the file selection and choose camera. If microphone, mobile devices will skip the file selection and choose the microphone. If camcorder, mobile devices will skip the file selection and choose the camera in video mode. On apple devices multiple must be set to false. [accept](#accept) may need to be set to an appropriate mime type (e.g. "image/*", "audio/*", or "video/*").
+    If null, no capture type will be specified. If `camera`, mobile devices will skip the file selection and choose camera. If `microphone`, mobile devices will skip the file selection and choose the microphone. If `camcorder`, mobile devices will skip the file selection and choose the camera in video mode. On apple devices multiple must be set to false. [accept](#accept) may need to be set to an appropriate mime type (e.g. "image/*", "audio/*", or "video/*").
 
 - Type: `string`
 - Default: `undefined`
 
 ```html preview
-<vwc-file-picker capture="user">Drag & Drop or click to upload</vwc-file-picker>
+<vwc-file-picker accept="camera/*" capture="video">Drag & Drop or click to upload</vwc-file-picker>
 ```
 
 ### Multiple
