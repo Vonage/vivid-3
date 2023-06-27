@@ -65,7 +65,7 @@ Use the `shape` attribute in order to set `rounded` and `sharp` to the backgroun
 
 ```html preview
 <vwc-tabs>
- <vwc-tab shape="rounded" label="Tab" id="tab"></vwc-tab>
+ <vwc-tab shape="sharp" label="Tab" id="tab"></vwc-tab>
  <vwc-tab-panel id="tab" slot="tabpanel"></vwc-tab-panel>
 </vwc-tabs>
 ```
