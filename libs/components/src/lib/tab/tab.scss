@@ -51,6 +51,10 @@
 		user-select: none;
 	}
 
+	&:not(.shape-sharp) {
+		border-radius: 6px;
+	}
+
 	&:not(.disabled) {
 		cursor: pointer;
 	}
