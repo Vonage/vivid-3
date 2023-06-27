@@ -57,6 +57,19 @@ Use `icon-trailing` to place the icon after the label.
 </vwc-tabs>
 ```
 
+### Shape 
+Use the `shape` attribute in order to set `rounded` and `sharp` to the background in hover state.
+
+- Type: `'rounded'` | `'sharp'`
+- Default: `'rounded'`
+
+```html preview
+<vwc-tabs>
+ <vwc-tab shape="rounded" label="Tab" id="tab"></vwc-tab>
+ <vwc-tab-panel id="tab" slot="tabpanel"></vwc-tab-panel>
+</vwc-tabs>
+```
+
 ### Disabled
 
 The disabled state of the element.
