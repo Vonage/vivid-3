@@ -38,7 +38,7 @@ export class FilePicker extends FoundationElement {
 	@attr label?: string;
 
 	/**
-	 * The max files that can be choosed
+	 * The max files that can be selected for upload
 	 *
 	 * @public
 	 * @remarks
