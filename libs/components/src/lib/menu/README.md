@@ -146,6 +146,31 @@ Use the `--menu-min-inline-size` variable to set the menu's inline size.
 </vwc-menu>
 ```
 
+### Menu Block Size
+
+Use the `--menu-block-size` variable to set the menu's block size.
+
+- Type: [`<length>`](https://developer.mozilla.org/en-US/docs/Web/CSS/length)
+- Default: `408px`
+
+```html preview
+<style>
+  vwc-menu {
+    --menu-block-size: 100px;
+  }
+</style>
+
+<vwc-menu open>
+  <vwc-menu-item text="Menu Item"></vwc-menu-item>
+  <vwc-menu-item text="Menu Item"></vwc-menu-item>
+  <vwc-menu-item text="Menu Item"></vwc-menu-item>
+  <vwc-menu-item text="Menu Item"></vwc-menu-item>
+  <vwc-menu-item text="Menu Item"></vwc-menu-item>
+  <vwc-menu-item text="Menu Item"></vwc-menu-item>
+  <vwc-menu-item text="Menu Item"></vwc-menu-item>
+</vwc-menu>
+```
+
 ## Methods
 
 ### focus()
