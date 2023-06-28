@@ -8,6 +8,8 @@ type AnchorType = string | HTMLElement;
  * Base class for toggletip
  *
  * @public
+ * @slot - The content to display in the toggletip.
+ * @slot action-items - The content to display in the toggletip action items.
  */
 export class Toggletip extends FoundationElement {
 
@@ -64,7 +66,7 @@ export class Toggletip extends FoundationElement {
 	anchorChanged(_: AnchorType, newValue: AnchorType) {
 		if (this.#anchorEl) this.#cleanupAnchor(this.#anchorEl);
 		this.#observer?.disconnect();
-		
+
 		this.#anchorEl = newValue instanceof HTMLElement ? newValue : document.getElementById(newValue);
 		if (this.#anchorEl) {
 			this.#setupAnchor(this.#anchorEl);
