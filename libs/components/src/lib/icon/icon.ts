@@ -1,11 +1,12 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { attr, observable } from '@microsoft/fast-element';
+import {attr, observable, volatile} from '@microsoft/fast-element';
 import { identity, memoizeWith } from 'ramda';
 import type { Connotation } from '../enums';
 import { PLACEHOLDER_ICON } from './icon.placeholder';
 
 const BASE_URL = 'https://icon.resources.vonage.com'; // namespaced as 3f7739a0-a898-4f69-a82b-ad9d743170b6 on icons.resources.vonage.com
-const ICON_SET_VERSION = '4.2.1';
+
+export const ICON_SET_VERSION = '4.2.1';
 
 // Start displaying placeholder if waiting more than this period of time
 const PLACEHOLDER_DELAY = 500;
@@ -13,7 +14,6 @@ const PLACEHOLDER_DELAY = 500;
 // (will also stop one an icon is loaded)
 const PLACEHOLDER_TIMEOUT = 2000;
 
-// const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 const baseUrlTemplate = (resource: string, version: string) => [BASE_URL, `v${version}`, resource].join('/');
 
 const assertIsValidResponse = ({ ok, headers }: Response) => {
@@ -66,7 +66,7 @@ export class Icon extends FoundationElement {
 	 * @internal
 	 */
 	@observable _svg?: string;
-
+	@observable iconLoaded = false;
 	/**
 	 * Indicates which icon to resolve.
 	 *
@@ -76,8 +76,13 @@ export class Icon extends FoundationElement {
 	 */
 	@attr name?: string;
 
+	@volatile
+	get iconUrl() {
+		return !this.name ? this._svg : baseUrlTemplate(`${this.name}.svg`, ICON_SET_VERSION);
+	}
 	async nameChanged() {
 		this._svg = undefined;
+		this.iconLoaded = false;
 
 		let timeout = setTimeout(() => {
 			this._svg = PLACEHOLDER_ICON;
@@ -94,6 +99,6 @@ export class Icon extends FoundationElement {
 			})
 			.catch(() => {
 				this._svg = undefined;
-			}).finally(() => { clearTimeout(timeout); });
+			}).finally(() => { clearTimeout(timeout); this.iconLoaded = true;});
 	}
 }
