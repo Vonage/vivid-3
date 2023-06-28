@@ -18,22 +18,20 @@ const getClasses = ({
  */
 export function TabsTemplate<T extends Tabs>() {
 	return html<T>`
-	<template role="tablist">
-		<div class="${getClasses}">
-			<div class="tablist-wrapper">
+		<template role="tablist">
+			<div class="${getClasses}">
+				<div class="tablist-wrapper">
 					<div class="tablist" ${ref('tablist')}>
-				<slot name="tab" ${slotted('tabs')}></slot>
-				${when(x => x.showActiveIndicator, html<T>`
-					<div ${ref('activeIndicatorRef')} class="active-indicator"></div>
-				`)}
+						<slot name="tab" ${slotted('tabs')}></slot>
+						${when(x => x.showActiveIndicator, html<T>`
+							<div ${ref('activeIndicatorRef')} class="active-indicator"></div>
+						`)}
+					</div>
+				</div>
+				<div class="tabpanel">
+					<slot name="tabpanel" ${slotted('tabpanels')}></slot>
+				</div>
 			</div>
-			</div>
-			<div class="tabpanel">
-				<slot name="tabpanel" ${slotted('tabpanels')}></slot>
-			</div>
-		</div>
-	</template>
-    `;
+		</template>
+	`;
 }
-
-//TODO: add connotation="cta" to selected tab when connotation cta is set to tabs

@@ -24,7 +24,7 @@
 
 	&.orientation-vertical {
 		overflow: hidden;
-		block-size: 100%;
+		block-size: inherit;
 		grid-template-columns: auto 1fr;
 		grid-template-rows: 1fr;
 	}
