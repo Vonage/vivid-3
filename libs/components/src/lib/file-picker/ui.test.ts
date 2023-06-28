@@ -1,8 +1,7 @@
-import * as path from 'path';
+/* eslint-disable max-len */
 import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import {
-	extractHTMLBlocksFromReadme,
 	loadComponents,
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
@@ -10,15 +9,16 @@ import {
 const components = ['file-picker', 'button', 'layout', 'divider'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template = extractHTMLBlocksFromReadme(
-		path.join(new URL('.', import.meta.url).pathname, 'README.md')
-	).reduce(
-		(htmlString: string, block: string) =>
-			`${htmlString} <div style="margin: 5px;">${block}</div>`,
-		''
-	);
+	const template = 
+	`<form id='form'>
+		<vwc-layout column-basis="block">
+			<vwc-file-picker id='filePicker' label='Pick files' helper-text="multiple files of any type" max-files="50" upload-multiple>Drag & Drop or click to upload</vwc-file-picker>
+			<vwc-divider></vwc-divider>
+			<vwc-button label='Submit' appearance='filled' shape='pill' type="submit"></vwc-button>
+		</vwc-layout>
+	</form>`;
 
-	page.setViewportSize({ width: 1000, height: 720 });
+	page.setViewportSize({ width: 500, height: 500 });
 
 	await loadComponents({
 		page,

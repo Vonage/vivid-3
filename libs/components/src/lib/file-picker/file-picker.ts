@@ -6,6 +6,7 @@ import Dropzone from 'dropzone';
 import { FormElementHelperText } from '../../shared/patterns';
 import type { Button, ButtonConnotation } from '../button/button';
 
+const DEFAULT_MAX_FILES: number = 100;
 /**
  * Base class for file-picker
  *
@@ -14,14 +15,14 @@ import type { Button, ButtonConnotation } from '../button/button';
 
 export class FilePicker extends FoundationElement {
 
-	private filePicker!: Dropzone;
+	#filePicker!: Dropzone;
 
 	get files(): File[] {
-		return this.filePicker.files;
+		return this.#filePicker.files;
 	}
 
-	get options(): any {
-		return this.filePicker.options;
+	get value(): string {
+		return `C:\\fakepath\\${this.#filePicker.files[0].name}`;
 	}
 
 	_dz!: HTMLElement;
@@ -37,7 +38,7 @@ export class FilePicker extends FoundationElement {
 	@attr label?: string;
 
 	/**
-	 * The max files that can be choosed
+	 * The max files that can be selected for upload
 	 *
 	 * @public
 	 * @remarks
@@ -45,8 +46,8 @@ export class FilePicker extends FoundationElement {
 	 */
 	@attr({ attribute: 'max-files' }) maxFiles?: number;
 	maxFilesChanged(_oldValue: number, newValue: number): void {
-		if (this.filePicker) {
-			(this.filePicker.options).maxFiles = newValue;
+		if (this.#filePicker) {
+			(this.#filePicker.options).maxFiles = (this.multiple && !this.maxFiles) ? DEFAULT_MAX_FILES : newValue;
 		}
 	}
 
@@ -59,8 +60,8 @@ export class FilePicker extends FoundationElement {
 	 */
 	@attr({ mode: 'fromView', attribute: 'max-file-size' }) maxFileSize: number = 256;
 	maxFileSizeChanged(_oldValue: number, newValue: number): void {
-		if (this.filePicker) {
-			(this.filePicker.options).maxFilesize = newValue;
+		if (this.#filePicker) {
+			(this.#filePicker.options).maxFilesize = newValue;
 		}
 	}
 
@@ -69,26 +70,40 @@ export class FilePicker extends FoundationElement {
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: upload-multiple
+	 * HTML Attribute: multiple
 	 */
-	@attr({ mode: 'boolean', attribute: 'upload-multiple' }) uploadMultiple = false;
-	uploadMultipleChanged(_oldValue: boolean, newValue: boolean): void {
-		if (this.filePicker) {
-			(this.filePicker.options).uploadMultiple = newValue;
+	@attr({ mode: 'boolean' }) multiple = false;
+	multipleChanged(_oldValue: boolean, newValue: boolean): void {
+		if (this.#filePicker) {
+			(this.#filePicker.options).uploadMultiple = newValue;
 		}
 	}
 
 	/**
-	 * List of accepted files types
+	 * List of files types to accept
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: accepted-files
+	 * HTML Attribute: accept
 	 */
-	@attr({ attribute: 'accepted-files' }) acceptedFiles?: string;
-	acceptedFilesChanged(_oldValue: string, newValue: string): void {
-		if (this.filePicker) {
-			(this.filePicker.options).acceptedFiles = newValue;
+	@attr accept?: string;
+	acceptChanged(_oldValue: string, newValue: string): void {
+		if (this.#filePicker) {
+			(this.#filePicker.options).acceptedFiles = newValue;
+		}
+	}
+
+	/**
+	 * List of capture types
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: capture
+	 */
+	@attr ({ mode: 'fromView' }) capture?: string = 'file';
+	captureChanged(_oldValue: string, newValue: string): void {
+		if (this.#filePicker) {
+			(this.#filePicker.options).capture = newValue;
 		}
 	}
 
@@ -100,13 +115,14 @@ export class FilePicker extends FoundationElement {
 	override connectedCallback() {
 		super.connectedCallback();
 
-		this.filePicker = new Dropzone(this._dz,
+		this.#filePicker = new Dropzone(this._dz,
 			{
 				url: '/',
 				maxFiles: this.maxFiles,
 				maxFilesize: this.maxFileSize,
-				uploadMultiple: this.uploadMultiple,
-				acceptedFiles: this.acceptedFiles,
+				uploadMultiple: this.multiple,
+				acceptedFiles: this.accept,
+				capture: this.capture,
 				addRemoveLinks: true,
 			});
 
@@ -115,7 +131,8 @@ export class FilePicker extends FoundationElement {
 
 	#onFileAdded = () => {
 		let removeButton: Button;
-		this.filePicker.on('addedfile', file => {
+		this.#filePicker.on('addedfile', file => {
+			this.$emit('change');
 			if (file && file.previewElement) {
 				this.#removeParent(this, file);
 				this.#removeDefaultDivs(file);
@@ -123,7 +140,7 @@ export class FilePicker extends FoundationElement {
 			removeButton = this.#addRemoveButton(this, file);
 		});
 
-		this.filePicker.on('complete', file => {
+		this.#filePicker.on('complete', file => {
 			removeButton.icon = 'delete-line';
 			if (file.status === Dropzone.ERROR) {
 				removeButton.connotation = 'alert' as ButtonConnotation;
@@ -157,19 +174,19 @@ export class FilePicker extends FoundationElement {
 	}
 
 	getAcceptedFiles(): File[] {
-		return this.filePicker.getAcceptedFiles();
+		return this.#filePicker.getAcceptedFiles();
 	}
 
 	getFilesWithErrorStatus(): File[] {
-		return this.filePicker.getFilesWithStatus(Dropzone.ERROR);
+		return this.#filePicker.getFilesWithStatus(Dropzone.ERROR);
 	}
 
 	addFile(file: File): void {
-		this.filePicker.addFile(file as DropzoneFile);
+		this.#filePicker.addFile(file as DropzoneFile);
 	}
 
 	removeFile(file: File): void {
-		this.filePicker.removeFile(file as DropzoneFile);
+		this.#filePicker.removeFile(file as DropzoneFile);
 	}
 
 	handleKeydown(e: KeyboardEvent) {
@@ -180,8 +197,8 @@ export class FilePicker extends FoundationElement {
 	}
 
 	#chooseFile(): void {
-		if (this.filePicker.hiddenFileInput) {
-			this.filePicker.hiddenFileInput.click();
+		if (this.#filePicker.hiddenFileInput) {
+			this.#filePicker.hiddenFileInput.click();
 		}
 	}
 }
