@@ -9,6 +9,7 @@ import { TextAnchor } from '../text-anchor/text-anchor';
  * Based largely on the {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element }.
  *
  * @public
+ * @slot meta - A slot to add additional content to the nav item.
  */
 export class NavItem extends TextAnchor {
 	override getBodyTemplate() {
