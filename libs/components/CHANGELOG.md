@@ -4,6 +4,22 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.21.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.20.0...vivid-v3.21.0) (2023-06-28)
+
+
+### Features
+
+* **icon:** faster icon load time (VIV-1166) ([#1227](https://github.com/Vonage/vivid-3/issues/1227)) ([446bdb3](https://github.com/Vonage/vivid-3/commit/446bdb30cf03f89e4177e35bf17258fcaf599f46))
+* **icon:** update icons set to 4.2.1 (VIV-1158) ([#1228](https://github.com/Vonage/vivid-3/issues/1228)) ([5e6ed8d](https://github.com/Vonage/vivid-3/commit/5e6ed8d0b8d92e29e7efa9c8d132bb23b5fe3e68))
+* **nav-item:** add meta slot (VIV-1097) ([#1173](https://github.com/Vonage/vivid-3/issues/1173)) ([3ebc8a5](https://github.com/Vonage/vivid-3/commit/3ebc8a5798b3420d8b4d689dbf9e9e01fb6c913b))
+* **tab:** rounded shape (VIV-1129) ([#1229](https://github.com/Vonage/vivid-3/issues/1229)) ([cb37450](https://github.com/Vonage/vivid-3/commit/cb37450aa4b0eec778af8f4450fe094e81b8bdcd))
+
+
+### Bug Fixes
+
+* **combobox:** add properties documentation (VIV-1142) ([#1219](https://github.com/Vonage/vivid-3/issues/1219)) ([481be3f](https://github.com/Vonage/vivid-3/commit/481be3f0d18747b31848bd77458b7eb2b11143e9))
+* **menu:** block-size (VIV-1165) ([#1225](https://github.com/Vonage/vivid-3/issues/1225)) ([d7ac062](https://github.com/Vonage/vivid-3/commit/d7ac06255737fc5304f8be8c0ffa493ada3d6e13))
+
 ## [3.20.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.19.0...vivid-v3.20.0) (2023-06-23)
 
 
