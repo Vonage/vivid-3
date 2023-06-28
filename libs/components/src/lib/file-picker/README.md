@@ -36,6 +36,44 @@ Add the `helper-text` to add some helper text below the file picker.
 <vwc-file-picker helper-text="helper-text">Drag & Drop or click to upload</vwc-file-picker>
 ```
 
+### Accept
+
+Use the `accept` attribute to define a comma separated list of files types to accept.
+Read more on [accept](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept).
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-file-picker accept="image/png, image/jpeg">Drag & Drop or click to upload</vwc-file-picker>
+```
+
+### Capture
+
+Use the `capture` attribute to specify which camera to use for capture image, video or audio data.
+Read more on [capture](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#capture).
+
+    If null, no capture type will be specified. If `camera`, mobile devices will skip the file selection and choose camera. If `microphone`, mobile devices will skip the file selection and choose the microphone. If `camcorder`, mobile devices will skip the file selection and choose the camera in video mode. On apple devices multiple must be set to false. [accept](#accept) may need to be set to an appropriate mime type (e.g. "image/*", "audio/*", or "video/*").
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-file-picker accept="camera/*" capture="video">Drag & Drop or click to upload</vwc-file-picker>
+```
+
+### Multiple
+
+Use the `multiple` attribute to define whether to send multiple files in one request.
+Read more on [multiple](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#multiple).
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-file-picker multiple>Drag & Drop or click to upload</vwc-file-picker>
+```
+
 ### Max File Size
 
 Use the `max-file-size` attribute (or `maxFileSize` property) to define the maximum file size (in bytes) that is allowed to be uploaded.
@@ -44,7 +82,7 @@ Use the `max-file-size` attribute (or `maxFileSize` property) to define the maxi
 - Default: `256`
 
 ```html preview
-<vwc-file-picker helper-text="Max file zise is 0.1MB" max-file-size=0.1>Drag & Drop or click to upload</vwc-file-picker>
+<vwc-file-picker max-file-size=0.1>Drag & Drop or click to upload</vwc-file-picker>
 ```
 
 ### Max Files
@@ -55,28 +93,7 @@ Use the `max-files` attribute (or `maxFiles` property) to define how many files 
 - Default: `undefined`
 
 ```html preview
-<vwc-file-picker helper-text="Single file only" max-files=1>Drag & Drop or click to upload</vwc-file-picker>
-```
-### Upload Multiple
-
-Use the `upload-multiple` attribute (or `uploadMultiple` property) to define whether to send multiple files in one request. In addition, you must add the [`max-files`](#max-files) attribute.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<vwc-file-picker helper-text="Upload multiple files" max-files="10" upload-multiple>Drag & Drop or click to upload</vwc-file-picker>
-```
-
-### Accepted Files
-
-Use the `accepted-files` attribute (or `acceptedFiles` property) to define a comma separated list of accepted files types.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<vwc-file-picker helper-text=".jpg, .jpeg, .png types only" accepted-files=".jpg, .jpeg, .png">Drag & Drop or click to upload</vwc-file-picker>
+<vwc-file-picker max-files=1>Drag & Drop or click to upload</vwc-file-picker>
 ```
 
 ## Slots
@@ -113,6 +130,11 @@ Conrol the width of the file picker.
 <vwc-file-picker style=" --file-picker-width: 52px;"></vwc-file-picker>
 ```
 
+## Events
+
+### Change
+
+Fires a custom `change` event when file is selected.
 
 ## Methods
 
@@ -148,19 +170,20 @@ Recieve an array of files with 'error' status.
 
 ## Properties
 
-### files
+### Files
 
 A read-only list of files.
+Read more on [files](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#getting_information_on_selected_files).
 
 - Type: `File[]`
 - Default: `[]`
 
-### options
+### Value
 
-A read-only object.
+Read more on [value](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#value).
 
-- Type: `Object`
-- Default: `null`
+- Type: `string`
+- Default: `""`
 
 ## Use Cases
 

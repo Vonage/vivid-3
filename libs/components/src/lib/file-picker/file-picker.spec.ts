@@ -23,8 +23,9 @@ describe('vwc-file-picker', () => {
 			expect(element.helperText).toBeUndefined();
 			expect(element.maxFiles).toBeUndefined();
 			expect(element.maxFileSize).toEqual(256);
-			expect(element.uploadMultiple).toEqual(false);
-			expect(element.acceptedFiles).toBeUndefined();
+			expect(element.multiple).toEqual(false);
+			expect(element.accept).toBeUndefined();
+			expect(element.capture).toBeUndefined();
 		});
 	});
 
@@ -79,13 +80,6 @@ describe('vwc-file-picker', () => {
 	});
 
 	describe('max files', function () {
-		it('should set maxFiles if it is set', async function () {
-			const maxFiles = 2;
-			element.maxFiles = maxFiles;
-			await elementUpdated(element);
-			expect(element.options.maxFiles).toEqual(maxFiles);
-		});
-
 		it('should upload two files when maxFiles is set to 2', async function () {
 			const maxFiles = 2;
 			element.maxFiles = maxFiles;
@@ -120,13 +114,6 @@ describe('vwc-file-picker', () => {
 	});
 
 	describe('max file size', function () {
-		it('should set maxFileSize if it is set', async function () {
-			const maxFileSize = 0.1;
-			element.maxFileSize = maxFileSize;
-			await elementUpdated(element);
-			expect(element.options.maxFilesize).toEqual(maxFileSize);
-		});
-
 		it('should upload file with size 0.1 when max file size is set to 0.2', async function () {
 			const maxFileSize = 0.2;
 			element.maxFileSize = maxFileSize;
@@ -172,24 +159,54 @@ describe('vwc-file-picker', () => {
 		});
 	});
 
-	describe('upload multiple', function () {
-		it('should set uploadMultiple if it is set', async function () {
+	describe('multiple', function () {
+		it('should accept multiple files if maxFiles is set to 2', async function () {
 			const uploadMultiple = true;
-			element.uploadMultiple = uploadMultiple;
+			element.maxFiles = 2;
+			element.multiple = uploadMultiple;
 			await elementUpdated(element);
-			expect(element.options.uploadMultiple).toEqual(uploadMultiple);
+
+			const firstFile = await generateFile('london.png', 2);
+			element.addFile(firstFile);
+			const secondFile = await generateFile('paris.png', 2);
+			element.addFile(secondFile);
+			await elementUpdated(element);
+			expect(element.files.length).toEqual(2);
+			expect(element.getAcceptedFiles().length).toEqual(2);
+		});
+
+		it('should not accept multiple files if maxFiles is set to 1', async function () {
+			const uploadMultiple = true;
+			element.maxFiles = 1;
+			element.multiple = uploadMultiple;
+			await elementUpdated(element);
+
+			const firstFile = await generateFile('london.png', 2);
+			element.addFile(firstFile);
+			const secondFile = await generateFile('paris.png', 2);
+			element.addFile(secondFile);
+			await elementUpdated(element);
+			expect(element.files.length).toEqual(2);
+			expect(element.getAcceptedFiles().length).toEqual(1);
+		});
+
+		it('should accept multiple files if maxFiles is not set', async function () {
+			const uploadMultiple = true;
+			element.multiple = uploadMultiple;
+			await elementUpdated(element);
+
+			const firstFile = await generateFile('london.png', 2);
+			element.addFile(firstFile);
+			const secondFile = await generateFile('paris.png', 2);
+			element.addFile(secondFile);
+			await elementUpdated(element);
+			expect(element.files.length).toEqual(2);
+			expect(element.getAcceptedFiles().length).toEqual(2);
 		});
 	});
 
-	describe('accepted files', function () {
-		it('should set acceptedFiles if it is set', async function () {
-			const acceptedFiles = '.jpg';
-			element.acceptedFiles = acceptedFiles;
-			await elementUpdated(element);
-			expect(element.options.acceptedFiles).toEqual(acceptedFiles);
-		});
-
-		it('should add png file when acceptedFiles is null', async function () {
+	describe('accept', function () {
+		it('should add png file when accept is null', async function () {
 			const file = await generateFile('london.png', 2);
 			element.addFile(file);
 
@@ -198,9 +215,9 @@ describe('vwc-file-picker', () => {
 			expect(element.getAcceptedFiles().length).toEqual(1);
 		});
 
-		it('should not add png file when acceptedFiles is set to .jpg', async function () {
+		it('should not add png file when accept is set to .jpg', async function () {
 			const acceptedFiles = '.jpg';
-			element.acceptedFiles = acceptedFiles;
+			element.accept = acceptedFiles;
 			await elementUpdated(element);
 
 			const file = await generateFile('london.png', 2);
@@ -209,6 +226,16 @@ describe('vwc-file-picker', () => {
 			await elementUpdated(element);
 			expect(element.files.length).toEqual(1);
 			expect(element.getAcceptedFiles().length).not.toEqual(1);
+		});
+	});
+
+	describe('capture', function () {
+		it('should be instance of string', async function () {
+			const capturedFiles = 'user';
+			element.capture = capturedFiles;
+
+			await elementUpdated(element);
+			expect(element.capture).toBeDefined();
 		});
 	});
 
@@ -250,6 +277,60 @@ describe('vwc-file-picker', () => {
 			expect((spy as any).mock.calls.length).toEqual(1);
 		});
 	});
+
+	describe('files', function () {
+		it('should get an array with 2 files', async function () {
+			await elementUpdated(element);
+
+			const firstFile = await generateFile('london.png', 2);
+			element.addFile(firstFile);
+
+			const secondFile = await generateFile('paris.png', 2);
+			element.addFile(secondFile);
+
+			await elementUpdated(element);
+			expect(element.files.length).toEqual(2);
+		});
+	});	
+
+	describe('change event', () => {
+		it('should fire "change" on files added', async () => {
+			const spy = jest.fn();
+			element.addEventListener('change', spy);
+			const firstFile = await generateFile('london.png', 2);
+			element.addFile(firstFile);
+
+			await elementUpdated(element);
+			expect(spy).toHaveBeenCalled();
+		});
+	});
+
+	describe('value', function () {
+		it('should get string with fakepath', async function () {
+			const name = 'london.png';
+			await elementUpdated(element);
+
+			const firstFile = await generateFile(name, 2);
+			element.addFile(firstFile);
+
+			await elementUpdated(element);
+			expect(element.value).toEqual('C:\\fakepath\\' + name);
+		});
+
+		it('should get only one value string', async function () {
+			const name = 'london.png';
+			await elementUpdated(element);
+
+			const firstFile = await generateFile(name, 2);
+			element.addFile(firstFile);
+
+			const secondFile = await generateFile('paris.png', 2);
+			element.addFile(secondFile);
+
+			await elementUpdated(element);
+			expect(element.value).toEqual('C:\\fakepath\\' + name);
+		});
+	});	
 
 	async function generateFile(fileName: string, size: number): Promise<File> {
 		const blob = new Blob(['x'.repeat(size * 1024 * 1024)], { type: 'text/plain' });
