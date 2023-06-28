@@ -4,6 +4,13 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.21.1](https://github.com/Vonage/vivid-3/compare/vivid-v3.21.0...vivid-v3.21.1) (2023-06-28)
+
+
+### Bug Fixes
+
+* **components:** add missing annotations (VIV-000) ([#1231](https://github.com/Vonage/vivid-3/issues/1231)) ([d670fbf](https://github.com/Vonage/vivid-3/commit/d670fbfa9266caa1394097b3914f5df859f7bb15))
+
 ## [3.21.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.20.0...vivid-v3.21.0) (2023-06-28)
 
 
