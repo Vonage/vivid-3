@@ -23,6 +23,8 @@
 	box-sizing: border-box;
 
 	&.orientation-vertical {
+		overflow: hidden;
+		block-size: 100%;
 		grid-template-columns: auto 1fr;
 		grid-template-rows: 1fr;
 	}
@@ -44,7 +46,6 @@
 
 	.base.orientation-vertical & {
 		padding: var(#{variables.$tabs-tablist-gutter});
-		box-shadow: 1px 0 0 0 var(#{constants.$vvd-color-neutral-300});
 		grid-row: 1 / 2;
 		grid-template-columns: auto 1fr;
 		grid-template-rows: auto;
@@ -54,16 +55,42 @@
 	}
 
 	.base:not(.orientation-vertical) & {
-		align-self: end;
 		justify-content: flex-start;
-		border-bottom: 1px solid var(--vvd-color-neutral-300);
 		column-gap: var(#{variables.$tabs-tablist-gutter});
 		grid-auto-flow: column;
 		grid-template-columns: auto;
 		grid-template-rows: auto auto;
 		inline-size: 100%;
-		overflow-y: auto;
 		padding-inline: var(#{variables.$tabs-tablist-gutter});
+	}
+
+	&-wrapper {
+		.base:not(.orientation-vertical) & {
+			align-self: end;
+			border-bottom: 1px solid var(--vvd-color-neutral-300);
+			inline-size: 100%;
+			overflow-x: auto;
+			overflow-y: hidden;
+		}
+
+		.base.orientation-vertical & {
+			block-size: 100%;
+			box-shadow: 1px 0 0 0 var(#{constants.$vvd-color-neutral-300});
+			overflow-x: hidden;
+			overflow-y: auto;
+		}
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+}
+
+.tabpanel {
+	.base.orientation-vertical & {
+		block-size: 100%;
+		overflow-x: hidden;
+		overflow-y: auto;
 	}
 }
 
