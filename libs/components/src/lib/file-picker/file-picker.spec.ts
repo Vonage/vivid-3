@@ -23,9 +23,8 @@ describe('vwc-file-picker', () => {
 			expect(element.helperText).toBeUndefined();
 			expect(element.maxFiles).toBeUndefined();
 			expect(element.maxFileSize).toEqual(256);
-			expect(element.multiple).toEqual(false);
-			expect(element.accept).toBeUndefined();
-			expect(element.capture).toBeUndefined();
+			expect(element.uploadMultiple).toEqual(false);
+			expect(element.acceptedFiles).toBeUndefined();
 		});
 	});
 
@@ -163,7 +162,7 @@ describe('vwc-file-picker', () => {
 		it('should accept multiple files if maxFiles is set to 2', async function () {
 			const uploadMultiple = true;
 			element.maxFiles = 2;
-			element.multiple = uploadMultiple;
+			element.uploadMultiple = uploadMultiple;
 			await elementUpdated(element);
 
 			const firstFile = await generateFile('london.png', 2);
@@ -178,7 +177,7 @@ describe('vwc-file-picker', () => {
 		it('should not accept multiple files if maxFiles is set to 1', async function () {
 			const uploadMultiple = true;
 			element.maxFiles = 1;
-			element.multiple = uploadMultiple;
+			element.uploadMultiple = uploadMultiple;
 			await elementUpdated(element);
 
 			const firstFile = await generateFile('london.png', 2);
@@ -192,7 +191,7 @@ describe('vwc-file-picker', () => {
 
 		it('should accept multiple files if maxFiles is not set', async function () {
 			const uploadMultiple = true;
-			element.multiple = uploadMultiple;
+			element.uploadMultiple = uploadMultiple;
 			await elementUpdated(element);
 
 			const firstFile = await generateFile('london.png', 2);
@@ -217,7 +216,7 @@ describe('vwc-file-picker', () => {
 
 		it('should not add png file when accept is set to .jpg', async function () {
 			const acceptedFiles = '.jpg';
-			element.accept = acceptedFiles;
+			element.acceptedFiles = acceptedFiles;
 			await elementUpdated(element);
 
 			const file = await generateFile('london.png', 2);
@@ -226,16 +225,6 @@ describe('vwc-file-picker', () => {
 			await elementUpdated(element);
 			expect(element.files.length).toEqual(1);
 			expect(element.getAcceptedFiles().length).not.toEqual(1);
-		});
-	});
-
-	describe('capture', function () {
-		it('should be instance of string', async function () {
-			const capturedFiles = 'user';
-			element.capture = capturedFiles;
-
-			await elementUpdated(element);
-			expect(element.capture).toBeDefined();
 		});
 	});
 
@@ -304,33 +293,6 @@ describe('vwc-file-picker', () => {
 			expect(spy).toHaveBeenCalled();
 		});
 	});
-
-	describe('value', function () {
-		it('should get string with fakepath', async function () {
-			const name = 'london.png';
-			await elementUpdated(element);
-
-			const firstFile = await generateFile(name, 2);
-			element.addFile(firstFile);
-
-			await elementUpdated(element);
-			expect(element.value).toEqual('C:\\fakepath\\' + name);
-		});
-
-		it('should get only one value string', async function () {
-			const name = 'london.png';
-			await elementUpdated(element);
-
-			const firstFile = await generateFile(name, 2);
-			element.addFile(firstFile);
-
-			const secondFile = await generateFile('paris.png', 2);
-			element.addFile(secondFile);
-
-			await elementUpdated(element);
-			expect(element.value).toEqual('C:\\fakepath\\' + name);
-		});
-	});	
 
 	async function generateFile(fileName: string, size: number): Promise<File> {
 		const blob = new Blob(['x'.repeat(size * 1024 * 1024)], { type: 'text/plain' });
