@@ -52,3 +52,4 @@ export * from './tree-view/definition';
 export * from './tree-item/definition';
 export * from './tag/definition';
 export * from './tag-group/definition';
+export * from './file-uploader/definition';

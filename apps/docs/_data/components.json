@@ -459,5 +459,16 @@
 			"/assets/modules/components/empty-state/index.js",
 			"/assets/modules/components/button/index.js"
 		]
+	},
+	{
+		"title": "file-uploader",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/file-uploader/README.md",
+		"modules": [
+			"/assets/modules/components/file-uploader/index.js",
+			"/assets/modules/components/button/index.js",
+			"/assets/modules/components/divider/index.js",
+			"/assets/modules/components/layout/index.js"
+		]
 	}
 ]
