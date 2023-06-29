@@ -1,4 +1,4 @@
-import { html, ref, when } from '@microsoft/fast-element';
+import { html, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
@@ -29,13 +29,13 @@ export const FileUploaderTemplate: (
 	return html<FileUploader>`
 	<div class="${getClasses}" aria-label="${x => x.ariaLabel ? x.ariaLabel : x.label}">
 		${when(x => x.label, html<FileUploader>`<label>${x => x.label}</label>`)}
-		<div class="control dz-default dz-message" ${ref('dropzoneDiv')} tabindex="0"
+		<div class="control dz-default dz-message" tabindex="0"
 		role="button" aria-label="Dropzone area" @keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}">
 			<slot class="main"></slot>
 			${() => focusTemplate}
 		</div>
 		${when(x => x.helperText?.length, getFeedbackTemplate('helper', context))}
-		<div class='preview-list' ${ref('previewListDiv')}></div>
+		<div class='preview-list'></div>
 	</div>
 	`;
 };

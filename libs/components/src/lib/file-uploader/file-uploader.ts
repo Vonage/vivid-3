@@ -24,9 +24,6 @@ export class FileUploader extends FoundationElement {
 		return this.#fileUploader.options;
 	}
 
-	dropzoneDiv!: HTMLDivElement;
-	previewListDiv!: HTMLDivElement;
-
 	/**
 	 * Indicates the file uploader's label.
 	 *
@@ -132,17 +129,20 @@ export class FileUploader extends FoundationElement {
 	override connectedCallback() {
 		super.connectedCallback();
 
-		this.#fileUploader = new Dropzone(this.dropzoneDiv,
-			{
-				url: this.url ? this.url : '/',
-				method: this.method ? this.method : 'post',
-				autoProcessQueue: this.autoProcessQueue,
-				maxFiles: this.maxFiles,
-				maxFilesize: this.maxFileSize,
-				uploadMultiple: this.uploadMultiple,
-				acceptedFiles: this.acceptedFiles,
-				addRemoveLinks: true,
-			});
+		if (this.shadowRoot) {
+			const dropzone = this.shadowRoot.querySelector('.control') as HTMLDivElement;
+			this.#fileUploader = new Dropzone(dropzone,
+				{
+					url: this.url ? this.url : '/',
+					method: this.method ? this.method : 'post',
+					autoProcessQueue: this.autoProcessQueue,
+					maxFiles: this.maxFiles,
+					maxFilesize: this.maxFileSize,
+					uploadMultiple: this.uploadMultiple,
+					acceptedFiles: this.acceptedFiles,
+					addRemoveLinks: true,
+				});
+		}
 
 		this.#onFileAdded();
 	}
@@ -177,21 +177,24 @@ export class FileUploader extends FoundationElement {
 	}
 
 	#removeParent(_this: FileUploader, file: DropzoneFile) {
-		if (file.previewElement.parentNode && file.previewElement.parentNode !== _this.previewListDiv) {
-			file.previewElement.parentNode.removeChild(file.previewElement);
-			_this.previewListDiv.appendChild(file.previewElement);
+		if (_this.shadowRoot) {
+			const previewListDiv = _this.shadowRoot.querySelector('.preview-list') as HTMLDivElement;
+			if (file.previewElement.parentNode && file.previewElement.parentNode !== previewListDiv) {
+				file.previewElement.parentNode.removeChild(file.previewElement);
+				previewListDiv.appendChild(file.previewElement);
+			}
 		}
 	}
 
 	#removeDefaultDivs(file: DropzoneFile) {
 		const successDiv = file.previewElement.querySelector('.dz-success-mark');
-		if(successDiv) successDiv.remove();
+		if (successDiv) successDiv.remove();
 		const errorDiv = file.previewElement.querySelector('.dz-error-mark');
-		if(errorDiv) errorDiv.remove();
+		if (errorDiv) errorDiv.remove();
 		const removeDiv = file.previewElement.querySelector('.dz-remove');
-		if(removeDiv) removeDiv.remove();
+		if (removeDiv) removeDiv.remove();
 		const imageDiv = file.previewElement.querySelector('.dz-image');
-		if(imageDiv) imageDiv.remove();
+		if (imageDiv) imageDiv.remove();
 	}
 
 	getAcceptedFiles(): File[] {
