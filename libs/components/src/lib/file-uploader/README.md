@@ -160,6 +160,13 @@ Adds file to the file uploader.
 
 Removes file from the file uploader.
 
+### processQueue()
+
+- Type: `function`
+- Returns: `void`
+
+Sends the queued files when [autoProcessQueue](#auto-process-queue) is false.
+
 ### getAcceptedFiles()
 
 - Type: `function`
@@ -167,17 +174,17 @@ Removes file from the file uploader.
 
 Recieve an array of accepted files.
 
-### getFilesWithErrorStatus()
+### getQueuedFiles()
 
 - Type: `function`
 - Returns: `File[]`
 
-### processQueue()
+Recieve an array of queued files when [autoProcessQueue](#auto-process-queue) is false.
+
+### getFilesWithErrorStatus()
 
 - Type: `function`
-- Returns: `void`
-
-Sends the queued files.
+- Returns: `File[]`
 
 ## Properties
 

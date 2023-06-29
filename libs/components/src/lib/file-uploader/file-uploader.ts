@@ -196,6 +196,10 @@ export class FileUploader extends FoundationElement {
 		return this.#fileUploader.getAcceptedFiles();
 	}
 
+	getQueuedFiles(): File[] {
+		return this.#fileUploader.getQueuedFiles();
+	}
+
 	getFilesWithErrorStatus(): File[] {
 		return this.#fileUploader.getFilesWithStatus(Dropzone.ERROR);
 	}

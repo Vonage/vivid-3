@@ -27,6 +27,7 @@ describe('vwc-file-uploader', () => {
 			expect(element.acceptedFiles).toBeUndefined();
 			expect(element.url).toBeUndefined();
 			expect(element.method).toBeUndefined();
+			expect(element.autoProcessQueue).toEqual(false);
 		});
 	});
 
@@ -245,7 +246,7 @@ describe('vwc-file-uploader', () => {
 			await elementUpdated(element);
 			expect(element.files.length).toEqual(1);
 		});
-		
+
 		it('should remove files on click', async function () {
 			await elementUpdated(element);
 
@@ -282,7 +283,7 @@ describe('vwc-file-uploader', () => {
 			await elementUpdated(element);
 			expect(element.files.length).toEqual(2);
 		});
-	});	
+	});
 
 	describe('url', function () {
 		it('should be "/" if not set', async function () {
@@ -296,7 +297,7 @@ describe('vwc-file-uploader', () => {
 			) as FileUploader;
 			expect(element.options.url).toEqual('/path');
 		});
-	});	
+	});
 
 	describe('method', function () {
 		it('should be "post" if not set', async function () {
@@ -309,6 +310,59 @@ describe('vwc-file-uploader', () => {
 				`<${COMPONENT_TAG} method="put"></${COMPONENT_TAG}>`
 			) as FileUploader;
 			expect(element.options.method).toEqual('PUT');
+		});
+	});
+
+	describe('auto process queue', function () {
+		it('should be false if not set', async function () {
+			await elementUpdated(element);
+			expect(element.options.autoProcessQueue).toEqual(false);
+		});
+
+		it('should be equal to attribue if set', async function () {
+			element.autoProcessQueue = true;
+			await elementUpdated(element);
+			expect(element.options.autoProcessQueue).toEqual(true);
+		});
+
+		it('should get queued files if not autoProcessQueue', async function () {
+			await elementUpdated(element);
+
+			const file = await generateFile('london.png', 2);
+			element.addFile(file);
+
+			await elementUpdated(element);
+			expect(element.files.length).toEqual(1);
+			expect(element.getQueuedFiles().length).toEqual(1);
+		});
+
+		it('should not get queued files if autoProcessQueue is true', async function () {
+			element.autoProcessQueue = true;
+			await elementUpdated(element);
+
+			const file = await generateFile('london.png', 2);
+			element.addFile(file);
+
+			await elementUpdated(element);
+			expect(element.files.length).toEqual(1);
+			expect(element.getQueuedFiles().length).toEqual(0);
+		});
+	});
+
+	describe('processQueue', function () {
+		it('should processQueue if not autoProcessQueue', async function () {
+			await elementUpdated(element);
+
+			const file = await generateFile('london.png', 2);
+			element.addFile(file);
+
+			await elementUpdated(element);
+			expect(element.files.length).toEqual(1);
+			expect(element.getQueuedFiles().length).toEqual(1);
+
+			element.processQueue();
+			await elementUpdated(element);
+			expect(element.getQueuedFiles().length).toEqual(0);
 		});
 	});
 
