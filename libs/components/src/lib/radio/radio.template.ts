@@ -7,8 +7,9 @@ import { focusTemplateFactory } from '../../shared/patterns/focus';
 import type { Radio } from './radio';
 
 
-const getClasses = ({ checked, readOnly, disabled }: Radio) => classNames(
+const getClasses = ({ connotation, checked, readOnly, disabled }: Radio) => classNames(
 	'base',
+	[`connotation-${connotation}`, Boolean(connotation)],
 	['checked', Boolean(checked)],
 	['readonly', Boolean(readOnly)],
 	['disabled', Boolean(disabled)]

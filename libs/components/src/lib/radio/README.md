@@ -36,6 +36,20 @@ Use the `checked` to set the radio's `on`/`off` state.
 <vwc-radio checked></vwc-radio>
 ```
 
+### Connotation
+Use the `connotation` attribute to set the checkbox color.
+
+- Type: `'accent'` | `'cta'`
+- Default: `'accent'`
+
+
+```html preview
+<vwc-radio connotation="accent"></vwc-radio>
+<vwc-radio connotation="accent" checked></vwc-radio>
+<vwc-radio connotation="cta"></vwc-radio>
+<vwc-radio connotation="cta" checked></vwc-radio>
+```
+
 ### Disabled
 
 Toggle the `disabled` member to disable/enable the radio.

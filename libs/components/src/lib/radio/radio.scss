@@ -3,16 +3,16 @@
 @use "../../../../shared/src/lib/sass/utils" as utils;
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
-	$connotations: accent,
-	$shades: primary firm faint soft,
+	$connotations: accent cta,
+	$shades: primary primary-text primary-increment intermediate backdrop firm,
 	$default: accent,
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
-	$appearances: outlined,
-	$states: idle hover active checked checkedAndHover disabled readonly,
-	$default: outlined,
+	$appearances: fieldset,
+	$states: idle hover checked checkedAndHover disabled readonly,
+	$default: fieldset,
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
@@ -49,21 +49,26 @@ $control-border: 2px;
 .control {
 	position: relative;
 	flex-shrink: 0;
-	background-color: var(#{appearance.get-appearance-token(fill)});
 	block-size: $control-size;
 	border-radius: 50%;
 	box-shadow: inset 0 0 0 $control-border var(#{appearance.get-appearance-token(outline)});
 	inline-size: $control-size;
 
+	.base:not(.checked, .disabled) & {
+		background-color: var(#{appearance.get-appearance-token(fill)});
+	}
+
 	&::after {
 		position: absolute;
-		background-color: var(#{appearance.get-appearance-token(text)});
+		background-color: var(#{appearance.get-appearance-token(outline)});
 		border-radius: inherit;
 		content: "";
 		inset: 5px;
+		opacity: 1;
+		transition: opacity 0.2s;
 
 		.base:not(.checked) & {
-			display: none;
+			opacity: 0;
 		}
 	}
 }

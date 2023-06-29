@@ -224,7 +224,7 @@ $states-mapping: (
     fieldset: (
       text: var(#{connotation.get-connotation-token(primary-text)}),
       fill: var(#{connotation.get-connotation-token(primary-increment)}),
-      outline: transparent,
+      outline: var(#{connotation.get-connotation-token(primary)}),
     ),
     outlined: (
       text: var(#{connotation.get-connotation-token(primary)}),
