@@ -184,12 +184,14 @@ export class FileUploader extends FoundationElement {
 	}
 
 	#removeDefaultDivs(file: DropzoneFile) {
-		if(file && file.previewElement){
-			file.previewElement.querySelector('.dz-success-mark')?.remove();
-			file.previewElement.querySelector('.dz-error-mark')?.remove();
-			file.previewElement.querySelector('.dz-remove')?.remove();
-			file.previewElement.querySelector('.dz-image')?.remove();
-		}
+		const successDiv = file.previewElement.querySelector('.dz-success-mark');
+		if(successDiv) successDiv.remove();
+		const errorDiv = file.previewElement.querySelector('.dz-error-mark');
+		if(errorDiv) errorDiv.remove();
+		const removeDiv = file.previewElement.querySelector('.dz-remove');
+		if(removeDiv) removeDiv.remove();
+		const imageDiv = file.previewElement.querySelector('.dz-image');
+		if(imageDiv) imageDiv.remove();
 	}
 
 	getAcceptedFiles(): File[] {
