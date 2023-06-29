@@ -234,6 +234,7 @@ A read-only object.
 ```
 
 ## Accessibility
+If [label](#label) attribute is set, the aria-label will be updated automatically.
 If no label is set - it is highly recommended that `aria-label` will be added.
 
 ```html

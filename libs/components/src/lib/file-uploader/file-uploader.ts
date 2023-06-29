@@ -16,10 +16,20 @@ export class FileUploader extends FoundationElement {
 
 	#fileUploader!: Dropzone;
 
+	/**
+	 * File uploader's files.
+	 *
+	 * @public
+	 */
 	get files(): File[] {
 		return this.#fileUploader.files;
 	}
 
+	/**
+	 * File uploader's options.
+	 *
+	 * @public
+	 */
 	get options(): any {
 		return this.#fileUploader.options;
 	}
@@ -34,7 +44,7 @@ export class FileUploader extends FoundationElement {
 	@attr label?: string;
 
 	/**
-	 *	Sets file uploader's url.
+	 *	Sets where the files in the file uploader's will be uploaded.
 	 * 
 	 * @public
 	 * @remarks
@@ -66,7 +76,7 @@ export class FileUploader extends FoundationElement {
 	}
 
 	/**
-	 * The max files that can be choosed
+	 * The max files that can be selected for upload
 	 *
 	 * @public
 	 * @remarks
@@ -80,7 +90,7 @@ export class FileUploader extends FoundationElement {
 	}
 
 	/**
-	 * The max size that can be choosed
+	 * The max file size that can be selected for upload
 	 *
 	 * @public
 	 * @remarks
@@ -197,26 +207,56 @@ export class FileUploader extends FoundationElement {
 		if (imageDiv) imageDiv.remove();
 	}
 
+	/**
+	 * Get Accepted Files
+	 *
+	 * @public
+	 */
 	getAcceptedFiles(): File[] {
 		return this.#fileUploader.getAcceptedFiles();
 	}
 
+	/**
+	 * Get Queued Files
+	 *
+	 * @public
+	 */
 	getQueuedFiles(): File[] {
 		return this.#fileUploader.getQueuedFiles();
 	}
 
+	/**
+	 * Get Files With Error Status
+	 *
+	 * @public
+	 */
 	getFilesWithErrorStatus(): File[] {
 		return this.#fileUploader.getFilesWithStatus(Dropzone.ERROR);
 	}
 
+	/**
+	 * Add file
+	 *
+	 * @public
+	 */
 	addFile(file: File): void {
 		this.#fileUploader.addFile(file as DropzoneFile);
 	}
 
+	/**
+	 * Remove file
+	 *
+	 * @public
+	 */
 	removeFile(file: File): void {
 		this.#fileUploader.removeFile(file as DropzoneFile);
 	}
 
+	/**
+	 * Process Queue
+	 *
+	 * @public
+	 */
 	processQueue(): void {
 		this.#fileUploader.processQueue();
 	}
