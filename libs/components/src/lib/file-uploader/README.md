@@ -43,6 +43,17 @@ Add the `helper-text` to add some helper text below the file uploader.
 <vwc-file-uploader helper-text="helper-text">Drag & Drop or click to upload</vwc-file-uploader>
 ```
 
+### Auto Process Queue
+
+When the `auto-process-queue` attribute (or `autoProcessQueue` property) is used , the queue will be processed automatically. Using this feature can be useful if you need some additional user input before sending files (or if you want to send all files at once). Once you are ready to send the file, simply call [processQueue()](#processqueue).
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-file-uploader auto-process-queue>Drag & Drop or click to upload</vwc-file-uploader>
+```
+
 ### Max File Size
 
 Use the `max-file-size` attribute (or `maxFileSize` property) to define the maximum file size (in bytes) that is allowed to be uploaded.
@@ -51,7 +62,7 @@ Use the `max-file-size` attribute (or `maxFileSize` property) to define the maxi
 - Default: `256`
 
 ```html preview
-<vwc-file-uploader helper-text="Max file zise is 0.1MB" max-file-size=0.1>Drag & Drop or click to upload</vwc-file-uploader>
+<vwc-file-uploader helper-text="Max file zise is 0.1MB" max-file-size=0.1 auto-process-queue>Drag & Drop or click to upload</vwc-file-uploader>
 ```
 
 ### Max Files
@@ -62,7 +73,7 @@ Use the `max-files` attribute (or `maxFiles` property) to define how many files 
 - Default: `undefined`
 
 ```html preview
-<vwc-file-uploader helper-text="Single file only" max-files=1>Drag & Drop or click to upload</vwc-file-uploader>
+<vwc-file-uploader helper-text="Single file only" max-files=1 auto-process-queue>Drag & Drop or click to upload</vwc-file-uploader>
 ```
 ### Upload Multiple
 
@@ -72,7 +83,7 @@ Use the `upload-multiple` attribute (or `uploadMultiple` property) to define whe
 - Default: `false`
 
 ```html preview
-<vwc-file-uploader helper-text="Upload multiple files" max-files="10" upload-multiple>Drag & Drop or click to upload</vwc-file-uploader>
+<vwc-file-uploader helper-text="Upload multiple files" max-files="10" upload-multiple auto-process-queue>Drag & Drop or click to upload</vwc-file-uploader>
 ```
 
 ### Accepted Files
@@ -83,7 +94,7 @@ Use the `accepted-files` attribute (or `acceptedFiles` property) to define a com
 - Default: `undefined`
 
 ```html preview
-<vwc-file-uploader helper-text=".jpg, .jpeg, .png types only" accepted-files=".jpg, .jpeg, .png">Drag & Drop or click to upload</vwc-file-uploader>
+<vwc-file-uploader helper-text=".jpg, .jpeg, .png types only" accepted-files=".jpg, .jpeg, .png" auto-process-queue>Drag & Drop or click to upload</vwc-file-uploader>
 ```
 
 ### Method
@@ -131,7 +142,6 @@ Conrol the width of the file uploader.
 <vwc-file-uploader style=" --file-uploader-width: 52px;"></vwc-file-uploader>
 ```
 
-
 ## Methods
 
 ### addFile(file)
@@ -162,7 +172,12 @@ Recieve an array of accepted files.
 - Type: `function`
 - Returns: `File[]`
 
-Recieve an array of files with 'error' status.
+### processQueue()
+
+- Type: `function`
+- Returns: `void`
+
+Sends the queued files.
 
 ## Properties
 
@@ -206,6 +221,7 @@ A read-only object.
   form.addEventListener("submit", (event) => {
         event.preventDefault();
         console.log(fileUploader.files);
+        fileUploader.processQueue(); // upload files
     });
 </script>
 ```

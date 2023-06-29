@@ -25,7 +25,7 @@ export class FileUploader extends FoundationElement {
 	}
 
 	dropzoneDiv!: HTMLDivElement;
-	previewList!: HTMLDivElement;
+	previewListDiv!: HTMLDivElement;
 
 	/**
 	 * Indicates the file uploader's label.
@@ -37,7 +37,8 @@ export class FileUploader extends FoundationElement {
 	@attr label?: string;
 
 	/**
-	 *
+	 *	Sets file uploader's url.
+	 * 
 	 * @public
 	 * @remarks
 	 * HTML Attribute: url
@@ -45,12 +46,27 @@ export class FileUploader extends FoundationElement {
 	@attr url?: string;
 
 	/**
-	 *
+	 * Sets file uploader's method.
+	 * 
 	 * @public
 	 * @remarks
 	 * HTML Attribute: method
 	 */
 	@attr method?: string;
+
+	/**
+	 * If false the queue will not be processed automatically.
+	 * 
+	 * @public
+	 * @remarks
+	 * HTML Attribute: auto-process-queue
+	 */
+	@attr({ mode: 'boolean', attribute: 'auto-process-queue' }) autoProcessQueue = false;
+	autoProcessQueueChanged(_oldValue: boolean, newValue: boolean): void {
+		if (this.#fileUploader) {
+			(this.#fileUploader.options).autoProcessQueue = newValue;
+		}
+	}
 
 	/**
 	 * The max files that can be choosed
@@ -120,6 +136,7 @@ export class FileUploader extends FoundationElement {
 			{
 				url: this.url ? this.url : '/',
 				method: this.method ? this.method : 'post',
+				autoProcessQueue: this.autoProcessQueue,
 				maxFiles: this.maxFiles,
 				maxFilesize: this.maxFileSize,
 				uploadMultiple: this.uploadMultiple,
@@ -148,29 +165,31 @@ export class FileUploader extends FoundationElement {
 		});
 	};
 
-	#addRemoveButton(_this: any, file: any) {
+	#addRemoveButton(_this: FileUploader, file: DropzoneFile) {
 		const removeButton = Dropzone.createElement("<vwc-button class='remove-btn' icon='close-circle-line' appearance='ghost' size='condensed'></vwc-button>") as Button;
 		removeButton.addEventListener('click', function (e) {
 			e.preventDefault();
 			e.stopPropagation();
-			_this.removeFile(file);
+			_this.removeFile(file as File);
 		});
 		file.previewElement.appendChild(removeButton);
 		return removeButton;
 	}
 
-	#removeParent(_this: any, file: any) {
-		if (file.previewElement.parentNode && file.previewElement.parentNode !== _this.previewList) {
+	#removeParent(_this: FileUploader, file: DropzoneFile) {
+		if (file.previewElement.parentNode && file.previewElement.parentNode !== _this.previewListDiv) {
 			file.previewElement.parentNode.removeChild(file.previewElement);
-			_this.previewList.appendChild(file.previewElement);
+			_this.previewListDiv.appendChild(file.previewElement);
 		}
 	}
 
-	#removeDefaultDivs(file: any) {
-		file.previewElement.querySelector('.dz-success-mark').remove();
-		file.previewElement.querySelector('.dz-error-mark').remove();
-		file.previewElement.querySelector('.dz-remove').remove();
-		file.previewElement.querySelector('.dz-image').remove();
+	#removeDefaultDivs(file: DropzoneFile) {
+		if(file && file.previewElement){
+			file.previewElement.querySelector('.dz-success-mark')?.remove();
+			file.previewElement.querySelector('.dz-error-mark')?.remove();
+			file.previewElement.querySelector('.dz-remove')?.remove();
+			file.previewElement.querySelector('.dz-image')?.remove();
+		}
 	}
 
 	getAcceptedFiles(): File[] {
@@ -187,6 +206,10 @@ export class FileUploader extends FoundationElement {
 
 	removeFile(file: File): void {
 		this.#fileUploader.removeFile(file as DropzoneFile);
+	}
+
+	processQueue(): void {
+		this.#fileUploader.processQueue();
 	}
 
 	handleKeydown(e: KeyboardEvent) {

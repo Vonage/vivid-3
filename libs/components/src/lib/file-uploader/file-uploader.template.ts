@@ -35,7 +35,7 @@ export const FileUploaderTemplate: (
 			${() => focusTemplate}
 		</div>
 		${when(x => x.helperText?.length, getFeedbackTemplate('helper', context))}
-		<div class='preview-list' ${ref('previewList')}></div>
+		<div class='preview-list' ${ref('previewListDiv')}></div>
 	</div>
 	`;
 };
