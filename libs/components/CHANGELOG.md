@@ -4,6 +4,13 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.21.2](https://github.com/Vonage/vivid-3/compare/vivid-v3.21.1...vivid-v3.21.2) (2023-06-29)
+
+
+### Bug Fixes
+
+* **tabs:** horizontal and vertical scroll (VIV-1171) ([#1230](https://github.com/Vonage/vivid-3/issues/1230)) ([dc895b5](https://github.com/Vonage/vivid-3/commit/dc895b516e083b416067394529f4667e17ad718c))
+
 ## [3.21.1](https://github.com/Vonage/vivid-3/compare/vivid-v3.21.0...vivid-v3.21.1) (2023-06-28)
 
 
