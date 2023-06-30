@@ -26,6 +26,8 @@ export type IconPlacement = 'top' | 'side';
  * @slot graphic - Use the graphic slot in order to replace the icon.
  * @slot body - Use the body slot in order to add custom HTML to the dialog.
  * @slot footer - Use the footer slot in order to add action buttons to the bottom of the dialog.
+ * @slot secondary-action - Use the secondary-action slot in order to add a secondary action buttons to the bottom of the dialog.
+ * @slot primary-action - Use the primary-action slot in order to add a primary action buttons to the bottom of the dialog.
  * @slot main - Assign nodes to the main slot to fully override a dialog’s predefined flow and style with your own.
  * @event close - Fired when the dialog is closed
  */
