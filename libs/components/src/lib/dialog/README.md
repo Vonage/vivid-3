@@ -12,11 +12,15 @@ All native attributes of `dialog` are supported as well as some enhancements.
 ```html preview
 <style>
   html { /* for demo purposes */
-    block-size: 230px;
+    block-size: 300px;
   }
 </style>
 
-<vwc-dialog icon="info" headline="Headline" subtitle="subtitle" open></vwc-dialog>
+<vwc-dialog icon="info" headline="Headline" subtitle="subtitle" open>
+	<vwc-checkbox slot="footer" label="Checkbox"></vwc-checkbox>
+	<vwc-button slot="secondary-action" label="Cancel" appearance="outlined"></vwc-button>
+	<vwc-button slot="primary-action" label="Ok" appearance="filled"></vwc-button>
+</vwc-dialog>
 ```
 
 ## Members
@@ -113,19 +117,11 @@ Use `returnValue` to get or set the return value. Often used to indicate which b
   html { /* for demo purposes */
     block-size: 250px;
   }
-  .demo-footer {
-    display: flex;
-    justify-content: flex-end;
-    column-gap: 8px;
-    margin-top: 8px;
-  }
 </style>
 <vwc-dialog open
             headline="Returning Dialog">
-  <div slot="footer" class="demo-footer">
-    <vwc-button appearance="outlined" label="Cancel"></vwc-button>
-    <vwc-button appearance="filled" label="Action"></vwc-button>
-  </div>
+	<vwc-button slot="secondary-action" appearance="outlined" label="Cancel"></vwc-button>
+	<vwc-button slot="primary-action" appearance="filled" label="Action"></vwc-button>
 </vwc-dialog>
 <div>Returned Value: <span id="dialog-output"></span></div>
 <vwc-button label="Open Dialog"
@@ -227,29 +223,41 @@ To remove the body inline padding use `full-width-body`.
 
 ```
 
+### Primary/Secondary Action
+
+Use the `primary-action` and `secondary-action` slots to add action buttons to the bottom of the dialog.
+
+```html preview
+<style>
+	html { /* for demo purposes */
+		block-size: 250px;
+	}
+</style>
+<vwc-dialog open
+	headline="Dialog with primary and secondary actions"
+	subtitle="This is an example of the dialog with slotted buttons">
+	<vwc-button slot="secondary-action" appearance="outlined" label="Cancel"></vwc-button>
+	<vwc-button slot="primary-action" appearance="filled" label="Action"></vwc-button>
+</vwc-dialog>
+```
+
 ### Footer
 
-Use the footer `slot` in order to add action buttons to the bottom of the dialog.
+Use the `footer` slot in order to add additional content to the bottom of the dialog.
+
+When used in combination with `primary-action` and `secondary-action` slots, the `footer` content will appear to the left of the action buttons.
 
 ```html preview
 <style>
   html { /* for demo purposes */
     block-size: 250px;
   }
-  .demo-footer {
-    display: flex;
-    justify-content: flex-end;
-    column-gap: 8px;
-    margin-top: 16px;
-  }
 </style>
 <vwc-dialog open
   headline="Dialog with footer"
-  subtitle="this is an example of the dialog with slotted buttons inside footer">
-  <div slot="footer" class="demo-footer">
-    <vwc-button appearance="outlined" label="Cancel"></vwc-button>
-    <vwc-button appearance="filled" label="Action"></vwc-button>
-  </div>
+  subtitle="this is an example of the dialog with a checkbox inside footer">
+	<vwc-checkbox slot="footer" label="I agree"></vwc-checkbox>
+	<vwc-button slot="primary-action" appearance="filled" label="Ok"></vwc-button>
 </vwc-dialog>
 ```
 

@@ -163,5 +163,7 @@ export class Dialog extends FoundationElement {
 
 	@observable bodySlottedContent?: HTMLElement[];
 	@observable footerSlottedContent?: HTMLElement[];
+	@observable secondaryActionSlottedContent?: HTMLElement[];
+	@observable primaryActionSlottedContent?: HTMLElement[];
 
 }

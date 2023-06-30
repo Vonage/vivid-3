@@ -343,26 +343,32 @@ describe('vwc-dialog', () => {
 	});
 
 
-	describe( 'dialog footer', () => {
-		it('should have footer slot ', async function () {
-			const bodySlotElement = element.shadowRoot?.
-				querySelector('.footer slot[name="footer"]');
+	describe('dialog footer', () => {
+		it.each(['footer', 'primary-action', 'secondary-action'])(
+			'should have a %s slot ',
+			(slotName) => {
+				const slotElement = element.shadowRoot?.querySelector(
+					`.footer slot[name="${slotName}"]`
+				);
 
-			expect(bodySlotElement).toBeDefined();
-		});
+				expect(slotElement).toBeDefined();
+			}
+		);
 
-		it('should remove hide-footer class from .base if body is slotted', async function () {
-			const slottedElement = document.createElement('div');
-			slottedElement.slot = 'footer';
-			slottedElement.id = 'footer';
-			element.appendChild(slottedElement);
-			await elementUpdated(element);
+		it.each(['footer', 'primary-action', 'secondary-action'])(
+			'should remove hide-footer class from .base if %s is slotted',
+			async (slotName) => {
+				const slottedElement = document.createElement('div');
+				slottedElement.slot = slotName;
+				element.appendChild(slottedElement);
+				await elementUpdated(element);
 
-			const baseElementClasses = element.shadowRoot?.
-				querySelector('.base')?.classList;
+				const baseElementClasses =
+					element.shadowRoot?.querySelector('.base')?.classList;
 
-			expect(baseElementClasses).not.toContain('hide-footer');
-		});
+				expect(baseElementClasses).not.toContain('hide-footer');
+			}
+		);
 	});
 
 	describe('a11y', function () {

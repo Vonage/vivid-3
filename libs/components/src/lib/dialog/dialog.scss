@@ -120,12 +120,24 @@ $dialog-space-size: 24px;
 
 .footer {
 	padding-inline: $dialog-space-size;
+	display: flex;
+	justify-content: space-between;
+	gap: 24px;
 
 	.hide-footer & {
 		display: none;
 	}
-}
 
+	.footer-content {
+		align-self: center;
+	}
+
+	.actions {
+		display: flex;
+		gap: 8px;
+		align-self: flex-end;
+	}
+}
 
 .dismiss-button {
 	flex-shrink: 0;
