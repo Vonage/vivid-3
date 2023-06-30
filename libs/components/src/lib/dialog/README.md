@@ -264,14 +264,11 @@ Note that all styles will be overridden including the dialog's padding. See the 
   .demo-main {
     padding: 8px;
   }
-  vwc-text {
-    text-align: center;
-  }
 </style>
 
 <vwc-dialog open>
   <div slot="main" class="demo-main">
-    <vwc-text font-face="base-extended-bold">Use main slot for your own layout and content</vwc-text>
+    Use main slot for your own layout and content
   </div>
 </vwc-dialog>
 ```
