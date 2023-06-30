@@ -91,10 +91,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 								<div slot="body">
 									This text should appear instead of the text property value
 								</div>
-								<div slot="footer" class="demo-footer">
-						        <vwc-button appearance="outlined" label="Cancel"></vwc-button>
-						        <vwc-button appearance="filled" label="Action"></vwc-button>
-						    </div>
+								<div slot="footer">footer</div>
+						    <vwc-button slot="secondary-action" appearance="outlined" label="Cancel"></vwc-button>
+						    <vwc-button slot="primary-action" appearance="filled" label="Action"></vwc-button>
 								</vwc-dialog>
 	</div>
 	`;
