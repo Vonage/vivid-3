@@ -77,7 +77,7 @@ Use the `max-files` attribute (or `maxFiles` property) to define how many files 
 ```
 ### Upload Multiple
 
-Use the `upload-multiple` attribute (or `uploadMultiple` property) to define whether to send multiple files in one request. In addition, you must add the [`max-files`](#max-files) attribute.
+Use the `upload-multiple` attribute (or `uploadMultiple` property) to define whether to send multiple files in one request.
 
 - Type: `boolean`
 - Default: `false`
