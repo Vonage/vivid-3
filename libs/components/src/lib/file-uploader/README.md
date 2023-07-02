@@ -204,34 +204,39 @@ A read-only object.
 
 ## Use Cases
 
-### In a from
+### In a form
 
-```html preview
 <style>
-  form {
-   width: 250px;
-  }
-  vwc-button {
-    justify-self: flex-start;
-  }
+	form {
+		width: 250px;
+	}
+	vwc-button {
+		justify-self: flex-start;
+	}
 </style>
-
 <form id='form'>
-  <vwc-layout column-basis="block">
-    <vwc-file-uploader id='fileUploader' label='Pick files' helper-text="multiple files of any type" max-files="50" upload-multiple>Drag & Drop or click to upload</vwc-file-uploader>
-    <vwc-divider></vwc-divider>
-    <vwc-button label='Submit' appearance='filled' shape='pill' type="submit"></vwc-button>
-  </vwc-layout>
+	<vwc-layout column-basis="block">
+		<vwc-text-field name='username' label='Username'></vwc-text-field>
+		<vwc-file-uploader id='fileUploader' label='Pick files' helper-text="multiple files of any type" max-files="50" upload-multiple>Drag & Drop or click to upload</vwc-file-uploader>
+		<vwc-divider></vwc-divider>
+		<vwc-button label='Submit' appearance='filled' shape='pill' type="submit"></vwc-button>
+	</vwc-layout>
 </form>
-
 <script>
-  form.addEventListener("submit", (event) => {
-        event.preventDefault();
-        console.log(fileUploader.files);
-        fileUploader.processQueue(); // upload files
-    });
+	form.addEventListener("submit", (event) => {
+		event.preventDefault();
+    
+		const formData = new FormData(form);
+		
+		for (const [index, file] of fileUploader.files.entries()) {
+			formData.append(`file[${index}]`, file);
+		}
+
+		const request = new XMLHttpRequest();
+		request.open("POST", "/upload");
+		request.send(formData);
+	});
 </script>
-```
 
 ## Accessibility
 If [label](#label) attribute is set, the aria-label will be updated automatically.
