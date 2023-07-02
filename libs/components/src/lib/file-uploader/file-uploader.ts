@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
-import type { DropzoneFile } from 'dropzone';
+import type { DropzoneDictFileSizeUnits, DropzoneFile } from 'dropzone';
 import Dropzone from 'dropzone';
 import { FormElementHelperText } from '../../shared/patterns';
 import type { Button, ButtonConnotation } from '../button/button';
@@ -122,6 +122,60 @@ export class FileUploader extends FoundationElement {
 		}
 	}
 
+	/**
+	 * @public
+	 * If the filesize is too big.
+	 * `{{filesize}}` and `{{maxFilesize}}` will be replaced with the respective configuration values.
+	 */
+	set dictFileTooBig(newValue: string) {
+		if (this.#fileUploader) {
+			this.#fileUploader.options.dictFileTooBig = newValue;
+		}
+	}
+
+	/**
+	 * @public
+	 * If the file doesn't match the file type.
+	 */
+	set dictInvalidFileType(newValue: string) {
+		if (this.#fileUploader) {
+			this.#fileUploader.options.dictInvalidFileType = newValue;
+		}
+	}
+
+	/**
+	 * @public
+	 * If the server response was invalid.
+	 * `{{statusCode}}` will be replaced with the servers status code.
+	 */
+	set dictResponseError(newValue: string) {
+		if (this.#fileUploader) {
+			this.#fileUploader.options.dictResponseError = newValue;
+		}
+	}
+
+	/**
+	 * @public
+	 * Displayed if `maxFiles` is st and exceeded.
+	 * The string `{{maxFiles}}` will be replaced by the configuration value.
+	 */
+	set dictMaxFilesExceeded(newValue: string) {
+		if (this.#fileUploader) {
+			this.#fileUploader.options.dictMaxFilesExceeded = newValue;
+		}
+	}
+
+	/**
+	 * @public
+	 * Allows you to translate the different units. Starting with `tb` for terabytes and going down to
+	 * `b` for bytes.
+	 */
+	set dictFileSizeUnits(newValue: object) {
+		if (this.#fileUploader && this.#fileUploader.options.dictFileSizeUnits) {
+			this.#fileUploader.options.dictFileSizeUnits = newValue as DropzoneDictFileSizeUnits;
+		}
+	}
+
 	constructor() {
 		super();
 		Dropzone.autoDiscover = false;
@@ -141,7 +195,7 @@ export class FileUploader extends FoundationElement {
 					maxFilesize: this.maxFileSize,
 					uploadMultiple: this.uploadMultiple,
 					acceptedFiles: this.acceptedFiles,
-					addRemoveLinks: true,
+					addRemoveLinks: true
 				});
 		}
 

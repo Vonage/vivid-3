@@ -28,6 +28,11 @@ describe('vwc-file-uploader', () => {
 			expect(element.url).toBeUndefined();
 			expect(element.method).toBeUndefined();
 			expect(element.autoProcessQueue).toEqual(false);
+			expect(element.dictFileTooBig).toBeUndefined();
+			expect(element.dictInvalidFileType).toBeUndefined();
+			expect(element.dictResponseError).toBeUndefined();
+			expect(element.dictMaxFilesExceeded).toBeUndefined();
+			expect(element.dictFileSizeUnits).toBeUndefined();
 		});
 	});
 
@@ -352,6 +357,84 @@ describe('vwc-file-uploader', () => {
 			element.processQueue();
 			await elementUpdated(element);
 			expect(element.getQueuedFiles().length).toEqual(0);
+		});
+	});
+
+	describe('dictionary', function () {
+		it('should change text to dictFileTooBig', async function () {
+			const text = 'new error text';
+			element.dictFileTooBig = text;
+			element.maxFileSize = 0.2;
+			await elementUpdated(element);
+			expect(getBaseElement(element).querySelector('.dz-error-message')?.textContent).toBeUndefined();
+
+			const file = await generateFile('london.png', 2);
+			element.addFile(file);
+
+			await elementUpdated(element);
+			expect(getBaseElement(element).querySelector('.dz-error-message')?.textContent).toEqual(text);
+		});
+
+		it('should change text to dictResponseError', async function () {
+			const text = 'new error text';
+			element = fixture(
+				`<${COMPONENT_TAG} url="/path" auto-process-queue></${COMPONENT_TAG}>`
+			) as FileUploader;
+			element.dictResponseError = text;
+
+			await elementUpdated(element);
+			expect(getBaseElement(element).querySelector('.dz-error-message')?.textContent).toBeUndefined();
+
+			const file = await generateFile('london.png', 2);
+			element.addFile(file);
+
+			await elementUpdated(element);
+			expect(getBaseElement(element).querySelector('.dz-error-message')?.textContent).toEqual(text);
+		});
+
+		it('should change text to dictFileSizeUnits', async function () {
+			const size = 'new';
+			element.dictFileSizeUnits = { tb: 'a', gb: 'b', mb: size, kb: 'd', b: 'e' };
+			await elementUpdated(element);
+			expect(getBaseElement(element).querySelector('.dz-error-message')?.textContent).toBeUndefined();
+
+			const file = await generateFile('london.png', 2);
+			element.addFile(file);
+
+			await elementUpdated(element);
+			expect(getBaseElement(element).querySelector('.dz-size')?.textContent).toEqual('2.1 ' + size);
+		});
+
+		it('should change text to dictInvalidFileType', async function () {
+			const text = 'new error text';
+			element.dictInvalidFileType = text;
+			element.acceptedFiles ='.jpg';
+			await elementUpdated(element);
+			expect(getBaseElement(element).querySelector('.dz-error-message')?.textContent).toBeUndefined();
+
+			const file = await generateFile('london.png', 2);
+			element.addFile(file);
+
+			await elementUpdated(element);
+			expect(getBaseElement(element).querySelector('.dz-error-message')?.textContent).toEqual(text);
+		});
+
+		it('should change text to dictMaxFilesExceeded', async function () {
+			const text = 'new error text';
+			element.dictMaxFilesExceeded = text;
+			element.maxFiles = 1;
+			await elementUpdated(element);
+			expect(getBaseElement(element).querySelectorAll('.dz-error-message')[0]?.textContent).toBeUndefined();
+
+			const firstFile = await generateFile('london.png', 2);
+			element.addFile(firstFile);
+
+			const secondFile = await generateFile('paris.png', 2);
+			element.addFile(secondFile);
+
+			await elementUpdated(element);
+			expect(getBaseElement(element).querySelectorAll('.dz-error-message')[0]?.textContent).toEqual('');
+			expect(getBaseElement(element).querySelectorAll('.dz-error-message')[1]?.textContent).toEqual(text);
 		});
 	});
 

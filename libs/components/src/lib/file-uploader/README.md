@@ -195,6 +195,41 @@ A read-only list of files.
 - Type: `File[]`
 - Default: `[]`
 
+### dictFileTooBig
+
+The text used if the filesize is too big.
+
+- Type: `string`
+- Default: `"File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB."`
+
+### dictInvalidFileType
+
+The text used if the file doesn't match the file type.
+
+- Type: `string`
+- Default: `"You can't upload files of this type."`
+
+### dictResponseError
+
+The text used if the server response was invalid.
+
+- Type: `string`
+- Default: `"Server responded with {{statusCode}} code."`
+
+### dictMaxFilesExceeded
+
+The text used if `maxFiles` exceeded.
+
+- Type: `string`
+- Default: `"You can not upload any more files."`
+
+### dictFileSizeUnits
+
+Allows you to translate the different units. Starting with `tb` for terabytes and going down to `b` for bytes.
+
+- Type: `object`
+- Default: `{ tb: 'TB', gb: 'GB', mb: 'MB', kb: 'KB', b: 'b' }`
+
 ## Use Cases
 
 ### In a form
