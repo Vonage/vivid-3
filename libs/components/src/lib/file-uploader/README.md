@@ -56,7 +56,7 @@ When the `auto-process-queue` attribute (or `autoProcessQueue` property) is used
 
 ### Max File Size
 
-Use the `max-file-size` attribute (or `maxFileSize` property) to define the maximum file size (in bytes) that is allowed to be uploaded.
+Use the `max-file-size` attribute (or `maxFileSize` property) to define the maximum file size (in MiB) that is allowed to be uploaded.
 
 - Type: `number` | `string`
 - Default: `256`
