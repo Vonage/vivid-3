@@ -62,7 +62,7 @@ Use the `max-file-size` attribute (or `maxFileSize` property) to define the maxi
 - Default: `256`
 
 ```html preview
-<vwc-file-uploader helper-text="Max file zise is 0.1MB" max-file-size=0.1 auto-process-queue>Drag & Drop or click to upload</vwc-file-uploader>
+<vwc-file-uploader helper-text="Max file size is 0.1MB" max-file-size=0.1 auto-process-queue>Drag & Drop or click to upload</vwc-file-uploader>
 ```
 
 ### Max Files
