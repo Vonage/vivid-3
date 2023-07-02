@@ -94,6 +94,7 @@ $low-ink-color: --_low-ink-color;
 			margin-block-start: 8px;
 
 			.dz-upload {
+				width: 0%;
 				display: block;
 				background: linear-gradient(to right, $start, $end);
 				block-size: 100%;

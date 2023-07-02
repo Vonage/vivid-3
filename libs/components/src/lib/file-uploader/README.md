@@ -199,6 +199,7 @@ A read-only list of files.
 
 ### In a form
 
+```html preview
 <style>
 	form {
 		width: 250px;
@@ -207,6 +208,7 @@ A read-only list of files.
 		justify-self: flex-start;
 	}
 </style>
+
 <form id='form'>
 	<vwc-layout column-basis="block">
 		<vwc-text-field name='username' label='Username'></vwc-text-field>
@@ -215,6 +217,7 @@ A read-only list of files.
 		<vwc-button label='Submit' appearance='filled' shape='pill' type="submit"></vwc-button>
 	</vwc-layout>
 </form>
+
 <script>
 	form.addEventListener("submit", (event) => {
 		event.preventDefault();
@@ -230,6 +233,7 @@ A read-only list of files.
 		request.send(formData);
 	});
 </script>
+```
 
 ## Accessibility
 If [label](#label) attribute is set, the aria-label will be updated automatically.
