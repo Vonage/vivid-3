@@ -37,7 +37,7 @@ Use the `checked` to set the radio's `on`/`off` state.
 ```
 
 ### Connotation
-Use the `connotation` attribute to set the checkbox color.
+Use the `connotation` attribute to set the radio color.
 
 - Type: `'accent'` | `'cta'`
 - Default: `'accent'`
