@@ -1,5 +1,6 @@
 import { createFormHTML, elementUpdated, fixture, getBaseElement, listenToFormSubmission } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import {Connotation} from '../enums';
 import { Radio } from './radio';
 import '.';
 import { radioDefinition } from './definition';
@@ -31,6 +32,7 @@ describe('vwc-radio', () => {
 			expect(element.disabled).toBeFalsy();
 			expect(element.value).toEqual('on');
 			expect(element.label).toBeUndefined();
+			expect(element.connotation).toBeUndefined();
 		});
 	});
 
@@ -74,6 +76,18 @@ describe('vwc-radio', () => {
 
 		it('should switch to checked when space is pressed',
 			async () => await sendEventAndVerifyChecked(new KeyboardEvent('keypress', { key: ' ' })));
+	});
+
+	describe('connotation', function () {
+		it('should set the connotation class on base', async function () {
+			const connotation = Connotation.CTA;
+			(element as any).connotation = 'cta';
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.base')
+				?.classList
+				.contains(`connotation-${connotation}`))
+				.toEqual(true);
+		});
 	});
 
 	describe('disabled', () => {
