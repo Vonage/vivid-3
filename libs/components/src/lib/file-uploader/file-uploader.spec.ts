@@ -288,43 +288,32 @@ describe('vwc-file-uploader', () => {
 	describe('url', function () {
 		it('should be "/" if not set', async function () {
 			await elementUpdated(element);
-			expect(element.options.url).toEqual('/');
+			expect(element.url).toBeUndefined();
 		});
 
 		it('should be equal to attribue if set', async function () {
 			element = fixture(
 				`<${COMPONENT_TAG} url="/path"></${COMPONENT_TAG}>`
 			) as FileUploader;
-			expect(element.options.url).toEqual('/path');
+			expect(element.url).toEqual('/path');
 		});
 	});
 
 	describe('method', function () {
 		it('should be "post" if not set', async function () {
 			await elementUpdated(element);
-			expect(element.options.method).toEqual('POST');
+			expect(element.method).toBeUndefined();
 		});
 
 		it('should be equal to attribue if set', async function () {
 			element = fixture(
 				`<${COMPONENT_TAG} method="put"></${COMPONENT_TAG}>`
 			) as FileUploader;
-			expect(element.options.method).toEqual('PUT');
+			expect(element.method).toEqual('put');
 		});
 	});
 
 	describe('auto process queue', function () {
-		it('should be false if not set', async function () {
-			await elementUpdated(element);
-			expect(element.options.autoProcessQueue).toEqual(false);
-		});
-
-		it('should be equal to attribue if set', async function () {
-			element.autoProcessQueue = true;
-			await elementUpdated(element);
-			expect(element.options.autoProcessQueue).toEqual(true);
-		});
-
 		it('should get queued files if not autoProcessQueue', async function () {
 			await elementUpdated(element);
 

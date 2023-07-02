@@ -73,7 +73,7 @@ Use the `max-files` attribute (or `maxFiles` property) to define how many files 
 - Default: `undefined`
 
 ```html preview
-<vwc-file-uploader helper-text="Single file only" max-files=1 auto-process-queue>Drag & Drop or click to upload</vwc-file-uploader>
+<vwc-file-uploader helper-text="Upload up to 5 files" max-files=5 auto-process-queue>Drag & Drop or click to upload</vwc-file-uploader>
 ```
 ### Upload Multiple
 
@@ -83,7 +83,7 @@ Use the `upload-multiple` attribute (or `uploadMultiple` property) to define whe
 - Default: `false`
 
 ```html preview
-<vwc-file-uploader helper-text="Upload multiple files" max-files="10" upload-multiple auto-process-queue>Drag & Drop or click to upload</vwc-file-uploader>
+<vwc-file-uploader helper-text="Upload multiple files" upload-multiple auto-process-queue>Drag & Drop or click to upload</vwc-file-uploader>
 ```
 
 ### Accepted Files
@@ -194,13 +194,6 @@ A read-only list of files.
 
 - Type: `File[]`
 - Default: `[]`
-
-### options
-
-A read-only object.
-
-- Type: `Object`
-- Default: `null`
 
 ## Use Cases
 

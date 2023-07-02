@@ -26,15 +26,6 @@ export class FileUploader extends FoundationElement {
 	}
 
 	/**
-	 * File uploader's options.
-	 *
-	 * @public
-	 */
-	get options(): any {
-		return this.#fileUploader.options;
-	}
-
-	/**
 	 * Indicates the file uploader's label.
 	 *
 	 * @public
