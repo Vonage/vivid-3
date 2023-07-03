@@ -166,8 +166,8 @@ describe('vwc-file-uploader', () => {
 		});
 	});
 
-	describe('upload multiple', function () {
-		it('should accept multiple files if maxFiles is set to 2', async function () {
+	describe('uploadMultiple', function () {
+		it('should accept multiple files if maxFiles is set to more than 1', async function () {
 			const uploadMultiple = true;
 			element.maxFiles = 2;
 			element.uploadMultiple = uploadMultiple;
@@ -182,7 +182,7 @@ describe('vwc-file-uploader', () => {
 			expect(element.getAcceptedFiles().length).toEqual(2);
 		});
 
-		it('should not accept multiple files if maxFiles is set to 1', async function () {
+		it('should accept only the first file if maxFiles is set to 1', async function () {
 			const uploadMultiple = true;
 			element.maxFiles = 1;
 			element.uploadMultiple = uploadMultiple;
@@ -212,7 +212,7 @@ describe('vwc-file-uploader', () => {
 		});
 	});
 
-	describe('accepted files', function () {
+	describe('acceptedFiles', function () {
 		it('should add png file when acceptedFiles is null', async function () {
 			const file = await generateFile('london.png', 2);
 			element.addFile(file);
@@ -222,7 +222,7 @@ describe('vwc-file-uploader', () => {
 			expect(element.getAcceptedFiles().length).toEqual(1);
 		});
 
-		it('should not add png file when acceptedFiles is set to .jpg', async function () {
+		it('should filter png file from accepted list when acceptedFiles is set to .jpg', async function () {
 			const acceptedFiles = '.jpg';
 			element.acceptedFiles = acceptedFiles;
 			await elementUpdated(element);
@@ -232,11 +232,11 @@ describe('vwc-file-uploader', () => {
 
 			await elementUpdated(element);
 			expect(element.files.length).toEqual(1);
-			expect(element.getAcceptedFiles().length).not.toEqual(1);
+			expect(element.getAcceptedFiles().length).toEqual(0);
 		});
 	});
 
-	describe('remove files', function () {
+	describe('removeFile', function () {
 		it('should have 1 files after adding 2 files and calling removeFile', async function () {
 			await elementUpdated(element);
 
@@ -276,7 +276,7 @@ describe('vwc-file-uploader', () => {
 	});
 
 	describe('files', function () {
-		it('should get an array with 2 files', async function () {
+		it('should get an array with added files', async function () {
 			await elementUpdated(element);
 
 			const firstFile = await generateFile('london.png', 2);
