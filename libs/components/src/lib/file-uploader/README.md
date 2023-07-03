@@ -43,6 +43,17 @@ Add the `helper-text` to add some helper text below the file uploader.
 <vwc-file-uploader helper-text="helper-text">Drag & Drop or click to upload</vwc-file-uploader>
 ```
 
+### Size
+
+Use the `size` attribute to set the file uploader's to one of the predefined block size extent.
+
+- Type: `'normal'` | `'expanded'`
+- Default: `'normal'`
+
+```html preview
+<vwc-file-uploader size='expanded'>Drag & Drop or click to upload</vwc-file-uploader>
+```
+
 ### Auto Process Queue
 
 When the `auto-process-queue` attribute (or `autoProcessQueue` property) is used , the queue will be processed automatically. Using this feature can be useful if you need some additional user input before sending files (or if you want to send all files at once). Once you are ready to send the file, simply call [processQueue()](#processqueue).
@@ -115,31 +126,24 @@ Use the `method` attribute to change the method if necessary.
 Use the default slot to set the content of the file uploader.
 
 ```html preview
-<vwc-file-uploader>Add custom content here</vwc-file-uploader>
+<vwc-file-uploader><div>Add custom content here</div></vwc-file-uploader>
 ```
 
-## CSS Variables
+## Dimensions
 
-### File-uploader-height
+### Width
+By default, the file uploader width is `inline-size:400px` and the same goes for the preview list containing the file previews.  
 
-Control the height of the file uploader.
+You can specify width on the `vwc-file-uploader` if required (the preview list will not be affected by this setting).
 
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<vwc-file-uploader style="--file-uploader-height: 120px;"></vwc-file-uploader>
-```
-
-### File-uploader-width
-
-Conrol the width of the file uploader.
-
-- Type: `string`
-- Default: `undefined`
 
 ```html preview
-<vwc-file-uploader style=" --file-uploader-width: 52px;"></vwc-file-uploader>
+<style>
+  vwc-file-uploader{
+    inline-size: 200px
+  }
+</style>
+<vwc-file-uploader>Drag & Drop</vwc-file-uploader>
 ```
 
 ## Methods

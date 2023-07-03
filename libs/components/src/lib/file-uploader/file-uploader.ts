@@ -5,6 +5,14 @@ import type { DropzoneDictFileSizeUnits, DropzoneFile } from 'dropzone';
 import Dropzone from 'dropzone';
 import { FormElementHelperText } from '../../shared/patterns';
 import type { Button, ButtonConnotation } from '../button/button';
+import type { Size } from '../enums';
+
+/**
+ * Types of file uploader size.
+ *
+ * @public
+ */
+export type FileUploaderSize = Extract<Size, Size.Normal | Size.Expanded>;
 
 /**
  * Base class for file-uploader
@@ -121,6 +129,16 @@ export class FileUploader extends FoundationElement {
 			(this.#fileUploader.options).acceptedFiles = newValue;
 		}
 	}
+
+	/**
+	 * The size the file-uploader should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: size
+	 */
+	@attr size?: FileUploaderSize;
+
 
 	/**
 	 * @public

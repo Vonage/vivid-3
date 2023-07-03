@@ -1,15 +1,17 @@
-@use "partials/variables" as variables;
-
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
 $low-ink-color: --_low-ink-color;
 
+:host {
+	display: block;
+	inline-size : 400px;
+}
+
 .base {
-	display: inline-flex;
+	display: flex;
 	flex-direction: column;
-	inline-size: var(#{variables.$file-uploader-inline-size}, 400px);
 }
 
 .control {
@@ -28,7 +30,10 @@ $low-ink-color: --_low-ink-color;
 	padding: 16px;
 	border: 1px dashed var(--vvd-color-neutral-400);
 	background-color: var(#{constants.$vvd-color-cta-50});
-	block-size: var(#{variables.$file-uploader-block-size}, 52px);
+	block-size: 52px;
+	&.size-expanded {
+		block-size: 120px;
+	}
 	border-radius: 6px;
 	color: var(#{constants.$vvd-color-neutral-600});
 	cursor: pointer;
@@ -36,9 +41,11 @@ $low-ink-color: --_low-ink-color;
 	inline-size: 100%;
 	outline: none;
 }
+
 .main {
 	pointer-events: none;
 }
+
 .icon {
 	color: var(#{constants.$vvd-color-neutral-600});
 	font-size: 24px;
@@ -61,6 +68,7 @@ $low-ink-color: --_low-ink-color;
 		display: flex;
 		flex-direction: column;
 		max-inline-size: 100%;
+		min-width: 0px;
 
 		.dz-filename {
 			overflow: hidden;
