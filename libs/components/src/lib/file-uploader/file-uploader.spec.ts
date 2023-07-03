@@ -287,6 +287,8 @@ describe('vwc-file-uploader', () => {
 
 			await elementUpdated(element);
 			expect(element.files.length).toEqual(2);
+			expect(element.files[0]).toEqual(firstFile);
+			expect(element.files[1]).toEqual(secondFile);
 		});
 	});
 
@@ -328,6 +330,7 @@ describe('vwc-file-uploader', () => {
 			await elementUpdated(element);
 			expect(element.files.length).toEqual(1);
 			expect(element.getQueuedFiles().length).toEqual(1);
+			expect(element.getAcceptedFiles().length).toEqual(1);
 		});
 
 		it('should not get queued files if autoProcessQueue is true', async function () {
