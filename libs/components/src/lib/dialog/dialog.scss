@@ -119,10 +119,10 @@ $dialog-space-size: 24px;
 }
 
 .footer {
-	padding-inline: $dialog-space-size;
 	display: flex;
 	justify-content: space-between;
 	gap: 24px;
+	padding-inline: $dialog-space-size;
 
 	.hide-footer & {
 		display: none;
@@ -134,8 +134,8 @@ $dialog-space-size: 24px;
 
 	.actions {
 		display: flex;
-		gap: 8px;
 		align-self: flex-end;
+		gap: 8px;
 	}
 }
 
