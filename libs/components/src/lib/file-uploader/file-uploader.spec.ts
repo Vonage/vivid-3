@@ -182,7 +182,7 @@ describe('vwc-file-uploader', () => {
 			expect(element.getAcceptedFiles().length).toEqual(2);
 		});
 
-		it('should not accept multiple files if maxFiles is set to 1', async function () {
+		it('should accept only the first file if maxFiles is set to 1', async function () {
 			const uploadMultiple = true;
 			element.maxFiles = 1;
 			element.uploadMultiple = uploadMultiple;
