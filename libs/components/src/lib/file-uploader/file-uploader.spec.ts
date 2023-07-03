@@ -363,7 +363,7 @@ describe('vwc-file-uploader', () => {
 		});
 	});
 
-	describe('dictionary', function () {
+	describe('dict', function () {
 		it('should change text to dictFileTooBig', async function () {
 			const text = 'new error text';
 			element.dictFileTooBig = text;
