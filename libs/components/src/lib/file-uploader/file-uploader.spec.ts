@@ -71,7 +71,7 @@ describe('vwc-file-uploader', () => {
 		});
 	});
 
-	describe('helper text', function () {
+	describe('helperText', function () {
 		it('should render the helper text when attribute is set on file uploader', async function () {
 			const helperTextElementWithoutText = element.shadowRoot?.querySelector('.helper-text');
 			const helperText = 'Helper Text';
