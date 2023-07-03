@@ -357,6 +357,9 @@ describe('vwc-file-uploader', () => {
 			element.processQueue();
 			await elementUpdated(element);
 			expect(element.getQueuedFiles().length).toEqual(0);
+			
+			await elementUpdated(element);
+			expect(element.getAcceptedFiles().length).toEqual(1);
 		});
 	});
 
