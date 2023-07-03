@@ -167,7 +167,7 @@ describe('vwc-file-uploader', () => {
 	});
 
 	describe('uploadMultiple', function () {
-		it('should accept multiple files if maxFiles is set to 2', async function () {
+		it('should accept multiple files if maxFiles is set to more than 1', async function () {
 			const uploadMultiple = true;
 			element.maxFiles = 2;
 			element.uploadMultiple = uploadMultiple;
