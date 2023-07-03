@@ -305,7 +305,7 @@ describe('vwc-file-uploader', () => {
 	});
 
 	describe('method', function () {
-		it('should be "post" if not set', async function () {
+		it('should be undefined if not set', async function () {
 			await elementUpdated(element);
 			expect(element.method).toBeUndefined();
 		});
@@ -318,7 +318,7 @@ describe('vwc-file-uploader', () => {
 		});
 	});
 
-	describe('auto process queue', function () {
+	describe('autoProcessQueue', function () {
 		it('should get queued files if not autoProcessQueue', async function () {
 			await elementUpdated(element);
 
