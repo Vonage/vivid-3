@@ -134,7 +134,7 @@ describe('vwc-file-uploader', () => {
 			expect(element.getAcceptedFiles().length).toEqual(1);
 		});
 
-		it('should not upload file with size 2 when max file size is set to 0.2', async function () {
+		it('should filter file from accepted files when above maxFileSize', async function () {
 			const maxFileSize = 0.2;
 			element.maxFileSize = maxFileSize;
 			await elementUpdated(element);
