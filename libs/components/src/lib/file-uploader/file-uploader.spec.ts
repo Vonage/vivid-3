@@ -222,7 +222,7 @@ describe('vwc-file-uploader', () => {
 			expect(element.getAcceptedFiles().length).toEqual(1);
 		});
 
-		it('should not add png file when acceptedFiles is set to .jpg', async function () {
+		it('should filter png file from accepted list when acceptedFiles is set to .jpg', async function () {
 			const acceptedFiles = '.jpg';
 			element.acceptedFiles = acceptedFiles;
 			await elementUpdated(element);
