@@ -344,7 +344,7 @@ describe('vwc-file-uploader', () => {
 	});
 
 	describe('processQueue', function () {
-		it('should processQueue if not autoProcessQueue', async function () {
+		it('should processQueue if autoProcessQueue is false', async function () {
 			await elementUpdated(element);
 
 			const file = await generateFile('london.png', 2);
