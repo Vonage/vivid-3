@@ -276,7 +276,7 @@ describe('vwc-file-uploader', () => {
 	});
 
 	describe('files', function () {
-		it('should get an array with 2 files', async function () {
+		it('should get an array with added files', async function () {
 			await elementUpdated(element);
 
 			const firstFile = await generateFile('london.png', 2);
