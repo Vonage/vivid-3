@@ -210,6 +210,7 @@ export class FileUploader extends FoundationElement {
 				this.#removeDefaultDivs(file);
 			}
 			removeButton = this.#addRemoveButton(this, file);
+			this.$emit('addedfile');
 		});
 
 		this.#fileUploader.on('complete', file => {
@@ -217,6 +218,15 @@ export class FileUploader extends FoundationElement {
 			if (file.status === Dropzone.ERROR) {
 				removeButton.connotation = 'alert' as ButtonConnotation;
 			}
+			this.$emit('complete');
+		});
+
+		this.#fileUploader.on('success', _file => {
+			this.$emit('success');
+		});
+
+		this.#fileUploader.on('error', _file => {
+			this.$emit('error');
 		});
 	};
 

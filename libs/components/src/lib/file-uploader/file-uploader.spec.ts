@@ -408,7 +408,7 @@ describe('vwc-file-uploader', () => {
 		it('should change text to dictInvalidFileType', async function () {
 			const text = 'new error text';
 			element.dictInvalidFileType = text;
-			element.acceptedFiles ='.jpg';
+			element.acceptedFiles = '.jpg';
 			await elementUpdated(element);
 			expect(getBaseElement(element).querySelector('.dz-error-message')?.textContent).toBeUndefined();
 
@@ -435,6 +435,49 @@ describe('vwc-file-uploader', () => {
 			await elementUpdated(element);
 			expect(getBaseElement(element).querySelectorAll('.dz-error-message')[0]?.textContent).toEqual('');
 			expect(getBaseElement(element).querySelectorAll('.dz-error-message')[1]?.textContent).toEqual(text);
+		});
+	});
+
+	describe('events', function () {
+		it('should fire "addedfile" event', async () => {
+			const spy = jest.fn();
+			element.addEventListener('addedfile', spy);
+
+			const file = await generateFile('london.png', 2);
+			element.addFile(file);
+
+			await elementUpdated(element);
+			expect(spy).toHaveBeenCalledTimes(1);
+		});
+
+		it('should fire "error" event', async () => {
+			const spy = jest.fn();
+			element.addEventListener('error', spy);
+
+			const maxFileSize = 0.2;
+			element.maxFileSize = maxFileSize;
+			await elementUpdated(element);
+
+			const file = await generateFile('london.png', 2);
+			element.addFile(file);
+
+			await elementUpdated(element);
+			expect(spy).toHaveBeenCalledTimes(1);
+		});
+
+		it('should fire "complete" event', async () => {
+			const spy = jest.fn();
+			element.addEventListener('complete', spy);
+
+			const maxFileSize = 0.2;
+			element.maxFileSize = maxFileSize;
+			await elementUpdated(element);
+
+			const file = await generateFile('london.png', 2);
+			element.addFile(file);
+
+			await elementUpdated(element);
+			expect(spy).toHaveBeenCalledTimes(1);
 		});
 	});
 
