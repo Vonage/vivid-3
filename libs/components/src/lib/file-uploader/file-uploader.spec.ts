@@ -71,7 +71,7 @@ describe('vwc-file-uploader', () => {
 		});
 	});
 
-	describe('helper text', function () {
+	describe('helperText', function () {
 		it('should render the helper text when attribute is set on file uploader', async function () {
 			const helperTextElementWithoutText = element.shadowRoot?.querySelector('.helper-text');
 			const helperText = 'Helper Text';
@@ -86,7 +86,7 @@ describe('vwc-file-uploader', () => {
 		});
 	});
 
-	describe('max files', function () {
+	describe('maxFiles', function () {
 		it('should upload two files when maxFiles is set to 2', async function () {
 			const maxFiles = 2;
 			element.maxFiles = maxFiles;
@@ -120,8 +120,8 @@ describe('vwc-file-uploader', () => {
 		});
 	});
 
-	describe('max file size', function () {
-		it('should upload file with size 0.1 when max file size is set to 0.2', async function () {
+	describe('maxFileSize', function () {
+		it('should add file to accepted list when size in maxFileSize boundary', async function () {
 			const maxFileSize = 0.2;
 			element.maxFileSize = maxFileSize;
 			await elementUpdated(element);
@@ -134,7 +134,7 @@ describe('vwc-file-uploader', () => {
 			expect(element.getAcceptedFiles().length).toEqual(1);
 		});
 
-		it('should not upload file with size 2 when max file size is set to 0.2', async function () {
+		it('should filter file from accepted files when above maxFileSize', async function () {
 			const maxFileSize = 0.2;
 			element.maxFileSize = maxFileSize;
 			await elementUpdated(element);
