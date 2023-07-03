@@ -427,7 +427,8 @@ describe('vwc-file-uploader', () => {
 			element.dictMaxFilesExceeded = text;
 			element.maxFiles = 1;
 			await elementUpdated(element);
-			expect(getBaseElement(element).querySelectorAll('.dz-error-message')[0]?.textContent).toBeUndefined();
+			const previewFile = getBaseElement(element).querySelectorAll('.dz-error-message')[0]?.textContent;
+			expect(previewFile).toBeUndefined();
 
 			const firstFile = await generateFile('london.png', 2);
 			element.addFile(firstFile);
@@ -436,8 +437,10 @@ describe('vwc-file-uploader', () => {
 			element.addFile(secondFile);
 
 			await elementUpdated(element);
-			expect(getBaseElement(element).querySelectorAll('.dz-error-message')[0]?.textContent).toEqual('');
-			expect(getBaseElement(element).querySelectorAll('.dz-error-message')[1]?.textContent).toEqual(text);
+			const firstPreviewFile = getBaseElement(element).querySelectorAll('.dz-error-message')[0]?.textContent;
+			const secondPreviewFile = getBaseElement(element).querySelectorAll('.dz-error-message')[1]?.textContent;
+			expect(firstPreviewFile).toEqual('');
+			expect(secondPreviewFile).toEqual(text);
 		});
 	});
 
