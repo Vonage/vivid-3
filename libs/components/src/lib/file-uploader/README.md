@@ -146,6 +146,24 @@ You can specify width on the `vwc-file-uploader` if required (the preview list w
 <vwc-file-uploader>Drag & Drop</vwc-file-uploader>
 ```
 
+## Events
+
+### Addedfile
+
+Fires `addedfile` whenever a file is added to the file uploader.
+
+### Complete
+
+Fires `complete` when the upload is complete.
+
+### Success
+
+Fires `success` when files are successfully uploaded.
+
+### Error
+
+Fires `error` when the files were not succesfuly uploaded.
+
 ## Methods
 
 ### addFile(file)
