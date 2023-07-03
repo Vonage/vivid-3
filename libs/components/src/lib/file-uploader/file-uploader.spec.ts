@@ -330,7 +330,7 @@ describe('vwc-file-uploader', () => {
 			expect(element.getQueuedFiles().length).toEqual(1);
 		});
 
-		it('should not get queued files if autoProcessQueue is true', async function () {
+		it('should have an empty queued files list if autoProcessQueue is true', async function () {
 			element.autoProcessQueue = true;
 			await elementUpdated(element);
 
