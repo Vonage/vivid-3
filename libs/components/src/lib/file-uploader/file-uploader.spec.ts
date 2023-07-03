@@ -148,7 +148,7 @@ describe('vwc-file-uploader', () => {
 		});
 	});
 
-	describe('get files with error status', function () {
+	describe('getFilesWithErrorStatus', function () {
 		it('should have dz-error class and status when files not added', async function () {
 			const maxFileSize = 0.2;
 			element.maxFileSize = maxFileSize;
@@ -291,7 +291,7 @@ describe('vwc-file-uploader', () => {
 	});
 
 	describe('url', function () {
-		it('should be "/" if not set', async function () {
+		it('should be undefined if not set', async function () {
 			await elementUpdated(element);
 			expect(element.url).toBeUndefined();
 		});
