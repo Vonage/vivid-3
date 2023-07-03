@@ -236,7 +236,7 @@ describe('vwc-file-uploader', () => {
 		});
 	});
 
-	describe('remove files', function () {
+	describe('removeFile', function () {
 		it('should have 1 files after adding 2 files and calling removeFile', async function () {
 			await elementUpdated(element);
 
