@@ -232,7 +232,7 @@ describe('vwc-file-uploader', () => {
 
 			await elementUpdated(element);
 			expect(element.files.length).toEqual(1);
-			expect(element.getAcceptedFiles().length).not.toEqual(1);
+			expect(element.getAcceptedFiles().length).toEqual(0);
 		});
 	});
 
