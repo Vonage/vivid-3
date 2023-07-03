@@ -212,7 +212,7 @@ describe('vwc-file-uploader', () => {
 		});
 	});
 
-	describe('accepted files', function () {
+	describe('acceptedFiles', function () {
 		it('should add png file when acceptedFiles is null', async function () {
 			const file = await generateFile('london.png', 2);
 			element.addFile(file);
