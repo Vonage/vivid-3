@@ -121,7 +121,7 @@ describe('vwc-file-uploader', () => {
 	});
 
 	describe('maxFileSize', function () {
-		it('should upload file with size 0.1 when max file size is set to 0.2', async function () {
+		it('should add file to accepted list when size in maxFileSize boundary', async function () {
 			const maxFileSize = 0.2;
 			element.maxFileSize = maxFileSize;
 			await elementUpdated(element);
