@@ -267,10 +267,9 @@ describe('vwc-dialog', () => {
 	});
 
 	it( 'should add class of icon placement  to .base', async () => {
-		const baseDiv = element.shadowRoot?.querySelector('.base');
 		element.iconPlacement = 'side';
 		await elementUpdated(element);
-		expect(baseDiv?.classList.contains('icon-placement-side'))
+		expect(getBaseElement(element)?.classList.contains('icon-placement-side'))
 			.toEqual(true);
 	});
 
@@ -325,8 +324,7 @@ describe('vwc-dialog', () => {
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
-			const baseElementClasses = element.shadowRoot?.
-				querySelector('.base')?.classList;
+			const baseElementClasses = getBaseElement(element)?.classList;
 
 			expect(baseElementClasses).not.toContain('hide-body');
 		});
@@ -363,8 +361,7 @@ describe('vwc-dialog', () => {
 				element.appendChild(slottedElement);
 				await elementUpdated(element);
 
-				const baseElementClasses =
-					element.shadowRoot?.querySelector('.base')?.classList;
+				const baseElementClasses = getBaseElement(element)?.classList;
 
 				expect(baseElementClasses).not.toContain('hide-footer');
 			}
