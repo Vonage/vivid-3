@@ -93,5 +93,6 @@ export class Tabs extends FoundationTabs {
 		const idx = this.tabs.indexOf(this.activetab);
 		this.activeid = this['tabIds'][idx];
 		this.#updateTabsConnotation();
+		this.activetab.scrollIntoView({ block: 'nearest', behavior: 'smooth'});
 	}
 }
