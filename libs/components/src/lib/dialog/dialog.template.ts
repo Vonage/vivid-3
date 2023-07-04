@@ -14,8 +14,7 @@ const getClasses = ({
 	iconPlacement,
 	bodySlottedContent,
 	footerSlottedContent,
-	secondaryActionSlottedContent,
-	primaryActionSlottedContent,
+	actionItemsSlottedContent,
 }: Dialog) =>
 	classNames(
 		'base',
@@ -25,8 +24,7 @@ const getClasses = ({
 			'hide-footer',
 			!(
 				footerSlottedContent?.length ||
-				secondaryActionSlottedContent?.length ||
-				primaryActionSlottedContent?.length
+				actionItemsSlottedContent?.length
 			),
 		]
 	);
@@ -128,8 +126,7 @@ export const DialogTemplate: (
 							<slot name="footer" ${slotted('footerSlottedContent')}></slot>
 						</div>
 						<div class="actions">
-							<slot name="secondary-action" ${slotted('secondaryActionSlottedContent')}></slot>
-							<slot name="primary-action" ${slotted('primaryActionSlottedContent')}></slot>
+							<slot name="action-items" ${slotted('actionItemsSlottedContent')}></slot>
 						</div>
 					</div>
 				</div>

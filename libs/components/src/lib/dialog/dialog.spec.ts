@@ -344,7 +344,7 @@ describe('vwc-dialog', () => {
 
 
 	describe('dialog footer', () => {
-		it.each(['footer', 'primary-action', 'secondary-action'])(
+		it.each(['footer', 'action-items'])(
 			'should have a %s slot ',
 			(slotName) => {
 				const slotElement = element.shadowRoot?.querySelector(
@@ -355,7 +355,7 @@ describe('vwc-dialog', () => {
 			}
 		);
 
-		it.each(['footer', 'primary-action', 'secondary-action'])(
+		it.each(['footer', 'action-items'])(
 			'should remove hide-footer class from .base if %s is slotted',
 			async (slotName) => {
 				const slottedElement = document.createElement('div');

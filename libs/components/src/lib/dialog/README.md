@@ -18,8 +18,8 @@ All native attributes of `dialog` are supported as well as some enhancements.
 
 <vwc-dialog icon="info" headline="Headline" subtitle="subtitle" open>
 	<vwc-checkbox slot="footer" label="Checkbox"></vwc-checkbox>
-	<vwc-button slot="secondary-action" label="Cancel" appearance="outlined"></vwc-button>
-	<vwc-button slot="primary-action" label="Ok" appearance="filled"></vwc-button>
+	<vwc-button slot="action-items" label="Cancel" appearance="outlined"></vwc-button>
+	<vwc-button slot="action-items" label="Ok" appearance="filled"></vwc-button>
 </vwc-dialog>
 ```
 
@@ -120,8 +120,8 @@ Use `returnValue` to get or set the return value. Often used to indicate which b
 </style>
 <vwc-dialog open
             headline="Returning Dialog">
-	<vwc-button slot="secondary-action" appearance="outlined" label="Cancel"></vwc-button>
-	<vwc-button slot="primary-action" appearance="filled" label="Action"></vwc-button>
+	<vwc-button slot="action-items" appearance="outlined" label="Cancel"></vwc-button>
+	<vwc-button slot="action-items" appearance="filled" label="Action"></vwc-button>
 </vwc-dialog>
 <div>Returned Value: <span id="dialog-output"></span></div>
 <vwc-button label="Open Dialog"
@@ -223,9 +223,9 @@ To remove the body inline padding use `full-width-body`.
 
 ```
 
-### Primary/Secondary Action
+### Action Items
 
-Use the `primary-action` and `secondary-action` slots to add action buttons to the bottom of the dialog.
+Use the `action-items` slot to add action items to the bottom of the dialog.
 
 ```html preview
 <style>
@@ -236,8 +236,8 @@ Use the `primary-action` and `secondary-action` slots to add action buttons to t
 <vwc-dialog open
 	headline="Dialog with primary and secondary actions"
 	subtitle="This is an example of the dialog with slotted buttons">
-	<vwc-button slot="secondary-action" appearance="outlined" label="Cancel"></vwc-button>
-	<vwc-button slot="primary-action" appearance="filled" label="Action"></vwc-button>
+	<vwc-button slot="action-items" appearance="outlined" label="Cancel"></vwc-button>
+	<vwc-button slot="action-items" appearance="filled" label="Action"></vwc-button>
 </vwc-dialog>
 ```
 
@@ -245,7 +245,7 @@ Use the `primary-action` and `secondary-action` slots to add action buttons to t
 
 Use the `footer` slot in order to add additional content to the bottom of the dialog.
 
-When used in combination with `primary-action` and `secondary-action` slots, the `footer` content will appear to the left of the action buttons.
+When used in combination with `action-items` slot, the `footer` content will appear to the left of the action items.
 
 ```html preview
 <style>
@@ -257,7 +257,7 @@ When used in combination with `primary-action` and `secondary-action` slots, the
   headline="Dialog with footer"
   subtitle="this is an example of the dialog with a checkbox inside footer">
 	<vwc-checkbox slot="footer" label="I agree"></vwc-checkbox>
-	<vwc-button slot="primary-action" appearance="filled" label="Ok"></vwc-button>
+	<vwc-button slot="action-items" appearance="filled" label="Ok"></vwc-button>
 </vwc-dialog>
 ```
 
