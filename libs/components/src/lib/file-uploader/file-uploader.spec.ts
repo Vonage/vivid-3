@@ -396,7 +396,7 @@ describe('vwc-file-uploader', () => {
 		it('should change text to dictInvalidFileType', async function () {
 			const text = 'new error text';
 			element.dictInvalidFileType = text;
-			element.acceptedFiles = '.jpg';
+			element.accept = '.jpg';
 			await elementUpdated(element);
 			expect(getBaseElement(element).querySelector('.dz-error-message')?.textContent).toBeUndefined();
 
