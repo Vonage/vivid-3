@@ -43,28 +43,28 @@ export class Tabs extends FoundationTabs {
 			this.activeIndicatorRef.style.removeProperty(ACTIVE_TAB_WIDTH);
 		}
 		this.#patchActiveID();
-		this.#connotationClass();
+
 	}
 
 	override activeidChanged(oldValue: string, newValue: string): void {
 		super.activeidChanged(oldValue, newValue);
 		this.patchIndicatorStyleTransition();
 		this.#patchActiveID();
-		this.#connotationClass();
+
 	}
 
-	override tabsChanged(): void {
+	override tabsChanged(): 	void {
 		super.tabsChanged();
 		this.patchIndicatorStyleTransition();
 		this.#patchActiveID();
-		this.#connotationClass();
+
 	}
 
 	override tabpanelsChanged(): void {
 		super.tabpanelsChanged();
 		this.patchIndicatorStyleTransition();
 		this.#patchActiveID();
-		this.#connotationClass();
+
 	}
 
 	patchIndicatorStyleTransition() {
@@ -93,15 +93,6 @@ export class Tabs extends FoundationTabs {
 		const idx = this.tabs.indexOf(this.activetab);
 		this.activeid = this['tabIds'][idx];
 		this.#updateTabsConnotation();
-	}
-
-	#connotationClass() {
-		this.tabs?.forEach(tab => {
-			if (tab.getAttribute('aria-selected') === 'true') {
-				tab.setAttribute('connotation', this.connotation as string);
-			} else {
-				tab.removeAttribute('connotation');
-			}
-		});
+		this.activetab.scrollIntoView({ block: 'nearest', behavior: 'smooth'});
 	}
 }
