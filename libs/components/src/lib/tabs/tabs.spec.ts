@@ -16,6 +16,7 @@ describe('vwc-tabs', () => {
 				top: 50, right: 586, bottom: 290, left: 146
 			} as DOMRect;
 		};
+		window.HTMLElement.prototype.scrollIntoView = jest.fn();
 	});
 
 	afterEach(function () {
@@ -163,6 +164,13 @@ describe('vwc-tabs', () => {
 			await elementUpdated(element);
 
 			expect(element.activetab).toEqual(tab);
+		});
+
+		it('should scroll to activetab when set', function () {
+			const tab: Tab = element.querySelector('#entrees') as Tab;
+			const spy = jest.spyOn(tab, 'scrollIntoView');
+			element.activetab = tab;
+			expect(spy).toHaveBeenCalled();
 		});
 	});
 });
