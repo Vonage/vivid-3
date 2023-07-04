@@ -86,26 +86,26 @@ Use the `max-files` attribute (or `maxFiles` property) to define how many files 
 ```html preview
 <vwc-file-uploader helper-text="Upload up to 5 files" max-files=5 auto-process-queue>Drag & Drop or click to upload</vwc-file-uploader>
 ```
-### Upload Multiple
+### Multiple
 
-Use the `upload-multiple` attribute (or `uploadMultiple` property) to define whether to send multiple files in one request.
+Use the `multiple` attribute to define whether to send multiple files in one request.
 
 - Type: `boolean`
 - Default: `false`
 
 ```html preview
-<vwc-file-uploader helper-text="Upload multiple files" upload-multiple auto-process-queue>Drag & Drop or click to upload</vwc-file-uploader>
+<vwc-file-uploader helper-text="Upload multiple files" multiple auto-process-queue>Drag & Drop or click to upload</vwc-file-uploader>
 ```
 
-### Accepted Files
+### Accept
 
-Use the `accepted-files` attribute (or `acceptedFiles` property) to define a comma separated list of accepted files types.
+Use the `accept` attribute to define a comma separated list of accepted files types.
 
 - Type: `string`
 - Default: `undefined`
 
 ```html preview
-<vwc-file-uploader helper-text=".jpg, .jpeg, .png types only" accepted-files=".jpg, .jpeg, .png" auto-process-queue>Drag & Drop or click to upload</vwc-file-uploader>
+<vwc-file-uploader helper-text=".jpg, .jpeg, .png types only" accept=".jpg, .jpeg, .png" auto-process-queue>Drag & Drop or click to upload</vwc-file-uploader>
 ```
 
 ### Method
@@ -150,19 +150,19 @@ You can specify width on the `vwc-file-uploader` if required (the preview list w
 
 ### Addedfile
 
-Fires `addedfile` whenever a file is added to the file uploader.
+Fires `addedfile` when a file is added to the queue.
 
 ### Complete
 
-Fires `complete` when the upload is complete.
+Fires `complete` when the upload is finished, either with success or an error.
 
 ### Success
 
-Fires `success` when files are successfully uploaded.
+Fires `success` the complete upload is finished and successful.
 
 ### Error
 
-Fires `error` when the files were not succesfuly uploaded.
+Fires `error` whenever an error occurs.
 
 ## Methods
 
@@ -202,11 +202,6 @@ Recieve an array of accepted files.
 - Returns: `File[]`
 
 Recieve an array of queued files when [autoProcessQueue](#auto-process-queue) is false.
-
-### getFilesWithErrorStatus()
-
-- Type: `function`
-- Returns: `File[]`
 
 ## Properties
 
@@ -269,7 +264,7 @@ Allows you to translate the different units. Starting with `tb` for terabytes an
 <form id='form'>
 	<vwc-layout column-basis="block">
 		<vwc-text-field name='username' label='Username'></vwc-text-field>
-		<vwc-file-uploader id='fileUploader' label='Pick files' helper-text="multiple files of any type" max-files="50" upload-multiple>Drag & Drop or click to upload</vwc-file-uploader>
+		<vwc-file-uploader id='fileUploader' label='Pick files' helper-text="multiple files of any type" max-files="50" multiple>Drag & Drop or click to upload</vwc-file-uploader>
 		<vwc-divider></vwc-divider>
 		<vwc-button label='Submit' appearance='filled' shape='pill' type="submit"></vwc-button>
 	</vwc-layout>

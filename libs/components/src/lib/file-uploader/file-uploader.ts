@@ -107,10 +107,10 @@ export class FileUploader extends FoundationElement {
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: upload-multiple
+	 * HTML Attribute: multiple
 	 */
-	@attr({ mode: 'boolean', attribute: 'upload-multiple' }) uploadMultiple = false;
-	uploadMultipleChanged(_oldValue: boolean, newValue: boolean): void {
+	@attr({ mode: 'boolean'}) multiple = false;
+	multipleChanged(_oldValue: boolean, newValue: boolean): void {
 		if (this.#fileUploader) {
 			(this.#fileUploader.options).uploadMultiple = newValue;
 		}
@@ -123,8 +123,8 @@ export class FileUploader extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: accepted-files
 	 */
-	@attr({ attribute: 'accepted-files' }) acceptedFiles?: string;
-	acceptedFilesChanged(_oldValue: string, newValue: string): void {
+	@attr accept?: string;
+	acceptChanged(_oldValue: string, newValue: string): void {
 		if (this.#fileUploader) {
 			(this.#fileUploader.options).acceptedFiles = newValue;
 		}
@@ -211,8 +211,8 @@ export class FileUploader extends FoundationElement {
 					autoProcessQueue: this.autoProcessQueue,
 					maxFiles: this.maxFiles,
 					maxFilesize: this.maxFileSize,
-					uploadMultiple: this.uploadMultiple,
-					acceptedFiles: this.acceptedFiles,
+					uploadMultiple: this.multiple,
+					acceptedFiles: this.accept,
 					addRemoveLinks: true
 				});
 		}
@@ -296,15 +296,6 @@ export class FileUploader extends FoundationElement {
 	 */
 	getQueuedFiles(): File[] {
 		return this.#fileUploader.getQueuedFiles();
-	}
-
-	/**
-	 * Get Files With Error Status
-	 *
-	 * @public
-	 */
-	getFilesWithErrorStatus(): File[] {
-		return this.#fileUploader.getFilesWithStatus(Dropzone.ERROR);
 	}
 
 	/**

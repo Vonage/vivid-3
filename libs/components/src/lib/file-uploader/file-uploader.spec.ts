@@ -23,8 +23,8 @@ describe('vwc-file-uploader', () => {
 			expect(element.helperText).toBeUndefined();
 			expect(element.maxFiles).toBeUndefined();
 			expect(element.maxFileSize).toEqual(256);
-			expect(element.uploadMultiple).toEqual(false);
-			expect(element.acceptedFiles).toBeUndefined();
+			expect(element.multiple).toEqual(false);
+			expect(element.accept).toBeUndefined();
 			expect(element.url).toBeUndefined();
 			expect(element.method).toBeUndefined();
 			expect(element.autoProcessQueue).toEqual(false);
@@ -148,29 +148,11 @@ describe('vwc-file-uploader', () => {
 		});
 	});
 
-	describe('getFilesWithErrorStatus', function () {
-		it('should have dz-error class and status when files not added', async function () {
-			const maxFileSize = 0.2;
-			element.maxFileSize = maxFileSize;
-			await elementUpdated(element);
-
-			const file = await generateFile('london.png', 2);
-			element.addFile(file);
-
-			await elementUpdated(element);
-
-			const preview = element.shadowRoot?.querySelector('.dz-preview') as HTMLElement;
-			expect(preview.classList).toContain('dz-error');
-
-			expect(element.getFilesWithErrorStatus().length).toEqual(1);
-		});
-	});
-
 	describe('uploadMultiple', function () {
 		it('should accept multiple files if maxFiles is set to more than 1', async function () {
 			const uploadMultiple = true;
 			element.maxFiles = 2;
-			element.uploadMultiple = uploadMultiple;
+			element.multiple = uploadMultiple;
 			await elementUpdated(element);
 
 			const firstFile = await generateFile('london.png', 2);
@@ -185,7 +167,7 @@ describe('vwc-file-uploader', () => {
 		it('should accept only the first file if maxFiles is set to 1', async function () {
 			const uploadMultiple = true;
 			element.maxFiles = 1;
-			element.uploadMultiple = uploadMultiple;
+			element.multiple = uploadMultiple;
 			await elementUpdated(element);
 
 			const firstFile = await generateFile('london.png', 2);
@@ -199,7 +181,7 @@ describe('vwc-file-uploader', () => {
 
 		it('should accept multiple files if maxFiles is not set', async function () {
 			const uploadMultiple = true;
-			element.uploadMultiple = uploadMultiple;
+			element.multiple = uploadMultiple;
 			await elementUpdated(element);
 
 			const firstFile = await generateFile('london.png', 2);
@@ -222,9 +204,9 @@ describe('vwc-file-uploader', () => {
 			expect(element.getAcceptedFiles().length).toEqual(1);
 		});
 
-		it('should filter png file from accepted list when acceptedFiles is set to .jpg', async function () {
+		it('should filter png file from accepted list when accept is set to .jpg', async function () {
 			const acceptedFiles = '.jpg';
-			element.acceptedFiles = acceptedFiles;
+			element.accept = acceptedFiles;
 			await elementUpdated(element);
 
 			const file = await generateFile('london.png', 2);
