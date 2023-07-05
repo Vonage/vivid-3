@@ -33,7 +33,7 @@ function renderIcon(iconTag: string) {
  */
 function renderInitials() {
 	return html<Avatar>`
-		<span class="initials">${ ({ initials }) => initials!.substring(0, 2) }</span>
+		<span class="initials">${ ({ initials }) => initials?.substring(0, 2) }</span>
 	`;
 }
 

@@ -58,7 +58,6 @@ function renderIconOrPending(
  * The template for the (Button:class) component.
  *
  * @param context - element definition context
- * @param definition
  * @public
  */
 export const buttonTemplate: (

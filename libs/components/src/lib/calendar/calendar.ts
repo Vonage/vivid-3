@@ -85,7 +85,7 @@ export class Calendar extends FoundationElement {
 		.map((d, i) => new Date(d.setHours(++i)));
 
 	/**
-	 * @param dateArr array of dates. requires at least 1 date to be set within the array
+	 * @param dateArr - array of dates. requires at least 1 date to be set within the array
 	 * @returns array of incremental dates from the first date in the array
 	 * @internal
 	 */
@@ -108,9 +108,8 @@ export class Calendar extends FoundationElement {
 	/**
 	 * Fire an event
 	 *
-	 * @param {string} event        - event name
-	 * @param {Object} [detail={}]  - optional event detail object
-	 * @returns {boolean}           - return true
+	 * @param calendarEvent - event name
+	 * @returns boolean - return true
 	 */
 	getEventContext = getEventContext;
 

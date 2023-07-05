@@ -7,7 +7,6 @@ import type {Breadcrumb} from './breadcrumb';
  * The template for the Breadcrumb component.
  *
  * @param context - element definition context
- * @param definition
  * @public
  */
 export const breadcrumbTemplate: FoundationElementTemplate<ViewTemplate<Breadcrumb>> = () => html`

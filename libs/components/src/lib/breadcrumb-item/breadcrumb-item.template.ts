@@ -16,7 +16,6 @@ const getClasses = (_: BreadcrumbItem) =>
  * The template for the BreadcrumbItem component.
  *
  * @param context - element definition context
- * @param definition
  * @public
  */
 export const BreadcrumbItemTemplate: (
