@@ -41,11 +41,6 @@ export function getNextFocusableGridElement(
 	}
 }
 
-/**
- * @param this
- * @param key
- * @param activeElement
- */
 export function getHeaderDescendantGridCell(this: Calendar, key: PredefindKeys, activeElement: HTMLElement): Element | null | undefined {
 	if (key !== ARROW_DOWN) {return;}
 

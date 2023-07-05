@@ -113,7 +113,6 @@ function renderControl(context: ElementDefinitionContext) {
 /**
  * The template for the Select component.
  *
- * @param
  * @param context - element definition context
  * @public
  */

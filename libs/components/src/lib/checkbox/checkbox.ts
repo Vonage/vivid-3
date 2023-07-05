@@ -40,9 +40,8 @@ export class Checkbox extends FoundationCheckbox {
 	@attr connotation?: CheckboxConnotation;
 
 	/**
-	 * !remove method as will be implemented by fast-foundation in version > 2.46.9
+	 * !remove method as will be implemented by fast-foundation in version after 2.46.9
 	 *
-	 * @param e
 	 * @internal
 	 */
 	override keypressHandler = (e: KeyboardEvent): void => {

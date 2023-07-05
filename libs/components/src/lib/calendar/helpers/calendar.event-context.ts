@@ -30,12 +30,6 @@ function getHour(e: MouseEvent, el: HTMLElement, hours: number): number | void {
 	}
 }
 
-/**
- * @param this
- * @param shadowRoot
- * @param hours
- * @param e
- */
 export const getEventContext = function(this: Calendar, e: KeyboardEvent | MouseEvent): CalendarEventContext | null {
 
 	if (!(e instanceof KeyboardEvent || e instanceof MouseEvent)) {
