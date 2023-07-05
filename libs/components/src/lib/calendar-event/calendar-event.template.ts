@@ -30,7 +30,7 @@ const getStyles = ({ start, duration, overlapCount }: CalendarEvent) => {
 /**
  * The template for the {@link @microsoft/fast-foundation#CalendarEvent} component.
  *
- * @param context
+ * @param context - element definition context
  * @public
  */
 export const CalendarEventTemplate: (

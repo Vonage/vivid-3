@@ -8,7 +8,7 @@ import { Focus } from '../../lib/focus/focus';
 /**
  * The template for the focus element.}
  *
- * @param context
+ * @param context - element definition context
  * @public
  */
 export const focusTemplateFactory: (context: ElementDefinitionContext) =>

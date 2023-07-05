@@ -31,7 +31,7 @@ const getClasses = ({
  * the provided prefix.
  *
  * @param options
- * @param context
+ * @param context - element definition context
  * @param definition
  * @public
  */

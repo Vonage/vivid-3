@@ -10,7 +10,7 @@ import type { NavItem } from './nav-item';
 /**
  * The template for the {@link @microsoft/fast-foundation#NavItem} component.
  *
- * @param context
+ * @param context - element definition context
  * @param definition
  * @public
  */

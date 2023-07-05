@@ -10,7 +10,7 @@ const getClasses = (_: Toggletip) => classNames('control');
 /**
  * The template for the {@link @microsoft/fast-foundation#Toggletip} component.
  *
- * @param context
+ * @param context - element definition context
  * @public
  */
 export const ToggletipTemplate:

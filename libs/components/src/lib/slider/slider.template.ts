@@ -27,7 +27,7 @@ const getMarkersTemplate = (isHorizontal: boolean, numMarkers: number) => {
 /**
  * The template for the {@link @microsoft/fast-foundation#Slider} component.
  *
- * @param context
+ * @param context - element definition context
  * @public
  */
 export const SliderTemplate: (context: ElementDefinitionContext) => ViewTemplate<Slider> = (context: ElementDefinitionContext) => {

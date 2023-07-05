@@ -20,7 +20,7 @@ const getClasses = ({
  * The template for the {@link @vonage/vivid#(Tab:class)} component.
  *
  * @param options
- * @param context
+ * @param context - element definition context
  * @public
  */
 export function TabTemplate<T extends Tab>(context: ElementDefinitionContext) {

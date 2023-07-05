@@ -76,7 +76,7 @@ function handleEscapeKey(dialog: Dialog, event: Event) {
 /**
  * The template for the {@link @microsoft/fast-foundation#Dialog} component.
  *
- * @param context
+ * @param context - element definition context
  * @public
  */
 export const DialogTemplate: (

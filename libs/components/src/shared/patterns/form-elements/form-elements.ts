@@ -115,7 +115,7 @@ type MessageTypeMap = { [key in FeedbackType]: {
 
 /**
  * @param messageType
- * @param context
+ * @param context - element definition context
  */
 export function getFeedbackTemplate(messageType: FeedbackType, context: ElementDefinitionContext) {
 	const MessageTypeMap: MessageTypeMap = {

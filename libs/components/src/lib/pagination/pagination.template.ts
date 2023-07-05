@@ -57,7 +57,7 @@ const getPaginationSize = (x: Pagination) => {
 /**
  * The template for the {@link @microsoft/fast-foundation#Pagination} component.
  *
- * @param context
+ * @param context - element definition context
  * @public
  */
 

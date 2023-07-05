@@ -6,7 +6,7 @@ import type {Breadcrumb} from './breadcrumb';
 /**
  * The template for the {@link @microsoft/fast-foundation#Breadcrumb} component.
  *
- * @param context
+ * @param context - element definition context
  * @param definition
  * @public
  */

@@ -9,7 +9,7 @@ import type { RadioGroup } from './radio-group';
 /**
  * The template for the {@link @microsoft/fast-foundation#RadioGroup} component.
  *
- * @param context
+ * @param context - element definition context
  * @public
  */
 export const RadioGroupTemplate: (context: ElementDefinitionContext) => ViewTemplate<RadioGroup> = (context: ElementDefinitionContext) => {

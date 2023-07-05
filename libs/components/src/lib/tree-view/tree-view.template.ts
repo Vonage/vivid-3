@@ -7,7 +7,7 @@ const getClasses = (_: TreeView) => classNames('control');
 /**
  * The template for the {@link @microsoft/fast-foundation#TreeView} component.
  *
- * @param context
+ * @param context - element definition context
  * @public
  */
 export const TreeViewTemplate = () => {

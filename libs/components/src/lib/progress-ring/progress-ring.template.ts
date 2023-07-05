@@ -18,7 +18,7 @@ const progressSegments: number = 44;
 /**
  * The template for the {@link @microsoft/fast-foundation#ProgressRing} component.
  *
- * @param context
+ * @param context - element definition context
  * @param _
  * @param definition
  * @public

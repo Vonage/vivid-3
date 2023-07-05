@@ -70,7 +70,7 @@ function getTabIndex(numberField: NumberField) {
 }
 
 /**
- * @param context
+ * @param context - element definition context
  */
 function numberControlButtons(context: ElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
@@ -99,7 +99,7 @@ function numberControlButtons(context: ElementDefinitionContext) {
 /**
  * The template for the {@link @microsoft/fast-foundation#NumberField} component.
  *
- * @param context
+ * @param context - element definition context
  * @public
  */
 export const NumberFieldTemplate: (

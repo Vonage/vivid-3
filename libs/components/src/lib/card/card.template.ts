@@ -95,7 +95,7 @@ function text() {
 /**
  * The template for the {@link @microsoft/fast-foundation#Card} component.
  *
- * @param context
+ * @param context - element definition context
  * @public
  */
 export const CardTemplate: (
