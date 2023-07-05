@@ -27,6 +27,7 @@ export type IconPlacement = 'top' | 'side';
  * @slot body - Use the body slot in order to add custom HTML to the dialog.
  * @slot footer - Use the footer slot in order to add action buttons to the bottom of the dialog.
  * @slot main - Assign nodes to the main slot to fully override a dialog’s predefined flow and style with your own.
+ * @event close - Fired when the dialog is closed
  */
 export class Dialog extends FoundationElement {
 	/**

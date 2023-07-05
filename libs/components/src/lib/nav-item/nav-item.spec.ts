@@ -64,4 +64,10 @@ describe('vwc-nav-item', () => {
 				.toEqual(text);
 		});
 	});
+
+	describe('meta slot', () => {
+		it('should have a meta slot', async () => {
+			expect(element.shadowRoot?.querySelector('slot[name=meta]')).toBeTruthy();
+		});
+	});
 });

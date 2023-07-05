@@ -276,6 +276,28 @@ Set the `meta` slot to show meta information after the selected option label.
 </vwc-select>
 ```
 
+### Icon
+
+Set the `icon` slot to show an icon before the selected option label.
+If set, the `icon` attribute is ignored.
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+  vwc-select {
+    width: 150px;
+  }
+</style>
+<vwc-select aria-label="Options Selector">
+  <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+  <vwc-option value="1" text="Option 1"></vwc-option>
+  <vwc-option value="2" text="Option 2"></vwc-option>
+  <vwc-option value="3" text="Option 3"></vwc-option>
+</vwc-select>
+```
+
 ## Option Label
 
 You can add a `label` attribute to the `vwc-option` to set a custom display value for the selected option.
@@ -342,6 +364,28 @@ You can specify width on the `vwc-select` if required (the list-box will not be 
 </vwc-select>
 ```
 
+## Properties
+
+### options
+
+A read-only list of options.
+
+- Type: `Option[]`
+- Default: `[]`
+
+### selectedOptions
+
+A read-only collection of the selected options.
+
+- Type: `Option[]`
+- Default: `[]`
+
+### selectedIndex
+
+The index of the selected option or -1 if no option is selected.
+
+- Type: `number`
+- Default: `undefined`
 
 ## Caveat
 
@@ -356,8 +400,9 @@ A select requires a label to be set for screen readers to be able to describe th
 If label is set, it is used as the `aria-label` attribute value on the host element.
 If label is not set, please make sure to add an `aria-label` attribute to the host element.
 
-## Use Case
+## Use Cases
 
+### Country Code
 ```html preview
 <style>
   html { /* for demo purposes */
@@ -373,7 +418,62 @@ If label is not set, please make sure to add an `aria-label` attribute to the ho
 <script>
 const select = document.querySelector('vwc-select');
 select?.addEventListener('change', (e) => {
-	select.icon = select.selectedOptions[0].icon;
+  select.icon = select.selectedOptions[0].icon;
 });
 </script>
+```
+
+
+### Call Status
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 250px;
+  }
+  vwc-select {
+		width: 280px;
+	}
+	
+	vwc-icon {
+		font-size: 12px;
+	}
+	vwc-select[current-value=ready] > vwc-icon,
+	vwc-option[value=ready] > vwc-icon {
+		color: var(--vvd-color-success-300);
+	}
+	vwc-select[current-value=away] > vwc-icon,
+	vwc-option[value=away] > vwc-icon {
+		color: var(--vvd-color-warning-300);
+	}
+	vwc-select[current-value=extended-away] > vwc-icon,
+	vwc-option[value=extended-away] > vwc-icon {
+		color: var(--vvd-color-announcement-500);
+	}
+	vwc-select[current-value=logged-out] > vwc-icon,
+	vwc-option[value=logged-out] > vwc-icon {
+		color: var(--vvd-color-neutral-300);
+	}
+	
+	.duration {
+		color: var(--vvd-color-neutral-600);
+		text-align: end;
+		flex-grow: 1;
+	}
+</style>
+<vwc-select id="select" shape="pill" aria-label="Status">
+  <vwc-icon id="icon" slot="icon" name="bullet-solid"></vwc-icon>
+	<span slot="meta" class="duration">00:00:00</span>
+  <vwc-option value="ready" text="Ready">
+		<vwc-icon slot="icon" name="bullet-solid"></vwc-icon>
+	</vwc-option>
+  <vwc-option value="away" text="Away">
+		<vwc-icon slot="icon" name="bullet-solid"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="extended-away" text="Extended away">
+		<vwc-icon slot="icon" name="bullet-solid"></vwc-icon>
+	</vwc-option>
+  <vwc-option value="logged-out" text="Logged out">
+		<vwc-icon slot="icon" name="bullet-solid"></vwc-icon>
+	</vwc-option>
+</vwc-select>
 ```

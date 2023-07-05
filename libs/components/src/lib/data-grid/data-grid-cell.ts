@@ -1,4 +1,4 @@
-import { DataGridCell as FoundationElement } from '@microsoft/fast-foundation';
+import { DataGridCell as FoundationDataGridCell } from '@microsoft/fast-foundation';
 import {attr} from '@microsoft/fast-element';
 
 /**
@@ -6,7 +6,7 @@ import {attr} from '@microsoft/fast-element';
  *
  * @public
  */
-export class DataGridCell extends FoundationElement {
+export class DataGridCell extends FoundationDataGridCell {
 
 	@attr({attribute: 'aria-selected', mode: 'fromView'}) override ariaSelected: string | null = null;
 

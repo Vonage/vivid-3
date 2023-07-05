@@ -1,6 +1,7 @@
-import {elementUpdated, fixture} from '@vivid-nx/shared';
+import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
 import type {Icon} from './icon';
 import '.';
+import {ICON_SET_VERSION} from './icon';
 
 const COMPONENT_TAG = 'vwc-icon';
 
@@ -105,6 +106,62 @@ describe('icon', function () {
 			expect(element._svg).toEqual('');
 		});
 	});
+
+	describe('iconLoaded', function () {
+		it('should default to false', function () {
+			expect(element.iconLoaded).toEqual(false);
+		});
+
+		it('should set to true when icon is loaded', async function () {
+			element.name = 'home';
+			await elementUpdated(element);
+			expect(element.iconLoaded).toEqual(true);
+		});
+
+		it('should set an image with src when iconLoaded is false', async function () {
+			element.name = 'home';
+			await elementUpdated(element);
+			element.iconLoaded = false;
+			await elementUpdated(element);
+			const imgElement = getControlElement(element).querySelector('img');
+			expect(imgElement?.src)
+				.toEqual(`https://icon.resources.vonage.com/v${ICON_SET_VERSION}/home.svg`);
+		});
+
+		it('should set iconLoaded to false when name changes', async function () {
+			function fakeFetch() {
+				const originalFetch = global.fetch;
+				let timeout: any;
+				(global.fetch as any) = jest.fn(() => {
+					return new Promise(res => {
+						timeout = setTimeout(() => res(false), 1000);
+					});
+				});
+				return () => {
+					global.fetch = originalFetch;
+					clearTimeout(timeout);
+				};
+			}
+
+			const restoreFetch = fakeFetch();
+			element.iconLoaded = true;
+
+			element.name = 'no-home';
+			await elementUpdated(element);
+
+			expect(element.iconLoaded).toEqual(false);
+			restoreFetch();
+		});
+	});
+	/*it('should set an image with src when first changing the name', async function () {
+		element.name = 'home';
+		await elementUpdated(element);
+		const controlElement = getControlElement(element);
+		const imgElement = controlElement.querySelector('img');
+		expect(imgElement).toBeTruthy();
+		expect(imgElement?.src)
+			.toEqual(`https://icon.resources.vonage.com/${ICON_SET_VERSION}/home.svg`);
+	});*/
 
 	describe('size', function () {
 		let controlElement: Element | null | undefined;

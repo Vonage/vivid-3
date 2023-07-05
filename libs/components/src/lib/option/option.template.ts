@@ -23,7 +23,7 @@ export const ListboxOptionTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<ListboxOption> = (context: ElementDefinitionContext) => {
-	const affixIconTemplate = affixIconTemplateFactory(context);
+	const affixIconTemplate = affixIconTemplateFactory(context, false);
 	const focusTemplate = focusTemplateFactory(context);
 
 	return html`
@@ -36,7 +36,9 @@ export const ListboxOptionTemplate: (
 		role="option">
 		<div class="${getClasses}">
 			${() => focusTemplate}
-			${x => affixIconTemplate(x.icon)}
+			<slot name="icon">
+				${when(x => x.icon, html<ListboxOption>`${x => affixIconTemplate(x.icon)}`)}
+			</slot>
 			${when(x => x.text, html`<div class="text">${x => x.text}</div>`)}
 		</div>
 	</template>

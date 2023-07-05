@@ -1,12 +1,11 @@
-import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import type { Tab } from '../tab/tab';
-import { Tabs } from './tabs';
+import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
+import {Connotation} from '@vonage/vivid';
+import type {Tab} from '../tab/tab';
+import {Tabs} from './tabs';
 import '../tab-panel/tab-panel';
 import '.';
 
 const COMPONENT_TAG = 'vwc-tabs';
-
-
 
 describe('vwc-tabs', () => {
 
@@ -17,6 +16,7 @@ describe('vwc-tabs', () => {
 				top: 50, right: 586, bottom: 290, left: 146
 			} as DOMRect;
 		};
+		window.HTMLElement.prototype.scrollIntoView = jest.fn();
 	});
 
 	async function setFixture(activeid: string | null = 'apps'): Promise<Tabs> {
@@ -96,6 +96,60 @@ describe('vwc-tabs', () => {
 		});
 	});
 
+	describe('connotation', () => {
+		function checkConnotationOnActiveTab(connotation: Connotation = Connotation.CTA) {
+			expect(element.activetab.getAttribute('connotation')).toEqual(connotation);
+		}
+
+		function checkConnotationDoesntExistOnNonActiveTabs() {
+			const nonActiveTabs = Array.from(element.querySelectorAll('vwc-tab:not([aria-selected="true"])'));
+			nonActiveTabs.forEach(tab => {
+				expect(tab.hasAttribute('connotation')).toBeFalsy();
+			});
+		}
+		beforeEach(function () {
+			element.connotation = Connotation.CTA;
+		});
+
+		it('should reflect connotation on active tab after init', async function () {
+			await elementUpdated(element);
+			checkConnotationOnActiveTab();
+			checkConnotationDoesntExistOnNonActiveTabs();
+		});
+
+		it('should reflect connotation on active tab after activeid changed', async function () {
+			element.activeid = 'entrees';
+			await elementUpdated(element);
+			checkConnotationOnActiveTab();
+			checkConnotationDoesntExistOnNonActiveTabs();
+		});
+
+		it('should reflect connotation on active tab after orientation changed', async function () {
+			element.orientation = 'vertical';
+			await elementUpdated(element);
+			checkConnotationOnActiveTab();
+			checkConnotationDoesntExistOnNonActiveTabs();
+		});
+
+		it('should reflect connotation on active tab after tabs changed', async function () {
+			const newTab = document.createElement('vwc-tab');
+			newTab.slot = 'tab';
+			element.appendChild(newTab);
+			await elementUpdated(element);
+			checkConnotationOnActiveTab();
+			checkConnotationDoesntExistOnNonActiveTabs();
+		});
+
+		it('should reflect connotation on active tab after tab panels changed', async function () {
+			const newTabPanel = document.createElement('vwc-tab-panel');
+			newTabPanel.slot = 'tabpanel';
+			element.appendChild(newTabPanel);
+			await elementUpdated(element);
+			checkConnotationOnActiveTab();
+			checkConnotationDoesntExistOnNonActiveTabs();
+		});
+	});
+
 	describe('activetab', () => {
 		it('should set activetab property', async () => {
 			const tab: Tab = element.querySelector('#entrees') as Tab;
@@ -106,6 +160,13 @@ describe('vwc-tabs', () => {
 			await elementUpdated(element);
 
 			expect(element.activetab).toEqual(tab);
+		});
+
+		it('should scroll to activetab when set', function () {
+			const tab: Tab = element.querySelector('#entrees') as Tab;
+			const spy = jest.spyOn(tab, 'scrollIntoView');
+			element.activetab = tab;
+			expect(spy).toHaveBeenCalled();
 		});
 	});
 });

@@ -21,6 +21,7 @@ $block-size: calc(#{size.$vvd-size-normal} + #{size.$vvd-size-super-condensed});
 	display: flex;
 	box-sizing: border-box;
 	justify-content: space-between;
+	background-color: var(#{variables.$header-bg-color}, var(#{constants.$vvd-color-canvas}));
 	block-size: inherit;
 	color: var(#{constants.$vvd-color-canvas-text});
 	column-gap: 12px;
@@ -28,8 +29,6 @@ $block-size: calc(#{size.$vvd-size-normal} + #{size.$vvd-size-super-condensed});
 	padding-inline: 16px;
 
 	&[part~="vvd-theme-alternate"] {
-		background-color: var(#{constants.$vvd-color-canvas});
-		color: var(#{constants.$vvd-color-canvas-text});
 		color-scheme: var(#{constants.$vvd-color-scheme});
 	}
 }

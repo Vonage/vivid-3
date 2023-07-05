@@ -44,8 +44,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
       </vwc-header>
 
       <style>
-        vwc-header#customized::part(base) {
-          background-color: var(--vvd-color-neutral-20);
+        vwc-header#customized {
+          --header-bg-color: var(--vvd-color-neutral-200);
         }
       </style>
 

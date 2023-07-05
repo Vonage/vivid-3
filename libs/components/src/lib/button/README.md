@@ -156,14 +156,19 @@ Add the `disabled` attribute to disable the button.
 ### Pending
 
 Add the `pending` attribute to disable the button and display a processing indicator.
+The indicator will replace the icon if one is set, or the label text for text-only buttons.
+The indicator is not displayed when using the `super-condensed` size.
 
 - Type: `boolean`
 - Default: `false`
 
 ```html preview
-<vwc-button appearance='ghost' label='ghost' pending></vwc-button>
-<vwc-button appearance='filled' label='filled' pending></vwc-button>
-<vwc-button appearance='outlined' label='outlined' pending></vwc-button>
+<vwc-button appearance="ghost" label="ghost" pending></vwc-button>
+<vwc-button appearance="filled" label="filled" pending></vwc-button>
+<vwc-button appearance="outlined" label="outlined" pending></vwc-button>
+<vwc-button appearance="ghost" icon="check-line" label="ghost with icon" pending></vwc-button>
+<vwc-button appearance="filled" icon="check-line" label="filled with icon" pending></vwc-button>
+<vwc-button appearance="outlined" icon="check-line" label="outlined with icon" pending></vwc-button>
 ```
 
 ## Use Cases

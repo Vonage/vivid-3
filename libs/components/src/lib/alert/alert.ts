@@ -24,7 +24,10 @@ export type AlertPlacement = 'top' | 'top-start' | 'top-end' | 'bottom' | 'botto
  * Base class for alert
  *
  * @public
+ * @slot main - The main content of the alert.
  * @slot action-items - Add action items to alert using this slot.
+ * @event open - Fired when the alert is opened
+ * @event close - Fired when the alert is closed
  */
 export class Alert extends FoundationElement {
 	// timeout to close the alert

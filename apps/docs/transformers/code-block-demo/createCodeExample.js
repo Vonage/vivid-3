@@ -66,7 +66,7 @@ const createiFrameContent = (code, classList, index, outputPath, componentData) 
 				${IFRAME_STYLE}
 			 	${FONTS}
 			 	${TYPOGRAPHY}
-			 	${[...modules].map(m => `<script type="module" src="${m}"></script>`).join('')}
+				<script type="module" src="/assets/scripts/vivid-components.js"></script>
 			</head>
 			<body ${classList.contains('full') ? 'id="_target"' : ''}>
 			 	${layout(code, classList)}

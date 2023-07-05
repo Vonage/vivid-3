@@ -1,5 +1,5 @@
 import { Anchor, applyMixins } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
+import { attr, ViewTemplate } from '@microsoft/fast-element';
 import { AffixIcon } from '../../shared/patterns/affix';
 
 /**
@@ -16,6 +16,14 @@ export class TextAnchor extends Anchor {
 	 * HTML Attribute: text
 	 */
 	@attr text?: string;
+
+	/**
+	 * Allows subclasses to provide a body template that will be rendered inside the anchor.
+	 * @internal
+	 */
+	getBodyTemplate(): ViewTemplate | undefined {
+		return undefined;
+	}
 }
 
 export interface TextAnchor extends AffixIcon {}

@@ -61,6 +61,56 @@ describe('vwc-menu', () => {
 		});
 	});
 
+	describe('auto-dismiss', () => {
+		it('should set "open" to false when clicked outside', async () => {
+			element.open = true;
+			element.autoDismiss = true;
+
+			await elementUpdated(element);
+
+			document.body.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+
+			await elementUpdated(element);
+
+			expect(element.open)
+				.toEqual(false);
+		});
+
+		it('should remove the listener on attribute change', async function () {
+			let spy1, spy2;
+			jest.spyOn(document, 'addEventListener').mockImplementation(function (_: string, cb: any) {
+				spy1 = cb;
+			});
+			jest.spyOn(document, 'removeEventListener').mockImplementation(function (_: string, cb: any) {
+				spy2 = cb;
+			});
+			element.open = true;
+			element.autoDismiss = true;
+			await elementUpdated(element);
+			element.autoDismiss = false;
+			await elementUpdated(element);
+
+			expect(spy1).toBe(spy2);
+		});
+
+		it('should remove the listener on destruction', async function () {
+			let spy1, spy2;
+			jest.spyOn(document, 'addEventListener').mockImplementation(function (_: string, cb: any) {
+				spy1 = cb;
+			});
+			jest.spyOn(document, 'removeEventListener').mockImplementation(function (_: string, cb: any) {
+				spy2 = cb;
+			});
+			element.open = true;
+			element.autoDismiss = true;
+			await elementUpdated(element);
+			element.remove();
+			await elementUpdated(element);
+
+			expect(spy1).toBe(spy2);
+		});
+	});
+
 	describe('submenu', () => {
 		it('should not be assigned to an explicit slot', async () => {
 			expect(element.slot).toBeFalsy();
@@ -205,12 +255,12 @@ describe('vwc-menu', () => {
 
 	it('should set and remove the aria-haspopup attribute on its anchor when it changes', async () => {
 		await setAnchor();
-		
+
 		element.anchor = 'anchor';
 		await elementUpdated(element);
 		const button = document.getElementById(element.anchor);
 		expect(button?.getAttribute('aria-haspopup')).toBe('menu');
-		
+
 		element.anchor = '';
 		await elementUpdated(element);
 		expect(button?.getAttribute('aria-haspopup')).toBeUndefined;

@@ -53,6 +53,24 @@ _Menu_ internally uses _popup_ to display an element and its descendants above t
 </div>
 ```
 
+### Auto Dismiss
+
+Use the auto dismiss property to automatically close the menu when the user clicks outside of it.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<div style="position: relative">
+  <vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open" appearance="outlined"></vwc-button>
+
+  <vwc-menu id="menu" anchor="button" auto-dismiss>
+    <vwc-menu-item text="Menu item 1"></vwc-menu-item>
+    <vwc-menu-item text="Menu item 2"></vwc-menu-item>
+ </vwc-menu>
+</div>
+```
+
 ### Placement
 
 _Menu_ internally uses _popup_ to display an element and its descendants above the rest of the document.
@@ -124,6 +142,31 @@ Use the `--menu-min-inline-size` variable to set the menu's inline size.
 </style>
 
 <vwc-menu open>
+  <vwc-menu-item text="Menu Item"></vwc-menu-item>
+</vwc-menu>
+```
+
+### Menu Block Size
+
+Use the `--menu-block-size` variable to set the menu's block size.
+
+- Type: [`<length>`](https://developer.mozilla.org/en-US/docs/Web/CSS/length)
+- Default: `408px`
+
+```html preview
+<style>
+  vwc-menu {
+    --menu-block-size: 100px;
+  }
+</style>
+
+<vwc-menu open>
+  <vwc-menu-item text="Menu Item"></vwc-menu-item>
+  <vwc-menu-item text="Menu Item"></vwc-menu-item>
+  <vwc-menu-item text="Menu Item"></vwc-menu-item>
+  <vwc-menu-item text="Menu Item"></vwc-menu-item>
+  <vwc-menu-item text="Menu Item"></vwc-menu-item>
+  <vwc-menu-item text="Menu Item"></vwc-menu-item>
   <vwc-menu-item text="Menu Item"></vwc-menu-item>
 </vwc-menu>
 ```

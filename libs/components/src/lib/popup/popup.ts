@@ -10,12 +10,11 @@ import type { Placement, Strategy } from '@floating-ui/dom';
  * @slot - Default slot.
  */
 export class Popup extends FoundationElement {
-	get #arrowPosition(): any { return { top: 'bottom', right: 'left', bottom: 'top', left: 'right' }; }
-	get #padding(): number { return 0; }
-	get #distance(): number { return 12; }
 	get #middleware(): Array<any> {
-		const middleware = [flip(), hide(), inline()];
-		if (this.arrow) { middleware.push(arrow({ element: this.arrowEl, padding: this.#padding }), offset(this.#distance)); }
+		let middleware = [inline(), flip(), hide()];
+		if (this.arrow) {
+			middleware = [offset(12), ...middleware, arrow({ element: this.arrowEl, padding: 10 })];
+		}
 		return middleware;
 	}
 
@@ -136,12 +135,17 @@ export class Popup extends FoundationElement {
 
 	#assignArrowPosition(data: any): void {
 		const { x: arrowX, y: arrowY } = data.middlewareData.arrow;
-		const side: string = this.#arrowPosition[data.placement.split('-')[0]];
+		const styles = {
+			'left'  : 'calc(100% - 4px)',
+			'right' : '-4px',
+			'top'   : 'calc(100% - 4px)',
+			'bottom': '-4px'
+		};
+		const staticAxis = data.placement.split('-')[0] as keyof typeof styles;
+
 		Object.assign(this.arrowEl.style, {
-			left: `${arrowX}px`,
-			top: `${arrowY}px`,
-			[this.#arrowPosition[side]]: '',
-			[side]: '-4px',
+			left: arrowX ? `${arrowX}px` : styles[staticAxis],
+			top:  arrowY ? `${arrowY}px` : styles[staticAxis],
 		});
 	}
 

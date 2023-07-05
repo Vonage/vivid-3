@@ -1,5 +1,5 @@
 const BASE_URL = 'https://icon.resources.vonage.com'; // namespaced as 3f7739a0-a898-4f69-a82b-ad9d743170b6 on icons.resources.vonage.com
-const ICON_SET_VERSION = '4.2.0';
+const ICON_SET_VERSION = '4.2.1';
 
 const ICONS_TO_SHOW = 21;
 
@@ -81,6 +81,7 @@ function onClickFilter() {
 
 function filterIcons() {
   let iconsArray = jsonData.filter(item => item.keyword.some(icon => icon.includes(iconsTextField.value.toLowerCase())));
+  iconsArray = iconsArray.concat(jsonData.filter(item => item.id.includes(iconsTextField.value.toLowerCase())));
 
   iconsArray = filterIconsByTag(iconsArray);
   iconsShown > ICONS_TO_SHOW ? showMoreIcons(iconsArray) : showIcons(iconsArray);

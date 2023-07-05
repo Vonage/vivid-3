@@ -4,6 +4,94 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.22.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.21.2...vivid-v3.22.0) (2023-07-04)
+
+
+### Features
+
+* **radio:** add connotation (VIV-1123) ([#1235](https://github.com/Vonage/vivid-3/issues/1235)) ([e2b0a25](https://github.com/Vonage/vivid-3/commit/e2b0a25b0487f99f0d1eabd2d3d72050e2f5c439))
+* **tabs:** scroll to active tab (VIV-1172) ([#1238](https://github.com/Vonage/vivid-3/issues/1238)) ([284a55d](https://github.com/Vonage/vivid-3/commit/284a55da878a49861f1829aa096da4046c8282fc))
+
+
+### Bug Fixes
+
+* **tabs:** prevent tab-panel blowout (VIV-1240) ([#1240](https://github.com/Vonage/vivid-3/issues/1240)) ([df1aa84](https://github.com/Vonage/vivid-3/commit/df1aa84a89cbbff7bfb9ebc3152a7c57807ff1b4))
+
+## [3.21.2](https://github.com/Vonage/vivid-3/compare/vivid-v3.21.1...vivid-v3.21.2) (2023-06-29)
+
+
+### Bug Fixes
+
+* **tabs:** horizontal and vertical scroll (VIV-1171) ([#1230](https://github.com/Vonage/vivid-3/issues/1230)) ([dc895b5](https://github.com/Vonage/vivid-3/commit/dc895b516e083b416067394529f4667e17ad718c))
+
+## [3.21.1](https://github.com/Vonage/vivid-3/compare/vivid-v3.21.0...vivid-v3.21.1) (2023-06-28)
+
+
+### Bug Fixes
+
+* **components:** add missing annotations (VIV-000) ([#1231](https://github.com/Vonage/vivid-3/issues/1231)) ([d670fbf](https://github.com/Vonage/vivid-3/commit/d670fbfa9266caa1394097b3914f5df859f7bb15))
+
+## [3.21.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.20.0...vivid-v3.21.0) (2023-06-28)
+
+
+### Features
+
+* **icon:** faster icon load time (VIV-1166) ([#1227](https://github.com/Vonage/vivid-3/issues/1227)) ([446bdb3](https://github.com/Vonage/vivid-3/commit/446bdb30cf03f89e4177e35bf17258fcaf599f46))
+* **icon:** update icons set to 4.2.1 (VIV-1158) ([#1228](https://github.com/Vonage/vivid-3/issues/1228)) ([5e6ed8d](https://github.com/Vonage/vivid-3/commit/5e6ed8d0b8d92e29e7efa9c8d132bb23b5fe3e68))
+* **nav-item:** add meta slot (VIV-1097) ([#1173](https://github.com/Vonage/vivid-3/issues/1173)) ([3ebc8a5](https://github.com/Vonage/vivid-3/commit/3ebc8a5798b3420d8b4d689dbf9e9e01fb6c913b))
+* **tab:** rounded shape (VIV-1129) ([#1229](https://github.com/Vonage/vivid-3/issues/1229)) ([cb37450](https://github.com/Vonage/vivid-3/commit/cb37450aa4b0eec778af8f4450fe094e81b8bdcd))
+
+
+### Bug Fixes
+
+* **combobox:** add properties documentation (VIV-1142) ([#1219](https://github.com/Vonage/vivid-3/issues/1219)) ([481be3f](https://github.com/Vonage/vivid-3/commit/481be3f0d18747b31848bd77458b7eb2b11143e9))
+* **menu:** block-size (VIV-1165) ([#1225](https://github.com/Vonage/vivid-3/issues/1225)) ([d7ac062](https://github.com/Vonage/vivid-3/commit/d7ac06255737fc5304f8be8c0ffa493ada3d6e13))
+
+## [3.20.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.19.0...vivid-v3.20.0) (2023-06-23)
+
+
+### Features
+
+* **option:** add icon slot to option (VIV-1055) ([#1224](https://github.com/Vonage/vivid-3/issues/1224)) ([99d29b2](https://github.com/Vonage/vivid-3/commit/99d29b252907b2cc0092b3998538bafb6aff4f48))
+* **tabs:** cta connotation (VIV-1127) ([#1205](https://github.com/Vonage/vivid-3/issues/1205)) ([3fb238c](https://github.com/Vonage/vivid-3/commit/3fb238c54cf3dafbc3fee539c06c6bd6fb230541))
+
+
+### Bug Fixes
+
+* **popup:** arrow position issue (VIV-1052) ([#1197](https://github.com/Vonage/vivid-3/issues/1197)) ([276ea63](https://github.com/Vonage/vivid-3/commit/276ea63f936905e831afae8d49a64de584c1064c))
+
+## [3.19.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.18.1...vivid-v3.19.0) (2023-06-21)
+
+
+### Features
+
+* **select:** add icon slot to select (VIV-1054) ([#1166](https://github.com/Vonage/vivid-3/issues/1166)) ([0b8a23c](https://github.com/Vonage/vivid-3/commit/0b8a23ce366fbbdca99dcd63e1684265b4c9d884))
+
+
+### Bug Fixes
+
+* **header:** enable setting bg-color (VIV-1156) ([#1217](https://github.com/Vonage/vivid-3/issues/1217)) ([51b6c4f](https://github.com/Vonage/vivid-3/commit/51b6c4fa4932dfbf284696499549fd4ac2e12e83))
+
+## [3.18.1](https://github.com/Vonage/vivid-3/compare/vivid-v3.18.0...vivid-v3.18.1) (2023-06-20)
+
+
+### Bug Fixes
+
+* **card:** inner wrapper height inherit(VIV-1151) ([#1213](https://github.com/Vonage/vivid-3/issues/1213)) ([c7081ee](https://github.com/Vonage/vivid-3/commit/c7081eed7acb90f2a8aab9bdb952b9f14b064cb2))
+* **components:** align icon vertically (VIV-1146) ([#1211](https://github.com/Vonage/vivid-3/issues/1211)) ([9267cb9](https://github.com/Vonage/vivid-3/commit/9267cb94fd13398bb11aed8852061e38086ddd57))
+
+## [3.18.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.17.0...vivid-v3.18.0) (2023-06-19)
+
+
+### Features
+
+* **menu:** add `auto-dismiss` attribute (VIV-1144) ([#1207](https://github.com/Vonage/vivid-3/issues/1207)) ([ef95a11](https://github.com/Vonage/vivid-3/commit/ef95a11e127e502a1a728a0f69add303fd105858))
+
+
+### Bug Fixes
+
+* **button:** update pending state (VIV-1113) ([#1190](https://github.com/Vonage/vivid-3/issues/1190)) ([cd34e91](https://github.com/Vonage/vivid-3/commit/cd34e913d5eeeec77a41d752d94db535387cdc1a))
+
 ## [3.17.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.16.1...vivid-v3.17.0) (2023-06-12)
 
 

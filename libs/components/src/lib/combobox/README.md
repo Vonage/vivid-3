@@ -135,6 +135,29 @@ Add the `disabled` attribute to disable the combobox.
 </vwc-combobox>
 ```
 
+## Properties
+
+### options
+
+A read-only list of options.
+
+- Type: `Option[]`
+- Default: `[]`
+
+### selectedOptions
+
+A read-only collection of the selected options.
+
+- Type: `Option[]`
+- Default: `[]`
+
+### selectedIndex
+
+The index of the selected option or -1 if no option is selected.
+
+- Type: `number`
+- Default: `undefined`
+
 ## Caveat
 
 Document elements display precedence is formed by the imaginary z-axis [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context), commonly by order of which elements are rendered and special properties (e.g. _z-index_).

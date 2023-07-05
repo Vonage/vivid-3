@@ -72,6 +72,8 @@
 
 /* Icon */
 .icon {
+	display: flex;
+	flex-shrink: 0;
 	font-size: calc(var(#{variables.$badge-block-size}) / 1.6667);
 	line-height: 1;
 

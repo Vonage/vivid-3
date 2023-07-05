@@ -20,6 +20,7 @@ export type SelectShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  *
  * @public
  * @slot - Default slot.
+ * @slot icon - Slot to add an icon to the select control.
  * @slot meta - Slot to add meta content to the select control.
  */
 @errorText

@@ -39,9 +39,14 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
 - Green - Success
 - Yellow - Warning
 
-```html preview
 <style>
- dl,
+ dl{
+  border: 1px solid var(--vvd-color-neutral-100);
+  border-radius: 6px;
+  width: max-content;
+  margin: 0;
+ }
+
  dd {
   margin: 0;
  }
@@ -70,6 +75,7 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
   border-radius: 50%;
   content: '';
   transform: translateY(calc(0px - var(--box-size)));
+  border: 1px solid var(--vvd-color-neutral-100);
  }
 </style>
 
@@ -237,7 +243,6 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
  </vwc-layout>
 
 </dl>
-```
 
 #### Usage
 
@@ -248,6 +253,29 @@ vwc-side-drawer::part(base) {
   background-color: var(--vvd-color-neutral-100);
 }
 ```
+
+### Alternate
+A single component can be set with alternate colors.  
+
+#### Class
+Add the class `vvd-theme-alternate` to the component.
+```html preview
+<style>
+.wrapper {
+background-color: var(--vvd-color-neutral-950);
+    width: 200px;
+    height: 60px;
+    display: grid;
+    place-content: center;
+}
+</style>
+<div class='wrapper'>
+<vwc-button label='filled' appearance='filled' class='vvd-theme-alternate'></vwc-button>
+</div>
+```
+
+#### Part
+If the component has part, add `part='vvd-theme-alternate'`
 
 ### Gradients
 

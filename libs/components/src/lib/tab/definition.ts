@@ -7,6 +7,7 @@ import styles from './tab.scss';
 import { Tab } from './tab';
 import { TabTemplate as template } from './tab.template';
 
+export type { TabConnotation, TabShape } from './tab';
 
 /**
  * The tab element.

@@ -8,6 +8,7 @@ import { AffixIcon } from '../../shared/patterns/affix';
  *
  * @public
  * @slot - Default slot.
+ * @slot meta - A slot to add additional content to the nav disclosure.
  */
 export class NavDisclosure extends FoundationElement {
 	details!: HTMLDetailsElement;

@@ -49,16 +49,56 @@ Within a set of pagination links, set a nav item `aria-current` value to *page* 
 
 ```html preview
 <vwc-nav>
-  <vwc-nav-item href="#" text="Account" onclick="onClick(event)"></vwc-nav-item>
-  <vwc-nav-item href="#" text="Shop" onclick="onClick(event)" aria-current="page"></vwc-nav-item>
-  <vwc-nav-item href="#" text="My Cart" onclick="onClick(event)"></vwc-nav-item>
+  <vwc-nav-item href="#" text="Account" onclick="onClick(this)"></vwc-nav-item>
+  <vwc-nav-item href="#" text="Shop" onclick="onClick(this)" aria-current="page"></vwc-nav-item>
+  <vwc-nav-item href="#" text="My Cart" onclick="onClick(this)"></vwc-nav-item>
 </vwc-nav>
 
 <script>
-  function onClick(event) {
+  function onClick(el) {
     currentNavItem = document.querySelector('vwc-nav-item[aria-current="page"]');
     currentNavItem?.removeAttribute('aria-current');
-    event.currentTarget.setAttribute('aria-current', 'page');
+    el.setAttribute('aria-current', 'page');
+  }
+</script>
+```
+
+## Slots
+
+### Meta
+
+Use the `meta` slot to add additional content to the nav item.
+
+```html preview
+<vwc-nav>
+	<vwc-nav-item href="#" text="Account">
+		<vwc-badge slot="meta" text="beta" connotation="success" appearance="subtle" shape="pill"></vwc-badge>
+	</vwc-nav-item>
+</vwc-nav>
+```
+
+## Use cases
+
+### Navigation Menu
+```html preview
+<vwc-nav>
+  <vwc-nav-item href="#" icon="profile" text="Account" onclick="onClick(this)" aria-current="page" ></vwc-nav-item>
+  <vwc-nav-item href="#" icon="inbox-line" text="Inbox" onclick="onClick(this)">
+		<vwc-badge slot="meta" text="21" connotation="alert" appearance="subtle" shape="pill"></vwc-badge>
+	</vwc-nav-item>
+  <vwc-nav-item href="#" icon="ai" text="AI Studio" onclick="onClick(this)">
+		<vwc-badge slot="meta" text="new" connotation="success" appearance="subtle" shape="pill"></vwc-badge>
+	</vwc-nav-item>
+	<vwc-nav-item href="#" icon="books-line" text="Documentation" onclick="onClick(this)">
+		<vwc-icon slot="meta" name="open-solid"></vwc-icon>
+	</vwc-nav-item>
+</vwc-nav>
+
+<script>
+  function onClick(el) {
+    currentNavItem = document.querySelector('vwc-nav-item[aria-current="page"]');
+    currentNavItem?.removeAttribute('aria-current');
+    el.setAttribute('aria-current', 'page');
   }
 </script>
 ```

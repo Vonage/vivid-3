@@ -9,7 +9,7 @@ import { focusTemplateFactory } from './../../shared/patterns/focus';
 const getCheckIcon = (affixIconTemplate: any, x: MenuItem, iconType: string) => {
 	const iconStatus = x.checked ? 'checked' : 'unchecked';
 	const icon = `${iconType}-${iconStatus}-line`;
-	return affixIconTemplate(icon, x.icon ? 'trailing' : '');
+	return affixIconTemplate(icon);
 };
 
 const getClasses = ({

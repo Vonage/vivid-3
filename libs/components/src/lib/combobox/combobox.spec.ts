@@ -29,6 +29,7 @@ describe('vwc-combobox', () => {
 			expect(element.value).toEqual('');
 			expect(element.placeholder).toBeUndefined();
 			expect(element.autocomplete).toBeUndefined();
+			expect(element.selectedIndex).toEqual(-1);
 		});
 	});
 
@@ -92,6 +93,60 @@ describe('vwc-combobox', () => {
 				.classList
 				.contains('placeholder'))
 				.toEqual(true);
+		});
+	});
+
+	describe('selectedIndex', () => {
+		beforeEach(async () => {
+			element.innerHTML = `
+				<option value="1">1</option>
+				<option value="2" selected>2</option>
+				<option value="3">3</option>
+				`;
+			await elementUpdated(element);
+		});
+
+		it('should set selectedIndex to 1 when first option is selected', async () => {
+			await elementUpdated(element);
+			expect(element.selectedIndex).toEqual(1);
+		});
+
+		it('should change selection when changed', async () => {
+			element.selectedIndex = 2;
+			await elementUpdated(element);
+			expect(element.selectedOptions).toEqual([element.querySelector('option:nth-child(3)')]);
+		});
+	});
+
+	describe('options', () => {
+		beforeEach(async () => {
+			element.innerHTML = `
+			<option value="1">1</option>
+			<option value="2" selected>2</option>
+			<option value="3">3</option>
+			`;
+			await elementUpdated(element);
+		});
+
+		it('should recieve array of options', async () => {
+			await elementUpdated(element);
+			expect(element.options[1]).toEqual(element.querySelector('option:nth-child(2)'));
+		});
+	});
+
+	describe('selectedOptions', () => {
+		beforeEach(async () => {
+			element.innerHTML = `
+			<option value="1">1</option>
+			<option value="2" selected>2</option>
+			<option value="3">3</option>
+			`;
+			await elementUpdated(element);
+		});
+
+		it('should recieve array of selectedOptions', async () => {
+			await elementUpdated(element);
+			expect(element.selectedOptions[0]).toEqual(element.querySelector('option:nth-child(2)'));
 		});
 	});
 });

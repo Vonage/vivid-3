@@ -181,6 +181,11 @@
 	}
 }
 
-.pending {
-	order: 2;
-}
+:host(:not([icon])) .pending {
+	position: absolute;
+
+	& + .text {
+		visibility: hidden;
+	}
+}	
+

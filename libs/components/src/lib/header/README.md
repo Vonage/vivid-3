@@ -111,6 +111,21 @@ The size of the header block is set definitively. A header's block size value is
 </vwc-header>
 ```
 
+
+###  Header background-color
+Use `--header-bg-color` to set a custom background color for the header
+
+```html preview full
+<style>
+  vwc-header {--header-bg-color: var(--vvd-color-neutral-200)}
+</style>
+
+<vwc-header>
+  Header content
+</vwc-header>
+```
+
+
 ## CSS Parts
 
 ### Base
@@ -119,13 +134,36 @@ The component's internal *header* element.
 
 ```html preview full
 <style>
+  html { /* for demo purposes */
+    block-size: 350px;
+  }
+  
   vwc-header::part(base) {
-    background-color: var(--vvd-color-neutral-100);
+    position: fixed;
+    top: 0;
+    z-index: 2;
+  }
+  main {
+    padding-block-start: var(--vvd-header-block-size);
   }
 </style>
-
-<vwc-header>
+<vwc-header alternate>
   Header content
+  <main slot="app-content">
+      <vwc-layout gutters="small" column-basis="block">
+        <h2>
+          Scroll this window
+        </h2>
+
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+        </p>
+
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
+        </p>
+      </vwc-layout>
+    </main>
 </vwc-header>
 ```
 

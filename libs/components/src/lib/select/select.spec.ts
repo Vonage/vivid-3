@@ -1,5 +1,4 @@
 import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
-import { Icon } from '../icon/icon';
 import { Select } from './select';
 import '.';
 
@@ -128,16 +127,16 @@ describe('vwc-select', () => {
 		});
 	});
 
-	describe('select icon', () => {
-		it('should add an icon to the select', async () => {
-			element.icon = 'search-solid';
-			await elementUpdated(element);
+	describe('icon', () => {
+		it('should have a icon slot', async () => {
+			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
+		});
 
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-			expect(icon)
-				.toBeInstanceOf(Icon);
-			expect(icon?.name)
-				.toEqual('search-solid');
+		it('should have an icon when icon is set without slotted icon', async function () {
+			const icon = 'info';
+			element.icon = icon;
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector(ICON_SELECTOR)?.getAttribute('name')).toEqual(icon);
 		});
 	});
 
@@ -504,6 +503,38 @@ describe('vwc-select', () => {
 			const popup = element.shadowRoot?.querySelector('.popup') as HTMLElement;
 			const variableValue = window.getComputedStyle(popup).getPropertyValue('--_select-fixed-width');
 			expect(variableValue).toEqual(`${width}px`);
+		});
+	});
+
+	describe('options', () => {
+		beforeEach(async () => {
+			element.innerHTML = `
+			<option value="1">1</option>
+			<option value="2" selected>2</option>
+			<option value="3">3</option>
+			`;
+			await elementUpdated(element);
+		});
+
+		it('should recieve array of options', async () => {
+			await elementUpdated(element);
+			expect(element.options[1]).toEqual(element.querySelector('option:nth-child(2)'));
+		});
+	});
+
+	describe('selectedOptions', () => {
+		beforeEach(async () => {
+			element.innerHTML = `
+			<option value="1">1</option>
+			<option value="2" selected>2</option>
+			<option value="3">3</option>
+			`;
+			await elementUpdated(element);
+		});
+
+		it('should recieve array of selectedOptions', async () => {
+			await elementUpdated(element);
+			expect(element.selectedOptions[0]).toEqual(element.querySelector('option:nth-child(2)'));
 		});
 	});
 });

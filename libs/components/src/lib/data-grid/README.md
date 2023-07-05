@@ -361,7 +361,7 @@ The grid also adds the `aria-selected` attribute to the cell when it is selected
 	<vwc-data-grid-row>
 		<vwc-data-grid-cell aria-selected="true">Cell 1</vwc-data-grid-cell>
 		<vwc-data-grid-cell aria-selected="false">Cell 2</vwc-data-grid-cell>
-		<vwc-data-grid-cell>Cell 3</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Cell 3 with long text, all cells has ellipsis</vwc-data-grid-cell>
 	</vwc-data-grid-row>
 </vwc-data-grid>
 ```
@@ -381,6 +381,34 @@ Fires when a row is focused.
 ### cell-focused
 
 Fires when a cell is focused.
+
+## CSS Variable
+When Row is set to sticky there's a default canvas background-color.  
+Use `--data-grid-row-background` to change the sticky row background-color.
+
+```html preview
+<style>
+vwc-data-grid {--data-grid-row-background: var(--vvd-color-neutral-50);}
+</style>
+<vwc-data-grid></vwc-data-grid>
+<script>
+    grid = document.querySelector('vwc-data-grid');
+    
+    grid.generateHeader = 'sticky';
+    grid.rowsData = [
+
+        {data1: 'data111', data2: 'data12'},
+        {data1: 'data21', data2: 'data22'},
+        {data1: 'data31', data2: 'data32'},
+        {data1: 'data41', data2: 'data42'},
+        {data1: 'data51', data2: 'data52'},
+        {data1: 'data61', data2: 'data62'},
+    ];
+	
+</script>
+```
+
+
 
 ## Accessibility
 

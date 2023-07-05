@@ -3,34 +3,17 @@
     "title": "color-palette",
     "markdown": "./docs/design/color-palette.md",
     "modules": [
-      "/assets/modules/components/layout/index.js"
     ]
   },
   {
     "title": "design-tokens",
     "markdown": "./docs/design/design-tokens.md",
-    "modules": [
-      "/assets/modules/components/header/index.js",
-      "/assets/modules/components/button/index.js",
-      "/assets/modules/components/number-field/index.js",
-      "/assets/modules/components/layout/index.js",
-      "/assets/modules/components/text-field/index.js",
-      "/assets/modules/components/divider/index.js"
-    ]
+    "modules": []
   },
 	{
 		"title": "icons-gallery",
 		"markdown": "./docs/design/icons-gallery.md",
-		"modules": [
-			"/assets/modules/components/text-field/index.js",
-			"/assets/modules/components/layout/index.js",
-			"/assets/modules/components/icon/index.js",
-			"/assets/modules/components/card/index.js",
-      "/assets/modules/components/tag-group/index.js",
-			"/assets/modules/components/tag/index.js",
-      "/assets/modules/components/button/index.js",
-      "/assets/modules/components/alert/index.js"
-		]
+		"modules": []
 	},
   {
     "title": "foundations",
