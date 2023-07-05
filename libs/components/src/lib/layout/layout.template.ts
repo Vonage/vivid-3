@@ -16,9 +16,9 @@ const getClasses = ({
 );
 
 /**
- * The template for the {@link @vonage/vivid#Layout} component.
+ * The template for the Layout component.
  *
- * @returns {ViewTemplate<Layout>} A template capable of creating HTMLView instances or rendering directly to DOM.
+ * @returns ViewTemplate<Layout> A template capable of creating HTMLView instances or rendering directly to DOM.
  * @public
  */
 export const layoutTemplate: (

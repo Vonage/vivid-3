@@ -13,10 +13,9 @@ const getClasses = (_: BreadcrumbItem) =>
 	classNames('base');
 
 /**
- * The template for the {@link @microsoft/fast-foundation#BreadcrumbItem} component.
+ * The template for the BreadcrumbItem component.
  *
- * @param context
- * @param definition
+ * @param context - element definition context
  * @public
  */
 export const BreadcrumbItemTemplate: (

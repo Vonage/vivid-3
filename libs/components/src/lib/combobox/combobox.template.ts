@@ -29,7 +29,7 @@ const getStateClasses = ({
 );
 
 /**
- * @param context
+ * @param context - element definition context
  */
 function renderInput(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
@@ -65,9 +65,9 @@ function renderInput(context: ElementDefinitionContext) {
 
 
 /**
- * The template for the {@link @microsoft/fast-foundation#(Combobox:class)} component.
+ * The template for the (Combobox:class) component.
  *
- * @param context
+ * @param context - element definition context
  * @public
  */
 export const comboboxTemplate: (

@@ -73,7 +73,6 @@ export class CalendarEvent extends FoundationElement {
 	/**
 	 * time of day event starts
 	 *
-	 * @default 0
 	 * @public
 	 */
 	@attr({ converter: nullableNumberConverter  })
@@ -82,7 +81,6 @@ export class CalendarEvent extends FoundationElement {
 	/**
 	 * event's time duration in hours
 	 *
-	 * @default 1
 	 * @public
 	 */
 	@attr({ converter: nullableNumberConverter  })

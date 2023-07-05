@@ -11,7 +11,7 @@ const getClasses = (_: Tag) => classNames(
 
 /**
  *
- * @param context
+ * @param context - element definition context
  * @public
  */
 export const TagGroupTemplate: (context: ElementDefinitionContext) => ViewTemplate<TagGroup> = () => {

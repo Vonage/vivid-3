@@ -23,11 +23,10 @@ const getScrimClasses = ({
 );
 
 /**
- * The template for the {@link @vonage/vivid#side-drawer} component.
+ * The template for the side-drawer component.
  *
- * @param context
- * @param definition
- * @returns {ViewTemplate<side-drawer>} A template capable of creating HTMLView instances or rendering directly to DOM.
+ * @param context - element definition context
+ * @returns ViewTemplate<side-drawer> A template capable of creating HTMLView instances or rendering directly to DOM.
  * @public
  */
 export const sideDrawerTemplate: FoundationElementTemplate<ViewTemplate<SideDrawer>> = () => html`

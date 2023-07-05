@@ -42,26 +42,15 @@ const md = markdownIt({
 	}
 });
 
-/**
- * @param str
- * @param find
- * @param replace
- */
 export function replaceAll(str: string, find: string, replace: string) {
 	return str.replace(new RegExp(find, 'g'), replace);
 }
 
-/**
- * @param html
- */
 function getPreElements(html): NodeListOf<HTMLPreElement> {
 	const dom = new JSDOM(html);
 	return dom.window.document.querySelectorAll('pre.preview');
 }
 
-/**
- * @param pathToReadme
- */
 export function extractHTMLBlocksFromReadme(pathToReadme: string): string[] {
 	const readmeFileContents = fs.readFileSync(path.resolve(pathToReadme))
 		.toString();
@@ -78,12 +67,6 @@ const defaultStyles = [
 	'http://127.0.0.1:8080/dist/libs/components/styles/core/all.css'
 ];
 
-/**
- * @param root0
- * @param root0.page
- * @param root0.components
- * @param root0.styleUrls
- */
 export async function loadComponents({
 	page,
 	components,
@@ -108,11 +91,6 @@ export async function loadComponents({
 	await Promise.all(styleTags$);
 }
 
-/**
- * @param root0
- * @param root0.page
- * @param root0.template
- */
 export async function loadTemplate({
 	page,
 	template,
