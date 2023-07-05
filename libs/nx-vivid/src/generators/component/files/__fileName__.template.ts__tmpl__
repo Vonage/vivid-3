@@ -10,7 +10,7 @@ const getClasses = (_: <%= className %>) =>
 	);
 
 /**
- * The template for the {@link @microsoft/fast-foundation#<%= className %>} component.
+ * The template for the <%= className %> component.
  *
  * @param context - element definition context
  * @public

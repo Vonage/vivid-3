@@ -96,9 +96,6 @@ describe('vwc-popup', () => {
 			(floatingUI.computePosition as jest.MockedFunction<any>).mockRestore();
 		});
 
-		/**
-		 * @param hidden
-		 */
 		function resetPosition(hidden = true) {
 			computePositionResult.middlewareData.hide.referenceHidden = hidden;
 			(floatingUI.computePosition as jest.MockedFunction<any>).mockReturnValue(Promise.resolve(computePositionResult));

@@ -15,35 +15,23 @@ const getClasses = (_: Card) => classNames(
 	['hide-header', shouldHideHeader(_)]
 );
 
-/**
-header icon
- */
 function renderHeaderIcon(iconTag: string) {
 	return html<Card>`
 	  <${iconTag} class="icon" inline name="${x => x.icon}"></${iconTag}>`;
 }
 
-/**
- *
- */
 function Headline() {
 	return html`
 		<div class="header-headline">${(x) => x.headline}</div>
 	`;
 }
 
-/**
- *
- */
 function Subtitle() {
 	return html`
 		<div class="header-subtitle">${(x) => x.subtitle}</div>
 	`;
 }
 
-/**
- *
- */
 function headerContent() {
 	return html`
 		<div class="header-content">
@@ -65,27 +53,17 @@ function renderHeader(iconTag: string) {
 		</header>`;
 }
 
-
-/**
- * @param card
- */
 function shouldHideHeader(card:Card) {
 	// eslint-disable-next-line max-len
 	return 	!card.headline  && !card.subtitle && !card.icon && (!card.graphicSlottedContent || !card.graphicSlottedContent.length);
 }
 
-/**
- *
- */
 function renderMetaSlot() {
 	return html`
 		<slot name="meta" ${slotted('metaSlottedContent')}></slot>
 	`;
 }
 
-/**
- *
- */
 function text() {
 	return html`
 		<div class="text">${(x) => x.text}</div>
@@ -93,7 +71,7 @@ function text() {
 }
 
 /**
- * The template for the {@link @microsoft/fast-foundation#Card} component.
+ * The template for the Card component.
  *
  * @param context - element definition context
  * @public

@@ -8,10 +8,9 @@ import { textAnchorTemplate } from '../text-anchor/text-anchor.template';
 import type { NavItem } from './nav-item';
 
 /**
- * The template for the {@link @microsoft/fast-foundation#NavItem} component.
+ * The template for the NavItem component.
  *
  * @param context - element definition context
- * @param definition
  * @public
  */
 export const NavItemTemplate: (

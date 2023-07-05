@@ -8,7 +8,7 @@ import type { Toggletip } from './toggletip';
 const getClasses = (_: Toggletip) => classNames('control');
 
 /**
- * The template for the {@link @microsoft/fast-foundation#Toggletip} component.
+ * The template for the Toggletip component.
  *
  * @param context - element definition context
  * @public

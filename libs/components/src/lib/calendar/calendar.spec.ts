@@ -323,18 +323,12 @@ describe('vwc-calendar', () => {
 	});
 });
 
-/**
- * @param element
- */
 function getFirstColumnDate(element: Calendar) {
 	const firstColumnTimeEl = element.shadowRoot?.querySelector('.column-headers > :first-child time') as HTMLTimeElement;
 	const firstDatetime = firstColumnTimeEl?.getAttribute('datetime') as string;
 	return new Date(firstDatetime);
 }
 
-/**
- * @param d
- */
 function getMondayOfWeek(d: Date | string) {
 	d = new Date(d);
 	const day = d.getDay(),
@@ -342,9 +336,6 @@ function getMondayOfWeek(d: Date | string) {
 	return new Date(d.setDate(diff));
 }
 
-/**
- * @param d
- */
 function getSundayOfWeek(d: Date | string) {
 	d = new Date(d);
 	const day = d.getDay(),

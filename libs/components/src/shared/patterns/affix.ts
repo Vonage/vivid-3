@@ -44,7 +44,6 @@ export class AffixIconWithTrailing extends AffixIcon {
  * For use with {@link AffixIcon}
  *
  * @param context - element definition context
- * @param icon
  * @param withWrapper - wraps the icon in a span with class "icon", defaults to true
  * @public
  */

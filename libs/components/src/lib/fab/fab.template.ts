@@ -18,10 +18,9 @@ const getClasses = ({
 );
 
 /**
- * The template for the {@link @microsoft/fast-foundation#(Button:class)} component.
+ * The template for the (Button:class) component.
  *
  * @param context - element definition context
- * @param definition
  * @public
  */
 export const FabTemplate: (

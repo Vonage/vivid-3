@@ -29,7 +29,7 @@ function renderDismissButton(buttonTag: string) {
 }
 
 /**
- * The template for the {@link @microsoft/fast-foundation#Banner} component.
+ * The template for the Banner component.
  *
  * @param context - element definition context
  * @public

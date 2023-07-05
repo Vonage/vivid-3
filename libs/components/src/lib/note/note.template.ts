@@ -22,7 +22,7 @@ function getHeaderTemplate() {
 }
 
 /**
- * The template for the {@link @microsoft/fast-foundation#Note} component.
+ * The template for the Note component.
  *
  * @param context - element definition context
  * @public

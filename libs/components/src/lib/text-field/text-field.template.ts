@@ -52,7 +52,7 @@ function renderCharCount() {
 }
 
 /**
- * The template for the {@link @microsoft/fast-foundation#TextField} component.
+ * The template for the TextField component.
  *
  * @param context - element definition context
  * @public

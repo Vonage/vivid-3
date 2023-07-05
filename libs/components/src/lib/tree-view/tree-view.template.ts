@@ -5,7 +5,7 @@ import type { TreeView } from './tree-view';
 const getClasses = (_: TreeView) => classNames('control');
 
 /**
- * The template for the {@link @microsoft/fast-foundation#TreeView} component.
+ * The template for the TreeView component.
  *
  * @param context - element definition context
  * @public

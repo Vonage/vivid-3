@@ -65,7 +65,7 @@ function renderInput(context: ElementDefinitionContext) {
 
 
 /**
- * The template for the {@link @microsoft/fast-foundation#(Combobox:class)} component.
+ * The template for the (Combobox:class) component.
  *
  * @param context - element definition context
  * @public

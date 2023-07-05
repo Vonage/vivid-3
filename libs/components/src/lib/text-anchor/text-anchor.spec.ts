@@ -43,18 +43,11 @@ describe( 'vwc-text-anchor', () => {
 
 
 	describe('bindings', () => {
-		/**
-		 * @param str
-		 */
 		function capitalizeFirstLetter(str: string) {
 			return str.charAt(0).toUpperCase() + str.slice(1);
 		}
 
 		it('should set aria labels', async function () {
-
-			/**
-			 *
-			 */
 			function setAriaLabelsOnElementObject() {
 				ARIA_PROPS.forEach(ariaProp => {
 					const ariaPropOnObject = `aria${capitalizeFirstLetter(ariaProp)}`;

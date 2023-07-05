@@ -65,7 +65,7 @@ const ColumnTemplate = html<string>`
             </div>
           `;
 /**
- * The template for the {@link @microsoft/fast-foundation#Calendar} component.
+ * The template for the Calendar component.
  *
  * @param context - element definition context
  * @public

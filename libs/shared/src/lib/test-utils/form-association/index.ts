@@ -16,16 +16,6 @@ export interface CreateFormHTMLConfig {
 	formWrapper?: HTMLElement
 }
 
-/**
- * @param root0
- * @param root0.fieldName
- * @param root0.fieldValue
- * @param root0.formId
- * @param root0.otherFormId
- * @param root0.checked
- * @param root0.componentTagName
- * @param root0.formWrapper
- */
 export function createFormHTML<T>({fieldName, fieldValue, formId, otherFormId, checked, componentTagName, formWrapper}: CreateFormHTMLConfig) {
 	formWrapper = formWrapper || document.createElement('div');
 	const otherForm = otherFormId

@@ -7,9 +7,6 @@ export interface CalendarEventContext {
 	hour?: number;
 }
 
-/**
- * @param el
- */
 function getDay(el: HTMLElement): number | void {
 	const cellOrHeader = el.closest('[role="gridcell"i], [role="columnheader"i]');
 	if (cellOrHeader) {
@@ -20,11 +17,6 @@ function getDay(el: HTMLElement): number | void {
 	}
 }
 
-/**
- * @param e
- * @param el
- * @param hours
- */
 function getHour(e: MouseEvent, el: HTMLElement, hours: number): number | void {
 	const rowHeaderOrCell = el.closest('[role="rowheader"], [role="gridcell"i]') as HTMLElement;
 

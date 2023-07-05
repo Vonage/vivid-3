@@ -15,7 +15,7 @@ const getClasses = ({
 );
 
 /**
-	* The template for the {@link @microsoft/fast-foundation#Tooltip} component.
+	* The template for the Tooltip component.
 	*
 	* @param context - element definition context
 	* @public

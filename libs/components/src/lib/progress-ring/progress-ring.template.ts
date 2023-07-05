@@ -16,11 +16,9 @@ const getClasses = ({connotation, size, paused}: ProgressRing) => classNames(
 const progressSegments: number = 44;
 
 /**
- * The template for the {@link @microsoft/fast-foundation#ProgressRing} component.
+ * The template for the ProgressRing component.
  *
  * @param context - element definition context
- * @param _
- * @param definition
  * @public
  */
 export const ProgressRingTemplate: (

@@ -17,7 +17,7 @@ const getClasses = ({
 );
 
 /**
- * The template for the {@link @microsoft/fast-foundation#Badge} component.
+ * The template for the Badge component.
  *
  * @param context - element definition context
  * @public

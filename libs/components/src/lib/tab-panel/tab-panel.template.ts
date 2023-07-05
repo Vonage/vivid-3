@@ -2,7 +2,7 @@ import { html } from '@microsoft/fast-element';
 import type { TabPanel } from './tab-panel.js';
 
 /**
- * The template for the {@link @vonage/vivid#TabPanel} component.
+ * The template for the {@link @vonage/vivid#TabPanel component.
  *
  * @public
  */

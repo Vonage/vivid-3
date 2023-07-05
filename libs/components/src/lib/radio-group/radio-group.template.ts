@@ -7,7 +7,7 @@ import { Radio } from '../radio/radio';
 import type { RadioGroup } from './radio-group';
 
 /**
- * The template for the {@link @microsoft/fast-foundation#RadioGroup} component.
+ * The template for the RadioGroup component.
  *
  * @param context - element definition context
  * @public

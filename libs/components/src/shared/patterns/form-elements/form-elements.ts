@@ -43,9 +43,7 @@ export class FormElementCharCount {
 		mode: 'boolean'
 	}) charCount = false;
 }
-/**
- * @param constructor
- */
+
 export function formElements<T extends { new (...args: any[]): Record<string, any> }>(constructor: T) {
 	class Decorated extends constructor {
 		@attr label?: string;
@@ -114,7 +112,6 @@ type MessageTypeMap = { [key in FeedbackType]: {
 };
 
 /**
- * @param messageType
  * @param context - element definition context
  */
 export function getFeedbackTemplate(messageType: FeedbackType, context: ElementDefinitionContext) {
@@ -151,20 +148,12 @@ export function getFeedbackTemplate(messageType: FeedbackType, context: ElementD
 			</div>`;
 }
 
-/**
- * @param root0
- * @param root0.className
- * @param root0.messageProperty
- */
 function feedbackMessage({messageProperty}: {messageProperty: MessagePropertyType }) {
 	return html<FormElement & FormElementHelperText & FormElementSuccessText>`
 	  <span class="message-text">${x => x[messageProperty]}</span>
 	`;
 }
 
-/**
- * @param constructor
- */
 export function errorText<T extends { new (...args: any[]): Record<string, any> }>(constructor: T) {
 	class Decorated extends constructor {
 		@attr({ attribute: 'error-text' }) errorText?: string;

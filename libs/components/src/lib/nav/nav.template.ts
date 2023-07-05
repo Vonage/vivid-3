@@ -7,10 +7,9 @@ import type {
 import type { Nav } from './nav';
 
 /**
- * The template for the {@link @microsoft/fast-foundation#Nav} component.
+ * The template for the Nav component.
  *
  * @param context - element definition context
- * @param definition
  * @public
  */
 export const NavTemplate: (

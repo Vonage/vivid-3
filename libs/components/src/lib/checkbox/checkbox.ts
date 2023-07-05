@@ -58,9 +58,6 @@ export class Checkbox extends FoundationCheckbox {
 
 	/**
 	 * !remove method as will be implemented by fast-foundation in version > 2.46.9
-	 *
-	 * @param e
-	 * @internal
 	 */
 	override clickHandler = (): void => {
 		if (!this.disabled && !this.readOnly) {

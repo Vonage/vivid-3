@@ -111,7 +111,7 @@ function renderControl(context: ElementDefinitionContext) {
 
 
 /**
- * The template for the {@link @microsoft/fast-foundation#Select} component.
+ * The template for the Select component.
  *
  * @param
  * @param context - element definition context

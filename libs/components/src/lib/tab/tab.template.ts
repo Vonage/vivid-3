@@ -17,9 +17,8 @@ const getClasses = ({
 );
 
 /**
- * The template for the {@link @vonage/vivid#(Tab:class)} component.
+ * The template for the {@link @vonage/vivid#(Tab:class) component.
  *
- * @param options
  * @param context - element definition context
  * @public
  */
