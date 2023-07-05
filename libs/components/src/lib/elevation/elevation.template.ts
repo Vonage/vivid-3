@@ -13,9 +13,9 @@ const getClasses = ({
 );
 
 /**
- * The template for the {@link @vonage/vivid#Elevation component.
+ * The template for the Elevation component.
  *
- * @returns {ViewTemplate<Elevation>} A template capable of creating HTMLView instances or rendering directly to DOM.
+ * @returns ViewTemplate<Elevation> A template capable of creating HTMLView instances or rendering directly to DOM.
  * @public
  */
 export const elevationTemplate: (
