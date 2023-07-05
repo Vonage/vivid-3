@@ -4,6 +4,19 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.22.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.21.2...vivid-v3.22.0) (2023-07-04)
+
+
+### Features
+
+* **radio:** add connotation (VIV-1123) ([#1235](https://github.com/Vonage/vivid-3/issues/1235)) ([e2b0a25](https://github.com/Vonage/vivid-3/commit/e2b0a25b0487f99f0d1eabd2d3d72050e2f5c439))
+* **tabs:** scroll to active tab (VIV-1172) ([#1238](https://github.com/Vonage/vivid-3/issues/1238)) ([284a55d](https://github.com/Vonage/vivid-3/commit/284a55da878a49861f1829aa096da4046c8282fc))
+
+
+### Bug Fixes
+
+* **tabs:** prevent tab-panel blowout (VIV-1240) ([#1240](https://github.com/Vonage/vivid-3/issues/1240)) ([df1aa84](https://github.com/Vonage/vivid-3/commit/df1aa84a89cbbff7bfb9ebc3152a7c57807ff1b4))
+
 ## [3.21.2](https://github.com/Vonage/vivid-3/compare/vivid-v3.21.1...vivid-v3.21.2) (2023-06-29)
 
 
