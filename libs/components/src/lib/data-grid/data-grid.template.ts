@@ -41,7 +41,9 @@ export const DataGridTemplate = (context: ElementDefinitionContext) => {
 		filter: elements('[role=row]'),
 	})}
         >
+					<div class="base">
             <slot></slot>
+					</div>
         </template>
     `;
 };
