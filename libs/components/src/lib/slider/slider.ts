@@ -19,7 +19,7 @@ export class Slider extends FastSlider {
 	}) markers = false;
 
 	/**
-	 * /!\ TO BE REMOVED WHEN UPGRADING TO FAST-FOUNDATION 3
+	 * TO BE REMOVED WHEN UPGRADING TO FAST-FOUNDATION 3
 	 * 
 	 * @internal
 	 */

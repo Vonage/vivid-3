@@ -20,6 +20,7 @@ const handleKeyDown = (value: string | number, {event, parent}: {event: Keyboard
 		handleSelection(value, {parent});
 	}
 	if (event.key === 'Tab') {
+		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 		event.target!.dispatchEvent(
 			new CustomEvent('tabpressed', {detail: {value, shiftKey: event.shiftKey}, bubbles: true, composed: true}));
 	}

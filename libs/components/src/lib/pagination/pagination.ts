@@ -64,13 +64,17 @@ export class Pagination extends FoundationElement {
 		this.selectedIndex = 0;
 		this.addEventListener('tabpressed', (e: Event) => {
 			const {value: currentLabel, shiftKey} = (e as CustomEvent).detail;
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 			const index = this.paginationButtons!.findIndex(button => Number(button.label) === currentLabel) as number;
 			const focusDirection = shiftKey ? -1 : 1;
 			const newIndex = index + focusDirection;
 			if (newIndex < 0) {
+				// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 				return this.prevButton!.focus();
 			}
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 			if (newIndex > this.paginationButtons!.length - 1) {
+				// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 				return this.nextButton!.focus();
 			}
 			this.paginationButtons && this.paginationButtons[index + focusDirection].focus();
@@ -92,6 +96,7 @@ export class Pagination extends FoundationElement {
 
 	paginationButtonsChanged(_: Button[] | undefined, newValue: Button[]) {
 		newValue.forEach(button => {
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 			button.shadowRoot!.querySelector('button')!.classList.add('icon-only');
 		});
 	}
