@@ -90,7 +90,7 @@ export class Dialog extends FoundationElement {
 	}
 
 	#handleScrimClick = (event: MouseEvent) => {
-		if (event.target !== this.#dialog) {
+		if (event.target !== this.#dialog || this.#modal) {
 			return;
 		}
 		const rect = this.#dialog.getBoundingClientRect();

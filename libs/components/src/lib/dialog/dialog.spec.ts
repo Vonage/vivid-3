@@ -136,6 +136,17 @@ describe('vwc-dialog', () => {
 			await showModalDialog();
 			expect(getBaseElement(element).classList.contains('modal')).toEqual(true);
 		});
+
+		it('should remain open when clicking on scrim', async function () {
+			await showModalDialog();
+			const event = new MouseEvent('click', {
+				'bubbles': true,
+				'composed': true,
+			});
+			getBaseElement(element).dispatchEvent(event);
+			await elementUpdated(element);
+			expect(element.open).toEqual(true);
+		});
 	});
 
 	describe('scrimClick', function () {
@@ -159,7 +170,7 @@ describe('vwc-dialog', () => {
 			jest.spyOn(dialogElement, 'getBoundingClientRect').mockImplementation(() => dialogClientRect);
 		});
 
-		it('should close the dialog when scrim is clicked', async function () {
+		it('should leave open when scrim is clicked in a modal', async function () {
 			const event = new MouseEvent('click', {
 				'bubbles': true,
 				'cancelable': true,
@@ -169,7 +180,7 @@ describe('vwc-dialog', () => {
 			});
 			dialogElement?.dispatchEvent(event);
 			await elementUpdated(element);
-			expect(element.open).toEqual(false);
+			expect(element.open).toEqual(true);
 		});
 
 		it('should leave dialog open when anything but the scrim is clicked', async function () {
