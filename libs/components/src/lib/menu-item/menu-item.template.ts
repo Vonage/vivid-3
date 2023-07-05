@@ -1,6 +1,6 @@
 import { html, slotted, ViewTemplate, when } from '@microsoft/fast-element';
-import { ElementDefinitionContext, MenuItemRole } from '@microsoft/fast-foundation';
-import type { MenuItemOptions } from '@microsoft/fast-foundation';
+import { MenuItemRole } from '@microsoft/fast-foundation';
+import type { ElementDefinitionContext, MenuItemOptions } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { MenuItem } from './menu-item';

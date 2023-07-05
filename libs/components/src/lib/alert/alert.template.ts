@@ -2,8 +2,8 @@ import { html, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import {
 	Button,
-	ElementDefinitionContext,
-	FoundationElementDefinition,
+	type ElementDefinitionContext,
+	type FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';

@@ -4,8 +4,9 @@
     "outDir": "../../dist/out-tsc",
     "types": ["jest", "node"],
     "allowJs": true,
-		"noEmit": false
-  },
+		"noEmit": false,
+		"verbatimModuleSyntax": false
+	},
   "exclude": [
     "**/*.config.spec.ts",
   ],
