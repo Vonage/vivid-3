@@ -8,9 +8,15 @@
 			"tagName": "@slot",
 			"syntaxKind": "block",
 			"allowMultiple": true
+		},
+		{
+			"tagName": "@event",
+			"syntaxKind": "block",
+			"allowMultiple": true
 		}
 	],
 	"supportForTags": {
-		"@slot": true
+		"@slot": true,
+		"@event": true
 	}
 }
