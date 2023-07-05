@@ -21,7 +21,6 @@ export class Toggletip extends FoundationElement {
 			if (anchor) {
 				this.#anchorEl = anchor;
 				this.#setupAnchor(this.#anchorEl);
-				// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 				this.#observer!.disconnect();
 				this.#observer = undefined;
 			}

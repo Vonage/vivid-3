@@ -65,7 +65,6 @@ export class Dialog extends FoundationElement {
 
 	get #dialog() {
 		if (!this.#dialogElement) {
-			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 			this.#dialogElement = this.shadowRoot!.querySelector('dialog') as HTMLDialogElement;
 			if (this.#dialogElement) {
 				this.#dialogElement.open = this.open;

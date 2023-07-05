@@ -47,7 +47,6 @@ export class Tooltip extends FoundationElement {
 			if (anchor) {
 				this.#anchorEl = anchor;
 				this.#anchorUpdated();
-				// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 				this.#observer!.disconnect();
 				this.#observer = undefined;
 			}

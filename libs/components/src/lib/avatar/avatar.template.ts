@@ -32,7 +32,6 @@ function renderIcon(iconTag: string) {
  avatar initials
  */
 function renderInitials() {
-	/* eslint-disable @typescript-eslint/no-non-null-assertion */
 	return html<Avatar>`
 		<span class="initials">${ ({ initials }) => initials!.substring(0, 2) }</span>
 	`;
