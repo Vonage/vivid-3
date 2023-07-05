@@ -193,3 +193,16 @@ Menu component is a low level element, unaware of its document context, but is, 
 A common practice used in apps / frameworks to promote a Menu component to top other elements z-axis, is to utilise a service that dynamically appends a Menu component to the end of the body element, when called for.
 
 This helps ensure elements don't render over top a Menu undesirebly.
+
+## Use Cases
+
+### Menu with navigation items
+
+When creating a menu with navigation items, it is recommended to use the `nav-item` component and add `role="menuitem"` to it.
+
+```html preview
+<vwc-menu open>
+	<vwc-menu-item text="Menu item 1"></vwc-menu-item>
+	<vwc-nav-item role="menuitem" href="#" text="Menu item 2"></vwc-nav-item>
+</vwc-menu>
+```

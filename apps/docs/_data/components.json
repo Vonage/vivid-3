@@ -253,6 +253,7 @@
 		"modules": [
 			"/assets/modules/components/menu/index.js",
 			"/assets/modules/components/menu-item/index.js",
+			"/assets/modules/components/nav-item/index.js",
 			"/assets/modules/components/button/index.js"
 		]
 	},
