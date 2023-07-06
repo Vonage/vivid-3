@@ -81,6 +81,34 @@ export class Tabs extends FoundationTabs {
 		}
 	}
 
+	get #tabListWrapper() {
+		return this.shadowRoot?.querySelector('.tablist-wrapper') as HTMLElement;
+	}
+
+	#scrollToIndex(index: number) {
+		if (!this.#tabListWrapper) return;
+		const tab = this.tabs[index];
+		if (!tab) return;
+		let left = 0;
+		let top = 0;
+		if (this.orientation === TabsOrientation.vertical) {
+			if (index === this.tabs.length - 1) {
+				top = this.#tabListWrapper.scrollHeight;
+			}
+			if (index > 0 && index < this.tabs.length - 1) {
+				top = tab.offsetTop - this.#tabListWrapper.offsetHeight / 2 + (tab.offsetHeight / 2);
+			}
+		} else {
+			if (index === this.tabs.length - 1) {
+				left = this.#tabListWrapper.scrollWidth;
+			}
+			if (index > 0 && index < this.tabs.length - 1) {
+				left = tab.offsetLeft - this.#tabListWrapper.offsetWidth / 2 + (tab.offsetWidth / 2);
+			}
+		}
+
+		this.#tabListWrapper?.scrollTo({top, left, behavior: 'smooth'});
+	}
 	// adapted FAST fix https://github.com/microsoft/fast/pull/6606
 	#patchActiveID() {
 		if (!this.activetab) return;
@@ -89,17 +117,6 @@ export class Tabs extends FoundationTabs {
 		this.activeid = this['tabIds'][idx];
 		this.#updateTabsConnotation();
 
-		const tablistWrapper = this.shadowRoot?.querySelector('.tablist-wrapper') as HTMLElement
-		if (!tablistWrapper) return;
-		let left = 0;
-		if (idx === this.tabs.length - 1) {
-			left = tablistWrapper?.scrollWidth;
-		}
-		if (idx > 0 && idx < this.tabs.length - 1) {
-			left = this.activetab.offsetLeft - tablistWrapper.offsetWidth / 2 + (this.activetab.offsetWidth / 2);
-		}
-
-		tablistWrapper?.scrollTo({top: 0, left, behavior: 'smooth'});
-
+		this.#scrollToIndex(idx);
 	}
 }

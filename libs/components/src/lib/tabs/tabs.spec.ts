@@ -98,11 +98,15 @@ describe('vwc-tabs', () => {
 		describe('scrollToIndex', function () {
 			let scrollToSpy: jest.SpyInstance<void, [x: number, y: number]>;
 			const scrollWidth = 1320;
+			const scrollHeight = 660;
 			beforeEach(function () {
 				const tablistWrapper = element.shadowRoot?.querySelector('.tablist-wrapper') as HTMLElement;
 				jest
 					.spyOn(tablistWrapper, 'scrollWidth', 'get')
 					.mockImplementation(() => scrollWidth);
+				jest
+					.spyOn(tablistWrapper, 'scrollHeight', 'get')
+					.mockImplementation(() => scrollHeight);
 				scrollToSpy = jest.spyOn(tablistWrapper, 'scrollTo');
 			});
 
@@ -112,10 +116,24 @@ describe('vwc-tabs', () => {
 				expect(scrollToSpy).toHaveBeenCalledWith({top: 0, left: 0, behavior: 'smooth'});
 			});
 
+			it('should scrollTo height 0 if index is 0 and orientation vertical', async function () {
+				element.orientation = 'vertical';
+				element.activeid = element.tabs[0].id;
+				await elementUpdated(element);
+				expect(scrollToSpy).toHaveBeenCalledWith({top: 0, left: 0, behavior: 'smooth'});
+			});
+
 			it('should scroll to tablist wrapper width when index is last', async function () {
 				element.activeid = element.tabs[2].id;
 				await elementUpdated(element);
 				expect(scrollToSpy).toHaveBeenCalledWith({top: 0, left: scrollWidth, behavior: 'smooth'});
+			});
+
+			it('should scroll to tablist wrapper height when index is last and orientation vertical', async function () {
+				element.orientation = 'vertical';
+				element.activeid = element.tabs[2].id;
+				await elementUpdated(element);
+				expect(scrollToSpy).toHaveBeenCalledWith({top: scrollHeight, left: 0, behavior: 'smooth'});
 			});
 
 			it('should scroll to sum of tabs plus half active tab when index is between 0 and last', async function () {
@@ -148,7 +166,35 @@ describe('vwc-tabs', () => {
 					.toHaveBeenCalledWith({top: 0, left: offsetLeft - scrollWidth / 2 + offsetWidth / 2, behavior: 'smooth'});
 			});
 
+			it('should scroll to sum of tabs plus half active tab when index is between 0 and last', async function () {
+				const offsetTop = 100;
+				const offsetHeight = 200;
+				const scrollHeight = 1000;
+				function setTabListWrapper(scrollHeight: number) {
+					const tablistWrapper = element.shadowRoot?.querySelector('.tablist-wrapper') as HTMLElement;
+					jest
+						.spyOn(tablistWrapper, 'offsetHeight', 'get')
+						.mockImplementation(() => scrollHeight);
+				}
+				function setMidTab(offsetLeft: number, offsetWidth: number) {
+					const midTab = element.querySelectorAll('vwc-tab')[1] as Tab;
+					jest
+						.spyOn(midTab, 'offsetTop', 'get')
+						.mockImplementation(() => offsetLeft);
+					jest
+						.spyOn(midTab, 'offsetHeight', 'get')
+						.mockImplementation(() => offsetWidth);
+					return midTab;
+				}
 
+				setTabListWrapper(scrollHeight);
+				const midTab = setMidTab(offsetTop, offsetHeight);
+				element.orientation = 'vertical';
+				element.activeid = midTab.id;
+				await elementUpdated(element);
+				expect(scrollToSpy)
+					.toHaveBeenCalledWith({top: offsetTop - scrollHeight / 2 + offsetHeight / 2, left: 0, behavior: 'smooth'});
+			});
 		});
 	});
 
