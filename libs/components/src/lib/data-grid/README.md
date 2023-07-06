@@ -30,8 +30,8 @@ vwc-data-grid {max-block-size: 300px;}
 </style>
 <vwc-select onchange="changeHeader()">
 	<vwc-option value="none" text="none"></vwc-option>
-	<vwc-option value="default" text="Default"></vwc-option>
-	<vwc-option value="sticky" text="Sticky"></vwc-option>
+	<vwc-option value="default" text="default"></vwc-option>
+	<vwc-option value="sticky" text="sticky"></vwc-option>
 </vwc-select>
 
 <vwc-data-grid></vwc-data-grid>
