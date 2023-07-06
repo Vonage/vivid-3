@@ -35,9 +35,9 @@ function renderCharCount() {
 }
 
 /**
- * The template for the {@link @microsoft/fast-foundation#TextArea} component.
+ * The template for the TextArea component.
  *
- * @param context
+ * @param context - element definition context
  * @public
  */
 export const TextAreaTemplate: (

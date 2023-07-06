@@ -13,9 +13,9 @@ import type { Menu } from './menu';
 
 
 /**
- * The template for the {@link @microsoft/fast-foundation#Menu} component.
+ * The template for the Menu component.
  *
- * @param context
+ * @param context - element definition context
  * @public
  */
 export const MenuTemplate: (

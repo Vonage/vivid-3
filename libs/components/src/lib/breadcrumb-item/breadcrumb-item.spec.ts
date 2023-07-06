@@ -74,16 +74,10 @@ describe('vwc-breadcrumb-item', () => {
 			await elementUpdated(element);
 		});
 
-		/**
-		 *
-		 */
 		function getAnchorElement() {
 			return element.shadowRoot?.querySelector('a');
 		}
 
-		/**
-		 * @param str
-		 */
 		function capitalizeFirstLetter(str: string) {
 			return str.charAt(0).toUpperCase() + str.slice(1);
 		}
@@ -97,9 +91,6 @@ describe('vwc-breadcrumb-item', () => {
 				'label', 'labelledby', 'live', 'owns', 'relevant', 'roledescription'
 			];
 
-			/**
-			 *
-			 */
 			function setAriaLabelsOnElementObject() {
 				ARIA_PROPS.forEach(ariaProp => {
 					const ariaPropOnObject = `aria${capitalizeFirstLetter(ariaProp)}`;

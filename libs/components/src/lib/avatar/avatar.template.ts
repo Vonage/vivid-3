@@ -38,9 +38,9 @@ function renderInitials() {
 }
 
 /**
- * The template for the {@link @microsoft/fast-foundation#Avatar} component.
+ * The template for the Avatar component.
  *
- * @param context
+ * @param context - element definition context
  * @public
  */
 export const AvatarTemplate: (

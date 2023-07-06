@@ -13,9 +13,8 @@ const getClasses = ({orientation}: Divider) => classNames(
 );
 
 /**
- * The template for the {@link @microsoft/fast-foundation#Divider} component.
+ * The template for the Divider component.
  *
- * @param definition
  * @public
  */
 export const DividerTemplate: (

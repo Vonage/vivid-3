@@ -31,9 +31,9 @@ function renderDismissButton(iconTag: string) {
 }
 
 /**
- * The template for the {@link @microsoft/fast-foundation#Tag} component.
+ * The template for the Tag component.
  *
- * @param context
+ * @param context - element definition context
  * @public
  */
 export const tagTemplate: (

@@ -37,9 +37,6 @@ const getStateClasses = ({
 	['success connotation-success', !!successText]
 );
 
-/**
- *
- */
 function renderLabel() {
 	return html<NumberField>`
 	  <label for="control" class="label">
@@ -47,30 +44,20 @@ function renderLabel() {
 	  </label>`;
 }
 
-/**
- * @param numberField
- * @param direction
- */
 function adjustValueByStep(numberField: NumberField, direction = ADD) {
 	numberField.value = (Number(numberField.value) + direction * (numberField.step ? numberField.step : 1)).toString();
 }
 
-/**
- * @param numberField
- */
 function setControlButtonShape(numberField: NumberField) {
 	return numberField.shape === Shape.Pill ? Shape.Pill : null;
 }
 
-/**
- * @param numberField
- */
 function getTabIndex(numberField: NumberField) {
 	return (numberField.disabled || numberField.readOnly) ? '-1' : null;
 }
 
 /**
- * @param context
+ * @param context - element definition context
  */
 function numberControlButtons(context: ElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
@@ -97,9 +84,9 @@ function numberControlButtons(context: ElementDefinitionContext) {
 }
 
 /**
- * The template for the {@link @microsoft/fast-foundation#NumberField} component.
+ * The template for the NumberField component.
  *
- * @param context
+ * @param context - element definition context
  * @public
  */
 export const NumberFieldTemplate: (

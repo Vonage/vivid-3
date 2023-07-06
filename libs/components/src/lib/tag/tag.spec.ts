@@ -8,19 +8,11 @@ import '.';
 const COMPONENT_TAG = 'vwc-tag';
 const ICON_SELECTOR = 'vwc-icon';
 
-/**
- * @param element
- * @param removable
- */
 async function toggleRemovable(element: Tag, removable = true) {
 	element.removable = removable;
 	await elementUpdated(element);
 }
 
-/**
- * @param element
- * @param removable
- */
 async function toggleSelectable(element: Tag, selectable = true) {
 	element.selectable = selectable;
 	await elementUpdated(element);

@@ -21,7 +21,7 @@ function getMultiSelectAriaState(x: DataGrid) {
 }
 
 /**
- * Generates a template for the {@link @microsoft/fast-foundation#DataGrid} component using
+ * Generates a template for the DataGrid component using
  * the provided prefix.
  *
  * @public

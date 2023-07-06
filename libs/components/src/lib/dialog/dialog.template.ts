@@ -62,10 +62,6 @@ function renderDismissButton(buttonTag: string) {
 	  </${buttonTag}>`;
 }
 
-/**
- * @param dialog
- * @param event
- */
 function handleEscapeKey(dialog: Dialog, event: Event) {
 	if ((event as KeyboardEvent).key === 'Escape' && dialog.modal) {
 		dialog.open = false;
@@ -74,9 +70,9 @@ function handleEscapeKey(dialog: Dialog, event: Event) {
 }
 
 /**
- * The template for the {@link @microsoft/fast-foundation#Dialog} component.
+ * The template for the Dialog component.
  *
- * @param context
+ * @param context - element definition context
  * @public
  */
 export const DialogTemplate: (
