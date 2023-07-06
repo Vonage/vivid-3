@@ -122,17 +122,26 @@ describe('vwc-tabs', () => {
 				const offsetLeft = 100;
 				const offsetWidth = 200;
 				const scrollWidth = 1000;
-				const tablistWrapper = element.shadowRoot?.querySelector('.tablist-wrapper') as HTMLElement;
-				const midTab = element.querySelectorAll('vwc-tab')[1] as Tab;
-				jest
-					.spyOn(midTab, 'offsetLeft', 'get')
-					.mockImplementation(() => offsetLeft);
-				jest
-					.spyOn(midTab, 'offsetWidth', 'get')
-					.mockImplementation(() => offsetWidth);
-				jest
-					.spyOn(tablistWrapper, 'offsetWidth', 'get')
-					.mockImplementation(() => scrollWidth);
+				function setTabListWrapper(scrollWidth: number) {
+					const tablistWrapper = element.shadowRoot?.querySelector('.tablist-wrapper') as HTMLElement;
+					jest
+						.spyOn(tablistWrapper, 'offsetWidth', 'get')
+						.mockImplementation(() => scrollWidth);
+				}
+				function setMidTab(offsetLeft: number, offsetWidth: number) {
+					const midTab = element.querySelectorAll('vwc-tab')[1] as Tab;
+					jest
+						.spyOn(midTab, 'offsetLeft', 'get')
+						.mockImplementation(() => offsetLeft);
+					jest
+						.spyOn(midTab, 'offsetWidth', 'get')
+						.mockImplementation(() => offsetWidth);
+					return midTab;
+				}
+
+				setTabListWrapper(scrollWidth);
+				const midTab = setMidTab(offsetLeft, offsetWidth);
+
 				element.activeid = midTab.id;
 				await elementUpdated(element);
 				expect(scrollToSpy)
