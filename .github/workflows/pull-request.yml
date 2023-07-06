@@ -51,6 +51,13 @@ jobs:
       os: ubuntu-latest
       report_coverage: true
 
+  upload-coverage:
+    if: github.event.pull_request.draft == false
+    needs: unit-tests
+    uses: vonage/vivid-3/.github/workflows/_upload-coverage.yml@main
+    with:
+      os: ubuntu-latest
+
   call-visual-regression:
     if: github.event.pull_request.draft == false
     needs: call-lint
