@@ -2,7 +2,6 @@ import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
 import {Connotation} from '@vonage/vivid';
 import type {Tab} from '../tab/tab';
 import {Tabs} from './tabs';
-import '../tab-panel/tab-panel';
 import '.';
 
 const COMPONENT_TAG = 'vwc-tabs';
@@ -17,10 +16,7 @@ describe('vwc-tabs', () => {
 			} as DOMRect;
 		};
 		window.HTMLElement.prototype.scrollIntoView = jest.fn();
-	});
-
-	afterEach(function () {
-		window.HTMLElement.prototype.getBoundingClientRect = jest.fn();
+		window.HTMLElement.prototype.scrollTo = jest.fn();
 	});
 
 	async function setFixture(activeid: string | null = 'apps'): Promise<Tabs> {
@@ -98,6 +94,53 @@ describe('vwc-tabs', () => {
 			await elementUpdated(tmpElement);
 			expect(tmpElement.activeid).toEqual('apps');
 		});
+
+		describe('scrollToIndex', function () {
+			let scrollToSpy: jest.SpyInstance<void, [x: number, y: number]>;
+			const scrollWidth = 1320;
+			beforeEach(function () {
+				const tablistWrapper = element.shadowRoot?.querySelector('.tablist-wrapper') as HTMLElement;
+				jest
+					.spyOn(tablistWrapper, 'scrollWidth', 'get')
+					.mockImplementation(() => scrollWidth);
+				scrollToSpy = jest.spyOn(tablistWrapper, 'scrollTo');
+			});
+
+			it('should scrollTo with 0 if index is 0', async function () {
+				element.activeid = element.tabs[0].id;
+				await elementUpdated(element);
+				expect(scrollToSpy).toHaveBeenCalledWith({top: 0, left: 0, behavior: 'smooth'});
+			});
+
+			it('should scroll to tablist wrapper width when index is last', async function () {
+				element.activeid = element.tabs[2].id;
+				await elementUpdated(element);
+				expect(scrollToSpy).toHaveBeenCalledWith({top: 0, left: scrollWidth, behavior: 'smooth'});
+			});
+
+			it('should scroll to sum of tabs plus half active tab when index is between 0 and last', async function () {
+				const offsetLeft = 100;
+				const offsetWidth = 200;
+				const scrollWidth = 1000;
+				const tablistWrapper = element.shadowRoot?.querySelector('.tablist-wrapper') as HTMLElement;
+				const midTab = element.querySelectorAll('vwc-tab')[1] as Tab;
+				jest
+					.spyOn(midTab, 'offsetLeft', 'get')
+					.mockImplementation(() => offsetLeft);
+				jest
+					.spyOn(midTab, 'offsetWidth', 'get')
+					.mockImplementation(() => offsetWidth);
+				jest
+					.spyOn(tablistWrapper, 'offsetWidth', 'get')
+					.mockImplementation(() => scrollWidth);
+				element.activeid = midTab.id;
+				await elementUpdated(element);
+				expect(scrollToSpy)
+					.toHaveBeenCalledWith({top: 0, left: offsetLeft - scrollWidth / 2 + offsetWidth / 2, behavior: 'smooth'});
+			});
+
+
+		});
 	});
 
 	describe('connotation', () => {
@@ -165,12 +208,6 @@ describe('vwc-tabs', () => {
 
 			expect(element.activetab).toEqual(tab);
 		});
-
-		it('should scroll to activetab when set', function () {
-			const tab: Tab = element.querySelector('#entrees') as Tab;
-			const spy = jest.spyOn(tab, 'scrollIntoView');
-			element.activetab = tab;
-			expect(spy).toHaveBeenCalled();
-		});
 	});
+
 });
