@@ -24,8 +24,12 @@ As an example, you can use it as follows:
   </vwc-action-group>
     <div class="tag-wrapper">
       <vwc-tag-group class="tag-group" onclick="onClickFilter()">
+        Filter By Style:
         <vwc-tag id="solidTag" label="Solid" selectable shape="pill"></vwc-tag>
         <vwc-tag id="linearTag" label="Line" selectable shape="pill"></vwc-tag>
+      </vwc-tag-group>
+      <vwc-tag-group class="tag-group" onclick="onClickFilter()">
+        Filter By Color:
         <vwc-tag id="singleTag" label="Single Color" selectable shape="pill"></vwc-tag>
         <vwc-tag id="multiTag" label="Multi Color" selectable shape="pill"></vwc-tag>
       </vwc-tag-group> 
