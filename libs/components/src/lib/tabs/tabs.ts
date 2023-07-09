@@ -82,11 +82,10 @@ export class Tabs extends FoundationTabs {
 	}
 
 	get #tabListWrapper() {
-		return this.shadowRoot?.querySelector('.tablist-wrapper') as HTMLElement;
+		return this.shadowRoot!.querySelector('.tablist-wrapper') as HTMLElement;
 	}
 
 	#scrollToIndex(index: number) {
-		if (!this.#tabListWrapper) return;
 		const tab = this.tabs[index];
 		if (!tab) return;
 		let left = 0;
@@ -107,7 +106,7 @@ export class Tabs extends FoundationTabs {
 			}
 		}
 
-		this.#tabListWrapper?.scrollTo({top, left, behavior: 'smooth'});
+		this.#tabListWrapper.scrollTo({top, left, behavior: 'smooth'});
 	}
 	// adapted FAST fix https://github.com/microsoft/fast/pull/6606
 	#patchActiveID() {
