@@ -25,20 +25,23 @@ Use `generate-header"` for data grid header visibility mode.
 - Default: `default`
 
 ```html preview
-
-<vwc-button label="None" onclick="changeHeader('none')"></vwc-button>
-<vwc-button label="Sticky" onclick="changeHeader('sticky')"></vwc-button>
-<vwc-button label="Default" onclick="changeHeader('default')"></vwc-button>
+<style>
+vwc-data-grid {max-block-size: 300px;}
+</style>
+<vwc-select onchange="changeHeader()">
+	<vwc-option value="none" text="none"></vwc-option>
+	<vwc-option value="default" text="default"></vwc-option>
+	<vwc-option value="sticky" text="sticky"></vwc-option>
+</vwc-select>
 
 <vwc-data-grid></vwc-data-grid>
 <script>
-		function changeHeader(headerType) {
+		function changeHeader() {
+			headerType = event.target.value;
 			grid.generateHeader = headerType;
 		}
-        
+		
     grid = document.querySelector('vwc-data-grid');
-    
-    grid.generateHeader = 'sticky';
     grid.rowsData = [
 
         {data1: 'data111', data2: 'data12'},
@@ -408,7 +411,47 @@ vwc-data-grid {--data-grid-row-background: var(--vvd-color-neutral-50);}
 </script>
 ```
 
+## Dimensions
+### Inline-size
+Data-grid inline-size is 100% by default.
+If needed inline-size can be set on the `data-grid`.
 
+```html preview
+<style>
+vwc-data-grid {inline-size: 350px;}
+</style>
+<vwc-data-grid></vwc-data-grid>
+<script>
+    grid = document.querySelector('vwc-data-grid');
+    grid.rowsData = [
+        {data1: 'data11', data2: 'data12', data3: 'data13', data4: 'data14', data5: 'data15', data6: 'data16'},
+        {data1: 'data21', data2: 'data22', data3: 'data23', data4: 'data24', data5: 'data25', data6: 'data26'},
+    ];
+</script>
+```
+
+### Max-Block-size
+Data-grid has no block-size definition by default.  
+When setting `generate-header` to `sticky` the `data-grid` gets `max-block-size: 400px`, if needed, set a custom max-block-size.
+
+```html preview
+<style>
+vwc-data-grid {max-block-size: 200px;}
+</style>
+<vwc-data-grid></vwc-data-grid>
+<script>
+    grid = document.querySelector('vwc-data-grid');
+    grid.generateHeader = "sticky"
+    grid.rowsData = [
+        {data1: 'data111', data2: 'data12'},
+        {data1: 'data21', data2: 'data22'},
+        {data1: 'data31', data2: 'data32'},
+        {data1: 'data41', data2: 'data42'},
+        {data1: 'data51', data2: 'data52'},
+        {data1: 'data61', data2: 'data62'},
+    ];
+</script>
+```
 
 ## Accessibility
 

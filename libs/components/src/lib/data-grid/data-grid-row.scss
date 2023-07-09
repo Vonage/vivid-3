@@ -31,7 +31,7 @@
 
 	:host([row-type="sticky-header"]) & {
 		position: sticky;
-		z-index: 10;
+		z-index: 9;
 		top: 0;
 		background: var(#{variables.$data-grid-row-background}, var(#{constants.$vvd-color-canvas}));
 	}
