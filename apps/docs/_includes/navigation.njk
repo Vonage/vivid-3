@@ -3,7 +3,7 @@
 	{% include "../assets/scripts/components.filter.js" %}
 {% endset %}
 <vwc-nav class="side-nav">
-	<vwc-text-field class="components-filter" icon="search-line" placeholder="Find Component" label="Filter Components"></vwc-text-field>
+
   <script>
 		{{ componentsFilter | safe }}
 	</script>
@@ -26,7 +26,7 @@
 	</vwc-nav-item>
     {% endfor %}
   </vwc-nav-disclosure>
-
+<vwc-text-field class="components-filter" icon="search-line" placeholder="Find Component" label="Filter Components"></vwc-text-field>
   <vwc-nav-disclosure label="Components" open>
     {%  for item in components | publicPageFilter | sort(false, false, 'title') %}
     <vwc-nav-item
