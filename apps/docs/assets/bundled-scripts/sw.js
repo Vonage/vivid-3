@@ -8,7 +8,7 @@ const addResourcesToCache = async (resources) => {
 };
 
 const putInCache = async (request, response) => {
-	if (response.status !== 200) {
+	if (!response.ok && request.url.includes('icon.resources.vonage.com')) {
 		return false;
 	}
 	const cache = await caches.open(VERSION);
