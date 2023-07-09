@@ -2,11 +2,6 @@
     max-width: 1200px;
 }
 
-#iconsTextField {
-    display: flex;
-    margin-top: 32px;
-}
-
 #iconsLayout {
     --layout-column-gap: 16px; 
     --layout-row-gap: 16px;
