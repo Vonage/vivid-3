@@ -113,26 +113,31 @@ function filterIcons() {
 }
 
 function filterIconsByCategory(iconsArray) {
+  let iconsArrayAfterFilter = [];
   const selectedCategory = selectCategory.selectedOptions[0].text.toLowerCase();
   if (selectedCategory !== 'category') {
-    iconsArray = iconsArray.filter(item => item.tag.some(icon => icon === `category_${selectedCategory}`));
+    iconsArrayAfterFilter = iconsArray.filter(item => item.tag.some(icon => icon === `category_${selectedCategory}`));
   }
-  return iconsArray;
+  return iconsArrayAfterFilter;
 }
 
 function filterIconsByTag(iconsArray) {
+  if (!solidTag.selected && !linearTag.selected && !singleTag.selected && !multiTag.selected) {
+    return iconsArray;
+  }
+  
+  let iconsArrayAfterFilter = [];
   if (solidTag.selected) {
-    iconsArray = iconsArray.filter(item => item.tag.some(icon => icon === "style_weight_solid"));
+    iconsArrayAfterFilter = iconsArrayAfterFilter.concat(iconsArray.filter(item => item.tag.some(icon => icon === "style_weight_solid")));
   }
   if (linearTag.selected) {
-    iconsArray = iconsArray.filter(item => item.tag.some(icon => icon === "style_weight_regular"));
+    iconsArrayAfterFilter = iconsArrayAfterFilter.concat(iconsArray.filter(item => item.tag.some(icon => icon === "style_weight_regular")));
   }
   if (singleTag.selected) {
-    iconsArray = iconsArray.filter(item => item.tag.some(icon => icon === "style_color_single"));
+    iconsArrayAfterFilter = iconsArrayAfterFilter.concat(iconsArray.filter(item => item.tag.some(icon => icon === "style_color_single")));
   }
   if (multiTag.selected) {
-    iconsArray = iconsArray.filter(item => item.tag.some(icon => icon === "style_color_multi"));
+    iconsArrayAfterFilter = iconsArrayAfterFilter.concat(iconsArray.filter(item => item.tag.some(icon => icon === "style_color_multi")));
   }
-
-  return iconsArray;
+  return iconsArrayAfterFilter;
 }
