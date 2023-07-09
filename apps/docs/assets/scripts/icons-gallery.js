@@ -113,11 +113,12 @@ function filterIcons() {
 }
 
 function filterIconsByCategory(iconsArray) {
-  let iconsArrayAfterFilter = [];
   const selectedCategory = selectCategory.selectedOptions[0].text.toLowerCase();
-  if (selectedCategory !== 'category') {
-    iconsArrayAfterFilter = iconsArray.filter(item => item.tag.some(icon => icon === `category_${selectedCategory}`));
+  if (selectedCategory === 'category') {
+    return iconsArray;
   }
+  let iconsArrayAfterFilter = [];
+  iconsArrayAfterFilter = iconsArray.filter(item => item.tag.some(icon => icon === `category_${selectedCategory}`));
   return iconsArrayAfterFilter;
 }
 
@@ -125,7 +126,7 @@ function filterIconsByTag(iconsArray) {
   if (!solidTag.selected && !linearTag.selected && !singleTag.selected && !multiTag.selected) {
     return iconsArray;
   }
-  
+
   let iconsArrayAfterFilter = [];
   if (solidTag.selected) {
     iconsArrayAfterFilter = iconsArrayAfterFilter.concat(iconsArray.filter(item => item.tag.some(icon => icon === "style_weight_solid")));
