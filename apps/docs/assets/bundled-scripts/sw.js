@@ -8,8 +8,12 @@ const addResourcesToCache = async (resources) => {
 };
 
 const putInCache = async (request, response) => {
+	if (!response.ok) {
+		return false;
+	}
 	const cache = await caches.open(VERSION);
 	await cache.put(request, response);
+	return true;
 };
 
 async function removeOldCache(event) {
@@ -33,14 +37,16 @@ const cacheFirst = async ({ request, preloadResponsePromise, fallbackUrl }) => {
 	const preloadResponse = await preloadResponsePromise;
 	if (preloadResponse) {
 		console.info('using preload response', preloadResponse);
-		await putInCache(request, preloadResponse.clone());
-		return preloadResponse;
+		if (await putInCache(request, preloadResponse.clone())) {
+			return preloadResponse;
+		}
 	}
 
 	try {
 		const responseFromNetwork = await fetch(request);
-		await putInCache(request, responseFromNetwork.clone());
-		return responseFromNetwork;
+		if (await putInCache(request, responseFromNetwork.clone())) {
+			return responseFromNetwork;
+		}
 	} catch (error) {
 		const fallbackResponse = await caches.match(fallbackUrl);
 		if (fallbackResponse) {
