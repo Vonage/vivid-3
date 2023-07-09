@@ -8,7 +8,7 @@ const addResourcesToCache = async (resources) => {
 };
 
 const putInCache = async (request, response) => {
-	if (!response.ok) {
+	if (response.status !== 200) {
 		return false;
 	}
 	const cache = await caches.open(VERSION);
