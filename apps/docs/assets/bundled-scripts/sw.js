@@ -2,13 +2,14 @@ const VERSION = 'SW_VERSION';
 
 console.log(`Vivid Upgraded to Version ${VERSION}!`);
 
+const iconsUrl = 'icon.resources.vonage.com';
 const addResourcesToCache = async (resources) => {
 	const cache = await caches.open(VERSION);
 	await cache.addAll(resources);
 };
 
 const putInCache = async (request, response) => {
-	if (!response.ok && request.url.includes('icon.resources.vonage.com')) {
+	if (!response.ok && request.url.includes(iconsUrl)) {
 		return false;
 	}
 	const cache = await caches.open(VERSION);
