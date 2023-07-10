@@ -8,9 +8,6 @@ export const ARROW_LEFT = 'ArrowLeft';
 
 export type PredefindKeys = typeof ARROW_UP | typeof ARROW_RIGHT | typeof ARROW_DOWN | typeof ARROW_LEFT;
 
-/**
- * @param el
- */
 export function isCellOrHeader(el: unknown): el is HTMLElement {
 	return el instanceof HTMLElement
 	&& (
@@ -23,11 +20,6 @@ const getCellOrHeader = (f: HTMLElement) => (f.matches('[role="columnheader"i]')
 	? '[role="gridcell"i]'
 	: '[role="columnheader"i]');
 
-/**
- * @param this
- * @param key
- * @param activeElement
- */
 export function getNextFocusableGridElement(
 	this: Calendar, key: PredefindKeys, activeElement: HTMLElement
 ): Element | null | void {
@@ -49,11 +41,6 @@ export function getNextFocusableGridElement(
 	}
 }
 
-/**
- * @param this
- * @param key
- * @param activeElement
- */
 export function getHeaderDescendantGridCell(this: Calendar, key: PredefindKeys, activeElement: HTMLElement): Element | null | undefined {
 	if (key !== ARROW_DOWN) {return;}
 

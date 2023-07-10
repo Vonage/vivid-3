@@ -1,0 +1,22 @@
+{
+	"$schema": "https://developer.microsoft.com/json-schemas/tsdoc/v0/tsdoc.schema.json",
+	"extends": [
+		"@microsoft/api-extractor/extends/tsdoc-base.json"
+	],
+	"tagDefinitions": [
+		{
+			"tagName": "@slot",
+			"syntaxKind": "block",
+			"allowMultiple": true
+		},
+		{
+			"tagName": "@event",
+			"syntaxKind": "block",
+			"allowMultiple": true
+		}
+	],
+	"supportForTags": {
+		"@slot": true,
+		"@event": true
+	}
+}

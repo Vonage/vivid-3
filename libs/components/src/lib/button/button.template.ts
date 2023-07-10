@@ -55,10 +55,9 @@ function renderIconOrPending(
 }
 
 /**
- * The template for the {@link @microsoft/fast-foundation#(Button:class)} component.
+ * The template for the (Button:class) component.
  *
- * @param context
- * @param definition
+ * @param context - element definition context
  * @public
  */
 export const buttonTemplate: (

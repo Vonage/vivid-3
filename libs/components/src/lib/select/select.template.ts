@@ -65,7 +65,7 @@ function setFixedDropdownVarWidth(x: Select) {
 }
 
 /**
- * @param context
+ * @param context - element definition context
  */
 function renderControl(context: ElementDefinitionContext) {
 	const focusTemplate = focusTemplateFactory(context);
@@ -111,10 +111,9 @@ function renderControl(context: ElementDefinitionContext) {
 
 
 /**
- * The template for the {@link @microsoft/fast-foundation#Select} component.
+ * The template for the Select component.
  *
- * @param
- * @param context
+ * @param context - element definition context
  * @public
  */
 export const SelectTemplate: (

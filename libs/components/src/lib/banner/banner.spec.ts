@@ -8,10 +8,6 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-banner';
 
-/**
- * @param element
- * @param removable
- */
 async function toggleRemovable(element: Banner, removable = true) {
 	element.removable = removable;
 	await elementUpdated(element);
@@ -23,9 +19,6 @@ function getBannerMessageAttribute(element: Banner, attribute: string ) {
 }
 
 describe('vwc-banner', () => {
-	/**
-	 *
-	 */
 	function dispatchAnimationEndEvent() {
 		const banner = element.shadowRoot?.querySelector('.control');
 		const event = new Event('transitionend');
@@ -52,25 +45,16 @@ describe('vwc-banner', () => {
 	});
 
 	describe('text', function () {
-		/**
-		 * @param text
-		 */
 		async function setTextProperty(text: string | undefined) {
 			element.text = text;
 			await elementUpdated(element);
 		}
 
-		/**
-		 * @param text
-		 */
 		async function setTextAttribute(text: string | undefined) {
 			element.setAttribute('text', text ? text : '');
 			await elementUpdated(element);
 		}
 
-		/**
-		 *
-		 */
 		function getText() {
 			const text = element.shadowRoot?.querySelector('.banner-message')?.textContent;
 			return text?.trim();

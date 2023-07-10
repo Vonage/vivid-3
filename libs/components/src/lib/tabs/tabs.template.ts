@@ -11,9 +11,8 @@ const getClasses = ({
 );
 
 /**
- * The template for the {@link @vonage/vivid#(Tabs:class)} component.
+ * The template for the (Tabs:class) component.
  *
- * @param options
  * @public
  */
 export function TabsTemplate<T extends Tabs>() {

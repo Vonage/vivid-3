@@ -1,5 +1,5 @@
 import { DataGridCell as FoundationDataGridCell } from '@microsoft/fast-foundation';
-import {attr} from '@microsoft/fast-element';
+import { attr } from '@microsoft/fast-element';
 
 /**
  * Base class for data-grid
@@ -8,7 +8,7 @@ import {attr} from '@microsoft/fast-element';
  */
 export class DataGridCell extends FoundationDataGridCell {
 
-	@attr({attribute: 'aria-selected', mode: 'fromView'}) override ariaSelected: string | null = null;
+	@attr({ attribute: 'aria-selected', mode: 'fromView' }) override ariaSelected: string | null = null;
 
 	ariaSelectedChanged(_: string | null, selectedState: string | null) {
 		this.shadowRoot!.querySelector('.base')?.classList.toggle('selected', selectedState === 'true');
@@ -32,7 +32,7 @@ export class DataGridCell extends FoundationDataGridCell {
 	constructor() {
 		super();
 		(this as any).updateCellStyle = () => {
-			if (this.gridColumn && !this.gridColumn.includes('undefined')){
+			if (this.gridColumn && !this.gridColumn.includes('undefined')) {
 				this.style.gridColumn = this.gridColumn;
 			} else {
 				this.style.removeProperty('grid-column');

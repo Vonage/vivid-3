@@ -9,7 +9,7 @@ const components = ['data-grid'];
 
 export const gridTestFunction = async ({ page }: { page: Page }) => {
 
-	const template = `<div style="margin: 5px;">
+	const template = `<div style="margin: 5px; max-width: 700px;">
 			<vwc-data-grid></vwc-data-grid>
 	</div>`;
 
@@ -33,9 +33,9 @@ export const gridTestFunction = async ({ page }: { page: Page }) => {
 		{columnDataKey: 'data2', title: 'Data 2'},
 	];
 	grid.rowsData = [
-		{data1: 'data11', data2: 'data12'},
-		{data1: 'data21', data2: 'data22'},
-		{data1: 'data31', data2: 'data32'},
+		{data1: 'data11 with very long text that is having a text-overflow data11 with very long text', data2: 'data12'},
+		{data1: 'data11 with very long text that is having a text-overflow data11 with very long text', data2: 'data22'},
+		{data1: 'data11 with very long text that is having a text-overflow data11 with very long text', data2: 'data32'},
 	];
 	`});
 

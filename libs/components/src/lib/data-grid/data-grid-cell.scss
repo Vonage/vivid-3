@@ -17,13 +17,16 @@
 
 @use "../focus/partials/variables" as focus-variables;
 
+:host {
+	min-inline-size: 80px;
+}
+
 .base {
 	@include connotation.connotation (data-grid-cell);
 	@include appearance.appearance;
 
 	position: relative;
 	display: flex;
-	overflow: hidden;
 	box-sizing: border-box;
 	align-items: center;
 	padding: 8px 12px;
@@ -31,9 +34,6 @@
 	block-size: #{size.$vvd-size-expanded};
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
-	outline: none;
-	text-overflow: ellipsis;
-	white-space: nowrap;
 
 	:host(:is([aria-selected]):not([cell-type="columnheader"])) & {
 		background-color: var(#{appearance.get-appearance-token(fill)});
@@ -53,4 +53,11 @@
 	.base:not(.active) > & {
 		display: none;
 	}
+}
+
+slot {
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }

@@ -13,9 +13,6 @@ import { numberFieldDefinition } from './definition';
 
 const COMPONENT_TAG_NAME = 'vwc-number-field';
 
-/**
- * @param element
- */
 function getRootElement(element: NumberField) {
 	return element.shadowRoot?.querySelector('.base') as HTMLElement;
 }
@@ -30,9 +27,6 @@ describe('vwc-number-field', () => {
 		element.dispatchEvent(new Event('focus'));
 	}
 
-	/**
-	 * @param errorMessage
-	 */
 	function setValidityToError(errorMessage = 'error') {
 		element.setValidity({badInput: true}, errorMessage);
 		element.validate();

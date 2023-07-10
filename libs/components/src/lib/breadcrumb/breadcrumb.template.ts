@@ -4,10 +4,9 @@ import type {FoundationElementTemplate} from '@microsoft/fast-foundation';
 import type {Breadcrumb} from './breadcrumb';
 
 /**
- * The template for the {@link @microsoft/fast-foundation#Breadcrumb} component.
+ * The template for the Breadcrumb component.
  *
- * @param context
- * @param definition
+ * @param context - element definition context
  * @public
  */
 export const breadcrumbTemplate: FoundationElementTemplate<ViewTemplate<Breadcrumb>> = () => html`

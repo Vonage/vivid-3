@@ -28,9 +28,9 @@ export const expandCollapseButton = (context: ElementDefinitionContext) => {
 };
 
 /**
- * The template for the {@link @microsoft/fast-foundation#TreeItem} component.
+ * The template for the TreeItem component.
  *
- * @param context
+ * @param context - element definition context
  * @public
  */
 export const TreeItemTemplate = (context: ElementDefinitionContext) => {

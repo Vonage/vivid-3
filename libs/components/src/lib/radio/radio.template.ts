@@ -16,9 +16,9 @@ const getClasses = ({ connotation, checked, readOnly, disabled }: Radio) => clas
 );
 
 /**
- * The template for the {@link @microsoft/fast-foundation#Radio} component.
+ * The template for the Radio component.
  *
- * @param context
+ * @param context - element definition context
  * @public
  */
 export const RadioTemplate: (context: ElementDefinitionContext) => ViewTemplate<Radio> = (context: ElementDefinitionContext) => {

@@ -19,11 +19,9 @@ const getClasses = ({
 );
 
 /**
- * The template for the {@link @microsoft/fast-foundation#Progress} component.
+ * The template for the Progress component.
  *
- * @param context
- * @param _
- * @param definition
+ * @param context - element definition context
  * @public
  */
 

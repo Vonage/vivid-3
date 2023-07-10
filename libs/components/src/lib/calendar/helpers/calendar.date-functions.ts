@@ -16,10 +16,6 @@ const weekdaysMap = new Map([
 	['monday', 1],
 ]);
 
-/**
- * @param date
- * @param startDay
- */
 export function getFirstDateOfTheWeek(date: Date = new Date(), startDay: 'sunday' | 'monday'): Date {
 	date = new Date(date);
 
