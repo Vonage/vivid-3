@@ -126,7 +126,6 @@ export class Dialog extends FoundationElement {
 	#handleModal(show: boolean) {
 		this.#modal = show;
 		this.#dialog.toggleAttribute('aria-modal', show);
-		this.#dialog.classList.toggle('modal', show);
 	}
 
 	show() {

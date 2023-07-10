@@ -131,11 +131,6 @@ describe('vwc-dialog', () => {
 			await showModalDialog();
 			expect(getBaseElement(element).hasAttribute('open')).toEqual(true);
 		});
-
-		it('should add class "modal" to base element', async function () {
-			await showModalDialog();
-			expect(getBaseElement(element).classList.contains('modal')).toEqual(true);
-		});
 	});
 
 	describe('scrimClick', function () {
