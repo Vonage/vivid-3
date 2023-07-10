@@ -102,7 +102,7 @@
     "sass": "^1.52.2",
     "slugify": "^1.6.5",
     "style-dictionary": "^3.7.1",
-    "stylelint": "^14.8.5",
+    "stylelint": "^15.10.1",
     "stylelint-config-idiomatic-order": "^8.1.0",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard-scss": "^3.0.0",
