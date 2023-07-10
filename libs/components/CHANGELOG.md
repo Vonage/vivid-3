@@ -4,6 +4,16 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.22.1](https://github.com/Vonage/vivid-3/compare/vivid-v3.22.0...vivid-v3.22.1) (2023-07-10)
+
+
+### Bug Fixes
+
+* **data-grid:** add scroll (VIV-1180) ([#1248](https://github.com/Vonage/vivid-3/issues/1248)) ([c2d6620](https://github.com/Vonage/vivid-3/commit/c2d6620e68010b806cd5fd5d70c9aacca958b4cd))
+* **data-grid:** cell ellipsis and sticky header background-color variable (VIV-1118) ([#1239](https://github.com/Vonage/vivid-3/issues/1239)) ([d1d49fe](https://github.com/Vonage/vivid-3/commit/d1d49fe532cdd1b26c5aebea134cecd5c5dbe3c2))
+* **tabs:** tabs now scroll only inside the tabs (VIV-1191) ([#1253](https://github.com/Vonage/vivid-3/issues/1253)) ([7181483](https://github.com/Vonage/vivid-3/commit/7181483792498528b3ea8ef6165bc197ba31c260))
+* **tsdoc:** lint warnings (VIV-1182) ([#1245](https://github.com/Vonage/vivid-3/issues/1245)) ([8aed786](https://github.com/Vonage/vivid-3/commit/8aed78620bdeca27ee5bdf8632112d590349a8a3))
+
 ## [3.22.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.21.2...vivid-v3.22.0) (2023-07-04)
 
 
