@@ -26,11 +26,11 @@ $dialog-space-size: 24px;
 		#{variables.$dialog-default-max-inline-size}: 560px;
 	}
 
-	&:not(:modal) {
+	&:not(.modal) {
 		z-index: var(#{variables.$dialog-z-index}, 1);
 	}
 
-	&:modal {
+	&.modal {
 		position: fixed;
 
 		// reason for box-shadow & hardcoded color - PR-1172
