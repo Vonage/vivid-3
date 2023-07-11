@@ -148,7 +148,7 @@ describe('vwc-popup', () => {
 
 		it('should fire open & close events', async function () {
 			const spyOpen = jest.fn();
-			element.addEventListener('open', spyOpen);
+			element.addEventListener('vwc-popup:open', spyOpen);
 
 			element.show();
 
@@ -169,7 +169,7 @@ describe('vwc-popup', () => {
 		it('should fire close event', async function () {
 			element.open = true;
 			const spyClose = jest.fn();
-			element.addEventListener('close', spyClose);
+			element.addEventListener('vwc-popup:close', spyClose);
 
 			element.hide();
 
