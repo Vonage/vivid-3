@@ -29,7 +29,7 @@ function addCategoryOptions(data) {
   uniqueCategories(categoryNamesArray);
 }
 
-function uniqueCategories(categoryNamesArray) {
+function addUniqueCategories(categoryNamesArray) {
   const uniqueCategorySet = [...new Set(categoryNamesArray)].sort();
   for (let i = 0; i < uniqueCategorySet.length; i++) {
     addOption(uniqueCategorySet[i]);
