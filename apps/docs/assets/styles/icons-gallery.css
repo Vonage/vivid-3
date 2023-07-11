@@ -1,10 +1,6 @@
 .div-wrapper{
     max-width: 1200px;
-}
-
-#iconsTextField {
-    display: flex;
-    margin-top: 32px;
+    margin-top: 64px;
 }
 
 #iconsLayout {
