@@ -120,16 +120,13 @@ $dialog-space-size: 24px;
 
 .footer {
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
 	gap: 24px;
 	padding-inline: $dialog-space-size;
 
 	.hide-footer & {
 		display: none;
-	}
-
-	.footer-content {
-		align-self: center;
 	}
 
 	.actions {

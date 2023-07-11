@@ -118,7 +118,7 @@ export const DialogTemplate: (
 						<slot name="body" ${slotted('bodySlottedContent')}></slot>
 					</div>
 					<div class="footer">
-						<div class="footer-content">
+						<div>
 							<slot name="footer" ${slotted('footerSlottedContent')}></slot>
 						</div>
 						<div class="actions">
