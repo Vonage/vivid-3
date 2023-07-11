@@ -7,11 +7,6 @@ As an example, you can use it as follows:
 <vwc-icon name="icon-name-here"></vwc-icon>
 ```
 
-<br>
-<br>
-<br>
-
-
 <link rel="stylesheet" href="../../assets/styles/icons-gallery.css">
 
 <div class="div-wrapper">

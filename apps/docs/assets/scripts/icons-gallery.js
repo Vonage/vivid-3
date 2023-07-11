@@ -26,7 +26,7 @@ function addCategoryOptions(data) {
     const categoryName = data[i].tag.filter(s => s.includes('category_'))[0]?.substring(9);
     categoryNamesArray.push(categoryName);
   }
-  uniqueCategories(categoryNamesArray);
+  addUniqueCategories(categoryNamesArray);
 }
 
 function addUniqueCategories(categoryNamesArray) {
