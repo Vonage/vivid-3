@@ -10,11 +10,6 @@
     "markdown": "./docs/design/design-tokens.md",
     "modules": []
   },
-	{
-		"title": "icons-gallery",
-		"markdown": "./docs/design/icons-gallery.md",
-		"modules": []
-	},
   {
     "title": "foundations",
     "markdown": "./docs/design/foundations.md",
