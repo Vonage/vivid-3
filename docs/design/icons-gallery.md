@@ -16,9 +16,9 @@ As an example, you can use it as follows:
 
 <div class="div-wrapper">
   <vwc-action-group shape="pill">
-    <vwc-text-field id="searchIcons" icon="search-line" placeholder="Search" appearance='ghost' shape="pill" oninput="onClickFilter()"></vwc-text-field>
+    <vwc-text-field id="searchIcons" icon="search-line" placeholder="Search" appearance='ghost' shape="pill" oninput="onClickFilter()" aria-label="Search Icons"></vwc-text-field>
     <vwc-divider orientation="vertical"></vwc-divider>
-    <vwc-select id="selectCategory" appearance='ghost' shape="pill" onchange="onClickFilter()">
+    <vwc-select id="selectCategory" appearance='ghost' shape="pill" aria-label="Category" onchange="onClickFilter()">
       <vwc-option text="Category"></vwc-option>
     </vwc-select>
   </vwc-action-group>
