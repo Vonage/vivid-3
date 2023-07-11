@@ -1,18 +1,23 @@
 [
   {
-    "title": "color-palette",
-    "markdown": "./docs/design/color-palette.md",
+    "title": "foundations",
+    "markdown": "./docs/design/foundations.md",
+    "modules": []
+  },
+  {
+    "title": "color",
+    "markdown": "./docs/design/color.md",
     "modules": [
     ]
   },
   {
-    "title": "design-tokens",
-    "markdown": "./docs/design/design-tokens.md",
+    "title": "typography",
+    "markdown": "./docs/design/typography.md",
     "modules": []
   },
   {
-    "title": "foundations",
-    "markdown": "./docs/design/foundations.md",
+    "title": "sizing",
+    "markdown": "./docs/design/sizing.md",
     "modules": []
   },
 	{
