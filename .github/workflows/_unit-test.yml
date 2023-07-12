@@ -40,17 +40,11 @@ jobs:
 
         - run: node ./tools/coverageMerger.js
 
-        - name: Upload coverage to Codecov
+        - uses: actions/upload-artifact@v2
           if: ${{ inputs.report_coverage }}
-          uses: codecov/codecov-action@v2
           with:
-            token: ${{ secrets.CODECOV_TOKEN }}
-            directory: ./coverage/
-            fail_ci_if_error: true
-            files: ./coverage/lcov.info
-            flags: unittests
-            name: codecov-umbrella
-            verbose: true
+            name: coverage
+            path: ./coverage
 
         - run: exit 0
           if: ${{ steps.test.outcome == 'success' }}
