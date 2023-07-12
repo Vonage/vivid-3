@@ -6,7 +6,7 @@ import { iconRegistries } from '../icon/definition';
 import { buttonRegistries } from '../button/definition';
 import { elevationRegistries } from '../elevation/definition';
 import styles from './dialog.scss';
-import { Dialog } from './dialog';
+import { Dialog, isDialogSupported } from './dialog';
 import { DialogTemplate as template } from './dialog.template';
 
 export type { IconPlacement } from './dialog';
@@ -19,7 +19,7 @@ export type { IconPlacement } from './dialog';
 export const dialogDefinition = Dialog.compose<FoundationElementDefinition>({
 	baseName: 'dialog',
 	template: template as any,
-	styles: [styles, dialogPolyfillStyles],
+	styles: isDialogSupported ? [styles] : [styles, dialogPolyfillStyles],
 });
 
 /**
