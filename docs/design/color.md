@@ -245,9 +245,9 @@ A single component can be set with alternate colors.
 ### Class
 Add the class `vvd-theme-alternate` to the component.
 
-<vwc-note icon="info-solid" connotation="information" headline="Part">
+<p><vwc-note icon="info-solid" connotation="information" headline="Part">
 If the component has part, add `part='vvd-theme-alternate'`
-</vwc-note>
+</vwc-note></p>
 
 ```html preview
 <style>
