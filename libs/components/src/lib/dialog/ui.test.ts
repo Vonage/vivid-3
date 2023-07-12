@@ -38,65 +38,93 @@ test('should set preventDefault to false on keydown event', async ({ page }: { p
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 	<style>
-		#bottom-left-dialog {
-			position: relative;
-			top: 500px;
-			left: 0;
+		.grid {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			grid-auto-rows: 300px;
 		}
-		#bottom-right-dialog {
+		.wrapper {
 			position: relative;
-			top: 500px;
-			left: 300px;
-		}
-		#horizontal-icon {
-			position: relative;
-			top: 50px;
-			left: 0;
 		}
 	</style>
-	<div style="height: 800px">
-		<vwc-dialog id="top-dialog"
-								icon="info"
-								headline="Headline"
-								subtitle="This is the content that I want to show and I will show it!!!"
-								open>
-								<div slot="main">This is the main content now - replacing EVERYTHING!</div>
-								</vwc-dialog>
-		<vwc-dialog id="modal"
-								icon="info"
-								headline="Headline"
-								subtitle="This is the content that I want to show and I will show it!!!"
-								>
-								</vwc-dialog>
-								<vwc-dialog
-								id="horizontal-icon"
-								icon="heart-solid"
-								icon-placement="side"
-								headline="Horizontal icon"
-								open
-								>
-								</vwc-dialog>
-		<vwc-dialog id="bottom-left-dialog"
-								icon="info"
-								headline="Dialog with overridden graphic slot"
-								subtitle="This is the content that I want to show and I will show it!!!"
-								open>
-								<vwc-icon name="home" slot="graphic"></vwc-icon>
-								</vwc-dialog>
-		<vwc-dialog id="bottom-right-dialog"
-								icon="info"
-								headline="Dialog with footer"
-								subtitle="This is the content that I want to show and I will show it!!"
-								open>
-								<div slot="body">
-									This text should appear instead of the text property value
-								</div>
-								<div slot="footer" class="demo-footer">
-						        <vwc-button appearance="outlined" label="Cancel"></vwc-button>
-						        <vwc-button appearance="filled" label="Action"></vwc-button>
-						    </div>
-								</vwc-dialog>
+	<div class="grid">
+		<div class="wrapper">
+			<vwc-dialog
+				icon="info"
+				headline="Headline"
+				subtitle="This is the content that I want to show and I will show it!!!"
+				open
+				>
+				<div slot="main">This is the main content now - replacing EVERYTHING!</div>
+			</vwc-dialog>
+		</div>
+		<div class="wrapper">
+			<vwc-dialog
+				icon="heart-solid"
+				icon-placement="side"
+				headline="Horizontal icon"
+				open
+				>
+				</vwc-dialog>
+		</div>
+		<div class="wrapper">
+			<vwc-dialog
+				icon="info"
+				headline="Dialog with overridden graphic slot"
+				subtitle="This is the content that I want to show and I will show it!!!"
+				open
+				>
+				<vwc-icon name="home" slot="graphic"></vwc-icon>
+			</vwc-dialog>
+		</div>
+		<div class="wrapper">
+			<vwc-dialog
+				icon="info"
+				headline="Dialog with footer"
+				subtitle="This is the content that I want to show and I will show it!!"
+				open
+				>
+				<div slot="body">
+					This text should appear instead of the text property value
+				</div>
+				<div slot="footer">footer</div>
+				<vwc-button slot="action-items" appearance="outlined" label="Cancel"></vwc-button>
+				<vwc-button slot="action-items" appearance="filled" label="Action"></vwc-button>
+			</vwc-dialog>
+		</div>
 	</div>
+	`;
+
+	await page.setViewportSize({ width: 1000, height: 800 });
+
+	await loadComponents({
+		page,
+		components,
+	});
+	await loadTemplate({
+		page,
+		template,
+	});
+
+	await page.waitForLoadState('networkidle');
+
+	const testWrapper = await page.locator('#wrapper');
+
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'./snapshots/dialog.png'
+	);
+});
+
+test('should show the the dialog as a modal when calling .showModal()', async ({ page }: { page: Page }) => {
+	const template = `
+		<div style="height: 800px">
+			<vwc-dialog
+				id="modal"
+				icon="info"
+				headline="Headline"
+				subtitle="This is the content that I want to show and I will show it!!!"
+			></vwc-dialog>
+		</div>
 	`;
 
 	await loadComponents({
@@ -120,6 +148,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	});
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/dialog.png'
+		'./snapshots/dialog-modal.png'
 	);
 });

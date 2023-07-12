@@ -235,21 +235,23 @@ describe('vwc-menu', () => {
 	describe('events', () => {
 		it('should fire an event on popup open', async () => {
 			let openTriggered: boolean = false;
-			(element._popup as Popup).addEventListener('open', () => {
+			(element._popup as Popup).addEventListener('vwc-popup:open', () => {
 				openTriggered = true;
 			});
 			(element._popup as Popup).open = true;
 			expect(openTriggered).toEqual(true);
+			expect(element.open).toEqual(true);
 		});
 
 		it('should fire an event on popup close', async () => {
 			let closeTriggered: boolean = false;
 			(element._popup as Popup).open = true;
-			(element._popup as Popup).addEventListener('close', () => {
+			(element._popup as Popup).addEventListener('vwc-popup:close', () => {
 				closeTriggered = true;
 			});
 			(element._popup as Popup).open = false;
 			expect(closeTriggered).toEqual(true);
+			expect(element.open).toEqual(false);
 		});
 	});
 
