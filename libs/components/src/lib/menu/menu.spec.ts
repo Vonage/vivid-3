@@ -240,6 +240,7 @@ describe('vwc-menu', () => {
 			});
 			(element._popup as Popup).open = true;
 			expect(openTriggered).toEqual(true);
+			expect(element.open).toEqual(true);
 		});
 
 		it('should fire an event on popup close', async () => {
@@ -250,6 +251,7 @@ describe('vwc-menu', () => {
 			});
 			(element._popup as Popup).open = false;
 			expect(closeTriggered).toEqual(true);
+			expect(element.open).toEqual(false);
 		});
 	});
 
