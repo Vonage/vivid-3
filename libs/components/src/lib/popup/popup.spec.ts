@@ -166,7 +166,7 @@ describe('vwc-popup', () => {
 				.toEqual(false);
 		});
 
-		it('should fire close event', async function () {
+		it('should fire "vwc-popup:close" event', async function () {
 			element.open = true;
 			const spyClose = jest.fn();
 			element.addEventListener('vwc-popup:close', spyClose);
