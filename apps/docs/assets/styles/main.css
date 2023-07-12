@@ -1,6 +1,12 @@
 /* #region reset */
 
-h1, h2, h3, h4, h5, h6, p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   margin: unset;
 }
 
@@ -41,7 +47,7 @@ img {
 /* #region side drawer */
 
 vwc-side-drawer:not(:defined) {
-	display: none;
+  display: none;
 }
 
 vwc-side-drawer[open] {
@@ -53,13 +59,12 @@ vwc-side-drawer:not([open]) {
 }
 
 vwc-side-drawer::part(base) {
-	inline-size: 280px;
-	inset-block-start: calc(var(--vvd-header-block-size) + env(safe-area-inset-top));
-	inset-block-end: env(safe-area-inset-bottom);
-	background-color: var(--vvd-color-neutral-50);
+  inline-size: 280px;
+  inset-block-start: calc(var(--vvd-header-block-size) + env(safe-area-inset-top));
+  inset-block-end: env(safe-area-inset-bottom);
+  background-color: var(--vvd-color-neutral-50);
   box-sizing: border-box;
 }
-
 
 @supports (overscroll-behavior: none) {
   vwc-side-drawer::part(base) {
@@ -68,9 +73,9 @@ vwc-side-drawer::part(base) {
 }
 
 vwc-side-drawer > main {
-	/* prevents banner from topping the stacking context in a modal side-drawer open state  */
-	z-index: 0;
-	position: relative;
+  /* prevents banner from topping the stacking context in a modal side-drawer open state  */
+  z-index: 0;
+  position: relative;
   margin-top: var(--vvd-header-block-size);
 }
 
@@ -91,7 +96,7 @@ vwc-header::part(base) {
 }
 
 vwc-header {
-	--header-bg-color: var(--vvd-color-neutral-800);
+  --header-bg-color: var(--vvd-color-neutral-800);
 }
 
 .header-content-wrapper {
@@ -118,8 +123,11 @@ vwc-header {
   color: var(--vvd-color-neutral-800);
 }
 
-/* #endregion header */
+vwc-nav-item > vwc-badge {
+  margin-inline-start: auto;
+}
 
+/* #endregion header */
 
 /* #region article */
 
@@ -135,7 +143,7 @@ article table {
 }
 
 .vvd-root p:empty {
-	margin: 0;
+  margin: 0;
 }
 
 article > pre,
@@ -156,27 +164,25 @@ article.article > h1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color:  var(--vvd-color-neutral-800);
-	background-color: var(--vvd-color-neutral-100);
-	padding-block: 60px;
-	border-bottom: 1px solid var(--vvd-color-neutral-200);
-
+  color: var(--vvd-color-neutral-800);
+  background-color: var(--vvd-color-neutral-100);
+  padding-block: 60px;
+  border-bottom: 1px solid var(--vvd-color-neutral-200);
 }
 
 @media (min-width: 960px) {
-	article.article > h1 {
-		padding-inline: 32px;
-		margin-inline: -32px;
-		margin-block-start: 0;
-	}
+  article.article > h1 {
+    padding-inline: 32px;
+    margin-inline: -32px;
+    margin-block-start: 0;
+  }
 }
 
-
 @media (max-width: 959px) {
-	article.article > h1 {
-		padding-inline: 16px;
-		border-radius: 8px;
-	}
+  article.article > h1 {
+    padding-inline: 16px;
+    border-radius: 8px;
+  }
 }
 
 .heading-wrapper {
@@ -208,9 +214,9 @@ article.article > h1 {
 }
 
 .banner {
-	position: sticky;
-	top: var(--vvd-header-block-size);
-	z-index: 1;
+  position: sticky;
+  top: var(--vvd-header-block-size);
+  z-index: 1;
 }
 /* #endregion article */
 
@@ -224,7 +230,7 @@ article.article > h1 {
   overflow: hidden;
   border: none;
   width: 100%;
-	border-radius: 6px 6px 0 0;
+  border-radius: 6px 6px 0 0;
 }
 
 .cbd-details > summary {
@@ -232,18 +238,18 @@ article.article > h1 {
 }
 
 .cbd-code-block {
-	border-top: 1px solid var(--vvd-color-neutral-100);
+  border-top: 1px solid var(--vvd-color-neutral-100);
 }
 
 .cbd-code-block > pre {
-	margin: 0;
+  margin: 0;
   border-radius: 0;
 }
 
 .cbd-variables,
 .cbd-variables th,
 .cbd-variables td {
-  padding: 8px
+  padding: 8px;
 }
 
 .cbd-variables__color {
@@ -303,8 +309,7 @@ article.article > h1 {
 
 .hljs-doctag,
 .hljs-keyword,
-.hljs-meta
-.hljs-keyword,
+.hljs-meta .hljs-keyword,
 .hljs-template-tag,
 .hljs-template-variable,
 .hljs-type,
@@ -315,26 +320,26 @@ article.article > h1 {
 .hljs-code,
 .hljs-comment,
 .hljs-formula {
-	color: var(--vvd-color-neutral-600);
+  color: var(--vvd-color-neutral-600);
 }
 
 /* #endregion highlight js */
 
 .hidden {
-	display: none;
+  display: none;
 }
 
 .components-filter {
-	padding-inline: 8px;
-	padding-block: 16px;
-	margin-block-start: 8px;
-	border-bottom: 1px solid var(--vvd-color-neutral-200);
-	border-top: 1px solid var(--vvd-color-neutral-200);
-	position: sticky;
-	top: 0;
-	background-color: var(--vvd-color-neutral-50);
-	z-index: 1;
+  padding-inline: 8px;
+  padding-block: 16px;
+  margin-block-start: 8px;
+  border-bottom: 1px solid var(--vvd-color-neutral-200);
+  border-top: 1px solid var(--vvd-color-neutral-200);
+  position: sticky;
+  top: 0;
+  background-color: var(--vvd-color-neutral-50);
+  z-index: 1;
 }
 .side-nav {
-	position: relative;
+  position: relative;
 }
