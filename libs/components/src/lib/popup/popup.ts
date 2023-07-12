@@ -34,7 +34,7 @@ export class Popup extends FoundationElement {
 		mode: 'boolean',
 	}) open = false;
 	openChanged(_: boolean, newValue: boolean): void {
-		newValue ? this.$emit('open') : this.$emit('close');
+		newValue ? this.$emit('vwc-popup:open') : this.$emit('vwc-popup:close');
 	}
 
 	/**
