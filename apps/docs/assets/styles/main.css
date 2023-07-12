@@ -20,10 +20,14 @@ body {
   margin: 0;
 }
 
-a,
-a:hover,
-a:visited {
-  color: var(--vvd-color-cta-500);
+a {
+  color: var(--vvd-color-cta-600);
+}
+a:hover {
+  color: var(--vvd-color-cta-700);
+}
+a:active {
+  color: var(--vvd-color-cta-800);
 }
 
 img {
