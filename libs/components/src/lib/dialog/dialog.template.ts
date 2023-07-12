@@ -10,12 +10,24 @@ import { Icon } from '../icon/icon';
 import { Button } from '../button/button';
 import type {Dialog} from './dialog';
 
-const getClasses = ({iconPlacement, bodySlottedContent, footerSlottedContent} : Dialog) => classNames(
-	'base',
-	[`icon-placement-${iconPlacement}`, Boolean(iconPlacement)],
-	['hide-body', !bodySlottedContent?.length],
-	['hide-footer', !footerSlottedContent?.length],
-);
+const getClasses = ({
+	iconPlacement,
+	bodySlottedContent,
+	footerSlottedContent,
+	actionItemsSlottedContent,
+}: Dialog) =>
+	classNames(
+		'base',
+		[`icon-placement-${iconPlacement}`, Boolean(iconPlacement)],
+		['hide-body', !bodySlottedContent?.length],
+		[
+			'hide-footer',
+			!(
+				footerSlottedContent?.length ||
+				actionItemsSlottedContent?.length
+			),
+		]
+	);
 /**
  *
  */
@@ -102,11 +114,16 @@ export const DialogTemplate: (
 							${when(x => x.subtitle, subtitle())}
 							${renderDismissButton(buttonTag)}
 					</div>
-					<div class="body ${x => x.bodySlottedContent?.length ? '' : 'hide'} ${x => x.fullWidthBody? 'full-width' : ''}" >
+					<div class="body ${x => x.fullWidthBody? 'full-width' : ''}" >
 						<slot name="body" ${slotted('bodySlottedContent')}></slot>
 					</div>
-					<div class="footer ${x => x.footerSlottedContent?.length ? '' : 'hide'}">
-						<slot name="footer" ${slotted('footerSlottedContent')}></slot>
+					<div class="footer">
+						<div>
+							<slot name="footer" ${slotted('footerSlottedContent')}></slot>
+						</div>
+						<div class="actions">
+							<slot name="action-items" ${slotted('actionItemsSlottedContent')}></slot>
+						</div>
 					</div>
 				</div>
 			</slot>
