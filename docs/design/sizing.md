@@ -1,5 +1,4 @@
-﻿
-# Sizing Tokens
+﻿# Sizing
 
 ---
 

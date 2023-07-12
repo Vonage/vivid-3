@@ -1,19 +1,12 @@
-
-# Color Tokens
+# Color
 
 ---
 
-A design token that’s specific to color usage. This provides a way of referencing a variable color value (a color value that changes based on color theme). Color tokens are named by the color and a number representing an index in the list of tints and shades.
-
-For example, Purple-500 represents the sixth color in the list of tints and shades of purple.
-
-![color token](https://user-images.githubusercontent.com/106529909/187898660-61384e46-0843-403b-bff8-431bcd4f7a47.png)
+Colors have assigned meanings and are used consistently throughout Vivid to set expectations of meaning for users. Color is used sparingly and intentionally to reinforce hierarchies and to create clear modes of communication.
 
 ---
 
 ## Connotation
-
-Colors have assigned meanings and are used consistently throughout Vivid to set expectations of meaning for users. Color is used sparingly and intentionally to reinforce hierarchies and to create clear modes of communication.
 
 - Black - Accent
 - Purple - CTA
@@ -251,6 +244,11 @@ A single component can be set with alternate colors.
 
 ### Class
 Add the class `vvd-theme-alternate` to the component.
+
+<vwc-note icon="info-solid" connotation="information" headline="Part">
+If the component has part, add `part='vvd-theme-alternate'`
+</vwc-note>
+
 ```html preview
 <style>
 .wrapper {
@@ -265,6 +263,3 @@ background-color: var(--vvd-color-neutral-950);
 <vwc-button label='filled' appearance='filled' class='vvd-theme-alternate'></vwc-button>
 </div>
 ```
-
-#### Part
-If the component has part, add `part='vvd-theme-alternate'`

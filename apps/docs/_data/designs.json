@@ -1,29 +1,28 @@
 [
-  {
-    "title": "foundations",
-    "markdown": "./docs/design/foundations.md",
-    "modules": []
-  },
-  {
-    "title": "color",
-    "markdown": "./docs/design/color.md",
-    "modules": [
-    ]
-  },
-  {
-    "title": "typography",
-    "markdown": "./docs/design/typography.md",
-    "modules": []
-  },
-  {
-    "title": "sizing",
-    "markdown": "./docs/design/sizing.md",
-    "modules": []
-  },
-	{
-		"title": "customization",
-		"markdown": "./docs/design/customization.md",
-		"status": "underlying",
-		"modules": []
-	}
+    {
+        "title": "foundations",
+        "markdown": "./docs/design/foundations.md",
+        "modules": []
+    },
+    {
+        "title": "color",
+        "markdown": "./docs/design/color.md",
+        "modules": []
+    },
+    {
+        "title": "typography",
+        "markdown": "./docs/design/typography.md",
+        "modules": []
+    },
+    {
+        "title": "sizing",
+        "markdown": "./docs/design/sizing.md",
+        "modules": []
+    },
+    {
+        "title": "customization",
+        "markdown": "./docs/design/customization.md",
+        "status": "underlying",
+        "modules": []
+    }
 ]

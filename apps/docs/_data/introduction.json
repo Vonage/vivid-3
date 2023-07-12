@@ -1,8 +1,7 @@
 [
 	{
 		"title": "quick-start",
-		"markdown": "./libs/components/README.md",
-		"modules": []
+		"markdown": "./libs/components/README.md"
 	},
 	{
 		"title": "advanced",
