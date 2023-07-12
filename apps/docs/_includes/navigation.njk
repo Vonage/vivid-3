@@ -5,7 +5,7 @@
     <vwc-nav class="side-nav">
         <script>
             {{ componentsFilter | safe }}</script>
-        <vwc-nav-disclosure label="Getting Started" open>
+        <vwc-nav-disclosure label="Getting Started" {% if page.url.includes('/getting-started/') %} open {% endif %}>
             {% for item in introduction %}
                 <vwc-nav-item href="{{ ('/getting-started/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}" {% if ('/getting-started/' + item.title + '/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
             {% endfor %}
