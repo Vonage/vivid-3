@@ -102,7 +102,7 @@ describe('vwc-data-grid', () => {
 			expect(DataGrid.generateColumns(rowData)).toEqual(expectedColumnDef);
 		});
 
-		it('should omit enumarable properties from columnDefs', function () {
+		it('should omit non-enumerable properties from columnDefs', function () {
 			const rowData = {
 				id: '1',
 				name: 'Person 1',
