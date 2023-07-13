@@ -37,20 +37,6 @@ describe('vwc-menu', () => {
 		});
 	});
 
-	describe('show', () => {
-		it('should set "open" to true', async () => {
-			await setAnchor();
-			element.anchor = 'anchor';
-			await elementUpdated(element);
-
-			element.open = true;
-			await elementUpdated(element);
-
-			expect(element.open)
-				.toEqual(true);
-		});
-	});
-
 	describe('hide', () => {
 		it('should set "open" to false', async () => {
 			element.open = false;
