@@ -109,7 +109,7 @@ describe('vwc-data-grid', () => {
 				age: 20,
 				'address.city': 'City 1',
 			};
-			Object.defineProperty(rowData, 'enumarable',{
+			Object.defineProperty(rowData, 'nonEnumerable',{
 				value : '80,000$',
 				enumerable: false
 			});
