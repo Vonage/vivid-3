@@ -214,10 +214,6 @@ describe('vwc-menu', () => {
 		});
 	});
 
-	describe('events', () => {
-
-	});
-
 	describe('aria-hasspopup', () => {
 		it('should set and remove the aria-haspopup attribute on its anchor when it changes', async () => {
 			await setAnchor();
