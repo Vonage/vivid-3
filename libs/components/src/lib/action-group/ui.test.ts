@@ -7,7 +7,7 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['action-group', 'button', 'text-field', 'layout', 'popup', 'divider'];
+const components = ['action-group', 'button', 'text-field', 'layout', 'divider'];
 
 function runActionGroupTest() {
 	return async ({page}: { page: Page }) => {

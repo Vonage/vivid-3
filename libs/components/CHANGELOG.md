@@ -4,6 +4,13 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.24.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.23.0...vivid-v3.24.0) (2023-07-13)
+
+
+### Features
+
+* **data-grid:** enable generateHeader for manually added rows (VIV-1205) ([#1262](https://github.com/Vonage/vivid-3/issues/1262)) ([01a13df](https://github.com/Vonage/vivid-3/commit/01a13df4a6b66a98eced316b703ae176641daea2))
+
 ## [3.23.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.22.1...vivid-v3.23.0) (2023-07-13)
 
 
