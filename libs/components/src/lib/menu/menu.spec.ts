@@ -37,16 +37,6 @@ describe('vwc-menu', () => {
 		});
 	});
 
-	describe('hide', () => {
-		it('should set "open" to false', async () => {
-			element.open = false;
-			await elementUpdated(element);
-
-			expect(element.open)
-				.toEqual(false);
-		});
-	});
-
 	describe('auto-dismiss', () => {
 		it('should set "open" to false when clicked outside', async () => {
 			element.open = true;
