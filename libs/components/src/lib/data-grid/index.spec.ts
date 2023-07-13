@@ -48,7 +48,51 @@ describe('data grid integration tests', () => {
 			await elementUpdated(element);
 			expect(element.querySelectorAll('vwc-data-grid-cell').length).toBe(9);
 		});
+
+		describe('manual rendering', function () {
+			beforeEach(async function () {
+				element = (await fixture(
+					`<${COMPONENT_TAG}>
+											<${COMPONENT_TAG}-row role="row" class="header" row-type="header">
+											<${COMPONENT_TAG}-cell cell-type="columnheader" role="columnheader">
+											data1
+											</${COMPONENT_TAG}-cell>
+											<${COMPONENT_TAG}-cell cell-type="columnheader">
+											data2
+											</${COMPONENT_TAG}-cell>
+											</${COMPONENT_TAG}-row>
+											<${COMPONENT_TAG}-row aria-selected="true">
+											<${COMPONENT_TAG}-cell>Cell 1</${COMPONENT_TAG}-cell>
+											<${COMPONENT_TAG}-cell>Cell 2</${COMPONENT_TAG}-cell>
+											</${COMPONENT_TAG}-row>
+											<${COMPONENT_TAG}-row aria-selected="false">
+											<${COMPONENT_TAG}-cell>Cell 1</${COMPONENT_TAG}-cell>
+											<${COMPONENT_TAG}-cell>Cell 2</${COMPONENT_TAG}-cell>
+											</${COMPONENT_TAG}-row>
+										</${COMPONENT_TAG}>`
+				)) as DataGrid;
+			});
+			it('should set row-type sticky-header on header row when generateHeader is sticky', async function () {
+				element.generateHeader = 'sticky';
+				await elementUpdated(element);
+				expect(element.rowElements[0].getAttribute('row-type')).toBe('sticky-header');
+			});
+
+			it('should set row-type header on header row when generateHeader is default', async function () {
+				element.generateHeader = 'default';
+				await elementUpdated(element);
+				expect(element.rowElements[0].getAttribute('row-type')).toBe('header');
+			});
+
+			it('should set row-type header on none row when generateHeader is none', async function () {
+				element.generateHeader = 'none';
+				await elementUpdated(element);
+				expect(element.rowElements[0].getAttribute('row-type')).toBe('hidden-header');
+			});
+		});
 	});
+
+
 
 	describe('events', function () {
 		it('should fire cell-focused event', async function () {

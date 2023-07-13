@@ -21,6 +21,7 @@ export const DataGridSelectionMode = {
 export type ValueOf<T> = T[keyof T];
 
 export type DataGridSelectionMode = ValueOf<typeof DataGridSelectionMode>;
+
 /**
  * Base class for data-grid
  *
