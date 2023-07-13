@@ -1,29 +1,28 @@
 [
-  {
-    "title": "color-palette",
-    "markdown": "./docs/design/color-palette.md",
-    "modules": [
-    ]
-  },
-  {
-    "title": "design-tokens",
-    "markdown": "./docs/design/design-tokens.md",
-    "modules": []
-  },
-	{
-		"title": "icons-gallery",
-		"markdown": "./docs/design/icons-gallery.md",
-		"modules": []
-	},
-  {
-    "title": "foundations",
-    "markdown": "./docs/design/foundations.md",
-    "modules": []
-  },
-	{
-		"title": "customization",
-		"markdown": "./docs/design/customization.md",
-		"status": "underlying",
-		"modules": []
-	}
+    {
+        "title": "guidelines",
+        "markdown": "./docs/design/guidelines.md",
+        "modules": []
+    },
+    {
+        "title": "color",
+        "markdown": "./docs/design/color.md",
+        "modules": []
+    },
+    {
+        "title": "typography",
+        "markdown": "./docs/design/typography.md",
+        "modules": []
+    },
+    {
+        "title": "sizing",
+        "markdown": "./docs/design/sizing.md",
+        "modules": []
+    },
+    {
+        "title": "customization",
+        "markdown": "./docs/design/customization.md",
+        "status": "underlying",
+        "modules": []
+    }
 ]

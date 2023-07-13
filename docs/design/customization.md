@@ -1,11 +1,17 @@
 # Customization
 
+---
+
 Colors can be overridden by setting CSS variables.  
 Each component has a set of tokens that are needed for full customization of the component and its states (hover, selected, active etc.).
+
+---
 
 ## CSS Variables
 The exposed CSS variables follow this structure:
 ![variables schema](/assets/images/customization-variables.png)
+
+---
 
 ## Colors
 Vivid is using a naming scale for all connotations that are in use in the components.
@@ -54,10 +60,14 @@ Vivid is using a naming scale for all connotations that are in use in the compon
 		<span><code>primary-text</code></span>
 </vwc-layout>
 
+---
+
 ## Components
+
 Below you can find the list of components with their exposed CSS variables for their respective connotations.
 Click on "Edit code" to be able to modify the variables. 
 
+---
 ### Accordion Item
 
 ```html variables-preview[accordion-item]
