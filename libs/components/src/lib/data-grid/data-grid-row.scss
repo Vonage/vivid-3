@@ -35,5 +35,9 @@
 		top: 0;
 		background: var(#{variables.$data-grid-row-background}, var(#{constants.$vvd-color-canvas}));
 	}
+
+	:host([row-type="hidden-header"]) & {
+		display: none;
+	}
 }
 
