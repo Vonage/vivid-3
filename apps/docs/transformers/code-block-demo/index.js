@@ -3,6 +3,7 @@ const createCodeExample = require('./createCodeExample')
 const jsonData = [
 	...require('../../_data/components.json'),
 	...require('../../_data/designs.json'),
+	...require('../../_data/icons.json'),
 	...require('../../_data/introduction.json')
 ];
 
