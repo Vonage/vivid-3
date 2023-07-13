@@ -139,7 +139,9 @@ Note: This is a simplified example illustrating a styled radio group and is not 
 </vwc-action-group>
 ```
 
-### More Actions
+// TODO: Update the example when will be a dropdown component / the popup will not be underlying
+
+<!-- ### More Actions
 
 ```html preview center
 <vwc-button id="anchor" icon="more-horizontal-solid" aria-label="open actions menu"></vwc-button>
@@ -160,7 +162,7 @@ Note: This is a simplified example illustrating a styled radio group and is not 
 <script>
   anchor.addEventListener('click', () => popup.open = !popup.open);
 </script>
-```
+``` -->
 
 ## Accessibility
 
