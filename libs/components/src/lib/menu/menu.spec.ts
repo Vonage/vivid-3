@@ -87,17 +87,17 @@ describe('vwc-menu', () => {
 		});
 	});
 
-	describe('submenu', () => {
-		it('should not be assigned to an explicit slot', async () => {
-			expect(element.slot).toBeFalsy();
+	describe('slot', () => {
+		it('should be empty by default', async () => {
+			expect(element.slot).toBe("");
 		});
 
-		it('should be assigned to a custom slot', async () => {
+		it('should set the slot name on host if no menuitem parent', async () => {
 			element.slot = 'custom';
-			expect(element.slot).toEqual('custom');
+			expect(element.getAttribute('slot')).toEqual('custom');
 		});
 
-		it('should be assigned to submenu slot', async () => {
+		it('should set slot to submenu if parent is menuitem', async () => {
 			const div = document.createElement('div');
 			div.setAttribute('role', 'menuitem');
 
