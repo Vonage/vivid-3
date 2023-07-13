@@ -4,6 +4,21 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.23.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.22.1...vivid-v3.23.0) (2023-07-13)
+
+
+### Features
+
+* **dialog:** add action-items slot (VIV-1141) ([#1236](https://github.com/Vonage/vivid-3/issues/1236)) ([78797be](https://github.com/Vonage/vivid-3/commit/78797be849dc4cb811f8dbfb05753db067957a6c))
+* **icon:** update icons set to 4.2.2 (VIV-1178) ([#1258](https://github.com/Vonage/vivid-3/issues/1258)) ([44816e4](https://github.com/Vonage/vivid-3/commit/44816e45c7935a65ecc40a27c16f14bfba99b397))
+
+
+### Bug Fixes
+
+* **docs:** refine docs (VIV-1197) ([#1260](https://github.com/Vonage/vivid-3/issues/1260)) ([6d97ddb](https://github.com/Vonage/vivid-3/commit/6d97ddb17ea84957c084cafa7629dbf83e72661f))
+* **popup:** add namespace to open and close events (VIV-1198) ([#1259](https://github.com/Vonage/vivid-3/issues/1259)) ([7d4ffe4](https://github.com/Vonage/vivid-3/commit/7d4ffe4f8f1c03ba064f576df299becdc52f5e86))
+* **text-area:** fix base width (VIV-1061) ([#1249](https://github.com/Vonage/vivid-3/issues/1249)) ([bc8f893](https://github.com/Vonage/vivid-3/commit/bc8f8937d6e23d74d25a8a2ad7d7b1078bc6e57f))
+
 ## [3.22.1](https://github.com/Vonage/vivid-3/compare/vivid-v3.22.0...vivid-v3.22.1) (2023-07-10)
 
 
