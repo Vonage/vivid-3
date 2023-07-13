@@ -16,6 +16,7 @@ export type { IconPlacement } from './dialog';
  *
  * @internal
  */
+/* istanbul ignore next */
 export const dialogDefinition = Dialog.compose<FoundationElementDefinition>({
 	baseName: 'dialog',
 	template: template as any,
