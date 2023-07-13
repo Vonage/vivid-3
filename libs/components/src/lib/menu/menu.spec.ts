@@ -237,17 +237,23 @@ describe('vwc-menu', () => {
 		});
 	});
 
-	it('should set and remove the aria-haspopup attribute on its anchor when it changes', async () => {
-		await setAnchor();
+	describe('aria-hasspopup', () => {
+		it('should set and remove the aria-haspopup attribute on its anchor when it changes', async () => {
+			await setAnchor();
 
-		element.anchor = 'anchor';
-		await elementUpdated(element);
-		const button = document.getElementById(element.anchor);
-		expect(button?.getAttribute('aria-haspopup')).toBe('menu');
+			element.anchor = 'anchor';
+			await elementUpdated(element);
+			const button = document.getElementById(element.anchor);
+			const buttonHasPopupWhenSetAsAnchor = button?.getAttribute('aria-haspopup');
 
-		element.anchor = '';
-		await elementUpdated(element);
-		expect(button?.getAttribute('aria-haspopup')).toBeUndefined;
+
+			element.anchor = '';
+			await elementUpdated(element);
+			const buttonHasPopupWhenRemovedAsAnchor = button?.getAttribute('aria-haspopup');
+
+			expect(buttonHasPopupWhenSetAsAnchor).toBe('menu');
+			expect(buttonHasPopupWhenRemovedAsAnchor).toBeUndefined;
+		});
 	});
 
 	const arrowUpEvent = new KeyboardEvent('keydown', {
