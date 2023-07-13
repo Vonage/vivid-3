@@ -29,11 +29,20 @@ body {
 a {
   color: var(--vvd-color-cta-600);
 }
+a:visited {
+  color: var(--vvd-color-information-600);
+}
 a:hover {
   color: var(--vvd-color-cta-700);
 }
+a:hover:visited {
+  color: var(--vvd-color-information-700);
+}
 a:active {
   color: var(--vvd-color-cta-800);
+}
+a:active:visited {
+  color: var(--vvd-color-information-800);
 }
 
 img {
