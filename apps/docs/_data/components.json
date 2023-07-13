@@ -432,8 +432,7 @@
 			"/assets/modules/components/tag/index.js",
 			"/assets/modules/components/tag-group/index.js"
 		]
-	}
-	,
+	},
 	{
 		"title": "tag-group",
 		"status": "alpha",
