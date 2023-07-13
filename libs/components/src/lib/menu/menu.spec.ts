@@ -85,27 +85,19 @@ describe('vwc-menu', () => {
 
 			expect(spy1).toBe(spy2);
 		});
-	});
 
-	describe('slot', () => {
-		it('should be empty by default', async () => {
-			expect(element.slot).toBe('');
-		});
+		it('should leave "open" true when clicked outside and auto-dismiss false', async () => {
+			element.open = true;
+			element.autoDismiss = false;
 
-		it('should set the slot name on host if no menuitem parent', async () => {
-			element.slot = 'custom';
-			expect(element.getAttribute('slot')).toEqual('custom');
-		});
+			await elementUpdated(element);
 
-		it('should set slot to submenu if parent is menuitem', async () => {
-			const div = document.createElement('div');
-			div.setAttribute('role', 'menuitem');
+			document.body.dispatchEvent(new MouseEvent('click', {bubbles: true}));
 
-			element.parentNode?.appendChild(div);
+			await elementUpdated(element);
 
-			div.appendChild(element);
-
-			expect(element.slot).toEqual('submenu');
+			expect(element.open)
+				.toEqual(true);
 		});
 	});
 
@@ -243,9 +235,6 @@ describe('vwc-menu', () => {
 		bubbles: true,
 	} as KeyboardEventInit);
 
-	/**
-	 *
-	 */
 	async function setAnchor() {
 		const anchorEl = await fixture('<vwc-button id="anchor"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE) as Button;
 		await elementUpdated(anchorEl);

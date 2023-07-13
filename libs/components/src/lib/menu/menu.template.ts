@@ -24,16 +24,17 @@ export const MenuTemplate: (
 ) => ElementViewTemplate = (context: ElementDefinitionContext) => {
 	const popupTag = context.tagFor(Popup);
 
+	function handlePopupEvents(x: Menu, state: boolean) {
+		x.open = state;
+	}
 	return html<Menu>`
-		<template
-			slot="${x => (x.slot || x.isNestedMenu() ? 'submenu' : void 0)}"
-		>
+		<template>
 			<${popupTag}
 				:placement=${(x) => x.placement}
 				:open=${(x) => x.open}
 				:anchor=${(x) => x.anchor}
-				@vwc-popup:open="${x => x.popupOpenChanged()}"
-				@vwc-popup:close="${x => x.popupOpenChanged()}"
+				@vwc-popup:open="${x => handlePopupEvents(x, true)}"
+				@vwc-popup:close="${x => handlePopupEvents(x, false)}"
 				${ref('_popup')}
 			>
 				<div
