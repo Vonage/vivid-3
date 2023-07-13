@@ -10,7 +10,7 @@
             {% endfor %}
         </vwc-nav-disclosure>
         <vwc-nav-disclosure label="Design Tokens" {% if page.url.includes('/designs/') %} open {% endif %}>
-            {% for item in designs %}
+            {% for item in designs | publicPageFilter %}
                 <vwc-nav-item href="{{ ('/designs/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}" {% if ('/designs/' + item.title + '/') == page.url %} aria-current="page" {% endif %}>
                     {% if (item.status) == "underlying" %}
                         <vwc-badge slot="meta" text="underlying" connotation="information" appearance="subtle" shape="pill"></vwc-badge>
