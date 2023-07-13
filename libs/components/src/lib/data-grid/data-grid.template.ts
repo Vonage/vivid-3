@@ -3,6 +3,7 @@ import { children, elements, html } from '@microsoft/fast-element';
 import { DataGridRow } from './data-grid-row';
 import type { DataGrid } from './data-grid';
 import {DataGridSelectionMode} from './data-grid';
+import {DataGridRowTypes, GenerateHeaderOptions} from './data-grid.options';
 
 function createRowItemTemplate(context: ElementDefinitionContext)  {
 	const rowTag = context.tagFor(DataGridRow);
@@ -20,6 +21,16 @@ function getMultiSelectAriaState(x: DataGrid) {
 		x.selectionMode.includes('multi') ? 'true' : 'false';
 }
 
+function setHeaderRow(x: DataGrid) {
+	if (x.columnDefinitions === null) {
+		const headerRow = x.querySelector('[cell-type="columnheader"]')?.parentElement;
+		if (headerRow) {
+			const rowType = x.generateHeader === GenerateHeaderOptions.sticky ? DataGridRowTypes.stickyHeader :
+				x.generateHeader === GenerateHeaderOptions.default ? DataGridRowTypes.header : 'hidden-header';
+			headerRow.setAttribute('row-type', rowType);
+		}
+	}
+}
 /**
  * Generates a template for the DataGrid component using
  * the provided prefix.
@@ -42,6 +53,7 @@ export const DataGridTemplate = (context: ElementDefinitionContext) => {
 	})}
         >
 					<div class="base">
+						${setHeaderRow}
             <slot></slot>
 					</div>
         </template>
