@@ -1,10 +1,13 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import {attr, observable} from '@microsoft/fast-element';
 
+// eslint-disable-next-line compat/compat
+export const isDialogSupported = Boolean(HTMLDialogElement && HTMLDialogElement.prototype.showModal);
+
 // Make sure we support Safari 14
 let dialogPolyfill: any;
 (async () => {
-	if (!HTMLDialogElement || !HTMLDialogElement.prototype.showModal) {
+	if (!isDialogSupported) {
 		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore
 		delete window.HTMLDialogElement;
@@ -136,9 +139,9 @@ export class Dialog extends FoundationElement {
 	}
 
 	showModal() {
+		this.#handleModal(true);
 		this.#dialog.showModal();
 		this.open = true;
-		this.#handleModal(true);
 	}
 
 	override connectedCallback() {
