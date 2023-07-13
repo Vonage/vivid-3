@@ -85,6 +85,42 @@ describe('vwc-data-grid', () => {
 		});
 	});
 
+	describe('generateColumns', () => {
+		it('should generate column definitions according to rowData', async () => {
+			const rowData = {
+				id: '1',
+				name: 'Person 1',
+				age: 20,
+				'address.city': 'City 1',
+			};
+
+			const expectedColumnDef = [
+				{'columnDataKey': 'id', 'gridColumn': '0'}, {'columnDataKey': 'name', 'gridColumn': '1'},
+				{'columnDataKey': 'age', 'gridColumn': '2'}, {'columnDataKey': 'address.city', 'gridColumn': '3'}
+			];
+
+			expect(DataGrid.generateColumns(rowData)).toEqual(expectedColumnDef);
+		});
+
+		it('should omit enumarable properties from columnDefs', function () {
+			const rowData = {
+				id: '1',
+				name: 'Person 1',
+				age: 20,
+				'address.city': 'City 1',
+			};
+			Object.defineProperty(rowData, 'enumarable',{
+				value : '80,000$',
+				enumerable: false
+			});
+			const expectedColumnDef = [
+				{'columnDataKey': 'id', 'gridColumn': '0'}, {'columnDataKey': 'name', 'gridColumn': '1'},
+				{'columnDataKey': 'age', 'gridColumn': '2'}, {'columnDataKey': 'address.city', 'gridColumn': '3'}
+			];
+
+			expect(DataGrid.generateColumns(rowData)).toEqual(expectedColumnDef);
+		});
+	});
 	describe('generateHeader', () => {
 		const rowElementTag = 'vwc-data-grid-row';
 		let generatedHeader: any;
