@@ -137,5 +137,14 @@ export class DataGrid extends FoundationDataGrid {
 				.forEach(row => !row.hasAttribute('aria-selected') && row.setAttribute('aria-selected', 'false'));
 		}
 	};
+
+	static override generateColumns (rowData: any)  {
+		return Object.keys(rowData).map((property, index) => {
+			return {
+				columnDataKey: property,
+				gridColumn: `${index}`,
+			};
+		});
+	}
 }
 
