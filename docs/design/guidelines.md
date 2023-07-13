@@ -1,5 +1,5 @@
 ﻿
-# Foundations
+# Guidelines
 
 ---
 
