@@ -142,7 +142,7 @@ Add the `disabled` attribute to disable the text field.
 - Type: `boolean`
 - Default: `false`
 
-```html preview blocks
+```html preview 
 <vwc-text-field disabled icon="chat-line" value="disabled" label='fieldset' appearance='fieldset'></vwc-text-field>
 ```
 
@@ -153,9 +153,20 @@ Add the `readonly` attribute to restrict user from changing the text field's val
 - Type: `boolean`
 - Default: `false`
 
-```html preview blocks
+```html preview 
 <vwc-text-field readonly icon="chat-line" value="readonly text" label='fieldset' appearance='fieldset'></vwc-text-field>
 ```
+
+## Slots
+### Action-items
+Use 
+
+```html preview 
+<vwc-text-field icon="search" placeholder="search" label='search' appearance='fieldset'>
+<vwc-button slot="action-items" size='condensed' icon="close-solid"></vwc-button>
+</vwc-text-field>
+```
+
 ## Use Cases
 
 ### Validation
@@ -164,7 +175,7 @@ You can validate the text field like any other native `input`.
 Here's an example using `pattern`; its required pattern is `123` but we set its value to `5`, which is not of that pattern.
 In addition, we programatically *"dirtied"* the field and then called `validate` because the change was not done by a user.
 
-```html preview
+```html preview blocks
 <vwc-text-field pattern="123"></vwc-text-field>
 
 <script>
@@ -181,7 +192,7 @@ In addition, we programatically *"dirtied"* the field and then called `validate`
 
 ### In Form
 
-```html preview
+```html preview blocks
 <style>
 vwc-button {
   justify-self: flex-start;

@@ -73,7 +73,12 @@ $low-ink-color: --_low-ink-color;
 	display: flex;
 	align-items: center;
 	grid-column: 1 / 4;
-	transition: color .2s;
+	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+	background-color: var(#{appearance.get-appearance-token(fill)});
+	font: var(#{constants.$vvd-typography-base});
+	padding-block: 0;
+
+	transition: color .2s, box-shadow .2s, background-color .2s;
 
 	.base > & {
 		block-size: #{size.$vvd-size-normal};
@@ -89,22 +94,30 @@ $low-ink-color: --_low-ink-color;
 	}
 }
 
+.wrapper {
+	block-size: 100%;
+	inline-size: 100%;
+	border-radius: inherit;
+	position: relative;
+
+}
+
 .control {
 	// ! note: control is required to stretch fully so that
 	// ! autofill indication applies on all fieldset area
 	width: 100%;
 	border: 0 none;
 	appearance: none; /* for box-shadow visibility on IOS */
-	background-color: var(#{appearance.get-appearance-token(fill)});
+	background-color: transparent;
 	block-size: 100%;
 	border-radius: inherit;
-	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-	color: var(#{appearance.get-appearance-token(text)});
-	font: var(#{constants.$vvd-typography-base});
 	padding-block: 0;
 	padding-inline-end: var(#{variables.$text-field-gutter});
 	padding-inline-start: var(#{variables.$text-field-gutter});
-	transition: box-shadow .2s, background-color .2s;
+	color: inherit;
+	font: inherit;
+
+
 
 	&:disabled {
 		cursor: not-allowed;
@@ -134,7 +147,7 @@ $low-ink-color: --_low-ink-color;
 	inset-inline-start: var(#{variables.$text-field-gutter});
 	line-height: 1;
 
-	+.control {
+	+.wrapper .control {
 		padding-inline-start: calc(var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter}) * 2);
 	}
 }
@@ -144,7 +157,7 @@ $low-ink-color: --_low-ink-color;
 
 	pointer-events: none;
 
-	.fieldset:not(:focus-visible, :focus-within) > & {
+	.wrapper:not(:focus-visible, :focus-within) > & {
 		display: none;
 	}
 }

@@ -70,7 +70,8 @@ export const TextfieldTemplate: (
     ${when(x => x.label, renderLabel())}
     <div class="fieldset">
       ${x => affixIconTemplate(x.icon)}
-      <input class="control"
+			<div class="wrapper">
+				<input class="control"
             id="control"
             @input="${x => x.handleTextInput()}"
             @change="${x => x.handleChange()}"
@@ -110,7 +111,9 @@ export const TextfieldTemplate: (
             aria-roledescription="${x => x.ariaRoledescription}"
             ${ref('control')}
       />
-      ${() => focusTemplate}
+      	${() => focusTemplate}
+			</div>
+      <slot name="action-items"></slot>
     </div>
 	  ${when(x => !x.successText && !x.errorValidationMessage && x.helperText?.length, getFeedbackTemplate('helper', context))}
 	  ${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplate('error', context))}
