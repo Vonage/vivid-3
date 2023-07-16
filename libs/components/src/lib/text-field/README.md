@@ -170,7 +170,6 @@ vwc-tooltip {
   --tooltip-inline-size: 110px;
 }
 </style>
-<form>
 <vwc-text-field icon="search" placeholder="plain text-field no slot" label='search' appearance='fieldset' class="text-field">
 </vwc-text-field>
 <vwc-text-field icon="search" placeholder="search" label='search' appearance='fieldset' class="text-field">
@@ -185,7 +184,6 @@ vwc-tooltip {
 		<vwc-tooltip anchor="button" text="fill this field" placement="top-end"></vwc-tooltip>
 	</div>
 </vwc-text-field>
-</form>
 ```
 
 ## Use Cases
