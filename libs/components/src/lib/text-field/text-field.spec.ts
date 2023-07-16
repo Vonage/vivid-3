@@ -629,4 +629,28 @@ describe('vwc-text-field', () => {
 			expect(element.validity.valid).toBeFalsy();
 		});
 	});
+
+	describe('slot', function () {
+		it('should have a slot name action-items', async function () {
+			const slotElement = element.shadowRoot?.
+				querySelector('.base .fieldset slot[name="action-items"]');
+			expect(slotElement).toBeDefined();
+		});
+		it('should remove hide class if action-items is slotted', async function () {
+			const slottedElement = document.createElement('div');
+			slottedElement.slot = 'action-items';
+			slottedElement.id = 'action-items';
+			await elementUpdated(element);
+
+			const divWrapper = element.shadowRoot?.
+				querySelector('.fieldset')?.classList.contains('hide');
+
+			expect(divWrapper).toEqual(false);
+		});
+	});
+
+
+
+
+
 });
