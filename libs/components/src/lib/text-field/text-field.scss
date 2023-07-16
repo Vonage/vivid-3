@@ -158,7 +158,11 @@ $low-ink-color: --_low-ink-color;
 
 	pointer-events: none;
 
-	.wrapper:not(:focus-visible, :focus-within) > & {
+	// two properties are needed because number-field and combobox inherits the style.
+	// only text-field has wrapper.
+
+	.wrapper:not(:focus-visible, :focus-within) > &,
+	.fieldset:not(:focus-visible, :focus-within) > & {
 		display: none;
 	}
 }

@@ -163,20 +163,20 @@ Use
 
 ```html preview blocks
 <style>
-vwc-text-field {
-  inline-size: 300px;
+.text-field {
+  inline-size: 250px;
 }
 vwc-tooltip {
   --tooltip-inline-size: 110px;
 }
 </style>
-<vwc-text-field icon="search" placeholder="search" label='search' appearance='fieldset'>
+<vwc-text-field icon="search" placeholder="search" label='search' appearance='fieldset' class="text-field">
 	<vwc-button slot="action-items" size='condensed' icon="close-solid" arial-label='clear field'></vwc-button>
 </vwc-text-field>
-<vwc-text-field value="******" label='password' appearance='fieldset'>
+<vwc-text-field value="******" label='password' appearance='fieldset' class="text-field">
 	<vwc-button slot="action-items" size='condensed' icon="eye-line" arial-label='show password'></vwc-button>
 </vwc-text-field>
-<vwc-text-field icon="search" placeholder="search" label='search' appearance='fieldset'>
+<vwc-text-field icon="search" placeholder="search" label='search' appearance='fieldset' class="text-field">
 	<div slot="action-items">
 		<vwc-button id="button" size='condensed' icon="curly-brackets-solid" arial-label='fill this field'></vwc-button>
 		<vwc-tooltip anchor="button" text="fill this field" placement="top-end"></vwc-tooltip>
