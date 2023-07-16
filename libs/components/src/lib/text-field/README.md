@@ -161,9 +161,31 @@ Add the `readonly` attribute to restrict user from changing the text field's val
 ### Action-items
 Use 
 
+```html preview blocks
+<style>
+vwc-text-field {
+  inline-size: 300px;
+}
+vwc-tooltip {
+  --tooltip-inline-size: 110px;
+}
+</style>
+<vwc-text-field icon="search" placeholder="search" label='search' appearance='fieldset'>
+	<vwc-button slot="action-items" size='condensed' icon="close-solid" arial-label='clear field'></vwc-button>
+</vwc-text-field>
+<vwc-text-field value="******" label='password' appearance='fieldset'>
+	<vwc-button slot="action-items" size='condensed' icon="eye-line" arial-label='show password'></vwc-button>
+</vwc-text-field>
+<vwc-text-field icon="search" placeholder="search" label='search' appearance='fieldset'>
+	<div slot="action-items">
+		<vwc-button id="button" size='condensed' icon="curly-brackets-solid" arial-label='fill this field'></vwc-button>
+		<vwc-tooltip anchor="button" text="fill this field" placement="top-end"></vwc-tooltip>
+	</div>
+</vwc-text-field>
+```
+
 ```html preview 
 <vwc-text-field icon="search" placeholder="search" label='search' appearance='fieldset'>
-<vwc-button slot="action-items" size='condensed' icon="close-solid"></vwc-button>
 </vwc-text-field>
 ```
 
@@ -175,7 +197,7 @@ You can validate the text field like any other native `input`.
 Here's an example using `pattern`; its required pattern is `123` but we set its value to `5`, which is not of that pattern.
 In addition, we programatically *"dirtied"* the field and then called `validate` because the change was not done by a user.
 
-```html preview blocks
+```html preview
 <vwc-text-field pattern="123"></vwc-text-field>
 
 <script>

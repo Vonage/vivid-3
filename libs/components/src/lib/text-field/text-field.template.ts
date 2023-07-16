@@ -1,5 +1,5 @@
 import type {ViewTemplate} from '@microsoft/fast-element';
-import {html, ref, when} from '@microsoft/fast-element';
+import {html, ref, slotted, when} from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
@@ -19,7 +19,8 @@ const getStateClasses = ({
 	appearance,
 	shape,
 	label,
-	successText
+	successText,
+	actionItemsSlottedContent
 }: TextField) => classNames(
 	['error connotation-alert', Boolean(errorValidationMessage)],
 	['disabled', disabled],
@@ -29,7 +30,8 @@ const getStateClasses = ({
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	['no-label', !label],
-	['success connotation-success', Boolean(successText)]
+	['success connotation-success', Boolean(successText)],
+	['hide-footer', !(actionItemsSlottedContent?.length)]
 );
 
 /**
@@ -113,7 +115,10 @@ export const TextfieldTemplate: (
       />
       	${() => focusTemplate}
 			</div>
-      <slot name="action-items"></slot>
+			<div class="action-items-wrapper ${(x => x.actionItemsSlottedContent?.length ? '' : 'hide')}">
+				<slot name="action-items"  ${slotted('actionItemsSlottedContent')}></slot>
+			</div>
+
     </div>
 	  ${when(x => !x.successText && !x.errorValidationMessage && x.helperText?.length, getFeedbackTemplate('helper', context))}
 	  ${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplate('error', context))}
