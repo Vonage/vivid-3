@@ -312,6 +312,8 @@ The element tag for header row cells. If not set, the default tag `vwc-data-grid
 
 ### ColumnDefinition
 
+<vwc-elevation>
+
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `columndDataKey` | `string` | The property from which the data of the column is taken from |
@@ -321,6 +323,8 @@ The element tag for header row cells. If not set, the default tag `vwc-data-grid
 | `cellTemplate` | `ViewTemplate` | A custom template for a cell |
 | `cellFocusTargetCallback` | `(cell) => HTMLElement` | Callback function that is called when cell is focused |
 | `isRowHeader` | `boolean` | Whether this column is the row header |
+
+</vwc-elevation>
 
 ### Row
 

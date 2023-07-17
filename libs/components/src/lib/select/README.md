@@ -366,26 +366,15 @@ You can specify width on the `vwc-select` if required (the list-box will not be 
 
 ## Properties
 
-### options
+<vwc-elevation>
 
-A read-only list of options.
+| Name              | Type       | Default     | Description                                                      |
+| ----------------- | ---------- | ----------- | ---------------------------------------------------------------- |
+| `options`         | `Option[]` | `[]`        | A read-only list of options.                                     |
+| `selectedOptions` | `Option[]` | `[]`        | A read-only collection of the selected options.                  |
+| `selectedIndex`   | `number`   | `undefined` | The index of the selected option or -1 if no option is selected. |
 
-- Type: `Option[]`
-- Default: `[]`
-
-### selectedOptions
-
-A read-only collection of the selected options.
-
-- Type: `Option[]`
-- Default: `[]`
-
-### selectedIndex
-
-The index of the selected option or -1 if no option is selected.
-
-- Type: `number`
-- Default: `undefined`
+</vwc-elevation>
 
 ## Caveat
 

@@ -146,8 +146,7 @@ article h4,
 article h5,
 article h6,
 article p,
-article ul,
-article table {
+article ul {
   max-inline-size: 80ch;
 }
 
@@ -351,4 +350,23 @@ article.article > h1 {
 }
 .side-nav {
   position: relative;
+}
+
+table {
+  padding: 8px;
+  border-radius: 6px;
+  border-collapse: collapse;
+
+  thead > tr {
+    border-bottom: 1px solid var(--vvd-color-neutral-900);
+  }
+
+  tbody > tr {
+    border-bottom: 1px solid var(--vvd-color-neutral-100);
+  }
+
+  td,
+  th {
+    padding: 8px 16px;
+  }
 }
