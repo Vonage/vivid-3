@@ -12,7 +12,7 @@ import {ErrorText, errorText} from '../../shared/patterns';
 import type { Appearance, Shape } from '../enums';
 
 
-export type SelectAppearance = Extract<Appearance, Appearance.Outlined | Appearance.Ghost>;
+export type SelectAppearance = Extract<Appearance, Appearance.Fieldset | Appearance.Ghost>;
 export type SelectShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
