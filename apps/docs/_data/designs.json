@@ -17,6 +17,7 @@
     {
         "title": "sizing",
         "markdown": "./docs/design/sizing.md",
+				"status": "alpha",
         "modules": []
     },
     {
