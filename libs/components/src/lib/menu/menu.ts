@@ -65,10 +65,6 @@ export class Menu extends FastMenu {
 		newAnchorEl?.setAttribute('aria-haspopup', 'menu');
 	}
 
-	popupOpenChanged = () => {
-		this.open = (this._popup as Popup).open;
-	};
-
 	autoDismissChanged() {
 		if (this.autoDismiss) {
 			document.addEventListener('click', this.#dismissOnClickOutside);
