@@ -15,7 +15,7 @@
 	text-decoration: none;
 }
 
-::slotted([role="menuitem"]:focus) {
+::slotted(a[role="menuitem"]:focus) {
 	display: block;
 	border-radius: 6px;
 	box-shadow: inset 0 0 0 3px currentColor;

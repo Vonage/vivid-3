@@ -71,6 +71,7 @@ set `role` to change the role of the menu item
   <vwc-divider></vwc-divider>
   <vwc-menu-item role="menuitemradio" text="Radio 2.1"></vwc-menu-item>
   <vwc-menu-item role="menuitemradio" text="Radio 2.2"></vwc-menu-item>
+	<vwc-divider></vwc-divider>
 	<a role="menuitem" href="https://www.vonage.com" target="_blank" rel="noopener noreferrer">
   	<vwc-menu-item role="presentation" text="Go to Vonage"></vwc-menu-item>
 	</a>
