@@ -49,13 +49,13 @@ Note: to improve readability, **avoid long text and multiple lines** where possi
 
 set `role` to change the role of the menu item
 
-- Type: `'menuitem'` | `'menuitemcheckbox'` | `'menuitemradio'`
+- Type: `'menuitem'` | `'menuitemcheckbox'` | `'menuitemradio'` | `'presentation'`
 - Default: `'menuitem'`
 
 ```html preview
 <style>
   html { 
-    block-size: 360px; 
+    block-size: 400px; 
   }
 </style>
 
@@ -71,6 +71,10 @@ set `role` to change the role of the menu item
   <vwc-divider></vwc-divider>
   <vwc-menu-item role="menuitemradio" text="Radio 2.1"></vwc-menu-item>
   <vwc-menu-item role="menuitemradio" text="Radio 2.2"></vwc-menu-item>
+	<vwc-divider></vwc-divider>
+	<a role="menuitem" href="https://www.vonage.com" target="_blank" rel="noopener noreferrer">
+  	<vwc-menu-item role="presentation" text="Go to Vonage"></vwc-menu-item>
+	</a>
 </vwc-menu>
 ```
 
@@ -166,6 +170,10 @@ Fires a custom 'expanded-change' event when the expanded state changes
 
 Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `menuitemradio`, or `menuitem` is invoked
 
+### Click
+
+Fires a click event when its role is `presentation`
+
 ## CSS Variables
 Line clamp by default is set to one line.  
 
@@ -183,5 +191,24 @@ vwc-menu {
 <vwc-menu open>
  <vwc-menu-item text="primary text with long text and auto line clamp"
 	text-secondary="secondary text and auto line clamp"></vwc-menu-item>
+</vwc-menu>
+```
+
+## Use Cases
+
+### Anchored Menu Item
+
+To create a menu item that is anchored to a URL do the following:
+1. Set the `role` attribute to `presentation` on the `vwc-menu-item`.
+2. Wrap the `vwc-menu-item` in an anchor tag.
+3. Set the `role` attribute to `menuitem` on the anchor tag.
+
+If you are using a framework, just wrap the menu item in any routing component/directive as done with the anchor tag.
+
+```html preview
+<vwc-menu open>
+	<a role="menuitem" href="https://www.vonage.com" target="_blank" rel="noopener noreferrer">
+  	<vwc-menu-item role="presentation" text="Go to Vonage"></vwc-menu-item>
+	</a>
 </vwc-menu>
 ```

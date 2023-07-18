@@ -1,10 +1,10 @@
 import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
 import '.';
-import { FoundationElementRegistry, MenuItemRole } from '@microsoft/fast-foundation';
+import {FoundationElementRegistry} from '@microsoft/fast-foundation';
 import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import { fireEvent } from '@testing-library/dom';
 import { Icon } from '../icon/icon';
-import { MenuItem } from './menu-item';
+import {MenuItem, MenuItemRole} from './menu-item';
 import { menuItemDefinition } from './definition';
 
 
@@ -110,6 +110,26 @@ describe('vwc-menu-item', () => {
 
 			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
 			expect(icon.name).toEqual('radio-unchecked-line');
+		});
+
+		it('should enable default of click event if role is presentation', async function () {
+			const spy = jest.fn();
+			element.addEventListener('click', spy);
+			(element as any).role = MenuItemRole.presentation;
+			await elementUpdated(element);
+			element.click();
+			const event = spy.mock.calls[0][0];
+			expect(event?.defaultPrevented).toEqual(false);
+		});
+
+		it('should prevent default of click event if role is not presentation', async function () {
+			const spy = jest.fn();
+			element.addEventListener('click', spy);
+			(element as any).role = MenuItemRole.menuitem;
+			await elementUpdated(element);
+			element.click();
+			const event = spy.mock.calls[0][0];
+			expect(event?.defaultPrevented).toEqual(true);
 		});
 
 	});

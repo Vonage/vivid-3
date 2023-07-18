@@ -1,6 +1,8 @@
 import {attr, observable} from '@microsoft/fast-element';
-import { applyMixins, MenuItem as FastMenuItem } from '@microsoft/fast-foundation';
+import { applyMixins, MenuItem as FastMenuItem, MenuItemRole as FastMenuItemRole } from '@microsoft/fast-foundation';
 import { AffixIcon } from '../../shared/patterns/affix';
+
+export const MenuItemRole = {...FastMenuItemRole, 'presentation': 'presentation'} as const;
 
 /**
  * Base class for menu-item
