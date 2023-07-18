@@ -15,7 +15,7 @@ import type {
  * @public
  */
 export type ActionGroupAppearance = Extract<Appearance,
-Appearance.Filled | Appearance.Outlined | Appearance.Ghost>;
+Appearance.Fieldset | Appearance.Ghost>;
 
 /**
  * Types of button shape.
