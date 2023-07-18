@@ -1,6 +1,7 @@
 import { html } from '@microsoft/fast-element';
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
+import '../icon/index.ts';
 import { designSystem } from '../../shared/design-system';
 import { DataGridCell } from './data-grid-cell';
 import { DataGridCellTemplate } from './data-grid-cell.template';
@@ -13,6 +14,7 @@ const dataGridCell = DataGridCell.compose<FoundationElementDefinition>({
 designSystem.withPrefix('vwc').register(dataGridCell());
 
 const COMPONENT_TAG = 'vwc-data-grid-cell';
+const ICON_TAG = 'vwc-icon';
 
 describe('vwc-data-grid-cell', () => {
 	let element: DataGridCell;
@@ -254,5 +256,44 @@ describe('vwc-data-grid-cell', () => {
 			await elementUpdated(element);
 			expect(getBaseElement(element)?.classList.contains('selected')).toBeFalsy();
 		});
+	});
+
+	describe('aria-sort', () => {
+		it('should show two icons in the header when "none" is set', async function () {
+			element.cellType = 'columnheader';
+			element.setAttribute('aria-sort', 'none');
+			await elementUpdated(element);
+			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
+			expect(sortIcons?.length).toEqual(2);
+			expect(sortIcons?.[0].getAttribute('name')).toEqual('chevron-up-line');
+			expect(sortIcons?.[1].getAttribute('name')).toEqual('chevron-down-line');
+		});
+
+		it('should show only up arrow icon when aria-sort is ascending', async function () {
+			element.cellType = 'columnheader';
+			element.setAttribute('aria-sort', 'ascending');
+			await elementUpdated(element);
+			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
+			expect(sortIcons?.length).toEqual(1);
+			expect(sortIcons?.[0].getAttribute('name')).toEqual('chevron-up-line');
+		});
+
+		it('should show only down arrow icon when aria-sort is descending', async function () {
+			element.cellType = 'columnheader';
+			element.setAttribute('aria-sort', 'descending');
+			await elementUpdated(element);
+			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
+			expect(sortIcons?.length).toEqual(1);
+			expect(sortIcons?.[0].getAttribute('name')).toEqual('chevron-down-line');
+		});
+
+		it('should remove sorting icons when aria-sort is not set', async function () {
+			element.cellType = 'columnheader';
+			element.removeAttribute('aria-sort');
+			await elementUpdated(element);
+			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
+			expect(sortIcons?.length).toEqual(0);
+		});
+
 	});
 });
