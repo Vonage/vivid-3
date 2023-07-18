@@ -159,30 +159,16 @@ Add the `readonly` attribute to restrict user from changing the text field's val
 
 ## Slots
 ### Action-items
-Use 
+You can add action items elements using the `action-items` slot.
 
 ```html preview blocks
 <style>
 .text-field {
   inline-size: 250px;
 }
-vwc-tooltip {
-  --tooltip-inline-size: 110px;
-}
 </style>
-<vwc-text-field icon="search" placeholder="plain text-field no slot" label='search' appearance='fieldset' class="text-field">
-</vwc-text-field>
 <vwc-text-field icon="search" placeholder="search" label='search' appearance='fieldset' class="text-field">
-	<vwc-button slot="action-items" size='condensed' icon="close-solid" aria-label='clear field'></vwc-button>
-</vwc-text-field>
-<vwc-text-field placeholder="password" label='password' appearance='fieldset' class="text-field">
-	<vwc-button slot="action-items" size='condensed' icon="eye-line" aria-label='show password'></vwc-button>
-</vwc-text-field>
-<vwc-text-field icon="search" placeholder="search" label='search' appearance='fieldset' class="text-field">
-	<div slot="action-items">
-		<vwc-button id="button" size='condensed' icon="curly-brackets-solid" aria-label='fill this field'></vwc-button>
-		<vwc-tooltip anchor="button" text="fill this field" placement="top-end"></vwc-tooltip>
-	</div>
+	<vwc-button slot="action-items" size='condensed' icon="close-line" aria-label='clear field'></vwc-button>
 </vwc-text-field>
 ```
 
