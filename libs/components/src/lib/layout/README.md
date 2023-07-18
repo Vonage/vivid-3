@@ -203,9 +203,6 @@ Use the `gutters` attribute to set the initial preferred `margin`.
 
 Control the [grid-template-columns](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns) of the layout by setting `--layout-grid-template-columns`.
 
-- Type: `string`
-- Default: `undefined`
-
 ```html preview full
 <vwc-layout style="--layout-grid-template-columns: 1fr 1fr;">
   <vwc-card elevation="2"></vwc-card>
@@ -218,10 +215,6 @@ Control the [grid-template-columns](https://developer.mozilla.org/en-US/docs/Web
 ### Grid-template-rows
 
 Control the [grid-template-rows](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows) of the layout by setting `--layout-grid-template-rows`.  
-
-
-- Type: `string`
-- Default: `undefined`
 
 ```html preview full
 <vwc-layout style="--layout-grid-template-rows: 80px 40px auto;">
@@ -240,9 +233,6 @@ Control the grid [column-gap](https://developer.mozilla.org/en-US/docs/Web/CSS/c
 
 #### Layout-column-gap
 Control the grid [row-gap](https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap) by setting `--layout-row-gap`.
-
-- Type: `string`
-- Default: `undefined`
 
 ```html preview full
 <vwc-layout style="--layout-column-gap: 0; --layout-row-gap: 0;">

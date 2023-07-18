@@ -285,24 +285,13 @@ Note that all styles will be overridden including the dialog's padding. See the 
 
 ### Z-index
 
-When the dialog is not set as `modal` its initial z-index can be changed if needed.
-
-`--dialog-z-index`
-
-- Type: `string`
-- Default: `undefined`
+When the dialog is not set as `modal` its initial z-index can be changed if needed by setting `--dialog-z-index`.
 
 ### Inline min & Max size
 
-The Dialog has default `min-inline-size` and `max-inline-size`. This can be changed with setting a new value.
-setting the same value for `min-inline-size` and `max-inline-size` will set a definitive width to the dialog.
-When setting a new value for `min-inline-size` and `max-inline-size` take in consideration if defendant value are needed for mobile.
-
-`--dialog-min-inline-size`
-`--dialog-max-inline-size`
-
-- Type: `string`
-- Default: `undefined`
+The Dialog has default `--dialog-min-inline-size` and `--dialog-max-inline-size`. This can be changed with setting a new value.
+setting the same value for `--dialog-min-inline-size` and `--dialog-max-inline-size` will set a definitive width to the dialog.
+When setting a new value for `--dialog-min-inline-size` and `--dialog-max-inline-size` take in consideration if defendant value are needed for mobile.
 
 ```html preview
 <style>
@@ -319,12 +308,7 @@ vwc-dialog {
 
 ### Block-Size
 
-The Dialog has default `max-block-size`, if content is larger - there will be scroll.
-
-`--dialog-max-block-size`
-
-- Type: `string`
-- Default: `undefined`
+The Dialog has default `--dialog-max-block-size`, if content is larger - there will be scroll.
 
 ```html preview
 <style>

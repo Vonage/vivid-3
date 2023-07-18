@@ -195,9 +195,6 @@ You can add action items elements using the `action-items` slot. They will be di
 
 Use the `--alert-min-inline-size` variable to set the alert's minimum inline size.
 
-- Type: [`<length>`](https://developer.mozilla.org/en-US/docs/Web/CSS/length)
-- Default: `420px`
-
 ```html preview
 <vwc-alert style="--alert-min-inline-size: auto;" text="Very fitting!" open>
 ```
@@ -205,9 +202,6 @@ Use the `--alert-min-inline-size` variable to set the alert's minimum inline siz
 ### Maximum inline Size
 
 Use the `--alert-max-inline-size` variable to set the alert's maximum inline size.
-
-- Type: [`<length>`](https://developer.mozilla.org/en-US/docs/Web/CSS/length)
-- Default: `fit-content`
 
 ```html preview
 <vwc-alert style="--alert-max-inline-size: 300px;" text="This is helptful to prevent the alert from becoming too wide when displaying a long message" open>

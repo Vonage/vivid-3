@@ -129,9 +129,6 @@ Assign nodes to `main` slot to fully override a card's predefined flow and style
 The card headline can be trimmed to your preferable number of lines.
 The number of lines is controlled by the css variable `--headline-line-clamp`.
 
-- Type: `integer`
-- Default: `undefined`
-
 ```html preview
 <style>
   vwc-card {
@@ -151,9 +148,6 @@ The number of lines is controlled by the css variable `--headline-line-clamp`.
 
 The card subtitle can be trimmed to your preferable number of lines.
 The number of lines is controlled by css variable `--subtitle-line-clamp`.
-
-- Type: `integer`
-- Default: `undefined`
 
 ```html preview
 <style>

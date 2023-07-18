@@ -170,8 +170,10 @@ Fires a custom 'change' event when a non-submenu item with a role of `menuitemch
 Line clamp by default is set to one line.  
 
 This can be changed by setting a css-variable to a fixed number of lines or `auto`   
-- `--text-primary-line-clamp` for the primary text
-- `--text-secondary-line-clamp` for the secondary text
+- `--text-primary-line-clamp` for the primary text.
+- `--text-secondary-line-clamp` for the secondary text.
+
+
 ```html preview
 <style>
 vwc-menu {
