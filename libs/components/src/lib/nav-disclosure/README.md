@@ -79,20 +79,6 @@ The `toggle` event is dispatched when the open/closed state of the nav-disclosur
 
 This event does not bubble.
 
-```html preview
-<div>event: <span id="output">not received yet</span></div>
-<vwc-nav>
-  <vwc-nav-disclosure id="disclosure" icon="profile">
-    <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
-  </vwc-nav-disclosure>
-<vwc-nav>
-<script>
-  disclosure.addEventListener('toggle', (e) => {
-    output.innerHTML = `nav-disclosure is now ${e.target.open ? 'open' : 'closed'}`;
-  });
-</script>
-```
-
 ## Slots
 
 ### Meta
