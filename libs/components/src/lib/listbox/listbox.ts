@@ -7,7 +7,7 @@ import type { Appearance } from '../enums';
  *
  * @public
  */
-export type LisboxAppearance = Extract<Appearance, Appearance.Outlined | Appearance.Ghost>;
+export type LisboxAppearance = Extract<Appearance, Appearance.Fieldset | Appearance.Ghost>;
 
 /**
  * Base class for listbox
