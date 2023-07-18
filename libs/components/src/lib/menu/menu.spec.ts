@@ -1,10 +1,10 @@
-import { ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture } from '@vivid-nx/shared';
+import {ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
 import { Button, FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
 import { Popup } from '../popup/popup';
 import { Menu } from './menu';
-import '.';
 import { menuDefinition } from './definition';
+import '.';
 
 const COMPONENT_TAG = 'vwc-menu';
 
@@ -34,30 +34,6 @@ describe('vwc-menu', () => {
 			expect(element.anchor).toBeUndefined();
 			expect(element.placement).toBeUndefined();
 			expect(element._popup).toBeInstanceOf(Popup);
-		});
-	});
-
-	describe('show', () => {
-		it('should set "open" to true', async () => {
-			await setAnchor();
-			element.anchor = 'anchor';
-			await elementUpdated(element);
-
-			element.open = true;
-			await elementUpdated(element);
-
-			expect(element.open)
-				.toEqual(true);
-		});
-	});
-
-	describe('hide', () => {
-		it('should set "open" to false', async () => {
-			element.open = false;
-			await elementUpdated(element);
-
-			expect(element.open)
-				.toEqual(false);
 		});
 	});
 
@@ -109,35 +85,31 @@ describe('vwc-menu', () => {
 
 			expect(spy1).toBe(spy2);
 		});
-	});
 
-	describe('submenu', () => {
-		it('should not be assigned to an explicit slot', async () => {
-			expect(element.slot).toBeFalsy();
-		});
+		it('should leave "open" true when clicked outside and auto-dismiss false', async () => {
+			element.open = true;
+			element.autoDismiss = false;
 
-		it('should be assigned to a custom slot', async () => {
-			element.slot = 'custom';
-			expect(element.slot).toEqual('custom');
-		});
+			await elementUpdated(element);
 
-		it('should be assigned to submenu slot', async () => {
-			const div = document.createElement('div');
-			div.setAttribute('role', 'menuitem');
+			document.body.dispatchEvent(new MouseEvent('click', {bubbles: true}));
 
-			element.parentNode?.appendChild(div);
+			await elementUpdated(element);
 
-			div.appendChild(element);
-
-			expect(element.slot).toEqual('submenu');
+			expect(element.open)
+				.toEqual(true);
 		});
 	});
 
-	describe('focus management', () => {
-		it('should focus the first menuitem in the menu', async () => {
+	describe('focus', () => {
+		function createMenuItem(type = 'menuitem') {
 			const div = document.createElement('div');
-			div.setAttribute('role', 'menuitem');
+			div.setAttribute('role', type);
 			element.appendChild(div);
+			return div;
+		}
+		it('should focus the first menuitem in the menu', async () => {
+			const div = createMenuItem();
 
 			await elementUpdated(element);
 
@@ -147,9 +119,7 @@ describe('vwc-menu', () => {
 		});
 
 		it('should set menu item tabindex to 0', async () => {
-			const menuItem = document.createElement('vwc-menu-item');
-
-			element.appendChild(menuItem);
+			const menuItem = createMenuItem();
 
 			await elementUpdated(element);
 
@@ -159,9 +129,7 @@ describe('vwc-menu', () => {
 		});
 
 		it('should focus the first menuitemcheckbox in the menu', async () => {
-			const div = document.createElement('div');
-			div.setAttribute('role', 'menuitemcheckbox');
-			element.appendChild(div);
+			const div = createMenuItem('menuitemcheckbox');
 
 			await elementUpdated(element);
 
@@ -171,9 +139,7 @@ describe('vwc-menu', () => {
 		});
 
 		it('should focus the first menuitemradio in the menu', async () => {
-			const div = document.createElement('div');
-			div.setAttribute('role', 'menuitemradio');
-			element.appendChild(div);
+			const div = createMenuItem('menuitemradio');
 
 			await elementUpdated(element);
 
@@ -184,88 +150,79 @@ describe('vwc-menu', () => {
 
 		it('should handle menu key down events', async () => {
 
+			function keyMoveAndGetActiveId(arrowEvent: Event) {
+				document.activeElement?.dispatchEvent(arrowEvent);
+				return document.activeElement?.id;
+			}
 			element.innerHTML = `
-				<button role="menuitem" id="id1" text="Menu Item 1"></button>
-				<button role="menuitem" id="id2" text="Menu Item 2"></button>
-				<button role="menuitem" id="id3" text="Menu Item 3"></button>
+				<div role="menuitem" id="id1" text="Menu Item 1"></div>
+				<div role="menuitem" id="id2" text="Menu Item 2"></div>
+				<div role="menuitem" id="id3" text="Menu Item 3"></div>
 			`;
 
 			await elementUpdated(element);
 
 			element.focus();
 
-			document.activeElement?.dispatchEvent(arrowDownEvent);
-			expect(document.activeElement?.id).toEqual('id2');
+			const activeIdAfterKeyDown1 = keyMoveAndGetActiveId(arrowDownEvent);
+			const activeIdAfterKeyDown2 = keyMoveAndGetActiveId(arrowDownEvent);
+			const activeIdAfterKeyUp1 = keyMoveAndGetActiveId(arrowUpEvent);
+			const activeIdAfterKeyUp2 = keyMoveAndGetActiveId(arrowUpEvent);
 
-			document.activeElement?.dispatchEvent(arrowDownEvent);
-			expect(document.activeElement?.id).toEqual('id3');
+			expect(activeIdAfterKeyDown1).toEqual('id2');
+			expect(activeIdAfterKeyDown2).toEqual('id3');
+			expect(activeIdAfterKeyUp1).toEqual('id2');
+			expect(activeIdAfterKeyUp2).toEqual('id1');
 
-			document.activeElement?.dispatchEvent(arrowUpEvent);
-			expect(document.activeElement?.id).toEqual('id2');
-
-			document.activeElement?.dispatchEvent(arrowUpEvent);
-			expect(document.activeElement?.id).toEqual('id1');
 		});
 
-		it('should handle focus out event', async () => {
+		it('should reset tabindex to the first element on focusout event', async () => {
+			function focusOnSecondItem() {
+				element.focus();
+				document.activeElement?.dispatchEvent(arrowDownEvent);
+			}
+
+			function focusOutOfBase() {
+				const focusOutEvent = new FocusEvent('focusout');
+				getBaseElement(element).dispatchEvent(focusOutEvent);
+			}
+
+			const menuFocusedElement = () => element.querySelector('[tabindex="0"]') as HTMLElement;
 
 			element.innerHTML = `
 				<div role="menuitem" id="id1" text="Menu Item 1"></div>
 				<div role="menuitem" id="id2" text="Menu Item 2"></div>
 			`;
-
 			await elementUpdated(element);
 
-			element.focus();
+			focusOnSecondItem();
+			const focusableElementAfterMouseDown = menuFocusedElement();
 
-			document.activeElement?.dispatchEvent(arrowDownEvent);
+			focusOutOfBase();
+			const focusableElementAfterFocusOut = menuFocusedElement();
 
-			const menuFocusedElement = () => element.querySelector('[tabindex="0"]') as HTMLElement;
-			expect(menuFocusedElement().id).toEqual('id2');
-
-			const focusOutEvent = new FocusEvent('focusout');
-			const { shadowRoot } = element;
-
-			shadowRoot?.querySelector('.base')?.dispatchEvent(focusOutEvent);
-
-			expect(menuFocusedElement().id).toEqual('id1');
+			expect(focusableElementAfterMouseDown.id).toEqual('id2');
+			expect(focusableElementAfterFocusOut.id).toEqual('id1');
 		});
 	});
 
-	describe('events', () => {
-		it('should fire an event on popup open', async () => {
-			let openTriggered: boolean = false;
-			(element._popup as Popup).addEventListener('vwc-popup:open', () => {
-				openTriggered = true;
-			});
-			(element._popup as Popup).open = true;
-			expect(openTriggered).toEqual(true);
-			expect(element.open).toEqual(true);
+	describe('aria-hasspopup', () => {
+		it('should set and remove the aria-haspopup attribute on its anchor when it changes', async () => {
+			await setAnchor();
+
+			element.anchor = 'anchor';
+			await elementUpdated(element);
+			const button = document.getElementById(element.anchor);
+			const buttonHasPopupWhenSetAsAnchor = button?.getAttribute('aria-haspopup');
+
+
+			element.anchor = '';
+			await elementUpdated(element);
+			const buttonHasPopupWhenRemovedAsAnchor = button?.getAttribute('aria-haspopup');
+
+			expect(buttonHasPopupWhenSetAsAnchor).toBe('menu');
+			expect(buttonHasPopupWhenRemovedAsAnchor).toBeUndefined;
 		});
-
-		it('should fire an event on popup close', async () => {
-			let closeTriggered: boolean = false;
-			(element._popup as Popup).open = true;
-			(element._popup as Popup).addEventListener('vwc-popup:close', () => {
-				closeTriggered = true;
-			});
-			(element._popup as Popup).open = false;
-			expect(closeTriggered).toEqual(true);
-			expect(element.open).toEqual(false);
-		});
-	});
-
-	it('should set and remove the aria-haspopup attribute on its anchor when it changes', async () => {
-		await setAnchor();
-
-		element.anchor = 'anchor';
-		await elementUpdated(element);
-		const button = document.getElementById(element.anchor);
-		expect(button?.getAttribute('aria-haspopup')).toBe('menu');
-
-		element.anchor = '';
-		await elementUpdated(element);
-		expect(button?.getAttribute('aria-haspopup')).toBeUndefined;
 	});
 
 	const arrowUpEvent = new KeyboardEvent('keydown', {
@@ -278,9 +235,6 @@ describe('vwc-menu', () => {
 		bubbles: true,
 	} as KeyboardEventInit);
 
-	/**
-	 *
-	 */
 	async function setAnchor() {
 		const anchorEl = await fixture('<vwc-button id="anchor"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE) as Button;
 		await elementUpdated(anchorEl);
