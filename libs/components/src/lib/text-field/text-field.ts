@@ -5,7 +5,7 @@ import {AffixIcon, FormElementCharCount, FormElementHelperText, FormElementSucce
 import {FormElement, formElements} from '../../shared/patterns';
 import {ErrorText, errorText} from '../../shared/patterns';
 
-export type TextFieldAppearance = Extract<Appearance, Appearance.Outlined | Appearance.Ghost>;
+export type TextFieldAppearance = Extract<Appearance, Appearance.Fieldset | Appearance.Ghost>;
 export type TextFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**

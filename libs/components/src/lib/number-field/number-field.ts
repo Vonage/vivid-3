@@ -4,7 +4,7 @@ import type {Appearance, Shape} from '../enums';
 import {FormElement, FormElementCharCount, FormElementHelperText, formElements, FormElementSuccessText} from '../../shared/patterns';
 import {AffixIcon} from '../../shared/patterns';
 
-export type NumberFieldAppearance = Extract<Appearance, Appearance.Outlined | Appearance.Ghost>;
+export type NumberFieldAppearance = Extract<Appearance, Appearance.Fieldset | Appearance.Ghost>;
 export type NumberFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
