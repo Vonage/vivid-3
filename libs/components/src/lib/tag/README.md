@@ -146,9 +146,12 @@ Notice that it works only if the tag is `removable` and not `selectable`.
 
 ## Methods
 
-### remove()
+<vwc-elevation>
 
-- Type: `function`
-- Returns: `void`
+| Name     | Returns | Description                                                                                                                                                                                                                |
+| -------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `remove` | `void`  | Removes the tag from the DOM.  Fires the `removed` event and removes the tag from the DOM completely.  If you have a variable that refers to the tag element make sure to clear it otherwise it might cause a memory leak. |
 
-Removes the tag from the DOM.  Fires the `removed` event and removes the tag from the DOM completely.  If you have a variable that refers to the tag element make sure to clear it otherwise it might cause a memory leak.
+</vwc-elevation>
+
+---

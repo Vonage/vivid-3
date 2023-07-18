@@ -367,6 +367,7 @@ table {
 
   td,
   th {
+    max-inline-size: 80ch;
     padding: 8px 16px;
   }
 }

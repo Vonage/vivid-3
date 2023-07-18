@@ -164,17 +164,15 @@ Use the `--menu-block-size` variable to set the menu's block size.
 
 ## Methods
 
-### focus()
+<vwc-elevation>
 
-- Returns: `void`
+| Name                   | Returns | Description                         |
+| ---------------------- | ------- | ----------------------------------- |
+| `focus`                | `void`  | Focuses the first item in the menu. |
+| `collapseExpandedItem` | `void`  | Collapses any expanded menu items.  |
 
-Focuses the first item in the menu.
+</vwc-elevation>
 
-### collapseExpandedItem()
-
-- Returns: `void`
-
-Collapses any expanded menu items.
 
 ## Caveat
 

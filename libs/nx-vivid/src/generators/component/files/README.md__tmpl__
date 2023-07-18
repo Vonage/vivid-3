@@ -20,7 +20,25 @@ Represents a <%= name %> custom element.
 
 ## Events
 
+<vwc-elevation>
+
+| Name    | Description                                                                                                                                                   |
+| ------- | ----------- |
+|         |             |
+
+</vwc-elevation>
+
 ## Methods
+
+<vwc-elevation>
+
+| Name        | Returns | Description                                                                                          |
+| ----------- | ------- | ------------ |
+|             |         |              |
+
+</vwc-elevation>
+
+## Properties
 
 ## Accessibility
 

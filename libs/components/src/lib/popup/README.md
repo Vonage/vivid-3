@@ -163,12 +163,13 @@ Use the `placement` attribute to set the placement of the popup around the ancho
 
 ## Methods
 
-### updatePosition()
+<vwc-elevation>
 
-- Type: `function`
-- Returns: `void`
+| Name             | Returns | Description               |
+| ---------------- | ------- | ------------------------- |
+| `updatePosition` | `void`  | Updates popup's position. |
 
-Updates popup's position.
+</vwc-elevation>
 
 ## Caveat
 

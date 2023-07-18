@@ -335,59 +335,15 @@ vwc-dialog {
 
 ## Methods
 
-### show()
+<vwc-elevation>
 
-Shows the dialog. Positioned in a top position by default.
+| Name| Returns  | Description  |
+| ----------- | ------- | ---------------- |
+| `show`      | `void`  | Shows the dialog. Positioned in a top position by default. |
+| `close`     | `void`  | Closes the dialog.       |
+| `showModal` | `void`  | Shows the dialog and makes it the top-most modal dialog. Positioned in a center position by default. Interaction outside the dialog is blocked and the content outside it is rendered inert For more information, see the native [Dialog.showModal](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal).  |
 
-```html preview
-<vwc-dialog headline="Open Dialog">
-</vwc-dialog>
-<vwc-button label="Open Dialog"
-            onclick="openDialog()"></vwc-button>
-<script>
-  function openDialog() {
-    dialog = document.querySelector('vwc-dialog');
-    dialog.show();
-  }
-</script>
-```
-
-### showModal()
-
-Shows the dialog and makes it the top-most modal dialog. Positioned in a center position by default.
-Interaction outside the dialog is blocked and the content outside it is rendered inert.
-For more information, see the native [Dialog.showModal](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal).
-
-```html preview
-<vwc-dialog headline="Open Dialog">
-</vwc-dialog>
-<vwc-button label="Open Modal Dialog"
-            onclick="openDialog()"></vwc-button>
-<script>
-  function openDialog() {
-    dialog = document.querySelector('vwc-dialog');
-    dialog.showModal();
-  }
-</script>
-```
-
-### close()
-
-Closes the dialog.
-
-```html preview
-<vwc-dialog open
-            headline="Open Dialog">
-</vwc-dialog>
-<vwc-button label="Close Dialog"
-            onclick="closeDialog()"></vwc-button>
-<script>
-  function closeDialog() {
-    dialog = document.querySelector('vwc-dialog');
-    dialog.close();
-  }
-</script>
-```
+</vwc-elevation>
 
 ## Accessibility
 
@@ -397,7 +353,7 @@ Closes the dialog.
 
 ## Use Cases
 
-### Dialog Form
+### Modal Dialog Form
 
 ```html preview
 <vwc-dialog headline="Open Dialog">
