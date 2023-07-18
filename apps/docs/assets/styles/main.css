@@ -352,22 +352,28 @@ article.article > h1 {
   position: relative;
 }
 
+/* #startregion table */
+
 table {
   padding: 8px;
   border-radius: 6px;
   border-collapse: collapse;
-
-  thead > tr {
-    border-bottom: 1px solid var(--vvd-color-neutral-900);
-  }
-
-  tbody > tr {
-    border-bottom: 1px solid var(--vvd-color-neutral-100);
-  }
-
-  td,
-  th {
-    max-inline-size: 80ch;
-    padding: 8px 16px;
-  }
 }
+
+thead > tr {
+  border-bottom: 1px solid var(--vvd-color-neutral-900);
+}
+
+tbody > tr {
+  border-bottom: 1px solid var(--vvd-color-neutral-100);
+}
+
+td,
+th {
+  max-inline-size: 80ch;
+  padding: 8px 16px;
+  word-break: normal;
+  text-align: left;
+}
+
+/* #endregion table */
