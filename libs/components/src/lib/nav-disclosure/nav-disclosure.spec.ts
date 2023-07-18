@@ -76,16 +76,28 @@ describe('vwc-nav-disclosure', () => {
 		});
 	});
 
-	it('should remove toggle listener after disconnection', async function() {
-		const spy = jest.fn();
-		element.addEventListener('toggle', spy);
+	describe('toggle event', () => {
+		it('emits a toggle event that does not bubble when open/closed state is toggled', async function() {
+			const spy = jest.fn();
+			element.addEventListener('toggle', spy);
 
-		element.disconnectedCallback();
-		element.connectedCallback();
+			element.details.dispatchEvent(new Event('toggle'));
 
-		element.details.dispatchEvent(new Event('toggle'));
+			expect((spy as any).mock.calls.length).toEqual(1);
+			expect((spy as any).mock.calls[0][0].bubbles).toBe(false);
+		});
 
-		expect((spy as any).mock.calls.length).toEqual(1);
+		it('should remove toggle listener after disconnection', async function() {
+			const spy = jest.fn();
+			element.addEventListener('toggle', spy);
+
+			element.disconnectedCallback();
+			element.connectedCallback();
+
+			element.details.dispatchEvent(new Event('toggle'));
+
+			expect((spy as any).mock.calls.length).toEqual(1);
+		});
 	});
 
 	describe('meta slot', () => {

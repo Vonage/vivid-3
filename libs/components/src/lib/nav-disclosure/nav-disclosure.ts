@@ -47,7 +47,7 @@ export class NavDisclosure extends FoundationElement {
 
 	#onToggle = () => {
 		this.open = this.details.open;
-		this.$emit('toggle');
+		this.$emit('toggle', undefined, { bubbles: false });
 	};
 }
 
