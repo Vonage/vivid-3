@@ -11,14 +11,14 @@
 }
 
 ::slotted(a) {
-	text-decoration: none;
 	color: var(#{constants.$vvd-color-canvas-text});
+	text-decoration: none;
 }
 
 ::slotted([role="menuitem"]:focus) {
 	display: block;
 	border-radius: 6px;
-	outline: 2px solid currentColor;
 	box-shadow: inset 0 0 0 3px currentColor;
+	outline: 2px solid currentColor;
 	outline-offset: -2px;
 }
