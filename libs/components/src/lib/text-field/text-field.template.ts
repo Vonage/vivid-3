@@ -20,7 +20,6 @@ const getStateClasses = ({
 	shape,
 	label,
 	successText,
-	actionItemsSlottedContent
 }: TextField) => classNames(
 	['error connotation-alert', Boolean(errorValidationMessage)],
 	['disabled', disabled],
@@ -30,8 +29,7 @@ const getStateClasses = ({
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	['no-label', !label],
-	['success connotation-success', Boolean(successText)],
-	['hide-footer', !(actionItemsSlottedContent?.length)]
+	['success connotation-success', Boolean(successText)]
 );
 
 /**

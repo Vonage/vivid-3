@@ -135,8 +135,11 @@ $low-ink-color: --_low-ink-color;
 	}
 }
 
-.action-items-wrapper:not(.hide) {
+.action-items-wrapper {
 	margin-inline-end: 4px;
+	&.hide {
+		display: none;
+	}
 }
 
 .icon {
