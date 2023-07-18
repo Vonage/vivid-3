@@ -144,6 +144,8 @@ Use the `--menu-min-inline-size` variable to set the menu's inline size.
 
 Use the `--menu-block-size` variable to set the menu's block size.
 
+- Default: `408px`
+
 ```html preview
 <style>
   vwc-menu {

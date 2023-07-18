@@ -195,6 +195,8 @@ You can add action items elements using the `action-items` slot. They will be di
 
 Use the `--alert-min-inline-size` variable to set the alert's minimum inline size.
 
+- Default: `420px`
+
 ```html preview
 <vwc-alert style="--alert-min-inline-size: auto;" text="Very fitting!" open>
 ```

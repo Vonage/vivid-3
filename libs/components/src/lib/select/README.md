@@ -319,6 +319,9 @@ You can add a `label` attribute to the `vwc-option` to set a custom display valu
 ### Height (CSS Variable)
 Use `--select-height` to set the height of the list-box containing the select options
 
+- Default: `fit-content`
+
+
 ```html preview
 <style>
   html { /* for demo purposes */
