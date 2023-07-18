@@ -1,9 +1,8 @@
-import { html, slotted, ViewTemplate, when } from '@microsoft/fast-element';
-import { ElementDefinitionContext, MenuItemRole } from '@microsoft/fast-foundation';
-import type { MenuItemOptions } from '@microsoft/fast-foundation';
+import {ExecutionContext, html, slotted, ViewTemplate, when} from '@microsoft/fast-element';
+import type { ElementDefinitionContext, MenuItemOptions } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
-import type { MenuItem } from './menu-item';
+import { type MenuItem, MenuItemRole } from './menu-item';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
 
 const getCheckIcon = (affixIconTemplate: any, x: MenuItem, iconType: string) => {
@@ -26,6 +25,10 @@ const getClasses = ({
 	['has-meta', Boolean(metaSlottedContent?.length)]
 );
 
+function handleClick(x: MenuItem, { event } : ExecutionContext<MenuItem>) {
+	x.handleMenuItemClick(event as MouseEvent);
+	return (x as any).role === MenuItemRole.presentation;
+}
 /**
  * Generates a template for the (MenuItem:class) component using
  * the provided prefix.
@@ -49,7 +52,7 @@ export const MenuItemTemplate:  (
 		aria-disabled="${x => x.disabled}"
 		aria-expanded="${x => x.expanded}"
 		@keydown="${(x, c) => x.handleMenuItemKeyDown(c.event as KeyboardEvent)}"
-		@click="${(x, c) => x.handleMenuItemClick(c.event as MouseEvent)}"
+		@click="${handleClick}"
 		@mouseover="${(x, c) => x.handleMouseOver(c.event as MouseEvent)}"
 		@mouseout="${(x, c) => x.handleMouseOut(c.event as MouseEvent)}"
 	>
