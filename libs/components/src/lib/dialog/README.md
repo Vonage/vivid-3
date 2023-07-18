@@ -325,29 +325,13 @@ vwc-dialog {
 
 ## Events
 
-### Close
+<vwc-elevation>
 
-The `close` event fires when the dialog closes (either via user interaction or via the API).
-It returns the return value inside the event's details property.
+| Name    | Description                                                                                                                                                   |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `close` | The `close` event fires when the dialog closes (either via user interaction or via the API). It returns the return value inside the event's details property. |
 
-```html preview
-<vwc-dialog open
-            headline="Returning Dialog">
-</vwc-dialog>
-<vwc-button label="Close Dialog"
-            onclick="closeDialog()"></vwc-button>
-<script>
-  function closeDialog() {
-    dialog = document.querySelector('vwc-dialog');
-    dialog.returnValue = 'Value';
-    dialog.close();
-  }
-  (function() {
-    dialog = document.querySelector('vwc-dialog');
-    dialog.addEventListener('close', (e) => console.log(e.detail));
-  })();
-</script>
-```
+</vwc-elevation>
 
 ## Methods
 

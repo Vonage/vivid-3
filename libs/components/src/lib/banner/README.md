@@ -74,13 +74,15 @@ You can add action items using slotted content in a named slot `action-items`:
 
 ## Events
 
-### Removing
+<vwc-elevation>
 
-Fires `removing` whenever the banner has started its removing animation.
+| Name       | Description                                                              |
+| ---------- | ------------------------------------------------------------------------ |
+| `removing` | Fires `removing` whenever the banner has started its removing animation. |
+| `removed`  | Fires `removed` when the removing animation is done.                     |
 
-### Removed
 
-Fires `removed` when the removing animation is done.
+</vwc-elevation>
 
 ## Methods
 

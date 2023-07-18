@@ -135,14 +135,14 @@ Notice that it works only if the tag is `removable` and not `selectable`.
 
 ## Events
 
-### Removed
+<vwc-elevation>
 
-Fires `removed` when the tag removed.
+| Name              | Description                                                          |
+| ----------------- | -------------------------------------------------------------------- |
+| `removed`         | Fires `removed` when the tag removed.                                |
+| `selected-change` | Fires a custom 'selected-change' event when a tag has been selected. |
 
-### Selected Change
-
-Fires a custom 'selected-change' event when a tag has been selected.
-
+</vwc-elevation>
 
 ## Methods
 

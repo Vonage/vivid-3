@@ -209,10 +209,13 @@ Use the `--alert-max-inline-size` variable to set the alert's maximum inline siz
 
 ## Events
 
-### Open
+<vwc-elevation>
 
-The `open` event fires when the alert is opened.
+| Name    | Description                                       |
+| ------- | ------------------------------------------------- |
+| `open`  | The `open` event fires when the alert is opened.  |
+| `close` | The `close` event fires when the alert is closed. |
 
-### Close
+</vwc-elevation>
 
-The `close` event fires when the alert is closed.
+---

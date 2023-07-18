@@ -170,6 +170,12 @@ Each `tab panel` has an associated [vwc-tab](../../components/tab) element, that
 
 ## Events
 
-### Change
+<vwc-elevation>
 
-Fires a custom `change` event when a tab is clicked or during keyboard navigation.
+| Name     | Description                                                                        |
+| -------- | ---------------------------------------------------------------------------------- |
+| `change` | Fires a custom `change` event when a tab is clicked or during keyboard navigation. |
+
+</vwc-elevation>
+
+---

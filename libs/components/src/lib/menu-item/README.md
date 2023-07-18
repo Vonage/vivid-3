@@ -158,13 +158,14 @@ When icon member is set with slot - the icon will be trailing.
 
 ## Events
 
-### Expanded Change
+<vwc-elevation>
 
-Fires a custom 'expanded-change' event when the expanded state changes
+| Name              | Description                                                                                                                         |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `expanded-change` | Fires a custom `expanded-change` event when the expanded state changes.                                                             |
+| `change`          | Fires a custom `change` event when a non-submenu item with a role of `menuitemcheckbox`, `menuitemradio`, or `menuitem` is invoked. |
 
-### Change
-
-Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `menuitemradio`, or `menuitem` is invoked
+</vwc-elevation>
 
 ## CSS Variables
 Line clamp by default is set to one line.  

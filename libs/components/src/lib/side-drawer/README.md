@@ -130,13 +130,15 @@ The `app-content` slot sets assigned nodes to the main application content, the 
 
 ## Events
 
-### Open
+<vwc-elevation>
 
-Fires `open` when the side drawer is opening.
+| Name    | Description                                    |
+| ------- | ---------------------------------------------- |
+| `open`  | Fires `open` when the side drawer is opening.  |
+| `close` | Fires `close` when the side drawer is closing. |
 
-### Close
 
-Fires `close` when the side drawer is closing.
+</vwc-elevation>
 
 ## CSS Variables
 
