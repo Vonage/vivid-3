@@ -55,7 +55,7 @@ set `role` to change the role of the menu item
 ```html preview
 <style>
   html { 
-    block-size: 360px; 
+    block-size: 400px; 
   }
 </style>
 
@@ -205,7 +205,9 @@ To create a menu item that is anchored to a URL do the following:
 If you are using a framework, just wrap the menu item in any routing component/directive as done with the anchor tag.
 
 ```html preview
+<vwc-menu open>
 	<a role="menuitem" href="https://www.vonage.com" target="_blank" rel="noopener noreferrer">
   	<vwc-menu-item role="presentation" text="Go to Vonage"></vwc-menu-item>
 	</a>
+</vwc-menu>
 ```

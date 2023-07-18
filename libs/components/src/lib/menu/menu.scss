@@ -1,3 +1,4 @@
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "partials/variables" as variables;
 
 .base {
@@ -7,4 +8,17 @@
 	overflow-x: hidden;
 	overflow-y: auto;
 	padding-block: 8px;
+}
+
+::slotted(a) {
+	text-decoration: none;
+	color: var(#{constants.$vvd-color-canvas-text});
+}
+
+::slotted([role="menuitem"]:focus) {
+	display: block;
+	border-radius: 6px;
+	outline: 2px solid currentColor;
+	box-shadow: inset 0 0 0 3px currentColor;
+	outline-offset: -2px;
 }
