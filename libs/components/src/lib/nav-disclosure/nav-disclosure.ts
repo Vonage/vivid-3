@@ -9,6 +9,7 @@ import { AffixIcon } from '../../shared/patterns/affix';
  * @public
  * @slot - Default slot.
  * @slot meta - A slot to add additional content to the nav disclosure.
+ * @event toggle - Event emitted when the nav disclosure is toggled.
  */
 export class NavDisclosure extends FoundationElement {
 	details!: HTMLDetailsElement;
@@ -47,7 +48,7 @@ export class NavDisclosure extends FoundationElement {
 
 	#onToggle = () => {
 		this.open = this.details.open;
-		this.$emit('toggle');
+		this.$emit('toggle', undefined, { bubbles: false });
 	};
 }
 
