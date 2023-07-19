@@ -63,5 +63,3 @@ Use the `expand-mode` attribute to control the expand mode of the accordion, eit
 |            |
 
 </vwc-elevation>
-
----

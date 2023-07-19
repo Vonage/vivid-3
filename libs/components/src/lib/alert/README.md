@@ -221,5 +221,3 @@ Use the `--alert-max-inline-size` variable to set the alert's maximum inline siz
 | `close` | The `close` event fires when the alert is closed. |
 
 </vwc-elevation>
-
----

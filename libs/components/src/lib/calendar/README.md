@@ -76,5 +76,3 @@ Assign elements to a day column using `'day-0'` | `'day-1'` | `'day-2'` | `'day-
 |                   |
 
 </vwc-elevation>
-
----

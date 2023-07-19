@@ -76,5 +76,3 @@ Set the `navIcons` attribute to change the pagination's navigation buttons type.
 
 
 </vwc-elevation>
-
----
