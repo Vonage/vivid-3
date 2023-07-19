@@ -71,11 +71,13 @@ If label is not applied.
 <vwc-nav>
 ```
 
-## Accessibility
+## Events
 
-The nav-disclosure has a `role` button.
-Nav-disclosure has `aria-expanded` set to true when the content is visible. Otherwise, it is set to false.
-Nav-disclosure has a value specified for `aria-controls` that refers to the content.
+### Toggle
+
+The `toggle` event is dispatched when the open/closed state of the nav-disclosure is toggled.
+
+This event does not bubble.
 
 ## Slots
 
@@ -91,3 +93,9 @@ Use the `meta` slot to add additional content to the nav-disclosure.
   </vwc-nav-disclosure>
 <vwc-nav>
 ```
+
+## Accessibility
+
+The nav-disclosure has a `role` button.
+Nav-disclosure has `aria-expanded` set to true when the content is visible. Otherwise, it is set to false.
+Nav-disclosure has a value specified for `aria-controls` that refers to the content.
