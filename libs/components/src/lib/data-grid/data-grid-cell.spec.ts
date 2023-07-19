@@ -264,32 +264,31 @@ describe('vwc-data-grid-cell', () => {
 			element.ariaSort = 'none';
 		});
 
-		it('should show two icons in the header when "none" is set', async function () {
+		it('should show sort-solid icon in the header when "none" is set', async function () {
 			element.setAttribute('aria-sort', 'none');
 			await elementUpdated(element);
 			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
 
-			expect(sortIcons?.length).toEqual(2);
-			expect(sortIcons?.[0].getAttribute('name')).toEqual('chevron-up-line');
-			expect(sortIcons?.[1].getAttribute('name')).toEqual('chevron-down-line');
+			expect(sortIcons?.length).toEqual(1);
+			expect(sortIcons?.[0].getAttribute('name')).toEqual('sort-solid');
 		});
 
-		it('should show only up arrow icon when aria-sort is ascending', async function () {
+		it('should show sort-asc-solid icon when aria-sort is ascending', async function () {
 			element.setAttribute('aria-sort', 'ascending');
 			await elementUpdated(element);
 			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
 
 			expect(sortIcons?.length).toEqual(1);
-			expect(sortIcons?.[0].getAttribute('name')).toEqual('chevron-up-line');
+			expect(sortIcons?.[0].getAttribute('name')).toEqual('sort-asc-solid');
 		});
 
-		it('should show only down arrow icon when aria-sort is descending', async function () {
+		it('should show sort-desc-solid icon when aria-sort is descending', async function () {
 			element.setAttribute('aria-sort', 'descending');
 			await elementUpdated(element);
 			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
 
 			expect(sortIcons?.length).toEqual(1);
-			expect(sortIcons?.[0].getAttribute('name')).toEqual('chevron-down-line');
+			expect(sortIcons?.[0].getAttribute('name')).toEqual('sort-desc-solid');
 		});
 
 		it('should remove sorting icons when aria-sort is not set', async function () {

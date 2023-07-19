@@ -5,30 +5,19 @@ import { focusTemplateFactory } from './../../shared/patterns/focus';
 import {DataGridCellRole, DataGridCellSortStates} from './data-grid.options';
 import type {DataGridCell} from './data-grid-cell';
 
-function shouldShowAscendingSortIcon<T extends DataGridCell>(x: T): boolean {
-	return x.cellType === 'columnheader' &&
-		(x.ariaSort === DataGridCellSortStates.none || x.ariaSort === DataGridCellSortStates.ascending);
-}
-function shouldShowDescendingSortIcon<T extends DataGridCell>(x: T): boolean {
-	return x.cellType === 'columnheader' &&
-		(x.ariaSort === DataGridCellSortStates.none || x.ariaSort === DataGridCellSortStates.descending);
-}
 function shouldShowSortIcons<T extends DataGridCell>(x: T): boolean {
 	return x.cellType === 'columnheader' && x.ariaSort !== null && x.ariaSort !== DataGridCellSortStates.other;
 }
 
+function getSortIcon<T extends DataGridCell>(x: T): string {
+	return x.ariaSort === DataGridCellSortStates.ascending ? 'sort-asc-solid' :
+		x.ariaSort === DataGridCellSortStates.descending ? 'sort-desc-solid' : 'sort-solid';
+}
 function renderSortIcons<T extends DataGridCell>(c: ElementDefinitionContext) {
 	const iconTag = c.tagFor(Icon);
 	return html<T>`
 			${when(shouldShowSortIcons, html<T>`
-				<div class="sort-icons-wrapper">
-					${when(shouldShowAscendingSortIcon, html<T>`
-									<${iconTag} class="sort-icon-up" name="chevron-up-line"></${iconTag}>
-								`)}
-					${when(shouldShowDescendingSortIcon, html<T>`
-									<${iconTag} class="sort-icon-down" name="chevron-down-line"></${iconTag}>
-								`)}
-				</div>
+				<${iconTag} class="sort-icon-up" name="${getSortIcon}"></${iconTag}>
 			`)}
 		`;
 }
