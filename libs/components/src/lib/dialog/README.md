@@ -353,17 +353,29 @@ vwc-dialog {
 
 ## Use Cases
 
-### Modal Dialog Form
+### Dialog Form
 
 ```html preview
-<vwc-dialog headline="Open Dialog">
+<vwc-button label="Open Dialog" onclick="openDialog()"></vwc-button>
+<vwc-dialog>
   <form slot="main" method="dialog">
     <vwc-button type="submit" label="Submit"></vwc-button>
   </form>
 </vwc-dialog>
 
-<vwc-button label="Open Modal Dialog" onclick="openDialog()">
-</vwc-button>
+<script>
+  function openDialog() {
+    dialog = document.querySelector('vwc-dialog');
+    dialog.show();
+  }
+</script>
+```
+
+### Modal Dialog with Scrim
+
+```html preview
+<vwc-button label="Open Modal Dialog" onclick="openDialog()"></vwc-button>
+<vwc-dialog headline="Modal Dialog"></vwc-dialog>
 
 <script>
   function openDialog() {
