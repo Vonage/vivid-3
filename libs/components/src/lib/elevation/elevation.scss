@@ -19,6 +19,7 @@ $dps: 0 2 4 8 12 16 24;
 
 	::slotted(*) {
 		position: relative;
+		//z-index: 0;
 
 		&::before {
 			$default: list.nth($dps, 2);
