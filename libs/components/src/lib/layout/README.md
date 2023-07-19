@@ -203,6 +203,8 @@ Use the `gutters` attribute to set the initial preferred `margin`.
 
 Control the [grid-template-columns](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns) of the layout by setting `--layout-grid-template-columns`.
 
+- Default: `auto`
+
 ```html preview full
 <vwc-layout style="--layout-grid-template-columns: 1fr 1fr;">
   <vwc-card elevation="2"></vwc-card>
