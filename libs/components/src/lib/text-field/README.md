@@ -142,7 +142,7 @@ Add the `disabled` attribute to disable the text field.
 - Type: `boolean`
 - Default: `false`
 
-```html preview blocks
+```html preview 
 <vwc-text-field disabled icon="chat-line" value="disabled" label='fieldset' appearance='fieldset'></vwc-text-field>
 ```
 
@@ -153,9 +153,25 @@ Add the `readonly` attribute to restrict user from changing the text field's val
 - Type: `boolean`
 - Default: `false`
 
-```html preview blocks
+```html preview 
 <vwc-text-field readonly icon="chat-line" value="readonly text" label='fieldset' appearance='fieldset'></vwc-text-field>
 ```
+
+## Slots
+### Action-items
+You can add action items elements using the `action-items` slot.
+
+```html preview blocks
+<style>
+.text-field {
+  inline-size: 250px;
+}
+</style>
+<vwc-text-field icon="search" placeholder="search" label='search' appearance='fieldset' class="text-field">
+	<vwc-button slot="action-items" size='condensed' icon="close-line" aria-label='clear field'></vwc-button>
+</vwc-text-field>
+```
+
 ## Use Cases
 
 ### Validation
@@ -181,7 +197,7 @@ In addition, we programatically *"dirtied"* the field and then called `validate`
 
 ### In Form
 
-```html preview
+```html preview blocks
 <style>
 vwc-button {
   justify-self: flex-start;
