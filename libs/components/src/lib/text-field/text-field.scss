@@ -72,8 +72,12 @@ $low-ink-color: --_low-ink-color;
 	position: relative;
 	display: flex;
 	align-items: center;
+	background-color: var(#{appearance.get-appearance-token(fill)});
+	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+	font: var(#{constants.$vvd-typography-base});
 	grid-column: 1 / 4;
-	transition: color .2s;
+	padding-block: 0;
+	transition: color .2s, box-shadow .2s, background-color .2s;
 
 	.base > & {
 		block-size: #{size.$vvd-size-normal};
@@ -89,22 +93,28 @@ $low-ink-color: --_low-ink-color;
 	}
 }
 
+.wrapper {
+	position: relative;
+	block-size: 100%;
+	border-radius: inherit;
+	inline-size: 100%;
+}
+
 .control {
 	// ! note: control is required to stretch fully so that
 	// ! autofill indication applies on all fieldset area
 	width: 100%;
+	box-sizing: border-box;
 	border: 0 none;
 	appearance: none; /* for box-shadow visibility on IOS */
-	background-color: var(#{appearance.get-appearance-token(fill)});
+	background-color: transparent;
 	block-size: 100%;
 	border-radius: inherit;
-	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-	color: var(#{appearance.get-appearance-token(text)});
-	font: var(#{constants.$vvd-typography-base});
+	color: inherit;
+	font: inherit;
 	padding-block: 0;
 	padding-inline-end: var(#{variables.$text-field-gutter});
 	padding-inline-start: var(#{variables.$text-field-gutter});
-	transition: box-shadow .2s, background-color .2s;
 
 	&:disabled {
 		cursor: not-allowed;
@@ -125,6 +135,13 @@ $low-ink-color: --_low-ink-color;
 	}
 }
 
+.action-items-wrapper {
+	margin-inline-end: 4px;
+	&.hide {
+		display: none;
+	}
+}
+
 .icon {
 	// to avoid autofill style hiding other elements
 	position: absolute;
@@ -134,7 +151,7 @@ $low-ink-color: --_low-ink-color;
 	inset-inline-start: var(#{variables.$text-field-gutter});
 	line-height: 1;
 
-	+.control {
+	+.wrapper .control {
 		padding-inline-start: calc(var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter}) * 2);
 	}
 }
@@ -144,6 +161,10 @@ $low-ink-color: --_low-ink-color;
 
 	pointer-events: none;
 
+	// two properties are needed because number-field and combobox inherits the style.
+	// only text-field has wrapper.
+
+	.wrapper:not(:focus-visible, :focus-within) > &,
 	.fieldset:not(:focus-visible, :focus-within) > & {
 		display: none;
 	}
