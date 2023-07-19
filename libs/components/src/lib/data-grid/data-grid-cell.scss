@@ -40,6 +40,7 @@
 	}
 
 	:host([cell-type="columnheader"]) & {
+		justify-content: space-between;
 		border-color: var(#{constants.$vvd-color-canvas-text});
 		font: var(#{constants.$vvd-typography-base-bold});
 	}
@@ -61,3 +62,9 @@ slot {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
+
+.sort-icons-wrapper {
+	display: flex;
+	flex-direction: column;
+}
+

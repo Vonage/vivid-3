@@ -259,41 +259,69 @@ describe('vwc-data-grid-cell', () => {
 	});
 
 	describe('aria-sort', () => {
-		it('should show two icons in the header when "none" is set', async function () {
+		beforeEach(function () {
 			element.cellType = 'columnheader';
+			element.ariaSort = 'none';
+		});
+
+		it('should show two icons in the header when "none" is set', async function () {
 			element.setAttribute('aria-sort', 'none');
 			await elementUpdated(element);
 			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
+
 			expect(sortIcons?.length).toEqual(2);
 			expect(sortIcons?.[0].getAttribute('name')).toEqual('chevron-up-line');
 			expect(sortIcons?.[1].getAttribute('name')).toEqual('chevron-down-line');
 		});
 
 		it('should show only up arrow icon when aria-sort is ascending', async function () {
-			element.cellType = 'columnheader';
 			element.setAttribute('aria-sort', 'ascending');
 			await elementUpdated(element);
 			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
+
 			expect(sortIcons?.length).toEqual(1);
 			expect(sortIcons?.[0].getAttribute('name')).toEqual('chevron-up-line');
 		});
 
 		it('should show only down arrow icon when aria-sort is descending', async function () {
-			element.cellType = 'columnheader';
 			element.setAttribute('aria-sort', 'descending');
 			await elementUpdated(element);
 			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
+
 			expect(sortIcons?.length).toEqual(1);
 			expect(sortIcons?.[0].getAttribute('name')).toEqual('chevron-down-line');
 		});
 
 		it('should remove sorting icons when aria-sort is not set', async function () {
-			element.cellType = 'columnheader';
-			element.removeAttribute('aria-sort');
+			element.ariaSort = null;
 			await elementUpdated(element);
 			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
+
 			expect(sortIcons?.length).toEqual(0);
 		});
 
+		it('should fire "sort" event when clicked', async function () {
+			element.ariaSort = 'none';
+			element.innerText = 'Name';
+			await elementUpdated(element);
+			const spy = jest.fn();
+			element.addEventListener('sort', spy);
+			element.click();
+			expect(spy).toHaveBeenCalledTimes(1);
+			expect(spy.mock.calls[0][0].detail).toEqual({columnDataKey: 'Name', sortDirection: 'none'});
+		});
+
+		it('should fire "sort" event when clicked with data key from config', async function () {
+			element.ariaSort = 'ascending';
+			element.innerText = 'Name';
+			element.columnDefinition = {
+				columnDataKey: 'Not Name',
+			};
+			await elementUpdated(element);
+			const spy = jest.fn();
+			element.addEventListener('sort', spy);
+			element.click();
+			expect(spy.mock.calls[0][0].detail).toEqual({columnDataKey: 'Not Name', sortDirection: 'ascending'});
+		});
 	});
 });
