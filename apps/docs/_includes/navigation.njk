@@ -15,6 +15,9 @@
                     {% if (item.status) == "underlying" %}
                         <vwc-badge slot="meta" text="underlying" connotation="information" appearance="subtle" shape="pill"></vwc-badge>
                     {% endif %}
+                    {% if (item.status) == "alpha" %}
+                        <vwc-badge slot="meta" text="alpha" connotation="warning" appearance="subtle" shape="pill"></vwc-badge>
+                    {% endif %}
                 </vwc-nav-item>
             {% endfor %}
         </vwc-nav-disclosure>

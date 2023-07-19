@@ -1,4 +1,5 @@
 # Option
+Generally used inside Select or Combobox
 
 ```js
 <script type='module'>
@@ -16,9 +17,12 @@ Use the `text` attribute to set the option's text.
 - Default: `undefined`
 
 ```html preview
-<vwc-listbox>
+<style>
+div[role="listbox"] {width: 150px;}
+</style>
+<div role="listbox">
  <vwc-option text="Option"></vwc-option>
-</vwc-listbox>
+</div>
 ```
 
 ### Label
@@ -35,9 +39,12 @@ Check out the [vivid icons gallery](../../icons/icons-gallery) to see what icons
 - Default: `''`
 
 ```html preview
-<vwc-listbox>
+<style>
+div[role="listbox"] {width: 150px;}
+</style>
+<div role="listbox">
  <vwc-option text="Option" icon="chat-line"></vwc-option>
-</vwc-listbox>
+</div>
 ```
 
 ### Selected
@@ -48,9 +55,12 @@ Add the `selected` attribute to select the option.
 - Default: `false`
 
 ```html preview
-<vwc-listbox>
+<style>
+div[role="listbox"] {width: 150px;}
+</style>
+<div role="listbox">
  <vwc-option text="Option" selected></vwc-option>
-</vwc-listbox>
+</div>
 ```
 
 ### Disabled
@@ -61,9 +71,12 @@ Add the `disabled` attribute to disable the option.
 - Default: `false`
 
 ```html preview
-<vwc-listbox>
+<style>
+div[role="listbox"] {width: 150px;}
+</style>
+<div role="listbox">
  <vwc-option text="Option" disabled></vwc-option>
-</vwc-listbox>
+</div>
 ```
 
 ### Value
@@ -74,9 +87,12 @@ Use the `value` attribute to set the option's value.
 - Default: `undefined`
 
 ```html preview
-<vwc-listbox>
+<style>
+div[role="listbox"] {width: 150px;}
+</style>
+<div role="listbox">
  <vwc-option text="Option" value="my-value"></vwc-option>
-</vwc-listbox>
+</div>
 ```
 
 ## Slots
@@ -87,9 +103,12 @@ Set the `icon` slot to show an icon before the option's label.
 If set, the `icon` attribute is ignored.
 
 ```html preview
-<vwc-listbox>
+<style>
+div[role="listbox"] {width: 150px;}
+</style>
+<div role="listbox">
 	<vwc-option text="Option" value="my-value">
 		<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 	</vwc-option>
-</vwc-listbox>
+</div>
 ```

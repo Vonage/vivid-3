@@ -7,7 +7,7 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['text-field'];
+const components = ['text-field', 'button'];
 
 test('should show the component', async ({page}: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(
@@ -45,13 +45,13 @@ const testInvalidation = async ({page, browserName}: { page: Page, browserName: 
 
 	const template = `
 		<form onsubmit="return false" style="min-height: 150px;">
-			<vwc-text-field id="invalid-text-field" 
-																		label="invalid" 
+			<vwc-text-field id="invalid-text-field"
+																		label="invalid"
 																		required
 																		name="invalid-text-field"></vwc-text-field>
-																		<input id="submit-button"  
-																					 name="submit-button" 
-																					 type="submit" 
+																		<input id="submit-button"
+																					 name="submit-button"
+																					 type="submit"
 																					 label="Submit"/>
 		</form>`;
 
