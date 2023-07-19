@@ -112,6 +112,8 @@ While any DOM content is permissible as a child of the menu, only `vwc-menu-item
 
 Use the `--menu-max-inline-size` variable to set the menu's inline size.
 
+- Default: `auto`
+
 ```html preview
 <style>
   vwc-menu {
@@ -127,6 +129,8 @@ Use the `--menu-max-inline-size` variable to set the menu's inline size.
 ### Minimum Inline Size
 
 Use the `--menu-min-inline-size` variable to set the menu's inline size.
+
+- Default: `auto`
 
 ```html preview
 <style>

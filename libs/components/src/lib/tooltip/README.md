@@ -63,6 +63,8 @@ Use the `placement` attribute to set the placement of the tooltip around the anc
 
 Use the `--tooltip-inline-size` variable to set the tooltip's inline size.
 
+- Default: `auto`
+
 ```html preview center
 <style>
   html { /* for demo purposes */

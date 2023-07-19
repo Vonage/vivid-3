@@ -216,6 +216,8 @@ Control the [grid-template-columns](https://developer.mozilla.org/en-US/docs/Web
 
 Control the [grid-template-rows](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows) of the layout by setting `--layout-grid-template-rows`.  
 
+- Default: `auto`
+
 ```html preview full
 <vwc-layout style="--layout-grid-template-rows: 80px 40px auto;">
   <vwc-card elevation="2"></vwc-card>
@@ -233,6 +235,8 @@ Control the grid [column-gap](https://developer.mozilla.org/en-US/docs/Web/CSS/c
 
 #### Layout-column-gap
 Control the grid [row-gap](https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap) by setting `--layout-row-gap`.
+
+- Default: `medium`
 
 ```html preview full
 <vwc-layout style="--layout-column-gap: 0; --layout-row-gap: 0;">

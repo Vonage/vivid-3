@@ -205,6 +205,8 @@ Use the `--alert-min-inline-size` variable to set the alert's minimum inline siz
 
 Use the `--alert-max-inline-size` variable to set the alert's maximum inline size.
 
+- Default: `fit-content`
+
 ```html preview
 <vwc-alert style="--alert-max-inline-size: 300px;" text="This is helptful to prevent the alert from becoming too wide when displaying a long message" open>
 ```
