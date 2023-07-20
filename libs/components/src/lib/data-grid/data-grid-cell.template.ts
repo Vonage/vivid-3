@@ -26,7 +26,7 @@ function handleClick<T extends DataGridCell>(x: T) {
 	if (x.cellType === 'columnheader' && x.ariaSort !== null) {
 		x.$emit('sort',
 			{columnDataKey: (x.columnDefinition && x.columnDefinition.columnDataKey) ?
-				x.columnDefinition.columnDataKey : x.textContent?.trim(), sortDirection: x.ariaSort});
+				x.columnDefinition.columnDataKey : x.textContent!.trim(), sortDirection: x.ariaSort});
 	}
 }
 export function DataGridCellTemplate<T extends DataGridCell>(context: ElementDefinitionContext): ViewTemplate<T> {
