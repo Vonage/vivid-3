@@ -10,6 +10,12 @@ p {
   margin: unset;
 }
 
+code {
+  background-color: var(--vvd-color-neutral-50);
+  border-radius: 4px;
+  padding: 0px 6px;
+}
+
 strong {
   font-weight: unset;
 }
@@ -146,8 +152,7 @@ article h4,
 article h5,
 article h6,
 article p,
-article ul,
-article table {
+article ul {
   max-inline-size: 80ch;
 }
 
@@ -352,3 +357,46 @@ article.article > h1 {
 .side-nav {
   position: relative;
 }
+
+/* #startregion table */
+
+.table-wrapper {
+  filter: var(--vvd-shadow-surface-2dp);
+  background: var(--vvd-color-surface-2dp);
+  border-radius: 6px;
+  padding: 8px;
+  box-sizing: border-box;
+  display: inline-flex;
+}
+
+@media (max-width: 768px) {
+  .table-wrapper {
+    overflow: auto;
+    max-width: calc(100vw - 32px);
+  }
+}
+
+table {
+  padding: 8px;
+  margin: 8px;
+  border-radius: 6px;
+  border-collapse: collapse;
+}
+
+thead > tr {
+  border-bottom: 1px solid var(--vvd-color-neutral-900);
+}
+
+tbody > tr {
+  border-bottom: 1px solid var(--vvd-color-neutral-100);
+}
+
+td,
+th {
+  max-inline-size: 80ch;
+  padding: 8px 16px;
+  word-break: normal;
+  text-align: left;
+}
+
+/* #endregion table */

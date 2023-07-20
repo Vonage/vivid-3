@@ -163,12 +163,13 @@ Use the `placement` attribute to set the placement of the popup around the ancho
 
 ## Methods
 
-### updatePosition()
+<div class="table-wrapper">
 
-- Type: `function`
-- Returns: `void`
+| Name             | Returns | Description               |
+| ---------------- | ------- | ------------------------- |
+| `updatePosition` | `void`  | Updates popup's position. |
 
-Updates popup's position.
+</div>
 
 ## Caveat
 

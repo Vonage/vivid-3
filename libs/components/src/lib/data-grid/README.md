@@ -312,15 +312,19 @@ The element tag for header row cells. If not set, the default tag `vwc-data-grid
 
 ### ColumnDefinition
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `columndDataKey` | `string` | The property from which the data of the column is taken from |
-| `title` | `string` | The title of the column |
-| `headerCellTemplate` | `ViewTemplate` | A custom template for a header cell |
+<div class="table-wrapper">
+
+| Name                            | Type                    | Description                                                  |
+| ------------------------------- | ----------------------- | ------------------------------------------------------------ |
+| `columndDataKey`                | `string`                | The property from which the data of the column is taken from |
+| `title`                         | `string`                | The title of the column                                      |
+| `headerCellTemplate`            | `ViewTemplate`          | A custom template for a header cell                          |
 | `headerCellFocusTargetCallback` | `(cell) => HTMLElement` | Callback function that is called when header cell is focused |
-| `cellTemplate` | `ViewTemplate` | A custom template for a cell |
-| `cellFocusTargetCallback` | `(cell) => HTMLElement` | Callback function that is called when cell is focused |
-| `isRowHeader` | `boolean` | Whether this column is the row header |
+| `cellTemplate`                  | `ViewTemplate`          | A custom template for a cell                                 |
+| `cellFocusTargetCallback`       | `(cell) => HTMLElement` | Callback function that is called when cell is focused        |
+| `isRowHeader`                   | `boolean`               | Whether this column is the row header                        |
+
+</div>
 
 ### Row
 
@@ -353,9 +357,40 @@ The grid also adds the `aria-selected` attribute to the row when it is selected 
 
 ### Cell
 
+
+#### aria-sort
+
+- Type: `'ascending'` | `'descending'` | `'none'` | `'other'` | `null`
+- Default: `null`
+
+Use the `aria-sort` attribute on a `columnheader` cell to indicate the sortable state of a header cell. 
+This will add the right chevron(s) according to the state. 
+
+In a nutshell:
+* `ascending` - Items are sorted in ascending order by this column. Will show one chevron pointing up.
+
+* `descending` - Items are sorted in descending order by this column. Will show one chevron pointing down.
+
+* `none` - There is no defined sort applied to the column. Will show indeterminate state with the two chevrons.
+
+* `other` - A sorting algorithm other than ascending or descending has been applied. Will show no hint. 
+
+For more information regarding `aria-sort` you can reference [the W3C spec](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-sort).
+
+```html preview
+<vwc-data-grid>
+  <vwc-data-grid-row role="row">
+    <vwc-data-grid-cell cell-type="columnheader" aria-sort="ascending">ascending</vwc-data-grid-cell>
+	<vwc-data-grid-cell cell-type="columnheader" aria-sort="descending">descending</vwc-data-grid-cell>
+	<vwc-data-grid-cell cell-type="columnheader" aria-sort="none">none</vwc-data-grid-cell>
+	<vwc-data-grid-cell cell-type="columnheader" aria-sort="other">other</vwc-data-grid-cell>
+ </vwc-data-grid-row>
+</vwc-data-grid>
+```
+
 #### aria-selected
 
-User the `aria-selected` attribute to indicate the selected state of a cell. 
+Use the `aria-selected` attribute to indicate the selected state of a cell. 
 For a full selection functionality the cell has to be inside a grid with the proper `selectionMode`.
 The grid also adds the `aria-selected` attribute to the cell when it is selected and adds `aria-selected="false"` for none-selected cells.
 
@@ -377,13 +412,15 @@ The default slot, where all the content is rendered.
 
 ## Events
 
-### row-focused
+<div class="table-wrapper">
 
-Fires when a row is focused.
+| Name           | Description                   |
+| -------------- | ----------------------------- |
+| `row-focused`  | Fires when a row is focused.  |
+| `cell-focused` | Fires when a cell is focused. |
 
-### cell-focused
 
-Fires when a cell is focused.
+</div>
 
 ## CSS Variable
 When Row is set to sticky there's a default canvas background-color.  
@@ -494,4 +531,73 @@ In order for the select popup to show correctly in the grid, use the `fixed-drop
 		<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
 	</vwc-data-grid-row>
 </vwc-data-grid>
+```
+
+### Sortable Columns
+
+In order for a grid column to show as sortable, use the `aria-sort` attribute on the sortable column header.
+
+```html preview
+	<vwc-data-grid>
+		
+	</vwc-data-grid>
+
+	<script>
+		data = [
+			{ data1: '111', data2: '312' },
+			{ data1: '211', data2: '212' },
+			{ data1: '311', data2: '112' },
+			{ data1: '411', data2: '612' },
+			{ data1: '511', data2: '512' },
+			{ data1: '611', data2: '412' }
+		];
+		
+    sort = (sortDirection) => (a, b) => {
+			const nameA = a.data2;
+			const nameB = b.data2;
+            
+        if (sortDirection === 'none') return 0;
+        if (sortDirection === 'ascending') {
+						return nameA > nameB ? -1 : 1;
+				} else {
+            return nameA < nameB ? -1 : 1;
+				}
+				return 0;
+		};
+    
+    headerRow = `
+    	<vwc-data-grid-row role="row" class="header" row-type="header">
+			<vwc-data-grid-cell cell-type="columnheader" role="columnheader">
+				data1 - can't sort me
+			</vwc-data-grid-cell>
+			<vwc-data-grid-cell aria-sort="none" cell-type="columnheader">
+				data2 - sort me
+			</vwc-data-grid-cell>
+		</vwc-data-grid-row>
+    `;
+    
+		function addDataToGrid(sortDirection = "none") {
+			const newData = Array.from(data).sort(sort(sortDirection));
+			const dataRows = newData.reduce((acc, row) => {
+				return acc + `
+						<vwc-data-grid-row>
+							<vwc-data-grid-cell>
+								${row.data1}
+							</vwc-data-grid-cell>
+							<vwc-data-grid-cell>${row.data2}</vwc-data-grid-cell>
+						</vwc-data-grid-row>`;
+																	}, '');
+			grid.innerHTML = headerRow.replace('aria-sort="none"', `aria-sort="${sortDirection}"`) + dataRows;
+    }
+
+		grid = document.querySelector('vwc-data-grid');
+		addDataToGrid();
+		
+		grid.addEventListener('sort', (e) => {
+				console.log(e.detail);
+				e.target.ariaSort = e.detail.sortDirection === "ascending" ? "descending" : 
+					e.detail.sortDirection === "descending" ? "none" : "ascending";
+				addDataToGrid(e.target.ariaSort);
+		});
+	</script>
 ```

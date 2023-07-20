@@ -4,6 +4,25 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.25.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.24.0...vivid-v3.25.0) (2023-07-20)
+
+
+### Features
+
+* **menu-item:** allow default action when role is presentation (VIV-1183) ([#1272](https://github.com/Vonage/vivid-3/issues/1272)) ([b5be287](https://github.com/Vonage/vivid-3/commit/b5be287a56205084b18f14629c1b49c8cd230137))
+* **text field:** add action-items slot (VIV-1188) ([#1270](https://github.com/Vonage/vivid-3/issues/1270)) ([ebbd0e4](https://github.com/Vonage/vivid-3/commit/ebbd0e4d9c4a176a9ebc1284eb43bcdc35b79102))
+
+
+### Bug Fixes
+
+* **action-group:** remove popup example (VIV-1206) ([#1265](https://github.com/Vonage/vivid-3/issues/1265)) ([8d4bce9](https://github.com/Vonage/vivid-3/commit/8d4bce999e4b3c657df9084b64a28ff3a76a11f6))
+* **checkbox:** add [@internal](https://github.com/internal) (VIV-1207) ([#1266](https://github.com/Vonage/vivid-3/issues/1266)) ([513ce17](https://github.com/Vonage/vivid-3/commit/513ce173b7a8711e1fa0105a2c0be19fb94e6552))
+* **components:** fix wrong appearance definition (VIV-1210) ([#1271](https://github.com/Vonage/vivid-3/issues/1271)) ([b747f5a](https://github.com/Vonage/vivid-3/commit/b747f5ad8080a4b9de102e6c3c34f389e51cb59b))
+* **data-grid:** prevent non-enumarable in columndefs (VIV-1208) ([#1268](https://github.com/Vonage/vivid-3/issues/1268)) ([820d368](https://github.com/Vonage/vivid-3/commit/820d36843b104dbc8b008435b8798f96ec83a723))
+* **dialog:** fix modal dialog not being fixed (VIV-1193) ([#1256](https://github.com/Vonage/vivid-3/issues/1256)) ([7d991c7](https://github.com/Vonage/vivid-3/commit/7d991c79c97529b3291ab269644f4ba7ce6daaa6))
+* **elevation:** adding isolation (VIV-1217) ([#1277](https://github.com/Vonage/vivid-3/issues/1277)) ([3e2db8b](https://github.com/Vonage/vivid-3/commit/3e2db8ba34f69ae36f24e69a91f6676204564972))
+* **nav-disclosure:** prevent toggle event from bubbling (VIV-1216) ([#1275](https://github.com/Vonage/vivid-3/issues/1275)) ([e0f1f79](https://github.com/Vonage/vivid-3/commit/e0f1f79e8485b2915abee512cdadf7138c15ebfe))
+
 ## [3.24.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.23.0...vivid-v3.24.0) (2023-07-13)
 
 

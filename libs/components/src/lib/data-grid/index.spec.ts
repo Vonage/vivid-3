@@ -120,6 +120,46 @@ describe('data grid integration tests', () => {
 			element.rowElements[0].children[0].dispatchEvent(new Event('focusin'));
 			expect(spy).toHaveBeenCalled();
 		});
+
+		describe('sort', function () {
+			async function addSortableHeader() {
+				element.innerHTML = `
+					<vwc-data-grid-row role="row" class="header" row-type="header">
+						<vwc-data-grid-cell cell-type="columnheader" role="columnheader">
+						data1
+						</vwc-data-grid-cell>
+						<vwc-data-grid-cell aria-sort="none" cell-type="columnheader">
+						data2
+						</vwc-data-grid-cell>
+					</vwc-data-grid-row>
+				`;
+				await elementUpdated(element);
+			}
+			it('should fire sort event', async function () {
+				await addSortableHeader();
+				const spy = jest.fn();
+				element.addEventListener('sort', spy);
+
+				(element.rowElements[0].children[1] as HTMLElement).click();
+
+				expect(spy).toHaveBeenCalledTimes(1);
+				expect(spy.mock.calls[0][0].detail).toEqual({columnDataKey: 'data2', sortDirection: 'none'});
+			});
+
+			it('should stop sort event propagation', async function () {
+				await addSortableHeader();
+				const elementSpy = jest.fn();
+				const parentSpy = jest.fn();
+				element.addEventListener('sort', elementSpy);
+				element.parentElement!.addEventListener('sort', parentSpy);
+
+				(element.rowElements[0].children[1] as HTMLElement).click();
+
+				expect(elementSpy).toHaveBeenCalledTimes(1);
+				expect(parentSpy).toHaveBeenCalledTimes(0);
+			});
+		});
+
 	});
 
 	describe('selectionMode', function () {

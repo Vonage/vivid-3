@@ -68,9 +68,11 @@ Assign elements to a day column using `'day-0'` | `'day-1'` | `'day-2'` | `'day-
 
 ## Methods
 
-### getEventContext()
+<div class="table-wrapper">
 
-- Type: `function`
-- Returns: `{ day: number, hour: number }` | `null`
+| Name              | Returns                                  | Description                                                                             |
+| ----------------- | ---------------------------------------- | --------------------------------------------------------------------------------------- |
+| `getEventContext` | `{ day: number, hour: number }` \ `null` | Accepts event reference and returns an object containing _day_ & _hour_  if applicable. |
+|                   |
 
-Accepts event reference and returns an object containing _day_ & _hour_  if applicable.
+</div>

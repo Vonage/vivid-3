@@ -285,24 +285,14 @@ Note that all styles will be overridden including the dialog's padding. See the 
 
 ### Z-index
 
-When the dialog is not set as `modal` its initial z-index can be changed if needed.
-
-`--dialog-z-index`
-
-- Type: `string`
-- Default: `undefined`
+When the dialog is not set as `modal` its initial z-index can be changed if needed by setting `--dialog-z-index`.
 
 ### Inline min & Max size
 
-The Dialog has default `min-inline-size` and `max-inline-size`. This can be changed with setting a new value.
-setting the same value for `min-inline-size` and `max-inline-size` will set a definitive width to the dialog.
-When setting a new value for `min-inline-size` and `max-inline-size` take in consideration if defendant value are needed for mobile.
-
-`--dialog-min-inline-size`
-`--dialog-max-inline-size`
-
-- Type: `string`
-- Default: `undefined`
+The Dialog has default `--dialog-min-inline-size` and `--dialog-max-inline-size`.   
+This can be changed with setting a new value.  
+setting the same value for `--dialog-min-inline-size` and `--dialog-max-inline-size` will set a definitive width to the dialog.  
+When setting a new value for `--dialog-min-inline-size` and `--dialog-max-inline-size` take in consideration if defendant value are needed for mobile.  
 
 ```html preview
 <style>
@@ -319,12 +309,7 @@ vwc-dialog {
 
 ### Block-Size
 
-The Dialog has default `max-block-size`, if content is larger - there will be scroll.
-
-`--dialog-max-block-size`
-
-- Type: `string`
-- Default: `undefined`
+The Dialog has default `--dialog-max-block-size`, if content is larger - there will be scroll.
 
 ```html preview
 <style>
@@ -341,85 +326,25 @@ vwc-dialog {
 
 ## Events
 
-### Close
+<div class="table-wrapper">
 
-The `close` event fires when the dialog closes (either via user interaction or via the API).
-It returns the return value inside the event's details property.
+| Name    | Description                                                                                                                                                   |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `close` | The `close` event fires when the dialog closes (either via user interaction or via the API). It returns the return value inside the event's details property. |
 
-```html preview
-<vwc-dialog open
-            headline="Returning Dialog">
-</vwc-dialog>
-<vwc-button label="Close Dialog"
-            onclick="closeDialog()"></vwc-button>
-<script>
-  function closeDialog() {
-    dialog = document.querySelector('vwc-dialog');
-    dialog.returnValue = 'Value';
-    dialog.close();
-  }
-  (function() {
-    dialog = document.querySelector('vwc-dialog');
-    dialog.addEventListener('close', (e) => console.log(e.detail));
-  })();
-</script>
-```
+</div>
 
 ## Methods
 
-### show()
+<div class="table-wrapper">
 
-Shows the dialog. Positioned in a top position by default.
+| Name| Returns  | Description  |
+| ----------- | ------- | ---------------- |
+| `show`      | `void`  | Shows the dialog. Positioned in a top position by default. |
+| `close`     | `void`  | Closes the dialog.       |
+| `showModal` | `void`  | Shows the dialog and makes it the top-most modal dialog. Positioned in a center position by default. Interaction outside the dialog is blocked and the content outside it is rendered inert For more information, see the native [Dialog.showModal](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal).  |
 
-```html preview
-<vwc-dialog headline="Open Dialog">
-</vwc-dialog>
-<vwc-button label="Open Dialog"
-            onclick="openDialog()"></vwc-button>
-<script>
-  function openDialog() {
-    dialog = document.querySelector('vwc-dialog');
-    dialog.show();
-  }
-</script>
-```
-
-### showModal()
-
-Shows the dialog and makes it the top-most modal dialog. Positioned in a center position by default.
-Interaction outside the dialog is blocked and the content outside it is rendered inert.
-For more information, see the native [Dialog.showModal](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal).
-
-```html preview
-<vwc-dialog headline="Open Dialog">
-</vwc-dialog>
-<vwc-button label="Open Modal Dialog"
-            onclick="openDialog()"></vwc-button>
-<script>
-  function openDialog() {
-    dialog = document.querySelector('vwc-dialog');
-    dialog.showModal();
-  }
-</script>
-```
-
-### close()
-
-Closes the dialog.
-
-```html preview
-<vwc-dialog open
-            headline="Open Dialog">
-</vwc-dialog>
-<vwc-button label="Close Dialog"
-            onclick="closeDialog()"></vwc-button>
-<script>
-  function closeDialog() {
-    dialog = document.querySelector('vwc-dialog');
-    dialog.close();
-  }
-</script>
-```
+</div>
 
 ## Accessibility
 
@@ -432,14 +357,35 @@ Closes the dialog.
 ### Dialog Form
 
 ```html preview
-<vwc-dialog headline="Open Dialog">
-  <form slot="main" method="dialog">
-    <vwc-button type="submit" label="Submit"></vwc-button>
+<style>
+  html { /* for demo purposes */
+    block-size: 400px;
+  }
+</style>
+<vwc-button label="Open Dialog" onclick="openDialog()"></vwc-button>
+<vwc-dialog headline="Dialog With Form">
+  <form slot="body" method="dialog">
+   <vwc-layout column-basis="block">
+        <vwc-text-field label="Agent Name" placeholder="Search for an agent" icon="search-line"></vwc-text-field>
+        <vwc-text-area label="Additional Note (Optional)"></vwc-text-area>
+      <vwc-button type="submit" label="Submit"></vwc-button>
+      </vwc-layout>
   </form>
 </vwc-dialog>
 
-<vwc-button label="Open Modal Dialog" onclick="openDialog()">
-</vwc-button>
+<script>
+  function openDialog() {
+    dialog = document.querySelector('vwc-dialog');
+    dialog.show();
+  }
+</script>
+```
+
+### Modal Dialog with Scrim
+
+```html preview
+<vwc-button label="Open Modal Dialog" onclick="openDialog()"></vwc-button>
+<vwc-dialog headline="Modal Dialog"></vwc-dialog>
 
 <script>
   function openDialog() {
