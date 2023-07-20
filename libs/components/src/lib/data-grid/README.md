@@ -374,10 +374,14 @@ In a nutshell:
 For more information regarding `aria-sort` you can reference [the W3C spec](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-sort).
 
 ```html preview
-	<vwc-data-grid-cell cell-type="columnheader" aria-sort="ascending">Cell 1</vwc-data-grid-cell>
-	<vwc-data-grid-cell cell-type="columnheader" aria-sort="descending">Cell 1</vwc-data-grid-cell>
-	<vwc-data-grid-cell cell-type="columnheader" aria-sort="none">Cell 1</vwc-data-grid-cell>
-	<vwc-data-grid-cell cell-type="columnheader" aria-sort="other">Cell 1</vwc-data-grid-cell>
+<vwc-data-grid>
+  <vwc-data-grid-row role="row">
+    <vwc-data-grid-cell cell-type="columnheader" aria-sort="ascending">ascending</vwc-data-grid-cell>
+	<vwc-data-grid-cell cell-type="columnheader" aria-sort="descending">descending</vwc-data-grid-cell>
+	<vwc-data-grid-cell cell-type="columnheader" aria-sort="none">none</vwc-data-grid-cell>
+	<vwc-data-grid-cell cell-type="columnheader" aria-sort="other">other</vwc-data-grid-cell>
+ </vwc-data-grid-row>
+</vwc-data-grid>
 ```
 
 #### aria-selected
@@ -558,10 +562,10 @@ In order for a grid column to show as sortable, use the `aria-sort` attribute on
     headerRow = `
     	<vwc-data-grid-row role="row" class="header" row-type="header">
 			<vwc-data-grid-cell cell-type="columnheader" role="columnheader">
-				data1
+				data1 - can't sort me
 			</vwc-data-grid-cell>
 			<vwc-data-grid-cell aria-sort="none" cell-type="columnheader">
-				data2
+				data2 - sort me
 			</vwc-data-grid-cell>
 		</vwc-data-grid-row>
     `;
