@@ -301,7 +301,7 @@ describe('vwc-data-grid-cell', () => {
 
 		it('should fire "sort" event when clicked', async function () {
 			element.ariaSort = 'none';
-			element.innerText = 'Name';
+			element.innerHTML = 'Name';
 			await elementUpdated(element);
 			const spy = jest.fn();
 			element.addEventListener('sort', spy);
@@ -324,3 +324,7 @@ describe('vwc-data-grid-cell', () => {
 		});
 	});
 });
+
+// TODO::stop `sort` event propagation in the data-grid and emit it without bubbling
+// TODO::add ui tests for `sort`
+// TODO::make it work with columnDefinitions and rowsData
