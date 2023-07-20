@@ -234,8 +234,49 @@ async function testMultiRowSelection({ page }: { page: Page }) {
 		{ maxDiffPixelRatio: 0.01 }
 	);
 }
+
+async function testSortColumns({ page }: { page: Page }) {
+	const template = `<div style="margin: 5px;">
+			<vwc-data-grid>
+				<vwc-data-grid-row role="row" class="header" row-type="header">
+					<vwc-data-grid-cell aria-sort="ascending" cell-type="columnheader" role="columnheader">
+					data1
+					</vwc-data-grid-cell>
+					<vwc-data-grid-cell aria-sort="none" cell-type="columnheader">
+					data2
+					</vwc-data-grid-cell>
+					<vwc-data-grid-cell aria-sort="descending" cell-type="columnheader">
+					data3
+					</vwc-data-grid-cell>
+				</vwc-data-grid-row>
+			</vwc-data-grid>
+	</div>`;
+
+	await loadComponents({
+		page,
+		components,
+	});
+	await loadTemplate({
+		page,
+		template,
+	});
+
+	const testWrapper = await page.$('#wrapper');
+
+	await page.waitForLoadState('networkidle');
+
+	const text = await page.locator('vwc-data-grid-cell:has-text("data22")').nth(2);
+	await text.isVisible();
+
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'./snapshots/data-grid-sortable-headers.png',
+		{ maxDiffPixelRatio: 0.01 }
+	);
+}
+
 test('should show the component', gridTestFunction);
 test('single cell selection', testCellSelection);
 test('multi cell selection', testMultiCellSelection);
 test('single row selection', testRowSelection);
 test('multi row selection', testMultiRowSelection);
+test('sort columns', testSortColumns);
