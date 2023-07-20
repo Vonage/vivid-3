@@ -359,7 +359,11 @@ vwc-dialog {
 <vwc-button label="Open Dialog" onclick="openDialog()"></vwc-button>
 <vwc-dialog>
   <form slot="main" method="dialog">
-    <vwc-button type="submit" label="Submit"></vwc-button>
+   <vwc-layout column-basis="block">
+        <vwc-text-field label="Agent Name" placeholder="Search for an agent" icon="search-line"></vwc-text-field>
+        <vwc-text-area label="Additional Note (Optional)"></vwc-text-area>
+      <vwc-button type="submit" label="Submit"></vwc-button>
+      </vwc-layout>
   </form>
 </vwc-dialog>
 
