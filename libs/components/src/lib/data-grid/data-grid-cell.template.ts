@@ -17,7 +17,7 @@ function renderSortIcons<T extends DataGridCell>(c: ElementDefinitionContext) {
 	const iconTag = c.tagFor(Icon);
 	return html<T>`
 			${when(shouldShowSortIcons, html<T>`
-				<${iconTag} class="sort-icon-up" name="${getSortIcon}"></${iconTag}>
+				<${iconTag} class="header-icon" name="${getSortIcon}"></${iconTag}>
 			`)}
 		`;
 }
