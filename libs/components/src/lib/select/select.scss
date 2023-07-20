@@ -123,6 +123,10 @@ $low-ink-color: --_low-ink-color;
 ::part(popup-base) {
 	inline-size: max-content;
 	min-inline-size: var(#{variables.$select-fixed-width}, 100%);
+
+	:host([multiple]) & {
+		position: static;
+	}
 }
 
 
@@ -132,5 +136,9 @@ $low-ink-color: --_low-ink-color;
 
 	:host(:not(:focus-visible)) & {
 		display: none;
+	}
+
+	:host([multiple]) & {
+		#{variables.$select-control-border-radius}: 6px;
 	}
 }
