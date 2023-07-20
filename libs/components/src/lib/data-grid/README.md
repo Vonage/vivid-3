@@ -163,8 +163,8 @@ The column definitions of the grid
 <script>
     grid = document.querySelector('vwc-data-grid');
     grid.columnDefinitions = [
-        {columnDataKey: 'data1', title: 'Custom Title 1'},
-        {columnDataKey: 'data2', title: 'Custom Title 2'},
+        {columnDataKey: 'data1', title: 'Custom Title 1', sortable: true, sortDirection: 'ascending'},
+        {columnDataKey: 'data2', title: 'Custom Title 2', sortable: true},
     ];
     grid.rowsData = [
         {data1: 'data11', data2: 'data12'},
@@ -312,15 +312,17 @@ The element tag for header row cells. If not set, the default tag `vwc-data-grid
 
 ### ColumnDefinition
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `columndDataKey` | `string` | The property from which the data of the column is taken from |
-| `title` | `string` | The title of the column |
-| `headerCellTemplate` | `ViewTemplate` | A custom template for a header cell |
-| `headerCellFocusTargetCallback` | `(cell) => HTMLElement` | Callback function that is called when header cell is focused |
-| `cellTemplate` | `ViewTemplate` | A custom template for a cell |
-| `cellFocusTargetCallback` | `(cell) => HTMLElement` | Callback function that is called when cell is focused |
-| `isRowHeader` | `boolean` | Whether this column is the row header |
+| Name                            | Type                                                                 | Description                                                  |
+|---------------------------------|----------------------------------------------------------------------|--------------------------------------------------------------|
+| `columndDataKey`                | `string`                                                             | The property from which the data of the column is taken from |
+| `title`                         | `string`                                                             | The title of the column                                      |
+| `headerCellTemplate`            | `ViewTemplate`                                                       | A custom template for a header cell                          |
+| `headerCellFocusTargetCallback` | `(cell) => HTMLElement`                                              | Callback function that is called when header cell is focused |
+| `cellTemplate`                  | `ViewTemplate`                                                       | A custom template for a cell                                 |
+| `cellFocusTargetCallback`       | `(cell) => HTMLElement`                                              | Callback function that is called when cell is focused        |
+| `isRowHeader`                   | `boolean`                                                            | Whether this column is the row header                        |
+| `sortable`                      | `boolean`                                                            | Whether this column is sortable                              |
+| `sortDirection`                 | `'none'` &#124; `'ascending'` &#124; `'descending'` &#124; `'other'` | Whether this column is sortable                              |
 
 ### Row
 
@@ -485,6 +487,8 @@ vwc-data-grid {max-block-size: 200px;}
 Keyboard events and focus handling are compliant with WACG standards.
 
 Usage of `aria-selected` hints on a selectable element and its selection status.
+
+When a cell is sorted but not according to ascending or descending algorithm, use `aria-sort="other"`. 
 
 ## Use Cases
 

@@ -3,7 +3,8 @@ import { attr } from '@microsoft/fast-element';
 import type {DataGridCellSortStates} from './data-grid.options';
 
 declare interface ColumnDefinitionExtended extends ColumnDefinition {
-	sort?: DataGridCellSortStates | undefined | null;
+	sortDirection?: DataGridCellSortStates | null;
+	sortable?: boolean | undefined;
 }
 
 class DataGridCellExtension {
