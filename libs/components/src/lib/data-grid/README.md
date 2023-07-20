@@ -568,7 +568,6 @@ In order for a grid column to show as sortable, use the `aria-sort` attribute on
     
 		function addDataToGrid(sortDirection = "none") {
 			const newData = Array.from(data).sort(sort(sortDirection));
-            console.log(JSON.stringify(data, null, 2));
 			const dataRows = newData.reduce((acc, row) => {
 				return acc + `
 						<vwc-data-grid-row>
