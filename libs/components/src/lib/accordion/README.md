@@ -55,9 +55,11 @@ Use the `expand-mode` attribute to control the expand mode of the accordion, eit
 
 ## Methods
 
-### closeAll()
+<div class="table-wrapper">
 
-- Type: `function`
-- Returns: `void`
+| Name       | Returns | Description                                                                               |
+| ---------- | ------- | ----------------------------------------------------------------------------------------- |
+| `closeAll` | `void`  | When `expand-mode` is set to `multi`, closes all the accordion items from the open state. |
+|            |
 
-When `expand-mode` is set to `multi`, closes all the accordion items from the open state.
+</div>

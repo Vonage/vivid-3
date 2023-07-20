@@ -108,11 +108,10 @@ While any DOM content is permissible as a child of the menu, only `vwc-menu-item
 
 ## CSS Variables
 
-### Max Inline Size
+### Maximum Inline Size
 
 Use the `--menu-max-inline-size` variable to set the menu's inline size.
 
-- Type: [`<length>`](https://developer.mozilla.org/en-US/docs/Web/CSS/length)
 - Default: `auto`
 
 ```html preview
@@ -127,11 +126,10 @@ Use the `--menu-max-inline-size` variable to set the menu's inline size.
 </vwc-menu>
 ```
 
-### Min Inline Size
+### Minimum Inline Size
 
 Use the `--menu-min-inline-size` variable to set the menu's inline size.
 
-- Type: [`<length>`](https://developer.mozilla.org/en-US/docs/Web/CSS/length)
 - Default: `auto`
 
 ```html preview
@@ -150,7 +148,6 @@ Use the `--menu-min-inline-size` variable to set the menu's inline size.
 
 Use the `--menu-block-size` variable to set the menu's block size.
 
-- Type: [`<length>`](https://developer.mozilla.org/en-US/docs/Web/CSS/length)
 - Default: `408px`
 
 ```html preview
@@ -173,17 +170,15 @@ Use the `--menu-block-size` variable to set the menu's block size.
 
 ## Methods
 
-### focus()
+<div class="table-wrapper">
 
-- Returns: `void`
+| Name                   | Returns | Description                         |
+| ---------------------- | ------- | ----------------------------------- |
+| `focus`                | `void`  | Focuses the first item in the menu. |
+| `collapseExpandedItem` | `void`  | Collapses any expanded menu items.  |
 
-Focuses the first item in the menu.
+</div>
 
-### collapseExpandedItem()
-
-- Returns: `void`
-
-Collapses any expanded menu items.
 
 ## Caveat
 

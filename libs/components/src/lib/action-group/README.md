@@ -139,7 +139,7 @@ Note: This is a simplified example illustrating a styled radio group and is not 
 </vwc-action-group>
 ```
 
-// TODO: Update the example when will be a dropdown component / the popup will not be underlying
+<!-- TODO: Update the example when will be a dropdown component / the popup will not be underlying -->
 
 <!-- ### More Actions
 

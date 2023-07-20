@@ -162,13 +162,14 @@ When icon member is set with slot - the icon will be trailing.
 
 ## Events
 
-### Expanded Change
+<div class="table-wrapper">
 
-Fires a custom 'expanded-change' event when the expanded state changes
+| Name              | Description                                                                                                                         |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `expanded-change` | Fires a custom `expanded-change` event when the expanded state changes.                                                             |
+| `change`          | Fires a custom `change` event when a non-submenu item with a role of `menuitemcheckbox`, `menuitemradio`, or `menuitem` is invoked. |
 
-### Change
-
-Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `menuitemradio`, or `menuitem` is invoked
+</div>
 
 ### Click
 
@@ -178,8 +179,10 @@ Fires a click event when its role is `presentation`
 Line clamp by default is set to one line.  
 
 This can be changed by setting a css-variable to a fixed number of lines or `auto`   
-- `--text-primary-line-clamp` for the primary text
-- `--text-secondary-line-clamp` for the secondary text
+- `--text-primary-line-clamp` for the primary text.
+- `--text-secondary-line-clamp` for the secondary text.
+
+
 ```html preview
 <style>
 vwc-menu {
