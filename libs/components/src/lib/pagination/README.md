@@ -69,9 +69,9 @@ Set the `navIcons` attribute to change the pagination's navigation buttons type.
 
 <vwc-elevation>
 
-| Name                | Description                                                                                  |
-| ------------------- | -------------------------------------------------------------------------------------------- |
-| `pagination-change` | Listen to the `pagination-change` event to get notified when the pagination's state changes. |
+| Name                | Description                                                                                                                                 |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pagination-change` | Listen to the `pagination-change` event to get notified when the pagination's state changes. Returns detail{selectedIndex, total, oldIndex} |
 |                     |
 
 

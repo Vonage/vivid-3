@@ -289,9 +289,10 @@ When the dialog is not set as `modal` its initial z-index can be changed if need
 
 ### Inline min & Max size
 
-The Dialog has default `--dialog-min-inline-size` and `--dialog-max-inline-size`. This can be changed with setting a new value.
-setting the same value for `--dialog-min-inline-size` and `--dialog-max-inline-size` will set a definitive width to the dialog.
-When setting a new value for `--dialog-min-inline-size` and `--dialog-max-inline-size` take in consideration if defendant value are needed for mobile.
+The Dialog has default `--dialog-min-inline-size` and `--dialog-max-inline-size`.   
+This can be changed with setting a new value.  
+setting the same value for `--dialog-min-inline-size` and `--dialog-max-inline-size` will set a definitive width to the dialog.  
+When setting a new value for `--dialog-min-inline-size` and `--dialog-max-inline-size` take in consideration if defendant value are needed for mobile.  
 
 ```html preview
 <style>
@@ -362,8 +363,8 @@ vwc-dialog {
   }
 </style>
 <vwc-button label="Open Dialog" onclick="openDialog()"></vwc-button>
-<vwc-dialog>
-  <form slot="main" method="dialog">
+<vwc-dialog headline="Dialog With Form">
+  <form slot="body" method="dialog">
    <vwc-layout column-basis="block">
         <vwc-text-field label="Agent Name" placeholder="Search for an agent" icon="search-line"></vwc-text-field>
         <vwc-text-area label="Additional Note (Optional)"></vwc-text-area>
