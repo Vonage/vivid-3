@@ -20,7 +20,25 @@ Represents a <%= name %> custom element.
 
 ## Events
 
+<div class="table-wrapper">
+
+| Name    | Description                                                                                                                                                   |
+| ------- | ----------- |
+|         |             |
+
+</div>
+
 ## Methods
+
+<div class="table-wrapper">
+
+| Name        | Returns | Description                                                                                          |
+| ----------- | ------- | ------------ |
+|             |         |              |
+
+</div>
+
+## Properties
 
 ## Accessibility
 

@@ -410,13 +410,15 @@ The default slot, where all the content is rendered.
 
 ## Events
 
-### row-focused
+<div class="table-wrapper">
 
-Fires when a row is focused.
+| Name           | Description                   |
+| -------------- | ----------------------------- |
+| `row-focused`  | Fires when a row is focused.  |
+| `cell-focused` | Fires when a cell is focused. |
 
-### cell-focused
 
-Fires when a cell is focused.
+</div>
 
 ## CSS Variable
 When Row is set to sticky there's a default canvas background-color.  
