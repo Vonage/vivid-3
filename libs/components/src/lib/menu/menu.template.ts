@@ -4,6 +4,7 @@ import {
 	ref,
 	slotted
 } from '@microsoft/fast-element';
+import { classNames } from '@microsoft/fast-web-utilities';
 import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
@@ -11,6 +12,22 @@ import type {
 import { Popup } from '../popup/popup';
 import type { Menu } from './menu';
 
+const getClasses = ({
+	headerSlottedContent,
+	footerSlottedContent,
+	actionItemsSlottedContent,
+}: Menu) =>
+	classNames(
+		'base',
+		['hide-header', !headerSlottedContent?.length],
+		[
+			'hide-footer',
+			!(
+				footerSlottedContent?.length ||
+				actionItemsSlottedContent?.length
+			),
+		]
+	);
 
 /**
  * The template for the Menu component.
@@ -37,14 +54,27 @@ export const MenuTemplate: (
 				@vwc-popup:close="${x => handlePopupEvents(x, false)}"
 				${ref('_popup')}
 			>
+			<div class="${getClasses}">
+				<div class="header">
+					<slot name="header" ${slotted('headerSlottedContent')}></slot>
+				</div>
 				<div
-					class="base"
+					class="body"
 					role="menu"
 					@keydown="${(x, c) => x.handleMenuKeyDown(c.event as KeyboardEvent)}"
 					@focusout="${(x, c) => x.handleFocusOut(c.event as FocusEvent)}"
 				>
 					<slot ${slotted('items')}></slot>
 				</div>
+				<div class="footer">
+					<div>
+						<slot name="footer" ${slotted('footerSlottedContent')}></slot>
+					</div>
+					<div class="actions">
+						<slot name="action-items" ${slotted('actionItemsSlottedContent')}></slot>
+					</div>
+				</div>
+			</div>
 		</${popupTag}>
 	</template>`;
 };

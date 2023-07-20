@@ -252,7 +252,9 @@
 		"modules": [
 			"/assets/modules/components/menu/index.js",
 			"/assets/modules/components/menu-item/index.js",
-			"/assets/modules/components/button/index.js"
+			"/assets/modules/components/button/index.js",
+			"/assets/modules/components/text-field/index.js",
+			"/assets/modules/components/checkbox/index.js"
 		]
 	},
 	{

@@ -43,6 +43,11 @@ _Menu_ internally uses _popup_ to display an element and its descendants above t
 - Default: `''`
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+		block-size: 200px;
+	}
+</style>
 <div style="position: relative">
   <vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open" appearance="outlined"></vwc-button>
 
@@ -61,6 +66,11 @@ Use the auto dismiss property to automatically close the menu when the user clic
 - Default: `false`
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+		block-size: 200px;
+	}
+</style>
 <div style="position: relative">
   <vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open" appearance="outlined"></vwc-button>
 
@@ -105,6 +115,65 @@ While any DOM content is permissible as a child of the menu, only `vwc-menu-item
   <vwc-menu-item text="Menu item 2"></vwc-menu-item>
 </vwc-menu>
 ```
+
+### Header
+
+Use the `header` slot in order to add additional content to the top of the menu.
+
+```html preview
+<style>
+  html { /* for demo purposes */
+		block-size: 200px;
+	}
+</style>
+
+<vwc-menu open>
+  <vwc-text-field slot="header" placeholder="Search" icon="search"></vwc-text-field>
+  <vwc-menu-item text="Menu item 1"></vwc-menu-item>
+  <vwc-menu-item text="Menu item 2"></vwc-menu-item>
+</vwc-menu>
+```
+
+### Action Items
+
+Use the `action-items` slot to add action items to the bottom of the menu.
+
+```html preview
+<style>
+  html { /* for demo purposes */
+		block-size: 200px;
+	}
+</style>
+
+<vwc-menu open>
+  <vwc-menu-item text="Menu item 1"></vwc-menu-item>
+  <vwc-menu-item text="Menu item 2"></vwc-menu-item>
+  <vwc-button slot="action-items" appearance="outlined" label="Cancel"></vwc-button>
+	<vwc-button slot="action-items" appearance="filled" label="Action"></vwc-button>
+</vwc-menu>
+```
+
+### Footer
+
+Use the `footer` slot in order to add additional content to the bottom of the menu.
+
+When used in combination with `action-items` slot, the `footer` content will appear to the left of the action items.
+
+```html preview
+<style>
+  html { /* for demo purposes */
+		block-size: 200px;
+	}
+</style>
+
+<vwc-menu open>
+  <vwc-menu-item text="Menu item 1"></vwc-menu-item>
+  <vwc-menu-item text="Menu item 2"></vwc-menu-item>
+  <vwc-checkbox slot="footer" label="I agree"></vwc-checkbox>
+  <vwc-button slot="action-items" appearance="filled" label="Ok"></vwc-button>
+</vwc-menu>
+```
+
 
 ## CSS Variables
 
@@ -188,3 +257,27 @@ Menu component is a low level element, unaware of its document context, but is, 
 A common practice used in apps / frameworks to promote a Menu component to top other elements z-axis, is to utilise a service that dynamically appends a Menu component to the end of the body element, when called for.
 
 This helps ensure elements don't render over top a Menu undesirebly.
+
+## Use Cases
+
+### Menu with checkbox
+
+```html preview
+<style>
+  html { /* for demo purposes */
+		block-size: 400px;
+	}
+</style>
+<div style="position: relative">
+  <vwc-button id="button" label="Select" onclick="menu.open = !menu.open" appearance="filled"></vwc-button>
+
+  <vwc-menu id="menu" anchor="button" placement="bottom-start" open>
+    <vwc-text-field slot="header" placeholder="Search" icon="search"></vwc-text-field>
+    <vwc-menu-item role="menuitemcheckbox" text="Checkbox 1"></vwc-menu-item>
+    <vwc-menu-item role="menuitemcheckbox" text="Checkbox 2"></vwc-menu-item>
+    <vwc-menu-item role="menuitemcheckbox" text="Checkbox 3"></vwc-menu-item>
+    <vwc-button slot="action-items" appearance="outlined" label="Close"></vwc-button>
+    <vwc-button slot="action-items" appearance="filled" label="Select"></vwc-button>
+  </vwc-menu>
+</div>
+```

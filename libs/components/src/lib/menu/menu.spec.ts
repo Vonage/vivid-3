@@ -225,6 +225,54 @@ describe('vwc-menu', () => {
 		});
 	});
 
+	describe( 'menu header', () => {
+		it('should have header slot ', async function () {
+			const headerSlotElement = element.shadowRoot?.
+				querySelector('.header slot[name="header"]');
+
+			expect(headerSlotElement).toBeDefined();
+		});
+
+		it('should remove hide-header class from .base if header is slotted', async function () {
+			const slottedElement = document.createElement('div');
+			slottedElement.slot = 'header';
+			slottedElement.id = 'header';
+			element.appendChild(slottedElement);
+			await elementUpdated(element);
+
+			const baseElementClasses = getBaseElement(element)?.classList;
+
+			expect(baseElementClasses).not.toContain('hide-header');
+		});
+	});
+
+	describe('menu footer', () => {
+		it.each(['footer', 'action-items'])(
+			'should have a %s slot ',
+			(slotName) => {
+				const slotElement = element.shadowRoot?.querySelector(
+					`.footer slot[name="${slotName}"]`
+				);
+
+				expect(slotElement).toBeDefined();
+			}
+		);
+
+		it.each(['footer', 'action-items'])(
+			'should remove hide-footer class from .base if %s is slotted',
+			async (slotName) => {
+				const slottedElement = document.createElement('div');
+				slottedElement.slot = slotName;
+				element.appendChild(slottedElement);
+				await elementUpdated(element);
+
+				const baseElementClasses = getBaseElement(element)?.classList;
+
+				expect(baseElementClasses).not.toContain('hide-footer');
+			}
+		);
+	});
+
 	const arrowUpEvent = new KeyboardEvent('keydown', {
 		key: keyArrowUp,
 		bubbles: true,
