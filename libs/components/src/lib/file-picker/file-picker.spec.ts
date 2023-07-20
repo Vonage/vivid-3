@@ -30,12 +30,15 @@ describe('vwc-file-picker', () => {
 			expect(element.files).toEqual([]);
 		});
 
-		it('should allow setting and accessing properties even when unmounted', async () => {
+		it('should allow accessing the component in unmounted state and mounting later without error', async () => {
 			const unmountedElement = document.createElement(COMPONENT_TAG) as FilePicker;
 			unmountedElement.maxFileSize = 256;
 			unmountedElement.maxFiles = 1;
 			unmountedElement.accept = '.jpg';
 			expect(unmountedElement.files).toEqual([]);
+
+			document.body.appendChild(unmountedElement);
+			document.body.removeChild(unmountedElement);
 		});
 	});
 

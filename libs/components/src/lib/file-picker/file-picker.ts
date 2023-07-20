@@ -122,9 +122,7 @@ export class FilePicker extends FoundationElement {
 		) as HTMLDivElement;
 		this.#dropzone = new Dropzone(control, {
 			url: '/', // dummy url, we do not use dropzone's upload functionality
-			...(this.maxFiles !== undefined
-				? { maxFiles: this.maxFiles }
-				: {}),
+			maxFiles: this.maxFiles ?? null as any,
 			maxFilesize: this.maxFileSize,
 			acceptedFiles: this.accept,
 			autoProcessQueue: false,
@@ -146,14 +144,14 @@ export class FilePicker extends FoundationElement {
 		});
 
 		this.#dropzone.on('addedfile', (file) => {
-			if (file?.previewElement) {
+			if (file.previewElement) {
 				const removeButton = file.previewElement.querySelector(
 					'.remove-btn'
 				) as Button;
-				removeButton?.addEventListener('click', (e) => {
+				removeButton.addEventListener('click', (e) => {
 					e.preventDefault();
 					e.stopPropagation();
-					this.#dropzone?.removeFile(file as File as DropzoneFile);
+					this.#dropzone!.removeFile(file as File as DropzoneFile);
 				});
 			}
 
@@ -167,7 +165,7 @@ export class FilePicker extends FoundationElement {
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
-		this.#dropzone?.destroy();
+		this.#dropzone!.destroy();
 	}
 	/**
 	 * Used internally to set the button tag.
@@ -188,15 +186,15 @@ export class FilePicker extends FoundationElement {
 	}
 
 	#chooseFile(): void {
-		if (this.#dropzone?.hiddenFileInput) {
-			this.#dropzone.hiddenFileInput.click();
+		if (this.#dropzone!.hiddenFileInput) {
+			this.#dropzone!.hiddenFileInput.click();
 		}
 	}
 
 	#updateHiddenFileInput(): void {
-		if (this.#dropzone?.hiddenFileInput) {
+		if (this.#dropzone!.hiddenFileInput) {
 			// Dropzone will recreate the hiddenFileInput on change event
-			this.#dropzone.hiddenFileInput.dispatchEvent(
+			this.#dropzone!.hiddenFileInput.dispatchEvent(
 				new Event('change', { bubbles: false })
 			);
 		}
