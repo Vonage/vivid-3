@@ -322,10 +322,6 @@ describe('vwc-data-grid-cell', () => {
 			element.click();
 			expect(spy.mock.calls[0][0].detail).toEqual({columnDataKey: 'Not Name', sortDirection: 'ascending'});
 		});
-
-		it('should set aria-sort from columnDefinition', function () {
-			element.columnDefinition.sort = 'ascending';
-		});
 	});
 });
 
