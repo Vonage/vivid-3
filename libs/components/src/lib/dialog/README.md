@@ -356,6 +356,11 @@ vwc-dialog {
 ### Dialog Form
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 400px;
+  }
+</style>
 <vwc-button label="Open Dialog" onclick="openDialog()"></vwc-button>
 <vwc-dialog>
   <form slot="main" method="dialog">
