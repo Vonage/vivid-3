@@ -1,5 +1,5 @@
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
-import { children, elements, html } from '@microsoft/fast-element';
+import {children, elements, ExecutionContext, html} from '@microsoft/fast-element';
 import { DataGridRow } from './data-grid-row';
 import type { DataGrid } from './data-grid';
 import {DataGridSelectionMode} from './data-grid';
@@ -31,6 +31,11 @@ function setHeaderRow(x: DataGrid) {
 		}
 	}
 }
+
+function handleColumnSort<T extends DataGrid>(_: T, { event }: ExecutionContext) {
+	event.stopPropagation();
+}
+
 /**
  * Generates a template for the DataGrid component using
  * the provided prefix.
@@ -45,6 +50,7 @@ export const DataGridTemplate = (context: ElementDefinitionContext) => {
 						aria-multiselectable="${(getMultiSelectAriaState)}"
             role="grid"
             tabindex="0"
+						@sort="${handleColumnSort}"
             :rowElementTag="${() => rowTag}"
             :defaultRowItemTemplate="${rowItemTemplate}"
             ${children({

@@ -1,6 +1,7 @@
 import { html } from '@microsoft/fast-element';
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
+import '../icon/index.ts';
 import { designSystem } from '../../shared/design-system';
 import { DataGridCell } from './data-grid-cell';
 import { DataGridCellTemplate } from './data-grid-cell.template';
@@ -13,6 +14,7 @@ const dataGridCell = DataGridCell.compose<FoundationElementDefinition>({
 designSystem.withPrefix('vwc').register(dataGridCell());
 
 const COMPONENT_TAG = 'vwc-data-grid-cell';
+const ICON_TAG = 'vwc-icon';
 
 describe('vwc-data-grid-cell', () => {
 	let element: DataGridCell;
@@ -255,4 +257,72 @@ describe('vwc-data-grid-cell', () => {
 			expect(getBaseElement(element)?.classList.contains('selected')).toBeFalsy();
 		});
 	});
+
+	describe('aria-sort', () => {
+		beforeEach(function () {
+			element.cellType = 'columnheader';
+			element.ariaSort = 'none';
+		});
+
+		it('should show sort-solid icon in the header when "none" is set', async function () {
+			element.setAttribute('aria-sort', 'none');
+			await elementUpdated(element);
+			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
+
+			expect(sortIcons?.length).toEqual(1);
+			expect(sortIcons?.[0].getAttribute('name')).toEqual('sort-solid');
+		});
+
+		it('should show sort-asc-solid icon when aria-sort is ascending', async function () {
+			element.setAttribute('aria-sort', 'ascending');
+			await elementUpdated(element);
+			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
+
+			expect(sortIcons?.length).toEqual(1);
+			expect(sortIcons?.[0].getAttribute('name')).toEqual('sort-asc-solid');
+		});
+
+		it('should show sort-desc-solid icon when aria-sort is descending', async function () {
+			element.setAttribute('aria-sort', 'descending');
+			await elementUpdated(element);
+			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
+
+			expect(sortIcons?.length).toEqual(1);
+			expect(sortIcons?.[0].getAttribute('name')).toEqual('sort-desc-solid');
+		});
+
+		it('should remove sorting icons when aria-sort is not set', async function () {
+			element.ariaSort = null;
+			await elementUpdated(element);
+			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
+
+			expect(sortIcons?.length).toEqual(0);
+		});
+
+		it('should fire "sort" event when clicked', async function () {
+			element.ariaSort = 'none';
+			element.innerHTML = 'Name';
+			await elementUpdated(element);
+			const spy = jest.fn();
+			element.addEventListener('sort', spy);
+			element.click();
+			expect(spy).toHaveBeenCalledTimes(1);
+			expect(spy.mock.calls[0][0].detail).toEqual({columnDataKey: 'Name', sortDirection: 'none'});
+		});
+
+		it('should fire "sort" event when clicked with data key from config', async function () {
+			element.ariaSort = 'ascending';
+			element.innerText = 'Name';
+			element.columnDefinition = {
+				columnDataKey: 'Not Name',
+			};
+			await elementUpdated(element);
+			const spy = jest.fn();
+			element.addEventListener('sort', spy);
+			element.click();
+			expect(spy.mock.calls[0][0].detail).toEqual({columnDataKey: 'Not Name', sortDirection: 'ascending'});
+		});
+	});
 });
+
+// TODO::make it work with columnDefinitions and rowsData
