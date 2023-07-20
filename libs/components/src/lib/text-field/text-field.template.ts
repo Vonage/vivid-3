@@ -20,6 +20,7 @@ const getStateClasses = ({
 	shape,
 	label,
 	successText,
+	actionItemsSlottedContent
 }: TextField) => classNames(
 	['error connotation-alert', Boolean(errorValidationMessage)],
 	['disabled', disabled],
@@ -29,7 +30,8 @@ const getStateClasses = ({
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	['no-label', !label],
-	['success connotation-success', Boolean(successText)]
+	['success connotation-success', Boolean(successText)],
+	['action-items', !!actionItemsSlottedContent?.length],
 );
 
 /**
@@ -113,7 +115,7 @@ export const TextfieldTemplate: (
       />
       	${() => focusTemplate}
 			</div>
-			<div class="action-items-wrapper ${(x => x.actionItemsSlottedContent?.length ? '' : 'hide')}">
+			<div class="action-items-wrapper">
 				<slot name="action-items"  ${slotted('actionItemsSlottedContent')}></slot>
 			</div>
 
