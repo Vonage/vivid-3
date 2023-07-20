@@ -5,6 +5,7 @@ import '../icon/index.ts';
 import { designSystem } from '../../shared/design-system';
 import { DataGridCell } from './data-grid-cell';
 import { DataGridCellTemplate } from './data-grid-cell.template';
+import {DataGridCellSortStates} from "./data-grid.options";
 
 const dataGridCell = DataGridCell.compose<FoundationElementDefinition>({
 	baseName: 'data-grid-cell',
@@ -321,6 +322,15 @@ describe('vwc-data-grid-cell', () => {
 			element.addEventListener('sort', spy);
 			element.click();
 			expect(spy.mock.calls[0][0].detail).toEqual({columnDataKey: 'Not Name', sortDirection: 'ascending'});
+		});
+
+		it('should set aria-sort from columnDefinition', async function () {
+			element.columnDefinition = {
+				columnDataKey: 'Name',
+				sort: DataGridCellSortStates.ascending
+			};
+			await elementUpdated(element);
+			expect(element.ariaSort).toEqual('ascending');
 		});
 	});
 });
