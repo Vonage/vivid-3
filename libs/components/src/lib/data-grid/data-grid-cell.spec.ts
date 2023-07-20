@@ -5,7 +5,7 @@ import '../icon/index.ts';
 import { designSystem } from '../../shared/design-system';
 import { DataGridCell } from './data-grid-cell';
 import { DataGridCellTemplate } from './data-grid-cell.template';
-import {DataGridCellSortStates} from "./data-grid.options";
+import {DataGridCellSortStates} from './data-grid.options';
 
 const dataGridCell = DataGridCell.compose<FoundationElementDefinition>({
 	baseName: 'data-grid-cell',
