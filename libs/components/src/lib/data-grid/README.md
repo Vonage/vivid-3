@@ -312,15 +312,19 @@ The element tag for header row cells. If not set, the default tag `vwc-data-grid
 
 ### ColumnDefinition
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `columndDataKey` | `string` | The property from which the data of the column is taken from |
-| `title` | `string` | The title of the column |
-| `headerCellTemplate` | `ViewTemplate` | A custom template for a header cell |
+<div class="table-wrapper">
+
+| Name                            | Type                    | Description                                                  |
+| ------------------------------- | ----------------------- | ------------------------------------------------------------ |
+| `columndDataKey`                | `string`                | The property from which the data of the column is taken from |
+| `title`                         | `string`                | The title of the column                                      |
+| `headerCellTemplate`            | `ViewTemplate`          | A custom template for a header cell                          |
 | `headerCellFocusTargetCallback` | `(cell) => HTMLElement` | Callback function that is called when header cell is focused |
-| `cellTemplate` | `ViewTemplate` | A custom template for a cell |
-| `cellFocusTargetCallback` | `(cell) => HTMLElement` | Callback function that is called when cell is focused |
-| `isRowHeader` | `boolean` | Whether this column is the row header |
+| `cellTemplate`                  | `ViewTemplate`          | A custom template for a cell                                 |
+| `cellFocusTargetCallback`       | `(cell) => HTMLElement` | Callback function that is called when cell is focused        |
+| `isRowHeader`                   | `boolean`               | Whether this column is the row header                        |
+
+</div>
 
 ### Row
 
@@ -408,13 +412,15 @@ The default slot, where all the content is rendered.
 
 ## Events
 
-### row-focused
+<div class="table-wrapper">
 
-Fires when a row is focused.
+| Name           | Description                   |
+| -------------- | ----------------------------- |
+| `row-focused`  | Fires when a row is focused.  |
+| `cell-focused` | Fires when a cell is focused. |
 
-### cell-focused
 
-Fires when a cell is focused.
+</div>
 
 ## CSS Variable
 When Row is set to sticky there's a default canvas background-color.  
