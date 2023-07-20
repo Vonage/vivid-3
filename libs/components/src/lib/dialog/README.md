@@ -326,17 +326,17 @@ vwc-dialog {
 
 ## Events
 
-<vwc-elevation>
+<div class="table-wrapper">
 
 | Name    | Description                                                                                                                                                   |
 | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `close` | The `close` event fires when the dialog closes (either via user interaction or via the API). It returns the return value inside the event's details property. |
 
-</vwc-elevation>
+</div>
 
 ## Methods
 
-<vwc-elevation>
+<div class="table-wrapper">
 
 | Name| Returns  | Description  |
 | ----------- | ------- | ---------------- |
@@ -344,7 +344,7 @@ vwc-dialog {
 | `close`     | `void`  | Closes the dialog.       |
 | `showModal` | `void`  | Shows the dialog and makes it the top-most modal dialog. Positioned in a center position by default. Interaction outside the dialog is blocked and the content outside it is rendered inert For more information, see the native [Dialog.showModal](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal).  |
 
-</vwc-elevation>
+</div>
 
 ## Accessibility
 

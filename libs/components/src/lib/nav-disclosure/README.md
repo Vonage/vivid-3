@@ -73,14 +73,14 @@ If label is not applied.
 
 ## Events
 
-<vwc-elevation>
+<div class="table-wrapper">
 
 | Name     | Description                                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------------------------- |
 | `toggle` | The `toggle` event is dispatched when the open/closed state of the nav-disclosure is toggled. This event does not bubble. |
 
 
-</vwc-elevation>
+</div>
 
 ## Slots
 

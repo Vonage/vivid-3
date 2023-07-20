@@ -55,11 +55,11 @@ Use the `expand-mode` attribute to control the expand mode of the accordion, eit
 
 ## Methods
 
-<vwc-elevation>
+<div class="table-wrapper">
 
 | Name       | Returns | Description                                                                               |
 | ---------- | ------- | ----------------------------------------------------------------------------------------- |
 | `closeAll` | `void`  | When `expand-mode` is set to `multi`, closes all the accordion items from the open state. |
 |            |
 
-</vwc-elevation>
+</div>

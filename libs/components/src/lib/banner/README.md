@@ -74,7 +74,7 @@ You can add action items using slotted content in a named slot `action-items`:
 
 ## Events
 
-<vwc-elevation>
+<div class="table-wrapper">
 
 | Name       | Description                                                              |
 | ---------- | ------------------------------------------------------------------------ |
@@ -82,17 +82,17 @@ You can add action items using slotted content in a named slot `action-items`:
 | `removed`  | Fires `removed` when the removing animation is done.                     |
 
 
-</vwc-elevation>
+</div>
 
 ## Methods
 
-<vwc-elevation>
+<div class="table-wrapper">
 
 | Name     | Returns | Description |
 | -------- | ------- | ----------- |
 | `remove` | `void`  | Removes the banner from the DOM.  Fires the `removing` event and starts the remove animation. When the animation finishes, it emits the `removed` event and removes the banner from the DOM completely. If you have a variable that refers to the banner element make sure to clear it otherwise it might cause a memory leak. |
 
-</vwc-elevation>
+</div>
 
 ## Accessibility
 

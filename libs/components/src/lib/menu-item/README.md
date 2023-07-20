@@ -162,14 +162,14 @@ When icon member is set with slot - the icon will be trailing.
 
 ## Events
 
-<vwc-elevation>
+<div class="table-wrapper">
 
 | Name              | Description                                                                                                                         |
 | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | `expanded-change` | Fires a custom `expanded-change` event when the expanded state changes.                                                             |
 | `change`          | Fires a custom `change` event when a non-submenu item with a role of `menuitemcheckbox`, `menuitemradio`, or `menuitem` is invoked. |
 
-</vwc-elevation>
+</div>
 
 ### Click
 

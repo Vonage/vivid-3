@@ -137,7 +137,7 @@ Add the `disabled` attribute to disable the combobox.
 
 ## Properties
 
-<vwc-elevation>
+<div class="table-wrapper">
 
 | Name              | Type       | Default     | Description                                                      |
 | ----------------- | ---------- | ----------- | ---------------------------------------------------------------- |
@@ -145,7 +145,7 @@ Add the `disabled` attribute to disable the combobox.
 | `selectedOptions` | `Option[]` | `[]`        | A read-only collection of the selected options.                  |
 | `selectedIndex`   | `number`   | `undefined` | The index of the selected option or -1 if no option is selected. |
 
-</vwc-elevation>
+</div>
 
 ## Caveat
 

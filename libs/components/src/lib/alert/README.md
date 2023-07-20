@@ -213,11 +213,11 @@ Use the `--alert-max-inline-size` variable to set the alert's maximum inline siz
 
 ## Events
 
-<vwc-elevation>
+<div class="table-wrapper">
 
 | Name    | Description                                       |
 | ------- | ------------------------------------------------- |
 | `open`  | The `open` event fires when the alert is opened.  |
 | `close` | The `close` event fires when the alert is closed. |
 
-</vwc-elevation>
+</div>

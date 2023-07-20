@@ -67,7 +67,7 @@ Set the `navIcons` attribute to change the pagination's navigation buttons type.
 
 ## Events
 
-<vwc-elevation>
+<div class="table-wrapper">
 
 | Name                | Description                                                                                                                                 |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -75,4 +75,4 @@ Set the `navIcons` attribute to change the pagination's navigation buttons type.
 |                     |
 
 
-</vwc-elevation>
+</div>

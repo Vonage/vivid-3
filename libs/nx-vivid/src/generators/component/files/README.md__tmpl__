@@ -20,23 +20,23 @@ Represents a <%= name %> custom element.
 
 ## Events
 
-<vwc-elevation>
+<div class="table-wrapper">
 
 | Name    | Description                                                                                                                                                   |
 | ------- | ----------- |
 |         |             |
 
-</vwc-elevation>
+</div>
 
 ## Methods
 
-<vwc-elevation>
+<div class="table-wrapper">
 
 | Name        | Returns | Description                                                                                          |
 | ----------- | ------- | ------------ |
 |             |         |              |
 
-</vwc-elevation>
+</div>
 
 ## Properties
 

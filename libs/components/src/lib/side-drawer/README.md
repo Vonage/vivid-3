@@ -130,7 +130,7 @@ The `app-content` slot sets assigned nodes to the main application content, the 
 
 ## Events
 
-<vwc-elevation>
+<div class="table-wrapper">
 
 | Name    | Description                                    |
 | ------- | ---------------------------------------------- |
@@ -138,7 +138,7 @@ The `app-content` slot sets assigned nodes to the main application content, the 
 | `close` | Fires `close` when the side drawer is closing. |
 
 
-</vwc-elevation>
+</div>
 
 ## CSS Variables
 

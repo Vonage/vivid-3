@@ -163,13 +163,13 @@ Use the `placement` attribute to set the placement of the popup around the ancho
 
 ## Methods
 
-<vwc-elevation>
+<div class="table-wrapper">
 
 | Name             | Returns | Description               |
 | ---------------- | ------- | ------------------------- |
 | `updatePosition` | `void`  | Updates popup's position. |
 
-</vwc-elevation>
+</div>
 
 ## Caveat
 

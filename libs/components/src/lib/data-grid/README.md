@@ -312,7 +312,7 @@ The element tag for header row cells. If not set, the default tag `vwc-data-grid
 
 ### ColumnDefinition
 
-<vwc-elevation>
+<div class="table-wrapper">
 
 | Name                            | Type                    | Description                                                  |
 | ------------------------------- | ----------------------- | ------------------------------------------------------------ |
@@ -324,7 +324,7 @@ The element tag for header row cells. If not set, the default tag `vwc-data-grid
 | `cellFocusTargetCallback`       | `(cell) => HTMLElement` | Callback function that is called when cell is focused        |
 | `isRowHeader`                   | `boolean`               | Whether this column is the row header                        |
 
-</vwc-elevation>
+</div>
 
 ### Row
 
@@ -381,7 +381,7 @@ The default slot, where all the content is rendered.
 
 ## Events
 
-<vwc-elevation>
+<div class="table-wrapper">
 
 | Name           | Description                   |
 | -------------- | ----------------------------- |
@@ -389,7 +389,7 @@ The default slot, where all the content is rendered.
 | `cell-focused` | Fires when a cell is focused. |
 
 
-</vwc-elevation>
+</div>
 
 ## CSS Variable
 When Row is set to sticky there's a default canvas background-color.  

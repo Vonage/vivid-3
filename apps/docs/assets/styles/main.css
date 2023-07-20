@@ -10,6 +10,12 @@ p {
   margin: unset;
 }
 
+code {
+  background-color: var(--vvd-color-neutral-50);
+  border-radius: 4px;
+  padding: 0px 6px;
+}
+
 strong {
   font-weight: unset;
 }
@@ -353,6 +359,22 @@ article.article > h1 {
 }
 
 /* #startregion table */
+
+.table-wrapper {
+  filter: var(--vvd-shadow-surface-2dp);
+  background: var(--vvd-color-surface-2dp);
+  border-radius: 6px;
+  padding: 8px;
+  box-sizing: border-box;
+  display: inline-flex;
+}
+
+@media (max-width: 768px) {
+  .table-wrapper {
+    overflow: auto;
+    max-width: calc(100vw - 32px);
+  }
+}
 
 table {
   padding: 8px;

@@ -170,14 +170,14 @@ Use the `--menu-block-size` variable to set the menu's block size.
 
 ## Methods
 
-<vwc-elevation>
+<div class="table-wrapper">
 
 | Name                   | Returns | Description                         |
 | ---------------------- | ------- | ----------------------------------- |
 | `focus`                | `void`  | Focuses the first item in the menu. |
 | `collapseExpandedItem` | `void`  | Collapses any expanded menu items.  |
 
-</vwc-elevation>
+</div>
 
 
 ## Caveat

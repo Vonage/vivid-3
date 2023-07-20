@@ -366,7 +366,7 @@ You can specify width on the `vwc-select` if required (the list-box will not be 
 
 ## Properties
 
-<vwc-elevation>
+<div class="table-wrapper">
 
 | Name              | Type       | Default     | Description                                                      |
 | ----------------- | ---------- | ----------- | ---------------------------------------------------------------- |
@@ -374,7 +374,7 @@ You can specify width on the `vwc-select` if required (the list-box will not be 
 | `selectedOptions` | `Option[]` | `[]`        | A read-only collection of the selected options.                  |
 | `selectedIndex`   | `number`   | `undefined` | The index of the selected option or -1 if no option is selected. |
 
-</vwc-elevation>
+</div>
 
 ## Caveat
 

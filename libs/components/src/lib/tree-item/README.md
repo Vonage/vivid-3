@@ -94,11 +94,11 @@ Use the `expanded` attribute to set the tree-item's open state.
 
 ## Events
 
-<vwc-elevation>
+<div class="table-wrapper">
 
 | Name              | Description                                                             |
 | ----------------- | ----------------------------------------------------------------------- |
 | `expanded-change` | Fires a custom `expanded-change` event when the expanded state changes. |
 | `selected-change` | Fires a custom `selected-change` event when an item has been selected.  |
 
-</vwc-elevation>
+</div>
