@@ -116,10 +116,6 @@ $low-ink-color: --_low-ink-color;
 	padding-inline-end: var(#{variables.$text-field-gutter});
 	padding-inline-start: var(#{variables.$text-field-gutter});
 
-	.base.action-items & {
-		padding-inline-end: var(#{variables.$text-field-inline-end-padding}, calc(var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter})));
-	}
-
 	&:disabled {
 		cursor: not-allowed;
 		opacity: 1; /* 2. correct opacity on iOS */
@@ -130,6 +126,10 @@ $low-ink-color: --_low-ink-color;
 	&:disabled::placeholder {
 		opacity: 1; /* 2. correct opacity on iOS */
 		-webkit-text-fill-color: var(#{$low-ink-color}); /* 1. sets text fill to current `color` for safari */
+	}
+
+	.base.action-items & {
+		padding-inline-end: var(#{variables.$text-field-inline-end-padding}, calc(var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter})));
 	}
 
 	@supports selector(:focus-visible) {
