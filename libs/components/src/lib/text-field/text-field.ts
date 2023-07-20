@@ -1,5 +1,5 @@
 import {applyMixins, TextField as FoundationTextfield} from '@microsoft/fast-foundation';
-import {attr} from '@microsoft/fast-element';
+import {attr, observable} from '@microsoft/fast-element';
 import type {Appearance, Shape} from '../enums';
 import {AffixIcon, FormElementCharCount, FormElementHelperText, FormElementSuccessText} from '../../shared/patterns';
 import {FormElement, formElements} from '../../shared/patterns';
@@ -19,6 +19,15 @@ export class TextField extends FoundationTextfield {
 	@attr appearance?: TextFieldAppearance;
 	@attr shape?: TextFieldShape;
 	@attr autoComplete?: string;
+
+	/**
+	 *
+	 * Slot observer:
+	 *
+	 * @internal
+	 */
+
+	@observable actionItemsSlottedContent?: HTMLElement[];
 }
 
 export interface TextField extends AffixIcon, ErrorText, FormElement, FormElementCharCount, FormElementHelperText, FormElementSuccessText{}
