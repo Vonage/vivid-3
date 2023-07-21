@@ -1,34 +1,31 @@
 {
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "application",
-  "sourceRoot": "apps/vivid-demo/src",
-  "tags": [],
-  "targets": {
-    "build": {
-      "executor": "nx:run-commands",
-      "options": {
-        "pathprefix": "",
-        "commands": [
-          "npx rollup -c ./apps/docs/rollup.config.js",
-          "npx eleventy --config=./apps/docs/.eleventy.js"
-        ]
-      },
-			"dependsOn": [
-				"^generateMeta"
-			]
-    },
-    "serve": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": [
-          "npx rollup -c ./apps/docs/rollup.config.js --watch",
-          "npx eleventy --config=./apps/docs/.eleventy.js --serve & npx nx serve styles & npx nx build components --watch"
-        ]
-      },
-			"dependsOn": [
-				"^generateMeta"
-			]
-    }
-  },
-  "implicitDependencies": ["components", "styles"]
+	"name": "docs",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"projectType": "application",
+	"sourceRoot": "apps/vivid-demo/src",
+	"tags": [],
+	"targets": {
+		"build": {
+			"executor": "nx:run-commands",
+			"options": {
+				"pathprefix": "",
+				"commands": [
+					"npx rollup -c ./apps/docs/rollup.config.js",
+					"npx eleventy --config=./apps/docs/.eleventy.js"
+				]
+			},
+			"dependsOn": ["^generateMeta"]
+		},
+		"serve": {
+			"executor": "nx:run-commands",
+			"options": {
+				"commands": [
+					"npx rollup -c ./apps/docs/rollup.config.js --watch",
+					"npx eleventy --config=./apps/docs/.eleventy.js --serve & npx nx serve styles & npx nx build components --watch"
+				]
+			},
+			"dependsOn": ["^generateMeta"]
+		}
+	},
+	"implicitDependencies": ["components", "styles"]
 }
