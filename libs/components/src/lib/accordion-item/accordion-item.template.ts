@@ -27,7 +27,7 @@ const header = (context: ElementDefinitionContext, hTag: string) => {
 				${x => x.icon && !x.iconTrailing
 					? affixIconTemplate(x.icon) : null}
 
-				<span class="heading-content">${x => x.heading}</span>
+				<span class="heading-content">${x => x.locale.greeting}</span>
 
 				${when(x => x.meta, html`<span class="meta">${x => x.meta}</span>`)}
 

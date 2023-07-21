@@ -2,6 +2,7 @@ import { attr } from '@microsoft/fast-element';
 import { applyMixins, AccordionItem as FASTAccordionItem } from '@microsoft/fast-foundation';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import type { Size } from '../enums.js';
+import { Localized } from '../../shared/patterns';
 
 
 /**
@@ -54,5 +55,5 @@ export class AccordionItem extends FASTAccordionItem {
 
 
 
-export interface AccordionItem extends AffixIconWithTrailing { }
-applyMixins(AccordionItem, AffixIconWithTrailing);
+export interface AccordionItem extends AffixIconWithTrailing, Localized { }
+applyMixins(AccordionItem, AffixIconWithTrailing, Localized);

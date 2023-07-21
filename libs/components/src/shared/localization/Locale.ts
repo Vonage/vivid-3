@@ -1,1 +1,3 @@
-export interface Locale {}
+export interface Locale {
+	greeting: string;
+}
