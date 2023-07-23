@@ -182,9 +182,10 @@ describe('vwc-menu', () => {
 				document.activeElement?.dispatchEvent(arrowDownEvent);
 			}
 
-			function focusOutOfBase() {
+			function focusOutOfBody() {
 				const focusOutEvent = new FocusEvent('focusout');
-				getBaseElement(element).dispatchEvent(focusOutEvent);
+				const bodyElement = element.shadowRoot?.querySelector('.body') as HTMLElement;
+				bodyElement.dispatchEvent(focusOutEvent);
 			}
 
 			const menuFocusedElement = () => element.querySelector('[tabindex="0"]') as HTMLElement;
@@ -198,7 +199,7 @@ describe('vwc-menu', () => {
 			focusOnSecondItem();
 			const focusableElementAfterMouseDown = menuFocusedElement();
 
-			focusOutOfBase();
+			focusOutOfBody();
 			const focusableElementAfterFocusOut = menuFocusedElement();
 
 			expect(focusableElementAfterMouseDown.id).toEqual('id2');
