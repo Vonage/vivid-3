@@ -10,7 +10,8 @@
     "nx": "nx",
     "test": "npx nx run components:test",
     "test:ui": "npx nx run components:e2e",
-    "test:tools": "jest --projects tools"
+    "test:tools": "jest --projects tools",
+		"postinstall": "patch-package"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +24,7 @@
     "codemirror": "^6.0.1",
     "core-js": "^3.27.0",
     "dialog-polyfill": "^0.5.6",
+    "patch-package": "^7.0.2",
     "ramda": "^0.28.0",
     "regenerator-runtime": "^0.13.11",
     "tslib": "^2.5.0"
