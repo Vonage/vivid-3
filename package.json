@@ -31,7 +31,7 @@
     "@11ty/eleventy": "^2.0.1",
     "@angular-eslint/utils": "^13.2.1",
     "@custom-elements-manifest/analyzer": "^0.5.7",
-    "@microsoft/api-extractor": "^7.33.6",
+    "@microsoft/api-extractor": "^7.36.3",
     "@microsoft/eslint-config-fast-dna": "^2.1.0",
     "@nrwl/devkit": "16.5.5",
     "@nrwl/eslint-plugin-nx": "16.5.5",
@@ -115,4 +115,3 @@
   },
   "customElements": "/dist/libs/components/custom-elements.json"
 }
-
