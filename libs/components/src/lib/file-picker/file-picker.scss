@@ -24,24 +24,23 @@ $low-ink-color: --_low-ink-color;
 	position: relative;
 	display: flex;
 	box-sizing: border-box;
+	flex-wrap: wrap;
 	align-items: center;
 	justify-content: center;
-	flex-wrap: wrap;
-	gap: 8px;
 	padding: 16px;
 	border: 1px dashed var(--vvd-color-neutral-400);
 	background-color: var(#{constants.$vvd-color-cta-50});
-	min-block-size: 52px;
-	&.size-expanded {
-		min-block-size: 120px;
-	}
-
 	border-radius: 6px;
 	color: var(#{constants.$vvd-color-neutral-600});
 	cursor: pointer;
 	font: var(#{constants.$vvd-typography-base});
+	gap: 8px;
 	inline-size: 100%;
+	min-block-size: 52px;
 	outline: none;
+	&.size-expanded {
+		min-block-size: 120px;
+	}
 }
 
 .main {
