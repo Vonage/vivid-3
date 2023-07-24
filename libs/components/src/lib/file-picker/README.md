@@ -94,7 +94,9 @@ Use the `size` attribute to set the file picker's to one of the predefined block
 Use the default slot to set the content of the file picker.
 
 ```html preview
-<vwc-file-picker>Add custom content here</vwc-file-picker>
+<vwc-file-picker>
+	<vwc-icon name="file-csv-line" size="-5"></vwc-icon> Drag & Drop the .csv file here or click to upload
+</vwc-file-picker>
 ```
 
 ## Properties

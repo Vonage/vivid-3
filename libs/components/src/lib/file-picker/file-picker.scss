@@ -22,17 +22,18 @@ $low-ink-color: --_low-ink-color;
 	}
 
 	position: relative;
-	display: grid;
+	display: flex;
 	box-sizing: border-box;
-	flex-grow: 1;
 	align-items: center;
 	justify-content: center;
+	flex-wrap: wrap;
+	gap: 8px;
 	padding: 16px;
 	border: 1px dashed var(--vvd-color-neutral-400);
 	background-color: var(#{constants.$vvd-color-cta-50});
-	block-size: 52px;
+	min-block-size: 52px;
 	&.size-expanded {
-		block-size: 120px;
+		min-block-size: 120px;
 	}
 
 	border-radius: 6px;
