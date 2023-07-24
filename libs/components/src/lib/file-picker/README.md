@@ -109,6 +109,16 @@ Use the default slot to set the content of the file picker.
 
 </div>
 
+## Events
+
+<div class="table-wrapper">
+
+| Name     | Description                              |
+|----------|------------------------------------------|
+| `change` | Emitted when a file is added or removed. |
+
+</div>
+
 ## Use Cases
 
 ### In a form
