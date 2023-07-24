@@ -6,15 +6,11 @@
 	box-sizing: border-box;
 	flex-direction: column;
 	gap: 8px;
-}
-
-.body {
 	max-block-size: var(#{variables.$menu-block-size}, 408px);
 	max-inline-size: var(#{variables.$menu-max-inline-size}, 100%);
 	min-inline-size: var(#{variables.$menu-min-inline-size});
 	overflow-x: hidden;
 	overflow-y: auto;
-	padding-block: 8px;
 }
 
 ::slotted(a) {
@@ -31,8 +27,8 @@
 }
 
 .header {
-	padding-inline: 16px;
 	padding-block-start: 8px;
+	padding-inline: 16px;
 	
 	.hide-header & {
 		display: none;
@@ -43,9 +39,9 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding-inline: 16px;
-	padding-block-end: 8px;
 	gap: 24px;
+	padding-block-end: 8px;
+	padding-inline: 16px;
 
 	.hide-footer & {
 		display: none;
