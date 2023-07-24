@@ -5,7 +5,7 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['file-picker', 'button', 'layout', 'divider'];
+const components = ['file-picker', 'button', 'layout', 'text-field'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `<vwc-layout column-basis="block">
