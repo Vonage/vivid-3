@@ -14,19 +14,10 @@ import type { Menu } from './menu';
 
 const getClasses = ({
 	headerSlottedContent,
-	footerSlottedContent,
-	actionItemsSlottedContent,
 }: Menu) =>
 	classNames(
 		'base',
 		['hide-header', !headerSlottedContent?.length],
-		[
-			'hide-footer',
-			!(
-				footerSlottedContent?.length ||
-				actionItemsSlottedContent?.length
-			),
-		]
 	);
 
 /**
@@ -66,14 +57,7 @@ export const MenuTemplate: (
 				>
 					<slot ${slotted('items')}></slot>
 				</div>
-				<div class="footer">
-					<div>
-						<slot name="footer" ${slotted('footerSlottedContent')}></slot>
-					</div>
-					<div class="actions">
-						<slot name="action-items" ${slotted('actionItemsSlottedContent')}></slot>
-					</div>
-				</div>
+				<footer class="action-items"><slot name="action-items"></slot></footer>
 			</div>
 		</${popupTag}>
 	</template>`;

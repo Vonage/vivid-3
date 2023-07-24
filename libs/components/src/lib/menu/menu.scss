@@ -36,21 +36,9 @@
 	}
 }
 
-.footer {
+.action-items {
 	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 24px;
-	padding-block-end: 8px;
-	padding-inline: 16px;
-
-	.hide-footer & {
-		display: none;
-	}
-
-	.actions {
-		display: flex;
-		align-self: flex-end;
-		gap: 8px;
-	}
+	justify-content: flex-end;
+	gap: 8px;
+	padding-inline: 8px;
 }

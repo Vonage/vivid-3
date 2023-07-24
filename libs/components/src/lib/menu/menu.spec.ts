@@ -247,29 +247,15 @@ describe('vwc-menu', () => {
 		});
 	});
 
-	describe('menu footer', () => {
-		it.each(['footer', 'action-items'])(
+	describe('menu action-items', () => {
+		it.each(['action-items'])(
 			'should have a %s slot ',
 			(slotName) => {
 				const slotElement = element.shadowRoot?.querySelector(
-					`.footer slot[name="${slotName}"]`
+					`slot[name="${slotName}"]`
 				);
 
 				expect(slotElement).toBeDefined();
-			}
-		);
-
-		it.each(['footer', 'action-items'])(
-			'should remove hide-footer class from .base if %s is slotted',
-			async (slotName) => {
-				const slottedElement = document.createElement('div');
-				slottedElement.slot = slotName;
-				element.appendChild(slottedElement);
-				await elementUpdated(element);
-
-				const baseElementClasses = getBaseElement(element)?.classList;
-
-				expect(baseElementClasses).not.toContain('hide-footer');
 			}
 		);
 	});

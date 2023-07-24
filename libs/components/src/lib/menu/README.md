@@ -148,32 +148,9 @@ Use the `action-items` slot to add action items to the bottom of the menu.
 <vwc-menu open>
   <vwc-menu-item text="Menu item 1"></vwc-menu-item>
   <vwc-menu-item text="Menu item 2"></vwc-menu-item>
-  <vwc-button slot="action-items" appearance="outlined" label="Cancel"></vwc-button>
 	<vwc-button slot="action-items" appearance="filled" label="Action"></vwc-button>
 </vwc-menu>
 ```
-
-### Footer
-
-Use the `footer` slot in order to add additional content to the bottom of the menu.
-
-When used in combination with `action-items` slot, the `footer` content will appear to the left of the action items.
-
-```html preview
-<style>
-  html { /* for demo purposes */
-		block-size: 200px;
-	}
-</style>
-
-<vwc-menu open>
-  <vwc-menu-item text="Menu item 1"></vwc-menu-item>
-  <vwc-menu-item text="Menu item 2"></vwc-menu-item>
-  <vwc-checkbox slot="footer" label="I agree"></vwc-checkbox>
-  <vwc-button slot="action-items" appearance="filled" label="Ok"></vwc-button>
-</vwc-menu>
-```
-
 
 ## CSS Variables
 

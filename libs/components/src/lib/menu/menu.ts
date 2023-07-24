@@ -3,7 +3,6 @@ import { Menu as FastMenu } from '@microsoft/fast-foundation';
 import type { Placement } from '@floating-ui/dom';
 import type { Popup } from '../popup/popup';
 
-
 /**
  * Base class for menu
  *
@@ -88,6 +87,4 @@ export class Menu extends FastMenu {
 	 * @internal
 	 */
 	@observable headerSlottedContent?: HTMLElement[];
-	@observable footerSlottedContent?: HTMLElement[];
-	@observable actionItemsSlottedContent?: HTMLElement[];
 }

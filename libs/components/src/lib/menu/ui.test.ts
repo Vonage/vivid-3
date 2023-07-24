@@ -5,20 +5,15 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['menu', 'menu-item', 'button', 'text-field', 'checkbox'];
+const components = ['menu', 'menu-item', 'button', 'text-field'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template =`
 		<style>
 			.wrapper {
-				width: 100%;
-				height: 400px;
-				position: relative
-			}
-
-			vwc-menu {
-				--menu-max-inline-size: 300px;
-				--menu-block-size: 150px;
+				width: 300px;
+				height: 700px;
+				position: relative;
 			}
 		</style>
 
@@ -32,12 +27,12 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-menu-item text="Menu item 2"></vwc-menu-item>
 				<vwc-menu-item text="Menu item 3"></vwc-menu-item>
 				<vwc-menu-item text="Menu item 4"></vwc-menu-item>
-				<vwc-checkbox slot="footer" label="I agree"></vwc-checkbox>
-    			<vwc-button slot="action-items" appearance="filled" label="Select"></vwc-button>
+				<vwc-button slot="action-items" appearance="outlined" label="Close"></vwc-button>
+				<vwc-button slot="action-items" appearance="filled" label="Select"></vwc-button>
 			</vwc-menu>
 		</div>`;
 
-	page.setViewportSize({ width: 560, height: 720 });
+	page.setViewportSize({ width: 720, height: 720 });
 
 	await loadComponents({
 		page,
