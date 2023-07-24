@@ -35,10 +35,12 @@ describe('vwc-file-picker', () => {
 			unmountedElement.maxFileSize = 256;
 			unmountedElement.maxFiles = 1;
 			unmountedElement.accept = '.jpg';
-			expect(unmountedElement.files).toEqual([]);
 
-			document.body.appendChild(unmountedElement);
-			document.body.removeChild(unmountedElement);
+			expect(unmountedElement.files).toEqual([]);
+			expect(() => {
+				document.body.appendChild(unmountedElement);
+				document.body.removeChild(unmountedElement);
+			}).not.toThrow();
 		});
 	});
 
