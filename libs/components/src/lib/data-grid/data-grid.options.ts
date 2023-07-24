@@ -1,11 +1,19 @@
 export type ValuesOf<T> = T[keyof T];
 
+/**
+ * Enumerates the data grid auto generated header options
+ * default option generates a non-sticky header row
+ *
+ * @public
+ */
 export const DataGridCellSortStates = {
 	none: 'none',
 	ascending: 'ascending',
 	descending: 'descending',
 	other: 'other'
 } as const;
+
+export type DataGridCellSortStates = ValuesOf<typeof DataGridCellSortStates>;
 
 /**
  * Enumerates the data grid auto generated header options

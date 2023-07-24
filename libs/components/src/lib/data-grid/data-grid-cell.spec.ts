@@ -5,6 +5,7 @@ import '../icon/index.ts';
 import { designSystem } from '../../shared/design-system';
 import { DataGridCell } from './data-grid-cell';
 import { DataGridCellTemplate } from './data-grid-cell.template';
+import {DataGridCellSortStates} from './data-grid.options';
 
 const dataGridCell = DataGridCell.compose<FoundationElementDefinition>({
 	baseName: 'data-grid-cell',
@@ -311,9 +312,10 @@ describe('vwc-data-grid-cell', () => {
 		});
 
 		it('should fire "sort" event when clicked with data key from config', async function () {
-			element.ariaSort = 'ascending';
-			element.innerText = 'Name';
+			element.innerHTML = 'Name';
 			element.columnDefinition = {
+				sortDirection: DataGridCellSortStates.ascending,
+				sortable: true,
 				columnDataKey: 'Not Name',
 			};
 			await elementUpdated(element);
@@ -322,7 +324,36 @@ describe('vwc-data-grid-cell', () => {
 			element.click();
 			expect(spy.mock.calls[0][0].detail).toEqual({columnDataKey: 'Not Name', sortDirection: 'ascending'});
 		});
+
+		it('should set aria-sort from columnDefinition', async function () {
+			element.columnDefinition = {
+				columnDataKey: 'Name',
+				sortDirection: DataGridCellSortStates.ascending,
+				sortable: true
+			};
+			await elementUpdated(element);
+			expect(element.ariaSort).toEqual('ascending');
+		});
+
+		it('should revert aria-sort to "none" when columnDefinition.sort is falsy', async function () {
+			element.columnDefinition = {
+				columnDataKey: 'Name',
+				sortDirection: null,
+				sortable: true
+			};
+			await elementUpdated(element);
+			expect(element.ariaSort).toEqual(DataGridCellSortStates.none);
+		});
+
+		it('should remove aria-sort when sortable is false', async function () {
+			element.columnDefinition = {
+				columnDataKey: 'Name',
+				sortDirection: DataGridCellSortStates.ascending,
+				sortable: false
+			};
+			await elementUpdated(element);
+			expect(element.ariaSort).toEqual(null);
+		});
 	});
 });
 
-// TODO::make it work with columnDefinitions and rowsData
