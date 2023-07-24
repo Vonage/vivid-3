@@ -156,7 +156,10 @@ The data being displayed in the grid.
 - Type: [ColumnDefinition](#columndefinition)`[]`
 - Default: `null`
 
-The column definitions of the grid
+The column definitions of the grid. 
+
+Note that the sortable feature doesn't actually sort the data, it only changes the visual representation of the column header. 
+See the [use cases](#sortable-columns) for more information.
 
 ```html preview
 <vwc-data-grid></vwc-data-grid>
@@ -540,6 +543,8 @@ In order for the select popup to show correctly in the grid, use the `fixed-drop
 
 In order for a grid column to show as sortable, use the `aria-sort` attribute on the sortable column header.
 
+Here's an example of sorting when building the grid manually:
+
 ```html preview
 	<vwc-data-grid>
 		
@@ -603,4 +608,56 @@ In order for a grid column to show as sortable, use the `aria-sort` attribute on
 				addDataToGrid(e.target.ariaSort);
 		});
 	</script>
+```
+
+Here's an example of sorting the data-grid when building it with `rowsData`:
+
+```html preview
+<style>
+vwc-data-grid {max-block-size: 200px;}
+</style>
+<vwc-data-grid></vwc-data-grid>
+<script>
+    grid = document.querySelector('vwc-data-grid');
+    grid.generateHeader = "sticky"
+		const data = [
+        {data1: 'data111', data2: 'data12'},
+        {data1: 'data21', data2: 'data22'},
+        {data1: 'data31', data2: 'data32'},
+        {data1: 'data41', data2: 'data42'},
+        {data1: 'data51', data2: 'data52'},
+        {data1: 'data61', data2: 'data62'},
+    ];
+    grid.rowsData = Array.from(data);
+    grid.columnDefinitions = [
+				{columnDataKey: 'data1', title: 'Custom Title 1', sortable: true},
+				{columnDataKey: 'data2', title: 'Custom Title 2', sortable: true},
+		];
+    grid.addEventListener('sort', (e) => {
+        console.log(e.detail);
+       const sortedColumnHeaderDef = e.target.columnDefinition;
+       
+       grid.columnDefinitions.forEach(column => {
+					 if (column.columnDataKey !== sortedColumnHeaderDef.columnDataKey) {
+							 column.sortDirection = 'none';
+							 return;
+					 }
+					 column.sortDirection = e.detail.sortDirection === "ascending" ? "descending" :
+						 e.detail.sortDirection === "descending" ? "none" : "ascending";
+			 });
+       
+       grid.rowsData = Array.from(data).sort((a, b) => {
+					 const nameA = a[sortedColumnHeaderDef.columnDataKey];
+					 const nameB = b[sortedColumnHeaderDef.columnDataKey];
+					 
+					 if (sortedColumnHeaderDef.sortDirection === 'none') return 0;
+					 if (sortedColumnHeaderDef.sortDirection === 'ascending') {
+							 return nameA > nameB ? -1 : 1;
+					 } else {
+							 return nameA < nameB ? -1 : 1;
+					 }
+					 return 0;
+			 });
+		});
+</script>
 ```
