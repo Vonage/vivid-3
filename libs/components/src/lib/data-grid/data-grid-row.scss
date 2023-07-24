@@ -25,10 +25,6 @@
 	box-sizing: border-box;
 	color: var(#{constants.$vvd-color-canvas-text});
 
-	:host(:is([aria-selected]):not([row-type="header"])) &{
-		background-color: var(#{appearance.get-appearance-token(fill)});
-	}
-
 	:host([row-type="sticky-header"]) & {
 		position: sticky;
 		z-index: 9;
@@ -39,5 +35,10 @@
 	:host([row-type="hidden-header"]) & {
 		display: none;
 	}
+	
+	:host(:is([aria-selected]):not([row-type="header"])) &{
+		background-color: var(#{appearance.get-appearance-token(fill)});
+	}
+
 }
 

@@ -83,14 +83,14 @@
 	display: none;
 	padding: 8px 32px 24px 16px;
 
-	:host([expanded]) & {
-		display: block;
-	}
-
 	&:not(.size-condensed) {
 		&.padded {
 			padding-inline-start: 52px;
 		}
+	}
+
+	:host([expanded]) & {
+		display: block;
 	}
 
 	&.size-condensed {
@@ -103,16 +103,16 @@
 .icon {
 	color: var(#{constants.$vvd-color-neutral-600});
 
-	:host(:not([icon-trailing])) &:last-of-type {
-		color: var(#{appearance.get-appearance-token(text)});
-	}
-
 	.heading-button:not(.size-condensed) & {
 		font: inherit;
 	}
 
 	.heading-button.size-condensed & {
 		font: var(#{constants.$vvd-typography-base-extended});
+	}
+
+	:host(:not([icon-trailing])) &:last-of-type {
+		color: var(#{appearance.get-appearance-token(text)});
 	}
 }
 
