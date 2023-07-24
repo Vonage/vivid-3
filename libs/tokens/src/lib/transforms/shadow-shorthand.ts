@@ -13,7 +13,7 @@ const generateToken = value => ({
 
 const parseShadowEffects = value =>
 	value.map(
-		({ x, y, blur, color }) => `drop-shadow(${sizeToPx(generateToken(x), {})} ${sizeToPx(generateToken(y), {})} ${sizeToPx(generateToken(blur), {})} ${color})`
+		({ x, y, blur, color }) => `drop-shadow(${sizeToPx(generateToken(x))} ${sizeToPx(generateToken(y))} ${sizeToPx(generateToken(blur))} ${color})`
 	).join(' ')
 
 export default {
