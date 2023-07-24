@@ -101,12 +101,13 @@ Use the default slot to set the content of the file picker.
 
 ## Properties
 
-### Files
+<div class="table-wrapper">
 
-A read-only list of files that have been added to the file picker and passed validation.
+| Name     | Type     | Default     | Description                                                                              |
+|----------| -------- | ----------- |------------------------------------------------------------------------------------------|
+| `files`  | `File[]` | `[]`        | A read-only list of files that have been added to the file picker and passed validation. |
 
-- Type: `File[]`
-- Default: `[]`
+</div>
 
 ## Use Cases
 
