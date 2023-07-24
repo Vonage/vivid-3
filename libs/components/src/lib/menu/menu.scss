@@ -11,6 +11,7 @@
 	min-inline-size: var(#{variables.$menu-min-inline-size});
 	overflow-x: hidden;
 	overflow-y: auto;
+	padding-block: 8px;
 }
 
 ::slotted(a) {
