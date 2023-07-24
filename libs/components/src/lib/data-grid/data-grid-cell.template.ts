@@ -6,6 +6,10 @@ import {DataGridCellRole, DataGridCellSortStates} from './data-grid.options';
 import type {DataGridCell} from './data-grid-cell';
 
 function shouldShowSortIcons<T extends DataGridCell>(x: T): boolean {
+	if (x.columnDefinition) {
+		x.ariaSort = !x.columnDefinition.sortable ? null : x.columnDefinition.sortDirection ?
+			x.columnDefinition.sortDirection : DataGridCellSortStates.none;
+	}
 	return x.cellType === 'columnheader' && x.ariaSort !== null && x.ariaSort !== DataGridCellSortStates.other;
 }
 
