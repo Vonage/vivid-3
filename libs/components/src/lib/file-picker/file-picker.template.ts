@@ -22,7 +22,6 @@ const getClasses = ({
 /**
  * The template for the FilePicker component.
  *
- * @param context
  * @public
  */
 export const FilePickerTemplate: (
