@@ -326,7 +326,7 @@ The element tag for header row cells. If not set, the default tag `vwc-data-grid
 | `cellFocusTargetCallback`       | `(cell) => HTMLElement`                                              | Callback function that is called when cell is focused        |
 | `isRowHeader`                   | `boolean`                                                            | Whether this column is the row header                        |
 | `sortable`                      | `boolean`                                                            | Whether this column is sortable                              |
-| `sortDirection`                 | `'none'` &#124; `'ascending'` &#124; `'descending'` &#124; `'other'` | Whether this column is sortable                              |
+| `sortDirection`                 | `'none'` &#124; `'ascending'` &#124; `'descending'` &#124; `'other'` | Define the column's sort direction                           |
 
 </div>
 
