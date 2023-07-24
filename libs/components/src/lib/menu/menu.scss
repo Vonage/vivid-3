@@ -43,7 +43,8 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0 24px 24px;
+	padding-inline: 16px;
+	padding-block-end: 8px;
 	gap: 24px;
 
 	.hide-footer & {
