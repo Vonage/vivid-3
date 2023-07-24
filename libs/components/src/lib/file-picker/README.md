@@ -111,7 +111,7 @@ Use the default slot to set the content of the file picker.
 
 ## Use Cases
 
-### In a from
+### In a form
 
 ```html preview
 <style>
