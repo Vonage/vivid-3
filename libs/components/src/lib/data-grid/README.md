@@ -153,7 +153,7 @@ The data being displayed in the grid.
 
 ### columnDefinitions
 
-- Type: `ColumnDefinition[]`
+- Type: [ColumnDefinition](#columndefinition)`[]`
 - Default: `null`
 
 The column definitions of the grid
@@ -311,6 +311,7 @@ The element tag for header row cells. If not set, the default tag `vwc-data-grid
 ## Interfaces
 
 ### ColumnDefinition
+<div class="table-wrapper">
 
 | Name                            | Type                                                                 | Description                                                  |
 |---------------------------------|----------------------------------------------------------------------|--------------------------------------------------------------|
@@ -323,6 +324,8 @@ The element tag for header row cells. If not set, the default tag `vwc-data-grid
 | `isRowHeader`                   | `boolean`                                                            | Whether this column is the row header                        |
 | `sortable`                      | `boolean`                                                            | Whether this column is sortable                              |
 | `sortDirection`                 | `'none'` &#124; `'ascending'` &#124; `'descending'` &#124; `'other'` | Whether this column is sortable                              |
+
+</div>
 
 ### Row
 
