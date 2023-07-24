@@ -94,10 +94,11 @@ Use the `expanded` attribute to set the tree-item's open state.
 
 ## Events
 
-### Expanded Change
+<div class="table-wrapper">
 
-Fires a custom 'expanded-change' event when the expanded state changes.
+| Name              | Description                                                             |
+| ----------------- | ----------------------------------------------------------------------- |
+| `expanded-change` | Fires a custom `expanded-change` event when the expanded state changes. |
+| `selected-change` | Fires a custom `selected-change` event when an item has been selected.  |
 
-### Selected Change
-
-Fires a custom 'selected-change' event when an item has been selected.
+</div>

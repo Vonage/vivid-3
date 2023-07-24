@@ -1,9 +1,10 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
+import {iconRegistries} from '../icon/definition';
 import { registerFactory } from '../../shared/design-system';
 import dataGridStyles from './data-grid.scss';
 import dataGridRowStyles from './data-grid-row.scss';
-import dataGridCellStyles from './data-grid-cell.scss';
 
+import dataGridCellStyles from './data-grid-cell.scss';
 import { DataGrid } from './data-grid';
 import { DataGridTemplate as template } from './data-grid.template';
 import { DataGridRow } from './data-grid-row';
@@ -28,7 +29,7 @@ export const dataGridCell = DataGridCell.compose<FoundationElementDefinition>({
 	template: DataGridCellTemplate as any,
 	styles: dataGridCellStyles,
 })();
-export const dataGridElements = [dataGridCell, dataGridRow, dataGrid];
+export const dataGridElements = [dataGridCell, dataGridRow, dataGrid, ...iconRegistries];
 
 /**
  * Registers the data-grid element with the design system.

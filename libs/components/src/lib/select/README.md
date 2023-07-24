@@ -319,8 +319,8 @@ You can add a `label` attribute to the `vwc-option` to set a custom display valu
 ### Height (CSS Variable)
 Use `--select-height` to set the height of the list-box containing the select options
 
-Type: `string`  
-Default: `fit-content`
+- Default: `fit-content`
+
 
 ```html preview
 <style>
@@ -366,26 +366,15 @@ You can specify width on the `vwc-select` if required (the list-box will not be 
 
 ## Properties
 
-### options
+<div class="table-wrapper">
 
-A read-only list of options.
+| Name              | Type       | Default     | Description                                                      |
+| ----------------- | ---------- | ----------- | ---------------------------------------------------------------- |
+| `options`         | `Option[]` | `[]`        | A read-only list of options.                                     |
+| `selectedOptions` | `Option[]` | `[]`        | A read-only collection of the selected options.                  |
+| `selectedIndex`   | `number`   | `undefined` | The index of the selected option or -1 if no option is selected. |
 
-- Type: `Option[]`
-- Default: `[]`
-
-### selectedOptions
-
-A read-only collection of the selected options.
-
-- Type: `Option[]`
-- Default: `[]`
-
-### selectedIndex
-
-The index of the selected option or -1 if no option is selected.
-
-- Type: `number`
-- Default: `undefined`
+</div>
 
 ## Caveat
 

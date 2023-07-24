@@ -73,11 +73,14 @@ If label is not applied.
 
 ## Events
 
-### Toggle
+<div class="table-wrapper">
 
-The `toggle` event is dispatched when the open/closed state of the nav-disclosure is toggled.
+| Name     | Description                                                                                                               |
+| -------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `toggle` | The `toggle` event is dispatched when the open/closed state of the nav-disclosure is toggled. This event does not bubble. |
 
-This event does not bubble.
+
+</div>
 
 ## Slots
 

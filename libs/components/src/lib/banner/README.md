@@ -74,22 +74,25 @@ You can add action items using slotted content in a named slot `action-items`:
 
 ## Events
 
-### Removing
+<div class="table-wrapper">
 
-Fires `removing` whenever the banner has started its removing animation.
+| Name       | Description                                                              |
+| ---------- | ------------------------------------------------------------------------ |
+| `removing` | Fires `removing` whenever the banner has started its removing animation. |
+| `removed`  | Fires `removed` when the removing animation is done.                     |
 
-### Removed
 
-Fires `removed` when the removing animation is done.
+</div>
 
 ## Methods
 
-### remove()
+<div class="table-wrapper">
 
-- Type: `function`
-- Returns: `void`
+| Name     | Returns | Description |
+| -------- | ------- | ----------- |
+| `remove` | `void`  | Removes the banner from the DOM.  Fires the `removing` event and starts the remove animation. When the animation finishes, it emits the `removed` event and removes the banner from the DOM completely. If you have a variable that refers to the banner element make sure to clear it otherwise it might cause a memory leak. |
 
-Removes the banner from the DOM.  Fires the `removing` event and starts the remove animation.  When the animation finishes, it emits the `removed` event and removes the banner from the DOM completely.  If you have a variable that refers to the banner element make sure to clear it otherwise it might cause a memory leak.
+</div>
 
 ## Accessibility
 

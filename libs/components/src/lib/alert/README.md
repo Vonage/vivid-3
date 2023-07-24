@@ -195,7 +195,6 @@ You can add action items elements using the `action-items` slot. They will be di
 
 Use the `--alert-min-inline-size` variable to set the alert's minimum inline size.
 
-- Type: [`<length>`](https://developer.mozilla.org/en-US/docs/Web/CSS/length)
 - Default: `420px`
 
 ```html preview
@@ -206,7 +205,6 @@ Use the `--alert-min-inline-size` variable to set the alert's minimum inline siz
 
 Use the `--alert-max-inline-size` variable to set the alert's maximum inline size.
 
-- Type: [`<length>`](https://developer.mozilla.org/en-US/docs/Web/CSS/length)
 - Default: `fit-content`
 
 ```html preview
@@ -215,10 +213,11 @@ Use the `--alert-max-inline-size` variable to set the alert's maximum inline siz
 
 ## Events
 
-### Open
+<div class="table-wrapper">
 
-The `open` event fires when the alert is opened.
+| Name    | Description                                       |
+| ------- | ------------------------------------------------- |
+| `open`  | The `open` event fires when the alert is opened.  |
+| `close` | The `close` event fires when the alert is closed. |
 
-### Close
-
-The `close` event fires when the alert is closed.
+</div>
