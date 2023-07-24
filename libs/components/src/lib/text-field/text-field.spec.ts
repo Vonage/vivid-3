@@ -645,10 +645,10 @@ describe('vwc-text-field', () => {
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
-			const baseElement = element.shadowRoot?.
+			const baseElementHasActionItemsClass = element.shadowRoot?.
 				querySelector('.base')?.classList.contains('action-items');
 
-			expect(baseElement).toEqual(true);
+			expect(baseElementHasActionItemsClass).toEqual(true);
 		});
 	});
 
