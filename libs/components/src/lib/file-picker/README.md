@@ -113,7 +113,7 @@ A read-only list of files that have been added to the file picker and passed val
 ```html preview
 <style>
 	form {
-		width: 250px;
+		width: 400px;
 	}
 	vwc-button {
 		justify-self: flex-start;
