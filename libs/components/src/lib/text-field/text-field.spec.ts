@@ -645,10 +645,10 @@ describe('vwc-text-field', () => {
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
-			const baseElementHasNoHeader = element.shadowRoot?.
+			const baseElement = element.shadowRoot?.
 				querySelector('.base')?.classList.contains('action-items');
 
-			expect(baseElementHasNoHeader).toEqual(true);
+			expect(baseElement).toEqual(true);
 		});
 	});
 
