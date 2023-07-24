@@ -156,11 +156,11 @@ export class FilePicker extends FoundationElement {
 				});
 			}
 
-			this.$emit('change');
+			this.#handleFilesChanged();
 		});
 
 		this.#dropzone.on('removedfile', () => {
-			this.$emit('change');
+			this.#handleFilesChanged();
 		});
 
 		this.#dropzone.on('error', (file) => {
@@ -206,6 +206,10 @@ export class FilePicker extends FoundationElement {
 				new Event('change', { bubbles: false })
 			);
 		}
+	}
+
+	#handleFilesChanged(): void {
+		this.$emit('change');
 	}
 }
 
