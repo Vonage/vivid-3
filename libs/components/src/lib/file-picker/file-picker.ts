@@ -6,6 +6,7 @@ import Dropzone from 'dropzone';
 import type { Size } from '../enums';
 import { FormElementHelperText } from '../../shared/patterns';
 import type { Button } from '../button/button';
+import { Connotation } from '../enums';
 
 /**
  * Types of file uploader size.
@@ -160,6 +161,13 @@ export class FilePicker extends FoundationElement {
 
 		this.#dropzone.on('removedfile', () => {
 			this.$emit('change');
+		});
+
+		this.#dropzone.on('error', (file) => {
+			if (file.previewElement) {
+				const removeButton = file.previewElement.querySelector('.remove-btn') as Button;
+				removeButton.connotation = Connotation.Alert;
+			}
 		});
 	}
 
