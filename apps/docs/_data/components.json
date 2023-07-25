@@ -457,5 +457,13 @@
 			"/assets/modules/components/empty-state/index.js",
 			"/assets/modules/components/button/index.js"
 		]
+	},
+	{
+		"title": "split-button",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/split-button/README.md",
+		"modules": [
+			"/assets/modules/components/split-button/index.js"
+		]
 	}
 ]
