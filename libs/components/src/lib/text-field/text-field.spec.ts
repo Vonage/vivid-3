@@ -638,27 +638,18 @@ describe('vwc-text-field', () => {
 			expect(slotElement).toBeDefined();
 		});
 
-		it('should add hide class if action-items is not slotted', async function () {
-			const divWrapper = element.shadowRoot?.querySelector('.action-items-wrapper');
-
-			expect(divWrapper?.classList.contains('hide')).toEqual(true);
-		});
-
-		it('should remove hide class if action-items is slotted', async function () {
+		it('should add action-items class if action-items is slotted', async function () {
 			const slottedElement = document.createElement('div');
 			slottedElement.slot = 'action-items';
 			slottedElement.id = 'action-items';
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
-			const divWrapper = element.shadowRoot?.querySelector('.action-items-wrapper');
+			const baseElementHasActionItemsClass = element.shadowRoot?.
+				querySelector('.base')?.classList.contains('action-items');
 
-			expect(divWrapper?.classList.contains('hide')).toEqual(false);
+			expect(baseElementHasActionItemsClass).toEqual(true);
 		});
 	});
-
-
-
-
 
 });
