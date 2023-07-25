@@ -29,8 +29,8 @@ $low-ink-color: --_low-ink-color;
 	// before showing the error.
 	@include appearance.appearance;
 	@include connotation.connotation (text-field);
-	#{variables.$text-field-gutter}: calc(#{size.$vvd-size-normal} / 2.5);
-	#{variables.$text-field-icon-size}: calc(#{size.$vvd-size-normal} / 2);
+	#{variables.$text-field-gutter}: calc(#{size.$vvd-size-normal} / 2.5); // default of 16px
+	#{variables.$text-field-icon-size}: calc(#{size.$vvd-size-normal} / 2); // default of 20px
 
 	display: inline-grid;
 	width: 100%;
@@ -128,6 +128,10 @@ $low-ink-color: --_low-ink-color;
 		-webkit-text-fill-color: var(#{$low-ink-color}); /* 1. sets text fill to current `color` for safari */
 	}
 
+	.base.action-items & {
+		padding-inline-end: var(#{variables.$text-field-inline-end-padding}, calc(var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter})));
+	}
+
 	@supports selector(:focus-visible) {
 		&:focus {
 			outline: none;
@@ -136,10 +140,13 @@ $low-ink-color: --_low-ink-color;
 }
 
 .action-items-wrapper {
-	margin-inline-end: 4px;
-	&.hide {
+	position: absolute;
+	inset-inline-end: calc(var(#{variables.$text-field-gutter}) / 4);
+
+	.base:not(.action-items) & {
 		display: none;
 	}
+
 }
 
 .icon {
