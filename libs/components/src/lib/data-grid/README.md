@@ -153,18 +153,21 @@ The data being displayed in the grid.
 
 ### columnDefinitions
 
-- Type: `ColumnDefinition[]`
+- Type: [ColumnDefinition](#columndefinition)`[]`
 - Default: `null`
 
-The column definitions of the grid
+The column definitions of the grid. 
+
+Note that the sortable feature doesn't actually sort the data, it only changes the visual representation of the column header. 
+See the [use cases](#sortable-columns) for more information.
 
 ```html preview
 <vwc-data-grid></vwc-data-grid>
 <script>
     grid = document.querySelector('vwc-data-grid');
     grid.columnDefinitions = [
-        {columnDataKey: 'data1', title: 'Custom Title 1'},
-        {columnDataKey: 'data2', title: 'Custom Title 2'},
+        {columnDataKey: 'data1', title: 'Custom Title 1', sortable: true, sortDirection: 'ascending'},
+        {columnDataKey: 'data2', title: 'Custom Title 2', sortable: true},
     ];
     grid.rowsData = [
         {data1: 'data11', data2: 'data12'},
@@ -311,18 +314,19 @@ The element tag for header row cells. If not set, the default tag `vwc-data-grid
 ## Interfaces
 
 ### ColumnDefinition
-
 <div class="table-wrapper">
 
-| Name                            | Type                    | Description                                                  |
-| ------------------------------- | ----------------------- | ------------------------------------------------------------ |
-| `columndDataKey`                | `string`                | The property from which the data of the column is taken from |
-| `title`                         | `string`                | The title of the column                                      |
-| `headerCellTemplate`            | `ViewTemplate`          | A custom template for a header cell                          |
-| `headerCellFocusTargetCallback` | `(cell) => HTMLElement` | Callback function that is called when header cell is focused |
-| `cellTemplate`                  | `ViewTemplate`          | A custom template for a cell                                 |
-| `cellFocusTargetCallback`       | `(cell) => HTMLElement` | Callback function that is called when cell is focused        |
-| `isRowHeader`                   | `boolean`               | Whether this column is the row header                        |
+| Name                            | Type                                                                 | Description                                                  |
+|---------------------------------|----------------------------------------------------------------------|--------------------------------------------------------------|
+| `columndDataKey`                | `string`                                                             | The property from which the data of the column is taken from |
+| `title`                         | `string`                                                             | The title of the column                                      |
+| `headerCellTemplate`            | `ViewTemplate`                                                       | A custom template for a header cell                          |
+| `headerCellFocusTargetCallback` | `(cell) => HTMLElement`                                              | Callback function that is called when header cell is focused |
+| `cellTemplate`                  | `ViewTemplate`                                                       | A custom template for a cell                                 |
+| `cellFocusTargetCallback`       | `(cell) => HTMLElement`                                              | Callback function that is called when cell is focused        |
+| `isRowHeader`                   | `boolean`                                                            | Whether this column is the row header                        |
+| `sortable`                      | `boolean`                                                            | Whether this column is sortable                              |
+| `sortDirection`                 | `'none'` &#124; `'ascending'` &#124; `'descending'` &#124; `'other'` | Define the column's sort direction                           |
 
 </div>
 
@@ -496,6 +500,8 @@ Keyboard events and focus handling are compliant with WACG standards.
 
 Usage of `aria-selected` hints on a selectable element and its selection status.
 
+When a cell is sorted but not according to ascending or descending algorithm, use `aria-sort="other"`. 
+
 ## Use Cases
 
 ### Select in a grid
@@ -536,6 +542,8 @@ In order for the select popup to show correctly in the grid, use the `fixed-drop
 ### Sortable Columns
 
 In order for a grid column to show as sortable, use the `aria-sort` attribute on the sortable column header.
+
+Here's an example of sorting when building the grid manually:
 
 ```html preview
 	<vwc-data-grid>
@@ -600,4 +608,56 @@ In order for a grid column to show as sortable, use the `aria-sort` attribute on
 				addDataToGrid(e.target.ariaSort);
 		});
 	</script>
+```
+
+Here's an example of sorting the data-grid when building it with `rowsData`:
+
+```html preview
+<style>
+vwc-data-grid {max-block-size: 200px;}
+</style>
+<vwc-data-grid></vwc-data-grid>
+<script>
+    grid = document.querySelector('vwc-data-grid');
+    grid.generateHeader = "sticky"
+		const data = [
+        {data1: 'data111', data2: 'data12'},
+        {data1: 'data21', data2: 'data22'},
+        {data1: 'data31', data2: 'data32'},
+        {data1: 'data41', data2: 'data42'},
+        {data1: 'data51', data2: 'data52'},
+        {data1: 'data61', data2: 'data62'},
+    ];
+    grid.rowsData = Array.from(data);
+    grid.columnDefinitions = [
+				{columnDataKey: 'data1', title: 'Custom Title 1', sortable: true},
+				{columnDataKey: 'data2', title: 'Custom Title 2', sortable: true},
+		];
+    grid.addEventListener('sort', (e) => {
+        console.log(e.detail);
+       const sortedColumnHeaderDef = e.target.columnDefinition;
+       
+       grid.columnDefinitions.forEach(column => {
+					 if (column.columnDataKey !== sortedColumnHeaderDef.columnDataKey) {
+							 column.sortDirection = 'none';
+							 return;
+					 }
+					 column.sortDirection = e.detail.sortDirection === "ascending" ? "descending" :
+						 e.detail.sortDirection === "descending" ? "none" : "ascending";
+			 });
+       
+       grid.rowsData = Array.from(data).sort((a, b) => {
+					 const nameA = a[sortedColumnHeaderDef.columnDataKey];
+					 const nameB = b[sortedColumnHeaderDef.columnDataKey];
+					 
+					 if (sortedColumnHeaderDef.sortDirection === 'none') return 0;
+					 if (sortedColumnHeaderDef.sortDirection === 'ascending') {
+							 return nameA > nameB ? -1 : 1;
+					 } else {
+							 return nameA < nameB ? -1 : 1;
+					 }
+					 return 0;
+			 });
+		});
+</script>
 ```
