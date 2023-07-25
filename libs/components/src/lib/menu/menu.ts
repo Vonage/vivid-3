@@ -87,4 +87,5 @@ export class Menu extends FastMenu {
 	 * @internal
 	 */
 	@observable headerSlottedContent?: HTMLElement[];
+	@observable actionItemsSlottedContent?: HTMLElement[];
 }

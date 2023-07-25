@@ -13,11 +13,12 @@ import { Popup } from '../popup/popup';
 import type { Menu } from './menu';
 
 const getClasses = ({
-	headerSlottedContent,
+	headerSlottedContent, actionItemsSlottedContent
 }: Menu) =>
 	classNames(
 		'base',
 		['hide-header', !headerSlottedContent?.length],
+		['hide-actions', !actionItemsSlottedContent?.length],
 	);
 
 /**
@@ -57,7 +58,7 @@ export const MenuTemplate: (
 				>
 					<slot ${slotted('items')}></slot>
 				</div>
-				<footer class="action-items"><slot name="action-items"></slot></footer>
+				<footer class="action-items"><slot name="action-items"  ${slotted('actionItemsSlottedContent')}></slot></footer>
 			</div>
 		</${popupTag}>
 	</template>`;

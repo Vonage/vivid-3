@@ -247,17 +247,25 @@ describe('vwc-menu', () => {
 		});
 	});
 
-	describe('menu action-items', () => {
-		it.each(['action-items'])(
-			'should have a %s slot ',
-			(slotName) => {
-				const slotElement = element.shadowRoot?.querySelector(
-					`slot[name="${slotName}"]`
-				);
+	describe( 'menu actions', () => {
+		it('should have actions slot ', async function () {
+			const actionsSlotElement = element.shadowRoot?.
+				querySelector('.action-items slot[name="actions"]');
 
-				expect(slotElement).toBeDefined();
-			}
-		);
+			expect(actionsSlotElement).toBeDefined();
+		});
+
+		it('should remove hide-actions class from .base if actions is slotted', async function () {
+			const slottedElement = document.createElement('div');
+			slottedElement.slot = 'action-items';
+			slottedElement.id = 'actions';
+			element.appendChild(slottedElement);
+			await elementUpdated(element);
+
+			const baseElementClasses = getBaseElement(element)?.classList;
+
+			expect(baseElementClasses).not.toContain('hide-actions');
+		});
 	});
 
 	const arrowUpEvent = new KeyboardEvent('keydown', {

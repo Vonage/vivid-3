@@ -237,12 +237,12 @@ This helps ensure elements don't render over top a Menu undesirebly.
 
 ## Use Cases
 
-### Menu with checkbox
+### Dropdown menu with checkbox
 
 ```html preview
 <style>
   html { /* for demo purposes */
-		block-size: 400px;
+		block-size: 350px;
 	}
 </style>
 <div style="position: relative">
@@ -256,5 +256,32 @@ This helps ensure elements don't render over top a Menu undesirebly.
     <vwc-button slot="action-items" appearance="outlined" label="Close"></vwc-button>
     <vwc-button slot="action-items" appearance="filled" label="Select"></vwc-button>
   </vwc-menu>
+</div>
+```
+
+### Menu Anchor
+
+```html preview
+<style>
+  html { /* for demo purposes */
+		block-size: 250px;
+	}
+</style>
+<div style="position: relative">
+  <vwc-menu id="menu" anchor="button" placement="bottom-start" open>
+   <a role="menuitem" href="https://www.vonage.com" target="_blank" rel="noopener noreferrer">
+  	<vwc-menu-item role="presentation" text="My Addresses" icon="address-book-line"></vwc-menu-item>
+	 </a>
+   <a role="menuitem" href="https://www.vonage.com" target="_blank" rel="noopener noreferrer">
+  	<vwc-menu-item role="presentation" text="My Profile" icon="profile-line"></vwc-menu-item>
+	 </a>
+   <a role="menuitem" href="https://www.vonage.com" target="_blank" rel="noopener noreferrer">
+  	<vwc-menu-item role="presentation" text="Team" icon="group-line"></vwc-menu-item>
+	 </a>
+   <a role="menuitem" href="https://www.vonage.com" target="_blank" rel="noopener noreferrer">
+  	<vwc-menu-item role="presentation" text="Logout" icon="quit-line"></vwc-menu-item>
+	 </a>
+  </vwc-menu>
+  <vwc-button id="button" icon="close-line" onclick="menu.open = !menu.open"></vwc-button>
 </div>
 ```
