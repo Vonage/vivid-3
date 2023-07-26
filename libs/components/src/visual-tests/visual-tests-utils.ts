@@ -62,9 +62,9 @@ export function extractHTMLBlocksFromReadme(pathToReadme: string): string[] {
 }
 
 const defaultStyles = [
-	'http://127.0.0.1:8080/dist/libs/styles/fonts/spezia-variable.css', // !this break the tests watch mode
 	'http://127.0.0.1:8080/dist/libs/components/styles/tokens/theme-light.css',
-	'http://127.0.0.1:8080/dist/libs/components/styles/core/all.css'
+	'http://127.0.0.1:8080/dist/libs/components/styles/core/all.css',
+	'http://127.0.0.1:8080/assets/fonts/speziaLocalFonts.css'
 ];
 
 export async function loadComponents({

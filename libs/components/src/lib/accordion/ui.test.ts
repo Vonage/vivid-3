@@ -19,7 +19,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	);
 
 	await page.setViewportSize({ width: 500, height: 720 });
-
+	await page.pause();
 	await loadComponents({
 		page,
 		components,
@@ -32,7 +32,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const testWrapper = await page.$('#wrapper');
 
 	await page.waitForLoadState('networkidle');
-
+	await page.waitForTimeout(1000);
+	await page.pause();
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/accordion.png'
 	);
