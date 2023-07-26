@@ -38,6 +38,9 @@ $low-ink-color: --_low-ink-color;
 	inline-size: 100%;
 	min-block-size: 52px;
 	outline: none;
+	&:not(.size-expanded) {
+		min-block-size: 52px;
+	}
 	&.size-expanded {
 		min-block-size: 120px;
 	}
