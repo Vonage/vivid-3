@@ -28,7 +28,7 @@ $low-ink-color: --_low-ink-color;
 	align-items: center;
 	justify-content: center;
 	padding: 16px;
-	border: 1px dashed var(--vvd-color-neutral-400);
+	border: 1px dashed var(#{constants.$vvd-color-neutral-400});
 	background-color: var(#{constants.$vvd-color-cta-50});
 	border-radius: 6px;
 	color: var(#{constants.$vvd-color-neutral-600});
