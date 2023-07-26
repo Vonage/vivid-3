@@ -161,18 +161,30 @@ Add the `readonly` attribute to restrict user from changing the text field's val
 ### Action-items
 You can add action items elements using the `action-items` slot.
 
-```html preview blocks
-<style>
-.text-field {
-  inline-size: 250px;
-}
-</style>
+```html preview
 <vwc-text-field icon="search" placeholder="search" label='search' appearance='fieldset' class="text-field">
-	<vwc-button slot="action-items" size='condensed' icon="close-line" aria-label='clear field'></vwc-button>
+	<vwc-button slot="action-items" size='condensed' icon="close-line" aria-label='clear field' appearance='ghost'></vwc-button>
 </vwc-text-field>
 ```
 
+## CSS Variables
+### Inline end-Padding
+Use `--text-field-inline-end-padding` variable to set the text-field inline-end padding when using the `action-tiems` slot.
+
+
 ## Use Cases
+```html preview
+<style>
+.text-field {
+  --text-field-inline-end-padding: 106px;
+}
+</style>
+<vwc-text-field icon="search" placeholder="search" label='search our documentation' appearance='fieldset' class="text-field" shape='pill'>
+	<vwc-button slot="action-items" size='condensed' icon="image-line" aria-label='search images' shape='pill' appearance='ghost'></vwc-button>
+	<vwc-button slot="action-items" size='condensed' icon="microphone-2-line" aria-label='record' shape='pill' appearance='ghost'></vwc-button>
+	<vwc-button slot="action-items" size='condensed' icon="close-line" aria-label='clear field' shape='pill' appearance='ghost'></vwc-button>
+</vwc-text-field>
+```
 
 ### Validation
 

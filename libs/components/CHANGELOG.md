@@ -4,6 +4,21 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.26.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.25.0...vivid-v3.26.0) (2023-07-25)
+
+
+### Features
+
+* **data-grid:** add sorting design and usage example (VIV-1072) ([#1278](https://github.com/Vonage/vivid-3/issues/1278)) ([b3d2821](https://github.com/Vonage/vivid-3/commit/b3d28215cf882a4bce1490d1459e5cc837b84060))
+* **data-grid:** enable sorting with rows data (VIV-1223) ([#1281](https://github.com/Vonage/vivid-3/issues/1281)) ([83094fb](https://github.com/Vonage/vivid-3/commit/83094fb8a8478d6cc27b3cf87bf5239213a43388))
+
+
+### Bug Fixes
+
+* **elevation, listbox:** remove export from underlying components (VIV-1221) ([#1279](https://github.com/Vonage/vivid-3/issues/1279)) ([a21e8d9](https://github.com/Vonage/vivid-3/commit/a21e8d9902a019bbda3103da0a49f5b4caa38661))
+* **select:** change popup position to static when multiple (VIV-1218) ([#1283](https://github.com/Vonage/vivid-3/issues/1283)) ([bc3a6f6](https://github.com/Vonage/vivid-3/commit/bc3a6f66bcc549d7e98a43df397166c337b80b96))
+* **text-filed:** nicer visual focus with slotted action items (VIV-1224) ([#1280](https://github.com/Vonage/vivid-3/issues/1280)) ([39c628b](https://github.com/Vonage/vivid-3/commit/39c628b955446f50db7572e72ad9685ca72db0f3))
+
 ## [3.25.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.24.0...vivid-v3.25.0) (2023-07-20)
 
 

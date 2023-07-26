@@ -1,6 +1,15 @@
-import { DataGridCell as FoundationDataGridCell } from '@microsoft/fast-foundation';
+import { ColumnDefinition, DataGridCell as FoundationDataGridCell } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
+import type {DataGridCellSortStates} from './data-grid.options';
 
+declare interface ColumnDefinitionExtended extends ColumnDefinition {
+	sortDirection?: DataGridCellSortStates | null;
+	sortable?: boolean | undefined;
+}
+
+declare interface DataGridCellExtension {
+	columnDefinition: ColumnDefinitionExtended | null;
+}
 /**
  * Base class for data-grid
  *
@@ -40,4 +49,8 @@ export class DataGridCell extends FoundationDataGridCell {
 			}
 		};
 	}
+}
+
+export interface DataGridCell extends DataGridCellExtension {
+	columnDefinition: ColumnDefinitionExtended | null;
 }
