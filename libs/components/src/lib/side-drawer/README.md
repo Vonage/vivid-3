@@ -197,3 +197,63 @@ Select `base` part to access the component's internal *aside* element.
 
 </vwc-side-drawer>
 ```
+
+## Use Cases
+
+### Collapsible Side Drawer
+
+```html preview full
+<style>
+  html { /* for demo purposes */
+    block-size: 250px;
+  }
+  vwc-nav-item {
+    padding: 4px;
+  }
+  vwc-side-drawer::part(base) {
+    inline-size: min-content;
+  }
+  vwc-side-drawer {
+    --side-drawer-app-content-offset: 120px;
+    
+    &.collapsed {
+    --side-drawer-app-content-offset: 28px;
+    }
+  }
+  vwc-fab {
+    position: fixed;
+    inset: auto auto 8px 8px;
+    z-index: 2;
+  }
+</style>
+
+<vwc-side-drawer id="sideDrawer" alternate open>
+  <vwc-nav id="sideNav">
+      <vwc-nav-item href="#" text="Calls" icon="call-line" data-value="Calls" onclick="onClick(this)" aria-current="page"></vwc-nav-item>
+      <vwc-nav-item href="#" text="Voicemail" icon="voicemail-line" data-value="Voicemail" onclick="onClick(this)"></vwc-nav-item>
+      <vwc-nav-item href="#" text="SMS" icon="chat-line" data-value="SMS" onclick="onClick(this)"></vwc-nav-item>
+  </vwc-nav>
+  <vwc-layout slot="app-content" gutters="medium">
+    Toggle the side drawer by clicking the FAB.
+  </vwc-layout>
+  <vwc-fab icon='menu-solid' slot="app-content" onclick="onToggle()"></vwc-fab>
+</vwc-side-drawer>
+
+<script>
+  function onToggle(){
+    sideDrawer.classList.toggle('collapsed');
+    const isCollapsed = sideDrawer.classList.contains('collapsed');
+
+    for(let i = 0; i < sideNav.children.length; i++){
+      const value = sideNav.children[i].dataset.value;
+      sideNav.children[i].text = isCollapsed ? "" : value;
+    }
+  }
+
+  function onClick(el) {
+    currentNavItem = document.querySelector('vwc-nav-item[aria-current="page"]');
+    currentNavItem?.removeAttribute('aria-current');
+    el.setAttribute('aria-current', 'page');
+  }
+</script>
+```
