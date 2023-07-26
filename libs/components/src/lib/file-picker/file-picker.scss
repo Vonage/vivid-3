@@ -82,6 +82,12 @@ $low-ink-color: --_low-ink-color;
 		margin-block-start: 4px;
 	}
 
+	&:not(.dz-error) {
+		.dz-error-message {
+			display: none;
+		}
+	}
+
 	&.dz-error {
 		border: 1px solid var(#{constants.$vvd-color-alert-500});
 
