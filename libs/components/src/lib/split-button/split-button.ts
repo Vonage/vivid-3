@@ -6,7 +6,7 @@ import type {
 import { AffixIcon } from '../shared/patterns/affix.js';
 
 /**
- * Types of split-button connotation.
+ * Types of split button connotation.
  *
  * @public
  */
@@ -15,7 +15,7 @@ export type SplitButtonConnotation = Extract<Connotation,
 | Connotation.CTA>;
 
 /**
- * Types of split-button appearance.
+ * Types of split button appearance.
  *
  * @public
  */
@@ -23,27 +23,27 @@ export type SplitButtonAppearance = Extract<Appearance,
 Appearance.Filled | Appearance.Outlined | Appearance.Ghost>;
 
 /**
- * Types of split-button shape.
+ * Types of split button shape.
  *
  * @public
  */
 export type SplitButtonShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
- * Types of split-button size.
+ * Types of split button size.
  *
  * @public
  */
 export type SplitButtonSize = Extract<Size, Size.SuperCondensed | Size.Condensed | Size.Normal | Size.Expanded>;
 
 /**
- * Base class for split-button
+ * Base class for split button
  *
  * @public
  */
 export class SplitButton extends FoundationButton {
 	/**
-	 * The connotation the split-button should have.
+	 * The connotation the split button should have.
 	 *
 	 * @public
 	 * @remarks
@@ -52,7 +52,7 @@ export class SplitButton extends FoundationButton {
 	@attr connotation?: SplitButtonConnotation;
 
 	/**
-	 * The shape the split-button should have.
+	 * The shape the split button should have.
 	 *
 	 * @public
 	 * @remarks
@@ -61,7 +61,7 @@ export class SplitButton extends FoundationButton {
 	@attr shape?: SplitButtonShape;
 
 	/**
-	 * The appearance the split-button should have.
+	 * The appearance the split button should have.
 	 *
 	 * @public
 	 * @remarks
@@ -70,7 +70,7 @@ export class SplitButton extends FoundationButton {
 	@attr appearance?: SplitButtonAppearance;
 
 	/**
-	 * The size the split-button should have.
+	 * The size the split button should have.
 	 *
 	 * @public
 	 * @remarks
@@ -79,13 +79,22 @@ export class SplitButton extends FoundationButton {
 	@attr size?: SplitButtonSize;
 
 	/**
-	 * Indicates the button's label.
+	 * Indicates the split button's label.
 	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: label
 	 */
 	@attr label?: string;
+
+	/**
+	 * Indicates if the split button's popup is open.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: open
+	 */
+	@attr({ mode: 'boolean'	}) open = false;
 }
 
 export interface SplitButton extends AffixIcon {}
