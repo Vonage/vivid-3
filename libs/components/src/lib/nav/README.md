@@ -73,9 +73,6 @@ When the nav has focus:
   html { /* for demo purposes */
     block-size: 250px;
   }
-  vwc-nav-item {
-    padding: 4px;
-  }
   vwc-fab {
     position: fixed;
     inset: auto auto 8px 8px;
