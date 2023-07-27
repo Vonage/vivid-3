@@ -81,6 +81,7 @@ When the nav has focus:
 </style>
 
 <vwc-side-drawer id="sideDrawer" alternate open>
+<vwc-layout gutters="small" column-basis="block">
   <vwc-nav id="sideNav">
       <vwc-nav-item href="#" text="Calls" icon="call-line" data-value="Calls" onclick="onClick(this)" aria-current="page"></vwc-nav-item>
       <vwc-nav-item href="#" text="Voicemail" icon="voicemail-line" data-value="Voicemail" onclick="onClick(this)"></vwc-nav-item>
