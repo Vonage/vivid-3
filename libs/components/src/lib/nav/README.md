@@ -86,6 +86,7 @@ When the nav has focus:
       <vwc-nav-item href="#" text="Voicemail" icon="voicemail-line" data-value="Voicemail" onclick="onClick(this)"></vwc-nav-item>
       <vwc-nav-item href="#" text="SMS" icon="chat-line" data-value="SMS" onclick="onClick(this)"></vwc-nav-item>
   </vwc-nav>
+  </vwc-layout>
   <vwc-layout slot="app-content" gutters="medium">
     Toggle the side drawer by clicking the FAB.
   </vwc-layout>
