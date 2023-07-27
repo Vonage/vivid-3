@@ -62,9 +62,9 @@ export function extractHTMLBlocksFromReadme(pathToReadme: string): string[] {
 }
 
 const defaultStyles = [
-	'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap', // !this break the tests watch mode
 	'http://127.0.0.1:8080/dist/libs/components/styles/tokens/theme-light.css',
-	'http://127.0.0.1:8080/dist/libs/components/styles/core/all.css'
+	'http://127.0.0.1:8080/dist/libs/components/styles/core/all.css',
+	'http://127.0.0.1:8080/assets/fonts/speziaLocalFonts.css'
 ];
 
 export async function loadComponents({
@@ -95,21 +95,12 @@ export async function loadTemplate({
 	page,
 	template,
 }: { page: Page, template: string }) {
-	const browserType = page.context()?.browser()?.browserType().name();
 
-	const style = browserType !== 'webkit' ? '' : `
-		<style>
-			* {
-				--vvd-font-family-upright: Arial;
-				--vvd-font-family-monospace: Arial;
-			}
-		</style>
-	`;
 	await page.$('html').then(html => html?.evaluate((html) => {
 		html.classList.add('vvd-root');
 	}, template));
 
-	await page.$('body').then(body => body?.evaluate((body, {template, style}) => {
+	await page.$('body').then(body => body?.evaluate((body, {template, style = ''}) => {
 		body.innerHTML = `${style}<div id="wrapper">${template}</div>`;
-	}, {template, style}));
+	}, {template}));
 }
