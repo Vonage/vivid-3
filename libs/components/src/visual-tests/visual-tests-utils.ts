@@ -97,14 +97,8 @@ export async function loadTemplate({
 }: { page: Page, template: string }) {
 	const browserType = page.context()?.browser()?.browserType().name();
 
-	const style = browserType !== 'webkit' ? '' : `
-		<style>
-			* {
-				--vvd-font-family-upright: Arial;
-				--vvd-font-family-monospace: Arial;
-			}
-		</style>
-	`;
+	const style = '';
+
 	await page.$('html').then(html => html?.evaluate((html) => {
 		html.classList.add('vvd-root');
 	}, template));
