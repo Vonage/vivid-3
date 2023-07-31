@@ -24,9 +24,8 @@ describe('vwc-menu', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Menu;
-
 		anchor = await fixture('<vwc-button id="anchor"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE) as Button;
+		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Menu;
 	});
 
 	describe('basic', () => {
@@ -290,7 +289,7 @@ describe('vwc-menu', () => {
 			await elementUpdated(element);
 
 			expect(element.open).toEqual(true);
-		});
+		}); 
 
 		it('should remove the previous anchor\'s listener when anchor is changed', async () => {
 			fixture(
