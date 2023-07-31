@@ -1,6 +1,7 @@
 import {ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
 import { Button, FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
+import { fireEvent } from '@testing-library/dom';
 import { Menu } from './menu';
 import { menuDefinition } from './definition';
 import '.';
@@ -9,6 +10,7 @@ const COMPONENT_TAG = 'vwc-menu';
 
 describe('vwc-menu', () => {
 	let element: Menu;
+	let anchor: Button;
 
 	global.ResizeObserver = jest.fn()
 		.mockImplementation(() => ({
@@ -23,6 +25,8 @@ describe('vwc-menu', () => {
 
 	beforeEach(async () => {
 		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Menu;
+
+		anchor = await fixture('<vwc-button id="anchor"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE) as Button;
 	});
 
 	describe('basic', () => {
@@ -205,10 +209,136 @@ describe('vwc-menu', () => {
 		});
 	});
 
+	describe('anchor', () => {
+
+		describe('observer cleanup', function () {
+			let disconnectionFunc: any;
+			let mutationObserverSpy: any;
+			beforeEach(function () {
+				const mockMutationObserver = jest.fn(function(this: any, callback) {
+					this.observe = jest.fn();
+					disconnectionFunc = this.disconnect = jest.fn();
+					callback();
+				});
+				mutationObserverSpy = jest.spyOn(window, 'MutationObserver')
+					.mockImplementation(mockMutationObserver as any);
+			});
+
+			afterEach(function () {
+				mutationObserverSpy.mockRestore();
+			});
+
+			it('should remove observer when element is removed from the DOM', async function () {
+				element.anchor = 'nonExistentAnchor';
+				element.remove();
+				expect(disconnectionFunc).toHaveBeenCalled();
+			});
+
+			it('should remove observer when anchor changes', async function () {
+				element.anchor = 'nonExistentAnchor';
+				const cachedDisconnectionFunc = disconnectionFunc;
+				element.anchor = 'anotherNonExistentAnchor';
+				expect(cachedDisconnectionFunc).toHaveBeenCalled();
+			});
+		});
+
+		it('should accept an anchor before anchor element is added to the DOM', async () => {
+			const newAnchor = document.createElement('vwc-button');
+			newAnchor.id = 'anchor2';
+			element.anchor = 'anchor2';
+
+			element.parentElement?.appendChild(newAnchor);
+
+			await elementUpdated(element);
+
+			fireEvent(newAnchor, new MouseEvent('click', {bubbles: true}));
+			await elementUpdated(element);
+
+			expect(element.open).toEqual(true);
+			newAnchor.remove();
+		});
+
+		it('should accept an HTMLElement as anchor', async () => {
+			element.anchor = anchor;
+			await elementUpdated(element);
+
+			anchor.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+			await elementUpdated(element);
+
+			expect(element.open).toEqual(true);
+		});
+
+		it('should remove the previous anchor\'s listener when anchor is changed', async () => {
+			fixture(
+				'<vwc-button id="anchor2"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE
+			) as Button;
+
+			element.anchor = 'anchor';
+			await elementUpdated(element);
+
+			element.anchor = 'anchor2';
+			await elementUpdated(element);
+
+			anchor.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+			await elementUpdated(element);
+			expect(element.open).toEqual(false);
+		});
+
+		it('should set the new anchor\'s listener when anchor is changed', async () => {
+			const anchor2 = fixture(
+				'<vwc-button id="anchor2"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE
+			) as Button;
+
+			element.anchor = 'anchor';
+			await elementUpdated(element);
+
+			element.anchor = 'anchor2';
+			await elementUpdated(element);
+
+			anchor2.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+			await elementUpdated(element);
+			expect(element.open).toEqual(true);
+		});
+	});
+
+	describe('open', () => {
+		it('should open when its anchor is clicked', async () => {
+			element.anchor = 'anchor';
+			await elementUpdated(element);
+
+			expect(element.open).toBe(false);
+
+			anchor.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+			await elementUpdated(element);
+
+			expect(element.open).toEqual(true);
+		});
+
+		it('should remain open when clicked inside', async () => {
+			element.anchor = 'anchor';
+			element.open = true;
+			await elementUpdated(element);
+
+			element.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+			await elementUpdated(element);
+
+			expect(element.open).toEqual(true);
+		});
+
+		it('should leave open without change when clicked outside', async () => {
+			element.anchor = 'anchor';
+			element.open = true;
+			await elementUpdated(element);
+
+			document.body.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+			await elementUpdated(element);
+
+			expect(element.open).toEqual(true);
+		});
+	});
+
 	describe('aria-hasspopup', () => {
 		it('should set and remove the aria-haspopup attribute on its anchor when it changes', async () => {
-			await setAnchor();
-
 			element.anchor = 'anchor';
 			await elementUpdated(element);
 			const button = document.getElementById(element.anchor);
@@ -275,10 +405,4 @@ describe('vwc-menu', () => {
 		key: keyArrowDown,
 		bubbles: true,
 	} as KeyboardEventInit);
-
-	async function setAnchor() {
-		const anchorEl = await fixture('<vwc-button id="anchor"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE) as Button;
-		await elementUpdated(anchorEl);
-		return anchorEl;
-	}
 });
