@@ -51,7 +51,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-menu-item icon="file-pdf-line" text="Export to PDF">
 				<vwc-badge slot="meta" appearance='subtle' connotation='cta' shape='pill' icon='check-solid'></vwc-badge>
 				</vwc-menu-item>
-				<vwc-menu-item text="avalable" role="menuitemradio">
+				<vwc-menu-item text="Available" role="menuitemradio">
 				  <vwc-badge slot="meta" appearance='filled' connotation='success' shape='pill' icon='check-solid'></vwc-badge>
 				</vwc-menu-item>
 				<vwc-menu-item text="Bussy" role="menuitemcheckbox" checked>
