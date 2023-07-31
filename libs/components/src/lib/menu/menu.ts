@@ -1,7 +1,8 @@
-import { attr, observable } from '@microsoft/fast-element';
+import { attr, DOM, observable } from '@microsoft/fast-element';
 import { Menu as FastMenu } from '@microsoft/fast-foundation';
 import type { Placement } from '@floating-ui/dom';
-import type { Popup } from '../popup/popup';
+
+type AnchorType = string | HTMLElement;
 
 /**
  * Base class for menu
@@ -10,40 +11,37 @@ import type { Popup } from '../popup/popup';
  * @slot - Default slot.
  */
 export class Menu extends FastMenu {
-	#dismissOnClickOutside = (e: MouseEvent) => {
-		const popup = (this._popup as Popup);
-		if (popup.open && !this.contains(e.target as HTMLElement)) {
-			popup.open = false;
-		}
+
+	#observer?: MutationObserver;
+	#anchorEl: HTMLElement | null = null;
+	#observeMissingAnchor = (anchorId: string) => {
+		this.#observer = new MutationObserver(() => {
+			const anchor = document.getElementById(anchorId as string);
+			if (anchor) {
+				this.#anchorEl = anchor;
+				this.#setupAnchor(this.#anchorEl);
+				this.#observer!.disconnect();
+				this.#observer = undefined;
+			}
+		});
+		this.#observer.observe(document.body, { childList: true, subtree: true });
 	};
 
-	_popup?: Popup;
-
 	/**
-	 * indicates whether the menu is open
-	 *
-	 * @public
-	 * HTML Attribute: open
-	 */
-	@attr({
-		mode: 'boolean',
-	}) open = false;
-
-	/**
-	 * the placement of the menu
+	 * placement of the menu
 	 *
 	 * @public
 	 * HTML Attribute: placement
 	 */
-	@attr placement?: Placement;
+	@attr({ mode: 'fromView' }) placement?: Placement = 'bottom';
 
 	/**
-	 * ID reference to element in the menu's owner document.
+	 * id or direct reference to the menu's anchor element
 	 *
 	 * @public
 	 * HTML Attribute: anchor
 	 */
-	@attr anchor?: string;
+	@attr({ mode: 'fromView' }) anchor: AnchorType = '';
 
 	/**
 	 * indicates whether the menu will automatically close when
@@ -52,33 +50,77 @@ export class Menu extends FastMenu {
 	 * @public
 	 * HTML Attribute: auto-dismiss
 	 */
-	@attr({
-		mode: 'boolean',
-		attribute: 'auto-dismiss'
-	}) autoDismiss = false;
+	@attr({ mode: 'boolean', attribute: 'auto-dismiss' }) autoDismiss = false;
+	autoDismissChanged(oldValue: boolean, newValue: boolean): void {
+		if (oldValue === undefined) return;
 
-	anchorChanged(prevAnchor: string, newAnchor: string) {
-		const prevAnchorEl = document.getElementById(prevAnchor);
-		const newAnchorEl = document.getElementById(newAnchor);
-		prevAnchorEl?.removeAttribute('aria-haspopup');
-		newAnchorEl?.setAttribute('aria-haspopup', 'menu');
-	}
-
-	autoDismissChanged() {
-		if (this.autoDismiss) {
-			document.addEventListener('click', this.#dismissOnClickOutside);
+		if (newValue) {
+			document.addEventListener('click', this.#closeOnClickOutside);
 		} else {
-			document.removeEventListener('click', this.#dismissOnClickOutside);
+			document.removeEventListener('click', this.#closeOnClickOutside);
 		}
 	}
 
-	override disconnectedCallback() {
+	anchorChanged(_: AnchorType, newValue: AnchorType) {
+		if (this.#anchorEl) this.#cleanupAnchor(this.#anchorEl);
+		this.#observer?.disconnect();
+
+		this.#anchorEl = newValue instanceof HTMLElement ? newValue : document.getElementById(newValue);
+		if (this.#anchorEl) {
+			this.#setupAnchor(this.#anchorEl);
+		} else {
+			this.#observeMissingAnchor(newValue as string);
+		}
+	}
+
+	/**
+	 * indicates whether the menu is open
+	 *
+	 * @public
+	 * HTML Attribute: open
+	 */
+	@attr({ mode: 'boolean' }) open = false;
+	openChanged(oldValue: boolean, newValue: boolean): void {
+		if (oldValue === undefined) return;
+
+		if (newValue && this.autoDismiss) {
+			document.addEventListener('click', this.#closeOnClickOutside);
+		} else {
+			document.removeEventListener('click', this.#closeOnClickOutside);
+		}
+
+		if (this.#anchorEl) {
+			this.#anchorEl.ariaExpanded = this.open.toString();
+		}
+	}
+
+	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-
-		if (this.autoDismiss) {
-			document.removeEventListener('click', this.#dismissOnClickOutside);
-		}
+		if (this.#anchorEl) this.#cleanupAnchor(this.#anchorEl);
+		this.#observer?.disconnect();
+		document.removeEventListener('click', this.#closeOnClickOutside);
 	}
+
+	#setupAnchor(a: HTMLElement) {
+		a.addEventListener('click', this.#openIfClosed, true);
+		a.setAttribute('aria-haspopup', 'menu');
+		// TODO aria-controls="myid"
+	}
+
+	#cleanupAnchor(a: HTMLElement) {
+		a.removeEventListener('click', this.#openIfClosed, true);
+		a.removeAttribute('aria-hasPopup');
+	}
+
+	#openIfClosed = () => {
+		// DOM.queueUpdate() is required to prevent the click event from
+		// being caught by the document click handler (added by openChanged)
+		if (!this.open) DOM.queueUpdate(() => this.open = true);
+	};
+
+	#closeOnClickOutside = (e: Event) => {
+		if (!this.contains(e.target as Node)) this.open = false;
+	};
 
 	/**
 	 *

@@ -1,7 +1,6 @@
 import {ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
 import { Button, FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
-import { Popup } from '../popup/popup';
 import { Menu } from './menu';
 import { menuDefinition } from './definition';
 import '.';
@@ -31,9 +30,8 @@ describe('vwc-menu', () => {
 			expect(menuDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Menu);
 			expect(element.open).toEqual(false);
-			expect(element.anchor).toBeUndefined();
-			expect(element.placement).toBeUndefined();
-			expect(element._popup).toBeInstanceOf(Popup);
+			expect(element.anchor).toEqual('');
+			expect(element.placement).toEqual('bottom');
 		});
 	});
 
