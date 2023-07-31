@@ -80,15 +80,7 @@ export class Menu extends FastMenu {
 	 * HTML Attribute: open
 	 */
 	@attr({ mode: 'boolean' }) open = false;
-	openChanged(oldValue: boolean, newValue: boolean): void {
-		if (oldValue === undefined) return;
-
-		if (newValue) {
-			document.addEventListener('click', this.#closeOnClickOutside);
-		} else {
-			document.removeEventListener('click', this.#closeOnClickOutside);
-		}
-
+	openChanged(): void {
 		if (this.#anchorEl) {
 			this.#anchorEl.ariaExpanded = this.open.toString();
 		}

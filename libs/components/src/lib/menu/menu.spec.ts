@@ -24,7 +24,7 @@ describe('vwc-menu', () => {
 	});
 
 	beforeEach(async () => {
-		anchor = await fixture('<vwc-button id="anchor"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE) as Button;
+		anchor = await fixture('<vwc-button id="anchorButton"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE) as Button;
 		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Menu;
 	});
 
@@ -102,7 +102,7 @@ describe('vwc-menu', () => {
 		});
 
 		it('should remain open when clicked inside', async () => {
-			element.anchor = 'anchor';
+			element.anchor = 'anchorButton';
 			element.open = true;
 			element.autoDismiss = true;
 			await elementUpdated(element);
@@ -114,12 +114,12 @@ describe('vwc-menu', () => {
 		});
 
 		it('should set open to false when clicked outside', async () => {
-			element.anchor = 'anchor';
+			element.anchor = 'anchorButton';
 			element.autoDismiss = true;
 			element.open = true;
 			await elementUpdated(element);
 
-			document.body.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+			fireEvent(document.body, new MouseEvent('click', {bubbles: true}));
 			await elementUpdated(element);
 
 			expect(element.open).toEqual(false);
@@ -232,7 +232,7 @@ describe('vwc-menu', () => {
 		});
 	});
 
-	describe('anchor', () => {
+	describe('anchorButton', () => {
 
 		describe('observer cleanup', function () {
 			let disconnectionFunc: any;
@@ -296,7 +296,7 @@ describe('vwc-menu', () => {
 				'<vwc-button id="anchor2"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE
 			) as Button;
 
-			element.anchor = 'anchor';
+			element.anchor = 'anchorButton';
 			await elementUpdated(element);
 
 			element.anchor = 'anchor2';
@@ -312,7 +312,7 @@ describe('vwc-menu', () => {
 				'<vwc-button id="anchor2"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE
 			) as Button;
 
-			element.anchor = 'anchor';
+			element.anchor = 'anchorButton';
 			await elementUpdated(element);
 
 			element.anchor = 'anchor2';
@@ -326,7 +326,7 @@ describe('vwc-menu', () => {
 
 	describe('open', () => {
 		it('should open when its anchor is clicked', async () => {
-			element.anchor = 'anchor';
+			element.anchor = 'anchorButton';
 			await elementUpdated(element);
 
 			expect(element.open).toBe(false);
@@ -338,7 +338,7 @@ describe('vwc-menu', () => {
 		});
 
 		it('should remain open when clicked inside', async () => {
-			element.anchor = 'anchor';
+			element.anchor = 'anchorButton';
 			element.open = true;
 			await elementUpdated(element);
 
@@ -349,7 +349,7 @@ describe('vwc-menu', () => {
 		});
 
 		it('should leave open without change when clicked outside', async () => {
-			element.anchor = 'anchor';
+			element.anchor = 'anchorButton';
 			element.open = true;
 			await elementUpdated(element);
 
@@ -362,7 +362,7 @@ describe('vwc-menu', () => {
 
 	describe('aria-hasspopup', () => {
 		it('should set and remove the aria-haspopup attribute on its anchor when it changes', async () => {
-			element.anchor = 'anchor';
+			element.anchor = 'anchorButton';
 			await elementUpdated(element);
 			const button = document.getElementById(element.anchor);
 			const buttonHasPopupWhenSetAsAnchor = button?.getAttribute('aria-haspopup');
