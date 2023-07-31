@@ -36,7 +36,6 @@
 	min-block-size: $min-block-size;
 	text-decoration: none;
 	vertical-align: middle;
-	word-break: break-word;
 
 	@include appearance.appearance;
 	@include connotation.connotation (nav-item);
