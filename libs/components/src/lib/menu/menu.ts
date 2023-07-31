@@ -83,7 +83,7 @@ export class Menu extends FastMenu {
 	openChanged(oldValue: boolean, newValue: boolean): void {
 		if (oldValue === undefined) return;
 
-		if (newValue && this.autoDismiss) {
+		if (newValue) {
 			document.addEventListener('click', this.#closeOnClickOutside);
 		} else {
 			document.removeEventListener('click', this.#closeOnClickOutside);
@@ -119,6 +119,7 @@ export class Menu extends FastMenu {
 	};
 
 	#closeOnClickOutside = (e: Event) => {
+		if (!this.autoDismiss) return;
 		if (!this.contains(e.target as Node)) this.open = false;
 	};
 

@@ -101,6 +101,30 @@ describe('vwc-menu', () => {
 			expect(element.open)
 				.toEqual(true);
 		});
+
+		it('should remain open when clicked inside', async () => {
+			element.anchor = 'anchor';
+			element.open = true;
+			element.autoDismiss = true;
+			await elementUpdated(element);
+
+			element.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+			await elementUpdated(element);
+
+			expect(element.open).toEqual(true);
+		});
+
+		it('should set open to false when clicked outside', async () => {
+			element.anchor = 'anchor';
+			element.autoDismiss = true;
+			element.open = true;
+			await elementUpdated(element);
+
+			document.body.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+			await elementUpdated(element);
+
+			expect(element.open).toEqual(false);
+		});
 	});
 
 	describe('focus', () => {
