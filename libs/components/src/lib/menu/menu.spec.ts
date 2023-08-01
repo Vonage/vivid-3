@@ -33,7 +33,7 @@ describe('vwc-menu', () => {
 			expect(menuDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Menu);
 			expect(element.open).toEqual(false);
-			expect(element.anchor).toBeUndefined();
+			expect(element.anchor).toEqual('');
 			expect(element.placement).toEqual('bottom');
 		});
 	});
@@ -112,22 +112,6 @@ describe('vwc-menu', () => {
 
 			expect(element.open).toEqual(true);
 		});
-
-		// it('should set open to false when clicked outside', async () => {
-		// 	element.anchor = 'anchorButton';
-		// 	await elementUpdated(element);
-
-		// 	element.autoDismiss = true;
-		// 	await elementUpdated(element);
-
-		// 	element.open = true;
-		// 	await elementUpdated(element);
-
-		// 	document.body.dispatchEvent(new MouseEvent('click', {bubbles: true}));
-		// 	await elementUpdated(element);
-
-		// 	expect(element.open).toEqual(false);
-		// });
 	});
 
 	describe('focus', () => {
@@ -236,8 +220,7 @@ describe('vwc-menu', () => {
 		});
 	});
 
-	describe('anchorButton', () => {
-
+	describe('anchor', () => {
 		describe('observer cleanup', function () {
 			let disconnectionFunc: any;
 			let mutationObserverSpy: any;

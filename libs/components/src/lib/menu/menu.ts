@@ -41,7 +41,7 @@ export class Menu extends FastMenu {
 	 * @public
 	 * HTML Attribute: anchor
 	 */
-	@attr({ mode: 'fromView' }) anchor?: AnchorType;
+	@attr({ mode: 'fromView' }) anchor: AnchorType = '';
 	anchorChanged(_: AnchorType, newValue: AnchorType) {
 		if (this.#anchorEl) this.#cleanupAnchor(this.#anchorEl);
 		this.#observer?.disconnect();
