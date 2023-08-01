@@ -301,20 +301,11 @@ describe('vwc-menu-item', () => {
 
 	describe('slot', ()=> {
 
-		it('should render slot if role menuItem', async function () {
-			element.role = MenuItemRole.menuitem;
+		it('should render slot', async function () {
 			const metaSlotElement = element.shadowRoot?.querySelector('.base slot[name="meta"]');
 			await elementUpdated(element);
 
 			expect(metaSlotElement).toBeTruthy();
-		});
-
-		it.each([MenuItemRole.menuitemcheckbox, MenuItemRole.menuitemradio])
-		('should remove slot if role is %s', async function (role: string) {
-			element.setAttribute('role', role);
-			await elementUpdated(element);
-			const metaSlotElement = element.shadowRoot?.querySelector('.base slot[name="meta"]');
-			expect(metaSlotElement).toBeNull();
 		});
 
 		it('should add class .has-meta if slot is slotted', async function () {

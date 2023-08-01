@@ -90,6 +90,11 @@
 		order: 1;
 		margin-inline-start: auto;
 	}
+
+	.base.has-meta & {
+		order: 1;
+		margin-inline-start: auto;
+	}
 }
 
 .decorative {

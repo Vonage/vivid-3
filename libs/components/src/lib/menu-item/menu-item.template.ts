@@ -73,8 +73,7 @@ export const MenuItemTemplate:  (
 						`
 	)}
 			${() => focusTemplate}
-			${when(x => (x.role !== MenuItemRole.menuitemcheckbox && x.role !== MenuItemRole.menuitemradio),
-		html`<slot name="meta" ${slotted('metaSlottedContent')}></slot>`)}
+			<slot name="meta" ${slotted('metaSlottedContent')}></slot>
 			${when(x => x.role === MenuItemRole.menuitemcheckbox,
 		html`<span class="action">${x => getCheckIcon(affixIconTemplate, x, 'checkbox')}</span>`)}
 
