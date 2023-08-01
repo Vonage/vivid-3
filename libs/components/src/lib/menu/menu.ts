@@ -42,11 +42,11 @@ export class Menu extends FastMenu {
 	 * HTML Attribute: anchor
 	 */
 	@attr({ mode: 'fromView' }) anchor: AnchorType = '';
-	anchorChanged(_: AnchorType, newValue: AnchorType) {
+	anchorChanged(_: AnchorType, newValue: AnchorType): void {
 		if (this.#anchorEl) this.#cleanupAnchor(this.#anchorEl);
 		this.#observer?.disconnect();
 
-		this.#anchorEl = newValue instanceof HTMLElement ? newValue : document.getElementById(newValue);
+		this.#anchorEl = (newValue instanceof HTMLElement) ? newValue : document.getElementById(newValue);
 		if (this.#anchorEl) {
 			this.#setupAnchor(this.#anchorEl);
 		} else {
@@ -110,7 +110,6 @@ export class Menu extends FastMenu {
 	};
 
 	#closeOnClickOutside = (e: Event) => {
-		if (!this.autoDismiss) return;
 		if (!this.contains(e.target as Node)) this.open = false;
 	};
 

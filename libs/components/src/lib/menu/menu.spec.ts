@@ -1,4 +1,4 @@
-import {ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
+import { ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
 import type { Button } from '../button/button';
@@ -19,13 +19,14 @@ describe('vwc-menu', () => {
 			disconnect: jest.fn()
 		}));
 
-	beforeAll(async () => {
-		await customElements.whenDefined(COMPONENT_TAG);
-	});
-
 	beforeEach(async () => {
-		anchor = await fixture('<vwc-button id="anchorButton"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE) as Button;
-		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Menu;
+		element = fixture(
+			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+		) as Menu;
+
+		anchor = fixture(
+			'<vwc-button id="anchorButton"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE
+		) as Button;
 	});
 
 	describe('basic', () => {
@@ -45,7 +46,7 @@ describe('vwc-menu', () => {
 
 			await elementUpdated(element);
 
-			document.body.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+			document.body.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 
 			await elementUpdated(element);
 
@@ -88,13 +89,12 @@ describe('vwc-menu', () => {
 		});
 
 		it('should leave "open" true when clicked outside and auto-dismiss false', async () => {
+			element.anchor = 'anchorButton';
 			element.open = true;
 			element.autoDismiss = false;
-
 			await elementUpdated(element);
 
-			document.body.dispatchEvent(new MouseEvent('click', {bubbles: true}));
-
+			document.body.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 			await elementUpdated(element);
 
 			expect(element.open)
@@ -107,7 +107,7 @@ describe('vwc-menu', () => {
 			element.autoDismiss = true;
 			await elementUpdated(element);
 
-			element.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+			element.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 			await elementUpdated(element);
 
 			expect(element.open).toEqual(true);
@@ -225,7 +225,7 @@ describe('vwc-menu', () => {
 			let disconnectionFunc: any;
 			let mutationObserverSpy: any;
 			beforeEach(function () {
-				const mockMutationObserver = jest.fn(function(this: any, callback) {
+				const mockMutationObserver = jest.fn(function (this: any, callback) {
 					this.observe = jest.fn();
 					disconnectionFunc = this.disconnect = jest.fn();
 					callback();
@@ -261,7 +261,7 @@ describe('vwc-menu', () => {
 
 			await elementUpdated(element);
 
-			newAnchor.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+			newAnchor.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 			await elementUpdated(element);
 
 			expect(element.open).toEqual(true);
@@ -272,11 +272,11 @@ describe('vwc-menu', () => {
 			element.anchor = anchor;
 			await elementUpdated(element);
 
-			anchor.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+			anchor.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 			await elementUpdated(element);
 
 			expect(element.open).toEqual(true);
-		}); 
+		});
 
 		it('should remove the previous anchor\'s listener when anchor is changed', async () => {
 			fixture(
@@ -289,7 +289,7 @@ describe('vwc-menu', () => {
 			element.anchor = 'anchor2';
 			await elementUpdated(element);
 
-			anchor.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+			anchor.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 			await elementUpdated(element);
 			expect(element.open).toEqual(false);
 		});
@@ -305,7 +305,7 @@ describe('vwc-menu', () => {
 			element.anchor = 'anchor2';
 			await elementUpdated(element);
 
-			anchor2.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+			anchor2.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 			await elementUpdated(element);
 			expect(element.open).toEqual(true);
 		});
@@ -317,7 +317,7 @@ describe('vwc-menu', () => {
 			element.open = true;
 			await elementUpdated(element);
 
-			element.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+			element.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 			await elementUpdated(element);
 
 			expect(element.open).toEqual(true);
@@ -328,7 +328,7 @@ describe('vwc-menu', () => {
 			element.open = true;
 			await elementUpdated(element);
 
-			document.body.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+			document.body.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 			await elementUpdated(element);
 
 			expect(element.open).toEqual(true);
@@ -336,23 +336,24 @@ describe('vwc-menu', () => {
 	});
 
 	describe('aria-hasspopup', () => {
-		// it('should set and remove the aria-haspopup attribute on its anchor when it changes', async () => {
-		// 	element.anchor = 'anchorButton';
-		// 	await elementUpdated(element);
-		// 	const button = document.getElementById(element.anchor);
-		// 	const buttonHasPopupWhenSetAsAnchor = button?.getAttribute('aria-haspopup');
+		it('should set and remove the aria-haspopup attribute on its anchor when it changes', async () => {
+			element.anchor = 'anchorButton';
+			await elementUpdated(element);
+			const button: Button = document.getElementById(element.anchor) as Button;
+			expect(element.anchor).not.toBe(null);
 
+			const buttonHasPopupWhenSetAsAnchor = button?.getAttribute('aria-haspopup');
 
-		// 	element.anchor = '';
-		// 	await elementUpdated(element);
-		// 	const buttonHasPopupWhenRemovedAsAnchor = button?.getAttribute('aria-haspopup');
+			element.anchor = '';
+			await elementUpdated(element);
+			const buttonHasPopupWhenRemovedAsAnchor = button?.getAttribute('aria-haspopup');
 
-		// 	expect(buttonHasPopupWhenSetAsAnchor).toBe('menu');
-		// 	expect(buttonHasPopupWhenRemovedAsAnchor).toBeUndefined;
-		// });
+			expect(buttonHasPopupWhenSetAsAnchor).toBe('menu');
+			expect(buttonHasPopupWhenRemovedAsAnchor).toBeUndefined;
+		});
 	});
 
-	describe( 'menu header', () => {
+	describe('menu header', () => {
 		it('should have header slot ', async function () {
 			const headerSlotElement = element.shadowRoot?.
 				querySelector('.header slot[name="header"]');
@@ -373,7 +374,7 @@ describe('vwc-menu', () => {
 		});
 	});
 
-	describe( 'menu actions', () => {
+	describe('menu actions', () => {
 		it('should have actions slot ', async function () {
 			const actionsSlotElement = element.shadowRoot?.
 				querySelector('.action-items slot[name="actions"]');
