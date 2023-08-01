@@ -102,7 +102,9 @@
 			"/assets/modules/components/side-drawer/index.js",
 			"/assets/modules/components/nav-item/index.js",
 			"/assets/modules/components/fab/index.js",
-			"/assets/modules/components/layout/index.js"
+			"/assets/modules/components/layout/index.js",
+			"/assets/modules/components/nav/index.js",
+			"/assets/modules/components/nav-item/index.js"
 		]
 	},
 	{
@@ -233,7 +235,10 @@
 		"modules": [
 			"/assets/modules/components/nav/index.js",
 			"/assets/modules/components/nav-item/index.js",
-			"/assets/modules/components/nav-disclosure/index.js"
+			"/assets/modules/components/nav-disclosure/index.js",
+			"/assets/modules/components/side-drawer/index.js",
+			"/assets/modules/components/fab/index.js",
+			"/assets/modules/components/layout/index.js"
 		]
 	},
 	{
@@ -252,7 +257,8 @@
 		"modules": [
 			"/assets/modules/components/menu/index.js",
 			"/assets/modules/components/menu-item/index.js",
-			"/assets/modules/components/button/index.js"
+			"/assets/modules/components/button/index.js",
+			"/assets/modules/components/text-field/index.js"
 		]
 	},
 	{
@@ -456,6 +462,17 @@
 		"modules": [
 			"/assets/modules/components/empty-state/index.js",
 			"/assets/modules/components/button/index.js"
+		]
+	},
+	{
+		"title": "file-picker",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/file-picker/README.md",
+		"modules": [
+			"/assets/modules/components/file-picker/index.js",
+			"/assets/modules/components/button/index.js",
+			"/assets/modules/components/text-field/index.js",
+			"/assets/modules/components/layout/index.js"
 		]
 	},
 	{

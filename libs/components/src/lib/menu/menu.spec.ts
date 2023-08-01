@@ -182,9 +182,10 @@ describe('vwc-menu', () => {
 				document.activeElement?.dispatchEvent(arrowDownEvent);
 			}
 
-			function focusOutOfBase() {
+			function focusOutOfBody() {
 				const focusOutEvent = new FocusEvent('focusout');
-				getBaseElement(element).dispatchEvent(focusOutEvent);
+				const bodyElement = element.shadowRoot?.querySelector('.body') as HTMLElement;
+				bodyElement.dispatchEvent(focusOutEvent);
 			}
 
 			const menuFocusedElement = () => element.querySelector('[tabindex="0"]') as HTMLElement;
@@ -198,7 +199,7 @@ describe('vwc-menu', () => {
 			focusOnSecondItem();
 			const focusableElementAfterMouseDown = menuFocusedElement();
 
-			focusOutOfBase();
+			focusOutOfBody();
 			const focusableElementAfterFocusOut = menuFocusedElement();
 
 			expect(focusableElementAfterMouseDown.id).toEqual('id2');
@@ -222,6 +223,48 @@ describe('vwc-menu', () => {
 
 			expect(buttonHasPopupWhenSetAsAnchor).toBe('menu');
 			expect(buttonHasPopupWhenRemovedAsAnchor).toBeUndefined;
+		});
+	});
+
+	describe( 'menu header', () => {
+		it('should have header slot ', async function () {
+			const headerSlotElement = element.shadowRoot?.
+				querySelector('.header slot[name="header"]');
+
+			expect(headerSlotElement).toBeDefined();
+		});
+
+		it('should remove hide-header class from .base if header is slotted', async function () {
+			const slottedElement = document.createElement('div');
+			slottedElement.slot = 'header';
+			slottedElement.id = 'header';
+			element.appendChild(slottedElement);
+			await elementUpdated(element);
+
+			const baseElementClasses = getBaseElement(element)?.classList;
+
+			expect(baseElementClasses).not.toContain('hide-header');
+		});
+	});
+
+	describe( 'menu actions', () => {
+		it('should have actions slot ', async function () {
+			const actionsSlotElement = element.shadowRoot?.
+				querySelector('.action-items slot[name="actions"]');
+
+			expect(actionsSlotElement).toBeDefined();
+		});
+
+		it('should remove hide-actions class from .base if actions is slotted', async function () {
+			const slottedElement = document.createElement('div');
+			slottedElement.slot = 'action-items';
+			slottedElement.id = 'actions';
+			element.appendChild(slottedElement);
+			await elementUpdated(element);
+
+			const baseElementClasses = getBaseElement(element)?.classList;
+
+			expect(baseElementClasses).not.toContain('hide-actions');
 		});
 	});
 

@@ -1,8 +1,7 @@
-import { attr } from '@microsoft/fast-element';
+import { attr, observable } from '@microsoft/fast-element';
 import { Menu as FastMenu } from '@microsoft/fast-foundation';
 import type { Placement } from '@floating-ui/dom';
 import type { Popup } from '../popup/popup';
-
 
 /**
  * Base class for menu
@@ -58,7 +57,7 @@ export class Menu extends FastMenu {
 		attribute: 'auto-dismiss'
 	}) autoDismiss = false;
 
-	anchorChanged(prevAnchor: string, newAnchor: string ) {
+	anchorChanged(prevAnchor: string, newAnchor: string) {
 		const prevAnchorEl = document.getElementById(prevAnchor);
 		const newAnchorEl = document.getElementById(newAnchor);
 		prevAnchorEl?.removeAttribute('aria-haspopup');
@@ -80,4 +79,13 @@ export class Menu extends FastMenu {
 			document.removeEventListener('click', this.#dismissOnClickOutside);
 		}
 	}
+
+	/**
+	 *
+	 * Slot observer:
+	 *
+	 * @internal
+	 */
+	@observable headerSlottedContent?: HTMLElement[];
+	@observable actionItemsSlottedContent?: HTMLElement[];
 }

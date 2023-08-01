@@ -2,6 +2,10 @@
 @use "partials/variables" as variables;
 
 .base {
+	display: flex;
+	box-sizing: border-box;
+	flex-direction: column;
+	gap: 8px;
 	max-block-size: var(#{variables.$menu-block-size}, 408px);
 	max-inline-size: var(#{variables.$menu-max-inline-size}, 100%);
 	min-inline-size: var(#{variables.$menu-min-inline-size});
@@ -21,4 +25,24 @@
 	box-shadow: inset 0 0 0 3px currentColor;
 	outline: 2px solid currentColor;
 	outline-offset: -2px;
+}
+
+.header {
+	padding-block-start: 8px;
+	padding-inline: 16px;
+	
+	.hide-header & {
+		display: none;
+	}
+}
+
+.action-items {
+	display: flex;
+	justify-content: flex-end;
+	gap: 8px;
+	padding-inline: 8px;
+
+	.hide-actions & {
+		display: none;
+	}
 }
