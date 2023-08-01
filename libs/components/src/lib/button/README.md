@@ -171,6 +171,10 @@ The indicator is not displayed when using the `super-condensed` size.
 <vwc-button appearance="outlined" icon="check-line" label="outlined with icon" pending></vwc-button>
 ```
 
+## Accessibility 
+When setting an `aria-label`, `aria-labelledby` or `title`, mind that `aria-label`, `aria-labelledby` are better for a11y.  
+When both `aria-label` and `title` are set, `aria-label` text will be read by the assistive technologies and not `title`.
+
 ## Use Cases
 
 ### Toggle Button

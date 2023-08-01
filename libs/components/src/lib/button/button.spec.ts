@@ -33,6 +33,8 @@ describe('vwc-button', () => {
 			expect(element.shape).toBeUndefined();
 			expect(element.appearance).toBeUndefined();
 			expect(element.size).toBeUndefined();
+			expect(element.ariaLabel).toBeUndefined();
+			expect(element.title).toBeFalsy();
 		});
 	});
 
@@ -175,6 +177,24 @@ describe('vwc-button', () => {
 
 			const control = element.shadowRoot?.querySelector(`.control.appearance-${appearance}.disabled`);
 			expect(control).toBeInstanceOf(Element);
+		});
+	});
+	describe('aria-label', function () {
+		it('should set aria-label on the button if set', async () => {
+			const ariaLabel = 'close';
+			element.ariaLabel = ariaLabel;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-label'))
+				.toEqual(ariaLabel);
+		});
+	});
+	describe('title', function () {
+		it('should set title on the button if set', async () => {
+			const titleText = 'close';
+			element.title = titleText;
+			await elementUpdated(element);
+			expect(element.getAttribute('title'))
+				.toEqual(titleText);
 		});
 	});
 });
