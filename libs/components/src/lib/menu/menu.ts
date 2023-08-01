@@ -41,7 +41,18 @@ export class Menu extends FastMenu {
 	 * @public
 	 * HTML Attribute: anchor
 	 */
-	@attr({ mode: 'fromView' }) anchor: AnchorType = '';
+	@attr({ mode: 'fromView' }) anchor?: AnchorType;
+	anchorChanged(_: AnchorType, newValue: AnchorType) {
+		if (this.#anchorEl) this.#cleanupAnchor(this.#anchorEl);
+		this.#observer?.disconnect();
+
+		this.#anchorEl = newValue instanceof HTMLElement ? newValue : document.getElementById(newValue);
+		if (this.#anchorEl) {
+			this.#setupAnchor(this.#anchorEl);
+		} else {
+			this.#observeMissingAnchor(newValue as string);
+		}
+	}
 
 	/**
 	 * indicates whether the menu will automatically close when
@@ -58,18 +69,6 @@ export class Menu extends FastMenu {
 			document.addEventListener('click', this.#closeOnClickOutside);
 		} else {
 			document.removeEventListener('click', this.#closeOnClickOutside);
-		}
-	}
-
-	anchorChanged(_: AnchorType, newValue: AnchorType) {
-		if (this.#anchorEl) this.#cleanupAnchor(this.#anchorEl);
-		this.#observer?.disconnect();
-
-		this.#anchorEl = newValue instanceof HTMLElement ? newValue : document.getElementById(newValue);
-		if (this.#anchorEl) {
-			this.#setupAnchor(this.#anchorEl);
-		} else {
-			this.#observeMissingAnchor(newValue as string);
 		}
 	}
 
