@@ -148,14 +148,23 @@ The expanded state of the element
 ## Slots
 ### meta
 Assign nodes to the `meta` slot to set a badge or an additional icon.  
-When icon member is set with slot - the icon will be trailing.
+Slot `meta` makes icon/checkbox/radiobutton to be `trailing`.
+
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 170px;
+  }
+</style>
 <vwc-menu open>
- <vwc-menu-item text="Export to PDF">
-  <vwc-badge slot="meta" appearance='filled' connotation='success' shape='pill' icon='check-solid'></vwc-badge>
+  <vwc-menu-item text="Available" role="menuitemradio">
+   <vwc-badge slot="meta" appearance='filled' connotation='success' shape='pill' icon='check-solid'></vwc-badge>
   </vwc-menu-item>
-  <vwc-menu-item icon="check-line" text="Export to PDF">
-  <vwc-badge slot="meta" appearance='filled' connotation='alert' shape='pill' icon='minus-solid'></vwc-badge>
+  <vwc-menu-item text="Away" role="menuitemradio">
+    <vwc-badge slot="meta" appearance='filled' connotation='warning' shape='pill' icon='clock-line'></vwc-badge>
+  </vwc-menu-item>
+  <vwc-menu-item text="Bussy" role="menuitemradio" checked>
+    <vwc-badge slot="meta" appearance='filled' connotation='alert' shape='pill' icon='minus-solid'></vwc-badge>
   </vwc-menu-item>
 </vwc-menu> 
 ```

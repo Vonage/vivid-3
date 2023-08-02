@@ -63,3 +63,42 @@ When the nav has focus:
 `Space`: activates the nav-disclosure and toggles the visibility of the content.
 `Tab`: moves focus to the next element in the tab order.
 `Shift` + `Tab`: moves focus to the previous element in the tab order.
+
+## Use Cases
+
+### Navigation inside a Side Drawer
+
+```html preview full
+<style>
+  html { /* for demo purposes */
+    block-size: 250px;
+  }
+  vwc-fab {
+    position: fixed;
+    inset: auto auto 8px 8px;
+    z-index: 2;
+  }
+</style>
+
+<vwc-side-drawer id="sideDrawer" alternate open>
+<vwc-layout gutters="small" column-basis="block">
+  <vwc-nav id="sideNav">
+      <vwc-nav-item href="#" text="Calls" icon="call-line" data-value="Calls" onclick="onClick(this)" aria-current="page"></vwc-nav-item>
+      <vwc-nav-item href="#" text="Voicemail" icon="voicemail-line" data-value="Voicemail" onclick="onClick(this)"></vwc-nav-item>
+      <vwc-nav-item href="#" text="SMS" icon="chat-line" data-value="SMS" onclick="onClick(this)"></vwc-nav-item>
+  </vwc-nav>
+  </vwc-layout>
+  <vwc-layout slot="app-content" gutters="medium">
+    Toggle the side drawer by clicking the FAB.
+  </vwc-layout>
+  <vwc-fab icon='menu-solid' slot="app-content" onclick="sideDrawer.open = !sideDrawer.open"></vwc-fab>
+</vwc-side-drawer>
+
+<script>
+  function onClick(el) {
+    currentNavItem = document.querySelector('vwc-nav-item[aria-current="page"]');
+    currentNavItem?.removeAttribute('aria-current');
+    el.setAttribute('aria-current', 'page');
+  }
+</script>
+```
