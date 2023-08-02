@@ -172,8 +172,8 @@ The indicator is not displayed when using the `super-condensed` size.
 ```
 
 ## Accessibility 
-When setting an `aria-label`, `aria-labelledby` or `title`, mind that `aria-label`, `aria-labelledby` are better for a11y.  
-When both `aria-label` and `title` are set, `aria-label` text will be read by the assistive technologies and not `title`.
+When setting an `aria-label`, `aria-labelledby` or 'title', keep in mind that `aria-label`, `aria-labelledby` are better for A11Y.  
+The assistive technology will read the `aria-label` text rather than the `title` if both are set.
 
 ## Use Cases
 
