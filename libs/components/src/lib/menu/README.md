@@ -100,10 +100,10 @@ _Menu_ internally uses _popup_ to display an element and its descendants above t
 - Default: `'bottom'`
 
 ```html preview
-<div style="position: relative">
+<div style="position: relative; text-align: end;">
   <vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open" appearance="outlined"></vwc-button>
 
-  <vwc-menu id="menu" anchor="button" placement="right-start" open>
+  <vwc-menu id="menu" anchor="button" placement="left-start" open>
     <vwc-menu-item text="Menu item 1"></vwc-menu-item>
     <vwc-menu-item text="Menu item 2"></vwc-menu-item>
   </vwc-menu>
