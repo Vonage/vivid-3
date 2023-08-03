@@ -101,10 +101,11 @@ export const buttonTemplate: (
 		aria-pressed="${(x) => x.ariaPressed}"
 		aria-relevant="${(x) => x.ariaRelevant}"
 		aria-roledescription="${(x) => x.ariaRoledescription}"
+		?title="${(x) => x.title}"
 		${ref('control')}
 	>
 		${() => focusTemplate}
-		
+
 		${x => renderIconOrPending(context, x.icon, x.pending, x.size)}
 
 		${when(x => x.label, html`<span class="text">${(x) => x.label}</span>`)}
