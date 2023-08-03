@@ -4,6 +4,21 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.27.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.26.0...vivid-v3.27.0) (2023-08-02)
+
+
+### Features
+
+* **file-picker:** add file-picker component (VIV-962) ([#1284](https://github.com/Vonage/vivid-3/issues/1284)) ([e268879](https://github.com/Vonage/vivid-3/commit/e2688796f0cb87d2e392071494d0a2d8ea8b8bed))
+* **menu:** add header and action items slots (VIV-947) ([#1285](https://github.com/Vonage/vivid-3/issues/1285)) ([dc11870](https://github.com/Vonage/vivid-3/commit/dc11870b4749ea9e8edacfe15b26d7fa6c0dfccd))
+
+
+### Bug Fixes
+
+* **button:** set title on button when is set on host (VIV-1249) ([#1294](https://github.com/Vonage/vivid-3/issues/1294)) ([6ba8bc1](https://github.com/Vonage/vivid-3/commit/6ba8bc1b0ca27053146efe83015f94ec10968187))
+* **menu-item:** make the slot available to all roles (VIV-1236) ([#1292](https://github.com/Vonage/vivid-3/issues/1292)) ([f0c74a8](https://github.com/Vonage/vivid-3/commit/f0c74a84ffc40d5a4708700b4077e63d382680fc))
+* **nav-item:** word-break (VIV-1238) ([#1290](https://github.com/Vonage/vivid-3/issues/1290)) ([dada919](https://github.com/Vonage/vivid-3/commit/dada9197f136aa6242065fe23940bcc21eeb29a3))
+
 ## [3.26.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.25.0...vivid-v3.26.0) (2023-07-25)
 
 
