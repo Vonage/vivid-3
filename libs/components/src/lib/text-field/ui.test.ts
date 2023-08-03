@@ -75,7 +75,8 @@ const testInvalidation = async ({page, browserName}: { page: Page, browserName: 
 
 	expect(await testWrapper?.screenshot({animations: 'disabled'}))
 		.toMatchSnapshot(
-			'./snapshots/text-field-invalidation.png'
+			'./snapshots/text-field-invalidation.png',
+			{ threshold: 0.01 }
 		);
 };
 
