@@ -6,25 +6,28 @@
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta success alert,
 	$shades: primary primary-text primary-increment contrast fierce firm soft faint,
-	$default: accent,
+	$default: accent
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: filled outlined ghost,
 	$states: idle hover disabled active,
-	$default: ghost,
+	$default: ghost
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
-
 
 :host {
 	display: inline-block;
 }
 
+.base {
+	display: inline-flex;
+}
+
 .control {
-	@include connotation.connotation (split-button);
+	@include connotation.connotation(split-button);
 	@include appearance.appearance;
 
 	position: relative;
@@ -40,8 +43,6 @@
 	color: var(#{appearance.get-appearance-token(text)});
 	gap: var(#{variables.$icon-gap});
 	vertical-align: middle;
-
-
 
 	.text {
 		/* stylelint-disable value-no-vendor-prefix */
@@ -63,7 +64,7 @@
 		}
 	}
 
-	@supports(user-select: none) {
+	@supports (user-select: none) {
 		user-select: none;
 	}
 
@@ -87,38 +88,76 @@
 		}
 	}
 
-
 	/* Shape */
-	&:not(.shape-pill) {
-		border-radius: 6px;
-	}
-
-	&.shape-pill {
-		&:not(.icon-only) {
-			border-radius: 24px;
+	&.first-button {
+		border-right: 0.5px solid var(--vvd-color-neutral-100);
+		&:not(.shape-pill) {
+			border-radius: 6px 0px 0px 6px;
 		}
-
-		&.icon-only {
-			border-radius: 50%;
+	
+		&.shape-pill {
+			border-radius: 24px 0px 0px 24px;
 		}
 	}
 
+	&.second-button {
+		border-left: 0px ;
+		&:not(.shape-pill) {
+			border-radius: 0px 6px 6px 0px;
+		}
+	
+		&.shape-pill {
+			border-radius: 0px 24px 24px 0px;
+		}
+	}
 
 	/* Size */
 	&.size-super-condensed {
-		@include mixins.get-size-properties(#{size.$vvd-size-super-condensed}, #{constants.$vvd-typography-base-condensed-bold}, 4px, 8px);
+		@include mixins.get-size-properties(
+			#{size.$vvd-size-super-condensed},
+			#{constants.$vvd-typography-base-condensed-bold},
+			4px,
+			8px
+		);
+		&.second-button {
+			width: 22px;
+		}
 	}
 
 	&.size-condensed {
-		@include mixins.get-size-properties(#{size.$vvd-size-condensed}, #{constants.$vvd-typography-base-condensed-bold}, 8px, 12px);
+		@include mixins.get-size-properties(
+			#{size.$vvd-size-condensed},
+			#{constants.$vvd-typography-base-condensed-bold},
+			8px,
+			12px
+		);
+		&.second-button {
+			width: 26px;
+		}
 	}
 
 	&.size-expanded {
-		@include mixins.get-size-properties(#{size.$vvd-size-expanded}, #{constants.$vvd-typography-base-extended-bold}, 10px, 20px);
+		@include mixins.get-size-properties(
+			#{size.$vvd-size-expanded},
+			#{constants.$vvd-typography-base-extended-bold},
+			10px,
+			20px
+		);
+		&.second-button {
+			width: 40px;
+		}
 	}
 
 	&:not(.size-condensed, .size-expanded, .size-super-condensed) {
-		@include mixins.get-size-properties(#{size.$vvd-size-normal}, #{constants.$vvd-typography-base-bold}, 8px, 16px);
+		@include mixins.get-size-properties(
+			#{size.$vvd-size-normal},
+			#{constants.$vvd-typography-base-bold},
+			8px,
+			16px
+		);
+		&.second-button {
+			width: 32px;
+		}
 	}
 }
 
@@ -140,7 +179,7 @@
 		display: none;
 	}
 
-	.appearance-outlined &,
+	.appearance-outlined &
 	.appearance-ghost & {
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
 	}
