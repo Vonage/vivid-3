@@ -1,0 +1,212 @@
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+
+:host {
+	display: inline-block;
+}
+
+.base {
+	display: inline-block;
+	inline-size: 100%;
+}
+
+.control {
+	inline-size: 100%;
+}
+
+.dialog {
+	display: inline-flex;
+	flex-direction: column;
+	padding: 12px;
+	gap: 12px;
+
+	.header {
+		display: flex;
+		align-items: center;
+		padding-block: 8px;
+	}
+
+	.title {
+		display: flex;
+		flex-grow: 1;
+		justify-content: center;
+	}
+
+	.title-action {
+		position: relative;
+		padding: 0;
+		border: none;
+		background: none;
+		block-size: 24px;
+		border-radius: 6px;
+		cursor: pointer;
+		font: var(#{constants.$vvd-typography-base-extended});
+		padding-inline: 6px;
+
+		&:focus-visible {
+			outline: none;
+		}
+
+		&:not(:focus-visible) .focus-indicator {
+			display: none;
+		}
+
+		&:hover {
+			background: var(#{constants.$vvd-color-neutral-50});
+		}
+
+		&:active {
+			background: var(#{constants.$vvd-color-neutral-100});
+		}
+	}
+
+	.footer {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		block-size: 48px;
+		gap: 8px;
+	}
+}
+
+.calendar {
+	display: flex;
+	flex-direction: column;
+	margin-top: 7px;
+	gap: 4px;
+
+	.calendar-separator {
+		background: var(#{constants.$vvd-color-neutral-200});
+		block-size: 1px;
+		margin-inline: 10px;
+	}
+
+	.calendar-weekdays {
+		display: flex;
+		justify-content: center;
+	}
+
+	.calendar-weekday {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		block-size: 16px;
+		font: var(#{constants.$vvd-typography-base-condensed});
+		inline-size: 40px;
+	}
+
+	.calendar-week {
+		display: flex;
+		justify-content: center;
+	}
+
+	.calendar-day {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0;
+		border: none;
+		background: none;
+		block-size: 28px;
+		border-radius: 50%;
+		cursor: pointer;
+		font: var(#{constants.$vvd-typography-base});
+		inline-size: 28px;
+		margin-inline: 6px;
+
+		&:focus-visible {
+			outline: none;
+		}
+
+		&:not(:focus-visible) .focus-indicator {
+			display: none;
+		}
+
+		.focus-indicator {
+			color: var(#{constants.$vvd-color-canvas-text});
+		}
+
+		// Focus ring should appear on outside, otherwise there is not enough space
+		--focus-inset: -2px;
+
+		&:hover {
+			background: var(#{constants.$vvd-color-neutral-50});
+		}
+
+		&:active {
+			background: var(#{constants.$vvd-color-neutral-100});
+		}
+
+		&.current {
+			border: 1px solid var(#{constants.$vvd-color-neutral-200});
+		}
+
+		&.selected {
+			background: var(#{constants.$vvd-color-neutral-200});
+		}
+
+		&.outside-month {
+			color: var(#{constants.$vvd-color-neutral-400});
+		}
+	}
+}
+
+.months-separator {
+	background-color: var(#{constants.$vvd-color-neutral-200});
+	block-size: 1px;
+	margin-inline: -12px;
+}
+
+.month-grid {
+	display: flex;
+	flex-direction: column;
+	gap: 34px;
+
+	.months-row {
+		display: flex;
+		justify-content: center;
+		gap: 29px;
+	}
+
+	.month {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0;
+		border: none;
+		background: none;
+		block-size: 48px;
+		border-radius: 50%;
+		cursor: pointer;
+		font: var(#{constants.$vvd-typography-base-extended});
+		inline-size: 48px;
+		text-transform: uppercase;
+
+		&:focus-visible {
+			outline: none;
+		}
+		&:not(:focus-visible) .focus-indicator {
+			display: none;
+		}
+		.focus-indicator {
+			color: var(#{constants.$vvd-color-canvas-text});
+		}
+
+		&:hover {
+			background: var(#{constants.$vvd-color-neutral-50});
+		}
+
+		&:active {
+			background: var(#{constants.$vvd-color-neutral-100});
+		}
+
+		&.current {
+			border: 1px solid var(#{constants.$vvd-color-neutral-200});
+		}
+
+		&.selected {
+			background: var(#{constants.$vvd-color-neutral-200});
+		}
+	}
+}

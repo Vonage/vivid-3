@@ -1,6 +1,6 @@
 import type { Locale } from '../shared/localization/Locale';
 
-const enUS: Locale = {
+const enGB: Locale = {
 	datePicker: {
 		months: {
 			name: [
@@ -44,9 +44,9 @@ const enUS: Locale = {
 			],
 			shorthand: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
 		},
-		firstDayOfWeek: 0,
-		dateFormat: 'MM/dd/yyyy',
-		dateFormatPlaceholder: 'MM/DD/YYYY',
+		firstDayOfWeek: 1,
+		dateFormat: 'dd/MM/yyyy',
+		dateFormatPlaceholder: 'DD/MM/YYYY',
 		prevYearLabel: 'Previous year',
 		prevMonthLabel: 'Previous month',
 		nextMonthLabel: 'Next month',
@@ -57,4 +57,4 @@ const enUS: Locale = {
 	},
 };
 
-export default enUS;
+export default enGB;
