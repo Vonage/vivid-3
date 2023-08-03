@@ -1,7 +1,6 @@
 import {
 	type ElementViewTemplate,
 	html,
-	ref,
 	slotted
 } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
@@ -44,7 +43,6 @@ export const MenuTemplate: (
 				:anchor=${(x) => x.anchor}
 				@vwc-popup:open="${x => handlePopupEvents(x, true)}"
 				@vwc-popup:close="${x => handlePopupEvents(x, false)}"
-				${ref('_popup')}
 			>
 			<div class="${getClasses}">
 				<div class="header">

@@ -35,27 +35,36 @@ _Menu_ internally uses _popup_ to display an element and its descendants above t
 
 ### Anchor
 
-_Menu_ internally uses _popup_ to display an element and its descendants above the rest of the document.
+Use the `anchor` attribute to link the menu to the element responsible for showing and hiding it. It can be the ID or a reference to said element.
 
-`anchor` property from _popup_ propagate through _menu_ and sets its anchor reference.
+The anchor must be clickable and in most cases, will be a button displaying an information glyph as in the example below.
 
-- Type: `string`
-- Default: `''`
+- Type: `string | HTMLElement`
+- Default: `undefined`
 
-```html preview
+```html preview center
 <style>
   html { /* for demo purposes */
 		block-size: 200px;
 	}
 </style>
-<div style="position: relative">
-  <vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open" appearance="outlined"></vwc-button>
 
-  <vwc-menu id="menu" anchor="button" open>
-    <vwc-menu-item text="Menu item 1"></vwc-menu-item>
-    <vwc-menu-item text="Menu item 2"></vwc-menu-item>
- </vwc-menu>
+<div style="position: relative">
+  <vwc-button id="button1" label="ID anchor" onclick="menu1.open = !menu1.open" appearance="outlined"></vwc-button>
+  <vwc-button id="button2" label="HTMLElement anchor" onclick="menu2.open = !menu2.open" appearance="outlined"></vwc-button>
+
+  <vwc-menu id="menu1" anchor="button1">
+    <vwc-menu-item text="My anchor is an ID"></vwc-menu-item>
+  </vwc-menu>
+
+  <vwc-menu id="menu2">
+    <vwc-menu-item text="My anchor is an HTMLElement"></vwc-menu-item>
+  </vwc-menu>
 </div>
+
+<script>
+	menu2.anchor = button2;
+</script>
 ```
 
 ### Auto Dismiss
@@ -74,7 +83,7 @@ Use the auto dismiss property to automatically close the menu when the user clic
 <div style="position: relative">
   <vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open" appearance="outlined"></vwc-button>
 
-  <vwc-menu id="menu" anchor="button" auto-dismiss>
+  <vwc-menu id="menu" anchor="button" open auto-dismiss>
     <vwc-menu-item text="Menu item 1"></vwc-menu-item>
     <vwc-menu-item text="Menu item 2"></vwc-menu-item>
  </vwc-menu>
@@ -88,13 +97,13 @@ _Menu_ internally uses _popup_ to display an element and its descendants above t
 `placement` property from _popup_ propagate through _menu_ and sets its position in accordance to its anchor.
 
 - Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
-- Default: `''`
+- Default: `'bottom'`
 
 ```html preview
-<div style="position: relative">
+<div style="position: relative; text-align: end;">
   <vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open" appearance="outlined"></vwc-button>
 
-  <vwc-menu id="menu" anchor="button" placement="right-start" open>
+  <vwc-menu id="menu" anchor="button" placement="left-start" open>
     <vwc-menu-item text="Menu item 1"></vwc-menu-item>
     <vwc-menu-item text="Menu item 2"></vwc-menu-item>
   </vwc-menu>
