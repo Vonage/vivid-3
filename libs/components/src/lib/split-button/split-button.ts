@@ -11,8 +11,7 @@ import { AffixIcon } from '../shared/patterns/affix.js';
  * @public
  */
 export type SplitButtonConnotation = Extract<Connotation,
-| Connotation.Accent
-| Connotation.CTA>;
+Connotation.Accent | Connotation.CTA>;
 
 /**
  * Types of split button appearance.
@@ -88,14 +87,41 @@ export class SplitButton extends FoundationButton {
 	@attr label?: string;
 
 	/**
+	 * Indicates the split button's icon indicator.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: split-indicator
+	 */
+	@attr({ attribute: ' split-indicator', mode: 'fromView' }) splitIndicator: string = 'chevron-down-line';
+
+	/**
 	 * Indicates if the split button's popup is open.
 	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: open
 	 */
-	@attr({ mode: 'boolean'	}) open = false;
+	@attr({ mode: 'boolean' }) open = false;
+
+	/**
+	 * Indicates if the action button is disabled.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: disabled-action
+	 */
+	@attr({ attribute: 'disabled-action', mode: 'boolean' }) disabledAction = false;
+
+	/**
+	 * Indicates if the secondary button is disabled.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: disabled-secondary
+	 */
+	@attr({ attribute: 'disabled-secondary', mode: 'boolean' }) disabledSecondary = false;
 }
 
-export interface SplitButton extends AffixIcon {}
+export interface SplitButton extends AffixIcon { }
 applyMixins(SplitButton, AffixIcon);
