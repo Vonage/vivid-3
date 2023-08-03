@@ -72,11 +72,11 @@ const testInvalidation = async ({page, browserName}: { page: Page, browserName: 
 
 	await page.setViewportSize({ width: 300, height: 300 });
 	await page.waitForLoadState('networkidle');
+	await page.waitForTimeout(100);
 
 	expect(await testWrapper?.screenshot({animations: 'disabled'}))
 		.toMatchSnapshot(
-			'./snapshots/text-field-invalidation.png',
-			{ threshold: 0.01 }
+			'./snapshots/text-field-invalidation.png'
 		);
 };
 
