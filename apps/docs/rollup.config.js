@@ -65,7 +65,7 @@ export default [
 		plugins: [virtualPlugin, nodeResolve(),
 			replace({
 				values: {
-					'SW_VERSION': DEV_MODE ? new Date().getTime() : getVividVersion()
+					'SW_VERSION': () => DEV_MODE ? new Date().getTime() : getVividVersion()
 				},
 				preventAssignment: true
 		}),
