@@ -176,6 +176,30 @@ See the [use cases](#sortable-columns) for more information.
 </script>
 ```
 
+### gridTemplateColumns
+
+- Type: `string`
+- Default: `undefined`
+
+The grid-template-columns property defines the line size of every grid column. Values match the CSS grid-template-columns property.
+
+```html preview	
+<style>
+	vwc-data-grid-cell {
+		text-align: center;
+	}
+</style>
+<vwc-data-grid></vwc-data-grid>
+<script>
+	grid = document.querySelector('vwc-data-grid');
+	grid.rowsData = [
+		{data1: 'data11', data2: 'data12'},
+		{data1: 'data21', data2: 'data22'},
+	];
+	grid.gridTemplateColumns = '50px 200px';
+</script>
+```
+
 ### rowItemTemplate
 
 - Type: `ViewTemplate`
