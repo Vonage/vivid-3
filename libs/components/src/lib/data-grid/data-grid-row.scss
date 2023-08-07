@@ -35,9 +35,10 @@
 	:host([row-type="hidden-header"]) & {
 		display: none;
 	}
-
+	
 	:host(:is([aria-selected]):not([row-type="header"])) &{
 		background-color: var(#{appearance.get-appearance-token(fill)});
 	}
+
 }
 

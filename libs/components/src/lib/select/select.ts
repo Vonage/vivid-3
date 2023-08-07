@@ -3,12 +3,13 @@ import {attr, observable, Observable} from '@microsoft/fast-element';
 import type { Popup } from '../popup/popup';
 import {
 	AffixIconWithTrailing,
-	FormElement,
+	errorText,
+	type ErrorText,
+	type FormElement,
 	FormElementHelperText,
 	formElements,
-	FormElementSuccessText,
+	FormElementSuccessText
 } from '../../shared/patterns';
-import {ErrorText, errorText} from '../../shared/patterns';
 import type { Appearance, Shape } from '../enums';
 
 

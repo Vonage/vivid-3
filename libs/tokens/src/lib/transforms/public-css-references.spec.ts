@@ -33,6 +33,6 @@ describe('basic', () => {
 			value: "16",
 			type: "sizing",
 			public: true
-		})).toEqual('var(--vvd-size-font-scale-base, 16)');
+		}, {})).toEqual('var(--vvd-size-font-scale-base, 16)');
 	});
 });

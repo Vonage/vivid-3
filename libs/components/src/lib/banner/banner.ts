@@ -28,11 +28,12 @@ const defaultConnotation =
  * @slot action-items - Add action items to banner using this slot.
  */
 export class Banner extends FoundationElement {
+	@attr
+	override role: string | null = null;
 	@attr({attribute: 'action-href'}) actionHref: string | undefined;
 	@attr({attribute: 'action-text'}) actionText: string | undefined;
 	@attr({mode: 'boolean'}) removable = false;
 	@attr({attribute: 'aria-live'}) override ariaLive: any;
-	@attr() role: string | undefined;
 	@attr() text: string | undefined;
 	@attr() connotation: BannerConnotation | undefined;
 
