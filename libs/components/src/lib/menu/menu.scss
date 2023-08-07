@@ -9,6 +9,7 @@
 	max-block-size: var(#{variables.$menu-block-size}, 408px);
 	max-inline-size: var(#{variables.$menu-max-inline-size}, 100%);
 	min-inline-size: var(#{variables.$menu-min-inline-size});
+	inline-size: max-content;
 	overflow-x: hidden;
 	overflow-y: auto;
 	padding-block: 8px;
@@ -30,7 +31,7 @@
 .header {
 	padding-block-start: 8px;
 	padding-inline: 16px;
-	
+
 	.hide-header & {
 		display: none;
 	}
