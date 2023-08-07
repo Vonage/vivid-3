@@ -59,6 +59,7 @@
 slot {
 	display: block;
 	overflow: hidden;
+	inline-size:100%;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
@@ -66,4 +67,3 @@ slot {
 .header-icon {
 	margin-inline-start: auto;
 }
-
