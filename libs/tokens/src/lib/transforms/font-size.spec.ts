@@ -31,6 +31,6 @@ describe('basic', () => {
 			...defaultToken,
 			value: "16 * 4.125",
 			type: 'fontSizes'
-		})).toEqual('calc(16 * 4.125)');
+		}, {})).toEqual('calc(16 * 4.125)');
 	});
 });

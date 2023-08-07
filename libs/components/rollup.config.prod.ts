@@ -49,7 +49,10 @@ module.exports = function setVividRollupConfig(config) {
 
 	const plugins = [...config.plugins,
 		replace({
-			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+			values: {
+				'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+			},
+			preventAssignment: true,
 		})];
 	return {
 		input,

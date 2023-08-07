@@ -1,4 +1,4 @@
-import { ColumnDefinition, DataGridCell as FoundationDataGridCell } from '@microsoft/fast-foundation';
+import { type ColumnDefinition, DataGridCell as FoundationDataGridCell } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import type {DataGridCellSortStates} from './data-grid.options';
 

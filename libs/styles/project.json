@@ -1,4 +1,5 @@
 {
+	"name": "styles",
 	"$schema": "../../node_modules/nx/schemas/project-schema.json",
 	"sourceRoot": "libs/styles/src",
 	"projectType": "library",
@@ -22,8 +23,7 @@
 			},
 			"configurations": {
 				"assets": {
-					"commands": [
-					]
+					"commands": []
 				},
 				"scss": {
 					"commands": [
@@ -42,18 +42,12 @@
 		},
 		"stylelint": {
 			"executor": "nx-stylelint:lint",
-			"outputs": [
-				"{options.outputFile}"
-			],
+			"outputs": ["{options.outputFile}"],
 			"options": {
-				"lintFilePatterns": [
-					"libs/styles/**/*.css"
-				]
+				"lintFilePatterns": ["libs/styles/**/*.css"]
 			}
 		}
 	},
 	"tags": [],
-	"implicitDependencies": [
-		"tokens"
-	]
+	"implicitDependencies": ["tokens"]
 }

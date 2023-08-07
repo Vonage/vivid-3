@@ -110,12 +110,25 @@ describe('vwc-popup', () => {
 				.toEqual('hidden');
 		});
 
-		it('should be hidden when not in viewport', async function () {
+		it('should be visible when in viewport', async function () {
 			await setupPopupToOpenWithAnchor();
 			await resetPosition(false);
+
 			await element.updatePosition();
 			expect(element.popupEl.style.visibility)
 				.toEqual('visible');
+		});
+
+		it('should set the arrow in a position according to middleware', async function () {
+			element.arrow = true;
+			await setupPopupToOpenWithAnchor();
+			(computePositionResult.middlewareData.arrow as any) = { x: 5, y: 10};
+			await resetPosition(false);
+			await element.updatePosition();
+			expect(element.arrowEl.style.left)
+				.toEqual('5px');
+			expect(element.arrowEl.style.top)
+				.toEqual('10px');
 		});
 	});
 

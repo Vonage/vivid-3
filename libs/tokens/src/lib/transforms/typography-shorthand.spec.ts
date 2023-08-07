@@ -31,7 +31,7 @@ describe('basic', () => {
 		expect(transformer({
 			...defualtToken,
 			...token
-		})).toEqual(expectedParsedEffects);
+		}, {})).toEqual(expectedParsedEffects);
 	});
 
 	it('should match if category and type comply to a font type', () => {

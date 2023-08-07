@@ -3,6 +3,8 @@ const codeBlockDemo = require("./transformers/code-block-demo");
 const variablesPreview = require("./transformers/variables-preview");
 const markdownLibrary = require("./libraries/markdown-it");
 const CleanCSS = require("clean-css");
+const fs = require("fs");
+const path = require('path');
 
 const INPUT_DIR = 'apps/docs';
 const ASSETS_DIR = `${INPUT_DIR}/assets`;
@@ -52,6 +54,15 @@ module.exports = function (eleventyConfig) {
 		: pages.filter(page => page?.status !== 'underlying');
   });
 
+	eleventyConfig.on('eleventy.beforeWatch', async (changedFiles) => {
+		console.log('eleventy.beforeWatch', changedFiles);
+
+		const swFilePath = path.resolve('dist/apps/docs/sw.js');
+		const fileContents = fs.readFileSync(swFilePath).toString();
+		const result = fileContents.replace(/e="\d+"/gm, `e="${new Date().getTime().toString()}"`);
+		console.log('result', result);
+		fs.writeFileSync(swFilePath, result);
+	});
   return {
     dir: {
       input: INPUT_DIR,
@@ -61,3 +72,4 @@ module.exports = function (eleventyConfig) {
     }
   }
 };
+

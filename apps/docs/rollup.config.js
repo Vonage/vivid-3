@@ -7,7 +7,7 @@ import replace from "@rollup/plugin-replace";
 
 const DEV_MODE = process.env['DEV_MODE'] === 'true';
 
-const EXCLUDED_FOLDERS = ['lib', 'styles'];
+const EXCLUDED_FOLDERS = ['lib', 'styles', 'src'];
 const componentsFolder = path.join(__dirname, '../../dist/libs/components');
 
 function getFoldersInAFolder(workingFolder = './src/lib/') {
@@ -41,6 +41,7 @@ const importsFile = input.reduce((imports, inputPath) => {
 	imports += `import '${inputPath}';\n`;
 	return imports;
 }, '');
+
 const virtualPlugin = virtual({
 	"vivid-components": importsFile
 });
@@ -61,9 +62,13 @@ export default [
 				return `${chunkInfo.name}.js`;
 			}
 		},
-		plugins: [virtualPlugin, nodeResolve(), replace({
-			'SW_VERSION': getVividVersion(),
-			'ACTIVE': DEV_MODE ? 'false' : 'true'
-		}), terser() ]
+		plugins: [virtualPlugin, nodeResolve(),
+			replace({
+				values: {
+					'SW_VERSION': () => DEV_MODE ? new Date().getTime() : getVividVersion()
+				},
+				preventAssignment: true
+		}),
+			terser() ]
 	}
 });
