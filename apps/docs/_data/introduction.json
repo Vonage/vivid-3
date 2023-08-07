@@ -14,5 +14,9 @@
 	{
 		"title": "vivid-2-migration",
 		"markdown": "./docs/getting-started/migration.md"
+	},
+	{
+		"title": "new-in-vivid-3",
+		"markdown": "./docs/getting-started/new-in-vivid-3.md"
 	}
 ]
