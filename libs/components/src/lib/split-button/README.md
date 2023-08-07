@@ -9,6 +9,12 @@ A split button is a button with two components: a label and an arrow; clicking o
 ```
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 200px;
+  }
+</style>
+
 <vwc-split-button id="splitButton" appearance="filled" label="A default split button">
   <vwc-menu id="menu" placement="bottom-end" open>
     <vwc-menu-item text="Menu item 1"></vwc-menu-item>

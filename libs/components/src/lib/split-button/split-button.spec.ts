@@ -1,15 +1,12 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
-import { ProgressRing } from '../progress-ring/progress-ring';
-import { Size } from '../enums';
 import { SplitButton } from './split-button';
+import { splitButtonDefinition } from './definition';
 import  '.';
-import { buttonDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-split-button';
 const ICON_SELECTOR = 'vwc-icon';
-const PROGRESS_SELECTOR = 'vwc-progress-ring';
 
 describe('vwc-split-button', () => {
 	let element: SplitButton;
@@ -24,7 +21,7 @@ describe('vwc-split-button', () => {
 
 	describe('basic', () => {
 		it('initializes as a vwc-split-button', async () => {
-			expect(buttonDefinition()).toBeInstanceOf(FoundationElementRegistry);
+			expect(splitButtonDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(SplitButton);
 			expect(element.label).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
@@ -43,45 +40,6 @@ describe('vwc-split-button', () => {
 			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
 			expect(icon).toBeInstanceOf(Icon);
 			expect(icon.name).toEqual('home');
-		});
-	});
-
-	describe('pending', () => {
-		it('should add a progress-ring with default size to the button', async () => {
-			element.pending = true;
-			await elementUpdated(element);
-
-			const progress = element.shadowRoot?.querySelector(PROGRESS_SELECTOR) as ProgressRing;
-			expect(progress).toBeInstanceOf(ProgressRing);
-			expect(progress.size).toEqual('-5');
-		});
-
-		it('should NOT add a progress-ring if the button size is super-condensed', async () => {
-			element.size = Size.SuperCondensed;
-			element.pending = true;
-			await elementUpdated(element);
-
-			const progress = element.shadowRoot?.querySelector(PROGRESS_SELECTOR) as ProgressRing;
-			expect(progress).toBeNull();
-		});
-
-		it('should replace any existing icon with a progress-ring', async () => {
-			element.icon = 'home';
-			element.pending = true;
-			await elementUpdated(element);
-
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-			expect(icon).toBeNull();
-		});
-
-		it('should NOT replace any existing icon if the button size is super-condensed', async () => {
-			element.icon = 'home';
-			element.size = Size.SuperCondensed;
-			element.pending = true;
-			await elementUpdated(element);
-
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-			expect(icon).toBeInstanceOf(Icon);
 		});
 	});
 

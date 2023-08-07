@@ -42,15 +42,8 @@ export type SplitButtonSize = Extract<Size, Size.SuperCondensed | Size.Condensed
  */
 export class SplitButton extends FoundationButton {
 
-	_action!: HTMLElement;
-	get action(): HTMLElement {
-		return this._action;
-	}
-
-	_indicator!: HTMLElement;
-	get indicator(): HTMLElement {
-		return this._indicator;
-	}
+	action!: HTMLElement;
+	indicator!: HTMLElement;
 
 	/**
 	 * The connotation the split button should have.
