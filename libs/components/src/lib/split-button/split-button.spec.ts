@@ -26,6 +26,8 @@ describe('vwc-split-button', () => {
 			expect(element.shape).toBeUndefined();
 			expect(element.appearance).toBeUndefined();
 			expect(element.size).toBeUndefined();
+			expect(element.indicator).toBeInstanceOf(HTMLButtonElement);
+			expect(element.action).toBeInstanceOf(HTMLButtonElement);
 		});
 	});
 
@@ -45,7 +47,7 @@ describe('vwc-split-button', () => {
 			element.splitIndicator = 'home';
 			await elementUpdated(element);
 
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			const icon = element.indicator.querySelector(ICON_SELECTOR) as Icon;
 			expect(icon).toBeInstanceOf(Icon);
 			expect(icon.name).toEqual('home');
 		});
@@ -126,7 +128,13 @@ describe('vwc-split-button', () => {
 		it('should set the `aria-disabled` attribute with the `disabled-action` value when provided', async () => {
 			element.disabledAction = true;
 			await elementUpdated(element);
-			expect(getControlElement(element).getAttribute('aria-disabled')).toEqual('true');
+			expect(element.action.getAttribute('aria-disabled')).toEqual('true');
+		});
+
+		it('should set the `aria-disabled` attribute with the `disabled-indicator` value when provided', async () => {
+			element.disabledIndicator = true;
+			await elementUpdated(element);
+			expect(element.indicator.getAttribute('aria-disabled')).toEqual('true');
 		});
 	});
 });

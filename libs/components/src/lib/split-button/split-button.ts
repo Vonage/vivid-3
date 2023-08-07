@@ -41,9 +41,27 @@ export type SplitButtonSize = Extract<Size, Size.SuperCondensed | Size.Condensed
  * @public
  */
 export class SplitButton extends FoundationElement {
+	/**
+	 * Action HTML button element
+	 *
+	 * @public
+	 * @remarks
+	 */
+	_action!: HTMLButtonElement;
+	get action(): HTMLButtonElement {
+		return this._action;
+	}
 
-	action!: HTMLElement;
-	indicator!: HTMLElement;
+	/**
+	 * Indicator HTML button element
+	 *
+	 * @public
+	 * @remarks
+	 */
+	_indicator!: HTMLButtonElement;
+	get indicator(): HTMLButtonElement {
+		return this._indicator;
+	}
 
 	/**
 	 * The connotation the split button should have.
@@ -144,9 +162,9 @@ export class SplitButton extends FoundationElement {
 	 */
 	@attr({ attribute: 'disabled-indicator', mode: 'boolean' }) disabledIndicator = false;
 
-	@attr({attribute: 'aria-labelledby'}) ariaLabelledBy: string | null = null;
-	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
-	@attr({attribute: 'aria-describedby'}) ariaDescribedBy: string | null = null;
+	@attr({ attribute: 'aria-labelledby' }) ariaLabelledBy: string | null = null;
+	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
+	@attr({ attribute: 'aria-describedby' }) ariaDescribedBy: string | null = null;
 }
 
 export interface SplitButton extends AffixIcon { }

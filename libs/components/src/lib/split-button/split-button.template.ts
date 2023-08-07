@@ -22,7 +22,7 @@ function actionButton(context: ElementDefinitionContext) {
 
 	return html<SplitButton>`
 	<button
-		${ref('action')}
+		${ref('_action')}
 		class="control ${getClasses}"
 		?autofocus="${(x) => x.autofocus}"
 		?disabled="${(x) => (x.disabled || x.disabledAction)}"
@@ -50,7 +50,7 @@ function indicatorButton(context: ElementDefinitionContext) {
 
 	return html<SplitButton>`
 	<button
-		${ref('indicator')}
+		${ref('_indicator')}
 		class="indicator ${getClasses}"
 		?autofocus="${(x) => x.autofocus}"
 		?disabled="${(x) => (x.disabled || x.disabledIndicator)}"

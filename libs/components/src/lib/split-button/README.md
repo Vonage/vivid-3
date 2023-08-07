@@ -86,7 +86,7 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 - Default: `chevron-down-line`
 
 ```html preview
-<vwc-split-button appearance="filled" label='split-indicator' split-indicator="more-vertical-solid" aria-label="Show more options"></vwc-split-button>
+<vwc-split-button appearance="filled" label='Split Indicator' split-indicator="more-vertical-solid" aria-label="Show more options"></vwc-split-button>
 ```
 
 ### Icon with Label
@@ -174,6 +174,17 @@ Add the `disabled-indicator` attribute to disable the split button.
 <vwc-split-button appearance='filled' label='filled' disabled-indicator></vwc-split-button>
 <vwc-split-button appearance='outlined' label='outlined' disabled-indicator></vwc-split-button>
 ```
+
+## Properties
+
+<div class="table-wrapper">
+
+| Name     | Type        | Description                                                                              |
+|----------| -------- |------------------------------------------------------------------------------------------|
+| `action`  | `HTMLButtonElement` | A read-only HTML button element that represents the left button. |
+| `indicator`  | `HTMLButtonElement` | A read-only HTML button element that represents the right button. |
+
+</div>
 
 ## Accessibility
 
