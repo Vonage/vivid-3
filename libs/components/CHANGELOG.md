@@ -4,6 +4,18 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.28.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.27.0...vivid-v3.28.0) (2023-08-07)
+
+
+### Features
+
+* **data-grid:** custom columns widths (VIV-1252) ([#1312](https://github.com/Vonage/vivid-3/issues/1312)) ([0b0bfa9](https://github.com/Vonage/vivid-3/commit/0b0bfa979a43fae8dbc2abd62c9bc4af6cdd8771))
+
+
+### Bug Fixes
+
+* **menu:** HTMLelement anchor support and fix on first time added (VIV-1245) (VIV-1246) ([#1293](https://github.com/Vonage/vivid-3/issues/1293)) ([5bb206f](https://github.com/Vonage/vivid-3/commit/5bb206f0952ae9f72c0c4eaf15aa65786b75f3a2))
+
 ## [3.27.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.26.0...vivid-v3.27.0) (2023-08-02)
 
 
