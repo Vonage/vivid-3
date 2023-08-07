@@ -11,12 +11,9 @@ const ICON_SELECTOR = 'vwc-icon';
 describe('vwc-split-button', () => {
 	let element: SplitButton;
 
-	beforeAll(async () => {
-		await customElements.whenDefined(COMPONENT_TAG);
-	});
-
 	beforeEach(async () => {
 		element = await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as SplitButton;
+		await elementUpdated(element);
 	});
 
 	describe('basic', () => {
@@ -35,6 +32,17 @@ describe('vwc-split-button', () => {
 	describe('icon', () => {
 		it('adds an icon to the button', async () => {
 			element.icon = 'home';
+			await elementUpdated(element);
+
+			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			expect(icon).toBeInstanceOf(Icon);
+			expect(icon.name).toEqual('home');
+		});
+	});
+
+	describe('split indicator', () => {
+		it('adds a split indicator to the button', async () => {
+			element.splitIndicator = 'home';
 			await elementUpdated(element);
 
 			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
@@ -95,20 +103,6 @@ describe('vwc-split-button', () => {
 
 			const control = element.shadowRoot?.querySelector(`.control.size-${size}`);
 			expect(control?.classList.contains(`size-${size}`)).toBeTruthy();
-		});
-	});
-
-	describe('icon-only', () => {
-		it('sets correct internal icon-only style', async () => {
-			const getControlIconOnly = () => element.shadowRoot?.querySelector('.control.icon-only');
-			const controlIconOnlyBefore = getControlIconOnly();
-
-			element.icon = 'home';
-			await elementUpdated(element);
-
-			const controlIconOnlyAfter = getControlIconOnly();
-			expect(controlIconOnlyBefore).toBeNull();
-			expect(controlIconOnlyAfter).toBeInstanceOf(Element);
 		});
 	});
 

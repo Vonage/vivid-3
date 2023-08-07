@@ -1,4 +1,4 @@
-import { applyMixins, Button as FoundationButton } from '@microsoft/fast-foundation';
+import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import type {
 	Appearance, Connotation, Shape, Size
@@ -40,7 +40,7 @@ export type SplitButtonSize = Extract<Size, Size.SuperCondensed | Size.Condensed
  *
  * @public
  */
-export class SplitButton extends FoundationButton {
+export class SplitButton extends FoundationElement {
 
 	action!: HTMLElement;
 	indicator!: HTMLElement;
@@ -118,6 +118,15 @@ export class SplitButton extends FoundationButton {
 	@attr({ mode: 'boolean' }) open = false;
 
 	/**
+	 * Indicates if the button is disabled.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: disabled
+	 */
+	@attr({ attribute: 'disabled', mode: 'boolean' }) disabled = false;
+
+	/**
 	 * Indicates if the action button is disabled.
 	 *
 	 * @public
@@ -134,6 +143,10 @@ export class SplitButton extends FoundationButton {
 	 * HTML Attribute: disabled-indicator
 	 */
 	@attr({ attribute: 'disabled-indicator', mode: 'boolean' }) disabledIndicator = false;
+
+	@attr({attribute: 'aria-labelledby'}) ariaLabelledBy: string | null = null;
+	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
+	@attr({attribute: 'aria-describedby'}) ariaDescribedBy: string | null = null;
 }
 
 export interface SplitButton extends AffixIcon { }
