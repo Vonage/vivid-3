@@ -1,8 +1,7 @@
 import { attr } from '@microsoft/fast-element';
 import { applyMixins, Combobox as FoundationCombobox } from '@microsoft/fast-foundation';
 import type { Popup } from '../popup/popup';
-import { FormElement, formElements } from '../../shared/patterns';
-import { AffixIcon } from '../../shared/patterns';
+import { AffixIcon, type FormElement, formElements } from '../../shared/patterns';
 
 /**
  * Types of popup placement

@@ -1,5 +1,5 @@
 import { names, Tree } from "@nrwl/devkit";
-import { createTreeWithEmptyV1Workspace } from "@nrwl/devkit/testing";
+import { createTreeWithEmptyWorkspace } from "@nrwl/devkit/testing";
 import { VividComponentGeneratorOptions } from "./schema";
 import vividComponentGenerator from "./index";
 
@@ -10,7 +10,7 @@ describe(`vivid component generator`, function () {
   };
 
   beforeEach(() => {
-    tree = createTreeWithEmptyV1Workspace();
+    tree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
   });
 
   it(`should generate files`, async function () {
