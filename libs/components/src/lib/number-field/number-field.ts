@@ -1,7 +1,7 @@
 import {applyMixins, NumberField as FastNumberField} from '@microsoft/fast-foundation';
 import {attr} from '@microsoft/fast-element';
 import type {Appearance, Shape} from '../enums';
-import {FormElement, FormElementCharCount, FormElementHelperText, formElements, FormElementSuccessText} from '../../shared/patterns';
+import {type FormElement, FormElementCharCount, FormElementHelperText, formElements, FormElementSuccessText} from '../../shared/patterns';
 import {AffixIcon} from '../../shared/patterns';
 
 export type NumberFieldAppearance = Extract<Appearance, Appearance.Fieldset | Appearance.Ghost>;

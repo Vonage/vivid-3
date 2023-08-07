@@ -49,11 +49,11 @@ const expectedParsedEffects = 'drop-shadow(0px 2px 1px #0000000d) drop-shadow(0p
 
 describe('basic', () => {
 	it('should transform array of drop shadows to single token value', () => {
-		expect(transformer(token)).toEqual(expectedParsedEffects);
+		expect(transformer(token, {})).toEqual(expectedParsedEffects);
 	});
 
 	it('should ignore already parsed value', () => {
-		expect(transformer({ ...defaultToken, value: expectedParsedEffects }))
+		expect(transformer({ ...defaultToken, value: expectedParsedEffects }, {}))
 			.toEqual(expectedParsedEffects);
 	});
 

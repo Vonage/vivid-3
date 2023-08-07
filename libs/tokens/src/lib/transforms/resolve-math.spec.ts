@@ -17,11 +17,11 @@ describe('basic', () => {
 			...defaultToken,
 			value: "4 * 3.72",
 			type: 'sizing'
-		})).toEqual('14.88');
+		}, {})).toEqual('14.88');
 	});
 
 	it('should throw', () => {
-		expect(transformer({ ...defaultToken })).toEqual("undefined");
+		expect(transformer({ ...defaultToken }, {})).toEqual("undefined");
 	});
 
 	it('should match if is token', () => {

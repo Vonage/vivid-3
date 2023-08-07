@@ -41,9 +41,6 @@ function runActionGroupTest() {
 		expect(await testWrapper?.screenshot({animations: 'disabled'}))
 			.toMatchSnapshot(
 				'./snapshots/action-group.png',
-				{
-					maxDiffPixelRatio: 0.02
-				}
 			);
 	};
 }
