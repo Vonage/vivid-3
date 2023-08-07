@@ -33,11 +33,17 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-split-button appearance='filled' label='normal' size='normal'></vwc-split-button>
 		<vwc-split-button appearance='filled' label='expanded' size='expanded'></vwc-split-button>
 	</div>
-		<div style="margin: 5px;">
+	<div style="margin: 5px;">
 		<vwc-split-button appearance='filled' icon='message-sent-line' size='super-condensed'></vwc-split-button>
 		<vwc-split-button appearance='filled' icon='message-sent-line' size='condensed'></vwc-split-button>
 		<vwc-split-button appearance='filled' icon='message-sent-line' size='normal'></vwc-split-button>
 		<vwc-split-button appearance='filled' icon='message-sent-line' size='expanded'></vwc-split-button>
+	</div>
+	<div style="margin: 5px;">
+		<vwc-split-button appearance='filled' split-indicator='message-sent-line' size='super-condensed'></vwc-split-button>
+		<vwc-split-button appearance='filled' split-indicator='message-sent-line' size='condensed'></vwc-split-button>
+		<vwc-split-button appearance='filled' split-indicator='message-sent-line' size='normal'></vwc-split-button>
+		<vwc-split-button appearance='filled' split-indicator='message-sent-line' size='expanded'></vwc-split-button>
 	</div>
 	<div style="margin: 5px;">
 		<vwc-split-button appearance="ghost" label='accent' connotation='accent'></vwc-split-button>
@@ -55,31 +61,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-split-button appearance='ghost' label='ghost' disabled></vwc-split-button>
 		<vwc-split-button appearance='filled' label='filled' disabled></vwc-split-button>
 		<vwc-split-button appearance='outlined' label='outlined' disabled></vwc-split-button>
-	</div>
-	<div style="margin: 5px;">
-		<vwc-split-button appearance="ghost" label="ghost" pending></vwc-split-button>
-		<vwc-split-button appearance="filled" label="filled" pending></vwc-split-button>
-		<vwc-split-button appearance="outlined" label="outlined" pending></vwc-split-button>
-		<vwc-split-button appearance="filled" label="super-condensed" size="super-condensed" pending></vwc-split-button>
-	</div>
-	<div style="margin: 5px;">
-		<vwc-split-button appearance="ghost" icon="check-line" label="ghost" pending></vwc-split-button>
-		<vwc-split-button appearance="filled" icon="check-line" label="filled" pending></vwc-split-button>
-		<vwc-split-button appearance="outlined" icon="check-line" label="outlined" pending></vwc-split-button>
-	</div>
-	<div style="margin: 5px;">
-		<vwc-split-button connotation='cta' shape='pill' icon='microphone-solid' aria-label="Mute"></vwc-split-button>
-	</div>
-	<div style="margin: 5px;">
-		<vwc-split-button style='display: block;' label="I'm full width" shape='pill' appearance='filled'></vwc-split-button>
-	</div>
-	<div style="margin: 5px;">
-		<vwc-split-button style="width: 150px; --button-line-clamp: 2;"
-		label="I'm button with long text and text wrap"shape='pill' appearance='filled'>
-		</vwc-split-button>
-	</div>
-	</div>
-	`;
+	</div>`;
 
 	page.setViewportSize({ width: 500, height: 720 });
 

@@ -9,12 +9,24 @@ A split button is a button with two components: a label and an arrow; clicking o
 ```
 
 ```html preview
-<vwc-split-button appearance='filled' label='A default split button'>
-  <vwc-menu id="menu" anchor="splitButton" placement="bottom-end" open>
+<vwc-split-button id="splitButton" appearance="filled" label="A default split button">
+  <vwc-menu id="menu" placement="bottom-end" open>
     <vwc-menu-item text="Menu item 1"></vwc-menu-item>
     <vwc-menu-item text="Menu item 2"></vwc-menu-item>
   </vwc-menu>
 </vwc-split-button>
+
+<script>
+  window.onload = function(){ 
+    menu.anchor = splitButton.indicator;
+    splitButton.action.onclick  = () => {
+      alert("clicked on action"); 
+    };
+    splitButton.indicator.onclick = () => { 
+      menu.open = !menu.open; 
+    };
+  }
+</script>
 ```
 
 ## Members
@@ -68,7 +80,7 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 - Default: `chevron-down-line`
 
 ```html preview
-<vwc-split-button appearance="filled" label='split-indicator' split-indicator="more-vertical-line" aria-label="Show more options"></vwc-split-button>
+<vwc-split-button appearance="filled" label='split-indicator' split-indicator="more-vertical-solid" aria-label="Show more options"></vwc-split-button>
 ```
 
 ### Icon with Label
@@ -144,15 +156,15 @@ Add the `disabled-action` attribute to disable the split button.
 <vwc-split-button appearance='outlined' label='outlined' disabled-action></vwc-split-button>
 ```
 
-#### Disabled secondary
+#### Disabled indicator
 
-Add the `disabled-secondary` attribute to disable the split button.
+Add the `disabled-indicator` attribute to disable the split button.
 
 - Type: `boolean`
 - Default: `false`
 
 ```html preview
-<vwc-split-button appearance='ghost' label='ghost' disabled-secondary></vwc-split-button>
-<vwc-split-button appearance='filled' label='filled' disabled-secondary></vwc-split-button>
-<vwc-split-button appearance='outlined' label='outlined' disabled-secondary></vwc-split-button>
+<vwc-split-button appearance='ghost' label='ghost' disabled-indicator></vwc-split-button>
+<vwc-split-button appearance='filled' label='filled' disabled-indicator></vwc-split-button>
+<vwc-split-button appearance='outlined' label='outlined' disabled-indicator></vwc-split-button>
 ```

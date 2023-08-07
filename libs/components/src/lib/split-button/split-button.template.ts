@@ -1,8 +1,8 @@
 import type { ViewTemplate } from '@microsoft/fast-element';
-import { html } from '@microsoft/fast-element';
+import { html, ref } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { focusTemplateFactory } from '../shared/patterns/focus';
+import { focusTemplateFactory } from '../../shared/patterns/focus';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import type { SplitButton } from './split-button';
 
@@ -30,10 +30,11 @@ export const SplitButtonTemplate: (
 	const focusTemplate = focusTemplateFactory(context);
 
 	return html<SplitButton>`
-	<div>
+	<template>
 		<div class="base">
 			<button
-				class="first-button ${getClasses}"
+				${ref('_action')}
+				class="action-button ${getClasses}"
 				?autofocus="${(x) => x.autofocus}"
 				?disabled="${(x) => (x.disabled || x.disabledAction)}"
 				form="${(x) => x.formId}"
@@ -70,10 +71,11 @@ export const SplitButtonTemplate: (
 					${x => affixIconTemplate(x.icon)}
 					${(x) => x.label}
 			</button>
-			<button id="splitButton"
-				class="second-button ${getClasses}"
+			<button
+				${ref('_indicator')}
+				class="indicator-button ${getClasses}"
 				?autofocus="${(x) => x.autofocus}"
-				?disabled="${(x) => (x.disabled || x.disabledSecondary)}"
+				?disabled="${(x) => (x.disabled || x.disabledIndicator)}"
 				name="${(x) => x.name}"
 				type="${(x) => x.type}"
 				value="${(x) => x.value}"
@@ -88,5 +90,5 @@ export const SplitButtonTemplate: (
 			</button>
 		</div>
 		<slot></slot>
-	</div>`;
+	</template>`;
 };

@@ -18,10 +18,6 @@
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
-:host {
-	display: inline-block;
-}
-
 .base {
 	display: inline-flex;
 }
@@ -89,25 +85,25 @@
 	}
 
 	/* Shape */
-	&.first-button {
+	&.action-button {
 		border-right: 0.5px solid var(--vvd-color-neutral-100);
 		&:not(.shape-pill) {
-			border-radius: 6px 0px 0px 6px;
+			border-radius: 6px 0 0 6px;
 		}
 	
 		&.shape-pill {
-			border-radius: 24px 0px 0px 24px;
+			border-radius: 24px 0 0 24px;
 		}
 	}
 
-	&.second-button {
-		border-left: 0px ;
+	&.indicator-button {
+		border-left: 0 ;
 		&:not(.shape-pill) {
-			border-radius: 0px 6px 6px 0px;
+			border-radius: 0 6px 6px 0;
 		}
 	
 		&.shape-pill {
-			border-radius: 0px 24px 24px 0px;
+			border-radius: 0 24px 24px 0;
 		}
 	}
 
@@ -119,7 +115,7 @@
 			4px,
 			8px
 		);
-		&.second-button {
+		&.indicator-button {
 			width: 22px;
 		}
 	}
@@ -131,7 +127,7 @@
 			8px,
 			12px
 		);
-		&.second-button {
+		&.indicator-button {
 			width: 26px;
 		}
 	}
@@ -143,7 +139,7 @@
 			10px,
 			20px
 		);
-		&.second-button {
+		&.indicator-button {
 			width: 40px;
 		}
 	}
@@ -155,7 +151,7 @@
 			8px,
 			16px
 		);
-		&.second-button {
+		&.indicator-button {
 			width: 32px;
 		}
 	}

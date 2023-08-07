@@ -3,7 +3,7 @@ import { attr } from '@microsoft/fast-element';
 import type {
 	Appearance, Connotation, Shape, Size
 } from '../enums.js';
-import { AffixIcon } from '../shared/patterns/affix.js';
+import { AffixIcon } from '../../shared/patterns/affix';
 
 /**
  * Types of split button connotation.
@@ -41,6 +41,17 @@ export type SplitButtonSize = Extract<Size, Size.SuperCondensed | Size.Condensed
  * @public
  */
 export class SplitButton extends FoundationButton {
+
+	_action!: HTMLElement;
+	get action(): HTMLElement {
+		return this._action;
+	}
+
+	_indicator!: HTMLElement;
+	get indicator(): HTMLElement {
+		return this._indicator;
+	}
+
 	/**
 	 * The connotation the split button should have.
 	 *
@@ -87,13 +98,22 @@ export class SplitButton extends FoundationButton {
 	@attr label?: string;
 
 	/**
+	 * Indicates the split button's icon.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: icon
+	 */
+	@attr icon?: string;
+
+	/**
 	 * Indicates the split button's icon indicator.
 	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: split-indicator
 	 */
-	@attr({ attribute: ' split-indicator', mode: 'fromView' }) splitIndicator: string = 'chevron-down-line';
+	@attr({ attribute: 'split-indicator', mode: 'fromView' }) splitIndicator: string = 'chevron-down-line';
 
 	/**
 	 * Indicates if the split button's popup is open.
@@ -114,13 +134,13 @@ export class SplitButton extends FoundationButton {
 	@attr({ attribute: 'disabled-action', mode: 'boolean' }) disabledAction = false;
 
 	/**
-	 * Indicates if the secondary button is disabled.
+	 * Indicates if the indicator button is disabled.
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: disabled-secondary
+	 * HTML Attribute: disabled-indicator
 	 */
-	@attr({ attribute: 'disabled-secondary', mode: 'boolean' }) disabledSecondary = false;
+	@attr({ attribute: 'disabled-indicator', mode: 'boolean' }) disabledIndicator = false;
 }
 
 export interface SplitButton extends AffixIcon { }
