@@ -193,8 +193,8 @@ The grid-template-columns property defines the line size of every grid column. V
 <script>
 	grid = document.querySelector('vwc-data-grid');
 	grid.rowsData = [
-		{data1: 'data11', data2: 'data12'},
-		{data1: 'data21', data2: 'data22'},
+		{data1: '#1', data2: 'data12'},
+		{data1: '#2', data2: 'data22'},
 	];
 	grid.gridTemplateColumns = '50px 200px';
 </script>
