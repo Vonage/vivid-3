@@ -72,9 +72,7 @@ const testInvalidation = async ({page, browserName}: { page: Page, browserName: 
 
 	await page.setViewportSize({ width: 300, height: 300 });
 	await page.waitForLoadState('networkidle');
-
-	await page.waitForTimeout(1000);
-	await page.waitForLoadState('networkidle');
+	await page.waitForTimeout(500);
 
 	expect(await testWrapper?.screenshot({animations: 'disabled'}))
 		.toMatchSnapshot(

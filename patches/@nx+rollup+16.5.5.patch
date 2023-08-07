@@ -1,0 +1,13 @@
+diff --git a/node_modules/@nx/rollup/src/executors/rollup/rollup.impl.js b/node_modules/@nx/rollup/src/executors/rollup/rollup.impl.js
+index a598c22..92590f1 100644
+--- a/node_modules/@nx/rollup/src/executors/rollup/rollup.impl.js
++++ b/node_modules/@nx/rollup/src/executors/rollup/rollup.impl.js
+@@ -222,7 +222,7 @@ exports.createRollupOptions = createRollupOptions;
+ function createTsCompilerOptions(config, dependencies, options) {
+     const compilerOptionPaths = (0, buildable_libs_utils_1.computeCompilerOptionsPaths)(config, dependencies);
+     const compilerOptions = {
+-        rootDir: options.projectRoot,
++        rootDir: options.entryRoot,
+         allowJs: options.allowJs,
+         declaration: true,
+         paths: compilerOptionPaths,

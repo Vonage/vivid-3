@@ -2,12 +2,13 @@ import {applyMixins, Checkbox as FoundationCheckbox} from '@microsoft/fast-found
 import {attr} from '@microsoft/fast-element';
 import type {Connotation} from '../enums.js';
 import {
-	FormElement,
+	errorText,
+	type ErrorText,
+	type FormElement,
 	FormElementHelperText,
 	formElements,
-	FormElementSuccessText,
+	FormElementSuccessText
 } from '../../shared/patterns';
-import {ErrorText, errorText} from '../../shared/patterns';
 
 
 export const keySpace: ' ' = ' ' as const;
@@ -57,7 +58,7 @@ export class Checkbox extends FoundationCheckbox {
 
 	/**
 	 * !remove method as will be implemented by fast-foundation in version after 2.46.9
-	 * 
+	 *
 	 * @internal
 	 */
 	override clickHandler = (): void => {

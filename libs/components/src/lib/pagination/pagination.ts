@@ -1,5 +1,5 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
-import {attr, observable, ValueConverter, volatile} from '@microsoft/fast-element';
+import {attr, observable, type ValueConverter, volatile} from '@microsoft/fast-element';
 import type { Size } from '../enums';
 import type {Button} from '../button/button';
 
