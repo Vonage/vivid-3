@@ -162,6 +162,30 @@ describe('vwc-data-grid', () => {
 		});
 	});
 
+	describe('gridTemplateColumns', () => {
+		it('should set gridTemplateColumns on all rows', async function () {
+			const rowElementTag = 'vwc-data-grid-row';
+
+			element.rowElementTag = rowElementTag;
+			element.rowItemTemplate = html`
+			<${rowElementTag} role="row"></${rowElementTag}>`;
+			element.rowsData = [
+				{ id: '1', name: 'Person 1' },
+				{ id: '2', name: 'Person 2' },
+			];
+			element.gridTemplateColumns = '1fr 25px';
+
+			await elementUpdated(element);
+			await elementUpdated(element);
+
+			const rows = Array.from(element.querySelectorAll('[role="row"]') as any);
+			const allRowsHaveSameGridColumnTemplate = rows.reduce((acc, row: any) => {
+				return acc && row.gridTemplateColumns === '1fr 25px';
+			});
+			expect(allRowsHaveSameGridColumnTemplate).toEqual(true);
+		});
+	});
+
 	describe('columnDefinitions', () => {
 		it('should set index, gridTemplateColumns and column definition on the row elements', async () => {
 			const rowElementTag = 'vwc-data-grid-row';
