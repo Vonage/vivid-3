@@ -9,7 +9,6 @@ import type { SplitButton } from './split-button';
 const getClasses = ({
 	connotation, appearance, shape, disabled, size
 }: SplitButton) => classNames(
-	'control',
 	[`connotation-${connotation}`, Boolean(connotation)],
 	['disabled', disabled],
 	[`shape-${shape}`, Boolean(shape)],
@@ -24,13 +23,13 @@ function actionButton(context: ElementDefinitionContext) {
 	return html<SplitButton>`
 	<button
 		${ref('action')}
-		class="action-button ${getClasses}"
+		class="control ${getClasses}"
 		?autofocus="${(x) => x.autofocus}"
 		?disabled="${(x) => (x.disabled || x.disabledAction)}"
 		aria-atomic="${(x) => x.ariaAtomic}"
 		aria-busy="${(x) => x.ariaBusy}"
 		aria-current="${(x) => x.ariaCurrent}"
-		aria-disabled="${(x) => x.ariaDisabled}"
+		aria-disabled="${(x) => x.disabled || x.disabledAction}"
 		aria-expanded="${(x) => x.ariaExpanded}"
 		aria-hidden="${(x) => x.ariaHidden}"
 		aria-invalid="${(x) => x.ariaInvalid}"
@@ -52,13 +51,13 @@ function indicatorButton(context: ElementDefinitionContext) {
 	return html<SplitButton>`
 	<button
 		${ref('indicator')}
-		class="indicator-button ${getClasses}"
+		class="indicator ${getClasses}"
 		?autofocus="${(x) => x.autofocus}"
 		?disabled="${(x) => (x.disabled || x.disabledIndicator)}"
 		title="Open for more actions"
 		aria-haspopup="true"
 		aria-expanded="${(x) => x.ariaExpanded}"
-		aria-disabled="${(x) => x.disabled}"
+		aria-disabled="${(x) => x.disabled || x.disabledIndicator}"
 		aria-label="${(x) => x.ariaLabel}"
 		aria-labelledby="${(x) => x.ariaLabelledBy}">
 			${() => focusTemplate}
@@ -82,6 +81,5 @@ export const SplitButtonTemplate: (
 			${actionButton(context)}
 			${indicatorButton(context)}
 		</div>
-		<slot></slot>
 	</template>`;
 };

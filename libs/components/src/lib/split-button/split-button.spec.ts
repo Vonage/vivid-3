@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { SplitButton } from './split-button';
@@ -115,6 +115,18 @@ describe('vwc-split-button', () => {
 
 			const control = element.shadowRoot?.querySelector(`.control.appearance-${appearance}.disabled`);
 			expect(control).toBeInstanceOf(Element);
+		});
+
+		it('should set the `aria-disabled` attribute with the `disabled` value when provided', async () => {
+			element.disabled = true;
+			await elementUpdated(element);
+			expect(getControlElement(element).getAttribute('aria-disabled')).toEqual('true');
+		});
+
+		it('should set the `aria-disabled` attribute with the `disabled-action` value when provided', async () => {
+			element.disabledAction = true;
+			await elementUpdated(element);
+			expect(getControlElement(element).getAttribute('aria-disabled')).toEqual('true');
 		});
 	});
 });

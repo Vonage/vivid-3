@@ -22,7 +22,8 @@
 	display: inline-flex;
 }
 
-.control {
+.control,
+.indicator {
 	@include connotation.connotation(split-button);
 	@include appearance.appearance;
 
@@ -89,23 +90,23 @@
 	}
 
 	/* Shape */
-	&.action-button {
+	&.control {
 		border-right: 0.5px solid var(--vvd-color-neutral-100);
 		&:not(.shape-pill) {
 			border-radius: 6px 0 0 6px;
 		}
-	
+
 		&.shape-pill {
 			border-radius: 24px 0 0 24px;
 		}
 	}
 
-	&.indicator-button {
-		border-left: 0 ;
+	&.indicator {
+		border-left: 0;
 		&:not(.shape-pill) {
 			border-radius: 0 6px 6px 0;
 		}
-	
+
 		&.shape-pill {
 			border-radius: 0 24px 24px 0;
 		}
@@ -119,7 +120,7 @@
 			4px,
 			8px
 		);
-		&.indicator-button {
+		&.indicator {
 			width: 22px;
 		}
 	}
@@ -131,7 +132,7 @@
 			8px,
 			12px
 		);
-		&.indicator-button {
+		&.indicator {
 			width: 26px;
 		}
 	}
@@ -143,7 +144,7 @@
 			10px,
 			20px
 		);
-		&.indicator-button {
+		&.indicator {
 			width: 40px;
 		}
 	}
@@ -155,7 +156,7 @@
 			8px,
 			16px
 		);
-		&.indicator-button {
+		&.indicator {
 			width: 32px;
 		}
 	}
@@ -169,7 +170,8 @@
 		order: 1;
 	}
 
-	.control > & {
+	.control > &,
+	.indicator > & {
 		font-size: calc(var(#{variables.$block-size}) / 2);
 	}
 }
@@ -179,8 +181,7 @@
 		display: none;
 	}
 
-	.appearance-outlined &
-	.appearance-ghost & {
+	.appearance-outlined & .appearance-ghost & {
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
 	}
 }

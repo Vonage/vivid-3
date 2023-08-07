@@ -15,12 +15,11 @@ A split button is a button with two components: a label and an arrow; clicking o
   }
 </style>
 
-<vwc-split-button id="splitButton" appearance="filled" label="A default split button">
-  <vwc-menu id="menu" placement="bottom-end" open>
-    <vwc-menu-item text="Menu item 1"></vwc-menu-item>
-    <vwc-menu-item text="Menu item 2"></vwc-menu-item>
-  </vwc-menu>
-</vwc-split-button>
+<vwc-split-button id="splitButton" appearance="filled" label="A default split button" aria-expanded="true"></vwc-split-button>
+<vwc-menu id="menu" placement="bottom-end" open>
+  <vwc-menu-item text="Menu item 1"></vwc-menu-item>
+  <vwc-menu-item text="Menu item 2"></vwc-menu-item>
+</vwc-menu>
 
 <script>
   window.onload = function(){ 
@@ -30,6 +29,7 @@ A split button is a button with two components: a label and an arrow; clicking o
     };
     splitButton.indicator.onclick = () => { 
       menu.open = !menu.open; 
+      splitButton.ariaExpanded = menu.open;
     };
   }
 </script>
@@ -174,3 +174,7 @@ Add the `disabled-indicator` attribute to disable the split button.
 <vwc-split-button appearance='filled' label='filled' disabled-indicator></vwc-split-button>
 <vwc-split-button appearance='outlined' label='outlined' disabled-indicator></vwc-split-button>
 ```
+
+## Accessibility
+
+`aria expanded` - When the anchor is open, [aria-expanded](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-expanded) should be set to true, and when it is closed, it should be set to false.
