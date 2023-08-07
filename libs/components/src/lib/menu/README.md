@@ -167,7 +167,7 @@ Use the `action-items` slot to add action items to the bottom of the menu.
 
 Use the `--menu-max-inline-size` variable to set the menu's inline size.
 
-- Default: `100%`
+- Default: `max-content`
 
 ```html preview
 <style>
