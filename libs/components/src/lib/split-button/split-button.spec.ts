@@ -124,17 +124,5 @@ describe('vwc-split-button', () => {
 			await elementUpdated(element);
 			expect(getControlElement(element).getAttribute('aria-disabled')).toEqual('true');
 		});
-
-		it('should set the `aria-disabled` attribute with the `disabled-action` value when provided', async () => {
-			element.disabledAction = true;
-			await elementUpdated(element);
-			expect(element.action.getAttribute('aria-disabled')).toEqual('true');
-		});
-
-		it('should set the `aria-disabled` attribute with the `disabled-indicator` value when provided', async () => {
-			element.disabledIndicator = true;
-			await elementUpdated(element);
-			expect(element.indicator.getAttribute('aria-disabled')).toEqual('true');
-		});
 	});
 });

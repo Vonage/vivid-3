@@ -127,15 +127,6 @@ export class SplitButton extends FoundationElement {
 	@attr({ attribute: 'split-indicator', mode: 'fromView' }) splitIndicator: string = 'chevron-down-line';
 
 	/**
-	 * Indicates if the split button's popup is open.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: open
-	 */
-	@attr({ mode: 'boolean' }) open = false;
-
-	/**
 	 * Indicates if the button is disabled.
 	 *
 	 * @public
@@ -143,24 +134,6 @@ export class SplitButton extends FoundationElement {
 	 * HTML Attribute: disabled
 	 */
 	@attr({ attribute: 'disabled', mode: 'boolean' }) disabled = false;
-
-	/**
-	 * Indicates if the action button is disabled.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: disabled-action
-	 */
-	@attr({ attribute: 'disabled-action', mode: 'boolean' }) disabledAction = false;
-
-	/**
-	 * Indicates if the indicator button is disabled.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: disabled-indicator
-	 */
-	@attr({ attribute: 'disabled-indicator', mode: 'boolean' }) disabledIndicator = false;
 
 	@attr({ attribute: 'aria-labelledby' }) ariaLabelledBy: string | null = null;
 	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;

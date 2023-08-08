@@ -25,11 +25,11 @@ function actionButton(context: ElementDefinitionContext) {
 		${ref('_action')}
 		class="control ${getClasses}"
 		?autofocus="${(x) => x.autofocus}"
-		?disabled="${(x) => (x.disabled || x.disabledAction)}"
+		?disabled="${(x) => (x.disabled)}"
 		aria-atomic="${(x) => x.ariaAtomic}"
 		aria-busy="${(x) => x.ariaBusy}"
 		aria-current="${(x) => x.ariaCurrent}"
-		aria-disabled="${(x) => x.disabled || x.disabledAction}"
+		aria-disabled="${(x) => x.disabled}"
 		aria-expanded="${(x) => x.ariaExpanded}"
 		aria-hidden="${(x) => x.ariaHidden}"
 		aria-invalid="${(x) => x.ariaInvalid}"
@@ -53,11 +53,11 @@ function indicatorButton(context: ElementDefinitionContext) {
 		${ref('_indicator')}
 		class="indicator ${getClasses}"
 		?autofocus="${(x) => x.autofocus}"
-		?disabled="${(x) => (x.disabled || x.disabledIndicator)}"
+		?disabled="${(x) => (x.disabled)}"
 		title="Open for more actions"
 		aria-haspopup="true"
 		aria-expanded="${(x) => x.ariaExpanded}"
-		aria-disabled="${(x) => x.disabled || x.disabledIndicator}"
+		aria-disabled="${(x) => x.disabled}"
 		aria-label="${(x) => x.ariaLabel}"
 		aria-labelledby="${(x) => x.ariaLabelledBy}">
 			${() => focusTemplate}
