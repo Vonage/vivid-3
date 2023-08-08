@@ -59,7 +59,7 @@ describe('vwc-split-button', () => {
 			element.label = label;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector('.control');
+			const control = getControlElement(element);
 			expect(control?.textContent?.trim()).toEqual(label);
 		});
 	});
@@ -70,8 +70,8 @@ describe('vwc-split-button', () => {
 			(element as any).connotation = connotation;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.connotation-${connotation}`);
-			expect(control).toBeInstanceOf(Element);
+			const control = getControlElement(element); 
+			expect(control.classList.contains(`connotation-${connotation}`).toBeTruthy();
 		});
 	});
 
@@ -81,8 +81,8 @@ describe('vwc-split-button', () => {
 			(element as any).shape = shape;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.shape-${shape}`);
-			expect(control).toBeInstanceOf(Element);
+			const control = getControlElement(element); 
+			expect(control.classList.contains(`shape-${shape}`).toBeTruthy();
 		});
 	});
 
@@ -92,8 +92,8 @@ describe('vwc-split-button', () => {
 			(element as any).appearance = appearance;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.appearance-${appearance}`);
-			expect(control).toBeInstanceOf(Element);
+			const control = getControlElement(control); 
+			expect(control.classList.contains(`appearance-${appearance}`).toBeTruthy();
 		});
 	});
 
@@ -103,7 +103,7 @@ describe('vwc-split-button', () => {
 			(element as any).size = size;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.size-${size}`);
+			const control = getControlElement(element);
 			expect(control?.classList.contains(`size-${size}`)).toBeTruthy();
 		});
 	});
@@ -115,8 +115,8 @@ describe('vwc-split-button', () => {
 			element.toggleAttribute('disabled', true);
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.appearance-${appearance}.disabled`);
-			expect(control).toBeInstanceOf(Element);
+			const controlHasDisabledClass = getControlElement(element).classList.contains(`appearance-${appearance}.disabled`);
+			expect(controlHasDisabledClass).toBeTruthy();
 		});
 
 		it('should set the `aria-disabled` attribute with the `disabled` value when provided', async () => {

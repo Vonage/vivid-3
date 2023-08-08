@@ -4,6 +4,20 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.28.2](https://github.com/Vonage/vivid-3/compare/vivid-v3.28.1...vivid-v3.28.2) (2023-08-07)
+
+
+### Bug Fixes
+
+* **cd:** add postinstall to the build process (VIV-000) ([#1315](https://github.com/Vonage/vivid-3/issues/1315)) ([59ddc63](https://github.com/Vonage/vivid-3/commit/59ddc63920433a4116d011005040ae67252439a0))
+
+## [3.28.1](https://github.com/Vonage/vivid-3/compare/vivid-v3.28.0...vivid-v3.28.1) (2023-08-07)
+
+
+### Bug Fixes
+
+* **menu-item:** add meta slot annotation (VIV-000) ([#1298](https://github.com/Vonage/vivid-3/issues/1298)) ([7c9342c](https://github.com/Vonage/vivid-3/commit/7c9342c40b3cefd69f3cf48205fb855836654798))
+
 ## [3.28.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.27.0...vivid-v3.28.0) (2023-08-07)
 
 
