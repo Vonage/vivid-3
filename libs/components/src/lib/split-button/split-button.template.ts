@@ -77,9 +77,10 @@ export const SplitButtonTemplate: (
 ) => ViewTemplate<SplitButton> = (context: ElementDefinitionContext) => {
 	return html<SplitButton>`
 	<template>
-		<div class="base">
+		<div class="base" role="group">
 			${actionButton(context)}
 			${indicatorButton(context)}
+			<slot></slot>
 		</div>
 	</template>`;
 };

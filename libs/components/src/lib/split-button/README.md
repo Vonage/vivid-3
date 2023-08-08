@@ -15,11 +15,12 @@ A split button is a button with two components: a label and an arrow; clicking o
   }
 </style>
 
-<vwc-split-button id="splitButton" appearance="filled" label="A default split button" aria-expanded="true"></vwc-split-button>
-<vwc-menu id="menu" placement="bottom-end" open>
-  <vwc-menu-item text="Menu item 1"></vwc-menu-item>
-  <vwc-menu-item text="Menu item 2"></vwc-menu-item>
-</vwc-menu>
+<vwc-split-button id="splitButton" appearance="filled" label="A default split button" aria-expanded="true">
+  <vwc-menu id="menu" placement="bottom-end" open>
+    <vwc-menu-item text="Menu item 1"></vwc-menu-item>
+    <vwc-menu-item text="Menu item 2"></vwc-menu-item>
+  </vwc-menu>
+</vwc-split-button>
 
 <script>
   window.onload = function(){ 

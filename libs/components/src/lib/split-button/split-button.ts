@@ -39,6 +39,7 @@ export type SplitButtonSize = Extract<Size, Size.SuperCondensed | Size.Condensed
  * Base class for split button
  *
  * @public
+ * @slot - Default slot.
  */
 export class SplitButton extends FoundationElement {
 	/**

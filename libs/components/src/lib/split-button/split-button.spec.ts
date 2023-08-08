@@ -110,7 +110,7 @@ describe('vwc-split-button', () => {
 			element.toggleAttribute('disabled', true);
 			await elementUpdated(element);
 
-			const controlHasDisabledClass = getControlElement(element).classList.contains(`appearance-${appearance}.disabled`);
+			const controlHasDisabledClass = getControlElement(element)?.classList.contains('disabled');
 			expect(controlHasDisabledClass).toBeTruthy();
 		});
 
@@ -118,6 +118,12 @@ describe('vwc-split-button', () => {
 			element.disabled = true;
 			await elementUpdated(element);
 			expect(getControlElement(element).getAttribute('aria-disabled')).toEqual('true');
+		});
+	});
+
+	describe('default slot', () => {
+		it('should should have a default slot', () => {
+			expect(element.shadowRoot?.querySelector('slot:not([name])')).toBeTruthy();
 		});
 	});
 });
