@@ -115,8 +115,8 @@ describe('vwc-split-button', () => {
 			element.toggleAttribute('disabled', true);
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.appearance-${appearance}.disabled`);
-			expect(control).toBeInstanceOf(Element);
+			const controlHasDisabledClass = getControlElement(element).classList.contains(`appearance-${appearance}.disabled`);
+			expect(controlHasDisabledClass).toBeTruthy();
 		});
 
 		it('should set the `aria-disabled` attribute with the `disabled` value when provided', async () => {
