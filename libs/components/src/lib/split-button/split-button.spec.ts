@@ -103,7 +103,7 @@ describe('vwc-split-button', () => {
 			(element as any).size = size;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.size-${size}`);
+			const control = getControlElement(element);
 			expect(control?.classList.contains(`size-${size}`)).toBeTruthy();
 		});
 	});
