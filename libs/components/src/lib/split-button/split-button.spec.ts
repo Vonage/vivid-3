@@ -70,8 +70,8 @@ describe('vwc-split-button', () => {
 			(element as any).connotation = connotation;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.connotation-${connotation}`);
-			expect(control).toBeInstanceOf(Element);
+			const control = getControlElement(element); 
+			expect(control.classList.contains(`connotation-${connotation}`).toBeTruthy();
 		});
 	});
 
