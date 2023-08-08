@@ -81,8 +81,8 @@ describe('vwc-split-button', () => {
 			(element as any).shape = shape;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.shape-${shape}`);
-			expect(control).toBeInstanceOf(Element);
+			const control = getControlElement(element); 
+			expect(control.classList.contains(`shape-${shape}`).toBeTruthy();
 		});
 	});
 
