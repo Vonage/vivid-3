@@ -59,7 +59,7 @@ describe('vwc-split-button', () => {
 			element.label = label;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector('.control');
+			const control = getControlElement(element);
 			expect(control?.textContent?.trim()).toEqual(label);
 		});
 	});
