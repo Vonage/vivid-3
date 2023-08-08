@@ -37,8 +37,8 @@
 		block-size: var(#{variables.$block-size});
 		color: var(#{appearance.get-appearance-token(text)});
 		gap: var(#{variables.$icon-gap});
-		vertical-align: middle;
 		inline-size: 100%;
+		vertical-align: middle;
 
 		@supports selector(:focus-visible) {
 			&:focus {

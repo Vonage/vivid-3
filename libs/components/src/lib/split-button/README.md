@@ -90,14 +90,6 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 <vwc-split-button appearance="filled" label='Split Indicator' split-indicator="more-vertical-solid" aria-label="Show more options"></vwc-split-button>
 ```
 
-### Icon with Label
-
-Button text can be affixed by a decorative icon.
-
-```html preview
-<vwc-split-button appearance="filled" label='icon' icon='compose-line'></vwc-split-button>
-```
-
 ### Shape
 
 Use the `shape` attribute to set the split button's edges.
@@ -163,4 +155,6 @@ Add the `disabled` attribute to disable the split button.
 
 ## Accessibility
 
-`aria expanded` - When the anchor is open, [aria-expanded](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-expanded) should be set to true, and when it is closed, it should be set to false.
+- `aria-expanded` - When the anchor is open, [aria-expanded](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-expanded) should be set to true, and when it is closed, it should be set to false.
+
+- `aria-haspopup` - Split button's [aria-haspopup](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-haspopup) is always set to "true". The menu must be set to the indicator of a split button.

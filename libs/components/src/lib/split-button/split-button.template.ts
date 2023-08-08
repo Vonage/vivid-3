@@ -25,7 +25,6 @@ function actionButton(context: ElementDefinitionContext) {
 		${ref('_action')}
 		class="control ${getClasses}"
 		?autofocus="${(x) => x.autofocus}"
-		?disabled="${(x) => (x.disabled)}"
 		aria-atomic="${(x) => x.ariaAtomic}"
 		aria-busy="${(x) => x.ariaBusy}"
 		aria-current="${(x) => x.ariaCurrent}"
@@ -52,8 +51,6 @@ function indicatorButton(context: ElementDefinitionContext) {
 	<button
 		${ref('_indicator')}
 		class="indicator ${getClasses}"
-		?autofocus="${(x) => x.autofocus}"
-		?disabled="${(x) => (x.disabled)}"
 		title="Open for more actions"
 		aria-haspopup="true"
 		aria-expanded="${(x) => x.ariaExpanded}"
