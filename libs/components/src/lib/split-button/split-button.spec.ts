@@ -59,8 +59,7 @@ describe('vwc-split-button', () => {
 			element.label = label;
 			await elementUpdated(element);
 
-			const control = getControlElement(element);
-			expect(control?.textContent?.trim()).toEqual(label);
+			expect(getControlElement(element).textContent?.trim()).toEqual(label);
 		});
 	});
 
@@ -70,8 +69,7 @@ describe('vwc-split-button', () => {
 			(element as any).connotation = connotation;
 			await elementUpdated(element);
 
-			const control = getControlElement(element); 
-			expect(control.classList.contains(`connotation-${connotation}`).toBeTruthy();
+			expect(getControlElement(element).classList.contains(`connotation-${connotation}`)).toBeTruthy();
 		});
 	});
 
@@ -81,8 +79,7 @@ describe('vwc-split-button', () => {
 			(element as any).shape = shape;
 			await elementUpdated(element);
 
-			const control = getControlElement(element); 
-			expect(control.classList.contains(`shape-${shape}`).toBeTruthy();
+			expect(getControlElement(element).classList.contains(`shape-${shape}`)).toBeTruthy();
 		});
 	});
 
@@ -92,8 +89,7 @@ describe('vwc-split-button', () => {
 			(element as any).appearance = appearance;
 			await elementUpdated(element);
 
-			const control = getControlElement(control); 
-			expect(control.classList.contains(`appearance-${appearance}`).toBeTruthy();
+			expect(getControlElement(element).classList.contains(`appearance-${appearance}`)).toBeTruthy();
 		});
 	});
 
@@ -103,8 +99,7 @@ describe('vwc-split-button', () => {
 			(element as any).size = size;
 			await elementUpdated(element);
 
-			const control = getControlElement(element);
-			expect(control?.classList.contains(`size-${size}`)).toBeTruthy();
+			expect(getControlElement(element).classList.contains(`size-${size}`)).toBeTruthy();
 		});
 	});
 

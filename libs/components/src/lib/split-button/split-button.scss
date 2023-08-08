@@ -89,29 +89,6 @@
 		border: 1px solid var(#{appearance.get-appearance-token(outline)});
 	}
 
-	/* Shape */
-	&.control {
-		border-right: 0.5px solid var(--vvd-color-neutral-100);
-		&:not(.shape-pill) {
-			border-radius: 6px 0 0 6px;
-		}
-
-		&.shape-pill {
-			border-radius: 24px 0 0 24px;
-		}
-	}
-
-	&.indicator {
-		border-left: 0;
-		&:not(.shape-pill) {
-			border-radius: 0 6px 6px 0;
-		}
-
-		&.shape-pill {
-			border-radius: 0 24px 24px 0;
-		}
-	}
-
 	/* Size */
 	&.size-super-condensed {
 		@include mixins.get-size-properties(
@@ -159,6 +136,29 @@
 		&.indicator {
 			width: 32px;
 		}
+	}
+}
+
+/* Shape */
+.control {
+	border-right: 0.5px solid var(--vvd-color-neutral-100);
+	&:not(.shape-pill) {
+		border-radius: 6px 0 0 6px;
+	}
+
+	&.shape-pill {
+		border-radius: 24px 0 0 24px;
+	}
+}
+
+.indicator {
+	border-left: 0;
+	&:not(.shape-pill) {
+		border-radius: 0 6px 6px 0;
+	}
+
+	&.shape-pill {
+		border-radius: 0 24px 24px 0;
 	}
 }
 

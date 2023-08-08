@@ -149,32 +149,6 @@ Add the `disabled` attribute to disable the split button.
 <vwc-split-button appearance='outlined' label='outlined' disabled></vwc-split-button>
 ```
 
-#### Disabled action
-
-Add the `disabled-action` attribute to disable the split button.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<vwc-split-button appearance='ghost' label='ghost' disabled-action></vwc-split-button>
-<vwc-split-button appearance='filled' label='filled' disabled-action></vwc-split-button>
-<vwc-split-button appearance='outlined' label='outlined' disabled-action></vwc-split-button>
-```
-
-#### Disabled indicator
-
-Add the `disabled-indicator` attribute to disable the split button.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<vwc-split-button appearance='ghost' label='ghost' disabled-indicator></vwc-split-button>
-<vwc-split-button appearance='filled' label='filled' disabled-indicator></vwc-split-button>
-<vwc-split-button appearance='outlined' label='outlined' disabled-indicator></vwc-split-button>
-```
-
 ## Properties
 
 <div class="table-wrapper">
