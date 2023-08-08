@@ -92,8 +92,8 @@ describe('vwc-split-button', () => {
 			(element as any).appearance = appearance;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.appearance-${appearance}`);
-			expect(control).toBeInstanceOf(Element);
+			const control = getControlElement(control); 
+			expect(control.classList.contains(`appearance-${appearance}`).toBeTruthy();
 		});
 	});
 
