@@ -141,9 +141,6 @@ test('should show the the dialog as a modal when calling .showModal()', async ({
 
 	await page.waitForLoadState('networkidle');
 
-	await page.pause();
-
-
 	await page.evaluate(() => {
 		const modal = (document.getElementById('modal') as Dialog);
 		modal.showModal();
