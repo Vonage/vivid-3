@@ -43,7 +43,7 @@
 	@include connotation.connotation (nav-disclosure);
 
 	@supports selector(:focus-visible) {
-		&:focus {
+		&:focus-visible {
 			outline: none;
 		}
 	}

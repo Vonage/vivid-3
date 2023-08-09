@@ -58,7 +58,7 @@
 	}
 
 	@supports selector(:focus-visible) {
-		&:focus {
+		&:focus-visible{
 			outline: none;
 		}
 	}
@@ -171,13 +171,14 @@
 }
 
 .focus-indicator {
-	:not(:focus-visible) > & {
+	.control:not(:focus-visible) > & {
 		display: none;
 	}
 
-	.appearance-outlined &,
-	.appearance-ghost & {
-		#{focus-variables.$focus-stroke-gap-color}: transparent;
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+	.appearance-filled & {
+		#{focus-variables.$focus-stroke-gap-color}: unset;
 	}
 }
 
@@ -187,5 +188,5 @@
 	& + .text {
 		visibility: hidden;
 	}
-}	
+}
 

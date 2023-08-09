@@ -132,12 +132,12 @@ $low-ink-color: --_low-ink-color;
 		padding-inline-end: var(#{variables.$text-field-inline-end-padding}, calc(var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter})));
 	}
 
-	@supports selector(:focus-visible) {
-		&:focus {
+
+		&:focus-visible {
 			outline: none;
 		}
 	}
-}
+
 
 .action-items-wrapper {
 	position: absolute;
@@ -175,4 +175,10 @@ $low-ink-color: --_low-ink-color;
 	.fieldset:not(:focus-visible, :focus-within) > & {
 		display: none;
 	}
+}
+
+
+.wrapper:focus-visible,
+.fieldset:focus-visible {
+	outline: none;
 }
