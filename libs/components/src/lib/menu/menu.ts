@@ -9,6 +9,8 @@ type AnchorType = string | HTMLElement;
  *
  * @public
  * @slot - Default slot.
+ * @slot header - Used to add additional content to the top of the menu.
+ * @slot action-items - Used to add action items to the bottom of the menu.
  * @event open - Fired when the menu is opened
  * @event close - Fired when the menu is closed
  */
