@@ -1,9 +1,35 @@
 /// <reference types="vitest" />
+import * as path from 'path';
+import * as fs from 'fs';
 import { defineConfig } from 'vite';
 
 import viteTsConfigPaths from 'vite-tsconfig-paths';
 import dts from 'vite-plugin-dts';
-import * as path from 'path';
+
+
+function getFoldersInAFolder(workingFolder = './src/lib/') {
+	const folders = [];
+	const testsFolder = path.join(__dirname, workingFolder);
+	fs.readdirSync(testsFolder).forEach((testFolder) => {
+		if (testFolder === 'common') return;
+		const absolutePath = path.join(testsFolder, testFolder);
+		if (fs.statSync(absolutePath).isDirectory()) {
+			folders.push(testFolder);
+		}
+	});
+	return folders;
+}
+
+const components = getFoldersInAFolder();
+const input = components.reduce((inputObject, componentName) => {
+	inputObject[`${componentName}/index`] = path.join(
+		process.cwd(),
+		`libs/components/src/lib/${componentName}/index.ts`
+	);
+	return inputObject;
+}, {});
+
+input.index = path.join(process.cwd(), 'libs/components/src/index.ts');
 
 export default defineConfig({
 	cacheDir: '../../../node_modules/.vite/components',
@@ -40,9 +66,15 @@ export default defineConfig({
 			// Don't forget to update your package.json as well.
 			formats: ['es', 'cjs'],
 		},
+		minify: false,
+		target: 'esnext',
 		rollupOptions: {
-			// External packages that should not be bundled into your library.
-			external: [],
+			input,
+			output: {
+				chunkFileNames: 'shared/[name].js',
+				entryFileNames: undefined,
+				format: 'esm'
+			}
 		},
 	},
 });
