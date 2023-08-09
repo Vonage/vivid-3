@@ -115,7 +115,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	);
 });
 
-test.only('should show the the dialog as a modal when calling .showModal()', async ({ page }: { page: Page }) => {
+test('should show the the dialog as a modal when calling .showModal()', async ({ page }: { page: Page }) => {
 	const template = `
 		<div style="height: 800px">
 			<vwc-dialog
