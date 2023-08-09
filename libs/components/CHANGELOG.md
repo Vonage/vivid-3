@@ -4,6 +4,18 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.29.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.28.2...vivid-v3.29.0) (2023-08-09)
+
+
+### Features
+
+* **menu:** add non-bubbling open and close events (VIV-1258) ([#1320](https://github.com/Vonage/vivid-3/issues/1320)) ([043713c](https://github.com/Vonage/vivid-3/commit/043713ced6cb2241bfafc7ae228d614a853ce55e))
+
+
+### Bug Fixes
+
+* **menu:** add slot annotations (VIV-000) ([#1317](https://github.com/Vonage/vivid-3/issues/1317)) ([29c6bd3](https://github.com/Vonage/vivid-3/commit/29c6bd3f97ab1bbcb38adbad1141341c79855699))
+
 ## [3.28.2](https://github.com/Vonage/vivid-3/compare/vivid-v3.28.1...vivid-v3.28.2) (2023-08-07)
 
 
