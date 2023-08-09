@@ -1,6 +1,9 @@
 import type { ViewTemplate } from '@microsoft/fast-element';
 import { html, ref } from '@microsoft/fast-element';
-import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
+import type {
+	ElementDefinitionContext,
+	FoundationElementDefinition,
+} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
@@ -24,18 +27,9 @@ function actionButton(context: ElementDefinitionContext) {
 	<button
 		${ref('_action')}
 		class="control ${getClasses}"
-		?autofocus="${(x) => x.autofocus}"
-		aria-atomic="${(x) => x.ariaAtomic}"
-		aria-busy="${(x) => x.ariaBusy}"
-		aria-current="${(x) => x.ariaCurrent}"
-		aria-disabled="${(x) => x.disabled}"
-		aria-expanded="${(x) => x.ariaExpanded}"
-		aria-hidden="${(x) => x.ariaHidden}"
-		aria-invalid="${(x) => x.ariaInvalid}"
 		aria-label="${(x) => x.ariaLabel}"
-		aria-live="${(x) => x.ariaLive}"
-		aria-pressed="${(x) => x.ariaPressed}"
-		?title="${(x) => x.title}">
+		?disabled="${(x) => (x.disabled)}"
+		aria-disabled="${(x) => x.disabled}">
 			${() => focusTemplate}
 			${x => affixIconTemplate(x.icon)}
 			${(x) => x.label}
@@ -51,12 +45,11 @@ function indicatorButton(context: ElementDefinitionContext) {
 	<button
 		${ref('_indicator')}
 		class="indicator ${getClasses}"
+		?disabled="${(x) => (x.disabled)}"
+		aria-disabled="${(x) => x.disabled}"
 		title="Open for more actions"
 		aria-haspopup="true"
-		aria-expanded="${(x) => x.ariaExpanded}"
-		aria-disabled="${(x) => x.disabled}"
-		aria-label="${(x) => x.ariaLabel}"
-		aria-labelledby="${(x) => x.ariaLabelledBy}">
+		aria-expanded="${(x) => x.ariaExpanded}">
 			${() => focusTemplate}
 			${x => affixIconTemplate(x.splitIndicator)}
 	</button>

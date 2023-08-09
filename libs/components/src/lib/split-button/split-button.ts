@@ -10,16 +10,14 @@ import { AffixIcon } from '../../shared/patterns/affix';
  *
  * @public
  */
-export type SplitButtonConnotation = Extract<Connotation,
-Connotation.Accent | Connotation.CTA>;
+export type SplitButtonConnotation = Extract<Connotation, Connotation.Accent | Connotation.CTA>;
 
 /**
  * Types of split button appearance.
  *
  * @public
  */
-export type SplitButtonAppearance = Extract<Appearance,
-Appearance.Filled | Appearance.Outlined | Appearance.Ghost>;
+export type SplitButtonAppearance = Extract<Appearance, Appearance.Filled | Appearance.Outlined | Appearance.Ghost>;
 
 /**
  * Types of split button shape.
@@ -136,9 +134,8 @@ export class SplitButton extends FoundationElement {
 	 */
 	@attr({ attribute: 'disabled', mode: 'boolean' }) disabled = false;
 
-	@attr({ attribute: 'aria-labelledby' }) ariaLabelledBy: string | null = null;
 	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
-	@attr({ attribute: 'aria-describedby' }) ariaDescribedBy: string | null = null;
+	@attr({ attribute: 'aria-expanded' }) override ariaExpanded: string | null = null;
 }
 
 export interface SplitButton extends AffixIcon { }

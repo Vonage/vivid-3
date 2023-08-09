@@ -126,4 +126,23 @@ describe('vwc-split-button', () => {
 			expect(element.shadowRoot?.querySelector('slot:not([name])')).toBeTruthy();
 		});
 	});
+
+	describe('aria-label', function () {
+		it('should set "aria-label" on control if set on host', async function () {
+			const labelId = 'label';
+			element.setAttribute('aria-label', labelId);
+			await elementUpdated(element);
+			expect(getControlElement(element).getAttribute('aria-label')).toEqual(labelId);
+		});
+	});
+
+	describe('aria-expanded', function () {
+		it('should set "aria-expanded" on indicator if set on host', async function () {
+			element.setAttribute('aria-expanded', 'true');
+			await elementUpdated(element);
+
+			const indicator = element.shadowRoot?.querySelector('.indicator') as HTMLElement;
+			expect(indicator.getAttribute('aria-expanded')).toEqual('true');
+		});
+	});
 });
