@@ -395,6 +395,36 @@ describe('vwc-menu', () => {
 		});
 	});
 
+	describe('open event', () => {
+		it('should dispatch a non-bubbling open event when the menu is opened', async () => {
+			const spy = jest.fn();
+			element.addEventListener('open', spy);
+
+			element.open = true;
+			await elementUpdated(element);
+
+			expect(spy).toHaveBeenCalledWith(
+				expect.objectContaining({ bubbles: false })
+			);
+		});
+	});
+
+	describe('close event', () => {
+		it('should dispatch a non-bubbling close event when the menu is close', async () => {
+			const spy = jest.fn();
+			element.addEventListener('close', spy);
+			element.open = true;
+			await elementUpdated(element);
+
+			element.open = false;
+			await elementUpdated(element);
+
+			expect(spy).toHaveBeenCalledWith(
+				expect.objectContaining({ bubbles: false })
+			);
+		});
+	});
+
 	const arrowUpEvent = new KeyboardEvent('keydown', {
 		key: keyArrowUp,
 		bubbles: true,

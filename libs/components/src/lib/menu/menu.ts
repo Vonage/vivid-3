@@ -11,6 +11,8 @@ type AnchorType = string | HTMLElement;
  * @slot - Default slot.
  * @slot header - Used to add additional content to the top of the menu.
  * @slot action-items - Used to add action items to the bottom of the menu.
+ * @event open - Fired when the menu is opened
+ * @event close - Fired when the menu is closed
  */
 export class Menu extends FastMenu {
 
@@ -81,7 +83,11 @@ export class Menu extends FastMenu {
 	 * HTML Attribute: open
 	 */
 	@attr({ mode: 'boolean' }) open = false;
-	openChanged(): void {
+	openChanged(_: boolean, newValue: boolean): void {
+		newValue
+			? this.$emit('open', undefined, { bubbles: false })
+			: this.$emit('close', undefined, { bubbles: false });
+
 		if (this.#anchorEl) {
 			this.#anchorEl.ariaExpanded = this.open.toString();
 		}
