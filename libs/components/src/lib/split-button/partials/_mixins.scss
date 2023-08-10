@@ -11,3 +11,10 @@
 		padding-inline: $padding-inline;
 	}
 }
+
+@mixin get-size-properties-indicator($block-size, $font-face,$inline-size) {
+	#{variables.$block-size}: $block-size;
+	#{variables.$inline-size}: $inline-size;
+
+	font: var(#{$font-face});
+}
