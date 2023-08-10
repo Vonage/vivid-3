@@ -41,7 +41,7 @@
 	align-items: center;
 	justify-content: center;
 	padding: 0;
-	border: 0 none;
+	border: 1px solid var(#{appearance.get-appearance-token(outline)});
 	margin: 0;
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	block-size: var(#{variables.$block-size});
@@ -56,6 +56,7 @@
 }
 
 .control{
+	border-inline-end: 0;
 	gap: var(#{variables.$icon-gap});
 	isolation: isolate;
 
@@ -105,7 +106,7 @@
 		block-size: 100%;
 		border-radius: 6px;
 		box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-		content: "";
+		// content: "";
 		inset-block-start: 0;
 		inset-inline-start: 0;
 		pointer-events: none;
@@ -147,6 +148,7 @@
 }
 
 .indicator {
+	border-inline-start: 0;
 	inline-size: var(#{variables.$inline-size});
 
 	&:focus-visible {
@@ -230,6 +232,11 @@
 	.control:not(.appearance-filled) &,
 	.indicator:not(.appearance-filled) & {
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
+	}
+
+	.control.appearance-outlined &,
+	.indicator.appearance-outlined &{
+		#{focus-variables.$focus-inset}: -1px;
 	}
 }
 
