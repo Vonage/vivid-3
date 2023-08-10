@@ -8,34 +8,6 @@ A split button is a button with two components: a label and an arrow; clicking o
 </script>
 ```
 
-```html preview
-<style>
-  html { /* for demo purposes */
-    block-size: 200px;
-  }
-</style>
-
-<vwc-split-button id="splitButton" appearance="filled" label="A default split button" aria-expanded="true">
-  <vwc-menu id="menu" placement="bottom-end" open>
-    <vwc-menu-item text="Menu item 1"></vwc-menu-item>
-    <vwc-menu-item text="Menu item 2"></vwc-menu-item>
-  </vwc-menu>
-</vwc-split-button>
-
-<script>
-  window.onload = function(){ 
-    menu.anchor = splitButton.indicator;
-    splitButton.action.onclick  = () => {
-      alert("clicked on action"); 
-    };
-    splitButton.indicator.onclick = () => { 
-      menu.open = !menu.open; 
-      splitButton.ariaExpanded = menu.open;
-    };
-  }
-</script>
-```
-
 ## Members
 
 ### Label
@@ -152,6 +124,38 @@ Add the `disabled` attribute to disable the split button.
 | `indicator`  | `HTMLButtonElement` | A read-only HTML button element that represents the right button. |
 
 </div>
+
+## Use Cases
+
+### Split Button with anchored Menu
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 200px;
+  }
+</style>
+
+<vwc-split-button id="splitButton" appearance="filled" label="A default split button" aria-expanded="true">
+  <vwc-menu id="menu" placement="bottom-end" open>
+    <vwc-menu-item text="Menu item 1"></vwc-menu-item>
+    <vwc-menu-item text="Menu item 2"></vwc-menu-item>
+  </vwc-menu>
+</vwc-split-button>
+
+<script>
+  window.onload = function(){ 
+    menu.anchor = splitButton.indicator;
+    splitButton.action.onclick  = () => {
+      alert("clicked on action"); 
+    };
+    splitButton.indicator.onclick = () => { 
+      menu.open = !menu.open; 
+      splitButton.ariaExpanded = menu.open;
+    };
+  }
+</script>
+```
 
 ## Accessibility
 
