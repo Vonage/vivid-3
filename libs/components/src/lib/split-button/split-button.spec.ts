@@ -103,6 +103,21 @@ describe('vwc-split-button', () => {
 		});
 	});
 
+	describe('icon-only', () => {
+		it('sets correct internal icon-only style on control', async () => {
+			const getControlIconOnly = () => element.shadowRoot?.querySelector('.control.icon-only');
+			const controlIconOnlyBefore = getControlIconOnly();
+
+			element.icon = 'home';
+			await elementUpdated(element);
+
+			const controlIconOnlyAfter = getControlIconOnly();
+			expect(controlIconOnlyBefore).toBeNull();
+			expect(controlIconOnlyAfter).toBeInstanceOf(Element);
+		});
+	});
+
+
 	describe('disabled', function () {
 		it('should set disabled class when disabled is true', async () => {
 			const appearance = 'filled';

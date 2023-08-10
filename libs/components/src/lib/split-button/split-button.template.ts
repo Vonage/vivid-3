@@ -16,7 +16,8 @@ const getClasses = ({
 	['disabled', disabled],
 	[`shape-${shape}`, Boolean(shape)],
 	[`appearance-${appearance}`, Boolean(appearance)],
-	[`size-${size}`, Boolean(size)]
+	[`size-${size}`, Boolean(size)],
+
 );
 
 function actionButton(context: ElementDefinitionContext) {
@@ -26,13 +27,13 @@ function actionButton(context: ElementDefinitionContext) {
 	return html<SplitButton>`
 	<button
 		${ref('_action')}
-		class="control ${getClasses}"
+		class="control ${getClasses} ${(x) => !x.label && !!x.icon ? 'icon-only' : ''}"
 		aria-label="${(x) => x.ariaLabel}"
 		?disabled="${(x) => (x.disabled)}"
 		aria-disabled="${(x) => x.disabled}">
 			${() => focusTemplate}
 			${x => affixIconTemplate(x.icon)}
-			${(x) => x.label}
+		<span class="text">${(x) => x.label}</span>
 	</button>
 	`;
 }
@@ -47,7 +48,7 @@ function indicatorButton(context: ElementDefinitionContext) {
 		class="indicator ${getClasses}"
 		?disabled="${(x) => (x.disabled)}"
 		aria-disabled="${(x) => x.disabled}"
-		title="Open for more actions"
+		aria-label="Open for more actions"
 		aria-haspopup="true"
 		aria-expanded="${(x) => x.ariaExpanded}">
 			${() => focusTemplate}
