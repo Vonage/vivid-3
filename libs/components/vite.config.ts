@@ -1,6 +1,8 @@
 /// <reference types="vitest" />
 import * as path from 'path';
 import * as fs from 'fs';
+
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 import { defineConfig } from 'vite';
 
 import viteTsConfigPaths from 'vite-tsconfig-paths';
@@ -35,6 +37,34 @@ export default defineConfig({
 	cacheDir: '../../../node_modules/.vite/components',
 
 	plugins: [
+		viteStaticCopy({
+			targets: [
+				{
+					'src': './api-extractor.json',
+					'dest': '.'
+				},
+				{
+					'src': './.npmignore',
+					'dest': '.'
+				},
+				{
+					'src': './README.md',
+					'dest': '.'
+				},
+				{
+					'src': '../../dist/libs/styles/tokens/**/*.css',
+					'dest': './styles/tokens'
+				},
+				{
+					'src': '../../dist/libs/styles/fonts/**/*.{css,woff,woff2}',
+					'dest': './styles/fonts'
+				},
+				{
+					'src': '../../dist/libs/styles/core/**/*.css',
+					'dest': './styles/core'
+				}
+			]
+		}),
 		dts({
 			entryRoot: 'src',
 			tsConfigFilePath: path.join(__dirname, 'tsconfig.lib.json'),
@@ -71,10 +101,10 @@ export default defineConfig({
 		rollupOptions: {
 			input,
 			output: {
+				format: 'esm',
 				chunkFileNames: 'shared/[name].js',
-				entryFileNames: undefined,
-				format: 'esm'
+				entryFileNames: undefined
 			}
 		},
-	},
+	}
 });
