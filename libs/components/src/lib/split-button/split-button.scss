@@ -98,44 +98,18 @@
 		border-radius: 24px 0 0 24px;
 	}
 
-
-	&::before {
-		position: absolute;
-		z-index: 1;
-		display: block;
-		block-size: 100%;
-		border-radius: 6px;
-		box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-		// content: "";
-		inset-block-start: 0;
-		inset-inline-start: 0;
-		pointer-events: none;
-	}
-
 	/* size */
 	&.size-super-condensed {
 		@include mixins.get-size-properties(#{size.$vvd-size-super-condensed}, #{constants.$vvd-typography-base-condensed-bold}, 4px, 8px);
-		&::before {
-			inline-size: calc(100% + #{size.$vvd-size-super-condensed});
-		}
 	}
 	&.size-condensed {
 		@include mixins.get-size-properties(#{size.$vvd-size-condensed}, #{constants.$vvd-typography-base-condensed-bold}, 8px, 12px);
-		&::before {
-			inline-size: calc(100% + #{size.$vvd-size-extra-condensed});
-		}
 	}
 	&.size-expanded {
 		@include mixins.get-size-properties(#{size.$vvd-size-expanded}, #{constants.$vvd-typography-base-extended-bold}, 10px, 20px);
-		&::before {
-			inline-size: calc(100% + #{size.$vvd-size-semi-expanded});
-		}
 	}
 	&:not(.size-condensed, .size-expanded, .size-super-condensed) {
 		@include mixins.get-size-properties(#{size.$vvd-size-normal}, #{constants.$vvd-typography-base-bold}, 8px, 16px);
-		&::before {
-			inline-size: calc(100% + #{size.$vvd-size-condensed});
-		}
 	}
 
 	.text {
