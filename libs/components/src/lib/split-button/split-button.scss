@@ -1,0 +1,216 @@
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "partials/variables" as variables;
+@use "partials/mixins" as mixins;
+@use "../focus/partials/variables" as focus-variables;
+
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+	$connotations: accent cta,
+	$shades: primary primary-text primary-increment contrast fierce firm soft faint,
+	$default: accent
+);
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+	$appearances: filled outlined ghost,
+	$states: idle hover disabled active,
+	$default: ghost
+);
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+
+:host {
+	display: inline-block;
+}
+
+.base {
+	display: inline-flex;
+	justify-content: flex-start;
+	inline-size: inherit;
+}
+
+
+.control,
+.indicator {
+	@include connotation.connotation(split-button);
+	@include appearance.appearance;
+
+	position: relative;
+	display: inline-flex;
+	box-sizing: border-box;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	border: 1px solid var(#{appearance.get-appearance-token(outline)});
+	margin: 0;
+	background-color: var(#{appearance.get-appearance-token(fill)});
+	block-size: var(#{variables.$block-size});
+	color: var(#{appearance.get-appearance-token(text)});
+	vertical-align: middle;
+
+
+	@supports (user-select: none) {
+		user-select: none;
+	}
+
+}
+
+.control{
+	border-inline-end: 0;
+	gap: var(#{variables.$icon-gap});
+	isolation: isolate;
+
+	&:focus-visible {
+		outline: none;
+	}
+
+	/* Disabled */
+	&:not(:disabled) {
+		cursor: pointer;
+	}
+
+	&:disabled {
+		cursor: not-allowed;
+	}
+
+	&.icon-only {
+		contain: size;
+		place-content: center;
+		@supports (aspect-ratio: 1) {
+			aspect-ratio: 1;
+		}
+		@supports not (aspect-ratio: 1) {
+			inline-size: var(#{variables.$block-size});
+		}
+	}
+
+	&:not(.icon-only) {
+		flex-grow: 1;
+		inline-size: inherit;
+	}
+
+	/* shape */
+	&:not(.shape-pill) {
+		border-radius: 6px 0 0 6px;
+	}
+
+	&.shape-pill {
+		border-radius: 24px 0 0 24px;
+	}
+
+	/* size */
+	&.size-super-condensed {
+		@include mixins.get-size-properties(#{size.$vvd-size-super-condensed}, #{constants.$vvd-typography-base-condensed-bold}, 4px, 8px);
+	}
+	&.size-condensed {
+		@include mixins.get-size-properties(#{size.$vvd-size-condensed}, #{constants.$vvd-typography-base-condensed-bold}, 8px, 12px);
+	}
+	&.size-expanded {
+		@include mixins.get-size-properties(#{size.$vvd-size-expanded}, #{constants.$vvd-typography-base-extended-bold}, 10px, 20px);
+	}
+	&:not(.size-condensed, .size-expanded, .size-super-condensed) {
+		@include mixins.get-size-properties(#{size.$vvd-size-normal}, #{constants.$vvd-typography-base-bold}, 8px, 16px);
+	}
+
+	.text {
+		overflow: hidden;
+		max-inline-size: 100%;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+}
+
+.indicator {
+	border-inline-start: 0;
+	inline-size: var(#{variables.$inline-size});
+
+	&:focus-visible {
+		outline: none;
+	}
+
+	/* Disabled */
+	&:not(:disabled) {
+		cursor: pointer;
+	}
+
+	&:disabled {
+		cursor: not-allowed;
+	}
+
+	/* Shape */
+	&:not(.shape-pill) {
+		border-radius: 0 6px 6px 0;
+	}
+
+	&.shape-pill {
+		border-radius: 0 24px 24px 0;
+	}
+
+	/* size */
+	&::before {
+		position: absolute;
+		background-color: var(#{appearance.get-appearance-token(text)});
+		content: "";
+		inline-size: 1px;
+		inset-inline-start: 0;
+		opacity: 0.35;
+	}
+
+	&:not(.appearance-filled, .appearance-outlined) {
+		&::before {
+			block-size: 50%;
+		}
+	}
+
+	&:is(.appearance-filled, .appearance-outlined){
+		&::before {
+			block-size: 100%;
+		}
+	}
+
+
+	&.size-super-condensed {
+		@include mixins.get-size-properties-indicator(#{size.$vvd-size-super-condensed}, #{constants.$vvd-typography-base-condensed}, #{size.$vvd-size-super-condensed});
+	}
+	&.size-condensed {
+		@include mixins.get-size-properties-indicator(#{size.$vvd-size-condensed}, #{constants.$vvd-typography-base-condensed}, #{size.$vvd-size-extra-condensed});
+	}
+	&.size-expanded {
+		@include mixins.get-size-properties-indicator(#{size.$vvd-size-expanded}, #{constants.$vvd-typography-base-extended}, #{size.$vvd-size-normal});
+	}
+	&:not(.size-condensed, .size-expanded, .size-super-condensed) {
+		@include mixins.get-size-properties-indicator(#{size.$vvd-size-normal}, #{constants.$vvd-typography-base-extended}, #{size.$vvd-size-condensed});
+	}
+}
+
+/* Icon */
+.icon {
+	line-height: 1;
+
+	.icon-trailing & {
+		order: 1;
+	}
+
+	.control > & {
+		font-size: calc(var(#{variables.$block-size}) / 2);
+	}
+}
+
+/* Focus */
+.focus-indicator {
+	:not(:focus-visible) > & {
+		display: none;
+	}
+
+	.control:not(.appearance-filled) &,
+	.indicator:not(.appearance-filled) & {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+	}
+
+	.control.appearance-outlined &,
+	.indicator.appearance-outlined &{
+		#{focus-variables.$focus-inset}: -1px;
+	}
+}
+
