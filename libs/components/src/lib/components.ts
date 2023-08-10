@@ -37,6 +37,7 @@ export * from './radio-group/definition';
 export * from './select/definition';
 export * from './side-drawer/definition';
 export * from './slider/definition';
+export * from './split-button/definition';
 export * from './switch/definition';
 export * from './text-field/definition';
 export * from './text-area/definition';

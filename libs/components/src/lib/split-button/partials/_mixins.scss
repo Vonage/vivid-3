@@ -1,0 +1,20 @@
+@use "variables" as variables;
+
+
+@mixin get-size-properties($block-size, $font-face, $icon-gap, $padding-inline) {
+	#{variables.$block-size}: $block-size;
+
+	font: var(#{$font-face});
+	&:not(.icon-only) {
+		#{variables.$icon-gap}: $icon-gap;
+
+		padding-inline: $padding-inline;
+	}
+}
+
+@mixin get-size-properties-indicator($block-size, $font-face,$inline-size) {
+	#{variables.$block-size}: $block-size;
+	#{variables.$inline-size}: $inline-size;
+
+	font: var(#{$font-face});
+}
