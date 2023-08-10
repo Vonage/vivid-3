@@ -46,7 +46,6 @@
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	block-size: var(#{variables.$block-size});
 	color: var(#{appearance.get-appearance-token(text)});
-	gap: var(#{variables.$icon-gap});
 	vertical-align: middle;
 
 
@@ -57,7 +56,9 @@
 }
 
 .control{
+	gap: var(#{variables.$icon-gap});
 	isolation: isolate;
+
 	&:focus-visible {
 		outline: none;
 	}
@@ -87,6 +88,7 @@
 		inline-size: inherit;
 	}
 
+	/* shape */
 	&:not(.shape-pill) {
 		border-radius: 6px 0 0 6px;
 	}
@@ -109,6 +111,7 @@
 		pointer-events: none;
 	}
 
+	/* size */
 	&.size-super-condensed {
 		@include mixins.get-size-properties(#{size.$vvd-size-super-condensed}, #{constants.$vvd-typography-base-condensed-bold}, 4px, 8px);
 		&::before {
@@ -144,7 +147,7 @@
 }
 
 .indicator {
-	inline-size: calc(var(#{variables.$inline-size}) + 1px);
+	inline-size: var(#{variables.$inline-size});
 
 	&:focus-visible {
 		outline: none;
@@ -168,6 +171,7 @@
 		border-radius: 0 24px 24px 0;
 	}
 
+	/* size */
 	&::before {
 		position: absolute;
 		background-color: var(#{appearance.get-appearance-token(text)});
