@@ -70,4 +70,14 @@ describe('vwc-nav-item', () => {
 			expect(element.shadowRoot?.querySelector('slot[name=meta]')).toBeTruthy();
 		});
 	});
+
+	describe('aria-current', function () {
+		it('should set aria-current on the nav-item if set', async () => {
+			const ariaCurrent = 'page';
+			element.ariaCurrent = ariaCurrent;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-current'))
+				.toEqual(ariaCurrent);
+		});
+	});
 });

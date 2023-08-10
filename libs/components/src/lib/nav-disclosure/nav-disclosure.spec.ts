@@ -24,6 +24,7 @@ describe('vwc-nav-disclosure', () => {
 			expect(element.label).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
 			expect(element.open).toBeFalsy();
+			expect(element.ariaCurrent).toBeFalsy();
 		});
 	});
 
@@ -91,6 +92,23 @@ describe('vwc-nav-disclosure', () => {
 	describe('meta slot', () => {
 		it('should have meta slot', async () => {
 			expect(element.shadowRoot?.querySelector('slot[name="meta"]')).toBeTruthy();
+		});
+	});
+
+	describe('aria-current', function () {
+		it('should not set aria-current on the nav-disclosure if opened', async function () {
+			const ariaCurrent = 'true';
+			element.open = true;
+			element.ariaCurrent = ariaCurrent;
+			await elementUpdated(element);
+			expect(getControlElement(element).getAttribute('aria-current')).toBeNull();
+		});
+
+		it('should set aria-current on the nav-disclosure if closed', async function () {
+			const ariaCurrent = 'true';
+			element.setAttribute('aria-current', ariaCurrent);
+			await elementUpdated(element);
+			expect(getControlElement(element).getAttribute('aria-current')).not.toBeNull();
 		});
 	});
 });
