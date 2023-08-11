@@ -47,6 +47,7 @@ const enGB: Locale = {
 		firstDayOfWeek: 1,
 		dateFormat: 'dd/MM/yyyy',
 		dateFormatPlaceholder: 'DD/MM/YYYY',
+		chooseDateLabel: 'Choose date',
 		prevYearLabel: 'Previous year',
 		prevMonthLabel: 'Previous month',
 		nextMonthLabel: 'Next month',

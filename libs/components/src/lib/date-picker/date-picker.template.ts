@@ -47,6 +47,7 @@ function renderDialogHeader(context: ElementDefinitionContext) {
 
 		<div class="title">
 			<button
+				id="grid-label"
 				class="title-action"
 				aria-live="polite"
 				@click="${(x) => x.onTitleActionClick()}"
@@ -96,7 +97,11 @@ function renderDialogHeader(context: ElementDefinitionContext) {
 function renderCalendarGrid(context: ElementDefinitionContext) {
 	const focusTemplate = focusTemplateFactory(context);
 
-	return html<DatePicker>`<div class="calendar" role="grid">
+	return html<DatePicker>`<div
+		class="calendar"
+		role="grid"
+		aria-labelledby="grid-label"
+	>
 		<div class="calendar-weekdays" role="row">
 			${repeat(
 		(x) => x.calendarGrid.weekdays,
@@ -151,7 +156,11 @@ function renderCalendarGrid(context: ElementDefinitionContext) {
 function renderMonthPickerGrid(context: ElementDefinitionContext) {
 	const focusTemplate = focusTemplateFactory(context);
 
-	return html<DatePicker>` <div class="month-grid" role="grid">
+	return html<DatePicker>` <div
+		class="month-grid"
+		role="grid"
+		aria-labelledby="grid-label"
+	>
 		${repeat(
 		(x) => x.monthPickerGrid,
 		html<MonthPickerGridCell[]>`
@@ -246,7 +255,10 @@ export const DatePickerTemplate: (
 					anchor="text-field"
 					placement="bottom-start"
 					class="popup">
-			<div class="dialog" ${ref('dialogEl')}>
+			<div class="dialog" role="dialog" ${ref(
+		'dialogEl'
+	)} aria-modal="true" aria-label="${(x) =>
+	x.locale.datePicker.chooseDateLabel}">
 				${renderDialogHeader(context)}
 				${when(
 		(x) => x.inMonthPicker,

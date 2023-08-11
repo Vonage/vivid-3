@@ -47,6 +47,7 @@ const enUS: Locale = {
 		firstDayOfWeek: 0,
 		dateFormat: 'MM/dd/yyyy',
 		dateFormatPlaceholder: 'MM/DD/YYYY',
+		chooseDateLabel: 'Choose date',
 		prevYearLabel: 'Previous year',
 		prevMonthLabel: 'Previous month',
 		nextMonthLabel: 'Next month',

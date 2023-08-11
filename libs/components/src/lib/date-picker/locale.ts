@@ -10,6 +10,7 @@ export interface DatePickerLocale {
 	firstDayOfWeek: number;
 	dateFormat: string;
 	dateFormatPlaceholder: string;
+	chooseDateLabel: string;
 	prevYearLabel: string;
 	prevMonthLabel: string;
 	nextMonthLabel: string;

@@ -47,6 +47,7 @@ const zhCN: Locale = {
 		firstDayOfWeek: 1,
 		dateFormat: 'yyyy年MM月dd日',
 		dateFormatPlaceholder: 'YYYY年MM月DD日',
+		chooseDateLabel: '选择日期',
 		prevYearLabel: '上一年',
 		prevMonthLabel: '上个月',
 		nextMonthLabel: '下个月',
