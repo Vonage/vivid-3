@@ -16,9 +16,9 @@ jest.mock('./calendar/month.ts', () => ({
 	getCurrentMonth: jest.fn().mockReturnValue({ month: 7, year: 2023 }),
 }));
 
-jest.mock('./calendar/calendarGrid.ts', () => ({
-	...jest.requireActual('./calendar/calendarGrid.ts'),
-	currentDateStr: jest.fn().mockReturnValue('2023-07-10'),
+jest.mock('./calendar/dateStr.ts', () => ({
+	...jest.requireActual('./calendar/dateStr.ts'),
+	currentDateStr: jest.fn().mockReturnValue('2023-08-10'),
 }));
 
 describe('vwc-date-picker', () => {
