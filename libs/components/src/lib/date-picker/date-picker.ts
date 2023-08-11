@@ -77,7 +77,19 @@ export class DatePicker extends FoundationElement {
 				validatedValue,
 				this.locale.datePicker
 			);
+		} else {
+			this.presentationValue = '';
 		}
+	}
+
+	#updateValueDueToUserInteraction(newValue: DateStr | undefined) {
+		this.value = newValue;
+		if (this.selectedDate !== null) {
+			// Ensure we are switched to the month of the new selected date
+			this.selectedMonth = monthOfDate(this.selectedDate);
+		}
+		this.$emit('change');
+		this.$emit('input');
 	}
 
 	/**
@@ -281,14 +293,13 @@ export class DatePicker extends FoundationElement {
 	 */
 	onTextFieldChange() {
 		if (this.presentationValue === '') {
-			this.value = undefined;
+			this.#updateValueDueToUserInteraction(undefined);
 			return;
 		}
 
 		try {
-			this.value = parsePresentationDate(
-				this.presentationValue,
-				this.locale.datePicker
+			this.#updateValueDueToUserInteraction(
+				parsePresentationDate(this.presentationValue, this.locale.datePicker)
 			);
 		} catch (_) {
 			this.internalValidationError = this.locale.datePicker.invalidDateError;
@@ -379,8 +390,7 @@ export class DatePicker extends FoundationElement {
 	 * @internal
 	 */
 	onDateClick(date: DateStr) {
-		this.value = date;
-		this.selectedMonth = monthOfDate(date);
+		this.#updateValueDueToUserInteraction(date);
 		this.#closePopup();
 	}
 
@@ -578,8 +588,7 @@ export class DatePicker extends FoundationElement {
 	 * @internal
 	 */
 	onClearClick() {
-		this.value = undefined;
-		this.presentationValue = '';
+		this.#updateValueDueToUserInteraction(undefined);
 		this.#closePopup();
 	}
 }

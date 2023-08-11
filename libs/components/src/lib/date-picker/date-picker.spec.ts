@@ -105,6 +105,15 @@ describe('vwc-date-picker', () => {
 
 			expect(textField.errorText).toBe('errorText');
 		});
+
+		it('should have a higher priority than an internal validation error', async () => {
+			element.errorText = 'errorText';
+			await elementUpdated(element);
+
+			typeIntoTextField('x');
+
+			expect(textField.errorText).toBe('errorText');
+		});
 	});
 
 	describe('value', () => {
@@ -135,6 +144,16 @@ describe('vwc-date-picker', () => {
 
 			expect(element.value).toBeFalsy();
 		});
+
+		it('should clear the text field when value is set to empty string', async () => {
+			element.value = '2021-01-21';
+			await elementUpdated(element);
+
+			element.value = '';
+			await elementUpdated(element);
+
+			expect(textField.currentValue).toBe('');
+		});
 	});
 
 	describe('disabled', () => {
@@ -152,6 +171,28 @@ describe('vwc-date-picker', () => {
 			await elementUpdated(element);
 
 			expect(textField.readOnly).toBe(true);
+		});
+	});
+
+	describe.each(['input', 'change'])('%s event', (eventName) => {
+		it('should be fired when a user enters a valid date into the text field', async () => {
+			const spy = jest.fn();
+			element.addEventListener(eventName, spy);
+
+			typeIntoTextField('01/21/2021');
+			await elementUpdated(element);
+
+			expect(spy).toHaveBeenCalledTimes(1);
+		});
+
+		it('should be fired when a user clicks on a date in the calendar', async () => {
+			const spy = jest.fn();
+			element.addEventListener(eventName, spy);
+			await openPopup();
+
+			getDateButton('2023-08-01').click();
+
+			expect(spy).toHaveBeenCalledTimes(1);
 		});
 	});
 
@@ -217,6 +258,13 @@ describe('vwc-date-picker', () => {
 
 		it('should initially show the current month', () => {
 			expect(getDialogTitle()).toBe('August 2023');
+		});
+
+		it('should update current month to the month of the selected date when the user enters a new date', async () => {
+			typeIntoTextField('01/21/2021');
+			await elementUpdated(element);
+
+			expect(getDialogTitle()).toBe('January 2021');
 		});
 
 		it('should highlight the current date', () => {
