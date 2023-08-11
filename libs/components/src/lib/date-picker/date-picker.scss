@@ -114,16 +114,15 @@
 		inline-size: 28px;
 		margin-inline: 6px;
 
+		/* stylelint-disable-next-line no-descending-specificity */
+		.focus-indicator {
+			color: var(#{constants.$vvd-color-canvas-text});
+		}
 		&:focus-visible {
 			outline: none;
 		}
-
 		&:not(:focus-visible) .focus-indicator {
 			display: none;
-		}
-
-		.focus-indicator {
-			color: var(#{constants.$vvd-color-canvas-text});
 		}
 
 		// Focus ring should appear on outside, otherwise there is not enough space
@@ -183,14 +182,15 @@
 		inline-size: 48px;
 		text-transform: uppercase;
 
+		/* stylelint-disable-next-line no-descending-specificity */
+		.focus-indicator {
+			color: var(#{constants.$vvd-color-canvas-text});
+		}
 		&:focus-visible {
 			outline: none;
 		}
 		&:not(:focus-visible) .focus-indicator {
 			display: none;
-		}
-		.focus-indicator {
-			color: var(#{constants.$vvd-color-canvas-text});
 		}
 
 		&:hover {

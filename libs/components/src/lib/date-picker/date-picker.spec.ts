@@ -1,11 +1,11 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { TextField } from '../text-field/text-field';
+import { Popup } from '../popup/popup';
+import { Button } from '../button/button';
 import { DatePicker } from './date-picker';
 import { datePickerDefinition } from './definition';
 import '.';
-import { TextField } from '../text-field/text-field.ts';
-import { Popup } from '../popup/popup.ts';
-import { Button } from '../button/button.ts';
 
 const COMPONENT_TAG = 'vwc-date-picker';
 

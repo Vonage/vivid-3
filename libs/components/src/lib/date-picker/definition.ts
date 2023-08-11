@@ -1,10 +1,10 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { buttonRegistries, textFieldRegistries } from '@vonage/vivid';
 import { registerFactory } from '../../shared/design-system';
 import { popupRegistries } from '../popup/definition';
 import { focusRegistries } from '../focus/definition';
+import { buttonRegistries } from '../button/definition';
+import { textFieldRegistries } from '../text-field/definition';
 import styles from './date-picker.scss';
-
 import { DatePicker } from './date-picker';
 import { DatePickerTemplate as template } from './date-picker.template';
 
