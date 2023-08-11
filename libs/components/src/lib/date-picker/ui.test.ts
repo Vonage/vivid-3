@@ -1,27 +1,52 @@
-import * as path from 'path';
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import {
-	extractHTMLBlocksFromReadme,
 	loadComponents,
 	loadTemplate,
+	useFakeTime,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['date-picker'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template = extractHTMLBlocksFromReadme(
-		path.join(new URL('.', import.meta.url).pathname, 'README.md')
-	).reduce(
-		(htmlString: string, block: string) =>
-			`${htmlString} <div style="margin: 5px;">${block}</div>`,
-		''
-	);
+	const template = `
+	<style>
+		.space-for-popup {
+			height: 450px;
+			width: 380px;
+		}
+		.layout {
+			display: flex;
+		}
+		.grid {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+		}
+	</style>
+	<div class="layout">
+		<div class="space-for-popup">
+			<vwc-date-picker id="date-picker"></vwc-date-picker>
+		</div>
+		<div class="space-for-popup">
+			<vwc-date-picker id="month-picker"></vwc-date-picker>
+		</div>
+		<div class="grid">
+			<vwc-date-picker label="Label"></vwc-date-picker>
+			<vwc-date-picker helper-text="Helper text"></vwc-date-picker>
+			<vwc-date-picker error-text="Error text"></vwc-date-picker>
+			<vwc-date-picker value="2011-11-11"></vwc-date-picker>
+		</div>
+	</div>`;
+
+	await useFakeTime(page, new Date('August 11 2023 11:11:11').valueOf());
+	page.setViewportSize({ width: 1000, height: 500 });
 
 	await loadComponents({
 		page,
 		components,
 	});
+
 	await loadTemplate({
 		page,
 		template,
@@ -30,6 +55,17 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const testWrapper = await page.$('#wrapper');
 
 	await page.waitForLoadState('networkidle');
+
+	await page.locator('#date-picker').click();
+
+	await page.evaluate(() => {
+		const datePicker = document.querySelector('#month-picker') as any;
+		datePicker.addEventListener('click', (e) => e.stopPropagation());
+	});
+
+	await page.locator('#month-picker').click();
+
+	await page.locator('#month-picker .title-action').click();
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/date-picker.png'
