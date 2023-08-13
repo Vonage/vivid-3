@@ -1,5 +1,4 @@
-const BASE_URL = 'https://icon.resources.vonage.com'; // namespaced as 3f7739a0-a898-4f69-a82b-ad9d743170b6 on icons.resources.vonage.com
-const ICON_SET_VERSION = '4.2.3';
+import { ICONS_BASE_URL as BASE_URL, ICONS_VERSION as ICON_SET_VERSION } from '../../../../dist/libs/consts';
 
 const NUM_TO_SHOW = 21;
 
@@ -142,3 +141,8 @@ function filterIconsByTag(iconsArray) {
   }
   return iconsArrayAfterFilter;
 }
+
+window.showMore = showMore;
+window.onClickFilter = onClickFilter;
+
+
