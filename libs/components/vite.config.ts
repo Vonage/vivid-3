@@ -8,7 +8,6 @@ import { defineConfig } from 'vite';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
 import dts from 'vite-plugin-dts';
 
-
 function getFoldersInAFolder(workingFolder = './src/lib/') {
 	const folders = [];
 	const testsFolder = path.join(__dirname, workingFolder);
@@ -84,15 +83,10 @@ export default defineConfig({
 	 ],
 	},
 
-	// Configuration for building your library.
-	// See: https://vitejs.dev/guide/build.html#library-mode
 	build: {
 		lib: {
-			// Could also be a dictionary or array of multiple entry points.
 			entry: input,
 			name: 'components',
-			// Change this to the formats you want to support.
-			// Don't forget to update your package.json as well.
 			formats: ['es'],
 		},
 		minify: false,

@@ -72,36 +72,11 @@
 			}
 		},
 		"serve": {
-			"executor": "@nrwl/web:rollup",
+			"executor": "@nrwl/vite:build",
 			"outputs": ["{options.outputPath}"],
 			"options": {
-				"entryFile": "libs/components/src/index.ts",
 				"outputPath": "dist/libs/components",
-				"tsConfig": "libs/components/tsconfig.lib.json",
-				"project": "libs/components/package.json",
-				"rollupConfig": "libs/components/rollup.config.prod.ts",
-				"watch": true,
-				"buildableProjectDepsInPackageJsonType": "dependencies",
-				"updateBuildableProjectDepsInPackageJson": true,
-				"assets": [
-					{
-						"input": "./libs/components",
-						"glob": "README.md",
-						"output": "."
-					},
-					{
-						"input": "./dist/libs/styles/themes/**",
-						"glob": "*.css",
-						"output": "./styles/themes"
-					},
-					{
-						"input": "./dist/libs/styles/fonts/**",
-						"glob": "*.css",
-						"output": "./styles/fonts"
-					}
-				],
-				"format": ["esm"],
-				"extractCss": false
+				"watch": true
 			}
 		},
 		"stylelint": {
