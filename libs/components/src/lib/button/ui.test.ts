@@ -14,6 +14,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-button appearance='filled' label='A default button'></vwc-button>
 	</div>
 	<div style="margin: 5px;">
+		<vwc-button appearance='filled' label='A default button' id="focused"></vwc-button>
+	</div>
+	<div style="margin: 5px;">
 		<vwc-button label='ghost' appearance='ghost'></vwc-button>
 		<vwc-button label='filled' appearance='filled'></vwc-button>
 		<vwc-button label='outlined' appearance='outlined'></vwc-button>
@@ -131,6 +134,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			if (indicator) indicator.value = 66;
 		});
 	});
+
+	await page.locator('#focused').focus();
 
 	await page.waitForLoadState('networkidle');
 

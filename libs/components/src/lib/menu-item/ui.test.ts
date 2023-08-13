@@ -29,6 +29,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-divider></vwc-divider>
 				<vwc-menu-item role="menuitemcheckbox" text="Checkbox 1" checked></vwc-menu-item>
 				<vwc-menu-item role="menuitemcheckbox" text="Checkbox 2"></vwc-menu-item>
+				<vwc-menu-item id="focused" role="menuitemcheckbox" text="Checkbox 3"></vwc-menu-item>
 				<vwc-divider></vwc-divider>
 				<vwc-menu-item role="menuitemradio" text="Radio 1.1"></vwc-menu-item>
 				<vwc-menu-item role="menuitemradio" text="Radio 1.2" checked></vwc-menu-item>
@@ -72,6 +73,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	});
 
 	const testWrapper = await page.$('#wrapper');
+
+	await page.locator('#focused').focus();
 
 	await page.waitForLoadState('networkidle');
 
