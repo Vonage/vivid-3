@@ -147,4 +147,3 @@ export class DataGrid extends FoundationDataGrid {
 		});
 	}
 }
-

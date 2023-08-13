@@ -4,6 +4,44 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.29.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.28.2...vivid-v3.29.0) (2023-08-09)
+
+
+### Features
+
+* **menu:** add non-bubbling open and close events (VIV-1258) ([#1320](https://github.com/Vonage/vivid-3/issues/1320)) ([043713c](https://github.com/Vonage/vivid-3/commit/043713ced6cb2241bfafc7ae228d614a853ce55e))
+
+
+### Bug Fixes
+
+* **menu:** add slot annotations (VIV-000) ([#1317](https://github.com/Vonage/vivid-3/issues/1317)) ([29c6bd3](https://github.com/Vonage/vivid-3/commit/29c6bd3f97ab1bbcb38adbad1141341c79855699))
+
+## [3.28.2](https://github.com/Vonage/vivid-3/compare/vivid-v3.28.1...vivid-v3.28.2) (2023-08-07)
+
+
+### Bug Fixes
+
+* **cd:** add postinstall to the build process (VIV-000) ([#1315](https://github.com/Vonage/vivid-3/issues/1315)) ([59ddc63](https://github.com/Vonage/vivid-3/commit/59ddc63920433a4116d011005040ae67252439a0))
+
+## [3.28.1](https://github.com/Vonage/vivid-3/compare/vivid-v3.28.0...vivid-v3.28.1) (2023-08-07)
+
+
+### Bug Fixes
+
+* **menu-item:** add meta slot annotation (VIV-000) ([#1298](https://github.com/Vonage/vivid-3/issues/1298)) ([7c9342c](https://github.com/Vonage/vivid-3/commit/7c9342c40b3cefd69f3cf48205fb855836654798))
+
+## [3.28.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.27.0...vivid-v3.28.0) (2023-08-07)
+
+
+### Features
+
+* **data-grid:** custom columns widths (VIV-1252) ([#1312](https://github.com/Vonage/vivid-3/issues/1312)) ([0b0bfa9](https://github.com/Vonage/vivid-3/commit/0b0bfa979a43fae8dbc2abd62c9bc4af6cdd8771))
+
+
+### Bug Fixes
+
+* **menu:** HTMLelement anchor support and fix on first time added (VIV-1245) (VIV-1246) ([#1293](https://github.com/Vonage/vivid-3/issues/1293)) ([5bb206f](https://github.com/Vonage/vivid-3/commit/5bb206f0952ae9f72c0c4eaf15aa65786b75f3a2))
+
 ## [3.27.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.26.0...vivid-v3.27.0) (2023-08-02)
 
 

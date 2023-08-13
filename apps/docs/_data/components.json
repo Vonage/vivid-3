@@ -474,5 +474,15 @@
 			"/assets/modules/components/text-field/index.js",
 			"/assets/modules/components/layout/index.js"
 		]
+	},
+	{
+		"title": "split-button",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/split-button/README.md",
+		"modules": [
+			"/assets/modules/components/split-button/index.js",
+			"/assets/modules/components/menu/index.js",
+			"/assets/modules/components/menu-item/index.js"
+		]
 	}
 ]
