@@ -431,6 +431,16 @@ describe('vwc-date-picker', () => {
 
 			expect(getDialogTitle()).toBe('July 2023');
 		});
+
+		it('should not prevent default when pressing any other key', async () => {
+			getDateButton('2023-08-01').focus();
+
+			const event = new KeyboardEvent('keydown', { key: 'a', bubbles: true });
+			event.preventDefault = jest.fn();
+			getDateButton('2023-08-01').dispatchEvent(event);
+
+			expect(event.preventDefault).not.toHaveBeenCalled();
+		});
 	});
 
 	describe('month picker', () => {
@@ -515,6 +525,16 @@ describe('vwc-date-picker', () => {
 			await elementUpdated(element);
 
 			expect(getDialogTitle()).toBe('2022');
+		});
+
+		it('should not prevent default when pressing any other key', async () => {
+			getMonthButton('2023-1').focus();
+
+			const event = new KeyboardEvent('keydown', { key: 'a', bubbles: true });
+			event.preventDefault = jest.fn();
+			getMonthButton('2023-1').dispatchEvent(event);
+
+			expect(event.preventDefault).not.toHaveBeenCalled();
 		});
 	});
 
