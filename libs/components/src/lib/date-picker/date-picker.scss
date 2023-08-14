@@ -1,13 +1,13 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent,
-	$shades: primary faint soft dim,
+	$shades: primary faint soft dim pale,
 	$default: accent,
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: listitem,
-	$states: idle hover active selected,
+	$states: idle hover active selected selectedAndHover,
 	$default: listitem,
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
@@ -92,10 +92,10 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
+		aspect-ratio: 1/1;
 		block-size: 28px;
 		border-radius: 50%;
 		font: var(#{constants.$vvd-typography-base});
-		inline-size: 28px;
 		margin-inline: 6px;
 
 		// Focus ring should appear on outside, otherwise there is not enough space
@@ -126,10 +126,10 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
+		aspect-ratio: 1/1;
 		block-size: 48px;
 		border-radius: 50%;
 		font: var(#{constants.$vvd-typography-base-extended});
-		inline-size: 48px;
 		text-transform: uppercase;
 	}
 }
