@@ -33,7 +33,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	const testWrapper = await page.$('#wrapper');
 
-	await page.locator('vwc-breadcrumb-item').nth(0).focus();
+	await page.keyboard.press('Tab');
 
 	await page.waitForLoadState('networkidle');
 
