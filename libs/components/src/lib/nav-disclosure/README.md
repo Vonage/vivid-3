@@ -73,8 +73,8 @@ If label is not applied.
 
 ### Aria Current
 
-- Type: `boolean`
-- Default: `false`
+- Type: `string` | `undefined`
+- Default: `undefined`
 
 Within a set of pagination links, set a nav disclosure `aria-current` value to `"true"` to indicate the currently active disclosure.   
 Only when the navigation disclosure is closed the `aria-current` will be set.
