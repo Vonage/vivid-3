@@ -1,8 +1,10 @@
-import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
-import {Size} from '@vonage/vivid';
-import type {Button} from '../button/button';
-import {Pagination, PaginationSize} from './pagination';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import type { Button } from '../button/button';
+import { Shape, Size } from '../enums';
+import { Pagination, PaginationShape, PaginationSize } from './pagination';
 import '.';
+import { paginationDefinition } from './definition';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 const COMPONENT_TAG = 'vwc-pagination';
 
@@ -23,6 +25,12 @@ describe('vwc-pagination', () => {
 	describe('basic', () => {
 		it('should be initialized as a vwc-pagination', async () => {
 			expect(element).toBeInstanceOf(Pagination);
+			expect(paginationDefinition()).toBeInstanceOf(FoundationElementRegistry);
+			expect(element.navIcons).toBeFalsy();
+			expect(element.total).toEqual(0);
+			expect(element.selectedIndex).toBeFalsy();
+			expect(element.shape).toBeUndefined();
+			expect(element.size).toBeUndefined();
 		});
 	});
 
@@ -159,7 +167,7 @@ describe('vwc-pagination', () => {
 		});
 	});
 
-	describe('navIcons', function() {
+	describe('navIcons', function () {
 		let prevButton: Button | undefined | null;
 		let nextButton: Button | undefined | null;
 
@@ -262,7 +270,7 @@ describe('vwc-pagination', () => {
 	describe('click events', function () {
 		let buttons: NodeListOf<Element> | undefined;
 
-		function setEventListeners(status: { clicked: boolean; event?: Event;}) {
+		function setEventListeners(status: { clicked: boolean; event?: Event; }) {
 			element.addEventListener('pagination-change', (e) => {
 				status.clicked = true;
 				status.event = e;
@@ -277,7 +285,7 @@ describe('vwc-pagination', () => {
 		});
 
 		it('should change selectedIndex when clicking a valid button', async function () {
-			const status = {clicked: false};
+			const status = { clicked: false };
 			setEventListeners(status);
 			const button = buttons?.item(2);
 			button?.dispatchEvent(new MouseEvent('click'));
@@ -285,7 +293,7 @@ describe('vwc-pagination', () => {
 		});
 
 		it('should leave selectedIndex as is when clicking the "..." button', async function () {
-			const status = {clicked: false};
+			const status = { clicked: false };
 			setEventListeners(status);
 			element.selectedIndex = 2;
 			const dots = getControlElement(element).querySelector('.dots');
@@ -294,16 +302,16 @@ describe('vwc-pagination', () => {
 		});
 
 		it('should fire the "change" event with the selectedIndex, total and oldIndex', async function () {
-			const status = {clicked: false, event: new Event('test')};
+			const status = { clicked: false, event: new Event('test') };
 			setEventListeners(status);
 			const button = buttons?.item(2);
 			button?.dispatchEvent(new MouseEvent('click'));
 			expect(status.clicked).toEqual(true);
-			expect((status.event as MouseEvent).detail).toEqual({selectedIndex: 2, total: 20, oldIndex: 0});
+			expect((status.event as MouseEvent).detail).toEqual({ selectedIndex: 2, total: 20, oldIndex: 0 });
 		});
 
 		it('should prevent "change" event when selected button is clicked', async function () {
-			const status = {clicked: false, event: new Event('test')};
+			const status = { clicked: false, event: new Event('test') };
 			element.selectedIndex = 1;
 			await elementUpdated(element);
 			setEventListeners(status);
@@ -313,7 +321,7 @@ describe('vwc-pagination', () => {
 		});
 
 		it('should prevent change event when "..." is clicked', async () => {
-			const status = {clicked: false, event: new Event('test')};
+			const status = { clicked: false, event: new Event('test') };
 			setEventListeners(status);
 			const dots = getControlElement(element).querySelector('.dots');
 			dots?.dispatchEvent(new MouseEvent('click'));
@@ -321,7 +329,7 @@ describe('vwc-pagination', () => {
 		});
 
 		it('should prevent change event on init', async () => {
-			const status = {clicked: false, event: new Event('test')};
+			const status = { clicked: false, event: new Event('test') };
 			setEventListeners(status);
 			(element as any).selectedIndexChanged(undefined);
 			expect(status.clicked).toEqual(false);
@@ -341,14 +349,14 @@ describe('vwc-pagination', () => {
 
 		it('should select tag on spacebar', async function () {
 			const button = getButtons(element)[3];
-			const event = new KeyboardEvent('keydown', {key: ' ', bubbles: true, composed: true});
+			const event = new KeyboardEvent('keydown', { key: ' ', bubbles: true, composed: true });
 			button?.dispatchEvent(event);
 			expect(element.selectedIndex).toEqual(3);
 		});
 
 		it('should select tag on Enter', async function () {
 			const button = getButtons(element)[1];
-			const event = new KeyboardEvent('keydown', {key: 'Enter', bubbles: true, composed: true});
+			const event = new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, composed: true });
 			button?.dispatchEvent(event);
 			expect(element.selectedIndex).toEqual(1);
 		});
@@ -357,7 +365,7 @@ describe('vwc-pagination', () => {
 			const buttons = getButtons(element);
 			const button = buttons[1];
 			button.focus();
-			const event = new KeyboardEvent('keydown', {key: 'Tab', bubbles: true, composed: true});
+			const event = new KeyboardEvent('keydown', { key: 'Tab', bubbles: true, composed: true });
 			button.dispatchEvent(event);
 			expect((element.shadowRoot?.activeElement as any).label).toEqual(buttons[2].label);
 		});
@@ -366,7 +374,7 @@ describe('vwc-pagination', () => {
 			const buttons = getButtons(element);
 			const button = buttons[1];
 			button.focus();
-			const event = new KeyboardEvent('keydown', {key: 'Tab', shiftKey: true, bubbles: true, composed: true});
+			const event = new KeyboardEvent('keydown', { key: 'Tab', shiftKey: true, bubbles: true, composed: true });
 			button.dispatchEvent(event);
 			expect((element.shadowRoot?.activeElement as any).label).toEqual(buttons[0].label);
 		});
@@ -378,7 +386,7 @@ describe('vwc-pagination', () => {
 			const buttons = getButtons(element);
 			const button = buttons[0];
 			button.focus();
-			const event = new KeyboardEvent('keydown', {key: 'Tab', shiftKey: true, bubbles: true, composed: true});
+			const event = new KeyboardEvent('keydown', { key: 'Tab', shiftKey: true, bubbles: true, composed: true });
 			button.dispatchEvent(event);
 			expect((element.shadowRoot?.activeElement as any).label).toEqual(prevButton?.label);
 		});
@@ -388,7 +396,7 @@ describe('vwc-pagination', () => {
 			const buttons = getButtons(element);
 			const button = buttons[5];
 			button.focus();
-			const event = new KeyboardEvent('keydown', {key: 'Tab', bubbles: true, composed: true});
+			const event = new KeyboardEvent('keydown', { key: 'Tab', bubbles: true, composed: true });
 			button.dispatchEvent(event);
 			expect((element.shadowRoot?.activeElement as any).label).toEqual(nextButton?.label);
 		});
@@ -460,6 +468,42 @@ describe('vwc-pagination', () => {
 				return correct && button.size === Size.SuperCondensed;
 			}, true);
 			expect(allButtonsCondensed).toEqual(true);
+		});
+	});
+
+	describe('shape', function () {
+		it('should set shape rounded of all buttons by default', async function () {
+			element.total = 20;
+			await elementUpdated(element);
+			const allButtons = Array.from(element.shadowRoot?.querySelectorAll('vwc-button') as unknown as Button[]);
+			const allButtonsRounded = allButtons?.reduce((correct, button) => {
+				return correct && button.shape === Shape.Rounded;
+			}, true);
+			expect(allButtonsRounded).toEqual(true);
+		});
+
+		it('should change all buttons shapes', async function () {
+			element.total = 20;
+			await elementUpdated(element);
+			element.shape = Shape.Pill;
+			await elementUpdated(element);
+			const allButtons = Array.from(element.shadowRoot?.querySelectorAll('vwc-button') as unknown as Button[]);
+			const allButtonsPill = allButtons?.reduce((correct, button) => {
+				return correct && button.shape === Shape.Pill;
+			}, true);
+			expect(allButtonsPill).toEqual(true);
+		});
+
+		it('should revert to rounded if set to invalid shape', async function () {
+			element.total = 20;
+			await elementUpdated(element);
+			element.shape = 'invalid-shape' as PaginationShape;
+			await elementUpdated(element);
+			const allButtons = Array.from(element.shadowRoot?.querySelectorAll('vwc-button') as unknown as Button[]);
+			const allButtonsRounded = allButtons?.reduce((correct, button) => {
+				return correct && button.shape === Shape.Rounded;
+			}, true);
+			expect(allButtonsRounded).toEqual(true);
 		});
 	});
 });
