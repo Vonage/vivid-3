@@ -8,7 +8,7 @@ import {
 import type { Button } from './button';
 
 const components = ['button'];
-test.only('should show the component', async ({ page }: { page: Page }) => {
+test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 	<div style="margin: 5px;">
 		<vwc-button appearance='filled' label='A default button'></vwc-button>
