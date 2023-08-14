@@ -4,6 +4,13 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.30.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.29.0...vivid-v3.30.0) (2023-08-14)
+
+
+### Features
+
+* **split-button:** add new component (VIV-786) ([#1297](https://github.com/Vonage/vivid-3/issues/1297)) ([f5576ee](https://github.com/Vonage/vivid-3/commit/f5576eef4a579235f7c41975019f9a6a9a89c120))
+
 ## [3.29.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.28.2...vivid-v3.29.0) (2023-08-09)
 
 
