@@ -1,4 +1,16 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+	$connotations: accent,
+	$shades: primary faint soft dim,
+	$default: accent,
+);
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+	$appearances: listitem,
+	$states: idle hover active selected,
+	$default: listitem,
+);
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 
 :host {
 	display: inline-block;
@@ -32,31 +44,10 @@
 	}
 
 	.title-action {
-		position: relative;
-		padding: 0;
-		border: none;
-		background: none;
 		block-size: 24px;
 		border-radius: 6px;
-		cursor: pointer;
 		font: var(#{constants.$vvd-typography-base-extended});
 		padding-inline: 6px;
-
-		&:focus-visible {
-			outline: none;
-		}
-
-		&:not(:focus-visible) .focus-indicator {
-			display: none;
-		}
-
-		&:hover {
-			background: var(#{constants.$vvd-color-neutral-50});
-		}
-
-		&:active {
-			background: var(#{constants.$vvd-color-neutral-100});
-		}
 	}
 
 	.footer {
@@ -100,49 +91,18 @@
 	}
 
 	.calendar-day {
-		position: relative;
+		// BUTTON
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		padding: 0;
-		border: none;
-		background: none;
 		block-size: 28px;
 		border-radius: 50%;
-		cursor: pointer;
 		font: var(#{constants.$vvd-typography-base});
 		inline-size: 28px;
 		margin-inline: 6px;
 
-		/* stylelint-disable-next-line no-descending-specificity */
-		.focus-indicator {
-			color: var(#{constants.$vvd-color-canvas-text});
-		}
-		&:focus-visible {
-			outline: none;
-		}
-		&:not(:focus-visible) .focus-indicator {
-			display: none;
-		}
-
 		// Focus ring should appear on outside, otherwise there is not enough space
 		--focus-inset: -2px;
-
-		&:hover {
-			background: var(#{constants.$vvd-color-neutral-50});
-		}
-
-		&:active {
-			background: var(#{constants.$vvd-color-neutral-100});
-		}
-
-		&.current {
-			border: 1px solid var(#{constants.$vvd-color-neutral-200});
-		}
-
-		&.selected {
-			background: var(#{constants.$vvd-color-neutral-200});
-		}
 
 		&.outside-month {
 			color: var(#{constants.$vvd-color-neutral-400});
@@ -168,45 +128,41 @@
 	}
 
 	.month {
-		position: relative;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		padding: 0;
-		border: none;
-		background: none;
 		block-size: 48px;
 		border-radius: 50%;
-		cursor: pointer;
 		font: var(#{constants.$vvd-typography-base-extended});
 		inline-size: 48px;
 		text-transform: uppercase;
+	}
+}
 
-		/* stylelint-disable-next-line no-descending-specificity */
-		.focus-indicator {
-			color: var(#{constants.$vvd-color-canvas-text});
-		}
-		&:focus-visible {
-			outline: none;
-		}
-		&:not(:focus-visible) .focus-indicator {
-			display: none;
-		}
+.button {
+	@include connotation.connotation (date-picker);
+	@include appearance.appearance;
 
-		&:hover {
-			background: var(#{constants.$vvd-color-neutral-50});
-		}
+	position: relative;
+	padding: 0;
+	border: none;
+	background-color: var(#{appearance.get-appearance-token(fill)});
+	color: var(#{appearance.get-appearance-token(text)});
+	cursor: pointer;
 
-		&:active {
-			background: var(#{constants.$vvd-color-neutral-100});
-		}
+	.focus-indicator {
+		color: var(#{constants.$vvd-color-canvas-text});
+	}
 
-		&.current {
-			border: 1px solid var(#{constants.$vvd-color-neutral-200});
-		}
+	&:focus-visible {
+		outline: none;
+	}
 
-		&.selected {
-			background: var(#{constants.$vvd-color-neutral-200});
-		}
+	&:not(:focus-visible) .focus-indicator {
+		display: none;
+	}
+
+	&.current {
+		border: 1px solid var(#{constants.$vvd-color-neutral-200});
 	}
 }

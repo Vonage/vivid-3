@@ -48,7 +48,7 @@ function renderDialogHeader(context: ElementDefinitionContext) {
 		<div class="title">
 			<button
 				id="grid-label"
-				class="title-action"
+				class="title-action button"
 				aria-live="polite"
 				@click="${(x) => x.onTitleActionClick()}"
 			>
@@ -127,6 +127,7 @@ function renderCalendarGrid(context: ElementDefinitionContext) {
 							class="${(x, c) =>
 		classNames(
 			'calendar-day',
+			'button',
 			['current', x.date === c.parentContext.parent.currentDate],
 			['selected', x.date === c.parentContext.parent.selectedDate],
 			['outside-month', x.isOutsideMonth]
@@ -172,6 +173,7 @@ function renderMonthPickerGrid(context: ElementDefinitionContext) {
 								class="${(x, c) =>
 		classNames(
 			'month',
+			'button',
 			[
 				'current',
 				areMonthsEqual(
