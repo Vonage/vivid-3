@@ -14,10 +14,10 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 			<style>
 				#wrapper {
-					width: 1800px;
+					width: 1200px;
 					display: grid;
 					grid-auto-rows: 250px;
-					grid-template-columns: repeat(8, 1fr);
+					grid-template-columns: repeat(4, 1fr);
 				}
 			</style>` + extractHTMLBlocksFromReadme(
 		path.join(new URL('.', import.meta.url).pathname, 'README.md'))

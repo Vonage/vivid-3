@@ -131,6 +131,7 @@ $low-ink-color: --_low-ink-color;
 
 
 .focus-indicator {
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
 	border-radius: var(#{variables.$select-control-border-radius});
 	pointer-events: none;
 
