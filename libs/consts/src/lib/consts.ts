@@ -1,3 +1,1 @@
-export function consts(): string {
-	return 'consts';
-}
+export * from './icons';
