@@ -31,7 +31,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	const testWrapper = await page.$('#wrapper');
 
-	await page.locator('vwc-accordion-item').nth(1).focus();
+	await page.keyboard.press('Tab');
 
 	await page.waitForLoadState('networkidle');
 
