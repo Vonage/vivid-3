@@ -21,19 +21,6 @@ jest.mock('./calendar/dateStr.ts', () => ({
 	currentDateStr: jest.fn().mockReturnValue('2023-08-10'),
 }));
 
-// In jsdom does not currently support delegatesFocus, see https://github.com/jsdom/jsdom/issues/3418
-// Workaround to allow us to test focus behaviour:
-// Unfortunately it causes jest to throw "TypeError: Converting circular structure to JSON" when a test fails
-let activeElement: Element | null = null;
-Object.defineProperty(window.ShadowRoot.prototype, 'activeElement', {
-	get: () => activeElement,
-});
-const focus = window.HTMLElement.prototype.focus;
-window.HTMLElement.prototype.focus = function () {
-	activeElement = this as Element;
-	focus.call(this);
-};
-
 describe('vwc-date-picker', () => {
 	let element: DatePicker;
 	let textField: TextField;
@@ -50,11 +37,10 @@ describe('vwc-date-picker', () => {
 			`[data-month="${month}"]`
 		) as HTMLButtonElement;
 
-	const pressKey = (
-		key: string,
-		target = element.shadowRoot!.activeElement!
-	) => {
-		target.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true }));
+	const pressKey = (key: string, options: KeyboardEventInit = {}) => {
+		element.shadowRoot!.activeElement!.dispatchEvent(
+			new KeyboardEvent('keydown', { key, bubbles: true, ...options })
+		);
 	};
 
 	const getButtonByLabel = (label: string) =>
@@ -85,6 +71,46 @@ describe('vwc-date-picker', () => {
 		titleAction = element.shadowRoot!.querySelector(
 			'.title-action'
 		) as HTMLButtonElement;
+
+		// In jsdom does not currently support delegatesFocus, see https://github.com/jsdom/jsdom/issues/3418
+		// Workaround to allow us to test focus behaviour:
+		// Unfortunately it causes jest to throw "TypeError: Converting circular structure to JSON" when a test fails
+		let activeElement: Element | null = null;
+		Object.defineProperty(window.ShadowRoot.prototype, 'activeElement', {
+			get: () => activeElement,
+		});
+		const focus = window.HTMLElement.prototype.focus;
+		window.HTMLElement.prototype.focus = function () {
+			// eslint-disable-next-line @typescript-eslint/no-this-alias
+			let currentFocusTarget: Node | ShadowRoot = this;
+
+			// Move up the tree until we find our shadow root
+			while (
+				currentFocusTarget.getRootNode() !== document &&
+				currentFocusTarget.getRootNode() !== currentFocusTarget
+			) {
+				if (currentFocusTarget.getRootNode() === element.shadowRoot) {
+					activeElement = currentFocusTarget as Element;
+				}
+
+				currentFocusTarget = currentFocusTarget.getRootNode()!;
+				if (currentFocusTarget instanceof ShadowRoot) {
+					currentFocusTarget = currentFocusTarget.host;
+				}
+			}
+
+			focus.call(this);
+		};
+
+		const btnFocus = Button.prototype.focus;
+		Button.prototype.focus = function () {
+			console.log('btnFocus');
+			if (element.shadowRoot!.contains(this)) {
+				console.log('it contain');
+				activeElement = this as Element;
+			}
+			btnFocus.call(this);
+		};
 	});
 
 	describe('basic', () => {
@@ -249,7 +275,7 @@ describe('vwc-date-picker', () => {
 		it('should close when pressing ESC', async () => {
 			await openPopup();
 
-			pressKey('Escape', textField);
+			pressKey('Escape');
 			await elementUpdated(element);
 
 			expect(popup.open).toBe(false);
@@ -262,6 +288,35 @@ describe('vwc-date-picker', () => {
 			await elementUpdated(element);
 
 			expect(popup.open).toBe(false);
+		});
+	});
+
+	describe('trapped focus', () => {
+		let firstFocusable: HTMLElement;
+		let lastFocusable: HTMLElement;
+
+		beforeEach(async () => {
+			await openPopup();
+			const buttons: NodeListOf<HTMLElement> =
+				element.shadowRoot!.querySelectorAll('button, vwc-button');
+			firstFocusable = buttons[0];
+			lastFocusable = buttons[buttons.length - 1];
+		});
+
+		it('should move focus to first focusable element when pressing tab on the last focusable element', async () => {
+			lastFocusable.focus();
+
+			pressKey('Tab');
+
+			expect(element.shadowRoot!.activeElement).toBe(firstFocusable);
+		});
+
+		it('should move focus to last focusable element when pressing shift + tab on the first focusable element', async () => {
+			firstFocusable.focus();
+
+			pressKey('Tab', { shiftKey: true });
+
+			expect(element.shadowRoot!.activeElement).toBe(lastFocusable);
 		});
 	});
 
@@ -328,7 +383,7 @@ describe('vwc-date-picker', () => {
 		});
 
 		it('should move focus to the tabbable date when pressing tab in the text-field', async () => {
-			pressKey('Tab', textField);
+			pressKey('Tab');
 
 			expect(element.shadowRoot!.activeElement).toBe(
 				getDateButton('2023-08-10')
@@ -413,7 +468,7 @@ describe('vwc-date-picker', () => {
 
 		it('should move focus to the tabbable month when pressing tab in the text-field', async () => {
 			textField.focus();
-			pressKey('Tab', textField);
+			pressKey('Tab');
 
 			expect(element.shadowRoot!.activeElement).toBe(getMonthButton('2023-8'));
 		});
