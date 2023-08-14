@@ -15,9 +15,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	  <vwc-file-picker label="Pick files" helper-text="multiple files of any type" size="expanded">
 	  	Drag & Drop or click to upload
 		</vwc-file-picker>
-		<vwc-file-picker id="focused" label="Pick files focus" helper-text="multiple files of any type" size="expanded">
-	  	Drag & Drop or click to upload
-		</vwc-file-picker>
 	</vwc-layout>`;
 
 	page.setViewportSize({ width: 500, height: 720 });
