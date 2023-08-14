@@ -229,16 +229,14 @@ export class DatePicker extends FoundationElement {
 					return false;
 				}
 
-				// When tabbing from the text field into the dialog, focus the day
+				// When tabbing from the text field into the dialog, focus the day/month
 				if (
 					this.shadowRoot!.activeElement === this.textFieldEl &&
 					this.popupOpen
 				) {
 					(
-						this.dialogEl.querySelector(
-							`[data-date="${this.tabbableDate}"]`
-						) as HTMLButtonElement | null
-					)?.focus();
+						this.dialogEl.querySelector('[tabindex="0"]') as HTMLButtonElement
+					).focus();
 					return false;
 				}
 			}

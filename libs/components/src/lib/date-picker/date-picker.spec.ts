@@ -9,7 +9,7 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-date-picker';
 
-// Mock current date to be 2023-07-10 for the tests
+// Mock current date to be 2023-08-10 for the tests
 
 jest.mock('./calendar/month.ts', () => ({
 	...jest.requireActual('./calendar/month.ts'),
@@ -20,6 +20,19 @@ jest.mock('./calendar/dateStr.ts', () => ({
 	...jest.requireActual('./calendar/dateStr.ts'),
 	currentDateStr: jest.fn().mockReturnValue('2023-08-10'),
 }));
+
+// In jsdom does not currently support delegatesFocus, see https://github.com/jsdom/jsdom/issues/3418
+// Workaround to allow us to test focus behaviour:
+// Unfortunately it causes jest to throw "TypeError: Converting circular structure to JSON" when a test fails
+let activeElement: Element | null = null;
+Object.defineProperty(window.ShadowRoot.prototype, 'activeElement', {
+	get: () => activeElement,
+});
+const focus = window.HTMLElement.prototype.focus;
+window.HTMLElement.prototype.focus = function () {
+	activeElement = this as Element;
+	focus.call(this);
+};
 
 describe('vwc-date-picker', () => {
 	let element: DatePicker;
@@ -58,6 +71,7 @@ describe('vwc-date-picker', () => {
 	}
 
 	async function openPopup() {
+		textField.focus();
 		textField.dispatchEvent(new FocusEvent('focus'));
 		await elementUpdated(element);
 	}
@@ -312,6 +326,14 @@ describe('vwc-date-picker', () => {
 
 			expect(element.value).toBe('2023-08-01');
 		});
+
+		it('should move focus to the tabbable date when pressing tab in the text-field', async () => {
+			pressKey('Tab', textField);
+
+			expect(element.shadowRoot!.activeElement).toBe(
+				getDateButton('2023-08-10')
+			);
+		});
 	});
 
 	describe('date grid button', () => {
@@ -387,6 +409,13 @@ describe('vwc-date-picker', () => {
 			await elementUpdated(element);
 
 			expect(getDialogTitle()).toBe('August 2023');
+		});
+
+		it('should move focus to the tabbable month when pressing tab in the text-field', async () => {
+			textField.focus();
+			pressKey('Tab', textField);
+
+			expect(element.shadowRoot!.activeElement).toBe(getMonthButton('2023-8'));
 		});
 	});
 
