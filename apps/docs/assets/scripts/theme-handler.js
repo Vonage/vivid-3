@@ -21,16 +21,16 @@ function setTheme(newTheme) {
         '<link rel="stylesheet" href="/assets/styles/tokens/theme-dark.css" media="all">' : '<link rel="stylesheet" href="/assets/styles/tokens/theme-light.css" media="all">';
     document.head?.insertAdjacentHTML("beforeend", themeStyle);
 
-    popup.open = false;
+    menu.open = false;
 
 	window._darkTheme = darkTheme;
 	window.setEditorsTheme?.();
 }
 
 function toggleMenu() {
-    popup.open = !popup.open;
-    if(popup.open){
-        document.getElementById(`option-${theme}`).selected = true;
+    menu.open = !menu.open;
+    if(menu.open){
+        document.getElementById(`option-${theme}`).checked = true;
     }
 }
 
@@ -39,10 +39,8 @@ let theme = getTheme();
 const button = document.querySelector('vwc-button#dark-mode-toggle');
 button.addEventListener('click', toggleMenu);
 
-const listbox = document.querySelector('vwc-listbox#dark-mode-listbox');
-listbox.addEventListener('click', event => setTheme(event.target.value));
-
-const popup = document.querySelector('vwc-popup#dark-mode-popup');
+const menu = document.querySelector('vwc-menu#dark-mode-menu');
+menu.addEventListener('click', event => setTheme(event.target.text?.toLowerCase()));
 
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => setTheme(theme));
 
