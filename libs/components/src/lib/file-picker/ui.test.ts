@@ -7,7 +7,7 @@ import {
 
 const components = ['file-picker', 'button', 'layout', 'text-field'];
 
-test('should show the component', async ({ page }: { page: Page }) => {
+test.only('should show the component', async ({ page }: { page: Page }) => {
 	const template = `<vwc-layout column-basis="block">
 	  <vwc-file-picker label="Pick files" helper-text="multiple files of any type">
 	  	Drag & Drop or click to upload
@@ -33,7 +33,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	const testWrapper = await page.$('#wrapper');
 
-	await page.locator('#focused').focus();
+	await page.keyboard.press('Tab');
 
 	await page.waitForLoadState('networkidle');
 
