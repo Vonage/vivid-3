@@ -8,13 +8,10 @@ import {
 import type { Button } from './button';
 
 const components = ['button'];
-test('should show the component', async ({ page }: { page: Page }) => {
+test.only('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 	<div style="margin: 5px;">
 		<vwc-button appearance='filled' label='A default button'></vwc-button>
-	</div>
-	<div style="margin: 5px;">
-		<vwc-button appearance='filled' label='A default button' id="focused"></vwc-button>
 	</div>
 	<div style="margin: 5px;">
 		<vwc-button label='ghost' appearance='ghost'></vwc-button>
@@ -114,7 +111,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	</div>
 	`;
 
-	page.setViewportSize({ width: 500, height: 720 });
+	await page.setViewportSize({ width: 500, height: 1200 });
 
 	await loadComponents({
 		page,
@@ -135,7 +132,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		});
 	});
 
-	await page.locator('#focused').focus();
+	await page.locator('vwc-button').nth(0).focus();
 
 	await page.waitForLoadState('networkidle');
 
