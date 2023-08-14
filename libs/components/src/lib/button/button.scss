@@ -171,14 +171,13 @@
 }
 
 .focus-indicator {
-	.control:not(:focus-visible) > & {
-		display: none;
-	}
-
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
 
 	.appearance-filled & {
 		#{focus-variables.$focus-stroke-gap-color}: unset;
+	}
+	.control:not(:focus-visible) > & {
+		display: none;
 	}
 }
 
