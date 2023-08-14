@@ -2,9 +2,9 @@ import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Button } from '../button/button';
 import { Shape, Size } from '../enums';
-import { Pagination, PaginationShape, PaginationSize } from './pagination';
 import '.';
 import { paginationDefinition } from './definition';
+import { Pagination, PaginationShape, PaginationSize } from './pagination';
 
 const COMPONENT_TAG = 'vwc-pagination';
 
