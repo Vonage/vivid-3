@@ -77,6 +77,8 @@ export class DatePicker extends FoundationElement {
 				validatedValue,
 				this.locale.datePicker
 			);
+			// Ensure we are switched to the month of the new selected date
+			this.selectedMonth = monthOfDate(validatedValue);
 		} else {
 			this.presentationValue = '';
 		}
@@ -84,10 +86,6 @@ export class DatePicker extends FoundationElement {
 
 	#updateValueDueToUserInteraction(newValue: DateStr | undefined) {
 		this.value = newValue;
-		if (this.selectedDate !== null) {
-			// Ensure we are switched to the month of the new selected date
-			this.selectedMonth = monthOfDate(this.selectedDate);
-		}
 		this.$emit('change');
 		this.$emit('input');
 	}
@@ -162,14 +160,6 @@ export class DatePicker extends FoundationElement {
 
 	override connectedCallback() {
 		super.connectedCallback();
-
-		if (this.selectedDate !== null) {
-			this.presentationValue = formatPresentationDate(
-				this.selectedDate,
-				this.locale.datePicker
-			);
-			this.selectedMonth = monthOfDate(this.selectedDate);
-		}
 
 		document.addEventListener('click', this.#dismissOnClickOutside);
 	}
