@@ -1,5 +1,5 @@
 const BASE_URL = 'https://icon.resources.vonage.com'; // namespaced as 3f7739a0-a898-4f69-a82b-ad9d743170b6 on icons.resources.vonage.com
-const ICON_SET_VERSION = '4.2.2';
+const ICON_SET_VERSION = '4.2.3';
 
 const NUM_TO_SHOW = 21;
 
