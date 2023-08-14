@@ -101,16 +101,6 @@ describe('vwc-date-picker', () => {
 
 			focus.call(this);
 		};
-
-		const btnFocus = Button.prototype.focus;
-		Button.prototype.focus = function () {
-			console.log('btnFocus');
-			if (element.shadowRoot!.contains(this)) {
-				console.log('it contain');
-				activeElement = this as Element;
-			}
-			btnFocus.call(this);
-		};
 	});
 
 	describe('basic', () => {
