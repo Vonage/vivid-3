@@ -4,6 +4,7 @@ import { popupRegistries } from '../popup/definition';
 import { focusRegistries } from '../focus/definition';
 import { buttonRegistries } from '../button/definition';
 import { textFieldRegistries } from '../text-field/definition';
+import { dividerRegistries } from '../divider/definition';
 import styles from './date-picker.scss';
 import { DatePicker } from './date-picker';
 import { DatePickerTemplate as template } from './date-picker.template';
@@ -24,6 +25,7 @@ export const datePickerRegistries = [
 	...popupRegistries,
 	...textFieldRegistries,
 	...focusRegistries,
+	...dividerRegistries,
 ];
 
 /**

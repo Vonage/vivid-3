@@ -9,6 +9,7 @@ import { Button } from '../button/button';
 import { Popup } from '../popup/popup';
 import { TextField } from '../text-field/text-field';
 import { focusTemplateFactory } from '../../shared/patterns';
+import { Divider } from '../divider/divider';
 import type { DatePicker } from './date-picker';
 import type { CalendarGridDate, Weekday } from './calendar/calendarGrid';
 import { areMonthsEqual, monthToStr } from './calendar/month';
@@ -96,6 +97,7 @@ function renderDialogHeader(context: ElementDefinitionContext) {
 
 function renderCalendarGrid(context: ElementDefinitionContext) {
 	const focusTemplate = focusTemplateFactory(context);
+	const dividerTag = context.tagFor(Divider);
 
 	return html<DatePicker>`<div
 		class="calendar"
@@ -116,7 +118,7 @@ function renderCalendarGrid(context: ElementDefinitionContext) {
 				`
 	)}
 		</div>
-		<div class="calendar-separator"></div>
+		<${dividerTag} class="calendar-separator" role="presentation"></${dividerTag}>
 		${repeat(
 		(x) => x.calendarGrid.grid,
 		html<CalendarGridDate[]>`
@@ -234,6 +236,7 @@ export const DatePickerTemplate: (
 	const popupTag = context.tagFor(Popup);
 	const textFieldTag = context.tagFor(TextField);
 	const buttonTag = context.tagFor(Button);
+	const dividerTag = context.tagFor(Divider);
 
 	return html`<div class="base" @keydown="${(x, { event }) =>
 		x.onBaseKeyDown(event as KeyboardEvent)}">
@@ -265,7 +268,10 @@ export const DatePickerTemplate: (
 				${when(
 		(x) => x.inMonthPicker,
 		html<DatePicker>`
-						<div class="months-separator"></div>
+						<${dividerTag}
+							class="months-separator"
+							role="presentation"
+						></${dividerTag}>
 						${renderMonthPickerGrid(context)}
 					`
 	)}

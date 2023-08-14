@@ -66,8 +66,6 @@
 	gap: 4px;
 
 	.calendar-separator {
-		background: var(#{constants.$vvd-color-neutral-200});
-		block-size: 1px;
 		margin-inline: 10px;
 	}
 
@@ -110,8 +108,6 @@
 }
 
 .months-separator {
-	background-color: var(#{constants.$vvd-color-neutral-200});
-	block-size: 1px;
 	margin-inline: -12px;
 }
 
