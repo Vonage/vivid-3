@@ -253,6 +253,16 @@ describe('vwc-date-picker', () => {
 
 			expect(textField.errorText).toBe('');
 		});
+
+		it('should clear the value when an empty string is entered', async () => {
+			typeIntoTextField('01/21/2021');
+			await elementUpdated(element);
+
+			typeIntoTextField('');
+			await elementUpdated(element);
+
+			expect(textField.errorText).toBe('');
+		});
 	});
 
 	describe('popup', () => {
