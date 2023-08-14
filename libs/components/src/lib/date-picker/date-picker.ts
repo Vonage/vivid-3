@@ -1,5 +1,5 @@
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
-import { attr, observable, volatile } from '@microsoft/fast-element';
+import { attr, DOM, observable, volatile } from '@microsoft/fast-element';
 import type { TextField } from '../text-field/text-field';
 import { Localized } from '../../shared/patterns';
 import {
@@ -405,17 +405,16 @@ export class DatePicker extends FoundationElement {
 			// Change month if we moved to a different month
 			if (!areMonthsEqual(newMonth, this.selectedMonth)) {
 				this.selectedMonth = newMonth;
+				// Update DOM immediately so that we can focus the new date
+				DOM.processUpdates();
 			}
 
 			// Move focus to new date
-			// In case month has changed, we need to wait for the DOM to update
-			setTimeout(() => {
-				(
-					this.dialogEl.querySelector(
-						`[data-date="${newDate}"]`
-					) as HTMLButtonElement | null
-				)?.focus();
-			}, 1);
+			(
+				this.dialogEl.querySelector(
+					`[data-date="${newDate}"]`
+				) as HTMLButtonElement
+			).focus();
 
 			return false;
 		}
@@ -475,6 +474,7 @@ export class DatePicker extends FoundationElement {
 	 * @internal
 	 */
 	get monthPickerGrid() {
+		/* istanbul ignore next should be unreachable */
 		if (this.monthPickerYear === null) {
 			throw new Error('Not in month picker');
 		}
@@ -515,17 +515,16 @@ export class DatePicker extends FoundationElement {
 			// Change year if we moved to a different year
 			if (newMonth.year !== this.monthPickerYear) {
 				this.monthPickerYear = newMonth.year;
+				// Update DOM immediately so that we can focus the new month
+				DOM.processUpdates();
 			}
 
 			// Move focus to new month
-			// In case year has changed, we need to wait for the DOM to update
-			setTimeout(() => {
-				(
-					this.dialogEl.querySelector(
-						`[data-month="${monthToStr(newMonth!)}"]`
-					) as HTMLButtonElement | null
-				)?.focus();
-			}, 1);
+			(
+				this.dialogEl.querySelector(
+					`[data-month="${monthToStr(newMonth!)}"]`
+				) as HTMLButtonElement
+			).focus();
 
 			return false;
 		}
