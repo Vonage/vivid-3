@@ -1,9 +1,11 @@
-# pagination
+# Pagination
 
 Represents a pagination custom element.
 
 ```js
-<script type="module">import '@vonage/vivid/pagination';</script>
+<script type="module">
+	import '@vonage/vivid/pagination';
+</script>
 ```
 
 ```html preview
@@ -34,6 +36,18 @@ Set the `size` attribute to change the pagination's buttons sizes.
 <vwc-pagination size="super-condensed" total="20"></vwc-pagination>
 <vwc-pagination size="condensed" total="20"></vwc-pagination>
 <vwc-pagination size="normal" total="20"></vwc-pagination>
+```
+
+### Shape
+
+Set the `shape` attribute to change the pagination's buttons shapes.
+
+- Type: `rounded` | `pill`
+- Default: `rounded`
+
+```html preview blocks
+<vwc-pagination shape="rounded" total="20"></vwc-pagination>
+<vwc-pagination shape="pill" total="20"></vwc-pagination>
 ```
 
 ### Selected Index
