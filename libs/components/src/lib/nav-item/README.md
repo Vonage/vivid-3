@@ -49,18 +49,8 @@ Within a set of pagination links, set a nav item `aria-current` value to *page* 
 
 ```html preview
 <vwc-nav>
-  <vwc-nav-item href="#" text="Account" onclick="onClick(this)"></vwc-nav-item>
-  <vwc-nav-item href="#" text="Shop" onclick="onClick(this)" aria-current="page"></vwc-nav-item>
-  <vwc-nav-item href="#" text="My Cart" onclick="onClick(this)"></vwc-nav-item>
+  <vwc-nav-item href="#" text="Account" aria-current="page"></vwc-nav-item>
 </vwc-nav>
-
-<script>
-  function onClick(el) {
-    currentNavItem = document.querySelector('vwc-nav-item[aria-current="page"]');
-    currentNavItem?.removeAttribute('aria-current');
-    el.setAttribute('aria-current', 'page');
-  }
-</script>
 ```
 
 ## Slots

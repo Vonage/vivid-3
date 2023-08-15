@@ -71,6 +71,22 @@ If label is not applied.
 <vwc-nav>
 ```
 
+### Aria Current
+
+- Type: `string` | `undefined`
+- Default: `undefined`
+
+Within a set of pagination links, set a nav disclosure `aria-current` value to `"true"` to indicate the currently active disclosure.   
+Only when the navigation disclosure is closed the `aria-current` will be set.
+
+```html preview
+<vwc-nav>
+  <vwc-nav-disclosure label="1st level item" icon="profile" aria-current="true">
+    <vwc-nav-item href="#" text="2nd level item" aria-current="page"></vwc-nav-item>
+  </vwc-nav-disclosure>
+</vwc-nav>
+```
+
 ## Events
 
 <div class="table-wrapper">
