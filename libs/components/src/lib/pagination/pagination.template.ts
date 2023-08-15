@@ -1,4 +1,4 @@
-import {children, elements, html, ref, repeat, when} from '@microsoft/fast-element';
+import { children, elements, html, ref, repeat, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
@@ -7,29 +7,34 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Size } from '../enums';
 import { Shape } from '../enums';
-import {Button} from '../button/button';
-import type {Pagination} from './pagination';
+import { Button } from '../button/button';
+import type { Pagination } from './pagination';
 
 const ALLOWED_SIZES = [Size.SuperCondensed, Size.Condensed, Size.Normal];
 const ALLOWED_SHAPES = [Shape.Rounded, Shape.Pill];
 
-const handleSelection = (value: string | number, {parent: x}: {parent: Pagination}) => {
+const handleSelection = (value: string | number, { parent: x }: { parent: Pagination }) => {
 	return x.selectedIndex = (Number(value) - 1);
 };
 
-const handleKeyDown = (value: string | number, {event, parent}: {event: KeyboardEvent, parent: Pagination}) => {
+const handleKeyDown = (value: string | number, { event, parent }: { event: KeyboardEvent, parent: Pagination }) => {
 	if (event.key === ' ' || event.key === 'Enter') {
-		handleSelection(value, {parent});
+		handleSelection(value, { parent });
 	}
 	if (event.key === 'Tab') {
 		event.target!.dispatchEvent(
-			new CustomEvent('tabpressed', {detail: {value, shiftKey: event.shiftKey}, bubbles: true, composed: true}));
+			new CustomEvent('tabpressed', { detail: { value, shiftKey: event.shiftKey }, bubbles: true, composed: true }));
 	}
 };
 
-const getClasses = (_: Pagination) => classNames('control');
+const getClasses = ({
+	appearance
+}: Pagination) => classNames(
+	'control',
+	[`appearance-${appearance}`, Boolean(appearance)],
+);
 
-function getButtonAppearance(value: string | number, {parent}: {parent: Pagination}) {
+function getButtonAppearance(value: string | number, { parent }: { parent: Pagination }) {
 	return (parent.selectedIndex === Number(value) - 1) ? 'filled' : 'ghost';
 }
 
@@ -39,10 +44,10 @@ const paginationButtonRenderer = (buttonTag: string) => html`
 		<${buttonTag} class="vwc-pagination-button"
 									label="${(value) => value}"
 									appearance="${getButtonAppearance}"
-									size="${(_, {parent: x}) => getPaginationSize(x)}"
-									shape="${(_, {parent: x}) => getPaginationShape(x)}"
+									size="${(_, { parent: x }) => getPaginationSize(x)}"
+									shape="${(_, { parent: x }) => getPaginationShape(x)}"
 									tabindex="0"
-									aria-pressed="${(value, {parent}) => parent.selectedIndex === Number(value) - 1}"
+									aria-pressed="${(value, { parent }) => parent.selectedIndex === Number(value) - 1}"
 									@click="${handleSelection}"
 									@keydown="${handleKeyDown}"
 		</${buttonTag}>

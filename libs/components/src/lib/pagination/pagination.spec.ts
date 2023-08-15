@@ -31,6 +31,7 @@ describe('vwc-pagination', () => {
 			expect(element.selectedIndex).toBeFalsy();
 			expect(element.shape).toBeUndefined();
 			expect(element.size).toBeUndefined();
+			expect(element.appearance).toBeUndefined();
 		});
 	});
 
@@ -504,6 +505,17 @@ describe('vwc-pagination', () => {
 				return correct && button.shape === Shape.Rounded;
 			}, true);
 			expect(allButtonsRounded).toEqual(true);
+		});
+	});
+
+	describe('appearance', function () {
+		it('should set the shape class on control', async function () {
+			const appearance = 'outlined';
+			element.setAttribute('appearance', appearance);
+			await elementUpdated(element);
+
+			expect(getControlElement(element).classList.contains(`appearance-${appearance}`))
+				.toBeTruthy();
 		});
 	});
 });

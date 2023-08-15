@@ -50,6 +50,18 @@ Set the `shape` attribute to change the pagination's buttons shapes.
 <vwc-pagination shape="pill" total="20"></vwc-pagination>
 ```
 
+### Appearance
+
+Set the `appearance` attribute to change the pagination's buttons appearances.
+
+- Type: `ghost` | `outlined`
+- Default: `ghost`
+
+```html preview blocks
+<vwc-pagination appearance="ghost" total="20"></vwc-pagination>
+<vwc-pagination appearance="outlined" total="20"></vwc-pagination>
+```
+
 ### Selected Index
 Set the `selectedIndex` attribute to change the pagination's currently selected index. Note that this is a Zero Index counter. It is set to -1 if total pages is 0.
 

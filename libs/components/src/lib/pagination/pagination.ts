@@ -1,11 +1,13 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr, observable, type ValueConverter, volatile } from '@microsoft/fast-element';
-import type { Shape, Size } from '../enums';
+import type { Appearance, Shape, Size } from '../enums';
 import type { Button } from '../button/button';
 
 export type PaginationSize = Extract<Size, Size.SuperCondensed | Size.Condensed | Size.Normal>;
 
 export type PaginationShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+
+export type PaginationAppearance = Extract<Appearance, Appearance.Ghost | Appearance.Outlined>;
 
 const MAX_DIGITS_AND_PLACEHOLDERS = 7;
 const totalConverter: ValueConverter = {
@@ -36,6 +38,15 @@ export class Pagination extends FoundationElement {
 	 * HTML Attribute: shape
 	 */
 	@attr shape?: PaginationShape;
+
+	/**
+	 * The appearance the pagination should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: appearance
+	 */
+	@attr appearance?: PaginationAppearance;
 
 	@observable
 		paginationButtons?: Button[];
