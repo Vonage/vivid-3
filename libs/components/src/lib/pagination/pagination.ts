@@ -1,9 +1,11 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
-import {attr, observable, type ValueConverter, volatile} from '@microsoft/fast-element';
-import type { Size } from '../enums';
-import type {Button} from '../button/button';
+import { attr, observable, type ValueConverter, volatile } from '@microsoft/fast-element';
+import type { Shape, Size } from '../enums';
+import type { Button } from '../button/button';
 
 export type PaginationSize = Extract<Size, Size.SuperCondensed | Size.Condensed | Size.Normal>;
+
+export type PaginationShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 const MAX_DIGITS_AND_PLACEHOLDERS = 7;
 const totalConverter: ValueConverter = {
@@ -17,7 +19,23 @@ const totalConverter: ValueConverter = {
  * @public
  */
 export class Pagination extends FoundationElement {
+	/**
+	 * The size the pagination should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: size
+	 */
 	@attr size?: PaginationSize;
+
+	/**
+	 * The shape the pagination should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: shape
+	 */
+	@attr shape?: PaginationShape;
 
 	@observable
 		paginationButtons?: Button[];
@@ -28,7 +46,7 @@ export class Pagination extends FoundationElement {
 	@observable
 		nextButton?: Button;
 
-	@attr({attribute: 'nav-icons', mode: 'boolean'}) navIcons = false;
+	@attr({ attribute: 'nav-icons', mode: 'boolean' }) navIcons = false;
 
 	@volatile
 	get pagesList() {
@@ -55,15 +73,15 @@ export class Pagination extends FoundationElement {
 		});
 	}
 
-	@attr({mode: 'reflect', converter: totalConverter}) total: number;
-	@attr({mode: 'reflect', converter: totalConverter, attribute: 'selected-index'}) selectedIndex: number | undefined;
+	@attr({ mode: 'reflect', converter: totalConverter }) total: number;
+	@attr({ mode: 'reflect', converter: totalConverter, attribute: 'selected-index' }) selectedIndex: number | undefined;
 
 	constructor() {
 		super();
 		this.total = 0;
 		this.selectedIndex = 0;
 		this.addEventListener('tabpressed', (e: Event) => {
-			const {value: currentLabel, shiftKey} = (e as CustomEvent).detail;
+			const { value: currentLabel, shiftKey } = (e as CustomEvent).detail;
 			const index = this.paginationButtons!.findIndex(button => Number(button.label) === currentLabel) as number;
 			const focusDirection = shiftKey ? -1 : 1;
 			const newIndex = index + focusDirection;
@@ -87,7 +105,7 @@ export class Pagination extends FoundationElement {
 
 	selectedIndexChanged(oldValue: number, newValue: number) {
 		if (oldValue === undefined) return;
-		this.$emit('pagination-change', {selectedIndex: newValue, total: this.total, oldIndex: oldValue});
+		this.$emit('pagination-change', { selectedIndex: newValue, total: this.total, oldIndex: oldValue });
 	}
 
 	paginationButtonsChanged(_: Button[] | undefined, newValue: Button[]) {
