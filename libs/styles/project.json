@@ -37,8 +37,13 @@
 		"serve": {
 			"executor": "nx:run-commands",
 			"options": {
-				"command": "sass libs/styles/src/lib/core:dist/libs/styles/core --watch"
-			}
+				"commands": [
+					"sass libs/styles/src/lib/tokens:dist/libs/styles/tokens --watch",
+					"sass libs/styles/src/lib/core:dist/libs/styles/core --watch",
+					"sass libs/styles/src/lib/fonts:dist/libs/styles/fonts --watch"
+				]
+			},
+			"dependsOn": ["^build"]
 		},
 		"stylelint": {
 			"executor": "nx-stylelint:lint",
