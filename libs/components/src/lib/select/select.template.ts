@@ -76,7 +76,7 @@ function renderControl(context: ElementDefinitionContext) {
 			<div class="control-wrapper">
 				${when(x => !x.multiple, selectValue(context))}
 				<${popupTag}
-					?open="${x => (x.collapsible ? x.open : true)}"
+					?open="${x => x.open}"
 					anchor="control"
 					placement="bottom-start"
 							strategy="${x => x.fixedDropdown ? null : 'absolute'}"
@@ -128,7 +128,7 @@ export const SelectTemplate: (
 							aria-controls="${x => x.ariaControls}"
 							aria-disabled="${x => x.ariaDisabled}"
 							aria-expanded="${x => x.ariaExpanded}"
-							aria-haspopup="${x => (x.collapsible ? 'listbox' : null)}"
+							aria-haspopup="listbox"
 							aria-multiselectable="${x => x.ariaMultiSelectable}"
 							?open="${x => x.open}"
 							role="combobox"
