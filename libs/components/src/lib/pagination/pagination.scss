@@ -1,10 +1,16 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
-
-.control{
+.control {
 	display: inline-flex;
 	justify-content: space-between;
+
+	&:not(.shape-pill) {
+		border-radius: 4px;
+	}
+	&.shape-pill {
+		border-radius: 14px;
+	}
 }
 
 .buttons-wrapper {

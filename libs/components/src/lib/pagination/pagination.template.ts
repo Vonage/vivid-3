@@ -6,10 +6,12 @@ import type {
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Size } from '../enums';
+import { Shape } from '../enums';
 import {Button} from '../button/button';
 import type {Pagination} from './pagination';
 
 const ALLOWED_SIZES = [Size.SuperCondensed, Size.Condensed, Size.Normal];
+const ALLOWED_SHAPES = [Shape.Rounded, Shape.Pill];
 
 const handleSelection = (value: string | number, {parent: x}: {parent: Pagination}) => {
 	return x.selectedIndex = (Number(value) - 1);
@@ -38,13 +40,14 @@ const paginationButtonRenderer = (buttonTag: string) => html`
 									label="${(value) => value}"
 									appearance="${getButtonAppearance}"
 									size="${(_, {parent: x}) => getPaginationSize(x)}"
+									shape="${(_, {parent: x}) => getPaginationShape(x)}"
 									tabindex="0"
 									aria-pressed="${(value, {parent}) => parent.selectedIndex === Number(value) - 1}"
 									@click="${handleSelection}"
 									@keydown="${handleKeyDown}"
 		</${buttonTag}>
 	`)}
-	${when(value => value === '...', html`<div class="dots size-${getPaginationSize}">...</div>`)}`;
+	${when(value => value === '...', html`<div class="dots size-${getPaginationSize} shape-${getPaginationShape}">...</div>`)}`;
 
 const getPaginationSize = (x: Pagination) => {
 	if (!x.size || !ALLOWED_SIZES.includes(x.size)) {
@@ -53,6 +56,12 @@ const getPaginationSize = (x: Pagination) => {
 	return x.size;
 };
 
+const getPaginationShape = (x: Pagination) => {
+	if (!x.shape || !ALLOWED_SHAPES.includes(x.shape)) {
+		return Shape.Rounded;
+	}
+	return x.shape;
+};
 
 /**
  * The template for the Pagination component.
@@ -73,6 +82,7 @@ export const PaginationTemplate: (
 									label="${x => !x.navIcons ? 'Previous' : null}"
 									icon="${x => x.navIcons ? 'chevron-left-line' : null}"
 									size="${getPaginationSize}"
+									shape="${getPaginationShape}"
 									?disabled="${x => x.total === 0 || x.selectedIndex === 0}"
 									@click="${x => (x.selectedIndex !== undefined) && x.selectedIndex--}"
 		></${buttonTag}>
@@ -83,6 +93,7 @@ export const PaginationTemplate: (
 									label="${x => !x.navIcons ? 'Next' : null}"
 									icon="${x => x.navIcons ? 'chevron-right-line' : null}"
 									size="${getPaginationSize}"
+									shape="${getPaginationShape}"
 									?disabled="${x => x.total === 0 || x.selectedIndex === (x.total - 1)}"
 									@click="${x => (x.selectedIndex !== undefined) && x.selectedIndex++}"
 		></${buttonTag}>
