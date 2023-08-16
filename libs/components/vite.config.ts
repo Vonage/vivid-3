@@ -74,9 +74,9 @@ export default defineConfig({
 	],
 
 	worker: {
-	 plugins: [
-	   nxViteTsPaths(),
-	 ],
+		plugins: [
+			nxViteTsPaths(),
+		],
 	},
 
 	build: {
