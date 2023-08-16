@@ -1,0 +1,11 @@
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use 'partials/variables' as variables;
+
+#{variables.$theme-main-selector},
+#{variables.$theme-alternate-selector} {
+	--__vvd3#{constants.$vvd-color-neutral-50}: var(#{constants.$vvd-color-neutral-50});
+}
+
+.vvd-component {
+	#{constants.$vvd-color-neutral-50}: var(--__vvd3#{constants.$vvd-color-neutral-50});
+}
