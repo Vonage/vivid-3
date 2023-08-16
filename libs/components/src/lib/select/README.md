@@ -30,6 +30,23 @@ Add a `label` attribute to add label to the Select.
 </vwc-select>
 ```
 
+#### Option Label
+
+You can add a `label` attribute to the [vwc-option](../../components/option) to set a custom display value for the selected option.
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+</style>
+<vwc-select aria-label="Options Selector">
+  <vwc-option label="Custom Label 1" value="1" text="Option 1"></vwc-option>
+  <vwc-option label="Custom Label 2" value="2" text="Option 2"></vwc-option>
+  <vwc-option label="Custom Label 3" value="3" text="Option 3"></vwc-option>
+</vwc-select>
+```
+
 ### Icon
 Add an `icon` attribute to add an icon to the Select.  
 Check out our [use case example](/#use-case)
@@ -298,24 +315,6 @@ If set, the `icon` attribute is ignored.
 </vwc-select>
 ```
 
-
-### Option Label
-
-You can add a `label` attribute to the [vwc-option](../../components/option) to set a custom display value for the selected option.
-
-```html preview
-<style>
-  html { /* for demo purposes */
-    block-size: 230px;
-  }
-</style>
-<vwc-select aria-label="Options Selector">
-  <vwc-option label="Custom Label 1" value="1" text="Option 1"></vwc-option>
-  <vwc-option label="Custom Label 2" value="2" text="Option 2"></vwc-option>
-  <vwc-option label="Custom Label 3" value="3" text="Option 3"></vwc-option>
-</vwc-select>
-```
-
 ## Dimensions
 
 ### Height (CSS Variable)
@@ -466,5 +465,24 @@ select?.addEventListener('change', (e) => {
   <vwc-option value="logged-out" text="Logged out">
 		<vwc-icon slot="icon" name="bullet-solid"></vwc-icon>
 	</vwc-option>
+</vwc-select>
+```
+### Placeholder
+
+To add an option placeholder, add an option with `disabled` and `selected` attributes.
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+  vwc-select {
+    width: 250px;
+  }
+</style>
+<vwc-select label="Options Selector">
+  <vwc-option value="" text="--Please choose an option--" disabled selected></vwc-option>
+  <vwc-option value="1" text="Option 1" ></vwc-option>
+  <vwc-option value="2" text="Option 2"></vwc-option>
 </vwc-select>
 ```

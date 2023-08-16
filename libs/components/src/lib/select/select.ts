@@ -70,7 +70,12 @@ export class Select extends FoundationSelect {
 
 	override get displayValue(): string {
 		Observable.track(this, 'displayValue');
-		return this.firstSelectedOption?.getAttribute('label') ?? this.firstSelectedOption?.text ?? '';
+
+		// Check if there is a placeholder option
+		const placeholdersOptions = this.options.filter((option) => (option.defaultSelected && option.disabled));
+		const lastPlaceHolderOption = placeholdersOptions[placeholdersOptions.length - 1];
+		
+		return lastPlaceHolderOption?.text ?? this.firstSelectedOption?.getAttribute('label') ?? this.firstSelectedOption?.text ?? '';
 	}
 }
 
