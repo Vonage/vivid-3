@@ -298,9 +298,10 @@ If set, the `icon` attribute is ignored.
 </vwc-select>
 ```
 
-## Option Label
 
-You can add a `label` attribute to the `vwc-option` to set a custom display value for the selected option.
+### Option Label
+
+You can add a `label` attribute to the [vwc-option](../../components/option) to set a custom display value for the selected option.
 
 ```html preview
 <style>
@@ -314,6 +315,7 @@ You can add a `label` attribute to the `vwc-option` to set a custom display valu
   <vwc-option label="Custom Label 3" value="3" text="Option 3"></vwc-option>
 </vwc-select>
 ```
+
 ## Dimensions
 
 ### Height (CSS Variable)

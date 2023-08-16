@@ -1,5 +1,5 @@
 import { applyMixins, Select as FoundationSelect } from '@microsoft/fast-foundation';
-import {attr, observable, Observable} from '@microsoft/fast-element';
+import { attr, observable, Observable } from '@microsoft/fast-element';
 import type { Popup } from '../popup/popup';
 import {
 	AffixIconWithTrailing,
@@ -28,20 +28,40 @@ export type SelectShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 @formElements
 export class Select extends FoundationSelect {
 
-	@attr appearance?: SelectAppearance;
-	@attr shape?: SelectShape;
-
 	_popup!: Popup;
 	_anchor!: HTMLElement;
 
 	/**
-	 *
-	 * Slot observer:
-	 *
-	 * @internal
-	 */
+	* The appearance attribute.
+	*
+	* @public
+	* HTML Attribute: appearance
+	*/
+	@attr appearance?: SelectAppearance;
+
+	/**
+	* The shape attribute.
+	*
+	* @public
+	* HTML Attribute: shape
+	*/
+	@attr shape?: SelectShape;
+
+	/**
+	* The fixed-dropdown attribute.
+	*
+	* @public
+	* HTML Attribute: fixed-dropdown
+	*/
+	@attr({ mode: 'boolean', attribute: 'fixed-dropdown' }) fixedDropdown = false;
+
+	/**
+	*
+	* Slot observer:
+	*
+	* @internal
+	*/
 	@observable metaSlottedContent?: Node[];
-	@attr({mode: 'boolean', attribute: 'fixed-dropdown'}) fixedDropdown = false;
 
 	override connectedCallback() {
 		super.connectedCallback();
@@ -54,5 +74,5 @@ export class Select extends FoundationSelect {
 	}
 }
 
-export interface Select extends AffixIconWithTrailing, FormElement, FormElementHelperText, ErrorText, FormElementSuccessText{}
+export interface Select extends AffixIconWithTrailing, FormElement, FormElementHelperText, ErrorText, FormElementSuccessText { }
 applyMixins(Select, AffixIconWithTrailing, FormElementHelperText, FormElementSuccessText);
