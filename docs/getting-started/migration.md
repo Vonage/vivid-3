@@ -174,7 +174,10 @@ vivid-3 component when you have vivid-2 installed in the project:
 import { registerButton } from '@vonage/vivid';
 registerButton('vwc-3');
 
-<vwc-3-button label="scoped vivid-3 button"></vwc-3-button>;
+<vwc-3-button
+	class="vvd-component"
+	label="scoped vivid-3 button"
+></vwc-3-button>;
 ```
 
 Only vivid-3 in the project:
