@@ -18,7 +18,7 @@
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
 @supports selector(:focus-visible) {
-	:host(:focus) {
+	:host(:focus-visible) {
 		outline: none;
 	}
 }
@@ -50,7 +50,7 @@
 	word-break: break-word;
 
 	@supports selector(:focus-visible) {
-		&:focus {
+		&:focus-visible {
 			outline: none;
 		}
 	}
