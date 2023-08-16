@@ -72,10 +72,9 @@ export class Select extends FoundationSelect {
 		Observable.track(this, 'displayValue');
 
 		// Check if there is a placeholder option
-		const placeholdersOptions = this.options.filter((option) => (option.defaultSelected && option.disabled));
-		const lastPlaceHolderOption = placeholdersOptions[placeholdersOptions.length - 1];
+		const placeholdersOptions = this.options.filter((option) => ((option.value === '' || option.value === null) && (option.disabled)));
 		
-		return lastPlaceHolderOption?.text ?? this.firstSelectedOption?.getAttribute('label') ?? this.firstSelectedOption?.text ?? '';
+		return placeholdersOptions[0]?.text ?? this.firstSelectedOption?.getAttribute('label') ?? this.firstSelectedOption?.text ?? '';
 	}
 }
 

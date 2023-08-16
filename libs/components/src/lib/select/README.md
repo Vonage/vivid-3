@@ -469,7 +469,7 @@ select?.addEventListener('change', (e) => {
 ```
 ### Placeholder
 
-To add an option placeholder, add an option with `disabled` and `selected` attributes.
+To add a `placeholder`, add an option with `value=""`.
 
 ```html preview
 <style>
@@ -481,7 +481,7 @@ To add an option placeholder, add an option with `disabled` and `selected` attri
   }
 </style>
 <vwc-select label="Options Selector">
-  <vwc-option value="" text="--Please choose an option--" disabled selected></vwc-option>
+  <vwc-option value="" text="--Please choose an option--" disabled></vwc-option>
   <vwc-option value="1" text="Option 1" ></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
 </vwc-select>
