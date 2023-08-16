@@ -54,12 +54,12 @@ Set the `shape` attribute to change the pagination's buttons shapes.
 
 Set the `appearance` attribute to change the pagination's buttons appearances.
 
-- Type: `ghost` | `outlined`
+- Type: `ghost` | `fieldset`
 - Default: `ghost`
 
 ```html preview blocks
 <vwc-pagination appearance="ghost" total="20"></vwc-pagination>
-<vwc-pagination appearance="outlined" total="20"></vwc-pagination>
+<vwc-pagination appearance="fieldset" total="20"></vwc-pagination>
 ```
 
 ### Selected Index

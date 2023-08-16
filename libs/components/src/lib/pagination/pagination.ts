@@ -7,7 +7,7 @@ export type PaginationSize = Extract<Size, Size.SuperCondensed | Size.Condensed 
 
 export type PaginationShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
-export type PaginationAppearance = Extract<Appearance, Appearance.Ghost | Appearance.Outlined>;
+export type PaginationAppearance = Extract<Appearance, Appearance.Ghost | Appearance.Fieldset>;
 
 const MAX_DIGITS_AND_PLACEHOLDERS = 7;
 const totalConverter: ValueConverter = {

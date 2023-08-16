@@ -8,7 +8,7 @@
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
-	$appearances: ghost outlined,
+	$appearances: ghost fieldset,
 	$default: ghost,
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;

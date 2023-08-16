@@ -510,7 +510,7 @@ describe('vwc-pagination', () => {
 
 	describe('appearance', function () {
 		it('should set the shape class on control', async function () {
-			const appearance = 'outlined';
+			const appearance = 'fieldset';
 			element.setAttribute('appearance', appearance);
 			await elementUpdated(element);
 
