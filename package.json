@@ -10,8 +10,7 @@
     "nx": "nx",
     "test": "npx nx run components:test",
     "test:ui": "npx nx run components:e2e",
-    "test:tools": "jest --projects tools",
-    "postinstall": "patch-package"
+    "test:tools": "jest --projects tools"
   },
   "private": true,
   "dependencies": {
@@ -28,7 +27,6 @@
     "dropzone": "^6.0.0-beta.2",
     "happy-dom": "^10.8.0",
     "nodemon": "^3.0.1",
-    "patch-package": "^7.0.2",
     "ramda": "^0.28.0",
     "regenerator-runtime": "^0.13.11",
     "tslib": "^2.5.0",
