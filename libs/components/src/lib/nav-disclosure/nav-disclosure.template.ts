@@ -9,6 +9,10 @@ import { Icon } from '../icon/icon';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
 import type { NavDisclosure } from './nav-disclosure';
 
+function getAriaCurrent(ariaCurrent: string | null, open: boolean) {
+	return ariaCurrent && !open;
+}
+
 /**
  * The template for the Nav component.
  *
@@ -28,7 +32,7 @@ export const NavDisclosureTemplate: (
             role="button"
             aria-controls="disclosure-content"
 			aria-expanded="${x => x.open}"
-        >
+			?aria-current=${x => getAriaCurrent(x.ariaCurrent, x.open)}>
             ${x => affixIconTemplate(x.icon)}
             ${x => x.label}
 						<slot name="meta"></slot>
