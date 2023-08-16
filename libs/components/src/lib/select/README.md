@@ -318,7 +318,7 @@ If set, the `icon` attribute is ignored.
 ## Dimensions
 
 ### Height (CSS Variable)
-Use `--select-height` to set the height of the list-box containing the select options
+Use `--select-height` to set the height of the listbox containing the select options
 
 - Default: `fit-content`
 
@@ -344,9 +344,9 @@ Use `--select-height` to set the height of the list-box containing the select op
 ```
 
 ### Width
-By default, the select width is `fit-content` and the same goes for the list-box containing the options.  
+By default, the select width is `fit-content` and the same goes for the listbox containing the options.  
 
-You can specify width on the `vwc-select` if required (the list-box will not be affected by this setting).
+You can specify width on the `vwc-select` if required (the listbox will not be affected by this setting).
 
 
 ```html preview

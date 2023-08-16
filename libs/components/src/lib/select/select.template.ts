@@ -84,7 +84,7 @@ function renderPopup(context: ElementDefinitionContext) {
 		?open="${x => x.open}" anchor="control" placement="bottom-start"
 		strategy="${x => x.fixedDropdown ? null : 'absolute'}"
 		style="${setFixedDropdownVarWidth}">
-			<div class="list-box" ${ref('listbox')} id="${x => x.listboxId}"
+			<div class="listbox" ${ref('listbox')} id="${x => x.listboxId}"
 				role="listbox" ?disabled="${x => x.disabled}">
 				${renderMultiple(context)}
 			</div>
