@@ -481,8 +481,8 @@ To add a `placeholder`, add an option with `value=""`.
   }
 </style>
 <vwc-select label="Options Selector">
-  <vwc-option value="" text="--Please choose an option--" disabled></vwc-option>
   <vwc-option value="1" text="Option 1" ></vwc-option>
+  <vwc-option value="" text="--Please choose an option--" disabled></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
 </vwc-select>
 ```
