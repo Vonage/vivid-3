@@ -144,7 +144,8 @@ registerButton('vwc-3');
 
 ## Step 7: Start using components
 
-Now it's time to use the components with the prefix you have set. It is necessary to add the `vvd-component` class to every component to avoid a collision between vivid-2 and vivid-3 token.
+Now it's time to use the components with the prefix you have set.   
+It is necessary to add the `vvd-component` class to every component to avoid a collision between vivid-2 and vivid-3 token.
 
 ```html
 <vwc-3-button
