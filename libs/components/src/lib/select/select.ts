@@ -1,5 +1,5 @@
 import { applyMixins, Select as FoundationSelect } from '@microsoft/fast-foundation';
-import { attr, observable, Observable } from '@microsoft/fast-element';
+import {attr, observable, Observable} from '@microsoft/fast-element';
 import type { Popup } from '../popup/popup';
 import {
 	AffixIconWithTrailing,

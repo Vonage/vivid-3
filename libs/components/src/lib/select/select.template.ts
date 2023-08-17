@@ -1,10 +1,10 @@
 import { html, ref, slotted, ViewTemplate, when } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { classNames } from '@microsoft/fast-web-utilities';
+import {classNames} from '@microsoft/fast-web-utilities';
 import { Listbox } from '../listbox/listbox';
 import { Popup } from '../popup/popup';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
-import { getFeedbackTemplate } from '../../shared/patterns';
+import { getFeedbackTemplate} from '../../shared/patterns';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
 import type { Select } from './select';
 
@@ -64,48 +64,49 @@ function setFixedDropdownVarWidth(x: Select) {
 	return (x.open && x.fixedDropdown) ? `--_select-fixed-width: ${Math.round(x.getBoundingClientRect().width)}px` : null;
 }
 
-function renderMultiple(context: ElementDefinitionContext) {
-	const focusTemplate = focusTemplateFactory(context);
-
-	return html<Select>`
-	${when(x => x.multiple, focusTemplate)}
-		<slot ${slotted({
-		filter: Listbox.slottedOptionFilter as any,
-		flatten: true,
-		property: 'slottedOptions',
-	})}></slot>`;
-}
-
-function renderPopup(context: ElementDefinitionContext) {
-	const popupTag = context.tagFor(Popup);
-
-	return html<Select>`
-	<${popupTag} class="popup" ${ref('_popup')}
-		?open="${x => x.open}" anchor="control" placement="bottom-start"
-		strategy="${x => x.fixedDropdown ? null : 'absolute'}"
-		style="${setFixedDropdownVarWidth}">
-			<div class="listbox" ${ref('listbox')} id="${x => x.listboxId}"
-				role="listbox" ?disabled="${x => x.disabled}">
-				${renderMultiple(context)}
-			</div>
-	</${popupTag}>`;
-}
-
 /**
  * @param context - element definition context
  */
 function renderControl(context: ElementDefinitionContext) {
+	const focusTemplate = focusTemplateFactory(context);
+	const popupTag = context.tagFor(Popup);
 
 	return html<Select>`
 			${when(x => x.label, renderLabel())}
 			<div class="control-wrapper">
 				${when(x => !x.multiple, selectValue(context))}
-				${renderPopup(context)}
+				<${popupTag}
+					?open="${x => (x.collapsible ? x.open : true)}"
+					anchor="control"
+					placement="bottom-start"
+							strategy="${x => x.fixedDropdown ? null : 'absolute'}"
+							${ref('_popup')}
+							class="popup"
+					style="${setFixedDropdownVarWidth}"
+							>
+							<div
+                id="${x => x.listboxId}"
+                role="listbox"
+                ?disabled="${x => x.disabled}"
+                ${ref('listbox')}
+								class="listbox"
+								>
+								${when(x => x.multiple, focusTemplate)}
+                <slot
+                    ${slotted({
+		filter: Listbox.slottedOptionFilter as any,
+		flatten: true,
+		property: 'slottedOptions',
+	})}
+                ></slot>
+            </div>
+					</${popupTag}>
 			</div>
-			${when(x => x.helperText?.length, getFeedbackTemplate('helper', context))}
+			${when(x =>  x.helperText?.length, getFeedbackTemplate('helper', context))}
 			${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplate('error', context))}
 			${when(x => x.successText, getFeedbackTemplate('success', context))}
 		`;
+
 }
 
 
@@ -127,7 +128,7 @@ export const SelectTemplate: (
 							aria-controls="${x => x.ariaControls}"
 							aria-disabled="${x => x.ariaDisabled}"
 							aria-expanded="${x => x.ariaExpanded}"
-							aria-haspopup="listbox"
+							aria-haspopup="${x => (x.collapsible ? 'listbox' : null)}"
 							aria-multiselectable="${x => x.ariaMultiSelectable}"
 							?open="${x => x.open}"
 							role="combobox"
