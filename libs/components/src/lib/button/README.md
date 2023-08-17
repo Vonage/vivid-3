@@ -207,6 +207,7 @@ The assistive technology will read the `aria-label` text rather than the `title`
 <vwc-button
   class='button-width'
   label="I'm full width"
+  icon='message-sent-line'
   shape='pill'
   appearance='filled'>
 </vwc-button>
