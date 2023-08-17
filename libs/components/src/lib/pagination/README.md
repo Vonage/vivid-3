@@ -66,7 +66,7 @@ Set the `selectedIndex` attribute to change the pagination's currently selected 
 
 ### Nav Icons
 
-Set the `navIcons` attribute to change the pagination's navigation buttons type.
+Set the `nav-icons` attribute to change the pagination's navigation buttons type.
 
 - Type: `Boolean`
 - Default: `false`
@@ -76,8 +76,15 @@ Set the `navIcons` attribute to change the pagination's navigation buttons type.
 <vwc-pagination total="20" nav-icons></vwc-pagination>
 ```
 
-### Pages List
-`pagesList` is an immutable array that represents the current pagination's state.
+## Properties
+
+<div class="table-wrapper">
+
+| Name     | Type     | Default     | Description                                                                              |
+|----------| -------- | ----------- |------------------------------------------------------------------------------------------|
+| `pagesList`  | `number[]` | `[]`        | An immutable array that represents the current pagination's state. |
+
+</div>
 
 ## Events
 
@@ -90,3 +97,21 @@ Set the `navIcons` attribute to change the pagination's navigation buttons type.
 
 
 </div>
+
+## Use Cases
+
+### With outlined border
+
+```html preview
+<style>
+vwc-pagination {
+    border: 1px solid var(--vvd-color-neutral-400);
+    padding: 6px;
+    border-radius: 24px;
+    display: inline-block;
+    position: fixed;
+}
+</style>
+
+<vwc-pagination total="10" shape="pill"></vwc-pagination>
+```
