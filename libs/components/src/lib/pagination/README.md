@@ -80,9 +80,9 @@ Set the `nav-icons` attribute to change the pagination's navigation buttons type
 
 <div class="table-wrapper">
 
-| Name     | Type     | Default     | Description                                                                              |
-|----------| -------- | ----------- |------------------------------------------------------------------------------------------|
-| `pagesList`  | `number[]` | `[]`        | An immutable array that represents the current pagination's state. |
+| Name        | Type       | Default | Description                                                        |
+| ----------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `pagesList` | `number[]` | `[]`    | An immutable array that represents the current pagination's state. |
 
 </div>
 
@@ -90,28 +90,27 @@ Set the `nav-icons` attribute to change the pagination's navigation buttons type
 
 <div class="table-wrapper">
 
-| Name                | Description                                                                                                                                 |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `pagination-change` | Listen to the `pagination-change` event to get notified when the pagination's state changes. Returns detail{selectedIndex, total, oldIndex} |
-|                     |
+| Name                | Description         |
+| ------------------- |---------------------------------- |
+| `pagination-change` | Listen to the `pagination-change` event to get notified when the pagination's state changes. Returns detail{selectedIndex, total, oldIndex} |  
 
 
 </div>
 
+
 ## Use Cases
 
-### With outlined border
+### With border
 
 ```html preview
 <style>
-vwc-pagination {
+vwc-pagination#outlined {
     border: 1px solid var(--vvd-color-neutral-400);
     padding: 6px;
     border-radius: 24px;
     display: inline-block;
-    position: fixed;
 }
 </style>
 
-<vwc-pagination total="10" shape="pill"></vwc-pagination>
+<vwc-pagination id="outlined" total="10" shape="pill"></vwc-pagination>
 ```
