@@ -105,6 +105,8 @@ Additionally, you will need to import the compatibility css.
 
 ## Step 4: Setting Vivid Class
 
+### Vivid-3 class
+
 To add fonts and tokens to the component you need to add the class `vvd-root` to your app.
 
 ```html
@@ -117,7 +119,10 @@ It is recommended to add the class to the [:root](https://developer.mozilla.org/
 
 Alternatively, you can add it to any other wrapping element in order to restrict the style's scope to specific parts of your application, but please note that this may negatively impact font scaling.
 
-Wherever you choose to add the class, you will need to add vivid-2's `vvd-scheme-main` to a descendant element. If you are using the `:root` element, you can add it to the body.
+### Vivid-2 class
+
+You also need to add the vivid-2 class `vvd-scheme-main` to a descended element of the `vvd-root`.
+This is needed to ensure that vivid-2 tokens are not overridden by vivid-3 tokens.
 
 ```html
 <html class="vvd-root">
@@ -144,7 +149,7 @@ registerButton('vwc-3');
 
 ## Step 7: Start using components
 
-Now it's time to use the components with the prefix you have set.   
+Now it's time to use the components with the prefix you have set.  
 It is necessary to add the `vvd-component` class to every component to avoid a collision between vivid-2 and vivid-3 token.
 
 ```html
