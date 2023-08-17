@@ -246,7 +246,7 @@ export class DatePicker extends FoundationElement {
 		return true;
 	}
 
-	/// --- Text field ---
+	// --- Text field ---
 
 	/**
 	 * Stores the value of the text field.
@@ -304,7 +304,7 @@ export class DatePicker extends FoundationElement {
 		}
 	}
 
-	/// --- Dialog header ---
+	// --- Dialog header ---
 
 	/**
 	 * @internal
@@ -359,7 +359,7 @@ export class DatePicker extends FoundationElement {
 		this.selectedMonth = addMonths(this.selectedMonth, 1);
 	}
 
-	/// --- Calendar ---
+	// --- Calendar ---
 
 	/**
 	 * The calendar grid used to render the calendar.
@@ -453,7 +453,7 @@ export class DatePicker extends FoundationElement {
 		);
 	}
 
-	/// --- Month picker ---
+	// --- Month picker ---
 
 	/**
 	 * The year the month picker is currently showing.
