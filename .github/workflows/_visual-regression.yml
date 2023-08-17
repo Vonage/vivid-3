@@ -31,7 +31,7 @@ jobs:
         id: build-cache
         with:
           path: dist/
-          key: ${{ runner.os }}-dist-${{ hashFiles('/libs/**/*.*') }}
+          key: ${{ runner.os }}-dist-${{ hashFiles('libs/**/*.*') }}
 
       - run: npx nx run components:e2e:no-build --task=local
       - uses: actions/upload-artifact@v3
