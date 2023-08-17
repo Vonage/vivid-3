@@ -16,7 +16,7 @@ $low-ink-color: --_low-ink-color;
 
 .control {
 	@supports selector(:focus-visible) {
-		&:focus {
+		&:focus-visible {
 			outline: none;
 		}
 	}

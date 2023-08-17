@@ -14,7 +14,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 			<style>
 				#wrapper {
-					width: 1800px;
+					width: 2300px;
 					display: grid;
 					grid-auto-rows: 250px;
 					grid-template-columns: repeat(8, 1fr);
@@ -22,6 +22,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			</style>` + extractHTMLBlocksFromReadme(
 		path.join(new URL('.', import.meta.url).pathname, 'README.md'))
 		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
+
+	await page.setViewportSize({ width: 2300, height: 720 });
 
 	await loadComponents({
 		page,
