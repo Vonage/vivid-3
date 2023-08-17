@@ -18,7 +18,7 @@
 
 
 @supports selector(:focus-visible) {
-	:host(:focus) {
+	:host(:focus-visible) {
 		outline: none;
 	}
 }
