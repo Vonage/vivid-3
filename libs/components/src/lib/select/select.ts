@@ -1,5 +1,5 @@
 import { applyMixins, Select as FoundationSelect } from '@microsoft/fast-foundation';
-import {attr, observable, Observable} from '@microsoft/fast-element';
+import { attr, observable, Observable } from '@microsoft/fast-element';
 import type { Popup } from '../popup/popup';
 import {
 	AffixIconWithTrailing,
@@ -73,7 +73,7 @@ export class Select extends FoundationSelect {
 
 		// Check if there is a placeholder option
 		const placeholdersOptions = this.options.filter((option) => ((option.value === '' || option.value === null) && (option.disabled)));
-		
+
 		return placeholdersOptions[0]?.text ?? this.firstSelectedOption?.getAttribute('label') ?? this.firstSelectedOption?.text ?? '';
 	}
 }

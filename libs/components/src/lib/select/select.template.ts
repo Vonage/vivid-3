@@ -1,10 +1,10 @@
 import { html, ref, slotted, ViewTemplate, when } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
-import {classNames} from '@microsoft/fast-web-utilities';
+import { classNames } from '@microsoft/fast-web-utilities';
 import { Listbox } from '../listbox/listbox';
 import { Popup } from '../popup/popup';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
-import { getFeedbackTemplate} from '../../shared/patterns';
+import { getFeedbackTemplate } from '../../shared/patterns';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
 import type { Select } from './select';
 
@@ -76,7 +76,7 @@ function renderControl(context: ElementDefinitionContext) {
 			<div class="control-wrapper">
 				${when(x => !x.multiple, selectValue(context))}
 				<${popupTag}
-					?open="${x => (x.collapsible ? x.open : true)}"
+					?open="${x => x.open}"
 					anchor="control"
 					placement="bottom-start"
 							strategy="${x => x.fixedDropdown ? null : 'absolute'}"
@@ -102,7 +102,7 @@ function renderControl(context: ElementDefinitionContext) {
             </div>
 					</${popupTag}>
 			</div>
-			${when(x =>  x.helperText?.length, getFeedbackTemplate('helper', context))}
+			${when(x => x.helperText?.length, getFeedbackTemplate('helper', context))}
 			${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplate('error', context))}
 			${when(x => x.successText, getFeedbackTemplate('success', context))}
 		`;
@@ -128,7 +128,7 @@ export const SelectTemplate: (
 							aria-controls="${x => x.ariaControls}"
 							aria-disabled="${x => x.ariaDisabled}"
 							aria-expanded="${x => x.ariaExpanded}"
-							aria-haspopup="${x => (x.collapsible ? 'listbox' : null)}"
+							aria-haspopup="listbox"
 							aria-multiselectable="${x => x.ariaMultiSelectable}"
 							?open="${x => x.open}"
 							role="combobox"
