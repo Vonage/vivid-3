@@ -20,21 +20,14 @@ export const addDays = (dateStr: DateStr, days: number): DateStr => {
 	return formatDateStr(resultDate);
 };
 
-export const isValidDateStr = (string: string): boolean => {
-	const components = string.split('-');
-	if (components.length !== 3) {
-		return false;
-	}
+const hasThreeComponents = (
+	components: string[]
+): components is [string, string, string] => components.length === 3;
 
-	// Check that all components are numbers
-	for (const component of components) {
-		if (!/^\d+$/.test(component)) {
-			return false;
-		}
-	}
+const allComponentsAreNumbers = (components: string[]) =>
+	components.every((component) => /^\d+$/.test(component));
 
-	// Check that the date is valid
-	const [yearStr, monthStr, dayStr] = components;
+const isValidDate = ([yearStr, monthStr, dayStr]: [string, string, string]) => {
 	const year = parseInt(yearStr);
 	const month = parseInt(monthStr) - 1;
 	const day = parseInt(dayStr);
@@ -43,5 +36,15 @@ export const isValidDateStr = (string: string): boolean => {
 		date.getFullYear() === year &&
 		date.getMonth() === month &&
 		date.getDate() === day
+	);
+};
+
+export const isValidDateStr = (string: string): boolean => {
+	const components = string.split('-');
+
+	return (
+		hasThreeComponents(components) &&
+		allComponentsAreNumbers(components) &&
+		isValidDate(components)
 	);
 };
