@@ -93,6 +93,9 @@ The following CSS custom properties can be referred to style the text in your ap
 
 
 ## Using Vivid Typography
+
+The Vivid typography css is optional. To use it, you will need to [include the typography styles](/getting-started/advanced).
+
 The typography style target both HTML tags and css classes.  
 All `headlines` and `p` elements also get `margin-block`.  
 Use the class `tight` to remove `margin-block`.  

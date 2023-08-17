@@ -34,7 +34,7 @@ Styles **require** a `vvd-root` class selector to be present on a wrapping eleme
 
 ### Using the typography
 
-[see all usage examples in the Typography](/designs/typography/#Using-Vivid-Typography).
+[See typography usage examples](/designs/typography/#Using-Vivid-Typography).
 
 ---
 
