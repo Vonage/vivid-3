@@ -4,6 +4,21 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.31.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.30.0...vivid-v3.31.0) (2023-08-17)
+
+
+### Features
+
+* **nav-disclosure:** add aria-current (VIV-893) ([#1321](https://github.com/Vonage/vivid-3/issues/1321)) ([ce987d2](https://github.com/Vonage/vivid-3/commit/ce987d2755433aeed6911f5d723730100ca92ef9))
+* **pagination:** add shape (VIV-1062) ([#1328](https://github.com/Vonage/vivid-3/issues/1328)) ([8f02493](https://github.com/Vonage/vivid-3/commit/8f024935ca5dc723612661729ccbf5484d7d6edc))
+
+
+### Bug Fixes
+
+* **button:** button full width (VIV-1266) ([#1335](https://github.com/Vonage/vivid-3/issues/1335)) ([29ac010](https://github.com/Vonage/vivid-3/commit/29ac01036f36083cef15e806a0019e24c41bfc62))
+* **focus:** hide native focus-visible outline (VIV-1257) ([#1327](https://github.com/Vonage/vivid-3/issues/1327)) ([d81a227](https://github.com/Vonage/vivid-3/commit/d81a2272b89af2eadfe3e7ebe1800812ee39c7b2))
+* **pagination:** outline  use-case (VIV-1063) ([#1331](https://github.com/Vonage/vivid-3/issues/1331)) ([4902c92](https://github.com/Vonage/vivid-3/commit/4902c923f009f720f77785d0aed9942ad779cf1c))
+
 ## [3.30.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.29.0...vivid-v3.30.0) (2023-08-14)
 
 
