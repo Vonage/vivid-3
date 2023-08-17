@@ -9,7 +9,7 @@ jobs:
       image: vivid3/vonage:2.0.1
       options: --user root
     steps:
-      - run: echo "Running drizzt99/vonage:2.0.2"
+      - run: echo "Running drizzt99/vonage:2.0.3"
 
       - uses: actions/checkout@v3
 
