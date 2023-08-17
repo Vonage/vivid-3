@@ -111,7 +111,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	</div>
 	`;
 
-	page.setViewportSize({ width: 500, height: 720 });
+	await page.setViewportSize({ width: 500, height: 1200 });
 
 	await loadComponents({
 		page,
@@ -131,6 +131,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			if (indicator) indicator.value = 66;
 		});
 	});
+
+	await page.locator('vwc-button').nth(0).focus();
 
 	await page.waitForLoadState('networkidle');
 
