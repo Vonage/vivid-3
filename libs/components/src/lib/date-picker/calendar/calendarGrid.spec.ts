@@ -22,26 +22,29 @@ const enGbLocale = { ...enUsLocale, firstDayOfWeek: 1 };
 describe('buildCalendarGrid', () => {
 	it('should include a cell for dates within the month', () => {
 		const grid = buildCalendarGrid({ month: 7, year: 2023 }, enUsLocale);
-		expect(grid.grid[0][2].date).toBe('2023-08-01');
-		expect(grid.grid[0][2].label).toBe('1');
-		expect(grid.grid[0][2].isOutsideMonth).toBe(false);
+		const thirdDayOfFirstWeek = grid.grid[0][2];
+		expect(thirdDayOfFirstWeek.date).toBe('2023-08-01');
+		expect(thirdDayOfFirstWeek.label).toBe('1');
+		expect(thirdDayOfFirstWeek.isOutsideMonth).toBe(false);
 	});
 
 	it('should include a cell for dates in the week before the first of the month', () => {
 		const grid = buildCalendarGrid({ month: 7, year: 2023 }, enUsLocale);
-		expect(grid.grid[0][0].date).toBe('2023-07-30');
-		expect(grid.grid[0][0].label).toBe('30');
-		expect(grid.grid[0][0].isOutsideMonth).toBe(true);
+		const firstDayOfFirstWeek = grid.grid[0][0];
+		expect(firstDayOfFirstWeek.date).toBe('2023-07-30');
+		expect(firstDayOfFirstWeek.label).toBe('30');
+		expect(firstDayOfFirstWeek.isOutsideMonth).toBe(true);
 	});
 
 	it('should include a cell for dates in the week after the last of the month', () => {
 		const grid = buildCalendarGrid({ month: 7, year: 2023 }, enUsLocale);
-		expect(grid.grid[4][6].date).toBe('2023-09-02');
-		expect(grid.grid[4][6].label).toBe('2');
-		expect(grid.grid[4][6].isOutsideMonth).toBe(true);
+		const lastDayOfLastWeek = grid.grid[4][6];
+		expect(lastDayOfLastWeek.date).toBe('2023-09-02');
+		expect(lastDayOfLastWeek.label).toBe('2');
+		expect(lastDayOfLastWeek.isOutsideMonth).toBe(true);
 	});
 
-	describe('for August 2023 with en-US locale', () => {
+	describe('for the example month August 2023 with en-US locale', () => {
 		const grid = buildCalendarGrid({ month: 7, year: 2023 }, enUsLocale);
 
 		it('should start the week on Sunday', () => {
@@ -59,23 +62,27 @@ describe('buildCalendarGrid', () => {
 		});
 
 		it('should have the first day as Sunday, 30th of July', () => {
-			expect(grid.grid[0][0].label).toBe('30');
+			const firstDay = grid.grid[0][0];
+			expect(firstDay.label).toBe('30');
 		});
 
 		it('should have the first of August as Tuesday', () => {
-			expect(grid.grid[0][2].label).toBe('1');
+			const firstTuesday = grid.grid[0][2];
+			expect(firstTuesday.label).toBe('1');
 		});
 
 		it('should have the last day of August as Thursday', () => {
-			expect(grid.grid[4][4].label).toBe('31');
+			const lastThursday = grid.grid[4][4];
+			expect(lastThursday.label).toBe('31');
 		});
 
 		it('should have the last day as Saturday, 2nd of September', () => {
-			expect(grid.grid[4][6].label).toBe('2');
+			const lastDay = grid.grid[4][6];
+			expect(lastDay.label).toBe('2');
 		});
 	});
 
-	describe('for August 2023 with en-GB locale', () => {
+	describe('for the example month August 2023 with en-GB locale', () => {
 		const grid = buildCalendarGrid({ month: 7, year: 2023 }, enGbLocale);
 
 		it('should start the week on Monday', () => {
@@ -93,19 +100,23 @@ describe('buildCalendarGrid', () => {
 		});
 
 		it('should have the first day as Monday, 31st of July', () => {
-			expect(grid.grid[0][0].label).toBe('31');
+			const firstDay = grid.grid[0][0];
+			expect(firstDay.label).toBe('31');
 		});
 
 		it('should have the first of August as Tuesday', () => {
-			expect(grid.grid[0][1].label).toBe('1');
+			const firstTuesday = grid.grid[0][1];
+			expect(firstTuesday.label).toBe('1');
 		});
 
 		it('should have the last day of August as Thursday', () => {
-			expect(grid.grid[4][3].label).toBe('31');
+			const lastThursday = grid.grid[4][3];
+			expect(lastThursday.label).toBe('31');
 		});
 
 		it('should have the last day as Sunday, 3rd of September', () => {
-			expect(grid.grid[4][6].label).toBe('3');
+			const lastDay = grid.grid[4][6];
+			expect(lastDay.label).toBe('3');
 		});
 	});
 });
