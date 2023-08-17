@@ -30,46 +30,38 @@ export interface CalendarGridDate {
 	isOutsideMonth: boolean;
 }
 
+const gridDate = (date: Date, isOutsideMonth: boolean): CalendarGridDate => ({
+	date: formatDateStr(date),
+	label: `${date.getDate()}`,
+	isOutsideMonth,
+});
+
 export type CalendarGrid = {
 	weekdays: Weekday[];
 	grid: CalendarGridDate[][];
 };
 
-export const buildCalendarGrid = (
+const buildDateGrid = (
 	{ month, year }: Month,
-	locale: DatePickerLocale
-): CalendarGrid => {
-	// Shift week days to start from firstDayOfWeek
-	const firstDayOfWeek = locale.firstDayOfWeek;
-	const getShiftedDay = (date: Date): number =>
-		(date.getDay() - firstDayOfWeek + 7) % 7;
-
+	getDay: (date: Date) => number
+) => {
 	const grid: CalendarGridDate[][] = [];
 
 	const firstDay = new Date(year, month, 1);
 	const lastDay = new Date(year, month + 1, 0);
 	const daysInMonth = lastDay.getDate();
-	const firstDayInWeek = getShiftedDay(firstDay);
+	const firstDayInWeek = getDay(firstDay);
 
 	let week: CalendarGridDate[] = [];
 
 	// Fill in the days before the first day of the month
 	for (let i = 0; i < firstDayInWeek; i++) {
-		const date = addDays(firstDay, i - firstDayInWeek);
-		week.push({
-			date: formatDateStr(date),
-			label: `${date.getDate()}`,
-			isOutsideMonth: true,
-		});
+		week.push(gridDate(addDays(firstDay, i - firstDayInWeek), true));
 	}
 
 	// Fill up days of the month
 	for (let i = 1; i <= daysInMonth; i++) {
-		week.push({
-			date: formatDateStr(new Date(year, month, i)),
-			label: `${i}`,
-			isOutsideMonth: false,
-		});
+		week.push(gridDate(new Date(year, month, i), false));
 		if (week.length === 7) {
 			grid.push(week);
 			week = [];
@@ -79,20 +71,27 @@ export const buildCalendarGrid = (
 	// Fill in the days after the last day of the month
 	const daysInLastWeek = week.length;
 	for (let i = daysInLastWeek; i < 7; i++) {
-		const date = addDays(lastDay, i - daysInLastWeek + 1);
-		week.push({
-			date: formatDateStr(date),
-			label: `${date.getDate()}`,
-			isOutsideMonth: true,
-		});
+		week.push(gridDate(addDays(lastDay, i - daysInLastWeek + 1), true));
 	}
 
 	if (week.length > 0) {
 		grid.push(week);
 	}
 
+	return grid;
+};
+
+export const buildCalendarGrid = (
+	month: Month,
+	locale: DatePickerLocale
+): CalendarGrid => {
+	// Shift week days to start from firstDayOfWeek
+	const { firstDayOfWeek } = locale;
+	const getShiftedDay = (date: Date): number =>
+		(date.getDay() - firstDayOfWeek + 7) % 7;
+
 	return {
 		weekdays: getWeekdays(locale),
-		grid,
+		grid: buildDateGrid(month, getShiftedDay),
 	};
 };
