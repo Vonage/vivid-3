@@ -35,7 +35,7 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
       - uses: actions/cache@v3
-        id: build-cache
+        id: build_cache
         with:
           path: dist/
           key: ${{ runner.os }}-dist-${{ hashFiles('/libs/**/*.*') }}
@@ -45,6 +45,7 @@ jobs:
         run: npm ci
 
       - name: Build
+        if: steps.build_cache.outputs.cache-hit != 'true'
         run: npx nx run components:build
 
   call-lint:
