@@ -6,7 +6,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: vivid3/vonage:2.0.1
+      image: drizzt99/vonage:2.0.3
       options: --user root
     steps:
       - run: echo "Running drizzt99/vonage:2.0.3"
