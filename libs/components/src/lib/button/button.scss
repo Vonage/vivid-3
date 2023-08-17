@@ -49,8 +49,8 @@
 		/* stylelint-enable value-no-vendor-prefix */
 		overflow: hidden;
 		-webkit-box-orient: vertical;
-		inline-size: 100%;
 		-webkit-line-clamp: var(#{variables.$button-line-clamp}, 1);
+		max-inline-size: 100%;
 	}
 
 	&:not(.icon-only) {
