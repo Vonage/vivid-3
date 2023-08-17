@@ -38,7 +38,7 @@ jobs:
         id: build-cache
         with:
           path: dist/
-          key: ${{ runner.os }}-dist-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-dist-${{ hashFiles('/libs/**/*.*') }}
 
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
