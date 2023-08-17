@@ -192,6 +192,12 @@ export class DatePicker extends FoundationElement {
 	/// Used to stop the popup from immediately opening when closing popup and returning focus to text field
 	#isClosingPopup = false;
 
+	#openPopupIfPossible() {
+		if (!this.readOnly && !this.#isClosingPopup) {
+			this.popupOpen = true;
+		}
+	}
+
 	#closePopup(restoreFocusToTextField = true) {
 		this.popupOpen = false;
 		this.monthPickerYear = null;
@@ -299,9 +305,29 @@ export class DatePicker extends FoundationElement {
 	 * @internal
 	 */
 	onTextFieldFocus() {
-		if (!this.readOnly && !this.#isClosingPopup) {
-			this.popupOpen = true;
+		this.#openPopupIfPossible();
+	}
+
+	/**
+	 * @internal
+	 */
+	onTextFieldClick() {
+		this.#openPopupIfPossible();
+	}
+
+	/**
+	 * @internal
+	 */
+	onTextFieldKeydown(event: KeyboardEvent) {
+		if (event.key === 'Enter') {
+			if (this.popupOpen) {
+				this.#closePopup();
+			} else {
+				this.#openPopupIfPossible();
+			}
 		}
+
+		return true; // Don't prevent default
 	}
 
 	// --- Dialog header ---

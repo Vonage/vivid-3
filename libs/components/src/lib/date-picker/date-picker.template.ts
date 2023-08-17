@@ -254,6 +254,8 @@ export const DatePickerTemplate: (
 										 @input="${(x, c) => x.onTextFieldInput(c.event)}"
 										 @change="${(x) => x.onTextFieldChange()}"
 										 @focus="${(x) => x.onTextFieldFocus()}"
+										 @click="${(x) => x.onTextFieldClick()}"
+										 @keydown="${(x, c) => x.onTextFieldKeydown(c.event as KeyboardEvent)}"
 		></${textFieldTag}>
 		<${popupTag}
 					?open="${(x) => x.popupOpen}"

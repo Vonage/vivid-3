@@ -263,7 +263,14 @@ describe('vwc-date-picker', () => {
 			expect(popup.open).toBe(true);
 		});
 
-		it('should remain closed when readonly text field receives focus', async () => {
+		it('should open when the text field is clicked upon', async () => {
+			textField.dispatchEvent(new MouseEvent('click'));
+			await elementUpdated(element);
+
+			expect(popup.open).toBe(true);
+		});
+
+		it('should remain closed when readonly', async () => {
 			element.readOnly = true;
 
 			textField.dispatchEvent(new FocusEvent('focus'));
@@ -288,6 +295,26 @@ describe('vwc-date-picker', () => {
 			await elementUpdated(element);
 
 			expect(popup.open).toBe(false);
+		});
+
+		it('should close when pressing enter in the text field while open', async () => {
+			await openPopup();
+
+			pressKey('Enter');
+			await elementUpdated(element);
+
+			expect(popup.open).toBe(false);
+		});
+
+		it('should open when pressing enter in the text field while closed', async () => {
+			await openPopup();
+			pressKey('Enter');
+			await elementUpdated(element);
+
+			pressKey('Enter');
+			await elementUpdated(element);
+
+			expect(popup.open).toBe(true);
 		});
 	});
 
