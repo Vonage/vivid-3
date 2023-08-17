@@ -6,16 +6,16 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: drizzt99/vonage:2.0.3
+      image: drizzt99/vonage:2.1.0
       options: --user root
     steps:
-      - run: echo "Running drizzt99/vonage:2.0.3"
+      - run: echo "Running drizzt99/vonage:2.1.0"
 
       - uses: actions/checkout@v3
 
       - uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '16'
           cache: 'npm'
 
       - uses: actions/cache@v3
@@ -27,8 +27,8 @@ jobs:
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
-      - run: chown -R node:node ./libs/components
-      - run: npm run nx e2e components -- --task=local
+
+      - run: sudo npm run nx e2e components -- --task=local
       - uses: actions/upload-artifact@v3
         if: always()
         with:
