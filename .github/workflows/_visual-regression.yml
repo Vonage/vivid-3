@@ -7,7 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: drizzt99/vonage:2.1.0
-      options: --user root
     steps:
       - run: echo "Running drizzt99/vonage:2.1.0"
 
@@ -28,7 +27,13 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
-      - run: npm run nx e2e components -- --task=local
+      - uses: actions/cache@v3
+        id: build-cache
+        with:
+          path: dist/
+          key: ${{ runner.os }}-dist-${{ hashFiles('package-lock.json') }}
+
+      - run: npx nx run components:e2e:no-build --task=local
       - uses: actions/upload-artifact@v3
         if: always()
         with:

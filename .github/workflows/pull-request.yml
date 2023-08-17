@@ -34,9 +34,18 @@ jobs:
           path: node_modules/
           key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
+      - uses: actions/cache@v3
+        id: build-cache
+        with:
+          path: dist/
+          key: ${{ runner.os }}-dist-${{ hashFiles('package-lock.json') }}
+
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
+
+      - name: Build
+        run: npx nx run components:build
 
   call-lint:
     if: github.event.pull_request.draft == false
