@@ -28,7 +28,7 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
-      - run: sudo npm run nx e2e components -- --task=local
+      - run: npm run nx e2e components -- --task=local
       - uses: actions/upload-artifact@v3
         if: always()
         with:
