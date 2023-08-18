@@ -131,14 +131,14 @@ function renderCalendarGrid(context: ElementDefinitionContext) {
 			'calendar-day',
 			'button',
 			['current', x.date === c.parentContext.parent.currentDate],
-			['selected', x.date === c.parentContext.parent.selectedDate],
+			['selected', x.date === c.parentContext.parent.value],
 			['outside-month', x.isOutsideMonth]
 		)}"
 							role="gridcell"
 							tabindex="${(x, c) =>
 		x.date === c.parentContext.parent.tabbableDate ? 0 : -1}"
 							aria-selected="${(x, c) =>
-		x.date === c.parentContext.parent.selectedDate}"
+		x.date === c.parentContext.parent.value}"
 							data-date="${(x) => x.date}"
 							@click="${(x, c) => c.parentContext.parent.onDateClick(x.date)}"
 							@focus="${(x, c) => c.parentContext.parent.onDateFocus(x.date)}"

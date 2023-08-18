@@ -65,26 +65,40 @@ export class DatePicker extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: text
 	 */
-	@attr value?: string;
+	@attr({
+		// Converter ensures that the value is always a valid date string or null
+		converter: {
+			fromView: (value: string) => {
+				if (value && isValidDateStr(value)) {
+					return value;
+				}
+				return null;
+			},
+			toView(value: string) {
+				return value;
+			},
+		},
+	})
+		value: DateStr | null = null;
+
 	/**
 	 * @internal
 	 */
 	valueChanged() {
 		this.internalValidationError = null;
-		const validatedValue = this.selectedDate;
-		if (validatedValue !== null) {
+		if (this.value !== null) {
 			this.presentationValue = formatPresentationDate(
-				validatedValue,
+				this.value,
 				this.locale.datePicker
 			);
 			// Ensure we are switched to the month of the new selected date
-			this.selectedMonth = monthOfDate(validatedValue);
+			this.selectedMonth = monthOfDate(this.value);
 		} else {
 			this.presentationValue = '';
 		}
 	}
 
-	#updateValueDueToUserInteraction(newValue: DateStr | undefined) {
+	#updateValueDueToUserInteraction(newValue: DateStr | null) {
 		this.value = newValue;
 		this.$emit('change');
 		this.$emit('input');
@@ -126,17 +140,6 @@ export class DatePicker extends FoundationElement {
 	lastFocusableEl!: HTMLElement;
 
 	// --- Common state and getters ---
-
-	/**
-	 * Validated and safe to use date value.
-	 * @internal
-	 */
-	get selectedDate(): DateStr | null {
-		if (this.value && isValidDateStr(this.value)) {
-			return this.value;
-		}
-		return null;
-	}
 
 	/**
 	 * The month the calendar is currently showing.
@@ -287,7 +290,7 @@ export class DatePicker extends FoundationElement {
 	 */
 	onTextFieldChange() {
 		if (this.presentationValue === '') {
-			this.#updateValueDueToUserInteraction(undefined);
+			this.#updateValueDueToUserInteraction(null);
 			return;
 		}
 
@@ -461,11 +464,7 @@ export class DatePicker extends FoundationElement {
 	 */
 	@volatile
 	get tabbableDate(): DateStr {
-		const candidates = [
-			this.lastFocussedDate,
-			this.selectedDate,
-			currentDateStr(),
-		];
+		const candidates = [this.lastFocussedDate, this.value, currentDateStr()];
 
 		// Find valid candidate or default to the first day of the current month
 		return (
@@ -601,7 +600,7 @@ export class DatePicker extends FoundationElement {
 	 * @internal
 	 */
 	onClearClick() {
-		this.#updateValueDueToUserInteraction(undefined);
+		this.#updateValueDueToUserInteraction(null);
 		this.#closePopup();
 	}
 }
