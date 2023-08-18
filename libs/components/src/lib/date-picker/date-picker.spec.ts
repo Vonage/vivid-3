@@ -449,7 +449,7 @@ describe('vwc-date-picker', () => {
 			expect(getDialogTitle()).toBe('July 2023');
 		});
 
-		it('should not prevent default when pressing any other key', async () => {
+		it('should enable default of keydown event when pressing any other key', async () => {
 			getDateButton('2023-08-01').focus();
 
 			const event = new KeyboardEvent('keydown', { key: 'a', bubbles: true });
@@ -500,7 +500,7 @@ describe('vwc-date-picker', () => {
 			titleAction.click();
 			await elementUpdated(element);
 
-			expect(getDialogTitle()).toBe('August 2023');
+			expect(element.shadowRoot!.querySelector('.month-grid')).toBeNull();
 		});
 
 		it('should move focus to the tabbable month when pressing tab in the text-field', async () => {
@@ -544,7 +544,7 @@ describe('vwc-date-picker', () => {
 			expect(getDialogTitle()).toBe('2022');
 		});
 
-		it('should not prevent default when pressing any other key', async () => {
+		it('should enable default of keydown event when pressing any other key', async () => {
 			getMonthButton('2023-1').focus();
 
 			const event = new KeyboardEvent('keydown', { key: 'a', bubbles: true });
