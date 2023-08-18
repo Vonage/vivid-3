@@ -1,15 +1,16 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "../focus/partials/variables" as focus-variables;
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent,
-	$shades: primary primary-text faint soft,
+	$shades: primary primary-text primary-increment faint soft,
 	$default: accent
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: ghost,
-	$states: idle hover active selected,
+	$states: idle hover active selected selectedAndHover,
 	$default: ghost
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
@@ -43,7 +44,7 @@
 	@include connotation.connotation (nav-disclosure);
 
 	@supports selector(:focus-visible) {
-		&:focus {
+		&:focus-visible {
 			outline: none;
 		}
 	}
@@ -58,6 +59,8 @@
 }
 
 .focus-indicator {
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
 	.control:not(:focus-visible) & {
 		display: none;
 	}
@@ -66,10 +69,6 @@
 .icon {
 	font-size: 20px;
 	line-height: 1;
-
-	.control:not(.icon-only) & {
-		color: var(#{constants.$vvd-color-neutral-600});
-	}
 }
 
 .content {

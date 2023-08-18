@@ -31,7 +31,7 @@ $gutter: 2px;
 	vertical-align: middle;
 
 	@supports selector(:focus-visible) {
-		&:focus {
+		&:focus-visible {
 			outline: none;
 		}
 	}

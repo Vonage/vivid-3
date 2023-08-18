@@ -49,8 +49,8 @@
 		/* stylelint-enable value-no-vendor-prefix */
 		overflow: hidden;
 		-webkit-box-orient: vertical;
-		inline-size: 100%;
 		-webkit-line-clamp: var(#{variables.$button-line-clamp}, 1);
+		max-inline-size: 100%;
 	}
 
 	&:not(.icon-only) {
@@ -58,7 +58,7 @@
 	}
 
 	@supports selector(:focus-visible) {
-		&:focus {
+		&:focus-visible{
 			outline: none;
 		}
 	}
@@ -171,13 +171,13 @@
 }
 
 .focus-indicator {
-	:not(:focus-visible) > & {
-		display: none;
-	}
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
 
-	.appearance-outlined &,
-	.appearance-ghost & {
-		#{focus-variables.$focus-stroke-gap-color}: transparent;
+	.appearance-filled & {
+		#{focus-variables.$focus-stroke-gap-color}: unset;
+	}
+	.control:not(:focus-visible) > & {
+		display: none;
 	}
 }
 
@@ -187,5 +187,5 @@
 	& + .text {
 		visibility: hidden;
 	}
-}	
+}
 

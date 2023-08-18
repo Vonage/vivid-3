@@ -95,8 +95,6 @@ export async function loadTemplate({
 	page,
 	template,
 }: { page: Page, template: string }) {
-	const browserType = page.context()?.browser()?.browserType().name();
-
 	const style = '';
 
 	await page.$('html').then(html => html?.evaluate((html) => {

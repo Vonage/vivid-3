@@ -14,6 +14,7 @@
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+@use "../focus/partials/variables" as focus-variables;
 
 :host {
 	display: flex;
@@ -30,7 +31,7 @@
 	@include connotation.connotation (accordion-item);
 
 	@supports selector(:focus-visible) {
-		&:focus {
+		&:focus-visible {
 			outline: none;
 		}
 	}
@@ -117,6 +118,8 @@
 }
 
 .focus-indicator {
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
 	button:not(:focus-visible) > & {
 		display: none;
 	}

@@ -98,7 +98,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-button connotation='cta' shape='pill' icon='microphone-solid' aria-label="Mute"></vwc-button>
 	</div>
 	<div style="margin: 5px;">
-		<vwc-button style='display: block;' label="I'm full width" shape='pill' appearance='filled'></vwc-button>
+		<vwc-button style='display: block;' label="I'm full width" shape='pill' icon='message-sent-line' appearance='filled'></vwc-button>
 	</div>
 	<div style="margin: 5px;">
 		<vwc-button style="width: 150px" label='I am button with long text and text wrap' shape='pill' appearance='filled'></vwc-button>
@@ -111,7 +111,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	</div>
 	`;
 
-	page.setViewportSize({ width: 500, height: 720 });
+	await page.setViewportSize({ width: 500, height: 1200 });
 
 	await loadComponents({
 		page,
@@ -131,6 +131,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			if (indicator) indicator.value = 66;
 		});
 	});
+
+	await page.locator('vwc-button').nth(0).focus();
 
 	await page.waitForLoadState('networkidle');
 

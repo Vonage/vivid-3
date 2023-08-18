@@ -25,7 +25,7 @@
 	gap: 8px;
 
 	@supports selector(:focus-visible) {
-		&:focus {
+		&:focus-visible {
 			outline: none;
 		}
 	}
