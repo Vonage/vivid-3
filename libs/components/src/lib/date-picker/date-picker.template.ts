@@ -21,28 +21,28 @@ function renderDialogHeader(context: ElementDefinitionContext) {
 
 	return html<DatePicker>`<div class="header">
 		${when(
-		(x) => x.inMonthPicker,
+		(x) => x._inMonthPicker,
 		html<DatePicker>`
 		<${buttonTag} ${ref(
-	'firstFocusableEl'
+	'_firstFocusableEl'
 )} size="super-condensed" icon="chevron-left-line" aria-label="${(x) =>
 	x.locale.datePicker.prevYearLabel}" @click="${(x) =>
-	x.onPrevYearClick()}"></${buttonTag}>
+	x._onPrevYearClick()}"></${buttonTag}>
 		`
 	)}
 		${when(
-		(x) => !x.inMonthPicker,
+		(x) => !x._inMonthPicker,
 		html<DatePicker>`
 					<${buttonTag} ${ref(
-	'firstFocusableEl'
+	'_firstFocusableEl'
 )} size="super-condensed" icon="double-chevron-left-line" aria-label="${(
 	x
 ) => x.locale.datePicker.prevYearLabel}" @click="${(x) =>
-	x.onPrevYearClick()}"></${buttonTag}>
+	x._onPrevYearClick()}"></${buttonTag}>
 					<${buttonTag} size="super-condensed" icon="chevron-left-line" aria-label="${(
 	x
 ) => x.locale.datePicker.prevMonthLabel}" @click="${(x) =>
-	x.onPrevMonthClick()}"></${buttonTag}>
+	x._onPrevMonthClick()}"></${buttonTag}>
 		`
 	)}
 
@@ -51,19 +51,19 @@ function renderDialogHeader(context: ElementDefinitionContext) {
 				id="grid-label"
 				class="title-action button"
 				aria-live="polite"
-				@click="${(x) => x.onTitleActionClick()}"
+				@click="${(x) => x._onTitleActionClick()}"
 			>
 				${() => focusTemplate}
 				${when(
-		(x) => x.inMonthPicker,
-		html<DatePicker>` ${(x) => x.monthPickerYear} `
+		(x) => x._inMonthPicker,
+		html<DatePicker>` ${(x) => x._monthPickerYear} `
 	)}
 				${when(
-		(x) => !x.inMonthPicker,
+		(x) => !x._inMonthPicker,
 		html<DatePicker>`
 						${(x) =>
-		`${x.locale.datePicker.months.name[x.selectedMonth.month]} ${
-			x.selectedMonth.year
+		`${x.locale.datePicker.months.name[x._selectedMonth.month]} ${
+			x._selectedMonth.year
 		}`}
 					`
 	)}
@@ -71,25 +71,25 @@ function renderDialogHeader(context: ElementDefinitionContext) {
 		</div>
 
 		${when(
-		(x) => x.inMonthPicker,
+		(x) => x._inMonthPicker,
 		html<DatePicker>`
 			<${buttonTag} size="super-condensed" icon="chevron-right-line" aria-label="${(
 	x
 ) => x.locale.datePicker.nextYearLabel}" @click="${(x) =>
-	x.onNextYearClick()}"></${buttonTag}>
+	x._onNextYearClick()}"></${buttonTag}>
 		`
 	)}
 		${when(
-		(x) => !x.inMonthPicker,
+		(x) => !x._inMonthPicker,
 		html<DatePicker>`
 					<${buttonTag} size="super-condensed" icon="chevron-right-line" aria-label="${(
 	x
 ) => x.locale.datePicker.nextMonthLabel}" @click="${(x) =>
-	x.onNextMonthClick()}"></${buttonTag}>
+	x._onNextMonthClick()}"></${buttonTag}>
 					<${buttonTag} size="super-condensed" icon="double-chevron-right-line" aria-label="${(
 	x
 ) => x.locale.datePicker.nextYearLabel}" @click="${(x) =>
-	x.onNextYearClick()}"></${buttonTag}>
+	x._onNextYearClick()}"></${buttonTag}>
 		`
 	)}
 	</div>`;
@@ -106,7 +106,7 @@ function renderCalendarGrid(context: ElementDefinitionContext) {
 	>
 		<div class="calendar-weekdays" role="row">
 			${repeat(
-		(x) => x.calendarGrid.weekdays,
+		(x) => x._calendarGrid.weekdays,
 		html<Weekday>`
 					<div
 						class="calendar-weekday"
@@ -120,7 +120,7 @@ function renderCalendarGrid(context: ElementDefinitionContext) {
 		</div>
 		<${dividerTag} class="calendar-separator" role="presentation"></${dividerTag}>
 		${repeat(
-		(x) => x.calendarGrid.grid,
+		(x) => x._calendarGrid.grid,
 		html<CalendarGridDate[]>`
 				<div class="calendar-week" role="row">
 					${repeat(
@@ -130,20 +130,20 @@ function renderCalendarGrid(context: ElementDefinitionContext) {
 		classNames(
 			'calendar-day',
 			'button',
-			['current', x.date === c.parentContext.parent.currentDate],
+			['current', x.date === c.parentContext.parent._currentDate],
 			['selected', x.date === c.parentContext.parent.value],
 			['outside-month', x.isOutsideMonth]
 		)}"
 							role="gridcell"
 							tabindex="${(x, c) =>
-		x.date === c.parentContext.parent.tabbableDate ? 0 : -1}"
+		x.date === c.parentContext.parent._tabbableDate ? 0 : -1}"
 							aria-selected="${(x, c) =>
 		x.date === c.parentContext.parent.value}"
 							data-date="${(x) => x.date}"
-							@click="${(x, c) => c.parentContext.parent.onDateClick(x.date)}"
-							@focus="${(x, c) => c.parentContext.parent.onDateFocus(x.date)}"
+							@click="${(x, c) => c.parentContext.parent._onDateClick(x.date)}"
+							@focus="${(x, c) => c.parentContext.parent._onDateFocus(x.date)}"
 							@keydown="${(x, c) =>
-		c.parentContext.parent.onDateKeydown(
+		c.parentContext.parent._onDateKeydown(
 			x.date,
 			c.event as KeyboardEvent
 		)}"
@@ -165,7 +165,7 @@ function renderMonthPickerGrid(context: ElementDefinitionContext) {
 		aria-labelledby="grid-label"
 	>
 		${repeat(
-		(x) => x.monthPickerGrid,
+		(x) => x._monthPickerGrid,
 		html<MonthPickerGridCell[]>`
 				<div class="months-row" role="row">
 					${repeat(
@@ -180,35 +180,35 @@ function renderMonthPickerGrid(context: ElementDefinitionContext) {
 				'current',
 				areMonthsEqual(
 					x.month,
-					c.parentContext.parent.currentMonth
+					c.parentContext.parent._currentMonth
 				),
 			],
 			[
 				'selected',
 				areMonthsEqual(
 					x.month,
-					c.parentContext.parent.selectedMonth
+					c.parentContext.parent._selectedMonth
 				),
 			]
 		)}"
 								role="gridcell"
 								tabindex="${(x, c) =>
-		areMonthsEqual(x.month, c.parentContext.parent.tabbableMonth)
+		areMonthsEqual(x.month, c.parentContext.parent._tabbableMonth)
 			? 0
 			: -1}"
 								aria-label="${(x) => x.monthName}"
 								aria-selected="${(x, c) =>
 		areMonthsEqual(
 			x.month,
-			c.parentContext.parent.selectedMonth
+			c.parentContext.parent._selectedMonth
 		)}"
 								data-month="${(x) => monthToStr(x.month)}"
 								@click="${(x, c) =>
-		c.parentContext.parent.onMonthClick(x.month)}"
+		c.parentContext.parent._onMonthClick(x.month)}"
 								@focus="${(x, c) =>
-		c.parentContext.parent.onMonthFocus(x.month)}"
+		c.parentContext.parent._onMonthFocus(x.month)}"
 								@keydown="${(x, c) =>
-		c.parentContext.parent.onMonthKeydown(
+		c.parentContext.parent._onMonthKeydown(
 			x.month,
 			c.event as KeyboardEvent
 		)}"
@@ -239,36 +239,36 @@ export const DatePickerTemplate: (
 	const dividerTag = context.tagFor(Divider);
 
 	return html`<div class="base" @keydown="${(x, { event }) =>
-		x.onBaseKeyDown(event as KeyboardEvent)}">
+		x._onBaseKeyDown(event as KeyboardEvent)}">
 		<${textFieldTag} id="text-field"
-										 ${ref('textFieldEl')}
+										 ${ref('_textFieldEl')}
 										 class="control"
 										 icon="calendar-line"
 										 label="${(x) => x.label}"
 										 helper-text="${(x) => x.helperText}"
-										 error-text="${(x) => x.textFieldErrorText}"
+										 error-text="${(x) => x._textFieldErrorText}"
 										 placeholder="${(x) => x.locale.datePicker.dateFormatPlaceholder}"
-										 current-value="${(x) => x.presentationValue}"
+										 current-value="${(x) => x._presentationValue}"
 										 ?disabled="${(x) => x.disabled}"
 										 ?readonly="${(x) => x.readOnly}"
-										 @input="${(x, c) => x.onTextFieldInput(c.event)}"
-										 @change="${(x) => x.onTextFieldChange()}"
-										 @focus="${(x) => x.onTextFieldFocus()}"
-										 @click="${(x) => x.onTextFieldClick()}"
-										 @keydown="${(x, c) => x.onTextFieldKeydown(c.event as KeyboardEvent)}"
+										 @input="${(x, c) => x._onTextFieldInput(c.event)}"
+										 @change="${(x) => x._onTextFieldChange()}"
+										 @focus="${(x) => x._onTextFieldFocus()}"
+										 @click="${(x) => x._onTextFieldClick()}"
+										 @keydown="${(x, c) => x._onTextFieldKeydown(c.event as KeyboardEvent)}"
 		></${textFieldTag}>
 		<${popupTag}
-					?open="${(x) => x.popupOpen}"
+					?open="${(x) => x._popupOpen}"
 					anchor="text-field"
 					placement="bottom-start"
 					class="popup">
 			<div class="dialog" role="dialog" ${ref(
-		'dialogEl'
+		'_dialogEl'
 	)} aria-modal="true" aria-label="${(x) =>
 	x.locale.datePicker.chooseDateLabel}">
 				${renderDialogHeader(context)}
 				${when(
-		(x) => x.inMonthPicker,
+		(x) => x._inMonthPicker,
 		html<DatePicker>`
 						<${dividerTag}
 							class="months-separator"
@@ -278,18 +278,18 @@ export const DatePickerTemplate: (
 					`
 	)}
 				${when(
-		(x) => !x.inMonthPicker,
+		(x) => !x._inMonthPicker,
 		html<DatePicker>` ${renderCalendarGrid(context)} `
 	)}
 				<div class="footer">
 					<${buttonTag} size="condensed" label="${(x) =>
 	x.locale.datePicker.clearLabel}" @click="${(x) =>
-	x.onClearClick()}"></${buttonTag}>
+	x._onClearClick()}"></${buttonTag}>
 					<${buttonTag} ${ref(
-	'lastFocusableEl'
+	'_lastFocusableEl'
 )} size="condensed" appearance="filled" label="${(x) =>
 	x.locale.datePicker.okLabel}" @click="${(x) =>
-	x.onOkClick()}"></${buttonTag}>
+	x._onOkClick()}"></${buttonTag}>
 				</div>
 			</div>
 		</${popupTag}>

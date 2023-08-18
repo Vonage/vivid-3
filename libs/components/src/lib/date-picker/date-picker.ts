@@ -85,16 +85,16 @@ export class DatePicker extends FoundationElement {
 	 * @internal
 	 */
 	valueChanged() {
-		this.internalValidationError = null;
+		this._internalValidationError = null;
 		if (this.value !== null) {
-			this.presentationValue = formatPresentationDate(
+			this._presentationValue = formatPresentationDate(
 				this.value,
 				this.locale.datePicker
 			);
 			// Ensure we are switched to the month of the new selected date
-			this.selectedMonth = monthOfDate(this.value);
+			this._selectedMonth = monthOfDate(this.value);
 		} else {
-			this.presentationValue = '';
+			this._presentationValue = '';
 		}
 	}
 
@@ -125,19 +125,19 @@ export class DatePicker extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	textFieldEl!: TextField;
+	_textFieldEl!: TextField;
 	/**
 	 * @internal
 	 */
-	dialogEl!: HTMLElement;
+	_dialogEl!: HTMLElement;
 	/**
 	 * @internal
 	 */
-	firstFocusableEl!: HTMLElement;
+	_firstFocusableEl!: HTMLElement;
 	/**
 	 * @internal
 	 */
-	lastFocusableEl!: HTMLElement;
+	_lastFocusableEl!: HTMLElement;
 
 	// --- Common state and getters ---
 
@@ -145,19 +145,19 @@ export class DatePicker extends FoundationElement {
 	 * The month the calendar is currently showing.
 	 * @internal
 	 */
-	@observable selectedMonth = getCurrentMonth();
+	@observable _selectedMonth = getCurrentMonth();
 
 	/**
 	 * Today's date.
 	 * @internal
 	 */
-	currentDate = currentDateStr();
+	_currentDate = currentDateStr();
 
 	/**
 	 * Today's month.
 	 * @internal
 	 */
-	currentMonth = getCurrentMonth();
+	_currentMonth = getCurrentMonth();
 
 	// --- Callbacks ---
 
@@ -179,10 +179,10 @@ export class DatePicker extends FoundationElement {
 	 * Whether the date-picker popup is open.
 	 * @internal
 	 */
-	@observable popupOpen = false;
+	@observable _popupOpen = false;
 
 	#dismissOnClickOutside = (event: MouseEvent) => {
-		if (!this.popupOpen) {
+		if (!this._popupOpen) {
 			return;
 		}
 
@@ -197,17 +197,17 @@ export class DatePicker extends FoundationElement {
 
 	#openPopupIfPossible() {
 		if (!this.readOnly && !this.#isClosingPopup) {
-			this.popupOpen = true;
+			this._popupOpen = true;
 		}
 	}
 
 	#closePopup(restoreFocusToTextField = true) {
-		this.popupOpen = false;
-		this.monthPickerYear = null;
+		this._popupOpen = false;
+		this._monthPickerYear = null;
 
 		if (restoreFocusToTextField) {
 			this.#isClosingPopup = true;
-			this.textFieldEl.focus();
+			this._textFieldEl.focus();
 			this.#isClosingPopup = false;
 		}
 	}
@@ -216,7 +216,7 @@ export class DatePicker extends FoundationElement {
 	 * On keydown anywhere in the date picker.
 	 * @internal
 	 */
-	onBaseKeyDown(event: KeyboardEvent) {
+	_onBaseKeyDown(event: KeyboardEvent) {
 		// Close dialog on Escape
 		if (event.key === 'Escape') {
 			this.#closePopup();
@@ -227,24 +227,24 @@ export class DatePicker extends FoundationElement {
 		if (event.key === 'Tab') {
 			if (event.shiftKey) {
 				// Shift + tab
-				if (this.shadowRoot!.activeElement === this.firstFocusableEl) {
-					this.lastFocusableEl.focus();
+				if (this.shadowRoot!.activeElement === this._firstFocusableEl) {
+					this._lastFocusableEl.focus();
 					return false;
 				}
 			} else {
 				// Tab
-				if (this.shadowRoot!.activeElement === this.lastFocusableEl) {
-					this.firstFocusableEl.focus();
+				if (this.shadowRoot!.activeElement === this._lastFocusableEl) {
+					this._firstFocusableEl.focus();
 					return false;
 				}
 
 				// When tabbing from the text field into the dialog, focus the day/month
 				if (
-					this.shadowRoot!.activeElement === this.textFieldEl &&
-					this.popupOpen
+					this.shadowRoot!.activeElement === this._textFieldEl &&
+					this._popupOpen
 				) {
 					(
-						this.dialogEl.querySelector('[tabindex="0"]') as HTMLButtonElement
+						this._dialogEl.querySelector('[tabindex="0"]') as HTMLButtonElement
 					).focus();
 					return false;
 				}
@@ -261,45 +261,45 @@ export class DatePicker extends FoundationElement {
 	 * Stores the value of the text field.
 	 * @internal
 	 */
-	@observable presentationValue = '';
+	@observable _presentationValue = '';
 
 	/**
 	 * @internal
 	 */
-	@observable private internalValidationError: string | null = null;
+	@observable private _internalValidationError: string | null = null;
 
 	/**
 	 * @internal
 	 */
 	@volatile
-	get textFieldErrorText() {
-		return this.errorText || this.internalValidationError || '';
+	get _textFieldErrorText() {
+		return this.errorText || this._internalValidationError || '';
 	}
 
 	/**
 	 * @internal
 	 */
-	onTextFieldInput(event: Event) {
+	_onTextFieldInput(event: Event) {
 		const textField = event.currentTarget as TextField;
-		this.presentationValue = textField.value;
-		this.internalValidationError = null;
+		this._presentationValue = textField.value;
+		this._internalValidationError = null;
 	}
 
 	/**
 	 * @internal
 	 */
-	onTextFieldChange() {
-		if (this.presentationValue === '') {
+	_onTextFieldChange() {
+		if (this._presentationValue === '') {
 			this.#updateValueDueToUserInteraction(null);
 			return;
 		}
 
 		try {
 			this.#updateValueDueToUserInteraction(
-				parsePresentationDate(this.presentationValue, this.locale.datePicker)
+				parsePresentationDate(this._presentationValue, this.locale.datePicker)
 			);
 		} catch (_) {
-			this.internalValidationError = this.locale.datePicker.invalidDateError;
+			this._internalValidationError = this.locale.datePicker.invalidDateError;
 			return;
 		}
 	}
@@ -307,23 +307,23 @@ export class DatePicker extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	onTextFieldFocus() {
+	_onTextFieldFocus() {
 		this.#openPopupIfPossible();
 	}
 
 	/**
 	 * @internal
 	 */
-	onTextFieldClick() {
+	_onTextFieldClick() {
 		this.#openPopupIfPossible();
 	}
 
 	/**
 	 * @internal
 	 */
-	onTextFieldKeydown(event: KeyboardEvent) {
+	_onTextFieldKeydown(event: KeyboardEvent) {
 		if (event.key === 'Enter') {
-			if (this.popupOpen) {
+			if (this._popupOpen) {
 				this.#closePopup();
 			} else {
 				this.#openPopupIfPossible();
@@ -338,24 +338,24 @@ export class DatePicker extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	onTitleActionClick() {
-		if (this.inMonthPicker) {
-			this.monthPickerYear = null;
+	_onTitleActionClick() {
+		if (this._inMonthPicker) {
+			this._monthPickerYear = null;
 		} else {
-			this.monthPickerYear = this.selectedMonth.year;
+			this._monthPickerYear = this._selectedMonth.year;
 		}
 	}
 
 	/**
 	 * @internal
 	 */
-	onPrevYearClick() {
-		if (this.inMonthPicker) {
-			this.monthPickerYear = this.monthPickerYear! - 1;
+	_onPrevYearClick() {
+		if (this._inMonthPicker) {
+			this._monthPickerYear = this._monthPickerYear! - 1;
 		} else {
-			this.selectedMonth = {
-				year: this.selectedMonth.year - 1,
-				month: this.selectedMonth.month,
+			this._selectedMonth = {
+				year: this._selectedMonth.year - 1,
+				month: this._selectedMonth.month,
 			};
 		}
 	}
@@ -363,13 +363,13 @@ export class DatePicker extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	onNextYearClick() {
-		if (this.inMonthPicker) {
-			this.monthPickerYear = this.monthPickerYear! + 1;
+	_onNextYearClick() {
+		if (this._inMonthPicker) {
+			this._monthPickerYear = this._monthPickerYear! + 1;
 		} else {
-			this.selectedMonth = {
-				year: this.selectedMonth.year + 1,
-				month: this.selectedMonth.month,
+			this._selectedMonth = {
+				year: this._selectedMonth.year + 1,
+				month: this._selectedMonth.month,
 			};
 		}
 	}
@@ -377,15 +377,15 @@ export class DatePicker extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	onPrevMonthClick() {
-		this.selectedMonth = addMonths(this.selectedMonth, -1);
+	_onPrevMonthClick() {
+		this._selectedMonth = addMonths(this._selectedMonth, -1);
 	}
 
 	/**
 	 * @internal
 	 */
-	onNextMonthClick() {
-		this.selectedMonth = addMonths(this.selectedMonth, 1);
+	_onNextMonthClick() {
+		this._selectedMonth = addMonths(this._selectedMonth, 1);
 	}
 
 	// --- Calendar ---
@@ -394,19 +394,22 @@ export class DatePicker extends FoundationElement {
 	 * The calendar grid used to render the calendar.
 	 * @internal
 	 */
-	get calendarGrid() {
-		return buildCalendarGrid(this.selectedMonth, this.locale.datePicker);
+	get _calendarGrid() {
+		return buildCalendarGrid(this._selectedMonth, this.locale.datePicker);
 	}
 
-	/// The last date that had focus, used to implement tab roving
+	/**
+	 * The last date that had focus, used to implement tab roving
+	 * @internal
+	 */
 	@observable
-	private lastFocussedDate: DateStr | null = null;
+	private _lastFocussedDate: DateStr | null = null;
 
 	/**
 	 * Handle selecting a date from the calendar.
 	 * @internal
 	 */
-	onDateClick(date: DateStr) {
+	_onDateClick(date: DateStr) {
 		this.#updateValueDueToUserInteraction(date);
 		this.#closePopup();
 	}
@@ -415,7 +418,7 @@ export class DatePicker extends FoundationElement {
 	 * Handle keydown on a date in the calendar.
 	 * @internal
 	 */
-	onDateKeydown(date: DateStr, event: KeyboardEvent) {
+	_onDateKeydown(date: DateStr, event: KeyboardEvent) {
 		let newDate: DateStr | null = null;
 
 		if (event.key === 'ArrowUp') {
@@ -432,15 +435,15 @@ export class DatePicker extends FoundationElement {
 			const newMonth = monthOfDate(newDate);
 
 			// Change month if we moved to a different month
-			if (!areMonthsEqual(newMonth, this.selectedMonth)) {
-				this.selectedMonth = newMonth;
+			if (!areMonthsEqual(newMonth, this._selectedMonth)) {
+				this._selectedMonth = newMonth;
 				// Update DOM immediately so that we can focus the new date
 				DOM.processUpdates();
 			}
 
 			// Move focus to new date
 			(
-				this.dialogEl.querySelector(
+				this._dialogEl.querySelector(
 					`[data-date="${newDate}"]`
 				) as HTMLButtonElement
 			).focus();
@@ -454,8 +457,8 @@ export class DatePicker extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	onDateFocus(date: DateStr) {
-		this.lastFocussedDate = date;
+	_onDateFocus(date: DateStr) {
+		this._lastFocussedDate = date;
 	}
 
 	/**
@@ -463,17 +466,18 @@ export class DatePicker extends FoundationElement {
 	 * @internal
 	 */
 	@volatile
-	get tabbableDate(): DateStr {
-		const candidates = [this.lastFocussedDate, this.value, currentDateStr()];
+	get _tabbableDate(): DateStr {
+		const candidates = [this._lastFocussedDate, this.value, currentDateStr()];
 
 		// Find valid candidate or default to the first day of the current month
 		return (
 			candidates.find(
 				(date) =>
-					date !== null && areMonthsEqual(monthOfDate(date), this.selectedMonth)
+					date !== null &&
+					areMonthsEqual(monthOfDate(date), this._selectedMonth)
 			) ??
 			formatDateStr(
-				new Date(this.selectedMonth.year, this.selectedMonth.month, 1)
+				new Date(this._selectedMonth.year, this._selectedMonth.month, 1)
 			)
 		);
 	}
@@ -485,45 +489,48 @@ export class DatePicker extends FoundationElement {
 	 * If null, the month picker is not showing.
 	 * @internal
 	 */
-	@observable monthPickerYear: number | null = null;
+	@observable _monthPickerYear: number | null = null;
 
 	/**
 	 * @internal
 	 */
-	get inMonthPicker() {
-		return this.monthPickerYear !== null;
+	get _inMonthPicker() {
+		return this._monthPickerYear !== null;
 	}
 
 	/**
 	 * The months grid used to render the month picker.
 	 * @internal
 	 */
-	get monthPickerGrid() {
+	get _monthPickerGrid() {
 		/* istanbul ignore next should be unreachable */
-		if (this.monthPickerYear === null) {
+		if (this._monthPickerYear === null) {
 			throw new Error('Not in month picker');
 		}
-		return buildMonthPickerGrid(this.monthPickerYear, this.locale.datePicker);
+		return buildMonthPickerGrid(this._monthPickerYear, this.locale.datePicker);
 	}
 
-	/// The month that had focus last, used to implement tab roving
+	/**
+	 * The month that had focus last, used to implement tab roving
+	 * @internal
+	 */
 	@observable
-	private lastFocussedMonth: Month | null = null;
+	private _lastFocussedMonth: Month | null = null;
 
 	/**
 	 * Handle month selected in the month picker.
 	 * @internal
 	 */
-	onMonthClick(month: Month) {
-		this.selectedMonth = month;
-		this.monthPickerYear = null;
+	_onMonthClick(month: Month) {
+		this._selectedMonth = month;
+		this._monthPickerYear = null;
 	}
 
 	/**
 	 * Handle keydown on a month in the month picker.
 	 * @internal
 	 */
-	onMonthKeydown(month: Month, event: KeyboardEvent) {
+	_onMonthKeydown(month: Month, event: KeyboardEvent) {
 		let newMonth: Month | null = null;
 
 		if (event.key === 'ArrowUp') {
@@ -538,15 +545,15 @@ export class DatePicker extends FoundationElement {
 
 		if (newMonth) {
 			// Change year if we moved to a different year
-			if (newMonth.year !== this.monthPickerYear) {
-				this.monthPickerYear = newMonth.year;
+			if (newMonth.year !== this._monthPickerYear) {
+				this._monthPickerYear = newMonth.year;
 				// Update DOM immediately so that we can focus the new month
 				DOM.processUpdates();
 			}
 
 			// Move focus to new month
 			(
-				this.dialogEl.querySelector(
+				this._dialogEl.querySelector(
 					`[data-month="${monthToStr(newMonth!)}"]`
 				) as HTMLButtonElement
 			).focus();
@@ -560,8 +567,8 @@ export class DatePicker extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	onMonthFocus(month: Month) {
-		this.lastFocussedMonth = month;
+	_onMonthFocus(month: Month) {
+		this._lastFocussedMonth = month;
 	}
 
 	/**
@@ -569,12 +576,12 @@ export class DatePicker extends FoundationElement {
 	 * @internal
 	 */
 	@volatile
-	get tabbableMonth(): Month {
-		const year = this.monthPickerYear ?? this.selectedMonth.year;
+	get _tabbableMonth(): Month {
+		const year = this._monthPickerYear ?? this._selectedMonth.year;
 
 		const candidates = [
-			this.lastFocussedMonth,
-			this.selectedMonth,
+			this._lastFocussedMonth,
+			this._selectedMonth,
 			getCurrentMonth(),
 		];
 
@@ -592,14 +599,14 @@ export class DatePicker extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	onOkClick() {
+	_onOkClick() {
 		this.#closePopup();
 	}
 
 	/**
 	 * @internal
 	 */
-	onClearClick() {
+	_onClearClick() {
 		this.#updateValueDueToUserInteraction(null);
 		this.#closePopup();
 	}
