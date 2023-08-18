@@ -58,6 +58,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await page.locator('#date-picker').click();
 
+	// Prevent clicking the month picker from closing the date picker
 	await page.evaluate(() => {
 		const datePicker = document.querySelector('#month-picker') as any;
 		datePicker.addEventListener('click', (e) => e.stopPropagation());
@@ -69,5 +70,33 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/date-picker.png'
+	);
+});
+
+test('selecting a date', async ({ page }: { page: Page }) => {
+	const template = '<vwc-date-picker></vwc-date-picker>';
+
+	await useFakeTime(page, new Date('August 11 2023 11:11:11').valueOf());
+	page.setViewportSize({ width: 1000, height: 500 });
+
+	await loadComponents({
+		page,
+		components,
+	});
+
+	await loadTemplate({
+		page,
+		template,
+	});
+
+	await page.waitForLoadState('networkidle');
+
+	await page.locator('vwc-date-picker').click();
+
+	await page.getByRole('gridcell', { name: '15' }).click();
+
+	await expect(page.locator('vwc-date-picker')).toHaveAttribute(
+		'value',
+		'2023-08-15'
 	);
 });
