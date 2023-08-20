@@ -1,4 +1,4 @@
-import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { Select } from './select';
 import '.';
 
@@ -40,7 +40,8 @@ describe('vwc-select', () => {
 			expect(element.shape).toEqual(undefined);
 			expect(element.appearance).toEqual(undefined);
 			expect(element.label).toEqual(undefined);
-			expect(element.multiple).toBeUndefined();
+			expect(element.placeholder).toEqual(undefined);
+			expect(element.multiple).toEqual(undefined);
 			expect(element.selectedIndex).toEqual(-1);
 			expect(element.icon).toEqual(undefined);
 		});
@@ -155,7 +156,7 @@ describe('vwc-select', () => {
 		});
 	});
 
-	describe('success Text', ()=> {
+	describe('success Text', () => {
 		it('should add success class to base when successText is set', async function () {
 			(element as any).successText = 'success';
 			await elementUpdated(element);
@@ -178,7 +179,7 @@ describe('vwc-select', () => {
 
 	});
 
-	describe('error Text', ()=> {
+	describe('error Text', () => {
 		it('should add error class to base when errorText is set', async function () {
 			(element as any).errorText = 'error';
 			await elementUpdated(element);
@@ -282,7 +283,7 @@ describe('vwc-select', () => {
 
 	describe('validation', function () {
 		function setValidityToError(errorMessage = 'error') {
-			element.setValidity({badInput: true}, errorMessage);
+			element.setValidity({ badInput: true }, errorMessage);
 			element.validate();
 		}
 
@@ -337,7 +338,7 @@ describe('vwc-select', () => {
 
 		it('should leave popup open if relatedTarget is same as element', async () => {
 			element.open = true;
-			element.dispatchEvent(new FocusEvent('focusout', {relatedTarget: element}));
+			element.dispatchEvent(new FocusEvent('focusout', { relatedTarget: element }));
 			expect(element.open).toBeTruthy();
 		});
 	});
@@ -347,10 +348,10 @@ describe('vwc-select', () => {
 		it('should toggle selection if spacebar pressed in single selection mode', async () => {
 			element.open = true;
 
-			element.dispatchEvent(new KeyboardEvent('keydown', {key: ' '}));
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: ' ' }));
 			const elementStatusAfterSpacebar = element.open;
 
-			element.dispatchEvent(new KeyboardEvent('keydown', {key: ' '}));
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: ' ' }));
 
 			expect(elementStatusAfterSpacebar).toBeFalsy();
 			expect(element.open).toBeTruthy();
@@ -359,10 +360,10 @@ describe('vwc-select', () => {
 		it('should toggle selection if spacebar pressed in single selection mode', async () => {
 			element.open = true;
 
-			element.dispatchEvent(new KeyboardEvent('keydown', {key: 'Enter'}));
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
 			const elementStatusAfterSpacebar = element.open;
 
-			element.dispatchEvent(new KeyboardEvent('keydown', {key: 'Enter'}));
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
 
 			expect(elementStatusAfterSpacebar).toBeFalsy();
 			expect(element.open).toBeTruthy();
@@ -371,14 +372,14 @@ describe('vwc-select', () => {
 		it('should close selection if escape key pressed', async () => {
 			element.open = true;
 			await elementUpdated(element);
-			element.dispatchEvent(new KeyboardEvent('keydown', {key: 'Escape'}));
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 			expect(element.open).toBeFalsy();
 		});
 
 		it('should close selection if tab key pressed', async () => {
 			element.open = true;
 			await elementUpdated(element);
-			element.dispatchEvent(new KeyboardEvent('keydown', {key: 'Tab'}));
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab' }));
 			expect(element.open).toBeFalsy();
 		});
 
@@ -396,7 +397,7 @@ describe('vwc-select', () => {
 			await elementUpdated(element);
 
 			element.selectedIndex = 2;
-			element.dispatchEvent(new KeyboardEvent('keydown', {key: 'Enter'}));
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
 
 			expect(inputSpy).toHaveBeenCalled();
 			expect(changeSpy).toHaveBeenCalled();
@@ -423,7 +424,7 @@ describe('vwc-select', () => {
 		});
 	});
 
-	describe('slot', ()=> {
+	describe('slot', () => {
 		it('should have a meta slot', async function () {
 			expect(Boolean(element.shadowRoot?.querySelector('slot[name="meta"]'))).toEqual(true);
 		});
@@ -439,7 +440,7 @@ describe('vwc-select', () => {
 		});
 	});
 
-	describe('fixed-dropdown', ()=> {
+	describe('fixed-dropdown', () => {
 		function setBoundingClientRect(width: number) {
 			element.getBoundingClientRect = jest.fn().mockReturnValue({ width });
 		}
@@ -534,15 +535,37 @@ describe('vwc-select', () => {
 
 		it('should recieve array of selectedOptions', async () => {
 			await elementUpdated(element);
-			expect(element.selectedOptions[0]).toEqual(element.querySelector('option:nth-child(1)'));
+			expect(element.selectedOptions[0]).toEqual(element.querySelector('option:nth-child(2)'));
 		});
 	});
 
 	describe('placeholder', function () {
 		it('should set selectedindex -1 when placeholder', async () => {
-			element.placeholder = 'placeholder';
+			element = (await fixture(
+				`<${COMPONENT_TAG} placeholder="placeholder">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+				</${COMPONENT_TAG}>`
+			)) as Select;
+
 			await elementUpdated(element);
 			expect(element.selectedIndex).toEqual(-1);
+		});
+
+		it('should change selectedindex -1 when option selected', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG}>
+					<option value="1">1</option>
+					<option value="2" selected>2</option>
+					<option value="3">3</option>
+				</${COMPONENT_TAG}>`
+			)) as Select;
+
+			element.placeholder = 'placeholder';
+			await elementUpdated(element);
+
+			expect(element.selectedIndex).toEqual(1);
 		});
 	});
 });

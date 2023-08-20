@@ -92,8 +92,8 @@ export class Select extends FoundationSelect {
 	override setDefaultSelectedOption(): void {
 		super.setDefaultSelectedOption();
 
-		if (this.selectedIndex !== -1 || this.placeholder !== '') {
-			this.selectedIndex = this.placeholderOption ? this.placeholderOption?.index : 0;
+		if (this.placeholder !== '') {
+			this.selectedIndex = this.placeholderOption ? this.placeholderOption.index : this.selectedIndex;
 		}
 	}
 }
