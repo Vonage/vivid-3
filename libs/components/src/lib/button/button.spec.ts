@@ -197,8 +197,7 @@ describe('vwc-button', () => {
 				.toEqual(titleText);
 		});
 		it('should not title on the button if non was set', async () => {
-			const titleText = '';
-			element.title = titleText;
+			element.title = '';
 			await elementUpdated(element);
 			expect(element.getAttribute('title'))
 				.toEqual('');
