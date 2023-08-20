@@ -237,6 +237,26 @@ This is useful for cases in which the dropdown is obstructed by other elements (
 </vwc-select>
 ```
 
+### Placeholder
+
+Add the `placeholder` attribute to add a placeholder to the Select.
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+  vwc-select {
+    width: 250px;
+  }
+</style>
+<vwc-select label="Options Selector" placeholder="--Please choose an option--">
+  <vwc-option value="1" text="Option 1"></vwc-option>
+  <vwc-option value="2" text="Option 2"></vwc-option>
+  <vwc-option value="3" text="Option 3"></vwc-option>
+</vwc-select>
+```
+
 ## Slots
 
 ### Default
@@ -465,24 +485,5 @@ select?.addEventListener('change', (e) => {
   <vwc-option value="logged-out" text="Logged out">
 		<vwc-icon slot="icon" name="bullet-solid"></vwc-icon>
 	</vwc-option>
-</vwc-select>
-```
-### Placeholder
-
-To add a `placeholder`, add an option with `value=""`.
-
-```html preview
-<style>
-  html { /* for demo purposes */
-    block-size: 230px;
-  }
-  vwc-select {
-    width: 250px;
-  }
-</style>
-<vwc-select label="Options Selector">
-  <vwc-option value="" text="--Please choose an option--" disabled></vwc-option>
-  <vwc-option value="1" text="Option 1" ></vwc-option>
-  <vwc-option value="2" text="Option 2"></vwc-option>
 </vwc-select>
 ```

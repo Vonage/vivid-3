@@ -56,6 +56,21 @@ export class Select extends FoundationSelect {
 	@attr({ mode: 'boolean', attribute: 'fixed-dropdown' }) fixedDropdown = false;
 
 	/**
+	 * The placeholder attribute.
+	 *
+	 * @public
+	 * HTML Attribute: placeholder
+	 */
+	@attr placeholder: string | undefined;
+
+	/**
+	 * The ref to the internal `.control` element.
+	 *
+	 * @internal
+	 */
+	@observable placeholderOption: HTMLOptionElement | null = null;
+
+	/**
 	*
 	* Slot observer:
 	*
@@ -71,10 +86,15 @@ export class Select extends FoundationSelect {
 	override get displayValue(): string {
 		Observable.track(this, 'displayValue');
 
-		// Check if there is a placeholder option
-		const placeholdersOptions = this.options.filter((option) => ((option.value === '' || option.value === null) && (option.disabled)));
+		return this.firstSelectedOption?.getAttribute('label') ?? this.firstSelectedOption?.text ?? this.placeholderOption?.text ?? '';
+	}
 
-		return placeholdersOptions[0]?.text ?? this.firstSelectedOption?.getAttribute('label') ?? this.firstSelectedOption?.text ?? '';
+	override setDefaultSelectedOption(): void {
+		super.setDefaultSelectedOption();
+
+		if (this.selectedIndex !== -1 || this.placeholder !== '') {
+			this.selectedIndex = this.placeholderOption ? this.placeholderOption?.index : 0;
+		}
 	}
 }
 

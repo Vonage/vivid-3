@@ -534,29 +534,15 @@ describe('vwc-select', () => {
 
 		it('should recieve array of selectedOptions', async () => {
 			await elementUpdated(element);
-			expect(element.selectedOptions[0]).toEqual(element.querySelector('option:nth-child(2)'));
+			expect(element.selectedOptions[0]).toEqual(element.querySelector('option:nth-child(1)'));
 		});
 	});
 
 	describe('placeholder', function () {
-		beforeEach(async () => {
-			element.innerHTML = `
-			<option value="1">1</option>
-			<option value="" disabled>2</option>
-			<option value="3">3</option>
-			`;
+		it('should set selectedindex -1 when placeholder', async () => {
+			element.placeholder = 'placeholder';
 			await elementUpdated(element);
-		});
-
-		it('should set placeholder when option is disabled and value=""', async () => {
-			await elementUpdated(element);
-			expect(element.selectedIndex).toEqual(2);
-		});
-
-		it('should set placeholder when option is value=""', async () => {
-			element.options[1].disabled = false;
-			await elementUpdated(element);
-			expect(element.selectedIndex).toEqual(2);
+			expect(element.selectedIndex).toEqual(-1);
 		});
 	});
 });
