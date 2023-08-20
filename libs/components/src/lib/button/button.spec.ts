@@ -34,7 +34,7 @@ describe('vwc-button', () => {
 			expect(element.appearance).toBeUndefined();
 			expect(element.size).toBeUndefined();
 			expect(element.ariaLabel).toBeUndefined();
-			expect(element.title).toBeFalsy();
+			expect(element.title).toEqual('');
 		});
 	});
 
