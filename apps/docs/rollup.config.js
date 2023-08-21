@@ -39,6 +39,36 @@ const input = components.reduce((inputArray, componentName) => {
 	return inputArray;
 }, []);
 
+// Import locales and make them globally available to support locale switching
+const locales = fs
+	.readdirSync(path.join(__dirname, '../../dist/libs/components/locales'))
+	.filter((file) => file.endsWith('.js'))
+	.sort();
+const localeName = (localeFile) => localeFile.replace('.js', '');
+const camelCasedLocaleName = (localeFile) =>
+	localeName(localeFile).replace(/-/g, '');
+const localesInput = `
+	import { setLocale } from 'dist/libs/components/index.js';
+	${locales
+		.map(
+			(localeFile) =>
+				`import ${camelCasedLocaleName(
+					localeFile
+				)} from 'dist/libs/components/locales/${localeFile}';`
+		)
+		.join('\n')}
+
+	window.locales = {
+		${locales
+			.map(
+				(localeFile) =>
+					`'${localeName(localeFile)}': ${camelCasedLocaleName(localeFile)}`
+			)
+			.join(',\n')}
+	};
+	window.setLocale = setLocale;
+`;
+
 const importsFile = input.reduce((imports, inputPath) => {
 	imports += `import '${inputPath}';\n`;
 	return imports;

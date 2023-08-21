@@ -25,18 +25,28 @@ const renderiFrame = (index, src, content, componentData, variableToShow) => {
 		.map(m => m.split('/')[4])
 		.join(',');
 
-	const variableTable = variableToShow ? renderVariablesTable(variableToShow) : '';
+	const variableTable = variableToShow
+		? renderVariablesTable(variableToShow)
+		: '';
+
+	const localeSwitcher = classList.contains('locale-switcher')
+		? `
+		<vwc-select id="selectLocale${index}" class="cbd-locale-switcher" icon="globe-line" aria-label="Locale" data-index="${index}" slot="main"></vwc-select>`
+		: '';
 
 	return JSDOM.fragment(`
 	<div class="${CBD_CONTAINER}" style="--tooltip-inline-size: auto;">
 	    ${variableTable}
 		<vwc-card elevation="0">
 			<iframe id="iframe-sample-${index}" src="${src}" class="${CBD_DEMO}" onload=onloadIframe(this) loading="lazy" aria-label="code block preview iframe" slot="main"></iframe>
-			<vwc-action-group appearance="ghost" style="direction: rtl;" slot="main">
-				<vwc-button id="buttonCPen${index}" connotation="cta" aria-label="Edit on CodePen" icon="open-line" data-index="${index}" data-deps="${deps}"></vwc-button>
-				<vwc-button id="buttonEdit${index}" connotation="cta" aria-label="Edit source code" icon="compose-line" aria-expanded="false" aria-controls="${CBD_CODE_BLOCK}-${index}" onclick="codeBlockButtonClick(this)"></vwc-button>
-				<vwc-button id="buttonCopy${index}" connotation="cta" aria-label="Copy source code" icon="copy-2-line" data-index="${index}"></vwc-button>
-			</vwc-action-group>
+			<div class="${CBD_ACTIONS}" slot="main">
+				<div>${localeSwitcher}</div>
+				<vwc-action-group appearance="ghost" style="direction: rtl;" slot="main">
+					<vwc-button id="buttonCPen${index}" connotation="cta" aria-label="Edit on CodePen" icon="open-line" data-index="${index}" data-deps="${deps}"></vwc-button>
+					<vwc-button id="buttonEdit${index}" connotation="cta" aria-label="Edit source code" icon="compose-line" aria-expanded="false" aria-controls="${CBD_CODE_BLOCK}-${index}" onclick="codeBlockButtonClick(this)"></vwc-button>
+					<vwc-button id="buttonCopy${index}" connotation="cta" aria-label="Copy source code" icon="copy-2-line" data-index="${index}"></vwc-button>
+				</vwc-action-group>
+			</div>
 			<details class="${CBD_DETAILS}" slot="main">
 				<summary></summary>
 				<div class="cbd-live-sample" data-index="${index}" role="region">

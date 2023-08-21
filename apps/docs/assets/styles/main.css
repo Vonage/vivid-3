@@ -247,6 +247,16 @@ article.article > h1 {
   border-radius: 6px 6px 0 0;
 }
 
+.cbd-actions {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.cbd-locale-switcher {
+	margin: 8px;
+}
+
 .cbd-details > summary {
   display: none;
 }

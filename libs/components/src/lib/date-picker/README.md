@@ -8,7 +8,7 @@ Dates will be stored in the format `YYYY-MM-DD` and displayed in the configured 
 <script type="module">import '@vonage/vivid/date-picker';</script>
 ```
 
-```html preview
+```html preview locale-switcher
 <style>
 	html {
 		block-size: 460px; /* for demo purposes */
@@ -28,7 +28,7 @@ In case you choose not to add a label, it is strongly recommended to add an `ari
 - Type: `string` | `undefined`
 - Default: `undefined`
 
-```html preview
+```html preview locale-switcher
 <style>
 	html {
 		block-size: 460px; /* for demo purposes */
@@ -44,7 +44,7 @@ Add the `helper-text` to add some helper text below the date picker.
 - Type: `string` | `undefined`
 - Default: `undefined`
 
-```html preview
+```html preview locale-switcher
 <style>
 	html {
 		block-size: 460px; /* for demo purposes */
@@ -64,7 +64,7 @@ Note that any current error state will be overridden by `error-text` (and, if ap
 - Type: `string`
 - Default: `undefined`
 
-```html preview
+```html preview locale-switcher
 <style>
 	html {
 		block-size: 460px; /* for demo purposes */
@@ -80,7 +80,7 @@ Note that any current error state will be overridden by `error-text` (and, if ap
 
 Add the `disabled` attribute to disable the date picker.
 
-```html preview
+```html preview locale-switcher
 <vwc-date-picker label="Start date" disabled></vwc-date-picker>
 ```
 
@@ -88,7 +88,7 @@ Add the `disabled` attribute to disable the date picker.
 
 Add the `readonly` attribute to make the date picker readonly.
 
-```html preview
+```html preview locale-switcher
 <vwc-date-picker label="Start date" readonly></vwc-date-picker>
 ```
 
@@ -104,7 +104,7 @@ It will always contain a valid date in the format `YYYY-MM-DD` when a date is se
 - Date format: `YYYY-MM-DD`
 - Default: `undefined`
 
-```html preview
+```html preview locale-switcher
 <style>
 	html {
 		block-size: 460px; /* for demo purposes */
