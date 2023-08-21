@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { ProgressRing } from '../progress-ring/progress-ring';
@@ -34,7 +34,7 @@ describe('vwc-button', () => {
 			expect(element.appearance).toBeUndefined();
 			expect(element.size).toBeUndefined();
 			expect(element.ariaLabel).toBeUndefined();
-			expect(element.title).toEqual('');
+			expect(element.title).toBeNull();
 		});
 	});
 
@@ -195,11 +195,15 @@ describe('vwc-button', () => {
 			await elementUpdated(element);
 			expect(element.getAttribute('title'))
 				.toEqual(titleText);
+			expect(getControlElement(element).getAttribute('title'))
+				.toEqual(titleText);
 		});
 		it('should remove title on the button if not set or empty', async () => {
 			element.title = '';
 			await elementUpdated(element);
 			expect(element.hasAttribute('title'))
+				.toEqual(false);
+			expect(getControlElement(element).hasAttribute('title'))
 				.toEqual(false);
 		});
 	});

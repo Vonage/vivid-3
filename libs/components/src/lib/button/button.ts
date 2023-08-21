@@ -45,7 +45,7 @@ export type ButtonSize = Extract<Size, Size.SuperCondensed | Size.Condensed | Si
  * @public
  */
 export class Button extends FoundationButton {
-	@attr({converter: {fromView: (value) => value, toView: (value) => value || null}})
+	@attr({converter: {fromView: (value) => value || null, toView: (value) => value || null}})
 	override title: string;
 	/**
 	 * The connotation the button should have.
