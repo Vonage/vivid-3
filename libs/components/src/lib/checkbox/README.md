@@ -139,3 +139,42 @@ Use the `value` member to set the checkbox's value.
 ```html preview
 <vwc-checkbox value="my-value"></vwc-checkbox>
 ```
+
+## Slots
+
+### Default
+
+```html preview
+<style>
+  a {
+    color: var(--vvd-color-cta-600);
+  }
+  a:visited {
+    color: var(--vvd-color-information-600);
+  }
+  a:hover {
+    color: var(--vvd-color-cta-700);
+  }
+  a:hover:visited {
+    color: var(--vvd-color-information-700);
+  }
+  a:active {
+    color: var(--vvd-color-cta-800);
+  }
+  a:active:visited {
+    color: var(--vvd-color-information-800);
+  }
+</style>
+
+<vwc-checkbox label="I agree to" error-text="You need to accept the Terms of service">
+  <a href="#" onclick="openLink(event)">Vonage Terms of Service</a>
+</vwc-checkbox>
+
+<script>
+  function openLink(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    window.open('https://www.vonage.com/legal/', '_blank');
+  }
+</script>
+```

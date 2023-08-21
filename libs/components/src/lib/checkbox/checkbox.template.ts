@@ -1,11 +1,8 @@
 import { html, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	CheckboxOptions,
-	FoundationElementTemplate,
-} from '@microsoft/fast-foundation';
+import type { CheckboxOptions, FoundationElementTemplate } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { getFeedbackTemplate} from '../../shared/patterns';
+import { getFeedbackTemplate } from '../../shared/patterns';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
 import { Icon } from '../icon/icon';
 import type { Checkbox } from './checkbox';
@@ -29,43 +26,34 @@ const getClasses = ({
 		['success connotation-success', !!successText]
 	);
 
-
 /**
  * The template for the Checkbox component.
  *
  * @param context - element definition context
  * @public
  */
-export const CheckboxTemplate: FoundationElementTemplate<
-ViewTemplate<Checkbox>,
-CheckboxOptions
-> = (context) => {
+export const CheckboxTemplate: FoundationElementTemplate<ViewTemplate<Checkbox>, CheckboxOptions> = (context) => {
 	const focusTemplate = focusTemplateFactory(context);
 	const iconTag = context.tagFor(Icon);
 
-	return html`<div
-  role="checkbox"
-  aria-checked="${x => x.checked}"
-  aria-required="${x => x.required}"
-  aria-disabled="${x => x.disabled}"
-  aria-readonly="${x => x.readOnly}"
-  tabindex="${x => (x.disabled ? null : 0)}"
-  @keypress="${(x, c) => x.keypressHandler(c.event as KeyboardEvent)}"
-  @click="${(x) => x.clickHandler()}"
-  class="${getClasses}"
-  >
-    <div class="control">
-			${when(x => x.checked, html<Checkbox>`<${iconTag} name="check-solid" class="icon"></${iconTag}>`)}
-			${when(x => x.indeterminate, html<Checkbox>`<${iconTag} name="minus-solid" class="icon"></${iconTag}>`)}
-      ${() => focusTemplate}
-    </div>
-
-    ${when(x => x.label, html<Checkbox>`<label>${x => x.label}</label>`)}
-
-  </div>
-
-	${when(x =>  x.helperText?.length, getFeedbackTemplate('helper', context))}
-	${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplate('error', context))}
-	${when(x => x.successText, getFeedbackTemplate('success', context))}
-	`;
+	return html`<div class="${getClasses}"
+			role="checkbox"
+			aria-checked="${x => x.checked}"
+			aria-required="${x => x.required}"
+			aria-disabled="${x => x.disabled}"
+			aria-readonly="${x => x.readOnly}"
+			tabindex="${x => (x.disabled ? null : 0)}"
+			@keypress="${(x, c) => x.keypressHandler(c.event as KeyboardEvent)}"
+			@click="${(x) => x.clickHandler()}">
+			<div class="control">
+				${when(x => x.checked, html<Checkbox>`<${iconTag} name="check-solid" class="icon"></${iconTag}>`)}
+				${when(x => x.indeterminate, html<Checkbox>`<${iconTag} name="minus-solid" class="icon"></${iconTag}>`)}
+				${() => focusTemplate}
+			</div>
+			${when(x => x.label, html<Checkbox>`<label>${x => x.label}</label>`)}
+			<slot></slot>
+		</div>
+		${when(x => x.helperText?.length, getFeedbackTemplate('helper', context))}
+		${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplate('error', context))}
+		${when(x => x.successText, getFeedbackTemplate('success', context))}`;
 };

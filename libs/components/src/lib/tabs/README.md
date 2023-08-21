@@ -163,7 +163,7 @@ Add an `activeid` attribute of the active tab.
 </vwc-tabs>
 ```
 
-### Slots
+## Slots
 
 Each `tab panel` has an associated [vwc-tab](../../components/tab) element, that when activated, displays the `tab panel`. 
 
