@@ -91,21 +91,19 @@ export class Select extends FoundationSelect {
 		return this.firstSelectedOption?.getAttribute('label') ?? this.firstSelectedOption?.text ?? this.placeholder ?? '';
 	}
 
-	override setDefaultSelectedOption(): void {
-		const options =
-			this.options ??
-			Array.from(this.children).filter(Listbox.slottedOptionFilter as any);
+	override setDefaultSelectedOption(): void {		
+		const options = Array.from(this.children).filter(Listbox.slottedOptionFilter as any);
 
-		const selectedIndex = options?.findIndex(
-			el => el.hasAttribute('selected') || el.selected || el.value === this.value
+		const selectedIndex = options.findIndex(
+			el => el.hasAttribute('selected') || (el as ListboxOption).selected || (el as ListboxOption).value === this.value
 		);
 
-		if(selectedIndex === -1 && !this.placeholderOption){
+		if (selectedIndex === -1 && !this.placeholderOption) {
 			this.selectedIndex = 0;
 			return;
 		}
 
-		if(this.placeholder !== '' || selectedIndex !== -1){
+		if (selectedIndex !== -1 || this.placeholder !== '') {
 			this.selectedIndex = selectedIndex;
 			return;
 		}
