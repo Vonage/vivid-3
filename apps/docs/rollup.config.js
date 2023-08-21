@@ -72,7 +72,7 @@ const localesInput = `
 const importsFile = input.reduce((imports, inputPath) => {
 	imports += `import '${inputPath}';\n`;
 	return imports;
-}, '');
+}, localesInput);
 
 const virtualPlugin = virtual({
 	"vivid-components": importsFile

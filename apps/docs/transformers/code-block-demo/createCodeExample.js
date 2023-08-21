@@ -10,6 +10,7 @@ const CBD_CONTAINER = 'cbd-container';
 const CBD_DEMO = 'cbd-demo';
 const CBD_DETAILS = 'cbd-details';
 const CBD_CODE_BLOCK = 'cbd-code-block';
+const CBD_ACTIONS = 'cbd-actions';
 const CBD_VARIABLES = 'cbd-variables';
 
 let exampleIndex = 0;
@@ -20,10 +21,15 @@ module.exports = function createCodeExample(code, pre, outputPath, componentData
 	return renderiFrame(index, src, pre.outerHTML, componentData, cssProperties);
 }
 
-const renderiFrame = (index, src, content, componentData, variableToShow) => {
-	const deps = componentData.modules
-		.map(m => m.split('/')[4])
-		.join(',');
+const renderiFrame = (
+	index,
+	src,
+	content,
+	classList,
+	componentData,
+	variableToShow
+) => {
+	const deps = componentData.modules.map((m) => m.split('/')[4]).join(',');
 
 	const variableTable = variableToShow
 		? renderVariablesTable(variableToShow)
@@ -60,7 +66,13 @@ const renderiFrame = (index, src, content, componentData, variableToShow) => {
 	</div>`);
 }
 
-const createiFrameContent = (code, classList, index, outputPath, componentData) => {
+const createiFrameContent = (
+	code,
+	classList,
+	index,
+	outputPath,
+	componentData
+) => {
 	const modules = new Set(componentData?.modules);
 
 	const layoutResult = layout(code, classList);
