@@ -11,6 +11,8 @@ import {
 	FormElementSuccessText
 } from '../../shared/patterns';
 import type { Appearance, Shape } from '../enums';
+import type { ListboxOption } from '../option/option';
+import { Listbox } from '../listbox/listbox';
 
 
 export type SelectAppearance = Extract<Appearance, Appearance.Fieldset | Appearance.Ghost>;
@@ -68,7 +70,7 @@ export class Select extends FoundationSelect {
 	 *
 	 * @internal
 	 */
-	@observable placeholderOption: HTMLOptionElement | null = null;
+	@observable placeholderOption: ListboxOption | null = null;
 
 	/**
 	*
@@ -86,14 +88,26 @@ export class Select extends FoundationSelect {
 	override get displayValue(): string {
 		Observable.track(this, 'displayValue');
 
-		return this.firstSelectedOption?.getAttribute('label') ?? this.firstSelectedOption?.text ?? this.placeholderOption?.text ?? '';
+		return this.firstSelectedOption?.getAttribute('label') ?? this.firstSelectedOption?.text ?? this.placeholder ?? '';
 	}
 
 	override setDefaultSelectedOption(): void {
-		super.setDefaultSelectedOption();
+		const options =
+			this.options ??
+			Array.from(this.children).filter(Listbox.slottedOptionFilter as any);
 
-		if (this.placeholder !== '') {
-			this.selectedIndex = this.placeholderOption ? this.placeholderOption.index : this.selectedIndex;
+		const selectedIndex = options?.findIndex(
+			el => el.hasAttribute('selected') || el.selected || el.value === this.value
+		);
+
+		if(selectedIndex === -1 && !this.placeholderOption){
+			this.selectedIndex = 0;
+			return;
+		}
+
+		if(this.placeholder !== '' || selectedIndex !== -1){
+			this.selectedIndex = selectedIndex;
+			return;
 		}
 	}
 }

@@ -566,5 +566,31 @@ describe('vwc-select', () => {
 
 			expect(element.selectedIndex).toEqual(1);
 		});
+
+		it('should display the placeholder', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} placeholder="placeholder">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+				</${COMPONENT_TAG}>`
+			)) as Select;
+
+			await elementUpdated(element);
+			expect(getControlElement(element).querySelector('.selected-value')?.textContent?.trim()).toEqual('placeholder');
+		});
+
+		it('should display the value of the selected option', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} placeholder="placeholder">
+					<option value="1">1</option>
+					<option value="2" selected>2</option>
+					<option value="3">3</option>
+				</${COMPONENT_TAG}>`
+			)) as Select;
+
+			await elementUpdated(element);
+			expect(getControlElement(element).querySelector('.selected-value')?.textContent?.trim()).toEqual('2');
+		});
 	});
 });
