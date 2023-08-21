@@ -101,7 +101,7 @@ export const buttonTemplate: (
 		aria-pressed="${(x) => x.ariaPressed}"
 		aria-relevant="${(x) => x.ariaRelevant}"
 		aria-roledescription="${(x) => x.ariaRoledescription}"
-		title=${x => !!x.title ? x.title : null}
+		title="${x => x.title}"
 		${ref('control')}
 	>
 		${() => focusTemplate}

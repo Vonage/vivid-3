@@ -196,11 +196,11 @@ describe('vwc-button', () => {
 			expect(element.getAttribute('title'))
 				.toEqual(titleText);
 		});
-		it('should not title on the button if non was set', async () => {
+		it('should remove title on the button if not set or empty', async () => {
 			element.title = '';
 			await elementUpdated(element);
-			expect(element.getAttribute('title'))
-				.toEqual('');
+			expect(element.hasAttribute('title'))
+				.toEqual(false);
 		});
 	});
 });
