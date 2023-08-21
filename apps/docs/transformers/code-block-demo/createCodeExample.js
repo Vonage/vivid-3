@@ -17,9 +17,22 @@ let exampleIndex = 0;
 
 module.exports = function createCodeExample(code, pre, outputPath, componentData, cssProperties) {
 	const index = exampleIndex++;
-	const src = createiFrameContent(code.textContent, pre.classList, index, outputPath, componentData);
-	return renderiFrame(index, src, pre.outerHTML, componentData, cssProperties);
-}
+	const src = createiFrameContent(
+		code.textContent,
+		pre.classList,
+		index,
+		outputPath,
+		componentData
+	);
+	return renderiFrame(
+		index,
+		src,
+		pre.outerHTML,
+		pre.classList,
+		componentData,
+		cssProperties
+	);
+};
 
 const renderiFrame = (
 	index,
