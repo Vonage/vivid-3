@@ -555,14 +555,13 @@ describe('vwc-select', () => {
 
 		it('should change selectedindex -1 when option selected', async () => {
 			element = (await fixture(
-				`<${COMPONENT_TAG}>
+				`<${COMPONENT_TAG} placeholder="placeholder">
 					<option value="1">1</option>
 					<option value="2" selected>2</option>
 					<option value="3">3</option>
 				</${COMPONENT_TAG}>`
 			)) as Select;
 
-			element.placeholder = 'placeholder';
 			await elementUpdated(element);
 
 			expect(element.selectedIndex).toEqual(1);
