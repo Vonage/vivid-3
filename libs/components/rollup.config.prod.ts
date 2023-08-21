@@ -25,6 +25,14 @@ const input = components.reduce((inputObject, componentName) => {
 	return inputObject;
 }, {});
 
+const locales = fs.readdirSync(path.join(__dirname, './src/locales'));
+locales.forEach((locale) => {
+	input[`locales/${path.parse(locale).name}`] = path.join(
+		process.cwd(),
+		`libs/components/src/locales/${locale}`
+	);
+});
+
 module.exports = function setVividRollupConfig(config) {
 	const postcssPlugin = postcss({
 		inject: false,
