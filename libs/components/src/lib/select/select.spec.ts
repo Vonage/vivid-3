@@ -567,7 +567,7 @@ describe('vwc-select', () => {
 			expect(element.selectedIndex).toEqual(1);
 		});
 
-		it('should display the placeholder', async () => {
+		it('should display the placeholder when no option selected', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} placeholder="placeholder">
 					<option value="1">1</option>
@@ -578,9 +578,13 @@ describe('vwc-select', () => {
 
 			await elementUpdated(element);
 			expect(getControlElement(element).querySelector('.selected-value')?.textContent?.trim()).toEqual('placeholder');
+		
+			element.selectedIndex = 2;
+			await elementUpdated(element);
+			expect(getControlElement(element).querySelector('.selected-value')?.textContent?.trim()).toEqual('3');
 		});
 
-		it('should display the value of the selected option', async () => {
+		it('should display the value of the selected option and not the placeholder', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} placeholder="placeholder">
 					<option value="1">1</option>
