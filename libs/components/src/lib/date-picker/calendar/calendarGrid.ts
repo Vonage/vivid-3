@@ -53,14 +53,16 @@ const buildDateGrid = (
 
 	const firstDay = new Date(year, month, 1);
 	const lastDay = new Date(year, month + 1, 0);
-	const daysInMonth = lastDay.getDate();
 	const firstDayInWeek = getDay(firstDay);
-
+	const daysInMonth = lastDay.getDate();
+	const daysOutsideMonthInLastWeek = 7 - getDay(lastDay);
+	const totalDaysInCalendar = daysInMonth + firstDayInWeek + daysOutsideMonthInLastWeek;
 	let week: CalendarGridDate[] = [];
 
-	for (let dayIndexInMonth = -firstDayInWeek;
-		dayIndexInMonth <= daysInMonth + 7 - getDay(lastDay);
-		dayIndexInMonth++) {
+	for (let i = 0;
+		i < totalDaysInCalendar;
+		i++) {
+		const dayIndexInMonth = i - firstDayInWeek;
 		week.push(gridDate(addDays(firstDay, dayIndexInMonth), isOutsideMonth(dayIndexInMonth, daysInMonth)));
 		if (week.length === 7) {
 			grid.push(week);
