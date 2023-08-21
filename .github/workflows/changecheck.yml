@@ -1,0 +1,11 @@
+on:
+  push:
+    branches:
+      - main
+
+name: check-changes
+jobs:
+  will-fail:
+    runs-on: ubuntu-latest
+    steps:
+      - run: exit 1
