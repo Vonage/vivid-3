@@ -540,7 +540,7 @@ describe('vwc-select', () => {
 	});
 
 	describe('placeholder', function () {
-		it('should set selectedindex -1 when placeholder', async () => {
+		it('should set selectedindex -1 when placeholder is set', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} placeholder="placeholder">
 					<option value="1">1</option>
