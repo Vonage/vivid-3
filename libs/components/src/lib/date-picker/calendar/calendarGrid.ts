@@ -41,6 +41,10 @@ export type CalendarGrid = {
 	grid: CalendarGridDate[][];
 };
 
+function isOutsideMonth(dayIndexInMonth: number, daysInMonth: number) {
+	return dayIndexInMonth < 0 || dayIndexInMonth >= daysInMonth;
+}
+
 const buildDateGrid = (
 	{ month, year }: Month,
 	getDay: (date: Date) => number
@@ -49,33 +53,21 @@ const buildDateGrid = (
 
 	const firstDay = new Date(year, month, 1);
 	const lastDay = new Date(year, month + 1, 0);
-	const daysInMonth = lastDay.getDate();
 	const firstDayInWeek = getDay(firstDay);
-
+	const daysInMonth = lastDay.getDate();
+	const daysOutsideMonthInLastWeek = 7 - getDay(lastDay);
+	const totalDaysInCalendar = daysInMonth + firstDayInWeek + daysOutsideMonthInLastWeek;
 	let week: CalendarGridDate[] = [];
 
-	// Fill in the days before the first day of the month
-	for (let i = 0; i < firstDayInWeek; i++) {
-		week.push(gridDate(addDays(firstDay, i - firstDayInWeek), true));
-	}
-
-	// Fill up days of the month
-	for (let i = 1; i <= daysInMonth; i++) {
-		week.push(gridDate(new Date(year, month, i), false));
+	for (let i = 0;
+		i < totalDaysInCalendar;
+		i++) {
+		const dayIndexInMonth = i - firstDayInWeek;
+		week.push(gridDate(addDays(firstDay, dayIndexInMonth), isOutsideMonth(dayIndexInMonth, daysInMonth)));
 		if (week.length === 7) {
 			grid.push(week);
 			week = [];
 		}
-	}
-
-	// Fill in the days after the last day of the month
-	const daysInLastWeek = week.length;
-	for (let i = daysInLastWeek; i < 7; i++) {
-		week.push(gridDate(addDays(lastDay, i - daysInLastWeek + 1), true));
-	}
-
-	if (week.length > 0) {
-		grid.push(week);
 	}
 
 	return grid;
@@ -95,3 +87,4 @@ export const buildCalendarGrid = (
 		grid: buildDateGrid(month, getShiftedDay),
 	};
 };
+
