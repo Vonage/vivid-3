@@ -64,7 +64,7 @@ export class Select extends FoundationSelect {
 	@attr placeholder: string | undefined;
 
 	/**
-	 * The ref to the internal `.control` element.
+	 * The ref to the internal placeholder option.
 	 *
 	 * @internal
 	 */
