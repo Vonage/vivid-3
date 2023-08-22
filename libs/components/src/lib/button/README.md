@@ -47,8 +47,8 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 - Default: `undefined`
 
 ```html preview
-<vwc-button appearance="filled" icon='message-sent-line' aria-label="Send Message"></vwc-button>
-<vwc-button appearance="filled" icon='message-sent-line' aria-label="Send Message" shape="pill"></vwc-button>
+<vwc-button appearance="filled" icon='message-sent-line' aria-label="Send Message"></vwc-button> 
+<vwc-button appearance="filled" icon='message-sent-line' title="Send Message" shape="pill"></vwc-button>
 ```
 
 ### Icon with Label

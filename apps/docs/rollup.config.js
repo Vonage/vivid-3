@@ -30,6 +30,8 @@ function getVividVersion() {
 const components = getFoldersInAFolder('../../dist/libs/components');
 
 const input = components.reduce((inputArray, componentName) => {
+	if (componentName === 'locales') return inputArray;
+
 	inputArray.push(path.join(
 		process.cwd(),
 		`dist/libs/components/${componentName}/index.js`
