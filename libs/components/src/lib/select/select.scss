@@ -79,14 +79,13 @@ $low-ink-color: --_low-ink-color;
 	}
 }
 
-.list-box {
+.listbox {
 	display: flex;
 	max-height: var(--select-height, 408px);
 	flex-direction: column;
 	padding: 4px;
 	gap: 2px;
 	overflow-y: auto;
-
 }
 
 .icon {
