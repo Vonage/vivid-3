@@ -54,6 +54,7 @@ $gutter: 2px;
 	position: relative;
 	display: flex;
 	flex-shrink: 0;
+	flex-wrap: wrap;
 	align-items: center;
 	justify-content: center;
 	background-color: var(#{appearance.get-appearance-token(fill)});
