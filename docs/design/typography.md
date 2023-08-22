@@ -1,7 +1,5 @@
 # Typography
 
----
-
 ## Typefaces
 
 Set the font custom properties of your choice (or all) to override the default typography styles with your own.
@@ -91,3 +89,69 @@ The following CSS custom properties can be referred to style the text in your ap
 <div style="font: var(--vvd-typography-base-extended)">extended</div>
 <div style="font: var(--vvd-typography-base-extended-bold)">extended bold</div>
 ```
+
+
+
+## Using Vivid Typography
+
+The Vivid typography css is optional. To use it, you will need to [include the typography styles](/getting-started/advanced).
+
+The typography style target both HTML tags and css classes.  
+All `headlines` and `p` elements also get `margin-block`.  
+Use the class `tight` to remove `margin-block`.  
+
+### HTML tags
+
+```html preview
+<style>
+.wrapper { /* for demo purposes */
+	display: flex;
+	flex-direction: column;
+	row-gap: 8px;
+}
+</style>
+<div class="wrapper">
+	<h1>heading-1</h1>
+	<h2>heading-2</h2>
+	<h3>heading-3</h3>
+	<h4>heading-4</h4>
+	<p>paragraph</p>
+	<b>bold</b>
+	<strong>strong</strong>
+	<pre>pre text</pre>
+	<var>var text</var>
+	<code>code text</code>
+	<kbd>kbd text</kbd>
+	<samp>samp text</samp>
+	<small>small text</small>
+	<small><b>small  + bold text</b></small>
+	<small><strong>small + strong text</strong></small>
+	<figcaption>figcaption text</figcaption>
+	<figcaption><b>figcaption + bold text</b></figcaption>
+	<figcaption><strong>figcaption + strong text</strong></figcaption>
+	<p>text with <sub>sub text</sub></p>
+	<p>text with <sup>sup text</sup></p>
+</div>
+```
+
+### Css Classes
+
+```html preview
+<style>
+.wrapper { /* for demo purposes */
+	display: flex;
+	flex-direction: column;
+	row-gap: 8px;
+}
+</style>
+<div class="wrapper">
+	<div class="headline tight">headline</div>
+	<div class="subtitle tight">subtitle</div>
+	<div class="heading1 tight">heading-1</div>
+	<div class="heading2 tight">heading-2</div>
+	<div class="heading3 tight">heading-3</div>
+	<div class="heading4 tight">heading-4</div>
+	<div class="font-base">text with the base font size</div>
+</div>
+```
+

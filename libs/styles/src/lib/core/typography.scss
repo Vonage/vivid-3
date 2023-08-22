@@ -10,10 +10,10 @@ $selectors: (
 
 @mixin typography-base {
 	font: var(#{constants.$vvd-typography-base});
-	font-feature-settings: 'kern';       /* turns on kerning */
-	text-rendering: optimizeLegibility;  /* emphasise on legibility when rendering, turns on ligatures and kerning */
+	font-feature-settings: 'kern'; /* turns on kerning */
+	text-rendering: optimizeLegibility; /* emphasise on legibility when rendering, turns on ligatures and kerning */
 	-webkit-font-smoothing: antialiased; /* apply font anti-aliasing for Webkit on OSX */
-	-moz-osx-font-smoothing: grayscale;  /* apply font anti-aliasing for Firefox on OSX */
+	-moz-osx-font-smoothing: grayscale; /* apply font anti-aliasing for Firefox on OSX */
 }
 
 .vvd-root {
@@ -30,9 +30,13 @@ $selectors: (
 		@include typography-base;
 	}
 
-	p {
+	p, .font-base {
 		font: var(#{constants.$vvd-typography-base});
 		margin-block: 16px;
+
+		&.tight {
+			margin-block: 0;
+		}
 	}
 
 	#{map.get($selectors, 'bold')} {
@@ -46,31 +50,55 @@ $selectors: (
 	.headline {
 		font: var(#{constants.$vvd-typography-headline});
 		margin-block: 40px;
+
+		&.tight {
+			margin-block: 0;
+		}
 	}
 
 	.subtitle {
 		font: var(#{constants.$vvd-typography-subtitle});
 		margin-block: 40px;
+
+		&.tight {
+			margin-block: 0;
+		}
 	}
 
 	h1, .heading1 {
 		font: var(#{constants.$vvd-typography-heading-1});
 		margin-block: 32px;
+
+		&.tight {
+			margin-block: 0;
+		}
 	}
 
 	h2, .heading2 {
 		font: var(#{constants.$vvd-typography-heading-2});
 		margin-block: 32px;
+
+		&.tight {
+			margin-block: 0;
+		}
 	}
 
 	h3, .heading3 {
 		font: var(#{constants.$vvd-typography-heading-3});
 		margin-block: 24px;
+
+		&.tight {
+			margin-block: 0;
+		}
 	}
 
 	h4, .heading4 {
 		font: var(#{constants.$vvd-typography-heading-4});
 		margin-block: 24px;
+
+		&.tight {
+			margin-block: 0;
+		}
 	}
 
 	small, figcaption {
@@ -83,7 +111,8 @@ $selectors: (
 
 	sub,
 	sup {
-		font: 75%;
+		font: var(#{constants.$vvd-typography-base-condensed});
+		font-size: 75%;
 		line-height: 0;
 		position: relative;
 		vertical-align: baseline;
