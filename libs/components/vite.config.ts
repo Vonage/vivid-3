@@ -30,6 +30,14 @@ const input = components.reduce((inputObject, componentName) => {
 	return inputObject;
 }, {});
 
+const locales = fs.readdirSync(path.join(__dirname, './src/locales'));
+locales.forEach((locale) => {
+	input[`locales/${path.parse(locale).name}`] = path.join(
+		process.cwd(),
+		`libs/components/src/locales/${locale}`
+	);
+});
+
 input.index = path.join(process.cwd(), 'libs/components/src/index.ts');
 
 export default defineConfig({
