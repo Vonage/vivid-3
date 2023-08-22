@@ -2,7 +2,7 @@ const { JSDOM } = require('jsdom');
 const fs = require('fs');
 const path = require('path');
 
-const FONTS = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap">';
+const FONTS = '<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">';
 const IFRAME_STYLE = '<link rel="stylesheet" href="/assets/styles/iframe.css">';
 const TYPOGRAPHY = '<link rel="stylesheet" href="/assets/styles/core/all.css">';
 
