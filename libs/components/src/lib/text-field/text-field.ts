@@ -27,6 +27,7 @@ export class TextField extends FoundationTextfield {
 	 */
 
 	@observable actionItemsSlottedContent?: HTMLElement[];
+	@observable leadingActionItemsSlottedContent?: HTMLElement[];
 }
 
 export interface TextField extends AffixIcon, ErrorText, FormElement, FormElementCharCount, FormElementHelperText, FormElementSuccessText{}

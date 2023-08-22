@@ -20,7 +20,9 @@ const getStateClasses = ({
 	shape,
 	label,
 	successText,
-	actionItemsSlottedContent
+	actionItemsSlottedContent,
+	leadingActionItemsSlottedContent,
+	icon
 }: TextField) => classNames(
 	['error connotation-alert', Boolean(errorValidationMessage)],
 	['disabled', disabled],
@@ -30,8 +32,10 @@ const getStateClasses = ({
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	['no-label', !label],
+	['has-icon', !!icon],
 	['success connotation-success', Boolean(successText)],
 	['action-items', !!actionItemsSlottedContent?.length],
+	['leading-action-items', !!leadingActionItemsSlottedContent?.length],
 );
 
 /**
@@ -71,7 +75,12 @@ export const TextfieldTemplate: (
     ${when(x => x.charCount && x.maxlength, renderCharCount())}
     ${when(x => x.label, renderLabel())}
     <div class="fieldset">
-      ${x => affixIconTemplate(x.icon)}
+			<div class="slot-icon-wrapper">
+				<div class="/leading-items-wrapper end">
+					<slot name="leading-action-items"  ${slotted('leadingActionItemsSlottedContent')}></slot>
+				</div>
+				${x => affixIconTemplate(x.icon)}
+			</div>
 			<div class="wrapper">
 				<input class="control"
             id="control"
