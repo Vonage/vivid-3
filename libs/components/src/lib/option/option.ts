@@ -1,5 +1,5 @@
 import { applyMixins, ListboxOption as FoundationListboxOption } from '@microsoft/fast-foundation';
-import {attr} from '@microsoft/fast-element';
+import { attr } from '@microsoft/fast-element';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
 
