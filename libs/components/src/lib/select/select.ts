@@ -1,5 +1,5 @@
 import { applyMixins, Select as FoundationSelect } from '@microsoft/fast-foundation';
-import {attr, observable, Observable} from '@microsoft/fast-element';
+import { attr, observable, Observable } from '@microsoft/fast-element';
 import type { Popup } from '../popup/popup';
 import {
 	AffixIconWithTrailing,
@@ -11,6 +11,8 @@ import {
 	FormElementSuccessText
 } from '../../shared/patterns';
 import type { Appearance, Shape } from '../enums';
+import type { ListboxOption } from '../option/option';
+import { Listbox } from '../listbox/listbox';
 
 
 export type SelectAppearance = Extract<Appearance, Appearance.Fieldset | Appearance.Ghost>;
@@ -28,20 +30,55 @@ export type SelectShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 @formElements
 export class Select extends FoundationSelect {
 
-	@attr appearance?: SelectAppearance;
-	@attr shape?: SelectShape;
-
 	_popup!: Popup;
 	_anchor!: HTMLElement;
 
 	/**
+	* The appearance attribute.
+	*
+	* @public
+	* HTML Attribute: appearance
+	*/
+	@attr appearance?: SelectAppearance;
+
+	/**
+	* The shape attribute.
+	*
+	* @public
+	* HTML Attribute: shape
+	*/
+	@attr shape?: SelectShape;
+
+	/**
+	* The fixed-dropdown attribute.
+	*
+	* @public
+	* HTML Attribute: fixed-dropdown
+	*/
+	@attr({ mode: 'boolean', attribute: 'fixed-dropdown' }) fixedDropdown = false;
+
+	/**
+	 * The placeholder attribute.
 	 *
-	 * Slot observer:
+	 * @public
+	 * HTML Attribute: placeholder
+	 */
+	@attr placeholder: string | undefined;
+
+	/**
+	 * The ref to the internal placeholder option.
 	 *
 	 * @internal
 	 */
+	@observable placeholderOption: ListboxOption | null = null;
+
+	/**
+	*
+	* Slot observer:
+	*
+	* @internal
+	*/
 	@observable metaSlottedContent?: Node[];
-	@attr({mode: 'boolean', attribute: 'fixed-dropdown'}) fixedDropdown = false;
 
 	override connectedCallback() {
 		super.connectedCallback();
@@ -50,9 +87,28 @@ export class Select extends FoundationSelect {
 
 	override get displayValue(): string {
 		Observable.track(this, 'displayValue');
-		return this.firstSelectedOption?.getAttribute('label') ?? this.firstSelectedOption?.text ?? '';
+
+		return this.firstSelectedOption?.getAttribute('label') ?? this.firstSelectedOption?.text ?? this.placeholder ?? '';
+	}
+
+	override setDefaultSelectedOption(): void {		
+		const options = Array.from(this.children).filter(Listbox.slottedOptionFilter as any);
+
+		const selectedIndex = options.findIndex(
+			el => el.hasAttribute('selected') || (el as ListboxOption).selected || (el as ListboxOption).value === this.value
+		);
+
+		if (selectedIndex === -1 && !this.placeholderOption) {
+			this.selectedIndex = 0;
+			return;
+		}
+
+		if (selectedIndex !== -1 || this.placeholder !== '') {
+			this.selectedIndex = selectedIndex;
+			return;
+		}
 	}
 }
 
-export interface Select extends AffixIconWithTrailing, FormElement, FormElementHelperText, ErrorText, FormElementSuccessText{}
+export interface Select extends AffixIconWithTrailing, FormElement, FormElementHelperText, ErrorText, FormElementSuccessText { }
 applyMixins(Select, AffixIconWithTrailing, FormElementHelperText, FormElementSuccessText);
