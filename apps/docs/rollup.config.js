@@ -1,9 +1,9 @@
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
-import path from "path";
-import fs from "fs";
-import virtual from "@rollup/plugin-virtual";
-import replace from "@rollup/plugin-replace";
+import path from 'path';
+import fs from 'fs';
+import virtual from '@rollup/plugin-virtual';
+import replace from '@rollup/plugin-replace';
 
 const DEV_MODE = process.env['DEV_MODE'] === 'true';
 
@@ -23,7 +23,10 @@ function getFoldersInAFolder(workingFolder = './src/lib/') {
 	return folders;
 }
 function getVividVersion() {
-	const packageJson = fs.readFileSync(path.join(componentsFolder, 'package.json'), 'utf8');
+	const packageJson = fs.readFileSync(
+		path.join(componentsFolder, 'package.json'),
+		'utf8'
+	);
 	const packageObject = JSON.parse(packageJson);
 	return packageObject.version;
 }
@@ -32,10 +35,9 @@ const components = getFoldersInAFolder('../../dist/libs/components');
 const input = components.reduce((inputArray, componentName) => {
 	if (componentName === 'locales') return inputArray;
 
-	inputArray.push(path.join(
-		process.cwd(),
-		`dist/libs/components/${componentName}/index.js`
-	));
+	inputArray.push(
+		path.join(process.cwd(), `dist/libs/components/${componentName}/index.js`)
+	);
 	return inputArray;
 }, []);
 
@@ -75,13 +77,21 @@ const importsFile = input.reduce((imports, inputPath) => {
 }, localesInput);
 
 const virtualPlugin = virtual({
-	"vivid-components": importsFile
+	'vivid-components': importsFile,
 });
 
-const DIRS = ['./dist/apps/docs/assets/scripts/', './dist/apps/docs/assets/scripts/', './dist/apps/docs/assets/scripts/', './dist/apps/docs'];
+const DIRS = [
+	'./dist/apps/docs/assets/scripts/',
+	'./dist/apps/docs/assets/scripts/',
+	'./dist/apps/docs/assets/scripts/',
+	'./dist/apps/docs',
+];
 export default [
-	'./apps/docs/assets/bundled-scripts/live-sample.js', './apps/docs/assets/bundled-scripts/cache-assets.js', 'vivid-components',
-	'./apps/docs/assets/bundled-scripts/sw.js'].map((input, index) => {
+	'./apps/docs/assets/bundled-scripts/live-sample.js',
+	'./apps/docs/assets/bundled-scripts/cache-assets.js',
+	'vivid-components',
+	'./apps/docs/assets/bundled-scripts/sw.js',
+].map((input, index) => {
 	return {
 		input,
 		output: {
@@ -92,15 +102,19 @@ export default [
 					return 'vivid-components.js';
 				}
 				return `${chunkInfo.name}.js`;
-			}
+			},
 		},
-		plugins: [virtualPlugin, nodeResolve(),
+		plugins: [
+			virtualPlugin,
+			nodeResolve(),
 			replace({
 				values: {
-					'SW_VERSION': () => DEV_MODE ? new Date().getTime() : getVividVersion()
+					SW_VERSION: () =>
+						DEV_MODE ? new Date().getTime() : getVividVersion(),
 				},
-				preventAssignment: true
-		}),
-			terser() ]
-	}
+				preventAssignment: true,
+			}),
+			terser(),
+		],
+	};
 });
