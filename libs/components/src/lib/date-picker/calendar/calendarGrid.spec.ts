@@ -20,6 +20,81 @@ const enUsLocale = {
 const enGbLocale = { ...enUsLocale, firstDayOfWeek: 1 };
 
 describe('buildCalendarGrid', () => {
+	it('should return weekdays for us locale', function () {
+		const expectedOutput = [
+			{
+				'name': 'Sunday',
+				'shortName': 'Sun',
+			},
+			{
+				'name': 'Monday',
+				'shortName': 'Mon',
+			},
+			{
+				'name': 'Tuesday',
+				'shortName': 'Tue',
+			},
+			{
+				'name': 'Wednesday',
+				'shortName': 'Wed',
+			},
+			{
+				'name': 'Thursday',
+				'shortName': 'Thu',
+			},
+			{
+				'name': 'Friday',
+				'shortName': 'Fri',
+			},
+			{
+				'name': 'Saturday',
+				'shortName': 'Sat',
+			},
+		];
+		const grid = buildCalendarGrid({ month: 7, year: 2023 }, enUsLocale);
+		expect(grid.weekdays).toEqual(expectedOutput);
+	});
+
+	it('should return weekdays for GB locale', function () {
+		const expectedOutput = [
+			{
+				'name': 'Monday',
+				'shortName': 'Mon',
+			},
+			{
+				'name': 'Tuesday',
+				'shortName': 'Tue',
+			},
+			{
+				'name': 'Wednesday',
+				'shortName': 'Wed',
+			},
+			{
+				'name': 'Thursday',
+				'shortName': 'Thu',
+			},
+			{
+				'name': 'Friday',
+				'shortName': 'Fri',
+			},
+			{
+				'name': 'Saturday',
+				'shortName': 'Sat',
+			},
+			{
+				'name': 'Sunday',
+				'shortName': 'Sun',
+			},
+		];
+		const grid = buildCalendarGrid({ month: 7, year: 2023 }, enGbLocale);
+		expect(grid.weekdays).toEqual(expectedOutput);
+	});
+
+	it('should return the first week of the month', function () {
+
+	});
+
+
 	it('should include a cell for dates within the month', () => {
 		const grid = buildCalendarGrid({ month: 7, year: 2023 }, enUsLocale);
 		const thirdDayOfFirstWeek = grid.grid[0][2];
