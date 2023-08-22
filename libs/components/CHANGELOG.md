@@ -4,6 +4,20 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.32.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.31.0...vivid-v3.32.0) (2023-08-22)
+
+
+### Features
+
+* **date-picker:** add date-picker component (VIV-1244) ([#1324](https://github.com/Vonage/vivid-3/issues/1324)) ([977467b](https://github.com/Vonage/vivid-3/commit/977467bc0c36a9fb2fb84d7153b9fb1fdc467014))
+* **select:** add placeholder (VIV-1242) ([#1333](https://github.com/Vonage/vivid-3/issues/1333)) ([f420941](https://github.com/Vonage/vivid-3/commit/f4209412ebbdd4e38a36dca3fad2ccc3a0a0b4d0))
+
+
+### Bug Fixes
+
+* **button:** title not getting its value (VIV-1271) ([#1336](https://github.com/Vonage/vivid-3/issues/1336)) ([3a370b3](https://github.com/Vonage/vivid-3/commit/3a370b3068f4df2af738a3f74fe60c6e1dafe4b9))
+* **date-picker:** ui -tests (VIV-000) ([#1344](https://github.com/Vonage/vivid-3/issues/1344)) ([40be4d7](https://github.com/Vonage/vivid-3/commit/40be4d79c1f6bbf2cb7b6ee82619e571d290df19))
+
 ## [3.31.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.30.0...vivid-v3.31.0) (2023-08-17)
 
 
