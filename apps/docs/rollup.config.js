@@ -30,26 +30,17 @@ function getVividVersion() {
 	const packageObject = JSON.parse(packageJson);
 	return packageObject.version;
 }
-const components = getFoldersInAFolder('../../dist/libs/components');
-
-const input = components.reduce((inputArray, componentName) => {
-	if (componentName === 'locales') return inputArray;
-
-	inputArray.push(
-		path.join(process.cwd(), `dist/libs/components/${componentName}/index.js`)
-	);
-	return inputArray;
-}, []);
 
 // Import locales and make them globally available to support locale switching
-const locales = fs
-	.readdirSync(path.join(__dirname, '../../dist/libs/components/locales'))
-	.filter((file) => file.endsWith('.js'))
-	.sort();
-const localeName = (localeFile) => localeFile.replace('.js', '');
-const camelCasedLocaleName = (localeFile) =>
-	localeName(localeFile).replace(/-/g, '');
-const localesInput = `
+function getLocaleImports() {
+	const locales = fs
+		.readdirSync(path.join(__dirname, '../../dist/libs/components/locales'))
+		.filter((file) => file.endsWith('.js'))
+		.sort();
+	const localeName = (localeFile) => localeFile.replace('.js', '');
+	const camelCasedLocaleName = (localeFile) =>
+		localeName(localeFile).replace(/-/g, '');
+	return `
 	import { setLocale } from 'dist/libs/components/index.js';
 	${locales
 		.map(
@@ -70,14 +61,22 @@ const localesInput = `
 	};
 	window.setLocale = setLocale;
 `;
+}
 
-const importsFile = input.reduce((imports, inputPath) => {
-	imports += `import '${inputPath}';\n`;
-	return imports;
-}, localesInput);
+const getComponentImports = () =>
+	getFoldersInAFolder('../../dist/libs/components')
+		.filter((folder) => folder !== 'locales')
+		.map((folder) =>
+			path.join(process.cwd(), `dist/libs/components/${folder}/index.js`)
+		)
+		.map((indexFile) => `import '${indexFile}';`)
+		.join('\n');
 
 const virtualPlugin = virtual({
-	'vivid-components': importsFile,
+	'vivid-components': `
+		${getComponentImports()}
+		${getLocaleImports()}
+	`,
 });
 
 const DIRS = [
