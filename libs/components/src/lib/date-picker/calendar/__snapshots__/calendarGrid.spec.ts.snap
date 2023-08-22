@@ -1,0 +1,381 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`buildCalendarGrid should return grid for GB locale 1`] = `
+Array [
+  Array [
+    Object {
+      "date": "2024-07-29",
+      "isOutsideMonth": true,
+      "label": "29",
+    },
+    Object {
+      "date": "2024-07-30",
+      "isOutsideMonth": true,
+      "label": "30",
+    },
+    Object {
+      "date": "2024-07-31",
+      "isOutsideMonth": true,
+      "label": "31",
+    },
+    Object {
+      "date": "2024-08-01",
+      "isOutsideMonth": false,
+      "label": "1",
+    },
+    Object {
+      "date": "2024-08-02",
+      "isOutsideMonth": false,
+      "label": "2",
+    },
+    Object {
+      "date": "2024-08-03",
+      "isOutsideMonth": false,
+      "label": "3",
+    },
+    Object {
+      "date": "2024-08-04",
+      "isOutsideMonth": false,
+      "label": "4",
+    },
+  ],
+  Array [
+    Object {
+      "date": "2024-08-05",
+      "isOutsideMonth": false,
+      "label": "5",
+    },
+    Object {
+      "date": "2024-08-06",
+      "isOutsideMonth": false,
+      "label": "6",
+    },
+    Object {
+      "date": "2024-08-07",
+      "isOutsideMonth": false,
+      "label": "7",
+    },
+    Object {
+      "date": "2024-08-08",
+      "isOutsideMonth": false,
+      "label": "8",
+    },
+    Object {
+      "date": "2024-08-09",
+      "isOutsideMonth": false,
+      "label": "9",
+    },
+    Object {
+      "date": "2024-08-10",
+      "isOutsideMonth": false,
+      "label": "10",
+    },
+    Object {
+      "date": "2024-08-11",
+      "isOutsideMonth": false,
+      "label": "11",
+    },
+  ],
+  Array [
+    Object {
+      "date": "2024-08-12",
+      "isOutsideMonth": false,
+      "label": "12",
+    },
+    Object {
+      "date": "2024-08-13",
+      "isOutsideMonth": false,
+      "label": "13",
+    },
+    Object {
+      "date": "2024-08-14",
+      "isOutsideMonth": false,
+      "label": "14",
+    },
+    Object {
+      "date": "2024-08-15",
+      "isOutsideMonth": false,
+      "label": "15",
+    },
+    Object {
+      "date": "2024-08-16",
+      "isOutsideMonth": false,
+      "label": "16",
+    },
+    Object {
+      "date": "2024-08-17",
+      "isOutsideMonth": false,
+      "label": "17",
+    },
+    Object {
+      "date": "2024-08-18",
+      "isOutsideMonth": false,
+      "label": "18",
+    },
+  ],
+  Array [
+    Object {
+      "date": "2024-08-19",
+      "isOutsideMonth": false,
+      "label": "19",
+    },
+    Object {
+      "date": "2024-08-20",
+      "isOutsideMonth": false,
+      "label": "20",
+    },
+    Object {
+      "date": "2024-08-21",
+      "isOutsideMonth": false,
+      "label": "21",
+    },
+    Object {
+      "date": "2024-08-22",
+      "isOutsideMonth": false,
+      "label": "22",
+    },
+    Object {
+      "date": "2024-08-23",
+      "isOutsideMonth": false,
+      "label": "23",
+    },
+    Object {
+      "date": "2024-08-24",
+      "isOutsideMonth": false,
+      "label": "24",
+    },
+    Object {
+      "date": "2024-08-25",
+      "isOutsideMonth": false,
+      "label": "25",
+    },
+  ],
+  Array [
+    Object {
+      "date": "2024-08-26",
+      "isOutsideMonth": false,
+      "label": "26",
+    },
+    Object {
+      "date": "2024-08-27",
+      "isOutsideMonth": false,
+      "label": "27",
+    },
+    Object {
+      "date": "2024-08-28",
+      "isOutsideMonth": false,
+      "label": "28",
+    },
+    Object {
+      "date": "2024-08-29",
+      "isOutsideMonth": false,
+      "label": "29",
+    },
+    Object {
+      "date": "2024-08-30",
+      "isOutsideMonth": false,
+      "label": "30",
+    },
+    Object {
+      "date": "2024-08-31",
+      "isOutsideMonth": false,
+      "label": "31",
+    },
+    Object {
+      "date": "2024-09-01",
+      "isOutsideMonth": true,
+      "label": "1",
+    },
+  ],
+]
+`;
+
+exports[`buildCalendarGrid should return grid for US locale 1`] = `
+Array [
+  Array [
+    Object {
+      "date": "2022-07-31",
+      "isOutsideMonth": true,
+      "label": "31",
+    },
+    Object {
+      "date": "2022-08-01",
+      "isOutsideMonth": false,
+      "label": "1",
+    },
+    Object {
+      "date": "2022-08-02",
+      "isOutsideMonth": false,
+      "label": "2",
+    },
+    Object {
+      "date": "2022-08-03",
+      "isOutsideMonth": false,
+      "label": "3",
+    },
+    Object {
+      "date": "2022-08-04",
+      "isOutsideMonth": false,
+      "label": "4",
+    },
+    Object {
+      "date": "2022-08-05",
+      "isOutsideMonth": false,
+      "label": "5",
+    },
+    Object {
+      "date": "2022-08-06",
+      "isOutsideMonth": false,
+      "label": "6",
+    },
+  ],
+  Array [
+    Object {
+      "date": "2022-08-07",
+      "isOutsideMonth": false,
+      "label": "7",
+    },
+    Object {
+      "date": "2022-08-08",
+      "isOutsideMonth": false,
+      "label": "8",
+    },
+    Object {
+      "date": "2022-08-09",
+      "isOutsideMonth": false,
+      "label": "9",
+    },
+    Object {
+      "date": "2022-08-10",
+      "isOutsideMonth": false,
+      "label": "10",
+    },
+    Object {
+      "date": "2022-08-11",
+      "isOutsideMonth": false,
+      "label": "11",
+    },
+    Object {
+      "date": "2022-08-12",
+      "isOutsideMonth": false,
+      "label": "12",
+    },
+    Object {
+      "date": "2022-08-13",
+      "isOutsideMonth": false,
+      "label": "13",
+    },
+  ],
+  Array [
+    Object {
+      "date": "2022-08-14",
+      "isOutsideMonth": false,
+      "label": "14",
+    },
+    Object {
+      "date": "2022-08-15",
+      "isOutsideMonth": false,
+      "label": "15",
+    },
+    Object {
+      "date": "2022-08-16",
+      "isOutsideMonth": false,
+      "label": "16",
+    },
+    Object {
+      "date": "2022-08-17",
+      "isOutsideMonth": false,
+      "label": "17",
+    },
+    Object {
+      "date": "2022-08-18",
+      "isOutsideMonth": false,
+      "label": "18",
+    },
+    Object {
+      "date": "2022-08-19",
+      "isOutsideMonth": false,
+      "label": "19",
+    },
+    Object {
+      "date": "2022-08-20",
+      "isOutsideMonth": false,
+      "label": "20",
+    },
+  ],
+  Array [
+    Object {
+      "date": "2022-08-21",
+      "isOutsideMonth": false,
+      "label": "21",
+    },
+    Object {
+      "date": "2022-08-22",
+      "isOutsideMonth": false,
+      "label": "22",
+    },
+    Object {
+      "date": "2022-08-23",
+      "isOutsideMonth": false,
+      "label": "23",
+    },
+    Object {
+      "date": "2022-08-24",
+      "isOutsideMonth": false,
+      "label": "24",
+    },
+    Object {
+      "date": "2022-08-25",
+      "isOutsideMonth": false,
+      "label": "25",
+    },
+    Object {
+      "date": "2022-08-26",
+      "isOutsideMonth": false,
+      "label": "26",
+    },
+    Object {
+      "date": "2022-08-27",
+      "isOutsideMonth": false,
+      "label": "27",
+    },
+  ],
+  Array [
+    Object {
+      "date": "2022-08-28",
+      "isOutsideMonth": false,
+      "label": "28",
+    },
+    Object {
+      "date": "2022-08-29",
+      "isOutsideMonth": false,
+      "label": "29",
+    },
+    Object {
+      "date": "2022-08-30",
+      "isOutsideMonth": false,
+      "label": "30",
+    },
+    Object {
+      "date": "2022-08-31",
+      "isOutsideMonth": false,
+      "label": "31",
+    },
+    Object {
+      "date": "2022-09-01",
+      "isOutsideMonth": true,
+      "label": "1",
+    },
+    Object {
+      "date": "2022-09-02",
+      "isOutsideMonth": true,
+      "label": "2",
+    },
+    Object {
+      "date": "2022-09-03",
+      "isOutsideMonth": true,
+      "label": "3",
+    },
+  ],
+]
+`;
