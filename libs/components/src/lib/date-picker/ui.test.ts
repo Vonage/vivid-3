@@ -14,14 +14,18 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		.space-for-popup {
 			height: 450px;
 			width: 380px;
+			flex-shrink: 0;
 		}
 		.layout {
 			display: flex;
+			padding: 8px;
+			box-sizing: border-box;
 		}
 		.grid {
 			display: flex;
 			flex-direction: column;
 			gap: 20px;
+			width: 220px;
 		}
 	</style>
 	<div class="layout">
@@ -40,7 +44,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	</div>`;
 
 	await useFakeTime(page, new Date('August 11 2023 11:11:11').valueOf());
-	page.setViewportSize({ width: 1000, height: 500 });
+	await page.setViewportSize({ width: 1100, height: 500 });
 
 	await loadComponents({
 		page,
@@ -77,7 +81,7 @@ test('selecting a date', async ({ page }: { page: Page }) => {
 	const template = '<vwc-date-picker></vwc-date-picker>';
 
 	await useFakeTime(page, new Date('August 11 2023 11:11:11').valueOf());
-	page.setViewportSize({ width: 1000, height: 500 });
+	page.setViewportSize({ width: 1100, height: 500 });
 
 	await loadComponents({
 		page,
