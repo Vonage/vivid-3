@@ -30,6 +30,16 @@ import { buildMonthPickerGrid, MonthsPerRow } from './calendar/monthPickerGrid';
  * @public
  */
 export class DatePicker extends FoundationElement {
+	#dismissOnClickOutside = (event: MouseEvent) => {
+		if (!this._popupOpen) {
+			return;
+		}
+
+		const path = event.composedPath();
+		if (!path.includes(this)) {
+			this.#closePopup(false);
+		}
+	};
 	// --- Attributes ---
 	/**
 	 * The label text of the date-picker.
@@ -180,17 +190,6 @@ export class DatePicker extends FoundationElement {
 	 * @internal
 	 */
 	@observable _popupOpen = false;
-
-	#dismissOnClickOutside = (event: MouseEvent) => {
-		if (!this._popupOpen) {
-			return;
-		}
-
-		const path = event.composedPath();
-		if (!path.includes(this)) {
-			this.#closePopup(false);
-		}
-	};
 
 	/// Used to stop the popup from immediately opening when closing popup and returning focus to text field
 	#isClosingPopup = false;
