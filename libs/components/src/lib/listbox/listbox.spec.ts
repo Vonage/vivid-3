@@ -37,6 +37,8 @@ describe('vwc-listbox', () => {
 			expect(element.disabled).toBeUndefined();
 			expect(element.multiple).toBeUndefined();
 			expect(element.appearance).toBeUndefined();
+			expect(element.shape).toBeUndefined();
+			expect(element.orientation).toBeUndefined();
 			expect(element.selectedIndex).toEqual(-1);
 		});
 	});
@@ -48,6 +50,35 @@ describe('vwc-listbox', () => {
 			await elementUpdated(element);
 
 			expect(getBaseElement(element).classList.contains(`appearance-${appearance}`)).toBeTruthy();
+		});
+	});
+
+	describe('orientation', function () {
+		it('sets correct internal orientation style', async function () {
+			const orientation = 'horizontal';
+			(element as any).orientation = orientation;
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).classList.contains(`orientation-${orientation}`)).toBeTruthy();
+		});
+	});
+
+	describe('shape', function () {
+		it('sets correct internal shape style if orientation is vertical', async function () {
+			const shape = 'pill';
+			(element as any).shape = shape;
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).classList.contains(`shape-${shape}`)).toBeFalsy();
+		});
+
+		it('sets correct internal shape style if orientation is horizontal', async function () {
+			const shape = 'pill';
+			element.orientation = 'horizontal';
+			(element as any).shape = shape;
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).classList.contains(`shape-${shape}`)).toBeTruthy();
 		});
 	});
 
