@@ -164,7 +164,8 @@ You can add action items elements using the `leading-action-items` slot.
 ```html preview
 <style>
 .text-field {
---padding-left-calculation: 
+--padding-left-calculation: 80px;
+--costum-padding: 130px;
 }
 .leading-action-items {
 	display: flex;
@@ -182,17 +183,15 @@ vwc-divider {
 <vwc-text-field icon="search" placeholder="search" label='search' appearance='fieldset' class="text-field">
 <div slot="leading-action-items" class="leading-action-items">
 	<vwc-select aria-label="Options Selector" appearance="ghost">
-		<vwc-option value="1" text="Option 1" selected></vwc-option>
-		<vwc-option value="2" text="Option 2 "></vwc-option>
+		<vwc-option value="1" text="ALL" selected></vwc-option>
 	</vwc-select>
 	<vwc-divider orientation="vertical"></vwc-divider>
 </div>
 </vwc-text-field>
-</br>
-<vwc-text-field icon="search" placeholder="search" label='search' appearance='fieldset' class="text-field">
+
+<vwc-text-field placeholder="search" label='search' appearance='fieldset' class="text-field">
 	<vwc-select aria-label="Options Selector" appearance="ghost" slot="leading-action-items" class="select">
 		<vwc-option value="1" text="Option 1" selected></vwc-option>
-		<vwc-option value="2" text="Option 2 "></vwc-option>
 	</vwc-select>
 </vwc-text-field>
 ```
