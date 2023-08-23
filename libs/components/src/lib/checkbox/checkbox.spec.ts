@@ -210,4 +210,9 @@ describe('vwc-checkbox', () => {
 			});
 		});
 	});
+
+	it('should have a slot', async () => {
+		await elementUpdated(element);
+		expect(Boolean(element.shadowRoot?.querySelector('slot'))).toEqual(true);
+	});
 });
