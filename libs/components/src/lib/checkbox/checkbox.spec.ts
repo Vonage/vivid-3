@@ -6,7 +6,7 @@ import {
 	listenToFormSubmission
 } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import {Connotation} from '../enums';
+import { Connotation } from '../enums';
 import { Checkbox } from './checkbox';
 import '.';
 import { checkboxDefinition } from './definition';
@@ -50,7 +50,6 @@ describe('vwc-checkbox', () => {
 
 	describe('checked', () => {
 		it('should set checked class when checked is true', async () => {
-
 			element.toggleAttribute('checked', true);
 			await elementUpdated(element);
 
@@ -58,56 +57,43 @@ describe('vwc-checkbox', () => {
 		});
 	});
 
-	describe('disabled', () => {
+	describe('disabled', function () {
 		it('should set disabled class when disabled is true', async () => {
-
+			expect(element.shadowRoot?.querySelector('.disabled')).toBeFalsy();
 			element.toggleAttribute('disabled', true);
 			await elementUpdated(element);
-
-			const base = element.shadowRoot?.querySelector('.base.disabled');
-			expect(base).toBeInstanceOf(Element);
+			expect(element.shadowRoot?.querySelector('.disabled')).toBeTruthy();
 		});
 	});
 
-	describe('readonly', () => {
-		it('should set read only class when readonly is true', async () => {
-
+	describe('readonly', function () {
+		it('should set readonly class when readonly is true', async () => {
+			expect(element.shadowRoot?.querySelector('.readonly')).toBeFalsy();
 			element.toggleAttribute('readonly', true);
 			await elementUpdated(element);
-
-			const base = element.shadowRoot?.querySelector('.base.readonly');
-			expect(base).toBeInstanceOf(Element);
+			expect(element.shadowRoot?.querySelector('.readonly')).toBeTruthy();
 		});
 	});
 
 	describe('indeterminate', () => {
-		it('should set checked class when indeterminate is true', async () => {
-
+		it('should set readonly class when readonly is true', async () => {
 			element.indeterminate = true;
-			await elementUpdated(element);
 
-			const base = element.shadowRoot?.querySelector('.base.checked');
-			expect(base).toBeInstanceOf(Element);
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.checked')).toBeTruthy();
 		});
 
 		it('should set `indeterminate` to false when `checked` by click', async () => {
-
 			element.indeterminate = true;
-
-			const base = element.shadowRoot?.querySelector('.base') as HTMLElement;
-
-			base.click();
+			getBaseElement(element).click();
 
 			expect(element.indeterminate).toBeFalsy();
+			expect(element.shadowRoot?.querySelector('.checked')).toBeFalsy();
 		});
 
 		it('should set `indeterminate` to false when `checked` by keypress', async () => {
-
 			element.indeterminate = true;
-
-			const base = element.shadowRoot?.querySelector('.base') as HTMLElement;
-
-			base.dispatchEvent(new KeyboardEvent('keypress', { key: ' ' }));
+			getBaseElement(element).dispatchEvent(new KeyboardEvent('keypress', { key: ' ' }));
 
 			expect(element.indeterminate).toBeFalsy();
 		});
@@ -140,7 +126,7 @@ describe('vwc-checkbox', () => {
 		});
 	});
 
-	describe('success Text', ()=> {
+	describe('success Text', () => {
 		it('should add success class to base when successText is set', async function () {
 			(element as any).successText = 'success';
 			await elementUpdated(element);
@@ -162,7 +148,7 @@ describe('vwc-checkbox', () => {
 		});
 	});
 
-	describe('error Text', ()=> {
+	describe('error Text', () => {
 		it('should add error class to base when errorText is set', async function () {
 			(element as any).errorText = 'error';
 			await elementUpdated(element);
@@ -191,7 +177,7 @@ describe('vwc-checkbox', () => {
 			const formId = 'testFormId';
 			const fieldName = 'testFieldName';
 			const checked = 'on';
-			const {form: formElement} = createFormHTML<Checkbox>({
+			const { form: formElement } = createFormHTML<Checkbox>({
 				fieldName,
 				formId,
 				formWrapper,
@@ -211,8 +197,40 @@ describe('vwc-checkbox', () => {
 		});
 	});
 
-	it('should have a slot', async () => {
-		await elementUpdated(element);
-		expect(Boolean(element.shadowRoot?.querySelector('slot'))).toEqual(true);
+	describe('slot', function () {
+		it('should have a slot', async () => {
+			await elementUpdated(element);
+			expect(Boolean(element.shadowRoot?.querySelector('slot'))).toEqual(true);
+		});
+
+		beforeEach(async () => {
+			element = (await fixture(`<${COMPONENT_TAG} 
+			label="I agree to" error-text="You need to accept the Terms of service"
+				aria-label="I agree to Vonage Terms of Service">
+				<a href="https://www.vonage.com/legal/" target="_blank">Vonage Terms of Service</a>
+			</${COMPONENT_TAG}>`
+			)) as Checkbox;
+			await elementUpdated(element);
+		});
+
+		it('should check the checkbox when clicked outside the anchor', async () => {
+			getBaseElement(element).querySelector('a')?.click();
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('checked')).toBeFalsy();
+
+			getBaseElement(element).click();
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('checked')).toBeTruthy();
+		});
+
+		it('should check the checkbox when keypressed outside the anchor', async () => {
+			getBaseElement(element).querySelector('a')?.dispatchEvent(new KeyboardEvent('keypress', { key: ' ' }));
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('checked')).toBeFalsy();
+
+			getBaseElement(element).click();
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('checked')).toBeTruthy();
+		});
 	});
 });

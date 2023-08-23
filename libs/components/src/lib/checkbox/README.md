@@ -145,27 +145,6 @@ Use the `value` member to set the checkbox's value.
 ### Default
 
 ```html preview
-<style>
-  a {
-    color: var(--vvd-color-cta-600);
-  }
-  a:visited {
-    color: var(--vvd-color-information-600);
-  }
-  a:hover {
-    color: var(--vvd-color-cta-700);
-  }
-  a:hover:visited {
-    color: var(--vvd-color-information-700);
-  }
-  a:active {
-    color: var(--vvd-color-cta-800);
-  }
-  a:active:visited {
-    color: var(--vvd-color-information-800);
-  }
-</style>
-
 <vwc-checkbox label="I agree to" error-text="You need to accept the Terms of service"
   aria-label="I agree to Vonage Terms of Service">
   <a href="https://www.vonage.com/legal/" target="_blank">Vonage Terms of Service</a>
