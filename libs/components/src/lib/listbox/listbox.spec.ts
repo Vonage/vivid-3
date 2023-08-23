@@ -44,7 +44,7 @@ describe('vwc-listbox', () => {
 	});
 
 	describe('appearance', function () {
-		it('sets correct internal appearance style', async function () {
+		it('should set correct internal appearance style', async function () {
 			const appearance = 'ghost';
 			(element as any).appearance = appearance;
 			await elementUpdated(element);
@@ -54,17 +54,26 @@ describe('vwc-listbox', () => {
 	});
 
 	describe('orientation', function () {
-		it('sets correct internal orientation style', async function () {
+		it('should set correct internal orientation style', async function () {
 			const orientation = 'horizontal';
 			(element as any).orientation = orientation;
 			await elementUpdated(element);
 
 			expect(getBaseElement(element).classList.contains(`orientation-${orientation}`)).toBeTruthy();
 		});
+
+		it('should remove event listener when orientation is vertical', async function () {
+			const orientation = 'vertical';
+			element.orientation = orientation;
+			await elementUpdated(element);
+
+			expect(element.hasAttribute('orientation')).toBeTruthy();
+			expect(element.hasAttribute('keydown')).toBeFalsy();
+		});
 	});
 
 	describe('shape', function () {
-		it('sets correct internal shape style if orientation is vertical', async function () {
+		it('should set correct internal shape style if orientation is vertical', async function () {
 			const shape = 'pill';
 			(element as any).shape = shape;
 			await elementUpdated(element);
@@ -72,7 +81,7 @@ describe('vwc-listbox', () => {
 			expect(getBaseElement(element).classList.contains(`shape-${shape}`)).toBeFalsy();
 		});
 
-		it('sets correct internal shape style if orientation is horizontal', async function () {
+		it('should set correct internal shape style if orientation is horizontal', async function () {
 			const shape = 'pill';
 			element.orientation = 'horizontal';
 			(element as any).shape = shape;
@@ -190,6 +199,19 @@ describe('vwc-listbox', () => {
 		it('should recieve array of selectedOptions', async () => {
 			await elementUpdated(element);
 			expect(element.selectedOptions[0]).toEqual(element.querySelector('option:nth-child(2)'));
+		});
+	});
+
+	describe('horizontal keydown', () => {
+		it('should focus on the second element when keyArrowRight is pressed', async () => {
+			element.orientation = 'horizontal';
+			await elementUpdated(element);
+			
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'keyArrowRight' }));
+
+			await elementUpdated(element);
+			expect(element.focus).toBeTruthy();
 		});
 	});
 });

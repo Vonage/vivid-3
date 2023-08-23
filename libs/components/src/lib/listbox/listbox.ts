@@ -52,7 +52,6 @@ export class Listbox extends FoundationListboxElement {
 	/**
 	 * Handles `keydown` actions for horizontal listbox navigation and typeahead.
 	 *
-	 * @param e
 	 * @internal
 	 */
 	private horizontalKeydownHandler(e: KeyboardEvent): boolean | void {
