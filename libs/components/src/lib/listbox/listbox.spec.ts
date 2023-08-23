@@ -203,15 +203,50 @@ describe('vwc-listbox', () => {
 	});
 
 	describe('horizontal keydown', () => {
-		it('should focus on the second element when keyArrowRight is pressed', async () => {
+		it('should not focus if disabled', async () => {
+			element.orientation = 'horizontal';
+			element.disabled = true;
+			await elementUpdated(element);
+			
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-activedescendant')).not.toEqual('option1');
+		});
+
+
+		it('should focus on the next element when ArrowRight is pressed', async () => {
 			element.orientation = 'horizontal';
 			await elementUpdated(element);
 			
 			element.focus();
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'keyArrowRight' }));
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
 
 			await elementUpdated(element);
-			expect(element.focus).toBeTruthy();
+			expect(element.getAttribute('aria-activedescendant')).toEqual('option1');
+
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-activedescendant')).toEqual('option2');
+		});
+
+		it('should focus on the next element when ArrowLeft is pressed', async () => {
+			element.orientation = 'horizontal';
+			await elementUpdated(element);
+			
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-activedescendant')).toEqual('option2');
+
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft' }));
+
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-activedescendant')).toEqual('option1');
 		});
 	});
 });
