@@ -10,33 +10,62 @@ const CBD_CONTAINER = 'cbd-container';
 const CBD_DEMO = 'cbd-demo';
 const CBD_DETAILS = 'cbd-details';
 const CBD_CODE_BLOCK = 'cbd-code-block';
+const CBD_ACTIONS = 'cbd-actions';
 const CBD_VARIABLES = 'cbd-variables';
 
 let exampleIndex = 0;
 
 module.exports = function createCodeExample(code, pre, outputPath, componentData, cssProperties) {
 	const index = exampleIndex++;
-	const src = createiFrameContent(code.textContent, pre.classList, index, outputPath, componentData);
-	return renderiFrame(index, src, pre.outerHTML, componentData, cssProperties);
-}
+	const src = createiFrameContent(
+		code.textContent,
+		pre.classList,
+		index,
+		outputPath,
+		componentData
+	);
+	return renderiFrame(
+		index,
+		src,
+		pre.outerHTML,
+		pre.classList,
+		componentData,
+		cssProperties
+	);
+};
 
-const renderiFrame = (index, src, content, componentData, variableToShow) => {
-	const deps = componentData.modules
-		.map(m => m.split('/')[4])
-		.join(',');
+const renderiFrame = (
+	index,
+	src,
+	content,
+	classList,
+	componentData,
+	variableToShow
+) => {
+	const deps = componentData.modules.map((m) => m.split('/')[4]).join(',');
 
-	const variableTable = variableToShow ? renderVariablesTable(variableToShow) : '';
+	const variableTable = variableToShow
+		? renderVariablesTable(variableToShow)
+		: '';
+
+	const localeSwitcher = classList.contains('locale-switcher')
+		? `
+		<vwc-select id="selectLocale${index}" class="cbd-locale-switcher" icon="globe-line" aria-label="Locale" data-index="${index}" slot="main"></vwc-select>`
+		: '';
 
 	return JSDOM.fragment(`
 	<div class="${CBD_CONTAINER}" style="--tooltip-inline-size: auto;">
 	    ${variableTable}
 		<vwc-card elevation="0">
 			<iframe id="iframe-sample-${index}" src="${src}" class="${CBD_DEMO}" onload=onloadIframe(this) loading="lazy" aria-label="code block preview iframe" slot="main"></iframe>
-			<vwc-action-group appearance="ghost" style="direction: rtl;" slot="main">
-				<vwc-button id="buttonCPen${index}" connotation="cta" aria-label="Edit on CodePen" icon="open-line" data-index="${index}" data-deps="${deps}"></vwc-button>
-				<vwc-button id="buttonEdit${index}" connotation="cta" aria-label="Edit source code" icon="compose-line" aria-expanded="false" aria-controls="${CBD_CODE_BLOCK}-${index}" onclick="codeBlockButtonClick(this)"></vwc-button>
-				<vwc-button id="buttonCopy${index}" connotation="cta" aria-label="Copy source code" icon="copy-2-line" data-index="${index}"></vwc-button>
-			</vwc-action-group>
+			<div class="${CBD_ACTIONS}" slot="main">
+				<div>${localeSwitcher}</div>
+				<vwc-action-group appearance="ghost" style="direction: rtl;" slot="main">
+					<vwc-button id="buttonCPen${index}" connotation="cta" aria-label="Edit on CodePen" icon="open-line" data-index="${index}" data-deps="${deps}"></vwc-button>
+					<vwc-button id="buttonEdit${index}" connotation="cta" aria-label="Edit source code" icon="compose-line" aria-expanded="false" aria-controls="${CBD_CODE_BLOCK}-${index}" onclick="codeBlockButtonClick(this)"></vwc-button>
+					<vwc-button id="buttonCopy${index}" connotation="cta" aria-label="Copy source code" icon="copy-2-line" data-index="${index}"></vwc-button>
+				</vwc-action-group>
+			</div>
 			<details class="${CBD_DETAILS}" slot="main">
 				<summary></summary>
 				<div class="cbd-live-sample" data-index="${index}" role="region">
@@ -50,7 +79,13 @@ const renderiFrame = (index, src, content, componentData, variableToShow) => {
 	</div>`);
 }
 
-const createiFrameContent = (code, classList, index, outputPath, componentData) => {
+const createiFrameContent = (
+	code,
+	classList,
+	index,
+	outputPath,
+	componentData
+) => {
 	const modules = new Set(componentData?.modules);
 
 	const layoutResult = layout(code, classList);
