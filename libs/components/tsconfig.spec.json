@@ -6,7 +6,8 @@
     "allowJs": true,
 		"allowImportingTsExtensions": true,
 		"noEmit": false,
-		"verbatimModuleSyntax": false
+		"verbatimModuleSyntax": false,
+		"target": "ES6"
   },
   "exclude": [
     "**/*.config.spec.ts",
