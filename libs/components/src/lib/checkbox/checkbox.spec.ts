@@ -214,7 +214,7 @@ describe('vwc-checkbox', () => {
 		});
 
 		it('should check the checkbox when clicked outside the anchor', async () => {
-			getBaseElement(element).querySelector('a')?.click();
+			element.querySelector('a')?.click();
 			await elementUpdated(element);
 			expect(getBaseElement(element).classList.contains('checked')).toBeFalsy();
 
@@ -224,11 +224,14 @@ describe('vwc-checkbox', () => {
 		});
 
 		it('should check the checkbox when keypressed outside the anchor', async () => {
-			getBaseElement(element).querySelector('a')?.dispatchEvent(new KeyboardEvent('keypress', { key: ' ' }));
+			element.indeterminate = true;
+			await elementUpdated(element);
+
+			element.querySelector('a')?.dispatchEvent(new KeyboardEvent('keypress', { bubbles: true, composed: true, key: 'Enter' }));
 			await elementUpdated(element);
 			expect(getBaseElement(element).classList.contains('checked')).toBeFalsy();
 
-			getBaseElement(element).click();
+			getBaseElement(element)?.dispatchEvent(new KeyboardEvent('keypress', { key: ' ' }));
 			await elementUpdated(element);
 			expect(getBaseElement(element).classList.contains('checked')).toBeTruthy();
 		});
