@@ -19,7 +19,8 @@
 			"@vivid-nx/styles": ["libs/styles/src/index.ts"],
 			"@vivid-nx/tokens": ["libs/tokens/src/index.ts"],
 			"@vonage/nx-vivid": ["libs/nx-vivid/src/index.ts"],
-			"@vonage/vivid": ["libs/components/src/index.ts"]
+			"@vonage/vivid": ["libs/components/src/index.ts"],
+			"@vonage/vwc-consts": ["libs/consts/src/index.ts"]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]

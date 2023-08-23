@@ -8,6 +8,7 @@ import { oneDark } from '@codemirror/theme-one-dark'
 window.onload = () => {
 	addSamplesEditors();
 	addButtonsHandlers();
+	addLocaleSwitcher();
 };
 
 const samplesEditors = new Map();
@@ -131,3 +132,27 @@ function openCodePen(event) {
 	codePenForm.submit();
 }
 
+function addLocaleSwitcher() {
+	const DefaultLocale = 'en-US';
+
+	const localeSelects = document.querySelectorAll(
+		'vwc-select[id^="selectLocale"]'
+	);
+	localeSelects.forEach((localeSelect) => {
+		// Ensure default is first
+		localeSelect.innerHTML += `<vwc-option value='${DefaultLocale}' text='${DefaultLocale}' selected></vwc-option>`;
+		for (const locale of Object.keys(window.locales).filter(
+			(locale) => locale !== DefaultLocale
+		)) {
+			localeSelect.innerHTML += `<vwc-option value='${locale}' text='${locale}'></vwc-option>`;
+		}
+		localeSelect.addEventListener('change', switchLocale);
+	});
+}
+
+function switchLocale(event) {
+	const select = event.target;
+	const { iframe } = samplesEditors.get(+select.dataset.index);
+
+	iframe.contentWindow.setLocale(iframe.contentWindow.locales[select.value]);
+}
