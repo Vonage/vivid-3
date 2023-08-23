@@ -57,6 +57,12 @@ function renderCharCount() {
 	`;
 }
 
+function setLeadingSlotWidth (x: TextField) {
+	const slottedLeadingContent = x.querySelector('[slot="leading-action-items"]');
+	return (slottedLeadingContent) ? `--padding-left-calculation: ${Math.round(x.getBoundingClientRect().width)}px` : null;
+}
+
+
 /**
  * The template for the TextField component.
  *
@@ -75,8 +81,8 @@ export const TextfieldTemplate: (
     ${when(x => x.charCount && x.maxlength, renderCharCount())}
     ${when(x => x.label, renderLabel())}
     <div class="fieldset">
-			<div class="slot-icon-wrapper">
-				<div class="/leading-items-wrapper end">
+			<div class="slot-icon-wrapper" style="${setLeadingSlotWidth}">
+				<div class="leading-items-wrapper">
 					<slot name="leading-action-items"  ${slotted('leadingActionItemsSlottedContent')}></slot>
 				</div>
 				${x => affixIconTemplate(x.icon)}

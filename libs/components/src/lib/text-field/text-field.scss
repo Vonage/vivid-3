@@ -206,3 +206,7 @@ $low-ink-color: --_low-ink-color;
 		display: none;
 	}
 }
+
+slot[name='leading-action-items'] {
+ display: block;
+}
