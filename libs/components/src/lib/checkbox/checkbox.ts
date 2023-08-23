@@ -43,8 +43,12 @@ export class Checkbox extends FoundationCheckbox {
 	 *
 	 * @internal
 	 */
-	override keypressHandler = (e: KeyboardEvent): void => {
-		switch (e.key) {
+	override keypressHandler = (event: KeyboardEvent): boolean => {
+		if (event.target instanceof HTMLAnchorElement) {
+			return true;
+		}
+
+		switch (event.key) {
 			case keySpace:
 				if (this.indeterminate) {
 					this.indeterminate = false;
@@ -52,6 +56,7 @@ export class Checkbox extends FoundationCheckbox {
 				this.checked = !this.checked;
 				break;
 		}
+		return false;
 	};
 
 	/**
