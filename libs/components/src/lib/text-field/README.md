@@ -159,13 +159,20 @@ Add the `readonly` attribute to restrict user from changing the text field's val
 
 ## Slots
 ### Leading Action-items
-You can add action items elements using the `leading-action-items` slot.
+You can add action items elements using the `leading-action-items` slot.  
+⚠ When adding slotted content you must set the **width** of your item in css-variable:  
+`--text-field-leading-slot-inline-size`.   
+if not set - the text-field text will be hidden under the slotted content.
+
 
 ```html preview
 <style>
-.text-field {
---padding-left-calculation: 80px;
---costum-padding: 130px;
+.text-field1 {
+--text-field-leading-slot-inline-size: 80px;
+}
+
+.text-field2 {
+--text-field-leading-slot-inline-size: 111px;
 }
 .leading-action-items {
 	display: flex;
@@ -180,7 +187,7 @@ vwc-divider {
     height: 20px;
 }
 </style>
-<vwc-text-field icon="search" placeholder="search" label='search' appearance='fieldset' class="text-field">
+<vwc-text-field icon="search" placeholder="search" label='search' appearance='fieldset' class="text-field1">
 <div slot="leading-action-items" class="leading-action-items">
 	<vwc-select aria-label="Options Selector" appearance="ghost">
 		<vwc-option value="1" text="ALL" selected></vwc-option>
@@ -189,7 +196,7 @@ vwc-divider {
 </div>
 </vwc-text-field>
 
-<vwc-text-field placeholder="search" label='search' appearance='fieldset' class="text-field">
+<vwc-text-field placeholder="search" label='search' appearance='fieldset' class="text-field2">
 	<vwc-select aria-label="Options Selector" appearance="ghost" slot="leading-action-items" class="select">
 		<vwc-option value="1" text="Option 1" selected></vwc-option>
 	</vwc-select>

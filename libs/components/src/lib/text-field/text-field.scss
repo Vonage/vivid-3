@@ -153,18 +153,20 @@ $low-ink-color: --_low-ink-color;
 		outline: none;
 	}
 
-	.base.action-items & {
-		padding-inline-end: var(#{variables.$text-field-inline-end-padding}, calc(var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter})));
-	}
-
 	.base.has-icon & {
-		padding-inline-start: calc((var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter}) * 2) + var(--padding-left-calculation, 0px));
+		padding-inline-start: calc((var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter}) * 2)
+		+ var(#{variables.$text-field-leading-slot-inline-size}, 0px));
 	}
 
 	.base.leading-action-items:not(.has-icon) & {
-		padding-inline-start: var(--costum-padding);
+		padding-inline-start: calc(var(#{variables.$text-field-leading-slot-inline-size}, 0px)
+		+ var(#{variables.$text-field-gutter}));
 	}
 
+	.base.action-items & {
+		padding-inline-end: var(#{variables.$text-field-inline-end-padding}, calc(var(#{variables.$text-field-icon-size})
+		+ var(#{variables.$text-field-gutter})));
+	}
 }
 
 .action-items-wrapper {
@@ -183,13 +185,16 @@ $low-ink-color: --_low-ink-color;
 	z-index: 1;
 	display: flex;
 	column-gap: 16px;
+
+	.base.no-leading & {
+		display: none;
+	}
 }
 
 .icon {
 	align-self: center;
 	color: var(#{$low-ink-color});
 	font-size: var(#{variables.$text-field-icon-size});
-	//margin-inline-start: var(#{variables.$text-field-gutter});
 	line-height: 1;
 }
 
@@ -205,8 +210,4 @@ $low-ink-color: --_low-ink-color;
 	.fieldset:not(:focus-visible, :focus-within) > & {
 		display: none;
 	}
-}
-
-slot[name='leading-action-items'] {
- display: block;
 }
