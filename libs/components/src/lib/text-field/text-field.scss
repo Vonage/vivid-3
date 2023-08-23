@@ -28,7 +28,7 @@ $low-ink-color: --_low-ink-color;
 	// input element :invalid state isn't enough as our spec awaits user interaction
 	// before showing the error.
 	@include appearance.appearance;
-	@include connotation.connotation (text-field);
+	@include connotation.connotation(text-field);
 	#{variables.$text-field-gutter}: calc(#{size.$vvd-size-normal} / 2.5); // default of 16px
 	#{variables.$text-field-icon-size}: calc(#{size.$vvd-size-normal} / 2); // default of 20px
 
@@ -37,7 +37,7 @@ $low-ink-color: --_low-ink-color;
 	gap: 4px;
 	grid-template-columns: min-content 1fr max-content;
 
-	@supports(user-select: none) {
+	@supports (user-select: none) {
 		user-select: none;
 	}
 
@@ -57,7 +57,7 @@ $low-ink-color: --_low-ink-color;
 	grid-column: 1 / 4;
 	grid-row: 1;
 
-	.char-count+& {
+	.char-count + & {
 		grid-column: 1 / 3;
 	}
 }
@@ -79,6 +79,10 @@ $low-ink-color: --_low-ink-color;
 	padding-block: 0;
 	transition: color .2s, box-shadow .2s, background-color .2s;
 
+	&:focus-visible {
+		outline: none;
+	}
+
 	.base > & {
 		block-size: #{size.$vvd-size-normal};
 	}
@@ -98,6 +102,10 @@ $low-ink-color: --_low-ink-color;
 	block-size: 100%;
 	border-radius: inherit;
 	inline-size: 100%;
+
+	&:focus-visible {
+		outline: none;
+	}
 }
 
 .control {
@@ -128,14 +136,12 @@ $low-ink-color: --_low-ink-color;
 		-webkit-text-fill-color: var(#{$low-ink-color}); /* 1. sets text fill to current `color` for safari */
 	}
 
-	.base.action-items & {
-		padding-inline-end: var(#{variables.$text-field-inline-end-padding}, calc(var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter})));
+	&:focus-visible {
+		outline: none;
 	}
 
-	@supports selector(:focus-visible) {
-		&:focus {
-			outline: none;
-		}
+	.base.action-items & {
+		padding-inline-end: var(#{variables.$text-field-inline-end-padding}, calc(var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter})));
 	}
 }
 
@@ -158,7 +164,7 @@ $low-ink-color: --_low-ink-color;
 	inset-inline-start: var(#{variables.$text-field-gutter});
 	line-height: 1;
 
-	+.wrapper .control {
+	+ .wrapper .control {
 		padding-inline-start: calc(var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter}) * 2);
 	}
 }

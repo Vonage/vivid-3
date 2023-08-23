@@ -5,7 +5,7 @@ import * as fs from 'fs';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import { defineConfig } from 'vite';
 
-import viteTsConfigPaths from 'vite-tsconfig-paths';
+import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import dts from 'vite-plugin-dts';
 
 function getFoldersInAFolder(workingFolder = './src/lib/') {
@@ -29,6 +29,14 @@ const input = components.reduce((inputObject, componentName) => {
 	);
 	return inputObject;
 }, {});
+
+const locales = fs.readdirSync(path.join(__dirname, './src/locales'));
+locales.forEach((locale) => {
+	input[`locales/${path.parse(locale).name}`] = path.join(
+		process.cwd(),
+		`libs/components/src/locales/${locale}`
+	);
+});
 
 input.index = path.join(process.cwd(), 'libs/components/src/index.ts');
 
@@ -70,17 +78,13 @@ export default defineConfig({
 			skipDiagnostics: true,
 		}),
 
-		viteTsConfigPaths({
-			root: '../../',
-		}),
+		nxViteTsPaths(),
 	],
 
 	worker: {
-	 plugins: [
-	   viteTsConfigPaths({
-	     root: '../../',
-	   }),
-	 ],
+		plugins: [
+			nxViteTsPaths(),
+		],
 	},
 
 	build: {

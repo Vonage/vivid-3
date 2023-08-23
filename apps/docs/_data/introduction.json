@@ -8,6 +8,10 @@
 		"markdown": "./docs/getting-started/advanced.md"
 	},
 	{
+		"title": "localization",
+		"markdown": "./docs/getting-started/localization.md"
+	},
+	{
 		"title": "fonts-and-tokens",
 		"markdown": "./docs/getting-started/fonts-and-tokens.md"
 	},

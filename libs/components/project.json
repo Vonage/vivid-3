@@ -77,7 +77,8 @@
 			"options": {
 				"outputPath": "dist/libs/components",
 				"watch": true
-			}
+			},
+			"dependsOn": ["^build"]
 		},
 		"stylelint": {
 			"executor": "nx-stylelint:lint",
@@ -88,5 +89,5 @@
 		}
 	},
 	"tags": [],
-	"implicitDependencies": ["styles", "tokens"]
+	"implicitDependencies": ["styles"]
 }

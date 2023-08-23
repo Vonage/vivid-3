@@ -22,7 +22,7 @@ $control-size: #{size.$vvd-size-ultra-condensed};
 $control-border: 2px;
 
 @supports selector(:focus-visible) {
-	:host(:focus) {
+	:host(:focus-visible) {
 		outline: none;
 	}
 }
