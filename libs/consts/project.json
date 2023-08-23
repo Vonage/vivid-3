@@ -1,0 +1,27 @@
+{
+	"name": "consts",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/consts/src",
+	"projectType": "library",
+	"targets": {
+		"build": {
+			"executor": "@nx/vite:build",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/libs/consts"
+			}
+		},
+		"publish": {
+			"command": "node tools/scripts/publish.mjs consts {args.ver} {args.tag}",
+			"dependsOn": ["build"]
+		},
+		"lint": {
+			"executor": "@nx/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["libs/consts/**/*.ts"]
+			}
+		}
+	},
+	"tags": []
+}
