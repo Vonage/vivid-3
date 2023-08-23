@@ -56,12 +56,6 @@ After you have docker installed, run:
 
 `npm run nx e2e components`
 
-If you need to rebuild the docker image run:
-
-`npx nx run components:e2e --task=build`
-
-This will run the tests for you.
-
 If you wish to update the visual snapshots (i.e. you've changed the design and want it to reflect in the saved snapshots) run:
 
 `npx nx run components:e2e --task=update`
