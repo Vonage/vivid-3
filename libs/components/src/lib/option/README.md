@@ -17,12 +17,9 @@ Use the `text` attribute to set the option's text.
 - Default: `undefined`
 
 ```html preview
-<style>
-div[role="listbox"] {width: 150px;}
-</style>
-<div role="listbox">
+<vwc-listbox>
  <vwc-option text="Option"></vwc-option>
-</div>
+</vwc-listbox>
 ```
 
 ### Label
@@ -39,12 +36,9 @@ Check out the [vivid icons gallery](../../icons/icons-gallery) to see what icons
 - Default: `''`
 
 ```html preview
-<style>
-div[role="listbox"] {width: 150px;}
-</style>
-<div role="listbox">
+<vwc-listbox>
  <vwc-option text="Option" icon="chat-line"></vwc-option>
-</div>
+</vwc-listbox>
 ```
 
 ### Selected
@@ -55,12 +49,9 @@ Add the `selected` attribute to select the option.
 - Default: `false`
 
 ```html preview
-<style>
-div[role="listbox"] {width: 150px;}
-</style>
-<div role="listbox">
+<vwc-listbox>
  <vwc-option text="Option" selected></vwc-option>
-</div>
+</vwc-listbox>
 ```
 
 ### Disabled
@@ -71,12 +62,9 @@ Add the `disabled` attribute to disable the option.
 - Default: `false`
 
 ```html preview
-<style>
-div[role="listbox"] {width: 150px;}
-</style>
-<div role="listbox">
+<vwc-listbox>
  <vwc-option text="Option" disabled></vwc-option>
-</div>
+</vwc-listbox>
 ```
 
 ### Value
@@ -87,12 +75,9 @@ Use the `value` attribute to set the option's value.
 - Default: `undefined`
 
 ```html preview
-<style>
-div[role="listbox"] {width: 150px;}
-</style>
-<div role="listbox">
+<vwc-listbox>
  <vwc-option text="Option" value="my-value"></vwc-option>
-</div>
+</vwc-listbox>
 ```
 
 ## Slots
@@ -103,12 +88,9 @@ Set the `icon` slot to show an icon before the option's label.
 If set, the `icon` attribute is ignored.
 
 ```html preview
-<style>
-div[role="listbox"] {width: 150px;}
-</style>
-<div role="listbox">
+<vwc-listbox>
 	<vwc-option text="Option" value="my-value">
 		<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 	</vwc-option>
-</div>
+</vwc-listbox>
 ```

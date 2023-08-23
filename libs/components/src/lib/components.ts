@@ -31,6 +31,7 @@ export * from './nav/definition';
 export * from './note/definition';
 export * from './number-field/definition';
 export * from './option/definition';
+export * from './listbox/definition';
 export * from './pagination/definition';
 export * from './progress-ring/definition';
 export * from './progress/definition';
