@@ -4,10 +4,10 @@ import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
 import '../icon/index.ts';
 import '../button/index.ts';
 import { designSystem } from '../../shared/design-system';
+import {Button} from '../button/button';
 import { DataGridCell } from './data-grid-cell';
 import { DataGridCellTemplate } from './data-grid-cell.template';
 import {DataGridCellSortStates} from './data-grid.options';
-import {Button} from "../button/button";
 
 const dataGridCell = DataGridCell.compose<FoundationElementDefinition>({
 	baseName: 'data-grid-cell',

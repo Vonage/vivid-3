@@ -1,10 +1,10 @@
 import {html, ViewTemplate, when} from '@microsoft/fast-element';
 import type {ElementDefinitionContext} from '@microsoft/fast-foundation';
 import {Icon} from '../icon/icon';
+import {Button} from '../button/button';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
 import {DataGridCellRole, DataGridCellSortStates} from './data-grid.options';
 import type {DataGridCell} from './data-grid-cell';
-import {Button} from "../button/button";
 
 function shouldShowSortIcons<T extends DataGridCell>(x: T): boolean {
 	if (x.columnDefinition) {
