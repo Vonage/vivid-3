@@ -50,7 +50,8 @@ export const CheckboxTemplate: FoundationElementTemplate<ViewTemplate<Checkbox>,
 				${when(x => x.indeterminate, html<Checkbox>`<${iconTag} name="minus-solid" class="icon"></${iconTag}>`)}
 				${() => focusTemplate}
 			</div>
-			${() => html<Checkbox>`<label>${x => x.label}<slot></slot></label>`}
+			${when(x => x.label, html<Checkbox>`<label>${x => x.label}</label>`)}
+			<slot></slot>
 		</div>
 		${when(x => x.helperText?.length, getFeedbackTemplate('helper', context))}
 		${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplate('error', context))}
