@@ -80,7 +80,6 @@ $low-ink-color: --_low-ink-color;
 
 	&::after {
 		position: absolute;
-		z-index: 1;
 		display: block;
 		block-size: 100%;
 		border-radius: inherit;
