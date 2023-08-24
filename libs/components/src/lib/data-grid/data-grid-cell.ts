@@ -5,6 +5,7 @@ import type {DataGridCellSortStates} from './data-grid.options';
 declare interface ColumnDefinitionExtended extends ColumnDefinition {
 	sortDirection?: DataGridCellSortStates | null;
 	sortable?: boolean | undefined;
+	filterable?: boolean | undefined;
 }
 
 declare interface DataGridCellExtension {
@@ -19,6 +20,7 @@ export class DataGridCell extends FoundationDataGridCell {
 
 	@attr({ attribute: 'aria-selected', mode: 'fromView' }) override ariaSelected: string | null = null;
 	@attr({ attribute: 'aria-sort' }) override ariaSort: string | null = null;
+	@attr({ mode: 'boolean'}) filterable = false;
 
 	ariaSelectedChanged(_: string | null, selectedState: string | null) {
 		this.shadowRoot!.querySelector('.base')?.classList.toggle('selected', selectedState === 'true');

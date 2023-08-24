@@ -160,6 +160,46 @@ describe('data grid integration tests', () => {
 			});
 		});
 
+		describe('filter', function () {
+			async function addFilterableHeader() {
+				element.innerHTML = `
+					<vwc-data-grid-row role="row" class="header" row-type="header">
+						<vwc-data-grid-cell cell-type="columnheader" role="columnheader">
+						data1
+						</vwc-data-grid-cell>
+						<vwc-data-grid-cell filterable cell-type="columnheader">
+						data2
+						</vwc-data-grid-cell>
+					</vwc-data-grid-row>
+				`;
+				await elementUpdated(element);
+			}
+
+			it('should fire filter event', async function () {
+				await addFilterableHeader();
+				const spy = jest.fn();
+				element.addEventListener('filter', spy);
+
+				(element.rowElements[0].children[1].shadowRoot?.querySelector('.filter-button') as HTMLElement).click();
+
+				expect(spy).toHaveBeenCalledTimes(1);
+				expect(spy.mock.calls[0][0].detail).toEqual({columnDataKey: 'data2'});
+			});
+
+			it('should stop filter event propagation', async function () {
+				await addFilterableHeader();
+				const elementSpy = jest.fn();
+				const parentSpy = jest.fn();
+				element.addEventListener('filter', elementSpy);
+				element.parentElement!.addEventListener('filter', parentSpy);
+
+				(element.rowElements[0].children[1].shadowRoot?.querySelector('.filter-button') as HTMLElement).click();
+
+				expect(elementSpy).toHaveBeenCalledTimes(1);
+				expect(parentSpy).toHaveBeenCalledTimes(0);
+			});
+		});
+
 	});
 
 	describe('selectionMode', function () {

@@ -32,6 +32,10 @@ function setHeaderRow(x: DataGrid) {
 	}
 }
 
+function handleColumnFilter<T extends DataGrid>(_: T, { event }: ExecutionContext) {
+	event.stopPropagation();
+}
+
 function handleColumnSort<T extends DataGrid>(_: T, { event }: ExecutionContext) {
 	event.stopPropagation();
 }
@@ -51,6 +55,7 @@ export const DataGridTemplate = (context: ElementDefinitionContext) => {
             role="grid"
             tabindex="0"
 						@sort="${handleColumnSort}"
+						@filter="${handleColumnFilter}"
             :rowElementTag="${() => rowTag}"
             :defaultRowItemTemplate="${rowItemTemplate}"
             ${children({

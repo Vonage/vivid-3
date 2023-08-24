@@ -2,10 +2,12 @@ import { html } from '@microsoft/fast-element';
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
 import '../icon/index.ts';
+import '../button/index.ts';
 import { designSystem } from '../../shared/design-system';
 import { DataGridCell } from './data-grid-cell';
 import { DataGridCellTemplate } from './data-grid-cell.template';
 import {DataGridCellSortStates} from './data-grid.options';
+import {Button} from "../button/button";
 
 const dataGridCell = DataGridCell.compose<FoundationElementDefinition>({
 	baseName: 'data-grid-cell',
@@ -16,6 +18,7 @@ designSystem.withPrefix('vwc').register(dataGridCell());
 
 const COMPONENT_TAG = 'vwc-data-grid-cell';
 const ICON_TAG = 'vwc-icon';
+const BUTTON_TAG = 'vwc-button';
 
 describe('vwc-data-grid-cell', () => {
 	let element: DataGridCell;
@@ -353,6 +356,54 @@ describe('vwc-data-grid-cell', () => {
 			};
 			await elementUpdated(element);
 			expect(element.ariaSort).toEqual(null);
+		});
+	});
+
+	describe('filterable', () => {
+		beforeEach(function () {
+			element.cellType = 'columnheader';
+			element.filterable = false;
+		});
+
+		it('should render filter icon when filterable is true', async function () {
+			element.filterable = true;
+			await elementUpdated(element);
+			const filterIcons = element.shadowRoot?.querySelectorAll(BUTTON_TAG);
+
+			expect(filterIcons?.length).toEqual(1);
+			expect(filterIcons?.[0].getAttribute('icon')).toEqual('filter-line');
+		});
+
+		it('should render filter icon only on a columnheader cell', function () {
+			element.cellType = 'default';
+			element.filterable = true;
+			expect(element.shadowRoot?.querySelectorAll(BUTTON_TAG).length).toEqual(0);
+		});
+
+		it('should fire "filter" event when clicked', async function () {
+			element.filterable = true;
+			element.innerHTML = 'Name';
+			await elementUpdated(element);
+			const spy = jest.fn();
+			element.addEventListener('filter', spy);
+			const filterButton = element.shadowRoot?.querySelector(BUTTON_TAG) as Button;
+			filterButton.click();
+			expect(spy).toHaveBeenCalledTimes(1);
+			expect(spy.mock.calls[0][0].detail).toEqual({columnDataKey: 'Name'});
+		});
+
+		it('should fire "filter" event when clicked with data key from config', async function () {
+			element.innerHTML = 'Name';
+			element.columnDefinition = {
+				columnDataKey: 'Not Name',
+				filterable: true
+			};
+			await elementUpdated(element);
+			const spy = jest.fn();
+			element.addEventListener('filter', spy);
+			const filterButton = element.shadowRoot?.querySelector(BUTTON_TAG) as Button;
+			filterButton.click();
+			expect(spy.mock.calls[0][0].detail).toEqual({columnDataKey: 'Not Name'});
 		});
 	});
 });
