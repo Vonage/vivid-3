@@ -76,10 +76,8 @@ export const TextfieldTemplate: (
     ${when(x => x.charCount && x.maxlength, renderCharCount())}
     ${when(x => x.label, renderLabel())}
     <div class="fieldset">
-			<div class="slot-icon-wrapper">
-				<div class="leading-items-wrapper">
-					<slot name="leading-action-items"  ${slotted('leadingActionItemsSlottedContent')}></slot>
-				</div>
+			<div class="leading-items-wrapper">
+				<slot name="leading-action-items"  ${slotted('leadingActionItemsSlottedContent')}></slot>
 				${x => affixIconTemplate(x.icon)}
 			</div>
 			<div class="wrapper">

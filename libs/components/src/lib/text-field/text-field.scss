@@ -176,7 +176,7 @@ $low-ink-color: --_low-ink-color;
 
 }
 
-.slot-icon-wrapper {
+.leading-items-wrapper {
 	position: absolute;
 	z-index: 1;
 	display: flex;
@@ -207,4 +207,8 @@ $low-ink-color: --_low-ink-color;
 	.fieldset:not(:focus-visible, :focus-within) > & {
 		display: none;
 	}
+}
+
+slot[name="leading-action-items"] {
+	display: block;
 }
