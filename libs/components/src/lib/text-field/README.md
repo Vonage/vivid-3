@@ -158,51 +158,6 @@ Add the `readonly` attribute to restrict user from changing the text field's val
 ```
 
 ## Slots
-### Leading Action-items
-You can add action items elements using the `leading-action-items` slot.  
-⚠ When adding slotted content you must set the **width** of your item in css-variable:  
-`--text-field-leading-slot-inline-size`.   
-if not set - the text-field text will be hidden under the slotted content.
-
-
-```html preview
-<style>
-.text-field1 {
---text-field-leading-slot-inline-size: 80px;
-}
-
-.text-field2 {
---text-field-leading-slot-inline-size: 111px;
-}
-.leading-action-items {
-	display: flex;
-	align-items: center;
-	column-gap: 2px;
-}
-.select {
-	background-color: var(--vvd-color-neutral-200);
-	border-radius: 6px 0 0 6px;
-}
-vwc-divider {
-    height: 20px;
-}
-</style>
-<vwc-text-field icon="search" placeholder="search" label='search' appearance='fieldset' class="text-field1">
-<div slot="leading-action-items" class="leading-action-items">
-	<vwc-select aria-label="Options Selector" appearance="ghost">
-		<vwc-option value="1" text="ALL" selected></vwc-option>
-	</vwc-select>
-	<vwc-divider orientation="vertical"></vwc-divider>
-</div>
-</vwc-text-field>
-
-<vwc-text-field placeholder="search" label='search' appearance='fieldset' class="text-field2">
-	<vwc-select aria-label="Options Selector" appearance="ghost" slot="leading-action-items" class="select">
-		<vwc-option value="1" text="Option 1" selected></vwc-option>
-	</vwc-select>
-</vwc-text-field>
-```
-
 ### Action-items
 You can add action items elements using the `action-items` slot.
 
@@ -211,6 +166,43 @@ You can add action items elements using the `action-items` slot.
 	<vwc-button slot="action-items" size='condensed' icon="close-line" aria-label='clear field' appearance='ghost'></vwc-button>
 </vwc-text-field>
 ```
+
+
+### Leading Action-items
+You can add action items elements using the `leading-action-items` slot.  
+⚠ When adding slotted content you must set the **width of your item** in css-variable:  
+`--text-field-leading-slot-inline-size`.   
+if not set - the text-field text will be hidden under the slotted content.
+
+
+```html preview
+<style>
+.text-field {
+--text-field-leading-slot-inline-size: 80px;
+}
+
+.leading-action-items {
+	display: flex;
+	align-items: center;
+	column-gap: 2px;
+}
+vwc-select {
+  --focus-inset: 2px;
+}
+vwc-divider {
+    height: 20px;
+}
+</style>
+<vwc-text-field icon="search" placeholder="search" label='search' appearance='fieldset' class="text-field">
+<div slot="leading-action-items" class="leading-action-items">
+	<vwc-select aria-label="Options Selector" appearance="ghost">
+		<vwc-option value="1" text="ALL" selected></vwc-option>
+	</vwc-select>
+	<vwc-divider orientation="vertical"></vwc-divider>
+</div>
+</vwc-text-field>
+```
+
 
 ## CSS Variables
 ### Inline end-Padding
