@@ -139,3 +139,14 @@ Use the `value` member to set the checkbox's value.
 ```html preview
 <vwc-checkbox value="my-value"></vwc-checkbox>
 ```
+
+## Slots
+
+### Default
+
+```html preview
+<vwc-checkbox label="I agree to" error-text="You need to accept the Terms of service"
+  aria-label="I agree to Vonage Terms of Service">
+  <a href="https://www.vonage.com/legal/" target="_blank">Vonage Terms of Service</a>
+</vwc-checkbox>
+```
