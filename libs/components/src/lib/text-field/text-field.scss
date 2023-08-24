@@ -75,21 +75,21 @@ $low-ink-color: --_low-ink-color;
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	font: var(#{constants.$vvd-typography-base});
 	grid-column: 1 / 4;
+	isolation: isolate;
 	padding-block: 0;
 	transition: color .2s, background-color .2s;
-	isolation: isolate;
 
 	&::after {
-		content: "";
-		display: block;
 		position: absolute;
-		border-radius: inherit;
-		inline-size: 100%;
-		block-size: 100%;
 		z-index: 1;
+		display: block;
+		block-size: 100%;
+		border-radius: inherit;
 		box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-		transition: box-shadow .2s;
+		content: "";
+		inline-size: 100%;
 		pointer-events: none;
+		transition: box-shadow .2s;
 	}
 
 	&:focus-visible {
@@ -153,19 +153,16 @@ $low-ink-color: --_low-ink-color;
 		outline: none;
 	}
 
+	.base.action-items & {
+		padding-inline-end: var(#{variables.$text-field-inline-end-padding}, calc(var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter})));
+	}
+
 	.base.has-icon & {
-		padding-inline-start: calc((var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter}) * 2)
-		+ var(#{variables.$text-field-leading-slot-inline-size}, 0px));
+		padding-inline-start: calc((var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter}) * 2) + var(#{variables.$text-field-leading-slot-inline-size}, 0px));
 	}
 
 	.base.leading-action-items:not(.has-icon) & {
-		padding-inline-start: calc(var(#{variables.$text-field-leading-slot-inline-size}, 0px)
-		+ var(#{variables.$text-field-gutter}));
-	}
-
-	.base.action-items & {
-		padding-inline-end: var(#{variables.$text-field-inline-end-padding}, calc(var(#{variables.$text-field-icon-size})
-		+ var(#{variables.$text-field-gutter})));
+		padding-inline-start: calc(var(#{variables.$text-field-leading-slot-inline-size}, 0px) + var(#{variables.$text-field-gutter}));
 	}
 }
 
@@ -181,10 +178,10 @@ $low-ink-color: --_low-ink-color;
 
 .slot-icon-wrapper {
 	position: absolute;
-	inset-inline-start: 0;
 	z-index: 1;
 	display: flex;
 	column-gap: 16px;
+	inset-inline-start: 0;
 
 	.base.no-leading & {
 		display: none;
