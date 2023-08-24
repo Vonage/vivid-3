@@ -1,5 +1,5 @@
 import { applyMixins, Checkbox as FoundationCheckbox } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
+import { attr, observable } from '@microsoft/fast-element';
 import type { Connotation } from '../enums.js';
 import {
 	errorText,
@@ -78,6 +78,14 @@ export class Checkbox extends FoundationCheckbox {
 
 		return false;
 	};
+
+	/**
+	 *
+	 * Slot observer:
+	 *
+	 * @internal
+	 */
+	@observable slottedContent?: HTMLElement[];
 }
 
 export interface Checkbox extends FormElement, FormElementHelperText, ErrorText, FormElementSuccessText { }

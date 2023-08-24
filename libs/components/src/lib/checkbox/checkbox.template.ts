@@ -1,4 +1,4 @@
-import { html, when } from '@microsoft/fast-element';
+import { html, slotted, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { CheckboxOptions, FoundationElementTemplate } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
@@ -14,7 +14,9 @@ const getClasses = ({
 	disabled,
 	indeterminate,
 	errorValidationMessage,
-	successText
+	successText,
+	label,
+	slottedContent
 }: Checkbox) =>
 	classNames(
 		'base',
@@ -23,7 +25,8 @@ const getClasses = ({
 		['checked', Boolean(checked) || Boolean(indeterminate)],
 		['disabled', Boolean(disabled)],
 		['error connotation-alert', Boolean(errorValidationMessage)],
-		['success connotation-success', !!successText]
+		['success connotation-success', !!successText],
+		['hide-label', !label && !slottedContent?.length],
 	);
 
 /**
@@ -50,8 +53,7 @@ export const CheckboxTemplate: FoundationElementTemplate<ViewTemplate<Checkbox>,
 				${when(x => x.indeterminate, html<Checkbox>`<${iconTag} name="minus-solid" class="icon"></${iconTag}>`)}
 				${() => focusTemplate}
 			</div>
-			${when(x => x.label, html<Checkbox>`<label>${x => x.label}</label>`)}
-			<slot></slot>
+			${html<Checkbox>`<label>${x => x.label}<slot ${slotted('slottedContent')}></slot></label>`}
 		</div>
 		${when(x => x.helperText?.length, getFeedbackTemplate('helper', context))}
 		${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplate('error', context))}

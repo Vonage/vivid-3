@@ -48,6 +48,10 @@ $gutter: 2px;
 		cursor: not-allowed;
 		pointer-events: none;
 	}
+
+	.hide-label & {
+		display: none;
+	}
 }
 
 .control {
