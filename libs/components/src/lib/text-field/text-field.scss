@@ -75,7 +75,6 @@ $low-ink-color: --_low-ink-color;
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	font: var(#{constants.$vvd-typography-base});
 	grid-column: 1 / 4;
-	isolation: isolate;
 	padding-block: 0;
 	transition: color .2s, background-color .2s;
 
