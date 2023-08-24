@@ -1,6 +1,6 @@
-import {applyMixins, Checkbox as FoundationCheckbox} from '@microsoft/fast-foundation';
-import {attr} from '@microsoft/fast-element';
-import type {Connotation} from '../enums.js';
+import { applyMixins, Checkbox as FoundationCheckbox } from '@microsoft/fast-foundation';
+import { attr, observable } from '@microsoft/fast-element';
+import type { Connotation } from '../enums.js';
 import {
 	errorText,
 	type ErrorText,
@@ -18,9 +18,7 @@ export const keySpace: ' ' = ' ' as const;
  *
  * @public
  */
-export type CheckboxConnotation = Extract<Connotation,
-| Connotation.Accent
-| Connotation.CTA>;
+export type CheckboxConnotation = Extract<Connotation, | Connotation.Accent | Connotation.CTA>;
 
 
 /**
@@ -45,8 +43,12 @@ export class Checkbox extends FoundationCheckbox {
 	 *
 	 * @internal
 	 */
-	override keypressHandler = (e: KeyboardEvent): void => {
-		switch (e.key) {
+	override keypressHandler = (event: KeyboardEvent): boolean => {
+		if (event.target instanceof HTMLAnchorElement) {
+			return true;
+		}
+
+		switch (event.key) {
 			case keySpace:
 				if (this.indeterminate) {
 					this.indeterminate = false;
@@ -54,6 +56,7 @@ export class Checkbox extends FoundationCheckbox {
 				this.checked = !this.checked;
 				break;
 		}
+		return false;
 	};
 
 	/**
@@ -61,15 +64,29 @@ export class Checkbox extends FoundationCheckbox {
 	 *
 	 * @internal
 	 */
-	override clickHandler = (): void => {
+	override clickHandler = (event: Event): boolean => {
+		if (event.target instanceof HTMLAnchorElement) {
+			return true;
+		}
+
 		if (!this.disabled && !this.readOnly) {
 			if (this.indeterminate) {
 				this.indeterminate = false;
 			}
 			this.checked = !this.checked;
 		}
+
+		return false;
 	};
+
+	/**
+	 *
+	 * Slot observer:
+	 *
+	 * @internal
+	 */
+	@observable slottedContent?: HTMLElement[];
 }
 
-export interface Checkbox extends FormElement, FormElementHelperText, ErrorText, FormElementSuccessText{}
+export interface Checkbox extends FormElement, FormElementHelperText, ErrorText, FormElementSuccessText { }
 applyMixins(Checkbox, FormElementHelperText, FormElementSuccessText);
