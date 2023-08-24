@@ -19,7 +19,7 @@ const toggleSideDrawerButtonIcon = (open) => {
 };
 
 const codeBlockButtonClick = (button) => {
-  const details = button.closest('vwc-action-group').nextElementSibling;
+  const details = button.closest('.cbd-actions').nextElementSibling;
   details.open = !details.open;
   button.ariaExpanded = details.open;
 };

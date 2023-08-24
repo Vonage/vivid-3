@@ -30,6 +30,23 @@ Add a `label` attribute to add label to the Select.
 </vwc-select>
 ```
 
+#### Option Label
+
+You can add a `label` attribute to the [vwc-option](../../components/option) to set a custom display value for the selected option.
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+</style>
+<vwc-select aria-label="Options Selector">
+  <vwc-option label="Custom Label 1" value="1" text="Option 1"></vwc-option>
+  <vwc-option label="Custom Label 2" value="2" text="Option 2"></vwc-option>
+  <vwc-option label="Custom Label 3" value="3" text="Option 3"></vwc-option>
+</vwc-select>
+```
+
 ### Icon
 Add an `icon` attribute to add an icon to the Select.  
 Check out our [use case example](/#use-case)
@@ -220,6 +237,26 @@ This is useful for cases in which the dropdown is obstructed by other elements (
 </vwc-select>
 ```
 
+### Placeholder
+
+Add the `placeholder` attribute to add a placeholder to the Select.
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 230px;
+  }
+  vwc-select {
+    width: 250px;
+  }
+</style>
+<vwc-select aria-label="Options Selector" placeholder="--Please choose an option--">
+  <vwc-option value="1" text="Option 1"></vwc-option>
+  <vwc-option value="2" text="Option 2"></vwc-option>
+  <vwc-option value="3" text="Option 3"></vwc-option>
+</vwc-select>
+```
+
 ## Slots
 
 ### Default
@@ -298,26 +335,10 @@ If set, the `icon` attribute is ignored.
 </vwc-select>
 ```
 
-## Option Label
-
-You can add a `label` attribute to the `vwc-option` to set a custom display value for the selected option.
-
-```html preview
-<style>
-  html { /* for demo purposes */
-    block-size: 230px;
-  }
-</style>
-<vwc-select aria-label="Options Selector">
-  <vwc-option label="Custom Label 1" value="1" text="Option 1"></vwc-option>
-  <vwc-option label="Custom Label 2" value="2" text="Option 2"></vwc-option>
-  <vwc-option label="Custom Label 3" value="3" text="Option 3"></vwc-option>
-</vwc-select>
-```
 ## Dimensions
 
 ### Height (CSS Variable)
-Use `--select-height` to set the height of the list-box containing the select options
+Use `--select-height` to set the height of the listbox containing the select options
 
 - Default: `fit-content`
 
@@ -343,9 +364,9 @@ Use `--select-height` to set the height of the list-box containing the select op
 ```
 
 ### Width
-By default, the select width is `fit-content` and the same goes for the list-box containing the options.  
+By default, the select width is `fit-content` and the same goes for the listbox containing the options.  
 
-You can specify width on the `vwc-select` if required (the list-box will not be affected by this setting).
+You can specify width on the `vwc-select` if required (the listbox will not be affected by this setting).
 
 
 ```html preview

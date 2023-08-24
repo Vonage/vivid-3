@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## https://stackoverflow.com/questions/43978837/how-to-check-if-docker-daemon-is-running
-{  
+{
 	docker ps -q >/dev/null
 } || {
 	echo "❗ Docker is not running, please launch it first."
@@ -27,4 +27,4 @@ if [[ $# -ne 2 ]]; then
 fi
 
 docker buildx use $1
-docker buildx build --platform linux/amd64,linux/arm64 -t vivid3/vonage:$2 --push .
+docker buildx build --platform linux/amd64,linux/arm64 -t drizzt99/vonage:$2 --push .

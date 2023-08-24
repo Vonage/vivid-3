@@ -1,6 +1,6 @@
 # Advanced
 
----
+
 ## Styles (Optional)
 
 ### Include the styles
@@ -31,6 +31,10 @@ These **core styles** rely on the [tokens and fonts to be loaded](/getting-start
 ### Setting Vivid class
 
 Styles **require** a `vvd-root` class selector to be present on a wrapping element. [Follow the instruction to set a vvd-root class](/getting-started/quick-start/#setting-vivid-class).
+
+### Using the typography
+
+[See typography usage examples](/designs/typography/#Using-Vivid-Typography).
 
 ---
 
