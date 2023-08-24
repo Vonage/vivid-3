@@ -48,10 +48,6 @@ $gutter: 2px;
 		cursor: not-allowed;
 		pointer-events: none;
 	}
-
-	.hide-label & {
-		display: none;
-	}
 }
 
 .control {
@@ -89,6 +85,10 @@ label {
 	color: var(#{constants.$vvd-color-canvas-text});
 	cursor: pointer;
 	font: var(#{constants.$vvd-typography-base});
+
+	.hide-label & {
+		display: none;
+	}
 }
 
 .focus-indicator {

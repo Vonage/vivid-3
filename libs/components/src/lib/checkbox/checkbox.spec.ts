@@ -46,6 +46,21 @@ describe('vwc-checkbox', () => {
 			const labelEl = element.shadowRoot?.querySelector('label');
 			expect(labelEl?.textContent?.trim()).toEqual(label);
 		});
+
+		it('should not add hide-label class to .base if label', async function () {
+			element.setAttribute('label', 'lorem');
+			await elementUpdated(element);
+			const baseElementClasses = getBaseElement(element)?.classList;
+
+			expect(baseElementClasses).not.toContain('hide-label');
+		});
+
+		it('should add hide-label class to .base if no label and no slot', async function () {
+			await elementUpdated(element);
+			const baseElementClasses = getBaseElement(element)?.classList;
+
+			expect(baseElementClasses).toContain('hide-label');
+		});
 	});
 
 	describe('checked', () => {
@@ -76,7 +91,7 @@ describe('vwc-checkbox', () => {
 	});
 
 	describe('indeterminate', () => {
-		it('should set readonly class when readonly is true', async () => {
+		it('should set checked class when indeterminate is true', async () => {
 			element.indeterminate = true;
 
 			await elementUpdated(element);
@@ -233,6 +248,13 @@ describe('vwc-checkbox', () => {
 			getBaseElement(element)?.dispatchEvent(new KeyboardEvent('keypress', { key: ' ' }));
 			await elementUpdated(element);
 			expect(getBaseElement(element).classList.contains('checked')).toBeTruthy();
+		});
+
+		it('should not add hide-label class to .base if slotted', async function () {
+			await elementUpdated(element);
+			const baseElementClasses = getBaseElement(element)?.classList;
+
+			expect(baseElementClasses).not.toContain('hide-label');
 		});
 	});
 });
