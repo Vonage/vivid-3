@@ -214,8 +214,10 @@ You can add action items elements using the `action-items` slot.
 
 ## CSS Variables
 ### Inline end-Padding
-Use `--text-field-inline-end-padding` variable to set the text-field inline-end padding when using the `action-tiems` slot.
+Use `--text-field-inline-end-padding` variable to set the text-field inline-end padding when using the `action-items` slot.
 
+### Inline end-Padding
+Use `--text-field-leading-slot-inline-size` variable to set the text-field slotted content inline-size when using `leading-action-items` slot.
 
 ## Use Cases
 ```html preview
@@ -230,6 +232,7 @@ Use `--text-field-inline-end-padding` variable to set the text-field inline-end 
 	<vwc-button slot="action-items" size='condensed' icon="close-line" aria-label='clear field' shape='pill' appearance='ghost'></vwc-button>
 </vwc-text-field>
 ```
+
 
 ### Validation
 
