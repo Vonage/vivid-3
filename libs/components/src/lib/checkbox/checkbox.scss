@@ -72,7 +72,7 @@ $gutter: 2px;
 
 	&.minus {
 		@at-root .base.checked &,
-			.base:not(.indeterminate) & {
+		.base:not(.indeterminate) & {
 			display: none;
 		}
 	}
