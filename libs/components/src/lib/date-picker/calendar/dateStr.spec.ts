@@ -1,5 +1,6 @@
 import {
 	addDays,
+	compareDateStr,
 	currentDateStr,
 	formatDateStr,
 	isValidDateStr,
@@ -62,6 +63,20 @@ describe('addDays', () => {
 
 	it('should wrap around to the previous year', () => {
 		expect(addDays('2022-01-01', -1)).toEqual('2021-12-31');
+	});
+});
+
+describe('compareDateStr', () => {
+	it('should return a negative number if the first date is before the second', () => {
+		expect(compareDateStr('2021-01-21', '2021-01-22')).toBeLessThan(0);
+	});
+
+	it('should return a positive number if the first date is after the second', () => {
+		expect(compareDateStr('2021-01-22', '2021-01-21')).toBeGreaterThan(0);
+	});
+
+	it('should return zero if the dates are equal', () => {
+		expect(compareDateStr('2021-01-21', '2021-01-21')).toEqual(0);
 	});
 });
 

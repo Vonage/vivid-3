@@ -208,6 +208,13 @@ $states-mapping: (
 			outline: transparent,
 		)
   ),
+	selectedAndDisabled: (
+		listitem: (
+			text: var(#{connotation.get-connotation-token(pale)}),
+			fill: var(#{connotation.get-connotation-token(dim)}),
+			outline: transparent,
+		),
+	),
   checked: (
     fieldset: (
       text: var(#{connotation.get-connotation-token(primary-text)}),

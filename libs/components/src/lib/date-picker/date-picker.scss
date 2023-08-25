@@ -7,7 +7,7 @@
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: listitem,
-	$states: idle hover active selected selectedAndHover,
+	$states: idle hover active selected selectedAndHover selectedAndDisabled,
 	$default: listitem,
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
@@ -102,7 +102,7 @@
 		// Focus ring should appear on outside, otherwise there is not enough space
 		#{focus-variables.$focus-inset}: -2px;
 
-		&.outside-month {
+		&.outside-month, &:disabled {
 			color: var(#{constants.$vvd-color-neutral-400});
 		}
 	}
@@ -132,6 +132,10 @@
 		border-radius: 50%;
 		font: var(#{constants.$vvd-typography-base-extended});
 		text-transform: uppercase;
+
+		&:disabled {
+			color: var(#{constants.$vvd-color-neutral-400});
+		}
 	}
 }
 
@@ -161,5 +165,9 @@
 
 	&.current {
 		border: 1px solid var(#{constants.$vvd-color-neutral-200});
+	}
+
+	&:disabled {
+		cursor: not-allowed;
 	}
 }
