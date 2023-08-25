@@ -87,7 +87,7 @@ export class DatePicker extends FoundationElement {
 	 * HTML Attribute: min
 	 */
 	@attr({ converter: ValidDateFilter })
-	min: DateStr | null = null;
+		min: DateStr | null = null;
 
 	/**
 	 * The latest accepted date of the date-picker.
@@ -97,7 +97,7 @@ export class DatePicker extends FoundationElement {
 	 * HTML Attribute: max
 	 */
 	@attr({ converter: ValidDateFilter })
-	max: DateStr | null = null;
+		max: DateStr | null = null;
 
 	/**
 	 * The currently selected date of the date-picker.
@@ -107,7 +107,7 @@ export class DatePicker extends FoundationElement {
 	 * HTML Attribute: value
 	 */
 	@attr({ converter: ValidDateFilter })
-	value: DateStr | null = null;
+		value: DateStr | null = null;
 
 	/**
 	 * @internal
