@@ -29,6 +29,10 @@ export type DataGridSelectionMode = ValueOf<typeof DataGridSelectionMode>;
  * @slot - Default slot.
  */
 export class DataGrid extends FoundationDataGrid {
+
+	@attr({attribute: 'aria-rowcount'})
+	override ariaRowCount: string | null = null;
+
 	@attr({attribute: 'selection-mode'})
 		selectionMode?: DataGridSelectionMode;
 

@@ -541,11 +541,20 @@ vwc-data-grid {max-block-size: 200px;}
 
 ## Accessibility
 
+### Keyboard Navigation
+
 Keyboard events and focus handling are compliant with WACG standards.
 
+### aria-selected
 Usage of `aria-selected` hints on a selectable element and its selection status.
 
-When a cell is sorted but not according to ascending or descending algorithm, use `aria-sort="other"`. 
+### aria-sort
+When a cell is sorted but not according to ascending or descending algorithm, use `aria-sort="other"`.
+
+### aria-rowcount
+`aria-rowcount` is meant to be used when the number of visible rows differs from the number of total rows. 
+This can happen in case of virtual or infinite scroll as well as in case of filtering. 
+See [the filtering use case](#filterable) for usage example.
 
 ## Use Cases
 
@@ -737,7 +746,8 @@ In order for a grid column to show as filterable, use the `filterable` attribute
 			{ data1: '511', data2: '562' },
 			{ data1: '611', data2: '416' }
 		];
-    
+		
+		grid.ariaRowCount = data.length.toString();
     headerRow = `
     	<vwc-data-grid-row role="row" class="header" row-type="header">
 			<vwc-data-grid-cell cell-type="columnheader" role="columnheader">

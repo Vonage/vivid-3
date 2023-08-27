@@ -5,7 +5,6 @@ import { designSystem } from '../../shared/design-system';
 import {DataGrid, DataGridSelectionMode} from './data-grid';
 import { DataGridTemplate } from './data-grid.template';
 
-
 const dataGrid = DataGrid.compose<FoundationElementDefinition>({
 	baseName: 'data-grid',
 	template: DataGridTemplate as any
@@ -47,6 +46,7 @@ describe('vwc-data-grid', () => {
 			expect(element.focusColumnIndex).toEqual(0);
 			expect(element.rowElementTag).toBeUndefined();
 			expect(element.selectionMode).toBeUndefined();
+			expect(element.ariaRowCount).toBeNull();
 		});
 	});
 
@@ -121,6 +121,7 @@ describe('vwc-data-grid', () => {
 			expect(DataGrid.generateColumns(rowData)).toEqual(expectedColumnDef);
 		});
 	});
+
 	describe('generateHeader', () => {
 		const rowElementTag = 'vwc-data-grid-row';
 		let generatedHeader: any;
@@ -330,5 +331,20 @@ describe('vwc-data-grid', () => {
 			expected.splice(0, 1);
 			expect(element.rowElements).toEqual(expected);
 		});
+	});
+
+	describe('ariaRowCount', () => {
+		it('should reflect on element', async function () {
+			element.ariaRowCount = '2';
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-rowcount')).toEqual('2');
+		});
+
+		it('should match ', async function () {
+			element.setAttribute('aria-rowcount', '2')
+			await elementUpdated(element);
+			expect(element.ariaRowCount).toEqual('2');
+		});
+
 	});
 });
