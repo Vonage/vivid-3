@@ -706,3 +706,70 @@ vwc-data-grid {max-block-size: 200px;}
 		});
 </script>
 ```
+
+
+### Filterable Columns
+
+In order for a grid column to show as filterable, use the `filterable` attribute on the filterable column header.
+
+```html preview
+	<vwc-data-grid>
+		
+	</vwc-data-grid>
+	<vwc-menu>
+		<vwc-text-field label="contains" helper="Filter by contains" id="contains-filter"></vwc-text-field>
+		<div slot="action-items">
+			<vwc-button label="Filter" onclick="menu.open = false; addDataToGrid()"></vwc-button>
+			<vwc-button label="Cancel" onclick="menu.open = false"></vwc-button>
+		</div>
+	</vwc-menu>
+
+	<script>
+		grid = document.querySelector('vwc-data-grid');
+		menu = document.querySelector('vwc-menu');
+		filterField = document.getElementById('contains-filter');
+        
+		data = [
+			{ data1: '111', data2: '314' },
+			{ data1: '211', data2: '215' },
+			{ data1: '311', data2: '112' },
+			{ data1: '411', data2: '632' },
+			{ data1: '511', data2: '562' },
+			{ data1: '611', data2: '416' }
+		];
+    
+    headerRow = `
+    	<vwc-data-grid-row role="row" class="header" row-type="header">
+			<vwc-data-grid-cell cell-type="columnheader" role="columnheader">
+				data1 - can't filter with me
+			</vwc-data-grid-cell>
+			<vwc-data-grid-cell filterable cell-type="columnheader">
+				data2 - filter with me
+			</vwc-data-grid-cell>
+		</vwc-data-grid-row>
+    `;
+    
+    const filterFunction = row => row.data2.includes(filterField.value ? filterField.value : '');
+    
+		function addDataToGrid() {
+			const newData = Array.from(data).filter(filterFunction);
+			const dataRows = newData.reduce((acc, row) => {
+				return acc + `
+						<vwc-data-grid-row>
+							<vwc-data-grid-cell>
+								${row.data1}
+							</vwc-data-grid-cell>
+							<vwc-data-grid-cell>${row.data2}</vwc-data-grid-cell>
+						</vwc-data-grid-row>`;
+																	}, '');
+			grid.innerHTML = headerRow + dataRows;
+    }
+		
+		addDataToGrid();
+		
+		grid.addEventListener('filter', (e) => {
+            menu.anchor = e.target;
+            menu.open = true;
+		});
+	</script>
+```
