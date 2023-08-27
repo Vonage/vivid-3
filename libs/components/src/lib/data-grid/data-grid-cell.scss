@@ -35,6 +35,10 @@
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
 
+	&:focus-visible {
+		outline: none;
+	}
+
 	:host([cell-type="columnheader"]) & {
 		border-color: var(#{constants.$vvd-color-canvas-text});
 		font: var(#{constants.$vvd-typography-base-bold});
@@ -44,9 +48,6 @@
 		background-color: var(#{appearance.get-appearance-token(fill)});
 	}
 
-	&:focus-visible {
-		outline: none;
-	}
 }
 
 .focus-indicator {

@@ -43,7 +43,10 @@ function renderFilterIcons<T extends DataGridCell>(c: ElementDefinitionContext) 
 	const buttonTag = c.tagFor(Button);
 	return html<T>`
 			${when(shouldShowFilterIcons, html<T>`
-				<${buttonTag} @click="${handleFilterClick}" class="header-icon filter-button" icon="${getFilterIcon}" size="condensed"></${buttonTag}>
+				<${buttonTag} @click="${handleFilterClick}"
+											class="header-icon filter-button"
+											icon="${getFilterIcon}"
+											size="condensed"></${buttonTag}>
 			`)}
 		`;
 }
