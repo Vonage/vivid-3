@@ -407,6 +407,13 @@ Use the `filterable` attribute to indicate that the cell is filterable, and add 
 </vwc-data-grid>
 ```
 
+#### filterable-popup
+
+- Type: `'false'` | `'true'` | `'menu'` | `'listbox'` | `'tree'` | `'grid'` | `'dialog'` | string | null | undefined
+- Default: `undefined`
+
+When adding `filterable` icon, you can use the `filterable-popup` attribute to add `aria-haspopup` to the button for `accessibility` compliance. 
+
 #### aria-sort
 
 - Type: `'ascending'` | `'descending'` | `'none'` | `'other'` | `null`
@@ -555,6 +562,9 @@ When a cell is sorted but not according to ascending or descending algorithm, us
 `aria-rowcount` is meant to be used when the number of visible rows differs from the number of total rows. 
 This can happen in case of virtual or infinite scroll as well as in case of filtering. 
 See [the filtering use case](#filterable) for usage example.
+
+### aria-haspopup for the filter button
+If you are using a popup for the filter button, you should add `aria-haspopup` to the filter button. See [the filtering use case](#filterable) for usage example.
 
 ## Use Cases
 
@@ -750,13 +760,13 @@ In order for a grid column to show as filterable, use the `filterable` attribute
 		grid.ariaRowCount = data.length.toString();
     headerRow = `
     	<vwc-data-grid-row role="row" class="header" row-type="header">
-			<vwc-data-grid-cell cell-type="columnheader" role="columnheader">
-				data1 - can't filter with me
-			</vwc-data-grid-cell>
-			<vwc-data-grid-cell filterable cell-type="columnheader">
-				data2 - filter with me
-			</vwc-data-grid-cell>
-		</vwc-data-grid-row>
+				<vwc-data-grid-cell cell-type="columnheader" role="columnheader">
+					data1 - can't filter with me
+				</vwc-data-grid-cell>
+				<vwc-data-grid-cell filterable filterable-popup="true" cell-type="columnheader">
+					data2 - filter with me
+				</vwc-data-grid-cell>
+			</vwc-data-grid-row>
     `;
     
     const filterFunction = row => row.data2.includes(filterField.value ? filterField.value : '');

@@ -46,7 +46,10 @@ function renderFilterIcons<T extends DataGridCell>(c: ElementDefinitionContext) 
 				<${buttonTag} @click="${handleFilterClick}"
 											class="header-icon filter-button"
 											icon="${getFilterIcon}"
-											size="condensed"></${buttonTag}>
+											size="condensed"
+											aria-haspopup="${x => x.filterablePopup}">
+
+				</${buttonTag}>
 			`)}
 		`;
 }

@@ -20,6 +20,8 @@ export class DataGridCell extends FoundationDataGridCell {
 
 	@attr({ attribute: 'aria-selected', mode: 'fromView' }) override ariaSelected: string | null = null;
 	@attr({ attribute: 'aria-sort' }) override ariaSort: string | null = null;
+	@attr({ attribute: 'filterable-popup'})
+		filterablePopup?: 'false' | 'true' | 'menu' | 'listbox' | 'tree' | 'grid' | 'dialog' | string | null ;
 	@attr({ mode: 'boolean'}) filterable = false;
 
 	ariaSelectedChanged(_: string | null, selectedState: string | null) {

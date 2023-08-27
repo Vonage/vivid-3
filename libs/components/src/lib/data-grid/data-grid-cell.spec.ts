@@ -401,9 +401,32 @@ describe('vwc-data-grid-cell', () => {
 			await elementUpdated(element);
 			const spy = jest.fn();
 			element.addEventListener('filter', spy);
-			const filterButton = element.shadowRoot?.querySelector(BUTTON_TAG) as Button;
+			const filterButton = element.shadowRoot?.querySelector('.filter-button') as Button;
 			filterButton.click();
 			expect(spy.mock.calls[0][0].detail).toEqual({columnDataKey: 'Not Name'});
+		});
+	});
+
+	describe('filterbale-popup', () => {
+		beforeEach(function () {
+			element.cellType = 'columnheader';
+			element.filterable = false;
+		});
+
+		it('should add "aria-haspopup" to the filterable button', async function () {
+			element.filterable = true;
+			element.filterablePopup = 'dialog';
+			await elementUpdated(element);
+			const filterIcon = element.shadowRoot?.querySelector('.filter-button') as Button;
+			expect(filterIcon.getAttribute('aria-haspopup')).toEqual('dialog');
+		});
+
+		it('should remove "aria-haspopup" when set to null', async function () {
+			element.filterable = true;
+			element.filterablePopup = null;
+			await elementUpdated(element);
+			const filterIcon = element.shadowRoot?.querySelector('.filter-button') as Button;
+			expect(filterIcon.getAttribute('aria-haspopup')).toBeNull();
 		});
 	});
 });
