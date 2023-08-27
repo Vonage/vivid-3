@@ -717,7 +717,7 @@ In order for a grid column to show as filterable, use the `filterable` attribute
 		
 	</vwc-data-grid>
 	<vwc-menu>
-		<vwc-text-field label="contains" helper="Filter by contains" id="contains-filter"></vwc-text-field>
+		<vwc-text-field slot="header" label="contains" helper="Filter by contains" id="contains-filter"></vwc-text-field>
 		<div slot="action-items">
 			<vwc-button label="Filter" onclick="menu.open = false; addDataToGrid()"></vwc-button>
 			<vwc-button label="Cancel" onclick="menu.open = false"></vwc-button>
