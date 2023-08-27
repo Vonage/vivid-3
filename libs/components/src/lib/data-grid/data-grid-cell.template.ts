@@ -1,4 +1,4 @@
-import {html, ViewTemplate, when} from '@microsoft/fast-element';
+import {ExecutionContext, html, ViewTemplate, when} from '@microsoft/fast-element';
 import type {ElementDefinitionContext} from '@microsoft/fast-foundation';
 import {Icon} from '../icon/icon';
 import {Button} from '../button/button';
@@ -54,7 +54,8 @@ function renderFilterIcons<T extends DataGridCell>(c: ElementDefinitionContext) 
 		`;
 }
 
-function handleFilterClick<T extends DataGridCell>(x: T) {
+function handleFilterClick<T extends DataGridCell>(x: T, { event }: ExecutionContext) {
+	event.stopPropagation();
 	x.$emit('filter',
 		{columnDataKey: (x.columnDefinition && x.columnDefinition.columnDataKey) ?
 			x.columnDefinition.columnDataKey : x.textContent!.trim()});

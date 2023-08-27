@@ -198,6 +198,17 @@ describe('data grid integration tests', () => {
 				expect(elementSpy).toHaveBeenCalledTimes(1);
 				expect(parentSpy).toHaveBeenCalledTimes(0);
 			});
+
+			it('should fire filter event without sort when clicked on filter button', async function () {
+				await addFilterableHeader();
+				const elementSpy = jest.fn();
+				element.addEventListener('sort', elementSpy);
+				const filterableCell = element.querySelector('vwc-data-grid-cell[filterable]') as HTMLElement;
+				filterableCell.ariaSort = 'ascending';
+				await elementUpdated(element);
+				(element.rowElements[0].children[1].shadowRoot?.querySelector('.filter-button') as HTMLElement).click();
+				expect(elementSpy).toHaveBeenCalledTimes(0);
+			});
 		});
 
 	});
