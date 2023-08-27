@@ -44,6 +44,9 @@
 		background-color: var(#{appearance.get-appearance-token(fill)});
 	}
 
+	&:focus-visible {
+		outline: none;
+	}
 }
 
 .focus-indicator {
