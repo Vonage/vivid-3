@@ -388,6 +388,23 @@ The grid also adds the `aria-selected` attribute to the row when it is selected 
 
 ### Cell
 
+#### filterable
+
+- Type: `boolean`
+- Default: `false`
+
+Use the `filterable` attribute to indicate that the cell is filterable, and add the filter icon to a header cell. Clicking the filter icon will submit the filter event.
+
+```html preview
+<vwc-data-grid>
+  <vwc-data-grid-row role="row">
+    <vwc-data-grid-cell cell-type="columnheader" filterable>Filterable</vwc-data-grid-cell>
+	<vwc-data-grid-cell cell-type="columnheader" aria-sort="descending" filterable>Filterable and sortable</vwc-data-grid-cell>
+	<vwc-data-grid-cell cell-type="columnheader" aria-sort="none" filterable>Filterable</vwc-data-grid-cell>
+	<vwc-data-grid-cell cell-type="columnheader">other</vwc-data-grid-cell>
+ </vwc-data-grid-row>
+</vwc-data-grid>
+```
 
 #### aria-sort
 
