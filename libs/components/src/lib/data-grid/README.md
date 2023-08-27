@@ -167,7 +167,7 @@ See the [use cases](#sortable-columns) for more information.
     grid = document.querySelector('vwc-data-grid');
     grid.columnDefinitions = [
         {columnDataKey: 'data1', title: 'Custom Title 1', sortable: true, sortDirection: 'ascending'},
-        {columnDataKey: 'data2', title: 'Custom Title 2', sortable: true},
+        {columnDataKey: 'data2', title: 'Custom Title 2', sortable: true, filterable: true},
     ];
     grid.rowsData = [
         {data1: 'data11', data2: 'data12'},
@@ -354,6 +354,7 @@ The element tag for header row cells. If not set, the default tag `vwc-data-grid
 | `isRowHeader`                   | `boolean`                                                            | Whether this column is the row header                        |
 | `sortable`                      | `boolean`                                                            | Whether this column is sortable                              |
 | `sortDirection`                 | `'none'` &#124; `'ascending'` &#124; `'descending'` &#124; `'other'` | Define the column's sort direction                           |
+| `filterable`                    | `boolean`                                                            | Adds actionable filter icon if true.                         |
 
 </div>
 
