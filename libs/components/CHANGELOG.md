@@ -4,6 +4,19 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.33.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.32.0...vivid-v3.33.0) (2023-08-24)
+
+
+### Features
+
+* **checkbox:** add default slot (VIV-1088) ([#1340](https://github.com/Vonage/vivid-3/issues/1340)) ([7ba1088](https://github.com/Vonage/vivid-3/commit/7ba1088c7c9559e17e4b8a7f7ee3c9fc9f949b19))
+* **docs:** add locale switcher (VIV-1274) ([#1342](https://github.com/Vonage/vivid-3/issues/1342)) ([1e0a12f](https://github.com/Vonage/vivid-3/commit/1e0a12fc1dcc6d722f85d1898e5598b050715f0c))
+
+
+### Bug Fixes
+
+* **number-field:** add wrapper for focus issues(VIV-1280) ([#1352](https://github.com/Vonage/vivid-3/issues/1352)) ([3d0fe55](https://github.com/Vonage/vivid-3/commit/3d0fe55371f34312add4a270386c3fc1ca71fac7))
+
 ## [3.32.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.31.0...vivid-v3.32.0) (2023-08-22)
 
 
