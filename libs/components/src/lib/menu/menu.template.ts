@@ -12,12 +12,13 @@ import { Popup } from '../popup/popup';
 import type { Menu } from './menu';
 
 const getClasses = ({
-	headerSlottedContent, actionItemsSlottedContent
+	headerSlottedContent, actionItemsSlottedContent, items
 }: Menu) =>
 	classNames(
 		'base',
 		['hide-header', !headerSlottedContent?.length],
 		['hide-actions', !actionItemsSlottedContent?.length],
+		['hide-body', items && !(items as unknown as HTMLElement[]).length]
 	);
 
 /**
