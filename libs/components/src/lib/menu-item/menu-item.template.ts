@@ -33,19 +33,19 @@ function handleClick(x: MenuItem, { event }: ExecutionContext<MenuItem>) {
 function checkbox(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
-	return `${when(x => x.role === MenuItemRole.menuitemcheckbox,
+	return html<MenuItem>`${when(x => x.role === MenuItemRole.menuitemcheckbox,
 		html`<span class="action">${x => getCheckIcon(affixIconTemplate, x, 'checkbox')}</span>`)}`;
 }
 
 function radio(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
-	return `${when(x => x.role === MenuItemRole.menuitemradio,
+	return html<MenuItem>`${when(x => x.role === MenuItemRole.menuitemradio,
 		html`<span class="action">${x => getCheckIcon(affixIconTemplate, x, 'radio')}</span>`)}`;
 }
 
 function text() {
-	return `${when(x => x.text || x.textSecondary,
+	return html<MenuItem>`${when(x => x.text || x.textSecondary,
 		html`<span class="text">
 			${when(x => x.text, html`<span class="text-primary">${x => x.text}</span>`)}
 			${when(x => x.textSecondary, html`<span class="text-secondary">${x => x.textSecondary}</span>`)}
@@ -53,7 +53,7 @@ function text() {
 }
 
 function submenu(definition: MenuItemOptions) {
-	return `${when(x => x.hasSubmenu,
+	return html<MenuItem>`${when(x => x.hasSubmenu,
 		html<MenuItem>`
 		<div class="expand-collapse-glyph-container">
 			<span class="expand-collapse">
@@ -88,13 +88,13 @@ export const MenuItemTemplate: (context: ElementDefinitionContext, definition: M
 		@mouseout="${(x, c) => x.handleMouseOut(c.event as MouseEvent)}"
 	>
 		<div class="${getClasses}">
-			${() => submenu(definition)}
-			${() => focusTemplate}
+			${submenu(definition)}
+			${focusTemplate}
 			<slot name="meta" ${slotted('metaSlottedContent')}></slot>
-			${() => checkbox(context)}
-			${() => radio(context)}
+			${checkbox(context)}
+			${radio(context)}
 			${when(x => x.icon, html`<span class="decorative">${x => affixIconTemplate(x.icon)}</span>`)}
-			${() => text()}
+			${text()}
 		</div>
 	</template>
 	`;
