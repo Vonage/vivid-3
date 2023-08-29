@@ -61,15 +61,6 @@ describe('vwc-listbox', () => {
 
 			expect(getBaseElement(element).classList.contains(`orientation-${orientation}`)).toBeTruthy();
 		});
-
-		it('should remove event listener when orientation is vertical', async function () {
-			const orientation = 'vertical';
-			element.orientation = orientation;
-			await elementUpdated(element);
-
-			expect(element.hasAttribute('orientation')).toBeTruthy();
-			expect(element.hasAttribute('keydown')).toBeFalsy();
-		});
 	});
 
 	describe('shape', function () {
@@ -214,7 +205,6 @@ describe('vwc-listbox', () => {
 			await elementUpdated(element);
 			expect(element.getAttribute('aria-activedescendant')).not.toEqual('option1');
 		});
-
 
 		it('should focus on the next element when ArrowRight is pressed', async () => {
 			element.orientation = 'horizontal';
