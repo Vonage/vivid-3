@@ -33,7 +33,6 @@ jobs:
       - name: build
         run: |
           npm ci --ignore-scripts
-          npm run postinstall
           npx nx run components:build
           npx nx run components:generateMeta
 

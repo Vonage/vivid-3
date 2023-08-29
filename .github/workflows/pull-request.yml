@@ -46,7 +46,7 @@ jobs:
 
       - name: Build
         if: steps.build_cache.outputs.cache-hit != 'true'
-        run: npx nx run components:build && npx nx reset
+        run: npx nx run components:build --skip-nx-cache && npx nx reset
 
   call-lint:
     if: github.event.pull_request.draft == false
