@@ -61,6 +61,24 @@ describe('vwc-listbox', () => {
 
 			expect(getBaseElement(element).classList.contains(`orientation-${orientation}`)).toBeTruthy();
 		});
+
+		it('should not remove keydown event listener when orientation is vertical', async function () {
+			const spy = jest.spyOn(element, 'removeEventListener');
+			const orientation = 'horizontal';
+			(element as any).orientation = orientation;
+			await elementUpdated(element);
+
+			expect((spy as any).mock.calls.length).toEqual(0);
+		});
+
+		it('should remove keydown event listener when orientation is vertical', async function () {
+			const spy = jest.spyOn(element, 'removeEventListener');
+			const orientation = 'vertical';
+			(element as any).orientation = orientation;
+			await elementUpdated(element);
+
+			expect((spy as any).mock.calls.length).toEqual(1);
+		});
 	});
 
 	describe('shape', function () {
@@ -198,7 +216,7 @@ describe('vwc-listbox', () => {
 			element.orientation = 'horizontal';
 			element.disabled = true;
 			await elementUpdated(element);
-			
+
 			element.focus();
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
 
@@ -209,7 +227,7 @@ describe('vwc-listbox', () => {
 		it('should focus on the next element when ArrowRight is pressed', async () => {
 			element.orientation = 'horizontal';
 			await elementUpdated(element);
-			
+
 			element.focus();
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
 
@@ -225,7 +243,7 @@ describe('vwc-listbox', () => {
 		it('should focus on the next element when ArrowLeft is pressed', async () => {
 			element.orientation = 'horizontal';
 			await elementUpdated(element);
-			
+
 			element.focus();
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
