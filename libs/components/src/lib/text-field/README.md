@@ -198,7 +198,7 @@ vwc-divider {
 
 ## CSS Variables
 ### Inline end-Padding - **Deprecated**
-This css variable is not in use anymore. Don't worry if it is set - the design still be the same :)
+This css variable is not in use anymore. Don't worry if it is set - the design still be the same :). 
 ~~Use `--text-field-inline-end-padding` variable to set the text-field inline-end padding when using the `action-items` slot.~~
 
 
