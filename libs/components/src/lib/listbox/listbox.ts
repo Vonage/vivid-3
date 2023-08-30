@@ -43,9 +43,9 @@ export class Listbox extends FoundationListboxElement {
 	@attr orientation?: 'horizontal' | 'vertical';
 	orientationChanged(): void {
 		if (this.orientation === 'horizontal') {
-			this.addEventListener('keydown', this.horizontalKeydownHandler);
+			this.addEventListener('keydown', this.#horizontalKeydownHandler);
 		} else {
-			this.removeEventListener('keydown', this.horizontalKeydownHandler);
+			this.removeEventListener('keydown', this.#horizontalKeydownHandler);
 		}
 	}
 
@@ -54,7 +54,7 @@ export class Listbox extends FoundationListboxElement {
 	 *
 	 * @internal
 	 */
-	private horizontalKeydownHandler(e: KeyboardEvent): boolean | void {
+	#horizontalKeydownHandler(e: KeyboardEvent): boolean | void {
 		if (this.disabled) {
 			return true;
 		}
