@@ -37,17 +37,66 @@ describe('vwc-listbox', () => {
 			expect(element.disabled).toBeUndefined();
 			expect(element.multiple).toBeUndefined();
 			expect(element.appearance).toBeUndefined();
+			expect(element.shape).toBeUndefined();
+			expect(element.orientation).toBeUndefined();
 			expect(element.selectedIndex).toEqual(-1);
 		});
 	});
 
 	describe('appearance', function () {
-		it('sets correct internal appearance style', async function () {
+		it('should set correct internal appearance style', async function () {
 			const appearance = 'ghost';
 			(element as any).appearance = appearance;
 			await elementUpdated(element);
 
 			expect(getBaseElement(element).classList.contains(`appearance-${appearance}`)).toBeTruthy();
+		});
+	});
+
+	describe('orientation', function () {
+		it('should set correct internal orientation style', async function () {
+			const orientation = 'horizontal';
+			(element as any).orientation = orientation;
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).classList.contains(`orientation-${orientation}`)).toBeTruthy();
+		});
+
+		it('should not remove keydown event listener when orientation is horizontal', async function () {
+			const spy = jest.spyOn(element, 'removeEventListener');
+			const orientation = 'horizontal';
+			(element as any).orientation = orientation;
+			await elementUpdated(element);
+
+			expect((spy as any).mock.calls.length).toEqual(0);
+		});
+
+		it('should remove keydown event listener when orientation is vertical', async function () {
+			const spy = jest.spyOn(element, 'removeEventListener');
+			const orientation = 'vertical';
+			(element as any).orientation = orientation;
+			await elementUpdated(element);
+
+			expect((spy as any).mock.calls.length).toEqual(1);
+		});
+	});
+
+	describe('shape', function () {
+		it('should set correct internal shape style if orientation is vertical', async function () {
+			const shape = 'pill';
+			(element as any).shape = shape;
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).classList.contains(`shape-${shape}`)).toBeFalsy();
+		});
+
+		it('should set correct internal shape style if orientation is horizontal', async function () {
+			const shape = 'pill';
+			element.orientation = 'horizontal';
+			(element as any).shape = shape;
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).classList.contains(`shape-${shape}`)).toBeTruthy();
 		});
 	});
 
@@ -159,6 +208,53 @@ describe('vwc-listbox', () => {
 		it('should recieve array of selectedOptions', async () => {
 			await elementUpdated(element);
 			expect(element.selectedOptions[0]).toEqual(element.querySelector('option:nth-child(2)'));
+		});
+	});
+
+	describe('horizontal keydown', () => {
+		it('should not focus if disabled', async () => {
+			element.orientation = 'horizontal';
+			element.disabled = true;
+			await elementUpdated(element);
+
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-activedescendant')).not.toEqual('option1');
+		});
+
+		it('should focus on the next element when ArrowRight is pressed', async () => {
+			element.orientation = 'horizontal';
+			await elementUpdated(element);
+
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-activedescendant')).toEqual('option1');
+
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-activedescendant')).toEqual('option2');
+		});
+
+		it('should focus on the next element when ArrowLeft is pressed', async () => {
+			element.orientation = 'horizontal';
+			await elementUpdated(element);
+
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-activedescendant')).toEqual('option2');
+
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft' }));
+
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-activedescendant')).toEqual('option1');
 		});
 	});
 });

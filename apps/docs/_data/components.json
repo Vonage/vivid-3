@@ -317,8 +317,7 @@
 		"title": "option",
 		"markdown": "./libs/components/src/lib/option/README.md",
 		"modules": [
-			"/assets/modules/components/option/index.js",
-			"/assets/modules/components/listbox/index.js"
+			"/assets/modules/components/option/index.js"
 		]
 	},
 	{
