@@ -28,7 +28,7 @@ jobs:
         run: npm ci
 
       - name: Build Site
-        run: npx nx run docs:build
+        run: npx nx run docs:build --skip-nx-cache
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
