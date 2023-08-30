@@ -80,6 +80,7 @@ export const TextfieldTemplate: (
 				<slot name="leading-action-items"  ${slotted('leadingActionItemsSlottedContent')}></slot>
 				${x => affixIconTemplate(x.icon)}
 			</div>
+
 			<div class="wrapper">
 				<input class="control"
             id="control"
@@ -121,7 +122,7 @@ export const TextfieldTemplate: (
             aria-roledescription="${x => x.ariaRoledescription}"
             ${ref('control')}
       />
-      	${() => focusTemplate}
+				${() => focusTemplate}
 			</div>
 			<div class="action-items-wrapper">
 				<slot name="action-items"  ${slotted('actionItemsSlottedContent')}></slot>

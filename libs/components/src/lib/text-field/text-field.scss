@@ -109,7 +109,6 @@ $low-ink-color: --_low-ink-color;
 }
 
 .wrapper {
-	position: relative;
 	block-size: 100%;
 	border-radius: inherit;
 	inline-size: 100%;
@@ -151,46 +150,37 @@ $low-ink-color: --_low-ink-color;
 		outline: none;
 	}
 
-	.base.action-items & {
-		padding-inline-end: var(#{variables.$text-field-inline-end-padding}, calc(var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter})));
-	}
-
-	.base.has-icon & {
-		padding-inline-start: calc((var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter}) * 2) + var(#{variables.$text-field-leading-slot-inline-size}, 0px));
-	}
-
-	.base.leading-action-items:not(.has-icon) & {
-		padding-inline-start: calc(var(#{variables.$text-field-leading-slot-inline-size}, 0px) + var(#{variables.$text-field-gutter}));
+	.has-icon & {
+		padding-inline-start: calc(var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter}) * 2);
 	}
 }
 
-.action-items-wrapper {
+.icon {
+	// to avoid autofill style hiding other elements
 	position: absolute;
-	inset-inline-end: calc(var(#{variables.$text-field-gutter}) / 4);
-
-	.base:not(.action-items) & {
-		display: none;
-	}
-
+	z-index: 1;
+	color: var(#{$low-ink-color});
+	font-size: var(#{variables.$text-field-icon-size});
+	inset-block-start: 50%;
+	inset-inline-start: calc(100% + var(#{variables.$text-field-gutter}));
+	line-height: 1;
+	transform: translateY(-50%);
 }
 
 .leading-items-wrapper {
-	position: absolute;
-	z-index: 1;
-	display: flex;
-	column-gap: 16px;
-	inset-inline-start: 0;
+	position: relative;
 
 	.base.no-leading & {
 		display: none;
 	}
 }
 
-.icon {
-	align-self: center;
-	color: var(#{$low-ink-color});
-	font-size: var(#{variables.$text-field-icon-size});
-	line-height: 1;
+.action-items-wrapper {
+	margin-inline-end: 4px;
+
+	.base:not(.action-items) & {
+		display: none;
+	}
 }
 
 .focus-indicator {
@@ -205,8 +195,4 @@ $low-ink-color: --_low-ink-color;
 	.fieldset:not(:focus-visible, :focus-within) > & {
 		display: none;
 	}
-}
-
-slot[name="leading-action-items"] {
-	display: block;
 }

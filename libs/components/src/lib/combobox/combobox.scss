@@ -24,9 +24,8 @@
 }
 
 .icon {
-	position: absolute;
-	z-index: 1;
 	inset-inline-end: 16px;
+	inset-inline-start: unset;
 
 	:not(.disabled) & {
 		cursor: pointer;
