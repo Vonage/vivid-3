@@ -62,7 +62,7 @@ describe('vwc-listbox', () => {
 			expect(getBaseElement(element).classList.contains(`orientation-${orientation}`)).toBeTruthy();
 		});
 
-		it('should not remove keydown event listener when orientation is vertical', async function () {
+		it('should not remove keydown event listener when orientation is horizontal', async function () {
 			const spy = jest.spyOn(element, 'removeEventListener');
 			const orientation = 'horizontal';
 			(element as any).orientation = orientation;
