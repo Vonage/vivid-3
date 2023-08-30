@@ -558,12 +558,12 @@ describe('vwc-text-field', () => {
 			expect(baseElementHasIconClass).toEqual(true);
 
 		});
-		it('should remove .no-leading class to .base if icon is set', async function () {
+		it('should remove .no-leading class from .base if icon is set', async function () {
 			element.icon = 'home';
 			await elementUpdated(element);
-			const baseElementHasIcon = element.shadowRoot?.
+			const baseElementHasNoLeadingClass = element.shadowRoot?.
 				querySelector('.base')?.classList.contains('no-leading');
-			expect(baseElementHasIcon).toEqual(false);
+			expect(baseElementHasNoLeadingClass).toEqual(false);
 		});
 	});
 
