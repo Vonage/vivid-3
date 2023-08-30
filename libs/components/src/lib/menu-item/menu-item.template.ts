@@ -1,7 +1,8 @@
-import { ExecutionContext, html, slotted, ViewTemplate, when } from '@microsoft/fast-element';
+import { elements, ExecutionContext, html, slotted, ViewTemplate, when } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, MenuItemOptions } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
+import { Menu } from '../menu/menu';
 import { type MenuItem, MenuItemRole } from './menu-item';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
 
@@ -75,6 +76,7 @@ export const MenuItemTemplate: (context: ElementDefinitionContext, definition: M
 ) => ViewTemplate<MenuItem> = (context: ElementDefinitionContext, definition: MenuItemOptions) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const focusTemplate = focusTemplateFactory(context);
+	const menuTag = context.tagFor(Menu);
 
 	return html<MenuItem>`
 	<template
@@ -96,6 +98,9 @@ export const MenuItemTemplate: (context: ElementDefinitionContext, definition: M
 			${when(x => x.icon, html`<span class="decorative">${x => affixIconTemplate(x.icon)}</span>`)}
 			${text()}
 		</div>
+		<slot name="submenu" 
+			${slotted({ property: 'slottedSubmenu', filter: elements(menuTag) })}>
+		</slot>
 	</template>
 	`;
 };

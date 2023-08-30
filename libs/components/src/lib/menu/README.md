@@ -1,6 +1,6 @@
 # Menu
 
-Menu, commonly known as a "context menu", is an element that is displayed upon user interaction. It is typically used to provide a list of actions available in the current context for a user to choose from.
+<!-- Menu, commonly known as a "context menu", is an element that is displayed upon user interaction. It is typically used to provide a list of actions available in the current context for a user to choose from.
 
 ```js
 <script type="module">
@@ -304,4 +304,35 @@ This helps ensure elements don't render over top a Menu undesirebly.
   </vwc-menu>
   <vwc-button id="button" icon="close-line" onclick="menu.open = !menu.open"></vwc-button>
 </div>
+``` -->
+
+```html preview
+<style>
+  html { /* for demo purposes */
+		block-size: 250px;
+	}
+</style>
+<vwc-menu open>
+    <vwc-menu-item text="Menu item 1" id="lalala">
+      <vwc-menu slot="submenu">
+            <vwc-menu-item text="Menu item 1.1"></vwc-menu-item>
+            <vwc-menu-item text="Menu item 1.2"></vwc-menu-item>
+            <vwc-menu-item text="Menu item 1.3"></vwc-menu-item>
+        </vwc-menu>
+    </vwc-menu-item>
+    <!-- <vwc-menu-item text="Menu item 2">
+      <vwc-menu slot="submenu">
+            <vwc-menu-item text="Menu item 2.1"></vwc-menu-item>
+            <vwc-menu-item text="Menu item 2.2"></vwc-menu-item>
+            <vwc-menu-item text="Menu item 2.3"></vwc-menu-item>
+        </vwc-menu>
+    </vwc-menu-item>
+    <vwc-menu-item text="Menu item 3">
+      <vwc-menu slot="submenu">
+            <vwc-menu-item text="Menu item 3.1"></vwc-menu-item>
+            <vwc-menu-item text="Menu item 3.2"></vwc-menu-item>
+            <vwc-menu-item text="Menu item 3.3"></vwc-menu-item>
+        </vwc-menu>
+    </vwc-menu-item> -->
+</vwc-menu>
 ```

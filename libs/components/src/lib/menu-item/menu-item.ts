@@ -5,6 +5,7 @@ import {
 	MenuItemRole as FastMenuItemRole,
 } from '@microsoft/fast-foundation';
 import { AffixIcon } from '../../shared/patterns/affix';
+import { Menu } from '../menu/menu';
 
 export const MenuItemRole = {
 	...FastMenuItemRole,
@@ -42,8 +43,23 @@ export class MenuItem extends FastMenuItem {
 	 * @internal
 	 */
 	@observable metaSlottedContent?: HTMLElement[];
+	@observable slottedSubmenu?: HTMLElement[];
+
+	slottedSubmenuChanged(_oldValue: HTMLElement[], newValue: HTMLElement[]) {
+		this.hasSubmenu = newValue.length > 0;
+		if(!this.hasSubmenu){
+			return;
+		}
+		
+		for (const submenu of newValue) {
+			if (submenu instanceof Menu) {
+				submenu.anchor = this;
+				submenu.open = true;
+			}
+		}
+	}
 }
 
-export interface MenuItem extends AffixIcon {}
+export interface MenuItem extends AffixIcon { }
 
 applyMixins(MenuItem, AffixIcon);
