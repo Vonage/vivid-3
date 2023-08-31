@@ -68,7 +68,7 @@ export const MenuItemTemplate: (context: ElementDefinitionContext, definition: M
 
 	return html<MenuItem>`
 	<template
-		aria-haspopup="${x => (x.hasSubmenu ? 'menu' : void 0)}"
+		aria-haspopup="${x => (x.hasSubMenu ? 'menu' : void 0)}"
 		aria-checked="${x => (x.role !== MenuItemRole.menuitem ? x.checked : void 0)}"
 		aria-disabled="${x => x.disabled}"
 		aria-expanded="${x => x.expanded}"
@@ -84,8 +84,8 @@ export const MenuItemTemplate: (context: ElementDefinitionContext, definition: M
 			${radio(context)}
 			${when(x => x.icon, html`<span class="decorative">${x => affixIconTemplate(x.icon)}</span>`)}
 			${text()}
+			${when(x => x.hasSubMenu, html`<${iconTag} name="chevron-right-line"></${iconTag}>`)}
 		</div>
-		${when(x => x.hasSubmenu, html<MenuItem>`<${iconTag} name="chevron-right-line"></${iconTag}>`)}
 		<slot name="submenu" ${slotted('slottedSubmenu')}></slot>
 	</template>
 	`;

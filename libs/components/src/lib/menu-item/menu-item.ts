@@ -36,14 +36,14 @@ export class MenuItem extends FastMenuItem {
 	 */
 	@attr({ attribute: 'text-secondary' }) textSecondary?: string;
 
-	// /**
-	//  * Indicates if the menu item has submenu.
-	//  *
-	//  * @public
-	//  * @remarks
-	//  * HTML Attribute: hasSubmenu
-	//  */
-	// @attr({ mode: 'boolean' }) override hasSubmenu: boolean = false;
+	/**
+	 * Indicates if the menu item has submenu.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: hasSubmenu
+	 */
+	@attr({ mode: 'boolean' }) hasSubMenu?: boolean;
 
 	/**
 	 *
@@ -55,8 +55,8 @@ export class MenuItem extends FastMenuItem {
 	@observable slottedSubmenu?: HTMLElement[];
 	
 	slottedSubmenuChanged(_oldValue: HTMLElement[], newValue: HTMLElement[]) {
-		this.hasSubmenu = newValue.length > 0;
-		if (!this.hasSubmenu) {
+		this.hasSubMenu = newValue.length > 0;
+		if (!this.hasSubMenu) {
 			return;
 		}
 
