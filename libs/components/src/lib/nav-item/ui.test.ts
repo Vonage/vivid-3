@@ -26,6 +26,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	const testWrapper = await page.$('#wrapper');
 
+	await page.locator('vwc-nav-item').nth(1).focus();
+
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(

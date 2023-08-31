@@ -223,6 +223,17 @@ Use the `--menu-block-size` variable to set the menu's block size.
 </vwc-menu>
 ```
 
+## Events
+
+<div class="table-wrapper">
+
+| Name    | Description                                      |
+| ------- | ------------------------------------------------ |
+| `open`  | The `open` event fires when the menu is opened.  |
+| `close` | The `close` event fires when the menu is closed. |
+
+</div>
+
 ## Methods
 
 <div class="table-wrapper">

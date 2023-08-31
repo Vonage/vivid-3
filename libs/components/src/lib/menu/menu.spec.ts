@@ -395,6 +395,62 @@ describe('vwc-menu', () => {
 		});
 	});
 
+	describe('menu items', () => {
+		it('should have default slot ', async function () {
+			const actionsSlotElement = element.shadowRoot?.querySelector('.body slot');
+
+			expect(actionsSlotElement).toBeDefined();
+		});
+
+		it('should set hide-body class on base if no items are slotted', async function () {
+			await elementUpdated(element);
+
+			const baseElementClasses = getBaseElement(element)?.classList;
+
+			expect(baseElementClasses).toContain('hide-body');
+		});
+
+		it('should remove hide-body class from base if items is slotted', async function () {
+			const slottedElement = document.createElement('div');
+			element.appendChild(slottedElement);
+			await elementUpdated(element);
+
+			const baseElementClasses = getBaseElement(element)?.classList;
+
+			expect(baseElementClasses).not.toContain('hide-body');
+		});
+	});
+
+	describe('open event', () => {
+		it('should dispatch a non-bubbling open event when the menu is opened', async () => {
+			const spy = jest.fn();
+			element.addEventListener('open', spy);
+
+			element.open = true;
+			await elementUpdated(element);
+
+			expect(spy).toHaveBeenCalledWith(
+				expect.objectContaining({ bubbles: false })
+			);
+		});
+	});
+
+	describe('close event', () => {
+		it('should dispatch a non-bubbling close event when the menu is close', async () => {
+			const spy = jest.fn();
+			element.addEventListener('close', spy);
+			element.open = true;
+			await elementUpdated(element);
+
+			element.open = false;
+			await elementUpdated(element);
+
+			expect(spy).toHaveBeenCalledWith(
+				expect.objectContaining({ bubbles: false })
+			);
+		});
+	});
+
 	const arrowUpEvent = new KeyboardEvent('keydown', {
 		key: keyArrowUp,
 		bubbles: true,

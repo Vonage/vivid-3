@@ -4,12 +4,12 @@
     {% endset %}
     <script>{{ componentsFilter | safe }}</script>
     <vwc-nav class="side-nav">
-        <vwc-nav-disclosure label="Getting Started" {% if page.url.includes('/getting-started/') %} open {% endif %}>
+        <vwc-nav-disclosure label="Getting Started" {% if page.url.includes('/getting-started/') %} open aria-current="true" {% endif %}>
             {% for item in introduction %}
                 <vwc-nav-item href="{{ ('/getting-started/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}" {% if ('/getting-started/' + item.title + '/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
             {% endfor %}
         </vwc-nav-disclosure>
-        <vwc-nav-disclosure label="Design Tokens" {% if page.url.includes('/designs/') %} open {% endif %}>
+        <vwc-nav-disclosure label="Design Tokens" {% if page.url.includes('/designs/') %} open aria-current="true" {% endif %}>
             {% for item in designs | publicPageFilter %}
                 <vwc-nav-item href="{{ ('/designs/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}" {% if ('/designs/' + item.title + '/') == page.url %} aria-current="page" {% endif %}>
                     {% if (item.status) == "underlying" %}
@@ -25,7 +25,7 @@
             <vwc-badge slot="meta" text="new" connotation="cta" appearance="subtle" shape="pill"></vwc-badge>
         </vwc-nav-item>
         <vwc-text-field class="components-filter" icon="search-line" placeholder="Find Component" label="Filter Components"></vwc-text-field>
-        <vwc-nav-disclosure label="Components" open>
+        <vwc-nav-disclosure label="Components" open {% if page.url.includes('/components/') %} aria-current="true" {% endif %}>
             {% for item in components | publicPageFilter | sort(false, false, 'title') %}
                 <vwc-nav-item href="{{ ('/components/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}" {% if ('/components/' + item.title + '/') == page.url %} aria-current="page" {% endif %}>
                     {% if (item.status) == "alpha" %}

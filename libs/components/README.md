@@ -168,3 +168,4 @@ This project is licensed under the Apache 2.0 License - see the [LICENSE.md](htt
 ## Have questions?
 
 Still looking for answers, ask us in [#ask-vivid](https://vonage.slack.com/archives/C013F0YKH99) slack channel.
+

@@ -1,10 +1,11 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import {buttonRegistries} from '../button/definition';
+import { buttonRegistries } from '../button/definition';
 import { registerFactory } from '../../shared/design-system';
 import styles from './pagination.scss';
 
 import { Pagination } from './pagination';
 import { PaginationTemplate as template } from './pagination.template';
+export type { PaginationShape, PaginationSize } from './pagination';
 
 export const paginationDefinition =
 	Pagination.compose<FoundationElementDefinition>({

@@ -4,14 +4,14 @@
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta,
 	$shades: primary primary-text primary-increment intermediate backdrop firm,
-	$default: accent,
+	$default: accent
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: fieldset,
 	$states: idle hover checked checkedAndHover disabled readonly,
-	$default: fieldset,
+	$default: fieldset
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
@@ -20,9 +20,8 @@ $low-ink-color: --_low-ink-color;
 $size: #{size.$vvd-size-ultra-condensed};
 $gutter: 2px;
 
-
 .base {
-	@include connotation.connotation (checkbox);
+	@include connotation.connotation(checkbox);
 	@include appearance.appearance;
 
 	display: inline-flex;
@@ -31,7 +30,7 @@ $gutter: 2px;
 	vertical-align: middle;
 
 	@supports selector(:focus-visible) {
-		&:focus {
+		&:focus-visible {
 			outline: none;
 		}
 	}
@@ -72,18 +71,25 @@ $gutter: 2px;
 	}
 
 	&.minus {
-		@at-root
-		.base:not(.indeterminate) &,
-		.base.checked & {
+		@at-root .base.checked &,
+		.base:not(.indeterminate) & {
 			display: none;
 		}
 	}
 }
 
 label {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
 	color: var(#{constants.$vvd-color-canvas-text});
+	column-gap: 4px;
 	cursor: pointer;
 	font: var(#{constants.$vvd-typography-base});
+
+	.hide-label & {
+		display: none;
+	}
 }
 
 .focus-indicator {

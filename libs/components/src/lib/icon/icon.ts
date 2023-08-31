@@ -1,12 +1,9 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import {attr, observable, volatile} from '@microsoft/fast-element';
 import { identity, memoizeWith } from 'ramda';
+import { ICONS_BASE_URL as BASE_URL, ICONS_VERSION as ICON_SET_VERSION } from '@vonage/vwc-consts';
 import type { Connotation } from '../enums';
 import { PLACEHOLDER_ICON } from './icon.placeholder';
-
-const BASE_URL = 'https://icon.resources.vonage.com'; // namespaced as 3f7739a0-a898-4f69-a82b-ad9d743170b6 on icons.resources.vonage.com
-
-export const ICON_SET_VERSION = '4.2.2';
 
 // Start displaying placeholder if waiting more than this period of time
 const PLACEHOLDER_DELAY = 500;

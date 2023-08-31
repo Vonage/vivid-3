@@ -65,84 +65,20 @@
 			}
 		},
 		"build": {
-			"executor": "@nrwl/rollup:rollup",
+			"executor": "@nx/vite:build",
 			"outputs": ["{options.outputPath}"],
 			"options": {
-				"entryFile": "libs/components/src/index.ts",
-				"outputPath": "dist/libs/components",
-				"tsConfig": "libs/components/tsconfig.lib.json",
-				"project": "libs/components/package.json",
-				"rollupConfig": "libs/components/rollup.config.prod.ts",
-				"assets": [
-					{
-						"input": "./libs/components",
-						"glob": "api-extractor.json",
-						"output": "."
-					},
-					{
-						"input": "./libs/components",
-						"glob": ".npmignore",
-						"output": "."
-					},
-					{
-						"input": "./libs/components",
-						"glob": "README.md",
-						"output": "."
-					},
-					{
-						"input": "./dist/libs/styles/tokens/**",
-						"glob": "*.css",
-						"output": "./styles/tokens"
-					},
-					{
-						"input": "./dist/libs/styles/fonts/**",
-						"glob": "*.{css,woff,woff2}",
-						"output": "./styles/fonts"
-					},
-					{
-						"input": "./dist/libs/styles/core/**",
-						"glob": "*.css",
-						"output": "./styles/core"
-					}
-				],
-				"buildableProjectDepsInPackageJsonType": "dependencies",
-				"updateBuildableProjectDepsInPackageJson": true,
-				"format": ["esm"],
-				"extractCss": false
+				"outputPath": "dist/libs/components"
 			}
 		},
 		"serve": {
-			"executor": "@nrwl/web:rollup",
+			"executor": "@nrwl/vite:build",
 			"outputs": ["{options.outputPath}"],
 			"options": {
-				"entryFile": "libs/components/src/index.ts",
 				"outputPath": "dist/libs/components",
-				"tsConfig": "libs/components/tsconfig.lib.json",
-				"project": "libs/components/package.json",
-				"rollupConfig": "libs/components/rollup.config.prod.ts",
-				"watch": true,
-				"buildableProjectDepsInPackageJsonType": "dependencies",
-				"updateBuildableProjectDepsInPackageJson": true,
-				"assets": [
-					{
-						"input": "./libs/components",
-						"glob": "README.md",
-						"output": "."
-					},
-					{
-						"input": "./dist/libs/styles/themes/**",
-						"glob": "*.css",
-						"output": "./styles/themes"
-					},
-					{
-						"input": "./dist/libs/styles/fonts/**",
-						"glob": "*.css",
-						"output": "./styles/fonts"
-					}
-				],
-				"format": ["esm"],
-				"extractCss": false
-			}
+				"watch": true
+			},
+			"dependsOn": ["^build"]
 		},
 		"stylelint": {
 			"executor": "nx-stylelint:lint",
@@ -153,5 +89,5 @@
 		}
 	},
 	"tags": [],
-	"implicitDependencies": ["styles", "tokens"]
+	"implicitDependencies": ["styles"]
 }

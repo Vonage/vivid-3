@@ -18,7 +18,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		''
 	);
 
-	page.setViewportSize({ width: 200, height: 800 });
+	page.setViewportSize({ width: 400, height: 800 });
 
 	await loadComponents({
 		page,
@@ -30,6 +30,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	});
 
 	const testWrapper = await page.$('#wrapper');
+
+	await page.locator('vwc-checkbox').nth(1).focus();
 
 	await page.waitForLoadState('networkidle');
 

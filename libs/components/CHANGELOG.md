@@ -4,6 +4,81 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.33.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.32.0...vivid-v3.33.0) (2023-08-24)
+
+
+### Features
+
+* **checkbox:** add default slot (VIV-1088) ([#1340](https://github.com/Vonage/vivid-3/issues/1340)) ([7ba1088](https://github.com/Vonage/vivid-3/commit/7ba1088c7c9559e17e4b8a7f7ee3c9fc9f949b19))
+* **docs:** add locale switcher (VIV-1274) ([#1342](https://github.com/Vonage/vivid-3/issues/1342)) ([1e0a12f](https://github.com/Vonage/vivid-3/commit/1e0a12fc1dcc6d722f85d1898e5598b050715f0c))
+
+
+### Bug Fixes
+
+* **number-field:** add wrapper for focus issues(VIV-1280) ([#1352](https://github.com/Vonage/vivid-3/issues/1352)) ([3d0fe55](https://github.com/Vonage/vivid-3/commit/3d0fe55371f34312add4a270386c3fc1ca71fac7))
+
+## [3.32.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.31.0...vivid-v3.32.0) (2023-08-22)
+
+
+### Features
+
+* **date-picker:** add date-picker component (VIV-1244) ([#1324](https://github.com/Vonage/vivid-3/issues/1324)) ([977467b](https://github.com/Vonage/vivid-3/commit/977467bc0c36a9fb2fb84d7153b9fb1fdc467014))
+* **select:** add placeholder (VIV-1242) ([#1333](https://github.com/Vonage/vivid-3/issues/1333)) ([f420941](https://github.com/Vonage/vivid-3/commit/f4209412ebbdd4e38a36dca3fad2ccc3a0a0b4d0))
+
+
+### Bug Fixes
+
+* **button:** title not getting its value (VIV-1271) ([#1336](https://github.com/Vonage/vivid-3/issues/1336)) ([3a370b3](https://github.com/Vonage/vivid-3/commit/3a370b3068f4df2af738a3f74fe60c6e1dafe4b9))
+* **date-picker:** ui -tests (VIV-000) ([#1344](https://github.com/Vonage/vivid-3/issues/1344)) ([40be4d7](https://github.com/Vonage/vivid-3/commit/40be4d79c1f6bbf2cb7b6ee82619e571d290df19))
+
+## [3.31.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.30.0...vivid-v3.31.0) (2023-08-17)
+
+
+### Features
+
+* **nav-disclosure:** add aria-current (VIV-893) ([#1321](https://github.com/Vonage/vivid-3/issues/1321)) ([ce987d2](https://github.com/Vonage/vivid-3/commit/ce987d2755433aeed6911f5d723730100ca92ef9))
+* **pagination:** add shape (VIV-1062) ([#1328](https://github.com/Vonage/vivid-3/issues/1328)) ([8f02493](https://github.com/Vonage/vivid-3/commit/8f024935ca5dc723612661729ccbf5484d7d6edc))
+
+
+### Bug Fixes
+
+* **button:** button full width (VIV-1266) ([#1335](https://github.com/Vonage/vivid-3/issues/1335)) ([29ac010](https://github.com/Vonage/vivid-3/commit/29ac01036f36083cef15e806a0019e24c41bfc62))
+* **focus:** hide native focus-visible outline (VIV-1257) ([#1327](https://github.com/Vonage/vivid-3/issues/1327)) ([d81a227](https://github.com/Vonage/vivid-3/commit/d81a2272b89af2eadfe3e7ebe1800812ee39c7b2))
+* **pagination:** outline  use-case (VIV-1063) ([#1331](https://github.com/Vonage/vivid-3/issues/1331)) ([4902c92](https://github.com/Vonage/vivid-3/commit/4902c923f009f720f77785d0aed9942ad779cf1c))
+
+## [3.30.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.29.0...vivid-v3.30.0) (2023-08-14)
+
+
+### Features
+
+* **split-button:** add new component (VIV-786) ([#1297](https://github.com/Vonage/vivid-3/issues/1297)) ([f5576ee](https://github.com/Vonage/vivid-3/commit/f5576eef4a579235f7c41975019f9a6a9a89c120))
+
+## [3.29.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.28.2...vivid-v3.29.0) (2023-08-09)
+
+
+### Features
+
+* **menu:** add non-bubbling open and close events (VIV-1258) ([#1320](https://github.com/Vonage/vivid-3/issues/1320)) ([043713c](https://github.com/Vonage/vivid-3/commit/043713ced6cb2241bfafc7ae228d614a853ce55e))
+
+
+### Bug Fixes
+
+* **menu:** add slot annotations (VIV-000) ([#1317](https://github.com/Vonage/vivid-3/issues/1317)) ([29c6bd3](https://github.com/Vonage/vivid-3/commit/29c6bd3f97ab1bbcb38adbad1141341c79855699))
+
+## [3.28.2](https://github.com/Vonage/vivid-3/compare/vivid-v3.28.1...vivid-v3.28.2) (2023-08-07)
+
+
+### Bug Fixes
+
+* **cd:** add postinstall to the build process (VIV-000) ([#1315](https://github.com/Vonage/vivid-3/issues/1315)) ([59ddc63](https://github.com/Vonage/vivid-3/commit/59ddc63920433a4116d011005040ae67252439a0))
+
+## [3.28.1](https://github.com/Vonage/vivid-3/compare/vivid-v3.28.0...vivid-v3.28.1) (2023-08-07)
+
+
+### Bug Fixes
+
+* **menu-item:** add meta slot annotation (VIV-000) ([#1298](https://github.com/Vonage/vivid-3/issues/1298)) ([7c9342c](https://github.com/Vonage/vivid-3/commit/7c9342c40b3cefd69f3cf48205fb855836654798))
+
 ## [3.28.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.27.0...vivid-v3.28.0) (2023-08-07)
 
 

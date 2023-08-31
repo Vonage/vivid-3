@@ -28,6 +28,7 @@ export class NavDisclosure extends FoundationElement {
 	 * HTML Attribute: open
 	 */
 	@attr({ mode: 'boolean' }) open = false;
+	@attr({attribute: 'aria-current'}) override ariaCurrent: string | null = null;
 
 	/**
 	 * @internal

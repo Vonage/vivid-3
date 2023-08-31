@@ -1,7 +1,7 @@
 import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
+import {ICONS_VERSION as ICON_SET_VERSION} from '@vonage/vwc-consts';
 import type {Icon} from './icon';
 import '.';
-import {ICON_SET_VERSION} from './icon';
 
 const COMPONENT_TAG = 'vwc-icon';
 

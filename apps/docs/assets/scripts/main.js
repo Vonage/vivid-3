@@ -19,17 +19,17 @@ const toggleSideDrawerButtonIcon = (open) => {
 };
 
 const codeBlockButtonClick = (button) => {
-  const details = button.closest('vwc-action-group').nextElementSibling;
+  const details = button.closest('.cbd-actions').nextElementSibling;
   details.open = !details.open;
   button.ariaExpanded = details.open;
 };
 
 const onloadIframe = (iFrame) => {
   const toggle = document.querySelector('vwc-button#dark-mode-toggle');
-  const listbox = document.querySelector('vwc-listbox#dark-mode-listbox');
+  const menu = document.querySelector('vwc-menu#dark-mode-menu');
 
   setCurrentIframeTheme(toggle, iFrame);
-  listbox.addEventListener('click', () => {
+  menu.addEventListener('click', () => {
     setCurrentIframeTheme(toggle, iFrame);
   });
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => setCurrentIframeTheme(toggle, iFrame));

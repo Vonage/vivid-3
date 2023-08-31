@@ -37,6 +37,12 @@
 	}
 }
 
+.body {
+	.hide-body & {
+		display: none;
+	}
+}
+
 .action-items {
 	display: flex;
 	justify-content: flex-end;
