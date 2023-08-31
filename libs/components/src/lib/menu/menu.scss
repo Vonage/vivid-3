@@ -6,8 +6,9 @@
 	box-sizing: border-box;
 	flex-direction: column;
 	gap: 8px;
+	inline-size: max-content;
 	max-block-size: var(#{variables.$menu-block-size}, 408px);
-	max-inline-size: var(#{variables.$menu-max-inline-size}, 100%);
+	max-inline-size: var(#{variables.$menu-max-inline-size});
 	min-inline-size: var(#{variables.$menu-min-inline-size});
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -30,7 +31,7 @@
 .header {
 	padding-block-start: 8px;
 	padding-inline: 16px;
-	
+
 	.hide-header & {
 		display: none;
 	}
