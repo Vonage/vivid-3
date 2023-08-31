@@ -72,6 +72,11 @@ describe('vwc-date-picker', () => {
 		await elementUpdated(element);
 	}
 
+	async function openMonthView() {
+		titleAction.click();
+		await elementUpdated(element);
+	}
+
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
@@ -237,15 +242,28 @@ describe('vwc-date-picker', () => {
 				expect(getButtonByLabel('Previous month').disabled).toBe(true);
 			});
 
+			it('should enable previous month button if the previous month is not earlier than min', async () => {
+				getButtonByLabel('Next month').click();
+				await elementUpdated(element);
+
+				expect(getButtonByLabel('Previous month').disabled).toBe(false);
+			});
+
 			it('should disable previous year button if the previous year is earlier than min', async () => {
 				expect(getButtonByLabel('Previous year').disabled).toBe(true);
+			});
+
+			it('should enable previous year button if the previous year is not earlier than min', async () => {
+				getButtonByLabel('Next year').click();
+				await elementUpdated(element);
+
+				expect(getButtonByLabel('Previous year').disabled).toBe(false);
 			});
 		});
 
 		describe('in the month picker', () => {
 			beforeEach(async () => {
-				titleAction.click();
-				await elementUpdated(element);
+				await openMonthView();
 			});
 
 			it('should disable months earlier than min', async () => {
@@ -285,15 +303,28 @@ describe('vwc-date-picker', () => {
 				expect(getButtonByLabel('Next month').disabled).toBe(true);
 			});
 
+			it('should enable next month button if the next month is not later than max', async () => {
+				getButtonByLabel('Previous month').click();
+				await elementUpdated(element);
+
+				expect(getButtonByLabel('Next month').disabled).toBe(false);
+			});
+
 			it('should disable next year button if the next year is later than max', async () => {
 				expect(getButtonByLabel('Next year').disabled).toBe(true);
+			});
+
+			it('should enable next year button if the next year is not later than max', async () => {
+				getButtonByLabel('Previous year').click();
+				await elementUpdated(element);
+
+				expect(getButtonByLabel('Next year').disabled).toBe(false);
 			});
 		});
 
 		describe('in the month picker', () => {
 			beforeEach(async () => {
-				titleAction.click();
-				await elementUpdated(element);
+				await openMonthView();
 			});
 
 			it('should disable months later than max', async () => {
@@ -365,9 +396,8 @@ describe('vwc-date-picker', () => {
 
 			pressKey('Tab');
 
-			expect(element.shadowRoot!.activeElement).toBe(
-				getDateButton('2023-08-10')
-			);
+			const tabbableDate = getDateButton('2023-08-10');
+			expect(element.shadowRoot!.activeElement).toBe(tabbableDate);
 		});
 
 		it('should keep default behaviour when pressing tab in the text-field without a tabbable date', async () => {
@@ -388,8 +418,7 @@ describe('vwc-date-picker', () => {
 			element.min = '2024-01-01';
 			element.value = '2023-01-01';
 			await openPopup();
-			titleAction.click();
-			await elementUpdated(element);
+			await openMonthView();
 
 			textField.dispatchEvent(event);
 
@@ -596,21 +625,19 @@ describe('vwc-date-picker', () => {
 		it('should remain on the current date when attempting to move into a date outside valid range', async () => {
 			element.max = '2023-08-01';
 			await elementUpdated(element);
-			getDateButton('2023-08-01').focus();
+			const focusedDate = getDateButton('2023-08-01');
+			focusedDate.focus();
 
 			pressKey('ArrowRight');
 
-			expect(element.shadowRoot!.activeElement).toBe(
-				getDateButton('2023-08-01')
-			);
+			expect(element.shadowRoot!.activeElement).toBe(focusedDate);
 		});
 	});
 
 	describe('month picker', () => {
 		beforeEach(async () => {
 			await openPopup();
-			titleAction.click();
-			await elementUpdated(element);
+			await openMonthView();
 		});
 
 		it('should highlight the current month', () => {
@@ -653,8 +680,7 @@ describe('vwc-date-picker', () => {
 	describe('month grid button', () => {
 		beforeEach(async () => {
 			await openPopup();
-			titleAction.click();
-			await elementUpdated(element);
+			await openMonthView();
 		});
 
 		it.each([
