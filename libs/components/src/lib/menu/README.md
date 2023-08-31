@@ -309,18 +309,18 @@ This helps ensure elements don't render over top a Menu undesirebly.
 ```html preview
 <style>
   html { /* for demo purposes */
-		block-size: 250px;
+		block-size: 300px;
 	}
 </style>
 <vwc-menu open>
-    <vwc-menu-item text="Menu item 1" id="lalala">
+    <vwc-menu-item text="Menu item 1">
       <vwc-menu slot="submenu">
             <vwc-menu-item text="Menu item 1.1"></vwc-menu-item>
             <vwc-menu-item text="Menu item 1.2"></vwc-menu-item>
             <vwc-menu-item text="Menu item 1.3"></vwc-menu-item>
         </vwc-menu>
     </vwc-menu-item>
-    <!-- <vwc-menu-item text="Menu item 2">
+    <vwc-menu-item text="Menu item 2">
       <vwc-menu slot="submenu">
             <vwc-menu-item text="Menu item 2.1"></vwc-menu-item>
             <vwc-menu-item text="Menu item 2.2"></vwc-menu-item>
@@ -333,6 +333,6 @@ This helps ensure elements don't render over top a Menu undesirebly.
             <vwc-menu-item text="Menu item 3.2"></vwc-menu-item>
             <vwc-menu-item text="Menu item 3.3"></vwc-menu-item>
         </vwc-menu>
-    </vwc-menu-item> -->
+    </vwc-menu-item>
 </vwc-menu>
 ```

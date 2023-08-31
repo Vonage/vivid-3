@@ -12,6 +12,7 @@
 	overflow-x: hidden;
 	overflow-y: auto;
 	padding-block: 8px;
+	inline-size: max-content;
 }
 
 ::slotted(a) {

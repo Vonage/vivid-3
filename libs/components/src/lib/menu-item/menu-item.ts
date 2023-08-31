@@ -47,14 +47,15 @@ export class MenuItem extends FastMenuItem {
 
 	slottedSubmenuChanged(_oldValue: HTMLElement[], newValue: HTMLElement[]) {
 		this.hasSubmenu = newValue.length > 0;
-		if(!this.hasSubmenu){
+		if (!this.hasSubmenu) {
 			return;
 		}
-		
-		for (const submenu of newValue) {
-			if (submenu instanceof Menu) {
-				submenu.anchor = this;
-				submenu.open = true;
+
+		for (const sub of newValue) {
+			if (sub instanceof Menu) {
+				sub.anchor = this as MenuItem;
+				sub.placement = 'right-start';
+				sub.open = true;
 			}
 		}
 	}

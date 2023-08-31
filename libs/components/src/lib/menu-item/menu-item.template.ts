@@ -1,9 +1,9 @@
-import { elements, ExecutionContext, html, slotted, ViewTemplate, when } from '@microsoft/fast-element';
+import { ExecutionContext, html, slotted, ViewTemplate, when } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, MenuItemOptions } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
-import { Menu } from '../menu/menu';
-import { type MenuItem, MenuItemRole } from './menu-item';
+import { Icon } from '../icon/icon';
+import { MenuItem, MenuItemRole } from './menu-item';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
 
 const getCheckIcon = (affixIconTemplate: any, x: MenuItem, iconType: string) => {
@@ -53,18 +53,6 @@ function text() {
 		</span>`)}`;
 }
 
-function submenu(definition: MenuItemOptions) {
-	return html<MenuItem>`${when(x => x.hasSubmenu,
-		html<MenuItem>`
-		<div class="expand-collapse-glyph-container">
-			<span class="expand-collapse">
-				<slot name="expand-collapse-indicator">
-					${definition.expandCollapseGlyph || ''}
-				</slot>
-			</span>
-		</div>`)}`;
-}
-
 /**
  * Generates a template for the (MenuItem:class) component using
  * the provided prefix.
@@ -73,10 +61,10 @@ function submenu(definition: MenuItemOptions) {
  * @public
  */
 export const MenuItemTemplate: (context: ElementDefinitionContext, definition: MenuItemOptions
-) => ViewTemplate<MenuItem> = (context: ElementDefinitionContext, definition: MenuItemOptions) => {
+) => ViewTemplate<MenuItem> = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const focusTemplate = focusTemplateFactory(context);
-	const menuTag = context.tagFor(Menu);
+	const iconTag = context.tagFor(Icon);
 
 	return html<MenuItem>`
 	<template
@@ -90,7 +78,6 @@ export const MenuItemTemplate: (context: ElementDefinitionContext, definition: M
 		@mouseout="${(x, c) => x.handleMouseOut(c.event as MouseEvent)}"
 	>
 		<div class="${getClasses}">
-			${submenu(definition)}
 			${focusTemplate}
 			<slot name="meta" ${slotted('metaSlottedContent')}></slot>
 			${checkbox(context)}
@@ -98,9 +85,9 @@ export const MenuItemTemplate: (context: ElementDefinitionContext, definition: M
 			${when(x => x.icon, html`<span class="decorative">${x => affixIconTemplate(x.icon)}</span>`)}
 			${text()}
 		</div>
-		<slot name="submenu" 
-			${slotted({ property: 'slottedSubmenu', filter: elements(menuTag) })}>
-		</slot>
+		${when(x => x.hasSubmenu, html<MenuItem>`<${iconTag} name="chevron-right-line"></${iconTag}>`)}
+		<slot name="submenu" ${slotted('slottedSubmenu')}></slot>
 	</template>
 	`;
 };
+
