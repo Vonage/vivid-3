@@ -167,7 +167,7 @@ Use the `action-items` slot to add action items to the bottom of the menu.
 
 Use the `--menu-max-inline-size` variable to set the menu's inline size.
 
-- Default: `auto`
+- Default: `max-content`
 
 ```html preview
 <style>
@@ -177,7 +177,7 @@ Use the `--menu-max-inline-size` variable to set the menu's inline size.
 </style>
 
 <vwc-menu open>
-  <vwc-menu-item text="Lorem ipsum dolor sit amet, consectetur adipisicing elit"></vwc-menu-item>
+  <vwc-menu-item text="Lorem ipsum dolor sit amet conse ctetur adipisicing elit"></vwc-menu-item>
 </vwc-menu>
 ```
 
