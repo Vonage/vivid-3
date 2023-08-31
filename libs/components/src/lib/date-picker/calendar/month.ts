@@ -31,6 +31,8 @@ export const compareMonths = (a: Month, b: Month): number =>
 export const areMonthsEqual = (a: Month, b: Month): boolean =>
 	compareMonths(a, b) === 0;
 
-/// Convert a month to a string representation e.g. 2023-8
+/// Convert a month to a string representation e.g. 2023-08
 export const monthToStr = ({ month, year }: Month): string =>
-	`${year}-${month + 1}`;
+	`${year.toString().padStart(4, '0')}-${(month + 1)
+		.toString()
+		.padStart(2, '0')}`;

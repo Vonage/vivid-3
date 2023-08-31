@@ -229,6 +229,6 @@ describe('monthToStr', () => {
 				month: 7,
 				year: 2023,
 			})
-		).toEqual('2023-8');
+		).toEqual('2023-08');
 	});
 });

@@ -32,10 +32,20 @@ describe('vwc-date-picker', () => {
 			`[data-date="${date}"]`
 		) as HTMLButtonElement;
 
+	const getAllDateButtons = () =>
+		Array.from(
+			element.shadowRoot!.querySelectorAll('[data-date]')
+		) as HTMLButtonElement[];
+
 	const getMonthButton = (month: string) =>
 		element.shadowRoot!.querySelector(
 			`[data-month="${month}"]`
 		) as HTMLButtonElement;
+
+	const getAllMonthButtons = () =>
+		Array.from(
+			element.shadowRoot!.querySelectorAll('[data-month]')
+		) as HTMLButtonElement[];
 
 	const pressKey = (key: string, options: KeyboardEventInit = {}) => {
 		element.shadowRoot!.activeElement!.dispatchEvent(
@@ -205,15 +215,22 @@ describe('vwc-date-picker', () => {
 	});
 
 	describe('min', () => {
+		const MIN_DATE = '2023-08-05';
+		const MIN_MONTH = '2023-08';
+
 		beforeEach(async () => {
-			element.min = '2023-08-05';
+			element.min = MIN_DATE;
 			await elementUpdated(element);
 			await openPopup();
 		});
 
 		describe('in the calendar grid', () => {
 			it('should disable dates earlier than min', async () => {
-				expect(getDateButton('2023-08-01').disabled).toBe(true);
+				expect(
+					getAllDateButtons()
+						.filter((button) => button.dataset.date! < MIN_DATE)
+						.every((button) => button.disabled)
+				).toBe(true);
 			});
 
 			it('should disable previous month button if the previous month is earlier than min', async () => {
@@ -232,7 +249,11 @@ describe('vwc-date-picker', () => {
 			});
 
 			it('should disable months earlier than min', async () => {
-				expect(getMonthButton('2023-7').disabled).toBe(true);
+				expect(
+					getAllMonthButtons()
+						.filter((button) => button.dataset.month! < MIN_MONTH)
+						.every((button) => button.disabled)
+				).toBe(true);
 			});
 
 			it('should disable previous year button if the previous year is earlier than min', async () => {
@@ -242,15 +263,22 @@ describe('vwc-date-picker', () => {
 	});
 
 	describe('max', () => {
+		const MAX_DATE = '2023-08-15';
+		const MAX_MONTH = '2023-08';
+
 		beforeEach(async () => {
-			element.max = '2023-08-15';
+			element.max = MAX_DATE;
 			await elementUpdated(element);
 			await openPopup();
 		});
 
 		describe('in the calendar grid', () => {
 			it('should disable dates later than max', async () => {
-				expect(getDateButton('2023-08-20').disabled).toBe(true);
+				expect(
+					getAllDateButtons()
+						.filter((button) => button.dataset.date! > MAX_DATE)
+						.every((button) => button.disabled)
+				).toBe(true);
 			});
 
 			it('should disable next month button if the next month is later than max', async () => {
@@ -269,7 +297,11 @@ describe('vwc-date-picker', () => {
 			});
 
 			it('should disable months later than max', async () => {
-				expect(getMonthButton('2023-9').disabled).toBe(true);
+				expect(
+					getAllMonthButtons()
+						.filter((button) => button.dataset.month! > MAX_MONTH)
+						.every((button) => button.disabled)
+				).toBe(true);
 			});
 
 			it('should disable next year button if the next year is later than max', async () => {
@@ -582,11 +614,11 @@ describe('vwc-date-picker', () => {
 		});
 
 		it('should highlight the current month', () => {
-			expect(getMonthButton('2023-8').classList).toContain('current');
+			expect(getMonthButton('2023-08').classList).toContain('current');
 		});
 
 		it('should highlight the selected month', async () => {
-			expect(getMonthButton('2023-8').classList).toContain('selected');
+			expect(getMonthButton('2023-08').classList).toContain('selected');
 		});
 
 		it('should switch to the previous year when clicking the previous year button', async () => {
@@ -604,7 +636,7 @@ describe('vwc-date-picker', () => {
 		});
 
 		it('should select a month when clicking on a month', async () => {
-			getMonthButton('2023-1').click();
+			getMonthButton('2023-01').click();
 			await elementUpdated(element);
 
 			expect(getDialogTitle()).toBe('January 2023');
@@ -626,14 +658,14 @@ describe('vwc-date-picker', () => {
 		});
 
 		it.each([
-			['2023-8', 'ArrowRight'],
-			['2023-6', 'ArrowLeft'],
+			['2023-08', 'ArrowRight'],
+			['2023-06', 'ArrowLeft'],
 			['2023-11', 'ArrowDown'],
-			['2023-3', 'ArrowUp'],
+			['2023-03', 'ArrowUp'],
 		])(
-			'should move focus to %s when pressing %s while focused on 2023-7',
+			'should move focus to %s when pressing %s while focused on 2023-07',
 			async (expectedDate, key) => {
-				getMonthButton('2023-7').focus();
+				getMonthButton('2023-07').focus();
 				pressKey(key);
 				await elementUpdated(element);
 
@@ -644,7 +676,7 @@ describe('vwc-date-picker', () => {
 		);
 
 		it('should switch to the new year when navigating to a month of a different year', async () => {
-			getMonthButton('2023-1').focus();
+			getMonthButton('2023-01').focus();
 			pressKey('ArrowLeft');
 			await elementUpdated(element);
 
@@ -652,11 +684,11 @@ describe('vwc-date-picker', () => {
 		});
 
 		it('should enable default of keydown event when pressing any other key', async () => {
-			getMonthButton('2023-1').focus();
+			getMonthButton('2023-01').focus();
 
 			const event = new KeyboardEvent('keydown', { key: 'a', bubbles: true });
 			event.preventDefault = jest.fn();
-			getMonthButton('2023-1').dispatchEvent(event);
+			getMonthButton('2023-01').dispatchEvent(event);
 
 			expect(event.preventDefault).not.toHaveBeenCalled();
 		});
@@ -664,11 +696,11 @@ describe('vwc-date-picker', () => {
 		it('should remain on the current month when attempting to move into a month outside valid range', async () => {
 			element.max = '2023-08-01';
 			await elementUpdated(element);
-			getMonthButton('2023-8').focus();
+			getMonthButton('2023-08').focus();
 
 			pressKey('ArrowRight');
 
-			expect(element.shadowRoot!.activeElement).toBe(getMonthButton('2023-8'));
+			expect(element.shadowRoot!.activeElement).toBe(getMonthButton('2023-08'));
 		});
 	});
 
