@@ -1,9 +1,12 @@
-import {FormElement, FormElementCharCount, formElements} from './form-elements';
+import {
+	FormElement,
+	FormElementCharCount,
+	formElements,
+} from './form-elements';
 
 const VALIDATION_MESSAGE = 'Validation Message';
 
 describe('Form Elements', function () {
-
 	describe('FormElementCharCount', () => {
 		it('should set charCount to false on init', async () => {
 			const instance = new FormElementCharCount();
@@ -11,22 +14,21 @@ describe('Form Elements', function () {
 		});
 	});
 	describe('formElements mixin', function () {
-
 		function setProxy(elementInstance = instance) {
 			elementInstance.proxy = document.createElement('input');
 		}
-	
+
 		function enableValidation() {
 			dispatchBlurEvent();
 			instance.dirtyValue = true;
 		}
-	
+
 		function dispatchBlurEvent() {
 			instance.dispatchEvent(new Event('blur'));
 		}
-	
+
 		@formElements
-		class TestClass extends HTMLElement{
+		class TestClass extends HTMLElement {
 			constructor() {
 				super();
 			}
@@ -34,57 +36,45 @@ describe('Form Elements', function () {
 			validate() {
 				return 5;
 			}
-	
+
 			setValidity = jest.fn();
 			proxy?: HTMLElement;
+
+			formResetCallback () {}
 		}
-		interface TestClass extends FormElement{}
-	
+		interface TestClass extends FormElement {}
+
 		customElements.define('test-class', TestClass);
-	
+
 		let instance: TestClass;
-	
+
 		beforeEach(async function () {
 			instance = document.createElement('test-class') as TestClass;
 			setProxy(instance);
 			document.body.appendChild(instance);
 		});
-	
+
 		afterEach(function () {
 			instance.remove();
 		});
-	
+
 		it('should return empty errorValidationMessage', function () {
-			instance.userValid = true;
-			instance.label = 'label';
-	
 			expect(instance.errorValidationMessage).toEqual('');
 		});
-	
+
 		describe('validate', function () {
-			it('should set userValid to true if not blurred and not dirty with a valid proxy', async function() {
-				instance.userValid = true;
+			it('should return empty errorValidationMessage if not blurred and not dirty with a valid proxy', async function () {
 				instance.validate();
-				expect(instance.userValid).toEqual(true);
+				expect(instance.errorValidationMessage).toEqual('');
 			});
-	
-			it('should set userValid as false if blurred, dirty and with a valid proxy', function () {
-				instance.userValid = false;
+
+			it('should return the validationMessage when blurred, dirty and with a valid proxy', function () {
 				enableValidation();
 				instance.validate();
-				expect(instance.userValid).toEqual(false);
-			});
-	
-			it('should call set validity with the input control as anchor when ElementInternals is defined', function () {
-				const elementInternals = (window as any)['ElementInternals'] = function() { return 5; };
-				elementInternals.prototype.setFormValue = jest.fn();
-				const proxy = instance.proxy as any;
-				instance.validate();
-				expect(instance.setValidity).toHaveBeenCalledWith(proxy.validity, proxy.validationMessage, (instance as any).control);
-				delete (window as any)['ElementInternals'];
+				expect(instance.errorValidationMessage).toEqual(VALIDATION_MESSAGE);
 			});
 		});
-	
+
 		describe('blur event', function () {
 			it('should call validate', function () {
 				instance.validate = jest.fn();
@@ -92,40 +82,36 @@ describe('Form Elements', function () {
 				expect(instance.validate).toHaveBeenCalledTimes(1);
 			});
 		});
-	
+
 		describe('focus event', function () {
 			it('should prevent validation messages', function () {
 				enableValidation();
-				instance.validate();
-				const userValidAfterEnabledValidation = instance.userValid;
 				instance.dispatchEvent(new Event('focus'));
 				instance.validate();
-				const userValidAfterFocusedValidation = instance.userValid;
-				expect(userValidAfterEnabledValidation).toEqual(false);
-				expect(userValidAfterFocusedValidation).toEqual(true);
+				expect(instance.errorValidationMessage).toEqual('');
 			});
 		});
-	
+
 		describe('invalid event', function () {
-	
-			it('should enable validation', function () {
+			it('should force validation message to be displayed', function () {
 				instance.dispatchEvent(new Event('invalid'));
-				instance.userValid = true;
 				instance.validate();
-				expect(instance.userValid).toEqual(false);
+				expect(instance.errorValidationMessage).toEqual(VALIDATION_MESSAGE);
 			});
-	
+
 			it('should call validate', function () {
 				instance.validate = jest.fn();
 				instance.dispatchEvent(new Event('invalid'));
 				expect(instance.validate).toHaveBeenCalledTimes(1);
 			});
-	
-			it('should call validate only if validation is disabled', function () {
-				enableValidation();
-				instance.validate = jest.fn();
+		});
+
+		describe('formResetCallback', () => {
+			it('should prevent validation message from being shown', () => {
 				instance.dispatchEvent(new Event('invalid'));
-				expect(instance.validate).toHaveBeenCalledTimes(0);
+				instance.validate();
+				instance.formResetCallback();
+				expect(instance.errorValidationMessage).toEqual('');
 			});
 		});
 	});
