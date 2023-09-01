@@ -23,26 +23,35 @@ function renderDialogHeader(context: ElementDefinitionContext) {
 		${when(
 		(x) => x._inMonthPicker,
 		html<DatePicker>`
-		<${buttonTag} ${ref(
-	'_firstFocusableEl'
-)} size="super-condensed" icon="chevron-left-line" aria-label="${(x) =>
-	x.locale.datePicker.prevYearLabel}" @click="${(x) =>
-	x._onPrevYearClick()}"></${buttonTag}>
+		<${buttonTag}
+			class="vwc-button"
+			size="super-condensed"
+			icon="chevron-left-line"
+			aria-label="${(x) => x.locale.datePicker.prevYearLabel}"
+			?disabled="${(x) => x._isPrevYearDisabled}"
+			@click="${(x) => x._onPrevYearClick()}"
+		></${buttonTag}>
 		`
 	)}
 		${when(
 		(x) => !x._inMonthPicker,
 		html<DatePicker>`
-					<${buttonTag} ${ref(
-	'_firstFocusableEl'
-)} size="super-condensed" icon="double-chevron-left-line" aria-label="${(
-	x
-) => x.locale.datePicker.prevYearLabel}" @click="${(x) =>
-	x._onPrevYearClick()}"></${buttonTag}>
-					<${buttonTag} size="super-condensed" icon="chevron-left-line" aria-label="${(
-	x
-) => x.locale.datePicker.prevMonthLabel}" @click="${(x) =>
-	x._onPrevMonthClick()}"></${buttonTag}>
+					<${buttonTag}
+						class="vwc-button"
+						size="super-condensed"
+						icon="double-chevron-left-line"
+						aria-label="${(x) => x.locale.datePicker.prevYearLabel}"
+						?disabled="${(x) => x._isPrevYearDisabled}"
+						@click="${(x) => x._onPrevYearClick()}"
+					></${buttonTag}>
+					<${buttonTag}
+						class="vwc-button"
+						size="super-condensed"
+						icon="chevron-left-line"
+						aria-label="${(x) => x.locale.datePicker.prevMonthLabel}"
+						?disabled="${(x) => x._isPrevMonthDisabled}"
+						@click="${(x) => x._onPrevMonthClick()}"
+					></${buttonTag}>
 		`
 	)}
 
@@ -73,23 +82,35 @@ function renderDialogHeader(context: ElementDefinitionContext) {
 		${when(
 		(x) => x._inMonthPicker,
 		html<DatePicker>`
-			<${buttonTag} size="super-condensed" icon="chevron-right-line" aria-label="${(
-	x
-) => x.locale.datePicker.nextYearLabel}" @click="${(x) =>
-	x._onNextYearClick()}"></${buttonTag}>
+			<${buttonTag}
+				class="vwc-button"
+				size="super-condensed"
+				icon="chevron-right-line"
+				aria-label="${(x) => x.locale.datePicker.nextYearLabel}"
+				?disabled="${(x) => x._isNextYearDisabled}"
+				@click="${(x) => x._onNextYearClick()}"
+			></${buttonTag}>
 		`
 	)}
 		${when(
 		(x) => !x._inMonthPicker,
 		html<DatePicker>`
-					<${buttonTag} size="super-condensed" icon="chevron-right-line" aria-label="${(
-	x
-) => x.locale.datePicker.nextMonthLabel}" @click="${(x) =>
-	x._onNextMonthClick()}"></${buttonTag}>
-					<${buttonTag} size="super-condensed" icon="double-chevron-right-line" aria-label="${(
-	x
-) => x.locale.datePicker.nextYearLabel}" @click="${(x) =>
-	x._onNextYearClick()}"></${buttonTag}>
+					<${buttonTag}
+						class="vwc-button"
+						size="super-condensed"
+						icon="chevron-right-line"
+						aria-label="${(x) => x.locale.datePicker.nextMonthLabel}"
+						?disabled="${(x) => x._isNextMonthDisabled}"
+						@click="${(x) => x._onNextMonthClick()}"
+					></${buttonTag}>
+					<${buttonTag}
+						class="vwc-button"
+						size="super-condensed"
+						icon="double-chevron-right-line"
+						aria-label="${(x) => x.locale.datePicker.nextYearLabel}"
+						?disabled="${(x) => x._isNextYearDisabled}"
+						@click="${(x) => x._onNextYearClick()}"
+					></${buttonTag}>
 		`
 	)}
 	</div>`;
@@ -135,6 +156,8 @@ function renderCalendarGrid(context: ElementDefinitionContext) {
 			['outside-month', x.isOutsideMonth]
 		)}"
 							role="gridcell"
+							?disabled="${(x, c) =>
+		!c.parentContext.parent._isDateInValidRange(x.date)}"
 							tabindex="${(x, c) =>
 		x.date === c.parentContext.parent._tabbableDate ? 0 : -1}"
 							aria-selected="${(x, c) =>
@@ -159,7 +182,7 @@ function renderCalendarGrid(context: ElementDefinitionContext) {
 function renderMonthPickerGrid(context: ElementDefinitionContext) {
 	const focusTemplate = focusTemplateFactory(context);
 
-	return html<DatePicker>` <div
+	return html<DatePicker>`<div
 		class="month-grid"
 		role="grid"
 		aria-labelledby="grid-label"
@@ -193,7 +216,8 @@ function renderMonthPickerGrid(context: ElementDefinitionContext) {
 		)}"
 								role="gridcell"
 								tabindex="${(x, c) =>
-		areMonthsEqual(x.month, c.parentContext.parent._tabbableMonth)
+		c.parentContext.parent._tabbableMonth &&
+									areMonthsEqual(x.month, c.parentContext.parent._tabbableMonth)
 			? 0
 			: -1}"
 								aria-label="${(x) => x.monthName}"
@@ -203,6 +227,8 @@ function renderMonthPickerGrid(context: ElementDefinitionContext) {
 			c.parentContext.parent._selectedMonth
 		)}"
 								data-month="${(x) => monthToStr(x.month)}"
+								?disabled="${(x, c) =>
+		!c.parentContext.parent._isMonthInValidRange(x.month)}"
 								@click="${(x, c) =>
 		c.parentContext.parent._onMonthClick(x.month)}"
 								@focus="${(x, c) =>
@@ -282,14 +308,20 @@ export const DatePickerTemplate: (
 		html<DatePicker>` ${renderCalendarGrid(context)} `
 	)}
 				<div class="footer">
-					<${buttonTag} size="condensed" label="${(x) =>
-	x.locale.datePicker.clearLabel}" @click="${(x) =>
-	x._onClearClick()}"></${buttonTag}>
-					<${buttonTag} ${ref(
-	'_lastFocusableEl'
-)} size="condensed" appearance="filled" label="${(x) =>
-	x.locale.datePicker.okLabel}" @click="${(x) =>
-	x._onOkClick()}"></${buttonTag}>
+					<${buttonTag}
+						class="vwc-button"
+						size="condensed"
+						label="${(x) => x.locale.datePicker.clearLabel}"
+						@click="${(x) => x._onClearClick()}"
+					></${buttonTag}>
+					<${buttonTag}
+						class="vwc-button"
+						size="condensed"
+						class="vwc-button"
+						appearance="filled"
+						label="${(x) => x.locale.datePicker.okLabel}"
+						@click="${(x) => x._onOkClick()}"
+					></${buttonTag}>
 				</div>
 			</div>
 		</${popupTag}>

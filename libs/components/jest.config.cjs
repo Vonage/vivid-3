@@ -16,7 +16,7 @@ module.exports = {
 				astTransformers: {
 					before: [
 						{
-							path: 'node_modules/ts-jest-mock-import-meta',
+							path: 'ts-jest-mock-import-meta',
 							options: {
 								metaObjectReplacement: { url: 'https://www.url.com' },
 							},
