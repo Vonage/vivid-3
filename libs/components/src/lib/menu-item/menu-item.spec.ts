@@ -1,17 +1,20 @@
-import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import '.';
-import {FoundationElementRegistry} from '@microsoft/fast-foundation';
+import '../menu/menu';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import { fireEvent } from '@testing-library/dom';
 import { Icon } from '../icon/icon';
-import {MenuItem, MenuItemRole} from './menu-item';
+import { Menu } from '../menu/menu';
+import { MenuItem, MenuItemRole } from './menu-item';
 import { menuItemDefinition } from './definition';
 
-
+const MENU_TAG = 'vwc-menu';
 const COMPONENT_TAG = 'vwc-menu-item';
 const ICON_SELECTOR = 'vwc-icon';
 
 describe('vwc-menu-item', () => {
+	let menuElement: Menu;
 	let element: MenuItem;
 
 	beforeAll(async () => {
@@ -34,6 +37,7 @@ describe('vwc-menu-item', () => {
 			expect(element.icon).toBeUndefined();
 			expect(element.checked).toBeUndefined();
 			expect(element.disabled).toBeUndefined();
+			expect(element.expanded).toBeUndefined();
 		});
 	});
 
@@ -193,24 +197,50 @@ describe('vwc-menu-item', () => {
 	});
 
 	describe('expanded', () => {
+		beforeEach(async function () {
+			menuElement = (await fixture(
+				`<${MENU_TAG} open>
+					<${COMPONENT_TAG} id="menuitem" text="Menu item 1">
+						<${MENU_TAG} slot="submenu">
+							<${COMPONENT_TAG} text="Menu item 1.1"></${COMPONENT_TAG}>
+						</${MENU_TAG}>
+					</${COMPONENT_TAG}>
+				</${MENU_TAG}>`
+			)) as Menu;
+
+			await elementUpdated(menuElement);
+		});
+
 		it('should toggle "expanded" on mouse over and mouse out', async () => {
-			expect(element.expanded).toEqual(undefined);
+			const menuitem = menuElement.querySelector('#menuitem') as MenuItem;
 
-			element.hasSubmenu = true;
+			fireEvent(menuitem, new Event('mouseover'));
+			await elementUpdated(menuElement);
+			expect(menuitem.expanded).toEqual(true);
 
-			fireEvent(element, new MouseEvent('mouseover'));
+			fireEvent(menuitem, new Event('mouseout'));
+			elementUpdated(menuElement);
+			expect(menuitem.expanded).toEqual(false);
+		});
 
-			expect(element.expanded).toEqual(true);
+		it('should toggle "expanded" on focus in and focus out', async () => {
+			const menuitem = menuElement.querySelector('#menuitem') as MenuItem;
+			
+			fireEvent(menuitem, new Event('focusin'));
+			await elementUpdated(menuElement);
+			expect(menuitem.expanded).toEqual(true);
 
-			fireEvent(element, new MouseEvent('mouseout'));
-
-			expect(element.expanded).toEqual(false);
+			fireEvent(menuitem, new Event('focusout'));
+			elementUpdated(menuElement);
+			expect(menuitem.expanded).toEqual(false);
 		});
 
 		it('should set an `aria-expanded` attribute with the `expanded` value when provided', async () => {
-			element.expanded = true;
-			await elementUpdated(element);
-			expect(element.getAttribute('aria-expanded')).toEqual('true');
+			const menuitem = menuElement.querySelector('#menuitem') as MenuItem;
+			menuitem.expanded = true;
+			await elementUpdated(menuElement);
+
+			expect(menuitem.getAttribute('aria-expanded')).toEqual('true');
 		});
 
 	});
@@ -299,13 +329,19 @@ describe('vwc-menu-item', () => {
 		});
 	});
 
-	describe('slot', ()=> {
-
-		it('should render slot', async function () {
+	describe('slot', () => {
+		it('should render meta slot', async function () {
 			const metaSlotElement = element.shadowRoot?.querySelector('.base slot[name="meta"]');
 			await elementUpdated(element);
 
 			expect(metaSlotElement).toBeTruthy();
+		});
+
+		it('should render submenu slot', async function () {
+			const submenuSlotElement = element.shadowRoot?.querySelector('slot[name="submenu"]');
+			await elementUpdated(element);
+
+			expect(submenuSlotElement).toBeTruthy();
 		});
 
 		it('should add class .has-meta if slot is slotted', async function () {

@@ -14,13 +14,12 @@ const getCheckIcon = (affixIconTemplate: any, x: MenuItem, iconType: string) => 
 };
 
 const getClasses = ({
-	disabled, checked, expanded, role, text, textSecondary, icon, metaSlottedContent
+	disabled, checked, role, text, textSecondary, icon, metaSlottedContent
 }: MenuItem) => classNames(
 	'base',
 	['disabled', Boolean(disabled)],
 	['selected', role !== MenuItemRole.menuitem && Boolean(checked)],
 	['trailing', role !== MenuItemRole.menuitem && Boolean(icon)],
-	['expanded', Boolean(expanded)],
 	['item-checkbox', role === MenuItemRole.menuitemcheckbox],
 	['item-radio', role === MenuItemRole.menuitemradio],
 	['two-lines', Boolean(text?.length) && Boolean(textSecondary?.length)],
@@ -75,17 +74,19 @@ export const MenuItemTemplate: (context: ElementDefinitionContext, definition: M
 		aria-expanded="${x => x.expanded}"
 		@keydown="${(x, c) => x.handleMenuItemKeyDown(c.event as KeyboardEvent)}"
 		@click="${handleClick}"
-		@mouseover="${(x, c) => x.handleMouseOver(c.event as MouseEvent)}"
-		@mouseout="${(x, c) => x.handleMouseOut(c.event as MouseEvent)}"
+		@mouseover="${(x) => x.show()}"
+		@mouseout="${(x) => x.hide()}"
+		@focusin="${(x) => x.show()}"
+		@focusout="${(x) => x.hide()}"
 	>
 		<div class="${getClasses}">
-		${() => focusTemplate}
-		<slot name="meta" ${slotted('metaSlottedContent')}></slot>
-			${checkbox(context)}
-			${radio(context)}
-			${when(x => x.icon, html`<span class="decorative">${x => affixIconTemplate(x.icon)}</span>`)}
-			${text()}
-			${when(x => x.hasSubMenu, html`<${iconTag} name="chevron-right-line"></${iconTag}>`)}
+			${() => focusTemplate}
+			<slot name="meta" ${slotted('metaSlottedContent')}></slot>
+				${checkbox(context)}
+				${radio(context)}
+				${when(x => x.icon, html`<span class="decorative">${x => affixIconTemplate(x.icon)}</span>`)}
+				${text()}
+				${when(x => x.hasSubMenu, html`<${iconTag} name="chevron-right-line"></${iconTag}>`)}
 		</div>
 		<slot name="submenu" ${slotted({ property: 'slottedSubmenu', filter: elements(context.tagFor(Menu)) })}></slot>
 	</template>

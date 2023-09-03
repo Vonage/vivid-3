@@ -45,28 +45,26 @@ export class MenuItem extends FastMenuItem {
 	 */
 	@attr({ mode: 'boolean' }) hasSubMenu?: boolean;
 
-	subMenu?: Menu;
+	/**	
+	 * @internal
+	 * @remarks
+	 */
+	#submenu?: Menu;
 
-	override handleMouseOver: (e: MouseEvent) => boolean = () => {
-		if (this.disabled || !this.subMenu || this.expanded) {
-			return false;
+	show = () => {
+		if (this.disabled || !this.hasSubMenu || this.expanded) {
+			return;
 		}
-
-		this.subMenu.open = true;
 		this.expanded = true;
-
-		return false;
+		if(this.#submenu) this.#submenu.open = true;
 	};
 
-	override handleMouseOut: (e: MouseEvent) => boolean = () => {
-		if (!this.expanded || !this.subMenu || !this.subMenu.open) {
-			return false;
+	hide = () => {
+		if (!this.hasSubMenu || !this.expanded) {
+			return;
 		}
-
-		this.subMenu.open = false;
 		this.expanded = false;
-
-		return false;
+		if(this.#submenu) this.#submenu.open = false;
 	};
 
 	/**
@@ -86,14 +84,14 @@ export class MenuItem extends FastMenuItem {
 
 		for (const submenu of newValue) {
 			if (submenu instanceof Menu) {
-				this.subMenu = submenu;
-				this.subMenu.anchor = this as MenuItem;
-				this.subMenu.placement = 'right-start';
+				this.#submenu = submenu;
+				this.#submenu.anchor = this as MenuItem;
+				this.#submenu.placement = 'right-start';
 			}
 		}
 	}
 }
 
-export interface MenuItem extends AffixIcon {}
+export interface MenuItem extends AffixIcon { }
 
 applyMixins(MenuItem, AffixIcon);
