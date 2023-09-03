@@ -1,5 +1,5 @@
 import { attr, DOM, observable } from '@microsoft/fast-element';
-import { Menu as FastMenu } from '@microsoft/fast-foundation';
+import { Menu as FoundationMenu } from '@microsoft/fast-foundation';
 import type { Placement } from '@floating-ui/dom';
 
 type AnchorType = string | HTMLElement;
@@ -14,7 +14,8 @@ type AnchorType = string | HTMLElement;
  * @event open - Fired when the menu is opened
  * @event close - Fired when the menu is closed
  */
-export class Menu extends FastMenu {
+export class Menu extends FoundationMenu {
+	[x: string]: any;
 
 	#observer?: MutationObserver;
 	#anchorEl: HTMLElement | null = null;
@@ -99,6 +100,12 @@ export class Menu extends FastMenu {
 		this.#observer?.disconnect();
 		document.removeEventListener('click', this.#closeOnClickOutside);
 	}
+
+	override handleFocusOut = (e: FocusEvent) => {
+		super.handleFocusOut(e);
+		e.stopPropagation();
+		return false;
+	};
 
 	#setupAnchor(a: HTMLElement) {
 		a.addEventListener('click', this.#openIfClosed, true);

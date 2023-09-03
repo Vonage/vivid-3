@@ -1,8 +1,9 @@
-import { ExecutionContext, html, slotted, ViewTemplate, when } from '@microsoft/fast-element';
+import { elements, ExecutionContext, html, slotted, ViewTemplate, when } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, MenuItemOptions } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
+import { Menu } from '../menu/menu';
 import { MenuItem, MenuItemRole } from './menu-item';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
 
@@ -86,7 +87,7 @@ export const MenuItemTemplate: (context: ElementDefinitionContext, definition: M
 			${text()}
 			${when(x => x.hasSubMenu, html`<${iconTag} name="chevron-right-line"></${iconTag}>`)}
 		</div>
-		<slot name="submenu" ${slotted('slottedSubmenu')}></slot>
+		<slot name="submenu" ${slotted({ property: 'slottedSubmenu', filter: elements(context.tagFor(Menu)) })}></slot>
 	</template>
 	`;
 };

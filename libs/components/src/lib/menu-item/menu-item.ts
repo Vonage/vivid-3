@@ -1,8 +1,8 @@
 import { attr, observable } from '@microsoft/fast-element';
 import {
 	applyMixins,
-	MenuItem as FastMenuItem,
 	MenuItemRole as FastMenuItemRole,
+	MenuItem as FoundationMenuItem,
 } from '@microsoft/fast-foundation';
 import { AffixIcon } from '../../shared/patterns/affix';
 import { Menu } from '../menu/menu';
@@ -18,7 +18,7 @@ export const MenuItemRole = {
  * @public
  * @slot meta - Assign nodes to the `meta` slot to set a badge or an additional icon.
  */
-export class MenuItem extends FastMenuItem {
+export class MenuItem extends FoundationMenuItem {
 	/**
 	 * Indicates the menu item's text.
 	 *
@@ -45,6 +45,30 @@ export class MenuItem extends FastMenuItem {
 	 */
 	@attr({ mode: 'boolean' }) hasSubMenu?: boolean;
 
+	subMenu?: Menu;
+
+	override handleMouseOver: (e: MouseEvent) => boolean = () => {
+		if (this.disabled || !this.subMenu || this.expanded) {
+			return false;
+		}
+
+		this.subMenu.open = true;
+		this.expanded = true;
+
+		return false;
+	};
+
+	override handleMouseOut: (e: MouseEvent) => boolean = () => {
+		if (!this.expanded || !this.subMenu || !this.subMenu.open) {
+			return false;
+		}
+
+		this.subMenu.open = false;
+		this.expanded = false;
+
+		return false;
+	};
+
 	/**
 	 *
 	 * Slot observer:
@@ -53,7 +77,7 @@ export class MenuItem extends FastMenuItem {
 	 */
 	@observable metaSlottedContent?: HTMLElement[];
 	@observable slottedSubmenu?: HTMLElement[];
-	
+
 	slottedSubmenuChanged(_oldValue: HTMLElement[], newValue: HTMLElement[]) {
 		this.hasSubMenu = newValue.length > 0;
 		if (!this.hasSubMenu) {
@@ -62,9 +86,9 @@ export class MenuItem extends FastMenuItem {
 
 		for (const submenu of newValue) {
 			if (submenu instanceof Menu) {
-				submenu.anchor = this as MenuItem;
-				submenu.placement = 'right-start';
-				submenu.open = true;
+				this.subMenu = submenu;
+				this.subMenu.anchor = this as MenuItem;
+				this.subMenu.placement = 'right-start';
 			}
 		}
 	}

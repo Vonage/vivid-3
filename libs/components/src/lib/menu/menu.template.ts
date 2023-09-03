@@ -36,14 +36,15 @@ export const MenuTemplate: (
 	function handlePopupEvents(x: Menu, state: boolean) {
 		x.open = state;
 	}
+
 	return html<Menu>`
 		<template>
 			<${popupTag}
 				:placement=${(x) => x.placement}
 				:open=${(x) => x.open}
 				:anchor=${(x) => x.anchor}
-				@vwc-popup:open="${x => handlePopupEvents(x, true)}"
-				@vwc-popup:close="${x => handlePopupEvents(x, false)}"
+				@vwc-popup:open="${(x) => handlePopupEvents(x, true)}"
+				@vwc-popup:close="${(x) => handlePopupEvents(x, false)}"
 			>
 			<div class="${getClasses}">
 				<div class="header">
@@ -51,7 +52,6 @@ export const MenuTemplate: (
 				</div>
 				<div
 					class="body"
-					slot="${x => (x.slot ? x.slot : x.isNestedMenu() ? 'submenu' : void 0)}"
 					role="menu"
 					@keydown="${(x, c) => x.handleMenuKeyDown(c.event as KeyboardEvent)}"
 					@focusout="${(x, c) => x.handleFocusOut(c.event as FocusEvent)}"
