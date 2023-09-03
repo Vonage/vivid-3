@@ -11,6 +11,9 @@ export type TextFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  * Base class for text-field
  *
  * @public
+ * @slot leading-action-items - Used to add action items to the start of the text-field.
+ * @slot action-items - Used to add action items to the end of the text-field.
+ *
  */
 @errorText
 @formElements
