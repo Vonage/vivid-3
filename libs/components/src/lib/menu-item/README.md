@@ -169,6 +169,41 @@ Slot `meta` makes icon/checkbox/radiobutton to be `trailing`.
 </vwc-menu> 
 ```
 
+### submenu
+
+Assign menu to the `submenu` slot to create a submenu.
+
+```html preview
+<style>
+  html { /* for demo purposes */
+		block-size: 250px;
+	}
+</style>
+<vwc-menu open>
+    <vwc-menu-item text="Menu item 1">
+      <vwc-menu slot="submenu">
+            <vwc-menu-item text="Menu item 1.1"></vwc-menu-item>
+            <vwc-menu-item text="Menu item 1.2"></vwc-menu-item>
+            <vwc-menu-item text="Menu item 1.3"></vwc-menu-item>
+        </vwc-menu>
+    </vwc-menu-item>
+    <vwc-menu-item text="Menu item 2">
+      <vwc-menu slot="submenu">
+            <vwc-menu-item text="Menu item 2.1"></vwc-menu-item>
+            <vwc-menu-item text="Menu item 2.2"></vwc-menu-item>
+            <vwc-menu-item text="Menu item 2.3"></vwc-menu-item>
+        </vwc-menu>
+    </vwc-menu-item>
+    <vwc-menu-item text="Menu item 3">
+      <vwc-menu slot="submenu">
+            <vwc-menu-item text="Menu item 3.1"></vwc-menu-item>
+            <vwc-menu-item text="Menu item 3.2"></vwc-menu-item>
+            <vwc-menu-item text="Menu item 3.3"></vwc-menu-item>
+        </vwc-menu>
+    </vwc-menu-item>
+</vwc-menu>
+```
+
 ## Events
 
 <div class="table-wrapper">

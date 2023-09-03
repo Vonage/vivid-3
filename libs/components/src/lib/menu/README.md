@@ -1,6 +1,6 @@
  # Menu
 
-<!--Menu, commonly known as a "context menu", is an element that is displayed upon user interaction. It is typically used to provide a list of actions available in the current context for a user to choose from.
+Menu, commonly known as a "context menu", is an element that is displayed upon user interaction. It is typically used to provide a list of actions available in the current context for a user to choose from.
 
 ```js
 <script type="module">
@@ -304,12 +304,14 @@ This helps ensure elements don't render over top a Menu undesirebly.
   </vwc-menu>
   <vwc-button id="button" icon="close-line" onclick="menu.open = !menu.open"></vwc-button>
 </div>
-``` -->
+```
+
+### Menu with Submenus
 
 ```html preview
 <style>
   html { /* for demo purposes */
-		block-size: 300px;
+		block-size: 250px;
 	}
 </style>
 <vwc-menu open>
