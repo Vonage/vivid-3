@@ -1,6 +1,7 @@
 import {
 	addMonths,
 	areMonthsEqual,
+	compareMonths,
 	getCurrentMonth,
 	monthOfDate,
 	monthToStr,
@@ -97,6 +98,83 @@ describe('addMonths', () => {
 	});
 });
 
+describe('compareMonths', () => {
+	it('should return 0 if months are equal', () => {
+		expect(
+			compareMonths(
+				{
+					month: 7,
+					year: 2023,
+				},
+				{
+					month: 7,
+					year: 2023,
+				}
+			)
+		).toEqual(0);
+	});
+
+	it('should return 1 if first month is later', () => {
+		expect(
+			compareMonths(
+				{
+					month: 7,
+					year: 2023,
+				},
+				{
+					month: 6,
+					year: 2023,
+				}
+			)
+		).toEqual(1);
+	});
+
+	it('should return -1 if first month is earlier', () => {
+		expect(
+			compareMonths(
+				{
+					month: 6,
+					year: 2023,
+				},
+				{
+					month: 7,
+					year: 2023,
+				}
+			)
+		).toEqual(-1);
+	});
+
+	it('should return 1 if first month is later in the year', () => {
+		expect(
+			compareMonths(
+				{
+					month: 7,
+					year: 2023,
+				},
+				{
+					month: 7,
+					year: 2022,
+				}
+			)
+		).toEqual(1);
+	});
+
+	it('should return -1 if first month is earlier in the year', () => {
+		expect(
+			compareMonths(
+				{
+					month: 7,
+					year: 2022,
+				},
+				{
+					month: 7,
+					year: 2023,
+				}
+			)
+		).toEqual(-1);
+	});
+});
+
 describe('areMonthsEqual', () => {
 	it('should returns true if months are equal', () => {
 		expect(
@@ -151,6 +229,6 @@ describe('monthToStr', () => {
 				month: 7,
 				year: 2023,
 			})
-		).toEqual('2023-8');
+		).toEqual('2023-08');
 	});
 });

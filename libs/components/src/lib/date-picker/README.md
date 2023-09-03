@@ -113,6 +113,48 @@ It will always contain a valid date in the format `YYYY-MM-DD` when a date is se
 <vwc-date-picker label="Start date" value="2023-01-01"></vwc-date-picker>
 ```
 
+### Min
+
+Set the `min` attribute to configure the earliest date to accept. The user will be prevented from choosing an earlier date, however it is still possible to manually enter one.
+
+- Type: `string` | `undefined`
+- Date format: `YYYY-MM-DD`
+- Default: `undefined`
+
+```html preview
+<style>
+	html {
+		block-size: 460px; /* for demo purposes */
+	}
+</style>
+<vwc-date-picker
+	label="Start date"
+	min="2023-06-10"
+	value="2023-06-15"
+></vwc-date-picker>
+```
+
+### Max
+
+Set the `max` attribute to configure the latest date to accept. The user will be prevented from choosing an later date, however it is still possible to manually enter one.
+
+- Type: `string` | `undefined`
+- Date format: `YYYY-MM-DD`
+- Default: `undefined`
+
+```html preview
+<style>
+	html {
+		block-size: 460px; /* for demo purposes */
+	}
+</style>
+<vwc-date-picker
+	label="Start date"
+	max="2023-06-20"
+	value="2023-06-15"
+></vwc-date-picker>
+```
+
 ## Events
 
 <div class="table-wrapper">
