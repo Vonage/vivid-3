@@ -25,9 +25,14 @@ export const addMonths = ({ month, year }: Month, months: number): Month => {
 	return { month: date.getMonth(), year: date.getFullYear() };
 };
 
-export const areMonthsEqual = (a: Month, b: Month): boolean =>
-	a.month === b.month && a.year === b.year;
+export const compareMonths = (a: Month, b: Month): number =>
+	a.year === b.year ? a.month - b.month : a.year - b.year;
 
-/// Convert a month to a string representation e.g. 2023-8
+export const areMonthsEqual = (a: Month, b: Month): boolean =>
+	compareMonths(a, b) === 0;
+
+/// Convert a month to a string representation e.g. 2023-08
 export const monthToStr = ({ month, year }: Month): string =>
-	`${year}-${month + 1}`;
+	`${year.toString().padStart(4, '0')}-${(month + 1)
+		.toString()
+		.padStart(2, '0')}`;

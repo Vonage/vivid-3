@@ -20,6 +20,9 @@ export const addDays = (dateStr: DateStr, days: number): DateStr => {
 	return formatDateStr(resultDate);
 };
 
+export const compareDateStr = (a: DateStr, b: DateStr): number =>
+	a > b ? 1 : a < b ? -1 : 0;
+
 const hasThreeComponents = (
 	components: string[]
 ): components is [string, string, string] => components.length === 3;
