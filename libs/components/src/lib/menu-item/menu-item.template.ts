@@ -79,8 +79,8 @@ export const MenuItemTemplate: (context: ElementDefinitionContext, definition: M
 		@mouseout="${(x, c) => x.handleMouseOut(c.event as MouseEvent)}"
 	>
 		<div class="${getClasses}">
-			${focusTemplate}
-			<slot name="meta" ${slotted('metaSlottedContent')}></slot>
+		${() => focusTemplate}
+		<slot name="meta" ${slotted('metaSlottedContent')}></slot>
 			${checkbox(context)}
 			${radio(context)}
 			${when(x => x.icon, html`<span class="decorative">${x => affixIconTemplate(x.icon)}</span>`)}
@@ -91,4 +91,3 @@ export const MenuItemTemplate: (context: ElementDefinitionContext, definition: M
 	</template>
 	`;
 };
-

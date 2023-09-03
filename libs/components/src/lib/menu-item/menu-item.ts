@@ -1,8 +1,8 @@
 import { attr, observable } from '@microsoft/fast-element';
 import {
 	applyMixins,
+	MenuItem as FastMenuItem,
 	MenuItemRole as FastMenuItemRole,
-	MenuItem as FoundationMenuItem,
 } from '@microsoft/fast-foundation';
 import { AffixIcon } from '../../shared/patterns/affix';
 import { Menu } from '../menu/menu';
@@ -18,7 +18,7 @@ export const MenuItemRole = {
  * @public
  * @slot meta - Assign nodes to the `meta` slot to set a badge or an additional icon.
  */
-export class MenuItem extends FoundationMenuItem {
+export class MenuItem extends FastMenuItem {
 	/**
 	 * Indicates the menu item's text.
 	 *
@@ -94,6 +94,6 @@ export class MenuItem extends FoundationMenuItem {
 	}
 }
 
-export interface MenuItem extends AffixIcon { }
+export interface MenuItem extends AffixIcon {}
 
 applyMixins(MenuItem, AffixIcon);
