@@ -4,6 +4,7 @@ import {
 	MenuItem as FastMenuItem,
 	MenuItemRole as FastMenuItemRole,
 } from '@microsoft/fast-foundation';
+import { keyArrowLeft, keyArrowRight, keyEnter, keyEscape, keySpace } from '@microsoft/fast-web-utilities/dist/key-codes';
 import { AffixIcon } from '../../shared/patterns/affix';
 import { Menu } from '../menu/menu';
 
@@ -59,7 +60,11 @@ export class MenuItem extends FastMenuItem {
 			return;
 		}
 		this.expanded = true;
-		if (this.#submenu) this.#submenu.open = true;
+		if (this.#submenu) {
+			this.#submenu.removeEventListener('blur', this.hide);
+			this.#submenu.open = true;
+			this.#submenu.addEventListener('blur', this.hide);
+		}
 	};
 
 	/**
@@ -70,7 +75,10 @@ export class MenuItem extends FastMenuItem {
 			return;
 		}
 		this.expanded = false;
-		if (this.#submenu) this.#submenu.open = false;
+		if (this.#submenu) {
+			this.#submenu.open = false;
+			this.#submenu.removeEventListener('blur', this.hide);
+		}
 	};
 
 	/**
@@ -82,21 +90,19 @@ export class MenuItem extends FastMenuItem {
 		}
 
 		switch (e.key) {
-			case 'Enter':
-			case 'Space':
+			case keyEnter:
+			case keySpace:
 				this.show();
+				this.#submenu?.focus();
 				return false;
 
-			case 'ArrowRight':
+			case keyArrowRight:
 				//open/focus on submenu
-				if(this.expanded && this.#submenu){
-					this.#submenu.focus();
-					this.show();
-					return false;
-				}
-				break;
+				this.show();
+				this.#submenu?.focus();
+				return false;
 
-			case 'Escape':
+			case keyEscape:
 				// close submenu
 				if (this.expanded) {
 					this.hide();
@@ -105,14 +111,13 @@ export class MenuItem extends FastMenuItem {
 				}
 				break;
 
-			case 'ArrowLeft':
+			case keyArrowLeft:
 				//close submenu
 				if (this.expanded) {
 					this.hide();
 					this.focus();
 					return false;
 				}
-				break;
 		}
 
 		return true;
@@ -140,6 +145,14 @@ export class MenuItem extends FastMenuItem {
 				this.#submenu.anchor = this as MenuItem;
 				this.#submenu.placement = 'right-start';
 			}
+		}
+	}
+
+	override disconnectedCallback() {
+		super.disconnectedCallback();
+
+		if (this.#submenu) {
+			this.#submenu.removeEventListener('blur', this.hide);
 		}
 	}
 }
