@@ -1,4 +1,8 @@
+import { fixture } from '@vivid-nx/shared';
+import { customElement, FASTElement } from '@microsoft/fast-element';
 import {
+	ErrorText,
+	errorText,
 	FormElement,
 	FormElementCharCount,
 	formElements,
@@ -13,11 +17,8 @@ describe('Form Elements', function () {
 			expect(instance.charCount).toEqual(false);
 		});
 	});
-	describe('formElements mixin', function () {
-		function setProxy(elementInstance = instance) {
-			elementInstance.proxy = document.createElement('input');
-		}
 
+	describe('formElements mixin', function () {
 		function enableValidation() {
 			dispatchBlurEvent();
 			instance.dirtyValue = true;
@@ -27,31 +28,26 @@ describe('Form Elements', function () {
 			instance.dispatchEvent(new Event('blur'));
 		}
 
+		@customElement('form-elements-class')
 		@formElements
-		class TestClass extends HTMLElement {
-			constructor() {
-				super();
-			}
+		class FormElementsClass extends FASTElement {
+			proxy = document.createElement('input');
+
 			validationMessage = VALIDATION_MESSAGE;
 			validate() {
 				return 5;
 			}
 
 			setValidity = jest.fn();
-			proxy?: HTMLElement;
 
 			formResetCallback () {}
 		}
-		interface TestClass extends FormElement {}
+		interface FormElementsClass extends FormElement {}
 
-		customElements.define('test-class', TestClass);
-
-		let instance: TestClass;
+		let instance: FormElementsClass;
 
 		beforeEach(async function () {
-			instance = document.createElement('test-class') as TestClass;
-			setProxy(instance);
-			document.body.appendChild(instance);
+			instance = await fixture('<form-elements-class></form-elements-class>') as FormElementsClass;
 		});
 
 		afterEach(function () {
@@ -113,6 +109,74 @@ describe('Form Elements', function () {
 				instance.formResetCallback();
 				expect(instance.errorValidationMessage).toEqual('');
 			});
+		});
+	});
+
+	describe('errorText mixin', function () {
+		function enableValidation() {
+			instance.dispatchEvent(new Event('blur'));
+			instance.dirtyValue = true;
+		}
+
+		const baseValidate = jest.fn().mockReturnValue(5);
+
+		@customElement('error-text-class')
+		@errorText
+		@formElements
+		class ErrorTextClass extends FASTElement {
+			proxy = document.createElement('input');
+
+			validationMessage = VALIDATION_MESSAGE;
+			validate() { return baseValidate(); }
+
+			setValidity = jest.fn();
+		}
+		interface ErrorTextClass extends ErrorText, FormElement {}
+
+		let instance: ErrorTextClass;
+
+		beforeEach(async function () {
+			instance = fixture('<error-text-class></error-text-class>') as ErrorTextClass;
+			jest.resetAllMocks();
+		});
+
+		afterEach(function () {
+			instance.remove();
+		});
+
+		it('should setValidity and set errorValidationMessage with the message set by errorText', async () => {
+			const message = 'Error Message';
+
+			instance.errorText = message;
+
+			expect(instance.setValidity).toHaveBeenCalledWith({ customError: true }, message, undefined);
+			expect(instance.errorValidationMessage).toEqual(message);
+		});
+
+		it('should block calls to validate while errorText is set', async () => {
+			instance.errorText = 'Error message';
+			instance.validate();
+
+			expect(baseValidate).not.toHaveBeenCalled();
+		});
+
+		it('should restore validity and errorValidationMessage when errorText is cleared', async () => {
+			enableValidation();
+			instance.errorText = 'Error message';
+
+			instance.errorText = '';
+
+			expect(instance.setValidity).toHaveBeenLastCalledWith({ customError: false }, '', undefined);
+			expect(instance.errorValidationMessage).toEqual(VALIDATION_MESSAGE);
+		});
+
+		it('should allows calls to validate again when errorText is cleared', async () => {
+			instance.errorText = 'Error message';
+			instance.errorText = '';
+
+			instance.validate();
+
+			expect(baseValidate).toHaveBeenCalled();
 		});
 	});
 });
