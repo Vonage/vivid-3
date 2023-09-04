@@ -61,9 +61,7 @@ export class MenuItem extends FastMenuItem {
 		}
 		this.expanded = true;
 		if (this.#submenu) {
-			this.#submenu.removeEventListener('blur', this.hide);
 			this.#submenu.open = true;
-			this.#submenu.addEventListener('blur', this.hide);
 		}
 	};
 
@@ -77,7 +75,6 @@ export class MenuItem extends FastMenuItem {
 		this.expanded = false;
 		if (this.#submenu) {
 			this.#submenu.open = false;
-			this.#submenu.removeEventListener('blur', this.hide);
 		}
 	};
 
@@ -145,14 +142,6 @@ export class MenuItem extends FastMenuItem {
 				this.#submenu.anchor = this as MenuItem;
 				this.#submenu.placement = 'right-start';
 			}
-		}
-	}
-
-	override disconnectedCallback() {
-		super.disconnectedCallback();
-
-		if (this.#submenu) {
-			this.#submenu.removeEventListener('blur', this.hide);
 		}
 	}
 }

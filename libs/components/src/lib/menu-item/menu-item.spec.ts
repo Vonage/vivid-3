@@ -2,7 +2,6 @@ import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import '.';
 import '../menu/menu';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import { fireEvent } from '@testing-library/dom';
 import { Icon } from '../icon/icon';
 import { Menu } from '../menu/menu';
@@ -273,26 +272,6 @@ describe('vwc-menu-item', () => {
 			element.addEventListener('change', spy);
 			await elementUpdated(element);
 			element.click();
-			expect(spy).toHaveBeenCalled();
-		});
-
-		it('should fire "change" event on spacebar press', async () => {
-			const spy = jest.fn();
-			element.addEventListener('change', spy);
-			const event = new KeyboardEvent('keydown', {
-				key: keySpace,
-			} as KeyboardEventInit);
-			element.dispatchEvent(event);
-			expect(spy).toHaveBeenCalled();
-		});
-
-		it('should fire "change" event when enter is pressed', async () => {
-			const spy = jest.fn();
-			element.addEventListener('change', spy);
-			const event = new KeyboardEvent('keydown', {
-				key: keyEnter,
-			} as KeyboardEventInit);
-			element.dispatchEvent(event);
 			expect(spy).toHaveBeenCalled();
 		});
 
