@@ -51,21 +51,68 @@ export class MenuItem extends FastMenuItem {
 	 */
 	#submenu?: Menu;
 
+	/**
+	 * @internal
+	 */
 	show = () => {
 		if (this.disabled || !this.hasSubMenu || this.expanded) {
 			return;
 		}
 		this.expanded = true;
-		if(this.#submenu) this.#submenu.open = true;
+		if (this.#submenu) this.#submenu.open = true;
 	};
 
+	/**
+	 * @internal
+	 */
 	hide = () => {
 		if (!this.hasSubMenu || !this.expanded) {
 			return;
 		}
 		this.expanded = false;
-		if(this.#submenu) this.#submenu.open = false;
+		if (this.#submenu) this.#submenu.open = false;
 	};
+
+	/**
+	 * @internal
+	 */
+	override handleMenuItemKeyDown = (e: KeyboardEvent): boolean => {
+		if (e.defaultPrevented) {
+			return false;
+		}
+
+		switch (e.key) {
+			case 'Enter':
+			case 'Space':
+				this.show();
+				return false;
+
+			case 'ArrowRight':
+				//open/focus on submenu
+				this.expanded && this.#submenu
+					? this.#submenu.focus()
+					: this.show();
+				return false;
+
+			case 'Escape':
+				// close submenu
+				if (this.expanded) {
+					this.hide();
+					return false;
+				}
+				break;
+
+			case 'ArrowLeft':
+				//close submenu
+				if (this.expanded) {
+					this.hide();
+					return false;
+				}
+		}
+
+		return true;
+	};
+
 
 	/**
 	 *

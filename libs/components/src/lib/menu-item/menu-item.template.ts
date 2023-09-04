@@ -68,6 +68,7 @@ export const MenuItemTemplate: (context: ElementDefinitionContext, definition: M
 
 	return html<MenuItem>`
 	<template
+		role="${x => (x.role ? x.role : 'menuitem')}"
 		aria-haspopup="${x => (x.hasSubMenu ? 'menu' : void 0)}"
 		aria-checked="${x => (x.role !== MenuItemRole.menuitem ? x.checked : void 0)}"
 		aria-disabled="${x => x.disabled}"
@@ -76,8 +77,6 @@ export const MenuItemTemplate: (context: ElementDefinitionContext, definition: M
 		@click="${handleClick}"
 		@mouseover="${(x) => x.show()}"
 		@mouseout="${(x) => x.hide()}"
-		@focusin="${(x) => x.show()}"
-		@focusout="${(x) => x.hide()}"
 	>
 		<div class="${getClasses}">
 			${() => focusTemplate}
