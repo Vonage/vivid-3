@@ -7,7 +7,7 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['text-field', 'button'];
+const components = ['text-field', 'button', 'select', 'divider'];
 
 test('should show the component', async ({page}: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(
