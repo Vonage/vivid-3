@@ -53,6 +53,12 @@ describe('vwc-menu-item', () => {
 	});
 
 	describe('role', () => {
+		it('should have menuitem role by default', async () => {
+			element.setAttribute('role', '');
+			await elementUpdated(element);
+			expect(element.getAttribute('role')).toEqual(MenuItemRole.menuitem);
+		});
+
 		it('should reflect the role property', async () => {
 			const role = MenuItemRole.menuitem;
 			element.role = role;

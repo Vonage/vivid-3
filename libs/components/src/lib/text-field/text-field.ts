@@ -11,6 +11,9 @@ export type TextFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  * Base class for text-field
  *
  * @public
+ * @slot leading-action-items - Used to add action items to the start of the text-field.
+ * @slot action-items - Used to add action items to the end of the text-field.
+ *
  */
 @errorText
 @formElements
@@ -27,6 +30,7 @@ export class TextField extends FoundationTextfield {
 	 */
 
 	@observable actionItemsSlottedContent?: HTMLElement[];
+	@observable leadingActionItemsSlottedContent?: HTMLElement[];
 }
 
 export interface TextField extends AffixIcon, ErrorText, FormElement, FormElementCharCount, FormElementHelperText, FormElementSuccessText{}

@@ -68,7 +68,7 @@ export const MenuItemTemplate: (context: ElementDefinitionContext, definition: M
 
 	return html<MenuItem>`
 	<template
-		role="${x => (x.role ? x.role : 'menuitem')}"
+		role="${x => (x.role ? x.role : MenuItemRole.menuitem)}"
 		aria-haspopup="${x => (x.hasSubMenu ? 'menu' : void 0)}"
 		aria-checked="${x => (x.role !== MenuItemRole.menuitem ? x.checked : void 0)}"
 		aria-disabled="${x => x.disabled}"

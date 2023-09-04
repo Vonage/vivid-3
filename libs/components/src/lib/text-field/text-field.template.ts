@@ -20,7 +20,9 @@ const getStateClasses = ({
 	shape,
 	label,
 	successText,
-	actionItemsSlottedContent
+	actionItemsSlottedContent,
+	leadingActionItemsSlottedContent,
+	icon
 }: TextField) => classNames(
 	['error connotation-alert', Boolean(errorValidationMessage)],
 	['disabled', disabled],
@@ -30,8 +32,11 @@ const getStateClasses = ({
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	['no-label', !label],
+	['has-icon', !!icon],
 	['success connotation-success', Boolean(successText)],
 	['action-items', !!actionItemsSlottedContent?.length],
+	['leading-action-items', !!leadingActionItemsSlottedContent?.length],
+	['no-leading', !(leadingActionItemsSlottedContent?.length || icon)],
 );
 
 /**
@@ -71,7 +76,11 @@ export const TextfieldTemplate: (
     ${when(x => x.charCount && x.maxlength, renderCharCount())}
     ${when(x => x.label, renderLabel())}
     <div class="fieldset">
-      ${x => affixIconTemplate(x.icon)}
+			<div class="leading-items-wrapper">
+				<slot name="leading-action-items"  ${slotted('leadingActionItemsSlottedContent')}></slot>
+				${x => affixIconTemplate(x.icon)}
+			</div>
+
 			<div class="wrapper">
 				<input class="control"
             id="control"
@@ -113,7 +122,7 @@ export const TextfieldTemplate: (
             aria-roledescription="${x => x.ariaRoledescription}"
             ${ref('control')}
       />
-      	${() => focusTemplate}
+				${() => focusTemplate}
 			</div>
 			<div class="action-items-wrapper">
 				<slot name="action-items"  ${slotted('actionItemsSlottedContent')}></slot>
