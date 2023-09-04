@@ -168,24 +168,57 @@ You can add action items elements using the `action-items` slot.
 </vwc-text-field>
 ```
 
+
+### Leading Action-items
+You can add action items elements using the `leading-action-items` slot.  
+
+```html preview
+<style>
+.leading-action-items {
+	display: flex;
+	align-items: center;
+	column-gap: 2px;
+}
+vwc-select {
+  --focus-inset: 2px;
+}
+vwc-divider {
+    height: 20px;
+}
+</style>
+<vwc-text-field icon="search" placeholder="search" label='search' appearance='fieldset' class="text-field">
+<div slot="leading-action-items" class="leading-action-items">
+	<vwc-select aria-label="Options Selector" appearance="ghost">
+		<vwc-option value="1" text="ALL" selected></vwc-option>
+	</vwc-select>
+	<vwc-divider orientation="vertical"></vwc-divider>
+</div>
+</vwc-text-field>
+```
+
+
 ## CSS Variables
-### Inline end-Padding
-Use `--text-field-inline-end-padding` variable to set the text-field inline-end padding when using the `action-tiems` slot.
+### Inline end-Padding - **Deprecated**
+This css variable is not in use anymore.  
+Don't worry if it is set - the design still be the same :)  
+<br>
+~~Use `--text-field-inline-end-padding` variable to set the text-field inline-end padding when using the `action-items` slot.~~
 
 
 ## Use Cases
 ```html preview
 <style>
-.text-field {
-  --text-field-inline-end-padding: 106px;
-}
+.action-items { display: flex; }
 </style>
 <vwc-text-field icon="search" placeholder="search" label='search our documentation' appearance='fieldset' class="text-field" shape='pill'>
-	<vwc-button slot="action-items" size='condensed' icon="image-line" aria-label='search images' shape='pill' appearance='ghost'></vwc-button>
-	<vwc-button slot="action-items" size='condensed' icon="microphone-2-line" aria-label='record' shape='pill' appearance='ghost'></vwc-button>
-	<vwc-button slot="action-items" size='condensed' icon="close-line" aria-label='clear field' shape='pill' appearance='ghost'></vwc-button>
+	<div slot="action-items" class="action-items">
+		<vwc-button size='condensed' icon="image-line" aria-label='search images' shape='pill' appearance='ghost'></vwc-button>
+		<vwc-button size='condensed' icon="microphone-2-line" aria-label='record' shape='pill' appearance='ghost'></vwc-button>
+		<vwc-button size='condensed' icon="close-line" aria-label='clear field' shape='pill' appearance='ghost'></vwc-button>
+	</div>
 </vwc-text-field>
 ```
+
 
 ### Validation
 

@@ -562,6 +562,21 @@ describe('vwc-text-field', () => {
 			expect(iconElement?.getAttribute('name'))
 				.toEqual(iconName);
 		});
+		it('should set class has-icon when icon is set', async function () {
+			element.icon = 'home';
+			await elementUpdated(element);
+			const baseElementHasIconClass = element.shadowRoot?.
+				querySelector('.base')?.classList.contains('has-icon');
+			expect(baseElementHasIconClass).toEqual(true);
+
+		});
+		it('should remove .no-leading class from .base if icon is set', async function () {
+			element.icon = 'home';
+			await elementUpdated(element);
+			const baseElementHasNoLeadingClass = element.shadowRoot?.
+				querySelector('.base')?.classList.contains('no-leading');
+			expect(baseElementHasNoLeadingClass).toEqual(false);
+		});
 	});
 
 	describe('autocomplete', function () {
@@ -650,7 +665,7 @@ describe('vwc-text-field', () => {
 			expect(slotElement).toBeDefined();
 		});
 
-		it('should add action-items class if action-items is slotted', async function () {
+		it('should add .action-items class if action-items is slotted', async function () {
 			const slottedElement = document.createElement('div');
 			slottedElement.slot = 'action-items';
 			slottedElement.id = 'action-items';
@@ -661,6 +676,38 @@ describe('vwc-text-field', () => {
 				querySelector('.base')?.classList.contains('action-items');
 
 			expect(baseElementHasActionItemsClass).toEqual(true);
+		});
+
+		it('should have a slot name leading-action-items', async function () {
+			const slotElement = element.shadowRoot?.
+				querySelector('.base .fieldset .leading-items-wrapper  slot[name="leading-action-items"]');
+			expect(slotElement).toBeDefined();
+		});
+
+		it('should add .leading-action-items class to .base if leading-action-items is slotted', async function () {
+			const slottedElement = document.createElement('div');
+			slottedElement.slot = 'leading-action-items';
+			slottedElement.id = 'leading-action-items';
+			element.appendChild(slottedElement);
+			await elementUpdated(element);
+
+			const baseElementHasActionItemsClass = element.shadowRoot?.
+				querySelector('.base')?.classList.contains('leading-action-items');
+
+			expect(baseElementHasActionItemsClass).toEqual(true);
+		});
+
+		it('should remove .no-leading class to .base if leading-action-items is slotted', async function () {
+			const slottedElement = document.createElement('div');
+			slottedElement.slot = 'leading-action-items';
+			slottedElement.id = 'leading-action-items';
+			element.appendChild(slottedElement);
+			await elementUpdated(element);
+
+			const baseElementNoLeadingClass = element.shadowRoot?.
+				querySelector('.base')?.classList.contains('no-leading');
+
+			expect(baseElementNoLeadingClass).toEqual(false);
 		});
 	});
 
