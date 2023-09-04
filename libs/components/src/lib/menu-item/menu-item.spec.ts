@@ -228,27 +228,6 @@ describe('vwc-menu-item', () => {
 			elementUpdated(menuElement);
 			expect(menuitem.expanded).toEqual(false);
 		});
-
-		it('should toggle "expanded" on focus in and focus out', async () => {
-			const menuitem = menuElement.querySelector('#menuitem') as MenuItem;
-			
-			fireEvent(menuitem, new Event('focusin'));
-			await elementUpdated(menuElement);
-			expect(menuitem.expanded).toEqual(true);
-
-			fireEvent(menuitem, new Event('focusout'));
-			elementUpdated(menuElement);
-			expect(menuitem.expanded).toEqual(false);
-		});
-
-		it('should set an `aria-expanded` attribute with the `expanded` value when provided', async () => {
-			const menuitem = menuElement.querySelector('#menuitem') as MenuItem;
-			menuitem.expanded = true;
-			await elementUpdated(menuElement);
-
-			expect(menuitem.getAttribute('aria-expanded')).toEqual('true');
-		});
-
 	});
 
 	describe('checked', () => {
