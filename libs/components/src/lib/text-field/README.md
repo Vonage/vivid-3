@@ -197,7 +197,7 @@ In this example we need to call `.reportValidity()` to show the error because th
 <vwc-text-field id="field" pattern="123" value="5"></vwc-text-field>
 
 <script>
-  setTimeout(() => field.reportValidity());
+  setTimeout(() => field.reportValidity(), 0);
 </script>
 ```
 
