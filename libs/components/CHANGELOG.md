@@ -4,6 +4,13 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.34.1](https://github.com/Vonage/vivid-3/compare/vivid-v3.34.0...vivid-v3.34.1) (2023-09-04)
+
+
+### Bug Fixes
+
+* **data-grid:** fix the API ([9695eb1](https://github.com/Vonage/vivid-3/commit/9695eb131d041b11851f94bbebd541af68a41af9))
+
 ## [3.34.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.33.0...vivid-v3.34.0) (2023-09-04)
 
 
