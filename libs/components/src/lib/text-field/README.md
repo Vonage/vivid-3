@@ -191,7 +191,7 @@ Use `--text-field-inline-end-padding` variable to set the text-field inline-end 
 
 You can validate the text field like any other native `input`.
 Here's an example using `pattern`; its required pattern is `123` but we set its value to `5`, which is not of that pattern.
-In this example we need call `.reportValidity()` to show the error because the change was not done by a user.
+In this example we need to call `.reportValidity()` to show the error because the change was not done by a user.
 
 ```html preview
 <vwc-text-field id="field" pattern="123" value="5"></vwc-text-field>
