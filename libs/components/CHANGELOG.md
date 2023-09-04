@@ -4,6 +4,22 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.34.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.33.0...vivid-v3.34.0) (2023-09-04)
+
+
+### Features
+
+* **date-picker:** add min and max attributes (VIV-1273) ([#1353](https://github.com/Vonage/vivid-3/issues/1353)) ([a2df190](https://github.com/Vonage/vivid-3/commit/a2df190a60f82597987168c53dcc62feeb23ee88))
+* **listbox:** add shape and orientation (VIV-863) ([#1345](https://github.com/Vonage/vivid-3/issues/1345)) ([a8e2297](https://github.com/Vonage/vivid-3/commit/a8e2297eef3ca98676490ba2f2b6b3e59487e133))
+* **text-field:** leading action-items slot (VIV-1239)  ([#1351](https://github.com/Vonage/vivid-3/issues/1351)) ([6705702](https://github.com/Vonage/vivid-3/commit/6705702faa6759e4f3795b9d00abbc7c6aa7e94a))
+
+
+### Bug Fixes
+
+* **menu-item:** add default menuitem role (VIV-1219) ([#1360](https://github.com/Vonage/vivid-3/issues/1360)) ([ddd25f9](https://github.com/Vonage/vivid-3/commit/ddd25f953c288d036263b7efe39fed912d1627b9))
+* **menu:** hide body if no menu-items are slotted (VIV-1269) ([#1355](https://github.com/Vonage/vivid-3/issues/1355)) ([c031c79](https://github.com/Vonage/vivid-3/commit/c031c79768a0c0079dc61fd01eed470b5773410b))
+* **menu:** set inline-size of max-content (VIV-1255) ([#1313](https://github.com/Vonage/vivid-3/issues/1313)) ([772f624](https://github.com/Vonage/vivid-3/commit/772f624d63aa5e7ddd134dc84ebbded54a899ae6))
+
 ## [3.33.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.32.0...vivid-v3.33.0) (2023-08-24)
 
 
