@@ -78,7 +78,6 @@ export function formElements<
 		}
 
 		#handleInvalidEvent = () => {
-			// On invalid event (i.e. validation is requested by user action or programmatically), error should always show
 			this.#forceErrorDisplay = true;
 			this.validate();
 		};
@@ -91,10 +90,10 @@ export function formElements<
 		formResetCallback() {
 			this.#forceErrorDisplay = false;
 
-			// super.formResetCallback will reset the value (triggering validate) and clear dirtyValue afterward
 			super.formResetCallback();
 
-			// Therefore we need to call validate again now that dirtyValue is false
+			// super.formResetCallback will reset the value, which triggers validate(), and only afterward clear dirtyValue
+			// Therefore, we need to validate again now that dirtyValue has changed
 			this.validate();
 		}
 
@@ -183,28 +182,25 @@ export function errorText<
 >(constructor: T) {
 	class Decorated extends constructor {
 		@attr({ attribute: 'error-text' }) errorText?: string;
-		#shouldValidate = true;
+		#blockValidateCalls = false;
 
 		constructor(...args: any[]) {
 			super(...args);
 			this._validate = this.validate;
 			this.validate = () => {
-				if (this.#shouldValidate) this._validate();
+				if (!this.#blockValidateCalls) this._validate();
 			};
 		}
 
 		errorTextChanged(_: string, newErrorText: string | undefined) {
 			if (newErrorText) {
-				// While error-text is set, force the error
 				this.setValidity({ customError: true }, newErrorText, this.control);
 				this.errorValidationMessage = newErrorText;
 
-				// Then prevent further .validate() calls from changing it in the future
-				this.#shouldValidate = false;
+				this.#blockValidateCalls = true;
 			} else {
-				// Clear error and allow .validate() calls again
 				this.setValidity({ customError: false }, '', this.control);
-				this.#shouldValidate = true;
+				this.#blockValidateCalls = false;
 
 				// Call now to restore potential error
 				this.validate();
