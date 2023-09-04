@@ -89,15 +89,18 @@ export class MenuItem extends FastMenuItem {
 
 			case 'ArrowRight':
 				//open/focus on submenu
-				this.expanded && this.#submenu
-					? this.#submenu.focus()
-					: this.show();
-				return false;
+				if(this.expanded && this.#submenu){
+					this.#submenu.focus();
+					this.show();
+					return false;
+				}
+				break;
 
 			case 'Escape':
 				// close submenu
 				if (this.expanded) {
 					this.hide();
+					this.focus();
 					return false;
 				}
 				break;
@@ -106,8 +109,10 @@ export class MenuItem extends FastMenuItem {
 				//close submenu
 				if (this.expanded) {
 					this.hide();
+					this.focus();
 					return false;
 				}
+				break;
 		}
 
 		return true;
