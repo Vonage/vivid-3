@@ -1,10 +1,10 @@
-import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import '.';
-import {FoundationElementRegistry} from '@microsoft/fast-foundation';
+import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import { fireEvent } from '@testing-library/dom';
 import { Icon } from '../icon/icon';
-import {MenuItem, MenuItemRole} from './menu-item';
+import { MenuItem, MenuItemRole } from './menu-item';
 import { menuItemDefinition } from './definition';
 
 
@@ -49,6 +49,12 @@ describe('vwc-menu-item', () => {
 	});
 
 	describe('role', () => {
+		it('should have menuitem role be default', async () => {
+			element.setAttribute('role', '');
+			await elementUpdated(element);
+			expect(element.getAttribute('role')).toEqual(MenuItemRole.menuitem);
+		});
+
 		it('should reflect the role property', async () => {
 			const role = MenuItemRole.menuitem;
 			element.role = role;
@@ -299,7 +305,7 @@ describe('vwc-menu-item', () => {
 		});
 	});
 
-	describe('slot', ()=> {
+	describe('slot', () => {
 
 		it('should render slot', async function () {
 			const metaSlotElement = element.shadowRoot?.querySelector('.base slot[name="meta"]');
