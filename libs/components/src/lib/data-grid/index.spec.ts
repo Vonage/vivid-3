@@ -330,7 +330,7 @@ describe('data grid integration tests', () => {
 				element.selectionMode = DataGridSelectionMode.multiCell;
 				const cell1 = getRowCell(1, 1);
 				const cell2 = getRowCell(2, 1);
-
+				console.log('saaa');
 				cell1.dispatchEvent(new KeyboardEvent('keydown', { ctrlKey: true, key: 'Enter', bubbles: true, composed: true }));
 				cell2.dispatchEvent(new KeyboardEvent('keydown', { ctrlKey: true, key: ' ', bubbles: true, composed: true }));
 				await elementUpdated(element);
