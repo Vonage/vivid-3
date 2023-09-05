@@ -85,27 +85,13 @@ export class MenuItem extends FastMenuItem {
 		switch (e.key) {
 			case keyEnter:
 			case keySpace:
-				this.show();
-				if (this.#submenu) this.#submenu.focus();
-				return false;
-
 			case keyArrowRight:
-				//open/focus on submenu
 				this.show();
 				if (this.#submenu) this.#submenu.focus();
 				return false;
 
 			case keyEscape:
-				// close submenu
-				if (this.expanded) {
-					this.hide();
-					this.focus();
-					return false;
-				}
-				break;
-
 			case keyArrowLeft:
-				//close submenu
 				if (this.expanded) {
 					this.hide();
 					this.focus();
