@@ -53,7 +53,6 @@ export const MenuTemplate: (
 				</div>
 				<div
 					class="body"
-					slot="${x => (x.slot ? x.slot : x.isNestedMenu() ? 'submenu' : void 0)}"
 					role="menu"
 					@keydown="${(x, c) => x.handleMenuKeyDown(c.event as KeyboardEvent)}"
 					@focusout="${(x, c) => x.handleFocusOut(c.event as FocusEvent)}"
