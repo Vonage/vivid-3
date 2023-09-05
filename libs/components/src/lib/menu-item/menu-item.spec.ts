@@ -227,6 +227,24 @@ describe('vwc-menu-item', () => {
 			elementUpdated(menuElement);
 			expect(menuitem.expanded).toEqual(false);
 		});
+
+		it('should keep expanded on mouseover when submenu already open', async () => {
+			const menuitem = menuElement.querySelector('#menuitem') as MenuItem;
+			menuitem.expanded = true;
+
+			fireEvent(menuitem, new Event('mouseover'));
+			await elementUpdated(menuElement);
+			expect(menuitem.expanded).toEqual(true);
+		});
+
+		it('should keep closed on mouseout when submenu already closed', async () => {
+			const menuitem = menuElement.querySelector('#menuitem') as MenuItem;
+			menuitem.expanded = false;
+
+			fireEvent(menuitem, new Event('mouseout'));
+			elementUpdated(menuElement);
+			expect(menuitem.expanded).toEqual(false);
+		});
 	});
 
 	describe('checked', () => {

@@ -128,20 +128,18 @@ export class MenuItem extends FastMenuItem {
 	 * @internal
 	 */
 	@observable metaSlottedContent?: HTMLElement[];
-	@observable slottedSubmenu?: HTMLElement[];
+	@observable slottedSubmenu?: Menu[];
 
-	slottedSubmenuChanged(_oldValue: HTMLElement[], newValue: HTMLElement[]) {
+	slottedSubmenuChanged(_oldValue: Menu[], newValue: Menu[]) {
 		this.hasSubMenu = newValue.length > 0;
 		if (!this.hasSubMenu) {
 			return;
 		}
 
 		for (const submenu of newValue) {
-			if (submenu instanceof Menu) {
-				this.#submenu = submenu;
-				this.#submenu.anchor = this as MenuItem;
-				this.#submenu.placement = 'right-start';
-			}
+			this.#submenu = submenu as Menu;
+			this.#submenu.anchor = this as MenuItem;
+			this.#submenu.placement = 'right-start';
 		}
 	}
 }
