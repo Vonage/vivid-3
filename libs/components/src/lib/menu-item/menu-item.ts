@@ -86,13 +86,13 @@ export class MenuItem extends FastMenuItem {
 			case keyEnter:
 			case keySpace:
 				this.show();
-				this.#submenu?.focus();
+				if (this.#submenu) this.#submenu.focus();
 				return false;
 
 			case keyArrowRight:
 				//open/focus on submenu
 				this.show();
-				this.#submenu?.focus();
+				if (this.#submenu) this.#submenu.focus();
 				return false;
 
 			case keyEscape:

@@ -341,18 +341,11 @@ describe('vwc-menu-item', () => {
 		beforeEach(async function () {
 			menuElement = (await fixture(
 				`<${MENU_TAG} open>
-					<${COMPONENT_TAG} id="menuitem1" text="Menu item 1">
+					<${COMPONENT_TAG} id="menuitem" text="Menu item 1">
 						<${MENU_TAG} slot="submenu">
 							<${COMPONENT_TAG} text="Menu item 1.1"></${COMPONENT_TAG}>
 							<${COMPONENT_TAG} text="Menu item 1.2"></${COMPONENT_TAG}>
 							<${COMPONENT_TAG} text="Menu item 1.3"></${COMPONENT_TAG}>
-						</${MENU_TAG}>
-					</${COMPONENT_TAG}>
-					<${COMPONENT_TAG} id="menuitem2" text="Menu item 2">
-						<${MENU_TAG} slot="submenu">
-							<${COMPONENT_TAG} text="Menu item 2.1"></${COMPONENT_TAG}>
-							<${COMPONENT_TAG} text="Menu item 2.2"></${COMPONENT_TAG}>
-							<${COMPONENT_TAG} text="Menu item 2.3"></${COMPONENT_TAG}>
 						</${MENU_TAG}>
 					</${COMPONENT_TAG}>
 				</${MENU_TAG}>`
@@ -361,8 +354,8 @@ describe('vwc-menu-item', () => {
 			await elementUpdated(menuElement);
 		});
 
-		it('should expand fist menuitem on ArrowRight and close on ArrowLeft', async () => {
-			const menuitem = menuElement.querySelector('#menuitem1') as MenuItem;
+		it('should expand first menuitem on ArrowRight and close on ArrowLeft', async () => {
+			const menuitem = menuElement.querySelector('#menuitem') as MenuItem;
 
 			menuitem.focus();
 			menuitem.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
@@ -376,8 +369,8 @@ describe('vwc-menu-item', () => {
 			expect(menuitem.expanded).toEqual(false);
 		});
 		
-		it('should expand fist menuitem on Enter/Space and close on Escape', async () => {
-			const menuitem = menuElement.querySelector('#menuitem1') as MenuItem;
+		it('should expand first menuitem on Enter/Space and close on Escape', async () => {
+			const menuitem = menuElement.querySelector('#menuitem') as MenuItem;
 
 			menuitem.focus();
 			menuitem.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
@@ -395,6 +388,38 @@ describe('vwc-menu-item', () => {
 
 			await elementUpdated(menuElement);
 			expect(menuitem.expanded).toEqual(true);
+		});
+
+		it('should keep closed on keydown if not expanded', async () => {
+			const menuitem = menuElement.querySelector('#menuitem') as MenuItem;
+
+			menuitem.expanded = false;
+			menuitem.focus();
+			menuitem.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft' }));
+
+			await elementUpdated(menuElement);
+			expect(menuitem.expanded).toEqual(false);
+
+			menuitem.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+
+			await elementUpdated(menuElement);
+			expect(menuitem.expanded).toEqual(false);
+		});
+
+		it('should keep closed on ArrowDown and ArrowUp', async () => {
+			const menuitem = menuElement.querySelector('#menuitem') as MenuItem;
+
+			menuitem.expanded = false;
+			menuitem.focus();
+			menuitem.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+
+			await elementUpdated(menuElement);
+			expect(menuitem.expanded).toEqual(false);
+
+			menuitem.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp' }));
+
+			await elementUpdated(menuElement);
+			expect(menuitem.expanded).toEqual(false);
 		});
 	});
 });
