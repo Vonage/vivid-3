@@ -48,15 +48,14 @@ export class AffixIconWithTrailing extends AffixIcon {
  * @public
  */
 export const affixIconTemplateFactory: (context: ElementDefinitionContext, withWrapper?: boolean) =>
-(icon?: string) => ViewTemplate<AffixIcon> | null = (context: ElementDefinitionContext, withWrapper = true) => {
+(icon?: string) => ViewTemplate<AffixIcon> | null = (context: ElementDefinitionContext) => {
 	const iconTag = context.tagFor(Icon);
 	return (icon?: string) => {
 		if (!icon) {
-			return null;
+			return html`<slot name="icon"></slot>`;
 		}
 
 		const iconTemplate = html`<${iconTag} :name="${() => icon}"></${iconTag}>`;
-
-		return withWrapper ? html`<span class="icon">${iconTemplate}</span>` : iconTemplate;
+		return html`<span class="icon">${iconTemplate}</span>`;
 	};
 };

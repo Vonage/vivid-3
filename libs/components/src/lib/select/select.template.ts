@@ -43,15 +43,13 @@ function renderPlaceholder(context: ElementDefinitionContext) {
 }
 
 function selectValue(context: ElementDefinitionContext) {
-	const affixIconTemplate = affixIconTemplateFactory(context, false);
+	const affixIconTemplate = affixIconTemplateFactory(context);
 	const focusTemplate = focusTemplateFactory(context);
 	return html<Select>`
 		<div class="control ${getStateClasses}" ${ref('_anchor')}
 			id="control" ?disabled="${x => x.disabled}">
 			<div class="selected-value">
-				<slot name="icon">
-					${when(x => x.icon, html<Select>`${x => affixIconTemplate(x.icon)}`)}
-				</slot>
+					${_ => html<Select>`${x => affixIconTemplate(x.icon)}`}
 				<span class="text">${x => x.displayValue}</span>
 				<slot name="meta" ${slotted('metaSlottedContent')}></slot>
 			</div>
@@ -88,7 +86,7 @@ function renderControl(context: ElementDefinitionContext) {
 						?hidden="${x => (x.collapsible ? !x.open : false)}"
 						${ref('listbox')}>
 						${when(x => x.placeholder, renderPlaceholder(context))}
-						${when(x => x.multiple, focusTemplate)}		
+						${when(x => x.multiple, focusTemplate)}
 						<slot
 							${slotted({ filter: Listbox.slottedOptionFilter as any, flatten: true, property: 'slottedOptions' })}>
 						</slot>
@@ -133,5 +131,6 @@ export const SelectTemplate: (
 				${renderControl(context)}
 		</template>`;
 };
+
 
 // TODO::change the css variable according to select width
