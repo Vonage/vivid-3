@@ -336,4 +336,65 @@ describe('vwc-menu-item', () => {
 
 		});
 	});
+
+	describe('keydown', () => {
+		beforeEach(async function () {
+			menuElement = (await fixture(
+				`<${MENU_TAG} open>
+					<${COMPONENT_TAG} id="menuitem1" text="Menu item 1">
+						<${MENU_TAG} slot="submenu">
+							<${COMPONENT_TAG} text="Menu item 1.1"></${COMPONENT_TAG}>
+							<${COMPONENT_TAG} text="Menu item 1.2"></${COMPONENT_TAG}>
+							<${COMPONENT_TAG} text="Menu item 1.3"></${COMPONENT_TAG}>
+						</${MENU_TAG}>
+					</${COMPONENT_TAG}>
+					<${COMPONENT_TAG} id="menuitem2" text="Menu item 2">
+						<${MENU_TAG} slot="submenu">
+							<${COMPONENT_TAG} text="Menu item 2.1"></${COMPONENT_TAG}>
+							<${COMPONENT_TAG} text="Menu item 2.2"></${COMPONENT_TAG}>
+							<${COMPONENT_TAG} text="Menu item 2.3"></${COMPONENT_TAG}>
+						</${MENU_TAG}>
+					</${COMPONENT_TAG}>
+				</${MENU_TAG}>`
+			)) as Menu;
+
+			await elementUpdated(menuElement);
+		});
+
+		it('should expand fist menuitem on ArrowRight and close on ArrowLeft', async () => {
+			const menuitem = menuElement.querySelector('#menuitem1') as MenuItem;
+
+			menuitem.focus();
+			menuitem.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+
+			await elementUpdated(menuElement);
+			expect(menuitem.expanded).toEqual(true);
+
+			menuitem.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft' }));
+
+			await elementUpdated(menuElement);
+			expect(menuitem.expanded).toEqual(false);
+		});
+		
+		it('should expand fist menuitem on Enter/Space and close on Escape', async () => {
+			const menuitem = menuElement.querySelector('#menuitem1') as MenuItem;
+
+			menuitem.focus();
+			menuitem.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+
+			await elementUpdated(menuElement);
+			expect(menuitem.expanded).toEqual(true);
+
+			menuitem.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+
+			await elementUpdated(menuElement);
+			expect(menuitem.expanded).toEqual(false);
+
+			menuitem.focus();
+			menuitem.dispatchEvent(new KeyboardEvent('keydown', { key: ' ' }));
+
+			await elementUpdated(menuElement);
+			expect(menuitem.expanded).toEqual(true);
+		});
+	});
 });

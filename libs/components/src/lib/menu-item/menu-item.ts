@@ -82,10 +82,6 @@ export class MenuItem extends FastMenuItem {
 	 * @internal
 	 */
 	override handleMenuItemKeyDown = (e: KeyboardEvent): boolean => {
-		if (e.defaultPrevented) {
-			return false;
-		}
-
 		switch (e.key) {
 			case keyEnter:
 			case keySpace:
@@ -115,8 +111,8 @@ export class MenuItem extends FastMenuItem {
 					this.focus();
 					return false;
 				}
+				break;
 		}
-
 		return true;
 	};
 
