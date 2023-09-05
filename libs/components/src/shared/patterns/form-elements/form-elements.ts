@@ -194,17 +194,24 @@ export function errorText<
 
 		errorTextChanged(_: string, newErrorText: string | undefined) {
 			if (newErrorText) {
-				this.setValidity({ customError: true }, newErrorText, this.control);
-				this.errorValidationMessage = newErrorText;
-
-				this.#blockValidateCalls = true;
+				this.#forceCustomError(newErrorText);
 			} else {
-				this.setValidity({ customError: false }, '', this.control);
-				this.#blockValidateCalls = false;
-
-				// Call now to restore potential error
-				this.validate();
+				this.#clearCustomErrorAndRevalidate();
 			}
+		}
+
+		#forceCustomError(errorMessage: string) {
+			this.setValidity({ customError: true }, errorMessage, this.control);
+			this.errorValidationMessage = errorMessage;
+
+			this.#blockValidateCalls = true;
+		}
+
+		#clearCustomErrorAndRevalidate() {
+			this.setValidity({ customError: false }, '', this.control);
+			this.#blockValidateCalls = false;
+
+			this.validate();
 		}
 	}
 
