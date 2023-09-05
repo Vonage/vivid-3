@@ -272,7 +272,7 @@ export const DatePickerTemplate: (
 										 icon="calendar-line"
 										 label="${(x) => x.label}"
 										 helper-text="${(x) => x.helperText}"
-										 error-text="${(x) => x._textFieldErrorText}"
+										 error-text="${(x) => x.errorValidationMessage}"
 										 placeholder="${(x) => x.locale.datePicker.dateFormatPlaceholder}"
 										 current-value="${(x) => x._presentationValue}"
 										 ?disabled="${(x) => x.disabled}"
@@ -280,6 +280,7 @@ export const DatePickerTemplate: (
 										 @input="${(x, c) => x._onTextFieldInput(c.event)}"
 										 @change="${(x) => x._onTextFieldChange()}"
 										 @focus="${(x) => x._onTextFieldFocus()}"
+										 @blur="${(x) => x._onTextFieldBlur()}"
 										 @click="${(x) => x._onTextFieldClick()}"
 										 @keydown="${(x, c) => x._onTextFieldKeydown(c.event as KeyboardEvent)}"
 		></${textFieldTag}>

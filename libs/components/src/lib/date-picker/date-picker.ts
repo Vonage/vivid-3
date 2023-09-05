@@ -1,4 +1,4 @@
-import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
+import { applyMixins } from '@microsoft/fast-foundation';
 import {
 	attr,
 	DOM,
@@ -7,7 +7,14 @@ import {
 	volatile,
 } from '@microsoft/fast-element';
 import type { TextField } from '../text-field/text-field';
-import { Localized } from '../../shared/patterns';
+import {
+	type ErrorText,
+	errorText,
+	type FormElement,
+	FormElementHelperText,
+	formElements,
+	Localized,
+} from '../../shared/patterns';
 import {
 	addDays,
 	compareDateStr,
@@ -31,14 +38,15 @@ import {
 } from './calendar/presentationDate';
 import { buildMonthPickerGrid, MonthsPerRow } from './calendar/monthPickerGrid';
 import { yearOfDate } from './calendar/year';
+import { FormAssociatedDatePicker } from './date-picker.form-associated';
 
-/// Converter ensures that the value is always a valid date string or null
+/// Converter ensures that the value is always a valid date string or empty string
 const ValidDateFilter: ValueConverter = {
 	fromView: (value: string) => {
 		if (value && isValidDateStr(value)) {
 			return value;
 		}
-		return null;
+		return '';
 	},
 	toView(value: string) {
 		return value;
@@ -50,34 +58,10 @@ const ValidDateFilter: ValueConverter = {
  *
  * @public
  */
-export class DatePicker extends FoundationElement {
+@errorText
+@formElements
+export class DatePicker extends FormAssociatedDatePicker {
 	// --- Attributes ---
-	/**
-	 * The label text of the date-picker.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: label
-	 */
-	@attr label?: string;
-
-	/**
-	 * The helper-text text of the date-picker.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: helper-text
-	 */
-	@attr({ attribute: 'helper-text' }) helperText?: string;
-
-	/**
-	 * The error-text text of the date-picker.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: error-text
-	 */
-	@attr({ attribute: 'error-text' }) errorText?: string;
 
 	/**
 	 * The earliest accepted date of the date-picker.
@@ -87,7 +71,17 @@ export class DatePicker extends FoundationElement {
 	 * HTML Attribute: min
 	 */
 	@attr({ converter: ValidDateFilter })
-		min: DateStr | null = null;
+		min: string;
+
+	/**
+	 * @internal
+	 */
+	minChanged(_: string, newMin: string) {
+		if (this.proxy instanceof HTMLInputElement) {
+			this.proxy.min = newMin;
+			this.validate();
+		}
+	}
 
 	/**
 	 * The latest accepted date of the date-picker.
@@ -97,24 +91,49 @@ export class DatePicker extends FoundationElement {
 	 * HTML Attribute: max
 	 */
 	@attr({ converter: ValidDateFilter })
-		max: DateStr | null = null;
+		max: string;
 
 	/**
-	 * The currently selected date of the date-picker.
+	 * @internal
+	 */
+	maxChanged(_: string, newMax: string) {
+		if (this.proxy instanceof HTMLInputElement) {
+			this.proxy.max = newMax;
+			this.validate();
+		}
+	}
+
+	/**
+	 * The initial value of the date-picker.
 	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: value
 	 */
-	@attr({ converter: ValidDateFilter })
-		value: DateStr | null = null;
+	@attr({ attribute: 'value', converter: ValidDateFilter })
+	override initialValue!: string;
+
+	/**
+	 * The current value of the date-picker.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: current-value
+	 */
+	@attr({ attribute: 'current-value', converter: ValidDateFilter })
+	override currentValue!: string;
 
 	/**
 	 * @internal
 	 */
-	valueChanged() {
-		this._internalValidationError = null;
-		if (this.value !== null) {
+	override valueChanged(previous: string, next: string) {
+		super.valueChanged(previous, next);
+		if (this.value) {
+			if (!isValidDateStr(this.value)) {
+				this.value = '';
+				return;
+			}
+
 			this._presentationValue = formatPresentationDate(
 				this.value,
 				this.locale.datePicker
@@ -126,20 +145,11 @@ export class DatePicker extends FoundationElement {
 		}
 	}
 
-	#updateValueDueToUserInteraction(newValue: DateStr | null) {
+	#updateValueDueToUserInteraction(newValue: DateStr) {
 		this.value = newValue;
 		this.$emit('change');
 		this.$emit('input');
 	}
-
-	/**
-	 * Whether the date-picker is disabled.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: disabled
-	 */
-	@attr({ mode: 'boolean' }) disabled = false;
 
 	/**
 	 * Whether the date-picker is readonly.
@@ -147,7 +157,14 @@ export class DatePicker extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: readonly
 	 */
-	@attr({ attribute: 'readonly', mode: 'boolean' }) readOnly = false;
+	@attr({ attribute: 'readonly', mode: 'boolean' })
+		readOnly: boolean = false;
+	protected readOnlyChanged(): void {
+		if (this.proxy instanceof HTMLInputElement) {
+			this.proxy.readOnly = this.readOnly;
+			this.validate();
+		}
+	}
 
 	// --- Refs ---
 	/**
@@ -194,8 +211,8 @@ export class DatePicker extends FoundationElement {
 	 */
 	_isDateInValidRange(date: DateStr) {
 		return (
-			(this.min === null || compareDateStr(date, this.min) >= 0) &&
-			(this.max === null || compareDateStr(date, this.max) <= 0)
+			(!this.min || compareDateStr(date, this.min) >= 0) &&
+			(!this.max || compareDateStr(date, this.max) <= 0)
 		);
 	}
 
@@ -217,7 +234,14 @@ export class DatePicker extends FoundationElement {
 		);
 	}
 
-	// --- Callbacks ---
+	// --- Core ---
+
+	constructor() {
+		super();
+		this.value = '';
+		this.min = '';
+		this.max = '';
+	}
 
 	override connectedCallback() {
 		super.connectedCallback();
@@ -229,6 +253,22 @@ export class DatePicker extends FoundationElement {
 		super.disconnectedCallback();
 
 		document.removeEventListener('click', this.#dismissOnClickOutside);
+	}
+
+	override validate(anchor?: HTMLElement) {
+		// When error-text is present, validate() is skipped and the error-text is used instead
+
+		// Otherwise, super.validate() will use validity of the proxy
+		// We can use .setCustomValidity to force any custom error on it here
+		if (this.proxy) {
+			if (this.#isPresentationValueInvalid()) {
+				this.proxy.setCustomValidity(this.locale.datePicker.invalidDateError);
+			} else {
+				this.proxy.setCustomValidity('');
+			}
+		}
+
+		super.validate(anchor);
 	}
 
 	// --- Popup ---
@@ -325,18 +365,22 @@ export class DatePicker extends FoundationElement {
 	 * @internal
 	 */
 	@observable _presentationValue = '';
+	_presentationValueChanged() {
+		this.dirtyValue = true;
+		this.validate();
+	}
 
-	/**
-	 * @internal
-	 */
-	@observable private _internalValidationError: string | null = null;
+	#isPresentationValueInvalid() {
+		if (this._presentationValue === '') {
+			return false;
+		}
 
-	/**
-	 * @internal
-	 */
-	@volatile
-	get _textFieldErrorText() {
-		return this.errorText || this._internalValidationError || '';
+		try {
+			parsePresentationDate(this._presentationValue, this.locale.datePicker);
+			return false;
+		} catch (_) {
+			return true;
+		}
 	}
 
 	/**
@@ -345,7 +389,6 @@ export class DatePicker extends FoundationElement {
 	_onTextFieldInput(event: Event) {
 		const textField = event.currentTarget as TextField;
 		this._presentationValue = textField.value;
-		this._internalValidationError = null;
 	}
 
 	/**
@@ -353,7 +396,7 @@ export class DatePicker extends FoundationElement {
 	 */
 	_onTextFieldChange() {
 		if (this._presentationValue === '') {
-			this.#updateValueDueToUserInteraction(null);
+			this.#updateValueDueToUserInteraction('');
 			return;
 		}
 
@@ -362,7 +405,6 @@ export class DatePicker extends FoundationElement {
 				parsePresentationDate(this._presentationValue, this.locale.datePicker)
 			);
 		} catch (_) {
-			this._internalValidationError = this.locale.datePicker.invalidDateError;
 			return;
 		}
 	}
@@ -372,6 +414,14 @@ export class DatePicker extends FoundationElement {
 	 */
 	_onTextFieldFocus() {
 		this.#openPopupIfPossible();
+		this.$emit('focus', undefined, { bubbles: false });
+	}
+
+	/**
+	 * @internal
+	 */
+	_onTextFieldBlur() {
+		this.$emit('blur', undefined, { bubbles: false });
 	}
 
 	/**
@@ -583,7 +633,7 @@ export class DatePicker extends FoundationElement {
 		return (
 			candidates.find(
 				(date) =>
-					date !== null &&
+					date &&
 					areMonthsEqual(monthOfDate(date), this._selectedMonth) &&
 					this._isDateInValidRange(date)
 			) ?? null
@@ -717,10 +767,14 @@ export class DatePicker extends FoundationElement {
 	 * @internal
 	 */
 	_onClearClick() {
-		this.#updateValueDueToUserInteraction(null);
+		this.#updateValueDueToUserInteraction('');
 		this.#closePopup();
 	}
 }
 
-export interface DatePicker extends Localized {}
-applyMixins(DatePicker, Localized);
+export interface DatePicker
+	extends Localized,
+	ErrorText,
+	FormElement,
+	FormElementHelperText {}
+applyMixins(DatePicker, Localized, FormElementHelperText);
