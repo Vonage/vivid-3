@@ -73,7 +73,7 @@ export function formElements<
 		}
 
 		connectedCallback() {
-			super.connectedCallback?.();
+			super.connectedCallback();
 			this.proxy.addEventListener('invalid', this.#handleInvalidEvent);
 		}
 
@@ -83,7 +83,7 @@ export function formElements<
 		};
 
 		disconnectedCallback() {
-			super.disconnectedCallback?.();
+			super.disconnectedCallback();
 			this.proxy.removeEventListener('invalid', this.#handleInvalidEvent);
 		}
 
