@@ -108,6 +108,8 @@ Use the `placement` attribute to set the placement of the popup around the ancho
 - Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
 - Default: `''`
 
+You may experience positioning inaccuracies when the `popup` is nested inside an elevated wrapper ([card](../../components/card)/[dialog](../../components/dialog)). The discrepancy arises from using the `filter` property to create shadows on the elevated wrapper. This issue can be resolved by not placing the `popup` inside an elevated wrapper.
+
 ```html preview center
 <style>
   .square {

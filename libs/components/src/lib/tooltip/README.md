@@ -49,6 +49,8 @@ Use the `placement` attribute to set the placement of the tooltip around the anc
 - Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
 - Default: `'left'`
 
+You may experience positioning inaccuracies when the `tooltip` is nested inside an elevated wrapper ([card](../../components/card)/[dialog](../../components/dialog)). The discrepancy arises from using the `filter` property to create shadows on the elevated wrapper. This issue can be resolved by not placing the `tooltip` inside an elevated wrapper.
+
 ```html preview center
 <vwc-button id="anchor" appearance='outlined' label='This is an anchor'></vwc-button>
 <vwc-tooltip anchor="anchor" text="right" placement="right"></vwc-tooltip>
@@ -87,3 +89,4 @@ Tooltip component is a low level element, unaware of its document context, but i
 A common practice used in apps / frameworks to promote a tooltip component to top other elements z-axis, is to utilise a service that dynamically appends a tooltip component to the end of the body element, when called for.
 
 This helps ensure elements don't render over top a tooltip undesirebly.
+
