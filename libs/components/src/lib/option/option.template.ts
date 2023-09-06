@@ -5,7 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { affixIconTemplateFactory } from '../../shared/patterns/affix';
+import { AFFIX_ICON_SLOTTED_STATE, affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { focusTemplateFactory } from '../../shared/patterns';
 import type { ListboxOption } from './option';
 
@@ -23,7 +23,7 @@ export const ListboxOptionTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<ListboxOption> = (context: ElementDefinitionContext) => {
-	const affixIconTemplate = affixIconTemplateFactory(context, false);
+	const affixIconTemplate = affixIconTemplateFactory(context);
 	const focusTemplate = focusTemplateFactory(context);
 
 	return html`
@@ -36,9 +36,7 @@ export const ListboxOptionTemplate: (
 		role="option">
 		<div class="${getClasses}">
 			${() => focusTemplate}
-			<slot name="icon">
-				${when(x => x.icon, html<ListboxOption>`${x => affixIconTemplate(x.icon)}`)}
-			</slot>
+			${x => affixIconTemplate(x.icon, AFFIX_ICON_SLOTTED_STATE.SLOTTED)}
 			${when(x => x.text, html`<div class="text">${x => x.text}</div>`)}
 		</div>
 	</template>
