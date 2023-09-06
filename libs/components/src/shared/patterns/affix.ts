@@ -39,24 +39,35 @@ export class AffixIconWithTrailing extends AffixIcon {
 	}) iconTrailing = false;
 }
 
+export const AFFIX_ICON_SLOTTED_STATE = {
+	SLOTTED: false,
+	SPAN_WRAPPED_ICON: true
+};
+
 /**
  * The template for the prefixed element.
  * For use with {@link AffixIcon}
  *
  * @param context - element definition context
- * @param withWrapper - wraps the icon in a span with class "icon", defaults to true
+ * @param slottedState - set the icon in a span with class "icon", defaults to false
  * @public
  */
-export const affixIconTemplateFactory: (context: ElementDefinitionContext, withWrapper?: boolean) =>
-(icon?: string) => ViewTemplate<AffixIcon> | null = (context: ElementDefinitionContext, withWrapper = true) => {
+export const affixIconTemplateFactory: (context: ElementDefinitionContext) =>
+(icon?: string, notSlotted?: boolean) => ViewTemplate<AffixIcon> | null = (context: ElementDefinitionContext) => {
+
 	const iconTag = context.tagFor(Icon);
-	return (icon?: string) => {
-		if (!icon) {
+	return (icon?: string, slottedState = AFFIX_ICON_SLOTTED_STATE.SPAN_WRAPPED_ICON) => {
+		if (!icon && !slottedState) {
+			return html`<slot name="icon"></slot>`;
+		}
+		if (!icon && slottedState) {
 			return null;
 		}
 
 		const iconTemplate = html`<${iconTag} :name="${() => icon}"></${iconTag}>`;
 
-		return withWrapper ? html`<span class="icon">${iconTemplate}</span>` : iconTemplate;
+
+		// eslint-disable-next-line max-len
+		return slottedState ? html`<span class="icon rachel">${iconTemplate}</span>` :  html`<slot class="icon slot" name="icon">${iconTemplate}</slot>`;
 	};
 };
