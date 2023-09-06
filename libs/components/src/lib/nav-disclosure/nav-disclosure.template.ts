@@ -23,7 +23,7 @@ export const NavDisclosureTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<NavDisclosure> = (context: ElementDefinitionContext) => {
-	const affixIconTemplate = affixIconTemplateFactory(context);
+	const affixIconTemplate = affixIconTemplateFactory(context, false);
 	const focusTemplate = focusTemplateFactory(context);
 	const iconTag = context.tagFor(Icon);
 

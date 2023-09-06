@@ -43,13 +43,13 @@ function renderPlaceholder(context: ElementDefinitionContext) {
 }
 
 function selectValue(context: ElementDefinitionContext) {
-	const affixIconTemplate = affixIconTemplateFactory(context);
+	const affixIconTemplate = affixIconTemplateFactory(context, false);
 	const focusTemplate = focusTemplateFactory(context);
 	return html<Select>`
 		<div class="control ${getStateClasses}" ${ref('_anchor')}
 			id="control" ?disabled="${x => x.disabled}">
 			<div class="selected-value">
-					${_ => html<Select>`${x => affixIconTemplate(x.icon)}`}
+				${x => affixIconTemplate(x.icon)}
 				<span class="text">${x => x.displayValue}</span>
 				<slot name="meta" ${slotted('metaSlottedContent')}></slot>
 			</div>
@@ -131,6 +131,5 @@ export const SelectTemplate: (
 				${renderControl(context)}
 		</template>`;
 };
-
 
 // TODO::change the css variable according to select width
