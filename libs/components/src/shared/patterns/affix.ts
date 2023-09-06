@@ -39,9 +39,9 @@ export class AffixIconWithTrailing extends AffixIcon {
 	}) iconTrailing = false;
 }
 
-export const AFFIX_ICON_SLOTTED_STATE = {
-	SLOTTED: false,
-	SPAN_WRAPPED_ICON: true
+export const ICON_WRAPPER = {
+	SLOT: false,
+	SPAN: true
 };
 
 /**
@@ -53,10 +53,10 @@ export const AFFIX_ICON_SLOTTED_STATE = {
  * @public
  */
 export const affixIconTemplateFactory: (context: ElementDefinitionContext) =>
-(icon?: string, notSlotted?: boolean) => ViewTemplate<AffixIcon> | null = (context: ElementDefinitionContext) => {
+(icon?: string, slottedState?: boolean) => ViewTemplate<AffixIcon> | null = (context: ElementDefinitionContext) => {
 
 	const iconTag = context.tagFor(Icon);
-	return (icon?: string, slottedState = AFFIX_ICON_SLOTTED_STATE.SPAN_WRAPPED_ICON) => {
+	return (icon?: string, slottedState = ICON_WRAPPER.SPAN) => {
 		if (!icon && !slottedState) {
 			return html`<slot name="icon"></slot>`;
 		}
@@ -66,8 +66,7 @@ export const affixIconTemplateFactory: (context: ElementDefinitionContext) =>
 
 		const iconTemplate = html`<${iconTag} :name="${() => icon}"></${iconTag}>`;
 
-
-		// eslint-disable-next-line max-len
-		return slottedState ? html`<span class="icon rachel">${iconTemplate}</span>` :  html`<slot class="icon slot" name="icon">${iconTemplate}</slot>`;
+		return slottedState ? html`<span class="icon">${iconTemplate}</span>`
+			:  html`<slot name="icon">${iconTemplate}</slot>`;
 	};
 };

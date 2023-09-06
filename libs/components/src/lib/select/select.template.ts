@@ -4,7 +4,7 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { Listbox } from '../listbox/listbox';
 import { Popup } from '../popup/popup';
 import { ListboxOption } from '../option/option';
-import { AFFIX_ICON_SLOTTED_STATE, affixIconTemplateFactory } from '../../shared/patterns/affix';
+import { affixIconTemplateFactory, ICON_WRAPPER } from '../../shared/patterns/affix';
 import { getFeedbackTemplate } from '../../shared/patterns';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
 import type { Select } from './select';
@@ -49,7 +49,7 @@ function selectValue(context: ElementDefinitionContext) {
 		<div class="control ${getStateClasses}" ${ref('_anchor')}
 			id="control" ?disabled="${x => x.disabled}">
 			<div class="selected-value">
-				${x => affixIconTemplate(x.icon, AFFIX_ICON_SLOTTED_STATE.SLOTTED)}
+				${x => affixIconTemplate(x.icon, ICON_WRAPPER.SLOT)}
 				<span class="text">${x => x.displayValue}</span>
 				<slot name="meta" ${slotted('metaSlottedContent')}></slot>
 			</div>
