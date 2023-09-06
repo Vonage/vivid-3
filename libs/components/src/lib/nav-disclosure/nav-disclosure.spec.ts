@@ -89,6 +89,23 @@ describe('vwc-nav-disclosure', () => {
 		});
 	});
 
+	describe('icon', () => {
+		it('should have an icon slot', async () => {
+			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
+		});
+
+		it('should have an icon when icon is set without slotted icon', async () => {
+			element.icon = 'home';
+			await elementUpdated(element);
+
+			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			expect(icon)
+				.toBeInstanceOf(Icon);
+			expect(icon?.name)
+				.toEqual('home');
+		});
+	});
+
 	describe('meta slot', () => {
 		it('should have meta slot', async () => {
 			expect(element.shadowRoot?.querySelector('slot[name="meta"]')).toBeTruthy();
