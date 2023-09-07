@@ -96,6 +96,7 @@
 		margin-inline: calc(var(#{tabs-variables.$tabs-tablist-gutter}) * -2);
 		pointer-events: none;
 		transition-property: opacity;
+		border-radius: 1px;
 	}
 
 	&:host([aria-selected="true"]) {
