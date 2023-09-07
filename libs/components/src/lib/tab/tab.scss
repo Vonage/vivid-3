@@ -90,13 +90,13 @@
 		position: absolute;
 		background: currentColor;
 		block-size: 2px;
+		border-radius: 1px;
 		content: "";
 		inline-size: calc(100% + var(#{tabs-variables.$tabs-tablist-gutter}) * 2);
 		inset-block-end: 0;
 		margin-inline: calc(var(#{tabs-variables.$tabs-tablist-gutter}) * -2);
 		pointer-events: none;
 		transition-property: opacity;
-		border-radius: 1px;
 	}
 
 	&:host([aria-selected="true"]) {
