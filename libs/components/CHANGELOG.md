@@ -4,6 +4,18 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.35.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.34.0...vivid-v3.35.0) (2023-09-06)
+
+
+### Features
+
+* **avatar:** add subtle appearance (VIV-1229) ([#1365](https://github.com/Vonage/vivid-3/issues/1365)) ([95eb886](https://github.com/Vonage/vivid-3/commit/95eb88698ecf80a11a37b7932ad15694103059a9))
+
+
+### Bug Fixes
+
+* **progress-ring:** add missing size attr (VIV-1298) ([#1363](https://github.com/Vonage/vivid-3/issues/1363)) ([71d501f](https://github.com/Vonage/vivid-3/commit/71d501ffd08af4256d82a03e45e29b07e74bfa44))
+
 ## [3.34.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.33.0...vivid-v3.34.0) (2023-09-04)
 
 
