@@ -14,6 +14,9 @@ export const menuDefinition = Menu.compose({
 	baseName: 'menu',
 	template: template as any,
 	styles,
+	shadowOptions: {
+		delegatesFocus: true,
+	},
 });
 
 

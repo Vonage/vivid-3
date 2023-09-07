@@ -4,7 +4,6 @@ import {
 	MenuItem as FastMenuItem,
 	MenuItemRole as FastMenuItemRole,
 } from '@microsoft/fast-foundation';
-import { keyArrowLeft, keyArrowRight, keyEnter, keyEscape, keySpace } from '@microsoft/fast-web-utilities/dist/key-codes';
 import { AffixIcon } from '../../shared/patterns/affix';
 import { Menu } from '../menu/menu';
 
@@ -38,72 +37,6 @@ export class MenuItem extends FastMenuItem {
 	@attr({ attribute: 'text-secondary' }) textSecondary?: string;
 
 	/**
-	 * Indicates if the menu item has submenu.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: hasSubmenu
-	 */
-	@attr({ mode: 'boolean' }) hasSubMenu?: boolean;
-
-	/**	
-	 * @internal
-	 * @remarks
-	 */
-	#submenu?: Menu;
-
-	/**
-	 * @internal
-	 */
-	show = () => {
-		if (this.disabled || !this.hasSubMenu || this.expanded) {
-			return;
-		}
-		this.expanded = true;
-		if (this.#submenu) {
-			this.#submenu.open = true;
-		}
-	};
-
-	/**
-	 * @internal
-	 */
-	hide = () => {
-		if (!this.hasSubMenu || !this.expanded) {
-			return;
-		}
-		this.expanded = false;
-		if (this.#submenu) {
-			this.#submenu.open = false;
-		}
-	};
-
-	/**
-	 * @internal
-	 */
-	override handleMenuItemKeyDown = (e: KeyboardEvent): boolean => {
-		switch (e.key) {
-			case keyEnter:
-			case keySpace:
-			case keyArrowRight:
-				this.show();
-				if (this.#submenu) this.#submenu.focus();
-				return false;
-
-			case keyEscape:
-			case keyArrowLeft:
-				if (this.expanded) {
-					this.hide();
-					this.focus();
-					return false;
-				}
-				break;
-		}
-		return true;
-	};
-
-
-	/**
 	 *
 	 * Slot observer:
 	 *
@@ -111,17 +44,31 @@ export class MenuItem extends FastMenuItem {
 	 */
 	@observable metaSlottedContent?: HTMLElement[];
 	@observable slottedSubmenu?: Menu[];
+	#submenuArray: Menu[] = [];
 
 	slottedSubmenuChanged(_oldValue: Menu[], newValue: Menu[]) {
-		this.hasSubMenu = newValue.length > 0;
-		if (!this.hasSubMenu) {
-			return;
+		this.#submenuArray = newValue;
+	}
+
+	constructor() {
+		super();
+		(this as any).updateSubmenu = () => this.#updateSubmenu();
+		this.addEventListener('expanded-change', this.#expandedChange);
+	}
+
+	#updateSubmenu() {
+		for (const submenu of this.#submenuArray) {
+			this.submenu = submenu as Menu;
+			(this.submenu as Menu).anchor = this as MenuItem;
+			(this.submenu as Menu).placement = 'right-start';
 		}
 
-		for (const submenu of newValue) {
-			this.#submenu = submenu as Menu;
-			this.#submenu.anchor = this as MenuItem;
-			this.#submenu.placement = 'right-start';
+		this.hasSubmenu = this.submenu === undefined ? false : true;
+	}
+
+	#expandedChange() {
+		if (this.hasSubmenu) {
+			(this.submenu as Menu).open = this.expanded;
 		}
 	}
 }

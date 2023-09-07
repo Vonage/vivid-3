@@ -1,6 +1,5 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import '.';
-import '../menu/menu';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { fireEvent } from '@testing-library/dom';
 import { Icon } from '../icon/icon';

@@ -69,23 +69,23 @@ export const MenuItemTemplate: (context: ElementDefinitionContext, definition: M
 	return html<MenuItem>`
 	<template
 		role="${x => (x.role ? x.role : MenuItemRole.menuitem)}"
-		aria-haspopup="${x => (x.hasSubMenu ? 'menu' : void 0)}"
+		aria-haspopup="${x => (x.hasSubmenu ? 'menu' : void 0)}"
 		aria-checked="${x => (x.role !== MenuItemRole.menuitem ? x.checked : void 0)}"
 		aria-disabled="${x => x.disabled}"
 		aria-expanded="${x => x.expanded}"
 		@keydown="${(x, c) => x.handleMenuItemKeyDown(c.event as KeyboardEvent)}"
 		@click="${handleClick}"
-		@mouseover="${(x) => x.show()}"
-		@mouseout="${(x) => x.hide()}"
+		@mouseover="${(x, c) => x.handleMouseOver(c.event as MouseEvent)}"
+        @mouseout="${(x, c) => x.handleMouseOut(c.event as MouseEvent)}"
 	>
 		<div class="${getClasses}">
 			${() => focusTemplate}
 			<slot name="meta" ${slotted('metaSlottedContent')}></slot>
-				${checkbox(context)}
-				${radio(context)}
-				${when(x => x.icon, html`<span class="decorative">${x => affixIconTemplate(x.icon)}</span>`)}
-				${text()}
-				${when(x => x.hasSubMenu, html`<${iconTag} name="chevron-right-line"></${iconTag}>`)}
+			${checkbox(context)}
+			${radio(context)}
+			${when(x => x.icon, html`<span class="decorative">${x => affixIconTemplate(x.icon)}</span>`)}
+			${text()}
+			${when(x => x.hasSubmenu, html`<${iconTag} name="chevron-right-line"></${iconTag}>`)}
 		</div>
 		<slot name="submenu" ${slotted({ property: 'slottedSubmenu', filter: elements(context.tagFor(Menu)) })}></slot>
 	</template>
