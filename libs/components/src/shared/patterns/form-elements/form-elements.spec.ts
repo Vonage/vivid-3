@@ -1,5 +1,6 @@
 import { fixture } from '@vivid-nx/shared';
 import { customElement, FASTElement } from '@microsoft/fast-element';
+import { FormAssociated } from '@microsoft/fast-foundation';
 import {
 	ErrorText,
 	errorText,
@@ -28,26 +29,29 @@ describe('Form Elements', function () {
 			instance.dispatchEvent(new Event('blur'));
 		}
 
+		class _FormElementsClass extends FASTElement {}
+		// eslint-disable-next-line @typescript-eslint/naming-convention
+		interface _FormElementsClass extends FormAssociated {}
+
+		class FormAssociatedTextField extends FormAssociated(_FormElementsClass) {
+			proxy = document.createElement('input');
+		}
+
 		@customElement('form-elements-class')
 		@formElements
-		class FormElementsClass extends FASTElement {
-			proxy = document.createElement('input');
-
-			validationMessage = VALIDATION_MESSAGE;
-			validate() {
-				return 5;
+		class FormElementsClass extends FormAssociatedTextField {
+			override get validationMessage() {
+				return VALIDATION_MESSAGE;
 			}
-
-			setValidity = jest.fn();
-
-			formResetCallback () {}
 		}
 		interface FormElementsClass extends FormElement {}
 
 		let instance: FormElementsClass;
 
 		beforeEach(async function () {
-			instance = await fixture('<form-elements-class></form-elements-class>') as FormElementsClass;
+			instance = (await fixture(
+				'<form-elements-class></form-elements-class>'
+			)) as FormElementsClass;
 		});
 
 		afterEach(function () {
@@ -104,9 +108,12 @@ describe('Form Elements', function () {
 
 		describe('formResetCallback', () => {
 			it('should prevent validation message from being shown', () => {
-				instance.dispatchEvent(new Event('invalid'));
+				enableValidation();
 				instance.validate();
+				instance.dispatchEvent(new Event('invalid'));
+
 				instance.formResetCallback();
+
 				expect(instance.errorValidationMessage).toEqual('');
 			});
 		});
@@ -127,7 +134,9 @@ describe('Form Elements', function () {
 			proxy = document.createElement('input');
 
 			validationMessage = VALIDATION_MESSAGE;
-			validate() { return baseValidate(); }
+			validate() {
+				return baseValidate();
+			}
 
 			setValidity = jest.fn();
 		}
@@ -136,7 +145,9 @@ describe('Form Elements', function () {
 		let instance: ErrorTextClass;
 
 		beforeEach(async function () {
-			instance = fixture('<error-text-class></error-text-class>') as ErrorTextClass;
+			instance = fixture(
+				'<error-text-class></error-text-class>'
+			) as ErrorTextClass;
 			jest.resetAllMocks();
 		});
 
@@ -149,7 +160,11 @@ describe('Form Elements', function () {
 
 			instance.errorText = message;
 
-			expect(instance.setValidity).toHaveBeenCalledWith({ customError: true }, message, undefined);
+			expect(instance.setValidity).toHaveBeenCalledWith(
+				{ customError: true },
+				message,
+				undefined
+			);
 			expect(instance.errorValidationMessage).toEqual(message);
 		});
 
@@ -166,7 +181,11 @@ describe('Form Elements', function () {
 
 			instance.errorText = '';
 
-			expect(instance.setValidity).toHaveBeenLastCalledWith({ customError: false }, '', undefined);
+			expect(instance.setValidity).toHaveBeenLastCalledWith(
+				{ customError: false },
+				'',
+				undefined
+			);
 			expect(instance.errorValidationMessage).toEqual(VALIDATION_MESSAGE);
 		});
 
