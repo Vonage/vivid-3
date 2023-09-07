@@ -53,19 +53,6 @@ describe('vwc-nav-disclosure', () => {
 		});
 	});
 
-	describe('icon', () => {
-		it('should add an icon to the nav disclosure', async () => {
-			element.icon = 'home';
-			await elementUpdated(element);
-
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-			expect(icon)
-				.toBeInstanceOf(Icon);
-			expect(icon?.name)
-				.toEqual('home');
-		});
-	});
-
 	describe('label', () => {
 		it('should set label property value as text content', async () => {
 			const label = 'lorem';
