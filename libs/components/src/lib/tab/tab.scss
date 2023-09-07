@@ -90,11 +90,11 @@
 		position: absolute;
 		background: currentColor;
 		block-size: 2px;
-		border-radius: 1px;
+		border-radius: 2px;
 		content: "";
-		inline-size: calc(100% + var(#{tabs-variables.$tabs-tablist-gutter}) * 2);
+		inline-size: 100%;
 		inset-block-end: 0;
-		margin-inline: calc(var(#{tabs-variables.$tabs-tablist-gutter}) * -2);
+		inset-inline-start: 0;
 		pointer-events: none;
 		transition-property: opacity;
 	}
