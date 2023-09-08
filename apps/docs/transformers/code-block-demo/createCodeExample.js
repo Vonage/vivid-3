@@ -1,6 +1,7 @@
 const { JSDOM } = require('jsdom');
 const fs = require('fs');
 const path = require('path');
+const components = require('../../_data/components.json');
 
 const FONTS = '<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">';
 const IFRAME_STYLE = '<link rel="stylesheet" href="/assets/styles/iframe.css">';
@@ -13,9 +14,11 @@ const CBD_CODE_BLOCK = 'cbd-code-block';
 const CBD_ACTIONS = 'cbd-actions';
 const CBD_VARIABLES = 'cbd-variables';
 
+const EXISTING_COMPONENTS = new Set(components.map(c => c.title));
+
 let exampleIndex = 0;
 
-module.exports = function createCodeExample(code, pre, outputPath, componentData, cssProperties) {
+module.exports = function createCodeExample(code, pre, outputPath, cssProperties) {
 	const index = exampleIndex++;
 	const src = createiFrameContent(
 		code.textContent,
@@ -28,7 +31,6 @@ module.exports = function createCodeExample(code, pre, outputPath, componentData
 		src,
 		pre.outerHTML,
 		pre.classList,
-		componentData,
 		cssProperties
 	);
 };
@@ -38,10 +40,13 @@ const renderiFrame = (
 	src,
 	content,
 	classList,
-	componentData,
 	variableToShow
 ) => {
-	const deps = componentData.modules.map((m) => m.split('/')[4]).join(',');
+	const vwcUsages = content.match(/vwc-[\w\-]+/g) ?? [];
+	const uniqueComponentNames = [...new Set(vwcUsages.map((name) => name.replace('vwc-', '')))];
+	const validComponentNames = uniqueComponentNames.filter((name) => EXISTING_COMPONENTS.has(name))
+
+	const deps = validComponentNames.join(',');
 
 	const variableTable = variableToShow
 		? renderVariablesTable(variableToShow)

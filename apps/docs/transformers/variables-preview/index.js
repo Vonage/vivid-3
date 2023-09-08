@@ -78,7 +78,7 @@ module.exports = function (content, outputPath) {
 
 				// Inject a <style> setting the initial values into the code.
 				code.textContent = renderVariablesStylesheet(connotationProperties) + exampleCode.replace(/\$CONNOTATION/g, connotation);
-				const example = createCodeExamples(code, pre, outputPath, componentData, connotationProperties);
+				const example = createCodeExamples(code, pre, outputPath, connotationProperties);
 				const tab = JSDOM.fragment(`
 					<vwc-tab label="${connotation}"></vwc-tab>
 					<vwc-tab-panel></vwc-tab-panel>
@@ -97,7 +97,7 @@ module.exports = function (content, outputPath) {
 				return getShadeOrder(getShade(a.name, componentName, aConnotation)) - getShadeOrder(getShade(b.name, componentName, bConnotation));
 			})
 			code.textContent = renderVariablesStylesheet(cssProperties) + exampleCode;
-			const example = createCodeExamples(code, pre, outputPath, componentData, cssProperties);
+			const example = createCodeExamples(code, pre, outputPath, cssProperties);
 			pre.replaceWith(example);
 		}
 	});
