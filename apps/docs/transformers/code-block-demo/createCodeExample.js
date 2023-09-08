@@ -21,8 +21,7 @@ module.exports = function createCodeExample(code, pre, outputPath, componentData
 		code.textContent,
 		pre.classList,
 		index,
-		outputPath,
-		componentData
+		outputPath
 	);
 	return renderiFrame(
 		index,
@@ -83,17 +82,8 @@ const createiFrameContent = (
 	code,
 	classList,
 	index,
-	outputPath,
-	componentData
+	outputPath
 ) => {
-	const modules = new Set(componentData?.modules);
-
-	const layoutResult = layout(code, classList);
-
-	if (!classList.contains('full') && !classList.contains('center')) {
-		modules.add('/assets/modules/components/layout/index.js');
-	}
-
 	const document =
 		`<!DOCTYPE html>
 		 <html class="vvd-root">
