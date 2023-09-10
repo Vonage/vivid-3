@@ -39,7 +39,11 @@ describe('vwc-tab', () => {
 	});
 
 	describe('icon', () => {
-		it('should add an icon to the tab when icon is set', async () => {
+		it('should have an icon slot', async () => {
+			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
+		});
+
+		it('should have an icon when icon is set without slotted icon', async () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
