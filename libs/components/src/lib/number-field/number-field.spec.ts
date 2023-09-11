@@ -128,15 +128,18 @@ describe('vwc-number-field', () => {
 	});
 
 	describe('step', function () {
-		const value = '8';
-		const propertyName = 'step';
-		it('should set step attribute on the input', async function () {
+		it('should increment/decrement according to the provided step', async () => {
+			const addButton = getRootElement(element).querySelector('#add') as HTMLButtonElement;
+			const subtractButton = getRootElement(element).querySelector('#subtract') as HTMLButtonElement;
+			element.step = 3.5;
+			element.value = '0';
 
-			(element as any)[propertyName] = value;
-			await elementUpdated(element);
-			expect(getControlElement(element)
-				?.getAttribute(propertyName))
-				.toEqual(value);
+			addButton.click();
+			const valueAfterIncrementing = element.valueAsNumber;
+			subtractButton.click();
+
+			expect(valueAfterIncrementing).toBe(3.5);
+			expect(element.valueAsNumber).toBe(0);
 		});
 	});
 
