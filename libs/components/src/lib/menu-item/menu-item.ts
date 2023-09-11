@@ -62,7 +62,6 @@ export class MenuItem extends FastMenuItem {
 			(this.submenu as Menu).anchor = this as MenuItem;
 			(this.submenu as Menu).placement = 'right-start';
 			(this.submenu as Menu).collapseExpandedItem = () => this.#collapseExpandedItem();
-			(this.submenu as Menu).focus = () => this.focus();
 		}
 
 		this.hasSubmenu = this.submenu === undefined ? false : true;
