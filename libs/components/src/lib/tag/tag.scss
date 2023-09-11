@@ -78,14 +78,9 @@
 }
 
 
-.icon {
+slot[name="icon"] {
 	font-size: calc(var(#{variables.$tag-block-size}) / 1.5);
 	line-height: 1;
-
-	> * {
-		vertical-align: middle;
-	}
-
 }
 
 .dismiss-button {
@@ -97,6 +92,8 @@
 }
 
 .focus-indicator {
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
 	.base:not(:focus-visible) & {
 		display: none;
 	}
