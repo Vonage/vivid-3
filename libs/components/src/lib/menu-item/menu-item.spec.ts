@@ -368,7 +368,7 @@ describe('vwc-menu-item', () => {
 			expect(menuitem.expanded).toEqual(false);
 		});
 		
-		it('should expand first menuitem on Enter/Space and close on Escape', async () => {
+		it('should expand first menuitem on Enter/Space', async () => {
 			const menuitem = menuElement.querySelector('#menuitem') as MenuItem;
 
 			menuitem.focus();
@@ -377,7 +377,7 @@ describe('vwc-menu-item', () => {
 			await elementUpdated(menuElement);
 			expect(menuitem.expanded).toEqual(true);
 
-			menuitem.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+			menuitem.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft' }));
 
 			await elementUpdated(menuElement);
 			expect(menuitem.expanded).toEqual(false);

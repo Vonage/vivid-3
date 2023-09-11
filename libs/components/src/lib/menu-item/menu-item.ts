@@ -61,14 +61,21 @@ export class MenuItem extends FastMenuItem {
 			this.submenu = submenu as Menu;
 			(this.submenu as Menu).anchor = this as MenuItem;
 			(this.submenu as Menu).placement = 'right-start';
+			(this.submenu as Menu).collapseExpandedItem = () => this.#collapseExpandedItem();
+			(this.submenu as Menu).focus = () => this.focus();
 		}
 
 		this.hasSubmenu = this.submenu === undefined ? false : true;
 	}
 
+	#collapseExpandedItem() {
+		this.expanded = false;
+	}
+
 	#expandedChange() {
 		if (this.hasSubmenu) {
 			(this.submenu as Menu).open = this.expanded;
+			(this.submenu as Menu).focus();
 		}
 	}
 }
