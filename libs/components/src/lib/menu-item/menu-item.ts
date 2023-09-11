@@ -74,7 +74,6 @@ export class MenuItem extends FastMenuItem {
 	#expandedChange() {
 		if (this.hasSubmenu) {
 			(this.submenu as Menu).open = this.expanded;
-			(this.submenu as Menu).focus();
 		}
 	}
 }
