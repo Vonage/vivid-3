@@ -76,7 +76,7 @@ export const MenuItemTemplate: (context: ElementDefinitionContext, definition: M
 		@keydown="${(x, c) => x.handleMenuItemKeyDown(c.event as KeyboardEvent)}"
 		@click="${handleClick}"
 		@mouseover="${(x, c) => x.handleMouseOver(c.event as MouseEvent)}"
-        @mouseout="${(x, c) => x.handleMouseOut(c.event as MouseEvent)}"
+		@mouseout="${(x, c) => x.handleMouseOut(c.event as MouseEvent)}"
 	>
 		<div class="${getClasses}">
 			${() => focusTemplate}

@@ -13,7 +13,7 @@ export type { Placement } from '@floating-ui/dom';
 export const menuDefinition = Menu.compose({
 	baseName: 'menu',
 	template: template as any,
-	styles
+	styles,
 });
 
 
