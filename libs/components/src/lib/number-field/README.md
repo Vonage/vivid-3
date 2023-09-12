@@ -63,6 +63,7 @@ Add the `helper-text` to add some helper text below the number field.
 ### Success text
 
 Add the `success-text` to add some success text below the number field.
+If provided, `success-text` will take precedence over errors.
 
 - Type: `string` | `undefined`
 - Default: `undefined`
