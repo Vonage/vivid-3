@@ -39,6 +39,61 @@ $selectors: (
 		}
 	}
 
+	p, .font-base-code {
+		font: var(#{constants.$vvd-typography-base-code});
+		margin-block: 16px;
+
+		&.tight {
+			margin-block: 0;
+		}
+	}
+
+	.font-base-bold {
+		font: var(#{constants.$vvd-typography-base-bold});
+		margin-block: 16px;
+
+		&.tight {
+			margin-block: 0;
+		}
+	}
+
+	.font-base-condensed {
+		font: var(#{constants.$vvd-typography-base-condensed});
+		margin-block: 16px;
+
+		&.tight {
+			margin-block: 0;
+		}
+	}
+
+	.font-base-condensed-bold {
+		font: var(#{constants.$vvd-typography-base-condensed-bold});
+		margin-block: 16px;
+
+		&.tight {
+			margin-block: 0;
+		}
+	}
+
+	.font-base-extended {
+		font: var(#{constants.$vvd-typography-base-extended});
+		margin-block: 16px;
+
+		&.tight {
+			margin-block: 0;
+		}
+	}
+
+	.font-base-extended-bold {
+		font: var(#{constants.$vvd-typography-base-extended-bold});
+		margin-block: 16px;
+
+		&.tight {
+			margin-block: 0;
+		}
+	}
+
+
 	#{map.get($selectors, 'bold')} {
 		font: var(#{constants.$vvd-typography-base-bold});
 	}

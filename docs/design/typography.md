@@ -81,12 +81,12 @@ The following CSS custom properties can be referred to style the text in your ap
 <div style="font: var(--vvd-typography-heading-2)">heading-2</div>
 <div style="font: var(--vvd-typography-heading-3)">heading-3</div>
 <div style="font: var(--vvd-typography-heading-4)">heading-4</div>
-<div style="font: var(--vvd-typography-base)">base</div>
-<div style="font: var(--vvd-typography-base-bold)">base bold</div>
 <div style="font: var(--vvd-typography-base-code)">base code</div>
 <div style="font: var(--vvd-typography-base-condensed)">condensed</div>
-<div style="font: var(--vvd-typography-base-condensed-bold)">condensed bold</div>
+<div style="font: var(--vvd-typography-base)">base</div>
 <div style="font: var(--vvd-typography-base-extended)">extended</div>
+<div style="font: var(--vvd-typography-base-condensed-bold)">condensed bold</div>
+<div style="font: var(--vvd-typography-base-bold)">base bold</div>
 <div style="font: var(--vvd-typography-base-extended-bold)">extended bold</div>
 ```
 
@@ -151,7 +151,13 @@ Use the class `tight` to remove `margin-block`.
 	<div class="heading2 tight">heading-2</div>
 	<div class="heading3 tight">heading-3</div>
 	<div class="heading4 tight">heading-4</div>
+	<div class="font-base-code">text with the base code font size</div>
+	<div class="font-base-condensed">text with the base condensed font size</div>
 	<div class="font-base">text with the base font size</div>
+	<div class="font-base-extended">text with the base extended font size</div>
+	<div class="font-base-condensed-bold">text with the base condensed bold font size</div>
+	<div class="font-base-bold">text with the base bold font size</div>
+	<div class="font-base-extended-bold">text with the base extended bold font size</div>
 </div>
 ```
 
