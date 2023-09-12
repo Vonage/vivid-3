@@ -2,6 +2,7 @@ import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import '.';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { fireEvent } from '@testing-library/dom';
+import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import { Icon } from '../icon/icon';
 import { Menu } from '../menu/menu';
 import { MenuItem, MenuItemRole } from './menu-item';
