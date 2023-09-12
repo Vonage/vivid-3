@@ -68,6 +68,7 @@ const renderiFrame = (
 			</div>
 			<details class="${CBD_DETAILS}" slot="main">
 				<summary></summary>
+				<vwc-banner text="Feel free to edit the code below. The live preview will update as you make changes." connotation="information"></vwc-banner>
 				<div class="cbd-live-sample" data-index="${index}" role="region">
 					${content}
 				</div>
