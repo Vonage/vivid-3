@@ -5,7 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { affixIconTemplateFactory, ICON_WRAPPER } from '../../shared/patterns/affix';
+import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
 import { focusTemplateFactory } from '../../shared/patterns';
 import type { ListboxOption } from './option';
 
@@ -36,7 +36,7 @@ export const ListboxOptionTemplate: (
 		role="option">
 		<div class="${getClasses}">
 			${() => focusTemplate}
-			${x => affixIconTemplate(x.icon, ICON_WRAPPER.SLOT)}
+			${x => affixIconTemplate(x.icon, IconWrapper.Slot)}
 			${when(x => x.text, html`<div class="text">${x => x.text}</div>`)}
 		</div>
 	</template>

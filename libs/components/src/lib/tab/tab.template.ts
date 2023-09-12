@@ -1,7 +1,7 @@
 import { html } from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { affixIconTemplateFactory, ICON_WRAPPER } from '../../shared/patterns/affix';
+import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
 import type { Tab } from './tab.js';
 
@@ -30,7 +30,7 @@ export function TabTemplate<T extends Tab>(context: ElementDefinitionContext) {
 	<template slot="tab" role="tab" aria-disabled="${x => x.disabled}" aria-selected="${x => x.ariaSelected}">
 		<div class="${getClasses}" >
       ${() => focusTemplate}
-			${x => affixIconTemplate(x.icon, ICON_WRAPPER.SLOT)}
+			${x => affixIconTemplate(x.icon, IconWrapper.Slot)}
       ${x => x.label}
 		</div>
 	</template>`;
