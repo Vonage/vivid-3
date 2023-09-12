@@ -133,6 +133,21 @@ Notice that it works only if the tag is `removable` and not `selectable`.
 </vwc-tag-group>
 ```
 
+## Slots
+
+### Icon
+
+Set the `icon` slot to show an icon in the tag.  
+If set, the `icon` attribute is ignored.
+
+```html preview
+<vwc-tag-group>
+  <vwc-tag label="with icon">
+  	<vwc-icon slot="icon" name="heart-solid" connotation="alert"></vwc-icon>
+  </vwc-tag>
+</vwc-tag-group>
+```
+
 ## Events
 
 <div class="table-wrapper">

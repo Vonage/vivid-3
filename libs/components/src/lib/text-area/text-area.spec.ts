@@ -39,27 +39,21 @@ describe('vwc-text-area', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-text-area', async () => {
-			const elmProps = {
-				charCount: undefined,
-				cols: 20,
-				dirtyValue: false,
-				disabled: false,
-				errorValidationMessage: '',
-				helperText: undefined,
-				label: undefined,
-				maxlength: undefined,
-				minlength: undefined,
-				name: undefined,
-				placeholder: undefined,
-				readOnly: undefined,
-				required: false,
-				rows: undefined,
-				userValid: true,
-				value: '',
-			};
-			Object.keys(elmProps).forEach((key) => {
-				expect((element as any)[key]).toEqual((elmProps as any)[key]);
-			});
+			expect(element.charCount).toBe( undefined);
+			expect(element.cols).toBe( 20);
+			expect(element.dirtyValue).toBe( false);
+			expect(element.disabled).toBe( false);
+			expect(element.errorValidationMessage).toBe( '');
+			expect(element.helperText).toBe( undefined);
+			expect(element.label).toBe( undefined);
+			expect(element.maxlength).toBe( undefined);
+			expect(element.minlength).toBe( undefined);
+			expect(element.name).toBe( undefined);
+			expect(element.placeholder).toBe( undefined);
+			expect(element.readOnly).toBe( undefined);
+			expect(element.required).toBe( false);
+			expect(element.rows).toBe( undefined);
+			expect(element.value).toBe( '');
 			expect(element)
 				.toBeInstanceOf(TextArea);
 		});
@@ -522,7 +516,7 @@ describe('vwc-text-area', () => {
 			await elementUpdated(element);
 			expect(element.validationMessage).toBe(forcedErrorMessage);
 		});
-		
+
 		it('should restore the current error state when removed', async function () {
 			element.required = true;
 			setToBlurred();

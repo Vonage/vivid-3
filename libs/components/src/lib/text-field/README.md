@@ -68,6 +68,7 @@ Add the `helper-text` to add some helper text below the text field.
 ### Success text
 
 Add the `success-text` to add some success text below the text field.
+If provided, `success-text` will take precedence over errors.
 
 - Type: `string` | `undefined`
 - Default: `undefined`
@@ -79,7 +80,7 @@ Add the `success-text` to add some success text below the text field.
 ### Error text
 
 It is possible to force the text field's error state by setting the `error-text` attribute to a custom error message.
-Note that any current error state will be overriden by `error-text` (and, if applicable, restored once it is removed).
+Note that any current error state will be overridden by `error-text` (and, if applicable, restored once it is removed).
 
 - Type: `string`
 - Default: `undefined`
@@ -223,36 +224,33 @@ Don't worry if it is set - the design still be the same :)
 
 You can validate the text field like any other native `input`.
 Here's an example using `pattern`; its required pattern is `123` but we set its value to `5`, which is not of that pattern.
-In addition, we programatically *"dirtied"* the field and then called `validate` because the change was not done by a user.
+In this example we need to call `.reportValidity()` to show the error because the change was not done by a user.
 
 ```html preview
-<vwc-text-field pattern="123"></vwc-text-field>
+<vwc-text-field id="field" pattern="123" value="5"></vwc-text-field>
 
 <script>
-  textField = document.querySelector('vwc-text-field');
-  interval = setInterval(() => {
-    if (!textField.checkValidity) return;
-    textField.value = 5;
-    textField.dirtyValue = true;
-    textField.checkValidity();
-    clearInterval(interval);
-  }, 50);
+  setTimeout(() => field.reportValidity(), 0);
 </script>
 ```
 
-### In Form
+### In a Form
 
 ```html preview blocks
 <style>
-vwc-button {
-  justify-self: flex-start;
-}
+	.buttons {
+		display: flex;
+		gap: 12px;
+	}
 </style>
 <form method="post" action="">
-  <vwc-layout column-spacing="small" column-basis="block">
-    <vwc-text-field required label="Add email" placeholder="e.g. john@doe.dev" type="email" name="email" autocomplete="email" icon="search" maxlength="30" char-count style="justify-self: flex-start;"></vwc-text-field>
-    <vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>
-  </vwc-layout>
+	<vwc-layout column-spacing="small" column-basis="block">
+		<vwc-text-field required label="Add email" placeholder="e.g. john@doe.dev" type="email" name="email" autocomplete="email" icon="search" maxlength="30" char-count style="justify-self: flex-start;"></vwc-text-field>
+		<div class="buttons">
+			<vwc-button label="Reset" type="reset"></vwc-button>
+			<vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>
+		</div>
+	</vwc-layout>
 </form>
 ```
 
