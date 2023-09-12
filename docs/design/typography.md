@@ -81,13 +81,13 @@ The following CSS custom properties can be referred to style the text in your ap
 <div style="font: var(--vvd-typography-heading-2)">heading-2</div>
 <div style="font: var(--vvd-typography-heading-3)">heading-3</div>
 <div style="font: var(--vvd-typography-heading-4)">heading-4</div>
-<div style="font: var(--vvd-typography-base-code)">base code</div>
-<div style="font: var(--vvd-typography-base-condensed)">condensed</div>
+<div style="font: var(--vvd-typography-base-condensed)">base-condensed</div>
+<div style="font: var(--vvd-typography-base-condensed-bold)">base-condensed-bold</div>
 <div style="font: var(--vvd-typography-base)">base</div>
-<div style="font: var(--vvd-typography-base-extended)">extended</div>
-<div style="font: var(--vvd-typography-base-condensed-bold)">condensed bold</div>
-<div style="font: var(--vvd-typography-base-bold)">base bold</div>
-<div style="font: var(--vvd-typography-base-extended-bold)">extended bold</div>
+<div style="font: var(--vvd-typography-base-bold)">base-bold</div>
+<div style="font: var(--vvd-typography-base-extended)">base-extended</div>
+<div style="font: var(--vvd-typography-base-extended-bold)">base-extended-bold</div>
+<div style="font: var(--vvd-typography-base-code)">base code</div>
 ```
 
 
