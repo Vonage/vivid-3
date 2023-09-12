@@ -82,6 +82,7 @@ Add the `helper-text` to add some helper text below the checkbox.
 ### Success text
 
 Add the `success-text` to add some success text below the checkbox.
+If provided, `success-text` will take precedence over errors.
 
 - Type: `string` | `undefined`
 - Default: `undefined`
@@ -94,7 +95,7 @@ Add the `success-text` to add some success text below the checkbox.
 ### Error text
 
 It is possible to force the checkbox error state by setting the `error-text` attribute to a custom error message.
-Note that any current error state will be overriden by `error-text` (and, if applicable, restored once it is removed).
+Note that any current error state will be overridden by `error-text` (and, if applicable, restored once it is removed).
 
 - Type: `string`
 - Default: `undefined`

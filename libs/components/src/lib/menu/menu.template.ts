@@ -33,17 +33,19 @@ export const MenuTemplate: (
 ) => ElementViewTemplate = (context: ElementDefinitionContext) => {
 	const popupTag = context.tagFor(Popup);
 
-	function handlePopupEvents(x: Menu, state: boolean) {
+	function handlePopupEvents(x: Menu, e: Event, state: boolean) {
+		e.stopPropagation();
 		x.open = state;
 	}
+
 	return html<Menu>`
 		<template>
 			<${popupTag}
 				:placement=${(x) => x.placement}
 				:open=${(x) => x.open}
 				:anchor=${(x) => x.anchor}
-				@vwc-popup:open="${x => handlePopupEvents(x, true)}"
-				@vwc-popup:close="${x => handlePopupEvents(x, false)}"
+				@vwc-popup:open="${(x, c) => handlePopupEvents(x, c.event, true)}"
+				@vwc-popup:close="${(x, c) => handlePopupEvents(x, c.event, false)}"
 			>
 			<div class="${getClasses}">
 				<div class="header">
