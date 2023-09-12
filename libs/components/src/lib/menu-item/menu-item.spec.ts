@@ -292,6 +292,26 @@ describe('vwc-menu-item', () => {
 			expect(spy).toHaveBeenCalled();
 		});
 
+		it('should fire "change" event on spacebar press', async () => {
+			const spy = jest.fn();
+			element.addEventListener('change', spy);
+			const event = new KeyboardEvent('keydown', {
+				key: keySpace,
+			} as KeyboardEventInit);
+			element.dispatchEvent(event);
+			expect(spy).toHaveBeenCalled();
+		});
+
+		it('should fire "change" event when enter is pressed', async () => {
+			const spy = jest.fn();
+			element.addEventListener('change', spy);
+			const event = new KeyboardEvent('keydown', {
+				key: keyEnter,
+			} as KeyboardEventInit);
+			element.dispatchEvent(event);
+			expect(spy).toHaveBeenCalled();
+		});
+
 		it('should fire "change" event when checked is changed', async () => {
 			const spy = jest.fn();
 			element.addEventListener('change', spy);
