@@ -4,7 +4,7 @@ import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
-import { affixIconTemplateFactory, ICON_WRAPPER } from '../../shared/patterns/affix';
+import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
 import type { NavDisclosure } from './nav-disclosure';
@@ -33,7 +33,7 @@ export const NavDisclosureTemplate: (
             aria-controls="disclosure-content"
 			aria-expanded="${x => x.open}"
 			?aria-current=${x => getAriaCurrent(x.ariaCurrent, x.open)}>
-					${x => affixIconTemplate(x.icon, ICON_WRAPPER.SLOT)}
+					${x => affixIconTemplate(x.icon, IconWrapper.Slot)}
             ${x => x.label}
 						<slot name="meta"></slot>
 			${when(x => x.open, html<NavDisclosure>`<${iconTag} class="toggleIcon" name='chevron-up-solid'></${iconTag}>`)}
