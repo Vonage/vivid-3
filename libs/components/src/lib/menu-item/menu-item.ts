@@ -17,6 +17,7 @@ export const MenuItemRole = {
  *
  * @public
  * @slot meta - Assign nodes to the `meta` slot to set a badge or an additional icon.
+ * @slot submenu - Assign a Menu to the `submenu` slot to add a submenu.
  */
 export class MenuItem extends FastMenuItem {
 	/**
@@ -38,14 +39,25 @@ export class MenuItem extends FastMenuItem {
 
 	/**
 	 *
-	 * Slot observer:
+	 * Meta slot observer:
 	 *
 	 * @internal
 	 */
 	@observable metaSlottedContent?: HTMLElement[];
+	/**
+	 *
+	 * Submenu slot observer:
+	 *
+	 * @internal
+	 */
 	@observable slottedSubmenu?: Menu[];
 	#submenuArray: Menu[] = [];
 
+	/**
+	 *
+	 *
+	 * @internal
+	 */
 	slottedSubmenuChanged(_oldValue: Menu[], newValue: Menu[]) {
 		this.#submenuArray = newValue;
 	}
