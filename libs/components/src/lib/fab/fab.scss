@@ -101,11 +101,12 @@
 }
 
 /* Icon */
-.icon {
+slot[name="icon"] {
 	line-height: 1;
 
 	.icon-trailing & {
 		order: 1;
+		display: inline-block;
 	}
 
 	.control.size-extended & {

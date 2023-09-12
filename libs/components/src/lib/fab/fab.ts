@@ -1,5 +1,5 @@
 import { applyMixins, Button as FoundationButton } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
+import {attr, observable} from '@microsoft/fast-element';
 
 import type { Connotation, Size } from '../enums.js';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
@@ -50,6 +50,8 @@ export class Fab extends FoundationButton {
 	 * HTML Attribute: label
 	 */
 	@attr label?: string;
+
+	@observable iconSlottedContent?: HTMLElement[];
 }
 
 export interface Fab extends AffixIconWithTrailing { }

@@ -80,3 +80,14 @@ To disable the FAB, use the `disabled` attribute.
 ```html preview
 <vwc-fab icon='store-line' disabled></vwc-fab>
 ```
+## Slots
+
+### Icon
+
+Set the `icon` slot to show a decorative icon.  
+If set, the `icon` attribute is ignored.
+```html preview
+<vwc-fab>
+  	<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+</vwc-fab>
+```

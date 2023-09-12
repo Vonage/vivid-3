@@ -1,10 +1,12 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import {Icon} from '../icon/icon';
 import { Fab, FabConnotation } from './fab';
 import '.';
 import { fabDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-fab';
+const ICON_SELECTOR = 'vwc-icon';
 
 describe('vwc-fab', () => {
 	let element: Fab;
@@ -37,13 +39,22 @@ describe('vwc-fab', () => {
 	});
 
 	describe('icon', () => {
-		it('should set icon-only property', async () => {
-			expect(getControlElement(element).classList.contains('icon-only')).toBeFalsy();
-			const icon = 'home-line';
-			element.icon = icon;
-			await elementUpdated(element);
-			expect(getControlElement(element).classList.contains('icon-only')).toBeTruthy();
+		it('should have an icon slot', async () => {
+			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
 		});
+
+		it('should have an icon when icon is set without slotted icon', async () => {
+			element.icon = 'home';
+			await elementUpdated(element);
+
+			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			expect(icon)
+				.toBeInstanceOf(Icon);
+			expect(icon?.name)
+				.toEqual('home');
+		});
+
+
 
 		it('should set icon-trailing property', async () => {
 			expect(getControlElement(element).classList.contains('icon-trailing')).toBeFalsy();
@@ -53,6 +64,26 @@ describe('vwc-fab', () => {
 			await elementUpdated(element);
 			expect(getControlElement(element).classList.contains('icon-trailing')).toBeTruthy();
 		});
+	});
+
+	describe('icon-only class', ()=> {
+		it('should set icon-only property when icon is set', async () => {
+			expect(getControlElement(element).classList.contains('icon-only')).toBeFalsy();
+			const icon = 'home-line';
+			element.icon = icon;
+			await elementUpdated(element);
+			expect(getControlElement(element).classList.contains('icon-only')).toBeTruthy();
+		});
+
+		it('should set icon-only class if slot name="icon" is slotted', async () => {
+			expect(getControlElement(element).classList.contains('icon-only')).toBeFalsy();
+			const slottedElement = document.createElement('span');
+			slottedElement.slot = 'icon';
+			element.appendChild(slottedElement);
+			await elementUpdated(element);
+			expect(getControlElement(element).classList.contains('icon-only')).toBeTruthy();
+		});
+
 	});
 
 	describe('connotation', () => {
