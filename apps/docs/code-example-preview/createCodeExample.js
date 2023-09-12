@@ -1,7 +1,7 @@
-const { JSDOM } = require('jsdom');
 const fs = require('fs');
 const path = require('path');
-const components = require('../../_data/components.json');
+const _ = require('lodash');
+const components = require('../_data/components.json');
 
 const FONTS = '<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">';
 const IFRAME_STYLE = '<link rel="stylesheet" href="/assets/styles/iframe.css">';
@@ -16,21 +16,22 @@ const CBD_VARIABLES = 'cbd-variables';
 
 const EXISTING_COMPONENTS = new Set(components.map(c => c.title));
 
+const OUTPUT_PATH = 'dist/apps/docs/frames';
+
 let exampleIndex = 0;
 
-module.exports = function createCodeExample(code, pre, outputPath, cssProperties) {
+module.exports = function createCodeExample(code, options, cssProperties) {
 	const index = exampleIndex++;
 	const src = createiFrameContent(
-		code.textContent,
-		pre.classList,
-		index,
-		outputPath
+		code,
+		options,
+		index
 	);
 	return renderiFrame(
 		index,
 		src,
-		pre.outerHTML,
-		pre.classList,
+		code,
+		options,
 		cssProperties
 	);
 };
@@ -52,12 +53,12 @@ const renderiFrame = (
 		? renderVariablesTable(variableToShow)
 		: '';
 
-	const localeSwitcher = classList.contains('locale-switcher')
+	const localeSwitcher = classList.includes('locale-switcher')
 		? `
 		<vwc-select id="selectLocale${index}" class="cbd-locale-switcher" icon="globe-line" aria-label="Locale" data-index="${index}" slot="main"></vwc-select>`
 		: '';
 
-	return JSDOM.fragment(`
+	return `
 	<div class="${CBD_CONTAINER}" style="--tooltip-inline-size: auto;">
 	    ${variableTable}
 		<vwc-card elevation="0">
@@ -73,21 +74,20 @@ const renderiFrame = (
 			<details class="${CBD_DETAILS}" slot="main">
 				<summary></summary>
 				<div class="cbd-live-sample" data-index="${index}" role="region">
-					${content}
+					<pre>${_.escape(content)}</pre>
 				</div>
 			</details>
 		</vwc-card>
 		<vwc-tooltip anchor="buttonCPen${index}" text="Edit on CodePen" placement="top" style="text-align: center"></vwc-tooltip>
 		<vwc-tooltip anchor="buttonEdit${index}" text="Edit code" placement="top" style="text-align: center"></vwc-tooltip>
 		<vwc-tooltip anchor="buttonCopy${index}" text="Copy code" placement="top" style="text-align: center"></vwc-tooltip>
-	</div>`);
+	</div>`;
 }
 
 const createiFrameContent = (
 	code,
 	classList,
-	index,
-	outputPath
+	index
 ) => {
 	const document =
 		`<!DOCTYPE html>
@@ -98,22 +98,21 @@ const createiFrameContent = (
 			 	${TYPOGRAPHY}
 				<script type="module" src="/assets/scripts/vivid-components.js"></script>
 			</head>
-			<body ${classList.contains('full') ? 'id="_target"' : ''}>
+			<body ${classList.includes('full') ? 'id="_target"' : ''}>
 			 	${layout(code, classList)}
 			</body>
 		 </html>`;
 
-	const saveFolder = path.join(path.dirname(outputPath), '/frames');
-	if (!fs.existsSync(saveFolder)) {
-		fs.mkdirSync(saveFolder, { recursive: true });
+	if (!fs.existsSync(OUTPUT_PATH)) {
+		fs.mkdirSync(OUTPUT_PATH, { recursive: true });
 	}
 
-	const filePath = `${saveFolder}/${CBD_CODE_BLOCK}-${index}.html`;
+	const filePath = `${OUTPUT_PATH}/${CBD_CODE_BLOCK}-${index}.html`;
 	fs.writeFileSync(filePath, document);
-	return filePath.substring(saveFolder.indexOf('docs' + path.sep) + 4);
+	return filePath.substring(OUTPUT_PATH.indexOf('docs' + path.sep) + 4);
 }
 
-const layout = (code, classList) => {
+const layout = (code, optionsList) => {
 	const useLayout = (content, isTarget, column) => `
 		<vwc-layout
 			gutters="small"
@@ -123,10 +122,10 @@ const layout = (code, classList) => {
 			${content}
 		</vwc-layout>`;
 
-	if (classList.contains('full')) return code;
-	if (classList.contains('center')) return `<div id="_target" class="center">${code}</div>`;
-	if (classList.contains('blocks')) return useLayout(code, true, 'block');
-	if (classList.contains('blocks')) return useLayout(code, true, 'medium');
+	if (optionsList.includes('full')) return code;
+	if (optionsList.includes('center')) return `<div id="_target" class="center">${code}</div>`;
+	if (optionsList.includes('blocks')) return useLayout(code, true, 'block');
+	if (optionsList.includes('blocks')) return useLayout(code, true, 'medium');
 	return useLayout(`<div id="_target">${code}</div>`, false);
 }
 
