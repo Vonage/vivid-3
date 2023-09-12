@@ -115,7 +115,7 @@
 		grid-column: 1 / auto;
 		inline-size: calc(var(#{variables.$tabs-active-indicator-inline-size}) - 32px);
 		inset-block-end: 0;
-		inset-inline-start: 0;
+		inset-inline-start: 8px;
 		justify-self: center;
 		padding-inline: var(#{variables.$tabs-tablist-gutter});
 	}
