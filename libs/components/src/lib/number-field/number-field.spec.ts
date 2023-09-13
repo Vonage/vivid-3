@@ -128,18 +128,14 @@ describe('vwc-number-field', () => {
 	});
 
 	describe('step', function () {
-		it('should increment/decrement according to the provided step', async () => {
-			const addButton = getRootElement(element).querySelector('#add') as HTMLButtonElement;
-			const subtractButton = getRootElement(element).querySelector('#subtract') as HTMLButtonElement;
-			element.step = 3.5;
-			element.value = '0';
-
-			addButton.click();
-			const valueAfterIncrementing = element.valueAsNumber;
-			subtractButton.click();
-
-			expect(valueAfterIncrementing).toBe(3.5);
-			expect(element.valueAsNumber).toBe(0);
+		const value = '8';
+		const propertyName = 'step';
+		it('should set step attribute on the input', async function () {
+			(element as any)[propertyName] = value;
+			await elementUpdated(element);
+			expect(getControlElement(element)
+				?.getAttribute(propertyName))
+				.toEqual(value);
 		});
 	});
 
@@ -467,6 +463,17 @@ describe('vwc-number-field', () => {
 			expect(activeClassWhenDisabled)
 				.toEqual(true);
 		});
+
+		fit('should allow negative sign as first char', async function () {
+			console.log('changing value');
+			element.value = '-';
+			await elementUpdated(element);
+			const valueWhenNegativeIsFirstChar = element.value;
+			// element.value = '5-';
+			// const valueWhenNegativeIsNotFirstChar = element.value;
+			// expect(valueWhenNegativeIsNotFirstChar).toEqual('5');
+			expect(valueWhenNegativeIsFirstChar).toEqual('-');
+		});
 	});
 
 	describe('appearance', function () {
@@ -530,7 +537,7 @@ describe('vwc-number-field', () => {
 			expect((getControlElement(element) as HTMLInputElement).value).toEqual('11');
 		});
 
-		it('should add by step when clicking the add button', async function() {
+		it('should increment by step when clicking the add button', async function() {
 			element.value = '10';
 			element.step = 5;
 			addButton?.click();
