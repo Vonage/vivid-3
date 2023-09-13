@@ -30,20 +30,6 @@ $selectors: (
 		@include typography-base;
 	}
 
-	p,
-	.font-base-code,
-	.font-base,
-	.font-base-bold,
-	.font-base-condensed,
-	.font-base-extended,
-	.font-base-condensed-bold,
-	.font-base-extended-bold {
-		margin-block: 16px;
-
-		&.tight {
-			margin-block: 0;
-		}
-	}
 
 	p,
 	.font-base {
