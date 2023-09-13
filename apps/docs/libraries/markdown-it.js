@@ -3,9 +3,16 @@ const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const markdownItAnchorOptions = require("./markdown-it-anchor-options");
 const highlight = require("./markdown-it-highlight");
+const fenceRenderer = require("./markdown-it-fence");
 
 /* Markdown Overrides */
-module.exports = markdownIt({
-  html: true,
-  highlight
-}).use(markdownItAnchor, markdownItAnchorOptions);
+const markdown = markdownIt({
+	html: true,
+	highlight
+});
+
+markdown.renderer.rules.fence = fenceRenderer(markdown.renderer.rules.fence);
+
+markdown.use(markdownItAnchor, markdownItAnchorOptions);
+
+module.exports = markdown;
