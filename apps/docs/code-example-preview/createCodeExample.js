@@ -91,7 +91,7 @@ const createiFrameContent = (
 ) => {
 	const document =
 		`<!DOCTYPE html>
-		 <html class="vvd-root">
+		 <html class="vvd-root" lang="en-US">
 			<head>
 				${IFRAME_STYLE}
 			 	${FONTS}
