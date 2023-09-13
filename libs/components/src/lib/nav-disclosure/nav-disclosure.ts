@@ -17,6 +17,7 @@ export class NavDisclosure extends FoundationElement {
 	/**
 	 *
 	 * @public
+	 * @slot icon - Slot to add an icon to nav-disclosure.
 	 * HTML Attribute: label
 	 */
 	@attr label?: string;
