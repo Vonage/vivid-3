@@ -74,7 +74,7 @@ const renderiFrame = (
 			<details class="${CBD_DETAILS}" slot="main">
 				<summary></summary>
 				<div class="cbd-live-sample" data-index="${index}" role="region">
-					<p class="font-base tight" style="padding: 8px;"> // Feel free to edit the code below. The live preview will update as you make changes.</p>
+					<p> // Feel free to edit the code below. The live preview will update as you make changes.</p>
 					<pre>${_.escape(content)}</pre>
 				</div>
 			</details>
