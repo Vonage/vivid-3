@@ -22,6 +22,7 @@ export type FABSize = Extract<Size, Size.Normal | Size.Expanded>;
  * Base class for fab
  *
  * @public
+ * @slot icon - Slot to add an icon to fab.
  */
 export class Fab extends FoundationButton {
 	/**
