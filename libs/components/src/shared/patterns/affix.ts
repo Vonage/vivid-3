@@ -46,9 +46,9 @@ export class AffixIconWithTrailing extends AffixIcon {
 	}) iconTrailing = false;
 }
 
-export const ICON_WRAPPER = {
-	SLOT: false,
-	SPAN: true
+export const IconWrapper = {
+	Slot: false,
+	Span: true
 };
 
 type affixIconTemplateFactoryReturnType = (context: ElementDefinitionContext) =>
@@ -65,7 +65,7 @@ ViewTemplate<AffixIcon> | null
 export const affixIconTemplateFactory: affixIconTemplateFactoryReturnType = (context: ElementDefinitionContext) => {
 
 	const iconTag = context.tagFor(Icon);
-	return (icon?: string, slottedState = ICON_WRAPPER.SPAN) => {
+	return (icon?: string, slottedState = IconWrapper.Span) => {
 		if (!icon && !slottedState) {
 			return html`<slot name="icon" ${slotted('iconSlottedContent')}></slot>`;
 		}

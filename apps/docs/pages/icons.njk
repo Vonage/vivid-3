@@ -9,12 +9,6 @@ permalink: "icons/{{ icon.title | slug }}/"
 
 {% extends '../_layouts/base.njk' %}
 
-{% block header %}
-	{% for url in icon.modules %}
-<script type="module" src="{{ url | url }}"></script>
-	{% endfor %}
-{% endblock %}
-
 {% block content %}
 	{% renderFile icon.markdown %}
 {% endblock %}

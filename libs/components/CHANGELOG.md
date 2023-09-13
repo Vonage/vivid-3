@@ -4,6 +4,23 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.36.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.35.0...vivid-v3.36.0) (2023-09-13)
+
+
+### Features
+
+* **menu-item:** add submenu (VIV-1230) ([#1359](https://github.com/Vonage/vivid-3/issues/1359)) ([f915c01](https://github.com/Vonage/vivid-3/commit/f915c01d7972f97b315748fdbcad166d351fe2f3))
+* **nav-disclosure:** add icon slot (VIV-1289) ([#1367](https://github.com/Vonage/vivid-3/issues/1367)) ([8181b3a](https://github.com/Vonage/vivid-3/commit/8181b3a8e933ab25bece1e56ab8b9d83f19d07cf))
+* **tab, tag:** add icon slot (VIV-1305) ([#1372](https://github.com/Vonage/vivid-3/issues/1372)) ([fb9e5f9](https://github.com/Vonage/vivid-3/commit/fb9e5f927f463d739cd9adf492a04a94418c9c27))
+
+
+### Bug Fixes
+
+* **form-elements:** fix validation logic (VIV-1287) ([#1358](https://github.com/Vonage/vivid-3/issues/1358)) ([99df5e4](https://github.com/Vonage/vivid-3/commit/99df5e491f9d0857b76bb405983b54869ba0589d))
+* **tabs:** style (VIV-1170) ([#1369](https://github.com/Vonage/vivid-3/issues/1369)) ([4ab33c8](https://github.com/Vonage/vivid-3/commit/4ab33c8395e48058b6a1debbbbddf5ce2c6e21b2))
+* **tree-item:** fix hover contrast ([95caf59](https://github.com/Vonage/vivid-3/commit/95caf591c91b567ee5444fc8c87b230185b0f54b))
+* **tree-item:** fix hover contrast (VIV-1267) ([#1370](https://github.com/Vonage/vivid-3/issues/1370)) ([95caf59](https://github.com/Vonage/vivid-3/commit/95caf591c91b567ee5444fc8c87b230185b0f54b))
+
 ## [3.35.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.34.0...vivid-v3.35.0) (2023-09-06)
 
 

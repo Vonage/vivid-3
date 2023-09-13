@@ -1,13 +1,10 @@
-import {attr, html, observable, volatile, when} from '@microsoft/fast-element';
-import type {ElementDefinitionContext} from '@microsoft/fast-foundation';
-import {Icon} from '../../../lib/icon/icon';
+import { attr, html, observable, when } from '@microsoft/fast-element';
+import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
+import { Icon } from '../../../lib/icon/icon';
 import messageStyles from './message.scss';
 
-const ElementInternalsKey = 'ElementInternals';
-const supportsElementInternals = () => ElementInternalsKey in window && 'setFormValue' in window[ElementInternalsKey].prototype;
-
 export interface FormElement {
-	errorValidationMessage: boolean;
+	errorValidationMessage: string;
 	label: string;
 	userValid: boolean;
 	dirtyValue: boolean;
@@ -30,40 +27,45 @@ export interface ErrorText {
 }
 
 export class FormElementHelperText {
-	@attr({attribute: 'helper-text'}) helperText?: string;
+	@attr({ attribute: 'helper-text' }) helperText?: string;
 }
 
 export class FormElementSuccessText {
-	@attr({attribute: 'success-text'}) successText?: string;
+	@attr({ attribute: 'success-text' }) successText?: string;
 }
 
 export class FormElementCharCount {
 	@attr({
 		attribute: 'char-count',
-		mode: 'boolean'
-	}) charCount = false;
+		mode: 'boolean',
+	})
+		charCount = false;
 }
 
-export function formElements<T extends { new (...args: any[]): Record<string, any> }>(constructor: T) {
+export function formElements<
+	T extends { new (...args: any[]): Record<string, any> }
+>(constructor: T) {
 	class Decorated extends constructor {
 		@attr label?: string;
-		
-		@observable userValid = true;
-		#blurred = false;
 
-		@volatile
-		get errorValidationMessage() {
-			return this.userValid ? '' : this.validationMessage;
-		}
+		/**
+		 * Will hold the error message that should currently be visible in the UI.
+		 * Note: Cannot be a getter because this.validationMessage is not observable
+		 */
+		@observable errorValidationMessage = '';
+
+		#forceErrorDisplay = false;
+		#hasBeenTouched = false;
 
 		constructor(...args: any[]) {
 			super(...args);
 			(this as unknown as HTMLElement).addEventListener('blur', () => {
-				this.#blurred = true;
+				this.#hasBeenTouched = true;
+				this.#forceErrorDisplay = false;
 				this.validate();
 			});
 			(this as unknown as HTMLElement).addEventListener('focus', () => {
-				this.#blurred = false;
+				this.#hasBeenTouched = false;
 			});
 			this.addEventListener('invalid', () => {
 				this.proxy.dispatchEvent(new Event('invalid'));
@@ -71,32 +73,39 @@ export function formElements<T extends { new (...args: any[]): Record<string, an
 		}
 
 		connectedCallback() {
-			super.connectedCallback?.();
+			super.connectedCallback();
 			this.proxy.addEventListener('invalid', this.#handleInvalidEvent);
 		}
 
 		#handleInvalidEvent = () => {
-			if (this.#blurred && this.dirtyValue) return;
-			this.#blurred = true;
-			this.dirtyValue = true;
+			this.#forceErrorDisplay = true;
 			this.validate();
 		};
 
 		disconnectedCallback() {
-			super.disconnectedCallback?.();
+			super.disconnectedCallback();
 			this.proxy.removeEventListener('invalid', this.#handleInvalidEvent);
 		}
 
+		formResetCallback() {
+			this.#forceErrorDisplay = false;
+
+			super.formResetCallback();
+
+			// super.formResetCallback will reset the value, which triggers validate(), and only afterward clear dirtyValue
+			// Therefore, we need to validate again now that dirtyValue has changed
+			this.validate();
+		}
+
 		validate = () => {
-			if (supportsElementInternals() && this.proxy instanceof HTMLElement) {
-				this.setValidity((this.proxy as any).validity, (this.proxy as any).validationMessage, this.control);
-			} else {
-				super.validate();
-			}
-			this.userValid = !this.userValid;
-			if (this.proxy instanceof HTMLElement) {
-				this.userValid = (this.#blurred && this.dirtyValue) ? !this.validationMessage : true;
-			}
+			super.validate();
+
+			const shouldShowValidationError =
+				this.#forceErrorDisplay || (this.#hasBeenTouched && this.dirtyValue);
+
+			this.errorValidationMessage = shouldShowValidationError
+				? this.validationMessage
+				: '';
 		};
 	}
 
@@ -104,85 +113,105 @@ export function formElements<T extends { new (...args: any[]): Record<string, an
 }
 
 type FeedbackType = 'error' | 'helper' | 'success';
-type MessagePropertyType = 'errorValidationMessage' | 'helperText' | 'successText';
-type MessageTypeMap = { [key in FeedbackType]: {
-	iconType: string;
-	className: string;
-	messageProperty: MessagePropertyType }
+type MessagePropertyType =
+	| 'errorValidationMessage'
+	| 'helperText'
+	| 'successText';
+type MessageTypeMap = {
+	[key in FeedbackType]: {
+		iconType: string;
+		className: string;
+		messageProperty: MessagePropertyType;
+	};
 };
 
 /**
  * @param context - element definition context
  */
-export function getFeedbackTemplate(messageType: FeedbackType, context: ElementDefinitionContext) {
+export function getFeedbackTemplate(
+	messageType: FeedbackType,
+	context: ElementDefinitionContext
+) {
 	const MessageTypeMap: MessageTypeMap = {
-		'helper': {
-			'messageProperty': 'helperText',
-			'className': 'helper',
-			'iconType': ''
+		helper: {
+			messageProperty: 'helperText',
+			className: 'helper',
+			iconType: '',
 		},
-		'error': {
-			'messageProperty': 'errorValidationMessage',
-			'className': 'error',
-			'iconType': 'info-line'
+		error: {
+			messageProperty: 'errorValidationMessage',
+			className: 'error',
+			iconType: 'info-line',
 		},
-		'success': {
-			'messageProperty': 'successText',
-			'className': 'success',
-			'iconType': 'check-circle-line'
-		}
+		success: {
+			messageProperty: 'successText',
+			className: 'success',
+			iconType: 'check-circle-line',
+		},
 	};
 	const iconTag = context.tagFor(Icon);
 	const messageTypeConfig = MessageTypeMap[messageType];
 	const iconType = messageTypeConfig.iconType;
-	return html<FormElement>`
-			<style>
-				${messageStyles}
-
-			</style>
-			<div class="message ${MessageTypeMap[messageType].className}-message">
-		  	${when(() => iconType, html<FormElement>`
-					  <${iconTag} class="message-icon" name="${iconType}"></${iconTag}>`)}
-				${feedbackMessage({
-		messageProperty: MessageTypeMap[messageType].messageProperty})}
-			</div>`;
+	return html<FormElement>` <style>
+			${messageStyles}
+		</style>
+		<div class="message ${MessageTypeMap[messageType].className}-message">
+			${when(
+		() => iconType,
+		html<FormElement>`
+					  <${iconTag} class="message-icon" name="${iconType}"></${iconTag}>`
+	)}
+			${feedbackMessage({
+		messageProperty: MessageTypeMap[messageType].messageProperty,
+	})}
+		</div>`;
 }
 
-function feedbackMessage({messageProperty}: {messageProperty: MessagePropertyType }) {
+function feedbackMessage({
+	messageProperty,
+}: {
+	messageProperty: MessagePropertyType;
+}) {
 	return html<FormElement & FormElementHelperText & FormElementSuccessText>`
-	  <span class="message-text">${x => x[messageProperty]}</span>
+		<span class="message-text">${(x) => x[messageProperty]}</span>
 	`;
 }
 
-export function errorText<T extends { new (...args: any[]): Record<string, any> }>(constructor: T) {
+export function errorText<
+	T extends { new (...args: any[]): Record<string, any> }
+>(constructor: T) {
 	class Decorated extends constructor {
 		@attr({ attribute: 'error-text' }) errorText?: string;
-		#shouldValidate = true;
-		#prevSuccessText = '';
+		#blockValidateCalls = false;
 
 		constructor(...args: any[]) {
 			super(...args);
 			this._validate = this.validate;
 			this.validate = () => {
-				if (this.#shouldValidate) this._validate();
+				if (!this.#blockValidateCalls) this._validate();
 			};
 		}
 
-		errorTextChanged(_: string, newmsg: string | undefined) {
-			if (newmsg) {
-				this.setValidity({ customError: true }, newmsg, this.control);
-				this.#prevSuccessText = this.successText;
-				this.successText = '';
-				this.userValid = !this.userValid; // forces template refresh
-				this.userValid = false;
-				this.#shouldValidate = false;
+		errorTextChanged(_: string, newErrorText: string | undefined) {
+			if (newErrorText) {
+				this.#forceCustomError(newErrorText);
 			} else {
-				this.setValidity({ customError: false }, '', this.control);
-				this.successText = this.#prevSuccessText;
-				this.userValid = true;
-				this.#shouldValidate = true;
-				this._validate();
+				this.#clearCustomErrorAndRevalidate();
 			}
+		}
+
+		#forceCustomError(errorMessage: string) {
+			this.setValidity({ customError: true }, errorMessage, this.control);
+			this.errorValidationMessage = errorMessage;
+
+			this.#blockValidateCalls = true;
+		}
+
+		#clearCustomErrorAndRevalidate() {
+			this.setValidity({ customError: false }, '', this.control);
+			this.#blockValidateCalls = false;
+
+			this.validate();
 		}
 	}
 
