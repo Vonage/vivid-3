@@ -75,13 +75,28 @@ describe('vwc-fab', () => {
 			expect(getControlElement(element).classList.contains('icon-only')).toBeTruthy();
 		});
 
+		it('should have an icon slot', async () => {
+			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
+		});
+
 		it('should set icon-only class if slot name="icon" is slotted', async () => {
-			expect(getControlElement(element).classList.contains('icon-only')).toBeFalsy();
+			const iconOnlyClassExistsWithoutSlot = getControlElement(element).classList.contains('icon-only');
 			const slottedElement = document.createElement('span');
 			slottedElement.slot = 'icon';
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.contains('icon-only')).toBeTruthy();
+
+			expect(iconOnlyClassExistsWithoutSlot).toEqual(false);
+			expect(getControlElement(element).classList.contains('icon-only')).toEqual(true);
+		});
+
+		it('should leave the slotted elements unreflected', async () => {
+			const slottedElement = document.createElement('span');
+			slottedElement.slot = 'icon';
+			element.appendChild(slottedElement);
+			await elementUpdated(element);
+			expect(element.iconSlottedContent?.length).toEqual(1);
+			expect(element.hasAttribute('iconSlottedContent')).toEqual(false);
 		});
 
 	});
