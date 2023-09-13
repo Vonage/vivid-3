@@ -39,7 +39,11 @@ describe('vwc-tag', () => {
 	});
 
 	describe('icon', () => {
-		it('adds an icon to the tag', async () => {
+		it('should have an icon slot', async () => {
+			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
+		});
+
+		it('should have an icon when icon is set without slotted icon', async () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
@@ -50,6 +54,7 @@ describe('vwc-tag', () => {
 				.toEqual('home');
 		});
 	});
+
 
 	describe('label', () => {
 		it('set label property to node', async () => {

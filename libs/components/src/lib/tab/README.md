@@ -80,6 +80,24 @@ The disabled state of the element.
 ```html preview
 <vwc-tabs>
  <vwc-tab disabled label="Disabled Tab" id="tab"></vwc-tab>
+ <vwc-tab-panel id="tab" slot="tabpanel">
+   	<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+ </vwc-tab-panel>
+</vwc-tabs>
+```
+
+## Slots
+
+### Icon
+
+Set the `icon` slot to show an icon in the tab.
+If set, the `icon` attribute is ignored.
+
+```html preview
+<vwc-tabs>
+ <vwc-tab label="Tab with custom icon" id="tab">
+    <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+ </vwc-tab>
  <vwc-tab-panel id="tab" slot="tabpanel"></vwc-tab-panel>
 </vwc-tabs>
 ```
