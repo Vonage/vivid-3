@@ -3,7 +3,7 @@ import { html, ref } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
-import { affixIconTemplateFactory, ICON_WRAPPER } from '../../shared/patterns/affix';
+import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
 import type { Fab } from './fab';
 
 const getClasses = ({
@@ -68,7 +68,7 @@ export const FabTemplate: (
             ${ref('control')}
         >
             ${() => focusTemplate}
-					  ${x => affixIconTemplate(x.icon, ICON_WRAPPER.SLOT)}
+					  ${x => affixIconTemplate(x.icon, IconWrapper.Slot)}
             ${(x) => x.label}
         </button>
 `;
