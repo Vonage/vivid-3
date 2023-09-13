@@ -73,7 +73,7 @@ const renderiFrame = (
 			</div>
 			<details class="${CBD_DETAILS}" slot="main">
 				<summary></summary>
-				<div class="font-base" style="margin: 16px; color: var(--vvd-color-neutral-700);">Enter HTML Source Code</div>
+				<div class="font-base tight cbd-live-hint"> // Enter HTML Source Code</div>
 				<div class="cbd-live-sample" data-index="${index}" role="region">
 					<pre>${_.escape(content)}</pre>
 				</div>

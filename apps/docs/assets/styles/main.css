@@ -253,6 +253,12 @@ article.article > h1 {
 	align-items: center;
 }
 
+.cbd-live-hint {
+  color: #abb2bf; 
+  background-color: #282c34;
+  padding: 8px;
+}
+
 .cbd-locale-switcher {
 	margin: 8px;
 }
