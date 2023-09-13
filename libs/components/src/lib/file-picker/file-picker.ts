@@ -4,7 +4,7 @@ import { attr } from '@microsoft/fast-element';
 import type { DropzoneFile } from 'dropzone';
 import Dropzone from 'dropzone';
 import type { Size } from '../enums';
-import { FormElementHelperText } from '../../shared/patterns';
+import { FormElementHelperText, Localized } from '../../shared/patterns';
 import type { Button } from '../button/button';
 import { Connotation } from '../enums';
 
@@ -68,7 +68,7 @@ export class FilePicker extends FoundationElement {
 	 * HTML Attribute: max-file-size
 	 */
 	@attr({ mode: 'fromView', attribute: 'max-file-size' })
-		maxFileSize: number = 256;
+	maxFileSize: number = 256;
 	maxFileSizeChanged(_oldValue: number, newValue: number): void {
 		if (!this.#dropzone) {
 			return;
@@ -123,7 +123,7 @@ export class FilePicker extends FoundationElement {
 		) as HTMLDivElement;
 		this.#dropzone = new Dropzone(control, {
 			url: '/', // dummy url, we do not use dropzone's upload functionality
-			maxFiles: this.maxFiles ?? null as any,
+			maxFiles: this.maxFiles ?? (null as any),
 			maxFilesize: this.maxFileSize,
 			acceptedFiles: this.accept,
 			autoProcessQueue: false,
@@ -137,11 +137,12 @@ export class FilePicker extends FoundationElement {
     <div class="dz-size"><span data-dz-size></span></div>
   </div>
   <div class="dz-error-message"><span data-dz-errormessage></span></div>
-  <${this.buttonTag} class="remove-btn" icon="delete-line" appearance="ghost" size="condensed"></${this.buttonTag}>
+  <${this.buttonTag} class="remove-btn" icon="delete-line" appearance="ghost" size="condensed" aria-label="${this.locale.filePicker.removeFileLabel}"></${this.buttonTag}>
 </div>`,
 			// Replace "upload" with "select" in dict messages
-			dictInvalidFileType: "You can't select files of this type.",
-			dictMaxFilesExceeded: 'You can not select any more files.',
+			dictInvalidFileType: this.locale.filePicker.invalidFileTypeError,
+			dictMaxFilesExceeded: this.locale.filePicker.maxFilesExceededError,
+			dictFileTooBig: this.locale.filePicker.fileTooBigError,
 		});
 
 		this.#dropzone.on('addedfile', (file) => {
@@ -165,7 +166,9 @@ export class FilePicker extends FoundationElement {
 
 		this.#dropzone.on('error', (file) => {
 			if (file.previewElement) {
-				const removeButton = file.previewElement.querySelector('.remove-btn') as Button;
+				const removeButton = file.previewElement.querySelector(
+					'.remove-btn'
+				) as Button;
 				removeButton.connotation = Connotation.Alert;
 			}
 		});
@@ -213,5 +216,5 @@ export class FilePicker extends FoundationElement {
 	}
 }
 
-export interface FilePicker extends FormElementHelperText { }
-applyMixins(FilePicker, FormElementHelperText);
+export interface FilePicker extends FormElementHelperText, Localized {}
+applyMixins(FilePicker, FormElementHelperText, Localized);

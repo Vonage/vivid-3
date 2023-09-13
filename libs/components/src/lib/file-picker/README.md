@@ -2,6 +2,8 @@
 
 The vwc-file-picker component enables users to select files either by opening a file selection dialog or by using drag-and-drop functionality.
 
+Error messages and labels will be localized to the current locale. See [Localization](/getting-started/localization) for more details.
+
 ```js
 <script type="module">
     import '@vonage/vivid/file-picker';
