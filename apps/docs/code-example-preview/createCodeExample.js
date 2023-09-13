@@ -74,8 +74,10 @@ const renderiFrame = (
 			<details class="${CBD_DETAILS}" slot="main">
 				<summary></summary>
 				<div class="cbd-live-sample" data-index="${index}" role="region">
-					<div><p> // Feel free to edit the code below. The live preview will update as you make changes.</p></div>
-					<pre>${_.escape(content)}</pre>
+					<pre>
+						<p> // Feel free to edit the code below. The live preview will update as you make changes.</p>
+						${_.escape(content)}
+					</pre>
 				</div>
 			</details>
 		</vwc-card>
