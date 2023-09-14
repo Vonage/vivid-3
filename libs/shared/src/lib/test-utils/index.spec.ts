@@ -1,12 +1,12 @@
 import {
-  ADD_TEMPLATE_TO_FIXTURE,
-  createFormHTML,
-  elementUpdated,
-  fixture,
-  getBaseElement,
-  getControlElement,
-  listenToFormSubmission,
-  setAttribute
+	ADD_TEMPLATE_TO_FIXTURE,
+	createFormHTML,
+	elementUpdated,
+	fixture,
+	getBaseElement,
+	getControlElement,
+	listenToFormSubmission, nextTick,
+	setAttribute
 } from '.';
 
 class DummyElement extends HTMLElement {
@@ -31,6 +31,17 @@ describe(`test-utils`, function () {
       });
     });
   });
+
+	describe('nextTick', function () {
+		it('should resolve on the next tick', async () => {
+			const spy = jest.fn();
+			const promise = nextTick();
+			promise.then(spy);
+			expect(spy).not.toHaveBeenCalled();
+			await promise;
+			expect(spy).toHaveBeenCalled();
+		});
+	});
 
   describe(`listenToFormSubmission`, function () {
     it('should return a promise that resolves on form submit', async function() {
