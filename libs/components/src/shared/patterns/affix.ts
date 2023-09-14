@@ -1,4 +1,4 @@
-import { attr, html } from '@microsoft/fast-element';
+import {attr, html, slotted} from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { Icon } from '../../lib/icon/icon';
@@ -18,6 +18,13 @@ export class AffixIcon {
 		* HTML Attribute: icon
 		*/
 	@attr icon?: string;
+	/**
+	 *
+	 * Slot observer:
+	 *
+	 * @internal
+	 */
+	@attr({mode: 'fromView'}) iconSlottedContent?: HTMLElement[];
 }
 
 /**
@@ -44,6 +51,9 @@ export const IconWrapper = {
 	Span: true
 };
 
+type affixIconTemplateFactoryReturnType = (context: ElementDefinitionContext) =>
+(icon?: string, slottedState?: boolean, iconSlottedContent?: string) =>
+ViewTemplate<AffixIcon> | null
 /**
  * The template for the prefixed element.
  * For use with {@link AffixIcon}
@@ -52,13 +62,12 @@ export const IconWrapper = {
  * @param slottedState - set the icon in a span with class "icon", defaults to false
  * @public
  */
-export const affixIconTemplateFactory: (context: ElementDefinitionContext) =>
-(icon?: string, slottedState?: boolean) => ViewTemplate<AffixIcon> | null = (context: ElementDefinitionContext) => {
+export const affixIconTemplateFactory: affixIconTemplateFactoryReturnType = (context: ElementDefinitionContext) => {
 
 	const iconTag = context.tagFor(Icon);
 	return (icon?: string, slottedState = IconWrapper.Span) => {
 		if (!icon && !slottedState) {
-			return html`<slot name="icon"></slot>`;
+			return html`<slot name="icon" ${slotted('iconSlottedContent')}></slot>`;
 		}
 		if (!icon && slottedState) {
 			return null;
