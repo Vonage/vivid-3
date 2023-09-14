@@ -1,12 +1,20 @@
 /* eslint-disable max-len */
-import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
+import { applyMixins } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import type { DropzoneFile } from 'dropzone';
 import Dropzone from 'dropzone';
 import type { Size } from '../enums';
-import { FormElementHelperText, Localized } from '../../shared/patterns';
-import type { Button } from '../button/button';
 import { Connotation } from '../enums';
+import {
+	type ErrorText,
+	errorText,
+	type FormElement,
+	FormElementHelperText,
+	formElements,
+	Localized
+} from '../../shared/patterns';
+import type { Button } from '../button/button';
+import { FormAssociatedFilePicker } from './file-picker.form-associated';
 
 /**
  * Types of file uploader size.
@@ -22,7 +30,9 @@ export type FileUploaderSize = Extract<Size, Size.Normal | Size.Expanded>;
  * @event change - Emitted when a file is added or removed.
  */
 
-export class FilePicker extends FoundationElement {
+@errorText
+@formElements
+export class FilePicker extends FormAssociatedFilePicker {
 	#dropzone?: Dropzone;
 
 	/**
@@ -33,15 +43,6 @@ export class FilePicker extends FoundationElement {
 	get files(): File[] {
 		return this.#dropzone?.getAcceptedFiles() ?? [];
 	}
-
-	/**
-	 * Indicates the file picker's label.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: label
-	 */
-	@attr label?: string;
 
 	/**
 	 * The max files that can be selected.
@@ -68,7 +69,7 @@ export class FilePicker extends FoundationElement {
 	 * HTML Attribute: max-file-size
 	 */
 	@attr({ mode: 'fromView', attribute: 'max-file-size' })
-	maxFileSize: number = 256;
+		maxFileSize: number = 256;
 	maxFileSizeChanged(_oldValue: number, newValue: number): void {
 		if (!this.#dropzone) {
 			return;
@@ -101,6 +102,28 @@ export class FilePicker extends FoundationElement {
 	 * HTML Attribute: size
 	 */
 	@attr size?: FileUploaderSize;
+
+	override valueChanged = () => {
+		this.dirtyValue = true;
+
+		if (this.proxy instanceof HTMLElement) {
+			this.proxy.value = this.value;
+		}
+
+		this.currentValue = this.value;
+
+		this.validate();
+	};
+
+	override nameChanged(previous: string, next: string) {
+		super.nameChanged!(previous, next);
+		this.#updateFormValue();
+	}
+
+	/**
+	 * @internal
+	 */
+	control!: HTMLElement;
 
 	/**
 	 * Used internally to hold the tag that button is registered at.
@@ -215,9 +238,36 @@ export class FilePicker extends FoundationElement {
 		// Dropzone only marks files as valid after emitting events, therefore we need to await next tick
 		setTimeout(() => {
 			this.$emit('change');
+			this.#updateFormValue();
 		}, 0);
+	}
+
+	#updateFormValue() {
+		const files = this.files;
+
+		if (!this.name) {
+			this.setFormValue(null);
+		} else {
+			const formData = new FormData();
+			for (const file of files) {
+				formData.append(this.name, file);
+			}
+			this.setFormValue(formData);
+		}
+
+		// For historical reasons, the value IDL attribute prefixes the filename with the string "C:\fakepath\".
+		this.value = files.length > 0 ? `C:\\fakepath\\${files[0].name}` : '';
+	}
+
+	override validate(): void {
+		super.validate(this.control);
+	}
+
+	override formResetCallback(): void {
+		super.formResetCallback();
+		this.#dropzone!.removeAllFiles();
 	}
 }
 
-export interface FilePicker extends FormElementHelperText, Localized {}
+export interface FilePicker extends FormElementHelperText, Localized, ErrorText, FormElement, FormElementHelperText {}
 applyMixins(FilePicker, FormElementHelperText, Localized);

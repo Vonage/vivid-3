@@ -35,6 +35,33 @@ Add the `helper-text` to add some helper text below the file picker.
 ```
 
 
+### Error text
+
+It is possible to force the file picker's error state by setting the `error-text` attribute to a custom error message.
+Note that any current error state will be overridden by `error-text` (and, if applicable, restored once it is removed).
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-file-picker error-text="Please provide a valid file.">Drag & Drop or click to upload</vwc-file-picker>
+```
+
+
+### Success text
+
+
+Add the `success-text` to add some success text below the file-picker.
+If provided, `success-text` will take precedence over errors.
+
+- Type: `string` | `undefined`
+- Default: `undefined`
+
+```html preview
+<vwc-file-picker success-text="File accepted.">Drag & Drop or click to upload</vwc-file-picker>
+```
+
+
 ### Max File Size
 
 Use the `max-file-size` attribute to define the maximum file size (in megabytes) for each file.
@@ -130,34 +157,21 @@ Use the default slot to set the content of the file picker.
 	form {
 		width: 400px;
 	}
-	vwc-button {
-		justify-self: flex-start;
+	.buttons {
+		display: flex;
+		gap: 12px;
 	}
 </style>
 
-<form id='form'>
+<form method="post" enctype="multipart/form-data">
 	<vwc-layout column-basis="block">
-		<vwc-text-field name="username" label='Username'></vwc-text-field>
-		<vwc-file-picker id="filePicker" label="Pick files" helper-text="multiple files of any type" max-files="50">Drag & Drop or click to upload</vwc-file-picker>
-		<vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>
+		<vwc-file-picker name="files" label="Pick files" helper-text="multiple files of any type" max-files="50" required>Drag & Drop or click to upload</vwc-file-picker>
+		<div class="buttons">
+			<vwc-button label="Reset" appearance="outlined" type="reset"></vwc-button>
+			<vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>
+		</div>
 	</vwc-layout>
 </form>
-
-<script>
-	form.addEventListener("submit", (event) => {
-		event.preventDefault();
-
-		const formData = new FormData(form);
-
-		for (const [index, file] of filePicker.files.entries()) {
-			formData.append(`file[${index}]`, file);
-		}
-    
-		const request = new XMLHttpRequest();
-		request.open("POST", "/upload");
-		request.send(formData);
-	});
-</script>
 ```
 
 ## Accessibility
