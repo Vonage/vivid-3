@@ -154,23 +154,34 @@ describe('vwc-file-picker', () => {
 	});
 
 	describe('change', function () {
-		it('should fire "change" event when a file is added', async () => {
-			const onChange = jest.fn();
+		it('should fire "change" event after a file is added', async () => {
+			let filesLengthInChangeHandler = -1;
+			const onChange = jest.fn().mockImplementation(() => {
+				filesLengthInChangeHandler = element.files.length;
+			});
 			element.addEventListener('change', onChange);
 
 			addFiles([await generateFile('london.png', 1)]);
+			await nextTick();
 
 			expect(onChange).toHaveBeenCalledTimes(1);
+			expect(filesLengthInChangeHandler).toBe(1);
 		});
 
-		it('should fire "change" event when a file is removed', async () => {
+		it('should fire "change" event after a file is removed', async () => {
 			addFiles([await generateFile('london.png', 1)]);
-			const onChange = jest.fn();
+			await nextTick();
+			let filesLengthInChangeHandler = -1;
+			const onChange = jest.fn().mockImplementation(() => {
+				filesLengthInChangeHandler = element.files.length;
+			});
 			element.addEventListener('change', onChange);
 
 			getRemoveButton(0).click();
+			await nextTick();
 
 			expect(onChange).toHaveBeenCalledTimes(1);
+			expect(filesLengthInChangeHandler).toBe(0);
 		});
 	});
 

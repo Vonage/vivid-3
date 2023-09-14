@@ -212,7 +212,10 @@ export class FilePicker extends FoundationElement {
 	}
 
 	#handleFilesChanged(): void {
-		this.$emit('change');
+		// Dropzone only marks files as valid after emitting events, therefore we need to await next tick
+		setTimeout(() => {
+			this.$emit('change');
+		}, 0);
 	}
 }
 
