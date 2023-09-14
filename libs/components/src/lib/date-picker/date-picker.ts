@@ -255,7 +255,7 @@ export class DatePicker extends FormAssociatedDatePicker {
 		document.removeEventListener('click', this.#dismissOnClickOutside);
 	}
 
-	override validate(anchor?: HTMLElement) {
+	override validate() {
 		// When error-text is present, validate() is skipped and the error-text is used instead
 
 		// Otherwise, super.validate() will use validity of the proxy
@@ -268,7 +268,7 @@ export class DatePicker extends FormAssociatedDatePicker {
 			}
 		}
 
-		super.validate(anchor);
+		super.validate(this._textFieldEl?.shadowRoot?.querySelector('input') ?? undefined);
 	}
 
 	// --- Popup ---
