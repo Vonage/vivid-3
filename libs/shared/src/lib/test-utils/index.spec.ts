@@ -61,7 +61,7 @@ describe(`test-utils`, function () {
   describe(`createFormHTML`, function () {
     it(`should return the form with given ID`, function () {
       const {form} = createFormHTML({
-        formId: 'test', componentTagName: 'vwc-test', fieldName: 'tested-component'
+        formId: 'test', componentTagName: 'vwc-test'
       });
       expect(form.id).toEqual('test');
       expect(form instanceof HTMLFormElement).toEqual(true);
