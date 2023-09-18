@@ -421,6 +421,7 @@ export class DatePicker extends FormAssociatedDatePicker {
 	/**
 	 * @internal
 	 */
+	@volatile
 	get _calendarButtonLabel() {
 		if (this.value) {
 			return this.locale.datePicker.changeDateLabel(formatPresentationDate(this.value, this.locale.datePicker));
