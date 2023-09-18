@@ -48,6 +48,7 @@ const zhCN: Locale = {
 		dateFormat: 'yyyy年MM月dd日',
 		dateFormatPlaceholder: 'YYYY年MM月DD日',
 		chooseDateLabel: '选择日期',
+		changeDateLabel: (date: string) => `更改日期, ${date}`,
 		prevYearLabel: '上一年',
 		prevMonthLabel: '上个月',
 		nextMonthLabel: '下个月',

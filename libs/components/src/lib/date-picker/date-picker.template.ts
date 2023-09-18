@@ -269,7 +269,6 @@ export const DatePickerTemplate: (
 		<${textFieldTag} id="text-field"
 										 ${ref('_textFieldEl')}
 										 class="control"
-										 icon="calendar-line"
 										 label="${(x) => x.label}"
 										 helper-text="${(x) => x.helperText}"
 										 error-text="${(x) => x.errorValidationMessage}"
@@ -281,9 +280,19 @@ export const DatePickerTemplate: (
 										 @change="${(x) => x._onTextFieldChange()}"
 										 @focus="${(x) => x._onTextFieldFocus()}"
 										 @blur="${(x) => x._onTextFieldBlur()}"
-										 @click="${(x) => x._onTextFieldClick()}"
-										 @keydown="${(x, c) => x._onTextFieldKeydown(c.event as KeyboardEvent)}"
-		></${textFieldTag}>
+		>
+			<${buttonTag}
+				id="calendar-button"
+				${ref('_calendarButtonEl')}
+				slot="action-items"
+				size="condensed"
+				icon="calendar-line"
+				appearance="ghost"
+				?disabled="${(x) => x.disabled || x.readOnly}"
+				aria-label="${(x) => x._calendarButtonLabel}"
+				@click="${(x) => x._onCalendarButtonClick()}"
+			></${buttonTag}>
+		</${textFieldTag}>
 		<${popupTag}
 					?open="${(x) => x._popupOpen}"
 					anchor="text-field"

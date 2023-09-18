@@ -7,6 +7,7 @@ import {
 	volatile,
 } from '@microsoft/fast-element';
 import type { TextField } from '../text-field/text-field';
+import type { Button } from '../button/button';
 import {
 	type ErrorText,
 	errorText,
@@ -175,11 +176,16 @@ export class DatePicker extends FormAssociatedDatePicker {
 	 * @internal
 	 */
 	_dialogEl!: HTMLElement;
+	/**
+	 * @internal
+	 */
+	_calendarButtonEl!: Button;
 
 	#getFocusableEls() {
-		const focusableEls = this.shadowRoot!.querySelectorAll(
-			'.button:not(:disabled), .vwc-button:not(:disabled)'
-		);
+		const focusableEls = this.shadowRoot!.querySelectorAll(`
+			.dialog .button:not(:disabled),
+			.dialog .vwc-button:not(:disabled)
+		`);
 		return {
 			firstFocusableEl: focusableEls[0] as HTMLElement,
 			lastFocusableEl: focusableEls[focusableEls.length - 1] as HTMLElement,
@@ -285,7 +291,8 @@ export class DatePicker extends FormAssociatedDatePicker {
 		}
 
 		const path = event.composedPath();
-		if (!path.includes(this)) {
+		const elementsToIgnoreClicksOn = [this._dialogEl, this._calendarButtonEl];
+		if (!elementsToIgnoreClicksOn.some(element => path.includes(element))) {
 			this.#closePopup(false);
 		}
 	};
@@ -336,20 +343,6 @@ export class DatePicker extends FormAssociatedDatePicker {
 				if (this.shadowRoot!.activeElement === lastFocusableEl) {
 					firstFocusableEl.focus();
 					return false;
-				}
-
-				// When tabbing from the text field into the dialog, focus the day/month if possible
-				if (
-					this.shadowRoot!.activeElement === this._textFieldEl &&
-					this._popupOpen
-				) {
-					const tabbableDateOrMonth = this._dialogEl.querySelector(
-						'[tabindex="0"]'
-					) as HTMLButtonElement | null;
-					if (tabbableDateOrMonth) {
-						tabbableDateOrMonth.focus();
-						return false;
-					}
 				}
 			}
 		}
@@ -413,7 +406,6 @@ export class DatePicker extends FormAssociatedDatePicker {
 	 * @internal
 	 */
 	_onTextFieldFocus() {
-		this.#openPopupIfPossible();
 		this.$emit('focus', undefined, { bubbles: false });
 	}
 
@@ -424,26 +416,33 @@ export class DatePicker extends FormAssociatedDatePicker {
 		this.$emit('blur', undefined, { bubbles: false });
 	}
 
+	// --- Calendar button ---
+
 	/**
 	 * @internal
 	 */
-	_onTextFieldClick() {
-		this.#openPopupIfPossible();
+	get _calendarButtonLabel() {
+		if (this.value) {
+			return this.locale.datePicker.changeDateLabel(formatPresentationDate(this.value, this.locale.datePicker));
+		} else {
+			return this.locale.datePicker.chooseDateLabel;
+		}
 	}
 
 	/**
 	 * @internal
 	 */
-	_onTextFieldKeydown(event: KeyboardEvent) {
-		if (event.key === 'Enter') {
-			if (this._popupOpen) {
-				this.#closePopup();
-			} else {
-				this.#openPopupIfPossible();
-			}
-		}
+	_onCalendarButtonClick() {
+		if (this._popupOpen) {
+			this.#closePopup();
+		} else {
+			this.#openPopupIfPossible();
 
-		return true; // Don't prevent default
+			DOM.processUpdates();
+
+			const tabbableDate = this.shadowRoot!.querySelector(`[data-date="${this._tabbableDate}"]`) as HTMLButtonElement;
+			tabbableDate.focus();
+		}
 	}
 
 	// --- Dialog header ---
