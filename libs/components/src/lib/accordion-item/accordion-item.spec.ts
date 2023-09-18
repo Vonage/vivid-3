@@ -54,6 +54,10 @@ describe('vwc-accordion-item', () => {
 	});
 
 	describe('icon', () => {
+		it('should have an icon slot', async () => {
+			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
+		});
+		
 		it('should render an icon when the icon property is set', async () => {
 			const headerSecondChild = () => element.shadowRoot?.querySelector('.heading-button :nth-child(2)') as HTMLSpanElement;
 
