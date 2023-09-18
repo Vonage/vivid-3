@@ -464,15 +464,41 @@ describe('vwc-number-field', () => {
 				.toEqual(true);
 		});
 
-		fit('should allow negative sign as first char', async function () {
-			console.log('changing value');
+		it('should allow negative sign as first char', async function () {
 			element.value = '-';
 			await elementUpdated(element);
 			const valueWhenNegativeIsFirstChar = element.value;
-			// element.value = '5-';
-			// const valueWhenNegativeIsNotFirstChar = element.value;
-			// expect(valueWhenNegativeIsNotFirstChar).toEqual('5');
+
+			element.value = '5-';
+			await elementUpdated(element);
+			const valueWhenNegativeIsNotFirstChar = element.value;
+
+			expect(valueWhenNegativeIsNotFirstChar).toEqual('5');
 			expect(valueWhenNegativeIsFirstChar).toEqual('-');
+		});
+
+		it('should allow for decimal values', async function () {
+			element.value = '5.';
+			await elementUpdated(element);
+			const valueWhenDecimalLastChar = element.value;
+
+			element.value = '5.5';
+			await elementUpdated(element);
+			const valueWhenDecimalMiddleChar = element.value;
+
+			element.value = '.5';
+			await elementUpdated(element);
+			const valueWhenDecimalFirstChar = element.value;
+
+			expect(valueWhenDecimalLastChar).toEqual('5.');
+			expect(valueWhenDecimalMiddleChar).toEqual('5.5');
+			expect(valueWhenDecimalFirstChar).toEqual('.5');
+		});
+
+		it('should remove last of two decimal points', async function () {
+			element.value = '5.5.';
+			await elementUpdated(element);
+			expect(element.value).toEqual('5.5');
 		});
 	});
 
