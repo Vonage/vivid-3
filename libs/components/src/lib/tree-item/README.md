@@ -92,6 +92,18 @@ Use the `expanded` attribute to set the tree-item's open state.
 </vwc-tree-view>
 ```
 
+### Icon
+
+Set the `icon` slot to show an icon before the tree item's text.
+If set, the `icon` attribute is ignored.
+
+```html preview
+<vwc-tree-view>
+    <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+    <vwc-tree-item text="Tree Item" icon="chat-line"></vwc-tree-item>
+</vwc-tree-view>
+```
+
 ## Events
 
 <div class="table-wrapper">

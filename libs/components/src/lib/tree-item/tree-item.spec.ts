@@ -48,6 +48,10 @@ describe('vwc-tree-item', () => {
 	});
 
 	describe('icon', () => {
+		it('should have an icon slot', async () => {
+			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
+		});
+
 		it('should add an icon to the tree item', async () => {
 			const iconName = 'home';
 			treeItem2.icon = iconName;
