@@ -16,7 +16,8 @@ const theme = new Compartment();
 
 window.setEditorsTheme = function() {
 	for (const {view} of samplesEditors.values()) {
-		view.dispatch({ effects: theme.reconfigure(window._darkTheme ? oneDark : EditorView.theme({})) });
+		/* For light theme replace with: window._darkTheme ? oneDark : EditorView.theme({}) */
+		view.dispatch({ effects: theme.reconfigure(oneDark) });
 	}
 }
 

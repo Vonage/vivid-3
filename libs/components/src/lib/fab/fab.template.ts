@@ -3,16 +3,16 @@ import { html, ref } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
-import { affixIconTemplateFactory } from '../../shared/patterns/affix';
+import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
 import type { Fab } from './fab';
 
 const getClasses = ({
-	connotation, size, icon, label, iconTrailing, disabled
+	connotation, size, icon, label, iconTrailing, disabled, iconSlottedContent
 }: Fab) => classNames(
 	'control',
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[`size-${size}`, Boolean(size)],
-	['icon-only', !label && !!icon],
+	['icon-only', !label && !!(icon || iconSlottedContent?.length)],
 	['icon-trailing', iconTrailing],
 	['disabled', disabled],
 );
@@ -68,7 +68,7 @@ export const FabTemplate: (
             ${ref('control')}
         >
             ${() => focusTemplate}
-            ${x => affixIconTemplate(x.icon)}
+					  ${x => affixIconTemplate(x.icon, IconWrapper.Slot)}
             ${(x) => x.label}
         </button>
 `;

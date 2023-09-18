@@ -22,6 +22,7 @@ export type TabShape = Extract<Shape, Shape.Rounded | Shape.Sharp>;
 
 /**
  * Base class for tab
+ * @slot icon - Slot to add an icon to tab.
  *
  * @public
  */

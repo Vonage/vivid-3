@@ -1,5 +1,5 @@
 import { applyMixins, Button as FoundationButton } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
+import {attr} from '@microsoft/fast-element';
 
 import type { Connotation, Size } from '../enums.js';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
@@ -22,6 +22,7 @@ export type FABSize = Extract<Size, Size.Normal | Size.Expanded>;
  * Base class for fab
  *
  * @public
+ * @slot icon - Slot to add an icon to fab.
  */
 export class Fab extends FoundationButton {
 	/**
@@ -54,3 +55,4 @@ export class Fab extends FoundationButton {
 
 export interface Fab extends AffixIconWithTrailing { }
 applyMixins(Fab, AffixIconWithTrailing);
+

@@ -1,23 +1,23 @@
-@use 'sass:map';
+@use "sass:map";
 
-@use '../../../../..//dist/libs/tokens/scss/tokens.constants' as constants;
-
+@use "../../../../..//dist/libs/tokens/scss/tokens.constants" as constants;
 
 $selectors: (
-	bold: 'b, strong',
-	code: 'pre, var, code, kbd, samp',
+	bold: "b, strong",
+	code: "pre, var, code, kbd, samp"
 );
 
 @mixin typography-base {
 	font: var(#{constants.$vvd-typography-base});
-	font-feature-settings: 'kern'; /* turns on kerning */
+	font-feature-settings: "kern"; /* turns on kerning */
 	text-rendering: optimizeLegibility; /* emphasise on legibility when rendering, turns on ligatures and kerning */
 	-webkit-font-smoothing: antialiased; /* apply font anti-aliasing for Webkit on OSX */
 	-moz-osx-font-smoothing: grayscale; /* apply font anti-aliasing for Firefox on OSX */
 }
 
 .vvd-root {
-	&:root { // <--- When 'vvd-root' is set on the `:root` (html element), typeface sizes are able to descend from the root font-size, thus comply with the [WCAG 1.4.4](https://www.w3.org/WAI/WCAG21/Understanding/resize-text)
+	&:root {
+		// <--- When 'vvd-root' is set on the `:root` (html element), typeface sizes are able to descend from the root font-size, thus comply with the [WCAG 1.4.4](https://www.w3.org/WAI/WCAG21/Understanding/resize-text)
 		--vvd-size-font-scale-base: 1rem;
 		font-size: unset; // resolves to the user-agent default font size (generally 16px)
 
@@ -30,7 +30,9 @@ $selectors: (
 		@include typography-base;
 	}
 
-	p, .font-base {
+
+	p,
+	.font-base {
 		font: var(#{constants.$vvd-typography-base});
 		margin-block: 16px;
 
@@ -39,11 +41,35 @@ $selectors: (
 		}
 	}
 
-	#{map.get($selectors, 'bold')} {
+	.font-base-bold {
 		font: var(#{constants.$vvd-typography-base-bold});
 	}
 
-	#{map.get($selectors, 'code')} {
+	.font-base-condensed {
+		font: var(#{constants.$vvd-typography-base-condensed});
+	}
+
+	.font-base-condensed-bold {
+		font: var(#{constants.$vvd-typography-base-condensed-bold});
+	}
+
+	.font-base-extended {
+		font: var(#{constants.$vvd-typography-base-extended});
+	}
+
+	.font-base-extended-bold {
+		font: var(#{constants.$vvd-typography-base-extended-bold});
+	}
+
+	.font-base-code {
+		font: var(#{constants.$vvd-typography-base-code});
+	}
+
+	#{map.get($selectors, "bold")} {
+		font: var(#{constants.$vvd-typography-base-bold});
+	}
+
+	#{map.get($selectors, "code")} {
 		font: var(#{constants.$vvd-typography-base-code});
 	}
 
@@ -65,7 +91,8 @@ $selectors: (
 		}
 	}
 
-	h1, .heading1 {
+	h1,
+	.heading1 {
 		font: var(#{constants.$vvd-typography-heading-1});
 		margin-block: 32px;
 
@@ -74,7 +101,8 @@ $selectors: (
 		}
 	}
 
-	h2, .heading2 {
+	h2,
+	.heading2 {
 		font: var(#{constants.$vvd-typography-heading-2});
 		margin-block: 32px;
 
@@ -83,7 +111,8 @@ $selectors: (
 		}
 	}
 
-	h3, .heading3 {
+	h3,
+	.heading3 {
 		font: var(#{constants.$vvd-typography-heading-3});
 		margin-block: 24px;
 
@@ -92,7 +121,8 @@ $selectors: (
 		}
 	}
 
-	h4, .heading4 {
+	h4,
+	.heading4 {
 		font: var(#{constants.$vvd-typography-heading-4});
 		margin-block: 24px;
 
@@ -101,10 +131,11 @@ $selectors: (
 		}
 	}
 
-	small, figcaption {
+	small,
+	figcaption {
 		font: var(#{constants.$vvd-typography-base-condensed});
 
-		#{map.get($selectors, 'bold')} {
+		#{map.get($selectors, "bold")} {
 			font: var(#{constants.$vvd-typography-base-condensed-bold});
 		}
 	}
