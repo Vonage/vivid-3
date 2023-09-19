@@ -1,4 +1,9 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import {
+	createFormHTML,
+	elementUpdated,
+	fixture,
+	listenToFormSubmission,
+} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { TextField } from '../text-field/text-field';
 import { Popup } from '../popup/popup';
@@ -64,6 +69,7 @@ describe('vwc-date-picker', () => {
 		textField.currentValue = text;
 		textField.dispatchEvent(new InputEvent('input'));
 		textField.dispatchEvent(new InputEvent('change'));
+		textField.dispatchEvent(new Event('blur'));
 	}
 
 	async function openPopup() {
@@ -363,9 +369,21 @@ describe('vwc-date-picker', () => {
 		});
 	});
 
+	describe.each(['focus', 'blur'])('%s event', (eventName) => {
+		it('should be forwarded from the text field', async () => {
+			const spy = jest.fn();
+			element.addEventListener(eventName, spy);
+
+			textField.dispatchEvent(new Event(eventName));
+
+			expect(spy).toHaveBeenCalledTimes(1);
+		});
+	});
+
 	describe('text field', () => {
 		it('should show an invalid date error when an invalid date is entered', async () => {
 			typeIntoTextField('invalid date');
+			textField.dispatchEvent(new Event('blur'));
 			await elementUpdated(element);
 
 			expect(textField.errorText).toBe('Please enter a valid date.');
@@ -373,6 +391,7 @@ describe('vwc-date-picker', () => {
 
 		it('should clear the invalid date error when a valid date is entered', async () => {
 			typeIntoTextField('invalid date');
+			textField.dispatchEvent(new Event('blur'));
 			await elementUpdated(element);
 
 			typeIntoTextField('01/21/2021');
@@ -747,6 +766,75 @@ describe('vwc-date-picker', () => {
 			await elementUpdated(element);
 
 			expect(element.value).toBeFalsy();
+		});
+	});
+
+	describe('form association', () => {
+		const fieldValue = '2020-02-02';
+		const formId = 'test-form-id';
+		const fieldName = 'test-field';
+		let formWrapper: HTMLElement;
+
+		beforeEach(() => {
+			formWrapper = document.createElement('div');
+			document.body.appendChild(formWrapper);
+		});
+
+		afterEach(() => {
+			formWrapper.remove();
+		});
+
+		it('should attach to closest form', async () => {
+			const { form: formElement } = createFormHTML<DatePicker>({
+				componentTagName: COMPONENT_TAG,
+				fieldName,
+				fieldValue,
+				formId,
+				formWrapper,
+			});
+
+			const submitPromise = listenToFormSubmission(formElement);
+			formElement.requestSubmit();
+
+			(await submitPromise).forEach((formDataValue, formDataKey) => {
+				expect(formDataKey).toEqual(fieldName);
+				expect(formDataValue).toEqual(fieldValue);
+			});
+		});
+
+		it('should attach to form when given form id', async () => {
+			const { otherForm } = createFormHTML<TextField>({
+				fieldName,
+				fieldValue,
+				formId,
+				otherFormId: 'otherFormId',
+				componentTagName: COMPONENT_TAG,
+				formWrapper,
+			});
+
+			const submitPromise = listenToFormSubmission(otherForm);
+			otherForm.requestSubmit();
+
+			(await submitPromise).forEach((formDataValue, formDataKey) => {
+				expect(formDataKey).toEqual(fieldName);
+				expect(formDataValue).toEqual(fieldValue);
+			});
+		});
+
+		it('should reset the value of the custom element to default on form reset', async () => {
+			const { form: formElement, element } = createFormHTML<TextField>({
+				fieldName,
+				fieldValue,
+				formId,
+				componentTagName: COMPONENT_TAG,
+				formWrapper,
+			});
+
+			element.value = '2012-12-12';
+			formElement.reset();
+			await elementUpdated(element);
+
+			expect(element.value).toEqual(fieldValue);
 		});
 	});
 });
