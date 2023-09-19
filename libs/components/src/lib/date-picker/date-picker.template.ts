@@ -327,7 +327,6 @@ export const DatePickerTemplate: (
 					<${buttonTag}
 						class="vwc-button"
 						size="condensed"
-						class="vwc-button"
 						appearance="filled"
 						label="${(x) => x.locale.datePicker.okLabel}"
 						@click="${(x) => x._onOkClick()}"
