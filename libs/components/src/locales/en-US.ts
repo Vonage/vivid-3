@@ -1,4 +1,3 @@
-/* istanbul ignore file */
 import type { Locale } from '../shared/localization/Locale';
 
 const enUS: Locale = {
@@ -49,7 +48,7 @@ const enUS: Locale = {
 		dateFormat: 'MM/dd/yyyy',
 		dateFormatPlaceholder: 'MM/DD/YYYY',
 		chooseDateLabel: 'Choose date',
-		changeDateLabel: (date: string) => `Change date, ${date}`,
+		changeDateLabel: /* istanbul ignore next */ (date: string) => `Change date, ${date}`,
 		prevYearLabel: 'Previous year',
 		prevMonthLabel: 'Previous month',
 		nextMonthLabel: 'Next month',
