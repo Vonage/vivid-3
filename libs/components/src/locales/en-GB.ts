@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import type { Locale } from '../shared/localization/Locale';
 
 const enGB: Locale = {
