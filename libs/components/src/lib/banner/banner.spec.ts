@@ -213,7 +213,11 @@ describe('vwc-banner', () => {
 		let getIcon: () => Icon;
 
 		beforeEach(function () {
-			getIcon = () => element.shadowRoot?.querySelector('.icon > vwc-icon') as Icon;
+			getIcon = () => element.shadowRoot?.querySelector('slot[name="icon"] > vwc-icon') as Icon;
+		});
+
+		it('should have an icon slot', async () => {
+			expect(getIcon()).toBeTruthy();
 		});
 
 		it('should set the icon according to connotation information by default', function () {
