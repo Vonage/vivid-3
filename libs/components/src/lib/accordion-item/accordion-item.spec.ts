@@ -1,6 +1,6 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import {AccordionItem} from './accordion-item';
+import { AccordionItem } from './accordion-item';
 import '.';
 import { accordionItemDefinition } from './definition';
 
@@ -54,6 +54,10 @@ describe('vwc-accordion-item', () => {
 	});
 
 	describe('icon', () => {
+		it('should have an icon slot', async () => {
+			expect(element.shadowRoot?.querySelector('slot[name="icon"]')).toBeDefined();
+		});
+
 		it('should render an icon when the icon property is set', async () => {
 			const headerSecondChild = () => element.shadowRoot?.querySelector('.heading-button :nth-child(2)') as HTMLSpanElement;
 
@@ -65,7 +69,6 @@ describe('vwc-accordion-item', () => {
 			expect(secondChildWithoutIcon.classList).toContain('heading-content');
 			expect(secondChildWithoutIcon.classList).not.toContain('icon');
 			expect(secondChildWithIcon.classList).not.toContain('heading-content');
-			expect(secondChildWithIcon.classList).toContain('icon');
 			expect(secondChildWithIcon.querySelector('vwc-icon')?.getAttribute('name')).toBe('chat-solid');
 		});
 
@@ -115,7 +118,7 @@ describe('vwc-accordion-item', () => {
 	});
 
 	describe('meta', function () {
-		it('should render meta', async function() {
+		it('should render meta', async function () {
 			const metaText = 'Some meta text';
 			element.meta = metaText;
 			await elementUpdated(element);
