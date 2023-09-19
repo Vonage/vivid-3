@@ -2,6 +2,10 @@ function isComponentHidden(component, term) {
 	return component.tagName === 'VWC-NAV-ITEM' && !component.text.toLowerCase().includes(term.toLowerCase());
 }
 
+function isDisclosureHidden(disclosure, term) {
+	return disclosure.tagName === 'VWC-NAV-DISCLOSURE' && !disclosure.label.toLowerCase().includes(term.toLowerCase());
+}
+
 function filterComponentsInput(components, nonComponentsNavItems) {
 	return (e) => {
 		const term = e.target.value;
@@ -11,7 +15,7 @@ function filterComponentsInput(components, nonComponentsNavItems) {
 				component.classList.remove('hidden')
 		});
 		nonComponentsNavItems.forEach(disclosure => {
-			term !== '' ?
+			isDisclosureHidden(disclosure, term) ?
 				disclosure.classList.add('hidden') :
 				disclosure.classList.remove('hidden')
 		});

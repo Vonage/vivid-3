@@ -70,19 +70,22 @@
 }
 
 .focus-indicator {
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
 	:host(:not(:focus-visible)) & {
 		display: none;
 	}
 }
 
-.icon {
+slot[name="icon"]{
 	font-size: 20px;
+	line-height: 1;
 
 	.icon-trailing & {
+		display: inline-block;
 		order: 1;
 		margin-inline-start: auto;
 	}
-
 }
 
 :host(:not(.vertical)) {

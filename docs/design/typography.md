@@ -81,13 +81,13 @@ The following CSS custom properties can be referred to style the text in your ap
 <div style="font: var(--vvd-typography-heading-2)">heading-2</div>
 <div style="font: var(--vvd-typography-heading-3)">heading-3</div>
 <div style="font: var(--vvd-typography-heading-4)">heading-4</div>
+<div style="font: var(--vvd-typography-base-condensed)">base-condensed</div>
+<div style="font: var(--vvd-typography-base-condensed-bold)">base-condensed-bold</div>
 <div style="font: var(--vvd-typography-base)">base</div>
-<div style="font: var(--vvd-typography-base-bold)">base bold</div>
-<div style="font: var(--vvd-typography-base-code)">base code</div>
-<div style="font: var(--vvd-typography-base-condensed)">condensed</div>
-<div style="font: var(--vvd-typography-base-condensed-bold)">condensed bold</div>
-<div style="font: var(--vvd-typography-base-extended)">extended</div>
-<div style="font: var(--vvd-typography-base-extended-bold)">extended bold</div>
+<div style="font: var(--vvd-typography-base-bold)">base-bold</div>
+<div style="font: var(--vvd-typography-base-extended)">base-extended</div>
+<div style="font: var(--vvd-typography-base-extended-bold)">base-extended-bold</div>
+<div style="font: var(--vvd-typography-base-code)">base-code</div>
 ```
 
 
@@ -151,7 +151,13 @@ Use the class `tight` to remove `margin-block`.
 	<div class="heading2 tight">heading-2</div>
 	<div class="heading3 tight">heading-3</div>
 	<div class="heading4 tight">heading-4</div>
-	<div class="font-base">text with the base font size</div>
+	<div class="font-base-code tight">base-code</div>
+	<div class="font-base-condensed tight">base-condensed</div>
+	<div class="font-base tight">font-base</div>
+	<div class="font-base-extended tight">font-base-extended</div>
+	<div class="font-base-condensed-bold tight">font-base-condensed-bold</div>
+	<div class="font-base-bold tight">font-base-bold</div>
+	<div class="font-base-extended-bold tight">font-base-extended-bold</div>
 </div>
 ```
 

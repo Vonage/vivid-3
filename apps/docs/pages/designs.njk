@@ -9,12 +9,6 @@ permalink: "designs/{{ design.title | slug }}/"
 
 {% extends '../_layouts/base.njk' %}
 
-{% block header %}
-	{% for url in design.modules %}
-<script type="module" src="{{ url | url }}"></script>
-	{% endfor %}
-{% endblock %}
-
 {% block content %}
 	{% renderFile design.markdown %}
 {% endblock %}

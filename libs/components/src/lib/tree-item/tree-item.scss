@@ -85,6 +85,10 @@
 
 	&:hover {
 		background-color: var(#{constants.$vvd-color-neutral-100});
+
+		.selected & {
+			background-color: var(#{constants.$vvd-color-neutral-700});
+		}
 	}
 }
 
