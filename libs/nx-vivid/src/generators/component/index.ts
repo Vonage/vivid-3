@@ -55,7 +55,7 @@ function createFiles(tree: Tree, options: NormalizedSchema) {
 function updateComponentsExports(tree: Tree, options: NormalizedSchema) {
   const componentsPath = `libs/components/src/lib/components.ts`;
   if (options.addToExports && tree.exists(componentsPath)) {
-    const toAdd = `export * from './${options.name}';`;
+    const toAdd = `export * from './${options.name}/definition';`;
     const lines = tree.read(componentsPath, 'utf8').split('\n');
     if (lines.indexOf(toAdd) === -1) {
       lines.push(toAdd);
