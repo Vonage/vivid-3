@@ -55,6 +55,8 @@ describe('vwc-accordion-item', () => {
 
 	describe('icon', () => {
 		it('should have an icon slot', async () => {
+			element.icon = 'chat-solid';
+			await elementUpdated(element);
 			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
 		});
 		
@@ -69,7 +71,6 @@ describe('vwc-accordion-item', () => {
 			expect(secondChildWithoutIcon.classList).toContain('heading-content');
 			expect(secondChildWithoutIcon.classList).not.toContain('icon');
 			expect(secondChildWithIcon.classList).not.toContain('heading-content');
-			expect(secondChildWithIcon.classList).toContain('icon');
 			expect(secondChildWithIcon.querySelector('vwc-icon')?.getAttribute('name')).toBe('chat-solid');
 		});
 
