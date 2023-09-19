@@ -5,7 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import {classNames} from '@microsoft/fast-web-utilities';
-import {IconWrapper, affixIconTemplateFactory} from '../../shared/patterns/affix';
+import {affixIconTemplateFactory, IconWrapper} from '../../shared/patterns/affix';
 import { Button } from '../button/button';
 import type {Banner} from './banner';
 
