@@ -9,17 +9,37 @@ import {
 
 const components = ['file-picker', 'button', 'layout', 'text-field'];
 
+const addFile = async (page: Page, fileName: string, fileSize: number, fileType: string) => {
+	const dataTransfer = await page.evaluateHandle(([name, size, type]) => {
+		const dt = new DataTransfer();
+		const file = new File(
+			[Array(size).fill('a').join('')],
+			name,
+			{ type }
+		);
+		dt.items.add(file);
+		return dt;
+	}, [fileName, fileSize, fileType] as const);
+
+	await page.dispatchEvent('vwc-file-picker:first-child .control', 'drop', { dataTransfer });
+
+	await page.waitForSelector('vwc-file-picker:first-child .dz-preview');
+};
+
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `<vwc-layout column-basis="block">
-	  <vwc-file-picker label="Pick files" helper-text="multiple files of any type">
+	  <vwc-file-picker label="Pick files" helper-text="multiple files of any type" max-file-size="0.001" accept="image/*">
 	  	Drag & Drop or click to upload
 		</vwc-file-picker>
 	  <vwc-file-picker label="Pick files" helper-text="multiple files of any type" size="expanded">
 	  	Drag & Drop or click to upload
 		</vwc-file-picker>
+		<vwc-file-picker label="Pick files" helper-text="multiple files of any type" error-text="error-text">
+	  	Drag & Drop or click to upload
+		</vwc-file-picker>
 	</vwc-layout>`;
 
-	page.setViewportSize({ width: 500, height: 720 });
+	page.setViewportSize({ width: 500, height: 1000 });
 
 	await loadComponents({
 		page,
@@ -36,30 +56,16 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
+	await addFile(page, 'valid.png', 100, 'image/png');
+	await addFile(page, 'tooBig.png', 100000, 'image/png');
+	await addFile(page, 'wrongType.exe', 100, 'application/x-msdownload');
+
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/file-picker.png'
 	);
 });
 
 test.describe('form association', async () => {
-	const FILE_NAME = 'file.pdf';
-	const FILE_SIZE = 3;
-
-	const addFile = async (page: Page) => {
-		const dataTransfer = await page.evaluateHandle(([name, size]) => {
-			const dt = new DataTransfer();
-			const file = new File(
-				[Array(size).fill('a').join('')],
-				name,
-				{ type: 'application/pdf' }
-			);
-			dt.items.add(file);
-			return dt;
-		}, [FILE_NAME, FILE_SIZE] as const);
-
-		await page.dispatchEvent('vwc-file-picker .control', 'drop', { dataTransfer });
-	};
-
 	const getFileFromFormData = async (page: Page) => page.evaluate(() => {
 		const form = document.querySelector('form') as HTMLFormElement;
 		const formData = new FormData(form);
@@ -85,12 +91,12 @@ test.describe('form association', async () => {
 			</form>`
 		});
 
-		await addFile(page);
+		await addFile(page, 'file.txt', 1024, 'text/plain');
 
 		const file = await getFileFromFormData(page);
 
-		expect(file.name).toBe(FILE_NAME);
-		expect(file.size).toBe(FILE_SIZE);
+		expect(file.name).toBe('file.txt');
+		expect(file.size).toBe(1024);
 	});
 
 
