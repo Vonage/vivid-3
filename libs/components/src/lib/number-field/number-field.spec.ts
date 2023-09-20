@@ -613,4 +613,53 @@ describe('vwc-number-field', () => {
 			expect(getControlElement(element).getAttribute('minlength')).toEqual('2');
 		});
 	});
+
+	describe('valueAsNumber', function () {
+		it('should return NaN if no value', function () {
+			element.value = '';
+			expect(element.valueAsNumber).toEqual(NaN);
+		});
+
+		it('should return the value as a number type', async function () {
+			element.value = '5';
+			await elementUpdated(element);
+			expect(element.valueAsNumber).toEqual(5);
+		});
+
+		it('should set the number value as a string', async function () {
+			element.valueAsNumber = 5e3;
+			await elementUpdated(element);
+			expect(element.value).toEqual('5000');
+		});
+	});
+
+	describe('stepUp', function () {
+		it('should increase the value by one when no step is given', function () {
+			element.value = '5';
+			element.stepUp();
+			expect(element.value).toEqual('6');
+		});
+
+		it('should increase the value by step value', function () {
+			element.value = '5';
+			element.step = 5;
+			element.stepUp();
+			expect(element.value).toEqual('10');
+		});
+	});
+
+	describe('stepDown', function () {
+		it('should decrease the value by one when no step is given', function () {
+			element.value = '5';
+			element.stepDown();
+			expect(element.value).toEqual('4');
+		});
+
+		it('should decrease the value by step value', function () {
+			element.value = '5';
+			element.step = 5;
+			element.stepDown();
+			expect(element.value).toEqual('0');
+		});
+	});
 });
