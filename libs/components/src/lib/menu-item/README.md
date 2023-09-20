@@ -146,6 +146,32 @@ The expanded state of the element
 - Default: `false` -->
 
 ## Slots
+
+### Icon
+
+Set the `icon` slot to show an icon before the menu-item's text.
+If set, the `icon` attribute is ignored.
+Slot `icon` makes icon/checkbox/radiobutton to be `trailing`.
+
+```html preview
+<style>
+  html { 
+    block-size: 300px; 
+  }
+</style>
+<vwc-menu open>
+  <vwc-menu-item text="Available" role="menuitemradio">
+   <vwc-icon slot="meta" connotation='success' appearance='filled' name='check-solid'></vwc-icon>
+  </vwc-menu-item>
+  <vwc-menu-item text="Away" role="menuitemradio">
+    <vwc-icon slot="meta" connotation='warning' appearance='filled' name='clock-line'></vwc-icon>
+  </vwc-menu-item>
+  <vwc-menu-item text="Bussy" role="menuitemradio" checked>
+    <vwc-icon slot="meta" connotation='alert' appearance='filled' name='minus-solid'></vwc-icon>
+  </vwc-menu-item>
+</vwc-menu> 
+```
+
 ### Meta
 Assign nodes to the `meta` slot to set a badge or an additional icon.  
 Slot `meta` makes icon/checkbox/radiobutton to be `trailing`.
@@ -157,14 +183,8 @@ Slot `meta` makes icon/checkbox/radiobutton to be `trailing`.
   }
 </style>
 <vwc-menu open>
-  <vwc-menu-item text="Available" role="menuitemradio">
-   <vwc-badge slot="meta" appearance='filled' connotation='success' shape='pill' icon='check-solid'></vwc-badge>
-  </vwc-menu-item>
-  <vwc-menu-item text="Away" role="menuitemradio">
-    <vwc-badge slot="meta" appearance='filled' connotation='warning' shape='pill' icon='clock-line'></vwc-badge>
-  </vwc-menu-item>
-  <vwc-menu-item text="Bussy" role="menuitemradio" checked>
-    <vwc-badge slot="meta" appearance='filled' connotation='alert' shape='pill' icon='minus-solid'></vwc-badge>
+  <vwc-menu-item text="With Meta Slot" role="menuitemcheckbox">
+    <vwc-badge slot="meta" appearance='filled' connotation='success' icon='check-solid'></vwc-badge>
   </vwc-menu-item>
 </vwc-menu> 
 ```
@@ -201,19 +221,6 @@ Assign menu to the `submenu` slot to create a submenu.
           <vwc-menu-item text="Menu item 3.3"></vwc-menu-item>
       </vwc-menu>
     </vwc-menu-item>
-</vwc-menu>
-```
-
-### Icon
-
-Set the `icon` slot to show an icon before the menu-item's text.
-If set, the `icon` attribute is ignored.
-
-```html preview
-<vwc-menu open>
-  <vwc-menu-item icon="file-pdf-line" text="With Icon Slot">
-      <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
-  </vwc-menu-item>
 </vwc-menu>
 ```
 

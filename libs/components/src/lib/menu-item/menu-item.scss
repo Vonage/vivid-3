@@ -71,6 +71,7 @@
 	}
 }
 
+.icon,
 slot[name="icon"] {
 	flex-shrink: 0;
 	font-size: calc(#{size.$vvd-size-normal} / 2);
