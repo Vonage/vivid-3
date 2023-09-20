@@ -121,7 +121,7 @@ Set the `min` attribute to configure the earliest date to accept. The user will 
 - Date format: `YYYY-MM-DD`
 - Default: `undefined`
 
-```html preview
+```html preview locale-switcher
 <style>
 	html {
 		block-size: 460px; /* for demo purposes */
@@ -142,7 +142,7 @@ Set the `max` attribute to configure the latest date to accept. The user will be
 - Date format: `YYYY-MM-DD`
 - Default: `undefined`
 
-```html preview
+```html preview locale-switcher
 <style>
 	html {
 		block-size: 460px; /* for demo purposes */
@@ -160,8 +160,35 @@ Set the `max` attribute to configure the latest date to accept. The user will be
 <div class="table-wrapper">
 
 | Name   | Description                                   |
-| ------ | --------------------------------------------- |
+|--------|-----------------------------------------------|
 | input  | Emitted when the date is changed by the user. |
 | change | Emitted when the date is changed by the user. |
+| focus  | Emitted when the text field receives focus.   |
+| blur   | Emitted when the text field loses focus.      |
 
 </div>
+
+## Use cases
+
+### In a form
+
+```html preview locale-switcher
+<style>
+	html {
+		block-size: 460px; /* for demo purposes */
+	}
+	.buttons {
+		display: flex;
+		gap: 12px;
+	}
+</style>
+<form>
+	<vwc-layout column-spacing="small">
+		<vwc-date-picker name="date" label="Start date" required></vwc-date-picker>
+		<div class="buttons">
+			<vwc-button label="Reset" type="reset"></vwc-button>
+			<vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>
+		</div>
+	</vwc-layout>
+</form>
+```

@@ -316,7 +316,7 @@ Set the `meta` slot to show meta information after the selected option label.
 
 ### Icon
 
-Set the `icon` slot to show an icon before the selected option label.
+Set the `icon` slot to show an icon before the selected option text.
 If set, the `icon` attribute is ignored.
 
 ```html preview

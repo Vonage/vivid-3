@@ -102,7 +102,7 @@ Only when the navigation disclosure is closed the `aria-current` will be set.
 
 ### Icon
 
-Set the `icon` slot to show an icon before the option's label.
+Set the `icon` slot to show an icon before the nav-disclosure's label.
 If set, the `icon` attribute is ignored.
 
 ```html preview
