@@ -27,6 +27,10 @@ describe('vwc-nav-item', () => {
 	});
 
 	describe('icon', () => {
+		it('should have an icon slot', async () => {
+			expect(element.shadowRoot?.querySelector('slot[name="icon"]')).toBeTruthy();
+		});
+
 		it('should add an icon to the nav item', async () => {
 			element.icon = 'home';
 			await elementUpdated(element);

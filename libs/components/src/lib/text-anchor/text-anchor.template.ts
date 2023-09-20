@@ -5,7 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { affixIconTemplateFactory } from '../../shared/patterns/affix';
+import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
 import type { TextAnchor } from './text-anchor';
 
@@ -62,7 +62,7 @@ export const textAnchorTemplate: (
         ${ref('control')}
     >
       ${() => focusTemplate}
-      ${x => affixIconTemplate(x.icon)}
+      ${x => affixIconTemplate(x.icon, IconWrapper.Slot)}
       ${x => x.text}
 			${x => x.getBodyTemplate?.() ?? ''}
     </a>
