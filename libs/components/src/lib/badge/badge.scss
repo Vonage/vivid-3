@@ -71,13 +71,13 @@
 }
 
 /* Icon */
-.icon {
-	display: flex;
+slot[name="icon"] {
 	flex-shrink: 0;
 	font-size: calc(var(#{variables.$badge-block-size}) / 1.6667);
 	line-height: 1;
 
 	.icon-trailing & {
+		display: flex;
 		order: 1;
 	}
 }
