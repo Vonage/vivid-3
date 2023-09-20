@@ -448,6 +448,10 @@ describe('vwc-number-field', () => {
 		});
 	});
 
+	function typeInput(input: string) {
+		element.control.value = input;
+		element.control.dispatchEvent(new Event('input'));
+	}
 	describe('value', function () {
 		it('should set \'has-value\' class when there is a value', async function () {
 			const activeClassWhenEnabled = getRootElement(element)
@@ -464,12 +468,13 @@ describe('vwc-number-field', () => {
 				.toEqual(true);
 		});
 
-		it('should allow negative sign as first char', async function () {
+		it('should allow negative sign as first char when typing', async function () {
 			element.value = '-';
 			await elementUpdated(element);
 			const valueWhenNegativeIsFirstChar = element.value;
 
-			element.value = '5-';
+			element.value = '5';
+			typeInput('5-');
 			await elementUpdated(element);
 			const valueWhenNegativeIsNotFirstChar = element.value;
 
@@ -477,28 +482,58 @@ describe('vwc-number-field', () => {
 			expect(valueWhenNegativeIsFirstChar).toEqual('-');
 		});
 
-		it('should allow for decimal values', async function () {
-			element.value = '5.';
-			await elementUpdated(element);
+		it('should prevent typing invalid characters', function () {
+			typeInput('a');
+			const valueWhenInvalidChar = element.value;
+			element.value = '0.5';
+			typeInput('0.5.');
+			const valueWhenInvalidCharInDecimal = element.value;
+			element.value = '0.5';
+			typeInput('0.5a');
+			const valueWhenInvalidCharInEndOfNumber = element.value;
+
+			expect(valueWhenInvalidChar).toEqual('');
+			expect(valueWhenInvalidCharInDecimal).toEqual('0.5');
+			expect(valueWhenInvalidCharInEndOfNumber).toEqual('0.5');
+		});
+
+		it('should allow negative zero', async function () {
+			typeInput('-0');
+			const valueWhenNegativeZero = element.value;
+			typeInput('-0.');
+			const valueWhenNegativeZeroWithDecimal = element.value;
+			typeInput('-0.0');
+			const valueWhenNegativeZeroWithDecimalAndZero = element.value;
+
+			expect(valueWhenNegativeZero).toEqual('-0');
+			expect(valueWhenNegativeZeroWithDecimal).toEqual('-0.');
+			expect(valueWhenNegativeZeroWithDecimalAndZero).toEqual('-0.0');
+		});
+
+		it('should allow for decimal values by user', async function () {
+			element.value = '5';
+			typeInput('5.');
 			const valueWhenDecimalLastChar = element.value;
 
-			element.value = '5.5';
-			await elementUpdated(element);
+			typeInput('5.5');
 			const valueWhenDecimalMiddleChar = element.value;
 
-			element.value = '.5';
-			await elementUpdated(element);
+			typeInput('.');
+			const valueWhenDecimalOnlyChar = element.value;
+
+			typeInput('.5');
 			const valueWhenDecimalFirstChar = element.value;
 
 			expect(valueWhenDecimalLastChar).toEqual('5.');
 			expect(valueWhenDecimalMiddleChar).toEqual('5.5');
+			expect(valueWhenDecimalOnlyChar).toEqual('.');
 			expect(valueWhenDecimalFirstChar).toEqual('.5');
 		});
 
-		it('should remove last of two decimal points', async function () {
+		it('should clear invalid programmatically added invalid value', async function () {
 			element.value = '5.5.';
 			await elementUpdated(element);
-			expect(element.value).toEqual('5.5');
+			expect(element.value).toEqual('');
 		});
 	});
 
