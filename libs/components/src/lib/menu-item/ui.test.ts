@@ -50,13 +50,13 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				icon="home" text="primary text with long text and default line clamp"
 				text-secondary="secondary text with long text and default line clamp" role="menuitemradio" ></vwc-menu-item>
 				<vwc-menu-item icon="file-pdf-line" text="Export to PDF">
-				<vwc-badge slot="meta" appearance='subtle' connotation='cta' icon='check-solid'></vwc-badge>
+				<vwc-badge slot="meta" appearance='subtle' connotation='cta' shape='pill' icon='check-solid'></vwc-badge>
 				</vwc-menu-item>
 				<vwc-menu-item text="Available" role="menuitemradio">
-				  <vwc-badge slot="meta" appearance='filled' connotation='success' icon='check-solid'></vwc-badge>
+				  <vwc-badge slot="meta" appearance='filled' connotation='success' shape='pill' icon='check-solid'></vwc-badge>
 				</vwc-menu-item>
 				<vwc-menu-item text="Bussy" role="menuitemcheckbox" checked>
-					<vwc-badge slot="meta" appearance='filled' connotation='alert' icon='minus-solid'></vwc-badge>
+					<vwc-badge slot="meta" appearance='filled' connotation='alert' shape='pill' icon='minus-solid'></vwc-badge>
 				</vwc-menu-item>
 				<vwc-menu-item icon="file-pdf-line" text="With Icon Slot">
 					<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>

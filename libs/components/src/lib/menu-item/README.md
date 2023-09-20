@@ -149,25 +149,25 @@ The expanded state of the element
 
 ### Icon
 
-Set the `icon` slot to show an icon before the menu-item's text.
+Set the `icon` slot to show an icon before the menu-item's text.  
 If set, the `icon` attribute is ignored.
 Slot `icon` makes icon/checkbox/radiobutton to be `trailing`.
 
 ```html preview
 <style>
-  html { 
-    block-size: 300px; 
+  html { /* for demo purposes */
+    block-size: 170px;
   }
 </style>
 <vwc-menu open>
   <vwc-menu-item text="Available" role="menuitemradio">
-   <vwc-icon slot="meta" connotation='success' appearance='filled' name='check-solid'></vwc-icon>
+   <vwc-icon slot="icon" connotation='success' name='check-solid'></vwc-icon>
   </vwc-menu-item>
   <vwc-menu-item text="Away" role="menuitemradio">
-    <vwc-icon slot="meta" connotation='warning' appearance='filled' name='clock-line'></vwc-icon>
+    <vwc-icon slot="icon" connotation='warning' name='clock-line'></vwc-icon>
   </vwc-menu-item>
   <vwc-menu-item text="Bussy" role="menuitemradio" checked>
-    <vwc-icon slot="meta" connotation='alert' appearance='filled' name='minus-solid'></vwc-icon>
+    <vwc-icon slot="icon" connotation='alert' name='minus-solid'></vwc-icon>
   </vwc-menu-item>
 </vwc-menu> 
 ```
@@ -183,10 +183,16 @@ Slot `meta` makes icon/checkbox/radiobutton to be `trailing`.
   }
 </style>
 <vwc-menu open>
-  <vwc-menu-item text="With Meta Slot" role="menuitemcheckbox">
-    <vwc-badge slot="meta" appearance='filled' connotation='success' icon='check-solid'></vwc-badge>
+  <vwc-menu-item text="Available" role="menuitemradio">
+   <vwc-badge slot="meta" appearance='filled' connotation='success' shape='pill' icon='check-solid'></vwc-badge>
   </vwc-menu-item>
-</vwc-menu> 
+  <vwc-menu-item text="Away" role="menuitemradio">
+    <vwc-badge slot="meta" appearance='filled' connotation='warning' shape='pill' icon='clock-line'></vwc-badge>
+  </vwc-menu-item>
+  <vwc-menu-item text="Bussy" role="menuitemradio" checked>
+    <vwc-badge slot="meta" appearance='filled' connotation='alert' shape='pill' icon='minus-solid'></vwc-badge>
+  </vwc-menu-item>
+</vwc-menu>
 ```
 
 ### Submenu
