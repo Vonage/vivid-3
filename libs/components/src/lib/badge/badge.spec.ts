@@ -33,6 +33,10 @@ describe('vwc-badge', () => {
 	});
 
 	describe('icon', () => {
+		it('should have an icon slot', async () => {
+			expect(element.shadowRoot?.querySelector('slot[name="icon"]')).toBeTruthy();
+		});
+
 		it('adds an icon to the badge', async () => {
 			element.icon = 'home';
 			await elementUpdated(element);

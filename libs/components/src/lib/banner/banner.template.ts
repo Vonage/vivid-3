@@ -5,7 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import {classNames} from '@microsoft/fast-web-utilities';
-import {affixIconTemplateFactory} from '../../shared/patterns/affix';
+import {affixIconTemplateFactory, IconWrapper} from '../../shared/patterns/affix';
 import { Button } from '../button/button';
 import type {Banner} from './banner';
 
@@ -45,7 +45,7 @@ export const BannerTemplate: (
 	  <div class="${getClasses}" tabindex="0">
 		  <header class="header">
 					<div class="content">
-            ${x => affixIconTemplate(x.conditionedIcon)}
+            ${x => affixIconTemplate(x.conditionedIcon, IconWrapper.Slot)}
 						<div class="banner-message"
 						 role="${x => x.role ? x.role : 'status'}"
 						 aria-live="${x => x.ariaLive ? x.ariaLive : 'polite'}">

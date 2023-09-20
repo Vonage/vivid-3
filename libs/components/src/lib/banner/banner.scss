@@ -47,7 +47,7 @@ $banner-transition-delay: --transition-delay;
 		inline-size: 100%;
 		padding-inline: 16px;
 
-		.icon {
+		slot[name="icon"] {
 			flex-shrink: 0;
 			font-size: 20px;
 			line-height: 1;
