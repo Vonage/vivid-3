@@ -85,7 +85,7 @@ export const MenuItemTemplate: (context: ElementDefinitionContext, definition: M
 			${radio(context)}
 			${when(x => x.icon, html`<span class="decorative">${x => affixIconTemplate(x.icon)}</span>`)}
 			${text()}
-			${when(x => x.hasSubmenu, html`<${iconTag} name="chevron-right-line"></${iconTag}>`)}
+			${when(x => x.hasSubmenu, html`<${iconTag} class="chevron" name="chevron-right-line"></${iconTag}>`)}
 		</div>
 		<slot name="submenu" ${slotted({ property: 'slottedSubmenu', filter: elements(context.tagFor(Menu)) })}></slot>
 	</template>
