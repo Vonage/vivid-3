@@ -146,7 +146,7 @@ The expanded state of the element
 - Default: `false` -->
 
 ## Slots
-### meta
+### Meta
 Assign nodes to the `meta` slot to set a badge or an additional icon.  
 Slot `meta` makes icon/checkbox/radiobutton to be `trailing`.
 
@@ -169,7 +169,7 @@ Slot `meta` makes icon/checkbox/radiobutton to be `trailing`.
 </vwc-menu> 
 ```
 
-### submenu
+### Submenu
 
 Assign menu to the `submenu` slot to create a submenu.
 
@@ -203,6 +203,20 @@ Assign menu to the `submenu` slot to create a submenu.
     </vwc-menu-item>
 </vwc-menu>
 ```
+
+### Icon
+
+Set the `icon` slot to show an icon before the menu-item's text.
+If set, the `icon` attribute is ignored.
+
+```html preview
+<vwc-menu open>
+  <vwc-menu-item icon="file-pdf-line" text="With Icon Slot">
+      <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+  </vwc-menu-item>
+</vwc-menu>
+```
+
 
 ## Events
 

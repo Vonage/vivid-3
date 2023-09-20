@@ -41,6 +41,10 @@ describe('vwc-menu-item', () => {
 	});
 
 	describe('icon', function () {
+		it('should have an icon slot', async () => {
+			expect(element.shadowRoot?.querySelector('slot[name="icon"]')).toBeTruthy();
+		});
+		
 		it('should set a leading icon', async () => {
 			const iconName = 'file-pdf-line';
 			element.icon = iconName;

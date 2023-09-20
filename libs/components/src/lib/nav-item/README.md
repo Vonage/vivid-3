@@ -77,5 +77,8 @@ If set, the `icon` attribute is ignored.
 	<vwc-nav-item href="#" text="Account">
 	  <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 	</vwc-nav-item>
+	<vwc-nav-item href="#">
+	  <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+	</vwc-nav-item>
 </vwc-nav>
 ```
