@@ -48,20 +48,6 @@ Note that any current error state will be overridden by `error-text` (and, if ap
 ```
 
 
-### Success text
-
-
-Add the `success-text` to add some success text below the file-picker.
-If provided, `success-text` will take precedence over errors.
-
-- Type: `string` | `undefined`
-- Default: `undefined`
-
-```html preview
-<vwc-file-picker success-text="File accepted.">Drag & Drop or click to upload</vwc-file-picker>
-```
-
-
 ### Max File Size
 
 Use the `max-file-size` attribute to define the maximum file size (in megabytes) for each file.
