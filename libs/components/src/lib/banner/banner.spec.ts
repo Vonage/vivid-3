@@ -210,12 +210,8 @@ describe('vwc-banner', () => {
 	});
 
 	describe('icon', function () {
-		let getIcon: () => Icon;
-
-		beforeEach(function () {
-			getIcon = () => element.shadowRoot?.querySelector('slot[name="icon"] > vwc-icon') as Icon;
-		});
-
+		const getIcon = () => element.shadowRoot?.querySelector('slot[name="icon"] > vwc-icon') as Icon;
+		
 		it('should have an icon slot', async () => {
 			expect(getIcon()).toBeTruthy();
 		});
