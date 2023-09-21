@@ -543,6 +543,12 @@ describe('vwc-number-field', () => {
 			expect(valueWithNegativeSignAlone).toEqual('');
 			expect(valueWithInvalidCharacter).toEqual('');
 		});
+
+		it('should validate input if value fits step', async () => {
+			await elementUpdated(element);
+			await elementUpdated(element);
+			expect(element.validationMessage).toEqual('');
+		});
 	});
 
 	describe('appearance', function () {

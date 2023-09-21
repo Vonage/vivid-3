@@ -19,12 +19,14 @@ export class NumberField extends FastNumberField {
 	@attr appearance?: NumberFieldAppearance;
 	@attr shape?: NumberFieldShape;
 	@attr autoComplete?: string;
+
+	stepChanged(_previous: number, next: number) {
+		this.proxy.setAttribute('step', Number.isFinite(next) ? next.toString() : '');
+	}
 }
 
 // Hack to solve Fast bug: https://github.com/microsoft/fast/pull/6778
 (<any>NumberField).prototype.getValidValue = function (value: string) {
-	// TODO::solve the validation issue with decimal numbers
-	// console.log('getValidValue: ', this.isUserInput, value);
 	if (!this.isUserInput) {
 		numberInput.value = value;
 		return numberInput.value;
