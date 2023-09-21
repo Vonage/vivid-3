@@ -128,7 +128,6 @@ Add the `readonly` attribute to restrict user from changing the number field's v
 |-----------------|----------|-----------------------------------------------|
 | `stepUp`        | `void`   | Increase value by step (1 if step is not set) |
 | `stepDown`      | `void`   | Decrease value by step (1 if step is not set) |
-| `valueAsNumber` | `number` | Returns the value as a number                 |
 |                 |
 
 </div>
