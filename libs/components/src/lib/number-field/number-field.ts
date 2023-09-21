@@ -23,8 +23,13 @@ export class NumberField extends FastNumberField {
 
 // Hack to solve Fast bug: https://github.com/microsoft/fast/pull/6778
 (<any>NumberField).prototype.getValidValue = function (value: string) {
-	//TODO::differentiate between users added value and programmatic value
 	// TODO::solve the validation issue with decimal numbers
+	// console.log('getValidValue: ', this.isUserInput, value);
+	if (!this.isUserInput) {
+		numberInput.value = value;
+		return numberInput.value;
+	}
+
 	if (value === '' || value === '-' || value === '.') {
 		return value;
 	}

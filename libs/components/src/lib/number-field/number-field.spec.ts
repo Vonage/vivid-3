@@ -469,8 +469,7 @@ describe('vwc-number-field', () => {
 		});
 
 		it('should allow negative sign as first char when typing', async function () {
-			element.value = '-';
-			await elementUpdated(element);
+			typeInput('-');
 			const valueWhenNegativeIsFirstChar = element.value;
 
 			element.value = '5';
@@ -532,8 +531,17 @@ describe('vwc-number-field', () => {
 
 		it('should clear invalid programmatically added invalid value', async function () {
 			element.value = '5.5.';
-			await elementUpdated(element);
-			expect(element.value).toEqual('');
+			const valueWithTwoDecimalPoints = element.value;
+			element.value = '6.';
+			const valueWithInvalidDecimalPoint = element.value;
+			element.value = '-';
+			const valueWithNegativeSignAlone = element.value;
+			element.value = '5a';
+			const valueWithInvalidCharacter = element.value;
+			expect(valueWithTwoDecimalPoints).toEqual('');
+			expect(valueWithInvalidDecimalPoint).toEqual('');
+			expect(valueWithNegativeSignAlone).toEqual('');
+			expect(valueWithInvalidCharacter).toEqual('');
 		});
 	});
 
