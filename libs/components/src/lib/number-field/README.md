@@ -120,6 +120,18 @@ Add the `readonly` attribute to restrict user from changing the number field's v
 <vwc-number-field readonly value="8" label='fieldset' appearance='fieldset'></vwc-number-field>
 ```
 
+## Methods
+
+<div class="table-wrapper">
+
+| Name            | Returns  | Description                                   |
+|-----------------|----------|-----------------------------------------------|
+| `stepUp`        | `void`   | Increase value by step (1 if step is not set) |
+| `stepDown`      | `void`   | Decrease value by step (1 if step is not set) |
+|                 |
+
+</div>
+
 ## Accessibility
 If no label is set - it is highly recommended that `aria-label` will be added.
 
