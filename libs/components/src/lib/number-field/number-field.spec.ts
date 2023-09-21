@@ -545,8 +545,8 @@ describe('vwc-number-field', () => {
 		});
 
 		it('should validate input if value fits step', async () => {
-			await elementUpdated(element);
-			await elementUpdated(element);
+			element.step = 0.1;
+			typeInput('5.5');
 			expect(element.validationMessage).toEqual('');
 		});
 	});
@@ -635,8 +635,7 @@ describe('vwc-number-field', () => {
 			expect(subtractButton.getAttribute('shape')).toEqual(Shape.Pill);
 		});
 
-		it('should set step as 1 when step is null', async function () {
-			(element as any)['step'] = null;
+		it('should set step as 1 with default step', async function () {
 			element.value = '8';
 			await elementUpdated(element);
 			addButton.click();
@@ -687,6 +686,24 @@ describe('vwc-number-field', () => {
 			expect(inertWhenReadOnly).toEqual(true);
 			expect(inertWhenDisabled).toEqual(true);
 		});
+
+		it('should increase decimals correctly', async function () {
+			element.step = 0.1;
+			await elementUpdated(element);
+			for (let i = 0.1; i <= 1; i+=0.1) {
+				addButton.click();
+				expect(element.value).toEqual(Number(i.toFixed(12)).toString());
+			}
+		});
+
+		it('should decrease decimals correctly', async function () {
+			element.step = 0.1;
+			await elementUpdated(element);
+			for (let i = -0.1; i >= -1; i-=0.1) {
+				subtractButton.click();
+				expect(element.value).toEqual(Number(i.toFixed(12)).toString());
+			}
+		});
 	});
 
 	describe('minlength and maxlength', function () {
@@ -699,3 +716,4 @@ describe('vwc-number-field', () => {
 		});
 	});
 });
+

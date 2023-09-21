@@ -23,6 +23,36 @@ export class NumberField extends FastNumberField {
 	stepChanged(_previous: number, next: number) {
 		this.proxy.setAttribute('step', Number.isFinite(next) ? next.toString() : '');
 	}
+
+	override stepUp() {
+		const value = parseFloat(this.value);
+		const stepUpValue = !isNaN(value)
+			? value + this.step
+			: this.min > 0
+				? this.min
+				: this.max < 0
+					? this.max
+					: !this.min
+						? this.step
+						: 0;
+
+		this.value = Number(stepUpValue.toFixed(12)).toString();
+	}
+
+	override stepDown(): void {
+		const value = parseFloat(this.value);
+		const stepDownValue = !isNaN(value)
+			? value - this.step
+			: this.min > 0
+				? this.min
+				: this.max < 0
+					? this.max
+					: !this.min
+						? 0 - this.step
+						: 0;
+
+		this.value = Number(stepDownValue.toFixed(12)).toString();
+	}
 }
 
 // Hack to solve Fast bug: https://github.com/microsoft/fast/pull/6778
