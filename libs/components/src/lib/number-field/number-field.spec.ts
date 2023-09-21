@@ -8,8 +8,8 @@ import {
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {Shape} from '../enums';
 import { NumberField } from './number-field';
-import '.';
 import { numberFieldDefinition } from './definition';
+import '.';
 
 const COMPONENT_TAG_NAME = 'vwc-number-field';
 
@@ -143,6 +143,11 @@ describe('vwc-number-field', () => {
 		const value = 8;
 		const propertyName = 'max';
 		const proxyPropertyName = 'max';
+
+		it('should set proxy\'s step to empty if invalid value', function () {
+			element.setAttribute('step', 'invalid');
+			expect(element.proxy.step).toEqual('');
+		});
 
 		it('should set max attribute on the input', async function () {
 
@@ -742,6 +747,40 @@ describe('vwc-number-field', () => {
 			expect(element.value).toEqual('6');
 		});
 
+		it('should set value to minimum if value invalid and boundary is positive', function () {
+			element.step = 4;
+			element.value = 'a';
+			element.min = 2;
+			element.stepUp();
+			expect(element.valueAsNumber).toBe(2);
+		});
+
+		it('should set the value to max if value invalid and boundary is negative', function () {
+			element.step = 4;
+			element.value = 'a';
+			element.min = -10;
+			element.max = -2;
+			element.stepUp();
+			expect(element.valueAsNumber).toBe(-2);
+		});
+
+		it('should set value as step if minimum does not exist or zero', () => {
+			element.step = 0.00534;
+			element.value = 'a';
+			element.min = 0;
+
+			element.stepUp();
+			expect(element.valueAsNumber).toBe(0.00534);
+		});
+
+		it('should set value to zero if boundary crosses signs', () => {
+			element.max = 10;
+			element.min = -10;
+			element.step = 5;
+			element.stepUp();
+			expect(element.valueAsNumber).toBe(0);
+		});
+
 		it('should increase the value by step value', function () {
 			element.value = '5';
 			element.step = 5;
@@ -763,6 +802,41 @@ describe('vwc-number-field', () => {
 			element.stepDown();
 			expect(element.value).toEqual('0');
 		});
+
+		it('should set value to minimum if value invalid and boundary is positive', function () {
+			element.step = 4;
+			element.value = 'a';
+			element.min = 2;
+			element.stepDown();
+			expect(element.valueAsNumber).toBe(2);
+		});
+
+		it('should set the value to max if value invalid and boundary is negative', function () {
+			element.step = 4;
+			element.value = 'a';
+			element.min = -10;
+			element.max = -2;
+			element.stepDown();
+			expect(element.valueAsNumber).toBe(-2);
+		});
+
+		it('should set value as negative step if minimum does not exist or zero', () => {
+			element.step = 0.00534;
+			element.value = 'a';
+			element.min = 0;
+
+			element.stepDown();
+			expect(element.valueAsNumber).toBe(-0.00534);
+		});
+
+		it('should set value to zero if boundary crosses signs', () => {
+			element.max = 10;
+			element.min = -10;
+			element.step = 5;
+			element.stepDown();
+			expect(element.valueAsNumber).toBe(0);
+		});
+
 	});
 });
 
