@@ -99,7 +99,7 @@ div[role="listbox"] {width: 150px;}
 
 ### Icon
 
-Set the `icon` slot to show an icon before the option's label.
+Set the `icon` slot to show an icon before the option's text.
 If set, the `icon` attribute is ignored.
 
 ```html preview

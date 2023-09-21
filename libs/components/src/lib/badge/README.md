@@ -117,3 +117,16 @@ It accepts a subset of predefined values.
 <vwc-badge text='warning' appearance='duotone' connotation='warning'></vwc-badge>
 <vwc-badge text='alert' appearance='duotone' connotation='alert'></vwc-badge>
 ```
+
+## Slots
+
+### Icon
+
+Set the `icon` slot to show an icon before the badge's text.
+If set, the `icon` attribute is ignored.
+
+```html preview
+<vwc-badge text="with icon slot" appearance="filled" icon='message-sent-line'>
+  <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+</vwc-badge>
+```
