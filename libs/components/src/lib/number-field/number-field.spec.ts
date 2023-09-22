@@ -554,6 +554,27 @@ describe('vwc-number-field', () => {
 			typeInput('5.5');
 			expect(element.validationMessage).toEqual('');
 		});
+
+		it('should be invalid if value is not in max boundary', async function () {
+			element.max = 6;
+			element.valueAsNumber = 6+1;
+			await elementUpdated(element);
+			expect(element.checkValidity()).toBe(false);
+		});
+
+		it('should be invalid if value is not in min boundary', async function () {
+			element.min = 6;
+			element.valueAsNumber = 6-1;
+			await elementUpdated(element);
+			expect(element.checkValidity()).toBe(false);
+		});
+
+		it('should be invalid if required and empty', async () => {
+			element.required = true;
+			await elementUpdated(element);
+			expect(element.checkValidity()).toBe(false);
+		});
+
 	});
 
 	describe('appearance', function () {
@@ -836,7 +857,58 @@ describe('vwc-number-field', () => {
 			element.stepDown();
 			expect(element.valueAsNumber).toBe(0);
 		});
+	});
 
+	describe('errorText', function () {
+		const forcedErrorMessage = 'BAD!';
+
+		it('should force the input in custom error mode', async function () {
+			element.errorText = forcedErrorMessage;
+			await elementUpdated(element);
+			expect(element.validationMessage).toBe(forcedErrorMessage);
+			expect(element.validity.valid).toBeFalsy();
+		});
+
+		it('should add the error class', async function () {
+			element.errorText = forcedErrorMessage;
+			await elementUpdated(element);
+			expect(getBaseElement(element)
+				.classList
+				.contains('error'))
+				.toEqual(true);
+		});
+
+		it('should display the given error message', async function () {
+			element.errorText = forcedErrorMessage;
+			await elementUpdated(element);
+			const errorElement = element.shadowRoot?.querySelector('.error-message');
+			expect(errorElement).toBeDefined();
+		});
+
+		it('should restore the native error state when removed', async function () {
+			let initialErrorMessage = '';
+
+			element.max = 123;
+			typeInput('124');
+			setToBlurred();
+			await elementUpdated(element);
+
+			initialErrorMessage = element.validationMessage;
+
+			element.errorText = forcedErrorMessage;
+			await elementUpdated(element);
+
+
+			const errorTextMessage = element.validationMessage;
+
+			element.errorText = '';
+			await elementUpdated(element);
+
+			const errorMessageAfterRemovalOfErrorText = element.validationMessage;
+			expect(initialErrorMessage).not.toBe('');
+			expect(errorTextMessage).toBe(forcedErrorMessage);
+			expect(errorMessageAfterRemovalOfErrorText).toBe(initialErrorMessage);
+		});
 	});
 });
 

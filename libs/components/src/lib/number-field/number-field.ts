@@ -1,7 +1,15 @@
 import {applyMixins, NumberField as FastNumberField} from '@microsoft/fast-foundation';
 import {attr} from '@microsoft/fast-element';
 import type {Appearance, Shape} from '../enums';
-import {type FormElement, FormElementCharCount, FormElementHelperText, formElements, FormElementSuccessText} from '../../shared/patterns';
+import {
+	type ErrorText,
+	errorText,
+	type FormElement,
+	FormElementCharCount,
+	FormElementHelperText,
+	formElements,
+	FormElementSuccessText
+} from '../../shared/patterns';
 import {AffixIcon} from '../../shared/patterns';
 
 export type NumberFieldAppearance = Extract<Appearance, Appearance.Fieldset | Appearance.Ghost>;
@@ -12,6 +20,10 @@ const STEP_DIRECTION = {
 	down: -1
 };
 
+const PROXY_REFLECTED_ATTRIBUTES = {
+	max: true,
+	min: true
+};
 function makeStep(element: NumberField, direction: number) {
 	const value = parseFloat(element.value);
 	const stepUpValue = !isNaN(value)
@@ -31,6 +43,7 @@ function makeStep(element: NumberField, direction: number) {
  *
  * @public
  */
+@errorText
 @formElements
 export class NumberField extends FastNumberField {
 	@attr appearance?: NumberFieldAppearance;
@@ -41,6 +54,12 @@ export class NumberField extends FastNumberField {
 		this.proxy.setAttribute('step', Number.isFinite(next) ? next.toString() : '');
 	}
 
+	override attributeChangedCallback(name:string, previous: string, next:string) {
+		super.attributeChangedCallback(name, previous, next);
+		if ((<any>PROXY_REFLECTED_ATTRIBUTES)[name]) {
+			this.proxy.setAttribute(name, next);
+		}
+	}
 	override stepUp() {
 		makeStep(this, STEP_DIRECTION.up);
 	}
@@ -78,5 +97,10 @@ numberInput.type = 'number';
 	return numberInput.value + valueSuffix;
 };
 
-export interface NumberField extends AffixIcon, FormElement, FormElementCharCount, FormElementHelperText, FormElementSuccessText{}
+export interface NumberField extends AffixIcon,
+	ErrorText,
+	FormElement,
+	FormElementCharCount,
+	FormElementHelperText,
+	FormElementSuccessText {}
 applyMixins(NumberField, AffixIcon, FormElementCharCount, FormElementHelperText, FormElementSuccessText);
