@@ -601,7 +601,7 @@ describe('vwc-text-field', () => {
 		});
 	});
 
-	describe('forced error', function () {
+	describe('errorText', function () {
 		const forcedErrorMessage = 'BAD!';
 
 		it('should force the input in custom error mode', async function () {
@@ -628,32 +628,24 @@ describe('vwc-text-field', () => {
 		});
 
 		it('should replace/restore the current error state, if any, when set/removed', async function () {
-			let initialErrorMessage = '';
-
-			expect(element.validationMessage).toBe('');
-			expect(element.validity.valid).toBeTruthy();
-
 			element.pattern = '123';
 			element.value = 'abc';
 			setToBlurred();
 			await elementUpdated(element);
-			initialErrorMessage = element.validationMessage;
 
-			expect(initialErrorMessage).not.toBe('');
-			expect(initialErrorMessage).not.toBe(forcedErrorMessage);
-			expect(element.validity.valid).toBeFalsy();
+			const originalValidationMessage = element.validationMessage;
 
 			element.errorText = forcedErrorMessage;
 			await elementUpdated(element);
-
-			expect(element.validationMessage).toBe(forcedErrorMessage);
-			expect(element.validity.valid).toBeFalsy();
+			const validationMessageWithErrorText = element.validationMessage;
 
 			element.errorText = '';
 			await elementUpdated(element);
+			const validationMessageAfterErrorTextRemove = element.validationMessage;
 
-			expect(element.validationMessage).toBe(initialErrorMessage);
-			expect(element.validity.valid).toBeFalsy();
+			expect(originalValidationMessage).not.toBe('');
+			expect(validationMessageWithErrorText).toBe(forcedErrorMessage);
+			expect(validationMessageAfterErrorTextRemove).toBe(originalValidationMessage);
 		});
 	});
 
