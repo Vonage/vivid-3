@@ -146,33 +146,7 @@ The expanded state of the element
 - Default: `false` -->
 
 ## Slots
-
-### Icon
-
-Set the `icon` slot to show an icon before the menu-item's text.  
-If set, the `icon` attribute is ignored.
-Slot `icon` makes icon/checkbox/radiobutton to be `trailing`.
-
-```html preview
-<style>
-  html { /* for demo purposes */
-    block-size: 170px;
-  }
-</style>
-<vwc-menu open>
-  <vwc-menu-item text="Available" role="menuitemradio">
-   <vwc-icon slot="icon" connotation='success' name='check-solid'></vwc-icon>
-  </vwc-menu-item>
-  <vwc-menu-item text="Away" role="menuitemradio">
-    <vwc-icon slot="icon" connotation='warning' name='clock-line'></vwc-icon>
-  </vwc-menu-item>
-  <vwc-menu-item text="Bussy" role="menuitemradio" checked>
-    <vwc-icon slot="icon" connotation='alert' name='minus-solid'></vwc-icon>
-  </vwc-menu-item>
-</vwc-menu> 
-```
-
-### Meta
+### meta
 Assign nodes to the `meta` slot to set a badge or an additional icon.  
 Slot `meta` makes icon/checkbox/radiobutton to be `trailing`.
 
@@ -192,7 +166,7 @@ Slot `meta` makes icon/checkbox/radiobutton to be `trailing`.
   <vwc-menu-item text="Bussy" role="menuitemradio" checked>
     <vwc-badge slot="meta" appearance='filled' connotation='alert' shape='pill' icon='minus-solid'></vwc-badge>
   </vwc-menu-item>
-</vwc-menu>
+</vwc-menu> 
 ```
 
 ### Submenu
