@@ -107,7 +107,7 @@ If set, the `icon` attribute is ignored.
 
 ```html preview
 <vwc-nav>
-  <vwc-nav-disclosure label="1st level item" icon="profile">
+  <vwc-nav-disclosure label="1st level item">
   	<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
     <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
   </vwc-nav-disclosure>
