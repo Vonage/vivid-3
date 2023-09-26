@@ -55,7 +55,7 @@ describe('vwc-accordion-item', () => {
 
 	describe('icon', () => {
 		it('should have an icon slot', async () => {
-			expect(element.shadowRoot?.querySelector('slot[name="icon"]')).toBeDefined();
+			expect(element.shadowRoot?.querySelector('slot[name="icon"]')).toBeTruthy();
 		});
 
 		it('should render an icon when the icon property is set', async () => {

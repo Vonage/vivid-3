@@ -24,17 +24,16 @@ const header = (context: ElementDefinitionContext, hTag: string) => {
 			>
 				${() => focusTemplate}
 
-				${x => x.icon && !x.iconTrailing
-					? affixIconTemplate(x.icon, IconWrapper.Slot) : null}
+				${x => !x.iconTrailing ? affixIconTemplate(x.icon, IconWrapper.Slot) : null}
 
 				<span class="heading-content">${x => x.heading}</span>
 
 				${when(x => x.meta, html`<span class="meta">${x => x.meta}</span>`)}
 
 				${x => x.icon && x.iconTrailing
-					? affixIconTemplate(x.icon) : null}
+			? affixIconTemplate(x.icon) : null}
 				${x => !(x.icon && x.iconTrailing) && !x.noIndicator
-					? affixIconTemplate(x.expanded ? 'chevron-up-solid' : 'chevron-down-solid') : null}
+			? affixIconTemplate(x.expanded ? 'chevron-up-solid' : 'chevron-down-solid') : null}
 
 			</button>
 		</${hTag}>
