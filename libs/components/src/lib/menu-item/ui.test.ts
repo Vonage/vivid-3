@@ -5,14 +5,14 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['menu', 'menu-item', 'divider', 'badge', 'icon'];
+const components = ['menu', 'menu-item', 'divider', 'badge'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template =`
 		<style>
 			div {
 				width: 100%;
-				height: 1500px;
+				height: 1300px;
 				position: relative
 			}
 		</style>
@@ -58,19 +58,10 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-menu-item text="Bussy" role="menuitemcheckbox" checked>
 					<vwc-badge slot="meta" appearance='filled' connotation='alert' shape='pill' icon='minus-solid'></vwc-badge>
 				</vwc-menu-item>
-				<vwc-menu-item icon="file-pdf-line" text="With Icon Slot">
-					<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
-				</vwc-menu-item>
-				<vwc-menu-item icon="file-pdf-line" text="With Icon Slot" role="menuitemradio">
-					<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
-				</vwc-menu-item>
-				<vwc-menu-item icon="file-pdf-line" text="With Icon Slot" role="menuitemcheckbox" checked>
-					<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
-				</vwc-menu-item>
 			</vwc-menu>
 		</div>`;
 
-	page.setViewportSize({ width: 200, height: 1500 });
+	page.setViewportSize({ width: 200, height: 1300 });
 
 	await loadComponents({
 		page,

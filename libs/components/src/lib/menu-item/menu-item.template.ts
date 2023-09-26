@@ -1,7 +1,7 @@
 import { elements, ExecutionContext, html, slotted, ViewTemplate, when } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, MenuItemOptions } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
+import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
 import { Menu } from '../menu/menu';
 import { MenuItem, MenuItemRole } from './menu-item';
@@ -83,7 +83,7 @@ export const MenuItemTemplate: (context: ElementDefinitionContext, definition: M
 			<slot name="meta" ${slotted('metaSlottedContent')}></slot>
 			${checkbox(context)}
 			${radio(context)}
-			${when(x => x.icon, html`<span class="decorative">${x => affixIconTemplate(x.icon, IconWrapper.Slot)}</span>`)}
+			${when(x => x.icon, html`<span class="decorative">${x => affixIconTemplate(x.icon)}</span>`)}
 			${text()}
 			${when(x => x.hasSubmenu, html`<${iconTag} class="chevron" name="chevron-right-line"></${iconTag}>`)}
 		</div>

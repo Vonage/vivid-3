@@ -71,8 +71,7 @@
 	}
 }
 
-.icon,
-slot[name="icon"] {
+.icon {
 	flex-shrink: 0;
 	font-size: calc(#{size.$vvd-size-normal} / 2);
 	line-height: 1;
