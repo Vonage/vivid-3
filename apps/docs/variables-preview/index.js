@@ -119,7 +119,7 @@ const getCssPropertiesForComponent =(componentData) => {
 
 const renderVariablesStylesheet = (cssProperties) => {
 	return `<style>
-    .vvd-root {
+    vwc-tab[aria-selected="true"] {
 ${cssProperties.map(prop => `        ${prop.name}: ${initialValueForVariable(prop)};`).join('\n')}
     }
 </style>
