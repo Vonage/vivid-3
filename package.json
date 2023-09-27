@@ -27,6 +27,7 @@
     "dialog-polyfill": "^0.5.6",
     "dropzone": "^6.0.0-beta.2",
     "happy-dom": "^10.8.0",
+    "jsdom": "^22.1.0",
     "nodemon": "^3.0.1",
     "ramda": "^0.28.0",
     "regenerator-runtime": "^0.13.11",

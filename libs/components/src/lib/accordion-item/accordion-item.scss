@@ -101,7 +101,7 @@
 	}
 }
 
-.icon {
+slot[name="icon"] {
 	color: var(#{constants.$vvd-color-neutral-600});
 
 	.heading-button:not(.size-condensed) & {

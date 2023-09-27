@@ -1,7 +1,7 @@
 import { html, ref, ViewTemplate, when } from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
-import { affixIconTemplateFactory } from '../../shared/patterns/affix';
+import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
 import type { AccordionItem } from './accordion-item.js';
 
 
@@ -24,8 +24,7 @@ const header = (context: ElementDefinitionContext, hTag: string) => {
 			>
 				${() => focusTemplate}
 
-				${x => x.icon && !x.iconTrailing
-					? affixIconTemplate(x.icon) : null}
+				${x => !x.iconTrailing ? affixIconTemplate(x.icon, IconWrapper.Slot) : null}
 
 				<span class="heading-content">${x => x.heading}</span>
 

@@ -12,9 +12,6 @@ import {Button} from '../button/button';
 import {Divider} from '../divider/divider';
 import type {NumberField} from './number-field';
 
-const ADD = 1;
-const SUBTRACT = -1;
-
 const getStateClasses = ({
 	errorValidationMessage,
 	disabled,
@@ -44,10 +41,6 @@ function renderLabel() {
 	  </label>`;
 }
 
-function adjustValueByStep(numberField: NumberField, direction = ADD) {
-	numberField.value = (Number(numberField.value) + direction * (numberField.step ? numberField.step : 1)).toString();
-}
-
 function setControlButtonShape(numberField: NumberField) {
 	return numberField.shape === Shape.Pill ? Shape.Pill : null;
 }
@@ -71,14 +64,14 @@ function numberControlButtons(context: ElementDefinitionContext) {
 					            shape="${ setControlButtonShape }"
 					            size="condensed"
 					  					tabindex="${getTabIndex}"
-					            @click="${x => adjustValueByStep(x, SUBTRACT)}"></${buttonTag}>
+					            @click="${x => x.stepDown()}"></${buttonTag}>
 				<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 				<${buttonTag} id="add" icon="plus-line"
 					  					aria-controls="control"
 					            shape="${ setControlButtonShape }"
 					            size="condensed"
 					  					tabindex="${getTabIndex}"
-					            @click="${x => adjustValueByStep(x)}"></${buttonTag}>
+					            @click="${x => x.stepUp()}"></${buttonTag}>
 		    </div>
 	`;
 }

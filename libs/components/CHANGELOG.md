@@ -4,6 +4,24 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.37.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.36.0...vivid-v3.37.0) (2023-09-25)
+
+
+### Features
+
+* **accordion-item and tree-item:** add icon slot (VIV-1323) ([#1383](https://github.com/Vonage/vivid-3/issues/1383)) ([1b3954f](https://github.com/Vonage/vivid-3/commit/1b3954fa804fc0fae49b1dee1d53231faab9021d))
+* **banner and badge:** add icon slot (VIV-1302) ([#1386](https://github.com/Vonage/vivid-3/issues/1386)) ([fec4495](https://github.com/Vonage/vivid-3/commit/fec4495663ae1743367e4da0f9e9f614d61ceddd))
+* **date-picker:** add support for form association (VIV-1272) ([#1377](https://github.com/Vonage/vivid-3/issues/1377)) ([070ad49](https://github.com/Vonage/vivid-3/commit/070ad49ad8317e24c92d007347d3e64d13d1a31a))
+* **fab:** add icon slot and slot observer in affix pattern (VIV-1310) ([#1380](https://github.com/Vonage/vivid-3/issues/1380)) ([3f22512](https://github.com/Vonage/vivid-3/commit/3f22512721217aa042bb7bb2bd738aa11ca2d123))
+* **number-field:** add error text handling to number-field (VIV-1316) ([#1391](https://github.com/Vonage/vivid-3/issues/1391)) ([ff143ae](https://github.com/Vonage/vivid-3/commit/ff143ae3a4cd25d627d5c259eaa0e8552c5eedc5))
+
+
+### Bug Fixes
+
+* **menu:** align chevron when submenu (VIV-1330) ([#1387](https://github.com/Vonage/vivid-3/issues/1387)) ([62647db](https://github.com/Vonage/vivid-3/commit/62647db05a4b58558503a171c17c53a12a73e710))
+* **nav-disclosure, fab, tab:** add slot annotations (VIV-000) ([#1378](https://github.com/Vonage/vivid-3/issues/1378)) ([b948664](https://github.com/Vonage/vivid-3/commit/b948664517990165b0ac437585abb452b1294e15))
+* **number-field:** can now accept decimals and negative values from user (VIV-1326) ([#1384](https://github.com/Vonage/vivid-3/issues/1384)) ([6f946e4](https://github.com/Vonage/vivid-3/commit/6f946e40dd715b6be171a25574adeeafee42bb34))
+
 ## [3.36.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.35.0...vivid-v3.36.0) (2023-09-13)
 
 

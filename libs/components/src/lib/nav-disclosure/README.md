@@ -102,12 +102,12 @@ Only when the navigation disclosure is closed the `aria-current` will be set.
 
 ### Icon
 
-Set the `icon` slot to show an icon before the option's label.
+Set the `icon` slot to show an icon before the nav-disclosure's label.
 If set, the `icon` attribute is ignored.
 
 ```html preview
 <vwc-nav>
-  <vwc-nav-disclosure label="1st level item" icon="profile">
+  <vwc-nav-disclosure label="1st level item">
   	<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
     <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
   </vwc-nav-disclosure>

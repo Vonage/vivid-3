@@ -137,6 +137,21 @@ Use the `size` attribute to set the accordion-item's size.
 </vwc-accordion>
 ```
 
+## Slots
+
+### Icon
+
+Set the `icon` slot to show an icon before the accordion item's heading.
+If set, the `icon` attribute is ignored.
+
+```html preview full
+<vwc-accordion expand-mode="multi">
+	<vwc-accordion-item heading="Accordion item with icon">
+		<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+	</vwc-accordion-item>
+</vwc-accordion>
+```
 
 ## Accessibility
 

@@ -72,6 +72,18 @@ You can add action items using slotted content in a named slot `action-items`:
 </vwc-banner>
 ```
 
+
+### Icon
+
+Set the `icon` slot to show an icon before the banner's text.
+If set, the `icon` attribute is ignored.
+
+```html preview full
+<vwc-banner text="Here's some information that you may find important!">
+  	<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+</vwc-banner>
+```
+
 ## Events
 
 <div class="table-wrapper">

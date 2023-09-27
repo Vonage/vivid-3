@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import {loadComponents, loadTemplate} from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['badge'];
+const components = ['badge', 'icon'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template =`
@@ -34,8 +34,10 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	<vwc-badge text='success' appearance='duotone' connotation='success'></vwc-badge>
 	<vwc-badge text='warning' appearance='duotone' connotation='warning'></vwc-badge>
 	<vwc-badge text='alert' appearance='duotone' connotation='alert'></vwc-badge>
-	<vwc-badge text='large overflowing text' style="display: block; inline-size: 60px;"></vwc-badge>`;
-
+	<vwc-badge text='large overflowing text' style="display: block; inline-size: 60px;"></vwc-badge>
+	<vwc-badge text="with icon slot" appearance="filled">
+		<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+	</vwc-badge>`;
 	page.setViewportSize({ width: 440, height: 720 });
 
 	await loadComponents({
