@@ -9,7 +9,7 @@ import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/aff
 import { focusTemplateFactory } from './../../shared/patterns/focus';
 import type { TextAnchor } from './text-anchor';
 
-const getClasses = ({text, icon}: TextAnchor) => classNames(
+const getClasses = ({text}: TextAnchor) => classNames(
 	'control',
 	['icon-only', !text],
 );
