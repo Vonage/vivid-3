@@ -11,7 +11,7 @@ import type { TextAnchor } from './text-anchor';
 
 const getClasses = ({text, icon}: TextAnchor) => classNames(
 	'control',
-	['icon-only', (!text && !!icon) || (!text && !!IconWrapper.Span)],
+	['icon-only', !text],
 );
 
 /**
