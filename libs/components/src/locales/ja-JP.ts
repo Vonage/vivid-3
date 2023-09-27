@@ -48,6 +48,7 @@ const jaJP: Locale = {
 		dateFormat: 'yyyy年MM月dd日',
 		dateFormatPlaceholder: 'YYYY年MM月DD日',
 		chooseDateLabel: '日付を選択',
+		changeDateLabel: /* istanbul ignore next */ (date: string) => `日付を変更, ${date}`,
 		prevYearLabel: '前年',
 		prevMonthLabel: '前月',
 		nextMonthLabel: '次月',
