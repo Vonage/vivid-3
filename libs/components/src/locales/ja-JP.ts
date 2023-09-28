@@ -49,6 +49,8 @@ const jaJP: Locale = {
 		dateFormatPlaceholder: 'YYYY年MM月DD日',
 		chooseDateLabel: '日付を選択',
 		changeDateLabel: /* istanbul ignore next */ (date: string) => `日付を変更, ${date}`,
+		chooseDatesLabel: '日付を選択',
+		changeDatesLabel: /* istanbul ignore next */ (range: string) => `日付を変更, ${range}`,
 		prevYearLabel: '前年',
 		prevMonthLabel: '前月',
 		nextMonthLabel: '次月',
@@ -56,6 +58,11 @@ const jaJP: Locale = {
 		clearLabel: 'クリア',
 		okLabel: 'OK',
 		invalidDateError: '有効な日付を入力してください。',
+		invalidDateRangeError: '有効な日付範囲を入力してください。',
+		startDateAfterMinDateError: /* istanbul ignore next */ (minDate: string) =>
+			`開始日は${minDate}以降である必要があります。`,
+		endDateBeforeMaxDateError: /* istanbul ignore next */ (maxDate: string) =>
+			`終了日は${maxDate}以前である必要があります。`,
 	},
 };
 

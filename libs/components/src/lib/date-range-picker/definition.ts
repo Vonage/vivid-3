@@ -1,17 +1,18 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import { popupRegistries } from '../popup/definition';
-import { focusRegistries } from '../focus/definition';
+
 import { buttonRegistries } from '../button/definition';
+import { popupRegistries } from '../popup/definition';
 import { textFieldRegistries } from '../text-field/definition';
+import { focusRegistries } from '../focus/definition';
 import { dividerRegistries } from '../divider/definition';
 import styles from '../../shared/date-picker/date-picker-base.scss';
-import { DatePickerBaseTemplate as template } from '../../shared/date-picker/date-picker-base.template';
-import { DatePicker } from './date-picker';
+import { DateRangePickerTemplate as template } from './date-range-picker.template';
+import { DateRangePicker } from './date-range-picker';
 
-export const datePickerDefinition =
-	DatePicker.compose<FoundationElementDefinition>({
-		baseName: 'date-picker',
+export const dateRangePickerDefinition =
+	DateRangePicker.compose<FoundationElementDefinition>({
+		baseName: 'date-range-picker',
 		template: template as any,
 		styles,
 	});
@@ -19,8 +20,8 @@ export const datePickerDefinition =
 /**
  * @internal
  */
-export const datePickerRegistries = [
-	datePickerDefinition(),
+export const dateRangePickerRegistries = [
+	dateRangePickerDefinition(),
 	...buttonRegistries,
 	...popupRegistries,
 	...textFieldRegistries,
@@ -29,8 +30,10 @@ export const datePickerRegistries = [
 ];
 
 /**
- * Registers the date-picker element with the design system.
+ * Registers the date-range-picker element with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerDatePicker = registerFactory(datePickerRegistries);
+export const registerDateRangePicker = registerFactory(
+	dateRangePickerRegistries
+);

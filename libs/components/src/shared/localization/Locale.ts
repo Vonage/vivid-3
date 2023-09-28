@@ -1,4 +1,4 @@
-import type { DatePickerLocale } from '../../lib/date-picker/locale';
+import type { DatePickerLocale } from '../date-picker/locale';
 
 export interface Locale {
 	datePicker: DatePickerLocale;
