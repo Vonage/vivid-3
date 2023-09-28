@@ -31,7 +31,7 @@ export type IconPlacement = 'top' | 'side';
  * @slot footer - Use the footer slot in order to add action buttons to the bottom of the dialog.
  * @slot main - Assign nodes to the main slot to fully override a dialog’s predefined flow and style with your own.
  * @slot action-items - Use the action-items slot in order to add action buttons to the bottom of the dialog.
- * @event close - Fired when the dialog is closed
+ * @event close - Fired when the dialog is closed.
  */
 export class Dialog extends FoundationElement {
 	/**

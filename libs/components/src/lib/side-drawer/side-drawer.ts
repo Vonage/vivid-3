@@ -7,6 +7,8 @@ import { FoundationElement } from '@microsoft/fast-foundation';
  * @public
  * @slot - Sets assigned nodes to the side drawer itself.
  * @slot app-content - Sets assigned nodes to the main application content, the side drawer is opened next to.
+ * @event close - Fired when the side drawer is closed.
+ * @event open - Fired when the side drawer is opened.
  */
 export class SideDrawer extends FoundationElement {
 	/**
