@@ -146,7 +146,7 @@ If set, the `icon` attribute is ignored.
 
 ```html preview full
 <vwc-accordion expand-mode="multi">
-	<vwc-accordion-item heading="Accordion item with icon" icon="chat-solid">
+	<vwc-accordion-item heading="Accordion item with icon">
 		<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 	</vwc-accordion-item>
