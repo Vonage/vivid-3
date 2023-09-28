@@ -67,3 +67,18 @@ Use the `meta` slot to add additional content to the nav item.
 </vwc-nav>
 ```
 
+### Icon
+
+Set the `icon` slot to show an icon before the nav-item's text.
+If set, the `icon` attribute is ignored.
+
+```html preview
+<vwc-nav>
+	<vwc-nav-item href="#" text="Account">
+	  <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+	</vwc-nav-item>
+	<vwc-nav-item href="#">
+	  <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+	</vwc-nav-item>
+</vwc-nav>
+```
