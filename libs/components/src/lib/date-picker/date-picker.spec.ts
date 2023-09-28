@@ -29,6 +29,7 @@ jest.mock('./calendar/dateStr.ts', () => ({
 describe('vwc-date-picker', () => {
 	let element: DatePicker;
 	let textField: TextField;
+	let calendarButton: Button;
 	let popup: Popup;
 	let titleAction: HTMLButtonElement;
 
@@ -73,8 +74,7 @@ describe('vwc-date-picker', () => {
 	}
 
 	async function openPopup() {
-		textField.focus();
-		textField.dispatchEvent(new FocusEvent('focus'));
+		calendarButton.click();
 		await elementUpdated(element);
 	}
 
@@ -88,6 +88,7 @@ describe('vwc-date-picker', () => {
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as DatePicker;
 		textField = element.shadowRoot!.querySelector('.control') as TextField;
+		calendarButton = element.shadowRoot!.querySelector('#calendar-button') as Button;
 		popup = element.shadowRoot!.querySelector('.popup') as Popup;
 		titleAction = element.shadowRoot!.querySelector(
 			'.title-action'
@@ -410,15 +411,6 @@ describe('vwc-date-picker', () => {
 			expect(textField.errorText).toBe('');
 		});
 
-		it('should move focus to the tabbable element when pressing tab in the text-field', async () => {
-			await openPopup();
-
-			pressKey('Tab');
-
-			const tabbableDate = getDateButton('2023-08-10');
-			expect(element.shadowRoot!.activeElement).toBe(tabbableDate);
-		});
-
 		it('should keep default behaviour when pressing tab in the text-field without a tabbable date', async () => {
 			const event = new KeyboardEvent('keydown', { key: 'Tab', bubbles: true });
 			event.preventDefault = jest.fn();
@@ -445,30 +437,50 @@ describe('vwc-date-picker', () => {
 		});
 	});
 
-	describe('popup', () => {
-		it('should open when the text field receives focus', async () => {
-			textField.dispatchEvent(new FocusEvent('focus'));
+	describe('calendar button', () => {
+		it('should open the popup when pressed', async () => {
+			calendarButton.click();
 			await elementUpdated(element);
 
 			expect(popup.open).toBe(true);
 		});
 
-		it('should open when the text field is clicked upon', async () => {
-			textField.dispatchEvent(new MouseEvent('click'));
-			await elementUpdated(element);
+		it('should close the popup when pressed and it is already open', async () => {
+			await openPopup();
 
-			expect(popup.open).toBe(true);
-		});
-
-		it('should remain closed when readonly', async () => {
-			element.readOnly = true;
-
-			textField.dispatchEvent(new FocusEvent('focus'));
+			calendarButton.click();
 			await elementUpdated(element);
 
 			expect(popup.open).toBe(false);
 		});
 
+		it('should be disabled when the date picker is disabled', async () => {
+			element.disabled = true;
+			await elementUpdated(element);
+
+			expect(calendarButton.disabled).toBe(true);
+		});
+
+		it('should be disabled when the date picker is readonly', async () => {
+			element.readOnly = true;
+			await elementUpdated(element);
+
+			expect(calendarButton.disabled).toBe(true);
+		});
+
+		it('should have an aria-label of "Choose date" when no date is selected', async () => {
+			expect(calendarButton.getAttribute('aria-label')).toBe('Choose date');
+		});
+
+		it('should have an aria-label of "Choose date, DATE" when a date is selected', async () => {
+			element.value = '2021-01-01';
+			await elementUpdated(element);
+
+			expect(calendarButton.getAttribute('aria-label')).toBe('Change date, 01/01/2021');
+		});
+	});
+
+	describe('popup', () => {
 		it('should close when pressing ESC', async () => {
 			await openPopup();
 
@@ -486,26 +498,6 @@ describe('vwc-date-picker', () => {
 
 			expect(popup.open).toBe(false);
 		});
-
-		it('should close when pressing enter in the text field while open', async () => {
-			await openPopup();
-
-			pressKey('Enter');
-			await elementUpdated(element);
-
-			expect(popup.open).toBe(false);
-		});
-
-		it('should open when pressing enter in the text field while closed', async () => {
-			await openPopup();
-			pressKey('Enter');
-			await elementUpdated(element);
-
-			pressKey('Enter');
-			await elementUpdated(element);
-
-			expect(popup.open).toBe(true);
-		});
 	});
 
 	describe('trapped focus', () => {
@@ -515,7 +507,7 @@ describe('vwc-date-picker', () => {
 		beforeEach(async () => {
 			await openPopup();
 			const buttons: NodeListOf<HTMLElement> =
-				element.shadowRoot!.querySelectorAll('button, vwc-button');
+				element.shadowRoot!.querySelectorAll('.dialog button, .dialog vwc-button');
 			firstFocusable = buttons[0];
 			lastFocusable = buttons[buttons.length - 1];
 		});

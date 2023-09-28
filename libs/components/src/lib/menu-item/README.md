@@ -169,7 +169,7 @@ Slot `meta` makes icon/checkbox/radiobutton to be `trailing`.
 </vwc-menu> 
 ```
 
-### submenu
+### Submenu
 
 Assign menu to the `submenu` slot to create a submenu.
 
@@ -203,6 +203,7 @@ Assign menu to the `submenu` slot to create a submenu.
     </vwc-menu-item>
 </vwc-menu>
 ```
+
 
 ## Events
 

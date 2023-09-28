@@ -1,7 +1,7 @@
-import {applyMixins, FoundationElement} from '@microsoft/fast-foundation';
+import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
-import type {Connotation} from '../enums';
-import {AffixIcon} from '../../shared/patterns';
+import type { Connotation } from '../enums';
+import { AffixIcon } from '../../shared/patterns';
 
 export type NoteConnotation =
 	Connotation.Accent |
@@ -27,7 +27,5 @@ export class Note extends FoundationElement {
 	@attr connotation?: NoteConnotation;
 }
 
+export interface Note extends AffixIcon { }
 applyMixins(Note, AffixIcon);
-
-export interface Note extends AffixIcon {
-}
