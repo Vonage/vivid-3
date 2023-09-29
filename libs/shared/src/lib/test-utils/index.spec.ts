@@ -5,7 +5,7 @@ import {
 	fixture,
 	getBaseElement,
 	getControlElement,
-	listenToFormSubmission, nextTick,
+	listenToFormSubmission,
 	setAttribute
 } from '.';
 
@@ -31,17 +31,6 @@ describe(`test-utils`, function () {
       });
     });
   });
-
-	describe('nextTick', function () {
-		it('should resolve on the next tick', async () => {
-			const spy = jest.fn();
-			const promise = nextTick();
-			promise.then(spy);
-			expect(spy).not.toHaveBeenCalled();
-			await promise;
-			expect(spy).toHaveBeenCalled();
-		});
-	});
 
   describe(`listenToFormSubmission`, function () {
     it('should return a promise that resolves on form submit', async function() {
