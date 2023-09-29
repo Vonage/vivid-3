@@ -48,6 +48,7 @@ const enGB: Locale = {
 		dateFormat: 'dd/MM/yyyy',
 		dateFormatPlaceholder: 'DD/MM/YYYY',
 		chooseDateLabel: 'Choose date',
+		changeDateLabel: /* istanbul ignore next */ (date: string) => `Change date, ${date}`,
 		prevYearLabel: 'Previous year',
 		prevMonthLabel: 'Previous month',
 		nextMonthLabel: 'Next month',

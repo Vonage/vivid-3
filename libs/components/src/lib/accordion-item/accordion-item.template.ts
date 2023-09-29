@@ -24,8 +24,7 @@ const header = (context: ElementDefinitionContext, hTag: string) => {
 			>
 				${() => focusTemplate}
 
-				${x => x.icon && !x.iconTrailing
-					? affixIconTemplate(x.icon, IconWrapper.Slot) : null}
+				${x => !x.iconTrailing ? affixIconTemplate(x.icon, IconWrapper.Slot) : null}
 
 				<span class="heading-content">${x => x.heading}</span>
 

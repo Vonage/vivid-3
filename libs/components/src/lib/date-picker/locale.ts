@@ -11,6 +11,7 @@ export interface DatePickerLocale {
 	dateFormat: string;
 	dateFormatPlaceholder: string;
 	chooseDateLabel: string;
+	changeDateLabel: (date: string) => string;
 	prevYearLabel: string;
 	prevMonthLabel: string;
 	nextMonthLabel: string;

@@ -126,7 +126,7 @@ Set the `icon` slot to show an icon before the badge's text.
 If set, the `icon` attribute is ignored.
 
 ```html preview
-<vwc-badge text="with icon slot" appearance="filled" icon='message-sent-line'>
+<vwc-badge text="with icon slot" appearance="filled">
   <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 </vwc-badge>
 ```

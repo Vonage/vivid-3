@@ -37,7 +37,7 @@
 	}
 }
 
-.icon {
+slot[name="icon"] {
 	color: var(#{appearance.get-appearance-token(outline)});
 	font-size: #{size.$vvd-size-super-condensed};
 }
