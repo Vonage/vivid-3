@@ -2,10 +2,6 @@ export const elementUpdated = async (element: Element | HTMLElement) => {
 	return new Promise(resolve => requestAnimationFrame(() => resolve(element)));
 };
 
-export const nextTick = async () => {
-	return new Promise(resolve => setTimeout(resolve));
-}
-
 export const ADD_TEMPLATE_TO_FIXTURE = true;
 
 export const fixture = (() => {

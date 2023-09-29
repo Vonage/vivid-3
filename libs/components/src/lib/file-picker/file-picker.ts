@@ -168,16 +168,18 @@ export class FilePicker extends FormAssociatedFilePicker {
 			dictFileTooBig: this.locale.filePicker.fileTooBigError,
 		});
 
-		this.#dropzone.on('addedfile', (file) => {
-			if (file.previewElement) {
-				const removeButton = file.previewElement.querySelector(
-					'.remove-btn'
-				) as Button;
-				removeButton.addEventListener('click', (e) => {
-					e.preventDefault();
-					e.stopPropagation();
-					this.#dropzone!.removeFile(file as File as DropzoneFile);
-				});
+		this.#dropzone.on('addedfiles', (files) => {
+			for (const file of files) {
+				if (file.previewElement) {
+					const removeButton = file.previewElement.querySelector(
+						'.remove-btn'
+					) as Button;
+					removeButton.addEventListener('click', (e) => {
+						e.preventDefault();
+						e.stopPropagation();
+						this.#dropzone!.removeFile(file as File as DropzoneFile);
+					});
+				}
 			}
 
 			this.#handleFilesChanged();
@@ -235,11 +237,8 @@ export class FilePicker extends FormAssociatedFilePicker {
 	}
 
 	#handleFilesChanged(): void {
-		// Dropzone only marks files as valid after emitting events, therefore we need to await next tick
-		setTimeout(() => {
-			this.$emit('change');
-			this.#updateFormValue();
-		}, 0);
+		this.$emit('change');
+		this.#updateFormValue();
 	}
 
 	#updateFormValue() {

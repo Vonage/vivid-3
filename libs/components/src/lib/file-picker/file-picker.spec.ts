@@ -4,7 +4,6 @@ import {
 	fixture,
 	getBaseElement,
 	getControlElement,
-	nextTick,
 } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Button } from '../button/button';
@@ -138,7 +137,6 @@ describe('vwc-file-picker', () => {
 	describe('value', function () {
 		it('should be set to a fake path when a file is added', async function () {
 			addFiles([await generateFile('london.png', 1)]);
-			await nextTick();
 			expect(element.value).toBe('C:\\fakepath\\london.png');
 		});
 	});
@@ -221,7 +219,6 @@ describe('vwc-file-picker', () => {
 			element.addEventListener('change', onChange);
 
 			addFiles([await generateFile('london.png', 1)]);
-			await nextTick();
 
 			expect(onChange).toHaveBeenCalledTimes(1);
 			expect(filesLengthInChangeHandler).toBe(1);
@@ -229,7 +226,6 @@ describe('vwc-file-picker', () => {
 
 		it('should fire "change" event after a file is removed', async () => {
 			addFiles([await generateFile('london.png', 1)]);
-			await nextTick();
 			let filesLengthInChangeHandler = -1;
 			const onChange = jest.fn().mockImplementation(() => {
 				filesLengthInChangeHandler = element.files.length;
@@ -237,7 +233,6 @@ describe('vwc-file-picker', () => {
 			element.addEventListener('change', onChange);
 
 			getRemoveButton(0).click();
-			await nextTick();
 
 			expect(onChange).toHaveBeenCalledTimes(1);
 			expect(filesLengthInChangeHandler).toBe(0);
@@ -317,7 +312,6 @@ describe('form associated vwc-file-picker', function () {
 		});
 
 		addFiles([await generateFile('london.png', 1)]);
-		await nextTick();
 		const valueBeforeReset = element.value;
 		const numFilesBeforeReset = element.files.length;
 
@@ -339,7 +333,6 @@ describe('form associated vwc-file-picker', function () {
 			formWrapper
 		});
 		addFiles([await generateFile('london.png', 1)]);
-		await nextTick();
 
 		element.name = 'file';
 
