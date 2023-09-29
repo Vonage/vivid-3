@@ -317,7 +317,7 @@ describe('form associated vwc-file-picker', function () {
 
 		formElement.reset();
 
-		expect(valueBeforeReset).not.toBe('');
+		expect(valueBeforeReset).toBe('C:\\fakepath\\london.png');
 		expect(numFilesBeforeReset).toBeGreaterThan(0);
 		expect(element.value).toBe('');
 		expect(element.files.length).toBe(0);

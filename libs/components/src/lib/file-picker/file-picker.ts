@@ -103,18 +103,6 @@ export class FilePicker extends FormAssociatedFilePicker {
 	 */
 	@attr size?: FileUploaderSize;
 
-	override valueChanged = () => {
-		this.dirtyValue = true;
-
-		if (this.proxy instanceof HTMLElement) {
-			this.proxy.value = this.value;
-		}
-
-		this.currentValue = this.value;
-
-		this.validate();
-	};
-
 	override nameChanged(previous: string, next: string) {
 		super.nameChanged!(previous, next);
 		this.#updateFormValue();
@@ -162,7 +150,6 @@ export class FilePicker extends FormAssociatedFilePicker {
   <div class="dz-error-message"><span data-dz-errormessage></span></div>
   <${this.buttonTag} class="remove-btn" icon="delete-line" appearance="ghost" size="condensed" aria-label="${this.locale.filePicker.removeFileLabel}"></${this.buttonTag}>
 </div>`,
-			// Replace "upload" with "select" in dict messages
 			dictInvalidFileType: this.locale.filePicker.invalidFileTypeError,
 			dictMaxFilesExceeded: this.locale.filePicker.maxFilesExceededError,
 			dictFileTooBig: this.locale.filePicker.fileTooBigError,
@@ -254,9 +241,18 @@ export class FilePicker extends FormAssociatedFilePicker {
 			this.setFormValue(formData);
 		}
 
-		// For historical reasons, the value IDL attribute prefixes the filename with the string "C:\fakepath\".
+		// Like native input[type=file], set the value to a fakepath
 		this.value = files.length > 0 ? `C:\\fakepath\\${files[0].name}` : '';
 	}
+
+	override setFormValue = (value: File | string | FormData | null, state?: File | string | FormData | null) => {
+		if (typeof value === 'string') {
+			// Ignore FormAssociated trying to set the form value to the fakepath
+			return;
+		}
+
+		super.setFormValue(value, state);
+	};
 
 	override validate(): void {
 		super.validate(this.control);
