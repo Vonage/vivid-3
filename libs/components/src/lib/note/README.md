@@ -34,7 +34,7 @@ Add a `icon='icon-name'` attribute to set a decorative icon.
 - Default: `undefined`
 
 ```html preview
-<vwc-note icon="home"></vwc-note>
+<vwc-note icon="home" headline="Note With Icon"></vwc-note>
 ```
 
 ### Connotation
@@ -62,5 +62,16 @@ Any slotted content will appear below the headline.
 ```html preview
 <vwc-note icon="home" headline="Note Headline" connotation="information">
   <p>This is the text that explains about something important!</p>
+</vwc-note>
+```
+
+### Icon
+
+Set the `icon` slot to show an icon before the note's headline.
+If set, the `icon` attribute is ignored.
+
+```html preview
+<vwc-note headline="Note With Icon Slot">
+  <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 </vwc-note>
 ```

@@ -5,7 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { Icon } from '../icon/icon';
+import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
 import type { Note } from './note';
 
 
@@ -31,11 +31,11 @@ export const NoteTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Note> = (context: ElementDefinitionContext) => {
-	const iconTag = context.tagFor(Icon);
+	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html`
     <div class="${getClasses}">
-			${when( x => x.icon, html`<${iconTag} class="icon" name="${x => x.icon}"></${iconTag}>`)}
+			${x => affixIconTemplate(x.icon, IconWrapper.Slot)}
 			<div class="text">
 	        ${when(x => x.headline, getHeaderTemplate())}
 			    <slot class="message"></slot>

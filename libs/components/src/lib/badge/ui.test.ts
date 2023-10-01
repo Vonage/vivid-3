@@ -35,7 +35,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	<vwc-badge text='warning' appearance='duotone' connotation='warning'></vwc-badge>
 	<vwc-badge text='alert' appearance='duotone' connotation='alert'></vwc-badge>
 	<vwc-badge text='large overflowing text' style="display: block; inline-size: 60px;"></vwc-badge>
-	<vwc-badge text="with icon slot" appearance="filled" icon='message-sent-line'>
+	<vwc-badge text="with icon slot" appearance="filled">
 		<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 	</vwc-badge>`;
 	page.setViewportSize({ width: 440, height: 720 });

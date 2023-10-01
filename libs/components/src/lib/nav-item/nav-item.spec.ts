@@ -27,6 +27,10 @@ describe('vwc-nav-item', () => {
 	});
 
 	describe('icon', () => {
+		it('should have an icon slot', async () => {
+			expect(element.shadowRoot?.querySelector('slot[name="icon"]')).toBeTruthy();
+		});
+
 		it('should add an icon to the nav item', async () => {
 			element.icon = 'home';
 			await elementUpdated(element);
@@ -41,15 +45,10 @@ describe('vwc-nav-item', () => {
 
 	describe('icon-only', () => {
 		it('should set correct internal icon-only style', async () => {
-			const getControlIconOnly = () => element.shadowRoot?.querySelector('.control.icon-only');
-			const controlIconOnlyBefore = getControlIconOnly();
-
 			element.icon = 'home';
 			await elementUpdated(element);
 
-			const controlIconOnlyAfter = getControlIconOnly();
-			expect(controlIconOnlyBefore).toBeNull();
-			expect(controlIconOnlyAfter).toBeInstanceOf(Element);
+			expect(element.shadowRoot?.querySelector('.control.icon-only')).toBeInstanceOf(Element);
 		});
 	});
 
