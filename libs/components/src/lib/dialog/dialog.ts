@@ -146,13 +146,13 @@ export class Dialog extends FoundationElement {
 
 	override connectedCallback() {
 		super.connectedCallback();
-		this.#dialog.addEventListener('click', this.#handleScrimClick);
+		this.#dialog.addEventListener('mousedown', this.#handleScrimClick);
 		this.#dialog.addEventListener('submit', this.#handleInternalFormSubmit);
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
-		this.#dialog.removeEventListener('click', this.#handleScrimClick);
+		this.#dialog.removeEventListener('mousedown', this.#handleScrimClick);
 		this.#dialog.removeEventListener('submit', this.#handleInternalFormSubmit);
 	}
 
