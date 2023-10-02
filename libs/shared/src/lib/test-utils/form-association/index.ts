@@ -8,7 +8,7 @@ export function listenToFormSubmission(formElement: HTMLFormElement): Promise<Fo
 }
 export interface CreateFormHTMLConfig {
 	componentTagName: string,
-	fieldName: string,
+	fieldName?: string,
 	formId: string,
 	otherFormId?: string,
 	fieldValue?: string | number,
@@ -23,7 +23,8 @@ export function createFormHTML<T>({fieldName, fieldValue, formId, otherFormId, c
 		: '';
 	formWrapper.innerHTML = `
 				<form onsubmit="return false" name="testForm" id="${formId}">
-					<${componentTagName} name="${fieldName}"
+					<${componentTagName}
+														${fieldName ? `name="${fieldName}"` : ''}
 														${fieldValue ? `value="${fieldValue}"` : ''}
 														${checked ? 'checked' : ''}
 						${otherFormId ? `form="${otherFormId}"` : `form="${formId}"`}>

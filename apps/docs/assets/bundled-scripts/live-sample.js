@@ -24,7 +24,7 @@ window.setEditorsTheme = function() {
 function addButtonsHandlers() {
 	const copyCodeButtons = document.querySelectorAll('vwc-button[id^="buttonCopy"]')
 	copyCodeButtons.forEach(btn => btn.addEventListener('click', codeCopyButtonClick))
-	
+
 	const codePenButtons = document.querySelectorAll('vwc-button[id^="buttonCPen"]')
 	codePenButtons.forEach(btn => btn.addEventListener('click', openCodePen))
 }
@@ -156,4 +156,5 @@ function switchLocale(event) {
 	const { iframe } = samplesEditors.get(+select.dataset.index);
 
 	iframe.contentWindow.setLocale(iframe.contentWindow.locales[select.value]);
+	iframe.contentWindow.document.documentElement.lang = select.value;
 }
