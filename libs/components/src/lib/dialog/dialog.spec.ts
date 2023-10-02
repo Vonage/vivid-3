@@ -198,9 +198,8 @@ describe('vwc-dialog', () => {
 		it('should leave the dialog open when mousedown on a non dialog element', async function () {
 			const otherElement = document.createElement('div');
 			const event = createMouseEventOutsideTheDialog('mousedown');
-			Object.defineProperty(event, 'target', {value: otherElement, enumerable: true});
-
-			dialogElement?.dispatchEvent(event);
+			dialogElement?.appendChild(otherElement);
+			otherElement.dispatchEvent(event);
 			await elementUpdated(element);
 
 			expect(element.open).toEqual(true);
