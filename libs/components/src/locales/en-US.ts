@@ -57,6 +57,13 @@ const enUS: Locale = {
 		okLabel: 'OK',
 		invalidDateError: 'Please enter a valid date.',
 	},
+	filePicker: {
+		invalidFileTypeError: "You can't select files of this type.",
+		maxFilesExceededError: "You can't select any more files.",
+		fileTooBigError:
+			'File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.',
+		removeFileLabel: 'Remove file',
+	},
 };
 
 export default enUS;
