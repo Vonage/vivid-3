@@ -47,7 +47,12 @@ const paginationButtonRenderer = (buttonTag: string) => html`
 									@keydown="${handleKeyDown}"
 		</${buttonTag}>
 	`)}
-	${when(value => value === '...', html`<div class="dots size-${getPaginationSize} shape-${getPaginationShape}">...</div>`)}`;
+	${when(value => value === '...',
+		html`
+		<div
+			class="dots size-${(_, {parent: x}) => getPaginationSize(x)}">
+			...
+		</div>`)}`;
 
 const getPaginationSize = (x: Pagination) => {
 	if (!x.size || !ALLOWED_SIZES.includes(x.size)) {
