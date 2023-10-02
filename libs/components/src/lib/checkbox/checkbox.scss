@@ -45,7 +45,10 @@ $gutter: 2px;
 
 	&.disabled {
 		cursor: not-allowed;
-		pointer-events: none;
+		
+		.control {
+			pointer-events: none;
+		}
 	}
 }
 
