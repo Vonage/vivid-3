@@ -21,5 +21,12 @@ export class Switch extends FoundationElement {
 	 * HTML Attribute: label
 	 */
 	@attr label?: string;
+
+	/**
+	* Indicates the switch's connotation.
+	*
+	* @public
+	* HTML Attribute: connotation
+	*/
 	@attr connotation?: SwitchConnotation;
 }
