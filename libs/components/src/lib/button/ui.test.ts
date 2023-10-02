@@ -7,7 +7,7 @@ import {
 } from '../../visual-tests/visual-tests-utils.js';
 import type { Button } from './button';
 
-const components = ['button'];
+const components = ['button', 'icon'];
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 	<div style="margin: 5px;">
