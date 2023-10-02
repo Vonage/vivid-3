@@ -139,6 +139,27 @@ describe('vwc-dialog', () => {
 	});
 
 	describe('scrimClick', function () {
+
+		function createMouseEventOutsideTheDialog(type: string) {
+			return new MouseEvent(type, {
+				'bubbles': true,
+				'cancelable': true,
+				'composed': true,
+				'screenX': 25,
+				'screenY': 25
+			});
+		}
+
+		function createMouseEventInsideTheDialog(type: string) {
+			return new MouseEvent(type, {
+				'bubbles': true,
+				'cancelable': true,
+				'composed': true,
+				clientY: 75,
+				clientX: 75
+			});
+		}
+
 		let dialogElement: HTMLDialogElement | null;
 		const dialogClientRect: DOMRect = {
 			bottom: 50,
@@ -159,27 +180,40 @@ describe('vwc-dialog', () => {
 			jest.spyOn(dialogElement, 'getBoundingClientRect').mockImplementation(() => dialogClientRect);
 		});
 
+		it('should leave the dialog open when mouseup or click', async function () {
+			const mouseupEvent = createMouseEventOutsideTheDialog('mouseup');
+			const clickEvent = createMouseEventOutsideTheDialog('click');
+
+			dialogElement?.dispatchEvent(mouseupEvent);
+			await elementUpdated(element);
+			const elementOpenStateAfterMouseUp = element.open;
+			dialogElement?.dispatchEvent(clickEvent);
+			await elementUpdated(element);
+			const elementOpenStateAfterClick = element.open;
+
+			expect(elementOpenStateAfterMouseUp).toEqual(true);
+			expect(elementOpenStateAfterClick).toEqual(true);
+		});
+
+		it('should leave the dialog open when mousedown on a non dialog element', async function () {
+			const otherElement = document.createElement('div');
+			const event = createMouseEventOutsideTheDialog('mousedown');
+			dialogElement?.appendChild(otherElement);
+			otherElement.dispatchEvent(event);
+			await elementUpdated(element);
+
+			expect(element.open).toEqual(true);
+		});
+
 		it('should close the dialog when scrim is clicked', async function () {
-			const event = new MouseEvent('click', {
-				'bubbles': true,
-				'cancelable': true,
-				'composed': true,
-				'screenX': 25,
-				'screenY': 25
-			});
+			const event = createMouseEventOutsideTheDialog('mousedown');
 			dialogElement?.dispatchEvent(event);
 			await elementUpdated(element);
 			expect(element.open).toEqual(false);
 		});
 
 		it('should leave dialog open when anything but the scrim is clicked', async function () {
-			const event = new MouseEvent('click', {
-				'bubbles': true,
-				'cancelable': true,
-				'composed': true,
-				clientY: 75,
-				clientX: 75
-			});
+			const event = createMouseEventInsideTheDialog('mousedown');
 			dialogElement?.dispatchEvent(event);
 			await elementUpdated(element);
 			expect(element.open).toEqual(true);
@@ -201,6 +235,7 @@ describe('vwc-dialog', () => {
 			formElement.setAttribute('slot', 'main');
 			element.appendChild(formElement);
 			formElement.onsubmit = _ => false;
+
 			formElement.requestSubmit();
 			await elementUpdated(element);
 
@@ -221,7 +256,7 @@ describe('vwc-dialog', () => {
 		});
 
 		it('should remove click listener on disconnected callback', async function () {
-			const event = new MouseEvent('click', {
+			const event = new MouseEvent('mousedown', {
 				'bubbles': true,
 				'cancelable': true,
 				'composed': true,
@@ -425,3 +460,4 @@ describe('vwc-dialog', () => {
 		});
 	});
 });
+

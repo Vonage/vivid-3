@@ -64,6 +64,13 @@ const jaJP: Locale = {
 		endDateBeforeMaxDateError: /* istanbul ignore next */ (maxDate: string) =>
 			`終了日は${maxDate}以前である必要があります。`,
 	},
+	filePicker: {
+		invalidFileTypeError: 'この種類のファイルは選択できません。',
+		maxFilesExceededError: 'これ以上ファイルを選択できません。',
+		fileTooBigError:
+			'ファイルが大きすぎます ({{filesize}}MiB)。最大ファイルサイズ: {{maxFilesize}}MiB。',
+		removeFileLabel: 'ファイルを削除',
+	},
 };
 
 export default jaJP;

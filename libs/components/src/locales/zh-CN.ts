@@ -64,6 +64,13 @@ const zhCN: Locale = {
 		endDateBeforeMaxDateError: /* istanbul ignore next */ (maxDate: string) =>
 			`结束日期必须是${maxDate}或之前。`,
 	},
+	filePicker: {
+		invalidFileTypeError: '您不能选择此类型的文件。',
+		maxFilesExceededError: '您不能再选择任何文件。',
+		fileTooBigError:
+			'文件太大 ({{filesize}}MiB)。最大文件大小: {{maxFilesize}}MiB。',
+		removeFileLabel: '删除文件',
+	},
 };
 
 export default zhCN;

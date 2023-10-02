@@ -64,6 +64,13 @@ const enUS: Locale = {
 		endDateBeforeMaxDateError: /* istanbul ignore next */ (maxDate: string) =>
 			`The end date must be ${maxDate} or earlier.`,
 	},
+	filePicker: {
+		invalidFileTypeError: "You can't select files of this type.",
+		maxFilesExceededError: "You can't select any more files.",
+		fileTooBigError:
+			'File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.',
+		removeFileLabel: 'Remove file',
+	},
 };
 
 export default enUS;
