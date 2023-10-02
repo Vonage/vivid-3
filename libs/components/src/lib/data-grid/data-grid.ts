@@ -29,6 +29,12 @@ export type DataGridSelectionMode = ValueOf<typeof DataGridSelectionMode>;
  * @slot - Default slot.
  */
 export class DataGrid extends FoundationDataGrid {
+	/**
+	 * Indicates the selection mode.
+	 *
+	 * @public
+	 * HTML Attribute: selection-mode
+	 */
 	@attr({attribute: 'selection-mode'})
 		selectionMode?: DataGridSelectionMode;
 

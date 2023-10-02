@@ -57,6 +57,13 @@ const zhCN: Locale = {
 		okLabel: '确定',
 		invalidDateError: '请输入有效的日期。',
 	},
+	filePicker: {
+		invalidFileTypeError: '您不能选择此类型的文件。',
+		maxFilesExceededError: '您不能再选择任何文件。',
+		fileTooBigError:
+			'文件太大 ({{filesize}}MiB)。最大文件大小: {{maxFilesize}}MiB。',
+		removeFileLabel: '删除文件',
+	},
 };
 
 export default zhCN;

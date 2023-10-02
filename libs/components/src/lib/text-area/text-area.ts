@@ -20,6 +20,12 @@ export type TextAreaWrap = 'hard' | 'soft' | 'off';
 @errorText
 @formElements
 export class TextArea extends FoundationElement {
+	/**
+	 * The wrap attribute
+	 *
+	 * @public
+	 * HTML Attribute: wrap
+	 */
 	@attr wrap?: TextAreaWrap;
 }
 

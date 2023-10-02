@@ -16,8 +16,20 @@ declare interface DataGridCellExtension {
  * @public
  */
 export class DataGridCell extends FoundationDataGridCell {
-
+	/**
+	 * Indicates the selected status.
+	 *
+	 * @public
+	 * HTML Attribute: aria-selected
+	 */
 	@attr({ attribute: 'aria-selected', mode: 'fromView' }) override ariaSelected: string | null = null;
+
+	/**
+	 * Indicates the sort status.
+	 *
+	 * @public
+	 * HTML Attribute: aria-sort
+	 */
 	@attr({ attribute: 'aria-sort' }) override ariaSort: string | null = null;
 
 	ariaSelectedChanged(_: string | null, selectedState: string | null) {

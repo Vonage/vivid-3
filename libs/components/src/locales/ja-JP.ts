@@ -57,6 +57,13 @@ const jaJP: Locale = {
 		okLabel: 'OK',
 		invalidDateError: '有効な日付を入力してください。',
 	},
+	filePicker: {
+		invalidFileTypeError: 'この種類のファイルは選択できません。',
+		maxFilesExceededError: 'これ以上ファイルを選択できません。',
+		fileTooBigError:
+			'ファイルが大きすぎます ({{filesize}}MiB)。最大ファイルサイズ: {{maxFilesize}}MiB。',
+		removeFileLabel: 'ファイルを削除',
+	},
 };
 
 export default jaJP;
