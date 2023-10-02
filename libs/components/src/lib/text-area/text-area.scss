@@ -77,13 +77,9 @@ $outline-width: 2px;
 	transition: box-shadow .2s, background-color .2s, color .2s;
 
 	&:disabled {
-		cursor: not-allowed;
+		pointer-events: none;
 		opacity: 1; /* 2. correct opacity on iOS */
 		-webkit-text-fill-color: var(#{appearance.get-appearance-token(text)}); /* 1. sets text fill to current `color` for safari */
-
-		&:active {
-			pointer-events: none;
-		}
 	}
 
 	&::placeholder,
