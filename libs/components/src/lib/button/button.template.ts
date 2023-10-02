@@ -3,9 +3,9 @@ import { html, ref } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
-import { Icon } from '../icon/icon';
 import { ProgressRing } from '../progress-ring/progress-ring';
 import { Size } from '../enums';
+import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
 import type { Button, ButtonAppearance, ButtonSize } from './button';
 
 
@@ -34,9 +34,6 @@ function renderIconOrPending(
 	pending: boolean,
 	size: ButtonSize | undefined = Size.Normal
 ) {
-	let content = '';
-	let classes = 'icon';
-
 	if (pending && size != Size.SuperCondensed) {
 		const progressTag = context.tagFor(ProgressRing);
 		const progressSize = {
@@ -44,14 +41,12 @@ function renderIconOrPending(
 			[Size.Normal]: '-5',
 			[Size.Expanded]: '-4',
 		};
-		content = `<${progressTag} size="${progressSize[size]}"></${progressTag}>`;
-		classes += ' pending';
-	} else if (icon) {
-		const iconTag = context.tagFor(Icon);
-		content = `<${iconTag} name="${icon}"></${iconTag}>`;
-	}
+		return html`<span class="icon pending">${`<${progressTag} size="${progressSize[size]}"></${progressTag}>`}</span>`;
 
-	return content ? html`<span class="${classes}">${content}</span>` : null;
+	} else {
+		const affixIconTemplate = affixIconTemplateFactory(context);
+		return affixIconTemplate(icon, IconWrapper.Slot);
+	}
 }
 
 /**

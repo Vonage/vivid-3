@@ -171,6 +171,19 @@ The indicator is not displayed when using the `super-condensed` size.
 <vwc-button appearance="outlined" icon="check-line" label="outlined with icon" pending></vwc-button>
 ```
 
+## Slots
+
+### Icon
+
+Set the `icon` slot to show an icon before the buttons's headline.
+If set, the `icon` attribute is ignored.
+
+```html preview
+<vwc-button appearance="filled" icon='message-sent-line' label="Send Message">
+  <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+</vwc-button> 
+```
+
 ## Accessibility 
 When setting an `aria-label`, `aria-labelledby` or 'title', keep in mind that `aria-label`, `aria-labelledby` are better for A11Y.  
 The assistive technology will read the `aria-label` text rather than the `title` if both are set.

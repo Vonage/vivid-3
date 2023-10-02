@@ -108,6 +108,14 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		label="I'm button with long text and text wrap"shape='pill' appearance='filled'>
 		</vwc-button>
 	</div>
+	<div style="margin: 5px;">
+		<vwc-button appearance="filled" label="With Icon Slot">
+			<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+		</vwc-button>
+		<vwc-button appearance="filled" label="With Icon Slot" icon-trailing>
+			<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+		</vwc-button>
+	</div>
 	</div>
 	`;
 
