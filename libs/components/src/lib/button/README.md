@@ -175,7 +175,7 @@ The indicator is not displayed when using the `super-condensed` size.
 
 ### Icon
 
-Set the `icon` slot to show an icon before the buttons's headline.
+Set the `icon` slot to show an icon before the buttons's label.
 If set, the `icon` attribute is ignored.
 
 ```html preview
