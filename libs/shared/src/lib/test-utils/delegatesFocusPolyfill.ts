@@ -24,6 +24,7 @@ export const setupDelegatesFocusPolyfill = (forElement: FoundationElement) => {
 				activeElement = currentFocusTarget as Element;
 			}
 
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 			currentFocusTarget = currentFocusTarget.getRootNode()!;
 			if (currentFocusTarget instanceof ShadowRoot) {
 				currentFocusTarget = currentFocusTarget.host;
