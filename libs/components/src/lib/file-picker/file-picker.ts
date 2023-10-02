@@ -23,6 +23,8 @@ import { FormAssociatedFilePicker } from './file-picker.form-associated';
  */
 export type FileUploaderSize = Extract<Size, Size.Normal | Size.Expanded>;
 
+const isFormAssociatedTryingToSetFormValueToFakePath = (value: File | string | FormData | null) => typeof value === 'string';
+
 /**
  * File-picker component
  *
@@ -241,13 +243,15 @@ export class FilePicker extends FormAssociatedFilePicker {
 			this.setFormValue(formData);
 		}
 
-		// Like native input[type=file], set the value to a fakepath
-		this.value = files.length > 0 ? `C:\\fakepath\\${files[0].name}` : '';
+		this.#setValueToAFakePathLikeNativeInput();
+	}
+
+	#setValueToAFakePathLikeNativeInput() {
+		this.value = this.files.length > 0 ? `C:\\fakepath\\${this.files[0].name}` : '';
 	}
 
 	override setFormValue = (value: File | string | FormData | null, state?: File | string | FormData | null) => {
-		if (typeof value === 'string') {
-			// Ignore FormAssociated trying to set the form value to the fakepath
+		if (isFormAssociatedTryingToSetFormValueToFakePath(value)) {
 			return;
 		}
 
