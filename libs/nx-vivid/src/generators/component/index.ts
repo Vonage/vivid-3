@@ -42,6 +42,7 @@ function createFiles(tree: Tree, options: NormalizedSchema) {
     ...options,
     dot: '.',
     className,
+		title: className.replace(/([A-Z])/g, ' $1').trim(),
     name,
     propertyName,
     camelCasedName: className[0].toLowerCase() + className.substr(1),
