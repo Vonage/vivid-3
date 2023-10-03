@@ -41,7 +41,7 @@ function renderIconOrPending(
 			[Size.Normal]: '-5',
 			[Size.Expanded]: '-4',
 		};
-		return html`<span class="icon pending">${`<${progressTag} size="${progressSize[size]}"></${progressTag}>`}</span>`;
+		return html`<span class="icon pending"><${progressTag} size="${progressSize[size]}"></${progressTag}></span>`;
 
 	} else {
 		const affixIconTemplate = affixIconTemplateFactory(context);
