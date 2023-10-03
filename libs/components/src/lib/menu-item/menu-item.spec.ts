@@ -137,15 +137,16 @@ describe('vwc-menu-item', () => {
 			['', false, MenuItemRole.menuitemcheckbox],
 			['check-line', true, MenuItemRole.menuitemradio],
 			['', false, MenuItemRole.menuitemradio],
-		])('should set a "%s" icon when checked=%s and role is %s when check-appearance is tick-only', async function (expectedIcon, checked, role) {
-			element.checkedAppearance = CheckAppearance.TickOnly;
-			element.checked = checked;
-			element.role = role;
-			await elementUpdated(element);
+		])('should set a "%s" icon when checked=%s and role is %s when check-appearance is tick-only',
+			async function (expectedIcon, checked, role) {
+				element.checkedAppearance = CheckAppearance.TickOnly;
+				element.checked = checked;
+				element.role = role;
+				await elementUpdated(element);
 
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-			expect(icon.name).toBe(expectedIcon);
-		});
+				const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+				expect(icon.name).toBe(expectedIcon);
+			});
 	});
 
 	describe('text', () => {
