@@ -1,6 +1,6 @@
 # Action Group
 
-The Action Group component should be used when you have a set of related actions or
+The action group component should be used when you have a set of related actions or
 options that need to be grouped together within a limited space.
 
 ```js

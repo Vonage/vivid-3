@@ -3,7 +3,7 @@
 Breadcrumbs helps users navigate through a website or web application by showing the current location within the hierarchy of pages,
 and by providing links to navigate back to pages higher in the hierarchy.
 
-`vwc-breadcrum-item` should be placed inside a `vwc-breadcrumb` element.
+`vwc-breadcrum-item`s should be placed inside a `vwc-breadcrumb` element.
 
 ```js
 <script type="module">
