@@ -7,7 +7,7 @@ import { textFieldRegistries } from '../text-field/definition';
 import { focusRegistries } from '../focus/definition';
 import { dividerRegistries } from '../divider/definition';
 import styles from '../../shared/date-picker/date-picker-base.scss';
-import { DateRangePickerTemplate as template } from './date-range-picker.template';
+import { DatePickerBaseTemplate as template } from '../../shared/date-picker/date-picker-base.template';
 import { DateRangePicker } from './date-range-picker';
 
 export const dateRangePickerDefinition =

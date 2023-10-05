@@ -6,7 +6,7 @@ import {
 	useFakeTime,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['date-range-picker', 'value'];
+const components = ['date-range-picker'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
@@ -30,10 +30,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	</style>
 	<div class="layout">
 		<div class="space-for-popup">
-			<vwc-date-range-picker id="date-range-picker">
-				<vwc-value key="start" value="2011-11-11"></vwc-value>
-				<vwc-value key="end" value="2011-11-22"></vwc-value>
-			</vwc-date-range-picker>
+			<vwc-date-range-picker id="date-range-picker" start="2011-11-11" end="2011-11-22"></vwc-date-range-picker>
 		</div>
 		<div class="space-for-popup">
 			<vwc-date-range-picker id="month-picker"></vwc-date-range-picker>
@@ -80,10 +77,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 });
 
 test('selecting a date range', async ({ page }: { page: Page }) => {
-	const template = `<vwc-date-range-picker>
-		<vwc-value key="start"></vwc-value>
-		<vwc-value key="end"></vwc-value>
-	</vwc-date-range-picker>`;
+	const template = '<vwc-date-range-picker></vwc-date-range-picker>';
 
 	await useFakeTime(page, new Date('August 11 2023 11:11:11').valueOf());
 	page.setViewportSize({ width: 1100, height: 500 });
@@ -105,12 +99,12 @@ test('selecting a date range', async ({ page }: { page: Page }) => {
 	await page.getByRole('gridcell', { name: '10' }).click();
 	await page.getByRole('gridcell', { name: '20' }).click();
 
-	await expect(page.locator('vwc-value[key=start]')).toHaveAttribute(
-		'current-value',
+	await expect(page.locator('vwc-date-range-picker')).toHaveAttribute(
+		'current-start',
 		'2023-08-10'
 	);
-	await expect(page.locator('vwc-value[key=end]')).toHaveAttribute(
-		'current-value',
+	await expect(page.locator('vwc-date-range-picker')).toHaveAttribute(
+		'current-end',
 		'2023-08-20'
 	);
 
@@ -131,10 +125,7 @@ test.describe('constraints validation', async () => {
 		await loadTemplate({
 			page,
 			template: `<form>
-				<vwc-date-range-picker required>
-					<vwc-value key="start" ></vwc-value>
-					<vwc-value key="end" ></vwc-value>
-				</vwc-date-range-picker>
+				<vwc-date-range-picker required></vwc-date-range-picker>
 				<button type="submit">Submit</button>
 			</form>`
 		});
@@ -148,10 +139,7 @@ test.describe('constraints validation', async () => {
 		await loadTemplate({
 			page,
 			template: `<form>
-				<vwc-date-range-picker min="2012-12-12">
-					<vwc-value key="start" value="2011-11-11"></vwc-value>
-					<vwc-value key="end" value="2011-11-11"></vwc-value>
-				</vwc-date-range-picker>
+				<vwc-date-range-picker min="2012-12-12" start="2011-11-11" end="2011-11-11"></vwc-date-range-picker>
 				<button type="submit">Submit</button>
 			</form>`
 		});
@@ -165,10 +153,7 @@ test.describe('constraints validation', async () => {
 		await loadTemplate({
 			page,
 			template: `<form>
-				<vwc-date-range-picker max="2012-12-12">
-					<vwc-value key="start" value="2013-11-11"></vwc-value>
-					<vwc-value key="end" value="2013-11-11"></vwc-value>
-				</vwc-date-range-picker>
+				<vwc-date-range-picker max="2012-12-12" start="2013-11-11" end="2013-11-11"></vwc-date-range-picker>
 				<button type="submit">Submit</button>
 			</form>`
 		});
@@ -182,10 +167,7 @@ test.describe('constraints validation', async () => {
 		await loadTemplate({
 			page,
 			template: `<form>
-				<vwc-date-range-picker>
-					<vwc-value key="start"></vwc-value>
-					<vwc-value key="end"></vwc-value>
-				</vwc-date-range-picker>
+				<vwc-date-range-picker></vwc-date-range-picker>
 				<button type="submit">Submit</button>
 			</form>`
 		});
@@ -200,10 +182,7 @@ test.describe('constraints validation', async () => {
 		await loadTemplate({
 			page,
 			template: `<form>
-				<vwc-date-range-picker required>
-					<vwc-value key="start"></vwc-value>
-					<vwc-value key="end"></vwc-value>
-				</vwc-date-range-picker>
+				<vwc-date-range-picker required></vwc-date-range-picker>
 				<button type="reset">Reset</button>
 			</form>`
 		});

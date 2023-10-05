@@ -53,4 +53,3 @@ export * from './toggletip/definition';
 export * from './tooltip/definition';
 export * from './tree-item/definition';
 export * from './tree-view/definition';
-export * from './value/definition';

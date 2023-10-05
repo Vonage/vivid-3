@@ -1,7 +1,8 @@
-import { Observable, observable, volatile } from '@microsoft/fast-element';
+import { attr, observable, volatile } from '@microsoft/fast-element';
 import {
 	compareDateStr,
 	type DateStr,
+	isValidDateStr,
 } from '../../shared/date-picker/calendar/dateStr';
 import {
 	type ErrorText,
@@ -9,7 +10,6 @@ import {
 	type FormElement,
 	formElements,
 } from '../../shared/patterns';
-import type { Value } from '../value/value';
 import { monthOfDate } from '../../shared/date-picker/calendar/month';
 import {
 	formatPresentationDateRange,
@@ -19,6 +19,10 @@ import {
 import { DatePickerBase } from '../../shared/date-picker/date-picker-base';
 import { formatPresentationDate } from '../../shared/date-picker/calendar/presentationDate';
 import type { DateRange } from '../../shared/date-picker/calendar/dateRange';
+
+const isFormAssociatedTryingToSetFormValue = (
+	value: File | string | FormData | null
+) => typeof value === 'string';
 
 function isDefined<T>(value: T | null | undefined): value is T {
 	return !!value;
@@ -33,138 +37,214 @@ function isDefined<T>(value: T | null | undefined): value is T {
 @formElements
 export class DateRangePicker extends DatePickerBase {
 	/**
-	 * @internal
+	 * The initial start value. This value sets the `start` property
+	 * only when the `start` property has not been explicitly set.
+	 *
+	 * @remarks
+	 * HTML Attribute: start
 	 */
-	@observable _defaultSlottedContent: Value[] = [];
-	/**
-	 * @internal
-	 */
-	_defaultSlottedContentChanged() {
-		this._startValueEl = this._defaultSlottedContent.find(
-			(field) => field.key === 'start'
-		);
-		this._endValueEl = this._defaultSlottedContent.find(
-			(field) => field.key === 'end'
-		);
-	}
+	@attr({ mode: 'fromView', attribute: 'start' }) initialStart: string = '';
 
 	/**
 	 * @internal
 	 */
-	@observable _startValueEl?: Value;
-	/**
-	 * @internal
-	 */
-	_startValueElChanged(
-		oldValue?: Value,
-		newValue?: Value
-	) {
-		this.#valueElChanged(oldValue, newValue);
-	}
-
-	/**
-	 * @internal
-	 */
-	@observable _endValueEl?: Value;
-
-	/**
-	 * @internal
-	 */
-	_endValueElChanged(
-		oldValue?: Value,
-		newValue?: Value
-	) {
-		this.#valueElChanged(oldValue, newValue);
-	}
-
-	#valueElChanged(
-		oldValue?: Value,
-		newValue?: Value
-	) {
-		if (oldValue) {
-			const notifier = Observable.getNotifier(oldValue);
-			notifier.unsubscribe(this.#valueElsSubscriber, 'value');
-		}
-		if (newValue) {
-			const notifier = Observable.getNotifier(newValue);
-			notifier.subscribe(this.#valueElsSubscriber, 'value');
-			this.#valueElsSubscriber.handleChange();
+	initialStartChanged() {
+		if (!this.dirtyValue) {
+			this.start = this.initialStart;
+			this.dirtyValue = false;
 		}
 	}
 
-	override disconnectedCallback() {
-		super.disconnectedCallback();
-		this._startValueEl = undefined;
-		this._endValueEl = undefined;
+	/**
+	 * The initial end value. This value sets the `end` property
+	 * only when the `end` property has not been explicitly set.
+	 *
+	 * @remarks
+	 * HTML Attribute: end
+	 */
+	@attr({ mode: 'fromView', attribute: 'end' }) initialEnd: string = '';
+
+	/**
+	 * @internal
+	 */
+	initialEndChanged() {
+		if (!this.dirtyValue) {
+			this.end = this.initialEnd;
+			this.dirtyValue = false;
+		}
 	}
 
-	#valueElsSubscriber = {
-		handleChange: () => {
-			this.#updateValues(
-				this._startValueEl?.value ?? this._startValue,
-				this._endValueEl?.value ?? this._endValue
-			);
-		},
-	};
+	#isInternalValueUpdate = false;
+
+	/**
+	 * The start value of the date range.
+	 */
+	@observable start: string = '';
 
 	/**
 	 * @internal
 	 */
-	@observable _startValue: string = '';
-
-	/**
-	 * @internal
-	 */
-	@observable _endValue: string = '';
-
-	#updateInProgress = false;
-
-	#updateValues(startValue: string, endValue: string) {
-		if (this.#updateInProgress) {
+	startChanged() {
+		if (this.start && !isValidDateStr(this.start)) {
+			this.start = '';
 			return;
 		}
-
-		this._startValue = startValue;
-		this._endValue = endValue;
-
-		this.#updateInProgress = true;
-		if (this._startValueEl?.value !== startValue) {
-			this._startValueEl?.updateValue(startValue);
+		this.currentStart = this.start;
+		this.dirtyValue = true;
+		if (!this.#isInternalValueUpdate) {
+			this.#handleChangedValues();
 		}
-		if (this._endValueEl?.value !== endValue) {
-			this._endValueEl?.updateValue(endValue);
+	}
+
+	/**
+	 * The end value of the date range.
+	 */
+	@observable end: string = '';
+
+	/**
+	 * @internal
+	 */
+	endChanged() {
+		if (this.end && !isValidDateStr(this.end)) {
+			this.end = '';
+			return;
 		}
-		this.#updateInProgress = false;
+		this.currentEnd = this.end;
+		this.dirtyValue = true;
+		if (!this.#isInternalValueUpdate) {
+			this.#handleChangedValues();
+		}
+	}
+
+	/**
+	 * The current start value of the element. This property serves as a mechanism
+	 * to set the `start` property through both property assignment and the
+	 * .setAttribute() method. This is useful for setting the field's value
+	 * in UI libraries that bind data through the .setAttribute() API
+	 * and don't support IDL attribute binding.
+	 *
+	 * @remarks
+	 * HTML Attribute: current-start
+	 */
+	@attr({ attribute: 'current-start' }) currentStart!: string;
+
+	/**
+	 * @internal
+	 */
+	currentStartChanged() {
+		this.start = this.currentStart;
+	}
+
+	/**
+	 * The current end value of the element. This property serves as a mechanism
+	 * to set the `end` property through both property assignment and the
+	 * .setAttribute() method. This is useful for setting the field's value
+	 * in UI libraries that bind data through the .setAttribute() API
+	 * and don't support IDL attribute binding.
+	 *
+	 * @remarks
+	 * HTML Attribute: current-end
+	 */
+	@attr({ attribute: 'current-end' }) currentEnd!: string;
+
+	/**
+	 * @internal
+	 */
+	currentEndChanged() {
+		this.end = this.currentEnd;
+	}
+
+	#updateValues(range: Partial<DateRange>) {
+		this.#isInternalValueUpdate = true;
+		if (range.start !== undefined) {
+			this.start = range.start;
+			this.$emit('input:start');
+		}
+		if (range.end !== undefined) {
+			this.end = range.end;
+			this.$emit('input:end');
+		}
+		this.#isInternalValueUpdate = false;
+
+		this.$emit('input');
+		this.$emit('change');
 
 		this.#handleChangedValues();
 	}
 
 	#handleChangedValues() {
-		if (this._startValue && this._endValue) {
-			if (compareDateStr(this._startValue, this._endValue) > 0) {
-				this.#updateValues(this._endValue, this._startValue);
+		if (this.start && this.end) {
+			if (compareDateStr(this.start, this.end) > 0) {
+				this.#updateValues({ start: this.end, end: this.start });
 				return;
 			}
 
 			this._presentationValue = formatPresentationDateRange(
 				{
-					start: this._startValue,
-					end: this._endValue,
+					start: this.start,
+					end: this.end,
 				},
 				this.locale.datePicker
 			);
 			// Set a dummy value for required validation
-			this.value = this._presentationValue;
-			// Ensure we are switched to the month of the new selected date
-			this._selectedMonth = monthOfDate(this._startValue);
+			this.value = formatRange(this.start, this.end);
 		} else {
 			this.value = '';
 			this._presentationValue = '';
 		}
+
+		// Ensure we are switched to the month of the new selected dates
+		if (this.start) {
+			this._selectedMonth = monthOfDate(this.start);
+		} else if (this.end) {
+			this._selectedMonth = monthOfDate(this.end);
+		}
+
+		this.#updateFormValue();
+	}
+
+	/**
+	 * @internal
+	 */
+	override nameChanged(previous: string, next: string) {
+		super.nameChanged!(previous, next);
+		this.#updateFormValue();
+	}
+
+	#updateFormValue() {
+		if (!this.name || !this.start || !this.end) {
+			this.setFormValue(null);
+		} else {
+			const formData = new FormData();
+			formData.append(this.name, this.start);
+			formData.append(this.name, this.end);
+			this.setFormValue(formData);
+		}
+	}
+
+	override setFormValue = (
+		value: File | string | FormData | null,
+		state?: File | string | FormData | null
+	) => {
+		if (isFormAssociatedTryingToSetFormValue(value)) {
+			return;
+		}
+
+		super.setFormValue(value, state);
+	};
+
+	override connectedCallback() {
+		super.connectedCallback();
+		if (!this.start) {
+			this.start = this.initialStart;
+		}
+		if (!this.end) {
+			this.end = this.initialEnd;
+		}
 	}
 
 	#getVisibleRange(): Partial<DateRange> {
-		const candidates = [this._startValue, this._endValue].filter(isDefined);
+		const candidates = [this.start, this.end].filter(isDefined);
 
 		const isPartialRange = candidates.length === 1;
 		if (this._hoverDate && isPartialRange) {
@@ -179,7 +259,7 @@ export class DateRangePicker extends DatePickerBase {
 	 * @internal
 	 */
 	override _isDateAriaSelected(date: DateStr) {
-		return date === this._startValue || date === this._endValue;
+		return date === this.start || date === this.end;
 	}
 
 	/**
@@ -212,16 +292,16 @@ export class DateRangePicker extends DatePickerBase {
 	 * @internal
 	 */
 	override _onDateClick(date: DateStr) {
-		if (this._startValue && this._endValue) {
-			this.#updateValues(date, '');
-		} else if (this._startValue) {
-			this.#updateValues(this._startValue, date);
+		if (this.start && this.end) {
+			this.#updateValues({ start: date, end: '' });
+		} else if (this.start) {
+			this.#updateValues({ end: date });
 			this._closePopup();
-		} else if (this._endValue) {
-			this.#updateValues(date, this._endValue);
+		} else if (this.end) {
+			this.#updateValues({ start: date });
 			this._closePopup();
 		} else {
-			this.#updateValues(date, '');
+			this.#updateValues({ start: date });
 		}
 	}
 
@@ -229,7 +309,10 @@ export class DateRangePicker extends DatePickerBase {
 	 * @internal
 	 */
 	override get _textFieldPlaceholder() {
-		return formatRange(this.locale.datePicker.dateFormatPlaceholder, this.locale.datePicker.dateFormatPlaceholder);
+		return formatRange(
+			this.locale.datePicker.dateFormatPlaceholder,
+			this.locale.datePicker.dateFormatPlaceholder
+		);
 	}
 
 	/**
@@ -242,16 +325,16 @@ export class DateRangePicker extends DatePickerBase {
 	 */
 	override _onTextFieldChange() {
 		if (this._presentationValue === '') {
-			this.#updateValues('', '');
+			this.#updateValues({ start: '', end: '' });
 			return;
 		}
 
 		try {
-			const {start, end} = parsePresentationDateRange(
+			const { start, end } = parsePresentationDateRange(
 				this._presentationValue,
 				this.locale.datePicker
 			);
-			this.#updateValues(start, end);
+			this.#updateValues({ start, end });
 		} catch (_) {
 			return;
 		}
@@ -284,21 +367,13 @@ export class DateRangePicker extends DatePickerBase {
 			return this.locale.datePicker.invalidDateRangeError;
 		}
 
-		if (
-			this.min &&
-			this._startValue &&
-			compareDateStr(this._startValue, this.min) < 0
-		) {
+		if (this.min && this.start && compareDateStr(this.start, this.min) < 0) {
 			return this.locale.datePicker.startDateAfterMinDateError(
 				formatPresentationDate(this.min, this.locale.datePicker)
 			);
 		}
 
-		if (
-			this.max &&
-			this._endValue &&
-			compareDateStr(this._endValue, this.max) > 0
-		) {
+		if (this.max && this.end && compareDateStr(this.end, this.max) > 0) {
 			return this.locale.datePicker.endDateBeforeMaxDateError(
 				formatPresentationDate(this.max, this.locale.datePicker)
 			);
@@ -330,16 +405,13 @@ export class DateRangePicker extends DatePickerBase {
 	 * @internal
 	 */
 	override _onClearClick() {
-		this.#updateValues('', '');
+		this.#updateValues({ start: '', end: '' });
 		super._onClearClick();
 	}
 
 	override formResetCallback() {
-		this.#updateValues(
-			this._startValueEl?.initialValue ?? '',
-			this._endValueEl?.initialValue ?? ''
-		);
-		this.dirtyValue = false;
+		this.#updateValues({ start: this.initialStart, end: this.initialEnd });
+		super.formResetCallback();
 	}
 
 	/**
@@ -347,12 +419,12 @@ export class DateRangePicker extends DatePickerBase {
 	 */
 	@volatile
 	get _calendarButtonLabel() {
-		if (this._startValue && this._endValue) {
+		if (this.start && this.end) {
 			return this.locale.datePicker.changeDatesLabel(
 				formatPresentationDateRange(
 					{
-						start: this._startValue,
-						end: this._endValue,
+						start: this.start,
+						end: this.end,
 					},
 					this.locale.datePicker
 				)
@@ -363,7 +435,4 @@ export class DateRangePicker extends DatePickerBase {
 	}
 }
 
-export interface DateRangePicker
-	extends
-	ErrorText,
-	FormElement {}
+export interface DateRangePicker extends ErrorText, FormElement {}
