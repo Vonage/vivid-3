@@ -267,7 +267,7 @@ When used in combination with `action-items` slot, the `footer` content will app
 ### Main
 
 Dialog is battery charged with an opinionated template.
-Assign nodes to the `main` slot to fully override a dialog’s predefined template and style with your own.
+Assign nodes to the `main` slot to fully override a dialog’s predefined template with your own.
 Note that all styles will be overridden including the dialog's padding. See the example below on how to set padding to a dialog using the `main` slot.
 
 ```html preview
