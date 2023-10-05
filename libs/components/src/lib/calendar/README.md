@@ -1,7 +1,5 @@
 # Calendar
 
-Represents a calendar custom element.
-
 ```js
 <script type="module">
   import '@vonage/vivid/calendar';
@@ -73,6 +71,5 @@ Assign elements to a day column using `'day-0'` | `'day-1'` | `'day-2'` | `'day-
 | Name              | Returns                                  | Description                                                                             |
 | ----------------- | ---------------------------------------- | --------------------------------------------------------------------------------------- |
 | `getEventContext` | `{ day: number, hour: number }` \ `null` | Accepts event reference and returns an object containing _day_ & _hour_  if applicable. |
-|                   |
 
 </div>

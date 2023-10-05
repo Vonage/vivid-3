@@ -1,7 +1,5 @@
 # Calendar Event
 
-Represents a calendar event custom element.
-
 ```js
 <script type="module">
   import '@vonage/vivid/calendar-event';
@@ -38,7 +36,7 @@ Sets the description of the event.
 
 ### Overlap Count
 
-Sets an event display stacking context precendence and indentation where multiple events overlap.
+Sets an event display stacking context precedence and indentation where multiple events overlap.
 
 - Type: `string`
 - Default: `undefined`
