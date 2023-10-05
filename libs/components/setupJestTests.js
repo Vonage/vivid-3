@@ -1,4 +1,5 @@
 import * as jestFetchMock from 'jest-fetch-mock';
+import { toHaveNoViolations } from 'jest-axe';
 
 jestFetchMock.enableFetchMocks();
 
@@ -15,3 +16,5 @@ Object.defineProperty(window, 'matchMedia', {
 		dispatchEvent: jest.fn(),
 	})),
 });
+
+expect.extend(toHaveNoViolations);

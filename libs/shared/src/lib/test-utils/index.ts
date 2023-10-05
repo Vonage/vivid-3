@@ -1,3 +1,5 @@
+import { axe } from 'jest-axe';
+
 export const elementUpdated = async (element: Element | HTMLElement) => {
 	return new Promise(resolve => requestAnimationFrame(() => resolve(element)));
 };
@@ -32,6 +34,15 @@ export const getControlElement = (element: Element) => {
 export async function setAttribute(element: any, attribute: string, value: string) {
   element[attribute] = value;
   await elementUpdated(element);
+}
+
+export async function a11y(element: Element | string) {
+  const report = await axe(element, {
+    rules: {
+      'color-contrast': { enabled: false },
+    },
+  });
+  return report;
 }
 
 export * from './form-association';
