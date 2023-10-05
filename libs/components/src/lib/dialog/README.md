@@ -115,13 +115,14 @@ Use `returnValue` to get or set the return value. Often used to indicate which b
 
 ```html preview
 <style>
-  html { /* for demo purposes */
-    block-size: 250px;
-  }
+	html { /* for demo purposes */
+		block-size: 250px;
+	}
 </style>
-<vwc-button appearance="outlined" label="Cancel" onclick="handleClick2()"></vwc-button>
 <vwc-dialog open
-            headline="Returning Dialog">
+						headline="Returning Dialog">
+	<vwc-button slot="action-items" appearance="outlined" label="Cancel"></vwc-button>
+	<vwc-button slot="action-items" appearance="filled" label="Action"></vwc-button>
 </vwc-dialog>
 <div>Returned Value: <span id="dialog-output"></span></div>
 <vwc-button label="Open Dialog"
