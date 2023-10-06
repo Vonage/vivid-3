@@ -119,38 +119,40 @@ $low-ink-color: --_low-ink-color;
 }
 
 .control {
-	// ! note: control is required to stretch fully so that
-	// ! autofill indication applies on all fieldset area
-	width: 100%;
-	box-sizing: border-box;
-	border: 0 none;
-	appearance: none; /* for box-shadow visibility on IOS */
-	background-color: transparent;
-	block-size: 100%;
-	border-radius: inherit;
-	color: inherit;
-	font: inherit;
-	padding-block: 0;
-	padding-inline-end: var(#{variables.$text-field-gutter});
-	padding-inline-start: var(#{variables.$text-field-gutter});
+	&::slotted(input) {
+		// ! note: input is required to stretch fully so that
+		// ! autofill indication applies on all fieldset area
+		width: 100%;
+		box-sizing: border-box;
+		border: 0 none;
+		appearance: none; /* for box-shadow visibility on IOS */
+		background-color: transparent;
+		block-size: 100%;
+		border-radius: inherit;
+		color: inherit;
+		font: inherit;
+		padding-block: 0;
+		padding-inline-end: var(#{variables.$text-field-gutter});
+		padding-inline-start: var(#{variables.$text-field-gutter});
+	}
 
-	&:disabled {
+	&::slotted(input:disabled) {
 		cursor: not-allowed;
 		opacity: 1; /* 2. correct opacity on iOS */
 		-webkit-text-fill-color: var(#{appearance.get-appearance-token(text)}); /* 1. sets text fill to current `color` for safari */
 	}
 
-	&::placeholder,
-	&:disabled::placeholder {
+	&::slotted(input::placeholder),
+	&::slotted(input:disabled::placeholder) {
 		opacity: 1; /* 2. correct opacity on iOS */
 		-webkit-text-fill-color: var(#{$low-ink-color}); /* 1. sets text fill to current `color` for safari */
 	}
 
-	&:focus-visible {
+	&::slotted(input:focus-visible) {
 		outline: none;
 	}
 
-	.has-icon & {
+	.has-icon &::slotted(input) {
 		padding-inline-start: calc(var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter}) * 2);
 	}
 }

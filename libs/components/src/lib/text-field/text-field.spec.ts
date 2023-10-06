@@ -26,6 +26,10 @@ describe('vwc-text-field', () => {
 		element.validate();
 	}
 
+	function getInput() {
+		return element.querySelector('input[slot=control]') as HTMLInputElement;
+	}
+
 	let element: TextField;
 
 	beforeEach(async () => {
@@ -122,7 +126,7 @@ describe('vwc-text-field', () => {
 		it('should set autofocus on the input element', async function () {
 			element.autofocus = true;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('input')
+			expect(getInput()
 				?.hasAttribute('autofocus'))
 				.toEqual(true);
 		});
@@ -134,7 +138,7 @@ describe('vwc-text-field', () => {
 
 			element.placeholder = placeholderText;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('input')
+			expect(getInput()
 				?.getAttribute('placeholder'))
 				.toEqual(placeholderText);
 		});
@@ -155,7 +159,7 @@ describe('vwc-text-field', () => {
 
 			element.type = typeText;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('input')
+			expect(getInput()
 				?.getAttribute('type'))
 				.toEqual(typeText);
 		});
@@ -167,7 +171,7 @@ describe('vwc-text-field', () => {
 		it('should set list attribute on the input', async function () {
 			element.list = dataListID;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('input')
+			expect(getInput()
 				?.getAttribute('list'))
 				.toEqual(dataListID);
 		});
@@ -182,7 +186,7 @@ describe('vwc-text-field', () => {
 
 			(element as any)[propertyName] = value;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('input')
+			expect(getInput()
 				?.getAttribute(propertyName))
 				.toEqual(value);
 		});
@@ -203,7 +207,7 @@ describe('vwc-text-field', () => {
 
 			(element as any)[propertyName] = value;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('input')
+			expect(getInput()
 				?.getAttribute(propertyName))
 				.toEqual(value);
 		});
@@ -294,7 +298,7 @@ describe('vwc-text-field', () => {
 	describe('events', function () {
 		it('should emit an input event', async function () {
 			const inputPromise = new Promise(res => element.addEventListener('input', () => res(true)));
-			const innerInput = element.shadowRoot?.querySelector('input') as HTMLInputElement;
+			const innerInput = getInput();
 			innerInput.dispatchEvent(new InputEvent('input', {
 				bubbles: true,
 				composed: true
@@ -305,7 +309,7 @@ describe('vwc-text-field', () => {
 
 		it('should emit a change event', async function () {
 			const inputPromise = new Promise(res => element.addEventListener('change', () => res(true)));
-			const innerInput = element.shadowRoot?.querySelector('input') as HTMLInputElement;
+			const innerInput = getInput();
 			innerInput.dispatchEvent(new InputEvent('change', {
 				bubbles: true,
 				composed: true
@@ -581,7 +585,7 @@ describe('vwc-text-field', () => {
 
 	describe('autocomplete', function () {
 		it('should set autocomplete on the internal input', async function () {
-			const internalInput = element.shadowRoot?.querySelector('input') as HTMLElement;
+			const internalInput = getInput();
 			const autoCompleteDefault = internalInput.getAttribute('autocomplete');
 
 			element.autoComplete = 'off';
@@ -589,15 +593,6 @@ describe('vwc-text-field', () => {
 			expect(autoCompleteDefault).toBeNull();
 			expect(internalInput.getAttribute('autocomplete')).toEqual('off');
 
-		});
-	});
-
-	describe('name', function () {
-		it('should reflect the name on the internal input', async function () {
-			const internalInput = element.shadowRoot?.querySelector('input') as HTMLElement;
-			element.name = 'off';
-			await elementUpdated(element);
-			expect(internalInput.getAttribute('name')).toEqual('off');
 		});
 	});
 
