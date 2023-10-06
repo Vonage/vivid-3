@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, a11y } from '@vivid-nx/shared';
+import { elementUpdated, fixture, axe } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { AccordionItem } from './accordion-item';
 import '.';
@@ -139,7 +139,7 @@ describe('vwc-accordion-item', () => {
 			element.heading = 'Accordion item heading';
 			await elementUpdated(element);
 
-			expect(await a11y(element)).toHaveNoViolations();
+			expect(await axe(element)).toHaveNoViolations();
 		});
 
 		it('should link the header button and content region using aria', async () => {

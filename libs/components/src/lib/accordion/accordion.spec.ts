@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, a11y } from '@vivid-nx/shared';
+import { elementUpdated, fixture, axe } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { AccordionItem } from '../accordion-item/accordion-item';
 import { accordionDefinition } from './definition';
@@ -181,7 +181,7 @@ describe('vwc-accordion', () => {
 
 	describe('a11y', () => {
 		it('should pass HTML a11y test', async () => {
-			const report = await a11y(element);
+			const report = await axe(element);
 			expect(report).toHaveNoViolations();
 		});
 

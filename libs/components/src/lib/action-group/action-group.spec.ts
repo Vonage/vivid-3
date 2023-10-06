@@ -1,4 +1,4 @@
-import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
+import {elementUpdated, fixture, getBaseElement, axe } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { ActionGroup } from './action-group';
 import { actionGroupDefinition } from './definition';
@@ -51,33 +51,39 @@ describe('vwc-action-group', () => {
 		});
 	});
 
-	describe('role', function () {
-		it('should be set to "group" on init', function () {
-			const role = getBaseElement(element)?.getAttribute('role');
-			expect(role).toEqual('group');
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			expect(await axe(element)).toHaveNoViolations();
 		});
 
-		it('should change role to role radiogroup', async function () {
-			element.role = 'radiogroup';
-			await elementUpdated(element);
-			const role = getBaseElement(element)?.getAttribute('role');
-			expect(role).toEqual('radiogroup');
+		describe('role', function () {
+			it('should be set to "group" on init', function () {
+				const role = getBaseElement(element)?.getAttribute('role');
+				expect(role).toEqual('group');
+			});
+	
+			it('should change role to role radiogroup', async function () {
+				element.role = 'radiogroup';
+				await elementUpdated(element);
+				const role = getBaseElement(element)?.getAttribute('role');
+				expect(role).toEqual('radiogroup');
+			});
+	
+			it('should change role when role attribute is set', async function () {
+				element.setAttribute('role', 'radiogroup');
+				await elementUpdated(element);
+				const role = getBaseElement(element)?.getAttribute('role');
+				expect(role).toEqual('radiogroup');
+			});
 		});
-
-		it('should change role when role attribute is set', async function () {
-			element.setAttribute('role', 'radiogroup');
-			await elementUpdated(element);
-			const role = getBaseElement(element)?.getAttribute('role');
-			expect(role).toEqual('radiogroup');
-		});
-	});
-
-	describe('aria-label', function () {
-		it('should set "aria-label" on base if set on host', async function () {
-			const labelId = 'label';
-			element.setAttribute('aria-label', labelId);
-			await elementUpdated(element);
-			expect(getBaseElement(element).getAttribute('aria-label')).toEqual(labelId);
+	
+		describe('aria-label', function () {
+			it('should set "aria-label" on base if set on host', async function () {
+				const labelId = 'label';
+				element.setAttribute('aria-label', labelId);
+				await elementUpdated(element);
+				expect(getBaseElement(element).getAttribute('aria-label')).toEqual(labelId);
+			});
 		});
 	});
 });
