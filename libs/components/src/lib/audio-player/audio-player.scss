@@ -13,22 +13,33 @@
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
-audio {
-	@include connotation.connotation (audio-player);
+.base {
+	@include connotation.connotation(audio-player);
 	@include appearance.appearance;
-	
-	// border: solid 1px #eee;
-	// box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-	background-color: var(#{constants.$vvd-color-canvas});
-	border: solid 1px var(#{constants.$vvd-color-neutral-50});
-	box-shadow: 0 0 5px 0 var(#{constants.$vvd-color-neutral-100});
+
+	// background-color: var(#{constants.$vvd-color-canvas});
+	// border: solid 1px var(#{constants.$vvd-color-neutral-50});
+	// box-shadow: 0 0 5px 0 var(#{constants.$vvd-color-neutral-100});
 	border-radius: 0px;
+	display: inline-flex;
+
+	font: var(#{constants.$vvd-typography-base});
+    letter-spacing: 0px;
+    text-decoration: none;
+    text-transform: none;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+
+	.playhead-position {
+		overflow: hidden;
+		width: 90px;
+		box-sizing: border-box;
+		justify-content: center;
+		color: var(#{constants.$vvd-color-canvas-text});
+		font-variant-numeric: tabular-nums;
+		text-align: center;
+		text-overflow: ellipsis;
+		white-space: pre;
+	}
 }
-
-audio::-webkit-media-controls-panel {
-	background-color: var(#{constants.$vvd-color-canvas});
-	color: var(#{constants.$vvd-color-canvas-text});
-}
-
-audio::-webkit-media-controls-volume-control-container { display: none; }
-

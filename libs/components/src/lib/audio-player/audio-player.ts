@@ -19,7 +19,6 @@ export class AudioPlayer extends FoundationElement {
 	 * The connotation the audio-player should have.
 	 *
 	 * @public
-	 * @remarks
 	 * HTML Attribute: connotation
 	 */
 	@attr connotation?: BadgeConnotation;
@@ -42,8 +41,29 @@ export class AudioPlayer extends FoundationElement {
 	 * Indicates whether audio player is disabled.
 	 *
 	 * @public
-	 * @remarks
 	 * HTML Attribute: disabled
 	 */
 	@attr({ mode: 'boolean' }) disabled = false;
+
+	/**
+	 *
+	 * @public
+	 * HTML Attribute: timestamp
+	 */
+	@attr({ mode: 'boolean' }) timestamp = false;
+
+	/**
+	 *
+	 * @public
+	 * HTML Attribute: noseek
+	 */
+	@attr({ mode: 'boolean' }) noseek = false;
+
+	_duration = 0;
+
+	_isPlaying = false;
+
+	_loading = true;
+
+	_playheadPosition = 0;
 }

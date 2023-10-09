@@ -1,6 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { elevationRegistries } from '../elevation/definition';
+import { buttonRegistries } from '../button/definition';
 import styles from './audio-player.scss';
 
 import { AudioPlayer } from './audio-player';
@@ -16,7 +17,7 @@ export const audioPlayerDefinition =
 /**
  * @internal
  */
-export const audioPlayerRegistries = [audioPlayerDefinition(), ...elevationRegistries];
+export const audioPlayerRegistries = [audioPlayerDefinition(), ...elevationRegistries, ...buttonRegistries];
 
 /**
  * Registers the audio-player element with the design system.
