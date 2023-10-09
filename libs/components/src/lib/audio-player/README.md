@@ -7,12 +7,22 @@ Represents a audio player custom element.
 ```
 
 ```html preview
-<vwc-audio-player></vwc-audio-player>
+<vwc-audio-player src="https://download.samplelib.com/mp3/sample-6s.mp3" type="audio/mpeg"></vwc-audio-player>
 ```
 
 ## Members
 
-## Slots
+### Connotation
+
+Use the `connotation` attribute to set the audio-player's color.
+
+- Type: `'accent'` | `'cta'`
+- Default: `'accent'`
+
+```html preview
+<vwc-audio-player src="https://download.samplelib.com/mp3/sample-6s.mp3" type="audio/mpeg" connotation="cta"></vwc-audio-player>
+```
+
 
 ## CSS Variables
 

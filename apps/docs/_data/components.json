@@ -278,5 +278,10 @@
 		"title": "split-button",
 		"status": "alpha",
 		"markdown": "./libs/components/src/lib/split-button/README.md"
+	},
+	{
+		"title": "audio-player",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/audio-player/README.md"
 	}
 ]

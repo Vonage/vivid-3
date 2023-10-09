@@ -7,7 +7,13 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { AudioPlayer } from './audio-player';
 
-const getClasses = (_: AudioPlayer) => classNames('control');
+const getClasses = ({ connotation, disabled }: AudioPlayer) =>
+	classNames(
+		'base',
+		[`connotation-${connotation}`, Boolean(connotation)],
+		['disabled', Boolean(disabled)],
+	);
+
 
 /**
  * The template for the AudioPlayer component.
@@ -18,12 +24,8 @@ const getClasses = (_: AudioPlayer) => classNames('control');
 export const AudioPlayerTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<AudioPlayer> = (
-	_context: ElementDefinitionContext
-) => html`<span class="${getClasses}">
-	<audio controls>
-	<source src="horse.ogg" type="audio/ogg">
-	<source src="horse.mp3" type="audio/mpeg">
-	Your browser does not support the audio element.
-	</audio>
-</span>`;
+) => ViewTemplate<AudioPlayer> = (_context: ElementDefinitionContext) => {
+	return html<AudioPlayer>`
+		<audio class="${getClasses}" src="${x => x.src}" type="${x => x.type}" controls controlsList="nodownload noplaybackrate">
+		</audio>`;
+};
