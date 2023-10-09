@@ -1,4 +1,4 @@
-# Date picker
+# Date Picker
 
 The date picker component is used to select a date from a calendar.
 

@@ -1,6 +1,6 @@
-# data-grid
+# Data Grid
 
-Represents a data-grid custom element.
+The data grid allows users to interact with data in a tabular format.
 
 ```js
 <script type="module">import '@vonage/vivid/data-grid';</script>
@@ -19,10 +19,10 @@ Represents a data-grid custom element.
 
 ## Members
 ### Generate-header
-Use `generate-header"` for data grid header visibility mode.
+Use `generate-header` for data grid header visibility mode.
 
-- Type: `none` | `default`| `sticky`
-- Default: `default`
+- Type: `'none'` | `'default'` | `'sticky'`
+- Default: `'default'`
 
 ```html preview
 <style>
@@ -57,8 +57,8 @@ vwc-data-grid {max-block-size: 300px;}
 
 ### selectionMode
 
-- Type: `none` | `single-cell` | `multi-cell` | `single-row` | `multi-row`
-- Default: `none`
+- Type: `'none'` | `'single-cell'` | `'multi-cell'` | `'single-row'` | `'multi-row'`
+- Default: `'none'`
 
 Use the `selection-mode` attribute to specify the selection mode of the grid.
 
@@ -215,7 +215,7 @@ The template used to render rows. Note you need to use `html` from `fast-element
 <script>
 		import { html } from '@microsoft/fast-element';
     grid = document.querySelector('vwc-data-grid');
-    grid.rowItemTemplate = html`<div>All rows will look like me!</civ>`;
+    grid.rowItemTemplate = html`<div>All rows will look like me!</div>`;
     grid.rowsData = [
         {data1: 'data11', data2: 'data12'},
         {data1: 'data21', data2: 'data22'},
@@ -235,7 +235,7 @@ The template used to render cells in generated rows. Note you need to use `html`
 <script>
 		import { html } from '@microsoft/fast-element';
 		grid = document.querySelector('vwc-data-grid');
-		grid.cellItemTemplate = html`<div>All cells will look like me!</civ>`;
+		grid.cellItemTemplate = html`<div>All cells will look like me!</div>`;
     grid.rowsData = [
         {data1: 'data11', data2: 'data12'},
         {data1: 'data21', data2: 'data22'},
@@ -255,7 +255,7 @@ The template used to render cells in generated header rows. Note you need to use
 <script>
 		import { html } from '@microsoft/fast-element';
 		grid = document.querySelector('vwc-data-grid');
-		grid.headerCellItemTemplate = html`<div>All header cells will look like me!</civ>`;
+		grid.headerCellItemTemplate = html`<div>All header cells will look like me!</div>`;
 		grid.rowsData = [
         {data1: 'data11', data2: 'data12'},
         {data1: 'data21', data2: 'data22'},

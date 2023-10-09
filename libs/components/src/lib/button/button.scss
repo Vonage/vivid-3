@@ -154,10 +154,11 @@
 }
 
 /* Icon */
-.icon {
+slot[name="icon"] {
 	line-height: 1;
 
 	.icon-trailing & {
+		display: flex;
 		order: 1;
 	}
 

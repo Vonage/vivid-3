@@ -171,8 +171,6 @@ Use the `timeoutms` attribute to set the time after which the alert will automat
 
 If you want to add rich content to your alert, you can use the main slot.
 
-You can style the alert content as needed using `vwc-alert::part(vvd-theme-alternate)`.
-
 ```html preview
 <vwc-alert open>
   <vwc-switch slot="main" label="Do not show more alerts"></vwc-switch>
@@ -204,11 +202,12 @@ Use the `--alert-min-inline-size` variable to set the alert's minimum inline siz
 ### Maximum inline Size
 
 Use the `--alert-max-inline-size` variable to set the alert's maximum inline size.
+This is helpful to prevent the alert from becoming too wide when displaying a long message.
 
 - Default: `fit-content`
 
 ```html preview
-<vwc-alert style="--alert-max-inline-size: 300px;" text="This is helptful to prevent the alert from becoming too wide when displaying a long message" open>
+<vwc-alert style="--alert-min-inline-size: auto; --alert-max-inline-size: 300px;" text="This text is very long and will wrap to the next line." open>
 ```
 
 ## Events
