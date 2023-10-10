@@ -45,7 +45,7 @@ const getStateClasses = ({
  */
 function renderLabel() {
 	return html<TextField>`
-	  <span class="label">
+	  <label class="label" @mousedown="${x => x.focus()}">
 		  ${x => x.label}
 	  </label>`;
 }
@@ -76,7 +76,7 @@ export const TextfieldTemplate: (
 	<div class="base ${getStateClasses}">
     ${when(x => x.charCount && x.maxlength, renderCharCount())}
     ${when(x => x.label, renderLabel())}
-    <label class="fieldset">
+    <div class="fieldset">
 			<div class="leading-items-wrapper">
 				<slot name="leading-action-items"  ${slotted('leadingActionItemsSlottedContent')}></slot>
 				${x => affixIconTemplate(x.icon)}
@@ -90,7 +90,7 @@ export const TextfieldTemplate: (
 				<slot name="action-items"  ${slotted('actionItemsSlottedContent')}></slot>
 			</div>
 
-    </label>
+    </div>
 	  ${when(x => !x.successText && !x.errorValidationMessage && x.helperText?.length, getFeedbackTemplate('helper', context))}
 	  ${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplate('error', context))}
 	  ${when(x => x.successText, getFeedbackTemplate('success', context))}

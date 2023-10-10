@@ -40,7 +40,7 @@ keyof TextField,
 	['ariaHidden', { target: 'aria-hidden', type: 'attr' }],
 	['ariaInvalid', { target: 'aria-invalid', type: 'attr' }],
 	['ariaKeyshortcuts', { target: 'aria-keyshortcuts', type: 'attr' }],
-	['ariaLabel', { target: 'aria-label', type: 'attr' }],
+	['_inputAriaLabel', { target: 'aria-label', type: 'attr' }],
 	['ariaLabelledby', { target: 'aria-labelledby', type: 'attr' }],
 	['ariaLive', { target: 'aria-live', type: 'attr' }],
 	['ariaOwns', { target: 'aria-owns', type: 'attr' }],
@@ -73,6 +73,27 @@ export class TextField extends FoundationTextfield {
 
 	@observable actionItemsSlottedContent?: HTMLElement[];
 	@observable leadingActionItemsSlottedContent?: HTMLElement[];
+
+	/**
+	 * @internal
+	 */
+	@observable _inputAriaLabel = '';
+	#updateInputAriaLabel() {
+		this._inputAriaLabel = this.ariaLabel || this.label || '';
+	}
+	/**
+	 * @internal
+	 */
+	labelChanged() {
+		this.#updateInputAriaLabel();
+	}
+	/**
+	 * @internal
+	 */
+	ariaLabelChanged() {
+		this.#updateInputAriaLabel();
+	}
+
 
 	override connectedCallback() {
 		super.connectedCallback();
@@ -141,6 +162,10 @@ export class TextField extends FoundationTextfield {
 			}
 		},
 	};
+
+	override focus() {
+		this.control?.focus();
+	}
 }
 
 export interface TextField extends AffixIcon, ErrorText, FormElement, FormElementCharCount, FormElementHelperText, FormElementSuccessText{}
