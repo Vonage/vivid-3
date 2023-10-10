@@ -142,8 +142,8 @@ $low-ink-color: --_low-ink-color;
 		-webkit-text-fill-color: var(#{appearance.get-appearance-token(text)}); /* 1. sets text fill to current `color` for safari */
 	}
 
-	&::slotted(input::placeholder),
-	&::slotted(input:disabled::placeholder) {
+	&::slotted(input)::placeholder,
+	&::slotted(input:disabled)::placeholder {
 		opacity: 1; /* 2. correct opacity on iOS */
 		-webkit-text-fill-color: var(#{$low-ink-color}); /* 1. sets text fill to current `color` for safari */
 	}
