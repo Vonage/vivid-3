@@ -1,5 +1,7 @@
 # Divider
 
+The divider component is used as a separator between content.
+
 ```js
 <script type="module">
   import '@vonage/vivid/divider';
@@ -63,7 +65,7 @@ When using `<vwc-divider>` as a decorative element the role should be set as `'p
     <vwc-divider></vwc-divider>
 
     <div class="demo-footer">
-      <vwc-button label='cancel' appearance='outlined'></vwc-button>
+      <vwc-button label='Cancel' appearance='outlined'></vwc-button>
       <vwc-button label='Submit' appearance='filled'></vwc-button>
     </div>
 

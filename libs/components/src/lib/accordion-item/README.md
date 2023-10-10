@@ -152,9 +152,3 @@ If set, the `icon` attribute is ignored.
 	</vwc-accordion-item>
 </vwc-accordion>
 ```
-
-## Accessibility
-
-The accordion-item has a button `role` (it is a button).
-Accordion-item has `aria-expanded` set to true when the content is visible. Otherwise, it is set to false.
-Accordion-item has a value specified for `aria-controls` that refers to the content.

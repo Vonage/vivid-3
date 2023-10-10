@@ -23,6 +23,10 @@
 	}
 }
 
+:host([disabled]) {
+	cursor: not-allowed;
+}
+
 .control {
 	@include appearance.appearance;
 	@include connotation.connotation (tree-item);
@@ -64,7 +68,6 @@
 	}
 
 	&.disabled {
-		cursor: not-allowed;
 		pointer-events: none;
 	}
 
