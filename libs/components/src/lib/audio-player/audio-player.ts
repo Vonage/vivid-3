@@ -60,18 +60,15 @@ export class AudioPlayer extends FoundationElement {
 	 */
 	@attr({ mode: 'boolean' }) noseek = false;
 
-	draggableClasses = ['pin'];
 	currentlyDragged: any = null;
 
-	audioPlayer!: any;
-	playPause!: any;
 	playpauseBtn!: HTMLElement;
 	progress!: any;
-	sliders!: HTMLElement[];
+	slider!: HTMLElement;
 	player!: any;
 	currentTime!: any;
 	totalTime!: any;
-	speaker!: any;
+	pin!: HTMLElement;
 
 	override connectedCallback() {
 		super.connectedCallback();
@@ -84,108 +81,51 @@ export class AudioPlayer extends FoundationElement {
 			this.totalTime.textContent = this.formatTime(this.player.duration);
 		});
 		this.player.addEventListener('ended', () => {
-			this.playPause.setAttribute('d', 'M18 12L0 24V0');
+			//this.playPause.setAttribute('d', 'M18 12L0 24V0');
 			this.player.currentTime = 0;
 		});
 
-		this.sliders.forEach((slider: HTMLElement) => {
-			const pin: any = slider.querySelector('.pin');
-			slider.addEventListener('click', window[pin!.dataset.method] as any);
-		});
+		this.slider.addEventListener('click', this.rewind);
 	}
 
 	onMouseDown = (event: any): any => {
-		if (!this.isDraggable(event.target)) return false;
+		if (event.target !== this.pin) return;
 
 		this.currentlyDragged = event.target;
-		const handleMethod: any = this.currentlyDragged!.dataset.method;
-
-		this.addEventListener('mousemove', window[handleMethod] as any, false);
-
-		window.addEventListener('mouseup', this.onMouseUp, handleMethod);
+		this.addEventListener('mousemove', this.rewind, false);
+		window.addEventListener('mouseup', this.onMouseUp);
 	};
 
 
-	onMouseUp = (handleMethod: any) => {
+	onMouseUp = () => {
 		this.currentlyDragged = false;
-		window.removeEventListener('mousemove', window[handleMethod] as any, false);
-	};
-
-	isDraggable = (el: HTMLElement) => {
-		let canDrag = false;
-		const classes = Array.from(el.classList);
-		this.draggableClasses.forEach(draggable => {
-			if (classes.indexOf(draggable) !== -1)
-				canDrag = true;
-		});
-		return canDrag;
+		window.removeEventListener('mousemove', this.rewind, false);
 	};
 
 	inRange = (event: any) => {
-		const rangeBox = this.getRangeBox(event);
-		const rect = rangeBox.getBoundingClientRect();
-		const direction = rangeBox.dataset.direction;
-		if (direction == 'horizontal') {
-			const min = rangeBox.offsetLeft;
-			const max = min + rangeBox.offsetWidth;
-			if (event.clientX < min || event.clientX > max) return false;
-		} else {
-			const min = rect.top;
-			const max = min + rangeBox.offsetHeight;
-			if (event.clientY < min || event.clientY > max) return false;
-		}
+		const min = this.slider.offsetLeft;
+		const max = min + this.slider.offsetWidth;
+		if (event.clientX < min || event.clientX > max) return false;
 		return true;
 	};
 
 	updateProgress = () => {
-		const current: number = this.player!.currentTime;
-		const percent = (current / this.player!.duration) * 100;
+		const current: number = this.player.currentTime;
+		const percent = (current / this.player.duration) * 100;
 		(this.progress as HTMLElement).style.width = percent + '%';
 
-		this.currentTime!.textContent = this.formatTime(current);
-	};
-
-	getRangeBox = (event: any) => {
-		let rangeBox = event.target;
-		const el = this.currentlyDragged;
-		if (event.type == 'click' && this.isDraggable(event.target)) {
-			rangeBox = event.target.parentElement.parentElement;
-		}
-		if (event.type == 'mousemove') {
-			rangeBox = el!.parentElement!.parentElement;
-		}
-		return rangeBox;
+		this.currentTime.textContent = this.formatTime(current);
 	};
 
 	getCoefficient = (event: any) => {
-		const slider = this.getRangeBox(event);
-		const rect = slider.getBoundingClientRect();
-		let K = 0;
-		if (slider.dataset.direction == 'horizontal') {
-
-			const offsetX = event.clientX - slider.offsetLeft;
-			const width = slider.clientWidth;
-			K = offsetX / width;
-
-		} else if (slider.dataset.direction == 'vertical') {
-
-			const height = slider.clientHeight;
-			const offsetY = event.clientY - rect.top;
-			K = 1 - offsetY / height;
-
-		}
-		return K;
+		const offsetX = event.clientX - this.slider.offsetLeft;
+		const width = this.slider.clientWidth;
+		return offsetX / width;
 	};
 
 	rewind = (event: any) => {
 		if (this.inRange(event)) {
-			this.player!.currentTime = this.player!.duration * this.getCoefficient(event);
-		}
-	};
-
-	changeVolume = (event: any) => {
-		if (this.inRange(event)) {
-			this.player!.volume = this.getCoefficient(event);
+			this.player.currentTime = this.player.duration * this.getCoefficient(event);
 		}
 	};
 
@@ -197,10 +137,10 @@ export class AudioPlayer extends FoundationElement {
 
 	togglePlay = () => {
 		if (this.player.paused) {
-			(this.playPause as HTMLElement).setAttribute('d', 'M0 0h6v24H0zM12 0h6v24h-6z');
+			//(this.playPause as HTMLElement).setAttribute('d', 'M0 0h6v24H0zM12 0h6v24h-6z');
 			this.player.play();
 		} else {
-			(this.playPause as HTMLElement).setAttribute('d', 'M18 12L0 24V0');
+			//(this.playPause as HTMLElement).setAttribute('d', 'M18 12L0 24V0');
 			this.player.pause();
 		}
 	};
