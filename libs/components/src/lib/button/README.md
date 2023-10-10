@@ -1,7 +1,8 @@
 # Button
 
 A button represents an action that the user can take. Use buttons to enable important actions.
-All native attributes of `button` are supported as well as some enhancements.
+
+All [native attributes of `<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) are supported as well as some enhancements.
 
 
 ```js
@@ -39,9 +40,9 @@ Set the `appearance` attribute to change the button's appearance.
 ### Icon
 
 Use `icon` to set an icon to the button.
-View list of available icon at the [vivid icons gallery](../../icons/icons-gallery).
+View the list of available icons at the [vivid icons gallery](../../icons/icons-gallery).
 
-Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the button's purpose.
+Note: An icon on its own doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the button's purpose.
 
 - Type: `string`
 - Default: `undefined`
@@ -171,8 +172,21 @@ The indicator is not displayed when using the `super-condensed` size.
 <vwc-button appearance="outlined" icon="check-line" label="outlined with icon" pending></vwc-button>
 ```
 
+## Slots
+
+### Icon
+
+Set the `icon` slot to show an icon before the button's label.
+If set, the `icon` attribute is ignored.
+
+```html preview
+<vwc-button appearance="filled" icon='message-sent-line' label="Send Message">
+  <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+</vwc-button> 
+```
+
 ## Accessibility 
-When setting an `aria-label`, `aria-labelledby` or 'title', keep in mind that `aria-label`, `aria-labelledby` are better for A11Y.  
+When deciding between `aria-label`, `aria-labelledby` or `title`, keep in mind that `aria-label`, `aria-labelledby` are better for accessibility.  
 The assistive technology will read the `aria-label` text rather than the `title` if both are set.
 
 ## Use Cases
@@ -189,7 +203,7 @@ The assistive technology will read the `aria-label` text rather than the `title`
 </vwc-button>
 
 <script>
-  button.addEventListener('click', () => {
+  document.getElementById('button').addEventListener('click', () => {
     button.ariaPressed = !button.ariaPressed;
     button.icon = button.ariaPressed ? 'mic-mute-solid' : 'microphone-solid';
     button.ariaLabel = button.ariaPressed ? 'Unmute' : 'Mute';

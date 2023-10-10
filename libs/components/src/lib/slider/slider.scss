@@ -15,6 +15,10 @@ $track-thickness: 2px;
 	min-height: calc(var(#{variables.$thumb-interaction-indicator-size}) * 5);
 }
 
+:host([disabled]) {
+	cursor: not-allowed;
+}
+
 .control {
 	#{variables.$thumb-size}: 12px;
 	#{variables.$thumb-interaction-indicator-size}: 36px;
@@ -136,7 +140,6 @@ $track-thickness: 2px;
 		#{variables.$track-background-color}: var(#{utils.get-color-token(neutral-100)});
 		#{variables.$track-start-background-color}: var(#{utils.get-color-token(neutral-500)});
 
-		cursor: not-allowed;
 		pointer-events: none;
 	}
 

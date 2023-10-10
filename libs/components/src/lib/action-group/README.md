@@ -1,7 +1,7 @@
 # Action Group
 
-Action group is a visible boundary containing action buttons or other form elements, related to each other.
-Note: this element is purely a visual presentation and have no semantic meaning.
+The action group component should be used when you have a set of related actions or
+options that need to be grouped together within a limited space.
 
 ```js
 <script type="module">
@@ -22,7 +22,7 @@ Note: this element is purely a visual presentation and have no semantic meaning.
 
 ### Appearance
 
-Set the `appearance` attribute to change the action-Group's appearance.
+Set the `appearance` attribute to change the action-group's appearance.
 
 - Type: `'fieldset'` | `'ghost'`
 - Default: `'fieldset'`
@@ -45,8 +45,8 @@ Set the `appearance` attribute to change the action-Group's appearance.
 
 ### Shape
 
-Use the `shape` attribute to set the action-Group's edges.  
-When using shape - pay in mind setting the slotted elements with the same shape property.
+Use the `shape` attribute to set the action-group's edges.  
+When using shape, remember to also set it on any slotted elements.
 
 - Type: `'rounded'` | `'pill'`
 - Default: `'rounded'`
@@ -62,8 +62,8 @@ When using shape - pay in mind setting the slotted elements with the same shape 
 
 ### Tight
 
-By default, action group is styled in a spacious manner which visually extends the baseline row size and inline gapping.
-enabling the `tight` member will result in a dense style that fits the "normal" baseline.
+By default, action group is styled in a spacious manner which visually extends the baseline row size and includes an inline gap.
+Enabling the `tight` member will result in a dense style that fits the "normal" baseline.
 
 - Type: `boolean`
 - Default: `false`
@@ -99,21 +99,6 @@ Use `<vwc-divider>` for adding separator between the action elements
   <vwc-button icon="reply-line"></vwc-button>
   <vwc-divider orientation="vertical"></vwc-divider>
   <vwc-button icon="compose-line"></vwc-button>
-</vwc-action-group>
-```
-
-### semi-split button
-
-```html preview
-<vwc-action-group shape="pill">
-  <vwc-button label='My Action' appearance='ghost' shape="pill"></vwc-button>
-    <vwc-divider orientation="vertical"></vwc-divider>
-  <vwc-button shape="pill" icon="chevron-down-solid"></vwc-button>
-</vwc-action-group>
-
-<vwc-action-group shape="pill" tight>
-  <vwc-button label='My Action' appearance='ghost' shape="pill"></vwc-button>
-  <vwc-button shape="pill" icon="chevron-down-solid"></vwc-button>
 </vwc-action-group>
 ```
 

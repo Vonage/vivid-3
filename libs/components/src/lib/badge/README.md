@@ -1,8 +1,6 @@
 # Badge
 
-Badge is a label that holds small amounts of information.
-A badge can be used to display unread notifications, or to label a block of text.
-Badges don’t work for navigation because they can't include a hyperlink.
+A small label, generally appearing inside or in proximity to another larger interface component, representing a status, property, or some other metadata.
 
 ```js
 <script type='module'>
@@ -39,9 +37,9 @@ Use the `shape` attribute to change the badge's edges.
 ### Icon
 
 Use `icon` to set an icon to the badge.
-View list of available icon at the [vivid icons gallery](../../icons/icons-gallery).
+View the list of available icons at the [vivid icons gallery](../../icons/icons-gallery).
 
-Note: Icon, on its own, doesn't make a discernible text.
+Note: An icon on its own doesn't make a discernible text. An `aria-label` should be provided to ensure that the user can understand the avatar.
 
 - Type: `string`
 - Default: `undefined`
@@ -53,8 +51,7 @@ Note: Icon, on its own, doesn't make a discernible text.
 
 ### Icon with Text
 
-Badge text can be affixed by a decorative icon, either by its start or end.
-Toggle `icon-trailing` to set the icon's horizontal alignment.
+Use the `icon-trailing` attribute to control whether the icon is aligned to the start or end of the badge.
 
 - Type: `boolean`
 - Default: `undefined`
@@ -122,7 +119,7 @@ It accepts a subset of predefined values.
 
 ### Icon
 
-Set the `icon` slot to show an icon before the badge's text.
+Set the `icon` slot to add an icon to the badge.
 If set, the `icon` attribute is ignored.
 
 ```html preview
@@ -130,3 +127,9 @@ If set, the `icon` attribute is ignored.
   <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 </vwc-badge>
 ```
+
+## Accessibility
+
+Badges are informative elements and cannot be interacted with.
+
+If you're looking for an interactable component, consider using a [tag](../tag) instead.
