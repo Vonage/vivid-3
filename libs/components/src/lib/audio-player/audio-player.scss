@@ -1,45 +1,97 @@
-@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 
-@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
-	$connotations: accent cta,
-	$shades: primary primary-text,
-	$default: accent
-);
-@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
-	$appearances: filled,
-	$default: filled
-);
-@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
-@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
-
-.base {
-	@include connotation.connotation(audio-player);
-	@include appearance.appearance;
-
-	// background-color: var(#{constants.$vvd-color-canvas});
-	// border: solid 1px var(#{constants.$vvd-color-neutral-50});
-	// box-shadow: 0 0 5px 0 var(#{constants.$vvd-color-neutral-100});
-	border-radius: 0px;
-	display: inline-flex;
-
-	font: var(#{constants.$vvd-typography-base});
-    letter-spacing: 0px;
-    text-decoration: none;
-    text-transform: none;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: flex-start;
-
-	.playhead-position {
-		overflow: hidden;
-		width: 90px;
-		box-sizing: border-box;
-		justify-content: center;
-		color: var(#{constants.$vvd-color-canvas-text});
-		font-variant-numeric: tabular-nums;
-		text-align: center;
-		text-overflow: ellipsis;
-		white-space: pre;
+//   .holder {
+// 	display: flex;
+// 	flex-direction: column;
+// 	align-items: center;
+	
+// 	.get-it-on-github {
+// 	  margin-top: 24px;
+// 	  margin-bottom: 24px;
+// 	  font-family: 'Roboto';
+// 	  color: #55606E;
+// 	}
+//   }
+  
+  .audio.green-audio-player {
+	width: 400px;
+	min-width: 300px;
+	height: 56px;
+	box-shadow: 0 4px 16px 0 rgba(0, 0, 0, .07);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-left: 24px;
+	padding-right: 24px;
+	border-radius: 4px;
+	user-select: none;
+	-webkit-user-select: none;
+	background-color: #fff;
+	.play-pause-btn {
+	  cursor: pointer;
 	}
-}
+	.slider {
+	  flex-grow: 1;
+	  background-color: #D8D8D8;
+	  cursor: pointer;
+	  position: relative;
+	  .progress {
+		background-color: #44BFA3;
+		border-radius: inherit;
+		position: absolute;
+		pointer-events: none;
+		.pin {
+		  height: 16px;
+		  width: 16px;
+		  border-radius: 8px;
+		  background-color: #44BFA3;
+		  position: absolute;
+		  pointer-events: all;
+		  box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.32);
+		}
+	  }
+	}
+	.controls {
+	  font-family: 'Roboto', sans-serif;
+	  font-size: 16px;
+	  line-height: 18px;
+	  color: #55606E;
+	  display: flex;
+	  flex-grow: 1;
+	  justify-content: space-between;
+	  align-items: center;
+	  margin-left: 24px;
+	  margin-right: 24px;
+	  .slider {
+		margin-left: 16px;
+		margin-right: 16px;
+		border-radius: 2px;
+		height: 4px;
+		.progress {        
+		  width: 0;
+		  height: 100%;
+		  .pin {
+			right: -8px;
+			top: -6px;
+		  }
+		}
+	  }
+	  span {
+		cursor: default;
+	  }
+	}
+  }
+  svg, img {
+	display: block;
+  }
+  
+  @keyframes spin {
+	from {
+	  transform: rotateZ(0);
+	}
+	to {
+	  transform: rotateZ(1turn);
+	}
+  }
+  
+  
+  
