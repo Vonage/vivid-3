@@ -1,4 +1,4 @@
-import { fixture, axe, elementUpdated } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { TagGroup } from './tag-group';
 import { tagGroupDefinition } from './definition';

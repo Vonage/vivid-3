@@ -1,4 +1,4 @@
-import { fixture, axe } from '@vivid-nx/shared';
+import { axe, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Nav } from './nav';
 import '.';

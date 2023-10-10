@@ -1,4 +1,4 @@
-import { createFormHTML, elementUpdated, fixture, getBaseElement, listenToFormSubmission, axe } from '@vivid-nx/shared';
+import { axe, createFormHTML, elementUpdated, fixture, getBaseElement, listenToFormSubmission } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {Connotation} from '../enums';
 import { Radio } from './radio';

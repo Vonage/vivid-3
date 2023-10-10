@@ -1,10 +1,10 @@
 import {
+	ADD_TEMPLATE_TO_FIXTURE,
 	createFormHTML,
 	elementUpdated,
 	fixture,
 	getBaseElement,
-	listenToFormSubmission,
-	axe
+	listenToFormSubmission
 } from '@vivid-nx/shared';
 import {TextFieldType} from '@microsoft/fast-foundation';
 import {Icon} from '../icon/icon';

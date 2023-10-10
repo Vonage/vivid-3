@@ -1,4 +1,4 @@
-import {elementUpdated, fixture, axe } from '@vivid-nx/shared';
+import {axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import type {Icon} from '../icon/icon';
 import {Button} from '../button/button';
 import {Connotation} from '../enums';

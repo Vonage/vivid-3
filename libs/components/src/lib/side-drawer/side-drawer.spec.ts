@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getControlElement, axe } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { SideDrawer } from './side-drawer';
 import '.';

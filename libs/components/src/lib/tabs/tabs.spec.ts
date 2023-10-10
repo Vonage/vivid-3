@@ -1,4 +1,4 @@
-import {elementUpdated, fixture, getBaseElement, axe } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import {Connotation} from '@vonage/vivid';
 import type {Tab} from '../tab/tab';
 import {Tabs} from './tabs';

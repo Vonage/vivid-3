@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getControlElement, axe } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { LayoutSize } from '../enums';
 import { AUTO_SIZING, Layout } from './layout';

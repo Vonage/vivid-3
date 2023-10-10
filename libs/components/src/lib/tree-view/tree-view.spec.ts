@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, axe } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 import type { TreeItem } from '../tree-item/tree-item';

@@ -1,10 +1,10 @@
 import {
+	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture, getBaseElement,
 	getControlElement,
-	listenToFormSubmission,
-	axe
+	listenToFormSubmission
 } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {Shape} from '../enums';
@@ -917,8 +917,7 @@ describe('vwc-number-field', () => {
 			element.label = 'Label';
 			element.errorText = 'Error';
 			await elementUpdated(element);
-			console.log(element.shadowRoot?.innerHTML)
-
+			
 			expect(await axe(element)).toHaveNoViolations();
 		});
 	});

@@ -1,9 +1,9 @@
 import {
+	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture,
-	listenToFormSubmission,
-	axe,
+	listenToFormSubmission
 } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { TextField } from '../text-field/text-field';

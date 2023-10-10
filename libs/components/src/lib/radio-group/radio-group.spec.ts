@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getBaseElement, listenToFormSubmission, axe } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getBaseElement, listenToFormSubmission } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Radio } from '../radio/radio';
 import { RadioGroup } from './radio-group';

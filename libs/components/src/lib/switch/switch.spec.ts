@@ -1,4 +1,4 @@
-import {elementUpdated, fixture, getControlElement, axe } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {Connotation} from '../enums';
 import { Switch } from './switch';
@@ -281,7 +281,7 @@ describe('vwc-switch', () => {
 			element.checked = true;
 			element.value = 'test';
 			await elementUpdated(element);
-			
+
 			expect(await axe(element)).toHaveNoViolations();
 		});
 	})

@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getControlElement, axe } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { Orientation } from '@microsoft/fast-web-utilities';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Slider } from './slider';

@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getBaseElement, getControlElement, axe } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getBaseElement, getControlElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { NavDisclosure } from './nav-disclosure';

@@ -1,10 +1,10 @@
 import {
+	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture,
 	getBaseElement,
-	listenToFormSubmission,
-	axe,
+	listenToFormSubmission
 } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Connotation } from '../enums';

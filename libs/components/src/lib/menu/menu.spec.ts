@@ -1,4 +1,4 @@
-import { ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture, getBaseElement, axe } from '@vivid-nx/shared';
+import { ADD_TEMPLATE_TO_FIXTURE, axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
 import type { Button } from '../button/button';

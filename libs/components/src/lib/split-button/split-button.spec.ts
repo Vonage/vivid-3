@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getControlElement, axe } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { SplitButton } from './split-button';
@@ -146,7 +146,7 @@ describe('vwc-split-button', () => {
 		it('should pass html a11y test', async () => {
 			element.label = 'Button label';
 			await elementUpdated(element);
-			
+
 			expect(await axe(element)).toHaveNoViolations();
 		});
 

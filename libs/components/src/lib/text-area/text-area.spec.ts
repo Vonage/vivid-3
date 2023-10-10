@@ -1,11 +1,11 @@
 import {
+	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture,
 	getBaseElement,
 	getControlElement, 
-	listenToFormSubmission,
-	axe
+	listenToFormSubmission
 } from '@vivid-nx/shared';
 import { TextArea } from './text-area';
 import '.';

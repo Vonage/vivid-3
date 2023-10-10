@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getBaseElement, axe } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { ListboxOption } from '../option/option';
 import { Listbox } from './listbox';

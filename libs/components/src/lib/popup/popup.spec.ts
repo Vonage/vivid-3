@@ -1,9 +1,9 @@
 import {
 	ADD_TEMPLATE_TO_FIXTURE,
+	axe,
 	elementUpdated,
 	fixture,
-	getControlElement,
-	axe
+	getControlElement
 } from '@vivid-nx/shared';
 import * as floatingUI from '@floating-ui/dom';
 import type { Button } from '../button/button';
@@ -289,7 +289,7 @@ describe('vwc-popup', () => {
 			
 			element.open = true;
 			await elementUpdated(element);
-			
+
 			expect(getControlElement(element)
 				.getAttribute('aria-hidden'))
 				.toEqual('false');

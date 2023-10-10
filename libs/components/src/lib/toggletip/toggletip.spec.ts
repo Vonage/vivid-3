@@ -1,4 +1,4 @@
-import { ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture, axe } from '@vivid-nx/shared';
+import { ADD_TEMPLATE_TO_FIXTURE, axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {fireEvent} from '@testing-library/dom';
 import type { Button } from '../button/button';

@@ -1,4 +1,4 @@
-import {elementUpdated, fixture, axe, getBaseElement } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type {BreadcrumbItem} from '../breadcrumb-item/breadcrumb-item';
 import { Breadcrumb } from './breadcrumb';

@@ -1,4 +1,4 @@
-import {elementUpdated, fixture, setAttribute, axe } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, setAttribute } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {TextAnchor} from './text-anchor';
 import '.';

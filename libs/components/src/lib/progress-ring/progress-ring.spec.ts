@@ -1,4 +1,4 @@
-import {elementUpdated, fixture, axe } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import {Connotation} from '../enums';
 import {ProgressRing} from './progress-ring';
 import '.';

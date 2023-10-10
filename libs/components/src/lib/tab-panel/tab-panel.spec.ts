@@ -1,4 +1,4 @@
-import { fixture, axe } from '@vivid-nx/shared';
+import { axe, fixture } from '@vivid-nx/shared';
 import { TabPanel } from './tab-panel';
 import '.';
 

@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getBaseElement, axe } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import '.';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { fireEvent } from '@testing-library/dom';

@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { html, ViewTemplate } from '@microsoft/fast-element';
-import { elementUpdated, fixture, axe } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { designSystem } from '../../shared/design-system';
 import {DataGrid, DataGridSelectionMode} from './data-grid';
 import { DataGridTemplate } from './data-grid.template';
