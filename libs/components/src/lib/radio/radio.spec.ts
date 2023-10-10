@@ -1,4 +1,4 @@
-import { createFormHTML, elementUpdated, fixture, getBaseElement, listenToFormSubmission } from '@vivid-nx/shared';
+import { createFormHTML, elementUpdated, fixture, getBaseElement, listenToFormSubmission, axe } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {Connotation} from '../enums';
 import { Radio } from './radio';
@@ -116,6 +116,16 @@ describe('vwc-radio', () => {
 				expect(formDataValue)
 					.toEqual(checked);
 			});
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.label = 'lorem';
+			element.checked = true;
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

@@ -1,4 +1,4 @@
-import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
+import {elementUpdated, fixture, getBaseElement, axe} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Divider } from './divider';
 import '.';
@@ -42,4 +42,9 @@ describe('vwc-divider', () => {
 		});
 	});
 
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			expect(await axe(element)).toHaveNoViolations();
+		});
+	});
 });

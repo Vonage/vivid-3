@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture, axe } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Connotation } from '../enums';
 import { Note } from './note';
@@ -56,6 +56,15 @@ describe('vwc-note', () => {
 			await elementUpdated(element);
 			expect(connotationClassExistsWhenNull).toEqual(false);
 			expect(baseElement?.classList?.contains(`connotation-${connotation}`)).toEqual(true);
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.headline = 'Headline';
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

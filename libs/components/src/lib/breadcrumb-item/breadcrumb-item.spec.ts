@@ -1,4 +1,4 @@
-import {elementUpdated, fixture, getBaseElement, setAttribute} from '@vivid-nx/shared';
+import {elementUpdated, fixture, getBaseElement, setAttribute, axe } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type {Icon} from '../icon/icon';
 import { BreadcrumbItem } from './breadcrumb-item';
@@ -180,6 +180,20 @@ describe('vwc-breadcrumb-item', () => {
 			await setAttribute(element, attribute, text);
 
 			expect(anchorElement?.getAttribute(attribute)).toEqual(text);
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element = (await fixture(
+				`<div role="list"><${COMPONENT_TAG}></${COMPONENT_TAG}></div>`
+			)) as BreadcrumbItem;
+
+			element.href = '#';
+			element.text = 'stam';
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

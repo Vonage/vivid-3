@@ -1,4 +1,4 @@
-import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
+import {elementUpdated, fixture, getBaseElement, axe } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Dialog } from './dialog';
 import '.';
@@ -457,6 +457,16 @@ describe('vwc-dialog', () => {
 			element.setAttribute('aria-label', labelId);
 			await elementUpdated(element);
 			expect(getBaseElement(element).getAttribute('aria-label')).toEqual(labelId);
+		});
+
+		/* Failing because dismiss button has no text */
+		xit('should pass html a11y test', async () => {
+			element.open = true;
+			element.setAttribute('aria-label', 'Test dialog');
+			await elementUpdated(element);
+			
+			
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

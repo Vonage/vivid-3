@@ -338,4 +338,14 @@ describe('form associated vwc-file-picker', function () {
 
 		expect(new FormData(formElement).get('file')).toBeTruthy();
 	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.label = 'Test label';
+			element.size = Size.Expanded;
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
+		});
+	});
 });

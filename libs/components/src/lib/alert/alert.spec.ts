@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement, getControlElement, axe } from '@vivid-nx/shared';
 import type { Icon } from '../icon/icon';
 import type { Button } from '../button/button';
 import { Connotation } from '../enums';
@@ -302,6 +302,24 @@ describe('vwc-alert', () => {
 				expect(spy).not.toHaveBeenCalled();
 			});
 		});
+	});
 
+	describe('a11y', () => {
+		beforeEach(async () => {
+			element.text = 'Alert text';
+			element.headline = 'Alert heading';
+			element.open = true;
+			element.connotation = Connotation.Alert;
+			await elementUpdated(element);
+		});
+
+		it('should pass html a11y test', async () => {
+			expect(await axe(element)).toHaveNoViolations();
+		});
+
+		it('should set a role of alert on the control', async () => {
+			const control = getControlElement(element);
+			expect(control.getAttribute('role')).toBe('alert');
+		});
 	});
 });

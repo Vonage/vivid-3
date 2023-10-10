@@ -3,7 +3,8 @@ import {
 	elementUpdated,
 	fixture,
 	getBaseElement,
-	listenToFormSubmission
+	listenToFormSubmission,
+	axe
 } from '@vivid-nx/shared';
 import {TextFieldType} from '@microsoft/fast-foundation';
 import {Icon} from '../icon/icon';
@@ -703,4 +704,16 @@ describe('vwc-text-field', () => {
 		});
 	});
 
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.label = 'Label';
+			element.value = 'Value text';
+			element.helperText = 'Helper text';
+			element.errorText = 'Error text';
+			element.charCount = true;
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
+		});
+	});
 });

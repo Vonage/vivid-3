@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture, axe } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { NavItem } from './nav-item';
@@ -70,13 +70,23 @@ describe('vwc-nav-item', () => {
 		});
 	});
 
-	describe('aria-current', function () {
-		it('should set aria-current on the nav-item if set', async () => {
-			const ariaCurrent = 'page';
-			element.ariaCurrent = ariaCurrent;
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.ariaCurrent = 'page';
+			element.text = 'lorem';
 			await elementUpdated(element);
-			expect(element.getAttribute('aria-current'))
-				.toEqual(ariaCurrent);
+
+			expect(await axe(element)).toHaveNoViolations();
+		});
+
+		describe('aria-current', function () {
+			it('should set aria-current on the nav-item if set', async () => {
+				const ariaCurrent = 'page';
+				element.ariaCurrent = ariaCurrent;
+				await elementUpdated(element);
+				expect(element.getAttribute('aria-current'))
+					.toEqual(ariaCurrent);
+			});
 		});
 	});
 });

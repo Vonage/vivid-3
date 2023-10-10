@@ -3,7 +3,8 @@ import {
 	elementUpdated,
 	fixture, getBaseElement,
 	getControlElement,
-	listenToFormSubmission
+	listenToFormSubmission,
+	axe
 } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {Shape} from '../enums';
@@ -908,6 +909,17 @@ describe('vwc-number-field', () => {
 			expect(initialErrorMessage).not.toBe('');
 			expect(errorTextMessage).toBe(forcedErrorMessage);
 			expect(errorMessageAfterRemovalOfErrorText).toBe(initialErrorMessage);
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.label = 'Label';
+			element.errorText = 'Error';
+			await elementUpdated(element);
+			console.log(element.shadowRoot?.innerHTML)
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

@@ -60,15 +60,17 @@ function numberControlButtons(context: ElementDefinitionContext) {
 			<div class="control-buttons"
 			     ?inert="${x => x.disabled || x.readOnly}">
 				<${buttonTag} id="subtract" icon="minus-line"
-					  					aria-controls="control"
 					            shape="${ setControlButtonShape }"
+								aria-label="Decrement number"
+								type="button"
 					            size="condensed"
 					  					tabindex="${getTabIndex}"
 					            @click="${x => x.stepDown()}"></${buttonTag}>
 				<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 				<${buttonTag} id="add" icon="plus-line"
-					  					aria-controls="control"
 					            shape="${ setControlButtonShape }"
+								aria-label="Increment number"
+								type="button"
 					            size="condensed"
 					  					tabindex="${getTabIndex}"
 					            @click="${x => x.stepUp()}"></${buttonTag}>

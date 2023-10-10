@@ -3,7 +3,8 @@ import {
 	elementUpdated,
 	fixture,
 	getBaseElement,
-	listenToFormSubmission
+	listenToFormSubmission,
+	axe,
 } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Connotation } from '../enums';
@@ -255,6 +256,15 @@ describe('vwc-checkbox', () => {
 			const baseElementClasses = getBaseElement(element)?.classList;
 
 			expect(baseElementClasses).not.toContain('hide-label');
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.label = 'Checkbox label';
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

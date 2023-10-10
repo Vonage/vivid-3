@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement, axe } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { Tag } from './tag';
@@ -325,6 +325,32 @@ describe('vwc-tag', () => {
 
 			expect(spy.mock.calls.length)
 				.toEqual(0);
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.label = 'lorem';
+			element.selectable = true;
+			await elementUpdated(element);
+			let exposedHTMLString = `
+				<div role="listbox" aria-label="tag group">
+					${element.shadowRoot?.innerHTML}
+				</div>
+			`;
+			
+			expect(await axe(exposedHTMLString)).toHaveNoViolations();
+
+			element.selectable = false;
+			element.removable = true;
+			await elementUpdated(element);
+			exposedHTMLString = `
+				<div role="listbox" aria-label="tag group">
+					${element.shadowRoot?.innerHTML}
+				</div>
+			`;
+
+			expect(await axe(exposedHTMLString)).toHaveNoViolations();
 		});
 	});
 });

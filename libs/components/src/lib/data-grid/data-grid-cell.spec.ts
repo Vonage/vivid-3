@@ -1,6 +1,6 @@
 import { html } from '@microsoft/fast-element';
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
+import {elementUpdated, fixture, getBaseElement, axe } from '@vivid-nx/shared';
 import '../icon/index.ts';
 import { designSystem } from '../../shared/design-system';
 import { DataGridCell } from './data-grid-cell';
@@ -353,6 +353,26 @@ describe('vwc-data-grid-cell', () => {
 			};
 			await elementUpdated(element);
 			expect(element.ariaSort).toEqual(null);
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element = (await fixture(`
+				<div role="grid">
+					<div role="row">
+						<${COMPONENT_TAG}></${COMPONENT_TAG}>
+					</div>
+				</div>
+			`)) as DataGridCell;
+			element.columnDefinition = {
+				columnDataKey: 'Name',
+				sortDirection: DataGridCellSortStates.ascending,
+				sortable: true
+			};
+			await elementUpdated(element);
+			
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

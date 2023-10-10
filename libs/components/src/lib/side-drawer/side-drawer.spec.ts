@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getControlElement, axe } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { SideDrawer } from './side-drawer';
 import '.';
@@ -167,5 +167,13 @@ describe('vwc-side-drawer', () => {
 		});
 	});
 
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.modal = true;
+			element.open = true;
+			await elementUpdated(element);
 
+			expect(await axe(element)).toHaveNoViolations();
+		});
+	});
 });

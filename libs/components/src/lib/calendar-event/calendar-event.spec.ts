@@ -1,12 +1,8 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { elementUpdated, fixture, axe } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { CalendarEvent } from './calendar-event';
 import '.';
 import { calendarEventDefinition } from './definition';
-
-expect.extend(toHaveNoViolations);
-
 
 const COMPONENT_TAG = 'vwc-calendar-event';
 
@@ -93,21 +89,11 @@ describe('vwc-calendar-event', () => {
 	});
 
 	describe('a11y', () => {
-		it('should pass accessibility test', async () => {
+		it('should pass html a11y test', async () => {
 			element.heading = 'heading';
 			await elementUpdated(element);
 
-			const { shadowRoot } = element;
-			if (!shadowRoot) { return; }
-
-			const results = await axe(shadowRoot.innerHTML, {
-				rules: {
-					// components should not be tested as page content
-					'region': { enabled: false }
-				}
-			});
-
-			expect(results).toHaveNoViolations();
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

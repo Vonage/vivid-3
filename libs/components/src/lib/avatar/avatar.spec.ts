@@ -1,4 +1,4 @@
-import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
+import {elementUpdated, fixture, getBaseElement, axe } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {Connotation} from '../enums';
 import { Avatar } from './avatar';
@@ -118,6 +118,15 @@ describe('vwc-avatar', () => {
 			const text = baseElement.textContent?.trim();
 			expect(text).toEqual('Jo');
 		});
+	});
 
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			expect(await axe(element)).toHaveNoViolations();
+
+			element.initials = 'ab';
+			await elementUpdated(element);
+			expect(await axe(element)).toHaveNoViolations();
+		});
 	});
 });

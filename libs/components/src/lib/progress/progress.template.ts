@@ -52,6 +52,7 @@ export const ProgressTemplate: (
 	return html`
     <div
       role="progressbar"
+	  aria-label="${x => x.ariaLabel}"
       aria-valuenow="${x => x.value}"
       aria-valuemin="${x => x.min}"
       aria-valuemax="${x => x.max}"

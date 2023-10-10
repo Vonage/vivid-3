@@ -1,4 +1,4 @@
-import {ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
+import {ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture, getControlElement, axe } from '@vivid-nx/shared';
 import { fireEvent } from '@testing-library/dom';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Button } from '../button/button';
@@ -204,6 +204,17 @@ describe('vwc-tooltip', () => {
 				fireEvent(oldAnchorEl, new MouseEvent(eventName));
 				expect(element.open).toEqual(expectation);
 			});
+
+		describe('a11y', () => {
+			it('should pass html a11y test', async () => {
+				element.anchor = 'anchor';
+				element.open = true;
+				element.text = 'Tooltip text';
+				await elementUpdated(element);
+
+				expect(await axe(element)).toHaveNoViolations();
+			});
+		});
 	});
 
 	/**

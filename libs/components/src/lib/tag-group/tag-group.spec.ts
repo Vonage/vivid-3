@@ -1,4 +1,4 @@
-import { fixture } from '@vivid-nx/shared';
+import { fixture, axe, elementUpdated } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { TagGroup } from './tag-group';
 import { tagGroupDefinition } from './definition';
@@ -19,6 +19,24 @@ describe('vwc-tag-group', () => {
 		it('should be initialized as a vwc-tag-group', async () => {
 			expect(tagGroupDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(TagGroup);
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG}>
+					${`
+						<vwc-tag label="Label 1"></vwc-tag>
+						<vwc-tag label="Label 2"></vwc-tag>
+						<vwc-tag label="Label 3"></vwc-tag>
+					`}
+				</${COMPONENT_TAG}>`
+			)) as TagGroup;
+			element.ariaLabel = 'Tag group';
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

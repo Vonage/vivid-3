@@ -2,7 +2,8 @@ import {
 	ADD_TEMPLATE_TO_FIXTURE,
 	elementUpdated,
 	fixture,
-	getControlElement
+	getControlElement,
+	axe
 } from '@vivid-nx/shared';
 import * as floatingUI from '@floating-ui/dom';
 import type { Button } from '../button/button';
@@ -253,20 +254,6 @@ describe('vwc-popup', () => {
 		});
 	});
 
-	describe('accessibility', () => {
-		it('should set aria-hidden', async () => {
-			expect(getControlElement(element)
-				.getAttribute('aria-hidden'))
-				.toEqual('true');
-			element.open = true;
-
-			await elementUpdated(element);
-			expect(getControlElement(element)
-				.getAttribute('aria-hidden'))
-				.toEqual('false');
-		});
-	});
-
 	describe('anchorEl', () => {
 		it('should set anchorEl', async () => {
 			const anchorEl = await setAnchor();
@@ -284,6 +271,28 @@ describe('vwc-popup', () => {
 
 			expect(element.anchorEl)
 				.toEqual(anchorEl);
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.open = true;
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
+		});
+
+		it('should set aria-hidden', async () => {
+			expect(getControlElement(element)
+				.getAttribute('aria-hidden'))
+				.toEqual('true');
+			
+			element.open = true;
+			await elementUpdated(element);
+			
+			expect(getControlElement(element)
+				.getAttribute('aria-hidden'))
+				.toEqual('false');
 		});
 	});
 	/**

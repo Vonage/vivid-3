@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getControlElement, axe } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { LayoutSize } from '../enums';
 import { AUTO_SIZING, Layout } from './layout';
@@ -94,6 +94,15 @@ describe('vwc-layout', () => {
 			element.autoSizing = autoSizing;
 			await elementUpdated(element);
 			expect(getControlElement(element).classList.toString()).toEqual(`control auto-sizing-${autoSizing}`);
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.gutters = LayoutSize.Large;
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

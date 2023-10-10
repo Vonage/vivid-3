@@ -83,6 +83,7 @@ describe('vwc-action-group', () => {
 				element.setAttribute('aria-label', labelId);
 				await elementUpdated(element);
 				expect(getBaseElement(element).getAttribute('aria-label')).toEqual(labelId);
+				expect(await axe(element)).toHaveNoViolations();
 			});
 		});
 	});

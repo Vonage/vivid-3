@@ -1,4 +1,4 @@
-import {elementUpdated, fixture} from '@vivid-nx/shared';
+import {elementUpdated, fixture, axe } from '@vivid-nx/shared';
 import {Connotation, Shape} from '../enums';
 import {Progress} from './progress';
 import '.';
@@ -168,6 +168,17 @@ describe('vwc-progress', () => {
 			await elementUpdated(element);
 			expect(baseDiv?.classList.contains(`shape-${Shape.Rounded}`))
 				.toEqual(true);
+		});
+	});
+
+	/* Failing because role=progress must have an accessible name (aria-label or aria-labelled by) */
+	xdescribe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.min = 10;
+			element.max = 90;
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

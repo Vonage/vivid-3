@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getBaseElement, getControlElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement, getControlElement, axe } from '@vivid-nx/shared';
 import { Combobox } from './combobox';
 import '.';
 
@@ -147,6 +147,34 @@ describe('vwc-combobox', () => {
 		it('should recieve array of selectedOptions', async () => {
 			await elementUpdated(element);
 			expect(element.selectedOptions[0]).toEqual(element.querySelector('option:nth-child(2)'));
+		});
+	});
+
+	describe('a11y', () => {
+		it('should mark the input control element with the correct a11y attributes', async () => {
+			element.label = 'Test label';
+			element.innerHTML = `
+				<option value="1">1</option>
+				<option value="2" selected>2</option>
+				<option value="3">3</option>
+				`;
+			await elementUpdated(element);
+
+			const control = await getControlElement(element);
+			const label = element.shadowRoot?.querySelector('.label');
+			// const listboxId = element.querySelector('.listbox')?.id;
+
+			expect(control.getAttribute('role')).toBe('combobox');
+			expect(control.getAttribute('aria-haspopup')).toBe('listbox');
+			expect(label?.getAttribute('for')).toBe(control.id);
+			// expect(control.getAttribute('aria-controls')).toBe(listboxId);
+		});
+
+		it('should pass html a11y test', async () => {
+			element.label = 'Combobox label';
+			await elementUpdated(element);
+			
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

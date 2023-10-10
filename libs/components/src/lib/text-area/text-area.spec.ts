@@ -3,7 +3,9 @@ import {
 	elementUpdated,
 	fixture,
 	getBaseElement,
-	getControlElement, listenToFormSubmission
+	getControlElement, 
+	listenToFormSubmission,
+	axe
 } from '@vivid-nx/shared';
 import { TextArea } from './text-area';
 import '.';
@@ -566,6 +568,21 @@ describe('vwc-text-area', () => {
 				.toEqual(false);
 			expect(activeClassWhenDisabled)
 				.toEqual(true);
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.label = 'Label';
+			element.value = 'Value text';
+			element.resize = 'both';
+			element.helperText = 'Helper text';
+			element.errorText = 'Error text';
+			element.charCount = true;
+
+			await elementUpdated(element);
+			
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });
