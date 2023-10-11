@@ -5,24 +5,24 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { Button } from '../button/button';
-import { Popup } from '../popup/popup';
-import { TextField } from '../text-field/text-field';
-import { focusTemplateFactory } from '../../shared/patterns';
-import { Divider } from '../divider/divider';
-import type { DatePicker } from './date-picker';
+import { Button } from '../../lib/button/button';
+import { Popup } from '../../lib/popup/popup';
+import { TextField } from '../../lib/text-field/text-field';
+import { focusTemplateFactory } from '../patterns';
+import { Divider } from '../../lib/divider/divider';
 import type { CalendarGridDate, Weekday } from './calendar/calendarGrid';
 import { areMonthsEqual, monthToStr } from './calendar/month';
 import type { MonthPickerGridCell } from './calendar/monthPickerGrid';
+import type { DatePickerBase } from './date-picker-base';
 
 function renderDialogHeader(context: ElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
 	const focusTemplate = focusTemplateFactory(context);
 
-	return html<DatePicker>`<div class="header">
+	return html<DatePickerBase>`<div class="header">
 		${when(
 		(x) => x._inMonthPicker,
-		html<DatePicker>`
+		html<DatePickerBase>`
 		<${buttonTag}
 			class="vwc-button"
 			size="super-condensed"
@@ -35,7 +35,7 @@ function renderDialogHeader(context: ElementDefinitionContext) {
 	)}
 		${when(
 		(x) => !x._inMonthPicker,
-		html<DatePicker>`
+		html<DatePickerBase>`
 					<${buttonTag}
 						class="vwc-button"
 						size="super-condensed"
@@ -65,11 +65,11 @@ function renderDialogHeader(context: ElementDefinitionContext) {
 				${() => focusTemplate}
 				${when(
 		(x) => x._inMonthPicker,
-		html<DatePicker>` ${(x) => x._monthPickerYear} `
+		html<DatePickerBase>` ${(x) => x._monthPickerYear} `
 	)}
 				${when(
 		(x) => !x._inMonthPicker,
-		html<DatePicker>`
+		html<DatePickerBase>`
 						${(x) =>
 		`${x.locale.datePicker.months.name[x._selectedMonth.month]} ${
 			x._selectedMonth.year
@@ -81,7 +81,7 @@ function renderDialogHeader(context: ElementDefinitionContext) {
 
 		${when(
 		(x) => x._inMonthPicker,
-		html<DatePicker>`
+		html<DatePickerBase>`
 			<${buttonTag}
 				class="vwc-button"
 				size="super-condensed"
@@ -94,7 +94,7 @@ function renderDialogHeader(context: ElementDefinitionContext) {
 	)}
 		${when(
 		(x) => !x._inMonthPicker,
-		html<DatePicker>`
+		html<DatePickerBase>`
 					<${buttonTag}
 						class="vwc-button"
 						size="super-condensed"
@@ -120,7 +120,7 @@ function renderCalendarGrid(context: ElementDefinitionContext) {
 	const focusTemplate = focusTemplateFactory(context);
 	const dividerTag = context.tagFor(Divider);
 
-	return html<DatePicker>`<div
+	return html<DatePickerBase>`<div
 		class="calendar"
 		role="grid"
 		aria-labelledby="grid-label"
@@ -152,7 +152,10 @@ function renderCalendarGrid(context: ElementDefinitionContext) {
 			'calendar-day',
 			'button',
 			['current', x.date === c.parentContext.parent._currentDate],
-			['selected', x.date === c.parentContext.parent.value],
+			['selected', c.parentContext.parent._isDateSelected(x.date)],
+			['range', c.parentContext.parent._isDateInSelectedRange(x.date)],
+			['start', c.parentContext.parent._isDateRangeStart(x.date)],
+			['end', c.parentContext.parent._isDateRangeEnd(x.date)],
 			['outside-month', x.isOutsideMonth]
 		)}"
 							role="gridcell"
@@ -161,10 +164,12 @@ function renderCalendarGrid(context: ElementDefinitionContext) {
 							tabindex="${(x, c) =>
 		x.date === c.parentContext.parent._tabbableDate ? 0 : -1}"
 							aria-selected="${(x, c) =>
-		x.date === c.parentContext.parent.value}"
+		c.parentContext.parent._isDateAriaSelected(x.date)}"
 							data-date="${(x) => x.date}"
 							@click="${(x, c) => c.parentContext.parent._onDateClick(x.date)}"
 							@focus="${(x, c) => c.parentContext.parent._onDateFocus(x.date)}"
+							@mouseenter="${(x, c) => c.parentContext.parent._onDateMouseEnter(x.date)}"
+							@mouseleave="${(x, c) => c.parentContext.parent._onDateMouseLeave(x.date)}"
 							@keydown="${(x, c) =>
 		c.parentContext.parent._onDateKeydown(
 			x.date,
@@ -182,7 +187,7 @@ function renderCalendarGrid(context: ElementDefinitionContext) {
 function renderMonthPickerGrid(context: ElementDefinitionContext) {
 	const focusTemplate = focusTemplateFactory(context);
 
-	return html<DatePicker>`<div
+	return html<DatePickerBase>`<div
 		class="month-grid"
 		role="grid"
 		aria-labelledby="grid-label"
@@ -249,16 +254,10 @@ function renderMonthPickerGrid(context: ElementDefinitionContext) {
 	</div>`;
 }
 
-/**
- * The template for the DatePicker component.
- *
- * @param context - element definition context
- * @public
- */
-export const DatePickerTemplate: (
+export const DatePickerBaseTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<DatePicker> = (context: ElementDefinitionContext) => {
+) => ViewTemplate<DatePickerBase> = (context: ElementDefinitionContext, _: FoundationElementDefinition) => {
 	const popupTag = context.tagFor(Popup);
 	const textFieldTag = context.tagFor(TextField);
 	const buttonTag = context.tagFor(Button);
@@ -272,14 +271,13 @@ export const DatePickerTemplate: (
 										 label="${(x) => x.label}"
 										 helper-text="${(x) => x.helperText}"
 										 error-text="${(x) => x.errorValidationMessage}"
-										 placeholder="${(x) => x.locale.datePicker.dateFormatPlaceholder}"
+										 placeholder="${(x) => x._textFieldPlaceholder}"
+										 size="${(x) => x._textFieldSize}"
 										 current-value="${(x) => x._presentationValue}"
 										 ?disabled="${(x) => x.disabled}"
 										 ?readonly="${(x) => x.readOnly}"
 										 @input="${(x, c) => x._onTextFieldInput(c.event)}"
 										 @change="${(x) => x._onTextFieldChange()}"
-										 @focus="${(x) => x._onTextFieldFocus()}"
-										 @blur="${(x) => x._onTextFieldBlur()}"
 		>
 			<${buttonTag}
 				id="calendar-button"
@@ -305,7 +303,7 @@ export const DatePickerTemplate: (
 				${renderDialogHeader(context)}
 				${when(
 		(x) => x._inMonthPicker,
-		html<DatePicker>`
+		html<DatePickerBase>`
 						<${dividerTag}
 							class="months-separator"
 							role="presentation"
@@ -315,7 +313,7 @@ export const DatePickerTemplate: (
 	)}
 				${when(
 		(x) => !x._inMonthPicker,
-		html<DatePicker>` ${renderCalendarGrid(context)} `
+		html<DatePickerBase>` ${renderCalendarGrid(context)} `
 	)}
 				<div class="footer">
 					<${buttonTag}
@@ -327,7 +325,6 @@ export const DatePickerTemplate: (
 					<${buttonTag}
 						class="vwc-button"
 						size="condensed"
-						class="vwc-button"
 						appearance="filled"
 						label="${(x) => x.locale.datePicker.okLabel}"
 						@click="${(x) => x._onOkClick()}"

@@ -35,3 +35,4 @@ export async function setAttribute(element: any, attribute: string, value: strin
 }
 
 export * from './form-association';
+export * from './delegatesFocusPolyfill';
