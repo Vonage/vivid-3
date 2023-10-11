@@ -33,6 +33,16 @@ Use the `timestamp` attribute to add timestamp to the audio-player.
 <vwc-audio-player src="https://download.samplelib.com/mp3/sample-6s.mp3" timestamp></vwc-audio-player>
 ```
 
+### No Seek
+
+Use the `noseek` attribute to remove the seek from the audio-player.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-audio-player src="https://download.samplelib.com/mp3/sample-6s.mp3" noseek></vwc-audio-player>
+```
 
 ### Connotation
 
@@ -55,32 +65,3 @@ Use the `disabled` attribute to disable the audio-player.
 ```html preview
 <vwc-audio-player src="https://download.samplelib.com/mp3/sample-6s.mp3" disabled></vwc-audio-player>
 ```
-
-
-## CSS Variables
-
-## Events
-
-<div class="table-wrapper">
-
-| Name | Description |
-| ---- | ----------- |
-|      |             |
-
-</div>
-
-## Methods
-
-<div class="table-wrapper">
-
-| Name | Returns | Description |
-| ---- | ------- | ----------- |
-|      |         |             |
-
-</div>
-
-## Properties
-
-## Accessibility
-
-## Use Cases

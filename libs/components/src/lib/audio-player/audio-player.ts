@@ -108,11 +108,13 @@ export class AudioPlayer extends FoundationElement {
 		const percent = (current / this.player.duration) * 100;
 		(this.slider.querySelector('.progress') as HTMLElement).style.width = percent + '%';
 
-		(this.shadowRoot?.querySelector('.current-time') as HTMLSpanElement).textContent = this.#formatTime(current);
+		const currentTime: HTMLSpanElement | null | undefined = this.shadowRoot?.querySelector('.current-time');
+		if (currentTime) currentTime.textContent = this.#formatTime(current);
 	};
 
 	updateTotalTime = () => {
-		(this.shadowRoot?.querySelector('.total-time') as HTMLSpanElement).textContent = this.#formatTime(this.player.duration);
+		const totalTime: HTMLSpanElement | null | undefined = this.shadowRoot?.querySelector('.total-time');
+		if (totalTime) totalTime.textContent = this.#formatTime(this.player.duration);
 	};
 
 	rewind = (event: MouseEvent) => {

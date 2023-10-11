@@ -17,41 +17,45 @@
 	@include connotation.connotation(audio-player);
 	@include appearance.appearance;
 
-	width: 400px;
-	min-width: 300px;
-	height: 56px;
-	display: flex;
+	display: inline-flex;
 	justify-content: space-between;
 	align-items: center;
-	padding-left: 24px;
-	padding-right: 24px;
+	padding: 8px;
 	border-radius: 4px;
 	user-select: none;
 	-webkit-user-select: none;
 	background-color: var(#{constants.$vvd-color-canvas});
 	color: var(#{constants.$vvd-color-canvas-text});
 
-	.play-pause-btn {
-		cursor: pointer;
+	&.disabled {
+		cursor: not-allowed;
+		pointer-events: none;
 	}
 	.slider {
 		flex-grow: 1;
 		background-color: var(--vvd-color-neutral-50);
 		cursor: pointer;
 		position: relative;
+		min-width: 200px;
+
 		.progress {
-			background-color: var(#{appearance.get-appearance-token(fill)});
+			background-color: var(--vvd-color-neutral-400);
 			border-radius: inherit;
 			position: absolute;
 			pointer-events: none;
 			.pin {
-				height: 16px;
-				width: 16px;
-				border-radius: 8px;
+				height: 12px;
+				width: 12px;
+				border-radius: 6px;
 				background-color: var(#{appearance.get-appearance-token(fill)});
 				position: absolute;
 				pointer-events: all;
-				box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.32);
+
+				&.disabled {
+					background-color: var(--vvd-color-neutral-300);
+					cursor: not-allowed;
+					pointer-events: none;
+				}
 			}
 		}
 	}
@@ -61,11 +65,9 @@
 		flex-grow: 1;
 		justify-content: space-between;
 		align-items: center;
-		margin-left: 24px;
-		margin-right: 24px;
 		.slider {
-			margin-left: 16px;
-			margin-right: 16px;
+			margin-left: 24px;
+			margin-right: 24px;
 			border-radius: 2px;
 			height: 4px;
 			.progress {
@@ -73,19 +75,12 @@
 				height: 100%;
 				.pin {
 					right: -8px;
-					top: -6px;
+					top: -4px;
 				}
 			}
 		}
 		.divider {
 			margin-inline: 6px;
 		}
-		span {
-			cursor: default;
-		}
 	}
-}
-svg,
-img {
-	display: block;
 }
