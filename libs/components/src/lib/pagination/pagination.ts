@@ -110,7 +110,7 @@ export class Pagination extends FoundationElement {
 
 	paginationButtonsChanged(_: Button[] | undefined, newValue: Button[]) {
 		newValue.forEach(button => {
-			button.shadowRoot!.querySelector('button')!.classList.add('icon-only');
+			button.shadowRoot!.querySelector('button')!.setAttribute('part', 'button');
 		});
 	}
 }
