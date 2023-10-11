@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { AccordionItem } from '../accordion-item/accordion-item';
 import { accordionDefinition } from './definition';
@@ -7,6 +7,13 @@ import '../accordion-item';
 import '.';
 
 const COMPONENT_TAG = 'vwc-accordion';
+
+const COMPONENT_HTML = `
+	<${COMPONENT_TAG} id="tested">
+		<vwc-accordion-item heading="accordion item 1" id="item1"><p>content</p></vwc-accordion-item>
+		<vwc-accordion-item heading="accordion item 2" id="item2"><p>content</p></vwc-accordion-item>
+	</${COMPONENT_TAG}>
+`;
 
 describe('vwc-accordion', () => {
 	function triggerAccordionUpdate() {
@@ -26,12 +33,7 @@ describe('vwc-accordion', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG} id="tested">
-				<vwc-accordion-item heading="accordion item" id="item1"><p>content</p></vwc-accordion-item>
-				<vwc-accordion-item heading="accordion item" id="item2"><p>content</p></vwc-accordion-item>
-			</${COMPONENT_TAG}>`
-		)) as Accordion;
+		element = (await fixture(COMPONENT_HTML)) as Accordion;
 		await elementUpdated(element);
 
 		accordionItem1 = element.querySelector('#item1') as AccordionItem;
@@ -55,7 +57,7 @@ describe('vwc-accordion', () => {
 
 			toggleAccordionItem(accordionItem2);
 			await elementUpdated(element);
-
+			
 			expect(accordionItem1.expanded).toBeFalsy();
 			expect(accordionItem2.expanded).toBeTruthy();
 		});
@@ -181,10 +183,22 @@ describe('vwc-accordion', () => {
 		});
 	});
 
-	it('should set aria-disabled on active item in single mode', async function () {
-		element.expandmode = 'single';
-		toggleAccordionItem(accordionItem2);
-		await elementUpdated(element);
-		expect(accordionItem2.hasAttribute('aria-disabled')).toBe(true);
+	describe('a11y', () => {
+		it('should pass HTML a11y test', async () => {
+			expect(await axe(element)).toHaveNoViolations();
+		});
+
+		it('should set aria-disabled on active item in single mode', async function () {
+			element = (await fixture(`
+				<${COMPONENT_TAG} id="tested">
+					<vwc-accordion-item heading="accordion item 1" expanded id="item1"><p>content</p></vwc-accordion-item>
+					<vwc-accordion-item heading="accordion item 2" id="item2"><p>content</p></vwc-accordion-item>
+				</${COMPONENT_TAG}>`
+			)) as Accordion;
+			await elementUpdated(element);
+			accordionItem1 = element.querySelector('#item1') as AccordionItem;
+
+			expect(accordionItem1.hasAttribute('aria-disabled')).toBe(true);
+		});
 	});
 });

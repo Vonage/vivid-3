@@ -1,4 +1,5 @@
 import {
+	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture, getBaseElement,
@@ -908,6 +909,17 @@ describe('vwc-number-field', () => {
 			expect(initialErrorMessage).not.toBe('');
 			expect(errorTextMessage).toBe(forcedErrorMessage);
 			expect(errorMessageAfterRemovalOfErrorText).toBe(initialErrorMessage);
+		});
+	});
+
+	/* Failing because increment and decrement buttons don't have an accessible name: aria-label */
+	xdescribe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.label = 'Label';
+			element.errorText = 'Error';
+			await elementUpdated(element);
+			
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

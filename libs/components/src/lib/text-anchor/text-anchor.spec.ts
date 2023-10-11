@@ -1,4 +1,4 @@
-import {elementUpdated, fixture, setAttribute} from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, setAttribute } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {TextAnchor} from './text-anchor';
 import '.';
@@ -144,6 +144,16 @@ describe( 'vwc-text-anchor', () => {
 			await setAttribute(element, attribute, text);
 
 			expect(anchorElement?.getAttribute(attribute)).toEqual(text);
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.text = 'Link text';
+			element.href = '/somewhere';
+			await elementUpdated(element);
+			
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

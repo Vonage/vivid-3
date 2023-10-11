@@ -1,4 +1,4 @@
-import { createFormHTML, elementUpdated, fixture, setupDelegatesFocusPolyfill } from '@vivid-nx/shared';
+import { axe, createFormHTML, elementUpdated, fixture, setupDelegatesFocusPolyfill } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { TextField } from '../text-field/text-field';
 import { Button } from '../button/button';
@@ -296,6 +296,15 @@ describe('vwc-date-picker', () => {
 			await elementUpdated(element);
 
 			expect(element.value).toEqual(fieldValue);
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.value = '2012-12-12';
+			await elementUpdated(element);
+			
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });
