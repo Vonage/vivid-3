@@ -284,5 +284,5 @@ describe('vwc-switch', () => {
 
 			expect(await axe(element)).toHaveNoViolations();
 		});
-	})
+	});
 });
