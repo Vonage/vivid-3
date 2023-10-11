@@ -1,21 +1,18 @@
 /* eslint-disable max-len */
-import { html, ref } from '@microsoft/fast-element';
+import { html } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
+import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
+import { classNames } from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
 import { Button } from '../button/button';
 import type { AudioPlayer } from './audio-player';
 
-// const getClasses = ({ connotation, disabled }: AudioPlayer) =>
-// 	classNames(
-// 		'base',
-// 		[`connotation-${connotation}`, Boolean(connotation)],
-// 		['disabled', Boolean(disabled)],
-// 	);
-
+const getClasses = ({ connotation, disabled }: AudioPlayer) =>
+	classNames(
+		'base',
+		[`connotation-${connotation}`, Boolean(connotation)],
+		['disabled', Boolean(disabled)],
+	);
 
 /**
  * The template for the AudioPlayer component.
@@ -23,30 +20,29 @@ import type { AudioPlayer } from './audio-player';
  * @param context - element definition context
  * @public
  */
-export const AudioPlayerTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
+export const AudioPlayerTemplate: (context: ElementDefinitionContext, definition: FoundationElementDefinition
 ) => ViewTemplate<AudioPlayer> = (context: ElementDefinitionContext) => {
 	const buttonTag = context.tagFor(Button);
 	const elevationTag = context.tagFor(Elevation);
 
 	return html<AudioPlayer>`
 	<${elevationTag} dp="2">
-    <div class="audio">
-      <${buttonTag} icon="play-solid" connotation="${x => x.connotation}" ${ref('playpauseBtn')}></${buttonTag}>
+    <div class="${getClasses}">
+      <${buttonTag} icon="${x => x.paused ? 'play-solid' : 'pause-solid'}" connotation="${x => x.connotation}" @click="${x => x.togglePlay()}"></${buttonTag}>
 
       <div class="controls">
-        <span class="current-time" ${ref('currentTime')}>0:00</span>
+        <span class="current-time">0:00</span>
         <span class="divider">/</span>
-        <span class="total-time" ${ref('totalTime')}>0:00</span>
-        <div class="slider" ${ref('slider')}>
-          <div class="progress" ${ref('progress')}>
-            <div class="pin" ${ref('pin')} id="progress-pin"></div>
+        <span class="total-time">0:00</span>
+        <div class="slider" @click="${(x, c) => x.rewind(c.event as MouseEvent)}">
+          <div class="progress">
+            <div class="pin" id="progress-pin" @mousedown="${x => x.onMouseDown()}"></div>
           </div>
         </div>
       </div>
 
-      <audio ${ref('player')} src="${x => x.src}" type="audio/mpeg"></audio>
+      <audio src="${x => x.src}" type="audio/mpeg"
+      @timeupdate="${x => x.updateProgress()}" @loadedmetadata="${x => x.updateTotalTime()}"></audio>
     </div>
   </${elevationTag}>`;
 };

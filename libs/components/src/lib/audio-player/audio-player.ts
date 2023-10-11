@@ -60,88 +60,88 @@ export class AudioPlayer extends FoundationElement {
 	 */
 	@attr({ mode: 'boolean' }) noseek = false;
 
-	currentlyDragged: any = null;
+	/**
+	 *
+	 * @public
+	 * HTML Attribute: paused
+	 */
+	@attr({ mode: 'fromView' }) paused = true;
 
-	playpauseBtn!: HTMLElement;
-	progress!: any;
-	slider!: HTMLElement;
-	player!: any;
-	currentTime!: any;
-	totalTime!: any;
-	pin!: HTMLElement;
+	/**
+	 * @internal
+	 */
+	private player!: HTMLAudioElement;
+
+	/**
+	 * @internal
+	 */
+	private slider!: HTMLDivElement;
 
 	override connectedCallback() {
 		super.connectedCallback();
 
-		window.addEventListener('mousedown', this.onMouseDown);
-
-		this.playpauseBtn.addEventListener('click', this.togglePlay);
-		this.player.addEventListener('timeupdate', this.updateProgress);
-		this.player.addEventListener('loadedmetadata', () => {
-			this.totalTime.textContent = this.formatTime(this.player.duration);
-		});
-		this.player.addEventListener('ended', () => {
-			//this.playPause.setAttribute('d', 'M18 12L0 24V0');
-			this.player.currentTime = 0;
-		});
-
-		this.slider.addEventListener('click', this.rewind);
+		this.player = this.shadowRoot?.querySelector('audio') as HTMLAudioElement;
+		this.slider = this.shadowRoot?.querySelector('.slider') as HTMLDivElement;
 	}
 
-	onMouseDown = (event: any): any => {
-		if (event.target !== this.pin) return;
+	override disconnectedCallback() {
+		super.disconnectedCallback();
+		window.removeEventListener('mouseup', this.#onMouseUp);
+	}
 
-		this.currentlyDragged = event.target;
+	onMouseDown = (): any => {
 		this.addEventListener('mousemove', this.rewind, false);
-		window.addEventListener('mouseup', this.onMouseUp);
+		window.addEventListener('mouseup', this.#onMouseUp);
 	};
 
-
-	onMouseUp = () => {
-		this.currentlyDragged = false;
-		window.removeEventListener('mousemove', this.rewind, false);
+	togglePlay = () => {
+		if (this.paused) {
+			this.player.play();
+		} else {
+			this.player.pause();
+		}
+		this.paused = !this.paused;
 	};
 
-	inRange = (event: any) => {
+	updateProgress = () => {
+		const current: number = this.player.currentTime;
+		const percent = (current / this.player.duration) * 100;
+		(this.slider.querySelector('.progress') as HTMLElement).style.width = percent + '%';
+
+		(this.shadowRoot?.querySelector('.current-time') as HTMLSpanElement).textContent = this.#formatTime(current);
+	};
+
+	updateTotalTime = () => {
+		(this.shadowRoot?.querySelector('.total-time') as HTMLSpanElement).textContent = this.#formatTime(this.player.duration);
+	};
+
+	rewind = (event: MouseEvent) => {
+		if (this.#inRange(event) && this.player) {
+			this.player.currentTime = this.player.duration * this.#getCoefficient(event);
+		}
+	};
+
+	#getCoefficient = (event: MouseEvent) => {
+		const offsetX = event.clientX - this.slider.offsetLeft;
+		const width = this.slider.clientWidth;
+		return offsetX / width;
+	};
+
+	#onMouseUp = () => {
+		this.removeEventListener('mousemove', this.rewind, false);
+		window.removeEventListener('mouseup', this.#onMouseUp);
+	};
+
+	#inRange = (event: MouseEvent) => {
 		const min = this.slider.offsetLeft;
 		const max = min + this.slider.offsetWidth;
 		if (event.clientX < min || event.clientX > max) return false;
 		return true;
 	};
 
-	updateProgress = () => {
-		const current: number = this.player.currentTime;
-		const percent = (current / this.player.duration) * 100;
-		(this.progress as HTMLElement).style.width = percent + '%';
-
-		this.currentTime.textContent = this.formatTime(current);
-	};
-
-	getCoefficient = (event: any) => {
-		const offsetX = event.clientX - this.slider.offsetLeft;
-		const width = this.slider.clientWidth;
-		return offsetX / width;
-	};
-
-	rewind = (event: any) => {
-		if (this.inRange(event)) {
-			this.player.currentTime = this.player.duration * this.getCoefficient(event);
-		}
-	};
-
-	formatTime = (time: number) => {
+	#formatTime = (time: number) => {
 		const min = Math.floor(time / 60);
 		const sec = Math.floor(time % 60);
 		return min + ':' + ((sec < 10) ? ('0' + sec) : sec);
-	};
-
-	togglePlay = () => {
-		if (this.player.paused) {
-			//(this.playPause as HTMLElement).setAttribute('d', 'M0 0h6v24H0zM12 0h6v24h-6z');
-			this.player.play();
-		} else {
-			//(this.playPause as HTMLElement).setAttribute('d', 'M18 12L0 24V0');
-			this.player.pause();
-		}
 	};
 }
