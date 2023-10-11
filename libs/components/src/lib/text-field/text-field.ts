@@ -107,7 +107,7 @@ export class TextField extends FoundationTextfield {
 		if (!this.label) {
 			labelEl.remove();
 		} else {
-			labelEl.innerText = this.label;
+			labelEl.textContent = this.label;
 			if (!labelEl.isConnected) {
 				this.appendChild(labelEl);
 			}

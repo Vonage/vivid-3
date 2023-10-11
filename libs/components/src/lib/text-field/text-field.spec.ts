@@ -58,7 +58,7 @@ describe('vwc-text-field', () => {
 			const labelElement = getLabel();
 			expect(labelElement)
 				.toBeTruthy();
-			expect(labelElement?.innerText?.trim())
+			expect(labelElement?.textContent?.trim())
 				.toEqual(labelText);
 		});
 
