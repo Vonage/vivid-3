@@ -40,16 +40,6 @@ const getStateClasses = ({
 		['no-leading', !(leadingActionItemsSlottedContent?.length || icon)]
 	);
 
-// /**
-//  *
-//  */
-// function renderLabel() {
-// 	return html<TextField>`
-// 	  <label class="label" @mousedown="${x => x.focus()}">
-// 		  ${x => x.label}
-// 	  </label>`;
-// }
-
 /**
  *
  */
@@ -75,7 +65,7 @@ export const TextfieldTemplate: (
 	return html<TextField>`
 	<div class="base ${getStateClasses}">
     ${when(x => x.charCount && x.maxlength, renderCharCount())}
-    <slot name="label"></slot>
+    <slot class="label" name="_label"></slot>
     <div class="fieldset">
 			<div class="leading-items-wrapper">
 				<slot name="leading-action-items"  ${slotted('leadingActionItemsSlottedContent')}></slot>
@@ -83,7 +73,7 @@ export const TextfieldTemplate: (
 			</div>
 
 			<div class="wrapper">
-				<slot class="control" name="control"></slot>
+				<slot class="control" name="_control"></slot>
 				${() => focusTemplate}
 			</div>
 			<div class="action-items-wrapper">

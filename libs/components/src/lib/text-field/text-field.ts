@@ -1,13 +1,26 @@
-import {applyMixins, TextField as FoundationTextfield} from '@microsoft/fast-foundation';
+import {
+	applyMixins,
+	TextField as FoundationTextfield,
+} from '@microsoft/fast-foundation';
 import { attr, Observable, observable } from '@microsoft/fast-element';
-import type {Appearance, Shape} from '../enums';
-import {AffixIcon, FormElementCharCount, FormElementHelperText, FormElementSuccessText} from '../../shared/patterns';
-import {type ErrorText, errorText, type FormElement, formElements} from '../../shared/patterns';
+import type { Appearance, Shape } from '../enums';
+import {
+	AffixIcon,
+	type ErrorText,
+	errorText,
+	type FormElement,
+	FormElementCharCount,
+	FormElementHelperText,
+	formElements,
+	FormElementSuccessText,
+} from '../../shared/patterns';
+import { generateRandomId } from '../../shared/utils/randomId';
 
-export type TextFieldAppearance = Extract<Appearance, Appearance.Fieldset | Appearance.Ghost>;
+export type TextFieldAppearance = Extract<
+Appearance,
+Appearance.Fieldset | Appearance.Ghost
+>;
 export type TextFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
-
-let inputCount = 0;
 
 const propertiesForwardedToInternalInput = new Map<
 keyof TextField,
@@ -42,7 +55,7 @@ keyof TextField,
 	['ariaHidden', { target: 'aria-hidden', type: 'attr' }],
 	['ariaInvalid', { target: 'aria-invalid', type: 'attr' }],
 	['ariaKeyshortcuts', { target: 'aria-keyshortcuts', type: 'attr' }],
-	['_inputAriaLabel', { target: 'aria-label', type: 'attr' }],
+	['ariaLabel', { target: 'aria-label', type: 'attr' }],
 	['ariaLabelledby', { target: 'aria-labelledby', type: 'attr' }],
 	['ariaLive', { target: 'aria-live', type: 'attr' }],
 	['ariaOwns', { target: 'aria-owns', type: 'attr' }],
@@ -79,33 +92,39 @@ export class TextField extends FoundationTextfield {
 	/**
 	 * @internal
 	 */
-	@observable _inputAriaLabel = '';
-	#updateInputAriaLabel() {
-		this._inputAriaLabel = this.ariaLabel || this.label || '';
-	}
+	private _labelEl: HTMLLabelElement | null = null;
+
 	/**
 	 * @internal
 	 */
 	labelChanged() {
-		this.#updateInputAriaLabel();
-	}
-	/**
-	 * @internal
-	 */
-	ariaLabelChanged() {
-		this.#updateInputAriaLabel();
+		if (this._labelEl) {
+			this.#handleLabelChange(this._labelEl);
+		}
 	}
 
+	#handleLabelChange(labelEl: HTMLLabelElement) {
+		if (!this.label) {
+			labelEl.remove();
+		} else {
+			labelEl.innerText = this.label;
+			if (!labelEl.isConnected) {
+				this.appendChild(labelEl);
+			}
+		}
+	}
 
 	override connectedCallback() {
 		super.connectedCallback();
 
 		if (!this.control) {
-			// Input must be created outside the shadow dom to support autofill from some password managers.
-			const controlId = `text-field-control-${inputCount++}`;
+			// Input and label must be created outside the shadow dom to support autofill from some password managers.
+
+			const uniqueId = this.id || generateRandomId();
+			const controlId = `vvd-text-field-control-${uniqueId}`;
 
 			const input = document.createElement('input');
-			input.slot = 'control';
+			input.slot = '_control';
 			input.id = controlId;
 			this.control = input;
 
@@ -128,17 +147,13 @@ export class TextField extends FoundationTextfield {
 				this.$emit('focus');
 			});
 
-			if (this.label) {
-				const label = document.createElement('label');
-				label.slot = 'label';
-				label.className = 'label';
-				label.htmlFor = controlId;
-				label.innerHTML = this.label;
-				this.appendChild(label);
-				this.appendChild(input);
-			} else {
-				this.appendChild(input);
-			}
+			this.appendChild(input);
+
+			const label = document.createElement('label') as HTMLLabelElement;
+			label.slot = '_label';
+			label.htmlFor = controlId;
+			this._labelEl = label;
+			this.#handleLabelChange(label);
 		}
 	}
 
