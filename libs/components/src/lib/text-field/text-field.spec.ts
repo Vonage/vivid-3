@@ -1,5 +1,5 @@
 import {
-	ADD_TEMPLATE_TO_FIXTURE,
+	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture,
