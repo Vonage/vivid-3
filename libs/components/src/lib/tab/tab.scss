@@ -28,6 +28,10 @@
 	grid-column: 1 / auto;
 }
 
+:host([disabled]) {
+	cursor: not-allowed;
+}
+
 .base {
 	$min-block-size: 40px;
 	@include appearance.appearance;
@@ -60,7 +64,6 @@
 	}
 
 	&.disabled {
-		cursor: not-allowed;
 		pointer-events: none;
 	}
 

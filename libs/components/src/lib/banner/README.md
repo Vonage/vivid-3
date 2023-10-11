@@ -1,6 +1,8 @@
 # Banner
 
-Banners are meant to be used on top of pages, outside the main content.
+Banner displays a prominent message, usually on system level, and provides actions for users to address or dismiss.
+
+It is meant to be used at the top of pages, outside the main content.
 
 ```js
 <script type="module">
@@ -21,17 +23,6 @@ Use the `text` attribute to set the banner's text.
 <vwc-banner text="Here's some information that you may find important!"></vwc-banner>
 ```
 
-### Icon
-
-- Type: `string`
-- Default: `'information'`
-
-The `icon` attribute will override the icon set by connotation.
-
-```html preview full
-<vwc-banner text="Here's some information that you may find important!" icon="home-line"></vwc-banner>
-```
-
 ### Connotation
 
 The `connotation` attribute sets the colors according to the wanted connotation.
@@ -49,12 +40,23 @@ Note that icon, if not specifically set, defaults to a connotation-associated ic
 <vwc-banner text="ALERT! Something went wrong!" connotation="alert"></vwc-banner>
 ```
 
+### Icon
+
+- Type: `string`
+- Default: `'information'`
+
+The `icon` attribute will override the icon set by connotation.
+
+```html preview full
+<vwc-banner text="Here's some information that you may find important!" icon="home-line"></vwc-banner>
+```
+
 ### Removable
 
 - Type: `boolean`
 - Default: `false`
 
-The `removable` attribute sets a remove button. On click it will remove the banner from the DOM.
+The `removable` attribute adds a remove button. On click it will remove the banner from the DOM.
 
 ```html preview full
 <vwc-banner text="Here's some information that you may find important!" removable></vwc-banner>
@@ -92,7 +94,6 @@ If set, the `icon` attribute is ignored.
 | ---------- | ------------------------------------------------------------------------ |
 | `removing` | Fires `removing` whenever the banner has started its removing animation. |
 | `removed`  | Fires `removed` when the removing animation is done.                     |
-
 
 </div>
 

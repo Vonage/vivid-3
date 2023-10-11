@@ -23,6 +23,10 @@
 	}
 }
 
+:host([disabled]) {
+	cursor: not-allowed;
+}
+
 .base {
 	$gap: 12px;
 	$gutter: 16px;
@@ -59,7 +63,6 @@
 	}
 
 	&.disabled {
-		cursor: not-allowed;
 		pointer-events: none;
 	}
 }
