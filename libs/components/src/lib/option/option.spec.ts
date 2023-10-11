@@ -115,8 +115,11 @@ describe('vwc-option', () => {
 
 	describe('a11y', () => {
 		it('should pass html a11y test', async () => {
-			element.text = 'text';
-			element.value = 'value';
+			element = (await fixture(
+				`<div role="listbox" aria-label="Dummy listbox">
+					<${COMPONENT_TAG} text="text" value="value"></${COMPONENT_TAG}>
+				</div>`
+			)) as ListboxOption;
 			await elementUpdated(element);
 
 			expect(await axe(element)).toHaveNoViolations();
