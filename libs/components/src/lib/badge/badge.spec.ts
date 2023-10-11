@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {Icon} from '../icon/icon';
 import {Badge} from './badge';
@@ -110,7 +110,6 @@ describe('vwc-badge', () => {
 		});
 	});
 
-
 	describe('icon-only', () => {
 		it('sets correct internal icon-only style', async () => {
 			const getControlIconOnly = () => element.shadowRoot?.querySelector('.base.icon-only');
@@ -122,6 +121,24 @@ describe('vwc-badge', () => {
 			const baseIconOnlyAfter = getControlIconOnly();
 			expect(baseIconOnlyBefore).toBeNull();
 			expect(baseIconOnlyAfter).toBeInstanceOf(Element);
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.text = 'Test badge';
+			await elementUpdated(element);
+	
+			expect(await axe(element)).toHaveNoViolations();
+		});
+
+		describe('icon-only', () => {
+			it('should pass html a11y test', async () => {				
+				element.icon = 'home';
+				await elementUpdated(element);
+
+				expect(await axe(element)).toHaveNoViolations();
+			});
 		});
 	});
 });

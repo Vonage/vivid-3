@@ -43,7 +43,7 @@ $outline-width: 2px;
 
 	&.disabled {
 		#{$low-ink-color}: var(#{appearance.get-appearance-token(text)});
-		pointer-events: none;
+		cursor: not-allowed;
 	}
 }
 
@@ -77,7 +77,6 @@ $outline-width: 2px;
 	transition: box-shadow .2s, background-color .2s, color .2s;
 
 	&:disabled {
-		cursor: not-allowed;
 		opacity: 1; /* 2. correct opacity on iOS */
 		pointer-events: none;
 		-webkit-text-fill-color: var(#{appearance.get-appearance-token(text)}); /* 1. sets text fill to current `color` for safari */

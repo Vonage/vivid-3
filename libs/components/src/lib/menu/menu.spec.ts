@@ -1,4 +1,4 @@
-import { ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { ADD_TEMPLATE_TO_FIXTURE, axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
 import type { Button } from '../button/button';
@@ -448,6 +448,19 @@ describe('vwc-menu', () => {
 			expect(spy).toHaveBeenCalledWith(
 				expect.objectContaining({ bubbles: false })
 			);
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.open = true;
+			element.innerHTML = `
+				<div role="menuitem" id="id1">Menu Item 1</div>
+				<div role="menuitem" id="id2">Menu Item 2</div>
+			`;
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 

@@ -1,4 +1,4 @@
-import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import {Connotation} from '@vonage/vivid';
 import type {Tab} from '../tab/tab';
 import {Tabs} from './tabs';
@@ -265,4 +265,9 @@ describe('vwc-tabs', () => {
 		});
 	});
 
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			expect(await axe(element)).toHaveNoViolations();
+		});
+	});
 });

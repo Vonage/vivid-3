@@ -1,4 +1,4 @@
-import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import {ICONS_VERSION as ICON_SET_VERSION} from '@vonage/vwc-consts';
 import type {Icon} from './icon';
 import '.';
@@ -173,6 +173,16 @@ describe('icon', function () {
 			await elementUpdated(element);
 			const expectedClass = `size-${sizeValue}`;
 			expect(controlElement?.classList.contains(expectedClass)).toEqual(true);
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} name="home"></${COMPONENT_TAG}>`
+			)) as Icon;
+			
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 
 import type { TreeItem } from '../tree-item/tree-item';
@@ -105,6 +105,23 @@ describe('vwc-tree-view', () => {
 			await elementUpdated(element);
 
 			expect(spy).toBeCalled();
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			treeItem1.text = 'Tree item 1';
+			treeItem2.text = 'Tree item 2';
+			treeItem1.selected = true;
+			treeItem2.expanded = true;
+			await elementUpdated(treeItem1);
+			await elementUpdated(treeItem2);
+
+			const children = Array.from(element.children)
+				.map(({ shadowRoot }) => shadowRoot?.innerHTML).join('');
+			const exposedHtmlString =  element.shadowRoot?.innerHTML.replace('<slot></slot>', children) as string;
+
+			expect(await axe(exposedHtmlString)).toHaveNoViolations();
 		});
 	});
 });

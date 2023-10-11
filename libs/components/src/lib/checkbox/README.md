@@ -1,7 +1,8 @@
 # Checkbox
 
-Represents a checkbox custom element.
-All native attributes of `checkbox` are supported as well as some enhancements.
+Checkboxes allow users to select multiple items from a list or a set of options.
+
+All [native attributes of `<input type="checkbox">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox) are supported as well as some enhancements.
 
 ```js
 <script type="module">
@@ -24,7 +25,7 @@ Use the `label` member to set the checkbox's label.
 
 ### Checked
 
-Toggle the `checked` member to set the checkbox's `on`/`off` state.
+Toggle the `checked` member to set the checkbox's on/off state.
 
 - Type: `boolean`
 - Default: `false`
@@ -35,7 +36,7 @@ Toggle the `checked` member to set the checkbox's `on`/`off` state.
 
 ### Indeterminate
 
-Use the `indeterminate` member to indicate that the checkbox's is neither "on" or "off".
+Use the `indeterminate` member to indicate that the checkbox's is neither on nor off.
 
 - Type: `boolean`
 - Default: `false`
@@ -51,7 +52,7 @@ Use the `indeterminate` member to indicate that the checkbox's is neither "on" o
 ```html preview
 <vwc-checkbox id="checkbox"></vwc-checkbox>
 <script>
-  checkbox.indeterminate = true;
+  document.getElementById('checkbox').indeterminate = true;
 </script>
 ```
 
@@ -62,9 +63,9 @@ Use the `connotation` attribute to set the checkbox color.
 - Default: `'accent'`
 - 
 ```html preview
-<vwc-checkbox connotation="accent" ></vwc-checkbox>
+<vwc-checkbox connotation="accent"></vwc-checkbox>
 <vwc-checkbox connotation="accent" checked></vwc-checkbox>
-<vwc-checkbox connotation="cta" ></vwc-checkbox>
+<vwc-checkbox connotation="cta"></vwc-checkbox>
 <vwc-checkbox connotation="cta" checked></vwc-checkbox>
 ```
 
@@ -120,7 +121,7 @@ Toggle the `disabled` member to disable/enable the checkbox.
 ### Readonly
 
 Set the `readonly` member to specify a checkbox is read-only.
-A read-only checkbox cannot be modified (however it can focused and tabbed into).
+A read-only checkbox cannot be modified (however it can be focused and tabbed into).
 
 - Type: `boolean`
 - Default: `false`
@@ -145,9 +146,10 @@ Use the `value` member to set the checkbox's value.
 
 ### Default
 
+The default slot allows you to use rich content as the checkbox's label.
+
 ```html preview
-<vwc-checkbox label="I agree to" error-text="You need to accept the Terms of service"
-  aria-label="I agree to Vonage Terms of Service">
-  <a href="https://www.vonage.com/legal/" target="_blank">Vonage Terms of Service</a>
+<vwc-checkbox error-text="You need to accept the Terms of service">
+	I agree to <a href="https://www.vonage.com/legal/" target="_blank">Vonage Terms of Service</a>
 </vwc-checkbox>
 ```

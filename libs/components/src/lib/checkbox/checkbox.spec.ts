@@ -1,4 +1,5 @@
 import {
+	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture,
@@ -255,6 +256,15 @@ describe('vwc-checkbox', () => {
 			const baseElementClasses = getBaseElement(element)?.classList;
 
 			expect(baseElementClasses).not.toContain('hide-label');
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.label = 'Checkbox label';
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });
