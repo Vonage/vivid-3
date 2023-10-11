@@ -25,16 +25,8 @@
 		"status": "alpha"
 	},
 	{
-		"title": "breadcrumb",
-		"markdown": "./libs/components/src/lib/breadcrumb/README.md",
-		"children": [
-			"breadcrumb-item"
-		]
-	},
-	{
 		"title": "breadcrumb-item",
-		"markdown": "./libs/components/src/lib/breadcrumb-item/README.md",
-		"parent": "breadcrumb"
+		"markdown": "./libs/components/src/lib/breadcrumb-item/README.md"
 	},
 	{
 		"title": "button",

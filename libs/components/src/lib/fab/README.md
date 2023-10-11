@@ -24,9 +24,9 @@ Use the `label` attribute to add text to the FAB.
 ### Icon
 
 Use `icon` to set an icon to the FAB.
-View list of available icon at the [vivid icons gallery](../../icons/icons-gallery).
+View the list of available icons at the [vivid icons gallery](../../icons/icons-gallery).
 
-Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the FAB's purpose.
+Note: An icon on its own doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the FAB's purpose.
 
 - Type: `string`
 - Default: `undefined`
@@ -86,6 +86,7 @@ To disable the FAB, use the `disabled` attribute.
 
 Set the `icon` slot to show a decorative icon.  
 If set, the `icon` attribute is ignored.
+
 ```html preview
 <vwc-fab icon="thumbs-up-line" size='normal' label="ask-vivid">
   <vwc-icon slot="icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" width="349.66" height="349.66" fill="none" version="1.1" viewBox="0 0 349.66 349.66"><script xmlns="">window._wordtune_extension_installed = true;</script>
