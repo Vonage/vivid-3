@@ -82,8 +82,12 @@ describe('vwc-accordion', () => {
 		});
 
 		it('should always open the first accordion-item::DOCUMENTED BUG SHOULD FAIL ONCE FIXED IN FAST! ', async function () {
-			element = (await fixture(COMPONENT_HTML)) as Accordion;
-			element.expandmode = 'single';
+			element = (await fixture(
+				`<${COMPONENT_TAG} expand-mode="single">
+				<vwc-accordion-item heading="accordion item" id="item1"><p>content</p></vwc-accordion-item>
+				<vwc-accordion-item heading="accordion item" id="item2" expanded><p>content</p></vwc-accordion-item>
+			</${COMPONENT_TAG}>`
+			)) as Accordion;
 			await elementUpdated(element);
 
 			expect(element.expandmode).toBe('single');
