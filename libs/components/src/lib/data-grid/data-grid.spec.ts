@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { html, ViewTemplate } from '@microsoft/fast-element';
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { designSystem } from '../../shared/design-system';
 import {DataGrid, DataGridSelectionMode} from './data-grid';
 import { DataGridTemplate } from './data-grid.template';
@@ -329,6 +329,18 @@ describe('vwc-data-grid', () => {
 			const expected = Array.from(element.querySelectorAll(element.rowElementTag));
 			expected.splice(0, 1);
 			expect(element.rowElements).toEqual(expected);
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.rowsData = [
+				{ id: '1', name: 'Person 1' },
+				{ id: '2', name: 'Person 2' },
+			];
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

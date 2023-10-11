@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { Select } from './select';
 import '.';
 
@@ -595,6 +595,21 @@ describe('vwc-select', () => {
 
 			await elementUpdated(element);
 			expect(getControlElement(element).querySelector('.selected-value')?.textContent?.trim()).toEqual('2');
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.innerHTML = `
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+			`;
+			element.selectedIndex = 2;
+			element.label = 'Label';
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

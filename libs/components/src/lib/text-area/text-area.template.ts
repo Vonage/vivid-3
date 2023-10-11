@@ -48,7 +48,7 @@ export const TextAreaTemplate: (
 	  <div class="${getClasses}">
 		${when(x => x.charCount && x.maxlength, renderCharCount())}
 		${when(x => x.label, renderLabel())}
-			<textarea class="control"
+			<textarea class="control" id="control"
 				?autofocus="${x => x.autofocus}"
 				placeholder="${x => x.placeholder ? x.placeholder : null}"
 				name="${x => x.name ? x.name : null}"
