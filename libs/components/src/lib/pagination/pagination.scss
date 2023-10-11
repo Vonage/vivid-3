@@ -18,6 +18,25 @@
 	column-gap: 4px;
 }
 
+.vwc-pagination-button {
+	&[size="super-condensed"] {
+		--base-size: #{size.$vvd-size-super-condensed};
+	}
+
+	&[size="condensed"] {
+		--base-size: #{size.$vvd-size-condensed};
+	}
+
+	&[size="normal"] {
+		--base-size: #{size.$vvd-size-normal};
+	}
+
+	&::part(button) {
+		// Prevent label from being cut off at certain sizes
+		padding-inline: 0;
+	}
+}
+
 .dots {
 	align-self: center;
 	text-align: center;

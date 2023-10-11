@@ -448,6 +448,19 @@ describe('vwc-pagination', () => {
 			}, true);
 			expect(allButtonsCondensed).toEqual(true);
 		});
+
+		it.each([
+			['size-super-condensed', Size.SuperCondensed],
+			['size-condensed', Size.Condensed],
+			['size-normal', Size.Normal],
+			['size-super-condensed', 'invalid-size' as PaginationSize]
+		] as const)('should set class %s on dots if size is %s', async function (className, size) {
+			element.total = 20;
+			element.size = size;
+			await elementUpdated(element);
+			const dots = element.shadowRoot?.querySelector('.dots');
+			expect(dots?.classList.contains(className)).toEqual(true);
+		});
 	});
 
 	describe('shape', function () {
