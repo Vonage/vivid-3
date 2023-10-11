@@ -33,10 +33,6 @@ function getButtonAppearance(value: string | number, {parent}: {parent: Paginati
 	return (parent.selectedIndex === Number(value) - 1) ? 'filled' : 'ghost';
 }
 
-function getAriaLabel(value: string | number, {parent}: {parent: Pagination}) {
-	return (parent.selectedIndex === Number(value) - 1) ? `Current Page, Page ${value}` : `Goto Page ${value}`;
-}
-
 const paginationButtonRenderer = (buttonTag: string) => html`
 	${when(value => value !== '...',
 		html`
@@ -47,7 +43,6 @@ const paginationButtonRenderer = (buttonTag: string) => html`
 									shape="${(_, {parent: x}) => getPaginationShape(x)}"
 									tabindex="0"
 									aria-current="${(value, {parent}) => parent.selectedIndex === Number(value) - 1}"
-									aria-label="${getAriaLabel}"
 									@click="${handleSelection}"
 									@keydown="${handleKeyDown}"
 		</${buttonTag}>

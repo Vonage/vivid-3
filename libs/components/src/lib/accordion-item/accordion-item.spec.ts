@@ -160,7 +160,7 @@ describe('vwc-accordion-item', () => {
 			expect(button?.getAttribute('aria-expanded')).toEqual('false');
 		});
 
-		it('should set aria-expanded to false when closed', async () => {
+		it('should set aria-expanded to true when expanded', async () => {
 			element.expanded = true;
 			await elementUpdated(element);
 

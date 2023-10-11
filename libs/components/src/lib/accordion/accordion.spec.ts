@@ -181,15 +181,20 @@ describe('vwc-accordion', () => {
 
 	describe('a11y', () => {
 		it('should pass HTML a11y test', async () => {
-			const report = await axe(element);
-			expect(report).toHaveNoViolations();
+			expect(await axe(element)).toHaveNoViolations();
 		});
 
 		it('should set aria-disabled on active item in single mode', async function () {
-			element.expandmode = 'single';
-			toggleAccordionItem(accordionItem2);
+			element = (await fixture(`
+				<${COMPONENT_TAG} id="tested">
+					<vwc-accordion-item heading="accordion item 1" expanded id="item1"><p>content</p></vwc-accordion-item>
+					<vwc-accordion-item heading="accordion item 2" id="item2"><p>content</p></vwc-accordion-item>
+				</${COMPONENT_TAG}>`
+			)) as Accordion;
 			await elementUpdated(element);
-			expect(accordionItem2.hasAttribute('aria-disabled')).toBe(true);
+			accordionItem1 = element.querySelector('#item1') as AccordionItem;
+
+			expect(accordionItem1.hasAttribute('aria-disabled')).toBe(true);
 		});
 	});
 });

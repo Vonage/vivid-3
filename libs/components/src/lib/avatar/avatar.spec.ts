@@ -123,10 +123,15 @@ describe('vwc-avatar', () => {
 	describe('a11y', () => {
 		it('should pass html a11y test', async () => {
 			expect(await axe(element)).toHaveNoViolations();
+		});
 
-			element.initials = 'ab';
-			await elementUpdated(element);
-			expect(await axe(element)).toHaveNoViolations();
+		describe('initials', () => {
+			it('should pass html a11y', async () => {
+				element.initials = 'ab';
+				await elementUpdated(element);
+				
+				expect(await axe(element)).toHaveNoViolations();
+			});
 		});
 	});
 });

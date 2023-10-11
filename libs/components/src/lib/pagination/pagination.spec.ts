@@ -506,25 +506,6 @@ describe('vwc-pagination', () => {
 				}, true);
 				expect(allButtonsAriaSelectedFalse).toEqual(true);
 			});
-
-			it('should set aria-label with "Goto Page" text by default', async function () {
-				element.total = 20;
-				await elementUpdated(element);
-				const buttons = Array.from(element.shadowRoot?.querySelectorAll('.vwc-pagination-button') as unknown as Button[]);
-				const allButtonsAriaSelectedFalse = buttons?.reduce((correct, button, index) => {
-					if (element.selectedIndex === index) return correct;
-					return correct && button.getAttribute('aria-label')?.includes('Goto Page') === true;
-				}, true);
-				expect(allButtonsAriaSelectedFalse).toEqual(true);
-			});
-	
-			it('should set aria-label with "Current Page" text', async function () {
-				element.total = 20;
-				element.selectedIndex = 3;
-				await elementUpdated(element);
-				const button = element.shadowRoot?.querySelectorAll('.vwc-pagination-button').item(3);
-				expect(button?.getAttribute('aria-label')).toEqual('Current Page, Page 4');
-			});
 		});
 	});
 });

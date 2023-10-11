@@ -130,12 +130,15 @@ describe('vwc-badge', () => {
 			await elementUpdated(element);
 	
 			expect(await axe(element)).toHaveNoViolations();
+		});
 
-			element.text = undefined;
-			element.icon = 'home';
-			await elementUpdated(element);
+		describe('icon-only', () => {
+			it('should pass html a11y test', async () => {				
+				element.icon = 'home';
+				await elementUpdated(element);
 
-			expect(await axe(element)).toHaveNoViolations();
+				expect(await axe(element)).toHaveNoViolations();
+			});
 		});
 	});
 });

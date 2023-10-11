@@ -25,12 +25,10 @@ describe('vwc-tag-group', () => {
 	describe('a11y', () => {
 		it('should pass html a11y test', async () => {
 			element = (await fixture(
-				`<${COMPONENT_TAG}>
-					${`
-						<vwc-tag label="Label 1"></vwc-tag>
-						<vwc-tag label="Label 2"></vwc-tag>
-						<vwc-tag label="Label 3"></vwc-tag>
-					`}
+				`<${COMPONENT_TAG} aria-label="Tag group">
+					<vwc-tag label="Label 1"></vwc-tag>
+					<vwc-tag label="Label 2"></vwc-tag>
+					<vwc-tag label="Label 3"></vwc-tag>
 				</${COMPONENT_TAG}>`
 			)) as TagGroup;
 			element.ariaLabel = 'Tag group';

@@ -162,12 +162,10 @@ describe('vwc-combobox', () => {
 
 			const control = await getControlElement(element);
 			const label = element.shadowRoot?.querySelector('.label');
-			// const listboxId = element.querySelector('.listbox')?.id;
 
 			expect(control.getAttribute('role')).toBe('combobox');
 			expect(control.getAttribute('aria-haspopup')).toBe('listbox');
 			expect(label?.getAttribute('for')).toBe(control.id);
-			// expect(control.getAttribute('aria-controls')).toBe(listboxId);
 		});
 
 		it('should pass html a11y test', async () => {

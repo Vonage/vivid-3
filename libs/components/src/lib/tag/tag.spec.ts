@@ -329,28 +329,33 @@ describe('vwc-tag', () => {
 	});
 
 	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.label = 'lorem';
-			element.selectable = true;
-			await elementUpdated(element);
-			let exposedHTMLString = `
-				<div role="listbox" aria-label="tag group">
-					${element.shadowRoot?.innerHTML}
-				</div>
-			`;
-			
-			expect(await axe(exposedHTMLString)).toHaveNoViolations();
+		describe('selectable', () => {
+			it('should pass html a11y test', async () => {
+				element.label = 'lorem';
+				element.selectable = true;
+				await elementUpdated(element);
+				const exposedHTMLString = `
+					<div role="listbox" aria-label="tag group">
+						${element.shadowRoot?.innerHTML}
+					</div>
+				`;
+				
+				expect(await axe(exposedHTMLString)).toHaveNoViolations();
+			});
+		});
 
-			element.selectable = false;
-			element.removable = true;
-			await elementUpdated(element);
-			exposedHTMLString = `
-				<div role="listbox" aria-label="tag group">
-					${element.shadowRoot?.innerHTML}
-				</div>
-			`;
+		describe('removable', () => {
+			it('should pass html a11y test', async () => {
+				element.removable = true;
+				await elementUpdated(element);
+				const exposedHTMLString = `
+					<div role="listbox" aria-label="tag group">
+						${element.shadowRoot?.innerHTML}
+					</div>
+				`;
 
-			expect(await axe(exposedHTMLString)).toHaveNoViolations();
+				expect(await axe(exposedHTMLString)).toHaveNoViolations();
+			});
 		});
 	});
 });

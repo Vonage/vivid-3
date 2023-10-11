@@ -212,16 +212,19 @@ describe('vwc-button', () => {
 		});
 
 		it('should pass html a11y test', async () => {
-			element.icon = 'home';
-			await elementUpdated(element);
-			
-			expect(await axe(element)).toHaveNoViolations();
-
-			element.icon = undefined;
 			element.label = 'Home';
 			await elementUpdated(element);
 
 			expect(await axe(element)).toHaveNoViolations();
+		});
+
+		describe('icon-only', () => {
+			it('should pass html a11y test', async () => {
+				element.icon = 'home';
+				await elementUpdated(element);
+				
+				expect(await axe(element)).toHaveNoViolations();
+			});
 		});
 	});
 });

@@ -10,8 +10,7 @@
     "nx": "nx",
     "test": "npx nx run components:test",
     "test:ui": "npx nx run components:e2e",
-    "test:tools": "jest --projects tools",
-    "test:pa11y": "pa11y-ci"
+    "test:tools": "jest --projects tools"
   },
   "private": true,
   "dependencies": {

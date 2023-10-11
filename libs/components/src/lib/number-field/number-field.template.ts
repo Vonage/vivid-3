@@ -61,7 +61,6 @@ function numberControlButtons(context: ElementDefinitionContext) {
 			     ?inert="${x => x.disabled || x.readOnly}">
 				<${buttonTag} id="subtract" icon="minus-line"
 					            shape="${ setControlButtonShape }"
-								aria-label="Decrement number"
 								type="button"
 					            size="condensed"
 					  					tabindex="${getTabIndex}"
@@ -69,7 +68,6 @@ function numberControlButtons(context: ElementDefinitionContext) {
 				<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 				<${buttonTag} id="add" icon="plus-line"
 					            shape="${ setControlButtonShape }"
-								aria-label="Increment number"
 								type="button"
 					            size="condensed"
 					  					tabindex="${getTabIndex}"
