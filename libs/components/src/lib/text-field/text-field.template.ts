@@ -40,15 +40,15 @@ const getStateClasses = ({
 		['no-leading', !(leadingActionItemsSlottedContent?.length || icon)]
 	);
 
-/**
- *
- */
-function renderLabel() {
-	return html<TextField>`
-	  <label class="label" @mousedown="${x => x.focus()}">
-		  ${x => x.label}
-	  </label>`;
-}
+// /**
+//  *
+//  */
+// function renderLabel() {
+// 	return html<TextField>`
+// 	  <label class="label" @mousedown="${x => x.focus()}">
+// 		  ${x => x.label}
+// 	  </label>`;
+// }
 
 /**
  *
