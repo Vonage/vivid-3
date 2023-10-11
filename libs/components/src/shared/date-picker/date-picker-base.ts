@@ -530,6 +530,8 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 		return false;
 	}
 
+	protected abstract _getSelectedDates(): DateStr[];
+
 	/**
 	 * @internal
 	 */
@@ -599,7 +601,7 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 
 		const candidates = [
 			this._lastFocussedDate,
-			this.value,
+			...this._getSelectedDates(),
 			currentDateStr(),
 			...datesInGrid,
 		];

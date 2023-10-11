@@ -114,6 +114,17 @@ export class DatePicker extends DatePickerBase {
 	/**
 	 * @internal
 	 */
+	protected override _getSelectedDates(): DateStr[] {
+		const dates = [];
+		if (this.value) {
+			dates.push(this.value);
+		}
+		return dates;
+	}
+
+	/**
+	 * @internal
+	 */
 	protected override _getCustomValidationError(): string | null {
 		if (this._isPresentationValueInvalid()) {
 			return this.locale.datePicker.invalidDateError;

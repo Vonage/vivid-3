@@ -291,6 +291,20 @@ export class DateRangePicker extends DatePickerBase {
 	/**
 	 * @internal
 	 */
+	protected override _getSelectedDates(): DateStr[] {
+		const dates = [];
+		if (this.start) {
+			dates.push(this.start);
+		}
+		if (this.end) {
+			dates.push(this.end);
+		}
+		return dates;
+	}
+
+	/**
+	 * @internal
+	 */
 	override _onDateClick(date: DateStr) {
 		if (this.start && this.end) {
 			this.#updateValues({ start: date, end: '' });
