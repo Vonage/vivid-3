@@ -54,8 +54,6 @@ $low-ink-color: --_low-ink-color;
 	color: var(#{constants.$vvd-color-canvas-text});
 	contain: inline-size;
 	font: var(#{constants.$vvd-typography-base});
-	grid-column: 1 / 4;
-	grid-row: 1;
 
 	.char-count + & {
 		grid-column: 1 / 3;

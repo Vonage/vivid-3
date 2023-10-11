@@ -75,7 +75,7 @@ export const TextfieldTemplate: (
 	return html<TextField>`
 	<div class="base ${getStateClasses}">
     ${when(x => x.charCount && x.maxlength, renderCharCount())}
-    ${when(x => x.label, renderLabel())}
+    <slot name="label"></slot>
     <div class="fieldset">
 			<div class="leading-items-wrapper">
 				<slot name="leading-action-items"  ${slotted('leadingActionItemsSlottedContent')}></slot>

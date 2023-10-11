@@ -7,6 +7,8 @@ import {type ErrorText, errorText, type FormElement, formElements} from '../../s
 export type TextFieldAppearance = Extract<Appearance, Appearance.Fieldset | Appearance.Ghost>;
 export type TextFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
+let inputCount = 0;
+
 const propertiesForwardedToInternalInput = new Map<
 keyof TextField,
 {
@@ -100,9 +102,11 @@ export class TextField extends FoundationTextfield {
 
 		if (!this.control) {
 			// Input must be created outside the shadow dom to support autofill from some password managers.
+			const controlId = `text-field-control-${inputCount++}`;
 
 			const input = document.createElement('input');
 			input.slot = 'control';
+			input.id = controlId;
 			this.control = input;
 
 			const notifier = Observable.getNotifier(this);
@@ -124,7 +128,17 @@ export class TextField extends FoundationTextfield {
 				this.$emit('focus');
 			});
 
-			this.appendChild(input);
+			if (this.label) {
+				const label = document.createElement('label');
+				label.slot = 'label';
+				label.className = 'label';
+				label.htmlFor = controlId;
+				label.innerHTML = this.label;
+				this.appendChild(label);
+				this.appendChild(input);
+			} else {
+				this.appendChild(input);
+			}
 		}
 	}
 
