@@ -491,6 +491,11 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 	}
 
 	/**
+	 * @internal
+	 */
+	_hideDatesOutsideMonth = true;
+
+	/**
 	 * The last date that had focus, used to implement tab roving
 	 * @internal
 	 */

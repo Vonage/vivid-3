@@ -146,7 +146,15 @@ function renderCalendarGrid(context: ElementDefinitionContext) {
 				<div class="calendar-week" role="row">
 					${repeat(
 		(x) => x,
-		html<CalendarGridDate>`<button
+		html<CalendarGridDate>`
+			${when((x, c) =>
+		c.parentContext.parent._hideDatesOutsideMonth && x.isOutsideMonth,
+	html<CalendarGridDate>`<div class="calendar-day"></div>`
+	)}
+			${when((x, c) =>
+		!c.parentContext.parent._hideDatesOutsideMonth || !x.isOutsideMonth,
+	html<CalendarGridDate>`
+			<button
 							class="${(x, c) =>
 		classNames(
 			'calendar-day',
@@ -182,7 +190,7 @@ function renderCalendarGrid(context: ElementDefinitionContext) {
 				</div>
 			`
 	)}
-	</div>`;
+	</div>`)}`;
 }
 function renderMonthPickerGrid(context: ElementDefinitionContext) {
 	const focusTemplate = focusTemplateFactory(context);
