@@ -19,7 +19,7 @@
 
 	$connotation-mapping: utils.pick-map(config.$connotations, variables.$connotation-mapping);
 
-  @include utils.spread-list-selectors('.connotation', config.$connotations, config.$default) using ($type) {
+  	@include utils.spread-list-selectors('.connotation', config.$connotations, config.$default) using ($type) {
 		@include connotation-shades($component, $type, map.get($connotation-mapping, $type));
 	}
 }

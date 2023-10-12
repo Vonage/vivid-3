@@ -1,0 +1,44 @@
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+	$connotations: accent cta,
+	$shades: primary intermediate backdrop,
+	$default: accent,
+);
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+
+:host {
+	display: flex;
+}
+
+.base {
+    @include connotation.connotation (note);
+	--spacing-unit: 16px;
+	--border-color: #B3B3B3;
+
+	border-radius: 6px;
+	inline-size: 100%;
+	text-align: start;
+	padding: var(--spacing-unit);
+	padding-top: calc(var(--spacing-unit) + 36px);
+	position: relative;
+	border: 1px solid var(--border-color);
+
+	&.connotation-cta {
+		--border-color: #CBA1FA;
+	}
+
+	&.spacing-condensed {
+		--spacing-unit: 8px;
+	}
+
+	&.no-padding {
+		min-height: calc(var(--spacing-unit) * 2 + 20px);
+		padding: 0;
+	}
+}
+
+.control {
+	position: absolute;
+	inset-block-start: var(--spacing-unit);
+	inset-inline-end: var(--spacing-unit);
+}
