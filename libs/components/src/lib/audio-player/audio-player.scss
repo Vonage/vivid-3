@@ -18,37 +18,34 @@
 	@include appearance.appearance;
 
 	display: inline-flex;
-	justify-content: space-between;
 	align-items: center;
 	padding: 8px;
-	border-radius: 4px;
-	user-select: none;
-	-webkit-user-select: none;
 	background-color: var(#{constants.$vvd-color-canvas});
+	border-radius: 4px;
 	color: var(#{constants.$vvd-color-canvas-text});
+	user-select: none;
 
 	&.disabled {
 		cursor: not-allowed;
 		pointer-events: none;
 	}
 	.slider {
-		flex-grow: 1;
-		background-color: var(--vvd-color-neutral-50);
-		cursor: pointer;
 		position: relative;
 		min-width: 200px;
+		background-color: var(--vvd-color-neutral-50);
+		cursor: pointer;
 
 		.progress {
+			position: absolute;
 			background-color: var(--vvd-color-neutral-400);
 			border-radius: inherit;
-			position: absolute;
 			pointer-events: none;
 			.pin {
-				height: 12px;
-				width: 12px;
-				border-radius: 6px;
-				background-color: var(#{appearance.get-appearance-token(fill)});
 				position: absolute;
+				width: 12px;
+				height: 12px;
+				background-color: var(#{appearance.get-appearance-token(fill)});
+				border-radius: 6px;
 				pointer-events: all;
 
 				&.disabled {
@@ -60,26 +57,24 @@
 		}
 	}
 	.controls {
-		color: var(#{constants.$vvd-color-canvas-text});
 		display: flex;
-		flex-grow: 1;
-		justify-content: space-between;
 		align-items: center;
 		.slider {
-			margin-left: 24px;
-			margin-right: 24px;
-			border-radius: 2px;
 			height: 4px;
+			margin-right: 16px;
+			margin-left: 8px;
+			border-radius: 2px;
 			.progress {
 				width: 0;
 				height: 100%;
 				.pin {
-					right: -8px;
 					top: -4px;
+					right: -8px;
 				}
 			}
 		}
-		.divider {
+		.current-time,
+		.total-time {
 			margin-inline: 6px;
 		}
 	}

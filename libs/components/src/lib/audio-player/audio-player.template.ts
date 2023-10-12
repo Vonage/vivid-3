@@ -28,7 +28,7 @@ export const AudioPlayerTemplate: (context: ElementDefinitionContext, definition
       <div class="controls">
       ${when(x => x.timestamp,
 		html`<span class="current-time">0:00</span>
-          <span class="divider">/</span>
+          <span>/</span>
           <span class="total-time">0:00</span>`)}
 		  ${when(x => !x.noseek,
 		html`<div class="slider" @click="${(x, c) => x.rewind(c.event as MouseEvent)}">
