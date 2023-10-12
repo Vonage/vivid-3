@@ -16,6 +16,7 @@ export * from './checkbox/definition';
 export * from './combobox/definition';
 export * from './data-grid/definition';
 export * from './date-picker/definition';
+export * from './date-range-picker/definition';
 export * from './dialog/definition';
 export * from './divider/definition';
 export * from './empty-state/definition';

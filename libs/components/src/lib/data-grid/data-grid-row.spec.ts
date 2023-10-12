@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { html } from '@microsoft/fast-element';
-import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { designSystem } from '../../shared/design-system';
 import { DataGridRow } from './data-grid-row';
 import { DataGridRowTemplate } from './data-grid-row.template';
@@ -192,6 +192,22 @@ describe('vwc-data-grid-row', () => {
 			element.ariaSelected = 'false';
 			await elementUpdated(element);
 			expect(getBaseElement(element).classList.contains('selected')).toBeFalsy();
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element = (await fixture(`
+				<div role="grid">
+					<${COMPONENT_TAG}>
+						<div role="gridcell"></div>
+					</${COMPONENT_TAG}>
+				</div>
+			`)) as DataGridRow;
+			element.ariaSelected = 'true';
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

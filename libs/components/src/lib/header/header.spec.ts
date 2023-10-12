@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Elevation } from './../elevation/elevation';
 import { Header } from './header';
@@ -51,6 +51,15 @@ describe('vwc-header', () => {
 			const container = element.shadowRoot?.querySelector('.container') as HTMLElement;
 
 			expect(container.getAttribute('part')).toEqual('vvd-theme-alternate');
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.alternate = true;
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

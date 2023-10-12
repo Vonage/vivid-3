@@ -1,6 +1,6 @@
 import { EditorView, minimalSetup } from "codemirror"
 import { keymap } from "@codemirror/view"
-import { bracketMatching } from "@codemirror/language"
+import { bracketMatching, indentUnit } from "@codemirror/language"
 import { html } from "@codemirror/lang-html"
 import { Compartment } from '@codemirror/state'
 import { oneDark } from '@codemirror/theme-one-dark'
@@ -58,7 +58,8 @@ function addSamplesEditors() {
 				EditorView.updateListener.of(sampleChanged(idx)),
 				minimalSetup,
 				bracketMatching(),
-				html()
+				html(),
+				indentUnit.of("\t")
 			],
 			parent: cbd,
 			root: window.document

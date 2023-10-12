@@ -1,5 +1,4 @@
-import { elementUpdated, fixture, getBaseElement, listenToFormSubmission } from '@vivid-nx/shared';
-import { configureAxe, toHaveNoViolations } from 'jest-axe';
+import { axe, elementUpdated, fixture, getBaseElement, listenToFormSubmission } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Radio } from '../radio/radio';
 import { RadioGroup } from './radio-group';
@@ -12,13 +11,6 @@ const COMPONENT_TAG = 'vwc-radio-group';
 describe('vwc-radio-group', () => {
 	let element: RadioGroup;
 	let radios: Radio[];
-
-	expect.extend(toHaveNoViolations);
-	const axe = configureAxe({
-		rules: {
-			'region': { enabled: false }
-		}
-	});
 
 	beforeEach(async () => {
 		element = fixture(`
@@ -153,12 +145,6 @@ describe('vwc-radio-group', () => {
 		});
 	});
 
-	describe('axe a11y', () => {
-		it('should make sure the markup is validated by Axe', async () => {
-			expect(await axe(element)).toHaveNoViolations();
-		});
-	});
-
 	describe('form', () => {
 		it('should behave as a radio group in a form', async () => {
 			const form = document.createElement('form');
@@ -174,6 +160,15 @@ describe('vwc-radio-group', () => {
 			const result = await submitPromise;
 
 			expect(result.get(element.name)).toEqual('2');
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.label = 'Label';
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

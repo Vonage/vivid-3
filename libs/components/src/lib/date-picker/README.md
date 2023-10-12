@@ -1,4 +1,4 @@
-# Date picker
+# Date Picker
 
 The date picker component is used to select a date from a calendar.
 
@@ -163,8 +163,8 @@ Set the `max` attribute to configure the latest date to accept. The user will be
 |--------|-----------------------------------------------|
 | input  | Emitted when the date is changed by the user. |
 | change | Emitted when the date is changed by the user. |
-| focus  | Emitted when the text field receives focus.   |
-| blur   | Emitted when the text field loses focus.      |
+| focus  | Emitted when the component receives focus.    |
+| blur   | Emitted when the component loses focus.       |
 
 </div>
 
@@ -183,8 +183,10 @@ Set the `max` attribute to configure the latest date to accept. The user will be
 	}
 </style>
 <form>
-	<vwc-layout column-spacing="small">
-		<vwc-date-picker name="date" label="Start date" required></vwc-date-picker>
+	<vwc-layout column-spacing="small" column-basis="block">
+		<div>
+			<vwc-date-picker name="date" label="Start date" required></vwc-date-picker>
+		</div>
 		<div class="buttons">
 			<vwc-button label="Reset" type="reset"></vwc-button>
 			<vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>

@@ -17,6 +17,9 @@
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 @use "../listbox/partials/variables" as listbox-variables;
 
+:host([disabled]) {
+	cursor: not-allowed;
+}
 
 .base {
 	$min-block-size: #{size.$vvd-size-normal};
@@ -52,7 +55,6 @@
 	}
 
 	&.disabled {
-		cursor: not-allowed;
 		pointer-events: none;
 	}
 

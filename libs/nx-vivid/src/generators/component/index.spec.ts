@@ -43,7 +43,7 @@ describe(`vivid component generator`, function () {
     tree.write(filePath, '');
     await vividComponentGenerator(tree, options);
     const result = tree.read(filePath, 'utf8').trim();
-    expect(result).toBe(`export * from './${options.name}';`);
+    expect(result).toBe(`export * from './${options.name}/definition';`);
   });
 
   it('should omit the component to components.ts exports when addToExports is false', async function() {
