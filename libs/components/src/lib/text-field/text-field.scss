@@ -50,7 +50,7 @@ $low-ink-color: --_low-ink-color;
 	}
 }
 
-.label,
+.label:not(slot),
 .label::slotted(label) {
 	color: var(#{constants.$vvd-color-canvas-text});
 	contain: inline-size;
@@ -120,7 +120,7 @@ $low-ink-color: --_low-ink-color;
 }
 
 .control {
-	&,
+	&:not(slot),
 	&::slotted(input) {
 		// ! note: input is required to stretch fully so that
 		// ! autofill indication applies on all fieldset area
@@ -138,27 +138,25 @@ $low-ink-color: --_low-ink-color;
 		padding-inline-start: var(#{variables.$text-field-gutter});
 	}
 
-	&:disabled,
+	&:not(slot):disabled,
 	&::slotted(input:disabled) {
 		cursor: not-allowed;
 		opacity: 1; /* 2. correct opacity on iOS */
 		-webkit-text-fill-color: var(#{appearance.get-appearance-token(text)}); /* 1. sets text fill to current `color` for safari */
 	}
 
-	&::placeholder,
-	&:disabled::placeholder,
-	&::slotted(input)::placeholder,
-	&::slotted(input:disabled)::placeholder {
-		opacity: 1; /* 2. correct opacity on iOS */
-		-webkit-text-fill-color: var(#{$low-ink-color}); /* 1. sets text fill to current `color` for safari */
+	// &::slotted(input)::placeholder - not working in safari, see workaround in text-field.ts
+	&:not(slot)::placeholder {
+		opacity: 1 !important; /* 2. correct opacity on iOS */
+		-webkit-text-fill-color: var(#{$low-ink-color}) !important; /* 1. sets text fill to current `color` for safari */
 	}
 
-	&:focus-visible,
+	&:not(slot):focus-visible,
 	&::slotted(input:focus-visible) {
 		outline: none;
 	}
 
-	.has-icon &,
+	.has-icon &:not(slot),
 	.has-icon &::slotted(input) {
 		padding-inline-start: calc(var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter}) * 2);
 	}

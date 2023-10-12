@@ -64,6 +64,25 @@ keyof TextField,
 	['value', { target: 'value', type: 'prop' }],
 ]);
 
+// Safari does not support styling the `::placeholder` pseudo-element on slotted input
+// See bug: https://bugs.webkit.org/show_bug.cgi?id=223814
+// As a workaround we add a stylesheet to root of text-field to apply the styles
+const safariWorkaroundClassName = '_vvd-3-text-field-safari-workaround';
+const safariWorkaroundStyleSheet = new CSSStyleSheet();
+safariWorkaroundStyleSheet.replaceSync(`
+.${safariWorkaroundClassName}::placeholder {
+	opacity: 1 !important;
+	-webkit-text-fill-color: var(--_low-ink-color) !important;
+}`);
+
+const installSafariWorkaroundStyle = (forElement: TextField) => {
+	const root = forElement.getRootNode() as ShadowRoot | Document;
+
+	if (!root.adoptedStyleSheets.includes(safariWorkaroundStyleSheet)) {
+		root.adoptedStyleSheets = [...root.adoptedStyleSheets, safariWorkaroundStyleSheet];
+	}
+};
+
 /**
  * Base class for text-field
  *
@@ -126,6 +145,7 @@ export class TextField extends FoundationTextfield {
 			const input = document.createElement('input');
 			input.slot = '_control';
 			input.id = controlId;
+			input.className = safariWorkaroundClassName;
 			this.control = input;
 
 			const notifier = Observable.getNotifier(this);
@@ -154,6 +174,8 @@ export class TextField extends FoundationTextfield {
 			label.htmlFor = controlId;
 			this._labelEl = label;
 			this.#handleLabelChange(label);
+
+			installSafariWorkaroundStyle(this);
 		}
 	}
 

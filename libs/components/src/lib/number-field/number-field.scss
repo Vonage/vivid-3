@@ -1,7 +1,7 @@
 @forward "../text-field/text-field.scss";
 
 .control {
-	padding-inline-end: 70px;
+	padding-inline-end: 70px !important;
 
 	&::-webkit-outer-spin-button,
 	&::-webkit-inner-spin-button {
