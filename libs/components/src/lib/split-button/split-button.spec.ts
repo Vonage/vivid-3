@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { SplitButton } from './split-button';
@@ -142,22 +142,31 @@ describe('vwc-split-button', () => {
 		});
 	});
 
-	describe('aria-label', function () {
-		it('should set "aria-label" on control if set on host', async function () {
-			const labelId = 'label';
-			element.setAttribute('aria-label', labelId);
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.label = 'Button label';
 			await elementUpdated(element);
-			expect(getControlElement(element).getAttribute('aria-label')).toEqual(labelId);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
-	});
 
-	describe('aria-expanded', function () {
-		it('should set "aria-expanded" on indicator if set on host', async function () {
-			element.setAttribute('aria-expanded', 'true');
-			await elementUpdated(element);
-
-			const indicator = element.shadowRoot?.querySelector('.indicator') as HTMLElement;
-			expect(indicator.getAttribute('aria-expanded')).toEqual('true');
+		describe('aria-label', function () {
+			it('should set "aria-label" on control if set on host', async function () {
+				const labelId = 'label';
+				element.setAttribute('aria-label', labelId);
+				await elementUpdated(element);
+				expect(getControlElement(element).getAttribute('aria-label')).toEqual(labelId);
+			});
+		});
+	
+		describe('aria-expanded', function () {
+			it('should set "aria-expanded" on indicator if set on host', async function () {
+				element.setAttribute('aria-expanded', 'true');
+				await elementUpdated(element);
+	
+				const indicator = element.shadowRoot?.querySelector('.indicator') as HTMLElement;
+				expect(indicator.getAttribute('aria-expanded')).toEqual('true');
+			});
 		});
 	});
 });

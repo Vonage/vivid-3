@@ -16,7 +16,7 @@ const getClasses = (_: Tag) => classNames(
  */
 export const TagGroupTemplate: (context: ElementDefinitionContext) => ViewTemplate<TagGroup> = () => {
 	return html<TagGroup>`
-		<div class="${getClasses}" role="listbox" aria-orientation="horizontal">
+		<div class="${getClasses}" role="listbox" aria-orientation="horizontal" aria-label="${x => x.ariaLabel}">
 			<slot></slot>
 		</div>
 	`;

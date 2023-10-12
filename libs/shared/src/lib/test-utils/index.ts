@@ -1,3 +1,5 @@
+import { configureAxe } from 'jest-axe';
+
 export const elementUpdated = async (element: Element | HTMLElement) => {
 	return new Promise(resolve => requestAnimationFrame(() => resolve(element)));
 };
@@ -33,6 +35,15 @@ export async function setAttribute(element: any, attribute: string, value: strin
   element[attribute] = value;
   await elementUpdated(element);
 }
+
+export const axe = configureAxe({
+  rules: {
+    // color contrast doesn't work in this env
+    'color-contrast': { enabled: false },
+    // stops the HTML provided from being treated as a whole page
+    'region': { enabled: false },
+  },
+});
 
 export * from './form-association';
 export * from './delegatesFocusPolyfill';

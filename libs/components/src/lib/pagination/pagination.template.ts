@@ -49,7 +49,7 @@ const paginationButtonRenderer = (buttonTag: string) => html`
 									shape="${(_, {parent: x}) => getPaginationShape(x)}"
 									style="inline-size: ${(value) => getPaginationButtonWidth(value)};"
 									tabindex="0"
-									aria-pressed="${(value, {parent}) => parent.selectedIndex === Number(value) - 1}"
+									aria-current="${(value, {parent}) => parent.selectedIndex === Number(value) - 1}"
 									@click="${handleSelection}"
 									@keydown="${handleKeyDown}">
 		</${buttonTag}>

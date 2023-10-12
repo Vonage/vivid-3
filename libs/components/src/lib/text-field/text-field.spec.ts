@@ -1,4 +1,5 @@
 import {
+	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture,
@@ -703,4 +704,16 @@ describe('vwc-text-field', () => {
 		});
 	});
 
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.label = 'Label';
+			element.value = 'Value text';
+			element.helperText = 'Helper text';
+			element.errorText = 'Error text';
+			element.charCount = true;
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
+		});
+	});
 });

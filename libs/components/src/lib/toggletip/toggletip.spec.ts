@@ -1,4 +1,4 @@
-import { ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture } from '@vivid-nx/shared';
+import { ADD_TEMPLATE_TO_FIXTURE, axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {fireEvent} from '@testing-library/dom';
 import type { Button } from '../button/button';
@@ -236,6 +236,18 @@ describe('vwc-toggletip', () => {
 			await elementUpdated(element);
 
 			expect(element.shadowRoot?.querySelector('header.headline')).toBeNull();
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.anchor = 'anchorButton';
+			element.open = true;
+			element.innerHTML = 'Test content';
+			element.headline = 'Headline';
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });
