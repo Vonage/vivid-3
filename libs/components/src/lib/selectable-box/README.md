@@ -35,6 +35,27 @@ It accepts a subset of predefined values.
 </div>
 ```
 
+### Control
+
+Set the `control` attribute to change the box's selectable control
+It accepts a subset of predefined values.
+
+- Type: `'checkbox'`, `'radio'`
+- Default: `'checkbox'`
+
+```html preview
+<div style="width: 450px;">
+    <vwc-layout gutters="small" row-spacing="small" column-basis="block">
+        <vwc-selectable-box control="checkbox">
+            <div>Checkbox control</div>
+        </vwc-selectable-box>
+        <vwc-selectable-box control="radio">
+            <div>Radio control</div>
+        </vwc-selectable-box>
+    </vwc-layout>
+</div>
+```
+
 ### Spacing
 
 Set the `spacing` attribute to change the box's spacing.

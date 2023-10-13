@@ -5,6 +5,8 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
+import { Checkbox } from '../checkbox/checkbox';
+import { Radio } from '../radio/radio';
 import { SelectableBox } from './selectable-box';
 
 const getClasses = ({ connotation, spacing, noPadding, selected }: SelectableBox) => classNames(
@@ -16,12 +18,16 @@ const getClasses = ({ connotation, spacing, noPadding, selected }: SelectableBox
 );
 
 /**
- *
+ * 
  */
-function renderControl(control: 'checkbox' | 'radio' | undefined) {
-	const controlTag = control === 'radio' ? 'vwc-radio' : 'vwc-checkbox';
-	return html<SelectableBox>`
-		<${controlTag} class="control"></${controlTag}>
+function renderControl(x: SelectableBox, c: ElementDefinitionContext) {
+	const Control = x.control === 'radio' ? Radio : Checkbox;
+	const tagName = c.tagFor(Control);
+	return html<Checkbox | Radio>`
+		<${tagName} 
+			class="control ${x.control || 'checkbox'}" 
+			?checked="${x.selected}">
+		</${tagName}>
 	`;
 }
 
@@ -35,11 +41,11 @@ export const SelectableBoxTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<SelectableBox> = (
-	/*context: ElementDefinitionContext */
+	context: ElementDefinitionContext
 ) => {
 	return html<SelectableBox>`
 	<div class="${getClasses}">
-		${x => renderControl(x.control)}
+		${x => renderControl(x, context)}
 		<slot></slot>
 	</div>
 `;
