@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
+import { attr, observable } from '@microsoft/fast-element';
 import type { Connotation } from '../enums';
 
 /**
@@ -32,13 +32,6 @@ export class AudioPlayer extends FoundationElement {
 	@attr src?: string;
 
 	/**
-	 * Indicates the audio player's type.
-	 *
-	 * @public
-	 */
-	@attr type?: string;
-
-	/**
 	 * Indicates whether audio player is disabled.
 	 *
 	 * @public
@@ -62,10 +55,9 @@ export class AudioPlayer extends FoundationElement {
 
 	/**
 	 *
-	 * @public
-	 * HTML Attribute: paused
+	 * @internal
 	 */
-	@attr({ mode: 'fromView' }) paused = true;
+	@observable paused = true;
 
 	/**
 	 * @internal
