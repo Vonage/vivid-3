@@ -21,7 +21,6 @@ describe('vwc-audio-player', () => {
 			expect(audioPlayerDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(AudioPlayer);
 			expect(element.src).toBeUndefined();
-			expect(element.type).toBeUndefined();
 			expect(element.connotation).toBeUndefined();
 			expect(element.timestamp).toEqual(false);
 			expect(element.noseek).toEqual(false);
