@@ -88,7 +88,7 @@ export class AudioPlayer extends FoundationElement {
 	updateProgress = () => {
 		const current: number = this._playerEl.currentTime;
 		const percent = (current / this._playerEl.duration) * 100;
-		(this.slider.querySelector('.progress') as HTMLElement).style.width = percent + '%';
+		(this._sliderEl.querySelector('.progress') as HTMLElement).style.width = percent + '%';
 
 		const currentTime: HTMLSpanElement | null | undefined = this.shadowRoot?.querySelector('.current-time');
 		if (currentTime) currentTime.textContent = this.#formatTime(current);
@@ -106,8 +106,8 @@ export class AudioPlayer extends FoundationElement {
 	};
 
 	#getCoefficient = (event: MouseEvent) => {
-		const offsetX = event.clientX - this.slider.offsetLeft;
-		const width = this.slider.clientWidth;
+		const offsetX = event.clientX - this._sliderEl.offsetLeft;
+		const width = this._sliderEl.clientWidth;
 		return offsetX / width;
 	};
 
@@ -117,8 +117,8 @@ export class AudioPlayer extends FoundationElement {
 	};
 
 	#inRange = (event: MouseEvent) => {
-		const min = this.slider.offsetLeft;
-		const max = min + this.slider.offsetWidth;
+		const min = this._sliderEl.offsetLeft;
+		const max = min + this._sliderEl.offsetWidth;
 		if (event.clientX < min || event.clientX > max) return false;
 		return true;
 	};
