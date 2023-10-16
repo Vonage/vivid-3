@@ -139,7 +139,7 @@ describe('vwc-audio-player', () => {
 			)) as AudioPlayer;
 		});
 
-		it('should call onMouseDown when the pin is clicked', () => {
+		it('should call onMouseDown when the pin is mousedown', () => {
 			const pin = getBaseElement(element).querySelector('#progress-pin') as HTMLElement;
 			element.onMouseDown = jest.fn();
 
@@ -153,5 +153,25 @@ describe('vwc-audio-player', () => {
 			expect(element.onMouseDown).toHaveBeenCalledWith(event);
 		});
 
+		it('should call rewind when mousemove', () => {
+			const pin = getBaseElement(element).querySelector('#progress-pin') as HTMLElement;
+			element.rewind = jest.fn();
+
+			const downEvent = new MouseEvent('mousedown', {
+				clientX: 100,
+			});
+
+			pin.dispatchEvent(downEvent);
+			elementUpdated(element);
+
+			const moveEvent = new MouseEvent('mousemove', {
+				clientX: 150,
+			});
+
+			element.dispatchEvent(moveEvent);
+			elementUpdated(element);
+
+			expect(element.rewind).toHaveBeenCalledWith(downEvent);
+		});
 	});
 });
