@@ -132,6 +132,30 @@ describe('vwc-audio-player', () => {
 		});
 	});
 
+	describe('updateProgress', function () {
+		it('should call updateProgress when timeupdate', () => {
+			const audio = element.shadowRoot?.querySelector('audio') as HTMLAudioElement;
+			element.updateProgress = jest.fn();
+
+			const event = new Event('timeupdate');
+			audio.dispatchEvent(event);
+
+			expect(element.updateProgress).toHaveBeenCalled();
+		});
+	});
+
+	describe('updateTotalTime', function () {
+		it('should call updateTotalTime when loadedmetadata', () => {
+			const audio = element.shadowRoot?.querySelector('audio') as HTMLAudioElement;
+			element.updateTotalTime = jest.fn();
+
+			const event = new Event('loadedmetadata');
+			audio.dispatchEvent(event);
+
+			expect(element.updateTotalTime).toHaveBeenCalled();
+		});
+	});
+
 	describe('mousedown', function () {
 		beforeEach(async () => {
 			element = (await fixture(
