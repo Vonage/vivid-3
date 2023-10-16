@@ -59,19 +59,12 @@ export class AudioPlayer extends FoundationElement {
 	 */
 	@observable paused = true;
 
-	player!: HTMLAudioElement;
-
 	/**
 	 * @internal
 	 */
-	private slider!: HTMLDivElement;
+	_sliderEl!: HTMLDivElement;
 
-	override connectedCallback() {
-		super.connectedCallback();
-
-		this.player = this.shadowRoot?.querySelector('audio') as HTMLAudioElement;
-		this.slider = this.shadowRoot?.querySelector('.slider') as HTMLDivElement;
-	}
+	_playerEl!: HTMLAudioElement;
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
@@ -85,16 +78,16 @@ export class AudioPlayer extends FoundationElement {
 
 	togglePlay = () => {
 		if (this.paused) {
-			this.player.play();
+			this._playerEl.play();
 		} else {
-			this.player.pause();
+			this._playerEl.pause();
 		}
 		this.paused = !this.paused;
 	};
 
 	updateProgress = () => {
-		const current: number = this.player.currentTime;
-		const percent = (current / this.player.duration) * 100;
+		const current: number = this._playerEl.currentTime;
+		const percent = (current / this._playerEl.duration) * 100;
 		(this.slider.querySelector('.progress') as HTMLElement).style.width = percent + '%';
 
 		const currentTime: HTMLSpanElement | null | undefined = this.shadowRoot?.querySelector('.current-time');
@@ -103,12 +96,12 @@ export class AudioPlayer extends FoundationElement {
 
 	updateTotalTime = () => {
 		const totalTime: HTMLSpanElement | null | undefined = this.shadowRoot?.querySelector('.total-time');
-		if (totalTime) totalTime.textContent = this.#formatTime(this.player.duration);
+		if (totalTime) totalTime.textContent = this.#formatTime(this._playerEl.duration);
 	};
 
 	rewind = (event: MouseEvent) => {
-		if (this.#inRange(event) && this.player) {
-			this.player.currentTime = (this.player.duration * this.#getCoefficient(event) as number);
+		if (this.#inRange(event) && this._playerEl) {
+			this._playerEl.currentTime = (this._playerEl.duration * this.#getCoefficient(event) as number);
 		}
 	};
 

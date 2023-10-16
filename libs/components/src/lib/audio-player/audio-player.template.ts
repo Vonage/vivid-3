@@ -1,4 +1,4 @@
-import { html, when } from '@microsoft/fast-element';
+import { html, ref, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
@@ -31,13 +31,13 @@ export const AudioPlayerTemplate: (context: ElementDefinitionContext, definition
           <span>/</span>
           <span class="total-time">0:00</span>`)}
 		  ${when(x => !x.noseek,
-		html`<div class="slider" @click="${(x, c) => x.rewind(c.event as MouseEvent)}">
+		html`<div class="slider" ${ref('_sliderEl')} @click="${(x, c) => x.rewind(c.event as MouseEvent)}">
           <div class="progress">
             <div class="pin ${getClasses}" id="progress-pin" @mousedown="${(x, c) => x.onMouseDown(c.event as MouseEvent)}"></div>
           </div>
         </div>`)}
       </div>
-      <audio src="${x => x.src}" type="audio/mpeg"
+      <audio ${ref('_playerEl')} src="${x => x.src}" type="audio/mpeg"
       @timeupdate="${x => x.updateProgress()}" @loadedmetadata="${x => x.updateTotalTime()}"></audio>
     </div>
   </${elevationTag}>`;
