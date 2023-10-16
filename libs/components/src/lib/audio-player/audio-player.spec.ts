@@ -1,6 +1,7 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Connotation } from '../enums';
+import { Button } from '../button/button';
 import { AudioPlayer } from './audio-player';
 import { audioPlayerDefinition } from './definition';
 import '.';
@@ -100,13 +101,28 @@ describe('vwc-audio-player', () => {
 	});
 
 	describe('paused', function () {
+		beforeEach(async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} timestamp src="https://download.samplelib.com/mp3/sample-6s.mp3"></${COMPONENT_TAG}>`
+			)) as AudioPlayer;
+		});
+
 		it('should pause audio on click', async function () {
 			const pauseButton = getBaseElement(element).querySelector('.pause') as HTMLButtonElement;
 			expect(element.paused).toEqual(true);
 			pauseButton.click();
 
-			elementUpdated(element);
+			await elementUpdated(element);
 			expect(element.paused).toEqual(false);
+		});
+
+		it('should change button icon', async function () {
+			const pauseButton = getBaseElement(element).querySelector('.pause') as Button;
+			expect(pauseButton.icon).toEqual('play-solid');
+
+			pauseButton.click();
+			await elementUpdated(element);
+			expect(pauseButton.icon).toEqual('pause-solid');
 		});
 	});
 
@@ -117,7 +133,7 @@ describe('vwc-audio-player', () => {
 			)) as AudioPlayer;
 		});
 
-		it('should call rewind when the slider is clicked', () => {
+		it('should call rewind when the slider is clicked', async function () {
 			const slider = getBaseElement(element).querySelector('.slider') as HTMLElement;
 			element.rewind = jest.fn();
 
@@ -126,7 +142,7 @@ describe('vwc-audio-player', () => {
 			});
 
 			slider.dispatchEvent(event);
-			elementUpdated(element);
+			await elementUpdated(element);
 
 			expect(element.rewind).toHaveBeenCalledWith(event);
 		});
@@ -163,7 +179,7 @@ describe('vwc-audio-player', () => {
 			)) as AudioPlayer;
 		});
 
-		it('should call onMouseDown when the pin is mousedown', () => {
+		it('should call onMouseDown when the pin is mousedown', async function () {
 			const pin = getBaseElement(element).querySelector('#progress-pin') as HTMLElement;
 			element.onMouseDown = jest.fn();
 
@@ -172,12 +188,12 @@ describe('vwc-audio-player', () => {
 			});
 
 			pin.dispatchEvent(event);
-			elementUpdated(element);
+			await elementUpdated(element);
 
 			expect(element.onMouseDown).toHaveBeenCalledWith(event);
 		});
 
-		it('should call rewind when mousemove', () => {
+		it('should call rewind when mousemove', async function () {
 			const pin = getBaseElement(element).querySelector('#progress-pin') as HTMLElement;
 			element.rewind = jest.fn();
 
@@ -186,14 +202,14 @@ describe('vwc-audio-player', () => {
 			});
 
 			pin.dispatchEvent(downEvent);
-			elementUpdated(element);
+			await elementUpdated(element);
 
 			const moveEvent = new MouseEvent('mousemove', {
 				clientX: 150,
 			});
 
 			element.dispatchEvent(moveEvent);
-			elementUpdated(element);
+			await elementUpdated(element);
 
 			expect(element.rewind).toHaveBeenCalledWith(downEvent);
 		});
