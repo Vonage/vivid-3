@@ -59,10 +59,7 @@ export class AudioPlayer extends FoundationElement {
 	 */
 	@observable paused = true;
 
-	/**
-	 * @internal
-	 */
-	private player!: HTMLAudioElement;
+	player!: HTMLAudioElement;
 
 	/**
 	 * @internal
@@ -81,7 +78,7 @@ export class AudioPlayer extends FoundationElement {
 		window.removeEventListener('mouseup', this.#onMouseUp);
 	}
 
-	onMouseDown = (): any => {
+	onMouseDown = (_event: MouseEvent): any => {
 		this.addEventListener('mousemove', this.rewind, false);
 		window.addEventListener('mouseup', this.#onMouseUp);
 	};
@@ -111,7 +108,7 @@ export class AudioPlayer extends FoundationElement {
 
 	rewind = (event: MouseEvent) => {
 		if (this.#inRange(event) && this.player) {
-			this.player.currentTime = this.player.duration * this.#getCoefficient(event);
+			this.player.currentTime = (this.player.duration * this.#getCoefficient(event) as number);
 		}
 	};
 

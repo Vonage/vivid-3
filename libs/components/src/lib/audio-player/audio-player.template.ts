@@ -20,7 +20,7 @@ export const AudioPlayerTemplate: (context: ElementDefinitionContext, definition
 	return html<AudioPlayer>`
 	<${elevationTag} dp="2">
     <div class="base ${getClasses}">
-      <${buttonTag} icon="${x => x.paused ? 'play-solid' : 'pause-solid'}" 
+      <${buttonTag} class="pause" icon="${x => x.paused ? 'play-solid' : 'pause-solid'}" 
       size='condensed' ?disabled="${x => x.disabled}" 
       connotation="${x => x.connotation}" 
       @click="${x => x.togglePlay()}"></${buttonTag}>
@@ -33,7 +33,7 @@ export const AudioPlayerTemplate: (context: ElementDefinitionContext, definition
 		  ${when(x => !x.noseek,
 		html`<div class="slider" @click="${(x, c) => x.rewind(c.event as MouseEvent)}">
           <div class="progress">
-            <div class="pin ${getClasses}" id="progress-pin" @mousedown="${x => x.onMouseDown()}"></div>
+            <div class="pin ${getClasses}" id="progress-pin" @mousedown="${(x, c) => x.onMouseDown(c.event as MouseEvent)}"></div>
           </div>
         </div>`)}
       </div>
