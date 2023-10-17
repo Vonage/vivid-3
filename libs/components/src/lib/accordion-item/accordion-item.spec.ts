@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { AccordionItem } from './accordion-item';
 import '.';
@@ -15,7 +15,7 @@ describe('vwc-accordion-item', () => {
 
 	beforeEach(async () => {
 		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+			`<${COMPONENT_TAG}><div>Accordion content</div></${COMPONENT_TAG}>`
 		)) as AccordionItem;
 	});
 
@@ -108,13 +108,6 @@ describe('vwc-accordion-item', () => {
 		});
 	});
 
-	describe('aria expanded', () => {
-		it('should set aria-expanded to false', async () => {
-			const button = element.shadowRoot?.querySelector('.heading-button');
-			expect(button?.getAttribute('aria-expanded')).toEqual('false');
-		});
-	});
-
 	describe('meta', function () {
 		it('should render meta', async function () {
 			const metaText = 'Some meta text';
@@ -137,6 +130,43 @@ describe('vwc-accordion-item', () => {
 
 			expect(accordionButton?.classList.contains(`size-${size}`)).toBeTruthy();
 			expect(accordionRegion?.classList.contains(`size-${size}`)).toBeTruthy();
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.id = 'test1';
+			element.heading = 'Accordion item heading';
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
+		});
+
+		it('should link the header button and content region using aria', async () => {
+			const TEST_ID = 'test';
+			element.id = TEST_ID;
+			element.heading = 'Accordion item heading';
+			await elementUpdated(element);
+
+			const accordionButton = element.shadowRoot?.getElementById(TEST_ID);
+			const accordionRegion = element.shadowRoot?.getElementById(`${TEST_ID}-panel`);
+
+			expect(accordionButton?.getAttribute('aria-controls')).toBe(`${TEST_ID}-panel`);
+			expect(accordionRegion?.getAttribute('aria-labelledby')).toBe(TEST_ID);
+		});
+
+		it('should set aria-expanded to false when closed', async () => {
+			const button = element.shadowRoot?.querySelector('.heading-button');
+			expect(button?.getAttribute('aria-expanded')).toEqual('false');
+		});
+
+		it('should set aria-expanded to true when expanded', async () => {
+			element.expanded = true;
+			await elementUpdated(element);
+
+			const button = element.shadowRoot?.querySelector('.heading-button');
+			
+			expect(button?.getAttribute('aria-expanded')).toEqual('true');
 		});
 	});
 });

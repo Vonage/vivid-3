@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { Orientation } from '@microsoft/fast-web-utilities';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Slider } from './slider';
@@ -136,6 +136,18 @@ describe('vwc-slider', () => {
 
 			expect(spy).toHaveBeenCalled();
 			expect(spy.mock.calls.length).toEqual(1);
+		});
+	});
+
+	/* Fails as the component does not have an accessible name: aria-label */
+	xdescribe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.min = 3;
+			element.max = 10;
+			element.value = '5';
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

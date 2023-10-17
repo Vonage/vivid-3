@@ -1,6 +1,6 @@
 # Avatar
 
-Represents an avatar custom element.
+Avatars are used to represent a user or a system entity. They can be used to represent a person, a group of people, or an object.
 
 ```js
 <script type="module">
@@ -17,9 +17,9 @@ Represents an avatar custom element.
 ### Icon
 
 Use `icon` to set an icon to the avatar.
-View list of available icon at the [vivid icons gallery](../../icons/icons-gallery).
+View the list of available icons at the [vivid icons gallery](../../icons/icons-gallery).
 
-Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the avatar.
+Note: An icon on its own doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the avatar.
 
 - Type: `string`
 - Default: `user-line`
@@ -30,13 +30,13 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 
 ### Initials
 
-Set the `initials` attribute to set avatar's initials.
+Set the `initials` attribute to set avatar's initials. This will cause the avatar to present the initials as its content instead of an icon.
 
 - Type: `string`
 - Default: `none`
 
 ```html preview
-<vwc-avatar initials="vivid avatar"></vwc-avatar>
+<vwc-avatar initials="JD"></vwc-avatar>
 ```
 
 ### Appearance
@@ -95,9 +95,9 @@ Use the `size` attribute/property to set the avatar's to one of the predefined b
 <vwc-avatar size='condensed' shape="pill"></vwc-avatar>
 <vwc-avatar size='normal' shape="pill"></vwc-avatar>
 <vwc-avatar size='expanded' shape="pill"></vwc-avatar>
-<vwc-avatar size='condensed' shape="pill" initials="john doe"></vwc-avatar>
-<vwc-avatar size='normal' shape="pill" initials="john doe"></vwc-avatar>
-<vwc-avatar size='expanded' shape="pill" initials="john doe"></vwc-avatar>
+<vwc-avatar size='condensed' shape="pill" initials="JD"></vwc-avatar>
+<vwc-avatar size='normal' shape="pill" initials="JD"></vwc-avatar>
+<vwc-avatar size='expanded' shape="pill" initials="JD"></vwc-avatar>
 ```
 
 ## Slots
@@ -165,6 +165,7 @@ Assign nodes to the `graphic` slot to set a graphic media of any kind (e.g. imag
 ```
 
 ## Accessibility
-It's generally a good idea to include an `aria-label` attribute on elements that are important for a user to be able to interact with or understand its purpose.  
-you could use an aria-label attribute like "Profile avatar" or "User profile picture" to describe the purpose of the avatar.  
-if your avatar is purely decorative and is not interactive, then you can use the `role="presentation"` attribute to indicate that the element is purely decorative.
+It's generally a good idea to include an `aria-label` attribute on elements that are important for a user to be able to interact with or understand its purpose.
+You could use an aria-label attribute like "Profile avatar" or "User profile picture" to describe the purpose of the avatar.  
+
+If your avatar is purely decorative and is not interactive, then you can use the `role="presentation"` attribute to indicate that the element is purely decorative, and should be ignored by assistive technologies such as screen readers.

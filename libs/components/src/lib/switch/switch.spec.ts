@@ -1,4 +1,4 @@
-import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {Connotation} from '../enums';
 import { Switch } from './switch';
@@ -272,6 +272,17 @@ describe('vwc-switch', () => {
 			expect(appearanceFilledClassExistsAfterChecked).toEqual(true);
 			expect(appearanceFilledClassExistsAfterDisabled).toEqual(false);
 			expect(appearanceFilledClassExistsAfterReadonly).toEqual(false);
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.label = 'Label';
+			element.checked = true;
+			element.value = 'test';
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

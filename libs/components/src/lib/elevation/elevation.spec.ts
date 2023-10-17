@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Elevation } from './elevation';
 import '.';
@@ -54,6 +54,12 @@ describe('vwc-elevation', () => {
 	it('should have a slot', async () => {
 		await elementUpdated(element);
 		expect(Boolean(element.shadowRoot?.querySelector('slot'))).toEqual(true);
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			expect(await axe(element)).toHaveNoViolations();
+		});
 	});
 });
 

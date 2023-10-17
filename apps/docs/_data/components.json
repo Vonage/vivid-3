@@ -25,16 +25,8 @@
 		"status": "alpha"
 	},
 	{
-		"title": "breadcrumb",
-		"markdown": "./libs/components/src/lib/breadcrumb/README.md",
-		"children": [
-			"breadcrumb-item"
-		]
-	},
-	{
 		"title": "breadcrumb-item",
-		"markdown": "./libs/components/src/lib/breadcrumb-item/README.md",
-		"parent": "breadcrumb"
+		"markdown": "./libs/components/src/lib/breadcrumb-item/README.md"
 	},
 	{
 		"title": "button",
@@ -55,7 +47,16 @@
 	{
 		"title": "date-picker",
 		"status": "alpha",
-		"markdown": "./libs/components/src/lib/date-picker/README.md"
+		"markdown": "./libs/components/src/lib/date-picker/README.md",
+		"children": [
+			"date-range-picker"
+		]
+	},
+	{
+		"title": "date-range-picker",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/date-range-picker/README.md",
+		"parent": "date-picker"
 	},
 	{
 		"title": "icon",

@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Button } from '../button/button';
 import { Shape, Size } from '../enums';
@@ -402,27 +402,6 @@ describe('vwc-pagination', () => {
 		});
 	});
 
-	describe('aria', function () {
-		it('should set aria-pressed false by default', async function () {
-			element.total = 20;
-			await elementUpdated(element);
-			const buttons = Array.from(element.shadowRoot?.querySelectorAll('.vwc-pagination-button') as unknown as Button[]);
-			const allButtonsAriaPressedFalse = buttons?.reduce((correct, button, index) => {
-				if (element.selectedIndex === index) return correct;
-				return correct && button.getAttribute('aria-pressed') === 'false';
-			}, true);
-			expect(allButtonsAriaPressedFalse).toEqual(true);
-		});
-
-		it('should set aria-pressed on the selected button', async function () {
-			element.total = 20;
-			element.selectedIndex = 3;
-			await elementUpdated(element);
-			const button = element.shadowRoot?.querySelectorAll('.vwc-pagination-button').item(3);
-			expect(button?.getAttribute('aria-pressed')).toEqual('true');
-		});
-	});
-
 	describe('tabindex', function () {
 		it('should set tabindex of buttons to 0 by default', async function () {
 			element.total = 20;
@@ -469,6 +448,19 @@ describe('vwc-pagination', () => {
 			}, true);
 			expect(allButtonsCondensed).toEqual(true);
 		});
+
+		it.each([
+			['size-super-condensed', Size.SuperCondensed],
+			['size-condensed', Size.Condensed],
+			['size-normal', Size.Normal],
+			['size-super-condensed', 'invalid-size' as PaginationSize]
+		] as const)('should set class %s on dots if size is %s', async function (className, size) {
+			element.total = 20;
+			element.size = size;
+			await elementUpdated(element);
+			const dots = element.shadowRoot?.querySelector('.dots');
+			expect(dots?.classList.contains(className)).toEqual(true);
+		});
 	});
 
 	describe('shape', function () {
@@ -504,6 +496,29 @@ describe('vwc-pagination', () => {
 				return correct && button.shape === Shape.Rounded;
 			}, true);
 			expect(allButtonsRounded).toEqual(true);
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.total = 20;
+			element.selectedIndex = 10;
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
+		});
+
+		describe('aria', function () {
+			it('should set aria-current false by default', async function () {
+				element.total = 20;
+				await elementUpdated(element);
+				const buttons = Array.from(element.shadowRoot?.querySelectorAll('.vwc-pagination-button') as unknown as Button[]);
+				const allButtonsAriaSelectedFalse = buttons?.reduce((correct, button, index) => {
+					if (element.selectedIndex === index) return correct;
+					return correct && button.getAttribute('aria-current') === 'false';
+				}, true);
+				expect(allButtonsAriaSelectedFalse).toEqual(true);
+			});
 		});
 	});
 });
