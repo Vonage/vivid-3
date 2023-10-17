@@ -172,7 +172,7 @@ test.describe('constraints validation', async () => {
 			</form>`
 		});
 
-		await page.locator('vwc-text-field #control').fill('invalid date range');
+		await page.locator('vwc-text-field input').fill('invalid date range');
 		await page.getByRole('button', { name: 'Submit' }).click();
 
 		await expect(page.locator('vwc-date-range-picker .error-message')).toBeVisible();
@@ -187,7 +187,7 @@ test.describe('constraints validation', async () => {
 			</form>`
 		});
 
-		await page.locator('vwc-text-field #control').fill('09/01/2023 – 09/02/2023');
+		await page.locator('vwc-text-field input').fill('09/01/2023 – 09/02/2023');
 		await page.getByRole('button', { name: 'Reset' }).click();
 
 		await expect(page.locator('vwc-date-range-picker .error-message')).not.toBeVisible();
