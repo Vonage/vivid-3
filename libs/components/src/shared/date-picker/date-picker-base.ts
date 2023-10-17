@@ -4,19 +4,12 @@ import type { TextField } from '../../lib/text-field/text-field';
 import type { Button } from '../../lib/button/button';
 import { FormElementHelperText, Localized } from '../patterns';
 import { addDays, compareDateStr, currentDateStr, type DateStr, isValidDateStr } from './calendar/dateStr';
-import {
-	addMonths,
-	areMonthsEqual,
-	compareMonths,
-	getCurrentMonth,
-	type Month,
-	monthOfDate,
-	monthToStr
-} from './calendar/month';
+import { addMonths, compareMonths, getCurrentMonth, type Month, monthOfDate, monthToStr } from './calendar/month';
 import { buildCalendarGrid } from './calendar/calendarGrid';
 import { buildMonthPickerGrid, MonthsPerRow } from './calendar/monthPickerGrid';
 import { yearOfDate } from './calendar/year';
 import { FormAssociatedDatePickerBase } from './date-picker-base.form-associated';
+import type { CalendarSegment, MonthPickerSegment, Segment } from './calendar/segment';
 
 /// Converter ensures that the value is always a valid date string or empty string
 const ValidDateFilter: ValueConverter = {
@@ -151,6 +144,20 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 	 * @internal
 	 */
 	@observable _selectedMonth = getCurrentMonth();
+
+	protected _adjustSelectedMonthToEnsureVisibilityOf(date: DateStr) {
+		const month = monthOfDate(date);
+		const firstDisplayedMonth = this._selectedMonth;
+		const lastDisplayedMonth = addMonths(this._selectedMonth, this._numCalendars - 1);
+		if(compareMonths(month, firstDisplayedMonth) < 0) {
+			this._selectedMonth = month;
+			return true;
+		} else if(compareMonths(month, lastDisplayedMonth) > 0) {
+			this._selectedMonth = addMonths(month, 1 - this._numCalendars);
+			return true;
+		}
+		return false;
+	}
 
 	/**
 	 * Today's date.
@@ -483,17 +490,57 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 	// --- Calendar ---
 
 	/**
-	 * The calendar grid used to render the calendar.
+	 * The number of calendars to show in the picker.
 	 * @internal
 	 */
-	get _calendarGrid() {
-		return buildCalendarGrid(this._selectedMonth, this.locale.datePicker);
+	@observable _numCalendars = 1;
+
+	/**
+	 * @internal
+	 */
+	get _segments(): Segment[] {
+		const segments: Segment[] = [];
+
+		if (this._inMonthPicker) {
+			segments.push({
+				id: 0,
+				type: 'month-picker',
+				title: `${this._monthPickerYear}`,
+				titleClickable: true,
+				prevYearButton: true,
+				nextYearButton: true,
+				months: buildMonthPickerGrid(
+					this._monthPickerYear!,
+					this.locale.datePicker
+				)
+			});
+		} else {
+			for (let i = 0; i < this._numCalendars; i++) {
+				const month = addMonths(this._selectedMonth, i);
+				const isSingle = this._numCalendars === 1;
+				const isFirst = i === 0;
+				const isLast = i === this._numCalendars - 1;
+				segments.push({
+					id: i,
+					type: 'calendar',
+					title: `${this.locale.datePicker.months.name[month.month]} ${month.year}`,
+					titleClickable: isSingle,
+					prevYearButton: isFirst && isSingle,
+					prevMonthButton: isFirst,
+					nextMonthButton: isLast,
+					nextYearButton: isLast && isSingle,
+					calendar: buildCalendarGrid(month, this.locale.datePicker)
+				});
+			}
+		}
+
+		return segments;
 	}
 
 	/**
 	 * @internal
 	 */
-	_hideDatesOutsideMonth = true;
+	_hideDatesOutsideMonth = false;
 
 	/**
 	 * The last date that had focus, used to implement tab roving
@@ -567,11 +614,7 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 		}
 
 		if (newDate && this._isDateInValidRange(newDate)) {
-			const newMonth = monthOfDate(newDate);
-
-			// Change month if we moved to a different month
-			if (!areMonthsEqual(newMonth, this._selectedMonth)) {
-				this._selectedMonth = newMonth;
+			if (this._adjustSelectedMonthToEnsureVisibilityOf(newDate)) {
 				// Update DOM immediately so that we can focus the new date
 				DOM.processUpdates();
 			}
@@ -602,21 +645,30 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 	 */
 	@volatile
 	get _tabbableDate(): DateStr | null {
-		const datesInGrid = this._calendarGrid.grid.flat().map((date) => date.date);
+		const datesInSegments = this._segments
+			.filter((segment): segment is CalendarSegment => segment.type === 'calendar')
+			.flatMap(segment =>
+				segment.calendar.grid.flat()
+					.map(d => d.date)
+			);
 
 		const candidates = [
 			this._lastFocussedDate,
 			...this._getSelectedDates(),
 			currentDateStr(),
-			...datesInGrid,
+			...datesInSegments,
 		];
+
+		const firstVisibleMonth = this._selectedMonth;
+		const lastVisibleMonth = addMonths(this._selectedMonth, this._numCalendars - 1);
 
 		// Find valid candidate
 		return (
 			candidates.find(
 				(date) =>
 					date &&
-					areMonthsEqual(monthOfDate(date), this._selectedMonth) &&
+					compareMonths(monthOfDate(date), firstVisibleMonth) >= 0 &&
+					compareMonths(monthOfDate(date), lastVisibleMonth) <= 0 &&
 					this._isDateInValidRange(date)
 			) ?? null
 		);
@@ -636,17 +688,6 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 	 */
 	get _inMonthPicker() {
 		return this._monthPickerYear !== null;
-	}
-
-	/**
-	 * The months grid used to render the month picker.
-	 * @internal
-	 */
-	get _monthPickerGrid() {
-		return buildMonthPickerGrid(
-			this._monthPickerYear ?? this._currentMonth.year,
-			this.locale.datePicker
-		);
 	}
 
 	/**
@@ -716,22 +757,25 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 	 */
 	@volatile
 	get _tabbableMonth(): Month | null {
-		const year = this._monthPickerYear ?? this._selectedMonth.year;
-
-		const monthsInGrid = this._monthPickerGrid.flat().map((cell) => cell.month);
+		const monthsInSegments = this._segments
+			.filter(
+				(segments): segments is MonthPickerSegment =>
+					segments.type === 'month-picker'
+			)
+			.flatMap((segment) => segment.months.flat().map((c) => c.month));
 
 		const candidates = [
 			this._lastFocussedMonth,
 			this._selectedMonth,
 			getCurrentMonth(),
-			...monthsInGrid,
+			...monthsInSegments,
 		];
 
 		// Find valid candidate
 		return (
 			candidates.find(
 				(month) =>
-					month && month.year === year && this._isMonthInValidRange(month)
+					month && month.year === this._monthPickerYear && this._isMonthInValidRange(month)
 			) ?? null
 		);
 	}

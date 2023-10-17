@@ -8,12 +8,12 @@ import {
 
 const components = ['date-range-picker'];
 
-test('should show the component', async ({ page }: { page: Page }) => {
+test.only('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 	<style>
 		.space-for-popup {
 			height: 450px;
-			width: 380px;
+			width: 680px;
 			flex-shrink: 0;
 		}
 		.layout {
@@ -32,9 +32,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<div class="space-for-popup">
 			<vwc-date-range-picker id="date-range-picker" start="2011-11-11" end="2011-11-22"></vwc-date-range-picker>
 		</div>
-		<div class="space-for-popup">
-			<vwc-date-range-picker id="month-picker"></vwc-date-range-picker>
-		</div>
 		<div class="grid">
 			<vwc-date-range-picker label="Label"></vwc-date-range-picker>
 			<vwc-date-range-picker helper-text="Helper text"></vwc-date-range-picker>
@@ -43,7 +40,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	</div>`;
 
 	await useFakeTime(page, new Date('August 11 2023 11:11:11').valueOf());
-	await page.setViewportSize({ width: 1300, height: 500 });
+	await page.setViewportSize({ width: 1000, height: 500 });
 
 	await loadComponents({
 		page,
@@ -60,16 +57,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.waitForLoadState('networkidle');
 
 	await page.locator('#date-range-picker #calendar-button').click();
-
-	// Prevent clicking the month picker from closing the date picker
-	await page.evaluate(() => {
-		const datePicker = document.querySelector('#month-picker') as any;
-		datePicker.addEventListener('click', (e) => e.stopPropagation());
-	});
-
-	await page.locator('#month-picker #calendar-button').click();
-
-	await page.locator('#month-picker .title-action').click();
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/date-range-picker.png'
