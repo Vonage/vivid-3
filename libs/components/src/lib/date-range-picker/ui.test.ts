@@ -8,7 +8,7 @@ import {
 
 const components = ['date-range-picker'];
 
-test.only('should show the component', async ({ page }: { page: Page }) => {
+test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 	<style>
 		.space-for-popup {
