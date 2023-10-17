@@ -83,8 +83,8 @@ test('selecting a date range', async ({ page }: { page: Page }) => {
 
 	await page.locator('vwc-date-range-picker #calendar-button').click();
 
-	await page.getByRole('gridcell', { name: '10' }).click();
-	await page.getByRole('gridcell', { name: '20' }).click();
+	await page.getByRole('gridcell', { name: '10' }).first().click();
+	await page.getByRole('gridcell', { name: '20' }).first().click();
 
 	await expect(page.locator('vwc-date-range-picker')).toHaveAttribute(
 		'current-start',
