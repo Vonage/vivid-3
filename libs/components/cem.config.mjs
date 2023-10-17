@@ -7,7 +7,7 @@ import fs from 'fs'
 
 export default {
     /** Globs to analyze */
-    globs: ['libs/components/src/lib/**/*.ts'],
+    globs: ['libs/components/src/lib/**/*.ts', 'libs/components/src/shared/date-picker/date-picker-base.ts'],
     /** Globs to exclude */
     exclude: [
         '**/*.md',

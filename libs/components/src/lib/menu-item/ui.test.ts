@@ -12,7 +12,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<style>
 			div {
 				width: 100%;
-				height: 1300px;
+				height: 1550px;
 				position: relative
 			}
 		</style>
@@ -41,6 +41,15 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-divider></vwc-divider>
 				<vwc-menu-item icon="layout-1-solid" role="menuitemradio" text="Radio 1.1"></vwc-menu-item>
 				<vwc-menu-item icon="apps-solid" role="menuitemradio" text="Radio 1."></vwc-menu-item>
+				<vwc-divider></vwc-divider>
+				<vwc-menu-item role="menuitemcheckbox" text="Checkbox 1" checked check-trailing></vwc-menu-item>
+				<vwc-menu-item role="menuitemradio" text="Radio 1" checked check-trailing></vwc-menu-item>
+				<vwc-divider></vwc-divider>
+				<vwc-menu-item role="menuitemcheckbox" text="Checkbox 1" check-appearance="tick-only"></vwc-menu-item>
+				<vwc-menu-item role="menuitemcheckbox" text="Checkbox 2" checked check-appearance="tick-only"></vwc-menu-item>
+				<vwc-menu-item role="menuitemradio" text="Radio 1" check-appearance="tick-only"></vwc-menu-item>
+				<vwc-menu-item role="menuitemradio" text="Radio 2" checked check-appearance="tick-only"></vwc-menu-item>
+				<vwc-divider></vwc-divider>
 				<vwc-menu-item icon="home" text="primary text with long text and default line clamp"
 				text-secondary="secondary text with long text and default line clamp" role="menuitemradio" ></vwc-menu-item>
 				<vwc-menu-item style="--text-primary-line-clamp:2; --text-secondary-line-clamp: 2;"
@@ -55,13 +64,13 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-menu-item text="Available" role="menuitemradio">
 				  <vwc-badge slot="meta" appearance='filled' connotation='success' shape='pill' icon='check-solid'></vwc-badge>
 				</vwc-menu-item>
-				<vwc-menu-item text="Bussy" role="menuitemcheckbox" checked>
+				<vwc-menu-item text="Busy" role="menuitemcheckbox" checked>
 					<vwc-badge slot="meta" appearance='filled' connotation='alert' shape='pill' icon='minus-solid'></vwc-badge>
 				</vwc-menu-item>
 			</vwc-menu>
 		</div>`;
 
-	page.setViewportSize({ width: 200, height: 1300 });
+	page.setViewportSize({ width: 200, height: 1550 });
 
 	await loadComponents({
 		page,
