@@ -1,4 +1,4 @@
-# Date range picker
+# Date Range Picker
 
 The date range picker component is a text input with a calendar overlay. It allows the user to select a date range.
 
