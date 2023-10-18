@@ -31,23 +31,12 @@ function renderControl(x: SelectableBox, c: ElementDefinitionContext) {
 			${x.ariaLabel !== null && !x.clickable ? `aria-label="${x.ariaLabel}"` : ''}
 			${x.ariaLabelledby !== null && !x.clickable ? `aria-labelledby="${x.ariaLabelledby}"` : ''}
 			${x.clickable ? 'tabindex="-1" aria-hidden="true"' : ''}
-			@change="${!x.clickable ? x.handleCheckedChange : () => null}"
+			${!x.clickable ? `@change="${x.handleCheckedChange}"` : ''}
 			class="control ${x.control || 'checkbox'}" 
 			connotation="${x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
 			checked="${x.checked}">
 		</${tagName}>
 	`;
-}
-
-function clickHandler(x: SelectableBox) {
-	if (!x.clickable) return;
-	x.handleCheckedChange();
-}
-
-function keypressHandler(x: SelectableBox, evt: KeyboardEvent) {
-	if (!x.clickable) return;
-	if (evt.code === 'Space')
-		x.handleCheckedChange();
 }
 
 /**
@@ -64,15 +53,15 @@ export const SelectableBoxTemplate: (
 ) => {
 	const focusTemplate = focusTemplateFactory(context);
 	return html<SelectableBox>`
-	<div 
+	<div
 		class="${getClasses}"
 		tabindex="${x => x.clickable ? '0' : null}"
 		role="${x => x.clickable ? x.control || 'checkbox' : null}"
 		aria-checked="${x => x.clickable && x.checked ? x.checked : null}"
 		aria-label="${x => x.clickable ? x.ariaLabel : null}"
 		aria-labelledby="${x => x.clickable ? x.ariaLabelledby : null}"
-		@keypress="${(x, c) => keypressHandler(x, c.event as KeyboardEvent)}"
-		@click="${x => clickHandler(x)}"
+		@keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}"
+		@click="${x => x.clickable ? x.handleCheckedChange() : null}"
 	>
 		${(x) => x.clickable ? focusTemplate : ''}
 		${x => renderControl(x, context)}

@@ -105,16 +105,44 @@ describe('vwc-selectable-box', () => {
 	});
 
 	describe('changed event', () => {
-		it('should emit the changed event when the checked state changes', async () => {
-			element.clickable = true;
-			await elementUpdated(element);
-			const baseElement = getBaseElement(element);
-			const spy = jest.fn();
-			element.addEventListener('change', spy);
-			baseElement.click();
-			await elementUpdated(element);
+		describe('clickable', () => {
+			it('should emit the change event when the checked state changes', async () => {
+				element.clickable = true;
+				await elementUpdated(element);
+				const baseElement = getBaseElement(element);
+				const spy = jest.fn();
+				element.addEventListener('change', spy);
+				baseElement.click();
+				
+				expect(spy).toHaveBeenCalled();
+			});
 
-			expect(spy).toHaveBeenCalled();
+			it('should emit the change event when the checked state changes with keydown', async () => {
+				element.clickable = true;
+				await elementUpdated(element);
+				const baseElement = getBaseElement(element);
+				const spy = jest.fn();
+				element.addEventListener('change', spy);
+				baseElement.dispatchEvent(new KeyboardEvent('keydown', { composed: true, code: 'Space' }));
+				
+				expect(spy).toHaveBeenCalled();
+			});
+		});
+
+		describe('checked radio', () => {
+			it('should not emit the change event', async () => {
+				element.control = 'radio';
+				element.checked = true;
+				element.clickable = true;
+				await elementUpdated(element);
+				const baseElement = getBaseElement(element);
+				const spy = jest.fn();
+				element.addEventListener('change', spy);
+				baseElement.click();
+				await elementUpdated(element);
+	
+				expect(spy).not.toHaveBeenCalled();
+			});
 		});
 	});
 

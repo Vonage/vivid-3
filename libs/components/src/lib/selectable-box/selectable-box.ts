@@ -78,9 +78,14 @@ export class SelectableBox extends FoundationElement {
 	*/
 	@attr({ mode: 'boolean'}) clickable = false;
 
-	handleCheckedChange = () => {
+	handleCheckedChange() {
 		if (this.control === 'radio' && this.checked) return;
 		this.checked = !this.checked;
 		this.$emit('change', { checked: this.checked });
-	};
+	}
+
+	handleKeydown(event: KeyboardEvent) {
+		if (event.code === 'Space' && this.clickable) this.handleCheckedChange();
+		return true;
+	}
 }
