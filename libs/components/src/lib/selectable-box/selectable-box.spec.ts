@@ -105,6 +105,14 @@ describe('vwc-selectable-box', () => {
 	});
 
 	describe('changed event', () => {
+		it('should not emit the change event when the base element is click and the element is not clickable', async () => {
+			const baseElement = getBaseElement(element);
+			const spy = jest.fn();
+			element.addEventListener('change', spy);
+			baseElement.click();
+			
+			expect(spy).not.toHaveBeenCalled();
+		});
 		describe('clickable', () => {
 			it('should emit the change event when the checked state changes', async () => {
 				element.clickable = true;
