@@ -28,17 +28,18 @@
 .base {
 	@include connotation.connotation(selectable-box);
 	@include appearance.appearance;
+
 	--spacing-unit: 16px;
 
-	border-radius: 6px;
 	background-color: var(#{appearance.get-appearance-token(fill)});
+	border-radius: 6px;
 	inline-size: 100%;
-	text-align: start;
 	padding: var(--spacing-unit);
-	padding-top: calc(var(--spacing-unit) + 36px);
+	text-align: start;
 	position: relative;
-	border: 1px solid var(#{appearance.get-appearance-token(outline)});
+	padding-block-start: calc(var(--spacing-unit) + 36px);
 	min-height: calc(var(--spacing-unit) * 2 + 22px);
+	border: 1px solid var(#{appearance.get-appearance-token(outline)});
 
 	&.spacing-condensed {
 		--spacing-unit: 8px;
