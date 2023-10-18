@@ -32,6 +32,7 @@
     "ramda": "^0.28.0",
     "regenerator-runtime": "^0.13.11",
     "tslib": "^2.5.0",
+    "uuid": "^9.0.1",
     "vite-plugin-static-copy": "^0.17.0",
     "vitest-fetch-mock": "^0.2.2"
   },
@@ -72,6 +73,7 @@
     "@types/node": "18.7.1",
     "@types/query-selector-shadow-dom": "^1.0.0",
     "@types/ramda": "^0.27.66",
+    "@types/uuid": "^9.0.5",
     "@typescript-eslint/eslint-plugin": "5.62.0",
     "@typescript-eslint/parser": "5.62.0",
     "@typescript-eslint/utils": "5.62.0",
