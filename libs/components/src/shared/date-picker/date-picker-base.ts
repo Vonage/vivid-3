@@ -542,6 +542,9 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 	 */
 	_onDateMouseLeave(_: DateStr) {}
 
+	/**
+	 * @internal
+	 */
 	abstract _onDateClick(date: DateStr): void;
 
 	/**
