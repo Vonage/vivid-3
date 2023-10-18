@@ -31,14 +31,14 @@
 
 	--spacing-unit: 16px;
 
-	background-color: var(#{appearance.get-appearance-token(fill)});
 	position: relative;
-	border-radius: 6px;
+	background-color: var(#{appearance.get-appearance-token(fill)});
 	min-height: calc(var(--spacing-unit) * 2 + 22px);
+	border-radius: 6px;
 	padding: var(--spacing-unit);
 	inline-size: 100%;
-	text-align: start;
 	border: 1px solid var(#{appearance.get-appearance-token(outline)});
+	text-align: start;
 	padding-block-start: calc(var(--spacing-unit) + 36px);
 
 	&.spacing-condensed {
