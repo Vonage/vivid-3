@@ -90,9 +90,9 @@ Setting the `clickable` attribute makes the whole card clickable, just make sure
 </vwc-layout>
 ```
 
-### Spacing
+### Size
 
-Set the `spacing` attribute to change the box's spacing.
+Set the `size` attribute to change the box's spacing.
 It accepts a subset of predefined values.
 
 - Type: `'normal'`, `'condensed'`
@@ -100,29 +100,29 @@ It accepts a subset of predefined values.
 
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-    <vwc-selectable-box spacing="normal" style="max-inline-size: 450px">
-        <div>Normal spaced box</div>
+    <vwc-selectable-box size="normal" style="max-inline-size: 450px">
+        <div>Normal sized box</div>
     </vwc-selectable-box>
-    <vwc-selectable-box spacing="condensed" style="max-inline-size: 450px">
+    <vwc-selectable-box size="condensed" style="max-inline-size: 450px">
         <div>Condensed box</div>
     </vwc-selectable-box>
 </vwc-layout>
 ```
 
-### No padding
+### Tight
 
-Set the `no-padding` attribute to remove the padding around the box's content.
+By default, the selectable box is styled in a spacious manner. Enabling the `tight` member willremove the padding around the box's content. The control element will still be positioned according to the `size` setting.
 
 - Type: `boolean`
 - Default: `false`
 
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-    <vwc-selectable-box no-padding spacing="normal" style="max-inline-size: 450px">
-        <div>Normal spaced box with no padding</div>
+    <vwc-selectable-box tight size="normal" style="max-inline-size: 450px">
+        <div>Tight box with normal size</div>
     </vwc-selectable-box>
-    <vwc-selectable-box no-padding spacing="condensed" style="max-inline-size: 450px">
-        <div>Condensed box with no padding</div>
+    <vwc-selectable-box tight size="condensed" style="max-inline-size: 450px">
+        <div>Tight box with condensed size</div>
     </vwc-selectable-box>
 </vwc-layout>
 ```

@@ -15,50 +15,42 @@
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 
-:host {
-	display: flex;
-}
-
 @supports selector(:focus-visible) {
 	.base:focus-visible {
 		outline: none;
 	}
 }
 
+:host {
+	display: flex;
+}
+
 .base {
 	@include connotation.connotation(selectable-box);
 	@include appearance.appearance;
 
-	--spacing-unit: 16px;
+	--_sizing-unit: 16px;
 
 	position: relative;
-	min-height: calc(var(--spacing-unit) * 2 + 22px);
-	padding: var(--spacing-unit);
+	min-height: calc(var(--_sizing-unit) * 2 + 22px);
+	padding: var(--_sizing-unit);
 	border: 1px solid var(#{appearance.get-appearance-token(outline)});
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	border-radius: 6px;
 	inline-size: 100%;
-	padding-block-start: calc(var(--spacing-unit) + 36px);
+	padding-block-start: calc(var(--_sizing-unit) + 36px);
 	text-align: start;
 
-	&.spacing-condensed {
-		--spacing-unit: 8px;
+	&.size-condensed {
+		--_sizing-unit: 8px;
 	}
 
-	&.no-padding {
+	&.tight {
 		padding: 0;
 	}
 
 	&.clickable {
 		cursor: pointer;
-	}
-}
-
-.focus-indicator {
-	#{focus-variables.$focus-stroke-gap-color}: transparent;
-
-	.base:not(:focus-visible) > & {
-		display: none;
 	}
 }
 
@@ -72,12 +64,20 @@
 	}
 }
 
-.control {
-	position: absolute;
-	inset-block-start: var(--spacing-unit);
-	inset-inline-end: var(--spacing-unit);
+.focus-indicator {
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+	.base:not(:focus-visible) > & {
+		display: none;
+	}
 }
 
-.control.checkbox {
-	inset-inline-end: calc(var(--spacing-unit) - 8px);
+.control {
+	position: absolute;
+	inset-block-start: var(--_sizing-unit);
+	inset-inline-end: var(--_sizing-unit);
+
+	&.checkbox {
+		inset-inline-end: calc(var(--_sizing-unit) - 8px);
+	}
 }

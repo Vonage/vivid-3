@@ -11,14 +11,18 @@ import { Checkbox } from '../checkbox/checkbox';
 import { Radio } from '../radio/radio';
 import { SelectableBox } from './selectable-box';
 
-const getClasses = ({ connotation, spacing, noPadding, checked, clickable }: SelectableBox) => classNames(
+const getClasses = ({ connotation, size, tight, checked, clickable }: SelectableBox) => classNames(
 	'base',
 	[`connotation-${connotation}`, Boolean(connotation)],
-	[`spacing-${spacing}`, Boolean(spacing)],
-	['no-padding', noPadding],
+	[`size-${size}`, Boolean(size)],
+	['tight', tight],
 	['active', checked],
 	['clickable', clickable],
 );
+
+function handleControlChange(x: SelectableBox) {
+	if (!x.clickable) x.handleCheckedChange();
+}
 
 /**
  * 
@@ -31,7 +35,7 @@ function renderControl(x: SelectableBox, c: ElementDefinitionContext) {
 			${x.ariaLabel !== null && !x.clickable ? `aria-label="${x.ariaLabel}"` : ''}
 			${x.ariaLabelledby !== null && !x.clickable ? `aria-labelledby="${x.ariaLabelledby}"` : ''}
 			${x.clickable ? 'tabindex="-1" aria-hidden="true"' : ''}
-			${!x.clickable ? `@change="${x.handleCheckedChange}"` : ''}
+			@change="${() => handleControlChange(x)}"
 			class="control ${x.control || 'checkbox'}" 
 			connotation="${x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
 			checked="${x.checked}">

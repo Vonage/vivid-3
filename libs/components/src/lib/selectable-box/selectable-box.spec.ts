@@ -26,8 +26,8 @@ describe('vwc-selectable-box', () => {
 			expect(element).toBeInstanceOf(SelectableBox);
 			expect(element.control).toBe(undefined);
 			expect(element.connotation).toBe(undefined);
-			expect(element.spacing).toBe(undefined);
-			expect(element.noPadding).toBe(false);
+			expect(element.size).toBe(undefined);
+			expect(element.tight).toBe(false);
 			expect(element.checked).toBe(false);
 		});
 	});
@@ -61,21 +61,21 @@ describe('vwc-selectable-box', () => {
 		});
 	});
 
-	describe('spacing', () => {
-		it('should set spacing class on the base element', async function () {
+	describe('size', () => {
+		it('should set size class on the base element', async function () {
 			const baseElement = getBaseElement(element);
-			element.spacing = Size.Condensed;
+			element.size = Size.Condensed;
 			await elementUpdated(element);
-			expect(baseElement?.classList?.contains(`spacing-${Size.Condensed}`)).toBe(true);
+			expect(baseElement?.classList?.contains(`size-${Size.Condensed}`)).toBe(true);
 		});
 	});
 
-	describe('no-padding', () => {
-		it('should set no-padding class on the base element', async function () {
+	describe('tight', () => {
+		it('should set tight class on the base element', async function () {
 			const baseElement = getBaseElement(element);
-			element.noPadding = true;
+			element.tight = true;
 			await elementUpdated(element);
-			expect(baseElement?.classList?.contains('no-padding')).toBe(true);
+			expect(baseElement?.classList?.contains('tight')).toBe(true);
 		});
 	});
 

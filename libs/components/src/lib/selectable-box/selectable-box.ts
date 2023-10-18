@@ -14,7 +14,7 @@ export type SelectableBoxConnotation = Connotation.Accent | Connotation.CTA;
  *
  * @public
  */
-export type SelectableBoxSpacing = Size.Normal | Size.Condensed;
+export type SelectableBoxSize = Size.Normal | Size.Condensed;
 
 export type SelectableBoxControl = 'checkbox' | 'radio';
 
@@ -52,15 +52,15 @@ export class SelectableBox extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: spacing
 	 */
-	@attr spacing?: SelectableBoxSpacing;
+	@attr size?: SelectableBoxSize;
 
 	/**
-	* Removes the padding around the box's content
+	* Removes the padding around the box's slot content
 	*
 	* @public
 	* HTML Attribute: no-padding
 	*/
-	@attr({ mode: 'boolean', attribute: 'no-padding' }) noPadding = false;
+	@attr({ mode: 'boolean' }) tight = false;
 
 	/**
 	* Controls the selected state of the box
@@ -79,6 +79,7 @@ export class SelectableBox extends FoundationElement {
 	@attr({ mode: 'boolean'}) clickable = false;
 
 	handleCheckedChange() {
+		console.log('checked change!');
 		if (this.control === 'radio' && this.checked) return;
 		this.checked = !this.checked;
 		this.$emit('change', { checked: this.checked });
