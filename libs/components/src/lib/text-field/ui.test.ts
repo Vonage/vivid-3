@@ -31,7 +31,7 @@ test('should show the component', async ({page}: { page: Page }) => {
 	});
 
 	const testWrapper = await page.$('#wrapper');
-	await page.locator('vwc-text-field').nth(0).focus();
+	await page.locator('vwc-text-field input').nth(0).focus();
 	await page.keyboard.press('Tab');
 	await page.waitForLoadState('networkidle');
 
