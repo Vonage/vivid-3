@@ -28,7 +28,7 @@ describe('vwc-selectable-box', () => {
 			expect(element.connotation).toBe(undefined);
 			expect(element.spacing).toBe(undefined);
 			expect(element.noPadding).toBe(false);
-			expect(element.selected).toBe(false);
+			expect(element.checked).toBe(false);
 		});
 	});
 
@@ -36,7 +36,14 @@ describe('vwc-selectable-box', () => {
 		it('should set connotation class on the base element', async function () {
 			element.connotation = Connotation.CTA;
 			await elementUpdated(element);
-			expect(baseElement?.classList?.contains(`connotation-${Connotation.CTA}`)).toEqual(true);
+			expect(baseElement?.classList?.contains(`connotation-${Connotation.CTA}`)).toBe(true);
+		});
+
+		it('should set connotation attribute on the control element', async function () {
+			element.connotation = Connotation.CTA;
+			await elementUpdated(element);
+			const control = element.shadowRoot?.querySelector('.control');
+			expect(control?.getAttribute('connotation')).toBe('cta');
 		});
 	});
 
@@ -59,7 +66,7 @@ describe('vwc-selectable-box', () => {
 			const baseElement = getBaseElement(element);
 			element.spacing = Size.Condensed;
 			await elementUpdated(element);
-			expect(baseElement?.classList?.contains(`spacing-${Size.Condensed}`)).toEqual(true);
+			expect(baseElement?.classList?.contains(`spacing-${Size.Condensed}`)).toBe(true);
 		});
 	});
 
@@ -68,21 +75,96 @@ describe('vwc-selectable-box', () => {
 			const baseElement = getBaseElement(element);
 			element.noPadding = true;
 			await elementUpdated(element);
-			expect(baseElement?.classList?.contains('no-padding')).toEqual(true);
+			expect(baseElement?.classList?.contains('no-padding')).toBe(true);
 		});
 	});
 
-	describe('selected', () => {
-		it('should set selected class on the base element', async function () {
+	describe('checked', () => {
+		it('should set active class on the base element', async function () {
 			const baseElement = getBaseElement(element);
-			element.selected = true;
+			element.checked = true;
 			await elementUpdated(element);
-			expect(baseElement?.classList?.contains('selected')).toEqual(true);
+			expect(baseElement?.classList?.contains('active')).toBe(true);
+		});
+
+		it('should set the checked attribute on the control element', async () => {
+			element.checked = true;
+			await elementUpdated(element);
+			const control = element.shadowRoot?.querySelector('.control');
+			expect(control?.getAttribute('checked')).toBe('true');
+		});
+	});
+
+	describe('clickable', () => {
+		it('should set clickable class on the base element', async function () {
+			const baseElement = getBaseElement(element);
+			element.clickable = true;
+			await elementUpdated(element);
+			expect(baseElement?.classList?.contains('clickable')).toBe(true);
+		});
+	});
+
+	describe('changed event', () => {
+		it('should emit the changed event when the checked state changes', async () => {
+			element.clickable = true;
+			await elementUpdated(element);
+			const baseElement = getBaseElement(element);
+			const spy = jest.fn();
+			element.addEventListener('change', spy);
+			baseElement.click();
+			await elementUpdated(element);
+
+			expect(spy).toHaveBeenCalled();
 		});
 	});
 
 	describe('a11y', () => {
+		it('should put the correct a11y attributes on the control element', async () => {
+			element.ariaLabel = 'Box 1';
+			element.ariaLabelledby = 'heading1';
+			await elementUpdated(element);
+			const control = element.shadowRoot?.querySelector('.control');
+			expect(control?.getAttribute('aria-label')).toBe('Box 1');
+			expect(control?.getAttribute('aria-labelledby')).toBe('heading1');
+		});
+
+		describe('clickable', () => {
+			beforeEach(async () => {
+				element.clickable = true;
+				element.ariaLabel = 'Box 1';
+				element.ariaLabelledby = 'heading1';
+				await elementUpdated(element);
+			});
+
+			it('should put the correct a11y attributes on the control element', async () => {
+				const control = element.shadowRoot?.querySelector('.control');
+				expect(control?.getAttribute('aria-hidden')).toBe('true');
+				expect(control?.getAttribute('tabindex')).toBe('-1');
+				expect(control?.getAttribute('aria-label')).toBe(null);
+				expect(control?.getAttribute('aria-labelledby')).toBe(null);
+			});
+
+			it('should put the correct a11y attributes on the base element', async () => {
+				const baseElement = getBaseElement(element);
+				expect(baseElement?.getAttribute('aria-label')).toBe('Box 1');
+				expect(baseElement?.getAttribute('aria-labelledby')).toBe('heading1');
+				expect(baseElement?.getAttribute('aria-checked')).toBe(null);
+				expect(baseElement?.getAttribute('role')).toBe('checkbox');
+				expect(baseElement?.getAttribute('tabindex')).toBe('0');
+			});
+
+			it('should add the aria-checked attribute to the base element when checked is true', async () => {
+				element.checked = true;
+				await elementUpdated(element);
+				const baseElement = getBaseElement(element);
+				expect(baseElement?.getAttribute('aria-checked')).toBe('true');
+			});
+		});
+
 		it('should pass html a11y test', async () => {
+			element.clickable = true;
+			element.ariaLabel = 'Box 1';
+			await elementUpdated(element);
 			expect(await axe(element)).toHaveNoViolations();
 		});
 	});

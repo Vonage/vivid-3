@@ -7,7 +7,7 @@ Represents a selectable-box custom element.
 ```
 
 ```html preview
-<vwc-selectable-box>
+<vwc-selectable-box aria-label="Box 1">
     <div>Box content</div>
 </vwc-selectable-box>
 ```
@@ -23,37 +23,71 @@ It accepts a subset of predefined values.
 - Default: `'accent'`
 
 ```html preview
-<div style="width: 450px;">
-    <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-        <vwc-selectable-box connotation="accent">
-            <div>Accent box</div>
-        </vwc-selectable-box>
-        <vwc-selectable-box connotation="cta">
-            <div>CTA box</div>
-        </vwc-selectable-box>
-    </vwc-layout>
-</div>
+<vwc-layout gutters="small" row-spacing="small" column-basis="block">
+    <vwc-selectable-box connotation="accent" style="max-inline-size: 450px">
+        <div>Accent box</div>
+    </vwc-selectable-box>
+    <vwc-selectable-box connotation="cta" style="max-inline-size: 450px">
+        <div>CTA box</div>
+    </vwc-selectable-box>
+</vwc-layout>
 ```
 
 ### Control
 
 Set the `control` attribute to change the box's selectable control
 It accepts a subset of predefined values.
+When `control` is set to `radio`, it is the consuming app's responsibility to ensure only 1 selectable box in a group is checked at a time.
 
 - Type: `'checkbox'`, `'radio'`
 - Default: `'checkbox'`
 
 ```html preview
-<div style="width: 450px;">
-    <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-        <vwc-selectable-box control="checkbox">
-            <div>Checkbox control</div>
-        </vwc-selectable-box>
-        <vwc-selectable-box control="radio">
-            <div>Radio control</div>
-        </vwc-selectable-box>
-    </vwc-layout>
-</div>
+<vwc-layout gutters="small" row-spacing="small" column-basis="block">
+    <vwc-selectable-box control="checkbox" style="max-inline-size: 450px">
+        <div>Checkbox control</div>
+    </vwc-selectable-box>
+    <vwc-selectable-box control="radio" style="max-inline-size: 450px">
+        <div>Radio control</div>
+    </vwc-selectable-box>
+</vwc-layout>
+```
+
+### Checked
+
+Set the `checked` attribute to indicate the checked state of the box.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-layout gutters="small" row-spacing="small" column-basis="block">
+    <vwc-selectable-box control="checkbox" checked style="max-inline-size: 450px">
+        <div>Checked checkbox box</div>
+    </vwc-selectable-box>
+    <vwc-selectable-box control="radio" checked style="max-inline-size: 450px">
+        <div>Checked radio box</div>
+    </vwc-selectable-box>
+</vwc-layout>
+```
+
+### Clickable
+
+By default, the card's control element (checkbox or radio) is the clickable element. This allows you to use other clickable elements within the box.
+Setting the `clickable` attribute makes the whole card clickable, just make sure the card does not contain other clickable elements.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-layout gutters="small" row-spacing="small" column-basis="block">
+    <vwc-selectable-box clickable style="max-inline-size: 450px">
+        <div>Clickable accent box</div>
+    </vwc-selectable-box>
+    <vwc-selectable-box clickable connotation="cta" style="max-inline-size: 450px">
+        <div>Clickable CTA box</div>
+    </vwc-selectable-box>
+</vwc-layout>
 ```
 
 ### Spacing
@@ -65,16 +99,14 @@ It accepts a subset of predefined values.
 - Default: `'normal'`
 
 ```html preview
-<div style="width: 450px;">
-    <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-        <vwc-selectable-box spacing="normal">
-            <div>Normal spaced box</div>
-        </vwc-selectable-box>
-        <vwc-selectable-box spacing="condensed">
-            <div>Condensed box</div>
-        </vwc-selectable-box>
-    </vwc-layout>
-</div>
+<vwc-layout gutters="small" row-spacing="small" column-basis="block">
+    <vwc-selectable-box spacing="normal" style="max-inline-size: 450px">
+        <div>Normal spaced box</div>
+    </vwc-selectable-box>
+    <vwc-selectable-box spacing="condensed" style="max-inline-size: 450px">
+        <div>Condensed box</div>
+    </vwc-selectable-box>
+</vwc-layout>
 ```
 
 ### No padding
@@ -85,21 +117,15 @@ Set the `no-padding` attribute to remove the padding around the box's content.
 - Default: `false`
 
 ```html preview
-<div style="width: 450px;">
-    <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-        <vwc-selectable-box no-padding spacing="normal">
-            <div>Normal spaced box with no padding</div>
-        </vwc-selectable-box>
-        <vwc-selectable-box no-padding spacing="condensed">
-            <div>Condensed box with no padding</div>
-        </vwc-selectable-box>
-    </vwc-layout>
-</div>
+<vwc-layout gutters="small" row-spacing="small" column-basis="block">
+    <vwc-selectable-box no-padding spacing="normal" style="max-inline-size: 450px">
+        <div>Normal spaced box with no padding</div>
+    </vwc-selectable-box>
+    <vwc-selectable-box no-padding spacing="condensed" style="max-inline-size: 450px">
+        <div>Condensed box with no padding</div>
+    </vwc-selectable-box>
+</vwc-layout>
 ```
-
-## Slots
-
-## CSS Variables
 
 ## Events
 
@@ -107,22 +133,23 @@ Set the `no-padding` attribute to remove the padding around the box's content.
 
 | Name | Description |
 | ---- | ----------- |
-|      |             |
+| `change` | Fires a custom `change` event when the `checked` state changes. |
 
 </div>
-
-## Methods
-
-<div class="table-wrapper">
-
-| Name | Returns | Description |
-| ---- | ------- | ----------- |
-|      |         |             |
-
-</div>
-
-## Properties
 
 ## Accessibility
 
-## Use Cases
+To ensure the selectable box has an accessible label, it is neccessary to provide an `aria-label` attribute or associate a piece of content as a label using the `aria-labelledby` attribute, as in the examples below.
+
+```html preview
+<vwc-layout gutters="small" row-spacing="small" column-basis="block">
+    <vwc-selectable-box aria-label="Box 1" style="max-inline-size: 450px">
+        <div>Use the aria-label attribute to make the box accessible.</div>
+    </vwc-selectable-box>
+
+    <vwc-selectable-box aria-labelledby="box2-heading" style="max-inline-size: 450px">
+        <h3 id="box2-heading">Accessible selectable box</h3>
+        <p>Use the aria-labelledby attribute to make the box accessible.</p>
+    </vwc-selectable-box>
+</vwc-layout>
+```

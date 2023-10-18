@@ -25,6 +25,8 @@ export type SelectableBoxControl = 'checkbox' | 'radio';
  * @public
  */
 export class SelectableBox extends FoundationElement {
+	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
+	@attr({attribute: 'aria-labelledby'}) ariaLabelledby: string | null = null;
 	/**
 	 * The connotation the selectable box should have.
 	 *
@@ -66,5 +68,19 @@ export class SelectableBox extends FoundationElement {
 	* @public
 	* HTML Attribute: no-padding
 	*/
-	@attr({ mode: 'boolean'}) selected = false;
+	@attr({ mode: 'boolean'}) checked = false;
+
+	/**
+	* Controls the selected state of the box
+	*
+	* @public
+	* HTML Attribute: no-padding
+	*/
+	@attr({ mode: 'boolean'}) clickable = false;
+
+	handleCheckedChange = () => {
+		if (this.control === 'radio' && this.checked) return;
+		this.checked = !this.checked;
+		this.$emit('change', { checked: this.checked });
+	};
 }

@@ -5,16 +5,19 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
+import { focusTemplateFactory } from '../../shared/patterns/focus';
+import { Connotation } from '../enums.js';
 import { Checkbox } from '../checkbox/checkbox';
 import { Radio } from '../radio/radio';
 import { SelectableBox } from './selectable-box';
 
-const getClasses = ({ connotation, spacing, noPadding, selected }: SelectableBox) => classNames(
+const getClasses = ({ connotation, spacing, noPadding, checked, clickable }: SelectableBox) => classNames(
 	'base',
-	[`connotation-${connotation}`, !!connotation],
-	[`spacing-${spacing}`, !!spacing],
-	['no-padding', Boolean(noPadding)],
-	['selected', Boolean(selected)],
+	[`connotation-${connotation}`, Boolean(connotation)],
+	[`spacing-${spacing}`, Boolean(spacing)],
+	['no-padding', noPadding],
+	['active', checked],
+	['clickable', clickable],
 );
 
 /**
@@ -23,12 +26,28 @@ const getClasses = ({ connotation, spacing, noPadding, selected }: SelectableBox
 function renderControl(x: SelectableBox, c: ElementDefinitionContext) {
 	const Control = x.control === 'radio' ? Radio : Checkbox;
 	const tagName = c.tagFor(Control);
-	return html<Checkbox | Radio>`
+	return html<SelectableBox>`
 		<${tagName} 
+			${x.ariaLabel !== null && !x.clickable ? `aria-label="${x.ariaLabel}"` : ''}
+			${x.ariaLabelledby !== null && !x.clickable ? `aria-labelledby="${x.ariaLabelledby}"` : ''}
+			${x.clickable ? 'tabindex="-1" aria-hidden="true"' : ''}
+			@change="${!x.clickable ? x.handleCheckedChange : () => null}"
 			class="control ${x.control || 'checkbox'}" 
-			?checked="${x.selected}">
+			connotation="${x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
+			checked="${x.checked}">
 		</${tagName}>
 	`;
+}
+
+function clickHandler(x: SelectableBox) {
+	if (!x.clickable) return;
+	x.handleCheckedChange();
+}
+
+function keypressHandler(x: SelectableBox, evt: KeyboardEvent) {
+	if (!x.clickable) return;
+	if (evt.code === 'Space')
+		x.handleCheckedChange();
 }
 
 /**
@@ -43,8 +62,19 @@ export const SelectableBoxTemplate: (
 ) => ViewTemplate<SelectableBox> = (
 	context: ElementDefinitionContext
 ) => {
+	const focusTemplate = focusTemplateFactory(context);
 	return html<SelectableBox>`
-	<div class="${getClasses}">
+	<div 
+		class="${getClasses}"
+		tabindex="${x => x.clickable ? '0' : null}"
+		role="${x => x.clickable ? x.control || 'checkbox' : null}"
+		aria-checked="${x => x.clickable && x.checked ? x.checked : null}"
+		aria-label="${x => x.clickable ? x.ariaLabel : null}"
+		aria-labelledby="${x => x.clickable ? x.ariaLabelledby : null}"
+		@keypress="${(x, c) => keypressHandler(x, c.event as KeyboardEvent)}"
+		@click="${x => clickHandler(x)}"
+	>
+		${(x) => x.clickable ? focusTemplate : ''}
 		${x => renderControl(x, context)}
 		<slot></slot>
 	</div>
