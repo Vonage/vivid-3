@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getBaseElement, getControlElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Connotation, Size } from '../enums';
 import { SelectableBox } from './selectable-box';
@@ -105,7 +105,7 @@ describe('vwc-selectable-box', () => {
 	});
 
 	describe('changed event', () => {
-		it('should not emit the change event when the base element is click and the element is not clickable', async () => {
+		it('should not emit the change event when the base element is clicked and the element is not clickable', async () => {
 			const baseElement = getBaseElement(element);
 			const spy = jest.fn();
 			element.addEventListener('change', spy);
@@ -113,6 +113,16 @@ describe('vwc-selectable-box', () => {
 			
 			expect(spy).not.toHaveBeenCalled();
 		});
+
+		it('should emit the change event when the control element changes', async () => {
+			const controlElement = getControlElement(element);
+			const spy = jest.fn();
+			element.addEventListener('change', spy);
+
+			controlElement.dispatchEvent(new Event('change'));
+			expect(spy).toHaveBeenCalled();
+		});
+
 		describe('clickable', () => {
 			it('should emit the change event when the checked state changes', async () => {
 				element.clickable = true;
