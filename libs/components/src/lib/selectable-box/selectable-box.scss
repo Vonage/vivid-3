@@ -34,8 +34,8 @@
 	position: relative;
 	min-height: calc(var(--spacing-unit) * 2 + 22px);
 	padding: var(--spacing-unit);
-	background-color: var(#{appearance.get-appearance-token(fill)});
 	border: 1px solid var(#{appearance.get-appearance-token(outline)});
+	background-color: var(#{appearance.get-appearance-token(fill)});
 	border-radius: 6px;
 	inline-size: 100%;
 	padding-block-start: calc(var(--spacing-unit) + 36px);
