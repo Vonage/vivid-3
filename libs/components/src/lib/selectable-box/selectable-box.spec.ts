@@ -51,6 +51,7 @@ describe('vwc-selectable-box', () => {
 		it('should display a checkbox by default', async () => {
 			const control = element.shadowRoot?.querySelector('.checkbox');
 			expect(control).not.toBe(null);
+			expect(control?.getAttribute('checked')).toBe('false');
 		});
 
 		it('should display a radio when control is set to radio', async () => {
@@ -58,6 +59,7 @@ describe('vwc-selectable-box', () => {
 			await elementUpdated(element);
 			const control = element.shadowRoot?.querySelector('.radio');
 			expect(control).not.toBe(null);
+			expect(control?.getAttribute('current-checked')).toBe('false');
 		});
 	});
 
@@ -91,7 +93,19 @@ describe('vwc-selectable-box', () => {
 			element.checked = true;
 			await elementUpdated(element);
 			const control = element.shadowRoot?.querySelector('.control');
-			expect(control?.getAttribute('checked')).toBe('true');
+			expect(control?.hasAttribute('checked')).toBe(true);
+			expect(control?.getAttribute('current-checked')).toBe('true');
+		});
+
+		describe('radio', () => {
+			it('should set the checked attribute on the control element', async () => {
+				element.controlType = 'radio';
+				element.checked = true;
+				await elementUpdated(element);
+				const control = element.shadowRoot?.querySelector('.control');
+				expect(control?.hasAttribute('checked')).toBe(true);
+				expect(control?.getAttribute('current-checked')).toBe('true');
+			});
 		});
 	});
 
@@ -194,8 +208,8 @@ describe('vwc-selectable-box', () => {
 				const baseElement = getBaseElement(element);
 				expect(baseElement?.getAttribute('aria-label')).toBe('Box 1');
 				expect(baseElement?.getAttribute('aria-labelledby')).toBe('heading1');
-				expect(baseElement?.getAttribute('aria-checked')).toBe(null);
-				expect(baseElement?.getAttribute('role')).toBe('checkbox');
+				expect(baseElement?.getAttribute('aria-pressed')).toBe(null);
+				expect(baseElement?.getAttribute('role')).toBe('button');
 				expect(baseElement?.getAttribute('tabindex')).toBe('0');
 			});
 
@@ -203,7 +217,7 @@ describe('vwc-selectable-box', () => {
 				element.checked = true;
 				await elementUpdated(element);
 				const baseElement = getBaseElement(element);
-				expect(baseElement?.getAttribute('aria-checked')).toBe('true');
+				expect(baseElement?.getAttribute('aria-pressed')).toBe('true');
 			});
 		});
 
