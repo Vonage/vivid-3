@@ -149,7 +149,7 @@ describe('vwc-audio-player', () => {
 	describe('rewind', function () {
 		it('should call rewind when the slider is clicked', async function () {
 			const slider = getBaseElement(element).querySelector('.slider') as HTMLElement;
-			element.rewind = jest.fn();
+			element._rewind = jest.fn();
 
 			const event = new MouseEvent('click', {
 				clientX: 50,
@@ -163,21 +163,21 @@ describe('vwc-audio-player', () => {
 			slider.dispatchEvent(event);
 			await elementUpdated(element);
 
-			expect(element.rewind).toHaveBeenCalled();
+			expect(element._rewind).toHaveBeenCalled();
 		});
 	});
 
 	describe('updateProgress', function () {
 		it('should call updateProgress when timeupdate', async function () {
 			const audio = getBaseElement(element).querySelector('audio') as HTMLAudioElement;
-			element.updateProgress = jest.fn();
+			element._updateProgress = jest.fn();
 
 			const event = new Event('timeupdate');
 			audio.currentTime = 200;
 			audio.dispatchEvent(event);
 
 			await elementUpdated(element);
-			expect(element.updateProgress).toHaveBeenCalled();
+			expect(element._updateProgress).toHaveBeenCalled();
 		});
 
 		it('should update current time when updateProgress is called', async function () {
@@ -186,7 +186,7 @@ describe('vwc-audio-player', () => {
 			audio.currentTime = 1000;
 			await elementUpdated(element);
 
-			element.updateProgress();
+			element._updateProgress();
 
 			await elementUpdated(element);
 			expect(getBaseElement(element).querySelector('.current-time')?.textContent).toEqual('16:40');
@@ -196,14 +196,14 @@ describe('vwc-audio-player', () => {
 	describe('updateTotalTime', function () {
 		it('should call updateTotalTime when loadedmetadata', async function () {
 			const audio = getBaseElement(element).querySelector('audio') as HTMLAudioElement;
-			element.updateTotalTime = jest.fn();
+			element._updateTotalTime = jest.fn();
 
 			const event = new Event('loadedmetadata');
 			audio.currentTime = 700;
 			audio.dispatchEvent(event);
 
 			await elementUpdated(element);
-			expect(element.updateTotalTime).toHaveBeenCalled();
+			expect(element._updateTotalTime).toHaveBeenCalled();
 		});
 
 		it('should update total-time when updateTotalTime is called', async function () {
@@ -212,7 +212,7 @@ describe('vwc-audio-player', () => {
 			const mockAudioElement = { duration: 60 };
 			audioConstructor.mockImplementation(() => mockAudioElement.duration);
 
-			element.updateTotalTime();
+			element._updateTotalTime();
 			expect(getBaseElement(element).querySelector('.total-time')?.textContent).toEqual('1:00');
 			audioConstructor.mockRestore();
 		});
@@ -244,7 +244,7 @@ describe('vwc-audio-player', () => {
 	describe('mouse events', function () {
 		it('should call onMouseDown when the pin is mousedown', async function () {
 			const pin = getBaseElement(element).querySelector('#progress-pin') as HTMLElement;
-			element.onMouseDown = jest.fn();
+			element._onMouseDown = jest.fn();
 
 			const event = new MouseEvent('mousedown', {
 				clientX: 100,
@@ -253,7 +253,7 @@ describe('vwc-audio-player', () => {
 			pin.dispatchEvent(event);
 			await elementUpdated(element);
 
-			expect(element.onMouseDown).toHaveBeenCalled();
+			expect(element._onMouseDown).toHaveBeenCalled();
 		});
 
 		it('should remove rewind listener event onMouseUp', async function () {
@@ -270,7 +270,7 @@ describe('vwc-audio-player', () => {
 
 		it('should call rewind when mousemove', async function () {
 			const pin = getBaseElement(element).querySelector('#progress-pin') as HTMLElement;
-			element.rewind = jest.fn();
+			element._rewind = jest.fn();
 
 			const downEvent = new MouseEvent('mousedown', {
 				clientX: 100,
@@ -286,7 +286,7 @@ describe('vwc-audio-player', () => {
 			element.dispatchEvent(moveEvent);
 			await elementUpdated(element);
 
-			expect(element.rewind).toHaveBeenCalled();
+			expect(element._rewind).toHaveBeenCalled();
 		});
 
 		it('should update current time when rewind is called', async function () {
@@ -296,7 +296,7 @@ describe('vwc-audio-player', () => {
 				clientX: 200,
 			});
 			audio.currentTime = 300;
-			element.rewind(event);
+			element._rewind(event);
 
 			await elementUpdated(element);
 			expect(getBaseElement(element).querySelector('.current-time')?.textContent).toEqual('0:00');

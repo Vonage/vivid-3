@@ -62,72 +62,107 @@ export class AudioPlayer extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	sliderEl!: HTMLDivElement;
+	_sliderEl!: HTMLDivElement;
 
-	playerEl!: any;
+	/**
+	 * @internal
+	 */
+	_playerEl!: any;
 
-	controlEl!: HTMLDivElement;
+	/**
+	 * @internal
+	 */
+	_controlEl!: HTMLDivElement;
 
 	override connectedCallback() {
 		super.connectedCallback();
-		this.addEventListener('mouseup', this.onMouseUp);
+		this.addEventListener('mouseup', this._onMouseUp);
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
-		this.removeEventListener('mouseup', this.onMouseUp);
+		this.removeEventListener('mouseup', this._onMouseUp);
 	}
 
-	onMouseDown(_event: MouseEvent) {
-		this.addEventListener('mousemove', this.rewind, false);
+	/**
+	 * @internal
+	 */
+	_onMouseDown(_event: MouseEvent) {
+		this.addEventListener('mousemove', this._rewind, false);
 	}
 
-	togglePlay() {
+	/**
+	 * @internal
+	 */
+	_togglePlay() {
 		if (this.paused) {
-			this.playerEl!.play();
+			this._playerEl!.play();
 		} else {
-			this.playerEl!.pause();
+			this._playerEl!.pause();
 		}
 		this.paused = !this.paused;
 	}
 
-	updateProgress() {
-		const current: number = this.playerEl!.currentTime;
-		const percent = (current / this.playerEl.duration) * 100;
-		(this.sliderEl.querySelector('.progress') as HTMLElement).style.width = percent + '%';
+	/**
+	 * @internal
+	 */
+	_updateProgress() {
+		const current: number = this._playerEl!.currentTime;
+		const percent = (current / this._playerEl.duration) * 100;
+		const progress = this._controlEl.querySelector('.progress') as HTMLElement;
+		if (progress) progress.style.width = percent + '%';
 
-		this.controlEl.querySelector('.current-time')!.textContent = this.formatTime(current);
+		const currentTime = this._controlEl.querySelector('.current-time');
+		if (currentTime) currentTime.textContent = this._formatTime(current);
 	}
 
-	updateTotalTime() {
-		const totalTime = this.controlEl.querySelector('.total-time');
-		if (totalTime) totalTime.textContent = this.formatTime(this.playerEl.duration);
+	/**
+	 * @internal
+	 */
+	_updateTotalTime() {
+		const totalTime = this._controlEl.querySelector('.total-time');
+		if (totalTime) totalTime.textContent = this._formatTime(this._playerEl.duration);
 	}
 
-	rewind(event: MouseEvent) {
-		if (this.inRange(event)) {
-			this.playerEl.currentTime = this.playerEl.duration * this.getCoefficient(event);
+	/**
+	 * @internal
+	 */
+	_rewind(event: MouseEvent) {
+		if (this._inRange(event)) {
+			this._playerEl.currentTime = this._playerEl.duration * this._getCoefficient(event);
 		}
 	}
 
-	getCoefficient(event: MouseEvent) {
-		const offsetX = event.clientX - this.sliderEl.offsetLeft;
-		const width = this.sliderEl.clientWidth;
+	/**
+	 * @internal
+	 */
+	_getCoefficient(event: MouseEvent) {
+		const offsetX = event.clientX - this._sliderEl.offsetLeft;
+		const width = this._sliderEl.clientWidth;
 		return offsetX / width;
 	}
 
-	onMouseUp() {
-		this.removeEventListener('mousemove', this.rewind, false);
+	/**
+	 * @internal
+	 */
+	_onMouseUp() {
+		this.removeEventListener('mousemove', this._rewind, false);
 	}
 
-	inRange(event: MouseEvent) {
-		const min = this.sliderEl!.offsetLeft;
-		const max = min + this.sliderEl!.offsetWidth;
+	/**
+	 * @internal
+	 */
+	_inRange(event: MouseEvent) {
+		const min = this._sliderEl!.offsetLeft;
+		const max = min + this._sliderEl!.offsetWidth;
 		if (event.clientX < min || event.clientX > max) return false;
 		return true;
 	}
 
-	formatTime(time: number) {
+	/**
+	 * @internal
+	 */
+	_formatTime(time: number) {
 		const min = Math.floor(time / 60);
 		const sec = Math.floor(time % 60);
 		return min + ':' + ((sec < 10) ? ('0' + sec) : sec);

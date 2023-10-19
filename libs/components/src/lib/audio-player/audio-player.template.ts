@@ -23,22 +23,22 @@ export const AudioPlayerTemplate: (context: ElementDefinitionContext, definition
       <${buttonTag} class="pause" icon="${x => x.paused ? 'play-solid' : 'pause-solid'}" 
       size='condensed' ?disabled="${x => x.disabled}" 
       connotation="${x => x.connotation}" 
-      @click="${x => x.togglePlay()}"></${buttonTag}>
+      @click="${x => x._togglePlay()}"></${buttonTag}>
 
-      <div class="controls" ${ref('controlEl')}>
+      <div class="controls" ${ref('_controlEl')}>
       ${when(x => x.timestamp,
 		html`<span class="current-time">0:00</span>
           <span>/</span>
           <span class="total-time">0:00</span>`)}
 		  ${when(x => !x.noseek,
-		html`<div class="slider" ${ref('sliderEl')} @click="${(x, c) => x.rewind(c.event as MouseEvent)}">
+		html`<div class="slider" ${ref('_sliderEl')} @click="${(x, c) => x._rewind(c.event as MouseEvent)}">
           <div class="progress">
-            <div class="pin ${getClasses}" id="progress-pin" @mousedown="${(x, c) => x.onMouseDown(c.event as MouseEvent)}"></div>
+            <div class="pin ${getClasses}" id="progress-pin" @mousedown="${(x, c) => x._onMouseDown(c.event as MouseEvent)}"></div>
           </div>
         </div>`)}
       </div>
-      <audio ${ref('playerEl')} src="${x => x.src}" type="audio/mpeg"
-      @timeupdate="${x => x.updateProgress()}" @loadedmetadata="${x => x.updateTotalTime()}"></audio>
+      <audio ${ref('_playerEl')} src="${x => x.src}" type="audio/mpeg"
+      @timeupdate="${x => x._updateProgress()}" @loadedmetadata="${x => x._updateTotalTime()}"></audio>
     </div>
   </${elevationTag}>`;
 };
