@@ -32,6 +32,8 @@ function isDefined<T>(value: T | null | undefined): value is T {
  * Base class for date-range-picker
  *
  * @public
+ * @event input:start - Event emitted when the start value changes
+ * @event input:end - Event emitted when the end value changes
  */
 @errorText
 @formElements
@@ -423,6 +425,9 @@ export class DateRangePicker extends DatePickerBase {
 		super._onClearClick();
 	}
 
+	/**
+	 * @internal
+	 */
 	override formResetCallback() {
 		this.#updateValues({ start: this.initialStart, end: this.initialEnd });
 		super.formResetCallback();

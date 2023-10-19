@@ -12,6 +12,11 @@ export const MenuItemRole = {
 	presentation: 'presentation',
 } as const;
 
+export enum CheckAppearance {
+	Normal = 'normal',
+	TickOnly =  'tick-only',
+}
+
 /**
  * Base class for menu-item
  *
@@ -36,6 +41,20 @@ export class MenuItem extends FastMenuItem {
 	 * HTML Attribute: text
 	 */
 	@attr({ attribute: 'text-secondary' }) textSecondary?: string;
+	/**
+	 * Controls the placement of the menu item's checkmark or radio icon.
+	 * @public
+	 * @remarks
+	 * HTML Attribute: check-trailing
+	 */
+	@attr({ mode: 'boolean', attribute: 'check-trailing' }) checkTrailing = false;
+	/**
+	 * Controls the appearance of the check indicator.
+	 * @public
+	 * @remarks
+	 * HTML Attribute: check-appearance
+	 */
+	@attr({ attribute: 'check-appearance' }) checkedAppearance?: CheckAppearance;
 
 	/**
 	 *
