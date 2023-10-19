@@ -1,5 +1,8 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
+import { checkboxRegistries } from '../checkbox/definition';
+import { focusRegistries } from '../focus/definition';
+import { radioRegistries } from '../radio/definition';
 import styles from './selectable-box.scss';
 
 import { SelectableBox } from './selectable-box';
@@ -15,7 +18,7 @@ export const selectableBoxDefinition =
 /**
  * @internal
  */
-export const selectableBoxRegistries = [selectableBoxDefinition()];
+export const selectableBoxRegistries = [selectableBoxDefinition(), ...checkboxRegistries, ...focusRegistries, ...radioRegistries];
 
 /**
  * Registers the selectable-box element with the design system.
