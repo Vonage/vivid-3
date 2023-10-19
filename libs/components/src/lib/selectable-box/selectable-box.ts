@@ -30,8 +30,22 @@ export type SelectableBoxControlType = 'checkbox' | 'radio';
  * @public
  */
 export class SelectableBox extends FoundationElement {
-	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
-	@attr({ attribute: 'aria-labelledby' }) ariaLabelledby: string | null = null;
+	/**
+	* Controls the checked state of the box
+	*
+	* @public
+	* HTML Attribute: checked
+	*/
+	@attr({ mode: 'boolean'}) checked = false;
+
+	/**
+	* Makes the whole selectable box clickable
+	*
+	* @public
+	* HTML Attribute: clickable
+	*/
+	@attr({ mode: 'boolean'}) clickable = false;
+
 	/**
 	 * The connotation the selectable box should have.
 	 *
@@ -42,11 +56,29 @@ export class SelectableBox extends FoundationElement {
 	@attr connotation?: SelectableBoxConnotation;
 
 	/**
+	 * Adds an accessible label to selectable box
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: control-aria-label
+	 */
+	@attr({ attribute: 'control-aria-label' }) controlAriaLabel: string | null = null;
+
+	/**
+	 * Links a piece of content as an accessible label
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: control-aria-labelledby
+	 */
+	@attr({ attribute: 'control-aria-labelledby' }) controlAriaLabelledby: string | null = null;
+
+	/**
 	 * The type of control the box should have: checkbox or radio.
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: connotation
+	 * HTML Attribute: control-type
 	 */
 	@attr({ attribute: 'control-type' }) controlType?: SelectableBoxControlType;
 
@@ -55,7 +87,7 @@ export class SelectableBox extends FoundationElement {
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: spacing
+	 * HTML Attribute: size
 	 */
 	@attr size?: SelectableBoxSize;
 
@@ -63,25 +95,9 @@ export class SelectableBox extends FoundationElement {
 	* Removes the padding around the box's slot content
 	*
 	* @public
-	* HTML Attribute: no-padding
+	* HTML Attribute: tight
 	*/
 	@attr({ mode: 'boolean' }) tight = false;
-
-	/**
-	* Controls the selected state of the box
-	*
-	* @public
-	* HTML Attribute: no-padding
-	*/
-	@attr({ mode: 'boolean'}) checked = false;
-
-	/**
-	* Controls the selected state of the box
-	*
-	* @public
-	* HTML Attribute: no-padding
-	*/
-	@attr({ mode: 'boolean'}) clickable = false;
 
 	handleCheckedChange() {
 		if (this.controlType === 'radio' && this.checked) return;
@@ -89,7 +105,7 @@ export class SelectableBox extends FoundationElement {
 		this.$emit('change', { checked: this.checked });
 	}
 
-	handleKeydown(event: KeyboardEvent) {
+	_handleKeydown(event: KeyboardEvent) {
 		if (event.code === 'Space' && this.clickable) this.handleCheckedChange();
 		return true;
 	}

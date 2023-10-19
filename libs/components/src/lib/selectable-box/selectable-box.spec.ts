@@ -24,6 +24,8 @@ describe('vwc-selectable-box', () => {
 				FoundationElementRegistry
 			);
 			expect(element).toBeInstanceOf(SelectableBox);
+			expect(element.controlAriaLabel).toBe(undefined);
+			expect(element.controlAriaLabelledby).toBe(undefined);
 			expect(element.controlType).toBe(undefined);
 			expect(element.connotation).toBe(undefined);
 			expect(element.size).toBe(undefined);
@@ -180,8 +182,8 @@ describe('vwc-selectable-box', () => {
 
 	describe('a11y', () => {
 		it('should put the correct a11y attributes on the control element', async () => {
-			element.ariaLabel = 'Box 1';
-			element.ariaLabelledby = 'heading1';
+			element.controlAriaLabel = 'Box 1';
+			element.controlAriaLabelledby = 'heading1';
 			await elementUpdated(element);
 			const control = element.shadowRoot?.querySelector('.control');
 			expect(control?.getAttribute('aria-label')).toBe('Box 1');
@@ -191,8 +193,8 @@ describe('vwc-selectable-box', () => {
 		describe('clickable', () => {
 			beforeEach(async () => {
 				element.clickable = true;
-				element.ariaLabel = 'Box 1';
-				element.ariaLabelledby = 'heading1';
+				element.controlAriaLabel = 'Box 1';
+				element.controlAriaLabelledby = 'heading1';
 				await elementUpdated(element);
 			});
 
@@ -223,7 +225,7 @@ describe('vwc-selectable-box', () => {
 
 		it('should pass html a11y test', async () => {
 			element.clickable = true;
-			element.ariaLabel = 'Box 1';
+			element.controlAriaLabel = 'Box 1';
 			await elementUpdated(element);
 			expect(await axe(element)).toHaveNoViolations();
 		});

@@ -7,7 +7,7 @@ Represents a selectable-box custom element.
 ```
 
 ```html preview
-<vwc-selectable-box aria-label="Box 1">
+<vwc-selectable-box control-aria-label="Box 1">
     <div>Box content</div>
 </vwc-selectable-box>
 ```
@@ -139,15 +139,15 @@ By default, the selectable box is styled in a spacious manner. Enabling the `tig
 
 ## Accessibility
 
-To ensure the selectable box has an accessible label, it is neccessary to provide an `aria-label` attribute or associate a piece of content as a label using the `aria-labelledby` attribute, as in the examples below.
+To ensure the selectable box has an accessible label, it is neccessary to provide an `control-aria-label` attribute or associate a piece of content as a label using the `control-aria-labelledby` attribute, as in the examples below.
 
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-    <vwc-selectable-box aria-label="Box 1" style="max-inline-size: 450px">
+    <vwc-selectable-box control-aria-label="Box 1" style="max-inline-size: 450px">
         <div>Use the aria-label attribute to make the box accessible.</div>
     </vwc-selectable-box>
 
-    <vwc-selectable-box aria-labelledby="box2-heading" style="max-inline-size: 450px">
+    <vwc-selectable-box control-aria-labelledby="box2-heading" style="max-inline-size: 450px">
         <h3 id="box2-heading">Accessible selectable box</h3>
         <p>Use the aria-labelledby attribute to make the box accessible.</p>
     </vwc-selectable-box>
