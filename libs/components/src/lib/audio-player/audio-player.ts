@@ -62,70 +62,74 @@ export class AudioPlayer extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	_sliderEl!: HTMLDivElement;
+	sliderEl!: HTMLDivElement;
 
-	_playerEl!: HTMLAudioElement;
+	playerEl!: any;
+
+	controlEl!: HTMLDivElement;
+
+	override connectedCallback() {
+		super.connectedCallback();
+		this.addEventListener('mouseup', this.onMouseUp);
+	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
-		window.removeEventListener('mouseup', this.#onMouseUp);
+		this.removeEventListener('mouseup', this.onMouseUp);
 	}
 
-	onMouseDown = (_event: MouseEvent): any => {
+	onMouseDown(_event: MouseEvent) {
 		this.addEventListener('mousemove', this.rewind, false);
-		window.addEventListener('mouseup', this.#onMouseUp);
-	};
+	}
 
-	togglePlay = () => {
+	togglePlay() {
 		if (this.paused) {
-			this._playerEl.play();
+			this.playerEl!.play();
 		} else {
-			this._playerEl.pause();
+			this.playerEl!.pause();
 		}
 		this.paused = !this.paused;
-	};
+	}
 
-	updateProgress = () => {
-		const current: number = this._playerEl.currentTime;
-		const percent = (current / this._playerEl.duration) * 100;
-		(this._sliderEl.querySelector('.progress') as HTMLElement).style.width = percent + '%';
+	updateProgress() {
+		const current: number = this.playerEl!.currentTime;
+		const percent = (current / this.playerEl.duration) * 100;
+		(this.sliderEl.querySelector('.progress') as HTMLElement).style.width = percent + '%';
 
-		const currentTime: HTMLSpanElement | null | undefined = this.shadowRoot?.querySelector('.current-time');
-		if (currentTime) currentTime.textContent = this.#formatTime(current);
-	};
+		this.controlEl.querySelector('.current-time')!.textContent = this.formatTime(current);
+	}
 
-	updateTotalTime = () => {
-		const totalTime: HTMLSpanElement | null | undefined = this.shadowRoot?.querySelector('.total-time');
-		if (totalTime) totalTime.textContent = this.#formatTime(this._playerEl.duration);
-	};
+	updateTotalTime() {
+		const totalTime = this.controlEl.querySelector('.total-time');
+		if (totalTime) totalTime.textContent = this.formatTime(this.playerEl.duration);
+	}
 
-	rewind = (event: MouseEvent) => {
-		if (this.#inRange(event) && this._playerEl) {
-			this._playerEl.currentTime = (this._playerEl.duration * this.#getCoefficient(event) as number);
+	rewind(event: MouseEvent) {
+		if (this.inRange(event)) {
+			this.playerEl.currentTime = this.playerEl.duration * this.getCoefficient(event);
 		}
-	};
+	}
 
-	#getCoefficient = (event: MouseEvent) => {
-		const offsetX = event.clientX - this._sliderEl.offsetLeft;
-		const width = this._sliderEl.clientWidth;
+	getCoefficient(event: MouseEvent) {
+		const offsetX = event.clientX - this.sliderEl.offsetLeft;
+		const width = this.sliderEl.clientWidth;
 		return offsetX / width;
-	};
+	}
 
-	#onMouseUp = () => {
+	onMouseUp() {
 		this.removeEventListener('mousemove', this.rewind, false);
-		window.removeEventListener('mouseup', this.#onMouseUp);
-	};
+	}
 
-	#inRange = (event: MouseEvent) => {
-		const min = this._sliderEl.offsetLeft;
-		const max = min + this._sliderEl.offsetWidth;
+	inRange(event: MouseEvent) {
+		const min = this.sliderEl!.offsetLeft;
+		const max = min + this.sliderEl!.offsetWidth;
 		if (event.clientX < min || event.clientX > max) return false;
 		return true;
-	};
+	}
 
-	#formatTime = (time: number) => {
+	formatTime(time: number) {
 		const min = Math.floor(time / 60);
 		const sec = Math.floor(time % 60);
 		return min + ':' + ((sec < 10) ? ('0' + sec) : sec);
-	};
+	}
 }
