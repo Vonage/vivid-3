@@ -60,7 +60,7 @@ export const SelectableBoxTemplate: (
 	<div
 		class="${getClasses}"
 		tabindex="${x => x.clickable ? '0' : null}"
-		role="button"
+		role="${x => x.clickable ? 'button' : null}"
 		aria-pressed="${x => x.clickable && x.checked ? x.checked : null}"
 		aria-label="${x => x.clickable ? x.controlAriaLabel : null}"
 		aria-labelledby="${x => x.clickable ? x.controlAriaLabelledby : null}"

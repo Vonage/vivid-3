@@ -187,7 +187,6 @@ describe('vwc-selectable-box', () => {
 				element.checked = true;
 				element.clickable = true;
 				await elementUpdated(element);
-				const baseElement = getBaseElement(element);
 				const spy = jest.fn();
 				element.addEventListener('change', spy);
 				baseElement.click();
@@ -199,11 +198,19 @@ describe('vwc-selectable-box', () => {
 	});
 
 	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.controlAriaLabel = 'Box 1';
+			await elementUpdated(element);
+			
+			expect(await axe(element)).toHaveNoViolations();
+		});
+
 		it('should put the correct a11y attributes on the control element', async () => {
 			element.controlAriaLabel = 'Box 1';
 			element.controlAriaLabelledby = 'heading1';
 			await elementUpdated(element);
-			const control = element.shadowRoot?.querySelector('.control');
+			const control = getControlElement(element);
+			
 			expect(control?.getAttribute('aria-label')).toBe('Box 1');
 			expect(control?.getAttribute('aria-labelledby')).toBe('heading1');
 		});
@@ -217,7 +224,8 @@ describe('vwc-selectable-box', () => {
 			});
 
 			it('should put the correct a11y attributes on the control element', async () => {
-				const control = element.shadowRoot?.querySelector('.control');
+				const control = getControlElement(element);
+
 				expect(control?.getAttribute('aria-hidden')).toBe('true');
 				expect(control?.getAttribute('tabindex')).toBe('-1');
 				expect(control?.getAttribute('aria-label')).toBe(null);
@@ -225,7 +233,6 @@ describe('vwc-selectable-box', () => {
 			});
 
 			it('should put the correct a11y attributes on the base element', async () => {
-				const baseElement = getBaseElement(element);
 				expect(baseElement?.getAttribute('aria-label')).toBe('Box 1');
 				expect(baseElement?.getAttribute('aria-labelledby')).toBe('heading1');
 				expect(baseElement?.getAttribute('aria-pressed')).toBe(null);
@@ -236,16 +243,9 @@ describe('vwc-selectable-box', () => {
 			it('should add the aria-checked attribute to the base element when checked is true', async () => {
 				element.checked = true;
 				await elementUpdated(element);
-				const baseElement = getBaseElement(element);
+				
 				expect(baseElement?.getAttribute('aria-pressed')).toBe('true');
 			});
-		});
-
-		it('should pass html a11y test', async () => {
-			element.clickable = true;
-			element.controlAriaLabel = 'Box 1';
-			await elementUpdated(element);
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });
