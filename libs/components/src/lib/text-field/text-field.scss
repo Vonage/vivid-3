@@ -50,7 +50,8 @@ $low-ink-color: --_low-ink-color;
 	}
 }
 
-.label {
+.label:not(slot),
+.label::slotted(label) {
 	color: var(#{constants.$vvd-color-canvas-text});
 	contain: inline-size;
 	font: var(#{constants.$vvd-typography-base});
@@ -119,38 +120,44 @@ $low-ink-color: --_low-ink-color;
 }
 
 .control {
-	// ! note: control is required to stretch fully so that
-	// ! autofill indication applies on all fieldset area
-	width: 100%;
-	box-sizing: border-box;
-	border: 0 none;
-	appearance: none; /* for box-shadow visibility on IOS */
-	background-color: transparent;
-	block-size: 100%;
-	border-radius: inherit;
-	color: inherit;
-	font: inherit;
-	padding-block: 0;
-	padding-inline-end: var(#{variables.$text-field-gutter});
-	padding-inline-start: var(#{variables.$text-field-gutter});
+	&:not(slot),
+	&::slotted(input) {
+		// ! note: input is required to stretch fully so that
+		// ! autofill indication applies on all fieldset area
+		width: 100%;
+		box-sizing: border-box;
+		border: 0 none;
+		appearance: none; /* for box-shadow visibility on IOS */
+		background-color: transparent;
+		block-size: 100%;
+		border-radius: inherit;
+		color: inherit;
+		font: inherit;
+		padding-block: 0;
+		padding-inline-end: var(#{variables.$text-field-gutter});
+		padding-inline-start: var(#{variables.$text-field-gutter});
+	}
 
-	&:disabled {
+	&:not(slot):disabled,
+	&::slotted(input:disabled) {
 		cursor: not-allowed;
 		opacity: 1; /* 2. correct opacity on iOS */
 		-webkit-text-fill-color: var(#{appearance.get-appearance-token(text)}); /* 1. sets text fill to current `color` for safari */
 	}
 
-	&::placeholder,
-	&:disabled::placeholder {
-		opacity: 1; /* 2. correct opacity on iOS */
-		-webkit-text-fill-color: var(#{$low-ink-color}); /* 1. sets text fill to current `color` for safari */
+	// &::slotted(input)::placeholder - not working in safari, see workaround in text-field.ts
+	&:not(slot)::placeholder {
+		opacity: 1 !important; /* 2. correct opacity on iOS */
+		-webkit-text-fill-color: var(#{$low-ink-color}) !important; /* 1. sets text fill to current `color` for safari */
 	}
 
-	&:focus-visible {
+	&:not(slot):focus-visible,
+	&::slotted(input:focus-visible) {
 		outline: none;
 	}
 
-	.has-icon & {
+	.has-icon &:not(slot),
+	.has-icon &::slotted(input) {
 		padding-inline-start: calc(var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter}) * 2);
 	}
 }
