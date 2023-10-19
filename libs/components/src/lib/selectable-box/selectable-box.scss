@@ -3,15 +3,15 @@
 @use "../../../../shared/src/lib/sass/utils" as utils;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta,
-	$shades: firm soft faint,
+	$shades: fierce firm pale faint,
 	$default: accent
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
-	$appearances: outlined,
+	$appearances: duotone,
 	$states: idle hover active,
-	$default: outlined
+	$default: duotone
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 
@@ -55,12 +55,8 @@
 }
 
 .base:not(.clickable):not(.active) {
-	&:hover {
-		background-color: transparent;
-	}
-
-	&:active {
-		background-color: transparent;
+	&:hover, &.active {
+		border-color: var(#{utils.get-color-token(neutral-300)});
 	}
 }
 
