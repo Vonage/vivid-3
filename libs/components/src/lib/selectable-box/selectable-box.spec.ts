@@ -24,8 +24,8 @@ describe('vwc-selectable-box', () => {
 				FoundationElementRegistry
 			);
 			expect(element).toBeInstanceOf(SelectableBox);
-			expect(element.controlAriaLabel).toBe(undefined);
-			expect(element.controlAriaLabelledby).toBe(undefined);
+			expect(element.controlAriaLabel).toBe(null);
+			expect(element.controlAriaLabelledby).toBe(null);
 			expect(element.controlType).toBe(undefined);
 			expect(element.connotation).toBe(undefined);
 			expect(element.size).toBe(undefined);
@@ -38,20 +38,23 @@ describe('vwc-selectable-box', () => {
 		it('should set connotation class on the base element', async function () {
 			element.connotation = Connotation.CTA;
 			await elementUpdated(element);
+
 			expect(baseElement?.classList?.contains(`connotation-${Connotation.CTA}`)).toBe(true);
 		});
 
 		it('should set connotation attribute on the control element', async function () {
 			element.connotation = Connotation.CTA;
 			await elementUpdated(element);
-			const control = element.shadowRoot?.querySelector('.control');
+			const control = getControlElement(element);
+
 			expect(control?.getAttribute('connotation')).toBe('cta');
 		});
 	});
 
 	describe('control', () => {
 		it('should display a checkbox by default', async () => {
-			const control = element.shadowRoot?.querySelector('.checkbox');
+			const control = getControlElement(element);
+
 			expect(control).not.toBe(null);
 			expect(control?.getAttribute('checked')).toBe('false');
 		});
@@ -59,7 +62,8 @@ describe('vwc-selectable-box', () => {
 		it('should display a radio when control is set to radio', async () => {
 			element.controlType = 'radio';
 			await elementUpdated(element);
-			const control = element.shadowRoot?.querySelector('.radio');
+			const control = getControlElement(element);
+
 			expect(control).not.toBe(null);
 			expect(control?.getAttribute('current-checked')).toBe('false');
 		});
@@ -67,34 +71,35 @@ describe('vwc-selectable-box', () => {
 
 	describe('size', () => {
 		it('should set size class on the base element', async function () {
-			const baseElement = getBaseElement(element);
 			element.size = Size.Condensed;
 			await elementUpdated(element);
+
 			expect(baseElement?.classList?.contains(`size-${Size.Condensed}`)).toBe(true);
 		});
 	});
 
 	describe('tight', () => {
 		it('should set tight class on the base element', async function () {
-			const baseElement = getBaseElement(element);
 			element.tight = true;
 			await elementUpdated(element);
+
 			expect(baseElement?.classList?.contains('tight')).toBe(true);
 		});
 	});
 
 	describe('checked', () => {
 		it('should set active class on the base element', async function () {
-			const baseElement = getBaseElement(element);
 			element.checked = true;
 			await elementUpdated(element);
+			
 			expect(baseElement?.classList?.contains('active')).toBe(true);
 		});
 
 		it('should set the checked attribute on the control element', async () => {
 			element.checked = true;
 			await elementUpdated(element);
-			const control = element.shadowRoot?.querySelector('.control');
+			const control = getControlElement(element);
+			
 			expect(control?.hasAttribute('checked')).toBe(true);
 			expect(control?.getAttribute('current-checked')).toBe('true');
 		});
@@ -104,7 +109,8 @@ describe('vwc-selectable-box', () => {
 				element.controlType = 'radio';
 				element.checked = true;
 				await elementUpdated(element);
-				const control = element.shadowRoot?.querySelector('.control');
+				const control = getControlElement(element);
+
 				expect(control?.hasAttribute('checked')).toBe(true);
 				expect(control?.getAttribute('current-checked')).toBe('true');
 			});
@@ -113,18 +119,25 @@ describe('vwc-selectable-box', () => {
 
 	describe('clickable', () => {
 		it('should set clickable class on the base element', async function () {
-			const baseElement = getBaseElement(element);
 			element.clickable = true;
 			await elementUpdated(element);
+			
 			expect(baseElement?.classList?.contains('clickable')).toBe(true);
 		});
 	});
 
 	describe('changed event', () => {
-		it('should not emit the change event when the base element is clicked and the element is not clickable', async () => {
-			const baseElement = getBaseElement(element);
-			const spy = jest.fn();
+		const spy = jest.fn();
+
+		beforeEach(() => {
 			element.addEventListener('change', spy);
+		});
+
+		afterEach(() => {
+			jest.clearAllMocks();
+		});
+
+		it('should not emit the change event when the base element is clicked and the element is not clickable', async () => {
 			baseElement.click();
 			
 			expect(spy).not.toHaveBeenCalled();
@@ -132,34 +145,39 @@ describe('vwc-selectable-box', () => {
 
 		it('should emit the change event when the control element changes', async () => {
 			const controlElement = getControlElement(element);
-			const spy = jest.fn();
-			element.addEventListener('change', spy);
-
 			controlElement.dispatchEvent(new Event('change'));
+
 			expect(spy).toHaveBeenCalled();
+			expect(element.checked).toBe(true);
 		});
 
 		describe('clickable', () => {
-			it('should emit the change event when the checked state changes', async () => {
+			beforeEach(async () => {
 				element.clickable = true;
 				await elementUpdated(element);
-				const baseElement = getBaseElement(element);
-				const spy = jest.fn();
-				element.addEventListener('change', spy);
+			});
+
+			it('should emit the change event when the checked state changes', async () => {
 				baseElement.click();
 				
 				expect(spy).toHaveBeenCalled();
+				expect(element.checked).toBe(true);
 			});
 
-			it('should emit the change event when the checked state changes with keydown', async () => {
-				element.clickable = true;
-				await elementUpdated(element);
-				const baseElement = getBaseElement(element);
-				const spy = jest.fn();
-				element.addEventListener('change', spy);
-				baseElement.dispatchEvent(new KeyboardEvent('keydown', { composed: true, code: 'Space' }));
-				
-				expect(spy).toHaveBeenCalled();
+			describe('keyboard', () => {
+				it('should emit the change event when the checked state changes with Space keypress', async () => {
+					baseElement.dispatchEvent(new KeyboardEvent('keydown', { composed: true, code: 'Space' }));
+					
+					expect(spy).toHaveBeenCalled();
+					expect(element.checked).toBe(true);
+				});
+
+				it('should emit the change event when the checked state changes with Enter keypress', async () => {
+					baseElement.dispatchEvent(new KeyboardEvent('keydown', { composed: true, code: 'Enter' }));
+					
+					expect(spy).toHaveBeenCalled();
+					expect(element.checked).toBe(true);
+				});
 			});
 		});
 

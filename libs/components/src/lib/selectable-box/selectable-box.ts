@@ -106,7 +106,8 @@ export class SelectableBox extends FoundationElement {
 	}
 
 	_handleKeydown(event: KeyboardEvent) {
-		if (event.code === 'Space' && this.clickable) this.handleCheckedChange();
+		if (event.code === 'Space' || event.code === 'Enter' && this.clickable) 
+			this.handleCheckedChange();
 		return true;
 	}
 }
