@@ -44,10 +44,10 @@ When `control` is set to `radio`, it is the consuming app's responsibility to en
 
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-    <vwc-selectable-box control="checkbox" style="max-inline-size: 450px">
+    <vwc-selectable-box control-type="checkbox" style="max-inline-size: 450px">
         <div>Checkbox control</div>
     </vwc-selectable-box>
-    <vwc-selectable-box control="radio" style="max-inline-size: 450px">
+    <vwc-selectable-box control-type="radio" style="max-inline-size: 450px">
         <div>Radio control</div>
     </vwc-selectable-box>
 </vwc-layout>
@@ -62,10 +62,10 @@ Set the `checked` attribute to indicate the checked state of the box.
 
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-    <vwc-selectable-box control="checkbox" checked style="max-inline-size: 450px">
+    <vwc-selectable-box control-type="checkbox" checked style="max-inline-size: 450px">
         <div>Checked checkbox box</div>
     </vwc-selectable-box>
-    <vwc-selectable-box control="radio" checked style="max-inline-size: 450px">
+    <vwc-selectable-box control-type="radio" checked style="max-inline-size: 450px">
         <div>Checked radio box</div>
     </vwc-selectable-box>
 </vwc-layout>

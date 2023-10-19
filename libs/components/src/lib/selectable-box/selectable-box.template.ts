@@ -28,7 +28,7 @@ function handleControlChange(x: SelectableBox) {
  * 
  */
 function renderControl(x: SelectableBox, c: ElementDefinitionContext) {
-	const Control = x.control === 'radio' ? Radio : Checkbox;
+	const Control = x.controlType === 'radio' ? Radio : Checkbox;
 	const tagName = c.tagFor(Control);
 	return html<SelectableBox>`
 		<${tagName} 
@@ -36,7 +36,7 @@ function renderControl(x: SelectableBox, c: ElementDefinitionContext) {
 			${x.ariaLabelledby !== null && !x.clickable ? `aria-labelledby="${x.ariaLabelledby}"` : ''}
 			${x.clickable ? 'tabindex="-1" aria-hidden="true"' : ''}
 			@change="${() => handleControlChange(x)}"
-			class="control ${x.control || 'checkbox'}" 
+			class="control ${x.controlType || 'checkbox'}" 
 			connotation="${x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
 			checked="${x.checked}">
 		</${tagName}>
@@ -60,7 +60,7 @@ export const SelectableBoxTemplate: (
 	<div
 		class="${getClasses}"
 		tabindex="${x => x.clickable ? '0' : null}"
-		role="${x => x.clickable ? x.control || 'checkbox' : null}"
+		role="${x => x.clickable ? x.controlType || 'checkbox' : null}"
 		aria-checked="${x => x.clickable && x.checked ? x.checked : null}"
 		aria-label="${x => x.clickable ? x.ariaLabel : null}"
 		aria-labelledby="${x => x.clickable ? x.ariaLabelledby : null}"

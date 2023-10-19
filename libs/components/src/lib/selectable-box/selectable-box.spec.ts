@@ -24,7 +24,7 @@ describe('vwc-selectable-box', () => {
 				FoundationElementRegistry
 			);
 			expect(element).toBeInstanceOf(SelectableBox);
-			expect(element.control).toBe(undefined);
+			expect(element.controlType).toBe(undefined);
 			expect(element.connotation).toBe(undefined);
 			expect(element.size).toBe(undefined);
 			expect(element.tight).toBe(false);
@@ -54,7 +54,7 @@ describe('vwc-selectable-box', () => {
 		});
 
 		it('should display a radio when control is set to radio', async () => {
-			element.control = 'radio';
+			element.controlType = 'radio';
 			await elementUpdated(element);
 			const control = element.shadowRoot?.querySelector('.radio');
 			expect(control).not.toBe(null);
@@ -149,7 +149,7 @@ describe('vwc-selectable-box', () => {
 
 		describe('checked radio', () => {
 			it('should not emit the change event', async () => {
-				element.control = 'radio';
+				element.controlType = 'radio';
 				element.checked = true;
 				element.clickable = true;
 				await elementUpdated(element);

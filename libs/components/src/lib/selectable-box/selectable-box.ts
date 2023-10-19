@@ -16,7 +16,12 @@ export type SelectableBoxConnotation = Connotation.Accent | Connotation.CTA;
  */
 export type SelectableBoxSize = Size.Normal | Size.Condensed;
 
-export type SelectableBoxControl = 'checkbox' | 'radio';
+/**
+ * Types of selectable-box control-type.
+ *
+ * @public
+ */
+export type SelectableBoxControlType = 'checkbox' | 'radio';
 
 
 /**
@@ -25,8 +30,8 @@ export type SelectableBoxControl = 'checkbox' | 'radio';
  * @public
  */
 export class SelectableBox extends FoundationElement {
-	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
-	@attr({attribute: 'aria-labelledby'}) ariaLabelledby: string | null = null;
+	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
+	@attr({ attribute: 'aria-labelledby' }) ariaLabelledby: string | null = null;
 	/**
 	 * The connotation the selectable box should have.
 	 *
@@ -43,7 +48,7 @@ export class SelectableBox extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: connotation
 	 */
-	@attr control?: SelectableBoxControl;
+	@attr({ attribute: 'control-type' }) controlType?: SelectableBoxControlType;
 
 	/**
 	 * The amount of spacing the selectable box should have.
@@ -79,7 +84,7 @@ export class SelectableBox extends FoundationElement {
 	@attr({ mode: 'boolean'}) clickable = false;
 
 	handleCheckedChange() {
-		if (this.control === 'radio' && this.checked) return;
+		if (this.controlType === 'radio' && this.checked) return;
 		this.checked = !this.checked;
 		this.$emit('change', { checked: this.checked });
 	}
