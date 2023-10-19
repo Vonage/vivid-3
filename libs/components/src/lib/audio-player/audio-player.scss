@@ -37,7 +37,7 @@
 
 		.progress {
 			position: absolute;
-			background-color: var(--vvd-color-neutral-400);
+			background-color: var(--vvd-color-neutral-300);
 			border-radius: inherit;
 			pointer-events: none;
 			.pin {
@@ -48,6 +48,11 @@
 				border-radius: 6px;
 				pointer-events: all;
 
+				:not(.disabled) {
+					:active {
+						box-shadow: inset 10px 10px 10px 10px var(#{appearance.get-appearance-token(outline)});
+					}
+				}
 				&.disabled {
 					background-color: var(--vvd-color-neutral-300);
 					cursor: not-allowed;

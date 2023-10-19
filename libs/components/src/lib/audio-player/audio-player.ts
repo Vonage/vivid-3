@@ -128,7 +128,7 @@ export class AudioPlayer extends FoundationElement {
 	 * @internal
 	 */
 	_rewind(event: MouseEvent) {
-		if (this._inRange(event)) {
+		if (this._inRange(event) && this._playerEl.duration) {
 			this._playerEl.currentTime = this._playerEl.duration * this._getCoefficient(event);
 		}
 	}
