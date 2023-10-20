@@ -30,20 +30,20 @@
 	@include connotation.connotation(selectable-box);
 	@include appearance.appearance;
 
-	$size-unit: 16px;
+	#{variables.$size-unit}: 16px;
 
 	position: relative;
-	min-height: calc(var($size-unit) * 2 + 22px);
-	padding: var($size-unit);
+	min-height: calc(var(#{variables.$size-unit}) * 2 + 22px);
+	padding: var(#{variables.$size-unit});
 	border: 1px solid var(#{appearance.get-appearance-token(outline)});
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	border-radius: 6px;
 	inline-size: 100%;
-	padding-block-start: calc(var($size-unit) + 36px);
+	padding-block-start: calc(var(#{variables.$size-unit}) + 36px);
 	text-align: start;
 
 	&.size-condensed {
-		$size-unit: 8px;
+		#{variables.$size-unit}: 8px;
 	}
 
 	&.tight {
@@ -71,10 +71,10 @@
 
 .control {
 	position: absolute;
-	inset-block-start: var($size-unit);
-	inset-inline-end: var($size-unit);
+	inset-block-start: var(#{variables.$size-unit});
+	inset-inline-end: var(#{variables.$size-unit});
 
 	&.checkbox {
-		inset-inline-end: calc(var($size-unit) - 8px);
+		inset-inline-end: calc(var(#{variables.$size-unit}) - 8px);
 	}
 }
