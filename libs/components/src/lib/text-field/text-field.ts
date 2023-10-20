@@ -2,7 +2,7 @@ import {
 	applyMixins,
 	TextField as FoundationTextfield,
 } from '@microsoft/fast-foundation';
-import { attr, Observable, observable } from '@microsoft/fast-element';
+import { attr, observable } from '@microsoft/fast-element';
 import type { Appearance, Shape } from '../enums';
 import {
 	AffixIcon,
@@ -15,54 +15,13 @@ import {
 	FormElementSuccessText,
 } from '../../shared/patterns';
 import { generateRandomId } from '../../shared/utils/randomId';
+import { Reflector } from '../../shared/utils/Reflector';
 
 export type TextFieldAppearance = Extract<
 Appearance,
 Appearance.Fieldset | Appearance.Ghost
 >;
 export type TextFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
-
-const propertiesForwardedToInternalInput = new Map<
-keyof TextField,
-{
-	type: 'boolean-attr' | 'attr' | 'prop';
-	target: string;
-}
->([
-	['autofocus', { target: 'autofocus', type: 'boolean-attr' }],
-	['disabled', { target: 'disabled', type: 'boolean-attr' }],
-	['readOnly', { target: 'readonly', type: 'boolean-attr' }],
-	['required', { target: 'required', type: 'boolean-attr' }],
-	['spellcheck', { target: 'spellcheck', type: 'boolean-attr' }],
-	['list', { target: 'list', type: 'attr' }],
-	['maxlength', { target: 'maxlength', type: 'attr' }],
-	['minlength', { target: 'minlength', type: 'attr' }],
-	['pattern', { target: 'pattern', type: 'attr' }],
-	['placeholder', { target: 'placeholder', type: 'attr' }],
-	['size', { target: 'size', type: 'attr' }],
-	['autoComplete', { target: 'autocomplete', type: 'attr' }],
-	['type', { target: 'type', type: 'attr' }],
-	['ariaAtomic', { target: 'aria-atomic', type: 'attr' }],
-	['ariaBusy', { target: 'aria-busy', type: 'attr' }],
-	['ariaControls', { target: 'aria-controls', type: 'attr' }],
-	['ariaCurrent', { target: 'aria-current', type: 'attr' }],
-	['ariaDescribedby', { target: 'aria-describedby', type: 'attr' }],
-	['ariaDetails', { target: 'aria-details', type: 'attr' }],
-	['ariaDisabled', { target: 'aria-disabled', type: 'attr' }],
-	['ariaErrormessage', { target: 'aria-errormessage', type: 'attr' }],
-	['ariaFlowto', { target: 'aria-flowto', type: 'attr' }],
-	['ariaHaspopup', { target: 'aria-haspopup', type: 'attr' }],
-	['ariaHidden', { target: 'aria-hidden', type: 'attr' }],
-	['ariaInvalid', { target: 'aria-invalid', type: 'attr' }],
-	['ariaKeyshortcuts', { target: 'aria-keyshortcuts', type: 'attr' }],
-	['ariaLabel', { target: 'aria-label', type: 'attr' }],
-	['ariaLabelledby', { target: 'aria-labelledby', type: 'attr' }],
-	['ariaLive', { target: 'aria-live', type: 'attr' }],
-	['ariaOwns', { target: 'aria-owns', type: 'attr' }],
-	['ariaRelevant', { target: 'aria-relevant', type: 'attr' }],
-	['ariaRoledescription', { target: 'aria-roledescription', type: 'attr' }],
-	['value', { target: 'value', type: 'prop' }],
-]);
 
 // Safari does not support styling the `::placeholder` pseudo-element on slotted input
 // See bug: https://bugs.webkit.org/show_bug.cgi?id=223814
@@ -133,6 +92,8 @@ export class TextField extends FoundationTextfield {
 		}
 	}
 
+	#reflectToInput?: Reflector<this, HTMLInputElement>;
+
 	override connectedCallback() {
 		super.connectedCallback();
 
@@ -148,11 +109,40 @@ export class TextField extends FoundationTextfield {
 			input.className = safariWorkaroundClassName;
 			this.control = input;
 
-			const notifier = Observable.getNotifier(this);
-			for (const prop of propertiesForwardedToInternalInput.keys()) {
-				notifier.subscribe(this.#propertyChangeHandler, prop);
-				this.#propertyChangeHandler.handleChange(this, prop);
-			}
+			this.#reflectToInput = new Reflector(this, input);
+			this.#reflectToInput.booleanAttribute('autofocus', 'autofocus',);
+			this.#reflectToInput.booleanAttribute('disabled', 'disabled',);
+			this.#reflectToInput.booleanAttribute('readOnly', 'readonly',);
+			this.#reflectToInput.booleanAttribute('required', 'required',);
+			this.#reflectToInput.booleanAttribute('spellcheck', 'spellcheck',);
+			this.#reflectToInput.attribute('list', 'list',);
+			this.#reflectToInput.attribute('maxlength', 'maxlength',);
+			this.#reflectToInput.attribute('minlength', 'minlength',);
+			this.#reflectToInput.attribute('pattern', 'pattern',);
+			this.#reflectToInput.attribute('placeholder', 'placeholder',);
+			this.#reflectToInput.attribute('size', 'size',);
+			this.#reflectToInput.attribute('autoComplete', 'autocomplete',);
+			this.#reflectToInput.attribute('type', 'type',);
+			this.#reflectToInput.attribute('ariaAtomic', 'aria-atomic');
+			this.#reflectToInput.attribute('ariaBusy', 'aria-busy');
+			this.#reflectToInput.attribute('ariaControls', 'aria-controls');
+			this.#reflectToInput.attribute('ariaCurrent', 'aria-current');
+			this.#reflectToInput.attribute('ariaDescribedby', 'aria-describedby');
+			this.#reflectToInput.attribute('ariaDetails', 'aria-details');
+			this.#reflectToInput.attribute('ariaDisabled', 'aria-disabled');
+			this.#reflectToInput.attribute('ariaErrormessage', 'aria-errormessage');
+			this.#reflectToInput.attribute('ariaFlowto', 'aria-flowto');
+			this.#reflectToInput.attribute('ariaHaspopup', 'aria-haspopup');
+			this.#reflectToInput.attribute('ariaHidden', 'aria-hidden');
+			this.#reflectToInput.attribute('ariaInvalid', 'aria-invalid');
+			this.#reflectToInput.attribute('ariaKeyshortcuts', 'aria-keyshortcuts');
+			this.#reflectToInput.attribute('ariaLabel', 'aria-label');
+			this.#reflectToInput.attribute('ariaLabelledby', 'aria-labelledby');
+			this.#reflectToInput.attribute('ariaLive', 'aria-live');
+			this.#reflectToInput.attribute('ariaOwns', 'aria-owns');
+			this.#reflectToInput.attribute('ariaRelevant', 'aria-relevant');
+			this.#reflectToInput.attribute('ariaRoledescription', 'aria-roledescription');
+			this.#reflectToInput.property('value', 'value', true);
 
 			input.addEventListener('input', () => {
 				this.handleTextInput();
@@ -181,38 +171,8 @@ export class TextField extends FoundationTextfield {
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
-		const notifier = Observable.getNotifier(this);
-		for (const prop of propertiesForwardedToInternalInput.keys()) {
-			notifier.unsubscribe(this.#propertyChangeHandler, prop);
-		}
+		this.#reflectToInput!.destroy();
 	}
-
-	#propertyChangeHandler = {
-		handleChange(source: TextField, propertyName: keyof TextField) {
-			const { type, target } = propertiesForwardedToInternalInput.get(propertyName)!;
-			const value = source[propertyName];
-
-			switch (type) {
-				case 'boolean-attr':
-					if (Boolean(value)) {
-						source.control.setAttribute(target, '');
-					} else {
-						source.control.removeAttribute(target);
-					}
-					break;
-				case 'attr':
-					if (value !== undefined && value !== null) {
-						source.control.setAttribute(target, String(value));
-					} else {
-						source.control.removeAttribute(target);
-					}
-					break;
-				case 'prop':
-					(source.control as any)[target] = value as any;
-					break;
-			}
-		},
-	};
 
 	override focus() {
 		this.control?.focus();

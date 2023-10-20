@@ -19,6 +19,99 @@ describe('Form Elements', function () {
 		});
 	});
 
+	describe('formElements hack', () => {
+		@formElements
+		class Test extends HTMLElement {
+			proxy = document.createElement('input');
+			control = document.createElement('input');
+
+			validate() {}
+
+			setValidity = jest.fn();
+		}
+
+		customElements.define('test-element', Test);
+
+		let test: Test;
+
+		beforeEach(() => {
+			test = new Test();
+			Object.defineProperty(test.proxy, 'validationMessage', {
+				value: 'proxy validation message',
+			});
+			Object.defineProperty(test.control, 'validationMessage', {
+				value: 'control validation message',
+			});
+		});
+
+		it("should use the proxy's validity when the proxy is invalid", () => {
+			Object.defineProperty(test.proxy, 'validity', {
+				value: {
+					valid: false,
+				},
+			});
+
+			test.validate();
+
+			expect(test.setValidity).toHaveBeenCalledWith(
+				{
+					valid: false,
+				},
+				'proxy validation message',
+				undefined
+			);
+		});
+
+		it.each(['tooLong', 'tooShort'])(
+			"should use the control's validity when the proxy is valid but control is invalid with %s reason",
+			(reason) => {
+				Object.defineProperty(test.proxy, 'validity', {
+					value: {
+						valid: true,
+					},
+				});
+				Object.defineProperty(test.control, 'validity', {
+					value: {
+						[reason]: true,
+						valid: false,
+					},
+				});
+
+				test.validate();
+
+				expect(test.setValidity).toHaveBeenCalledWith(
+					{
+						[reason]: true,
+						valid: false,
+					},
+					'control validation message',
+					undefined
+				);
+			}
+		);
+
+		it("should use the proxy's validity when control has no validity state", () => {
+			Object.defineProperty(test.proxy, 'validity', {
+				value: {
+					valid: true,
+				},
+			});
+			Object.defineProperty(test.control, 'validity', {
+				value: undefined,
+			});
+
+			test.validate();
+
+			expect(test.setValidity).toHaveBeenCalledWith(
+				{
+					valid: true,
+				},
+				'proxy validation message',
+				undefined
+			);
+		});
+	});
+
 	describe('formElements mixin', function () {
 		function enableValidation() {
 			dispatchBlurEvent();
@@ -127,18 +220,27 @@ describe('Form Elements', function () {
 
 		const baseValidate = jest.fn().mockReturnValue(5);
 
+		class _ErrorTextClass extends FASTElement {}
+		// eslint-disable-next-line @typescript-eslint/naming-convention
+		interface _ErrorTextClass extends FormAssociated {}
+
+		class FormAssociatedErrorTextClass extends FormAssociated(_ErrorTextClass) {
+			proxy = document.createElement('input');
+		}
+
 		@customElement('error-text-class')
 		@errorText
 		@formElements
-		class ErrorTextClass extends FASTElement {
-			proxy = document.createElement('input');
+		class ErrorTextClass extends FormAssociatedErrorTextClass {
+			override get validationMessage() {
+				return VALIDATION_MESSAGE;
+			}
 
-			validationMessage = VALIDATION_MESSAGE;
-			validate() {
+			override validate() {
 				return baseValidate();
 			}
 
-			setValidity = jest.fn();
+			override setValidity = jest.fn();
 		}
 		interface ErrorTextClass extends ErrorText, FormElement {}
 

@@ -1,7 +1,9 @@
-# number-field
+# Number Field
 
-Represents a number-field custom element. Follows the [`HTMLInput` of `type=text` specifications](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/text).
-If you'd like to know why we follow the `text` field type, you can read more about it [here](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/).
+The number-field component allows users to enter a number in a text field. It follows the [native number field](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/number) specification.
+
+The component is not appropriate for values that only happen to consist of numbers but aren't strictly speaking a number, e.g. phone numbers or ZIP codes. 
+Use the [`text-field`](./text-field) component instead.
 
 ```js
 <script type="module">
@@ -10,14 +12,14 @@ If you'd like to know why we follow the `text` field type, you can read more abo
 ```
 
 ```html preview
-<vwc-number-field maxlength="4" minlength="2"></vwc-number-field>
+<vwc-number-field label="Quantity"></vwc-number-field>
 ```
 
 ## Members
 
 ### Label
 Add a `label` attribute to add label to the number field.  
-The label is important to help users understand what is needed. I case you choose not to add mind our [accessibility notice](#accessibility)
+The label is important to help users understand what is needed. In case you choose not to add one, mind our [accessibility notice](#accessibility).
 
 - Type: `string` | `undefined`
 - Default: `undefined`
@@ -47,6 +49,28 @@ Set the `value` attribute to set the default value for the number field. Setting
 
 ```html preview
 <vwc-number-field label="With default value" value="5"></vwc-number-field>
+```
+
+### Min
+
+- Type: `number` | `undefined`
+- Default: `undefined`
+
+Set the `min` attribute to set the minimum value for the number field.
+
+```html preview
+<vwc-number-field label="With minimum" min="100"></vwc-number-field>
+```
+
+### Max
+
+- Type: `number` | `undefined`
+- Default: `undefined`
+
+Set the `max` attribute to set the maximum value for the number field.
+
+```html preview
+<vwc-number-field label="With maximum" max="2"></vwc-number-field>
 ```
 
 ### Helper text
@@ -128,7 +152,6 @@ Add the `readonly` attribute to restrict user from changing the number field's v
 |-----------------|----------|-----------------------------------------------|
 | `stepUp`        | `void`   | Increase value by step (1 if step is not set) |
 | `stepDown`      | `void`   | Decrease value by step (1 if step is not set) |
-|                 |
 
 </div>
 
@@ -136,5 +159,9 @@ Add the `readonly` attribute to restrict user from changing the number field's v
 If no label is set - it is highly recommended that `aria-label` will be added.
 
 ```html
-<vwc-number-field aria-label="choose a number" maxlength="4" minlength="2"></vwc-number-field>
+<vwc-number-field aria-label="choose a number"></vwc-number-field>
 ```
+
+## Known issues
+
+- Constraint validation with `minlength` and `maxlength` is not supported.

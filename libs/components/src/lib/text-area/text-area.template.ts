@@ -61,7 +61,6 @@ export const TextAreaTemplate: (
 				?disabled="${x => x.disabled}"
 				?required="${x => x.required}"
 				?spellcheck="${x => x.spellcheck}"
-				:value="${x => x.value}"
 				aria-atomic="${x => x.ariaAtomic}"
 				aria-busy="${x => x.ariaBusy}"
 				aria-controls="${x => x.ariaControls}"
