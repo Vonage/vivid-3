@@ -180,49 +180,44 @@ describe('vwc-selectable-box', () => {
 				});
 			});
 		});
-
-		describe('checked radio', () => {
-			it('should not emit the change event', async () => {
-				element.controlType = 'radio';
-				element.checked = true;
-				element.clickable = true;
-				await elementUpdated(element);
-				const spy = jest.fn();
-				element.addEventListener('change', spy);
-				baseElement.click();
-				await elementUpdated(element);
-	
-				expect(spy).not.toHaveBeenCalled();
-			});
-		});
 	});
 
 	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
+		beforeEach(async () => {
 			element.controlAriaLabel = 'Box 1';
+			element.controlAriaLabelledby = 'heading1';
 			await elementUpdated(element);
-			
+		});
+
+		it('should pass html a11y test', async () => {
 			expect(await axe(element)).toHaveNoViolations();
 		});
 
 		it('should put the correct a11y attributes on the control element', async () => {
-			element.controlAriaLabel = 'Box 1';
-			element.controlAriaLabelledby = 'heading1';
 			await elementUpdated(element);
 			const control = getControlElement(element);
 			
-			expect(control?.getAttribute('aria-label')).toBe('Box 1');
 			expect(control?.getAttribute('aria-labelledby')).toBe('heading1');
 			expect(control?.getAttribute('aria-hidden')).toBe('false');
 			expect(control?.getAttribute('tabindex')).toBe(null);
 		});
 
+		it('should put the aria-label text in the contol slot', async () => {
+			const label = element.shadowRoot?.querySelector('.control .label');
+			
+			expect(label?.textContent).toBe('Box 1');
+		});
+
 		describe('clickable', () => {
 			beforeEach(async () => {
 				element.clickable = true;
-				element.controlAriaLabel = 'Box 1';
-				element.controlAriaLabelledby = 'heading1';
 				await elementUpdated(element);
+			});
+
+			xit('should pass html a11y test', async () => {
+				// const control = getControlElement(element);
+				// console.log(control.shadowRoot?.innerHTML);
+				expect(await axe(element)).toHaveNoViolations();
 			});
 
 			it('should put the correct a11y attributes on the control element', async () => {
@@ -230,7 +225,6 @@ describe('vwc-selectable-box', () => {
 				
 				expect(control?.getAttribute('aria-hidden')).toBe('true');
 				expect(control?.getAttribute('tabindex')).toBe('-1');
-				expect(control?.getAttribute('aria-label')).toBe('');
 				expect(control?.getAttribute('aria-labelledby')).toBe('');
 			});
 

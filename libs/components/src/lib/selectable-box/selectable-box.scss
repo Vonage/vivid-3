@@ -77,4 +77,13 @@
 	&.checkbox {
 		inset-inline-end: calc(var(#{variables.$size-unit}) - 8px);
 	}
+
+	.label {
+		position:absolute;
+		inset-inline-start: -10000px;
+		inset-block-start: auto;
+		width:1px;
+		height:1px;
+		overflow:hidden;
+	}
 }

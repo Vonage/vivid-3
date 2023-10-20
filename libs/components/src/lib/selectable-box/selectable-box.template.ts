@@ -29,7 +29,6 @@ function checkbox(context: ElementDefinitionContext) {
 	
 	return html<SelectableBox>`${when(x => x.controlType !== 'radio', html`
 		<${checkboxTag}
-			aria-label="${x => !x.clickable && x.controlAriaLabel ? x.controlAriaLabel : ''}"
 			aria-labelledby="${x => !x.clickable && x.controlAriaLabelledby ? x.controlAriaLabelledby : ''}"
 			tabindex="${x => x.clickable ? '-1' : null}"
 			aria-hidden="${x => x.clickable}"
@@ -38,6 +37,7 @@ function checkbox(context: ElementDefinitionContext) {
 			connotation="${x => x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
 			checked="${x => x.checked}"
 		>
+			${when(x => !x.clickable && x.controlAriaLabel, html`<span class="label">${x => x.controlAriaLabel}</span>`)}
 		</${checkboxTag}>`)}
 	`;
 }
@@ -47,7 +47,6 @@ function radio(context: ElementDefinitionContext) {
 
 	return html<SelectableBox>`${when(x => x.controlType === 'radio', html`
 		<${radioTag}
-			aria-label="${x => !x.clickable && x.controlAriaLabel ? x.controlAriaLabel : ''}"
 			aria-labelledby="${x => !x.clickable && x.controlAriaLabelledby ? x.controlAriaLabelledby : ''}"
 			tabindex="${x => x.clickable ? '-1' : null}"
 			aria-hidden="${x => x.clickable}"
@@ -56,26 +55,10 @@ function radio(context: ElementDefinitionContext) {
 			connotation="${x => x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
 			checked="${x => x.checked}"
 		>
+			${when(x => !x.clickable && x.controlAriaLabel, html`<span class="label">${x => x.controlAriaLabel}</span>`)}
 		</${radioTag}>`)}
 	`;
 }
-
-
-// function renderControl(x: SelectableBox, c: ElementDefinitionContext) {
-// 	const Control = x.controlType === 'radio' ? Radio : Checkbox;
-// 	const tagName = c.tagFor(Control);
-// 	return html<SelectableBox>`
-// 		<${tagName} 
-// 			${x.controlAriaLabel !== null && !x.clickable ? `aria-label="${x.controlAriaLabel}"` : ''}
-// 			${x.controlAriaLabelledby !== null && !x.clickable ? `aria-labelledby="${x.controlAriaLabelledby}"` : ''}
-// 			${x.clickable ? 'tabindex="-1" aria-hidden="true"' : ''}
-// 			@change="${() => handleControlChange(x)}"
-// 			class="control ${x.controlType || 'checkbox'}" 
-// 			connotation="${x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
-// 			checked="${x.checked}">
-// 		</${tagName}>
-// 	`;
-// }
 
 /**
  * The template for the SelectableBox component.
