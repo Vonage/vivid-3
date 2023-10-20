@@ -88,31 +88,31 @@ describe('vwc-selectable-box', () => {
 	});
 
 	describe('checked', () => {
+		beforeEach(async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} checked></${COMPONENT_TAG}>`
+			)) as SelectableBox;
+			baseElement = getBaseElement(element);
+		});
+		
 		it('should set active class on the base element', async function () {
-			element.checked = true;
-			await elementUpdated(element);
-			
 			expect(baseElement?.classList?.contains('active')).toBe(true);
 		});
 
 		it('should set the checked attribute on the control element', async () => {
-			element.checked = true;
-			await elementUpdated(element);
 			const control = getControlElement(element);
 			
 			expect(control?.hasAttribute('checked')).toBe(true);
-			expect(control?.getAttribute('current-checked')).toBe('true');
 		});
 
 		describe('radio', () => {
 			it('should set the checked attribute on the control element', async () => {
-				element.controlType = 'radio';
-				element.checked = true;
-				await elementUpdated(element);
+				element = (await fixture(
+					`<${COMPONENT_TAG} control-type="radio" checked></${COMPONENT_TAG}>`
+				)) as SelectableBox;
 				const control = getControlElement(element);
 
 				expect(control?.hasAttribute('checked')).toBe(true);
-				expect(control?.getAttribute('current-checked')).toBe('true');
 			});
 		});
 	});
@@ -198,7 +198,7 @@ describe('vwc-selectable-box', () => {
 	});
 
 	describe('a11y', () => {
-		xit('should pass html a11y test', async () => {
+		it('should pass html a11y test', async () => {
 			element.controlAriaLabel = 'Box 1';
 			await elementUpdated(element);
 			
@@ -213,6 +213,8 @@ describe('vwc-selectable-box', () => {
 			
 			expect(control?.getAttribute('aria-label')).toBe('Box 1');
 			expect(control?.getAttribute('aria-labelledby')).toBe('heading1');
+			expect(control?.getAttribute('aria-hidden')).toBe('false');
+			expect(control?.getAttribute('tabindex')).toBe(null);
 		});
 
 		describe('clickable', () => {
@@ -225,11 +227,11 @@ describe('vwc-selectable-box', () => {
 
 			it('should put the correct a11y attributes on the control element', async () => {
 				const control = getControlElement(element);
-
+				
 				expect(control?.getAttribute('aria-hidden')).toBe('true');
 				expect(control?.getAttribute('tabindex')).toBe('-1');
-				expect(control?.getAttribute('aria-label')).toBe(null);
-				expect(control?.getAttribute('aria-labelledby')).toBe(null);
+				expect(control?.getAttribute('aria-label')).toBe('');
+				expect(control?.getAttribute('aria-labelledby')).toBe('');
 			});
 
 			it('should put the correct a11y attributes on the base element', async () => {

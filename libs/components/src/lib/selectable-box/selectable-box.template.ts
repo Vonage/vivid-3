@@ -1,4 +1,4 @@
-import { html } from '@microsoft/fast-element';
+import { html, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
@@ -24,24 +24,57 @@ function handleControlChange(x: SelectableBox) {
 	if (!x.clickable) x._handleCheckedChange();
 }
 
-/**
- * 
- */
-function renderControl(x: SelectableBox, c: ElementDefinitionContext) {
-	const Control = x.controlType === 'radio' ? Radio : Checkbox;
-	const tagName = c.tagFor(Control);
-	return html<SelectableBox>`
-		<${tagName} 
-			${x.controlAriaLabel !== null && !x.clickable ? `aria-label="${x.controlAriaLabel}"` : ''}
-			${x.controlAriaLabelledby !== null && !x.clickable ? `aria-labelledby="${x.controlAriaLabelledby}"` : ''}
-			${x.clickable ? 'tabindex="-1" aria-hidden="true"' : ''}
-			@change="${() => handleControlChange(x)}"
-			class="control ${x.controlType || 'checkbox'}" 
-			connotation="${x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
-			checked="${x.checked}">
-		</${tagName}>
+function checkbox(context: ElementDefinitionContext) {
+	const checkboxTag = context.tagFor(Checkbox);
+	
+	return html<SelectableBox>`${when(x => x.controlType !== 'radio', html`
+		<${checkboxTag}
+			aria-label="${x => !x.clickable && x.controlAriaLabel ? x.controlAriaLabel : ''}"
+			aria-labelledby="${x => !x.clickable && x.controlAriaLabelledby ? x.controlAriaLabelledby : ''}"
+			tabindex="${x => x.clickable ? '-1' : null}"
+			aria-hidden="${x => x.clickable}"
+			@change="${x => handleControlChange(x)}"
+			class="control checkbox" 
+			connotation="${x => x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
+			checked="${x => x.checked}"
+		>
+		</${checkboxTag}>`)}
 	`;
 }
+
+function radio(context: ElementDefinitionContext) {
+	const radioTag = context.tagFor(Radio);
+
+	return html<SelectableBox>`${when(x => x.controlType === 'radio', html`
+		<${radioTag}
+			${when(x => !x.clickable && x.controlAriaLabel !== null, html`aria-label="${x => x.controlAriaLabel}"`)}
+			${when(x => !x.clickable && x.controlAriaLabelledby !== null, html`aria-labelledby="${x => x.controlAriaLabelledby}"`)}
+			${when(x => x.clickable, html`tabindex="-1" aria-hidden="true"`)}
+			@change="${x => handleControlChange(x)}"
+			class="control radio" 
+			connotation="${x => x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
+			checked="${x => x.checked}"
+		>
+		</${radioTag}>`)}
+	`;
+}
+
+
+// function renderControl(x: SelectableBox, c: ElementDefinitionContext) {
+// 	const Control = x.controlType === 'radio' ? Radio : Checkbox;
+// 	const tagName = c.tagFor(Control);
+// 	return html<SelectableBox>`
+// 		<${tagName} 
+// 			${x.controlAriaLabel !== null && !x.clickable ? `aria-label="${x.controlAriaLabel}"` : ''}
+// 			${x.controlAriaLabelledby !== null && !x.clickable ? `aria-labelledby="${x.controlAriaLabelledby}"` : ''}
+// 			${x.clickable ? 'tabindex="-1" aria-hidden="true"' : ''}
+// 			@change="${() => handleControlChange(x)}"
+// 			class="control ${x.controlType || 'checkbox'}" 
+// 			connotation="${x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
+// 			checked="${x.checked}">
+// 		</${tagName}>
+// 	`;
+// }
 
 /**
  * The template for the SelectableBox component.
@@ -68,7 +101,8 @@ export const SelectableBoxTemplate: (
 		@click="${x => x.clickable ? x._handleCheckedChange() : null}"
 	>
 		${(x) => x.clickable ? focusTemplate : ''}
-		${x => renderControl(x, context)}
+		${checkbox(context)}
+		${radio(context)}
 		<slot></slot>
 	</div>
 `;
