@@ -54,9 +54,7 @@ describe('Form Elements', function () {
 			test.validate();
 
 			expect(test.setValidity).toHaveBeenCalledWith(
-				{
-					valid: false,
-				},
+				test.proxy.validity,
 				'proxy validation message',
 				undefined
 			);
@@ -80,10 +78,7 @@ describe('Form Elements', function () {
 				test.validate();
 
 				expect(test.setValidity).toHaveBeenCalledWith(
-					{
-						[reason]: true,
-						valid: false,
-					},
+					test.control.validity,
 					'control validation message',
 					undefined
 				);
@@ -103,9 +98,7 @@ describe('Form Elements', function () {
 			test.validate();
 
 			expect(test.setValidity).toHaveBeenCalledWith(
-				{
-					valid: true,
-				},
+				test.proxy.validity,
 				'proxy validation message',
 				undefined
 			);
