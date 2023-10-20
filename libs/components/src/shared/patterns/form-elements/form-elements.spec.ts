@@ -19,7 +19,7 @@ describe('Form Elements', function () {
 		});
 	});
 
-	describe('formElements hack', () => {
+	describe('formElements() validate method', () => {
 		@formElements
 		class Test extends HTMLElement {
 			proxy = document.createElement('input');
