@@ -47,9 +47,10 @@ function radio(context: ElementDefinitionContext) {
 
 	return html<SelectableBox>`${when(x => x.controlType === 'radio', html`
 		<${radioTag}
-			${when(x => !x.clickable && x.controlAriaLabel !== null, html`aria-label="${x => x.controlAriaLabel}"`)}
-			${when(x => !x.clickable && x.controlAriaLabelledby !== null, html`aria-labelledby="${x => x.controlAriaLabelledby}"`)}
-			${when(x => x.clickable, html`tabindex="-1" aria-hidden="true"`)}
+			aria-label="${x => !x.clickable && x.controlAriaLabel ? x.controlAriaLabel : ''}"
+			aria-labelledby="${x => !x.clickable && x.controlAriaLabelledby ? x.controlAriaLabelledby : ''}"
+			tabindex="${x => x.clickable ? '-1' : null}"
+			aria-hidden="${x => x.clickable}"
 			@change="${x => handleControlChange(x)}"
 			class="control radio" 
 			connotation="${x => x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
