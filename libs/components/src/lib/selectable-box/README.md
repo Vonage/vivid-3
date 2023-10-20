@@ -1,6 +1,6 @@
 # Selectable Box
 
-Represents a selectable-box custom element.
+Represents a content box to used in a group where one or more can be selected.
 
 ```js
 <script type="module">import '@vonage/vivid/selectable-box';</script>
@@ -8,7 +8,7 @@ Represents a selectable-box custom element.
 
 ```html preview
 <vwc-selectable-box control-aria-label="Box 1">
-    <div>Box content</div>
+    Box content
 </vwc-selectable-box>
 ```
 
@@ -37,7 +37,7 @@ It accepts a subset of predefined values.
 
 Set the `control` attribute to change the box's selectable control
 It accepts a subset of predefined values.
-When `control` is set to `radio`, it is the consuming app's responsibility to ensure only 1 selectable box in a group is checked at a time.
+When `control` is set to `radio`, it is the consuming app's responsibility to ensure only one selectable box in a group is checked at a time.
 
 - Type: `'checkbox'`, `'radio'`
 - Default: `'checkbox'`

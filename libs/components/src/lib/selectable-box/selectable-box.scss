@@ -1,4 +1,5 @@
 @use "../focus/partials/variables" as focus-variables;
+@use "partials/variables" as variables;
 
 @use "../../../../shared/src/lib/sass/utils" as utils;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
@@ -29,20 +30,20 @@
 	@include connotation.connotation(selectable-box);
 	@include appearance.appearance;
 
-	--_sizing-unit: 16px;
+	$size-unit: 16px;
 
 	position: relative;
-	min-height: calc(var(--_sizing-unit) * 2 + 22px);
-	padding: var(--_sizing-unit);
+	min-height: calc(var($size-unit) * 2 + 22px);
+	padding: var($size-unit);
 	border: 1px solid var(#{appearance.get-appearance-token(outline)});
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	border-radius: 6px;
 	inline-size: 100%;
-	padding-block-start: calc(var(--_sizing-unit) + 36px);
+	padding-block-start: calc(var($size-unit) + 36px);
 	text-align: start;
 
 	&.size-condensed {
-		--_sizing-unit: 8px;
+		$size-unit: 8px;
 	}
 
 	&.tight {
@@ -70,10 +71,10 @@
 
 .control {
 	position: absolute;
-	inset-block-start: var(--_sizing-unit);
-	inset-inline-end: var(--_sizing-unit);
+	inset-block-start: var($size-unit);
+	inset-inline-end: var($size-unit);
 
 	&.checkbox {
-		inset-inline-end: calc(var(--_sizing-unit) - 8px);
+		inset-inline-end: calc(var($size-unit) - 8px);
 	}
 }

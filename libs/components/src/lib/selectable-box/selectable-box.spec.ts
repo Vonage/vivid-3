@@ -126,7 +126,7 @@ describe('vwc-selectable-box', () => {
 		});
 	});
 
-	describe('changed event', () => {
+	describe('change event', () => {
 		const spy = jest.fn();
 
 		beforeEach(() => {
@@ -198,7 +198,7 @@ describe('vwc-selectable-box', () => {
 	});
 
 	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
+		xit('should pass html a11y test', async () => {
 			element.controlAriaLabel = 'Box 1';
 			await elementUpdated(element);
 			

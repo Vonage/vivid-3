@@ -28,6 +28,8 @@ export type SelectableBoxControlType = 'checkbox' | 'radio';
  * Base class for selectable-box
  *
  * @public
+ * @slot default - Slot for box's content.
+ * @event change - Fired when the checked state changes
  */
 export class SelectableBox extends FoundationElement {
 	/**
@@ -99,7 +101,7 @@ export class SelectableBox extends FoundationElement {
 	*/
 	@attr({ mode: 'boolean' }) tight = false;
 
-	handleCheckedChange() {
+	_handleCheckedChange() {
 		if (this.controlType === 'radio' && this.checked) return;
 		this.checked = !this.checked;
 		this.$emit('change', { checked: this.checked });
@@ -107,7 +109,7 @@ export class SelectableBox extends FoundationElement {
 
 	_handleKeydown(event: KeyboardEvent) {
 		if (event.code === 'Space' || event.code === 'Enter' && this.clickable) 
-			this.handleCheckedChange();
+			this._handleCheckedChange();
 		return true;
 	}
 }

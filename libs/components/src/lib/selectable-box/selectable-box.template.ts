@@ -21,7 +21,7 @@ const getClasses = ({ connotation, size, tight, checked, clickable }: Selectable
 );
 
 function handleControlChange(x: SelectableBox) {
-	if (!x.clickable) x.handleCheckedChange();
+	if (!x.clickable) x._handleCheckedChange();
 }
 
 /**
@@ -65,7 +65,7 @@ export const SelectableBoxTemplate: (
 		aria-label="${x => x.clickable ? x.controlAriaLabel : null}"
 		aria-labelledby="${x => x.clickable ? x.controlAriaLabelledby : null}"
 		@keydown="${(x, c) => x._handleKeydown(c.event as KeyboardEvent)}"
-		@click="${x => x.clickable ? x.handleCheckedChange() : null}"
+		@click="${x => x.clickable ? x._handleCheckedChange() : null}"
 	>
 		${(x) => x.clickable ? focusTemplate : ''}
 		${x => renderControl(x, context)}
