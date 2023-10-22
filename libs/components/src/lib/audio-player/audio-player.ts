@@ -10,6 +10,7 @@ import type { Connotation } from '../enums';
  */
 export type BadgeConnotation = Extract<Connotation, | Connotation.Accent | Connotation.CTA>;
 
+const PADDING = 16;
 /**
  * Base class for audio-player
  *
@@ -137,7 +138,7 @@ export class AudioPlayer extends FoundationElement {
 	 * @internal
 	 */
 	_getCoefficient(event: MouseEvent) {
-		const offsetX = event.clientX - this._sliderEl.offsetLeft;
+		const offsetX = event.clientX - this._sliderEl.offsetLeft - PADDING;
 		const width = this._sliderEl.clientWidth;
 		return offsetX / width;
 	}
@@ -153,8 +154,8 @@ export class AudioPlayer extends FoundationElement {
 	 * @internal
 	 */
 	_inRange(event: MouseEvent) {
-		const min = this._sliderEl!.offsetLeft;
-		const max = min + this._sliderEl!.offsetWidth;
+		const min = this._sliderEl.offsetLeft + PADDING;
+		const max = min + this._sliderEl.offsetWidth;
 		if (event.clientX < min || event.clientX > max) return false;
 		return true;
 	}
