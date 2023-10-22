@@ -37,6 +37,7 @@
 
 		.progress {
 			position: absolute;
+			z-index: 1;
 			background-color: var(--vvd-color-neutral-300);
 			border-radius: inherit;
 			pointer-events: none;
@@ -47,10 +48,20 @@
 				background-color: var(#{appearance.get-appearance-token(fill)});
 				border-radius: 6px;
 				pointer-events: all;
-
-				:not(.disabled) {
-					:active {
-						box-shadow: inset 10px 10px 10px 10px var(#{appearance.get-appearance-token(outline)});
+				&:active{
+					&::before {
+						position: absolute;
+						z-index: -1;
+						display: block;
+						background-color: var(--vvd-color-neutral-100);
+						block-size: 30px;
+						border-radius: 50%;
+						content: "";
+						inline-size: 30px;
+						inset-block-start: 50%;
+						inset-inline-start: 50%;
+						opacity: 0.8;
+						transform: translate(-50%, -50%);
 					}
 				}
 				&.disabled {
@@ -80,6 +91,7 @@
 		}
 		.current-time,
 		.total-time {
+			min-width: 32px;
 			margin-inline: 6px;
 		}
 	}

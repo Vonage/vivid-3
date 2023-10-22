@@ -33,7 +33,8 @@ export const AudioPlayerTemplate: (context: ElementDefinitionContext, definition
 		  ${when(x => !x.noseek,
 		html`<div class="slider" ${ref('_sliderEl')} @click="${(x, c) => x._rewind(c.event as MouseEvent)}">
           <div class="progress">
-            <div class="pin ${getClasses}" id="progress-pin" @mousedown="${(x, c) => x._onMouseDown(c.event as MouseEvent)}"></div>
+            <div class="pin ${getClasses}" role='button' id="progress-pin" 
+            @mousedown="${(x, c) => x._onMouseDown(c.event as MouseEvent)}"></div>
           </div>
         </div>`)}
       </div>
