@@ -55,7 +55,7 @@
 
 	pointer-events: none;
 
-	.base:not(.active) > & {
+	:host(:not(:focus)) .base > & {
 		display: none;
 	}
 }
