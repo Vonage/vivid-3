@@ -38,7 +38,7 @@
 		.progress {
 			position: absolute;
 			z-index: 1;
-			background-color: var(--vvd-color-neutral-300);
+			background-color: var(#{constants.$vvd-color-neutral-300});
 			border-radius: inherit;
 			pointer-events: none;
 			.pin {
