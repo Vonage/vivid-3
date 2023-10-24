@@ -32,7 +32,7 @@
 	.slider {
 		position: relative;
 		min-width: 200px;
-		background-color: var(--vvd-color-neutral-50);
+		background-color: var(#{constants.$vvd-color-neutral-50});
 		cursor: pointer;
 
 		.progress {
