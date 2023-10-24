@@ -48,6 +48,22 @@
 				background-color: var(#{appearance.get-appearance-token(fill)});
 				border-radius: 50%;
 				pointer-events: all;
+				
+				&::before {
+					position: absolute;
+					z-index: -1;
+					display: block;
+					background-color: var(#{appearance.get-appearance-token(fill)});
+					block-size: 0;
+					border-radius: inherit;
+					content: "";
+					inline-size: 0;
+					inset-block-start: 50%;
+					inset-inline-start: 50%;
+					opacity: 0;
+					transform: translate(-50%, -50%);
+					transition: opacity 0.2s ease-in-out, inline-size 0.2s ease-in-out, block-size 0.2s ease-in-out;
+				}
 				&:active{
 					&::before {
 						position: absolute;
