@@ -100,8 +100,8 @@
 				inline-size: 0;
 				block-size: 100%;
 				.pin {
-					top: -4px;
-					right: -8px;
+					inset-block-start: -4px;
+					inset-inline-end: -8px;
 				}
 			}
 		}
