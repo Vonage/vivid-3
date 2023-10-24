@@ -19,8 +19,9 @@ export const AudioPlayerTemplate: (context: ElementDefinitionContext, definition
 
 	return html<AudioPlayer>`
 	<${elevationTag} dp="2">
-    <div class="base ${getClasses}">
+    <div class="base ${getClasses}" aria-disabled="${(x) => x.disabled}">
       <${buttonTag} class="pause" icon="${x => x.paused ? 'play-solid' : 'pause-solid'}" 
+      aria-lablel="${x => x.paused ? 'play-button' : 'pause-button'}"
       size='condensed' ?disabled="${x => x.disabled}" 
       connotation="${x => x.connotation}" 
       @click="${x => x._togglePlay()}"></${buttonTag}>

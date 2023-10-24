@@ -9,8 +9,10 @@
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: filled,
+	$states: idle hover disabled active,
 	$default: filled
 );
+
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 
 .base {
@@ -29,77 +31,73 @@
 		cursor: not-allowed;
 		pointer-events: none;
 	}
+
 	.slider {
 		position: relative;
-		min-inline-size: 200px;
 		background-color: var(#{constants.$vvd-color-neutral-50});
+		block-size: 4px;
+		border-radius: 2px;
 		cursor: pointer;
+		margin-inline-end: 16px;
+		margin-inline-start: 8px;
+		min-inline-size: 200px;
+	}
 
-		.progress {
+	.progress {
+		position: absolute;
+		z-index: 1;
+		background-color: var(#{constants.$vvd-color-neutral-300});
+		block-size: 100%;
+		border-radius: inherit;
+		inline-size: 0;
+		pointer-events: none;
+	}
+
+	.pin {
+		position: absolute;
+		background-color: var(#{appearance.get-appearance-token(fill)});
+		block-size: 12px;
+		border-radius: 50%;
+		inline-size: 12px;
+		inset-block-start: -4px;
+		inset-inline-end: -8px;
+		pointer-events: all;
+
+		&::before {
 			position: absolute;
-			z-index: 1;
-			background-color: var(#{constants.$vvd-color-neutral-300});
+			z-index: -1;
+			display: block;
+			background-color: var(#{appearance.get-appearance-token(fill)});
+			block-size: 0;
 			border-radius: inherit;
-			pointer-events: none;
-			.pin {
-				position: absolute;
-				inline-size: 12px;
-				block-size: 12px;
-				background-color: var(#{appearance.get-appearance-token(fill)});
-				border-radius: 50%;
-				pointer-events: all;
-				
-				&::before {
-					position: absolute;
-					z-index: -1;
-					display: block;
-					background-color: var(#{appearance.get-appearance-token(fill)});
-					block-size: 0;
-					border-radius: inherit;
-					content: "";
-					inline-size: 0;
-					inset-block-start: 50%;
-					inset-inline-start: 50%;
-					opacity: 0;
-					transform: translate(-50%, -50%);
-					transition: opacity 0.2s ease-in-out, inline-size 0.2s ease-in-out, block-size 0.2s ease-in-out;
-				}
-				&:active{
-&::before {
-						block-size: 30px;
-						inline-size: 30px;
-						opacity: 0.1;
-					}
-				}
-				&.disabled {
-					background-color: var(--vvd-color-neutral-300);
-					cursor: not-allowed;
-					pointer-events: none;
-				}
+			content: "";
+			inline-size: 0;
+			inset-block-start: 50%;
+			inset-inline-start: 50%;
+			opacity: 0;
+			transform: translate(-50%, -50%);
+			transition:
+				opacity 0.2s ease-in-out,
+				inline-size 0.2s ease-in-out,
+				block-size 0.2s ease-in-out;
+		}
+		&:active {
+			&::before {
+				block-size: 30px;
+				inline-size: 30px;
+				opacity: 0.1;
 			}
 		}
 	}
+
 	.controls {
 		display: flex;
 		align-items: center;
-		.slider {
-			block-size: 4px;
-			margin-inline-end: 16px;
-			margin-inline-start: 8px;
-			border-radius: 2px;
-			.progress {
-				inline-size: 0;
-				block-size: 100%;
-				.pin {
-					inset-block-start: -4px;
-					inset-inline-end: -8px;
-				}
-			}
-		}
-		.current-time,
-		.total-time {
-			min-inline-size: 32px;
-			margin-inline: 6px;
-		}
+	}
+
+	.current-time,
+	.total-time {
+		margin-inline: 6px;
+		min-inline-size: 32px;
 	}
 }
