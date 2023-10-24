@@ -63,6 +63,9 @@
 
 .focus-indicator {
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
+	#{focus-variables.$focus-inset}: -1px;
+
+	pointer-events: none;
 
 	.base:not(:focus-visible) > & {
 		display: none;
@@ -80,10 +83,10 @@
 
 	.label {
 		position:absolute;
-		inset-inline-start: -10000px;
-		inset-block-start: auto;
+		overflow:hidden;
 		width:1px;
 		height:1px;
-		overflow:hidden;
+		inset-block-start: auto;
+		inset-inline-start: -10000px;
 	}
 }

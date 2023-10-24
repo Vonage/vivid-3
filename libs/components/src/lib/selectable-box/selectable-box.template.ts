@@ -29,16 +29,15 @@ function checkbox(context: ElementDefinitionContext) {
 	
 	return html<SelectableBox>`${when(x => x.controlType !== 'radio', html`
 		<${checkboxTag}
-			aria-labelledby="${x => !x.clickable && x.controlAriaLabelledby ? x.controlAriaLabelledby : ''}"
-			tabindex="${x => x.clickable ? '-1' : null}"
+			aria-label="${x => !x.clickable && x.controlAriaLabel ? x.controlAriaLabel : null}"
+			aria-labelledby="${x => !x.clickable && x.controlAriaLabelledby ? x.controlAriaLabelledby : null}"
+			tabindex="${x => x.clickable ? '-1' : '0'}"
 			aria-hidden="${x => x.clickable}"
 			@change="${x => handleControlChange(x)}"
 			class="control checkbox" 
 			connotation="${x => x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
 			checked="${x => x.checked}"
-		>
-			${when(x => !x.clickable && x.controlAriaLabel, html`<span class="label">${x => x.controlAriaLabel}</span>`)}
-		</${checkboxTag}>`)}
+		></${checkboxTag}>`)}
 	`;
 }
 
@@ -47,16 +46,15 @@ function radio(context: ElementDefinitionContext) {
 
 	return html<SelectableBox>`${when(x => x.controlType === 'radio', html`
 		<${radioTag}
+			aria-label="${x => !x.clickable && x.controlAriaLabel ? x.controlAriaLabel : null}"
 			aria-labelledby="${x => !x.clickable && x.controlAriaLabelledby ? x.controlAriaLabelledby : ''}"
-			tabindex="${x => x.clickable ? '-1' : null}"
+			tabindex="${x => x.clickable ? '-1' : '0'}"
 			aria-hidden="${x => x.clickable}"
 			@change="${x => handleControlChange(x)}"
 			class="control radio" 
 			connotation="${x => x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
 			checked="${x => x.checked}"
-		>
-			${when(x => !x.clickable && x.controlAriaLabel, html`<span class="label">${x => x.controlAriaLabel}</span>`)}
-		</${radioTag}>`)}
+		></${radioTag}>`)}
 	`;
 }
 
