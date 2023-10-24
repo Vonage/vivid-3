@@ -31,7 +31,7 @@
 	}
 	.slider {
 		position: relative;
-		min-width: 200px;
+		min-inline-size: 200px;
 		background-color: var(#{constants.$vvd-color-neutral-50});
 		cursor: pointer;
 
