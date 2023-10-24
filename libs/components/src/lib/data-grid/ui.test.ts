@@ -143,8 +143,9 @@ async function testMultiCellSelection({ page }: { page: Page }) {
 }
 
 async function testRowSelection({ page }: { page: Page }) {
-	const template = `<div style="margin: 5px;">
-			<vwc-data-grid id="clicked-row" selection-mode="single-row"></vwc-data-grid>
+	const template = `<div style="margin: 5px;" class="vivid-root">
+			<vwc-data-grid id="clicked-row" selection-mode="single-row"
+			style="--data-grid-row-background: var(--vvd-color-cta-50);"></vwc-data-grid>
 	</div>`;
 
 	await loadComponents({
@@ -171,6 +172,7 @@ async function testRowSelection({ page }: { page: Page }) {
 		{data1: 'data21', data2: 'data22'},
 		{data1: 'data31', data2: 'data32'},
 	];
+		grid.generateHeader = 'sticky';
 	`});
 
 	const text = await page.locator('vwc-data-grid-cell:has-text("data22")').nth(2);
