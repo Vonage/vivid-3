@@ -153,3 +153,16 @@ The default slot allows you to use rich content as the checkbox's label.
 	I agree to <a href="https://www.vonage.com/legal/" target="_blank">Vonage Terms of Service</a>
 </vwc-checkbox>
 ```
+
+## Use case
+```html preview blocks
+<style>
+
+</style>
+<form method="post" action="">
+	<vwc-checkbox error-text="You need to accept the Terms of service">
+		I agree to <a href="https://www.vonage.com/legal/" target="_blank">Vonage Terms of Service</a>
+	</vwc-checkbox>
+	<vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>
+</form>
+```
