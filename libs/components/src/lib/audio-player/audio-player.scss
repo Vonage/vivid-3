@@ -65,19 +65,10 @@
 					transition: opacity 0.2s ease-in-out, inline-size 0.2s ease-in-out, block-size 0.2s ease-in-out;
 				}
 				&:active{
-					&::before {
-						position: absolute;
-						z-index: -1;
-						display: block;
-						background-color: var(--vvd-color-neutral-100);
+&::before {
 						block-size: 30px;
-						border-radius: 50%;
-						content: "";
 						inline-size: 30px;
-						inset-block-start: 50%;
-						inset-inline-start: 50%;
-						opacity: 0.8;
-						transform: translate(-50%, -50%);
+						opacity: 0.1;
 					}
 				}
 				&.disabled {
