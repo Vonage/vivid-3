@@ -46,7 +46,7 @@
 				width: 12px;
 				height: 12px;
 				background-color: var(#{appearance.get-appearance-token(fill)});
-				border-radius: 6px;
+				border-radius: 50%;
 				pointer-events: all;
 				&:active{
 					&::before {
