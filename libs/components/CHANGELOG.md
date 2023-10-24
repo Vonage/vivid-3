@@ -4,6 +4,13 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.39.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.38.0...vivid-v3.39.0) (2023-10-17)
+
+
+### Features
+
+* **menu-item:** support tick-only appearance (VIV-1222) ([#1404](https://github.com/Vonage/vivid-3/issues/1404)) ([ac3c132](https://github.com/Vonage/vivid-3/commit/ac3c13288f35648c42789a49591adef7318873ea))
+
 ## [3.38.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.37.0...vivid-v3.38.0) (2023-10-11)
 
 

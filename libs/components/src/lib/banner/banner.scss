@@ -16,6 +16,10 @@
 
 $banner-transition-delay: --transition-delay;
 
+:host {
+	display: block;
+}
+
 .control {
 	@include connotation.connotation (banner);
 	@include appearance.appearance;

@@ -17,4 +17,14 @@ Object.defineProperty(window, 'matchMedia', {
 	})),
 });
 
+Object.defineProperty(document, 'adoptedStyleSheets', {
+	writable: true,
+	value: [],
+});
+Object.defineProperty(ShadowRoot.prototype, 'adoptedStyleSheets', {
+	writable: true,
+	value: [],
+});
+CSSStyleSheet.prototype.replaceSync = jest.fn();
+
 expect.extend(toHaveNoViolations);

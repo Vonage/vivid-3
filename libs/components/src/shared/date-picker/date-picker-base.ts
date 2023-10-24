@@ -249,7 +249,7 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 			this.proxy.setCustomValidity(this._getCustomValidationError() ?? '');
 		}
 
-		super.validate(this._textFieldEl?.shadowRoot?.querySelector('input') ?? undefined);
+		super.validate(this._textFieldEl?.querySelector('input') ?? undefined);
 	}
 
 	protected abstract _getCustomValidationError(): string | null;
