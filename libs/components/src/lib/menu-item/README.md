@@ -1,7 +1,5 @@
 # Menu Item
 
-Represents a menu-item custom element.
-
 ```js
 <script type="module">
   import '@vonage/vivid/menu-item';
@@ -194,7 +192,7 @@ Slot `meta` makes icon/checkbox/radiobutton to be `trailing`.
   <vwc-menu-item text="Away" role="menuitemradio">
     <vwc-badge slot="meta" appearance='filled' connotation='warning' shape='pill' icon='clock-line'></vwc-badge>
   </vwc-menu-item>
-  <vwc-menu-item text="Bussy" role="menuitemradio" checked>
+  <vwc-menu-item text="Busy" role="menuitemradio" checked>
     <vwc-badge slot="meta" appearance='filled' connotation='alert' shape='pill' icon='minus-solid'></vwc-badge>
   </vwc-menu-item>
 </vwc-menu> 

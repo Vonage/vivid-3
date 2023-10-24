@@ -1,6 +1,6 @@
 # Header
 
-Represents the top header of a page.
+The header component can be used to display a header at the top of the page.
 
 ```js
 <script type="module">
@@ -12,8 +12,7 @@ Represents the top header of a page.
 
 ### Elevation Shadow
 
-As an elevated element, the Header applies an elevation surface background color (more noticeable in dark themes) but leaves out elevation shadow (more noticeable in light themes) for author's to opt-in.
-Set `elevation-shadow` on header to apply the elevation shadow corresponding with its surface background color.
+Set `elevation-shadow` to apply a shadow to the header.
 
 - Type: `boolean`
 - Default: `false`
@@ -26,7 +25,7 @@ Set `elevation-shadow` on header to apply the elevation shadow corresponding wit
 
 ### Alternate
 
-Use `alternate` to apply an alternate color-scheme, which is in contrast with the current global theme and applies on all assigned vivid components.
+Use `alternate` to apply an alternate color-scheme, which is in contrast with the current global theme. It will also apply to any slotted vivid components.
 
 - Type: `boolean`
 - Default: `false`
@@ -63,7 +62,7 @@ Nodes assigned to `action-items` slot will be set at the end of the header.
 
 ### App Content
 
-It is also possible to assign application context directly to the header's `app-content` slot, which will allow content to follow, vertically, the header.
+It is also possible to assign application content directly to the header's `app-content` slot, which will allow content to follow, vertically, the header.
 
 ```html preview full
 <vwc-header>
@@ -80,7 +79,7 @@ It is also possible to assign application context directly to the header's `app-
 
 ### Block Size
 
-The size of the header block is set definitively. A header's block size value is often used in conjunction with other elements in the application. The `--vvd-header-block-size` private custom property is applied internally to header styles and holds the block size value. This property isn't customizable by authors but does pierce in and can be set to apply style to assigned content.
+The header has a fixed height. It cannot be modified, but is available as the `--vvd-header-block-size` CSS variable to slotted content.
 
 - Value: `64px`
 - Accessibility: `read-only`
@@ -102,9 +101,7 @@ The size of the header block is set definitively. A header's block size value is
 
   <main slot="app-content">
     <vwc-layout column-basis="block" gutters="medium">
-      <h1>
-        Application content
-      </h1>
+			Application content
     </vwc-layout>
   </main>
 </vwc-header>
@@ -112,7 +109,7 @@ The size of the header block is set definitively. A header's block size value is
 
 
 ###  Header background-color
-Use `--header-bg-color` to set a custom background color for the header
+Use `--header-bg-color` to set a custom background color for the header.
 
 ```html preview full
 <style>
@@ -170,7 +167,7 @@ The component's internal *header* element.
 
 ### Fixed Header with Side Drawer
 
-A *fixed* Header as primary element containing a Side Drawer containing application content.
+A *fixed* header as primary element containing a side drawer containing application content.
 
 ```html preview full
 <style>
@@ -227,7 +224,7 @@ A *fixed* Header as primary element containing a Side Drawer containing applicat
 
 ### Side Drawer with Header
 
-A Side Drawer as primary element containing a Header containing application content.
+A side drawer as primary element containing a header containing application content.
 
 ```html preview full
 <style>
@@ -268,7 +265,7 @@ A Side Drawer as primary element containing a Header containing application cont
 
 ### Header with Banner
 
-Banners are placed at the top of the screen below the Header.
+Banners are placed at the top of the screen below the header.
 In this example, the banner sticks to the top of the window.
 
 ```html preview full

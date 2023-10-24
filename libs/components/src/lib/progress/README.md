@@ -23,7 +23,7 @@ Use `min`, `max` in order to determine the range of the progress.
 
 ### Value
 
-Use `value` in order to set the state of the progress. String value will set the state to `indetermintate`.
+Use `value` in order to set the state of the progress. A non-number value will set the state to `indetermintate`.
 
 - Type: `number` | `string`
 - Default: `undefined`
