@@ -1,4 +1,5 @@
 import {
+	axe,
 	elementUpdated,
 	fixture,
 	setupDelegatesFocusPolyfill
@@ -570,6 +571,16 @@ describe('vwc-date-range-picker', () => {
 			element.end = end;
 
 			expect(getFormValue()).toBeNull();
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.start = '2012-12-12';
+			element.end = '2012-12-13';
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });
