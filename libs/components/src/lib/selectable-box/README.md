@@ -141,15 +141,48 @@ By default, the selectable box is styled in a spacious manner. Enabling the `tig
 
 To ensure the selectable box has an accessible label, it is neccessary to provide an `control-aria-label` attribute or associate a piece of content as a label using the `control-aria-labelledby` attribute, as in the examples below.
 
+Also, the boxes need a parent element to have a `role` attribute set to `group`.
+
 ```html preview
-<vwc-layout gutters="small" row-spacing="small" column-basis="block">
+<vwc-layout role="group" gutters="small" row-spacing="small" column-basis="block">
     <vwc-selectable-box control-aria-label="Box 1" style="max-inline-size: 450px">
-        <div>Use the aria-label attribute to make the box accessible.</div>
+        <div>Use the control-aria-label attribute to make the box accessible.</div>
     </vwc-selectable-box>
 
     <vwc-selectable-box control-aria-labelledby="box2-heading" style="max-inline-size: 450px">
         <h3 id="box2-heading">Accessible selectable box</h3>
-        <p>Use the aria-labelledby attribute to make the box accessible.</p>
+        <p>Use the control-aria-labelledby attribute to make the box accessible.</p>
+    </vwc-selectable-box>
+</vwc-layout>
+```
+
+## Use case
+
+```html preview
+<vwc-layout role="group">
+    <vwc-selectable-box clickable control-aria-labelledby="box1-heading" style="max-inline-size: 450px">
+        <h4 id="box1-heading">Add-on 1</h4>
+        <ul>
+            <li>ADD DATA - to see the data add-ons available to you</li>
+            <li>ADD MINS - to see the minutes add-ons available to you</li>
+            <li>ADD INT - to see the international add-ons, so you can call abroad from the UK</li>
+        </ul>
+    </vwc-selectable-box>
+     <vwc-selectable-box clickable control-aria-labelledby="box2-heading" style="max-inline-size: 450px">
+        <h4 id="box2-heading">Add-on 2</h4>
+         <ul>
+            <li>ADD DATA - to see the data add-ons available to you</li>
+            <li>ADD MINS - to see the minutes add-ons available to you</li>
+            <li>ADD INT - to see the international add-ons, so you can call abroad from the UK</li>
+        </ul>
+    </vwc-selectable-box>
+    <vwc-selectable-box clickable control-aria-labelledby="box3-heading" style="max-inline-size: 450px">
+        <h4 id="box3-heading">Add-on 3</h4>
+         <ul>
+            <li>ADD DATA - to see the data add-ons available to you</li>
+            <li>ADD MINS - to see the minutes add-ons available to you</li>
+            <li>ADD INT - to see the international add-ons, so you can call abroad from the UK</li>
+        </ul>
     </vwc-selectable-box>
 </vwc-layout>
 ```

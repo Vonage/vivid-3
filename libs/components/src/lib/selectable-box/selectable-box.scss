@@ -76,17 +76,4 @@
 	position: absolute;
 	inset-block-start: var(#{variables.$size-unit});
 	inset-inline-end: var(#{variables.$size-unit});
-
-	&.checkbox {
-		inset-inline-end: calc(var(#{variables.$size-unit}) - 8px);
-	}
-
-	.label {
-		position:absolute;
-		overflow:hidden;
-		width:1px;
-		height:1px;
-		inset-block-start: auto;
-		inset-inline-start: -10000px;
-	}
 }
