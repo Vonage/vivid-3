@@ -73,7 +73,7 @@ describe('vwc-audio-player', () => {
 	});
 
 	describe('noseek', function () {
-		it('should remove the slider from when equal to true', async function () {
+		it('should remove the slider when equal to true', async function () {
 			const controls = getBaseElement(element).querySelector('.controls') as HTMLDivElement;
 			const sliderClassExistsBeforeTheChange = controls.querySelector('.slider');
 
