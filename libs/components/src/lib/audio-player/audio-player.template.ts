@@ -2,7 +2,6 @@ import { html, ref, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { Elevation } from '../elevation/elevation';
 import { Button } from '../button/button';
 import type { AudioPlayer } from './audio-player';
 
@@ -15,10 +14,8 @@ const getClasses = ({ connotation, disabled, duration }: AudioPlayer) =>
 export const AudioPlayerTemplate: (context: ElementDefinitionContext, definition: FoundationElementDefinition
 ) => ViewTemplate<AudioPlayer> = (context: ElementDefinitionContext) => {
 	const buttonTag = context.tagFor(Button);
-	const elevationTag = context.tagFor(Elevation);
 
 	return html<AudioPlayer>`
-	<${elevationTag} dp="2">
     <div class="base ${getClasses}" aria-disabled="${(x) => x.disabled}">
       <${buttonTag} class="pause" icon="${x => x.paused ? 'play-solid' : 'pause-solid'}" 
       aria-lablel="${x => x.paused ? 'play-button' : 'pause-button'}"
@@ -41,8 +38,7 @@ export const AudioPlayerTemplate: (context: ElementDefinitionContext, definition
       </div>
       <audio ${ref('_playerEl')} src="${x => x.src}"
       @timeupdate="${x => x._updateProgress()}" @loadedmetadata="${x => x._updateTotalTime()}"></audio>
-    </div>
-  </${elevationTag}>`;
+    </div>`;
 };
 
 

@@ -16,6 +16,7 @@ const PADDING = 16;
  *
  * @public
  */
+
 export class AudioPlayer extends FoundationElement {
 	/**
 	 * The connotation the audio-player should have.
@@ -31,7 +32,7 @@ export class AudioPlayer extends FoundationElement {
 	 * HTML Attribute: src
 	 */
 	@attr src?: string;
-
+	
 	/**
 	 * Indicates whether audio player is disabled.
 	 *
@@ -125,7 +126,7 @@ export class AudioPlayer extends FoundationElement {
 	_updateTotalTime() {
 		const totalTime = this._controlEl.querySelector('.total-time');
 		if (totalTime) totalTime.textContent = this._formatTime(this._playerEl.duration);
-		if(this._playerEl) this.duration = this._playerEl.duration;
+		if (this._playerEl) this.duration = this._playerEl.duration;
 	}
 
 	/**

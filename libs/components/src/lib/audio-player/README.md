@@ -21,6 +21,7 @@ Use the `src` attribute to add source to the audio-player.
 <vwc-audio-player src="https://download.samplelib.com/mp3/sample-6s.mp3"></vwc-audio-player>
 ```
 
+
 ### Time stamp
 
 Use the `timestamp` attribute to add timestamp to the audio-player.
