@@ -55,9 +55,11 @@
 	}
 }
 
+/* disables hover / active styles when the box is not clickable */
 .base:not(.clickable):not(.active) {
-	&:hover, &.active {
+	&:hover, &.active, &:active {
 		border-color: var(#{utils.get-color-token(neutral-300)});
+		background-color: transparent;
 	}
 }
 
