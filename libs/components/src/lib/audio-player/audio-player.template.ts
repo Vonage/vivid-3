@@ -6,10 +6,10 @@ import { Elevation } from '../elevation/elevation';
 import { Button } from '../button/button';
 import type { AudioPlayer } from './audio-player';
 
-const getClasses = ({ connotation, disabled }: AudioPlayer) =>
+const getClasses = ({ connotation, disabled, duration }: AudioPlayer) =>
 	classNames(
 		[`connotation-${connotation}`, Boolean(connotation)],
-		['disabled', Boolean(disabled)],
+		['disabled', Boolean(disabled) || !Boolean(duration)],
 	);
 
 export const AudioPlayerTemplate: (context: ElementDefinitionContext, definition: FoundationElementDefinition
@@ -22,7 +22,7 @@ export const AudioPlayerTemplate: (context: ElementDefinitionContext, definition
     <div class="base ${getClasses}" aria-disabled="${(x) => x.disabled}">
       <${buttonTag} class="pause" icon="${x => x.paused ? 'play-solid' : 'pause-solid'}" 
       aria-lablel="${x => x.paused ? 'play-button' : 'pause-button'}"
-      size='condensed' ?disabled="${x => x.disabled}" 
+      size='condensed' ?disabled="${x => x.disabled || !x.duration}" 
       connotation="${x => x.connotation}" 
       @click="${x => x._togglePlay()}"></${buttonTag}>
 

@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { attr, observable } from '@microsoft/fast-element';
+import { attr, nullableNumberConverter, observable } from '@microsoft/fast-element';
 import type { Connotation } from '../enums';
 
 /**
@@ -39,6 +39,8 @@ export class AudioPlayer extends FoundationElement {
 	 * HTML Attribute: disabled
 	 */
 	@attr({ mode: 'boolean' }) disabled = false;
+
+	@attr({ converter: nullableNumberConverter }) duration?: number;
 
 	/**
 	 *
@@ -123,6 +125,7 @@ export class AudioPlayer extends FoundationElement {
 	_updateTotalTime() {
 		const totalTime = this._controlEl.querySelector('.total-time');
 		if (totalTime) totalTime.textContent = this._formatTime(this._playerEl.duration);
+		if(this._playerEl) this.duration = this._playerEl.duration;
 	}
 
 	/**
