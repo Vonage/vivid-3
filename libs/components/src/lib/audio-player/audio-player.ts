@@ -4,11 +4,11 @@ import { attr, observable } from '@microsoft/fast-element';
 import type { Connotation } from '../enums';
 
 /**
- * Types of badge connotation.
+ * Types of audio player connotation.
  *
  * @public
  */
-export type BadgeConnotation = Extract<Connotation, | Connotation.Accent | Connotation.CTA>;
+export type AudioPlayerConnotation = Extract<Connotation, | Connotation.Accent | Connotation.CTA>;
 
 const PADDING = 16;
 /**
