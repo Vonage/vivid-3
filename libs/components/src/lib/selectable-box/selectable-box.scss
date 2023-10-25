@@ -4,15 +4,15 @@
 @use "../../../../shared/src/lib/sass/utils" as utils;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta,
-	$shades: fierce firm pale faint,
+	$shades: firm pale soft,
 	$default: accent
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
-	$appearances: duotone,
-	$states: idle hover active,
-	$default: duotone
+	$appearances: selectablebox,
+	$states: idle hover checked checkedAndHover,
+	$default: selectablebox
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 
@@ -46,20 +46,16 @@
 	}
 
 	&.tight {
-		padding: 0;
 		min-height: calc(var(#{variables.$size-unit}) * 2 + 22px);
+		padding: 0;
 	}
 
 	&.clickable {
 		cursor: pointer;
 	}
-}
 
-/* disables hover / active styles when the box is not clickable */
-.base:not(.clickable):not(.active) {
-	&:hover, &.active, &:active {
-		border-color: var(#{utils.get-color-token(neutral-300)});
-		background-color: transparent;
+	&::slotted(img) {
+		vertical-align: middle;;
 	}
 }
 

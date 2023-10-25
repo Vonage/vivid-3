@@ -16,8 +16,9 @@ const getClasses = ({ connotation, size, tight, checked, clickable }: Selectable
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[`size-${size}`, Boolean(size)],
 	['tight', tight],
-	['active', checked],
+	['checked', checked],
 	['clickable', clickable],
+	['readonly', !clickable],
 );
 
 function handleControlChange(x: SelectableBox) {
@@ -36,7 +37,7 @@ function checkbox(context: ElementDefinitionContext) {
 			@change="${x => handleControlChange(x)}"
 			class="control checkbox" 
 			connotation="${x => x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
-			checked="${x => x.checked}"
+			:checked="${x => x.checked}"
 		></${checkboxTag}>`)}
 	`;
 }
@@ -53,7 +54,7 @@ function radio(context: ElementDefinitionContext) {
 			@change="${x => handleControlChange(x)}"
 			class="control radio" 
 			connotation="${x => x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
-			checked="${x => x.checked}"
+			:checked="${x => x.checked}"
 		></${radioTag}>`)}
 	`;
 }

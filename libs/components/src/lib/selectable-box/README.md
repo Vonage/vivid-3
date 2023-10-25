@@ -33,11 +33,11 @@ It accepts a subset of predefined values.
 </vwc-layout>
 ```
 
-### Control
+### Control type
 
-Set the `control` attribute to change the box's selectable control
+Set the `control-type` attribute to change the box's selectable control
 It accepts a subset of predefined values.
-When `control` is set to `radio`, it is the consuming app's responsibility to ensure only one selectable box in a group is checked at a time.
+When `control-type` is set to `radio`, it is the consuming app's responsibility to ensure only one selectable box in a group is checked at a time.
 
 - Type: `'checkbox'`, `'radio'`
 - Default: `'checkbox'`
@@ -158,6 +158,8 @@ Also, the boxes need a parent element to have a `role` attribute set to `group`.
 
 ## Use case
 
+### Text based boxes
+
 ```html preview
 <vwc-layout role="group">
     <vwc-selectable-box clickable control-aria-labelledby="box1-heading" style="max-inline-size: 450px">
@@ -183,6 +185,22 @@ Also, the boxes need a parent element to have a `role` attribute set to `group`.
             <li>ADD MINS - to see the minutes add-ons available to you</li>
             <li>ADD INT - to see the international add-ons, so you can call abroad from the UK</li>
         </ul>
+    </vwc-selectable-box>
+</vwc-layout>
+```
+
+### Image based boxes
+
+```html preview
+<vwc-layout role="group">
+    <vwc-selectable-box aria-label="Bright ideas" tight size="normal" style="inline-size: fit-content" clickable>
+        <img style="display: block" src="https://doodleipsum.com/350x200?bg=C863D9&i=0b3f4112a9c5e358c439c4be74380e54" alt="Lots of ideas"/>
+    </vwc-selectable-box>
+    <vwc-selectable-box aria-label="Take a load off" tight size="normal" style="inline-size: fit-content" clickable>
+        <img style="display: block" src="https://doodleipsum.com/350x200/flat?bg=EB765D&amp;i=7d5ed3bc0c215d1359b2a63d03cf1540" alt="Sitting on Floor"/>
+    </vwc-selectable-box>
+    <vwc-selectable-box aria-label="Get located" tight size="normal" style="inline-size: fit-content" clickable>
+        <img style="display: block" src="https://doodleipsum.com/350x200?bg=7463D9&i=6af2fcb146f3b99cfa1371242b2eee55" alt="Get located"/>
     </vwc-selectable-box>
 </vwc-layout>
 ```
