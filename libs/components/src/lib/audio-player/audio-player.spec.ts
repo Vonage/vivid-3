@@ -18,7 +18,7 @@ describe('vwc-audio-player', () => {
 		play: jest.fn(),
 	}));
 
-	beforeAll(() => {
+	beforeEach(() => {
 		play = HTMLMediaElement.prototype.play;
 		HTMLMediaElement.prototype.play = jest.fn();
 		pause = HTMLMediaElement.prototype.pause;
