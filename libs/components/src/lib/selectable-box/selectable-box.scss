@@ -33,7 +33,6 @@
 	#{variables.$size-unit}: 16px;
 
 	position: relative;
-	min-height: calc(var(#{variables.$size-unit}) * 2 + 22px);
 	padding: var(#{variables.$size-unit});
 	border: 1px solid var(#{appearance.get-appearance-token(outline)});
 	background-color: var(#{appearance.get-appearance-token(fill)});
@@ -48,6 +47,7 @@
 
 	&.tight {
 		padding: 0;
+		min-height: calc(var(#{variables.$size-unit}) * 2 + 22px);
 	}
 
 	&.clickable {
