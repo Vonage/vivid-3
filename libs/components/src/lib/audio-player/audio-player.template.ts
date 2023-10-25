@@ -39,7 +39,7 @@ export const AudioPlayerTemplate: (context: ElementDefinitionContext, definition
           </div>
         </div>`)}
       </div>
-      <audio ${ref('_playerEl')} src="${x => x.src}" type="audio/mpeg"
+      <audio ${ref('_playerEl')} src="${x => x.src}"
       @timeupdate="${x => x._updateProgress()}" @loadedmetadata="${x => x._updateTotalTime()}"></audio>
     </div>
   </${elevationTag}>`;
