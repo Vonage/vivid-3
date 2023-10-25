@@ -23,7 +23,7 @@ export class AudioPlayer extends FoundationElement {
 	 * @public
 	 * HTML Attribute: connotation
 	 */
-	@attr connotation?: BadgeConnotation;
+	@attr connotation?: AudioPlayerConnotation;
 	/**
 	 * Indicates the audio-player's src.
 	 *
