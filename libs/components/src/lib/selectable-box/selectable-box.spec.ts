@@ -67,7 +67,7 @@ describe('vwc-selectable-box', () => {
 			const control = getControlElement(element);
 
 			expect(control).not.toBe(null);
-			expect(control?.getAttribute('checked')).toBe('false');
+			expect(control?.getAttribute('checked')).toBe(null);
 		});
 
 		it('should display a radio when control is set to radio', async () => {
@@ -85,7 +85,7 @@ describe('vwc-selectable-box', () => {
 			element.spacing = 'small';
 			await elementUpdated(element);
 
-			expect(baseElement?.classList?.contains('size-small')).toBe(true);
+			expect(baseElement?.classList?.contains('spacing-small')).toBe(true);
 		});
 	});
 
@@ -106,14 +106,15 @@ describe('vwc-selectable-box', () => {
 			baseElement = getBaseElement(element);
 		});
 		
-		it('should set active class on the base element', async function () {
-			expect(baseElement?.classList?.contains('active')).toBe(true);
+		it('should set checked class on the base element', async function () {
+			expect(baseElement?.classList?.contains('checked')).toBe(true);
 		});
 
 		it('should set the checked attribute on the control element', async () => {
 			const control = getControlElement(element);
+			const controlElement = control.shadowRoot?.querySelector('[role="checkbox"]');
 			
-			expect(control?.hasAttribute('checked')).toBe(true);
+			expect(controlElement?.getAttribute('aria-checked')).toBe('true');
 		});
 
 		describe('radio', () => {
@@ -122,8 +123,9 @@ describe('vwc-selectable-box', () => {
 					`<${COMPONENT_TAG} control-type="radio" checked></${COMPONENT_TAG}>`
 				)) as SelectableBox;
 				const control = getControlElement(element);
-
-				expect(control?.hasAttribute('checked')).toBe(true);
+				const controlElement = control.shadowRoot?.querySelector('[role="radio"]');
+			
+				expect(controlElement?.getAttribute('aria-checked')).toBe('true');
 			});
 		});
 	});
