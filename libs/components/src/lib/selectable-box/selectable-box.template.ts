@@ -83,6 +83,7 @@ export const SelectableBoxTemplate: (
 		@keydown="${(x, c) => x._handleKeydown(c.event as KeyboardEvent)}"
 		@click="${x => x.clickable ? x._handleCheckedChange() : null}"
 	>
+		${(x) => x.clickable ? focusTemplate : ''}
 		${checkbox(context)}
 		${radio(context)}
 		<slot></slot>
