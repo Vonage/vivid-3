@@ -40,9 +40,9 @@
 	text-align: start;
 
 	&.tight {
+		overflow: hidden;
 		min-height: calc(var(#{variables.$spacing-var}, 16px) * 2 + 22px);
 		padding: 0;
-		overflow: hidden;
 	}
 
 	&.clickable {
