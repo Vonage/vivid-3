@@ -1,6 +1,6 @@
 import { axe, elementUpdated, fixture, getBaseElement, getControlElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import { Connotation, Size } from '../enums';
+import { Connotation } from '../enums';
 import { SelectableBox } from './selectable-box';
 import { selectableBoxDefinition } from './definition';
 import '.';
